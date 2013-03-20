@@ -14,20 +14,19 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.5/1.0/1.1                         |
 //   |--------------------------------------------------------|
-//   | iRO St. Patrick's Day. (2008)                          |
-//   | Find O'Riley's treasure for him, then hunt down coinds |
-//   | from the snakes to get Green Ale in return for them.	  |
-//   |                                                        |
-//   | Mobs 1841 through 1844 have been modified for this     |
-//   | event you must use the mob edits provided for this 	  |
-//   | quest. Enable in mob_db2.txt                           |
-//   |                                                        |
-//   | The item 12715 Black_Treasure_Chest contains a script  |
-//   | that relies explicitly on this script being loaded.	  |
-//   | Remove the "end" from the item script to enable.       |
-//   | In addition to that, you must enable the item_avail	  |
-//   | entries if you are using a kRO client, as the items	  |
-//   | were removed from the client between testing and this  |
+//   | Dia de São Patrício. (2008)                            |
+//   | Recupere o tesouro do Duende O'Riley, então encontre   |
+//   | moedas e volte até ele.	                              |
+//   | -------------------------------------------------------|
+//   | Monstros de ids entre 1841 e 1844 foram modificados    |
+//   | para esse evento você pode habilitar os monstros desse |
+//   | evento em mob_db2.                                     |
+//   | -------------------------------------------------------|
+//   | O item 12715 Báu do Tesouro Sombrio contém um script   |
+//   | que se baseia neste script ao ser executado.	          |
+//   | Remova o "end" do item_script do item. Além disso você |
+//   | também deve habilitar o item em item_avail se estiver	|
+//   | utilizando um cliente kRO.                             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |

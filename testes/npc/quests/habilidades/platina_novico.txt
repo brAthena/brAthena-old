@@ -18,19 +18,19 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
-//   | 1.1 Tradução PT-BR   [Dani]                            |
+//   | 1.1 Tradução PT-BR [Dani]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 prt_church,173,23,4	script	Sacerdote#qsk_al	79,{
 	mes "[Klift]";
-	mes "Ahh . Brothers ! Does the task of";
-	mes "caring for out lost sheep burden";
-	mes "and tire you ?";
-	mes "I am here to assist you.";
+	mes "Ahh. Irmãos! Será que";
+	mes "a tarefa de cuidar das ovelhas";
+	mes "perdidas é muito fardo para você?";
+	mes "Estou aqui para ajudá-lo.";
 	next;
-	switch (select("^3355FF' About acolyte's hidden ability '^000000 ..:^3355FF' Holy light '^000000 training:End conversation")) {
+	switch(select("^3355FF' Sobre habilidades ocultas de Noviço '^000000 ..:Treinar ^3355FF' Luz Divina '^000000:Terminar conversa")) {
 	case 1:
 		mes "[Klift]";
 		mes "Nossos membros do clero";
@@ -66,8 +66,8 @@ prt_church,173,23,4	script	Sacerdote#qsk_al	79,{
 		mes "qualquer nível de classe.";
 		close;
 	case 2:
-		if (getskilllv("AL_HOLYLIGHT") == 1) {
 			mes "[Klift]";
+		if (getskilllv("AL_HOLYLIGHT") == 1) {
 			mes "Irmão, você já possui a";
 			mes "habilidade ' Luz Divina '.";
 			mes "Você não pode ganhar uma";
@@ -76,13 +76,12 @@ prt_church,173,23,4	script	Sacerdote#qsk_al	79,{
 			mes "usando esta habilidade para o bem...";
 			close;
 		}
-		if ((countitem(727) > 0) && (countitem(991) > 0) && (countitem(2608) > 0) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
-			mes "[Klift]";
-					mes "Sua fé provou que você é digno";
-					mes "de usar a habilidade ' Luz Divina '.";
-					mes "Sua experiência é suficiente";
-					mes "para usar esta habilidade.";
-					mes "Use-a sabiamente...";
+		if ((countitem(727)) && (countitem(991)) && (countitem(2608)) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
+			mes "Sua fé provou que você é digno";
+			mes "de usar a habilidade ' Luz Divina '.";
+			mes "Sua experiência é suficiente";
+			mes "para usar esta habilidade.";
+			mes "Use-a sabiamente...";
 			next;
 			delitem 727,1; // Opala
 			delitem 991,1; // Cristal Azul
@@ -94,10 +93,9 @@ prt_church,173,23,4	script	Sacerdote#qsk_al	79,{
 			mes "bons propósitos...";
 			close;
 		}
-		mes "[Klift]";
     mes "Ah, é claro.";
     mes "Você ainda não está pronto";
-    mes "para receber a habilidade ' Luz Divina '.";
+    mes "para receber a habilidade 'Luz Divina'.";
     next;
     mes "[Klift]";
     mes "Você deve ouvir atentamente o que";

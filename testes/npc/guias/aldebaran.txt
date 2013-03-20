@@ -242,7 +242,7 @@ aldebaran,133,108,4	script#pre	Soldado#alde	105,{
 		break;
 	case 5:
 		viewpoint 1,197,70,4,0x3355FF;
-		mes "^3355FF+^000000 -> Loja de Items";
+		mes "^3355FF+^000000 -> Loja de Itens";
 		break;
 	case 6:
 		viewpoint 1,60,60,5,0xFF5555;

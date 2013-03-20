@@ -939,26 +939,26 @@ OnTouch:
 		if (getpartyleader(.@party_id,2) == getcharid(0)) {
 			mes "[Alma do Herói]";
 			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
-			set ins_baphomet,3;
+			set 'ins_baphomet,3;
 			donpcevent instance_npcname("ins_baphomet_1f_timer", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto2", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnEnable";
 		} else {
 			mes "[Alma do Herói]";
 			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
-			//set ins_baphomet,3;
+			//set 'ins_baphomet,3;
 		}
 		close2;
 		cutin "",255;
 		end;
-	} else if ((ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você pegou as 10^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
 		next;
 		if ((countitem(6001) > 9) && (countitem(6002) > 0)) {
 			delitem 6001,countitem(6001); //Essence_Of_Fire
-			set ins_baphomet,4;
+			set 'ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
 		} else {
@@ -968,13 +968,13 @@ OnTouch:
 		close2;
 		cutin "",255;
 		end;
-	} else if (ins_baphomet == 3) {
+	} else if ('ins_baphomet == 3) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você tem o ^0000FFSímbolo do Apóstolo^000000?";
 		next;
 		if (countitem(6002) > 0) {
-			set ins_baphomet,4;
+			set 'ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
 		} else {
@@ -984,12 +984,12 @@ OnTouch:
 		close2;
 		cutin "",255;
 		end;
-	} else if ((ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if (('ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte neste momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
 		next;
-		set ins_baphomet,5;
+		set 'ins_baphomet,5;
 		specialeffect EF_TELEPORTATION;
 		enablenpc instance_npcname("ins_bapho_to_2f", instance_id());
 		mes "[Alma do Herói]";
@@ -1003,7 +1003,7 @@ OnTouch:
 		cutin "",255;
 		instance_announce 0, "Alma do Herói : Agora já podem ir ao Altar Principal. Ele está localizado no Sudeste do mapa",bc_map,"0xFFFF00";
 		close;
-	} else if (ins_baphomet == 4) {
+	} else if ('ins_baphomet == 4) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte nesse momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
@@ -1012,7 +1012,7 @@ OnTouch:
 		mes "Irei abrir a ponte quando o Líder do grupo estiver pronto.";
 		cutin "",255;
 		close;
-	} else if (ins_baphomet == 5) {
+	} else if ('ins_baphomet == 5) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "O que está fazendo? A entrada para o Altar está aberta, vá e lute! A entrada se encontra no sudeste do mapa.";
@@ -1031,7 +1031,7 @@ OnTouch:
 OnTouch:
 	if (countitem(6002) > 0) {
 		delitem 6002,countitem(6002); // Medalhão do Apóstolo
-		set ins_baphomet,5;
+		set 'ins_baphomet,5;
 		warp "2@cata",80,144;
 		end;
 	} else {
@@ -1044,9 +1044,9 @@ OnTouch:
 // Túmulos
 //============================================================
 1@cata,86,214,0	script	Túmulo#SS1	844,{
-	if (ins_baphomet == 1) {
+	if ('ins_baphomet == 1) {
 		getitem 6003,1; // Pingente do Espírito
-		set ins_baphomet,2;
+		set 'ins_baphomet,2;
 		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1092,7 +1092,7 @@ OnTouch:
 1@cata,267,210,0	script	Tocha#SS	844,{
 	set .@party_id,getcharid(1);
 	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if ((ins_baphomet == 3) && (countitem(6001) < 11)) {
+		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
 			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
 			next;
 			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segurá-la.";
@@ -1102,7 +1102,7 @@ OnTouch:
 			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
 			disablenpc instance_npcname(strnpcinfo(0), instance_id());
 			close;
-		} else if ((ins_baphomet == 3) && (countitem(6001) > 10)) {
+		} else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
 			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
 			close;
 		} else {
@@ -1308,7 +1308,7 @@ OnTouch:
 
 2@cata,79,65,0	script	Altar Principal#ss	844,{
 	set .@party_id,getcharid(1);
-	if ((ins_baphomet == 5) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	if (('ins_baphomet == 5) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
 		next;
 		mes "Pergaminhos Mágicos piscam rapidamente, na tentativa de suprimir esse poder terrível.";
@@ -1319,7 +1319,7 @@ OnTouch:
 		specialeffect EF_METEORSTORM;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Olhem! Algo... Algo está vindo.";
-		set ins_baphomet,6;
+		set 'ins_baphomet,6;
 		donpcevent instance_npcname("ins_2f_hero_broad", instance_id())+"::OnEnable";
 		disablenpc instance_npcname("Altar Principal#ss", instance_id());
 		close;
@@ -1353,7 +1353,7 @@ OnTouch:
 		mes "[Alma do Herói]";
 		mes "Quando sair, diga um oi ao Patrick.";
 		cutin "",255;
-		set ins_baphomet,0;
+		set 'ins_baphomet,0;
 		warp "monk_test",310,150;
 		close;
 	case 2:
@@ -1416,7 +1416,7 @@ OnDisable:
 
 OnMyMobDead:
 	if (mobcount("2@cata",instance_npcname("control_baphomet", instance_id())+"::OnMyMobDead") < 1) {
-		set ins_baphomet,7;
+		set 'ins_baphomet,7;
 		erasequest 3041;
 		instance_announce 0, "Baphomet : Não! Nãoooo!Levarei isso como insulto, seus insetos!... Não!!...",bc_map,"0xdb7093";
 		enablenpc instance_npcname("Alma do Herói#2F", instance_id());

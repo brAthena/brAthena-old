@@ -18,15 +18,16 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
-//   | 1.1 Tradução PT-BR   [brn0]                            |
+//   | 1.1 Tradução PT-BR [brn0]                              |
+//   | 1.2 Otimização [Holy]                                  |                     
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
+			mes "[Essofeit]";
 	if (BaseJob == job_Cavaleiro) {
 		if (KNGT_SK == 10) {
-			mes "[Essofeit]";
 			mes "Ah, deve ser ótimo";
 			mes "ser um Cavaleiro aventureiro";
 			mes "neste mundo. Você deve ter";
@@ -42,8 +43,7 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			mes "contar suas histórias de bravura.";
 			close;
 		}
-		if (KNGT_SK == 9 && getskilllv("KN_CHARGEATK") == 0) {
-			mes "[Essofeit]";
+		if (KNGT_SK == 9 && !getskilllv("KN_CHARGEATK")) {
 			mes "Ah, eu percebi que você";
 			mes "fez um tremendo progresso";
 			mes "em sua busca pela força.";
@@ -84,7 +84,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 9) {
-			mes "[Essofeit]";
 			mes "Ah, deve ser ótimo";
 			mes "ser um Cavaleiro aventureiro";
 			mes "neste mundo. Você deve ter";
@@ -101,7 +100,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 8) {
-			mes "[Essofeit]";
 			mes "Eu nomeei esta habilidade de,";
 			mes "''Avanço Ofensivo''. Não é";
 			mes "um nome elegante, mas é simples";
@@ -134,7 +132,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 7 && countitem(530) > 4 && countitem(748) > 2) {
-			mes "[Essofeit]";
 			mes "A idéia de honra parece";
 			mes "estar perdida entre os Cavaleiros";
 			mes "de hoje. Eles não apreciam";
@@ -202,7 +199,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 7) {
-			mes "[Essofeit]";
 			mes "Talvez eu esteja romanceando";
 			mes "o passado, mas não concordo";
 			mes "com toda essa burocracia";
@@ -219,7 +215,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 6) {
-			mes "[Essofeit]";
 			mes "Então, você viu os Cavaleiros";
 			mes "da 7a. Divisão como";
 			mes "eles realmente são, não é? Como um colega Cavaleiro, você deve entender";
@@ -250,7 +245,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 		if (KNGT_SK == 1) {
-			mes "[Essofeit]";
 			mes "Hmm, por que não dá";
 			mes "uma olhada na 7a. Divisão";
 			mes "e vê, você mesmo, a atitude de";
@@ -259,8 +253,7 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			mes "treinando os recrutas lá fora.";
 			close;
 		}
-		if (KNGT_SK == 0) {
-			mes "[Essofeit]";
+		if (!KNGT_SK) {
 			mes "Saudações. Sou Essofeit";
 			mes "Lageiya da 7a. Divisão";
 			mes "da Cavalaria de Prontera.";
@@ -300,7 +293,6 @@ prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
 			close;
 		}
 	}
-	mes "[Essofeit]";
 	mes "Saudações. Eu sou Essofeit";
 	mes "Lageiya, da 7a. Divisão";
 	mes "da Cavalaria de Prontera.";
@@ -440,7 +432,7 @@ prontera,73,357,5	script	Cavaleiro#drake	734,{
 		mes "que poderia vir mais cedo, sabe?";
 		close;
 	}
-	mes "[A Cavaleiro]";
+	mes "[Um Cavaleiro]";
 	mes "Talvez eu não seja tão bom";
 	mes "para lutar ou para defender os";
 	mes "fracos, mas esta posição de Cavaleiro";

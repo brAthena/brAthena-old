@@ -17,13 +17,13 @@
 //   | Descrição: NPCs de Eventos da Corporação vs Kafra      |
 //   | Cavernas, Serviço de Teleporte e sistema de votação.   |
 //   | Este é um evento especial em servidores oficiais,      |
-//   | onde há uma grande competição entre Kafra Corp e Event |
-//   | Cool Corp.                                             |
+//   | onde há uma grande competição entre Corp Kafra. e Corp |
+//   | Ev. Incríveis.                                         |
 //   | Teleporte para leveis de certos calabouços (Cavernas)  |
 //   |                                                        |
 //   | Variáveis globais em uso:                              |
 //   | Checagem do tempo de votação: $DTS_Time                |
-//   | Cool Event Corp. - Número de votos: $DTS_JondaVotes    |
+//   | Corp Ev. Incríveis. - Número de votos: $DTS_JondaVotes |
 //   | Kafra - Número de votos:       $DTS_KafraVotes         |
 //   | Vencedor:                      $DTS_Result             |
 //   | Checagem do periodo do serviço de teleporte:           |

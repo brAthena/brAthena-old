@@ -99,7 +99,7 @@ auction_02,43,17,0	warp	entrada_lhz	1,1,lighthalzen,209,169
 
 // NPCs Casas de Leilão
 //============================================================
--	script	Corretor#dum::CorretorLeilão	-1,{
+auction_01,182,68,6	script	Corretor#dum::CorretorLeilão	98,{
 	mes "[Corretor]";
 	mes "Bem vindo a sala de leilão.";
 	mes "Você gostaria de ver as ofertas?";
@@ -121,7 +121,6 @@ auction_02,43,17,0	warp	entrada_lhz	1,1,lighthalzen,209,169
 	close;
 }
 
-auction_01,182,68,6	duplicate(CorretorLeilão)	Corretor#moc1	98
 auction_01,182,75,0	duplicate(CorretorLeilão)	Corretor#moc2	99
 auction_01,177,75,2	duplicate(CorretorLeilão)	Corretor#moc3	98
 auction_01,177,68,4	duplicate(CorretorLeilão)	Corretor#moc4	99

@@ -16,8 +16,8 @@
 //   |--------------------------------------------------------|
 //   | Descrição: Curso do Turbo Track:                       |
 //   | - Solo Mode/Time Attack                                |
-//   | - Normal (Não-PVP) - 08/04/16 pessoa                   |
-//   | - Especialista (PVP) - 08/04/16 pessoas                |
+//   | - Normal (Não-PVP) - 04/08/16 pessoas                  |
+//   | - Especialista (PVP) - 04/08/16 pessoas                |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 6.6/6.7/1.2a                        |
+//   | Versões eA/rA/brA: 6.6/6.7/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Funções referente as Kafras.               |
 //   | Aluguel de carrinho,teleporte entre outra funções.     |
@@ -20,8 +20,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
-//   | 1.2 Revisão [Holy]                                     |
-//   | 1.2a Revisão [Architect]                               |
+//   | 1.2 Revisão [Holy & Architect]                         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -83,7 +82,7 @@ function	script	F_Kafra	{
 			switch(getarg(1)){
 				// Opção de Salvar e Usar Armazém.
 				case 1:	setarray @K_Menu0$[0],"Salvar","Usar Armazém","Cancelar"; break;
-				// Armazém.
+				// Usar Armazém.
 				case 2:	setarray @K_Menu0$[0],"Usar Armazém","Cancelar"; break;
 				// Opção de Salvar, Usar Armazém, Alugar Carrinho.
 				case 3: setarray @K_Menu0$[0],"Salvar","Usar Armazém","Alugar Carrinho","Checar outra informação","Cancelar"; break;
@@ -97,7 +96,7 @@ function	script	F_Kafra	{
 				case 8: setarray @K_Menu0$[0],"Salvar","Usar Armazém","Checar outra informação","Cancelar"; break;
 				// No Save (Rune Knight) 
 				case 9: setarray @K_Menu0$[0],"Usar Armazém","Alugar Carrinho","Usar Serviço de Teleporte","Checar outra informação","Cancelar"; break;
-				// Storage, Save, and Pushcart (Dewata, reorder of case 7)
+				// Usar Armazém, Usar Armazém, e Alugar Carrinho.
 				case 10: setarray @K_Menu0$[0],"Usar Armazém","Salvar","Alugar Carrinho","Cancelar"; break;
 				// Mensagem Padrão.
 				default: setarray @K_Menu0$[0],"Salvar","Usar Armazém","Usar Serviço de Teleporte","Alugar Carrinho","Checar outra informação","Cancelar"; break;

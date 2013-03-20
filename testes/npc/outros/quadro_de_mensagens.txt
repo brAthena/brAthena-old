@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.6/1.0/1.0                         |
+//   | Versões eA/rA/brA: 1.6/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mensagens de placa para:                    |
 //   | Prontera, Morroc, Geffen, Aldebaran, Izlude e Alberta. |
@@ -78,7 +78,7 @@ prontera,31,212,1	script	Comunicado#Prt5	111,{
 }
 
 prontera,165,305,1	script	Comunicado#Prt6	111,{
-	mes "^993300- Comuinicado -^000000";
+	mes "^993300- Comunicado -^000000";
 	mes "Nós esperamos que você tenha uma ótima estadia em Prontera.";
 	close;
 }
@@ -138,11 +138,7 @@ morocc,168,264,1	script	Quadro#Moc6	111,{
 	close;
 }
 
-morocc,298,211,1	script	Quadro#Moc7	111,{
-	mes "^993300- Quadro de avisos -^000000";
-	mes "Bem vindo a Morroc.";
-	close;
-}
+morocc,298,211,1	duplicate(Quadro#Moc5)	Quadro#Moc7	111
 
 // Geffen
 //============================================================
@@ -279,8 +275,4 @@ alberta,196,152,1	script	Quadro#Alb4	111,{
 	close;
 }
 
-alberta,149,54,1	script	Quadro#Alb5	111,{
-	mes "^993300- Quadro de avisos -^000000";
-	mes "Bem vindo.";
-	close;
-}
+alberta,149,54,1	duplicate(Avisos#Alb2)	Quadro#Alb5	111
