@@ -697,7 +697,7 @@ nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
 	set @egg_temp,rand(1,4);
 	if( @egg_temp == 3) {
 		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
-		mes "Existe um "ovo" no lugar onde a galinha desapareceu.";
+		mes "Existe um 'ovo no lugar onde a galinha desapareceu.";
 		disablenpc "Galinha#"+strnpcinfo(1);
 		getitem 574,1; //Egg
 		close;
@@ -713,7 +713,7 @@ nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
 	set @egg_temp,rand(1,4);
 	if( @egg_temp == 3) {
 		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
-		mes "Você tem um "ovo" no lugar onde a galinha desapareceu.";
+		mes "Você tem um 'ovo' no lugar onde a galinha desapareceu.";
 		disablenpc "Galinha#"+strnpcinfo(1);
 		getitem 574,1; //Egg
 		close;

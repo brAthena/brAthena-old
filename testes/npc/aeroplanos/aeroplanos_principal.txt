@@ -128,8 +128,8 @@ airplane,66,93,3	script	Senhora de Umbala#ein_p	783,{
 }
 
 airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
-	if (event_umbala >= 3) {
 		mes "[Chrmlim]";
+	if (event_umbala >= 3) {
 		mes "Ei você~";
 		mes "Pela sua aparência,";
 		mes "percebo que você";
@@ -151,7 +151,6 @@ airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
 		mes "Devem participar de";
 		mes "algumas experiências, ^333333em Nifflheim^000000.";
 	} else {
-		mes "[Chrmlim]";
 		mes "Bajoo ga";
 		mes "nukta Airship.";
 		next;
@@ -452,16 +451,15 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 		next;
 		switch (select("Sim:Não")) {
 		case 1:
-			if (countitem(512) < 3 || countitem(713) < 1) {
 				mes "[Vendedor de Maçãs]";
+			if (countitem(512) < 3 || !countitem(713)) {
 				mes "Me desculpe,mas você não possui";
 				mes "os materiais suficientes para";
 				mes "criar uma Garrafa de Suco de Maçã.";
 				mes "Lembre-se, irei precisar de 3 Maçãs";
 				mes "e 1 Garrafa Vazia.";
 				close;
-			    }
-				mes "[Vendedor de Maçãs]";
+			  }
 				mes "Obrigado,";
 				mes "por favor espere um momento.";
 				next;

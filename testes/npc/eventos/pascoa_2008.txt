@@ -37,8 +37,8 @@ prontera,111,99,5	script	Vendedor de Ovos#prt	98,{
 		switch(select("O que você está fazendo?:Por que ovos de galinha?:Claro, eu vou comprar alguns.:Não tem importância.")) {
 		case 1:
 			mes "[Vendedor de Ovos]";
-			mes "O que eu--? Eu;
-			mes "vendo ovos de galinha!";
+			mes "O que eu--?";
+			mes "Eu vendo ovos de galinha!";
 			mes "Para este evento tão especial";
 			mes "eu estou vendendo como muitos";
 			mes "ovos de galinha, mas você poderia";
@@ -115,7 +115,7 @@ prontera,111,99,5	script	Vendedor de Ovos#prt	98,{
 							mes "quer comprar alguns ovos";
 							mes "de galinha, mas você vai ser capaz";
 							mes "para levar tantos ovos agora. Por que";
-							mes "você não liberar algum;
+							mes "você não liberar algum";
 							mes "espaço no inventário primeiro?.";
 							close;
 						}

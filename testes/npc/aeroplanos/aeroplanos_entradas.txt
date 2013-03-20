@@ -39,7 +39,7 @@ izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
 	mes "Você deseja usar o serviço?";
 	next;
 	if(select("Sim:Não") == 2) close;
-	if(countitem(7311) < 1 && Zeny < 1200) {
+	if(!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
 		mes "Me desculpe, mas você não";
 		mes "possui um Bilhete para Aeroplano";
@@ -69,7 +69,7 @@ izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 	mes "Você deseja usar o serviço?";
 	next;
 	if(select("Sim:Não") == 2) close;
-	if(countitem(7311) < 1 && Zeny < 1200) {
+	if(!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
 		mes "Me desculpe, mas você não";
 		mes "possui um Bilhete para Aeroplano";

@@ -1298,9 +1298,9 @@ OnEnable:
 							close2;
 							donpcevent "RL"+.@num+"#"+strnpcinfo(4)+"::OnEnable";
 							disablenpc strnpcinfo(0);
-							if (.@num == 1) set .@str$,"1st";
-							else if (.@num == 2) set .@str$,"2nd";
-							else if (.@num == 3) set .@str$,"3rd";
+							if (.@num == 1) set .@str$,"1º";
+							else if (.@num == 2) set .@str$,"2º";
+							else if (.@num == 3) set .@str$,"3º";
 							mapannounce strnpcinfo(4),"O "+.@str$+" Portão do Castelo foi reconstruído!",bc_map,"0x00ff00";
 							if (.@num == 1) setd .@var$+"[2]",0;
 							else {
@@ -1405,7 +1405,7 @@ OnEnable:
 	copyarray getd(".x_"+strnpcinfo(2)+"[0]"),.@x[0],22;
 	copyarray getd(".y_"+strnpcinfo(2)+"[0]"),.@y[0],22;
 	setd ".timer_"+charat(strnpcinfo(1),4)+strnpcinfo(2),4+.@z;
-	setarray .count$[5],"1st","2nd","3rd","4th","5th";
+	setarray .count$[5],"1º","2º","3º","4º","5º";
 	initnpctimer;
 	end;
 
@@ -1419,7 +1419,7 @@ OnTimer3600000:
 	setd .@var$, getd(.@var$)+1;
 	set getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2)),getd(".MyMobCount_"+charat(strnpcinfo(1),4)+strnpcinfo(2))+1;
 	callsub OnSummon,getd(.@var$);
-	setarray .count$[5],"1st","2nd","3rd","4th","5th";
+	setarray .count$[5],"1º","2º","3º","4º","5º";
 	mapannounce strnpcinfo(2),"O "+.count$[getd(.@var$)]+" Guardião foi invocado.",bc_map,"0xff4500";
 	if (getd(.@var$) == 9) {
 		setd .@var$,0;
@@ -1676,7 +1676,7 @@ OnBarrierDestroyed:
 	if (getd(".MyMobCount_"+.@num+strnpcinfo(2)) == 0) {
 		set .@var$,substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
 		setd "$agit_"+.@var$+"["+(.@num+1)+"]",1;
-		setarray .@count$[0],"1st","2nd","3rd";
+		setarray .@count$[0],"1º","2º","3º";
 		mapannounce strnpcinfo(2),"The "+.@count$[.@num-1]+" Fortress Gate is destroyed.",bc_map,"0x00ff00";
 		delwall .@var$+"_"+strnpcinfo(1);
 	}
