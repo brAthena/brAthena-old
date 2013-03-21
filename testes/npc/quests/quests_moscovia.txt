@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/2.0/1.0                         |
+//   | Versões eA/rA/brA: 1.9/2.0a/1.0                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest a Ilha que se Move, Ajudando Mikhail  |
 //   | Troca de Avelãs, Baba-Yaga, Gorro Chullos, Koshei O    |
@@ -846,7 +846,7 @@ mosk_ship,98,110,3	script	Mr. Ibanoff#npc2	964,{
 		close;
 	}
 	else if (mos_whale_edq == 8 || mos_whale_edq == 10) callsub S_D_1,3,91,92,93,94;
-	else if (mos_whale_edq >= 91 && mos_whale_edq <= 94) callsub S_D_2,91,0;
+	else if (mos_whale_edq >= 91 && mos_whale_edq <= 94) callsub S_D_2,(mos_whale_edq-91);
 	else if (mos_whale_edq == 11) {
 		mes "[Mr. Ibanoff]";
 		mes "Look... Beyond the sea!";
@@ -898,8 +898,8 @@ mosk_ship,98,110,3	script	Mr. Ibanoff#npc2	964,{
 		close;
 	}
 	else if (mos_whale_edq == 23 || mos_whale_edq == 25) callsub S_D_1,5,241,242,243,244;
-	else if (mos_whale_edq == 241 || mos_whale_edq == 243 || mos_whale_edq == 244) callsub S_D_2,1,1;
-	else if (mos_whale_edq == 242) callsub S_D_2,1,2;
+	else if (mos_whale_edq == 241 || mos_whale_edq == 243 || mos_whale_edq == 244) callsub S_D_2,0;
+	else if (mos_whale_edq == 242) callsub S_D_2,1;
 	else if (mos_whale_edq == 26) {
 		mes "[Mr. Ibanoff]";
 		mes "Look there!";
@@ -947,14 +947,14 @@ mosk_ship,98,110,3	script	Mr. Ibanoff#npc2	964,{
 	end;
 
 S_D_1:
-	if (rand(1,4) == 3) {
+	if (rand(1,getarg(0)) == 3) {
 		set .@ship2,rand(4);
-		setarray .@d$,"East","West","South","North";
+		setarray .@d$[0],"East","West","South","North";
 		mes "[Mr. Ibanoff]";
 		mes "Hm. The sea currents have changed.";
 		mes "Adjust the rudder forward to the";
 		mes .@d$[.@ship2]+", to follow the currents.";
-		set mos_whale_edq,getarg(.@ship2);
+		set mos_whale_edq,getarg(.@ship2+1);
 		close;
 	}
 	mes "[Mr. Ibanoff]";
@@ -967,14 +967,13 @@ S_D_1:
 	close;
 	
 S_D_2:
-		setarray .@d$[getarg(0)],"East","West","South","North";
-		mes "[Mr. Ibanoff]";
-		mes "Hey!";
-		mes "Did you not hear me?";
-		mes "Change the rudder forward to the";
-		if (getarg(1)) mes .@d$[getarg(1)]+", and follow the currents!";
-		else mes .@d$[mos_whale_edq]+", and follow the currents!";
-		close;
+	setarray .@d$[0],"East","West","South","North";
+	mes "[Mr. Ibanoff]";
+	mes "Hey!";
+	mes "Did you not hear me?";
+	mes "Change the rudder forward to the";
+	mes .@d$[getarg(0)]+", and follow the currents!";
+	close;
 }
 
 //----------------------------------------------------------------------------
