@@ -12,17 +12,18 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Portais de Eclage.                          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Correção em posicionamento de portal [Hold]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-bif_fild02,292,351,0	warp	eclage_campo0001	1,1,ecl_fild01,205,74
+bif_fild02,294,343,0	warp	eclage_campo0001	1,1,ecl_fild01,205,74
 ecl_fild01,207,72,0	warp	eclage_campo0002	1,1,bif_fild02,294,349
 ecl_fild01,97,320,0	warp	eclage_campo0003	1,1,eclage,100,28
 eclage,98,26,0	warp	eclage_campo0004	1,1,ecl_fild01,97,317

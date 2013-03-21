@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.1                                       |
+//   | Versões brA: 1.2                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Portais dos Campos de Bifrost.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Adicionados todos os portais. [Protimus]           |
+//   | 1.2 Removidos portais duplicados de 1@mist [Hold]      |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -32,111 +33,3 @@ bif_fild02,95,310,0	warp	bifrost_field0005	1,1,mora,22,157
 mora,20,159,0	warp	bifrost_field0006	1,1,bif_fild02,98,309
 bif_fild02,174,162,0	warp	bifrost_field0007	1,1,mora,58,27
 mora,56,25,0	warp	bifrost_field0008	1,1,bif_fild02,177,162
-
-// Labirinto da Neblina
-1@mist,104,22,0	warp	bifrost_instance_field	1,1,bif_fild01,0,0
-1@mist,109,70,0	warp	bifrost_instance0001	1,1,1@mist,116,40
-1@mist,113,41,0	warp	bifrost_instance0002	1,1,1@mist,90,80
-1@mist,93,82,0	warp	bifrost_instance0003	1,1,1@mist,108,152
-1@mist,111,154,0	warp	bifrost_instance0004	1,1,1@mist,236,108
-//1@mist,247,123,0	warp	bifrost_instance0005	1,1,1@mist,164,66
-1@mist,161,67,0	warp	bifrost_instance0006	1,1,1@mist,108,152
-1@mist,181,65,0	warp	bifrost_instance0007	1,1,1@mist,141,90
-1@mist,115,86,0	warp	bifrost_instance0008	1,1,1@mist,224,130
-1@mist,220,134,0	warp	bifrost_instance0044	1,1,1@mist,200,64
-1@mist,197,63,0	warp	bifrost_instance0045	1,1,1@mist,177,116
-//1@mist,225,98,0	warp	bifrost_instance0010	1,1,1@mist,144,194
-1@mist,146,194,0	warp	bifrost_instance0011	1,1,1@mist,227,94
-1@mist,132,195,0	warp	bifrost_instance0012	1,1,1@mist,202,110
-1@mist,202,107,0	warp	bifrost_instance0046	1,1,1@mist,136,194
-1@mist,216,107,0	warp	bifrost_instance0047	1,1,1@mist,240,56
-1@mist,235,68,0	warp	bifrost_instance0013	1,1,1@mist,239,80
-1@mist,242,77,0	warp	bifrost_instance0014	1,1,1@mist,153,137
-1@mist,156,136,0	warp	bifrost_instance0015	1,1,1@mist,227,94
-//1@mist,159,184,0	warp	bifrost_instance0016	1,1,1@mist,49,37
-1@mist,46,41,0	warp	bifrost_instance0017	1,1,1@mist,174,165
-1@mist,171,165,0	warp	bifrost_instance0019	1,1,1@mist,168,143
-1@mist,168,141,0	warp	bifrost_instance0020	1,1,1@mist,101,107
-1@mist,99,106,0	warp	bifrost_instance0021	1,1,1@mist,57,38
-//1@mist,60,39,0	warp	bifrost_instance0018	1,1,1@mist,68,113
-1@mist,65,113,0	warp	bifrost_instance0022	1,1,1@mist,218,151
-1@mist,221,150,0	warp	bifrost_instance0023	1,1,1@mist,117,126
-1@mist,114,125,0	warp	bifrost_instance0024	1,1,1@mist,36,62
-1@mist,61,90,0	warp	bifrost_instance0026	1,1,1@mist,189,139
-1@mist,186,139,0	warp	bifrost_instance0027	1,1,1@mist,98,126
-1@mist,101,125,0	warp	bifrost_instance0028	1,1,1@mist,238,151
-//1@mist,279,210,0	warp	bifrost_instance0030	1,1,1@mist,277,112
-1@mist,253,152,0	warp	bifrost_instance0031	1,1,1@mist,271,164
-1@mist,301,142,0	warp	bifrost_instance0032	1,1,1@mist,99,232
-1@mist,100,230,0	warp	bifrost_instance0033	1,1,1@mist,103,255
-1@mist,101,253,0	warp	bifrost_instance0034	1,1,1@mist,215,177
-//1@mist,230,179,0	warp	bifrost_instance0035	1,1,1@mist,121,224
-1@mist,288,167,0	warp	bifrost_instance0036	1,1,1@mist,152,219
-1@mist,149,219,0	warp	bifrost_instance0037	1,1,1@mist,119,227
-1@mist,115,228,0	warp	bifrost_instance0038	1,1,1@mist,230,353
-1@mist,300,238,0	warp	bifrost_instance0039	1,1,1@mist,227,178
-//1@mist,285,226,0	warp	bifrost_instance0040	1,1,1@mist,72,274
-1@mist,76,272,0	warp	bifrost_instance0041	1,1,1@mist,106,65
-1@mist,61,283,0	warp	bifrost_instance0042	1,1,1@mist,255,221
-1@mist,251,221,0	warp	bifrost_instance0048	1,1,1@mist,63,284
-1@mist,267,213,0	warp	bifrost_instance0049	1,1,1@mist,214,268
-1@mist,212,264,0	warp	bifrost_instance0050	1,1,1@mist,288,266
-1@mist,285,265,0	warp	bifrost_instance0051	1,1,1@mist,143,234
-1@mist,141,231,0	warp	bifrost_instance0052	1,1,1@mist,222,281
-1@mist,224,279,0	warp	bifrost_instance0053	1,1,1@mist,158,317
-//1@mist,160,318,0	warp	bifrost_instance0054	1,1,1@mist,108,203
-1@mist,134,290,0	warp	bifrost_instance0055	1,1,1@mist,293,195
-1@mist,292,191,0	warp	bifrost_instance0056	1,1,1@mist,239,253
-1@mist,236,254,0	warp	bifrost_instance0057	1,1,1@mist,288,266
-1@mist,111,204,0	warp	bifrost_instance0058	1,1,1@mist,202,333
-1@mist,186,174,0	warp	bifrost_instance0059	1,1,1@mist,218,313
-1@mist,215,314,0	warp	bifrost_instance0060	1,1,1@mist,214,268
-1@mist,231,325,0	warp	bifrost_instance0061	1,1,1@mist,221,233
-//1@mist,221,236,0	warp	bifrost_instance0062	1,1,1@mist,214,268
-1@mist,230,230,0	warp	bifrost_instance0063	1,1,1@mist,263,261
-//1@mist,206,201,0	warp	bifrost_instance0064	1,1,1@mist,298,142
-1@mist,233,353,0	warp	bifrost_instance0066	1,1,1@mist,289,225
-1@mist,262,258,0	warp	bifrost_instance0067	1,1,1@mist,272,246
-1@mist,269,247,0	warp	bifrost_instance0068	1,1,1@mist,143,265
-1@mist,140,267,0	warp	bifrost_instance0069	1,1,1@mist,209,200
-//1@mist,161,317,0	warp	bifrost_instance0070	1,1,1@mist,107,203
-1@mist,199,334,0	warp	bifrost_instance0071	1,1,1@mist,203,251
-1@mist,205,249,0	warp	bifrost_instance0072	1,1,1@mist,168,239
-1@mist,86,176,0	warp	bifrost_instance0073	1,1,1@mist,218,313
-1@mist,165,239,0	warp	bifrost_instance0074	1,1,1@mist,90,172
-//1@mist,204,300,0	warp	bifrost_instance0075	1,1,1@mist,169,314
-1@mist,166,314,0	warp	bifrost_instance0076	1,1,1@mist,206,296
-1@mist,196,297,0	warp	bifrost_instance0077	1,1,1@mist,170,195
-1@mist,165,201,0	warp	bifrost_instance0078	1,1,1@mist,193,300
-1@mist,195,208,0	warp	bifrost_instance0079	1,1,1@mist,171,339
-1@mist,166,341,0	warp	bifrost_instance0080	1,1,1@mist,198,354
-1@mist,201,352,0	warp	bifrost_instance0081	1,1,1@mist,83,224
-1@mist,87,224,0	warp	bifrost_instance0082	1,1,1@mist,170,195
-1@mist,84,274,0	warp	bifrost_instance0083	1,1,1@mist,98,287
-//1@mist,95,288,0	warp	bifrost_instance0084	1,1,1@mist,323,276
-1@mist,111,298,0	warp	bifrost_instance0085	1,1,1@mist,82,307
-1@mist,79,308,0	warp	bifrost_instance0086	1,1,1@mist,284,89
-1@mist,281,90,0	warp	bifrost_instance0087	1,1,1@mist,115,298
-1@mist,326,275,0	warp	bifrost_instance0088	1,1,1@mist,279,112
-1@mist,294,291,0	warp	bifrost_instance0089	1,1,1@mist,78,330
-1@mist,81,329,0	warp	bifrost_instance0090	1,1,1@mist,308,330
-1@mist,307,326,0	warp	bifrost_instance0091	1,1,1@mist,309,165
-1@mist,306,165,0	warp	bifrost_instance0092	1,1,1@mist,298,293
-//1@mist,325,327,0	warp	bifrost_instance0093	1,1,1@mist,49,316
-1@mist,46,315,0	warp	bifrost_instance0094	1,1,1@mist,113,328
-1@mist,94,327,0	warp	bifrost_instance0095	1,1,1@mist,343,157
-1@mist,339,158,0	warp	bifrost_instance0096	1,1,1@mist,343,328
-1@mist,343,325,0	warp	bifrost_instance0097	1,1,1@mist,346,120
-1@mist,317,90,0	warp	bifrost_instance0098	1,1,1@mist,339,284
-1@mist,339,281,0	warp	bifrost_instance0099	1,1,1@mist,332,172
-//1@mist,346,187,0	warp	bifrost_instance00100	1,1,bif_fild01,0,0 
-1@mist,330,171,0	warp	bifrost_instance00101	1,1,1@mist,346,120
-1@mist,345,124,0	warp	bifrost_instance00102	1,1,1@mist,277,343
-//1@mist,280,344,0	warp	bifrost_instance00103	1,1,1@mist,49,316
-1@mist,256,315,0	warp	bifrost_instance00104	1,1,1@mist,343,307
-1@mist,0,0,0	warp	bifrost_instance00105	1,1,1@mist,309,340
-//1@mist,308,145,0	warp	bifrost_instance00106	1,1,1@mist,259,313
-1@mist,341,305,0	warp	bifrost_instance00107	1,1,1@mist,332,121
-1@mist,335,119,0	warp	bifrost_instance00108	1,1,1@mist,262,313
-1@mist,180,116,0	warp	bifrost_instance00109	1,1,1@mist,164,66
-1@mist,212,180,0	warp	bifrost_instance00110	1,1,1@mist,277,206
