@@ -6798,7 +6798,7 @@ ACMD_FUNC(showmobs)
 ACMD_FUNC(homlevel)
 {
 	TBL_HOM *hd;
-	int level = 0;
+	int level = 0, nooverflow;
 
 	nullpo_retr(-1, sd);
 
@@ -6811,15 +6811,20 @@ ACMD_FUNC(homlevel)
 		clif_displaymessage(fd, msg_txt(1254)); // You do not have a homunculus.
 		return -1;
 	}
+	
+	hd = sd->hd;	
+	
+	if(!(nooverflow = hom_class2mapid(hd->homunculus.class_)))
+		return -1;
+		
+	nooverflow = ((nooverflow&HOM_S)?battle_config.hom_S_max_level:battle_config.hom_max_level);
 
-	hd = sd->hd;
-
-	if (battle_config.hom_max_level == hd->homunculus.level) // Already reach maximum level
-		return 0;
+	if (hd->homunculus.level >= nooverflow) // Already reach maximum level
+		return -1;
 
 	do{
 		hd->homunculus.exp += hd->exp_next;
-	}while(hd->homunculus.level < level && merc_hom_levelup(hd));
+	}while(hd->homunculus.level < nooverflow && merc_hom_levelup(hd));
 
 	status_calc_homunculus(hd,0);
 	status_percent_heal(&hd->bl, 100, 100);
