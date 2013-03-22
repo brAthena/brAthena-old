@@ -1067,7 +1067,7 @@ void initChangeTables(void)
 	StatusChangeStateTable[SC_SILENCE]             |= SCS_NOCAST;
 
 	//Homon S
-	StatusChangeStateTable[SC_PARALYSIS]               |= SCS_NOMOVE|SCS_NOCAST;
+	StatusChangeStateTable[SC_PARALYSIS]               |= SCS_NOMOVE;
 
 }
 
