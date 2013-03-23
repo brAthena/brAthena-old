@@ -36,12 +36,12 @@ ein_fild01,232,100,25,60	monster#pre	Punk	1199,5,300000,60000,0,{}
 //==================================================
 // [Pré-Renovação] ein_fild02 - Campo de Einbroch
 //==================================================
-ein_fild02,105,250,70,80	monster#re	Furador	1380,10,0,0,0
-ein_fild02,259,269,90,70	monster#re	Furador	1380,15,0,0,0
-ein_fild02,287,117,55,70	monster#re	Furador	1380,10,0,0,0
-ein_fild02,108,88,60,60	monster#re	Furador	1380,10,0,0,0
-ein_fild02,0,0,0,0	monster#re	Demônio Pungus	1378,30,0,0,0
-ein_fild02,0,0,0,0	monster#re	Ungoliant	1618,1,75600000,75000000,0,{}
+ein_fild02,105,250,70,80	monster#pre	Furador	1380,10,0,0,0
+ein_fild02,259,269,90,70	monster#pre	Furador	1380,15,0,0,0
+ein_fild02,287,117,55,70	monster#pre	Furador	1380,10,0,0,0
+ein_fild02,108,88,60,60	monster#pre	Furador	1380,10,0,0,0
+ein_fild02,0,0,0,0	monster#pre	Demônio Pungus	1378,30,0,0,0
+ein_fild02,0,0,0,0	monster#pre	Ungoliant	1618,1,75600000,75000000,0,{}
 
 //==================================================
 // [Pré-Renovação] ein_fild03 - Campo de Einbroch
@@ -174,7 +174,7 @@ ein_fild08,0,0,0,0	monster#pre	Planta Amarela	1081,10,120000,60000,0
 ein_fild08,0,0,0,0	monster#pre	Cogumelo Vermelho	1085,10,120000,60000,0,{}
 
 //==================================================
-// [Renovação] ein_fild07 - Campo de Einbroch
+// [Renovação] ein_fild08 - Campo de Einbroch
 //==================================================
 ein_fild08,0,0,0,0	monster#re	Metaling	1613,100,5000,0,0
 ein_fild08,0,0,0,0	monster#re	Porcellio	1619,30,5000,0,0
@@ -216,12 +216,3 @@ ein_fild10,225,95,30,45	monster#pre	Yoyo	1057,6,30000,10000,0
 ein_fild10,320,130,40,40	monster#pre	Yoyo	1057,4,30000,10000,0
 ein_fild10,225,95,30,45	monster#pre	Flora	1118,10,300000,120000,0
 ein_fild10,320,130,40,40	monster#pre	Flora	1118,10,300000,120000,0,{}
-
-//==================================================
-// [Renovação] ein_fild09 - Campo de Einbroch
-//==================================================
-ein_fild09,0,0,0,0	monster#re	Porcellio	1619,70,5000,0,0
-ein_fild09,0,0,0,0	monster#re	Metaling	1613,30,5000,0,0
-ein_fild09,0,0,0,0	monster#re	Planta Vermelha	1078,10,120000,60000,1
-ein_fild09,0,0,0,0	monster#re	Planta Amarela	1081,10,120000,60000,1
-ein_fild09,0,0,0,0	monster#re	Cogumelo Vermelho	1085,10,120000,60000,0,{}
