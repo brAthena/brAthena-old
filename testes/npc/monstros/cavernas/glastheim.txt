@@ -87,28 +87,28 @@ gl_cas02,190,38,1,1	monster#pre	Raydric Arqueiro	1276,1,360000,180000,0,{}
 //==================================================
 // [Renovação] gl_cas02 - Glast Heim 2
 //==================================================
-gl_cas02,0,0,0,0	monster	Andarilho	1208,41,5000,0,0
-gl_cas02,0,0,0,0	monster	Raydric	1163,36,5000,0,0
-gl_cas02,0,0,0,0	monster	Rideword	1195,29,5000,0,0
-gl_cas02,0,0,0,0	monster	Raydric Arqueiro	1276,20,5000,0,0
-gl_cas02,0,0,0,0	monster	Druida Maligno	1117,9,5000,0,0
-gl_cas02,0,0,0,0	monster	Cavaleiro do Abismo	1219,7,5000,0,0
-gl_cas02,0,0,0,0	monster	Khalitzburg	1132,6,5000,0,0
-gl_cas02,0,0,0,0	monster	Quimera	1283,3,5000,0,0
-gl_cas02,0,0,0,0	monster	Mímico	1191,2,5000,0,0
-gl_cas02,0,0,0,0	monster	Alice	1275,1,5000,0,0
-gl_cas02,102,180,0,0	monster	Sussurro	1185,1,1800000,900000,1
-gl_cas02,104,145,5,5	monster	Mysteltainn	1203,1,7200000,3600000,1
-gl_cas02,0,0,0,0	monster	Tirfing	1204,1,7200000,3600000,1
+gl_cas02,0,0,0,0	monster#re	Andarilho	1208,41,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Raydric	1163,36,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Rideword	1195,29,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Raydric Arqueiro	1276,20,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Druida Maligno	1117,9,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,7,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Khalitzburg	1132,6,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Quimera	1283,3,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Mímico	1191,2,5000,0,0
+gl_cas02,0,0,0,0	monster#re	Alice	1275,1,5000,0,0
+gl_cas02,102,180,0,0	monster#re	Sussurro	1185,1,1800000,900000,1
+gl_cas02,104,145,5,5	monster#re	Mysteltainn	1203,1,7200000,3600000,1
+gl_cas02,0,0,0,0	monster#re	Tirfing	1204,1,7200000,3600000,1,{}
 
 //==================================================
 // [Pré-Renovação] glast_01 - Glast Heim
 //==================================================
-glast_01,0,0,0,0	monster	Cavaleiro do Abismo	1219,2,600000,300000,1
-glast_01,0,0,0,0	monster	Gárgula	1253,10,0,0,1
-glast_01,233,209,15,15	monster	Planta Verde	1080,8,360000,180000,1
-glast_01,233,209,15,15	monster	Planta Azul	1079,2,900000,450000,1
-glast_01,233,209,15,15	monster	Planta Brilhante	1083,1,1800000,900000,1,{}
+glast_01,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,2,600000,300000,1
+glast_01,0,0,0,0	monster#pre	Gárgula	1253,10,0,0,1
+glast_01,233,209,15,15	monster#pre	Planta Verde	1080,8,360000,180000,1
+glast_01,233,209,15,15	monster#pre	Planta Azul	1079,2,900000,450000,1
+glast_01,233,209,15,15	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] glast_01 - Glast Heim
@@ -205,11 +205,11 @@ gl_church,155,54,10,10	monster#pre	Mímico	1191,1,30000,15000,0,{}
 //==================================================
 // [Renovação] gl_church - Abadia de Glast Heim
 //==================================================
-gl_church,0,0,0,0	monster	Druida Maligno	1117,60,5000,0,0
-gl_church,0,0,0,0	monster	Alma Penada	1192,55,5000,0,0
-gl_church,0,0,0,0	monster	Mímico	1191,9,5000,0,0
-gl_church,0,0,0,0	monster	Druida Maligno	1117,1,5000,0,0
-gl_church,0,0,0,0	monster	Aparição	1291,1,3600000,1800000,0
+gl_church,0,0,0,0	monster#re	Druida Maligno	1117,60,5000,0,0
+gl_church,0,0,0,0	monster#re	Alma Penada	1192,55,5000,0,0
+gl_church,0,0,0,0	monster#re	Mímico	1191,9,5000,0,0
+gl_church,0,0,0,0	monster#re	Druida Maligno	1117,1,5000,0,0
+gl_church,0,0,0,0	monster#re	Aparição	1291,1,3600000,1800000,0,{}
 
 //==================================================
 // [Pré-Renovação] gl_chyard - Cemitério de Glast Heim
