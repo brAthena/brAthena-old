@@ -2088,7 +2088,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(index >= 0 &&
 					   sd->inventory_data[index] &&
 					   sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
+						wd.damage = sd->inventory_data[index]->weight*80/100; //80% of weight
 					
 					ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
 				} else {
