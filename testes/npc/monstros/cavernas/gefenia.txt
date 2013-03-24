@@ -121,17 +121,17 @@ gefenia04,0,0,0,0	monster#pre	Executor	1205,1,18000000,14400000,0
 gefenia04,0,0,0,0	monster#pre	Tirfing	1204,1,18000000,14400000,0,{}
 
 //==================================================
-// gefenia03 - Geffenia
+// [Renovação] gefenia03 - Geffenia
 //==================================================
-gefenia03,0,0,0,0	monster#re	Anjo Fajuto	1371,40,5000,0,0
-gefenia03,0,0,0,0	monster#re	Violinista	1390,40,5000,0,0
-gefenia03,0,0,0,0	monster#re	Diabinho	1292,30,5000,0,0
-gefenia03,0,0,0,0	monster#re	Incubus	1374,20,5000,0,0
+gefenia03,0,0,0,0	monster#re	Anjo Fajuto	1371,30,5000,0,0
+gefenia03,0,0,0,0	monster#re	Violy	1390,30,5000,0,0
+gefenia03,0,0,0,0	monster#re	Diabinho	1292,20,5000,0,0
 gefenia03,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
+gefenia03,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0
 gefenia03,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0
 gefenia03,0,0,0,0	monster#re	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia03,0,0,0,0	monster#re	Executor	1205,1,10800000,7200000,0
 gefenia03,0,0,0,0	monster#re	Mysteltainn	1203,1,18000000,14400000,0
+gefenia03,0,0,0,0	monster#re	Executor	1205,1,18000000,14400000,0
 gefenia03,0,0,0,0	monster#re	Tirfing	1204,1,18000000,14400000,0,{}
 
 //==================================================
