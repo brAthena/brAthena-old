@@ -36,7 +36,6 @@ OnInit:
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id1, waitingroom2bg("bat_b01",10,290,"start#bat_b01::OnGuillaumeQuit","");
-	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",390,10,"start#bat_b01::OnCroixQuit","");
 	end;
 }
 
@@ -44,6 +43,9 @@ bat_room,85,204,0	script	Tenente Thelokus	414,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b01::OnReadyCheck",1,0,80;
+	end;
+OnEnterBG:
+	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",390,10,"start#bat_b01::OnCroixQuit","");
 	end;
 }
 
@@ -82,7 +84,7 @@ bat_b01,15,15,3	script	start#bat_b01	844,{
 
 OnInit:
 	mapwarp "bat_b01","bat_room",154,150;
-	setarray .npcsevent$[0], "Tenente Ator::OnEnterBG", "OBJ#bat_b01_a::Onkill", "OBJ#bat_b01_a::OnEnable", "cell#bat_b01_a::Onred", "countdown#bat_b01::OnEnable";
+	setarray .npcsevent$[0], "Tenente Ator::OnEnterBG", "Tenente Thelokus::OnEnterBG", "OBJ#bat_b01_a::Onkill", "OBJ#bat_b01_a::OnEnable", "OBJ#bat_b01_b::Onkill", "OBJ#bat_b01_b::OnEnable", "guardian#bat_b01_a::Onkill", "guardian#bat_b01_b::Onkill", "guardian#bat_b01_a::OnEnable", "guardian#bat_b01_b::OnEnable", "cell#bat_b01_a::Onred", "cell#bat_b01_b::Onred", "time#bat_b01::OnEnable";
 	setarray .npcsenpc$[0], "Vintenar Guillaume#b01_a", "Vintenar Croix#b01_b", "Vintenar#bat_b01_aover", "Vintenar#bat_b01_bover";
 	end;
 
@@ -103,9 +105,9 @@ OnReadyCheck:
 	set $@Guill_ScoreBG1, 0;
 	bg_updatescore "bat_b01",$@Guill_ScoreBG1,$@Croix_ScoreBG1;
 
-	for (set .@i,0; .@i < getarraysize(.npcsevent$[0]); set .@i,.@i+1)
+	for(set .@i,0; .@i < getarraysize(.npcsevent$); set .@i,.@i+1)
 		donpcevent .npcsevent$[.@i];
-	for (set .@i2,0; .@i2 < getarraysize(.npcsenpc2$[0]); set .@i2,.@i2+1)
+	for(set .@i,0; .@i < getarraysize(.npcsenpc2$); set .@i,.@i+1)
 		disablenpc .npcsenpc$[.@i2];
 	bg_warp $@FlaviusBG1_id1,"bat_b01",87,75;
 	bg_warp $@FlaviusBG1_id2,"bat_b01",311,224;
@@ -113,11 +115,11 @@ OnReadyCheck:
 	end;
 
 OnReset:
-
-	for (set .@i,0; .@i < getarraysize(.npcsevent$[2]); set .@i,.@i+1) {
-		donpcevent .npcsevent$[.@i];
+	for(set .@i,0; .@i < getarraysize(.npcsevent$); set .@i,.@i+1)
+		if(.@i > 1)
+			donpcevent .npcsevent$[.@i];
+	for(set .@i,0; .@i < getarraysize(.npcsenpc$); set .@i,.@i+1)	
 		disablenpc .npcsenpc$[.@i];
-	}
 	bg_warp $@FlaviusBG1_id1,"bat_b01",87,75;
 	bg_warp $@FlaviusBG1_id2,"bat_b01",311,224;
 	end;
@@ -136,20 +138,10 @@ OnTimer10000:
 bat_b01,1,1,3	script	OBJ#bat_b01_a	844,{
 OnEnable:
 	bg_monster $@FlaviusBG1_id1,"bat_b01",61,150,"Cristal Vermelho",1915,"OBJ#bat_b01_a::OnMyMobDead";
-	bg_monster $@FlaviusBG1_id2,"bat_b01",328,150,"Cristal Azul",1914,"OBJ#bat_b01_b::OnMyMobDead";
-	bg_monster $@FlaviusBG1_id1,"bat_b01",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
-	bg_monster $@FlaviusBG1_id1,"bat_b01",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
-	bg_monster $@FlaviusBG1_id2,"bat_b01",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
-	bg_monster $@FlaviusBG1_id2,"bat_b01",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
-	donpcevent "Terapeuta de Batalha#b01_a::OnEnable";
-	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
 	end;
 
 Onkill:
 	killmonster "bat_b01","OBJ#bat_b01_a::OnMyMobDead";
-	killmonster "bat_b01","OBJ#bat_b01_b::OnMyMobDead";
-	killmonster "bat_b01","guardian#bat_b01_a::OnMyMobDead";
-	killmonster "bat_b01","guardian#bat_b01_b::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -177,7 +169,14 @@ OnMyMobDead:
 }
 
 bat_b01,1,2,3	script	OBJ#bat_b01_b	844,{
+OnEnable:
+	bg_monster $@FlaviusBG1_id2,"bat_b01",328,150,"Cristal Azul",1914,"OBJ#bat_b01_b::OnMyMobDead";
+	end;
 
+Onkill:
+	killmonster "bat_b01","OBJ#bat_b01_b::OnMyMobDead";
+	end;
+	
 OnMyMobDead:
 	if (mobcount("bat_b01","OBJ#bat_b01_b::OnMyMobDead") < 1) {
 		mapannounce "bat_b01", "O Cristal Croix foi destruído.",bc_map,"0xFFCE00";
@@ -203,6 +202,14 @@ OnMyMobDead:
 }
 
 bat_b01,1,3,3	script	guardian#bat_b01_a	844,{
+OnEnable:
+	bg_monster $@FlaviusBG1_id1,"bat_b01",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
+	bg_monster $@FlaviusBG1_id1,"bat_b01",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
+	end;
+
+Onkill:
+	killmonster "bat_b01","guardian#bat_b01_a::OnMyMobDead";
+	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b01","guardian#bat_b01_a::OnMyMobDead") < 1) {
@@ -213,6 +220,14 @@ OnMyMobDead:
 }
 
 bat_b01,1,3,3	script	guardian#bat_b01_b	844,{
+OnEnable:
+	bg_monster $@FlaviusBG1_id2,"bat_b01",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
+	bg_monster $@FlaviusBG1_id2,"bat_b01",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
+	end;
+
+Onkill:
+	killmonster "bat_b01","guardian#bat_b01_b::OnMyMobDead";
+	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b01","guardian#bat_b01_b::OnMyMobDead") < 1) {
@@ -226,8 +241,6 @@ bat_b01,1,4,3	script	cell#bat_b01_a	844,{
 Onred:
 	setcell "bat_b01",62,149,60,151,cell_basilica,1;
 	setcell "bat_b01",62,149,60,151,cell_walkable,0;
-	setcell "bat_b01",327,151,329,149,cell_basilica,1;
-	setcell "bat_b01",327,151,329,149,cell_walkable,0;
 	end;
 
 Ongreen:
@@ -237,6 +250,10 @@ Ongreen:
 }
 
 bat_b01,1,5,3	script	cell#bat_b01_b	844,{
+Onred:
+	setcell "bat_b01",327,151,329,149,cell_basilica,1;
+	setcell "bat_b01",327,151,329,149,cell_walkable,0;
+	end;
 
 Ongreen:
 	setcell "bat_b01",327,151,329,149,cell_basilica,0;
@@ -245,6 +262,10 @@ Ongreen:
 }
 
 bat_b01,1,6,1	script	time#bat_b01	844,{
+OnEnable:
+	donpcevent "Terapeuta de Batalha#b01_a::OnEnable";
+	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
+	end;
 
 Onstop:
 	donpcevent "Terapeuta de Batalha#b01_a::OnStop";
@@ -381,10 +402,8 @@ bat_b01,10,294,3	script	Vintenar Guillaume#b01_a	934,{
 	end;
 	
 OnInit:
-	disablenpc "Vintenar Guillaume#b02_a";
-	disablenpc "Vintenar Croix#b02_b";
-	disablenpc "Vintenar#bat_b02_aover";
-	disablenpc "Vintenar#bat_b02_bover";	
+	disablenpc "Vintenar Guillaume#b01_a";
+	end;
 }
 
 bat_b01,389,14,3	script	Vintenar Croix#b01_b	934,{
@@ -411,6 +430,9 @@ bat_b01,389,14,3	script	Vintenar Croix#b01_b	934,{
 	warp "bat_room",154,150;
 	end;
 
+OnInit:
+	disablenpc "Vintenar Croix#b01_b";
+	end;
 }
 
 bat_b01,1,5,3	script	countdown#bat_b01	844,{
@@ -522,6 +544,10 @@ bat_b01,10,294,3	script	Vintenar#bat_b01_aover	419,{
 	bg_leave;
 	warp "bat_room",154,150;
 	end;
+
+OnInit:
+	disablenpc "Vintenar#bat_b01_aover";
+	end;
 }
 
 bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
@@ -554,6 +580,10 @@ bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
 	bg_leave;
 	warp "bat_room",154,150;
 	end;
+
+OnInit:
+	disablenpc "Vintenar#bat_b01_bover";
+	end;
 }
 
 // NPC's da Sala de Espera - Flavius 2
@@ -565,7 +595,6 @@ OnInit:
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id1, waitingroom2bg("bat_b02",10,290,"start#bat_b02::OnGuillaumeQuit","");
-	set $@FlaviusBG2_id2, waitingroom2bg("bat_b02",390,10,"start#bat_b02::OnCroixQuit","");
 	end;
 }
 
@@ -573,6 +602,9 @@ bat_room,142,204,0	script	Tenente Yukon	414,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b02::OnReadyCheck",1,0,80;
+	end;
+OnEnterBG:
+	set $@FlaviusBG2_id2, waitingroom2bg("bat_b02",390,10,"start#bat_b02::OnCroixQuit","");
 	end;
 }
 
@@ -610,7 +642,7 @@ OnTimer1000:
 bat_b02,15,15,3	script	start#bat_b02	844,{
 OnInit:
 	mapwarp "bat_b02","bat_room",154,150;
-	setarray .npcsevent2$[0], "Tenente Huvas::OnEnterBG", "OBJ#bat_b02_a::Onkill", "OBJ#bat_b02_a::OnEnable", "cell#bat_b02_a::Onred", "countdown#bat_b02::OnEnable";
+	setarray .npcsevent2$[0], "Tenente Huvas::OnEnterBG", "Tenente Yukon::OnEnterBG", "OBJ#bat_b02_a::Onkill", "OBJ#bat_b02_a::OnEnable", "OBJ#bat_b02_b::Onkill", "OBJ#bat_b02_b::OnEnable", "guardian#bat_b02_a::Onkill", "guardian#bat_b02_b::Onkill", "guardian#bat_b02_a::OnEnable", "guardian#bat_b02_b::OnEnable", "cell#bat_b02_a::Onred", "cell#bat_b02_b::Onred", "time#bat_b02::OnEnable";
 	setarray .npcsenpc2$[0], "Vintenar Guillaume#b02_a", "Vintenar Croix#b02_b", "Vintenar#bat_b02_aover", "Vintenar#bat_b02_bover";
 	end;
 
@@ -632,20 +664,21 @@ OnReadyCheck:
 
 	bg_updatescore "bat_b02",$@Guill_ScoreBG2,$@Croix_ScoreBG2;
 
-	for (set .@i,0; .@i < getarraysize(.npcsevent2$[0]); set .@i,.@i+1)
-  donpcevent .npcsevent2$[.@i];
-	for (set .@i2,0; .@i2 < getarraysize(.npcsenpc2$[0]); set .@i2,.@i2+1)
-	disablenpc .npcsenpc2$[.@i2];
+	for (set .@i,0; .@i < getarraysize(.npcsevent2$); set .@i,.@i+1)
+		donpcevent .npcsevent2$[.@i];
+	for (set .@i2,0; .@i2 < getarraysize(.npcsenpc2$); set .@i2,.@i2+1)
+		disablenpc .npcsenpc2$[.@i2];
 	bg_warp $@FlaviusBG2_id1,"bat_b02",87,75;
 	bg_warp $@FlaviusBG2_id2,"bat_b02",311,224;
 	initnpctimer;
 	end;
 
 OnReset:
-	for (set .@i,0; .@i < getarraysize(.npcsevent2$[2]); set .@i,.@i+1) {
-    donpcevent .npcsevent2$[.@i];
-	disablenpc .npcsenpc2$[.@i];
-	}
+	for(set .@i,0; .@i < getarraysize(.npcsevent2$); set .@i,.@i+1)
+		if(.@i > 1)
+			donpcevent .npcsevent2$[.@i];
+	for(set .@i,0; .@i < getarraysize(.npcsenpc2$); set .@i,.@i+1)
+		disablenpc .npcsenpc2$[.@i];
 	bg_warp $@FlaviusBG2_id1,"bat_b02",87,75;
 	bg_warp $@FlaviusBG2_id2,"bat_b02",311,224;
 	end;
@@ -664,18 +697,10 @@ OnTimer10000:
 bat_b02,1,1,3	script	OBJ#bat_b02_a	844,{
 OnEnable:
 	bg_monster $@FlaviusBG2_id1,"bat_b02",61,150,"Cristal Vermelho",1915,"OBJ#bat_b02_a::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id2,"bat_b02",328,150,"Cristal Azul",1914,"OBJ#bat_b02_b::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id1,"bat_b02",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id1,"bat_b02",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id2,"bat_b02",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
-	bg_monster $@FlaviusBG2_id2,"bat_b02",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
 	end;
 
 Onkill:
 	killmonster "bat_b02","OBJ#bat_b02_a::OnMyMobDead";
-	killmonster "bat_b02","OBJ#bat_b02_b::OnMyMobDead";
-	killmonster "bat_b02","guardian#bat_b02_a::OnMyMobDead";
-	killmonster "bat_b02","guardian#bat_b02_b::OnMyMobDead";
 	end;
 
 OnMyMobDead:
@@ -703,6 +728,13 @@ OnMyMobDead:
 }
 
 bat_b02,1,2,3	script	OBJ#bat_b02_b	844,{
+OnEnable:
+	bg_monster $@FlaviusBG2_id2,"bat_b02",328,150,"Cristal Azul",1914,"OBJ#bat_b02_b::OnMyMobDead";
+	end;
+
+Onkill:
+	killmonster "bat_b02","OBJ#bat_b02_b::OnMyMobDead";
+	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b02","OBJ#bat_b02_b::OnMyMobDead") < 1) {
@@ -729,6 +761,14 @@ OnMyMobDead:
 }
 
 bat_b02,1,3,3	script	guardian#bat_b02_a	844,{
+OnEnable:
+	bg_monster $@FlaviusBG2_id1,"bat_b02",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id1,"bat_b02",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
+	end;
+	
+OnKill:
+	killmonster "bat_b02","guardian#bat_b02_a::OnMyMobDead";
+	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_a::OnMyMobDead") < 1) {
@@ -739,6 +779,14 @@ OnMyMobDead:
 }
 
 bat_b02,1,3,3	script	guardian#bat_b02_b	844,{
+OnEnable:
+	bg_monster $@FlaviusBG2_id2,"bat_b02",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
+	bg_monster $@FlaviusBG2_id2,"bat_b02",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
+	end;
+
+OnKill:
+	killmonster "bat_b02","guardian#bat_b02_b::OnMyMobDead";
+	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_b::OnMyMobDead") < 1) {
@@ -752,8 +800,6 @@ bat_b02,1,4,3	script	cell#bat_b02_a	844,{
 Onred:
 	setcell "bat_b02",62,149,60,151,cell_basilica,1;
 	setcell "bat_b02",62,149,60,151,cell_walkable,0;
-	setcell "bat_b02",327,151,329,149,cell_basilica,1;
-	setcell "bat_b02",327,151,329,149,cell_walkable,0;
 	end;
 
 Ongreen:
@@ -763,6 +809,10 @@ Ongreen:
 }
 
 bat_b02,1,5,3	script	cell#bat_b02_b	844,{
+Onred:
+	setcell "bat_b02",327,151,329,149,cell_basilica,1;
+	setcell "bat_b02",327,151,329,149,cell_walkable,0;
+	end;
 
 Ongreen:
 	setcell "bat_b02",327,151,329,149,cell_basilica,0;
@@ -881,8 +931,63 @@ OnTouch:
 
 bat_b02,312,224,0	duplicate(A_CODE#bat_b02)	B_CODE#bat_b02	-1,5,5
 
-bat_b02,10,294,3	duplicate(Vintenar Guillaume#b01_a)	Vintenar Guillaume#b02_a	934
-bat_b02,389,14,3	duplicate(Vintenar Croix#b01_b)	Vintenar Croix#b02_b	934
+bat_b02,10,294,3	script	Vintenar Guillaume#b02_a	934,{
+	if ($@FlaviusBG2_id1 == getcharid(4)) {
+		set .@your_medal,countitem(7829);
+		set .@medal_gap,500 - .@your_medal;
+		if ($@FlaviusBG2_Victory == 1) {
+			mes "[Axl Rose]";
+			mes "Abençoado Guillaume!";
+			mes "Vamos comemorar o nosso glorioso triunfo!";
+			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+			close2;
+			getitem 7829,((.@medal_gap > 8) ? 9 : .@medal_gap); // Emblema de Valor
+		} else {
+			mes "[Axl Rose]";
+			mes "Você perdeu, mas ao menos se dedicou na batalha.";
+			mes "Esta é uma recompensa por toda a dedicação a Guillaume Marollo!";
+			mes "Encare isto como uma lição, na próxima vez você vencerá com certeza.";
+			close2;
+			getitem 7829,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+		}
+	}
+	bg_leave;
+	warp "bat_room",154,150;
+	end;
+
+OnInit:
+	disablenpc "Vintenar Guillaume#b02_a";
+	end;
+}
+
+bat_b02,389,14,3	script	Vintenar Croix#b02_b	934,{
+	if ($@FlaviusBG2_id2 == getcharid(4)) {
+		set .@your_medal,countitem(7829);
+		set .@medal_gap,500 - .@your_medal;
+		if ($@FlaviusBG2_Victory == 2) {
+			mes "[Swandery]";
+			mes "Abençoado Croix!";
+			mes "Vamos comemorar a nossa gloriosa vitória!";
+			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+			close2;
+			getitem 7829,((.@medal_gap > 8) ? 9 : .@medal_gap); // Emblema de Valor
+		} else {
+			mes "[Swandery]";
+			mes "Oh, "+strcharinfo(0)+". Não fique triste.";
+			mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
+			mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
+			close2;
+			getitem 7829,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+		}
+	}
+	bg_leave;
+	warp "bat_room",154,150;
+	end;
+
+OnInit:
+	disablenpc "Vintenar Croix#b02_b";
+	end;
+}
 
 bat_b02,1,5,3	script	countdown#bat_b02	844,{
 OnInit:
@@ -995,6 +1100,9 @@ bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
 	warp "bat_room",154,150;
 	end;
 
+OnInit:
+	disablenpc "Vintenar#bat_b02_aover";
+	end;
 }
 
 bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
@@ -1026,5 +1134,9 @@ bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
 	}
 	bg_leave;
 	warp "bat_room",154,150;
+	end;
+
+OnInit:
+	disablenpc "Vintenar#bat_b02_bover";
 	end;
 }
