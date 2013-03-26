@@ -588,7 +588,7 @@ function	script	F_KafSet	{
 		}
 		setarray @viewpX[0], 156, 163, 28, 292;
 		setarray @viewpY[0], 97, 260, 167, 211;
-	} else if (strnpcinfo(4) == "umbala" && (checkre(0))) {
+	} else if (strnpcinfo(4) == "umbala") {
 		setarray @wrpD$[0], "Comodo";
 		setarray @wrpP[0], 1800;
 	} else if (strnpcinfo(4) == "payon") {
@@ -608,7 +608,7 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 3000, 1400, 1000, 1800, 1700, 2500;
 		}
 		setarray @viewpX[0], 328, 278, 153, 0;
-	} else if (strnpcinfo(4) == "job3_rune01" && (checkre(0))) {
+	} else if (strnpcinfo(4) == "job3_rune01") {
 		setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Alberta";
 		setarray @wrpP[0], 600, 1200, 1200, 1200, 1800;
 	}

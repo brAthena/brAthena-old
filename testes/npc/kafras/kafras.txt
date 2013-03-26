@@ -544,7 +544,7 @@ umbala,87,160,4	script	Funcionária Kafra::kaf_umbala	721,{
 	mes "[Funcionária Kafra]";
 	mes "Bem-vindo a Corporação Kafra.";
 	mes "Você sabe que os nossos serviços estarão sempre ao seu lado~";
-	callfunc "F_Kafra",5,0,1,80,0;
+	callfunc "F_Kafra",5,(checkre(0)) ? 0 : 3,1,80,0;
 	savepoint "umbala",126,131;
 	callfunc "F_KafEnd",0,1,"na cidade de Umbala";
 }
