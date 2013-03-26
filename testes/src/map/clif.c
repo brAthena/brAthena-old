@@ -9258,7 +9258,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			clif_broadcast(&sd->bl, output, strlen(output) + 1, 0x10, SELF);
 		}
 
-		if(map[sd->bl.m].flag.gvg_castle && map[sd->bl.m].set_castle && map[sd->bl.m].set_castle != 1) {
+		if(map[sd->bl.m].flag.gvg_castle && map[sd->bl.m].set_castle != 1) {
 			/* mapflag set_castle [Shiraz] */
 			int warp_sd = 0;
 
@@ -9276,7 +9276,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 				warp_sd = 1;
 			}
 
-			if(warp_sd)
+			if(warp_sd || map[sd->bl.m].set_castle == 0)
 				pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_OUTSIGHT);
 		}
 
