@@ -1597,9 +1597,9 @@ int pc_updateweightstatus(struct map_session_data *sd)
 
 	// start new status change
 	if(new_overweight == 1)
-		sc_start(&sd->bl, SC_WEIGHT50, 100, 0, 0);
+		sc_start(&sd->bl,&sd->bl, SC_WEIGHT50, 100, 0, 0);
 	else if(new_overweight == 2)
-		sc_start(&sd->bl, SC_WEIGHT90, 100, 0, 0);
+		sc_start(&sd->bl,&sd->bl, SC_WEIGHT90, 100, 0, 0);
 
 	// update overweight status
 	sd->regen.state.overweight = new_overweight;
@@ -5498,16 +5498,16 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 	status_percent_heal(&sd->bl,100,100);
 
 	if((sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE) {
-		sc_start(&sd->bl,status_skill2sc(PR_KYRIE),100,1,skill_get_time(PR_KYRIE,1));
-		sc_start(&sd->bl,status_skill2sc(PR_IMPOSITIO),100,1,skill_get_time(PR_IMPOSITIO,1));
-		sc_start(&sd->bl,status_skill2sc(PR_MAGNIFICAT),100,1,skill_get_time(PR_MAGNIFICAT,1));
-		sc_start(&sd->bl,status_skill2sc(PR_GLORIA),100,1,skill_get_time(PR_GLORIA,1));
-		sc_start(&sd->bl,status_skill2sc(PR_SUFFRAGIUM),100,1,skill_get_time(PR_SUFFRAGIUM,1));
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_KYRIE),100,1,skill_get_time(PR_KYRIE,1));
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_IMPOSITIO),100,1,skill_get_time(PR_IMPOSITIO,1));
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_MAGNIFICAT),100,1,skill_get_time(PR_MAGNIFICAT,1));
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_GLORIA),100,1,skill_get_time(PR_GLORIA,1));
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_SUFFRAGIUM),100,1,skill_get_time(PR_SUFFRAGIUM,1));
 		if(sd->state.snovice_dead_flag)
 			sd->state.snovice_dead_flag = 0; //Reenable steelbody resurrection on dead.
 	} else if((sd->class_&MAPID_BASEMASK) == MAPID_TAEKWON) {
-		sc_start(&sd->bl,status_skill2sc(AL_INCAGI),100,10,600000);
-		sc_start(&sd->bl,status_skill2sc(AL_BLESSING),100,10,600000);
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(AL_INCAGI),100,10,600000);
+		sc_start(&sd->bl,&sd->bl,status_skill2sc(AL_BLESSING),100,10,600000);
 	}
 	clif_misceffect(&sd->bl,0);
 	npc_script_event(sd, NPCE_BASELVUP); //LORDALFA - LVLUPEVENT
@@ -6463,7 +6463,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	// Seguro Estendido - remove o item e evita a perda de EXP. ~ tmp fix
 	for(; l < MAX_INVENTORY; ++l) {
 		if(sd && sd->status.inventory[l].nameid == 6413) {
-			status_change_start(&sd->bl, SC_LIFEINSURANCE, 10000, 1, 0, 0, 0, 1800000, 2);
+			status_change_start(&sd->bl, &sd->bl, SC_LIFEINSURANCE, 10000, 1, 0, 0, 0, 1800000, 2);
 			pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
 		}
 	}
@@ -6533,7 +6533,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		if(battle_config.pk_mode&2) {
 			ssd->status.manner -= 5;
 			if(ssd->status.manner < 0)
-				sc_start(src,SC_NOCHAT,100,0,0);
+				sc_start(&sd->bl,src,SC_NOCHAT,100,0,0);
 #if 0
 			// PK/Karma system code (not enabled yet) [celest]
 			// originally from Kade Online, so i don't know if any of these is correct ^^;
@@ -6583,7 +6583,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			clif_resurrection(&sd->bl, 1);
 			if(battle_config.pc_invincible_time)
 				pc_setinvincibletimer(sd, battle_config.pc_invincible_time);
-			sc_start(&sd->bl,status_skill2sc(MO_STEELBODY),100,1,skill_get_time(MO_STEELBODY,1));
+			sc_start(&sd->bl,&sd->bl,status_skill2sc(MO_STEELBODY),100,1,skill_get_time(MO_STEELBODY,1));
 			if(map_flag_gvg(sd->bl.m))
 				pc_respawn_timer(INVALID_TIMER, gettick(), sd->bl.id, 0);
 			return 0;
@@ -7245,6 +7245,18 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		pc_setglobalreg(sd, "REPRODUCE_SKILL_LV",0);
 	}
 
+	// Give or reduce transcendent status points
+	if((b_class&JOBL_UPPER) && !(sd->class_&JOBL_UPPER)){ // Change from a non t class to a t class -> give points
+		sd->status.status_point += 52;
+		clif_updatestatus(sd,SP_STATUSPOINT);
+	}else if(!(b_class&JOBL_UPPER) && (sd->class_&JOBL_UPPER)){ // Change from a t class to a non t class -> remove points
+		if(sd->status.status_point < 52){
+			// The player already used his bonus points, so we have to reset his status points
+			pc_resetstate(sd);
+		}
+		sd->status.status_point -= 52;
+		clif_updatestatus(sd,SP_STATUSPOINT);
+	}
 	if((b_class&MAPID_UPPERMASK) != (sd->class_&MAPID_UPPERMASK)) {    //Things to remove when changing class tree.
 		const int class_ = pc_class2idx(sd->status.class_);
 		short id;
@@ -7590,7 +7602,7 @@ int pc_setcart(struct map_session_data *sd,int type)
 			if(!sd->sc.data[SC_PUSH_CART])   /* first time, so fill cart data */
 				clif_cartlist(sd);
 			clif_updatestatus(sd, SP_CARTINFO);
-			sc_start(&sd->bl, SC_PUSH_CART, 100, type, 0);
+			sc_start(&sd->bl,&sd->bl, SC_PUSH_CART, 100, type, 0);
 			clif_status_load_notick(&sd->bl, SI_ON_PUSH_CART,   2 , type, 0, 0);
 			if(sd->sc.data[SC_PUSH_CART])  /* forcefully update */
 				sd->sc.data[SC_PUSH_CART]->val1 = type;
@@ -9052,9 +9064,9 @@ void pc_overheat(struct map_session_data *sd, int val)
 
 	heat = max(0,heat); // Avoid negative HEAT
 	if(heat >= limit[skill])
-		sc_start(&sd->bl,SC_OVERHEAT,100,0,1000);
+		sc_start(&sd->bl,&sd->bl,SC_OVERHEAT,100,0,1000);
 	else
-		sc_start(&sd->bl,SC_OVERHEAT_LIMITPOINT,100,heat,30000);
+		sc_start(&sd->bl,&sd->bl,SC_OVERHEAT_LIMITPOINT,100,heat,30000);
 
 	return;
 }

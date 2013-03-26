@@ -794,15 +794,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			struct skill_unit_group *group = skill_id2group(sc->data[SC_SAFETYWALL]->val3);
 			uint16 skill_id = sc->data[SC_SAFETYWALL]->val2;
 			if(group) {
-				if(skill_id == MH_STEINWAND) {
-					if(--group->val2<=0)
-						skill_delunitgroup(group);
-					d->dmg_lv = ATK_BLOCK;
-					return 0;
-				}
-				/**
-				 * in RE, SW possesses a lifetime equal to 3 times the caster's health
-				 **/
+				//in RE, SW possesses a lifetime equal to group val2, (3x caster hp, or homon formula)
 #ifdef RENEWAL
 				d->dmg_lv = ATK_BLOCK;
 				if((group->val2 - damage) > 0) {
@@ -827,7 +819,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if(sc->data[SC_WEAPONBLOCKING] && flag&(BF_SHORT|BF_WEAPON) && rnd()%100 < sc->data[SC_WEAPONBLOCKING]->val2) {
 			clif_skill_nodamage(bl,src,GC_WEAPONBLOCKING,1,1);
 			d->dmg_lv = ATK_BLOCK;
-			sc_start2(bl,SC_COMBO,100,GC_WEAPONBLOCKING,src->id,2000);
+			sc_start2(src,bl,SC_COMBO,100,GC_WEAPONBLOCKING,src->id,2000);
 			return 0;
 		}
 		if((sce=sc->data[SC_AUTOGUARD]) && flag&BF_WEAPON && !(skill_get_nk(skill_id)&NK_NO_CARDFIX_ATK) && rnd()%100 < sce->val2) {
@@ -851,7 +843,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			clif_skill_nodamage(bl, bl, RK_MILLENNIUMSHIELD, 1, 1);
 			sce->val3 -= damage; // absorb damage
 			d->dmg_lv = ATK_BLOCK;
-			sc_start(bl,SC_STUN,15,0,skill_get_time2(RK_MILLENNIUMSHIELD,sce->val1)); // There is a chance to be stuned when one shield is broken.
+			sc_start(src,bl,SC_STUN,15,0,skill_get_time2(RK_MILLENNIUMSHIELD,sce->val1)); // There is a chance to be stuned when one shield is broken.
 			if(sce->val3 <= 0) {   // Shield Down
 				sce->val2--;
 				if(sce->val2 > 0) {
@@ -877,7 +869,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if(sd && pc_issit(sd)) pc_setstand(sd);  //Stand it to dodge.
 			clif_skill_nodamage(bl,bl,TK_DODGE,1,1);
 			if(!sc->data[SC_COMBO])
-				sc_start4(bl, SC_COMBO, 100, TK_JUMPKICK, src->id, 1, 0, 2000);
+				sc_start4(src,bl, SC_COMBO, 100, TK_JUMPKICK, src->id, 1, 0, 2000);
 			return 0;
 		}
 
@@ -1046,7 +1038,8 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			damage -= damage * sc->data[SC_GRANITIC_ARMOR]->val2 / 100;
 		}
 		if(sc->data[SC_PAIN_KILLER]) {
-			damage -= damage * sc->data[SC_PAIN_KILLER]->val3 / 100;
+			damage -= sc->data[SC_PAIN_KILLER]->val3;
+			damage = max(0,damage);
 		}
 		if((sce=sc->data[SC_MAGMA_FLOW]) && (rnd()%100 <= sce->val2)) {
 			skill_castend_damage_id(bl,src,MH_MAGMA_FLOW,sce->val1,gettick(),0);
@@ -1057,12 +1050,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if( src->type == BL_PC ) {
 				TBL_PC *ssd = BL_CAST(BL_PC, src);
 				if (ssd && ssd->status.weapon != W_BOW)
-					skill_break_equip(src, EQP_WEAPON, 3000, BCT_SELF);
+					skill_break_equip(src,src, EQP_WEAPON, 3000, BCT_SELF);
 			} else
-				skill_break_equip(src, EQP_WEAPON, 3000, BCT_SELF);
+				skill_break_equip(src,src, EQP_WEAPON, 3000, BCT_SELF);
 			// 30% chance to reduce monster's ATK by 25% for 10 seconds.
 			if( src->type == BL_MOB )
-				sc_start(src, SC_STRIPWEAPON, 30, 0, skill_get_time2(RK_STONEHARDSKIN, sce->val1));
+				sc_start(src,src, SC_STRIPWEAPON, 30, 0, skill_get_time2(RK_STONEHARDSKIN, sce->val1));
 			if( sce->val2 <= 0 )
 				status_change_end(bl, SC_STONEHARDSKIN, INVALID_TIMER);
 		}
@@ -1123,10 +1116,10 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 
 		if(sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rnd()%100 < sce->val2)
 			pc_addspiritball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
-		if(sc->data[SC_STYLE_CHANGE] && rnd()%2) {
-			TBL_HOM *hd = BL_CAST(BL_HOM,bl);
-			if(hd) hom_addspiritball(hd, 10);  //add a sphere
-		}
+		if (sc->data[SC_STYLE_CHANGE]) {
+                    TBL_HOM *hd = BL_CAST(BL_HOM,bl); //when being hit
+                    if (hd && (rnd()%100<(status_get_lv(bl)/2))) hom_addspiritball(hd, 10); //add a sphere
+                }
 
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
 			status_change_spread(bl, src); // Deadly infect attacked side
@@ -1181,13 +1174,13 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 						}
 			}
 		if(sc->data[SC_POISONINGWEAPON] && skill_id != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rnd()%100 < sc->data[SC_POISONINGWEAPON]->val3)
-			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
+			sc_start(src,bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
 			status_change_spread(src, bl);
-		if(sc->data[SC_STYLE_CHANGE] && rnd()%2) {
-			TBL_HOM *hd = BL_CAST(BL_HOM,src);
-			if(hd) hom_addspiritball(hd, 10);
-		}
+                if(sc->data[SC_STYLE_CHANGE]) {
+                    TBL_HOM *hd = BL_CAST(BL_HOM,src); //when attacking
+                    if(hd && (rnd()%100<(20+status_get_lv(bl)/5))) hom_addspiritball(hd, 10);
+                }
 	}
 
 	if(battle_config.pk_mode && sd && bl->type == BL_PC && damage && map[bl->m].flag.pvp) {
@@ -2945,23 +2938,32 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 600 + 100 * skill_lv;
 					break;
 				case MH_STAHL_HORN:
-					skillratio += 400 + 100 * skill_lv;
+					skillratio += 400 + 100 * skill_lv * status_get_lv(src);
+					skillratio = skillratio/100; //@TODO uv1 factor need to be confirmed
 					break;
 				case MH_LAVA_SLIDE:
 					skillratio += -100 + 70 * skill_lv;
 					break;
 				case MH_SONIC_CRAW:
-					skillratio += -100 + 40 * skill_lv;
+					skillratio += -100 + 40 * skill_lv * status_get_lv(src);
+					skillratio = skillratio/100; //@TODO uv1 factor need to be confirmed
 					break;
 				case MH_SILVERVEIN_RUSH:
-					skillratio += -100 + 150 * skill_lv;
+					skillratio += -100 + (150 * skill_lv * status_get_lv(src)) / 100;
 					break;
 				case MH_MIDNIGHT_FRENZY:
-					skillratio += -100 + 300 * skill_lv;
+					skillratio += -100 + (300 * skill_lv * status_get_lv(src)) / 150;
 					break;
 				case MH_TINDER_BREAKER:
+					skillratio += -100 + (100 * skill_lv + status_get_str(src));
+					skillratio = (skillratio * status_get_lv(src)) / 120;
+					break;
+				case MH_CBC:
+					skillratio += 300 * skill_lv + 4 * status_get_lv(src);
+					break;
 				case MH_MAGMA_FLOW:
-					skillratio += -100 + 100 * skill_lv;
+					skillratio += -100 + 100 * skill_lv + 3 * status_get_lv(src);
+					skillratio = (skillratio * status_get_lv(src)) / 120;
 					break;
 			}
 #ifdef RENEWAL
@@ -4112,9 +4114,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							break;
 						case MH_HEILIGE_STANGE:
 							skillratio += 400 + 250 * skill_lv;
+							skillratio = (skillratio * status_get_lv(src))/150;
 							break;
 						case MH_POISON_MIST:
-							skillratio += 100 * skill_lv;
+							skillratio += -100 + 40 * skill_lv * status_get_lv(src) / 100;
 							break;
 					}
 
@@ -4835,11 +4838,11 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 		uint16 skill_lv = tsc->data[SC_BLADESTOP_WAIT]->val1;
 		int duration = skill_get_time2(MO_BLADESTOP,skill_lv);
 		status_change_end(target, SC_BLADESTOP_WAIT, INVALID_TIMER);
-		if(sc_start4(src, SC_BLADESTOP, 100, sd?pc_checkskill(sd, MO_BLADESTOP):5, 0, 0, target->id, duration)) {
+		if(sc_start4(src,src, SC_BLADESTOP, 100, sd?pc_checkskill(sd, MO_BLADESTOP):5, 0, 0, target->id, duration)) {
 			//Target locked.
 			clif_damage(src, target, tick, sstatus->amotion, 1, 0, 1, 0, 0); //Display MISS.
 			clif_bladestop(target, src->id, 1);
-			sc_start4(target, SC_BLADESTOP, 100, skill_lv, 0, 0, src->id, duration);
+			sc_start4(src,target, SC_BLADESTOP, 100, skill_lv, 0, 0, src->id, duration);
 			return ATK_BLOCK;
 		}
 	}

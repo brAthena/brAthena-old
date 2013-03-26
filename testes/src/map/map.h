@@ -122,7 +122,7 @@ enum {
 	MAPID_ASSASSIN,
 	MAPID_STAR_GLADIATOR,
 	MAPID_KAGEROUOBORO = JOBL_2_1|0x0A,
-	MAPID_DEATH_KNIGHT = JOBL_2_1|0x0D,
+	MAPID_DEATH_KNIGHT = JOBL_2_1|0x0E,
 //2-2 Jobs
 	MAPID_CRUSADER = JOBL_2_2|0x1,
 	MAPID_SAGE,
@@ -131,7 +131,7 @@ enum {
 	MAPID_ALCHEMIST,
 	MAPID_ROGUE,
 	MAPID_SOUL_LINKER,
-	MAPID_DARK_COLLECTOR = JOBL_2_2|0x0D,
+	MAPID_DARK_COLLECTOR = JOBL_2_2|0x0E,
 //Trans Novice And Trans 1-1 Jobs
 	MAPID_NOVICE_HIGH = JOBL_UPPER|0x0,
 	MAPID_SWORDMAN_HIGH,
@@ -439,7 +439,8 @@ enum _look {
 	LOOK_SHOES,
 	LOOK_BODY,			//Purpose Unknown. Doesen't appear to do anything.
 	LOOK_RESET_COSTUMES,//Makes all headgear sprites on player vanish when activated.
-	LOOK_ROBE
+	LOOK_ROBE,
+	LOOK_FLOOR
 };
 
 // used by map_setcell()
