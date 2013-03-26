@@ -9172,7 +9172,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				skill_blockhomun_start(hd, skill_id, skill_get_cooldown(skill_id, skill_lv));
 			break;
 		case MH_SUMMON_LEGION: {
-				int summons[5] = {2158, 2159, 2159, 2160, 2160};
+				int summons[5] = {1004, 1303, 1303, 1994, 1994};
 				int qty[5] =     {3   , 3   , 4   , 4   , 5};
 				struct mob_data *sum_md;
 				int i;
