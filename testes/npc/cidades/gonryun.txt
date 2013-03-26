@@ -25,8 +25,8 @@
 
 // Kunlun - Transportação
 //============================================================ 
-alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
-	mes "[Wa Bai Hu]";
+alberta,245,69,3	script	Barqueiro de Kunlun#gon	776,{
+	mes "[Wabakho]";
 	mes "Bom dia~";
 	mes "Deixem-me convidá-los para";
 	mes "visitar a minha terra natal, Kunlun.";
@@ -36,85 +36,85 @@ alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 	next;
 	switch(select("Sobre Kunlun:Visitar Kunlun:Cancelar")) {
 	case 1:
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Kunlun é um lugar maravilhoso,";
 		mes "com uma história rica e tradições";
 		mes "próprias. Acredito também que";
 		mes "Kunlun é o melhor lugar para se";
 		mes "apreciar uma bela vista.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Quando você chegar no porto";
 		mes "de Kunlun, poderá ver";
 		mes "réplicas em miniatura de";
 		mes "prédios de Alberta";
 		mes "e Prontera.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Depois de aproveitar um bom";
 		mes "passeio, passe pela bonita";
 		mes "coluna de luz que te levará";
 		mes "acima das nuvens, até a";
 		mes "vila de Kunlun.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Já ouvi dizer que no";
 		mes "continente de Rune-Midgarts";
 		mes "existe outra cidade que é";
 		mes "mantida suspensa no ar por";
 		mes "um poder antigo e misterioso...";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Bem, Kunlun também flutua";
 		mes "no ar, mas sem nenhuma";
 		mes "tecnologia ou fonte de energia.";
 		mes "Consideramos que nossa terra";
 		mes "é especialmente abençoada...";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Quando estiver em Kunlun,";
 		mes "não deixe de experimentar nossas";
 		mes "especialidades como o pêssego do céu.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "E é melhor você se preparar";
 		mes "se estiver planejando uma";
 		mes "visita à dungeon de Kunlun.";
 		mes "Não é um lugar seguro!";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Se você está interessado";
 		mes "em visitar Kunlun, venha";
 		mes "logo me dizer. É um prazer";
 		mes "serví-lo, honroso convidado.";
 		close;
 	case 2:
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Excelente escolha! Estou feliz";
 		mes "por tê-lo como convidado~";
 		mes "Entretanto, uma pequena taxa";
 		mes "é requerida para embarcar.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Pedimos que paque 10.000 zenys";
 		mes "antes de viajar. Essa taxa já";
 		mes "inclui seu retorno a Alberta.";
 		mes "Estou pronto para levá-lo a";
 		mes "Kunlun quando quiser.";
 		next;
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Você gostaria de embarcar?";
 		next;
 		if (select("Para Kunlun~!:Não.") == 1) {
 			if (Zeny > 9999) {
-				mes "[Wa Bai Hu]";
+				mes "[Wabakho]";
 				mes "Obrigado, levarei você imediatamente.";
 				close2;
 				set zeny,zeny-10000;
 				warp "gon_fild01",258,82;
 				end;
 			}
-			mes "[Wa Bai Hu]";
+			mes "[Wabakho]";
 			mes "Sinto muito, você precisa de";
 			mes "10 000 zenys para viajar à Kunlun.";
 			mes "Certifique-se de ter dinheiro";
@@ -122,7 +122,7 @@ alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 			mes "e retorne quando quiser!";
 			close;
 		}
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Entendo. Mas, se mudar de";
 		mes "ideia, por favor me avise.";
 		mes "Seria um enorme prazer";
@@ -130,7 +130,7 @@ alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 		mes "viajante.";
 		close;
 	case 3:
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Entendo. Entretanto, se mudar";
 		mes "de ideia, me avise.";
 		mes "Será um prazer serví-lo.";
@@ -138,14 +138,14 @@ alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 	}
 }
 
-gon_fild01,255,79,7	script	Aprecisador de Kunlun#gon2	776,{
-	mes "[Wa Bai Hu]";
+gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	776,{
+	mes "[Wabakho]";
 	mes "Gostou da viagem?";
 	mes "Acho que é hora de você voltar";
 	mes "para casa. O navio para Rune-Midgard sairá em breve.";
 	next;
 	if (select("Voltar para Alberta:Cancelar") == 1) {
-		mes "[Wa Bai Hu]";
+		mes "[Wabakho]";
 		mes "Por favor volte novamente.";
 		mes "Espero que conte para seus";
 		mes "amigos sobre Kunlun quando";
@@ -158,30 +158,30 @@ gon_fild01,255,79,7	script	Aprecisador de Kunlun#gon2	776,{
 			warp "alberta",243,67;
 		end;
 	}
-	mes "[Wa Bai Hu]";
+	mes "[Wabakho]";
 	mes "Aproveite sua estadia, meu convidado.";
 	mes "Provavelmente ainda existem muitos";
 	mes "lugares para você visitar.";
 	close;
 }
 
-gon_fild01,187,239,7	script	Apreciador de Kunlun#gon3	776,{
-	mes "[Zhang Quing Long]";
+gon_fild01,187,239,7	script	Anunciante de Kunlun#gon3	776,{
+	mes "[Jangchungryong]";
 	mes "Por favor, siga ao norte para";
 	mes "chegar a Kunlun. Espero que";
 	mes "tenha uma boa estadia na cidade.";
 	close;
 }
 
-gonryun,153,64,7	script	Kunlun Envoy#gon4	776,{
-	mes "[Zhang Quing Long]";
+gonryun,153,64,7	script	Anunciante de Kunlun#gon4	776,{
+	mes "[Jangchungryong]";
 	mes "Por favor sinta-se a vontade.";
 	mes "Se você quiser voltar, ficarei";
 	mes "muito feliz de guiá-lo até o";
 	mes "navio para Alberta.";
 	next;
 	if (select("Voltar ao porto:Cancelar") == 1) {
-		mes "[Zhang Quing Long]";
+		mes "[Jangchungryong]";
 		mes "Espero que tenha aproveitado";
 		mes "sua estadia. Agora, eu o levarei";
 		mes "de volta ao porto.";
@@ -189,14 +189,14 @@ gonryun,153,64,7	script	Kunlun Envoy#gon4	776,{
 		warp "gon_fild01",258,82;
 		end;
 	}
-	mes "[Zhang Quing Long]";
+	mes "[Jangchungryong]";
 	mes "Aproveite sua estadia!";
 	mes "Provavelmente ainda existem muitos";
 	mes "lugares para você visitar.";
 	close;
 }
 
-// Generic Kunlun NPCs
+// NPCs de Kunlun
 //============================================================
 gonryun,200,82,3	script	Jian Chung Xun#gon	774,{
 	mes "[Jian Chung Xun]";
@@ -254,39 +254,24 @@ gonryun,181,161,3	script	Jing Wen Zhen#gon	773,{
 	close;
 }
 
-gonryun,113,135,6	script	Gatekeeper#gon	780,{
-	mes "[Kunlun Guard]";
+gonryun,113,135,6	script	Guardião#gon	780,{
+	mes "[Guardião de Kunlun]";
 	mes "Bem-vindo.";
 	mes "Aqui é a residência de Shi Yan Wen, prefeito de Kunlun.";
 	next;
-	mes "[Kunlun Guard]";
+	mes "[Guardião de Kunlun]";
 	mes "É melhor se comportar enquanto";
 	mes "estiver aqui. Se fizer algo suspeito,";
 	mes "será preso num instante.";
 	next;
-	mes "[Kunlun Guard]";
+	mes "[Guardião de Kunlun]";
 	mes "Entretanto, descanse, você";
 	mes "parece uma pessoa confiável.";
 	mes "Aproveite sua visita.";
 	close;
 }
 
-gonryun,113,127,6	script	Gatekeeper#gon2	780,{
-	mes "[Kunlun Guard]";
-	mes "Bem-vindo.";
-	mes "Aqui é a residência de Shi Yan Wen, prefeito de Kunlun.";
-	next;
-	mes "[Kunlun Guard]";
-	mes "É melhor se comportar enquanto";
-	mes "estiver aqui. Se fizer algo suspeito,";
-	mes "será preso num instante.";
-	next;
-	mes "[Kunlun Guard]";
-	mes "Entretanto, descanse, você";
-	mes "parece uma pessoa confiável.";
-	mes "Aproveite sua visita.";
-	close;
-}
+gonryun,113,127,6	duplicate(Guardião#gon)	Guardião#gon2	780
 
 gon_in,73,82,5	script	Ji Chung Zhe#gon	778,{
 	if (nakha >= 0 && nakha <= 2) {

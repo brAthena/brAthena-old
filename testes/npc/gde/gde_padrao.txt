@@ -311,16 +311,15 @@ OnRecvCastle:
 		mes "Bem vindo, membro do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes "A Corporação Kafra estará com você onde quer que vá.";
 		next;
-		switch (select("Usar Armazém.:Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
+		switch (select("Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
 		case 1:
-			if (getskilllv("NV_BASIC") < 6) {
 				mes "[Funcionária Kafra]";
+			if (getskilllv("NV_BASIC") < 6) {
 				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um Aprendiz com no mínimo level 6 de profissão.";
 				close2;
 				cutin "",255;
 				end;
 			}
-			mes "[Funcionária Kafra]";
 			mes "Aqui, deixe-me abrir";
 			mes "seu Armazém para você.";
 			mes "Obrigado por usar";
@@ -335,8 +334,8 @@ OnRecvCastle:
 			next;
 			switch (select(.@destination$+" -> 200z:Cancelar")) {
 			case 1:
-				if (Zeny < 200) {
 					mes "[Funcionária Kafra]";
+				if (Zeny < 200) {
 					mes "Você não possui a quantidade de zenys necessária. Verifique seus zenys novamente.";
 					mes "O serviço de teleporte para "+.@destination$+" custará 200 zeny.";
 					close2;
@@ -354,15 +353,14 @@ OnRecvCastle:
 				end;
 			}
 		case 3:
-			if (BaseClass != Job_Merchant) {
 				mes "[Funcionária Kafra]";
+			if (BaseClass != Job_Merchant) {
 				mes "Lamento, mas o serviço de aluguel de carrinhos está disponível somente para a classe de Mercadores e suas evoluções.";
 				close2;
 				cutin "",255;
 				end;
 			}
 			if (checkcart()) {
-				mes "[Funcionária Kafra]";
 				mes "Você já está com um carrinho equipado.";
 				close2;
 				cutin "",255;
@@ -539,11 +537,9 @@ OnRecvCastle:
 		close;
 	}
 	if (GetGuildMaster(.@GID) != strcharinfo(0)) {
-		mes "["+strnpcinfo(1)+"]";
 		mes "Eu sou um leal seguidor do mestre ^ff0000" + getguildmaster(.@GID) + "^000000. Nós somos guardiões e defendemos nosso castelo até o fim!";
 		close;
 	}
-	mes "["+strnpcinfo(1)+"]";
 	mes "Bem-vindo, meu honorável mestre, ^ff0000" + getguildmaster(.@GID) + "^000000...";
 	mes "Estou a seu serviço para o que precisar e serei fiel as minhas funções.";
 	next;
@@ -726,7 +722,7 @@ OnRecvCastle:
 				close;
 			}
 			set Zeny, Zeny - 10000;
-			SetCastleData strnpcinfo(2),.@GDnum,1; // mark as 'installed'
+			SetCastleData strnpcinfo(2),.@GDnum,1;
 			set .@UseGID,.@GDnum - 10;
 			if (.@guardiantype[.@UseGID] == 1) { set .@type,1287; }
 			else if (.@guardiantype[.@UseGID] == 2) { set .@type,1285; }
@@ -757,14 +753,12 @@ OnRecvCastle:
 			if (select("Dispensar.:Cancelar.") == 2) {
 				mes "[Kafra Contratada]";
 				mes "Eu irei trabalhar arduamente... Muito obrigada!";
-				close2;
-					cutin "kafra_01",255;
-				end;
+				close;
 			}
 			mes "[Kafra Contratada]";
 			mes "Oh, meu Deus! Isso é um absurdo!";
 			next;
-			cutin "kafra_01",255;
+			cutin "",255;
 			disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),9,0;
 			mes "[ Mordomo " + .@name$ + " ]";
@@ -790,7 +784,7 @@ OnRecvCastle:
 				mes "Bem... Mas nós não temos verba para contratar. Somos incapazes de contratar os serviços das Kafras.";
 				close;
 			}
-			set zeny,zeny-10000;
+			set Zeny,Zeny-10000;
 			enablenpc "Funcionária Kafra#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),9,1;
 			mes "Nós concluímos o nosso contrato com o Escritório das Kafras com êxito. Nós contratamos os serviços das Kafras.";
@@ -800,7 +794,7 @@ OnRecvCastle:
 			mes "Como você está? Eu sou a Kafra enviada pelo escritório.";
 			mes "Nós faremos o nosso melhor para manter a reputação das Kafras.";
 			next;
-			cutin "kafra_01",255			;
+			cutin "",255;
 			mes "[ Mordomo " + .@name$ + " ]";
 			mes "O término do contrato das Kafras, é um mês após a sua contratação, após isso haverá a necessidade do pagamento de uma nova taxa.";
 			mes "Isso será muito útil para os nossos membros.";
@@ -821,7 +815,7 @@ OnRecvCastle:
 		mes "Por favor, me siga. Mostrarei a passagem secreta.";
 		mes "Para você retornar, basta puxar uma alavanca...";
 		close2;
-			warp strnpcinfo(2),.@masterroom[0],.@masterroom[1];
+		warp strnpcinfo(2),.@masterroom[0],.@masterroom[1];
 		end;
 	}
 }
@@ -1112,7 +1106,6 @@ OnClock0001:
 		setarray .@treasurex[0],275,276,276,275,273,274,275,276,277,278,278,278,278,278,278,277,276,275,274,273,273,273,273,273;
 		setarray .@treasurey[0],178,178,177,177,180,180,180,180,180,180,179,178,177,176,175,175,175,175,175,175,176,177,178,179;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}

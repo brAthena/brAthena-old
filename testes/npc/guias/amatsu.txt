@@ -98,6 +98,7 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 	} else {
 		// pré-Renewal
 		switch(select("Palácio.:Loja de Útilidades.:Loja de Armas.:Bar")) {
+		next;
 		case 1:
 			viewpoint 1,85,235,0,0xFF3355;
 			mes "[Amachang]";

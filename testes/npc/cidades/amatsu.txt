@@ -292,7 +292,7 @@ amatsu,185,115,3	script	Homem Bêbado#ama	765,{
 	close;
 }
 
-amatsu,217,179,1	script	Grandma#ama	760,{
+amatsu,217,179,1	script	Vovó#ama	760,{
 	mes "[Hatsue]";
 	mes "Estou preocupada com meu marido.";
 	mes "Hoje ele perdeu muito dinheiro em uma cidade distante.";
@@ -347,38 +347,38 @@ amatsu,287,266,3	script	Jyaburo#ama	766,{
 	close;
 }
 
-amatsu,243,202,3	script	Professora de Drama#ama1	760,{
+amatsu,269,221,1	script	Hutari Shioko#ama1	758,{
 	set jap_tree,1;
 	mes "[Hutari Shioko]";
-	mes "It is a pleasure to meet you.";
-	mes "My name is Hutari Shioko.";
-	mes "My hobby is listening to music.";
-	mes "I'm an avid fan of classical music.";
+	mes "É um prazer conhecê-lo.";
+	mes "Meu nome é Hutari Shioko.";
+	mes "Adoro passar o tempo ouvindo música.";
+	mes "Sou fã de músicas clássicas.";
 	next;
 	mes "[Hutari Shioko]";
-	mes "There is an old story about";
-	mes "the hill in our town.";
-	mes "Have you heard this story before?";
+	mes "Tem uma história antiga, sobre uma";
+	mes "árvore que fica na colina, na nossa vila.";
+	mes "Você já ouviu essa história?";
 	next;
 	mes "[Hutari Shioko]";
-	mes "It is said that if you propose";
-	mes "under that tree, you and your";
-	mes "lover will live a happy life for all eternity.";
+	mes "Dizem que se você pedir alguém";
+	mes "em casamento debaixo de uma árvore de lá,";
+	mes "você e seu amante serão felizes por toda a eternidade.";
 	next;
 	mes "[Hutari Shioko]";
-	mes "However, the proposal can not be";
-	mes "done at any given time. The legend states that it can only be done on Saturday evenings.";
+	mes "Entretanto, você não pode fazer isso a qualquer hora.";
+	mes "A lenda diz que isso só pode ser feito nas tardes de Sábado.";
 	next;
 	mes "[Hutari Shioko]";
-	mes "After the proposal, the reply must";
-	mes "be answered before Sunday evening. This is the most crucial part of it.";
+	mes "Depois do pedido, a resposta tem que ser dada";
+	mes "antes da noite de domingo. Essa é a parte mais importante!";
 	next;
 	emotion e_lv2;
 	mes "[Hutari Shioko]";
-	mes "If you like someone...";
-	mes "You should try proposing";
-	mes "under that tree. I'm sure ";
-	mes "happy things will happen, if you do.";
+	mes "Se você ama alguém...";
+	mes "Deveria fazer o pedido";
+	mes "debaixo daquela árvore.";
+	mes "Sei que coisas boas acontecerão se você fizer isso.";
 	close;
 }
 	
@@ -459,7 +459,7 @@ amatsu,283,203,1	script	Bonubonu#ama2	111,{
 	close;
 }
 	
-amatsu,274,178,7	script	Veterinarian#ama	735,{
+amatsu,274,178,7	script	Veterinário#ama	735,{
 	set jap_tree,4;
 	mes "[Sakura Seiichi]";
 	mes "Ah... Não sou anormal, então não";

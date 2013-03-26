@@ -224,7 +224,7 @@ prontera,230,312,3	script	Irmã Nerlen#es07	79,{
 	mes "renascimento e, oportunamente,";
 	mes "pode ser usado para restaurar";
 	mes "vida para seus amigos.";
-	mes "Você gostaria que eu;
+	mes "Você gostaria que eu";
 	mes "fazesse algumas para você?";
 	next;
 	switch(select("O que eu preciso fazer Ovos Sagrados?:Eu quero fazer Ovos Sagrados.:Talvez na próxima vez.")) {
@@ -528,7 +528,7 @@ morocc,131,26,5	script	Agente Secreto#egg	880,{
 			mes "Você não entende";
 			mes "a justiça de";
 			mes "nossa causa? Voltando heróis";
-			mes "caídos vão trazer a paz as;
+			mes "caídos vão trazer a paz as";
 			mes "nossas terras muito mais rapidamente!";
 			close;
 		}
@@ -643,7 +643,7 @@ pay_dun00,22,127,0	script	Trace#egg1	844,{
 		mes "Este é o lugar";
 		mes "Membro da Corporação";
 		mes "queria me encontrar...";
-		mes "Hora de usar todos os;
+		mes "Hora de usar todos os";
 		mes "Ovos Sagrados.";
 		next;
 		if (countitem(12019) > 32) {
@@ -674,7 +674,7 @@ pay_dun00,22,127,0	script	Trace#egg1	844,{
 		else {
 			mes "[" + strcharinfo(0) + "]";
 			mes "Hã? Onde eu coloquei";
-			mes "esses 33 Ovos Sagrados;
+			mes "esses 33 Ovos Sagrados";
 			mes "que eu precisava para isso?";
 			close;
 		}

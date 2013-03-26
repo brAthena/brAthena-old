@@ -193,7 +193,7 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 					if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 					else next;
 					
-					switch(select("^FF0000Guilda dos Gatunos.^000000:Loja de Armas.:Estalagem.:Bar.:Covil.:Cancelar.")) {
+					switch(select("^FF0000Guilda dos Gatunos.^000000:Loja de Armas.:Estalagem.:Bar.:Covil.:Forjar:Cancelar.")) {
 					case 1:
 						mes "[Guia de Morroc]";
 						mes "Ouvi dizer que a Guilda dos Gatunos, o lugar aonde Aprendizes podem se tornar Gatunos, se encontra na Pirâmide da saída Noroeste da cidade.";

@@ -25,7 +25,7 @@
 
 // Ofertas do Edgar
 //============================================================
-izlude,179,219,4	script	Edgar#izlude	-1,{
+-	script	Edgar#izlude	-1,{
 	if (MISC_QUEST & 16) {
 		mes "[Edgar]";
 		mes "Então, você está indo para Alberta novamente? Assim como da última vez, vou lhe dar o mesmo desconto, e cobrar apenas 250 zenys.";
@@ -103,3 +103,10 @@ izlude,179,219,4	script	Edgar#izlude	-1,{
 	mes "Vejo você mais tarde.";
 	close;
 }
+// Renovação
+// ==========================
+izlude,179,219,4	duplicatr(Edgar#izlude)	Edgar#izludere	49,{}
+// ==========================
+// Pré-Renovação
+// ==========================
+izlude,182,186,2	duplicatp(Edgar#izlude)	Edgar#izludepre	49,{}
