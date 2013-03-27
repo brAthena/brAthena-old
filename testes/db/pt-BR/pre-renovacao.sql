@@ -14178,7 +14178,7 @@ REPLACE INTO `mercenary_skill_db` VALUES(2217,8235,1);
 REPLACE INTO `mercenary_skill_db` VALUES(2325,8201,5);
 REPLACE INTO `mercenary_skill_db` VALUES(2325,8223,10);
 REPLACE INTO `mercenary_skill_db` VALUES(2326,8239,5);
-REPLACE INTO `mercenary_skill_db` VALUES(2326,28,5);
+-- REPLACE INTO `mercenary_skill_db` VALUES(2326,28,5);
 REPLACE INTO `mercenary_skill_db` VALUES(2342,8225,5);
 REPLACE INTO `mercenary_skill_db` VALUES(2342,8202,5);
 REPLACE INTO `mercenary_skill_db` VALUES(2342,8226,1);
