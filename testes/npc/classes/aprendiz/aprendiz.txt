@@ -581,8 +581,8 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		getexp 300,0;
 		getexp 300,0;
 		getexp 300,20;
-		getitem 7059,20;	// Cargo_Free_Ticket
-		getitem 7060,30;	// Warp_Free_Ticket
+		getitem 7059,20;	// Vale-Armazém
+		getitem 7060,30;	// Vale-Teletransporte
 		set job_novice_q,14;
 		next;
 		mes "[Chocolati]";
@@ -1538,10 +1538,10 @@ new_1-3,109,41,4	script#re	Mercador#nvs	97,{
 				next;
 				mes "[Mercador]";
 				mes "A propósito, você tem feito um excelente trabalho. Então, eu deveria dar-lhe alguma coisa ... O que seria bom?";
-				mes "Certo, que tal um Phracon?";
-				mes "Phracon é um elemento metálico que pode ser usado para refinar armas.";
+				mes "Certo, que tal um Fracon?";
+				mes "Fracon é um elemento metálico que pode ser usado para refinar armas.";
 				completequest 7126;
-				getitem 1010,7; // Phracon
+				getitem 1010,7; // Fracon
 				getexp 5000,100;
 				close;
 			}
@@ -1819,7 +1819,7 @@ new_1-3,121,41,4	script#re	Bruce#nvs	57,{
 new_2-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv2	57
 new_3-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv3	57
 new_4-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv4	57
-new_5-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv5	57
+new_5-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv5	57,{}
 
 new_1-4,91,22,4	script#pre	Instrutor de Aprendizes#nv	57,{
 	if (Class == Job_Novice) {
@@ -2850,7 +2850,7 @@ new_1-3,103,50,4	script#re	Treinador Nível 1#nv	84,{
 new_2-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 2#nv2	84
 new_3-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 3#nv3	84
 new_4-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 4#nv4	84
-new_5-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 5#nv5	84
+new_5-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 5#nv5	84,{}
 
 new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 	if (checkweight(909,400) == 0) {
@@ -2866,14 +2866,58 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 		mes "Pelo visto, você acabou de aprender sobre as 6 classes disponíveis.";
 		mes "Bem, este será seu terceiro teste, mas um teste de personalidade, ou vocacional,";
 		mes "e que não é obrigatório.";
+		next;
+		mes "[Hanson]";
+		mes "Ou seja, se você não quiser fazê-lo,";
+		mes "a escolha é toda sua.";
+		mes "No entanto, se você fizer este último teste,";
+		mes "você poderá ter mais benefícios.";
+		next;
+		mes "[Hanson]";
+		mes "Primeiramente, eu lhe darei alguns presentes ao final do teste,";
+		mes "itens de cura que poderão ser muito úteis para você no futuro,";
+		mes "nas batalhas do mundo Ragnarök Online.";
+		mes "Presentes são sempre bem vindos, não é?";
+		mes "Eu sei que sim!";
+		next;
+		mes "[Hanson]";
+		mes "Além disso, após terminar o teste";
+		mes "nós lhe daremos uma sugestão de classe que se identifique com sua personalidade";
+		mes "e o teleportaremos para a cidade";
+		mes "onde você poderá fazer a mudança para esta profissão.";
+		mes "E poderá haver ainda mais um ou outro bônus além desses que mencionei...";
+		next;
+		mes "[Hanson]";
+		mes "E então, o que você quer fazer?";
+		mes "Quer ir direto para o mundo de Ragnarök Online";
+		mes "ou fazer o teste de personalidade?";
+		mes "Pense a respeito e me diga.";
+		next;
+		switch(select("Eu quero fazer o teste.:Quero começar a jogar Ragnarök Online.")) {
 		case 1:
 			mes "[Hanson]";
-		mes "Bom dia,";
-		mes "^A62A2A'" + name + "'^000000.";
-		mes "Você fez um bom esforço para chegar até aqui, não é mesmo?";
-		mes "Pelo visto, você acabou de aprender sobre as 6 classes disponíveis.";
-		mes "Bem, este será seu terceiro teste, mas um teste de personalidade, ou vocacional,";
-		mes "e que não é obrigatório.";
+			mes "Ótima escolha!";
+			mes "Aqueles que fazem todos os teste e cursos que oferecemos";
+			mes "certamente serão jogadores bem sucedidos lá fora,";
+			mes "pelo seu nível superior de preparação e determinação!";
+			mes "Falando sério, se você não escolhesse fazer o teste...";
+			mes "Acho que ficaria muito desapontado com você.";
+			next;
+			mes "[Hanson]";
+			mes "Mas muito bem! Vamos começar este teste.";
+			mes "Por favor, relaxe e vá com calma.";
+			mes "Tome o tempo que quiser e escolha as respostas mais adequadas ao seu ponto de vista e seu modo de pensar.";
+			next;
+			mes "[Hanson]";
+			mes "Lembre-se, esse teste é só para que conheçamos sua personalidade,";
+			mes "não existem padrões de bom ou ruim aqui, ok?";
+			mes "Afinal, cada um vê as coisas de um jeito diferente. Vamos lá!";
+			next;
+			mes "[Hanson]";
+			mes "Escolha a alternativa com a qual você mais se identifica";
+			mes "das opções abaixo:";
+			next;
+			switch(select("Estudo:Exercícios:Caridade:Violencia")) {
 			case 1:
 				set .@magician_p,.@magician_p+1;
 				break;
@@ -3389,7 +3433,7 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 				next;
 				mes "[Hanson]";
 				mes "Se escolher a classe recomendada,";
-                mes "sua recompensa será maior.";
+				mes "sua recompensa será maior.";
 				switch(select("Espadachim!:Quero minha própria escolha!")) {
 				case 1:
 					mes "[Hanson]";
@@ -3402,15 +3446,14 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^660000Lista de Itens Presenteados^000000";
 					mes "^000033Vale-Armazém x 5^000000";
 					mes "^000033Vale-Teletransporte x 5^000000";
-					mes "^0000331 Falchion^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000331 Alfanje^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					set nov_3_swordman,40;
-					getitem 7059,5; //Cargo_Free_Ticket
-					getitem 7060,5; //Warp_Free_Ticket
-					getitem 1104,1; //Falchion
-					getitem 1010,7; //Phracon
-					////getgold 100
+					getitem 7059,5; // Vale-Armazém
+					getitem 7060,5; // Vale-Teletransporte
+					getitem 1104,1; // Alfanje
+					getitem 1010,7; // Fracon
 					mes "[Hanson]";
 					mes "Aí estão seus suprimentos.";
 					mes "Cheque para ver se está tudo em ordem.";
@@ -3428,7 +3471,7 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "Como mencionei, a cidade para onde te enviarei chama-se Izlude.";
 					mes "Ela é uma pequena cidade satélite da capital Prontera.";
 					mes "A associação dos Espadachins fica na parte oeste da cidade.";
-                    mes "Lembre-se disso para não se perder.";
+					mes "Lembre-se disso para não se perder.";
 					next;
 					mes "[Hanson]";
 					mes "Agora, você será teleportado.";
@@ -3484,18 +3527,17 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^000033Vale-Armazém x 5^000000";
 					mes "^000033Vale-Teletransporte x 5^000000";
 					////mes "^000099100 zeny^000000";
-					mes "^0000331 Rod^000000";
-					mes "^0000331 Cutter^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000331 Bastão^000000";
+					mes "^0000331 Punhal^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					set nov_3_swordman,40;
-					getitem 7059,5; //Cargo_Free_Ticket
-					getitem 7060,5; //Warp_Free_Ticket
-					getitem 1601,1; //Rod
-					getitem 1204,1; //Cutter
-					getitem 1010,7; //Phracon
-					////getgold 100
+					getitem 7059,5; // Vale-Armazém
+					getitem 7060,5; // Vale-Teletransporte
+					getitem 1601,1; // Cajado
+					getitem 1204,1; // Punhal
+					getitem 1010,7; // Fracon
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
 					mes "Aí estão seus suprimentos.";
@@ -3541,17 +3583,17 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 				mes "Você está sempre interessado no correr do mundo,";
 				mes "e é uma pessoa organizada e com força de vontade.";
 				mes "Seus objetivos e metas na vida já estão há muito tempo definidos";
-                mes "e você age de acordo com eles, sendo muito responsável em suas ações.";
+				mes "e você age de acordo com eles, sendo muito responsável em suas ações.";
 				next;
 				mes "[Hanson]";
 				mes "Para você, que tem o desejo de vencer na vida,";
-                mes "^696969Mercador^000000 é a classe mais adequada.";
+				mes "^696969Mercador^000000 é a classe mais adequada.";
 				next;
 				mes "[Hanson]";
 				mes "Então, gostaria de aceitar nossa sugestão";
-                mes "ou gostaria de escolher por si mesmo";
-                mes "a classe que deseja ser?";
-                mes "O que me diz?";
+				mes "ou gostaria de escolher por si mesmo";
+				mes "a classe que deseja ser?";
+				mes "O que me diz?";
 				next;
 				switch(select("Mercador!:Quero minha própria escolha!")) {
 				case 1:
@@ -3569,15 +3611,15 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^0000334 Free Ticket for the Cart Service^000000";
 					////mes "^000099100 zeny^000000";
 					mes "^0000331 Battle Axe^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					set nov_3_swordman,40;
-					getitem 7059,4; //Cargo_Free_Ticket
-					getitem 7060,4; //Warp_Free_Ticket
+					getitem 7059,4; //Vale-Armazém
+					getitem 7060,4; //Vale-Teletransporte
 					getitem 7061,4; //Cart_Free_Ticket
 					getitem 1351,1; //Battle_Axe
-					getitem 1010,7; //Phracon
+					getitem 1010,7; //Fracon
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
@@ -3651,14 +3693,14 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^000033Vale-Teletransporte x 5^000000";
 					////mes "^000099100 Zeny^000000";
 					mes "^0000331 Main Gauche^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					set nov_3_swordman,40;
-					getitem 7059,5; //Cargo_Free_Ticket
-					getitem 7060,5; //Warp_Free_Ticket
+					getitem 7059,5; //Vale-Armazém
+					getitem 7060,5; //Vale-Teletransporte
 					getitem 1207,1; //Main_Gauche
-					getitem 1010,7; //Phracon
+					getitem 1010,7; //Fracon
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
@@ -3728,14 +3770,14 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^000033Vale-Teletransporte x 5^000000";
 					////mes "^000099100 Zeny^000000";
 					mes "^0000331 Composite Bow^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					set nov_3_swordman,40;
-					getitem 7059,5; //Cargo_Free_Ticket
-					getitem 7060,5; //Warp_Free_Ticket
+					getitem 7059,5; //Vale-Armazém
+					getitem 7060,5; //Vale-Teletransporte
 					getitem 1704,1; //Composite_Bow
-					getitem 1010,7; //Phracon
+					getitem 1010,7; //Fracon
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
@@ -3813,14 +3855,14 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 					mes "^000033Vale-Teletransporte x 5^000000";
 					////mes "^000099100 Zeny^000000";
 					mes "^0000331 Mace^000000";
-					mes "^0000337 Phracon^000000";
+					mes "^0000337 Fracon^000000";
 					next;
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					set nov_3_swordman,40;
-					getitem 7059,5; //Cargo_Free_Ticket
-					getitem 7060,5; //Warp_Free_Ticket
+					getitem 7059,5; //Vale-Armazém
+					getitem 7060,5; //Vale-Teletransporte
 					getitem 1504,1; //Mace
-					getitem 1010,7; //Phracon
+					getitem 1010,7; //Fracon
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
@@ -3914,7 +3956,8 @@ new_1-4,100,29,1	script#pre	Instrutor Final#nv	46,{
 				warp "prt_fild08",357,212;
 			}
 			end;
-
+		}
+	}
 	else if (nov_3_swordman == 40) {
 		mes "[Hanson]";
 		mes "Hmmm... Por que você ainda está aqui?";
@@ -4044,8 +4087,8 @@ S_UserJobchoice:
 	next;
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	set nov_3_swordman,40;
-	getitem 7059,5; //Cargo_Free_Ticket
-	getitem 7060,5; //Warp_Free_Ticket
+	getitem 7059,5; //Vale-Armazém
+	getitem 7060,5; //Vale-Teletransporte
 	getitem 2305,1; //Adventure_Suit
 	////getgold 100
 	//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4200,7 +4243,7 @@ new_1-3,96,174,3	script#pre	Funcionário de Checagem#nv1	85,{
 new_2-3,96,174,3	duplicatp(Funcionário de Checagem#nv1)	Funcionário de Checagem#nv2	85
 new_3-3,96,174,3	duplicatp(Funcionário de Checagem#nv1)	Funcionário de Checagem#nv3	85
 new_4-3,96,174,3	duplicatp(Funcionário de Checagem#nv1)	Funcionário de Checagem#nv4	85
-new_5-3,96,174,3	duplicatp(Funcionário de Checagem#nv1)	Funcionário de Checagem#nv5	85
+new_5-3,96,174,3	duplicatp(Funcionário de Checagem#nv1)	Funcionário de Checagem#nv5	85,{}
 
 // Quadro de avisos (Guardas & Boletim de Bordo)
 //============================================================
@@ -4233,7 +4276,6 @@ new_1-1,144,107,2	script	Guarda#nv2	105,{
 }
 
 //============================================================
-new_1-2,28,185,4	shop#pre	Vendedora de Batatas	90,516:15
 new_1-3,100,50,4	shop#re	Comerciante#nvs	93,516:15
 new_2-3,100,50,4	duplicatr(Comerciante#nvs)	Comerciante#nv2	93
 new_3-3,100,50,4	duplicatr(Comerciante#nvs)	Comerciante#nv3	93
@@ -4467,6 +4509,8 @@ if( checkre(0)) {
 		}
 	}
 }
+
+new_1-2,28,185,4	shop#pre	Vendedora de Batatas	90,516:15
 
 new_1-2,182,182,3	script#pre	Assistente de Atributos	754,{
 	mes "[Jare Riotte]";
@@ -5077,7 +5121,7 @@ new_1-2,100,29,4	script#pre	Recepcionista#nv1	86,{
 			close;
 		}
 	}
-}	
+}
 
 new_1-1,53,114,4	script#pre	Zion#nv1	727,{
 	if (nov_get_item04 > 9 || nov_get_item05 > 9) {
@@ -6321,8 +6365,8 @@ new_1-2,118,108,3	script#pre	Funcionária Kafra#nv1	117,{
 				getitem 2112,1; //Novice_Guard
 				getitem 601,10; //Wing_Of_Fly
 				getitem 602,2; //Wing_Of_Butterfly
-				getitem 7059,5; //Cargo_Free_Ticket
-				getitem 7060,5; //Warp_Free_Ticket
+				getitem 7059,5; //Vale-Armazém
+				getitem 7060,5; //Vale-Teletransporte
 			}
 			set nov_1st_cos,0;
 			set nov_2nd_cos,0;
@@ -6382,8 +6426,8 @@ new_1-2,118,108,3	script#pre	Funcionária Kafra#nv1	117,{
 			close2;
 			if (nov_get_item05 < 11) {
 				set nov_get_item05,11;
-				getitem 7059,5; //Cargo_Free_Ticket
-				getitem 7060,5; //Warp_Free_Ticket
+				getitem 7059,5; //Vale-Armazém
+				getitem 7060,5; //Vale-Teletransporte
 			}
 			set nov_1st_cos,0;
 			set nov_2nd_cos,0;
@@ -6547,28 +6591,28 @@ new_1-2,118,108,3	script#pre	Funcionária Kafra#nv1	117,{
 //============================================================
 // Mobs do Campo de Treinamento
 //============================================================
-new_1-3,0,0,0,0	monster#pre	Chonchon	1011,10,0,0,0
-new_1-3,0,0,0,0	monster#pre	Drops	1113,10,0,0,0
-new_1-3,0,0,0,0	monster#pre	Fabre	1184,5,0,0,0
-new_1-3,0,0,0,0	monster#pre	Lunático	1063,10,0,0,0
-new_1-3,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
-new_2-3,0,0,0,0	monster#pre	Condor	1009,10,0,0,0
-new_2-3,0,0,0,0	monster#pre	Fabre	1184,5,0,0,0
-new_2-3,0,0,0,0	monster#pre	Picky	1050,10,0,0,0
-new_2-3,0,0,0,0	monster#pre	Sapo de Roda	1012,10,0,0,0
-new_2-3,0,0,0,0	monster#pre	Salgueiro	1010,10,0,0,0
-new_3-3,0,0,0,0	monster#pre	Condor	1009,10,0,0,0
-new_3-3,0,0,0,0	monster#pre	Fabre	1184,5,0,0,0
-new_3-3,0,0,0,0	monster#pre	Picky	1050,10,0,0,0
-new_3-3,0,0,0,0	monster#pre	Roda Frog	1012,10,0,0,0
-new_3-3,0,0,0,0	monster#pre	Salgueiro	1010,10,0,0,0
-new_4-3,0,0,0,0	monster#pre	Fabre	1184,5,0,0,0
-new_4-3,0,0,0,0	monster#pre	Rocker	1052,10,0,0,0
-new_4-3,0,0,0,0	monster#pre	Esporo	1014,10,0,0,0
-new_4-3,0,0,0,0	monster#pre	Besouro-Ladrão	1051,10,0,0,0
-new_4-3,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,10,0,0,0
-new_5-3,0,0,0,0	monster#pre	Fabre	1184,5,0,0,0
-new_5-3,0,0,0,0	monster#pre	Esporo	1052,10,0,0,0
-new_5-3,0,0,0,0	monster#pre	Spore	1014,1,0,0,0
-new_5-3,0,0,0,0	monster#pre	Besouro-Ladrão	1051,1,0,0,0
-new_5-3,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,1,0,0,0,{}
+new_1-3,0,0,0,0	monster	Chonchon	1011,10,0,0,0
+new_1-3,0,0,0,0	monster	Drops	1113,10,0,0,0
+new_1-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
+new_1-3,0,0,0,0	monster	Lunático	1063,10,0,0,0
+new_1-3,0,0,0,0	monster	Poring	1002,10,0,0,0
+new_2-3,0,0,0,0	monster	Condor	1009,10,0,0,0
+new_2-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
+new_2-3,0,0,0,0	monster	Picky	1050,10,0,0,0
+new_2-3,0,0,0,0	monster	Sapo de Roda	1012,10,0,0,0
+new_2-3,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
+new_3-3,0,0,0,0	monster	Condor	1009,10,0,0,0
+new_3-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
+new_3-3,0,0,0,0	monster	Picky	1050,10,0,0,0
+new_3-3,0,0,0,0	monster	Sapo de Roda	1012,10,0,0,0
+new_3-3,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
+new_4-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
+new_4-3,0,0,0,0	monster	Rocker	1052,10,0,0,0
+new_4-3,0,0,0,0	monster	Esporo	1014,10,0,0,0
+new_4-3,0,0,0,0	monster	Besouro-Ladrão	1051,10,0,0,0
+new_4-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	1053,10,0,0,0
+new_5-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
+new_5-3,0,0,0,0	monster	Rocker	1052,10,0,0,0
+new_5-3,0,0,0,0	monster	Esporo	1014,1,0,0,0
+new_5-3,0,0,0,0	monster	Besouro-Ladrão	1051,1,0,0,0
+new_5-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	1053,1,0,0,0
