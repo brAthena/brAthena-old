@@ -2383,7 +2383,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						if(sd && index >= 0 &&
 						   sd->inventory_data[index] &&
 						   sd->inventory_data[index]->type == IT_WEAPON)
-							weight = sd->inventory_data[index]->weight/2;
+							weight = sd->inventory_data[index]->weight/20;
 						ATK_ADD(weight * skill_lv)
 						skillratio += 50*skill_lv;
 					}
