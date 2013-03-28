@@ -276,7 +276,6 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 	}
 	else if (job_merchant_q == 0) {
 		mes "[Chefe Mansur]";
-		mes "So, what brings you to";
 		mes "Então, oque te traz à";
 		mes "Associação dos Mercadores?";
 		mes "Existe alguma maneira";
@@ -673,8 +672,8 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 		mes "[Guarda Kay]";
 		mes "Ei, o que você ainda está fazendo aqui? Não era para você já estar no caminho?";
 		next;
-		if (select("I need a new package.:Oh, yeah. You're right!") == 1) {
-			if (countitem(1081) == 0 && countitem(1082) == 0 && countitem(1083) == 0 && countitem(1091) == 0) {
+		if (select("Eu preciso de um novo pacote.:Ah, sim. Você está certo!") == 1) {
+			if (!countitem(1081) && !countitem(1082) && !countitem(1083) && !countitem(1091)) {
 				mes "[Guarda Kay]";
 				mes "Oqu-?";
 				mes "Onde está o";
@@ -748,7 +747,7 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 			mes "[Guarda Kay]";
 			mes "Tudo bem, lá vai. Vou te dar o pacote. Agora, escolha o destino da entrega.";
 			next;
-			switch(select("Prontera.:Geffen.:Morocc.:Byalan Island.")) {
+			switch(select("Prontera.:Geffen.:Morocc.:Ilha de Byalan.")) {
 			case 1: set .@where_village,1; break;
 			case 2: set .@where_village,2; break;
 			case 3: set .@where_village,3; break;
@@ -1104,9 +1103,10 @@ prontera,248,42,0	script#pre	Funcionária Kafra#mer	116,{
 		close2;
 		cutin "",255;
 		end;
-	}
+}
+}
 
-function	F_MercKafra	{
+function	script	F_MercKafra {
 	if ((job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 8 || job_merchant_q2 == 7)) {
 		mes "[Funcionária Kafra]";
 		mes "Olá~";
@@ -1136,24 +1136,22 @@ function	F_MercKafra	{
 		mes "[Funcionária Kafra]";
 		mes "Agora, deixe-me";
 		mes "checar o número de série...";
-		if (job_merchant_q2 == 7 && countitem(1081) != 0) {
+		if (job_merchant_q2 == 7 && countitem(1081)) {
 			mes "3318702. Certo, esse é";
 			mes "o que pedimos. Ah,";
 			mes "não se esqueça do recibo!";
 			delitem 1081,1; // Caixa de Entrega
-			getitem 1079,1; //Merchant_Voucher_7
-		} else if (job_merchant_q2 == 8 && countitem(1082) != 0) {
+			getitem 1079,1; // Recibo de Entrega
+		} else if (job_merchant_q2 == 8 && countitem(1082)) {
 			mes "3543625. Certo, esse é";
 			mes "o que pedimos. Ah,";
 			mes "não se esqueça do recibo!";
-			delitem 1082,1; //Merchant_Box_2
-			getitem 1080,1; //Merchant_Voucher_8
+			delitem 1082,1; // Caixa de Entrega
+			getitem 1080,1; // Recibo de Entrega
 		} else {
 			mes "Hmmm? Espere um pouco. Esse";
 			mes "é o pacote errado. O que";
-			if (job_merchant_q2 == 7) mes "eu pedi o número de série é 3318702. Tenho certeza de que não é esse.";
-			else if (job_merchant_q2 == 8) mes "eu pedi o número de série é 3543625. Tenho certeza de que não é esse.";
-			else mes "eu pedi o número de série é 3318702 ou 3543625.";
+			mes "eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
 			close2;
 			cutin "",255;
 			end;
@@ -1161,9 +1159,9 @@ function	F_MercKafra	{
 		if (job_merchant_q == 4) set job_merchant_q,6;
 		else if (job_merchant_q == 3) set job_merchant_q,5;
 		next;
-		if (countitem(1072) != 0 && quest_alb_01 == 0) {
+		if (countitem(1072) && !quest_alb_01) {
 			select("Isto é do Chefe Mansur da Guilda dos Mercadores...");
-			delitem 1072,1; //Delivery_Message
+			delitem 1072,1; // Mensagem ( Envelope de Entrega )
 			set quest_alb_01,1;
 			mes "[Funcionária Kafra]";
 			mes "Ah~! Uma carta de";
@@ -1192,5 +1190,4 @@ function	F_MercKafra	{
 		end;
 	}
 	return;
-}
 }

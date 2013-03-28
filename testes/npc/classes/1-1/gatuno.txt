@@ -68,12 +68,14 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		close;
 		}
 	} if ( !checkre(0) ) {
+		mes "[Gatuna Ajudante]";
+		if(BaseJob == Job_Thief) {
+		mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
+		close;
+    }
 		if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
-		mes "[Gatuna Ajudante]";
 		mes "O que você quer...?";
-		next;
 		switch(Class) {
-		mes "[Gatuna Ajudante]";
 		case 1:
 			mes "Mais um Espadachim metido...";
 			break;
@@ -101,11 +103,11 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		}
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "*O quê que você tá fazendo aqui? Volta pra sua mamãezinha, vai.";
+		mes "*Suspiro* Bem, aqui não é lugar para você. Você deveria sair daqui.";
 		close;
 	}
+		if (job_thief_q == 3 && (countitem(1069) || countitem(1070))) {
 		mes "[Gatuna Ajudante]";
-		if (job_thief_q == 3 && countitem(1069) || countitem(1070)) {
 		mes "Humm?";
 		mes "Você coletou todos os Cogumelos";
 		mes "do teste de Gatuno, certo?";
@@ -114,6 +116,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "Fale com o outro homem ao meu lado. Ele é o encarregado de verificar seus Cogumelos.";
 		close;
 	} else if (job_thief_q == 3) {
+		mes "[Gatuna Ajudante]";
 		mes "Então, como foi na fazenda de cogumelos? Se divertiu bastante?";
 		next;
 		if (select("É, até que foi legal...:Foi terrível!") == 1) {
@@ -282,19 +285,6 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	close;
 }
   mes "[Gatuna Ajudante]";
-	if(BaseJob != Job_Novice) {
-		if(BaseJob == Job_Thief) {
-			mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
-			close;
-      }
-				mes "O que é...?";
-				mes "Hum.. você é "+((Sex) ? "um" : "uma")+" "+jobname(Class)+" "+((Sex) ? "tolo" : "tola")+"...!";
-				next;
-				mes "[Gatuna Ajudante]";
-				mes "Ei, "+((Sex) ? "irmão" : "irmã")+".";
-				mes "Por que você está aqui? Volte para o seu lugar ~~";
-				close;
-	}
 	mes "Ehh... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
 	next;
 	if(select("Eu quero me tornar um Gatuno.:Nada.") == 2) {
@@ -511,8 +501,7 @@ moc_ruins,141,125,3	script#pre	Bogus	83,{
 		mes "Se você quer continuar insistindo, pode entrar...";
 		} else if (job_thief_q == 2) {
 		mes "Humm... Você veio aqui fazer o teste, não é?";
-		mes "Qual o seu nome? "+strcharinfo(0)+"? ... é... é o que está escrito aqui na lista...";
-		mes "Então pode entrar! Desejo boa sorte, mas não tenho como garantir sua segurança!";
+		mes "Qual o seu nome? "+strcharinfo(0)+"? ... é... é o que está escrito aqui na lista... Então pode entrar, desejo boa sorte, mas não tenho como garantir sua segurança!";
 		set job_thief_q,3;
     } else if (job_thief_q == 1) {
 		mes "[Bogus]";

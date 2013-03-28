@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Sprakki (Stard of Novice Training Ground, Outside Castle)
+// Sprakki (Início - Campo de Treinamento, Fora do Castelo).
 //============================================================
 new_1-1,53,114,4	script#re	Sprakki#nv1	90,{
 	if(job_novice_q < 1) {
