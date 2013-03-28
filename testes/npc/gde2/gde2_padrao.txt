@@ -120,8 +120,8 @@ OnReset:
 	donpcevent "df2#"+strnpcinfo(2)+"::OnEnable";
 	donpcevent "gard1#"+strnpcinfo(2)+"::OnReset";
 	donpcevent "gard2#"+strnpcinfo(2)+"::OnReset";
-	donpcevent "Runa Guardiã#"+.@str$+"::OnDisable";
-	donpcevent "Runa Guardiã#"+.@str$+"::OnDisable";
+	donpcevent "1ª Runa Guardiã#"+.@str$+"::OnDisable";
+	donpcevent "2ª Runa Guardiã#"+.@str$+"::OnDisable";
 	for(set .@i,1; .@i<4; set .@i,.@i+1)
 		donpcevent "Dispositivo de Controle0"+.@i+"#"+.@str$+"::OnDisable";
 	for(set .@i,0; .@i<4; set .@i,.@i+1)
@@ -135,8 +135,8 @@ OnChange:
 	setarray getd("$agit_"+.@str$+"[0]"),2,2,1,1,2,0;
 	donpcevent strnpcinfo(0)+"::OnEmpSpawn";
 	donpcevent "Dispositivo de Controle03#"+.@str$+"::OnEnable";
-	donpcevent "Runa Guardiã#"+.@str$+"::OnEnable";
-	donpcevent "Runa Guardiã#"+.@str$+"::OnEnable";
+	donpcevent "1ª Runa Guardiã#"+.@str$+"::OnEnable";
+	donpcevent "2ª Runa Guardiã#"+.@str$+"::OnEnable";
 	end;
 
 OnClock0001:
@@ -624,13 +624,13 @@ OnStartArena:
 
 	announce "O clã ["+getguildname(.@GID)+"] conquistou no feudo ["+.@region$+" "+charat(strnpcinfo(2),3)+"] o castelo de "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
 	mapannounce strnpcinfo(4),"O emperium foi destruído!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
-	donpcevent "Gerente#"+strnpcinfo(4)+"::OnReset";
+	donpcevent "Gerenciador#"+strnpcinfo(4)+"::OnReset";
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),1),2;
-	donpcevent "Gerente#"+strnpcinfo(4)+"::OnRecvCastle2";
+	donpcevent "Gerenciador#"+strnpcinfo(4)+"::OnRecvCastle2";
 	donpcevent "::OnRecvCastle"+strnpcinfo(2);
 	sleep 10000;
 	if (agitcheck2()) {
-		donpcevent "Gerente#"+strnpcinfo(4)+"::OnChange";
+		donpcevent "Gerenciador#"+strnpcinfo(4)+"::OnChange";
 		mapannounce strnpcinfo(4),"Reconstrua as Runas Guardiãs e os Portões do Castelo para garantir a nova posse do castelo!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
 	}
 	end;

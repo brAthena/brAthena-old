@@ -35,11 +35,11 @@
 arug_cas01,92,380,3	duplicate(Mordomo#template)	Mordomo#ar01	55
 arug_cas01,112,193,1	duplicate(Guardião#template)	Brace#ar01	868
 arug_cas01,31,362,3	duplicate(Funcionária Kafra#template)	Funcionária Kafra#ar01	117
-arug_cas01,211,234,0	duplicate(Runa Guardiã#template)	1st Runa Guardiã#ar01	844
-arug_cas01,308,189,0	duplicate(Runa Guardiã#template)	2nd Runa Guardiã#ar01	844
+arug_cas01,211,234,0	duplicate(Runa Guardiã#template)	1ª Runa Guardiã#ar01	844
+arug_cas01,308,189,0	duplicate(Runa Guardiã#template)	2ª Runa Guardiã#ar01	844
 arug_cas01,247,52,0	duplicate(Dispositivo de Controle#template)	Dispositivo de Controle01#ar01	111
-arug_cas01,118,131,0	duplicate(Dispositivo de Controle#template)	Dispositivo de Controle#ar01	111
-arug_cas01,82,172,0	duplicate(Dispositivo de Controle#template)	Dispositivo de Controle Device03#ar01	111
+arug_cas01,118,131,0	duplicate(Dispositivo de Controle#template)	Dispositivo de Controle02#ar01	111
+arug_cas01,82,172,0	duplicate(Dispositivo de Controle#template)	Dispositivo de Controle03#ar01	111
 arug_cas01,259,371,0	duplicate(Dispositivo#template)	#aru01_switch	111
 arug_cas01,157,345,3	duplicate(Girassol#template)	Girassol Misterioso#06	977
 
