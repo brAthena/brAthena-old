@@ -311,15 +311,28 @@ OnRecvCastle:
 		mes "Bem vindo, membro do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes "A Corporação Kafra estará com você onde quer que vá.";
 		next;
-		switch (select("Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
+		switch (select("Usar Armazém.:Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
 		case 1:
 				mes "[Funcionária Kafra]";
 			if (getskilllv("NV_BASIC") < 6) {
 				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um Aprendiz com no mínimo level 6 de profissão.";
+			}
+			else {
+				callfunc("F_CheckKafCode");
+	 	 		openstorage;
+			}
+			break;
+		case 2:	
+			if (guildopenstorage() == 1) {
+				mes "[Funcionária Kafra]";
+				mes "Me desculpe, mas no momento existe um membro usando o armazém do Clã.";
+				mes "Por favor, aguarde ele concluir.";
 				close2;
-				cutin "",255;
+					cutin "", 255;
 				end;
 			}
+			cutin "", 255;
+			close;
 			mes "Aqui, deixe-me abrir";
 			mes "seu Armazém para você.";
 			mes "Obrigado por usar";
@@ -328,7 +341,7 @@ OnRecvCastle:
 			cutin "",255;
 			openstorage;
 			end;
-		case 2:
+		case 3:
 			mes "[Funcionária Kafra]";
 			mes "Por favor, escolha seu destino.";
 			next;
@@ -352,7 +365,7 @@ OnRecvCastle:
 				cutin "",255;
 				end;
 			}
-		case 3:
+		case 4:
 				mes "[Funcionária Kafra]";
 			if (BaseClass != Job_Merchant) {
 				mes "Lamento, mas o serviço de aluguel de carrinhos está disponível somente para a classe de Mercadores e suas evoluções.";
@@ -389,7 +402,7 @@ OnRecvCastle:
 				cutin "",255;
 				end;
 			}
-		case 4:
+		case 5:
 			mes "[Funcionária Kafra]";
 			mes "A Corp. Kafra fará o possível para oferecer o melhor serviço.";
 			mes "Obrigada por usar a Corp. Kafra. Volte sempre.";
