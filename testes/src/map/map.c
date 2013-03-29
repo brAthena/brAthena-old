@@ -17,6 +17,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
 #include "../common/timer.h"
+#include "../common/ers.h"
 #include "../common/grfio.h"
 #include "../common/malloc.h"
 #include "../common/socket.h" // WFIFO*()
@@ -3176,6 +3177,8 @@ int parse_console(const char *buf)
 		if(strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0) {
 			runflag = 0;
 		}
+		else if(strcmpi("ers_report", type) == 0)
+			ers_report();
 	} else if(strcmpi("help", type) == 0) {
 		ShowInfo("To use GM commands:\n");
 		ShowInfo("  admin:<gm command>:<map of \"gm\"> <x> <y>\n");

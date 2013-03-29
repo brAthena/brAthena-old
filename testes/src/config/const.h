@@ -14,8 +14,8 @@
 * \todo ?                                                                    *  
 *****************************************************************************/
 
-#ifndef _RRCONFIGS_CONST_
-#define _RRCONFIGS_CONST_
+#ifndef _H_CONSTANTS_
+#define _H_CONSTANTS_
 
 /**
  * Checagens de segurança para tempo de intervalo nos diálogos com npcs.
@@ -100,4 +100,4 @@
 			time = time * (1 - (float)min(val, 100) / 100); \
 	}
 #endif
-#endif
+#endif /* _H_CONSTANTS_ */

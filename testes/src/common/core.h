@@ -17,6 +17,7 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
+#include "../common/mmo.h"
 /* so that developers with --enable-debug can raise signals from any section of the code they'd like */
 #ifdef DEBUG
 	#include <signal.h>
