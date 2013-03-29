@@ -8,13 +8,13 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Coleção de Quests do Episódio 13.2     |
+//   | Nome do Script: Coleção de Quests do Episódio 13.1     |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 2.2/2.7a/1.0                        |
 //   |--------------------------------------------------------|
-//   | Descrição: Coleção de Quests do Episódio 13.2          |
+//   | Descrição: Coleção de Quests do Episódio 13.1          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
