@@ -6434,7 +6434,14 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 						sp += sp * i / 100;
 					}
 				} else {
-					hp = (1 + rnd()%400) * (100 + skill_lv*10) / 100;
+				//Maybe replace with potion_hp, but I'm unsure how that works
+				switch (skill_lv) {
+					case 1: hp = 45; break;
+					case 2: hp = 105; break;
+					case 3: hp = 175; break;
+					default: hp = 325; break;
+				}
+					hp = (hp + rnd()%(skill_lv*20+1)) * (150 + skill_lv*10) / 100;
 					hp = hp * (100 + (tstatus->vit<<1)) / 100;
 					if(dstsd)
 						hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10) / 100;
@@ -7465,7 +7472,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case AM_REST:
 			if(sd) {
-				if(merc_hom_vaporize(sd,1))
+				if(merc_hom_vaporize(sd,HOM_ST_REST))
 					clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 				else
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
