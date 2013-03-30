@@ -8,13 +8,13 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: iz_dun.txt                             |
+//   | Nome do Script: iz_dun_re.txt                          |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.1/1.3/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Portais da Caverna de Izlude.               |
+//   | Descrição: NPCs / Portais da Caverna de Izlude_05.     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |

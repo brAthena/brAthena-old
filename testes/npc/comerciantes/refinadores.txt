@@ -22,7 +22,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
 // Christopher: Geffen Blacksmith
 //============================================================
 geffen_in,110,172,0	script	Christopher#1	63,{
@@ -1231,15 +1230,15 @@ function	script	repairmain	{
 
 // +11 and above Refiners
 //============================================================
-prt_in,90,72,5	script	Bestry#prt	826,{
+prt_in,90,72,5	script#re	Bestry#prt	826,{
 	callfunc "refinenew","Bestry",0,0;
 	end;
 }
-morocc_in,64,41,5	script	Bestry#moc	826,{
+morocc_in,64,41,5	script#re	Bestry#moc	826,{
 	callfunc "refinenew","Bestry",0,0;
 	end;
 }
-payon_in01,18,132,3	script	Bestry#pay	826,{
+payon_in01,18,132,3	script#re	Bestry#pay	826,{
 	callfunc "refinenew","Bestry",0,0;
 	end;
 }
@@ -1668,7 +1667,7 @@ function	script	refinenew	{
 
 // Ori/Elu to Carnium/Bradium Refiners
 //============================================================
--	script	Austry#ref	-1,{
+prt_in,85,71,5	script#re	Austry#ref	826,{
 	mes "[Austry]";
 	mes "If you bring me 3";
 	mes "Oridecon or Elunium";
@@ -1712,6 +1711,5 @@ function	script	refinenew	{
 	mes "or "+getitemname(.@i[0])+".";
 	close;
 }
-prt_in,85,71,5	duplicate(Austry#ref)	Austry#prt	826
-payon_in01,14,125,5	duplicate(Austry#ref)	Austry#pay	826
-morocc_in,60,38,5	duplicate(Austry#ref)	Austry#moc	826
+payon_in01,14,125,5	duplicatr(Austry#ref)	Austry#pay	826
+morocc_in,60,38,5	duplicatr(Austry#ref)	Austry#moc	826,{}

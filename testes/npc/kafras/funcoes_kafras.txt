@@ -121,7 +121,7 @@ function	script	F_Kafra	{
 				mes "de transporte^000000, a";
 				mes "Corporação Kafra não pode";
 				mes "fornecer serviços de teletransporte";
-				mes "aqui na república de Schwaltzvalt.";
+				mes "aqui na república de Schwartzwald.";
 				next;
 				mes "[Funcionária Kafra]";
 				mes "Nós solicitamos a você utilizar";

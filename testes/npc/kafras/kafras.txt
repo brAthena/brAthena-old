@@ -581,10 +581,8 @@ prt_fild05,290,224,3	script	Funcionária Kafra::prt_fild05	114,{
 	mes "A Corporação Kafra está sempre ajudando aventureiros de Rune-Midgard com seus excelentes serviços,";
 	mes "Como posso ajudá-lo hoje?";
 	callfunc "F_Kafra",5,1,1,40,0;
-
-	M_Save:
-		savepoint "prt_fild05",274,243;
-		callfunc "F_KafEnd",0,1, "no Esgoto de Prontera";
+	savepoint "prt_fild05",274,243;
+	callfunc "F_KafEnd",0,1, "no Esgoto de Prontera";
 }
 
 // - Mina do Carvão

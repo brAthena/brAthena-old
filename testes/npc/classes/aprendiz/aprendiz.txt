@@ -984,10 +984,8 @@ new_3-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv3	733
 new_4-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv4	733
 new_5-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv5	733
 
-// Job Guides (Real Combat Training)
-//============================================================
 // --------------------------- Deletion Function ------------------------------
-function	script	F_NvErase,{
+function	script	F_NvErase	{
 	if (getarg(0,0)) {
 		if (checkquest(7123) == 0 || checkquest(7123) == 1) erasequest 7123;
 		if (checkquest(7124) == 0 || checkquest(7124) == 1) erasequest 7124;
@@ -995,12 +993,12 @@ function	script	F_NvErase,{
 		if (checkquest(7127) == 0 || checkquest(7127) == 1) erasequest 7127;
 	}
 	nude;
-	if (countitem(2819)) delitem 2819,1;	// Swordsman_Manual
-	if (countitem(2820)) delitem 2820,1;	// Thief_Manual
-	if (countitem(2821)) delitem 2821,1;	// Acolyte_Manual
-	if (countitem(2822)) delitem 2822,1;	// Archer_Manual
-	if (countitem(2823)) delitem 2823,1;	// Merchant_Manual
-	if (countitem(2824)) delitem 2824,1;	// Mage_Manual
+	if (countitem(2819)) delitem 2819,1;	// Manual do Espadachim
+	if (countitem(2820)) delitem 2820,1;	// Manual do Gatuno
+	if (countitem(2821)) delitem 2821,1;	// Manual do Noviço
+	if (countitem(2822)) delitem 2822,1;	// Manual do Arqueiro
+	if (countitem(2823)) delitem 2823,1;	// Manual do Mercador
+	if (countitem(2824)) delitem 2824,1;	// Manual do Mago
 	return;
 }
 

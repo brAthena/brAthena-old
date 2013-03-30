@@ -39,7 +39,7 @@ prt_in,244,135,2	script	Funcionária#Sammy	53,{
 	callsub InnMaid,"[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59;
 	warp "geffen_in",31,31;
 	} else if ( strnpcinfo(0) == "Funcionária#Ahee" ) {
-	callsub F_InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
+	callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
 	warp "payon_in01",132,11;	
 	} else if ( strnpcinfo(0) == "Funcionária#Rilim" ) {
 	callsub InnMaid,"[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50;
