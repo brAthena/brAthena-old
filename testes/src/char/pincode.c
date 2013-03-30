@@ -6,10 +6,10 @@
 *               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *
 *                                                                            *
 *                                                                            *
-* \file src/char/char.h                                                      *
-* Descri√ß√£o Prim√°ria.                                                        *
-* Descri√ß√£o mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
+* \file src/char/pincode.c                                                   *
+* DescriÁ„o Prim·ria.                                                        *
+* DescriÁıes mais elaborada sobre o arquivo.                                 *
+* \author brAthena                                                           *
 * \date ?                                                                    *
 * \todo ?                                                                    *
 *****************************************************************************/ 
@@ -41,13 +41,13 @@ void pincode_handle (int fd, struct char_session_data* sd) {
 		return;
 	}
 
-	if(strlen(sd->pincode)) {
-		if( *pincode->changetime && time(NULL) > (sd->pincode_change+*pincode->changetime) ){ // Usu√°rio n√£o mudou o seu c√≥digo PIN por muito tempo
+	if(strlen(sd->pincode) == 4) {
+		if( *pincode->changetime && time(NULL) > (sd->pincode_change+*pincode->changetime) ){ // Usu·rio n„o mudou o seu cÛdigo PIN por muito tempo
 			pincode->sendstate( fd, sd, PINCODE_EXPIRED );
-		} else { // Pedir usu√°rio e seu c√≥digo PIN
+		} else { // Pedir usu·rio e seu cÛdigo PIN
 			pincode->sendstate( fd, sd, PINCODE_ASK );
 		}
-	} else // N√£o definiu-se ainda nenhum c√≥digo PIN
+	} else // N„o definiu-se ainda nenhum cÛdigo PIN
 		pincode->sendstate( fd, sd, PINCODE_NOTSET );
 
 	if(character)
@@ -82,44 +82,38 @@ int pincode_compare(int fd, struct char_session_data* sd, char* pin) {
 
 void pincode_change(int fd, struct char_session_data* sd) {
 	char oldpin[5] = "\0\0\0\0", newpin[5] = "\0\0\0\0";
-	struct online_char_data* character;
 
-	strncpy(oldpin, (char*)RFIFOP(fd,6), 4+1);
+	strncpy(oldpin, (char*)RFIFOP(fd,6), sizeof(oldpin));
 	pincode->decrypt(sd->pincode_seed,oldpin);
 	if(!pincode->compare(fd, sd, oldpin ))
 		return;
 
-	strncpy(newpin, (char*)RFIFOP(fd,10), 3+1);
+	strncpy(newpin, (char*)RFIFOP(fd,10), sizeof(newpin));
 	pincode->decrypt(sd->pincode_seed,newpin);
 	pincode->update( sd->account_id, newpin);
-	if((character = (struct online_char_data*)idb_get(online_char_db, sd->account_id)))
-		character->pincode_enable = *pincode->charselect * 2;
-	pincode->sendstate(fd, sd, PINCODE_OK);
+	strncpy(sd->pincode, newpin, sizeof(sd->pincode));
+	pincode->sendstate(fd, sd, PINCODE_ASK);
 }
 
 void pincode_setnew(int fd, struct char_session_data* sd) {
 	char newpin[5] = "\0\0\0\0";
-	struct online_char_data* character;
 
-	strncpy(newpin, (char*)RFIFOP(fd,6), 4+1);
+	strncpy(newpin, (char*)RFIFOP(fd,6), sizeof(newpin));
 	pincode->decrypt(sd->pincode_seed,newpin);
-
 	pincode->update(sd->account_id, newpin);
-
-	pincode->sendstate(fd, sd, PINCODE_OK);
-	if((character = (struct online_char_data*)idb_get(online_char_db, sd->account_id)))
-		character->pincode_enable = *pincode->charselect * 2;
+	strncpy(sd->pincode, newpin, sizeof(sd->pincode));
+	pincode->sendstate(fd, sd, PINCODE_ASK);
 }
 
-// 0 = desativado / PIN √© correto
+// 0 = PIN È correto
 // 1 = Pedir PIN - cliente envia 0x8b8
 // 2 = Criar um novo PIN - cliente envia 0x8ba
 // 3 = PIN deve ser mudado - cliente 0x8be
 // 4 = Criar novo PIN - cliente envia 0x8ba
 // 5 = Cliente mostra msgstr(1896)
-// 6 = Cliente mostra msgstr(1897) incapaz de usar seu n√∫mero KSSN
-// 7 = Char selecionar janela mostra um bot√£o - cliente envia 0x8c5
-// 8 = C√≥digo PIN estava incorreto
+// 6 = Cliente mostra msgstr(1897) incapaz de usar seu n˙mero KSSN
+// 7 = Char selecionar janela mostra um bot„o - cliente envia 0x8c5
+// 8 = CÛdigo PIN estava incorreto
 void pincode_sendstate(int fd, struct char_session_data* sd, uint16 state) {
 	WFIFOHEAD(fd, 12);
 	WFIFOW(fd, 0) = 0x8b9;
@@ -172,8 +166,8 @@ bool pincode_config_read(char *w1, char *w2) {
 		if (strcmpi(w1, "pincode_enabled") == 0) {
 			enabled = atoi(w2);
 #if PACKETVER < 20110309
-			if( enabled ) {
-				ShowWarning("pincode_enabled requer PACKETVER 20110309 ou superior. desativado...\n");
+			if(enabled) {
+				ShowWarning("pincode_enabled requer PACKETVER 20110309 ou superior. CÛdigo PIN desativado...\n");
 				enabled = 0;
 			}
 #endif
@@ -182,7 +176,7 @@ bool pincode_config_read(char *w1, char *w2) {
 		} else if (strcmpi(w1, "pincode_maxtry") == 0) {
 			maxtry = atoi(w2);
 			if(maxtry > 3) {
-				ShowWarning("pincode_maxtry √© muito grande (%d); m√°ximo permitido:: 3! reajuste para 3...\n",maxtry);
+				ShowWarning("pincode_maxtry È muito grande (%d); m·ximo permitido:: 3! reajuste para 3...\n",maxtry);
 				maxtry = 3;
 			}
 		} else if (strcmpi(w1, "pincode_charselect") == 0) {
