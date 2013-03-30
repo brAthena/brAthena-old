@@ -33,6 +33,7 @@
 #include "int_storage.h"
 #include "char.h"
 #include "inter.h"
+#include "pincode.h"
 
 #include <sys/types.h>
 #include <time.h>
@@ -93,7 +94,7 @@ struct mmo_map_server {
 	unsigned short map[MAX_MAP_PER_SERVER];
 } server[MAX_MAP_SERVERS];
 
-int login_fd=-1, char_fd=-1;
+int char_fd=-1;
 char userid[24];
 char passwd[24];
 char server_name[20];
@@ -131,27 +132,6 @@ struct s_subnet {
 } subnet[16];
 int subnet_count = 0;
 
-struct char_session_data {
-	bool auth; // whether the session is authed or not
-	int account_id, login_id1, login_id2, sex;
-	int found_char[MAX_CHARS]; // ids of chars on this account
-	char email[40]; // e-mail (default: a@a.com) by [Yor]
-	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
-	int group_id; // permission
-	uint8 char_slots;
-	uint32 version;
-	uint8 clienttype;
-	char new_name[NAME_LENGTH];
-	char birthdate[10+1];  // YYYY-MM-DD
-	// Sistema de PIN
-	char pincode[4+1];
-	uint16 pincode_seed;
-	time_t pincode_change;
-	uint16 pincode_try;
-	// Sistema de mudar slot
-	unsigned int char_moves[MAX_CHARS]; // personagem se move à esquerda
-};
-
 int max_connect_user = -1;
 int gm_allow_group = -1;
 int autosave_interval = DEFAULT_AUTOSAVE_INTERVAL;
@@ -159,35 +139,6 @@ int start_zeny = 0;
 int start_weapon = 1201;
 int start_armor = 2301;
 int guild_exp_rate = 100;
-
-// Sistema de código PIN
-#define PINCODE_OK 0
-#define PINCODE_ASK 1
-#define PINCODE_NOTSET 2
-#define PINCODE_EXPIRED 3
-#define PINCODE_NEW 4
-#define	PINCODE_WRONG 8
-
-bool pincode_enabled = true;
-int pincode_changetime = 0;
-int pincode_maxtry = 3;
-
-void pincode_check( int fd, struct char_session_data* sd );
-void pincode_change( int fd, struct char_session_data* sd );
-void pincode_setnew( int fd, struct char_session_data* sd );
-void pincode_sendstate( int fd, struct char_session_data* sd, uint16 state );
-void pincode_notifyLoginPinUpdate( int account_id, char* pin );
-void pincode_notifyLoginPinError( int account_id );
-void pincode_decrypt( unsigned long userSeed, char* pin );
-int pincode_compare( int fd, struct char_session_data* sd, char* pin );
-
-// Sistema de mudar slot
-bool char_move_enabled = true;
-bool char_movetoused = true;
-bool char_moves_unlimited = false;
-
-void moveCharSlot( int fd, struct char_session_data* sd, unsigned short from, unsigned short to );
-void moveCharSlotReply( int fd, struct char_session_data* sd, unsigned short index, short reason );
 
 //Custom limits for the fame lists. [Skotlex]
 int fame_list_size_chemist = MAX_FAME_LIST;
@@ -232,16 +183,6 @@ static DBMap *auth_db; // int account_id -> struct auth_node*
 // Online User Database
 //-----------------------------------------------------
 
-struct online_char_data {
-	int account_id;
-	int char_id;
-	int fd;
-	int waiting_disconnect;
-	short server; // -2: unknown server, -1: not connected, 0+: id of server
-	bool pincode_success;
-};
-
-static DBMap *online_char_db; // int account_id -> struct online_char_data*
 static int chardb_waiting_disconnect(int tid, unsigned int tick, int id, intptr_t data);
 int delete_char_sql(int char_id);
 
@@ -255,6 +196,7 @@ static DBData create_online_char_data(DBKey key, va_list args)
 	character->account_id = key.i;
 	character->char_id = -1;
 	character->server = -1;
+	character->pincode_enable = -1;
 	character->fd = -1;
 	character->waiting_disconnect = INVALID_TIMER;
 	return db_ptr2data(character);
@@ -272,6 +214,8 @@ void set_char_charselect(int account_id)
 
 	character->char_id = -1;
 	character->server = -1;
+	if(character->pincode_enable == -1)
+		character->pincode_enable = *pincode->charselect + *pincode->enabled;
 
 	if(character->waiting_disconnect != INVALID_TIMER) {
 		delete_timer(character->waiting_disconnect, chardb_waiting_disconnect);
@@ -361,7 +305,7 @@ void set_char_offline(int char_id, int account_id)
 		if(character->char_id == char_id) {
 			character->char_id = -1;
 			character->server = -1;
-			character->pincode_success = false;
+			character->pincode_enable = -1;
 		}
 
 		//FIXME? Why Kevin free'd the online information when the char was effectively in the map-server?
@@ -514,7 +458,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 	    (p->pet_id != cp->pet_id) || (p->weapon != cp->weapon) || (p->hom_id != cp->hom_id) ||
 	    (p->ele_id != cp->ele_id) || (p->shield != cp->shield) || (p->head_top != cp->head_top) ||
 	    (p->head_mid != cp->head_mid) || (p->head_bottom != cp->head_bottom) || (p->delete_date != cp->delete_date) ||
-	    (p->rename != cp->rename) || (p->robe != cp->robe) || (p->character_moves != cp->character_moves)
+	    (p->rename != cp->rename) || (p->slotchange != cp->slotchange) || (p->robe != cp->robe)
 	) {
 		//Save status
 		if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `base_level`='%d', `job_level`='%d',"
@@ -524,7 +468,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 		                          "`option`='%d',`party_id`='%d',`guild_id`='%d',`pet_id`='%d',`homun_id`='%d',`elemental_id`='%d',"
 		                          "`weapon`='%d',`shield`='%d',`head_top`='%d',`head_mid`='%d',`head_bottom`='%d',"
 		                          "`last_map`='%s',`last_x`='%d',`last_y`='%d',`save_map`='%s',`save_x`='%d',`save_y`='%d', `rename`='%d',"
-		                          "`delete_date`='%lu',`robe`='%d',`moves`='%d'"
+		                          "`delete_date`='%lu',`robe`='%d',`slotchange`='%d'"
 		                          " WHERE  `account_id`='%d' AND `char_id` = '%d'",
 		                          char_db, p->base_level, p->job_level,
 		                          p->base_exp, p->job_exp, p->zeny,
@@ -535,7 +479,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 		                          mapindex_id2name(p->last_point.map), p->last_point.x, p->last_point.y,
 		                          mapindex_id2name(p->save_point.map), p->save_point.x, p->save_point.y, p->rename,
 		                          (unsigned long)p->delete_date,  // FIXME: platform-dependent size
-		                          p->robe,p->character_moves,
+		                          p->robe,p->slotchange,
 		                          p->account_id, p->char_id)) {
 			Sql_ShowDebug(sql_handle);
 			errors++;
@@ -1028,7 +972,7 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	                                "`str`,`agi`,`vit`,`int`,`dex`,`luk`,`max_hp`,`hp`,`max_sp`,`sp`,"
 	                                "`status_point`,`skill_point`,`option`,`karma`,`manner`,`hair`,`hair_color`,"
 	                                "`clothes_color`,`weapon`,`shield`,`head_top`,`head_mid`,`head_bottom`,`last_map`,`rename`,`delete_date`,"
-	                                "`robe`,`moves`"
+	                                "`robe`,`slotchange`"
 	                                " FROM `%s` WHERE `account_id`='%d' AND `char_num` < '%d'", char_db, sd->account_id, MAX_CHARS)
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 0,  SQLDT_INT,    &p.char_id, 0, NULL, NULL)
@@ -1067,16 +1011,11 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 33, SQLDT_USHORT,  &p.rename, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 34, SQLDT_UINT32, &p.delete_date, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 35, SQLDT_SHORT,  &p.robe, 0, NULL, NULL)
-	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 36, SQLDT_USHORT,   &p.character_moves, 0, NULL, NULL)
+	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 36, SQLDT_USHORT, &p.slotchange, 0, NULL, NULL)
 	  ) {
 		SqlStmt_ShowDebug(stmt);
 		SqlStmt_Free(stmt);
 		return 0;
-	}
-
-	for(i = 0; i < MAX_CHARS; i++) {
-		sd->found_char[i] = -1;
-		sd->char_moves[i] = 0;
 	}
 
 	for(i = 0; i < MAX_CHARS && SQL_SUCCESS == SqlStmt_NextRow(stmt); i++) {
@@ -1084,10 +1023,9 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 		sd->found_char[p.slot] = p.char_id;
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
 
-		// Sistema de mudar slot
-		// armazena a informação necessária para a sessão
-		sd->char_moves[p.slot] = p.character_moves;
-	}
+		}
+		for( ; i < MAX_CHARS; i++ ) 
+		sd->found_char[i] = -1;
 
 	memset(sd->new_name,0,sizeof(sd->new_name));
 
@@ -1131,7 +1069,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	                                "`str`,`agi`,`vit`,`int`,`dex`,`luk`,`max_hp`,`hp`,`max_sp`,`sp`,"
 	                                "`status_point`,`skill_point`,`option`,`karma`,`manner`,`party_id`,`guild_id`,`pet_id`,`homun_id`,`elemental_id`,`hair`,"
 	                                "`hair_color`,`clothes_color`,`weapon`,`shield`,`head_top`,`head_mid`,`head_bottom`,`last_map`,`last_x`,`last_y`,"
-	                                "`save_map`,`save_x`,`save_y`,`partner_id`,`father`,`mother`,`child`,`fame`,`rename`,`delete_date`,`robe`, `moves`"
+	                                "`save_map`,`save_x`,`save_y`,`partner_id`,`father`,`mother`,`child`,`fame`,`rename`,`delete_date`,`robe`,`slotchange`"
 	                                " FROM `%s` WHERE `char_id`=? LIMIT 1", char_db)
 	   ||  SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt)
@@ -1187,7 +1125,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 49, SQLDT_USHORT,  &p->rename, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 50, SQLDT_UINT32, &p->delete_date, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 51, SQLDT_SHORT,  &p->robe, 0, NULL, NULL)
-	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 52, SQLDT_USHORT, &p->character_moves, 0, NULL, NULL)
+	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 52, SQLDT_USHORT, &p->slotchange, 0, NULL, NULL)
 	  ) {
 		SqlStmt_ShowDebug(stmt);
 		SqlStmt_Free(stmt);
@@ -1375,6 +1313,54 @@ int mmo_char_sql_init(void)
 	set_all_offline_sql();
 
 	return 0;
+}
+/* [Ind] - special thanks to Yommy for providing the packet structure/data */
+bool char_slotchange(struct char_session_data *sd, int fd, unsigned short from, unsigned short to) {
+	struct mmo_charstatus char_dat;
+	int from_id = 0;
+
+	if(from > MAX_CHARS || to > MAX_CHARS || (sd->char_slots && to > sd->char_slots) || sd->found_char[from] <= 0)
+		return false;
+
+	if(!mmo_char_fromsql(sd->found_char[from], &char_dat, false)) // Only the short data is needed.
+		return false;
+
+	if(char_dat.slotchange == 0)
+		return false;
+
+	from_id = sd->found_char[from];
+
+	if(sd->found_char[to] > 0) {/* moving char to occupied slot */
+		bool result = false;
+		/* update both at once */
+		if( SQL_SUCCESS != Sql_QueryStr(sql_handle, "START TRANSACTION")
+		   ||  SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id`='%d' LIMIT 1", char_db, from, sd->found_char[to])
+		   ||  SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id`='%d' LIMIT 1", char_db, to, sd->found_char[from]) )
+			Sql_ShowDebug(sql_handle);
+		else
+			result = true;
+
+		if( SQL_ERROR == Sql_QueryStr(sql_handle, (result == true) ? "COMMIT" : "ROLLBACK") ) {
+			Sql_ShowDebug(sql_handle);
+			result = false;
+		}
+		if( !result )
+			return false;
+		
+	} else {/* slot is free. */
+		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id`='%d' LIMIT 1", char_db, to, sd->found_char[from] ) ) {
+			Sql_ShowDebug(sql_handle);
+			return false;
+		}
+	}
+
+	/* update count */
+	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `slotchange`=`slotchange`-1 WHERE `char_id`='%d' LIMIT 1", char_db, from_id ) ) {
+		Sql_ShowDebug(sql_handle);
+		return false;
+	}
+	
+	return true;
 }
 
 //-----------------------------------
@@ -1848,13 +1834,7 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 #endif
 #if PACKETVER != 20111116 //2011-11-16 wants 136, ask gravity.
 #if PACKETVER >= 20110928
-	// change slot feature (0 = disabled, otherwise enabled)
-		if(!char_move_enabled)
-			WBUFL(buf,132) = 0;
-		else if(char_moves_unlimited)
-			WBUFL(buf,132) = 1;
-		else
-			WBUFL(buf,132) = max(0, (int)p->character_moves);
+	WBUFL(buf,132) = (p->slotchange > 0) ? 1 : 0;  // change slot feature (0 = disabled, otherwise enabled)
 	offset += 4;
 #endif
 #if PACKETVER >= 20111025
@@ -2175,7 +2155,7 @@ int parse_fromlogin(int fd)
 						sd->char_slots = MAX_CHARS;/* cap to maximum */
 					safestrncpy(sd->birthdate, (const char *)RFIFOP(fd,52), sizeof(sd->birthdate));
 					safestrncpy(sd->pincode, (const char*)RFIFOP(fd,63), sizeof(sd->pincode));
-					sd->pincode_change = (time_t)RFIFOL(fd,68);
+					sd->pincode_change = RFIFOL(fd,68);
 					ARR_FIND(0, ARRAYLENGTH(server), server_id, server[server_id].fd > 0 && server[server_id].map[0]);
 					// continued from char_auth_ok...
 					if(server_id == ARRAYLENGTH(server) ||  //server not online, bugreport:2359
@@ -2190,35 +2170,7 @@ int parse_fromlogin(int fd)
 						// send characters to player
 						mmo_char_send006b(i, sd);
 #if PACKETVER >=  20110309
-					if(pincode_enabled) {
-						// Sistema de código PIN habilitado
-						if(strlen(sd->pincode) <= 0) {
-							// Não definiu ainda nenhum código PIN
-							if(pincode_enabled) {
-								pincode_sendstate(i, sd, PINCODE_NEW);
-							}else{
-								pincode_sendstate(i, sd, PINCODE_OK);
-							}
-						}else{
-							if(!pincode_changetime || ( sd->pincode_change + pincode_changetime) > time(NULL)) {
-								struct online_char_data* node = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
-
-								if(node != NULL && node->pincode_success) {
-									// Usuário já passou da verificação
-									pincode_sendstate(i, sd, PINCODE_OK);
-								}else{
-									// Pedir ao usuário o seu código PIN
-									pincode_sendstate(i, sd, PINCODE_ASK);
-								}
-							}else{
-								// Usuário não mudou a muito tempo o seu código PIN
-								pincode_sendstate(i, sd, PINCODE_EXPIRED);
-							}
-						}
-					}else{
-						// Sistema de código PIN, desativado
-						pincode_sendstate( i, sd, PINCODE_OK );
-					}
+					pincode->handle(i, sd);
 #endif
 					}
 				}
@@ -2848,55 +2800,46 @@ int parse_frommap(int fd)
 				break;
 
 			case 0x2b02: // req char selection
-				if(RFIFOREST(fd) < 18)
-					return 0;
-				else{
-					int account_id = RFIFOL(fd,2);
-					uint32 login_id1 = RFIFOL(fd,6);
-					uint32 login_id2 = RFIFOL(fd,10);
-					uint32 ip = RFIFOL(fd,14);
-					RFIFOSKIP(fd,18);
+				if( RFIFOREST(fd) < 18)
+					return 0; {
+				int account_id = RFIFOL(fd,2);
+				uint32 login_id1 = RFIFOL(fd,6);
+				uint32 login_id2 = RFIFOL(fd,10);
+				uint32 ip = RFIFOL(fd,14);
+				RFIFOSKIP(fd,18);
 
-					if(runflag != CHARSERVER_ST_RUNNING) {
-						WFIFOHEAD(fd,7);
-						WFIFOW(fd,0) = 0x2b03;
-						WFIFOL(fd,2) = account_id;
-						WFIFOB(fd,6) = 0;// not ok
-						WFIFOSET(fd,7);
-					} else {
+				if(runflag != CHARSERVER_ST_RUNNING) {
+					WFIFOHEAD(fd,7);
+					WFIFOW(fd,0) = 0x2b03;
+					WFIFOL(fd,2) = account_id;
+					WFIFOB(fd,6) = 0;// not ok
+					WFIFOSET(fd,7);
+				} else {
 					struct auth_node* node;
+			
+					// create temporary auth entry
+					CREATE(node, struct auth_node, 1);
+					node->account_id = account_id;
+					node->char_id = 0;
+					node->login_id1 = login_id1;
+					node->login_id2 = login_id2;
+					//node->sex = 0;
+					node->ip = ntohl(ip);
+					//node->expiration_time = 0; // unlimited/unknown time by default (not display in map-server)
+					//node->gmlevel = 0;
+					idb_put(auth_db, account_id, node);
 
-						// create temporary auth entry
-						CREATE(node, struct auth_node, 1);
-						node->account_id = account_id;
-						node->char_id = 0;
-						node->login_id1 = login_id1;
-						node->login_id2 = login_id2;
-						//node->sex = 0;
-						node->ip = ntohl(ip);
-						//node->expiration_time = 0; // unlimited/unknown time by default (not display in map-server)
-						//node->gmlevel = 0;
-						idb_put(auth_db, account_id, node);
+					//Set char to "@ char select" in online db [Kevin]
+					set_char_charselect(account_id);
 
-						//Set char to "@ char select" in online db [Kevin]
-						set_char_charselect(account_id);
-
-						{
-							struct online_char_data* character = (struct online_char_data*)idb_get(online_char_db, account_id);
-						
-							if(character != NULL) {
-								character->pincode_success = true;
-							}
-						}
-
-						WFIFOHEAD(fd,7);
-						WFIFOW(fd,0) = 0x2b03;
-						WFIFOL(fd,2) = account_id;
-						WFIFOB(fd,6) = 1;// ok
-						WFIFOSET(fd,7);
-					}
+					WFIFOHEAD(fd,7);
+					WFIFOW(fd,0) = 0x2b03;
+					WFIFOL(fd,2) = account_id;
+					WFIFOB(fd,6) = 1;// ok
+					WFIFOSET(fd,7);
 				}
-				break;
+			}
+			break;
 
 			case 0x2b05: // request "change map server"
 				if(RFIFOREST(fd) < 39)
@@ -3719,7 +3662,7 @@ int parse_char(int fd)
 					   node->account_id == account_id &&
 					   node->login_id1  == login_id1 &&
 					   node->login_id2  == login_id2 /*&&
-                node->ip         == ipl*/) {
+					   node->ip         == ipl*/) {
 						// authentication found (coming from map server)
 						idb_remove(auth_db, account_id);
 						char_auth_ok(fd, sd);
@@ -3758,6 +3701,18 @@ int parse_char(int fd)
 
 					int slot = RFIFOB(fd,2);
 					RFIFOSKIP(fd,3);
+
+					if(*pincode->enabled) { // hack check
+						struct online_char_data* character;	
+						character = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
+						if(character && character->pincode_enable == -1) {
+							WFIFOHEAD(fd,3);
+							WFIFOW(fd,0) = 0x6c;
+							WFIFOB(fd,2) = 0;
+							WFIFOSET(fd,3);
+							break;
+						}
+					}
 
 					if(SQL_SUCCESS != Sql_Query(sql_handle, "SELECT `char_id` FROM `%s` WHERE `account_id`='%d' AND `char_num`='%d'", char_db, sd->account_id, slot)
 					   || SQL_SUCCESS != Sql_NextRow(sql_handle)
@@ -3953,6 +3908,18 @@ int parse_char(int fd)
 				{
 					int cid = RFIFOL(fd,2);
 
+				if( *pincode->enabled ){ // hack check
+					struct online_char_data* character;	
+					character = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
+					if( character && character->pincode_enable == -1 ){
+						WFIFOHEAD(fd,3);
+						WFIFOW(fd,0) = 0x6c;
+						WFIFOB(fd,2) = 0;
+						WFIFOSET(fd,3);
+						break;
+					}
+				}
+
 					ShowInfo(read_message("Source.char.char_parse_char_s7"), CL_RED, CL_GREEN, sd->account_id, cid, CL_RESET);
 					memcpy(email, RFIFOP(fd,6), 40);
 					RFIFOSKIP(fd,(cmd == 0x68) ? 46 : 56);
@@ -4040,8 +4007,6 @@ int parse_char(int fd)
 					WFIFOSET(fd,4);
 				}
 				break;
-
-
 
 				// char rename request
 				// R 028d <account ID>.l <char ID>.l <new name>.24B
@@ -4182,73 +4147,68 @@ int parse_char(int fd)
 				}
 				return 0; // avoid processing of followup packets here
 
-		// Verifica o PIN introduzido
-		case 0x8b8:
-			if(RFIFOREST(fd) < 10)
-				return 0;
+			// Verifica o PIN introduzido
+			case 0x8b8:
+				if(RFIFOREST(fd) < 10)
+					return 0;
 
-			if(RFIFOL(fd,2) != sd->account_id)
-				break;
+				if(RFIFOL(fd,2) == sd->account_id)
+					pincode->check( fd, sd );
 
-			pincode_check(fd, sd);
+				RFIFOSKIP(fd,10);
+			break;
 
-			RFIFOSKIP(fd,10);
-		break;
+			// Pedido de janela PIN
+			case 0x8c5:
+				if(RFIFOREST(fd) < 6)
+					return 0;
+				if(RFIFOL(fd,2) == sd->account_id)
+					pincode->sendstate(fd, sd, PINCODE_NOTSET);
 
-		// pedido de janela PIN
-		case 0x8c5:
-			if(RFIFOREST(fd) < 6)
-				return 0;
+				RFIFOSKIP(fd,6);
+			break;
 
-			if(RFIFOL(fd,2) != sd->account_id)
-				break;
+			// Solicitação de alteração do código PIN
+			case 0x8be:
+				if(RFIFOREST(fd) < 14)
+					return 0;
+				if(RFIFOL(fd,2) == sd->account_id)
+					pincode->change(fd, sd);
+				
+				RFIFOSKIP(fd,14);
+			break;
 
-			if(strlen(sd->pincode) <= 0) {
-				pincode_sendstate(fd, sd, PINCODE_NEW);
-			}else{
-				pincode_sendstate(fd, sd, PINCODE_ASK);
-			}
+			// Ativar sistema de PIN e pede para definir o primeiro PIN
+			case 0x8ba:
+				if(RFIFOREST(fd) < 10)
+					return 0;
+				if(RFIFOL(fd,2) == sd->account_id)
+					pincode->setnew(fd, sd);
+				RFIFOSKIP(fd,10);
+			break;
 
-			RFIFOSKIP(fd,6);
-		break;
+			/* 0x8d4 <from>.W <to>.W <unused>.W (2+2+2+2) */
+			case 0x8d4:
+				if(RFIFOREST(fd) < 8)
+					return 0;
+				else {
+					bool ret;
+					ret = char_slotchange(sd, fd, RFIFOW(fd, 2), RFIFOW(fd, 4));
+					WFIFOHEAD(fd, 8);
+					WFIFOW(fd, 0) = 0x8d5;
+					WFIFOW(fd, 2) = 8;
+					WFIFOW(fd, 4) = ret?0:1;
+					WFIFOW(fd, 6) = 0;
+					WFIFOSET(fd, 8);
+					/* por algum motivo requer dados do char novamente (gravity -_-) */
+					if(ret)
+						mmo_char_send006b( fd, sd );
 
-		// Solicitação de alteração do código PIN
-		case 0x8be:
-			if(RFIFOREST(fd) < 14)
-				return 0;
-
-			if(RFIFOL(fd,2) != sd->account_id)
-				break;
-
-			pincode_change( fd, sd );
-
-			RFIFOSKIP(fd,14);
-		break;
-
-		// Ativar sistema de PIN e definir o primeiro PIN
-		case 0x8ba:
-			if(RFIFOREST(fd) < 10)
-				return 0;
-
-			if(RFIFOL(fd,2) != sd->account_id)
-				break;
-
-			pincode_setnew(fd, sd);
-
-			RFIFOSKIP(fd,10);
-		break;
-
-		// solicitação para movimentar o personagem
-		case 0x8d4:
-			if(RFIFOREST(fd) < 8)
-				return 0;
-
-			moveCharSlot(fd, sd, RFIFOW(fd, 2), RFIFOW(fd, 4));
-
-			RFIFOSKIP(fd,8);
-		break;
-
-		// unknown packet received
+					RFIFOSKIP(fd, 8);
+				}
+			break;
+					
+			// Pacote desconhecido recebido
 			default:
 				ShowError(read_message("Source.char.char_parse_char_s8"), CL_WHITE, RFIFOW(fd,0), CL_RESET, CL_WHITE, ip2str(ipl, NULL), CL_RESET);
 				set_eof(fd);
@@ -4424,183 +4384,6 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr_t data
 }
 
 //------------------------------------------------
-//Sistema de código PIN
-//------------------------------------------------
-void pincode_check(int fd, struct char_session_data* sd) {
-	char pin[5] = "\0\0\0\0";
-	strncpy((char*)pin, (char*)RFIFOP(fd, 6), 4+1);
-
-	pincode_decrypt(sd->pincode_seed, pin );
-
-	if( pincode_compare(fd, sd, pin)) {
-		pincode_sendstate(fd, sd, PINCODE_OK);
-	}
-}
-
-int pincode_compare(int fd, struct char_session_data* sd, char* pin) {
-	if(strcmp(sd->pincode, pin) == 0) {
-		sd->pincode_try = 0;
-		return 1;
-	}else{
-		pincode_sendstate(fd, sd, PINCODE_WRONG);
-
-		if(pincode_maxtry && ++sd->pincode_try >= pincode_maxtry) {
-			pincode_notifyLoginPinError(sd->account_id);
-		}
-
-		return 0;
-	}
-}
-
-void pincode_change(int fd, struct char_session_data* sd) {
-	char oldpin[5] = "\0\0\0\0";
-	char newpin[5] = "\0\0\0\0";
-
-	strncpy(oldpin, (char*)RFIFOP(fd,6), 4+1);
-	pincode_decrypt(sd->pincode_seed,oldpin);
-
-	if(!pincode_compare(fd, sd, oldpin))
-		return;
-
-	strncpy(newpin, (char*)RFIFOP(fd,10), 4+1);
-	pincode_decrypt(sd->pincode_seed,newpin);
-
-	pincode_notifyLoginPinUpdate(sd->account_id, newpin);
-
-	pincode_sendstate(fd, sd, PINCODE_OK);
-}
-
-void pincode_setnew(int fd, struct char_session_data* sd) {
-	char newpin[5] = "\0\0\0\0";
-
-	strncpy(newpin, (char*)RFIFOP(fd,6), 4+1);
-	pincode_decrypt(sd->pincode_seed,newpin);
-
-	pincode_notifyLoginPinUpdate(sd->account_id, newpin);
-	strncpy(sd->pincode, newpin, strlen(newpin));
-
-	pincode_sendstate(fd, sd, PINCODE_OK);
-}
-
-// 0 = desativado / PIN é correto
-// 1 = Pedir PIN - cliente envia 0x8b8
-// 2 = Criar um novo PIN - cliente envia 0x8ba
-// 3 = PIN deve ser mudado - cliente 0x8be
-// 4 = Criar novo PIN - cliente envia 0x8ba
-// 5 = Cliente mostra msgstr(1896)
-// 6 = Cliente mostra msgstr(1897) incapaz de usar seu número KSSN
-// 7 = Char selecionar janela mostra um botão - cliente envia 0x8c5
-// 8 = Código PIN estava incorreto
-void pincode_sendstate(int fd, struct char_session_data* sd, uint16 state) {
-	WFIFOHEAD(fd, 12);
-	WFIFOW(fd, 0) = 0x8b9;
-	WFIFOL(fd, 2) = sd->pincode_seed = rand() % 0xFFFF;
-	WFIFOL(fd, 6) = sd->account_id;
-	WFIFOW(fd,10) = state;
-	WFIFOSET(fd,12);
-}
-
-void pincode_notifyLoginPinUpdate(int account_id, char* pin) {
-	WFIFOHEAD(login_fd,11);
-	WFIFOW(login_fd,0) = 0x2738;
-	WFIFOL(login_fd,2) = account_id;
-	strncpy( (char*)WFIFOP(login_fd,6), pin, 5 );
-	WFIFOSET(login_fd,11);
-}
-
-void pincode_notifyLoginPinError(int account_id) {
-	WFIFOHEAD(login_fd,6);
-	WFIFOW(login_fd,0) = 0x2739;
-	WFIFOL(login_fd,2) = account_id;
-	WFIFOSET(login_fd,6);
-}
-
-void pincode_decrypt(unsigned long userSeed, char* pin) {
-	int i, pos;
-	char tab[10] = {0,1,2,3,4,5,6,7,8,9};
-	unsigned long multiplier = 0x3498, baseSeed = 0x881234;
-
-	for(i = 1; i < 10; i++) {
-		userSeed = baseSeed + userSeed * multiplier;
-		pos = userSeed % (i + 1);
-		if(i != pos) {
-			tab[i] ^= tab[pos];
-			tab[pos] ^= tab[i];
-			tab[i] ^= tab[pos];
-		}
-	}
-	
-	for(i = 0; i < 4; i++) {
-		pin[i] = tab[pin[i]- '0'];
-	}
-
-	sprintf(pin, "%d%d%d%d", pin[0], pin[1], pin[2], pin[3]);
-}
-
-//------------------------------------------------
-//Sistema de mudar slot
-//------------------------------------------------
-void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, unsigned short to) {
-	// mudaram muitas vezes, ou ele está desabilitado ?
-	if(!char_move_enabled || (!char_moves_unlimited && sd->char_moves[from] <= 0)) {
-		moveCharSlotReply(fd, sd, from, 1);
-		return;
-	}
-
-	// Não tem nenhum personagem de slot escolhido ?
-	if(sd->found_char[from] <= 0) {
-		moveCharSlotReply(fd, sd, from, 1);
-		return;
-	}
-
-	if(sd->found_char[to] > 0) {
-		// Tentando colocar char em um slot ocupado
-		if(char_movetoused) { // TODO:  verificar se o alvo está em processo de exclusão
-			// Admin usa troca em triângulo
-			if(	   SQL_ERROR == Sql_QueryStr(sql_handle, "START TRANSACTION")
-				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, to, sd->found_char[from])
-				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, from, sd->found_char[to])
-				|| SQL_ERROR == Sql_QueryStr(sql_handle, "COMMIT")
-				){
-				moveCharSlotReply(fd, sd, from, 1);
-				Sql_ShowDebug(sql_handle);
-				Sql_QueryStr(sql_handle,"ROLLBACK");
-				return;
-			}
-		}else{
-			// Admin não permite
-			moveCharSlotReply(fd, sd, from, 1);
-			return;
-		}
-	}else if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id`='%d'", char_db, to, sd->found_char[from])) {
-		Sql_ShowDebug(sql_handle);
-		moveCharSlotReply( fd, sd, from, 1 );
-		return;
-	}
-
-	if(!char_moves_unlimited) {
-		sd->char_moves[from]--;
-		Sql_Query(sql_handle, "UPDATE `%s` SET `moves`='%d' WHERE `char_id`='%d'", char_db, sd->char_moves[from], sd->found_char[from]);
-	}
-
-	// Personagem movido com êxito - tempo para notificar o cliente
-	moveCharSlotReply(fd, sd, from, 0);
-	mmo_char_send006b(fd, sd);
-}
-
-// razão
-// 0: successo
-// 1: falhou
-void moveCharSlotReply(int fd, struct char_session_data* sd, unsigned short index, short reason) {
-	WFIFOHEAD(fd,8);
-	WFIFOW(fd,0) = 0x8d5;
-	WFIFOW(fd,2) = 8;
-	WFIFOW(fd,4) = reason;
-	WFIFOW(fd,6) = sd->char_moves[index];
-	WFIFOSET(fd,8);
-}
-
-//------------------------------------------------
 //Invoked 15 seconds after mapif_disconnectplayer in case the map server doesn't
 //replies/disconnect the player we tried to kick. [Skotlex]
 //------------------------------------------------
@@ -4771,7 +4554,16 @@ void sql_config_read(const char *cfgName)
 	fclose(fp);
 	ShowInfo(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
 }
-
+void char_config_dispatch(char *w1, char *w2) {
+	bool (*dispatch_to[]) (char *w1, char *w2) = {
+		pincode->config_read
+	};
+	int i, len = ARRAYLENGTH(dispatch_to);
+	for(i = 0; i < len; i++) {
+		if( (*dispatch_to[i])(w1,w2) )
+			break;
+	}
+}
 int char_config_read(const char *cfgName)
 {
 	char line[1024], w1[1024], w2[1024];
@@ -4920,21 +4712,10 @@ int char_config_read(const char *cfgName)
 			}
 		} else if(strcmpi(w1, "guild_exp_rate") == 0) {
 			guild_exp_rate = atoi(w2);
-		} else if (strcmpi(w1, "pincode_enabled") == 0) {
-			pincode_enabled = config_switch(w2);
-		} else if (strcmpi(w1, "pincode_changetime") == 0) {
-			pincode_changetime = atoi(w2)*60*60*24;
-		} else if (strcmpi(w1, "pincode_maxtry") == 0) {
-			pincode_maxtry = atoi(w2);
-		} else if (strcmpi(w1, "char_move_enabled") == 0) {
-			char_move_enabled = config_switch(w2);
-		} else if (strcmpi(w1, "char_movetoused") == 0) {
-			char_movetoused = config_switch(w2);
-		} else if (strcmpi(w1, "char_moves_unlimited") == 0) {
-			char_moves_unlimited = config_switch(w2);
 		} else if (strcmpi(w1, "import") == 0) {
 			char_config_read(w2);
-		}
+		} else
+			char_config_dispatch(w1,w2);
 	}
 	fclose(fp);
 
@@ -5010,6 +4791,8 @@ int do_init(int argc, char **argv)
 	//Read map indexes
 	mapindex_init();
 	start_point.map = mapindex_name2id("new_zone01");
+
+	pincode_defaults();
 
 	char_config_read((argc < 2) ? CHAR_CONF_NAME : argv[1]);
 	char_lan_config_read((argc > 3) ? argv[3] : LAN_CONF_NAME);

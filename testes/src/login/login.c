@@ -495,7 +495,7 @@ int parse_fromchar(int fd)
 			case 0x2714:
 				if(RFIFOREST(fd) < 6)
 					return 0;
-				else{
+				{
 					int users = RFIFOL(fd,2);
 					RFIFOSKIP(fd,6);
 
@@ -535,14 +535,14 @@ int parse_fromchar(int fd)
 			case 0x2716: // request account data
 				if(RFIFOREST(fd) < 6)
 					return 0;
-			else{
+			{
 					struct mmo_account acc;
 					time_t expiration_time = 0;
 					char email[40] = "";
 					int group_id = 0;
 					uint8 char_slots = 0;
 					char birthdate[10+1] = "";
-					char pincode[4+1] = "";
+					char pincode[4+1] = "\0\0\0\0";
 
 					int account_id = RFIFOL(fd,2);
 					RFIFOSKIP(fd,6);
@@ -554,8 +554,10 @@ int parse_fromchar(int fd)
 						expiration_time = acc.expiration_time;
 						group_id = acc.group_id;
 						char_slots = acc.char_slots;
-						safestrncpy(birthdate, acc.birthdate, sizeof(birthdate));
 						safestrncpy(pincode, acc.pincode, sizeof(pincode));
+						safestrncpy(birthdate, acc.birthdate, sizeof(birthdate));
+						if(strlen(pincode) == 0)
+							memset(pincode,'\0',sizeof(pincode));
 					}
 
 					WFIFOHEAD(fd,72);
@@ -567,7 +569,7 @@ int parse_fromchar(int fd)
 					WFIFOB(fd,51) = char_slots;
 					safestrncpy((char*)WFIFOP(fd,52), birthdate, 10+1);
 					safestrncpy((char*)WFIFOP(fd,63), pincode, 4+1 );
-					WFIFOL(fd,68) = (uint32)acc.pincode_change;
+					WFIFOL(fd,68) = acc.pincode_change;
 					WFIFOSET(fd,72);
 				}
 				break;
@@ -584,7 +586,7 @@ int parse_fromchar(int fd)
 			case 0x2722:    // 0x2722 <account_id>.L <actual_e-mail>.40B <new_e-mail>.40B
 				if(RFIFOREST(fd) < 86)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 					char actual_email[40];
 					char new_email[40];
@@ -616,7 +618,7 @@ int parse_fromchar(int fd)
 			case 0x2724: // Receiving an account state update request from a map-server (relayed via char-server)
 				if(RFIFOREST(fd) < 10)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 
 					int account_id = RFIFOL(fd,2);
@@ -650,7 +652,7 @@ int parse_fromchar(int fd)
 			case 0x2725: // Receiving of map-server via char-server a ban request
 				if(RFIFOREST(fd) < 18)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 
 					int account_id = RFIFOL(fd,2);
@@ -707,7 +709,7 @@ int parse_fromchar(int fd)
 			case 0x2727: // Change of sex (sex is reversed)
 				if(RFIFOREST(fd) < 6)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 
 					int account_id = RFIFOL(fd,2);
@@ -739,7 +741,7 @@ int parse_fromchar(int fd)
 			case 0x2728:    // We receive account_reg2 from a char-server, and we send them to other map-servers.
 				if(RFIFOREST(fd) < 4 || RFIFOREST(fd) < RFIFOW(fd,2))
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 
 					int account_id = RFIFOL(fd,4);
@@ -776,7 +778,7 @@ int parse_fromchar(int fd)
 			case 0x272a:    // Receiving of map-server via char-server an unban request
 				if(RFIFOREST(fd) < 6)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 
 					int account_id = RFIFOL(fd,2);
@@ -811,7 +813,7 @@ int parse_fromchar(int fd)
 			case 0x272d:    // Receive list of all online accounts. [Skotlex]
 				if(RFIFOREST(fd) < 4 || RFIFOREST(fd) < RFIFOW(fd,2))
 					return 0;
-				else{
+				{
 					struct online_login_data *p;
 					int aid;
 					uint32 i, users;
@@ -826,15 +828,14 @@ int parse_fromchar(int fd)
 							p->waiting_disconnect = INVALID_TIMER;
 						}
 					}
-
-				RFIFOSKIP(fd,RFIFOW(fd,2));
 				}
+				RFIFOSKIP(fd,RFIFOW(fd,2));
 				break;
 
 			case 0x272e: //Request account_reg2 for a character.
 				if(RFIFOREST(fd) < 10)
 					return 0;
-				else{
+				{
 					struct mmo_account acc;
 					size_t off;
 
@@ -875,49 +876,42 @@ int parse_fromchar(int fd)
 				ShowInfo(read_message("Source.login.login_setall_offline"), id);
 				online_db->foreach(online_db, online_db_setoffline, id);
 				RFIFOSKIP(fd,2);
+			break;
+
+			case 0x2738: // Alterar o código PIN para uma conta
+				if(RFIFOREST(fd) < 11)
+					return 0;
+				else {
+					struct mmo_account acc;
+
+					if(accounts->load_num(accounts, &acc, RFIFOL(fd,2))) {
+						strncpy(acc.pincode, (char*)RFIFOP(fd,6), 5);
+						acc.pincode_change = ((unsigned int)time(NULL));
+						accounts->save(accounts, &acc);
+					}
+					RFIFOSKIP(fd,11);
+				}
 				break;
 
-		case 0x2738: // Alterar o código PIN para uma conta
-			if(RFIFOREST(fd) < 11)
-				return 0;
-
-		else{
-			struct mmo_account acc;
-
-				if(accounts->load_num(accounts, &acc, RFIFOL(fd,2))) {
-					strncpy(acc.pincode, (char*)RFIFOP(fd,6), 5);
-					acc.pincode_change = time(NULL);
-					accounts->save(accounts, &acc);
-				}
-
-				RFIFOSKIP(fd,11);
-			}
-		break;
-
-		case 0x2739: // Código PIN foi digitado errado muitas vezes
-			if(RFIFOREST(fd) < 6)
-				return 0;
-
-		else{
-			
-			struct mmo_account acc;
-
-			if(accounts->load_num(accounts, &acc, RFIFOL(fd,2))) {
-				struct online_login_data* ld;
-
-				ld = (struct online_login_data*)idb_get(online_db,acc.account_id);
-
-				if( ld == NULL )
+			case 0x2739: // Código PIN foi digitado errado muitas vezes
+				if(RFIFOREST(fd) < 6)
 					return 0;
+				else {
+					struct mmo_account acc;
 
-				login_log(host2ip(acc.last_ip), acc.userid, 100, "Código PIN falhou, verifique o código PIN ");
-			}
+					if( accounts->load_num(accounts, &acc, RFIFOL(fd,2))) {
+						struct online_login_data* ld;
 
-				remove_online_user(acc.account_id);
+						if((ld = (struct online_login_data*)idb_get(online_db,acc.account_id)) == NULL)
+							return 0;
 
-				RFIFOSKIP(fd,6);
-			}
-		break;
+						login_log(host2ip(acc.last_ip), acc.userid, 100, "Código PIN falhou, verifique o código PIN");
+					}
+
+					remove_online_user(acc.account_id);
+					RFIFOSKIP(fd,6);
+				}
+			break;
 
 		default:
 				ShowError(read_message("Source.login.login_pfromchar_nook"), command);
@@ -971,7 +965,7 @@ int mmo_auth_new(const char *userid, const char *pass, const char sex, const cha
 	safestrncpy(acc.lastlogin, "0000-00-00 00:00:00", sizeof(acc.lastlogin));
 	safestrncpy(acc.last_ip, last_ip, sizeof(acc.last_ip));
 	safestrncpy(acc.birthdate, "0000-00-00", sizeof(acc.birthdate));
-	safestrncpy(acc.pincode, "", sizeof(acc.pincode));
+	safestrncpy(acc.pincode, "\0", sizeof(acc.pincode));
 	acc.pincode_change = 0;
 
 	acc.char_slots = 0;

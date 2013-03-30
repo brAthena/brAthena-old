@@ -59,11 +59,11 @@ struct mmo_account {
 	time_t unban_time;      // (timestamp): ban time limit of the account (0 = no ban)
 	time_t expiration_time; // (timestamp): validity limit of the account (0 = unlimited)
 	unsigned int logincount;// number of successful auth attempts
+	unsigned int pincode_change;// (timestamp): Última mudança de código PIN
+	char pincode[4+1];          // Valor do PIN
 	char lastlogin[24];     // date+time of last successful login
 	char last_ip[16];       // save of last IP of connection
 	char birthdate[10+1];   // assigned birth date (format: YYYY-MM-DD, default: 0000-00-00)
-	char pincode[4+1];		// Sistema de código PIN
-	time_t pincode_change;	// (timestamp): última mudança do código PIN
 	int account_reg2_num;
 	struct global_reg account_reg2[ACCOUNT_REG2_NUM]; // account script variables (stored on login server)
 };
