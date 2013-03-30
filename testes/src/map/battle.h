@@ -427,6 +427,8 @@ extern struct Battle_Config {
 	int sc_castcancel; // [Skotlex]
 	int pc_sc_def_rate; // [Skotlex]
 	int mob_sc_def_rate;
+	int pc_luk_sc_def; 
+	int mob_luk_sc_def; 
 	int pc_max_sc_def;
 	int mob_max_sc_def;
 

@@ -6204,7 +6204,13 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 {
 	//Percentual resistance: 10000 = 100% Resist
 	//Example: 50% -> sc_def=5000 -> 25%; 5000ms -> tick_def=5000 -> 2500ms
-	int sc_def = 0, tick_def = -1; //-1 = use sc_def
+	int sc_def = 0, tick_def = 
+	#ifdef RENEWAL
+	-1;
+	#else
+	0;
+	#endif
+	//-1 = use sc_def
 	//Linear resistance substracted from rate and tick after percentual resistance was applied
 	//Example: 25% -> sc_def2=2000 -> 5%; 2500ms -> tick_def2=2000 -> 500ms
 	int sc_def2 = 0, tick_def2 = 0;
@@ -6280,14 +6286,22 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 				return tick;
 		case SC_SILENCE:
 		case SC_BLEEDING:
+		#ifdef RENEWAL
 			sc_def = status->vit*100;
 			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
 			tick_def2 = status->luk*10;
+		#else
+		sc_def = 3 +status->vit;
+		#endif
 			break;
 		case SC_SLEEP:
+		#ifdef RENEWAL
 			sc_def = status->int_*100;
 			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
 			tick_def2 = status->luk*10;
+		#else
+			sc_def = 3 +status->vit;
+		#endif
 			break;
 		case SC_STONE:
 			sc_def = status->mdef*100;
@@ -6295,30 +6309,48 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 			tick_def = 0; //No duration reduction
 			break;
 		case SC_FREEZE:
+		#ifdef RENEWAL
 			sc_def = status->mdef*100;
 			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
 			tick_def2 = status_src->luk*-10; //Caster can increase final duration with luk
+		#else
+			sc_def = 3 +status->mdef;
+		#endif
 			break;
 		case SC_CURSE:
 			//Special property: immunity when luk is zero
 			if (status->luk == 0)
 				return 0;
+			#ifdef RENEWAL
 			sc_def = status->luk*100;
 			sc_def2 = status->luk*10 - status_get_lv(src)*10; //Curse only has a level penalty and no resistance
 			tick_def = status->vit*100;
 			tick_def2 = status->luk*10;
+			#else
+			else
+			sc_def = 3 +status->luk;
+			tick_def = status->vit;
+			#endif
 			break;
 		case SC_BLIND:
 			if(sc && sc->data[SC__UNLUCKY])
 				return tick;
+			#ifdef RENEWAL
 			sc_def = (status->vit + status->int_)*50;
 			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10;
 			tick_def2 = status->luk*10;
+			#else
+			sc_def = 3 +(status->vit + status->int_)/2;
+			#endif
 			break;
 		case SC_CONFUSION:
+			#ifdef RENEWAL
 			sc_def = (status->str + status->int_)*50;
 			sc_def2 = status_get_lv(src)*10 - status_get_lv(bl)*10 - status->luk*10; //Reversed sc_def2
 			tick_def2 = status->luk*10;
+			#else
+			sc_def = 3 +(status->str + status->int_)/2;
+			#endif
 			break;
 		case SC_DECREASEAGI:
 		case SC_ADORAMUS: //Arch Bishop
@@ -6329,7 +6361,11 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		case SC_ANKLE:
 			if(status->mode&MD_BOSS) // Lasts 5 times less on bosses
 				tick /= 5;
+			#ifdef RENEWAL
 			sc_def = status->agi*50;
+			#else
+			sc_def = status->agi / 2;
+			#endif
 			break;
 		case SC_DEEPSLEEP:
 			sc_def = status->int_*50;
@@ -6340,7 +6376,11 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		case SC_ARMORCHANGE:
 			if(sd)  //Duration greatly reduced for players.
 				tick /= 15;
+			#ifdef RENEWAL
 			sc_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10; // Lineal Reduction of Rate
+			#else
+			rate -= (status_get_lv(bl) / 5 + status->vit / 4 + status->agi / 10)*100; // Lineal Reduction of Rate
+			#endif
 			break;
 		case SC_MARSHOFABYSS:
 			//5 second (Fixed) + 25 second - {( INT + LUK ) / 20 second }
@@ -6397,6 +6437,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 
 	if(sd) {
 
+#ifdef RENEWAL
 		if(battle_config.pc_sc_def_rate != 100) {
 			sc_def = sc_def*battle_config.pc_sc_def_rate/100;
 			sc_def2 = sc_def2*battle_config.pc_sc_def_rate/100;
@@ -6409,8 +6450,23 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 			tick_def = tick_def*battle_config.pc_sc_def_rate/100;
 			tick_def2 = tick_def2*battle_config.pc_sc_def_rate/100;
 		}
+#else
+		if(battle_config.pc_sc_def_rate != 100)
+			sc_def = sc_def*battle_config.pc_sc_def_rate/100;
+		if (sc_def < battle_config.pc_max_sc_def) 
+			sc_def += (battle_config.pc_max_sc_def - sc_def)* status->luk/battle_config.pc_luk_sc_def; 
+		else 
+			sc_def = battle_config.pc_max_sc_def; 
+
+		if (tick_def) {
+			if (battle_config.pc_sc_def_rate != 100) 
+			tick_def = tick_def*battle_config.pc_sc_def_rate/100; 
+		}
+#endif
+	
 	} else {
 
+#ifdef RENEWAL
 		if(battle_config.mob_sc_def_rate != 100) {
 			sc_def = sc_def*battle_config.mob_sc_def_rate/100;
 			sc_def2 = sc_def2*battle_config.mob_sc_def_rate/100;
@@ -6423,23 +6479,52 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 			tick_def = tick_def*battle_config.mob_sc_def_rate/100;
 			tick_def2 = tick_def2*battle_config.mob_sc_def_rate/100;
 		}
+#else
+		if(battle_config.mob_sc_def_rate != 100)
+			sc_def = sc_def*battle_config.mob_sc_def_rate/100;
+		if (sc_def < battle_config.mob_max_sc_def) 
+			sc_def += (battle_config.mob_max_sc_def - sc_def)* status->luk/battle_config.mob_luk_sc_def; 
+		else 
+			sc_def = battle_config.mob_max_sc_def; 
+	 	 
+		if (tick_def) {
+			if (battle_config.mob_sc_def_rate != 100)
+						tick_def = tick_def*battle_config.mob_sc_def_rate/100;
+			}
+#endif
 	}
 
 	if(sc) {
 		if(sc->data[SC_SCRESIST])
+		#ifdef RENEWAL
 			sc_def += sc->data[SC_SCRESIST]->val1*100; //Status resist
+		#else
+			sc_def += sc->data[SC_SCRESIST]->val1; //Status resist
+		#endif
 		else if(sc->data[SC_SIEGFRIED])
+		#ifdef RENEWAL
 			sc_def += sc->data[SC_SIEGFRIED]->val3*100; //Status resistance.
+		#else
+			sc_def += sc->data[SC_SIEGFRIED]->val3; //Status resistance.
+		#endif
 	}
 
 	//When tick def not set, reduction is the same for both.
+	#ifndef RENEWAL
+	if( !tick_def && type != SC_STONE )
+	#else
 	if(tick_def == -1)
+	#endif
 		tick_def = sc_def;
 
 	//Natural resistance
 	if(!(flag&8)) {
+	#ifndef RENEWAL
+		rate -= rate*sc_def/100;
+	#else
 		rate -= rate*sc_def/10000;
 		rate -= sc_def2;
+	#endif
 
 		//Minimum chances
 		switch (type) {
@@ -6469,10 +6554,17 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	//Rate reduction
 	if(flag&2)
 		return tick;
-
+	
+	#ifndef RENEWAL
+	tick -= tick*tick_def/100;
+	// Changed to 5 seconds according to recent tests [Playtester]
+	if(type == SC_ANKLE && tick < 5000)
+		tick = 5000;
+	return tick<=0?0:tick;
+	#else
 	tick -= tick*tick_def/10000;
 	tick -= tick_def2;
-
+	
 	//Minimum durations
 	switch (type) {
 		case SC_ANKLE:
@@ -6492,6 +6584,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	}
 
 	return tick;
+	#endif
 }
 
 /*==========================================
