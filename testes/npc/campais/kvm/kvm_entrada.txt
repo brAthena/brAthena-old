@@ -31,14 +31,13 @@
 // Oficial do KvM - Lado Guillaume
 //============================================================
 bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
-
-  set .@permit,checkquest(6025,PLAYTIME);
-  if ((.@permit == 0) || (.@permit == 1)) {
-  mes "["+strnpcinfo(1)+"]";
-  mes "Me parece que recentemente você participou de uma batalha no KVM. Você deve esperar 5 minutos antes de se inscrever novamente.";
-  close;
-  }
-	else if (.@permit == 2) erasequest 6025;
+	set .@permit,checkquest(6025,PLAYTIME);
+	if ((.@permit == 0) || (.@permit == 1)) {
+		mes "["+strnpcinfo(1)+"]";
+		mes "Me parece que recentemente você participou de uma batalha no KVM. Você deve esperar 5 minutos antes de se inscrever novamente.";
+		close;
+	} else if (.@permit == 2)
+		erasequest 6025;
 	mes "["+strnpcinfo(1)+"]";
 	mes "Mostre a eles o real poder de "+((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? "Guillaume":"Croix")+"!";
 	next;
@@ -47,13 +46,14 @@ bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
 		mes "Mostre-os o quão forte nós somos.";
 		mes "Hoje, todo o mundo vai ouvir o grito de triunfo do "+((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? "General Guillaume":"Príncipe Croix")+"!";
 		close2;
-		if ( BaseLevel > 60 && BaseLevel < 79 )
-		warp "bat_room",225,((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? 223:227);
-		else if (BaseLevel > 79)
-		warp "bat_room", ((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? 169:197),((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? 223:207);
+		set .@c, ((strnpcinfo(2) == "1") ? 223 : 207);
+		if (BaseLevel > 79)
+			warp "bat_room",169,.@c;
+		else if (BaseLevel < 60)
+			warp "bat_room",197,.@c;
 		else
-		warp "bat_room",197,((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? 227:207);
-		close;
+			warp "bat_room",225,.@c;
+		end;
 	}
 	mes "["+strnpcinfo(1)+"]";
 	mes "Nós venceremos!";
@@ -63,7 +63,6 @@ bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
 // Cavaleiro Guillaume - KvM
 //============================================================
 bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
-
 	mes "["+strnpcinfo(1)+"]";
 	mes "Olá.";
 	mes "O que você deseja saber?";
