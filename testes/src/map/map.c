@@ -167,10 +167,10 @@ struct map_cache_map_info {
 };
 
 char db_path[256] = "db";
-char motd_txt[256] = "conf/motd.txt";
-char help_txt[256] = "conf/help.txt";
-char help2_txt[256] = "conf/help2.txt";
-char charhelp_txt[256] = "conf/charhelp.txt";
+char motd_txt[256] = "conf/motd.conf";
+char help_txt[256] = "conf/help.conf";
+char help2_txt[256] = "conf/help2.conf";
+char charhelp_txt[256] = "conf/charhelp.conf";
 
 char wisp_server_name[NAME_LENGTH] = "Server"; // can be modified in char-server configuration file
 
@@ -4186,7 +4186,7 @@ int do_init(int argc, char *argv[])
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_brathena.conf";
 	SCRIPT_CONF_NAME = "conf/script_brathena.conf";
 	MSG_CONF_NAME = "conf/msg_brathena.conf";
-	GRF_PATH_FILENAME = "conf/grf-files.txt";
+	GRF_PATH_FILENAME = "conf/grf-files.conf";
 
 	rnd_init();
 
