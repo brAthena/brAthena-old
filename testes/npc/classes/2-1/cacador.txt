@@ -894,7 +894,7 @@ payon_in02,21,31,1	script	Caçador#htnGM2	59,{
 		close2;
 		cutin "job_huntermaster",255;
 		end;
-	} 
+	}
   else if (CACA_Q == 16) {
 		mes "[Líder da Guilda de Caçadores]";
 		mes "Uau. Você já voltou!";
@@ -1012,7 +1012,7 @@ OnInit:
 	end;
 
 OnEnable:
-	donpcevent "Mudança#cac::OnDisable";
+	donpcevent "Interruptor#cac::OnDisable";
 	enablenpc "Gerente#cac";
 	set .MeusMonstros,6;
 	initnpctimer;
