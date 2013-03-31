@@ -632,7 +632,7 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 					else if(cardfix != 1000)
 						damage = damage * cardfix / 1000;
 
-					} else if(tsd && !(nk&NK_NO_CARDFIX_DEF)) {
+					} else if(tsd && !(nk&NK_NO_CARDFIX_DEF)  && !(left&2)) {
 				if(!(nk&NK_NO_ELEFIX)) {
 					int ele_fix = tsd->subele[s_ele];
 					for(i = 0; ARRAYLENGTH(tsd->subele2) > i && tsd->subele2[i].rate != 0; i++) {
@@ -2085,7 +2085,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					
 					ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
 				} else {
-					wd.damage = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, sd, i); //Monsters have no weight and use ATK instead
+					wd.damage = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, sd, 0); //Monsters have no weight and use ATK instead
 				}
 				
 				i = sstatus->str/10;
@@ -3413,7 +3413,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			ATK_ADD(wd.div_*sd->spiritball*3);
 		}
 
-		//Card Fix, for player and target
+		//Card Fix for attacker (sd), 2 is added to the "left" flag meaning "attacker cards only"
 		wd.damage = battle_calc_cardfix(BF_WEAPON, src, target, nk, s_ele, s_ele_, wd.damage, 2, wd.flag);
 		if(flag.lh)
 			wd.damage2 = battle_calc_cardfix(BF_WEAPON, src, target, nk, s_ele, s_ele_, wd.damage2, 3, wd.flag);
@@ -3424,7 +3424,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if(index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_ARMOR)
 				ATK_ADD(10*sd->status.inventory[index].refine);
 		}
-	} else if(tsd) // Card Fix for target
+	} if(tsd) // Card Fix for target (tsd), 2 is not added to the "left" flag meaning "target cards only"
 		wd.damage = battle_calc_cardfix(BF_WEAPON, src, target, nk, s_ele, s_ele_, wd.damage, flag.lh, wd.flag);
 
 	if(flag.infdef) {
