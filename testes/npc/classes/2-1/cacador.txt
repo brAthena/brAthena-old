@@ -186,11 +186,10 @@ hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
 					next;
 					mes "[Caçadora Sherin]";
 					mes "Ah!";
-					mes "Aqui estão elas: as perguntas da entrevista ~ Primeiro de tudo, meu nome é 'Sherin. Prazer em conhecê-lo!";
+					mes "Aqui estão elas: as perguntas da entrevista ~ Primeiro de tudo, meu nome é 'Sherin'. Prazer em conhecê-lo!";
 					next;
 					mes "[Caçadora Sherin]";
-					mes "Pois Bem,";
-					mes "vamos começar?";
+					mes "Pois bem, vamos começar?";
 					next;
 					if (select("Sim~ vamos começar agora.:Não, eu volto mais tarde.") == 1) {
 						if(checkquest(4000) == -1) {
@@ -228,8 +227,7 @@ hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
 			switch(.@selection) {
 			default:
 				mes "[Caçadora Sherin]";
-				mes "Então,";
-				mes "vamos começar.";
+				mes "Então, vamos começar.";
 				next;
 				mes "[Caçadora Sherin]";
 				mes "Você é um Arqueiro, e não sabe onde você deve ir para caçar. O que você faz?";
@@ -321,7 +319,7 @@ hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
 					break;
 				}
 				mes "[Caçadora Sherin]";
-				mes "Depois de encontrar esta pessoa perdida, você decide voltar para a caça. Só então, você descobre que alguém está atacando um chefe!";
+				mes "Depois de encontrar esta pessoa perdida, você decide voltar para a caça. Só então, você descobre que alguém está atacando um monstro chefe!";
 				next;
 				mes "[Caçadora Sherin]";
 				mes "O que você deve fazer??";
@@ -435,12 +433,12 @@ hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
 	close;
 }
 
-hu_in01,382,382,4	script	Guild Receptionist#cac	732,{
+hu_in01,382,382,4	script	Recepcionista da Guilda#cac	732,{
 	if (CACA_Q == 2) {
 		mes "[Recepcionista da Guilda]";
 		mes "Saudações. Eles me chamam... de ^660000O Caçador de Demônio^000000. Eu sou o encarregado pelas aplicações de classe. Seu nome é... "+strcharinfo(0)+", correto?";
 		next;
-		set .@selection,select("Yes, that is correct.:Nope~~(heeheehee)");
+		set .@selection,select("Sim, está correto.:Não~~(heeheehee)");
 		if (.@selection == 2) {
 			mes "[Caçador de Demônio]";
 			mes "Ei, pare de brincar.";
@@ -462,7 +460,7 @@ hu_in01,382,382,4	script	Guild Receptionist#cac	732,{
 				end;
 			}
 		}
-		mes "[Demon Hunter]";
+		mes "[Caçador de Demônio]";
 		mes "Ok. Estes são os itens que você precisa para o teste. Como nós fornecemos todas as flechas que você irá utilizar para este teste, precisamos que você colete os materiais para criá-las.";
 		next;
 		mes "[Caçador de Demônio]";
@@ -516,7 +514,7 @@ hu_in01,382,382,4	script	Guild Receptionist#cac	732,{
 		// Espinho de Porco Espinho, Cauda de Yoyo, Avelã
 		case 9: setarray .@items[0], 1027,2, 942,1, 1026,1, 11; break;
 		}
-		mes "[Demon Hunter]";
+		mes "[Caçador de Demônio]";
 		mes "Hmm?";
 		next;
 		if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5]) {
@@ -556,7 +554,7 @@ hu_in01,382,382,4	script	Guild Receptionist#cac	732,{
 		mes "[Caçador de Demônio]";
 		mes "Os itens que você precisa são";
 		mes "^660000"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
-		mes "^660000"+.@items[3]+" "+getitemname(.@items[2])+"^000000 and";
+		mes "^660000"+.@items[3]+" "+getitemname(.@items[2])+"^000000 e";
 		mes "^660000"+.@items[5]+" "+getitemname(.@items[4])+"^000000.";
 		mes "Volte quando você tiver";
 		mes "reunido todos os itens.";
@@ -643,7 +641,7 @@ payon_in03,131,7,3	script	Caçador#htnGM	59,{
 		close;
 	}
 	else if (CACA_Q == 11) {
-		mes "[Hunter]";
+		mes "[Caçador]";
 		mes "Hum? Posso ajudá-lo? Se você deseja mudar de classe, você deve visitar a pessoa na Guilda de Caçadores, não eu.";
 		close;
 	}
@@ -725,7 +723,7 @@ payon_in03,131,7,3	script	Caçador#htnGM	59,{
 		close;
 	}
 	else {
-		mes "[Hunter]";
+		mes "[Líder da Guilda de Caçadores]";
 		mes "...Eu posso ajudá-lo?";
 		mes "Estou aqui para um negócio oficial e estou ocupado no momento. Me dê licença...";
 		close;
@@ -808,7 +806,7 @@ payon_in02,21,31,1	script	Caçador#htnGM2	59,{
 		end;
 	}
 	else if (CACA_Q == 10) {
-		mes "[Hunter]";
+		mes "[Líder da Guilda de Caçadores]";
 		mes "Hum?";
 		mes "Eu posso ajudá-lo";
 		mes "com algo?";
@@ -925,7 +923,7 @@ payon_in02,21,31,1	script	Caçador#htnGM2	59,{
 		end;
 	}
 	else {
-		mes "[Hunter]";
+		mes "[Líder da Guilda de Caçadores]";
 		mes "O que você quer? Eu estou em uma viagem oficial e estou ocupado no momento. Agora se você me der licença.";
 		close2;
 		cutin "job_huntermaster",255;
@@ -1220,6 +1218,7 @@ OnTouch:
 	changequest 4011,4012;
 	savepoint "payon",104,99;
 	if (rand(1)) warp "payon_in02",21,27;
+	else
 	warp "payon_in03",128,7;
 }
 
