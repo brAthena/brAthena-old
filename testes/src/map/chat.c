@@ -225,15 +225,26 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 	}
 
 	if(leavechar == 0 && cd->owner->type == BL_PC) {
+		TBL_PC *nosd = cd->usersd[0];
+		//New owner cant are in a no_chat cell
+		//must have suficient level
+		//cant be nearly of a npc
+		if( map_getcell(nosd->bl.m, nosd->bl.x, nosd->bl.y, CELL_CHKNOCHAT) ||
+			(battle_config.basic_skill_check && pc_checkskill(nosd,NV_BASIC) < 4) ||
+			npc_isnear(&nosd->bl) ) {
+			clif_skill_fail(sd,1,USESKILL_FAIL_THERE_ARE_NPC_AROUND,0);
+			chat_leavechat(nosd, 0);
+			return 1;
+		}
 		// Set and announce new owner
-		cd->owner = (struct block_list *) cd->usersd[0];
-		clif_changechatowner(cd, cd->usersd[0]);
+		cd->owner = &nosd->bl;
+		clif_changechatowner(cd, nosd);
 		clif_clearchat(cd, 0);
 
 		//Adjust Chat location after owner has been changed.
 		map_delblock(&cd->bl);
-		cd->bl.x=cd->usersd[0]->bl.x;
-		cd->bl.y=cd->usersd[0]->bl.y;
+		cd->bl.x = nosd->bl.x;
+		cd->bl.y = nosd->bl.y;
 		map_addblock(&cd->bl);
 
 		clif_dispchat(cd,0);
