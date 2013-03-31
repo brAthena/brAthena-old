@@ -3022,12 +3022,12 @@ ACMD_FUNC(raise)
 	nullpo_retr(-1, sd);
 
 	iter = mapit_getallusers();
+	if(pc_isdead(sd))
+    clif_displaymessage(fd, msg_txt(64)); // Mercy has been granted.
 	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter))
 		if(pc_isdead(pl_sd))
 			atcommand_raise_sub(pl_sd);
 	mapit_free(iter);
-
-	clif_displaymessage(fd, msg_txt(64)); // Mercy has been granted.
 
 	return 0;
 }
@@ -3043,12 +3043,12 @@ ACMD_FUNC(raisemap)
 	nullpo_retr(-1, sd);
 
 	iter = mapit_getallusers();
+	if(pc_isdead(sd))
+    clif_displaymessage(fd, msg_txt(64)); // Mercy has been granted.
 	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter))
 		if(sd->bl.m == pl_sd->bl.m && pc_isdead(pl_sd))
 			atcommand_raise_sub(pl_sd);
 	mapit_free(iter);
-
-	clif_displaymessage(fd, msg_txt(64)); // Mercy has been granted.
 
 	return 0;
 }
