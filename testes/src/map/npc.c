@@ -3346,12 +3346,12 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		struct map_zone_data *zone;
 		
 		if(!(zone = strdb_get(zone_db, w4))) {
-			ShowWarning("npc_parse_mapflag: Invalid zone '%s'! removing flag from %s (file '%s', line '%d').\n", w4, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Zona inválida '%s'! removendo flag para %s (arquivo '%s', linha '%d').\n", w4, map[m].name, filepath, strline(buffer,start-buffer));
 		} else if(map[m].zone != zone) { /* we do not override :P would mess everything */
 			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else
-		ShowError("npc_parse_mapflag: unrecognized mapflag '%s' (file '%s', line '%d').\n", w3, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
 
 	return strchr(start,'\n');// continue
 }
