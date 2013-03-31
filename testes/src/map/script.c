@@ -401,7 +401,7 @@ enum {
     MF_NORETURN,
     MF_NOWARPTO,
     MF_NIGHTMAREDROP,
-    MF_RESTRICTED,
+    MF_ZONE,
     MF_NOCOMMAND,
     MF_NODROP,
     MF_JEXP,
@@ -10424,7 +10424,6 @@ BUILDIN_FUNC(getmapflag)
 			case MF_NORETURN:           script_pushint(st,map[m].flag.noreturn); break;
 			case MF_NOWARPTO:           script_pushint(st,map[m].flag.nowarpto); break;
 			case MF_NIGHTMAREDROP:      script_pushint(st,map[m].flag.pvp_nightmaredrop); break;
-			case MF_RESTRICTED:         script_pushint(st,map[m].flag.restricted); break;
 			case MF_NOCOMMAND:          script_pushint(st,map[m].nocommand); break;
 			case MF_NODROP:             script_pushint(st,map[m].flag.nodrop); break;
 			case MF_JEXP:               script_pushint(st,map[m].jexp); break;
@@ -10465,15 +10464,25 @@ static int script_mapflag_pvp_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(setmapflag)
 {
 	int16 m,i;
-	const char *str;
+	const char *str, *val2;
+	struct script_data* data;
 	int val=0;
 
 	str=script_getstr(st,2);
 	i=script_getnum(st,3);
 	if(script_hasdata(st,4)) {
-		val=script_getnum(st,4);
+		data = script_getdata(st,4);
+		get_val(st, data);
+		
+		
+		if( data_isstring(data) )
+			val2 = script_getstr(st, 4);
+		else
+			val = script_getnum(st, 4);
+
 	}
 	m = map_mapname2mapid(str);
+
 	if(m >= 0) {
 		switch(i) {
 			case MF_NOMEMO:             map[m].flag.nomemo = 1; break;
@@ -10522,9 +10531,13 @@ BUILDIN_FUNC(setmapflag)
 			case MF_NORETURN:           map[m].flag.noreturn = 1; break;
 			case MF_NOWARPTO:           map[m].flag.nowarpto = 1; break;
 			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 1; break;
-			case MF_RESTRICTED:
-				map[m].zone |= 1<<(val+1);
-				map[m].flag.restricted=1;
+			case MF_ZONE: {
+				char zone[6] = "zone\0";
+				char empty[1] = "\0";
+				char params[MAP_ZONE_MAPFLAG_LENGTH];
+				memcpy(params, val2, MAP_ZONE_MAPFLAG_LENGTH);
+				npc_parse_mapflag(map[m].name, empty, zone, params, empty, empty, empty);
+				}
 				break;
 			case MF_NOCOMMAND:          map[m].nocommand = (val <= 0) ? 100 : val; break;
 			case MF_NODROP:             map[m].flag.nodrop = 1; break;
@@ -10606,11 +10619,8 @@ BUILDIN_FUNC(removemapflag)
 			case MF_NORETURN:           map[m].flag.noreturn = 0; break;
 			case MF_NOWARPTO:           map[m].flag.nowarpto = 0; break;
 			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 0; break;
-			case MF_RESTRICTED:
-				map[m].zone ^= 1<<(val+1);
-				if(map[m].zone == 0) {
-					map[m].flag.restricted=0;
-				}
+			case MF_ZONE:/* reset zone state, mapflags cant be removed however */
+				map[m].zone = &map_zone_all;
 				break;
 			case MF_NOCOMMAND:          map[m].nocommand = 0; break;
 			case MF_NODROP:             map[m].flag.nodrop = 0; break;
@@ -17261,7 +17271,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(isloggedin,"i?"),
 	BUILDIN_DEF(setmapflagnosave,"ssii"),
 	BUILDIN_DEF(getmapflag,"si"),
-	BUILDIN_DEF(setmapflag,"si?"),
+	BUILDIN_DEF(setmapflag,"sv?"),
 	BUILDIN_DEF(removemapflag,"si?"),
 	BUILDIN_DEF(pvpon,"s"),
 	BUILDIN_DEF(pvpoff,"s"),

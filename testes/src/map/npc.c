@@ -3065,7 +3065,7 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
  * eg : bat_c01 mapflag battleground    2
  * also chking if mapflag conflict with another
  *------------------------------------------*/
-static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char *start, const char *buffer, const char *filepath)
+const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char *start, const char *buffer, const char *filepath)
 {
 	int16 m;
 	char mapname[32];
@@ -3129,6 +3129,7 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 		map[m].flag.noexppenalty=state;
 		map[m].flag.nozenypenalty=state;
 	} else if(!strcmpi(w3,"pvp")) {
+		struct map_zone_data *zone;
 		map[m].flag.pvp = state;
 		if(state && (map[m].flag.gvg || map[m].flag.gvg_dungeon || map[m].flag.gvg_castle)) {
 			map[m].flag.gvg = 0;
@@ -3139,6 +3140,9 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 		if(state && map[m].flag.battleground) {
 			map[m].flag.battleground = 0;
 			ShowWarning("npc_parse_mapflag: You can't set PvP and BattleGround flags for the same map! Removing BattleGround flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+		}
+		if((zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
+			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else if(!strcmpi(w3,"pvp_noparty"))
 		map[m].flag.pvp_noparty=state;
@@ -3177,6 +3181,7 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 	} else if(!strcmpi(w3,"pvp_nocalcrank"))
 		map[m].flag.pvp_nocalcrank=state;
 	else if(!strcmpi(w3,"gvg")) {
+		struct map_zone_data *zone;
 		map[m].flag.gvg = state;
 		if(state && map[m].flag.pvp) {
 			map[m].flag.pvp = 0;
@@ -3185,6 +3190,9 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 		if(state && map[m].flag.battleground) {
 			map[m].flag.battleground = 0;
 			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing BattleGround flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+		}
+		if((zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
+			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else if(!strcmpi(w3,"gvg_noparty"))
 		map[m].flag.gvg_noparty=state;
@@ -3195,6 +3203,7 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 		map[m].flag.gvg_castle=state;
 		if(state) map[m].flag.pvp=0;
 	} else if(!strcmpi(w3,"battleground")) {
+		struct map_zone_data *zone;
 		if(state) {
 			if(sscanf(w4, "%d", &state) == 1)
 				map[m].flag.battleground = state;
@@ -3212,6 +3221,9 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 			map[m].flag.gvg_dungeon = 0;
 			map[m].flag.gvg_castle = 0;
 			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing GvG flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+		}
+		if((zone = strdb_get(zone_db, MAP_ZONE_BG_NAME)) && map[m].zone != zone) {
+			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else if(!strcmpi(w3,"noexppenalty"))
 		map[m].flag.noexppenalty=state;
@@ -3272,15 +3284,6 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 				map[m].nocommand =100;
 		} else
 			map[m].nocommand=0;
-	} else if(!strcmpi(w3,"restricted")) {
-		if(state) {
-			map[m].flag.restricted=1;
-			sscanf(w4, "%d", &state);
-			map[m].zone |= 1<<(state+1);
-		} else {
-			map[m].flag.restricted=0;
-			map[m].zone = 0;
-		}
 	} else if(!strcmpi(w3,"jexp")) {
 		map[m].jexp = (state) ? atoi(w4) : 100;
 		if(map[m].jexp < 0) map[m].jexp = 100;
@@ -3338,6 +3341,14 @@ static const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, con
 			CREATE(map[m].skills[idx],struct mapflag_skill_adjust,1);
 			map[m].skills[idx]->skill_id = (unsigned short)skill_id;
 			map[m].skills[idx]->modifier = (unsigned short)atoi(mod);
+		}
+	} else if (!strcmpi(w3,"zone")) {
+		struct map_zone_data *zone;
+		
+		if(!(zone = strdb_get(zone_db, w4))) {
+			ShowWarning("npc_parse_mapflag: Invalid zone '%s'! removing flag from %s (file '%s', line '%d').\n", w4, map[m].name, filepath, strline(buffer,start-buffer));
+		} else if(map[m].zone != zone) { /* we do not override :P would mess everything */
+			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else
 		ShowError("npc_parse_mapflag: unrecognized mapflag '%s' (file '%s', line '%d').\n", w3, filepath, strline(buffer,start-buffer));
@@ -3677,6 +3688,8 @@ int npc_reload(void)
 	for(i = 0; i < ARRAYLENGTH(instance); ++i)
 		instance_init(instance[i].instance_id);
 
+	map_zone_init();
+	
 	//Re-read the NPC Script Events cache.
 	npc_read_event_script();
 
@@ -3803,6 +3816,8 @@ int do_init_npc(void)
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros em cache\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 	         npc_id - START_NPC_NUM, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
+
+	map_zone_init();
 
 	// set up the events cache
 	memset(script_event, 0, sizeof(script_event));

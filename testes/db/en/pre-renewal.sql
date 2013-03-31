@@ -11002,7 +11002,7 @@ REPLACE INTO `item_misc_db` VALUES(54,12702,36);
 REPLACE INTO `item_misc_db` VALUES(54,14546,6);
 REPLACE INTO `item_misc_db` VALUES(54,14550,6);
 
---
+/*--
 -- Table structure for table `item_noequip_db`
 --
 
@@ -11029,7 +11029,7 @@ REPLACE INTO `item_noequip_db` VALUES(14583,64);
 REPLACE INTO `item_noequip_db` VALUES(14584,64);
 REPLACE INTO `item_noequip_db` VALUES(14585,64);
 REPLACE INTO `item_noequip_db` VALUES(601,128);
-REPLACE INTO `item_noequip_db` VALUES(14529,2048);
+REPLACE INTO `item_noequip_db` VALUES(14529,2048);*/
 
 --
 -- Table structure for table `item_trade_db`
@@ -25427,7 +25427,7 @@ REPLACE INTO `skill_db` VALUES(10012,'0',0,4,'0','0x3','15',1,'0','yes',0,'0x10'
 REPLACE INTO `skill_db` VALUES(10013,'0',0,4,'0','0x3','0',1,'0','yes',0,'0x10','0','none','0','GD_EMERGENCYCALL','Urgent Call');
 REPLACE INTO `skill_db` VALUES(10014,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_DEVELOPMENT','Permanent Development');
 
---
+/*--
 -- Table structure for table `skill_nocast_db`
 --
 
@@ -25541,7 +25541,7 @@ REPLACE INTO `skill_nocast_db` VALUES(491,2048);
 REPLACE INTO `skill_nocast_db` VALUES(1013,2048);
 REPLACE INTO `skill_nocast_db` VALUES(2299,2048);
 REPLACE INTO `skill_nocast_db` VALUES(2419,2048);
-REPLACE INTO `skill_nocast_db` VALUES(2482,2048);
+REPLACE INTO `skill_nocast_db` VALUES(2482,2048);*/
 
 --
 -- Table structure for table `skill_require_db`

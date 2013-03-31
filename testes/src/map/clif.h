@@ -44,7 +44,7 @@ struct party_booking_ad_info;
 
 enum {
     // packet DB
-    MAX_PACKET_DB  = 0xf00,
+    MAX_PACKET_DB  = 0xF00,
     MAX_PACKET_VER = 32,
     MAX_PACKET_POS = 20,
 };
@@ -325,6 +325,9 @@ enum useskill_fail_cause {
     USESKILL_FAIL_THERE_ARE_NPC_AROUND = 83,
 };
 
+enum clif_messages {
+    SKILL_CANT_USE_AREA = 0x536,
+};
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
 void clif_setport(uint16 port);

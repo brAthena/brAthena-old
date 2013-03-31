@@ -335,10 +335,6 @@ int skill_get_delaynodex(uint16 skill_id ,uint16 skill_lv)
 {
 	skill_get(skill_db[skill_id].delaynodex[skill_lv-1], skill_id, skill_lv);
 }
-int skill_get_nocast(uint16 skill_id)
-{
-	skill_get(skill_db[skill_id].nocast, skill_id, 1);
-}
 int skill_get_type(uint16 skill_id)
 {
 	skill_get(skill_db[skill_id].skill_type, skill_id, 1);
@@ -648,6 +644,7 @@ int can_copy(struct map_session_data *sd, uint16 skill_id, struct block_list *bl
 int skillnotok(uint16 skill_id, struct map_session_data *sd)
 {
 	int16 idx,m;
+	int i;
 	nullpo_retr(1, sd);
 	m = sd->bl.m;
 	idx = skill_get_index(skill_id);
@@ -681,14 +678,12 @@ int skillnotok(uint16 skill_id, struct map_session_data *sd)
 	 **/
 	if(sd->skillitem == skill_id)
 		return 0;
-	// Check skill restrictions [Celest]
-	if((!map_flag_vs(m) && skill_get_nocast(skill_id) & 1) ||
-	   (map[m].flag.pvp && skill_get_nocast(skill_id) & 2) ||
-	   (map_flag_gvg(m) && skill_get_nocast(skill_id) & 4) ||
-	   (map[m].flag.battleground && skill_get_nocast(skill_id) & 8) ||
-	   (map[m].flag.restricted && map[m].zone && skill_get_nocast(skill_id) & (8*map[m].zone))) {
-		clif_msg(sd, 0x536); // This skill cannot be used within this area
-		return 1;
+
+	for(i = 0; i < map[m].zone->disabled_skills_count; i++) {
+		if(skill_id == map[m].zone->disabled_skills[i]) {
+			clif_msg(sd, SKILL_CANT_USE_AREA); // This skill cannot be used within this area
+			return 1;
+		}
 	}
 
 	if(sd->sc.option&OPTION_MOUNTING)
@@ -17722,19 +17717,6 @@ static bool skill_parse_row_castnodexdb(char *split[], int columns, int current)
 	return true;
 }
 
-static bool skill_parse_row_nocastdb(char *split[], int columns, int current)
-{
-	// skill_id,Flag
-	uint16 skill_id = atoi(split[0]);
-	uint16 idx = skill_get_index(skill_id);
-	if(!idx)   // invalid skill id
-		return false;
-
-	skill_db[idx].nocast |= atoi(split[1]);
-
-	return true;
-}
-
 static bool skill_parse_row_unitdb(char *split[], int columns, int current)
 {
 	// ID,unit ID,unit ID 2,layout,range,interval,target,flag
@@ -17988,7 +17970,6 @@ static void skill_readdb(void)
 #endif
 	sv_readsqldb(get_database_name(3), NULL, 3,  -1, skill_parse_row_castnodexdb);
 	sv_readsqldb(get_database_name(4), NULL, 8,  -1, skill_parse_row_unitdb);
-	sv_readsqldb(get_database_name(5), NULL, 2,  -1, skill_parse_row_nocastdb);
 
 	skill_init_unit_layout();
 
