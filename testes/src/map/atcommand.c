@@ -3592,14 +3592,14 @@ ACMD_FUNC(partyrecall)
  *------------------------------------------*/
 ACMD_FUNC(reload)
 {
-	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db"};
+	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "motd" };
 	int option;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db e status_db.");
+		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups & motd.");
 		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
@@ -3621,6 +3621,9 @@ ACMD_FUNC(reload)
 		#endif
 		read_mercenary_skilldb(); break;
 		case 3: status_readdb(); break;
+		case 4: pc_readdb(); break;
+		case 5: pc_groups_reload(); break;
+		case 6: pc_read_motd(); break;
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
@@ -3701,25 +3704,6 @@ ACMD_FUNC(reloadbattleconf)
 		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 	}
 	clif_displaymessage(fd, msg_txt(255));
-	return 0;
-}
-/*==========================================
- * @reloadpcdb - reloads exp.txt skill_tree.txt attr_fix.txt statpoint.txt
- *------------------------------------------*/
-ACMD_FUNC(reloadpcdb)
-{
-	pc_readdb();
-	clif_displaymessage(fd, msg_txt(257));
-	return 0;
-}
-
-/*==========================================
- * @reloadmotd - reloads motd.txt
- *------------------------------------------*/
-ACMD_FUNC(reloadmotd)
-{
-	pc_read_motd();
-	clif_displaymessage(fd, msg_txt(268));
 	return 0;
 }
 
@@ -8838,8 +8822,6 @@ void atcommand_basecommands(void)
 		ACMD_DEF(reloadscript),
 		ACMD_DEF(reloadatcommand),
 		ACMD_DEF(reloadbattleconf),
-		ACMD_DEF(reloadpcdb),
-		ACMD_DEF(reloadmotd),
 		ACMD_DEF(mapinfo),
 		ACMD_DEF(dye),
 		ACMD_DEF2("hairstyle", hair_style),
