@@ -3701,7 +3701,7 @@ int parse_char(int fd)
 
 					int slot = RFIFOB(fd,2);
 					RFIFOSKIP(fd,3);
-
+#if PACKETVER >= 20110309
 					if(*pincode->enabled) { // hack check
 						struct online_char_data* character;	
 						character = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
@@ -3713,7 +3713,7 @@ int parse_char(int fd)
 							break;
 						}
 					}
-
+#endif
 					if(SQL_SUCCESS != Sql_Query(sql_handle, "SELECT `char_id` FROM `%s` WHERE `account_id`='%d' AND `char_num`='%d'", char_db, sd->account_id, slot)
 					   || SQL_SUCCESS != Sql_NextRow(sql_handle)
 					   || SQL_SUCCESS != Sql_GetData(sql_handle, 0, &data, NULL)) {
@@ -3907,7 +3907,7 @@ int parse_char(int fd)
 				if(cmd == 0x1fb) FIFOSD_CHECK(56);
 				{
 					int cid = RFIFOL(fd,2);
-
+#if PACKETVER >= 20110309
 				if( *pincode->enabled ){ // hack check
 					struct online_char_data* character;	
 					character = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
@@ -3919,7 +3919,7 @@ int parse_char(int fd)
 						break;
 					}
 				}
-
+#endif
 					ShowInfo(read_message("Source.char.char_parse_char_s7"), CL_RED, CL_GREEN, sd->account_id, cid, CL_RESET);
 					memcpy(email, RFIFOP(fd,6), 40);
 					RFIFOSKIP(fd,(cmd == 0x68) ? 46 : 56);
