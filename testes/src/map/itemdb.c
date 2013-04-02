@@ -35,6 +35,9 @@ static DBMap            *itemdb_other;// int nameid -> struct item_data*
 
 static struct item_group itemgroup_db[MAX_ITEMGROUP];
 
+//Grupos de itens com % e quantidade randômicas [brAthena]
+static struct item_group2 itemgroup2_db[MAX_ITEMGROUP];
+
 struct item_data dummy_item; //This is the default dummy item used for non-existant items. [Skotlex]
 
 /**
@@ -157,6 +160,17 @@ int itemdb_searchrandomid(int group)
 
 	ShowError("itemdb_searchrandomid: No item entries for group id %d\n", group);
 	return UNKNOWN_ITEM_ID;
+}
+
+/*==========================================
+ * Retorna informações de um determinado grupo de itens
+ *------------------------------------------*/
+struct item_group2 *itemdb_searchrandgroup2(int group)
+{
+	if(group < 1 || group >= MAX_ITEMGROUP || itemgroup2_db[group].qty < 1)
+		return NULL;
+	
+	return &itemgroup2_db[group];
 }
 
 /*==========================================
@@ -522,7 +536,7 @@ static bool itemdb_read_itemavail(char *str[], int columns, int current)
  *------------------------------------------*/
 int itemdb_read_itemgroup_sub()
 {
-	const char *db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31), get_database_name(57) };
+	const char *db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31) };
 	int dbQuery, dbRows, groupid, nameid, k, j, i;
 
 	memset(itemgroup_db, 0, sizeof(itemgroup_db));
@@ -570,9 +584,83 @@ int itemdb_read_itemgroup_sub()
 	return 0;
 }
 
+/*==========================================
+ * Leitura da DB de itens randômicos especiais [brAthena]
+ *------------------------------------------*/
+int itemdb_read_itemgroup2_sub()
+{
+	const char *db[] = { get_database_name(57) };
+	int dbQuery, dbRows, groupid, nameid, k, j, i, qt[2];
+
+	memset(itemgroup2_db, 0, sizeof(itemgroup2_db));
+
+	for(i = 0; i < ARRAYLENGTH(db); ++i) {
+		dbRows = 0;
+		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", db[i])) {
+			Sql_ShowDebug(dbmysql_handle);
+			continue;
+		}
+
+		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle)) {
+			char *row[4];
+			dbRows++;
+
+			for(dbQuery = 0; dbQuery < 4; ++dbQuery)
+				Sql_GetData(dbmysql_handle, dbQuery, &row[dbQuery], NULL);
+
+			groupid = atoi(row[0]);
+			if(groupid < 0 || groupid >= MAX_ITEMGROUP) {
+				ShowWarning("itemdb_read_itemgroup2: Grupo inválido %d em %s\n", groupid, db[i]);
+				continue;
+			}
+
+			nameid = atoi(row[1]);
+			if(!itemdb_exists(nameid)) {
+				ShowWarning("itemdb_read_itemgroup2: Inexistente item %d em %s\n", nameid, db[i]);
+				continue;
+			}
+
+			if(sscanf(row[3], "%d:%d", &qt[0], &qt[1]) < 2) {
+				ShowWarning("itemdb_read_itemgroup2: Quantidades inválidas para o item %d do grupo %d em %s\n", nameid, groupid, db[i]);
+				continue;
+			}
+
+			k = atoi(row[2]);
+			if(itemgroup2_db[groupid].qty + k >= MAX_RANDITEM) {
+				ShowWarning("itemdb_read_itemgroup2: Grupo %d está cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
+				continue;
+			}
+
+			for(j = 0; j < 2; j++) {
+				if(qt[j] < 1) qt[j] = 1;
+				if(qt[j] > MAX_AMOUNT) qt[j] = MAX_AMOUNT;
+			}
+
+			if(qt[0] > qt[1]) {
+				ShowWarning("itemdb_read_itemgroup2: Quantidades inválidas para o item %d do grupo %d em %s\n", nameid, groupid, db[i]);
+				continue;
+			}
+
+			for(j = 0; j < k; j++) {
+				int qty = itemgroup2_db[groupid].qty++;
+				itemgroup2_db[groupid].item[qty].nameid = nameid;
+				itemgroup2_db[groupid].item[qty].qt[0] = qt[0];
+				itemgroup2_db[groupid].item[qty].qt[1] = qt[1];
+			}
+
+		}
+
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", dbRows, db[i]);
+	}
+
+	Sql_FreeResult(dbmysql_handle);
+	return 0;
+}
+
 static void itemdb_read_itemgroup(void)
 {
 	itemdb_read_itemgroup_sub();
+	itemdb_read_itemgroup2_sub();
 	return;
 }
 

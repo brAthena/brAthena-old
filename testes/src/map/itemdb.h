@@ -162,6 +162,14 @@ struct item_group {
 	int qty; //Counts amount of items in the group.
 };
 
+struct item_group2 {
+	struct {
+		int nameid;
+		uint16 qt[2];
+	} item[MAX_RANDITEM];
+	int qty;
+};
+
 struct item_combo {
 	struct script_code *script;
 	unsigned short *nameid;/* nameid array */
@@ -203,6 +211,7 @@ const char *itemdb_typename(int type);
 
 int itemdb_group_bonus(struct map_session_data *sd, int itemid);
 int itemdb_searchrandomid(int flags);
+struct item_group2 *itemdb_searchrandgroup2(int group);
 
 #define itemdb_value_buy(n) itemdb_search(n)->value_buy
 #define itemdb_value_sell(n) itemdb_search(n)->value_sell

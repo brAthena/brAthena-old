@@ -6400,6 +6400,56 @@ BUILDIN_FUNC(grouprandomitem)
 }
 
 /*==========================================
+ * retorna um ID de item randômico especial
+ *------------------------------------------*/
+BUILDIN_FUNC(grouprandomitem2)
+{
+	struct script_data *data = script_getdata(st, 2);
+	struct item_group2 *ig;
+	int group;
+	get_val(st, data);
+	group = conv_num(st, data);
+	if(!(ig = itemdb_searchrandgroup2(group))) {
+		ShowError("buildin_grouprandomitem2: Grupo de itens inválido %d\n", group);
+		return 1;
+	}
+	script_pushint(st, ig->item[rnd() % ig->qty].nameid);
+	return 0;
+}
+
+/*==========================================
+ * retorna uma quantidade aleatória de um item randômico especial
+ *------------------------------------------*/
+BUILDIN_FUNC(grouprandomquantity2)
+{
+	struct script_data *data = script_getdata(st, 3);
+	struct item_group2 *ig;
+	int group, nameid, i, qt[2];
+	get_val(st, data);
+	group = conv_num(st, data);
+	if(!(ig = itemdb_searchrandgroup2(group))) {
+		ShowError("buildin_grouprandomquantity2: Grupo de itens inválido %d\n", group);
+		return 1;
+	}
+	data = script_getdata(st, 2);
+	get_val(st, data);
+	nameid = conv_num(st, data);
+	if(!itemdb_exists(nameid)) {
+		ShowError("buildin_grouprandomquantity2: Item de ID %d inexistente\n", nameid);
+		return 1;
+	}
+	ARR_FIND(0, ig->qty, i, ig->item[i].nameid == nameid);
+	if(i >= ig->qty) {
+		ShowError("buildin_grouprandomquantity2: Item %d inexistente no grupo %d\n", nameid, group);
+		return 1;
+	}
+	qt[0] = ig->item[i].qt[0];
+	qt[1] = ig->item[i].qt[1];
+	script_pushint(st, rnd() % (qt[1] - qt[0] + 1) + qt[0]);
+	return 0;
+}
+
+/*==========================================
  *
  *------------------------------------------*/
 BUILDIN_FUNC(makeitem)
@@ -17131,6 +17181,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getitem2,"viiiiiiii?"),
 	BUILDIN_DEF(getnameditem,"vv"),
 	BUILDIN_DEF2(grouprandomitem,"groupranditem","i"),
+	BUILDIN_DEF2(grouprandomitem2,"groupranditem2","i"),
+	BUILDIN_DEF2(grouprandomquantity2,"grouprandqt2","ii"),
 	BUILDIN_DEF(makeitem,"visii"),
 	BUILDIN_DEF(delitem,"vi?"),
 	BUILDIN_DEF(delitem2,"viiiiiiii?"),
