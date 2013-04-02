@@ -12,81 +12,81 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.3a/1.0                         |
+//   | Versões eA/rA/brA: ??/1.3a/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Bioquímico.          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Battousai]                         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alde_alche,35,186,5	script	Alchemist Union Member	805,{
-	mes "[Alchemist Union Member]";
+alde_alche,35,186,5	script	Membro da União de Alquimistas	805,{
+	mes "[Membro da União Alquimista]";
 	if (BaseLevel > 98 && JobLevel > 49){
 		if (BaseJob == Job_Alchemist) {
 			if (SkillPoint != 0) {
-				mes "- You still have unused skill points. Come back when you have used all of them. -";
+				mes "- Você ainda tem pontos de habilidade não utilizados. Volte quando utilizar todos eles. -";
 				close;
 			}
 			if (job_gen == 0) {
-				mes "Our Alchemist Union brings up many junior alchemists with various promotions and investigations.";
+				mes "Nossa União de Alquimistas traz muitas promoções e investigações para alquimistas novatos.";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "They have spread to all corners of Rune-Midgart and were active in many fields like sciences or special item production methods.";
+				mes "[Membro da União de Alquimistas]";
+				mes "Nós nos espalhamos por todos os cantos de Rune-Midgard e somos ativos em muitos campos como: ciências ou métodos de produção de itens especiais.";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "We call the members of our new union ^3131FF'Geneticists'^000000.";
+				mes "[Membro da União Alquimista]";
+				mes "Chamamos os membros novos da nossa União de ^3131FF'Bioquímicos'^000000.";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "Geneticists are the ones who have reached their peak potential in the world of Alchemy. They are the ones who currently spearhead alchemy throughout all of Rune-Midgart.";
+				mes "[Membro da União Alquimista;]";
+				mes "Os bioquímicos são aqueles que alcançaram seu potencial máximo no mundo da alquimia. Eles são os que atualmente lideram a alquimia por toda Rune-Midgard.";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "It looks like you are an expert in this field, how about meeting other geneticists?";
+				mes "[Membro da União Alquimista;]";
+				mes "Parece que você é um especialista nessa área, que tal conversar com outros bioquímicos?";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "Not long ago there was a Geneticist who announced a sensational new life studying research.";
-				mes "You are very knowledgeable. Do you think you might understand her work?";
+				mes "[Membro da União de Alquimistas]";
+				mes "Não a muito tempo havia um bioquímico que anunciou uma nova vida após pesquisas de estudo a respeito.";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "Her study may help you gain the knowledge to help you make a Geneticist!";;
+				mes "[Membro da União de Alquimistas]";
+				mes "O seu estudo pode te ajudar a adqurir conhecimento e se tornar um Bioquímico!";
 				next;
-				mes "[Alchemist Union Member]";
-				mes "How's that sound? Do you want to meet a Geneticist?";
+				mes "[Membro da União de Alquimistas]";
+				mes "Que som é esse? Você quer conhecer um bioquímico? ";
 				next;
-				switch(select("Of course, I want to meet a Geneticist.:I don't want to meet a Geneticist.")) {
+				switch(select("Claro, eu quero conhecer um bioquímico.:Não eu não quero conhecer ninguém.")) {
 				case 1:
-					mes "[Alchemist Union Member]";
-					mes "Wise choice!";
-					mes "The infamous Geneticist 'Devries'.";
+					mes "[Membro da União Alquimista]";
+					mes "Escolha sábia!";
+					mes "O famoso bioquímico 'Devries'.";
 					next;
-					mes "[Alchemist Union Member]";
-					mes "You can find her in the Alchemy Lab at the western part of Lighthalzen. There is also another Geneticist studying weaponry there, you might want to pay her a visit as well.";
+					mes "[Membro da União de Alquimistas]";
+					mes "Você pode encontrá-lo no Laboratório da Alquimia na parte ocidental de Lighthalzen. Há também outro bioquímico que estuda armas lá, se quiser você também pode visitá-lo.";
 					set job_gen,1;
 					setquest 2215;
 					close;
 				case 2:
-					mes "[Alchemist Union Member]";
-					mes "Aren't you interested in the study of life?";
+					mes "[Membro da União Alquimista]";
+					mes "Não está interessado no estudo da vida?";
 					close;
 				}
 			}
-			mes "The infamous Geneticist is studying at the Alchemy Lab in the western part of Lighthalzen.";
-			mes "If you are interested, go meet with her.";
+				mes "O famoso bioquímico estuda no laboratório de Alquimia, a noroeste de Lighthalzen.";
+				mes "Se você estiver interessado, vá e encontre-se com ele.";
 			close;
 		}
 	}
-	mes "Our Alchemist Union brings up many junior alchemists with various promotions and investigations.";
+	mes "Nossa União de Alquimistas traz muitas promoções e investigações para alquimistas novatos.";
 	next;
-	mes "[Alchemist Union Member]";
-	mes "They have spread to all corners of Rune-Midgart and were active in many fields like sciences or special item production methods.";
+	mes "[Membro da União Alquimista]";
+	mes "Nós nos espalhamos por todos os cantos de Rune-Midgard e somos ativos em muitos campos como: ciências ou métodos de produção de itens especiais.";
 	next;
-	mes "[Alchemist Union Member]";
-	mes "We call the members of our new union ^3131FF'Geneticists'^000000.";
+	mes "[Membro da União Alquimista]";
+	mes "Chamamos os membros novos da nossa União de ^3131FF'Bioquímicos'^000000.";
 	next;
-	mes "[Alchemist Union Member]";
-	mes "Geneticists are the ones who have reached their peak potential in the world of Alchemy. They are the ones who currently spearhead alchemy throughout all of Rune-Midgard.";
+	mes "[Membro da União Alquimista]";
+	mes "Os bioquímicos são aqueles que alcançaram seu potencial máximo no mundo da alquimia. Eles são os que atualmente lideram a alquimia por toda Rune-Midgard.";
 	close;
 }
 
@@ -97,43 +97,43 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 	}
 	if (job_gen == 1) {
 		mes "[Devries]";
-		mes "Oh! The bloodsucking plant sample C is withering again.";
-		mes "Should I change the ingredient of the growth care?";
-		mes "Hey please cheer up soon!";
+		mes "Oh! A amostra de planta de sanguessugas C está murchando novamente. ";
+		mes "Devo mudar os ingredientes e ter cuidado com o crescimento?";
+		mes "Bem, vamos lá";
 		next;
 		mes "[Devries]";
-		mes "Oh? A stranger?";
-		mes "Your look tells me that you are doing Alchemy as well right?";
+		mes "Hã? Um estranho?";
+		mes "Pelo que vejo você está estudando alquimia também, certo?";
 		next;
 		mes "[Devries]";
-		mes "People say the number of alchemists is increasing nowadays though there aren't may who study this field properly!";
+		mes "As pessoas dizem que o número dos alquimistas está aumentando hoje em dia, embora não hajam muitos que estudem esse campo corretamente!";
 		next;
 		mes "[Devries]";
-		mes "They're all too worried about saying things like, ''Look at my bomb damage!'' or ''isn?t my homunculus prettier?''";
+		mes "Eles estão todos muito preocupados dizendo coisas como, 'Olhe o dano que minha bomba causa!' ou 'meu homunculo não é o mais bonito?'";
 		next;
 		mes "[Devries]";
-		mes "The Alchemist Union was saying they'd support the researchers but actually what you get from the studying is just 'Spores Which Can Be Easily Raised'!";
+		mes "A União dos Alquimistas estava dizendo que apoiaria os pesquisadores, mas na verdade o que você tem que estudar é apenas 'esporos que podem ser facilmente levantados'!";
 		next;
 		mes "[Devries]";
-		mes "Thanks to that, there are spores everywhere in my lab! There are spores everywhere!";
+		mes "Graças a isso, existem esporos em todos os lugares em meu laboratório! Existem esporos em toda parte! ";
 		next;
-		select("Why do you talk like that?");
+		select("Por que você fala assim?");
 		mes "[Devries]";
-		mes "'Cause I'm from Rune-Midgart!";
-		mes "Have you ever been to Rune-Midgart? Everyone in Rune-Midgart speaks like this.";
+		mes "Porque sou de Rune-Midgard!";
+		mes "Você já foi para Rune-Midgard? Todos em Rune-Midgard falam assim.";
 		next;
-		switch(select("Impossible?!:I'm also from Rune-Midgart.")) {
+		switch(select("Impossível?!:Eu também sou de Rune-Midgard.")) {
 		case 1:
 			mes "[Devries]";
-			mes "Impossible?";
-			mes "Do you come from a Rune-Midgart village?";
-			mes "My village is very big, everyone there speaks like this.";
+			mes "Impossível?";
+			mes "Você vem de uma aldeia de Rune-Midgard?";
+			mes "A minha aldeia é muito grande, todos lá falam assim.";
 			break;
 		case 2:
 			emotion e_lv;
 			mes "[Devries]";
-			mes "Really! That's why I felt some kind of familiar atmosphere around you.";
-			mes "Meeting a hometown person in Schwaltzvalt, it's my pleasure to meet you!";
+			mes "Realmente! É por isso que eu senti uma espécie de atmosfera familiar em torno de você.";
+			mes "Encontrei uma pessoa da cidade Schwartzwald, é um prazer em conhecê-lo!";
 			break;
 		}
 		next;
@@ -141,44 +141,43 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		next;
 		emotion e_ag;
 		mes "[Devries]";
-		mes "Ughhhhh! That woman started again!";
+		mes "Ughhhhh! Ele começou de novo!";
 		next;
-		select("What's that sound?");
+		select("Que som é esse?");
 		mes "[Devries]";
-		mes "That's the sound of an experiment being carried out by my roommate, Demi Calberine..";
-		mes "Demi's a fire shell technician so she's always noisy like that.";
+		mes "É o som de um experimento que está sendo realizado pelo meu companheiro de quarto, Demi Calberine..";
+		mes "Ele está construindo uma artilharia, por isso faz tanto barulho.";
 		next;
 		emotion e_sob;
 		mes "[Devries]";
-		mes "Look at that!";
-		mes "My spores and plants are all freaked out!";
-		mes "I can't do my work with those noisy sounds. It gives me so much stress!!";
+		mes "Olha isso!";
+		mes "Meus esporos e plantas estão todos assustados!";
+		mes "Eu não posso fazer o meu trabalho com esses sons barulhentos que me dá tanto estresse.";
 		next;
-		mes "- Munch Crunch -";
-		next;
-		mes "[Devries]";
-		mes "When I don't feel good, I savor Mr. Orlean's handmade cookies little by little.";
+		mes "- Crunch Crunch -";
 		next;
 		mes "[Devries]";
-		mes "It's a high-quality cookie that I got from Prontera. When I get one bite, it seems like I'm floating to Asgard.";
-		mes "The softness of the sweet cookie drowns out the clashing sounds from Demi Calberine.";
+		mes "Quando eu não me sinto bem, eu como biscoitos artesanais feitos pelo Sr. Orleans.";
 		next;
 		mes "[Devries]";
-		mes "Wanna try one?";
-		mes "Ah, I've eaten all of it.";
+		mes "É um biscoito de alta qualidade que vem de Prontera. Quando como, parece que eu estou flutuando e indo até Asgard.";
+		mes "A suavidade do biscoito doce abafa os sons pertubantes do Demi Calberine.";
 		next;
 		mes "[Devries]";
-		mes "But it's okay! On the 2nd floor of my room, there are boxes of those!";
-		mes "I couldn't stop buying it all in bulk. Ho ho ho.";
+		mes "Quer experimentar um?";
+		mes "Ah, eu comi tudo.";
+		next;
+		mes "[Devries]";
+		mes "Mas está tudo bem! No 2º andar do meu quarto, há caixas desses biscoitos!";
+		mes "Eu não consigo parar de comprá-los. Hohoho. ";
 		next;
 		mes "- Zooooooooooooooooing -";
 		specialeffect EF_ENDURE;
 		next;
 		specialeffect EF_REPAIRWEAPON,AREA,"#from1to2gen";
-		mes "- (Screeching Sounds)!!! -";
-		mes "- (Screeching)!!! -";
+		mes "- (Sons estridentes)!!! -";
 		next;
-		specialeffect EF_CRASHEARTH,AREA,"#from1to2gen";
+		specialeffect EF_CRASHEARTH;
 		mes "- Bump! Bump! Bump! -";
 		next;
 		mes "[Devries]";
@@ -192,8 +191,8 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "Demiiiiiiiiiiiiiiiiiiiiiiii!!!";
 		mes "Demiiiiiiiiiiiiiiiiiiiii!!!";
 		next;
-		mes "- For now it seems that I -";
-		mes "- need to calm down Devries. -";
+		mes "-Ei Devries-";
+		mes "-precisa se acalmar. -";
 		set job_gen,2;
 		close;
 	} else if (job_gen == 2) {
@@ -203,7 +202,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "Demiiiiiiiii!!!";
 		next;
 		mes "- Hmm. -";
-		mes "- What'll make her calm? -";
+		mes "- O que vai fazer? Calma. -";
 		close;
 	} else if (job_gen == 3) {
 		mes "[Devries]";
@@ -211,191 +210,186 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "Demiiiiii!!!";
 		mes "Demiiiiiiiii!!!";
 		next;
-		select("Hand Devries a cookie.");
-		mes "- Devries quickly snatches -";
-		mes "- away the cookie and stuffs -";
-		mes "- it all in her mouth. -";
+		select("O que está acontecendo Devries.");
+		mes "- Devries pegue um biscoito -";
+		mes "- Embora seja um biscoito para animais -";
+		mes "- Coma tudo. -";
 		next;
 		mes "- Crunch Crunch Crunch -";
 		mes "- Crunch Crunch Crunch -";
 		mes "- Crunch Crunch Crunch -";
 		next;
 		mes "[Devries]";
-		mes "Ah, The sweet buttery taste remains at the end of my tongue.";
-		mes "This really gives me peace of mind.";
+		mes "Ah, o doce sabor amanteigado permanece no final da minha língua.";
+		mes "Isso realmente me dá paz de espírito.";
 		next;
-		emotion e_pif;
+		emotion e_rice;
 		mes "[Devries]";
-		mes "Demi is studying hard today as well";
-		mes "Huhuhu. She's really a hard worker.";
+		mes "Demi está estudando duro hoje também";
+		mes "Huhuhu. Ela é realmente esforçada.";
 		next;
-		mes "- That cookie changed her mood quick. -";
-		emotion e_no1,1;
-		next;
-		mes "[Devries]";
-		mes "You came here with a love for Alchemy?";
+		mes "- Esse biscoito mudou seu humor. -";
+		emotion e_no1;
 		next;
 		mes "[Devries]";
-		mes "Oh wait, We haven't introduced ourselves yet.";
-		mes "My name is Devries.";
-		mes "I'm very interested in making living things that show new and peculiar growth.";
+		mes "Você ama estudar alquimia?";
 		next;
 		mes "[Devries]";
-		mes "What's your name, young alchemist?";
-		next;
-		select("I'm "+strcharinfo(0)+".");
-		mes "[Devries]";
-		mes "Oh, "+strcharinfo(0)+"!";
-		mes "That's a very unusual name. Pleased to meet you.";
+		mes "Ah, espere, ainda não nos apresentamos.";
+		mes "Meu nome é Devries.";
+		mes "Estou muito interessado em fazer as coisas vivas que mostram o crescimento novo e peculiar.";
 		next;
 		mes "[Devries]";
-		mes "But I can't memorize the name well.";
-		mes "So I'll just call you <Popo>. Would that be ok?";
+		mes "Qual seu nome, jovem alquimista?";
 		next;
-		select("I uhh...");
+		select("Eu sou "+strcharinfo(0)+".");
 		mes "[Devries]";
-		mes "Great...";
-		mes "Popo, have you heard of my research?";
-		mes "You came here because of that, am I right?";
+		mes "Ah, "+strcharinfo(0)+".";
+		mes "Esse é um nome muito incomum. Prazer em conhecê-lo.";
 		next;
-		switch(select("No.:Yes.")) {
+		mes "[Devries]";
+		mes "Eu não consigo memorizar bem os nomes.";
+		mes "Então eu vou te chamar de <Popo>. Está bem?";
+		next;
+		select("Está..");
+		mes "[Devries]";
+		mes "Ótimo...";
+		mes "Popo, você já ouviu falar da minha pesquisa?";
+		mes "Você veio aqui por causa disso, estou certo?";
+		next;
+		switch(select("Não.:Sim.") == 1){
 		case 1:
 			mes "[Devries]";
-			mes "Well, it's all over your face.";
-			mes "You don't have to be shy.";
+			mes "Bem.";
+			mes "Você não precisa ser tímido.";
 			break;
 		case 2:
 			mes "[Devries]";
-			mes "That's right huh?";
-			mes "Well, as I expected, there really is something that makes homeland people get each other";
+			mes "Está convicto?";
+			mes "Bem, como eu esperava existe algo que faz aso essias virem até aqui.";
 			break;
 		}
 		next;
 		mes "[Devries]";
-		mes "When you saw me in that feverish state, you remembered what I said before and that calmed me down.";
+		mes "Quando você me viu naquele estado fervoroso, você se lembrou o que eu disse antes e o que me acalma.";
 		next;
 		mes "[Devries]";
-		mes "I like the way you manage yourself and take care to remember small details.";
-		mes "You have the talent to become a Geneticist.";
+		mes "Eu gosto da maneira como você gerencia a si mesmo e tem o cuidado de se lembrar de pequenos detalhes.";
+		mes "Você tem o talento para se tornar um Bioquímico.";
 		next;
 		mes "[Devries]";
-		mes "^FF0000If you become a Geneticist, you can't take the Alchemist's or Biochemist study course that you haven't investigated before.^000000";
-		mes "If that's all right for you, how about giving it a shot right now?.";
+		mes "^FF0000Se você se tornar um bioquímico, você não pode largar a alquimia e os estudos bioquímicos .^000000";
+		mes "Se está tudo bem para você, o que acha de tentar?";
 		next;
-		switch(select("I'll try later.:I want to become a Geneticist!")) {
-		case 1:
+		if(select("Vou tentar mais tarde.:Eu quero me tornar um Bioquímico!") == 1){
 			mes "[Devries]";
-			mes "Alright.";
-			mes "Even though your knowledge is not that great as that of Geneticists, a fundamental knowledge is also important.";
-			mes "Popo, come back to me once you've finished your studies.";
+			mes "Tudo bem.";
+			mes "Mesmo que seu conhecimento não seja grande como o de um Bioquímico, conhecimentos fundamentais também são importantes.";
+			mes "Popo, volte aqui quando terminar seus estudos.";
 			set job_gen,4;
 			close;
-		case 2:
+			}
 			mes "[Devries]";
-			mes "Good!";
-			mes "Let's do it!";
+			mes "Bom";
+			mes "Vamos lá!";
 			set job_gen,5;
 			close;
-		}
 	} else if (job_gen == 4) {
 		mes "[Devries]";
 		mes "Popo!";
-		mes "Are you ready to give it a shot?";
+		mes "Você está pronto para tentar?";
 		next;
-		switch(select("No.:Yes!")) {
-		case 1:
+		if(select("Não.:Sim!") == 1){
 			mes "[Devries]";
 			mes "You have to do your best! There is no easy way when looking for knowledge!";
 			close;
-		case 2:
+			}
 			mes "[Devries]";
-			mes "Very good!";
-			mes "Let's do it!";
+			mes "Muito bem!";
+			mes "Vamos lá!";
 			set job_gen,5;
 			close;
-		}
 	} else if (job_gen == 5) {
 		mes "[Devries]";
-		mes "What do you think of plants, Popo";
-		mes "Do you like plants? What kind of plants are you interested in?";
+		mes "O que você acha de plantas, Popo";
+		mes "você gosta plantas? Que tipo de plantas você gosta? ";
 		next;
 		mes "- Boom, Boom, Boom -";
 		next;
-		emotion e_swt;
+		emotion e_swt2;
 		mes "[Devries]";
-		mes "Ah, please tell me Demi Calberine is not starting again?";
-		mes "Please let my expectation be wrong ... Please... Demi, please...";
+		mes "Ah, por favor me diga que Demi Calberine não está começando novamente?";
+		mes "Por favor, diga-me que estou errado... Por favor... Demi, por favor...";
 		next;
 		mes "[Devries]";
-		mes "Where did I stop talking";
-		mes "Oh, right. Plants are very important in Alchemy.";
+		mes "Do que eu estava falando mesmo?";
+		mes "Ah, lembrei. As plantas são muito importantes na alquimia.";
 		next;
 		mes "[Devries]";
-		mes "Alchemy can make Flora's and Geographers grow immensely fast, so they can help in battle, like those Alchemists...";
+		mes "A alquimia pode fazer a flora crescer imensamente, então podem te ajudar na batalha...";
 		next;
 		mes "- Boom!! Boom!! Boom!! Boom!! -";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
 		mes ".......................";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
-		mes "Techniques, plants are relatively easy to...";
+		mes "Técnicas, plantas são relativamente fáceis de...";
 		next;
 		mes "- Boom!!!!!! -";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
-		mes "Crossbreed...";
+		mes "Bem preste atenção...";
 		next;
 		mes "- Pop!!!!!! -";
 		mes "- Keeeeeeeeeeeeeh!!!! -";
 		mes "- Boooooooooooooom!!!! -";
 		mes "- Boom!! Boom!! Boom!! -";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
 		mes ".......................";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
 		mes "Popo.";
 		next;
-		emotion e_dots;
+		emotion e_hmm;
 		mes "[Devries]";
-		mes "I'll give you the test to become a Geneticist.";
+		mes "Irei lhe propor um teste para se tornar um Bioquímico.";
 		next;
 		mes "[Devries]";
-		mes "The subject is <The Perfect Soundproof System>!";
-		mes "Please think of a way to save me from Demi Calberine's noise, using plants and experimental equipment that are here on the 1st floor of the lab.";
+		mes "O tema é <Um Sistema Perfeito de Isolamento de Barulhos>!";
+		mes "Por favor, pense numa maneira de salvar-me do barulho de Demi Calberine, use as plantas e o equipamento experimental que está aqui no 1º andar do laboratório.";
 		next;
 		mes "[Devries]";
-		mes "Well, you better get started!";
+		mes "Bem, é melhor começar!";
 		set job_gen,6;
 		close;
 	} else if (job_gen == 6) {
 		mes "[Devries]";
-		mes "The subject is <The Perfect Soundproof System>!";
-		mes "Please think of a way to save me from Demi Calbereine's noise, using plants and experimental equipment that are here on the 1st floor of the lab.";
+		mes "O tema é <Um Sistema Perfeito de Isolamento de Barulhos>!";
+		mes "Por favor, pense numa maneira de salvar-me do barulho de Demi Calberine, use as plantas e o equipamento experimental que está aqui no 1º andar do laboratório.";
 		next;
 		mes "[Devries]";
-		mes "There are some guides in the cabinet that you may use.";
-		mes "Well, you better get started!";
+		mes "Existem alguns guias no armário que você pode utilizar.";
+		mes "Bem, é melhor começar!";
 		close;
 	} else if (job_gen > 6 && job_gen < 60) {
 		mes "[Devries]";
-		mes "Is there a problem?";
+		mes "Existe um problema?";
 		next;
-		switch(select("Nothing.:The experiment failed.")) {
-		case 1:
+		if(select("Nada.: O experimento falhou.") == 1){
 			mes "[Devries]";
-			mes "Better get started, or I'll start to scream!!!";
+			mes "Melhor começar, ou eu vou começar a gritar!!!";
 			close;
-		case 2:
+			}
 			mes "[Devries]";
-			mes "You can start from the beginning then?";
-			mes "Why are you asking me such things?";
+			mes "Por que não começa?";
+			mes "Por que você está me perguntando tais coisas?";
 			set job_gen,7;
 			if (checkquest(2209) == 1) erasequest 2209;
 			if (checkquest(2210) == 1) erasequest 2210;
@@ -404,78 +398,77 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 			if (checkquest(2213) == 1) erasequest 2213;
 			if (checkquest(2214) == 1) erasequest 2214;
 			close;
-		}
 	} else if (job_gen == 60 || job_gen == 61) {
 		mes "- Zing Zing Zigi Zigi -";
 		next;
 		mes "- Zing Zing Zigi Zigi -";
 		next;
 		mes "[Devries]";
-		mes "What the hell is Demi Calberine doing?";
-		mes "That's really a noisy one.";
+		mes "O que diabos a Demi Calberine está fazendo?";
+		mes "É algo realmente barulhento.";
 		next;
 		mes "[Devries]";
-		mes "Your study is done, Popo?";
-		mes "Give me those seeds.";
+		mes "Seu estudo está pronto, Popo?";
+		mes "Dê-me as sementes.";
 		next;
 		if (countitem(6273) == 0 && countitem(6272) == 0) {
 			mes "[Devries]";
-			mes "What happened?";
-			mes "How could you say the study is completed without any result?";
-			mes "Start again.";
+			mes "O que é isso?";
+			mes "Como você pode dizer que isso foi feito com seu estudo?";
+			mes "Apresse-se e comece de novo.";
 			set job_gen,7;
 		} else {
 			mes "[Devries]";
-			mes "Well, I'll take a look at the seeds Popo made.";
-			mes "What's the result?";
+			mes "Bem, eu vou olhar as sementes, Popo.";
+			mes "Qual o resultado?";
 			next;
 			mes "[Devries]";
-			mes "When you put a seed in a Super Cultivator, and adjust the temperature...";
+			mes "Quando você colocar uma semente em um Super Cultivador e ajustar a temperatura...";
 			next;
 			mes "[Devries]";
-			mes "Damn!";
+			mes "Droga!";
 			next;
 			if (job_gen == 60) {
 				specialeffect EF_FLASHER,AREA,"Super Cultivator#gen";
 				specialeffect EF_PHARMACY_OK,AREA,"Super Cultivator#gen";
 				mes "[Devries]";
-				mes "Popo, look at that!";
-				mes "That's really a mysterious plant!";
+				mes "Popo, olha só isso!";
+				mes "Isso é realmente uma planta misteriosa!";
 				next;
 				mes "[Devries]";
-				mes "The inside of the Cultivator is now full of thorny stems!";
-				mes "It's as if the stems are making a wall and growing very sturdily and those are getting tangled!";
+				mes "O interior do cultivador agora está cheio de caules espinhosos!";
+				mes "É como se as hastes estivessem fazendo uma parede e crescendo muito resistente e elas estão ficando enroladas!";
 				next;
 				mes "[Devries]";
-				mes "This is it, Popo!";
-				mes "This plant's properties can be used for many applications!";
+				mes "É isso, Popo!";
+				mes "As propriedades desta planta podem ser usadas para muitas aplicações!";
 				next;
 				mes "[Devries]";
-				mes "This is really great, Popo.";
-				mes "I knew that you were knowledgeable but your ability is more than that!";
+				mes "Isso é realmente ótimo, Popo.";
+				mes "Eu sabia que você tinha condições, mas sua capacidade está além do que eu imaginava!";
 				next;
 				mes "[Devries]";
-				mes "I will tell the outcome to the Alchemist Union.";
-				mes "I will send a recommendation letter saying that your ability is really great and that you could be a brilliant member.";
+				mes "Vou contar o resultado para a União de Alquimistas.";
+				mes "Enviarei uma carta de recomendação dizendo que sua capacidade é muito grande e que você poderá ser um membro brilhante.";
 				next;
 				mes "[Devries]";
-				mes "Getting an answer from the Union will take some time, so could you wait a moment?";
-				mes "Why don't you go up to Demi Calberine?";
+				mes "Conseguir uma resposta da União vai demorar algum tempo, então você poderia em seguida: um momento!";
+				mes "Por que você não vai conhecer a Demi Calberine?";
 				next;
 				mes "[Devries]";
-				mes "She is a fellow Geneticist, specializing in mini cannons.";
-				mes "Go take a look at her experiment results.";
-				mes "Could you give this message to her? Tell her to conduct her experiments quietly.";
-				delitem 6273,1; //Altered_Seed
+				mes "Ela é uma colega bioquímica, especializando-se em mini canhões.";
+				mes "Dê uma olhada em seus resultados de experimentos.";
+				mes "Você poderia dar essa mensagem para ela? Se sim, então diga que ela realize seus experimentos tranquilamente.";
+				delitem 6273,1; // Semente para Experimento
 				set job_gen,62;
 				changequest 2215,2216;
 			} else {
 				specialeffect EF_SPELLBREAKER,AREA,"Super Cultivator#gen";
 				specialeffect EF_PHARMACY_FAIL,AREA,"Super Cultivator#gen";
 				mes "[Devries]";
-				mes "Uh oh! You failed, Popo.";
-				mes "It didn't grow at all, it's withered already.";
-				mes "Go and start over!";
+				mes "Uh oh! Você falhou, Popo.";
+				mes "Ela não irá crescer, ela já murchou.";
+				mes "É melhor começar de novo!";
 				delitem 6272,1; //Experiment_Seed
 				set job_gen,7;
 			}
@@ -490,220 +483,218 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 	} else if (job_gen > 61 && job_gen < 76) {
 		if (checkquest(2223,HUNTING) == 2) {
 			mes "[Devries]";
-			mes "Oh, wait a second.";
-			mes "It seems that the mail's has arrived.";
+			mes "Ah, espere um segundo. ";
+			mes "Parece que o correio chegou.";
 			set job_gen,76;
 			completequest 2223;
 			close;
 		}
 		mes "[Devries]";
-		mes "You can take a look at the Demi Calberine's work place while we get an answer from the Union.";
+		mes "Você pode ir ver a Demi Calberine enquanto espera por uma resposta da União.";
 		close;
 	} else if (job_gen == 76) {
 		mes "[Devries]";
 		mes "Popo!";
-		mes "I've got good news for you!";
+		mes "Eu tenho boas notícias para você!";
 		next;
 		if (checkweight(1201,2) == 0 || MaxWeight - Weight < 2000) {
-			mes "- Wait a minute !! -";
-			mes "- Currently you're carrying -";
-			mes "- too many items with you. -";
-			mes "- Please try again -";
-			mes "- after you lose some weight. -";
+			mes "- Espere um minuto -!";
+			mes "- Você está carregando -";
+			mes "- muitos itens com você. -";
+			mes "- Por favor, tente novamente -";
+			mes "- após reduzir um pouco do seu peso.-";
 			close;
 		}
 		mes "[Devries]";
 		if (BaseJob != Job_Alchemist || BaseLevel < 99 || JobLevel < 50) {
-			mes "Oh, it looks like you're not ready to hear it.";
+			mes "Parece que você ainda não está pronto para ouvir o que diz a carta.";
 			close;
 		}
 		if (checkcart()){
-			mes "First take off that heavy and dirty cart, that doesn't suit you on this happy moment.";
+			mes "Primeiro, tire esse carrinho pesado e sujo, ele não combina com você.";
 			close;
 		}
 		if (SkillPoint != 0) {
-			mes "But you look like you have a lingering desire for previous studies.";
+			mes "Parece que você ainda tem habilidades a se aprender.";
 			close;
 		}
-		mes "A letter has arrived from the Alchemist Union.";
-		mes "I'll read it to you, Popo!";
+		mes "Uma carta chegou da União Alquimista.";
+		mes "Eu vou lê-la para você, Popo!";
 		next;
-		mes "<Dearest Miss Devries,>";
-		mes "<We are very aware of the brilliant activities you've shown lately.>";
+		mes "<Caro Senhor Devries,>";
+		mes "<Estamos muito conscientes das atividades brilhantes que você tem mostrado ultimamente.>";
 		next;
-		mes "<Miss. Devries>";
-		mes "This guy is also from my hometown.";
+		mes "<Senhor. Devries>";
+		mes "Ele é da minha cidade natal.";
 		next;
-		mes "<I heard very good news that your research results are taking the step of commercial use.>";
-		mes "<I'm sure it will be a great inspiration for other Alchemists.>";
+		mes "<Ouvi uma notícia muito boa de que seus resultados de pesquisa estão dando grandes passos na alquimia.>";
+		mes "<Tenho certeza que você será uma grande inspiração para outros alquimistas.>";
 		next;
-		mes "<Come to think of it, you've attached a paper?>";
-		mes "<It was a new plant which makes plants grow super-fast, discovered by an Alchemist named, "+strcharinfo(0)+">";
+		mes "<Venho falar sobre!>";
+		mes "<Era uma planta nova que faz plantas crescer super-rápido, descoberto por um alquimista chamado, "+strcharinfo(0)+">";
 		next;
-		mes "<Myself and many other Alchemists from the Alchemist union are taking great interest in this.>";
+		mes "<Muitos outros alquimistas da União alquimista estão tendo grande interesse por ela.>";
 		next;
-		mes "<We are looking forward to more volumes of study papers and outcomes, especially from other Geneticists who?ve heard this news.>";
+		mes "<Estamos ansiosos para mais volumes de documentos de estudo e os resultados, especialmente a partir de outros geneticistas que ouviram esta notícia.>";
 		next;
-		mes "<Miss. Devries>";
-		mes "<I think that "+strcharinfo(0)+" has enough ability and talent to be a Geneticist.>";
+		mes "<acho que "+strcharinfo(0)+" tem bastante habilidade e talento para ser um bioquímico.> ";
 		next;
-		mes "<Please tell "+strcharinfo(0)+" as soon as possible that we are expecting remarkable activities as a Geneticist from now on.>";
+		mes "<Esperamos atividades notáveis de agora em diante como um bioquímico.> ";
 		next;
-		mes "<The Alchemist Union is very proud of Miss Devries, Miss Demi Calberine and "+strcharinfo(0)+" who are excellent talented people.>";
-		mes "<We hope that you yield good fruits in the future as well.>";
+		mes "<A União Alquimista está orgulhosa de Devries e da Senhorita Demi Calberine e "+strcharinfo(0)+" por serem pessoas talentosas e excelentes.>";
+		mes "<Esperamos que bom frutos sejam rendidos.>";
 		next;
 		mes "[Devries]";
 		if (ismounting()) {
-			mes "You are on a riding pet,";
-			mes "so you cannot change your job.";
-			mes "Please unequip your riding pet and try again!";
+			mes "Você está utilizando uma montaria,";
+			mes "utilizando-a você não poderá trocar de classe.";
+			mes "Por favor remova sua montaria e tente novamente!";
 			close;
 		}
-		mes "Congratulations, Popo!";
-		mes "You are a Geneticist from now on!!";
+		mes "Parabéns, Popo!";
+		mes "Você é um bioquímico de agora em diante!!!!";
 		jobchange roclass(eaclass()|EAJL_THIRD);
 		set job_gen,77;
-		getitem 5752,1; //Midas_Whisper
-		getitem 2795,1; //Green_Apple_Ring
+		getitem 5752,1; // Toque de Midas
+		getitem 2795,1; // Anel de Maçã Verde
 		next;
 		mes "[Devries]";
-		mes "Just like the word from the Union, I'm also looking forward to your awesome activities.";
-		mes "Let's try hard together! To become the best Geneticist!";
+		mes "Assim como a União, também estou ansioso para ver suas atividades incríveis sendo um bioquímico.";
+		mes "Vamos treinar arduamente juntos! Você se tornará o melhor bioquímico!";
 		close;
 	} else if (job_gen == 77) {
 		mes "[Devries]";
-		mes "Popo, do you want to join my Love Orleans club? It's a club for those that love cookies. Of course, we don't think of doing weird things with Charles Orleans.";
+			mes "Popo, quer se juntar ao meu clube que Ama Orleans? É um clube para aqueles que amam os biscoitos de lá. E fique tranquilo, nós não pensamos em fazer coisas estranhas com o Charles Orleans.";
 		close;
 	}
 	mes "[Devries]";
-	mes "Am I that pretty to you? Why are you staring at me like that?";
+	mes "Por que você olhando assim pra mim?";
 	close;
 }
 
-job3_gen01,83,72,3	script	Delivery Box#generic	111,{
-	mes "- There's a big box. -";
+job3_gen01,83,72,3	script	Caixa de Entrega#generic	111,{
+	mes "- É uma grande caixa. -";
 	if (job_gen == 2) {
 		next;
-		switch(select("Open the box.:Check the address.:Do nothing.")) {
+		switch(select("Abrir a caixa.:Verificar o endereço.:Nada.")) {
 		case 1:
-			mes "- There are several cookie bags which are packed carefully in the box. -";
+			mes "- Há vários sacos de biscoitos cuidadosamente embalados na caixa. -";
 			next;
-			switch(select("Take out a cookie bag.:Do nothing.")) {
+			switch(select("Pegar um saco de biscoitos.:Nada.")) {
 			case 1:
-				mes "- You've taken out a cookie bag out of the box. -";
+				mes "- Você tirou um dos sacos de biscoito que estavam dentro da caixa. -";
 				set job_gen,3;
 				close;
 			case 2:
-				mes "You do nothing.";
+				mes "Você não faz nada.";
 				close;
 			}
 		case 2:
-			mes "[From: Rune-Midgarts Kingdom, Prontera, Charles Orleans]";
-			mes "[Recipient: Schwaltzvalt Republic, Lighthalzen, Devries]";
+			mes "[De: Reino de Rune-Midgard, Prontera, Charles Orleans]";
+			mes "[Destinatário: República de Schwartzwald, Lighthalzen, Devries]";
 			close;
 		case 3:
-			mes "You do nothing.";
+			mes "Você não vai fazer nada.";
 			close;
 		}
 	}
 	close;
 }
 
-job3_gen01,12,56,3	script	Plant Guide#generic	111,{
-	mes "<The Easiest Alchemy in the World>";
-	mes "Written by Bob Ross.";
+job3_gen01,12,56,3	script	Planta Guia#generic	111,{
+	mes "<A mais fácil alquimia no mundo>";
+	mes "Escrito por Bob Ross.";
 	next;
-	switch(select("Animals:Plants:Minerals:Etc")) {
+	switch(select("Animais:Plantas:Minerais:Etc")){
 	case 1:
-		mes "...Using animals in Alchemy can easily be practiced by anyone.";
-		mes "You can put the animals that you want to use on the white tray, imagine the goal you want to make and then practice the alchemy.";
-		mes "It's very easy.";
+		mes "...A utilização de animais em alquimia pode ser facilmente praticada por qualquer pessoa.";
+		mes "Você pode colocar os animais que você deseja usar na bandeja branca, imaginar o que quer e então praticar a alquimia.";
+		mes "É muito fácil.";
 		next;
-		mes "...The animals that are used in Alchemy might in the danger of getting extinct because of being captured by thoughtless alchemists.";
-		mes "So I won't mention them.";
+		mes "...Usamos a alquimia em animais para poder preservá-los.";
+		mes "Então eu não irei mencioná-los.";
 		close;
 	case 2:
-		mes "...The guide of Alchemy using plants is easy to follow, even for a little kid.";
-		mes "You can put the plants on the table, and break or cut them, connect them using a simple tool, then do alchemy.";
-		mes "That's really an extraordinary method.";
+		mes "...O guia da alquimia usando plantas é fácil de seguir, mesmo para uma criança.";
+		mes "Você pode colocar as plantas em cima da mesa e quebrar ou cortá-las, conectá-las usando uma ferramenta simples, e então é so fazer a alquimia.";
+		mes "Esse é realmente um método extraordinário.";
 		next;
-		mes "...The plants usually used for Alchemy are Bigibigi Grass and Muka Trees that have sharp thorns but are delicate inside and Bogi Creeper whose growth speed is really fast but parasitic on living things.";
+		mes "...As plantas geralmente utilizadas para alquimia são Planta Bigibibi e Muka árvores que têm espinhos afiados";
 		if (job_gen == 6)
 			set job_gen,7;
 		close;
 	case 3:
-		mes "...Using minerals in Alchemy is a way that beginners find pretty easy.";
-		mes "You can put the minerals you want to in the beautifully crafted box, and sing any song that you can think of twice and then practice the alchemy.";
-		mes "That's really an easy way.";
+		mes "...Utilizar minerais na alquimia é muito fácil";
+		mes "você pode colocar os minerais que você deseja numa caixa muito bem trabalhada e essoar qualquer canção e praticar a alquimia.";
+		mes "Esssa é realmente uma maneira bastante fácil.";
 		next;
-		mes "...A mineral that's usually used for Alchemy is 'Phracon' which doesn't cost a lot.";
+		mes "...Um mineral que é usado geralmente na alquimia é o 'Fracon', que não custa muito.";
 		close;
 	case 4:
-		mes "...Alchemy is the easiest thing in the world.";
-		mes "This writer shows a cobalt blue Alchemy demonstration in front of students every week, and always get a big applaud from them.";
-		mes "I'm sure that you would be into the Alchemy world at the moment you read this book.";
+		mes "...Alquimia é a coisa mais fácil do mundo.";
+		mes "Este escritor mostra uma demonstração de alquimia com cobalto azul na frente de estudantes a cada semana e sempre recebe um grande aplauso.";
+		mes "Tenho certeza que você será um melhor alquimista no momento em que você ler este livro.";
 		close;
 	}
 }
 
-// QuestID,PlantName,Description{,Part?}
 function	script	Genetic_Job_Plant	{
 	if (job_gen == 7) {
 		if (checkquest(getarg(0)) == -1 || checkquest(getarg(0)) == 0) {
 			mes "- "+getarg(2)+" -";
 			next;
-			switch(select("Use it as a material.:Do not use.")) {
+			switch(select("Usá-la como um material?.:Não usá-la.")) {
 			case 1:
 				if (getarg(3,0)) set .@str$,"some of the ";
-				mes "- You've acquired "+.@str$+getarg(1)+". -";
+				mes "- Você adquiriu "+.@str$+getarg(1)+". -";
 				setquest getarg(0);
 				close;
 			case 2:
-				mes "- This plant doesn't look suitable as an experiment sample. -";
+				mes "- Esta planta não parece apropriada para um experimento. -";
 				close;
 			}
 		}
-		mes "- You've already acquired "+getarg(1)+". -";
+		mes "- Você adquiriu uma "+getarg(1)+". -";
 		close;
 	} else if (job_gen == 6) {
-		mes "Information related to this plant can be found in the Plant Guide in the cabinet.";
+		mes "Informações relacionadas a esta planta podem ser encontradas no guia de plantas no gabinete.";
 		close;
 	}
 	mes "- "+getarg(2)+" -";
 	close;
 }
 
-job3_gen01,36,55,3	script	Bigibigi Grass#gen	844,{
-	callfunc "Genetic_Job_Plant",2209,"Bigibigi Grass","The size is quite big to be normal grass so it's called Bigibigi Grass.";
+job3_gen01,36,55,3	script	Planta Bigibibi#gen	844,{
+	callfunc "Genetic_Job_Plant",2209,"Planta Bigibibi","The size is quite big to be normal grass so it's called Planta Bigibibi.";
 	end;
 }
-job3_gen01,36,45,3	script	Muka Tree#gen	844,{
-	callfunc "Genetic_Job_Plant",2210,"Muka Tree","This is the Muka Tree which protects its delicate inside with sharp thorns.",1;
+job3_gen01,36,45,3	script	Árvore Muka#gen	844,{
+	callfunc "Genetic_Job_Plant",2210,"Árvore Muka","Esta é a árvore de Muka, ela protege seu interior delicado com espinhos afiados.",1;
 	end;
 }
-job3_gen01,42,55,3	script	Bogi Vine#gen	844,{
-	callfunc "Genetic_Job_Plant",2211,"Bogi Vine","This is a Bogi Vine which has a very fast growth speed.",1;
+job3_gen01,42,55,3	script	Vinha Bogi#gen	844,{
+	callfunc "Genetic_Job_Plant",2211,"Vinha Bogi","Essa é uma Vinha Bogi, ela cresce muito rápido.",1;
 	end;
 }
 job3_gen01,30,58,3	script	Aolatura#gen	844,{
-	callfunc "Genetic_Job_Plant",2212,"Aolatura","This is known to blossom then thousand flowers as it only blooms once per lifetime.";
+	callfunc "Genetic_Job_Plant",2212,"Aolatura","Essa é conhecida por flor Aolatura.";
 	end;
 }
 job3_gen01,30,63,3	script	Congra#gen	844,{
-	callfunc "Genetic_Job_Plant",2213,"Congra","It's a plant that has a big and solid stem with enormous leaves.";
+	callfunc "Genetic_Job_Plant",2213,"Congra","É uma planta que tem um tronco grande e sólido e com folhas enormes.";
 	end;
 }
-job3_gen01,32,38,3	script	Sticky Grass#gen	844,{
-	callfunc "Genetic_Job_Plant",2214,"Sticky Grass","I may not know the name but it's sticky and can stick to just about anything.";
+job3_gen01,32,38,3	script	Grama Grudenta#gen	844,{
+	callfunc "Genetic_Job_Plant",2214,"Grama Grudenta","Não sei o nome mas é pegajosa e pode furar a qualquer coisa.";
 	end;
 }
 
-job3_gen01,7,50,3	script	Testing Table#gen	844,{
+job3_gen01,7,50,3	script	Mesa de Testes#gen	844,{
 	if (job_gen == 7) {
-		mes "- This is a testing table with a lot of equipment. I think I can study the combinations here with plants. -";
+		mes "- Esta é uma tabela de teste com uma grande quantidade de equipementos. Com ela podemos estudar as combinações de plantas. -";
 		next;
-		if(select("Conduct an experiment.:Do not conduct an experiment.") == 2) {
-			mes "- It's not the time to start an experiment. -";
+		if(select("Realizar um experimento.:Não realizar um experimento.") == 1){
+			mes "- Não é o momento de começar um experimento. -";
 			close;
 		}
 		if ((checkquest(2209) == -1 || checkquest(2209) == 0) &&
@@ -713,31 +704,31 @@ job3_gen01,7,50,3	script	Testing Table#gen	844,{
 		    (checkquest(2213) == -1 || checkquest(2213) == 0) &&
 		    (checkquest(2214) == -1 || checkquest(2214) == 0)) {
 			mes "["+strcharinfo(0)+"]";
-			mes "Hmm, I need to gather plant materials first.";
+			mes "Hmm, eu preciso reunir materiais de planta primeiro.";
 			close;
 		}
-		mes "What shall I do with these plant materials?";
+		mes "O que farei com estes materiais de planta?";
 		next;
-		select("Break.:Smash into little pieces.:Crush.");
+		select("Quebrar.:Esmagar em pedaços pequenos.:Esmagar.");
 		while (1) {
-			mes "What shall I do now?";
+			mes "O que devo fazer agora?";
 			next;
 			if (rand(2))
-				select("Burn into Ashes.:Dip into distilled water.:Steam.");
+				select("Queimar em Cinzas.:Mergulhar em água destilada.:Vaporizar.");
 			else
-				select("Put it into a Testing Flask and Shake.:Freeze.:Heat.");
+				select("Colocar em um frasco de teste e misturar.:Congelar.:Aquecer.");
 			if (!rand(7)) break;
 		}
-		mes "What shall I do now?";
+		mes "O que devo fazer agora?";
 		next;
-		select("Inject it into a testing seed.");
-		mes "What kind of seed should I pick?";
+		select("Injetá-lo em sementes.");
+		mes "Qual semente você quer usar?";
 		next;
-		select("Testing Seed - Type A:Testing Seed - Type B:Testing Seed - Type C:Testing Seed - Type D");
-		mes "I've put the prepared materials into the chosen testing seed.";
+		select("Teste de semente - Tipo A:Teste de semente - Tipo B:Teste de semente- Tipo C:Teste de semente Tipo - D");
+		mes "Eu usarei os materiais escolhidos no teste.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Good. Now I can let Miss Devries take a look at this seed!";
+		mes "Bom. Agora eu posso deixar Devries olhar esta semente!";
 		if ((checkquest(2209) == -1 || checkquest(2209) == 0) &&
 		    (checkquest(2210) == -1 || checkquest(2210) == 0) &&
 		    (checkquest(2211) == -1 || checkquest(2211) == 0)){
@@ -759,7 +750,7 @@ job3_gen01,7,50,3	script	Testing Table#gen	844,{
 			close;
 		}
 	} else if (job_gen > 7 && job_gen < 60) {
-		mes "- It looks like the experiment has failed. I better start over. -";
+		mes "- Parece que o experimento falhou. É Melhor começar de novo. -";
 		set job_gen,7;
 		if (countitem(6273)) delitem 6273,1; //Altered_Seed
 		if (countitem(6272)) delitem 6272,1; //Experiment_Seed
@@ -771,10 +762,10 @@ job3_gen01,7,50,3	script	Testing Table#gen	844,{
 		if (checkquest(2214) == 1) erasequest 2214;
 		close;
 	} else if (job_gen == 60 || job_gen == 61) {
-		mes " - It looks like I need to let Miss Devries take a look at this seed! -";
+		mes " - Parece que preciso deixar que Devries olhe esta semente! -";
 		end;
 	}
-	mes "- This is a testing table with a lot of equipment. I think I can study the combinations here with plants. -";
+	mes "- Esta é uma tabela de teste com uma grande quantidade de equipementos. Com ela podemos estudar as combinações de plantas. -";
 	close;
 }
 
@@ -785,142 +776,140 @@ job3_gen01,21,67,3	script	Super Cultivator#gen	844,{
 job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 	mes "[Demi Calberine]";
 	if (job_gen < 62) {
-		mes "Hmm~ Where'd that bolt go?";
+		mes "Hmm ~ onde vai esse parafuso?";
 		close;
 	} else if (job_gen == 62) {
-		mes "Oh that blue cart~";
-		mes "Load picture-like cannon~";
-		mes "With my lovely darling~";
-		mes "Wanna shoot cannon foereva~~";
+		mes "Oh o carrinho azul ~";
+		mes "Posso carregar meu canhão~";
+		mes "Quero atirar com esse canhão para sempre, haha ~~";
 		next;
 		mes "[Demi Calberine]";
-		mes "Er~ Where's the bolt?";
-		mes "Why aren't their enough screws? Didn't I order new ones just recently?";
+		mes "Hm ~ onde está o parafuso?";
+		mes "Você não tem parafusos suficientes? Posso encomendar novos?";
 		next;
-		select("Hello~?");
+		select("Olá~?");
 		mes "[Demi Calberine]";
-		mes "Oh, my~?";
-		mes "When did you... Who are you?";
-		next;
-		mes "[Demi Calberine]";
-		mes "Oh, my god!";
-		mes "Hey! Please help me!";
+		mes "Encomendar novos~?";
+		mes "Quando fiz você... Quem é você? ";
 		next;
 		mes "[Demi Calberine]";
-		mes "I need to complete and ordered mini cannon today, but I can't find the parts!";
+		mes "Oh, meu Deus!";
+		mes "Ei! Por favor me ajude!";
 		next;
 		mes "[Demi Calberine]";
-		mes "Ugh~ I think they dropped around here somewhere.";
-		mes "I only need 10! I need to put the other parts together first... Please could you help me?!";
+		mes "Eu preciso de peças para o Mini Canhão, mas não consigo encontrá-las!";
+		next;
+		mes "[Demi Calberine]";
+		mes "Ugh ~ acho que elas estão por aqui em algum lugar.";
+		mes "Eu só preciso de 12! Eu preciso terminar as outras partes... Por favor você poderia me ajudar?! ";
 		changequest 2216,2217;
 		set job_gen,63;
 		close;
 	} else if (job_gen > 62 && job_gen < 74) {
-		mes "Ah, oh no, oh no~~~";
-		mes "Did you find the parts? No, not yet? You promised, please hurry up!";
+		mes "Ah, oh não, oh não~~~";
+		mes "Você encontrou as peças? Não, ainda não? Você prometeu, por favor apresse-se!";
 		close;
 	} else if (job_gen == 74) {
-		mes "With this cart, the firepower won't do well, then let's put it in this way...";
+		mes "Com esse carrinho, o poder de fogo não será tão grande, então vamos colocá-lo desta forma...";
 		next;
-		select("I've got the parts.");
+		select("Eu tenho as peças.");
 		mes "[Demi Calberine]";
-		mes "Oh, gosh!";
-		mes "You scared me to death!!";
-		mes "Oh, are these my lost screws and bolts?";
-		mes "Where did you find these?";
+		mes "Ah, meu Deus!";
+		mes "Você me assustou!";
+		mes "Ah, são esses parafusos!";
+		mes "Onde você os encontrou?";
 		next;
-		select("You asked me to find them!");
+		select("Você me pediu para encontrá-los!");
 		mes "[Demi Calberine]";
-		mes "Oh?, really?";
-		mes "Did I? Hohohohoho.";
-		mes "I don't even know where my mind is.";
+		mes "Nossa? É sério?";
+		mes "Eu pedi mesmo? Hohohohoho.";
+		mes "Eu tinha esquecido! Hohohoho.";
 		next;
 		mes "[Demi Calberine]";
-		mes "Please wait a moment.";
-		mes "I will be done quickly with these.";
+		mes "Por favor, um momento.";
+		mes "Será feito rapidamente.";
 		next;
 		mes "- Snap Snap Snap -";
 		next;
 		mes "[Demi Calberine]";
-		mes "Okay, I've connected the cannon to the cart... Now shall we test the performance?";
+		mes "OK, eu conectei o canhão no carrinho... Agora vamos testar o desempenho?";
 		next;
 		mes "- Sizlle... -";
 		next;
 		mes "- Pop! Pop! Pop! Pop! -";
 		next;
 		mes "[Demi Calberine]";
-		mes "Great! Success!";
-		mes "Whew. You've been a lot of help to me.";
-		mes "Thank you very much.";
+		mes "ótimo! Sucesso! ";
+		mes "Caramba. Você foi de grande ajuda para mim. Hehehe.";
+		mes "Muito obrigado.";
 		next;
 		mes "[Demi Calberine]";
-		mes "Oh, by the way what made you come here?";
-		mes "Did you come here to order something";
+		mes "Ah, a propósito o que fez você vir até aqui?";
+		mes "Você veio aqui para encomendar algo?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'm a Geneticist applicant.";
-		mes "I heard that you were very knowledgeable about portable mini cannons and stuff.";
+		mes "Eu sou um aspirante a bioquímico.";
+		mes "Ouvi que você estava estudando sobre mini-canhões portáteis.";
 		next;
 		mes "[Demi Calberine]";
-		mes "Yep, I deal with many kinds of cannons.";
-		mes "Nowadays, there are those who want to remodel their carts, so I've been installing several additional functions such as mini cannons to their carts.";
+		mes "Sim, eu sei lidar com muitos tipos de canhões.";
+		mes "Hoje em dia, existem muitos que querem remodelar seus carrinhos depois de saberem que eu criei novas funções adicionais como mini-canhões.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Cart remodeling?";
+		mes "Remodelar Carrinhos?";
 		next;
 		mes "[Demi Calberine]";
-		mes "Yes, didn't you want to race out when you went downhill?";
-		mes "Or haven't you ever thought that it was so boring dragging around that plain old cart?";
+		mes "Sim, você não gosta de andar com carrinhos?";
+		mes "Eu adoro os carrinhos!";
 		next;
 		mes "[Demi Calberine]";
-		mes "Carts are no longer just a wagon for storage.";
-		mes "You could hang a cannon on a cart to make it help you boost your attack power.";
+		mes "Carrinhos não servem mais apenas para carregar peso.";
+		mes "Você pode instalar um canhão em um carrinho para torná-lo mais poderoso.";
 		next;
 		mes "[Demi Calberine]";
-		mes "Miss Devries seems to be studying childish experiments downstairs.";
-		mes "I don't understand why those research papers get so popular.";
-		emotion e_pif;
+		mes "Devries parece que está estudando experiências infantis.";
+		mes "Eu não entendo por que esses trabalhos de pesquisa ficam tão popular.";
+		emotion e_rice;
 		next;
 		mes "[Demi Calberine]";
-		mes "See this mini-mini cannon.";
-		mes "This is the smallest and the lightest cannon in the world.";
-		mes "This is what I made but isn?t this so cute? Yipee~";
+		mes "Veja este mini-canhão.";
+		mes "Este é o menor e mais leve canhão no mundo.";
+		mes "Isso é o que eu faço, não é lindo ~?";
 		emotion e_awsm;
 		next;
-		select("Can I get my cart remodeled?");
+		select("Posso remodelar meu carrinho?");
 		mes "[Demi Calberine]";
-		mes "Unfortunately, the cart remodeling is only allowed for Geneticists.";
-		mes "It's a rule from the Alchemist Union, so I can't help it.";
-		next;
-		mes "[Demi Calberine]";
-		mes "But don't get disappointed.";
-		mes "You can be a Geneticist too!";
-		mes "Hohoho.";
+		mes "Infelizmente, para remodelar seu carrinho é necessário que você seja um Bioquímico.";
+		mes "É uma regra da União Alquimista, então por isso eu não posso fazer nada.";
 		next;
 		mes "[Demi Calberine]";
-		mes "And what's more, you can?t so the cart remodeling to just any cart.";
-		mes "It can only be done on quality certified carts that've been polished for a long time.";
+		mes "Mas não fique desapontado.";
+		mes "Você também pode se tornar um Bioquímico!";
+		mes "Hahaha.";
 		next;
 		mes "[Demi Calberine]";
-		mes "You should practice your cart skills whenever you have time until you become a Geneticist.";
-		mes "Till your muscles are dealing with your cart in powerful harmony and your cart moves beautifully,";
+		mes "Veja bem, você não pode simplesmente remodelar qualquer carrinho.";
 		next;
 		mes "[Demi Calberine]";
-		mes "If you want, ^FF0000I'll show you a good training spot.^000000";
-		mes "^FF0000Devries won't like it much^000000, but it's the best place. Haha.";
+		mes "Você deve praticar suas habilidades de carrinho sempre que tiver um tempo até você se torne um Bioquímico.";
+		mes "Seus músculos estarão lidando com seu carrinho em uma harmonia poderosa e seu carrinho irá se mover muito bem.";
 		next;
 		mes "[Demi Calberine]";
-		mes "How about you swing your cart around as practice?";
-		mes "When you swing your cart at least ^FF0000100^000000 times, you can get rid of stress and the cart will be polished up enough.";
+		mes "Se você quiser, ^FF0000Eu vou te mostrar um lugar.^000000";
+		mes "^FF0000TDevries não gosta muito de lá^000000, mas lá é o melhor lugar. Haha.";
 		next;
 		mes "[Demi Calberine]";
-		mes "Well, I need to get to work for the next order.";
-		mes "Come and find me whenever you need training.";
-		mes "I'll help you out whenever you need your cart remodeled.";
+		mes "Que tal você praticar andando com seu carrinho?";
+		mes "Quando você andar com seu carrinho pelo menos ^FF0000100^000000 vezes, você pode se livrar do estresse e do carro haha.";
 		next;
-		mes "- Rattle -";
+		mes "[Demi Calberine]";
+		mes "Bem, eu preciso começar a trabalhar no próximo pedido.";
+		mes "Venha e me encontre sempre que você precisar de treinamento.";
+		mes "Te ajudarei sempre que precisar.";
 		next;
-		mes "- What's this? I feel like the floor is missing somewhere. -";
+		mes "- chocalho -";
+		next;
+		mes "- O que é isso?-";
 		set job_gen,75;
 		changequest 2217,2223;
 		close2;
@@ -928,44 +917,44 @@ job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
 		end;
 	} else if (job_gen == 75) {
 		if (checkquest(2223,HUNTING) == 2) {
-			mes "It seem Miss Devries found out that I put you in her spore pen.";
-			mes "It's funny when you look at her face. After you've killed all those spores.";
+			mes "Parece que a Senhorita Devries descobriu como usar sua caneta de esporos.";
+			mes "É engraçado olhar o rosto dela depois que você derrotou todos os Esporos.";
 			close;
 		}
-		mes "Sigh, haven't you finished practicing?";
-		mes "Do you want to enter the spore pen?";
+		mes "Suspiro, você ainda não terminou?";
+		mes "Você ainda quer continuar treinando?";
 		next;
-		switch(select("Yes.:No.")) {
+		switch(select("Sim.:Não.")) {
 		case 1:
 			mes "[Demi Calberine]";
-			mes "Have fun swinging your cart around~";
+			mes "Divirta-se treinando com seu carrinho. ~";
 			close2;
 			warp "job3_gen01",23,32;
 			end;
 		case 2:
 			mes "[Demi Calberine]";
-			mes "What a shame! I wanted to see Miss Devries's angry face.";
+			mes "É uma vergonha! Eu queria ver o rosto irritado de Devries.";
 			close;
 		}
 	} else if (job_gen > 75) {
-		mes "It seem Miss Devries found out that I put you in her spore pen.";
-		mes "It's funny when you look at her face. After you've killed all those spores.";
+		mes "Parece que a Senhorita Devries descobriu como usar sua caneta de esporo.";
+		mes "É engraçado quando você se olha depois de ter matado os esporos.";
 		close;
 	}
 }
 
--	script	Scattered Stuff#gen	-1,{
+-	script	Materiais Espalhados#gen	-1,{
 	if (job_gen > 62 && job_gen < 74) {
-		mes "- There are so many scattered things on the floor that the lab is in chaos. -";
+		mes "- Há tantas coisas espalhadas no chão por isso o laboratório está um caos. -";
 		next;
-		mes "- You found a little metal fragment. -";
+		mes "- Você encontrou um pequeno fragmento de metal. -";
 		set job_gen, job_gen+1;
 		specialeffect EF_BASH;
 		disablenpc strnpcinfo(0);
 		initnpctimer;
 		close;
 	} else if (job_gen == 74) {
-		mes "- I think I've gathered all of the parts. -";
+		mes "- Espero que junte todas as partes. -";
 		close;
 	}
 	end;
@@ -974,79 +963,79 @@ OnTimer7000:
 	stopnpctimer;
 	end;
 }
-job3_gen01,84,45,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen1	111
-job3_gen01,77,41,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen2	111
-job3_gen01,78,57,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen3	111
-job3_gen01,89,59,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen4	111
-job3_gen01,90,51,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen5	111
-job3_gen01,83,27,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen6	111
-job3_gen01,74,45,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen7	111
+job3_gen01,84,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen1	111
+job3_gen01,77,41,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen2	111
+job3_gen01,78,57,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen3	111
+job3_gen01,89,59,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen4	111
+job3_gen01,90,51,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen5	111
+job3_gen01,83,27,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen6	111
+job3_gen01,74,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen7	111
 
-job3_gen01,18,39,3	script	Warning#gen	837,{
-	mes "= Warning =";
-	mes "If you bully my spores, I'll scream!!!";
+job3_gen01,18,39,3	script	Perigo#gen	837,{
+	mes "= Perigo =";
+	mes "Se você mexer nos meus esporos, eu vou gritar!!!";
 	if (job_gen < 75) close;
 	next;
-	switch(select("Get out of the pen.:Stay still.")) {
+	switch(select("Sair da sala.: Ficar parado.")) {
 	case 1:
-		mes "- I'd better get out before I get caught by Miss Devries. -";
+		mes "- É melhor sair. -";
 		close2;
 		warp "job3_gen01",21,38;
 		end;
 	case 2:
-		mes "- I decide to stay still. -";
+		mes "- Eu quero continuar aqui. -";
 		close;
 	}
 }
 
-job3_gen01,80,12,1	script	Stacked Magazines#gen	111,{
-	mes "- 'Monthly Bang!' magazines are piled up in disorder. -";
+job3_gen01,80,12,1	script	Estoque de Revistas#gen	111,{
+	mes "- 'Bomba mensal!' As revistas estão desorganizadas. -";
 	close;
 }
 
-job3_gen01,83,20,1	script	Bed#gen	111,{
-	mes "- A checker patterned blanket set which looks like it was picked carefully is too good for this dirty bed. -";
+job3_gen01,83,20,1	script	Cama#gen	111,{
+	mes "- Um conjunto de cobertores escolhido com cuidado deve ser muito bom para esta cama suja. -";
 	close;
 }
 
-job3_gen01,85,25,1	script	Opened Book#gen	111,{
-	mes "< Do you want to have my pretty room? Do you have enough zeny? Is there enough room? Run to the Lighthalzen Department Store right away and get the most high-end wall papers and interior accessories! >";
+job3_gen01,85,25,1	script	Livro Aberto#gen	111,{
+	mes "< Você quer usar o meu quarto? Você tem bastante zenys? Há bastante quartos? Vá para a loja de departamentos de Lighthalzen imediatamente para conseguir os melhores quartos! >";
 	next;
-	mes "< Luxurious candles that'll lighten up your room, a huge golden mirror that every lady owns, you cannot miss any of them! >";
+	mes "< Velas de luxo irão iluminar seu quarto, um espelho dourado enorme, você não pode perder tudo isso! >";
 	close;
 }
 
 job3_gen01,81,81,0	script	#dbroom	139,2,2,{
 OnTouch:
-	mes "- It's a room that looks like a storehouse, thanks to so many parcels piled up in the room. -";
+	mes "- É uma sala que parece um armazém, existem tantas coisas aqui. -";
 	close;
 }
 
-job3_gen01,24,32,0	script	The gaze of Devries	139,2,2,{
+job3_gen01,24,32,0	script	Visão de Devries	139,2,2,{
 OnTouch:
 	if (checkquest(2223,HUNTING) == 2) {
-		mapannounce "job3_gen01","Devries: Whoa? Was there a lost kitty in the spore pen?",bc_map,"0x99CC00"; //FW_NORMAL 12 0 0
+		mapannounce "job3_gen01","Devries: O que? Tinha um gatinho perdido no meio dos esporos?",bc_map,"0x99CC00"; //FW_NORMAL 12 0 0
 		emotion e_omg,1;
 		warp "job3_gen01",21,38;
 	}
 	end;
 }
 
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,26,34,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,23,33,0,0	monster	Poison Spore	1428,1,7000,0,0
-job3_gen01,21,30,0,0	monster	Poison Spore	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,26,34,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,23,33,0,0	monster	Esporo Venenoso	1428,1,7000,0,0
+job3_gen01,21,30,0,0	monster	Esporo Venenoso	1428,1,7000,0,0

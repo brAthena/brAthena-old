@@ -900,6 +900,7 @@ payon_in02,21,31,1	script	Caçador#htnGM2	59,{
 		set CACA_Q,17;
 		savepoint "payon",104,99;
 		getitem 1007,1; //  Colar da Sabedoria
+		changequest 4012,4013;
 		next;
 		mes "[Líder da Guilda de Caçadores]";
 		mes "Bem...";

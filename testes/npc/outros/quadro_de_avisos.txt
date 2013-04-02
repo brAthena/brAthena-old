@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.8/1.0                             |
+//   | Versões eA/rA/brA: 1.8/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quadro de avisos.                           |
 //   |--------------------------------------------------------|
@@ -23,88 +23,88 @@
 //   \________________________________________________________/
 
 alberta,111,59,5	script	Bulletin Board#1	837,{
-	mes "[Alberta: The Port City]";
-	mes "Welcome to Alberta, the Port City.";
+	mes "[Cidade Portuária, Alberta]";
+	mes "Bem-vindo à cidade portuária Alberta. Alberta tem um comércio náutico bem desenvolvido. Recentemente, as ligações comerciais de Alberta se expandiram para vários países estrangeiros";
 	next;
-	mes "[Alberta: The Port City]";
-	mes "In Alberta, you can find the Merchant guild where adventurers can change their job to merchant";
+	mes "[Cidade Portuária, Alberta]";
+	mes "Há a Guilda dos Mercadores, onde é possível mudar sua classe para Mercador e muitos representantes de países estrangeiros se situam nas docas para direcionar os turistas aos seus países.";
 	next;
-	mes "[Alberta: The Port City]";
-	mes "As a city that provides dependable sea travel, Alberta has provided the means for the foreign commerce that has brought prosperity to the Rune-Midgarts Kingdom.";
+	mes "[Cidade Portuária, Alberta]";
+	mes "Recentemente, as ligações comerciais de Alberta se expandiram para vários países estrangeiros.";
 	next;
-	mes "[Alberta: The Port City]";
+	mes "[Cidade Portuária, Alberta]";
 	mes "On the docks, you may find representatives from foreign lands that will guide tourists to their countries.";
 	next;
-	mes "[Alberta: The Port City]";
+	mes "[Cidade Portuária, Alberta]";
 	mes "Among seafarers, there is a rumor of a place known as ^338C60Turtle Island^000000. Intrepid adventurers may seek to investigate this rumor and learn the truth for themselves";
 	next;
-	mes "[Alberta: The Port City]";
+	mes "[Cidade Portuária, Alberta]";
 	mes "There is also a sunken ship that has been discovered near Alberta, and it has become a popular area for adventurers to explore";
 	next;
-	mes "[Alberta: The Port City]";
+	mes "[Cidade Portuária, Alberta]";
 	mes "From Alberta, ^1F3A11Payon^000000 is located to the Northwest. You can board passenger ships at the dock to travel to ^5E5C69Izlude^000000.";
 	mes "Enjoy your travels."; 
 	close;
 }
 
 geffen,124,65,5	script	Bulletin Board#2	837,{
-	mes "[Geffen: The City of Magic]";
-	mes "Welcome to Geffen, the City of Magic. Geffen is well known for its various legends related to magic.";
+	mes "[A Cidade da Magia, Geffen]";
+	mes "Bem-vindo a Geffen, a Cidade da Magia. Geffen é bem conhecida por suas várias lendas relacionadas à magia.";
 	next;
-	mes "[Geffen: The City of Magic]";
+	mes "[A Cidade da Magia, Geffen]";
 	mes "Points of interest in the city include the Forge, where people can change their jobs to Blacksmith, the Magic Academy for aspiring mages, and the Geffen Tower for the Wizard job change.";
 	next;
-	mes "[Geffen: The City of Magic]";
+	mes "[A Cidade da Magia, Geffen]";
 	mes "Underneath the Geffen Tower lies a dungeon in which dreadful monsters are rumored to appear.";
 	next;
-	mes "[Geffen: The City of Magic]";
+	mes "[A Cidade da Magia, Geffen]";
 	mes "It is said that the lost city of Gefenia, a place of elven lore and legend, is hidden within the depths of this dungeon.";
 	next;
-	mes "[Geffen: The City of Magic]";
+	mes "[A Cidade da Magia, Geffen]";
 	mes "From Geffen, the ^828E28Orc Village^000000 is located to the South, ^4C6055Glast Heim^000000 to the West, ^6D6FE0Prontera^000000 to the far East, and ^744B2DMt. Mjolnir^000000 to the North. Enjoy your stay here in Geffen.";
 	close;
 }
 
 gef_fild10,69,340,5	script	Bulletin Board#3	837,{
-	mes "[Orc Dungeon]";
+	mes "[Caverna dos Orcs]";
 	mes "^6B1312Caution!^000000";
-	mes "The Orc Dungeon is comprised of 2 levels. Although not very strong individually, the monsters here attack in groups. Be careful.";
+	mes "The Caverna dos Orcs is comprised of 2 levels. Although not very strong individually, the monsters here attack in groups. Be careful.";
 	next;
-	mes "[Orc Dungeon]";
+	mes "[Caverna dos Orcs]";
 	mes "Only in this dungeon will you be able to encounter Orc Skeletons, Zenorcs and Orc Zombies.";
 	next;
-	mes "[Orc Dungeon]";
+	mes "[Caverna dos Orcs]";
 	mes "Holy attribute weapons will greatly aid you in this place, since most of the monsters in this dungeon are Undead.";
 	next;
-	mes "[Orc Dungeon]";
+	mes "[Caverna dos Orcs]";
 	mes "If you don't have a Holy Weapon and you're teamed with a Priest, the Priest's Aspersio spell would be of tremendous help.";
 	close;
 }
 
 izlu2dun,104,92,5	script	Bulletin Board#4	837,{
-	mes "[Byalan Island]";
+	mes "[Ilha Byalan]";
 	mes "^6B1312Caution!^000000";
 	mes "The Izlude dungeon is comprised of 5 levels. The first few levels are suited for newer adventurers.";
 	next;
-	mes "[Byalan Island]";
+	mes "[Ilha Byalan]";
 	mes "As you venture deeper into the Byalan dungeon, you will encounter stronger, more powerful monsters.";
 	next;
-	mes "[Byalan Island]";
+	mes "[Ilha Byalan]";
 	mes "With a few exceptions, most of the monsters in this dungeon are of the Water attribute. Therefore, a Wind attribute weapon will help you greatly";
 	close;
 }
 	
 izlude,131,116,4	script	Bulletin Board#5	837,{
-	mes "[Izlude: The Satellite City]";
+	mes "[A Cidade Satélite, Izlude]";
 	mes "Welcome to Izlude, the satellite of Prontera. Izlude was built to support Prontera's defense and to accommodate its burgeoning population";
 	next;
-	mes "[Izlude: The Satellite City]";
+	mes "[A Cidade Satélite, Izlude]";
 	mes "Points of interest include the Swordsman Association building which allows adventurers to change their job to Swordsman, and the Battle Area that is North of Izlude.";
 	next;
-	mes "[Izlude: The Satellite City]";
-	mes "At the docks, you may take a ship and travel to ^123972Alberta^000000 or ^2F0400Byalan Island^000000.";
+	mes "[A Cidade Satélite, Izlude]";
+	mes "At the docks, you may take a ship and travel to ^123972Alberta^000000 or ^2F0400Ilha Byalan^000000.";
 	next;
-	mes "[Izlude: The Satellite City]";
+	mes "[A Cidade Satélite, Izlude]";
 	mes "From Izlude, ^6D6FE0Prontera^000000 is located to the Northwest, and ^1F3A11Payon^000000 is located to the South.";
 	mes "Enjoy your travels in the Rune-Midgarts Kingdom.";
 	close;
@@ -121,10 +121,10 @@ payon,178,108,5	script	Bulletin Board#06	837,{
 	mes "Payon has various armor and weapons, especially for the Archer class. If you wish to become an Archer, it would be best to become familiar with this city.";
 	next;
 	mes "[Payon: The Mountain City]";
-	mes "Payon Palace is located in the center of the city. The Archer Village is located in the Northern part of Payon. There, people can change their jobs to Archer.";
+	mes "Payon Palace is located in the center of the city. The Vilarejo dos Arqueiros is located in the Northern part of Payon. There, people can change their jobs to Archer.";
 	next;
 	mes "[Payon: The Mountain City]";
-	mes "Near the Archer Village, you can find the ^2F0400Payon Cave^000000 where Undead monsters reside.";
+	mes "Near the Archer Village, you can find the ^2F0400Caverna de Payon^000000 where Undead monsters reside.";
 	next;
 	mes "[Payon: The Mountain City]";
 	mes "From Payon, ^123972Alberta^000000 is located to the Southeast, and ^866C4BMorroc^000000 is to the West. ^5E5C69Izlude^000000 and ^6D6FE0Prontera^000000 are North of Payon.";
@@ -133,65 +133,58 @@ payon,178,108,5	script	Bulletin Board#06	837,{
 }
 	
 pay_arche,79,31,5	script	Bulletin Board#07	837,{
-	mes "[Archer Village]"; 
-	mes "Welcome to the Payon Archer Village where Novices can change their jobs to Archer.";
+	mes "[Vilarejo dos Arqueiros]"; 
+	mes "Welcome to the Payon Vilarejo dos Arqueiros where Novices can change their jobs to Archer.";
 	next;
-	mes "[Archer Village]";
-	mes "The Archer Village provides Bows and Tights that are available for purchase. These are necessities for new Archers and Hunters.";
+	mes "[Vilarejo dos Arqueiros]";
+	mes "The Vilarejo dos Arqueiros provides Bows and Tights that are available for purchase. These are necessities for new Archers and Hunters.";
 	next;
-	mes "[Archer Village]";
+	mes "[Vilarejo dos Arqueiros]";
 	mes "If you wish to become an Archer, it is suggested to become familiar with this village. For aspiring Hunters, the Hunter Guild is located in a field that is East of Payon.";
 	close;
 }
 
 pay_arche,39,134,5	script	Bulletin Board#08	837,{
-	mes "[Payon Cave]";
+	mes "[Caverna de Payon]";
 	mes "^6B1312Caution!^000000";
-	mes "Payon Cave consists of 5 levels full of Undead and Demon monsters. Beware of swarms of Hydra in the third and fourth levels.";
+	mes "Caverna de Payon consists of 5 levels full of Undead and Demon monsters. Beware of swarms of Hydra in the third and fourth levels.";
 	next;
-	mes "[Payon Cave]";
+	mes "[Caverna de Payon]";
 	mes "In the fifth level, there is a pretty, yet dreadful boss monster known as ^6B1312Moonlight^000000 that spawns at certain times. Approach with extreme caution.";
 	close;
 }
 	
 prontera,148,49,5	script	Bulletin Board#09	837,{
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "Welcome to Prontera, the capital city of Rune-Midgard.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "Prontera is located in the center of the Rune-Midgard continent and is very well-known as a city of flourishing commerce.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "In this city, you can fint the Sanctuary, where people can change their jobs to Acolyte and Priest.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "You can also find the Castle, where people can change their jobs to Crusader.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "Please feel free to explore the streets of Prontera, as there are various tourist attractions within the city.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "When you need to upgrade your weapons and armors, please visit the building in the 5 o'clock direction from the fountain in the center of Prontera.";
 	next;
-	mes "[Prontera: Capital of the]";
-	mes "[Rune-Midgards Kingdom]";
+	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "From Prontera, ^5E5C69Izlude^000000 is located to the Southeast, ^1F3A11Payon^000000 to the far South, ^683C1FGeffen^000000 to the far West and ^2D3832Al De Baran^000000 to the far North.";
 	mes "Enjoy Your time in Prontera.";
 	close;
 }
 
 mjolnir_02,76,362,5	script	Bulletin Board#10	837,{
-	mes "[Coal Mine]";
+	mes "[Mina de Carvão]";
 	mes "^6B1312Caution!^000000";
-	mes "The Coal Mine consists of a total of 3 levels. This dungeon is suited to both new and experienced adventurers, depending on the dungeon level.";
+	mes "The Mina de Carvão consists of a total of 3 levels. This dungeon is suited to both new and experienced adventurers, depending on the dungeon level.";
 	next;
-	mes "[Coal Mine]";
+	mes "[Mina de Carvão]";
 	mes "In the third level, monsters tend to attack adventurers in swarms, so avoid being surrounded. Since this area is a mine, many Ores can be found within the depths of this dungeon.";
 	close;
 }
@@ -204,7 +197,7 @@ morocc,152,110,5	script	Bulletin Board#11	837,{
 	mes "Morroc Castle lies in the center of this city. Please feel free to explore this town, and enjoy its unique atmosphere. However, watch your pockets and beware of Rogues and Thieves.";
 	next;
 	mes "[Morroc: The Frontier Town]";
-	mes "From Morroc, the ^660000Pyramid Dungeon^000000 can be found to the Northwest, and the ^660000Sphinx Dungeon^000000 can be found to the West. To the Southeast, you may find ^660000Ant Hell^000000.";
+	mes "From Morroc, the ^660000Pyramid Dungeon^000000 can be found to the Northwest, and the ^660000Esfinge Dungeon^000000 can be found to the West. To the Southeast, you may find ^660000Ant Hell^000000.";
 	next;
 	mes "[Morroc: The Frontier Town";
 	mes "The Assassin Guild is rumored to be located to the Southeast. When you head East from Morroc, and then North, you will arrive at ^3355FFProntera^000000.";
@@ -306,7 +299,7 @@ gef_fild13,202,31,5	duplicate(OrcsBoard)	Bulletin Board#orc1	835
 
 gef_fild13,29,206,5	script	Bulletin Board::KoboldsBoard	836,{
 
-	mes "[Kobold Village]";
+	mes "[Vilarejo dos Cobolds]";
 	mes "^6B1312Caution!^000000";
 	mes "You're heading to the Kobold Village.";
 	mes "Please be aware this village is filled with many kobolds.";
@@ -317,20 +310,20 @@ gef_fild08,211,24,5	duplicate(KoboldsBoard)	Bulletin Board#kb1	836
 
 gef_fild10,109,23,5	script	Bulletin Board#15	836,{
 
-	mes "[Goblin Village]";
+	mes "[Vilarejo dos Goblins]";
 	mes "^6B1312Caution!^000000";
-	mes "You're heading to the Goblin Village.";
+	mes "You're heading to the Vilarejo dos Goblins.";
 	mes "Please be aware this village is filled with many goblins.";
 	close;
 }
 
 prt_fild05,278,220,5	script	Bulletin Board#16	837,{
-	mes "[Culvert]";
-	mes "Culvert is comprised of a total of";
+	mes "[Esgotos]";
+	mes "Esgotos is comprised of a total of";
 	mes "4 levels, and is a good training";
 	mes "ground for new adventurers.";
 	next;
-	mes "[Culvert]";
+	mes "[Esgotos]";
 	mes "In order to access the Culver, you";
 	mes "must volunteer as a monster";
 	mes "exterminator at the Prontera";
@@ -338,9 +331,9 @@ prt_fild05,278,220,5	script	Bulletin Board#16	837,{
 	mes "monsters here may attack in";
 	mes "swarms.";
 	next;
-	mes "[Culvert]";
+	mes "[Esgotos]";
 	mes "In the fourth level of the Prontera";
-	mes "Culvert, you may encounter the boss";
+	mes "Esgotos, you may encounter the boss";
 	mes "monster known as the ^6B1312Golden Thief";
 	mes "^6B1312Bug^000000. New adventurers should";
 	mes "exercise caution.";
@@ -348,42 +341,36 @@ prt_fild05,278,220,5	script	Bulletin Board#16	837,{
 }
 
 yuno,154,112,5	script	Bulletin Board#17	837,{
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "Welcome to Juno, the City of Sages.";
 	mes "Juno is kept aloft in the air by";
 	mes "the power of the Ymir Heart";
 	mes "Pieces";
 	next;
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "Those interested in becoming Sages";
 	mes "should visit the Sage Castle for";
 	mes "more information on the Sage job";
 	mes "and its requirements.";
 	next;
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "Other notable places include the";
 	mes "Monster Museum, Magic Academy";
 	mes "and the Juno Library.";
 	next;
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "Somewhere around Juno, there is";
 	mes "information regarding secret access";
 	mes "to the world where adventurers may";
 	mes "be reborn with newfound strength.";
 	next;
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "To the Southeast of Juno lies ^6B1312Nogg";
 	mes "^6B1312Road^000000, the Magma Dungeon. Nogg Road";
 	mes "is infamous for its aggressive";
 	mes "creatures, so be careful";
 	next;
-	mes "[Juno: Capital of]";
-	mes "[The Schwarzwald Republic]";
+	mes "[Capital da República de Schwartzwald]";
 	mes "From Juno, ^2D3832Al De Baran^000000, a city of";
 	mes "the Rune-Midgarts Kingdom, is";
 	mes "located to the South.";
@@ -395,7 +382,7 @@ aldebaran,145,105,5	script	Bulletin Board#18	837,{
 	mes "Welcome to Al De Baran, the border";
 	mes "city of the Rune-Midgarts Kingdom.";
 	mes "Al De Baran's beautiful canals and";
-	mes "majestic Clock Tower are a source";
+	mes "majestic Torre do Relógio are a source";
 	mes "of pride for its citizens.";
 	next;
 	mes "[Al De Baran: The Border City]";
@@ -422,21 +409,21 @@ aldebaran,145,105,5	script	Bulletin Board#18	837,{
 }
 
 aldebaran,136,133,5	script	Bulletin Board#19	837,{
-	mes "[Clock Tower]";
+	mes "[Torre do Relógio]";
 	mes "^6B1312Caution!^000000";
 	mes "Only well-experienced adventurers";
 	mes "should consider entering the Clock";
 	mes "Tower. There are a total of 8";
 	mes "levels: 4 beneath the ground and 4 above the earth.";
 	next;
-	mes "[Clock Tower]";
+	mes "[Torre do Relógio]";
 	mes "The main monsters of the Clock";
 	mes "Tower are Clocks, Alarms and";
 	mes "Bathories. Beware of the Clock";
 	mes "Tower Keepers on patrol.";
 	next;
-	mes "[Clock Tower]";
-	mes "The paths in the Clock Tower are";
+	mes "[Torre do Relógio]";
+	mes "The paths in the Torre do Relógio are";
 	mes "winding and complicated, so please";
 	mes "be careful and avoid getting";
 	mes "lost.";
@@ -444,19 +431,19 @@ aldebaran,136,133,5	script	Bulletin Board#19	837,{
 }
 
 moc_fild19,107,101,5	script	Bulletin Board#20	837,{
-	mes "[Sphinx]";
+	mes "[Esfinge]";
 	mes "^6B1312Caution!^000000";
-	mes "The Sphinx consists of 5 levels.";
+	mes "The Esfinge consists of 5 levels.";
 	mes "This dungeon is suited for training";
 	mes "well-experienced adventurers.";
 	next;
-	mes "[Sphinx]";
+	mes "[Esfinge]";
 	mes "There are many aggressive monsters";
-	mes "residing in the Sphinx, and it is";
+	mes "residing in the Esfinge, and it is";
 	mes "advised to run away if you happen";
 	mes "to be surrounded by them.";
 	next;
-	mes "[Sphinx]";
+	mes "[Esfinge]";
 	mes "In the fifth level, the boss";
 	mes "monster ^6B1312Pharaoh^000000 will appear at";
 	mes "certain times. Exorcise with";
@@ -466,15 +453,15 @@ moc_fild19,107,101,5	script	Bulletin Board#20	837,{
 
 gef_tower,55,142,5	script	Bulletin Board#21	837,{
 
-	mes "[Geffen Dungeon]";
+	mes "[Caverna de Geffen]";
 	mes "^6B1312Caution!^000000"; 
-	mes "Geffen dungeon is consisted of 3 levels";
+	mes "Caverna de Geffen is consisted of 3 levels";
 	mes "is too difficult for new adventurers to venture.";
 	mes "As main monsters constantly appear,";
 	mes "there are ^6B1312Hunter Flies^000000, ^6B1312Nightmares^000000 and ^6B1312Jakks^000000.";
 	mes "Nightmares and Jakks only appear in this dungeon.";
 	next;
-	mes "[Geffen Dungeon]";
+	mes "[Caverna de Geffen]";
 	mes "On the 2nd level of this dungeon,";
 	mes "^6B1312Ogretooth^000000, the creature of a doomed sword and ^6B1312Dracula^000000,";
 	mes "the boss monster appear without warning.";
@@ -486,11 +473,11 @@ xmas_fild01,75,80,5	script	Bulletin Board#22	837,{
 
 	mes "[Winter Town, Lutie]";
 	mes "Welcome to Lutie, the town of snowfall.";
-	mes "Manufacturing toys in the toy factory is the main";
+	mes "Manufacturing toys in the Fábrica de Brinquedos is the main";
 	mes "business of this town.";
 	next;
 	mes "[Winter Town, Lutie]";
-	mes "You can access to the toy factory dungeon";
+	mes "You can access to the Fábrica de Brinquedos dungeon";
 	mes "at the north of Lutie.";
 	mes "Please remember to visit Lutie in Christmas season.";
 	mes "There are various event held with joy.";
@@ -500,13 +487,13 @@ xmas_fild01,75,80,5	script	Bulletin Board#22	837,{
 
 xmas,147,311,5	script	Bulletin Board#23	837,{
 
-	mes "[Toy Factory]";
+	mes "[Fábrica de Brinquedos]";
 	mes "^6B1312Caution!^000000";
-	mes "Toy Factory is consisting of 2 levels.";
+	mes "Fábrica de Brinquedos is consisting of 2 levels.";
 	mes "This dungeon is not that difficult to venture for new adventurers,";
 	mes "but there are 3 dangerous boss monsters spawn at certain time.";
 	next;
-	mes "[Toy Factory]";
+	mes "[Fábrica de Brinquedos]";
 	mes "In 1st level, you will encounter a boss monster, ^6B1312Angeling^000000.";
 	mes "In 2nd level, you will encounter 2 dangrous boss monsters which are";
 	mes "^6B1312Stormy Knight^000000 and ^6B1312Hatii^000000. It is advised to be attentive while venturing.";
@@ -573,12 +560,12 @@ moc_fild15,267,264,5	script	Bulletin Board#26	837,{
 
 moc_ruins,61,164,5	script	Bulletin Board#27	837,{
 
-	mes "[Pyramids]";
+	mes "[Pirâmides]";
 	mes "^6B1312Caution!^000000";
-	mes "Pyramids is consisting of total 7 levels as 4 levels on the earth and the rest under the ground.";
+	mes "Pirâmides is consisting of total 7 levels as 4 levels on the earth and the rest under the ground.";
 	mes "First few levels are suited for new adventurers to venture, but as deeper you go down, you will encounter stronger monsters.";
 	next;
-	mes "[Pyramids]";
+	mes "[Pirâmides]";
 	mes "In first level, there is the thief guild where people can change their jobs into Thief.";
 	mes "In the 4:th level, a boss monster called ^6B1312Osiris^000000 appears at certain time.";
 	mes "In the 3:d basement, ^6B1312Amon Ra^000000 appears at certain time.";

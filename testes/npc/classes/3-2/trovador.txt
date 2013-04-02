@@ -12,118 +12,119 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.3/1.0                          |
+//   | Versões eA/rA/brA: ??/1.3/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Trovador.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Gordis]                            |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,196,133,4	script	Bard#job_min	486,{
+alberta,196,133,4	script	Bardo#job_min	486,{
 	if (job_min == 0) {
 		if (BaseJob == Job_Bard && BaseLevel > 98 && JobLevel > 49) {
-			mes "[Bard]";
-			mes "The voice of heaven revolves around in my ears";
-			mes "like a wandering wind,";
+			mes "[Bardo]";
+			mes "A voz dos céus ecoa em meus ouvidos";
+			mes "como o vento sem rumo.";
 			next;
-			mes "[Bard]";
-			mes "Even though I close my eyes and cover my ears,";
-			mes "I can hear a voice from somewhere,";
+			mes "[Bardo]";
+			mes "Mesmo que eu feche meus olhos e tape meus ouvidos,";
+			mes "consigo ouvir uma voz que vem de algum lugar,";
 			next;
-			mes "[Bard]";
-			mes "It put temptation in exhausted crewman to deep sleep,";
-			mes "made them feel as if they were in a land of dreams.";
+			mes "[Bardo]";
+			mes "Ela convida os exaustos tripulantes para um sono profundo,";
+			mes "e os faz se sentirem em uma terra de sonhos.";
 			next;
-			mes "[Girl]";
-			mes "Ahhh!! Awesome!!";
+			mes "[Garota]";
+			mes "Ahhh!! Fantástico!!";
 			next;
-			mes "[Boy]";
-			mes "Encore!! Encore!!!";
+			mes "[Garoto]";
+			mes "Bis!! Bis!!!";
 			next;
-			mes "[Old Man passing by]";
-			mes "Eeeee~ that's not real song...";
+			mes "[Idoso]";
+			mes "Ehehehe~ isso não é uma música de verdade...";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Clap.";
-			mes "I can feel the rhythm.";
-			mes "Can I hear one more song?";
+			mes "^0000FF**Aplausos**^000000";
+			mes "Eu posso sentir o rítmo.";
+			mes "Será que você pode tocar mais uma canção?";
 			next;
-			mes "[Bard]";
+			mes "[Bardo]";
 			mes "Hum?";
-			mes "Judging by your outfit I think you are good at singing, why don't you sing us a song?";
+			mes "Julgando pela roupa eu acho que você é bom de canto, porque não canta para nós?";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "??!!";
 			next;
-			mes "[Bard]";
+			mes "[Bardo]";
 			mes "Hahaha!";
-			mes "Just kidding.";
-			mes "Were you serious? Haha.";
+			mes "Brincadeira.";
+			mes "Pensou que era pra valer? Haha.";
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "...";
 			next;
 			mes "[Karian]";
-			mes "Sorry~";
-			mes "Don't be upset...";
-			mes "My name is Karian, I'm just going around.";
+			mes "Desculpe~";
+			mes "Não fique chateado...";
+			mes "Meu nome é Karian, estou aqui de passagem.";
 			next;
 			mes "[Karian]";
-			mes "Do you want to go somewhere?";
-			mes "Alberta is perfect for traveling.";
+			mes "Quer ir a algum lugar?";
+			mes "Alberta é uma excelente cidade portuária.";
 			next;
 			mes "[Karian]";
-			mes "But when you go to sea, you have to be careful.";
-			mes "If you run into a Siren, then it's only a matter of time before she kills you.";
+			mes "Quando você for ao mar, deve tomar muito cuidado.";
+			mes "Se você encontrar uma sereia, será uma questão de tempo para que ela acabe com você.";
 			next;
 			mes "[Karian]";
-			mes "No man can survive after hearing ^f57d7dthe voice of a Siren^000000.";
+			mes "Ninguém sobrevive depois de escutar ^f57d7do canto da sereia^000000.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "I'm "+strcharinfo(0)+".";
-			mes "Are you here in Alberta to travel?";
+			mes "Eu sou "+strcharinfo(0)+".";
+			mes "Você veio a Alberta para viajar?";
 			next;
 			mes "[Karian]";
-			mes "Um... I'm not trying to leave...";
+			mes "Hum.. Não estou tentando sair...";
 			mes "...";
 			next;
 			mes "[Karian]";
-			mes "Yes!";
-			mes "I'm looking for '^f57d7dMaestro Song^000000'.";
+			mes "Sim!";
+			mes "Estou procurando pelo trovador '^f57d7dSong^000000'.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "^f57d7d'Maestro Song'^000000, you mean the poet of legend?";
+			mes "^f57d7d'Song'^000000, você fala do poeta lendário?";
 			next;
 			mes "[Karian]";
-			mes "That's right.";
-			mes "According to a rumor that I heard, he is a rich noble.";
-			mes "But other than that fact, I can't get any more information.";
+			mes "Isso mesmo.";
+			mes "Eu ouvi um rumor, que dizia que ele era um nobre muito rico.";
+			mes "Mas fora isso, não consegui nenhuma outra informação.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Why can't you get any more information?";
+			mes "Por que não conseguiu mais informações?";
 			next;
 			mes "[Karian]";
-			mes "Well?";
-			mes "That's why I tried to go Prontera...";
-			mes "Umm...";
+			mes "Bem...";
+			mes "Foi por isso que eu tentei ir até Prontera...";
+			mes "Humm...";
 			next;
 			mes "[Karian]";
-			mes "If you are interested, why don't help me find out where ^f57d7d'Maestro Song'^000000 is?";
+			mes "Se você está interessado, por que não me ajuda a encontrar o paradeiro do trovador ^f57d7d'Song'^000000?";
 			next;
 			if(select("Ok.:No.") == 2) {
 				mes "["+strcharinfo(0)+"]";
-				mes "I'm not interested.";
+				mes "Não estou interessado.";
 				next;
 				mes "[Karian]";
-				mes "Are you? It can't be helped.";
-				mes "See you later~";
+				mes "Não está? Tudo bem então.";
+				mes "Até mais~";
 				close;
 			}
 			mes "["+strcharinfo(0)+"]";
-			mes "Ok, I will.";
+			mes "Ok, eu vou lhe ajudar.";
 			set job_min,1;
 			setquest 11135;
 			next;
@@ -131,233 +132,234 @@ alberta,196,133,4	script	Bard#job_min	486,{
 			mes "It's good to travel by yourself but sometimes you feel that you want to have friends around.";
 			next;
 			mes "[Karian]";
-			mes "Then "+strcharinfo(0)+".";
-			mes "Can you collect some ^f57d7dInformation on 'Maestro Song'^000000 in ^f57d7dProntera^000000?";
-			mes "Because I have something to investigate in Alberta.";
+			mes "Então "+strcharinfo(0)+".";
+			mes "Você pode coletar algumas ^f57d7dinformações sobre o trovador 'Song'^000000 em ^f57d7dProntera^000000?";
+			mes "Por que eu tenho algo para investigar em Alberta.";
 			next;
 			mes "[Karian]";
-			mes "Please come back here after finishing the investigation.";
+			mes "Por favor volte quando terminar a investigação.";
 			close;
 		}
-		mes "[Bard]";
-		mes "You have to be careful when you are going to sea.";
-		mes "If a Siren fascinates you, then it's only a matter of time before she kills you.";
+		mes "[Bardo]";
+		mes "Quando você for ao mar, deve tomar muito cuidado.";
+		mes "Se você encontrar uma sereia, será uma questão de tempo para que ela acabe com você.";
 		next;
-		mes "[Bard]";
-		mes "No man can survive after hearing ^f57d7dthe voice of a Siren^000000.";
+		mes "[Bardo]";
+		mes "Ninguém sobrevive depois de escutar ^f57d7do canto da sereia^000000.";
 		close;
 	} else if (job_min == 1) {
 		mes "[Karian]";
-		mes "It's good to travel by yourself but sometimes you feel that you want to have friends around.";
+		mes "É muito bom viajar sozinho, mas você nota que estar acompanhado de amigos também é muito bom.";
 		next;
 		mes "[Karian]";
-		mes "Then "+strcharinfo(0)+".";
-		mes "Can you collect some ^f57d7dInformation on 'Maestro Song'^000000 in ^f57d7dProntera^000000?";
-		mes "Because I have something to investigate in Alberta.";
+		mes "Então "+strcharinfo(0)+".";
+		mes "Você pode coletar algumas ^f57d7dinformações sobre o trovador 'Song'^000000 em ^f57d7dProntera^000000?";
+		mes "Por que eu tenho algo para invesigar em Alberta.";
 		next;
 		mes "[Karian]";
-		mes "Please come back here after finishing the investigation.";
+		mes "Por favor volte quando terminar a investigação.";
 		close;
 	} else if (job_min > 1 && job_min < 4) {
 		mes "[Karian]";
-		mes "Can you collect some ^f57d7d information on 'Maestro Song'^000000 in ^f57d7dProntera^000000?";
-		mes "Because I have something to investigate in Alberta.";
+		mes "Você pode coletar algumas ^f57d7dinformações sobre o trovador 'Song'^000000 em ^f57d7dProntera^000000?";
+		mes "Por que eu tenho algo para invesigar em Alberta.";
 		next;
 		mes "[Karian]";
-		mes "Please come back here after finishing the investigation.";
+		mes "Por favor volte quando terminar a investigação.";
 		close;
 	} else if (job_min == 4) {
 		mes "[Karian]";
-		mes strcharinfo(0)+"! Did you already go to Prontera?";
-		mes "Did you get any useful information?";
+		mes ""+strcharinfo(0)+"! Você já foi até Prontera?";
+		mes "Conseguiu alguma informação útil?";
 		next;
 		mes "[Karian]";
-		mes "Hum~ did you?";
-		mes "I think that's not enough to use...";
+		mes "Hum~ acho que...";
+		mes "Essa informação não é muito útil...";
 		next;
 		mes "[Karian]";
-		mes "Huhu~ But I got some useful information from some of the captains here in Alberta.";
+		mes "Haha~ Mas eu consegui uma pista concreta de alguns capitães aqui em Alberta.";
 		next;
 		mes "[Karian]";
-		mes "I heard that there is a ship which had a man who could be ^f57d7dMaestro Song^000000.";
-		mes "A few years ago, it was a ship headed for ^f57d7dHugel^000000.";
+		mes "Ouvi dizer que um homem embarcou num navio alguns anos atrás.";
+		mes "Esse homem poderia ser o ^f57d7dTrovador Song^000000!";
+		mes "O navio seguia uma rota até ^f57d7dHugel^000000."; 
 		next;
 		mes "[Karian]";
-		mes "It doesn't exist any more, so I need to take an airship...";
-		mes "It's my first time to take it.";
+		mes "Esse navio não existe mais, então eu tenho que ir de dirigível...";
+		mes "Será minha primeira vez em um.";
 		next;
 		mes "[Karian]";
-		mes "Um..";
-		mes "Anyway let's meet at the airship in Izlude.";
+		mes "Hum..";
+		mes "De qualquer forma, nos encontramos no aeroporto de Izlude.";
 		set job_min,5;
 		changequest 11138,11139;
 		close;
 	} else if (job_min == 100) {
 		mes "[Karian]";
-		mes "The voice of heaven revolves around my ears";
-		mes "like a wandering wind,";
-		next;
-		mes "[Bard]";
-		mes "Even though I close my eyes and cover my ears,";
-		mes "I can hear a voice from somewhere,";
-		next;
-		mes "[Bard]";
-		mes "It put temptation in exhausted crewman to deep sleep,";
-		mes "make them feel as if they are in the land of dreams.";
+		mes "A voz dos céus ecoa em meus ouvidos";
+		mes "como o vento sem rumo,";
 		next;
 		mes "[Karian]";
-		mes "Ah!!! "+strcharinfo(0)+" Long time no see!";
-		mes "What? What am I doing here?";
+		mes "Mesmo que eu feche meus olhos e tape meus ouvidos,";
+		mes "eu consigo ouvir uma voz que vem de algum lugar,";
 		next;
 		mes "[Karian]";
-		mes "Well?";
-		mes "Let me leave here?";
+		mes "Ela convida os exaustos tripulantes para um sono profundo,";
+		mes "e os faz sentir em uma terra de sonhos.";
 		next;
-		mes "[Minstrel Song]";
-		mes "Whenever you want to see me, visit me.";
-		mes "If you have time come by and have a chat with me.";
+		mes "[Karian]";
+		mes "Ah!!! "+strcharinfo(0)+" há quanto tempo!";
+		mes "O-o que faço aqui?";
 		next;
-		switch(select("Accept.:Refuse.")) {
+		mes "[Karian]";
+		mes "Bem?";
+		mes "Me permite?";
+		next;
+		mes "[Menestrel Cantante]";
+		mes "Sempre que você quiser me ver e me visitar.";
+		mes "Se você quiser pode vir e conversar comigo.";
+		next;
+		switch(select("Aceitar.:Recusar.")) {
 		case 1:
-			mes "[Minstrel Song]";
-			mes "Did you visit somewhere fun?";
-			mes "I'm excited!";
+			mes "[Menestrel Cantante]";
+			mes "Você visitou algum lugar divertido?";
+			mes "Estou animado!";
 			close2;
 			warp "prt_in",101,174;
 			end;
 		case 2:
-			mes "[Minstrel Song]";
-			mes "Then pass by here next time.";
+			mes "[Menestrel Cantante]";
+			mes "Volte quando quiser.";
 			close;
 		}
 	}
-	mes "[Bard]";
-	mes "The voice of heaven revolves around in my ears";
-	mes "like wandering wind,";
+	mes "[Bardo]";
+	mes "A voz dos céus ecoa em meus ouvidos";
+	mes "como o vento sem rumo,";
 	next;
-	mes "[Bard]";
-	mes "Even though I close my eyes and cover my ears,";
-	mes "I can hear the voice from somewhere,";
+	mes "[Bardo]";
+	mes "Mesmo que eu feche meus olhos e tape meus ouvidos,";
+	mes "eu consigo ouvir uma voz que vem de algum lugar,";
 	next;
-	mes "[Bard]";
-	mes "It put temptation in exhausted crewman to deep sleep,";
-	mes "make them feel as if they are in the land of dreams.";
+	mes "[Bardo]";
+	mes "Ela convida os exaustos tripulantes para um sono profundo,";
+	mes "e os faz se sentirem em uma terra de sonhos.";
 	close;
 }
 
-prontera,141,97,4	script	Warmhearted woman	701,{
-	mes "[Warmhearted woman]";
+prontera,141,97,4	script	Mulher Bondosa	701,{
+	mes "[Mulher Bondosa]";
 	if (job_min == 1) {
-		mes "Maestro Song?";
-		mes "I haven't heard that name before.";
+		mes "Trovador Song?";
+		mes "Nunca vi uma pessoa com esse nome.";
 		next;
-		mes "[Warmhearted woman]";
-		mes "Is he a legendary poet?";
-		mes "I don't know who he is, but I guess he is a grand man?";
+		mes "[Mulher Bondosa]";
+		mes "Ele é um poeta lendário?";
+		mes "Eu não sei quem ele é, mas acredito que deve ser muito famoso.";
 		next;
-		mes "[Warmhearted woman]";
-		mes "Ah! Ask a ^f57d7dman wearing glasses near the gate of the castle^000000 about a song.";
-		mes "He will make a book of 100 hit songs~";
+		mes "[Mulher Bondosa]";
+		mes "Ah! pergunte ao ^f57d7dHomem de Óculos próximo ao portão do castelo^000000 sobre esse tal de Song.";
+		mes "Ele está escrevendo um livro com as 100 músicas mais populares~";
 		next;
-		mes "[Warmhearted woman]";
-		mes "He must know something about making that book.";
+		mes "[Mulher Bondosa]";
+		mes "Ele deve saber algo, já que está escrevendo um livro.";
 		set job_min,2;
 		changequest 11135,11136;
 		close;
 	} else if (job_min == 2) {
-		mes "Ah! Ask a ^f57d7dman wearing glasses near the gate of the castle^000000 about the song.";
-		mes "They will make a book of 100 hit songs~";
+		mes "Ah! pergunte ao ^f57d7dHomem de Óculos próximo ao portão do castelo^000000 sobre esse tal de Song.";
+		mes "Ele está escrevendo um livro com as 100 músicas mais populares~";
 		next;
-		mes "[Warmhearted woman]";
-		mes "He must know something about making that book.";
+		mes "[Mulher Bondosa]";
+		mes "Ele deve saber algo, já que está escrevendo um livro.";
 		close;
 	}
-	mes "I heard that a ^f57d7dman wearing glasses near the gate of the castle^000000 is making a 100 hit song book~";
+	mes "Eu ouvi dizer que um ^f57d7dHomem de Óculos próximo ao portão do castelo^000000 está escrevendo um livro com as 100 músicas mais populares~";
 	close;
 }
 
-prontera,140,331,6	script	Glasses-wearing Man	883,{
-	mes "[Glasses-wearing Man]";
+prontera,140,331,6	script	Homem de Óculos	883,{
+	mes "[Homem de Óculos]";
 	if (job_min == 2) {
-		mes "You mean Maestro Song?";
-		mes "I don't know details of his life but I heard that he wrote great songs.";
+		mes "Você está falando do Trovador Song?";
+		mes "Eu não sei detalhes da vida dele, mas ouvi dizer que ele escreveu belíssimas canções.";
 		next;
-		mes "[Glasses-wearing Man]";
-		mes "I don't get how a boy raised in a rich environment could write a song like this.";
+		mes "[Homem de Óculos]";
+		mes "Eu não entendo como um garoto que cresceu na nobreza poderia escrever uma canção como essa.";
 		next;
-		mes "[Glasses-wearing Man]";
-		mes "He is still on a trip, but these days we haven't heard new songs from him.";
+		mes "[Homem de Óculos]";
+		mes "Ele ainda está em viagem, por isso nenhuma canção nova dele foi publicada.";
 		next;
-		mes "[Glasses-wearing Man]";
-		mes "So we are worried.";
+		mes "[Homem de Óculos]";
+		mes "Estamos preocupados.";
 		next;
-		mes "[Glasses-wearing Man]";
-		mes "It would be better to ask the ^f57d7dwoman standing in front of the tool shop^000000.";
+		mes "[Homem de Óculos]";
+		mes "Acho que a ^f57d7dmulher que está próxima à loja de utilidades^000000 deve saber alguma coisa.";
 		set job_min,3;
 		changequest 11136,11137;
 		close;
 	} else if (job_min == 3) {
-		mes "It would better to ask the ^f57d7dwoman standing in front of the tool shop^000000.";
+		mes "Acho que a ^f57d7dmulher que está próxima à loja de utilidades^000000 deve saber alguma coisa.";
 		close;
 	}
-	mes "100 hit songs!!";
-	mes "Whoever want to be a Minstrel should know about this!";
+	mes "As 100 músicas mais quentes do momento!!";
+	mes "Aquele que deseja se tornar um Trovador deveria conhecer esse livro!";
 	next;
-	mes "[Glasses-wearing Man]";
-	mes "Once this book is completed, I'll be rich!";
+	mes "[Homem de Óculos]";
+	mes "Quando o livro estiver completo, eu ficarei rico!";
 	mes "Haha!!";
 	close;
 }
 
-prontera,146,218,4	script	Woman#job_min	90,{
+prontera,146,218,4	script	Mulher#job_min	90,{
 	if (job_min == 3) {
-		mes "[Woman]";
-		mes "Do you know who Maestro Song is?";
-		mes "I think he must be my little boy.";
+		mes "[Mulher]";
+		mes "Você sabe quem é o Trovador Song?";
+		mes "Acho que ele pode ser o meu filhinho.";
 		next;
-		mes "[Woman]";
-		mes "A few years ago, he went off to sea but he never came back.";
+		mes "[Mulher]";
+		mes "Há alguns anos atrás ele saiu em viagem pelos mares, mas nunca mais voltou.";
 		next;
-		mes "[Woman]";
-		mes "He liked to sing a lot but we didn't let him sing.";
+		mes "[Mulher]";
+		mes "Ele adorava cantar, mas nós nunca aprovamos isso.";
 		next;
-		mes "[Woman]";
-		mes "His father didn't like him singing much.";
+		mes "[Mulher]";
+		mes "O pai dele não gostava que ele cantasse.";
 		next;
-		mes "[Woman]";
-		mes "So he broke every instrument in the house...";
-		mes "It was terrible.";
-		mes "Where is my little boy... sniff.";
+		mes "[Mulher]";
+		mes "Então ele quebrou todos os instrumentos que haviam na casa...";
+		mes "Foi terrível.";
+		mes "Onde está meu garotinho... choro.";
 		next;
-		mes "- I can't get anymore -";
-		mes "- useful information. -";
-		mes "- I'll go back to Alberta -";
-		mes "- and talk to that Bard. -";
+		mes "- Eu não consegui -";
+		mes "- nenhuma informação útil. -";
+		mes "- Vou voltar para Alberta -";
+		mes "- e falar com aquele Bardo. -";
 		set job_min,4;
 		changequest 11137,11138;
 		close;
 	} else if (job_min == 4) {
-		mes "- I can't get any more -";
-		mes "- useful information. -";
-		mes "- Go back to Alberta. -";
-		mes "- and talk to that Bard. -";
+		mes "- Eu não consegui -";
+		mes "- nenhuma informação útil. -";
+		mes "- Vou voltar para Alberta. -";
+		mes "- e falar com aquele Bardo. -";
 		close;
 	}
-	mes "[Woman]";
-	mes "Where is my little boy... sniff.";
+	mes "[Mulher]";
+	mes "Onde está meu garotinho... choro.";
 	close;
 }
 
 airplane,222,67,6	script	Karian#job_min1	486,{
 	mes "[Karian]";
-	mes "Yup!!!!!!!!!!!!!!!!!!";
+	mes "Sim!!!!!!!!!!!!!!!!!!";
 	next;
 	mes "[Karian]";
-	mes "Please leave me alone.";
-	mes "I feel nauseated.";
+	mes "Por favor me deixe sozinho.";
+	mes "Estou enjoado.";
 	next;
 	mes "[Karian]";
-	mes "Acchh...";
+	mes "Arghh...";
 	if (job_min == 5) {
 		set job_min,6;
 		changequest 11139,11140;
@@ -371,26 +373,27 @@ airplane,222,67,6	script	Karian#job_min1	486,{
 hu_in01,267,5,3	script	Karian#job_min2	486,{
 	mes "[Karian]";
 	if (job_min == 6) {
-		mes "Eeeeh it's so painful.";
-		mes "I don't want to feel like this ever again.";
+		mes "Ai, dói tanto.";
+		mes "Eu não quero sentir isso nunca mais.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Are you ok?";
+		mes "Você está bem?";
 		next;
 		mes "[Karian]";
 		mes "...";
-		mes "No...";
+		mes "Não...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'm feeling ok.";
-		mes "So, I'm going to find out information in town, you can take a rest.";
+		mes "Eu me sinto bem.";
+		mes "Então, eu vou até a cidade procurar por informações.";
+		mes "Enquanto isso, você descansa.";
 		next;
 		mes "[Karian]";
-		mes "Sorry, blech! I still feel bad...";
-		mes "You can get good information from the ^f57d7dPub^000000. Owww...";
+		mes "Desculpe, puxa! Eu ainda não me sinto bem...";
+		mes "Você pode investigar na ^f57d7dTaverna^000000 lá você deve encontrar alguma informação. Ahhh...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "You don't have to tell me everything. I can take care of it.";
+		mes "Não precisa entrar em detalhes. Deixe o resto comigo.";
 		next;
 		mes "[Karian]";
 		mes "...";
@@ -398,282 +401,281 @@ hu_in01,267,5,3	script	Karian#job_min2	486,{
 		changequest 11140,11141;
 		close;
 	} else if (job_min == 7) {
-		mes "Sorry... Owww!";
-		mes "You can get good information from the ^f57d7dPub^000000. Owww...";
+		mes "Desculpe... Ahhh!";
+		mes "Você pode investigar na ^f57d7dTaverna^000000 lá você deve encontrar alguma informação. Ahhh...";
 		close;
 	} else if (job_min == 8) {
-		mes "Wooo.";
-		mes "Did you get anything?";
+		mes "Arghh.";
+		mes "Conseguiu alguma informação?";
 		next;
-		mes "- Karian doesn't look -";
-		mes "- like he's doing well. -";
-		mes "- You can get information -";
-		mes "- from a man in the Pub. -";
+		mes "- Karian não aparenta -";
+		mes "- estar se sentindo bem, -";
+		mes "- você pode encontrar informações -";
+		mes "- com um homem na taverna. -";
 		close;
 	} else if (job_min == 9) {
-		mes "Owww...";
+		mes "Ahhh...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "How do you feel?";
-		next;
-		mes "[Karian]";
-		mes "Oww...";
-		mes "I feel better.";
-		next;
-		mes "[Karian]";
-		mes "Did you get anything?";
-		mes "I'm sorry that I can't be more helpful to you.";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "No, it's ok.";
-		mes "I met a man in the Pub, he said that he got a song from 'Maestro Song'.";
-		next;
-		mes "[Karian]";
-		mes "Pub?";
-		mes "You got a song?";
-		mes ".....";
-		mes "Bleech...";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "Hey! Are you sure that you are ok?";
-		next;
-		mes "[Karian]";
-		mes "I don't become airsick,";
-		mes "It's just bad memories.";
-		mes "So did you hear something?";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "I heard a song named ^f57d7d'Metallic Sound'^000000.";
-		next;
-		mes "[Karian]";
-		mes "What?!?!?!?!!!!!";
-		mes "You heard that?!";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "Why? Do you know that song?";
+		mes "Como está se sentindo?";
 		next;
 		mes "[Karian]";
 		mes "Ahh...";
-		mes "Y-yes...";
+		mes "Me sinto melhor.";
+		next;
+		mes "[Karian]";
+		mes "Conseguiu alguma informação?";
+		mes "Desculpe, não estou sendo de grande ajuda para você.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Não, está tudo bem.";
+		mes "Eu encontrei um homem na taverna, Ele disse que tinha uma música do 'Trovador Song'.";
+		next;
+		mes "[Karian]";
+		mes "Taverna?";
+		mes "Você conseguiu uma música?";
+		mes ".....";
+		mes "Bleerg...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Ei! Você está bem?";
+		next;
+		mes "[Karian]";
+		mes "Eu não estou com enjôo,";
+		mes "são só más lembranças.";
+		mes "Então, você conseguiu ouvir algo?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Eu ouvi uma música chamada ^f57d7d'Ruído Estridente'^000000.";
+		next;
+		mes "[Karian]";
+		mes "O que?!?!?!?!!!!!";
+		mes "Você ouviu aquilo?!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Por que? Conhece essa música?";
+		next;
+		mes "[Karian]";
+		mes "Ahh...";
+		mes "S-sim...";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Hmm...";
 		next;
 		mes "[Karian]";
-		mes "I met him before.";
-		mes "He has a great voice...";
+		mes "Eu me encontrei com ele uma vez.";
+		mes "Ele tem uma bela voz...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Yes.";
-		mes "I blacked out as I heard that song.";
+		mes "Sim.";
+		mes "Eu desmaiei quando ouvi essa música.";
 		next;
 		mes "[Karian]";
-		mes "He has the destructive power of voice.";
-		mes "And he...";
-		mes "What else?";
+		mes "Ele tem uma voz com poder destrutivo.";
+		mes "E ele...";
+		mes "Disse o que?";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Ah!!";
-		mes "^f57d7d'Maestro Song'^000000 went to ^f57d7dThanatos Tower^000000.";
-		mes "I don't know why he went there.";
+		mes "^f57d7d'O Trovador Song'^000000 foi para a ^f57d7dTorre de Thanatos^000000.";
+		mes "Eu não sei porque ele foi até lá.";
 		next;
 		mes "[Karian]";
-		mes "Did he? I must go there!";
+		mes "Ele foi? Então devemos ir também!";
 		set job_min,10;
 		changequest 11142,11143;
 		close;
 	} else if (job_min == 10) {
-		mes "What are you doing? Let's go to Thanatos tower.";
+		mes "O que está fazendo? Vamos para a Torre de Thanatos.";
 		close;
 	}
-	mes "Of course it's easy to take an airship, but sometimes it can be good to walk.";
+	mes "Claro que é mais facil chegar lá de dirigível, mas as vezes uma caminhada faz bem.";
 	next;
 	mes "[Karian]";
-	mes "It isn't about my sickness.";
+	mes "I-Isso não tem nada haver com meu enjôo.";
 	close;
 }
 
-hu_in01,361,103,3	script	Tone-deaf person	995,{
+hu_in01,361,103,3	script	Pessoa Surda	995,{
 	if (job_min == 7) {
-		mes "[Tone-deaf person]";
-		mes "Lala~ lala~";
-		mes "Humming~?";
+		mes "[Pessoa Surda]";
+		mes "Lalá~ lalá~";
+		mes "Bzzzzz~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "lalala~";
-		mes "lullula~";
+		mes "[Pessoa Surda]";
+		mes "lalalá~";
+		mes "lululá~";
 		next;
-		mes "- It's very hard to hear. -";
-		mes "- You start to have doubts -";
-		mes "- that such sounds could -";
-		mes "- be made from humans. -";
+		mes "- É muito difícil ouvir. -";
+		mes "- Você começa a duvidar que -";
+		mes "- esses sons possam vir -";
+		mes "- de um ser humano. -";
 		next;
-		if(select("You move to other side.:Keep listening.") == 1)
-			close;
-		mes "[Tone-deaf person]";
-		mes "Turuturu~";
-		mes "Dadada~";
+		if(select("Ir embora.:Ficar e escutar.")==1) close;
+		mes "[Pessoa Surda]";
+		mes "Turuturú~";
+		mes "Daradá~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Shubashuba~ shaaa~";
+		mes "[Pessoa Surda]";
+		mes "Shubashubá~ shaaá~";
 		mes "Blahblah~";
-		mes "Lalala...";
+		mes "Lalalá...";
 		mes "......!!";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Hum!! Hey you, you were listening to my song.";
-		mes "You look like a "+((Class == Job_Clown)?"Clown":"Bard")+", how about you sing for me as rewarding my song?";
+		mes "[Pessoa Surda]";
+		mes "Ahh!! Então você estava escutando minha música.";
+		mes "Você aparenta ser um "+((Class == Job_Bard || Class == Job_Baby_Bard)?"Bardo":"Menestrel")+", que tal você cantar para mim em retribuição pela minha canção?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What?!";
+		mes "O que?!";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Sing for me.";
-		mes "Come on~";
+		mes "[Pessoa Surda]";
+		mes "Cante para mim.";
+		mes "Vamos lá~";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Ok...";
-		mes "Hum hum...";
+		mes "Aham Aham...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "You are standing in the middle of Asgard's field.";
-		mes "You hand the fruit of heaven over to me~";
-		mes "You are loved by every god~";
+		mes "Você está no meio dos campos de Asgard~.";
+		mes "Você me entrega o fruto celeste~";
+		mes "Você é amada por todos os deuses~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Hooo~ You sing well. I can feel better when I hear ^f57d7d'Idun's apple'^000000~";
+		mes "[Pessoa Surda]";
+		mes "Oooh~ Você canta muito bem. Eu me sinto bem melhor quando ouço ^f57d7d'Maçãs de Idun'^000000~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "As you can see!";
-		mes "I'm a guy who can enjoy songs!";
+		mes "[Pessoa Surda]";
+		mes "Como pode ver...";
+		mes "Sou um cara que gosta de músicas!";
 		next;
-		mes "[Tone-deaf person]";
-		mes "I think it is nothing to be proud of. But I'm good at singing.";
-		mes "When I was young, I tried to be a Bard but I had to succeed the family business.";
+		mes "[Pessoa Surda]";
+		mes "Eu acho que isso não é algo de que eu possa me orgulhar, mas eu sou um ótimo cantor.";
+		mes "Quando eu era jovem, eu tentei me tornar um Bardo mas eu tive que dar continuidade aos negócios da família.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "For a long time I lost my dream, I'm already old.";
+		mes "[Pessoa Surda]";
+		mes "Por muito tempo escondi meu sonho, já sou um velho.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "I have family that needed my protection.";
-		mes "But one day I believe that my dreams come true!";
+		mes "[Pessoa Surda]";
+		mes "Eu tenho uma família que precisa da minha proteção.";
+		mes "Mas um dia, eu acredito que meus sonhos se realizarão!";
 		next;
-		mes "[Tone-deaf person]";
-		mes "In my spare time, I heard the stories of a tourist in the Pub.";
-		mes "When I left there, I didn't want to become a laughing stock.";
+		mes "[Pessoa Surda]";
+		mes "No meu tempo livre, eu ouvia histórias de turistas na taverna.";
+		mes "Eu também os entretia com minhas piadas, mas não gostava da ideia de ser apenas um 'bobo da corte'.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "And I can show my song to those who know the song.";
+		mes "[Pessoa Surda]";
+		mes "Queria mostrar-los minha capacidade musical.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "They are usually surprised when they hear the song.";
-		mes "They are surprised by my skill.";
-		mes "Huhu";
+		mes "[Pessoa Surda]";
+		mes "Geralmente eles ficavam surpresos ao ouvir minha canção.";
+		mes "Se divertiam tanto que voltavam esgotados para casa.";
+		mes "Haha.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "But ^f57d7d'Maestro Song'^000000 didn't get discouraged by my song.";
-		mes "Of course he isn't good enough to me.";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "Did you meet ^f57d7d'Maestro Song'^000000?";
-		next;
-		mes "[Tone-deaf person]";
-		mes "Hmm? Have you met him?";
-		mes "I did. A few years ago.";
-		next;
-		mes "[Tone-deaf person]";
-		mes "When he heard my song, he said that he can't hear songs like this anywhere.";
-		next;
-		mes "[Tone-deaf person]";
-		mes "I could have the opportunity to sing for him in Hugel.";
-		mes "There is no one who has skill like that.";
-		next;
-		mes "[Tone-deaf person]";
-		mes "Before he left, I got a song that reminds me of him.";
-		next;
-		mes "[Tone-deaf person]";
-		mes "He said that he will go to Thanatos.";
+		mes "[Pessoa Surda]";
+		mes "Mas o ^f57d7d'Trovador Song'^000000 nunca se cansava de ouvir minha canção.";
+		mes "Claro que ele nem chegava aos meus pés.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Did you get a song?";
+		mes "Você conhece o Trovador ^f57d7d'Song'^000000?";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Yes!";
-		mes "He conceded my ability!";
+		mes "[Pessoa Surda]";
+		mes "Ahh! Você o conhece também?";
+		mes "Eu encontrei com ele há alguns anos atrás.";
+		next;
+		mes "[Pessoa Surda]";
+		mes "Quando escutou minha canção, ele disse que não poderia ouvir algo como aquilo em nenhum outro lugar.";
+		next;
+		mes "[Pessoa Surda]";
+		mes "Eu tive a oportunidade de ouvi-lo cantar em Hugel.";
+		mes "Nunca vi ninguém com tanta habilidade.";
+		next;
+		mes "[Pessoa Surda]";
+		mes "Antes de partir, ele me compôs uma música de lembrança.";
+		next;
+		mes "[Pessoa Surda]";
+		mes "Ele disse que estava indo para a Torre de Thanatos.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Can I hear the song?";
+		mes "Você conseguiu uma música?";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[Pessoa Surda]";
+		mes "Sim!";
+		mes "Ele a compôs de acordo com minha habilidade!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Posso ouvir essa música?";
+		next;
+		mes "[Pessoa Surda]";
 		mes "Hum...";
-		mes "Wait.";
-		mes "I have to find a piece of paper.";
-		mes "I put it in my vest.";
+		mes "Espere.";
+		mes "Eu tenho que achar aquele pedaço de papel.";
+		mes "Devo ter colocado no bolso do casaco.";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Rummaging rummaging.";
-		mes "Browsing browsing .";
+		mes "[Pessoa Surda]";
+		mes "~Vasculhando vasculhando~.";
+		mes "~Procurando procurando~.";
 		set job_min,8;
 		close;
 	} else if (job_min == 8) {
-		mes "[Tone-deaf person]";
-		mes "I got it.";
-		mes "Hum!";
-		mes "Listen carefully!";
-		mes "^f57d7d'Metallic Sound!!'^000000";
+		mes "[Pessoa Surda]";
+		mes "Ahá! Achei.";
+		mes "Aham!";
+		mes "Escute com atenção!";
+		mes "^f57d7d'Ruído Metálico!!'^000000";
 		next;
-		mes "[Tone-deaf person]";
+		mes "[Pessoa Surda]";
 		mes "$$$$$$@@@@@!!!!";
 		mes "&&$%&@@@$#$~~";
 		mes "$#^#$####$$!!!@@#!!!!!";
 		percentheal -30,-30;
 		next;
-		mes "[Tone-deaf person]";
+		mes "[Pessoa Surda]";
 		mes "!@@@$$%^@@#%^%!!!!!!";
 		mes "!!!!!!!##$$^^^#^!!!";
 		mes "&$$%@@@%@##%~~~";
 		percentheal -30,-30;
 		next;
-		mes "-You lose consciousness.-";
-		mes "-This voice must have-";
-		mes "-huge destructive-";
-		mes "-power.-";
+		mes "-Você perdeu a conciência.-";
+		mes "-A voz dele realmente";
+		mes "-tem um grande potencial-";
+		mes "-destrutivo.-";
 		percentheal -30,-30;
 		next;
-		mes "-And I can't remember-";
-		mes "-the end of this song.-";
+		mes "-Eu não consigo lembrar-";
+		mes "-o fim desta música.-";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Hey~";
+		mes "[Pessoa Surda]";
+		mes "Eii~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Open your eyes~";
+		mes "[Pessoa Surda]";
+		mes "Abra seus olhos~";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Clap";
-		mes "Hey~";
+		mes "[Pessoa Surda]";
+		mes "~Estalos~";
+		mes "Eii~";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Eeeee...";
+		mes "Ahhhh...";
 		next;
-		mes "[Tone-deaf person]";
-		mes "I think you are qualified, but you seem to need more training.";
+		mes "[Pessoa Surda]";
+		mes "Eu acho que você é qualificado, mas deve precisar de mais prática.";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "......";
 		next;
-		mes "-You're so exhausted.-";
-		mes "-So go back to the hotel.-";
+		mes "-Você está esgotado.-";
+		mes "-É melhor voltar ao hotel.-";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Thank you for your song.";
-		mes "I have to go back...";
+		mes "Obrigado pela música.";
+		mes "Mas eu tenho que ir...";
 		next;
-		mes "[Tone-deaf person]";
-		mes "Ah?";
-		mes "Ok see you later.";
-		mes "If you want to hear my song, you can visit me.";
-		mes "Hahahh";
+		mes "[Pessoa Surda]";
+		mes "Hã?";
+		mes "Ok, até a próxima.";
+		mes "Sempre que quiser ouvir minha música, você pode vir me visitar.";
+		mes "Hahaha";
 		set job_min,9;
 		changequest 11141,11142;
 		close;
@@ -681,70 +683,70 @@ hu_in01,361,103,3	script	Tone-deaf person	995,{
 		mes "["+strcharinfo(0)+"]";
 		mes "......";
 		next;
-		mes "-I'm so exhausted.-";
-		mes "-You got information-";
-		mes "-so go back to the hotel.-";
+		mes "-Eu estou esgotado.-";
+		mes "-Você conseguiu informações-";
+		mes "-é hora de voltar ao hotel.-";
 		close;
 	} else if (job_min == 10) {
-		mes "[Tone-deaf person]";
-		mes "Are you leaving??";
-		mes "If you want to hear my song, you can visit me.";
-		mes "Hahahah";
+		mes "[Pessoa Surda]";
+		mes "Você já vai??";
+		mes "Sempre que quiser ouvir minha música, você pode vir me visitar.";
+		mes "Hahaha";
 		close;
 	} else if (job_min == 100) {
-		mes "[Tone-deaf person]";
-		mes "Oh!!";
-		mes "You seem to be strong!";
-		mes "You are no less competent than I am.";
+		mes "[Pessoa Surda]";
+		mes "Ah!!";
+		mes "Você parece ser forte!";
+		mes "Tão habilidoso quanto eu.";
 		close;
 	}
-	mes "[Tone-deaf person]";
-	mes "Lala~ lalal~";
-	mes "Lulu~?";
+	mes "[Pessoa Surda]";
+	mes "Lalá~ lalá~";
+	mes "Lulú~";
 	next;
-	mes "[Tone-deaf person]";
-	mes "Lalalal~";
-	mes "Lululul~";
+	mes "[Pessoa Surda]";
+	mes "Lalalá~";
+	mes "Lululú~";
 	next;
-	mes "-It's very hard to hear.-";
-	mes "-You start to have doubts-";
-	mes "-that such a sound can be-";
-	mes "-coming out a human.-";
+	mes "- É muito difícil ouvir. -";
+	mes "- Você começa a duvidar que -";
+	mes "- esses sons possam vir -";
+	mes "- de um ser humano. -";
 	close;
 }
 
 tha_scene01,140,200,0	script	#min_receipt	139,3,3,{
 OnTouch:
 	if (job_min == 10 || (job_min == 11 && countitem(6271) == 0)) {
-		mes "-There is a piece of paper on the ground.-";
+		mes "-Há um pedaço de papel no chão.-";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What is this?";
+		mes "O que é isso?";
 		next;
 		mes "[Karian]";
-		mes "What does it say?";
+		mes "O que diz aí?";
 		donpcevent "Karian#cmd1::OnEnable";
 		next;
 		mes "===================";
-		mes "==photo exchange==";
-		mes "======receipt======";
+		mes "=======Cupom=======";
+		mes "==Vale fotografia==";
 		mes "===================";
-		mes "Name : Maestro Song";
+		mes "Nome : Trovador Song";
 		next;
-		mes "- Bring this receipt and exchange it";
-		mes "";
-		mes "- Juno's store manager : Mr. Click.";
+		mes "- Traga este cupom e troque-o-";
+		mes "-por uma fotografia grátis com o-";
+		mes "- Fotógrafo em Juno : Sr. Click.-";
 		next;
-		mes "- Directions : Around Juno's plaza.";
+		mes "- Localização : Próximo à praça de Juno.";
 		getitem 6271,1; //Mins_Receipt
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Photo exchange receipt?";
-		mes "How did he drop it...";
+		mes "Um cupom de foto grátis?";
+		mes "Como ele pode ter perdido isso...";
 		next;
 		mes "[Karian]";
-		mes "Juno's store...";
-		mes "Let's go to Juno...";
+		mes "Próximo à praça de Juno...";
+		mes "Então vamos para Juno...";
 		if (job_min == 10) {
 			set job_min,11;
 			changequest 11143,11144;
@@ -836,264 +838,263 @@ comodo,184,109,0	duplicate(Karian#cmd2)	Karian#cmd6	486
 moc_fild16,204,231,0	duplicate(Karian#cmd2)	Karian#cmd7	486
 aldebaran,142,128,2	duplicate(Karian#cmd2)	Karian#cmd8	486
 
-yuno,143,170,6	script	Mr. Click#job_min	748,{
-	mes "[Mr. Click]";
+yuno,143,170,6	script	Sr. Click#job_min	748,{
+	mes "[Sr. Click]";
 	if (job_min == 11) {
-		mes "Hi~ welcome~";
-		mes "I can take a picture for you.";
-		mes "Do you want to take a pic?";
+		mes "Olá~ bem vindo~";
+		mes "Eu posso tirar uma foto de você.";
+		mes "Está interessado?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "No...";
-		mes "Do you remember this receipt?";
+		mes "Não...";
+		mes "Você lembra deste cupom?";
 		next;
-		mes "[Mr. Click]";
-		mes "Let me see~";
-		mes "Umm...";
+		mes "[Sr. Click]";
+		mes "Deixe-me ver~";
+		mes "Humm...";
 		next;
-		mes "[Mr. Click]";
-		mes "Yes...";
-		mes "It looks so old.";
+		mes "[Sr. Click]";
+		mes "Sim...";
+		mes "Parece muito antigo.";
 		next;
-		mes "[Mr. Click]";
-		mes "It's okay.";
-		mes "Tourists usually don't pick up their pictures.";
+		mes "[Sr. Click]";
+		mes "Tudo bem.";
+		mes "Turistas geralmente nunca vem buscar suas fotos.";
 		next;
-		mes "[Mr. Click]";
-		mes "So there are plenty of photos I've been holding on to.";
+		mes "[Sr. Click]";
+		mes "Por isso venho guardando muitas fotos.";
 		next;
-		mes "[Mr. Click]";
-		mes "I can find that so easily.";
-		mes "I keep lots of old stuff.";
-		mes "No problem.";
+		mes "[Sr. Click]";
+		mes "Posso encontrar essa facilmente.";
+		mes "Guardo muitas dessas fotos antigas.";
+		mes "Sem problema.";
 		next;
-		mes "[Mr. Click]";
-		mes "browsing~";
+		mes "[Sr. Click]";
+		mes "~Procurando~";
 		next;
-		mes "[Mr. Click]";
-		mes "browsing~";
+		mes "[Sr. Click]";
+		mes "~Procurando~";
 		next;
-		mes "[Mr. Click]";
-		mes "I think I found it!";
-		mes "The photo crashed down, but it's ok.";
-		mes "No problem.";
+		mes "[Sr. Click]";
+		mes "Encontrei!";
+		mes "A foto rachou com o tempo, mas está bem.";
 		next;
-		mes "[Mr. Click]";
-		mes "Here, take a look.";
+		mes "[Sr. Click]";
+		mes "Aqui, dê uma olhada.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "The picture!";
-		mes "Let me see it!";
+		mes "A foto!";
+		mes "Deixe-me vê-la!";
 		next;
 		mes "[Karian]";
-		mes "Hurry.";
+		mes "Depressa.";
 		donpcevent "Karian#cmd2::OnEnable";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "...";
 		next;
 		mes "[Karian]";
-		mes "Oh~ Good pic, isn't it?";
+		mes "Ah~ Uma boa fotografia, não acha?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I expected I would see the face of 'Maestro Song', but he's wearing a mask...";
-		mes "He's wearing a mask?!";
-		mes "We came here for this?";
+		mes "Eu esperava poder ver a cara do 'Trovador Song', mas ele está usando...";
+		mes "Ele está usando uma máscara?!";
+		mes "Nós viemos só para ver isso?";
 		next;
 		mes "[Karian]";
-		mes "Ah! look at this!";
-		mes "Something is on the back of the picture.";
+		mes "Ah! Veja isto!";
+		mes "Tem algo no verso da foto.";
 		next;
-		mes "-I want to have a Teddy Bear. I need 33?";
-		mes "-In front of Thanatos tower.";
-		mes "-Maestro Song.";
+		mes "-Eu quero um Ursinho de Pelúcia. Eu preciso de 33!";
+		mes "-Em frente a Torre de Thanatos.";
+		mes "-Trovador Song.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "What does it mean?";
+		mes "O que isto significa?";
 		next;
 		mes "[Karian]";
-		mes "Well...";
+		mes "Bem...";
 		next;
 		mes "[Karian]";
-		mes "Um... Teddy Bear...";
-		mes "Between Einbroch and Lighthalzen, there is an area that teddy bears live.";
+		mes "Hum... Ursinho de Pelúcia...";
+		mes "Entre Einbroch e Lighthalzen, há um local onde Ursinhos de Pelúcia vivem.";
 		next;
 		mes "[Karian]";
-		mes "We might be able to get something there.";
+		mes "É possível que encontremos algo por lá.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Then why would he need 33?";
+		mes "Então, por que ele precisaria de 33?";
 		next;
 		mes "[Karian]";
-		mes "Well... Go there and we might be able to find out something.";
+		mes "Bem... Vamos lá e provavelmente descobriremos algo.";
 		next;
 		mes "[Karian]";
-		mes "Umm... Then I'll pass by Einbroch and go to Lighthalzen. Why don't you go to the place where Teddy Bears are?";
+		mes "Humm... Então eu vou passar por Einbroch e vou para Lighthalzen. Por que você não vai até Einbech e procura os Ursinhos de Pelúcia?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Ok. Then let's meet at Lighthalzen's hotel.";
-		mes "I'll get the 33 Teddy Bears.";
+		mes "Ok. Então nos encontramos no hotel em Lighthalzen.";
+		mes "Eu vou pegar os 33 Ursinhos de Pelúcia.";
 		donpcevent "Karian#cmd2::OnDisable";
 		set job_min,12;
 		getitem 6270,1; //Mins_Picture
 		changequest 11144,11145;
 		close;
 	} else if (job_min == 12) {
-		mes "Then take care.";
+		mes "Então tome cuidado.";
 		next;
 		mes "[Karian]";
-		mes "Let's go there!";
+		mes "Vamos lá!";
 		donpcevent "Karian#cmd2::OnEnable";
 		next;
 		mes "[Karian]";
-		mes "Then I'll pass by Einbroch and go to Lighthalzen. Why don't you go to the place where Teddy Bears are?";
+		mes "Eu vou passar por Einbroch e depois vou para Lighthalzen. Por que você não vai até Einbroch e procura os Ursinhos de Pelúcia.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Then let's meet at Lighthalzen's hotel.";
-		mes "I'll get the 33 Teddy Bears.";
+		mes "Ok. Então nos encontramos no hotel em Lighthalzen.";
+		mes "Eu vou pegar os 33 Ursinhos de Pelúcia.";
 		donpcevent "Karian#cmd2::OnDisable";
 		close;
 	}
-	mes "Hi~ welcome~";
-	mes "I can take a picture for you.";
-	mes "Do you want to take a pic?";
+	mes "Olá~ Bem-vindo~";
+	mes "Eu posso tirar uma foto de você.";
+	mes "Está interessado?";
 	close;
 }
 
-lighthalzen,155,119,3	script	Little girl#job_min	891,3,3,{
+lighthalzen,155,119,3	script	Garotinha#job_min	891,3,3,{
 OnTouch:
 	if (checkquest(11145,HUNTING) == 2) {
 		if (job_min == 12) {
-			mes "[Little Girl]";
+			mes "[Garotinha]";
 			mes "Ah!!!!";
-			mes "Teddy bear!!!";
+			mes "Ursinhos de Pelúcia!!!";
 			next;
-			mes "[Little Girl]";
-			mes "Why do you have lots of teddy bears?";
-			mes "Where did you get them old man?";
-			next;
-			mes "["+strcharinfo(0)+"]";
-			mes "Hey, I'm not an old man.";
-			next;
-			mes "[Little Girl]";
-			mes "And my name isn't 'Hey'!";
-			mes "My name is 'Rion'!";
+			mes "[Garotinha]";
+			mes "Por que você tem tantos Ursinhos de Pelúcia?";
+			mes "Onde os conseguiu velhote?";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Sorry~ sorry~";
-			mes "What if I give you a teddy bear.";
+			mes "Eii! Não sou um velhote.";
+			next;
+			mes "[Garotinha]";
+			mes "E meu nome não é 'Eii'!";
+			mes "Meu nome é 'Rion'!";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "Desculpe~ desculpe~";
+			mes "Que tal eu te dar um Ursinho de Pelúcia?";
 			next;
 			mes "[Rion]";
 			mes "Ah!";
-			mes "Are you sure?";
-			mes "Hooray!!!";
+			mes "Está falando sério?";
+			mes "Ebaaa!!!";
 			next;
 			mes "[Rion]";
-			mes "A man who I saw before didn't give me teddy bears even though he had lots of them!";
+			mes "O homem que eu vi antes não me deu nenhum, mesmo tendo sacolas cheias deles!";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Is he the guy in this pic?";
+			mes "Ele se parecia com esse cara da foto?";
 			next;
 			mes "[Rion]";
-			mes "I can't remember well.";
-			mes "But I think he is.";
+			mes "Não me lembro bem.";
+			mes "Mas eu acho que é ele sim.";
 			next;
 			mes "[Rion]";
-			mes "My mother said that he was rolling in a room with teddy bears.";
+			mes "Minha mãe me disse que ele estava rolando num quarto cheio de ursinhos de pelúcia.";
 			next;
 			mes "[Rion]";
-			mes "And he wears teddy bear outfits and goes to the ^f57d7dIce Cave^000000.";
+			mes "E que ele se vestia de ursinho e ia para as ^f57d7dCavernas de Gelo^000000.";
 			next;
 			mes "[Rion]";
-			mes "My mother works here.";
+			mes "Minha mãe trabalha lá.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Ice Cave?";
+			mes "Cavernas de Gelo?";
 			next;
 			mes "[Rion]";
-			mes "Mother said that it's freezing.";
+			mes "Minha mãe disse que lá faz muito frio.";
 			next;
 			mes "[Karian]";
-			mes "Hey~ "+strcharinfo(0)+"~";
+			mes "Eii~ "+strcharinfo(0)+"~";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Ah, Karian. Did you just get here?";
+			mes "Ah, Karian. Acabou de chegar?";
 			next;
 			mes "[Karian]";
-			mes "Yes.";
-			mes "It was much farther away than I'd expected.";
+			mes "Sim.";
+			mes "É mais distante do que eu esperava.";
 			donpcevent "Karian#cmd3::OnEnable";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "You... walked here?";
+			mes "Você... veio a pé?";
 			next;
 			mes "[Karian]";
 			mes "...";
-			mes "I didn't want to take the airship again...";
+			mes "Eu não queria ter que pegar o dirigível denovo...";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Oh... got it.";
-			mes "Then did you get anything in Einbroch?";
+			mes "Ah... entendi.";
+			mes "Então encontrou alguma informação em Lighthalzen?";
 			next;
 			mes "[Karian]";
-			mes "I think 'Maestro Song' went to Einbroch, but he left soon because of air.";
-			mes "How about you? Did you find something about the teddy bears?";
+			mes "Eu acho que o 'Trovador Song' foi para Lighthalzen, mas deixou a cidade por causa do clima.";
+			mes "E você? Achou algo relacionado aos ursinhos de pelúcia?";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "'Maestro Song' might be in an Ice Cave.";
+			mes "O 'Trovador Song' deve estar nas Cavernas de Gelo.";
 			next;
 			mes "[Karian]";
-			mes "Might be?";
+			mes "Deve estar?";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "This little... ah... Rion saw him.";
+			mes "Essa garotinha... Digo... A garotinha o viu.";
 			next;
 			mes "[Karian]";
-			mes "Then it's time to go to the Ice Cave?";
-			mes "Huu... legs hurt.";
-			mes "Ok, let's go to there.";
+			mes "Então devemos ir para as Cavernas de Gelo?";
+			mes "Ahh... Minhas pernas doem.";
+			mes "Ok, vamos lá.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Okay.";
+			mes "Certo.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Thanks, Rion.";
-			mes "I'll give you all the teddy bears I have.";
+			mes "Obrigado, Rion.";
+			mes "Vou te dar todos esses ursinhos de pelúcia.";
 			next;
 			mes "[Rion]";
-			mes "Really?!";
-			mes "Waaah!!!!!!!!!";
-			mes "I'm so happy!!!";
-			mes "Thank you, "+strcharinfo(0)+".";
+			mes "Sééério?!";
+			mes "Aaaah!!!!!!!!!";
+			mes "Estou tão feliz!!!";
+			mes "Obrigada, "+strcharinfo(0)+".";
 			set job_min,13;
 			changequest 11145,11146;
 			donpcevent "Karian#cmd3::OnDisable";
 			close;
 		} else if (job_min == 13) {
 			mes "[Rion]";
-			mes "I heard that 'Maestro Song' when I went to the Ice Cave.";
-			mes "Thank you for the Teddy Bears!";
+			mes "Eu ouvi dizer que o 'Trovador Song' foi para as Cavernas de Gelo.";
+			mes "Obrigada pelos Ursinhos de Pelúcia!";
 			close;
 		} else if (job_min > 13) {
 			mes "[Rion]";
-			mes "I'm having a lot of fun playing with the Teddy Bears!";
+			mes "Estou me divertindo muito com os Ursinhos de Pelúcia!";
 			close;
 		} else {
-			mes "[Little Girl]";
-			mes "I'm having a lot of fun playing with the Teddy Bears!";
+			mes "[Garotinha]";
+			mes "Estou me divertindo muito com os Ursinhos de Pelúcia!";
 			close;
 		}
 	}
-	mes "[Little Girl]";
-	mes "Do you like teddy bears?";
-	mes "I love 'em!!!!!";
+	mes "[Garotinha]";
+	mes "Você gosta de ursinhos?";
+	mes "Eu amo ursinhos!!!!!";
 	close;
 }
 
 ice_dun01,157,15,0	script	#Minsicecave1	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-A long time ago-";
+		mes "-Há muito tempo atrás-";
 		close2;
 		warp "ice_dun01",157,23;
 		end;
@@ -1104,7 +1105,7 @@ OnTouch:
 ice_dun01,157,23,0	script	#Minsicecave2	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-The giant born to ice-";
+		mes "-O gigante feito de gelo-";
 		close2;
 		warp "ice_dun01",141,41;
 		end;
@@ -1115,7 +1116,7 @@ OnTouch:
 ice_dun01,141,41,0	script	#Minsicecave3	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-died-";
+		mes "-Morreu-";
 		close2;
 		warp "ice_dun01",120,35;
 		end;
@@ -1126,7 +1127,7 @@ OnTouch:
 ice_dun01,120,35,0	script	#Minsicecave4	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His body became the ground-";
+		mes "-Seu corpo se tornou o chão-";
 		close2;
 		warp "ice_dun01",104,30;
 		end;
@@ -1137,7 +1138,7 @@ OnTouch:
 ice_dun01,104,30,0	script	#Minsicecave5	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His bones became a mountain-";
+		mes "-Seus ossos se tornaram as montanhas-";
 		close2;
 		warp "ice_dun01",86,23;
 		end;
@@ -1148,7 +1149,7 @@ OnTouch:
 ice_dun01,86,23,0	script	#Minsicecave6	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His skin became soil-";
+		mes "-Sua pele se tornou o solo-";
 		close2;
 		warp "ice_dun01",75,19;
 		end;
@@ -1159,7 +1160,7 @@ OnTouch:
 ice_dun01,75,19,0	script	#Minsicecave7	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His blood became a river-";
+		mes "-Seu sangue se tornou um rio-";
 		close2;
 		warp "ice_dun01",56,12;
 		end;
@@ -1170,7 +1171,7 @@ OnTouch:
 ice_dun01,56,12,0	script	#Minsicecave8	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His hair became a plant-";
+		mes "-Seu cabelo se tornou uma planta-";
 		close2;
 		warp "ice_dun01",29,26;
 		end;
@@ -1181,7 +1182,7 @@ OnTouch:
 ice_dun01,29,26,0	script	#Minsicecave9	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His head became the sky-";
+		mes "-E sua cabeça se tornou o céu-";
 		close2;
 		warp "ice_dun01",25,46;
 		end;
@@ -1192,7 +1193,7 @@ OnTouch:
 ice_dun01,25,46,0	script	#Minsicecave10	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-His tears from his-";
+		mes "-As lágrimas de seus olhos-";
 		close2;
 		warp "ice_dun01",20,66;
 		end;
@@ -1203,7 +1204,7 @@ OnTouch:
 ice_dun01,20,66,0	script	#Minsicecave11	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-eyes became dew-";
+		mes "-se tornaram orvalho-";
 		close2;
 		warp "ice_dun01",22,85;
 		end;
@@ -1214,7 +1215,7 @@ OnTouch:
 ice_dun01,22,85,0	script	#Minsicecave12	139,2,2,{
 OnTouch:
 	if (job_min == 13) {
-		mes "-on the leaves-";
+		mes "-nas folhas-";
 		percentheal -90,0;
 		set job_min,14;
 		changequest 11146,11147;
@@ -1228,250 +1229,248 @@ OnTouch:
 ra_in01,361,129,0	script	#jmRachelHotel	139,2,2,{
 OnTouch:
 	if (job_min == 14) {
-		mes "[Old Woman]";
-		mes "Huu!!";
-		mes "Wake up!";
+		mes "[Velha Senhora]";
+		mes "Ahhh!!";
+		mes "Acorde!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Where am I...?";
+		mes "Onde eu estou...?";
 		set job_min,15;
 		close;
 	}
 	end;
 }
 
-ra_in01,358,130,4	script	Old Woman#job_min	979,{
+ra_in01,358,130,4	script	Velha Senhora#job_min	979,{
 	mes "[Old Woman]";
 	if (job_min == 14) {
-		mes "Huu!!";
-		mes "Wake up!";
+		mes "Ahh!!";
+		mes "Acorde!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Where am I...?";
+		mes "Onde eu estou...?";
 		set job_min,15;
 		close;
 	} else if (job_min == 15) {
-		mes "You're in Rachel.";
-		mes "You are strange. You have to wear warmer clothes if you want to go into the Ice Cave.";
+		mes "Você está em Rachel.";
+		mes "Você é muito diferente. Você tem que usar roupas mais quentes se quiser ir para as Cavernas de Gelo.";
 		next;
-		mes "[Old Woman]";
-		mes "You're lucky that my husband found you when he did.";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "Sorry.";
-		next;
-		mes "[Old Woman]";
-		mes "Anyway!! Be careful!";
-		mes "You don't believe your youth alone will protect you.";
+		mes "[Velha Senhora]";
+		mes "Você teve sorte do meu marido ter te encontrado.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I'll be careful.";
+		mes "Desculpe.";
+		next;
+		mes "[Velha Senhora]";
+		mes "De qualquer forma!! Tome cuidado!";
+		mes "Você não deve sair confiante de que sua juventude vai lhe proteger de tudo.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Do you know that song written on the wall of the Ice cave?";
+		mes "Eu tomarei mais cuidado.";
 		next;
-		mes "[Old Woman]";
-		mes "Did you go there to see?";
-		mes "A few years ago, one man wearing a mask carved that on the Ice cave.";
+		mes "["+strcharinfo(0)+"]";
+		mes "Você conhece aquela música que estava escrita nas paredes da caverna?";
 		next;
-		mes "[Old Woman]";
-		mes "I couldn't see his face because of the mask,";
+		mes "[Velha Senhora]";
+		mes "Você foi lá para vê-la?";
+		mes "Há alguns anos atrás, um homem usando uma máscara esculpiu aquilo na caverna de gelo.";
 		next;
-		mes "[Old Woman]";
-		mes "but he got a cold and felt so painful.";
+		mes "[Velha Senhora]";
+		mes "Não pude ver seu rosto por causa da máscara,";
+		mes "mas ele pegou um resfriado e parecia muito doente.";
 		next;
-		mes "[Old Woman]";
-		mes "And then he decided to go to Comodo.";
+		mes "[Velha Senhora]";
+		mes "Então ele decidiu ir para Comodo.";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Comodo?";
 		next;
-		mes "[Old Woman]";
-		mes "Yes, I heard that Comodo is a very fun place, I want to go there before I die.";
+		mes "[Velha Senhora]";
+		mes "Sim, eu ouvi dizer que Comodo é um local muito divertido, eu quero ir lá antes de morrer.";
 		next;
-		mes "[Old Woman]";
-		mes "If you want to go there you have to take an airship to the Rune-Midgarts Kingdom.";
+		mes "[Velha Senhora]";
+		mes "Se você quiser ir até lá, você deve pegar um dirigível para Rune-Midgard.";
 		next;
-		mes "[Old Woman]";
-		mes "That's not easy.";
+		mes "[Velha Senhora]";
+		mes "Não é tão simples.";
 		next;
 		mes "[Karian]";
-		mes "What?! An Airship?!";
-		mes "Eee I don't want to go on an airship again!";
+		mes "O que?! Um dirigível?!";
+		mes "Ahh! Eu não quero ter que viajar de dirigível denovo!";
 		donpcevent "Karian#cmd4::OnEnable";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Take it easy...";
-		mes "Is there another way to go there?";
+		mes "Vamos com calma...";
+		mes "Não há outra forma de chegar lá?";
 		next;
-		mes "[Old Woman]";
-		mes "Without an airship?";
-		mes "You can walk...";
-		mes "But it takes a long time...";
+		mes "[Velha Senhora]";
+		mes "Sem dirigível?";
+		mes "Você pode ir andando...";
+		mes "Mas é muito distante...";
 		next;
-		mes "[Old Woman]";
-		mes "Ah! It's Comodo over southern Veins.";
+		mes "[Velha Senhora]";
+		mes "Ah! Comodo fica ao sul de Veins.";
 		next;
-		mes "[Old Woman]";
-		mes "We don't have a proper boat.";
-		mes "In southern of Veins, there is a port. If you are lucky you can take it...";
+		mes "[Velha Senhora]";
+		mes "Nós não temos um barco adequado.";
+		mes "Mas no sul de Veins, há um porto. Se tiver sorte, poderá alugar um caiaque...";
 		donpcevent "Karian#cmd4::OnDisable";
 		set job_min,16;
 		changequest 11147,11148;
 		close;
 	} else if (job_min == 16) {
-		mes "Ah! It's Comodo over southern Veins.";
+		mes "Ah! Comodo fica ao sul de Veins.";
 		next;
-		mes "[Old Woman]";
-		mes "We don't have a proper boat.";
-		mes "In southern of Veins, there is a port. If you are lucky you can take it...";
+		mes "[Velha Senhora]";
+		mes "Nós não temos um barco adequado.";
+		mes "Mas no sul de Veins, há um porto. Se tiver sorte, poderá alugar um caiaque...";
 		close;
 	}
-	mes "I heard that Comodo is a very fun place, I want to go there before I die.";
+	mes "Eu ouvi dizer que Comodo é um local muito divertido, eu quero ir lá antes de morrer.";
 	next;
-	mes "[Old Woman]";
-	mes "If you want to go there you have to take an Airship to the Rune-Midgarts Kingdom.";
+	mes "[Velha Senhora]";
+	mes "Se você quiser ir até lá, você deve pegar um dirigível para Rune-Midgard.";
 	next;
-	mes "[Old Woman]";
-	mes "It's the fastest way.";
+	mes "[Velha Senhora]";
+	mes "É a forma mais fácil.";
 	close;
 }
 
-ve_fild07,131,132,5	script	=Notice=#job_min	837,{
+ve_fild07,131,132,5	script	=Aviso=#job_min	837,{
 function Choice;
 	if (job_min == 16) {
-		mes "===Notice===";
-		mes "Maestro Song, Go to Comodo by boat!";
-		mes "Be ambitious!";
+		mes "=======Aviso=======";
+		mes "Vá para comodo de caiaque!";
+		mes "Seja persistente!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Will it be okay...";
+		mes "Vai ficar tudo bem...";
 		next;
 		mes "[Karian]";
-		mes "Don't worry, trust me!!";
+		mes "Não se preocupe, acredite em mim!!";
 		donpcevent "Karian#cmd5::OnEnable";
 		next;
-		mes "-It's not easy to trust her-";
+		mes "-Não é facil acreditar nele-";
 		next;
 		if(select("I don't like this.:Take the kayak.") == 1) {
 			mes "[Karian]";
-			mes "I never ride airships ever...";
+			mes "Eu nunca mais vou pegar um dirigível...";
 			donpcevent "Karian#cmd5::OnDisable";
 			close;
 		}
 		mes "[Karian]";
-		mes "Ok then let's go!!!!!";
+		mes "Vamos lá!!!!!";
 		next;
-		mes "-If you take a small boat,-";
-		mes "-and go ahead-";
-		mes "-to Comodo,-";
-		mes "-You should see-";
-		mes "-other small boats.-";
+		mes "-Se você pegar o caiaque,-";
+		mes "-e seguir em direção-";
+		mes "-a Comodo,-";
+		mes "-você verá outras-";
+		mes "-pequenas embarcações.-";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Hmm...";
-		mes "I didn't think that there was anyone who would cross over this sea with a boat.";
-		mes "You sure I'll see other boats?";
+		mes "Eu não acho que algúem conseguiria atravessar o mar com esse caiaque.";
+		mes "Tem certeza que verei outras embarcações?";
 		next;
 		mes "[Karian]";
-		mes "They will be headed the other direction.";
+		mes "Eles estarão na outra direção.";
 		donpcevent "Karian#cmd5::OnDisable";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Where are you going?";
+		mes "Aonde você vai?";
 		next;
 		mes "[Karian]";
-		mes "Well? I haven't heard of the place's name before.";
-		mes "It's just called 'island' from what I heard.";
+		mes "Bem... Eu nunca havia ouvido o nome deste lugar.";
+		mes "Pelo que sei, só é chamado de 'ilha'.";
 		next;
-		mes "-For a while the silence-";
-		mes "-continues. Karian starts-";
-		mes "-to hum as she rows.-";
+		mes "-O silêncio continua-";
+		mes "-por alguns minutos.-";
+		mes "-Karian começa a cantarolar enquanto rema.-";
 		next;
-		mes "-Listening to Karian hum-";
-		mes "-You suddenly feel like-";
-		mes "-you're sitting in water.-";
+		mes "-Ouvindo Karian cantarolar-";
+		mes "-Você sente como se estivesse-";
+		mes "-boiando ná água.-";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Hey! There's a water leak!!";
+		mes "Eii! O caiaque está com um vazamento!!";
 		next;
 		mes "[Karian]";
 		mes "Ahhhh!!!!!!!!!!!!!!";
 		next;
 		switch(rand(3)) {
-			case 0: Choice("Dance.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Dance."); break;
-			case 2: Choice("Row.","Throw the water out.","Dance."); break;
+			case 0: Choice("Dançar.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Dançar."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Dançar."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Sleep.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Dance."); break;
-			case 2: Choice("Row.","Throw the water out.","Sleep."); break;
+			case 0: Choice("Dormir.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Dançar."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Dormir."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Sing.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Sleep."); break;
-			case 2: Choice("Row.","Throw the water out.","Sing."); break;
+			case 0: Choice("Cantar.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Dormir."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Cantar."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Have some water.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Have some water."); break;
-			case 2: Choice("Row.","Throw the water out.","Have some water."); break;
+			case 0: Choice("Beber água.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Beber água."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Beber água."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Shout 'Viva'.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Shout 'Viva'."); break;
-			case 2: Choice("Row.","Throw the water out.","Shout 'Viva'."); break;
+			case 0: Choice("Gritar 'Viva'.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Gritar 'Viva'."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Gritar 'Viva'."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Go fishing.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Go fishing."); break;
-			case 2: Choice("Row.","Throw the water out.","Go fishing."); break;
+			case 0: Choice("Pescar.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Pescar."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Pescar."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Listen to my song.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Listen to my song."); break;
-			case 2: Choice("Row.","Throw the water out.","Listen to my song."); break;
+			case 0: Choice("Escutar música.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Escutar música."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Escutar música."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Pray.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Pray."); break;
-			case 2: Choice("Row.","Throw the water out.","Pray."); break;
+			case 0: Choice("Rezar.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Rezar."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Rezar."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Eat some food.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Eat some food."); break;
-			case 2: Choice("Row.","Throw the water out.","Eat some food."); break;
+			case 0: Choice("Comer algo.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Comer algo."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Comer algo."); break;
 		}
 		switch(rand(3)) {
-			case 0: Choice("Give up.","Row.","Throw the water out."); break;
-			case 1: Choice("Throw the water out.","Row.","Give up."); break;
-			case 2: Choice("Row.","Throw the water out.","Give up."); break;
+			case 0: Choice("Desistir.","Remar.","Jogar a água fora."); break;
+			case 1: Choice("Jogar a água fora.","Remar.","Desistir."); break;
+			case 2: Choice("Remar.","Jogar a água fora.","Desistir."); break;
 		}
-		mes "-I've escaped from the-";
-		mes "-throes of death a-";
-		mes "-countless amount of times.-";
+		mes "-Eu escapei-";
+		mes "-das armadilhas da morte-";
+		mes "-incontáveis vezes.-";
 		set job_min,17;
 		changequest 11148,11149;
 		close2;
 		warp "comodo",184,108;
 		end;
 	}
-	mes "===Notice===";
-	mes "Maestro Song, Go to Comodo by boat!";
-	mes "Be ambitious!";
+	mes "=======Aviso=======";
+	mes "Vá para comodo de caiaque!";
+	mes "Seja persistente!";
 	close;
 
 	function Choice {
 		set .@i$, getarg(select(getarg(0),getarg(1),getarg(2))-1);
 		mes "[Karian]";
-		if (.@i$ == "Throw the water out.") {
-			mes "I'll row and you just throw the water out!!";
+		if (.@i$ == "Jogar a água fora.") {
+			mes "Eu remo e você joga a água fora!!";
 			next;
 			return;
 		}
-		if (.@i$ == "Row.") mes "The boat is sinking!!!";
-		else mes "What the hell do you think you're doing?";
+		if (.@i$ == "Remar.") mes "O caiaque está naufragando!!!";
+		else mes "O que você pensa que está fazendo?";
 		close;
 	}
 }
@@ -1480,34 +1479,34 @@ comodo,184,108,0	script	#jmComodo Almost Dead	139,2,2,{
 OnTouch:
 	if (job_min == 17) {
 		mes "["+strcharinfo(0)+"]";
-		mes "I'm... I'm alive~";
+		mes "Eu... Ainda estou vivo~";
 		next;
 		mes "[Karian]";
-		mes "That was a close call.";
+		mes "Essa foi por pouco.";
 		donpcevent "Karian#cmd6::OnEnable";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "You're the one that insisted that we ride on that boat. That's how we ended up like this in the first place!";
+		mes "Foi você que insistiu que fossemos naquele caiaque. Foi por isso que acabamos assim para começo de conversa!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "We wouldn't have suffered like this if we just took the Airship.";
+		mes "Não teriamos sofrido tanto se fossemos de dirgível.";
 		next;
 		mes "[Karian]";
-		mes "But I told you that I don't ride airships!";
+		mes "Mas você sabe que não suporto dirigíveis!";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I can't believe this!";
+		mes "Não consigo acreditar nisso!";
 		next;
 		mes "[Karian]";
-		mes "Well, let's forget about the past!";
-		mes "Since we're in Comodo, let's just have some fun okay?";
+		mes "Então, vamos esquecer o passado!";
+		mes "Já que estamos em Comodo, vamos nos divertir, ok?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Then what should we do about looking for 'Maestro Song'??";
+		mes "E como fica a busca ao 'Trovador Song'??";
 		next;
 		mes "[Karian]";
-		mes "Oh yeah...";
-		mes "Why don't we ask the villagers?";
+		mes "Ah, é mesmo...";
+		mes "Porque não perguntamos aos nativos?";
 		donpcevent "Karian#cmd6::OnDisable";
 		set job_min,18;
 		changequest 11149,11150;
@@ -1516,72 +1515,72 @@ OnTouch:
 	end;
 }
 
-comodo,192,119,0	script	Kayak Master#job_min	98,{
-	mes "[Kayak Master]";
+comodo,192,119,0	script	Dono do Caiaque#job_min	98,{
+		mes "[Dono do Caiaque]";
 	if (job_min == 18) {
-		mes "What?";
-		mes "Maestro Song?";
-		mes "I don't know~";
+		mes "O que?";
+		mes "Trovador Song?";
+		mes "Não conheço~";
 		next;
-		mes "[Kayak Master]";
-		mes "Go to the diner located in the northern part of Comodo.";
-		mes "If he visits this town, he would likely go there first.";
+		mes "[Dono do Caiaque]";
+		mes "Vá ao restaurante localizado na parte norte de Comodo.";
+		mes "Se ele veio a esta cidade, lá seria o primeiro lugar a se visitar.";
 		next;
-		mes "[Kayak Master]";
-		mes "The hostess is good at memorizing the faces of customers.";
-		mes "It's good for business you know?";
+		mes "[Dono do Caiaque]";
+		mes "A dona é boa em memorizar o rosto de seus fregueses.";
+		mes "Isso é ótimo para os negócios, sabia?";
 		set job_min,19;
 		changequest 11150,11151;
 		close;
 	}
-	mes "The sea is man's dream.";
+	mes "O mar é o sonho de todo homem.";
 	next;
-	mes "[Kayak Master]";
-	mes "It's my hope that I can cross over to Hugel someday!";
+	mes "[Mestre do Caiaque]";
+	mes "Meu sonho é navegar até Hugel!";
 	close;
 }
 
-comodo,159,316,4	script	Woman Roasting Meat	701,{
-	mes "[Woman Roasting Meat]";
+comodo,159,316,4	script	Churrasqueira	701,{
+	mes "[Churrasqueira]";
 	if (job_min == 19) {
-		mes "Maestro Song?";
-		mes "Yes, I remember that face because he visited a few years ago.";
+		mes "Trovador Song?";
+		mes "Sim, eu lembro daquele rosto por que ele veio aqui há poucos anos atrás.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "He ate a whole plate of baby back ribs by himself...";
-		mes "How can I forget his face?";
+		mes "[Churrasqueira]";
+		mes "Ele comeu um prato inteiro de costelas sozinho...";
+		mes "Como eu poderia esquecer aquele rosto?";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "It was kind of a big fuss.";
-		mes "It was so crowded because of him.";
+		mes "[Churrasqueira]";
+		mes "Estava uma confusão no restaurante.";
+		mes "O restaurante lotou por causa dele.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "Finally, he became exhausted and he wanted to go somewhere quiet.";
+		mes "[Churrasqueira]";
+		mes "Finalmente ele se cansou, e disse que queria ir para algum lugar calmo.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "I told him that there was a quiet place near Morroc, and he left.";
+		mes "[Churrasqueira]";
+		mes "Eu disse a ele que havia um local calmo próximo a Morroc, e ele partiu.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "I regret that.";
+		mes "[Churrasqueira]";
+		mes "Eu me arrependo disso.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "He raised our income a lot while he was here...";
+		mes "[Churrasqueira]";
+		mes "Ele me fez lucrar muito enquanto esteve aqui...";
 		set job_min,20;
 		changequest 11151,11152;
 		close;
 	} else if (job_min == 20) {
-		mes "Where is the quiet place?";
-		mes "Well I'm not sure but there is a mysterious building in south-eastern part of Morroc.";
+		mes "Onde era esse lugar calmo?";
+		mes "Eu não tenho certeza, mas há uma construção misteriosa ao sudeste de Morroc.";
 		next;
-		mes "[Woman Roasting Meat]";
-		mes "I heard that some mysterious people gather there.";
-		mes "I think they're part of some secret guild called ash... or assa... Oh I forget...";
+		mes "[Churrasqueira]";
+		mes "Eu ouvi dizer que pessoas misteriosas se reúnem lá.";
+		mes "Eu acho que eles fazem parte de uma guilda secreta chamada azinha... ou assado... Ah, eu esqueci...";
 		close;
 	}
-	mes "He ate a whole plate of baby back ribs by himself.";
+	mes "Ele comeu um prato inteiro de costelas sozinho.";
 	next;
-	mes "[Woman Roasting Meat]";
-	mes "I'll never forget him.";
+	mes "[Churrasqueira]";
+	mes "Eu nunca o esquecerei.";
 	close;
 }
 
@@ -1589,70 +1588,70 @@ moc_fild16,206,232,0	script	#jmTransfer news	139,3,3,{
 OnTouch:
 	if (job_min == 20) {
 		mes "["+strcharinfo(0)+"]";
-		mes "Um? What is this?";
-		mes "Something covered by sand?";
+		mes "Hum? o que é isso?";
+		mes "Algo coberto de areia?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Ah It's!!";
-		mes "I think 'Maestro Song' dropped it!";
+		mes "Ah, isso é dele!!";
+		mes "Eu acho que o 'Trovador Song' deixou cair!";
 		next;
 		mes "[Karian]";
-		mes "What?! How do you know?";
+		mes "O que?! Como você sabe?";
 		donpcevent "Karian#cmd7::OnEnable";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "The lyrics from the man I met in Hugel on the receipt...";
+		mes "As letras de música escritas no cupom do homem que conheci em Hugel...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "and this poem written on this paper.";
-		mes "The calligraphy style is the same.";
+		mes "e o poema escrito neste papel...";
+		mes "Tem a mesma caligrafia.";
 		next;
 		mes "[Karian]";
-		mes "I want to see clock tower...";
+		mes "Eu quero ir até a Torre do Relógio...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "But this poem can't be a clue...";
+		mes "Mas esse poema não poderia ser uma pista...";
 		mes "...";
-		mes "What?";
+		mes "O-o que?";
 		next;
 		mes "[Karian]";
 		mes "......";
-		mes "I want to see clock tower.";
+		mes "Eu quero ver a Torre do Relógio.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Clock tower?";
-		mes "What are you saying all of a sudden?";
+		mes "A Torre do Relógio?";
+		mes "Porque está dizendo isso tão derrepente?";
 		next;
 		mes "[Karian]";
-		mes "The... huge clock tower in Al De Baran.";
+		mes "A... gigante Torre do Relógio em Aldebaran.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "I know but...";
+		mes "Eu sei, mas...";
 		next;
 		mes "[Karian]";
-		mes "Will you join me?";
+		mes "Você vem comigo?";
 		next;
-		switch(select("Refuse.:Accept.")) {
+		switch(select("Recusar.:Aceitar.")) {
 		case 1:
 			mes "[Karian]";
-			mes "Come on~Come on~";
-			mes "Come on~Come on~";
-			mes "Come on~~~~~~~~~";
+			mes "Vamos lá~Por favor~";
+			mes "Por favor~Por favor~";
+			mes "Por favoooor~~~~~~~~~";
 			next;
 			mes "[Karian]";
-			mes "We don't have any more clues.";
+			mes "Nós não temos nenhuma outra pista.";
 			next;
 			mes "[Karian]";
 			break;
 		case 2:
 			mes "["+strcharinfo(0)+"]";
-			mes "Ok that's not a bad idea...";
+			mes "Certo, não é uma má ideia...";
 			next;
 			mes "[Karian]";
-			mes "Ok!!!";
+			mes "Certo!!!";
 			break;
 		}
-		mes "Hey! Let's go~~";
+		mes "Eii! Vamos lá~~";
 		donpcevent "Karian#cmd7::OnDisable";
 		set job_min,21;
 		changequest 11152,11153;
@@ -1661,66 +1660,66 @@ OnTouch:
 	end;
 }
 
-aldebaran,140,130,0	script	#jmAldebaran Clock Tower	139,3,3,{
+aldebaran,140,130,0	script	#jmAldebaran Torre do Relógio	139,3,3,{
 OnTouch:
 	if (job_min == 21) {
 		mes "["+strcharinfo(0)+"]";
-		mes "Anyway why do you want to visit this place?";
+		mes "Porque você queria tanto vir a este lugar?";
 		next;
 		mes "[Karian]";
 		mes "......";
 		donpcevent "Karian#cmd8::OnEnable";
 		next;
 		mes "[Karian]";
-		mes "This is my friend's favorite place.";
-		mes "When we feel tired, we see that tower.";
+		mes "Este é o lugar favorito de um amigo meu.";
+		mes "Quando nos sentiamos cansados, ficavamos observando aquela torre.";
 		next;
 		mes "[Karian]";
-		mes "Let me go back to my hometown.";
-		mes "There are many beautiful flowers.";
-		mes "The birds sing for me.";
-		mes "It's this old town.";
+		mes "Deixe-me voltar para a minha cidade~.";
+		mes "Onde há lindas flores~.";
+		mes "E pássaros que cantam para mim~.";
+		mes "Lá é a minha cidade natal~.";
 		next;
 		mes "[Karian]";
-		mes "I harvest crops";
-		mes "for my church.";
-		mes "There is no warmer";
-		mes "place than where";
-		mes "I was raised.";
+		mes "Eu colhia verduras~";
+		mes "para minha igreja~.";
+		mes "Não há um lugar~";
+		mes "tão aconchegante~";
+		mes "como esse onde nasci~.";
 		next;
 		mes "[Karian]";
-		mes "Let me go back to my hometown.";
-		mes "Let me play in the lake until I die.";
-		mes "I'll take a rest";
-		mes "at the end of my life.";
+		mes "Deixe-me voltar para a minha cidade~.";
+		mes "Deixe-me bincar no lago até morrer~.";
+		mes "Eu vou tirar um cochilo~";
+		mes "pelo resto de minha vida~.";
 		next;
 		mes "[Karian]";
-		mes "Where is Misa and Masa.";
-		mes "They already went to the";
-		mes "brilliant mountain where";
-		mes "it is full of freedom and";
-		mes "pleasure I want to go";
-		mes "there soon.";
+		mes "Onde estão Misa e Masa~.";
+		mes "Elas já foram para~";
+		mes "a relusente montanha~";
+		mes "onde reside a liberdade~";
+		mes "e o prazer.~";
+		mes "Eu quero estar lá em breve~.";
 		next;
 		mes "[Karian]";
-		mes "It's a song that my friend always sang for me.";
-		mes "I haven't sung it in a long time...";
+		mes "É uma música que meu amigo sempre cantava para mim.";
+		mes "Eu não canto esta música há muito tempo...";
 		next;
 		mes "[Karian]";
-		mes "Why don't we go back to Prontera?";
+		mes "Porque não voltamos a Prontera?";
 		next;
 		mes "[Karian]";
-		mes "I can't get rid of the the memories that I was impressed with when I entered Prontera's gates.";
+		mes "Eu não consegui me livrar das lembranças que me ocorreram quando passei pelos portões de Prontera.";
 		set job_min,22;
 		changequest 11153,11154;
 		donpcevent "Karian#cmd8::OnDisable";
 		close;
 	} else if (job_min == 22) {
 		mes "[Karian]";
-		mes "Let's go back to Prontera?";
+		mes "Porque não voltamos a Prontera?";
 		next;
 		mes "[Karian]";
-		mes "I can't get rid of the memories that I was impressed with when I entered Prontera's gates.";
+		mes "Eu não consegui me livrar das lembranças que me ocorreram quando passei pelos portões de Prontera.";
 		close;
 	}
 	end;
@@ -1730,14 +1729,14 @@ prontera,155,40,0	script	#jmprt1	139,2,2,{
 OnTouch:
 	if (job_min == 22) {
 		mes "[Karian]";
-		mes "I've finally come back.";
-		mes "Back to Prontera...";
+		mes "Eu finalmente...";
+		mes "estou em Prontera...";
 		donpcevent "Karian#cmd9::OnEnable";
 		next;
 		mes "[Karian]";
-		mes "I'm so tired.";
-		mes "I want to take a rest~";
-		mes "Come here, "+strcharinfo(0)+".";
+		mes "Me sinto tão cansado.";
+		mes "Quero tirar uma soneca~";
+		mes "Venha aqui, "+strcharinfo(0)+".";
 		set job_min,23;
 		close;
 	}
@@ -1747,7 +1746,7 @@ OnTouch:
 prontera,155,42,0	script	#prtjm1	139,1,1,{
 OnTouch:
 	if (job_min == 23) {
-		mes "-Let me go back to my hometown.-";
+		mes "-Deixe-me voltar para a minha cidade~.-";
 		set job_min,24;
 		close2;
 		warp "prontera",155,44;
@@ -1759,7 +1758,7 @@ OnTouch:
 prontera,155,44,0	script	#prtjm2	139,1,1,{
 OnTouch:
 	if (job_min == 24) {
-		mes "-There are many beautiful flowers.-";
+		mes "-Onde há lindas flores~.-";
 		set job_min,25;
 		close2;
 		warp "prontera",155,46;
@@ -1771,7 +1770,7 @@ OnTouch:
 prontera,155,46,0	script	#prtjm3	139,1,1,{
 OnTouch:
 	if (job_min == 25) {
-		mes "-The birds sing for me.-";
+		mes "-E pássaros que cantam para mim~.-";
 		set job_min,26;
 		close2;
 		warp "prontera",155,48;
@@ -1783,44 +1782,44 @@ OnTouch:
 prontera,155,48,0	script	#prtjm4	139,1,1,{
 OnTouch:
 	if (job_min == 26 || job_min == 27) {
-		mes "-It's this old town.-";
+		mes "-É esta velha cidade.-";
 		next;
 		if (SkillPoint != 0) {
 			mes "[Karian]";
-			mes "Hey... Don't you know how to use your skill points?";
-			mes "You should use them.";
+			mes "Ei... Você não sabe usar seus pontos de habilidade?";
+			mes "Você deveria usá-los.";
 			close;
 		}
 		if (checkweight(1201,1) == 0 || MaxWeight - Weight < 3500) {
-			mes "^3355FFWait a minute! You're";
-			mes "carrying too many items";
-			mes "right now, store some of";
-			mes "your extra things in Kafra";
-			mes "Storage, and then come back.^000000";
+			mes "^3355FFEspere um momento! Você está";
+			mes "carregando muitos itens";
+			mes "com você! Guarde alguns";
+			mes "de seus itens no seu armazém,";
+			mes "e depois volte.^000000";
 			close;
 		}
 		if (BaseLevel < 99 || JobLevel < 50) {
 			mes "[Karian]";
-			mes "Hey... why are you so low?";
-			mes "How did you lose levels?";
+			mes "Ei... por que está tão fraco?";
+			mes "Como perdeu tantos níveis?";
 			close;
 		}
 		if (BaseJob != Job_Bard) {
 			mes "[Karian]";
-			mes "Hey... you changed your outfit?";
-			mes "How'd you do that?";
+			mes "Ei.. você trocou de roupa?";
+			mes "Como fez isso tão rápido?";
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
-		mes "-It's a poem that you picked up in the desert.-";
+		mes "-É um poema que você achou no deserto.-";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "-How does Karian know-";
-		mes "-that song's not a poem?-";
+		mes "-Como Karian sabe que-";
+		mes "-aquela música não é um poema?-";
 		next;
 		mes "[Karian]";
-		mes "Why are you looking at me?";
-		mes "How was it? Have fun??";
+		mes "Porque está olhando para mim?";
+		mes "Como foi? Você se divertiu??";
 		set job_min,27;
 		donpcevent "Karian#cmd9::OnDisable";
 		close2;
@@ -1833,55 +1832,55 @@ OnTouch:
 prt_in,94,172,4	script	Karian#job_min3	480,{
 	if (job_min == 27) {
 		if (checkweight(1201,1) == 0 || MaxWeight - Weight < 3500) {
-			mes "While you are on a trip, you gain lots of stuff. Make yourself lighter.";
+			mes "Enquanto estiver conosco você deve possuir pouca bagagem.";
 			close;
 		}
 		mes "[Karian]";
 		if (SkillPoint != 0) {
-			mes "Ah~! Did you know that you still have skill points?";
-			mes "Handle that quickly.";
+			mes "Ei... Você não sabe usar seus pontos de habilidade?";
+			mes "Você deveria usá-los.";
 			close;
 		}
 		if (BaseLevel < 99 || JobLevel < 50) {
-			mes "Ah~! Your level looks lower than before.";
-			mes "How did you degrade?";
+			mes "Ei... porque está tão fraco?";
+			mes "Como perdeu tantos níveis?";
 			close;
 		}
 		if (ismounting()) {
-			mes "Please unequip your riding pet and try again!";
+			mes "Por favor saia de sua montaria antes de falar comigo!";
 			close;
 		}
 		if (BaseJob != Job_Bard) {
-			mes "Huh?";
+			mes "Hã?";
 			close;
 		}
-		mes "I'm sorry about the lie.";
-		mes "The song written on this paper...";
+		mes "Me desculpe por ter mentido.";
+		mes "A música escrita neste papel...";
 		next;
 		mes "[Karian]";
-		mes "I really want to find my friend's article left behind.";
-		mes "I couldn't find it by myself.";
+		mes "Eu realmente queria achar este artefato que meu amigo deixou para trás.";
+		mes "Eu não conseguiria achar sozinho.";
 		next;
 		mes "[Karian]";
-		mes "I gave it to my friend but he kept it precious...";
+		mes "Eu dei isso para o meu amigo, e ele o guardou com o maior carinho...";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Did you give it to him?";
-		mes "Wait a second!";
-		mes "Just who are you?";
+		mes "Você deu isso a ele?";
+		mes "Espere um momento!";
+		mes "Quem é você?";
 		next;
-		mes "[Maestro Song]";
-		mes "Yes! I'm 'Maestro Song'!";
-		mes "Are you surprised!?";
+		mes "[Trovador Song]";
+		mes "Sim! Eu sou o 'Trovador Song'!";
+		mes "Você está surpreso!?";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "......";
 		next;
-		mes "[Maestro Song]";
-		mes "This is my present to you.";
+		mes "[Trovador Song]";
+		mes "Este é o meu presente para você.";
 		next;
-		mes "[Maestro Song]";
-		mes "You are also my friend.";
+		mes "[Trovador Song]";
+		mes "Você também é meu amigo.";
 		set job_min,100;
 		jobchange roclass(eaclass()|EAJL_THIRD);
 		completequest 11154;
@@ -1889,38 +1888,38 @@ prt_in,94,172,4	script	Karian#job_min3	480,{
 		getitem 2795,1; //Green_Apple_Ring
 		close;
 	} else if (job_min > 99) {
-		switch(select("Talk.:Leave.")) {
+		switch(select("Falar.:Ir embora.")) {
 		case 1:
-			mes "[Maestro Song]";
-			mes "The name 'Karian'?";
-			mes "He gave it to me.";
+			mes "[Trovador Song]";
+			mes "O nome 'Karian'";
+			mes "Ele quem me deu.";
 			next;
-			mes "[Maestro Song]";
-			mes "He said that when he hears my song, he feels warmhearted.";
-			mes "'Kallianga' means hot air.";
+			mes "[Trovador Song]";
+			mes "Ele disse que quando ouvia minhas músicas, ele se sentia cheio de ternura.";
+			mes "'Kallianga' significa ar quente.";
 			next;
-			mes "[Maestro Song]";
-			mes "He likes to sing...";
+			mes "[Trovador Song]";
+			mes "Ele gosta de cantar..";
 			next;
-			mes "[Maestro Song]";
-			mes "And he's good at singing for sure?";
+			mes "[Trovador Song]";
+			mes "E era muito bom de canto, com toda certeza!";
 			next;
-			mes "[Maestro Song]";
-			mes "Ah! If it's okay with you, I want to take a pic with you in Juno?";
+			mes "[Trovador Song]";
+			mes "Ah! Se não tiver problema para você, eu gostaria de tirar uma foto com você em Juno!";
 			next;
-			mes "[Maestro Song]";
-			mes "I want to have something to remember you by.";
+			mes "[Trovador Song]";
+			mes "Eu quero ter algo que me recorde de você.";
 			close;
 		case 2:
-			mes "[Maestro Song]";
-			mes "See you.";
-			mes "It was really fun.";
+			mes "[Trovador Song]";
+			mes "Até mais.";
+			mes "Foi muito divertido.";
 			close2;
 			warp "prontera",156,99;
 			end;
 		}
 	}
 	mes "[Karian]";
-	mes "How did you get in here?";
+	mes "Como você veio parar aqui?";
 	close;
 }
