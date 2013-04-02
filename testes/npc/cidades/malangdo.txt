@@ -162,7 +162,7 @@ lighthalzen,254,83,5	duplicate(Dolangmal)	Dolangmal#8	553
 mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 
 izlude,182,218,4	script	Odgnalam#Izlude	554,{
-	mes "Recebendo o sol quente de "+strnpcinfo(2)+" sun.";
+	mes "Recebendo o sol quente de "+strnpcinfo(2)+".";
 	next;
 	if(select("Deixe ele durmir:Fale com ele") == 1) close;
 	mes "[Odgnalam]";
@@ -341,7 +341,7 @@ malangdo,216,168,3	script	Treinadora de Gatos#mal1	558,0,8,{
 	emotion e_awsm;
 	mes "[Treinadora de Gatos]";
 	mes "Pff~ Pelos lisos e macios, adoro gatinhos!";
-	mes "Can't stand, this is heaven~~!!";
+	mes "Não aguento, isso é o paraíso~~!!";
 	next;
 	emotion e_gg;
 	mes "[Treinadora de Gatos]";

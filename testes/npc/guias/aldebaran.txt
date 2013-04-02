@@ -26,15 +26,14 @@
 
 aldebaran,139,63,4	script	Guia#01aldebaran	105,{
 	cutin "prt_soldier",2;
-	if(checkre(0)) {
-		// Renewal
+	if(checkre(0)) { // Renewal
 		mes "[Guia de Al De Baran]";
 		mes "Bem-vindo à ^8B4513Al De Baran^000000,";
 		mes "a cidade fronteira.";
 		mes "Precisa de alguma ajuda para se localizar?";
 		next;
 		while (1) {
-			switch(select("[ Principais Locais ]:[ Lojas & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
+			switch(select("[ Principais Lugares ]:[ Lojas & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
 				set .@loop,1;
 				while (.@loop) {
@@ -169,8 +168,7 @@ aldebaran,139,63,4	script	Guia#01aldebaran	105,{
 				end;
 			}
 		}
-	} else {
-		// pré-Renewal
+	} else { // Pré-Renewal
 		mes "[Guarda de Al De Baran]";
 		mes "Eu só um simples guarda";
 		mes "que você pode encontrar em qualquer outra cidade. Acho que nem tenho um nome...";
@@ -234,7 +232,7 @@ aldebaran,133,108,4	script#pre	Soldado#alde	105,{
 		break;
 	case 3:
 		viewpoint 1,223,222,2,0x00FFFF;
-		mes "^00FFFF+^000000 -> Guila dos Feiticeiros (Fechada)";
+		mes "^00FFFF+^000000 -> Guilda dos Feiticeiros (Fechada)";
 		break;
 	case 4:
 		viewpoint 1,233,105,3,0x515151;

@@ -186,7 +186,7 @@ job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
 	close;
 }
 
-gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
+gef_tower,105,172,5	script	Vendedora de Fragmentos#Feiticeiro	700,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está carregando -";
@@ -195,11 +195,11 @@ gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
-	mes "[Vendedor de Fragmentos]";
+	mes "[Vendedora de Fragmentos]";
 	mes "Olá. Eu sou o Vendedor de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
 	next;
 	set .@i, select("Fragmento Escarlate - 200z:Fragmento Verde - 200z:Fragmento Azul - 200z:Fragmento Amarelo - 200z:Cancelar")-1;
-	mes "[Vendedor de Fragmentos]";
+	mes "[Vendedora de Fragmentos]";
 	if (.@i == 4) {
 		mes "Você não conseguiu encontrar as coisas que você precisa?";
 		close;
@@ -211,7 +211,7 @@ gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
 	mes "Se você quiser cancelar, digite 0.";
 	next;
 	input .@amount;
-	mes "[Vendedor de Fragmentos]";
+	mes "[Vendedora de Fragmentos]";
 	if (.@amount == 0) {
 		mes "Você cancelou a negociação.";
 		close;
@@ -229,9 +229,9 @@ gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
 	mes "Muito obrigado. Até logo~!";
 	close;
 }
-comodo,241,103,6	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#1	700
-alberta,105,52,7	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#2	700
-veins,202,128,6	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#3	700
+comodo,241,103,6	duplicate(Vendedora de Fragmentos#Feiticeiro)	Vendedora de Fragmentos#1	700
+alberta,105,52,7	duplicate(Vendedora de Fragmentos#Feiticeiro)	Vendedora de Fragmentos#2	700
+veins,202,128,6	duplicate(Vendedora de Fragmentos#Feiticeiro)	Vendedora de Fragmentos#3	700
 
 einbroch,122,250,4	shop	Mercado Negro#ein	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
 lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	49

@@ -18,11 +18,12 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,111,59,5	script	Bulletin Board#1	837,{
+alberta,111,59,5	script	Quadro de Avisos#1	837,{
 	mes "[Cidade Portuária, Alberta]";
 	mes "Bem-vindo à cidade portuária Alberta. Alberta tem um comércio náutico bem desenvolvido. Recentemente, as ligações comerciais de Alberta se expandiram para vários países estrangeiros";
 	next;
@@ -33,559 +34,545 @@ alberta,111,59,5	script	Bulletin Board#1	837,{
 	mes "Recentemente, as ligações comerciais de Alberta se expandiram para vários países estrangeiros.";
 	next;
 	mes "[Cidade Portuária, Alberta]";
-	mes "On the docks, you may find representatives from foreign lands that will guide tourists to their countries.";
+	mes "Nas estações de barco, você pode encontrar representantes de países estrangeiros que orientam turistas que visitam seus países.";
 	next;
 	mes "[Cidade Portuária, Alberta]";
-	mes "Among seafarers, there is a rumor of a place known as ^338C60Turtle Island^000000. Intrepid adventurers may seek to investigate this rumor and learn the truth for themselves";
+	mes "Entre os marinheiros, há um rumor de um lugar chamado ^338C60Ilha da Tartaruga^000000. Aventureiros corajosos podem procurar e investigar este rumor e o desvendarem por si mesmos.";
 	next;
 	mes "[Cidade Portuária, Alberta]";
-	mes "There is also a sunken ship that has been discovered near Alberta, and it has become a popular area for adventurers to explore";
+	mes "Há também um nacho afundado que foi descoberto próximo a Alberta, e tornou-se uma área popular entre os aventureiros para se explorar.";
 	next;
 	mes "[Cidade Portuária, Alberta]";
-	mes "From Alberta, ^1F3A11Payon^000000 is located to the Northwest. You can board passenger ships at the dock to travel to ^5E5C69Izlude^000000.";
-	mes "Enjoy your travels."; 
+	mes "De Alberta, ^1F3A11Payon^000000 está localizada a noroeste. Você também pode embarcar através de barcos até ^5E5C69Izlude^000000.";
+	mes "Aproveite suas viagens."; 
 	close;
 }
 
-geffen,124,65,5	script	Bulletin Board#2	837,{
+geffen,124,65,5	script	Quadro de Avisos#2	837,{
 	mes "[A Cidade da Magia, Geffen]";
 	mes "Bem-vindo a Geffen, a Cidade da Magia. Geffen é bem conhecida por suas várias lendas relacionadas à magia.";
 	next;
 	mes "[A Cidade da Magia, Geffen]";
-	mes "Points of interest in the city include the Forge, where people can change their jobs to Blacksmith, the Magic Academy for aspiring mages, and the Geffen Tower for the Wizard job change.";
+	mes "Pontos interessantes da cidade, incluem a Forja, onde as pessoas podem mudar de classe para Ferreiro, a Academia de Magia para aspirantes a Mago, e a Torre de Geffen.";
 	next;
 	mes "[A Cidade da Magia, Geffen]";
-	mes "Underneath the Geffen Tower lies a dungeon in which dreadful monsters are rumored to appear.";
+	mes "A baixo da Torre de Geffen está localizado um calabouço onde monstros terríveis surgem, segundo rumores.";
 	next;
 	mes "[A Cidade da Magia, Geffen]";
-	mes "It is said that the lost city of Gefenia, a place of elven lore and legend, is hidden within the depths of this dungeon.";
+	mes "Diz-se que a cidade perdida de Gefenia, um lugar de lenda e de tradição élfica está escondida nas profundezas desse calabouço.";
 	next;
 	mes "[A Cidade da Magia, Geffen]";
-	mes "From Geffen, the ^828E28Orc Village^000000 is located to the South, ^4C6055Glast Heim^000000 to the West, ^6D6FE0Prontera^000000 to the far East, and ^744B2DMt. Mjolnir^000000 to the North. Enjoy your stay here in Geffen.";
+	mes "De Geffen, o ^828E28Vilarejo dos Orcs^000000 está localizado ao SUl, ^4C6055Glast Heim^000000 ao Oeste, ^6D6FE0Prontera^000000 ao Extremo Oriente, e o ^744B2DMt. Mjolnir^000000 ao Norte. Aproveite sua estadia aqui em Geffen.";
 	close;
 }
 
-gef_fild10,69,340,5	script	Bulletin Board#3	837,{
+gef_fild10,69,340,5	script	Quadro de Avisos#3	837,{
 	mes "[Caverna dos Orcs]";
-	mes "^6B1312Caution!^000000";
-	mes "The Caverna dos Orcs is comprised of 2 levels. Although not very strong individually, the monsters here attack in groups. Be careful.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Caverna dos Orcs é composta por dois níveis. Apesar de não serem fortes individuamentes, os monstros atacam em grupos. Tome cuidado.";
 	next;
 	mes "[Caverna dos Orcs]";
-	mes "Only in this dungeon will you be able to encounter Orc Skeletons, Zenorcs and Orc Zombies.";
+	mes "Somente nesta caverna você será capaz de encontrar Orcs Esqueletos, Zenorcs e Orcs Zumbi.";
 	next;
 	mes "[Caverna dos Orcs]";
-	mes "Holy attribute weapons will greatly aid you in this place, since most of the monsters in this dungeon are Undead.";
+	mes "A propriedade Sagrada irá te ajudar muito neste lugar, a causa disso é que a maioria dos monstros da caverna são mortos-vivos.";
 	next;
 	mes "[Caverna dos Orcs]";
-	mes "If you don't have a Holy Weapon and you're teamed with a Priest, the Priest's Aspersio spell would be of tremendous help.";
+	mes "Se você não possui uma Arma Sagrada mas possui um Sacerdote em seu Grupo, então sua habilidade Aspersio será de grande ajuda.";
 	close;
 }
 
-izlu2dun,104,92,5	script	Bulletin Board#4	837,{
+izlu2dun,104,92,5	script	Quadro de Avisos#4	837,{
 	mes "[Ilha Byalan]";
-	mes "^6B1312Caution!^000000";
-	mes "The Izlude dungeon is comprised of 5 levels. The first few levels are suited for newer adventurers.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Caverna de Izlude é composta por cinco níveis. Os primeiros níveis são adequados para os aventureiros iniciantes.";
 	next;
 	mes "[Ilha Byalan]";
-	mes "As you venture deeper into the Byalan dungeon, you will encounter stronger, more powerful monsters.";
+	mes "A medida que você explora a caverna então os monstros se tornam mais fortes.";
 	next;
 	mes "[Ilha Byalan]";
-	mes "With a few exceptions, most of the monsters in this dungeon are of the Water attribute. Therefore, a Wind attribute weapon will help you greatly";
+	mes "Com poucas exceções, a maioria dos monstros nesta caverna é de propriedade Água. Portanto, uma arma de propriedade Vento irá ajudar você.";
 	close;
 }
 	
-izlude,131,116,4	script	Bulletin Board#5	837,{
+izlude,131,116,4	script	Quadro de Avisos#5	837,{
 	mes "[A Cidade Satélite, Izlude]";
-	mes "Welcome to Izlude, the satellite of Prontera. Izlude was built to support Prontera's defense and to accommodate its burgeoning population";
+	mes "Bem-vindo a Izlude, a cidade satélite de Prontera. Izlude foi construída para apoiar a defesa de Prontera e para acomodar sua crescente população.";
 	next;
 	mes "[A Cidade Satélite, Izlude]";
-	mes "Points of interest include the Swordsman Association building which allows adventurers to change their job to Swordsman, and the Battle Area that is North of Izlude.";
+	mes "Pontos interessantes de Izlude incluem: A Associação de Espadachins, lugar onde Aprendizes podem mudar de classe e se tornarem um Espadachim, e há também a Arena de Batalha que está localizada ao Norte de Izlude.";
 	next;
 	mes "[A Cidade Satélite, Izlude]";
-	mes "At the docks, you may take a ship and travel to ^123972Alberta^000000 or ^2F0400Ilha Byalan^000000.";
+	mes "Nas estações de barco, você pode alugar um barco e ir até ^123972Alberta^000000 ou a ^2F0400Ilha Byalan^000000.";
 	next;
 	mes "[A Cidade Satélite, Izlude]";
-	mes "From Izlude, ^6D6FE0Prontera^000000 is located to the Northwest, and ^1F3A11Payon^000000 is located to the South.";
-	mes "Enjoy your travels in the Rune-Midgarts Kingdom.";
+	mes "De Izlude, ^6D6FE0Prontera^000000 está localizada a Noroeste, e ^1F3A11Payon^000000 está localizada ao Sul.";
+	mes "Aproveite sua viagem no Reino de Rune-Midgard.";
 	close;
 }
 	
-payon,178,108,5	script	Bulletin Board#06	837,{
-	mes "[Payon: The Mountain City]";
-	mes "Welcome to Payon, the mountain city. Payon has recently been renovated, so we hope you enjoy the clean, nice streets and buildings.";
+payon,178,108,5	script	Quadro de Avisos#06	837,{
+	mes "[A Cidade da Montanha, Payon]";
+	mes "Bem-vindo a Payon, a cidade da montanha. Payon foi recentemente renovada, então nós esperamos que você aproveite as ruas limpas, bonitas e seus edifícios.";
 	next;
-	mes "[Payon: The Mountain City]";
-	mes "Payon is famous for being a city of archery. For a long time, its citizens have made their living by hunting with bows and arrows. Bow crafting and training have also been developed here in Payon";
+	mes "[A Cidade da Montanha, Payon]";
+	mes "Payon é famosa por ser a cidade dos Arqueiros. Durante um longo tempo, seus cidadãos dedicaram sua vida a caçar utilizando arco e flechas. A elaboração de treinamentos voltados a artilharia também foram desenvolvidos aqui em Payon.";
 	next;
-	mes "[Payon: The Mountain City]";
-	mes "Payon has various armor and weapons, especially for the Archer class. If you wish to become an Archer, it would be best to become familiar with this city.";
+	mes "[A Cidade da Montanha, Payon]";
+	mes "Payon possui várias armas e armaduras, especialmente para a classe Arqueiro. Se você deseja se tornar um Arqueiro, é melhor se familiarizar com a cidade.";
 	next;
-	mes "[Payon: The Mountain City]";
-	mes "Payon Palace is located in the center of the city. The Vilarejo dos Arqueiros is located in the Northern part of Payon. There, people can change their jobs to Archer.";
+	mes "[A Cidade da Montanha, Payon]";
+	mes "O Palácio de Payon está localizado no centro da cidade. O Vilarejo dos Arqueiros está localizado na parte norte de Payon. Lá, as pessoas podem mudar sua classe e se tornarem Arqueiros.";
 	next;
-	mes "[Payon: The Mountain City]";
-	mes "Near the Archer Village, you can find the ^2F0400Caverna de Payon^000000 where Undead monsters reside.";
+	mes "[A Cidade da Montanha, Payon]";
+	mes "Próximo ao Vilarejo dos Arqueiros, você pode encontrar a ^2F0400Caverna de Payon^000000 onde monstros Mortos-Vivos residem.";
 	next;
-	mes "[Payon: The Mountain City]";
-	mes "From Payon, ^123972Alberta^000000 is located to the Southeast, and ^866C4BMorroc^000000 is to the West. ^5E5C69Izlude^000000 and ^6D6FE0Prontera^000000 are North of Payon.";
+	mes "[A Cidade da Montanha, Payon]";
+	mes "De Payon, ^123972Alberta^000000 está localizada a Sudeste, e ^866C4BMorroc^000000 ao Oeste. ^5E5C69Izlude^000000 e ^6D6FE0Prontera^000000 estão ao Norte de Payon.";
 	mes "Enjoy your travels."; 
 	close;
 }
 	
-pay_arche,79,31,5	script	Bulletin Board#07	837,{
+pay_arche,79,31,5	script	Quadro de Avisos#07	837,{
 	mes "[Vilarejo dos Arqueiros]"; 
-	mes "Welcome to the Payon Vilarejo dos Arqueiros where Novices can change their jobs to Archer.";
+	mes "Bem-vindo ao Vilarejo dos Arqueiros de Payon, aqui Aprendizes podem se tornar Arqueiros.";
 	next;
 	mes "[Vilarejo dos Arqueiros]";
-	mes "The Vilarejo dos Arqueiros provides Bows and Tights that are available for purchase. These are necessities for new Archers and Hunters.";
+	mes "O Vilarejo dos Arqueiros fornece Arcos e Malhas justas que estão disponíveis para compra. Eles são necessários para novos Arqueiros e Caçadores.";
 	next;
 	mes "[Vilarejo dos Arqueiros]";
-	mes "If you wish to become an Archer, it is suggested to become familiar with this village. For aspiring Hunters, the Hunter Guild is located in a field that is East of Payon.";
+	mes "Se você deseja se tornar um Arqueiro, sugiro que se familiarize com este vilarejo. Para aspirantes a Caçador, a Guilda de Caçadores está em uma área localizada a leste de Payon.";
 	close;
 }
 
-pay_arche,39,134,5	script	Bulletin Board#08	837,{
+pay_arche,39,134,5	script	Quadro de Avisos#08	837,{
 	mes "[Caverna de Payon]";
-	mes "^6B1312Caution!^000000";
-	mes "Caverna de Payon consists of 5 levels full of Undead and Demon monsters. Beware of swarms of Hydra in the third and fourth levels.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Caverna de Payon possui 5 níveis cheios de monstros Mortos-Vivos e Demônios. Cuidado com os enxames de Hidras nos terceiros e quartos níveis.";
 	next;
 	mes "[Caverna de Payon]";
-	mes "In the fifth level, there is a pretty, yet dreadful boss monster known as ^6B1312Moonlight^000000 that spawns at certain times. Approach with extreme caution.";
+	mes "No quinto nível, há uma linda, e terrível chefe conhecida como ^6B1312Flor do Luar^000000 que é invocada em determinados horários. Apróxime-se com bastante cuidado.";
 	close;
 }
 	
-prontera,148,49,5	script	Bulletin Board#09	837,{
+prontera,148,49,5	script	Quadro de Avisos#09	837,{
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "Welcome to Prontera, the capital city of Rune-Midgard.";
+	mes "Bem-vindo a Prontera, a capital de Rune-Midgard.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "Prontera is located in the center of the Rune-Midgard continent and is very well-known as a city of flourishing commerce.";
+	mes "Prontera está localizada no centro do continente de Rune-Midgard e é muito conhecida por seu comércio intenso.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "In this city, you can fint the Sanctuary, where people can change their jobs to Acolyte and Priest.";
+	mes "Nesta cidade, você pode ir até o Santuário, onde as pessoas podem mudar sua classe Noviço para Sacerdote.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "You can also find the Castle, where people can change their jobs to Crusader.";
+	mes "Você também pode encontrar o Castelo, onde pessoas podem se tornar um Templário.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "Please feel free to explore the streets of Prontera, as there are various tourist attractions within the city.";
+	mes "Por favor, sinta-se a vontade para explorar as ruas de Prontera, já que existem vários pontos turísticos dentro da cidade.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "When you need to upgrade your weapons and armors, please visit the building in the 5 o'clock direction from the fountain in the center of Prontera.";
+	mes "Quando você precisar aprimorar suas armas e armaduras, visite o edifício na direção de 5 horas em relação a fonte no centro de Prontera.";
 	next;
 	mes "[Capital de Rune-Midgard, Prontera]";
-	mes "From Prontera, ^5E5C69Izlude^000000 is located to the Southeast, ^1F3A11Payon^000000 to the far South, ^683C1FGeffen^000000 to the far West and ^2D3832Al De Baran^000000 to the far North.";
+	mes "De Prontera, ^5E5C69Izlude^000000 está localizada a Sudeste, ^1F3A11Payon^000000 no extremo Sul, ^683C1FGeffen^000000 ao extremo Oeste e ^2D3832Al De Baran^000000 ao extremo Norte.";
 	mes "Enjoy Your time in Prontera.";
 	close;
 }
 
-mjolnir_02,76,362,5	script	Bulletin Board#10	837,{
+mjolnir_02,76,362,5	script	Quadro de Avisos#10	837,{
 	mes "[Mina de Carvão]";
-	mes "^6B1312Caution!^000000";
-	mes "The Mina de Carvão consists of a total of 3 levels. This dungeon is suited to both new and experienced adventurers, depending on the dungeon level.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Mina de Carvão possui um total de 3 Níveis. Esta caverna é adequada para novos e experientes aventureiros, dependendo do nível da caverna.";
 	next;
 	mes "[Mina de Carvão]";
-	mes "In the third level, monsters tend to attack adventurers in swarms, so avoid being surrounded. Since this area is a mine, many Ores can be found within the depths of this dungeon.";
+	mes "No terceiro nível, os monstros tendem a atacar aventureiros em grupo, para evitarem serem cercados. Sendo uma mina, muitos minerais podem ser encontrados aqui.";
 	close;
 }
 
-morocc,152,110,5	script	Bulletin Board#11	837,{
-	mes "[Morroc: The Frontier Town]";
-	mes "Welcome to Morroc, the City of the Desert. Morroc was built on an oasis, so this town can accomodate its many visitors and travelers.";
+morocc,152,110,5	script	Quadro de Avisos#11	837,{
+	mes "[A Cidade da Fronteira, Morroc]";
+	mes "Bem-vindo a Morroc, a Cidade do Deserto. Morroc foi construída em um oásis, para assim acomodar seus visitantes e viajantes.";
 	next;
-	mes "[Morroc: The Frontier Town]";
-	mes "Morroc Castle lies in the center of this city. Please feel free to explore this town, and enjoy its unique atmosphere. However, watch your pockets and beware of Rogues and Thieves.";
+	mes "[A Cidade da Fronteira, Morroc]";
+	mes "O Castelo de Morroc situa-se no centro da cidade. Por favor, fique a vontade para explorar Morroc, e desfrute de sua atmosfera única. No entanto, verifique seus bolsos e tome cuidado com Gatunos ladrões.";
 	next;
-	mes "[Morroc: The Frontier Town]";
-	mes "From Morroc, the ^660000Pyramid Dungeon^000000 can be found to the Northwest, and the ^660000Esfinge Dungeon^000000 can be found to the West. To the Southeast, you may find ^660000Ant Hell^000000.";
+	mes "[A Cidade da Fronteira, Morroc]";
+	mes "De Morroc, as ^660000Pirâmides^000000 podem ser encontradas a Noroeste, e a ^660000Esfinge^000000 pode ser encontrada a Norte. A Sudeste, você pode encontrar o ^660000Formigueiro Infernal^000000.";
 	next;
-	mes "[Morroc: The Frontier Town";
-	mes "The Assassin Guild is rumored to be located to the Southeast. When you head East from Morroc, and then North, you will arrive at ^3355FFProntera^000000.";
+	mes "[A Cidade da Fronteira, Morroc]";
+	mes "Rumores dizem que a Guilda de Mercenários está localizada a Sudeste. Ao se dirigir ao leste de Morroc, e depois para o norte, você chegará a ^3355FFProntera^000000.";
 	close;
 }
 
-comodo,210,148,5	script	Bulletin Board#12	837,{
-	mes "[Comodo: The Beach City]";
-	mes "Welcome! This town of Comodo is";
-	mes "surrounded by many ancient relics";
-	mes "from a forgotten era.";
+comodo,210,148,5	script	Quadro de Avisos#12	837,{
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Bem-vindo! Esta cidade de Comodo é";
+	mes "cercada de muitas relíquias antigas";
+	mes "de uma era esquecida.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "Only in Comodo can you find the";
-	mes "Dancer Guild and Bard Guild which";
-	mes "provide the opportunity for";
-	mes "adventurers to change their jobs to";
-	mes "Dancers and Bards.";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Apenas em Comodo você poderá encontrar a";
+	mes "Guilda de Odaliscas e a Guilda de Bardos onde";
+	mes "aventureiros podem aproveitar";
+	mes "e se tornarem Odaliscas e Bardos.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "You can also visit the Casino,";
-	mes "which is a popular as a tourist";
-	mes "attraction and place to lounge";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Você também pode visitar o Casino,";
+	mes "que é um lugar popular de atração turística.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "You can buy Berserk Potions, a";
-	mes "special product of Comodo, from the";
-	mes "Tool Dealers in the area.";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Você pode comprar poções da Fúria Selvagem, um";
+	mes "produto especial de Comodo, vendido por";
+	mes "Vendedores de Utilidades na região.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "There are 3 caves around Comodo";
-	mes "that are inhabited by many";
-	mes "different monsters. If you enter";
-	mes "these areas, please be extremely";
-	mes "careful.";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Existem 3 Cavernas ao redor de Comodo";
+	mes "que são habitadas por muitos monstros";
+	mes "diferentes. Se você entrar em uma";
+	mes "delas, por favor seja extremamente cauteloso.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "From Comodo, you can travel to";
-	mes "^866C4BMorroc^000000 through the East Cave";
-	mes "and to ^7D2272Umbala^000000 through the North";
-	mes "Cave.";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "De Comodo, você pode viajar para";
+	mes "^866C4BMorroc^000000 através da caverna do leste";
+	mes "e para ^7D2272Umbala^000000 através da caverna do Norte.";
 	next;
-	mes "[Comodo: The Beach City]";
-	mes "To the East, you can find ^BF2B0DParos";
-	mes "^BF2B0DLighthouse^000000, where the Rogue Guild";
-	mes "is located. Enjoy the Comodo night";
-	mes "life~";
+	mes "[A Cidade da Noite Eterna, Comodo]";
+	mes "Indo a Leste, você pode encontrar a ^BF2B0DTorre do Farol^000000,";
+	mes "onde está localizada a Guilda dos Arruaceiros.";
+	mes "Aproveite a vida na noite de Comodo~";
 	close;
 }
 
-umbala,137,94,5	script	Bulletin Board#13	837,{
-	mes "[Umbala: The Utan Village]";
-	mes "Welcome to Umbala,";
-	mes "the village of the Utan tribe.";
+umbala,137,94,5	script	Quadro de Avisos#13	837,{
+	mes "[Aldeia da Tribo Wootan, Umbala]";
+	mes "Bem-vindo a Umbala,";
+	mes "o vilarejo da tribo Wootan.";
 	next;
-	mes "[Umbala: The Utan Village]";
-	mes "Umbala, as well as the Utan tribe";
-	mes "which speak their own unique";
-	mes "language, was recently discovered";
-	mes "by a few intrepid adventurers.";
+	mes "[Aldeia da Tribo Wootan, Umbala]";
+	mes "Umbala, bem como a tribo Wootan";
+	mes "falam sua própria e única";
+	mes "língua, recentemente foi descoberta";
+	mes "por alguns aventureiros corajosos.";
 	next;
-	mes "[Umbala: The Utan Village]";
-	mes "Scholars believe that Umbala may be";
-	mes "the border between our world";
-	mes "and another realm. They believe the";
-	mes "junction between the worlds might";
-	mes "be the Yggdrasil tree to the North.";
+	mes "[Aldeia da Tribo Wootan, Umbala]";
+	mes "Estudiosos acreditam que Umbala pode ser";
+	mes "a fronteira entre o noso mundo";
+	mes "e um outro reino. Eles acreditam que";
+	mes "a junção entre os mundos poderia";
+	mes "ser feita pela Árvore de Yggdrasil localizada ao norte.";
 	next;
-	mes "[Umbala: The Utan Village]";
-	mes "Points of interest include the";
-	mes "Chief's House, the Shaman's House,";
-	mes "and the Bungee Jump Area. Thousands";
-	mes "of tourists visit the Bungee Jump";
-	mes "Area to test their courage.";
+	mes "[Aldeia da Tribo Wootan, Umbala]";
+	mes "Pontos interessantes de Umbala incluem: ";
+	mes "Casa do Chefe, Casa do Xamã,";
+	mes "e o Bungee Jump. Milhares";
+	mes "de turistas visitam o Bungee Jump";
+	mes "para testarem sua coragem.";
 	next;
-	mes "[Umbala: The Utan Village]";
-	mes "From Umbala, head South to go to";
-	mes "^D91B73Comodo^000000. Please enjoy your";
-	mes "stay here in Umbala.";
+	mes "[Aldeia da Tribo Wootan, Umbala]";
+	mes "De Umbala, indo ao sul é possível chegar a";
+	mes "^D91B73Comodo^000000. Por favor aproveite";
+	mes "sua estadia aqui em Umbala.";
 	close;
 }
 
-gef_fild09,227,29,4	script	Bulletin Board::OrcsBoard	835,{
-	mes "[Orc Village]";
-	mes "^6B1312Caution!^000000";
-	mes "Beyond this point";
-	mes "lies the Orc Village.";
+gef_fild09,227,29,4	script	Quadro de Avisos::OrcsBoard	835,{
+	mes "[Vilarejo dos Orcs]";
+	mes "^6B1312Atenção!^000000";
+	mes "Próximo a este ponto";
+	mes "está o Vilarejo dos Orcs.";
 	next;
-	mes "[Orc Village]";
-	mes "Be aware that this village is";
-	mes "teeming with dangerous Orcs, namely";
-	mes "Orc Warriors, Orc Ladies and High";
-	mes "Orcs. Two boss monsters, ^6B1312Orc Hero^000000";
-	mes "and ^6B1312Orc Lord^000000 will also appear at certain times.";
+	mes "[Vilarejo dos Orcs]";
+	mes "Esteja ciente de que esta aldeia é";
+	mes "repleta de Orcs perigosos, ou seja,";
+	mes "Orcs Guerreiros, Senhoras Orcs e Grande";
+	mes "Orcs. Dois monstros chefe, ^6B1312Orc Herói^000000";
+	mes "e o ^6B1312Senhor dos Orcs^000000 também aparece em determinados momentos.";
 	close;
 }
 
-gef_fild13,202,31,5	duplicate(OrcsBoard)	Bulletin Board#orc1	835
+gef_fild13,202,31,5	duplicate(OrcsBoard)	Quadro de Avisos#orc1	835
 
-gef_fild13,29,206,5	script	Bulletin Board::KoboldsBoard	836,{
+gef_fild13,29,206,5	script	Quadro de Avisos::KoboldsBoard	836,{
 
-	mes "[Vilarejo dos Cobolds]";
-	mes "^6B1312Caution!^000000";
-	mes "You're heading to the Kobold Village.";
-	mes "Please be aware this village is filled with many kobolds.";
+	mes "[Vila dos Cobolds]";
+	mes "^6B1312Atenção!^000000";
+	mes "Você está indo para a Vila dos Cobolds.";
+	mes "Por favor, esteja ciente de que esta vila está repleta de cobolds.";
 	close;
 }
 
-gef_fild08,211,24,5	duplicate(KoboldsBoard)	Bulletin Board#kb1	836
+gef_fild08,211,24,5	duplicate(KoboldsBoard)	Quadro de Avisos#kb1	836
 
-gef_fild10,109,23,5	script	Bulletin Board#15	836,{
+gef_fild10,109,23,5	script	Quadro de Avisos#15	836,{
 
-	mes "[Vilarejo dos Goblins]";
-	mes "^6B1312Caution!^000000";
-	mes "You're heading to the Vilarejo dos Goblins.";
-	mes "Please be aware this village is filled with many goblins.";
+	mes "[Vila dos Goblins]";
+	mes "^6B1312Atenção!^000000";
+	mes "Você está indo para a Vila dos Goblins.";
+	mes "Por favor, esteja ciente de que esta vila está repleta de goblins.";
 	close;
 }
 
-prt_fild05,278,220,5	script	Bulletin Board#16	837,{
+prt_fild05,278,220,5	script	Quadro de Avisos#16	837,{
 	mes "[Esgotos]";
-	mes "Esgotos is comprised of a total of";
-	mes "4 levels, and is a good training";
-	mes "ground for new adventurers.";
+	mes "Os Esgotos são compostos de um total de";
+	mes "4 níveis, e é um bom lugar";
+	mes "para treinamento de novos aventureiros.";
 	next;
 	mes "[Esgotos]";
-	mes "In order to access the Culver, you";
-	mes "must volunteer as a monster";
-	mes "exterminator at the Prontera";
-	mes "Chivalry. Remember that the";
-	mes "monsters here may attack in";
-	mes "swarms.";
+	mes "Para acessar o Esgoro, você deve";
+	mes "se tornar um voluntário";
+	mes "na Cavalaria de Prontera.";
+	mes "Lembre-se que os monstros";
+	mes "aqui podem atacar em bando.";
 	next;
 	mes "[Esgotos]";
-	mes "In the fourth level of the Prontera";
-	mes "Esgotos, you may encounter the boss";
-	mes "monster known as the ^6B1312Golden Thief";
-	mes "^6B1312Bug^000000. New adventurers should";
-	mes "exercise caution.";
+	mes "No quarto nível do Esgoto de";
+	mes "Prontera, você poderá encontrar um";
+	mes "monstro conhecido como ^6B1312Besouro-Ladrão Dourado^000000.";
+	mes "Novos aventureiros devem tomar bastante cautela.";
 	close;
 }
 
-yuno,154,112,5	script	Bulletin Board#17	837,{
+yuno,154,112,5	script	Quadro de Avisos#17	837,{
 	mes "[Capital da República de Schwartzwald]";
-	mes "Welcome to Juno, the City of Sages.";
-	mes "Juno is kept aloft in the air by";
-	mes "the power of the Ymir Heart";
-	mes "Pieces";
+	mes "Bem-vindo a Juno, a Cidade dos Sábios.";
+	mes "Juno é mantida flutuando através";
+	mes "do poder dos Pedaços do Coração de Ymir.";
 	next;
 	mes "[Capital da República de Schwartzwald]";
-	mes "Those interested in becoming Sages";
-	mes "should visit the Sage Castle for";
-	mes "more information on the Sage job";
-	mes "and its requirements.";
+	mes "Se você estiver interessado em se tornar";
+	mes "um Sábio, visite o Castelo de Sábios para";
+	mes "mais informações sobre a Classe Sábio";
+	mes "e seus requerimentos.";
 	next;
 	mes "[Capital da República de Schwartzwald]";
-	mes "Other notable places include the";
-	mes "Monster Museum, Magic Academy";
-	mes "and the Juno Library.";
+	mes "Outros lugares notáveis de Juno incluem o";
+	mes "Museu do Monstro, Academia de Magia";
+	mes "e a Livraria de Juno.";
 	next;
 	mes "[Capital da República de Schwartzwald]";
-	mes "Somewhere around Juno, there is";
-	mes "information regarding secret access";
-	mes "to the world where adventurers may";
-	mes "be reborn with newfound strength.";
+	mes "Existe um boato sobre Juno, de que";
+	mes "é possível obter um acesso secreto";
+	mes "a um mundo onde aventureiros podem";
+	mes "renascer com uma nova força.";
 	next;
 	mes "[Capital da República de Schwartzwald]";
-	mes "To the Southeast of Juno lies ^6B1312Nogg";
-	mes "^6B1312Road^000000, the Magma Dungeon. Nogg Road";
-	mes "is infamous for its aggressive";
-	mes "creatures, so be careful";
+	mes "A Sudeste de Juno está a ^6B1312Caverna de Magma ^000000.";
+	mes "A Caverna de Magma é famosa por suas criaturas agressivas, então tenha cuidado.";
 	next;
 	mes "[Capital da República de Schwartzwald]";
-	mes "From Juno, ^2D3832Al De Baran^000000, a city of";
-	mes "the Rune-Midgarts Kingdom, is";
-	mes "located to the South.";
+	mes "De Juno, ^2D3832Al De Baran^000000, uma cidade do";
+	mes "Reino de Rune-Midgard, está";
+	mes "localizada ao Sul.";
 	close;
 }
 
-aldebaran,145,105,5	script	Bulletin Board#18	837,{
-	mes "[Al De Baran: The Border City]";
-	mes "Welcome to Al De Baran, the border";
-	mes "city of the Rune-Midgarts Kingdom.";
-	mes "Al De Baran's beautiful canals and";
-	mes "majestic Torre do Relógio are a source";
-	mes "of pride for its citizens.";
+aldebaran,145,105,5	script	Quadro de Avisos#18	837,{
+	mes "[A Cidade das Kafras, Aldebaran]";
+	mes "Bem-vindo a Al De Baran, uma cidade frontuária";
+	mes "do Reino de Rune-Midgard.";
+	mes "Al De Baran possui belos canais e a";
+	mes "majestosa Torre do Relógio que são a";
+	mes "fonte de orgulho para seus cidadãos.";
 	next;
-	mes "[Al De Baran: The Border City]";
-	mes "Adventurers can explore the Clock";
-	mes "Tower located in the city's center.";
-	mes "Other notable places are the Kafra";
-	mes "Corporation Headquarters, and the";
-	mes "Alchemist Guild which provides the";
-	mes "Alchemist job change.";
+	mes "[A Cidade das Kafras, Aldebaran]";
+	mes "Aventureiros podem explorar a torre";
+	mes "localizada no centro da cidade.";
+	mes "Outros lugares notáveis são o";
+	mes "Quartel da Corporação Kafra, e a";
+	mes "Guilda de Alquímistas onde é possível";
+	mes "se tornar um Alquímista.";
 	next;
-	mes "[Al De Baran: The Border City]";
-	mes "There is a fully trained Santa";
-	mes "Claus somewhere in Al De Baran who";
-	mes "can send you to the magical town of";
-	mes "^1D2585Lutie^000000. If you're interested in";
-	mes "seeing it for yourself, you must";
-	mes "seek Santa Claus.";
+	mes "[A Cidade das Kafras, Aldebaran]";
+	mes "Há um Papai Noel chamado Claus";
+	mes "em algum lugar de Aldebaran que poderá";
+	mes "te levar para uma cidade mágica conhecida como";
+	mes "^1D2585Lutie^000000. Se você estiver interessado";
+	mes "procure pelo Papai Noel Claus.";
 	next;
-	mes "[Al De Baran: The Border City]";
-	mes "From this city, ^60D5FDJuno^000000 is located to";
-	mes "the North, and ^6D6FE0Prontera^000000 is located";
-	mes "to the South.";
+	mes "[A Cidade das Kafras, Aldebaran]";
+	mes "Desta cidade, ^60D5FDJuno^000000 está localizada";
+	mes "a Norte, e ^6D6FE0Prontera^000000 está localizada";
+	mes "ao Sul.";
 	close;
 }
 
-aldebaran,136,133,5	script	Bulletin Board#19	837,{
+aldebaran,136,133,5	script	Quadro de Avisos#19	837,{
 	mes "[Torre do Relógio]";
-	mes "^6B1312Caution!^000000";
-	mes "Only well-experienced adventurers";
-	mes "should consider entering the Clock";
-	mes "Tower. There are a total of 8";
-	mes "levels: 4 beneath the ground and 4 above the earth.";
+	mes "^6B1312Atenção!^000000";
+	mes "Somente aventureiros experientes";
+	mes "poderão entrar na Torre do Relógio.";
+	mes "Há um total de 8 níveis: 4 abaixo do chão e 4 acima.";
 	next;
 	mes "[Torre do Relógio]";
-	mes "The main monsters of the Clock";
-	mes "Tower are Clocks, Alarms and";
-	mes "Bathories. Beware of the Clock";
-	mes "Tower Keepers on patrol.";
+	mes "Os principais monstros da Torre";
+	mes "do Relógio são Relógios, Alarmes e";
+	mes "Bathoris. Cuidado com o";
+	mes "Gerente da Torre do Relógio.";
 	next;
 	mes "[Torre do Relógio]";
-	mes "The paths in the Torre do Relógio are";
-	mes "winding and complicated, so please";
-	mes "be careful and avoid getting";
-	mes "lost.";
+	mes "Os caminhos dentro da Torre do Relógio são";
+	mes "sinuosos e complicados, por isso por favor";
+	mes "tenha cuidado e evite se perder.";
 	close;
 }
 
-moc_fild19,107,101,5	script	Bulletin Board#20	837,{
+moc_fild19,107,101,5	script	Quadro de Avisos#20	837,{
 	mes "[Esfinge]";
-	mes "^6B1312Caution!^000000";
-	mes "The Esfinge consists of 5 levels.";
-	mes "This dungeon is suited for training";
-	mes "well-experienced adventurers.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Esfinge possui 5 níveis.";
+	mes "Esta caverna é adequada para treinamento";
+	mes "de aventureiros experientes.";
 	next;
 	mes "[Esfinge]";
-	mes "There are many aggressive monsters";
-	mes "residing in the Esfinge, and it is";
-	mes "advised to run away if you happen";
-	mes "to be surrounded by them.";
+	mes "Existem muitos monstros agressivos";
+	mes "habitando a Esfinge, e aconselha-se";
+	mes "a fulga caso ocorra";
+	mes "um cerco de monstros.";
 	next;
 	mes "[Esfinge]";
-	mes "In the fifth level, the boss";
-	mes "monster ^6B1312Pharaoh^000000 will appear at";
-	mes "certain times. Exorcise with";
-	mes "extreme prejudice.";
+	mes "No quinto nível, o monstro chefe";
+	mes "^6B1312Faraó^000000 irá aparecer";
+	mes "em determinados momentos. Exorcise-o";
+	mes "com bastante vontade.";
 	close;
 }
 
-gef_tower,55,142,5	script	Bulletin Board#21	837,{
+gef_tower,55,142,5	script	Quadro de Avisos#21	837,{
 
 	mes "[Caverna de Geffen]";
-	mes "^6B1312Caution!^000000"; 
-	mes "Caverna de Geffen is consisted of 3 levels";
-	mes "is too difficult for new adventurers to venture.";
-	mes "As main monsters constantly appear,";
-	mes "there are ^6B1312Hunter Flies^000000, ^6B1312Nightmares^000000 and ^6B1312Jakks^000000.";
-	mes "Nightmares and Jakks only appear in this dungeon.";
+	mes "^6B1312Atenção!^000000"; 
+	mes "A Caverna de Geffen é constituída por 3 nívels";
+	mes "e é um lugar muito dificíl para novos aventureiros.";
+	mes "Os monstros principais aparecem constantemente,";
+	mes "são eles ^6B1312Moscas Caçadoras^000000, ^6B1312Pesadelos^000000 e ^6B1312Jakks^000000.";
+	mes "Pesadelos e Jakks aparecem apenas nesta caverna.";
 	next;
 	mes "[Caverna de Geffen]";
-	mes "On the 2nd level of this dungeon,";
-	mes "^6B1312Ogretooth^000000, the creature of a doomed sword and ^6B1312Dracula^000000,";
-	mes "the boss monster appear without warning.";
-	mes "On the 3rd level, ^6B1312Doppelganger^000000 one of the strongest boss monster appears at certain time.";
+	mes "No segundo nível da caverna,";
+	mes "^6B1312Tirfing^000000, uma das criaturas das espadas amaldiçoadas e o monstro chefe ^6B1312Dracula^000000,";
+	mes "irão aparecer sem aviso prévio.";
+	mes "No terceiro nível, o ^6B1312Doppelganger^000000 um dos chefes mais poderosos irá aparecer em um determinado tempo.";
 	close;
 }
 
-xmas_fild01,75,80,5	script	Bulletin Board#22	837,{
+xmas_fild01,75,80,5	script	Quadro de Avisos#22	837,{
 
-	mes "[Winter Town, Lutie]";
-	mes "Welcome to Lutie, the town of snowfall.";
-	mes "Manufacturing toys in the Fábrica de Brinquedos is the main";
-	mes "business of this town.";
+	mes "[A Cidade do Inverno, Lutie]";
+	mes "Bem-vindo a Lutie, a cidade da neve.";
+	mes "A Fabricação de brinquedos na Fábrica de Brinquedos é o principal";
+	mes "negócio desta cidade.";
 	next;
-	mes "[Winter Town, Lutie]";
-	mes "You can access to the Fábrica de Brinquedos dungeon";
-	mes "at the north of Lutie.";
-	mes "Please remember to visit Lutie in Christmas season.";
-	mes "There are various event held with joy.";
-	mes "Please beware of ^6B1312Stormy Knight^000000 and ^6B1312Hatii^000000 the boss monsters of the toy factory dungeon.";
+	mes "[A Cidade do Inverno, Lutie]";
+	mes "Você pode acessar a Fábrica de Brinquedos";
+	mes "ao norte de Lutie.";
+	mes "Por favor lembre-se de visitar Lutie em épocas de Natal.";
+	mes "Existem vários eventos realizados e com bastante alegria.";
+	mes "Por favor tenha cuidado com o ^6B1312Cavaleiro da Tempestade^000000 e o ^6B1312Hatii^000000 monstros chefes da Fábrica de Brinquedos.";
 	close;
 }
 
-xmas,147,311,5	script	Bulletin Board#23	837,{
+xmas,147,311,5	script	Quadro de Avisos#23	837,{
 
 	mes "[Fábrica de Brinquedos]";
-	mes "^6B1312Caution!^000000";
-	mes "Fábrica de Brinquedos is consisting of 2 levels.";
-	mes "This dungeon is not that difficult to venture for new adventurers,";
-	mes "but there are 3 dangerous boss monsters spawn at certain time.";
+	mes "^6B1312Atenção!^000000";
+	mes "A Fábrica de Brinquedos é constituída por 2 níveis.";
+	mes "A caverna não é tão dificíl de ser explorada por novos aventureiros,";
+	mes "mas existem 3 monstros perigosos que surgem em determinados momentos.";
 	next;
 	mes "[Fábrica de Brinquedos]";
-	mes "In 1st level, you will encounter a boss monster, ^6B1312Angeling^000000.";
-	mes "In 2nd level, you will encounter 2 dangrous boss monsters which are";
-	mes "^6B1312Stormy Knight^000000 and ^6B1312Hatii^000000. It is advised to be attentive while venturing.";
-	mes "For your reference, ^6B1312Myst Cases^000000, ^6B1312Cruisers^000000 and ^6B1312Cookies^000000 only appear in this dungeon.";
+	mes "No primeiro nível, você poderá encontrar um mini chefe chamado ^6B1312Angeling^000000.";
+	mes "No segundo nível, você poderá se encontrar com dois monstros chefes, são eles";
+	mes "^6B1312Cavaleiro da Tempestade^000000 e o ^6B1312Hatii^000000. É aconselhável estar atento enquanto se explora o lugar.";
+	mes "Para sua informação, ^6B1312Presentes^000000, ^6B1312Soldadinhos de Chumbo^000000 e ^6B1312Cookies^000000 aparecem apenas nesta caverna.";
 	close;
 }
 
-yuno_fild03,37,143,5	script	Bulletin Board#24	837,{
+yuno_fild03,37,143,5	script	Quadro de Avisos#24	837,{
 
-	mes "[The Magma Dungeon, Nogg Road]";
-	mes "^6B1312Caution!^000000";
-	mes "Nogg Road is filled with very dangerous creatures.";
-	mes "It is limited to enter only to well-experienced adventurers.";
+	mes "[Caverna de Magma]";
+	mes "^6B1312Atenção!^000000";
+	mes "A Caverna de Magma está repleta de criaturas muito perigosas.";
+	mes "Ela é limitada a entrada de apenas aventureiros experientes.";
 	next;
-	mes "[The Magma Dungeon, Nogg Road]";
-	mes "Main Monsters of this dungeon is";
-	mes "^6B1312Kahos^000000 and ^6B1312Nightmare Terrors^000000.";
-	mes "Please be attentive.";
+	mes "[Caverna de Magma]";
+	mes "Os principais monstros da caverna são";
+	mes "^6B1312Kahos^000000 e ^6B1312Pesadelos Sombrios^000000.";
+	mes "Por favor fique atento.";
 	close;
 }
 
-niflheim,200,191,5	script	Bulletin Board#25	837,{
+niflheim,200,191,5	script	Quadro de Avisos#25	837,{
 
-	mes "[City of the Dead, Nifflheim]";
-	mes "Welcome to Nifflheim, the City of the Dead.";
-	mes "Nifflheim was known as the other world where";
-	mes "you come after the death.";
-	mes "However, recently people found out a secret path behind of a mysterious tree.";
-	mes "So, you will find many other people travelling around this area.";
+	mes "[A Cidade dos Mortos, Nifflheim]";
+	mes "Bem-vindo a Nifflheim, a Cidade dos Mortos.";
+	mes "Nifflheim era conhecida como o outro mundo, onde";
+	mes "você era levado após a morte.";
+	mes "Porém, recentemente as pessoas descobriram um caminho secreto por trás de uma árvore misteriosa.";
+	mes "Então, devido a isso provavelmente você encontrará outras pessoas andando por aqui.";
 	next;
-	mes "[City of the Dead, Nifflheim]";
-	mes "As a tourist attraction, The Witch's castle is suggested.";
-	mes "Unlike normal towns, it is prohibited to save respawn point or";
-	mes "warp point inside Nifflheim. Also monsters spawn within the town as well.";
+	mes "[A Cidade dos Mortos, Nifflheim]";
+	mes "Como atração turística, O Castelo da bruxa é sugerido.";
+	mes "Ao contrário de cidades normais, é proibido salvar o ponto de nascimento ou portais";
+	mes "dentro de Nifflheim. Monstros também nascem aqui dentro da cidade.";
 	next;
-	mes "[City of the Dead, Nifflheim]";
-	mes "Especially, please be attentive with a boss monster";
-	mes "called ^6B1312Lord of the Death^000000.";
+	mes "[A Cidade dos Mortos, Nifflheim]";
+	mes "Tome cuidado especial a um monstro que habita a cidade chamado ^6B1312Senhor dos Mortos^000000.";
 	next;
-	mes "[City of the Dead, Nifflheim]";
-	mes "When you go ahead west, you will arrive at ^6B1312Valley of Gyoll^000000";
-	mes "where all the powerful and fearful monsters dwell upon.";
-	mes "It is suggested to leave the area immediately in case of a new solo adventurer.";
+	mes "[A Cidade dos Mortos, Nifflheim]";
+	mes "Indo a oeste, você chegará ao ^6B1312Vale de Gyoll^000000";
+	mes "onde todos os monstros poderosos e temíveis de Nifflheim habitam.";
+	mes "Sugere-se deixar a área imediatamente caso seja um novo aventureiro.";
 	close;
 }
 
 /*
-moc_fild15,267,264,5	script	Bulletin Board#26	837,{
+moc_fild15,267,264,5	script	Quadro de Avisos#26	837,{
 
-	mes "[Ant Hell]";
-	mes "^6B1312Caution!^000000";
-	mes "Ant Hell is consisting of 2 levels.";
-	mes "As the name shows, this dungeon is filled with various ants";
-	mes "and good as the training grounds for new adventurers.";
+	mes "[Formigueiro Infernal]";
+	mes "^6B1312Atenção!^000000";
+	mes "O Formigueiro Infernal possui 2 níveis.";
+	mes "Como o nome indica, esta caverna é cheia de diferentes tipos de formigas";
+	mes "e é um bom lugar assim como o campo de treinamento para novos aventureiros.";
 	next;
-	mes "[Ant Hell]";
-	mes "However, please be aware that ^6B1312Maya Purple^000000 appears in the 1st level";
-	mes "and ^6B1312Maya^000000 does in the 2nd level. They are the queens of ants.";
-	mes "Also, in the field where you're standing";
-	mes "a boss monster called ^6B1312Phreeoni^000000 will appear at certain time.";
+	mes "[Formigueiro Infernal]";
+	mes "Entretanto, esteja ciente de que o ^6B1312Maya Macho^000000 surge no primeiro nível";
+	mes "e a ^6B1312Maya^000000 surge no segundo. Eles são o rei e rainha das formigas.";
+	mes "Além disso, nesta área também habita";
+	mes "um monstro chamado ^6B1312Freeoni^000000 que aparece em determinados horários.";
 	close;
 }
 */
 
-moc_ruins,61,164,5	script	Bulletin Board#27	837,{
+moc_ruins,61,164,5	script	Quadro de Avisos#27	837,{
 
 	mes "[Pirâmides]";
-	mes "^6B1312Caution!^000000";
-	mes "Pirâmides is consisting of total 7 levels as 4 levels on the earth and the rest under the ground.";
-	mes "First few levels are suited for new adventurers to venture, but as deeper you go down, you will encounter stronger monsters.";
+	mes "^6B1312Atenção!^000000";
+	mes "As Pirâmides são constituídas em 7 níveis, onde 4 níveis estão localizados na superficíe e o restante abaixo.";
+	mes "Os primeiros níveis são adequados para novos aventureiros, mas na medida que se avança, você irá encontrar monstros mais fortes.";
 	next;
 	mes "[Pirâmides]";
-	mes "In first level, there is the thief guild where people can change their jobs into Thief.";
-	mes "In the 4:th level, a boss monster called ^6B1312Osiris^000000 appears at certain time.";
-	mes "In the 3:d basement, ^6B1312Amon Ra^000000 appears at certain time.";
+	mes "No primeiro nível, existe a Guilda de Gatunos onde aventureiros podem se tornar Gatuno.";
+	mes "No quarto nível: um monstro conhecido como ^6B1312Osiris^000000 surge em determinados horários.";
+	mes "No terceiro nível, o monstro ^6B1312Amon Ra^000000 surge em determinados horários.";
 	close;
 }
 
-glast_01,369,308,5	script	Bulletin Board#28	837,{
+glast_01,369,308,5	script	Quadro de Avisos#28	837,{
 
 	mes "[Glast Heim]";
-	mes "Glast Heim is an enormous dungeon with countless levels.";
-	mes "This dungeon is definately not for new or experienced adventurers";
-	mes "but for dungeon experts.";
+	mes "Glast Heim é um calabouço enorme, com inúmeros níveis.";
+	mes "Esse calabouço não é definitivamente recomendado para novos e experientes aventureiros";
+	mes "mas sim para experts.";
 	next;
 	mes "[Glast Heim]";
-	mes "There are many fearsome monsters such as ^6B1312Dark Lord^000000,";
-	mes "^6B1312Owl Baron^000000, ^6B1312Owl Duke^000000, ^6B1312Dark Illusion^000000, ^6B1312Bloody Knight^000000, ^6B1312Abysmal Knight^000000, ^6B1312Chimera^000000 and various types of doomed swords.";
+	mes "Existem muitos monstros temíveis como o ^6B1312Senhor das Trevas^000000,";
+	mes "^6B1312Barão Coruja^000000, ^6B131Duque Coruja^000000, ^6B1312Ilusão das Trevas^000000, ^6B1312Cavaleiro Sanguinário^000000, ^6B1312Cavaleiro do Abismo^000000, ^6B1312Quimera^000000 e vários tipos de espadas amaldiçoadas.";
 	next;
 	mes "[Glast Heim]";
-	mes "However, more difficult the expedition is, greater the reward is.";
-	mes "Therefore, this dungeon is pretty popular among dungeon experts.";
-	mes "Enjoy your dungeon expedition.";
+	mes "No entanto, quanto mais dificil for maior são as recompensas.";
+	mes "Portanto, este calabouço é bastante popular entre os especialistas em calabouços.";
+	mes "Aproveite sua expedição no calabouço.";
 	close;
 }

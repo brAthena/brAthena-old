@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
-//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -27,75 +27,69 @@
 alberta,23,238,4	script	Guia#01alberta	105,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Alberta]";
-	mes "Welcome to ^8B4513Alberta^000000,";
-	mes "the Port City.";
-	mes "Do you need help navigating the city?";
+	mes "Be-vindo a ^8B4513Alberta^000000,";
+	mes "a Cidade Portuária.";
+	mes "Você precisa de ajuda?";
 	next;
 	set .@loop1,1;
-	if(checkre(0)) {
-		// Renewal
+	if(checkre(0)) { // Renewal
 		while (1) {
-			switch(select(""+(checkre(0) ? "[ Main Facilities ]:[ Merchants & Helpers ]:[ Destination Ports ]:Remove Marks from Mini-Map:Cancel" : "City Guide:Remove Marks from Mini-Map:Notice:Cancel")+"")) {
+			switch(select("[ Principais Lugares ]:[ Lojas & Ajudantes ]:[ Portos ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Tool Shop ]:[ Forge ]:[ Weapon & Armor Shop ]:[ Inn ]:[ Beauty Salon ]:[ Merchant Guild ]:Previous Menu")) {
+					switch(select("[ Loja de Utilidades ]:[ Forja ]:[ Loja de Armas & Armaduras ]:[ Hotel ]:[ Salão de Beleza ]:[ Guilda dos Mercadores ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Alberta]";
-						mes "Let me mark the location of the";
-						mes "the ^0000FFTool Shop^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "Deixe-me marcar para você a localização";
+						mes "da ^0000FFLoja de Utilidades^000000";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,98,154,0,0x0A82FF;
 						next; 
 						break;
 					case 2:
-						mes "The Weapon Shop";
-						mes "can be found in the";
-						mes "southern end of Alberta.";
-						if (.@compass_check)
-						viewpoint 1,117,37,3,0xFF00FF;
 						mes "[Guia de Alberta]";
-						mes "The ^B9062FForge^000000 is currently";
-						mes "located inside the Merchant Guild building.";
-						mes "Would you like to check any other locations?";
+						mes "A ^B9062FForja^000000 está atualmente";
+						mes "localizada dentro da Guilda de Mercadores.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,35,41,1,0xFF0000;
 						next;
 						break;
 					case 3:
-					mes "[Guia de Alberta]";
-						mes "Let me mark the location of the";
-						mes "the ^FF5400Weapon & Armor Shop^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "[Guia de Alberta]";
+						mes "Deixe-me marcar para você a localização";
+						mes "da ^FF5400Loja de Armas & Armaduras^000000";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,117,37,2,0xFFB400;
 						next;
 						break;
 					case 4:
-					mes "[Guia de Alberta]";
-						mes "Let me mark the location of the";
-						mes "the ^006400Inn^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "[Guia de Alberta]";
+						mes "Deixe-me marcar para você a localização";
+						mes "do ^006400Hotel^000000";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,65,233,3,0xAAFF00;
 						next;
 						break;
 					case 5:
 						mes "[Guia de Alberta]";
-						mes "Let me mark the location of the";
-						mes "the ^7F3300Beauty Salon^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "Deixe-me marcar para você a localização";
+						mes "do ^7F3300Salão de Beleza^000000";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,48,145,4,0xD2691E;
 						next;
 						break;
 					case 6:
 						mes "[Guia de Alberta]";
-						mes "The Merchant Guild is where";
-						mes "you can change your job to ^800080Merchant.";
-						mes "Let me mark its location";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "A Guilda dos Mercadores é onde";
+						mes "é possível mudar de classe para ^800080Mercador.";
+						mes "Deixe-me marcar a lozaliação";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,5,0xDA70D6;
 						next;
 						break;
@@ -108,50 +102,50 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 			case 2:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Eden Teleport Officer ]:[ Kafra Employee ]:[ Cool Event Employee ]:[ Bullet Merchant ]:[ Cooking Ingredient Merchant ]:Previous Menu")) {
+					switch(select("[ Oficiais de Teleporte Éden ]:[ Funcionárias Kafra ]:[ Funcionário Eventos Incríveis ]:[ Loja de Munições ]:[ Loja de Ingredientes ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Alberta]";
-						mes "^B9062FEden Teleport Officers^000000 are located in south Alberta";
-						mes "and inside the Merchant Guild building.";
-						mes "Let me mark their locations on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "^B9062FOficiais de Teleporte Éden^000000 estão localizados ao sul de Alberta";
+						mes "e dentro da Guilda de Mercadores.";
+						mes "Deixe-me marcar as localizações em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,6,0xFF0000;
 						viewpoint 1,121,68,7,0xFF0000;
 						next;
 						break;
 					case 2:
 						mes "[Guia de Alberta]";
-						mes "Let me mark the location of the";
+						mes "Deixe-me marcar para você a localização";
 						mes "^0000FFKafra Employees^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "em seu mini=mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,8,0x0A82FF;
 						viewpoint 1,113,60,9,0x0A82FF;
 						next;
 						break;
 					case 3:
 						mes "[Guia de Alberta]";
-						mes "When you win event items,";
-						mes "you can claim them through the ^FF5400Cool Event Employee^000000.";
-						mes "Would you like to check any other locations?";
+						mes "Quando você ganha itens de evento,";
+						mes "você pode recebê-los através dos ^FF5400Funcionários de Eventos Incríveis^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,148,57,10,0xFFB400;
 						next;
 						break;
 					case 4:
 						mes "[Guia de Alberta]";
-						mes "The ^7F3300Bullet Merchants^000000 for ^7F3300Gunslingers^000000";
-						mes "are located";
-						mes "near the center of the city.";
-						mes "Would you like to check any other locations?";
+						mes "As ^7F3300Lojas de Munições^000000 para ^7F3300Justiceiros^000000";
+						mes "estão localizadas";
+						mes "próximo ao centro da cidade.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,117,158,11,0xD2691E;
 						next;
 						break;
 					case 5:
 						mes "[Guia de Alberta]";
-						mes "The ^006400Chef Assistant^000000 in Alberta";
-						mes "has many regular customers,";
-						mes "especially for his ^006400Delicious Fishes^000000.";
-						mes "Would you like to check any other locations?";
+						mes "O ^006400Chefe Assistente^000000 em Alberta";
+						mes "possui muitos clientes assíduos,";
+						mes "especialmente para degustar ^006400Deliciosos Peixes^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,167,135,12,0xAAFF00;
 						next;
 						break;
@@ -164,73 +158,73 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 			case 3:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Port - Northern Dock ]:[ Port - Brasilis ]:[ Port - Amatsu ]:[ Port - Kunlun ]:[ Port - Moscovia ]:[ Port - Louyang ]:[ Port - Ayothaya ]:Previous Menu")) {
+					switch(select("[ Porto - Estação do Norte ]:[ Porto - Brasilis ]:[ Porto - Amatsu ]:[ Porto - Kunlun ]:[ Porto - Moscovia ]:[ Porto - Louyang ]:[ Porto - Ayothaya ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Alberta]";
-						mes "You can use";
-						mes "the ^B9062FNorthern Dock^000000";
-						mes "to go to the ^B9062FSunken Ship^000000 or ^B9062FIzlude Marina^000000.";
-						mes "Would you like to check any other locations?";
+						mes "Você pode utilizar ";
+						mes "a ^B9062FEstação do Norte^000000";
+						mes "para viajar até ^B9062FNavio Fantasma^000000 ou ^B9062FPorto de Izlude^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,192,151,13,0xFF0000;
 						next;
 						break;
 					case 2:
 						mes "[Guia de Alberta]";
-						mes "Please talk to the ^800080Crewman^000000 at the Alberta Port";
-						mes "if you'd like to visit ^800080Brasilis^000000,";
-						mes "the City of Passion.";
-						mes "Would you like to check any other locations?";
+						mes "Por favor fale com o ^800080Marinheiro^000000 no Porto de Alberta";
+						mes "se você deseja visitar ^800080Brasilis^000000,";
+						mes "a Cidade da Paixão.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,82,14,0xDA70D6;
 						next;
 						break;
 					case 3:
 						mes "[Guia de Alberta]";
-						mes "Please talk to the";
-						mes "the ^0000FFSea Captain^000000 at the Alberta Port";
-						mes "if you'd like to enjoy viewing cherry blossoms";
-						mes "in ^0000FFAmatsu^000000.";
-						mes "Would you like to check any other locations?";
+						mes "Por favor fale com";
+						mes "o ^0000FFCapitão do Mar^000000 no Porto de Alberta";
+						mes "se você deseja conhecer as flores e as cerejeiras";
+						mes "de ^0000FFAmatsu^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,74,15,0x0A82FF;
 						next;
 						break;
 					case 4:
 						mes "[Guia de Alberta]";
-						mes "Please talk to the";
-						mes "^B9062FKunlun Envoy^000000 at the Alberta Port";
-						mes "if you'd like to experience the exotic atmosphere of ^B9062FKunlun^000000.";
-						mes "Would you like to check any other locations?";
+						mes "Por favor fale com o";
+						mes "^B9062FBarqueiro de Kunlun^000000 no Porto de Alberta";
+						mes "se você deseja ter uma experiência exótica na atmosfera de ^B9062FKunlun^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,62,16,0xFF0000;
 						next;
 						break;
 					case 5:
 						mes "[Guia de Alberta]";
-						mes "Please talk to the";
-						mes "^FF5400Moscovia P.R. Officer^000000 at the Alberta Port";
-						mes "if you'd like to move to";
+						mes "Por favor fale com";
+						mes "^FF5400R. Públicas de Moscóvia^000000 no Porto de Alberta";
+						mes "se você deseja ir até";
 						mes "^FF5400Moscovia^000000,";
-						mes "the Eden on the ocean.";
-						mes "Would you like to check any other locations?";
+						mes "o Éden em meio ao oceano.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,51,17,0xFFB400;
 						next;
 						break;
 					case 6:
 						mes "[Guia de Alberta]";
-						mes "Please talk to the";
-						mes "^7F3300Girl^000000 at the Alberta Port";
-						mes "if you'd like to move to the historical city,";
+						mes "Por favor fale com a";
+						mes "^7F3300Garota^000000 no Porto de Alberta";
+						mes "se você dejeja ir para a cidade histórica,";
 						mes "^7F3300Louyang^000000.";
-						mes "Would you like to check any other locations?";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,40,18,0xD2691E;
 						next;
 						break;
 					case 7:
 						mes "[Guia de Alberta]";
-						mes "Please talk to";
-						mes "^800080Aibakthing^000000 at the Alberta Port";
-						mes "if you'd like to move to";
+						mes "Por favor fale com";
+						mes "^800080Aibakthing^000000 no Porto de Alberta";
+						mes "se você deseja ir para";
 						mes "^800080Ayothaya^000000,";
-						mes "the religious city.";
-						mes "Would you like to check any other locations?";
+						mes "a cidade religiosa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,246,29,19,0xDA70D6;
 						next;
 						break;
@@ -243,8 +237,8 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 			case 4:
 			next;
 				mes "[Guia de Alberta]";
-				mes "Sure, I'll remove all marks from your mini-map.";
-				mes "Is there anything else I can do for you?";
+				mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
+				mes "Há mais algo que eu possa fazer por você?";
 				viewpoint 2,1,1,0,0xFFFF00;
 				viewpoint 2,1,1,1,0x000000;
 				viewpoint 2,1,1,2,0xFF0000;
@@ -269,14 +263,13 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 				break;
 			case 5:
 				mes "[Guia de Alberta]";
-				mes "Enjoy your stay.";
+				mes "Aproveite sua estadia.";
 				close2;
 				cutin "prt_soldier",255;
 				end;
 			}
 		}
-	} else {
-		// pré-Renewal
+	} else { // Pré-Renewal
 		while (.@loop1) {
 			next;
 			switch(select("Indicações.:Limpar as indicações do minimapa..:Tutorial.:Cancelar")) {
