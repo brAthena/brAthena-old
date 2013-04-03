@@ -117,7 +117,6 @@ char unknown_char_name[NAME_LENGTH] = "Unknown"; // Name to use when the request
 #define TRIM_CHARS "\255\xA0\032\t\x0A\x0D " //The following characters are trimmed regardless because they cause confusion and problems on the servers. [Skotlex]
 char char_name_letters[1024] = ""; // list of letters/symbols allowed (or not) in a character name. by [Yor]
 
-int char_per_account = 0; //Maximum chars per account (default unlimited) [Sirius]
 int char_del_level = 0; //From which level u can delete character [Lupus]
 int char_del_delay = 86400;
 
@@ -966,6 +965,9 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	}
 	memset(&p, 0, sizeof(p));
 
+	for(i = 0 ; i < MAX_CHARS; i++)
+		sd->found_char[i] = -1;
+
 	// read char data
 	if(SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT "
 	                                "`char_id`,`char_num`,`name`,`class`,`base_level`,`job_level`,`base_exp`,`job_exp`,`zeny`,"
@@ -1024,8 +1026,6 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
 
 		}
-		for( ; i < MAX_CHARS; i++ ) 
-		sd->found_char[i] = -1;
 
 	memset(sd->new_name,0,sizeof(sd->new_name));
 
@@ -1301,8 +1301,6 @@ int mmo_char_sql_init(void)
 {
 	char_db_= idb_alloc(DB_OPT_RELEASE_DATA);
 
-	ShowStatus(read_message("Source.char.char_mmo_char_sql_init"), char_per_account);
-
 	//the 'set offline' part is now in check_login_conn ...
 	//if the server connects to loginserver
 	//it will dc all off players
@@ -1491,9 +1489,9 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 
 	//check other inputs
 #if PACKETVER >= 20120307
-	if(slot >= sd->char_slots)
+	if(slot < 0 || slot >= sd->char_slots)
 #else
-	if((slot >= sd->char_slots) // slots
+	if((slot < 0 || slot >= sd->char_slots) // slots
 	   || (str + agi + vit + int_ + dex + luk != 6*5)  // stats
 	   || (str < 1 || str > 9 || agi < 1 || agi > 9 || vit < 1 || vit > 9 || int_ < 1 || int_ > 9 || dex < 1 || dex > 9 || luk < 1 || luk > 9) // individual stat values
 	   || (str + int_ != 10 || agi + luk != 10 || vit + dex != 10))  // pairs
@@ -1504,20 +1502,9 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 		return -2; // invalid input
 #endif
 
-
-	// check the number of already existing chars in this account
-	if(char_per_account != 0) {
-		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `account_id` = '%d'", char_db, sd->account_id))
-			Sql_ShowDebug(sql_handle);
-		if(Sql_NumRows(sql_handle) >= char_per_account)
-			return -2; // character account limit exceeded
-	}
-
 	// check char slot
-	if(SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `account_id` = '%d' AND `char_num` = '%d' LIMIT 1", char_db, sd->account_id, slot))
-		Sql_ShowDebug(sql_handle);
-	if(Sql_NumRows(sql_handle) > 0)
-		return -2; // slot already in use
+	if(sd->found_char[slot] != -1)
+		return -2; /* character account limit exceeded */
 
 	// validation success, log result
 	if(log_char) {
@@ -2617,6 +2604,14 @@ int parse_frommap(int fd)
 	while(RFIFOREST(fd) >= 2) {
 		switch(RFIFOW(fd,0)) {
 
+			case 0x2b0a:
+				if( RFIFOREST(fd) < RFIFOW(fd, 2) )
+					return 0;
+				socket_datasync(fd, false);
+				RFIFOSKIP(fd,RFIFOW(fd,2));
+				break;
+
+					
 			case 0x2afa: // Receiving map names list from the map-server
 				if(RFIFOREST(fd) < 4 || RFIFOREST(fd) < RFIFOW(fd,2))
 					return 0;
@@ -3372,7 +3367,7 @@ int lan_subnetcheck(uint32 ip)
 /// Any (0x718): An unknown error has occurred.
 void char_delete2_ack(int fd, int char_id, uint32 result, time_t delete_date)
 {
-	// HC: <0828>.W <char id>.L <Msg:0-5>.L <deleteDate>.L
+// HC: <0828>.W <char id>.L <Msg:0-5>.L <deleteDate>.L
 	WFIFOHEAD(fd,14);
 	WFIFOW(fd,0) = 0x828;
 	WFIFOL(fd,2) = char_id;
@@ -4142,6 +4137,7 @@ int parse_char(int fd)
 						realloc_fifo(fd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
 						char_mapif_init(fd);
 					}
+					socket_datasync(fd, true);
 
 					RFIFOSKIP(fd,60);
 				}
@@ -4677,13 +4673,6 @@ int char_config_read(const char *cfgName)
 			char_name_option = atoi(w2);
 		} else if(strcmpi(w1, "char_name_letters") == 0) {
 			safestrncpy(char_name_letters, w2, sizeof(char_name_letters));
-		} else if(strcmpi(w1, "chars_per_account") == 0) {  //maxchars per account [Sirius]
-			char_per_account = atoi(w2);
-			if(char_per_account == 0 || char_per_account > MAX_CHARS) {
-				if(char_per_account > MAX_CHARS)
-					ShowWarning(read_message("Source.char.char_config_read_s5"), char_per_account, MAX_CHARS);
-				char_per_account = MAX_CHARS;
-			}
 		} else if(strcmpi(w1, "char_del_level") == 0) {  //disable/enable char deletion by its level condition [Lupus]
 			char_del_level = atoi(w2);
 		} else if(strcmpi(w1, "char_del_delay") == 0) {
