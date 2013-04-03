@@ -10670,7 +10670,7 @@ BUILDIN_FUNC(removemapflag)
 			case MF_NOWARPTO:           map[m].flag.nowarpto = 0; break;
 			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 0; break;
 			case MF_ZONE:/* reset zone state, mapflags cant be removed however */
-				map[m].zone = &map_zone_all;
+				map[m].zone = ( battle_config.pk_mode && map[m].flag.pvp ) ? &map_zone_pk : &map_zone_all;
 				break;
 			case MF_NOCOMMAND:          map[m].nocommand = 0; break;
 			case MF_NODROP:             map[m].flag.nodrop = 0; break;
@@ -17324,7 +17324,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(isloggedin,"i?"),
 	BUILDIN_DEF(setmapflagnosave,"ssii"),
 	BUILDIN_DEF(getmapflag,"si"),
-	BUILDIN_DEF(setmapflag,"sv?"),
+	BUILDIN_DEF(setmapflag,"si?"),
 	BUILDIN_DEF(removemapflag,"si?"),
 	BUILDIN_DEF(pvpon,"s"),
 	BUILDIN_DEF(pvpoff,"s"),

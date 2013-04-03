@@ -644,7 +644,6 @@ int can_copy(struct map_session_data *sd, uint16 skill_id, struct block_list *bl
 int skillnotok(uint16 skill_id, struct map_session_data *sd)
 {
 	int16 idx,m;
-	int i;
 	nullpo_retr(1, sd);
 	m = sd->bl.m;
 	idx = skill_get_index(skill_id);
@@ -678,13 +677,6 @@ int skillnotok(uint16 skill_id, struct map_session_data *sd)
 	 **/
 	if(sd->skillitem == skill_id)
 		return 0;
-
-	for(i = 0; i < map[m].zone->disabled_skills_count; i++) {
-		if(skill_id == map[m].zone->disabled_skills[i]) {
-			clif_msg(sd, SKILL_CANT_USE_AREA); // This skill cannot be used within this area
-			return 1;
-		}
-	}
 
 	if(sd->sc.option&OPTION_MOUNTING)
 		return 1;//You can't use skills while in the new mounts (The client doesn't let you, this is to make cheat-safe)
@@ -2309,8 +2301,8 @@ int skill_blown(struct block_list *src, struct block_list *target, int count, in
 
 	nullpo_ret(src);
 
-	if(src != target && (map_flag_gvg(target->m) || map[target->m].flag.battleground))
-		return 0; //No knocking back in WoE
+	if (src != target && map[src->m].flag.noknockback)
+		return 0; //No knocking
 	if(count == 0)
 		return 0; //Actual knockback distance is 0.
 

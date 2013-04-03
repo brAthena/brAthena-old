@@ -516,17 +516,22 @@ struct mapflag_skill_adjust {
 	unsigned short skill_id;
 	unsigned short modifier;
 };
+struct map_zone_disabled_skill_entry {
+	unsigned short nameid;
+	enum bl_type type;
+};
 
 #define MAP_ZONE_NAME_LENGTH 30
 #define MAP_ZONE_ALL_NAME "Normal"
 #define MAP_ZONE_PVP_NAME "PvP"
 #define MAP_ZONE_GVG_NAME "GvG"
 #define MAP_ZONE_BG_NAME "Battlegrounds"
+#define MAP_ZONE_PK_NAME "PK Mode"
 #define MAP_ZONE_MAPFLAG_LENGTH 50
 DBMap *zone_db;/* string => struct map_zone_data */
 struct map_zone_data {
 	char name[MAP_ZONE_NAME_LENGTH];/* 20'd */
-	int *disabled_skills;
+	struct map_zone_disabled_skill_entry **disabled_skills;
 	int disabled_skills_count;
 	int *disabled_items;
 	int disabled_items_count;
@@ -537,6 +542,7 @@ void map_zone_init(void);
 void map_zone_apply(int m, struct map_zone_data *zone,char* w1, const char* start, const char* buffer, const char* filepath);
 
 struct map_zone_data map_zone_all;/* used as a base on all maps */
+struct map_zone_data map_zone_pk;/* used for (pk_mode) */
 
 
 struct map_data {
@@ -606,6 +612,8 @@ struct map_data {
 		unsigned guildlock :1;
 		unsigned src4instance : 1; // To flag this map when it's used as a src map for instances
 		unsigned reset :1; // [Daegaladh]
+		unsigned chsysnolocalaj : 1;
+		unsigned noknockback : 1;
 	} flag;
 	struct point save;
 	struct npc_data *npc[MAX_NPC_PER_MAP];
@@ -640,6 +648,19 @@ struct map_data {
 
 	/* nocast db overhaul */
 	struct map_zone_data *zone;
+	/* invincible_time_inc mapflag */
+	unsigned int invincible_time_inc;
+
+	/* weapon_damage_rate mapflag */
+	unsigned short weapon_damage_rate;
+	/* magic_damage_rate mapflag */
+	unsigned short magic_damage_rate;
+	/* misc_damage_rate mapflag */
+	unsigned short misc_damage_rate;
+	/* short_damage_rate mapflag */
+	unsigned short short_damage_rate;
+	/* long_damage_rate mapflag */
+	unsigned short long_damage_rate;
 };
 
 /// Stores information about a remote map (for multi-mapserver setups).

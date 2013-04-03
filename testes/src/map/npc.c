@@ -3141,8 +3141,10 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			map[m].flag.battleground = 0;
 			ShowWarning("npc_parse_mapflag: You can't set PvP and BattleGround flags for the same map! Removing BattleGround flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
-		if((zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
+		if(state && (zone = strdb_get(zone_db, MAP_ZONE_PVP_NAME)) && map[m].zone != zone) {
 			map_zone_apply(m,zone,w1,start,buffer,filepath);
+		} else if (!state) {
+			map[m].zone = &map_zone_pk;
 		}
 	} else if(!strcmpi(w3,"pvp_noparty"))
 		map[m].flag.pvp_noparty=state;
@@ -3191,7 +3193,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			map[m].flag.battleground = 0;
 			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing BattleGround flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
-		if((zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
+		if(state && (zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
 			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else if(!strcmpi(w3,"gvg_noparty"))
@@ -3222,7 +3224,8 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			map[m].flag.gvg_castle = 0;
 			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing GvG flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
-		if((zone = strdb_get(zone_db, MAP_ZONE_BG_NAME)) && map[m].zone != zone) {
+
+		if( state && (zone = strdb_get(zone_db, MAP_ZONE_BG_NAME)) && map[m].zone != zone ) {
 			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
 	} else if(!strcmpi(w3,"noexppenalty"))
@@ -3350,6 +3353,22 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		} else if(map[m].zone != zone) { /* we do not override :P would mess everything */
 			map_zone_apply(m,zone,w1,start,buffer,filepath);
 		}
+	} else if (!strcmpi(w3,"nomapchannelautojoin")) {
+		map[m].flag.chsysnolocalaj = state;
+	} else if (!strcmpi(w3,"invincible_time_inc")) {
+		map[m].invincible_time_inc = (state) ? atoi(w4) : 0;
+	} else if (!strcmpi(w3,"noknockback")) {
+		map[m].flag.noknockback = state;
+	} else if (!strcmpi(w3,"weapon_damage_rate")) {
+		map[m].weapon_damage_rate = (state) ? atoi(w4) : 100;
+	} else if (!strcmpi(w3,"magic_damage_rate") ) {
+		map[m].magic_damage_rate = (state) ? atoi(w4) : 100;
+	} else if (!strcmpi(w3,"misc_damage_rate")) {
+		map[m].misc_damage_rate = (state) ? atoi(w4) : 100;
+	} else if (!strcmpi(w3,"short_damage_rate")) {
+		map[m].short_damage_rate = (state) ? atoi(w4) : 100;
+	} else if (!strcmpi(w3,"long_damage_rate")) {
+		map[m].long_damage_rate = (state) ? atoi(w4) : 100;
 	} else
 		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
 
