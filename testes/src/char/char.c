@@ -2136,7 +2136,7 @@ int parse_fromlogin(int fd)
 					sd->group_id = RFIFOB(fd,50);
 					sd->char_slots = RFIFOB(fd,51);
 					if(sd->char_slots > MAX_CHARS) {
-						ShowError("Account '%d' `character_slots` column is higher than supported MAX_CHARS (%d), update MAX_CHARS in mmo.h! capping to MAX_CHARS...\n",sd->account_id,sd->char_slots);
+						ShowError(read_message("Source.char.character_slots"),sd->account_id,sd->char_slots);
 						sd->char_slots = MAX_CHARS;/* cap to maximum */
 					} else if (!sd->char_slots)/* no value aka 0 in sql */
 						sd->char_slots = MAX_CHARS;/* cap to maximum */
@@ -4851,7 +4851,7 @@ int do_init(int argc, char **argv)
 
 	set_defaultparse(parse_char);
 	if((char_fd = make_listen_bind(bind_ip,char_port)) == -1 ) {
-	ShowFatalError("Failed to bind to port '"CL_WHITE"%d"CL_RESET"'\n",char_port);
+	ShowFatalError(read_message("Source.char.char_failed_bind"), CL_WHITE, char_port, CL_RESET);
 		exit(EXIT_FAILURE);
 	}
 

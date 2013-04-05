@@ -167,7 +167,7 @@ bool pincode_config_read(char *w1, char *w2) {
 			enabled = atoi(w2);
 #if PACKETVER < 20110309
 			if(enabled) {
-				ShowWarning("pincode_enabled requer PACKETVER 20110309 ou superior. Código PIN desativado...\n");
+				ShowWarning(read_message("Source.char.pin_code_s1"));
 				enabled = 0;
 			}
 #endif
@@ -176,7 +176,7 @@ bool pincode_config_read(char *w1, char *w2) {
 		} else if (strcmpi(w1, "pincode_maxtry") == 0) {
 			maxtry = atoi(w2);
 			if(maxtry > 3) {
-				ShowWarning("pincode_maxtry é muito grande (%d); máximo permitido:: 3! reajuste para 3...\n",maxtry);
+				ShowWarning(read_message("Source.char.pin_code_s2"), maxtry);
 				maxtry = 3;
 			}
 		} else if (strcmpi(w1, "pincode_charselect") == 0) {
