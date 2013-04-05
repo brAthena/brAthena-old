@@ -669,7 +669,7 @@ ACMD_FUNC(who)
 					}
 				default: {
 						struct party_data *p = party_search(pl_sd->status.party_id);
-						struct guild *g = pl_sd->guild;;
+						struct guild *g = pl_sd->guild;
 
 						StringBuf_Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
 						if(pc_get_group_id(pl_sd) > 0)  // Player title, if exists
@@ -3287,7 +3287,7 @@ ACMD_FUNC(breakguild)
 
 	if(sd->status.guild_id) {  // Check if the player has a guild
 		struct guild *g;
-		g = sd->guild;; // Search the guild
+		g = sd->guild; // Search the guild
 		if(g) {  // Check if guild was found
 			if(sd->state.gmaster_flag) {  // Check if player is guild master
 				int ret = 0;
