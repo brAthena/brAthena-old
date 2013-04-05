@@ -3305,6 +3305,8 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		map[m].flag.guildlock=state;
 	else if(!strcmpi(w3,"reset"))
 		map[m].flag.reset=state;
+	else if (!strcmpi(w3,"nomapchannelautojoin"))
+		map[m].flag.chsysnolocalaj=state;
 	else if(!strcmpi(w3,"set_castle"))
 		map[m].set_castle = atoi(w4);
 	else if (!strcmpi(w3,"adjust_unit_duration")) {

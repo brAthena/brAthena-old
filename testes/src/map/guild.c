@@ -264,7 +264,7 @@ int guild_getposition(struct guild *g, struct map_session_data *sd)
 {
 	int i;
 
-	if(g == NULL && (g=guild_search(sd->status.guild_id)) == NULL)
+	if(g == NULL && (g=sd->guild) == NULL)
 		return -1;
 
 	ARR_FIND(0, g->max_member, i, g->member[i].account_id == sd->status.account_id && g->member[i].char_id == sd->status.char_id);
@@ -505,13 +505,48 @@ int guild_recv_info(struct guild *sg)
 	DBData data;
 	struct map_session_data *sd;
 	bool guild_new = false;
+	void *aChSysSave = NULL;
 
 	nullpo_ret(sg);
 
-	if((g = (struct guild *)idb_get(guild_db,sg->guild_id))==NULL) {
+	if((g = guild_search(sg->guild_id))==NULL) {
 		guild_new = true;
 		g=(struct guild *)aCalloc(1,sizeof(struct guild));
 		idb_put(guild_db,sg->guild_id,g);
+		if( raChSys.ally ) {
+			struct raChSysCh *channel;
+
+			CREATE(channel, struct raChSysCh , 1);
+			safestrncpy(channel->name, raChSys.ally_name, RACHSYS_NAME_LENGTH);
+			channel->type = raChSys_ALLY;
+
+			clif_chsys_create(channel,NULL,NULL,raChSys.ally_color);
+			if( raChSys.ally_autojoin ) {
+				struct s_mapiterator* iter = mapit_getallusers();
+
+				for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) ) {
+					if( sd->status.guild_id ) {
+						if( sd->status.guild_id == sg->guild_id ) {
+							clif_chsys_join(channel,sd);
+							sd->guild = g;
+							continue;
+						}
+
+						for (i = 0; i < MAX_GUILDALLIANCE; i++) {
+							if( sg->alliance[i].guild_id == sd->status.guild_id ) {
+								clif_chsys_join(channel,sd);
+								break;
+							}
+						}
+					}
+				}
+
+				mapit_free(iter);
+			}
+
+			aChSysSave = (void*)channel;
+
+		}
 		before=*sg;
 
 		//Perform the check on the user because the first load
@@ -527,9 +562,14 @@ int guild_recv_info(struct guild *sg)
 			clif_charnameupdate(sd); // [LuzZza]
 			clif_guild_masterormember(sd);
 		}
-	} else
+	} else {
 		before=*g;
+		if( g->channel )
+			aChSysSave = g->channel;
+	}
 	memcpy(g,sg,sizeof(struct guild));
+
+	g->channel = aChSysSave;
 
 	if(g->max_member > MAX_GUILD) {
 		ShowError("guild_recv_info: Guilda recebida com %d membros, mas MAX_GUILD e de apenas %d. Membros extra perdidos!\n", g->max_member, MAX_GUILD);
@@ -596,7 +636,7 @@ int guild_invite(struct map_session_data *sd, struct map_session_data *tsd)
 
 	nullpo_ret(sd);
 
-	g=guild_search(sd->status.guild_id);
+	g=sd->guild;
 
 	if(tsd==NULL || g==NULL)
 		return 0;
@@ -683,6 +723,7 @@ int guild_reply_invite(struct map_session_data *sd, int guild_id, int flag)
 			return 0;
 		}
 
+		sd->guild = g;
 		guild_makemember(&m,sd);
 		intif_guild_addmember(guild_id, &m);
 		//TODO: send a minimap update to this player
@@ -714,8 +755,22 @@ void guild_member_joined(struct map_session_data *sd)
 	i = guild_getindex(g, sd->status.account_id, sd->status.char_id);
 	if(i == -1)
 		sd->status.guild_id = 0;
-	else
+	else {
 		g->member[i].sd = sd;
+		sd->guild = g;
+
+		if( raChSys.ally && raChSys.ally_autojoin ) {
+			struct guild* sg = NULL;
+			clif_chsys_join((struct raChSysCh*)g->channel,sd);
+
+			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
+				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id) ) ) {
+					clif_chsys_join((struct raChSysCh*)sg->channel,sd);
+					break;
+				}
+			}
+		}
+	}
 }
 
 /*==========================================
@@ -774,7 +829,7 @@ int guild_leave(struct map_session_data *sd, int guild_id, int account_id, int c
 
 	nullpo_ret(sd);
 
-	g = guild_search(sd->status.guild_id);
+	g = sd->guild;
 
 	if(g==NULL)
 		return 0;
@@ -799,7 +854,7 @@ int guild_expulsion(struct map_session_data *sd, int guild_id, int account_id, i
 
 	nullpo_ret(sd);
 
-	g = guild_search(sd->status.guild_id);
+	g = sd->guild;
 
 	if(g==NULL)
 		return 0;
@@ -857,8 +912,14 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 		if(sd->state.storage_flag == 2)  //Close the guild storage.
 			storage_guild_storageclose(sd);
 		guild_send_dot_remove(sd);
-
+		if( raChSys.ally ) {
+			for (i = 0; i < sd->channel_count; i++) {
+				if( sd->channels[i] && sd->channels[i]->type == raChSys_ALLY )
+					clif_chsys_left(sd->channels[i],sd);
+			}
+		}
 		sd->status.guild_id = 0;
+		sd->guild = NULL;
 		sd->guild_emblem_id = 0;
 
 		clif_charnameupdate(sd); //Update display name [Skotlex]
@@ -877,7 +938,7 @@ int guild_send_memberinfoshort(struct map_session_data *sd,int online)
 	if(sd->status.guild_id <= 0)
 		return 0;
 
-	if(!(g = guild_search(sd->status.guild_id)))
+	if(!(g = sd->guild))
 		return 0;
 
 	intif_guild_memberinfoshort(g->guild_id,
@@ -1097,7 +1158,7 @@ int guild_change_emblem(struct map_session_data *sd,int len,const char *data)
 	nullpo_ret(sd);
 
 	if(battle_config.require_glory_guild &&
-	   !((g = guild_search(sd->status.guild_id)) && guild_checkskill(g, GD_GLORYGUILD)>0)) {
+	   !((g = sd->guild) && guild_checkskill(g, GD_GLORYGUILD)>0)) {
 		clif_skill_fail(sd,GD_GLORYGUILD,USESKILL_FAIL_LEVEL,0);
 		return 0;
 	}
@@ -1225,7 +1286,7 @@ int guild_getexp(struct map_session_data *sd,int exp)
 	struct guild_expcache *c;
 	nullpo_ret(sd);
 
-	if(sd->status.guild_id == 0 || guild_search(sd->status.guild_id) == NULL)
+	if(sd->status.guild_id == 0 || sd->guild == NULL)
 		return 0;
 
 	c = db_data2ptr(guild_expcache_db->ensure(guild_expcache_db, db_i2key(sd->status.char_id), create_expcache, sd));
@@ -1248,7 +1309,7 @@ int guild_skillup(TBL_PC *sd, uint16 skill_id)
 	nullpo_ret(sd);
 
 	if(idx < 0 || idx >= MAX_GUILDSKILL ||  // not a guild skill
-	   sd->status.guild_id == 0 || (g=guild_search(sd->status.guild_id)) == NULL || // no guild
+	   sd->status.guild_id == 0 || (g=sd->guild) == NULL || // no guild
 	   strcmp(sd->status.name, g->master))  // not the guild master
 		return 0;
 
@@ -1271,7 +1332,9 @@ int guild_skillupack(int guild_id,uint16 skill_id,int account_id)
 	if(g==NULL)
 		return 0;
 	if(sd != NULL) {
-		clif_guild_skillup(sd,skill_id,g->skill[skill_id-GD_SKILLBASE].lv);
+		int lv = g->skill[skill_id-GD_SKILLBASE].lv;
+		int range = skill_get_range(skill_id, lv);
+		clif_skillup(sd,skill_id,lv,range,1);
 
 		/* Guild Aura handling */
 		switch(skill_id) {
@@ -1380,8 +1443,8 @@ int guild_reqalliance(struct map_session_data *sd,struct map_session_data *tsd)
 	if(tsd==NULL || tsd->status.guild_id<=0)
 		return 0;
 
-	g[0]=guild_search(sd->status.guild_id);
-	g[1]=guild_search(tsd->status.guild_id);
+	g[0]=sd->guild;
+	g[1]=tsd->guild;
 
 	if(g[0]==NULL || g[1]==NULL)
 		return 0;
@@ -1440,8 +1503,8 @@ int guild_reply_reqalliance(struct map_session_data *sd,int account_id,int flag)
 		int i;
 
 		struct guild *g, *tg; // Reconfirm the number of alliance
-		g=guild_search(sd->status.guild_id);
-		tg=guild_search(tsd->status.guild_id);
+		g=sd->guild;
+		tg=tsd->guild;
 
 		if(g==NULL || guild_get_alliance_count(g,0) >= battle_config.max_guild_alliance) {
 			clif_guild_allianceack(sd,4);
@@ -1506,7 +1569,7 @@ int guild_opposition(struct map_session_data *sd,struct map_session_data *tsd)
 
 	nullpo_ret(sd);
 
-	g=guild_search(sd->status.guild_id);
+	g=sd->guild;
 	if(g==NULL || tsd==NULL)
 		return 0;
 
@@ -1678,6 +1741,7 @@ int guild_broken(int guild_id,int flag)
 			if(sd->state.storage_flag == 2)
 				storage_guild_storage_quit(sd,1);
 			sd->status.guild_id=0;
+			sd->guild = NULL;
 			clif_guild_broken(g->member[i].sd,0);
 			clif_charnameupdate(sd); // [LuzZza]
 		}
@@ -1686,6 +1750,11 @@ int guild_broken(int guild_id,int flag)
 	guild_db->foreach(guild_db,guild_broken_sub,guild_id);
 	castle_db->foreach(castle_db,castle_guild_broken_sub,guild_id);
 	guild_storage_delete(guild_id);
+	if( raChSys.ally ) { 
+		if( g->channel != NULL ) {
+			clif_chsys_delete(( struct raChSysCh * )g->channel);
+		}
+	} 
 	idb_remove(guild_db,guild_id);
 	return 0;
 }
@@ -1771,7 +1840,7 @@ int guild_break(struct map_session_data *sd,char *name)
 
 	nullpo_ret(sd);
 
-	if((g=guild_search(sd->status.guild_id))==NULL)
+	if((g=sd->guild)==NULL)
 		return 0;
 	if(strcmp(g->name,name)!=0)
 		return 0;
@@ -2134,6 +2203,15 @@ void do_init_guild(void)
 
 void do_final_guild(void)
 {
+	DBIterator *iter = db_iterator(guild_db);
+	struct guild *g;
+
+	for( g = dbi_first(iter); dbi_exists(iter); g = dbi_next(iter) ) {
+		if( g->channel != NULL )
+			clif_chsys_delete((struct raChSysCh *)g->channel);
+	}
+
+	dbi_destroy(iter);
 
 	db_destroy(guild_db);
 	castle_db->destroy(castle_db,guild_castle_db_final);

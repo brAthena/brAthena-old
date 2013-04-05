@@ -12637,7 +12637,7 @@ BUILDIN_FUNC(npctalk)
 		safestrncpy(name, nd->name, sizeof(name));
 		strtok(name, "#"); // discard extra name identifier if present
 		safesnprintf(message, sizeof(message), "%s : %s", name, str);
-		clif_message(&nd->bl, message);
+		clif_disp_overhead(&nd->bl, message);
 	}
 
 	return 0;
@@ -15088,7 +15088,7 @@ BUILDIN_FUNC(unittalk)
 		struct StringBuf sbuf;
 		StringBuf_Init(&sbuf);
 		StringBuf_Printf(&sbuf, "%s : %s", status_get_name(bl), message);
-		clif_message(bl, StringBuf_Value(&sbuf));
+		clif_disp_overhead(bl, StringBuf_Value(&sbuf));
 		if(bl->type == BL_PC)
 			clif_displaymessage(((TBL_PC *)bl)->fd, StringBuf_Value(&sbuf));
 		StringBuf_Destroy(&sbuf);

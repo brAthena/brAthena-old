@@ -1286,7 +1286,7 @@ int pc_calc_skilltree(struct map_session_data *sd)
 					if((sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE) {
 							sd->status.skill[i].id = 0;
 							sd->status.skill[i].lv = 0;
-							sd->status.skill[i].flag = 0;
+							sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 					}
 					break;
 			}
@@ -1497,10 +1497,10 @@ int pc_clean_skilltree(struct map_session_data *sd)
 		if(sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[i].flag == SKILL_FLAG_PLAGIARIZED) {
 			sd->status.skill[i].id = 0;
 			sd->status.skill[i].lv = 0;
-			sd->status.skill[i].flag = 0;
+			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 		} else if(sd->status.skill[i].flag == SKILL_FLAG_REPLACED_LV_0) {
 			sd->status.skill[i].lv = sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0;
-			sd->status.skill[i].flag = 0;
+			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 		}
 	}
 
@@ -4635,6 +4635,9 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			clif_displaymessage(sd->fd, msg_txt(276));  // "You can't open a shop on this map"
 			vending_closevending(sd);
 		}
+
+		if( raChSys.local && map[sd->bl.m].channel && idb_exists(map[sd->bl.m].channel->users, sd->status.char_id) )
+			clif_chsys_left(map[sd->bl.m].channel,sd);
 	}
 
 	if(m < 0) {
@@ -4813,7 +4816,7 @@ int pc_checkskill(struct map_session_data *sd,uint16 skill_id)
 	if(skill_id >= GD_SKILLBASE && skill_id < GD_MAX) {
 		struct guild *g;
 
-		if(sd->status.guild_id>0 && (g=guild_search(sd->status.guild_id))!=NULL)
+		if(sd->status.guild_id>0 && (g=sd->guild)!=NULL)
 			return guild_checkskill(g,skill_id);
 		return 0;
 	} else if(skill_id >= ARRAYLENGTH(sd->status.skill)) {
@@ -5920,6 +5923,7 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 	   sd->status.skill[skill_id].id &&
 	   sd->status.skill[skill_id].flag == SKILL_FLAG_PERMANENT && //Don't allow raising while you have granted skills. [Skotlex]
 	   sd->status.skill[skill_id].lv < skill_tree_get_max(skill_id, sd->status.class_)) {
+		int lv,range, upgradable;
 		sd->status.skill[skill_id].lv++;
 		sd->status.skill_point--;
 		if(!skill_get_inf(skill_id))
@@ -5929,7 +5933,10 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 		else
 			pc_check_skilltree(sd, skill_id); // Check if a new skill can Lvlup
 
-		clif_skillup(sd,skill_id);
+		lv = sd->status.skill[skill_id].lv;
+		range = skill_get_range2(&sd->bl, skill_id, lv);
+		upgradable = (lv < skill_tree_get_max(sd->status.skill[skill_id].id, sd->status.class_)) ? 1 : 0;
+		clif_skillup(sd,skill_id,lv,range,upgradable);
 		clif_updatestatus(sd,SP_SKILLPOINT);
 		if(skill_id == GN_REMODELING_CART)   /* cart weight info was updated by status_calc_pc */
 			clif_updatestatus(sd,SP_CARTINFO);
@@ -6209,7 +6216,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 		// Don't reset trick dead if not a novice/baby
 		if(i == NV_TRICKDEAD && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE) {
 			sd->status.skill[i].lv = 0;
-			sd->status.skill[i].flag = 0;
+			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 			continue;
 		}
 
@@ -6228,7 +6235,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 			if(battle_config.quest_skill_reset && !(flag&2)) {
 				//Wipe them
 				sd->status.skill[i].lv = 0;
-				sd->status.skill[i].flag = 0;
+				sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 			}
 			continue;
 		}
@@ -6240,7 +6247,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 		if(!(flag&2)) {
 			// reset
 			sd->status.skill[i].lv = 0;
-			sd->status.skill[i].flag = 0;
+			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 		}
 	}
 
@@ -8409,7 +8416,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	}
 	if(pos & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
-	if(pos&EQP_GARMENT) {
+	if(pos&EQP_GARMENT  && pc_checkequip(sd,EQP_COSTUME_GARMENT) == -1) {
 		sd->status.robe = id ? id->look : 0;
 		clif_changelook(&sd->bl, LOOK_ROBE, sd->status.robe);
 	}

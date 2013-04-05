@@ -57,7 +57,6 @@ char default_codepage[32] = ""; //Feature by irmin.
 static struct accreg *accreg_pt;
 unsigned int party_share_level = 10;
 unsigned int party_family_share_level = 150;
-char main_chat_nick[16] = "Main";
 
 char tmp_db_name[32] = "db";
 
@@ -750,8 +749,6 @@ static int inter_config_read(const char *cfgName)
 			party_family_share_level = atoi(w2);
 		else if(!strcmpi(w1,"log_inter"))
 			log_inter = atoi(w2);
-		else if(!strcmpi(w1,"main_chat_nick"))
-			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));
 		else if(!strcmpi(w1,"db_name"))
 			safestrncpy(tmp_db_name, w2, sizeof(tmp_db_name));
 		else if(!strcmpi(w1,"import"))

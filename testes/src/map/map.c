@@ -94,10 +94,6 @@ char db_pw[32] = "ragnarok";
 char db_db2name[32] = "db";
 Sql *dbmysql_handle;
 
-// This param using for sending mainchat
-// messages like whispers to this nick. [LuzZza]
-char main_chat_nick[16] = "Main";
-
 char *INTER_CONF_NAME;
 char *LOG_CONF_NAME;
 char *MAP_CONF_NAME;
@@ -402,6 +398,8 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 		skill_unit_move(bl,tick,2);
 		status_change_end(bl, SC_CLOSECONFINE, INVALID_TIMER);
 		status_change_end(bl, SC_CLOSECONFINE2, INVALID_TIMER);
+		status_change_end(bl, SC_TINDER_BREAKER, INVALID_TIMER);
+		status_change_end(bl, SC_TINDER_BREAKER2, INVALID_TIMER);
 //		status_change_end(bl, SC_BLADESTOP, INVALID_TIMER); //Won't stop when you are knocked away, go figure...
 		status_change_end(bl, SC_TATAMIGAESHI, INVALID_TIMER);
 		status_change_end(bl, SC_MAGICROD, INVALID_TIMER);
@@ -1704,6 +1702,30 @@ int map_quit(struct map_session_data *sd)
 	if(sd->ed) {
 		elemental_clean_effect(sd->ed);
 		unit_remove_map(&sd->ed->bl,CLR_TELEPORT);
+	}
+
+	if( raChSys.ally && sd->status.guild_id ) {
+		struct guild *g = sd->guild, *sg;
+		if( g ) {
+			if( idb_exists(((struct raChSysCh *)g->channel)->users, sd->status.char_id) )
+				clif_chsys_left((struct raChSysCh *)g->channel,sd);
+			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
+				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id) ) ) {
+					if( idb_exists(((struct raChSysCh *)sg->channel)->users, sd->status.char_id) )
+						clif_chsys_left((struct raChSysCh *)sg->channel,sd);
+					break;
+				}
+			}
+		}
+	}
+
+	if( sd->channel_count ) {
+		for( i = 0; i < sd->channel_count; i++ ) {
+			if( sd->channels[i] != NULL )
+				clif_chsys_left(sd->channels[i],sd);
+		}
+		if( raChSys.closing )
+			aFree(sd->channels);
 	}
 
 	unit_remove_map_pc(sd,CLR_TELEPORT);
@@ -3418,47 +3440,44 @@ int inter_config_read(char *cfgName)
 		if(sscanf(line,"%[^:]: %[^\r\n]",w1,w2) < 2)
 			continue;
 
-		if(strcmpi(w1, "main_chat_nick")==0)
-			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));
-		else
-			//Map Server SQL DB
-			if(strcmpi(w1,"map_server_ip")==0)
-				strcpy(map_server_ip, w2);
-			else if(strcmpi(w1,"map_server_port")==0)
-				map_server_port=atoi(w2);
-			else if(strcmpi(w1,"map_server_id")==0)
-				strcpy(map_server_id, w2);
-			else if(strcmpi(w1,"map_server_pw")==0)
-				strcpy(map_server_pw, w2);
-			else if(strcmpi(w1,"map_server_db")==0)
-				strcpy(map_server_db, w2);
-			else if(strcmpi(w1,"default_codepage")==0)
-				strcpy(default_codepage, w2);
-			else if(strcmpi(w1,"log_db_ip")==0)
-				strcpy(log_db_ip, w2);
-			else if(strcmpi(w1,"log_db_id")==0)
-				strcpy(log_db_id, w2);
-			else if(strcmpi(w1,"log_db_pw")==0)
-				strcpy(log_db_pw, w2);
-			else if(strcmpi(w1,"log_db_port")==0)
-				log_db_port = atoi(w2);
-			else if(strcmpi(w1,"log_db_db")==0)
-				strcpy(log_db_db, w2);
-			else if(!strcmpi(w1,"db_ip"))
-				strncpy(db_ip, w2, sizeof(db_ip));
-			else if(!strcmpi(w1,"db_id"))
-				strncpy(db_id, w2, sizeof(db_id));
-			else if(!strcmpi(w1,"db_pw"))
-				strncpy(db_pw, w2, sizeof(db_pw));
-			else if(!strcmpi(w1,"db_port"))
-				db_port = atoi(w2);
-			else if(!strcmpi(w1,"db_name"))
-				strncpy(db_db2name, w2, sizeof(db_db2name));
-			else if(mapreg_config_read(w1,w2))
-				continue;
+		//Map Server SQL DB
+		if(strcmpi(w1,"map_server_ip")==0)
+			strcpy(map_server_ip, w2);
+		else if(strcmpi(w1,"map_server_port")==0)
+			map_server_port=atoi(w2);
+		else if(strcmpi(w1,"map_server_id")==0)
+			strcpy(map_server_id, w2);
+		else if(strcmpi(w1,"map_server_pw")==0)
+			strcpy(map_server_pw, w2);
+		else if(strcmpi(w1,"map_server_db")==0)
+			strcpy(map_server_db, w2);
+		else if(strcmpi(w1,"default_codepage")==0)
+			strcpy(default_codepage, w2);
+		else if(strcmpi(w1,"log_db_ip")==0)
+			strcpy(log_db_ip, w2);
+		else if(strcmpi(w1,"log_db_id")==0)
+			strcpy(log_db_id, w2);
+		else if(strcmpi(w1,"log_db_pw")==0)
+			strcpy(log_db_pw, w2);
+		else if(strcmpi(w1,"log_db_port")==0)
+			log_db_port = atoi(w2);
+		else if(strcmpi(w1,"log_db_db")==0)
+			strcpy(log_db_db, w2);
+		else if(!strcmpi(w1,"db_ip"))
+			strncpy(db_ip, w2, sizeof(db_ip));
+		else if(!strcmpi(w1,"db_id"))
+			strncpy(db_id, w2, sizeof(db_id));
+		else if(!strcmpi(w1,"db_pw"))
+			strncpy(db_pw, w2, sizeof(db_pw));
+		else if(!strcmpi(w1,"db_port"))
+			db_port = atoi(w2);
+		else if(!strcmpi(w1,"db_name"))
+			strncpy(db_db2name, w2, sizeof(db_db2name));
+		else if(mapreg_config_read(w1,w2))
+			continue;
 		//support the import command, just like any other config
-			else if(strcmpi(w1,"import")==0)
-				inter_config_read(w2);
+		else if(strcmpi(w1,"import")==0)
+			inter_config_read(w2);
 	}
 	fclose(fp);
 
@@ -4093,6 +4112,7 @@ void do_final(void)
 	struct s_mapiterator *iter;
 
 	ShowStatus("Terminating...\n");
+	raChSys.closing = true;
 
 	//Ladies and babies first.
 	iter = mapit_getallusers();

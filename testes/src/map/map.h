@@ -32,6 +32,7 @@
 
 struct npc_data;
 struct item_data;
+struct raChSysCh;
 
 enum E_MAPSERVER_ST
 {
@@ -638,6 +639,8 @@ struct map_data {
 	// Instance Variables
 	int instance_id;
 	int instance_src_map;
+	/* rAthena Local Chat */
+	struct raChSysCh *channel;
 	int set_castle; // [Shiraz]
 	/* adjust_unit_duration mapflag */
 	struct mapflag_skill_adjust **units;
@@ -840,7 +843,6 @@ typedef struct elemental_data	TBL_ELEM;
 	( ((bl) == (struct block_list*)NULL || (bl)->type != (type_)) ? (T ## type_ *)NULL : (T ## type_ *)(bl) )
 
 
-extern char main_chat_nick[16];
 
 #ifdef BETA_THREAD_TEST
 

@@ -521,7 +521,8 @@ void initChangeTables(void)
 	set_sc(MH_PAIN_KILLER, SC_PAIN_KILLER, SI_PAIN_KILLER, SCB_ASPD);
 
 	add_sc(MH_STYLE_CHANGE, SC_STYLE_CHANGE);
-	set_sc(MH_TINDER_BREAKER, SC_TINDER_BREAKER, SI_TINDER_BREAKER, SCB_FLEE);
+	set_sc(MH_TINDER_BREAKER, SC_TINDER_BREAKER2, SI_TINDER_BREAKER, SCB_FLEE);
+	set_sc(MH_TINDER_BREAKER, SC_TINDER_BREAKER, SI_TINDER_BREAKER_POSTDELAY, SCB_FLEE);
 	set_sc(MH_CBC, SC_CBC, SI_CBC, SCB_FLEE);
 	set_sc(MH_EQC, SC_EQC, SI_EQC, SCB_DEF2|SCB_BATK|SCB_MAXHP);
 
@@ -1020,6 +1021,8 @@ void initChangeTables(void)
 	StatusChangeStateTable[SC_STOP]                |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_CLOSECONFINE]        |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_CLOSECONFINE2]       |= SCS_NOMOVE;
+	StatusChangeStateTable[SC_TINDER_BREAKER]     |= SCS_NOMOVE;
+	StatusChangeStateTable[SC_TINDER_BREAKER2]     |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_MADNESSCANCEL]       |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_GRAVITATION]         |= SCS_NOMOVE|SCS_NOMOVECOND;
 	StatusChangeStateTable[SC_WHITEIMPRISON]       |= SCS_NOMOVE;
@@ -4822,6 +4825,9 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	if(!sc || !sc->count)
 		return cap_value(flee,1,SHRT_MAX);
 
+	if(sc->data[SC_TINDER_BREAKER] || sc->data[SC_TINDER_BREAKER2])
+		return 0; //0 flee
+
 	if(sc->data[SC_INCFLEE])
 		flee += sc->data[SC_INCFLEE]->val1;
 	if(sc->data[SC_FLEEFOOD])
@@ -7299,6 +7305,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			case SC_BLEEDING:
 			case SC_DPOISON:
 			case SC_CLOSECONFINE2: //Can't be re-closed in.
+			case SC_TINDER_BREAKER2:
 			case SC_MARIONETTE:
 			case SC_MARIONETTE2:
 			case SC_NOCHAT:
@@ -7901,17 +7908,19 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				status_zap(bl, status->hp-1, val2?0:status->sp);
 				return 1;
 				break;
+			case SC_TINDER_BREAKER2:
 			case SC_CLOSECONFINE2: {
 					struct block_list *src = val2?map_id2bl(val2):NULL;
 					struct status_change *sc2 = src?status_get_sc(src):NULL;
-					struct status_change_entry *sce2 = sc2?sc2->data[SC_CLOSECONFINE]:NULL;
+					int type2 = ((type == SC_TINDER_BREAKER2)?SC_TINDER_BREAKER:SC_CLOSECONFINE);
+					struct status_change_entry *sce2 = sc2?sc2->data[type2]:NULL;
 					if(src && sc2) {
 						if(!sce2)  //Start lock on caster.
-							sc_start4(src,src,SC_CLOSECONFINE,100,val1,1,0,0,tick+1000);
+							sc_start4(src,src,type2,100,val1,1,0,0,tick+1000);
 						else { //Increase count of locked enemies and refresh time.
 							(sce2->val2)++;
 							delete_timer(sce2->timer, status_change_timer);
-							sce2->timer = add_timer(gettick()+tick+1000, status_change_timer, src->id, SC_CLOSECONFINE);
+							sce2->timer = add_timer(gettick()+tick+1000, status_change_timer, src->id, type2);
 						}
 					} else //Status failed.
 						return 0;
@@ -8845,6 +8854,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_CONFUSION:
 		case SC_CLOSECONFINE:
 		case SC_CLOSECONFINE2:
+		case SC_TINDER_BREAKER:
+		case SC_TINDER_BREAKER2:
 		case SC_SPIDERWEB:
 		case SC_ELECTRICSHOCKER:
 		case SC_BITE:
@@ -9136,37 +9147,17 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				case TK_COUNTER:
 					clif_skill_nodamage(bl,bl,TK_READYCOUNTER,1,1);
 					break;
-				case MO_COMBOFINISH:
-				case CH_TIGERFIST:
-				case CH_CHAINCRUSH:
-					if(sd)
-						clif_skillinfo(sd,MO_EXTREMITYFIST, INF_SELF_SKILL);
-					break;
-				case TK_JUMPKICK:
-					if(sd)
-						clif_skillinfo(sd,TK_JUMPKICK, INF_SELF_SKILL);
-					break;
-				case MO_TRIPLEATTACK:
-					if(sd && pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
-						clif_skillinfo(sd,SR_DRAGONCOMBO, INF_SELF_SKILL);
-					break;
-				case SR_FALLENEMPIRE:
-					if(sd) {
-						clif_skillinfo(sd,SR_GATEOFHELL, INF_SELF_SKILL);
-						clif_skillinfo(sd,SR_TIGERCANNON, INF_SELF_SKILL);
-					}
+				default: //rest just toogle inf to enable autotarget
+					skill_combo_toogle_inf(bl,sce->val1,INF_SELF_SKILL);
 					break;
 			}
 			break;
 		case SC_RAISINGDRAGON:
 			sce->val2 = status->max_hp / 100;// Officially tested its 1%hp drain. [Jobbie]
 			break;
-		case SC_TINDER_BREAKER:
-			sc_start2(src, map_id2bl(val2),SC_CLOSECONFINE2,100,val1,bl->id,tick);
-			break;
 		case SC_EQC:
 			sc_start2(src, bl,SC_STUN,100,val1,bl->id,(1000*status_get_lv(src))/50+500*val1);
-			status_change_end(bl,SC_TINDER_BREAKER,INVALID_TIMER);
+			status_change_end(bl,SC_TINDER_BREAKER2,INVALID_TIMER);
 			break;
 	}
 
@@ -9523,17 +9514,19 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 					skill_castend_damage_id(src, bl, sce->val2, sce->val1, gettick(), SD_LEVEL);
 			}
 			break;
-		case SC_TINDER_BREAKER:
+		case SC_TINDER_BREAKER2:
 		case SC_CLOSECONFINE2: {
 				struct block_list *src = sce->val2?map_id2bl(sce->val2):NULL;
 				struct status_change *sc2 = src?status_get_sc(src):NULL;
-				if(src && sc2 && sc2->data[SC_CLOSECONFINE]) {
+				int type2 = ((type==SC_CLOSECONFINE2)?SC_CLOSECONFINE:SC_TINDER_BREAKER);
+				if (src && sc2 && sc2->data[type2]) {
 					//If status was already ended, do nothing.
 					//Decrease count
-					if(--(sc2->data[SC_CLOSECONFINE]->val1) <= 0)  //No more holds, free him up.
-						status_change_end(src, SC_CLOSECONFINE, INVALID_TIMER);
+					if(type==SC_TINDER_BREAKER2 || (--(sc2->data[type2]->val1) <= 0)) //No more holds, free him up.
+						status_change_end(src, type2, INVALID_TIMER);
 				}
 			}
+		case SC_TINDER_BREAKER:
 		case SC_CLOSECONFINE:
 			if(sce->val2 > 0) {
 				//Caster has been unlocked... nearby chars need to be unlocked.
@@ -9545,27 +9538,8 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 			break;
 		case SC_COMBO:
-			if(sd)
-				switch(sce->val1) {
-					case MO_COMBOFINISH:
-					case CH_TIGERFIST:
-					case CH_CHAINCRUSH:
-						clif_skillinfo(sd, MO_EXTREMITYFIST, 0);
-						break;
-					case TK_JUMPKICK:
-						clif_skillinfo(sd, TK_JUMPKICK, 0);
-						break;
-					case MO_TRIPLEATTACK:
-						if(pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
-							clif_skillinfo(sd, SR_DRAGONCOMBO, 0);
-						break;
-					case SR_FALLENEMPIRE:
-						clif_skillinfo(sd, SR_GATEOFHELL, 0);
-						clif_skillinfo(sd, SR_TIGERCANNON, 0);
-						break;
-				}
+			skill_combo_toogle_inf(bl,sce->val1,0);
 			break;
-
 		case SC_MARIONETTE:
 		case SC_MARIONETTE2:    /// Marionette target
 			if(sce->val1) {
@@ -10833,13 +10807,16 @@ int status_change_timer_sub(struct block_list *bl, va_list ap)
 				}
 			}
 			break;
-		case SC_CLOSECONFINE:
+		case SC_TINDER_BREAKER:
+		case SC_CLOSECONFINE: {
+			int type2 = ((type==SC_CLOSECONFINE)?SC_CLOSECONFINE2:SC_TINDER_BREAKER2);
 			//Lock char has released the hold on everyone...
-			if(tsc && tsc->data[SC_CLOSECONFINE2] && tsc->data[SC_CLOSECONFINE2]->val2 == src->id) {
-				tsc->data[SC_CLOSECONFINE2]->val2 = 0;
-				status_change_end(bl, SC_CLOSECONFINE2, INVALID_TIMER);
+			if (tsc && tsc->data[type2] && tsc->data[type2]->val2 == src->id) {
+				tsc->data[type2]->val2 = 0;
+				status_change_end(bl, type2, INVALID_TIMER);
 			}
 			break;
+		}
 		case SC_CURSEDCIRCLE_TARGET:
 			if(tsc && tsc->data[SC_CURSEDCIRCLE_TARGET] && tsc->data[SC_CURSEDCIRCLE_TARGET]->val2 == src->id) {
 				clif_bladestop(bl, tsc->data[SC_CURSEDCIRCLE_TARGET]->val2, 0);

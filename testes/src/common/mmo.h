@@ -18,6 +18,7 @@
 #define _MMO_H_
 
 #include "cbasetypes.h"
+#include "../common/db.h"
 #include <time.h>
 
 // server->client protocol version
@@ -229,6 +230,7 @@ enum e_skill_flag {
     SKILL_FLAG_PLAGIARIZED,
     SKILL_FLAG_REPLACED_LV_0, // temporary skill overshadowing permanent skill of level 'N - SKILL_FLAG_REPLACED_LV_0',
     SKILL_FLAG_PERM_GRANTED, // permanent, granted through someway e.g. script
+	SKILL_FLAG_TMP_COMBO, //@FIXME for homon combo atm
     //...
 };
 
@@ -527,6 +529,7 @@ struct guild {
 	struct guild_skill skill[MAX_GUILDSKILL];
 
 	unsigned short save_flag; // for TXT saving
+	void *channel;
 };
 
 struct guild_castle {
