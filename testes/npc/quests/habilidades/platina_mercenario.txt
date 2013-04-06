@@ -8,19 +8,19 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Quest Habilidade de Platina: MercenÃ¡rio|
+//   | Nome do Script: Quest Habilidade de Platina: Mercenário|
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 1.3b/1.5/1.0                        |
+//   | Versões eA/rA/brA: 1.3b/1.5/1.0                        |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: Quest das habilidades LÃ¢minas Aceleradas e  |
+//   | Descrição: Quest das habilidades Lâminas Aceleradas e  |
 //   | Faca Envenenada.                                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 CabeÃ§alho Criado [Holy]                            |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 in_moc_16,14,27,5	script	Assassin#realman	884,{
@@ -961,7 +961,7 @@ OnTouch:
 	}
 }
 
-moc_pryd04,85,96,0	script	ï¿½ï¿½#crypt	-1,3,3,{
+moc_pryd04,85,96,0	script	??#crypt	-1,3,3,{
 OnTouch:
 	if (ASSN_SK == 4) {
 		specialeffect EF_CONE;

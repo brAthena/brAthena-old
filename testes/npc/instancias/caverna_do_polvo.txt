@@ -12,15 +12,15 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Vers√µes eA/rA/brA: ??/1.0/1.1                          |
+//   | Versıes eA/rA/brA: ??/1.0/1.1                          |
 //   |--------------------------------------------------------|
-//   | Descri√ß√£o: Caverna do Polvo.                           |
+//   | DescriÁ„o: Caverna do Polvo.                           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado Cabe√ßalho [Megasantos]                      |
-//   | 1.1 Tradu√ß√£o PT-BR [Holy]                              |
+//   | 1.0 Criado CabeÁalho [Megasantos]                      |
+//   | 1.1 TraduÁ„o PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
-//   | - Anota√ß√µes                                            |
+//   | - AnotaÁıes                                            |
 //   \________________________________________________________/
 
 mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
@@ -30,54 +30,54 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 
 	if (!.@party_id) {
 		mes "[Estrela-do-Mar]";
-		mes "Voc√™ sozinho √© incapaz, hehe!";
-		mes "√â melhor que consiga pessoas para ajud√°-lo.";
-		mes "Monte um grupo, ap√≥s isso volte.";
+		mes "VocÍ sozinho È incapaz, hehe!";
+		mes "… melhor que consiga pessoas para ajud·-lo.";
+		mes "Monte um grupo, apÛs isso volte.";
 		close;
 	}
 	if (getcharid(0) != getpartyleader(.@party_id,2)) {
 		mes "[Estrela-do-Mar]";
-		mes "Ond est√° seu l√≠der, hehe.";
-		mes "Eu n√£o falo com qualquer pessoa do grupo.";
-		mes "Traga seu l√≠der at√© mim.";
+		mes "Ond est· seu lÌder, hehe.";
+		mes "Eu n„o falo com qualquer pessoa do grupo.";
+		mes "Traga seu lÌder atÈ mim.";
 		close;
 	}
 	mes "[Estrela-do-Mar]";
 	mes "Estarei esperando aqui, hehe!";
-	mes "Por enquanto a caverna est√° apenas trancada.";
-	mes "Mas algum dia ela ser√° fechada para sempre, hehe!";
+	mes "Por enquanto a caverna est· apenas trancada.";
+	mes "Mas algum dia ela ser· fechada para sempre, hehe!";
 	next;
 	while (1) {
-		switch(select("Perguntar o que est√° acontecendo.:Pedir a abertura do Port√£o.:Ir para um outro lugar.")) {
+		switch(select("Perguntar o que est· acontecendo.:Pedir a abertura do Port„o.:Ir para um outro lugar.")) {
 		case 1:
 			mes "[Estrela-do-Mar]";
 			mes "Ultimamente, a senhora Estrela-do-Mar";
-			mes "est√° sofrendo devido a algumas quest√µes.";
-			mes "Algo de ruim ir√° acontecer";
+			mes "est· sofrendo devido a algumas questıes.";
+			mes "Algo de ruim ir· acontecer";
 			mes "neste lugar calmo, hehe!";
 			next;
 			mes "[Estrela-do-Mar]";
-			mes "Estranhos tent√°culos";
+			mes "Estranhos tent·culos";
 			mes "que surgiram daquele buraco,";
 			mes "tentaram sequestrar a nossa Rainha Estrela-do-Mar.";
 			mes "Ooh Ooh.";
 			next;
 			mes "[Estrela-do-Mar]";
-			mes "Parece que esses tent√°culos s√£o";
-			mes "de um polvo terr√≠vel.";
+			mes "Parece que esses tent·culos s„o";
+			mes "de um polvo terrÌvel.";
 			mes "Deve se tomar cuidado quando avistar esse monstro,";
-			mes "mas √© dificil para qualquer um.";
+			mes "mas È dificil para qualquer um.";
 			next;
 			mes "[Estrela-do-Mar]";
-			mes "Eu quero encontrar algu√©m especial,";
+			mes "Eu quero encontrar alguÈm especial,";
 			mes "e pedir que essa pessoa derrote esse polvo.";
 			mes "Espero que este polvo nunca";
 			mes "persiga nossa rainha, hehe.";
 			next;
 			mes "[Estrela-do-Mar]";
-			mes "V√° e derrote o polvo e colete um de seus tent√°culos.";
-			mes "Se voc√™ trouxer um para mim, irei abrir";
-			mes "o port√£o por um tempinho.";
+			mes "V· e derrote o polvo e colete um de seus tent·culos.";
+			mes "Se vocÍ trouxer um para mim, irei abrir";
+			mes "o port„o por um tempinho.";
 			mes "Aceite o desafio caso tenha interesse, hehe.";
 			next;
 			break;
@@ -85,7 +85,7 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 			set .@playtime, checkquest(4197,PLAYTIME);
 			if (.@playtime == 0 || .@playtime == 1) {
 				mes "[Estrela-do-Mar]";
-				mes "O polvo n√£o est√° aqui no momento, hehe.";
+				mes "O polvo n„o est· aqui no momento, hehe.";
 				mes "Por favor volte depois.";
 				close;
 			}
@@ -94,10 +94,10 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 				set .@instance, instance_create(.@md_name$,.@party_id);
 				if (.@instance < 0) {
 					mes "[Estrela-do-Mar]";
-					mes "O nome do grupo √©... "+getpartyname(.@party_id)+".";
-					mes "O l√≠der do grupo √©... "+strcharinfo(0)+".";
-					mes "^0000ff"+.@md_name$+"^000000, eu n√£o posso abrir o port√£o no momento.";
-					mes "Agora n√£o √© o momento, por favor aguarde.";
+					mes "O nome do grupo È... "+getpartyname(.@party_id)+".";
+					mes "O lÌder do grupo È... "+strcharinfo(0)+".";
+					mes "^0000ff"+.@md_name$+"^000000, eu n„o posso abrir o port„o no momento.";
+					mes "Agora n„o È o momento, por favor aguarde.";
 					close;
 				}
 				if (instance_attachmap("1@cash",.@instance) == "") {
@@ -132,28 +132,28 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 				donpcevent instance_npcname("pol_s_2", instance_id())+"::OnInstanceInit";
 
 				mes "[Estrela-do-Mar]";
-				mes "Eu irei abrir o port√£o durante ^0000ff"+.@md_name$+"^000000.";
+				mes "Eu irei abrir o port„o durante ^0000ff"+.@md_name$+"^000000.";
 				mes "Por favor derrote o polvo,";
-				mes "e volte com um tent√°culo, hehe.";
+				mes "e volte com um tent·culo, hehe.";
 				close;
 			}
 			mes "[Estrela-do-Mar]";
 			mes "Prepare-se para encontrar,";
-			mes "e derrotar os tent√°culos do polvo e ap√≥s isso";
-			mes "colet√°-los.";
-			mes "Ent√£o, vou te esperar por um tempo.";
+			mes "e derrotar os tent·culos do polvo e apÛs isso";
+			mes "colet·-los.";
+			mes "Ent„o, vou te esperar por um tempo.";
 			close;
 		case 3:
 			mes "[Estrela-do-Mar]";
-			mes "Este n√£o √© um bom lugar, verifique outros lugares.";
+			mes "Este n„o È um bom lugar, verifique outros lugares.";
 			close;
 		}
 	}
 }
 
 mal_dun01,153,237,5	script	Entrada Estranha	844,{
-	mes "H√° uma entrada estranha";
-	mes "bloqueada pr√≥xima a algumas placas.";
+	mes "H· uma entrada estranha";
+	mes "bloqueada prÛxima a algumas placas.";
 	next;
 	switch(select("Entrar.:Sair.")) {
 	case 1:
@@ -161,30 +161,30 @@ mal_dun01,153,237,5	script	Entrada Estranha	844,{
 			if (has_instance("1@cash") == "") {
 				if (checkquest(4197,PLAYTIME) == 0 || checkquest(4197,PLAYTIME) == 1) {
 					mes "[Entrada Estranha]";
-					mes "Ah, agora n√£o √© a hora...";
-					mes "Voc√™ pode voltar depois? Hehe.";
+					mes "Ah, agora n„o È a hora...";
+					mes "VocÍ pode voltar depois? Hehe.";
 					close;
 				}
 				mes "[Entrada Estranha]";
 				mes "Shhh... Uma Aura estranha";
-				mes "est√° emanando da entrada.";
-				mes "Um grande problema est√° te aguardando ao entrar.";
+				mes "est· emanando da entrada.";
+				mes "Um grande problema est· te aguardando ao entrar.";
 				close;
 			}
-			mapannounce "mal_dun01", "o membro "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" inicio sua ca√ßada ao Polvo!",bc_map,"0x00ff99";
+			mapannounce "mal_dun01", "o membro "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" inicio sua caÁada ao Polvo!",bc_map,"0x00ff99";
 			if (checkquest(4197) == -1) setquest 4197;
 			warp "1@cash",199,99;
 			close;
 		}
 		mes "[Entrada Estranha]";
 		mes "Prepare-se para encontrar,";
-		mes "e derrotar os tent√°culos do polvo e ap√≥s isso";
-		mes "colet√°-los.";
-		mes "Ou n√£o irei deixar voc√™ seguir.";
+		mes "e derrotar os tent·culos do polvo e apÛs isso";
+		mes "colet·-los.";
+		mes "Ou n„o irei deixar vocÍ seguir.";
 		close;
 	case 2:
 		mes "[Entrada Estranha]";
-		mes "Sim sim, √© melhor voc√™ parar.";
+		mes "Sim sim, È melhor vocÍ parar.";
 		close;
 	}
 }
@@ -216,13 +216,13 @@ OnDisable:
 	disablenpc instance_npcname("pol_entr_larg", instance_id());
 	end;
 OnTimer1000:
-	instance_announce 0,"Polvo Pervertido : Como voc√™ se atreve entrar no meu territ√≥rio!",bc_map,"0xFFFF00";
+	instance_announce 0,"Polvo Pervertido : Como vocÍ se atreve entrar no meu territÛrio!",bc_map,"0xFFFF00";
 	end;
 OnTimer4000:
-	instance_announce 0,"Polvo Pervertido : Mas eu bloquiei todos os port√µes da caverna, n√£o h√° nada que voc√™ possa fazer!",bc_map,"0xFFFF00";
+	instance_announce 0,"Polvo Pervertido : Mas eu bloquiei todos os portıes da caverna, n„o h· nada que vocÍ possa fazer!",bc_map,"0xFFFF00";
 	end;
 OnTimer7000:
-	instance_announce 0,"Polvo Pervertido : Meu pequeno ~ isso n√£o √© seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
+	instance_announce 0,"Polvo Pervertido : Meu pequeno ~ isso n„o È seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
 	stopnpctimer;
 	donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnDisable";
 	end;
@@ -239,10 +239,10 @@ OnEnable:
 	donpcevent instance_npcname("pol_t2", instance_id())+"::OnEnable";
 	donpcevent instance_npcname("pol_t3", instance_id())+"::OnEnable";
 	donpcevent instance_npcname("pol_t4", instance_id())+"::OnEnable";
-	monster "1@cash",20,114,"Tent√°culo de Polvo#1",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",88,190,"Tent√°culo de Polvo#2",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",307,215,"Tent√°culo de Polvo#3",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",372,131,"Tent√°culo de Polvo#4",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
+	monster "1@cash",20,114,"Tent·culo de Polvo#1",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
+	monster "1@cash",88,190,"Tent·culo de Polvo#2",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
+	monster "1@cash",307,215,"Tent·culo de Polvo#3",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
+	monster "1@cash",372,131,"Tent·culo de Polvo#4",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
 	end;
 OnDisable:
 	disablenpc instance_npcname("pol_t_4", instance_id());
@@ -250,12 +250,12 @@ OnDisable:
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("pol_c_c", instance_id())+"::OnEnable";
-		instance_announce 0,"Ei voc√™!! Eu irei cuidar pessoalmente de todos voc√™s! Vamos traga-os!",bc_map,"0x00ff99";
+		instance_announce 0,"Ei vocÍ!! Eu irei cuidar pessoalmente de todos vocÍs! Vamos traga-os!",bc_map,"0x00ff99";
 		enablenpc instance_npcname("pol_c_p", instance_id());
 		instance_warpall "1@cash",199,99;
 		end;
 	}
-	instance_announce 0,"Arrgg!! Isso d√≥i!!! Eu preciso de uma outra estrat√©gia...",bc_map,"0x00ff99";
+	instance_announce 0,"Arrgg!! Isso dÛi!!! Eu preciso de uma outra estratÈgia...",bc_map,"0x00ff99";
 	end;
 }
 
@@ -335,7 +335,7 @@ OnTouch:
 	initnpctimer;
 	end;
 OnTimer5000:
-	instance_announce 0,"Vamos dar-lhes uma li√ß√£o!",bc_map,"0xFFFF00";
+	instance_announce 0,"Vamos dar-lhes uma liÁ„o!",bc_map,"0xFFFF00";
 	set .@label$, instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
 	switch(.@i) {
@@ -366,7 +366,7 @@ OnTimer30000:
 	end;
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce 0,"Voc√™ feriu meus beb√™s!? Voc√™ vai ter que pagar por isso!!!",bc_map,"0x00ff99";
+		instance_announce 0,"VocÍ feriu meus bebÍs!? VocÍ vai ter que pagar por isso!!!",bc_map,"0x00ff99";
 		setd "."+strnpcinfo(0)+instance_id(),0;
 		stopnpctimer;
 		set .@i, atoi(charat(strnpcinfo(0),8));
@@ -470,7 +470,7 @@ OnTouch:
 	monster "1@cash",48,50,"Hidra",1068,1;
 	monster "1@cash",49,50,"Hidra",1068,1;
 	monster "1@cash",41,53,"Polvo Pequeno",2192,1;
-	instance_announce 0,"N√£o deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
+	instance_announce 0,"N„o deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
 	specialeffect EF_BASH;
 	disablenpc instance_npcname("pol_atv1", instance_id());
 	end;
@@ -489,16 +489,16 @@ OnTouch:
 	setd "."+instance_id(),1;
 	initnpctimer;
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"O centro est√° vazio, V√°!!!",bc_map,"0x00ff99";
+	instance_announce 0,"O centro est· vazio, V·!!!",bc_map,"0x00ff99";
 	hideonnpc instance_npcname("pol_atv2", instance_id());
 	end;
 OnTimer2000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"Corra, corra! V√°, v√°!!!",bc_map,"0x00ff99";
+	instance_announce 0,"Corra, corra! V·, v·!!!",bc_map,"0x00ff99";
 	end;
 OnTimer4000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"N√£o h√° tempo, saia r√°pido!",bc_map,"0x00ff99";
+	instance_announce 0,"N„o h· tempo, saia r·pido!",bc_map,"0x00ff99";
 	end;
 OnTimer6000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,3;
@@ -506,7 +506,7 @@ OnTimer6000:
 	end;
 OnTimer8000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"N√£o h√° tempo a perder, r√°pido!!!",bc_map,"0x00ff99";
+	instance_announce 0,"N„o h· tempo a perder, r·pido!!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -532,7 +532,7 @@ OnTouch:
 	hideonnpc instance_npcname("pol_atv3", instance_id());
 	end;
 OnTimer5000:
-	instance_announce 0,"... Parece que temos um espi√£o entre n√≥s.",bc_map,"0x00ff99";
+	instance_announce 0,"... Parece que temos um espi„o entre nÛs.",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -556,20 +556,20 @@ OnTouch:
 	monster "1@cash",341,36,"Polvo Pequeno ",2192,1;
 	monster "1@cash",341,35,"Polvo Pequeno ",2192,1;
 	monster "1@cash",341,34,"Polvo Pequeno ",2192,1;
-	monster "1@cash",260,40,"Lula Mercen√°ria",2175,1;
-	monster "1@cash",260,41,"Lula Mercen√°ria",2175,1;
-	monster "1@cash",260,39,"Lula Mercen√°ria",2175,1;
-	monster "1@cash",259,40,"Lula Mercen√°ria",2175,1;
-	monster "1@cash",261,40,"Lula Mercen√°ria",2175,1;
-	instance_announce 0,"Um ataque estrat√©gico! O inimigo √© forte! N√£o vamos ser derrotados! Onde est√£o todos os mercen√°rios??",bc_map,"0x00ff99";
+	monster "1@cash",260,40,"Lula Mercen·ria",2175,1;
+	monster "1@cash",260,41,"Lula Mercen·ria",2175,1;
+	monster "1@cash",260,39,"Lula Mercen·ria",2175,1;
+	monster "1@cash",259,40,"Lula Mercen·ria",2175,1;
+	monster "1@cash",261,40,"Lula Mercen·ria",2175,1;
+	instance_announce 0,"Um ataque estratÈgico! O inimigo È forte! N„o vamos ser derrotados! Onde est„o todos os mercen·rios??",bc_map,"0x00ff99";
 	initnpctimer;
 	hideonnpc instance_npcname("pol_atv4", instance_id());
 	end;
 OnTimer5000:
-	instance_announce 0,"Lula Mercen√°ria : eh...eh... dire√ß√£o errada. N√£o h√° inimigos nessa dire√ß√£o.",bc_map,"0x00ff99";
+	instance_announce 0,"Lula Mercen·ria : eh...eh... direÁ„o errada. N„o h· inimigos nessa direÁ„o.",bc_map,"0x00ff99";
 	end;
 OnTimer7000:
-	instance_announce 0,"Polvo Pervertido : Est√∫pido ! N√£o conseguem ler o mapa ?! In√∫teis!!",bc_map,"0x00ff99";
+	instance_announce 0,"Polvo Pervertido : Est˙pido ! N„o conseguem ler o mapa ?! In˙teis!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -593,45 +593,45 @@ OnEnable:
 	end;
 OnTimer7000:
 	callsub OnAnnounce,
-		"Voc√™ n√£o pode atacar.",
-		"Eu fui demitido da f√°brinca de tintas semana passada.",
+		"VocÍ n„o pode atacar.",
+		"Eu fui demitido da f·brinca de tintas semana passada.",
 		"Polvo Gigante : Arghhhhh, vamos!";
 	end;
 OnTimer14000:
 	callsub OnAnnounce,
-		"Por que... Por que n√£o compreende meu cora√ß√£o!",
-		"Voc√™ sabe por que √© dif√≠cil viver, porque n√£o h√° muitos novos aventureiros?",
-		"Voc√™.. Irei destruir todos voc√™s...!";
+		"Por que... Por que n„o compreende meu coraÁ„o!",
+		"VocÍ sabe por que È difÌcil viver, porque n„o h· muitos novos aventureiros?",
+		"VocÍ.. Irei destruir todos vocÍs...!";
 	end;
 OnTimer21000:
 	callsub OnAnnounce,
-		"O qu√©? Eu sou um Polvo Gigante? Voc√™ √© s√°dico.",
-		"N√£o vamos fazer isso e que tal procurarmos a melhor solu√ß√£o, hein??",
+		"O quÈ? Eu sou um Polvo Gigante? VocÍ È s·dico.",
+		"N„o vamos fazer isso e que tal procurarmos a melhor soluÁ„o, hein??",
 		"Mesmo se eu falhar aqui, continuarei voltando, sempre!!!";
 	end;
 OnTimer28000:
 	callsub OnAnnounce,
-		"O Instinto de acasalamento √© algo dos homens, o que eu fiz de errado?",
-		"Voc√™ realmente quer resolver o problema com os seres humanos atrav√©s da viol√™ncia? Ah, eu sou um polvo...",
-		"Isso √© o suficiente! Desista!";
+		"O Instinto de acasalamento È algo dos homens, o que eu fiz de errado?",
+		"VocÍ realmente quer resolver o problema com os seres humanos atravÈs da violÍncia? Ah, eu sou um polvo...",
+		"Isso È o suficiente! Desista!";
 	end;
 OnTimer35000:
 	callsub OnAnnounce,
 		"Eu tenho que passar o Natal sozinho novamente...",
-		"O desemprego dos jovens tornou-se um grande problema nos dias de hoje... Voc√™ n√£o vai conseguir um emprego se voc√™ continuar jogando comigo aqui.",
-		"Isto √©, acabar√° como eu!";
+		"O desemprego dos jovens tornou-se um grande problema nos dias de hoje... VocÍ n„o vai conseguir um emprego se vocÍ continuar jogando comigo aqui.",
+		"Isto È, acabar· como eu!";
 	end;
 OnTimer42000:
 	callsub OnAnnounce,
-		"Vendo em seu cora√ß√£o acho que voc√™ deve parar...",
-		"N√£o fa√ßa isso!",
-		"Voc√™ vai continuar fazendo isso at√© o fim, √© isso?";
+		"Vendo em seu coraÁ„o acho que vocÍ deve parar...",
+		"N„o faÁa isso!",
+		"VocÍ vai continuar fazendo isso atÈ o fim, È isso?";
 	end;
 OnTimer49000:
 	callsub OnAnnounce,
 		"errrrrrrrrrrrrrrrrrrrrrrrr... Cough! Cough!",
-		"Polvo Gigante : A viol√™ncia n√£o √© necess√°ria neste caso.",
-		"Este √© meu lugar!!!";
+		"Polvo Gigante : A violÍncia n„o È necess·ria neste caso.",
+		"Este È meu lugar!!!";
 	stopnpctimer;
 	initnpctimer;
 	end;
@@ -640,7 +640,7 @@ OnAnnounce:
 	return;
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname("pol_c_c", instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce 0,"Polvo Gigante : Isso √© tudo por hoje! Da pr√≥xima vez, eu vou brincar a s√©rio com voc√™!",bc_map,"0xFFFF00";
+		instance_announce 0,"Polvo Gigante : Isso È tudo por hoje! Da prÛxima vez, eu vou brincar a sÈrio com vocÍ!",bc_map,"0xFFFF00";
 		enablenpc instance_npcname("pol_s_1", instance_id());
 		enablenpc instance_npcname("pol_s_2", instance_id());
 		donpcevent instance_npcname("pol_c_t", instance_id())+"::OnDisable";
@@ -664,11 +664,11 @@ OnCall:
 	if (mobcount("1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead") < 100) {
 		switch(rand(2)) {
 		case 0:
-			instance_announce 0,"Polvo Gigante : Voc√™ sabe quantas pernas tem o polvo? N√£o importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
-			areamonster "1@cash",192,181,206,195,"Tent√°culo de Polvo",2193,1,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
+			instance_announce 0,"Polvo Gigante : VocÍ sabe quantas pernas tem o polvo? N„o importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
+			areamonster "1@cash",192,181,206,195,"Tent·culo de Polvo",2193,1,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
 			break;
 		case 1:
-			instance_announce 0,"Polvo Gigante : Eu... n√£o posso... segurar mais, meus beb√™s ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
+			instance_announce 0,"Polvo Gigante : Eu... n„o posso... segurar mais, meus bebÍs ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
 			areamonster "1@cash",192,181,206,195,"Polvo Pequeno",2192,5,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
 			break;
 		}
@@ -681,7 +681,7 @@ OnTimer10000:
 	end;
 OnDisable:
 	stopnpctimer;
-	killmonster "1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead"; // N√£o existe (Script oficial).
+	killmonster "1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead"; // N„o existe (Script oficial).
 	disablenpc instance_npcname("pol_c_t", instance_id());
 	end;
 OnMyMobDead:
@@ -704,9 +704,9 @@ OnInstanceInit:
 	disablenpc instance_npcname(strnpcinfo(0), instance_id());
 	end;
 OnTouch:
-	mes "Voc√™ quer sair da Caverna do Polvo?";
+	mes "VocÍ quer sair da Caverna do Polvo?";
 	next;
-	if(select("N√£o!:Sim!") == 2)
+	if(select("N„o!:Sim!") == 2)
 		warp "mal_dun01",153,233;
 	close;
 }

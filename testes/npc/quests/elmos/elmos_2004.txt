@@ -1,39 +1,26 @@
-//===== rAthena Script ======================================= 
-//= 2004 Headgear Quests
-//===== By: ================================================== 
-//= Dj-Yhn
-//===== Current Version: ===================================== 
-//= 1.6
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= 2004 New Headgears. Official Quests
-//= 1) Black Cat Ears (payon 115 131)
-//= 2) X Hairpin, Band Aid, Flower Hairpin (geffen 129 148)
-//= 3) Hot-blooded Headband (yuno 300 188)
-//= 4) Red Ribbon (prontera 165 232)
-//= 5) Indian Headband (comodo 237 217)
-//= 6) Mushroom Band (geffen 67 87)
-//= 7) Angel Wing Ears, Devil Wing Ears (yuno 241 52)
-//= 8) Sea-Otter Hat (xmas 183 267)
-//= 9) Teddybear Hat (xmas 175 156)
-//= 10) Model Training Hat (payon_in03 8 193)
-//= 11) Tulip Haipin (geffen 83 189)
-//= 12) Party Hat, Straw Hat, Cowboy Hat, (xmas_in 35 30)
-//=	Sombrero, Beanie 
-//= 13) Decorative Golden Bell, (yuno_in03 20 18)
-//=	Crown of Ancient Queen, Crown of Mistress
-//= 14) Alarm Mask (alde_alche 88 180)
-//= 15) Drooping Cat, Smokie Leaf, Lazy Smokie, (morocc 273 79)
-//	Blue Fish
-//= 16) Kitsune Mask (pay_dun03 48 84)
-//= 17) Orc Hero Helm (in_orcs01 31 93 & 162 33)
-//===== Additional Comments: =================================
-//= 1.4 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
-//= 1.5 Vito'd function call for checkweight. [L0ne_W0lf]
-//= 1.6 Replaced effect numerics with constants. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: elmos_2004.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.6/1.0                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests para os novos elmos de 2004.         |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Hold]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 // Black Cat Ears
 //============================================================

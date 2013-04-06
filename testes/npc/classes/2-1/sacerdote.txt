@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 2.6/1.0                             |
+//   | Versões eA/rA/brA: 2.6/1.0                             |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: MudanÃ§a de Classe para Sacerdote.           |
+//   | Descrição: Mudança de Classe para Sacerdote.           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 prt_church,16,41,4	script	High Bishop#prst	60,{
@@ -1362,7 +1362,7 @@ OnTouch:
 		mes "[Deviruchi]";
 		mes "But how about this...? Now, isn't this an attractive sight? A nice, shiny new card. Mint condition. Not too many people have this you know. But I happen to have soooo many, my pockets hurt.";
 		next;
-		cutin "Â¹ÃŒÂ½ÂºÃ†Â®Â·Â¹Â½ÂºÃ„Â«ÂµÃ¥.bmp",4;
+		cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",4;
 		mes "[Deviruchi]";
 		mes "Isn't it everyone's dream to have one of these? Think about it, being a Priest can only bring you suffering...";
 		next;
@@ -1372,7 +1372,7 @@ OnTouch:
 			mes "This card can";
 			mes "can be yours...";
 			next;
-			cutin "Â¹ÃŒÂ½ÂºÃ†Â®Â·Â¹Â½ÂºÃ„Â«ÂµÃ¥.bmp",255;
+			cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",255;
 			mes "[Deviruchi]";
 			mes "Theoretically!";
 			mes "BWAHAHAHAHAHAHAHA!";
@@ -1381,7 +1381,7 @@ OnTouch:
 			warp "mjolnir_05",200,200;
 			end;
 		}
-		cutin "Â¹ÃŒÂ½ÂºÃ†Â®Â·Â¹Â½ÂºÃ„Â«ÂµÃ¥.bmp",255;
+		cutin "¹Ì½ºÆ®·¹½ºÄ«µå.bmp",255;
 		mes "[Deviruchi]";
 		mes "Did...";
 		mes "Did you just tell";

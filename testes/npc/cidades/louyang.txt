@@ -12,24 +12,24 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 2.9/3.0/1.2                         |
+//   | Versões eA/rA/brA: 2.9/3.0/1.2                         |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: NPCs da Cidade de Louyang.                  |
+//   | Descrição: NPCs da Cidade de Louyang.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
-//   | 1.1 TraduÃ§Ã£o PT-BR [cleyton]                           |
-//   | 1.2 OtimizaÃ§Ã£o [Holy & Hold]                           |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Louyang - TrasportaÃ§Ã£o
+// Louyang - Trasportação
 //============================================================
 alberta,245,45,3	script	Garota#0lou	815,{
 	mes "[Garota]";
 	mes "La la la la~";
-	mes "Me sinto Ã³tima hoje~";
+	mes "Me sinto ótima hoje~";
 	mes "Estou com vontade de ir";
 	mes "a um piquenique!";
 	mes "La la la la~";
@@ -37,40 +37,40 @@ alberta,245,45,3	script	Garota#0lou	815,{
 	switch(select("Sobre Louyang.:Ir para Louyang.:Cancelar.")) {
 	case 1:
 		mes "[Garota]";
-		mes "Oh, vocÃª estÃ¡";
+		mes "Oh, você está";
 		mes "interessado em Louyang?";
-		mes "Ã‰ um lugar legal";
+		mes "É um lugar legal";
 		mes "para viajantes.";
 		next;
 		mes "[Garota]";
-		mes "Louyang tem uma histÃ³ria longa,";
-		mes "com lendas de magias antigas e guerreiros. TambÃ©m dizem que muitos monstros malvados";
+		mes "Louyang tem uma história longa,";
+		mes "com lendas de magias antigas e guerreiros. Também dizem que muitos monstros malvados";
 		mes "rondam Louyang.";
 		next;
 		mes "[Garota]";
-		mes "VocÃª encontrarÃ¡ remÃ©dios contra tudo, ocorrÃªncias misteriosas";
-		mes "e artes marciais, tudo em um sÃ³ lugar!";
+		mes "Você encontrará remédios contra tudo, ocorrências misteriosas";
+		mes "e artes marciais, tudo em um só lugar!";
 		next;
 		mes "[Garota]";
-		mes "Eu treinava artes marciais toda manhÃ£ quando morava em Louyang. Posso nÃ£o parecer, mas sou muito forte!";
+		mes "Eu treinava artes marciais toda manhã quando morava em Louyang. Posso não parecer, mas sou muito forte!";
 		next;
 		mes "[Garota]";
 		mes "Se quiser visitar";
 		mes "Louyang, fale comigo.";
-		mes "SÃ³ me dÃª alguns zenys";
+		mes "Só me dê alguns zenys";
 		mes "e iremos!";
 		close;
 	case 2:
 		mes "[Garota]";
-		mes "Levarei vocÃª a";
+		mes "Levarei você a";
 		mes "Louyang agora mesmo.";
-		mes "Por meu serviÃ§o,";
+		mes "Por meu serviço,";
 		mes "cobro 10 000 zenys.";
 		next;
 		mes "[Garota]";
-		mes "EntÃ£o, vamos?";
+		mes "Então, vamos?";
 		next;
-		if (select("Sim!:NÃ£o.") == 1) {
+		if (select("Sim!:Não.") == 1) {
 				mes "[Garota]";
 			if (Zeny > 9999) {
 				mes "Okay~";
@@ -82,14 +82,14 @@ alberta,245,45,3	script	Garota#0lou	815,{
 				end;
 			}
 			mes "...";
-			mes "VocÃª nÃ£o parece";
+			mes "Você não parece";
 			mes "ter 10 000 zenys...";
-			mes "VÃ¡ pegar dinheiro antes!";
+			mes "Vá pegar dinheiro antes!";
 			close;
 		}
 		mes "[Garota]";
 		mes "Oh...";
-		mes "Ã‰ desapontador ouvÃ­-lo";
+		mes "É desapontador ouví-lo";
 		mes "falar isso...";
 		mes "Bem, tenha um bom-dia.";
 		close;
@@ -103,13 +103,13 @@ alberta,245,45,3	script	Garota#0lou	815,{
 
 lou_fild01,190,100,7	script	Garota#1lou	815,{
 	mes "[Garota]";
-	mes "VocÃª gostaria";
+	mes "Você gostaria";
 	mes "de voltar";
 	mes "para Alberta?";
 	next;
 	if (select("Voltar para Alberta.:Cancelar.") == 1) {
 		mes "[Garota]";
-		mes "Espero vÃª-lo";
+		mes "Espero vê-lo";
 		mes "novamente!";
 		mes "Tchau!";
 		close2;
@@ -120,8 +120,8 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 		end;
 	}
 	mes "[Garota]";
-	mes "Se vocÃª gostou";
-	mes "daqui, por que nÃ£o";
+	mes "Se você gostou";
+	mes "daqui, por que não";
 	mes "fica e aprecia a";
 	mes "comida e a vista?";
 	next;
@@ -131,21 +131,21 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 		mes "Quero dizer garotas!";
 		mes "Hehe~";
 	} else {
-		mes "E os meninos tambÃ©m";
-		mes "nÃ£o sÃ£o nada feios~";
+		mes "E os meninos também";
+		mes "não são nada feios~";
 	}
 	close;
 }
 
-// NPCs GenÃ©ricos de Louyang
+// NPCs Genéricos de Louyang
 //============================================================
 louyang,297,167,2	script	Mulher Musculosa#lou	815,{
 		mes "[Zhi Ching Li]";
 	if (!Sex) {
-		mes "Todos os membros do PalÃ¡cio da Donzela, incluindo eu e a mestra, sÃ£o mulheres.";
+		mes "Todos os membros do Palácio da Donzela, incluindo eu e a mestra, são mulheres.";
 		next;
 		mes "[Zhi Ching Li]";
-		mes "Recentemente, tivemos problemas para recrutar novos membros, entÃ£o vim checar se alguma mulher deseja se juntar a nÃ³s.";
+		mes "Recentemente, tivemos problemas para recrutar novos membros, então vim checar se alguma mulher deseja se juntar a nós.";
 		emotion e_dots;
 		close;
 	}
@@ -163,23 +163,23 @@ louyang,297,167,2	script	Mulher Musculosa#lou	815,{
 
 louyang,274,136,4	script	Olhando Cara Poderoso#lou	819,{
 	mes "[Akiira]";
-	mes "Estou praticando a 'Garra do DragÃ£o'. NÃ£o basta usar o poder dos meus punhos, tambÃ©m Ã© preciso se condicionar espiritualmente.";
+	mes "Estou praticando a 'Garra do Dragão'. Não basta usar o poder dos meus punhos, também é preciso se condicionar espiritualmente.";
 	next;
 	mes "[Akiira]";
 	mes "Toda arte marcial requere";
-	mes "treinamento espiritual, jÃ¡";
+	mes "treinamento espiritual, já";
 	mes "que a mente controla o corpo.";
-	mes "Se vocÃª for treinado espiritualmente, pode";
+	mes "Se você for treinado espiritualmente, pode";
 	mes "facilmente dominar qualquer movimento!";
 	next;
 	mes "[Akiira]";
-	mes "Se vocÃª considera estudar";
-	mes "artes marciais, deve primeiro adquirir conhecimento, antes de comeÃ§ar";
-	mes "o treinamento fÃ­sico.";
+	mes "Se você considera estudar";
+	mes "artes marciais, deve primeiro adquirir conhecimento, antes de começar";
+	mes "o treinamento físico.";
 	next;
 	mes "[Akiira]";
 	mes "Estude as artes marciais";
-	mes "e pense nas verdades da vida. VocÃª precisa atingir a paz espiritual antes de tentar dominar sua mente e seu corpo.";
+	mes "e pense nas verdades da vida. Você precisa atingir a paz espiritual antes de tentar dominar sua mente e seu corpo.";
 	close;
 }
 
@@ -187,24 +187,24 @@ louyang,276,136,4	script	Primeiro Mestre#lou	819,{
 	mes "[Zhiang Xiau Ji]";
 	mes "Finalmente...";
 	mes "Eu dominei a";
-	mes "'Garra do DragÃ£o'!";
+	mes "'Garra do Dragão'!";
 	next;
 	mes "[Zhiang Xiau Ji]";
-	mes "Embora existam oito passos bÃ¡sicos, eu tive que aprender a histÃ³ria dessa arte, e focar no meu desenvolvimento espiritual";
-	mes "por trÃªs anos.";
+	mes "Embora existam oito passos básicos, eu tive que aprender a história dessa arte, e focar no meu desenvolvimento espiritual";
+	mes "por três anos.";
 	next;
 	mes "[Zhiang Xiau Ji]";
-	mes "Depois, meu mestre finalmente comeÃ§ou a me treinar fisicamente para eu poder usar os oito passos da Garra do DragÃ£o. Eu me dediquei a essa arte por trinta anos.";
+	mes "Depois, meu mestre finalmente começou a me treinar fisicamente para eu poder usar os oito passos da Garra do Dragão. Eu me dediquei a essa arte por trinta anos.";
 	next;
 	mes "[Zhiang Xiau Ji]";
 	mes "Tenho muito orgulho de ter dominado";
-	mes "essa arte dez anos antes do esperado. Agora, preciso estudar e melhorar, corrigindo meus pontos fracos e aumentando minha forÃ§a.";
+	mes "essa arte dez anos antes do esperado. Agora, preciso estudar e melhorar, corrigindo meus pontos fracos e aumentando minha força.";
 	next;
 	mes "[Zhiang Xiau Ji]";
-	mes "Acho que levarei dez anos. Mas isso nÃ£o me desanima nem um pouco.";
+	mes "Acho que levarei dez anos. Mas isso não me desanima nem um pouco.";
 	next;
 	mes "[Zhiang Xiau Ji]";
-	mes "Quando vocÃª aprende uma arte marcial, nÃ£o pode se apressar e aprender tudo rapidamente. Ã‰ impossÃ­vel! E essa nÃ£o Ã© a essÃªncia da arte...";
+	mes "Quando você aprende uma arte marcial, não pode se apressar e aprender tudo rapidamente. É impossível! E essa não é a essência da arte...";
 	close;
 }
 
@@ -264,34 +264,34 @@ louyang,272,129,0	duplicate(Aluno#1lou)	Aluno#12lou	819
 
 // Louyang - Torre
 //============================================================
-lou_in01,25,23,5	script	Olhando Senhorita AmigÃ¡vel#lo	817,{
+lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
 	mes "[Hong Miao]";
 	mes "Bem-vindo.";
 	next;
 	mes "[Hong Miao]";
-	mes "Esse Ã© um elevador que leva atÃ© a";
-	mes "Torre de ObservaÃ§Ã£o. Providenciamos uma viagem rÃ¡pida e segura por uma taxa razoÃ¡vel. Gostaria de usar esse serviÃ§o?";
+	mes "Esse é um elevador que leva até a";
+	mes "Torre de Observação. Providenciamos uma viagem rápida e segura por uma taxa razoável. Gostaria de usar esse serviço?";
 	next;
-	switch(select("InformaÃ§Ãµes.:Sim.:Talvez uma outra vez.")) {
+	switch(select("Informações.:Sim.:Talvez uma outra vez.")) {
 	case 1:
 		mes "[Hong Miao]";
-		mes "Depois que muitas propostas e sugestÃµes foram enviadas para o escritÃ³rio de turismo de Louyang, a Torre de ObservaÃ§Ã£o foi construÃ­da, para que os turistas pudessem apreciar a vista.";
+		mes "Depois que muitas propostas e sugestões foram enviadas para o escritório de turismo de Louyang, a Torre de Observação foi construída, para que os turistas pudessem apreciar a vista.";
 		next;
 		mes "[Hong Miao]";
-		mes "Devido Ã  geografia de Louyang,";
-		mes "Ã© difÃ­cil apreciar a maravilhosa vista que nossa terra oferece.";
+		mes "Devido à geografia de Louyang,";
+		mes "é difícil apreciar a maravilhosa vista que nossa terra oferece.";
 		next;
 		mes "[Hong Miao]";
-		mes "VocÃª pode subir Ã  Torre pegando o elevador aqui. Cobramos 500 zenys por pessoa.";
+		mes "Você pode subir à Torre pegando o elevador aqui. Cobramos 500 zenys por pessoa.";
 		close;
 	case 2:
 			mes "[Hong Miao]";
 		if (Zeny < 500) {
-			mes "Sinto muito, vocÃª nÃ£o tem dinheiro suficiente. Espero que volte depois para apreciar a Torre de ObservaÃ§Ã£o. Bom-dia.";
+			mes "Sinto muito, você não tem dinheiro suficiente. Espero que volte depois para apreciar a Torre de Observação. Bom-dia.";
 			close;
 		}
 		mes "Obrigado pelo apoio.";
-		mes "Tentamos providenciar o melhor serviÃ§o possÃ­vel.";
+		mes "Tentamos providenciar o melhor serviço possível.";
 		mes "Por favor volte novamente.";
 		next;
 		set zeny,zeny-500;
@@ -306,12 +306,12 @@ lou_in01,25,23,5	script	Olhando Senhorita AmigÃ¡vel#lo	817,{
 	}
 }
 
-louyang,84,254,0	script	SaÃ­da#lou	111,{
-	mes "^3355FFExiste uma espÃ©cie";
+louyang,84,254,0	script	Saída#lou	111,{
+	mes "^3355FFExiste uma espécie";
 	mes "de dispositivo de queda.";
-	mes "Gostaria de usÃ¡-lo?^000000";
+	mes "Gostaria de usá-lo?^000000";
 	next;
-	if (select("Sim.:NÃ£o.") == 1) {
+	if (select("Sim.:Não.") == 1) {
 		if (rand(1,100) == 34) {
 			percentheal -99,0;
 			warp "louyang",86,269;

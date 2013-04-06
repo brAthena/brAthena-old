@@ -786,7 +786,7 @@ splendide,240,164,3	script	Soldado Suspirante#edq	461,3,3,{
 	}
 }
 
-spl_in01,109,60,3	script	Commander Lebiordirr#edq	435,3,3,{
+spl_in01,109,60,3	script	Comandante Lebiordirr#edq	435,3,3,{
 	mes "[Comandante Lebiordirr]";
 	if (isequipped(2782) == 1) {
 		if (ins_nyd == 51) {
