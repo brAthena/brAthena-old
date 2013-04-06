@@ -356,12 +356,12 @@ int chat_createnpcchat(struct npc_data *nd, const char *title, int limit, bool p
 	nullpo_ret(nd);
 
 	if(nd->chat_id) {
-		ShowError("chat_createnpcchat: npc '%s' already has a chatroom, cannot create new one!\n", nd->exname);
+		ShowError(read_message("Source.map.map_chat_s1"), nd->exname);
 		return 0;
 	}
 
 	if(zeny > MAX_ZENY || maxLvl > MAX_LEVEL) {
-		ShowError("chat_createnpcchat: npc '%s' has a required lvl or amount of zeny over the max limit!\n", nd->exname);
+		ShowError(read_message("Source.map.map_chat_s2"), nd->exname);
 		return 0;
 	}
 

@@ -94,7 +94,7 @@ static TBL_PC *guild_sd_check(int guild_id, int account_id, int char_id)
 
 	if(sd->status.guild_id != guild_id) {
 		//If player belongs to a different guild, kick him out.
-		intif_guild_leave(guild_id,account_id,char_id,0,"** Guilda Incompativel**");
+		intif_guild_leave(guild_id,account_id,char_id,0,"** Clã Incompatível**");
 		return NULL;
 	}
 
@@ -131,7 +131,7 @@ static bool guild_read_guildskill_tree_db(char *split[], int columns, int curren
 	id = skill_id - GD_SKILLBASE;
 
 	if(id < 0 || id >= MAX_GUILDSKILL) {
-		ShowWarning("guild_read_guildskill_tree_db: ID de habilidade %d invalido.\n", skill_id);
+		ShowWarning(read_message("Source.map.map_guild_s1"), skill_id);
 		return false;
 	}
 
@@ -473,7 +473,7 @@ int guild_check_member(struct guild *g)
 		if(i < 0) {
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
-			ShowWarning("guild: check_member %d[%s]  nao e um membro\n",sd->status.account_id,sd->status.name);
+			ShowWarning(read_message("Source.map.map_guild_s2"),sd->status.account_id,sd->status.name);
 		}
 	}
 	mapit_free(iter);
@@ -572,7 +572,7 @@ int guild_recv_info(struct guild *sg)
 	g->channel = aChSysSave;
 
 	if(g->max_member > MAX_GUILD) {
-		ShowError("guild_recv_info: Guilda recebida com %d membros, mas MAX_GUILD e de apenas %d. Membros extra perdidos!\n", g->max_member, MAX_GUILD);
+		ShowError(read_message("Source.map.map_guild_s3"), g->max_member, MAX_GUILD);
 		g->max_member = MAX_GUILD;
 	}
 
@@ -787,7 +787,7 @@ int guild_member_added(int guild_id,int account_id,int char_id,int flag)
 	if(sd==NULL || sd->guild_invite==0) {
 		// cancel if player not present or invalide guild_id invitation
 		if(flag == 0) {
-			ShowError("guild: Erro ao adicionar membro %d nao esta online\n",account_id);
+			ShowError(read_message("Source.map.map_guild_s4"),account_id);
 			intif_guild_leave(guild_id,account_id,char_id,0,"** Erro de Dados **");
 		}
 		return 0;
@@ -949,7 +949,7 @@ int guild_send_memberinfoshort(struct map_session_data *sd,int online)
 		if(i>=0)
 			g->member[i].sd=NULL;
 		else
-			ShowError("guild_send_memberinfoshort: Falha ao localizar membro %d:%d na guilda %d!\n", sd->status.account_id, sd->status.char_id, g->guild_id);
+			ShowError(read_message("Source.map.map_guild_s5"), sd->status.account_id, sd->status.char_id, g->guild_id);
 		return 0;
 	}
 
@@ -995,7 +995,7 @@ int guild_recv_memberinfoshort(int guild_id,int account_id,int char_id,int onlin
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
 		}
-		ShowWarning("guild: Membro %d,%d nao encontrado em %d[%s]\n",   account_id,char_id,guild_id,g->name);
+		ShowWarning(read_message("Source.map.map_guild_s6"), account_id,char_id,guild_id,g->name);
 		return 0;
 	}
 
@@ -1750,8 +1750,8 @@ int guild_broken(int guild_id,int flag)
 	guild_db->foreach(guild_db,guild_broken_sub,guild_id);
 	castle_db->foreach(castle_db,castle_guild_broken_sub,guild_id);
 	guild_storage_delete(guild_id);
-	if( raChSys.ally ) { 
-		if( g->channel != NULL ) {
+	if(raChSys.ally) { 
+		if(g->channel != NULL) {
 			clif_chsys_delete(( struct raChSysCh * )g->channel);
 		}
 	} 
@@ -1882,7 +1882,7 @@ void guild_castle_map_init(void)
 		}
 		dbi_destroy(iter);
 		if(intif_guild_castle_dataload(num, castle_ids))
-			ShowStatus("Requisitados '"CL_WHITE"%d"CL_RESET"' castelos do char-server...\n", num);
+			ShowStatus(read_message("Source.map.map_guild_s7"), CL_WHITE, num, CL_RESET);
 		aFree(castle_ids);
 	}
 }
@@ -1900,7 +1900,7 @@ int guild_castledatasave(int castle_id, int index, int value)
 	struct guild_castle *gc = guild_castle_search(castle_id);
 
 	if(gc == NULL) {
-		ShowWarning("guild_castledatasave: guild castle '%d' not found\n", castle_id);
+		ShowWarning(read_message("Source.map.map_guild_s8"), castle_id);
 		return 0;
 	}
 
@@ -1942,7 +1942,7 @@ int guild_castledatasave(int castle_id, int index, int value)
 				gc->guardian[index-10].visible = value;
 				break;
 			}
-			ShowWarning("guild_castledatasave: index = '%d' is out of allowed range\n", index);
+			ShowWarning(read_message("Source.map.map_guild_s9"), index);
 			return 0;
 	}
 
@@ -2000,7 +2000,7 @@ int guild_castledataloadack(int len, struct guild_castle *gc)
 		for(i = 0; i < n; i++, gc++) {
 			struct guild_castle *c = guild_castle_search(gc->castle_id);
 			if(!c) {
-				ShowError("guild_castledataloadack: Castelo id=%d nao encontrado.\n", gc->castle_id);
+				ShowError(read_message("Source.map.map_guild_s10"), gc->castle_id);
 				continue;
 			}
 
@@ -2016,7 +2016,7 @@ int guild_castledataloadack(int len, struct guild_castle *gc)
 				}
 			}
 		}
-	ShowStatus("Recebeu '"CL_WHITE"%d"CL_RESET"' castelos do char-server.\n", n);
+	ShowStatus(read_message("Source.map.map_guild_s11"), CL_WHITE, n, CL_RESET);
 	return 0;
 }
 
@@ -2027,7 +2027,7 @@ void guild_agit_start(void)
 {
 	// Run All NPC_Event[OnAgitStart]
 	int c = npc_event_doall("OnAgitStart");
-	ShowStatus("NPC_Event:[OnAgitStart] Executados (%d) Eventos por @AgitStart.\n",c);
+	ShowStatus(read_message("Source.map.map_guild_s12"),c);
 }
 
 /*====================================================
@@ -2037,7 +2037,7 @@ void guild_agit_end(void)
 {
 	// Run All NPC_Event[OnAgitEnd]
 	int c = npc_event_doall("OnAgitEnd");
-	ShowStatus("NPC_Event:[OnAgitEnd] Executados (%d) Eventos por @AgitEnd.\n",c);
+	ShowStatus(read_message("Source.map.map_guild_s13"),c);
 }
 
 /*====================================================
@@ -2047,7 +2047,7 @@ void guild_agit2_start(void)
 {
 	// Run All NPC_Event[OnAgitStart2]
 	int c = npc_event_doall("OnAgitStart2");
-	ShowStatus("NPC_Event:[OnAgitStart2] Executados (%d) Eventos por @AgitStart2.\n",c);
+	ShowStatus(read_message("Source.map.map_guild_s14"),c);
 }
 
 /*====================================================
@@ -2057,7 +2057,7 @@ void guild_agit2_end(void)
 {
 	// Run All NPC_Event[OnAgitEnd2]
 	int c = npc_event_doall("OnAgitEnd2");
-	ShowStatus("NPC_Event:[OnAgitEnd2] Executados (%d) Eventos por @AgitEnd2.\n",c);
+	ShowStatus(read_message("Source.map.map_guild_s15"),c);
 }
 
 // How many castles does this guild have?

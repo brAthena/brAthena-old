@@ -320,7 +320,7 @@ int merc_hom_levelup(struct homun_data *hd)
 	int m_class;
 
 	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
-		ShowError("merc_hom_levelup: Classe invalida %d. \n", hd->homunculus.class_);
+		ShowError(read_message("Source.map.map_homunculus_s1"), hd->homunculus.class_);
 		return 0;
 	}
 
@@ -367,7 +367,7 @@ int merc_hom_levelup(struct homun_data *hd)
 	if(battle_config.homunculus_show_growth) {
 		char output[256] ;
 		sprintf(output,
-		        "Growth: hp:%d sp:%d str(%.2f) agi(%.2f) vit(%.2f) int(%.2f) dex(%.2f) luk(%.2f) ",
+		        read_message("Source.map.map_homunculus_s2"),
 		        growth_max_hp, growth_max_sp,
 		        growth_str/10.0, growth_agi/10.0, growth_vit/10.0,
 		        growth_int/10.0, growth_dex/10.0, growth_luk/10.0);
@@ -405,7 +405,7 @@ int merc_hom_evolution(struct homun_data *hd)
 		return 0;
 
 	if(!merc_hom_change_class(hd, hd->homunculusDB->evo_class)) {
-		ShowError("merc_hom_evolution: Nao foi possivel evoluir homunculo de %d para %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
+		ShowError(read_message("Source.map.map_homunculus_s3"), hd->homunculus.class_, hd->homunculusDB->evo_class);
 		return 0;
 	}
 
@@ -463,7 +463,7 @@ int hom_mutate(struct homun_data *hd, int homun_id)
 	prev_class = hd->homunculus.class_;
 
 	if(!merc_hom_change_class(hd, homun_id)) {
-		ShowError("hom_mutate: Nao foi possivel evoluir homunculo de %d para %d", hd->homunculus.class_, homun_id);
+		ShowError(read_message("Source.map.map_homunculus_s4"), hd->homunculus.class_, homun_id);
 		return 0;
 	}
 
@@ -496,7 +496,7 @@ int merc_hom_gainexp(struct homun_data *hd,int exp)
 		return 1;
 
 	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
-		ShowError("merc_hom_gainexp: Classe invalida %d. \n", hd->homunculus.class_);
+		ShowError(read_message("Source.map.map_homunculus_s5"), hd->homunculus.class_);
 		return 0;
 	}
 
@@ -583,7 +583,7 @@ int merc_menu(struct map_session_data *sd,int menunum)
 			merc_hom_delete(sd->hd, -1);
 			break;
 		default:
-			ShowError("merc_menu : escolha do menu desconhecida : %d\n", menunum) ;
+			ShowError(read_message("Source.map.map_homunculus_s6"), menunum) ;
 			break;
 	}
 	return 0;
@@ -650,7 +650,7 @@ static int merc_hom_hungry(int tid, unsigned int tick, int id, intptr_t data)
 		return 1;
 
 	if(hd->hungry_timer != tid) {
-		ShowError("merc_hom_hungry_timer %d != %d\n",hd->hungry_timer,tid);
+		ShowError(read_message("Source.map.map_homunculus_s7"),hd->hungry_timer,tid);
 		return 0;
 	}
 
@@ -762,7 +762,7 @@ int merc_hom_alloc(struct map_session_data *sd, struct s_homunculus *hom)
 
 	i = search_homunculusDB_index(hom->class_,HOMUNCULUS_CLASS);
 	if(i < 0) {
-		ShowError("merc_hom_alloc: classe desconhecida [%d] para homunculo '%s', requisitando remocao.\n", hom->class_, hom->name);
+		ShowError(read_message("Source.map.map_homunculus_s8"), hom->class_, hom->name);
 		sd->status.hom_id = 0;
 		intif_homunculus_requestdelete(hom->hom_id);
 		return 1;
@@ -1046,7 +1046,7 @@ static bool read_homunculusdb_sub(char *str[], int columns, int current)
 	//Base Class,Evo Class
 	classid = atoi(str[0]);
 	if(classid < HM_CLASS_BASE || classid > HM_CLASS_MAX) {
-		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
+		ShowError(read_message("Source.map.map_homunculus_s9"), classid);
 		return false;
 	}
 	db = &homunculus_db[current];
@@ -1054,7 +1054,7 @@ static bool read_homunculusdb_sub(char *str[], int columns, int current)
 	classid = atoi(str[1]);
 	if(classid < HM_CLASS_BASE || classid > HM_CLASS_MAX) {
 		db->base_class = 0;
-		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
+		ShowError(read_message("Source.map.map_homunculus_s9"), classid);
 		return false;
 	}
 	db->evo_class = classid;
@@ -1169,7 +1169,7 @@ static bool read_homunculus_skilldb_sub(char *split[], int columns, int current)
 	// check for bounds [celest]
 	classid = atoi(split[0]) - HM_CLASS_BASE;
 	if(classid >= MAX_HOMUNCULUS_CLASS) {
-		ShowWarning("read_homunculus_skilldb: Classe de homunculo invalida %d.\n", atoi(split[0]));
+		ShowWarning(read_message("Source.map.map_homunculus_s10"), atoi(split[0]));
 		return false;
 	}
 
@@ -1177,7 +1177,7 @@ static bool read_homunculus_skilldb_sub(char *split[], int columns, int current)
 	// Search an empty line or a line with the same skill_id (stored in j)
 	ARR_FIND(0, MAX_SKILL_TREE, j, !hskill_tree[classid][j].id || hskill_tree[classid][j].id == k);
 	if(j == MAX_SKILL_TREE) {
-		ShowWarning("Nao e possivel adicionar habilidade %d na arvore de habilidades do homunculo %d. Numero maximo de habilidades por classe alcancado.\n", k, classid);
+		ShowWarning(read_message("Source.map.map_homunculus_s11"), k, classid);
 		return false;
 	}
 
@@ -1222,12 +1222,12 @@ void read_homunculus_expdb(void)
 			break;
 
 		if(hexptbl[MAX_LEVEL - 1]) { // Last permitted level have to be 0!
-			ShowWarning("read_hexptbl: Nível máximo alcançado em exp_homun_db [%d].\n ", MAX_LEVEL);
+			ShowWarning(read_message("Source.map.map_homunculus_s12"), MAX_LEVEL);
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
 	}
 
-	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", HomunLoop, get_database_name(52));
+	ShowSQL(read_message("Source.map.map_homunculus_s13"), CL_WHITE, HomunLoop, CL_RESET, CL_WHITE, get_database_name(52), CL_RESET);
 	Sql_FreeResult(dbmysql_handle);
 }
 

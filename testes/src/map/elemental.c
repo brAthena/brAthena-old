@@ -197,7 +197,7 @@ static int elemental_summon_end(int tid, unsigned int tick, int id, intptr_t dat
 		return 1;
 
 	if(ed->summon_timer != tid) {
-		ShowError("elemental_summon_end %d != %d.\n", ed->summon_timer, tid);
+		ShowError(read_message("Source.map.map_elemental_s1"), ed->summon_timer, tid);
 		return 0;
 	}
 
@@ -344,7 +344,7 @@ int elemental_clean_single_effect(struct elemental_data *ed, uint16 skill_id)
 				if(bl) status_change_end(bl,type,INVALID_TIMER);
 				break;
 			default:
-				ShowWarning("Invalid SC=%d in elemental_clean_single_effect\n",type);
+				ShowWarning(read_message("Source.map.map_elemental_s2"),type);
 				break;
 		}
 	}
@@ -847,12 +847,12 @@ int read_elementaldb(void)
 		status->ele_lv = ele/20;
 
 		if(status->def_ele >= ELE_MAX) {
-			ShowWarning("Elemental %d tem o tipo de elemento inválido %d (elemento máximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
+			ShowWarning(read_message("Source.map.map_elemental_s3"), db->class_, status->def_ele, ELE_MAX - 1);
 			status->def_ele = ELE_NEUTRAL;
 		}
 
 		if(status->ele_lv < 1 || status->ele_lv > 4) {
-			ShowWarning("Elemental %d tem nível de elemento inválido %d (máximo ? 4)\n", db->class_, status->ele_lv);
+			ShowWarning(read_message("Source.map.map_elemental_s4"), db->class_, status->ele_lv);
 			status->ele_lv = 1;
 		}
 
@@ -865,7 +865,7 @@ int read_elementaldb(void)
 		++count;
 	}
 
-	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(36));
+	ShowSQL(read_message("Source.map.map_elemental_s5"), CL_WHITE, count, CL_RESET, CL_WHITE, get_database_name(36), CL_RESET);
 	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
@@ -892,13 +892,13 @@ int read_elemental_skilldb(void)
 		ARR_FIND(0, MAX_ELEMENTAL_CLASS, i, class_ == elemental_db[i].class_);
 
 		if(i == MAX_ELEMENTAL_CLASS) {
-			ShowError("read_elemental_skilldb : Classe n?o encontrada em elemental_db para a entrada de habilidade, ROW %d.\n", k);
+			ShowError(read_message("Source.map.map_elemental_s6"), k);
 			continue;
 		}
 
 		skill_id = atoi(row[1]);
 		if(skill_id < EL_SKILLBASE || skill_id >= EL_SKILLBASE + MAX_ELEMENTALSKILL) {
-			ShowError("read_elemental_skilldb : Habilidade fora do alcance, ROW %d.\n", k);
+			ShowError(read_message("Source.map.map_elemental_s7"), k);
 			continue;
 		}
 
@@ -907,13 +907,13 @@ int read_elemental_skilldb(void)
 
 		skillmode = atoi(row[3]);
 		if(skillmode < EL_SKILLMODE_PASIVE || skillmode > EL_SKILLMODE_AGGRESSIVE) {
-			ShowError("read_elemental_skilldb : Skillmode fora da faixa, ROW %d.\n",k);
+			ShowError(read_message("Source.map.map_elemental_s8"),k);
 			continue;
 		}
 
 		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skill_id);
 		if(i == MAX_ELESKILLTREE) {
-			ShowWarning("Não foi possível carregar habilidade %d em Elemental %d's árvore. O número máximo de capacidade por elementar foi atingido.\n", skill_id, class_);
+			ShowWarning(read_message("Source.map.map_elemental_s9"), skill_id, class_);
 			continue;
 		}
 
@@ -923,7 +923,7 @@ int read_elemental_skilldb(void)
 		j++;
 	}
 
-	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", j, get_database_name(37));
+	ShowSQL(read_message("Source.map.map_elemental_s10"), CL_WHITE, j, CL_RESET, CL_WHITE, get_database_name(37), CL_RESET);
 	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }

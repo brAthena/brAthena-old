@@ -141,9 +141,9 @@ int bg_team_leave(struct map_session_data *sd, int flag)
 	bg->count--;
 
 	if(flag)
-		sprintf(output, "Server : %s has quit the game...", sd->status.name);
+		sprintf(output, read_message("Source.map.map_battleground_s1"), sd->status.name);
 	else
-		sprintf(output, "Server : %s is leaving the battlefield...", sd->status.name);
+		sprintf(output, read_message("Source.map.map_battleground_s2"), sd->status.name);
 	clif_bg_message(bg, 0, "Server", output, strlen(output) + 1);
 
 	if(bg->logout_event[0] && flag)

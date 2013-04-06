@@ -337,7 +337,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 
 	if(def_type < 0 || def_type > ELE_MAX ||
 	   def_lv < 1 || def_lv > 4) {
-		ShowError("battle_attr_fix: unknown attr type: atk=%d def_type=%d def_lv=%d\n",atk_elem,def_type,def_lv);
+		ShowError(read_message("Source.map.map_battle_s1"),atk_elem,def_type,def_lv);
 		return damage;
 	}
 
@@ -2122,7 +2122,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						if(wflag>0)
 							wd.damage/= wflag;
 						else
-							ShowError("0 enemies targeted by %d:%s, divide per 0 avoided!\n", skill_id, skill_get_name(skill_id));
+							ShowError(read_message("Source.map.map_battle_s2"), skill_id, skill_get_name(skill_id));
 					}
 
 					//Add any bonuses that modify the base baseatk+watk (pre-skills)
@@ -3700,7 +3700,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if(mflag>0)
 							ad.damage/= mflag;
 						else
-							ShowError("0 enemies targeted by %d:%s, divide per 0 avoided!\n", skill_id, skill_get_name(skill_id));
+							ShowError(read_message("Source.map.map_battle_s2"), skill_id, skill_get_name(skill_id));
 					}
 
 					switch(skill_id) {
@@ -4158,7 +4158,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			if(mflag>0)
 				ad.damage+= (sstatus->rhw.atk2*skillratio/100)/mflag;
 			else
-				ShowError("Zero range by %d:%s, divide per 0 avoided!\n", skill_id, skill_get_name(skill_id));
+				ShowError(read_message("Source.map.map_battle_s3"), skill_id, skill_get_name(skill_id));
 		}
 
 		if(ad.damage<1)
@@ -4436,7 +4436,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		if(mflag>0)
 			md.damage/= mflag;
 		else
-			ShowError("0 enemies targeted by %d:%s, divide per 0 avoided!\n", skill_id, skill_get_name(skill_id));
+			ShowError(read_message("Source.map.map_battle_s2"), skill_id, skill_get_name(skill_id));
 	}
 
 	damage_div_fix(md.damage, md.div_);
@@ -4552,7 +4552,7 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 		case BF_MAGIC:  d = battle_calc_magic_attack(bl,target,skill_id,skill_lv,count);  break;
 		case BF_MISC:   d = battle_calc_misc_attack(bl,target,skill_id,skill_lv,count);   break;
 		default:
-			ShowError("battle_calc_attack: unknown attack type! %d\n",attack_type);
+			ShowError(read_message("Source.map.map_battle_s4"), attack_type);
 			memset(&d,0,sizeof(d));
 			break;
 	}
@@ -6030,7 +6030,7 @@ int battle_set_value(const char *w1, const char *w2)
 		return 0; // not found
 
 	if(val < battle_data[i].min || val > battle_data[i].max) {
-		ShowWarning("Value for setting '%s': %s is invalid (min:%i max:%i)! Defaulting to %i...\n", w1, w2, battle_data[i].min, battle_data[i].max, battle_data[i].defval);
+		ShowWarning(read_message("Source.map.map_battle_s6"), w1, w2, battle_data[i].min, battle_data[i].max, battle_data[i].defval);
 		val = battle_data[i].defval;
 	}
 
@@ -6082,21 +6082,21 @@ void battle_adjust_conf()
 
 #if PACKETVER < 20100427
 	if(battle_config.feature_buying_store) {
-		ShowWarning("conf/battle/feature.conf buying_store is enabled but it requires PACKETVER 2010-04-27 or newer, disabling...\n");
+		ShowWarning(read_message("Source.map.map_battle_s7"));
 		battle_config.feature_buying_store = 0;
 	}
 #endif
 
 #if PACKETVER < 20100803
 	if(battle_config.feature_search_stores) {
-		ShowWarning("conf/battle/feature.conf search_stores is enabled but it requires PACKETVER 2010-08-03 or newer, disabling...\n");
+		ShowWarning(read_message("Source.map.map_battle_s8"));
 		battle_config.feature_search_stores = 0;
 	}
 #endif
 
 #ifndef CELL_NOSTACK
 	if(battle_config.cell_stack_limit != 1)
-		ShowWarning("Battle setting 'cell_stack_limit' takes no effect as this server was compiled without Cell Stack Limit support.\n");
+		ShowWarning(read_message("Source.map.map_battle_s9"));
 #endif
 }
 
@@ -6112,7 +6112,7 @@ int battle_config_read(const char *cfgName)
 
 	fp = fopen(cfgName,"r");
 	if(fp == NULL)
-		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
+		ShowError(read_message("Source.map.map_battle_s5"), cfgName);
 	else {
 		char line[1024], w1[1024], w2[1024];
 		while(fgets(line, sizeof(line), fp)) {
@@ -6123,7 +6123,7 @@ int battle_config_read(const char *cfgName)
 			if(strcmpi(w1, "import") == 0)
 				battle_config_read(w2);
 			else if(battle_set_value(w1, w2) == 0 && !strstr(cfgName, "brathena.conf"))
-				ShowWarning("Configura%c%co desconhecida '%s' no arquivo %s\n", 135, 198, w1, cfgName);
+				ShowWarning(read_message("Source.map.map_battle_s10"), w1, cfgName);
 		}
 
 		fclose(fp);

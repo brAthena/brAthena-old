@@ -2007,7 +2007,7 @@ ACMD_FUNC(monster)
 		size = SZ_SMALL;
 
 	if(battle_config.etc_log)
-		ShowInfo("%s monster='%s' name='%s' id=%d count=%d (%d,%d)\n", command, monster, name, mob_id, number, sd->bl.x, sd->bl.y);
+		ShowInfo(read_message("Source.map.map_atcommand_s1"), command, monster, name, mob_id, number, sd->bl.x, sd->bl.y);
 
 	count = 0;
 	range = (int)sqrt((float)number) +2; // calculation of an odd number (+ 4 area around)
@@ -9509,7 +9509,7 @@ static void atcommand_config_read(const char *config_filename)
 				continue;
 			commandname = config_setting_name(command);
 			if(!atcommand_exists(commandname)) {
-				ShowConfigWarning(command, "atcommand_config_read: can not set alias for non-existent command %s", commandname);
+				ShowConfigWarning(command, read_message("Source.map.map_atcommand_s3"), commandname);
 				continue;
 			}
 			commandinfo = get_atcommandinfo_byname(commandname);
@@ -9519,7 +9519,7 @@ static void atcommand_config_read(const char *config_filename)
 				if(alias != NULL) {
 					AliasInfo *alias_info;
 					if(strdb_exists(atcommand_alias_db, alias)) {
-						ShowConfigWarning(command, "atcommand_config_read: alias %s already exists", alias);
+						ShowConfigWarning(command, read_message("Source.map.map_atcommand_s4"), alias);
 						continue;
 					}
 					CREATE(alias_info, AliasInfo, 1);
@@ -9546,11 +9546,11 @@ static void atcommand_config_read(const char *config_filename)
 			command = config_setting_get_elem(help, i);
 			commandname = config_setting_name(command);
 			if(!atcommand_exists(commandname))
-				ShowConfigWarning(command, "atcommand_config_read: command %s does not exist", commandname);
+				ShowConfigWarning(command, read_message("Source.map.map_atcommand_s5"), commandname);
 		}
 	}
 
-	ShowStatus("Leitura finalizada '"CL_WHITE"%d"CL_RESET"' aliases de comandos em '"CL_WHITE"%s"CL_RESET"'.\n", num_aliases, config_filename);
+	ShowStatus(read_message("Source.map.map_atcommand_s2"), CL_WHITE, num_aliases, CL_RESET, CL_WHITE, config_filename, CL_RESET);
 	return;
 }
 void atcommand_db_load_groups(int *group_ids)
