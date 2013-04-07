@@ -88,6 +88,7 @@ typedef enum send_target {
     DUEL,
     DUEL_WOS,
     SELF,
+
     BG,                 // BattleGround System
     BG_WOS,
     BG_SAMEMAP,
@@ -326,7 +327,10 @@ enum useskill_fail_cause {
 };
 
 enum clif_messages {
-    SKILL_CANT_USE_AREA = 0x536,
+	MERC_MSG_BASE = 1266, //0x4f2
+	SKILL_CANT_USE_AREA = 0x536,
+	VIEW_EQUIP_FAIL = 0x54d,
+	USAGE_FAIL = 0x783,
 };
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
@@ -645,7 +649,6 @@ void clif_send_homdata(struct map_session_data *sd, int state, int param);  //[o
 
 void clif_equiptickack(struct map_session_data *sd, int flag);
 void clif_viewequip_ack(struct map_session_data *sd, struct map_session_data *tsd);
-void clif_viewequip_fail(struct map_session_data *sd);
 void clif_equipcheckbox(struct map_session_data *sd);
 
 void clif_msg(struct map_session_data *sd, unsigned short id);

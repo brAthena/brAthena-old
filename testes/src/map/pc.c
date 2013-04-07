@@ -1236,18 +1236,18 @@ int pc_reg_received(struct map_session_data *sd)
 
 static int pc_calc_skillpoint(struct map_session_data *sd)
 {
-	int  i,skill,inf2,skill_point=0;
+	int  i,skill_lv,inf2,skill_point=0;
 
 	nullpo_ret(sd);
 
 	for(i=1; i<MAX_SKILL; i++) {
-		if((skill = pc_checkskill(sd,i)) > 0) {
+		if((skill_lv = pc_checkskill(sd,i)) > 0) {
 			inf2 = skill_get_inf2(i);
 			if((!(inf2&INF2_QUEST_SKILL) || battle_config.quest_skill_learn) &&
 			   !(inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) //Do not count wedding/link skills. [Skotlex]
 			  ) {
 				if(sd->status.skill[i].flag == SKILL_FLAG_PERMANENT)
-					skill_point += skill;
+					skill_point += skill_lv;
 				else if(sd->status.skill[i].flag == SKILL_FLAG_REPLACED_LV_0)
 					skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
 			}
@@ -4117,7 +4117,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 	if(sd->npc_id){
 		/* TODO: add to clif_messages enum */
 #ifdef RENEWAL
-		clif_msg(sd, 0x783); // TODO look for the client date that has this message.
+		clif_msg(sd, USAGE_FAIL); // TODO look for the client date that has this message.
 #endif
 		return 0;
 	}

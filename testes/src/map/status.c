@@ -4827,9 +4827,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 
 	if(!sc || !sc->count)
 		return cap_value(flee,1,SHRT_MAX);
-
 	if(sc->data[SC_TINDER_BREAKER] || sc->data[SC_TINDER_BREAKER2])
-		return 0; //0 flee
+		return 1; //1 = min flee
 
 	if(sc->data[SC_INCFLEE])
 		flee += sc->data[SC_INCFLEE]->val1;
@@ -9194,8 +9193,7 @@ int status_change_clear(struct block_list *bl, int type)
 			continue;
 
 		if(type == 0)
-			switch(i) {
-					//Type 0: PC killed -> Place here statuses that do not dispel on death.
+			switch(i) { //Type 0: PC killed -> Place here statuses that do not dispel on death.
 				case SC_ELEMENTALCHANGE: //Only when its Holy or Dark that it doesn't dispell on death
 					if(sc->data[i]->val2 != ELE_HOLY && sc->data[i]->val2 != ELE_DARK)
 						break;
@@ -9248,8 +9246,7 @@ int status_change_clear(struct block_list *bl, int type)
 			}
 
 		if(type == 3) {
-			switch(i) {
-					// TODO: This list may be incomplete
+			switch(i) { // TODO: This list may be incomplete
 				case SC_WEIGHT50:
 				case SC_WEIGHT90:
 				case SC_NOCHAT:
@@ -9655,7 +9652,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				struct unit_data *ud = unit_bl2ud(bl);
 				if(ud) {
 					ud->state.running = 0;
-					if(ud->walktimer != -1)
+					if(ud->walktimer != INVALID_TIMER)
 						unit_stop_walking(bl,1);
 				}
 			}

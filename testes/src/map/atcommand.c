@@ -2536,7 +2536,7 @@ ACMD_FUNC(guildlevelup)
 		return -1;
 	}
 
-	if(sd->status.guild_id <= 0 || (guild_info = guild_search(sd->status.guild_id)) == NULL) {
+	if (sd->status.guild_id <= 0 || (guild_info = sd->guild) == NULL) {
 		clif_displaymessage(fd, msg_txt(43)); // You're not in a guild.
 		return -1;
 	}
@@ -5633,7 +5633,7 @@ ACMD_FUNC(changegm)
 	struct map_session_data *pl_sd;
 	nullpo_retr(-1, sd);
 
-	if(sd->status.guild_id == 0 || (g = guild_search(sd->status.guild_id)) == NULL || strcmp(g->master,sd->status.name)) {
+	if (sd->status.guild_id == 0 || (g = sd->guild) == NULL || strcmp(g->master,sd->status.name)) {
 		clif_displaymessage(fd, msg_txt(1181)); // You need to be a Guild Master to use this command.
 		return -1;
 	}
@@ -8744,6 +8744,8 @@ ACMD_FUNC(join) {
 }
 
 static inline void atcmd_channel_help(int fd, const char *command, bool can_create) {
+	sprintf(atcmd_output, msg_txt(1407),command); // %s failed.
+	clif_displaymessage(fd, atcmd_output);
 	clif_displaymessage(fd, msg_txt(1417));// ---- Available options:
 	if( can_create ) {
 		sprintf(atcmd_output, msg_txt(1418),command);// * %s create <#channel_name> <channel_password>
@@ -8770,8 +8772,6 @@ static inline void atcmd_channel_help(int fd, const char *command, bool can_crea
 	sprintf(atcmd_output, msg_txt(1432),command);// * %s unbind
 	clif_displaymessage(fd, atcmd_output);
 	clif_displaymessage(fd, msg_txt(1433));// -- Unbinds your global chat from the attached channel, if any.
-	sprintf(atcmd_output, msg_txt(1407),command); // %s failed.
-	clif_displaymessage(fd, atcmd_output);
 }
 
 ACMD_FUNC(channel) {

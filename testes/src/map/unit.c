@@ -180,7 +180,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 	if(bl->x != x || bl->y != y || ud->walktimer != INVALID_TIMER)
 		return 0; //map_moveblock has altered the object beyond what we expected (moved/warped it)
 
-	ud->walktimer = -2; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
+	ud->walktimer = CLIF_WALK_TIMER; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
 	map_foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
 	ud->walktimer = INVALID_TIMER;
 
@@ -623,7 +623,7 @@ int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool
 
 	map_moveblock(bl, dst_x, dst_y, gettick());
 
-	ud->walktimer = -2; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
+	ud->walktimer = CLIF_WALK_TIMER; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
 	map_foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
 	ud->walktimer = INVALID_TIMER;
 
@@ -1855,7 +1855,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 	struct map_session_data *sd = NULL;
 	struct unit_data *ud = unit_bl2ud(bl);
 	unsigned int tick=gettick();
-	int ret=0, skill;
+	int ret=0, skill_id;
 
 	nullpo_ret(bl);
 	if(!ud || ud->skilltimer == INVALID_TIMER)
@@ -1876,11 +1876,11 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 	ud->canact_tick = tick;
 
 	if(type&1 && sd)
-		skill = sd->skill_id_old;
+		skill_id = sd->skill_id_old;
 	else
-		skill = ud->skill_id;
+		skill_id = ud->skill_id;
 
-	if(skill_get_inf(skill) & INF_GROUND_SKILL)
+	if(skill_get_inf(skill_id) & INF_GROUND_SKILL)
 		ret=delete_timer(ud->skilltimer, skill_castend_pos);
 	else
 		ret=delete_timer(ud->skilltimer, skill_castend_id);
@@ -1893,7 +1893,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 		status_calc_bl(&sd->bl, SCB_SPEED);
 
 	if(sd) {
-		switch(skill) {
+		switch(skill_id) {
 			case CG_ARROWVULCAN:
 				sd->canequip_tick = tick;
 				break;
@@ -2039,7 +2039,7 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, 
 		case BL_PC: {
 				struct map_session_data *sd = (struct map_session_data *)bl;
 
-				if(sd->shadowform_id){
+				if(sd->shadowform_id){ //if shadow target has leave the map
 					struct block_list *d_bl = map_id2bl(sd->shadowform_id);
 			    	if(d_bl)
 				    	status_change_end(d_bl,SC__SHADOWFORM,INVALID_TIMER);

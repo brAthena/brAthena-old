@@ -7057,7 +7057,7 @@ BUILDIN_FUNC(strcharinfo)
 			}
 			break;
 		case 2:
-			if((g = guild_search(sd->status.guild_id)) != NULL) {
+			if((g = sd->guild) != NULL) {
 				script_pushstrcopy(st,g->name);
 			} else {
 				script_pushconststr(st,"");
@@ -16909,10 +16909,11 @@ BUILDIN_FUNC(getrandgroupitem)
 		ShowError("getrandgroupitem: qty is <= 0!\n");
 		return 1;
 	}
+	if((nameid = itemdb_searchrandomid(group)) == UNKNOWN_ITEM_ID) {
+		return 1; //ensure valid itemid
+	}
 
-	nameid = itemdb_searchrandomid(group);
 	memset(&item_tmp,0,sizeof(item_tmp));
-
 	item_tmp.nameid   = nameid;
 	item_tmp.identify = itemdb_isidentified(nameid);
 

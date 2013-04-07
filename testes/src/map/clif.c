@@ -8977,14 +8977,6 @@ void clif_msg_skill(struct map_session_data *sd, uint16 skill_id, int msg_id)
 	WFIFOSET(fd, packet_len(0x7e6));
 }
 
-
-/// View player equip request denied
-void clif_viewequip_fail(struct map_session_data *sd)
-{
-	clif_msg(sd, 0x54d);
-}
-
-
 /// Validates one global/guild/party/whisper message packet and tries to recognize its components.
 /// Returns true if the packet was parsed successfully.
 /// Formats: 0 - <packet id>.w <packet len>.w (<name> : <message>).?B 00
@@ -11025,11 +11017,13 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 
 	if(sd->npc_id){
 #ifdef RENEWAL
-		clif_msg(sd, 0x783); // TODO look for the client date that has this message.
+		clif_msg(sd, USAGE_FAIL); // TODO look for the client date that has this message.
 #endif
 		return;
 	}
 
+	if(pc_cant_act(sd) && skill_id != RK_REFRESH && !(skill_id == SR_GENTLETOUCH_CURE && (sd->sc.opt1 == OPT1_STONE || sd->sc.opt1 == OPT1_FREEZE || sd->sc.opt1 == OPT1_STUN)))
+		return;
 	if(pc_issit(sd))
 		return;
 
@@ -14745,7 +14739,7 @@ void clif_parse_ViewPlayerEquip(int fd, struct map_session_data *sd)
 	if(tsd->status.show_equip || pc_has_permission(sd, PC_PERM_VIEW_EQUIPMENT))
 		clif_viewequip_ack(sd, tsd);
 	else
-		clif_viewequip_fail(sd);
+		clif_msg(sd, VIEW_EQUIP_FAIL);
 }
 
 
@@ -15101,9 +15095,8 @@ void clif_parse_mercenary_action(int fd, struct map_session_data *sd)
 ///     1 = Your mercenary soldier has been killed.
 ///     2 = Your mercenary soldier has been fired.
 ///     3 = Your mercenary soldier has ran away.
-void clif_mercenary_message(struct map_session_data *sd, int message)
-{
-	clif_msg(sd, 1266 + message);
+void clif_mercenary_message(struct map_session_data *sd, int message) {
+	clif_msg(sd, MERC_MSG_BASE + message);
 }
 
 

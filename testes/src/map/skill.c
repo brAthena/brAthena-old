@@ -2518,8 +2518,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 	dmg = battle_calc_attack(attack_type,src,bl,skill_id,skill_lv,flag&0xFFF);
 
 	//Skotlex: Adjusted to the new system
-	if(src->type==BL_PET) {
-		// [Valaris]
+	if(src->type == BL_PET) { // [Valaris]
 		struct pet_data *pd = (TBL_PET *)src;
 		if(pd->a_skill && pd->a_skill->div_ && pd->a_skill->id == skill_id) {
 			int element = skill_get_ele(skill_id, skill_lv);
@@ -15719,18 +15718,15 @@ int skill_unit_move_sub(struct block_list *bl, va_list ap)
 
 	//Target-type check.
 	if(!(group->bl_flag&target->type && battle_check_target(&unit->bl,target,group->target_flag) > 0)) {
-		if(group->src_id == target->id && group->state.song_dance&0x2) {
-			//Ensemble check to see if they went out/in of the area [Skotlex]
+		if(group->src_id == target->id && group->state.song_dance&0x2) {  //Ensemble check to see if they went out/in of the area [Skotlex]
 			if(flag&1) {
-				if(flag&2) {
-					//Clear this skill id.
+				if(flag&2) { //Clear this skill id.
 					ARR_FIND(0, ARRAYLENGTH(skill_unit_temp), i, skill_unit_temp[i] == skill_id);
 					if(i < ARRAYLENGTH(skill_unit_temp))
 						skill_unit_temp[i] = 0;
 				}
 			} else {
-				if(flag&2) {
-					//Store this skill id.
+				if(flag&2) { //Store this skill id.
 					ARR_FIND(0, ARRAYLENGTH(skill_unit_temp), i, skill_unit_temp[i] == 0);
 					if(i < ARRAYLENGTH(skill_unit_temp))
 						skill_unit_temp[i] = skill_id;

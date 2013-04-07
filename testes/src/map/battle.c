@@ -2152,6 +2152,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				skillratio += 100;
 			if(sc->data[SC_ZENKAI] && sstatus->rhw.ele == sc->data[SC_ZENKAI]->val2)
 				skillratio += sc->data[SC_ZENKAI]->val1 * 2;
+#ifdef RENEWAL
+			if(sc && sc->data[SC_TRUESIGHT])
+				skillratio += 2*sc->data[SC_TRUESIGHT]->val1;
+#endif
 		}
 		if(!skill_id) {
 			ATK_RATE(skillratio);
@@ -2940,10 +2944,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = (skillratio * status_get_lv(src)) / 120;
 					break;
 			}
-#ifdef RENEWAL
-			if(sc && sc->data[SC_TRUESIGHT])
-				skillratio += 2*sc->data[SC_TRUESIGHT]->val1;
-#endif
+
 			ATK_RATE(skillratio);
 
 			//Constant/misc additions from skills
@@ -3045,8 +3046,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if(sc->data[SC_GLOOMYDAY_SK] &&
 			   (skill_id == LK_SPIRALPIERCE || skill_id == KN_BRANDISHSPEAR ||
 			    skill_id == CR_SHIELDBOOMERANG || skill_id == PA_SHIELDCHAIN ||
-			    skill_id == LG_SHIELDPRESS))
+			    skill_id == LG_SHIELDPRESS)) {
 				ATK_ADDRATE(sc->data[SC_GLOOMYDAY_SK]->val2);
+			}
+			if (sc && sc->data[SC_SPIRIT]){
+				if(skill_id == AS_SONICBLOW && sc->data[SC_SPIRIT]->val2 == SL_ASSASIN) {
+					ATK_ADDRATE(map_flag_gvg(src->m)?25:100); //+25% dmg on woe/+100% dmg on nonwoe
+				}
+				else if (skill_id == CR_SHIELDBOOMERANG && (sc->data[SC_SPIRIT]->val2 == SL_CRUSADER)) {
+					ATK_ADDRATE(100);
+				}
+			}
 			if(sc->data[SC_EDP]) {
 				switch(skill_id) {
 					case AS_SPLASHER:
@@ -3076,17 +3086,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 		switch(skill_id) {
 			case AS_SONICBLOW:
-				if(sc && sc->data[SC_SPIRIT] &&
-				   sc->data[SC_SPIRIT]->val2 == SL_ASSASIN)
-					ATK_ADDRATE(map_flag_gvg(src->m)?25:100); //+25% dmg on woe/+100% dmg on nonwoe
-
 				if(sd && pc_checkskill(sd,AS_SONICACCEL)>0)
 					ATK_ADDRATE(10);
-				break;
-			case CR_SHIELDBOOMERANG:
-				if(sc && sc->data[SC_SPIRIT] &&
-				   sc->data[SC_SPIRIT]->val2 == SL_CRUSADER)
-					ATK_ADDRATE(100);
 				break;
 			case NC_AXETORNADO:
 				if((sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND)
@@ -3500,10 +3501,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		if(--(tsc->data[SC_REJECTSWORD]->val3) <= 0)
 			status_change_end(target, SC_REJECTSWORD, INVALID_TIMER);
 	}
-	if(skill_id == ASC_BREAKER) {   //Breaker's int-based damage (a misc attack?)
-		struct Damage md = battle_calc_misc_attack(src, target, skill_id, skill_lv, wflag);
-		wd.damage += md.damage;
-	}
+
 	if(sc) {
 		//SG_FUSION hp penalty [Komurka]
 		if(sc->data[SC_FUSION]) {
@@ -3531,6 +3529,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	}
 	if(skill_id == LG_RAYOFGENESIS) {
 		struct Damage md = battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag);
+		wd.damage += md.damage;
+	}
+	else if(skill_id == ASC_BREAKER) { //Breaker's int-based damage (a misc attack?)
+		struct Damage md = battle_calc_misc_attack(src, target, skill_id, skill_lv, wflag);
 		wd.damage += md.damage;
 	}
 
