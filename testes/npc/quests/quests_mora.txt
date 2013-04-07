@@ -8,22 +8,22 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: guardiao_perdido.txt                   |	
+//   | Nome do Script: quests_mora.txt                        |	
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.1                                       |
+//   | Versões brA: 1.2                                       |
 //   |--------------------------------------------------------|
-//   | Descrição: Quest do Guardião Perdido.                  |
+//   | Descrição: Script das quests da Vila de Mora.          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Hold]                            |
 //   | 1.1 Criado Script [Protimus & Hold]                    |
+//   | 1.2 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-1@mist	mapflag	loadevent
 1@mist,97,31,3	script	Jovem Misterioso#npc_mist3	512,{
 	if (loki == 0) {
 		mes "[Jovem Misterioso]";
@@ -189,6 +189,1319 @@ mora,56,149,4	script	Garota Coberta de Flores#mora	510,{
 
 OnPCLoadMapEvent:
 	if (strcharinfo(3) == "mora" && Loki == 2 && wanderingsguardians < 4)
+		showevent 1,0;
+	end;
+}
+
+mora,119,103,5	script	Bow-wow	513,{
+	if(wanderingsguardians < 5) {
+		mes "[Bow-wow]";
+		mes "Ei... Eu tenho algumas missões em Mora. Mas você não parece ter experiência o suficiente para que eu as te repasse.";
+		close;
+	} else if(bowwow == 6) {
+		if(BowwowTimer> gettimetick(2)) {
+			mes "[Bow-wow]";
+			mes "Obrigado por ter se esforçado. O Negociador de Mercadorias está muito satisfeito. No momento não há outra missão para você.";
+		} else {
+			mes "[Bow-wow]";
+			mes "Oi. Volte a falar comigo em alguns segundos, e então eu poderei te conceder uma nova missão.";
+			set bowwow,4;
+		}
+		close;
+	} else if(bowwow == 5) {
+		mes "[Bow-wow]";
+		mes "Você deve entregar os itens ao Negociador de Mercadorias.";
+		next;
+		mes "[Bow-wow]";
+		mes "Lembre-se, os itens necessários são:";
+		mes "^0000FF4 Antenas de Inseto^000000";
+		mes "^0000FF5 Coração Imortal^000000";
+		mes "^0000FF1 Bandagem Estragada^000000";
+		mes "^0000FF3 Amuleto dos Orcs^000000";
+		mes "^0000FF3 Osso^000000";
+		close;
+	} else if(bowwow == 4) {
+		mes "[Bow-wow]";
+		mes "Ei, você pode me fazer um favor?";
+		next;
+		if(select("Por que não?:Não, desculpe.") == 1) {
+			mes "[Bow-wow]";
+			mes "Eu tenho alguns itens que devem ser entregues ao Negociador de Mercadorias. Mas até hoje, eu ainda não consegui fazer isso por causa da minha preguiça.";
+			mes "Você poderá fazer isso por mim!";
+			next;
+			mes "[Bow-wow]";
+			mes "Se você quiser me ajudar a realizar essa entrega.";
+			mes "Você deve entregar os seguintes itens:";
+			mes "^0000FF4 Antenas de Inseto^000000";
+			mes "^0000FF5 Coração Imortal^000000";
+			mes "^0000FF1 Bandagem Estragada^000000";
+			mes "^0000FF3 Amuleto dos Orcs^000000";
+			mes "^0000FF3 Osso^000000";
+			set bowwow,5;
+			next;
+			mes "[Bow-wow]";
+			mes "Você está me fazendo um grande favor!";
+			close;
+		}
+		mes "[Bow-wow]";
+		mes "Certo, nesse caso eu irei... Grrr!";
+		set bowwow,0;
+		close;
+	} else if(bowwow == 3) {
+		mes "[Bow-wow]";
+		mes "Você está sendo realmente irritante...";
+		next;
+		mes "[Bow-wow]";
+		mes "*Zunido*...";
+		set bowwow,4;
+		close;		
+	} else if(bowwow == 2) {
+		mes "[Bow-wow]";
+		mes "O que você quer de mim?...";
+		next;
+		mes "[Bow-wow]";
+		mes "*Zunido*...";
+		set bowwow,3;
+		close;		
+	} else if(bowwow == 1) {
+		mes "[Bow-wow]";
+		mes "Ah, desculpe! Eu não tinha visto você...";
+		next;
+		mes "[Bow-wow]";
+		mes "*Zunido*...";
+		set bowwow,2;
+		close;		
+	}
+	mes "[Bow-wow]";
+	mes "*Zunido*...";
+	set bowwow,1;
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3) == "mora" && bowwow < 5)
+		showevent 1,0;
+	end;
+}
+
+mora,127,112,4	script	Negociador de Mercadorias#mora_1	518,{
+	mes "[Negociador de Mercadorias]";
+	if(woofgrr == 5) {
+		if((countitem(934) >= 2) && (countitem(935) >= 3) && (countitem(936) >= 3) && (countitem(937) >= 2) && (countitem(938) >= 5)) {
+			mes "Ah, vejo que você trouxe todos os itens necessários.";
+			next;
+			mes "[Negociador de Mercadorias]";
+			mes "Obrigado. vou lhe dar uma ajuda para que você tenha uma viagem melhor.";
+			delitem 934,2;
+			delitem 935,3;
+			delitem 936,3;
+			delitem 937,2;
+			delitem 938,5;
+			getitem 6380,1;
+			set WoofgrrTimer, gettimetick(2)+82800;
+			set woofgrr,6;
+			close2;
+			set .@i, 1;
+			while(.@i < (JobLevel+1)){
+				set .@exp, .@exp + (.@rate + (50*JobLevel));
+				set .@rate, .@rate + 50;
+				.@i++;
+			}
+			getexp 0,.@exp;
+			end;
+		} else {
+			mes "Woof-grr pediu para que você me entregasse os itens?";
+			mes "Onde eles estão então?";
+		}
+	} else
+		mes "Olá, eu sou um Mercador de Mora. Eu possuo a maioria dos materiais necessários para se criar equipamentos.";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && woofgrr >= 5)
+		showevent 1,0;
+	end;	
+}
+
+mora,133,80,3	script	Elephantine	509,{
+	mes "[Elephantine]";
+	if(wanderingsguardians < 5) {
+		mes "Ahhhhhhhh você! Desculpe. Eu pensei que você soubesse...";
+		dispbottom "Missões de Elephantine. Você deve estar procurando a Instância do Dragão Púrpura! Siga ao norte de Splendide.";
+		close;
+	} else if(ElephantineTimerz > gettimetick(2)) {
+		mes "Eu não tenho mais missões para te atribuir no momento.";
+		mes "Fale comigo em uma outra hora.";
+		close2;
+		if(elephantine_timerz != 1) {
+			setquest 12230;
+			set elephantine_timerz,1; 
+		}
+		dispbottom "As missões de Elephantine só podem ser realizadas a cada 23 Horas. Até logo.";
+		end;
+	} else if(elephantine_activez == 1) {
+		set .@e_num, elephantine_questz;
+		if(checkquest(elephantine_questz, HUNTING) < 2) {
+			mes "Ei, você ainda deve terminar as missões que eu atribui a você. Olhe seu registro de quests!";
+			next;
+			mes "[Elephantine]";
+			mes "Você deseja cancelar sua missão?";
+			next;
+			if(select("Cancelar a missão:Continuar a missão") == 1) {
+				completequest .@e_num;
+				erasequest elephantinenumber;
+				set elephantine_activez,0;
+				set elephantine_questz,0;
+				set elephantine_missionz,0;
+				set ElephantineTimerz, gettimetick(2) + 82800;
+				mes "[Elephantine]";
+				mes "Sua missão foi cancelada. Venha me ver amanhã se você quiser fazer uma outra missão.";
+			}
+			close;
+		} else if(checkquest(elephantine_questz, HUNTING) >= 2) {
+			mes "Você completou a missão. Obrigado!";
+			next;
+			mes "[Elephantine]";
+			mes "Aqui está sua recompensa.";
+			next;
+			completequest .@e_num;
+			erasequest .@e_num;
+			set elephantine_activez,0;
+			set elephantine_questz,0;
+			set elephantine_missionz,0;
+			set ElephantineTimerz, gettimetick(2) + 82800;
+			getitem 6380,3;
+			mes "[Elephantine]";
+			mes "Volte aqui quando quiser. Eu poderei ter mais tarefas para você!";
+			close2;
+			set .@i, 1;
+			while(.@i < (JobLevel+1)){
+				set .@exp, .@exp + (.@rate + (50*JobLevel));
+				set .@rate, .@rate + 50;
+				.@i++;
+			}
+			getexp 0,.@exp;
+			end;
+		}
+	} else if(elephantine_timerz == 1) {
+		completequest 12230;
+		erasequest 12230;
+		set elephantine_timerz,0;
+	}
+	mes "Olá, jovem aventureir"+((Sex) ? "o":"a")+".";
+	next;
+	mes "[Elephantine]";
+	mes "Eu suponho que você já tenha ouvido falar de mim. Então você quer mais uma missão de caça?";
+	next;
+	if(select("Sim.:Não.") == 1) {
+		if(!elephantine_missionz)
+			set elephantine_missionz, rand(1,5);
+		switch(elephantine_missionz) {
+			case 1: set .@quest_n, 12225; set .@quest_d$, "3 Aranhas Pom"; break;
+			case 2: set .@quest_n, 12226; set .@quest_d$, "4 Angra Mantis"; break;
+			case 3: set .@quest_n, 12227; set .@quest_d$, "5 Parus"; break;
+			case 4: set .@quest_n, 12228; set .@quest_d$, "6 Pequenos Fatum"; break;
+			case 5: set .@quest_n, 12229; set .@quest_d$, "7 Plagiadores"; break;
+		}
+		mes "[Elephantine]";
+		mes "Vamos ver ... Hummmm... Ah! Talvez eu encontre uma tarefa para você.";
+		next;
+		mes "[Elephantine]";
+		mes "Por que você não caça "+.@quest_d$+" para mim?";
+		next;
+		if(select("Eu posso fazer isso.:Não obrigado.") == 1) {
+			mes "[Elephantine]";
+			mes "Muito obrigado. Eu realmente preciso de alguém para essa tarefa.";
+			next;
+			mes "[Elephantine]";
+			mes "Aqui está sua missão. Cace "+.@quest_d$+" e então retorne para mim!";
+			mes "Obrigado por sua coperação!";
+			close2;
+			setquest .@quest_n;
+			set elephantine_questz, .@quest_n;
+			set elephantine_activez, 1;
+			end;
+		}
+	}
+	mes "[Elephantine]";
+	mes "Ok, fale comigo novamente se você quiser realizar mais tarefas.";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && elephantine_activez == 0) 
+		showevent 1,0;
+	end;	
+}
+
+mora,119,118,4	script	Negociador de Mercadorias#mora_2	516,{
+	mes "[Negociador de Mercadorias]";
+	if(bowwow == 5) {
+		if((countitem(928) >= 4) && (countitem(929) >= 5) && (countitem(930) >= 1) && (countitem(931) >= 3) && (countitem(932) >= 3)) {
+			mes "Ah, vejo que você trouxe todos os itens necessários.";
+			next;
+			mes "[Negociador de Mercadorias]";
+			mes "Obrigado. vou lhe dar uma ajuda para que você tenha uma viagem melhor.";
+			delitem 928,4;
+			delitem 929,5;
+			delitem 930,1;
+			delitem 931,3;
+			delitem 932,3;
+			getitem 6380,1;
+			set BowwowTimer, gettimetick(2)+82800;
+			set bowwow,6;
+			close2;
+			set .@i, 1;
+			while(.@i < (JobLevel+1)){
+				set .@exp, .@exp + (.@rate + (50*JobLevel));
+				set .@rate, .@rate + 50;
+				.@i++;
+			}
+			getexp 0,.@exp;
+			end;
+		} else {
+			mes "Bow Wow pediu para que você me entregasse os itens?";
+			mes "Onde eles estão?";
+		}
+	} else
+		mes "Você quer negociar comigo? Acho que não. Fale com Bow Wow, após receber a sua tarefa volte a falar comigo.";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && bowwow >= 5) 
+		showevent 1,0;
+	end;	
+}
+
+mora,115,98,5	script	Hotcha	509,{}
+
+mora,31,138,6	script	Pesquisador Rafflesian	522,{}
+
+mora,124,108,7	script	Woof-grr	514,{
+	mes "[Woof-grr]";
+	if(wanderingsguardians < 5) {
+		mes "Olá, eu sou Woof Grr. Eu realizo entregas de materiais para os fabricantes de equipamentos aqui em Mora. Os equipamentos que as pessoas criam aqui são incríveis. Se você tiver bastante experiência, poderei te oferecer alguns trabalhos.";
+		close;
+	} else if(woofgrr == 6) {
+		if(WoofgrrTimer < gettimetick(2)) {
+			mes "Fale comigo e eu poderei te atribuir uma nova tarefa.";
+			set woofgrr,4;
+		} else
+			mes "Obrigado por ter se esforçado. O Negociador de Mercadorias está muito satisfeito. No momento não há outra missão para você.";
+		close;
+	} else if(woofgrr == 5) {
+		mes "Você precisa entregar esses itens para o Negociador de Mercadorias.";
+		next;
+		mes "[Woof-grr]";
+		mes "Lembre-se, os itens necessários são:";
+		mes "^0000FF2 Espólio^000000";
+		mes "^0000FF3 Casca^000000";
+		mes "^0000FF3 Casca Escamada^000000";
+		mes "^0000FF2 Canino Venenoso^000000";
+		mes "^0000FF5 Muco Pegajoso^000000";
+		close;
+	}
+	mes "Oi, eu estou aqui para criar novas construções e equipamentos para as novas instalações em Mora.";
+	next;
+	mes "[Woof-grr]";
+	mes "Você pode me fazer um favor?";
+	next;
+	if(select("Sim.:Não.") == 1) {
+		mes "[Woof-grr]";
+		mes "Eu tenho alguns itens que devem ser entregues ao Negociador de Mercadorias. Mas até hoje, eu ainda não consegui fazer isso por causa da minha preguiça.";
+		mes "Você poderá fazer isso por mim!";
+		next;
+		mes "[Woof-grr]";
+		mes "Eu preciso que você entregue alguns itens para o Negociador de Mercadorias.";
+		mes "Você deve entegar os seguintes itens:";
+		mes "^0000FF2 Espólio^000000";
+		mes "^0000FF3 Casca^000000";
+		mes "^0000FF3 Casca Escamada^000000";
+		mes "^0000FF2 Canino Venenoso^000000";
+		mes "^0000FF5 Muco Pegajoso^000000";
+		set woofgrr,5;
+		next;
+		mes "[Woof-grr]";
+		mes "Obrigado por me ajudar!";
+		close;
+	}
+	mes "[Woof-grr]";
+	mes "Certo, se você mudar de idéia, eu estarei aqui.";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && woofgrr < 5) 
+		showevent 1,0;
+	end;	
+}
+
+mora,48,152,4	script	Jovem de Olhar Apurado	496,{}
+
+mora,170,101,4	script	Espírito Guia	515,{
+	mes "[Espírito Guia]";
+	if(wanderingsguardians < 5)
+		mes "Oi, eu sou a Detetive de Mora. Muitas pessoas do nosso vilarejo sumiram na floresta... Espero encontrá-los sãos e salvos.";
+	else if(SaverescueTimerz > gettimetick(2))
+		mes "Obrigado por ajudar, eu não possuo outra tarefa para lhe atribuir nesse momento.";
+	else if(saverescuez == 30)
+		mes "Você fez um trabalho incrível. Graças a você todos os habitantes de Mora estão seguros. Agora eles podem vagar pela floresta quando quiserem!";
+	else if(saverescuez == 29) {
+		mes "Você encontrou a sereia, Milebit?! Obrigado! Você encontrou todas as pessoas que desapareceram na floresta de Mora. Sua missão está completa.";
+		next;
+		mes "[Espírito Guia]";
+		mes "Irei recompensá-lo por seus esforços, receba isto.";
+		getitem 6380,5;
+		getitem 7008,7;
+		set saverescuez,30;
+	} else if(saverescuez == 28)
+		mes "A Sereia Milebit está tentando encontrar Izlude. Ela está perdida na flores de Mora...";
+	else if(saverescuez == 27) {
+		mes "Eu tenho uma missão de regaste para você. Uma sereia chamada Milebit desapareceu...";
+		mes "Tente encontrá-la por favor. Eu poderei te recompensar adequadamente.";
+		set saverescuez,28;
+	} else if(saverescuez == 26) {
+		mes "Você encontrou meu gatinho Mendel?! Obrigada!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Tenho que recompensá-lo por isso!";
+		getitem 6380,7;
+		getitem 946,18;
+		set saverescuez,27;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 25)
+		mes "Eu gostaria que alguém me ajudasse a encontrar o meu gatinho, Mendel. Ele está perdido na floresta de Mora...";
+	else if(saverescuez == 24) {
+		mes "Eu tenho uma missão de resgate para você. Meu pequeno gato branco, Mendel, está perdido.";
+		mes "Por favor tente encontrá-lo. Eu irei te recompensar.";
+		set saverescue,25;
+	} else if(saverescuez == 23) {
+		mes "Você encontrou Sin Pajama?!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Deixe-me te recompensar por isso.";
+		getitem 6380,5;
+		getitem 945,17;
+		set saverescuez,24;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 22)
+		mes "Você poderia encontrar Sin Pajama? Ela está perdida em algum lugar da floresta de Mora...";
+	else if(saverescuez == 21) {
+		mes "Eu tenho uma missão de resgate para você. Uma garota chamada Sin Pajama está desaparecida...";
+		mes "Por favor, procure por ela. Eu poderei te recompensar adequadamente ";
+		set saverescuez,22;
+	} else if(saverescuez == 20) {
+		mes "Você encontrou Kunmoon? Você é incrível! Encontrou quase todos!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Por favor, receba isso como recompensa.";
+		getitem 6380,17;
+		set saverescuez,21;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 19)
+		mes "Por favor tente encontrar Kunmoon. Ela está perdida em algum lugar da floresta de Mora...";
+	else if(saverescuez == 18) {
+		mes "Eu tenho uma missão de resgate para você. Uma jovem garota chamada Kunmoon desapareceu recentemente ...";
+		mes "Por favor tente encontrá-la. Eu poderei te recompensar por seu esforço.";
+		set saverescuez,19;
+	} else if(saverescuez == 17) {
+		mes "Você encontrou Norit? Você é incrível! Está se saindo "+((Sex) ? "um":"uma")+" detetive muito melhor do que eu.";
+		next;
+		mes "[Espírito Guia]";
+		mes "Mas mesmo assim, eu preciso te recompensar.";
+		getitem 6380,6;
+		getitem 549,3;
+		set saverescuez,18;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 16)
+		mes "Norit está perdida em algum lugar da floresta...";
+	else if(saverescuez == 15) {
+		mes "Eu tenho uma missão de resgate para você. Uma criança chamada Norit desapareceu recentemente...";
+		mes "Por favor, encontre-a. Eu poderei te recompensar após você fazer isso.";
+		set saverescuez,16;
+	} else if(saverescuez == 14) {
+		mes "Você encontrou Messil? Esta ainda é uma boa notícia! Você salvou 5 pessoas! Muito obrigada!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Deixe-me te dar algo por você ter nos ajudado.";
+		getitem 6380,5;
+		getitem 943,3;
+		set saverescuez,15;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 13)
+		mes "Tente por favor encontrar Messil. Ela está perdida na floresta de Mora...";
+	else if(saverescuez == 12) {
+		mes "Eu tenho uma missão de resgate para você. Uma garota chamada Messil desapareceu recentemente...";
+		mes "Se você puder encontrá-la, irei te presentear.";
+		set saverescuez,13;
+	} else if(saverescuez == 11) {
+		mes "Você encontrou Nigel? Esta é uma boa notícia e você já salvou quatro pessoas! Muito obrigada!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Tenha certeza que irei te recompensar.";
+		getitem 6380,5;
+		getitem 942,12;
+		set saverescuez,12;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 10)
+		mes "Nigel está perdido em algum lugar da floresta de Mora. Por favor tente encontrá-lo.";
+	else if(saverescuez == 9) {
+		mes "Eu tenho uma missão de resgate para você. Um garoto chamado Nigel desapareceu recentemente...";
+		mes "Se você puder encontrá-la, irei te presentear ao retornar.";
+		set saverescuez,10;
+	} else if(saverescuez == 8) {
+		mes "Você encontrou Tazar? Estou começando a ter esperanças em você, já salvou três pessoas! Muito obrigada!";
+		next;
+		mes "[Espírito Guia]";
+		mes "Permita-me te dar isto.";
+		getitem 6380,6;
+		getitem 526,2;
+		set saverescuez,9;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 7)
+		mes "Por favoe encontre Tazar. Ele está perdido em algum lugar da floresta de Mora.";
+	else if(saverescuez == 6) {
+		mes "Eu tenho uma missão de resgate para você. Um garoto chamado Tazar desapareceu recentemente...";
+		mes "Se você conseguir encontrá-lo, eu poderei te recompensar por isso";
+		set saverescuez,7;
+	} else if(saverescuez == 5) {
+		mes "Você encontrou Chaihokin? Essa é uma grande notícia! É bom saber que eles ainda estão vivos! Muito obrigada.";
+		next;
+		mes "[Espírito Guia]";
+		mes "Aqui está algo que irá solucionar seus problemas.";
+		getitem 6380,2;
+		getitem 929,5;
+		set saverescuez,6;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 4)
+		mes "Tente encontrar Chaihokin, por favor. Ela é uma senhora de idade que desapareceu na floresta de Mora...";
+	else if(saverescuez == 3) {
+		mes "Eu tenho uma missão de resgate para você. Uma velha senhora chamada Chaihokin desapareceu recentemente... Ela está perdida na floresta.";
+		mes "Poderei te recompensar caso você a encontre.";
+		set saverescuez,4;
+	} else if(saverescuez == 2) {
+		mes "Você encontrou Taul? É uma grande notícia! É bom saber que as pessoas ainda estão vivas! Muito obrigada.";
+		next;
+		mes "[Espírito Guia]";
+		mes "Aqui está algo que irá solucionar seus problemas.";
+		getitem 6380,14;
+		set saverescuez,3;
+		set SaverescueTimerz, gettimetick(2)+82800;
+	} else if(saverescuez == 1)
+		mes "Tente encontrar Taul. Ele é um homem que está em algum lugar da floresta de Mora...";
+	else {
+		mes "Olá, eu sou uma detetive de Mora. Muitas pessoas do nosso vilarejo sumiram na floresta.";
+		mes "Infelizmente, eu não sou forte o suficiente para ir até a floresta.";
+		next;
+		mes "[Espírito Guia]";
+		mes "Mas basta te ver, eu posso sentir que você tem uma boa experiência em combates. Você pode me ajudar a encontrar as pessoas desaparecidas?";
+		next;
+		if(select("Claro.:Não.") == 1) {
+			mes "[Espírito Guia]";
+			mes "Ah sério? Eu tenho uma missão para você então. Um velho amigo foi até a floresta e nunca mais retornou...";
+			mes "Seu nome é Taul e provavelmente ele está perdido no labirinto. Por favor encontre-o.";
+			set saverescuez,1;
+			close;
+		}
+		mes "[Espírito Guia]";
+		mes "Sério? Isso é uma vergonha. Eu irei encontrar alguém.";
+	}
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && saverescuez < 30)
+		showevent 1,0;
+	end;		
+}
+
+1@mist,116,40,4	script	Taul#mora	534,{
+	if(saverescuez > 1) {
+		mes "[Taul]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+	} else if(saverescuez == 1) {
+		mes "[Taul]";
+		mes "Oh oh... Eu estou preso aqui para sempre. Estou com tanta fome...";
+		mes "Freya ajude-me...";
+		next;
+		mes "[Taul]";
+		mes "Você veio para me salvar? Meu Deus, eu pensei que nunca iria sair daqui.";
+		mes "Como posso sair? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Taul]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,2;
+	} else
+		mes "^666666*Este homem parece estar muito cansado...*^000000";
+		close;
+}
+
+1@mist,170,50,4	script	Chaihokin#mora	535,{ // Veille Femme
+	if(saverescuez > 4) {
+		mes "[Chaihokin]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou sã e salva. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída. Não posso esperar para ver meu filho em Mora.";
+	} else if(saverescuez == 4) {
+		mes "[Chaihokin]";
+		mes "Você também está perdido? Eu não consigo sair deste labirinto maldito. Estou exausta...";
+		next;
+		mes "[Chaihokin]";
+		mes "Você veio para me salvar? Meu Deus, eu pensei que nunca iria sair daqui.";
+		mes "A saída fica para qual lado? Muito obrigada. Passei muito tempo aqui...";
+		next;
+		mes "[Chaihokin]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída. Não posso esperar para ver meu filho em Mora.";
+		set saverescuez,5;
+	} else
+		mes "^666666*Esta senhora parece cansada...*^000000";
+	close;
+}
+
+1@mist,130,100,4	script	Tazar#mora	536,{ // Man
+	if(saverescuez > 7) {
+		mes "[Tazar]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+	} else if(saverescuez == 7) {
+		mes "[Tazar]";
+		mes "......";
+		next;
+		mes "[Taul]";
+		mes "Você veio para me salvar? Ótimo!!!";
+		mes "A saída fica para qual lado? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Taul]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,8;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+
+1@mist,100,240,4	script	Nigel#mora	538,{ // Jeune man
+	if(saverescuez > 10) {
+		mes "[Nigel]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+	} else if(saverescuez == 10) {
+		mes "[Nigel]";
+		mes "......";
+		next;
+		mes "[Nigel]";
+		mes "Você veio para me salvar? Ótimo!!!";
+		mes "A saída fica para qual lado? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Nigel]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,11;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+
+1@mist,140,240,4	script	Messil#mora	537,{ // Meuf
+	if(saverescuez > 13) {
+		mes "[Messil]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+	} else if(saverescuez == 13) {
+		mes "[Messil]";
+		mes "......";
+		next;
+		mes "[Messil]";
+		mes "Você veio para me salvar? Ótimo!!!";
+		mes "A saída fica para qual lado? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Messil]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,14;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+
+1@mist,190,270,4	script	Norit#mora	538,{ // Jeune Boy
+	if(saverescuez > 16) {
+		mes "[Norit]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		close;
+	} else if(saverescuez == 16) {
+		mes "[Norit]";
+		mes "......";
+		next;
+		mes "[Norit]";
+		mes "Você veio para me salvar? Ótimo!!!";
+		mes "A saída fica para qual lado? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Norit]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,17;
+		close;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+
+1@mist,297,86,4	script	Kunmoon#mora	539,{ // petite fille
+	if(saverescuez > 19) {
+		mes "[Kunmoon]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		close;
+	} else if(saverescuez == 19) {
+		mes "[Kunmoon]";
+		mes "......";
+		next;
+		mes "[Kunmoon]";
+		mes "Você veio para me salvar? Ótimo!!!";
+		mes "A saída fica para qual lado? Muito obrigado. Passei muito tempo aqui...";
+		next;
+		mes "[Kunmoon]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,20;
+		close;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+1@mist,303,332,4	script	Pajama Sin#mora	558,{ // Femme Rose
+	if(saverescuez > 22) {
+		mes "[Pajama Sin]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+	} else if(saverescuez == 22) {
+		mes "[Pajama Sin]";
+		mes "......";
+		next;
+		mes "[Pajama Sin]";
+		mes "Você veio para me salvar?? Muito obrigado!";
+		mes "Irei te seguir.";
+		next;
+		mes "[Pajama Sin]";
+		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
+		mes "Obrigado por me mostrar a saída.";
+		set saverescuez,23;
+	} else
+		mes "^666666*...*^000000";
+	close;
+}
+1@mist,315,285,4	script	Mendel#mora	559,{
+	if(saverescuez > 25) {
+		mes "[Mendel]";
+		mes "Miau, obrigado Miauuuuu";
+	} else if(saverescuez == 25) {
+		mes "[Mendel]";
+		mes "......";
+		next;
+		mes "[Mendel]";
+		mes "Miau, quem é você? Você irá me ajudar a sair daqui, miau? Obrigado, miau!";
+		next;
+		mes "[Mendel]";
+		mes "Miau!";
+		set saverescuez,26;
+	} else
+		mes "^666666*miiaauuu...*^000000";
+	close;
+}
+1@mist,346,117,4	script	Milebit#mora	552,{
+	if(saverescuez > 28) {
+		mes "[Milebit]";
+		mes "Obrigado...";
+	} else if(saverescuez == 28) {
+		mes "[Milebit]";
+		mes "......";
+		next;
+		mes "[Milebit]";
+		mes "Grrrrrrr, este labirinto está me enloquecendo! Onde está a saída?! Qual o caminho?";
+		next;
+		mes "[Milebit]";
+		mes "Obrigado!";
+		set saverescuez,29;
+	} else
+		mes "^666666*Essa sereia parece estar irritada...*^000000";
+	close;
+}
+
+mora,117,66,4	script	Euridi	521,{
+	if(euridi == 10 || euridi == 11) {
+		mes "[Euridi]";
+		mes "Eu recebi as notícias de Lope. Você me deu uma grande ajuda e me fez abrir os olhos. Eu nunca poderei agradecer o suficiente.";
+		close;
+	} else if(euridi == 9) {
+		mes "[Info]";
+		mes "^666666Você apenas acabou de dizer o que disse a Lope.^000000";
+		mes "^666666Ela parece estar chateada após o que você disse.^000000";
+		next;
+		mes "[Euridi]";
+		mes "Lope é realmente patética. É possível mentir para uma pessoa de 15 anos? Ignorar todos, incluindo seus amigos durante vários anos? Este homem não é nada mais que um idiota, já era hora de abrir meus olhos!";
+		next;
+		mes "[Euridi]";
+		mes "O que você sabe? Pegue este anel maldito e não deixe ninguém vê-lo. Ele me enoja!";
+		close2;
+		getitem 6384,1;
+		set euridi,10;
+		changequest 1116,1117;
+		end;
+	} else if(euridi == 7 || euridi == 8) {
+		mes "[Euridi]";
+		mes "Muito obrigado por ajudar e por sua paciência. Mas pensando bem, eu acho que isso é uma história muito estranha. Lope já utilizou esta técnica dezenas de vezes. Como teria lhe custado a vida?";
+		next;
+		mes "[Euridi]";
+		mes "Minha amiga disse que viu um homem na entrada da Floresta... Talvez esse homem tenha feito algo com Lope? Fale com minha amiga. Ela poderá dar mais informações. Se você ainda quiser me ajudar... Choro.";
+		close;
+	} else if(euridi == 6) {
+		mes "[Euridi]";
+		mes "Pitt leu a carta? Entendo. Lope usou essa técnica para se sacrificar? Isso não é possível. Lope já utilizou essa técnica dezenas de vezes. Como teria custado sua vida?";
+		next;
+		if(countitem(6384) < 1) {
+			mes "[Euridi]";
+			mes "Você pode me trazer o anel esquerdo de Lope, por favor? Esta é a lembrança que eu tenho do meu doce amor...";
+			close;
+		}
+		delitem 6384,1;
+		set euridi,7;
+		completequest 1114;
+		mes "Obrigado por ajudar e obrigado por me trazer o anel. Esta é a única lembrança que Lope me deixou. O que eu vou fazer sem meu doce amor?";
+		close;
+	} else if(euridi == 5) {
+		mes "[Euridi]";
+		mes "Você deve voltar e pedir a Pitt para reconstruir a carta.";
+		close;
+	} else if(euridi == 4) {
+		mes "[Euridi]";
+		mes "Pitt não pode descifrar a carta de Lope? Entendo Ele é um grande cientista, mas Lope teve que utilizar uma técnica bastante complexa. Para que ele queria proteger-se do perigo.";
+		mes "Você pode me mostrar os pedaços de papel, por favor?";
+		next;
+		if(select("Mostrar pedaços.:Cancelar.") == 1) {
+			if(countitem(6383) < 30) {
+				mes "[Euridi]";
+				mes "Eu preciso de pelo menos 30 Dicas de Lope para descifrar o papel. Obrigado por ajudar.";
+				close;
+			}
+			mes "[Euridi]";
+			mes "Obrigado. Eu decifrei rapidamente a mensagem de Lope. Ele deixou uma carta para Pitt. Você de ir vê-lo.";
+			set euridi,5;
+			close2;
+			changequest 1112,1113;
+			end;
+		}
+	} else if(euridi == 2 || euridi == 3) {
+		mes "[Euridi]";
+		mes "Eu imagino que você não tenha boas notícias sobre Lope. Então você falou com Pitt sobre o meu querido amor?";
+		next;
+		mes "[Euridi]";
+		mes "Pitt usou sua última Asa de Mosca e deixou Lope sozinho com todos esses monstros? Que covarde! Ele viu os pedaços de papel voando ao redor dele antes de sair? Eles devem conter informações especiais sobre Lope.";
+		next;
+		mes "[Euridi]";
+		mes "No entanto, acho essa história muito suspeita. Você poderia olhar para estes pedaços de papel? Meu amor muitas vezes deixa '^0000FFDicas de Lope^000000' em pedaços de papel. Talvez possamos encontrar informações sobre ele.";
+		next;
+		mes "[Euridi]";
+		mes "Pitt é um excelente cientista e eu tenho grande confiança em sua capacidade, apesar de eu achar essa história duvidosa. Se você pudesse o trazer ^0000FF30 Dicas de Lope^000000 talvez ele possa conseguir mais informações. Obrigado por tudo. Estou contando com você!";
+		close2;
+		set euridi,3;
+		changequest 1110,1111;
+		end;
+	} else if(euridi == 1) {
+		mes "[Euridi]";
+		mes "Você já pediu informações a Pitt? Talvez ele esteja acordado. Ele veio até Mora, depois disso, então eu tenho certeza do que aconteceu com Lope.";
+		next;
+		mes "[Euridi]";
+		mes "Obrigado novamente por me ajudar! Estou contando com você. Pitt está em um Hotel de Mora.";
+		close;
+	} else {
+		mes "[Euridi]";
+		mes "Olá, meu nome é Euridi. Vivo aqui faz bastante tempo. Este vilarejo é considerado o vilarejo da Magia. Você pode encontrar grandes coisas aqui.";
+		next;
+		mes "[Euridi]";
+		mes "Aposto que você está aqui com interesses em Equipamentos, certo? É por causa deles que você vê tantos aventureiros vindo até aqui.";
+		next;
+		mes "[Euridi]";
+		mes "Se você precisar de ajuda, poderei te ajudar. Portanto, não hesite em vir até mim e pedir informações ou apenas se quiser conversar mesmo.";
+		next;
+		if(BaseLevel > 99) {
+			switch(select("Conversar.:Informação.:Cancelar.")) {
+				case 1:
+					mes "[Euridi]";
+					mes "Você já ouviu falar de um jovem soldado chamado Lope? Ele era tudo para mim.";
+					mes "Foi a cerca de uma semana. Ficamos vagando pela floresta Misty próxima a Bifrost e nós fomos atacados por monstros. Meu amigo Pitt foi ferido e meu amor Lope nunca mais retornou. Mas tenho certeza de que ele está bem!";
+					next;
+					mes "[Euridi]";
+					mes "Então eu notei o seu nível e queria perguntar se você foi até lá? Você se encontrou com meu Lope?";
+					next;
+					switch(select("Não, eu não o vi.:Sim, eu o vi.:Cancelar.")) {
+						case 1:
+							mes "[Euridi]";
+							mes "Você não o viu... que decepção. Já foi se uma semana, mas eu sinto que meu amor desapareceu para sempre. Eu estou realmente desesperada.";
+							next;
+							mes "[Euridi]";
+							mes "Eu realmente quero acreditar que ele está bem, mas não tenho forças para ir até o território de Bifrost. Além disso, eu estou com medo de ser atacada assim como na semana passada. Os monstros estão muito agressivos esses dias. Eu não sei o por que deste comportamento.";
+							next;
+							mes "[Euridi]";
+							mes "Fomos nós 4 nessa expedição. Todos nós voltamos com exceção de Lope. Ele era o mais forte entre nós e é difícil acreditar que ele não irá mais voltar, mesmo sabendo de sua força.";
+							next;
+							mes "[Euridi]";
+							mes "Minha namorada, Sombra Escura, e eu facilmente escapamos com nosso teletransporte, mas Pitt não teve tanta sorte. Ele está repousando na pousada de Mora após ter sofrido vários ataques. Ele ainda não está acordado. Espere até que ele acorde. Talvez ele saiba o que aconteceu.";
+							next;
+							mes "[Euridi]";
+							mes "Eu pensava em ir falar com ele, mas estou muito ocupada com meu trabalho. Você pode ir ver se ele ainda está acordado, por favor? Ele está na pousada de Mora.";
+							next;
+							if(select("Eu vo te ajudar.:Cancelar.") == 1) {
+								mes "[Euridi]";
+								mes "Você vai realmente me ajudar? Isso é ótimo. Para facilitar a tarefa, vou mandar você até Pitt, ele certamente terá informações sobre Lope, meu grande amor.";
+								next;
+								mes "[Euridi]";
+								mes "Pitt está vestindo um casaco branco. Ele é um fisíco muito conhecido em Mora / Splendide. Ele veio até aqui para estudar os monstros agressivos.";
+								close2;
+								set euridi,1;
+								setquest 1109;
+								warp "mora",58,146;
+								end;
+							}
+							break;
+						case 2:
+							mes "[Euridi]";
+							mes "Você realmente o viu? Eu tenho medo de andar sozinha nas áreas de Bifrost. Se você alguma vez voltar até lá, pode dizer para que ele volte aqui e diga que sinto muito sua falta.";
+							mes "Espero que não esteja me dando falsas esperanças. Por favor, traga-o de volta para Mora.";
+							close;
+						case 3: break;
+					}
+					break;
+				case 2:
+					mes "[Euridi]";
+					mes "O povo de Mora é muito receptível, então não hesite em conversar com algum cidadão daqui.";
+					next;
+					mes "[Euridi]";
+					mes "Existem profissionais encantadores capazes de aprimorar equipamentos. Encantamentos são particularmente poderosos.";
+					next;
+					mes "[Euridi]";
+					mes "Os objetos de Mora são comprados com moeda loca, a moeda de Mora. Você pode conseguí-los através de serviços complementares à pessoas de Mora.";
+					next;
+					mes "[Euridi]";
+					mes "Eu não sei mais o que dizer. Não hesite quando quiser entrar e me ver. Adeus ~";
+					close;
+				case 3:
+					break;
+			}
+		} else {
+			if(select("Informação:Cancelar") == 1) {
+				mes "[Euridi]";
+				mes "O povo de Mora é muito receptível, então não hesite em conversar com algum cidadão daqui.";
+				next;
+				mes "[Euridi]";
+				mes "Existem profissionais encantadores capazes de aprimorar equipamentos. Encantamentos são particularmente poderosos.";
+				next;
+				mes "[Euridi]";
+				mes "Os objetos de Mora são comprados com moeda loca, a moeda de Mora. Você pode conseguí-los através de serviços complementares à pessoas de Mora.";
+				next;
+				mes "[Euridi]";
+				mes "Eu não sei mais o que dizer. Não hesite quando quiser entrar e me ver. Adeus ~";
+				close;
+			}
+		}
+	}
+	mes "[Euridi]";
+	mes "Certo, tenha um ótimo dia! Não hesite em voltar quando quiser~";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && euridi < 10)
+		showevent 1,0;
+	end;
+}
+
+bif_fild01,131,338,0	script	Homem Suspeito#euridi	599,3,3,{
+	end;
+OnTouch:
+	if(select("Conversar com este homem.:Cancelar") == 1) {
+		if(lope == 1 && euridi == 8) {
+			mes "[Lope]";
+			mes "Você denovo? Você parece querer se intrometer em assuntos dos outros, não é?";
+			next;
+			mes "[Lope]";
+			mes "Se você está aqui por causa de Euridi, simplesmente diga a ela que eu prefiro viver com monstros e estou cansado de mentir! Eu nunca me sacrifiquei e eu não quero ver pessoas como você por perto! Este lugar não é para você e nem para os idiotas de Mora!";
+			close2;
+			changequest 1115,1116;
+			warp "mora",110,66;
+			set euridi,9;
+			end;
+		} else if(euridi == 8) {
+			mes "[Lope]";
+			mes "Quem é você..?";
+			close2;
+			set lope,1;
+			end;
+		}
+		mes "[Homem Suspeito]";
+		mes "...";
+	}
+	close;
+
+OnPCLoadMapEvent:
+	if(strcharinfo(3) == "bif_fild01" && euridi < 10)
+		showevent 1,0;
+	end;
+}
+
+mora,115,68,4	script	Sombra Escura	520,{
+	mes "[Sombra Escura]";
+	if(euridi == 10) {
+		mes "Euridi não está tão bem agora, então deixe-me agradecê-lo por seu trabalho.";
+		next;
+		mes "[Sombra Escura]";
+		mes "Eu não tenho muito a lhe oferecer, mas espero que você goste.";
+		next;
+		set euridi,11;
+		getitem 6380,10;
+		getexp 1000000,2000000;
+		mes "[Info]";
+		mes "^666666Você recebeu 10 Moedas de Moda e Pontos de Experiência!^000000";
+		next;
+		mes "[Sombra Escura]";
+		mes "Novamente, Obrigado por sua ajuda. Tenha uma boa estadia em Mora.";
+		close2;
+		completequest 1117;
+		end;
+	} else if(euridi == 9) {
+		mes "Lope tinha um diálogo muito violento, mas não me surpreenderei se você disser a verdade para Euridi. É hora dela abrir seus olhos!";
+		close;
+	} else if(euridi == 8) {
+		mes "Eu não disse a Euridi isso sobre Lope, mas às vezes parece que o amor dele não era de verdade. Eu não queria lhe causar mais dor.";
+		next;
+		mes "[Sombra Escura]";
+		mes "Lope sempre fazia negócios com esse homem na entrada da floresta. Este homem se transforma as vezes em monstro. Ele aparecia em Bifrost, mas eu não o vi mais desde o desaparecimento de Lope.";
+		next;
+		mes "[Sombra Escura]";
+		mes "Se você é corajoso, deve ir até Bifrost e fazer uma visita a esse homem. Ele deve ter informações importantes sobre Lope!";
+		close2;
+		end;
+	} else if(euridi == 7) {
+		mes "Eu não disse a Euridi isso sobre Lope, mas às vezes parece que o amor dele não era de verdade. Eu não queria lhe causar mais dor.";
+		next;
+		mes "[Sombra Escura]";
+		mes "Lope sempre fazia negócios com esse homem na entrada da floresta. Este homem se transforma as vezes em monstro. Ele aparecia em Bifrost, mas eu não o vi mais desde o desaparecimento de Lope.";
+		next;
+		mes "[Sombra Escura]";
+		mes "Se você é corajoso, deve ir até Bifrost e fazer uma visita a esse homem. Ele deve ter informações importantes sobre Lope!";
+		close2;
+		set euridi,8;
+		setquest 1115;
+		end;
+	}
+	mes "Olá, como vai?";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && euridi >= 7 && euridi < 10)
+		showevent 1,0;
+	end;
+}
+
+mora,65,145,4	script	Pitt	519,{
+	if(euridi == 6) {
+		mes "[Pitt]";
+		mes "Esta carta realmente me tocou. Você deve contar tudo para Euridi.";
+		close;
+	} else if(euridi == 5) {
+		if(countitem(6383) < 30) {
+			mes "[Pitt]";
+			mes "Lope deixou uma carta para mim? Você pode me mostrar 30 Dicas de Lope para que eu possa decifrá-la por favor?";
+			close;
+		}
+		delitem 6383,30;
+		mes "[Pitt]";
+		mes "Lope deixou uma carta para mim? Acho muito estranho. Você pode se afastar um pouco? Lope parece ter selado algo nesta carta, e você nunca poderá saber o que é!";
+		next;
+		mes "[Pitt]";
+		mes "Bem, nada de mais! É apenas um anel. Tudo é em agradecimento a você, vou ler a carta que Lope me escreveu.";
+		next;
+		mes "[De Lope]";
+		mes "Caro Pitt,";
+		mes " ";
+		mes "Estou feliz por ter conhecido você ... Meu amigo.";
+		mes "Eu espero que Euridi e a Sombra Escura estejam bem e conto com você para cuidar deles.";
+		mes "Como você sabe, utilizei minha técnica fatal, se você estiver lendo essa carta deverá saber que já não estou mais neste mundo.";
+		next;
+		mes "[De Lope]";
+		mes "Meu sacrifício foi uma alegria, e eu estou feliz por ter vivido ao seu lado, e deste maravilhoso vilarejo.";
+		mes "Por favor entregue este anel para Euridi, e diga a ela que ela permanece em meu coração, mesmo em outro mundo ...";
+		mes " ";
+		mes "Assinado: Lope.";
+		next;
+		mes "[Pitt]";
+		mes "Esta carta realmente me tocou. Pegue este anel já que você está ajudando. Você deve contar tudo para Euridi.";
+		set euridi,6;
+		getitem 6384,1;
+		close2;
+		changequest 1113,1114;
+		end;
+	} else if(euridi == 4) {
+		mes "[Pitt]";
+		mes "Você pode mostrar as Dicas de Lope para Euridi.";
+		close;
+	} else if(euridi == 3) {
+		if(pitt == 1) {
+			if(countitem(6383) < 30) {
+				mes "[Pitt]";
+				mes "Eu realmente sinto muito, mas não consigo extrair uma única informação deste papel.";
+				next;
+				mes "[Pitt]";
+				mes "Talvez se você me trouxer mais informações eu possa ajudar. Obrigado de qualquer forma.";
+				close;
+			}
+			mes "[Pitt]";
+			mes "Eu realmente sinto muito, mas não consigo extrair uma única informação deste papel.";
+			next;
+			mes "[Pitt]";
+			mes "Talvez se você me trouxer mais informações eu possa ajudar. Obrigado de qualquer forma.";
+			next;
+			if(select("Mostrar a ele as Dicas de Lope:Sair da conversa") == 1) {
+				if(pitt == 1) {
+					mes "[Pitt]";
+					mes "Bem, eles são muito semelhantes aos que você trouxe da primeira vez. Você pode me entregá-los?";
+					next;
+					switch(select("Dar as Dicas de Lope:Não entregar nada.")) {
+						case 1:
+							delitem 6383,30;
+							mes "[Pitt]";
+							mes "Obrigado. Espero que esses papéis possam ser úteis e que seja possível encontrar alguma pista através deles.";
+							close2;
+							end;
+						case 2:
+							mes "[Pitt]";
+							mes "Eu entendo suas desconfiança, porque eu falhei no primeiro papel. Neste caso, você deve mostrar esses pedaços de papel para Euridi. Ela sabe muito mais que eu sobre essa técnica .";
+							set euridi,4;
+							set pitt,0;
+							close2;
+							changequest 1111,1112;
+							end;
+					}
+				}
+				mes "[Pitt]";
+				mes "Ah, mas esses pedaços de papel são semelhantes aos que vi antes de utilizar minha Asa de Mosca. Eles realmente se parecem com os da técnica de Lope, e agora estou certo de que podem ajudar.";
+				next;
+				mes "[Pitt]";
+				mes "Eu poderia ser capaz de conseguir mais informações através destes pedaços de papel. Você pode me dá-los para que eu possa olhá-los mais de perto?";
+				next;
+				switch(select("Dar as Dicas de Lope.:Não entregar nada.")) {
+					case 1:
+						delitem 6383,30;
+						mes "[Pitt]";
+						mes "Obrigado, espero que esses papéis possam ser úteis e que seja possível encontrar alguma pista através deles!";
+						close2;
+						set pitt,1;
+						end;
+					case 2:
+						mes "[Pitt]";
+						mes "Eu entendo sua desconfiança. Você pode mostrar esses pedaços de papel para Euridi. Ela sabe muito mais que eu sobre essa técnica.";
+						set euridi,4;
+						close2;
+						changequest 1111,1112;
+						end;
+				}
+			}
+		}
+		if(countitem(6383) < 30) {
+			mes "[Pitt]";
+			mes "... Eu não tenho mais nenhuma informação a te dar sobre Lope. Volte aqui quando possuir mais pistas.";
+			close;
+		}
+		mes "[Pitt]";
+		mes "... Eu não tenho mais nenhuma informação a te dar sobre Lope. Volte aqui quando possuir mais pistas.";
+		next;
+		if(select("Mostrar a ele as Dicas de Lope:Sair da conversa.") == 1) {
+			if(pitt == 1) {
+				mes "[Pitt]";
+				mes "Bem, eles são muito semelhantes aos que você trouxe da primeira vez. Você pode me entregá-los?";
+				next;
+				switch(select("Dar as Dicas de Lope.:Não entregar nada.")) {
+					case 1:
+						delitem 6383,30;
+						mes "[Pitt]";
+						mes "Obrigado. Espero que esses papéis possam ser úteis e que seja possível encontrar alguma pista através deles.";
+						close2;
+						end;
+					case 2:
+						mes "[Pitt]";
+						mes "Eu entendo sua desconfiança. Você pode mostrar esses pedaços de papel para Euridi. Ela sabe muito mais que eu sobre essa técnica.";
+						set euridi,4;
+						set pitt,0;
+						close2;
+						changequest 1111,1112;
+						end;
+				}
+			}
+			mes "[Pitt]";
+			mes "Ah, mas esses pedaços de papel são semelhantes aos que vi antes de utilizar minha Asa de Mosca. Eles realmente se parecem com os da técnica de Lope, e agora estou certo de que podem ajudar.";
+			next;
+			mes "[Pitt]";
+			mes "Eu poderia ser capaz de conseguir mais informações através destes pedaços de papel. Você pode me dá-los para que eu possa olhá-los mais de perto?";
+			next;
+			switch(select("Dar as Dicas de Lope.:Não entregar nada.")) {
+				case 1:
+					delitem 6383,30;
+					mes "[Pitt]";
+					mes "Obrigado, espero que esses papéis possam ser úteis e que seja possível encontrar alguma pista através deles. Lope foi um excelente soldado. Ele provavelmente deixou boas pistas!";
+					close2;
+					set pitt,1;
+					end;
+				case 2:
+					mes "[Pitt]";
+					mes "Eu entendo sua desconfiança. Você pode mostrar esses pedaços de papel para Euridi. Ela sabe muito mais que eu sobre essa técnica.";
+					set euridi,4;
+					close2;
+					changequest 1111,1112;
+					end;
+			}
+		}
+	} else if(euridi == 2) {
+		mes "[Pitt]";
+		mes "Eu não acho que Lope esteja vivo. Por favor de minhas consolências a Euridi. Eu realmente sinto muito pelo que aconteceu...";
+		next;
+		mes "[Pitt]";
+		mes "Pouco antes de usar minha última Asa de Mosca, eu muitos pedaços de papel voando sobre mim. Realmente parecia uma das técnicas de Lope.";
+		close;
+	} else if(euridi == 1) {
+		mes "[Pitt]";
+		mes "...";
+		next;
+		mes "[Pitt]";
+		mes "Como você está...?";
+		next;
+		switch(select("Euridi me enviou: Desculpe encomodá-lo.") == 1) {
+			mes "[Pitt]";
+			mes "... Euridi... Ela ainda está viva??? Isso é incrível... Como ela está? Pensei que aqueles monstros irritantes tivessem capturado Euride e a Sombra Escura.";
+			next;
+			mes "[Pitt]";
+			mes "Ela está bem? Que boa notícia. Mas por que ela te mandou até mim?";
+			next;
+			switch(select("Onde está Lope?:Como você está?:Cancelar")) {
+				case 1:
+					mes "[Pitt]";
+					mes "Lope... Lope estava em uma situação crítica quando usei a minha última Asa de Mosca... Lope está morto... Eu realmente me desculpo...";
+					next;
+					mes "[Pitt]";
+					mes "Pouco antes de utilizar a Asa de Mosca, eu vi muitos pedaços de papel voando pelo céu. Essa técnica se assemelha a habilidade de Lope que oculta partes de uma mensagem em vários locais. No entanto, nada deu certo.";
+					close2;
+					set euridi,2;
+					changequest 1109,1110;
+					end;
+				case 2:
+					mes "[Pitt]";
+					mes "Em breve estarei novamente de pé. Por enquanto eu voltarei a dormir se você não se importa.";
+					close;
+				case 3:
+					break;
+			}
+		}
+	}
+	mes "[Pitt]";
+	mes "...";
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && euridi < 10)
+		showevent 1,0;
+	end;
+}
+
+mora,116,165,5	script	Cavaleiro de Elite	524,{
+	if(BaseLevel < 99) {
+		mes "[Cavaleiro de Elite]";
+		mes "A Ordem dos Cavaleiros de Elite mudou-se para Mora a fim de realizar missões. Vejo que não é forte o suficiente para lidar com a minha tarefa. Quando tornar-se mais forte, por favor volte e assuma uma tarefa.";
+		close;
+	} else if(KnightBossTimer > gettimetick(2)) {
+		mes "[Cavaleiro de Elite]";
+		mes "Se você precisar de mais alguma tarefa, por favor fale comigo novamente mais tarde. Fiquei muito satisfeito com seu empenho.";
+		close;
+	} else if(knight_boss == 1) {
+		if(countitem(12561) < 200) {
+			mes "[Cavaleiro de Elite]";
+			mes "Traga-me ^0000FF200 Sementes Misteriosas^000000 o mais rápido possível. Lope deixou uma nova carta para Pitt e devemos corrigí-la. É claro que você será recompensad"+((Sex) ? "a":"o")+" por isso.";
+			close;
+		} else {
+			delitem 12561,200;
+			mes "[Cavaleiro de Elite]";
+			mes "Você trouxe ^0000FF200 Sementes Misteriosas^000000. Obrigado.";
+			next;
+			mes "[Cavaleiro de Elite]";
+			mes "Se você precisar de mais alguma tarefa, por favor venha e converse comigo mais tarde. Fiquei muito satisfeito com o seu empenho. Aqui está sua recompensa.";
+			close2;
+			set KnightBossTimer, gettimetick(2)+82800;
+			set knight_boss,0;
+			completequest 1119;
+			getitem 6380,1;
+			end;
+		}
+	}
+	mes "[Cavaleiro de Elite]";
+	mes "Bem-vindo. Você quer uma tarefa?";
+	next;
+	if(select("Claro:De modo nenhum:Cancelar") == 1) {
+		mes "[Cavaleiro de Elite]";
+		mes "Traga-me ^0000FF200 Sementes Misteriosas^000000 o mais rápido possível. Estou contando com você. E é claro que você será recompensado por este trabalho.";
+		close2;
+		setquest 1119;
+		set knight_boss,1;
+		end;
+	}
+	close;
+
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && KnightBossTimer< gettimetick(2)) 
+		showevent 1,0;
+	end;		
+}
+
+mora,114,163,5	script	Cavaleira de Elite	522,{
+	if(euridi < 11 || BaseLevel < 100) {
+		mes "[Cavaleira de Elite]";
+		mes "A Ordem dos Cavaleiros de Elite mudou-se para Mora a fim de realizar missões. Uma moradora chamada ^FF0000Euridi^000000 está necessitando de ajuda. Volte quando quiser ajudá-la.";
+		close;
+	}
+	if(knight_head == 2) {
+		mes "[Cavaleira de Elite]";
+		mes "Você fez um bom trabalho. Fomos capazes de reconstruir a nova carta de Lope.";
+		close;
+	} else if(knight_head == 1) {
+		if(countitem(6383) < 30) {
+			mes "[Cavaleira de Elite]";
+			mes "Traga-me ^0000FF30 Dicas de Lope^000000 o mais rápido possível. Lope deixou uma nova carta para Pitt e devemos corrigí-la. É claro que você será recompensad"+((Sex) ? "a":"o")+" por isso.";
+			close;
+		} else {
+			delitem 6383,30;
+			mes "[Cavaleira de Elite]";
+			mes "Você trouxe ^0000FF30 Dicas de Lope^000000. Isso é ótimo!";
+			next;
+			mes "[Cavaleira de Elite]";
+			mes "Fiquei muito satisfeita com seu empenho. Aqui está sua recompensa.";
+			close2;
+			set knight_head,2;
+			completequest 1118;
+			getitem 6380,2;
+			getexp 1000000,1000000;
+			end;
+		}
+	}
+	mes "[Cavaleira de Elite]";
+	mes "Bem-vindo. Você quer uma tarefa?";
+	next;
+	if(select("Claro:Não obrigado:Cancelar") == 1) {
+		mes "[Cavaleira de Elite]";
+		mes "Traga-me ^0000FF30 Dicas de Lope^000000 o mais rápido possível. Lope deixou uma nova carta para Pitt e devemos corrigí-la. É claro que você será recompensad"+((Sex) ? "a":"o")+" por isso.";
+		close2;
+		set knight_head,1;
+		setquest 1118;
+		end;
+	}	
+	close;
+	
+OnPCLoadMapEvent:
+	if (strcharinfo(3)=="mora" && knight_head != 2)
 		showevent 1,0;
 	end;
 }

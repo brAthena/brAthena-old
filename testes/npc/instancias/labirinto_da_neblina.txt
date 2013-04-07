@@ -24,7 +24,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-bif_fild01	mapflag	loadevent
 bif_fild01,158,340,5	script	Soldado Esplêndido#inst	447,{
 	if (ins_bif == 0) {
 		mes "[Soldado Esplêndido]";

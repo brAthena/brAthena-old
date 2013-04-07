@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.2/1.2                          |
+//   | Versões eA/rA/brA: ??/1.2/1.3                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Vila de Mora.                       |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
 //   | 1.2 Otimização [Holy & Hold]                           |
+//   | 1.3 Adicionados novos NPCs [Hold]                      |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -322,5 +323,393 @@ mora,131,165,4	script	Habitante de Bifrost#1	520,{
 	mes "[Habitante de Bifrost]";
 	mes "Uma observação... Acho que sou";
 	mes "realmente linda, você não concorda?";
+	close;
+}
+
+mora,125,174,5	script	Habitante de Bifrost#2	520,{
+	mes "[Habitante de Bifrost]";
+	mes "Bem-vindo à Oficina de Artefatos. Se você tiver um Pendante do Guardião, meu chefe e eu poderemos encantar seus equipamentos.";
+	next;
+	mes "[Habitante de Bifrost]";
+	mes "Se estiver interessado, já sabe que pode vir.";
+	close;
+}
+
+mora,104,172,6	script	Habitante de Bifrost#3	520,{
+	mes "[Habitante de Bifrost]";
+	mes "Olá, bem-vindo à Alfaiataria de Mora.";
+	next;
+	mes "[Habitante de Bifrost]";
+	mes "Se precisar encantar ou comprar uma armadura, basta falar com meu chefe. Eu sou a encantadora assistente.";
+	close;
+}
+
+mora,112,161,6	script	Guarda Novato	523,{
+	mes "[Guarda Novato]";
+	mes "...";
+	close;
+}
+
+mora,118,166,5	script	Guarda Veterano	517,{
+	mes "[Guarda Veterano]";
+	mes "...";
+	close;
+}
+
+mora,105,104,4	script	Lobo Aventureiro	514,{
+	mes "[Lobo Aventureiro]";
+	mes "Eu cruzei o continente negro antes de chegar neste vilarejo escondido.";
+	next;
+	mes "[Lobo Aventureiro]";
+	mes "Eu estava fugindo de Lighthalzen, Payon, Prontera, e Juno sendo assim eu não poderia pegar uma rota comum.";
+	next;
+	mes "[Lobo Aventureiro]";
+	mes "Não fale para ninguém sobre mim, ok?";
+	close;
+}
+
+mora,99,100,7	script	Mulher Fugitiva	515,{
+	mes "[Mulher Fugitiva]";
+	mes "Meu marido e eu nos mudamos recentemente para o vilarejo. Gostamos muito daqui ~";
+	close;
+}
+
+mora,123,94,8	script	Garota Viajante	515,{
+	mes "[Garota Viajante]";
+	mes "Achei esta cidade bastante agradável. O cheiro das frutas é muito bom ~";
+	next;
+	mes "[Garota Viajante]";
+	mes "Oops, me desculpe não vi você. Precisa de alguma coisa?";
+	next;
+	if(select("Continuar conversa.:Não, Nada.") == 1) {
+		mes "[Garota Viajante]";
+		mes "Eu estava falando com meu amigo sobre o cheiro das frutas de Mora. Achei ele muito bom. E você?";
+		next;
+		mes "[Garota Viajante]";
+		mes "Me desculpe por fazer tantas perguntas mas você já explorou os campos de Bifrost?";
+		next;
+		switch(select("É claro!:Ainda não.:Terminar conversa.")) {
+			case 1:
+				mes "[Garota Viajante]";
+				mes "Oh, você viu algum dos Pequenos Fatum. Eles são tão fofos que dá vontade de mordê-los ~.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Ou por caso você viu algum Plagiador, aquelas bolinhas de pêlo amarelo~ Amei eles.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Você sabia que se estiver em Esplendor e for na direção norte, você acaba saindo no 1° campo de Bifrost?";
+				next;
+				mes "[Garota Viajante]";
+				mes "Parece que lá há uma floresta secreta chamada Labirinto da Neblina e que um terrível monstro chamado Dragão Púrpura vive dentro dela.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Estou te dizendo isto porque se pretende fazer algum trabalho em Mora, as pessoas irão lhe questionar sobre isso.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Se algum dia você for lá, não perca nenhum equipamento. A floresta é um labirinto... não vá sozinho.";
+				close;
+			case 2:
+				mes "[Garota Viajante]";
+				mes "Oh, mas você deve ir algum dia. Você precisa conhecer os Pequenos Fatum. Eles são tão fofos que dá vontade de mordê-los ~.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Ou talvez você veja um Plagiador, aquelas bolinhas de pêlo amarelo~ Amei eles.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Você sabia que se estiver em Esplendor e for na direção norte, você acaba saindo no 1° campo de Bifrost?";
+				next;
+				mes "[Garota Viajante]";
+				mes "Parece que lá há uma floresta secreta chamada Labirinto da Neblina e que um terrível monstro chamado Dragão Púrpura vive dentro dela.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Estou te dizendo isto porque se pretende fazer algum trabalho em Mora, as pessoas irão lhe questionar sobre isso.";
+				next;
+				mes "[Garota Viajante]";
+				mes "Se algum dia você for lá, não perca nenhum equipamento. A floresta é um labirinto... não vá sozinho.";
+				close;
+			case 3:
+				break;
+		}
+	}
+	mes "[Garota Viajante]";
+	mes "Ok, Eu não estou fazendo nada hoje então se quiser conversar com alguém, não hesite em vir aqui ~";
+	close;
+}
+
+mora,155,72,6	script	Viajante Paikan	513,{
+	mes "[Paikan]";
+	mes "Olá, o que está fazendo aqui? Eu vim trazer meus três primos em uma missão de comércio para Mora.";
+	mes "Eles finalmente decidiram voltar para Esplendor...";
+	next;
+	mes "[Paikan]";
+	mes "Esses idiotas não querem mudar de ideia. Eles querem ir pelo caminho deles.";
+	mes "A teimosia da família...";
+	close;	
+}
+
+mora,179,155,6	script	Gerente do Armazém	516,{}
+
+mora,122,97,3	script	Velho	517,{}
+
+mora,174,171,3	script	Guardião do Armazém	518,{
+	mes "[Guardião do Armazém]";
+	mes "...";
+	close;
+}
+
+mora,99,65,6	script	Assistente de Relíquias	516,{
+	mes "[Assistente de Relíquias]";
+	mes "Meu chefe é o melhor encantador de Mora. Se precisar de algo basta vir aqui e não sairá desapontado!";
+	close;
+}
+
+mora,30,128,6	script	Negociante de Morroc	514,{
+	mes "[Negociante de Morroc]";
+	mes "Esta cidade é mais quente que Morroc? Eu achava que Morroc era a cidade mais quente do mundo. Cometi um erro.";
+	next;
+	mes "[Negociante de Morroc]";
+	mes "Nós já chegamos em um recorde de temperatura de 54 em Morroc enquanto aqui chegamos a temperatura de 61 no verão passado. Estava fervendo. Por sorte há um pequeno lago em Mora para nos refrescarmos.";
+	next;
+	mes "[Negociante de Morroc]";
+	mes "Ainda sim, luzes estranhas apareceram no lugar onde nadávamos. Algumas pessoas disseram terem olhado nelas...";
+	next;
+	mes "[Negociante de Morroc]";
+	mes "Como não venho muito aqui, não tive a oportunidade de rever estas luzes. Não que você esteja me encomodando, mas tenho coisas para fazer. Tenha uma bom dia ~";
+	close;
+}
+
+mora,130,96,4	script	Jovem Negociante	513,{
+	mes "[Jovem Negociante]";
+	mes "Bem vindo à Mora. Você é um aventureiro, não é? Percebi pelo seu jeito de se vestir.";
+	next;
+	mes "[Jovem Negociante]";
+	mes "Se precisar de algum trabalho, há muitos amigos que oferecem um trabalho diário.";
+	next;
+	switch(select("Woof-Grr.:Bow-wow.:Cancelar.") != 3) {
+		mes "[Jovem Negociante]";
+		mes "Meu amigo precisa fazer muitas viagens diariamente para trazer materiais para Mora.";
+		next;
+		mes "[Jovem Negociante]";
+		mes "Se precisa de dinheiro, você deve visitar ele. Acho que ele pode te conseguir algum trabalho.";
+		next;
+		mes "[Jovem Negociante]";
+		mes "Se ele não falar com você, você precisa completar a missão do Dragão Perdido. Meu primo requer muita experiência dos aventureiros.";
+		next;
+		mes "[Jovem Negociante]";
+		mes "Se você precisa de mais informações sobre o Dragão Púrpura, essa Garota que está na minha frente sobre muito sobre ele.";
+		close;
+	}	
+	mes "[Jovem Negociante]";
+	mes "Ok, tome cuidado!";
+	close;	
+}
+
+mora,43,113,8	script	Velho habitante de Mora	517,{
+	mes "[Velho habitante de Mora]";
+	mes "ZzzZzzzZZ....";
+	close;
+}
+
+mora,168,161,6	script	Negociante	513,{
+	mes "[Negociante]";
+	mes "As bananas de Mora são muito baratas, por isso todo dia eu guardo muitas para as pessoas de Esplendor.";
+	close;
+}
+
+mora,175,161,5	script	Funcionário do Armazém	518,{
+	mes "[Funcionário do Armazém]";
+	mes "Bem-vindo à Mora. Eu realmente não tenho tempo para falar com você.";
+	mes "Recebemos uma grande quantidade de comida e eu tenho que guardá-la rapidamente.";
+	close;
+}
+
+mora,140,72,5	script	Viajante Baizan	513,{
+	mes "[Baizan]";
+	mes "Nós simplesmente seguimos o primo Paikan e demoramos apenas duas horas de Esplendor para cá. Ele vem à Mora todo dia!";
+	close;
+}
+mora,138,72,4	script	Viajante Saiman	513,{
+	mes "[Saiman]";
+	mes "Faça o que quiser. Eu vou para o Sul. Lá é a saída mais próxima para Esplendor.";
+	close;
+}
+
+mora,139,73,2	script	Viajante Naipan	513,{
+	mes "[Naipan]";
+	mes "Você deve ter vindo do Norte. Os monstros não são fortes por lá.";
+	close;
+}
+
+mora,106,117,5	script	Assistente de Utilidades	516,{
+	mes "[Assistente de Utilidades]";
+	mes "Ei, bem-vindo à melhor loja de Mora. A Loja de Utilidades.";
+	mes "Nós vendemos os melhores produtos da região, dê uma olhada! Veja nosso estoque.";
+	close;
+}
+
+mora,95,71,1	script	Galbuta	495,{
+	mes "[Galbuta]";
+	mes "Sinto muita saudade de Malangdo. Só estou aqui por causa do meu trabalho. Mas ei, a vida é assim então tenho que me conformar...";
+	close;
+}
+
+mora,115,118,3	script	Zina	700,{
+	mes "[Zina]";
+	mes "Olá, Eu vim de Prontera a Captial de Rune-Midgard.";
+	next;
+	mes "[Zina]";
+	mes "Vim aqui para trazer materiais de construção para Mora.";
+	next;
+	mes "[Zina]";
+	mes "Ahhh Mora, o trabalho para ser feito... se você precisa de um trabalho, não pense duas vezes em falar com as pessoas. Isso que sempre faço quando venho aqui.";
+	next;
+	mes "[Zina]";
+	mes "Boa Sorte~";
+	close;
+}
+
+mora,115,138,4	script	Purplesia	524,{
+	mes "[Purplesia]";
+	mes "Bem-vindo à Mora... Você é?";
+	next;
+	if(select("Porque está me perguntando?","E quem é você?") == 1) {
+		mes "[Purplesia]";
+		mes "Eu faço essa pergunta para todas as pessoas novas que vejo aqui. Enfim, eu já sei a resposta. Você é "+strcharinfo(0)+", e veio para cá do Reino de Rune-Midgard correto?";
+		next;
+		mes "[Purplesia]";
+		mes "Se veio para aperfeiçoar seus equipamentos, você está no lugar certo!";
+	} else {
+		mes "[Purplesia]";
+		mes "Meu nome é... Purplesia. Isso te interessa mesmo?";
+	}
+	close;
+}
+
+//Guardas
+mora,73,50,5	script	Guardião do Portal Sul#s	518,{
+	mes "[Guardião do Portal]";
+	if(strnpcinfo(2) == "s")
+		mes "Atrás desse portal fica o campo sul de Bifrost.";
+	else if(strnpcinfo(2) == "n")
+		mes "Atrás desse portal fica o campo norte de Bifrost.";
+	else
+		mes "Atrás desse portal fica o campo leste de Bifrost.";
+	mes "Tome cuidado~";
+	close;
+}
+mora,25,158,5	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Norte#n	516
+mora,167,76,3	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Leste#l	522
+
+//Coral de Rafflesias
+mora,132,185,4	script	Pequeno Rafflesia#1	518,{
+	if(strnpcinfo(2) == "9")
+		npctalk "Você quer nos ouvir cantar? Fale com nosso Avô!";
+	else
+		npctalk "Gloria !!";
+}
+mora,133,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#2	524
+mora,134,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#3	525
+mora,132,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#4	522
+mora,134,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#5	516
+mora,134,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#6	516
+mora,132,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#7	524
+mora,133,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#8	518
+mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	522
+
+mora,140,186,4	script	Vovô Rafflesia	517,{
+	if($gloriasong == 1) {
+		mes "[Vovô Rafflesia]";
+		mes "Escute minhas crianças cantando... Não são lindas?";
+		close;
+	}
+	mes "[Vovô Rafflesia]";
+	mes "Estas pessoas jovems tem voz muito bonita. Eles talvez possam cantar em um grande coro futuramente!";
+	next;
+	mes "[Vovô Rafflesia]";
+	mes "Desde que eles eram pequenos eu os incentivei à cantar e agora temos um pequeno coro.";
+	next;
+	mes "[Vovô Rafflesia]";
+	mes "Você quer ouvir eles cantando?";
+	next;
+	if(select("Sim.:Não obrigado.") == 1){
+		mes "[Vovô Rafflesia]";
+		mes "Nós ainda temos muito que praticar mas vamos fazer nosso melhor!";
+		next;
+		mes "[Vovô Rafflesia]";
+		mes "Certo... Preparem-se, crianças...";
+		close2;
+		set $gloriasong,1;
+		specialeffect 78;
+		npctalk "3...4...!";
+		sleep 500;
+		//1
+		specialeffect 75,AREA,"Pequeno Rafflesia#1";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#9";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#3";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#7";
+		//2
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#1";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#4";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#7";
+		//3
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#3";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#6";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#9";
+		//1
+		specialeffect 75,AREA,"Pequeno Rafflesia#1";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#9";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#3";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#7";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#4";
+		//2
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#1";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#4";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#7";
+		//3
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#3";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#6";
+		sleep 1300;
+		specialeffect 75,AREA,"Pequeno Rafflesia#9";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#5";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#1";
+		specialeffect 75,AREA,"Pequeno Rafflesia#2";
+		specialeffect 75,AREA,"Pequeno Rafflesia#3";
+		specialeffect 75,AREA,"Pequeno Rafflesia#4";
+		sleep 2500;
+		specialeffect 75,AREA,"Pequeno Rafflesia#6";
+		specialeffect 75,AREA,"Pequeno Rafflesia#7";
+		specialeffect 75,AREA,"Pequeno Rafflesia#8";
+		specialeffect 75,AREA,"Pequeno Rafflesia#9";
+		//F
+		sleep 2500;
+		for(set .@i, 1; .@i <= 9; set .@i, .@i+1)
+			specialeffect 75,AREA,"Pequeno Rafflesia#"+.@i;
+		//P
+		npctalk "Parabéns crianças!";
+		set $gloriasong,0;
+		end;
+	}
+	mes "[Vovô Rafflesia]";
+	mes "Oh ok. Tudo bem então ~";
 	close;
 }
