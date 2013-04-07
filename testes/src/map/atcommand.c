@@ -5572,6 +5572,7 @@ ACMD_FUNC(changelook)
  *------------------------------------------*/
 ACMD_FUNC(autotrade)
 {
+	int i;
 	nullpo_retr(-1, sd);
 
 	if(map[sd->bl.m].flag.autotrade != battle_config.autotrade_mapflag) {
@@ -5594,6 +5595,29 @@ ACMD_FUNC(autotrade)
 		int timeout = atoi(message);
 		status_change_start(NULL,&sd->bl, SC_AUTOTRADE, 10000, 0, 0, 0, 0, ((timeout > 0) ? min(timeout,battle_config.at_timeout) : battle_config.at_timeout) * 60000, 0);
 	}
+
+	// Leave all chat channels.
+	if(raChSys.ally && sd->status.guild_id) {
+		struct guild *g = sd->guild, *sg;
+		if(g) {
+			if(idb_exists(((struct raChSysCh *)g->channel)->users, sd->status.char_id))
+				clif_chsys_left((struct raChSysCh *)g->channel,sd);
+			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
+				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id))) {
+					if(idb_exists(((struct raChSysCh *)sg->channel)->users, sd->status.char_id))
+						clif_chsys_left((struct raChSysCh *)sg->channel,sd);
+					break;
+				}
+			}
+		}
+	}
+	if(sd->channel_count) {
+		for(i = 0; i < sd->channel_count; i++) {
+			if(sd->channels[i] != NULL)
+				clif_chsys_left(sd->channels[i],sd);
+		}
+	}
+
 	clif_authfail_fd(sd->fd, 15);
 
 	return 0;
@@ -8918,6 +8942,47 @@ ACMD_FUNC(channel) {
 
 	return 0;
 }
+ACMD_FUNC(fontcolor) {
+	unsigned char k;
+
+	if(!message || !*message) {
+		char mout[40];
+		for(k = 0; k < raChSys.colors_count; k++) {
+			unsigned short msg_len = 1;
+			msg_len += sprintf(mout, "[ %s ] : %s",command,raChSys.colors_name[k]);
+
+			WFIFOHEAD(fd,msg_len + 12);
+			WFIFOW(fd,0) = 0x2C1;
+			WFIFOW(fd,2) = msg_len + 12;
+			WFIFOL(fd,4) = 0;
+			WFIFOL(fd,8) = raChSys.colors[k];
+			safestrncpy((char*)WFIFOP(fd,12), mout, msg_len);
+			WFIFOSET(fd, msg_len + 12);
+		}
+		return -1;
+	}
+
+	if(message[0] == '0') {
+		sd->fontcolor = 0;
+		pc_disguise(sd,0);
+		return 0;
+	}
+
+	for(k = 0; k < raChSys.colors_count; k++) {
+		if(strcmpi(message,raChSys.colors_name[k]) == 0)
+			break;
+	}
+	if(k == raChSys.colors_count) {
+		sprintf(atcmd_output, msg_txt(1411), message);// Unknown color '%s'.
+		clif_displaymessage(fd, atcmd_output);
+		return -1;
+	}
+
+	sd->fontcolor = k + 1;
+	pc_disguise(sd,sd->status.class_);
+
+	return 0;
+}
 
 /**
  * Fills the reference of available commands in atcommand DBMap
@@ -9175,6 +9240,7 @@ void atcommand_basecommands(void)
 		ACMD_DEF(mount2),
 		ACMD_DEF(join),
 		ACMD_DEF(channel),
+		ACMD_DEF(fontcolor),
 		ACMD_DEF(reload)
 	};
 	AtCommandInfo *atcommand;
