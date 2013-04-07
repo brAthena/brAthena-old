@@ -8439,6 +8439,13 @@ void clif_refresh(struct map_session_data *sd)
 	buyingstore_close(sd);
 
 	mail_clear(sd);
+
+	if(disguised(&sd->bl)) {/* refresh */
+		short disguise = sd->disguise;
+		pc_disguise(sd, 0);
+		pc_disguise(sd, disguise);
+	}
+
 }
 
 

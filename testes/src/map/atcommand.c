@@ -8743,7 +8743,7 @@ ACMD_FUNC(join) {
 	return 0;
 }
 
-inline void atcmd_channel_help(int fd, const char *command, bool can_create) {
+static inline void atcmd_channel_help(int fd, const char *command, bool can_create) {
 	clif_displaymessage(fd, msg_txt(1417));// ---- Available options:
 	if( can_create ) {
 		sprintf(atcmd_output, msg_txt(1418),command);// * %s create <#channel_name> <channel_password>
