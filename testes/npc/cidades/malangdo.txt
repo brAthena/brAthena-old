@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Vers?es eA/rA/brA: ??/1.2/1.3                          |
+//   | Vers?es eA/rA/brA: ??/1.3/1.3                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Malangdo.                 |
 //   |--------------------------------------------------------|
@@ -89,7 +89,21 @@ prontera,114,77,6	script	Dolangmal	553,{
 		mes "[Dolangmal]";
 		mes "Ok! Isso é tudo com o que precisa tomar cuidado!! É facil e simples... Que tal? Você pode tomar todos esses cuidados?";
 		next;
-		if(select("Vou tomar esses cuidados:Não conseguirei tomar todos esses cuidados") == 2) {
+		switch(select("Vou tomar esses cuidados:Não conseguirei tomar todos esses cuidados")) {
+		case 1:
+			mes "[Dolangmal]";
+			mes "Ok! Não morda dois ratos com uma boca só. O ^9E1837Almirante Thomas^000000 está localizado no ^A2314BCentro do navio na Ilha dos Gatos^000000.";
+			next;
+			mes "[Dolangmal]";
+			mes "Não esqueça dar notícia ao chegar.";
+			next;
+			mes "[Dolangmal]";
+			mes "Ok. vamos para o céu do gatos, ^A2314BIlha dos Gatos^000000~";
+			setquest 5091;
+			completequest 5091;
+			warp "malangdo",217,85;
+			close;
+		case 2:
 			mes "[Dolangmal]";
 			mes "O que!? Você não pode manter essa simples regra?";
 			next;
@@ -103,23 +117,12 @@ prontera,114,77,6	script	Dolangmal	553,{
 			mes "De qualquer forma, eu respeito sua decisão. Quando quiser ir é só me dizer.";
 			close;
 		}
-		mes "[Dolangmal]";
-		mes "Ok! Não morda dois ratos com uma boca só. O ^9E1837Almirante Thomas^000000 está localizado no ^A2314BCentro do navio na Ilha dos Gatos^000000.";
-		next;
-		mes "[Dolangmal]";
-		mes "Não esqueça dar notícia ao chegar.";
-		next;
-		mes "[Dolangmal]";
-		mes "Ok. vamos para o céu do gatos, ^A2314BIlha dos Gatos^000000~";
-		setquest 5091;
-		completequest 5091;
-		warp "malangdo",217,85;
-		close;
 	}
 	mes "[Dolangmal]";
 	mes "Hã? Você quer visitar a ^A2314BIlha dos Gatos^000000?";
 	next;
-	if(select("Leve me para a ^A2314BIlha dos Gatos^000000 novamente:Eu já visitei") == 1) {
+	switch(select("Leve me para a ^A2314BIlha dos Gatos^000000 novamente:Eu já visitei")) {
+	case 1:
 		mes "[Dolangmal]";
 		mes "Eu realmente gostaria de lhe enviar para lá, mas eu não posso por causa das nossas políticas, é difícil enviar pessoas para visitar, a ^A2314BIlha dos Gatos^000000 mais de uma vez.";
 		next;
@@ -138,19 +141,20 @@ prontera,114,77,6	script	Dolangmal	553,{
 		mes "[Dolangmal]";
 		mes "Tão fácil! Não é? Bem, adeus~";
 		close;
+	case 2:
+		mes "[Dolangmal]";
+		mes "Que tal? Você gostou de lá? Eu já sei a resposta. Hahaha";
+		next;
+		mes "[Dolangmal]";
+		mes "Ah! Eu só para ter certeza..";
+		next;
+		mes "[Dolangmal]";
+		mes "Se você quer ir para a ^A2314BIlha dos Gatos^000000, você tem que pegar o navio em Izlude ou Alberta!";
+		next;
+		mes "[Dolangmal]";
+		mes "Hum~ você precisa saber disso porque você é uma pessoa legal. Bem, fico feliz em ver você denovo~";
+		close;
 	}
-	mes "[Dolangmal]";
-	mes "Que tal? Você gostou de lá? Eu já sei a resposta. Hahaha";
-	next;
-	mes "[Dolangmal]";
-	mes "Ah! Eu só para ter certeza..";
-	next;
-	mes "[Dolangmal]";
-	mes "Se você quer ir para a ^A2314BIlha dos Gatos^000000, você tem que pegar o navio em Izlude ou Alberta!";
-	next;
-	mes "[Dolangmal]";
-	mes "Hum~ você precisa saber disso porque você é uma pessoa legal. Bem, fico feliz em ver você denovo~";
-	close;
 }
 geffen,109,61,6	duplicate(Dolangmal)	Dolangmal#2	553
 payon,200,106,4	duplicate(Dolangmal)	Dolangmal#3	553
