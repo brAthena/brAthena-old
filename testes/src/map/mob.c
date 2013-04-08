@@ -4384,13 +4384,13 @@ static bool mob_readdb_itemratio(char *str[], int columns, int current)
  */
 static void mob_load(void)
 {
-	sv_readsqldb(get_database_name(39), NULL, 2, -1, &mob_readdb_itemratio);
+	sv_readsqldb(get_database_name(39), NULL, 2+MAX_ITEMRATIO_MOBS, -1, &mob_readdb_itemratio);
 	mob_readchatdb();
 	mob_read_sqldb();
 	mob_read_sqlskilldb();
-	sv_readsqldb(get_database_name(40), NULL, 2, -1, &mob_readdb_mobavail);
+	sv_readsqldb(get_database_name(40), NULL, 12, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
-	sv_readsqldb(get_database_name(46), NULL, 2, -1, &mob_readdb_race2);
+	sv_readsqldb(get_database_name(46), NULL, 20, -1, &mob_readdb_race2);
 }
 
 void mob_reload(void)
