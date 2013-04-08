@@ -660,7 +660,9 @@ int itemdb_read_itemgroup2_sub()
 static void itemdb_read_itemgroup(void)
 {
 	itemdb_read_itemgroup_sub();
+	#ifdef RENEWAL
 	itemdb_read_itemgroup2_sub();
+	#endif
 	return;
 }
 

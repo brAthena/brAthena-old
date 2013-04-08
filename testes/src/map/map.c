@@ -3584,8 +3584,10 @@ char *get_database_name(int database_id)
 		case 33: db_name = "refine_db"; break;
 		case 34: db_name = "job_db1"; break;
 		case 35: db_name = "job_db2"; break;
+		#ifdef RENEWAL
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
+		#endif
 		case 38: db_name = "item_combo_db"; break;
 		case 39: db_name = "mob_item_ratio_db"; break;
 		case 40: db_name = "mob_avail_db"; break;
@@ -3607,7 +3609,9 @@ char *get_database_name(int database_id)
 		#endif
 		case 55: db_name = "item_db"; break;
 		case 56: db_name = "mob_db"; break;
+		#ifdef RENEWAL
 		case 57: db_name = "item_bro"; break;
+		#endif
 	}
 
 	return db_name;
