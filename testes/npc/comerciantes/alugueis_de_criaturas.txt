@@ -34,7 +34,7 @@ prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
 		mes "um Pecopeco? Você precisa ter a Habilidade";
 		mes "Montaria e apenas "+.@price+" zeny sobrando.";
 		next;
-		if(select("Alugar um Pecopeco:Cancelar")) {
+		if(select("Alugar um Pecopeco:Cancelar") == 1) {
 				mes "[Criador de Pecopecos]";
 			if (zeny < .@price) {
 				mes "Você não possui";
@@ -82,7 +82,7 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 		mes "para você. Para comprar um";
 		mes "são necessários "+.@price+" zeny.";
 		next;
-		if(select("Alugar um Pecopeco:Sair")) {
+		if(select("Alugar um Pecopeco:Sair") == 1) {
 				mes "[Criador de Pecopecos]";
 			if (zeny < .@price) {
 				mes "Você não possui";
@@ -131,7 +131,7 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 		mes "Você precisa de um Falcão?";
 		mes "Eles custam apenas "+.@price+" zenys!";
 		next;
-		if(select("Sim!:Esse preço é um assalto")) {
+		if(select("Sim!:Esse preço é um assalto") == 1) {
 				mes "[Adestrador de Falcões]";
 			if (zeny < .@price) {
 				mes "O quê?";
@@ -182,7 +182,7 @@ job3_rune01,88,62,5	script#re	Criador de Dragões	105,{
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja adquirir um Dragão?";
 		next;
-		if(select("Sim:Não")) {
+		if(select("Sim:Não") == 1) {
 				mes "[Criador de Dragões]";
 			if (!getskilllv("KN_RIDING") && !getskilllv("RK_DRAGONTRAINING")) {
 				mes "Por favor aprenda a Montar em um Dragão primeiro.";
@@ -210,7 +210,7 @@ prontera,130,213,5	script#re	Domador de Feras	105,{
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja obter um Dragão?";
 		next;
-		if(select("Sim:Não")) {
+		if(select("Sim:Não") == 1) {
 				mes "[Mestre em Criaturas de Montaria]";
 			if (!getskilllv("KN_RIDING")) {
 				mes "Por favor, aprenda a montar em um Dragão primeiro.";
@@ -229,7 +229,7 @@ prontera,130,213,5	script#re	Domador de Feras	105,{
 	if (Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Guard) {
 		mes "Bem-vindo. Você deseja obter um Grifo?";
 		next;
-		if(select("Sim:Não")) {
+		if(select("Sim:Não") == 1) {
 				mes "[Mestre em Criaturas de Montaria]";
 			if(!getskilllv("KN_RIDING")) {
 				mes "Por favor, aprenda a montar em um Grifo primeiro.";
@@ -263,7 +263,7 @@ prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 		mes "Você está montado em um Pecopeco.";
 		mes "Deseja removê-lo?";
 		next;
-		if(select("Sim:Não")) {
+		if(select("Sim:Não") == 1) {
 			setriding 0;
 			mes "[Soldado]";
 			mes "Me diga, como se sente";
@@ -285,7 +285,7 @@ prontera,163,178,4	script#re	Artilheiro Mágico	105,{
 	if (Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
 		mes "Bem-vindo. Você deseja adquirir um Robô?";
 		next;
-		if(select("Sim:Não")) {
+		if(select("Sim:Não") == 1) {
 				mes "[Artilheiro Mágico]";
 			if (!getskilllv("NC_MADOLICENCE")) {
 				mes "Por favor, aprenda a montar em um Robô primeiro.";
