@@ -1114,7 +1114,7 @@ OnTimer15000:
 	end;
 }
 
-einbroch,249,71,0	script	Scrutiny Association#7	-1,{
+einbroch,249,71,0	script	Associação Scrutiny#7	-1,{
 OnEnable:
 	initnpctimer;
 	end;

@@ -31,8 +31,8 @@ prontera,73,140,0	script	Vendedor de Leite	86,{
 	mes "Isso parece ser bom para você?";
 	next;
 	if (select("Trocar todas minhas Garrafas Vazias.:Cancelar") == 1) {
-		if (!countitem(713)) {
 			mes "[Vendedor de Leite]";
+		if (!countitem(713)) {
 			mes "Ei...";
 			mes "Você não tem nenhuma Garrafa Vazia.";
 			mes "Eu realmente não posso te dar o leite de outra forma, você sabe...";
@@ -42,14 +42,12 @@ prontera,73,140,0	script	Vendedor de Leite	86,{
 		set .@total_weight,.@bottles * 50;
 		set .@total_cost,.@bottles * 15;
 		if (zeny < .@Total_cost) {
-			mes "[Vendedor de Leite]";
 			mes "Oh, whoa~!";
 			mes "Você não tem os zenys necessários para esse número de Garrafas Vazias.";
 			mes "Você precisa me trazer um total de " + .@total_cost + " zenys.";
 			close;
 		}
-		if((maxweight-weight < .@total_weight) || (checkweight(1201,1) == 0)){
-			mes "[Vendedor de Leite]";
+		if((maxweight-weight < .@total_weight) || (checkweight(1201,1) == 0)) {
 			mes "Hmm...";
 			mes "Acho que você deveria abrir mais espaço em seu inventário antes que eu lhe dê todo esse leite...";
 			close;

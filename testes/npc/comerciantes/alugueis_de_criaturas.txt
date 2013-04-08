@@ -25,7 +25,7 @@
 
 // -------------- Criador de Pecopecos (para Cavaleiros e evoluções) --------------
 prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
-	if(Upper == 0 || Upper == 1 || Upper == 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
+	if(Upper >= 0 && Upper <= 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
 
 	mes "[Criador de Pecopecos]";
 	if (BaseJob == Job_Knight && Class < Job_Rune_Knight) {
@@ -34,50 +34,45 @@ prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
 		mes "um Pecopeco? Você precisa ter a Habilidade";
 		mes "Montaria e apenas "+.@price+" zeny sobrando.";
 		next;
-		switch(select("Alugar Peco Peco:Cancelar")) {
-		case 1:
-			if (zeny < .@price) {
+		if(select("Alugar um Pecopeco:Cancelar")) {
 				mes "[Criador de Pecopecos]";
+			if (zeny < .@price) {
 				mes "Você não possui";
 				mes "zeny suficiente.";
 				mes "Você está...";
 				mes "pobre?";
 				close;
-			} else if(getskilllv("KN_RIDING") == 0) {
-				mes "[Criador de Pecopecos]";
+			} else if(!getskilllv("KN_RIDING")) {
 				mes "Me desculpe, mas você";
 				mes "não pode utilizar esse";
 				mes "serviço. Por favor aprenda";
 				mes "a habilidade Montaria primeiro.";
 				close;
 			} else if(checkriding() || ismounting()) {
-				mes "[Criador de Pecopecos]";
 				mes "Você já está";
 				mes "montado em uma montaria.";
 				close;
-			}	
+			}
 			set zeny,zeny-.@price;
 			setriding;
 			close;
-		case 2:
+			}
 			mes "[Criador de Pecopecos]";
 			mes "Entendo.";
 			mes "Bem então,";
 			mes "tenha um bom dia.";
 			close;
 		}
-	} else {
 		mes "Me desculpe, mas esses";
 		mes "Peco Pecos estão disponíveis";
 		mes "apenas para Cavaleiros";
 		mes "e Lordes.";
 		close;
-	}
 }
 
 // -------------- Criador de Pecopecos (para Templários e evoluções) --------------
 prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
-	if(Upper == 0 || Upper == 1 || Upper == 2) set .@price,3500; // Pecopeco Normal - Avançado e Bebê
+	if(Upper >= 0 && Upper <= 2) set .@price,3500; // Pecopeco Normal - Avançado e Bebê
 
 	mes "[Criador de Pecopecos]";
 	if (BaseJob == Job_Crusader && Class < Job_Rune_Knight) {
@@ -87,24 +82,20 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 		mes "para você. Para comprar um";
 		mes "são necessários "+.@price+" zeny.";
 		next;
-		switch(select("Comprar um Pecopeco:Sair")) {
-		case 1:
-			if (zeny < .@price) {
+		if(select("Alugar um Pecopeco:Sair")) {
 				mes "[Criador de Pecopecos]";
+			if (zeny < .@price) {
 				mes "Você não possui";
 				mes "a quantidade de zenys suficientes.";
 				mes "Se você quiser um";
 				mes "Pecopeco por favor";
 				mes "me traga "+.@price+" zeny...";
 				close;
-			} else if(getskilllv("KN_RIDING") == 0) {
-				mes "[Criador de Pecopecos]";
-				mes "You must first learn";
-				mes "to ride a PecoPeco before";
-				mes "I can rent one to you.";
+			} else if(!getskilllv("KN_RIDING")) {
+				mes "Você deve primeiro aprender a como montar um Pecopeco";
+				mes "após isso eu poderei alugar um para você.";
 				close;
 			} else if(checkriding() || ismounting()) {
-				mes "[Criador de Pecopecos]";
 				mes "Você já está";
 				mes "montado em uma montaria.";
 				close;
@@ -112,24 +103,22 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 			set zeny,zeny-.@price;
 			setriding;
 			close;
-		case 2:
+			}
 			mes "[Criador de Pecopecos]";
 			mes "Nos vemos por ai.";
 			close;
 		}
-	} else {
 		mes "O que posso fazer por você?";
 		mes "Lembre-se que";
 		mes "esse serviço é";
 		mes "restrito a";
 		mes "Templários e Paladinos.";
 		close;
-	}
 }
 
 // -------------- Adestrador de Falcões --------------
 hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
-	if(Upper == 0 || Upper == 1 || Upper == 2) // Falcão Normal - Avançado e Bebê
+	if(Upper >= 0 && Upper <= 2) // Falcão Normal - Avançado e Bebê
 
 	mes "[Adestrador de Falcões]";
 	if (BaseJob == Job_Hunter) {
@@ -142,10 +131,9 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 		mes "Você precisa de um Falcão?";
 		mes "Eles custam apenas "+.@price+" zenys!";
 		next;
-		switch(select("Sim!:Esse preço é um assalto")) {
-		case 1:
-			if (zeny < .@price) {
+		if(select("Sim!:Esse preço é um assalto")) {
 				mes "[Adestrador de Falcões]";
+			if (zeny < .@price) {
 				mes "O quê?";
 				mes "Você não possui a";
 				mes "quantidade de zenys suficiente?!";
@@ -153,8 +141,7 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 				mes "juntar dinheiro em";
 				mes "vez de caçar monstros~";
 				close;
-			} else if(getskilllv("HT_FALCON") == 0) {
-				mes "[Adestrador de Falcões]";
+			} else if(!getskilllv("HT_FALCON")) {
 				mes "Puxa~";
 				mes "Primeiro vá e aprenda a";
 				mes "domesticar um Falcão!";
@@ -163,7 +150,6 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 				mes "que você não saberá cuidar dele.";
 				close;
 			} else if(checkfalcon()) {
-				mes "[Adestrador de Falcões]";
 				mes "Hum...";
 				mes "Você já possui";
 				mes "um Falcão. Você não consegue";
@@ -173,7 +159,7 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 			set zeny,zeny-.@price;
 			setfalcon;
 			close;
-		case 2:
+			}
 			mes "[Adestrador de Falcões]";
 			mes "E-espere, onde";
 			mes "você vai? Estes";
@@ -181,14 +167,12 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 			mes "Eu garanto! Vamos lá~";
 			close;
 		}
-	} else {
 		mes "Jovem tolo!";
 		mes "Falcões podem apenas";
 		mes "serem usados por Caçadores";
 		mes "e Atiradores de Elite, aprendeu?";
 		mes "...Heheh, ciúmes?";
 		close;
-	}
 }
 
 // -------------- Criador de Dragões --------------
@@ -198,25 +182,22 @@ job3_rune01,88,62,5	script#re	Criador de Dragões	105,{
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja adquirir um Dragão?";
 		next;
-		switch(select("Sim:Não")) {
-		case 1:
-			if (!getskilllv("KN_RIDING") && !getskilllv("RK_DRAGONTRAINING")) {
+		if(select("Sim:Não")) {
 				mes "[Criador de Dragões]";
+			if (!getskilllv("KN_RIDING") && !getskilllv("RK_DRAGONTRAINING")) {
 				mes "Por favor aprenda a Montar em um Dragão primeiro.";
 				close;
 			} else if (checkriding() || ismounting()) {
-				mes "[Criador de Dragões]";
 				mes "Você já está montado em uma montaria.";
 				close;
 			}
 			setdragon;
 			close;
-		case 2:
+			}
 			mes "[Criador de Dragões]";
 			mes "Entendo. Então tenha um bom dia.";
 			close;
 		}
-	}
 	mes "O que você está fazendo aqui?";
 	mes "Apenas Cavaleiros Rúnicos podem obter um Dragão.";
 	close;
@@ -229,47 +210,41 @@ prontera,130,213,5	script#re	Domador de Feras	105,{
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja obter um Dragão?";
 		next;
-		switch(select("Sim:Não")) {
-		case 1:
-			if (!getskilllv("KN_RIDING")) {
+		if(select("Sim:Não")) {
 				mes "[Mestre em Criaturas de Montaria]";
+			if (!getskilllv("KN_RIDING")) {
 				mes "Por favor, aprenda a montar em um Dragão primeiro.";
 				close;
 			} else if (checkriding() || ismounting()) {
-				mes "[Mestre em Criaturas de Montaria]";
 				mes "Você já possui uma Montaria.";
 				close;
 			}
 			setdragon;
 			close;
-		case 2:
+			}
 			mes "[Mestre em Criaturas de Montaria]";
 			mes "Entendo. Então tenha um bom dia.";
 			close;
 		}
-	}
 	if (Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Guard) {
 		mes "Bem-vindo. Você deseja obter um Grifo?";
 		next;
-		switch(select("Sim:Não")) {
-		case 1:
-			if(!getskilllv("KN_RIDING")) {
+		if(select("Sim:Não")) {
 				mes "[Mestre em Criaturas de Montaria]";
+			if(!getskilllv("KN_RIDING")) {
 				mes "Por favor, aprenda a montar em um Grifo primeiro.";
 				close;
 			}
 			else if (checkriding() || ismounting()) {
-				mes "[Mestre em Criaturas de Montaria]";
 				mes "Você já possui uma Montaria.";
 				close;
 			}
 			setriding;
 			close;
-		case 2:
+			}
 			mes "[Mestre em Criaturas de Montaria]";
 			mes "Entendo. Então tenha um ótimo dia.";
 			close;
-		}
 	}
 	mes "Eu estou aqui para providenciar montarias para as Classes Cavaleiro Rúnico e Guardião Real.";
 	close;
@@ -288,19 +263,17 @@ prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 		mes "Você está montado em um Pecopeco.";
 		mes "Deseja removê-lo?";
 		next;
-		switch(select("Sim:Não")) {
-		case 1:
+		if(select("Sim:Não")) {
 			setriding 0;
 			mes "[Soldado]";
 			mes "Me diga, como se sente";
 			mes "ao tocar o chão novamente?";
 			close;
-		case 2:
+			}
 			mes "[Soldado]";
 			mes "Entendo. Por favor se mudar de idéia";
 			mes "fique a vontade para voltar quando quiser.";
 			close;
-		}
 	}
 	close;
 }
@@ -312,25 +285,22 @@ prontera,163,178,4	script#re	Artilheiro Mágico	105,{
 	if (Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
 		mes "Bem-vindo. Você deseja adquirir um Robô?";
 		next;
-		switch(select("Sim:Não")) {
-		case 1:
-			if (!getskilllv("NC_MADOLICENCE")) {
+		if(select("Sim:Não")) {
 				mes "[Artilheiro Mágico]";
+			if (!getskilllv("NC_MADOLICENCE")) {
 				mes "Por favor, aprenda a montar em um Robô primeiro.";
 				close;
 			}
 			else if (checkmadogear() || ismounting()) {
-				mes "[Artilheiro Mágico]";
 				mes "Você já possui uma montaria.";
 				close;
 			}
 			setmadogear;
 			close;
-		case 2:
+			}
 			mes "[Artilheiro Mágico]";
 			mes "Entendo. Então tenha um ótimo dia.";
 			close;
-		}
 	}
 	mes "Como posso te ajudar?";
 	mes "Os Robôs estão disponíveis apenas para Mecânicos.";

@@ -26,7 +26,7 @@
 //   \________________________________________________________/
 
 aldeba_in,152,166,4	script	Mercador#01	86,{
-	mes "[Trader]";
+	mes "[Mercador]";
 	mes "Quem é este homem misterioso?";
 	mes "Eu, o enigmático e charmoso 'Mercador?'";
 	next;
@@ -52,7 +52,7 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			delitem 998,50;  // Ferro
 			delitem 733,1;   // Diamante Rachado
 			set Zeny,Zeny-3500;
-			mes "[Trader]";
+			mes "[Mercador]";
 			mes "Hm! Você não tem uma licença médica, não é? Está tudo bem, eu ouvi sobre um Gatuno, o médico não licenciado que realizou milagres médicos! Mas... Isso pode ter sido uma história em quadrinhos.";
 			next;
 			mes "[Mercador]";
@@ -61,7 +61,7 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			close;
 		}
 		else {
-			mes "[Trader]";
+			mes "[Mercador]";
 		  mes "Você cara!~";
 		  mes "Verifique os requisitos de novo.";
 		  mes "Você não parece idiota. Então... caia na real.";
@@ -72,13 +72,13 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			delitem 2247,1;   // Chapéu Romântico
 			delitem 916,300;  // Plumas
 			set Zeny,Zeny-500;
-			mes "[Trader]";
+			mes "[Mercador]";
 			mes "Ah! Você tem bom senso de moda. Eu sei que você teve um tempo difícil coletando esse material, mas este chapéu vale a pena. Pegue. Tudo que você precisa agora é de um casaco de pele e uma bengala!";
 			getitem 5018,1; // Chapéu com Pluma
 			close;
 		}
 		else {
-			mes "[Trader]";
+			mes "[Mercador]";
 			mes "Ei cara~";
 			mes "Verifique os requisitos de novo. Você não parece idiota. Então... caia na real.";
 			close;
@@ -88,13 +88,13 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			delitem 998,20;  // Ferro
 			delitem 707,1;   // Planta da Melodia
 			set Zeny,Zeny-5000;
-			mes "[Trader]";
+			mes "[Mercador]";
 			mes "Isso aqui? É um pouco assustador, embora ele tenha algum tipo de aspecto romântico. O que você acha? Você gosta disso? Tudo bem, pegue, é seu!";
 			getitem 2281,1; // Máscara do Fantasma
 			close;
 		}
 		else {
-			mes "[Trader]";
+			mes "[Mercador]";
 		  mes "Palhaço. Verifique os requisitos de novo. Não é fácil conseguir uma ^3355FFMáscara do Fantasma^000000. Então... caia na real.";
 			close;
 		}
@@ -102,7 +102,7 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 		if ((countitem(1019) > 119) && (Zeny > 9999)){
 			delitem 1019,120; // Tronco
 			set Zeny,Zeny-10000;
-			mes "[Trader]";
+			mes "[Mercador]";
       mes "Se você tiver a oportunidade de visitar a Vila Uplander, em Payon, visite e conheça o artesão do Chapéu Chinês.";
 			next;
 			mes "[Mercador]";
@@ -111,7 +111,7 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			close;
 		}
 		else {
-			mes "[Trader]";
+			mes "[Mercador]";
       mes "*Aiai*~ Verifique meus requisitos de novo. Então... Você não pareçe um idiota, caia na real.~";
 			close;
 		}

@@ -99,10 +99,10 @@ odin_tem03,178,224,3,3	monster#pre	Skogul	1761,1,30000,15000,0
 odin_tem03,205,240,3,3	monster#pre	Frus	1762,1,30000,15000,0
 odin_tem03,238,265,3,3	monster#pre	Skogul	1761,1,30000,15000,0
 odin_tem03,256,271,3,3	monster#pre	Frus	1762,1,30000,15000,0
-odin_tem03,0,0,0,0	monster#pre	Valquíria	1765,2,1800000,1200000,0
-odin_tem03,0,0,0,0	boss_monster#pre	Valquíria Randgris	1751,1,28800000,600000,1
-odin_tem03,0,0,0,0	monster#pre	Planta Azul	1079,15,1800000,900000,1
-odin_tem03,0,0,0,0	monster#pre	Planta Brilhante	1083,15,1800000,900000,1,{}
+odin_tem03,0,0,0,0	monster#pre	Valquíria	1765,2,1800000,1200000,0,{}
+odin_tem03,0,0,0,0	boss_monster	Valquíria Randgris	1751,1,28800000,600000,1
+odin_tem03,0,0,0,0	monster	Planta Azul	1079,15,1800000,900000,1
+odin_tem03,0,0,0,0	monster	Planta Brilhante	1083,15,1800000,900000,1
 
 //==================================================
 // [Renovação] odin_tem03 - Templo de Odin (Terceiro Andar)
@@ -114,7 +114,4 @@ odin_tem03,0,0,0,0	monster#re	Skogul	1761,5,5000,0,0
 odin_tem03,0,0,0,0	monster#re	Frus	1762,5,5000,0,0
 odin_tem03,0,0,0,0	monster#re	Skogul	1752,4,5000,0,0
 odin_tem03,0,0,0,0	monster#re	Frus	1753,4,5000,0,0
-odin_tem03,0,0,0,0	monster#re	Valquíria	1765,2,5400000,1800000,0
-odin_tem03,0,0,0,0	boss_monster#re	Valquíria Randgris	1751,1,28800000,600000,1
-odin_tem03,0,0,0,0	monster#re	Planta Azul	1079,15,1800000,900000,1
-odin_tem03,0,0,0,0	monster#re	Planta Brilhante	1083,15,1800000,900000,1,{}
+odin_tem03,0,0,0,0	monster#re	Valquíria	1765,2,5400000,1800000,0,{}

@@ -92,8 +92,8 @@ abyss_03,0,0,0,0	monster#pre	Acidus	1716,10,300000,0,0
 abyss_03,0,0,0,0	monster#pre	Ferus	1714,10,300000,0,0
 abyss_03,0,0,0,0	monster#pre	Ferus	1717,10,300000,0,0
 abyss_03,0,0,0,0	monster#pre	Ovo de Dragão	1721,10,1800000,600000,0
-abyss_03,0,0,0,0	monster#pre	Hydrolancer	1720,3,3000000,2400000,0
-abyss_03,0,0,0,0	boss_monster#pre	Detardeurus	1719,1,10800000,600000,0,{}
+abyss_03,0,0,0,0	monster#pre	Hydrolancer	1720,3,3000000,2400000,0,{}
+abyss_03,0,0,0,0	boss_monster	Detardeurus	1719,1,10800000,600000,0
 
 //==================================================
 // [Renovação] abyss_03 - Caverna Subterrânea do Lago do Abismo
@@ -105,5 +105,4 @@ abyss_03,0,0,0,0	monster#re	Acidus	1716,10,5000,0,0
 abyss_03,0,0,0,0	monster#re	Mímico Antigo	1699,10,5000,0,0
 abyss_03,0,0,0,0	monster#re	Ferus	1714,10,5000,0,0
 abyss_03,0,0,0,0	monster#re	Ferus	1717,10,5000,0,0
-abyss_03,0,0,0,0	monster#re	Hydrolancer	1720,3,5000,0,0
-abyss_03,0,0,0,0	boss_monster#re	Detardeurus	1719,1,10800000,600000,0,{}
+abyss_03,0,0,0,0	monster#re	Hydrolancer	1720,3,5000,0,0,{}

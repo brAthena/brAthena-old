@@ -33,11 +33,9 @@ c_tower2,273,26,0	warp	clt005	1,1,c_tower1,235,223
 // ============ 2 Andar - Aleatório 2-1 ============
 c_tower2,13,288,4	script	clt006r	45,1,1,{
 	set @r,rand(3);
-	if(@r==1) goto w2;
-	if(@r==2) goto w3;
-		warp "c_tower2",13,282; end;
-	w2:	warp "alde_dun03",175,131; end;
-	w3:	warp "c_tower3",235,7; end;
+	if(@r==1) warp "alde_dun03",175,131;
+	else if(@r==2) warp "c_tower3",235,7;
+	else warp "c_tower2",13,282; end;
 }
 // ============ Aleatório 2-2 ============
 c_tower2,223,267,4	script	clt007r	45,1,1,{

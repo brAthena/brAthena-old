@@ -111,10 +111,9 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 			mes "Eu sou Hugh da Equipe de Compras.";
 			mes "Como posso ajudá-lo hoje?";
 			next;
-			if(select("Purchase Bulk Buyer Shop License:Quit") == 2) {
+			if(select("Comprar uma Licença:Sair") == 2) {
 				mes "[Sr. Hugh]";
-				mes "Por favor, não hesite em perguntar-me, se você precisar de alguma Licença para Loja de Compras em Massa";
-				mes "Volte sempre~";
+				mes "Por favor, não hesite em perguntar-me, se você precisar de alguma Licença para Loja de Compras em Massa fique a vontade para falar.";
 				close;
 			}
 			mes "[Sr. Hugh]";

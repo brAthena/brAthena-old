@@ -18,121 +18,106 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação] gefenia01 - Geffenia
+// [Pré-Renovação] gefenia01 - Geffenia 1
 //==================================================
 gefenia01,0,0,0,0	monster#pre	Anjo Fajuto	1371,60,0,0,0
 gefenia01,0,0,0,0	monster#pre	Succubus	1370,10,0,0,0
 gefenia01,0,0,0,0	monster#pre	Incubus	1374,10,0,0,0
 gefenia01,0,0,0,0	monster#pre	Violy	1390,30,0,0,0
-gefenia01,0,0,0,0	monster#pre	Diabinho	1292,20,0,0,0
+gefenia01,0,0,0,0	monster#pre	Diabinho	1292,20,0,0,0,{}
 gefenia01,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0
-gefenia01,0,0,0,0	monster#pre	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia01,0,0,0,0	monster#pre	Mysteltainn	1203,1,10800000,7200000,0
-gefenia01,0,0,0,0	monster#pre	Executor	1205,1,18000000,14400000,0
-gefenia01,0,0,0,0	monster#pre	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia01,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
+gefenia01,0,0,0,0	monster	Mysteltainn	1203,1,10800000,7200000,0
+gefenia01,0,0,0,0	monster	Executor	1205,1,18000000,14400000,0
+gefenia01,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 
 //==================================================
-// [Renovação] gefenia01 - Geffenia
+// [Renovação] gefenia01 - Geffenia 1
 //==================================================
 gefenia01,0,0,0,0	monster#re	Anjo Fajuto	1371,60,5000,0,0
 gefenia01,0,0,0,0	monster#re	Violinista	1390,30,5000,0,0
 gefenia01,0,0,0,0	monster#re	Diabinho	1292,20,5000,0,0
 gefenia01,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
 gefenia01,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0
-gefenia01,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0
-gefenia01,0,0,0,0	monster#re	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia01,0,0,0,0	monster#re	Mysteltainn	1203,1,10800000,7200000,0
-gefenia01,0,0,0,0	monster#re	Executor	1205,1,18000000,14400000,0
-gefenia01,0,0,0,0	monster#re	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia01,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação] gefenia02 - Geffenia
+// [Pré-Renovação] gefenia02 - Geffenia 2
 //==================================================
 gefenia02,0,0,0,0	monster#pre	Anjo Fajuto	1371,30,0,0,0
 gefenia02,0,0,0,0	monster#pre	Succubus	1370,20,0,0,0
 gefenia02,0,0,0,0	monster#pre	Incubus	1374,10,0,0,0
 gefenia02,0,0,0,0	monster#pre	Violy	1390,40,0,0,0
 gefenia02,0,0,0,0	monster#pre	Diabinho	1292,30,0,0,0
-gefenia02,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0
-gefenia02,0,0,0,0	monster#pre	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia02,0,0,0,0	monster#pre	Mysteltainn	1203,1,18000000,14400000,0
-gefenia02,0,0,0,0	monster#pre	Executor	1205,1,18000000,14400000,0
-gefenia02,0,0,0,0	monster#pre	Tirfing	1204,1,10800000,7200000,0,{}
+gefenia02,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0,{}
+gefenia02,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
+gefenia02,0,0,0,0	monster	Mysteltainn	1203,1,18000000,14400000,0
+gefenia02,0,0,0,0	monster	Executor	1205,1,18000000,14400000,0
+gefenia02,0,0,0,0	monster	Tirfing	1204,1,10800000,7200000,0
 
 //==================================================
-// gefenia02 - Geffenia
+// [Renovação] gefenia02 - Geffenia 2
 //==================================================
 gefenia02,0,0,0,0	monster#re	Violinista	1390,40,5000,0,0
 gefenia02,0,0,0,0	monster#re	Diabinho	1292,30,5000,0,0
 gefenia02,0,0,0,0	monster#re	Anjo Fajuto	1371,30,5000,0,0
 gefenia02,0,0,0,0	monster#re	Succubus	1370,20,5000,0,0
 gefenia02,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
-gefenia02,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0
-gefenia02,0,0,0,0	monster#re	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia02,0,0,0,0	monster#re	Tirfing	1204,1,10800000,7200000,0
-gefenia02,0,0,0,0	monster#re	Mysteltainn	1203,1,18000000,14400000,0
-gefenia02,0,0,0,0	monster#re	Executor	1205,1,18000000,14400000,0,{}
+gefenia02,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação] gefenia03 - Geffenia
+// [Pré-Renovação] gefenia03 - Geffenia 3
 //==================================================
 gefenia03,0,0,0,0	monster#pre	Anjo Fajuto	1371,40,0,0,0
 gefenia03,0,0,0,0	monster#pre	Succubus	1370,10,0,0,0
 gefenia03,0,0,0,0	monster#pre	Incubus	1374,20,0,0,0
 gefenia03,0,0,0,0	monster#pre	Violy	1390,40,0,0,0
 gefenia03,0,0,0,0	monster#pre	Diabinho	1292,30,0,0,0
-gefenia03,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0
-gefenia03,0,0,0,0	monster#pre	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia03,0,0,0,0	monster#pre	Mysteltainn	1203,1,18000000,14400000,0
-gefenia03,0,0,0,0	monster#pre	Executor	1205,1,10800000,7200000,0
-gefenia03,0,0,0,0	monster#pre	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia03,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0,{}
+gefenia03,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
+gefenia03,0,0,0,0	monster	Mysteltainn	1203,1,18000000,14400000,0
+gefenia03,0,0,0,0	monster	Executor	1205,1,10800000,7200000,0
+gefenia03,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 
 //==================================================
-// gefenia03 - Geffenia
+// [Renovação] gefenia03 - Geffenia 3
 //==================================================
 gefenia03,0,0,0,0	monster#re	Anjo Fajuto	1371,40,5000,0,0
 gefenia03,0,0,0,0	monster#re	Violinista	1390,40,5000,0,0
 gefenia03,0,0,0,0	monster#re	Diabinho	1292,30,5000,0,0
 gefenia03,0,0,0,0	monster#re	Incubus	1374,20,5000,0,0
 gefenia03,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
-gefenia03,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0
-gefenia03,0,0,0,0	monster#re	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia03,0,0,0,0	monster#re	Executor	1205,1,10800000,7200000,0
-gefenia03,0,0,0,0	monster#re	Mysteltainn	1203,1,18000000,14400000,0
-gefenia03,0,0,0,0	monster#re	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia03,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação] gefenia04 - Geffenia
+// [Pré-Renovação] gefenia04 - Geffenia 4
 //==================================================
 gefenia04,0,0,0,0	monster#pre	Anjo Fajuto	1371,30,0,0,0
 gefenia04,0,0,0,0	monster#pre	Succubus	1370,10,600000,300000,0
 gefenia04,0,0,0,0	monster#pre	Incubus	1374,10,600000,300000,0
 gefenia04,0,0,0,0	monster#pre	Violy	1390,30,0,0,0
 gefenia04,0,0,0,0	monster#pre	Diabinho	1292,20,0,0,0
-gefenia04,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0
-gefenia04,0,0,0,0	monster#pre	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia04,0,0,0,0	monster#pre	Mysteltainn	1203,1,18000000,14400000,0
-gefenia04,0,0,0,0	monster#pre	Executor	1205,1,18000000,14400000,0
-gefenia04,0,0,0,0	monster#pre	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia04,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0,{}
+gefenia04,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
+gefenia04,0,0,0,0	monster	Mysteltainn	1203,1,18000000,14400000,0
+gefenia04,0,0,0,0	monster	Executor	1205,1,18000000,14400000,0
+gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0,{}
 
 //==================================================
-// [Renovação] gefenia03 - Geffenia
+// [Renovação] gefenia04 - Geffenia 4
 //==================================================
-gefenia03,0,0,0,0	monster#re	Anjo Fajuto	1371,30,5000,0,0
-gefenia03,0,0,0,0	monster#re	Violy	1390,30,5000,0,0
-gefenia03,0,0,0,0	monster#re	Diabinho	1292,20,5000,0,0
-gefenia03,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
-gefenia03,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0
-gefenia03,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0
-gefenia03,0,0,0,0	monster#re	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
-gefenia03,0,0,0,0	monster#re	Mysteltainn	1203,1,18000000,14400000,0
-gefenia03,0,0,0,0	monster#re	Executor	1205,1,18000000,14400000,0
-gefenia03,0,0,0,0	monster#re	Tirfing	1204,1,18000000,14400000,0,{}
+gefenia04,0,0,0,0	monster#re	Anjo Fajuto	1371,30,5000,0,0
+gefenia04,0,0,0,0	monster#re	Violy	1390,30,5000,0,0
+gefenia04,0,0,0,0	monster#re	Diabinho	1292,20,5000,0,0
+gefenia04,0,0,0,0	monster#re	Cavaleiro do Abismo	1219,10,5000,0,0
+gefenia04,0,0,0,0	monster#re	Incubus	1374,10,5000,0,0
+gefenia04,0,0,0,0	monster#re	Succubus	1370,10,5000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] gefenia01 - Geffenia (Antiga)

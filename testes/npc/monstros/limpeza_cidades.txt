@@ -44,7 +44,7 @@ gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 louyang,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 ayothaya,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 moscovia,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
-brasilis,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+brasilis,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0,{}
 
 //==================================================
 // einbech - Einbech, a vila mineradora

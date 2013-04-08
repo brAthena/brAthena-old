@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
+nyd_dun02,100,201,3	script	Portão Enigmático	111,8,8,{
 	if (ins_nyd == 0) {
 		mes "Há um grande portão de pedra á sua frente. Nele há a escultura de um terrível dragão que exibe suas poderosas asas.";
 		next;
@@ -96,12 +96,12 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 			mes "[??????]";
 			mes "Palavras prometidas... Feitiço do guardião... prova de sua existência";
 			next;
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Em nome de Yggdrasilid, eu o aceitarei como servo do Guardião.";
 			next;
 			specialeffect2 EF_CHANGECOLD;
 			set ins_nyd,200;
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Eu aceito sua entrada pelo portão do Guardião. Você agora é considerado um servo fiel do Guardião Nidhogg.";
 			next;
 			mes "A voz desapareceu, e a energia escura se acalma por trás do portão de pedra.";
@@ -115,7 +115,7 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 		if (.@ins_nyd_check == -1) {
 			mes "Ao colocar suas mãos no portão de pedra, uma voz soa do fundo do seu coração.";
 			next;
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Servo fiél do Guardião... o que eu posso fazer por você?";
 			next;
 			switch(select("Solicitar permissão para entrar.:Entrar agora.:Sair.")) {
@@ -132,7 +132,7 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 				if (.@leader == getcharid(0)) {
 					set .@instance, instance_create(.@md_name$, .@party);
 					if (.@instance < 0) {
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "O Guardião parece querer ficar sozinho. Vou entrar e conferir, aguarde aqui por favor.";
 						close;
 					} else {
@@ -182,24 +182,24 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 						donpcevent instance_npcname("nyd_2f_green_warp2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("nyd_2f_green_warp3", instance_id())+"::OnInstanceInit";
 
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "Sua solicitação foi aceita.";
 						next;
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "Quando estiver pronto, fale comigo e permitirei que você entre.";
 						close;
 					}
 				} else {
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "Ao colocar suas mãos no portão de pedra, uma voz soa do fundo do seu coração.";
 					next;
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "Onde estão os outros servos, para que vocês trabalhem juntos? Os servos não podem trabalhar sozinhos...";
 					next;
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "Come with at least 1 more servant... Only party leaders can accept admission to Nidhoggur's Nest.";
 					next;
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "E apenas o representante do grupo precisa falar comigo, portanto não me incomode...";
 					close;
 				}
@@ -217,16 +217,16 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 					}
 
 					if (has_instance("1@nyd") == "") {
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "Você não tem permissão para entrar. Por favor, peça ao líder do seu grupo para solicitar a entrada.";
 						close;
 					}
 					if((party_instance_id2 != 0) && (party_instance_id2 != getcharid(1))) {
 						//Custom
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "Sua entrada no Ninho de Nidhogg não é mais permitida, já que sua instância expirou.";
 						next;
-						mes "[Porteiro de Yggdrasil]";
+						mes "[Portão Enigmático]";
 						mes "Depois que a Sombra de Nidhogg desaparece, é necessário pelo menos 3 dias para que ela retorne ao normal.";
 						close;
 					} else {
@@ -239,10 +239,10 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 					}
 				} else {
 					//Custom
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "Sua entrada no Ninho de Nidhogg não é mais permitida, já que sua instância expirou.";
 					next;
-					mes "[Porteiro de Yggdrasil]";
+					mes "[Portão Enigmático]";
 					mes "Depois que a Sombra de Nidhogg desaparece, é necessário pelo menos 3 dias para que ela retorne ao normal.";
 					close;
 				}
@@ -250,17 +250,17 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 				close;
 			}
 		} else if (.@ins_nyd_check == 0 || .@ins_nyd_check == 1) {
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Com a destruição da Sombra de Nidhogg, as raízes da Árvore Yggdrasil também são afetadas.";
 			next;
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Depois que a Sombra de Nidhogg desaparece, é necessário pelo menos 3 dias para que ela retorne ao normal.";
 			close;
 		} else if (.@ins_nyd_check == 2) {
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "A Grande Árvore Yggdrasil está estabilizada, gostaria de entrar no Ninho de Nidhogg novamente?";
 			next;
-			mes "[Porteiro de Yggdrasil]";
+			mes "[Portão Enigmático]";
 			mes "Se quiser entrar novamente, por favor registre-se comigo.";
 			set party_instance_id2,0;
 			erasequest 3135;
@@ -292,7 +292,7 @@ nyd_dun02,100,201,3	script	Porteiro de Yggdrasil	111,8,8,{
 OnTouch_:
 	if (ins_nyd == 0) {
 		specialeffect2 EF_CHANGECOLD;
-		specialeffect EF_CHANGECOLD,"Porteiro de Yggdrasil";
+		specialeffect EF_CHANGECOLD,"Portão Enigmático";
 	}
 	end;
 }

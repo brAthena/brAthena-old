@@ -26,7 +26,7 @@
 //==================================================
 // [Pré-Renovação] ice_dun01 - Caverna de Gelo
 //==================================================
-ice_dun01,0,0,0,0	monster#pre#pre	Siroma	1776,75,0,0,0
+ice_dun01,0,0,0,0	monster#pre	Siroma	1776,75,0,0,0
 ice_dun01,0,0,0,0	monster#pre	Roween	1782,5,0,0,0
 ice_dun01,0,0,0,0	monster#pre	Gazeti	1778,2,0,0,0
 ice_dun01,0,0,0,0	monster#pre	Muscipular	1780,5,0,0,0,{}
