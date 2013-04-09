@@ -3606,14 +3606,14 @@ ACMD_FUNC(partyrecall)
  *------------------------------------------*/
 ACMD_FUNC(reload)
 {
-	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "motd" };
+	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "quest_db", "homunculus_db", "pet_db", "motd" };
 	int option;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups & motd.");
+		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups, quest_db, homunculus_db, pet_db & motd.");
 		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
@@ -3637,7 +3637,10 @@ ACMD_FUNC(reload)
 		case 3: status_readdb(); break;
 		case 4: pc_readdb(); break;
 		case 5: pc_groups_reload(); break;
-		case 6: pc_read_motd(); break;
+		case 6: do_reload_quest(); break;
+		case 7: merc_reload(); break;
+		case 8: read_petdb(); break;
+		case 9: pc_read_motd(); break;
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
