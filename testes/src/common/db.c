@@ -2033,11 +2033,11 @@ static int db_obj_vdestroy(DBMap *self, DBApply func, va_list args)
 	DB_COUNTSTAT(db_vdestroy);
 	if(db == NULL) return 0;  // nullpo candidate
 	if(db->global_lock) {
-		ShowError(read_message("Source.common.db_vdestroy"),db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_vdestroy"), db->alloc_file, db->alloc_line);
 		return 0;
 	}
 	if(db->free_lock)
-		ShowWarning(read_message("Source.common.db_vdestroy2"),db->free_lock, db->alloc_file, db->alloc_line);
+		ShowWarning(read_message("Source.common.db_vdestroy2"), db->free_lock, db->alloc_file, db->alloc_line);
 
 #ifdef DB_ENABLE_STATS
 	switch(db->type) {

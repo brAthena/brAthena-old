@@ -1750,7 +1750,7 @@ int guild_broken(int guild_id,int flag)
 	guild_db->foreach(guild_db,guild_broken_sub,guild_id);
 	castle_db->foreach(castle_db,castle_guild_broken_sub,guild_id);
 	guild_storage_delete(guild_id);
-	if(raChSys.ally) { 
+	if(raChSys.ally) {
 		if(g->channel != NULL) {
 			clif_chsys_delete(( struct raChSysCh * )g->channel);
 		}

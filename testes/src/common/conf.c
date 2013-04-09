@@ -21,6 +21,7 @@
 #include <string.h> // read_message
 
 struct brathena_config bra_config;
+static int index_prt = 0;
 
 int conf_read_file(config_t *config, const char *config_filename)
 {
@@ -170,22 +171,12 @@ void read_brathena_config(void)
 		config_destroy(&configbrA);
 	}	
 
-	if(config_lookup_int(&configbrA, "max_rename_char", &tmpint))               // Max. rename system
-		bra_config.max_rename_char = tmpint;
-	if(config_lookup_string(&configbrA, "lang_file", &tmpchar))                 // Server lang
-		strncpy(bra_config.lang_file, tmpchar, sizeof(bra_config.lang_file));
-	
-	//------------------------------------------------------------------------
-	// Sistema Vip Oficial
-	//------------------------------------------------------------------------
-	if(config_lookup_int(&configbrA, "enable_system_vip", &tmpint))
-		bra_config.enable_system_vip = tmpint;
-	if(config_lookup_int(&configbrA, "level_vip", &tmpint))
-		bra_config.level_vip = tmpint;
-	if(config_lookup_int(&configbrA, "extra_exp_vip", &tmpint))
-		bra_config.extra_exp_vip = tmpint;
-	if(config_lookup_int(&configbrA, "penalty_exp_vip", &tmpint))
-		bra_config.penalty_exp_vip = tmpint;
+	if(config_lookup_int(&configbrA, "max_rename_char", &tmpint))	bra_config.max_rename_char = tmpint;
+	if(config_lookup_string(&configbrA, "lang_file", &tmpchar))		strncpy(bra_config.lang_file, tmpchar, sizeof(bra_config.lang_file));
+	if(config_lookup_int(&configbrA, "enable_system_vip", &tmpint))	bra_config.enable_system_vip = tmpint;
+	if(config_lookup_int(&configbrA, "level_vip", &tmpint))			bra_config.level_vip = tmpint;
+	if(config_lookup_int(&configbrA, "extra_exp_vip", &tmpint))		bra_config.extra_exp_vip = tmpint;
+	if(config_lookup_int(&configbrA, "penalty_exp_vip", &tmpint))	bra_config.penalty_exp_vip = tmpint;
 
 	config_destroy(&configbrA);
 }
