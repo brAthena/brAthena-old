@@ -684,6 +684,12 @@ void clif_Auction_results(struct map_session_data *sd, short count, short pages,
 void clif_Auction_message(int fd, unsigned char flag);
 void clif_Auction_close(int fd, unsigned char flag);
 void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd);
+// Botão de Cash
+void clif_CashShopOpen (int fd, struct map_session_data *sd);
+void clif_CashShopClose (int fd, struct map_session_data *sd);
+void clif_CashShopSchedule (int fd, struct map_session_data *sd);
+void clif_CashShopBuy (int fd, struct map_session_data *sd);
+void clif_cashshop_db (void);
 
 void clif_bossmapinfo(int fd, struct mob_data *md, short flag);
 void clif_cashshop_show(struct map_session_data *sd, struct npc_data *nd);
@@ -787,17 +793,39 @@ int clif_colormes(struct map_session_data *sd, enum clif_colors color, const cha
 #define RACHSYS_NAME_LENGTH 20
 
 enum raChSysChOpt {
-	raChSys_OPT_BASE				= 0,
+	raChSys_OPT_BASE		= 0,
 	raChSys_OPT_ANNOUNCE_JOIN	= 1,
 };
 
 enum raChSysChType {
 	raChSys_PUBLIC	= 0,
 	raChSys_PRIVATE	= 1,
-	raChSys_MAP		= 2,
-	raChSys_ALLY		= 3,
+	raChSys_MAP	= 2,
+	raChSys_ALLY	= 3,
 };
 
+enum CASH_SHOP_TABS {
+	CASHSHOP_TAB_NEW	= 0,
+	CASHSHOP_TAB_POPULAR	= 1,
+	CASHSHOP_TAB_LIMITED	= 2,
+	CASHSHOP_TAB_RENTAL	= 3,
+	CASHSHOP_TAB_PERPETUITY = 4,
+	CASHSHOP_TAB_BUFF	= 5,
+	CASHSHOP_TAB_RECOVERY	= 6,
+	CASHSHOP_TAB_ETC	= 7,
+	CASHSHOP_TAB_MAX,
+};
+
+enum CASH_SHOP_BUY_RESULT {
+	CSBR_SUCCESS			= 0x0,
+	CSBR_SHORTTAGE_CASH		= 0x2,
+	CSBR_UNKONWN_ITEM		= 0x3,
+	CSBR_INVENTORY_WEIGHT		= 0x4,
+	CSBR_INVENTORY_ITEMCNT		= 0x5,
+	CSBR_RUNE_OVERCOUNT		= 0x9,
+	CSBR_EACHITEM_OVERCOUNT		= 0xa,
+	CSBR_UNKNOWN			= 0xb,
+};
 struct {
 	unsigned long *colors;
 	char **colors_name;
@@ -820,6 +848,17 @@ struct raChSysCh {
 	enum raChSysChType type;
 	uint16 m;
 };
+
+struct hCSData {
+	unsigned short id;
+	unsigned int price;
+};
+
+/* Cash Shop [Ind] */
+	struct {
+		struct hCSData **data[CASHSHOP_TAB_MAX];
+		unsigned int item_count[CASHSHOP_TAB_MAX];
+	} cs;
 
 struct DBMap* clif_get_channel_db(void);
 void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color);
