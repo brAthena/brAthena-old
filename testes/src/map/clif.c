@@ -5601,6 +5601,7 @@ void clif_chsys_delete(struct raChSysCh *channel) {
 				}
 			}
 		}
+		dbi_destroy(iter);
 	}
 	db_destroy(channel->users);
 	if(channel->m) {
