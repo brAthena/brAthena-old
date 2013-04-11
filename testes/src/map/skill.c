@@ -2611,8 +2611,8 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			if(rnd()%100 > (1 + skill_lv) ) dmg.blewcount = 0;
 			break;
 		default:
-			if(damage < dmg.div_ && skill_lv != CH_PALMSTRIKE)
-				dmg.blewcount = 0; //only pushback when it hit
+			if(damage < dmg.div_ && skill_id != CH_PALMSTRIKE)
+				dmg.blewcount = 0; //only pushback when it hit for other
 			break;
 	}
 
