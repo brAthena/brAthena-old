@@ -2963,8 +2963,16 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 
 	if(rdamage > 0) {
 		if(sc && sc->data[SC_REFLECTDAMAGE]) {
-			if(src != bl)  // Don't reflect your own damage (Grand Cross)
+			if(src != bl)  {// Don't reflect your own damage (Grand Cross)
+				bool change = false;
+				if(sd && !sd->state.autocast)
+					change = true;
+				if(change)
+					sd->state.autocast = 1;
 				map_foreachinshootrange(battle_damage_area,bl,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,tick,bl,dmg.amotion,sstatus->dmotion,rdamage,tstatus->race);
+				if(change)
+					sd->state.autocast = 0;
+			}
 		} else {
 			if(dmg.amotion)
 				battle_delay_damage(tick, dmg.amotion,bl,src,0,CR_REFLECTSHIELD,0,rdamage,ATK_DEF,0,additional_effects);
