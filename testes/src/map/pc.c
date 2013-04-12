@@ -9390,7 +9390,7 @@ static bool pc_readdb_levelpenalty(char *fields[], int columns, int current)
 int pc_readdb(void)
 {
 	char *row;
-	int i,j,k,tmp=0;
+	int i,j,k;
 	FILE *fp;
 	char line[24000],*p;
 
@@ -9487,7 +9487,7 @@ int pc_readdb(void)
 	sv_readsqldb(get_database_name(54), NULL, 4, -1, &pc_readdb_levelpenalty);
 	for(k=1; k < 3; k++) {  // fill in the blanks
 		for(j = 0; j < RC_MAX; j++) {
-			tmp = 0;
+			int tmp = 0;
 			for(i = 0; i < MAX_LEVEL*2; i++) {
 				if(i == MAX_LEVEL+1)
 					tmp = level_penalty[k][j][0];// reset
