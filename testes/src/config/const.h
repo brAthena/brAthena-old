@@ -61,8 +61,8 @@
 
 /* Cálculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
 #ifdef RENEWAL
-	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + mob->status.luk/5 + 100 )
-	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + mob->status.luk/3 + 175 )
+	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + 100 )
+	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + 175 )
 #else
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi )
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex )

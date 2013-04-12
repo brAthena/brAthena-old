@@ -1248,7 +1248,8 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 
 		case LK_SPIRALPIERCE:
 		case ML_SPIRALPIERCE:
-			sc_start(src,bl,SC_STOP,(15+skill_lv*5),0,skill_get_time2(skill_id,skill_lv));
+			if(dstsd || (dstmd && !is_boss(bl))) //Does not work on bosses
+				sc_start(src,bl,SC_STOP,100,0,skill_get_time2(skill_id,skill_lv));
 			break;
 
 		case ST_REJECTSWORD:
@@ -3971,7 +3972,6 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case AB_JUDEX:
 		case WL_SOULEXPANSION:
 		case WL_CRIMSONROCK:
-		case WL_COMET:
 		case WL_JACKFROST:
 		case RA_ARROWSTORM:
 		case RA_WUGDASH:
@@ -4046,6 +4046,11 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 				// recursive invocation of skill_castend_damage_id() with flag|1
 				map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), (skill_id == WM_REVERBERATION_MELEE || skill_id == WM_REVERBERATION_MAGIC)?BL_CHAR:splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 			}
+			break;
+
+		case WL_COMET:
+			if(!map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR)) // Nothing should happen if the target is on Land Protector
+				skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, flag);
 			break;
 
 		case KN_BRANDISHSPEAR:
@@ -13918,8 +13923,7 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 			}
 		for(i = 0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++)
 			if(sd->skillcast[i].id == skill_id) {  // bonus2 bVariableCastrate
-				if((i=sd->skillcast[i].val) < 0)
-					VARCAST_REDUCTION(i);
+				VARCAST_REDUCTION(sd->skillcast[i].val);
 				break;
 			}
 		for( i = 0; i < ARRAYLENGTH(sd->skillfixcastrate) && sd->skillfixcastrate[i].id; i++ )

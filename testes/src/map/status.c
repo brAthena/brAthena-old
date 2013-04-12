@@ -1978,9 +1978,15 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		                              status->cri = status->flee2 = 0;
 
 #ifdef RENEWAL // renewal formulas
-	status->matk_min = status->matk_max = status_base_matk(status, level);
+	if (bl->type == BL_MOB) {
+		status->hit += level + status->dex + 175;
+		status->flee += level + status->agi + 100;
+	} else {
 	status->hit += level + status->dex + status->luk/3 + 175; //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 	status->flee += level + status->agi + status->luk/5 + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
+	}
+	status->matk_min = status->matk_max = status_base_matk(status, level);
+
 	if(battle_config.bRO_Renewal) {
 		status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisíca por atributos - [brAthena - bRO]
 		status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
