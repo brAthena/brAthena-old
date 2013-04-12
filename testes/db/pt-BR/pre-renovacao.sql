@@ -5990,7 +5990,7 @@ REPLACE INTO `item_db` VALUES(5372,'Drooping_White_Kitty','Chapéu de Gatinho Tag
 REPLACE INTO `item_db` VALUES(5373,'Darkness_Helm','Elmo Sombrio','5',20,NULL,'300',NULL,2,NULL,1,0xFFFFFFFF,7,2,768,NULL,0,1,379,'bonus bDex,3; bonus bMdef,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5374,'L_Magestic_Goat','Chifres Majestosos Gigantes','5',20,NULL,'800',NULL,5,NULL,0,0xFFFFFFFF,7,2,256,NULL,0,1,380,'bonus2 bAddRace,RC_DemiHuman,12; bonus bBaseAtk,(JobLevel*2)/7;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5375,'L_Orc_Hero_Helm','Elmo Artesanal de Orc Herói','5',20,NULL,'900',NULL,5,NULL,1,0xFFFFFFFF,7,2,768,NULL,0,1,381,'bonus bStr,2; bonus3 bAutoSpellWhenHit,"BS_WEAPONPERFECT",3,10;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(5376,'Satanic_Chain_P','Lendárias Asas de Demônio','5',20,NULL,'100',NULL,3,NULL,1,0xFFFFFFFF,7,2,256,NULL,0,1,382,'bonus bMaxSP,120; bonus3 bonus2 bAddEff2,Eff_Curse,300;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(5376,'Satanic_Chain_P','Lendárias Asas de Demônio','5',20,NULL,'100',NULL,3,NULL,1,0xFFFFFFFF,7,2,256,NULL,0,1,382,'bonus bMaxSP,120; bonus2 bAddEff2,Eff_Curse,300;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5377,'Antique_Pipe','Antique Pipe','5',20,NULL,'100',NULL,0,NULL,0,0xFFFFFFFF,7,2,1,NULL,0,0,383,'bonus2 bSubRace,RC_DemiHuman,2;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5378,'Rabbit_Ear_Hat','Cartola de Coelho','5',20,NULL,'300',NULL,0,NULL,0,0xFFFFFFFF,7,2,256,NULL,0,1,384,'bonus bAgi,3; bonus3 bAutoSpellWhenHit,"AL_INCAGI",5,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5379,'Balloon_Hat','Boina Romântica','5',0,NULL,'800',NULL,3,NULL,1,0xFFFFFFFF,7,2,256,NULL,50,1,385,'bonus bMdef,2; bonus bMatkRate,2+(getrefine()/2);',NULL,NULL);
