@@ -2597,8 +2597,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		memset(sc, 0, sizeof( struct status_change));
 	}
 
-	if(!rebirth)
+	if(!rebirth) {
+		status_change_clear(&md->bl,1);
 		mob_setdelayspawn(md); //Set respawning.
+	}
 	return 3; //Remove from map.
 }
 

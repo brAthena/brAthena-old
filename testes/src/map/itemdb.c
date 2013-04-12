@@ -33,7 +33,6 @@
 static struct item_data *itemdb_array[MAX_ITEMDB];
 static DBMap            *itemdb_other;// int nameid -> struct item_data*
 
-static struct item_group itemgroup_db[MAX_ITEMGROUP];
 
 //Grupos de itens com % e quantidade randômicas [brAthena]
 static struct item_group2 itemgroup2_db[MAX_ITEMGROUP];
