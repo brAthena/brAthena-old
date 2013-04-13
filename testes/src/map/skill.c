@@ -631,7 +631,7 @@ int can_copy(struct map_session_data *sd, uint16 skill_id, struct block_list *bl
 		return 0;
 
 	// Couldn't preserve 3rd Class skills except only when using Reproduce skill. [Jobbie]
-	if(!(sd->sc.data[SC__REPRODUCE]) && (skill_id >= RK_ENCHANTBLADE && skill_id <= SR_RIDEINLIGHTNING))
+	if(!(sd->sc.data[SC__REPRODUCE]) && (skill_id >= RK_ENCHANTBLADE && skill_id <= SR_RIDEINLIGHTNING || (skill_id >= GC_DARKCROW && skill_id <= SR_FLASHCOMBO_ATK_STEP4)))
 		return 0;
 	// Reproduce will only copy skills according on the list. [Jobbie]
 	else if(sd->sc.data[SC__REPRODUCE] && !skill_reproduce_db[skill_id])
@@ -1355,7 +1355,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			sc_start4(src,bl,SC_BURNING,5+5*skill_lv,skill_lv,1000,src->id,0,skill_get_time(skill_id,skill_lv));
 			break;
 		case RK_DRAGONBREATH_WATER:
-			sc_start4(src,bl,SC_FREEZING,5+5*skill_lv,skill_lv,1000,src->id,0,skill_get_time(skill_id,skill_lv));
+			sc_start4(src,bl,SC_FREEZING,15,skill_lv,1000,src->id,0,skill_get_time(skill_id,skill_lv));
 			break;
 		case AB_ADORAMUS:
 			if(tsc && !tsc->data[SC_DECREASEAGI])   //Prevent duplicate agi-down effect.
@@ -12016,21 +12016,30 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 			if(battle_check_target(&src->bl,bl,BCT_ENEMY) > 0) {
 				switch(sg->unit_id) {
 					case UNT_ZENKAI_WATER:
-						sc_start(ss, bl, SC_CRYSTALIZE, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
-						sc_start(ss, bl, SC_FREEZE, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
-						sc_start(ss, bl, SC_FREEZING, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
+						switch (rand()%3+1)
+						{
+						case 1: sc_start(ss, bl, SC_FREEZE, 25, sg->skill_lv, 10000); break;
+						case 2: sc_start(ss, bl, SC_FREEZING, 25, sg->skill_lv, 10000); break;
+						case 3: sc_start(ss, bl, SC_CRYSTALIZE, 25, sg->skill_lv, 10000); break;
+						}
 						break;
 					case UNT_ZENKAI_LAND:
-						sc_start(ss, bl, SC_STONE, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
-						sc_start(ss, bl, SC_POISON, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
+						switch ( rand()%2+1 )
+						{
+						case 1: sc_start(ss, bl, SC_STONE, 25, sg->skill_lv, 10000); break;
+						case 2: sc_start(ss, bl, SC_POISON, 25, sg->skill_lv, 10000); break;
+						}
 						break;
 					case UNT_ZENKAI_FIRE:
-						sc_start(ss, bl, SC_BURNING, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
+						sc_start(ss, bl, SC_BURNING, 25, sg->skill_lv, 10000);
 						break;
 					case UNT_ZENKAI_WIND:
-						sc_start(ss, bl, SC_SILENCE, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
-						sc_start(ss,bl, SC_SLEEP, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
-						sc_start(ss, bl, SC_DEEPSLEEP, sg->val1*5, sg->skill_lv, skill_get_time2(sg->skill_id, sg->skill_lv));
+						switch ( rand()%3+1 )
+						{
+						case 1: sc_start(ss, bl, SC_SLEEP, 25, sg->skill_lv, 10000); break;
+						case 2: sc_start(ss, bl, SC_SILENCE, 25, sg->skill_lv, 10000); break;
+						case 3: sc_start(ss, bl, SC_DEEPSLEEP, 25, sg->skill_lv, 10000); break;
+						}
 						break;
 				}
 			} else

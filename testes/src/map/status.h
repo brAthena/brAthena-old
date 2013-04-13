@@ -665,6 +665,20 @@ typedef enum sc_type {
     * Hanbok [Megasantos]
     **/
     SC_HANBOK = 600,
+    /**
+    * Novas Habilidades 3rd [Megasantos]
+    **/
+    SC_TELEKINESIS_INTENSE,
+    SC_UNLIMIT,
+    SC_OFFERTORIUM,
+    SC_DARKCROW,
+    SC_KINGS_GRACE,
+    SC_FRIGG_SONG,
+    SC_FLASH_COMBO_ATK,
+    SC_FULL_THROTTLE,
+    SC_REBOUND,
+
+
 
 #ifdef RENEWAL
     SC_EXTREMITYFIST2,

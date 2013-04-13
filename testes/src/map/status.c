@@ -722,6 +722,19 @@ void initChangeTables(void)
 	set_sc(GN_FIRE_EXPANSION_TEAR_GAS    , SC_TEARGAS     , SI_FIRE_EXPANSION_TEAR_GAS    , SCB_NONE);
 	set_sc(GN_MANDRAGORA                 , SC_MANDRAGORA  , SI_MANDRAGORA                 , SCB_INT);
 
+	// Novas skills
+	set_sc( GC_DARKCROW           , SC_DARKCROW           , SI_DARKCROW           , SCB_NONE );
+	set_sc( RA_UNLIMIT            , SC_UNLIMIT            , SI_UNLIMIT            , SCB_NONE );
+	set_sc( GN_ILLUSIONDOPING     , SC_HALLUCINATION      , SI_HALLUCINATION      , SCB_NONE );
+	add_sc( RK_DRAGONBREATH_WATER , SC_FREEZING           );
+	add_sc( NC_MAGMA_ERUPTION     , SC_BURNING            );
+	set_sc( WM_FRIGG_SONG         , SC_FRIGG_SONG         , SI_FRIGG_SONG         , SCB_NONE );
+	set_sc( SR_FLASHCOMBO         , SC_FLASH_COMBO_ATK    , SI_BLANK              , SCB_NONE );
+	add_sc( SC_ESCAPE             , SC_ANKLE              );
+	set_sc( AB_OFFERTORIUM        , SC_OFFERTORIUM        , SI_OFFERTORIUM        , SCB_NONE );
+	set_sc( WL_TELEKINESIS_INTENSE, SC_TELEKINESIS_INTENSE, SI_TELEKINESIS_INTENSE, SCB_NONE );
+	set_sc( LG_KINGS_GRACE        , SC_KINGS_GRACE        , SI_KINGS_GRACE        , SCB_NONE );
+	set_sc( ALL_FULL_THROTTLE     , SC_FULL_THROTTLE      , SI_FULL_THROTTLE      , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
 	// Elemental Spirit summoner's 'side' status changes.
 	set_sc(EL_CIRCLE_OF_FIRE  , SC_CIRCLE_OF_FIRE_OPTION, SI_CIRCLE_OF_FIRE_OPTION, SCB_NONE);
 	set_sc(EL_FIRE_CLOAK      , SC_FIRE_CLOAK_OPTION    , SI_FIRE_CLOAK_OPTION    , SCB_ALL);
@@ -921,6 +934,7 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_CURSED_SOIL] = SI_CURSED_SOIL;
 	StatusIconChangeTable[SC_UPHEAVAL] = SI_UPHEAVAL;
 	StatusIconChangeTable[SC_PUSH_CART] = SI_ON_PUSH_CART;
+	StatusIconChangeTable[SC_REBOUND] = SI_REBOUND;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
@@ -1001,6 +1015,7 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_EXTRACT_WHITE_POTION_Z] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_VITATA_500] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_EXTRACT_SALAMINE_JUICE] |= SCB_ASPD;
+	StatusChangeFlagTable[SC_REBOUND] |= SCB_SPEED;
 
 #ifdef RENEWAL_EDP
 	// renewal EDP increases your weapon atk
