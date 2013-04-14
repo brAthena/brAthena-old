@@ -3724,6 +3724,7 @@ ACMD_FUNC(reloadbattleconf)
 	   ||  prev_config.job_exp_rate           != battle_config.job_exp_rate
 	  ) {
 		// Exp or Drop rates changed.
+		mob_reload();
 		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 	}
 	clif_displaymessage(fd, msg_txt(255));
