@@ -1812,9 +1812,7 @@ packet_ver: 34
 0x094C,6,solvecharname,2
 0x0907,5,moveitem,2:4
 0x0908,5
-0x08CF,10 //Espíritos de amuleto
 0x08d2,10
-0x0977,14 //Barra de HP para monstros
 0x0998,8,equipitem,2:4
 //0x0281,-1,itemlistwindowselected,2:4:8
 0x0938,-1,reqopenbuyingstore,2:4:8:9:89
@@ -1824,6 +1822,7 @@ packet_ver: 34
 0x094E,-1,searchstoreinfo,2:4:5:9:13:14:15
 //0x0835,2,searchstoreinfonextpage,0
 //0x0838,12,searchstoreinfolistitemclick,2:6:10
+0x0447,2
 
 //Adicione novos pacotes abaixo.
 //packet_ver: 35
