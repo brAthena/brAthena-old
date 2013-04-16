@@ -86,7 +86,7 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 				mes "treinando juntos dessa forma.";
 				delitem 7776,1; // Passagem Antigravitacional
 				set gympassmemory,.@add_carry;
-				skill "ALL_INCCARRY",.@add_carry,0;
+				skill "ALL_INCCARRY",.@add_carry,3;
 				close;
 			} else {
 				mes "[Ripped]";
@@ -140,7 +140,7 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 			mes "creceram novamente";
 			mes "com isto! Não tente";
 			mes "novamente, ok?";
-			skill "ALL_INCCARRY",gympassmemory,0;
+			skill "ALL_INCCARRY",gympassmemory,3;
 			close;
 		} else {
 			mes "[Ripped]";

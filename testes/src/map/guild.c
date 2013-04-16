@@ -558,6 +558,7 @@ int guild_recv_info(struct guild *sg)
 				guild_block_skill(sd, 300000);
 
 			//Also set the guild master flag.
+			sd->guild = g;
 			sd->state.gmaster_flag = g;
 			clif_charnameupdate(sd); // [LuzZza]
 			clif_guild_masterormember(sd);

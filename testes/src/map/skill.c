@@ -2568,8 +2568,11 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			 * Official Magic Reflection Behavior : damage reflected depends on gears caster wears, not target
 			 **/
 #if MAGIC_REFLECTION_TYPE
-			if(dmg.dmg_lv != ATK_MISS)  //Wiz SL cancelled and consumed fragment
+			if(dmg.dmg_lv != ATK_MISS) { //Wiz SL cancelled and consumed fragment
+				isMagicReflect = true;
 				dmg = battle_calc_attack(BF_MAGIC,bl,bl,skill_id,skill_lv,flag&0xFFF);
+				isMagicReflect = false;
+			}
 #endif
 		}
 		if(sc && sc->data[SC_MAGICROD] && src == dsrc) {
@@ -6584,8 +6587,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 						case SC_DONTFORGETME:
 						case SC_FORTUNE:
 						case SC_SERVICE4U:
-							if(tsc->data[i]->val4==0)
-								continue; //if in song-area don't end it
+							if(!tsc->data[i]->val4) //val4 = out-of-song-area
+								continue;
 							break;
 						case SC_ASSUMPTIO:
 							if(bl->type == BL_MOB)

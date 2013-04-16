@@ -524,9 +524,9 @@ int pc_makesavestatus(struct map_session_data *sd)
 	//Only copy the Cart/Peco/Falcon options, the rest are handled via
 	//status change load/saving. [Skotlex]
 #ifdef NEW_CARTS
-	sd->status.option = sd->sc.option&(OPTION_FALCON|OPTION_RIDING|OPTION_DRAGON|OPTION_WUG|OPTION_WUGRIDER|OPTION_MADOGEAR|OPTION_MOUNTING);
+	sd->status.option = sd->sc.option&(OPTION_INVISIBLE|OPTION_FALCON|OPTION_RIDING|OPTION_DRAGON|OPTION_WUG|OPTION_WUGRIDER|OPTION_MADOGEAR|OPTION_MOUNTING);
 #else
-	sd->status.option = sd->sc.option&(OPTION_CART|OPTION_FALCON|OPTION_RIDING|OPTION_DRAGON|OPTION_WUG|OPTION_WUGRIDER|OPTION_MADOGEAR|OPTION_MOUNTING);
+	sd->status.option = sd->sc.option&(OPTION_INVISIBLE|OPTION_CART|OPTION_FALCON|OPTION_RIDING|OPTION_DRAGON|OPTION_WUG|OPTION_WUGRIDER|OPTION_MADOGEAR|OPTION_MOUNTING);
 #endif
 	if(sd->sc.data[SC_JAILED]) {
 		//When Jailed, do not move last point.
@@ -964,12 +964,13 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	/**
 	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 	 **/
-#if SECURE_NPCTIMEOUT
+#ifdef SECURE_NPCTIMEOUT
 	/**
 	 * Initialize to defaults/expected
 	 **/
 	sd->npc_idle_timer = INVALID_TIMER;
 	sd->npc_idle_tick = tick;
+	sd->npc_idle_type = NPCT_INPUT;
 #endif
 
 	sd->canuseitem_tick = tick;
@@ -1002,14 +1003,13 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	pc_setinventorydata(sd);
 	pc_setequipindex(sd);
 
+	if(sd->status.option & OPTION_INVISIBLE && !pc_can_use_command(sd, "hide", COMMAND_ATCOMMAND))
+		sd->status.option &=~ OPTION_INVISIBLE;
+
 	status_change_init(&sd->bl);
 
-	if(pc_can_use_command(sd, "hide", COMMAND_ATCOMMAND))
-		sd->status.option &= (OPTION_MASK | OPTION_INVISIBLE);
-	else
-		sd->status.option &= OPTION_MASK;
-
 	sd->sc.option = sd->status.option; //This is the actual option used in battle.
+
 	//Set here because we need the inventory data for weapon sprite parsing.
 	status_set_viewdata(&sd->bl, sd->status.class_);
 	unit_dataset(&sd->bl);
@@ -1230,6 +1230,20 @@ int pc_reg_received(struct map_session_data *sd)
 	}
 
 	pc_inventory_rentals(sd);
+
+	if(sd->sc.option & OPTION_INVISIBLE) {
+		sd->vd.class_ = INVISIBLE_CLASS;
+		clif_displaymessage(sd->fd, msg_txt(11)); // Invisible: On
+		// decrement the number of pvp players on the map
+		map[sd->bl.m].users_pvp--;
+
+		if(map[sd->bl.m].flag.pvp && !map[sd->bl.m].flag.pvp_nocalcrank && sd->pvp_timer != INVALID_TIMER) {// unregister the player for ranking
+			delete_timer( sd->pvp_timer, pc_calc_pvprank_timer );
+			sd->pvp_timer = INVALID_TIMER;
+		}
+		clif_changeoption(&sd->bl);
+	}
+
 
 	return 1;
 }
@@ -3351,11 +3365,11 @@ int pc_bonus5(struct map_session_data *sd,int type,int type2,int type3,int type4
 }
 
 /*==========================================
- *  Grants a player a given skill. Flag values are:
- *  0 - Grant skill unconditionally and forever (only this one invokes status_calc_pc,
- *      as the other two are assumed to be invoked from within it)
- *  1 - Grant an item skill (temporary)
- *  2 - Like 1, except the level granted can stack with previously learned level.
+ * Grants a player a given skill. Flag values are:
+ * 0 - Grant permanent skill to be bound to skill tree
+ * 1 - Grant an item skill (temporary)
+ * 2 - Like 1, except the level granted can stack with previously learned level.
+ * 3 - Grant skill unconditionally and forever (persistent to job changes and skill resets)
  *------------------------------------------*/
 int pc_skill(TBL_PC *sd, int id, int level, int flag)
 {
@@ -3378,7 +3392,7 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 		case 0: //Set skill data overwriting whatever was there before.
 			sd->status.skill[id].id   = id;
 			sd->status.skill[id].lv   = level;
-			sd->status.skill[id].flag = SKILL_FLAG_PERM_GRANTED;
+			sd->status.skill[id].flag = SKILL_FLAG_PERMANENT;
 			if(level == 0) { //Remove skill.
 				sd->status.skill[id].id = 0;
 				clif_deleteskill(sd,id);
@@ -3391,7 +3405,7 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 			if(sd->status.skill[id].id == id) {
 				if(sd->status.skill[id].lv >= level)
 					return 0;
-				if(sd->status.skill[id].flag == SKILL_FLAG_PERMANENT)   //Non-granted skill, store it's level.
+				if(sd->status.skill[id].flag == SKILL_FLAG_PERMANENT) //Non-granted skill, store it's level.
 					sd->status.skill[id].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[id].lv;
 			} else {
 				sd->status.skill[id].id   = id;
@@ -3409,13 +3423,25 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 			}
 			sd->status.skill[id].lv += level;
 			break;
+		case 3:
+			sd->status.skill[id].id   = id;
+			sd->status.skill[id].lv   = level;
+			sd->status.skill[id].flag = SKILL_FLAG_PERM_GRANTED;
+			if(level == 0) { //Remove skill.
+				sd->status.skill[id].id = 0;
+				clif_deleteskill(sd,id);
+			} else
+				clif_addskill(sd,id);
+			if(!skill_get_inf(id)) //Only recalculate for passive skills.
+				status_calc_pc(sd, 0);
+			break;
 		default: //Unknown flag?
 			return 0;
 	}
 	return 1;
 }
 /*==========================================
- * ?J??h???
+ * Append a card to an item ?
  *------------------------------------------*/
 int pc_insert_card(struct map_session_data *sd, int idx_card, int idx_equip)
 {
@@ -3469,7 +3495,7 @@ int pc_insert_card(struct map_session_data *sd, int idx_card, int idx_equip)
 }
 
 //
-// ?A?C?e????
+// Items
 //
 
 /*==========================================

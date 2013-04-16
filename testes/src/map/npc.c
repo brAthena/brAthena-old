@@ -250,18 +250,30 @@ struct npc_data *npc_name2id(const char *name) {
 /**
  * For the Secure NPC Timeout option (check config/Secure.h) [RR]
  **/
-#if SECURE_NPCTIMEOUT
+#ifdef SECURE_NPCTIMEOUT
 /**
  * Timer to check for idle time and timeout the dialog if necessary
  **/
 int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct map_session_data *sd = NULL;
+	unsigned int timeout = NPC_SECURE_TIMEOUT_NEXT;
 	if((sd = map_id2sd(id)) == NULL || !sd->npc_id) {
 		if(sd) sd->npc_idle_timer = INVALID_TIMER;
 		return 0;//Not logged in anymore OR no longer attached to a npc
 	}
-	if(DIFF_TICK(tick,sd->npc_idle_tick) > (SECURE_NPCTIMEOUT*1000)) {
+
+	switch( sd->npc_idle_type ) {
+		case NPCT_INPUT:
+			timeout = NPC_SECURE_TIMEOUT_INPUT;
+			break;
+		case NPCT_MENU:
+			timeout = NPC_SECURE_TIMEOUT_MENU;
+			break;
+		//case NPCT_WAIT: var starts with this value
+	}
+
+	if(DIFF_TICK(tick,sd->npc_idle_tick) > (timeout*1000)) {
 		/**
 		 * If we still have the NPC script attached, tell it to stop.
 		 **/
@@ -1218,7 +1230,7 @@ int npc_scriptcont(struct map_session_data *sd, int id, bool closing)
 	/**
 	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 	 **/
-#if SECURE_NPCTIMEOUT
+#ifdef SECURE_NPCTIMEOUT
 	/**
 	 * Update the last NPC iteration
 	 **/
@@ -2083,6 +2095,11 @@ static const char *npc_parse_warp(char *w1, char *w2, char *w3, char *w4, const 
 		return strchr(start,'\n');// skip and continue
 	}
 
+	if(m != -1 && ( x < 0 || x >= map[m].xs || y < 0 || y >= map[m].ys)) {
+		ShowError("npc_parse_warp: out-of-bounds coordinates (\"%s\",%d,%d), map is %dx%d, in file '%s', line '%d'\n", map[m].name, x, y, map[m].xs, map[m].ys,filepath,strline(buffer,start-buffer));
+		return strchr(start,'\n');;//try next
+	}
+
 	CREATE(nd, struct npc_data, 1);
 
 	nd->bl.id = npc_get_new_npc_id();
@@ -2130,8 +2147,7 @@ static const char *npc_parse_shop(char *w1, char *w2, char *w3, char *w4, const 
 	struct npc_data *nd;
 	enum npc_subtype type;
 
-	if(strcmp(w1,"-") == 0) {
-		// 'floating' shop?
+	if(strcmp(w1,"-") == 0) {// 'floating' shop?
 		x = y = dir = 0;
 		m = -1;
 	} else {
@@ -2144,6 +2160,11 @@ static const char *npc_parse_shop(char *w1, char *w2, char *w3, char *w4, const 
 		}
 
 		m = map_mapname2mapid(mapname);
+	}
+
+	if(m != -1 && ( x < 0 || x >= map[m].xs || y < 0 || y >= map[m].ys)) {
+		ShowError("npc_parse_shop: out-of-bounds coordinates (\"%s\",%d,%d), map is %dx%d, in file '%s', line '%d'\n", map[m].name, x, y, map[m].xs, map[m].ys,filepath,strline(buffer,start-buffer));
+		return strchr(start,'\n');;//try next
 	}
 
 	if(!strcasecmp(w2,"cashshop"))
@@ -2504,6 +2525,11 @@ const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const ch
 			return end;// next line, try to continue
 		}
 		m = map_mapname2mapid(mapname);
+	}
+
+	if(m != -1 && ( x < 0 || x >= map[m].xs || y < 0 || y >= map[m].ys)) {
+		ShowError("npc_parse_duplicate: out-of-bounds coordinates (\"%s\",%d,%d), map is %dx%d, in file '%s', line '%d'\n", map[m].name, x, y, map[m].xs, map[m].ys,filepath,strline(buffer,start-buffer));
+		return end;//try next
 	}
 
 	if(type == WARP && sscanf(w4, "%d,%d", &xs, &ys) == 2);  // <spanx>,<spany>

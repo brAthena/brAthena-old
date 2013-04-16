@@ -776,6 +776,7 @@ void clif_talisman(struct map_session_data *sd, short type);
 void clif_snap(struct block_list *bl, short x, short y);
 void clif_monster_hp_bar(struct mob_data *md, int fd);
 
+void clif_partytickack (struct map_session_data* sd, bool flag);
 /**
  * Color Table
  **/

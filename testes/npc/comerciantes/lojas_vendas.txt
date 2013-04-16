@@ -221,7 +221,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 				mes "Ok, você agora está aprovado de abrir uma Loja de Compras em Massa.";
 				set Zeny,Zeny-10000;
 				getitem 6377,5; //Buy_Stall_Permit
-				skill "ALL_BUYING_STORE",1,0;
+				skill "ALL_BUYING_STORE",1,3;
 				next;
 				mes "[Sr. Hugh]";
 				mes "Atualmente, apenas itens normais ^8C2121EXCETO^000000 equipamentos, algumas poções e itens artesanais podem ser adquiridos em massa, mas esta ainda pode ser de muito benéfico para você, dependendo de como usa-la.";

@@ -142,49 +142,49 @@ void aFree_(void *p, const char *file, int line, const char *func)
 /* USE_MEMMGR */
 
 /*
- * �������}�l�[�W��
- *     malloc , free �̏����������I�ɏo�����悤�ɂ������́B
- *     ���G�ȏ������s��Ă����̂ŁA�኱�d���Ȃ邩�����܂����B
+ * Memory manager
+ *     able to handle malloc and free efficiently
+ *     Since the complex processing, I might be slightly heavier.
  *
- * �f�[�^�\���Ȃǁi�������ł����܂���^^; �j
- *     �E�������𕡐��́u�u���b�N�v�ɕ����āA�����Ƀu���b�N�𕡐��́u���j�b�g�v
- *       �ɕ����Ă��܂��B���j�b�g�̃T�C�Y�́A�P�u���b�N�̗e�ʂ𕡐��ɋϓ��z��
- *       �������̂ł��B���Ƃ��΁A�P���j�b�g32KB�̏ꍇ�A�u���b�N�P��32Byte�̃�
- *       �j�b�g���A1024�W�܂�ďo���Ă������A64Byte�̃��j�b�g�� 512�W�܂��
- *       �o���Ă����肵�܂��B�ipadding,unit_head ����j
+ * (I'm sorry for the poor description ^ ^;) such as data structures
+ *		Divided into "blocks" of a plurality of memory, "unit" of a plurality of blocks further
+ *      I have to divide. Size of the unit, a plurality of distribution equal to the capacity of one block
+ *      That's what you have. For example, if one unit of 32KB, one block 1 Yu 32Byte
+ *      Knit, or are able to gather 1024, gathered 512 units 64Byte
+ *      I can be or have. (Excluding padding, the unit_head)
  *
- *     �E�u���b�N���m�̓����N���X�g(block_prev,block_next) �łȂ����A�����T�C
- *       �Y��u���b�N���m�����N���X�g(hash_prev,hash_nect) �ł�
- *       ����Ă��܂��B�����ɂ����A�s�v�ƂȂ���������̍ė��p�������I�ɍs���܂��B
+ *     Lead-linked list (block_prev, block_next) in each other is the same size block
+ *       Linked list (hash_prev, hash_nect) even among such one in the block with the figure
+ *       I like to have. Thus, reuse of memory no longer needed can be performed efficiently.
  */
 
-/* �u���b�N�̃A���C�����g */
-#define BLOCK_ALIGNMENT1    16
-#define BLOCK_ALIGNMENT2    64
+/* Alignment of the block */
+#define BLOCK_ALIGNMENT1	16
+#define BLOCK_ALIGNMENT2	64
 
-/* �u���b�N�ɓ����f�[�^�� */
-#define BLOCK_DATA_COUNT1   128
-#define BLOCK_DATA_COUNT2   608
+/* Amount of data entering a block */
+#define BLOCK_DATA_COUNT1	128
+#define BLOCK_DATA_COUNT2	608
 
-/* �u���b�N�̑傫��: 16*128 + 64*576 = 40KB */
-#define BLOCK_DATA_SIZE1    ( BLOCK_ALIGNMENT1 * BLOCK_DATA_COUNT1 )
-#define BLOCK_DATA_SIZE2    ( BLOCK_ALIGNMENT2 * BLOCK_DATA_COUNT2 )
-#define BLOCK_DATA_SIZE     ( BLOCK_DATA_SIZE1 + BLOCK_DATA_SIZE2 )
+/* The size of the block: 16*128 + 64*576 = 40KB */
+#define BLOCK_DATA_SIZE1	( BLOCK_ALIGNMENT1 * BLOCK_DATA_COUNT1 )
+#define BLOCK_DATA_SIZE2	( BLOCK_ALIGNMENT2 * BLOCK_DATA_COUNT2 )
+#define BLOCK_DATA_SIZE		( BLOCK_DATA_SIZE1 + BLOCK_DATA_SIZE2 )
 
-/* ���x�Ɋm�ۂ����u���b�N�̐��B */
-#define BLOCK_ALLOC     104
+/* The number of blocks to be allocated at a time. */
+#define BLOCK_ALLOC		104
 
-/* �u���b�N */
+/* block */
 struct block {
-	struct block *block_next;       /* ���Ɋm�ۂ����̈� */
-	struct block *unfill_prev;      /* ���̖��܂�Ă��Ȃ��̈� */
-	struct block *unfill_next;      /* ���̖��܂�Ă��Ȃ��̈� */
-	unsigned short unit_size;       /* ���j�b�g�̑傫�� */
-	unsigned short unit_hash;       /* ���j�b�g�̃n�b�V�� */
-	unsigned short unit_count;      /* ���j�b�g�̌� */
-	unsigned short unit_used;       /* �g�p���j�b�g�� */
-	unsigned short unit_unfill;     /* ���g�p���j�b�g�̏ꏊ */
-	unsigned short unit_maxused;    /* �g�p���j�b�g�̍ő��l */
+	struct block *block_next;		/* Then the allocated area */
+	struct block *unfill_prev;		/* The previous area not filled */
+	struct block *unfill_next;		/* The next area not filled */
+	unsigned short unit_size;		/* The size of the unit */
+	unsigned short unit_hash;		/* The hash of the unit */
+	unsigned short unit_count;		/* The number of units */
+	unsigned short unit_used;		/* The number of used units */
+	unsigned short unit_unfill;		/* The number of unused units */
+	unsigned short unit_maxused;	/* The maximum value of units used */
 	char   data[ BLOCK_DATA_SIZE ];
 };
 
@@ -199,7 +199,7 @@ struct unit_head {
 static struct block *hash_unfill[BLOCK_DATA_COUNT1 + BLOCK_DATA_COUNT2 + 1];
 static struct block *block_first, *block_last, block_head;
 
-/* ���������g���񂹂Ȃ��̈��p�̃f�[�^ */
+/* Data for areas that do not use the memory be turned */
 struct unit_head_large {
 	size_t                  size;
 	struct unit_head_large *prev;
@@ -224,7 +224,7 @@ static unsigned short size2hash(size_t size)
 		return (unsigned short)(size - BLOCK_DATA_SIZE1 + BLOCK_ALIGNMENT2 - 1) / BLOCK_ALIGNMENT2
 		       + BLOCK_DATA_COUNT1;
 	} else {
-		return 0xffff;  // �u���b�N���𒴂����ꍇ�� hash �ɂ��Ȃ�
+		return 0xffff;	// If it exceeds the block length hash I do not
 	}
 }
 
@@ -253,8 +253,8 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 	}
 	memmgr_usage_bytes += size;
 
-	/* �u���b�N���𒴂����̈��̊m�ۂɂ́Amalloc() ���p���� */
-	/* ���̍ہAunit_head.block �� NULL ���������ċ��ʂ��� */
+	/* To ensure the area that exceeds the length of the block, using malloc () to */
+	/* At that time, the distinction by assigning NULL to unit_head.block */
 	if(hash2size(size_hash) > BLOCK_DATA_SIZE - sizeof(struct unit_head)) {
 		struct unit_head_large *p = (struct unit_head_large *)MALLOC(sizeof(struct unit_head_large)+size,file,line,func);
 		if(p != NULL) {
@@ -279,7 +279,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 		}
 	}
 
-	/* �����T�C�Y�̃u���b�N���m�ۂ����Ă��Ȃ����A�V���Ɋm�ۂ��� */
+	/* When a block of the same size is not ensured, to ensure a new */
 	if(hash_unfill[size_hash]) {
 		block = hash_unfill[size_hash];
 	} else {
@@ -356,10 +356,10 @@ void *_mrealloc(void *memblock, size_t size, const char *file, int line, const c
 		old_size = ((struct unit_head_large *)((char *)memblock - sizeof(struct unit_head_large) + sizeof(long)))->size;
 	}
 	if(old_size > size) {
-		// �T�C�Y�k�� -> ���̂܂ܕԂ��i�蔲���j
+		// Size reduction - return> as it is (negligence)
 		return memblock;
 	}  else {
-		// �T�C�Y�g��
+		// Size Large
 		void *p = _mmalloc(size,file,line,func);
 		if(p != NULL) {
 			memcpy(p,memblock,old_size);
@@ -390,7 +390,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func)
 
 	head = (struct unit_head *)((char *)ptr - sizeof(struct unit_head) + sizeof(long));
 	if(head->size == 0) {
-		/* malloc() �Œ��Ɋm�ۂ��ꂽ�̈� */
+		/* area that is directly secured by malloc () */
 		struct unit_head_large *head_large = (struct unit_head_large *)((char *)ptr - sizeof(struct unit_head_large) + sizeof(long));
 		if(
 		    *(long *)((char *)head_large + sizeof(struct unit_head_large) - sizeof(long) + head_large->size)
@@ -414,7 +414,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func)
 			FREE(head_large,file,line,func);
 		}
 	} else {
-		/* ���j�b�g���� */
+		/* Release unit */
 		struct block *block = head->block;
 		if((char *)head - (char *)block > sizeof(struct block)) {
 			ShowError(read_message("Source.common.mfree2"), ptr, file, line);
@@ -432,11 +432,11 @@ void _mfree(void *ptr, const char *file, int line, const char *func)
 #endif
 			memmgr_assert(block->unit_used > 0);
 			if(--block->unit_used == 0) {
-				/* �u���b�N�̉��� */
+				/* Release of the block */
 				block_free(block);
 			} else {
 				if(block->unfill_prev == NULL) {
-					// unfill ���X�g�ɒǉ�
+					// add to unfill list
 					if(hash_unfill[ block->unit_hash ]) {
 						hash_unfill[ block->unit_hash ]->unfill_prev = block;
 					}
@@ -451,16 +451,16 @@ void _mfree(void *ptr, const char *file, int line, const char *func)
 	}
 }
 
-/* �u���b�N���m�ۂ��� */
+/* Allocating blocks */
 static struct block *block_malloc(unsigned short hash) {
 	int i;
 	struct block *p;
 	if(hash_unfill[0] != NULL) {
-		/* �u���b�N�p�̗̈��͊m�ۍς� */
+		/* Space for the block has already been secured */
 		p = hash_unfill[0];
 		hash_unfill[0] = hash_unfill[0]->unfill_next;
 	} else {
-		/* �u���b�N�p�̗̈����V���Ɋm�ۂ��� */
+		/* Newly allocated space for the block */
 		p = (struct block *)MALLOC(sizeof(struct block) * (BLOCK_ALLOC), __FILE__, __LINE__, __func__);
 		if(p == NULL) {
 			ShowFatalError(read_message("Source.common.block_alloc"));
@@ -468,17 +468,17 @@ static struct block *block_malloc(unsigned short hash) {
 		}
 
 		if(block_first == NULL) {
-			/* �����m�� */
+			/* First ensure */
 			block_first = p;
 		} else {
 			block_last->block_next = p;
 		}
 		block_last = &p[BLOCK_ALLOC - 1];
 		block_last->block_next = NULL;
-		/* �u���b�N���A�������� */
+		/* Linking the block */
 		for(i=0; i<BLOCK_ALLOC; i++) {
 			if(i != 0) {
-				// p[0] �͂��ꂩ���g���̂Ń����N�ɂ͉���Ȃ�
+				// I do not add the link p [0], so we will use
 				p[i].unfill_next = hash_unfill[0];
 				hash_unfill[0]   = &p[i];
 				p[i].unfill_prev = NULL;
@@ -490,7 +490,7 @@ static struct block *block_malloc(unsigned short hash) {
 		}
 	}
 
-	// unfill �ɒǉ�
+	// Add to unfill
 	memmgr_assert(hash_unfill[ hash ] == NULL);
 	hash_unfill[ hash ] = p;
 	p->unfill_prev  = &block_head;

@@ -230,8 +230,14 @@ enum e_skill_flag {
     SKILL_FLAG_PLAGIARIZED,
     SKILL_FLAG_REPLACED_LV_0, // temporary skill overshadowing permanent skill of level 'N - SKILL_FLAG_REPLACED_LV_0',
     SKILL_FLAG_PERM_GRANTED, // permanent, granted through someway e.g. script
-	SKILL_FLAG_TMP_COMBO, //@FIXME for homon combo atm
+    SKILL_FLAG_TMP_COMBO, //@FIXME for homon combo atm
     //...
+};
+
+enum e_mmo_charstatus_opt {
+	OPT_NONE	= 0x0,
+	OPT_SHOW_EQUIP	= 0x1,
+	OPT_ALLOW_PARTY	= 0x2,
 };
 
 struct s_skill {
@@ -393,7 +399,7 @@ struct mmo_charstatus {
 #ifdef HOTKEY_SAVING
 	struct hotkey hotkeys[MAX_HOTKEYS];
 #endif
-	bool show_equip;
+	bool show_equip, allow_party;
 	unsigned short rename;
 	unsigned short slotchange;
 
@@ -527,7 +533,8 @@ struct guild {
 	struct guild_alliance alliance[MAX_GUILDALLIANCE];
 	struct guild_expulsion expulsion[MAX_GUILDEXPULSION];
 	struct guild_skill skill[MAX_GUILDSKILL];
-
+	
+	/* TODO: still used for something?|: */
 	unsigned short save_flag; // for TXT saving
 	void *channel;
 };

@@ -8884,7 +8884,7 @@ ACMD_FUNC(channel) {
 			}
 			if( raChSys.ally && sd->status.guild_id ) {
 				struct guild *g = sd->guild;
-				if( !g ) return -1;
+				if(!g)  { dbi_destroy(iter); return -1; }
 				sprintf(atcmd_output, msg_txt(1412), raChSys.ally_name, db_size(((struct raChSysCh *)g->channel)->users));// - #%s ( %d users )
 				clif_displaymessage(fd, atcmd_output);
 			}
