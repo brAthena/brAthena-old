@@ -1046,10 +1046,10 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	//display login notice
 	ShowInfo("'"CL_WHITE"%s"CL_RESET"' logado."
 	         " (AID/CID: '"CL_WHITE"%d/%d"CL_RESET"',"
-	         " IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"',"
+	         " Vers%co de Pacotes: '"CL_WHITE"%d"CL_RESET"', IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"',"
 	         " Grupo '"CL_WHITE"%d"CL_RESET"').\n",
-	         sd->status.name, sd->status.account_id, sd->status.char_id,
-	         CONVIP(ip), sd->group_id);
+	         sd->status.name, sd->status.account_id, sd->status.char_id, 198,
+	         sd->packet_ver, CONVIP(ip), sd->group_id);
 	// Send friends list
 	clif_friendslist_send(sd);
 
@@ -1226,7 +1226,7 @@ int pc_reg_received(struct map_session_data *sd)
 	if(sd->state.connect_new == 0 && sd->fd) {
 		//Character already loaded map! Gotta trigger LoadEndAck manually.
 		sd->state.connect_new = 1;
-		clif->pLoadEndAck(sd->fd, sd);
+		clif_parse_LoadEndAck(sd->fd, sd);
 	}
 
 	pc_inventory_rentals(sd);
