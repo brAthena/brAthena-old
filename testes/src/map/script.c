@@ -15055,7 +15055,7 @@ BUILDIN_FUNC(unitattack)
 
 	switch(unit_bl->type) {
 		case BL_PC:
-			clif_parse_ActionRequest_sub(((TBL_PC *)unit_bl), actiontype > 0 ? 0x07 : 0x00, target_bl->id, gettick());
+			clif->pActionRequest_sub(((TBL_PC *)unit_bl), actiontype > 0 ? 0x07 : 0x00, target_bl->id, gettick());
 			script_pushint(st, 1);
 			return 0;
 		case BL_MOB:

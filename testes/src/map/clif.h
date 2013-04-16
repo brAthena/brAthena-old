@@ -43,25 +43,13 @@ struct quest;
 struct party_booking_ad_info;
 #include <stdarg.h>
 
-enum {
-    // packet DB
+#define packet_len(cmd) packet_db[cmd].len
+
+enum { // packet DB
     MAX_PACKET_DB  = 0xF00,
-    MAX_PACKET_VER = 34,
     MAX_PACKET_POS = 20,
 };
 
-struct s_packet_db {
-	short len;
-	void (*func)(int, struct map_session_data *);
-	short pos[MAX_PACKET_POS];
-};
-
-// packet_db[SERVER] is reserved for server use
-#define SERVER 0
-#define packet_len(cmd) packet_db[SERVER][cmd].len
-extern struct s_packet_db packet_db[MAX_PACKET_VER+1][MAX_PACKET_DB+1];
-
-// local define
 typedef enum send_target {
     ALL_CLIENT,
     ALL_SAMEMAP,
@@ -415,8 +403,6 @@ void clif_callpartner(struct map_session_data *sd);
 void clif_playBGM(struct map_session_data *sd, const char *name);
 void clif_soundeffect(struct map_session_data *sd, struct block_list *bl, const char *name, int type);
 void clif_soundeffectall(struct block_list *bl, const char *name, int type, enum send_target coverage);
-void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, int target_id, unsigned int tick);
-void clif_parse_LoadEndAck(int fd,struct map_session_data *sd);
 void clif_hotkeys_send(struct map_session_data *sd);
 
 // trade
@@ -683,12 +669,8 @@ void clif_Auction_openwindow(struct map_session_data *sd);
 void clif_Auction_results(struct map_session_data *sd, short count, short pages, uint8 *buf);
 void clif_Auction_message(int fd, unsigned char flag);
 void clif_Auction_close(int fd, unsigned char flag);
-void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd);
-// Botão de Cash
-void clif_CashShopOpen (int fd, struct map_session_data *sd);
-void clif_CashShopClose (int fd, struct map_session_data *sd);
-void clif_CashShopSchedule (int fd, struct map_session_data *sd);
-void clif_CashShopBuy (int fd, struct map_session_data *sd);
+
+//Botão de Cash
 void clif_cashshop_db (void);
 
 void clif_bossmapinfo(int fd, struct mob_data *md, short flag);
@@ -707,6 +689,18 @@ void clif_mercenary_updatestatus(struct map_session_data *sd, int type);
 void clif_rental_time(int fd, int nameid, int seconds);
 void clif_rental_expired(int fd, int index, int nameid);
 
+//Sistema de canal
+struct DBMap* clif_get_channel_db(void);
+void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color);
+void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg);
+void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg);
+void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd);
+void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd);
+void clif_chsys_delete(struct raChSysCh *channel);
+void clif_chsys_mjoin(struct map_session_data *sd);
+void clif_read_channels_config(void);
+
+#define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 // BOOK READING
 void clif_readbook(int fd, int book_id, int page);
 
@@ -827,6 +821,17 @@ enum CASH_SHOP_BUY_RESULT {
 	CSBR_EACHITEM_OVERCOUNT		= 0xa,
 	CSBR_UNKNOWN			= 0xb,
 };
+
+/**
+ * Structures
+ **/
+typedef void (*pFunc)(int, struct map_session_data *); //cant help but put it first
+struct s_packet_db {
+	short len;
+	pFunc func;
+	short pos[MAX_PACKET_POS];
+};
+
 struct {
 	unsigned long *colors;
 	char **colors_name;
@@ -861,16 +866,216 @@ struct hCSData {
 		unsigned int item_count[CASHSHOP_TAB_MAX];
 	} cs;
 
-struct DBMap* clif_get_channel_db(void);
-void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color);
-void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg);
-void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg);
-void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd);
-void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd);
-void clif_chsys_delete(struct raChSysCh *channel);
-void clif_chsys_mjoin(struct map_session_data *sd);
-void clif_read_channels_config(void);
+/**
+ * Vars
+ **/
+struct s_packet_db packet_db[MAX_PACKET_DB + 1];
 
-#define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
+
+struct clif_interface {
+	void (*pWantToConnection) (int fd, struct map_session_data *sd);
+	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
+	void (*pTickSend) (int fd, struct map_session_data *sd);
+	void (*pHotkey) (int fd, struct map_session_data *sd);
+	void (*pProgressbar) (int fd, struct map_session_data * sd);
+	void (*pWalkToXY) (int fd, struct map_session_data *sd);
+	void (*pQuitGame) (int fd, struct map_session_data *sd);
+	void (*pGetCharNameRequest) (int fd, struct map_session_data *sd);
+	void (*pGlobalMessage) (int fd, struct map_session_data* sd);
+	void (*pMapMove) (int fd, struct map_session_data *sd);
+	void (*pChangeDir) (int fd, struct map_session_data *sd);
+	void (*pEmotion) (int fd, struct map_session_data *sd);
+	void (*pHowManyConnections) (int fd, struct map_session_data *sd);
+	void (*pActionRequest) (int fd, struct map_session_data *sd);
+	void (*pActionRequest_sub) (struct map_session_data *sd, int action_type, int target_id, unsigned int tick);
+	void (*pRestart) (int fd, struct map_session_data *sd);
+	void (*pWisMessage) (int fd, struct map_session_data* sd);
+	void (*pBroadcast) (int fd, struct map_session_data* sd);
+	void (*pTakeItem) (int fd, struct map_session_data *sd);
+	void (*pDropItem) (int fd, struct map_session_data *sd);
+	void (*pUseItem) (int fd, struct map_session_data *sd);
+	void (*pEquipItem) (int fd,struct map_session_data *sd);
+	void (*pUnequipItem) (int fd,struct map_session_data *sd);
+	void (*pNpcClicked) (int fd,struct map_session_data *sd);
+	void (*pNpcBuySellSelected) (int fd,struct map_session_data *sd);
+	void (*pNpcBuyListSend) (int fd, struct map_session_data* sd);
+	void (*pNpcSellListSend) (int fd,struct map_session_data *sd);
+	void (*pCreateChatRoom) (int fd, struct map_session_data* sd);
+	void (*pChatAddMember) (int fd, struct map_session_data* sd);
+	void (*pChatRoomStatusChange) (int fd, struct map_session_data* sd);
+	void (*pChangeChatOwner) (int fd, struct map_session_data* sd);
+	void (*pKickFromChat) (int fd,struct map_session_data *sd);
+	void (*pChatLeave) (int fd, struct map_session_data* sd);
+	void (*pTradeRequest) (int fd,struct map_session_data *sd);
+	void (*chann_config_read) (void);
+	void (*pTradeAck) (int fd,struct map_session_data *sd);
+	void (*pTradeAddItem) (int fd,struct map_session_data *sd);
+	void (*pTradeOk) (int fd,struct map_session_data *sd);
+	void (*pTradeCancel) (int fd,struct map_session_data *sd);
+	void (*pTradeCommit) (int fd,struct map_session_data *sd);
+	void (*pStopAttack) (int fd,struct map_session_data *sd);
+	void (*pPutItemToCart) (int fd,struct map_session_data *sd);
+	void (*pGetItemFromCart) (int fd,struct map_session_data *sd);
+	void (*pRemoveOption) (int fd,struct map_session_data *sd);
+	void (*pChangeCart) (int fd,struct map_session_data *sd);
+	void (*pStatusUp) (int fd,struct map_session_data *sd);
+	void (*pSkillUp) (int fd,struct map_session_data *sd);
+	void (*pUseSkillToId) (int fd, struct map_session_data *sd);
+	void (*pUseSkillToId_homun) (struct homun_data *hd, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, int target_id);
+	void (*pUseSkillToId_mercenary) (struct mercenary_data *md, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, int target_id);
+	void (*pUseSkillToPos) (int fd, struct map_session_data *sd);
+	void (*pUseSkillToPosSub) (int fd, struct map_session_data *sd, uint16 skill_lv, uint16 skill_id, short x, short y, int skillmoreinfo);
+	void (*pUseSkillToPos_homun) (struct homun_data *hd, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
+	void (*pUseSkillToPos_mercenary) (struct mercenary_data *md, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
+	void (*pUseSkillToPosMoreInfo) (int fd, struct map_session_data *sd);
+	void (*pUseSkillMap) (int fd, struct map_session_data* sd);
+	void (*pRequestMemo) (int fd,struct map_session_data *sd);
+	void (*pProduceMix) (int fd,struct map_session_data *sd);
+	void (*pCooking) (int fd,struct map_session_data *sd);
+	void (*pRepairItem) (int fd, struct map_session_data *sd);
+	void (*pWeaponRefine) (int fd, struct map_session_data *sd);
+	void (*pNpcSelectMenu) (int fd,struct map_session_data *sd);
+	void (*pNpcNextClicked) (int fd,struct map_session_data *sd);
+	void (*pNpcAmountInput) (int fd,struct map_session_data *sd);
+	void (*pNpcStringInput) (int fd, struct map_session_data* sd);
+	void (*pNpcCloseClicked) (int fd,struct map_session_data *sd);
+	void (*pItemIdentify) (int fd,struct map_session_data *sd);
+	void (*pSelectArrow) (int fd,struct map_session_data *sd);
+	void (*pAutoSpell) (int fd,struct map_session_data *sd);
+	void (*pUseCard) (int fd,struct map_session_data *sd);
+	void (*pInsertCard) (int fd,struct map_session_data *sd);
+	void (*pSolveCharName) (int fd, struct map_session_data *sd);
+	void (*pResetChar) (int fd, struct map_session_data *sd);
+	void (*pLocalBroadcast) (int fd, struct map_session_data* sd);
+	void (*pMoveToKafra) (int fd, struct map_session_data *sd);
+	void (*pMoveFromKafra) (int fd,struct map_session_data *sd);
+	void (*pMoveToKafraFromCart) (int fd, struct map_session_data *sd);
+	void (*pMoveFromKafraToCart) (int fd, struct map_session_data *sd);
+	void (*pCloseKafra) (int fd, struct map_session_data *sd);
+	void (*pStoragePassword) (int fd, struct map_session_data *sd);
+	void (*pCreateParty) (int fd, struct map_session_data *sd);
+	void (*pCreateParty2) (int fd, struct map_session_data *sd);
+	void (*pPartyInvite) (int fd, struct map_session_data *sd);
+	void (*pPartyInvite2) (int fd, struct map_session_data *sd);
+	void (*pReplyPartyInvite) (int fd,struct map_session_data *sd);
+	void (*pReplyPartyInvite2) (int fd,struct map_session_data *sd);
+	void (*pLeaveParty) (int fd, struct map_session_data *sd);
+	void (*pRemovePartyMember) (int fd, struct map_session_data *sd);
+	void (*pPartyChangeOption) (int fd, struct map_session_data *sd);
+	void (*pPartyMessage) (int fd, struct map_session_data* sd);
+	void (*pPartyChangeLeader) (int fd, struct map_session_data* sd);
+	void (*pPartyBookingRegisterReq) (int fd, struct map_session_data* sd);
+	void (*pPartyBookingSearchReq) (int fd, struct map_session_data* sd);
+	void (*pPartyBookingDeleteReq) (int fd, struct map_session_data* sd);
+	void (*pPartyBookingUpdateReq) (int fd, struct map_session_data* sd);
+	void (*pCloseVending) (int fd, struct map_session_data* sd);
+	void (*pVendingListReq) (int fd, struct map_session_data* sd);
+	void (*pPurchaseReq) (int fd, struct map_session_data* sd);
+	void (*pPurchaseReq2) (int fd, struct map_session_data* sd);
+	void (*pOpenVending) (int fd, struct map_session_data* sd);
+	void (*pCreateGuild) (int fd,struct map_session_data *sd);
+	void (*pGuildCheckMaster) (int fd, struct map_session_data *sd);
+	void (*pGuildRequestInfo) (int fd, struct map_session_data *sd);
+	void (*pGuildChangePositionInfo) (int fd, struct map_session_data *sd);
+	void (*pGuildChangeMemberPosition) (int fd, struct map_session_data *sd);
+	void (*pGuildRequestEmblem) (int fd,struct map_session_data *sd);
+	void (*pGuildChangeEmblem) (int fd,struct map_session_data *sd);
+	void (*pGuildChangeNotice) (int fd, struct map_session_data* sd);
+	void (*pGuildInvite) (int fd,struct map_session_data *sd);
+	void (*pGuildReplyInvite) (int fd,struct map_session_data *sd);
+	void (*pGuildLeave) (int fd,struct map_session_data *sd);
+	void (*pGuildExpulsion) (int fd,struct map_session_data *sd);
+	void (*pGuildMessage) (int fd, struct map_session_data* sd);
+	void (*pGuildRequestAlliance) (int fd, struct map_session_data *sd);
+	void (*pGuildReplyAlliance) (int fd, struct map_session_data *sd);
+	void (*pGuildDelAlliance) (int fd, struct map_session_data *sd);
+	void (*pGuildOpposition) (int fd, struct map_session_data *sd);
+	void (*pGuildBreak) (int fd, struct map_session_data *sd);
+	void (*pPetMenu) (int fd, struct map_session_data *sd);
+	void (*pCatchPet) (int fd, struct map_session_data *sd);
+	void (*pSelectEgg) (int fd, struct map_session_data *sd);
+	void (*pSendEmotion) (int fd, struct map_session_data *sd);
+	void (*pChangePetName) (int fd, struct map_session_data *sd);
+	void (*pGMKick) (int fd, struct map_session_data *sd);
+	void (*pGMKickAll) (int fd, struct map_session_data* sd);
+	void (*pGMShift) (int fd, struct map_session_data *sd);
+	void (*pGMRemove2) (int fd, struct map_session_data* sd);
+	void (*pGMRecall) (int fd, struct map_session_data *sd);
+	void (*pGMRecall2) (int fd, struct map_session_data* sd);
+	void (*pGM_Monster_Item) (int fd, struct map_session_data *sd);
+	void (*pGMHide) (int fd, struct map_session_data *sd);
+	void (*pGMReqNoChat) (int fd,struct map_session_data *sd);
+	void (*pGMRc) (int fd, struct map_session_data* sd);
+	void (*pGMReqAccountName) (int fd, struct map_session_data *sd);
+	void (*pGMChangeMapType) (int fd, struct map_session_data *sd);
+	void (*pPMIgnore) (int fd, struct map_session_data* sd);
+	void (*pPMIgnoreAll) (int fd, struct map_session_data *sd);
+	void (*pPMIgnoreList) (int fd,struct map_session_data *sd);
+	void (*pNoviceDoriDori) (int fd, struct map_session_data *sd);
+	void (*pNoviceExplosionSpirits) (int fd, struct map_session_data *sd);
+	void (*pFriendsListAdd) (int fd, struct map_session_data *sd);
+	void (*pFriendsListReply) (int fd, struct map_session_data *sd);
+	void (*pFriendsListRemove) (int fd, struct map_session_data *sd);
+	void (*pPVPInfo) (int fd,struct map_session_data *sd);
+	void (*pBlacksmith) (int fd,struct map_session_data *sd);
+	void (*pAlchemist) (int fd,struct map_session_data *sd);
+	void (*pTaekwon) (int fd,struct map_session_data *sd);
+	void (*pRankingPk) (int fd,struct map_session_data *sd);
+	void (*pFeelSaveOk) (int fd,struct map_session_data *sd);
+	void (*pChangeHomunculusName) (int fd, struct map_session_data *sd);
+	void (*pHomMoveToMaster) (int fd, struct map_session_data *sd);
+	void (*pHomMoveTo) (int fd, struct map_session_data *sd);
+	void (*pHomAttack) (int fd,struct map_session_data *sd);
+	void (*pHomMenu) (int fd, struct map_session_data *sd);
+	void (*pAutoRevive) (int fd, struct map_session_data *sd);
+	void (*pCheck) (int fd, struct map_session_data *sd);
+	void (*pMail_refreshinbox) (int fd, struct map_session_data *sd);
+	void (*pMail_read) (int fd, struct map_session_data *sd);
+	void (*pMail_getattach) (int fd, struct map_session_data *sd);
+	void (*pMail_delete) (int fd, struct map_session_data *sd);
+	void (*pMail_return) (int fd, struct map_session_data *sd);
+	void (*pMail_setattach) (int fd, struct map_session_data *sd);
+	void (*pMail_winopen) (int fd, struct map_session_data *sd);
+	void (*pMail_send) (int fd, struct map_session_data *sd);
+	void (*pAuction_cancelreg) (int fd, struct map_session_data *sd);
+	void (*pAuction_setitem) (int fd, struct map_session_data *sd);
+	void (*pAuction_register) (int fd, struct map_session_data *sd);
+	void (*pAuction_cancel) (int fd, struct map_session_data *sd);
+	void (*pAuction_close) (int fd, struct map_session_data *sd);
+	void (*pAuction_bid) (int fd, struct map_session_data *sd);
+	void (*pAuction_search) (int fd, struct map_session_data* sd);
+	void (*pAuction_buysell) (int fd, struct map_session_data* sd);
+	void (*pcashshop_buy) (int fd, struct map_session_data *sd);
+	void (*pAdopt_request) (int fd, struct map_session_data *sd);
+	void (*pAdopt_reply) (int fd, struct map_session_data *sd);
+	void (*pViewPlayerEquip) (int fd, struct map_session_data* sd);
+	void (*pEquipTick) (int fd, struct map_session_data* sd);
+	void (*pquestStateAck) (int fd, struct map_session_data * sd);
+	void (*pmercenary_action) (int fd, struct map_session_data* sd);
+	void (*pBattleChat) (int fd, struct map_session_data* sd);
+	void (*pLessEffect) (int fd, struct map_session_data* sd);
+	void (*pItemListWindowSelected) (int fd, struct map_session_data* sd);
+	void (*pReqOpenBuyingStore) (int fd, struct map_session_data* sd);
+	void (*pReqCloseBuyingStore) (int fd, struct map_session_data* sd);
+	void (*pReqClickBuyingStore) (int fd, struct map_session_data* sd);
+	void (*pReqTradeBuyingStore) (int fd, struct map_session_data* sd);
+	void (*pSearchStoreInfo) (int fd, struct map_session_data* sd);
+	void (*pSearchStoreInfoNextPage) (int fd, struct map_session_data* sd);
+	void (*pCloseSearchStoreInfo) (int fd, struct map_session_data* sd);
+	void (*pSearchStoreInfoListItemClick) (int fd, struct map_session_data* sd);
+	void (*pDebug) (int fd,struct map_session_data *sd);
+	void (*pSkillSelectMenu) (int fd, struct map_session_data *sd);
+	void (*pMoveItem) (int fd, struct map_session_data *sd);
+	void (*pDull) (int fd, struct map_session_data *sd);
+	/* RagExe Cash Shop [Ind/Hercules] */
+	void (*pCashShopOpen) (int fd, struct map_session_data *sd);
+	void (*pCashShopClose) (int fd, struct map_session_data *sd);
+	void (*pCashShopSchedule) (int fd, struct map_session_data *sd);
+	void (*pCashShopBuy) (int fd, struct map_session_data *sd);
+} clif_s;
+
+struct clif_interface *clif;
+
+void clif_defaults(void);
 
 #endif /* _CLIF_H_ */

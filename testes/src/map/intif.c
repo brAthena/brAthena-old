@@ -1874,7 +1874,7 @@ static void intif_parse_Auction_close(int fd)
 	clif_Auction_close(sd->fd, result);
 	if(result == 0) {
 		// FIXME: Leeching off a parse function
-		clif_parse_Auction_cancelreg(fd, sd);
+		clif->pAuction_cancelreg(fd, sd);
 		intif_Auction_requestlist(sd->status.char_id, 6, 0, "", 1);
 	}
 }
@@ -1913,7 +1913,7 @@ static void intif_parse_Auction_bid(int fd)
 	}
 	if(result == 1) {
 		// To update the list, display your buy list
-		clif_parse_Auction_cancelreg(fd, sd);
+		clif->pAuction_cancelreg(fd, sd);
 		intif_Auction_requestlist(sd->status.char_id, 7, 0, "", 1);
 	}
 }
