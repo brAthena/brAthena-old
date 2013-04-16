@@ -67,6 +67,7 @@ aldeba_in,96,181,4	script	Serviço Kafra	113,{
 			mes "parece que você não possui";
 			mes "20 Zenys para pagar a taxa";
 			mes "de acesso...";
+			close;
 		}
 		mes "[Kafra Leila]";
 		mes "Embora esta facilidade seja";
@@ -342,10 +343,8 @@ alberta,113,60,6	script	Funcionária Kafra::kaf_alberta2	112,{
 brasilis,197,221,4	script#re	Funcionária Kafra#brasilis	117,{
 	cutin "kafra_01",2;
 	callfunc "F_Kafra",0,3,0,80,700;
-
-	M_Save:
-		savepoint "brasilis",195,259;
-		callfunc "F_KafEnd",0,1,"na cidade de Brasilis";
+	savepoint "brasilis",195,259;
+	callfunc "F_KafEnd",0,1,"na cidade de Brasilis";
 }
 
 // Dewata

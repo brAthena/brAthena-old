@@ -311,28 +311,16 @@ OnRecvCastle:
 		mes "Bem vindo, membro do clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes "A Corporação Kafra estará com você onde quer que vá.";
 		next;
-		switch (select("Usar Armazém.:Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
+		switch (select("Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar")) {
 		case 1:
 				mes "[Funcionária Kafra]";
-			if (getskilllv("NV_BASIC") < 6) {
-				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um Aprendiz com no mínimo level 6 de profissão.";
-			}
-			else {
-				callfunc("F_CheckKafCode");
-	 	 		openstorage;
-			}
-			break;
-		case 2:	
 			if (guildopenstorage() == 1) {
-				mes "[Funcionária Kafra]";
 				mes "Me desculpe, mas no momento existe um membro usando o armazém do Clã.";
 				mes "Por favor, aguarde ele concluir.";
 				close2;
-					cutin "", 255;
+				cutin "", 255;
 				end;
 			}
-			cutin "", 255;
-			close;
 			mes "Aqui, deixe-me abrir";
 			mes "seu Armazém para você.";
 			mes "Obrigado por usar";
@@ -341,7 +329,7 @@ OnRecvCastle:
 			cutin "",255;
 			openstorage;
 			end;
-		case 3:
+		case 2:
 			mes "[Funcionária Kafra]";
 			mes "Por favor, escolha seu destino.";
 			next;
@@ -365,7 +353,7 @@ OnRecvCastle:
 				cutin "",255;
 				end;
 			}
-		case 4:
+		case 3:
 				mes "[Funcionária Kafra]";
 			if (BaseClass != Job_Merchant) {
 				mes "Lamento, mas o serviço de aluguel de carrinhos está disponível somente para a classe de Mercadores e suas evoluções.";
@@ -402,7 +390,7 @@ OnRecvCastle:
 				cutin "",255;
 				end;
 			}
-		case 5:
+		case 4:
 			mes "[Funcionária Kafra]";
 			mes "A Corp. Kafra fará o possível para oferecer o melhor serviço.";
 			mes "Obrigada por usar a Corp. Kafra. Volte sempre.";
@@ -627,6 +615,7 @@ OnRecvCastle:
 			}
 			set Zeny, Zeny - .@eco_invest;
 			SetCastleData strnpcinfo(2),4,GetCastleData(strnpcinfo(2),4)+1;
+			SetCastleData strnpcinfo(2),2,GetCastleData(strnpcinfo(2),2)+1;
 			mes "[ Mordomo " + .@name$ + "]";
 			mes "Nós concluímos os investimentos em segurança. Espero que nosso nível de comércio tenha aumentado mais até amanhã.";
 			close;
@@ -689,6 +678,7 @@ OnRecvCastle:
 			}
 			set Zeny, Zeny - .@def_invest;
 			SetCastleData strnpcinfo(2),5,GetCastleData(strnpcinfo(2),5)+1;
+			SetCastleData strnpcinfo(2),3,GetCastleData(strnpcinfo(2),3)+1;
 			mes "[ "+strnpcinfo(1)+"]";
 			mes "Nós concluímos os investimentos em segurança. Espero que nosso nível de defesa tenha aumentado mais até amanhã.";
 			close;
@@ -1145,7 +1135,7 @@ OnClock0001:
 		set .@box,1 << .@i;
 		// Gera ou não gera baús se já existirem.
 		if ((getd("$@"+strnpcinfo(2)+"_treasure") & .@box) == 0) {
-			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
+			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Baú do Tesouro",.@boxid,1,"Tesouro#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
 		}
 	}
