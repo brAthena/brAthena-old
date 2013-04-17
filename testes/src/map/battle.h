@@ -497,7 +497,6 @@ extern void battle_validate_conf(void);
 extern void battle_set_defaults(void);
 int battle_set_value(const char *w1, const char *w2);
 int battle_get_value(const char *w1);
-bool isMagicReflect;/* maybe better as a flag atlho the system isnt threaded so there isn't any bug by using it like this */
 //
 struct block_list *battle_getenemyarea(struct block_list *src, int x, int y, int range, int type, int ignore_id);
 /**
