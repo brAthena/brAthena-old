@@ -19,7 +19,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/db.h" //dbmap
-//#include "../common/mmo.h"
+#include "../common/mmo.h"
 struct item;
 struct storage_data;
 struct guild_storage;
@@ -796,6 +796,7 @@ int clif_colormes(struct map_session_data *sd, enum clif_colors color, const cha
 enum raChSysChOpt {
 	raChSys_OPT_BASE		= 0,
 	raChSys_OPT_ANNOUNCE_JOIN	= 1,
+	raChSys_OPT_MSG_DELAY		= 2
 };
 
 enum raChSysChType {
@@ -839,15 +840,21 @@ struct {
 	bool allow_user_channel_creation;
 } raChSys;
 
+struct raChSysBanEntry {
+	char name[NAME_LENGTH];
+};
+
 struct raChSysCh {
 	char name[RACHSYS_NAME_LENGTH];
 	char pass[RACHSYS_NAME_LENGTH];
 	unsigned char color;
 	DBMap *users;
+	DBMap *banned;
 	unsigned int opt;
 	unsigned int owner;
 	enum raChSysChType type;
 	uint16 m;
+	unsigned char msg_delay;
 };
 
 struct hCSData {
@@ -870,6 +877,8 @@ void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd);
 void clif_chsys_delete(struct raChSysCh *channel);
 void clif_chsys_mjoin(struct map_session_data *sd);
 void clif_read_channels_config(void);
+void clif_chsys_quitg(struct map_session_data *sd);
+void clif_chsys_quit(struct map_session_data *sd);
 
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 

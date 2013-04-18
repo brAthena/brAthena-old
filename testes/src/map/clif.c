@@ -5459,6 +5459,9 @@ void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsign
 		safestrncpy(channel->pass, pass, RACHSYS_NAME_LENGTH);
 
 	channel->opt = raChSys_OPT_BASE;
+	channel->banned = NULL;
+	
+	channel->msg_delay = 0;
 
 	if(channel->type != raChSys_MAP && channel->type != raChSys_ALLY)
 		strdb_put(channel_db, channel->name, channel);
@@ -5484,9 +5487,16 @@ void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd) {
 }
 
 void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
-	char message[150];
-	snprintf(message, 150, "[ #%s ] %s : %s",channel->name,sd->status.name, msg);
-	clif_chsys_msg(channel,sd,message);
+	if( channel->msg_delay != 0 && DIFF_TICK(sd->rachsysch_tick + ( channel->msg_delay * 1000 ), gettick()) > 0 && !pc_has_permission(sd, PC_PERM_CHANNEL_ADMIN) ) {
+		clif_colormes(sd,COLOR_RED,msg_txt(1455));
+		return;
+	} else {
+		char message[150];
+		snprintf(message, 150, "[ #%s ] %s : %s",channel->name,sd->status.name, msg);
+		clif_chsys_msg(channel,sd,message);
+		if( channel->msg_delay != 0 )
+			sd->rachsysch_tick = gettick();
+	}
 }
 
 void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
@@ -5523,6 +5533,11 @@ void clif_chsys_mjoin(struct map_session_data *sd) {
 
 		clif_chsys_create(map[sd->bl.m].channel,NULL,NULL,raChSys.local_color);
 	}
+
+	if( map[sd->bl.m].channel->banned && idb_exists(map[sd->bl.m].channel->banned, sd->status.account_id) ) {
+		return;
+	}
+
 	clif_chsys_join(map[sd->bl.m].channel,sd);
 
 	if(!(map[sd->bl.m].channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
@@ -5572,6 +5587,73 @@ void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd) {
 
 }
 
+void clif_chsys_quitg(struct map_session_data *sd) {
+	unsigned char i;
+	struct raChSysCh *channel = NULL;
+	
+	for( i = 0; i < sd->channel_count; i++ ) {
+		if( (channel = sd->channels[i] ) != NULL && channel->type == raChSys_ALLY ) {
+			idb_remove(channel->users,sd->status.char_id);
+			
+			if( channel == sd->gcbind )
+				sd->gcbind = NULL;
+			
+			if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
+				clif_chsys_delete(channel);
+			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN) ) {
+				char message[60];
+				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
+				clif_chsys_msg(channel,sd,message);
+			}
+			sd->channels[i] = NULL;
+		}
+	}
+		
+	if(i < sd->channel_count) {
+		unsigned char cursor = 0;
+		for(i = 0; i < sd->channel_count; i++) {
+			if(sd->channels[i] == NULL)
+				continue;
+			if(cursor != i) {
+				sd->channels[cursor] = sd->channels[i];
+			}
+			cursor++;
+		}
+		if (!(sd->channel_count = cursor)) {
+			aFree(sd->channels);
+			sd->channels = NULL;
+		}
+	}
+	
+}
+
+void clif_chsys_quit(struct map_session_data *sd) {
+	unsigned char i;
+	struct raChSysCh *channel = NULL;
+	
+	for( i = 0; i < sd->channel_count; i++ ) {
+		if( (channel = sd->channels[i] ) != NULL ) {
+			idb_remove(channel->users,sd->status.char_id);
+			
+			if( channel == sd->gcbind )
+				sd->gcbind = NULL;
+			
+			if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
+				clif_chsys_delete(channel);
+			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN) ) {
+				char message[60];
+				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
+				clif_chsys_msg(channel,sd,message);
+			}
+			
+		}
+	}
+
+	sd->channel_count = 0;
+	aFree(sd->channels);
+	sd->channels = NULL;	
+}
+
 void clif_chsys_delete(struct raChSysCh *channel) {
 	if(db_size(channel->users) && !raChSys.closing) {
 		DBIterator *iter;
@@ -5602,6 +5684,10 @@ void clif_chsys_delete(struct raChSysCh *channel) {
 			}
 		}
 		dbi_destroy(iter);
+	}
+	if( channel->banned ) {
+		db_destroy(channel->banned);
+		channel->banned = NULL;
 	}
 	db_destroy(channel->users);
 	if(channel->m) {
@@ -10247,7 +10333,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 			}
 			if( k < sd->channel_count ) {
 				clif_chsys_send(channel,sd,message);
-			} else if( channel->pass[0] == '\0' ) {
+			} else if( channel->pass[0] == '\0' && !(channel->banned && idb_exists(channel->banned, sd->status.account_id)) ) {
 				clif_chsys_join(channel,sd);
 				clif_chsys_send(channel,sd,message);
 			} else {

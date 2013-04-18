@@ -762,11 +762,15 @@ void guild_member_joined(struct map_session_data *sd)
 
 		if( raChSys.ally && raChSys.ally_autojoin ) {
 			struct guild* sg = NULL;
-			clif_chsys_join((struct raChSysCh*)g->channel,sd);
+			struct raChSysCh *channel = (struct raChSysCh*)g->channel;
+
+			if( !(channel->banned && idb_exists(channel->banned, sd->status.account_id) ) )
+				clif_chsys_join(channel,sd);
 
 			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
 				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id) ) ) {
-					clif_chsys_join((struct raChSysCh*)sg->channel,sd);
+					if( !(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
+						clif_chsys_join((struct raChSysCh*)sg->channel,sd);
 					break;
 				}
 			}
@@ -913,12 +917,8 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 		if(sd->state.storage_flag == 2)  //Close the guild storage.
 			storage_guild_storageclose(sd);
 		guild_send_dot_remove(sd);
-		if( raChSys.ally ) {
-			for (i = 0; i < sd->channel_count; i++) {
-				if( sd->channels[i] && sd->channels[i]->type == raChSys_ALLY )
-					clif_chsys_left(sd->channels[i],sd);
-			}
-		}
+		if(raChSys.ally)
+			clif_chsys_quitg(sd);
 		sd->status.guild_id = 0;
 		sd->guild = NULL;
 		sd->guild_emblem_id = 0;

@@ -1706,33 +1706,11 @@ int map_quit(struct map_session_data *sd)
 		unit_remove_map(&sd->ed->bl,CLR_TELEPORT);
 	}
 
-	if( raChSys.ally && sd->status.guild_id ) {
-		struct guild *g = sd->guild, *sg;
-		if( g ) {
-			if( idb_exists(((struct raChSysCh *)g->channel)->users, sd->status.char_id) )
-				clif_chsys_left((struct raChSysCh *)g->channel,sd);
-			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
-				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id) ) ) {
-					if( idb_exists(((struct raChSysCh *)sg->channel)->users, sd->status.char_id) )
-						clif_chsys_left((struct raChSysCh *)sg->channel,sd);
-					break;
-				}
-			}
-		}
-	}
-
 	if(raChSys.local && map[sd->bl.m].channel && idb_exists(map[sd->bl.m].channel->users, sd->status.char_id)) {
 		clif_chsys_left(map[sd->bl.m].channel,sd);
 	}
 
-	if( sd->channel_count ) {
-		for( i = 0; i < sd->channel_count; i++ ) {
-			if( sd->channels[i] != NULL )
-				clif_chsys_left(sd->channels[i],sd);
-		}
-		if( raChSys.closing )
-			aFree(sd->channels);
-	}
+	clif_chsys_quit(sd); 
 
 	unit_remove_map_pc(sd,CLR_TELEPORT);
 
