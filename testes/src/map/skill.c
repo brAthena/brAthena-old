@@ -7872,6 +7872,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case AB_CLEARANCE:
 			if(flag&1 || (i = skill_get_splash(skill_id, skill_lv)) < 1) {
 				//As of the behavior in official server Clearance is just a super version of Dispell skill. [Jobbie]
+
+				if(bl->type != BL_MOB && battle_check_target(src,bl,BCT_PARTY) <= 0) // Only affect mob or party.
+					break;
+
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 
 				if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER) || rnd()%100 >= 60 + 8 * skill_lv) {
@@ -10881,9 +10885,9 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			}
 			break;
 		case BA_ASSASSINCROSS:
-			val1 = 100+(10*skill_lv)+(status->agi/10); // ASPD increase
+			val1 = 100+(10*skill_lv)+status->agi; // ASPD increase
 			if(sd)
-				val1 += 5*pc_checkskill(sd,BA_MUSICALLESSON);
+				val1 += 10*((pc_checkskill(sd,BA_MUSICALLESSON)+1)/2); //aspd +1% per 2lvl
 			break;
 		case DC_FORTUNEKISS:
 			val1 = 10+skill_lv+(status->luk/10); // Critical increase

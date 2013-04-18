@@ -2293,15 +2293,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 30*skill_lv;
 					break;
 				case NPC_DARKCROSS:
-				case CR_HOLYCROSS: {
-						int ratio = 35*skill_lv;
-#ifdef RENEWAL
+				case CR_HOLYCROSS:
+					#ifdef RENEWAL
 						if(sd && sd->status.weapon == W_2HSPEAR)
-							ratio *= 2;
-#endif
-						skillratio += ratio;
-						break;
-					}
+							skillratio += 2*(35*skill_lv);
+						else
+					#endif
+					skillratio += 35*skill_lv;
+					break;
 				case AM_DEMONSTRATION:
 					skillratio += 20*skill_lv;
 					break;

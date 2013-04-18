@@ -5365,9 +5365,9 @@ static short status_calc_aspd(struct block_list *bl, struct status_change *sc, s
 			skills1 = 5;
 
 		if(sc->data[SC_ASSNCROS] &&
-		   skills1 < 5+1*sc->data[SC_ASSNCROS]->val1) { // needs more info
+		   skills1 < sc->data[SC_ASSNCROS]->val2/10) { // needs more info
 			if(bl->type!=BL_PC)
-				skills1 = 4+1*sc->data[SC_ASSNCROS]->val1;
+				skills1 = sc->data[SC_ASSNCROS]->val2/10;
 			else
 				switch(((TBL_PC *)bl)->status.weapon) {
 					case W_BOW:
@@ -5378,7 +5378,7 @@ static short status_calc_aspd(struct block_list *bl, struct status_change *sc, s
 					case W_GRENADE:
 						break;
 					default:
-						skills1 = 5+1*sc->data[SC_ASSNCROS]->val1;
+						skills1 = sc->data[SC_ASSNCROS]->val2/10;
 				}
 		}
 	}
