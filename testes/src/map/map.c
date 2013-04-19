@@ -5129,6 +5129,8 @@ int do_init(int argc, char *argv[])
 			}
 	}
 
+	clif_defaults();
+
 	map_config_read(MAP_CONF_NAME);
 	/* only temporary until sirius's datapack patch is complete  */
 

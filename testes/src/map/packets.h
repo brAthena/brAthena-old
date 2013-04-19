@@ -1989,7 +1989,7 @@ packet(0x020d,-1);
 	packet(0x0977,14);//Monster HP Bar
 #endif
 
-//2012-04-18aRagexeRE [Special Thanks to Judas!]
+//2012-04-18aRagexeRE
 #if PACKETVER >= 20120418
 	packet(0x023B,26,clif->pFriendsListAdd,2);
 	packet(0x0361,5,clif->pHomMenu,2,4);
@@ -2034,7 +2034,7 @@ packet(0x020d,-1);
 	packet(0x0960,5,clif->pChangeDir,2,4);
 #endif
 
-//2013-03-20Ragexe (Judas)
+//2013-03-20Ragexe
 #if PACKETVER >= 20130320
 	packet(0x01FD,15,clif->pRepairItem,2);
 	packet(0x086D,26,clif->pFriendsListAdd,2);
