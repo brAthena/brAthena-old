@@ -3410,7 +3410,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	} 
 
  	//Card Fix, tsd side
-	if(!sd && tsd) // Card Fix for target (tsd), 2 is not added to the "left" flag meaning "target cards only"
+	if(tsd) // Card Fix for target (tsd), 2 is not added to the "left" flag meaning "target cards only"
 		wd.damage = battle_calc_cardfix(BF_WEAPON, src, target, nk, s_ele, s_ele_, wd.damage, flag.lh, wd.flag);
 
 	if(flag.infdef) { //Plants receive 1 damage when hit
