@@ -5878,6 +5878,7 @@ static const struct _battle_data {
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },
 	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
 	{ "item_enabled_npc",			&battle_config.item_enabled_npc,		1,      0,      1,		},
+	{ "item_flooritem_check",               &battle_config.item_onfloor,                    1,      0,      1,              },
 	/**
 	 *
 	 **/
