@@ -1,33 +1,34 @@
-//    ________________________________________________________
-//   /                                                        \
-//   |       _           _   _   _                            |
-//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-//   |                                                        |
-//   |                    brAthena Script                     |
-//   |--------------------------------------------------------|
-//   | Nome do Script: 11-25.txt                              |
-//   |--------------------------------------------------------|
-//   | Criado por: eA/rA/brA Dev. Team                        |
-//   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.2/1.0                          |
-//   |--------------------------------------------------------|
-//   | Descrição: Quests repetíveis para jogadores entre      |
-//   | Baselevel 11-25.                                       |
-//   |--------------------------------------------------------|
-//   | Changelog:                                             |
-//   | 1.0 Criado Cabeçalho [Megasantos]                      |
-//   |--------------------------------------------------------|
-//   | - Anotações                                            |
-//   \________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Quests de Éden - Missão [11 - 25]      |
+// |--------------------------------------------------------|
+// | Criado por: eA/rA/brA Dev. Team                        |
+// |--------------------------------------------------------|
+// | Versões eA/rA/brA: 1.1/1.2/1.1                         |
+// |--------------------------------------------------------|
+// | Descrição: Quests Repetitíveis - Nível de Base 11 - 25 |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | 1.1 Tradução(PT-BR) [Nakyo]                            |
+// | 1.2 Revisão [Saraii]                                   |
+// |--------------------------------------------------------|
+// | - Anotações                                            |
+// \________________________________________________________/
 
-moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	857,{
+moc_para01,36,38,3	script	Missão [11 - 25]#Tuto	857,{
 	if (countitem(6219) < 1) {
-		mes "- You need to have an -";
-		mes "- ^4d4dff'Eden Group Mark'^000000 -";
-		mes "- to receive these missions. -";
+		mes "-Você precisa ter um-";
+		mes "-^4d4dff'Emblema do Grupo Éden'^000000-";
+		mes "-Para receber Missões-";
 		close;
 	}
 	for(set .@i,11124; .@i<11134; set .@i,.@i+1)
@@ -35,75 +36,74 @@ moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	857,{
 	for(set .@i,11114; .@i<11123; set .@i,.@i+1) {
 		set .@j, checkquest(.@i,HUNTING);
 		if (.@j == 2) {
-			mes " - You must collect your - ";
-			mes " - reward before starting - ";
-			mes " - a new mission. - ";
-			mes " ";
-			mes " - Manager : Spike - ";
+			mes "-Você deve retirar sua-";
+			mes "-recompensa antes de começar-";
+			mes "-uma nova missão.-";
+			mes "";
+			mes "-Gerente : Spike-";
 			close;
 		}
 		else if (.@j >= 0) {
-			mes " - You can only request - ";
-			mes " - one mission at a time. - ";
-			mes " ";
-			mes " - Manager : Spike - ";
+			mes "-Você só poderá solicitar-";
+			mes "-uma missão de cada vez-";
+			mes "";
+			mes "-Gerente : Spike-";
 			close;
 		}
 	}
 	if (BaseLevel < 11) {
-		mes " - There are no tasks - ";
-		mes " - open for you right now. - ";
+		mes "-Não há tarefas-";
+		mes "-abertas para você agora.-";
 		close;
 	}
 	if (BaseLevel > 25) {
-		mes " - These missions are too - ";
-		mes " - easy for your caliber - ";
-		mes " - search for a more level - ";
-		mes " - appropriate mission. - ";
+		mes "-Essas são Missões-";
+		mes "-fáceis demais para o seu nível.-";
+		mes "-Procure missões mais-";
+		mes "-apropriadas para você-";
 		close;
 	}
-	mes " - Mission bulletin board -";
-	mes " - for beginners. -";
-	mes " ";
-	mes " - Manager : Spike -";
+	mes "-Boletim de missão-";
+	mes "-para iniciantes.-";
+	mes "";
+	mes "-Gerente : Spike-";
 	next;
-	switch(select("Hornet Hunting:Condor Hunting:Grasshopper's Leg:Worm Tail Hunting:Spore Hunting:Pest Control:Muka Hunting:Familiar Hunting:Collect Feathers:Collect Poison Spores:Cancel")) {
-		case 1: callsub L_Quest,11114,"Hornet Hunting"," - Hunt 10 ^4d4dff'Hornets'^000000 - "," - northwest of Prontera. - ";
-		case 2: callsub L_Quest,11115,"Condor Hunting"," - Hunt 20 ^4d4dff'Condors'^000000 - "," - south of Morroc. - ";
-		case 3: callsub L_Quest,11116,"Grasshopper's Leg"," - Hunt 10 ^4d4dff'Rockers'^000000 - "," - southwest of Prontera and - "," - bring 10 ^4d4dffGrasshopper's Legs^000000. - ";
-		case 4: callsub L_Quest,11117,"Worm Tail Hunting"," - Hunt 20 ^4d4dff'Worm Tails'^000000 - "," - southeast of Payon.- ";
-		case 5: callsub L_Quest,11118,"Spore Hunting"," - Hunt 30 ^4d4dff'Spores'^000000 - "," - around Payon. - ";
-		case 6: callsub L_Quest,11119,"Pest Control"," - Hunt 20 ^4d4dffThief Bug Eggs^000000 - "," - in the Prontera Culvert - "," - and bring 10 ^4d4dffChrysalis^000000. - ";
-		case 7: callsub L_Quest,11120,"Muka Hunting"," - Hunt 20 ^4d4dff'Muka'^000000 - "," - south of Prontera. - ";
-		case 8: callsub L_Quest,11121,"Familiar Hunting"," - Hunt 20 ^4d4dffFamiliar^000000 - "," - in the Culvert Sewers - "," - west of Prontera. - ";
-		case 9: callsub L_Quest,11122,"Collect Feathers"," - Hunt 30 ^4d4dff'Peco Pecos'^000000 - "," - south of Prontera. - ";
-		case 10: callsub L_Quest,11123,"Collect Poison Spores"," - Hunt 30 ^4d4dffPoison Spores^000000 - "," - inside the Geffen Tower and - "," - bring 5 ^4d4dffPoison Spores^000000. - ";
-		case 11: mes " - Stop reading the bulletin board. - "; close;
+	switch(select("Caçar Zangão: Caçar Condor: Coletar Pernas de Gafanhoto: Caçar Rabo de Verme: Caçar Esporos: Controle de Pragas: Caçar Muka: Caçar Familiar: Colecionar Plumas: Coletar Esporos Venenosos: Cancelar")) {
+		case 1: callsub L_Quest,11114,"Caçar Zangão"," - Cace 10 ^4d4dff'Zangões'^000000 - "," - noroeste de Prontera. - ";
+		case 2: callsub L_Quest,11115,"Caçar Condor"," - Cace 20 ^4d4dff'Condores'^000000 - "," - sul de Morroc. - ";
+		case 3: callsub L_Quest,11116,"Coletar Pernas de Gafanhoto"," - Cace 10 ^4d4dff'Rockers'^000000 - "," - sudoeste de Prontera e - "," - traga 10 ^4d4dffPernas de Gafanhoto^000000. - ";
+		case 4: callsub L_Quest,11117,"Caçar Rabo de Verme"," - Cace 20 ^4d4dff'Rabo de Verme'^000000 - "," - sudoeste de Payon.- ";
+		case 5: callsub L_Quest,11118,"Caçar Esporos"," - Cace 30 ^4d4dff'Esporos'^000000 - "," - ao redor de Payon. - ";
+		case 6: callsub L_Quest,11119,"Controle de Pragas"," - Cace 20 ^4d4dffOvos de Besouro Ladrão^000000 - "," - nos Esgotos de Prontera - "," - e traga 10 ^4d4dffCrisálidas^000000. - ";
+		case 7: callsub L_Quest,11120,"Caçar Muka"," - Cace 20 ^4d4dff'Muka'^000000 - "," - sul de Prontera. - ";
+		case 8: callsub L_Quest,11121,"Caçar Familiar"," - Cace 20 ^4d4dff'Familiares'^000000 - "," - nos Esgotos - "," - oeste de Prontera. - ";
+		case 9: callsub L_Quest,11122,"Colecionar Plumas"," - Cace 30 ^4d4dff'Peco Pecos'^000000 - "," - sul de Prontera. - ";
+		case 10: callsub L_Quest,11123,"Coletar Esporos Venenosos"," - Cace 30 ^4d4dff'Esporo Venenoso'^000000 - "," - dentro da Torre de Geffen e - "," - traga 5 ^4d4dffEsporos Venenosos^000000. - ";
+		case 11: mes " - Parando de ler o quadro... - "; close;
 	}
 	end;
 L_Quest:
 	if (checkquest(getarg(0),PLAYTIME) == 1) {
-		mes " - Mission ^4d4dff"+getarg(1)+"^000000 - ";
-		mes " - is already finished for today. - ";
-		mes " ";
-		mes " - Manager : Spike - ";
+		mes "-Missão ^4d4dffCaçar Zangão^000000-";
+		mes "-Você já terminou a missão Hoje.-";
+		mes "";
+		mes "- Gerente : Spike-";
 		close;
 	}
-	mes " - Mission '"+getarg(1)+"' - ";
+	mes " - Missão '"+getarg(1)+"' - ";
 	for(set .@i,2; .@i<getargcount(); set .@i,.@i+1)
-		mes getarg(.@i);
+	mes getarg(.@i);
 	mes " ";
-	mes " - Manager : Spike - ";
+	mes " - Gerente : Spike - ";
 	next;
-	if(select("I will do this mission.:Look for other missions.") == 2) {
-		mes " - Let's search for -";
-		mes " - other missions. - ";
+	if(select("Vou fazer esta missão.:Olhar outras missões.") == 2) {
+		mes " - Vou procurar por outras missões. -";
 		close;
 	}
 	for(set .@i,2; .@i<getargcount(); set .@i,.@i+1)
 		mes getarg(.@i);
 	if (getarg(0) == 11123 && checkquest(11123,PLAYTIME) == 2)
-		erasequest 11133;	// Special case for "Collect Poison Spores"
+		erasequest 11133;	// Caso especial da "Coleção de Esporos Venenosos"
 	setquest getarg(0);
 	close;
 }
@@ -112,48 +112,48 @@ moc_para01,32,30,6	script	Spike	914,{
 	for(set .@i,11114; .@i<11124; set .@i,.@i+1) {
 		set .@j, checkquest(.@i,HUNTING);
 		if (.@j == 2) switch(.@i) {
-			case 11114: callsub L_Quest,.@i,"Hornet Hunting",900;
-			case 11115: callsub L_Quest,.@i,"Condor Hunting",1800;
-			case 11116: callsub L_Quest,.@i,"Grasshopper's Leg",1400,940,10;
-			case 11117: callsub L_Quest,.@i,"Worm Tail Hunting",2600;
-			case 11118: callsub L_Quest,.@i,"Spore Hunting",3900;
-			case 11119: callsub L_Quest,.@i,"Extirpate Insects",2900,915,10;
-			case 11120: callsub L_Quest,.@i,"Muka Hunting",3200;
-			case 11121: callsub L_Quest,.@i,"Familiar Hunting",3200;
-			case 11122: callsub L_Quest,.@i,"Collect Feathers",5400;
-			case 11123: callsub L_Quest,.@i,"Collect Poison Spores",6000,7033,5;
+			case 11114: callsub L_Quest,.@i,"Caçar Zangão",900;
+			case 11115: callsub L_Quest,.@i,"Caçar Condor",1800;
+			case 11116: callsub L_Quest,.@i,"Coletar Pernas de Gafanhoto",1400,940,10;
+			case 11117: callsub L_Quest,.@i,"Caçar Rabo de Verme",2600;
+			case 11118: callsub L_Quest,.@i,"Caçar Esporos",3900;
+			case 11119: callsub L_Quest,.@i,"Controle de Pragas",2900,915,10;
+			case 11120: callsub L_Quest,.@i,"Caçar Muka",3200;
+			case 11121: callsub L_Quest,.@i,"Caçar Familiar",3200;
+			case 11122: callsub L_Quest,.@i,"Colecionar Plumas",5400;
+			case 11123: callsub L_Quest,.@i,"Coletar Esporos Venenosos",6000,7033,5;
 		}
 		else if (.@j >= 0) {
 			mes "[Spike]";
-			mes "You haven't finished your mission yet.";
-			mes "Keep up the good work. You are almost done.";
+			mes "Você não terminou a sua Missão ainda.";
+			mes "Mantenha o bom trabalho. Você está quase terminando.";
 			close;
 		}
 	}
 	mes "[Spike]";
-	mes "Are you looking for a job?";
-	mes "We always have lots of work to do.";
+	mes "Você está procurando um emprego?";
+	mes "Nós sempre temos muito trabalho a fazer.";
 	next;
 	mes "[Spike]";
-	mes "Why don't you look around and find some interesting tasks?";
+	mes "Por que você não olhar em volta para achar algumas tarefas interessantes?";
 	close;
 L_Quest:
 	if (checkquest(getarg(0),HUNTING) == 2) {
 		if (getarg(3,0))
 			if (countitem(getarg(3)) < getarg(4)) {
 				mes "[Spike]";
-				mes "You don't have enough "+getitemname(getarg(3))+".";
-				mes "You need to bring "+getarg(4)+" "+getitemname(getarg(3))+".";
+				mes "Você não terminou sua missão, mas";
+				mes "mantenha o bom trabalho. Você está quase pronto.";
 				close;
 			}
 		mes "[Spike]";
-		mes "Hmm... let me see~";
-		mes "You have completed the '"+getarg(1)+"' mission.";
+		mes "Hmm ... deixe-me ver ~";
+		mes "Você completou a Missão 'Caça Ao Zangão'.";
 		next;
 		mes "[Spike]";
-		mes "Good work~!!";
-		mes "Our client is so happy with your work. He will appreciate what you have done.";
-		mes "Please help us again. Thanks!";
+		mes "Bom Trabalho!!!";
+		mes "Nosso cliente está tão feliz com seu trabalho. Ele vai apreciar o que você tem feito.";
+		mes "Por favor, ajude-nos outra vez. Obrigado!";
 		if (getarg(3,0)) delitem getarg(3),getarg(4);
 		erasequest getarg(0);
 		setquest getarg(0)+10;

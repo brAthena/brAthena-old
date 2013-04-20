@@ -12,172 +12,173 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.2b/1.0                        |
+//   | Versões eA/rA/brA: 1.2/1.2b/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Gonryun.                             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Clare]                             |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 // Broken Sword
 //============================================================ 
-gon_in,17,93,5	script	Chief#gon	775,{
+gon_in,17,93,5	script	Chefe#gon	775,{
 	if (BaseLevel > 50) {
 		if (b_sword == 0) {
 			set b_sword,1;
 			mes "[Shi Yan Wen]";
 			mes "Hmm...?";
-			mes "Oh, hello there~";
-			mes "I am Shi Yan Wen, the chief of";
-			mes "this village. Allow me to personally welcome you to Kunlun.";
+			mes "Oh, Olá!";
+			mes "Eu sou Shi Yan Wen, o chefe";
+			mes "desse vilarejo. Permita-me dar pessoalmente as boas-vindas a Kunlun.";
 			next;
 			mes "[Shi Yan Wen]";
-			mes "Although our village hasn't";
-			mes "associated with other towns very";
-			mes "much, we have recently begun";
-			mes "to allow visitors coming from Alberta.";
+			mes "Embora a nosa vila";
+			mes "não esteja associada a muitas outras";
+			mes "cidades, começamos recentemente";
+			mes "uma sociedade que permite visitantes provenientes de Alberta.";
 			next;
 			mes "[Shi Yan Wen]";
-			mes "I feel that this town has been";
-			mes "isolated for too long. Because";
-			mes "of that, people in this town aren't too friendly with visitors yet.";
+			mes "Eu sinto que esta cidade manteve-se";
+			mes "isolada por muito tempo. O porque";
+			mes "disso, é o fato das pessoas desta cidade não serem ainda muito amigáveis com os visitantes.";
 			next;
 			mes "[Shi Yan Wen]";
-			mes "Moreover, we've been having a recent problem with thieves";
-			mes "that have been enjoying themselves far too much in Kunlun...";
-			mes "Well, you've come to visit here";
-			mes "so I hope you enjoy your stay.";
+			mes "Além disso, estamos recentemente tendo problemas com os ladrões";
+			mes "que estão se divertindo de mais em Kunlun...";
+			mes "Bem, você está aqui para uma visita,";
+			mes "então eu espero que você aproveite sua estadia.";
 			close;
 		}
 		else if (b_sword < 18) {
 			switch (b_sword) {
 			case 1:
 				mes "[Shi Yan Wen]";
-				mes "Oh, hello there~";
-				mes "I am Shi Yan Wen, the chief of";
-				mes "this village. Allow me to personally welcome you to Kunlun.";
+				mes "Oh, Olá!";
+				mes "Eu sou Shi Yan Wen, o chefe";
+				mes "desse vilarejo. Permita-me da pessoalmente as boas vindas a Kunlun.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "Although our village hasn't";
-				mes "associated with other towns very";
-				mes "much, we have recently begun";
-				mes "to allow visitors coming from Alberta.";
+				mes "Embora a nosa vila";
+				mes "não esteja associada a muitas outras";
+				mes "cidades, começamos recentemente";
+				mes "uma sociedade que permite visitantes provenientes de Alberta.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "I feel that this town has been";
-				mes "isolated for too long. Because";
-				mes "of that, people in this town aren't too friendly with visitors yet.";
+				mes "Eu sinto que esta cidade manteve-se";
+				mes "isolada por muito tempo. O porque";
+				mes "disso, é o fato das pessoas nesta cidade não serem ainda muito amigáveis com os visitantes.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "Moreover, we've been having a recent problem with thieves";
-				mes "that have been enjoying themselves far too much in Kunlun...";
-				mes "Well, you've come to visit here";
-				mes "so I hope you enjoy your stay.";
+				mes "Além disso, estamos recentemente tendo problemas com os ladrões";
+				mes "que estão se divertindo de mais em Kunlun...";
+				mes "Bem, você está aqui para uma visita,";
+				mes "então eu espero que você aproveite sua estadia.";
 				close;
 			case 2:
 				mes "[Shi Yan Wen]";
-				mes "Oh, it's you~";
-				mes "How do you like it here so far?";
-				mes "As you've probably noticed,";
-				mes "the village isn't that peaceful, huh?";
+				mes "Oh, é você!";
+				mes "Como está sua estadia até agora?";
+				mes "Como você já deve ter notado,";
+				mes "a vila não é lá muito pacífica, hein?";
 				next;
-				if (select("It's alright.:I heard that something was stolen...") == 1) {
+				if (select("Está tudo bem.:Ouvi dizer que algo foi roubado...") == 1) {
 					mes "[Shi Yan Wen]";
-					mes "Well, I'm glad you don't mind.";
-					mes "Just watch out for robbers,";
-					mes "and try not to act suspicious";
-					mes "in the village.";
+					mes "Bem, fico feliz que você esteja bem.";
+					mes "Apenas fique atento com os ladrões,";
+					mes "e tente não agir de forma suspeita";
+					mes "no vilarejo.";
 					close;
 				}
 				mes "[Shi Yan Wen]";
-				mes "Hmm...you've heard of it?";
-				mes "It was just last night when the";
-				mes "robbery occurred. The rumors";
-				mes "are true. Sadly, there are lots of thieves out there in the village...";
+				mes "Hmm...Você já ouviu falar disso?";
+				mes "Isso é algo que aconteceu";
+				mes "ontem à noite. Os rumores";
+				mes "são verdadeiros. Infelizmente, há muitos ladrões aqui no vilarejo...";
 				next;
-				switch(select("......:What was stolen?:Was anyone hurt?")) {
+				switch(select("......:O que foi roubado?:Alguém se machucou?")) {
 				case 1:
 					mes "[Shi Yan Wen]";
-					mes "I can't believe it really";
-					mes "happened... Well, if you see";
-					mes "any suspicious characters around,";
-					mes "or find what was stolen, please let me know.";
+					mes "Eu não posso acreditar que isso";
+					mes "realmente aconteceu... Bem, se você ver";
+					mes "qualquer pessoa suspeita pela redondeza,";
+					mes "ou encontrar o que foi roubado, por favor avise-me.";
 					set b_sword,3;
 					close;
 				case 2:
 					mes "[Shi Yan Wen]";
-					mes "Well...";
-					mes "Erm...it was...";
-					mes "...just an ordinary sword.";
-					mes "But to us, it's been a family treasure for many generations.";
+					mes "Bem...";
+					mes "Erm... Era...";
+					mes "... Apenas uma espada comum.";
+					mes "Mas para nós, era um tesouro de família, passado de geração em geração.";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "I must find this sword";
-					mes "no matter what!";
-					mes "...but I can't go find it just";
-					mes "by myself. I'm just too busy.";
+					mes "Eu preciso encontrar está espada";
+					mes "não importa como!";
+					mes "...mas eu não posso simplesmente ir procurá-la";
+					mes "sozinho. Tenho estado bastante ocupado.";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "You know how busy it is to be the";
-					mes "chief of a village. This is very troubling...*Sigh*";
+					mes "Você deve imagina o quão ocupado deve ser";
+					mes "o chefe de um vilarejo. Isso está me deixando muito preocupado...*Sigh*";
 					next;
-					if (select("Hope you find it soon.:Can I find it for you?") == 1) {
+					if (select("Espero que você encontre-a.:Posso procurar para você?") == 1) {
 						mes "[Shi Yan Wen]";
-						mes "um..Thank you.";
-						mes "If you somehow come across it,";
-						mes "please let me know.";
+						mes "Hmm... Obrigado.";
+						mes "Se você encontrar ela de alguma forma,";
+						mes "por favor avise-me.";
 						set b_sword,11;
 						close;
 					}
 					mes "[Shi Yan Wen]";
-					mes "Oh!~ Are you serious??";
-					mes "...The people in the village are";
-					mes "very fearful these days because";
-					mes "of the thieves. It is so difficult";
-					mes "to ask them for help...";
+					mes "Oh! Você está falando sério??";
+					mes "...As pessoas do vilarejo";
+					mes "estão muito assustadas por causa";
+					mes "dos ladrões. Por isso eu não podia";
+					mes "pedir a ajuda deles...";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "If you would help me find the sword, I will surely repay you for your efforts.";
+					mes "Se você me ajudar a encontrar a espada, eu certamente irei recompensar seus esforços.";
 					set b_sword,3;
 					close;
 				case 3:
 					mes "[Shi Yan Wen]";
-					mes "Fortunately, no one was hurt.";
-					mes "However, the thieves took a";
-					mes "valuable family treasure";
-					mes "which has been passed down from";
-					mes "generation to generation.";
+					mes "Felizmente, ninguém ficou ferido.";
+					mes "No entanto, os ladrões levaram";
+					mes "um valioso tesouro de família";
+					mes "que tem sido passado de";
+					mes "geração em geração.";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "I must find this sword";
-					mes "no matter what!";
-					mes "...But I can't go find it just";
-					mes "by myself. I'm just too busy.";
+					mes "Eu preciso encontrar está espada";
+					mes "não importa como!";
+					mes "...mas eu não posso simplesmente ir procurá-la";
+					mes "sozinho. Tenho estado bastante ocupado.";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "You know how busy it is to be the";
-					mes "chief of a village. This is very troubling...*Sigh*";
+					mes "Você deve imagina o quão ocupado deve ser";
+					mes "o chefe de um vilarejo. Isso está me deixando muito preocupado...*Sigh*";
 					next;
-					if (select("Hope you find it soon.:Can I find it for you?") == 1) {
+					if (select("Espero que você encontre-a.:Posso procurar para você?") == 1) {
 						mes "[Shi Yan Wen]";
-						mes "Um..Thank you.";
-						mes "If you somehow come across it,";
-						mes "please let me know.";
+						mes "Hmm... Obrigado.";
+						mes "Se você encontrar ela de alguma forma,";
+						mes "por favor avise-me.";
 						set b_sword,11;
 						close;
 					}
 					mes "[Shi Yan Wen]";
-					mes "Oh!~ Are you serious??";
-					mes "...The people in the village are";
-					mes "very fearful these days because";
-					mes "of the thieves. It is so difficult";
-					mes "to ask them for help...";
+					mes "Oh! Você está falando sério??";
+					mes "...As pessoas do vilarejo";
+					mes "estão muito assustadas por causa";
+					mes "dos ladrões. Por isso eu não podia";
+					mes "pedir a ajuda deles...";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "If you would help me find the sword, I will surely repay you for your efforts.";
+					mes "Se você me ajudar a encontrar a espada, eu certamente irei recompensar seus esforços.";
 					set b_sword,3;
 					close;
 				}
@@ -185,345 +186,345 @@ gon_in,17,93,5	script	Chief#gon	775,{
 			case 4:
 			case 5:
 				mes "[Shi Yan Wen]";
-				mes "Haven't found it yet?";
-				mes "There's no rush, take it easy.";
-				mes "You have to take care of";
-				mes "youself first before";
-				mes "doing favors for others.";
+				mes "Não encontrou ainda?";
+				mes "Não há pressa, vá com calma.";
+				mes "Você deve cuidar de si";
+				mes "mesmo antes de fazer";
+				mes "favores para os outros.";
 				close;
 			case 6:
 				mes "[Shi Yan Wen]";
-				mes "Oh, you found a clue?";
-				mes "So far, it looks like";
-				mes "you're doing good work.";
-				mes "Take this old family medicine, it might be of use sometime soon.";
+				mes "Oh, você encontrou uma pista?";
+				mes "Até agora, parece que";
+				mes "você está fazendo um bom trabalho.";
+				mes "Tome este medicamente de família, pode lhe ser útil em breve.";
 				set b_sword,7;
 				getitem 504,3; //White_Potion
 				close;
 			case 7:
 				mes "[Shi Yan Wen]";
-				mes "It might be helpful for you to";
-				mes "know that the thief sustained";
-				mes "an injury, so he is probably not very far from here.";
+				mes "Pode ser útil para você";
+				mes "saber que o ladrão sofreu";
+				mes "uma lesão, então ele provavelmente não deve está muito longe.";
 				close;
 			case 8:
 				mes "[Shi Yan Wen]";
-				mes "What...?";
-				mes "My sword has been broken!?";
-				mes "Unbelievable~!!";
-				mes "How could this happen??";
+				mes "O que...?";
+				mes "Minha espada está quebrada!?";
+				mes "Inacreditável!!!";
+				mes "Como isso pôde acontecer???";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "First it's stolen, and now";
-				mes "it's in pieces... *Sob*";
-				mes "Would you please search";
-				mes "for the rest of my sword?";
-				mes "It means so much to my family...";
+				mes "Primeiro foi roubada, e agora";
+				mes "está em pedaços... *Sob*";
+				mes "Você poderia por favor";
+				mes "procurar pelos restos da minha espada?";
+				mes "Ela significa muito para minha família...";
 				close;
 			case 9:
 				mes "[Shi Yan Wen]";
 				mes "*Sob*...";
-				mes "...my sword... in pieces...";
-				mes "I beg of you, please find them";
-				mes "for me. I will give you something in return.";
+				mes "...Minha espada... Em pedaços...";
+				mes "Eu imploro, por favor procure os pedaços dela";
+				mes "para mim. Eu lhe darei uma recompensa em troca.";
 				close;
 			case 10:
 				mes "[Shi Yan Wen]";
-				mes "Oh!~";
-				mes "You've found the pieces for me~";
-				mes "I knew you could do it.";
-				mes "But the sword is still shattered.";
-				mes "What shall I do...?";
+				mes "Oh!";
+				mes "Você encontrou os pedaços para mim!";
+				mes "Eu sabia que você conseguiria fazer isso.";
+				mes "Mas a espada ainda está destruida.";
+				mes "O que eu devo fazer...?";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "If it's okay with you,";
-				mes "would you repair my sword for me?";
-				mes "I'll repay you for your help.";
+				mes "Se estiver tudo bem para você,";
+				mes "se importaria em consertar a espada para mim?";
+				mes "Eu vou pagar pela sua ajuda.";
 				next;
-				if (select("No way.:Alright.") == 1) {
+				if (select("De jeito nenhum.:Tudo bem.") == 1) {
 					mes "[Shi Yan Wen]";
-					mes "Well, I see...you've been such a";
-					mes "nice person. I truly appreciate";
-					mes "your hard work. It would be";
-					mes "wonderful if you could help";
-					mes "me repair the sword, but I";
-					mes "will not force you.";
+					mes "Bem, Eu vejo...Que você realmente";
+					mes "é uma boa pessoa. Estou realmente grato";
+					mes "pelo seu trabalho duro. Seria";
+					mes "ótimo poder contar com você para";
+					mes "consertar minha espada, mas eu não";
+					mes "vou lhe forçar a isso.";
 					next;
 					mes "[Shi Yan Wen]";
-					mes "I'll find some way to repair";
-					mes "it. Without your help, I ";
-					mes "would have never found it.";
-					mes "Please accept this as a";
-					mes "token of my gratitude...";
+					mes "Eu vou da um jeito de consertar";
+					mes "isso. Sem a sua ajuda, eu ";
+					mes "não teria conseguido encontrá-la.";
+					mes "Por favor aceite isso como";
+					mes "uma forma de minha gratidão...";
 					set b_sword,15;
 					getitem 603,1; //Old_Blue_Box
 					next;
 					mes "[Shi Yan Wen]";
-					mes "If you find any information";
-					mes "or clues about that cursed";
-					mes "thief, please let me know.";
-					mes "I have my sword back but";
-					mes "there's no way I can forgive";
-					mes "this affront to my ancestors...";
+					mes "Se você conseguir qualquer";
+					mes "informação sobre esse maldito";
+					mes "ladrão, por favor avise-me.";
+					mes "Eu tenho minha espada de volta, mas";
+					mes "não há nenhuma maneira de perdoar";
+					mes "quem fez isso aos meus antepassados...";
 					close;
 				}
 				mes "[Shi Yan Wen]";
-				mes "Such generosity...";
-				mes "I'm truly indebted to you...";
-				mes "I have no idea how this sword";
-				mes "broke into pieces, though.";
-				mes "You will probably need to find a";
-				mes "famous blacksmith to repair it.";
+				mes "Quanta generosidade...";
+				mes "Eu sou realmente muito grato a você...";
+				mes "Eu não tenho nenhuma idéia de como essa espada";
+				mes "pode ter sido feita em pedaços.";
+				mes "Você provavelmente terá de encontrar um";
+				mes "famoso ferreiro que seja capaz de consertar isso.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "As I already mentioned, this is";
-				mes "an important family treasure...";
-				mes "Oh! I just remembered--";
+				mes "Como dito antes, isso é um";
+				mes "importante tesouro de família...";
+				mes "Oh! Eu acabei de lembrar--";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "There's a guy named ^555555Zuo Hei^000000";
-				mes "in the village. He has been to";
-				mes "many places around the world.";
-				mes "He may know of such a weaponsmith. Please seek this man out.";
+				mes "Tem um cara chamado ^555555Zuo Hei^000000";
+				mes "no vilarejo. Ele já passou por";
+				mes "muitos lugares do mundo.";
+				mes "Ele pode conhecer algum produtor de armas. Por favor procure este homem.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "Oh, one last thing. This is";
-				mes "but a trinket, but please";
-				mes "accept this gift from me.";
+				mes "Ah, uma ultima coisa. Isso não é";
+				mes "muita coisa, mas por favor";
+				mes "aceite esta caixa como um presente meu.";
 				set b_sword,14;
 				getitem 603,1; //Old_Blue_Box
 				close;
 			case 11:
 				mes "[Shi Yan Wen]";
-				mes "The village is not in a good";
-				mes "mood these days, but there are";
-				mes "still lots of things to see in Kunlun.";
+				mes "As pessoas da vila não estão de muito";
+				mes "bom humor estes dias, mas ainda há";
+				mes "muitas coisas para se ver em Kunlun.";
 				close;
 			case 12:
 				mes "[Shi Yan Wen]";
-				mes "Hmm.. no traces? No clues?";
-				mes "... Nothing? Well, that's";
-				mes "alright. Thank you for";
-				mes "trying to help.";
+				mes "Hmm.. Sem vestígios? Sem pistas?";
+				mes "... Nada? Bem, então";
+				mes "tudo bem. Obrigado por";
+				mes "ter tentado ajudar.";
 				mes "Hmm....";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "Here...take this.";
-				mes "Have a good time in Kunlun~";
+				mes "Aqui... Pegue isso.";
+				mes "Tenha uma boa estadia em Kunlun";
 				set b_sword,13;
 				getitem 504,1; //White_Potion
 				close;
 			case 13:
 				mes "[Shi Yan Wen]";
-				mes "Is everything going well?";
-				mes "The village has not been";
-				mes "in a good mood, lately.";
-				mes "Still, please try to";
-				mes "enjoy yourself.";
+				mes "Está tudo bem?";
+				mes "O vilarejo não parece estar";
+				mes "de bom humor, ultimamente.";
+				mes "Ainda assim, por favor";
+				mes "tente se divertir.";
 				close;
 			case 14:
 			case 15:
 			case 16:
 			case 17:
 				mes "[Shi Yan Wen]";
-				mes "I really appreciate what you are";
-				mes "doing. It's a big relief that";
-				mes "something is finally being done";
-				mes "about these thefts.";
+				mes "Eu realmente aprecio o que você";
+				mes "está fazendo. É um grande alívio";
+				mes "saber que finalmente algo está";
+				mes "sendo feito sobre os roubos.";
 				next;
 				mes "[Shi Yan Wen]";
-				mes "Perhaps now, peace will finally";
-				mes "come to the village, just like in the old days...";
+				mes "Talvez agora, finalmente o nosso";
+				mes "vilarejo voltará a ter paz, como nos velhos tempos...";
 				close;
 			}
 		}
 		else if (b_sword < 32) {
 			mes "[Shi Yan Wen]";
-			mes "I appreciate what you are doing,";
-			mes "and your help has been";
-			mes "a relief to me. The Village";
-			mes "seems less tense, much like";
-			mes "it was in the old days.";
+			mes "Eu realmente aprecio o que você tem feito,";
+			mes "e sua ajuda tem sido";
+			mes "de grande ajuda para mim. O vilarejo";
+			mes "parece menos tenso, assim como";
+			mes "era nos velhos tempos.";
 			next;
 			mes "[Shi Yan Wen]";
-			mes "Although I hope you'll be";
-			mes "be able to repair my";
-			mes "sword soon, you've";
-			mes "already done so much for";
-			mes "me. I feel sorry for";
-			mes "asking you to do more.";
+			mes "Embora eu espere que";
+			mes "você seja capaz de reparar";
+			mes "minha espada, você";
+			mes "já fez muito por mim.";
+			mes "Sinto muito por";
+			mes "pedir para você fazer mais.";
 			close;
 		}
 		else if (b_sword == 32) {
 			if (countitem(1123) < 1) {
 				mes "[Shi Yan Wen]";
 				mes "Hm.....";
-				mes "Not finished yet, huh?";
-				mes "Still, it's good to know";
-				mes "it's being repaired...";
-				mes "I'll be waiting, then.";
+				mes "Não terminou ainda, em?";
+				mes "Ainda assim, eu fico feliz em";
+				mes "saber que está sendo reparada...";
+				mes "Eu estarei esperando.";
 				close;
 			}
 			mes "[Shi Yan Wen]";
-			mes "Oh, it's you~ Hello.";
+			mes "Oh, é você. Olá.";
 			mes "............";
-			mes "Is that my sword?";
-			mes "Wow, you've done it!";
-			mes "Good work!";
+			mes "Essa é minha espada?";
+			mes "Uau, você já a concertou!";
+			mes "Bom trabalho!";
 			next;
 			mes "[Shi Yan Wen]";
-			mes "This is a small gift for you.";
-			mes "Please take it as thanks for a job well done!";
+			mes "Este é um pequeno presente para você.";
+			mes "Por favor, aceite isso como agradecimento pelo seu trabalho!";
 			delitem 1123,1; //Haedonggum
 			set b_sword,33;
 			getitem 2404,1; //Shoes_
 			next;
 			mes "[Shi Yan Wen]";
-			mes "Thank you for all of your efforts.";
-			mes "With this sword repaired, I no";
-			mes "longer feel that I am shaming";
-			mes "my ancestors...";
+			mes "Obrigado por todos seus esforços.";
+			mes "Com essa espada reparada, Eu já";
+			mes "não sinto que estou sendo uma vergonha para";
+			mes "os meus antepassados...";
 			mes "Heh heh...";
-			mes "Have a good time in Kunlun.";
+			mes "Tenha uma boa estadia em Kunlun.";
 			close;
 		}
 		mes "[Shi Yan Wen]";
-		mes "Oh, it's you~";
-		mes "Once again, I'd like to thank";
-		mes "you for all of your help.";
-		mes "Enjoy your stay in our village.";
+		mes "Oh, é você!";
+		mes "Mais uma vez, eu gostaria de";
+		mes "agradecer pela sua ajuda.";
+		mes "Aproveite sua estadia em nosso vilarejo.";
 		mes "Heh heh~";
 		close;
 	}
 	mes "[Shi Yan Wen]";
 	mes "Hmm...?";
-	mes "Oh, hello there~";
-	mes "I am Shi Yan Wen, the chief of";
-	mes "this village. Allow me to personally welcome you to Kunlun.";
+	mes "Oh, Olá!";
+	mes "Eu sou Shi Yan Wen, o chefe";
+	mes "desse vilarejo. Permita-me dar pessoalmente as boas vindas a Kunlun.";
 	next;
 	mes "[Shi Yan Wen]";
-	mes "Although our village hasn't";
-	mes "associated with other towns very";
-	mes "much, we have recently begun";
-	mes "to allow visitors coming from Alberta.";
+	mes "Embora a nosa vila";
+	mes "não esteja associada a muitas outras";
+	mes "cidades, começamos recentemente";
+	mes "uma sociedade que permite visitantes provenientes de Alberta.";
 	next;
 	mes "[Shi Yan Wen]";
-	mes "I feel that this town has been";
-	mes "isolated for too long. Because";
-	mes "of that, people in this town aren't too friendly with visitors yet.";
+	mes "Eu sinto que esta cidade manteve-se";
+	mes "isolada por muito tempo. O porque";
+	mes "disso, é o fato das pessoas nesta cidade não serem ainda muito amigáveis com os visitantes.";
 	next;
 	mes "[Shi Yan Wen]";
-	mes "Moreover, we've been having a recent problem with thieves";
-	mes "that have been enjoying themselves far too much in Kunlun...";
-	mes "Well, you've come to visit here";
-	mes "so I hope you enjoy your stay.";
+	mes "Além disso, estamos recentemente tendo problemas com os ladrões";
+	mes "que estão se divertindo de mais em Kunlun...";
+	mes "Bem, você está aqui para uma visita,";
+	mes "então eu espero que você aproveite sua estadia.";
 	close;
 }
 
-gon_in,152,35,4	script	Hostess#gon	702,{
+gon_in,152,35,4	script	Anfitriã#gon	702,{
 	if (b_sword < 1) {
 		mes "[Mei Yen Fang]";
-		mes "Oh...you're new here, right?";
-		mes "Came from out of town?";
-		mes "It's common to see lots of";
-		mes "foreigners these days.";
-		mes "It made people in the village busy.";
+		mes "Ah...Você é novo por aqui, certo?";
+		mes "Você veio de fora da cidade?";
+		mes "Têm sido comum ver muitos";
+		mes "estrangeiros esses dias.";
+		mes "Isso faz as pessoas do vilarejo ficarem ocupadas.";
 		next;
 		mes "[Mei Yen Fang]";
-		mes "Oh, what am I saying...";
-		mes "Want some wine?";
+		mes "Oh, o que eu estou dizendo...";
+		mes "Quer um pouco de vinho?";
 		next;
-		if (select("Yes, please:No, it's okay.") == 1) {
+		if (select("Sim, por favor:Não, estou bem.") == 1) {
 			mes "[Mei Yen Fang]";
-			mes "Oooops~! Oh no...";
-			mes "A lot of customers came by earlier,";
-			mes "so now we're out of wine...";
-			mes "It's getting difficult to keep up with the increasing number of customers...";
+			mes "Oooops~! Ah não...";
+			mes "Muitos clientes vieram aqui mais cedo,";
+			mes "então agora nós estamos sem vinho...";
+			mes "Está ficando difícil manter esse grande número de clientes...";
 			close;
 		}
 		mes "[Mei Yen Fang]";
-		mes "Well, have fun in the village.";
-		mes "Stop by again sometime.";
+		mes "Bem, divirta-se em nossa vila.";
+		mes "E volte aqui de novo algum dia.";
 		close;
 	}
 	switch(b_sword) {
 	case 1:
 	case 2:
 		mes "[Mei Yen Fang]";
-		mes "Hey, you know what?";
-		mes "The chief's house was robbed";
-		mes "last night. I can't believe";
-		mes "this happened...I guess this is the work of those thieves...";
+		mes "Ei, você sabe o que houve?";
+		mes "A casa do chefe foi roubada";
+		mes "ontem a noite. Eu não acredito";
+		mes "que isso aconteceu...Eu acredito que isso seja ato dos ladrões...";
 		next;
 		mes "[Mei Yen Fang]";
-		mes "How worrisome it all is...";
-		mes "It could even happen to me!";
-		mes "I better watch out...";
-		mes "Oh, what am I saying?";
-		mes "Enjoy your time in my shop...hehe~";
+		mes "O que mais me preocupa...";
+		mes "É isso poderia ter acontecido comigo!";
+		mes "É melhor eu tomar cuidado...";
+		mes "Ah, o que eu estou dizendo?";
+		mes "Divirta-se em minha loja... Hehe~";
 		set b_sword,2;
 		close;
 	case 3:
 		mes "[Mei Yen Fang]";
-		mes "Oh, it's you again~";
-		mes "I heard that you've decided";
-		mes "to help our chief.";
-		mes "Please do your best for him!";
-		mes "Everyone in the village has";
-		mes "been on edge...";
+		mes "Ah, é você de novo.";
+		mes "Eu ouvi dizer que você decidiu";
+		mes "ajudar o nosso chefe.";
+		mes "Por favor, faça o seu melhor por ele!";
+		mes "Todos do vilarejo estão";
+		mes "em seu limite...";
 		next;
 		mes "[Mei Yen Fang]";
-		mes "Do you see that guy over there";
-		mes "leaning on the table?";
-		mes "He seems to know about what";
-		mes "happened last night, but...";
-		mes "He's been drinking all night long.";
+		mes "Você está vendo aquele cara";
+		mes "ali, que está caido sobre a mesa?";
+		mes "Ele parece saber sobre o que";
+		mes "aconteceu ontem a noite, mas...";
+		mes "Ele bebeu durante a noite toda.";
 		set b_sword,4;
 		close;
 	}
 	if (b_sword > 3 && b_sword < 11) {
 		mes "[Mei Yen Fang]";
-		mes "Hello there~";
-		mes "Feeling tension in the village,";
-		mes "huh? It's all because of those";
-		mes "thieves... ";
+		mes "Olá!";
+		mes "Está sentindo a tensão no vilarejo,";
+		mes "em? Isso tudo é por causa";
+		mes "daqueles ladrões... ";
 		next;
 		mes "[Mei Yen Fang]";
-		mes "They're also making things hard for my business...";
+		mes "Eles também estão tornando as coisas difíceis para o meu negócio...";
 		mes " ";
-		mes "*Sigh*";
+		mes "*Suspiro*";
 		close;
 	}
 	else if (b_sword == 11 || b_sword == 12) {
 		mes "[Mei Yen Fang]";
-		mes "Feeling tension in the village,";
-		mes "huh? I Hope the thief will get caught soon.";
+		mes "Está sentindo a tensão no vilarejo,";
+		mes "em? Eu espero que prendam logo esses ladrões.";
 		mes "...";
 		close;
 	}
 	mes "[Mei Yen Fang]";
-	mes "You caught him?!";
-	mes "Wow, you're very brave.";
-	mes "I should get ready to run the";
-	mes "shop again. But I'll need to";
-	mes "order some wine first.";
+	mes "Você pegou ele?!";
+	mes "Uau, você é muito corajoso.";
+	mes "Eu deveria ir correndo para a";
+	mes "loja novamente. Mas eu preciso";
+	mes "buscar mais um pouco de vinho primeiro.";
 	next;
 	mes "[Mei Yen Fang]";
-	mes "Xue Bong drank all the wine in the";
-	mes "shop, and I didn't restock any";
-	mes "since everyone has been scared";
-	mes "off by the thefts...";
-	mes "But stop by next time.";
-	mes "I'll have some wine ready.";
+	mes "Xue Bong bebeu todo o vinho da";
+	mes "loja, e eu não havia re-abastecido";
+	mes "uma única vez, já que todos estavamos com";
+	mes "medo dos roubos...";
+	mes "Mas agora que tudo isso parou.";
+	mes "Eu vou pegar mais um pouco de vinho.";
 	close;
 }
 
-gon_in,165,16,4	script	Man in hangover#gon	748,{
+gon_in,165,16,4	script	Homem Bêbado#gon	748,{
 	if (b_sword < 4) {
 		mes "[Xue Bong]";
-		mes "Ahhh.. my stomach.. my head..";
-		mes "I shouldn't drink so much..";
-		mes "Ehhhh....";
+		mes "Ahhh... Meu estômago... Minha cabeça..";
+		mes "Eu não deveria ter bebido tanto...";
+		mes "Ehhhh...";
 		emotion e_swt2;
 		close;
 	}
@@ -532,75 +533,76 @@ gon_in,165,16,4	script	Man in hangover#gon	748,{
 		case 4:
 			if (countitem(506) < 1) {
 				mes "[Xue Bong]";
-				mes "*Urk!* I feel sick...";
-				mes "Can somebody bring me a potion?";
+				mes "*Urk!* Eu me sinto doente...";
+				mes "Alguém pode me trazer uma poção?";
 				mes "*Groan*....";
 				emotion e_swt2;
 				close;
 			}
 			mes "[Xue Bong]";
-			mes "Ohhh...my stomach...";
-			mes "I need something...";
-			mes "Moan~ Uh, hey you!";
-			mes "Could you give me one";
-			mes "of your ^00FF00Green_Potion^000000s?";
-			mes "I think I'm going to barf...";
+			mes "Ohhh... Meu estômago...";
+			mes "Eu preciso de algo...";
+			mes "Moan~ Ah, ei você!";
+			mes "Você poderia me dar uma";
+			mes "das suas ^00FF00Poções Verdes^000000?";
+			mes "Eu acho que vou vomitar...";
 			next;
-			switch(select("No.:Here, drink this!")) {
+			switch(select("Não.:Aqui, beba isso!")) {
 			case 1:
 				mes "[Xue Bong]";
 				mes "Uhh...";
-				mes "Are you sure?";
+				mes "Tem certeza?";
 				next;
-				switch(select("Sorry, I don't have any.:Here, you can have it!")) {
+				switch(select("Desculpe, Eu não tenho nenhuma.:Aqui, pode ficar com ela!")) {
 				case 1:
 					mes "[Xue Bong]";
-					mes "C'mon, man...";
-					mes "I...I'm in freakin' pain here...";
+					mes "Vamos lá, cara...";
+					mes "Eu...Eu estou sentindo muita dor...";
 					set b_sword,12;
 					close;
 				case 2:
 					delitem 506,1; //Green_Potion
 					set b_sword,5;
 					mes "[Xue Bong]";
-					mes "Oh man...thanks.";
-					mes "I thought you were teasing me.";
-					mes "I feel much better now.";
-					mes "So...uh, what brings you here?";
+					mes "Oh cara... Obrigado.";
+					mes "Eu pensei que você estava me provocando.";
+					mes "Me sinto muito melhor agora.";
+					mes "Então... O que te traz aqui?";
 					next;
-					if (select("Heard about the thief?:Nothing.") == 1) {
+					if (select("Você ouviu falar sobre um ladrão?:Nada.") == 1) {
 						mes "[Xue Bong]";
-						mes "Ah, a thief~";
-						mes "Hmm...let me see..";
-						mes "I went out for walk in the middle";
-						mes "of the night while I was drinking.";
-						mes "And I heard a noise.";
+						mes "Ah, um ladrão";
+						mes "Hmm...Deixe-me ver..";
+						mes "Eu sai para fazer uma caminhada";
+						mes "no meio da noite, e enquanto eu estava bebendo.";
+						mes "acabei ouvindo um barulho.";
 						next;
 						mes "[Xue Bong]";
-						mes "I looked around and found that the";
-						mes "area near the chief's house was";
-						mes "brighter than any other area...";
-						mes "It was odd...";
-						mes "[Xue Bong]";
-						mes "So I kept watching it and";
-						mes "all of a sudden, I saw something";
-						mes "moving on the rooftops...";
+						mes "Então eu olhei em volta e";
+						mes "percebi que a casa do chefe";
+						mes "era mais brilhante do que qualquer outra área...";
+						mes "Isso foi estranho...";
 						next;
 						mes "[Xue Bong]";
-						mes "It disappeared in a second.";
-						mes "I was drunk, and it was dark";
-						mes "outside. I have no idea";
-						mes "whether it was a man,";
-						mes "a poring, or if I had just";
-						mes "drank too much..eheh.";
+						mes "Então eu continuei olhando";
+						mes "e de repente, eu vi alguma coisa";
+						mes "se movendo sobre os telhados...";
+						next;
+						mes "[Xue Bong]";
+						mes "E em questão de segundos tudo desapareceu.";
+						mes "Eu estava bebado, e estava escuro lá";
+						mes "fora. Eu não tenho idéia";
+						mes "se aquilo era um homem ou,";
+						mes "um poring, ou se eu apenas";
+						mes "estava bebado de mais.. Heheh.";
 						set b_sword,6;
 						close;
 					}
 					mes "[Xue Bong]";
-					mes "Okay then, thanks again.";
-					mes "Don't be a drinker like me,";
-					mes "unless you want to suffer from";
-					mes "serious hangovers. See you later~";
+					mes "Ok então, obrigado novamente.";
+					mes "Não seja um bebado como eu,";
+					mes "a menos que você queira ter";
+					mes "graves ressacas. Vejo você depois";
 					close;
 				}
 			case 2:
@@ -608,185 +610,186 @@ gon_in,165,16,4	script	Man in hangover#gon	748,{
 				set b_sword,5;
 				emotion e_thx;
 				mes "[Xue Bong]";
-				mes "Whew, Thanks!";
-				mes "I feel much better now.";
-				mes "Hmm...you seem new around here.";
-				mes "Anything you wanna know?";
+				mes "Caramba, Obrigado!";
+				mes "Eu me sinto muito melhor agora.";
+				mes "Hmm... Você parece ser novo por aqui.";
+				mes "Tem alguma coisa que você queira saber?";
 				next;
-				switch(select("About a thief...:How much have you been drinking?:Nothing~")) {
+				switch(select("Sobre um ladrão...:Por que você bebeu tanto?:Nada.")) {
 				case 1:
 					mes "[Xue Bong]";
-					mes "Ah, a thief, eh? Let's see...";
-					mes "I went out for walk in the middle";
-					mes "of the night while I was drinking.";
-					mes "All of a sudden, I heard a strange noise...";
+					mes "Ah, um ladrão em? Deixe-me ver...";
+					mes "Eu sai para fazer uma caminhada";
+					mes "no meio da noite, e enquanto eu estava bebendo.";
+					mes "acabei ouvindo um barulho.";
 					next;
 					mes "[Xue Bong]";
-					mes "I looked around and found that the";
-					mes "area near the chief's house was";
-					mes "brighter than any other area. It was odd...";
+					mes "Então eu olhei em volta e";
+					mes "percebi que a casa do chefe";
+					mes "era mais brilhante do que qualquer outra área... Isso foi estranho...";
 					next;
 					mes "[Xue Bong]";
-					mes "So I kept watching it and,";
-					mes "all of a sudden, I saw something moving on the rooftops...";
+					mes "Então eu continuei olhando";
+					mes "e de repente, eu vi alguma coisa se movendo sobre os telhados...";
 					next;
-					if (select("Where to?:Probably a Wild Rose.") == 1) {
+					if (select("Onde?:Provavelmente um Rosa Selvagem.") == 1) {
 						mes "[Xue Bong]";
 						mes "Umm?";
-						mes "Well..let me see..";
-						mes "It came from... and head to...um...";
-						mes "murmur..";
+						mes "Bem... Deixe-me ver..";
+						mes "Ele veio de... cabeça e...hum...";
+						mes "murmuriu..";
 						next;
-						mes "^3355FFHe started mumbling for a bit^000000";
+						mes "^3355FFEle começou a murmurar um pouco^000000";
 						mes "......";
 						next;
 						mes "[Xue Bong]";
-						mes "Ah ha!! Right...";
-						mes "A shrine, yeah, the thief was";
-						mes "heading to a shrine and";
-						mes "disappeared. I'm not";
-						mes "sure if it was a human or an";
-						mes "animal...";
+						mes "Ah ha!! Certo...";
+						mes "Um santuário, sim, o ladrão foi";
+						mes "em direção a um santuário e";
+						mes "desapareceu. Eu não";
+						mes "tenho certeza se era um humano ou";
+						mes "um animal...";
 						set b_sword,6;
 						next;
 						mes "[Xue Bong]";
-						mes "Anything else I can help you with?";
-						mes "I appreciate the potion.";
+						mes "Há mais alguma coisa em que eu possa lhe ajudar?";
+						mes "Eu gostaria de agradecer pela poção.";
 						next;
-						switch(select("Thanks for the information.:Stop drinking so much.:Okay, bye")) {
+						switch(select("Obrigado pela informação.:Pare de beber tanto.:Ok, tchau.")) {
 						case 1:
 							mes "[Xue Bong]";
-							mes "I'll see you later then.";
-							mes "I'm always be here drinking..eheh.";
+							mes "Então, vejo você depois.";
+							mes "Pois estou sempre por aqui bebendo...Heheh.";
 							close;
 						case 2:
 							mes "[Xue Bong]";
-							mes "Ehh..Don't mind me.";
-							mes "I'm a social drinker...";
+							mes "Ehh.. Não se preocupe comigo.";
+							mes "Eu bebo para ser social...";
 							mes " ";
-							mes "It's just I don't got nobody to be social with.";
+							mes "Faço isso pois não tenho ninguém para ser social comigo.";
 							close;
 						case 3:
 							mes "[Xue Bong]";
-							mes "Alright.";
-							mes "Come again whenever you have";
-							mes "any other questions.";
+							mes "Tudo bem.";
+							mes "Volte sempre que quiser fazer";
+							mes "qualquer outra pergunta.";
 							close;
 						}
 					}
 					mes "[Xue Bong]";
-					mes "Yeah..maybe.";
-					mes "It was so dark outside and I was";
-					mes "drunk so I don't remember";
-					mes "clearly. I'm pretty sure it was bigger than that, though.";
+					mes "Sim... Talvez.";
+					mes "Estava muito escuro lá fora e";
+					mes "eu estava muito bebado, por isso não";
+					mes "me lembro claramente. No entanto, eu tenho certeza de que ele era maior do que isso.";
 					close;
 				case 2:
 					mes "[Xue Bong]";
-					mes "Ah..um....I..I don't remember.";
-					mes "When I woke up, There were tons of";
-					mes "empty bottles around me.";
+					mes "Ah..Hum....Eu..Eu não lembro.";
+					mes "Quando eu acordei, apenas havia uma";
+					mes "tonelada de garrafas vazias ao meu redor.";
 					mes "...";
 					next;
 					mes "^3355FF.......";
-					mes "For some reason, you can't discern his testimony's reliability...^000000";
+					mes "Por alguma razão, você não pode discenir a confiabilidade do seu testemunho...^000000";
 					close;
 				case 3:
 					mes "[Xue Bong]";
-					mes "Alrighty then.";
-					mes "Hope you don't ever drink like me";
-					mes "in the future. You'll suffer";
-					mes "for a long time if you do.";
-					mes "You know what a hangover is, right?";
+					mes "Tudo bem então.";
+					mes "Espero que você nunca torne-se";
+					mes "um bebado como eu. Você vai";
+					mes "sofrer por muito tempo se fizer isso.";
+					mes "Você sabe o que é uma ressaca, certo?";
 					close;
 				}
 			}
 		case 5:
 			mes "[Xue Bong]";
-			mes "Oh, it's you. Hey.";
-			mes "Thanks for the potion last time.";
-			mes "What are you up to?";
-			mes "Got any questions for me?";
+			mes "Oh, é você. Ei.";
+			mes "Obrigado pela poção que me deu.";
+			mes "O que você está fazendo?";
+			mes "Tem alguma pergunta para mim?";
 			next;
-			switch(select("About a thief last night...:Nope, just passing by..")) {
+			switch(select("Sobre um ladrão na noite passada...:Não, estou apenas de passagem.")) {
 			case 1:
 				mes "[Xue Bong]";
-				mes "Ah~ a thief...?";
-				mes "Hmm...let me see...";
-				mes "I went out for walk in the middle";
-				mes "of the night while I was drinking.";
-				mes "All of a sudden, I heard a strange noise...";
+				mes "Ah, um ladrão...?";
+				mes "Hmm...Deixe-me ver...";
+				mes "Eu sai para fazer uma caminhada";
+				mes "no meio da noite, e enquanto eu estava bebendo";
+				mes "acabei ouvindo um barulho.";
 				next;
 				mes "[Xue Bong]";
-				mes "I looked around and found that the";
-				mes "area near the chief's house was";
-				mes "brighter than any other area. It was odd...";
+				mes "Então eu olhei em volta e";
+				mes "percebi que a casa do chefe";
+				mes "era mais brilhante do que qualquer outra área... Isso foi estranho...";
 				next;
 				mes "[Xue Bong]";
-				mes "So I kept watching it and,";
-				mes "all of a sudden, I saw something moving on the rooftops...";
+				mes "Então eu continuei olhando";
+				mes "e de repente, eu vi alguma coisa se movendo sobre os telhados...";
 				next;
 				mes "[Xue Bong]";
-				mes "It disappeared in a second.";
-				mes "I was drunk, and it was dark";
-				mes "outside. I have no idea";
-				mes "whether it was a man, a poring,";
-				mes "or if I just had too much to drink...heheh~";
+				mes "E em questão de segundos tudo desapareceu.";
+				mes "Eu estava bebado, e estava escuro lá";
+				mes "fora. Eu não tenho idéia";
+				mes "se aquilo era um homem ou,";
+				mes "um poring, ou se eu apenas";
+				mes "estava bebado de mais.. Eheh.";
 				set b_sword,6;
 				close;
 			case 2:
 				mes "[Xue Bong]";
-				mes "Okay, then, thanks again.";
-				mes "Don't be a drinker like me,";
-				mes "unless you want to suffer from";
-				mes "serious hangovers. See you later~";
+				mes "Ok então, obrigado novamente.";
+				mes "Não seja um bebado como eu,";
+				mes "a menos que você queira ter";
+				mes "graves ressacas. Vejo você depois";
 				close;
 			}
 		}
 	}
 	else if (b_sword < 11) {
 		mes "[Xue Bong]";
-		mes "Well, hopefully you can find";
-		mes "those thieves. To keep the";
-		mes "peace in our village, we need to help out our chief...";
+		mes "Bem, espero que você consiga";
+		mes "encontrar esses ladrões. Para manter a paz";
+		mes "em nosso vilarejo, nós precisamos ajudar nosso chefe...";
 		close;
 	}
 	else if (b_sword <14) {
 		switch(b_sword) {
 		case 11:
 			mes "[Xue Bong]";
-			mes "Ahhh.. my stomach.. my head..";
-			mes "I shouldn't drink so much..";
+			mes "Ahhh... Meu estomago... Minha cabeça...";
+			mes "Eu não deveria ter bebido tanto...";
 			mes "ughh....";
 			emotion e_swt2;
 			close;
 		case 12:
 			mes "[Xue Bong]";
-			mes "Enhhhh..go away.";
-			mes "You're merciless...";
-			mes "How could you turn a";
-			mes "blind eye to a";
-			mes "boozer's suffering?";
+			mes "Ehhhh... Vá embora.";
+			mes "Você é cruel...";
+			mes "Como você consegue";
+			mes "ter esse olhar tão frio";
+			mes "para um bêbado que está sofrendo?";
 			mes "Urk...!";
 			emotion e_an;
 			close;
 		case 13:
 			mes "[Xue Bong]";
-			mes "Enhhhh...go away.";
-			mes "You're so coldhearted...";
-			mes "How could you turn away";
-			mes "a drunk in need...?";
+			mes "Ehhhh...Vá embora.";
+			mes "Você é um insensível...";
+			mes "Como você pode virar as costas";
+			mes "para um bêbado em necessidade...?";
 			mes "*Groan*...";
 			emotion e_an;
 			close;
 		}
 	}
 	mes "[Xue Bong]";
-	mes "So you found the chief's";
-	mes "belongings?! I knew it!";
-	mes "I knew you could do it!";
-	mes "You're brave enough";
-	mes "to do anything!";
-	mes "Good job!";
+	mes "Então você encontrou os";
+	mes "pertences do chefe?! Eu sabia!";
+	mes "Eu sabia que você podia fazer isso!";
+	mes "Você é muito corajoso";
+	mes "e pode fazer qualquer coisa!";
+	mes "Bom trabalho!";
 	close;
 }
 
@@ -847,8 +850,8 @@ gon_dun01,2,1,0	script	timer1-1	-1,{
 gon_dun01,202,25,0	script	#getitem1-1	111,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -915,8 +918,8 @@ gon_dun01,3,1,0	script	timer1-2	-1,{
 gon_dun01,190,159,0	script	#getitem1-2	111,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -983,8 +986,8 @@ gon_dun01,4,1,0	script	timer1-3	-1,{
 gon_dun01,164,53,0	script	#getitem1-3	111,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1051,8 +1054,8 @@ gon_dun01,5,1,0	script	timer1-4	-1,{
 gon_dun01,134,183,0	script	#getitem1-4	111,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1119,8 +1122,8 @@ gon_dun01,6,1,0	script	timer1-5	-1,{
 gon_dun01,140,257,0	script	#getitem1-5	111,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1195,8 +1198,8 @@ gon_dun02,2,1,0	script	timer2-1	-1,{
 gon_dun02,202,25,0	script	#getitem2-1	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1263,8 +1266,8 @@ gon_dun02,3,1,0	script	timer2-2	-1,{
 gon_dun02,265,201,0	script	#getitem2-2	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1331,8 +1334,8 @@ gon_dun02,4,1,0	script	timer2-3	-1,{
 gon_dun02,247,128,0	script	#getitem2-3	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1399,8 +1402,8 @@ gon_dun02,5,1,0	script	timer2-4	-1,{
 gon_dun02,149,75,0	script	#getitem2-4	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1467,8 +1470,8 @@ gon_dun02,6,1,0	script	timer2-5	-1,{
 gon_dun02,23,106,0	script	#getitem2-5	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1535,8 +1538,8 @@ gon_dun02,7,1,0	script	timer2-6	-1,{
 gon_dun02,249,40,0	script	#getitem2-6	111,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	close;
 
 	OnInit:
@@ -1611,12 +1614,12 @@ gon_dun03,2,1,0	script	timer3-1	-1,{
 gon_dun03,10,74,0	script	#getitem3-1	111,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -1683,12 +1686,12 @@ gon_dun03,3,1,0	script	timer3-2	-1,{
 gon_dun03,199,102,0	script	#getitem3-2	111,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -1755,12 +1758,12 @@ gon_dun03,4,1,0	script	timer3-3	-1,{
 gon_dun03,14,163,0	script	#getitem3-3	111,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -1827,12 +1830,12 @@ gon_dun03,5,1,0	script	timer3-4	-1,{
 gon_dun03,156,263,0	script	#getitem3-4	111,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -1899,12 +1902,12 @@ gon_dun03,6,1,0	script	timer3-5	-1,{
 gon_dun03,170,90,0	script	#getitem3-5	111,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -1971,12 +1974,12 @@ gon_dun03,7,1,0	script	timer3-6	-1,{
 gon_dun03,68,39,0	script	#getitem3-6	111,1,2,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -2043,12 +2046,12 @@ gon_dun03,6,1,0	script	timer3-7	-1,{
 gon_dun03,68,213,0	script	#getitem3-7	111,1,2,{
 	if (b_sword != 9) end;
 	set b_sword,10;
-	mes "You found a ^FF0000piece of blade^000000.";
-	mes "Seems like it's a part of the sword you've been looking for.";
+	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
+	mes "Parece que é um pedaço da espada que você está procurando.";
 	next;
-	mes "You put all the pieces on the";
-	mes "ground and assembled them.";
-	mes "It looks like you've found all of the pieces of the blade.";
+	mes "Você coloca todos os pedaços no chão";
+	mes "e juntá-os.";
+	mes "Parece que você encontrou todos os pedaços da espada.";
 	close;
 
 	OnInit:
@@ -2066,126 +2069,126 @@ gon_dun03,68,213,0	script	#getitem3-7	111,1,2,{
 		end;
 }
 
-gon_in,18,27,5	script	Madam#gnbs	771,{
+gon_in,18,27,5	script	Senhora#gnbs	771,{
 	mes "[Shang Hua Yen]";
 	mes "Ho, ho, ho~";
-	mes "Who might this be?";
-	mes "A visitor from out of town~";
-	mes "Welcome!";
+	mes "Quem pode ser?";
+	mes "Um visitante de fora da cidade.";
+	mes "Bem-vindo!";
 	next;
-	if (select("Hello, Madam~:Where's the chief?") == 1) {
+	if (select("Olá, senhora.:Onde está o Chefe?") == 1) {
 		mes "[Shang Hua Yen]";
-		mes "Hello, darling~";
+		mes "Olá, querido.";
 		close;
 	}
 	if (Sex == 0) {
 		mes "[Shang Hua Yen]";
-		mes "Hoho~ he's upstairs.";
-		mes "My, are you such a pretty lady~";
-		mes "Just don't be too enraptured by my husband, alright?";
+		mes "Hoho, ele está lá em cima.";
+		mes "Meu bem, você é uma mulher muito bonita.";
+		mes "Então não seja muito extasiada com meu marido, tudo bem?";
 		mes "Tee hee~";
 		close;
 	}
 	mes "[Shang Hua Yen]";
-	mes "Oh, he's upstairs...";
-	mes "My~! Aren't you a darling young";
-	mes "man. But still, not nearly as handsome as my husband~";
+	mes "Hoho, ele está lá em cima.";
+	mes "Meu bem, você ainda não é um grande";
+	mes "Homem. Mas você um jovem quase tão bonito quanto meu marido.";
 	mes "Tee hee~";
 	emotion e_lv;
 	close;
 }
 
-gon_dun03,62,222,0	script	Strange dead body#gnbs	111,{
+gon_dun03,62,222,0	script	Corpo Estranho#gnbs	111,{
 	if (b_sword < 7) {
-		mes "Here's a decomposing corpse.";
-		mes "It seems like monsters devoured it.";
+		mes "Aqui estava um cadáver em decomposição.";
+		mes "Parece que os monstros o comeram.";
 		close;
 	}
 	else if (b_sword > 6 && b_sword < 11) {
-		mes "There's a written message between the bones of the corpse.";
-		mes "of the corpse.";
-		mes "Take a look?";
+		mes "Há uma mensagem escrita entre os ossos";
+		mes "do cadáver.";
+		mes "Você vai dar uma olhada?";
 		next;
-		if (select("Yes.:Eew, no!") == 1) {
-			mes "^3355FFThe paper is old and fading,";
-			mes "but there are words on it.";
-			mes "It's written in blood.";
-			mes "The letters are faded and it's almost impossible to read...^000000 ";
+		if (select("Sim.:Eew, não!") == 1) {
+			mes "^3355FFUm papel velho e desbotado,";
+			mes "mas há palavras escritas nele.";
+			mes "Elas foram escritas com sangue.";
+			mes "As letras estão desbotadas e por isso é quase impossível de ler...^000000 ";
 			next;
-			mes "^FF0000Damn I can't.. believe.. failed..";
-			mes "Sayum... I should've..";
-			mes "watchout.. ehhh.. but.. break";
-			mes "..pieces.. and seperate..";
-			mes "I.. with";
-			mes "this...^000000";
+			mes "^FF0000Damn Eu não.. posso acreditar.. falhei..";
+			mes "Sayum... eu deveria ter..";
+			mes "mais cuidado.. ehhh.. mas.. as peças foram";
+			mes "..quebradas.. e separadas..";
+			mes "eu.. com";
+			mes "isso...^000000";
 			next;
-			mes "^3355FFThe rest was indecipherable...";
-			mes "He probably couldn't take it any longer...^000000";
+			mes "^3355FFO resto está ilegível...";
+			mes "Ela provavelmente não aguentava mais...^000000";
 			close;
 		}
 		mes "[ ^6699FF" + strcharinfo(0) + "^000000 ]";
-		mes "Eew, no!";
+		mes "Eew, Não!";
 		mes " ";
-		mes "Yucky yucky YUCKY!";
+		mes "Nojento, nojento, NOJENTO!";
 		next;
-		mes "^3355FFYou feel like there's something important here...";
-		mes "But the rotting carcass has a";
-		mes "foul odor that makes you feel nauseated.^000000";
+		mes "^3355FFVocê sente que há algo muito importante...";
+		mes "Mas a carcaça podre tem";
+		mes "um cheiro que faz você ficar muito enjoado.^000000";
 		close;
 	}
 	else if (b_sword == 11 || b_sword == 12) {
-		mes "^3355FFIt's a rotting human corpse...";
-		mes "I should just pass by.^000000";
+		mes "^3355FFÉ um cadáver humano em decomposição...";
+		mes "Eu deveria apenas passar por ele.^000000";
 		close;
 	}
-	mes "^3355FFA skeleton chewed up by";
-	mes "monsters...I feel sorry for";
-	mes "him, but start getting this";
-	mes "really creepy feeling after staring at it for a while.^000000";
+	mes "^3355FFUm esqueleto mastigado por";
+	mes "monstros... Eu sinto muito por";
+	mes "ele, mas comecei a ter um";
+	mes "sentimento realmente assustador, após olhar para ele por um tempo.^000000";
 	close;
 }
 
-gonryun,139,142,7	script	Girl##gnbs1	772,{
+gonryun,139,142,7	script	Garota##gnbs1	772,{
 	if (b_sword < 12) {
 		mes "[Shi Ying Xiao]";
 		mes "..........";
-		mes "I was happy meeting visitors";
-		mes "from outside the village,";
-		mes "but because of the thief, I feel terrible now...";
+		mes "Eu contrei visitantes felizes";
+		mes "que são de fora do vilarejo,";
+		mes "mas por causa do ladrão, eu me sinto terrível agora...";
 		emotion e_dots;
 		close;
 	}
 	mes "[Shi Ying Xiao]";
 	mes "Hehe...";
-	mes "I am so happy now~";
-	mes "Lots of visitors are coming to our";
-	mes "village now. But most of all,";
-	mes "Someone found my father's heirloom~";
+	mes "Eu estou tão feliz agora.";
+	mes "Muitos visitantes estão vindo para o";
+	mes "nosso vilarejo agora. Mas acima de tudo,";
+	mes "alguém encontrou a herança do meu pai.";
 	next;
-	if (select("I'm glad you're relieved.:That would be me!") == 1) {
+	if (select("Fico feliz em saber que você está aliviado.:Esse alguém seria eu!") == 1) {
 		mes "[Shi Ying Xiao]";
-		mes "Yes, the mood of the entire";
-		mes "village seems to have calmed...";
-		mes "I'm sure whoever found my father's sword is a great person.";
+		mes "Sim, todo o vilarejo parece ter";
+		mes "ficado com um clima mais calmo...";
+		mes "Eu tenho certeza que quem encontrou a espada do meu pai é uma grande pessoa.";
 		close;
 	}
 	mes "[ ^6699FF" + strcharinfo(0) + "^000000 ]";
-	mes "That would be me!";
+	mes "Esse seria eu!";
 	next;
 	mes "[ ^6699FF" + strcharinfo(0) + "^000000 ]";
-	mes "I AM YOUR HERO!";
+	mes "EU SOU SEU HERÓI!";
 	next;
 	emotion e_heh;
 	mes "[Shi Ying Xiao]";
-	mes "Thank you so much for bringing hope to our village, hero~";
+	mes "Muito obrigada por trazer esperança para nosso vilarejo, herói.";
 	close;
 }
 
-gonryun,100,241,0	script	Stranger#gnbs	733,{
+gonryun,100,241,0	script	Estranho#gnbs	733,{
 	if (b_sword < 14) {
 		mes "[Zuo Hei]";
 		mes "Hmm...";
-		mes "I'm pretty busy right now, come back later.";
+		mes "Estou muito ocupado agora, volte mais tarde.";
 		emotion e_dots;
 		close;
 	}
@@ -2196,125 +2199,125 @@ gonryun,100,241,0	script	Stranger#gnbs	733,{
 			case 0:
 				mes "[Zuo Hei]";
 				mes "Hmm...";
-				mes "What is it?";
-				mes "What do you want?";
-				mes "I don't like to be bothered.";
+				mes "O que é isso?";
+				mes "O que você quer?";
+				mes "Eu não gosto de ser encomodado.";
 				next;
-				if (select("Ask about the blacksmith.:Why are you being so mean?") == 1) {
+				if (select("Pergunte sobre o ferreiro.:Por que você está sendo tão má?") == 1) {
 					mes "[Zuo Hei]";
 					mes "Ahh..";
-					mes "So you're the one who found";
-					mes "the sword, eh?";
-					mes "Did you also get asked to repair it?";
+					mes "Então você é aquele que encontrou";
+					mes "a espada, em?";
+					mes "Ele também pediu para que você a concerta-se?";
 					next;
-					if (select("Exactly.:No..I'm just...") == 1) {
+					if (select("Exatamente.:Não... Eu apenas...") == 1) {
 						mes "[Zuo Hei]";
 						mes "Hmm...";
-						mes "If you want some information from";
-						mes "me, come back after helping the";
-						mes "person in the village who's in";
-						mes "trouble right now.";
+						mes "Se você quiser conseguir alguma informação";
+						mes "de mim, volte depois de ajudar";
+						mes "as pessoas do vilarejo que estão com";
+						mes "problemas agora.";
 						next;
 						mes "[Zuo Hei]";
-						mes "It's another heirloom";
-						mes "problem, but I want to";
-						mes "see for myself that";
-						mes "you're really interested";
-						mes "in helping others.";
+						mes "É mais uma herança com";
+						mes "problema, mas eu quero";
+						mes "ver por mim mesmo que";
+						mes "você está interessado";
+						mes "em ajudar os outros.";
 						set b_sword,16;
 						close;
 					}
 					mes "[Zuo Hei]";
-					mes "Hmm, I didn't think so...";
-					mes "Now, don't bother me anymore.";
-					mes "I've got a bunch of things to do.";
+					mes "Hmm, Eu não penso assim...";
+					mes "Agora, não me incomode mais.";
+					mes "Eu tenho um monte de coisas para fazer.";
 					close;
 				}
 				mes "[Zuo Hei]";
 				mes "Grr...";
-				mes "Why should you care about the";
-				mes "someone else's personality?";
-				mes "That's none of your business.";
-				mes "Take a look in the mirror first";
-				mes "before you say things like that.";
+				mes "Por que você se preocupa com";
+				mes "a personalidade de outra pessoa?";
+				mes "Isso não é da sua conta.";
+				mes "Olhe para um espelho primeiro";
+				mes "antes de dizer esse tipo de coisa.";
 				emotion e_ag;
 				close;
 			case 1:
 				mes "[Zuo Hei]";
 				mes "Hmm...";
-				mes "You're in the middle of helping";
-				mes "someone now, I hear.";
-				mes "Why don't you go and take care of them first.";
-				mes "Once you start to help someone,";
-				mes "you can't just quit halfway.";
+				mes "Você está no meio de uma";
+				mes "ajuda agora, eu ouvi.";
+				mes "Você deveria terminar isso em primeiro lugar.";
+				mes "Quando você começa a ajudar alguém,";
+				mes "você não deve parar na metade.";
 				set b_sword,16;
 				close;
 			case 2:
 				mes "[Zuo Hei]";
 				mes "Hmm...";
-				mes "You're in the middle of helping";
-				mes "someone now, I hear.";
-				mes "Why don't you go and take care of them first.";
-				mes "Once you start to help someone,";
-				mes "you can't just quit halfway.";
+				mes "Você está no meio de uma";
+				mes "ajuda agora, eu ouvi.";
+				mes "Você deveria terminar isso em primeiro lugar.";
+				mes "Quando você começa a ajudar alguém,";
+				mes "você não deve parar na metade.";
 				set b_sword,16;
 				close;
 			case 3:
 				mes "[Zuo Hei]";
 				mes "Hmm...";
-				mes "What do you want??";
+				mes "O que você quer??";
 				next;
-				if (select("Ask about the blacksmith.:Why are you being so mean?") == 1) {
+				if (select("Pergunte sobre o ferreiro.:Por que você está sendo tão má?") == 1) {
 					mes "[Zuo Hei]";
-					mes "Ahh...";
-					mes "So you are the one who found";
-					mes "the sword, eh? I assume you were also asked to repair it...";
+					mes "Ahh..";
+					mes "Então você é aquele que encontrou";
+					mes "a espada, em? Eu presumo que também pediram para você que a concertar-se...";
 					next;
-					if (select("Exactly.:No...I'm just...") == 1) {
+					if (select("Exatamente.:Não... Eu apenas...") == 1) {
 						mes "[Zuo Hei]";
 						mes "Hmm...";
-						mes "Since it's been shattered,";
-						mes "you'll need a very skilled smith.";
-						mes "Go to ^FF0000Geffen^000000, you'll find someone";
-						mes "who can help you.";
+						mes "Uma vez que foi quebrada,";
+						mes "você vai precisar de um ferreiro muito habilidoso.";
+						mes "Vá para ^FF0000Geffen^000000, você vai encontrar alguém";
+						mes "que pode te ajudar.";
 						set b_sword,17;
 						close;
 					}
 					mes "[Zuo Hei]";
-					mes "Hmm, I didn't think so...";
-					mes "Now, don't bother me anymore.";
-					mes "I've got a bunch of things to do.";
+					mes "Hmm, Eu não penso assim...";
+					mes "Agora, não me incomode mais.";
+					mes "Eu tenho um monte de coisas para fazer.";
 					close;
 				}
 				mes "[Zuo Hei]";
 				mes "Grr...";
-				mes "Why should you care about the";
-				mes "someone else's personality?";
-				mes "That's none of your business.";
-				mes "Take a look in the mirror first";
-				mes "before you say things like that.";
+				mes "Por que você se preocupa com";
+				mes "a personalidade de outra pessoa?";
+				mes "Isso não é da sua conta.";
+				mes "Olhe para um espelho primeiro";
+				mes "antes de dizer esse tipo de coisa.";
 				emotion e_ag;
 				close;
 			case 4:
 				mes "[Zuo Hei]";
-				mes "Guess I was wasting my time.";
-				mes "If you make a promise to someone,";
-				mes "it's your responsibility to";
-				mes "follow through with it to completion.";
+				mes "Acho que eu estava perdendo meu tempo.";
+				mes "Se você faz uma proemssa para alguém,";
+				mes "é sua responsabilidade";
+				mes "seguir com ela até o final.";
 				next;
 				mes "[Zuo Hei]";
-				mes "I don't like people who fail to";
-				mes "keep the promises they make.";
-				mes "You'll not get any information from me.";
-				mes "Don't ever bother me again.";
+				mes "Eu não gosto de pessoas que";
+				mes "não conseguem manter as promessas que fazem.";
+				mes "Você não vai conseguir nenhuma informação comigo.";
+				mes "Nunca mais volte a me incomodar.";
 				set b_sword,15;
 				close;
 			}
 			break;
 		case 15:
 			mes "[Zuo Hei]";
-			mes "Sorry, I'm busy right now.";
-			mes "Why don't you come back later.";
+			mes "Desculpe, eu estou ocupado agora.";
+			mes "Volte aqui mais tarde.";
 			emotion e_dots;
 			close;
 		case 16:
@@ -2322,75 +2325,75 @@ gonryun,100,241,0	script	Stranger#gnbs	733,{
 			case 0:
 				mes "[Zuo Hei]";
 				mes "Hmm......";
-				mes "You're not done with the";
-				mes "requirement I've given you...";
-				mes "I can't give you any information";
-				mes "until you finish your job.";
+				mes "Você não terminou";
+				mes "a tarefa que lhe dei...";
+				mes "Eu não posso lhe da qualquer informação";
+				mes "até que você termine seu trabalho.";
 				close;
 			case 1:
 				mes "[Zuo Hei]";
 				mes "Hmm....";
-				mes "Once you start to help someone,";
-				mes "you can't just quit halfway.";
-				mes "Why don't you go and take care of them first.";
+				mes "Uma vez que você começa a ajudar alguém,";
+				mes "você não pode simplesmente parar no meio.";
+				mes "Então você deve ir e terminar seu trabalho primeiro.";
 				close;
 			case 2:
 				mes "[Zuo Hei]";
 				mes "Hmm....";
-				mes "Once you start to help someone,";
-				mes "you can't just quit halfway.";
-				mes "Why don't you go and take care of them first.";
+				mes "Uma vez que você começa a ajudar alguém,";
+				mes "você não pode simplesmente parar no meio.";
+				mes "Então você deve ir e terminar seu trabalho primeiro.";
 				close;
 			case 3:
 				mes "[Zuo Hei]";
-				mes "Hmm......";
-				mes "What do you want?";
+				mes "Hmm...";
+				mes "O que você quer??";
 				next;
-				if (select("Ask about the blacksmith.:Why are you being so mean?") == 1) {
+				if (select("Pergunte sobre o ferreiro.:Por que você está sendo tão má?") == 1) {
 					mes "[Zuo Hei]";
-					mes "Ahh...";
-					mes "So you are the one who found";
-					mes "the sword eh?";
-					mes "Did you also get asked to repair it?";
+					mes "Ahh..";
+					mes "Então você é aquele que encontrou";
+					mes "a espada, em?";
+					mes "Então também pediram para que você a concerte?";
 					next;
-					if (select("Exactly.:No, i'm just...") == 1) {
+					if (select("Exatamente.:Não... Eu apenas...") == 1) {
 						mes "[Zuo Hei]";
 						mes "Hmm...";
-						mes "Since it's been shattered,";
-						mes "you'll need a very skilled smith.";
-						mes "Go to ^FF0000Geffen^000000, you'll find someone";
-						mes "who can help you.";
+						mes "Uma vez que foi quebrada,";
+						mes "você vai precisar de um ferreiro muito habilidoso.";
+						mes "Vá para ^FF0000Geffen^000000, você vai encontrar alguém";
+						mes "que pode te ajudar.";
 						set b_sword,17;
 						close;
 					}
 					mes "[Zuo Hei]";
-					mes "Oh, I suppose not.";
-					mes "Why are you asking me, then?";
-					mes "Don't bother me anymore.";
-					mes "I've got a bunch of things to do.";
+					mes "Ah, eu suponho que não.";
+					mes "Então, por que você está perguntando para mim?";
+					mes "Não me incomode mais.";
+					mes "Eu tenho um monte de coisa para fazer.";
 					close;
 				}
 				mes "[Zuo Hei]";
 				mes "Grr...";
-				mes "Why should you care about the";
-				mes "someone else's personality?";
-				mes "That's none of your business.";
-				mes "Take a look in the mirror first";
-				mes "before you say things like that.";
+				mes "Por que você se preocupa com";
+				mes "a personalidade de outra pessoa?";
+				mes "Isso não é da sua conta.";
+				mes "Olhe para um espelho primeiro";
+				mes "antes de dizer esse tipo de coisa.";
 				emotion e_ag;
 				close;
 			case 4:
 				mes "[Zuo Hei]";
-				mes "Guess I was wasting my time.";
-				mes "If you make a promise to";
-				mes "someone, it's your";
-				mes "responsibility to";
-				mes "follow through with it to completion.";
+				mes "Acho que eu estava perdendo meu tempo.";
+				mes "Se você faz uma proemssa para alguém,";
+				mes "é sua responsabilidade";
+				mes "seguir com ela até o final.";
 				next;
 				mes "[Zuo Hei]";
-				mes "I don't like people who fail";
-				mes "to keep their promises.";
-				mes "You'll not get any information from me. Don't ever bother me again.";
+				mes "Eu não gosto de pessoas que";
+				mes "não conseguem manter as promessas que fazem.";
+				mes "Você não vai conseguir nenhuma informação comigo.";
+				mes "Nunca mais volte a me incomodar.";
 				set b_sword,15;
 				close;
 			}
@@ -2398,30 +2401,29 @@ gonryun,100,241,0	script	Stranger#gnbs	733,{
 	}
 	else if (b_sword < 33) {
 		mes "[Zuo Hei]";
-		mes "Hey there...uhm..";
-		mes "Didn't I tell you to go to ^FF0000Geffen^000000?";
-		mes "You'll find a famous blacksmith";
-		mes "that can repair the sword for you.";
-		mes "That's all the information I can";
-		mes "give you, really.";
+		mes "Ei, você ai...uhm..";
+		mes "Eu não já disse para você ir para ^FF0000Geffen^000000?";
+		mes "Lá você vai encontrar um famoso ferreiro";
+		mes "que será capaz de concertar essa espada para você.";
+		mes "Essa é toda informação que posso";
+		mes "lhe dar.";
 		next;
 		mes "[Zuo Hei]";
-		mes "It's up to you to make good use of it.";
+		mes "Então vá e faça um bom trabalho.";
 		close;
 	}
 	mes "[Zuo Hei]";
 	mes "Hmm...";
-	mes "Helping people in trouble is";
-	mes "such a nice thing to do.";
-	mes "You are doing the right thing.";
+	mes "Ajudar as pessoas que estão com problemas";
+	mes "é uma boa coisa a se fazer.";
+	mes "Você está fazendo a coisa certa.";
 	close;
 }
-
-geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
+geffen_in,71,112,2	script	Ferreiro#SaYumMoon	731,{
 	if (b_sword < 17) {
 		mes "[Aumgarl]";
 		mes "*Sob*..*sob*....";
-		mes "My poor baby Lyroo..";
+		mes "Meu pobre bebê Lyroo..";
 		mes "*Sniff*...";
 		close;
 	}
@@ -2430,41 +2432,41 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 		case 17:
 			mes "[Aumgarl]";
 			mes "*Sob*...";
-			mes "My poor baby Lyroo..";
+			mes "Meu pobre bebê Lyroo..";
 			mes "*Sniff*...";
 			next;
 			if (select("Sir...?:...........") == 1) {
 				mes "[Aumgarl]";
-				mes "Hmm...Who are you?";
-				mes "Do you need something?";
-				mes "If not, please leave...";
+				mes "Hmm... Quem é você?";
+				mes "Você precisa de algo?";
+				mes "Se não, por favor, vá embora...";
 				next;
-				if (select("I came to repair this sword.:I heard you are a famous blacksmith...") == 1) {
+				if (select("Preciso que você concerte esta espada.:Eu ouvi dizer que você é um famoso ferreiro...") == 1) {
 					mes "[Aumgarl]";
-					mes "Umm...";
-					mes "I'm sorry, but we're closed.";
-					mes "Come again another time.";
-					mes "Goodbye.";
+					mes "Uhn...";
+					mes "Me desculpe, mas estamos fechado.";
+					mes "Volte outra hora.";
+					mes "Adeus.";
 					set b_sword,18;
 					close;
 				}
 				mes "[Aumgarl]";
-				mes "Yes, I am a blacksmith,";
-				mes "but I don't think I'm famous.";
-				mes "And unfortunately, we're closed right now.";
+				mes "Sim, eu sou um ferreiro,";
+				mes "mas eu não sou tão famoso.";
+				mes "E infelizmente, estamos fechado agora.";
 				close;
 			}
 			mes "[Aumgarl]";
-			mes "If you have nothing to say to me,";
-			mes "then please leave me alone.";
+			mes "Se você não tem nada a dizer para mim,";
+			mes "por favor deixe-me sozinho.";
 			close;
 		case 18:
 			mes "[Aumgarl]";
-			mes "Like I said, we're closed!";
+			mes "Como eu disse, estamos fechado!";
 			mes "Come back later.";
 			if (rand(1,8) == 7) {
 				set b_sword,19;
-				mes "Didn't you hear me?! Sheesh!";
+				mes "Você não me ouviu?! Sheesh!";
 			}
 			close2;
 			warp "geffen",173,169;
@@ -2472,10 +2474,10 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 		case 19:
 			mes "[Aumgarl]";
 			mes "Hmm...";
-			mes "You're a persistent one!!";
-			mes "What is it that you want?";
+			mes "Você é muito persistente!!";
+			mes "O que você quer?";
 			next;
-			switch(select("I want to marry your granddaughter.:Your granddaughter is such a pretty girl.:I came to repair the sword.")) {
+			switch(select("Eu quero me casar com sua neta.:Sua neta é uma menina tão bonita.:Eu vim para concertar a espada.")) {
 			case 1:
 				mes "[Aumgarl]";
 				mes ".....";
@@ -2485,21 +2487,21 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 				mes "........................";
 				next;
 				mes "[Aumgarl]";
-				mes "Who the heck are you?";
-				mes "What do you want with my";
-				mes "granddaughter all of a sudden!?";
-				mes "Get the hell out of here!";
-				mes "Don't ever come back here again!";
+				mes "Que diabos é você?";
+				mes "O que você quer com";
+				mes "a minha neta, assim tão de repente!?";
+				mes "Dê o fora daqui!";
+				mes "Nunca mais venha aqui de novo!";
 				emotion e_pif;
 				close;
 			case 2:
 				mes "[Aumgarl]";
-				mes "You're darn right~";
-				mes "My granddaughter is soo~ pretty.";
+				mes "Você está certo.";
+				mes "Minha neta é muito linda.";
 				mes "Hahaha...ah....hah...";
-				mes ".....*Sob, sob*....";
+				mes ".....*Soluço, soluço*....";
 				next;
-				switch(select("I want to marry her...:I came to repair the sword.:Anything wrong?")) {
+				switch(select("Eu vim para me casar com ela...:Eu vim para concertar a espada.:Algo errado?")) {
 				case 1:
 					mes "[Aumgarl]";
 					mes ".....";
@@ -2509,177 +2511,177 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 					mes "........................";
 					next;
 					mes "[Aumgarl]";
-					mes "Who the heck are you?";
-					mes "What do you want with my";
-					mes "granddaughter all of a sudden!?";
-					mes "Get out of here you pervert!";
-					mes "Don't ever come back here again!";
+					mes "Que diabos é você?";
+					mes "O que você quer com";
+					mes "a minha neta, assim tão de repente!?";
+					mes "Dê o fora daqui!";
+					mes "Nunca mais venha aqui de novo!";
 					emotion e_pif;
 					close;
 				case 2:
 					mes "[Aumgarl]";
 					mes "...............";
-					mes "A sword?";
-					mes "I don't remember when the last";
-					mes "time I worked with steel was.";
+					mes "Uma espada?";
+					mes "Eu nem me lembro quando foi";
+					mes "a ultima vez que trabalhei com aço.";
 					mes "Hmm...";
-					mes "May I see the sword?";
+					mes "Posso ver a espada?";
 					next;
 					mes "[Aumgarl]";
 					mes "Hmm......";
 					mes "Hmmmm......";
 					mes "............";
 					next;
-					mes "^0000FFHe intently studied the pieces of the sword for a while.^000000";
+					mes "^0000FFEele fica atentamente olhando para os pedaços da espada por um tempo.^000000";
 					next;
 					mes "[Aumgarl]";
 					mes "Hmm...";
-					mes "So this is the one, huh?";
-					mes "Well...I am sorry, but this sword";
-					mes "is not something I can repair";
-					mes "at the moment.";
+					mes "Então é esta, hein?";
+					mes "Bem... Sinto muito, mas esta espada";
+					mes "não é algo que eu possa concertar";
+					mes "no momento.";
 					next;
 					mes "[Aumgarl]";
-					mes "Why don't you go find";
-					mes "another blacksmith?";
-					mes "I am truly sorry.";
+					mes "Porque você não procura";
+					mes "outro ferreiro?";
+					mes "Eu realmente sinto muito.";
 					close;
 				case 3:
 					mes "[Aumgarl]";
-					mes "Um..well...";
-					mes "This is not something I normally";
-					mes "tell strangers, but....";
-					mes "My granddaughter Lyroo has";
-					mes "an incurable disease...";
+					mes "Hum... Bem...";
+					mes "Isso não é algo que eu gosto";
+					mes "de dizer a estranhos, mas....";
+					mes "Minha neta Lyroo possui";
+					mes "uma doença incurável...";
 					next;
 					mes "[Aumgarl]";
-					mes "Not long after she was born,";
-					mes "her parents died from an accident.";
-					mes "Since that day, I have been taking care of her...";
+					mes "Pouco tempo após seu nascimento,";
+					mes "seus pais morreram em um acidente.";
+					mes "Desde esse dia, eu tenho cuidado dela...";
 					next;
 					mes "[Aumgarl]";
-					mes "But that wasn't the end of it...";
-					mes "Soon after, she started to suffer";
-					mes "from a serious illness. I've met";
-					mes "doctors from all around";
-					mes "Rune-Midgard...";
+					mes "Mas não acabou por ai...";
+					mes "Um tempo depois, ela começou a sofrer";
+					mes "de uma grave doença. Eu já";
+					mes "a levei a todos os médicos de";
+					mes "Rune Midgard...";
 					next;
 					mes "[Aumgarl]";
-					mes "But not one of them could";
-					mes "diagnose her sickness...";
+					mes "Mas nenhum deles foi capaz de";
+					mes "diagnosticar a doença...";
 					next;
-					switch(select("I am sorry to hear that.:I'll make her happy.:I want to cure her.")) {
+					switch(select("Eu sinto muito por ela.:Eu vou fazê-la feliz.:Eu vou curá-la.")) {
 					case 1:
 						mes "[Aumgarl]";
-						mes "*Sigh*...";
-						mes "I'll just have to accept it";
-						mes "as her fate. I just feel";
-						mes "so sorry for Lyroo.";
+						mes "*Suspiro*...";
+						mes "Sei que terei de aceitar";
+						mes "o destino dela. Eu me sinto tão";
+						mes "mal pela Lyroo.";
 						mes "...";
 						emotion e_dots;
 						close;
 					case 2:
 						mes "[Aumgarl]";
 						mes "Umm...";
-						mes "What do you mean...?";
-						mes "'Make her happy?'";
-						mes "You're not making any sense...";
-						mes "I'm confused...";
+						mes "O que você quer dizer com...?";
+						mes "'Fazê-la feliz?'";
+						mes "Você não está falando algo que faça sentido...";
+						mes "Estou confuso...";
 						next;
-						switch(select("I'll make her happy all the time.:I want to take her with me.:I will cure her.")) {
+						switch(select("Eu vou fazê-la feliz para sempre.:Eu quero levá-la comigo.:Eu vou curá-la.")) {
 						case 1:
 							mes "[Aumgarl]";
 							mes "...";
-							mes "What are you talking about?";
-							mes "Make her happy all the time?";
-							mes "She is dying even at";
-							mes "this moment.";
+							mes "Sobre o que você está falando?";
+							mes "Fazê-la feliz para sempre?";
+							mes "Ela está morrendo";
+							mes "agora mesmo.";
 							next;
 							mes "[Aumgarl]";
-							mes "I think you're out of";
-							mes "your mind, sicko!";
-							mes "Get out of here!";
+							mes "Eu acho que você";
+							mes "está fora de si, seu maluco!";
+							mes "Dê o fora daqui!";
 							close;
 						case 2:
 							mes "[Aumgarl]";
-							mes "...What do you mean?";
-							mes "You want to take her to where?";
-							mes "What are you gonna do?";
+							mes "...O que você quer dizer?";
+							mes "Você quer levá-la para onde?";
+							mes "O que você quer fazer?";
 							next;
-							if (select("I will cure her.:I am sorry.") == 1) {
+							if (select("Eu vou curá-la.:Me desculpe.") == 1) {
 								mes "[Aumgarl]";
-								mes "It's useless talking about";
-								mes "it any longer. I don't think";
-								mes "there is anyone who can";
-								mes "cure my granddaughter.";
+								mes "É inútil falar sobre isso";
+								mes "por mais tempo. Eu não acho que";
+								mes "qualquer pessoa possa";
+								mes "curar minha neta.";
 								close;
 							}
 							mes "[Aumgarl]";
 							mes "Ahh...";
-							mes "I'm not blaming you.";
-							mes "It's not your fault anyway.";
-							mes "...*Sigh*...";
+							mes "Eu não estou culpando você.";
+							mes "De maneira alguma seria sua culpa.";
+							mes "...*Suspiro*...";
 							next;
-							if (select("Well...:I'll pray for her recovery.") == 1) {
+							if (select("Bem...:Eu rezo para que ela fique bem.") == 1) {
 								mes "[Aumgarl]";
 								mes "Err..";
-								mes "I am sorry to ask you this...";
-								mes "But would you do me a favor?";
-								mes "Umm...";
+								mes "Sinto muito por lhe dizer isto...";
+								mes "Mas você poderia me fazer um favor?";
+								mes "Hum...";
 								next;
-								if (select("No.:Sure.") == 1) {
+								if (select("Não.:Claro.") == 1) {
 									mes "[Aumgarl]";
 									mes "Err...";
-									mes "Alright, I won't bother you..";
-									mes "Goodbye...";
+									mes "Tudo bem, não vou incomodá-lo..";
+									mes "Adeus...";
 									close;
 								}
 								mes "[Aumgarl]";
-								mes "It won't be easy, but";
-								mes "would you help me to find";
-								mes "a doctor...No, anybody";
-								mes "who can cure Lyroo...";
+								mes "Sei que não será fácil, mas";
+								mes "você poderia me ajudar a encontrar";
+								mes "um médico...Não, há ninguém";
+								mes "que possa curar Lyroo...";
 								next;
 								mes "[Aumgarl]";
-								mes "Anyone who has any information about her illness?? Please...";
+								mes "Mas procure por qualquer pessoa que tenha alguma informação sobre esta doença?? Por favor...";
 								mes "...*Sob*...";
 								next;
-								select("Yes, Sir.");
+								select("Sim, senhor.");
 								mes "[Aumgarl]";
 								mes "Oh...";
-								mes "Thank you so much.";
-								mes "If Lyroo can get her health back,";
-								mes "I'll never forget your help.";
+								mes "Muito Obrigado.";
+								mes "Se Lyroo puder ficar bem novamente,";
+								mes "eu nunca irei esquecer sua ajuda.";
 								next;
 								mes "[Aumgarl]";
-								mes "Thank you...";
-								mes "Thank you...";
+								mes "Obrigado...";
+								mes "Obrigado...";
 								set b_sword,20;
 								close;
 							}
 							mes "[Aumgarl]";
-							mes "Well...thank you.";
-							mes "I'm going to try my best to";
-							mes "make her happy until the";
-							mes "very end..";
-							mes "Please come by sometime";
-							mes "to say hi to Lyroo.";
+							mes "Bem... Obrigado.";
+							mes "Eu vou fazer o meu melhor";
+							mes "para deixá-la contente";
+							mes "até o fim..";
+							mes "Por favor, apareça aqui novamente";
+							mes "para dizer um oi a Lyroo.";
 							close;
 						case 3:
 							mes "[Aumgarl]";
 							mes ".............";
-							mes "How're you going to cure";
-							mes "my granddaughter?";
-							mes "You don't look like";
-							mes "a doctor to me.";
+							mes "Como você vai curar";
+							mes "minha neta?";
+							mes "Para mim, você não";
+							mes "se parece com um médico.";
 							next;
-							switch(select("I am a doctor.:I know a famous doctor.:I'll cure her no matter what.")) {
+							switch(select("Eu sou um médico.:Eu conheço um médico famoso.:Eu vou curá-la, não importa como.")) {
 							case 1:
 								mes "[Aumgarl]";
 								mes "Ehm...";
-								mes "Do I look like a fool to you?";
-								mes "I hate people who lie like that. Get out of my sight.";
-								mes "Get out of my sight.";
+								mes "Eu pareço algum tipo de idiota?";
+								mes "Eu odeio pessoas mentirosas como você. Saia da minha frente.";
+								mes "Saia da minha frente.";
 								mes " ";
 								emotion e_pif;
 								close2;
@@ -2687,44 +2689,44 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 								end;
 							case 2:
 								mes "[Aumgarl]";
-								mes "A famous doctor?";
-								mes "I've met all kinds of";
-								mes "famous doctors. I've";
-								mes "probably met whoever";
-								mes "you may know already.";
+								mes "Um médico famoso?";
+								mes "Eu conheço todos os tipos";
+								mes "de médicos famosos. Eu";
+								mes "provavelmente já conheço";
+								mes "quem você está falando.";
 								close;
 							case 3:
 								mes "[Aumgarl]";
 								mes "................";
-								mes "You want to cure her";
-								mes "no matter what?";
-								mes "How're going to do that?";
-								mes "What if it turns worse,";
-								mes "Huh?";
+								mes "Você quer curá-la não";
+								mes "importa o que seja preciso?";
+								mes "Como você faria isso?";
+								mes "E se você fizer ela ficar pior,";
+								mes "hein?";
 								next;
 								mes "[Aumgarl]";
-								mes "I'm tired of your bragging.";
-								mes "Please just leave us alone.";
+								mes "Eu estou cansado de sua vanglória.";
+								mes "Por favor, deixe-nos em paz.";
 								close;
 							}
-						}
+							}
 					case 3:
 						mes "[Aumgarl]";
 						mes ".................";
-						mes "Thanks for your concern...";
-						mes "but you're a stranger to us.";
-						mes "I can't let you do that.";
-						mes "Thanks anyways.";
+						mes "Obrigado pelo seu interesse...";
+						mes "Mas você não passa de um estranho para nós.";
+						mes "Eu não posso deixar você fazer isso.";
+						mes "Mesmo assim, obrigado.";
 						close;
 					}
 				}
 			case 3:
 				mes "[Aumgarl]";
 				mes ".........";
-				mes "Umm...";
-				mes "I'm sorry, but I am";
-				mes "very tired right now.";
-				mes "Can't help you...";
+				mes "Hum...";
+				mes "Desculpe, mas eu";
+				mes "estou muito cansado agora.";
+				mes "Não posso lhe ajudar...";
 				close;
 			}
 		case 20:
@@ -2733,64 +2735,64 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 		case 23:
 			mes "[Aumgarl]";
 			mes "Hmmm...";
-			mes "Why don't you try looking";
-			mes "someplace that's always";
-			mes "crowded with people. I'm";
-			mes "sure there must be someone";
-			mes "out there who knows...";
+			mes "Porque você não tenta";
+			mes "ir a um local com";
+			mes "muitas pessoas. Eu";
+			mes "tenho certeza que deve haver alguém";
+			mes "lá fora que sabe...";
 			close;
 		case 24:
 		case 25:
 		case 26:
 			mes "[Aumgarl]";
 			mes "Ahh...";
-			mes "Lyroo is upstairs...";
-			mes "Bue she's in pain.";
-			mes "Try not to talk to her";
-			mes "for too long.";
+			mes "Lyroo está lá em cima...";
+			mes "Ela está sentindo dor.";
+			mes "Tente não conversar";
+			mes "com ela por muito tempo.";
 			close;
 		case 27:
 			mes "[Aumgarl]";
-			mes "Oh my...";
-			mes "Thank you...";
-			mes "I never thought you'd";
-			mes "really help me.";
-			mes "Go ahead and see Lyroo.";
+			mes "Oh meu Deus...";
+			mes "Obrigado...";
+			mes "Eu nunca pensei que você";
+			mes "fosse realmente me ajudar.";
+			mes "Vá em frente e veja a Lyroo.";
 			close;
 		case 28:
 			mes "[Aumgarl]";
-			mes "Thank you so much...";
-			mes "Without your help...";
+			mes "Muito obrigado...";
+			mes "Sem a sua ajuda...";
 			emotion e_sob;
-			mes "it would have been hopeless.";
+			mes "Isto teria sido impossível.";
 			next;
 			mes "[Aumgarl]";
-			mes "Alright....";
-			mes "Is there anything I can";
-			mes "do for you? I want to";
-			mes "return your favor somehow.";
+			mes "Tudo bem....";
+			mes "Há algo que eu possa";
+			mes "fazer por você? Eu gostaria de";
+			mes "retribuir o favor de alguma forma.";
 			next;
-			switch(select("No...I don't need anything.:Would you repair the sword for me?")) {
+			switch(select("Não... Eu não preciso de nada.:Você poderia concertar a espada para mim?")) {
 			case 1:
 				mes "[Aumgarl]";
-				mes "Hmm...";
-				mes "Whenever you have a favor to ask,";
-				mes "come and find me. I'll do";
-				mes "my best to help you.";
+				mes "Hum...";
+				mes "Sempre que você precisar de um,";
+				mes "favor, basta me procurar. E eu farei";
+				mes "o meu melhor para lhe ajudar.";
 				set b_sword,29;
 				close;
 			case 2:
 				mes "[Aumgarl]";
 				mes "Hmm....";
-				mes "Show me this sword.";
-				mes "I need to take a look at it first";
-				mes "to find out whether I can repair it or not.";
+				mes "Mostre-me a espada.";
+				mes "Eu preciso vê-la primeiro";
+				mes "para saber se será possível concertá-la ou não.";
 				next;
-				mes "^0000FFYou Show the pieces of the";
-				mes "broken sword to Aumgarl.";
+				mes "^0000FFVocê mostra os pedaços";
+				mes "da espada quebrada para Aumgarl.";
 				mes "....................";
-				mes "Aumgarl took a careful look";
-				mes "at the pieces for awhile...^000000";
+				mes "Aumgarl olha cuidadosamente";
+				mes "para os pedaços da espada por um tempo...^000000";
 				next;
 				mes "...";
 				mes "...";
@@ -2798,82 +2800,82 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 				mes "...";
 				next;
 				mes "[Aumgarl]";
-				mes "Hmm...";
-				mes "It's not possible to start work";
-				mes "immediately. I'll need";
-				mes "some materials.";
+				mes "Hum...";
+				mes "Não será possível começar o trabalho";
+				mes "imediatamente. Eu vou precisar";
+				mes "de alguns matériais.";
 				next;
 				mes "[Aumgarl]";
-				mes "To repair this sword, I need";
-				mes "to restock my supplies.";
-				mes "Since Lyroo is upstairs in pain,";
-				mes "I don't think I can leave the house.";
+				mes "Para concertar esta espada, eu preciso";
+				mes "reabastecer minhas fontes.";
+				mes "Parece que Lyroo está lá em cima sentindo dor,";
+				mes "por isso eu não posso sair de casa.";
 				next;
 				mes "[Aumgarl]";
-				mes "So...could you get the";
-				mes "materials for me?";
-				mes "I am sorry I am asking";
-				mes "you to do this, as well.";
+				mes "Então... Você poderia obter os";
+				mes "materiais para mim?";
+				mes "Eu sinto muito por ter";
+				mes "de pedir para você fazer isso também.";
 				next;
-				if (select("Umm...let's do it next time.:Alright, I'll go get them.") == 1) {
+				if (select("Hum... Então vamos fazer isso em uma próxima vez.:Tudo bem, eu vou buscá-los.") == 1) {
 					mes "[Aumgarl]";
-					mes "Umm.....";
-					mes "I am sorry I can't";
-					mes "help you right away.";
-					mes "Come back here when";
-					mes "you need my help then.";
+					mes "Hum.....";
+					mes "Sinto muito por não";
+					mes "poder lhe ajudar agora.";
+					mes "Volte aqui quando";
+					mes "precisar da minha ajuda.";
 					close;
 				}
 				mes "[Aumgarl]";
-				mes "Oh~~ really?";
-				mes "Thank you!";
-				mes "I'm sure I can repair it for you.";
-				mes "Now, listen carefully,";
-				mes "this is what I will need-";
+				mes "Oh, sério?";
+				mes "Obrigado!";
+				mes "Eu certamente a concertarei para você.";
+				mes "Agora, ouça com atenção,";
+				mes "irei precisar destes materiais -";
 				next;
 				mes "[Aumgarl]";
-				mes "^FF00FF One Anvil";
-				mes "2 Rough Oridecons";
-				mes "5 Broken Swords";
-				mes "2 Steels";
-				mes "1 Hammer of Blacksmith";
-				mes "2 Star Crumbs";
-				mes "5 Live Coals^000000";
+				mes "^FF00FF Uma Bigorna";
+				mes "2 Minérios de Oridecon";
+				mes "5 Espadas Quebradas";
+				mes "2 Aços";
+				mes "1 Martelo de Ferreiro";
+				mes "2 Fragmento estelar";
+				mes "5 Lenhas em Brasa^000000";
 				next;
 				mes "[Aumgarl]";
-				mes "It's quite a lot, huh?";
-				mes "But these are the necessary";
-				mes "supplies we need to repair the sword.";
-				mes "I'll go find some other materials.";
+				mes "São várias coisas, em?";
+				mes "Mas estes são todos os itens";
+				mes "necessários para concertar esta espada.";
+				mes "Eu vou procurar por alguns outros materiais.";
 				set b_sword,30;
 				close;
 			}
 		case 29:
 			mes "[Aumgarl]";
-			mes "Oh~ It's you.";
-			mes "Got any favors to ask?";
-			mes "I'll do my best";
-			mes "to help you.";
+			mes "Oh, é você.";
+			mes "Quer me pedir algum favor?";
+			mes "Farei o meu melhor";
+			mes "para lhe ajudar.";
 			next;
-			switch(select("Maybe next time...:Please repair this sword for me.")) {
+			switch(select("Talvez uma outra hora...:Por favor, concerte esta espada para mim.")) {
 			case 1:
 				mes "[Aumgarl]";
-				mes "Well...";
-				mes "If you ever have a favor to";
-				mes "ask, come and find me.";
+				mes "Bem...";
+				mes "Se você tiver algum favor para me";
+				mes "pedir, basta me dizer.";
 				close;
 			case 2:
 				mes "[Aumgarl]";
 				mes "Hmm....";
-				mes "Show me this sword.";
-				mes "I need to take a look at it first";
-				mes "to find out whether I can repair it or not.";
+				mes "Mostre-me a espada.";
+				mes "Eu preciso vê-la primeiro";
+				mes "para saber se será possível concertá-la ou não.";
 				next;
-				mes "^0000FFYou show the pieces of the";
-				mes "broken sword to Aumgarl.";
+				mes "^0000FFVocê mostra os pedaços";
+				mes "da espada quebrada para Aumgarl.";
 				mes "....................";
-				mes "Aumgarl took a careful look";
-				mes "at the pieces for a while...^000000";
+				mes "Aumgarl olha cuidadosamente";
+				mes "para os pedaços da espada por um tempo...^000000";
 				next;
 				mes "...";
 				mes "...";
@@ -2881,229 +2883,229 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 				mes "...";
 				next;
 				mes "[Aumgarl]";
-				mes "Hmm...";
-				mes "Well,";
-				mes "It's not possible to start work";
-				mes "immediately.";
-				mes "I need some materials.";
+				mes "Hum...";
+				mes "Bem,";
+				mes "não será possível começar o trabalho";
+				mes "imediatamente. Eu vou precisar";
+				mes "de alguns matériais.";
 				next;
 				mes "[Aumgarl]";
-				mes "To repair this sword, I need";
-				mes "to restock my supplies.";
-				mes "Since Lyroo is upstairs in pain,";
-				mes "I don't think I can leave the house.";
+				mes "Para concertar esta espada, eu preciso";
+				mes "reabastecer minhas fontes.";
+				mes "Parece que Lyroo está lá em cima sentindo dor,";
+				mes "por isso eu não posso sair de casa.";
 				next;
 				mes "[Aumgarl]";
-				mes "So...could you get the";
-				mes "materials for me?";
-				mes "I am sorry I am asking";
-				mes "you to do this, as well.";
+				mes "Então... Você poderia obter os";
+				mes "materiais para mim?";
+				mes "Eu sinto muito por ter";
+				mes "de pedir para você fazer isso também.";
 				next;
-				if (select("Umm..let's do it next time.:Alright, I'll go get them.") == 1) {
+				if (select("Hum... Então vamos fazer isso em uma próxima vez.:Tudo bem, eu vou buscá-los.") == 1) {
 					mes "[Aumgarl]";
-					mes "Umm.....";
-					mes "I am sorry I can't";
-					mes "help you right away.";
-					mes "Come back here when";
-					mes "you need my help then.";
+					mes "Hum.....";
+					mes "Sinto muito por não";
+					mes "poder lhe ajudar agora.";
+					mes "Volte aqui quando";
+					mes "precisar da minha ajuda.";
 					close;
 				}
 				mes "[Aumgarl]";
-				mes "Oh~~ really?";
-				mes "Thank you!";
-				mes "I'm sure I can repair it for you.";
-				mes "Now, listen carefully,";
-				mes "this is what I will need-";
+				mes "Oh, sério?";
+				mes "Obrigado!";
+				mes "Eu certamente a concertarei para você.";
+				mes "Agora, ouça com atenção,";
+				mes "irei precisar desses materiais -";
 				next;
 				mes "[Aumgarl]";
-				mes "^FF00FF One Anvil";
-				mes "2 Rough Oridecons";
-				mes "5 Broken Swords";
-				mes "2 Steels";
-				mes "1 Hammer of Blacksmith";
-				mes "2 Star Crumbs";
-				mes "5 Live Coals^000000";
+				mes "^FF00FF Uma Bigorna";
+				mes "2 Minérios de Oridecon";
+				mes "5 Espadas Quebradas";
+				mes "2 Aços";
+				mes "1 Martelo de Ferreiro";
+				mes "2 Fragmento estelar";
+				mes "5 Lenhas em Brasa^000000";
 				next;
 				mes "[Aumgarl]";
-				mes "It's quite alot, huh?";
-				mes "These are necessary supplies.";
-				mes "We need them to repair the sword.";
-				mes "I'll go find some other materials.";
+				mes "São várias coisas, hein?";
+				mes "Mas estes são todos os itens";
+				mes "necessários para concertar esta espada.";
+				mes "Eu vou procurar por alguns outros materiais.";
 				set b_sword,30;
 				close;
 			}
 		case 30:
 			if (countitem(986) > 0 && countitem(756) > 1 && countitem(7110) > 4 && countitem(999) > 1 && countitem(1005) > 0 && countitem(1000) > 1 && countitem(7098) > 4) {
 				mes "[Aumgarl]";
-				mes "Oh, good! You got them all.";
-				mes "Alright, come back later,";
-				mes "and I'll have it repaired.";
-				delitem 986,1; //Anvil
-				delitem 756,2; //Oridecon_Stone
-				delitem 7110,5; //Vroken_Sword
-				delitem 999,2; //Steel
-				delitem 1005,1; //Hammer_Of_Blacksmith
-				delitem 1000,2; //Star_Crumb
-				delitem 7098,5; //Live_Coal
+				mes "Oh, ótimo! Você conseguiu tudo.";
+				mes "Tudo bem, Volte aqui mais tarde,";
+				mes "e eu a terei concertado.";
+				delitem 986,1;  // Bigorna
+				delitem 756,2;  // Minério de Oridecon
+				delitem 7110,5; // Espada Chanfrada
+				delitem 999,2;  // Aço
+				delitem 1005,1; // Martelo de Ferro
+				delitem 1000,2; // Fragmento Estelar
+				delitem 7098,5; // Lenha em Brasa
 				set b_sword,31;
 				close;
 			}
 			mes "[Aumgarl]";
 			mes "Hmm.....";
-			mes "Haven't found everything yet?";
-			mes "Here's the list again-";
+			mes "Tem certeza de que me trouxe tudo?";
+			mes "Vou lhe dizer a lista novamente-";
 			next;
 			mes "[Aumgarl]";
-			mes "^FF00FF 1 Anvil";
-			mes "2 Rough Oridecons";
-			mes "5 Broken Swords";
-			mes "2 Steels";
-			mes "1 Hammer of Blacksmith";
-			mes "2 Star Crumbs";
-			mes "5 Live Coals^000000";
+			mes "^FF00FF Uma Bigorna";
+			mes "2 Minérios de Oridecons";
+			mes "5 Espadas Quebradas";
+			mes "2 Aços";
+			mes "1 Martelo de Ferreiro";
+			mes "2 Fragmento estelar";
+			mes "5 Lenhas em Brasa^000000";
 			next;
 			mes "[Aumgarl]";
-			mes "Wrote them down?";
-			mes "I've almost found the other materials.";
+			mes "Anotou todos?";
+			mes "Eu já encontrei os outros materiais.";
 			close;
 		case 31:
 			if (rand(1,5) == 2) {
 				mes "[Aumgarl]";
-				mes "Hey, you're back.";
-				mes "Here it is! This sword";
-				mes "is a great one, for";
-				mes "sure. I noticed that at";
-				mes "first sight.";
-				mes "Indeed...";
+				mes "Ei, você voltou.";
+				mes "Aqui está! Esta espada";
+				mes "ficou muito boa, pode ter";
+				mes "certeza. Eu percebi isso";
+				mes "a primeira vista.";
+				mes "De verdade...";
 				next;
 				mes "[Aumgarl]";
-				mes "I haven't seen quality";
-				mes "of this magnitude in a";
-				mes "in a long time.";
-				mes "I envy you...";
+				mes "Eu não faço um trabalho";
+				mes "com toda essa qualidade";
+				mes "a muito tempo.";
+				mes "Fiz para você...";
 				mes "Hehehe......";
 				next;
-				mes "'You received repaired";
-				mes "'^FF0000SaYumMoon's sword^000000'.";
+				mes "'Você recebeu a";
+				mes "'^FF0000Espada SaYumMoon^000000' concertada.";
 				set b_sword,32;
 				getitem 1123,1; //Haedonggum
 				close;
 			}
 			mes "[Aumgarl]";
-			mes "Umm... it's not done yet.";
-			mes "Would you give me a little";
-			mes "bit more time? It's taking";
-			mes "longer than I thought. Sorry.";
+			mes "Umm... ainda não está pronta.";
+			mes "Você poderia me dar um";
+			mes "pouco mais de tempo? Isto vai";
+			mes "demorar mais do que eu pensava. Desculpe.";
 			close;
 		}
 	}
 	mes "[Aumgarl]";
-	mes "Thank you...";
-	mes "You've been a great help";
-	mes "to us. I hope my work";
-	mes "has been of some use to you.";
+	mes "Obrigado...";
+	mes "Você nos foi de uma";
+	mes "grande ajuda. Eu espero que";
+	mes "o meu trabalho tenha sido de alguma ajuda para você.";
 	close;
 }
 
-geffen_in,106,106,7	script	Girl#gnbs2	716,{
+geffen_in,106,106,7	script	Garota#gnbs2	716,{
 	if (b_sword < 20) {
 		mes "[Lyroo]";
 		mes "Ah...Ah....";
-		mes "Ah...Hi.......";
+		mes "Ah...Oi.......";
 		next;
-		mes "^0000FFThis girl seems to be in serious pain...^000000";
+		mes "^0000FFEstá garota está sentindo muita dor...^000000";
 		close;
 	}
 	else if (b_sword < 24) {
 		mes "[Lyroo]";
 		mes "Aaa....Aaa....";
-		mes "you...you....";
-		mes "you are the....one...";
-		mes "who will....cure....";
-		mes "...me? Aa....";
+		mes "Você...você....";
+		mes "você é....aquele...";
+		mes "que vai....me....";
+		mes "...curar? Aa....";
 		next;
 		mes "[Lyroo]";
-		mes "..tha... thank you....";
+		mes "..Obri... obrigada....";
 		next;
-		mes "^0000FFBetter stop talking to her and";
-		mes "hurry and find a cure.^000000";
+		mes "^0000FFVocê para de falar com ela e";
+		mes "vai procurar a cura.^000000";
 		close;
 	}
 	else if (b_sword == 24 || b_sword == 25 || b_sword == 26) {
 		mes "[Lyroo]";
 		mes "Ahh...ahh....";
 		if (Sex == 0)
-			mes "It's ..you.. pretty...sister..";
+			mes "Você..você.. é como uma... irmã..";
 		else
-			mes "It's ..you.. handsome...brother..";
+			mes "Você...você.. é um lindo... irmão..";
 		mes "Ahh...heh heh...";
 		next;
-		if (select("Ask about her health condition.:Talk to her for a while.") == 1) {
+		if (select("Perguntar sobre as condições de saúde dela.:Falare com ela por um tempo.") == 1) {
 			if (rand(1,4) == 3) {
 				mes "[Lyroo]";
 				mes "Uh....umm...?";
-				mes "Umm... I...";
-				mes "I can't talk...too long..";
-				mes "So...listen....";
-				mes "carefully..please...";
+				mes "Umm... Eu...";
+				mes "Eu não posso falar... muito tempo..";
+				mes "então...ouça....";
+				mes "com atenção..por favor...";
 				next;
 				mes "[Lyroo]";
-				mes "^0030FFMy body...repeatedly turns cold and";
-				mes "hot... I'm not sweating at all...";
-				mes "....But I'm paralyzed...often";
-				mes "often..and...my heart beats...";
-				mes "...irregularly.^000000";
+				mes "^0030FFMeu corpo...repentinamente torna-se frio";
+				mes "e quente... Eu não estou transpirando...";
+				mes "....Mas eu estou paralizada...muitas";
+				mes "e..muitas vezes...meu coração bate...";
+				mes "...de forma irregular.^000000";
 				next;
 				mes "[Lyroo]";
 				mes "Ahh...hah~";
 				mes "...........";
 				next;
-				mes "^0000FFShe seems to have fallen asleep.^000000";
+				mes "^0000FFEla parece ter desmaiado.^000000";
 				close;
 			}
 			mes "[Lyroo]";
-			mes "I...am...so...";
-			mes "...tired.";
+			mes "Eu...estou...tão...";
+			mes "...cansada.";
 			mes ".............";
 			next;
-			mes "^0000FFShe seems to have fallen asleep.^000000";
+			mes "^0000FFEla parece ter desmaiado.^000000";
 			close;
 		}
 		mes "[Lyroo]";
 		mes "Ahh........";
-		mes "I..want to ...talk to...you..";
-		mes "but.... sorry....";
+		mes "Eu..queria falar...falar com...você..";
+		mes "mas.... desculpe....";
 		next;
-		mes "^0000FFShe seems to have fallen asleep.^000000";
+		mes "^^0000FFEla parece ter desmaiado.^000000";
 		close;
 	}
 	else if (b_sword == 27) {
 		mes "[Lyroo]";
 		mes "uh...umm?";
 		if (Sex == 0)
-			mes "Ah....It's you, pretty sister...";
+			mes "Você..você.. é como uma... irmã..";
 		else
-			mes "Ah....It's you, handsome brother...";
-		mes "Uhm? what is that you have?";
+			mes "Você...você.. é um lindo... irmão..";
+		mes "Uhm? O que é isso que você tem?";
 		next;
-		if (select("It's nothing.:It's your medicine.") == 1) {
+		if (select("Não é nada.:É o seu medicamento.") == 1) {
 			mes "[Lyroo]";
 			mes "Oh...";
-			mes "Alright...";
+			mes "Tudo bem...";
 			mes "...";
 			next;
-			mes "^0000FFYou really should be giving her the medicine.^000000";
+			mes "^0000FFVocê realmente deveria dar um medicamento para ela.^000000";
 			close;
 		}
 		mes "[Lyroo]";
 		mes "Ah!";
-		mes "You found the medicine~!";
-		mes "I'm...so relieved...";
+		mes "Você encontrou um remédio!";
+		mes "Eu... estou tão aliviada...";
 		next;
-		mes "^0000FFYou gave her the medicine you";
-		mes "received from Cylrnel.";
-		mes "After taking the medicine, Lyroo";
-		mes "fell asleep.^000000";
+		mes "^0000FFVocê dar-lhe o remédio";
+		mes "que recebeu de Cylrnel.";
+		mes "Após tomar o remédio, Lyroo";
+		mes "adormeceu.^000000";
 		delitem 606,1; //Aloebera
 		set b_sword,28;
 		close;
@@ -3111,346 +3113,346 @@ geffen_in,106,106,7	script	Girl#gnbs2	716,{
 	mes "[Lyroo]";
 	mes "Heehehe...";
 	if (Sex == 0)
-		mes "Thank you my pretty sister.";
+		mes "Obrigada minha bela irmã.";
 	else 
-		mes "Thank you handsome brother~";
-	mes "I'll get my health back";
-	mes "and be a strong girl!";
+		mes "Obrigada meu lindo irmão.";
+	mes "Eu vou ficar bem novamente";
+	mes "e serei uma garota forte!";
 	close;
 }
 
-prontera,275,86,2	script	Young man#SaYumMoon	97,{
+prontera,275,86,2	script	Jovem#SaYumMoon	97,{
 	if (b_sword < 20) {
 		mes "[Neil]";
-		mes "Oh man, it feels so good";
-		mes "to be out of the hospital...";
-		mes "I thought I was going to be";
-		mes "there forever~!";
+		mes "Oh cara, é tão bom estar";
+		mes "fora do hospital...";
+		mes "Eu pensava que ficaria";
+		mes "ali para sempre!";
 		next;
 		mes "[Neil]";
-		mes "Listen guy, appreciate";
-		mes "your health, 'cuz almost";
-		mes "nothing is worse than";
-		mes "being really really sick...";
+		mes "Ouva jovem, aprecie";
+		mes "sua saúde, porque";
+		mes "não há nada pior do que";
+		mes "estar realmente doente...";
 		close;
 	}
 	mes "[Neil]";
-	mes "Not long ago, I was in the";
-	mes "hospital, stuck lying in bed...";
-	mes "No one knew what was wrong";
-	mes "with me...but I grew weaker";
-	mes "everyday...";
+	mes "Não a muito tempo atrás, eu estava no";
+	mes "hospital, preso a uma cama...";
+	mes "Ninguém sabia o que eu tinha";
+	mes "de errado... Mas eu ficava mais fraco";
+	mes "dia após dia...";
 	next;
 	mes "[Neil]";
-	mes "But then, this ^FF5000doctor from Juno^000000";
-	mes "arrived, and she helped me";
-	mes "recover in no time!";
-	mes "Though...I still can't walk so well.";
+	mes "Mas então, essa ^FF5000médica de Juno^000000";
+	mes "apareceu, e ela me ajudou a";
+	mes "ficar bom em pouco tempo!";
+	mes "Embora...Eu ainda não possa andar tão bem.";
 	next;
 	mes "[Neil]";
-	mes "All the other doctors had said";
-	mes "my case was hopeless, and that";
-	mes "I'd never recover. Luckily,";
-	mes "this Juno doctor was able to";
-	mes "find a cure...";
+	mes "Todos os outros médicos diziam";
+	mes "que meu caso já não tinha mais jeito, e que";
+	mes "eu nunca seria curado. Felizmente,";
+	mes "essa médica de Juno foi capaz de";
+	mes "encontrar uma cura...";
 	next;
 	mes "[Neil]";
-	mes "It was a miracle!";
-	mes "I'm so happy to be alive!";
+	mes "Foi um milagre!";
+	mes "Eu estou tão feliz por estar vivo!";
 	if (b_sword == 20) set b_sword,21;
 	close;
 }
 
-yuno,208,164,4	script	Active little girl#gnbs	101,{
+yuno,208,164,4	script	Garota Agitada#gnbs	101,{
 	if (b_sword < 21) {
 		mes "[Hisa]";
 		mes ".....";
-		mes "This town is so boring.";
-		mes "No events, no festivals...";
-		mes "All people do all day is stay at";
-		mes "at home and study. How dull!";
+		mes "Esta cidade é tão chata.";
+		mes "Sem eventos, sem festivais...";
+		mes "Todas as pessoas todos os dias";
+		mes "ficam em casa estudando. Que chato!";
 		close;
 	}
 	mes "[Hisa]";
-	mes "There's one person in Juno that";
-	mes "I still respect. Her name is ^FF5500Cylrnel^000000.";
+	mes "Há apenas uma pessoa em Juno";
+	mes "que eu ainda respeito. O nome dela é ^FF5500Cylrnel^000000.";
 	next;
 	mes "[Hisa]";
-	mes "She's an expert in medical";
-	mes "treatment. Whenever someone falls";
-	mes "ill in this town, she comes to";
-	mes "cure that person right away...";
+	mes "Ela é expert em tratamentos";
+	mes "medicinais. Sem que alguém";
+	mes "fica doente nesta cidade, ela vem e";
+	mes "cura a pessoa imediataente...";
 	next;
 	mes "[Hisa]";
-	mes "She also tells me lots of";
-	mes "interesting stories about";
-	mes "her experiences. She's even";
-	mes "made a journey around the";
-	mes "world... It's so interesting!";
+	mes "Ela também me conta muitas histórias";
+	mes "interessantes sobre suas";
+	mes "experiências. Ela mesma";
+	mes "fez uma viajem ao redor";
+	mes "do mundo... É muito interessante!";
 	next;
 	mes "[Hisa]";
-	mes "She's probably at home after";
-	mes "coming back from some trip.";
+	mes "Ela provavelmente deve está em casa";
+	mes "após ter voltado de uma viagem.";
 	mes "Haha~";
 	if (b_sword == 21) set b_sword,22;
 	if (rand(1,2) == 2) {
 		next;
 		mes "[Hisa]";
-		mes "Oh right~!";
-		mes "She's also known to be a fickle";
-		mes "and forgetful woman. So you'd better watch out, hehe~";
+		mes "Oh, certo!";
+		mes "Ela também é conhecida por ser a mulher inconstante";
+		mes "e esquecida. Então é melhor você tomar cuidado, hehe.";
 	}
 	close;
 }
 
-yuno_in01,99,101,4	script	Doctor#gnbs	744,{
+yuno_in01,99,101,4	script	Doutor#gnbs	744,{
 	if (b_sword < 23) {
 		mes "[??????]";
-		mes "I don't believe we've met";
-		mes "before, but would you mind";
-		mes "coming back later? I've got a lot of work to do at the moment.";
+		mes "Eu não acredito que nós já nos conhecemos";
+		mes "antes, mas você se importaria em";
+		mes "voltar mais tarde? Eu tenho muito trabalho a fazer agora.";
 		close;
 	}
 	else if (b_sword < 27) {
 		switch(b_sword) {
 		case 23:
 			mes "[Cylrnel]";
-			mes "Hello, can I help you?";
-			mes "If it's not urgent,";
-			mes "please come back later.";
+			mes "Olá, em que posso ajudar?";
+			mes "Se não for algo urgente,";
+			mes "por favor volte depois.";
 			next;
 			if (rand(1,4) == 2) {
 				mes "[Cylrnel]";
-				mes "Hmm...you look like you";
-				mes "want to ask me something?";
+				mes "Hmm...parece que você";
+				mes "quer me perguntar alguma coisa?";
 				next;
-				if (select("You're so beautiful.:Do you like traveling?") == 1) {
+				if (select("Você é tão linda.:Você gosta de viajar?") == 1) {
 					if (rand(1,4) == 4) {
 						mes "[Cylrnel]";
-						mes "...excuse me?";
+						mes "...Desculpe-me?";
 						mes "Ah ha ha~";
-						mes "You're a funny guy.";
-						mes "Trying to hit on me?";
+						mes "Você é um cara bem engraçado.";
+						mes "Você está tentando flertar comigo?";
 						mes "Ah ha ha ha.";
 						next;
-						if (select("Yes, I fell in love at first sight.:I have a favor to ask.") == 1) {
+						if (select("Sim, eu me apaixonei a primeira vista.:Tenho um favor a pedir.") == 1) {
 							if (rand(1,3) == 3) {
 								mes "[Cylrnel]";
 								mes "HAHAHAHHAHAHAHAH!";
-								mes "Ah...I'm sorry..";
-								mes "I haven't seen a guy like you";
-								mes "for a long time.";
+								mes "Ah...Me desculpe..";
+								mes "Eu não vejo alguém como você";
+								mes "já faz muito tempo.";
 								emotion e_heh;
 								next;
 								mes "[Cylrnel]";
-								mes "You make me laugh...";
-								mes "But guess what?";
-								mes "I already know you're not";
-								mes "here to hit on me.";
-								mes "So what did you really want?";
+								mes "Você me faz rir...";
+								mes "Mas o que você quer?";
+								mes "Eu sei que você não veio aqui";
+								mes "para flertar comigo.";
+								mes "Diga-me o que você realmente quer?";
 								next;
-								select("Well, actually...");
-								mes "^FF0000You Tell Cylrnel about Lyroo,";
-								mes "and about the favor for Aumgarl the blacksmith.^000000";
+								select("Bem, certamente...");
+								mes "^FF0000Você fala para Cylrnel sobre a Lyroo,";
+								mes "e sobre o favor para Aumgarl o ferreiro.^000000";
 								next;
 								if (rand(1,3) == 2) {
 									mes "[Cylrnel]";
 									mes "Hmm.....";
-									mes "So that's what happened...";
-									mes "Well, I need to know the";
-									mes "exact symptoms...go and";
-									mes "find out for me and then";
-									mes "come back afterwards.";
+									mes "Então foi isso que aconteceu...";
+									mes "Bem, eu preciso saber os";
+									mes "sintomas exatos... Vá descobrir";
+									mes "eles para mim e então";
+									mes "venha aqui novamente.";
 									next;
 									mes "[Cylrnel]";
-									mes "Without the exact symptoms, I can't make an accurate diagnosis.";
+									mes "Sem saber os sintomas exatos, eu não poderei dar nenhum diagnostico.";
 									set b_sword,24;
 									close;
 								}
 								mes "[Cylrnel]";
-								mes "Well now...";
-								mes "That's quite a long story.";
+								mes "Bem, certo...";
+								mes "Isso foi uma longa história.";
 								next;
 								mes "[Cylrnel]";
-								mes "I have no idea why you're";
-								mes "trying to help these people,";
-								mes "so it's a bit hard to believe";
-								mes "you...";
+								mes "Eu não tenho idéia do";
+								mes "por que de você querer ajudar essas pessoas,";
+								mes "por isso é um pouco difícil de acreditar";
+								mes "em você...";
 								close;
 							}
 							mes "[Cylrnel]";
-							mes "Oh brother!";
-							mes "I never thought someone";
-							mes "like you could still exist.";
-							mes "I'm sorry, but you're";
-							mes "really not my type.";
+							mes "Oh meu caro!";
+							mes "Eu não imaginava que alguém";
+							mes "como você ainda pudese existir.";
+							mes "Sinto muito, mas você";
+							mes "realmente não é meu tipo.";
 							close;
 						}
 						if (rand(1,3) == 3) {
 							mes "[Cylrnel]";
-							mes "Is that so?";
-							mes "well then,";
-							mes "Let me hear your story.";
+							mes "É mesmo?";
+							mes "Bem, então";
+							mes "deixe-me ouvir sua história.";
 							next;
-							select("Well, it's like this...");
-							mes "^FF0000You Tell Cylrnel about Lyroo,";
-							mes "and about the favor of Aumgarl the blacksmith.^000000";
+							select("Bem, emtão é isso...");
+							mes "^FF0000Você conta para Cylrnel sobre Lyroo,";
+							mes "e sobre o favor a Aumgarl o ferreiro.^000000";
 							next;
 							if (rand(1,3) == 2) {
 								mes "[Cylrnel]";
 								mes "Hmm.....";
-								mes "So that's what happened...";
-								mes "Well, I need to know the";
-								mes "exact symptoms...go and";
-								mes "find out for me and then";
-								mes "come back afterwards.";
+								mes "Então foi isso que aconteceu...";
+								mes "Bem, eu preciso saber os";
+								mes "sintomas exatos... Vá descobrir";
+								mes "eles para mim e então";
+								mes "venha aqui novamentes.";
 								next;
 								mes "[Cylrnel]";
-								mes "Without the exact symptoms, I can't make an accurate diagnosis.";
+								mes "Sem saber os sintomas exatos, eu não poderei dar nenhum diagnostico.";
 								set b_sword,24;
 								close;
 							}
 							mes "[Cylrnel]";
-							mes "Well now...";
-							mes "That's quite a long story.";
+							mes "Bem, certo...";
+							mes "Isso foi uma longa história.";
 							next;
 							mes "[Cylrnel]";
-							mes "I have no idea why you're";
-							mes "trying to help these people,";
-							mes "so it's a bit hard to believe";
-							mes "you...";
+							mes "Eu não tenho idéia do";
+							mes "por que de você querer ajudar essas pessoas,";
+							mes "por isso é um pouco difícil de acreditar";
+							mes "em você...";
 							close;
 						}
 						mes "[Cylrnel]";
-						mes "Well...";
-						mes "While I'd like to help,";
-						mes "You're a stranger, and the";
-						mes "residents need my help.";
-						mes "I don't have any extra time";
-						mes "to help you. Please leave.";
+						mes "Bem...";
+						mes "Eu realmente gostaria de ajudá-lo,";
+						mes "mas você é apenas um estranho, e";
+						mes "os moradores precisam de minha ajuda.";
+						mes "E eu não tenho nenhum tempo extra para";
+						mes "lhe ajudar. Por favor vá embora.";
 						close2;
 						warp "yuno",246,143;
 						end;
 					}
 					mes "[Cylrnel]";
 					mes "Ahahaha..";
-					mes "You're a funny guy.";
-					mes "But, that won't";
-					mes "work on me!";
+					mes "Você é um cara engraçado.";
+					mes "Mas, isso não";
+					mes "funciona comigo!";
 					close;
 				}
 				mes "[Cylrnel]";
-				mes "Err...well, I do, but...";
-				mes "If you don't have any";
-				mes "favors to ask, please leave.";
-				mes "I'm very busy right now.";
+				mes "Err...bem, eu sei, mas...";
+				mes "se você não tem nada para";
+				mes "me pedir, por favor vá embora.";
+				mes "Eu tenho trabalho a fazer agora.";
 				close;
 			}
 			mes "[Cylrnel]";
-			mes "I'm sorry, but I don't have";
-			mes "any time for you right now.";
+			mes "Sinto muito, mas agora eu não tenho";
+			mes "tempo para você.";
 			close;
 		case 24:
 			mes "[Cylrnel]";
-			mes "Oh, you're back...";
-			mes "Did you figure out the symptoms?";
-			mes "I wanted to go with you, but";
-			mes "I've been really busy.";
+			mes "Oh, você voltou...";
+			mes "Conseguiu descobrir os sintomas?";
+			mes "Eu queria ter ido com você, mas";
+			mes "eu estive muito ocupada.";
 			next;
-			if (select("Not yet...:Yes, Here.") == 1) {
+			if (select("Ainda não...:Sim, aqui.") == 1) {
 				mes "[Cylrnel]";
-				mes "What! Why not!?";
-				mes "Hurry to her house!";
-				mes "She's in serious pain!";
-				mes "Her body could be paralyzed";
-				mes "at any moment!";
+				mes "Como assim! Por que não!?";
+				mes "Corra para a casa dela!";
+				mes "Ela deve está com muita dor!";
+				mes "O corpo dela pode ficar paralizado";
+				mes "a qualquer momento!";
 				close;
 			}
 			mes "[Cylrnel]";
-			mes "What a relief...";
-			mes "You're earlier than I thought.";
-			mes "I'll ask you some questions about";
-			mes "her condition. Answer correctly.";
+			mes "Que alívio...";
+			mes "Você foi mais rápido do que eu pensava.";
+			mes "Eu vou lhe fazer algumas perguntas";
+			mes "sobre as condições dela. Responda corretamente.";
 			next;
 			mes "[Cylrnel]";
-			mes "First, how was her body temperature?";
+			mes "Primeiro, qual a temperatura corporal dela?";
 			set sick,0;
 			next;
-			switch(select("Very hot.:Very cold.:Normal.:Turns hot and cold repeatedly.")) {
+			switch(select("Muito quente.:Muito Fria.:Normal.:Muda repentinamente entre quente e frio.")) {
 			case 1:
-				set .@sick1$,"Very hot.";
+				set .@sick1$,"Muito quente.";
 				break;
 			case 2:
-				set .@sick1$,"Very cold.";
+				set .@sick1$,"Muito Fria.";
 				break;
 			case 3:
 				set .@sick1$,"Normal.";
 				break;
 			case 4:
-				set .@sick1$,"Turns hot and cold repeatedly";
+				set .@sick1$,"Muda repentinamente entre quente e frio";
 				set .@sick,.@sick+1;
 				break;
 			}
 			mes "[Cylrnel]";
-			mes "Okay...";
-			mes "Now, about physiological condition.";
+			mes "Ok...";
+			mes "Agora, sobre as condições fisiológicas.";
 			next;
-			switch(select("No sweating at all.:Sweating all over the body.:Runny nose.:No tears, sweats at all.")) {
+			switch(select("Não transpira.:Transpira por todo o corpo.:Nariz escorrendo.:Sem lágrimas, e transpira muito.")) {
 			case 1:
-				set .@sick2$,"No sweating at all.";
+				set .@sick2$,"Não transpira.";
 				set .@sick,.@sick+1;
 				break;
 			case 2:
-				set .@sick2$,"Sweating all over the body.";
+				set .@sick2$,"Transpira por todo o corpo.";
 				break;
 			case 3:
-				set .@sick2$,"Runny nose.";
+				set .@sick2$,"Nariz escorrendo.";
 				break;
 			case 4:
-				set .@sick2$,"No tears, sweats at all.";
+				set .@sick2$,"Sem lágrimas, e transpira muito.";
 				break;
 			}
 			mes "[Cylrnel]";
-			mes "Next, tell me about";
-			mes "her physical condition.";
+			mes "Agora, diga-me sobre";
+			mes "as condições físicas dela.";
 			next;
-			switch(select("Nothing in particular.:Becomes paralyzed often.:Muscles became soft.:Muscles became hard.")) {
+			switch(select("Nada em particular.:Paraliza-se muitas vezes.:Seus músculos tornaram-se moles.:Seus músculos tornaram-se duros.")) {
 			case 1:
-				set .@sick3$,"Nothing in particular.";
+				set .@sick3$,"Nada em particular.";
 				break;
 			case 2:
-				set .@sick3$,"Becomes paralyzed often.";
+				set .@sick3$,"Paraliza-se muitas vezes.";
 				set .@sick,.@sick+1;
 				break;
 			case 3:
-				set .@sick3$,"Muscles became soft.";
+				set .@sick3$,"Seus músculos tornaram-se moles.";
 				break;
 			case 4:
-				set .@sick3$,"Muscles became hard.";
+				set .@sick3$,"Seus músculos tornaram-se duros.";
 				break;
 			}
 			mes "[Cylrnel]";
-			mes "How about internal organs?";
+			mes "E os orgãos internos?";
 			next;
-			switch(select("Stomach hurts like it's been stabbed by a knife.:Head hurts like it's been smashed by a hammer.:Heart beats irregularly.:Has difficulty in breathing.")) {
+			switch(select("Seu estômago dói como se tivese sido esfaqueada.:Sua cabeça doi como se estivese sendo esmagada por um martelo.:Seu coração bate de forma irregular.:Está tendo dificuldades para respirar.")) {
 			case 1:
-				set .@sick4$,"Stomach hurts like it's been stabbed by a knife.";
+				set .@sick4$,"Seu estômago dói como se tivese sido esfaqueada.";
 				break;
 			case 2:
-				set .@sick4$,"Head hurts like it's been smashed by a hammer.";
+				set .@sick4$,"Sua cabeça doi como se estivese sendo esmagada por um martelo.";
 				break;
 			case 3:
-				set .@sick4$,"Heart beats irregularly.";
+				set .@sick4$,"Seu coração bate de forma irregular.";
 				set .@sick,.@sick+1;
 				break;
 			case 4:
-				set .@sick4$,"Has difficulty in breathing.";
+				set .@sick4$,"Está tendo dificuldades para respirar.";
 				break;
 			}
 			mes "[Cylrnel]";
-			mes "Hmm.. alright.";
-			mes "Let me check this.";
-			mes "so the symptoms are";
+			mes "Hmm.. Tudo bem.";
+			mes "Deixe-me conferir isso.";
+			mes "Os sintomas são";
 			mes "..............";
 			next;
 			mes "[Cylrnel]";
@@ -3458,94 +3460,94 @@ yuno_in01,99,101,4	script	Doctor#gnbs	744,{
 			mes ""+.@sick2$+"";
 			mes ""+.@sick3$+"";
 			mes ""+.@sick4$+"^000000";
-			mes "right?";
+			mes "certot?";
 			next;
-			if (select("No..not exactly..:Yes, I am sure.") == 1) {
+			if (select("Não..não exatamente..:Sim, eu tenho certeza.") == 1) {
 				mes "[Cylrnel]";
-				mes "Then go back to her and";
-				mes "find the exact symptoms";
-				mes "right away~!!";
+				mes "Então volte até ela";
+				mes "e descubra os verdadeiros sintomas,";
+				mes "certo, agora vá!!";
 				close;
 			}
 			mes "[Cylrnel]";
-			mes "You're sure about this, right?";
-			mes "If they're the wrong symptoms,";
-			mes "I can't be responsible.";
+			mes "Você tem certeza disso, certo?";
+			mes "Se os sintomas não estiverem corretos,";
+			mes "eu não vou me responsabiolizar.";
 			next;
-			if (select("Err..let me go and double check.:I'm sure.") == 1) {
+			if (select("Err..Deixe-me ver novamente.:Tenho certeza.") == 1) {
 				mes "[Cylrnel]";
-				mes "Then, go back to her and";
-				mes "find the exact symptoms";
-				mes "right away~!!";
+				mes "Então volte até ela";
+				mes "e descubra os verdadeiros sintomas,";
+				mes "certo, agora vá!!";
 				close;
 			}
 			mes "[Cylrnel]";
 			mes "Hmm.....";
-			mes "Aright. I'll trust you.";
-			mes "Now, go get these ingredients.";
-			mes "Get them as fast as possible.";
-			mes "Alright?";
+			mes "Tudo bem. Eu confio em você.";
+			mes "Agora, vá buscar esses ingredientes.";
+			mes "Tragá-os o mais rápido possível.";
+			mes "Tudo bem?";
 			next;
 			if (.@sick == 4) {
 				mes "[Cylrnel]";
-				mes "^FF00002 Yggdrasil Seeds";
+				mes "^FF00002 Sementes de Yggdrasil";
 				mes "3 Aloes";
-				mes "1 Witherless Rose";
-				mes "10 Witch Starsands";
-				mes "5 Burning Hearts";
-				mes "5 Ice Cubics";
+				mes "1 Rosa eterna";
+				mes "10 Areia Estrelar de Bruxa";
+				mes "5 Corações Incandecente";
+				mes "5 Cubos de Gelo^000000";
 				set b_sword,26;
 				next;
 				mes "[Cylrnel]";
-				mes "Wrote them down?";
-				mes "I'll tell you once again.";
-				mes "We need...";
+				mes "Escreveu eles?";
+				mes "Eu vou lhe dizer mais uma vez";
+				mes "Precisamos de...";
 				next;
 				mes "[Cylrnel]";
-				mes "^FF00002 Yggdrasil Seeds";
+				mes "^FF00002 Sementes de Yggdrasil";
 				mes "3 Aloes";
-				mes "1 Witherless Rose";
-				mes "10 Witch Starsands";
-				mes "5 Burning Hearts";
-				mes "5 Ice Cubics";
+				mes "1 Rosa eterna";
+				mes "10 Areia Estrelar de Bruxa";
+				mes "5 Corações Incandecente";
+				mes "5 Cubos de Gelo^000000";
 				next;
 			}
 			else {
 				mes "[Cylrnel]";
-				mes "^FF00001 Yggdrasil Seed";
+				mes "^FF00001 Semente de Yggdrasil";
 				mes "1 Aloe";
-				mes "5 Witch Starsands";
-				mes "3 Burning Hearts";
-				mes "3 Ice Cubics";
+				mes "5 Areia Estrelar de Bruxa";
+				mes "3 Corações Incandecentes";
+				mes "3 Cubos de gelo^000000";
 				set b_sword,25;
 				next;
 				mes "[Cylrnel]";
-				mes "Wrote them down?";
-				mes "I'll tell you once again.";
-				mes "We need...";
+				mes "Escreveu eles?";
+				mes "Eu vou lhe dizer mais uma vez";
+				mes "Precisamos de...";
 				next;
 				mes "[Cylrnel]";
-				mes "^FF00001 Yggdrasil Seed";
+				mes "^FF00001 Semente de Yggdrasil";
 				mes "1 Aloe";
-				mes "5 Witch Starsands";
-				mes "3 Burning Hearts";
-				mes "3 Ice Cubics";
+				mes "5 Areia Estrelar de Bruxa";
+				mes "3 Corações Incandecentes";
+				mes "3 Cubos de gelo^000000";
 				next;
 			}
 			mes "[Cylrnel]";
-			mes "Get them as fast as possible.";
-			mes "There isn't much time for Lyroo.";
+			mes "Tragá-os o mais rápido possível.";
+			mes "Não há muito tempo para a Lyroo.";
 			close;
 		case 25:
 			if (countitem(608) > 0 && countitem(704) > 0 && countitem(1061) > 2 && countitem(7066) > 2) {
 				mes "[Cylrnel]";
 				mes "Hmm...";
-				mes "Good, you got them all.";
-				mes "Let me see now...";
+				mes "Ótimo, você trouxe tudo.";
+				mes "Deixe-me ver agora...";
 				mes ".............";
 				next;
-				mes "^FF0000Cylrnel began to mix";
-				mes "the ingredients.";
+				mes "^FF0000Cylrnel começa a misturar";
+				mes "os ingredientes.";
 				mes "................";
 				mes ".............";
 				mes ".........";
@@ -3553,137 +3555,138 @@ yuno_in01,99,101,4	script	Doctor#gnbs	744,{
 				next;
 				mes "[Cylrnel]";
 				mes "............";
-				mes "What the?!?!";
+				mes "Mas o que?!?!";
 				mes "...";
-				mes "Hey you...";
-				mes "You gave me the wrong information!";
-				delitem 608,1; //Seed_Of_Yggdrasil
-				delitem 704,1; //Aloe
-				delitem 1061,5; //Starsand_Of_Witch
-				delitem 7097,3; //Burning_Heart
-				delitem 7066,3; //Ice_Piece
+				mes "Ei você...";
+				mes "Você me deu uma informação errada!";
+				delitem 608,1;  // Semente de Yggdrasil
+				delitem 704,1;  // Aloés 
+				delitem 1061,5; // Areia Estelar de Bruxa
+				delitem 7097,3; // Coração Incandescente
+				delitem 7066,3; // Cubo de Gelo
 				set b_sword,24;
 				next;
 				mes "[Cylrnel]";
-				mes "I've chosen the ingredients";
-				mes "according to the symptoms";
-				mes "you've described...";
-				mes "But this isn't medicine!!";
-				mes "Now go and find out her exact symptoms!";
+				mes "Eu disse os ingredientes";
+				mes "de acordo com os sintomas";
+				mes "que você descreveu...";
+				mes "Erros não são aceitos na médicina!!";
+				mes "Agora vá e descubra os exatos sintomas dela!";
 				close2;
 				warp "yuno",246,143;
 				end;
 			}
 			mes "[Cylrnel]";
 			mes "...";
-			mes "Hey~ you don't have all";
-			mes "the ingredients yet.";
-			mes "Go get them all right away.";
+			mes "Ei, você ainda não possui";
+			mes "todos os ingredientes.";
+			mes "Agora vá e pegue todos eles.";
 			next;
 			mes "[Cylrnel]";
-			mes "^FF00001 Seed of Yggdrasil";
+			mes "^FF00001 Semente de Yggdrasil";
 			mes "1 Aloe";
-			mes "5 Witch Starsands";
-			mes "3 Burning Hearts";
-			mes "3 Ice Cubics";
+			mes "5 Areia Estrelar de Bruxa";
+			mes "3 Corações Incandecentes";
+			mes "3 Cubos de gelo^000000";
 			next;
 			mes "[Cylrnel]";
-			mes "Alright?";
-			mes "Now, hurry up!";
+			mes "Tudo bem?";
+			mes "Agora, apresse-se!";
 			close2;
 			warp "yuno",246,143;
+
 			end;
 		case 26:
 			if (countitem(608) > 1 && countitem(704) > 2 && countitem(748) > 0 && countitem(1061) > 9 && countitem(7097) > 4 && countitem(7066) > 4) {
 				mes "[Cylrnel]";
 				mes "Hmm...";
-				mes "Good, you got them all.";
-				mes "Let me see..";
+				mes "Ótimo, você trouxe tudo.";
+				mes "Deixe-me ver agora...";
 				mes ".............";
 				next;
-				mes "^FF0000Cylrnel began to mix";
-				mes "the ingredients.";
+				mes "^FF0000Cylrnel começa a misturar";
+				mes "os ingredientes.";
 				mes "................";
 				mes ".............";
 				mes ".........";
 				mes "......^000000";
 				next;
 				mes "[Cylrnel]";
-				mes "Here~! It's done...";
-				mes "I don't think this medicine will";
-				mes "cure her disease completely.";
-				mes "However, it will greatly alleviate her pain.";
+				mes "Aqui está!	 Pronto...";
+				mes "Eu acho que este remédio não vai";
+				mes "curá-la completamente.";
+				mes "No entando, isso vai reduzir muito suas dores.";
 				next;
 				mes "[Cylrnel]";
-				mes "It wasn't easy to make this";
-				mes "medicine. Take care, bring";
-				mes "this to Lyroo and give her my regards...";
-				delitem 608,2; //Seed_Of_Yggdrasil
-				delitem 704,3; //Aloe
-				delitem 748,1; //Witherless_Rose
-				delitem 1061,10; //Starsand_Of_Witch
-				delitem 7097,5; //Burning_Heart
-				delitem 7066,5; //Ice_Piece
+				mes "Não foi tão fácil fazer";
+				mes "este remédio. Então tenha cuidado, dê";
+				mes "isso para a Lyroo e dei-lhe os meus cumprimentos...";
+				delitem 608,2;   // Semente de Yggdrasil
+				delitem 704,3;   // Aloés
+				delitem 748,1;   // Rosa Eterna
+				delitem 1061,10; // Areia Estelar de Bruxa
+				delitem 7097,5;  // Coração Incandescente
+				delitem 7066,5;  // Cubo de Gelo
 				set b_sword,27;
-				getitem 606,1; //Aloebera
+				getitem 606,1;   // Aloe Vera
 				close;
 			}
 			mes "[Cylrnel]";
 			mes "...";
-			mes "Hey~ You don't have all";
-			mes "the ingredients yet.";
-			mes "Go get them all right away!";
+			mes "Ei, você ainda não possui";
+			mes "todos os ingredientes.";
+			mes "Agora vá e pegue todos eles.";
 			next;
 			mes "[Cylrnel]";
-			mes "^FF00002 Yggdrasil Seeds";
+			mes "^FF00002 Sementes de Yggdrasil";
 			mes "3 Aloes";
-			mes "1 Witherless Rose";
-			mes "10 Witch Starsands";
-			mes "5 Burning Hearts";
-			mes "5 Ice Cubics";
+			mes "1 Rosa eterna";
+			mes "10 Areia Estrelar de Bruxa";
+			mes "5 Corações Incandecente";
+			mes "5 Cubos de Gelo";
 			next;
 			mes "[Cylrnel]";
-			mes "Alright?";
-			mes "Go get them as fast as possible.";
+			mes "Tragá-os o mais rápido possível.";
+			mes "Não há muito tempo para a Lyroo.";
 			close2;
 			warp "yuno",246,143;
 			end;
 		}
 	}
 	mes "[Cylrnel]";
-	mes "Hey there...";
-	mes "How is she doing?";
-	mes "Getting better?";
-	mes "By taking that medicine,";
-	mes "she'll recover fast.";
+	mes "Ei você ai...";
+	mes "Como ela está?";
+	mes "Ela está melhor?";
+	mes "Tomando aquele remédio,";
+	mes "ela deverá ficar melhor em breve.";
 	next;
 	mes "[Cylrnel]";
-	mes "Tell her to come to me";
-	mes "sometime to get medical";
-	mes "treatment. Walking from her";
-	mes "house to here would be good";
-	mes "exercise too.";
+	mes "Diga-lhe para que ela";
+	mes "venha até mim para obter";
+	mes "mais remédios. Andar de sua";
+	mes "casa até aqui, seria um ótimo";
+	mes "exercício também.";
 	next;
 	mes "[Cylrnel]";
-	mes "The name of her disease is";
-	mes "called '^FF0000Amarhade^000000'.";
-	mes "It's a rare, relatively";
-	mes "unknown illness, so an exact";
-	mes "treatment hasn't been found yet.";
+	mes "O nome desta doença que ela possui";
+	mes "é '^FF0000Amarhade^000000'.";
+	mes "É uma doença rara, relativamente";
+	mes "uma doença desconhecida, sem um";
+	mes "tratamento exato.";
 	next;
 	mes "[Cylrnel]";
-	mes "But I found a treatment...";
-	mes "And...it's..a...secret! Haha~!";
+	mes "Mas eu encontrei este tratamento...";
+	mes "E...bem..ainda...é segredo! Haha!";
 	emotion e_ho;
 	close;
 }
 
-yuno_in01,104,94,0	script	go away#gnbs	139,2,1,{
+yuno_in01,104,94,0	script	saia fora#gnbs	139,2,1,{
 OnTouch:
 	if (b_sword < 22) {
 		mes "[??????]";
-		mes "^FF0000What are you doing here?";
-		mes "Get out of here!^000000";
+		mes "^FF0000O que você faz aqui?";
+		mes "Dê o fora daqui!^000000";
 		close2;
 		warp "yuno",246,143;
 		end;
@@ -3691,13 +3694,13 @@ OnTouch:
 	else if (b_sword == 22) {
 		if (rand(1,10) == 10) {
 			mes "[??????]";
-			mes "I am very busy right now. Please leave.";
+			mes "Eu tenho muito trabalho a fazer agora. Por favor vá embora.";
 			set b_sword,23;
 			close;
 		}
 		mes "[??????]";
-		mes "^FF0000What are you doing here?";
-		mes "Get out of here!^000000";
+		mes "^FF0000O que você faz aqui?";
+		mes "Dê o fora daqui!^000000";
 		close2;
 		warp "yuno",246,143;
 		end;
@@ -3705,99 +3708,99 @@ OnTouch:
 	end;
 }
 
-// Lost Knife
+// Faca Perdida
 //============================================================ 
 gonryun,237,226,3	script	Han Ran Jiao#gon	776,{
 	if (nakha == 0) {
 		mes "[Han Ran Jiao]";
-		mes "Oh no! What will I do?!";
-		mes "I can't believe I dropped";
-		mes "my irreplaceable knife! Ahhhhhh!";
+		mes "Oh não! O que devo fazer?!";
+		mes "Eu não acredito que eu deixei";
+		mes "minha faca insubistituivel cair! Ahhhhhh!";
 		next;
 		if (BaseLevel >= 20) {
 			set nakha,1;
 			mes "[Han Ran Jiao]";
-			mes "I need to go down to get it";
-			mes "but...the monsters...";
-			mes "I'm so scared... What should I do?!";
+			mes "Eu preciso descer para pegá-la";
+			mes "mas...os monstros...";
+			mes "Eu estou tão assustado... O que devo fazer?!";
 			close;
 		}
 	}
 	if (nakha == 1) {
 		mes "[Han Ran Jiao]";
-		mes "Oh no! What will I do?";
-		mes "I can't believe I dropped";
-		mes "my irreplaceable knife! Ahhhhhh!";
+		mes "Oh não! O que devo fazer?!";
+		mes "Eu não acredito que eu deixei";
+		mes "minha faca insubistituivel cair! Ahhhhhh!";
 		next;
 		mes "[Han Ran Jiao]";
-		mes "I need to go down to get it";
-		mes "but...the monsters...";
-		mes "I'm so scared... What should I do?!";
+		mes "Eu preciso descer para pegá-la";
+		mes "mas...os monstros...";
+		mes "Eu estou tão assustado... O que devo fazer?!";
 		close;
 	}
 	if (nakha == 2 && countitem(1201) > 0) {
 		mes "[Han Ran Jiao]";
-		mes "Ehhhh... what should I do...";
-		mes "Oh~! I didn't notice you there.";
-		mes "Can I help you with anything?";
+		mes "Ehhhh... o que eu devo fazer...";
+		mes "Oh! Eu não percebi você ai.";
+		mes "Posso lhe ajudar com alguma coisa?";
 		mes "Hmm?";
 		next;
 		mes "[Han Ran Jiao]";
-		mes "That...that knife!";
-		mes "That's my ancestor's sacred knife";
-		mes "that I accidentally dropped from";
-		mes "here! Where did you get it!?";
+		mes "Essa...essa faca!";
+		mes "Esta é a faca sagrada dos meus antepassados";
+		mes "que eu acidentalmente deixe cair";
+		mes "aqui! Onde você a encontrou!?";
 		next;
 		mes "[Han Ran Jiao]";
-		mes "I dropped that knife from being";
-		mes "careless. It belongs to one of my";
-		mes "ancestors. I know it looks like";
-		mes "a cheap knife...";
+		mes "Eu fui descuidado em deixar está faca";
+		mes "cair. Ela pertecen a um dos meus";
+		mes "atepassados. Eu sei que ela parece";
+		mes "apenas com uma faca barata...";
 		next;
 		mes "[Han Ran Jiao]";
-		mes "But it has been in the";
-		mes "family for a very long time.";
-		mes "Would you please return that";
-		mes "knife to me?";
+		mes "Mas ela já está na família";
+		mes "por muito tempo.";
+		mes "Por favor, você poderia devolver";
+		mes "a faca para mim?";
 		next;
-		if (select("Return the knife.:Refuse.") == 1) {
+		if (select("Devolver a faca.:Recusar.") == 1) {
 			set nakha,3;
-			delitem 1201,1; //Knife
+			delitem 1201,1; // Faca[3]
 			mes "[Han Ran Jiao]";
-			mes "Thank you! Thank you so much!";
-			mes "Please take these potions.";
-			mes "They may not be much, but they";
-			mes "are the best I can give you.";
-			getitem 505,2; //Blue_Potion
+			mes "Obrigado! Muito Obrigado!";
+			mes "Por favor aceite essas poções.";
+			mes "Sei que não é muito, mas é";
+			mes "a única forma que tenho de lhe agradecer.";
+			getitem 505,2; // Poção Azul
 			next;
 			mes "[Han Ran Jiao]";
-			mes "You kept my family heirloom safe!";
-			mes "I give you my deepest gratitude";
-			mes "for returning this.";
+			mes "Você recuperou o tesouro de minha família!";
+			mes "Você tem minha mais profunda gratidão";
+			mes "por devolvê-la.";
 			close;
 		}
 		mes "[Han Ran Jiao]";
-		mes "No~! My family heirloom!!";
-		mes "You scoundrel! May the spirits";
-		mes "forever haunt you! My curse shall be upon your head!";
+		mes "Não! O tesouro de minha família!!";
+		mes "Seu canalha! Desejo que os espíritos";
+		mes "lhe assombrem para sempre! Minha maldição cairá sobre você!";
 		close;
 	}
 	if (nakha == 2) {
 		mes "[Han Ran Jiao]";
-		mes "Oh no! What will I do?";
-		mes "I can't believe I dropped";
-		mes "my irreplaceable knife! Ahhhhhh!";
+		mes "Oh não! O que devo fazer?!";
+		mes "Eu não acredito que eu deixei";
+		mes "minha faca insubistituivel cair! Ahhhhhh!";
 		next;
 		mes "[Han Ran Jiao]";
-		mes "I need to go down to get it";
-		mes "but...the monsters...";
-		mes "I'm so scared... What should I do?!";
+		mes "Eu preciso descer para pegá-la";
+		mes "mas...os monstros...";
+		mes "Eu estou tão assustado... O que devo fazer?!";
 		close;
 	}
 	if (nakha == 3) {
 		mes "[Han Ran Jiao]";
-		mes "My neighbor seemed looked pretty bothered about something...";
-		mes "Oh well, I have better things to worry about than his fancy tea.";
+		mes "Meu vizinho parecia muito incomodado com alguma coisa...";
+		mes "Oh bem, eu tenho coisas melhores para me preocupar como o chá de fantasias.";
 		close;
 	}
 }
@@ -3806,11 +3809,11 @@ gon_fild01,245,257,0	script	#gonknife	111,3,3,{
 OnTouch:
 	if (nakha == 1) {
 		set nakha,2;
-		mes "^3355FFHm? What's this?";
+		mes "^3355FFHm? O que é isso?";
 		mes " ";
-		mes "Something was hidden beneath the leaves...^000000";
+		mes "Algo estava escondido sob as folhas...^000000";
 		mes " ";
-		mes "- You have found an old knife -";
+		mes "- Você encontrou uma velha faca -";
 		close2;
 		getitem 1201,1; //Knife
 	}
