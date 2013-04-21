@@ -14,7 +14,7 @@
 * \todo ?                                                                    *  
 *****************************************************************************/
 
-//Included directly by clif.h in packet_loaddb()
+//Incluído diretamente pelo clif.h em packet_loaddb()
 
 #ifndef _PACKETS_H_
 #define _PACKETS_H_
@@ -24,11 +24,11 @@
 #endif
 
 /*
- * packet syntax
- * - packet(packet_id,length)
- * OR
- * - packet(packet_id,length,function,offset ( specifies the offset of a packet field in bytes from the begin of the packet ),...)
- * - Example: packet(0x0072,19,clif->pWantToConnection,2,6,10,14,18);
+ * Sintaxe de Pacote
+ * - packet(id_do_pacote,comprimento)
+ * Ou
+ * - packet(id_do_pacote,comprimento,função,deslocamento ( Especifica o deslocamento de um campo de pacote em bytes desde o início do pacote ),...)
+ * - Exemplo: packet(0x0072,19,clif->pWantToConnection,2,6,10,14,18);
  */
 
 packet(0x0064,55);
@@ -1129,7 +1129,7 @@ packet(0x020d,-1);
 	packet(0x02c5,30);
 	packet(0x02c6,30);
 	packet(0x02c7,7,clif->pReplyPartyInvite2,2,6);
-	packet(0x02c8,3);
+	packet(0x02c8,3,clif->pPartyTick,2);
 	packet(0x02c9,3);
 	packet(0x02ca,3);
 	packet(0x02cb,20);
@@ -2015,8 +2015,8 @@ packet(0x020d,-1);
 #endif
 
 // ========== 2012-07-02aRagexeRE  =============
-// - 2012-07-02 is NOT STABLE.
-// - The packets are kept here for reference, DONT USE THEM.
+// - 2012-07-02  Não é Estável.
+// - Os pacotes são mantidos aqui para referência, Não Use-os.
 #if PACKETVER >= 20120702
 	packet(0x0363,19,clif->pWantToConnection,2,6,10,14,18);
 	packet(0x0364,6,clif->pTickSend,2);
@@ -2068,8 +2068,8 @@ packet(0x020d,-1);
 	packet(0x094E,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
 	//packet(0x0835,2,clif->pSearchStoreInfoNextPage,0);
 	//packet(0x0838,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x0844,2,clif->pCashShopOpen,0);/* tell server cashshop window is being open */
-	packet(0x084a,2,clif->pCashShopClose,0);/* tell server cashshop window is being closed */
+	packet(0x0844,2,clif->pCashShopOpen,0);/* diz ao servidor que a janela de cashshop está sendo aberta */
+	packet(0x084a,2,clif->pCashShopClose,0);/* diz ao servidor que a janela de cashshop está sendo fechada */
 	packet(0x08c9,4,clif->pCashShopSchedule,0);
 	packet(0x0848,-1,clif->pCashShopBuy,0);
 	packet(0x0447,2);

@@ -1077,12 +1077,14 @@ struct clif_interface {
 	void (*pDebug) (int fd,struct map_session_data *sd);
 	void (*pSkillSelectMenu) (int fd, struct map_session_data *sd);
 	void (*pMoveItem) (int fd, struct map_session_data *sd);
-	void (*pDull) (int fd, struct map_session_data *sd);
 	/* RagExe Cash Shop [Ind/Hercules] */
 	void (*pCashShopOpen) (int fd, struct map_session_data *sd);
 	void (*pCashShopClose) (int fd, struct map_session_data *sd);
 	void (*pCashShopSchedule) (int fd, struct map_session_data *sd);
 	void (*pCashShopBuy) (int fd, struct map_session_data *sd);
+	void (*pPartyTick) (int fd, struct map_session_data *sd);
+	/* dull */
+	void (*pDull) (int fd, struct map_session_data *sd);
 } clif_s;
 
 struct clif_interface *clif;

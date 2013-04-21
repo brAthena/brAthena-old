@@ -17108,10 +17108,12 @@ void clif_defaults(void) {
 	clif->pDebug = clif_parse_debug;
 	clif->pSkillSelectMenu = clif_parse_SkillSelectMenu;
 	clif->pMoveItem = clif_parse_MoveItem;
-	clif->pDull = clif_parse_dull;
 	/* RagExe Botão de Cash */
 	clif->pCashShopOpen = clif_parse_CashShopOpen;
 	clif->pCashShopClose = clif_parse_CashShopClose;
 	clif->pCashShopSchedule = clif_parse_CashShopSchedule;
 	clif->pCashShopBuy = clif_parse_CashShopBuy;
+	clif->pPartyTick = clif_parse_PartyTick;
+	/* dull */
+	clif->pDull = clif_parse_dull;
 }
