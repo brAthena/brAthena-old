@@ -6440,6 +6440,10 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 				status_change_end(&devsd->bl, SC_DEVOTION, INVALID_TIMER);
 			sd->devotion[k] = 0;
 		}
+	if(sd->shadowform_id) { //if we were target of shadowform
+		status_change_end(map_id2bl(sd->shadowform_id), SC__SHADOWFORM, INVALID_TIMER);
+		sd->shadowform_id = 0; //should be remove on status end anyway
+	}
 
 	if(sd->status.pet_id > 0 && sd->pd) {
 		struct pet_data *pd = sd->pd;

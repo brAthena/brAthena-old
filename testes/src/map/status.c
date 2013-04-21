@@ -1365,6 +1365,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		TBL_PC *sd = BL_CAST(BL_PC,target);
 		TBL_HOM *hd = sd->hd;
 		if(hd && hd->sc.data[SC_LIGHT_OF_REGENE]) {
+			status_change_clear(target,0);
 			clif_skillcasting(&hd->bl, hd->bl.id, target->id, 0,0, MH_LIGHT_OF_REGENE, skill_get_ele(MH_LIGHT_OF_REGENE, 1), 10); //just to display usage
 			clif_skill_nodamage(&sd->bl, target, ALL_RESURRECTION, 1, status_revive(&sd->bl,hd->sc.data[SC_LIGHT_OF_REGENE]->val2,0));
 			status_change_end(&sd->hd->bl,SC_LIGHT_OF_REGENE,INVALID_TIMER);
@@ -9680,9 +9681,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC__SHADOWFORM: {
 				struct map_session_data *s_sd = map_id2sd(sce->val2);
-				if(!s_sd)
-					break;
-				s_sd->shadowform_id = 0;
+				if(s_sd) s_sd->shadowform_id = 0;
 			}
 			break;
 		case SC_SITDOWN_FORCE:
