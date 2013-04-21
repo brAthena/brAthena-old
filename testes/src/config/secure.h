@@ -27,9 +27,6 @@
 //#define SECURE_NPCTIMEOUT
 
 /**
- * Tempo de intervalo no diálogo para npcs.
-
-/**
  * number of seconds to 'timeout' if the user is on idle for longer than the value allowed after a 'input' field is displayed.
  * default: 180
  **/
