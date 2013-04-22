@@ -135,8 +135,14 @@ int max_connect_user = -1;
 int gm_allow_group = -1;
 int autosave_interval = DEFAULT_AUTOSAVE_INTERVAL;
 int start_zeny = 0;
-int start_weapon = 1201;
-int start_armor = 2301;
+struct start_item {
+	uint16 id, qt;
+	bool is_eq;
+} start_items [MAX_START_ITEMS] = {
+	// Itens padrões
+	{ 1201, 1, true, },
+	{ 2301, 1, true, },
+};
 int guild_exp_rate = 100;
 
 //Custom limits for the fame lists. [Skotlex]
@@ -1561,14 +1567,19 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 #endif
 	//Retrieve the newly auto-generated char id
 	char_id = (int)Sql_LastInsertId(sql_handle);
-	//Give the char the default items
-	if(start_weapon > 0) {  //add Start Weapon (Knife?)
-		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`nameid`, `amount`, `identify`) VALUES ('%d', '%d', '%d', '%d')", inventory_db, char_id, start_weapon, 1, 1))
-			Sql_ShowDebug(sql_handle);
-	}
-	if(start_armor > 0) {  //Add default armor (cotton shirt?)
-		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`nameid`, `amount`, `identify`) VALUES ('%d', '%d', '%d', '%d')", inventory_db, char_id, start_armor, 1, 1))
-			Sql_ShowDebug(sql_handle);
+	  //Give the char the default items
+	{ //Adicionado suporte para múltiplos itens [brAthena]
+		int i = 0;
+		while(start_items[i].id != 0 && i < MAX_START_ITEMS) {
+			int id = start_items[i].id,
+				qt = start_items[i].qt, k,
+				j = start_items[i].is_eq ? 1 : qt;
+
+			for(k = 0; k < qt; k += j)
+				if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`char_id`,`nameid`, `amount`, `identify`) VALUES ('%d', '%d', '%d', '%d')", inventory_db, char_id, id, j, 1))
+					Sql_ShowDebug(sql_handle);
+			i++;
+		}
 	}
 
 	ShowInfo(read_message("Source.char.char_make_new_char_sql"), sd->account_id, char_id, slot, name);
@@ -4618,6 +4629,28 @@ void sql_config_read(const char *cfgName)
 	fclose(fp);
 	ShowInfo(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
 }
+void char_read_start_items(char *w2)
+{
+	char *param, **num;
+	int m = 0;
+	
+	num = (char **)aMalloc(5 * sizeof(char *));
+	param = strtok(w2, ":");
+
+	while(param != NULL && m < MAX_START_ITEMS) {
+		if(sv_split(param, strlen(param), 0, ',', num, 5, (e_svopt)0) < 3) {
+			ShowDebug("start_items: Parâmetros insuficientes, no item %d. Ignorando...\n", m+1);
+		} else {
+			start_items[m].id = atoi(num[1]);
+			start_items[m].qt = atoi(num[2]);
+			start_items[m].is_eq = atoi(num[3]) ? true : false;
+		}
+		param = strtok(NULL, ":");
+		m++;
+	}
+
+	aFree(num);
+}
 void char_config_dispatch(char *w1, char *w2) {
 	bool (*dispatch_to[]) (char *w1, char *w2) = {
 		pincode->config_read
@@ -4722,14 +4755,8 @@ int char_config_read(const char *cfgName)
 			start_zeny = atoi(w2);
 			if(start_zeny < 0)
 				start_zeny = 0;
-		} else if(strcmpi(w1, "start_weapon") == 0) {
-			start_weapon = atoi(w2);
-			if(start_weapon < 0)
-				start_weapon = 0;
-		} else if(strcmpi(w1, "start_armor") == 0) {
-			start_armor = atoi(w2);
-			if(start_armor < 0)
-				start_armor = 0;
+		} else if(strcmpi(w1, "start_items") == 0) {
+			char_read_start_items(w2);
 		} else if(strcmpi(w1,"log_char")==0) {      //log char or not [devil]
 			log_char = atoi(w2);
 		} else if(strcmpi(w1, "unknown_char_name") == 0) {

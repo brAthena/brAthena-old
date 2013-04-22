@@ -21,6 +21,8 @@
 #include "../common/core.h" // CORE_ST_LAST
 #include "../common/db.h"
 
+#define MAX_START_ITEMS 10
+
 enum E_CHARSERVER_ST {
     CHARSERVER_ST_RUNNING = CORE_ST_LAST,
     CHARSERVER_ST_SHUTDOWN,
