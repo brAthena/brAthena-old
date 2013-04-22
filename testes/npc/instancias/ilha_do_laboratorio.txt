@@ -1,0 +1,1902 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: ilha_do_laboratorio.txt                |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Instância Ilha do Laboratório               |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Primeira versão [Megasantos]                       |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+-	script	InitScriptbio	-1,{
+OnInit:
+	donpcevent "노란 씨앗#bios::OnEffect";
+	end;
+}
+-	script	#delaybios	-1,{
+	end;
+OnPCLoginEvent:
+	if (has_instance("1@dth1") == "" || has_instance("1@dth2") == "" || has_instance("1@dth3") == "") {
+		end;
+	} else {
+		set .@bisland_time,checkquest(15005,PLAYTIME); //23 Horas
+		if (.@bisland_time == -1) {
+			setquest 15005;
+			end;
+		}
+		if (.@bisland_time == 1 || .@bisland_time == 0) {
+			end;
+		}
+		else if (.@bisland_time == 2) {
+			end;
+		}
+	}
+}
+-	script	#delaybios2	-1,{
+	end;
+OnPCLoginEvent:
+	if (has_instance("1@dth1") == "" || has_instance("1@dth2") == "" || has_instance("1@dth3") == "") {
+		set .@rbisland_time,checkquest(15007,PLAYTIME); //5 minutos re-entrada
+		set .@rrbisland_time,checkquest(15008,PLAYTIME); //23 horas delay re-entrada
+		if (.@rbisland_time == 2) {
+			if (.@rrbisland_time == -1) {
+				setquest 15008;
+				end;
+			} else {
+				end;
+			}
+		}
+	} else {
+		set .@rbisland_time,checkquest(15007,PLAYTIME); //5 minutos re-entrada
+		if (.@rbisland_time == -1) {
+			setquest 15007;
+			end;
+		}
+		else if (.@rbisland_time == 1 || .@rbisland_time == 0) {
+			end;
+		}
+		else if (.@rbisland_time == 2) {
+			end;
+		}
+	}
+}
+
+dali02,90,62,0	script	모래더미#ep14bs	557,{
+//	if(burnland < ) {
+//		mes "- 이 장소와 어울리지 않는 흙이 쌓여있다. -";
+//		close;
+//	}
+//	if(burnland < ) {
+//		mes "- 이 장소와 어울리지 않는 흙이 쌓여있다. -"
+//		next;
+//		mes "[타마린]";
+//		mes "휴!";
+//		mes "제대로 찾아오셨군요.";
+//		cutin "ep143_tasmi.bmp",2;
+//		next;
+//		mes "[타마린]";
+//		mes "그럼 흙을 살짝 치우고....";
+//		mes "입구가 좁으니 조심하세요.";
+//		cutin "ep143_tasta.bmp",2;
+//		next;
+//		switch(select("입구로 들어간다.","그만 둔다."))
+//		{
+//			case 1:
+//				close;
+//				
+//			case 2:
+//				mes "- 길은 겨우 한명이 지나갈 수 있을 정도로 좁고 갑갑했다. -";
+//				erasequest 11353;
+//				close;
+//		}
+//	}
+//	if(burnland < ) {
+		mes "- 이 장소와 어울리지 않는 흙이 쌓여있다. -";
+		next;
+		switch(select("차원의 균열로 돌아간다.","그만 둔다."))
+		{
+			case 1:
+				close2;
+				warp "moro_vol",136,135;
+				end;
+				
+			case 2:
+				close;
+		}
+//	}
+}
+
+moro_vol,198,179,4	script	타마린#ep14bs_st	10027,{
+//	if(burnland < ) {
+//		mes "[타마린]";
+//		mes "바닥이 잘 보이지 않으니 조심하세요!";
+//		cutin "ep143_tahuk.bmp",2;
+//		close2;
+//		cutin "ep143_tahuk.bmp",255;
+//		end;
+//	}
+//	if(burnland == ) {
+//		mes "[타마린]";
+//		mes "휴! 배고파서 아무거나 막 먹었던게 이렇게 도움이 될 줄이야!";
+//		mes "바젯씨에게도 어서 보고하죠!";
+//		cutin "ep143_tahuk.bmp",2;
+//		close2;
+//		cutin "ep143_tahuk.bmp",255;
+//		end;
+//	}
+//	if(burnland >= 100) {
+		mes "[타마린]";
+		mes "으아아!!!";
+		mes ""+strcharinfo(0)+"님 다른 사람들이 다 탐험하기 전에 빨리 들어가봐요!";
+		cutin "ep143_tahuk.bmp",2;
+		next;
+		switch(select("들어 간다.","그만 둔다."))
+		{
+			case 1:
+				mes "[타마린]";
+				mes "아...아....";
+				close2;
+				warp "moro_cav",40,50;
+				end;
+			case 2:
+				mes "[타마린]";
+				mes "바닥이 잘 보이지 않으니 조심하세요!";
+				cutin "ep143_taang.bmp",2;
+				close2;
+				cutin "ep143_taang.bmp",255;
+				end;
+		}
+//	}
+}
+moro_cav,45,60,5	script	방황하는 노인#sara	847,{
+	//if(burnland >= 100) {
+		if(checkquest(15006) == -1) {
+			mes "[방황하는 노인]";
+			mes "이곳은... 대체 어디인가...?";
+			next;
+			mes "[방황하는 노인]";
+			mes "언제부터일까...";
+			mes "같은 꿈을 계속 꾸었네.";
+			next;
+			mes "[방황하는 노인]";
+			mes "잠들어있던 마왕 모로크의 부활... 그리고 어둠과 피로 뒤덮인 세상... 정말 끔찍했지.";
+			next;
+			mes "[방황하는 노인]";
+			mes "처음엔 악몽일거라 생각했지만 꿈에서 깬 뒤 정신 나간 사람처럼 여기저기 방황한 끝에 다다른 곳이 바로 이곳이야.";
+			next;
+			mes "[방황하는 노인]";
+			mes "이곳은... 그 꿈속에서 보았던 그 곳이라네. 마왕 모로크가 부활했던 바로 그 곳 말일세! 그 꿈은 나에게 미래를 보여주고 있었어...";
+			next;
+			mes "[방황하는 노인]";
+			mes "내가 꾼 꿈이 맞는다면 저 노란 씨앗 안에 마왕 모로크의 세력이 있는 것이 틀림없네!";
+			next;
+			mes "[방황하는 노인]";
+			mes "들어가보려 했지만 내 힘이 미약하여 접근할 수가 없었네. 하지만 자네라면 가능할 거야!";
+			next;
+			mes "[방황하는 노인]";
+			mes "부디 저 노란 씨앗을 조사해주게.";
+			mes "혼자서는 위험할지 모르니 두 명 이상이 함께 가도록 하게. 부탁하네!";
+			setquest 15006;
+			completequest 15006;
+			close;
+		} else {
+			mes "[방황하는 노인]";
+			mes "부디 저 노란 씨앗을 조사해주게.";
+			mes "혼자서는 위험할지 모르니 두 명 이상이 함께 가도록 하게. 부탁하네!";
+			close;
+		}
+	//}
+}
+moro_cav,50,64,5	script	노란 씨앗#bios	844,{
+	if(checkquest(15006) == -1) {	
+		mes "^ff0000방황하는 노인과 만나기 전까진 입장이 불가능합니다.^000000";
+		close;
+	}
+	if(checkquest(15006) == 2) {
+		set .@bisland_time,checkquest(15005,PLAYTIME); //23 Horas
+		set .@rbisland_time,checkquest(15007,PLAYTIME); //5 minutos re-entrada
+		set .@rrbisland_time,checkquest(15008,PLAYTIME); //23 horas delay re-entrada
+
+		if (.@bisland_time == -1) goto INS_FirstCheck;
+		if (.@bisland_time == 1 || .@bisland_time == 0) goto INS_FourthCheck;
+		if (.@bisland_time == 2) goto INS_FifthCheck;
+
+INS_FirstCheck:
+		if (.@rbisland_time == -1) {
+			if (.@rrbisland_time == -1) {
+				goto INS_BioBegin;
+			} else {
+				goto INS_ThirdCheck;
+			}
+		} else {
+			goto INS_SecondCheck;
+		}
+INS_SecondCheck:
+		if (.@rbisland_time == 1 || .@rbisland_time == 0) {
+			if (checkquest(15007) == 2) {
+				mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+				close;
+			} else {
+				completequest 15007;
+				setquest 15008;
+				goto INS_BioBegin;
+			}
+		}
+		if (.@rbisland_time == 2) {
+			if (.@rrbisland_time == -1) {
+				setquest 15008;
+				end;
+			} else {
+				goto INS_ThirdCheck;
+			}
+				
+		}
+INS_ThirdCheck:
+		if (.@rrbisland_time == 1 || .@rrbisland_time == 0) {
+			mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+			close;
+		}
+		if (.@rrbisland_time == 2) {
+			erasequest 15007;
+			erasequest 15008;
+			goto INS_FirstCheck;
+		}
+INS_FourthCheck:
+		if (.@rbisland_time == 1 || .@rbisland_time == 0) {
+			if (checkquest(15007) == 2) {
+				mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+				close;
+			} else {
+				completequest 15007;
+				setquest 15008;
+				goto INS_BioBegin;
+			}
+		} else {
+			mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+			close;
+		}
+INS_FifthCheck:
+		erasequest 15005;
+		goto INS_FirstCheck;
+	
+INS_BioBegin:
+		set .@party_id,getcharid(1);
+		set .@ins_mas,getpartyleader(.@party_id,2);
+		set .@p_name$,getpartyname(.@party_id);
+		set .@p_reader$,strcharinfo(0);
+		set .@md_name$,"비오스의 섬";
+		
+		getpartymember(.@party_id);
+		set .@partymembercount,$@partymembercount;
+		copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
+		if ((.@party_id > 0) && ((.@partymembercount > 0))) {
+			if (.@ins_mas == getcharid(0)) {
+				switch(select("메모리얼 던전 생성","비오스의 섬으로 입장","취소"))
+				{
+					case 1:
+						set .@instance, instance_create(.@md_name$, .@party_id);
+						if (.@instance < 0) {
+							mes "^ff0000메모리얼 던전이 생성됐습니다.";
+							mes "다시 클릭하여 입장을 눌러주세요^000000";
+							close;
+						} else {
+							mes "^ff0000메모리얼 던전이 생성됐습니다.";
+							mes "다시 클릭하여 입장을 눌러주세요^000000";
+							for( set .@i, 1; .@i <= 1; set .@i, .@i + 1 ) {
+							if( instance_attachmap(.@i + "@dth1", .@instance) == "" )
+								break;
+							if( instance_attachmap(.@i + "@dth2", .@instance) == "" )
+								break;
+							if( instance_attachmap(.@i + "@dth3", .@instance) == "" )
+								break;
+							}
+							if( .@i < 1 ) {
+								instance_destroy(.@instance);
+								close;
+							}
+							instance_attach(.@instance);
+							instance_set_timeout 3600,300,.@instance;
+							instance_init(.@instance);
+						
+							//Control Eventos Inicio
+							donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("?????#ep14bs_st", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stchat", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmob", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmoba", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#bioswarp1", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#bioswarp2", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#1bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#2bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#3bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#4bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#5bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#6bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#7bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#8bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#9bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#10bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#11bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#12bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#13bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#14bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#15bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#16bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#17bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#18bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#19bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#20bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#21bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#22bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#23bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("타락한 오크좀비#24bios3_", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stchatb", instance_id())+"::OnInstanceInit";
+							donpcevent instance_npcname("#ep14bs_stchatr", instance_id())+"::OnInstanceInit";
+							close;
+						}
+					case 2:
+						if (has_instance("1@dth1") == "") {
+							mes "^ff0000파티장이 시간의 틈을 생성하지 않았습니다.^000000";
+							close;
+						}
+						else if ((has_instance("1@dth1") != "") && (.@partymembercount < 1)) {
+							mes "Solo los miembros registrados pueden acceder a la instancia "+ .@md_name$ +".";
+							close;
+						} else {
+							if (.@bisland_time == -1) {
+								setquest 15005;
+								mapannounce "moro_cav", .@p_reader$ + " miembro de la party " + .@p_name$ + " esta entrando a " + .@md_name$ + ".",bc_map,"0x00ff99";
+								warp "1@dth1",17,93;
+								close;
+							} else {
+								mapannounce "moro_cav", .@p_reader$ + " miembro de la party " + .@p_name$ + " esta entrando a " + .@md_name$ + ".",bc_map,"0x00ff99";
+								warp "1@dth1",17,93;
+								close;
+							}	
+						}
+					case 3:
+						close;
+						
+				}
+			} else {
+				switch(select("비오스의 섬으로 입장","취소"))
+				{
+					case 1:
+						if (has_instance("1@dth1") == "") {
+							mes "^ff0000파티장이 시간의 틈을 생성하지 않았습니다.^000000";
+							close;
+						}
+						else if ((has_instance("1@dth1") != "") && (.@partymembercount < 1)) {
+							mes "Solo los miembros registrados pueden acceder a la instancia "+ .@md_name$ +".";
+							close;
+						} else {
+							if (.@bisland_time == -1) {
+								setquest 15005;
+								mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+								close2;
+								mapannounce "moro_cav", .@p_reader$ + " miembro de la party " + .@p_name$ + " esta entrando a " + .@md_name$ + ".",bc_map,"0x00ff99";
+								warp "1@dth1",17,93;
+								end;
+							} else {
+								mes "^ff0000이 메모리얼 던전은 마지막으로 입장하신 뒤 23시간 이내에는 재입장이 불가능합니다.^000000";
+								close2;
+								mapannounce "moro_cav", .@p_reader$ + " miembro de la party " + .@p_name$ + " esta entrando a " + .@md_name$ + ".",bc_map,"0x00ff99";
+								warp "1@dth1",17,93;
+								end;
+							}
+						}
+					case 2:
+						close;
+				}
+			}
+		}
+	}
+OnEffect:
+	initnpctimer;
+	end;
+OnTimer2000:
+	specialeffect EF_ENHANCE;
+	end;
+OnTimer2600:
+	specialeffect EF_ENHANCE;
+	end;
+OnTimer15000:
+	stopnpctimer;
+	donpcevent "노란 씨앗#bios::OnEffect";
+	end;
+}
+1@dth1,67,97,6	script	브리드#ep14bs_st	468,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnEnable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("브리드#ep14bs_st", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("브리드#ep14bs_st", instance_id());
+	end;
+OnChat1:
+	npctalk "우리들 말고도 이 곳에 발을 들인 자가 또 있었다니...";
+	end;
+OnChat2:
+	npctalk "자네도 마왕 모로크의 부활을 저지하기 위해 이곳에 들어왔나?";
+	end;
+OnChat3:
+	npctalk "난 프론테라에서 온 브리드, 이쪽은 제이스! 우린 각지를 떠돌아다니며 정의를 실현하는 용사님들이시지!";
+	end;
+OnChat4:
+	npctalk "이봐 제이스. 자네도 자기소개 정도는 해주라고";
+	end;
+OnChat8:
+	npctalk "남들 앞에선 조용한 친구지만 둘이 있을땐 말이 많은 친구지. 어흠흠";
+	end;
+OnChat10:
+	npctalk "아래에 있는 노인이 모로크가 부활한다느니 어쩌니 해서 와보긴 했다만...";
+	end;
+OnChat11:
+	npctalk "뭐야 이곳은? 노란 씨앗에 손을 댄 것 뿐인데 갑자기 이런 풍경이 펼쳐지다니...";
+	end;
+OnChat12:
+	npctalk "하늘을 날고 있는 건가? 뭐가 어떻게 된 거야 대체...";
+	end;
+OnChat17:
+	npctalk "흥! 죽음 따위가 두려웠다면 이런 곳에 스스로 오지도 않았다!";
+	end;
+OnChat18:
+	npctalk "어디서 튀어나온 녀석인지는 모르겠다만 우리가 먼저 널 죽여주마!";
+	end;
+OnChat21:
+	npctalk "뭐야 저 녀석은! 마왕 모로크를 부활시키려 하는 게 바로 저 녀석인가?";
+	end;
+OnChat22:
+	npctalk "녀석을 쫓아가자! 제이스 서둘러!";
+	end;
+}
+1@dth1,71,97,4	script	제이스#ep14bs_st	467,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnEnable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("제이스#ep14bs_st", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("제이스#ep14bs_st", instance_id());
+	end;
+OnChat5:
+	npctalk "......";
+	end;
+OnChat6:
+	npctalk "...제이스다...";
+	end;
+OnChat7:
+	npctalk "......";
+	end;
+OnChat9:
+	npctalk "쓸데없는 말 하지마라...";
+	end;
+OnChat14:
+	npctalk "...!!! 거기 누구냐!";
+	end;
+OnChat23:
+	npctalk "......큭";
+	end;
+OnChat24:
+	npctalk "...뛰기 싫은데...";
+	end;
+}
+1@dth1,74,94,4	script	사신 안쿠#ep14bs_st	10028,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("사신 안쿠#ep14bs_st", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("사신 안쿠#ep14bs_st", instance_id());
+	end;
+OnChat15:
+	npctalk "크크크... 이곳은 내가 만든 환상의 공간 '비오스의 섬'이다.";
+	end;
+OnChat16:
+	npctalk "모로크님의 제물이 될 인간들이 제 발로 이곳까지 들어왔구나. 죽음이 두렵지 않느냐?";
+	end;
+OnChat19:
+	npctalk "앞장서서 죽을 시간을 당길 필요는 없다 하찮은 인간이여...";
+	end;
+OnChat20:
+	npctalk "이곳에서 너희가 죽음으로부터 발버둥치는 모습을 천천히 지켜봐 주마. 크크크크...";
+	end;
+}
+1@dth1,74,94,4	script	?????#ep14bs_st	111,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("?????#ep14bs_st", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("?????#ep14bs_st", instance_id());
+	end;
+OnDisable:
+	disablenpc instance_npcname("?????#ep14bs_st", instance_id());
+	end;
+OnChat13:
+	npctalk "크크크크... 이곳이 어딘지 궁금한가?";
+	end;
+}
+1@dth1,56,94,0	script	#ep14bs_stchat	-1,5,5,{
+	end;
+OnTouch:
+	donpcevent instance_npcname("#ep14bs_stchat", instance_id())+"::OnEnable";
+	end;
+OnInstanceInit:
+	enablenpc instance_npcname("#ep14bs_stchat", instance_id());
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stchat", instance_id());
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchat", instance_id())+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchat", instance_id());
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat1";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat2";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat3";
+	end;
+OnTimer8000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat4";
+	end;
+OnTimer10000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat5";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat6";
+	end;
+OnTimer14000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat7";
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat8";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat9";
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat10";
+	end;
+OnTimer22000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat11";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat12";
+	end;
+OnTimer26000:
+	donpcevent instance_npcname("?????#ep14bs_st", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("?????#ep14bs_st", instance_id())+"::OnChat13";
+	end;
+OnTimer28000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat14";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("?????#ep14bs_st", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnChat15";
+	end;
+OnTimer32000:
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnChat16";
+	end;
+OnTimer34000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat17";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat18";
+	end;
+OnTimer38000:
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnChat19";
+	end;
+OnTimer40000:
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnChat20";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat21";
+	end;
+OnTimer44000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnChat22";
+	donpcevent instance_npcname("사신 안쿠#ep14bs_st", instance_id())+"::OnDisable";
+	end;
+OnTimer46000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat23";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnChat24";
+	end;
+OnTimer50000:
+	donpcevent instance_npcname("브리드#ep14bs_st", instance_id())+"::OnDisable";
+	end;
+OnTimer51000:
+	donpcevent instance_npcname("제이스#ep14bs_st", instance_id())+"::OnDisable";
+	instance_announce 0, "<SYSTEM> 섬에 있는 적을 모두 처치하면 반대편 출구를 통해 다음 지역으로 이동할 수 있습니다.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	end;
+}
+//Control MOB
+//====================
+1@dth2,56,94,0	script	#ep14bs_stcmoba	-1,5,5,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmoba", instance_id())+"::OnDisable";
+	end;
+OnTouch:
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmoba", instance_id())+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmoba", instance_id());
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmoba", instance_id());
+	end;
+OnTimer2000:
+	instance_announce 0, "<SYSTEM> 섬에 있는 적을 모두 처치하면 반대편 출구를 통해 다음 지역으로 이동할 수 있습니다.",bc_map,"0xFFFF00";
+	donpcevent instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+1@dth1,0,0,0	script	#ep14bs_stcmob	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmob", instance_id())+"::OnEnable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmob", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmob", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmob", instance_id());
+	end;
+OnRespawn:
+	areamonster "1@dth1",98,40,250,171,"타락한 오크베이비",3010,18,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",98,40,250,171,"타락한 어린저트울프",3011,18,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",98,40,250,171,"타락한 퍼밀리어",3012,11,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",150,170,161,160,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",150,170,161,160,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",150,170,161,160,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",289,115,327,92,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",289,115,327,92,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",289,115,327,92,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",219,156,232,139,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",219,156,232,139,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth1",219,156,232,139,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",201,169,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",274,104,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",164,79,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",163,45,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",131,47,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",127,171,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",131,47,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",131,47,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",93,94,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",93,94,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",210,100,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",197,102,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",185,142,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",250,146,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",247,142,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",209,51,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",212,54,"타락한 퍼밀리어",3012,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",234,59,"타락한 어린저트울프",3011,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	monster "1@dth1",249,78,"타락한 오크베이비",3010,1,instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,75;
+	set .@a_mob_num,mobcount("1@dth1",instance_npcname("#ep14bs_stcmob", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@a_mob_num;
+	if (.@mob_dead_num == 65) {
+		instance_announce 0, "<SYSTEM> 10마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 70) {
+		instance_announce 0, "<SYSTEM> 5마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 74) {
+		instance_announce 0, "<SYSTEM> 마지막 1마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 75) {
+		instance_announce 0, "<SYSTEM> 모든 몬스터를 물리쳤습니다. 섬의 3시 방향 출구로 이동하세요!.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#bioswarp1", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmoba", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("#ep14bs_stcmob", instance_id())+"::OnDisable";
+	}
+	end;
+}
+1@dth2,0,0,0	script	#ep14bs_stcmobb	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobb", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobb", instance_id());
+	end;
+OnRespawn:
+	areamonster "1@dth2",98,40,250,171,"타락한 오크워리어",3013,18,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",98,40,250,171,"타락한 데저트울프",3014,18,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",98,40,250,171,"타락한 휀",3015,11,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",150,170,161,160,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",150,170,161,160,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",150,170,161,160,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",289,115,327,92,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",289,115,327,92,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",289,115,327,92,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",219,156,232,139,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",219,156,232,139,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	areamonster "1@dth2",219,156,232,139,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",201,169,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",274,104,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",164,79,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",163,45,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",131,47,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",127,171,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",131,47,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",131,47,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",93,94,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",93,94,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",210,100,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",197,102,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",185,142,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",250,146,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",247,142,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",209,51,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",212,54,"타락한 휀",3015,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",234,59,"타락한 데저트울프",3014,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	monster "1@dth2",249,78,"타락한 오크워리어",3013,1,instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,75;
+	set .@b_mob_num,mobcount("1@dth2",instance_npcname("#ep14bs_stcmobb", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@b_mob_num;
+	if (.@mob_dead_num == 65) {
+		instance_announce 0, "<SYSTEM> 10마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 70) {
+		instance_announce 0, "<SYSTEM> 5마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 74) {
+		instance_announce 0, "<SYSTEM> 마지막 1마리의 몬스터가 섬에 남아있습니다.",bc_map,"0xFFFF00";
+	}
+	else if (.@mob_dead_num == 75) {
+		instance_announce 0, "<SYSTEM> 모든 몬스터를 물리쳤습니다. 섬의 3시 방향 출구로 이동하세요!.",bc_map,"0xFFFF00";
+		donpcevent instance_npcname("#bioswarp2", instance_id())+"::OnEnable";
+		enablenpc instance_npcname("#ep14bs_stchatb", instance_id());
+		donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnEnable";
+	}
+	end;
+}
+1@dth3,0,0,0	script	#ep14bs_stcmobc	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobc", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobc", instance_id());
+	end;
+OnRespawn:
+	monster "1@dth3",62,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,80,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,93,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,85,"타락한 오크좀비",3016,1,instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,24;
+	set .@c_mob_num,mobcount("1@dth3",instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@c_mob_num;
+	if (.@mob_dead_num == 24) {
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat31";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat32";
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnDisable";
+	end;
+	
+}
+1@dth3,0,0,0	script	#ep14bs_stcmobd	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobd", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobd", instance_id());
+	end;
+OnRespawn:
+	monster "1@dth3",62,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,80,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,93,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,85,"타락한 베릿트",3017,1,instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,24;
+	set .@d_mob_num,mobcount("1@dth3",instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@d_mob_num;
+	if (.@mob_dead_num == 24) {
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat33";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat34";
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobd", instance_id())+"::OnDisable";
+	end;
+}
+1@dth3,0,0,0	script	#ep14bs_stcmobe	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobe", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobe", instance_id());
+	end;
+OnRespawn:
+	monster "1@dth3",62,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,80,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,93,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",62,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",64,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",66,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",68,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",72,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",74,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",76,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	monster "1@dth3",78,85,"타락한 메갈로돈",3018,1,instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,24;
+	set .@e_mob_num,mobcount("1@dth3",instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@e_mob_num;
+	if (.@mob_dead_num == 24) {
+		donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnEnable";
+		initnpctimer;
+	}
+	end;
+OnTimer1000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat35";
+	end;
+OnTimer3000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat36";
+	end;
+OnTimer5000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat37";
+	end;
+OnTimer7000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnEnable";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat38";
+	donpcevent instance_npcname("#ep14bs_stchatr", instance_id())+"::OnEnable";
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobe", instance_id())+"::OnDisable";
+	end;
+}
+
+1@dth3,0,0,0	script	#ep14bs_stcmobf	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stcmobf", instance_id());
+	donpcevent instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnRespawn";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stcmobf", instance_id());
+	end;
+OnRespawn:
+	monster "1@dth3",70,67,"사신 안쿠",3029,1,instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnMyMobDead";
+	end;
+OnMyMobDead:
+	set .@callnum,1;
+	set .@f_mob_num,mobcount("1@dth3",instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,.@callnum - .@f_mob_num;
+	if (.@mob_dead_num == 1) {
+		donpcevent instance_npcname("#ep14bs_stchatr", instance_id())+"::OnDisable2";
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnEnable";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat43";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat44";
+	end;
+OnTimer8000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat45";
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnDisable";
+	end;
+OnTimer9500:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnEnable";
+	end;
+OnTimer10000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat46";
+	end;
+OnTimer14000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat47";
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat48";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat49";
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat50";
+	end;
+OnTimer22000:
+	set .npcrdeadp,1;
+	set .npcMvPkill,.npcrdeadp+1;
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stcmobf", instance_id())+"::OnDisable";
+	end;
+}
+1@dth1,291,103,0	script	#bioswarp1	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#bioswarp1", instance_id())+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#bioswarp1", instance_id());
+	end;
+OnEnable:
+	enablenpc instance_npcname("#bioswarp1", instance_id());
+	end;
+OnTouch:
+	warp "1@dth2",17,93;
+	end;
+}
+1@dth2,291,103,0	script	#bioswarp2	45,1,2,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#bioswarp2", instance_id())+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#bioswarp2", instance_id());
+	end;
+OnEnable:
+	enablenpc instance_npcname("#bioswarp2", instance_id());
+	end;
+OnTouch:
+	warp "1@dth3",45,68;
+	end;
+}
+1@dth3,64,74,6	script	브리드#bios3_00q	468,{
+	set .recompensa,1;
+	if (.recompensa < getvariableofnpc(.npcMvPkill,instance_npcname("#ep14bs_stcmobf", instance_id()))) {
+		mes "[브리드]";
+		mes "우연한 기회에 얻게 된";
+		mes "'용사의 증표'야.";
+		mes "이건 자네에게 어울릴 것 같으니 자네에게 주지.";
+		next;
+		mes "[브리드]";
+		mes "어서 이 기분 나쁜 곳을 빠져나가자구!!";
+		getitem 6684,1; //Proof of The Heroic
+		close2;
+		warp "moro_cav",45,63;
+		end;
+	}
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("브리드#bios3_00q", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("브리드#bios3_00q", instance_id());
+	end;
+OnChat1:
+	npctalk "자네도 용캐 이곳까지 왔군. 난 미로에 들어선 순간 완전히 길을 잃었어.";
+	end;
+OnChat2:
+	npctalk "제이스가 없었다면 영원히 저기서 못 나왔을지도... 고맙네 제이스!";
+	end;
+OnChat4:
+	npctalk "이상한 점이라니?";
+	end;
+OnChat7:
+	npctalk "으음... 확실히 그랬지.";
+	end;
+OnChat8:
+	npctalk "처음엔 작은 녀석들이 나오나 싶었는데, 시간이 지날수록 점점 큰 녀석들이 나왔어.";
+	end;
+OnChat9:
+	npctalk "근데 그게 왜? 딱히 문제될 건 없잖아?";
+	end;
+OnChat13:
+	npctalk "또 네 녀석이냐!";
+	end;
+OnChat17:
+	npctalk "시끄럽다 악마 녀석아! 자잘한 졸개들 따위를 상대할 시간은 없다!";
+	end;
+OnChat18:
+	npctalk "내가 직접 널 없애주마!";
+	end;
+OnChat46:
+	npctalk "으...아!! 드디어 몸이 움직인다!";
+	end;
+OnChat48:
+	npctalk "휴... 저 사신이란 녀석의 마력은 나와 제이스가 감당하기 어려울 정도로 강력했어.";
+	end;
+OnChat49:
+	npctalk "자네가 아니었다면 꼼짝없이 당하고 말았을 거야.";
+	end;
+OnChat50:
+	npctalk "감사의 표시로 줄 게 있으니 받을 준비가 되면 말을 걸어줘.";
+	end;
+}
+1@dth3,72,74,4	script	제이스#bios3_00q	467,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("제이스#bios3_00q", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("제이스#bios3_00q", instance_id());
+	end;
+OnChat3:
+	npctalk "......한가지 이상한 점이 있다...";
+	end;
+OnChat5:
+	npctalk "...이곳까지 오면서 상대한 몬스터들이 시간이 지나면서 점점 성장하는 느낌이었다...";
+	end;
+OnChat6:
+	npctalk "처음엔 꼬마였다가 나중엔 어른이 되듯 말이지...";
+	end;
+OnChat10:
+	npctalk "글쎄... 이번엔 어떤 모습으로 나타날 지가 궁금할 뿐이다.";
+	end;
+OnChat11:
+	npctalk "더 성장한 모습으로 나올지. 아니면 우리가 상상하지 못한 모습으로 나올지...";
+	end;
+OnChat47:
+	npctalk "큭... 내 힘이란 게 고작 이 정도였나... 분하다...";
+	end;
+}
+1@dth3,64,74,6	script	브리드#bios3_00f	10036,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("브리드#bios3_00f", instance_id());
+	specialeffect EF_FIREHIT;
+	end;
+OnDisable:
+	specialeffect EF_ICECRASH;
+	hideonnpc instance_npcname("브리드#bios3_00f", instance_id());
+	end;
+OnChat21:
+	npctalk "크윽! 뭐지? 몸이... 몸이 움직이지 않아?!";
+	end;
+OnChat28:
+	npctalk "제길... 언데드들이 몰려온다!! 몸이 움직이질 않으니 싸울 수가 없어...";
+	end;
+OnChat29:
+	npctalk "아직 죽고 싶진 않다구! 으아아아!";
+	end;
+OnChat31:
+	npctalk "자네 정말 대단하군! 모두 물리친 건가?";
+	end;
+OnChat33:
+	npctalk "이번에야말로 모두 물리친 거겠지?";
+	end;
+OnChat36:
+	npctalk "치사한 녀석! 상대의 발을 묶고 싸우는 게 너의 방식이냐! 정정당당히 승부하자!";
+	end;
+OnChat38:
+	npctalk "제길... 몸이....";
+	end;
+OnChat40:
+	npctalk "비겁한 녀석! 정정당당하게 붙어보자!!";
+	end;
+OnChat41:
+	npctalk "으... 아무런 도움이 되지 못해 미안하다...";
+	end;
+}
+1@dth3,72,74,4	script	제이스#bios3_00f	10035,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("제이스#bios3_00f", instance_id());
+	specialeffect EF_FIREHIT;
+	end;
+OnDisable:
+	specialeffect EF_ICECRASH;
+	hideonnpc instance_npcname("제이스#bios3_00f", instance_id());
+	end;
+OnChat22:
+	npctalk "...!! 나도 마찬가지다... 몸이 바닥에...!";
+	end;
+OnChat30:
+	npctalk "......크윽......";
+	end;
+OnChat32:
+	npctalk "...아직. 놈들이 더 몰려온다... 조심해라!";
+	end;
+OnChat34:
+	npctalk "...아쉽게도 틀린 것 같다. 다시 놈들이 몰려온다!";
+	end;
+OnChat39:
+	npctalk "저 안쿠란 녀석... 위험한 냄새가 난다. 수상한 기술이라도 쓰면 그 자리에서 몸을 피해라!";
+	end;
+OnChat42:
+	npctalk "...크윽... 내 힘이 고작...";
+	end;
+}
+1@dth3,70,67,4	script	사신 안쿠#bios3_00q	10028,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("사신 안쿠#bios3_00q", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("사신 안쿠#bios3_00q", instance_id());
+	end;
+OnChat12:
+	npctalk "크크크... 그래도 너희 중에 똑똑한 녀석이 있구나.";
+	end;
+OnChat14:
+	npctalk "어떤 녀석들이 등장할지 궁금한가?";
+	end;
+OnChat15:
+	npctalk "이번엔 죽여도 죽지 않는 불사의 군단이 등장할 차례다.";
+	donpcevent instance_npcname("타락한 오크좀비#1bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#2bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#3bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#4bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#5bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#6bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#7bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#8bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#9bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#10bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#11bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#12bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#13bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#14bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#15bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#16bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#17bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#18bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#19bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#20bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#21bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#22bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#23bios3_", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("타락한 오크좀비#24bios3_", instance_id())+"::OnEnable";
+	specialeffect EF_READYPORTAL;
+	end;
+OnChat16:
+	npctalk "크크크... 나오너라 나의 수하들이여!";
+	end;
+OnChat19:
+	npctalk "아니... 시끄러운 건 바로 너다.";
+	end;
+OnChat20:
+	npctalk "움직일 수 없을 때 서서히 다가오는 공포가 무엇인지 알려주마!";
+	specialeffect EF_STORMGUST;
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnEnable";
+	end;
+OnChat23:
+	npctalk "비오스 섬에서 흐르는 시간은 인생을 의미한다.";
+	end;
+OnChat24:
+	npctalk "너희는 이곳에서 낮과 석양이 지는 동안 내 부하들이 성장하는 걸 봤을 것이다.";
+	end;
+OnChat25:
+	npctalk "그리고 밤이 된 지금 나온 최종 진화된 모습. 그것은 바로 죽어버린 뒤의 모습!";
+	end;
+OnChat26:
+	npctalk "그렇다. 너희들이 죽음을 경험할 시간이 왔다는 의미다.";
+	end;
+OnChat27:
+	npctalk "죽음의 공포를 느낄 시간이다!! 크크크크크...";
+	//2segundos despues
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnChat35:
+	npctalk "내가 너희들을 너무 얕잡아본 것 같구나. 내 부하들이 이렇게 쉽게 당할 줄이야.";
+	end;
+OnChat37:
+	npctalk "어리석은 것... 아직 밉은 살아있구나. 이번엔 내가 직접 너희에게 죽음을 선사하마!";
+	end;
+OnChat43:
+	npctalk "강하구나... 인간...";
+	end;
+OnChat44:
+	npctalk "하지만 나의 목적은 이미 달성했다... 이게 끝이라고 생각진 마라.";
+	end;
+OnChat45:
+	npctalk "모로크님의 부활이 이제 얼마 남지 않았다!! 크크크...죽음의 공포는 언제나 너와 함께할 것이다...";
+	end;
+}
+1@dth3,70,67,4	script	#ep14bs_stchatb	-1,6,6,{
+	end;
+OnTouch:
+	donpcevent instance_npcname("#ep14bs_stchatb", instance_id())+"::OnEnable";
+	sleep2 41000;
+	npcskill "NPC_WIDEFREEZE",5,99,150;
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stchatb", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	initnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchatb", instance_id())+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchatb", instance_id());
+	end;
+OnTimer2000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat1";
+	end;
+OnTimer4000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat2";
+	end;
+OnTimer6000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat3";
+	end;
+OnTimer8000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat4";
+	end;
+OnTimer10000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat5";
+	end;
+OnTimer12000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat6";
+	end;
+OnTimer14000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat7";
+	end;
+OnTimer16000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat8";
+	end;
+OnTimer18000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat9";
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat10";
+	end;
+OnTimer22000:
+	donpcevent instance_npcname("제이스#bios3_00q", instance_id())+"::OnChat11";
+	end;
+OnTimer24000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat12";
+	end;
+OnTimer26000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat13";
+	end;
+OnTimer28000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat14";
+	end;
+OnTimer30000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat15";
+	end;
+OnTimer32000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat16";
+	end;
+OnTimer34000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat17";
+	end;
+OnTimer36000:
+	donpcevent instance_npcname("브리드#bios3_00q", instance_id())+"::OnChat18";
+	end;
+OnTimer38000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat19";
+	end;
+OnTimer40000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat20";
+	end;
+OnTimer42000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat21";
+	end;
+OnTimer44000:
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat22";
+	end;
+OnTimer46000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat23";
+	end;
+OnTimer48000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat24";
+	end;
+OnTimer50000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat25";
+	end;
+OnTimer52000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat26";
+	end;
+OnTimer54000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnChat27";
+	donpcevent instance_npcname("타락한 오크좀비#1bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#2bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#3bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#4bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#5bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#6bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#7bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#8bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#9bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#10bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#11bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#12bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#13bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#14bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#15bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#16bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#17bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#18bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#19bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#20bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#21bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#22bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#23bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("타락한 오크좀비#24bios3_", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("#ep14bs_stcmobc", instance_id())+"::OnEnable";
+	end;
+OnTimer57000:
+	donpcevent instance_npcname("사신 안쿠#bios3_00q", instance_id())+"::OnDisable";
+	end;
+OnTimer56000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat28";
+	end;
+OnTimer58000:
+	donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat29";
+	end;
+OnTimer60000:
+	donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat30";
+	stopnpctimer;
+	end;
+}
+1@dth3,0,0,0	script	#ep14bs_stchatr	-1,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("#ep14bs_stchatr", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	enablenpc instance_npcname("#ep14bs_stchatr", instance_id());
+	initnpctimer;
+	end;
+OnDisable:
+	disablenpc instance_npcname("#ep14bs_stchatr", instance_id());
+	end;
+OnDisable2:
+	stopnpctimer;
+	disablenpc instance_npcname("#ep14bs_stchatr", instance_id());
+	end;
+OnReplay:
+	initnpctimer;
+	end;
+OnTimer2000:
+	set .@chat_ran,rand(1,3);
+	if (.@chat_ran == 1) {
+		donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat38";
+		end;
+	}
+	else if (.@chat_ran == 2) {
+		donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat40";
+		end;
+	}
+	else if (.@chat_ran == 3) {
+		donpcevent instance_npcname("브리드#bios3_00f", instance_id())+"::OnChat41";
+		end;
+	}
+OnTimer6000:
+	set .@chat_ran,rand(1,3);
+	if (.@chat_ran == 1) {
+		donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat34";
+		end;
+	}
+	else if (.@chat_ran == 2) {
+		donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat39";
+		end;
+	}
+	else if (.@chat_ran == 3) {
+		donpcevent instance_npcname("제이스#bios3_00f", instance_id())+"::OnChat42";
+		end;
+	}
+OnTimer50000:
+	stopnpctimer;
+	donpcevent instance_npcname("#ep14bs_stchatr", instance_id())+"::OnReplay";
+	end;
+}
+
+1@dth3,62,80,3	script	타락한 오크좀비#1bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#1bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#1bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#1bios3_", instance_id());
+	end;
+}
+1@dth3,64,80,3	script	타락한 오크좀비#2bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#2bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#2bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#2bios3_", instance_id());
+	end;
+}
+1@dth3,66,80,3	script	타락한 오크좀비#3bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#3bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#3bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#3bios3_", instance_id());
+	end;
+}
+1@dth3,68,80,3	script	타락한 오크좀비#4bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#4bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#4bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#4bios3_", instance_id());
+	end;
+}
+1@dth3,72,80,3	script	타락한 오크좀비#5bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#5bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#5bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#5bios3_", instance_id());
+	end;
+}
+1@dth3,74,80,3	script	타락한 오크좀비#6bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#6bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#6bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#6bios3_", instance_id());
+	end;
+}
+1@dth3,76,80,3	script	타락한 오크좀비#7bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#7bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#7bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#7bios3_", instance_id());
+	end;
+}
+1@dth3,78,80,3	script	타락한 오크좀비#8bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#8bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#8bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#8bios3_", instance_id());
+	end;
+}
+1@dth3,62,93,3	script	타락한 오크좀비#9bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#9bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#9bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#9bios3_", instance_id());
+	end;
+}
+1@dth3,64,93,3	script	타락한 오크좀비#10bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#10bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#10bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#10bios3_", instance_id());
+	end;
+}
+1@dth3,66,93,3	script	타락한 오크좀비#11bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#11bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#11bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#11bios3_", instance_id());
+	end;
+}
+1@dth3,68,93,3	script	타락한 오크좀비#12bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#12bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#12bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#12bios3_", instance_id());
+	end;
+}
+1@dth3,72,93,3	script	타락한 오크좀비#13bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#13bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#13bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#13bios3_", instance_id());
+	end;
+}
+1@dth3,74,93,3	script	타락한 오크좀비#14bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#14bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#14bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#14bios3_", instance_id());
+	end;
+}
+1@dth3,76,93,3	script	타락한 오크좀비#15bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#15bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#15bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#15bios3_", instance_id());
+	end;
+}
+1@dth3,78,93,3	script	타락한 오크좀비#16bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#16bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#16bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#16bios3_", instance_id());
+	end;
+}
+1@dth3,62,85,3	script	타락한 오크좀비#17bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#17bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#17bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#17bios3_", instance_id());
+	end;
+}
+1@dth3,64,85,3	script	타락한 오크좀비#18bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#18bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#18bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#18bios3_", instance_id());
+	end;
+}
+1@dth3,66,85,3	script	타락한 오크좀비#19bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#19bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#19bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#19bios3_", instance_id());
+	end;
+}
+1@dth3,68,85,3	script	타락한 오크좀비#20bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#20bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#20bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#20bios3_", instance_id());
+	end;
+}
+1@dth3,72,85,3	script	타락한 오크좀비#21bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#21bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#21bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#21bios3_", instance_id());
+	end;
+}
+1@dth3,74,85,3	script	타락한 오크좀비#22bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#22bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#22bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#22bios3_", instance_id());
+	end;
+}
+1@dth3,76,85,3	script	타락한 오크좀비#23bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#23bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#23bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#23bios3_", instance_id());
+	end;
+}
+1@dth3,78,85,3	script	타락한 오크좀비#24bios3_	3016,{
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("타락한 오크좀비#24bios3_", instance_id())+"::OnDisable";
+	end;
+OnEnable:
+	hideoffnpc instance_npcname("타락한 오크좀비#24bios3_", instance_id());
+	end;
+OnDisable:
+	hideonnpc instance_npcname("타락한 오크좀비#24bios3_", instance_id());
+	end;
+}
+
+moro_cav,63,13,0	warp	cavtovol	1,1,moro_vol,198,176
+
+
+//Enchanter+Accessory [WIP]
+//============================
+
+//moro_cav,32,73,5	script	용사의 증표 교환원#1	482,{
+//	mes "[용사의 증표 교환원]";
+//	mes "모로크를 처치하기 위해";
+//	mes "선봉에 나선 용사들의 전리품인";
+//	mes "용사의 증표를 특별한";
+//	mes "반지와 교환하고 있다.";
+//	mes "한 번 구경해 볼텐가?";
+//	next;
+//	menu "반지 설명",L_Explicar,"반지 교환",L_Comprar,"대화를 종료한다.",L_Encantar;
+//L_Explicar:
+//	mes "[용사의 증표 교환원]";
+//	mes "이 용사의 반지로";
+//	mes "말할 것 같으면";
+//	mes "겉으로 보기에는 아무런";
+//	mes "능력도 없는 것 같아 보인다.";
+//	next;
+//	mes "[용사의 증표 교환원]";
+//	mes "하지만 인챈트전문가";
+//	mes "번즈 에게 가면";
+//	mes "소켓 4개에 인챈트가 가능하며";
+//	mes "잠재된 능력을";
+//	mes "인챈트로 끌어 낼 경우";
+//	mes "무시무시한 힘을 갖게 된다.";
+//	next;
+//	mes "[용사의 증표 교환원]";
+//	mes "용사의 반지가 가지고 있는";
+//	mes "능력을 통해서";
+//	mes "모로크를 무찌르는 데";
+//	mes "큰 일조를 하게 될 것이다.";
+//	mes "또 궁금한 점이 있나?"
+//	next;
+//	menu "반지 설명",L_Explicar,"반지 교환",L_Comprar,"대화를 종료한다.",L_Encantar;
+	
+//	L_Comprar:
+//	mes "- 용사의 반지 -"
+//	mes "^006400모로크를 무찌르기 위해 나선^000000"
+//	mes "^006400용사들을 위해 만들어진 반지.^000000"
+//	mes "^006400인챈트를 통해 모로크를^000000"
+//	mes "^006400상대할 만한 능력을^000000"
+//	mes "^006400이끌어 낼 수 있다.^000000"
+//	mes "^006400계열: 악세사리 / 방어: 0^000000"
+//	mes "^006400무게: 20 / 요구레벨:160^000000"
+//	mes "^006400SLOT:0 / 장착: 전 직업^000000"
+//	next;
+//	mes "[용사의 증표 교환원]"
+//	mes "용사의 반지는"
+//	mes "용사의 증표 30개와"
+//	mes "교환 가능하다."
+//	mes "교환 하겠는가?"
+//	next;
+//	switch(select("이전 메뉴로 돌아간다.","교환<^006400용사의 증표^000000 30개>"))
+//	{
+//		case 1:
+//			mes "[용사의 증표 교환원]";
+//			mes "다시 잘 생각해보시길";
+//			mes "바란다";
+//			next;
+//			menu "반지 설명",L_Explicar,"반지 교환",L_Comprar,"대화를 종료한다.",L_Encantar;
+//			
+//		case 2:
+//			if (countitem < 30) {
+//				

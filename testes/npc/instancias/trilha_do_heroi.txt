@@ -1,0 +1,908 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: trilha_do_heroi.txt                    |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Instância  Trilha do Herói                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Primeira versão [Megasantos]                       |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+mid_camp,207,290,5	script	원정대원#trilhah	852,{
+	mes "[원정대원]";
+	mes "차원의 균열로 가고자 하시는 분은 차원이동기를 이용하시면 됩니다.";
+	mes "내부는 아직 탐사중이니 길을 잃지 않도록 조심하십시오.";
+	close;
+}
+mid_camp,212,290,3	script	원정대원 필#trilhah	852,{
+	mes "[원정대원 필]";
+	mes "차원의 균열로 진입하실겁니까?";
+	mes "이 쪽에 보이는 장치를 이용해 주세요.";
+	next;
+	switch(select("차원의 균열이란?","대화 종료")) {
+	case 1:
+		mes "[원정대원 필]";
+		mes "이미 우리는 이 균열을 통해서 여기와 미드가르드를 오가고 있지않습니까?";
+		mes "차원의 균열은 그것의 확장판으로 생각하시면 될 것 같습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "누군가 차원의 균열이라는 곳을 통해 각 균열로 이어진 길을 이용할 수 있는 방법을 발견했거든요.";
+		next;
+		mes "[원정대원 필]";
+		mes "그래서 안정성 테스트가 끝나고 얼마전부터 이용할 수 있도록 공개했습니다.";
+		mes "덕분에 비프로스트와 모로크, 엘 디카스테스를 빠르게 이동할 수 있게 되었습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "차원의 균열은 시간과 공간이 일그러진 곳입니다.";
+		mes "자칫 길을 잃을 경우 어느곳으로 떨어질 지 모르니 이미 검증이 된 지역만 이용하시기 바랍니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "내부에서 길 잃으면 아무도 찾을 수 없으니까요.";
+		close;
+	case 2:
+		close;
+	}
+}
+mid_camp,210,291,0	script	캠프 차원이 동기#camp	10007,{
+	mes "차원이동기를 통해 차원의 균열로 진입합니다.";
+	next;
+	switch(select("예","아니오.")) {
+	case 1:
+		close2;
+		warp "dali",141,82;
+		end;
+	case 2:
+		close;
+	}
+OnPCLoadMapEvent:
+	if(strcharinfo(3)=="mid_camp") showevent 0,1;
+	end;
+}
+bif_fild01,320,154,3	script	원정대원#trilhah1	852,{
+	mes "[원정대원]";
+	mes "차원의 균열로 가고자 하시는 분은 차원이동기를 이용하시면 됩니다.";
+	mes "내부는 아직 탐사중이니 길을 잃지 않도록 조심하십시오.";
+	close;
+}
+bif_fild01,314,154,5	script	원정대원 필#trilhah1	852,{
+	mes "[원정대원 필]";
+	mes "차원의 균열로 진입하실겁니까?";
+	mes "이 쪽에 보이는 장치를 이용해 주세요.";
+	next;
+	switch(select("차원의 균열이란?","대화 종료")) {
+	case 1:
+		mes "[원정대원 필]";
+		mes "이미 우리는 이 균열을 통해서 여기와 미드가르드를 오가고 있지않습니까?";
+		mes "차원의 균열은 그것의 확장판으로 생각하시면 될 것 같습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "누군가 차원의 균열이라는 곳을 통해 각 균열로 이어진 길을 이용할 수 있는 방법을 발견했거든요.";
+		next;
+		mes "[원정대원 필]";
+		mes "그래서 안정성 테스트가 끝나고 얼마전부터 이용할 수 있도록 공개했습니다.";
+		mes "덕분에 비프로스트와 모로크, 엘 디카스테스를 빠르게 이동할 수 있게 되었습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "차원의 균열은 시간과 공간이 일그러진 곳입니다.";
+		mes "자칫 길을 잃을 경우 어느곳으로 떨어질 지 모르니 이미 검증이 된 지역만 이용하시기 바랍니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "내부에서 길 잃으면 아무도 찾을 수 없으니까요.";
+		close;
+	case 2:
+		close;
+	}
+}
+bif_fild01,318,159,0	script	캠프 차원이 동기#bi	10007,{
+	mes "차원이동기를 통해 차원의 균열로 진입합니다.";
+	next;
+	switch(select("예","아니오.")) {
+	case 1:
+		close2;
+		warp "dali",43,92;
+		end;
+	case 2:
+		close;
+	}
+OnPCLoadMapEvent:
+	if(strcharinfo(3)=="bif_fild01") showevent 0,1;
+	end;
+}
+dic_fild02,236,33,3	script	원정대원#trilhah2	852,{
+	mes "[원정대원]";
+	mes "차원의 균열로 가고자 하시는 분은 차원이동기를 이용하시면 됩니다.";
+	mes "내부는 아직 탐사중이니 길을 잃지 않도록 조심하십시오.";
+	close;
+}
+dic_fild02,239,36,5	script	원정대원 필#trilhah2	852,{
+	mes "[원정대원 필]";
+	mes "차원의 균열로 진입하실겁니까?";
+	mes "이 쪽에 보이는 장치를 이용해 주세요.";
+	next;
+	switch(select("차원의 균열이란?","대화 종료")) {
+	case 1:
+		mes "[원정대원 필]";
+		mes "이미 우리는 이 균열을 통해서 여기와 미드가르드를 오가고 있지않습니까?";
+		mes "차원의 균열은 그것의 확장판으로 생각하시면 될 것 같습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "누군가 차원의 균열이라는 곳을 통해 각 균열로 이어진 길을 이용할 수 있는 방법을 발견했거든요.";
+		next;
+		mes "[원정대원 필]";
+		mes "그래서 안정성 테스트가 끝나고 얼마전부터 이용할 수 있도록 공개했습니다.";
+		mes "덕분에 비프로스트와 모로크, 엘 디카스테스를 빠르게 이동할 수 있게 되었습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "차원의 균열은 시간과 공간이 일그러진 곳입니다.";
+		mes "자칫 길을 잃을 경우 어느곳으로 떨어질 지 모르니 이미 검증이 된 지역만 이용하시기 바랍니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "내부에서 길 잃으면 아무도 찾을 수 없으니까요.";
+		close;
+	case 2:
+		close;
+	}
+}
+dic_fild02,241,31,0	script	캠프 차원이 동기#di	10007,{
+	mes "차원이동기를 통해 차원의 균열로 진입합니다.";
+	next;
+	switch(select("예","아니오.")) {
+	case 1:
+		close2;
+		warp "dali",41,134;
+		end;
+	case 2:
+		close;
+	}
+OnPCLoadMapEvent:
+	if(strcharinfo(3)=="dic_fild02") showevent 0,1;
+	end;
+}
+moc_fild22b,223,203,3	script	원정대원#trilhah3	852,{
+	mes "[원정대원]";
+	mes "차원의 균열로 가고자 하시는 분은 차원이동기를 이용하시면 됩니다.";
+	mes "내부는 아직 탐사중이니 길을 잃지 않도록 조심하십시오.";
+	close;
+}
+moc_fild22b,225,198,5	script	원정대원 필#trilhah3	852,{
+	mes "[원정대원 필]";
+	mes "차원의 균열로 진입하실겁니까?";
+	mes "이 쪽에 보이는 장치를 이용해 주세요.";
+	next;
+	switch(select("차원의 균열이란?","대화 종료")) {
+	case 1:
+		mes "[원정대원 필]";
+		mes "이미 우리는 이 균열을 통해서 여기와 미드가르드를 오가고 있지않습니까?";
+		mes "차원의 균열은 그것의 확장판으로 생각하시면 될 것 같습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "누군가 차원의 균열이라는 곳을 통해 각 균열로 이어진 길을 이용할 수 있는 방법을 발견했거든요.";
+		next;
+		mes "[원정대원 필]";
+		mes "그래서 안정성 테스트가 끝나고 얼마전부터 이용할 수 있도록 공개했습니다.";
+		mes "덕분에 비프로스트와 모로크, 엘 디카스테스를 빠르게 이동할 수 있게 되었습니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "차원의 균열은 시간과 공간이 일그러진 곳입니다.";
+		mes "자칫 길을 잃을 경우 어느곳으로 떨어질 지 모르니 이미 검증이 된 지역만 이용하시기 바랍니다.";
+		next;
+		mes "[원정대원 필]";
+		mes "내부에서 길 잃으면 아무도 찾을 수 없으니까요.";
+		close;
+	case 2:
+		close;
+	}
+}
+moc_fild22b,221,201,0	script	캠프 차원이 동기#moc	10007,{
+	mes "차원이동기를 통해 차원의 균열로 진입합니다.";
+	next;
+	switch(select("예","아니오.")) {
+	case 1:
+		close2;
+		warp "dali",119,56;
+		end;
+	case 2:
+		close;
+	}
+OnPCLoadMapEvent:
+	if(strcharinfo(3)=="moc_fild22b") showevent 0,1;
+	end;
+}
+//dimensional crack NPCS
+
+
+dali,137,87,3	script	연합 주둔지 파견원	997,{
+	mes "[연합 주둔지 파견원]";
+	mes "이 쪽 차원의 균열은 요툰헤임의 연합 캠프로 연결 되어 있습니다.";
+	mes "안정적으로 이동이 가능하도록 수백차례 실험 끝에 설치된 것이니 안심 하십시오.";
+	close;
+}
+
+dali,119,76,7	script	파티원#SHADOW	482,{
+	end;
+OnChat12:
+	npctalk "깼냐?";
+	end;
+OnChat16:
+	npctalk "몰라. 앞에서 사고 났나 봐.";
+	end;
+OnChat23:
+	npctalk "내가 그냥 참는다.";
+	end;
+OnChat31:
+	npctalk "조금만 자. 나도 졸립단 말이야. 이따 나랑 바꿔.";
+	end;
+}
+dali,120,77,4	script	파티원#SURA	484,{
+	end;
+OnChat10:
+	emotion e_yawn;
+	npctalk " 어? 뭐야? 아직도 안 들어 갔어?";
+	end;
+OnChat13:
+	emotion e_an;
+	npctalk "왜 아직도 안 들어 가?";
+	end;
+OnChat19:
+	emotion e_an;
+	end;
+OnChat20:
+	npctalk "아! 짜증나! 파티만 들어갈 수 있다고 그래서 왔는데!";
+	end;
+OnChat22:
+	emotion e_an;
+	end;
+OnChat27:
+	emotion e_yawn;
+	npctalk "아, 몰라. 난 다시 잘래. 들어 가면 깨워.";
+	end;
+}
+dali,119,78,2	script	파티원#GUILLOTINE	466,{
+	end;
+OnChat5:
+	npctalk "그렇게 먹고 또 먹어?";
+	end;
+OnChat9:
+	npctalk "아까 저기 상인 지나가는 것 같던데. 어디 갔지?";
+	end;
+OnChat13:
+	npctalk "조금만 기다려 봐. 이따가 상인 지나갈 거야.";
+	end;
+OnChat18:
+	npctalk "나도 한입만.";
+	end;
+OnChat23:
+	npctalk "그러게. 이럴 줄 알았으면 아까 다른데 들어 갈걸!";
+	end;
+OnChat25:
+	npctalk "아니거든.";
+	end;
+OnChat30:
+	emotion e_ag;
+	npctalk "아니라니까!!!!!!!!!";
+	end;
+}
+dali,117,79,5	script	파티원#CRU	745,{
+	end;
+OnChat4:
+	npctalk "어, 좀 출출한데... 따끈따끈 고구마나 만두 좀 안 파나?";
+	end;
+OnChat7:
+	npctalk "난 뭘 하기 전에 배를 든든하게 채워야되는 스타일이라고.";
+	end;
+OnChat11:
+	npctalk "밥 먹고 와도 되나?";
+	end;
+OnChat15:
+	npctalk "시원~한 포도쥬스도 사야지~";
+	end;
+OnChat21:
+	npctalk "너는 네가 사 먹어.";
+	end;
+OnChat24:
+	emotion e_gg;
+	npctalk "야, 삐졌냐?";
+	end;
+OnChat28:
+	emotion e_gg;
+	npctalk "삐졌고만!!";
+	end;
+}
+dali,120,81,3	script	파티원#EINOLD	847,{
+	end;
+OnChat18:
+	npctalk "... 쿨럭쿨럭...";
+	end;
+OnChat28:
+	npctalk "뭐야? 너, 이따 나 좀 봐! 이게 오냐오냐 봐줬더니!";
+	end;
+}
+dali,117,81,7	script	파티원#WANDERER	485,{
+	end;
+OnChat2:
+	npctalk "마법대회를 볼 수 있다는 데가 있던데! 거기로 가야지!";
+	end;
+OnChat6:
+	npctalk "나는 그냥 마법대회도 궁금해서...";
+	end;
+OnChat12:
+	npctalk "네가 그거 잡을 수는 있고?";
+	end;
+OnChat17:
+	npctalk "뭐? 말 다 했어??";
+	end;
+OnChat23:
+	npctalk "치사해서 안 먹는다.";
+	end;
+OnChat28:
+	npctalk "나 죽기 전엔 들어갈 수 있으려나...";
+	end;
+OnChat31:
+	npctalk "삐졌어. 삐졌어...";
+	end;
+	
+}
+dali,118,83,3	script	파티원#MONK	746,{
+	end;
+OnChat1:
+	npctalk "마검사 소문이 있던데. 거기로 갑시다.";
+	end;
+OnChat3:
+	npctalk "뭐야? 너도 아까 마검사 가자고 했잖아!";
+	end;
+OnChat8:
+	npctalk "그러고 보니 마신의 탑도 갈 수 있다던데.";
+	end;
+OnChat10:
+	npctalk "페이스웜도 궁금하긴 한데.. 사라도..";
+	end;
+OnChat14:
+	npctalk "그건 네 얘기겠지.";
+	end;
+OnChat21:
+	npctalk "한 대 치겠다? 쳐!";
+	emotion e_ag;
+	end;
+OnChat26:
+	emotion e_gg;
+	npctalk "쫄은 거 봐라. 큭큭.";
+	end;
+OnChat30:
+	npctalk "그러시든가~";
+	end;
+}
+dali,115,85,5	script	파티장#SWORDMASTER	119,{
+	hideonnpc "파티장#SWORDMASTER";
+	hideoffnpc "파티장#SWORDMASTER2";
+	donpcevent "#dalichat::OnEnable";
+	end;
+}
+dali,115,85,0	script	#dalichat	-1,{
+	end;
+OnInit:
+	disablenpc "#dalichat";
+	end;
+OnEnable:
+	enablenpc "#dalichat";
+	initnpctimer;
+	end;
+OnTimer1000:
+	donpcevent "파티장#SWORDMASTER2::OnChat1";
+	end;
+OnTimer2000:
+	donpcevent "파티장#SWORDMASTER2::OnChat2";
+	end;
+OnTimer3000:
+	donpcevent "파티장#SWORDMASTER2::OnChat3";
+	end;
+OnTimer4000:
+	donpcevent "파티장#SWORDMASTER2::OnChat4";
+	end;
+OnTimer6000:
+	donpcevent "파티원#MONK::OnChat1";
+	end;
+OnTimer7500:
+	donpcevent "파티원#WANDERER::OnChat2";
+	end;
+OnTimer9000:
+	donpcevent "파티원#MONK::OnChat3";
+	end;
+OnTimer10500:
+	donpcevent "파티원#CRU::OnChat4";
+	end;
+OnTimer12000:
+	donpcevent "파티원#GUILLOTINE::OnChat5";
+	end;
+OnTimer13500:
+	donpcevent "파티원#WANDERER::OnChat6";
+	end;
+OnTimer15000:
+	donpcevent "파티원#CRU::OnChat7";
+	end;
+OnTimer16500:
+	donpcevent "파티원#MONK::OnChat8";
+	end;
+OnTimer18000:
+	donpcevent "파티원#GUILLOTINE::OnChat9";
+	end;
+OnTimer19500:
+	donpcevent "파티원#SURA::OnChat10";
+	end;
+OnTimer20000:
+	donpcevent "파티원#MONK::OnChat10";
+	end;
+OnTimer21000:
+	donpcevent "파티원#CRU::OnChat11";
+	end;
+OnTimer22500:
+	donpcevent "파티원#WANDERER::OnChat12";
+	donpcevent "파티원#SHADOW::OnChat12";
+	end;
+OnTimer24000:
+	donpcevent "파티원#SURA::OnChat13";
+	end;
+OnTimer24500:
+	donpcevent "파티원#GUILLOTINE::OnChat13";
+	end;
+OnTimer25500:
+	donpcevent "파티원#MONK::OnChat14";
+	end;
+OnTimer27000:
+	donpcevent "파티원#CRU::OnChat15";
+	end;
+OnTimer28500:
+	donpcevent "파티원#SHADOW::OnChat16";
+	end;
+OnTimer30000:
+	donpcevent "파티원#WANDERER::OnChat17";
+	end;
+OnTimer31500:
+	donpcevent "파티원#GUILLOTINE::OnChat18";
+	end;
+OnTimer32000:
+	donpcevent "파티원#EINOLD::OnChat18";
+	end;
+OnTimer33000:
+	donpcevent "파티원#SURA::OnChat19";
+	end;
+OnTimer34000:
+	donpcevent "파티원#SURA::OnChat20";
+	end;
+OnTimer36000:
+	donpcevent "파티원#MONK::OnChat21";
+	donpcevent "파티원#CRU::OnChat21";
+	end;
+OnTimer37500:
+	donpcevent "파티원#SURA::OnChat22";
+	end;
+OnTimer39000:
+	donpcevent "파티원#WANDERER::OnChat23";
+	donpcevent "파티원#GUILLOTINE::OnChat23";
+	donpcevent "파티원#SHADOW::OnChat23";
+	end;
+OnTimer40500:
+	donpcevent "파티원#CRU::OnChat24";
+	end;
+OnTimer42000:
+	donpcevent "파티원#GUILLOTINE::OnChat25";
+	end;
+OnTimer43500:
+	donpcevent "파티원#MONK::OnChat26";
+	end;
+OnTimer45000:
+	donpcevent "파티원#SURA::OnChat27";
+	end;
+OnTimer46500:
+	donpcevent "파티원#CRU::OnChat28";
+	donpcevent "파티원#WANDERER::OnChat28";
+	donpcevent "파티원#EINOLD::OnChat28";
+	end;
+OnTimer48000:
+	donpcevent "파티장#SWORDMASTER2::OnChat29";
+	end;
+OnTimer49500:
+	donpcevent "파티원#GUILLOTINE::OnChat30";
+	donpcevent "파티원#MONK::OnChat30";
+	end;
+OnTimer51000:
+	donpcevent "파티장#SWORDMASTER2::OnChat31";
+	end;
+OnTimer52500:
+	donpcevent "파티장#SWORDMASTER2::OnChat32";
+	stopnpctimer;
+	disablenpc "#dalichat";
+	end;
+}
+
+dali,115,85,3	script	파티장#SWORDMASTER2	119,{
+	end;
+OnInit:
+	hideonnpc "파티장#SWORDMASTER2";
+	end;
+OnChat1:
+	npctalk "주목!!!";
+	end;
+OnChat2:
+	npctalk "자자, 조용히들 하시고 줄을 서세요!";
+	end;
+OnChat3:
+	npctalk "우리는 지금 차원의 균열 내부에 들어 왔습니다. 어느 곳을 먼저 갈까요?";
+	end;
+OnChat4:
+	npctalk "좋은 의견 있으신 분 없나요?";
+	end;
+OnChat29:
+	npctalk "저어..... 여러분.............?";
+	end;
+OnChat31:
+	emotion e_sob;
+	npctalk "제 말 좀....";
+	end;
+OnChat32:
+	hideonnpc "파티장#SWORDMASTER2";
+	hideoffnpc "파티장#SWORDMASTER";
+	end;
+}
+
+dali,102,83,5	script	거상#HUMERCHANT	900,2,2,{
+	mes "[거상 카네]";
+	mes "아니, 자네는?";
+	next;
+	mes "[거상 카네]";
+	mes "나는 자네가 무얼 원하는지";
+	mes "알고 있지.";
+	mes "물건을 찾는 거지?";
+	next;
+	mes "[거상 카네]";
+	mes "요즘 단속이 심해서 내 놓고";
+	mes "팔지는 못하거든.";
+	next;
+	mes "[거상 카네]";
+	mes "잠시 이리로…";
+	next;
+	mes "[단속원]";
+	mes "내 여기 있을 줄 알았지!!";
+	mes "여기 잡상인 출입금지인 거";
+	mes "몰라요?";
+	hideoffnpc "단속원#JP_RUN";
+	next;
+	mes "[거상 카네]";
+	mes "내가 왜 잡상인이야?";
+	next;
+	mes "[단속원]";
+	mes "그럼 허가증 좀 보여줘요.";
+	next;
+	mes "[거상 카네]";
+	mes "난 그런 종이조각에 구애받지";
+	mes "않는 사람이라구!!";
+	next;
+	mes "[거상 카네]";
+	mes "자네! 필요한 물건이 있으면";
+	mes "나를 찾아 오게!!!";
+	next;
+	mes "[단속원]";
+	mes "놓칠까보냐!!";
+	hideonnpc "거상#HUMERCHANT";
+	close2;
+	hideonnpc "단속원#JP_RUN";
+	enablenpc "거상#HUMERCHANT2";
+	hideoffnpc "거상#HUMERCHANT2";
+	disablenpc "거상#HUMERCHANT";
+	end;
+	
+OnTouch:
+	mes "[거상 카네]";
+	mes "시원~한 쥬스 있어요!";
+	mes "사과쥬스, 포도쥬스~";
+	mes "말만해, 말만!";
+	next;
+	mes "[거상 카네]";
+	mes "밤고구마, 만두~";
+	mes "따끈따끈한 간식 있어요~";
+	close;
+	
+}
+dali,105,82,1	script	단속원#JP_RUN	430,{
+	end;
+OnInit:
+	hideonnpc "단속원#JP_RUN";
+	end;
+}
+dali,63,112,7	script	거상#HUMERCHANT2	900,2,2,{
+	mes "[거상 카네]";
+	mes "여길 지나가려면 통행료.";
+	next;
+	switch(select("통행료?")) {
+	case 1:
+		mes "[거상 카네]";
+		mes "몰랐어?";
+		mes "500제니야.";
+		next;
+		mes "[단속원]";
+		mes "아니, 이젠 사기까지 치네요?";
+		hideoffnpc "단속원#JP_RUN2";
+		next;
+		mes "[거상 카네]";
+		mes "헉! 어떻게 내가 가는 곳마다";
+		mes "쫓아오지?";
+		mes "나 좋아해? 그런 거야?";
+		mes "연락처 알려 줄까?";
+		next;
+		mes "[단속원]";
+		mes "알려주면 좋죠.";
+		mes "잡으러 갈 테니까.";
+		next;
+		mes "[거상 카네]";
+		mes "순순히 말로 해서는 안되겠군.";
+		mes "다음에 만날 땐 가만 안둬.";
+		next;
+		mes "[단속원]";
+		mes "또 도망가네!";
+		hideonnpc "거상#HUMERCHANT2";
+		close2;
+		hideonnpc "단속원#JP_RUN2";
+		hideoffnpc "거상#HUMERCHANT3";
+		disablenpc "거상#HUMERCHANT2";
+		end;
+	}
+OnInit:
+	disablenpc "거상#HUMERCHANT2";
+	end;
+OnTouch:
+	mes "[거상 카네]";
+	mes "500제니";
+	close;
+}
+dali,67,113,3	script	단속원#JP_RUN2	430,{
+	end;
+OnInit:
+	hideonnpc "단속원#JP_RUN2";
+	end;
+}
+dali,89,97,3	script	거상#HUMERCHANT3	900,{
+	mes "[거상 카네]";
+	mes "당신, 오늘 날 만난걸 행운인줄 알아.";
+	mes "내가 누구냐고?";
+	mes "나로 말할 것 같으면 장차 판매왕이";
+	mes "될 사나이지!";
+	next;
+	mes "[거상 카네]";
+	mes "내가 지금은 이렇게 노점을 하지만";
+	mes "언젠가 내 이름을 건 가게를";
+	mes "할 거야.";
+	next;
+	mes "[거상 카네]";
+	mes "오늘 개시이고 하니 물건을 싸게";
+	mes "줄게. 한 번 보기나 하라고.";
+	next;
+	mes "[거상 카네]";
+	mes "내가 무얼 파느냐면..";
+	mes "링 오브 레조넌스!";
+	mes "링 오브 플레임로드!";
+	mes "모험가 배낭!";
+	next;
+	mes "[거상 카네]";
+	mes "필요한 게 있으면 얘기,";
+	hideoffnpc "단속원#JP_RUN3";
+	next;
+	mes "[단속원]";
+	mes "아니, 이 사람 여기서 또 이러고";
+	mes "있네! 내가 여기서 장사하지";
+	mes "말라고 했죠!!";
+	mes "잡아 들이기 전에 얼른 가요!";
+	next;
+	mes "[거상 카네]";
+	mes "쳇!!";
+	mes "날 이런식으로 대하다니!";
+	mes "당신, 후회할 거야!";
+	next;
+	mes "[단속원]";
+	mes "뭘 또 후회 한대.";
+	hideonnpc "거상#HUMERCHANT3";
+	close2;
+	hideonnpc "단속원#JP_RUN3";
+	enablenpc "거상#HUMERCHANT";
+	hideoffnpc "거상#HUMERCHANT";
+	end;
+OnInit:
+	hideonnpc "거상#HUMERCHANT3";	
+	end;
+}
+dali,89,94,7	script	단속원#JP_RUN3	430,{
+	end;
+OnInit:
+	hideonnpc "단속원#JP_RUN3";
+	end;
+}
+
+//Usefull NPC & Warps
+dali,112,96,3	script	고양이손 상단 물류관리냥	496,{
+	mes "[고양이손 상단 물류관리냥]";
+	mes "어서오세냥.";
+	mes "이 오묘한 장소에서 여러분의 물품을 관리 해 드리는 물류담당냥이다냥.";
+	mes "창고를 이용하실거냥?";
+	next;
+	switch(select("창고를 사용한다.- 200z","그만 둔다.")) {
+	case 1:
+		mes "[고양이손 상단 물류관리원]";
+		mes "손님의 창고를 소환하겠다냥!";
+		mes "좋은시간 되시라냥~냥냥냥";
+		callfunc "F_Kafra",5,2,1,200,0;
+		
+	case 2:
+		mes "[고양이손 상단 물류관리원]";
+		mes "그럼 다음에 이용해주시라냥.";
+		close;
+	}
+}
+dali,56,126,3	script	사파 파견원#BENKUNI	449,{
+	mes "[벤쿠니 미요]";
+	mes "이 쪽 차원의 균열은 엘 디카스테스의 남쪽 카미달 산맥 남부와 연결이 되어 있습니다.";
+	mes "조사차 이 곳에 들렀지만, 정말이지 믿기 힘들군요.";
+	next;
+	mes "[벤쿠니 미요]";
+	mes "게다가 바로 옆에 라피네라니..";
+	mes ".......흐음..";
+	mes "아, 걱정 마세요. 이런 곳에서까지 싸우고 싶지는 않으니까요.";
+	close;
+}
+dali,51,104,5	script	스플랑디드 병사#FAIRYSO	447,{
+	mes "[스플랑디드 병사]";
+	mes "비프로스트 남부와 연결된 차원의 균열입니다.";
+	mes "스플랑디드 전진기지로 빠르게 이동 할 수 있죠.";
+	next;
+	mes "[스플랑디드 병사]";
+	mes "게다가 이걸 잘 이용하면 사파의 수도까지 빠른 진격도 가능하겠군요.";
+	mes "후후.. 말이 그렇다는 거죠. 말이.";
+	next;
+	mes "[스플랑디드 병사]";
+	mes "마요르께서 최대한 마찰을 피하고 협력하라고 하셨으니 그런일은 없을겁니다.";
+	mes "당면한 적은 이제 사파가 아니라 마왕이니까요.";
+	close;
+}
+dali,122,60,3	script	모로크 병사#MOC_SOLDIER	707,{
+	mes "[모로크 병사]";
+	mes "이 쪽은 모로크에 발생한 차원의 균열과 연결됩니다.";
+	mes "미드가르드로 돌아갈 수 있는 빠른 통로죠.";
+	mes "균열 주변은 여전히 폐허입니다만...";
+	close;
+}
+dali02,58,123,3	script	호기심 많은 기사#KY_KNT	418,{
+	mes "[호기심 많은 기사]";
+	mes "이곳에 있는 로열가드가 애타게";
+	mes "도움을 청하더군.";
+	mes "비밀통로로 들어간 곳은";
+	mes "어느 궁전이었는데,그게 좀...";
+	mes "이상했어. 그래서 곧장 나올 수 밖에";
+	next;
+	mes "[호기심 많은 기사]";
+	mes "없었지.";
+	mes "자네가 한 번 가보겠나?";
+	mes "그곳에서 대체 무슨 일이";
+	mes "반복되고 있는 건지 알고 싶군.";
+	close;
+}
+dali02,51,112,5	script	혼란에 빠진 도적#DST_SOL	939,{
+	mes "[혼란에 빠진 도적]";
+	mes "음주 직후에 무리한 금품갈취";
+	mes "활동을 하는 도중에 뜬금없이";
+	mes "이곳으로 오게 되었네.";
+	mes "여긴 이상한 것들 천지야.";
+	next;
+	mes "[혼란에 빠진 도적]";
+	mes "시간도 장소도 전부 엉터리야!";
+	mes "후...일에 집중하면 좀 나아지겠지.";
+	close;
+}
+dali02,65,115,5	script	모험을 즐기는 라플레#ra	516,{
+	mes "[길잡이 라플레]";
+	mes "이런, 또다시 이곳으로 오고 말았어.";
+	mes "출구가 보이지 않아, 우린 지독한";
+	mes "미로에 갇히고 말았어!";
+	next;
+	mes "[관광객 라플레]";
+	mes "여기가 그 유명한 프론테라인가?";
+	mes "컴컴한 게 역시 대도시 답네!";
+	next;
+	mes "[여행 중인 라플레]";
+	mes "시계 소리가 들리는 컴컴한 곳이야";
+	mes "여기는 코모도가 틀림없어!";
+	next;
+	mes "[모험을 즐기는 라플레]";
+	mes "다들 무기를 집어 들어.";
+	mes "우린 타나토스 타워 한 가운데로";
+	mes "들어오고야 만 거라고.";
+	close;
+}
+dali02,68,117,5	script	길잡이 라플레#ra	516,{
+	mes "[길잡이 라플레]";
+	mes "이런, 또다시 이곳으로 오고 말았어.";
+	mes "출구가 보이지 않아, 우린 지독한";
+	mes "미로에 갇히고 말았어!";
+	next;
+	mes "[관광객 라플레]";
+	mes "여기가 그 유명한 프론테라인가?";
+	mes "컴컴한 게 역시 대도시 답네!";
+	next;
+	mes "[여행 중인 라플레]";
+	mes "시계 소리가 들리는 컴컴한 곳이야";
+	mes "여기는 코모도가 틀림없어!";
+	next;
+	mes "[모험을 즐기는 라플레]";
+	mes "다들 무기를 집어 들어.";
+	mes "우린 타나토스 타워 한 가운데로";
+	mes "들어오고야 만 거라고.";
+	close;
+}
+dali02,65,119,5	script	관광객 라플레#ra	516,{
+	mes "[길잡이 라플레]";
+	mes "이런, 또다시 이곳으로 오고 말았어.";
+	mes "출구가 보이지 않아, 우린 지독한";
+	mes "미로에 갇히고 말았어!";
+	next;
+	mes "[관광객 라플레]";
+	mes "여기가 그 유명한 프론테라인가?";
+	mes "컴컴한 게 역시 대도시 답네!";
+	next;
+	mes "[여행 중인 라플레]";
+	mes "시계 소리가 들리는 컴컴한 곳이야";
+	mes "여기는 코모도가 틀림없어!";
+	next;
+	mes "[모험을 즐기는 라플레]";
+	mes "다들 무기를 집어 들어.";
+	mes "우린 타나토스 타워 한 가운데로";
+	mes "들어오고야 만 거라고.";
+	close;
+}
+dali02,69,122,5	script	여행 중인 라플레#ra	516,{
+	mes "[길잡이 라플레]";
+	mes "이런, 또다시 이곳으로 오고 말았어.";
+	mes "출구가 보이지 않아, 우린 지독한";
+	mes "미로에 갇히고 말았어!";
+	next;
+	mes "[관광객 라플레]";
+	mes "여기가 그 유명한 프론테라인가?";
+	mes "컴컴한 게 역시 대도시 답네!";
+	next;
+	mes "[여행 중인 라플레]";
+	mes "시계 소리가 들리는 컴컴한 곳이야";
+	mes "여기는 코모도가 틀림없어!";
+	next;
+	mes "[모험을 즐기는 라플레]";
+	mes "다들 무기를 집어 들어.";
+	mes "우린 타나토스 타워 한 가운데로";
+	mes "들어오고야 만 거라고.";
+	close;
+}
+
+dali,109,94,3	shop	고양이손 상단 잡화상인	496,611:200,1750:-1,1065:75
+dali,149,82,0	warp	dalimidcamp	1,1,mid_camp,210,289
+dali,40,87,0	warp	dalibifrost	1,1,bif_fild01,318,155
+dali,35,139,0	warp	dalidicast	1,1,dic_fild02,237,32
+dali,122,49,0	warp	dalimoc	1,1,moc_fild22b,227,200
+dali,64,129,0	warp	dalidali02	1,1,dali02,66,101
+dali02,66,98,0	warp	dali02dali	1,1,dali,64,125
+
+//mapflags
+mid_camp	mapflag	loadevent
+bif_fild01	mapflag	loadevent
+dic_fild02	mapflag	loadevent
+moc_fild22b	mapflag	loadevent
+dali	mapflag nomemo
+dali02	mapflag nomemo
+dali	mapflag	noteleport
+dali02	mapflag	noteleport
