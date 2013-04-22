@@ -8795,7 +8795,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val2 = 3*val1; //activation chance
 				break;
 			case SC_PYROCLASTIC:
-			   	 val2 += 10*val1*status_get_lv(src); //atk bonus
+			   	 val2 += 10*val1+status_get_lv(src); //atk bonus
 			   	 val3 = 2*val1;//Chance To AutoCast Hammer Fall %
 			  	 break;
 			case SC_PARALYSIS: //[Lighta] need real info

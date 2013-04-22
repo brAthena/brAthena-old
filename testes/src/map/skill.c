@@ -4603,7 +4603,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 						item_tmp.nameid = sg->item_id?sg->item_id:ITEMID_TRAP;
 						item_tmp.identify = 1;
 						if(item_tmp.nameid)
-							map_addflooritem(&item_tmp,1,bl->m,bl->x,bl->y,0,0,0,0);
+							map_addflooritem(&item_tmp,1,bl->m,bl->x,bl->y,0,0,0,4);
 					}
 					skill_delunit(su);
 				}
@@ -7000,7 +7000,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 									item_tmp.identify = 1;
 									if(item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,skill_db[su->group->skill_id].amount[i],LOG_TYPE_OTHER))) {
 										clif_additem(sd,0,0,flag);
-										map_addflooritem(&item_tmp,skill_db[su->group->skill_id].amount[i],sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+										map_addflooritem(&item_tmp,skill_db[su->group->skill_id].amount[i],sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,4);
 									}
 								}
 							}
@@ -7012,7 +7012,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 							item_tmp.identify = 1;
 							if(item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_OTHER))) {
 								clif_additem(sd,0,0,flag);
-								map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+								map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,4);
 							}
 						}
 					}
@@ -14414,6 +14414,9 @@ void skill_weaponrefine(struct map_session_data *sd, int idx)
 			}
 
 			per = status_get_refine_chance(ditem->wlv, (int)item->refine);
+			if(sd->class_&JOBL_THIRD)
+				per += 10;
+			else
 			per += (((signed int)sd->status.job_level)-50)/2; //Updated per the new kro descriptions. [Skotlex]
 
 			pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_OTHER);
@@ -15600,7 +15603,7 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 						memset(&item_tmp,0,sizeof(item_tmp));
 						item_tmp.nameid = group->item_id?group->item_id:ITEMID_TRAP;
 						item_tmp.identify = 1;
-						map_addflooritem(&item_tmp,1,bl->m,bl->x,bl->y,0,0,0,0);
+						map_addflooritem(&item_tmp,1,bl->m,bl->x,bl->y,0,0,0,4);
 					}
 					skill_delunit(unit);
 				}
@@ -16385,7 +16388,7 @@ int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, 
 				break;
 		}
 	} else { // Weapon Forging - skill bonuses are straight from kRO website, other things from a jRO calculator [DracoRPG]
-		make_per = 5000 + sd->status.job_level*20 + status->dex*10 + status->luk*10; // Base
+		make_per = 5000 + ((sd->class_&JOBL_THIRD)?1400:sd->status.job_level*20) + status->dex*10 + status->luk*10; // Base
 		make_per += pc_checkskill(sd,skill_id)*500; // Smithing skills bonus: +5/+10/+15
 		make_per += pc_checkskill(sd,BS_WEAPONRESEARCH)*100 +((wlv >= 3)? pc_checkskill(sd,BS_ORIDEOCON)*100:0); // Weaponry Research bonus: +1/+2/+3/+4/+5/+6/+7/+8/+9/+10, Oridecon Research bonus (custom): +1/+2/+3/+4/+5
 		make_per -= (ele?2000:0) + sc*1500 + (wlv>1?wlv*1000:0); // Element Stone: -20%, Star Crumb: -15% each, Weapon level malus: -0/-20/-30
