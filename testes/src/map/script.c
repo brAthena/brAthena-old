@@ -17165,6 +17165,39 @@ BUILDIN_FUNC(unloadnpc)
 	return 0;
 }
 
+/*================================
+   [brAthena] recall type,<quant>;
+  ================================ */
+BUILDIN_FUNC(recall)
+{
+  struct map_session_data *sd_,*sd = script_rid2sd(st);
+  struct s_mapiterator *iter;
+  struct party_data *p = party_search(sd->status.party_id);
+  struct guild *g = guild_search(sd->status.guild_id);
+  const char *type = script_getstr(st,2);
+  int c = 0, quant;
+  
+  iter = mapit_getallusers();
+      
+   if((!(strcmp(type,"party") == 0) && !(strcmp(type,"guild") == 0)) || !p && !g)
+     return 0;
+
+      if(script_hasdata(st,3))
+       quant = script_getnum(st,3);
+
+     for( sd_ = (TBL_PC *)mapit_first(iter); script_hasdata(st,3) ? mapit_exists(iter) && c < (quant+1) : mapit_exists(iter); sd_ = (TBL_PC *)mapit_next(iter), script_hasdata(st,3) ? c++ : 0) { 
+      if((sd->status.account_id != sd_->status.account_id) && (((strcmp(type,"party") == 0) && sd_->status.party_id == sd->status.party_id) || ((strcmp(type,"guild") == 0) && sd_->status.guild_id == sd->status.guild_id))) {
+       
+      if((sd_->bl.m == sd->bl.m) && (sd_->bl.x == sd->bl.x) && (sd_->bl.y == sd->bl.y))
+        continue;
+        
+       pc_setpos(sd_,sd->mapindex,sd->bl.x,sd->bl.y, CLR_RESPAWN);
+      }
+    }
+
+  mapit_free(iter);
+  return 0;
+}
 
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
@@ -17635,5 +17668,6 @@ struct script_function buildin_func[] = {
 
 	// brAthena
 	BUILDIN_DEF(unloadnpc,"s"),  // [Holy]
+	BUILDIN_DEF(recall,"s?"),
 	{NULL,NULL,NULL},
 };
