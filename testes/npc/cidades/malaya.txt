@@ -363,7 +363,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 	close;
 }
 
-malaya.gat,291,152,3	script	#buwaya_soil	557,{
+malaya,291,152,3	script	#buwaya_soil	557,{
 	if(MALAYA_4QUE!=9) {
 		mes "- Você cheira a algo ruim -";
 		close;
@@ -396,8 +396,8 @@ malaya.gat,291,152,3	script	#buwaya_soil	557,{
 	emotion 75,"#buwaya_soil";
 	next;
 	mes "[Areia]";
-	mes "……";
-	mes "…………";
+	mes "....";
+	mes "......";
 	mes "Dificil, hein ~.";
 	emotion 54,"#buwaya_soil";
 	next;
