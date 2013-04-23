@@ -43,7 +43,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "[Guia de Alberta]";
 						mes "Deixe-me marcar para você a localização";
 						mes "da ^0000FFLoja de Utilidades^000000";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,98,154,0,0x0A82FF;
 						next; 
@@ -60,7 +60,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "[Guia de Alberta]";
 						mes "Deixe-me marcar para você a localização";
 						mes "da ^FF5400Loja de Armas & Armaduras^000000";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,117,37,2,0xFFB400;
 						next;
@@ -69,7 +69,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "[Guia de Alberta]";
 						mes "Deixe-me marcar para você a localização";
 						mes "do ^006400Hotel^000000";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,65,233,3,0xAAFF00;
 						next;
@@ -78,7 +78,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "[Guia de Alberta]";
 						mes "Deixe-me marcar para você a localização";
 						mes "do ^7F3300Salão de Beleza^000000";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,48,145,4,0xD2691E;
 						next;
@@ -88,7 +88,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "A Guilda dos Mercadores é onde";
 						mes "é possível mudar de classe para ^800080Mercador.";
 						mes "Deixe-me marcar a lozaliação";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,5,0xDA70D6;
 						next;
@@ -117,7 +117,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						mes "[Guia de Alberta]";
 						mes "Deixe-me marcar para você a localização";
 						mes "^0000FFKafra Employees^000000";
-						mes "em seu mini=mapa.";
+						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,8,0x0A82FF;
 						viewpoint 1,113,60,9,0x0A82FF;

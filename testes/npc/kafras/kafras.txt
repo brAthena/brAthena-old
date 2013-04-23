@@ -158,38 +158,25 @@ geffen,203,123,2	script	Funcionária Kafra::geffen2	114,{
 
 // Porto de Malaya
 //============================================================
-/* Kafras do porto de malaya
-malaya,71,79,3	script	Kafra Employee#01	581,{
-callfunc "F_KafSet";
-mes "[Kafra Employee]";
-mes "Welcome. Kafra Services are always at your service.";
-mes "How may I help you?";
-callfunc "F_Kafra",5,0,1,20,600;
-savepoint "malaya",143,109;
-callfunc "F_KafEnd",0,1,"in the city of Port Malaya";
-(Kafra Type 3)
-0  Save
-1  Use Storage
-2  Rent a Pushcart
-3  Check Other Information
-4  Cancel
+malaya,71,79,3	script#re	Funcionária Kafra#01	581,{
+	callfunc "F_KafSet";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo. Os Serviços Kafra estarão sempre a sua disposição.";
+	mes "Como posso te ajudar?";
+	callfunc "F_Kafra",5,3,1,20,600;
+	savepoint "malaya",143,109;
+	callfunc "F_KafEnd",0,1,"na cidade do Porto de Malaya";
 }
 
-malaya,234,204,3	script	Kafra Employee#02	581,{
-callfunc "F_KafSet";
-mes "[Kafra Employee]";
-mes "Welcome. Kafra Services are always at your service.";
-mes "How may I help you?";
-callfunc "F_Kafra",5,0,1,20,600;
-savepoint "malaya",143,109;
-callfunc "F_KafEnd",0,1,"in the city of Port Malaya";
-(Kafra Type 3)
-0  Save
-1  Use Storage
-2  Rent a Pushcart
-3  Check Other Information
-4  Cancel
-}*/
+malaya,234,204,3	script#re	Funcionária Kafra#02	581,{
+	callfunc "F_KafSet";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo. Os Serviços Kafra estarão sempre a sua disposição.";
+	mes "Como posso te ajudar?";
+	callfunc "F_Kafra",5,3,1,20,600;
+	savepoint "malaya",143,109;
+	callfunc "F_KafEnd",0,1,"na cidade do Porto de Malaya";
+}
 
 // Morocc
 //============================================================

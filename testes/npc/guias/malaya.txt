@@ -12,87 +12,72 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Versões brA: 1.1                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias do Porto de Malaya.                   |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Primeira versão [Megasantos]                       |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-malaya,250,83,2	script	Guia do Porto de Malaya#02::GuiaMalaya	579,{
+malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
 
 	mes "[Guia do Porto de Malaya]";
-	mes "Where cultures and legends come to life!";
-	mes "At the Breathing Village, Port Malaya";
-	mes "We welcome you.";
-	mes "I will show you around the village. Please ask me anything you want.";
-	while (1) {
+	mes "Onde as culturas e lendas ganham vida! A Respiração do Vilarejo, o Porto Malaya";
+	mes "te deseja as boas-vindas. Eu irei te mostrar o vilarejo. Por favor diga-me o que deseja saber.";
+		while(1) {
 		next;
-		switch(select("Funcionária Kafra:Inn & Tavern: Weapon Store: Tool Shop:Hospital:Park:Harbor:Clear the mini map.:Cancel")) {
+		switch(select("Funcionária Kafra:Hospedaria & Taverna:Loja de Armas:Loja de Utilidades:Hospital:Parque:Porto:Limpar o mini-mapa.:Cancelar")) {
 		case 1:
 			mes "[Guia do Porto de Malaya]";
-			mes "^A82FF0Funcionária Kafra^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização da ^A82FF0Funcionária Kafra^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,71,79,1,0xA82FF;
 			viewpoint 1,234,204,2,0xA82FF;
 			break;
 		case 2:
 			mes "[Guia do Porto de Malaya]";
-			mes "^AAFF00Inn & Tavern^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização da ^AAFF00Hospedaria & Taverna^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,193,215,3,0xAAFF00;
 			break;
 		case 3:
 			mes "[Guia do Porto de Malaya]";
-			mes "^808000Weaponry Store^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização da ^808000Loja de Armas^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,114,212,4,0x8080;
 			break;
 		case 4:
 			mes "[Guia do Porto de Malaya]";
-			mes "^FF1493Tool Store^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização da ^FF1493Loja de Utilidades^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,297,167,5,0xFF1493;
 			break;
 		case 5:
 			mes "[Guia do Porto de Malaya]";
-			mes "^8B4513Hospital^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização do ^8B4513Hospital^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,50,75,6,0x8B4513;
 			break;
 		case 6:
 			mes "[Guia do Porto de Malaya]";
-			mes "^8B4513Park^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização do ^8B4513Parque^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,280,371,7,0x8B4513;
 			break;
 		case 7:
 			mes "[Guia do Porto de Malaya]";
-			mes "^8A2BE2Harbor^000000";
-			mes "location will be";
-			mes "marked on the Mini Map.";
-			mes "What else can I help you with?";
+			mes "A localização do ^8A2BE2Porto^000000 será marcada em seu mini-mapa.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 1,276,55,8,0x8A2BE2;
 			break;
 		case 8:
 			mes "[Guia do Porto de Malaya]";
-			mes "Removing marks.";
-			mes "What else can I help you with?";
+			mes "Marcações removidas.";
+			mes "Com o que mais posso te ajudar?";
 			viewpoint 2,71,79,1,0xA82FF;
 			viewpoint 2,234,204,2,0xA82FF;
 			viewpoint 2,193,215,3,0xAAFF00;
@@ -104,11 +89,11 @@ malaya,250,83,2	script	Guia do Porto de Malaya#02::GuiaMalaya	579,{
 			break;
 		case 9:
 			mes "[Guia do Porto de Malaya]";
-			mes "I hope you enjoy your journey.";
+			mes "Espero que aproveite sua estadia.";
 			close;	
-		}
-	}
+}
+}
 }
 
-malaya,71,72,3	duplicate(GuiaMalaya)	Guia do Porto de Malaya#02Mal	579
-malaya,224,204,3	duplicate(GuiaMalaya)	Guia do Porto de Malaya#03Mal	579
+malaya,71,72,3	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	579
+malaya,224,204,3	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	579

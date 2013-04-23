@@ -12,624 +12,679 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Versões brA: 1.1                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs Porto de Malaya.                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Primeira versão [Megasantos]                       |
+//   | 1.1 Tradução PT-BR & Atualização [Holy]                |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-//=Warper
-alberta,237,71,3	script	Optamara Crew#alberta	100,{
-	mes "[Optamara Crew]";
+alberta,237,71,4	script	Tripulante#alberta	100,{
+	mes "[Tripulante]";
 	mes "Ei!";
-	mes "São 10,000 Zeny para ir até o Porto de Malaya. Está interessad"+(sex ? "o":"a")+" ?";
+	mes "São 10,000 Zeny para ir até o Porto de Malaya. Está interessad"+((Sex) ? "o":"a")+" ?";
 	next;
 	switch(select("Sobre o Porto de Malaya:Ir para o Porto de Malaya:Cancelar")) {
-	case 0:
-		mes "[Optamara Crew]";
-		mes "O Porto de Malaya é um pequeno vilarejo you could reach by sailing southwest from Alberta.";
-		next;
-		mes "I couldnt visit the village because they had some issues there but now it seems all is clear!";
-		next;
-		mes "I dont know for sure but it was a village that's like a comfortable and cozy park.";
-		next;
-		mes "I was this close to not coming back to cozy Alberta again.";
-		next;
-		mes "Im sure youll feel the same once you reach Port Malaya.";
-		break;
-		
-	case 1:
-		mes "[Optamara Crew]";
-		mes "Ótimo!";
-		mes "Heading for Port Malaya!!";
-		close2;
-		warp  "malaya",271,55;
-		end;
-		
-	case 2:
-		mes "[Optamara Crew]";
-		mes "Adventurers these days act like they are busy. Come back when you have the time and we could go visit Port Malaya together.";
-		close;
-	}
+		case 1:
+			mes "[Tripulante]";
+			mes "O Porto de Malaya é um pequeno vilarejo que você pode ser acessado através da navegação a suoeste de Alberta.";
+			next;
+			mes "Eu não posso visitar o vilarejo, eu tive alguns problemas lá, mas agora parece que está tudo bem!";
+			next;
+			mes "Não sei ao certo, mas aqui era um vilarejo confortável e aconchegante.";
+			next;
+			mes "Eu achava que nunca mais teria que voltar para Alberta.";
+			next;
+			mes "Tenho certeza de que você se sentirá.";
+			close;
+	
+		case 2:
+			mes "[Tripulante]";
+			mes "Ótimo!";
+			mes "Rumo ao Porto de Malaya!!";
+			close2;
+			warp "malaya",271,55;
+			end;
+	
+		case 3:
+			mes "[Tripulante]";
+			mes "Hoje em dia os aventureiros estão sempre ocupados. Volte quando tiver tempo para que possamos ir visitar Malaya Juntos.";
+			close;
+}
 }
 
-malaya,276,55,3	script	Optamara Crew#malaya	100,{
-	mes "[Optamara Crew]";
-	mes "I think the village is still busy. Done with your visit? There is always a ship heading for Alberta.";
+malaya,276,55,4	script	Tripulante#malaya	100,{
+	mes "[Tripulante]";
+	mes "Eu acho que o vilarejo está cheio. Gostou da sua visita? Existem sempre barcos que vão até Alberta, o que quer fazer?";
 	next;
 	switch(select("Retornar:Não retornar")) {
-	case 0:
-		mes "[Optamara Crew]";
-		mes "Ótimo! Agora deixe me levá-lo para Alberta!!";
-		warp "alberta",239,68;
-		close2;
-		end;
+		case 1:
+			mes "[Tripulante]";
+			mes "Ótimo! Agora deixe me levá-lo para Alberta!!";
+			close2;
+			warp "alberta",239,68;
+			end;
 
-	case 1:
-		mes "[Optamara Crew]";
-		mes "Está bem. Volte a falar comigo quando quiser voltar para Alberta.";
-		close;
-	}
+		case 2:
+			mes "[Tripulante]";
+			mes "Está bem. Volte a falar comigo quando quiser voltar para Alberta.";
+			close;
 }
-
-malaya,270,59,3	script	Port Guard#ma03	570,{
-	if (checkquest(7350)==2){
-		emotion 22;
-		mes "[Port Guard]";
-		mes "O vilarejo is somewhat stable now but you should still be careful walking around at night.";
-		close;
+}
+	
+malaya,270,59,4	script	Guarda do Porto#ma03	570,{
+	mes "[Guarda do Porto]";
+	if(checkquest(7350) == 2){
+	emotion 22;
+	mes "O vilarejo está um pouco estável no momento, mas tenha cuidado ao andar por aqui a noite.";
+	close;
 	}
 	emotion 19;
-	mes "[Port Guard]";
-	mes "The village is chaotic these days. Is it okay for me to be off like this?";
+	mes "O vilarejo está caótico esses dias. Há algum problema em estar aqui fora ?";
 	close;
 }
 
-malaya,257,58,6	script	Jeepney Driver#09	582,{
-	if (checkquest(7350)==2){
-		mes "[Jeepney Driver]";
-		mes "The town is still quite dangerous. Best not touch anything until it is safe.";
-		close;
+malaya,257,58,4	script	Motorista do Jipe#09	582,{
+	mes "[Motorista do Jipe]";
+	if(checkquest(7350) == 2){
+	mes "A cidade ainda é bastante perigosa. Melhor não tocar em nada até que tudo esteja calmo.";
+	close;
 	}
-	mes "[Jeepney Driver]";
-	mes "...You're an outsider... Don't go touching anything and be careful in town...";
+	mes "[Motorista do Jipe]";
+	mes "...Você é "+((Sex) ? "um":"uma")+" turista... Não saia andando para qualquer canto...";
 	close;
 }
 
-malaya,304,100,3	script	Old Man's Granddaughter	576,{
-mes "- He seems cautious of you. -";
-close;
+malaya,304,100,4	script	Neta do Homem Velho	576,{
+	mes "- Ele parece receioso com você. -";
+	close;
 }
 
-ma_in01,125,107,3	script	Ghost Diwata#mal	909,4,4,{
+ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 
 OnTouch:
 	emotion 0;
-	mes "- A creepy Little Girl is standing.";
-	mes "As our eyes meet, a chill runs down my spine with goose bumps all over. -";
+	mes "- Uma assustadora Garota está de pé.";
+	mes "Quando nossos olhos se vêem, um calafrio percorre minha espinha e causa arrepios por todo o corpo. -";
 	next;
 	mes "[Diwata]";
-	mes "Are you here to bully Diwata too?";
-	mes "I won't have it!";
+	mes "Você está aqui para me intimidar?";
+	mes "Eu não tenho medo!";
 	next;
-	mes "-I was thrown out after the Little Girl's low creepy voice and flash from her eyes.-";
+	mes "-Fui lançado para fora depois que a vos da Pequena Garota ecoou e um flash surgiu de seus olhos.-";
 	sleep2 1600;
+	close2;
 	warp "malaya",324,66;
+	end;
 }
 
-malaya,282,129,3	script	Jeepney Driver#03	582,{
-	mes "[Jeepney Driver]";
-	mes "It's not good for outsiders to have a chat... Perhaps the Mumbaki Leader may have the solution for this.";
+malaya,282,129,4	script	Motorista do Jipe#03	582,{
+	mes "[Motorista do Jipe]";
+	mes "Não é bom conversar com pessoas desconhecidas... Talvez o líder Mumbaki possa ter uma solução para isso .";
 	close;
 }
 
-malaya,341,153,3	script	Jeepney Driver#05	582,{
-	mes "[Jeepney Driver]";
-	mes "G... Ghosts in town... Hey... Do you have one on you?";
+malaya,341,153,3	script	Motorista do Jipe#05	582,{
+	mes "[Motorista do Jipe]";
+	mes "F... Fantasmas na cidade... Ei... Você tem um fantasma em você?";
 	close;
 }
 
-malaya,295,171,3	script	Collection Dealer Woeon	909,{
-	if (checkquest(7350)==2){
-		mes "[Woeon]";
-		mes "Sigh... Life is so tough these days.";
-		mes "Why did ghosts come along to bother me so.";
-		mes "I wish I had a lucky charm or something...";
-		next;
-		setquest 7355;
-		completequest 7355;
-		mes "[Woeon]";
-		mes "Why won't you give me one of your belongings so I could keep as a charm?";
-		mes "Come on, one sock could save a man's life, you know.";
-		mes "Cold hearted son of a...";
-		callfunc "HelloMalQuestCheck";
-		close;
-	}
+malaya,295,171,4	script	Vendedor de Antiguidades	582,{
 	mes "[Woeon]";
-	mes "Urghh... Urgh... I got a headache...";
-	mes "My headache must have been brought to me by you from out of town!";
-	mes "Go away. Shoo, leave!";
-	close;
-}
-
-malaya,293,290,3	script	Jeepney Driver#06	582,{
-	mes "[Jeepney Driver]";
-	mes "Gu... Guards... What are the guards doing...";
-	close;
-}
-
-malaya,276,262,3	script	Angry Boy#bako2	577,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,283,265,3	script	Village Chief#bako2	580,{
-	mes "[Village Chief]";
-	mes "I'm desperate for a helping hand";
-	mes "but you look ";
-	mes "too weak and fragile.";
+	if(checkquest(7350) == 2) {
+	mes "Suspiro... A vida está tão difícil nos dias de hoje.";
+	mes "Por que os fantasmas se unem para me encomodar.";
+	mes "Eu gostaria de ter um amuleto da sorte ou algo assim...";
 	next;
-	mes "[Village Chief]";
-	mes "Please come back when";
-	mes "you grow strong enough";
-	mes "to match Incubus.";
-	mes "Done talking";
+	setquest 7355;
+	completequest 7355;
+	mes "[Woeon]";
+	mes "Por que você não me dá um de seus pertences para que eu possa usá-lo?";
+	mes "Vamos lá, uma meia pode salvar a vida de um homem, você sabe.";
+	mes "Coração frio de um filho...";
+	callfunc "HelloMalQuestCheck";
+	close;
+}
+	mes "Urghh... Urgh... Eu tenho uma dor de cabeça...";
+	mes "Minha dor de cabeça deve ter sido traga a mim por você forasteir"+((Sex) ? "o":"a")+"!";
+	mes "Saia. Saia!";
 	close;
 }
 
-malaya,276,269,6	script	Calm Woman#bako2	579,{
-	mes "- He seems cautious of you. -";
+malaya,293,290,4	script	Motorista do Jipe#06	582,{
+	mes "[Motorista do Jipe]";
+	mes "Gu... Guardas... O que os guardas estão fazendo...";
 	close;
 }
 
-malaya,269,267,6	script	Missing Person's Father	582,{
-	mes "- He seems cautious of you. -";
+malaya,276,262,4	script	Garoto Irritado#bako2	577,{
+	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,286,269,3	script	Angry Man#bako2	578,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,278,288,3	script	Port Malaya Villager	583,{
-	mes "- She seems cautious of you. -";
-	close;
-}
-
-malaya,276,288,6	script	Port Malaya Villager#01	582,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,276,286,6	script	Port Malaya Villager#02	582,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,265,274,6	script	Missing Person's Friend	577,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,270,278,3	script	Missing Person's Son#ba	578,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,265,284,3	script	Missing Person's Mother	579,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,290,329,3	script	Frightened Boy#bako1	909,{
-	mes "- He seems cautious of you. -";
-	close;
-}
-
-malaya,285,332,3	script	Old Legend Teller#bako1	909,{
-	mes "[Old Legend Teller]";
-	mes "There is something that needs to be done";
-	mes "but you look too fragile ";
-	mes "to give me a hand.";
+malaya,283,265,4	script	Chefe do Vilarejo#bako2	580,{
+	mes "[Chefe do Vilarejo]";
+	mes "Estou desesperado por uma ajuda";
+	mes "mas você parece";
+	mes "muito frac"+((Sex) ? "o":"a")+" e frágil.";
 	next;
-	mes "[Old Legend Teller]";
-	mes "Come back when ";
-	mes "your strength grows strong enough";
-	mes "to match Incubus.";
+	mes "[Chefe do Vilarejo]";
+	mes "Por favor, volte quando";
+	mes "você crescer e for forte o suficiente como";
+	mes "uma Incubus.";
 	close;
 }
 
-malaya,280,331,3	script	Singing Man#bako1	909,{
-	mes "[Singing Man]";
-	mes "Story of dragon that lives at a lake~";
-	mes "Story of an old lady";
-	mes "that became a dragon long ago~";
-	next;
-	mes "[Singing Man]";
-	mes "Waiting for the son that left for a foreign land,";
-	mes "my son will return";
-	mes "when that moon sets for the 90th time";
-	next;
-	mes "[Singing Man]";
-	mes "The moon sets for the 89th,";
-	mes "The moon sets for the 90th,";
-	mes "The moon sets for the 191st...";
-	next;
-	mes "[Singing Man]";
-	mes "That moon has taken my son away~";
-	mes "That horrible thing ";
-	mes "has swallowed my son,";
-	mes "and I will punish that moon~";
-	next;
-	mes "[Singing Man]";
-	mes "The day the furious moon hides itself from sight,";
-	mes "the whole world will be flooded with rain";
-	mes "with all the villages and people facing death under water~";
-	next;
-	mes "[Singing Man]";
-	mes "The old lady's curse made the moon furious~";
-	mes "Get rid of the old lady to calm the moon~";
-	mes "If only the old lady wasn't here, If only the old lady wasn't here...";
-	next;
-	mes "[Singing Man]";
-	mes "I hear rumors~";
-	mes "The old lady threw herself into the lake~";
-	mes "the old lady, now turned into a dragon, will swallow the moon";
-	mes "and soon swallow the village too~";
+malaya,276,269,4	script	Mulher Calma#bako2	579,{
+	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,275,333,3	script	Singing Woman#bako1	909,{
-	mes "[Singing Woman]";
-	mes "Bakonawa that live at a lake,";
-	mes "story of an old lady that became a dragon.";
-	next;
-	mes "[Singing Woman]";
-	mes "The son that was suppose to return after the moon sets for the 90th time";
-	mes "never did come back even after the moon had set for a few hundred times~";
-	mes "The moon has swallowed the old lady's son~";
-	next;
-	mes "[Singing Woman]";
-	mes "The moon, the moon, you shall receive the old lady's curse~";
-	mes "The whole village was immersed in death";
-	mes "with rain and floods sent by the furious moon~";
-	next;
-	mes "[Singing Woman]";
-	mes "The moon, the moon, be still and be calm,";
-	mes "for the old lady is gone and she is no more~";
-	mes "The old lady has drowned in the lake~";
-	mes "She will transform into Bakonawa and come back";
-	next;
-	mes "[Singing Woman]";
-	mes "to swallow you and ";
-	mes "punish the village soon~";
-	mes "The day the moon dies ";
-	mes "is the day the village dies too~";
+malaya,269,267,4	script	Pai Perdido	582,{
+	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,275,333,3	script	Old Fortune Teller#bako	909,{
-	mes "- Old Fortune Teller seems cautious of you. -";
+malaya,286,269,4	script	Homem Irritado#bako2	578,{
+	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,264,338,3	script	Frightened Maiden#bako1	909,{
-	mes "- She seems cautious of you. -";
+malaya,278,288,4	script	Habitante do Porto#Malaya	583,{
+	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,276,367,3	script	Bent Shaman#ma	909,{
-	mes "[Bent Shaman]";
+malaya,276,288,4	script	Habitante do Porto#01	582,{
+	mes "- Ele parece receioso com você. -";
+	close;
+}
+
+malaya,276,286,4	script	Habitante do Porto#02	582,{
+	mes "- Ele parece receioso com você. -";
+	close;
+}
+
+malaya,265,274,4	script	Amigo Perdido	577,{
+	mes "- Ele parece receioso com você. -";
+	close;
+}
+
+malaya,270,278,4	script	Filho Perdido#ba	578,{
+	mes "- Ele parece receioso com você. -";
+	close;
+}
+
+malaya,265,284,4	script	Mãe Perdida	579,{
+	mes "- Ela parece receiosa com você. -";
+	close;
+}
+
+malaya,290,329,3	script	Menino Assustado#bako1	578,{
+	mes "- Ele parece receioso com você. -";
+	close;
+}
+
+malaya,285,332,4	script	Bancário Lendário#bako1	574,{
+	mes "[Bancário Lendário]";
+	mes "Há algo que precisa ser feito";
+	mes "mas você parece muito frágil";
+	mes "para ajudar.";
+	next;
+	mes "[Bancário Lendário]";
+	mes "Por favor, volte quando";
+	mes "você crescer e for forte o suficiente como";
+	mes "uma Incubus.";
+	close;
+}
+
+malaya,280,331,4	script	Homem Cantante#bako1	578,{
+	mes "[Homem Cantante]";
+	mes "História do dragão que vive em um lago~";
+	mes "História de uma velha senhora";
+	mes "que se tornou um dragão há muito tempo~";
+	next;
+	mes "[Homem Cantante]";
+	mes "Esperando pelo filho que partiu para uma terra distante,";
+	mes "meu filho irá voltar";
+	mes "quando a lua se por a 90º";
+	next;
+	mes "[Homem Cantante]";
+	mes "A lua se põe para 89º,";
+	mes "A lua se põe para 90º,";
+	mes "A lua se põe para 191º...";
+	next;
+	mes "[Homem Cantante]";
+	mes "A lua levou meu filho~";
+	mes "Que coisa horrível,";
+	mes "ela engoliu meu filho,";
+	mes "eu irei punir aquela lua~";
+	next;
+	mes "[Homem Cantante]";
+	mes "O dia em que a lua furiosa se esconde,";
+	mes "o mundo inteiro está inundado com a chuva";
+	mes "e todos os vilarejos e pessoas enfrentam a morte debaixo de água~";
+	next;
+	mes "[Homem Cantante]";
+	mes "A maldição da velha senhora tornou a lua furiosa~";
+	mes "Livre-se da velha senhora para acalmar a lua~";
+	mes "Se a velha senhora não estivesse aqui...";
+	next;
+	mes "[Homem Cantante]";
+	mes "Ouvi rumores~";
+	mes "De que a velha senhora se atirou para dentro do lago~";
+	mes "a velha senhora, agora transformada em dragão, irá engolir a lua";
+	mes "e logo engolirá também o vilarejo~";
+	close;
+}
+
+malaya,275,333,4	script	Mulher Cantante#bako1	579,{
+	mes "[Mulher Cantante]";
+	mes "Bakonawa vive em um lago,";
+	mes "a história da velha senhora que se tornou um dragão.";
+	next;
+	mes "[Mulher Cantante]";
+	mes "O filho que deveria voltar após a lua se por pela 90° vez";
+	mes "nunca mais voltou, mesmo depois da lua ter surgido centenas de vezes~";
+	mes "A lua engoliu o filho da velha senhora~";
+	next;
+	mes "[Mulher Cantante]";
+	mes "A lua, a lua, você receberá a maldição da velha senhora~";
+	mes "O vilarejo inteiro está sujeito a morte";
+	mes "com chuvas e inundações enviadas pela lua furiosa~";
+	next;
+	mes "[Mulher Cantante]";
+	mes "A lua, a lua, fique queita e calma,";
+	mes "a velha senhora se foi, ela não existe mais~";
+	mes "A velha senhora se afogou no lago~";
+	mes "Ela irá se transformar em Bakonawa e retornar";
+	next;
+	mes "[Mulher Cantante]";
+	mes "para te engolir e";
+	mes "punir o vilarejo em breve~";
+	mes "O dia em que a lua morrer";
+	mes "será também o dia em que o vilarejo terá seu fim~";
+	close;
+}
+
+malaya,275,333,4	script	Banqueira Antiga#bako	579,{
+	mes "- Ela parece receioso com você. -";
+	close;
+}
+
+malaya,264,338,4	script	Donzela Assustada#bako1	576,{
+	mes "- Ela parece receiosa com você. -";
+	close;
+}
+
+malaya,276,367,4	script	Xamã#ma	782,{
+	mes "[Xamã]";
 	mes "Urgh Urgh Urghhhhhh";
 	next;
-	mes "Doesn't give even a glance...";
+	mes "Nem se quer olhe...";
 	close;
 }
 
-malaya,289,364,3	script	Young Fortune Teller#ba	909,{
-	mes "- He seems cautious of you. -";
+malaya,289,364,4	script	Jovem Banqueiro#ba	583,{
+	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,290,340,3	script	Guard Leader#buwaya	571,{
-	mes "- Look at you warily while whispering to each other. -";
+malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
+	mes "- Olha para você com receio enquanto sussura com outros guardas. -";
 	close;
 }
 
-malaya,227,311,3	script	Grandma#ma01	909,{
-	mes "[Grandma]";
-	mes "Youre not from around here? Take care of yourself.";
+malaya,227,311,4	script	Avó#ma01	575,{
+	mes "[Avó]";
+	mes "Você não é daqui? Cuide-se.";
 	next;
-	mes "[Grandma]";
-	mes "Im worried because my daughter-in-law is pregnant. I hope nothing goes wrong.";
+	mes "[Avó]";
+	mes "Estou preocupado com a minha filah que está grávida. Espero que nada dê errado.";
 	close;
 }
 
-malaya,169,350,3	script	Imelda#pm03	909,{
-	if (checkquest(7350)==2){
-		mes "[Imelda]";
-		mes "..........";
-		mes "Not bad.";
-		mes "I have my eyes on you. Let's see how you do in this town.. *chuckle*";
-		next;
-		mes "- She is a rather annoying little girl. -";
-		close;
-	}
+malaya,169,350,4	script	Imelda#pm03	475,{
 	mes "[Imelda]";
+	if (checkquest(7350) == 2){
+	mes "..........";
+	mes "Nada mal.";
+	mes "Manterei meus olhos em você.. *chuckle*";
+	next;
+	mes "- A Pequena Garota é um pouco irritante. -";
+	close;
+	}
 	mes ".... Hmm.";
 	close;
 }
 
-malaya,291,152,3	script	#buwaya_soil	-1,{
-	//Pending
+malaya.gat,291,152,3	script	#buwaya_soil	557,{
+	if(MALAYA_4QUE!=9) {
+		mes "- Você cheira a algo ruim -";
+		close;
+	}
+	mes "- Gosogoso -";
+	next;
+	mes "- Gosogoso -";
+	mes "- Craw -";
+	next;
+	mes "- Gosogoso -";
+	mes "- Craw -";
+	mes "- Gosogoso -";
+	next;
+	mes "- Com um objeto pontiagudo na mão -";
+	mes "- Os sentimentos se propagam -";
+	next;
+	menu "Este que é o",-;
+	mes "[Areia]";
+	mes "Mastigando! Que grande coisa dificil de engolir!";
+	next;
+	mes "[Areia]";
+	mes "Ele ^3131FFBuwaya^000000!";
+	mes "De jeito nenhum!";
+	next;
+	select("Buwaya?");
+	mes "[Areia]";
+	mes "Eu sabia! Buwaya";
+	mes "Sobrinho. Eu não o tenho mais.......";
+	mes "O amarelo, é muito intenso";
+	emotion 75,"#buwaya_soil";
+	next;
+	mes "[Areia]";
+	mes "……";
+	mes "…………";
+	mes "Dificil, hein ~.";
+	emotion 54,"#buwaya_soil";
+	next;
+	mes "[Areia]";
+	mes "Hum. É assim.";
+	mes "O monstro que estava atrás de você";
+	mes "disse que viu a criança";
+	mes "sem dúvidas com Buwaya.";
+	next;
+	mes "[Areia]";
+	mes "Embora eu não me lembre de Mari ter falado sobre tempos antigos,";
+	mes "ela ouviu a história da esposa do Líder que foi invocada por esse cara Ru-. Sua tia, sou eu.";
+	next;
+	mes "[Areia]";
+	mes "É uma história que conta os tipos de vida que não mais existem por onde Buwaya passou.";
+	next;
+	select("Se sente bem faz muito tempo?");
+	mes "[Areia]";
+	mes "Eu costumava ouvir muitas coisas e fofocas a muitas décadas atrás. Não que eu tenha parado de ouvir recentemente... Pergunto-me se estava em estado de hibernação.";
+	next;
+	mes "[Areia]";
+	mes "De qualquer forma, estamos bem por enquanto. Mas é melhor manter o cuidado para que o monstro horrível que fica nas profundezas da floresta não volte a atacar os habitantes de Malaya.";
+	next;
+	mes "[Areia]";
+	mes "Bem. Sinto muito, mas você deve falar com o Líder da cidade sobre Buwaya.";
+	next;
+	mes "[Areia]";
+	mes "Assim que encontrarmos uma forma de derrotá-lo entraremos em contato.";
+	hideonnpc "#buwaya_soil";
+	erasequest 72160;
+	setquest 2276;
+	set MALAYA_4QUE,10;
+	close;
+OnInit:
+	hideonnpc "#buwaya_soil";
+	end;
 }
 
-malaya,290,152,3	script	Master of Hunting#buway	909,{
-	mes "[Master of Hunting]";
-	mes "Oh! Ho! Ho!";
-	mes "I am the Master of Hunting! Im not afraid of anything with just one exception! Im afraid of outsiders...";
+malaya,290,152,4	script	Mestre de Caça#buway	578,{
+	mes "[Mestre de Caça]";
+	mes "Ah! Ha! Ha!";
+	mes "Eu sou o mestre de Caça! Eu não estou com medo de nada, com apenas uma exceção! Tenho medo de estranhos...";
 	close;
 }
 
-malaya,363,283,3	script	Local#ma06	909,{
+malaya,363,283,4	script	Local#ma06	582,{
 	mes "[Local]";
-	mes "Hmm... is it time to be careful of the witches' curse?";
+	mes "Hum... é hora de tomar cuidado com a maldição das bruxas?";
 	next;
 	mes "[Local]";
-	mes "Beware of Mongkukurums needle, foreigner.";
+	mes "Cuidado com a agulha Monkukurums, forasteir"+((Sex) ? "o":"a")+".";
 	close;
 }
 
-malaya,305,281,3	script	Guard#buwaya	909,{
-	mes "- From the wary looks on the guards face, it is obvious he is at alert at the sight of you. He wont intimidate you but seems he wont even deal with you either. -";
+malaya,305,281,4	script	Guarda#buwaya	570,{
+	mes "- Os guardas olham desconfiados, é óbvio que estão prestando atenção em você. Eles não irão te intimidar, mas parece que eles não confiam em você. -";
 	next;
-	mes "- Would there be anyone to talk to in the village? -";
+	mes "- Há alguém para conversar no vilarejo? -";
 	close;
 }
 
-malaya,242,221,3	script	Jeepney Driver#07	582,{
-	if (checkquest(7350)==2){
-		mes "[Jeepney Driver]";
-		mes "Ghost... I'm sure the Mumbaki Leader knows how to get rid of these ghosts...";
-		close;
+malaya,242,221,4	script	Motorista do Jipe#07	582,{
+	mes "[Motorista do Jipe]";
+	if (checkquest(7350) == 2){
+	mes "Fantasma... Tenho certeza de que o líder Mumbaki sabe como se livrar desses fantasmas...";
+	close;
 	}
-	mes "[Jeepney Driver]";
-	mes "Oh no... I think the whole village is bewitched by ghosts... Maybe... I should give the Mumbaki Leader a visit...";
+	mes "Ah não... Acho que todo vilarejo está enfeitiçado por fantasmas... Talvez... Eu deva visitar o Líder Mumbaki...";
 	close;
 }
 
-malaya,237,240,3	script	Jeepney Driver#01	582,{
-	if (checkquest(7350)==2){
-		mes "[Jeepney Driver]";
-		mes "The place is still a mess... I wonder if I can operate a jeepney here...";
-		close;
+malaya,237,240,4	script	Motorista do Jipe#01	582,{
+	mes "[Motorista do Jipe]";
+	if (checkquest(7350) == 2){
+	mes "O lugar está uma bagunça... Me pergunto como posso operar um jipe aqui...";
+	close;
 	}
-	mes "[Jeepney Driver]";
-	mes "UUrgghhhh.... I'm scared... so scared... what happened to this place?";
+	mes "UUrgghhhh.... Estou com medo... com muito medo... o que aconteceu a este lugar?";
 	close;
 }
 
-malaya,219,92,6	script	Little Kid#ma05	577,{
-	if (checkquest(7350)==2){
-		mes "[Little Kid]";
-		mes "My mom told me I can play but only in Port Malaya.";
-		next;
-		mes "[Little Kid]";
-		mes "He he. But I never thought of going outside of Port Malaya.";
-		close;
+malaya,219,92,4	script	Pequena Criança#ma05	577,{
+	mes "[Pequena Criança]";
+	if (checkquest(7350) == 2){
+	mes "Minha mãe me disse que eu posso brincar, mas só no Porto de Malaya.";
+	next;
+	mes "[Pequena Criança]";
+	mes "Hehe. Mas eu nunca pensei em sair do Porto de Malaya.";
+	close;
 	}
-
-	mes "[Little Kid]";
-	mes "My mom told me not to play outside because its dangerous. Why?";
+	mes "Minha mãe me disse para não sair de Malaya, por que é perigoso. Por quê?";
 	close;
 }
 
-malaya,64,78,3	script	Village Woman#mab	583,{
-	mes "[Village Woman]";
+malaya,64,78,4	script	Mulher do Vilarejo#mab	583,{
+	mes "[Mulher do Vilarejo]";
 	mes "......";
 	next;
-	mes "Seems very cautious about you.";
+	mes "Parece estar receiosa com você.";
 	close;
 }
 
-malaya,59,84,3	script	Suspicious Wooden Stick::WooStick	909,{
-	mes "There's a strange looking stick.";
+malaya,59,84,4	script	Vara de Madeira Suspeita::VS	858,{
+	mes "Está procurando por um bastão estranho.";
 	close;
 }
-malaya,50,85,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick01	909
-malaya,48,79,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick02	909
-malaya,46,93,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick03	909
-malaya,50,46,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick04	909
-malaya,34,36,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick05	909
-malaya,40,32,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick06	909
-malaya,34,36,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick07	909
-malaya,31,42,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick08	909
-malaya,40,52,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick09	909
-malaya,59,84,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick10	909
-malaya,36,98,3	duplicate(WooStick)	Suspicious Wooden Stick::WooStick11	909
+malaya,50,85,4	duplicate(VS)	Vara de Madeira Suspeita::VS01	858
+malaya,48,79,4	duplicate(VS)	Vara de Madeira Suspeita::VS02	858
+malaya,46,93,4	duplicate(VS)	Vara de Madeira Suspeita::VS03	858
+malaya,50,46,4	duplicate(VS)	Vara de Madeira Suspeita::VS04	858
+malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS05	858
+malaya,40,32,4	duplicate(VS)	Vara de Madeira Suspeita::VS06	858
+malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS07	858
+malaya,31,42,4	duplicate(VS)	Vara de Madeira Suspeita::VS08	858
+malaya,40,52,4	duplicate(VS)	Vara de Madeira Suspeita::VS09	858
+malaya,59,84,4	duplicate(VS)	Vara de Madeira Suspeita::VS10	858
+malaya,36,98,4	duplicate(VS)	Vara de Madeira Suspeita::VS11	858
 
-
-
-malaya,67,44,3	script	Jeepney Driver#02	582,{
-	if (checkquest(7350)==2){
-		mes "[Jeepney Driver]";
-		mes "I think the moaning coming from the hospital has lessened...";
-		close;
-	}
-	mes "[Jeepney Driver]";
-	mes "Wha... What's... Going on in that hospital...";
+malaya,67,44,4	script	Motorista do Jipe#02	582,{
+	mes "[Motorista do Jipe]";
+	if (checkquest(7350) == 2){
+	mes "Acho que o gemido que vinha do hospital diminuiu...";
+	close;
+}
+	mes "O... O que... Está acontecendo naquele hospital...";
 	close;
 }
 
-malaya,62,37,3	script	Village Man#mab	582,{
-	mes "[Village Man]";
-	mes "Hmmm! Haven't seen you around?";
-	mes "What brings you to our town?";
+malaya,62,37,4	script	Homem do Vilarejo#mab	582,{
+	mes "[Homem do Vilarejo]";
+	mes "Humm! Te conheço?";
+	mes "O que te traz a nossa cidade?";
 	next;
-	mes "Seems very cautious about you.";
+	mes "- Parece estar receioso com você. -";
 	close;
 }
 
-malaya,55,72,3	script	Nurse#ma_n1	569,{
-	mes "[Nurse]";
-	mes "People of this town are too cautious of outsiders.";
+malaya,55,72,4	script	Enfermeira#ma_n1	569,{
+	mes "[Enfermeira]";
+	mes "As pessoas dessa cidade são muito receiosas com pessoas estranhas.";
 	emotion 7;
 	next;
-	mes "[Nurse]";
-	mes "I'm sure they have their reasons, but I wish they'd tell me how to get closer...";
+	mes "[Enfermeira]";
+	mes "Tenho certeza de que eles possuem suas razões, mas gostaria que eles fossem mais receptíveis...";
 	close;
 }
 
-malaya,48,76,3	script	Hospital Door#ma_n1	909,{
-	mes "The hospital door seems to be closed.";
+malaya,48,76,4	script	Porta de Hospital#ma_n1	139,{
+	mes "A porta do hospital parece estar fechada.";
+close;
+}
+
+malaya,41,127,4	script	Homem Velho#ma07	574,{
+	mes "[Homem Velho]";
+	if (checkquest(7350) == 2){
+	mes "Você está sem sorte por estar visitando o vilarejo em um momento como esse.";
+	close;
+}
+	mes "[Homem Velho]";
+	mes "Estrangeiros que nos visitam não estão sendo bem-recebidos por causa de todo o caos que enfrentamos.";
 	close;
 }
 
-malaya,41,127,0	script	Old Man #ma07	574,{
-	if (checkquest(7350)==2){
-		mes "[Old Man]";
-		mes "You are out of luck visiting the village at a time like this and not being welcomed.";
-		close;
-	}
-	mes "[Old Man]";
-	mes "Foreigners are not welcomed that much when our village is chaotic like these days.";
+malaya,63,185,4	script	Mulher#ma08	583,{
+	mes "[Mulher]";
+	if (checkquest(7350) == 2){
+	mes "Estou preocupada com as crianças. Espero que elas não fiquem com medo do que está acontecendo no vilarejo.";
+	close;
+}
+	mes "Eu não tenho nada a compartilhar com você.";
 	close;
 }
 
-malaya,63,185,3	script	Woman¿©ÀÎ#ma08	583,{
-	if (checkquest(7350)==2){
-		mes "[Woman]";
-		mes "Im worried about the children. I hope they arent terrified from whats going on in the village.";
-		close;
-	}
-	mes "[Woman]";
-	mes "I dont have anything to share with you.";
+malaya,62,245,4	script	Motorista do Jipe#08	582,{
+	mes "[Motorista do Jipe]";
+	if (checkquest(7350) == 2){
+	mes "Ei... Você... É um humano certo? Certo? Hã? Diga quem é você... Por favor...";
+	close;
+}
+	mes "Shoo~ Saia se você for um fantasma, mesmo se você for humano~ Shoo~";
 	close;
 }
 
-malaya,62,245,6	script	Jeepney Driver#08	582,{
-	if (checkquest(7350)==2){
-		mes "[Jeepney Driver]";
-		mes "Hey... You... Are human right? Right? Huh? Say you are... Please...";
-		close;
-	}
-	mes "[Jeepney Driver]";
-	mes "Shoo~ Be gone if you're a ghost, and go away even if you're human~ Shoo~";
+malaya,62,274,4	script	Armadilha de Areia#mal01::ArmaAre	557,{
+	mes "Um dispositivo para evaporar a água do mar está enterrado na areia...";
+	close;
+}
+malaya,66,277,4	duplicate(ArmaAre)	Armadilha de Areia#mal02	557
+malaya,70,282,4	duplicate(ArmaAre)	Armadilha de Areia#mal03	557
+
+malaya,88,252,4	script	Pequena Garota#ma04	576,{
+	mes "[Pequena Garota]";
+	if (checkquest(7350) == 2){
+	mes "Hehe. Meu pai disse que posso visitar a fada na floresta quando o vilarejo estiver calmo.";
+	close;
+}
+	mes "Estou com medo, mas tenho que visitar a fada na floresta.";
 	close;
 }
 
-malaya,62,274,3	script	Sand Trap#mal01::MalSandTrap	909,{
-	mes "A device to evaporate sea water is buried in the sand...";
-	close;
-}
-malaya,66,277,3	duplicate(MalSandTrap)	Sand Trap#mal02	909
-malaya,70,282,3	duplicate(MalSandTrap)	Sand Trap#mal03	909
-
-malaya,88,252,3	script	Little Girl #ma04	576,{
-	if (checkquest(7350)==2){
-		mes "[Little Girl]";
-		mes "He he. Father said I can visit the fairy in the forest when the village calms down.";
-		close;
-	}
-	mes "[Little Girl]";
-	mes "Im scared but I have to visit the fairy in the forest.";
-	close;
+malaya,134,250,4	script	Motorista do Jipe#04	582,{
+	mes "[Motorista do Jipe]";
+	mes "S...Sa... Saia...";
+close;
 }
 
-malaya,134,250,6	script	Jeepney Driver#04	582,{
-	mes "[Jeepney Driver]";
-	mes "G...Go... Go away...";
-	close;
-}
-
-malaya,114,183,3	script	Bent Old Lady#ma	909,{
-	mes "[Bent Old Lady]";
-	mes "Ho ho ho ho~~";
+malaya,114,183,4	script	Senhora Encurvada#ma	575,{
+	mes "[Senhora Encurvada]";
+	mes "Hohohoho~~";
 	next;
 	mes "["+strcharinfo(0)+"]";
-	mes "Ma'am, excuse me, but can I ask you a question?";
+	mes "Madame, desculpe-me, mas posso te fazer uma pergunta?";
 	next;
-	mes "[Bent Old Lady]";
-	mes "Ho ho ho ho~~";
-	next;
-	mes "["+strcharinfo(0)+"]";
-	mes "Ma'am?";
-	next;
-	mes "[Bent Old Lady]";
-	mes "Ho ho ho ho~~";
+	mes "[Senhora Encurvada]";
+	mes "Hohohoho~~";
 	next;
 	mes "["+strcharinfo(0)+"]";
-	mes "Ma'am?";
+	mes "Madame?";
 	next;
-	mes "[Bent Old Lady]";
-	mes "Ho ho ho ho~~";
-	next;
-	mes "["+strcharinfo(0)+"]";
-	mes "Ma'am!!!!!!!!!";
-	next;
-	mes "[Bent Old Lady]";
-	mes "Who? What?";
+	mes "[Senhora Encurvada]";
+	mes "Hohohoho~~";
 	next;
 	mes "["+strcharinfo(0)+"]";
-	mes "Excuse me, but can I ask you something?";
+	mes "Madame?";
 	next;
-	mes "[Bent Old Lady]";
-	mes "What? I can't hear you.";
-	mes "Speak up!";
+	mes "[Senhora Encurvada]";
+	mes "Hohohoho~~";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Madame!!!!!!!!!";
+	next;
+	mes "[Senhora Encurvada]";
+	mes "Quem? O que?";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Desculpe-me, mas posso te perguntar uma coisa?";
+	next;
+	mes "[Senhora Encurvada]";
+	mes "O quê? Eu não posso te ouvir.";
+	mes "Fale alto!";
 	close;
 }
 
-malaya,189,263,3	script	Drumming Young Man #ma0	578,{
-	if (checkquest(7350)==2){
-		mes "[Drumming Young Man]";
-		mes "I think the village was saved by a nameless adventurer.";
-		next;
-		emotion 54;
-		mes "[Drumming Young Man]";
-		mes "Phew... I thought Bakonawa appeared again.";
-		close;
+malaya,189,263,4	script	Jovem Tocando#ma0	578,{
+	mes "[Jovem Tocando]";
+	if (checkquest(7350) == 2){
+	mes "Acho que a aldeia foi salva por um aventureir"+((Sex) ? "o":"a")+" sem nome.";
+	next;
+	emotion 54;
+	mes "[Jovem Tocando]";
+	mes "Puxa... Pensei que Bakonawa fosse aparecer novamente.";
+	close;
 	}
 	emotion 23;
-	mes "[Drumming Young Man]";
-	mes "Ugh... its just like that time before";
+	mes "Ugh... é como antes";
 	next;
 	emotion 23;
-	mes "[Drumming Young Man]";
-	mes "when the moon was swallowed. Argh!";
+	mes "[Jovem Tocando]";
+	mes "quando a lua foi engolida. Argh!";
 	close;
 }
 
-malaya,238,206,3	script	Eden Teleport Officer#4	909,{
-	mes "[Eden Teleport Officer]";
-	mes "We're a long way from home Adventurer.";
+malaya,238,206,4	script	Oficial do Éden#Ma	729,{
+mes "[Oficial de Teleporte Éden]";
+mes "Estamos muito longe de casa aventureir"+((Sex) ? "o":"a")+".";
 	next;
-	switch(select("Move to Eden Group:Cancel")) {
-	case 1:
-		mes "[Eden Teleport Officer]";
-		mes "Let's go to our secret base!";
-		sleep2 600;
-		warp "moc_para",31,14;
-		break;
+	switch(select("Ir para o Grupo Eden:Cancelar")) {
+		case 1:
+			mes "[Oficial de Teleporte Éden]";
+			mes "Vamos para a nossa base secreta!";
+			sleep2 600;
+			close2;
+			warp "moc_para",31,14;
+			end;
 
-	case 2:
-		mes "We're a long way from home Adventurer.";
-		mes "If you don't know what to do for your future, don't hesitate to tell me. Just drop by and talk to me! Ok?";
-		close;
-	}
+		case 2:
+			mes "[Oficial de Teleporte Éden]";
+			mes "Estamos muito longe de casa aventureir"+((Sex) ? "o":"a")+".";
+			mes "Se você não souber o que fazer, não hesite em falar comigo. Volte e fale quando quiser! Certo?";
+			close;
+}
 }
 
-	malaya,210,200,3	script	Dr. Boon#ma	909,{
-		mes "[Dr. Boon]";
-		mes "......";
-		next;
-		mes "Seems very cautious about you.";
-		close;
-	}
-
-//Shops
-malaya,150,261,4	shop	Fruit Gardener#ma	909,512:-1,513:-1,515:-1,516:-1,535:-1
+malaya,210,200,4	script	Dr. Boon#ma	865,{
+	mes "[Dr. Boon]";
+	mes "......";
+	next;
+	mes "Estou receioso com você.";
+	close;
+}
