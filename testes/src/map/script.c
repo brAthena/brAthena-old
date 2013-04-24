@@ -16591,7 +16591,7 @@ BUILDIN_FUNC(ismounting)
 	TBL_PC *sd;
 	if((sd = script_rid2sd(st)) == NULL)
 		return 0;
-	if(sd->sc.option&OPTION_MOUNTING)
+	if(sd->sc.data[SC_ALL_RIDING] )
 		script_pushint(st,1);
 	else
 		script_pushint(st,0);
@@ -16612,10 +16612,10 @@ BUILDIN_FUNC(setmounting)
 	if(sd->sc.option&(OPTION_WUGRIDER|OPTION_RIDING|OPTION_DRAGON|OPTION_MADOGEAR))
 		script_pushint(st,0);//can't mount with one of these
 	else {
-		if(sd->sc.option&OPTION_MOUNTING)
-			pc_setoption(sd, sd->sc.option&~OPTION_MOUNTING);//release mount
+		if(sd->sc.data[SC_ALL_RIDING])
+			status_change_end(&sd->bl, SC_ALL_RIDING, INVALID_TIMER);
 		else
-			pc_setoption(sd, sd->sc.option|OPTION_MOUNTING);//mount
+			sc_start(NULL,&sd->bl, SC_ALL_RIDING, 100, 0, -1);
 		script_pushint(st,1);//in both cases, return 1.
 	}
 	return 0;

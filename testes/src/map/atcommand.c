@@ -8443,12 +8443,12 @@ ACMD_FUNC(mount2)
 {
 
 	clif_displaymessage(sd->fd,msg_txt(1362)); // NOTICE: If you crash with mount your LUA is outdated.
-	if(!(sd->sc.option&OPTION_MOUNTING)) {
+	if(!(sd->sc.data[SC_ALL_RIDING])) {
 		clif_displaymessage(sd->fd,msg_txt(1363)); // You have mounted.
-		pc_setoption(sd, sd->sc.option|OPTION_MOUNTING);
+		sc_start(NULL,&sd->bl,SC_ALL_RIDING,100,0,-1);
 	} else {
 		clif_displaymessage(sd->fd,msg_txt(1364)); // You have released your mount.
-		pc_setoption(sd, sd->sc.option&~OPTION_MOUNTING);
+		status_change_end(&sd->bl, SC_ALL_RIDING, INVALID_TIMER);
 	}
 	return 0;
 }
@@ -9304,6 +9304,56 @@ ACMD_FUNC(fontcolor) {
 	return 0;
 }
 
+ACMD_FUNC(costume) {
+	const char* names[4] = {
+		"Casamento",
+		"Natal",
+		"Verao",
+		"Hanbok",
+	};
+	const int name2id[4] = { SC_WEDDING, SC_XMAS, SC_SUMMER, SC_HANBOK };
+	unsigned short k = 0;
+	
+	if(!message || !*message) {
+		for( k = 0; k < 4; k++ ) {
+			if(sd->sc.data[name2id[k]]) {
+				sprintf(atcmd_output,msg_txt(1476),names[k]);//Costume '%s' removed.
+				clif_displaymessage(sd->fd,atcmd_output);
+				status_change_end(&sd->bl,name2id[k],INVALID_TIMER);
+				return true;
+			}
+		}
+		
+		clif_displaymessage(sd->fd,msg_txt(1475));
+		for( k = 0; k < 4; k++ ) {
+			sprintf(atcmd_output,msg_txt(1474),names[k]);//-- %s
+			clif_displaymessage(sd->fd,atcmd_output);
+		}
+		return false;
+	}
+	
+	for(k = 0; k < 4; k++) {
+		if(sd->sc.data[name2id[k]]) {
+			sprintf(atcmd_output,msg_txt(1473),names[k]);// You're already with a '%s' costume, type '@costume' to remove it.
+			clif_displaymessage(sd->fd,atcmd_output);
+			return false;
+		}
+	}
+	
+	for( k = 0; k < 4; k++ ) {
+		if(strcmpi(message,names[k]) == 0)
+			break;
+	}
+	if(k == 4) {
+		sprintf(atcmd_output,msg_txt(1472),message);// '%s' is not a known costume
+		clif_displaymessage(sd->fd,atcmd_output);
+		return false;
+	}
+	
+	sc_start(NULL,&sd->bl, name2id[k], 100, 0, -1);
+	
+	return true;
+}
 /**
  * Fills the reference of available commands in atcommand DBMap
  **/
@@ -9561,7 +9611,8 @@ void atcommand_basecommands(void)
 		ACMD_DEF(join),
 		ACMD_DEF(channel),
 		ACMD_DEF(fontcolor),
-		ACMD_DEF(reload)
+		ACMD_DEF(reload),
+		ACMD_DEF(costume)
 	};
 	AtCommandInfo *atcommand;
 	int i;

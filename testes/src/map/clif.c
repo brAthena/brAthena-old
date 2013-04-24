@@ -1305,7 +1305,7 @@ int clif_spawn(struct block_list *bl)
 					clif_specialeffect(bl,421,AREA);
 				if(sd->bg_id && map[sd->bl.m].flag.battleground)
 					clif_sendbgemblem_area(sd);
-				if(sd->sc.option&OPTION_MOUNTING) {
+				if(sd->sc.data[SC_ALL_RIDING]) {
 					//New Mounts are not complaint to the original method, so we gotta tell this guy that he is mounting.
 					clif_status_load_notick(&sd->bl,SI_ALL_RIDING,2,1,0,0);
 				}
@@ -2921,17 +2921,24 @@ void clif_changelook(struct block_list *bl,int type,int val)
 				} else vd->shield = val;
 				break;
 			case LOOK_BASE:
-				vd->class_ = val;
-				if(vd->class_ == JOB_WEDDING || vd->class_ == JOB_XMAS || vd->class_ == JOB_SUMMER || vd->class_ == JOB_HANBOK)
+				if(!sd) break;
+				if(sd->sc.option&(OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER|OPTION_HANBOK))
 					vd->weapon = vd->shield = 0;
-				if(vd->cloth_color && (
-				       (vd->class_ == JOB_WEDDING && battle_config.wedding_ignorepalette) ||
-				       (vd->class_ == JOB_XMAS && battle_config.xmas_ignorepalette) ||
-				       (vd->class_ == JOB_SUMMER && battle_config.summer_ignorepalette) ||
-				       (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
-				   ))
-					clif_changelook(bl,LOOK_CLOTHES_COLOR,0);
-				break;
+
+				if(!vd->cloth_color)
+					break;
+
+				if(sd) {
+					if(sd->sc.option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
+						vd->cloth_color = 0;
+					if(sd->sc.option&OPTION_XMAS && battle_config.xmas_ignorepalette)
+						vd->cloth_color = 0;
+					if(sd->sc.option&OPTION_SUMMER && battle_config.summer_ignorepalette)
+						vd->cloth_color = 0;
+					if(sd->sc.option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
+						vd->cloth_color = 0;
+				}
+			break;
 			case LOOK_HAIR:
 				vd->hair_style = val;
 				break;
@@ -2948,13 +2955,16 @@ void clif_changelook(struct block_list *bl,int type,int val)
 				vd->hair_color = val;
 				break;
 			case LOOK_CLOTHES_COLOR:
-				if(val && (
-				       (vd->class_ == JOB_WEDDING && battle_config.wedding_ignorepalette) ||
-				       (vd->class_ == JOB_XMAS && battle_config.xmas_ignorepalette) ||
-				       (vd->class_ == JOB_SUMMER && battle_config.summer_ignorepalette) ||
-				       (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
-				   ))
-					val = 0;
+				if(val && sd) {
+					if(sd->sc.option&OPTION_WEDDING && battle_config.wedding_ignorepalette)
+						val = 0;
+					if(sd->sc.option&OPTION_XMAS && battle_config.xmas_ignorepalette)
+						val = 0;
+					if(sd->sc.option&OPTION_SUMMER && battle_config.summer_ignorepalette)
+						val = 0;
+					if(sd->sc.option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
+						val = 0;
+				}
 				vd->cloth_color = val;
 				break;
 			case LOOK_SHOES:
@@ -3958,7 +3968,7 @@ static void clif_getareachar_pc(struct map_session_data *sd,struct map_session_d
 		if(dstsd->talisman[i] > 0)
 			clif_talisman_single(sd->fd, dstsd, i);
 	}
-	if(dstsd->sc.option&OPTION_MOUNTING) {
+	if(dstsd->sc.data[SC_ALL_RIDING]) {
 		//New Mounts are not complaint to the original method, so we gotta tell this guy that I'm mounting.
 		clif_status_load_single(sd->fd,dstsd->bl.id,SI_ALL_RIDING,2,1,0,0);
 	}

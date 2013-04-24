@@ -665,6 +665,7 @@ typedef enum sc_type {
     * Hanbok [Megasantos]
     **/
     SC_HANBOK = 600,
+    SC_ALL_RIDING,
     /**
     * Novas Habilidades 3rd [Megasantos]
     **/
@@ -1533,7 +1534,6 @@ enum {
     OPTION_DRAGON4   = 0x02000000,
     OPTION_DRAGON5   = 0x04000000,
     OPTION_HANBOK    = 0x08000000,
-    OPTION_MOUNTING  = 0x10000000,
 
 #ifndef NEW_CARTS
     OPTION_CART1     = 0x00000008,
