@@ -388,8 +388,7 @@ enum {
      **/
     //MF_RAIN,  //20
     // 21 free
-    MF_NOGO = 22,
-    MF_CLOUDS,
+    MF_CLOUDS = 23,
     MF_CLOUDS2,
     MF_FIREWORKS,
     MF_GVG_CASTLE,
@@ -10479,7 +10478,6 @@ BUILDIN_FUNC(getmapflag)
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
 				//case MF_RAIN:             script_pushint(st,map[m].flag.rain); break;
-			case MF_NOGO:               script_pushint(st,map[m].flag.nogo); break;
 			case MF_CLOUDS:             script_pushint(st,map[m].flag.clouds); break;
 			case MF_CLOUDS2:            script_pushint(st,map[m].flag.clouds2); break;
 			case MF_FIREWORKS:          script_pushint(st,map[m].flag.fireworks); break;
@@ -10586,7 +10584,6 @@ BUILDIN_FUNC(setmapflag)
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
 				//case MF_RAIN:             map[m].flag.rain = 1; break;
-			case MF_NOGO:               map[m].flag.nogo = 1; break;
 			case MF_CLOUDS:             map[m].flag.clouds = 1; break;
 			case MF_CLOUDS2:            map[m].flag.clouds2 = 1; break;
 			case MF_FIREWORKS:          map[m].flag.fireworks = 1; break;
@@ -10674,7 +10671,6 @@ BUILDIN_FUNC(removemapflag)
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
 				//case MF_RAIN:             map[m].flag.rain = 0; break;
-			case MF_NOGO:               map[m].flag.nogo = 0; break;
 			case MF_CLOUDS:             map[m].flag.clouds = 0; break;
 			case MF_CLOUDS2:            map[m].flag.clouds2 = 0; break;
 			case MF_FIREWORKS:          map[m].flag.fireworks = 0; break;

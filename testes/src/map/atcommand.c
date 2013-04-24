@@ -63,22 +63,12 @@
 #include <math.h>
 
 
-#define ATCOMMAND_LENGTH 50
 #define ACMD_FUNC(x) static int atcommand_ ## x (const int fd, struct map_session_data* sd, const char* command, const char* message)
 #define MAX_MSG 1500
 
-
-typedef struct AtCommandInfo AtCommandInfo;
 typedef struct AliasInfo AliasInfo;
 
 int atcmd_binding_count = 0;
-
-struct AtCommandInfo {
-	char command[ATCOMMAND_LENGTH];
-	AtCommandFunc func;
-	char *at_groups;/* quick @commands "can-use" lookup */
-	char *char_groups;/* quick @charcommands "can-use" lookup */
-};
 
 struct AliasInfo {
 	AtCommandInfo *command;
@@ -97,7 +87,6 @@ static config_t atcommand_config;
 static char atcmd_output[CHAT_SIZE_MAX];
 static char atcmd_player_name[NAME_LENGTH];
 
-static AtCommandInfo *get_atcommandinfo_byname(const char *name); // @help
 static const char *atcommand_checkalias(const char *aliasname); // @help
 static void atcommand_get_suggestions(struct map_session_data *sd, const char *name, bool atcommand); // @help
 
@@ -1811,11 +1800,6 @@ ACMD_FUNC(go)
 	};
 
 	nullpo_retr(-1, sd);
-
-	if(map[sd->bl.m].flag.nogo && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) {
-		clif_displaymessage(sd->fd,msg_txt(995)); // You cannot use @go on this map.
-		return 0;
-	}
 
 	memset(map_name, '\0', sizeof(map_name));
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
@@ -3857,8 +3841,6 @@ ACMD_FUNC(mapinfo)
 		strcat(atcmd_output, msg_txt(1061)); // NoWarpTo |
 	if(map[m_id].flag.noreturn)
 		strcat(atcmd_output, msg_txt(1062)); // NoReturn |
-	if(map[m_id].flag.nogo)
-		strcat(atcmd_output, msg_txt(1063)); // NoGo |
 	if(map[m_id].flag.nomemo)
 		strcat(atcmd_output, msg_txt(1064)); // NoMemo |
 	clif_displaymessage(fd, atcmd_output);
@@ -7574,7 +7556,7 @@ ACMD_FUNC(mapflag)
 		checkflag(notrade);             checkflag(noskill);             checkflag(nowarp);      checkflag(nowarpto);
 		checkflag(noicewall);           checkflag(snow);                checkflag(clouds);      checkflag(clouds2);
 		checkflag(fog);                 checkflag(fireworks);           checkflag(sakura);      checkflag(leaves);
-		checkflag(nogo);                checkflag(nobaseexp);
+		checkflag(nobaseexp);
 		checkflag(nojobexp);            checkflag(nomobloot);           checkflag(nomvploot);   checkflag(nightenabled);
 		checkflag(nodrop);              checkflag(novending);   	checkflag(loadevent);
 		checkflag(nochat);              checkflag(partylock);           checkflag(guildlock);   checkflag(src4instance);
@@ -7610,7 +7592,7 @@ ACMD_FUNC(mapflag)
 	setflag(notrade);           setflag(noskill);           setflag(nowarp);            setflag(nowarpto);
 	setflag(noicewall);         setflag(snow);              setflag(clouds);            setflag(clouds2);
 	setflag(fog);               setflag(fireworks);         setflag(sakura);            setflag(leaves);
-	setflag(nogo);              setflag(nobaseexp);
+	setflag(nobaseexp);
 	setflag(nojobexp);          setflag(nomobloot);         setflag(nomvploot);         setflag(nightenabled);
 	setflag(nodrop);            setflag(novending);         setflag(loadevent);
 	setflag(nochat);            setflag(partylock);         setflag(guildlock);         setflag(src4instance);
@@ -7623,7 +7605,7 @@ ACMD_FUNC(mapflag)
 	clif_displaymessage(sd->fd,"nobranch, noexppenalty, pvp, pvp_noparty, pvp_noguild, pvp_nightmaredrop,");
 	clif_displaymessage(sd->fd,"pvp_nocalcrank, gvg_castle, gvg, gvg_dungeon, gvg_noparty, battleground,");
 	clif_displaymessage(sd->fd,"nozenypenalty, notrade, noskill, nowarp, nowarpto, noicewall, snow, clouds, clouds2,");
-	clif_displaymessage(sd->fd,"fog, fireworks, sakura, leaves, nogo, nobaseexp, nojobexp, nomobloot,");
+	clif_displaymessage(sd->fd,"fog, fireworks, sakura, leaves, nobaseexp, nojobexp, nomobloot,");
 	clif_displaymessage(sd->fd,"nomvploot, nightenabled, nodrop, novending, loadevent, nochat, partylock,");
 	clif_displaymessage(sd->fd,"guildlock, src4instance");
 
@@ -9589,7 +9571,7 @@ bool atcommand_exists(const char *name)
 	return strdb_exists(atcommand_db, name);
 }
 
-static AtCommandInfo *get_atcommandinfo_byname(const char *name)
+AtCommandInfo *get_atcommandinfo_byname(const char *name)
 {
 	if(strdb_exists(atcommand_db, name))
 		return (AtCommandInfo *)strdb_get(atcommand_db, name);
@@ -9815,6 +9797,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 
 	// type == 1 : player invoked
 	if(type == 1) {
+		int i;
 		if((*command == atcommand_symbol && info->at_groups[sd->group_pos] == 0) ||
 		   (*command == charcommand_symbol && info->char_groups[sd->group_pos] == 0)) {
 			return false;
@@ -9822,6 +9805,15 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		if(pc_isdead(sd) && pc_has_permission(sd,PC_PERM_DISABLE_CMD_DEAD)) {
 			clif_displaymessage(fd, msg_txt(1393)); // You can't use commands while dead
 			return true;
+		}
+		for(i = 0; i < map[sd->bl.m].zone->disabled_commands_count; i++) {
+			if(info->func == map[sd->bl.m].zone->disabled_commands[i]->cmd) {
+				if(sd->group_level < map[sd->bl.m].zone->disabled_commands[i]->group_lv) {
+					clif_colormes(sd,COLOR_RED,"Este comando está desativado nesta área");
+					return true;
+				} else
+					break;/* already found the matching command, no need to keep checking -- just go on */
+			}
 		}
 	}
 

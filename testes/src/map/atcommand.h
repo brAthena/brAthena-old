@@ -28,12 +28,25 @@ struct map_session_data;
 extern char atcommand_symbol;
 extern char charcommand_symbol;
 
+#define ATCOMMAND_LENGTH 50
+
 typedef enum {
     COMMAND_ATCOMMAND = 1,
     COMMAND_CHARCOMMAND = 2,
 } AtCommandType;
 
 typedef int (*AtCommandFunc)(const int fd, struct map_session_data *sd, const char *command, const char *message);
+
+typedef struct AtCommandInfo AtCommandInfo;
+
+struct AtCommandInfo {
+	char command[ATCOMMAND_LENGTH];
+	AtCommandFunc func;
+	char *at_groups;/* quick @commands "can-use" lookup */
+	char *char_groups;/* quick @charcommands "can-use" lookup */
+};
+
+AtCommandInfo *get_atcommandinfo_byname(const char *name);
 
 bool is_atcommand(const int fd, struct map_session_data *sd, const char *message, int type);
 

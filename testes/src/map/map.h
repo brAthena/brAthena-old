@@ -25,6 +25,8 @@
 
 #include "../config/core.h"
 
+#include "atcommand.h"
+
 #include <stdarg.h>
 
 struct npc_data;
@@ -514,13 +516,34 @@ struct mapflag_skill_adjust {
 	unsigned short skill_id;
 	unsigned short modifier;
 };
+
+enum map_zone_skill_subtype {
+	MZS_NONE	= 0x0,
+	MZS_CLONE	= 0x01,
+	MZS_BOSS	= 0x02,
+	MZS_ALL		= 0xFFF,
+};
+
 struct map_zone_disabled_skill_entry {
 	unsigned short nameid;
 	enum bl_type type;
+	enum map_zone_skill_subtype subtype;
+};
+struct map_zone_disabled_command_entry {
+	AtCommandFunc cmd;
+	int group_lv;
+};
+
+struct map_zone_skill_damage_cap_entry {
+	unsigned short nameid;
+	unsigned int cap;
+	enum bl_type type;
+	enum map_zone_skill_subtype subtype;
 };
 
 #define MAP_ZONE_NAME_LENGTH 30
-#define MAP_ZONE_ALL_NAME "Normal"
+#define MAP_ZONE_ALL_NAME "All"
+#define MAP_ZONE_NORMAL_NAME "Normal"
 #define MAP_ZONE_PVP_NAME "PvP"
 #define MAP_ZONE_GVG_NAME "GvG"
 #define MAP_ZONE_BG_NAME "Battlegrounds"
@@ -535,6 +558,10 @@ struct map_zone_data {
 	int disabled_items_count;
 	char **mapflags;
 	int mapflags_count;
+	struct map_zone_disabled_command_entry **disabled_commands;
+	int disabled_commands_count;
+	struct map_zone_skill_damage_cap_entry **capped_skills;
+	int capped_skills_count;
 };
 void map_zone_init(void);
 void map_zone_remove(int m);
