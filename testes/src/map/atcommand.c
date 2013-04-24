@@ -3674,6 +3674,7 @@ ACMD_FUNC(reloadbattleconf)
 
 	battle_config_read(BATTLE_CONF_FILENAME);
 
+if(!battle_config.official_rates) {
 	if(prev_config.item_rate_mvp          != battle_config.item_rate_mvp
 	   ||  prev_config.item_rate_common       != battle_config.item_rate_common
 	   ||  prev_config.item_rate_common_boss  != battle_config.item_rate_common_boss
@@ -3708,6 +3709,7 @@ ACMD_FUNC(reloadbattleconf)
 		// Exp or Drop rates changed.
 		mob_reload();
 		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
+	}
 	}
 	clif_displaymessage(fd, msg_txt(255));
 	return 0;
@@ -7335,6 +7337,20 @@ ACMD_FUNC(rates)
 		battle_config.job_exp_rate  += bra_config.extra_exp_vip;
 	}
 
+  if(battle_config.official_rates) {
+	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1298), // Experience rates: Base %.2fx / Job %.2fx
+	         ((battle_config.official_rates&1) ? 200 : (battle_config.official_rates&2) ? 150 : (battle_config.official_rates&4) ? 100 : 50) /100., ((battle_config.official_rates&1) ? 200 : (battle_config.official_rates&2) ? 150 : (battle_config.official_rates&4) ? 100 : 50)/100.);
+	clif_displaymessage(fd, buf);
+	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1299), // Normal Drop Rates: Common %.2fx / Healing %.2fx / Usable %.2fx / Equipment %.2fx / Card %.2fx
+	         ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 100 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100.);
+	clif_displaymessage(fd, buf);
+	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1300), // Boss Drop Rates: Common %.2fx / Healing %.2fx / Usable %.2fx / Equipment %.2fx / Card %.2fx
+	         ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100.);
+	clif_displaymessage(fd, buf);
+	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1301), // Other Drop Rates: MvP %.2fx / Card-Based %.2fx / Treasure %.2fx
+	         ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100., ((battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2) ? 200 : (battle_config.official_rates&4) ? 100 : 50)/100.);
+	clif_displaymessage(fd, buf);
+	} else {
 	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1298), // Experience rates: Base %.2fx / Job %.2fx
 	         battle_config.base_exp_rate/100., battle_config.job_exp_rate/100.);
 	clif_displaymessage(fd, buf);
@@ -7347,7 +7363,7 @@ ACMD_FUNC(rates)
 	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1301), // Other Drop Rates: MvP %.2fx / Card-Based %.2fx / Treasure %.2fx
 	         battle_config.item_rate_mvp/100., battle_config.item_rate_adddrop/100., battle_config.item_rate_treasure/100.);
 	clif_displaymessage(fd, buf);
-
+  }
 	return 0;
 }
 

@@ -3630,11 +3630,17 @@ static bool mob_parse_dbrow(char **str)
 	status->max_hp = atoi(str[5]);
 	status->max_sp = atoi(str[6]);
 
+  if(battle_config.official_rates) {
+	exp = (double)atoi(str[7]) * ((battle_config.official_rates&1) ? (double) 200 : (battle_config.official_rates&2) ? (double) 150 : (battle_config.official_rates&4) ? (double) 100 : (double) 50) / 100.;
+	db->base_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
+	exp = (double)atoi(str[8]) * ((battle_config.official_rates&1) ? (double) 200 : (battle_config.official_rates&2) ? (double) 150 : (battle_config.official_rates&4) ? (double) 100 : (double) 50) / 100.;
+	db->job_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
+	} else {
 	exp = (double)atoi(str[7]) * (double)battle_config.base_exp_rate / 100.;
 	db->base_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
-
 	exp = (double)atoi(str[8]) * (double)battle_config.job_exp_rate / 100.;
 	db->job_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
+	}
 
 	status->rhw.range = atoi(str[9]);
 	status->rhw.atk = atoi(str[10]);
@@ -3765,38 +3771,74 @@ static bool mob_parse_dbrow(char **str)
 		rate = atoi(str[k+1]);
 		if((class_ >= 1324 && class_ <= 1363) || (class_ >= 1938 && class_ <= 1946)) {
 			//Treasure box drop rates [Skotlex]
+		if(battle_config.official_rates) {
+			rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+			ratemin = 10000;
+			ratemax = 10000;
+			} else {
 			rate_adjust = battle_config.item_rate_treasure;
 			ratemin = battle_config.item_drop_treasure_min;
 			ratemax = battle_config.item_drop_treasure_max;
+			}
 		} else switch(type) {
 					// Added suport to restrict normal drops of MVP's [Reddozen]
 				case IT_HEALING:
+				if(battle_config.official_rates) {
+					rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+					ratemin = 10000;
+					ratemax = 10000;
+					} else {
 					rate_adjust = (status->mode&MD_BOSS) ? battle_config.item_rate_heal_boss : battle_config.item_rate_heal;
 					ratemin = battle_config.item_drop_heal_min;
 					ratemax = battle_config.item_drop_heal_max;
+					}
 					break;
 				case IT_USABLE:
 				case IT_CASH:
+				if(battle_config.official_rates) {
+					rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+					ratemin = 10000;
+					ratemax = 10000;
+					} else {
 					rate_adjust = (status->mode&MD_BOSS) ? battle_config.item_rate_use_boss : battle_config.item_rate_use;
 					ratemin = battle_config.item_drop_use_min;
 					ratemax = battle_config.item_drop_use_max;
+					}
 					break;
 				case IT_WEAPON:
 				case IT_ARMOR:
 				case IT_PETARMOR:
+				if(battle_config.official_rates) {
+					rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+					ratemin = 10000;
+					ratemax = 10000;
+					} else {
 					rate_adjust = (status->mode&MD_BOSS) ? battle_config.item_rate_equip_boss : battle_config.item_rate_equip;
 					ratemin = battle_config.item_drop_equip_min;
 					ratemax = battle_config.item_drop_equip_max;
+					}
 					break;
 				case IT_CARD:
+				if(battle_config.official_rates) {
+					rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+					ratemin = 10000;
+					ratemax = 10000;
+					} else {
 					rate_adjust = (status->mode&MD_BOSS) ? battle_config.item_rate_card_boss : battle_config.item_rate_card;
 					ratemin = battle_config.item_drop_card_min;
 					ratemax = battle_config.item_drop_card_max;
+					}
 					break;
 				default:
+				if(battle_config.official_rates) {
+					rate_adjust = (battle_config.official_rates&1) ? 150 : (battle_config.official_rates&2 || battle_config.official_rates&4) ? 100 : 50;
+					ratemin = 10000;
+					ratemax = 10000;
+					} else {
 					rate_adjust = (status->mode&MD_BOSS) ? battle_config.item_rate_common_boss : battle_config.item_rate_common;
 					ratemin = battle_config.item_drop_common_min;
 					ratemax = battle_config.item_drop_common_max;
+					}
 					break;
 			}
 		item_dropratio_adjust(id->nameid, class_, &rate_adjust);

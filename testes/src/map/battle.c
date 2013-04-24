@@ -5953,7 +5953,7 @@ static const struct _battle_data {
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      MAX_LEVEL,      },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },
 	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
-	{ "item_enabled_npc",			&battle_config.item_enabled_npc,		1,      0,      1,		},
+	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
 	{ "item_flooritem_check",               &battle_config.item_onfloor,                    1,      0,      1,              },
 	/**
 	 *
@@ -5970,10 +5970,11 @@ static const struct _battle_data {
 	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
 	{ "use_item_in_status",                 &battle_config.use_item_in_status,                0,    0,              1,      },
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
-	{ "max_atk",                            &battle_config.max_atk,                       10000,    0,        INT_MAX,      },
+	{ "max_atk",                            &battle_config.max_atk,                     INT_MAX,    0,        INT_MAX,      },
 	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,              1,      },
 	{ "edp_rate",                           &battle_config.edp_rate,                        100,    0,            100,      },
 	{ "walk_speed_default",                 &battle_config.walk_speed_default,              150,    0, MAX_WALK_SPEED,      },
+	{ "official_rates",                     &battle_config.official_rates,                    0,    0,        1|2|4|8,      },
 };
 #ifndef STATS_OPT_OUT
 /**
