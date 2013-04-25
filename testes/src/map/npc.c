@@ -490,7 +490,7 @@ int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/
 void npc_event_do_oninit(void)
 {
-	ShowStatus("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs."CL_CLL"\n", npc_event_doall("OnInit"));
+	ShowNpc("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs."CL_CLL"\n", npc_event_doall("OnInit"));
 
 	add_timer_interval(gettick()+100,npc_event_do_clock,0,0,1000);
 }
@@ -2901,7 +2901,7 @@ static const char *npc_parse_function(char *w1, char *w2, char *w3, char *w4, co
 	func_db = script_get_userfunc_db();
 	if(func_db->put(func_db, db_str2key(w3), db_ptr2data(script), &old_data)) {
 		struct script_code *oldscript = (struct script_code *)db_data2ptr(&old_data);
-		ShowInfo("npc_parse_function: Overwriting user function [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
+		ShowNpc("npc_parse_function: Overwriting user function [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
 		script_free_vars(oldscript->script_vars);
 		aFree(oldscript->script_buf);
 		aFree(oldscript);
@@ -3714,7 +3714,7 @@ void npc_read_event_script(void)
 	if(battle_config.etc_log) {
 		//Print summary.
 		for(i = 0; i < NPCE_MAX; i++)
-			ShowInfo("%s: %d '%s' events.\n", config[i].name, script_event[i].event_count, config[i].event_name);
+			ShowNpc("%s: %d '%s' events.\n", config[i].name, script_event[i].event_count, config[i].event_name);
 	}
 }
 
@@ -3795,10 +3795,10 @@ int npc_reload(void)
 	//TODO: the following code is copy-pasted from do_init_npc(); clean it up
 	// Reloading npcs now
 	for(nsl = npc_src_files; nsl; nsl = nsl->next) {
-		ShowStatus("Carregando arquivo de NPC: %s"CL_CLL"\r", nsl->name);
+		ShowNpc("Carregando arquivo de NPC: %s"CL_CLL"\r", nsl->name);
 		npc_parsesrcfile(nsl->name,false);
 	}
-	ShowInfo("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
+	ShowNpc("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Portais\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Lojas\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Scripts\n"
@@ -3822,12 +3822,12 @@ int npc_reload(void)
 	npc_event_doall("OnAgitInit2");
 
 	//Execute the OnInit event for freshly loaded npcs. [Skotlex]
-	ShowStatus("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n",npc_event_doall("OnInit"));
+	ShowNpc("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n",npc_event_doall("OnInit"));
 
 	// Execute rest of the startup events if connected to char-server. [Lance]
 	if(!CheckForCharServer()) {
-		ShowStatus("Evento '"CL_WHITE"OnInterIfInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
-		ShowStatus("Evento '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
+		ShowNpc("Evento '"CL_WHITE"OnInterIfInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
+		ShowNpc("Evento '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
 	}
 	return 0;
 }
@@ -3929,12 +3929,12 @@ int do_init_npc(void)
 	timer_event_ers = ers_new(sizeof(struct timer_event_data),"clif.c::timer_event_ers",ERS_OPT_NONE);
 
 	// process all npc files
-	ShowStatus("Carregando NPCs...\r");
+	ShowNpc("Carregando NPCs...\r");
 	for(file = npc_src_files; file != NULL; file = file->next) {
-		ShowStatus("Carregando arquivo de NPC: %s"CL_CLL"\r", file->name);
+		ShowNpc("Carregando arquivo de NPC: %s"CL_CLL"\r", file->name);
 		npc_parsesrcfile(file->name,false);
 	}
-	ShowInfo("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
+	ShowNpc("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Portais\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Lojas\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Scripts\n"

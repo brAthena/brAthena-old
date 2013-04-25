@@ -2028,7 +2028,7 @@ void guild_agit_start(void)
 {
 	// Run All NPC_Event[OnAgitStart]
 	int c = npc_event_doall("OnAgitStart");
-	ShowStatus(read_message("Source.map.map_guild_s12"),c);
+	ShowNpc(read_message("Source.map.map_guild_s12"),c);
 }
 
 /*====================================================
@@ -2038,7 +2038,7 @@ void guild_agit_end(void)
 {
 	// Run All NPC_Event[OnAgitEnd]
 	int c = npc_event_doall("OnAgitEnd");
-	ShowStatus(read_message("Source.map.map_guild_s13"),c);
+	ShowNpc(read_message("Source.map.map_guild_s13"),c);
 }
 
 /*====================================================
@@ -2048,7 +2048,7 @@ void guild_agit2_start(void)
 {
 	// Run All NPC_Event[OnAgitStart2]
 	int c = npc_event_doall("OnAgitStart2");
-	ShowStatus(read_message("Source.map.map_guild_s14"),c);
+	ShowNpc(read_message("Source.map.map_guild_s14"),c);
 }
 
 /*====================================================
@@ -2058,7 +2058,7 @@ void guild_agit2_end(void)
 {
 	// Run All NPC_Event[OnAgitEnd2]
 	int c = npc_event_doall("OnAgitEnd2");
-	ShowStatus(read_message("Source.map.map_guild_s15"),c);
+	ShowNpc(read_message("Source.map.map_guild_s15"),c);
 }
 
 // How many castles does this guild have?
