@@ -4591,27 +4591,28 @@ enum bl_type map_zone_bl_type(const char *entry, enum map_zone_skill_subtype *su
 		
 	while (parse != NULL) {
 		normalize_name(parse," ");
-		if( strcmpi(parse,"player") == 0 )
+		if(strcmpi(parse,"player") == 0)
 			bl |= BL_PC;
-		else if( strcmpi(parse,"homun") == 0 )
+		else if(strcmpi(parse,"homun") == 0)
 			bl |= BL_HOM;
-		else if( strcmpi(parse,"mercenary") == 0 )
+		else if(strcmpi(parse,"mercenary") == 0)
 			bl |= BL_MER;
-		else if( strcmpi(parse,"monster") == 0 )
+		else if(strcmpi(parse,"monster") == 0)
 			bl |= BL_MOB;
-		else if( strcmpi(parse,"clone") == 0) {
+		else if(strcmpi(parse,"clone") == 0) {
 			bl |= BL_MOB;
 			*subtype |= MZS_CLONE;
-		} else if( strcmpi(parse,"mob_boss") == 0) {
+		} else if(strcmpi(parse,"mob_boss") == 0) {
 			bl |= BL_MOB;
 			*subtype |= MZS_BOSS;
 		} else if(strcmpi(parse,"elemental") == 0)
 			bl |= BL_ELEM;
 		else if(strcmpi(parse,"pet") == 0)
 			bl |= BL_PET;
-		else if( strcmpi(parse,"all") == 0 )
+		else if(strcmpi(parse,"all") == 0) {
 			bl |= BL_ALL;
-		else if( strcmpi(parse,"none") == 0 ) {
+			*subtype |= MZS_ALL;
+		} else if(strcmpi(parse,"none") == 0) {
 			bl = BL_NUL;
 		} else {
 			ShowError("map_zone_db: '%s' unknown type, skipping...\n",parse);
