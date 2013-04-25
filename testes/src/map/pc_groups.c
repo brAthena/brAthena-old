@@ -285,7 +285,7 @@ static void read_config(void)
 		dbi_destroy(iter);
 	}
 
-	ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' grupos em '"CL_WHITE"%s"CL_RESET"'.\n", group_count, config_filename);
+	ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' grupos em '"CL_WHITE"%s"CL_RESET"'.\n", group_count, config_filename);
 
 
 	if((pc_group_max = group_count)) {

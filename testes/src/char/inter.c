@@ -757,7 +757,7 @@ static int inter_config_read(const char *cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo(read_message("Source.reuse.reuse_loadfile_ok"), cfgName);
+	ShowConf(read_message("Source.reuse.reuse_loadfile_ok"), cfgName);
 
 	return 0;
 }

@@ -5807,7 +5807,7 @@ void clif_read_channels_config(void) {
 			}
 		}
 
-		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' canais em '"CL_WHITE"%s"CL_RESET"'.\n", db_size(channel_db), config_filename);
+		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' canais em '"CL_WHITE"%s"CL_RESET"'.\n", db_size(channel_db), config_filename);
 		config_destroy(&channels_conf);
 	}
 }
@@ -16502,7 +16502,7 @@ void clif_cashshop_db(void) {
 			}
 		}
 		
-		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", item_count_t, config_filename);
+		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", item_count_t, config_filename);
 		config_destroy(&cashshop_conf);
 	}
 }

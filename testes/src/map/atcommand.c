@@ -9997,7 +9997,7 @@ static void atcommand_config_read(const char *config_filename)
 		}
 	}
 
-	ShowStatus(read_message("Source.map.map_atcommand_s2"), CL_WHITE, num_aliases, CL_RESET, CL_WHITE, config_filename, CL_RESET);
+	ShowConf(read_message("Source.map.map_atcommand_s2"), CL_WHITE, num_aliases, CL_RESET, CL_WHITE, config_filename, CL_RESET);
 	return;
 }
 void atcommand_db_load_groups(int *group_ids)

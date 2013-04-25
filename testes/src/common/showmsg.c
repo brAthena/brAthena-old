@@ -680,6 +680,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 	if(
 	    (flag == MSG_INFORMATION && msg_silent&1) ||
 	    (flag == MSG_STATUS && msg_silent&2) ||
+		(flag == MSG_CONF && msg_silent&3) ||
 	    (flag == MSG_NOTICE && msg_silent&4) ||
 	    (flag == MSG_WARNING && msg_silent&8) ||
 	    (flag == MSG_ERROR && msg_silent&16) ||
@@ -699,6 +700,9 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			break;
 		case MSG_STATUS: //Bright Green (To inform about good things)
 			strcat(prefix,CL_GREEN"[Status]"CL_RESET":");
+			break;
+		case MSG_CONF: //Cor Marrom (Leitura para arquivo de configuração)
+			strcat(prefix,CL_BROWN"[Conf]"CL_RESET":");
 			break;
 		case MSG_SQL: //Bright Violet (For dumping out anything related with SQL) <- Actually, this is mostly used for SQL errors with the database, as successes can as well just be anything else... [Skotlex]
 			strcat(prefix,CL_MAGENTA"[SQL]"CL_RESET":");
@@ -793,6 +797,13 @@ void ShowStatus(const char *string, ...)
 	va_list ap;
 	va_start(ap, string);
 	_vShowMessage(MSG_STATUS, string, ap);
+	va_end(ap);
+}
+void ShowConf(const char *string, ...)
+{
+	va_list ap;
+	va_start(ap, string);
+	_vShowMessage(MSG_CONF, string, ap);
 	va_end(ap);
 }
 void ShowSQL(const char *string, ...)

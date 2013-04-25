@@ -1693,7 +1693,7 @@ int login_config_read(const char *cfgName)
 		}
 	}
 	fclose(fp);
-	ShowInfo("Leitura completa %s.\n", cfgName);
+	ShowConf("Leitura completa %s.\n", cfgName);
 	return 0;
 }
 

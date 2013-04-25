@@ -45,6 +45,7 @@
 #define CL_BLUE     "\033[1;34m"
 #define CL_MAGENTA  "\033[1;35m"
 #define CL_CYAN     "\033[1;36m"
+#define CL_BROWN     "\033[22;33m"
 
 // background color
 #define CL_BG_BLACK     "\033[40m"
@@ -88,6 +89,7 @@ extern char timestamp_format[20]; //For displaying Timestamps [Skotlex]
 enum msg_type {
     MSG_NONE,
     MSG_STATUS,
+    MSG_CONF,
     MSG_SQL,
     MSG_INFORMATION,
     MSG_NOTICE,
@@ -112,6 +114,7 @@ extern struct brathena_config {
 extern void ClearScreen(void);
 extern void ShowMessage(const char *, ...);
 extern void ShowStatus(const char *, ...);
+extern void ShowConf(const char *, ...);
 extern void ShowSQL(const char *, ...);
 extern void ShowInfo(const char *, ...);
 extern void ShowNotice(const char *, ...);

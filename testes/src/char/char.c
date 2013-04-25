@@ -4627,7 +4627,7 @@ void sql_config_read(const char *cfgName)
 			sql_config_read(w2);
 	}
 	fclose(fp);
-	ShowInfo(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
+	ShowConf(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
 }
 void char_read_start_items(char *w2)
 {
@@ -4803,7 +4803,7 @@ int char_config_read(const char *cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
+	ShowConf(read_message("Source.reuse.reuse_sql_config_read"), cfgName);
 	return 0;
 }
 
