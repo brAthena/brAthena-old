@@ -1050,9 +1050,12 @@ prt_in,79,94,4	script	Cavaleiro das Lutas#cav	733,{
 	mes "[Cavaleiro das Lutas]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) mes "Proteja.";
-		else mes ( BaseClass == Job_Novice ) ? "...Vá brincar lá fora.":"...Hmpf.";
+		else {
+		mes ( BaseClass == Job_Novice ) ? "...Vá brincar lá fora.":"...Hmpf.";
 	}
 		close;
+		}
+		
 	if (CAVALEIRO_Q == 0) {
 		mes "...O que?";
 		close;
