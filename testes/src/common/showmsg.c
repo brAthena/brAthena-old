@@ -700,7 +700,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 		case MSG_NONE: // direct printf replacement
 			break;
 		case MSG_STATUS: //Bright Green (To inform about good things)
-			strcat(prefix,CL_GREEN"[Status]"CL_RESET":");
+			strcat(prefix,CL_LT_GREEN"[Sucesso]"CL_RESET":");
 			break;
 		case MSG_CONF: //Cor Ciano escuro (Leitura para arquivo de configuração)
 			strcat(prefix,CL_LT_CYAN"[Conf]"CL_RESET":");
@@ -715,7 +715,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			sprintf(prefix,CL_LT_GREEN"[Not%ccia]"CL_RESET":", 161);
+			sprintf(prefix,CL_GREEN"[Not%ccia]"CL_RESET":", 161);
 			break;
 		case MSG_WARNING: //Bright Yellow
 			strcat(prefix,CL_YELLOW"[Aviso]"CL_RESET":");
