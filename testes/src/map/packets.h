@@ -2074,6 +2074,7 @@ packet(0x020d,-1);
 	packet(0x0848,-1,clif->pCashShopBuy,0);
 	packet(0x0447,2);
 	packet(0x99b,8);
+	packet(0x84b,19);
 #endif
 
 #endif /* _PACKETS_H_ */
