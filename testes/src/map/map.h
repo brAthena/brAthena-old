@@ -642,6 +642,11 @@ struct map_data {
 		unsigned reset :1; // [Daegaladh]
 		unsigned chsysnolocalaj : 1;
 		unsigned noknockback : 1;
+		unsigned nousecart : 1;	//prevent open up cart @FIXME client side only atm
+		unsigned noitemconsumption : 1; //prevent item usage
+		unsigned nosumstarmiracle : 1; //allow SG miracle to happen ?
+		unsigned nomineeffect : 1; //allow /mineeffect
+		unsigned nolockon : 1;
 	} flag;
 	struct point save;
 	struct npc_data *npc[MAX_NPC_PER_MAP];

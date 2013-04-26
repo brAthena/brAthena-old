@@ -706,28 +706,38 @@ void clif_charselectok(int id, uint8 ok)
 
 /// Makes an item appear on the ground.
 /// 009e <id>.L <name id>.W <identified>.B <x>.W <y>.W <subX>.B <subY>.B <amount>.W (ZC_ITEM_FALL_ENTRY)
-/// 084b (ZC_ITEM_FALL_ENTRY4)
+/// 084b(2013) <id>.L <name id>.W <type>.W <identified>.B <x>.W <y>.W <subX>.B <subY>.B <amount>.W (ZC_ITEM_FALL_ENTRY4)
 void clif_dropflooritem(struct flooritem_data *fitem)
 {
+#if PACKETVER >= 20130000
+	uint8 buf[19];
+	uint32 header=0x84b;
+#else
 	uint8 buf[17];
-	int view;
+	uint32 header=0x09e;
+#endif
+	int view, offset=0;
 
 	nullpo_retv(fitem);
 
 	if(fitem->item_data.nameid <= 0)
 		return;
 
-	WBUFW(buf, 0) = 0x9e;
-	WBUFL(buf, 2) = fitem->bl.id;
-	WBUFW(buf, 6) = ((view = itemdb_viewid(fitem->item_data.nameid)) > 0) ? view : fitem->item_data.nameid;
-	WBUFB(buf, 8) = fitem->item_data.identify;
-	WBUFW(buf, 9) = fitem->bl.x;
-	WBUFW(buf,11) = fitem->bl.y;
-	WBUFB(buf,13) = fitem->subx;
-	WBUFB(buf,14) = fitem->suby;
-	WBUFW(buf,15) = fitem->item_data.amount;
+	WBUFW(buf, offset+0) = header;
+	WBUFL(buf, offset+2) = fitem->bl.id;
+	WBUFW(buf, offset+6) = ((view = itemdb_viewid(fitem->item_data.nameid)) > 0) ? view : fitem->item_data.nameid;
+#if PACKETVER >= 20130000
+	WBUFW(buf, offset+8) = itemtype(itemdb_type(fitem->item_data.nameid));
+	offset +=2;
+#endif
+	WBUFB(buf, offset+8) = fitem->item_data.identify;
+	WBUFW(buf, offset+9) = fitem->bl.x;
+	WBUFW(buf, offset+11) = fitem->bl.y;
+	WBUFB(buf, offset+13) = fitem->subx;
+	WBUFB(buf, offset+14) = fitem->suby;
+	WBUFW(buf, offset+15) = fitem->item_data.amount;
 
-	clif_send(buf, packet_len(0x9e), &fitem->bl, AREA);
+	clif_send(buf, packet_len(header), &fitem->bl, AREA);
 }
 
 
@@ -5863,6 +5873,32 @@ void clif_map_property(struct map_session_data *sd, enum map_property property)
 	WFIFOSET(fd,packet_len(0x199));
 }
 
+void clif_maptypeproperty2(struct block_list *bl,enum send_target t) {
+#if PACKETVER >= 20130000
+	uint8 buf[8];
+
+	WBUFW(buf,0)=0x99b; //2
+	WBUFW(buf,2)=0x28; //2
+
+	WBUFB(buf,4) = ((map[bl->m].flag.partylock)?0:0x01); //party
+	WBUFB(buf,4) |= ((map[bl->m].flag.guildlock)?0:0x02); //guild
+	WBUFB(buf,4) |= ((map_flag_gvg2(bl->m))?0x04:0); //siege
+	WBUFB(buf,4) |= ((map[bl->m].flag.nomineeffect)?0:0x08); //mineffect @FIXME what this do
+	WBUFB(buf,4) |= ((map[bl->m].flag.nolockon)?0x10:0); //nolockon 0x10 @FIXME what this do
+	WBUFB(buf,4) |= ((map[bl->m].flag.pvp)?0x20:0); //countpk
+	WBUFB(buf,4) |= 0; //nopartyformation 0x40
+	WBUFB(buf,4) |= ((map[bl->m].flag.battleground)?0x80:0); //battleground
+
+	WBUFB(buf,5) = ((map[bl->m].flag.noitemconsumption)?0x01:0); //noitemconsumption
+	WBUFB(buf,5) |= ((map[bl->m].flag.nousecart)?0:0x02); // usecart
+	WBUFB(buf,5) |= ((map[bl->m].flag.nosumstarmiracle)?0:0x04); //summonstarmiracle
+//	WBUFB(buf,5) |= RBUFB(buf,5)&0xf8;  //sparebit[0-4]
+
+	WBUFW(buf,6) = 0; //sparebit [5-15], + extra[4]
+
+	clif_send(buf,packet_len(0x99b),bl,t);
+#endif
+}
 
 /// Set the map type (ZC_NOTIFY_MAPPROPERTY2).
 /// 01d6 <type>.W
@@ -9513,6 +9549,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	}
 
 	mail_clear(sd);
+
+	clif_maptypeproperty2(&sd->bl,SELF);
 
 	/* Guild Aura Init */
 	if(sd->state.gmaster_flag) {

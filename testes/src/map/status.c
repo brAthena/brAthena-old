@@ -3612,8 +3612,7 @@ void status_calc_state(struct block_list *bl, struct status_change *sc, enum scs
 		    || (sc->data[SC_BASILICA] && sc->data[SC_BASILICA]->val4 == bl->id) // Basilica caster cannot move
 		    || (sc->data[SC_GRAVITATION] && sc->data[SC_GRAVITATION]->val3 == BCT_SELF)
 		    || (sc->data[SC_CRYSTALIZE] && bl->type != BL_MOB)
-		    || (sc->data[SC_CAMOUFLAGE] && sc->data[SC_CAMOUFLAGE]->val1 < 3
-		        && !(sc->data[SC_CAMOUFLAGE]->val3&1))
+		    || (sc->data[SC_CAMOUFLAGE] && sc->data[SC_CAMOUFLAGE]->val1 < 3)
 		) {
 			sc->cant.move += (start ? 1 : -1);
 		}
@@ -5238,7 +5237,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max(val, 70);
 				if(sc->data[SC_MARSHOFABYSS])
 					val = max(val, 40 + 10 * sc->data[SC_MARSHOFABYSS]->val1);
-				if(sc->data[SC_CAMOUFLAGE] && (sc->data[SC_CAMOUFLAGE]->val3&1) == 0)
+				if(sc->data[SC_CAMOUFLAGE])
 					val = max(val, sc->data[SC_CAMOUFLAGE]->val1 < 3 ? 0 : 25 * (5 - sc->data[SC_CAMOUFLAGE]->val1));
 				if(sc->data[SC__GROOMY])
 					val = max(val, sc->data[SC__GROOMY]->val2);
@@ -10490,12 +10489,12 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			break;
 
 		case SC_CAMOUFLAGE:
-			if(--(sce->val4) > 0) {
-				status_charge(bl,0,7 - sce->val1);
-				sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
-				return 0;
-			}
-			break;
+			if (!status_charge(bl, 0, 7 - sce->val1))
+				break;
+			if (--sce->val4 >= 0)
+				sce->val3++;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
 
 		case SC__REPRODUCE:
 			if(!status_charge(bl, 0, 1))

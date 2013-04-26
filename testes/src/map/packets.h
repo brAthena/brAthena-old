@@ -2073,6 +2073,7 @@ packet(0x020d,-1);
 	packet(0x08c9,4,clif->pCashShopSchedule,0);
 	packet(0x0848,-1,clif->pCashShopBuy,0);
 	packet(0x0447,2);
+	packet(0x99b,8);
 #endif
 
 #endif /* _PACKETS_H_ */
