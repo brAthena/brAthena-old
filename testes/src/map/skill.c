@@ -2446,15 +2446,15 @@ void skill_combo(struct block_list* src,struct block_list *dsrc, struct block_li
 			break;
 		case MH_EQC:
 		case MH_MIDNIGHT_FRENZY:
-			if(hd->homunculus.spiritball >= 2) duration = 6000;
+			if(hd->homunculus.spiritball >= 2) duration = 2000;
 				delay=1;
 			break;
 		}
 	}
 
 	if (duration) { //Possible to chain
-		if(sd) duration = DIFF_TICK(sd->ud.canact_tick, tick);
-		if (duration < 1) duration = 1;
+		if(sd && duration == 1) duration = DIFF_TICK(sd->ud.canact_tick, tick);
+		duration = max(1,duration);
 		sc_start4(src,src,SC_COMBO,100,skill_id,bl->id,delay,0,duration);
 		clif_combo_delay(src, duration);
 	}
@@ -4496,9 +4496,12 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					else // Last spell to be released
 						status_change_end(src, SC_READING_SB, INVALID_TIMER);
 					if(bl->type != BL_SKILL) /* skill types will crash the client */
-					clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
+						clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 					if(!skill_check_condition_castbegin(sd, skill_id, skill_lv))
 						break;
+
+					// SC_MAGICPOWER needs to switch states before any damage is actually dealt
+					skill_toggle_magicpower(src, skill_id);
 
 					switch(skill_get_casttype(skill_id)) {
 						case CAST_GROUND:
@@ -12834,7 +12837,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			break;
 
 		case HT_POWER:
-			if(!(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == skill_id))
+			if(!(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == AC_DOUBLE))
 				return 0;
 			break;
 
