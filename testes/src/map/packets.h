@@ -2075,6 +2075,8 @@ packet(0x020d,-1);
 	packet(0x0447,2);
 	packet(0x99b,8);
 	packet(0x84b,19);
+	packet(0x0868,-1,clif->pItemListWindowSelected,2,4,8);
+
 #endif
 
 #endif /* _PACKETS_H_ */
