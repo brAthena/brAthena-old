@@ -5959,7 +5959,7 @@ static const struct _battle_data {
 	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
 	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
 	{ "item_flooritem_check",               &battle_config.item_onfloor,                    1,      0,      1,              },
-	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
+	{ "bowling_bash_area",                  &battle_config.bowling_bash_area,               0,      0,      20,             },
 	/**
 	 *
 	 **/
