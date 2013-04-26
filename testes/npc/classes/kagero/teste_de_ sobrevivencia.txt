@@ -12,69 +12,69 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Versões brA: 1.1                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Teste de Sobrevivência.                     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Primeira versão [Megasantos]                       |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-////Functions
-function	script	KO_SD	{	//Kagerou/Oboro Survival-DiceTwice(LargerThan,Warpto,Smallthan,Warpto,Location,LPConsume,BlockBetween1,BlockBetween2)
+function	script	KO_SD	{
 
-	mes "Location: "+getarg(4);
-	mes "Total LP: "+LPOINTS+"";
-	mes "To roll the dice, you need to consume "+getarg(5)+" LP.";
+	mes "Local: "+getarg(4);
+	mes "Total de LP: "+LPOINTS+"";
+	mes "Para rolar o dado, serão necessários "+getarg(5)+" LP.";
 	next;
-	if (select("Roll the first dice.")==1){
-		mes "< Used "+getarg(5)+" LP >";
+	if (select("Rolar o primeiro dado.") == 1){
+		mes "< "+getarg(5)+" LP foram gastos >";
 		set LPOINTS,LPOINTS-getarg(5);
 		set @dice1,rand(1,6);
 		next;
 		emotion 57+@dice1,0;
-		mes "First dice result is "+@dice1+". Do you want to roll the second dice?";
+		mes "O resultado do primeiro dado é "+@dice1+". Você deseja rolar o segundo dado?";
 		next;
-		if (select("Roll the second dice.")==1){
+		if (select("Rolar o segundo dado.") == 1){
 			set @dice2,rand(1,6);
 			emotion 57+@dice2,0;
-			mes "Second dice result is "+@dice2+".";
+			mes "O resultado do segundo dado é "+@dice2+".";
 		}
 		if (getarg(0)==-1){
-			if (@dice1!=@dice2){ mes "You didn't get the same results"; return;}
-			else if (@dice1==@dice2){ mes "You got the same number. Press Close to move block 30."; close2; callfunc("KO_SW",31);}
+			if (@dice1!=@dice2){ mes "Você não obteve o mesmo resultado."; return;}
+			else if (@dice1==@dice2){ mes "Você obteve o mesmo número. Pressione Close para se mover em 30 blocos."; close2; callfunc("KO_SW",31);}
 		}
 		else{
 			next;
 			set .@dresult,@dice1+@dice2;
 			mes @dice1+" + "+@dice2+" = "+.@dresult;
 			if (.@dresult<=getarg(2)){ 
-				mes "You total is lower than "+getarg(2)+". Press Close to move to block "+getarg(3)+"."; 
+				mes "Seu total é menor do que "+getarg(2)+". Pressione Close para mover "+getarg(3)+" blocos."; 
 				close2;
 				callfunc("KO_SW",getarg(3)+1);
 			}
 			else if (.@dresult>getarg(2)){ 
 				if (getarg(1)==-2){
-					mes "You total is larger than "+getarg(0)+". Please choose a block to move to between blocks "+getarg(6)+" through "+getarg(7)+".";
+					mes "Seu total é maior do que "+getarg(0)+". Por favor, escolha uma célula para mover-se entre "+getarg(6)+" e "+getarg(7)+".";
 					next;
 					for (.@i = 1; .@i <= (getarg(7)-getarg(6)); .@i = .@i +1){
-						if (.@i==1) .@menu$ = "Move to block "+(getarg(7)-1+.@i)+".";
-						else {.@menu$ = .@menu$+":Move to block "+(getarg(7)-1+.@i)+".";}
+						if (.@i==1) .@menu$ = "Mover-se para a célula "+(getarg(7)-1+.@i)+".";
+						else {.@menu$ = .@menu$+":Mover-se para a célula "+(getarg(7)-1+.@i)+".";}
 					}
 					set .@menu,select(.@menu$);
 					close2;
 					callfunc("KO_SW",1+.@menu+getarg(6));
 				}
 				else if(getarg(1)==-1){
-					mes "You total is larger than "+getarg(0)+".";
+					mes "Seu total é maior do que "+getarg(0)+".";
 					callfunc("KO_SL",getarg(4),1);
 					close2;
 					callfunc("KO_SW",@dice+getarg(4)+1);
 				}
 				else{
-					mes "You total is larger than "+getarg(0)+".";
+					mes "Seu total é maior do que "+getarg(0)+".";
 					callfunc("KO_SW",getarg(1)+1);
 				}
 				
@@ -84,23 +84,23 @@ function	script	KO_SD	{	//Kagerou/Oboro Survival-DiceTwice(LargerThan,Warpto,Sma
 
 }
 
-function	script	KO_SL	{	//Kagerou/Oboro Survival-Location(Location,LPConsume)
-	mes "Roll the dice.";
+function	script	KO_SL	{
+	mes "Role o dado.";
 	next;
-	mes "Location: "+getarg(0);
-	mes "Total LP: "+LPOINTS;
-	mes "To roll the dice, you need to consume "+getarg(1)+" LP.";
+	mes "Local: "+getarg(0);
+	mes "Total em LP: "+LPOINTS;
+	mes "Para rolar o dado, serão necessários "+getarg(1)+" LP.";
 	next;
-	if (select("Roll the dice.")==1){
+	if (select("Rolar o dado.")==1){
 		set LPOINTS, LPOINTS-getarg(1);
 		set @dice, rand(1,6);
 		emotion 57+@dice,0;
-		mes "The dice came out as "+@dice+".";
-		mes "Press Close to move forward "+@dice+" blocks.";
+		mes "O dado resultou em "+@dice+".";
+		mes "Pressione Close para avançar "+@dice+" blocos.";
 	}
 	return;
 }
-function	script	KO_SW	{	//Kagerou/Oboro Survival-Warpto(WarpLocation)
+function	script	KO_SW	{
 	switch(getarg(0)){
 		case 1:	warp "job_ko",63,16; end;
 		case 2:	warp "job_ko",54,16; end;
@@ -147,36 +147,36 @@ function	script	KO_SW	{	//Kagerou/Oboro Survival-Warpto(WarpLocation)
 	return;
 }
 
-function	script	KO_SR	{	//Kagerou/Oboro Survival-RPS(Win,Lose,Draw,Location,BlockBetween1,BlockBetween2)
-	mes "Rock! Paper! Scissors!";
+function	script	KO_SR	{
+	mes "Pedra! Papel! Tesoura!";
 	next;
-	set .@player,select("Give scissors.:Give rock.:Give paper.");
+	set .@player,select("Escolher tesoura.:Escolher pedra.:Escolher papel.");
 	emotion (9+.@player),1;
 	emotion (9+.@master),0;
 	set .@master, rand(1,3);
-	mes "=Game Results=";
-	mes "Machine: "+((.@master==1)?"Scissors":((.@master==2)?"Rock":"Paper"))+".";
-	mes "You: "+((.@player==1)?"Scissors":((.@player==2)?"Rock":"Paper"))+".";
+	mes "= Resultado do Jogo =";
+	mes "Máquina: "+((.@master==1)?"Tesoura":((.@master==2)?"Pedra":"Papel"))+".";
+	mes "Você: "+((.@player==1)?"Tesoura":((.@player==2)?"Pedra":"Papel"))+".";
 	if (.@master==.@player) {
 		mes "Draw";
 		if (getarg(2)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
 		close2;
 		callfunc("KO_SW",getarg(2)+1);
 	} else if ( (.@player==1 && .@master==2) || (.@player==2 && .@master==3) || (.@player==3 && .@master==1) ) {
-		mes "You Lose";
+		mes "Você perdeu";
 		if (getarg(1)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
 		else{
-			mes "Press Close to move to block "+getarg(1)+".";
+			mes "Por favor pressione Close para mover-se até o "+getarg(1)+" blocos.";
 			close2;
 			callfunc("KO_SW",getarg(1)+1);
 		}
 	} else{
-		mes "You Win";
+		mes "Você venceu";
 		if (getarg(0)==-1){callfunc("KO_SL",getarg(4),1); close2; callfunc("KO_SW",@dice+getarg(4)+1);}
 		else if (getarg(0)==-2){
 			for (.@i = 1; .@i <= (getarg(5)-getarg(4)); .@i = .@i +1){
-				if (.@i==1) .@menu$ = "Move to block "+(getarg(5)-1+.@i)+".";
-				else {.@menu$ = .@menu$+":Move to block "+(getarg(5)-1+.@i)+".";}
+				if (.@i==1) .@menu$ = "Mover-se para a célula "+(getarg(5)-1+.@i)+".";
+				else {.@menu$ = .@menu$+":Mover-se para a célula "+(getarg(5)-1+.@i)+".";}
 			}
 			set .@menu,select(.@menu$);
 			close2;
@@ -184,48 +184,44 @@ function	script	KO_SR	{	//Kagerou/Oboro Survival-RPS(Win,Lose,Draw,Location,Bloc
 			end;
 		}
 		else{
-			mes "Press Close to move to block "+getarg(0)+".";
+			mes "Pressione Close para avançar "+getarg(0)+" blocos.";
 			close2;
 			callfunc("KO_SW",getarg(0)+1);
 		}
 	}
 }
-//=== FUNCTIONS END ===//
 
-
-
-
-job_ko,57,16,1	script	Sight#ko_00	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,57,16,1	script	Instrução#ko_00	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
 	if (LREADYHR == 1){
 		if (checkquest(5140)== 1) erasequest 5140;
 		set LPOINTS, 100;
-		mes "You've returned to the first block. Your LP is recovered.";
+		mes "Você retornou para a primeira célula. Seu LP foi recuperado.";
 		next;
 	}
-	switch(select("Read the description.:Start the test.")){
+	switch(select("Ler a descrição.:Começar o teste.")){
 		case 1:
-			mes "The Test of Survival starts from here and you use  100 Life Points (LP) and roll dice to advance forward through the test.";
+			mes "O Teste de Sobrevivência começa a partir de agora e você possui 100 LPs para gastar e dados para avançar no teste.";
 			next;
-			mes "The whole test starts from block 0 to block 40 and each block you get can either give or take your LP.";
+			mes "Todo o teste começa a partir do bloco 0 e vai até o 40 e cada bloco que você inicia pode conceder ou tirar LPs.";
 			next;
-			mes "You need to have some LP till you get to the arrival block at the end to pass the test.";
+			mes "Você precisa possuir algum LP quando chegar no final do teste.";
 			next;
-			mes "But! You still pass the test if your LP becomes 0 when you get to the arrival block.";
+			mes "Mas! Você ainda passará no teste se o seu LP´chegar a 0 no bloco de chegada.";
 			next;
-			mes "Game instructions end here. Good luck to you.";
+			mes "As instruções do jogo terminam aqui. Tenha uma boa sorte.";
 			close;
 
 		case 2:
 			if (checkquest(5140) == -1)setquest 5140;
 			set LPOINTS, 100;
 			set LREADYHR,1;
-			mes "You've gained 100 Life Points (LP).";
+			mes "Você recebeu 100 Pontos de Life (LP).";
 			next;
 			callfunc("KO_SL",0,1);
 			close2;
@@ -234,20 +230,20 @@ OnTouch:
 	}
 }
 
-job_ko,49,16,1	script	Sight#ko_01	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,49,16,1	script	Instrução#ko_01	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "You are really bad at rolling dice. How can you get a 1 from the start? You can move to block 9 if you pay up 10 LP in this block.";
+	mes "Você é muito ruim em rolar dados. Como você pode conseguir 1 desde o começo? Você pode mover-se até o bloco 9 se pagar 10 LPs.";
 	next;
-	switch(select("Use 10 LP:Roll the dice.")){
+	switch(select("Utilizar 10 LPs:Rolar o dado.")){
 		case 1:
 			set LPOINTS, LPOINTS-10;
-			mes "< Used 10 LP >";
-			mes "Press Close to move to block 9.";
+			mes "< 10 LPs Utilizados >";
+			mes "Pressione Close para mover-se ao bloco 9.";
 			close2;
 			
 			callfunc("KO_SW",10);
@@ -258,64 +254,64 @@ OnTouch:
 	}
 }
 
-job_ko,41,16,1	script	Sight#ko_02	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,41,16,1	script	Instrução#ko_02	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 0.";
+	mes "Este bloco é uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 0.";
 	close2;
 	callfunc("KO_SW",1);
 }
 
-job_ko,33,16,1	script	Sight#ko_03	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,33,16,1	script	Instrução#ko_03	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Used 5 LP so you will have to resist the curse passed down through generations before moving forward.";
+	mes "Se você utilizar 5 LPs então você poderá resistir à uma maldição transmitida através de gerações.";
 	next;
-	switch(select("Use 5 LP")){
+	switch(select("Utilizar 5 LPs")){
 		case 1:
-		mes "< Used 5 LP >";
+		mes "< 5 LPs foram utilizados >";
 		set LPOINTS, LPOINTS-5;
 		callfunc("KO_SL",3,1);	
 		callfunc("KO_SW",@dice+4);
 	}
 }
 
-job_ko,25,16,1	script	Sight#ko_04	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,25,16,1	script	Instrução#ko_04	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters scribbled on the sign.";
+	mes "Existem pequenas letras rabiscadas na placa.";
 	next;
 	if (.KO_WH$!="") {
-		mes .KO_WH$+" was here.";
+		mes .KO_WH$+" esteve aqui.";
 		next;
 	}
-	mes "Should I leave my name since taking the test is a special occasion?";
+	mes "Gostaria de deixar seu nome para vê-lo em uma ocasião especial?";
 	next;
-	switch(select("Use 5 LP and leave your name.:Continue to roll the dice.")){
+	switch(select("Utilizar 5 LPs e gravar seu nome.:Continuar a rolar o dado.")){
 		case 1:
-			mes "< Used 5 LP >";
+			mes "< 5 LPs foram utilizados >";
 			set LPOINTS,LPOINTS-5;
 			next;
 			set .KO_WH$,"strcharinfo(0)";
-			mes strcharinfo(0)+" was here.";
-			mes "You left your name.";
+			mes strcharinfo(0)+" esteve aqui.";
+			mes "Você gravou seu nome.";
 			callfunc("KO_SL",4,1);	
 			close2;
 			callfunc("KO_SW",@dice+5);
 			
 		case 2:
-			mes "Roll the dice.";
+			mes "Role o dado.";
 			next;
 			callfunc("KO_SL",4,1);	
 			close2;
@@ -323,49 +319,49 @@ OnTouch:
 	}
 }
 
-job_ko,17,16,1	script	Sight#ko_05	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,16,1	script	Instrução#ko_05	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
 	if (checkquest(5141,PLAYTIME) == 0){
-		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 		close;
 	}
 	if (checkquest(5141,PLAYTIME) == 2){
-		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		mes "A maldição e a imobilização foram removidas..";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
 		callfunc("KO_SW",@dice+6);
 	}
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	mes "Se você não utilizar 5 LPs, você será amaldiçoado e imobilizado por 2 minutos.";
 	next;
-	switch(select("Use 5 LP:Do not pay.")){
+	switch(select("Utilizar 5 LPs:Não pagar.")){
 		case 1:
-			mes "<Used 5 LP>";
+			mes "< 5 LPs utilizados >";
 			set LPOINTS,LPOINTS-5;
 			callfunc("KO_SL",5,1);
 			callfunc("KO_SW",@dice+6);
 			
 		case 2:
 			setquest 5141;
-			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 			close;
 	}
 }
 
-job_ko,17,24,1	script	Sight#ko_06	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,24,1	script	Instrução#ko_06	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block is blessed.";
-	mes "Life Point recovers 7 LP.";
-	mes "Cannot exceed maximum 100 LP.";
+	mes "Este bloco é amaldiçoado.";
+	mes "Você recuperou 7 LP.";
+	mes "Não é possível ultrapassar o limite de 100 LP.";
 	next;
 	if (!@recover){
 		if (LPOINTS<94) set LPOINTS,LPOINTS+7;
@@ -379,40 +375,40 @@ OnTouch:
 	callfunc("KO_SW",@dice+7);
 }
 
-job_ko,17,32,1	script	Sight#ko_07	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,32,1	script	Instrução#ko_07	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 5.";
+	mes "Este bloco é uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 5.";
 	close2;
 	callfunc("KO_SW",6);
 }
 
-job_ko,17,40,1	script	Sight#ko_08	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,40,1	script	Instrução#ko_08	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Rock-paper-scissors Machine";
-	mes "If you win, move to block 15.";
-	mes "If it is a draw, roll the dice.";
-	mes "If you lose, move to block 0.";
+	mes "Máquina de Pedra-Papel e Tesoura.";
+	mes "Se você ganhar, irá para o bloco 15.";
+	mes "Se você empatar, rolará o dado.";
+	mes "Se você perder, será movido para o bloco 0.";
 	next;
 	callfunc("KO_SR",15,0,-1,8,0,0);	
 }
 
-job_ko,17,48,1	script	Sight#ko_09	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,48,1	script	Instrução#ko_09	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
 	mes "Please proceed.";
 	next;
@@ -421,28 +417,28 @@ OnTouch:
 	callfunc("KO_SW",@dice+10);
 }
 
-job_ko,17,56,1	script	Sight#ko_10	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,17,56,1	script	Instrução#ko_10	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "If you don't want to be caught, install a trap.";
+	mes "Você está preso na armadilha instalada.";
 	next;
 	if (.trap){
-		mes "You are caught in the trap installed.";
-		mes "Press Close to go back to block 0.";
+		mes "Você está preso na armadilha instalada.";
+		mes "Pressione Close para voltar ao bloco 0.";
 		set .trap,0;
 		close2;
 		callfunc("KO_SW",1);
 	}
-	mes "There is currently no trap installed.";
-	mes "Do you want to use 10 LP to install a trap?";
-	switch(select("Install a trap.:Roll the Dice.")){
+	mes "Não há atualmente nenhuma armadilha instalada.";
+	mes "Você deseja utilizar 10 LPs para instalar uma armadilha?";
+	switch(select("Instalar uma armadilha.:Rolar o dado.")){
 		case 1:
-			mes "< Used 10 LP >";
-			mes "The trap is installed. Please roll the dice.";
+			mes "< 10 LPs Utilizados >";
+			mes "A armadilha está instalada. Por favor role o dado.";
 			set .trap,1;
 			set LPOINTS,LPOINTS-10;
 			next;
@@ -455,40 +451,40 @@ OnTouch:
 	}
 }
 
-job_ko,22,60,1	script	Sight#ko_11	909,1,1,{
-mes "There are tiny letters on the sign.";
+job_ko,22,60,1	script	Instrução#ko_11	858,1,1,{
+mes "Há letras minúsculas na placa.";
 next;
-mes "This block has a trap.";
-mes "Press Close to go back to block 9.";
+mes "Este bloco é uma armadilha.";
+mes "Pressione Close para voltar ao bloco 9.";
 close2;
 callfunc("KO_SW",10);
 }
 
-job_ko,30,60,1	script	Sight#ko_12	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,30,60,1	script	Instrução#ko_12	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Rock-paper-scissors Machine";
-	mes "If you win, move to block 20.";
-	mes "If it is a draw, roll the dice.";
-	mes "If you lose, move to block 9.";
+	mes "Máquina de Pedra-Papel e Tesoura.";
+	mes "Se você ganhar, irá para o bloco 20.";
+	mes "Se você empatar, rolará o dado.";
+	mes "Se você perder, será movido para o bloco 9.";
 	next;
 	callfunc("KO_SR",20,9,-1,12,0,0);
 }
 
-job_ko,38,60,1	script	Sight#ko_13	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,38,60,1	script	Instrução#ko_13	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block is blessed.";
-	mes "Life Point recovers 7 LP.";
-	mes "Cannot exceed maximum 100 LP.";
+	mes "Este bloco é amaldiçoado.";
+	mes "Você recuperou 7 LP.";
+	mes "Não é possível ultrapassar o limite de 100 LP.";
 	next;
 	if (!@recover){
 		if (LPOINTS<94) set LPOINTS,LPOINTS+7;
@@ -502,109 +498,109 @@ OnTouch:
 	callfunc("KO_SW",@dice+14);
 }
 
-job_ko,46,60,1	script	Sight#ko_14	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,46,60,1	script	Instrução#ko_14	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
 	if (checkquest(5141,PLAYTIME) == 0){
-		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 		close;
 	}
 	if (checkquest(5141,PLAYTIME) == 2){
-		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		mes "A maldição e a imobilização foram removidas..";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
 		callfunc("KO_SW",@dice+6);
 	}
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	mes "Se você não utilizar 5 LPs, você será amaldiçoado e imobilizado por 2 minutos.";
 	next;
-	switch(select("Use 5 LP:Do not pay.")){
+	switch(select("Utilizar 5 LPs:Não utilizar.")){
 		case 1:
-			mes "<Used 5 LP>";
+			mes "< 5 LPs utilizados >";
 			set LPOINTS,LPOINTS-5;
 			callfunc("KO_SL",14,1);
 			callfunc("KO_SW",@dice+15);
 		case 2:
 			setquest 5141;
-			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 			close;
 	}
 }
 
-job_ko,54,60,1	script	Sight#ko_15	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,54,60,1	script	Instrução#ko_15	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
 	if (checkquest(5141,PLAYTIME) == 0){
-		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 		close;
 	}
 	if (checkquest(5141,PLAYTIME) == 2){
-		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		mes "A maldição e a imobilização foram removidas..";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
 		close2;
 		callfunc("KO_SW",@dice+6);
 	}
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "You will be cursed by a powerful gravity curse that immobilizes you for 2 minutes.";
+	mes "Você foi amaldiçoado por uma poderosa maldição gravitacional por 2 minutos.";
 	setquest 5141;
 	close;
 }
 
-job_ko,62,60,1	script	Sight#ko_16	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,62,60,1	script	Instrução#ko_16	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Consume 2 LP and roll the dice twice.";
-	mes "If you get the same number then you can move to block 30, if the numbers are different, consume 2 LP to roll again... until you get the same numbers.";
+	mes "Consome 2 LPs e rola o dado duas vezes.";
+	mes "Se você conseguir o mesmo número, você será movido para o bloco 30, se os números forem diferentes você deverá gastar mais 2 LPs para rolar o dado novamente... Até que você consiga números iguais.";
 	next;
 	while(1){
 		callfunc("KO_SD",-1,30,-1,-3,16,2,0,0);
 	}
 }
 
-job_ko,62,51,1	script	Sight#ko_17	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,62,51,1	script	Instrução#ko_17	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Area cursed with 10 times the normal gravity. You will need 10LP to roll the dice.";
+	mes "Área amaldiçoada com 10 vezes mais gravidade do que o normal. Você irá precisar de 10 LPs para rolar o dado.";
 	callfunc("KO_SL",17,10);
 	close2;
 	callfunc("KO_SW",@dice+18);
 }
 
-job_ko,62,43,1	script	Sight#ko_18	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,62,43,1	script	Instrução#ko_18	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Consume 2 LP and roll the dice twice.";
-	mes "If the sum of the numbers from both dice is lower than 5, move to block 30, if it higher than 5, move to block 19.";
+	mes "Consome 2 LPs e rola o dado duas vezes.";
+	mes "Se os números forem iguais e menores que 5, você será movido para o bloco 30, se iguais e maiores que 5, será movido para o bloco 19.";
 	callfunc("KO_SD",5,19,5,30,18,2,0,0);
 
 
 }
 
-job_ko,62,35,1	script	Sight#ko_19	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,62,35,1	script	Instrução#ko_19	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
 	mes "Move forward.";
 	callfunc("KO_SL",19,1);
@@ -612,16 +608,16 @@ OnTouch:
 	callfunc("KO_SW",@dice+20);
 }
 
-job_ko,62,27,1	script	Sight#ko_20	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,62,27,1	script	Instrução#ko_20	909,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block is blessed.";
-	mes "Life Point recovers 7 LP.";
-	mes "Cannot exceed maximum 100 LP.";
+	mes "Este bloco é amaldiçoado.";
+	mes "Você recuperou 7 LP.";
+	mes "Não é possível ultrapassar o limite de 100 LP.";
 	next;
 	if (!@recover){
 		if (LPOINTS<94) set LPOINTS,LPOINTS+7;
@@ -635,42 +631,42 @@ OnTouch:
 	callfunc("KO_SW",@dice+21);
 }
 
-job_ko,57,23,1	script	Sight#ko_21	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,57,23,1	script	Instrução#ko_21	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Area cursed with 10 times the normal gravity. You will need 10LP to roll the dice.";
+	mes "Área amaldiçoada com 10 vezes mais gravidade do que o normal. Você irá precisar de 10 LPs para rolar o dado.";
 	callfunc("KO_SL",21,10);
 	close2;
 	callfunc("KO_SW",@dice+22);
 }
 
-job_ko,49,23,1	script	Sight#ko_22	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,49,23,1	script	Instrução#ko_22	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
 	if ($KO_SO == 1){
-		mes "Someone Leaved LP for you.";
-		mes "You will directly Pass the test";	//Dialog Info
+		mes "Alguém deixou LPs para você.";
+		mes "Você irá passar diretamente no teste";
 		close2;
 		set $KO_SO,0;
 		callfunc("KO_SW",41);
 	}
-	mes "Leave all your remaining LP and go back to block 0, then the next person will be redeemed.";
+	mes "Gaste todos os seus LPs restantes e volte para o bloco.";
 	next;
-	mes "Do you want to leave your LP?";
-	mes "If you leave your LP then the next person for test that arrives at the block will automatically pass the test.";
-	switch(select("Leave all your LP.:Continue to roll the dice.")){
+	mes "Você deseja deixar seus LPs?";
+	mes "Se você deixar seus Lps, em seguida, a próxima pessoa que chegar no teste poderá passar diretamente.";
+	switch(select("Deixar todos os seus LPs.:Continuar a rolar o dado.")){
 		case 1:
 			set $KO_SO,1;
-			mes "Leave all remaining LP here.";
-			mes "Press Close and go back to block 0.";
+			mes "Deixe todos os seus pontos aqui.";
+			mes "Pressione Close e volte para o bloco 0.";
 			set LPOINTS,0;
 			close2;
 			callfunc("KO_SW",1);
@@ -684,98 +680,97 @@ OnTouch:
 	}
 }
 
-job_ko,41,23,1	script	Sight#ko_23	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,41,23,1	script	Instrução#ko_23	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 18.";
+	mes "Este bloco é uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 18.";
 	close2;
 	callfunc("KO_SW",19);
 	end;
 	
 }
 
-
-job_ko,33,23,1	script	Sight#ko_24	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,33,23,1	script	Instrução#ko_24	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "consume 2 LP and roll the dice twice.";
+	mes "Consome 2 LPs e rola o dado duas vezes.";
 	next;
-	mes "If the sum of the numbers from both dice is larger than 8, then you can move to any block between 25 to 30. But! If the sum is below 8, you must move back to block 19.";
+	mes "Se a soma dos dois números dos dois dados forem maior do que 8, então você poderá se mover para qualquer bloco entre 25 e 30. Mas! Se a soma for inferior a 8, você voltará para o bloco 19.";
 	next;
 	callfunc("KO_SD",8,-2,8,19,24,2,25,30);
 }
 
-job_ko,25,23,1	script	Sight#ko_25	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,25,23,1	script	Instrução#ko_25	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
 	if (checkquest(5141,PLAYTIME) == 0){
-		mes "Cannot move because you are cursed.";
+		mes "Não é possível se mover, você está amaldiçoado.";
 		close;
 	}
 	if (checkquest(5141,PLAYTIME) == 2){
-		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		mes "A maldição e a imobilização foram removidas..";
 		erasequest 5141;
 		callfunc("KO_SL",25,1);
 		close2;
 		callfunc("KO_SW",@dice+26);
 	}
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This is lame.";
-	mes "Cannot read the writing. There should be a way to read it.";
-	switch(select("Try Something.:do Nothing.")){
+	mes "Isso é ridículo.";
+	mes "Não é possível ler o que está escrito. Deve haver alguma maneira de ler...";
+	switch(select("Tentar algo:Não fazer nada.")){
 		case 1:
 			next;
-			mes "Tried a recent Prontera joke to do something.";
+			mes "Tente uma piada em Prontera.";
 			next;
 			setquest 5141;
-			mes "Got cursed and became immobilized for 2 minutes.";
+			mes "Você foi amaldiçoado e imobilizado durante 2 minutos.";
 			close;
 			
 			
 		case 2:
 			next;
-			mes "Nothing happened. Still need to do something.";
+			mes "Nada aconteceu. Ainda preciso fazer alguma coisa.";
 			close;
 	}
 }
 
-job_ko,25,32,1	script	Sight#ko_26	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,25,32,1	script	Instrução#ko_26	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 20.";
+	mes "Este bloco é uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 20.";
 	close2;
 	callfunc("KO_SW",21);
 	end;
 	
 }
 
-job_ko,25,40,1	script	Sight#ko_27	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,25,40,1	script	Instrução#ko_27	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block is blessed.";
-	mes "Life Point recovers 7 LP.";
-	mes "Cannot exceed maximum 100 LP.";
+	mes "Este bloco é amaldiçoado.";
+	mes "Você recuperou 7 LP.";
+	mes "Não é possível ultrapassar o limite de 100 LP.";
 	next;
 	if (!@recover){
 		if (LPOINTS<94) set LPOINTS,LPOINTS+7;
@@ -789,28 +784,28 @@ OnTouch:
 	callfunc("KO_SW",@dice+28);
 }
 
-job_ko,25,48,1	script	Sight#ko_28	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,25,48,1	script	Instrução#ko_28	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "If you don't want to be caught, install a trap.";
+	mes "Se você não quer ser pego, instale uma armadilha.";
 	next;
 	if (.trap){
-		mes "You are caught in the trap installed.";
-		mes "Press Close to go back to block 0.";
+		mes "Você está preso na armadilha instalada.";
+		mes "Pressione Close para voltar ao bloco 0.";
 		set .trap,0;
 		close2;
 		callfunc("KO_SW",1);
 	}
-	mes "There is currently no trap installed.";
-	mes "Do you want to use 10 LP to install a trap?";
-	switch(select("Install a trap.:Roll the Dice.")){
+	mes "Não há atualmente nenhuma armadilha instalada.";
+	mes "Você deseja utilizar 10 LPs para instalar uma armadilha?";
+	switch(select("Instalar uma armadilha.:Rolar o dado.")){
 		case 1:
-			mes "< Used 10 LP >";
-			mes "The trap is installed. Please roll the dice.";
+			mes "< 10 LP Utilizados >";
+			mes "A armadilha está instalada. Por favor role o dado.";
 			set .trap,1;
 			set LPOINTS,LPOINTS-10;
 			next;
@@ -824,57 +819,58 @@ OnTouch:
 			callfunc("KO_SW",@dice+29);
 	}
 }
-job_ko,30,52,1	script	Sight#ko_29	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+
+job_ko,30,52,1	script	Instrução#ko_29	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Go forth.";
+	mes "Vá em frente.";
 	callfunc("KO_SL",29,1);
 	close2;
 	callfunc("KO_SW",@dice+30);
 	end;
 }
 
-job_ko,38,52,1	script	Sight#ko_30	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,38,52,1	script	Instrução#ko_30	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 9.";
+	mes "Este bloco é uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 9.";
 	close2;
 	callfunc("KO_SW",10);
 	end;
 	
 }
 
-job_ko,46,52,1	script	Sight#ko_31	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,46,52,1	script	Instrução#ko_31	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
 	if (checkquest(5141,PLAYTIME) == 0){
-		mes "You are cursed and cannot move to any other block for 2 minutes.";
+		mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 		close;
 	}
 	if (checkquest(5141,PLAYTIME) == 2){
-		mes "The immobilize curse lasted for 2 minutes and then was removed.";
+		mes "A maldição e a imobilização foram removidas..";
 		erasequest 5141;
 		callfunc("KO_SL",5,1);
 		callfunc("KO_SW",@dice+6);
 	}
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "If you do not pay 5 LP, you will be cursed and immobilized for 2 minutes.";
+	mes "Se você não utilizar 5 LPs 5 LP, você será amaldiçoado e imobilizado por 2 minutos.";
 	next;
-	switch(select("Use 5 LP:Do not pay.")){
+	switch(select("Utilizar 5 LPs:Não utilizar.")){
 		case 1:
-			mes "<Used 5 LP>";
+			mes "< 5 LPs utilizados >";
 			set LPOINTS,LPOINTS-5;
 			callfunc("KO_SL",31,1);
 			close2;
@@ -882,39 +878,39 @@ OnTouch:
 			
 		case 2:
 			setquest 5141;
-			mes "You are cursed and cannot move to any other block for 2 minutes.";
+			mes "Você está amaldiçoado e não pode se mover para nenhum bloco durante 2 minutos.";
 			close;
 	}
 
 }
 
-job_ko,46,52,1	script	Sight#ko_32	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,46,52,1	script	Instrução#ko_32	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Rock-paper-scissors Machine";
-	mes "If you win, you get to move to any block between 33 to 38; if you lose or is a draw, you have to move to block 0.";
+	mes "Máquina de Pedra-Papel e Tesoura.";
+	mes "Se você vencer, você será movido entre os blocos 33 ao 38, se você perder ou se empatar, você será movido para o bloco 0.";
 	callfunc("KO_SR",-2,0,0,32,33,38);
 }
 
-job_ko,54,43,1	script	Sight#ko_33	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,54,43,1	script	Instrução#ko_33	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "You can move to block 39 if you pay all points except for the last 1 LP to roll the dice one last time.";
-	switch(select("Pay LP.:Move forward little bit at a time.")){
+	mes "Você poderá ser movido para o bloco 39 se você pagar com todos os seus pontos, exceto o último LP que te permitirá rolar os dados mais uma vez.";
+	switch(select("Utilizar LPs.:Avançar.")){
 		case 1:
 			next;
 			set @temp,LPOINTS-1;
 			set LPOINTS,1;
-			mes "<"+@temp+" Used LP >";
-			mes "Press Close to move to block 39.";
+			mes "<"+@temp+" LPs utilizados >";
+			mes "Pressione Close para mover-se até o bloco 39.";
 			close2;
 			callfunc("KO_SW",40);
 			end;
@@ -927,21 +923,21 @@ OnTouch:
 	}
 }
 
-job_ko,54,35,1	script	Sight#ko_34	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,54,35,1	script	Instrução#ko_34	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block is blessed.";
-	mes "Life Point recovers 7 LP.";
-	mes "Cannot exceed maximum 100 LP.";
+	mes "Este bloco é amaldiçoado.";
+	mes "Você recuperou 7 LPs.";
+	mes "Não é possível ultrapassar o limite de 100 LP.";
 	next;
 	if (!@recover){
 		if (LPOINTS<94) set LPOINTS,LPOINTS+7;
 		else if (LPOINTS>93) set LPOINTS,100;
-		mes "< Recover "+((LPOINTS==100)?"":"7")+" LP >";
+		mes "< "+((LPOINTS==100)?"":"7")+" LPs Recuperados >";
 		set @recover,1;
 	}
 	callfunc("KO_SL",34,1);
@@ -950,38 +946,38 @@ OnTouch:
 	callfunc("KO_SW",@dice+35);
 }
 
-job_ko,49,31,1	script	Sight#ko_35	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,49,31,1	script	Instrução#ko_35	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "This block has a trap.";
-	mes "Press Close to go back to block 29.";
+	mes "Este bloco possui uma armadilha.";
+	mes "Pressione Close para voltar ao bloco 29.";
 	close2;
 	callfunc("KO_SW",30);
 	end;
 }
 
-job_ko,41,31,1	script	Sight#ko_36	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,41,31,1	script	Instrução#ko_36	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "There are only 4 blocks left till the last block.";
+	mes "Existem apenas 4 blocos à esquerda antes do último bloco.";
 	next;
-	mes "Rule 1 (Normal Dice Roll)";
-	mes "You get to pass if you get 4 or above but nobody knows what will come from a dice roll.";
+	mes "Regra 1 (Rolando Dados - Normal)";
+	mes "Você passará se o resultado gerado pelo dado for 4 ou maior, porém não se sabe o resultado que o dado gerará.";
 	next;
-	mes "Rule 2";
-	mes "If you get 1, 2, or 3 you move right to the arrival point; if you get 4, 5, or 6 you get to choose to move to block 29.";
+	mes "Regra 2";
+	mes "Se for gerado 1, 2, o 3 você será movido para o ponto de chegada, se: 4, 5, ou 6 você pode escolher e se mover para o bloco 29.";
 	mes "next;";
-	switch(select("Try it the other way.:Go by the rule.")){
+	switch(select("Experimentar outro caminho.:Ir pela regra.")){
 		case 1:
-			mes "The Other Way (2nd Rule)";
+			mes "O outro caminho (Regra 2)";
 			callfunc("KO_SD",3,29,3,40,36,1,0,0);
 			end;
 		case 2:
@@ -993,68 +989,65 @@ OnTouch:
 	}
 }
 
-job_ko,33,31,1	script	Sight#ko_37	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,33,31,1	script	Instrução#ko_37	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "There are only 3 blocks left to the finish line but you can't you go so easily.";
-	mes "If you get 1, 3, or 5, move to the arrival point; if you get 2, 4, or 6, go back to the starting point.";
+	mes "Existem apenas 4 blocos à esquerda antes do último bloco.";
+	mes "se for gerado 1, 3, ou 5, você será movido para o ponto de chegada, se: 2, 4, ou 6, você irá retornar para o ponto de início.";
 	callfunc("KO_SL",37,1);
 	next;
 	if (@dice%2 == 0){
-		mes "Press Close to move to starting point.";
+		mes "Pressione Close para voltar para retornar ao ponto de início.";
 		close2;
 		callfunc("KO_SW",1);
 		end;
 	}
 	else if (@dice%2 == 1){
-		mes "Press Close to move to the last block.";
+		mes "Pressione Close para ir até o último bloco.";
 		close2;
 		callfunc("KO_SW",41);
 		end;
 	}
 }
 
-///////////////////////////////// 38 Block /////////////////////////////////
-
-job_ko,38,44,1	script	Sight#ko_39	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,38,44,1	script	Instrução#ko_39	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "Now there is only 1 block left till the end. Congratulations on all you've been through to get here.";
+	mes "Agora há apenas um bloco à esquerda antes do fom. Parabéns por tudo o que você passou até chegar aqui.";
 	next;
-	mes "But you cannot go so easily. If you get a 3, you will go back to block 3.";
+	mes "Mas tenha cal,a. Se você tirar um 3, você voltará para o bloco 3.";
 	callfunc("KO_SL",39,1);
 	if (@dice==3){
-		mes "Press Close to move to 3rd block.";
+		mes "Pressione Close para retornar ao bloco 3.";
 		close2;
 		callfunc("KO_SW",4);
 	}
 	else{
-		mes "Press Close to move to the arrival point.";
+		mes "Pressione Close para ir até o bloco de chegada.";
 		close2;
 		callfunc("KO_SW",41);
 	}
 }
 
-job_ko,46,41,1	script	Sight#ko_40	909,1,1,{
-mes "Other letters are too small to read. Let's look up close.";
+job_ko,46,41,1	script	Instrução#ko_40	858,1,1,{
+mes "Algumas letras são pequenas demais para se ler. Veja de perto..";
 close;
 
 OnTouch:
-	mes "There are tiny letters on the sign.";
+	mes "Há letras minúsculas na placa.";
 	next;
-	mes "To those you are preparing for a new turn...";
-	mes "Well begun is half done. However always remember it is not the end.";
+	mes "Para aqueles que estão se preparando para um novo rumo...";
+	mes "Meio caminho já está adiantado. No entanto, lembre-se sempre que não é o fim.";
 	next;
-	mes "Let's read all the writing on the sign.";
-	mes "You feel like you are moved to another place.";
+	mes "Leia todos os textos das placas. Você irá saber como prosseguir.";
 	next;
 	set KOHS,KOHS+1;
 	set KO_QSCC,1;
