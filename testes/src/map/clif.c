@@ -306,7 +306,7 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 	nullpo_ret(sd = (struct map_session_data *)bl);
 
 	fd = sd->fd;
-	if(!fd)  //Don't send to disconnected clients.
+	if(!fd || session[fd] == NULL) //Don't send to disconnected clients.
 		return 0;
 
 	buf = va_arg(ap,unsigned char *);
@@ -336,9 +336,6 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 			}
 			break;
 	}
-
-	if(session[fd] == NULL)
-		return 0;
 
 	WFIFOHEAD(fd, len);
 	if(WFIFOP(fd,0) == buf) {
@@ -4066,9 +4063,12 @@ void clif_getareachar_unit(struct map_session_data *sd,struct block_list *bl)
 #if PACKETVER >= 20120404
 				if(!(md->status.mode&MD_BOSS)) {
 					int i;
-					for(i = 0; i < DAMAGELOG_SIZE; i++)// must show hp bar to all char who already hit the mob.
-						if(md->dmglog[i].id == sd->status.char_id)
+					for(i = 0; i < DAMAGELOG_SIZE; i++) { // must show hp bar to all char who already hit the mob.
+						if(md->dmglog[i].id == sd->status.char_id) {
 							clif_monster_hp_bar(md, sd->fd);
+							break;
+						}
+					}
 				}
 #endif
 			}

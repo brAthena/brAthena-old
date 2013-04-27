@@ -7402,7 +7402,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 
 	vd = status_get_viewdata(bl);
 	calc_flag = StatusChangeFlagTable[type];
-	if(!(flag&4)) //&4 - Do not parse val settings when loading SCs
+	if(!(flag&4)){ //&4 - Do not parse val settings when loading SCs
 		switch(type) {
 			case SC_DECREASEAGI:
 			case SC_INCREASEAGI:
@@ -8768,6 +8768,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val4 = tick/1000; // hp/sp reduction timer
 				tick_time = 1000;
 				break;
+			case SC_NEUTRALBARRIER:
+				tick_time = tick;
+				tick = -1;
+				break;
 			case SC_GOLDENE_FERSE:
 				val2 = 10 + 10*val1; //flee bonus
 				val3 = 6 + 4 * val1; // Aspd Bonus
@@ -8832,7 +8836,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 					return 0;
 				}
 		}
-	else //Special considerations when loading SC data.
+	} else { //Special considerations when loading SC data.
 		switch(type) {
 			case SC_WEDDING:
 			case SC_XMAS:
@@ -8848,6 +8852,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val4 = INVALID_TIMER;
 				break;
 		}
+	}
 
 	//Those that make you stop attacking/walking....
 	switch(type) {
