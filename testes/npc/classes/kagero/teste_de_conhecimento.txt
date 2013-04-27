@@ -12,70 +12,70 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | VersÃµes brA: 1.1                                       |
+//   | Versões brA: 1.1                                       |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: Teste de Conhecimento.                      |
+//   | Descrição: Teste de Conhecimento.                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Primeira versÃ£o [Megasantos]                       |
-//   | 1.1 TraduÃ§Ã£o PT-BR [Holy]                              |
+//   | 1.0 Primeira versão [Megasantos]                       |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 job_ko,81,124,1	script	Cougar#ko	909,{
 if (checkquest(5139) == -1){
 	mes "[Cougar]";
-	mes "JÃ¡ faz um tempo...";
+	mes "Já faz um tempo...";
 	next;
-	if (select("VocÃª nÃ£o Ã©...") == 1){
+	if (select("Você não é...") == 1){
 		mes "[Cougar]";
-		mes "Eu me lembro de vocÃª antes de se tornar um ninja.";
+		mes "Eu me lembro de você antes de se tornar um ninja.";
 		next;
 		mes "[Cougar]";
-		mes "VocÃª jÃ¡ estÃ¡ muito forte?";
+		mes "Você já está muito forte?";
 		next;
 		mes "[Cougar]";
 		mes "Hahaha-";
-		mes "A determinaÃ§Ã£o da juventude ! Eu gosto disso.";
+		mes "A determinação da juventude ! Eu gosto disso.";
 		next;
 		mes "[Cougar]";
-		mes "Ã“timo! O exame que vocÃª estÃ¡ prestes a realizar Ã© uma Teste de Conhecimento.";
+		mes "Ótimo! O exame que você está prestes a realizar é uma Teste de Conhecimento.";
 		next;
 		mes "[Cougar]";
-		mes "Espero que vocÃª nÃ£o tenha tido preguiÃ§a em estudar enquanto se tornava mais forte, certo?";
+		mes "Espero que você não tenha tido preguiça em estudar enquanto se tornava mais forte, certo?";
 		next;
-		switch(select("Sim:NÃ£o")){
+		switch(select("Sim:Não")){
 			case 1:
 				setquest 5139;
 				mes "[Cougar]";
-				mes "Isso me deixa tranquilo. Me fale quando vocÃª estiver pronto para comeÃ§ar o teste.";
+				mes "Isso me deixa tranquilo. Me fale quando você estiver pronto para começar o teste.";
 				close;
 			case 2:
 				setquest 5139;
 				mes "[Cougar]";
-				mes "EntÃ£o era tudo que vocÃª tinha a falar? Bem, me fale quando vocÃª estiver pronto para comeÃ§ar o teste.";
+				mes "Então era tudo que você tinha a falar? Bem, me fale quando você estiver pronto para começar o teste.";
 				close;
 	  }
 	}
 } else if (checkquest(5139) == 1){
 	mes "[Cougar]";
-	mes "Estou pronto para iniciar. VocÃª estÃ¡ pronto tambÃ©m?";
+	mes "Estou pronto para iniciar. Você está pronto também?";
 	next;
-	switch(select("Sim:NÃ£o")){
+	switch(select("Sim:Não")){
 		case 2:
 			mes "[Cougar]";
-			mes "Bem, o que posso fazer Ã© apenas esperar por vocÃª.";
+			mes "Bem, o que posso fazer é apenas esperar por você.";
 			close;
 			
 		case 1:
-			mes "Esse nÃ£o Ã© seu primeiro teste, Ã©?";
+			mes "Esse não é seu primeiro teste, é?";
 			next;
 			mes "[Cougar]";
-			mes "VocÃª sÃ³ necessita escolher a resposta correta para as minhas perguntas.";
+			mes "Você só necessita escolher a resposta correta para as minhas perguntas.";
 			next;
 			mes "[Cougar]";
-			mes "Vamos comeÃ§ar.";
+			mes "Vamos começar.";
 			function Question;
 			set @cougar_correct,0;
 			.@k$ = "";
@@ -87,182 +87,182 @@ if (checkquest(5139) == -1){
 						break;
 					}
 				}
-			mes ((.@i <= 10)?"QuestÃ£o nÃºmero "+.@i+":":"Ãšltima questÃ£o:");
+			mes ((.@i <= 10)?"Questão número "+.@i+":":"Última questão:");
 			switch(.@j) {
 				case 1:
-					Question("Qual o dano causado pela habilidade Corte da NÃ©voa no NÃ­vel 4?",1,"140%:150%:160%:170%");
+					Question("Qual o dano causado pela habilidade Corte da Névoa no Nível 4?",1,"140%:150%:160%:170%");
 					break;
 				case 2:
-					Question("Quantos hits sÃ£o causados a monstros pela habilidade Arremessar Kunai?",2,"2:3:4:5");
+					Question("Quantos hits são causados a monstros pela habilidade Arremessar Kunai?",2,"2:3:4:5");
 					break;
 				case 3:
-					Question("Qual dos seguintes materiais sÃ£o necessÃ¡rios para se criar uma Kunai Nevasca?",2,"4 Shuriken Nebulosa, 2 Pedra do Gelo:8 Shuriken Nebulosa, 2 Pedra do Gelo:2 Shuriken Nebulosa, 1 Pedra do Gelo:1 Shuriken Nebulosa, 2 Pedra do Gelo");
+					Question("Qual dos seguintes materiais são necessários para se criar uma Kunai Nevasca?",2,"4 Shuriken Nebulosa, 2 Pedra do Gelo:8 Shuriken Nebulosa, 2 Pedra do Gelo:2 Shuriken Nebulosa, 1 Pedra do Gelo:1 Shuriken Nebulosa, 2 Pedra do Gelo");
 					break;
 				case 4:
-					Question("VocÃª estÃ¡ criando uma arma contra monstros grandes. Qual serÃ¡ a melhor carta para se utilizar nessa arma?",2,"Carta Hidra:Carta Minorous:Carta Esqueleto OperÃ¡rio:Carta Lobo do Deserto");
+					Question("Você está criando uma arma contra monstros grandes. Qual será a melhor carta para se utilizar nessa arma?",2,"Carta Hidra:Carta Minorous:Carta Esqueleto Operário:Carta Lobo do Deserto");
 					break;
 				case 5:
-					Question("Qual Ã© o alcance de ataque da habilidade Aremessar Kunai?",2,"7 cÃ©lulas:8 cÃ©lulas:9 cÃ©lulas:10 cÃ©lulas");
+					Question("Qual é o alcance de ataque da habilidade Aremessar Kunai?",2,"7 células:8 células:9 células:10 células");
 					break;
 				case 6:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo ForÃ§a?",2,"Alcance de Ataque:Limite de Peso:Ataque MÃ¡gico:Ataque da Arma");
+					Question("O que não é acrescentado após aumentar o atributo Força?",2,"Alcance de Ataque:Limite de Peso:Ataque Mágico:Ataque da Arma");
 					break;
 				case 7:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo Agilidade?",2,"PrecisÃ£o:Esquiva:Velocidade de Ataque:ReduÃ§Ã£o em intervalo de ataque");
+					Question("O que não é acrescentado após aumentar o atributo Agilidade?",2,"Precisão:Esquiva:Velocidade de Ataque:Redução em intervalo de ataque");
 					break;
 				case 8:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo Vitalidade?",2,"Defesa a Armamento:HP MÃ¡ximo:Defesa MÃ¡xima:Ataque");
+					Question("O que não é acrescentado após aumentar o atributo Vitalidade?",2,"Defesa a Armamento:HP Máximo:Defesa Máxima:Ataque");
 					break;
 				case 9:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo InteligÃªncia?",2,"SP MÃ¡ximo:Ataque MÃ¡gico:Defesa MÃ¡gica:AcrÃ©scimo do Ataque da Varinha / Cajado");
+					Question("O que não é acrescentado após aumentar o atributo Inteligência?",2,"SP Máximo:Ataque Mágico:Defesa Mágica:Acréscimo do Ataque da Varinha / Cajado");
 					break;
 				case 10:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo Destreza?",2,"Casting time decrease:Evasion increase:Accuracy increase:Long range attack increase");
+					Question("O que não é acrescentado após aumentar o atributo Destreza?",2,"Casting time decrease:Evasion increase:Accuracy increase:Long range attack increase");
 					break;
 				case 11:
-					Question("O que nÃ£o Ã© acrescentado apÃ³s aumentar o atributo Sorte?",2,"PrecisÃ£o:Esquiva Perfeita:Dano MÃ¡gico:Taxa de CrÃ­tico");
+					Question("O que não é acrescentado após aumentar o atributo Sorte?",2,"Precisão:Esquiva Perfeita:Dano Mágico:Taxa de Crítico");
 					break;
 				case 12:
-					Question("Quanto em Zeny Ã© gasto ao utilizar a habilidade Chuva de Moedas no nÃ­vel 6?",2,"2000-8000:1000-6000:3000-8000:3000-6000");
+					Question("Quanto em Zeny é gasto ao utilizar a habilidade Chuva de Moedas no nível 6?",2,"2000-8000:1000-6000:3000-8000:3000-6000");
 					break;
 				case 13:
-					Question("Qual das seguintes kunais irÃ¡ causar mais dano a propriedade do monstro Porcellio?",2,"Kunai Onda de Calor:Kunai Nevasca:Kunai Veneno Mortal:Kunai Sopro do Vento");
+					Question("Qual das seguintes kunais irá causar mais dano a propriedade do monstro Porcellio?",2,"Kunai Onda de Calor:Kunai Nevasca:Kunai Veneno Mortal:Kunai Sopro do Vento");
 					break;
 				case 14:
-					Question("Qual o tempo de duraÃ§Ã£o da habilidade EvasÃ£o AquÃ¡tica?",2,"40 segundos:45 segundos:50 segundos:55 segundos");
+					Question("Qual o tempo de duração da habilidade Evasão Aquática?",2,"40 segundos:45 segundos:50 segundos:55 segundos");
 					break;
 				case 15:
 					Question("Qual o alcance de ataque da habilidade Virar Tatami?",2,"5:7:3:1");
 					break;
 				case 16:
-					Question("Qual o alcance mÃ¡ximo da habilidade Salto das Sombras?",2,"6 cÃ©lulas:7 cÃ©lulas:8 cÃ©lulas:9 cÃ©lulas");
+					Question("Qual o alcance máximo da habilidade Salto das Sombras?",2,"6 células:7 células:8 células:9 células");
 					break;
 				case 17:
-					Question("Que arma nÃ£o pode ser feita pelo ferreiro Khaibara?",2,"Khukri:Murasame:Hakujin:Shuriken Alado Huuma");
+					Question("Que arma não pode ser feita pelo ferreiro Khaibara?",2,"Khukri:Murasame:Hakujin:Shuriken Alado Huuma");
 					break;
 				case 18:
-					Question("Qual o nÃ­vel necessÃ¡rio da habilidade PrÃ¡tica de Arremesso de Shuriken para se aprender a habilidade Chuva de Moedas?",2,"4:6:8:10");
+					Question("Qual o nível necessário da habilidade Prática de Arremesso de Shuriken para se aprender a habilidade Chuva de Moedas?",2,"4:6:8:10");
 					break;
 				case 19:
-					Question("Qual das seguintes opÃ§Ãµes nÃ£o Ã© causada pela habilidade EvasÃ£o AquÃ¡tica?",2,"ReduÃ§Ã£o da Velocidade de Movimento:Disponibilidade para Esferas d'Ã¡gua:CriaÃ§Ã£o de Ãguas Bentas:ReduÃ§Ã£o de Vitalidade");
+					Question("Qual das seguintes opções não é causada pela habilidade Evasão Aquática?",2,"Redução da Velocidade de Movimento:Disponibilidade para Esferas d'água:Criação de Águas Bentas:Redução de Vitalidade");
 					break;
 				case 20:
-					Question("Qual o nÃ­vel mÃ¡ximo de classe para um ninja?",2,"70:50:99:100");
+					Question("Qual o nível máximo de classe para um ninja?",2,"70:50:99:100");
 					break;
 				case 21:
-					Question("Qual a propriedade da habilidade Descarga ElÃ©trica?",4,"Fogo:Ãgua:Terra:Vento");
+					Question("Qual a propriedade da habilidade Descarga Elétrica?",4,"Fogo:Água:Terra:Vento");
 					break;
 				case 22:
-					Question("Quanto em ForÃ§a / InteligÃªncia Ã© acrescentado ao se utilizar a Aura Ninja?",2,"4:5:6:7");
+					Question("Quanto em Força / Inteligência é acrescentado ao se utilizar a Aura Ninja?",2,"4:5:6:7");
 					break;
 				case 23:
-					Question("Qual o nÃºmero mÃ¡ximo de hits causados pela habilidade Escudo de Chamas no nÃ­vel 10?",2,"7:8:9:10");
+					Question("Qual o número máximo de hits causados pela habilidade Escudo de Chamas no nível 10?",2,"7:8:9:10");
 					break;
 				case 24:
-					Question("VocÃª estÃ¡ criando uma arma para monstros de tamanho mÃ©dio. Qual Ã© a melhor carta para se utilizar em sua arma?",2,"Carta Hidra:Carta Minorous:Carta Esqueleto OperÃ¡rio:Carta Lobo do Deserto");
+					Question("Você está criando uma arma para monstros de tamanho médio. Qual é a melhor carta para se utilizar em sua arma?",2,"Carta Hidra:Carta Minorous:Carta Esqueleto Operário:Carta Lobo do Deserto");
 					break;
 				case 25:
-					Question("Quando sua Brisa Cortante estÃ¡ no NÃ­vel 4, qual a influÃªncia do Ataque MÃ¡gico e do alcance?",2,"Ataque MÃ¡gico 400, 8 cÃ©lulas:Ataque MÃ¡gico 500, 7 cÃ©lulas:Ataque MÃ¡gico 500, 8 cÃ©lulas:Ataque MÃ¡gico 400, 7 cÃ©lulas");
+					Question("Quando sua Brisa Cortante está no Nível 4, qual a influência do Ataque Mágico e do alcance?",2,"Ataque Mágico 400, 8 células:Ataque Mágico 500, 7 células:Ataque Mágico 500, 8 células:Ataque Mágico 400, 7 células");
 					break;
 				case 26:
-					Question("VocÃª precisa de um catalisador para utilizar suas habilidades ninja. Qual das seguintes habilidades nÃ£o necessita de um catalisador?",2,"Escudo em Chamas:EvasÃ£o AquÃ¡tica:PÃ©talas Flamejantes:Grande Floco de Neve");
+					Question("Você precisa de um catalisador para utilizar suas habilidades ninja. Qual das seguintes habilidades não necessita de um catalisador?",2,"Escudo em Chamas:Evasão Aquática:Pétalas Flamejantes:Grande Floco de Neve");
 					break;
 				case 27:
-					Question("Qual dos seguintes ferreiros nÃ£o criam itens ninja?",2,"Khaibara:Aiku:Tetsu:Toshu");
+					Question("Qual dos seguintes ferreiros não criam itens ninja?",2,"Khaibara:Aiku:Tetsu:Toshu");
 					break;
 				case 28:
-					Question("Qual Ã© o alcance do DragÃ£o Flamejante?",2,"3*3:4*4:5*5:6*6");
+					Question("Qual é o alcance do Dragão Flamejante?",2,"3*3:4*4:5*5:6*6");
 					break;
 				case 29:
-					Question("Quantos pontos de habilidade sÃ£o necessÃ¡rios para dominar a habilidade Chuva de Moedas?",2,"25:30:35:37");
+					Question("Quantos pontos de habilidade são necessários para dominar a habilidade Chuva de Moedas?",2,"25:30:35:37");
 					break;
 				case 30:
-					Question("Qual das seguintes habilidades vocÃª nÃ£o pode aprender se nÃ£o possuir a habilidade PrÃ¡tica de Arremesso de Shuriken no nÃ­vel 7?",2,"Arremessar Kunai:Arremessar Shuriken Huuma:Ataque Mortal:Chuva de Moedas");
+					Question("Qual das seguintes habilidades você não pode aprender se não possuir a habilidade Prática de Arremesso de Shuriken no nível 7?",2,"Arremessar Kunai:Arremessar Shuriken Huuma:Ataque Mortal:Chuva de Moedas");
 					break;
 				case 31:
-					Question("Se PrÃ¡tica de Arremesso de Shuriken estiver no nÃ­vel 7 quanto Ã© adicionado de ATK ao ataque das shurikens?",2,"18:21:27:30");
+					Question("Se Prática de Arremesso de Shuriken estiver no nível 7 quanto é adicionado de ATK ao ataque das shurikens?",2,"18:21:27:30");
 					break;
 				case 32:
-					Question("Qual NPC te promove?",2,"ValquÃ­ria:Val Kiwi:Balp Hiri:Elephant");
+					Question("Qual NPC te promove?",2,"Valquíria:Val Kiwi:Balp Hiri:Elephant");
 					break;
 				case 33:
-					Question("Qual o bÃ´nus da Shuriken de Fogo Huuma?",2,"Bola de Fogo 5 , DES-2:Bola de Fogo 5 , DES-3:Bola de Fogo 4 , DES-2:Bola de Fogo 4 , DES-3");
+					Question("Qual o bônus da Shuriken de Fogo Huuma?",2,"Bola de Fogo 5 , DES-2:Bola de Fogo 5 , DES-3:Bola de Fogo 4 , DES-2:Bola de Fogo 4 , DES-3");
 					break;
 				case 34:
-					Question("Quantos pontos de habilidade sÃ£o necessÃ¡rios para dominar a habilidade Troca de Pele?",2,"5:3:1:4");
+					Question("Quantos pontos de habilidade são necessários para dominar a habilidade Troca de Pele?",2,"5:3:1:4");
 					break;
 				case 35:
-					Question("VocÃª estÃ¡ caÃ§ando Orc Guerreiros. Qual Kunai vocÃª deverÃ¡ usar? ",2,"Heat Wave Kunai:Icicle Kunai:Fell Poison Kunai:High Wind Kunai");
+					Question("Você está caçando Orc Guerreiros. Qual Kunai você deverá usar? ",2,"Heat Wave Kunai:Icicle Kunai:Fell Poison Kunai:High Wind Kunai");
 					break;
 				case 36:
-					Question("Qual das seguintes opÃ§Ãµes Ã© a melhor habilidade para atacar um inimigo de propriedade terra?",2,"Brisa Cortante:DragÃ£o Explosivo:Grande Floco de Neve:LÃ¢mina de Vento");
+					Question("Qual das seguintes opções é a melhor habilidade para atacar um inimigo de propriedade terra?",2,"Brisa Cortante:Dragão Explosivo:Grande Floco de Neve:Lâmina de Vento");
 					break;
 				case 37:
-					Question("AtravÃ©s de qual das seguintes opÃ§Ãµes um Ninja Ã© promovido?",2,"Por Val Kiwi:Pela Randgris:NinguÃ©m:Pela Valkyrie");
+					Question("Através de qual das seguintes opções um Ninja é promovido?",2,"Por Val Kiwi:Pela Randgris:Ninguém:Pela Valkyrie");
 					break;
 				case 38:
-					Question("Qual Ã© o nome do homem suspeito que vocÃª conheceu durante a queste de mudanÃ§a de classe para Ninja?",2,"Leopardo Vermelho Jack:Leopardo Negro Jack:Leopardo Vermelho Joe:Leopardo Negro Joe");
+					Question("Qual é o nome do homem suspeito que você conheceu durante a queste de mudança de classe para Ninja?",2,"Leopardo Vermelho Jack:Leopardo Negro Jack:Leopardo Vermelho Joe:Leopardo Negro Joe");
 					break;
 				case 39:
-					Question("Qual perÃ­cia vocÃª precisa possuir para aprender a habilidade DragÃ£o Explosivo?",2,"10:9:8:1");
+					Question("Qual perícia você precisa possuir para aprender a habilidade Dragão Explosivo?",2,"10:9:8:1");
 					break;
 				case 40:
-					Question("Qual o nÃ­vel necessÃ¡rio da habilidade PrÃ¡tica de Arremesso de Shuriken vocÃª deve possuir para aprender o Ataque Mortal?",2,"7:5:6:8");
+					Question("Qual o nível necessário da habilidade Prática de Arremesso de Shuriken você deve possuir para aprender o Ataque Mortal?",2,"7:5:6:8");
 					break;
 				case 41:
-					Question("Qual o catalisador necessÃ¡rio para se utilizar o Escudo de Chamas?",2,"Pedra do Gelo:Pedra do Fogo:Pedra do Vento:Pedra da Terra");
+					Question("Qual o catalisador necessário para se utilizar o Escudo de Chamas?",2,"Pedra do Gelo:Pedra do Fogo:Pedra do Vento:Pedra da Terra");
 					break;
 				case 42:
-					Question("Qual das seguintes opÃ§Ãµes Ã© a correta quantidade de EvasÃµes e Tempo de DuraÃ§Ã£o da habilidade Imagem Falsa 10?",2,"7 e 200 segundos:5 e 220 segundos:6 e 240 segundos:5 e 240 segundos");
+					Question("Qual das seguintes opções é a correta quantidade de Evasões e Tempo de Duração da habilidade Imagem Falsa 10?",2,"7 e 200 segundos:5 e 220 segundos:6 e 240 segundos:5 e 240 segundos");
 					break;
 				case 43:
-					Question("Qual das seguintes combinaÃ§Ãµes Ã© a incorreta?",2,"PÃ©talas Flamejantes-Fogo:Grande Flogo de Gelo-Ãgua:LanÃ§a COngelante-Gelo:Descarga ElÃ©trica-Vento");
+					Question("Qual das seguintes combinações é a incorreta?",2,"Pétalas Flamejantes-Fogo:Grande Flogo de Gelo-Água:Lança COngelante-Gelo:Descarga Elétrica-Vento");
 					break;
 				case 44:
-					Question("Qual o efeito da arma Murasame?",2,"10% de Ataque a HumanÃ³ides:+10 de CrÃ­tico contra HumanÃ³ides:10% Contra DemÃ´nios:+10 de CrÃ­tico contra DemÃ´nios");
+					Question("Qual o efeito da arma Murasame?",2,"10% de Ataque a Humanóides:+10 de Crítico contra Humanóides:10% Contra Demônios:+10 de Crítico contra Demônios");
 					break;
 				case 45:
-					Question("Onde estÃ¡ localizado o vilarejo Ninja?",2,"Lutie:Amatsu:Dewata:Comodo");
+					Question("Onde está localizado o vilarejo Ninja?",2,"Lutie:Amatsu:Dewata:Comodo");
 					break;
 				case 46:
-					Question("VocÃª estÃ¡ criando uma arma para monstros pequenos. Qual a melhor carta para se utilizar em sua arma?",2,"0 Carta Hidra:Carta Minorous:Carta Esqueleto OperÃ¡rio:Carta Lobo do Deserto");
+					Question("Você está criando uma arma para monstros pequenos. Qual a melhor carta para se utilizar em sua arma?",2,"0 Carta Hidra:Carta Minorous:Carta Esqueleto Operário:Carta Lobo do Deserto");
 					break;
 				case 47:
-					Question("Qual o fator mais importante para aumentar o Dano da habilidade Ataque Mortal?",2,"Vitalidade:HP MÃ¡ximo:InteligÃªncia:SP MÃ¡ximo");
+					Question("Qual o fator mais importante para aumentar o Dano da habilidade Ataque Mortal?",2,"Vitalidade:HP Máximo:Inteligência:SP Máximo");
 					break;
 				case 48:
-					Question("VocÃª precisa equipar um cartÃ£o para aumentar o dano da sua habilidade Ataque Mortal. Qual das seguintes opÃ§Ãµes Ã© a melhor?",2,"Carta Acidus Dourado:Carta Matyr:Carta Odium de Thanatos:Carta Eddga");
+					Question("Você precisa equipar um cartão para aumentar o dano da sua habilidade Ataque Mortal. Qual das seguintes opções é a melhor?",2,"Carta Acidus Dourado:Carta Matyr:Carta Odium de Thanatos:Carta Eddga");
 					break;
 				case 49:
-					Question("O que estava ao meu lado quando vocÃª me conheceu?",2,"Uma almofada:Uma tela dobradiÃ§a:Um vaso de flores:Um braseiro");
+					Question("O que estava ao meu lado quando você me conheceu?",2,"Uma almofada:Uma tela dobradiça:Um vaso de flores:Um braseiro");
 					break;
 				case 50:
-					Question("Qual a quantidade total de Destreza + Sorte obtida como bÃ´nus de Classe?",2,"8:10:12:14");
+					Question("Qual a quantidade total de Destreza + Sorte obtida como bônus de Classe?",2,"8:10:12:14");
 					break;
 			}
 		}
-		mes "VocÃª passou por todas as 10 perguntas. NÃ£o foi tÃ£o ruim! A parte mais importante irÃ¡ comeÃ§ar agora.";
+		mes "Você passou por todas as 10 perguntas. Não foi tão ruim! A parte mais importante irá começar agora.";
 		next;
 		mes "[Cougar]";
 		mes "... ... ...";
 		if (@cougar_correct > 8) {
 			mes "[Cougar]";
-			mes "VocÃª passou!";
+			mes "Você passou!";
 			next;
 			mes "[Cougar]";
 			mes "Hum. "+(@cougar_correct*10)+"?";
 			next;
 			mes "[Cougar]";
-			mes "Bem, parece que vocÃª nÃ£o foi preguiÃ§oso com seus estudos.";
+			mes "Bem, parece que você não foi preguiçoso com seus estudos.";
 			next;
 			mes "[Cougar]";
-			mes "O quÃª? Orgulho prÃ³prio por ter respondi essas questÃµes?";
+			mes "O quê? Orgulho próprio por ter respondi essas questões?";
 			next;
 			mes "[Cougar]";
-			mes "VocÃª ainda tem um longo caminho para percorrer, e esse foi apenas uma parte dele.";
+			mes "Você ainda tem um longo caminho para percorrer, e esse foi apenas uma parte dele.";
 			next;
 			mes "[Cougar]";
-			mes "Bem... Estou curioso para saber atÃ© onde sua forÃ§a de vontade poderÃ¡ levÃ¡-lo nos outros testes.";
+			mes "Bem... Estou curioso para saber até onde sua força de vontade poderá levá-lo nos outros testes.";
 			next;
 			mes "[Cougar]";
 			set KOHS,KOHS+1;
@@ -271,22 +271,22 @@ if (checkquest(5139) == -1){
 			set KOLQ,"Knowledge";
 			completequest 5136;
 			erasequest 5139;
-			mes "Irei deixÃ¡-lo ir e irei informar ao Guia Gion os seus resultados.";
+			mes "Irei deixá-lo ir e irei informar ao Guia Gion os seus resultados.";
 			close2;
 			warp "job_ko",26,104;
 			end;
 		} else {
 			next;
 			mes "[Cougar]";
-			mes "VocÃª se enganou!!";
-			mes "VocÃª nÃ£o consegue mesmo resolvÃª-los?";
+			mes "Você se enganou!!";
+			mes "Você não consegue mesmo resolvê-los?";
 			next;
 			mes "[Cougar]";
-			mes "NÃ£o posso acreditar que alguÃ©m que estÃ¡ procurando seguir esse caminho seja tÃ£o patÃ©tico.";
+			mes "Não posso acreditar que alguém que está procurando seguir esse caminho seja tão patético.";
 			next;
 			mes "[Cougar]";
 			mes "Eu irei te dar uma nova chance.";
-			mes "VocÃª deverÃ¡ fazer o teste novamente com novas perguntas. Melhor se sair bem desta vez.";
+			mes "Você deverá fazer o teste novamente com novas perguntas. Melhor se sair bem desta vez.";
 		}
 		set @cougar_correct,0;
 		close;
