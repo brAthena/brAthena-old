@@ -1987,6 +1987,10 @@ packet(0x020d,-1);
 	packet(0x08D7,28,clif->pDull,2,4); //battlegroundreg
 	packet(0x08CF,10);//Amulet spirits
 	packet(0x0977,14);//Monster HP Bar
+	packet(0x0844,2,clif->pCashShopOpen,0);/* diz ao servidor que a janela de cashshop está sendo aberta */
+	packet(0x084a,2,clif->pCashShopClose,0);/* diz ao servidor que a janela de cashshop está sendo fechada */
+	packet(0x08c9,4,clif->pCashShopSchedule,0);
+	packet(0x0848,-1,clif->pCashShopBuy,0);
 #endif
 
 //2012-04-18aRagexeRE
