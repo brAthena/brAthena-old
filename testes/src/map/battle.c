@@ -1520,6 +1520,10 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	//Finally, add baseatk
 	if(flag&4)
 		damage += status->matk_min;
+#ifdef RENEWAL
+	else if(flag&32)
+		damage += status->matk_min + status->batk;
+#endif
 	else
 		damage += status->batk;
 
@@ -1654,8 +1658,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 #ifdef RENEWAL
 	             && skill_id != HT_FREEZINGTRAP
 #endif
-	             ?1:0);
-	if(target->type == BL_SKILL) {
+	             )?1:0;
+	if(!flag.infdef && target->type == BL_SKILL) {
 		TBL_SKILL *su = (TBL_SKILL *)target;
 		if(su->group && (su->group->skill_id == WM_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD))
 			flag.infdef = 1;
@@ -1827,11 +1831,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			wd.type = 0x08;
 		} else if(sc && sc->data[SC_FEARBREEZE] && sd->weapontype1==W_BOW
 			&& (i = sd->equip_index[EQI_AMMO]) >= 0 && sd->inventory_data[i] && sd->status.inventory[i].amount > 1){
-				int chance = rand()%100;
+				int chance = rnd()%100;
 				wd.type = 0x08;
 				switch(sc->data[SC_FEARBREEZE]->val1){
 					case 5:
-						if(chance < 3){// 3 % chance to attack 5 times.
+						if(chance < 4){// 3 % chance to attack 5 times.
 							wd.div_ = 5;
 							break;
 						}
@@ -2025,6 +2029,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flag.hit = 1;
 	}   //End hit/miss calculation
 
+	if(!flag.infdef && (
+		(tstatus->mode&MD_IGNOREMELEE && wd.flag&(BF_SHORT))	//physical melee
+		|| (tstatus->mode&MD_IGNORERANGED && wd.flag&(BF_LONG))	//physical ranged
+	))
+		flag.infdef = 1;
+
 	if(flag.hit && !flag.infdef) { //No need to do the math for plants
 		//Hitting attack
 
@@ -2104,7 +2114,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			default: {
 					i = (flag.cri?1:0)|
 					    (flag.arrow?2:0)|
+#ifndef RENEWAL
 					    (skill_id == HW_MAGICCRASHER?4:0)|
+#else
+					    (skill_id == HW_MAGICCRASHER?32:0)|
+#endif
 					    (!skill_id && sc && sc->data[SC_CHANGE]?4:0)|
 					    (skill_id == MO_EXTREMITYFIST?8:0)|
 					    (sc && sc->data[SC_WEAPONPERFECTION]?8:0);
@@ -3663,6 +3677,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			break;
 	}
 
+	if(!flag.infdef && (
+		(tstatus->mode&MD_IGNOREMAGIC && ad.flag&(BF_MAGIC) )	//magic
+	)) flag.infdef = 1;
+
 	if(!flag.infdef) { //No need to do the math for plants
 #ifdef RENEWAL
 		ad.damage = 0; //reinitialize..
@@ -4610,6 +4628,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			}
 			break;
 	}
+
+	if(tstatus->mode&MD_IGNOREMISC && md.flag&(BF_MISC))	//misc @TODO optimize me
+	 md.damage = md.damage2 = 1;
 
 	return md;
 }

@@ -258,6 +258,7 @@ int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t dat
 {
 	struct map_session_data *sd = NULL;
 	unsigned int timeout = NPC_SECURE_TIMEOUT_NEXT;
+	int cur_tick = gettick(); //ensure we are on last tick
 	if((sd = map_id2sd(id)) == NULL || !sd->npc_id) {
 		if(sd) sd->npc_idle_timer = INVALID_TIMER;
 		return 0;//Not logged in anymore OR no longer attached to a npc
@@ -273,22 +274,13 @@ int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t dat
 		//case NPCT_WAIT: var starts with this value
 	}
 
-	if(DIFF_TICK(tick,sd->npc_idle_tick) > (timeout*1000)) {
-		/**
-		 * If we still have the NPC script attached, tell it to stop.
-		 **/
-		if(sd->st)
-			sd->st->state = END;
-		sd->state.menu_or_input = 0;
-		sd->npc_menu = 0;
-
-		/**
-		 * This guy's been idle for longer than allowed, close him.
-		 **/
-		clif_scriptclose(sd,sd->npc_id);
-		sd->npc_idle_timer = INVALID_TIMER;
-	} else //Create a new instance of ourselves to continue
-		sd->npc_idle_timer = add_timer(gettick() + (SECURE_NPCTIMEOUT_INTERVAL*1000),npc_rr_secure_timeout_timer,sd->bl.id,0);
+	if(DIFF_TICK(cur_tick,sd->npc_idle_tick) > (timeout*1000)) {
+		pc_close_npc(sd,1);
+	} else if(sd->st && (sd->st->state == END || sd->st->state == CLOSE)){
+		sd->npc_idle_timer = INVALID_TIMER; //stop timer the script is already ending
+	} else { //Create a new instance of ourselves to continue
+		sd->npc_idle_timer = add_timer(cur_tick + (SECURE_NPCTIMEOUT_INTERVAL*1000),npc_rr_secure_timeout_timer,sd->bl.id,0);
+	}
 	return 0;
 }
 #endif

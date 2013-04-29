@@ -24,7 +24,7 @@
  * - 0 : Disabilitado
  **/
 
-//#define SECURE_NPCTIMEOUT
+#define SECURE_NPCTIMEOUT
 
 /**
  * number of seconds to 'timeout' if the user is on idle for longer than the value allowed after a 'input' field is displayed.

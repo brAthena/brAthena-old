@@ -732,6 +732,7 @@ int pc_setnewpc(struct map_session_data *,int,int,int,unsigned int,int,int);
 bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
 void pc_authfail(struct map_session_data *);
 int pc_reg_received(struct map_session_data *sd);
+void pc_close_npc(struct map_session_data *sd,int flag);
 
 int pc_isequip(struct map_session_data *sd,int n);
 int pc_equippoint(struct map_session_data *sd,int n);

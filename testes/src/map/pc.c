@@ -6425,6 +6425,37 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 	sd->canlog_tick = gettick();
 }
 
+/*
+ *  Method to properly close npc for player and clear anything related
+ * @flag == 1 : produce close button
+ * @flag == 2 : directly close it
+ */
+void pc_close_npc(struct map_session_data *sd,int flag) {
+	nullpo_retv(sd);
+
+	if (sd->npc_id) {
+		if (sd->state.using_fake_npc) {
+			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
+			sd->state.using_fake_npc = 0;
+		}
+		if (sd->st) {
+			sd->st->state = (flag==1)?CLOSE:END;
+			sd->st->mes_active = 0;
+		}
+		sd->state.menu_or_input = 0;
+		sd->npc_menu = 0;
+		sd->npc_idle_timer = INVALID_TIMER;
+		clif_scriptclose(sd,sd->npc_id);
+		if(flag==2 && sd->st) {
+			if( sd->st && sd->st->state != RUN ) {// free attached scripts that are waiting
+				script_free_state(sd->st);
+				sd->st = NULL;
+				sd->npc_id = 0;
+			}
+		}
+	}
+}
+
 /*==========================================
  * Invoked when a player has negative current hp
  *------------------------------------------*/
@@ -6476,6 +6507,15 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			duel_reject(sd->duel_invite, sd);
 	}
 
+	pc_close_npc(sd,2); //close npc if we were using one
+
+	/* e.g. not killed thru pc_damage */
+	if( pc_issit(sd) ) {
+		clif_status_load(&sd->bl,SI_SIT,0);
+	}
+
+	pc_setdead(sd);
+
 	pc_setglobalreg(sd,"PC_DIE_COUNTER",sd->die_counter+1);
 	pc_setparam(sd, SP_KILLERRID, src?src->id:0);
 
@@ -6483,21 +6523,6 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		struct battleground_data *bg;
 		if((bg = bg_team_search(sd->bg_id)) != NULL && bg->die_event[0])
 			npc_event(sd, bg->die_event, 0);
-	}
-
-	// Clear anything NPC-related when you die and was interacting with one.
-	if(sd->npc_id) {
-		if(sd->state.using_fake_npc) {
-			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
-			sd->state.using_fake_npc = 0;
-		}
-		if(sd->state.menu_or_input)
-			sd->state.menu_or_input = 0;
-		if(sd->npc_menu)
-			sd->npc_menu = 0;
-		sd->npc_id = 0;
-		if(sd->st && sd->st->state != END)
-			sd->st->state = END;
 	}
 	
 #ifdef RENEWAL
@@ -6512,12 +6537,6 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 
 	npc_script_event(sd,NPCE_DIE);
 
-	/* e.g. not killed thru pc_damage */
-	if(pc_issit(sd)) {
-		clif_status_load(&sd->bl,SI_SIT,0);
-	}
-
-	pc_setdead(sd);
 	//Reset menu skills/item skills
 	if(sd->skillitem)
 		sd->skillitem = sd->skillitemlv = 0;

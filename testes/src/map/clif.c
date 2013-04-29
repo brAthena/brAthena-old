@@ -2089,6 +2089,7 @@ static void clif_addcards(unsigned char *buf, struct item *item)
 /// 00a0 <index>.W <amount>.W <name id>.W <identified>.B <damaged>.B <refine>.B <card1>.W <card2>.W <card3>.W <card4>.W <equip location>.W <item type>.B <result>.B (ZC_ITEM_PICKUP_ACK)
 /// 029a <index>.W <amount>.W <name id>.W <identified>.B <damaged>.B <refine>.B <card1>.W <card2>.W <card3>.W <card4>.W <equip location>.W <item type>.B <result>.B <expire time>.L (ZC_ITEM_PICKUP_ACK2)
 /// 02d4 <index>.W <amount>.W <name id>.W <identified>.B <damaged>.B <refine>.B <card1>.W <card2>.W <card3>.W <card4>.W <equip location>.W <item type>.B <result>.B <expire time>.L <bindOnEquipType>.W (ZC_ITEM_PICKUP_ACK3)
+/// 0990 <index>.W <amount>.W <name id>.W <identified>.B <damaged>.B <refine>.B <card1>.W <card2>.W <card3>.W <card4>.W <equip location>.W <item type>.B <result>.B <expire time>.L <bindOnEquipType>.W <unknow>.W (ZC_ITEM_PICKUP_ACK_V5)
 void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 {
 	int fd;
@@ -2096,8 +2097,10 @@ void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 	const int cmd = 0xa0;
 #elif PACKETVER < 20071002
 	const int cmd = 0x29a;
-#else
+#elif PACKETVER < 20120925
 	const int cmd = 0x2d4;
+#else
+	const int cmd = 0x990;
 #endif
 	nullpo_retv(sd);
 
@@ -2127,6 +2130,11 @@ void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 #if PACKETVER >= 20071002
 		WFIFOW(fd,27)=0;  // unknown
 #endif
+
+#if PACKETVER >= 20120925
+		WFIFOW(fd,29)=0;  // unknown
+#endif
+
 	} else {
 		if(n < 0 || n >= MAX_INVENTORY || sd->status.inventory[n].nameid <=0 || sd->inventory_data[n] == NULL)
 			return;
@@ -2151,6 +2159,11 @@ void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 #if PACKETVER >= 20071002
 		WFIFOW(fd,27)=0;  // unknown
 #endif
+
+#if PACKETVER >= 20120925
+		WFIFOW(fd,29)=0;  // unknown
+#endif
+
 	}
 
 	WFIFOSET(fd,packet_len(cmd));
