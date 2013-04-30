@@ -130,8 +130,7 @@ function	script	F_Kafra	{
 				mes "compreensão e cooperação.";
 			}
 		} else if (@K_Menu0$[.@j] == "Alugar Carrinho") {
-			if(callfunc("F_KafCart",getarg(0),getarg(4)) == 1) 
-			next;
+			callfunc "F_KafCart",getarg(0),getarg(4);
 		} else if (@K_Menu0$[.@j] == "Checar outra informação") {
 			callfunc "F_KafInfo",getarg(2);
 		} else if (@K_Menu0$[.@j] == "Cancelar"){
@@ -296,7 +295,7 @@ function	script	F_KafCart	{
 		mes "custará "+getarg(1)+" Zenys.";
 		mes "Você deseja alugar um carrinho de mão?";
 		next;
-		if (select("Alugar Carrinho.:Cancelar") == 2) return 0;
+		if (select("Alugar Carrinho.:Cancelar") == 2) return;
 			if(Zeny<getarg(1)){
 				mes "[Funcionária Kafra]";
 				mes "Lamento, mas você não possui Zenys suficientes para alugar um carrinho.";
@@ -307,7 +306,7 @@ function	script	F_KafCart	{
 			set RESRVPTS, RESRVPTS + 48;
 	}
 	setcart;
-	return 1;
+	return;
 }
 
 //===================================================
