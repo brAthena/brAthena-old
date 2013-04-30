@@ -1856,6 +1856,7 @@ packet(0x020d,-1);
 	packet(0x0857,-1);
 	packet(0x0858,-1);
 	packet(0x0859,-1);
+	packet(0x08d0,9);
 #endif
 
 //2011-10-05aRagexeRE
@@ -1873,6 +1874,7 @@ packet(0x020d,-1);
 	packet(0x0838,6,clif->pSolveCharName,2);
 	packet(0x0439,8,clif->pUseItem,2,4);
 	packet(0x08d2,10);
+	packet(0x08d1,7);
 #endif
 
 //2011-11-02aRagexe
@@ -2088,6 +2090,12 @@ packet(0x020d,-1);
 	packet(0x84b,19);
 	packet(0x0868,-1,clif->pItemListWindowSelected,2,4,8);
 	packet(0x990,31);
+	packet(0x090f,-1);
+	packet(0x914,-1);
+	packet(0x915,-1);
+	packet(0x99a,9);
+	packet(0x997,-1);
+	packet(0x999,11);
 
 #endif
 
