@@ -9038,7 +9038,7 @@ void clif_viewequip_ack(struct map_session_data *sd, struct map_session_data *ts
 
 #if PACKETVER < 20101124
 	WBUFW(buf, 0) = 0x2d7;
-#elseif PACKETVER < 20120925
+#elif PACKETVER < 20120925
 	WBUFW(buf, 0) = 0x859;
 #else
 	WBUFW(buf, 0) = 0x997;
