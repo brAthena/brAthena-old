@@ -17223,7 +17223,7 @@ BUILDIN_FUNC(recall)
 	struct party_data *p = party_search(sd->status.party_id);
 	struct guild *g = guild_search(sd->status.guild_id);
 	const char *type = script_getstr(st,2);
-	int c = 0, quant;
+	int c = 0, quant = 0;
 
 	iter = mapit_getallusers();
       

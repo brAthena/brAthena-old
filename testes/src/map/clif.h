@@ -28,6 +28,7 @@ struct block_list;
 struct unit_data;
 struct map_session_data;
 struct homun_data;
+struct mercenary_data;
 struct pet_data;
 struct mob_data;
 struct npc_data;

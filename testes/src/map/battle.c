@@ -4339,7 +4339,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	if(s_ele == -1)
 		s_ele = sstatus->rhw.ele;
 	else if(s_ele == -2)
-		s_ele = s_ele = status_get_attack_sc_element(src,status_get_sc(src));
+		s_ele = status_get_attack_sc_element(src,status_get_sc(src));
 	else if(s_ele == -3)
 		s_ele = rnd()%ELE_MAX;
 
