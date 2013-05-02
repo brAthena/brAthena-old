@@ -78,5 +78,6 @@ int do_final_chrif(void);
 int do_init_chrif(void);
 
 int chrif_flush_fifo(void);
+void chrif_skillid2idx(int fd);
 
 #endif /* _CHRIF_H_ */

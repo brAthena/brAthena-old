@@ -3131,7 +3131,7 @@ ACMD_FUNC(allskill)
  *------------------------------------------*/
 ACMD_FUNC(questskill)
 {
-	uint16 skill_id;
+	uint16 skill_id, index;
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message || (skill_id = atoi(message)) <= 0) {
@@ -3151,7 +3151,7 @@ ACMD_FUNC(questskill)
 
 		return -1;
 	}
-	if(skill_id >= MAX_SKILL_DB) {
+	if(!(index = skill_get_index(skill_id))) {
 		clif_displaymessage(fd, msg_txt(198)); // This skill number doesn't exist.
 		return -1;
 	}
@@ -3159,7 +3159,7 @@ ACMD_FUNC(questskill)
 		clif_displaymessage(fd, msg_txt(197)); // This skill number doesn't exist or isn't a quest skill.
 		return -1;
 	}
-	if(pc_checkskill(sd, skill_id) > 0) {
+	if (pc_checkskill2(sd, index) > 0) {
 		clif_displaymessage(fd, msg_txt(196)); // You already have this quest skill.
 		return -1;
 	}
@@ -3175,7 +3175,7 @@ ACMD_FUNC(questskill)
  *------------------------------------------*/
 ACMD_FUNC(lostskill)
 {
-	uint16 skill_id;
+	uint16 skill_id, index;
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message || (skill_id = atoi(message)) <= 0) {
@@ -3195,7 +3195,7 @@ ACMD_FUNC(lostskill)
 
 		return -1;
 	}
-	if(skill_id >= MAX_SKILL) {
+	if (!( index = skill_get_index(skill_id) )) {
 		clif_displaymessage(fd, msg_txt(198)); // This skill number doesn't exist.
 		return -1;
 	}
@@ -3203,13 +3203,13 @@ ACMD_FUNC(lostskill)
 		clif_displaymessage(fd, msg_txt(197)); // This skill number doesn't exist or isn't a quest skill.
 		return -1;
 	}
-	if(pc_checkskill(sd, skill_id) == 0) {
+	if(pc_checkskill2(sd, index) == 0) {
 		clif_displaymessage(fd, msg_txt(201)); // You don't have this quest skill.
 		return -1;
 	}
-
-	sd->status.skill[skill_id].lv = 0;
-	sd->status.skill[skill_id].flag = SKILL_FLAG_PERMANENT;
+	
+	sd->status.skill[index].lv = 0;
+	sd->status.skill[index].flag = 0; 
 	clif_deleteskill(sd,skill_id);
 	clif_displaymessage(fd, msg_txt(71)); // You have forgotten the skill.
 
@@ -8671,13 +8671,14 @@ ACMD_FUNC(unloadnpcfile)
 }
 ACMD_FUNC(cart)
 {
-#define MC_CART_MDFY(x) \
-	sd->status.skill[MC_PUSHCART].id = x?MC_PUSHCART:0; \
-	sd->status.skill[MC_PUSHCART].lv = x?1:0; \
-	sd->status.skill[MC_PUSHCART].flag = x?SKILL_FLAG_TEMPORARY:SKILL_FLAG_PERMANENT;
+	#define MC_CART_MDFY(x,idx) \
+		sd->status.skill[idx].id = x?MC_PUSHCART:0; \
+		sd->status.skill[idx].lv = x?1:0; \
+		sd->status.skill[idx].flag = x?1:0; 
 
 	int val = atoi(message);
 	bool need_skill = pc_checkskill(sd, MC_PUSHCART) ? false : true;
+	unsigned int index = skill_get_index(MC_PUSHCART); 
 
 	if(!message || !*message || val < 0 || val > MAX_CARTS) {
 		sprintf(atcmd_output, msg_txt(1390),command,MAX_CARTS); // Unknown Cart (usage: %s <0-%d>).
@@ -8691,18 +8692,18 @@ ACMD_FUNC(cart)
 	}
 
 	if(need_skill) {
-		MC_CART_MDFY(1);
+		MC_CART_MDFY(1,index);
 	}
 
 	if(pc_setcart(sd, val)) {
 		if(need_skill) {
-			MC_CART_MDFY(0);
+			MC_CART_MDFY(1,index);
 		}
 		return -1;/* @cart failed */
 	}
 
 	if(need_skill) {
-		MC_CART_MDFY(0);
+		MC_CART_MDFY(1,index);
 	}
 
 	clif_displaymessage(fd, msg_txt(1392)); // Cart Added

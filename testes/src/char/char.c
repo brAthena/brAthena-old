@@ -163,6 +163,8 @@ unsigned int save_flag = 0;
 // Initial position (it's possible to set it in conf file)
 struct point start_point = { 0, 53, 111 };
 
+unsigned short skillid2idx[MAX_SKILL_ID]; 
+
 int console = 0;
 
 //-----------------------------------------------------
@@ -565,12 +567,6 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 		}
 		strcat(save_status, " memo");
 	}
-
-	//FIXME: is this neccessary? [ultramage]
-	for(i=0; i<MAX_SKILL; i++)
-		if((p->skill[i].lv != 0) && (p->skill[i].id == 0))
-			p->skill[i].id = i; // Fix skill tree
-
 
 	//skills
 	if(memcmp(p->skill, cp->skill, sizeof(p->skill))) {
@@ -1263,8 +1259,8 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 		tmp_skill.flag = SKILL_FLAG_PERMANENT;
 
 	for(i = 0; i < MAX_SKILL && SQL_SUCCESS == SqlStmt_NextRow(stmt); ++i) {
-		if(tmp_skill.id < ARRAYLENGTH(p->skill))
-			memcpy(&p->skill[tmp_skill.id], &tmp_skill, sizeof(tmp_skill));
+		if(skillid2idx[tmp_skill.id])
+			memcpy(&p->skill[skillid2idx[tmp_skill.id]], &tmp_skill, sizeof(tmp_skill));
 		else
 			ShowWarning(read_message("Source.char.char_mmo_char_fromsql_s3"), tmp_skill.id, tmp_skill.lv, p->name, p->account_id, p->char_id);
 	}
@@ -2672,7 +2668,23 @@ int parse_frommap(int fd)
 				RFIFOSKIP(fd,RFIFOW(fd,2));
 				break;
 
-					
+			case 0x2b0b:
+				if( RFIFOREST(fd) < RFIFOW(fd, 2) )
+					return 0;
+				memset(&skillid2idx, 0, sizeof(skillid2idx));
+				j = RFIFOW(fd, 2) - 4;
+				if( j )
+					j /= 4;
+				for(i = 0; i < j; i++) {
+					if( RFIFOW(fd, 4 + (i*4)) > MAX_SKILL_ID ) {
+						ShowWarning("skillid2dx[%d] = %d falhou, %d maior que MAX_SKILL_ID (%d)\n",RFIFOW(fd, 4 + (i*4)), RFIFOW(fd, 6 + (i*4)),RFIFOW(fd, 4 + (i*4)),MAX_SKILL_ID);
+							continue;
+					}
+					skillid2idx[RFIFOW(fd, 4 + (i*4))] = RFIFOW(fd, 6 + (i*4));
+				}
+				RFIFOSKIP(fd, RFIFOW(fd, 2));
+				break; 
+
 			case 0x2afa: // Receiving map names list from the map-server
 				if(RFIFOREST(fd) < 4 || RFIFOREST(fd) < RFIFOW(fd,2))
 					return 0;
@@ -4872,6 +4884,7 @@ void do_shutdown(void)
 
 int do_init(int argc, char **argv)
 {
+	memset(&skillid2idx, 0, sizeof(skillid2idx));
 	//Read map indexes
 	mapindex_init();
 	start_point.map = mapindex_name2id("new_zone01");

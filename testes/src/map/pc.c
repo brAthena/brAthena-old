@@ -1138,7 +1138,7 @@ int pc_set_hate_mob(struct map_session_data *sd, int pos, struct block_list *bl)
  *------------------------------------------*/
 int pc_reg_received(struct map_session_data *sd)
 {
-	int i,j;
+	int i,j, idx = 0;
 
 	sd->change_level_2nd = pc_readglobalreg(sd,"jobchange_level");
 	sd->change_level_3rd = pc_readglobalreg(sd,"jobchange_level_3rd");
@@ -1171,22 +1171,22 @@ int pc_reg_received(struct map_session_data *sd)
 
 	if((i = pc_checkskill(sd,RG_PLAGIARISM)) > 0) {
 		sd->cloneskill_id = pc_readglobalreg(sd,"CLONE_SKILL");
-		if(sd->cloneskill_id > 0) {
-			sd->status.skill[sd->cloneskill_id].id = sd->cloneskill_id;
-			sd->status.skill[sd->cloneskill_id].lv = pc_readglobalreg(sd,"CLONE_SKILL_LV");
-			if(sd->status.skill[sd->cloneskill_id].lv > i)
-				sd->status.skill[sd->cloneskill_id].lv = i;
-			sd->status.skill[sd->cloneskill_id].flag = SKILL_FLAG_PLAGIARIZED;
+		if(sd->cloneskill_id > 0 && (idx = skill_get_index(sd->cloneskill_id))) {
+			sd->status.skill[idx].id = sd->cloneskill_id;
+			sd->status.skill[idx].lv = pc_readglobalreg(sd,"CLONE_SKILL_LV");
+			if(sd->status.skill[idx].lv > i)
+				sd->status.skill[idx].lv = i;
+			sd->status.skill[idx].flag = SKILL_FLAG_PLAGIARIZED; 
 		}
 	}
 	if((i = pc_checkskill(sd,SC_REPRODUCE)) > 0) {
 		sd->reproduceskill_id = pc_readglobalreg(sd,"REPRODUCE_SKILL");
-		if(sd->reproduceskill_id > 0) {
-			sd->status.skill[sd->reproduceskill_id].id = sd->reproduceskill_id;
-			sd->status.skill[sd->reproduceskill_id].lv = pc_readglobalreg(sd,"REPRODUCE_SKILL_LV");
-			if(i < sd->status.skill[sd->reproduceskill_id].lv)
-				sd->status.skill[sd->reproduceskill_id].lv = i;
-			sd->status.skill[sd->reproduceskill_id].flag = SKILL_FLAG_PLAGIARIZED;
+		if( sd->reproduceskill_id > 0 && (idx = skill_get_index(sd->reproduceskill_id))) {
+			sd->status.skill[idx].id = sd->reproduceskill_id;
+			sd->status.skill[idx].lv = pc_readglobalreg(sd,"REPRODUCE_SKILL_LV");
+			if( i < sd->status.skill[idx].lv)
+				sd->status.skill[idx].lv = i;
+			sd->status.skill[idx].flag = SKILL_FLAG_PLAGIARIZED; 
 		}
 	}
 	//Weird... maybe registries were reloaded?
@@ -1256,8 +1256,8 @@ static int pc_calc_skillpoint(struct map_session_data *sd)
 	nullpo_ret(sd);
 
 	for(i=1; i<MAX_SKILL; i++) {
-		if((skill_lv = pc_checkskill(sd,i)) > 0) {
-			inf2 = skill_get_inf2(i);
+		if( (skill_lv = pc_checkskill2(sd,i)) > 0) {
+			inf2 = skill_db[i].inf2; 
 			if((!(inf2&INF2_QUEST_SKILL) || battle_config.quest_skill_learn) &&
 			   !(inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) //Do not count wedding/link skills. [Skotlex]
 			  ) {
@@ -1296,7 +1296,7 @@ int pc_calc_skilltree(struct map_session_data *sd)
 			sd->status.skill[i].id = 0; //First clear skills.
 		/* permanent skills that must be re-checked */
 		if(sd->status.skill[i].flag == SKILL_FLAG_PERM_GRANTED) {
-			switch(i) {
+			switch(skill_db[i].nameid) {
 				case NV_TRICKDEAD:
 					if((sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE) {
 							sd->status.skill[i].id = 0;
@@ -1315,20 +1315,20 @@ int pc_calc_skilltree(struct map_session_data *sd)
 			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 		}
 
-		if(sd->sc.count && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_BARDDANCER && i >= DC_HUMMING && i<= DC_SERVICEFORYOU) {
+		if(sd->sc.count && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_BARDDANCER && skill_db[i].nameid >= DC_HUMMING && skill_db[i].nameid <= DC_SERVICEFORYOU) {
 			//Enable Bard/Dancer spirit linked skills.
 			if(sd->status.sex) {
 				//Link dancer skills to bard.
 				if(sd->status.skill[i-8].lv < 10)
 					continue;
-				sd->status.skill[i].id = i;
+				sd->status.skill[i].id = skill_db[i].nameid;
 				sd->status.skill[i].lv = sd->status.skill[i-8].lv; // Set the level to the same as the linking skill
 				sd->status.skill[i].flag = SKILL_FLAG_TEMPORARY; // Tag it as a non-savable, non-uppable, bonus skill
 			} else {
 				//Link bard skills to dancer.
 				if(sd->status.skill[i].lv < 10)
 					continue;
-				sd->status.skill[i-8].id = i - 8;
+				sd->status.skill[i-8].id = skill_db[i-8].nameid;
 				sd->status.skill[i-8].lv = sd->status.skill[i].lv; // Set the level to the same as the linking skill
 				sd->status.skill[i-8].flag = SKILL_FLAG_TEMPORARY; // Tag it as a non-savable, non-uppable, bonus skill
 			}
@@ -1337,7 +1337,7 @@ int pc_calc_skilltree(struct map_session_data *sd)
 
 	if(pc_has_permission(sd, PC_PERM_ALL_SKILL)) {
 		for(i = 0; i < MAX_SKILL; i++) {
-			switch(i) {
+			switch(skill_db[i].nameid) {
 					/**
 					 * Dummy skills must be added here otherwise they'll be displayed in the,
 					 * skill tree and since they have no icons they'll give resource errors
@@ -1361,19 +1361,19 @@ int pc_calc_skilltree(struct map_session_data *sd)
 				default:
 					break;
 			}
-			if(skill_get_inf2(i)&(INF2_NPC_SKILL|INF2_GUILD_SKILL))
+			if(skill_db[i].inf2&(INF2_NPC_SKILL|INF2_GUILD_SKILL))
 				continue; //Only skills you can't have are npc/guild ones
-			if(skill_get_max(i) > 0)
-				sd->status.skill[i].id = i;
+			if(skill_db[i].max > 0)
+				sd->status.skill[i].id = skill_db[i].nameid;
 		}
 		return 0;
 	}
 
 	do {
 		flag = 0;
-		for(i = 0; i < MAX_SKILL_TREE && (id = skill_tree[c][i].id) > 0; i++) {
-			int f;
-			if(sd->status.skill[id].id)
+		for( i = 0; i < MAX_SKILL_TREE && (id = skill_tree[c][i].id) > 0; i++ ) {
+			int f, idx = skill_tree[c][i].idx;
+			if(sd->status.skill[idx].id) 
 				continue; //Skill already known.
 
 			f = 1;
@@ -1382,13 +1382,14 @@ int pc_calc_skilltree(struct map_session_data *sd)
 				for(j = 0; j < MAX_PC_SKILL_REQUIRE; j++) {
 					int k;
 					if((k=skill_tree[c][i].need[j].id)) {
-						if(sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED)
+						int idx2 = skill_tree[c][i].need[j].idx;
+						if(sd->status.skill[idx2].id == 0 || sd->status.skill[idx2].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[idx2].flag == SKILL_FLAG_PLAGIARIZED)
 							k = 0; //Not learned.
-						else if(sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
-							k = sd->status.skill[skill_tree[c][i].need[j].id].flag - SKILL_FLAG_REPLACED_LV_0;
+						else if (sd->status.skill[idx2].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
+							k = sd->status.skill[idx2].flag - SKILL_FLAG_REPLACED_LV_0;
 						else
-							k = pc_checkskill(sd,k);
-						if(k < skill_tree[c][i].need[j].lv) {
+							k = pc_checkskill2(sd,idx2);
+						if(k < skill_tree[c][i].need[j].lv) { 
 							f = 0;
 							break;
 						}
@@ -1404,20 +1405,20 @@ int pc_calc_skilltree(struct map_session_data *sd)
 
 			if(f) {
 				int inf2;
-				inf2 = skill_get_inf2(id);
+				inf2 = skill_db[idx].inf2;
 
-				if(!sd->status.skill[id].lv && (
+				if(!sd->status.skill[idx].lv && (
 				       (inf2&INF2_QUEST_SKILL && !battle_config.quest_skill_learn) ||
 				       inf2&INF2_WEDDING_SKILL ||
 				       (inf2&INF2_SPIRIT_SKILL && !sd->sc.data[SC_SPIRIT])
 				   ))
 					continue; //Cannot be learned via normal means. Note this check DOES allows raising already known skills.
 
-				sd->status.skill[id].id = id;
+				sd->status.skill[idx].id = id;
 
 				if(inf2&INF2_SPIRIT_SKILL) { //Spirit skills cannot be learned, they will only show up on your tree when you get buffed.
-					sd->status.skill[id].lv = 1; // need to manually specify a skill level
-					sd->status.skill[id].flag = SKILL_FLAG_TEMPORARY; //So it is not saved, and tagged as a "bonus" skill.
+					sd->status.skill[idx].lv = 1; // need to manually specify a skill level
+					sd->status.skill[idx].flag = SKILL_FLAG_TEMPORARY; //So it is not saved, and tagged as a "bonus" skill.
 				}
 				flag = 1; // skill list has changed, perform another pass
 			}
@@ -1431,19 +1432,20 @@ int pc_calc_skilltree(struct map_session_data *sd)
 		- Grant All Taekwon Tree, but only as Bonus Skills in case they drop from ranking.
 		- (c > 0) to avoid grant Novice Skill Tree in case of Skill Reset (need more logic)
 		- (sd->status.skill_point == 0) to wait until all skill points are asigned to avoid problems with Job Change quest. */
-
-		for(i = 0; i < MAX_SKILL_TREE && (id = skill_tree[c][i].id) > 0; i++) {
-			if((skill_get_inf2(id)&(INF2_QUEST_SKILL|INF2_WEDDING_SKILL)))
+		
+		for( i = 0; i < MAX_SKILL_TREE && (id = skill_tree[c][i].id) > 0; i++ ) {
+			int idx = skill_tree[c][i].idx;
+			if((skill_db[idx].inf2&(INF2_QUEST_SKILL|INF2_WEDDING_SKILL))) 
 				continue; //Do not include Quest/Wedding skills.
-
-			if(sd->status.skill[id].id == 0) {
-				sd->status.skill[id].id = id;
-				sd->status.skill[id].flag = SKILL_FLAG_TEMPORARY; // So it is not saved, and tagged as a "bonus" skill.
+			
+			if(sd->status.skill[idx].id == 0) {
+				sd->status.skill[idx].id = id;
+				sd->status.skill[idx].flag = SKILL_FLAG_TEMPORARY; // So it is not saved, and tagged as a "bonus" skill.
 			} else if(id != NV_BASIC) {
-				sd->status.skill[id].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[id].lv; // Remember original level
+				sd->status.skill[idx].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[idx].lv; // Remember original level 
 			}
 
-			sd->status.skill[id].lv = skill_tree_get_max(id, sd->status.class_);
+			sd->status.skill[idx].lv = skill_tree_get_max(id, sd->status.class_);
 		}
 	}
 
@@ -1469,20 +1471,21 @@ static void pc_check_skilltree(struct map_session_data *sd, int skill)
 	do {
 		flag = 0;
 		for(i = 0; i < MAX_SKILL_TREE && (id=skill_tree[c][i].id)>0; i++) {
-			int j, f = 1, k;
+			int j, f = 1, k, idx = skill_tree[c][i].idx;
 
-			if(sd->status.skill[id].id)   //Already learned
+			if(sd->status.skill[idx].id) //Already learned
 				continue;
-
+			
 			for(j = 0; j < MAX_PC_SKILL_REQUIRE; j++) {
 				if((k = skill_tree[c][i].need[j].id)) {
-					if(sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED)
+					int idx2 = skill_tree[c][i].need[j].idx;
+					if(sd->status.skill[idx2].id == 0 || sd->status.skill[idx2].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[idx2].flag == SKILL_FLAG_PLAGIARIZED) 
 						k = 0; //Not learned.
-					else if(sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
-						k = sd->status.skill[skill_tree[c][i].need[j].id].flag - SKILL_FLAG_REPLACED_LV_0;
+					else if(sd->status.skill[idx2].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
+						k = sd->status.skill[idx2].flag - SKILL_FLAG_REPLACED_LV_0; 
 					else
-						k = pc_checkskill(sd,k);
-					if(k < skill_tree[c][i].need[j].lv) {
+						k = pc_checkskill2(sd,idx2);
+					if(k < skill_tree[c][i].need[j].lv) { 
 						f = 0;
 						break;
 					}
@@ -1492,16 +1495,16 @@ static void pc_check_skilltree(struct map_session_data *sd, int skill)
 				continue;
 			if(sd->status.job_level < skill_tree[c][i].joblv)
 				continue;
-
-			j = skill_get_inf2(id);
-			if(!sd->status.skill[id].lv && (
+			
+			j = skill_db[idx].inf2;
+			if(!sd->status.skill[idx].lv && ( 
 			       (j&INF2_QUEST_SKILL && !battle_config.quest_skill_learn) ||
 			       j&INF2_WEDDING_SKILL ||
 			       (j&INF2_SPIRIT_SKILL && !sd->sc.data[SC_SPIRIT])
 			   ))
 				continue; //Cannot be learned via normal means.
 
-			sd->status.skill[id].id = id;
+			sd->status.skill[idx].id = id;
 			flag = 1;
 		}
 	} while(flag);
@@ -3378,9 +3381,10 @@ int pc_bonus5(struct map_session_data *sd,int type,int type2,int type3,int type4
  *------------------------------------------*/
 int pc_skill(TBL_PC *sd, int id, int level, int flag)
 {
+	uint16 index = 0; 
 	nullpo_ret(sd);
 
-	if(id <= 0 || id >= MAX_SKILL || skill_db[id].name == NULL) {
+	if(!(index = skill_get_index(id)) || skill_db[index].name == NULL) {
 		ShowError("pc_skill: Skill with id %d does not exist in the skill database\n", id);
 		return 0;
 	}
@@ -3388,56 +3392,56 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 		ShowError("pc_skill: Skill level %d too high. Max lv supported is %d\n", level, MAX_SKILL_LEVEL);
 		return 0;
 	}
-	if(flag == 2 && sd->status.skill[id].lv + level > MAX_SKILL_LEVEL) {
-		ShowError("pc_skill: Skill level bonus %d too high. Max lv supported is %d. Curr lv is %d\n", level, MAX_SKILL_LEVEL, sd->status.skill[id].lv);
+	if(flag == 2 && sd->status.skill[index].lv + level > MAX_SKILL_LEVEL) {
+		ShowError("pc_skill: Skill level bonus %d too high. Max lv supported is %d. Curr lv is %d\n", level, MAX_SKILL_LEVEL, sd->status.skill[index].lv);
 		return 0;
 	}
 
 	switch(flag) {
 		case 0: //Set skill data overwriting whatever was there before.
-			sd->status.skill[id].id   = id;
-			sd->status.skill[id].lv   = level;
-			sd->status.skill[id].flag = SKILL_FLAG_PERMANENT;
+			sd->status.skill[index].id   = id;
+			sd->status.skill[index].lv   = level;
+			sd->status.skill[index].flag = SKILL_FLAG_PERMANENT; 
 			if(level == 0) { //Remove skill.
-				sd->status.skill[id].id = 0;
+				sd->status.skill[index].id = 0;
 				clif_deleteskill(sd,id);
 			} else
 				clif_addskill(sd,id);
-			if(!skill_get_inf(id))   //Only recalculate for passive skills.
+			if(!skill_db[index].inf) //Only recalculate for passive skills.
 				status_calc_pc(sd, 0);
 			break;
 		case 1: //Item bonus skill.
-			if(sd->status.skill[id].id == id) {
-				if(sd->status.skill[id].lv >= level)
+			if(sd->status.skill[index].id == id) {
+				if(sd->status.skill[index].lv >= level) 
 					return 0;
-				if(sd->status.skill[id].flag == SKILL_FLAG_PERMANENT) //Non-granted skill, store it's level.
-					sd->status.skill[id].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[id].lv;
+				if(sd->status.skill[index].flag == SKILL_FLAG_PERMANENT) //Non-granted skill, store it's level.
+					sd->status.skill[index].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[index].lv; 
 			} else {
-				sd->status.skill[id].id   = id;
-				sd->status.skill[id].flag = SKILL_FLAG_TEMPORARY;
+				sd->status.skill[index].id   = id;
+				sd->status.skill[index].flag = SKILL_FLAG_TEMPORARY; 
 			}
-			sd->status.skill[id].lv = level;
+			sd->status.skill[index].lv = level;
 			break;
 		case 2: //Add skill bonus on top of what you had.
-			if(sd->status.skill[id].id == id) {
-				if(sd->status.skill[id].flag == SKILL_FLAG_PERMANENT)
-					sd->status.skill[id].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[id].lv; // Store previous level.
+			if( sd->status.skill[index].id == id ) {
+				if( sd->status.skill[index].flag == SKILL_FLAG_PERMANENT )
+					sd->status.skill[index].flag = SKILL_FLAG_REPLACED_LV_0 + sd->status.skill[index].lv; // Store previous level. 
 			} else {
-				sd->status.skill[id].id   = id;
-				sd->status.skill[id].flag = SKILL_FLAG_TEMPORARY; //Set that this is a bonus skill.
+				sd->status.skill[index].id   = id;
+				sd->status.skill[index].flag = SKILL_FLAG_TEMPORARY; //Set that this is a bonus skill. 
 			}
-			sd->status.skill[id].lv += level;
+			sd->status.skill[index].lv += level;
 			break;
 		case 3:
-			sd->status.skill[id].id   = id;
-			sd->status.skill[id].lv   = level;
-			sd->status.skill[id].flag = SKILL_FLAG_PERM_GRANTED;
+			sd->status.skill[index].id   = id;
+			sd->status.skill[index].lv   = level;
+			sd->status.skill[index].flag = SKILL_FLAG_PERM_GRANTED;
 			if(level == 0) { //Remove skill.
-				sd->status.skill[id].id = 0;
+				sd->status.skill[index].id = 0;
 				clif_deleteskill(sd,id);
 			} else
 				clif_addskill(sd,id);
-			if(!skill_get_inf(id)) //Only recalculate for passive skills.
+			if(!skill_db[index].inf) //Only recalculate for passive skills. 
 				status_calc_pc(sd, 0);
 			break;
 		default: //Unknown flag?
@@ -4848,6 +4852,7 @@ int pc_memo(struct map_session_data *sd, int pos)
  *------------------------------------------*/
 int pc_checkskill(struct map_session_data *sd,uint16 skill_id)
 {
+	uint16 index = 0;
 	if(sd == NULL) return 0;
 	if(skill_id >= GD_SKILLBASE && skill_id < GD_MAX) {
 		struct guild *g;
@@ -4855,15 +4860,39 @@ int pc_checkskill(struct map_session_data *sd,uint16 skill_id)
 		if(sd->status.guild_id>0 && (g=sd->guild)!=NULL)
 			return guild_checkskill(g,skill_id);
 		return 0;
-	} else if(skill_id >= ARRAYLENGTH(sd->status.skill)) {
+	} else if(!(index = skill_get_index(skill_id)) || index >= ARRAYLENGTH(sd->status.skill) ) {
 		ShowError("pc_checkskill: Invalid skill id %d (char_id=%d).\n", skill_id, sd->status.char_id);
 		return 0;
 	}
-
-	if(sd->status.skill[skill_id].id == skill_id)
-		return (sd->status.skill[skill_id].lv);
+	
+	if(sd->status.skill[index].id == skill_id)
+		return (sd->status.skill[index].lv);
 
 	return 0;
+}
+
+int pc_checkskill2(struct map_session_data *sd,uint16 index)
+{
+	if(sd == NULL) return 0;
+
+	if(index >= ARRAYLENGTH(sd->status.skill) ) {
+		ShowError("pc_checkskill: Invalid skill index %d (char_id=%d).\n", index, sd->status.char_id);
+		return 0;
+	}
+	
+	if( skill_db[index].nameid >= GD_SKILLBASE && skill_db[index].nameid < GD_MAX ) {
+		struct guild *g;
+		
+		if( sd->status.guild_id>0 && (g=sd->guild)!=NULL)
+			return guild_checkskill(g,skill_db[index].nameid);
+		
+		return 0;
+	}
+	
+	if(sd->status.skill[index].id == skill_db[index].nameid)
+		return (sd->status.skill[index].lv);
+
+  return 0;
 }
 
 /*==========================================
@@ -5940,6 +5969,7 @@ int pc_statusup2(struct map_session_data *sd, int type, int val)
  *------------------------------------------*/
 int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 {
+	uint16 index = 0;
 	nullpo_ret(sd);
 
 	if(skill_id >= GD_SKILLBASE && skill_id < GD_SKILLBASE+MAX_GUILDSKILL) {
@@ -5952,17 +5982,17 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 		return 0;
 	}
 
-	if(skill_id >= MAX_SKILL)
+	if(!(index = skill_get_index(skill_id)))
 		return 0;
 
 	if(sd->status.skill_point > 0 &&
-	   sd->status.skill[skill_id].id &&
-	   sd->status.skill[skill_id].flag == SKILL_FLAG_PERMANENT && //Don't allow raising while you have granted skills. [Skotlex]
-	   sd->status.skill[skill_id].lv < skill_tree_get_max(skill_id, sd->status.class_)) {
+		sd->status.skill[index].id &&
+		sd->status.skill[index].flag == SKILL_FLAG_PERMANENT && //Don't allow raising while you have granted skills. [Skotlex]
+		sd->status.skill[index].lv < skill_tree_get_max(skill_id, sd->status.class_) ) {
 		int lv,range, upgradable;
-		sd->status.skill[skill_id].lv++;
+		sd->status.skill[index].lv++;
 		sd->status.skill_point--;
-		if(!skill_get_inf(skill_id))
+		if(!skill_db[index].inf)
 			status_calc_pc(sd,0); // Only recalculate for passive skills.
 		else if(sd->status.skill_point == 0 && (sd->class_&MAPID_UPPERMASK) == MAPID_TAEKWON && sd->status.base_level >= 90 && pc_famerank(sd->status.char_id, MAPID_TAEKWON))
 			pc_calc_skilltree(sd); // Required to grant all TK Ranger skills.
@@ -6005,28 +6035,29 @@ int pc_allskillup(struct map_session_data *sd)
 		//Get ALL skills except npc/guild ones. [Skotlex]
 		//and except SG_DEVIL [Komurka] and MO_TRIPLEATTACK and RG_SNATCHER [ultramage]
 		for(i=0; i<MAX_SKILL; i++) {
-			switch(i) {
+			switch(skill_db[i].nameid) {
 				case SG_DEVIL:
 				case MO_TRIPLEATTACK:
 				case RG_SNATCHER:
 					continue;
 				default:
-					if(!(skill_get_inf2(i)&(INF2_NPC_SKILL|INF2_GUILD_SKILL)))
-						if((sd->status.skill[i].lv = skill_get_max(i)))     //Nonexistant skills should return a max of 0 anyway.
-							sd->status.skill[i].id = i;
+					if(!(skill_db[i].inf2&(INF2_NPC_SKILL|INF2_GUILD_SKILL)))
+						if((sd->status.skill[i].lv = skill_db[i].max))//Nonexistant skills should return a max of 0 anyway.
+							sd->status.skill[i].id = skill_db[i].nameid; 
 			}
 		}
 	} else {
 		int inf2;
 		for(i=0; i < MAX_SKILL_TREE && (id=skill_tree[pc_class2idx(sd->status.class_)][i].id)>0; i++) {
-			inf2 = skill_get_inf2(id);
+			int idx = skill_tree[pc_class2idx(sd->status.class_)][i].idx;
+			inf2 = skill_db[idx].inf2; 
 			if((inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) ||
 			   id==SG_DEVIL
 			  )
 				continue; //Cannot be learned normally.
-
-			sd->status.skill[id].id = id;
-			sd->status.skill[id].lv = skill_tree_get_max(id, sd->status.class_);    // celest
+			
+			sd->status.skill[idx].id = id;
+			sd->status.skill[idx].lv = skill_tree_get_max(id, sd->status.class_);  // celest 
 		}
 	}
 	status_calc_pc(sd,0);
@@ -6239,23 +6270,26 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 	}
 
 	for(i = 1; i < MAX_SKILL; i++) {
+		uint16 skill_id = 0; 
 		lv = sd->status.skill[i].lv;
 		if(lv < 1) continue;
 
-		inf2 = skill_get_inf2(i);
+		inf2 = skill_db[i].inf2;
 
 		if(inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL))   //Avoid reseting wedding/linker skills.
 			continue;
 
+		skill_id = skill_db[i].nameid;
+
 		// Don't reset trick dead if not a novice/baby
-		if(i == NV_TRICKDEAD && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE) {
+		if(skill_id == NV_TRICKDEAD && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE) {
 			sd->status.skill[i].lv = 0;
 			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 			continue;
 		}
 
 		// do not reset basic skill
-		if(i == NV_BASIC && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE)
+		if(skill_id == NV_BASIC && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE)
 			continue;
 
 		if( sd->status.skill[i].flag == SKILL_FLAG_PERM_GRANTED )
@@ -7241,7 +7275,7 @@ static int jobchange_killclone(struct block_list *bl, va_list ap)
 int pc_jobchange(struct map_session_data *sd,int job, int upper)
 {
 	int i, fame_flag=0;
-	int b_class;
+	int b_class, idx = 0;
 
 	nullpo_ret(sd);
 
@@ -7281,10 +7315,11 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	}
 
 	if(sd->cloneskill_id) {
-		if(sd->status.skill[sd->cloneskill_id].flag == SKILL_FLAG_PLAGIARIZED) {
-			sd->status.skill[sd->cloneskill_id].id = 0;
-			sd->status.skill[sd->cloneskill_id].lv = 0;
-			sd->status.skill[sd->cloneskill_id].flag = 0;
+		idx = skill_get_index(sd->cloneskill_id);
+		if(sd->status.skill[idx].flag == SKILL_FLAG_PLAGIARIZED) {
+			sd->status.skill[idx].id = 0;
+			sd->status.skill[idx].lv = 0;
+			sd->status.skill[idx].flag = 0; 
 			clif_deleteskill(sd,sd->cloneskill_id);
 		}
 		sd->cloneskill_id = 0;
@@ -7293,10 +7328,11 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	}
 
 	if(sd->reproduceskill_id) {
-		if(sd->status.skill[sd->reproduceskill_id].flag == SKILL_FLAG_PLAGIARIZED) {
-			sd->status.skill[sd->reproduceskill_id].id = 0;
-			sd->status.skill[sd->reproduceskill_id].lv = 0;
-			sd->status.skill[sd->reproduceskill_id].flag = 0;
+		idx = skill_get_index(sd->reproduceskill_id);
+		if(sd->status.skill[idx].flag == SKILL_FLAG_PLAGIARIZED) {
+			sd->status.skill[idx].id = 0;
+			sd->status.skill[idx].lv = 0;
+			sd->status.skill[idx].flag = 0; 
 			clif_deleteskill(sd,sd->reproduceskill_id);
 		}
 		sd->reproduceskill_id = 0;
@@ -9370,12 +9406,14 @@ static bool pc_readdb_skilltree(char *fields[], int columns, int current)
 	}
 
 	skill_tree[idx][skill_idx].id    = skill_id;
+	skill_tree[idx][skill_idx].idx   = skill_get_index(skill_id);
 	skill_tree[idx][skill_idx].max   = skill_lv;
 	skill_tree[idx][skill_idx].joblv = joblv;
-
+	
 	for(i = 0; i < MAX_PC_SKILL_REQUIRE; i++) {
-		skill_tree[idx][skill_idx].need[i].id = atoi(fields[i*2+offset]);
-		skill_tree[idx][skill_idx].need[i].lv = atoi(fields[i*2+offset+1]);
+		skill_tree[idx][skill_idx].need[i].id  = atoi(fields[i*2+offset]);
+		skill_tree[idx][skill_idx].need[i].idx = skill_get_index(atoi(fields[i*2+offset]));
+		skill_tree[idx][skill_idx].need[i].lv  = atoi(fields[i*2+offset+1]); 
 	}
 	return true;
 }

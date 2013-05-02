@@ -28,13 +28,13 @@ struct status_change_entry;
 
 #define MAX_SKILL_DB            MAX_SKILL
 #define MAX_SKILL_PRODUCE_DB    270
-#define MAX_PRODUCE_RESOURCE    12
-#define MAX_SKILL_ARROW_DB      150
+#define MAX_PRODUCE_RESOURCE  10
+#define MAX_SKILL_ARROW_DB    140
 #define MAX_ARROW_RESOURCE      5
-#define MAX_SKILL_ABRA_DB       350
-#define MAX_SKILL_IMPROVISE_DB 50
+#define MAX_SKILL_ABRA_DB    210
+#define MAX_SKILL_IMPROVISE_DB 30
 
-#define MAX_SKILL_LEVEL 100
+#define MAX_SKILL_LEVEL 10
 
 DBMap* skilldb_name2id;
 
@@ -103,6 +103,7 @@ struct skill_condition {
 // Database skills
 
 struct s_skill_db {
+	unsigned short nameid;
 	char name[NAME_LENGTH];
 	char desc[40];
 	int range[MAX_SKILL_LEVEL],hit,inf,element[MAX_SKILL_LEVEL],nk,splash[MAX_SKILL_LEVEL],max;
@@ -129,7 +130,7 @@ struct s_skill_db {
 };
 extern struct s_skill_db skill_db[MAX_SKILL_DB];
 
-#define MAX_SKILL_UNIT_LAYOUT   50
+#define MAX_SKILL_UNIT_LAYOUT  45
 #define MAX_SQUARE_LAYOUT       5   // 11*11 Placement of a maximum unit
 #define MAX_SKILL_UNIT_COUNT ((MAX_SQUARE_LAYOUT*2+1)*(MAX_SQUARE_LAYOUT*2+1))
 struct s_skill_unit_layout {
@@ -265,6 +266,7 @@ int skill_get_state(uint16 skill_id);
 int skill_get_zeny(uint16 skill_id ,uint16 skill_lv);
 int skill_get_num(uint16 skill_id ,uint16 skill_lv);
 int skill_get_cast(uint16 skill_id ,uint16 skill_lv);
+int skill_get_casttype2 (uint16 index);
 int skill_get_delay(uint16 skill_id ,uint16 skill_lv);
 int skill_get_walkdelay(uint16 skill_id ,uint16 skill_lv);
 int skill_get_time(uint16 skill_id ,uint16 skill_lv);

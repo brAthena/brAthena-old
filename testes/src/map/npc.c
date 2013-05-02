@@ -1466,7 +1466,7 @@ int npc_buylist(struct map_session_data *sd, int n, unsigned short *item_list)
 {
 	struct npc_data *nd;
 	double z;
-	int i,j,w,skill,new_;
+	int i,j,w,skill_t,new_, idx = skill_get_index(MC_DISCOUNT);
 
 	nullpo_retr(3, sd);
 	nullpo_retr(3, item_list);
@@ -1559,12 +1559,12 @@ int npc_buylist(struct map_session_data *sd, int n, unsigned short *item_list)
 	}
 
 	// custom merchant shop exp bonus
-	if(battle_config.shop_exp > 0 && z > 0 && (skill = pc_checkskill(sd,MC_DISCOUNT)) > 0) {
-		if(sd->status.skill[MC_DISCOUNT].flag >= SKILL_FLAG_REPLACED_LV_0)
-			skill = sd->status.skill[MC_DISCOUNT].flag - SKILL_FLAG_REPLACED_LV_0;
-
-		if(skill > 0) {
-			z = z * (double)skill * (double)battle_config.shop_exp/10000.;
+	if(battle_config.shop_exp > 0 && z > 0 && (skill_t = pc_checkskill2(sd,idx)) > 0) {
+		if(sd->status.skill[idx].flag >= SKILL_FLAG_REPLACED_LV_0)
+			skill_t = sd->status.skill[idx].flag - SKILL_FLAG_REPLACED_LV_0; 
+		
+		if( skill_t > 0 ) {
+			z = z * (double)skill_t * (double)battle_config.shop_exp/10000.; 
 			if(z < 1)
 				z = 1;
 			pc_gainexp(sd,NULL,0,(int)z, false);
@@ -1637,7 +1637,7 @@ static int npc_selllist_sub(struct map_session_data *sd, int n, unsigned short *
 int npc_selllist(struct map_session_data *sd, int n, unsigned short *item_list)
 {
 	double z;
-	int i,skill;
+	int i,skill_t, idx = skill_get_index(MC_OVERCHARGE); 
 	struct npc_data *nd;
 
 	nullpo_retr(1, sd);
@@ -1703,12 +1703,12 @@ int npc_selllist(struct map_session_data *sd, int n, unsigned short *item_list)
 	pc_getzeny(sd, (int)z, LOG_TYPE_NPC, NULL);
 
 	// custom merchant shop exp bonus
-	if(battle_config.shop_exp > 0 && z > 0 && (skill = pc_checkskill(sd,MC_OVERCHARGE)) > 0) {
+	if(battle_config.shop_exp > 0 && z > 0 && (skill_t = pc_checkskill(sd,MC_OVERCHARGE)) > 0) {
 		if(sd->status.skill[MC_OVERCHARGE].flag >= SKILL_FLAG_REPLACED_LV_0)
-			skill = sd->status.skill[MC_OVERCHARGE].flag - SKILL_FLAG_REPLACED_LV_0;
+			skill_t = sd->status.skill[MC_OVERCHARGE].flag - SKILL_FLAG_REPLACED_LV_0;
 
-		if(skill > 0) {
-			z = z * (double)skill * (double)battle_config.shop_exp/10000.;
+		if(skill_t > 0) {
+			z = z * (double)skill_t * (double)battle_config.shop_exp/10000.;
 			if(z < 1)
 				z = 1;
 			pc_gainexp(sd, NULL, 0, (int)z, false);
