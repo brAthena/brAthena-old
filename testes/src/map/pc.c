@@ -6544,7 +6544,21 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			duel_reject(sd->duel_invite, sd);
 	}
 
-	pc_close_npc(sd,2); //close npc if we were using one
+	// Clear anything NPC-related when you die and was interacting with one. 
+	if (sd->npc_id) { 
+		if (sd->state.using_fake_npc) { 
+			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd); 
+			sd->state.using_fake_npc = 0; 
+		} 
+		if (sd->state.menu_or_input) 
+			sd->state.menu_or_input = 0; 
+		if (sd->npc_menu) 
+			sd->npc_menu = 0; 
+
+			sd->npc_id = 0; 
+		if (sd->st && sd->st->state != END) 
+			sd->st->state = END; 
+	}
 
 	/* e.g. not killed thru pc_damage */
 	if( pc_issit(sd) ) {
