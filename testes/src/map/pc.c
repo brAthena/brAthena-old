@@ -6462,6 +6462,12 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 	sd->canlog_tick = gettick();
 }
 
+static int pc_close_npc_timer(int tid, unsigned int tick, int id, intptr_t data){
+	TBL_PC *sd = map_id2sd(id);
+	if(sd) pc_close_npc(sd,data);
+
+	return 0;
+ }
 /*
  *  Method to properly close npc for player and clear anything related
  * @flag == 1 : produce close button
@@ -6476,6 +6482,10 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
 			sd->state.using_fake_npc = 0;
 		}
 		if (sd->st) {
+			if(sd->st->state == RUN){ //wait ending code execution
+			    add_timer(gettick()+500,pc_close_npc_timer,sd->bl.id,flag);
+			    return;
+			}
 			sd->st->state = ((flag==1 && sd->st->mes_active)?CLOSE:END);
 			sd->st->mes_active = 0;
 		}
@@ -6544,21 +6554,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			duel_reject(sd->duel_invite, sd);
 	}
 
-	// Clear anything NPC-related when you die and was interacting with one. 
-	if (sd->npc_id) { 
-		if (sd->state.using_fake_npc) { 
-			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd); 
-			sd->state.using_fake_npc = 0; 
-		} 
-		if (sd->state.menu_or_input) 
-			sd->state.menu_or_input = 0; 
-		if (sd->npc_menu) 
-			sd->npc_menu = 0; 
-
-			sd->npc_id = 0; 
-		if (sd->st && sd->st->state != END) 
-			sd->st->state = END; 
-	}
+	pc_close_npc(sd,2); //close npc if we were using one
 
 	/* e.g. not killed thru pc_damage */
 	if( pc_issit(sd) ) {

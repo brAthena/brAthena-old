@@ -72,8 +72,8 @@ function	script	F_Kafra	{
 		case 5:
 			break;
 	}
+	next;
 	while (1) {
-		next;
 		deletearray @K_Menu0$[0],getarraysize(@K_Menu0$);
 		if (getarg(0) == 2) {
 			// Menu Kafra da Guilda (Teleporte grátis, Armazém Grátis, Aluguel Grátis).
@@ -113,6 +113,7 @@ function	script	F_Kafra	{
 				callfunc "F_KafStor",2,0,0;
 			else 
 				callfunc "F_KafStor",0,getarg(3),getarg(0);
+			next;
 		} else if (@K_Menu0$[.@j] == "Usar Serviço de Teleporte") {
 			if(getarg(1) != 4) callfunc "F_KafTele",getarg(0);
 			else {
@@ -129,15 +130,19 @@ function	script	F_Kafra	{
 				mes "do teletransporte. Muito obrigado por sua";
 				mes "compreensão e cooperação.";
 			}
+			next;
 		} else if (@K_Menu0$[.@j] == "Alugar Carrinho") {
-			callfunc "F_KafCart",getarg(0),getarg(4);
+			if(callfunc("F_KafCart",getarg(0),getarg(4)) == 1)
+				next;
 		} else if (@K_Menu0$[.@j] == "Checar outra informação") {
 			callfunc "F_KafInfo",getarg(2);
+			next;
 		} else if (@K_Menu0$[.@j] == "Cancelar"){
 			callfunc "F_KafEnd",getarg(0),0;
 			end;
 		} else if (@K_Menu0$[.@j] == "Usar Armazém da Guilda") {
 			callfunc "F_KafStor",1,0;
+			next;
 		}
 	}
 }
@@ -295,7 +300,7 @@ function	script	F_KafCart	{
 		mes "custará "+getarg(1)+" Zenys.";
 		mes "Você deseja alugar um carrinho de mão?";
 		next;
-		if (select("Alugar Carrinho.:Cancelar") == 2) return;
+		if (select("Alugar Carrinho.:Cancelar") == 2) return 0;
 			if(Zeny<getarg(1)){
 				mes "[Funcionária Kafra]";
 				mes "Lamento, mas você não possui Zenys suficientes para alugar um carrinho.";
@@ -306,7 +311,7 @@ function	script	F_KafCart	{
 			set RESRVPTS, RESRVPTS + 48;
 	}
 	setcart;
-	return;
+	return 1;
 }
 
 //===================================================
