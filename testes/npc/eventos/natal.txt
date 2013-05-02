@@ -8,11 +8,11 @@
 //   |                                                            |
 //   |                    brAthena Script                         |
 //   |------------------------------------------------------------|
-//   | Nome do Script: natal_2005.txt                             |
+//   | Nome do Script: natal.txt                                  |
 //   |------------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                            |
 //   |------------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.0/1.1                             |
+//   | Versões eA/rA/brA: 1.2/1.0/1.3                             |
 //   |------------------------------------------------------------|
 //   | Descrição: Eventos de Natal, Natal 2005 e 2008.            |
 //   | - Natal -                                                  |
@@ -30,220 +30,207 @@
 //   | Changelog:                                                 |
 //   | 1.0 Criado Cabeçalho [Megasantos]                          |
 //   | 1.1 União de NPCs [Holy]                                   |
+//   | 1.2 Tradução PT-BR [Holy]                                  |
+//   | 1.3 Revisão [Clare & Saraii]                               |
 //   |------------------------------------------------------------|
 //   | - Anotações                                                |
 //   \____________________________________________________________/
 
-xmas_in,100,96,4	script	Father Christmas::Santa2	718,{
-	mes "[Santa Claus]";
-	if(xmas_npc==0) set xmas_npc, 1; // For Lutie & Bard quest
+xmas_in,100,96,4	script	Papai Noel::Santa2	718,{
+	mes "[Papai Noel]";
+	if(xmas_npc==0) set xmas_npc, 1;
 	if(#event_xmas > 0 && #event_xmas < 30 ) goto L_Start;
-	mes "Merry Christmas!";
-	if(Class==0 || #event_xmas>=30 ) close; //anti exploit protection
-	mes "I have a gift for you! Ho Ho Ho!";
-	getitem rand(664,667),1; //gives one of 4 gift boxes
+	mes "Feliz Natal!";
+	if(!Class || #event_xmas >= 30) close;
+	mes "Eu tenho um presente para você! HoHoHo!";
+	getitem rand(664,667),1; //
 	set #event_xmas,#event_xmas+1;
 	close;
 
 L_Start:
-	mes "I'm having a bit of a problem...";
-	mes "Do you care to listen?";
+	mes "Estou tendo um pequeno problema...";
+	mes "Você se importa em ouvir?";
 	next;
-	menu "Listen to Santa Claus.",M_0, "Give Santa Claus proof.",M_1, "Cancel.",M_End;
+	menu "Ouvir o Papai Noel.",M_0, "Dar a prova ao Papai Noel.",M_1, "Cancelar.",M_End;
 
 	M_0:
-		mes "[Santa Claus]";
-		mes "My problem is this.";
-		mes "There seems to be a man out there";
-		mes "that is impersonating me and spreading";
-		mes "terror throughout the land.";
+		mes "[Papai Noel]";
+		mes "Meu problema é...";
+		mes "Parece haver um homem lá fora, que está me imitando e causando terror.";
 		next;
-		mes "[Santa Claus]";
-		mes "Like the Grinch of legend, he's taking";
-		mes "all the childrens' toys and keeping them";
-		mes "for himself.";
+		mes "[Papai Noel]";
+		mes "Como o Grinch da lenda, ele está tomando os brinquedos das crianças e guardando-os para si mesmo.";
 		next;
-		mes "[Santa Claus]";
-		mes "I'm too busy here creating my batch of ";
-		mes "toys for next year, so I can't go";
-		mes "out and find him myself.";
-		mes "So I would like you to go out and";
-		mes "Destroy this man for me.";
+		mes "[Papai Noel]";
+		mes "Estou muito ocupado aqui embrulhando e organizando meus presentes para o próximo ano, então por isso eu não posso sair e encontrá-lo.";
+		mes "Gostaria que você saisse e destruisse esse homem para mim.";
 		next;
-		mes "[Santa Claus]";
-		mes "He has in his posession one of my";
-		mes "magic sacks, however, so he will";
-		mes "escape into it to another place each";
-		mes "time you attack him.";
+		mes "[Papai Noel]";
+		mes "Ele está com meus sacos mágicos, por isso ele entrará para dentro do saco sempre que você o atacar e escapará para um outro lugar.";
 		next;
-		mes "[Santa Claus]";
-		mes "However,";
-		mes "In his haste, he tends to drop things.";
-		mes "If by chance he drops one of his Stockings";
-		mes "With Holes that he uses to steal the";
-		mes "poor childrens' toys, pick it up.";
+		mes "[Papai Noel]";
+		mes "Porém,";
+		mes "Com pressa, ele poderá derrubar algumas coisas.";
+		mes "Se ele derrubar uma de suas meias que usa para roubar as crianças, aproveite e pegue-a.";
 		next;
-		mes "[Santa Claus]";
-		mes "If you collect 3 of these, I will give";
-		mes "you a prototype mystery box that";
-		mes "I've been keeping around the";
-		mes "lab. It spits out random presents";
-		mes "and saves me a ton of work.";
+		mes "[Papai Noel]";
+		mes "Se você coletar 3 dessas meias, irei te premiar";
+		mes "com um protótipo de caixa misteriosa";
+		mes "que tenho guardado próximo ao laboratório. Ela gera presentes aleatórios e me economiza bastante trabalho.";
 		close;
 	M_1:
-		mes "[Santa Claus]";
+		mes "[Papai Noel]";
 		if(countitem(7034) < 3) goto L_NotEnuf;
 		delitem 7034,3;
-		mes "Seems you've been doing a";
-		mes "good job of taking down those";
-		mes "fake Santas. Keep it up!";
+		mes "Parece que você está fazendo um ótimo trabalho";
+		mes "derrotando esses Papais Noeis falsos. Continue assim!";
 		next;
-		getitem 644,1; //Gift Box Prototype
+		getitem 644,1; // Caixa de Presente
 		set #event_xmas,#event_xmas+1;
-		mes "[Santa Claus]";
-		mes "There's your reward.";
-		mes "If you get 3 more, I'll give you another.";
-		mes "Hope you get a good item.";
+		mes "[Papai Noel]";
+		mes "Aqui está seu presente.";
+		mes "Se você conseguir mais 3, irei te dar outra Caixa.";
+		mes "Espero que continue coletando mais Meias.";
 		close;
 	
 		L_NotEnuf:
-			mes "You don't have enough socks as proof.";
-			mes "Go take down those evil Santas";
-			mes "and get more for me and I'll reward you.";
+			mes "Você não possui meias suficientes como prova.";
+			mes "Derrote mais desses Papais Noeis";
+			mes "e consiga mais Meias para obter mais prêmios.";
 			close;
 	M_End:
-		mes "[Santa Claus]";
-		mes "I see. Well, at the very least";
-		mes "we shall meet again on Christmas morning.";
+		mes "[Papai Noel]";
+		mes "Entendo. Bem, pelo menos";
+		mes "nós nos encontraremos novamente na manhã de Natal.";
 		close;
 
 OnInit:
-	disablenpc "Santa1";
+	disablenpc "Papai Noel";
 	end;
 }
 
-// Xmas Goblin Spawns
+// Goblin Natalino
 //============================================================
 prt_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
 gef_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
 yuno_fild09,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
 
-// Santa Poring Spawns
+// Poring Noel
 //============================================================
-ein_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ein_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild00,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild13,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gef_fild14,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-glast_01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-lhz_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-lhz_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-lhz_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-mjolnir_12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild13,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild14,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild15,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild16,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild17,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-moc_fild18,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-pay_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild00,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild10,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-prt_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-xmas_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-cmd_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild06,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild08,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild09,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild11,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-yuno_fild12,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-ama_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-gon_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-um_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-um_fild02,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-um_fild03,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-um_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-nif_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-nif_fild02,0,0,0,0 	monster	Santa Poring	1062,15,0,0,0
-lou_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-hu_fild01,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-hu_fild04,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-hu_fild05,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
-hu_fild07,0,0,0,0	monster	Santa Poring	1062,15,0,0,0
+ein_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ein_fild10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild00,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild12,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild13,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gef_fild14,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+glast_01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+lhz_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+lhz_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+lhz_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+mjolnir_12,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild12,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild13,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild14,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild15,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild16,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild17,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+moc_fild18,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+pay_fild11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild00,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild10,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+prt_fild11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+xmas_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+cmd_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild06,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild08,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild09,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild11,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+yuno_fild12,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+ama_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+gon_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+um_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+um_fild02,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+um_fild03,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+um_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+nif_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+nif_fild02,0,0,0,0 	monster	Poring Noel	1062,15,0,0,0
+lou_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+hu_fild01,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+hu_fild04,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+hu_fild05,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
+hu_fild07,0,0,0,0	monster	Poring Noel	1062,15,0,0,0
 
-// Antonio Spawns
+// Antonios
 //============================================================
 ein_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
 ein_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
@@ -358,264 +345,262 @@ hu_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
 hu_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
 hu_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
 
-// Xmas Jakk Spawns
+// Jakks Natalinos
 //============================================================
-gef_dun01,0,0,0,0	monster	Xmas Jakk	1244,5,0,0,0
-//gefenia02,0,0,0,0	monster	Xmas Jakk	1244,5,0,0,0
+gef_dun01,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+//gefenia02,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
 
-// Xmas Orc Spawns
+// Orcs Natalinos
 //============================================================
-gef_fild02,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
-gef_fild03,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
-gef_fild10,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
-gef_fild14,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
-alde_dun02,0,0,0,0	monster	Christmas Orc	1588,5,0,0,0
+gef_fild02,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
+gef_fild03,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
+gef_fild10,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
+gef_fild14,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
+alde_dun02,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
 
-
-// Louise's Santa Hat (Event 1)
-xmas_in,89,92,5	script	Louise Kim#designer	714,{
-	mes "[Designer Louise Kim]";
-	mes "Cone shaped red Santa hat is too ordinary.";
-	mes "It's old fashioned.";
-	mes "Maybe in 1980's?!";
+// Louise Gorro de Natal (Evento 1)
+//============================================================
+xmas_in,89,92,5	script	Louise Kim#estilista	714,{
+	mes "[Estilista Louise Kim]";
+	mes "Cone em forma de chapéu vermelho de Natal é muito comum.";
+	mes "É antiquado.";
+	mes "Década de 1980'!";
 	mes "Haha~";
 	next;
-	mes "[Designer Louise Kim]";
-	mes "If you leave it on me,";
-	mes "I'll change it to lastest model.";
-	mes "You know what I mean~!";
+	mes "[Estilista Louise Kim]";
+	mes "Se você deixá-lo comigo,";
+	mes "o deixarei no modelo atual.";
+	mes "Você sabe o que quero dizer~!";
 	next;
-	mes "[Designer Louise Kim]";
-	mes "You know Antonio's hat,right?";
-	mes "Guess who made it?";
-	mes "As you know, Antonio is hard to catch,";
-	mes "that's because I blowed some power in the hat. ";
+	mes "[Estilista Louise Kim]";
+	mes "Você conhece o chapéu do Antonio, certo?";
+	mes "Adivinha quem fez?";
+	mes "Como você sabe, um Antonio é difícil de se encontrar,";
+	mes "só o encontrei por que utilizei um poder no chapéu. ";
 	mes "";
 	next;
-	mes "[Designer Louise Kim]";
-	mes "If you don't like your hat,";
-	mes "bring it to me.";
-	mes "I'll change it to brand new one.";
-	mes "Stylish Louise's hat.";
+	mes "[Estilista Louise Kim]";
+	mes "Se você não gosta do seu chapéu,";
+	mes "entregue-o para mim.";
+	mes "E eu mudarei seu modelo para um novo";
+	mes "estilo, Chapéu-Louise.";
 	mes "";
 	emotion e_lv;
 	next;
 	if(countitem(2236) > 0) {
-		if (select("Here.:It's ok.") == 1) {
-			mes "[Designer Louise Kim]";
-			mes "Nice choice!!";
-			mes "If I do it like this ...";
-			mes "and this and...";
-			mes "finally it'll turn into fantastic hat.";
-			mes "But before that,I need some materials to make with.";
+		if (select("Aqui.:Está bem.") == 1) {
+			mes "[Estilista Louise Kim]";
+			mes "Ótima escolha!!";
+			mes "Se eu fazer assim ...";
+			mes "e isso e...";
+			mes "finalmente irá se transformar em um chapéu fantástico.";
+			mes "Mas antes disso, preciso de alguns materiais para a criação.";
+			mes "Então, o que acha?";
 			next;
-			if (select("What are the materials?:So what? I don't want to know.") == 1) {
-				mes "[Designer Louise Kim]";
-				mes "Well, nothing special.";
-				mes "Basically, you need Santa's hat of course.";
-				mes "and with a touch of my magical fingers,";
-				mes "it'll just turn into very special thing.";
-				mes "Well,just little bit prettier and";
-				mes "little bit more practical. Haha...";
+			if (select("Quais são os materiais?:Então, o que? Eu não quero saber.") == 1) {
+				mes "[Estilista Louise Kim]";
+				mes "Bem, nada especial.";
+				mes "Basicamente, você precisa de um Gorro de Natal é claro.";
+				mes "E com um toque dos meus dedos mágicos,";
+				mes "ele irá se transformar em algo muito especial.";
+				mes "Apenas um pouco mais bonito e";
+				mes "um pouco mais prático. Haha...";
 				next;
-				mes "[Designer Louise Kim]";
-				mes "Anyway,to sum up,required materials are....";
-				mes "Basically ^0000FFSanta's Hat^000000 and";
-				mes " ^0000FF 1 Cactus Needle ^000000 for sewing, ";
-				mes "^0000FF 10 Holy Water ^000000 for blessing, ";
-				mes "^0000FF 1 Rosary ^000000 for luckiness.";
-				mes "It's pretty enough to make Louise Hat.";
+				mes "[Estilista Louise Kim]";
+				mes "Enfim, para resumir, os materiais necessários são....";
+				mes "^0000FFGorro de Natal^000000 e";
+				mes " ^0000FF 1 Espinho de Cacto ^000000 para costura, ";
+				mes "^0000FF 10 Água Benta ^000000 para benção, ";
+				mes "^0000FF 1 Rosário ^000000 para sorte.";
+				mes "É o suficiente para fazer o Chapéu-Louise.";
 				next;
 				if (countitem(952) > 0 && countitem(523) > 9 && countitem(2608) > 0) {
-					select("Here you are.....");
-					mes "[Designer Louise Kim]";
-					mes "Wow~~!! So fast!!";
-					mes "I like your style~.";
-					mes "Ok!! If everything is ready, no need to hesitate.";
-					mes "I'll show you what Designer Louise Kim's power is.";
+					select("Aqui está.....");
+					mes "[Estilista Louise Kim]";
+					mes "Uau~~!! Foi rápido!!";
+					mes "Eu gostei do seu estilo~.";
+					mes "Ok!! Se tudo estiver pronto, não há necessidade de hesitar.";
+					mes "Eu vou te mostrar o poder de Designer de Louise Kim .";
 					emotion e_no1;
 					next;
-					mes "-She puts the hat in a bucket -";
-					mes "-filled with Holy Water.-";
-					mes "-She rapidly takes it out and starts mending the hat-";
-					mes "-humming a tune.-";
+					mes "-Ela põe o chapéu em um balde-";
+					mes "-cheio com água benta.-";
+					mes "-Ela rapidamente leva-o para fora e começa a remendar o chapéu-";
+					mes "-cantarolando uma melodia.-";
 					next;
-					mes "[Designer Louise Kim]";
-					mes "~With the number one designer, Louise Kim,~";
-					mes "~you are the most blessed soul.~";
+					mes "[Estilista Louise Kim]";
+					mes "~Com a número um do designer, Louise Kim,~";
+					mes "~você será o espírito mais abençoado.~";
 					emotion e_ho;
 					misceffect EF_BLESSING;
 					next;
-					mes "-Immediately, she puts Rosary in an-";
-					mes "-unknown liquid and dissolves it.-";
-					mes "-And with a brush,-";
-					mes "-neatly coats the liquid on -";
-					mes "-a thread of the hat.-";
+					mes "-Imediatamente, ela coloca o Rosário com-";
+					mes "-um desconhecido líquido que o dissolve.-";
+					mes "-E com um pincel,-";
+					mes "-ordenadamente reveste o líquido sobre -";
+					mes "-um fio do chapéu.-";
 					next;
-					mes "[Designer Louise Kim]";
-					mes "~With the number one designer, Louise Kim,~";
-					mes "~you are the luckiest soul.~";
+					mes "[Estilista Louise Kim]";
+					mes "~Com a número um do designer, Louise Kim,~";
+					mes "~você será o espírito mais sortudo.~";
 					emotion e_ho;
 					misceffect EF_GLORIA;
 					next;
-					mes "-She starts sewing the hat with -";
-					mes "-a Cactus Needle and a thread.-";
+					mes "-Ela começa a costurar o chapéu com -";
+					mes "-o Espinho de Cacto e um fio.-";
 					mes " ";
 					next;
-					mes "[Designer Louise Kim]";
-					mes "~This is called the Louise's miracle.~";
-					mes "~The most talented disigner,~";
+					mes "[Estilista Louise Kim]";
+					mes "~Isso é chamado o milagre de Louise.~";
+					mes "~A designer mais talentosa,~";
 					mes "~L_O_U_I_S_E K_I_M~";
 					emotion e_lv;
 					misceffect EF_BENEDICTIO;
 					next;
-					mes "[Designer Louise Kim]";
-					mes "Here!! All done~~";
-					mes "How do you like it?";
-					mes "Isn't it so wonderful?";
-					mes "Take it!! It's a gift.";
+					mes "[Estilista Louise Kim]";
+					mes "Aqui!! Tudo pronto~~";
+					mes "Você gostou?";
+					mes "Não é maravilhoso?";
+					mes "Leve-o! É um presente.";
 					next;
-					mes "[Designer Louise Kim]";
-					mes "I should have called high price for it";
-					mes "but as you know it's Christmas!";
-					mes "It's a gift for you!";
-					mes "I won't charge anything.";
-					mes "Just tell many people how good it is.";
+					mes "[Estilista Louise Kim]";
+					mes "Eu deveria ter cobrado um alto preço por isso";
+					mes "mas como você sabe que é Natal!";
+					mes "É um presente para você!";
+					mes "Não vou cobrar nada.";
+					mes "Basta dizer a muitas pessoas como sou boa.";
 					emotion e_heh;
 					next;
-					mes "[Designer Louise Kim]";
-					mes "Wherever you go,";
-					mes "whatever you do,";
-					mes "never take off the hat.";
-					mes "You won't have a chance to buy it";
-					mes "no matter how much you pay.";
+					mes "[Estilista Louise Kim]";
+					mes "Onde quer que vá,";
+					mes "faça o que fizer,";
+					mes "nunca tire o chapéu.";
+					mes "Você não terá a chance de comprá-lo";
+					mes "não importa o quanto você pague.";
 					next;
-					mes "[Designer Louise Kim]";
-					mes "Alright~Go ahead~";
-					mes "Go brag yourself!";
-					mes "~Who would be happier than~";
-					mes "~being with Louise.~";
+					mes "[Estilista Louise Kim]";
+					mes "Certo ~ Vá em frente~";
+					mes "Vá gabar-se!";
+					mes "~Quem é mais feliz do que~";
+					mes "~alguém que esteve com a Louise.~";
 					emotion e_ho;
-					delitem 2236,1; //Santa's_Hat
-					delitem 952,1; //Cactus_Needle
-					delitem 523,10; //Holy_Water
-					delitem 2608,1; //Rosary
-					getitem 5136,1; //Santa's_Hat_
+					delitem 2236,1; // Gorro de Natal
+					delitem 952,1;  // Espinho de Cacto
+					delitem 523,10; // Água Benta
+					delitem 2608,1; // Rosário
+					getitem 5136,1; // Gorro de Natal do Antônio
 					close;
 				}
 				else {
-					mes "[Designer Louise Kim]";
-					mes "Come on~If you just get me the materials,";
-					mes "I won't chage anything,";
-					mes "Call me if you change your mind.";
+					mes "[Estilista Louise Kim]";
+					mes "Volte apenas quando tiver os materiais,";
+					mes "caso contrário eu não vou mudar nada.";
 					emotion e_lv;
 					close;
 				}
 			}
-			mes "[Designer Louise Kim]";
-			mes "You'll regret!";
-			mes "Think again!";
+			mes "[Estilista Louise Kim]";
+			mes "Você vai se arrepender!";
+			mes "Pense novamente!";
 			emotion e_heh;
 			close;
 		}
-		mes "[Designer Louise Kim]";
-		mes "Ok~ whatever~";
-		mes "It's not me,";
-		mes "who's going to lose whose own luck.";
+		mes "[Estilista Louise Kim]";
+		mes "Ok, faça o que quiser.";
+		mes "Não sou eu,";
+		mes "quem vai perder para própria sorte.";
 		emotion e_heh;
 		close;
-	}
-	else {
-		mes "[Designer Louise Kim]";
-		mes "Perhaps you get the chance to acheive Santa's Hat later some time,";
-		mes "think about it carefully.";
-		mes "You can get the better designed hat,";
-		mes "and I can show off my talent.";
+	} else {
+		mes "[Estilista Louise Kim]";
+		mes "Talvez você só tenha a chance de conseguir um Gorro de Natal algum tempo depois,";
+		mes "pense nisso com cuidado.";
+		mes "Você poderá obter o melhor chapéu já projetado,";
+		mes "e eu poderei mostrar meu talento.";
 		mes "";
 		emotion e_heh;
 		close;
 	}
 }
 
-// Enjoy Happymerry Chistmas Event (Event 2)
+// Evento de Feliz Natal (Evento 2)
 prontera,155,285,3	script	Enjoy#enjoy	753,{
 	if (!christ_solo05){
 		mes "[Enjoy]";
-		mes "Oh~~~";
-		mes "It's already winter again~~!";
-		mes "This chilling weather makes";
-		mes "my body freeze~";
-		mes "And also makes my heart freeze.";
-		mes "Who said that christmas is only for lovers~";
-		mes "Oh~~I'm so lonely~!!!";
+		mes "Ah~~~";
+		mes "Já é inverno novamente~~!";
+		mes "Esse tempo frio faz";
+		mes "meu corpo congelar~";
+		mes "E também faz o meu coração congelar.";
+		mes "Quem disse que o Natal é só para os amantes?~";
+		mes "Ah~~Eu estou tão solitário~!!!";
 		next;
 		mes "[Enjoy]";
-		mes "Pitiless sister!!";
-		mes "How can she leave me alone on a christmas day~";
-		mes "'Spend your days with family on a chirstmas day'";
-		mes "is our family precept";
-		mes "Hm...I need to get some rest.";
-		mes "I'm so nervous these days~";
+		mes "Irmã impiedosa!!";
+		mes "Como ela pode me deixar sozinho em um dia de natal~";
+		mes "'Passe os seus dias de Natal com a sua família'";
+		mes "Hum...Eu preciso descansar um pouco.";
+		mes "Estou tão nervoso esses dias~";
 		next;
 		mes "[Enjoy]";
-		mes "Lets make a joyful christmas for ";
-		mes "lonely singles.";
-		mes "Who's with me?!!";
+		mes "Vamos fazer um natal alegre para ";
+		mes "solteiros solitários.";
+		mes "Quem está comigo?!!";
 		mes "!!!!!!!!!!!";
 		mes "!!!!!!!!!!!!!";
 		next;
-		switch(select("Wow!:Hm...I'm not interested.:I have ~")){
+		switch(select("Uau!:Hum...Eu não estou interessado.:Eu estou ~")){
 		case 1:
 			mes "[Enjoy]";
-			mes "Alright~~!!!";
-			mes "Let's rock and roll!!";
-			mes "Here's my plan!!";
-			mes "Let's punish those couples";
-			mes "who are so excited about christmas.";
-			mes "I just don't want to see them happy.";
+			mes "Certo~~!!!";
+			mes "Vamos dançar e rolar!!";
+			mes "Aqui está o meu plano!!";
+			mes "Vamos punir aqueles casais";
+			mes "que estão tão animados no Natal.";
+			mes "Eu só não quero vê-los felizes.";
 			next;
 			mes "[Enjoy]";
-			mes "To put in action,";
-			mes "we need to gather many phalanges.";
-			mes "Ok!!Bring our phalanges in every town on a way back here. ";
-			mes "Alright?Let's go!!";
+			mes "Para colocar em ação,";
+			mes "precisamos reunir muitas falanges.";
+			mes "Ok!! Traga falanges no caminho de cada cidade e volte aqui. ";
+			mes "Certo? Vamos lá!!";
 			next;
 			mes "[Enjoy]";
-			mes "Each should have one person's phone number.";
-			mes "We must keep it secret before we put in action.";
-			mes "So we must be very careful.";
-			mes "Well...";
-			mes "I know ^0000FFHappymerry^000000's phone number.";
+			mes "Cada um deve ter o número do telefone de uma pessoa.";
+			mes "Devemos manter isso em segredo, antes de agirmos.";
+			mes "Portanto, devemos ter muito cuidado.";
+			mes "Bem...";
+			mes "Eu sei o número de telefone da ^0000FFHappymerry^000000.";
 			next;
 			mes "[Enjoy]";
-			mes "First of all, go look for ^0000FFHappymerry^000000";
-			mes "and tell him about our plan.";
-			mes "On a way back, bring as many phalanges as you can. ";
+			mes "Em primeiro lugar, procure a ^0000FFHappymerry^000000";
+			mes "e diga-lhe sobre o nosso plano.";
+			mes "E no caminho de volta, traga quantas falanges você puder trazer.";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "Alright,sir!!!";
+			mes "Certo, senhor!!!";
 			next;
 			mes "[Enjoy]";
-			mes "Oh,and don't forget to bring";
-			mes "5 branch of dead trees!!!";
-			mes "Must bring item to attack town~";
-			mes "hahahaha~~";
+			mes "Ah, e não se esqueça de trazer";
+			mes "5 galhos secos de árvores mortas!!!";
+			mes "Você deve trazer os itens para atacarmos a cidade.~";
+			mes "Hahahaha~~";
 			emotion e_gg;
 			next;
 			mes "[Enjoy]";
-			mes "Get it?!!!!";
-			mes "Let's go punish!!!";
-			mes "We are not being jealous,";
-			mes "It's just not right leading a loose life!";
+			mes "Brincar?!!!!";
+			mes "Vamos castigar!!!";
+			mes "Nós não estamos sendo ciumentos,";
+			mes "É apenas um direito levando uma vida de solteiro!";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "Let's punish!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+			mes "Vamos castigar!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 			set christ_solo05,1;
 			close;
 		case 2:
 			mes "[Enjoy]";
-			mes "If you are not with me, get away~!!";
-			mes "Get out of my sight!!!!";
+			mes "Se você não está comigo, fuja~!!";
+			mes "Saia da minha vista!!!!";
 			mes "";
 			close;
 		case 3:
@@ -633,7 +618,7 @@ prontera,155,285,3	script	Enjoy#enjoy	753,{
 			next;
 			mes "[Enjoy]";
 			mes "........................";
-			mes "Get lost,you devil!!!!!!";
+			mes "Se perca, seu diabo!!!!!!";
 			specialeffect EF_BEGINASURA;
 			specialeffect2 EF_HIT2;
 			set Hp,Hp/2;
@@ -642,102 +627,99 @@ prontera,155,285,3	script	Enjoy#enjoy	753,{
 			warp "prontera",155,230;
 			end;
 		}
-	}
-	else if((christ_solo05 > 0) && (christ_solo05 < 5)){
+	} else if((christ_solo05 > 0) && (christ_solo05 < 5)){
 		mes "[Enjoy]";
-		mes "Each should have one person's phone number.";
-		mes "We must keep it secret before we put in action.";
-		mes "So we must be very careful.";
-		mes "Well...";
-		mes "I know ^0000FFHappymerry^000000's phone number.";
+		mes "Cada um deve ter o número do telefone de uma pessoa.";
+		mes "Devemos manter isso em segredo, antes de agirmos.";
+		mes "Portanto, devemos ter muito cuidado.";
+		mes "Bem...";
+		mes "Eu sei o número de telefone da ^0000FFHappymerry^000000.";
 		next;
 		mes "[Enjoy]";
-		mes "First of all, go look for ^0000FFHappymerry^000000";
-		mes "and tell him about our plan.";
-		mes "On a way back, bring as many phalanges as you can.";
+		mes "Em primeiro lugar, procure a ^0000FFHappymerry^000000";
+		mes "e diga-lhe sobre o nosso plano.";
+		mes "E no caminho de volta, traga quantas falanges você puder trazer.";
 		next;
 		mes "[Enjoy]";
-		mes "Oh,and don't forget to bring";
-		mes "5 branch of dead trees!!!";
-		mes "Let's go punish couples!!!";
+		mes "Ah, e não se esqueça de trazer";
+		mes "5 galhos secos de árvores mortas!!!";
+		mes "Vamos castigar casais!!!";
 		close;
-	}
-	else if (christ_solo05 == 5) {
+	} else if (christ_solo05 == 5) {
 		if (countitem(604) > 4){
 			mes "[Enjoy]";
-			mes "Did you do as I told you to do?!!!";
-			mes "Did you bring branch of dead trees?Let me see~~!!";
+			mes "Você fez o que eu te disse para fazer?!!!";
+			mes "Você trouxe os galhos secos de árvores mortas? Deixe-me ver~~!!";
 			next;
 			mes "[Enjoy]";
-			mes "Fine!!";
-			mes "You are all ready!!!";
+			mes "Ótimo!!";
+			mes "Está tudo pronto!!!";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "Wait!!";
-			mes "Where's other people??";
+			mes "Espere!!";
+			mes "Onde estão as outras pessoas??";
 			next;
 			mes "[Enjoy]";
-			mes "What are you talking about?!";
-			mes "They are already here.......";
+			mes "O que você está falando?!";
+			mes "Eles já estão aqui.......";
 			next;
 			mes "[Enjoy]";
-			mes "Can't you see?!";
-			mes "Please~!!!!Are you ok?!!!";
+			mes "Você não vê?!";
+			mes "Por Favor~!!!! Você está bem?!!!";
 			donpcevent "Happymerry#happymerry02::OnCommandOn";
 			donpcevent "Christ#christ02::OnCommandOn";
 			donpcevent "Mas#mas02::OnCommandOn";
 			donpcevent "Event#event02::OnCommandOn";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "Oh.. Yup!!!";
+			mes "Ah.. sim!!!";
 			next;
 			mes "[Enjoy]";
-			mes "Welcome!! Welcome,my phalanges!!!";
-			mes "Being a single is not a sin.";
-			mes "Why do we have to hide ourselves from ";
-			mes "their sight!";
-			mes "I hate couples!!";
-			mes "Poor single!!";
+			mes "Bem-vindo!! Bem-vindos meus falanges!!!";
+			mes "Ser só não é um pecado.";
+			mes "Por que temos de vê-los";
+			mes "desse jeito!";
+			mes "Eu odeio casais!!";
+			mes "Simples e pobres!!";
 			next;
 			mes "[Enjoy]";
-			mes "For those of who have friend who just met his/her mate,";
-			mes "or who had to turn his/her back from kissing couples!!";
-			mes "What are you waiting for!!";
-			mes "Why do we have to be the victim!!";
+			mes "Por aqueles que têm um amigo que acabou de conhecer seu/sua companheiro(a),";
+			mes "ou que teve de virar a seu/sua volta para não ver casais se beijando!!";
+			mes "O que você está esperando!!";
+			mes "Por que temos que ser a vítima!!";
 			mes "";
 			next;
 			mes "[Enjoy]";
-			mes "It's christmas season again!!";
+			mes "É época de Natal novamente!!";
 			mes "";
 			next;
 			mes "[Enjoy]";
-			mes "Are we the soldiers";
-			mes "who have beaten up monsters with our bare hand.";
-			mes "Don't you remember the days?!!We have jumped down from Air ship!!";
-			mes "We are well trained singles!!Haha~!";
+			mes "Nós somos os soldados";
+			mes "que tem espancado monstros com nossas mãos.";
+			mes "Você não se lembra dos dias?! Nós pulamos do Dirigível!!";
+			mes "Estamos bem treinados solteiros!! Haha~!";
 			next;
 			mes "[Enjoy]";
-			mes "We don't have to wipe our tears";
-			mes "looking at party players anymore.";
-			mes "No need to envy!!";
-			mes "This christmas is for singles!! ";
-			mes "Yahoo~";
+			mes "Nós não precisamos de alguém para limpar as nossas lágrimas.";
+			mes "Não há necessidade para invejar!!";
+			mes "Esse Natal será para os solteiros!! ";
+			mes "Yahuull~";
 			mes "";
 			next;
-			mes "[All]";
-			mes "Christmas for singles!!!";
-			mes "No more envy!!No more sorrow!!No more anger!!!";
-			mes "Christmas for singles!!!";
+			mes "[Todos]";
+			mes "Natal para os solteiros!!!";
+			mes "Sem inveja!! Sem tristeza!! Sem raiva!!!";
+			mes "Natal para os solteiros!!!";
 			next;
-			mes "-Enjoy takes away branches of dead trees.";
-			mes "-Grabs them tight.-";
+			mes "- Desfrute usando galhos secos de árvores mortas.";
+			mes "- Quebre-os apertando.-";
 			next;
 			mes "[Enjoy]";
-			mes "Let's punish couples,";
-			mes "those of who leading a loose life!!";
+			mes "Vamos punir os casais,";
+			mes "para que eles queiram levar uma vida de solteiro!!";
 			mes " ";
-			mes "[All]";
-			mes "Let's punish!!!!!";
+			mes "[Todos]";
+			mes "Vamos puní-los!!!!!";
 			emotion e_go;
 			emotion e_go,1;
 			donpcevent "Happymerry#happymerry02::OnCommandEmotion";
@@ -752,7 +734,7 @@ prontera,155,285,3	script	Enjoy#enjoy	753,{
 			donpcevent "Mas#mas02::OnCommandOff";
 			donpcevent "Event#event02::OnCommandOff";
 			close2;
-			mapannounce "prontera", "Single soldiers "+ strcharinfo(0) +"'s sorrow spread all over the town.",bc_map,0x66FFCC;
+			mapannounce "prontera", "O soldado solitário "+ strcharinfo(0) +" sai espalhando tristeza por toda a cidade.",bc_map,0x66FFCC;
 			monster "prontera",155,300,""+ strcharinfo(0) +"'s anguish",1062,1,"Enjoy#enjoy::OnMyMobDead";
 			monster "prontera",156,300,""+ strcharinfo(0) +"'s jealousy",1062,1,"Enjoy#enjoy::OnMyMobDead";
 			monster "prontera",157,300,""+ strcharinfo(0) +"'s despair",1062,1,"Enjoy#enjoy::OnMyMobDead";
@@ -780,32 +762,29 @@ prontera,155,285,3	script	Enjoy#enjoy	753,{
 			monster "prontera",154,296,""+ strcharinfo(0) +"'s symbol of brokenheart",1588,1,"Enjoy#enjoy::OnMyMobDead";
 			donpcevent "Enjoy#enjoy::OnCommandGo";
 			end;
-		}
-		else {
+		} else {
 			mes "[Enjoy]";
-			mes "There's no much time left!!!";
-			mes "No time to hesitate!!";
-			mes "Couples will enjoy their christmas day";
-			mes "so happily.";
-			mes "Are you going to leave them like that!!!!!";
-			mes "Let's go let's go!!";
-			mes "Go get ^0000FF 5 branch of dead tree^000000s!!!";
+			mes "Não há muito tempo!!!";
+			mes "Não há tempo para hesitar!!";
+			mes "Se não os casais vão desfrutar de seu dia de Natal";
+			mes "felizes.";
+			mes "Você vai deixar que isso aconteça!!!!!";
+			mes "Vamos vamos!!";
+			mes "Vá buscar ^0000FF 5 Galhos Secos^000000 de árvores mortas!!!";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Enjoy]";
-		mes "Hm.... ";
-		mes "It's no use just blaming oneself!";
-		mes "We lonely fellows can build our own hopeful future.";
-		mes "Let's go!!";
-		mes "Let's go phalanges!!!";
+		mes "Hum.... ";
+		mes "Não adianta só culpar a si mesmo!";
+		mes "Nós, companheiros solitárias podemos construir nosso próprio futuro esperançoso.";
+		mes "Vamos lá!!!";
 		next;
 		mes "[Enjoy]";
-		mes "For the day we all get happy~!!";
-		mes "Let's go for it!!!";
-		mes "Cheer up everybody!!!";
-		mes "Let's rock till you get happy~!";
+		mes "Para o dia em que todos ficam felizes~!!";
+		mes "Vamos para ele!!!";
+		mes "Animem-se todos!!!";
+		mes "Vamos bagunçar até que fiquemos felizes~!";
 		mes "";
 		set christ_solo05,0;
 		close;
@@ -826,31 +805,31 @@ OnCommandStop:
 	end;
 
 OnTimer3000:
-	mapannounce "prontera", "You must refine by yourself to satisfy!!!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Você deve refinar até que esteja satisfeito!!!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer5000:
-	mapannounce "prontera", "It's a waste to organize party at dungeon!!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Seria um desperdicio organizar esta festa no calabouço!!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer7000:
-	mapannounce "prontera", "There is a NPC flirting me!!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Há um NPC flertando me!!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer9000:
-	mapannounce "prontera", "I was always alone from the day I was born!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Eu estava sempre sozinho desde o dia em que nasci!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer11000:
-	mapannounce "prontera", "We dig herbs even on a christmas day!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Nós plantamos ervas mesmo em um dia de Natal!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer13000:
-	mapannounce "prontera", "...We are the insuperable single soldiers!!!",bc_map,0x66FFCC;
+	mapannounce "prontera","...Nós somos os insuperáveis soldados solteiros!!!",bc_map,0x66FFCC;
 	end;
 
 OnTimer180000:
-	mapannounce "prontera", "Wish every single soldiers have a merry christmas!!",bc_map,0x66FFCC;
+	mapannounce "prontera","Desejo que cada soldado solteiro tenha um Feliz Natal!!",bc_map,0x66FFCC;
 	donpcevent "Enjoy#enjoy::OnCommandStop";
 	end;
 }
@@ -939,78 +918,75 @@ prontera,188,177,4	script	Happymerry#happymerry	869,{
 	if (christ_solo05==1) {
 		mes "[Happymerry]";
 		mes "Holgren~~!!";
-		mes "I've never expected you betraying me! Don't wanna get refined~!!!";
-		mes "I hate christmas~!";
+		mes "Eu nunca imaginei que iria ver você me traindo!!!";
+		mes "Eu odeio o Natal~!";
 		emotion e_sob;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Are...you...?";
+		mes "Você...é...?";
 		next;
 		mes "[Happymerry]";
-		mes "What are you laughing at? huh~!";
-		mes "At least, I never borrowed a hand";
-		mes "to get my equips refined!";
-		mes "I was always brave!!";
-		mes "Blessing? Gloria~~?!";
-		mes "Couples~~duh~!!!!!!";
+		mes "Do que você está rindo? huh~!";
+		mes "Pelo menos, nunca precisei de ajuda";
+		mes "para conseguir meus equipamentos refinados!";
+		mes "Eu sempre fui corajosa!!";
+		mes "Benção? Glória~~?!";
+		mes "Casais~~dã~!!!!!!";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "You seem to be the right one!!!";
-		mes "Enjoy is waiting for you.";
-		mes "let's go!!!";
+		mes "Você parece estar no caminho certo!!!";
+		mes "Enjoy está esperando por você.";
+		mes "Vamos lá!!!";
 		next;
 		mes "[Happymerry]";
 		mes "...!";
-		mes "The day has come?";
-		mes "He help me last christmas,";
-		mes "when I failed refining my equips.";
-		mes "Oh, holy Enjoy~";
+		mes "O dia chegou?";
+		mes "Ele me ajudou no último Natal,";
+		mes "quando eu falhei no refino dos meus equipamentos.";
+		mes "Ah, santo Enjoy~";
 		mes "";
 		next;
 		mes "[Happymerry]";
-		mes "Alright!I've been waiting for a year!!";
-		mes "I'm ready to mess up christmas day~!!";
-		mes "So,where is Enjoy?";
-		mes "Where is he?!";
+		mes "Tudo bem! Eu estive esperando faz um ano!!";
+		mes "Eu estou pronta para estragar o dia do Natal~!!";
+		mes "Então, leve-me até o Enjoy, ok?";
+		mes "Onde ele está?!";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "He's waiting for you!";
-		mes "Go ahead~";
-		mes "I'll follow you after contacting others.";
+		mes "Ele está esperando por você!";
+		mes "Vá na frente~";
+		mes "Eu alcanço você depois de contactar os outros.";
 		mes "";
 		next;
 		mes "[Happymerry]";
-		mes "Alright!";
-		mes "I was supposed to call ^0000FFChrist^000000!";
-		mes "Call him for me!";
-		mes "I'll go ahead with my bags packed up.";
-		mes "See ya!";
+		mes "Certo!";
+		mes "Era para eu chamar ^0000FFChrist^000000!";
+		mes "Chame-o para mim!";
+		mes "Eu vou indo na frente levando as minhas malas.";
+		mes "Até breve!";
 		set christ_solo05,2;
 		close;
-	}
-	else if (christ_solo05 > 1) {
+	} else if (christ_solo05 > 1) {
 		mes "[Happymerry]";
-		mes "Hm...There's more things to pack up than I thought.";
-		mes "Well,it's been a year.....";
-		mes "Anyway,";
-		mes "Don't for get to call ^0000FFChrist^000000!";
-		mes "See ya!";
+		mes "Hum...Há mais coisas para fazer que eu pensava.";
+		mes "Bem, já faz um ano.....";
+		mes "De qualquer maneira, Não se esqueça de chamar ^0000FFChrist^000000!";
+		mes "Até breve!";
 		close;
-	}
-	else {
+	} else {
 		mes "[Happymerry]";
-		mes "Holgren!!";
-		mes "I've never expected you betraying me! Don't wanna get refined~!!!";
-		mes "I hate christmas~!";
+		mes "Holgren~~!!";
+		mes "Eu nunca imaginei que iria ver você me traindo!!!";
+		mes "Eu odeio o Natal~!";
 		emotion e_sob;
 		next;
 		mes "[Happymerry]";
-		mes "What are you laughing at? huh~!";
-		mes "At least, I never borrowed a hand";
-		mes "to get my equips refined!";
-		mes "I was always brave!!";
-		mes "Blessing? Gloria~~?!";
-		mes "Couples~~duh~!!!!!!";
+		mes "Do que você está rindo? huh~!";
+		mes "Pelo menos, nunca precisei de ajuda";
+		mes "para conseguir meus equipamentos refinados!";
+		mes "Eu sempre fui corajosa!!";
+		mes "Benção? Glória~~?!";
+		mes "Casais~~dã~!!!!!!";
 		close;
 	}
 }
@@ -1018,87 +994,83 @@ prontera,188,177,4	script	Happymerry#happymerry	869,{
 prontera,62,339,3	script	Christ#christ	875,{
 	if (christ_solo05 == 2) {
 		mes "[Christ]";
-		mes "Now~finally!!!";
-		mes "I get to ride Pecopeco~!";
-		mes "Why do need to organize a party with priest?!";
-		mes "I don't need all that.";
-		mes "Only thing I need is this chubby Pecopeco~!";
+		mes "~Agora finalmente!!!";
+		mes "Eu começarei a montar o Peco-Peco~!";
+		mes "Por que eu iria precisa disso para organizar uma festa com o sacerdote?!";
+		mes "Eu não preciso de tudo isso.";
+		mes "A única coisa que eu preciso é desse Peco-Peco gorducho~!";
 		mes "";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Um...";
+		mes "Hum...";
 		next;
 		mes "[Christ]";
-		mes "Who are you!";
-		mes "Don't ever think to get around my Peco~!";
-		mes "Oh~my sweat Peco~~Weren't you scared? It's ok darling.";
-		mes "Enjoy was all alone lonely from the day he were born~";
-		mes "But me?!! Nope!!";
-		mes "I have my sweat peco with me!!";
+		mes "Quem é você!";
+		mes "Nunca pense em montar no meu Peco~!";
+		mes "Ah~meu amado Peco~~Você não ficou com medo? Está tudo bem querido.";
+		mes "Enjoy sempre esteve sozinho desde o dia que ele nasceu~";
+		mes "Mas eu?!! Não!!";
+		mes "Eu carrego sempre comigo o meu amado Peco-Peco!!";
 		next;
 		mes "[Christ]";
-		mes "I'm going to held party with my peco.";
-		mes "We'll share christmas cake together and.....";
-		mes "I'm not gonna be lonely~";
-		mes "No I won't!!!";
+		mes "Eu vou para a festa de Natal com o meu peco.";
+		mes "Nós dividiremos bolo de Natal juntos e.....";
+		mes "Eu não vou ser solitário!";
+		mes "Não, não vou!!!";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Actually Enjoy told me...";
+		mes "Estou aqui em nome do Enjoy...";
 		next;
 		mes "[Christ]";
-		mes "Huh? What did you say?";
-		mes "Enjoy? You know him? Then,you must be the one whom Happymerry sent!?";
+		mes "Huh? O que você disse?";
+		mes "Enjoy? Você o conhece? Então, você deve ter sido mandando pela Happymerry!?";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Yes~ Happymerry sent me...";
+		mes "Sim, Happymerry me mandou...";
 		next;
 		mes "[Christ]";
-		mes "Finally, the day has come!!";
-		mes "Did you hear it? Peco~";
-		mes "...We have an amazing plan!";
-		mes "This christmas is gonna be fantastic!!";
-		mes "No need to envy couples!!";
+		mes "Finalmente, o dia chegou!!";
+		mes "Você ficou sabendo? Peco~";
+		mes "...Temos um plano incrível!";
+		mes "Este Natal vai ser fantástico!!";
+		mes "Não há necessidade de invejar casais!!";
 		next;
 		mes "[Christ]";
-		mes "Alright!!";
-		mes "I'll run to Enjoy with my peco~!";
-		mes "Go tell ^0000FFMas^000000";
-		mes "about this!!!";
-		mes "See ya~~!";
+		mes "Certo!!";
+		mes "Vou correndo até Enjoy com o meu peco~!";
+		mes "Até logo~~!";
 		set christ_solo05,3;
 		close;
-	}
-	else if(christ_solo05 > 2) {
+	} else if(christ_solo05 > 2) {
 		mes "[Christ]";
-		mes "Than,see you there!!";
-		mes "I'll go meet Enjoy!";
-		mes "Never forget to tell ^0000FFMas^000000";
-		mes "about this!!!";
-		mes "See ya~~!";
+		mes "Tudo bem, vejo você lá!!";
+		mes "Estou indo encontrar Enjoy!";
+		mes "E não se esqueça de falar com ^0000FFMas^000000";
+		mes "sobre isso!!!";
+		mes "Até logo~~!";
 		close;
-	}
-	else {
+	} else {
 		mes "[Christ]";
-		mes "Now~finally!!!";
-		mes "I get to ride Pecopeco~!";
-		mes "Why do need to organize a party with priest?!";
-		mes "I don't need all that.";
-		mes "Only thing I need is this chubby Pecopeco~!";
+		mes "~Agora finalmente!!!";
+		mes "Eu começarei a montar o Peco-Peco~!";
+		mes "Por que eu iria precisa disso para organizar uma festa com o sacerdote?!";
+		mes "Eu não preciso de tudo isso.";
+		mes "A única coisa que eu preciso é desse Peco-Peco gorducho~!";
 		mes "";
 		next;
 		mes "[Christ]";
-		mes "Who are you!";
-		mes "Don't ever think to get around my Peco~!";
-		mes "Oh~my sweat Peco~~Weren't you scared?It's ok darling.";
-		mes "Enjoy was all alone lonely from the day he were born~";
-		mes "But me?!!Nope!!";
-		mes "I have my sweat peco with me!!";
+		mes "Quem é você!";
+		mes "Nunca pense em montar no meu Peco~!";
+		mes "Ah~meu amado Peco~~Você não ficou com medo? Está tudo bem querido.";
+		mes "Enjoy sempre esteve sozinho desde o dia que ele nasceu~";
+		mes "Mas eu?!! Não!!";
+		mes "Eu carrego sempre comigo o meu amado Peco-Peco!!";
 		next;
 		mes "[Christ]";
-		mes "I'm going to held party with my peco.";
-		mes "We'll share christmas cake together and.....";
-		mes "I'm not gonna be lonely~";
-		mes "No I won't!!!";
+		mes "Eu vou para a festa de Natal com o meu peco.";
+		mes "Nós dividiremos bolo de Natal juntos e.....";
+		mes "Eu não vou ser solitário!";
+		mes "Não, não vou!!!";
 		close;
 	}
 }
@@ -1106,81 +1078,79 @@ prontera,62,339,3	script	Christ#christ	875,{
 prontera,163,66,7	script	Mas#mas	748,{
 	if(christ_solo05 == 3) {
 		mes "[Mas]";
-		mes "Herds!!!!!How long does it take!";
-		mes "Somebody know the regenerating time of Herb?!!";
-		mes "I'll dig herbs and make potions and sell it to singles!!";
+		mes "Ahhh!!!!!Mas que demora!";
+		mes "Alguém sabe quanto tempo essas ervas demoram para crescer?!!";
+		mes "Eu vou plantar ervas e fazer poções e vendê-las para os solteiros!!";
 		mes "Hahahaha!!";
 		next;
 		mes "[Mas]";
 		mes "Ah~~";
-		mes "How come I feel so empty~.";
-		mes "although I have herds fill in a storage. ";
-		mes "No~~!!!!!!";
-		mes "No time to waste~~";
-		mes "Let's dig herbs.......";
+		mes "Como é que eu me sinto tão vazio~.";
+		mes "mesmo eu tendo tantas coisas no armazém. ";
+		mes "Não~~!!!!!!";
+		mes "Não há tempo a perder~~";
+		mes "Vamos plantar ervas.......";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Hey~are you ok? Are you Mas?";
+		mes "Ei ~ você está bem? Você é Mas?";
 		next;
 		mes "[Mas]";
-		mes "Who...who are you?!!!";
-		mes "Well, it's been so long since I spoke to a stranger.";
-		mes "Hm...";
-		mes "I feel something warm inside my heart....... ";
-		mes "Never mind!! What am I thinking?!!";
-		mes "Get away~I have dig herbs~";
+		mes "Quem... quem é você?!!!";
+		mes "Bem, já faz muito dês de a ultima vez que falei com um estranho.";
+		mes "Hum...";
+		mes "Eu sinto algo quente dentro do meu coração....... ";
+		mes "Não importa! No que estou pensando?!!";
+		mes "Vá embora ~Eu tenho que plantar ervas~";
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Mas!!";
-		mes "Are you ok?!";
-		mes "Christ sent me.";
+		mes "É você certo?!";
+		mes "Christ me enviou.";
 		next;
 		mes "[Mas]";
-		mes "What!!!Already!!";
-		mes "Yeah~right!";
-		mes "I don't need to spend times digging herbs!!";
-		mes "If Enjoy made an order!?!";
-		mes "I'll be there right away~!!!!!";
+		mes "O que!!!Pronto!!";
+		mes "Sim, certo!";
+		mes "Eu não preciso passar tanto tempo assim plantando ervas!!";
+		mes "Isso é uma ordem do Enjoy!?!";
+		mes "Eu vou ir para lá imediatamente~!!!!!";
 		next;
 		mes "[Mas]";
-		mes "...Are going with me?";
+		mes "...Vamos comigo?";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "No~~";
-		mes "I have something left to do.";
-		mes "I have to tell others about this.";
+		mes "Não~~";
+		mes "Eu tenho algo a fazer.";
+		mes "Eu tenho que contar aos outros sobre isso.";
 		next;
 		mes "[Mas]";
-		mes "Oh yeah right!!!";
-		mes "Go look for ^0000FFEvent^000000.";
-		mes "Well,bye~.";
-		mes "I'll meet you there!!...";
-		mes "Herbs~?! Couples?! Whatever~~";
+		mes "Ah tudo bem!!!";
+		mes "Procure por ^0000FFEvent^000000.";
+		mes "Bem, adeus~.";
+		mes "Eu vou te encontrar lá!!...";
+		mes "Ervas~?! Casais?! Tanto faz~~";
 		set christ_solo05,4;
 		close;
-	}
-	else if(christ_solo05 > 3) {
+	} else if(christ_solo05 > 3) {
 		mes "[Mas]";
-		mes "If you excuse me, I'll go ahead and meat Enjoy.";
-		mes "And don't forget to tell ^0000FFEvent^000000 about this.";
-		mes "Herbs~couples~~Whatever~~";
-		mes "This christmas is gonna be fantastic!!";
+		mes "Se me da licença, eu vou em frente para encontrar Enjoy.";
+		mes "E não se esqueça de falar disso para ^0000FFEvent^000000.";
+		mes "Ervas~Casais~~Tanto faz~~";
+		mes "Este Natal vai ser fantástico!!";
 		mes "Hahahaha~";
 		close;
-	}
-	else {
+	} else {
 		mes "[Mas]";
-		mes "Herds!!!!!How long does it take!";
-		mes "Somebody know the regenerating time of Herb?!!";
-		mes "I'll dig herbs and make potions and sell it to singles!!";
+		mes "Ahhh!!!!!Mas que demora!";
+		mes "Alguém sabe quanto tempo essas ervas demoram para crescer?!!";
+		mes "Eu vou plantar ervas e fazer poções e vendê-las para os solteiros!!";
 		mes "Hahahaha!!";
 		next;
 		mes "Ah~~";
-		mes "How come I feel so empty~.";
-		mes "although I have herds fill in a storage. ";
-		mes "No~~!!!!!!";
-		mes "No time to waste~~";
-		mes "Let's dig herbs.......";
+		mes "Como é que eu me sinto tão vazio~.";
+		mes "mesmo eu tendo tantas coisas no armazém. ";
+		mes "Não~~!!!!!!";
+		mes "Não há tempo a perder~~";
+		mes "Vamos plantar ervas.......";
 		close;
 	}
 }
@@ -1191,90 +1161,88 @@ prontera,35,209,5	script	Event#event	881,{
 		mes "........................";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "...Are... you...?";
+		mes "...Você... é...?";
 		next;
 		mes "[Event]";
-		mes "...I love you too~!!!";
+		mes "...Eu também te amo~!!!";
 		emotion e_omg,1;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "(Oh,my..)";
+		mes "(Ah, meu..)";
 		next;
 		mes "[Event]";
-		mes "It's ok, Tinybee. I'm not lonely at all.";
-		mes "I have Ms.Bathory and Ms.Orclady with me.";
+		mes "Está bem, Tinybee. Eu não estou sozinho em tudo.";
+		mes "Eu tenho a Srta.Bathory e a Srta.Orclady comigo.";
 		mes "Hahahaha~~~";
 		mes "";
 		next;
-		mes "-He laughed talking to his right hand.-";
+		mes "-Ele riu falando com sua mão direita.-";
 		mes "";
 		//Emotion "Event#event" ET_KIK
 		emotion e_kis;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Mas sent me here.";
-		mes "You know about Enjoy's plan, right?";
-		mes "...Are you listening?";
+		mes "Mas enviou-me aqui.";
+		mes "Você sabe sobre o plano, certo?";
+		mes "...Você está ouvindo?";
 		next;
 		mes "[Event]";
-		mes "...Did you hear?? Tinybee?";
-		mes "The day has come!!";
+		mes "...Ouviu?? Tinybee?";
+		mes "O dia chegou!!";
 		mes "Hahaha~~~~.";
 		next;
 		mes "[Event]";
-		mes "Wait for me miss Kafra~~~";
-		mes "Don't be so lonely~.";
-		mes "I'll make your christmas unforgettably fantastic.";
-		mes "Let's go Tinybee.";
+		mes "Espere por mim Kafra perdida~~~";
+		mes "Não seja tão solitária~.";
+		mes "Eu vou fazer o seu Natal inesquecívelmente fantástico.";
+		mes "Vamos Tinybee.";
 		mes "";
 		next;
-		mes "-He kept talking to his right hand-";
-		mes "-and packed his stuff and bowed to Kafra.-";
+		mes "-Ele continuou falando com a mão direita-";
+		mes "-e embalado suas coisas e fez uma reverência para a Kafra.-";
 		mes "";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Finally!!! Done telling everyone!!";
-		mes "Now I should get my ^0000FFBranch of Dead Tree^000000s packed up";
-		mes "and go punish singles!!!";
-		mes "Hahahaha..";
+		mes "Finalmente!!! Tudo está pronto!!";
+		mes "Agora vou empacotar os meus ^0000FFGalhos Secos^000000";
+		mes "para punir os casais!!!";
+		mes "Hahahaha...";
 		set christ_solo05,5;
 		close;
-	}
-	else if(christ_solo05 > 4) {
+	} else if(christ_solo05 > 4) {
 		mes "[Event]";
-		mes "Wait for me miss Kafra~~~";
-		mes "Don't be so lonely~.";
-		mes "I'll make your christmas unforgettably fantastic.";
-		mes "Let's go Tinybee.";
+		mes "Espere por mim Kafra perdida~~~";
+		mes "Não seja tão solitária~.";
+		mes "Eu vou fazer o seu Natal inesquecívelmente fantástico.";
+		mes "Vamos Tinybee.";
 		next;
-		mes "-He  talked to his right hand-";
-		mes "-and packed his stuff and bowed to Kafra.-";
+		mes "-Ele continuou falando com a mão direita-";
+		mes "-e embalado suas coisas e fez uma reverência para a Kafra.-";
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Finally!!! Done telling everyone!!";
-		mes "Now I should get my things packed up";
-		mes "and go punish singles!!!";
-		mes "Hahahaha..";
+		mes "Finalmente!!! Tudo está pronto!!";
+		mes "Agora vou empacotar os meus ^0000FFGalhos secos^000000";
+		mes "para punir os casais!!!";
+		mes "Hahahaha...";
 		close;
-	}
-	else {
+	} else {
 		mes "[Event]";
 		mes "........................";
 		next;
 		mes "[Event]";
-		mes "...I love you too~!!!";
+		mes "...Eu também te amo~!!!";
 		emotion e_omg,1;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "(Oh.my~)";
+		mes "(Ah, meu...)";
 		next;
 		mes "[Event]";
-		mes "It's ok Tinybee.I'm not lonely at all.";
-		mes "I have Ms.Bathory and Ms.Orclady with me.";
+		mes "Está bem, Tinybee. Eu não estou sozinho em tudo.";
+		mes "Eu tenho a Srta.Bathory e a Srta.Orclady comigo.";
 		mes "Hahahaha~~~";
 		mes "";
 		next;
-		mes "-He laughed talking to his right hand.-";
+		mes "-Ele riu falando com sua mão direita.-";
 		mes "";
 		emotion e_kis;
 		close;
@@ -1285,545 +1253,540 @@ prontera,35,209,5	script	Event#event	881,{
 prontera,156,242,0	script	Oholy#pron::OholyDup	79,{
 	if (!christ_carol05) {
 		mes "[Oholy]";
-		mes "Joy to the world!";
-		mes "The Lord has come.";
+		mes "Alegria para o mundo!";
+		mes "O Senhor veio.";
 		specialeffect EF_GLORIA;
 		next;
 		if (Sex) {
 			mes "[Oholy]";
-			mes "Merry Christmas!";
-			mes "Dear brother, what comes in";
-			mes "your mind when you think of Christmas?";
+			mes "Feliz Natal!";
+			mes "Querido irmão, o que vem em";
+			mes "sua mente quando você pensa em Natal?";
 			next;
-		}
-		else {
+		} else {
 			mes "[Oholy]";
-			mes "Merry Christmas!";
-			mes "Dear sister, what comes in";
-			mes "your mind when you think of Christmas?";
+			mes "Feliz Natal!";
+			mes "Querida irmã, o que vem em";
+			mes "sua mente quando você pensa em Natal?";
 			next;
 		}
-		switch(select("Santa Claus:Christmas Gifts:Christmas Carols:Santa Hat:I don't like couples")) {
+		switch(select("Papai Noel:Presentes de Natal:Canções de Natal:Chápeu de Natal:Eu não gosto de casais")) {
 		case 1:
 			mes "[Oholy]";
-			mes "Santa Claus!";
-			mes "You still have childish";
-			mes "innocence, kid!!!";
+			mes "Papai Noel!";
+			mes "Você ainda tem a infantilidade";
+			mes "e a inocência, criança!!!";
 			mes "Hohoho.";
 			next;
 			mes "[Oholy]";
-			mes "There is a rumor that Santa Claus";
-			mes "in the town where Christmas ";
-			mes "never ends. This is just";
-			mes "between you and me, okay?";
+			mes "Há um boato de que Papai Noel";
+			mes "vive na cidade onde o Natal ";
+			mes "nunca termina. Isto é apenas";
+			mes "entre você e eu, ok?";
 			next;
 			mes "[Oholy]";
-			mes "The latest headline by Oholy";
-			mes "Isn't it amazing?";
+			mes "Essas são as últimas notícias por Oholy";
+			mes "Não são incríveis?";
 			emotion e_heh;
 			close;
 		case 2:
 			mes "[Oholy]";
-			mes "Gifts! That's nice!";
-			mes "How exciting it is!!!";
-			mes "You wake up and find";
-			mes "christmas gifts next to your pillow!";
+			mes "Presentes! Isso é bom!";
+			mes "Como é emocionante!!!";
+			mes "Você acorda e encontrar";
+			mes "presentes de Natal ao lado de seu travesseiro!";
 			next;
 			mes "[Oholy]";
-			mes "Have you heard that";
-			mes "bad santa who makes a suprise";
-			mes "attack in every christmas, has";
-			mes "taken Santa Claus's gifts to";
-			mes "good kids!";
+			mes "Você já ouviu falar do";
+			mes "Malvado Papai Noel que faz uma surpresa";
+			mes "atacando em cada Natal, ele";
+			mes "rouba os presentes das";
+			mes "boas crianças!";
 			next;
 			mes "[Oholy]";
-			mes "So, Santa Claus in Christmas";
-			mes "town has offered a reward for";
-			mes "capturing phony Santa, Antonio.";
+			mes "Dizem que, na cidade do Natal";
+			mes "oferecem uma recompensa para quem";
+			mes "capturar o Malvado Papai Noel, Antonio.";
 			next;
 			mes "[Oholy]";
-			mes "The latest headline by Oholy";
-			mes "Isn't it amazing?";
+			mes "Essas são as últimas notícias por Oholy";
+			mes "Não são incríveis?";
 			emotion e_heh;
 			close;
 		case 3:
 			mes "[Oholy]";
-			mes "That's right!";
-			mes "Carol is the essential for";
-			mes "Christmas! When I was";
-			mes "young, my mind used to be";
-			mes "fluttered by carols during";
-			mes "Christmas.";
+			mes "Está certo!";
+			mes "A canção é essencial no";
+			mes "Natal! Quando eu era";
+			mes "jovem, minha mente costumava";
+			mes "vibrar com as canções durante o";
+			mes "Natal.";
 			next;
 			mes "[Oholy]";
-			mes "But, in these days, not many";
-			mes "people sing Christmas carols";
-			mes "so it is hard to feel that";
-			mes "Christmas is coming closer";
+			mes "Mas, nestes dias, não há muitas";
+			mes "pessoas que cantam músicas natalinas.";
+			mes "Por isso, é difícil sentir que";
+			mes "o Natal está chegando.";
 			mes " ";
 			next;
 			mes "[Oholy]";
-			mes "Therefore, I decided to wish";
-			mes "a merry christmas to everyone";
-			mes "by singing Christmas carols and";
-			mes "giving gifts to kids from door";
-			mes "to door, but, unfortunately,";
-			mes "wicked devil has torn off my carol music book!!!";
+			mes "Por isso, decidi desejar";
+			mes "Feliz Natal a todos";
+			mes "cantando músicas natalinas e";
+			mes "dando presentes para as crianças de porta";
+			mes "em porta, mas infelizmente, um";
+			mes "demônio roubou meu livro de canções natalinas!!!";
 			next;
 			mes "[Oholy]";
-			mes "I have many houses to visit.";
-			mes "I feel so sad for disappointed";
-			mes "kids who didn't hear the carols.";
+			mes "Eu tenho muitas casas para visitar.";
+			mes "Eu me sinto tão triste por decepcionar";
+			mes "as crianças que não ouvem os cânticos.";
 			next;
-			menu "...can I help you?",-;
+			menu "...posso ajudá-lo?",-;
 			mes "[Oholy]";
-			mes "Good gracious! Are you for real?";
-			mes "Oh? Shee... Can you hear it?";
-			mes "Every kids appreciate your kindness.";
+			mes "Meu Deus! Você é de verdade?";
+			mes "Oh? Nossa... Você pode ouvir?";
+			mes "Cada crianças apreciar a sua bondade.";
 			emotion e_heh;
-			mes "Don't be afraid. I will not";
-			mes "ask you to make a new christmas carol.";
+			mes "Não tenha medo. Eu não vou";
+			mes "lhe pedir para fazer uma nova Canção de Natal.";
 			next;
 			mes "[Oholy]";
-			mes "If you have a will,";
-			mes "we got no time to waste.";
-			mes "Let's move on to give hope to kids!";
+			mes "Se você tem essa vontade,";
+			mes "não temos tempo a perder.";
+			mes "Vamos seguir em frente para dar esperança as crianças!";
 			next;
 			mes "[Oholy]";
-			mes "Well, please bring me back";
-			mes "Christmas carol music book, "+ strcharinfo(0) +".";
-			mes "That little devil will be still";
-			mes "in the town because it only happened a few minutes ago.";
+			mes "Bem, por favor, me traga de volta";
+			mes "o livro de canções natalinas, "+ strcharinfo(0) +".";
+			mes "Esse diabinho ainda está";
+			mes "na cidade, pois isso aconteceu há poucos minutos.";
 			next;
 			mes "[Oholy]";
-			mes "Please be careful because";
-			mes "you are dealing with devil.";
-			mes "Well then, hope you a good luck!!!";
+			mes "Por favor, tenha cuidado porque";
+			mes "você está lidando com um demônio.";
+			mes "Bem então, espero que você tenha uma boa sorte!!!";
 			mes " ";
 			emotion e_no1;
 			set christ_carol05,1;
 			close;
 		case 4:
 			mes "[Oholy]";
-			mes "A Santa Hat!!";
-			mes "Did you know that the real";
-			mes "Santa Hat is totally different";
-			mes "from the one that monsters";
-			mes "are wearing?! I heard a rumor";
-			mes "that an anonymous designer";
-			mes "in Lutie, made all of those santa hats.";
+			mes "A Chapéu de Natal!!";
+			mes "Você sabia que o real";
+			mes "Chápeu de Natal é totalmente diferente";
+			mes "dos que os monstros";
+			mes "estão usando?! Eu ouvi um boato";
+			mes "que um designer anônimo";
+			mes "em Lutie, fez todos aqueles Chapéis de Natal.";
 			next;
 			mes "[Oholy]";
-			mes "Also, there is another rumor";
-			mes "about phony Santa, Antonio.";
-			mes "He has been chased by many ";
-			mes "adventurers but never been";
-			mes "caught because of his Santa Costume.";
+			mes "Além disso, há um outro rumor";
+			mes "sobre um falso Papai Noel, Antonio.";
+			mes "Ele foi perseguido por muitos ";
+			mes "aventureiros, mas nunca foi";
+			mes "apanhado por causa de sua roupa de Papai Noel.";
 			next;
 			mes "[Oholy]";
-			mes "Maybe his hat and clothes have";
-			mes "special functions within...";
-			mes "Maybe that anonymous designer";
-			mes "still lives in Lutie. Why don't";
-			mes "you go visit him and ask to";
-			mes "make you a new Santa Hat?";
+			mes "Talvez seu chapéu e roupas tenham";
+			mes "poderes especiais...";
+			mes "Talvez o designer anônimo";
+			mes "ainda viva em Lutie. Por que";
+			mes "você não vai visitá-lo e pedir para";
+			mes "fazer-lhe um novo chapéu de Natal?";
 			next;
 			mes "[Oholy]";
-			mes "The latest headline by Oholy";
-			mes "Isn't it amazing?";
+			mes "Essas são as últimas notícias por Oholy";
+			mes "Não são incríveis?";
 			emotion e_heh;
 			close;
 		case 5:
 			mes "[Oholy]";
-			mes "Oh, dear. I was thinking of";
-			mes "the sa.m..e... Oops, ho..hoho.";
-			mes "Oh well, it's not only me. Many";
-			mes "people think of the same in this Christmas.";
+			mes "Oh, meu caro. Eu estava pensando no";
+			mes "mesmo... Oops, ha..haha.";
+			mes "Oh bem, isso não é só comigo. Muitas";
+			mes "pessoas pensam da mesma forma no Natal.";
 			next;
 			mes "[Oholy]";
-			mes "I heard a strange rumor that";
-			mes "those people are plotting";
-			mes "something in this Christmas.";
-			mes "...hope it goes well(*murmur*)";
+			mes "Eu ouvi um boato estranho que";
+			mes "essas pessoas estão tramando";
+			mes "algo neste Natal.";
+			mes "...Espero que corra tudo bem(*murmur*)";
 			next;
 			mes "[Oholy]";
-			mes "The latest headline by Oholy";
-			mes "Isn't it amazing?";
+			mes "Essas são as últimas notícias por Oholy";
+			mes "Não são incríveis?";
 			emotion e_heh;
 			close;
 		}
-	}
-	else if(christ_carol05 == 1) {
+	} else if(christ_carol05 == 1) {
 		mes "[Oholy]";
-		mes "He should not be able to escape";
-		mes "from the town. Please find the";
-		mes "devil and bring me back my";
-		mes "Christmas Carol Music Book.";
-		mes "Punish the wicked devil who is ruining Christmas!!!";
+		mes "Ele não deve ser capaz de escapar";
+		mes "da cidade. Por favor, encontre o";
+		mes "diabo e me traga de volta o meu";
+		mes "livro de canções natalinas.";
+		mes "Este diabo perverso que está arruinado o Natal deve ser punido!!!";
 		close;
-	}
-	else if(christ_carol05 == 2) {
+	} else if(christ_carol05 == 2) {
 		if(!checkweight(1201,1)) {
-			mes "^3355FFWait a second!";
-			mes "Right now, you're carrying";
-			mes "too many things with you.";
-			mes "Please come back after";
-			mes "using the Kafra Service";
-			mes "to store some of your items.^000000";
+			mes "^3355FFEspere um segundo!";
+			mes "Atualmente você está carregando";
+			mes "muitos itens com você.";
+			mes "Por favor volte após";
+			mes "utilizar o Serviço das Kafras";
+			mes "para guardar alguns de seus itens.^000000";
 			close;
 		}
 		set .@now_weight,MaxWeight-Weight;
 		if(.@now_weight < 2000) {
-			mes "^3355FFWait a second!";
-			mes "Right now, you're carrying";
-			mes "too many things with you.";
-			mes "Please come back after";
-			mes "using the Kafra Service";
-			mes "to store some of your items.^000000";
+			mes "^3355FFEspere um segundo!";
+			mes "Atualmente você está carregando";
+			mes "muitos itens com você.";
+			mes "Por favor volte após";
+			mes "utilizar o Serviço das Kafras";
+			mes "para guardar alguns de seus itens.^000000";
 			close;
 		}
 		if (countitem(1097) > 0) {
 			mes "[Oholy]";
-			mes "Oh, my gracious! ";
-			mes "You have brought me the book!";
-			mes "Didn't the devil trouble you?";
-			mes "I'm glad you have return safely.";
+			mes "Ah, graças a Deus!";
+			mes "Você me trouxe o livro!";
+			mes "Será que o diabo não vai incomodá-lo?";
+			mes "Estou feliz por você ter retorno com segurança.";
 			next;
 			mes "[Oholy]";
-			mes "In return, I'm going to sing";
-			mes "a carol from the music book.";
+			mes "Em troca, eu vou cantar";
+			mes "uma das canção do livro de canções.";
 			next;
 			mes "[Oholy]";
 			mes "Hum! Huum!!";
-			mes "~Sleep well, little children,~";
-			mes "~wherever you are;~";
-			mes "~Tomorrow is Christmas~";
-			mes "~beneath every star.~";
+			mes "~Durma bem, pequenas crianças,~";
+			mes "~onde quer que estejam~";
+			mes "~Amanhã é Natal~";
+			mes "~sob todas as estrelas.~";
 			specialeffect EF_GLORIA;
 			next;
-			mes "-Your mind is overwhelmed by her singing-";
-			mes "-You started humming then,-";
-			mes "-began to sing the next phase-";
+			mes "-Sua mente é dominada por seu canto-";
+			mes "-Você começou a cantarolar em seguida,-";
+			mes "-começou a cantar a próxima fase-";
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "~Soon the snowflackes will fall~";
-			mes "~and tomorrow you'll see~";
-			mes "~Every wish, one and all,~";
-			mes "~waiting under the tree.~";
+			mes "~Logo os flocos de neve vão cair~";
+			mes "~e amanhã você vai ver~";
+			mes "~todos os seus desejos, cada um deles,~";
+			mes "~serem realizados sob a árvore.~";
 			specialeffect2 EF_GLORIA;
 			next;
 			mes "[Oholy]";
-			mes "Oh, my. You have a wonderful";
-			mes "voice!! Alright!!!";
-			mes "I was going to give these";
-			mes "to kids, but, since you found";
-			mes "my music book and sang a carol to me!";
+			mes "Oh, meu caro. Você tem uma maravilhosa";
+			mes "voz! Certo!!!";
+			mes "Eu ia dar a estes";
+			mes "para as crianças, mas, uma vez que você encontrou";
+			mes "meu livro de canções e cantou uma canção comigo!";
 			next;
-			mes "-She brought a big sack-";
-			mes "-and opened it in front of you-";
+			mes "-Ele trouxe um grande saco-";
+			mes "-e abriu na sua frente-";
 			next;
 			mes "[Oholy]";
-			mes "OK! Don't look inside.";
-			mes "Just put your hands";
-			mes "grab what you want.";
+			mes "OK! Não olhar para dentro.";
+			mes "Basta colocar suas mãos,";
+			mes "pegue o que você quiser.";
 			next;
 			switch(rand(1,15)) {
 			case 1:
 				mes "[Oholy]";
-				mes "A Cookie Bag!";
-				mes "I wrapped those indivisually.";
-				mes "There are many sweets in them.";
-				mes "Merry Christmas!";
+				mes "Uma Sacola de Biscoitos!";
+				mes "Eu a preparei sozinho.";
+				mes "Existem muitos doces nela.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;//Página Deteriorada
 				set christ_carol05,3;
-				getitem 12130,7;//Cookie_Bag
+				getitem 12130,7;//Sacola de Biscoitos
 				close;
 			case 2:
 				mes "[Oholy]";
-				mes "Candies!";
-				mes "These were made by";
-				mes "Chief noun.";
-				mes "Very sweet and delicious.";
-				mes "Merry Christmas!";
+				mes "Doces!";
+				mes "Estes foram feitas por";
+				mes "Chefe Noun.";
+				mes "É um doce delicioso.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;//Página Deteriorada
 				set christ_carol05,3;
-				getitem 529,20;//Candy
+				getitem 529,20;//Bala
 				close;
 			case 3:
 				mes "[Oholy]";
-				mes "Candy Canes!";
-				mes "These were made by";
-				mes "Chief noun.";
-				mes "Very sweet and delicious.";
-				mes "Merry Christmas!";
+				mes "Bengalas Doces!";
+				mes "Estas foram feitas por";
+				mes "Chefe Noun.";
+				mes "Muito doce e delicioso.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;//Página Deteriorada
 				set christ_carol05,3;
-				getitem 530,15;//Candy_Striper
+				getitem 530,15;//Bengala Doce
 				close;
 			case 4:
 				mes "[Oholy]";
-				mes "A Piece Of Cake!";
-				mes "These were baked by";
-				mes "Chief Acolyte.";
-				mes "Very soft and delicious.";
-				mes "Merry Christmas!";
+				mes "Um Pedaço de Bolo!";
+				mes "Estes foram cozidas por";
+				mes "Chefe Noun.";
+				mes "Muito suave e delicioso.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;//Página Deteriorada
 				set christ_carol05,3;
-				getitem 539,5;//Piece_of_Cake
+				getitem 539,5;//Pedaço de Bolo
 				close;
 			case 5:
 				mes "[Oholy]";
-				mes "Cookies!";
-				mes "These were baked by";
-				mes "Chief Acolyte.";
-				mes "Very crispy and delicious.";
-				mes "Merry Christmas!";
+				mes "Biscoitos!";
+				mes "Estes foram cozidas pelo";
+				mes "Chefe Noun.";
+				mes "Muito crocante e delicioso.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1; // Página Deteriorada
 				set christ_carol05,3;
-				getitem 538,10;//Well_baked_Cookie
+				getitem 538,10; // Pedaço de Bolo
 				close;
 			case 6:
 				mes "[Oholy]";
-				mes "A Spore Doll!";
-				mes "It's made elaborately by";
-				mes "Bishop, Tomas.";
-				mes "Very cute.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Esporo!";
+				mes "Ele foi criado pelo";
+				mes "Bispo Tomas.";
+				mes "Muito fofo.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 743,1;//Spore_Doll
+				getitem 743,1; // Boneco de Esporo
 				close;
 			case 7:
 				mes "[Oholy]";
-				mes "A Baphomet Doll!";
+				mes "Um Boneco de Bafomé!";
 				mes "..........?!..........";
-				mes "How did it get in here..?!";
-				mes "Oops, oh well.";
-				mes "Merry Christmas!";
+				mes "Como o conseguiu..?!";
+				mes "Oops, ah bem.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 750,1;//Baphomet_Doll
+				getitem 750,1; // Boneco de Bafomé
 				close;
 			case 8:
 				mes "[Oholy]";
-				mes "A Osiris Doll!";
+				mes "Um Boneco de Osíris!";
 				mes "..........?!..........";
-				mes "How did it get in here..?!";
-				mes "Oops, oh well.";
-				mes "Merry Christmas!";
+				mes "Como o conseguiu..?!";
+				mes "Oops, ah bem.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 751,1;//Osiris_Doll
+				getitem 751,1; // Boneco de Osires
 				close;
 			case 9:
 				mes "[Oholy]";
-				mes "A Rocker Doll!";
-				mes "This was donated by";
-				mes "a knight, Lighten.";
-				mes "Very kind of him.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Rocker!";
+				mes "Este foi dado por";
+				mes "um cavaleiro.";
+				mes "Muito gentil da parte dele.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 752,1;//Grasshopper_Doll
+				getitem 752,1; // Boneco de Rocker
 				close;
 
 			case 10:
 				mes "[Oholy]";
-				mes "A Yoyo Doll!";
-				mes "This was donated by";
-				mes "an assassin, Marzia.";
-				mes "Very kind of him.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Yoyo!";
+				mes "Este foi dado por uma";
+				mes "mercenária, Marzia.";
+				mes "Muito gentil da parte dela.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 753,1;//Monkey_Doll
+				getitem 753,1; // Boneco de Yoyo
 				close;
 			case 11:
 				mes "[Oholy]";
-				mes "A Racoon Doll!";
-				mes "This was donated by";
-				mes "a hunter, Raiden Kurs.";
-				mes "Very kind of him.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Fumacento!";
+				mes "Este foi dado por um";
+				mes "caçador, Raiden Kurs.";
+				mes "Muito gentil da parte dele.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 754,1;//Raccoondog_Doll
+				getitem 754,1; // Boneco de Fumacento
 				close;
 			case 12:
 				mes "[Oholy]";
-				mes "A Black Cat Doll!";
-				mes "Sister Magareta found the item";
-				mes "from the monster, Loli Ruri.";
-				mes "Very kind of her.";
-				mes "Hope she is doing okay.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Gato Preto!";
+				mes "A Irmã Margaretha encontrou esse item";
+				mes "derrotando um monstro, Loli Ruri.";
+				mes "Muito gentil da parte dela.";
+				mes "Espero que ela esteja bem.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 7206,1;//Black_Kitty_Doll
+				getitem 7206,1;// Boneco de Gato Preto
 				close;
 			case 13:
 				mes "[Oholy]";
-				mes "A Hung Doll!";
-				mes "I made this doll.";
-				mes "Isn't it adorable?!";
-				mes "Merry Christmas!";
+				mes "Uma Boneca Enforcada!";
+				mes "Eu que fiz esta boneca.";
+				mes "Não é adorável?!";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 7212,1;//Hanging_Doll
+				getitem 7212,1;// Boneca Enforcada
 				close;
 			case 14:
 				mes "[Oholy]";
-				mes "A Munak Doll!";
-				mes "That is from some country";
-				mes "across the ocean.";
-				mes "An artisan made this doll";
-				mes "with his passion.";
-				mes "Merry Christmas!";
+				mes "Um Boneco de Munak!";
+				mes "Ele veio de algum país";
+				mes "depois do oceano.";
+				mes "O artesão que fez este boneco";
+				mes "tinha grande paixão.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 7277,1;//Munak_Doll
+				getitem 7277,1;// Boneco de Munak
 				close;
 			case 15:
 				mes "[Oholy]";
-				mes "A Santa Hat!";
-				mes "This is only produced";
-				mes "during Christmas season.";
-				mes "It is not a common hat.";
-				mes "Merry Christmas!";
+				mes "Um Gorro de Natal!";
+				mes "É o único produzido";
+				mes "durante a Temporada de Natal.";
+				mes "Não é um chapéu comum.";
+				mes "Feliz Natal!";
 				emotion e_heh;
-				delitem 1097,1;//Worn_Out_Page
+				delitem 1097,1;// Página Deteriorada
 				set christ_carol05,3;
-				getitem 2236,1;//Santa's_Hat
+				getitem 2236,1;// Gorro de Natal
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "[Oholy]";
-			mes "Welcome back!! You look good.";
-			mes "2 arms and 2 legs, you look great.";
-			mes "But, where is my music book?!";
+			mes "Bem-vindo de volta!! Você parece bem.";
+			mes "2 braços e 2 pernas, parece ótimo.";
+			mes "Mas, onde está meu livro de canções?!";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Oholy]";
-		mes "Thank you very much.";
-		mes "People and even Devils are";
-		mes "all excited on Christmas day,";
-		mes "so nobody knows what would";
-		mes "happen. Will you help me";
-		mes "then, won't you? Please~";
+		mes "Muito obrigado.";
+		mes "Pessoas e demônios ficam";
+		mes "tão contentes com o dia de Natal,";
+		mes "por isso ninguém";
+		mes "se preocupa. Então você deseja";
+		mes "ajudar? Por favor~";
 		next;
 		mes "[Oholy]";
-		mes "Let's think about the neighbors";
-		mes "and do a good deed during Christmas!";
+		mes "Vamos pensar no próximo";
+		mes "e fazer uma boa ação durante o Natal!";
 		set christ_carol05,0;
 		close;
 	}
 }
 
-// Deviruchi functions
+// Funções Deviruchi
 function	script	F_carol_devi	{
 	if (christ_carol05 == 1) {
 		mes "[Deviruchi]";
-		mes "Heyhey, human!!";
-		mes "Don't ya wanna sell your";
-		mes "soul and be bound in a beneficial contract with me?";
+		mes "Ei, humano!!";
+		mes "Não quer me vender a sua";
+		mes "alma e fazer um contrato benéfico comigo?";
 		emotion e_kis;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Hey, you! Deviruchi!!!";
-		mes "What a brat!!! Gotcha!";
+		mes "Ei, você! Deviruchi!!!";
+		mes "Seu travesso!!! Te Peguei!";
 		next;
-		mes "-You quickly snatched-";
-		mes "-the nape of Deviruchi's neck-";
+		mes "-Você rapidamente arrebatou-";
+		mes "-a nuca de Deviruchi-";
 		next;
 		switch(rand(1,4)) {
 		case 1:
 			mes "[Deviruchi]";
-			mes "What are you doing!?";
-			mes "Human?";
-			mes "Let go of me...right now!";
+			mes "O que você está fazendo!?";
+			mes "Humano?";
+			mes "Deixe-me ir...agora!";
 			emotion e_omg;
 			emotion e_omg,1;
 			next;
-			mes "-Deviruchi quickly ran away-";
-			mes "-^4d4dffWhere Deviruchi is gone,-";
-			mes "-there is a worn out paper.^000000-";
-			mes "-Let's read the paper.-";
+			mes "-Deviruchi rapidamente fugiu-";
+			mes "-^4d4dffOnde Deviruchi estava,-";
+			mes "-há um papel que está desgastado.^000000-";
+			mes "-Vamos ler o jornal.-";
 			enablenpc getarg(1);
 			disablenpc getarg(0);
 			next;
 			mes "["+ strcharinfo(0) +"]";
-			mes "Rudolph... If... Foggy...";
+			mes "Rudolph... Se... Foggy...";
 			mes "Sledge... Reindeer...";
-			mes "Hmm, I think I got what I need.";
-			mes "Let's go back to Ms.Oholy.";
+			mes "Hum, Eu acho que consegui o que preciso.";
+			mes "Vamos voltar ao Sr.Oholy.";
 			set christ_carol05,2;
-			getitem 1097,1; //Worn_Out_Page
+			getitem 1097,1; //Página Deteriorada
 			close;
 		case 2:
 			mes "[Deviruchi]";
-			mes "What are you doing!?";
-			mes "Human?";
-			mes "Let go of me...right now!";
+			mes "O que você está fazendo!?";
+			mes "Humano?";
+			mes "Deixe-me ir...agora!";
 			emotion e_omg;
 			emotion e_omg,1;
 			next;
-			mes "-Deviruchi ran away quickly-";
-			mes "-and mumbled something.-";
+			mes "-Deviruchi rapidamente fugiu-";
+			mes "-e murmurou algo.-";
 			enablenpc getarg(1);
 			disablenpc getarg(0);
 			next;
-			mes "-You are now cursed!!!-";
+			mes "-Agora você será amaldiçoado!!!-";
 			sc_start SC_Curse,5000,0;
 			emotion e_omg,1;
 			close;
 		case 3:
 			mes "[Deviruchi]";
-			mes "What are you doing!?";
-			mes "Human?";
-			mes "Let go of me...right now!";
+		  mes "O que você está fazendo!?";
+			mes "Humano?";
+			mes "Deixe-me ir...agora!";
 			emotion e_omg;
 			emotion e_omg,1;
 			next;
-			mes "-Deviruchi ran away quickly-";
-			mes "-and mumbled something.-";
+			mes "-Deviruchi rapidamente fugiu-";
+			mes "-e murmurou algo.-";
 			enablenpc getarg(1);
 			disablenpc getarg(0);
 			next;
-			mes "-You are blinded!!!-";
+			mes "-Você ficará cego!!!-";
 			sc_start SC_Blind,5000,0;
 			emotion e_omg,1;
 			close;
 		case 4:
 			mes "[Deviruchi]";
-			mes "What are you doing!?";
-			mes "Human?";
-			mes "Let go of me...right now!";
+		  mes "O que você está fazendo!?";
+			mes "Humano?";
+			mes "Deixe-me ir...agora!";
 			emotion e_omg;
 			emotion e_omg,1;
 			next;
-			mes "-Deviruchi ran away quickly-";
-			mes "-and mumbled something.-";
+			mes "-Deviruchi rapidamente fugiu-";
+			mes "-e murmurou algo.-";
 			enablenpc getarg(1);
 			disablenpc getarg(0);
 			next;
-			mes "-You are poisoned!!!-";
+			mes "-Você será envenenado!!!-";
 			sc_start SC_Poison,5000,0;
 			emotion e_omg,1;
 			close;
@@ -1831,28 +1794,28 @@ function	script	F_carol_devi	{
 	}
 	else {
 		mes "[Deviruchi]";
-		mes "Heyhey, human!!";
-		mes "Don't ya wanna sell your";
-		mes "soul and be bound in a beneficial contract with me?";
+		mes "Ei, humano!!";
+		mes "Não quer me vender a sua";
+		mes "alma e fazer um contrato benéfico comigo?";
 		emotion e_omg;
 		next;
 		mes "["+ strcharinfo(0) +"]";
-		mes "Hey, you! Deviruchi!!!";
-		mes "What a brat!!! Gotcha!";
+		mes "Ei, você! Deviruchi!!!";
+		mes "Seu travesso!!! Te Peguei!";
 		next;
-		mes "-You quickly snatched-";
-		mes "-the nape of Deviruchi's neck-";
+		mes "-Você rapidamente arrebatou-";
+		mes "-a nuca de Deviruchi-";
 		next;
 		mes "[Deviruchi]";
-		mes "What are you doing!?";
-		mes "Human?";
-		mes "Let go of me...right now!";
+		mes "O que você está fazendo!?";
+		mes "Humano?";
+		mes "Deixe-me ir...agora!";
 		emotion e_omg;
 		emotion e_omg,1;
 		next;
-		mes "-Deviruchi ran away quickly-";
-		mes "-and mumbled something.-";
-		mes "-Your body is suddenly floating.-";
+		mes "-Deviruchi rapidamente fugiu-";
+		mes "-e murmurou algo.-";
+		mes "-Seu corpo está flutuando de repente.-";
 		close2;
 		warp getarg(2),getarg(3),getarg(4);
 		end;
@@ -1861,28 +1824,28 @@ function	script	F_carol_devi	{
 
 function	script	F_carol_devi2	{
 	mes "[Deviruchi]";
-	mes "Heyhey, human!!";
-	mes "Don't ya wanna sell your";
-	mes "soul and be bound in a beneficial contract with me?";
+	mes "Ei, humano!!";
+	mes "Não quer me vender a sua";
+	mes "alma e fazer um contrato benéfico comigo?";
 	emotion e_omg;
 	next;
 	mes "["+ strcharinfo(0) +"]";
-	mes "Hey, you! Deviruchi!!!";
-	mes "What a brat!!! Gotcha!";
+	mes "Ei, você! Deviruchi!!!";
+	mes "Seu travesso!!! Te Peguei!";
 	next;
-	mes "-You quickly snatched-";
-	mes "-the nape of Deviruchi's neck-";
+	mes "-Você rapidamente arrebatou-";
+	mes "-a nuca de Deviruchi-";
 	next;
 	mes "[Deviruchi]";
-	mes "What are you doing!?";
-	mes "Human?";
-	mes "Let go of me...right now!";
+	mes "O que você está fazendo!?";
+	mes "Humano?";
+	mes "Deixe-me ir...agora!";
 	emotion e_omg;
 	emotion e_omg,1;
 	next;
-	mes "-Deviruchi ran away quickly-";
-	mes "-and mumbled something.-";
-	mes "-Your body is suddenly floating.-";
+	mes "-Deviruchi fugiu rapidamente-";
+	mes "-e murmurou algo.-";
+	mes "-Seu corpo está flutuando de repente.-";
 	close2;
 	warp getarg(0),getarg(1),getarg(2);
 	end;
@@ -2032,403 +1995,494 @@ OnTouch:
 
 // ------------------------- Eventos de Natal 2008 -------------------------
 
-// Caroller - Music Box
-//============================================================
-prontera,226,306,4	script	Caroller#iROxmas08	79,{
+// =========== Carolling - Caixa de Música =============
+// =====================================================
+prontera,226,306,4	script	Carolling#iROxmas08	79,{
 	if (iROxmas08carol < 1 || iROxmas08carol == 3) {
 		if (iROxmas08carol == 3) {
-			mes "[Caroller]";
-			mes "Jingle Bells! Jingle Bells! Jingle all the way!";
-			mes "O' what fun it is to ride in a one-horse open sleeeigh, Hey!";
+			mes "[Carolling]";
+			mes "Sinos Tocam! Sinos Tocam! Sinos";
+			mes "em todo lugar!";
+			mes "O divertido é andar em";
+			mes "um trenó puxado por renas, ei~!";
 			next;
-			mes "[Caroller]";
-			mes "Merry Christmas!";
-			mes "Hey! You! What comes to mind when you think about Christmas?";
+			mes "[Carolling]";
+			mes "Feliz Natal!";
+			mes "Ei! Você! O que vem à mente quando";
+			mes "você pensa no Natal?";
 			next;
 		}else{
-			mes "[Caroller]";
-			mes "Jingle Bells! Jingle Bells! Jingle all the way!";
+			mes "[Carolling]";
+			mes "Sinos Tocam! Sinos Tocam! Sinos em todo lugar!";
 			next;
-			specialeffect EF_GLORIA;
-			mes "[Caroller]";
-			mes "O' what fun it is to ride in a one-horse open sleigh!";
+			specialeffect 75;
+			mes "[Carolling]";
+			mes "O divertido é andar em um trenó puxado por renas!";
 			next;
-			mes "[Caroller]";
-			mes "Merry Christmas!";
+			mes "[Carolling]";
+			mes "Feliz Natal!";
 			if (Sex) {
-				mes "Hey, boy! What comes to mind when";
+				mes "Ei, garoto! O que vem à mente quando";
 			}else{
-				mes "Hey, girl! What comes to mind when";
+				mes "Ei, garota! O que vem à mente quando";
 			}
-			mes "you think about Christmas?";
+			mes "você pensa no Natal?";
 			next;
 		}
-		switch(select("Santa Claus:Gift Boxes:Carols:Santa Costumes:Fake Santa Antonio")) {
+		switch(select("Papai Noel:Presentes:Canções:Costumes de Natal:Falso Papai Antonio")) {
 
 			case 1:
-				mes "[Caroller]";
-				mes "Santa Claus!";
-				mes "You're so innocent!!";
+				mes "[Carolling]";
+				mes "Papai Noel!?";
+				mes "Você é muito inocente!!";
 				mes "Ah!";
 				next;
-				mes "[Caroller]";
-				mes "Here's a secret!";
-				mes "There's a rumor that Santa Claus lives in a certain village all throughout the year.";
+				mes "[Carolling]";
+				mes "Aqui está um segredo!";
+				mes "Há um boato de que o Papai Noel";
+				mes "vive em uma aldeia";
+				mes "durante todo o ano.";
 				next;
-				mes "[Caroller]";
-				mes "But now!!!";
-				mes "In this Christmas season!!";
-				mes "You guys can meet Santa on either of the five possible villages throughout Rune-Midgerts!";
+				mes "[Carolling]";
+				mes "Mas agora!!!..";
+				mes "Nesta época de Natal!!..";
+				mes "As pessoas podem encontrá-lo em qualquer um";
+				mes "dos cinco vilarejos natalinos";
+				mes "de toda Rune-Midgard!";
 				next;
-				mes "[Caroller]";
-				mes "If you win over Santa, you can get a gift. Would you go for it?";
+				mes "[Carolling]";
+				mes "Se você vencer Noel, você pode obter";
+				mes "um presente. Você irá procurá-lo para isso?";
 				next;
 				emotion 18;
-				mes "[Caroller]";
-				mes "Caroller's hot news! Ha!";
-				mes "Isn't that big news?";
+				mes "[Carolling]";
+				mes "Notícia quente da Carolling! Aha!";
+				mes "Isso não é uma grande notícia?";
 				close;
 
 			case 2:
-				mes "[Caroller]";
-				mes "Gift boxes?! All right!";
-				mes "Isn't it thrilling to open gifts over your head!!";
+				mes "[Carolling]";
+				mes "Presentes?! Muito bem!";
+				mes "Não é emocionante abrir os presentes";
+				mes "sobre sua cabeça!?";
 				next;
-				mes "[Caroller]";
-				mes "Anyway, did you know...";
-				mes "Some villain, a fake Santa robbed some gifts from the good Santa!";
+				mes "[Carolling]";
+				mes "De qualquer forma, você sabia...";
+				mes "Que um Papai Noel falso roubou";
+				mes "alguns presentes do Papai original!?";
 				next;
-				mes "[Caroller]";
-				mes "Furthermore, he has put bad magic on the gifts so that they become monsters!";
+				mes "[Carolling]";
+				mes "Além disso, ele colocou feitiços ruins";
+				mes "sobre os presentes de modo a que eles se tornam";
+				mes "monstros!";
 				next;
 				emotion 18;
-				mes "[Caroller]";
-				mes "Caroller's hot news! Ha!";
-				mes "Isn't it amazing?";
+				mes "[Carolling]";
+				mes "Notícia quente da Carolling! Aha!";
+				mes "Não é surpreendente?";
 				close;
 
 			case 3:
 				if (iROxmas08carol == 3) {
-					mes "[Caroller]";
-					mes "Ah, a music box is useful.";
+					mes "[Carolling]";
+					mes "Ah, uma caixa de música é útil.";
 					next;
-					mes "[Caroller]";
-					mes "Though we can't all play it around the village as we planned, it's cool that you carry it.";
+					mes "[Carolling]";
+					mes "Embora nem todos podemos tocá-la no";
+					mes "vilarejo como nós planejamos, é";
+					mes "legal que você possa carregá-la.";
 					next;
-					mes "[Caroller]";
-					mes "We want to enjoy carols all together... I hope to get Crystal Pieces!";
+					mes "[Carolling]";
+					mes "Queremos aproveitar todas as canções";
+					mes "juntos... Espero conseguir Pedaços de";
+					mes "Cristal!";
 					next;
-					mes "[Caroller]";
-					mes "If you can get ^0000FFSinging Crystal Pieces^000000, give them to me please?";
+					mes "[Carolling]";
+					mes "Se você conseguir ^0000FFFragmento de Cristal";
+					mes "Cantante^000000, pode trazer para mim por favor?";
 					next;
-					select("Why not? Sure, I can give you some.");
+					select("Por que não? Claro, eu posso dar-lhe alguns.");
 					if (countitem(6092) < 6) {
-						mes "[Caroller]";
-						mes "Yes, please.";
+						mes "[Carolling]";
+						mes "Sim, por favor.";
 						next;
-						mes "[Caroller]";
-						mes "If you can get ^0000FFSinging Crystal Pieces^000000, give them to me please?";
+						mes "[Carolling]";
+						mes "Se você conseguir ^0000FFFragmento de Cristal";
+						mes "Cantante^000000, pode trazer para mim por favor?";
 						close;
 					}else{
-						mes "[Caroller]";
-						mes "Wow, you have them.";
+						mes "[Carolling]";
+						mes "Uau, você os tem!";
 						next;
-						mes "[Caroller]";
-						mes "I can bake you a cake, and I can carve your name on the cake, if you want!";
+						mes "[Carolling]";
+						mes "Posso assar um bolo,";
+						mes "e eu posso esculpir o seu nome no";
+						mes "bolo, se você quiser!";
 						next;
-						if (select("No, thanks.:Please name it for me.") == 2) {
-							mes "[Caroller]";
-							mes "Thank for your help!";
+						if (select("Não, obrigado.:Por favor, nomeio para mim.") == 2) {
+							mes "[Carolling]";
+							mes "Obrigado por sua ajuda!";
 							next;
-							mes "[Caroller]";
-							mes "Many people live in the giant world!";
-							mes "So many people hope to hear Caroller, yet I always lack Crystal pieces.";
+							mes "[Carolling]";
+							mes "Muitas pessoas vivem no mundo";
+							mes "gigante!";
+							mes "Assim, muitas pessoas esperam escutar";
+							mes "carolling, mas eu sempre falta";
+							mes "Crystal pieces.";
 							next;
-							mes "[Caroller]";
-							mes "If you can get ^0000FFSinging Crystal Pieces^000000, give them to me please?";
+							mes "[Carolling]";
+							mes "Se você obter ^0000FFFragmento de Cristal Cantante^000000, traga-o para mim, tudo bem?";
 							next;
 							emotion 18;
 							delitem 6092,6;
 							getnameditem 12354,"+strcharinfo(0)+";
-							mes "[Caroller]";
-							mes "Let's care about others around you on this Christmas season!";
+							mes "[Carolling]";
+							mes "Vamos nos preocupar com os outros em torno de você";
+							mes "nesta época de Natal!";
 							close;
 						}else{
-							mes "[Caroller]";
-							mes "Oh!";
-							mes "Shyness!";
+							mes "[Carolling]";
+							mes "Ah!";
+							mes "Timidez!";
 							next;
-							mes "[Caroller]";
-							mes "Anyway, thanks a lot for your help.";
+							mes "[Carolling]";
+							mes "De qualquer forma, muito obrigado por sua ajuda.";
 							next;
-							mes "[Caroller]";
-							mes "Many people live in the giant world!";
-							mes "So many people hope to hear Caroller, yet I always lack Crystal pieces.";
+							mes "[Carolling]";
+							mes "Muitas pessoas vivem no mundo";
+							mes "gigante!";
+							mes "Assim, muitas pessoas esperam escutar";
+							mes "Carolling, mas eu sempre faltam";
+							mes "Cristais.";
 							next;
-							mes "[Caroller]";
-							mes "If you can get ^0000FFSinging Crystal Pieces^000000, give them to me please?";
+							mes "[Carolling]";
+							mes "Se você obter ^0000FFFragmento de Cristal Cantante^000000, traga-o para mim, tudo bem?";
 							next;
 							emotion 18;
 							delitem 6092,6;
 							getitem 12354,1;
-							mes "[Caroller]";
-							mes "Let's care about others around you on this Christmas season!";
+							mes "[Carolling]";
+							mes "Vamos nos preocupar com os outros em torno de você";
+							mes "nesta época de Natal!";
 							close;
 						}
 					}
 				}
-					mes "[Caroller]";
-					mes "You know about Christmas!";
-					mes "Talking about Christmas...";
-					mes "...it's carols!!!";
-					mes "I've been waiting for this for when";
-					mes "Christmas comes around!";
+					mes "[Carolling]";
+					mes "Você sabe sobre o Natal!?";
+					mes "Falando sobre o Natal,";
+					mes "estive esperando por isso,";
+					mes "o Natal vem aí!";
 					next;
-					mes "[Caroller]";
-					mes "But there's been no caroling here and there like before, so we can't feel the Christmas spirit.";
+					mes "[Carolling]";
+					mes "Mas não havia felicidade aqui,";
+					mes "não como antes, por isso não podiamos";
+					mes "sentir o espírito do Natal.";
 					next;
-					mes "[Caroller]";
-					mes "So, I installed a Singing Crystal in Prontera...";
+					mes "[Carolling]";
+					mes "Então, eu instalei um Cristal Cantante";
+					mes "em Prontera...";
 					next;
-					mes "[Caroller]";
-					mes "but that jerk Antonio broke the crystal!";
+					mes "[Carolling]";
+					mes "mas o idiota do Antonio quebrou o";
+					mes "cristal!";
 					next;
-					mes "[Caroller]";
-					mes "The gift boxes have been changing into monsters since Antonio placed some magic on them, so the monsters ate up the crystal fragments!";
+					mes "[Carolling]";
+					mes "As caixas de presente foram mudando";
+					mes "de lugar desde que Antonio usou";
+					mes "alguma magia sobre eles, então os monstros";
+					mes "comeram os pedaços de cristal!";
 					next;
-					mes "[Caroller]";
-					mes "I am so devastated, since the Singing Crystal has been the hope of many children around the villages.";
+					mes "[Carolling]";
+					mes "Estou muito triste, pois o";
+					mes "Cristal de Canto tem sido a esperança";
+					mes "de muitas crianças ao redor das aldeias.";
 					next;
-					if (select("There's no other way to carol?:You can hear carols in Lutie.") == 2) {
-						mes "[Caroller]";
-						mes "And just stay there, every Christmas, for your whole life?";
+					if (select("Não há outra maneira?:Você pode ouvir as canções em Lutie.") == 2) {
+						mes "[Carolling]";
+						mes "E só ficar lá, todo";
+						mes "Natal, por toda a sua vida?";
 						next;
 						mes "["+strcharinfo(0)+"]";
-						mes "What? What do you mean?";
+						mes "O quê? O que quer dizer?";
 						next;
-						mes "[Caroller]";
-						mes "Oh, nevermind.";
+						mes "[Carolling]";
+						mes "Ah, deixa pra lá.";
 						mes "Ah...";
 						close;
 					}
-					mes "[Caroller]";
-					mes "Maybe, it's quite hard to make a jukebox for the villages, but a music box might be possible.";
+					mes "[Carolling]";
+					mes "Talvez, é muito difícil fazer uma";
+					mes "jukebox para as aldeias, mas uma";
+					mes "caixa de música pode ser possível.";
 					next;
-					mes "[Caroller]";
-					mes "We need the ^0000FFSinging Crystal Pieces^000000 that the monsters ate up.";
+					mes "[Carolling]";
+					mes "Precisamos de ^0000FFFragmento de Cristal Cantante^000000";
+					mes "que os monstros devorarem.";
 					next;
-					mes "[Caroller]";
-					mes "Please bring me ^0000FF6 Singing Crystal Pieces^000000, and you will be rewarded with presents!";
+					mes "[Carolling]";
+					mes "Por favor me traga ^0000FF6 Fragmentos de Cristal";
+					mes "Cantante^000000, e eu irei premiá-lo";
+					mes "com presentes!";
 					next;
-					mes "[Caroller]";
-					mes "Sounds cool, huh!!";
-					next;
-					select("........................");
-					mes "[Caroller]";
-					mes "...Why are you staring at me like that?";
-					next;
-					mes "[Caroller]";
-					mes "You're thinking that we are always getting our plans spoiled, aren't you?";
-					next;
-					mes "[Caroller]";
-					mes "I know that we are not good at controlling stuff, but our rewards are good, right?";
+					mes "[Carolling]";
+					mes "Muito bem, huh!!";
 					next;
 					select("........................");
-					mes "[Caroller]";
-					mes "Hey, we treat you good...";
+					mes "[Carolling]";
+					mes "...Por que você está me olhando";
+					mes "assim?";
+					next;
+					mes "[Carolling]";
+					mes "Você está pensando que estamos sempre";
+					mes "ficando encrencados, não é?";
+					next;
+					mes "[Carolling]";
+					mes "Eu sei que não é bom";
+					mes "controlar as coisas, mas nossas recompensas";
+					mes "serão boas, certo?";
 					next;
 					select("........................");
-					mes "[Caroller]";
-					mes "You are so cruel to me!";
-					mes "Bad! Bad!";
+					mes "[Carolling]";
+					mes "Ei, quero tratá-lo bem...";
 					next;
-					mes "[Caroller]";
-					mes "Please, for our children's hope!!!?";
-					mes "Please bring me 6 Singing Crystal Pieces from ^0000FFViolent Gift Boxes^000000!";
+					select("........................");
+					mes "[Carolling]";
+					mes "Você é tão cruel para mim!";
+					mes "Mal! Mal!";
+					next;
+					mes "[Carolling]";
+					mes "Por favor, tenha esperança nas";
+					mes "crianças!!!?";
+					mes "Por favor me traga 6 Fragmentos de Cristal Cantante";
+					mes "de ^0000FFPresente Violento^000000!";
 					next;
 					emotion 33;
-					mes "[Caroller]";
-					mes "They're definitely as harsh as their name.";
-					mes "Go on please!";
+					mes "[Carolling]";
+					mes "Eles são definitivamente como";
+					mes "o próprio nome.";
+					mes "Vá em frente, por favor!";
 					set iROxmas08carol,1;
 					close;
 
 			case 4:
-				mes "[Caroller]";
-				mes "Santa costumes!!";
-				mes "You know, the santa costumes that the monsters are wearing now aren't genuine!";
+				mes "[Carolling]";
+				mes "Costumes de Natal!!?";
+				mes "Sabe, os trajes de natal que";
+				mes "os monstros estão usando agora não são";
+				mes "genuínos!";
 				next;
-				mes "[Caroller]";
-				mes "The rumor 'round here is, Lutie's designer made these costumes.";
+				mes "[Carolling]";
+				mes "Há rumores de que aqui em Lutie há";
+				mes "um designer que faz essas fantasias.";
 				next;
-				mes "[Caroller]";
-				mes "Every year, adventurers challenge to attack Antonio the fake Santa, but there's no way to catch up to him due to his hat and costume!";
+				mes "[Carolling]";
+				mes "Todos os anos, os aventureiros acusam";
+				mes "Antonio de Papai Noel falso,";
+				mes "mas não há como provar";
+				mes "devido ao seu chapéu e roupas!";
 				next;
-				mes "[Caroller]";
-				mes "Are there some spcial abilities within them?";
-				mes "There's still the designer in the Christmas village... How about asking her to make that costume?";
+				mes "[Carolling]";
+				mes "Existem algumas habilidades especiais";
+				mes "dentro deles?";
+				mes "Há ainda o designer na";
+				mes "Vila do Natal... Como ele ousa,";
+				mes "pedindo-lhe para fazer essa fantasia?";
 				next;
 				emotion 18;
-				mes "[Caroller]";
-				mes "Caroller's hot news! Ha!";
-				mes "It's hot, huh?";
+				mes "[Carolling]";
+				mes "Notícia quente da Carolling mesmo! Ha!";
+				mes "É quente, em?";
 				close;
 
-
 			case 5:
-				mes "[Caroller]";
-				mes "A-N-T-O-N-I-O!!!";
-				mes "As I heard, this Antonio is quite different from before.";
+				mes "[Carolling]";
+				mes "A-N-T-O-N-I-O!?";
+				mes "Quando eu o vi, ele estava bastante";
+				mes "diferente de antes.";
 				next;
-				mes "[Caroller]";
-				mes "He seems to be quite resolved with himself since he ran away from people before.";
+				mes "[Carolling]";
+				mes "Ele parece estar bem resolvido";
+				mes "desde que ele fugiu das";
+				mes "pessoas que o procuraram.";
 				next;
-				mes "[Caroller]";
-				mes "And he isn't alone anymore... is what I heard...";
+				mes "[Carolling]";
+				mes "E ele não está mais sozinho... é";
+				mes "o que eu ouvi...";
 				next;
 				emotion 18;
-				mes "[Caroller]";
-				mes "Caroller's hot news! Ha!";
-				mes "Hotness, right?";
+				mes "[Carolling]";
+				mes "Notícia quente da Carolling mesmo! Ha!";
+				mes "É quente, em?";
 				close;
 		}
 	}
-	
+
 	if (iROxmas08carol == 1) {
 		if (countitem(6092) < 6) {
-			mes "[Caroller]";
-			mes "Maybe, it's quite hard to make a jukebox for the villages, but a music box might be possible.";
+			mes "[Carolling]";
+			mes "Talvez, é muito difícil fazer uma";
+			mes "jukebox para as aldeias, mas uma";
+			mes "caixa de música pode ser possível.";
 			next;
-			mes "[Caroller]";
-			mes "We need the ^0000FFSinging Crystal Pieces^000000 that the monsters ate up.";
+			mes "[Carolling]";
+			mes "Precisamos de ^0000FFFragmento de Cristal Cantante^000000";
+			mes "que os monstros devorarem.";
 			next;
-			mes "[Caroller]";
-			mes "Please bring me ^0000FF6 Singing Crystal Pieces^000000, and you will be rewarded with presents!";
+			mes "[Carolling]";
+			mes "Por favor me traga ^0000FF6 Fragmentos de Cristal Cantante^000000, e eu irei premiá-lo com presentes!";
 			next;
-			mes "[Caroller]";
-			mes "For all of the children of this world!!!";
-			mes "Please bring me ^0000FFSinging Crystal Pieces^000000 from ^0000FFViolent Gift Boxes^000000!";
+			mes "[Carolling]";
+			mes "Por todas as crianças do";
+			mes "mundo!!!";
+			mes "Me traga ^0000FFFragmento de Cristal";
+			mes "Cantante^000000 do ^0000FFPresente Violento^000000!";
 			next;
 			emotion 33;
-			mes "[Caroller]";
-			mes "Be careful!";
-			mes "They're definitely as harsh as their name.";
-			mes "Take care!!!";
+			mes "[Carolling]";
+			mes "Seja cuidadoso!";
+			mes "Eles estão definitivamente como";
+			mes "o próprio nome.";
+			mes "Tome cuidado!!!";
 			close;
 		}else{
-			specialeffect EF_GLORIA;
-			mes "[Caroller]";
-			mes "Don't cry, don't cry!";
-			mes "Santa won't give you a gift if you're crying.";
+			specialeffect 75;
+			mes "[Carolling]";
+			mes "Não chore, não chore!";
+			mes "Papai Noel não vai te dar nenhum";
+			mes "presente se você estiver chorando.";
 			next;
-			mes "[Caroller]";
-			select("I got them!");
-			mes "[Caroller]";
-			mes "Wow, you got them!";
-			mes "They are so cruel, aren't they?";
-			mes "I'm happy to see you again.";
+			mes "[Carolling]";
+			select("Tenho-os!");
+			mes "[Carolling]";
+			mes "Uau, você conseguiu!";
+			mes "Eles são tão cruéis, não são?";
+			mes "Estou feliz em vê-lo novamente.";
 			next;
-			mes "[Caroller]";
-			mes "Let's count together!";
+			mes "[Carolling]";
+			mes "Vamos contar juntos!";
 			mes "... ...";
-			mes "Six!!";
+			mes "Seis!!";
 			next;
-			mes "[Caroller]";
-			mes "All right! We can start to make our music box with crystal fragments.";
+			mes "[Carolling]";
+			mes "Tudo bem! Podemos começar a fazer a nossa";
+			mes "caixa de música com os fragmentos do cristal.";
 			next;
-			mes "[Caroller]";
-			mes "We would amplify the sounds of the crystal fragments to sound through the music box.";
+			mes "[Carolling]";
+			mes "Gostaríamos de amplificar os sons dos";
+			mes "fragmentos de cristal para soar através";
+			mes "da caixa de música.";
 			next;
-			mes "[Caroller]";
-			mes "You know, a music box that sounds like a jukebox!";
+			mes "[Carolling]";
+			mes "Você sabe, uma caixa de música que soa";
+			mes "como uma jukebox!";
 			next;
-			mes "[Caroller]";
-			mes "It's handy. You can carry it, as well as listen to sweet carols anywhere.";
-			mes "Doesn't that sound cool!?";
+			mes "[Carolling]";
+			mes "É útil. Você pode carregá-lo,";
+			mes "bem como ouvir canções doces";
+			mes "em qualquer lugar. Não parece que";
+			mes "legal!?";
 			next;
-			mes "[Caroller]";
-			mes "So, we need more of some materials.";
-			mes "^0000FF10 Trunk, 1 Hammer Of Blacksmith, 1 Jubilee, 10 Sticky Mucus, 3carat Diamond^000000!";
+			mes "[Carolling]";
+			mes "Então, precisamos de mais alguns";
+			mes "materiais.";
+			mes "^0000FF10 Troncos, 1 Martelo de";
+			mes "Ferreiro, 1 Jubileu, 10 Muco";
+			mes "Pegajoso, 1 Diamante de 3 Quilates^000000!";
 			next;
 			delitem 6092,6;
 			emotion 33;
 			set iROxmas08carol,2;
-			mes "[Caroller]";
-			mes "Those are all needed.";
-			mes "Isn't that easy?";
+			mes "[Carolling]";
+			mes "Isso é tudo o que precisamos.";
+			mes "Que? Não é fácil?";
 			close;
 		}
 	}
-	
+
 	if (iROxmas08carol == 2) {
 		if (countitem(1019) < 10 || countitem(1005) < 1 || countitem(7312) < 1 || countitem(938) < 10 || countitem(732) < 1) {
-			mes "[Caroller]";
-			mes "We can make a music box with Singing Crystal Pieces.";
-			mes "It's handy, you can hear carols anywhere. Sounds cool?";
+			mes "[Carolling]";
+			mes "Nós podemos fazer uma caixa de música";
+			mes "com Fragmentos de Cristal Cantante.";
+			mes "É prático, você pode ouvir canções";
+			mes "em qualquer lugar. Legal né?";
 			next;
-			mes "[Caroller]";
-			mes "So, we need more of some materials.";
-			mes "^0000FF10 Trunk, 1 Hammer Of Blacksmith, 1 Jubilee, 10 Sticky Mucus, 3carat Diamond^000000!";
+			mes "[Carolling]";
+			mes "Então, precisamos de mais alguns materiais.";
+			mes "^0000FF10 Troncos, 1 Martelo de";
+			mes "Ferreiro, 1 Jubileu, 10 Muco";
+			mes "Pegajoso, 1 Diamante de 3 Quilates^000000!";
 			next;
 			emotion 33;
-			mes "[Caroller]";
-			mes "That's all we need.";
-			mes "Isn't that easy?";
+			mes "[Carolling]";
+			mes "Isso é tudo o que precisamos.";
+			mes "Que? Não é fácil?";
 			close;
 		}else{
-			specialeffect EF_GLORIA;
-			mes "[Caroller]";
+			specialeffect 75;
+			mes "[Carolling]";
 			mes "Jingle bells, jingle bells,";
 			mes "jingle all the way!";
-			mes "O what fun it is to ride, in a";
-			mes "one... horse... o-pen... sleigh!!!";
+			mes "É divertido de pilotar um";
+			mes "trenó... renas... no trenó!!!";
 			next;
-			mes "[Caroller]";
-			mes "Wow!";
-			mes "You came back!";
-			mes "Did you bring all the materials?";
+			mes "[Carolling]";
+			mes "Uau!";
+			mes "Você voltou!";
+			mes "Trouxe todos os";
+			mes "materiais?";
 			next;
-			mes "[Caroller]";
-			mes "Good!";
-			mes "No need to hesitate! Let's get started to make our music box.";
+			mes "[Carolling]";
+			mes "Bom!";
+			mes "Não há necessidade de hesitar! Vamos";
+			mes "começar a fazer a nossa caixa de música.";
 			next;
-			mes "[Caroller]";
-			specialeffect EF_REPAIRWEAPON;
-			mes "Blacksmith hammers on trunk... and we shape the frame.";
+			mes "[Carolling]";
+			specialeffect 101;
+			mes "Martelo de Ferreiro sobre bloco";
+			mes "de madeira... e nós moldamos a estrutura.";
 			next;
-			mes "[Caroller]";
-			//(effect - stones from ground?)
-			mes "Please use the Singing Crystal Pieces for a column, the Diamond as a prop, and the Sticky Mucus as glue.";
+			mes "[Carolling]";
+			//(Efeito - stones from ground?)
+			mes "Por favor use o Fragmento de Cristal";
+			mes "Cantante para a coluna, o Diamante como";
+			mes "um suporte, e o Muco Pegajoso como";
+			mes "cola.";
 			next;
-			mes "[Caroller]";
-			specialeffect EF_HIT2;
-			mes "And now...";
-			mes "we decorate with a Jubilee...";
+			mes "[Carolling]";
+			specialeffect 1;
+			mes "E agora...";
+			mes "nós decoramos com o Jubileu...";
 			next;
-			mes "[Caroller]";
-			specialeffect EF_SUFFRAGIUM;
-			mes "The last step...!";
-			mes "Breating life into it!";
+			mes "[Carolling]";
+			specialeffect 88;
+			mes "A última etapa...!";
+			mes "Dando vida a ele!";
 			next;
-			mes "[Caroller]";
-			mes "It's done now!!!";
+			mes "[Carolling]";
+			mes "Está pronto!!!";
 			next;
-			mes "[Caroller]";
-			mes "It's so cool! Isn't it cute!!?!";
+			mes "[Carolling]";
+			mes "É tão legal! Não é uma gracinha!!?!";
 			next;
-			mes "[Caroller]";
-			mes "You did as I requested, so I will give you gifts, as promised.";
+			mes "[Carolling]";
+			mes "Você fez o que eu pedi, então eu vou";
+			mes "dar-lhe presentes, como prometido.";
 			next;
-			mes "[Caroller]";
-			mes "One, is this music box.";
-			mes "Please play this music box all over the villages!";
+			mes "[Carolling]";
+			mes "Um, é esta caixa de música.";
+			mes "Por favor, toque esta caixa de música em todo";
+			mes "o vilarejo!";
 			next;
-			mes "[Caroller]";
-			mes "Another present is a Christmas cake especially shaped like your name!";
-			mes "I made this cake shaped like your name!";
+			mes "[Carolling]";
+			mes "Outro presente é um bolo de Natal";
+			mes "especialmente com a forma do seu nome!";
+			mes "Eu fiz este bolo em forma de seu";
+			mes "nome!";
 			next;
-			mes "[Caroller]";
-			mes "Don't worry, it tastes good.";
+			mes "[Carolling]";
+			mes "Não se preocupe, o gosto é bom.";
 			next;
 			emotion 33;
 			getitem 2784,1;
@@ -2439,163 +2493,190 @@ prontera,226,306,4	script	Caroller#iROxmas08	79,{
 			delitem 938,10;
 			delitem 732,1;
 			set iROxmas08carol,3;
-			mes "[Caroller]";
-			mes "Thanks a lot.";
-			mes "Merry Christmas!";
-			mes "Have a good holiday season!";
+			mes "[Carolling]";
+			mes "Muito obrigado.";
+			mes "Feliz Natal!";
+			mes "Tenha uma boa temporada de férias!";
 			close;
 		}
 	}
 }
 
-// Santa Claus - Card Game
-//============================================================
--	script	Santa Claus#iROxmas08::08santa	718,{
-	mes "[Santa Claus]";
-	mes "Wow! Were you naughty or nice this year?";
-	mes "All right, what comes to your mind when you think about Christmas?";
+// ============= Papai Noel - Card Game ================
+// =====================================================
+-	script	Papai Noel#iROxmas08::08santa	718,{
+	mes "[Papai Noel]";
+	mes "Uau! Fora-lhe impertinentes ou agradável esse";
+	mes "ano?";
+	mes "Tudo bem, o que vem à sua mente";
+	mes "quando você pensa sobre o Natal?";
 	next;
-	switch(select("Carolling:Santa Claus:Gift Boxes:Santa Costume:Not much really...")) {
-	
+	switch(select("Canções:Papai Noel:Presentes:Costumes de Natal:Nada muito real...")) {
+
 	case 1:
-		mes "[Santa Claus]";
-		mes "Carolling! That's good!";
-		mes "A sweet carol always makes Christmas more happy!!!";
+		mes "[Papai Noel]";
+		mes "Canções! Isso é ótimo!";
+		mes "A Carolling sempre faz doce para";
+		mes "um Natal mais feliz!!!";
 		next;
-		mes "[Santa Claus]";
-		mes "Yes indeed Carolling spreads Joy throughout the world?";
+		mes "[Papai Noel]";
+		mes "Sim, de fato a alegria de Carolling se espalha";
+		mes "em todo o mundo?";
 		close;
 
 	case 2:
-		mes "[Santa Claus]";
+		mes "[Papai Noel]";
 		if (Sex) {
-			mes "Ho ho ho! What a good boy!";
+			mes "Ho ho ho! Que bom garoto!";
 		}else{
-			mes "Ho ho ho! What a good girl!";
+			mes "Ho ho ho! Que boa garota!";
 		}
 		next;
-		mes "[Santa Claus]";
-		mes "But you should be wary of a fake Santa romaing around.";
-		mes "Have you heard of Antonio, who invades villages every Christmas?";
+		mes "[Papai Noel]";
+		mes "Mas você deve ser cuidadoso com um Papai";
+		mes "Noel que está rondando por ai.";
+		mes "Você já ouviu falar do Antonio, que";
+		mes "invade aldeias a cada Natal?";
 		next;
-		mes "[Santa Claus]";
-		mes "He has stolen my gifts, as well as attacked adventurers around Toy and Lutie field.";
+		mes "[Papai Noel]";
+		mes "Ele roubou os meus dons, assim como";
+		mes "aventureiros atacaram meus Brinquedos e o";
+		mes "Campo de Lutie.";
 		next;
-		mes "[Santa Claus]";
-		mes "A bad Santa ruins us good Santa's reputations!";
-		mes "The World Santa Organization is considering this a grave situation.";
+		mes "[Papai Noel]";
+		mes "O Papai Noel está com a reputação";
+		mes "manchada!";
+		mes "O Mundo Noel é";
+		mes "considerando uma porcaria devido a";
+		mes "essa situação.";
 		close;
-	
+
 	case 3:
-		mes "[Santa Claus]";
-		mes "A gift box! That sounds good!";
-		mes "It's so exciting to open gift boxes when you wake up on Christmas morning!!!";
+		mes "[Papai Noel]";
+		mes "Uma caixa de presente! Isso soa bem!";
+		mes "É tão emocionante abrir caixas de presente";
+		mes "quando você acorda no Natal";
+		mes "de manhã!!!";
 		next;
-		mes "[Santa Claus]";
-		mes "But we have very little gifts now, since Santa Antonio has stolen my gift bag.";
+		mes "[Papai Noel]";
+		mes "Mas temos poucos presentes agora,";
+		mes "tudo por causa que o Antonio roubou meu";
+		mes "saco do presente.";
 		next;
-		mes "[Santa Claus]";
-		mes "Many adventurers try to catch up to him, but he is not easy to catch.";
+		mes "[Papai Noel]";
+		mes "Muitos aventureiros tentaram pegar";
+		mes "ele para mim, mas ele não é fácil pegá-lo.";
 		next;
-		mes "[Santa Claus]";
-		mes "Anyway let those adventurers try to catch him, I have a small game for you.";
+		mes "[Papai Noel]";
+		mes "Enfim, deixe esses aventureiros tentarem";
+		mes "pegá-lo, eu tenho um pequeno jogo para";
+		mes "você.";
 		next;
-		mes "[Santa Claus]";
-		mes "I will give you a small gift if you beat me!";
+		mes "[Papai Noel]";
+		mes "Vou dar-lhe um pequeno presente se";
+		mes "me vencer!";
 		next;
-		mes "[Santa Claus]";
-		mes "Do you want to play a game with me?";
+		mes "[Papai Noel]";
+		mes "Você quer jogar um jogo";
+		mes "comigo?";
 		next;
-		if (select("No, thanks.:Yes, I would.") == 1) {
-			mes "[Santa Claus]";
-			mes "Aww, don't be afraid.";
-			mes "If you've been a little naughty this year I won't stuff your stockings with coal.";
+		if (select("Não, obrigado.:Sim, eu quero.") == 1) {
+			mes "[Papai Noel]";
+			mes "Aww, não tenha medo. Se você tem";
+			mes "sido um pouco impertinente esse ano,";
+			mes "não irei encher suas meias com";
+			mes "carvão.";
 			next;
-			mes "[Santa Claus]";
-			mes "I will stay here throughout the Christmas season, just visit me when you change your mind.";
+			mes "[Papai Noel]";
+			mes "Vou ficar aqui durante todo o";
+			mes "Natal, visite-me";
+			mes "quando mudar de idéia.";
 			close;
 		}
 		if (gettimetick(2) < SantaCardTime) {
-			mes "[Santa Claus]";
-			mes "Um... You've played the game recently haven't you?";
+			mes "[Papai Noel]";
+			mes "Hum... Você já jogou o jogo";
+			mes "recentemente não foi?";
 			next;
-			mes "[Santa Claus]";
-			mes "You can try the game once a hour.";
-			mes "Please visit me after the one hour has passed.";
+			mes "[Papai Noel]";
+			mes "Você pode experimentar o jogo uma vez por hora.";
+			mes "Por favor, visite-me depois de uma hora!";
 			close;
 		}
 		set .@SantaCardTurn,0;
 		set .@SantaCardWins,0;
-		mes "[Santa Claus]";
-		mes "Wow! You're so cool!";
+		mes "[Papai Noel]";
+		mes "Uau! Você é tão legal!";
 		next;
-		mes "[Santa Claus]";
-		mes "Let me explain how to play this game.";
+		mes "[Papai Noel]";
+		mes "Deixe-me explicar como jogar este";
+		mes "jogo.";
 		next;
-		mes "[Santa Claus]";
-		mes "It's quite simple.";
-		mes "I will pick one of three cards: Poring Card, Ghostring Card, and Angeling Card.";
-		mes "Guess which card I pick and you're a winner!";
+		mes "[Papai Noel]";
+		mes "É muito simples. Eu vou escolher uma carta";
+		mes "de três cartas: Carta Poring,";
+		mes "Carta Ghostring, e Carta Angeling.";
+		mes "Adivinhe qual carta vou escolher e";
+		mes "você ganhará!";
 		next;
-		mes "[Santa Claus]";
-		mes "If you guess right 3 times out of 5, I will give you a gift.";
-		mes "Let's get started!";
+		mes "[Papai Noel]";
+		mes "Se você acertar 3 vezes dentre 5";
+		mes "chances, eu te darei um presente.";
+		mes "Vamos começar!";
 		next;
 		while(.@SantaCardTurn != 5) {
 			emotion 56;
-			mes "[Santa Claus]";
-			mes "First let me shuffle up these cards... Ok!!!";
+			mes "[Papai Noel]";
+			mes "Primeiro deixe-me embaralhar estas";
+			mes "cartas... Ok!!!";
 			next;
-			specialeffect EF_HIT1;
-			mes "[Santa Claus]";
-			mes "One!";
+			specialeffect 0;
+			mes "[Papai Noel]";
+			mes "Um!";
 			next;
-			specialeffect EF_HIT2;
-			mes "[Santa Claus]";
-			mes "Two!";
+			specialeffect 1;
+			mes "[Papai Noel]";
+			mes "Dois!";
 			next;
-			specialeffect EF_HIT3;
-			mes "[Santa Claus]";
-			mes "Three!";
+			specialeffect 2;
+			mes "[Papai Noel]";
+			mes "Três!";
 			next;
-			specialeffect EF_STEAL;
-			mes "[Santa Claus]";
-			mes "I'm picking up only one!";
+			specialeffect 18;
+			mes "[Papai Noel]";
+			mes "Eu estou pegando apenas uma!";
 			next;
 			cutin "sorry",4;
-			mes "[Santa Claus]";
-			mes "I'm picking up only one!";
-			mes "Please guess what is is.";
+			mes "[Papai Noel]";
+			mes "Eu estou pegando apenas uma!";
+			mes "Por favor, diga-me qual carta eu peguei.";
 			next;
 			switch(select("Poring:Angeling:Ghostring")) {
 				case 1:
 					mes "["+strcharinfo(0)+"]";
-					mes "Um...I choose Poring!";
+					mes "Hum...Eu escolho Poring!";
 					set .@SantaCardP,1;
 					next;
 					break;
 
 				case 2:
 					mes "["+strcharinfo(0)+"]";
-					mes "Um...I choose Angeling!";
+					mes "Hum...Eu escolho Angeling!";
 					set .@SantaCardP,2;
 					next;
 					break;
 
 				case 3:
 					mes "["+strcharinfo(0)+"]";
-					mes "Um...I choose Ghostring!";
+					mes "Hum...Eu escolho Ghostring!";
 					set .@SantaCardP,3;
 					next;
 			}
-			mes "[Santa Claus]";
-			mes "Let's see!!";
-			mes "One! Two! Three!";
+			mes "[Papai Noel]";
+			mes "Vejamos!!";
+			mes "Um! Dois! Três!";
 			set .@SantaCardNpc, rand(1,3);
 			next;
-			mes "[Santa Claus]";
-			mes "Let's see!!";
-			mes "One! Two! Three!";
 			if (.@SantaCardNpc == 1) {
 				cutin "Æ÷¸µÄ«µå",4;
 			}
@@ -2605,41 +2686,42 @@ prontera,226,306,4	script	Caroller#iROxmas08	79,{
 			else if (.@SantaCardNpc == 3) {
 				cutin "°í½ºÆ®¸µÄ«µå",4;
 			}
-			next;
 			set .@SantaCardTurn,.@SantaCardTurn+1;
 			if (.@SantaCardP == .@SantaCardNpc) {
 				set .@SantaCardWins,.@SantaCardWins+1;
 				emotion 0;
 				emotion 5,1;
 				cutin "",255;
-				mes "[Santa Claus]";
-				mes "You're lucky.";
-				mes "Can you guess the right card the next time around?";
+				mes "[Papai Noel]";
+				mes "Você tem sorte.";
+				mes "Você consegue adivinhar a carta certa";
+				mes "na próxima?";
 				next;
 			}else{
 				emotion 0;
 				emotion 23,1;
 				cutin "",255;
-				mes "[Santa Claus]";
-				mes "Aww maybe next time...";
+				mes "[Papai Noel]";
+				mes "Ahh, talvez da próxima vez...";
 				next;
 			}
 		}
 		if (.@SantaCardWins < 3) {
 			mes "["+strcharinfo(0)+"]";
-			mes "This is just luck.";
-			mes "Let me try again!!";
+			mes "Essa foi apenas sorte. Deixe-me tentar";
+			mes "de novo!!";
 			next;
-			mes "[Santa Claus]";
-			mes "Whenever you want.";
+			mes "[Papai Noel]";
+			mes "Volte sempre que você quiser.";
 			close;
 		}else{
-			mes "[Santa Claus]";
-			mes "You're so good!";
+			mes "[Papai Noel]";
+			mes "Você é tão bom!";
 			next;
-			mes "[Santa Claus]";
-			mes "Now this gift is for you.";
-			mes "Put your hand into the bag and pick only one.";
+			mes "[Papai Noel]";
+			mes "Agora, este presente é para você. Coloque sua";
+			mes "mão na sacola e escolha apenas";
+			mes "um presente.";
 			set .@SantaCardPrize, rand(1,12);
 			next;
 			if (.@SantaCardPrize == 1) {
@@ -2679,183 +2761,206 @@ prontera,226,306,4	script	Caroller#iROxmas08	79,{
 				getitem 594,3;
 			}
 			set SantaCardTime,gettimetick(2)+3600;
-			mes "[Santa Claus]";
-			mes "Good job! Thanks for playing the card game with me!";
-			mes "Merry Christmas!";
+			mes "[Papai Noel]";
+			mes "Bom trabalho! Obrigado por jogar o";
+			mes "jogo de cartas comigo! Feliz";
+			mes "Natal!";
 			close;
 		}
 
 	case 4:
-		mes "[Santa Claus]";
-		mes "Do you mean that ever so fashionable costume for Santa's and youngsters!?!";
-		mes "Light-weight, fashionable, and keeps you warm!";
-		next;
-		mes "[Santa Claus]";
-		mes "There used to be designer who visited my house to make my Santa costumes.";
-		mes "Do you have any ideas?";
+		mes "[Papai Noel]";
+		mes "Quer dizer que os jovens";
+		mes "gostam dos meus trajes de";
+		mes "Papai Noel!?!";
+		mes "Ele é leve, elegante, e";
+		mes "te mantém quente!";
 		close;
-	
+
 	case 5:
-		mes "[Santa Claus]";
+		mes "[Papai Noel]";
 		mes "........................";
 		next;
-		mes "[Santa Claus]";
+		mes "[Papai Noel]";
 		mes "........................";
 		if (Sex) {
-			mes "Oh! Poor boy...";
+			mes "Oh! Pobre garoto...";
 		}else{
-			mes "Oh! Poor girl...";
+			mes "Oh! Pobre garota...";
 		}
 		next;
-		mes "[Santa Claus]";
+		mes "[Papai Noel]";
 		mes "........................";
 		if (Sex) {
-			mes "Oh! Poor boy...";
+			mes "Oh! Pobre garoto...";
 		}else{
-			mes "Oh! Poor girl...";
+			mes "Oh! Pobre garota...";
 		}
 		mes "...";
 		next;
-		mes "[Santa Claus]";
-		mes "You should open your heart to the spirit of Christmas!";
-		mes "Once you do, I know you'll be able to think of something.";
+		mes "[Papai Noel]";
+		mes "Você deve abrir seu coração para o";
+		mes "espírito Natalino!";
+		mes "Uma vez que você fizer isso, sei que você será capaz";
+		mes "de pensar em algo.";
 		close;
 	}
 }
 
-payon,171,109,4	duplicate(08santa)	Santa Claus#0801	718
-prontera,156,285,4	duplicate(08santa)	Santa Claus#0802	718
-alberta,117,66,4	duplicate(08santa)	Santa Claus#0803	718
-geffen,119,70,4	duplicate(08santa)	Santa Claus#0804	718
-morocc,158,104,4	duplicate(08santa)	Santa Claus#0805	718
+payon,171,109,4	duplicate(08santa)	Papai Noel#0801	718
+prontera,156,285,4	duplicate(08santa)	Papai Noel#0802	718
+alberta,117,66,4	duplicate(08santa)	Papai Noel#0803	718
+geffen,119,70,4	duplicate(08santa)	Papai Noel#0804	718
+morocc,158,104,4	duplicate(08santa)	Papai Noel#0805	718
 
-// Louise Kim - Santa Suit
-//============================================================
+
+// ========= Louise Kim - Roupa de Papai Noel ==========
+// =====================================================
 xmas_in,89,92,4	script	Louise Kim#iROxmas08	714,{
 	mes "[Louise Kim]";
-	mes "I always thought about how boring Santa Claus is wearing a too boring costume.";
-	mes "Too boring!";
+	mes "Eu sempre pensei sobre como é chato";
+	mes "o Papai Noel estar usando um traje";
+	mes "muito feio!";
 	next;
 	mes "[Louise Kim]";
-	mes "I could make a glamorous style for him!";
+	mes "Eu poderia fazer um novo mais glamouroso para";
+	mes "ele!";
 	next;
 	mes "[Louise Kim]";
-	mes "I once made a costume for the notorious figure Antonio!";
-	mes "The reason catching up to him is so hard, is that his clothes have been given strong power!";
-	mes "I blessed them with good luck!";
+	mes "Uma vez, fiz uma fantasia para o";
+	mes "Antonio!";
+	mes "Ele é tão difícil de";
+	mes "ser capturado porque";
+	mes "minhas roupas o abençoaram";
+	mes "com boa sorte!";
 	next;
 	emotion 3;
 	mes "[Louise Kim]";
-	mes "Preta Porter!!";
-	mes "Which is quite luxurious but sold at good price ~";
+	mes "Ei perdedor! Você pode compartilhar o meu senso";
+	mes "da moda e usar da minha opinião se você";
+	mes "executar uma missão para mim.";
 	next;
 	mes "[Louise Kim]";
-	mes "Hey loosers!";
-	mes "You can share my sense of fashion and wear my look if you run a light mission for me.";
+	mes "Você está interessado?";
 	next;
-	mes "[Louise Kim]";
-	mes "Are you interested?";
-	next;
-	if (select("Nope.:Yes, please.") == 1) {
+	if (select("Não.:Sim, por favor.") == 1) {
 		mes "[Louise Kim]";
 		mes "Ah!";
-		mes "You're silly! You lost your big chance!";
+		mes "Você é bobo! Você perdeu a sua grande";
+		mes "chance!";
 		next;
 		emotion 18;
 		mes "[Louise Kim]";
-		mes "Come to me later if you want to get the mission.";
-		mes "I, Louise Kim, am generous enough to accept you next time.";
+		mes "Venha até mim mais tarde se";
+		mes "quiser começar a missão.";
+		mes "Eu, Louise Kim, sou generoso";
+		mes "o suficiente para aceitar da próxima.";
 		close;
 	}
 	mes "[Louise Kim]";
-	mes "You're so cool.";
+	mes "Você é tão legal.";
 	next;
 	mes "[Louise Kim]";
-	mes "Don't worry about this mission.";
-	mes "It's not that difficult.";
-	mes "I'm only in need of some materials. Things that are beyond my ability...";
+	mes "Não se preocupe com essa missão.";
+	mes "Não é tão difícil.";
+	mes "Eu só estou precisando de alguns";
+	mes "materiais. Coisas que estão";
+	mes "além da minha capacidade...";
 	next;
 	mes "[Louise Kim]";
-	mes "Anyway, can you bring me some stuff?";
+	mes "De qualquer forma, você pode me trazer algumas coisas?";
 	next;
-	if (select("Why not? What do you need?:Sorry, no time.") == 2) {
+	if (select("Por que não? O que você precisa?:Desculpe, não há tempo.") == 2) {
 		emotion 18;
 		mes "[Louise Kim]";
-		mes "What?";
-		mes "You will definitely regret it.";
-		mes "No more chances later.";
+		mes "O quê?";
+		mes "Você definitivamente vai se arrepender.";
+		mes "Não haverá mais chances depois.";
 		close;
 	}
 	mes "[Louise Kim]";
-	mes "All right, you're cool!!";
-	mes "You need to bring me: ^0000FFCotton Shirt, 3 Red Potion, Holy Water, 4 Wrapping Paper, Wrapping Lace^000000.";
+	mes "Tudo bem, você é legal!!";
+	mes "Você precisa me trazer: ^0000FFCamisa de Algodão,";
+	mes "3 Poções Vermelhas, Água Benta, 4 Papel de";
+	mes "Presente, Laço para Presente^000000..";
 	next;
 	mes "[Louise Kim]";
-	mes "If you bring me all that stuff, I can make you a glamorous Santa costume.";
+	mes "Se você me trazer tudo isso, eu";
+	mes "posso fazer para você uma fantasia glamurosa de";
+	mes "Natal.";
 	next;
 	if (countitem(2301) < 1 || countitem(501) < 3 || countitem(523) < 1 || countitem(7175) < 4 || countitem(7174) < 1) {
 			mes "[Louise Kim]";
-			mes "If you were to bring me all the stuff, I would make you a wonderful costume, for free...";
+			mes "Se você me trouxer todas as";
+			mes "coisas, gostaria de fazer-lhe uma maravilhosa";
+			mes "fantasia, tudo gratuito...";
 			next;
 			emotion 3;
 			mes "[Louise Kim]";
-			mes "Please see me again if you are interested.";
+			mes "Por favor, volte aqui novamente se você";
+			mes "estiver interessado.";
 			close;
 	}else{
-		select("Here you are.");
+		select("Aqui está.");
 		emotion 33;
 		mes "[Louise Kim]";
-		mes "Oh! Good!";
-		mes "Let's not delay.";
-		mes "I will show you my limitless ability.";
+		mes "Nossa! Bom!";
+		mes "Não vamos atrasar.";
+		mes "Vou te mostrar toda a minha";
+		mes "habilidade.";
 		next;
-		mes "-She pours everything in a pot-";
-		mes "-even the shirt goes in!-";
-		mes "-She takes it out with skill-";
-		mes "-and many blessings she sings.-";
+		mes "-Ela derrama tudo em uma panela-";
+		mes "-até a camisa vai junto!-";
+		mes "-Ela a traz para fora com habilidade-";
+		mes "-e canta muitas bênçãos.-";
 		next;
-		specialeffect EF_BLESSING;
+		specialeffect 42;
 		emotion 2;
 		mes "[Louise Kim]";
-		mes "By artist, Louise Kim!";
-		mes "All over the world will be blessed tonight!";
+		mes "Pela artista, Louise Kim!";
+		mes "Todo o mundo será abençoado";
+		mes "hoje à noite!";
 		next;
-		mes "-Pour red potion in another pot-";
-		mes "-then stir all of its parts.-";
-		mes "-Put the cotton shirts in-";
-		mes "-and dye it for grateful hearts.-";
-		mes "-Thread by thread-";
-		mes "-String by string-";
-		mes "-Count your blessings and sing!-";
+		mes "-Despeja a poção vermelha em outro pote-";
+		mes "-em seguida, mistura tudo.-";
+		mes "-Coloca a camisa de algodão e";
+		mes "-a tinge com o coração agradecido.-";
+		mes "-Fio por fio-";
+		mes "-Corda por corda-";
+		mes "-Conte suas bênçãos e cante!-";
 		next;
-		specialeffect EF_GLORIA;
+		specialeffect 75;
 		emotion 2;
 		mes "[Louise Kim]";
-		mes "By artist, Louise Kim!";
-		mes "All over the world will be blessed tonight!";
+		mes "Pela artista, Louise Kim!";
+		mes "Todo o mundo será abençoado";
+		mes "hoje à noite!";
 		next;
-		mes "-She is knitting clothes-";
-		mes "-with a hooked needle-";
-		mes "-with her great skill.-";
-		mes "-Spread your blessings,-";
-		mes "-cheer and goodwill!-";
+		mes "-Ela tricota a roupa-";
+		mes "-com uma agulha em forma de gancho-";
+		mes "-tudo com grande habilidade.-";
+		mes "Derrama suas bençãos,-";
+		mes "alegria e boa vontade!-";
 		next;
-		specialeffect EF_BENEDICTIO;
+		specialeffect 91;
 		emotion 3;
 		mes "[Louise Kim]";
-		mes "This is miraculous!";
-		mes "I am a genius of the world.";
-		mes "Artist, Louise Kim!!!";
+		mes "É milagroso!";
+		mes "Eu sou um gênio do mundo.";
+		mes "Artista, Louise Kim!!!";
 		next;
 		mes "[Louise Kim]";
-		mes "All right! Isn't it wonderful?";
-		mes "You can call it what you wish.";
-		mes "My fashion is radiant.";
-		mes "I ain't envious of Designer Pierre.";
+		mes "Tudo bem! Não é lindo?";
+		mes "Você pode chamá-lo como quiser.";
+		mes "Minha moda é radiante.";
+		mes "Eu não tenho inveja do Designer";
+		mes "Pierre.";
 		next;
 		emotion 18;
 		mes "[Louise Kim]";
-		mes "I am supposed to get paid well, however I will just let it be free, since this is Christmas!";
+		mes "Eu deveria ser bem pago,";
+		mes "no entanto eu só vou deixar";
+		mes "ser de graça, por que é natal!";
 		next;
 		delitem 2301,1;
 		delitem 501,3;
@@ -2864,166 +2969,167 @@ xmas_in,89,92,4	script	Louise Kim#iROxmas08	714,{
 		delitem 7174,1;
 		getitem 12132,1;
 		mes "[Louise Kim]";
-		mes "Go brag about these wonderful clothes. There wouldn't be any without me, Louise Kim.";
+		mes "Vá se gabar por estar vestindo essas maravilhosas";
+		mes "roupas. Não haveria";
+		mes "nada sem mim, Louise Kim.";
 		close;
 	}
 }
 
-// Monsters
-//============================================================
-prt_fild00,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild00,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild00,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+// MOBS de Natal
+prt_fild00,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild00,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild00,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild00,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild01,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild01,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild01,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild01,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild01,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild01,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild02,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild02,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild02,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild02,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild02,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild02,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild03,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild03,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild03,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild03,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild03,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild03,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild04,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild04,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild04,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild04,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild04,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild04,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild05,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild05,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild05,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild05,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild05,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild05,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild06,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild06,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild06,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild06,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild06,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild06,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild07,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild07,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild07,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild07,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild07,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild07,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild08,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild08,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild08,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild08,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild08,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild08,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild09,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild09,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild09,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild09,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild09,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild09,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild10,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild10,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild10,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild10,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild10,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild10,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
-prt_fild11,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-prt_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-prt_fild11,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+prt_fild11,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+prt_fild11,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+prt_fild11,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 prt_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild01,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild01,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild01,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild01,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild01,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild01,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild02,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild02,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild02,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild02,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild02,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild02,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild03,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild03,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild03,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild03,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild03,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild03,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild04,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild04,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild04,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild04,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild04,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild04,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild05,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild05,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild05,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild05,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild05,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild05,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild06,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild06,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild06,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild06,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild06,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild06,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild07,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild07,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild07,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild07,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild07,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild07,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild08,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild08,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild08,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild08,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild08,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild08,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild09,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild09,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild09,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild09,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild09,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild09,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild10,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild10,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild10,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild10,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild10,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild10,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
-pay_fild11,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-pay_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-pay_fild11,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+pay_fild11,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+pay_fild11,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+pay_fild11,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 pay_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild00,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild00,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild00,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild00,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild00,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild00,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild00,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild01,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild01,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild01,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild01,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild01,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild01,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild02,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild02,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild02,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild02,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild02,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild02,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild02,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild03,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild03,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild03,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild03,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild03,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild03,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild03,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild04,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild04,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild04,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild04,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild04,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild04,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild04,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild05,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild05,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild05,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild05,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild05,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild05,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild05,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild06,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild06,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild06,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild06,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild06,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild06,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild06,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild07,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild07,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild07,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild07,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild07,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild07,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild07,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild08,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild08,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild08,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild08,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild08,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild08,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild08,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild09,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild09,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild09,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild09,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild09,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild09,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild09,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild10,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild10,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild10,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild10,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild10,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild10,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild10,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild11,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild11,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild11,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild11,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild11,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild11,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild11,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild12,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild12,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild12,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild12,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild12,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild12,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild12,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild13,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild13,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild13,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild13,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild13,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild13,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild13,0,0,0,0	monster	Antonio	1247,1,0,0,0
-gef_fild14,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-gef_fild14,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-gef_fild14,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+gef_fild14,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+gef_fild14,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+gef_fild14,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 gef_fild14,0,0,0,0	monster	Antonio	1247,1,0,0,0
-xmas_fild01,0,0,0,0	monster	Christmas Jakk	1244,5,0,0,0
-xmas_fild01,0,0,0,0	monster	Christmas Goblin	1245,5,0,0,0
-xmas_fild01,0,0,0,0	monster	Christmas Cookie	1246,5,0,0,0
+xmas_fild01,0,0,0,0	monster	Jakk Natalino	1244,5,0,0,0
+xmas_fild01,0,0,0,0	monster	Goblin Natalino	1245,5,0,0,0
+xmas_fild01,0,0,0,0	monster	Cookie Natalino	1246,5,0,0,0
 xmas_fild01,0,0,0,0	monster	Antonio	1247,1,0,0,0
