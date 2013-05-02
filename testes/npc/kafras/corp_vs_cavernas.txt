@@ -299,7 +299,7 @@ function	script	F_VoteKafra	{
 	case 8: cutin "kafra_08",2; break;
 	case 9: cutin "kafra_09",2; break;
 	}
-	mes "[Kafra equipe de votação]";
+	mes "[Funcionária de Votação Kafra]";
 	mes "Olá aventureiro!";
 	mes "Como você deve estar ciente, estamos fazendo uma eleição";
 	mes "para determinar qual empresa vai";
@@ -309,32 +309,32 @@ function	script	F_VoteKafra	{
 	next;
 	switch(select("Razão da eleição:Votar:Usar serviço de teleporte:Cancelar")) {
 	case 1:
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "O Grupo de Eventos Incríveis e a ";
 		mes "Corporação Kafra planejam";
 		mes "fornecer o serviço";
 		mes "de teleporte para as dungeons.";
 		next;
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "Infelizmente, devido à tecnologia";
 		mes "limitada, apenas uma empresa";
 		mes "poderá fornecer o serviço de";
 		mes "teleporte para as dungeons por";
 		mes "um tempo. Então as duas empresas concordaram em realizar eleições especiais.";
 		next;
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "Cada empresa tem a sua própria política";
 		mes "e garantia usadas no serviço";
 		mes "de teleporte para as dungeons. Nessa eleição, os clientes irão";
 		mes "escolher o que acham melhor para eles.";
 		next;
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "Por enquanto, o serviço";
 		mes "de teleporte para as dungeons terá um";
 		mes "período de experiência. Dessa forma os clientes";
 		mes "podem ver os benefícios antes da votação final.";
 		next;
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "Se você está qualificado para votar,";
 		mes "por favor vote em cada eleição";
 		mes "para decidir qual empresa vai";
@@ -345,7 +345,7 @@ function	script	F_VoteKafra	{
 		//else {
 			if ($DTS_Result == 0) {
 				if (lhz_vote <= $DTS_VoteCount) {
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Nós, da Corporação Kafra, ";
 					mes "estamos planejando fornecer o";
 					mes "serviço de teleporte para as dungeons";
@@ -365,7 +365,7 @@ function	script	F_VoteKafra	{
 						mes "^FF0000Torre do relógio - Al De Baran - Nível 3, Caverna de Magma Nível 2^000000";
 					}
 					next;
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Se você está interessado";
 					mes "em nosso serviço de teleporte,";
 					mes "por favor vote em";
@@ -374,7 +374,7 @@ function	script	F_VoteKafra	{
 					next;
 					switch(select("Não:Sim")) {
 					case 1:
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Eu entendo, mas se você";
 						mes "mudar de idéia";
 						mes "será bem vindo para";
@@ -384,7 +384,7 @@ function	script	F_VoteKafra	{
 					case 2:
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_KafraVotes,$DTS_KafraVotes+1;
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Obrigado por seu voto!";
 						mes "Nós continuaremos a oferecer";
 						mes "o nosso melhor serviço,";
@@ -394,7 +394,7 @@ function	script	F_VoteKafra	{
 					}
 				}
 				else {
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Eu lamento, mas";
 					mes "você não pode participar dessa";
 					mes "eleição. Quando acontecer";
@@ -405,14 +405,14 @@ function	script	F_VoteKafra	{
 			}
 			else if ($DTS_Result == 3) {
 				if (lhz_vote <= $DTS_VoteCount) {
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Depois de totalizarmos o número de";
 					mes "votos da última eleição,";
 					mes "concluímos que a participação";
 					mes "de eleitores foi mínima,";
 					mes "e por isso não foi satisfatória.";
 					next;
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Por isso, faremos uma ";
 					mes "outra eleição para determinar qual empresa";
 					mes "irá fornecer o serviço de teleporte para as Dungeons";
@@ -434,7 +434,7 @@ function	script	F_VoteKafra	{
 						mes "^FF0000Torre do Relógio, Nível 3 Lava Dungeon, Nível 2^000000";
 					}
 					next;
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Se você gostaria de";
 					mes "contar com serviço de teleporte";
 					mes "para essas áreas, por favor";
@@ -443,7 +443,7 @@ function	script	F_VoteKafra	{
 					next;
 					switch(select("Não:Sim")) {
 					case 1:
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Entendo. Mas, se mudar";
 						mes "de idéia, pode voltar";
 						mes "a qualquer hora. Muito";
@@ -453,7 +453,7 @@ function	script	F_VoteKafra	{
 					case 2:
 						set lhz_vote,$DTS_VoteCount+1;
 						set $DTS_KafraVotes,$DTS_KafraVotes+1;
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Obrigada por seu voto!";
 						mes "Faremos nosso melhor para";
 						mes "fornecer serviço de teleporte";
@@ -463,21 +463,21 @@ function	script	F_VoteKafra	{
 					}
 				}
 				else {
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Após contabilizarmos o";
 					mes "número de votos da última";
 					mes "eleição, concluímos que";
 					mes "o número mínimo de participantes";
 					mes "não foi atingido.";
 					next;
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Portanto, faremos outra eleição";
 					mes "para definir qual companhia";
 					mes "será responsável pelo Serviço";
 					mes "de Teleporte. Porém, como você";
 					mes "já votou, não poderá votar novamente.";
 					next;
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Sua participação na eleição";
 					mes "é muito importante, e por isso";
 					mes "pedimos que vote novamente na";
@@ -486,7 +486,7 @@ function	script	F_VoteKafra	{
 				}
 			}
 			else {
-				mes "[Kafra equipe de votação]";
+				mes "[Funcionária de Votação Kafra]";
 				mes "Desculpe, não estamos realizando";
 				mes "eleições no momento. Quando";
 				mes "a enquete for reaberta, pedimos";
@@ -498,7 +498,7 @@ function	script	F_VoteKafra	{
 		break;
 	case 3:
 		if ($DTS_Result == 2) {
-			mes "[Kafra equipe de votação]";
+			mes "[Funcionária de Votação Kafra]";
 			mes "Obrigada por escolher o";
 			mes "Serviço de Teleporte para Dungeons.";
 			mes "Lembre-se que os tíquetes";
@@ -516,7 +516,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, necessária";
@@ -525,7 +525,7 @@ function	script	F_VoteKafra	{
 					}
 					break;
 				case 2:
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Nós, da Corporação Kafra, sempre";
 					mes "tentamos providenciar um serviço de excelência. Esperamos que você aprove!";
 					break;
@@ -541,7 +541,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, necessária";
@@ -557,7 +557,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, necessária";
@@ -566,7 +566,7 @@ function	script	F_VoteKafra	{
 					}
 					break;
 				case 3:
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Nós, da Corporação Kafra, sempre";
 					mes "tentamos providenciar um serviço de excelência. Esperamos que você aprove!";
 					break;
@@ -582,7 +582,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, necessária";
@@ -598,7 +598,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, necessária";
@@ -614,7 +614,7 @@ function	script	F_VoteKafra	{
 						end;
 					}
 					else {
-						mes "[Kafra equipe de votação]";
+						mes "[Funcionária de Votação Kafra]";
 						mes "Desculpe, você não tem";
 						mes "dinheiro suficiente para pagar";
 						mes "a taxa de 4000 zenys, nexessária";
@@ -623,7 +623,7 @@ function	script	F_VoteKafra	{
 					}
 					break;
 				case 4:
-					mes "[Kafra equipe de votação]";
+					mes "[Funcionária de Votação Kafra]";
 					mes "Nós, da Corporação Kafra, sempre";
 					mes "tentamos providenciar um serviço de excelência. Esperamos que você aprove!";
 					break;
@@ -631,7 +631,7 @@ function	script	F_VoteKafra	{
 			}
 		}
 		else if ($DTS_Result == 1) {
-			mes "[Kafra equipe de votação]";
+			mes "[Funcionária de Votação Kafra]";
 			mes "Sinto muito, mas pelo resultado da";
 			mes "eleição, o Grupo de Eventos";
 			mes "Incríveis está responsável pelo";
@@ -639,7 +639,7 @@ function	script	F_VoteKafra	{
 			mes "Pedimos desculpas pela inconveniência.";
 		}
 		else {
-			mes "[Kafra equipe de votação]";
+			mes "[Funcionária de Votação Kafra]";
 			mes "Desculpe, o Serviço de Teleporte";
 			mes "para Dungeons não fica disponível";
 			mes "durante o período de eleições.";
@@ -649,7 +649,7 @@ function	script	F_VoteKafra	{
 		}
 		break;
 	case 4:
-		mes "[Kafra equipe de votação]";
+		mes "[Funcionária de Votação Kafra]";
 		mes "Nós, da Corporação Kafra, sempre";
 		mes "tentamos providenciar um serviço de excelência. Esperamos que você aprove!";
 		break;
@@ -659,32 +659,20 @@ function	script	F_VoteKafra	{
 	end;
 }
 
-yuno,162,191,4	script	Funcionária#yuno	861,{
+yuno,162,191,4	script	Funcionária de Votação#yuno	861,{
 	callfunc "F_VoteKafra",9;
 }
-prontera,164,125,4	script	Funcionária#prt	116,{
+prontera,164,125,4	script	Funcionária de Votação#prt	116,{
 	callfunc "F_VoteKafra",2;
 }
-moc_ruins,97,133,4	script	Funcionária#moc	116,{
-	callfunc "F_VoteKafra",2;
-}
-geffen,122,37,4	script	Funcionária#gef	116,{
-	callfunc "F_VoteKafra",2;
-}
-payon,158,182,4	script	Funcionária#pay	116,{
-	callfunc "F_VoteKafra",2;
-}
-alberta,119,70,4	script	Funcionária#alb	116,{
-	callfunc "F_VoteKafra",2;
-}
-aldebaran,145,102,4	script	Funcionária#alde	116,{
-	callfunc "F_VoteKafra",2;
-}
-lighthalzen,163,60,4	script	Funcionária#lght	861,{
-	callfunc "F_VoteKafra",9;
-}
+moc_ruins,97,133,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#moc	116
+geffen,122,37,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#gef	116
+payon,158,182,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#pay	116
+alberta,119,70,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alb	116
+aldebaran,145,102,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alde	116
+lighthalzen,163,60,4	duplicate(Funcionária de Votação#yuno)	Funcionária#lght	861
 
--	script	Funcionário::VotingStaffCCE	874,{
+yuno,153,191,6	script	Funcionário de Votação::VotingStaffCCE	874,{
 	callfunc "F_ClearGarbage";
 	cutin "zonda_01",2;
 	mes "[Equipe Eventos legais de votação]";
@@ -1064,7 +1052,6 @@ lighthalzen,163,60,4	script	Funcionária#lght	861,{
 	end;
 }
 
-yuno,153,191,6	duplicate(VotingStaffCCE)	Funcionário#yuno	874
 prontera,147,125,6	duplicate(VotingStaffCCE)	Funcionário#prt	874
 moc_ruins,104,133,6	duplicate(VotingStaffCCE)	Funcionário#moc	874
 geffen,117,37,6	duplicate(VotingStaffCCE)	Funcionário#gef	874

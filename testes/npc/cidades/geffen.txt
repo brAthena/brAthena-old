@@ -123,13 +123,13 @@ geffen,147,26,0	script	Ralphie	97,{
 	close;
 }
 
-geffen,111,48,0	script	Stacey	101,{
+geffen,111,48,0	script	Senhora	101,{
 	if (getequipid(1) == 2299) {
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Oh...!";
 		mes "Você está usando um Orc Helm?! Que legal! Uau...";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		if (sex) {
 			mes "Você parece tão...";
 			mes "Forte e bonitão~";
@@ -139,22 +139,22 @@ geffen,111,48,0	script	Stacey	101,{
 		}
 		close;
 	} else if (getequipid(1) == 5094) {
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Oh...";
 		mes "Uau...";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Isso...";
 		mes "Isso é um elmo";
 		mes "de um Orc Hero!";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		if (sex) {
 			mes "É...";
 			mes "É como se você estivesse rodeado por essa incrível aura masculina! Oooh~! Nenhuma garota deve resistir a você!";
 			next;
 			Emotion e_lv;
-			mes "[Stacey]";
+			mes "[Senhora]";
 			mes "E eu não sou uma exceção.";
 		} else {
 			mes "Nossa, você deve ser muito forte!";
@@ -162,18 +162,18 @@ geffen,111,48,0	script	Stacey	101,{
 		}
 		close;
 	} else {
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Olá~!";
 		mes "Ah, você é um";
 		mes "aventureiro?";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Você já viu um Orc? Se você seguir para o sul, encontrará Orcs na floresta.";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Ouvi dizer que os Orcs têm sua própria cultura e linguagem, supostamente como nós, humanos. Será que Orcs têm encontros...?";
 		next;
-		mes "[Stacey]";
+		mes "[Senhora]";
 		mes "Sabe, onde eles sussuram coisas bonitas e depois... Ah! Eu realmente queria saber!";
 		close;
 	}
@@ -1365,7 +1365,7 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 	close;
 }
 
-// NPCs Relacionados a Quest das Armas Nível 4 ------------------------------------------------------
+// ------ NPCs Relacionados a Quest das Armas Nível 4 ------
 
 geffen,203,146,5	script	Cidadão	97,{
 	mes "[Cidadão]";

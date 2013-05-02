@@ -314,10 +314,10 @@ yuno,277,221,4	script	Funcionária Kafra::kaf_yuno3	861,{
 
 // Alberta
 //============================================================
-alberta,28,229,0	script	Funcionária Kafra::kaf_alberta	116,{
+alberta,28,229,0	script	Kafra Recepcionista::kaf_alberta	116,{
 	cutin "kafra_02",2;
 	callfunc "F_KafSet";
-	mes "[Funcionária Kafra]";
+	mes "[Kafra Recepcionista]";
 	mes "Bem-vindo à Corporação Kafra.";
 	mes "As funcionárias da corporação sempre estarão aqui para servi-lo.";
 	mes "Como posso ajudá-lo hoje?";

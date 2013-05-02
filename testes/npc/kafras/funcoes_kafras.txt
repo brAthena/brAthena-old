@@ -528,8 +528,8 @@ function	script	F_KafSet	{
 		setarray @viewpY[0], 29, 207, 200, 326;
 	} else if (strnpcinfo(4) == "alberta") {
 	 if(checkre(0)) { // Renovação.
-		setarray @wrpP[0], "Payon", "Morroc", "Prontera";
-		setarray @wrpD$[0], 1200, 1800, 1800;
+		setarray @wrpD$[0], "Payon", "Morroc", "Prontera";
+		setarray @wrpP[0], 1200, 1800, 1800;
 	 } else { // Pré-Renovação.
 		setarray @wrpD$[0], "Comodo", "Payon", "Morroc", "Prontera";
 		setarray @wrpP[0], 2200, 1300, 2200, 2100;
