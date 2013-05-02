@@ -3646,6 +3646,7 @@ char *get_database_name(int database_id)
 		case 56: db_name = "mob_db"; break;
 		#ifdef RENEWAL
 		case 57: db_name = "item_bro"; break;
+		case 58: db_name = "item_nouse_sit"; break;
 		#endif
 	}
 

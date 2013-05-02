@@ -4005,6 +4005,9 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	if(!item->script)   //if it has no script, you can't really consume it!
 		return 0;
 
+	if((item->item_usage.flag&NOUSE_SITTING) && (pc_issit(sd) == 1) && (pc_get_group_level(sd) < item->item_usage.override)) {
+		return 0; // You cannot use this item while sitting.
+	}
 	switch(nameid) { //@TODO, lot oh harcoded nameid here
 		case 605: // Anodyne
 			if(map_flag_gvg(sd->bl.m))
@@ -6439,19 +6442,19 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
 			sd->state.using_fake_npc = 0;
 		}
 		if (sd->st) {
-			sd->st->state = (flag==1)?CLOSE:END;
+			sd->st->state = ((flag==1 && sd->st->mes_active)?CLOSE:END);
 			sd->st->mes_active = 0;
 		}
 		sd->state.menu_or_input = 0;
 		sd->npc_menu = 0;
+#ifdef SECURE_NPCTIMEOUT
 		sd->npc_idle_timer = INVALID_TIMER;
+#endif
 		clif_scriptclose(sd,sd->npc_id);
-		if(flag==2 && sd->st) {
-			if( sd->st && sd->st->state != RUN ) {// free attached scripts that are waiting
-				script_free_state(sd->st);
-				sd->st = NULL;
-				sd->npc_id = 0;
-			}
+		if(sd->st && sd->st->state == END) {// free attached scripts that are waiting
+			script_free_state(sd->st);
+			sd->st = NULL;
+			sd->npc_id = 0;
 		}
 	}
 }

@@ -792,6 +792,31 @@ static bool itemdb_read_buyingstore(char *fields[], int columns, int current)
 
 	return true;
 }
+
+/*******************************************
+** Item usage restriction
+********************************************/
+static bool itemdb_read_nouse(char* fields[], int columns, int current)
+{// <nameid>,<flag>,<override>
+	int nameid, flag, override;
+	struct item_data* id;
+
+	nameid = atoi(fields[0]);
+
+	if( ( id = itemdb_exists(nameid) ) == NULL ) {
+		ShowWarning("itemdb_read_nouse: ID do item inválido %d.\n", nameid);
+		return false;
+	}
+
+	flag = atoi(fields[1]);
+	override = atoi(fields[2]);
+
+	id->item_usage.flag = flag;
+	id->item_usage.override = override;
+
+	return true;
+}
+
 /**
  * @return: amount of retrieved entries.
  **/
@@ -1168,6 +1193,7 @@ static void itemdb_read(void)
 	sv_readsqldb(get_database_name(23), NULL, 2, -1, &itemdb_read_itemdelay);
 	sv_readsqldb(get_database_name(24), NULL, 3, -1, &itemdb_read_stack);
 	sv_readsqldb(get_database_name(25), NULL, 1, -1, &itemdb_read_buyingstore);
+	sv_readsqldb(get_database_name(58), NULL, 3, -1, &itemdb_read_nouse);
 
 	itemdb_uid_load();
 }
