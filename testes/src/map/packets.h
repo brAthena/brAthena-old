@@ -1858,6 +1858,13 @@ packet(0x020d,-1);
 	packet(0x0859,-1);
 	packet(0x08d0,9);
 #endif
+//2011-07-18aRagexe
+#if PACKETVER >= 20110718
+	packet(0x0844,2,clif->pCashShopOpen,2);/* diz ao servidor que a janela de cashshop está sendo aberta */
+	packet(0x084a,2,clif->pCashShopClose,2);/* diz ao servidor que a janela de cashshop está sendo fechada */
+	packet(0x08c9,2,clif->pCashShopSchedule,0);
+	packet(0x0848,-1,clif->pCashShopBuy,2);
+#endif
 
 //2011-10-05aRagexeRE
 #if PACKETVER >= 20111005
@@ -1989,10 +1996,6 @@ packet(0x020d,-1);
 	packet(0x08D7,28,clif->pDull,2,4); //battlegroundreg
 	packet(0x08CF,10);//Amulet spirits
 	packet(0x0977,14);//Monster HP Bar
-	packet(0x0844,2,clif->pCashShopOpen,2);/* diz ao servidor que a janela de cashshop está sendo aberta */
-	packet(0x084a,2,clif->pCashShopClose,2);/* diz ao servidor que a janela de cashshop está sendo fechada */
-	packet(0x08c9,4,clif->pCashShopSchedule,2);
-	packet(0x0848,-1,clif->pCashShopBuy,2);
 #endif
 
 //2012-04-18aRagexeRE
@@ -2045,6 +2048,11 @@ packet(0x020d,-1);
 	packet(0x0886,2,clif->pReqCloseBuyingStore,0);
 #endif
 
+//2012-07-16aRagExe (Yommy)
+#if PACKETVER >= 20120716
+	packet(0x0364,8,clif->pMoveFromKafra,2,4);
+#endif
+
 #if PACKETVER >= 20130313
 	packet(0x035f,6,clif->pReqClickBuyingStore,2);
 #endif
@@ -2081,10 +2089,6 @@ packet(0x020d,-1);
 	packet(0x094E,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
 	//packet(0x0835,2,clif->pSearchStoreInfoNextPage,0);
 	//packet(0x0838,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x0844,2,clif->pCashShopOpen,2);/* diz ao servidor que a janela de cashshop está sendo aberta */
-	packet(0x084a,2,clif->pCashShopClose,2);/* diz ao servidor que a janela de cashshop está sendo fechada */
-	packet(0x08c9,4,clif->pCashShopSchedule,2);
-	packet(0x0848,-1,clif->pCashShopBuy,2);
 	packet(0x0447,2);
 	packet(0x99b,8);
 	packet(0x84b,19);
