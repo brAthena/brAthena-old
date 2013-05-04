@@ -3724,9 +3724,17 @@ if(!battle_config.official_rates) {
  *------------------------------------------*/
 ACMD_FUNC(reloadscript)
 {
+	struct s_mapiterator* iter;
+	struct map_session_data* pl_sd;
+
 	nullpo_retr(-1, sd);
 	//atcommand_broadcast( fd, sd, "@broadcast", "Server is reloading scripts..." );
 	//atcommand_broadcast( fd, sd, "@broadcast", "You will feel a bit of lag at this point !" );
+
+	iter = mapit_getallusers();
+	for(pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter))
+		pc_close_npc(pl_sd,2);
+	mapit_free(iter);
 
 	flush_fifos();
 	map_reloadnpc(true); // reload config files seeking for npcs

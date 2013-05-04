@@ -3255,15 +3255,16 @@ void clif_statusupack(struct map_session_data *sd,int type,int ok,int val)
 ///     2 = failure due to low level
 void clif_equipitemack(struct map_session_data *sd,int n,int pos,int ok)
 {
-	int fd,header,offs=0;
+	int fd,header,offs=0,success;
 #if PACKETVER < 20110824
 	header = 0xaa;
+	success = (ok==1);
 #elif PACKETVER < 20120925
 	header = 0x8d0;
-	ok = ok ? 0:1;
+	success = ok ? 0:1;
 #else
 	header = 0x999;
-	ok = ok ? 0:1;
+	success = ok ? 0:1;
 #endif
 	nullpo_retv(sd);
 
@@ -3278,13 +3279,13 @@ void clif_equipitemack(struct map_session_data *sd,int n,int pos,int ok)
 	WFIFOW(fd,offs+4)=(int)pos;
 #endif
 #if PACKETVER < 20100629
-	WFIFOB(fd,offs+6)=ok;
+	WFIFOB(fd,offs+6)=success;
 #else
 	if(ok && sd->inventory_data[n]->equip&EQP_VISIBLE)
 		WFIFOW(fd,offs+6)=sd->inventory_data[n]->look;
 	else
 		WFIFOW(fd,offs+6)=0;
-	WFIFOB(fd,offs+8)=ok;
+	WFIFOB(fd,offs+8)=success;
 #endif
 	WFIFOSET(fd,packet_len(header));
 }
