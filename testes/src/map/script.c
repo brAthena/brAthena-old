@@ -6807,8 +6807,8 @@ BUILDIN_FUNC(disableitemuse)
 }
 
 /*==========================================
- * return the basic stats of sd
- * chk pc_readparam for available type
+ * Returns a character's specified stat.
+ * Check pc_readparam for available options.
  *------------------------------------------*/
 BUILDIN_FUNC(readparam)
 {

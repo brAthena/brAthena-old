@@ -2097,6 +2097,8 @@ packet(0x020d,-1);
 	packet(0x090f,-1);
 	packet(0x914,-1);
 	packet(0x915,-1);
+	packet(0x978,6,clif->pReqworldinfo,2);
+	packet(0x979,50);
 	packet(0x99a,9);
 	packet(0x997,-1);
 	packet(0x999,11);

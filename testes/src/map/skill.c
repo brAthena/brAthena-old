@@ -9275,7 +9275,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(hd->master && hd->sc.data[SC_STYLE_CHANGE]) {
 		    			int mode = hd->sc.data[SC_STYLE_CHANGE]->val1;
 		    			char output[128];
-		    			safesnprintf(output,sizeof(output),"Eleanor is now in %s mode",(sce->val1==MH_MD_FIGHTING?"fighthing":"grappling"));
+		    			safesnprintf(output,sizeof(output), msg_txt(453),(sce->val1==MH_MD_FIGHTING?"fighthing":"grappling"));
 		    			clif_colormes(hd->master,COLOR_RED,output);
 			}
 	    	}
@@ -13254,7 +13254,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				if(map_foreachinrange(mob_count_sub, &sd->bl, skill_get_splash(skill_id, skill_lv), BL_MOB,
 				                      MOBID_EMPERIUM, MOBID_GUARIDAN_STONE1, MOBID_GUARIDAN_STONE2)) {
 					char output[128];
-					sprintf(output, "Você está muito perto de uma pedra ou emperium para usar esta habilidade");
+					sprintf(output, "%s", msg_txt(455));
 					clif_colormes(sd, COLOR_RED, output);
 					return 0;
 				}
@@ -13617,7 +13617,7 @@ int skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, 
 			return 0;
 		} else if(sd->status.inventory[i].amount < require.ammo_qty) {
 			char e_msg[100];
-			sprintf(e_msg,"Skill Failed. [%s] requires %dx %s.",
+			sprintf(e_msg, msg_txt(456),
 			        skill_get_desc(skill_id),
 			        require.ammo_qty,
 			        itemdb_jname(sd->status.inventory[i].nameid));
@@ -13857,10 +13857,12 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 		req.itemid[i] = skill_db[idx].itemid[i];
 		req.amount[i] = skill_db[idx].amount[i];
 
-		if(itemid_isgemstone(req.itemid[i])) {
-			if(sd->special_state.no_gemstone) {      //Make it substract 1 gem rather than skipping the cost.
-				if(req.amount[i])
-					req.itemid[i] = 0;
+		if(itemid_isgemstone(req.itemid[i])&& skill_id != HW_GANBANTEIN) {
+			if(sd->special_state.no_gemstone) {   // Todas as habilidades exceto Abracadabra e Ganbantein podem usar habilidades sem gemas
+				if(skill_id != SA_ABRACADABRA)
+					req.itemid[i] = req.amount[i] = 0;
+				else if(--req.amount[i] < 1)
+					req.amount[i] = 1; // Abracadabra utiliza sempre 1 gema
 			}
 			if(sc && sc->data[SC_INTOABYSS]) {
 				if(skill_id != SA_ABRACADABRA)

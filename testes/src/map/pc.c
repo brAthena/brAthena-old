@@ -4217,11 +4217,11 @@ int pc_useitem(struct map_session_data *sd,int n)
 					int e_tick = DIFF_TICK(sd->item_delay[i].tick, tick)/1000;
 					char e_msg[100];
 					if(e_tick > 99)
-						sprintf(e_msg,"Falha ao usar item. [%s] possui um delay. Espere %.1f minuto(s).",
+						sprintf(e_msg, msg_txt(452),
 						        itemdb_jname(sd->status.inventory[n].nameid),
 						        (double)e_tick / 60);
 					else
-						sprintf(e_msg,"Falha ao usar item. [%s] possui um delay. Espere %d segundo(s).",
+						sprintf(e_msg, msg_txt(453),
 						        itemdb_jname(sd->status.inventory[n].nameid),
 						        e_tick+1);
 					clif_colormes(sd,COLOR_RED,e_msg);
@@ -6462,7 +6462,7 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 	sd->canlog_tick = gettick();
 }
 
-int pc_close_npc_timer(int tid, unsigned int tick, int id, intptr_t data) {
+static int pc_close_npc_timer(int tid, unsigned int tick, int id, intptr_t data) {
 	TBL_PC *sd = map_id2sd(id);
 	if(sd) pc_close_npc(sd,data);
 	return 0;
@@ -6480,6 +6480,7 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
 			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
 			sd->state.using_fake_npc = 0;
 		}
+
 		if (sd->st) {
 			if(sd->st->state == RUN){ //wait ending code execution
 			    add_timer(gettick()+500,pc_close_npc_timer,sd->bl.id,flag);
