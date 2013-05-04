@@ -84,6 +84,7 @@ struct homun_skill_tree_entry {
 #define HOM_S 0x200 //512
 
 #define HOM_REG 0x1000 //4096
+#define HOM_MAX_LEVEL 150 // Nível máximo ( Homunculos )
 
 enum {
 // Normal Homunculus
