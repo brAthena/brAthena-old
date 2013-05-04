@@ -8516,7 +8516,7 @@ void clif_specialeffect_value(struct block_list *bl, int effect_id, int num, sen
 }
 // Modification of clif_messagecolor to send colored messages to players to chat log only (doesn't display overhead)
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
-int clif_colormes(struct map_session_data * sd, unsigned long color, const char *msg)
+int clif_colormes(struct map_session_data *sd, unsigned long color, const char *msg)
 {
 	unsigned short msg_len = strlen(msg) + 1;
 
@@ -9133,14 +9133,6 @@ void clif_msg_skill(struct map_session_data *sd, uint16 skill_id, int msg_id)
 	WFIFOL(fd,4) = msg_id;
 	WFIFOSET(fd, packet_len(0x7e6));
 }
-
-
-/// View player equip request denied
-void clif_viewequip_fail(struct map_session_data* sd)
-{
-	clif_msg(sd, 0x54d);
-}
-
 
 /// Validates one global/guild/party/whisper message packet and tries to recognize its components.
 /// Returns true if the packet was parsed successfully.
