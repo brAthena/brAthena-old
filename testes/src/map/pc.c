@@ -1093,6 +1093,10 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	 **/
 	pc_itemcd_do(sd,true);
 
+	/* [Ind] */
+	sd->sc_display = NULL;
+	sd->sc_display_count = 0;
+
 	// Request all registries (auth is considered completed whence they arrive)
 	intif_request_registry(sd,7);
 	return true;
@@ -7680,7 +7684,7 @@ int pc_setcart(struct map_session_data *sd,int type)
 				clif_cartlist(sd);
 			clif_updatestatus(sd, SP_CARTINFO);
 			sc_start(&sd->bl,&sd->bl, SC_PUSH_CART, 100, type, 0);
-			clif_status_load_notick(&sd->bl, SI_ON_PUSH_CART,   2 , type, 0, 0);
+			clif_status_change2(&sd->bl, sd->bl.id, AREA, SI_ON_PUSH_CART, type, 0, 0);
 			if(sd->sc.data[SC_PUSH_CART])  /* forcefully update */
 				sd->sc.data[SC_PUSH_CART]->val1 = type;
 			break;
@@ -9759,6 +9763,8 @@ void do_final_pc(void)
 	db_destroy(itemcd_db);
 
 	do_final_pc_groups();
+
+	ers_destroy(pc_sc_display_ers);
 	return;
 }
 
@@ -9797,6 +9803,8 @@ int do_init_pc(void)
 	}
 
 	do_init_pc_groups();
+
+	pc_sc_display_ers = ers_new(sizeof(struct sc_display_entry), "pc.c:pc_sc_display_ers", ERS_OPT_NONE);
 
 	return 0;
 }
