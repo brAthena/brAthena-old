@@ -8524,7 +8524,7 @@ int clif_colormes(struct map_session_data *sd, unsigned long color, const char *
 	WFIFOW(sd->fd,0) = 0x2C1;
 	WFIFOW(sd->fd,2) = msg_len + 12;
 	WFIFOL(sd->fd,4) = 0;
-	WFIFOL(sd->fd,8) = color;
+	WFIFOL(sd->fd,8) = color_table[color];
 	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
 	WFIFOSET(sd->fd, msg_len + 12);
 
