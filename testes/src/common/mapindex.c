@@ -18,6 +18,7 @@
 #include "../common/showmsg.h"
 #include "../common/malloc.h"
 #include "../common/strlib.h"
+#include "../common/db.h"
 #include "mapindex.h"
 
 #include <string.h>
@@ -117,10 +118,13 @@ int mapindex_addmap(int index, const char *name)
 		return 0;
 	}
 
-	if(mapindex_exists(index))
+	if(mapindex_exists(index)) {
 		ShowWarning(read_message("Source.common.mapindex_add4"), index, indexes[index].name, map_name);
+		strdb_remove(mapindex_db, indexes[index].name);
+	}
 
 	safestrncpy(indexes[index].name, map_name, MAP_NAME_LENGTH);
+	strdb_iput(mapindex_db, map_name, index);
 	if(max_index <= index)
 		max_index = index+1;
 
@@ -135,18 +139,15 @@ unsigned short mapindex_name2id(const char *name)
 	char map_name[MAP_NAME_LENGTH];
 	mapindex_getmapname(name, map_name);
 
-	for(i = 1; i < max_index; i++) {
-		if(strcmpi(indexes[i].name,map_name)==0)
+		if((i = strdb_iget(mapindex_db, name)))
 			return i;
-	}
-	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name, 198, 214);
+	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name);
 	return 0;
 }
 
-const char *mapindex_id2name(unsigned short id)
-{
+const char* mapindex_id2name_sub(unsigned short id,const char *file, int line, const char *func) {
 	if(id > MAX_MAPINDEX || !mapindex_exists(id)) {
-		ShowDebug(read_message("Source.common.mapindex_id2name"), id);
+		ShowDebug(read_message("Source.common.mapindex_id2name"), id,file,func,line);
 		return indexes[0].name; // dummy empty string so that the callee doesn't crash
 	}
 	return indexes[id].name;
@@ -158,19 +159,19 @@ void mapindex_init(void)
 	char line[1024];
 	int last_index = -1;
 	int index;
-	char map_name[1024];
+	char map_name[12];
 
-	memset(&indexes, 0, sizeof(indexes));
-	fp=fopen(mapindex_cfgfile,"r");
-	if(fp==NULL) {
+	if((fp = fopen(mapindex_cfgfile,"r")) == NULL) {
 		ShowFatalError(read_message("Source.common.mapindex_init"), mapindex_cfgfile);
 		exit(EXIT_FAILURE); //Server can't really run without this file.
 	}
+	memset (&indexes, 0, sizeof (indexes));
+	mapindex_db = strdb_alloc(DB_RELEASE_KEY, MAP_NAME_LENGTH);
 	while(fgets(line, sizeof(line), fp)) {
 		if(line[0] == '/' && line[1] == '/')
 			continue;
 
-		switch(sscanf(line, "%1023s\t%d", map_name, &index)) {
+		switch(sscanf(line, "%12s\t%d", map_name, &index)) {
 			case 1: //Map with no ID given, auto-assign
 				index = last_index+1;
 			case 2: //Map with ID given
@@ -182,6 +183,10 @@ void mapindex_init(void)
 		last_index = index;
 	}
 	fclose(fp);
+
+	if(!strdb_iget(mapindex_db, MAP_DEFAULT)) {
+		ShowError("mapindex_init: MAP_DEFAULT '%s' not found in cache! update mapindex.h MAP_DEFAULT var!!!\n",MAP_DEFAULT);
+	}
 }
 
 int mapindex_removemap(int index)
@@ -190,6 +195,6 @@ int mapindex_removemap(int index)
 	return 0;
 }
 
-void mapindex_final(void)
-{
+void mapindex_final(void) {
+	db_destroy(mapindex_db);
 }

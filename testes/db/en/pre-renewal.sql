@@ -24016,7 +24016,7 @@ CREATE TABLE IF NOT EXISTS `refine_db` (
   `Chance10` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-REPLACE INTO `refine_db` VALUES(0,66,0,0,'100:0','100:0','100:0','100:0','60:0','40:0','40:0','20:0','20:0','10:0');
+REPLACE INTO `refine_db` VALUES(0,70,0,0,'100:0','100:0','100:0','100:0','60:0','40:0','40:0','20:0','20:0','10:0');
 REPLACE INTO `refine_db` VALUES(1,200,8,300,'100:0','100:0','100:0','100:0','100:0','100:0','100:0','60:0','40:0','20:0');
 REPLACE INTO `refine_db` VALUES(2,300,7,500,'100:0','100:0','100:0','100:0','100:0','100:0','60:0','40:0','20:0','20:0');
 REPLACE INTO `refine_db` VALUES(3,500,6,800,'100:0','100:0','100:0','100:0','100:0','60:0','50:0','20:0','20:0','20:0');
@@ -24753,12 +24753,12 @@ REPLACE INTO `skill_db` VALUES(53,'9',6,16,'5','0x1','0',1,'1','no',0,'0','0','w
 REPLACE INTO `skill_db` VALUES(54,'9',6,16,'6','0x1','0',4,'1','yes',0,'0','0','magic','0','ALL_RESURRECTION','Resurrection');
 REPLACE INTO `skill_db` VALUES(55,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','KN_SPEARMASTERY','Spear Mastery');
 REPLACE INTO `skill_db` VALUES(56,'-2',8,1,'-1','0','0',10,'3','no',0,'0','0','weapon','0','KN_PIERCE','Pierce');
-REPLACE INTO `skill_db` VALUES(57,'-2',6,1,'-1','0x1','0',10,'1','no',33,'0','0','weapon','3','KN_BRANDISHSPEAR','Brandish Spear');
+REPLACE INTO `skill_db` VALUES(57,'-2',6,1,'-1','0x1','0',10,'1','no',0,'0','0','weapon','3','KN_BRANDISHSPEAR','Brandish Spear');
 REPLACE INTO `skill_db` VALUES(58,'-4',6,1,'-1','0x2','0',10,'1','no',0,'0','0','weapon','6','KN_SPEARSTAB','Spear Stab');
 REPLACE INTO `skill_db` VALUES(59,'3:5:7:9:11',6,1,'-1','0','0',5,'1','no',0,'0','0','weapon','0','KN_SPEARBOOMERANG','Spear Boomerang');
 REPLACE INTO `skill_db` VALUES(60,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','KN_TWOHANDQUICKEN','Twohand Quicken');
 REPLACE INTO `skill_db` VALUES(61,'0',6,4,'-1','0x20','0',5,'1','no',0,'0','0','weapon','0','KN_AUTOCOUNTER','Counter Attack');
-REPLACE INTO `skill_db` VALUES(62,'-2',6,1,'-1','0x2','1',10,'1','no',33,'0','0','weapon','1','KN_BOWLINGBASH','Bowling Bash');
+REPLACE INTO `skill_db` VALUES(62,'-2',6,1,'-1','0x2','1',10,'1','no',0,'0','0','weapon','1','KN_BOWLINGBASH','Bowling Bash');
 REPLACE INTO `skill_db` VALUES(63,'0',0,0,'0','0','0',1,'0','no',0,'0','0','weapon','0','KN_RIDING','Peco Peco Riding');
 REPLACE INTO `skill_db` VALUES(64,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','KN_CAVALIERMASTERY','Cavalier Mastery');
 REPLACE INTO `skill_db` VALUES(65,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','PR_MACEMASTERY','Mace Mastery');
@@ -25027,7 +25027,7 @@ REPLACE INTO `skill_db` VALUES(335,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x4','0'
 REPLACE INTO `skill_db` VALUES(336,'9',6,4,'0','0x1','3',1,'1','yes',0,'0x4','1','none','0','WE_CALLPARTNER','I miss You');
 REPLACE INTO `skill_db` VALUES(337,'9',6,1,'-1','0','0',1,'1','no',0,'0x2','0','weapon','0','ITM_TOMAHAWK','Throw Tomahawk');
 REPLACE INTO `skill_db` VALUES(338,'-1',8,1,'7','0','0',10,'-2','no',0,'0x2','0','weapon','0','NPC_DARKCROSS','Cross of Darkness');
-REPLACE INTO `skill_db` VALUES(339,'5',6,4,'7','0x48','0',10,'1','no',33,'0x102','0','magic','0','NPC_GRANDDARKNESS','Grand cross of Darkness');
+REPLACE INTO `skill_db` VALUES(339,'5',6,4,'7','0x48','0',10,'1','no',0,'0x102','0','magic','0','NPC_GRANDDARKNESS','Grand cross of Darkness');
 REPLACE INTO `skill_db` VALUES(340,'9',8,1,'7','0','0',10,'1:1:2:2:3:3:4:4:5:5','yes',0,'0x2','0','magic','0','NPC_DARKSTRIKE','Soul Strike of Darkness');
 REPLACE INTO `skill_db` VALUES(341,'9',8,1,'7','0','0',10,'3:4:5:6:7:8:9:10:11:12','yes',0,'0x2','0','magic','2:3:3:4:4:5:5:6:6:7','NPC_DARKTHUNDER','Darkness Jupitel');
 REPLACE INTO `skill_db` VALUES(342,'9',6,1,'0','0x1','0',1,'0','no',0,'0x2','0','none','0','NPC_STOP','Stop');
@@ -25088,7 +25088,7 @@ REPLACE INTO `skill_db` VALUES(402,'9',6,1,'0','0x1','0',5,'1','no',0,'0','0','n
 REPLACE INTO `skill_db` VALUES(403,'0',0,4,'0','0x1','0',1,'1','yes',0,'0','0','magic','0','PF_MEMORIZE','Foresight');
 REPLACE INTO `skill_db` VALUES(404,'9',6,2,'2','0x1','0',5,'1','yes',0,'0x100','2','magic','0','PF_FOGWALL','Blinding Mist');
 REPLACE INTO `skill_db` VALUES(405,'7',6,1,'0','0x1','0',1,'1','no',0,'0','3','magic','0','PF_SPIDERWEB','Fiber Lock');
-REPLACE INTO `skill_db` VALUES(406,'0',6,4,'-1','0xA','2',10,'1','no',33,'0','0','weapon','0','ASC_METEORASSAULT','Meteor Assault');
+REPLACE INTO `skill_db` VALUES(406,'0',6,4,'-1','0xA','2',10,'1','no',0,'0','0','weapon','0','ASC_METEORASSAULT','Meteor Assault');
 REPLACE INTO `skill_db` VALUES(407,'0',6,4,'0','0x1','0',1,'0','no',0,'0','0','none','0','ASC_CDP','Create Deadly Poison');
 REPLACE INTO `skill_db` VALUES(408,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x4','0','none','0','WE_BABY','Baby');
 REPLACE INTO `skill_db` VALUES(409,'9',6,4,'0','0x1','3',1,'1','yes',0,'0x4','1','none','0','WE_CALLPARENT','Call Parent');
@@ -25308,7 +25308,7 @@ REPLACE INTO `skill_db` VALUES(8015,'0',0,0,'0','0x1','0',5,'0','no',0,'0','0','
 REPLACE INTO `skill_db` VALUES(8016,'4',6,4,'-1','0xD2','4',3,'1','no',0,'0','0','misc','0','HVAN_EXPLOSION','Bio Explosion');
 REPLACE INTO `skill_db` VALUES(8201,'-1',6,1,'-1','0','0',10,'1','no',0,'0','0','weapon','0','MS_BASH','Bash');
 REPLACE INTO `skill_db` VALUES(8202,'0',6,4,'3','0x2','2',10,'1','no',0,'0','0','weapon','2','MS_MAGNUM','Magnum_Break');
-REPLACE INTO `skill_db` VALUES(8203,'-2',6,1,'-1','0x2','1',10,'1','no',33,'0','0','weapon','1','MS_BOWLINGBASH','Bowling_Bash');
+REPLACE INTO `skill_db` VALUES(8203,'-2',6,1,'-1','0x2','1',10,'1','no',0,'0','0','weapon','1','MS_BOWLINGBASH','Bowling_Bash');
 REPLACE INTO `skill_db` VALUES(8204,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','MS_PARRYING','Parry');
 REPLACE INTO `skill_db` VALUES(8205,'0',6,4,'0','0','0',10,'1','no',0,'0','0','weapon','0','MS_REFLECTSHIELD','Shield_Reflect');
 REPLACE INTO `skill_db` VALUES(8206,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','weapon','0','MS_BERSERK','Frenzy');
@@ -25322,7 +25322,7 @@ REPLACE INTO `skill_db` VALUES(8213,'2',6,32,'0','0x1','0',1,'1','no',0,'0','0',
 REPLACE INTO `skill_db` VALUES(8214,'-9',6,1,'-1','0x2','0',1,'1','no',0,'0x1','0','weapon','6','MA_CHARGEARROW','Arrow_Repel');
 REPLACE INTO `skill_db` VALUES(8215,'9',8,1,'-1','0','2',5,'1','yes',0,'0','13','weapon','0','MA_SHARPSHOOTING','Focused_Arrow_Strike');
 REPLACE INTO `skill_db` VALUES(8216,'-2',8,1,'-1','0','0',10,'3','no',0,'0','0','weapon','0','ML_PIERCE','Pierce');
-REPLACE INTO `skill_db` VALUES(8217,'-2',6,1,'-1','0x1','0',10,'1','no',33,'0','0','weapon','3','ML_BRANDISH','Brandish_Spear');
+REPLACE INTO `skill_db` VALUES(8217,'-2',6,1,'-1','0x1','0',10,'1','no',0,'0','0','weapon','3','ML_BRANDISH','Brandish_Spear');
 REPLACE INTO `skill_db` VALUES(8218,'5',8,1,'-1','0x20','0',5,'5','no',0,'0','0','weapon','0','ML_SPIRALPIERCE','Spiral_Pierce');
 REPLACE INTO `skill_db` VALUES(8219,'0',6,4,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','ML_DEFENDER','Defending_Aura');
 REPLACE INTO `skill_db` VALUES(8220,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','ML_AUTOGUARD','Guard');
