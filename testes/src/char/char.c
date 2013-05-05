@@ -2297,7 +2297,8 @@ int parse_fromlogin(int fd)
 									class_[i] = (sex ? JOB_KAGEROU : JOB_OBORO);
 							}
 
-							if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `class`='%d', `weapon`='0', `shield`='0', `head_top`='0', `head_mid`='0', `head_bottom`='0' WHERE `char_id`='%d'", char_db, class_[i], char_id[i]))
+							if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `class`='%d', `weapon`='0', `shield`='0', `head_top`='0', `head_mid`='0', `head_bottom`='0' WHERE `char_id`='%d'", char_db, class_[i], char_id[i]) 
+							|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `equip`='0' WHERE `char_id`='%d' AND `equip` != '0'", inventory_db, char_id[i]))
 								Sql_ShowDebug(sql_handle);
 
 							if(guild_id[i])  // If there is a guild, update the guild_member data [Skotlex]
