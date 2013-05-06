@@ -19,70 +19,69 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
-//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 moscovia,226,191,4	script#re	Guia de Moscóvia#02mosc	959,{
 	mes "[Guia de Moscóvia]";
-	mes "A paradise on the sea";
-	mes "beautiful wave and warm sunshine";
-	mes "^8B4513Moscovia^000000 is waitting for you";
-	mes "welcome to come here.";
-	mes "I'm supporting to offer information about here.";
-	mes "if you want to ask anything just feel free tell me.";
-	set .@str$,"Is there anything else I can do for you?";
+	mes "Um paraíso em um belo mar e com um sol caloroso";
+	mes "^8B4513Moscovia^000000 está esperando por você";
+	mes "seja bem-vindo.";
+	mes "Estou apoiando e oferendo informações para viajantes.";
+	mes "Se quiser alguma orientação fique a vontade para pedir.";
+	set .@str$,"Gostaria de verificar outras localizações?";
 	while (1) {
 		next;
-		switch(select("[ Palace ]:[ Chapel ]:[ Weapon Shop ]:[ Armor Shop ]:[ Tool Shop ]:[ Inn ]:[ Return to Alberta ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ Palácio ]:[ Capela ]:[ Loja de Armas ]:[ Loja de Armaduras ]:[ Loja de Utilidades ]:[ Hotel ]:[ Retornar para Alberta ]:Remover marcadores do mini-mapa:Cancelar")) {
 		case 1:
 			mes "[Guia de Moscóvia]";
-			mes "In the ^006400Palace^000000 you will find our Lord the Czar and other servants.";
+			mes "No ^006400Palácio^000000 você pode encontrar nosso Senhor, o Czar e outros servos.";
 			mes .@str$;
 			viewpoint 1,255,140,0,0x0A82FF;
 			break;
 		case 2:
 			mes "[Guia de Moscóvia]";
-			mes "The ^008080Chapel^000000 is located here.";
+			mes "A ^008080Capela^000000 encontra-se aqui.";
 			mes .@str$;
 			viewpoint 1,253,179,1,0xAAFF00;
 			break;
 		case 3:
 			mes "[Guia de Moscóvia]";
-			mes "You can buy weapons from the best craftsmen in Moscovia if you go to ^FF1493Weapon Shop^000000.";
+			mes "Você pode comprar armas com os melhores artesãos de Moscovia na ^FF1493Loja de Armas^000000.";
 			mes .@str$;
 			viewpoint 1,186,191,2,0x008080;
 			break;
 		case 4:
 			mes "[Guia de Moscóvia]";
-			mes "You will find only the best gear at the Moscovia ^8B4513Armor Shop^000000.";
+			mes "Você apenas poderá encontrar os melhores equipamentos de Moscovia na ^8B4513Loja de Armaduras^000000.";
 			mes .@str$;
 			viewpoint 1,204,169,3,0xB200FF;
 			break;
 		case 5:
 			mes "[Guia de Moscóvia]";
-			mes "The ^FF1493Tool Shop^000000 is located just south from the center of town.";
-			mes "You can find all sorts of things you need for your travels.";
+			mes "A ^FF1493Loja de Utilidades^000000 está localizada ao sul do centro da cidade.";
+			mes "Lá você poderá encontrar qualquer coisa que precisar utilizar em sua cidade.";
 			mes .@str$;
 			viewpoint 1,221,176,4,0xFF1493;
 			break;
 		case 6:
 			mes "[Guia de Moscóvia]";
-			mes "The Inn 'Sticky Herb Tree' is just north from the center of town.";
-			mes "If you need to rest, there is no better place to stay.";
+			mes "O Hotel 'Erva de Árvore Pegajosa' está ao norte do centro da cidade.";
+			mes "Se você precisar repousar, não há nenhum lugar melhor do que lá.";
 			mes .@str$;
 			viewpoint 1,227,206,5,0x8B4513;
 			break;
 		case 7:
 			mes "[Guia de Moscóvia]";
-			mes "You can go back to Alberta at the docks.";
+			mes "Você poderá voltar para alberta através do Porto.";
 			mes .@str$;
 			viewpoint 1,166,53,6,0x00BFFF;
 			break;
 		case 8:
 			mes "[Guia de Moscóvia]";
-			mes "I'll remove all marks from your mini-map.";
+			mes "Irei remover todos os pontos marcados de seu mini-mapa.";
 			mes .@str$;
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
@@ -94,7 +93,7 @@ moscovia,226,191,4	script#re	Guia de Moscóvia#02mosc	959,{
 			break;
 		case 9:
 			mes "[Guia de Moscóvia]";
-			mes "Enjoy your trip~!";
+			mes "Aproveite sua estadia~!";
 			close;
 		}
 	}
