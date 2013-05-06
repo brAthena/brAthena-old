@@ -4530,12 +4530,6 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 						j++; //
 					}
 
-				if(j < 4) {
-					// Need 4 spheres minimum
-					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-					break;
-				}
-
 				// Sphere Sort, this time from new to old
 				for(i = 0; i <= j - 2; i++)
 					for(k = i + 1; k <= j - 1; k++)
@@ -4556,6 +4550,8 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					clif_skill_nodamage(src, bl, subskill, skill_lv, 1);
 					status_change_end(src, spheres[i], INVALID_TIMER);
 				}
+				if (spheres[4]) // fix to remove last sphere if 5 are present, on official even though only 4 spheres are used, all spheres are removed
+					status_change_end(src, spheres[4], INVALID_TIMER);
 			}
 			break;
 
@@ -13133,13 +13129,13 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			//  }
 			//  break;
 
-		case AB_ADORAMUS:
+		case AB_ADORAMUS: // Carta Abelha Rainha não remove requisitos de gemas para Adoramus e Cometa
 			/**
 			 * Warlock
 			 **/
 		case WL_COMET:
 			if(skill_check_pc_partner(sd,skill_id,&skill_lv,1,0) <= 0
-				&& ((i = pc_search_inventory(sd,require.itemid[0])) < 0 || sd->status.inventory[i].amount < require.amount[0])) {
+				&& ((i = pc_search_inventory(sd,require.itemid[0])) < 0 || sd->status.inventory[i].amount < require.amount[0] || !sd->special_state.no_gemstone)) {
 				//clif_skill_fail(sd,skill_id,USESKILL_FAIL_NEED_ITEM,require.amount[0],require.itemid[0]);
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
@@ -13156,6 +13152,25 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_SUMMON,0);
 					return 0;
 				}
+			}
+			break;
+		case WL_TETRAVORTEX: // moved sphere check to precast to avoid triggering cooldown per official behavior
+			if(sc) {	
+				int j = 0;
+
+				for(i = SC_SPHERE_1; i <= SC_SPHERE_5; i++)
+					if(sc->data[i]) {
+						j++;
+					}
+
+				if(j < 4) { // Need 4 spheres minimum
+					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+					return 0;
+				}
+			}
+			else { // no status at all? no spheres present
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				return 0;
 			}
 			break;
 			/**
