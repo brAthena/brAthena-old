@@ -1678,7 +1678,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		if(sc->data[SC_WILD_STORM_OPTION])
 			skill = sc->data[SC_WILD_STORM_OPTION]->val2;
 		else if(sc->data[SC_UPHEAVAL_OPTION])
-			skill = sc->data[SC_UPHEAVAL_OPTION]->val2;
+			skill = sc->data[SC_UPHEAVAL_OPTION]->val3;
 		else if(sc->data[SC_TROPIC_OPTION])
 			skill = sc->data[SC_TROPIC_OPTION]->val3;
 		else if(sc->data[SC_CHILLY_AIR_OPTION])

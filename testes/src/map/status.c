@@ -748,8 +748,8 @@ void initChangeTables(void)
 	set_sc(EL_BLAST           , SC_BLAST_OPTION         , SI_BLAST_OPTION         , SCB_ASPD);
 	set_sc(EL_WILD_STORM      , SC_WILD_STORM_OPTION    , SI_WILD_STORM_OPTION    , SCB_ASPD);
 	set_sc(EL_PETROLOGY       , SC_PETROLOGY_OPTION     , SI_PETROLOGY_OPTION     , SCB_MAXHP);
-	set_sc(EL_CURSED_SOIL     , SC_CURSED_SOIL_OPTION   , SI_CURSED_SOIL_OPTION   , SCB_NONE);
-	set_sc(EL_UPHEAVAL        , SC_UPHEAVAL_OPTION      , SI_UPHEAVAL_OPTION      , SCB_NONE);
+	set_sc(EL_CURSED_SOIL     , SC_CURSED_SOIL_OPTION   , SI_CURSED_SOIL_OPTION   , SCB_MAXHP);
+	set_sc(EL_UPHEAVAL        , SC_UPHEAVAL_OPTION      , SI_UPHEAVAL_OPTION      , SCB_MAXHP);
 	set_sc(EL_TIDAL_WEAPON    , SC_TIDAL_WEAPON_OPTION  , SI_TIDAL_WEAPON_OPTION  , SCB_ALL);
 	set_sc(EL_ROCK_CRUSHER    , SC_ROCK_CRUSHER         , SI_ROCK_CRUSHER         , SCB_DEF);
 	set_sc(EL_ROCK_CRUSHER_ATK, SC_ROCK_CRUSHER_ATK     , SI_ROCK_CRUSHER_ATK     , SCB_SPEED);
@@ -5688,6 +5688,10 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp -= sc->data[SC_MYSTERIOUS_POWDER]->val1 / 100;
 	if(sc->data[SC_PETROLOGY_OPTION])
 		maxhp += maxhp * sc->data[SC_PETROLOGY_OPTION]->val2 / 100;
+	if(sc->data[SC_CURSED_SOIL_OPTION])		
+		maxhp += maxhp * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
+	if(sc->data[SC_UPHEAVAL_OPTION])
+		maxhp += maxhp * sc->data[SC_UPHEAVAL_OPTION]->val2 / 100;
 	if(sc->data[SC_ANGRIFFS_MODUS])
 		maxhp += maxhp * 5 * sc->data[SC_ANGRIFFS_MODUS]->val1 /100;
 	if(sc->data[SC_EQC])
@@ -8749,7 +8753,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val_flag |= 1|2|4;
 				break;
 			case SC_UPHEAVAL_OPTION:
-				val2 = WZ_EARTHSPIKE;
+				val2 = 15;
+				val3 = WZ_EARTHSPIKE;
 				val_flag |= 1|2;
 				break;
 			case SC_CIRCLE_OF_FIRE_OPTION:
