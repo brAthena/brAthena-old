@@ -1463,13 +1463,12 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			switch(skill_lv) {
 				case 1:
 					sc_start2(src,bl,SC_BLEEDING,rate,skill_lv,src->id,skill_get_time(skill_id,skill_lv));
-					break;
-				case 2:
+						break;
 					if(dstsd && dstsd->spiritball && rnd()%100 < rate)
 						pc_delspiritball(dstsd, dstsd->spiritball, 0);
-					break;
+						break;
 				default:
-					skill_break_equip(src,bl,(skill_lv == 3) ? EQP_SHIELD : (skill_lv == 4) ? EQP_ARMOR : EQP_WEAPON,rate * 100,BCT_ENEMY);
+					skill_break_equip(src,bl,(skill_lv == 2) ? EQP_HELM : (skill_lv == 3) ? EQP_SHIELD : (skill_lv == 4) ? EQP_ARMOR : EQP_WEAPON,rate * 100,BCT_ENEMY);
 					break;
 			}
 			break;
