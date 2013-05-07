@@ -144,3 +144,6 @@ REPLACE INTO `item_nouse_sit` VALUES(14593,1,100);
 REPLACE INTO `item_nouse_sit` VALUES(14594,1,100);
 REPLACE INTO `item_nouse_sit` VALUES(14599,1,100);
 REPLACE INTO `item_nouse_sit` VALUES(14606,1,100);
+
+-- 07/05/2013
+REPLACE INTO `skill_unit_db` VALUES(2317,'0x86',NULL,'-1','0','-1','enemy','0x010');

@@ -2097,6 +2097,12 @@ packet(0x020d,-1);
 	packet(0x978,6,clif->pReqworldinfo,2);
 	packet(0x979,50);
 	packet(0x99a,9);
+	packet(0x991,-1);
+	packet(0x992,-1);
+	packet(0x993,-1);
+	packet(0x994,-1);
+	packet(0x995,-1);
+	packet(0x996,-1);
 	packet(0x997,-1);
 	packet(0x999,11);
 	// Novos Pacotes

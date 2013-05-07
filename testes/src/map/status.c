@@ -9412,6 +9412,14 @@ int status_change_clear(struct block_list *bl, int type)
 	sc->opt2 = 0;
 	sc->opt3 = 0;
 
+//cleaning all extras vars
+	sc->comet_x = 0;
+	sc->comet_y = 0;
+#ifndef RENEWAL
+	sc->sg_counter = 0;
+#endif
+	sc->bs_counter = 0;
+
 	if(type == 0 || type == 2)
 		clif_changeoption(bl);
 
@@ -11094,6 +11102,15 @@ int status_change_clear_buffs(struct block_list *bl, int type)
 		}
 		status_change_end(bl, (sc_type)i, INVALID_TIMER);
 	}
+
+	//cleaning all extras vars
+	sc->comet_x = 0;
+	sc->comet_y = 0;
+#ifndef RENEWAL
+	sc->sg_counter = 0;
+#endif
+	sc->bs_counter = 0;
+
 	return 0;
 }
 
