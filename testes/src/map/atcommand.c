@@ -2295,7 +2295,10 @@ ACMD_FUNC(displaystatus)
 	if(i < 2) flag = 1;
 	if(i < 3) tick = 0;
 
-	clif_status_change(&sd->bl, type, flag, tick, val1, val2, val3);
+	if(flag == 0)
+		clif_status_change_end(&sd->bl,sd->bl.id,AREA,type);
+	else
+		clif_status_change(&sd->bl, type, flag, tick, val1, val2, val3);
 
 	return 0;
 }

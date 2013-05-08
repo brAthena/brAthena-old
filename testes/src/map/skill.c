@@ -176,16 +176,18 @@ int skill_get_index(uint16 skill_id)
 		skill_id = MC_SKILLRANGEMIN + skill_id - MC_SKILLBASE;
 	else if(skill_id >= HM_SKILLBASE)
 		skill_id = HM_SKILLRANGEMIN + skill_id - HM_SKILLBASE;
-	//[Ind/Hercules] GO GO GO LESS! - http://hercules.ws/board/topic/512-skill-id-processing-overhaul/
+	//[Ind/Hercules]
 	else if( skill_id > 1019 && skill_id < 8001 ) {
-		if( skill_id < 2057 ) // 1020 - 2000 are empty
+		if(skill_id < 2058) // 1020 - 2000 are empty
 			skill_id = 1020 + skill_id - 2001;
-		else if( skill_id < 2549 ) // 2057 - 2200 are empty
-			skill_id = (1020+57) + skill_id - 2201;
-		else if ( skill_id < 3036 ) // 2549 - 3000 are empty
-			skill_id = (1020+57+348) + skill_id - 3001;
-		else if ( skill_id < 5019 ) //3036 - 5000 are empty
-			skill_id = (1020+57+348+1966) + skill_id - 5001;
+		else if(skill_id < 2549) // 2058 - 2200 are empty - 1020+57
+			skill_id = (1077) + skill_id - 2201;
+		else if (skill_id < 3036) // 2549 - 3000 are empty - 1020+57+348
+			skill_id = (1425) + skill_id - 3001;
+		else if (skill_id < 5019) // 3036 - 5000 are empty - 1020+57+348+35
+			skill_id = (1460) + skill_id - 5001;
+		else
+			ShowWarning("skill_get_index: habilidade de ID '%d' não está sendo usada!\n",skill_id);
 	}
 
 	// validate result
@@ -14734,9 +14736,9 @@ int skill_sit(struct map_session_data *sd, int type)
 	}
 
 	if(type) {
-		clif_status_load(&sd->bl,SI_SIT,1);
+		clif_status_change2(&sd->bl,sd->bl.id,SELF,SI_SIT,0,0,0);
 	} else {
-		clif_status_load(&sd->bl,SI_SIT,0);
+		clif_status_change_end(&sd->bl,sd->bl.id,SELF,SI_SIT);
 	}
 
 	if(!flag) return 0;

@@ -4075,8 +4075,6 @@ void clif_getareachar_unit(struct map_session_data *sd,struct block_list *bl)
 					clif_specialeffect_single(bl,421,sd->fd);
 				if(tsd->bg_id && map[tsd->bl.m].flag.battleground)
 					clif_sendbgemblem_single(sd->fd,tsd);
-				if(tsd->sc.data[SC_CAMOUFLAGE])
-					clif_status_load(bl,SI_CAMOUFLAGE,1);
 				if (tsd->status.robe)
 					clif_refreshlook(&sd->bl,bl->id,LOOK_ROBE,tsd->status.robe,SELF);
 			}
@@ -9532,12 +9530,12 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			//Display night.
 			if(!sd->state.night) {
 				sd->state.night = 1;
-				clif_status_load(&sd->bl, SI_NIGHT, 1);
+				clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_NIGHT);
 			}
 		} else if(sd->state.night) {
 			//Clear night display.
 			sd->state.night = 0;
-			clif_status_load(&sd->bl, SI_NIGHT, 0);
+			clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_NIGHT);
 		}
 
 		if(map[sd->bl.m].flag.battleground) {
@@ -9603,7 +9601,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		npc_script_event(sd, NPCE_LOADMAP);
 
 	if(pc_checkskill(sd, SG_DEVIL) && !pc_nextjobexp(sd))
-		clif_status_load(&sd->bl, SI_DEVIL, 1);  //blindness [Komurka]
+		clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_DEVIL);
 
 	if(sd->sc.opt2)  //Client loses these on warp.
 		clif_changeoption(&sd->bl);
@@ -16757,6 +16755,18 @@ void clif_parse_reqworldinfo(int fd,struct map_session_data *sd){
 	//uint32 aid = RFIFOL(fd,2); //should we trust client ?
 	if(sd) clif_ackworldinfo(sd);
 }
+
+void clif_status_change_end(struct block_list *bl, int tid, enum send_target target, int type) {
+	unsigned char buf[32];
+
+	WBUFW(buf,0)=0x196;
+	WBUFW(buf,2)=type;
+	WBUFL(buf,4)= tid;
+	WBUFB(buf,8)= 0;
+
+	clif_send(buf,packet_len(0x196),bl,target);
+}
+
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/

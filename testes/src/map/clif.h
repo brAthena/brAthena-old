@@ -748,6 +748,7 @@ int clif_poison_list(struct map_session_data *sd, uint16 skill_lv);
 int clif_autoshadowspell_list(struct map_session_data *sd);
 
 void clif_status_change2(struct block_list *bl, int tid, enum send_target target, int type, int val1, int val2, int val3);
+void clif_status_change_end(struct block_list *bl, int tid, enum send_target target, int type);
 
 int clif_skill_itemlistwindow(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 void clif_elemental_info(struct map_session_data *sd);
