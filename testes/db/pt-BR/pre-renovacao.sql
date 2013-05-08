@@ -9624,7 +9624,7 @@ REPLACE INTO `item_db` VALUES(18500,'Cheer_Scarf6','Cheer Scarf6','5',0,NULL,'0'
 REPLACE INTO `item_db` VALUES(18501,'Cheer_Scarf8','Cheer Scarf8','5',0,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,1,NULL,1,0,369,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(18502,'Cheer_Scarf10','Cheer Scarf10','5',0,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,1,NULL,1,0,369,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(18503,'Majestic_Devil','Small Devil Horns','5',20,NULL,'100',NULL,2,NULL,0,0xFFFFFFFF,7,2,512,NULL,1,0,562,'bonus bAtkRate,5; bonus bMatkRate,5; bonus bMaxHPRate,10; bonus bMaxSPRate,10;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(18505,'Umbala_Spirit','Piercing de Umbala [A]','5',0,NULL,'200',NULL,1,NULL,1,0xFFFFFFFF,7,2,1,NULL,30,0,675,'bonus bVit,1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(18505,'Umbala_Spirit','Piercing de Umbala [A]','5',0,NULL,'200',NULL,0,NULL,1,0xFFFFFFFF,7,2,1,NULL,30,0,675,'bonus bVit,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(18506,'Hattah_Black','Hattah Black','5',12000,NULL,'4000',NULL,2,NULL,1,0xFFFFFFFF,7,2,769,NULL,1,1,676,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(18507,'Elven_Ears_','Orelhas de Elfo','5',20,NULL,'100',NULL,0,NULL,1,0xFFFFFFFE,7,2,512,NULL,70,0,73,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(18539,'Skull_Cap','Boné da Caveira','5',40,NULL,'200',NULL,5,NULL,1,0xFFFFFFFF,7,2,256,NULL,10,1,713,'bonus bMatkRate,2; if(getrefine() >= 5) { bonus bMatkRate,3; } if(getrefine() >= 7) { bonus bMatkRate,3;}',NULL,NULL);
