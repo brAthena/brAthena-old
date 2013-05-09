@@ -1,4 +1,4 @@
-﻿//    ________________________________________________________
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -12,70 +12,71 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Vers�es brA: 1.1                                       |
 //   |--------------------------------------------------------|
-//   | Descrição: Monstros da Pirâmide de Morroc Modo Pesadelo|
+//   | Descri��o: Monstros da Pir�mide de Morroc Modo Pesadelo|
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Primeira versão [Megasantos]                       |
+//   | 1.0 Primeira vers�o [Megasantos]                       |
+//   | 1.1 Tradu��o PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
-//   | - Anotações                                            |
+//   | - Anota��es                                            |
 //   \________________________________________________________/
 
-moc_prydb1,103,54,3	script	수상한 고양이#nightmare	547,{
-	mes "[수상한 고양이]";
-	mes "미이라 따위에게 당할 줄이야. 아이고 나 죽겠네. 이 일은 아무도 모르게…";
+moc_prydb1,103,54,3	script	Gato Suspeito#nightmare	547,{
+	mes "[Gato Suspeito]";
+	mes "Nenhuma M�mia. Ou res�duos. N�o conte a ningu�m sobre isso...";
 	next;
-	switch(select("미이라? 무슨 일이야?","모른 체 한다" )) {
+	switch(select("M�mias? O que est� acontecendo","Analisar res�duo" )) {
 	case 1:
-		mes "[수상한 고양이]";
-		mes "미이라 따위에게 당할 줄이야. 아이고 나 죽겠네. 이 일은 아무도 모르게…";
+		mes "[Gato Suspeito]";
+		mes "Nenhuma M�mia. Ou res�duos. N�o conte a ningu�m sobre isso...";
 		next;
-		mes "[수상한 고양이]";
-		mes "아앗 들켰다! 제길… 이런 식으로 오랫동안 쌓아온 도굴꾼으로서의 명성이 추락할 줄은…….";
+		mes "[Gato Suspeito]";
+		mes "Puxa... H� um longo tempo construo uma reputa��o como um vampiro, para que ela termine assim.";
 		next;
-		mes "[수상한 고양이]";
-		mes "하지만 그 녀석들 정말 이상하다고! 미이라 주제에! 미이라잖아!! 그 녀석이 그렇게 쎄다니 말이야!";
+		mes "[Gato Suspeito]";
+		mes "Mas eles s�o realmente estranhos! M�mias!";
 		next;
-		switch(select("강한 미이라라니, 어디에 있지?","대화를 마친다")) {
+		switch(select("Onde est� a Tumba das M�mias?","Essa conversa j� deu.")) {
 		case 1:
-			mes "[수상한 고양이]";
-			mes "후후, 그건 오로지 나만 알고 있지.";
-			mes "내가 피라미드의 숨겨진 보물을 찾아 도굴을… 아, 아니 순,순수하게 피라미드를 거닐다가 우연히 찾아 버렸어.";
+			mes "[Gato Suspeito]";
+			mes "No Subterr�neo da Pir�mide.";
+			mes "L� deve estar repleto de tesouros escondidos... Voc� pode ir procurar pela Pir�mide.";
 			next;
-			mes "[수상한 고양이]";
-			mes "미아라가 다가오길래 헹~ 하며 비웃고 있었는데, 몸이 휭하고 날아갈 정도로 뺨을 때려버렸다고. 이 귀여운 고양이를… 캬아아아옹! 두고 보자 붕대녀석.";
+			mes "[Gato Suspeito]";
+			mes "Estava rindo e andando com meus amigos, at� que este belo gato encontrou a Tumba. Gostaria de v�-la?";
 			next;
-			switch(select("나도 가보고 싶어","대화를 마친다")) {
+			switch(select("Eu quero ver","Encerrar conversa")) {
 			case 1:
-				mes "[수상한 고양이]";
-				mes "캬악! 그 길이 내가 어떻게 알아낸 길인데!!";
+				mes "[Gato Suspeito]";
+				mes "Kyaak! Essa � a maneira que descobri!!";
 				next;
-				mes "[수상한 고양이]";
-				mes "흠, 하지만 5000zeny 정도 주겠다면 그곳까지 안내해 주지.";
-				mes "뭐야! 이상한 눈 하지 말라고! 고양이가 미드가르드에서 살아가는 게 얼마나 힘든줄 알았!";
+				mes "[Gato Suspeito]";
+				mes "Hum, mas s�o 5000 zeny para te orientar.";
+				mes "Vamos l�! N�o desconfie! Voc� sabe como � dif�cil para um gato sobreviver em Rune Midgard.";
 				next;
-				mes "[수상한 고양이]";
-				mes "^FF0000그러고 보니 너 같이 허약한 애가 갔다간 1초 만에 전투불능이 될 것 같은데?^000000";
-				mes "뭐, 내가 걱정해줄 일은 아니지만 난 경고했다!";
-				switch(select("지불하고 출발.","가지 않는다")) {
+				mes "[Gato Suspeito]";
+				mes "^FF0000Vamos decida-se, se vai te ajudar por que ainda est� pensando?^000000";
+				mes "Bem, n�o se preocupe, vamos l�!";
+				switch(select("Pagar.","Dizer n�o.")) {
 				case 1:
 					if (Zeny >= 5000) {
 						set zeny,zeny-5000;
-						mes "[수상한 고양이]";
-						mes "뭐야? 이 헌 돈은… 반짝반짝 한 새 돈 없어? 쳇. 투덜투덜.";
-						mes "자, 빨리 따라오기나 해!";
+						mes "[Gato Suspeito]";
+						mes "O qu� ? Hum... um dinheiro reluzente!?";
+						mes "Vamos, siga-me!";
 						close2;
 						warp "moc_prydn1",93,96;
 						end;
 					} else {
-						mes "[수상한 고양이]";
-						mes "빈털터리 주제에 어딜 가겠다고! 캬옹!";
+						mes "[Gato Suspeito]";
+						mes "Voc� est� falido! Kyaong!";
 						close;
 					}
 				case 2:
-					mes "[수상한 고양이]";
-					mes "5000zeny도 없어서 그러는 건 아니겠지?";
+					mes "[Gato Suspeito]";
+					mes "5000 zenys n�o te far�o nenhum mal, n�o acha?";
 					close;
 				}
 			case 2:
@@ -83,22 +84,22 @@ moc_prydb1,103,54,3	script	수상한 고양이#nightmare	547,{
 			}
 			
 		case 2:
-			mes "[수상한 고양이]";
-			mes "뭐야 내 얘기가 궁금한 거 아녔어? 이녀서어어억 어디 가서 내 얘기하지 마라!!";
+			mes "[Gato Suspeito]";
+			mes "Estava apenas querendo me enganar, n�o era? N�o fale mais comigo!!";
 			close;
 		}
 	case 2:
 		close;
 	}
 }
-moc_prydn1,94,98,3	script	수상한 고양이#nightmareb	547,{
-	mes "[수상한 고양이]";
-	mes "네가 한눈 판 사이에 미이라 한 녀석이 또 날 때리고 가버렸어. 흑흑. 이제 그만 돌아가자, 캬오오옹!";
+moc_prydn1,94,98,3	script	Gato Suspeito#nightmareb	547,{
+	mes "[Gato Suspeito]";
+	mes "Uma m�mia me feriu. Se puder volte o quanto antes!";
 	next;
-	switch(select("돌아간다","베릿트 처치","에인션트 미이라 처치","아무것도 아냐")) {
+	switch(select("Voltar","Ajudar","Tesouro das M�mias","N�o � nada")) {
 	case 1:
-		mes "[수상한 고양이]";
-		mes "그래그래, 어서 돌아가자고.";
+		mes "[Gato Suspeito]";
+		mes "Sim sim, vamos l�, vamos voltar.";
 		close2;
 		warp "moc_prydb1",100,57;
 		end;
@@ -106,95 +107,93 @@ moc_prydn1,94,98,3	script	수상한 고양이#nightmareb	547,{
 		set .@pry1_time,checkquest(2290,PLAYTIME);
 		if (.@pry1_time == -1) {
 			if (checkquest(2289,HUNTING) == 0) {
-				mes "[수상한 고양이]";
-				mes "고양이와 개는 원수지간이라는 것 알고 있니?";
+				mes "[Gato Suspeito]";
+				mes "Voc� sabe que o inimigo dos gatos s�o os c�es?";
 				next;
-				mes "[수상한 고양이]";
-				mes "저 징그럽고 못생긴 베릿트를 봐. 나를 노려보며 꼬리를 좌우로 흔들어대며 다가오려 하고 있어.";
-				mes "아, 넌 꼬리가 없지? 저건 내가 눈에 가시라는 의미야. 지금 내게 싸움을 걸어 오고 있는 거라고!";
+				mes "[Gato Suspeito]";
+				mes "Eles olham feio para mim. Come�o a tremer e balan�ar a cauda de um lado para o outro.";
+				mes "Ah voc� n�o tem uma cauda? Isso significa que sou um animal solit�rio!";
 				next;
-				mes "[수상한 고양이]";
-				mes "게걸스럽게 침도 뚝뚝 흘리고, 숨소리도 수상해. 고르륵 거리는 소리 따위 들을 수 없어.";
-				mes "내 뒤를 치려고 때를 기다리고 있는 게 분명한 게지.";
+				mes "[Gato Suspeito]";
+				mes "A saliva escorre pela minha boca e minha respira��o fica voraz.";
+				mes "E ent�o eu corro, nem escuto nada ao meu redor, apenas corro.";
 				next;
-				mes "[수상한 고양이]";
-				mes "내가 배만 아프지 않았어도 확 발톱으로 얼굴을 긁어줬을 텐데!";
-				mes "절대 마이너우로스가 무서워서 이러는 게 아니라고!";
+				mes "[Gato Suspeito]";
+				mes "Fa�o tudo para escapar!";
 				next;
-				mes "[수상한 고양이]";
-				mes "너도 집에 무사히 돌아가고 싶다면, 저 못생긴 멍멍이의 엉덩이를 팡팡 때려주는 게 좋을걸? 물리기 전에 말야.";
+				mes "[Gato Suspeito]";
+				mes "Ouvindo isso, � melhor que voc� volte para casa, antes que se machuque, n�o acha?";
 				next;
-				switch(select("돕는다","돕지 않는다.")) {
+				switch(select("Ajudar mesmo assim.","N�o ajudar.")) {
 				case 1:
-					mes "[수상한 고양이]";
-					mes "좋아, 그럼 목표치는 20마리다! 수고하도록!";
+					mes "[Gato Suspeito]";
+					mes "Certo, ent�o sua meta s�o 20!";
 					setquest 2289;
 					close;
 				case 2:
-					mes "[수상한 고양이]";
-					mes "흥, 내가 어찌 되도 좋다 이거야? 이 의리 없는 녀석!";
+					mes "[Gato Suspeito]";
+					mes "Interessante, que amig�vel voc� �!";
 					close;
 				}
 			}
 			else if (checkquest(2289,HUNTING) == 1) {
-				mes "[수상한 고양이]";
-				mes "에인션트 미이라 처치는 잘 되어가나?";
+				mes "[Gato Suspeito]";
+				mes "Ainda continua ca�ando as M�mias Antigas?";
 				next;
-				switch(select("물론이지","그만둘래")) {
+				switch(select("Claro.","Eu parei.")) {
 				case 1:
-					mes "[수상한 고양이]";
-					mes "좋아. 계속 수고하도록.";
+					mes "[Gato Suspeito]";
+					mes "Bem. Obrigado, continue assim.";
 					close;
 				case 2:
-					mes "[수상한 고양이]";
-					mes "뭣이? 책임감 없는 녀석 같으니!";
+					mes "[Gato Suspeito]";
+					mes "O qu�? Que irrespons�vel!";
 					erasequest 2289;
 					close;
 				}
 			}
 			else if (checkquest(2289,HUNTING) == 2) {
-				mes "[수상한 고양이]";
-				mes "이 녀석 보기보다 제법 쓸만하잖아! 잘했어!";
-				mes "베릿트 녀석, 한동안은 이 곳까지 올 생각은 얼씬도 못하겠지? 으헤헤헹!";
+				mes "[Gato Suspeito]";
+				mes "Muito �til!";
+				mes "A muito tempo voc� est� esperando por esse momento, n�o �?!";
 				changequest 2289,2290;
 				getexp 300000,100000;
 				close;
 			}
 		}
 		if (.@pry1_time == 1) {
-			mes "[수상한 고양이]";
-			mes "저 베릿트가 우리를 보며 쩔쩔매는 모습을 봐! 캬하하하! 적어도 당분간은 안심이야! (골골)";
+			mes "[Gato Suspeito]";
+			mes "O seu olhar fica cada vez mais aflito vendo o nosso rel�gio ! Termine, hahahaha!";
 			close;
 		}
 		if (.@pry1_time == 2) {
-			mes "[수상한 고양이]";
-			mes "고양이와 개는 원수지간이라는 것 알고 있니?";
+			mes "[Gato Suspeito]";
+			mes "Voc� sabe que o inimigo dos gatos s�o os c�es?";
 			erasequest 2290;
 			next;
-			mes "[수상한 고양이]";
-			mes "저 징그럽고 못생긴 베릿트를 봐. 나를 노려보며 꼬리를 좌우로 흔들어대며 다가오려 하고 있어.";
-			mes "아, 넌 꼬리가 없지? 저건 내가 눈에 가시라는 의미야. 지금 내게 싸움을 걸어 오고 있는 거라고!";
+			mes "[Gato Suspeito]";
+			mes "Eles olham feio para mim. Come�o a tremer e balan�ar a cauda de um lado para o outro.";
+			mes "Ah voc� n�o tem uma cauda? Isso significa que sou um animal solit�rio!";
 			next;
-			mes "[수상한 고양이]";
-			mes "게걸스럽게 침도 뚝뚝 흘리고, 숨소리도 수상해. 고르륵 거리는 소리 따위 들을 수 없어.";
-			mes "내 뒤를 치려고 때를 기다리고 있는 게 분명한 게지.";
+			mes "[Gato Suspeito]";
+			mes "A saliva escorre pela minha boca e minha respira��o fica voraz.";
+			mes "E ent�o eu corro, nem escuto nada ao meu redor, apenas corro.";
 			next;
-			mes "[수상한 고양이]";
-			mes "내가 배만 아프지 않았어도 확 발톱으로 얼굴을 긁어줬을 텐데!";
-			mes "절대 마이너우로스가 무서워서 이러는 게 아니라고!";
+			mes "[Gato Suspeito]";
+			mes "Fa�o tudo para escapar!";
 			next;
-			mes "[수상한 고양이]";
-			mes "너도 집에 무사히 돌아가고 싶다면, 저 못생긴 멍멍이의 엉덩이를 팡팡 때려주는 게 좋을걸? 물리기 전에 말야.";
+			mes "[Gato Suspeito]";
+			mes "Ouvindo isso, � melhor que voc� volte para casa, antes que se machuque, n�o acha?";
 			next;
-			switch(select("돕는다","돕지 않는다.")) {
+			switch(select("Ajudar mesmo assim.","N�o ajudar.")) {
 			case 1:
-				mes "[수상한 고양이]";
-				mes "좋아, 그럼 목표치는 20마리다! 수고하도록!";
+				mes "[Gato Suspeito]";
+				mes "Certo, ent�o sua meta s�o 20!";
 				setquest 2289;
 				close;
 			case 2:
-				mes "[수상한 고양이]";
-				mes "흥, 내가 어찌 되도 좋다 이거야? 이 의리 없는 녀석!";
+				mes "[Gato Suspeito]";
+				mes "Interessante, eu gosto de pessoas sem piedade!";
 				close;
 			}
 		}
@@ -202,91 +201,91 @@ moc_prydn1,94,98,3	script	수상한 고양이#nightmareb	547,{
 		set .@pry2_time,checkquest(2291,PLAYTIME);
 		if (.@pry2_time == -1) {
 			if (checkquest(2292,HUNTING) == 0) {
-				mes "[수상한 고양이]";
-				mes "진귀한 보물은 자고로 깊고 깊은 곳에 숨겨져 있는 법!";
-				mes "분명 지하 2층에 아무도 발견하지 못한 미이라들의 생전의 보물들이 모셔져 있음에 틀림없다.";
+				mes "[Gato Suspeito]";
+				mes "Existe um raro tesouro escondido no Subterr�neo da Pir�mide!";
+				mes "O tesouro deve estar no 2� Andar da Pir�mide onde sempre foi protegido pelas M�mias enquanto vivas.";
 				next;
-				mes "[수상한 고양이]";
-				mes "하지만 조금만 정신을 흐트러뜨리면 어느새 에인션트 미이라가 와서 내 머리를 때리지 뭐야?!";
+				mes "[Gato Suspeito]";
+				mes "No entanto, as m�mias est�o sempre atentas e sempre surgem para proteg�-lo!";
 				next;
-				mes "[수상한 고양이]";
-				mes "이것은 나의 우수한 뇌세포를 감소시켜 보물을 찾지 못하게 하려는 미이라들의 계략임에 틀림없을 터!";
+				mes "[Gato Suspeito]";
+				mes "Concerteza voc� n�o deve ser capaz de encontrar o tesouro, e se tentar poder� ter sua cabe�a arrancada!";
 				next;
-				mes "[수상한 고양이]";
-				mes "그들의 계획대로 둘 순 없지! 자, 어서 에인션트 미이라를 처치하러 가는 거다!";
+				mes "[Gato Suspeito]";
+				mes "Vamos l�! Vamos l�! As M�mias Antigas ir�o te matar!";
 				next;
-				mes "[수상한 고양이]";
-				mes "왜냐는 질문은 받지 않겠어. 너도 아름다운 보석이 어둠 속에 숨죽여 지내는 것을 바라지는 않을 테지!";
+				mes "[Gato Suspeito]";
+				mes "Por que se questiona!? Voc� n�o gostaria de encontrar preciosas j�ias!?";
 				next;
-				switch(select("돕는다","돕지 않는다.")) {
+				switch(select("Ajudar.","N�o ajudar.")) {
 				case 1:
-					mes "[수상한 고양이]";
-					mes "좋아, 그럼 목표치는 20마리다! 수고하도록!";
+					mes "[Gato Suspeito]";
+					mes "Certo, ent�o sua meta s�o 20!";
 					setquest 2292;
 					close;
 				case 2:
-					mes "[수상한 고양이]";
-					mes "흥, 야박한 녀석 같으니.";
+					mes "[Gato Suspeito]";
+					mes "Interessante, eu gosto de pessoas sem piedade!";
 					close;
 				}
 			}
 			else if (checkquest(2292,HUNTING) == 1) {
-				mes "[수상한 고양이]";
-				mes "에인션트 미이라 처치는 잘 되어가나?";
+				mes "[Gato Suspeito]";
+				mes "Ainda continua ca�ando as M�mias Antigas?";
 				next;
-				switch(select("물론이지","그만둘래")) {
+				switch(select("Claro.","Eu parei.")) {
 				case 1:
-					mes "[수상한 고양이]";
-					mes "좋아. 계속 수고하도록.";
+					mes "[Gato Suspeito]";
+					mes "Bem. Obrigado, continue assim.";
 					close;
 				case 2:
-					mes "[수상한 고양이]";
-					mes "뭣이? 책임감 없는 녀석 같으니!";
+					mes "[Gato Suspeito]";
+					mes "O qu�? Que irrespons�vel!";
 					erasequest 2292;
 					close;
 				}
 			}
 			else if (checkquest(2292,HUNTING) == 2) {
-				mes "[수상한 고양이]";
-				mes "이 녀석 보기보다 제법 쓸만하잖아! 잘했어!";
-				mes "베릿트 녀석, 한동안은 이 곳까지 올 생각은 얼씬도 못하겠지? 으헤헤헹!";
+				mes "[Gato Suspeito]";
+				mes "Muito �til!";
+				mes "A muito tempo voc� est� esperando por esse momento, n�o �?!";
 				changequest 2292,2291;
 				getexp 600000,200000;
 				close;
 			}
 		}
 		if (.@pry2_time == 1) {
-			mes "[수상한 고양이]";
-			mes "저 베릿트가 우리를 보며 쩔쩔매는 모습을 봐! 캬하하하! 적어도 당분간은 안심이야! (골골)";
+			mes "[Gato Suspeito]";
+			mes "O seu olhar fica cada vez mais aflito vendo o nosso rel�gio ! Termine, hahahaha!";
 			close;
 		}
 		if (.@pry2_time == 2) {
-			mes "[수상한 고양이]";
-			mes "진귀한 보물은 자고로 깊고 깊은 곳에 숨겨져 있는 법!";
-			mes "분명 지하 2층에 아무도 발견하지 못한 미이라들의 생전의 보물들이 모셔져 있음에 틀림없다.";
+			mes "[Gato Suspeito]";
+				mes "Existe um raro tesouro escondido no Subterr�neo da Pir�mide!";
+			mes "O tesouro deve estar no 2� Andar da Pir�mide onde sempre foi protegido pelas M�mias enquanto vivas.";
 			erasequest 2291;
 			next;
-			mes "[수상한 고양이]";
-			mes "하지만 조금만 정신을 흐트러뜨리면 어느새 에인션트 미이라가 와서 내 머리를 때리지 뭐야?!";
+			mes "[Gato Suspeito]";
+			mes "No entanto, as m�mias est�o sempre atentas e sempre surgem para proteg�-lo?!";
 			next;
-			mes "[수상한 고양이]";
-			mes "이것은 나의 우수한 뇌세포를 감소시켜 보물을 찾지 못하게 하려는 미이라들의 계략임에 틀림없을 터!";
+			mes "[Gato Suspeito]";
+			mes "Concerteza voc� n�o deve ser capaz de encontrar o tesouro, e se tentar poder� ter sua cabe�a arrancada!";
 			next;
-			mes "[수상한 고양이]";
-			mes "그들의 계획대로 둘 순 없지! 자, 어서 에인션트 미이라를 처치하러 가는 거다!";
+			mes "[Gato Suspeito]";
+			mes "Vamos l�! Vamos l�! As M�mias Antigas ir�o te matar!";
 			next;
-			mes "[수상한 고양이]";
-			mes "왜냐는 질문은 받지 않겠어. 너도 아름다운 보석이 어둠 속에 숨죽여 지내는 것을 바라지는 않을 테지!";
+			mes "[Gato Suspeito]";
+			mes "Por que se questiona!? Voc� n�o gostaria de encontrar preciosas j�ias!?";
 			next;
-			switch(select("돕는다","돕지 않는다.")) {
+			switch(select("Ajudar","N�o Ajudar.")) {
 			case 1:
-				mes "[수상한 고양이]";
-				mes "좋아, 그럼 목표치는 20마리다! 수고하도록!";
+				mes "[Gato Suspeito]";
+				mes "Certo, ent�o sua meta s�o 20!";
 				setquest 2292;
 				close;
 			case 2:
-				mes "[수상한 고양이]";
-				mes "흥, 야박한 녀석 같으니.";
+				mes "[Gato Suspeito]";
+				mes "Interessante, eu gosto de pessoas sem piedade.";
 				close;
 			}
 		}
@@ -301,13 +300,13 @@ moc_prydn2,195,8,0	warp	mocp_p02	1,1,moc_prydn1,220,9
 
 // Monstros
 moc_prydn1,0,0,0,0	monster	Minorous	2353,60,0,0,0
-moc_prydn1,0,0,0,0	monster	Mummy	2354,10,0,0,0
+moc_prydn1,0,0,0,0	monster	M�mia	2354,10,0,0,0
 moc_prydn1,0,0,0,0	monster	Verit	2355,50,0,0,0
 
 moc_prydn2,0,0,0,0	monster	Verit	2355,10,0,0,0
-moc_prydn2,0,0,0,0	monster	Mimic	2356,20,0,0,0
-moc_prydn2,0,0,0,0	monster	Arclouze	2358,20,0,0,0
-moc_prydn2,0,0,0,0	monster	Ancient Mummy	2360,20,0,0,0
+moc_prydn2,0,0,0,0	monster	M�mico	2356,20,0,0,0
+moc_prydn2,0,0,0,0	monster	Arclouse	2358,20,0,0,0
+moc_prydn2,0,0,0,0	monster	M�mia Anci�	2360,20,0,0,0
 moc_prydn2,0,0,0,0	boss_monster	Amon Ra	2362,1,3600000,600000,0
 
 // Mapflags

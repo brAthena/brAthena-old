@@ -149,4 +149,4 @@ TrocaPocao2:
 morocc,180,259,3	duplicate(Mercador#pron)	Mercador#morroc	85
 payon,200,134,5	duplicate(Mercador#pron)	Mercador#pay	85
 aldebaran,152,63,5	duplicate(Mercador#pron)	Mercador#alde	85
-geffen,173,88,5	duplicate(Mercador#pron)	Mercador#geff	85
+geffen,173,88,5	duplicate(Mercador#pron)	Mercador#gef	85
