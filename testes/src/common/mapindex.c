@@ -139,7 +139,7 @@ unsigned short mapindex_name2id(const char *name)
 	char map_name[MAP_NAME_LENGTH];
 	mapindex_getmapname(name, map_name);
 
-		if((i = strdb_iget(mapindex_db, name)))
+		if((i = strdb_iget(mapindex_db, map_name)))
 			return i;
 	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name);
 	return 0;
