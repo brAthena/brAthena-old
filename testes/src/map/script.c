@@ -17361,7 +17361,7 @@ BUILDIN_FUNC(recall)
 
 	iter = mapit_getallusers();
       
-	if((!(strcmp(type,"party") == 0) && !(strcmp(type,"guild") == 0)) || !p && !g)
+	if((!(strcmp(type,"party") == 0) && !(strcmp(type,"guild") == 0)) || (((strcmp(type,"party") == 0) && !p) || ((strcmp(type,"guild") == 0) && !g)))
 	return 0;
 
 	if(script_hasdata(st,3))
