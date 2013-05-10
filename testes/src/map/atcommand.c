@@ -946,7 +946,7 @@ ACMD_FUNC(hide)
 	nullpo_retr(-1, sd);
 	if(sd->sc.option & OPTION_INVISIBLE) {
 		sd->sc.option &= ~OPTION_INVISIBLE;
-		if(sd->disguise)
+		if(sd->disguise != -1 )
 			status_set_viewdata(&sd->bl, sd->disguise);
 		else
 			status_set_viewdata(&sd->bl, sd->status.class_);
@@ -4014,7 +4014,7 @@ ACMD_FUNC(mount_peco)
 {
 	nullpo_retr(-1, sd);
 
-	if(sd->disguise) {
+	if(sd->disguise != -1 ) {
 		clif_displaymessage(fd, msg_txt(212)); // Cannot mount while in disguise.
 		return -1;
 	}
@@ -4840,8 +4840,8 @@ ACMD_FUNC(disguiseguild)
 ACMD_FUNC(undisguise)
 {
 	nullpo_retr(-1, sd);
-	if(sd->disguise) {
-		pc_disguise(sd, 0);
+	if(sd->disguise != -1 ) {
+		pc_disguise(sd, -1);
 		clif_displaymessage(fd, msg_txt(124)); // Undisguise applied.
 	} else {
 		clif_displaymessage(fd, msg_txt(125)); // You're not disguised.
@@ -4862,8 +4862,8 @@ ACMD_FUNC(undisguiseall)
 
 	iter = mapit_getallusers();
 	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter))
-		if(pl_sd->disguise)
-			pc_disguise(pl_sd, 0);
+		if(pl_sd->disguise != -1 )
+			pc_disguise(pl_sd, -1);
 	mapit_free(iter);
 
 	clif_displaymessage(fd, msg_txt(124)); // Undisguise applied.
@@ -4895,8 +4895,8 @@ ACMD_FUNC(undisguiseguild)
 	}
 
 	for(i = 0; i < g->max_member; i++)
-		if((pl_sd = g->member[i].sd) && pl_sd->disguise)
-			pc_disguise(pl_sd, 0);
+		if((pl_sd = g->member[i].sd) && pl_sd->disguise != -1 )
+			pc_disguise(pl_sd, -1);
 
 	clif_displaymessage(fd, msg_txt(124)); // Undisguise applied.
 
@@ -9303,11 +9303,11 @@ ACMD_FUNC(channel) {
 }
 ACMD_FUNC(fontcolor) {
 	unsigned char k;
+	unsigned short msg_len = 1;
+	char mout[40];
 
 	if(!message || !*message) {
-		char mout[40];
 		for(k = 0; k < raChSys.colors_count; k++) {
-			unsigned short msg_len = 1;
 			msg_len += sprintf(mout, "[ %s ] : %s",command,raChSys.colors_name[k]);
 
 			WFIFOHEAD(fd,msg_len + 12);
@@ -9323,7 +9323,6 @@ ACMD_FUNC(fontcolor) {
 
 	if(message[0] == '0') {
 		sd->fontcolor = 0;
-		pc_disguise(sd,0);
 		return 0;
 	}
 
@@ -9338,8 +9337,15 @@ ACMD_FUNC(fontcolor) {
 	}
 
 	sd->fontcolor = k + 1;
-	pc_disguise(sd,sd->status.class_);
+	msg_len += sprintf(mout, "Cor alterada para '%s'",raChSys.colors_name[k]);
 
+	WFIFOHEAD(fd,msg_len + 12);
+	WFIFOW(fd,0) = 0x2C1;
+	WFIFOW(fd,2) = msg_len + 12;
+	WFIFOL(fd,4) = 0;
+	WFIFOL(fd,8) = raChSys.colors[k];
+	safestrncpy((char*)WFIFOP(fd,12), mout, msg_len);
+	WFIFOSET(fd, msg_len + 12);
 	return 0;
 }
 

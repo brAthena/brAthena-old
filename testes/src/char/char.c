@@ -1873,13 +1873,18 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 
 	return 106+offset;
 }
-
+/* Made Possible by Yommy~! <3 */
+void mmo_char_send099d(int fd, struct char_session_data *sd) {
+	WFIFOHEAD(fd,4 + (MAX_CHARS*MAX_CHAR_BUF));
+	WFIFOW(fd,0) = 0x99d;
+	WFIFOW(fd,2) = mmo_chars_fromsql(sd, WFIFOP(fd,4)) + 4;
+	WFIFOSET(fd,WFIFOW(fd,2));
+}
+int mmo_char_send006b(int fd, struct char_session_data* sd);
 //----------------------------------------
 // [Ind] notify client about charselect window data
 //----------------------------------------
 void mmo_char_send082d(int fd, struct char_session_data* sd) {
-	if (save_log)
-		ShowInfo(read_message("Source.char.char_mmo_char_send006b"), CL_BOLD, sd->account_id, CL_RESET);
 	
 	WFIFOHEAD(fd,29);
 	WFIFOW(fd,0) = 0x82d;
@@ -1891,10 +1896,7 @@ void mmo_char_send082d(int fd, struct char_session_data* sd) {
 	WFIFOB(fd,8) = sd->char_slots;
 	memset(WFIFOP(fd,9), 0, 20); // unused bytes
 	WFIFOSET(fd,29);
-	WFIFOHEAD(fd, 6);
-	WFIFOW(fd,0) = 0x9a0;
-	WFIFOL(fd,2) = 1;
-	WFIFOSET(fd, 6);
+	mmo_char_send006b(fd,sd);
 
 }
 //----------------------------------------
@@ -4284,7 +4286,7 @@ int parse_char(int fd)
 					/* por algum motivo requer dados do char novamente (gravity -_-) */
 					if(ret)
 #if PACKETVER >= 20130000
-						mmo_char_send082d(fd, sd);
+						mmo_char_send099d(fd, sd);
 #else
 						mmo_char_send006b(fd, sd);
 #endif

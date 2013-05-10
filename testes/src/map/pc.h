@@ -525,6 +525,7 @@ struct map_session_data {
 	struct raChSysCh *gcbind;
 	bool stealth;
 	unsigned char fontcolor;
+	unsigned int fontcolor_tid;
 	unsigned int rachsysch_tick;
 
 	/* [Ind] */

@@ -10115,7 +10115,7 @@ BUILDIN_FUNC(changebase)
 			return 0;
 	}
 
-	if(!sd->disguise && vclass != sd->vd.class_) {
+	if(sd->disguise == -1 && vclass != sd->vd.class_) {
 		status_set_viewdata(&sd->bl, vclass);
 		//Updated client view. Base, Weapon and Cloth Colors.
 		clif_changelook(&sd->bl,LOOK_BASE,sd->vd.class_);
@@ -11985,8 +11985,8 @@ BUILDIN_FUNC(undisguise)
 	TBL_PC *sd = script_rid2sd(st);
 	if(sd == NULL) return 0;
 
-	if(sd->disguise) {
-		pc_disguise(sd, 0);
+	if(sd->disguise != -1 ) {
+		pc_disguise(sd, -1);
 		script_pushint(st,0);
 	} else {
 		script_pushint(st,1);

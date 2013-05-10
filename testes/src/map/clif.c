@@ -175,7 +175,7 @@ static inline void RFIFOPOS2(int fd, unsigned short pos, short *x0, short *y0, s
 //To idenfity disguised characters.
 static inline bool disguised(struct block_list *bl)
 {
-	return (bool)(bl->type == BL_PC && ((TBL_PC *)bl)->disguise);
+	return (bool)(bl->type == BL_PC && ((TBL_PC *)bl)->disguise != -1);
 }
 
 
@@ -6030,7 +6030,7 @@ void clif_pvpset(struct map_session_data *sd,int pvprank,int pvpnum,int type)
 		else
 			WBUFL(buf,6) = pvprank;
 		WBUFL(buf,10) = pvpnum;
-		if(sd->sc.option&OPTION_INVISIBLE || sd->disguise) //Causes crashes when a 'mob' with pvp info dies.
+		if(sd->sc.option&OPTION_INVISIBLE || sd->disguise != -1 ) //Causes crashes when a 'mob' with pvp info dies.
 			clif_send(buf,packet_len(0x19a),&sd->bl,SELF);
 		else if(!type)
 			clif_send(buf,packet_len(0x19a),&sd->bl,AREA);
@@ -8657,7 +8657,7 @@ void clif_refresh(struct map_session_data *sd)
 
 	if(disguised(&sd->bl)) {/* refresh */
 		short disguise = sd->disguise;
-		pc_disguise(sd, 0);
+		pc_disguise(sd, -1);
 		pc_disguise(sd, disguise);
 	}
 
@@ -8684,7 +8684,7 @@ void clif_charnameack(int fd, struct block_list *bl)
 				struct guild *g = NULL;
 
 				//Requesting your own "shadow" name. [Skotlex]
-				if(ssd->fd == fd && ssd->disguise)
+				if(ssd->fd == fd && ssd->disguise != -1 )
 					WBUFL(buf,2) = -bl->id;
 
 				if(ssd->fakename[0]) {
@@ -9903,6 +9903,14 @@ void clif_parse_GetCharNameRequest(int fd, struct map_session_data *sd)
 	clif_charnameack(fd, bl);
 }
 
+int clif_undisguise_timer(int tid, unsigned int tick, int id, intptr_t data) {
+	struct map_session_data * sd;
+	if((sd = map_id2sd(id)) && sd->fontcolor && sd->disguise == sd->status.class_) {
+		pc_disguise(sd,-1);
+	}
+	sd->fontcolor_tid = INVALID_TIMER;
+	return 0;
+}
 
 /// Validates and processes global messages
 /// 008c <packet len>.W <text>.?B (<name> : <message>) 00 (CZ_REQUEST_CHAT)
@@ -9941,6 +9949,16 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 		char mout[200];
 		unsigned char mylen = 1;
 
+		if(sd->disguise == -1) {
+			pc_disguise(sd,sd->status.class_);
+			sd->fontcolor_tid = add_timer(gettick()+5000, clif_undisguise_timer, sd->bl.id, 0);
+		} else if (sd->disguise == sd->status.class_ && sd->fontcolor_tid != INVALID_TIMER) {
+			const struct TimerData *timer;
+			if((timer = get_timer(sd->fontcolor_tid))) {
+				settick_timer(sd->fontcolor_tid, timer->tick+5000);
+			}
+		}
+		
 		mylen += snprintf(mout, 200, "%s : %s",sd->fakename[0]?sd->fakename:sd->status.name,message);
 
 		WFIFOHEAD(fd,mylen + 12);

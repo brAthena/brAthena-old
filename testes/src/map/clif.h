@@ -876,6 +876,7 @@ void clif_chsys_quitg(struct map_session_data *sd);
 void clif_chsys_quit(struct map_session_data *sd);
 void clif_chsys_gjoin(struct guild *g1,struct guild *g2);
 void clif_chsys_gleave(struct guild *g1,struct guild *g2);
+int clif_undisguise_timer(int tid, unsigned int tick, int id, intptr_t data);
 
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 
