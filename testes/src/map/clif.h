@@ -874,6 +874,8 @@ void clif_chsys_mjoin(struct map_session_data *sd);
 void clif_read_channels_config(void);
 void clif_chsys_quitg(struct map_session_data *sd);
 void clif_chsys_quit(struct map_session_data *sd);
+void clif_chsys_gjoin(struct guild *g1,struct guild *g2);
+void clif_chsys_gleave(struct guild *g1,struct guild *g2);
 
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 

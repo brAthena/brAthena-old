@@ -5500,9 +5500,12 @@ void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsign
 }
 
 void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd) {
+
+	if(idb_put(channel->users, sd->status.char_id, sd))
+		return;
+
 	RECREATE(sd->channels, struct raChSysCh *, ++sd->channel_count);
 	sd->channels[ sd->channel_count - 1 ] = channel;
-	idb_put(channel->users, sd->status.char_id, sd);
 
 	if( sd->stealth ) {
 		sd->stealth = false;
@@ -5581,7 +5584,9 @@ void clif_chsys_mjoin(struct map_session_data *sd) {
 
 void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd) {
 	unsigned char i;
-	idb_remove(channel->users,sd->status.char_id);
+
+	if(!idb_remove(channel->users,sd->status.char_id))
+		return;
 
 	if( channel == sd->gcbind )
 		sd->gcbind = NULL;
@@ -5625,7 +5630,9 @@ void clif_chsys_quitg(struct map_session_data *sd) {
 	
 	for( i = 0; i < sd->channel_count; i++ ) {
 		if( (channel = sd->channels[i] ) != NULL && channel->type == raChSys_ALLY ) {
-			idb_remove(channel->users,sd->status.char_id);
+
+			if(!idb_remove(channel->users,sd->status.char_id))
+				continue; 
 			
 			if( channel == sd->gcbind )
 				sd->gcbind = NULL;
@@ -5729,6 +5736,52 @@ void clif_chsys_delete(struct raChSysCh *channel) {
 		aFree(channel);
 	else if(!raChSys.closing)
 		strdb_remove(channel_db, channel->name);
+}
+
+void clif_chsys_gjoin(struct guild *g1,struct guild *g2) {
+	struct map_session_data *sd;
+	struct raChSysCh *channel;
+	int j;
+	
+	if((channel = (struct raChSysCh*)g1->channel)) {
+		for(j = 0; j < g2->max_member; j++) {
+			if((sd = g2->member[j].sd) != NULL) {
+				if(!(((struct raChSysCh*)g1->channel)->banned && idb_exists(((struct raChSysCh*)g1->channel)->banned, sd->status.account_id)))
+					clif_chsys_join(channel,sd);
+			}
+		}
+	}
+	
+	if((channel = (struct raChSysCh*)g2->channel)) {
+		for(j = 0; j < g1->max_member; j++) {
+			if((sd = g1->member[j].sd) != NULL) {
+				if(!(((struct raChSysCh*)g2->channel)->banned && idb_exists(((struct raChSysCh*)g2->channel)->banned, sd->status.account_id)))
+				clif_chsys_join(channel,sd);
+			}
+		}
+	}
+}
+
+void clif_chsys_gleave(struct guild *g1,struct guild *g2) {
+	struct map_session_data *sd;
+	struct raChSysCh *channel;
+	int j;
+	
+	if( (channel = (struct raChSysCh*)g1->channel) ) {
+		for(j = 0; j < g2->max_member; j++) {
+			if( (sd = g2->member[j].sd) != NULL ) {
+				clif_chsys_left(channel,sd);
+			}
+		}
+	}
+	
+	if((channel = (struct raChSysCh*)g2->channel)) {
+		for(j = 0; j < g1->max_member; j++) {
+			if((sd = g1->member[j].sd) != NULL) {
+				clif_chsys_left(channel,sd);
+			}
+		}
+	}
 }
 
 void clif_read_channels_config(void) {
@@ -10288,6 +10341,16 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 			if( k < sd->channel_count ) {
 				clif_chsys_send(channel,sd,message);
 			} else if( channel->pass[0] == '\0' && !(channel->banned && idb_exists(channel->banned, sd->status.account_id))) {
+				if( channel->type == raChSys_ALLY ) {
+					struct guild *g = sd->guild, *sg = NULL;
+					int k;
+					for (k = 0; k < MAX_GUILDALLIANCE; k++) {
+						if(g->alliance[k].opposition == 0 && g->alliance[k].guild_id && (sg = guild_search(g->alliance[k].guild_id))) {
+							if(!(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
+								clif_chsys_join((struct raChSysCh *)sg->channel,sd);
+						}
+					}
+				} 
 				clif_chsys_join(channel,sd);
 				clif_chsys_send(channel,sd,message);
 			} else {

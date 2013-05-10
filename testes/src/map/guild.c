@@ -523,19 +523,29 @@ int guild_recv_info(struct guild *sg)
 			clif_chsys_create(channel,NULL,NULL,raChSys.ally_color);
 			if( raChSys.ally_autojoin ) {
 				struct s_mapiterator* iter = mapit_getallusers();
+				struct guild *tg[MAX_GUILDALLIANCE];
+				
+				for(i = 0; i < MAX_GUILDALLIANCE; i++) {
+					tg[i] = NULL;
+					if(sg->alliance[i].opposition == 0 && sg->alliance[i].guild_id)
+						tg[i] = guild_search(sg->alliance[i].guild_id);
+				} 
 
 				for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) ) {
 					if( sd->status.guild_id ) {
 						if( sd->status.guild_id == sg->guild_id ) {
 							clif_chsys_join(channel,sd);
 							sd->guild = g;
-							continue;
 						}
 
 						for (i = 0; i < MAX_GUILDALLIANCE; i++) {
-							if( sg->alliance[i].guild_id == sd->status.guild_id ) {
-								clif_chsys_join(channel,sd);
-								break;
+							if(sg->alliance[i].opposition == 0 && sg->alliance[i].guild_id) {
+								if(sg->alliance[i].guild_id == sd->status.guild_id) {
+									clif_chsys_join(channel,sd);
+								} else if( tg[i] != NULL ) {
+									if(!(((struct raChSysCh*)tg[i]->channel)->banned && idb_exists(((struct raChSysCh*)tg[i]->channel)->banned, sd->status.account_id)))
+										clif_chsys_join((struct raChSysCh*)tg[i]->channel,sd);
+								} 
 							}
 						}
 					}
@@ -768,7 +778,7 @@ void guild_member_joined(struct map_session_data *sd)
 				clif_chsys_join(channel,sd);
 
 			for (i = 0; i < MAX_GUILDALLIANCE; i++) {
-				if( g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id) ) ) {
+				if(g->alliance[i].opposition == 0 && g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id))) {
 					if( !(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
 						clif_chsys_join((struct raChSysCh*)sg->channel,sd);
 					break;
@@ -1636,6 +1646,15 @@ int guild_allianceack(int guild_id1,int guild_id2,int account_id1,int account_id
 				clif_guild_allianceack(sd[i],((flag>>4)==i+1)?3:4);
 		return 0;
 	}
+	
+	if(g[0] && g[1] && raChSys.ally && (flag & 1) == 0) {
+		if(!(flag & 0x08)) {
+			if(raChSys.ally_autojoin)
+				clif_chsys_gjoin(g[0],g[1]);
+		} else {
+			clif_chsys_gleave(g[0],g[1]);
+		}
+	} 
 
 	if(!(flag&0x08)) {  // new relationship
 		for(i=0; i<2-(flag&1); i++) {

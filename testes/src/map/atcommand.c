@@ -8777,6 +8777,18 @@ ACMD_FUNC(join) {
 		clif_displaymessage(fd, atcmd_output);
 	}
 
+	if(channel->type == raChSys_ALLY) {
+		struct guild *g = sd->guild, *sg = NULL;
+		int i;
+		for (i = 0; i < MAX_GUILDALLIANCE; i++) {
+			if(g->alliance[i].opposition == 0 && g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id))) {
+				if(!(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id))) {
+					clif_chsys_join((struct raChSysCh *)sg->channel,sd);
+				}
+			}
+		}
+	}
+
 	clif_chsys_join(channel,sd);
 
 	return 0;
@@ -8960,8 +8972,18 @@ ACMD_FUNC(channel) {
 			clif_displaymessage(fd, atcmd_output);
 			return -1;
 		}
-		clif_chsys_left(sd->channels[k],sd);
-		sprintf(atcmd_output, msg_txt(1429),sub1); // You've left the '%s' channel.
+		if(sd->channels[k]->type == raChSys_ALLY) {
+			do {
+				for(k = 0; k < sd->channel_count; k++) {
+					if(sd->channels[k]->type == raChSys_ALLY) {
+						clif_chsys_left(sd->channels[k],sd);
+						break;
+					}
+				}
+			} while(k != sd->channel_count);
+		} else
+			clif_chsys_left(sd->channels[k],sd);
+		sprintf(atcmd_output, msg_txt(1426),sub1); // You've left the '%s' channel
 		clif_displaymessage(fd, atcmd_output);
 	} else if ( strcmpi(key,"bindto") == 0 ) {
 
