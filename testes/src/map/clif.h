@@ -864,6 +864,7 @@ struct hCSData {
 
 //Sistema VIP
 void clif_vipshow(struct map_session_data *sd);
+void clif_vipshow2(struct map_session_data* sd);
 
 //Sistema de canal
 struct DBMap* clif_get_channel_db(void);

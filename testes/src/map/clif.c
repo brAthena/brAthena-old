@@ -16848,8 +16848,10 @@ void clif_status_change_end(struct block_list *bl, int tid, enum send_target tar
 	clif_send(buf,packet_len(0x196),bl,target);
 }
 
-// Mensagem do Sistema VIP Oficial - brAthena [Megasantos/Shiraz]
-// Agradecimentos a Revok pelo pacote de client abaixo de 2013.
+/// Mensagem do Sistema VIP Oficial - brAthena [Megasantos/Shiraz]
+/// Agradecimentos a Revok pelo pacote de client abaixo de 2013.
+/// 0x8cb <packet len>.W <exp>.W <death>.W <drop>.W (ZC_PERSONAL_INFOMATION)
+/// 0x97b <packet len>.W <exp>.L <death>.L <drop>.L (ZC_PERSONAL_INFOMATION2)
 void clif_vipshow(struct map_session_data *sd)
 {
 	int packet;
@@ -16874,6 +16876,26 @@ void clif_vipshow(struct map_session_data *sd)
 	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip;
 	WFIFOW(sd->fd,15) = 100;
 	WFIFOSET(sd->fd,17);
+}
+
+/// Mensagem do Sistema VIP Oficial - brAthena [Megasantos]
+/// 0981 <packet len>.W <exp>.W <death>.W <drop>.W <activity rate>.W (ZC_PERSONAL_INFOMATION_CHN)
+void clif_vipshow2(struct map_session_data* sd)
+{
+	int packet;
+	nullpo_retv(sd);
+	
+	sd->fd = (int)sd->fd;
+	packet = 0x981;
+	
+	WFIFOHEAD(sd->fd,12);
+	WFIFOW(sd->fd,0)  = packet;
+	WFIFOW(sd->fd,2)  = 12;
+	WFIFOW(sd->fd,4)  = battle_config.base_exp_rate;
+	WFIFOW(sd->fd,6)  = battle_config.death_penalty_base;
+	WFIFOW(sd->fd,8)  = 100;
+	WFIFOW(sd->fd,10) = 100;
+	WFIFOSET(sd->fd,12);
 }
 /*==========================================
  * Main client packet processing function
