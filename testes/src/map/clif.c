@@ -16848,6 +16848,33 @@ void clif_status_change_end(struct block_list *bl, int tid, enum send_target tar
 	clif_send(buf,packet_len(0x196),bl,target);
 }
 
+// Mensagem do Sistema VIP Oficial - brAthena [Megasantos/Shiraz]
+// Agradecimentos a Revok pelo pacote de client abaixo de 2013.
+void clif_vipshow(struct map_session_data *sd)
+{
+	int packet;
+	nullpo_retv(sd);
+
+#if PACKETVER < 20130320
+	packet = 0x8cb;
+#else
+	packet = 0x97b;
+#endif
+
+	sd->fd = (int)sd->fd;
+
+	WFIFOHEAD(sd->fd,17);
+	WFIFOW(sd->fd,0)  = packet;
+	WFIFOW(sd->fd,2)  = 17;
+	WFIFOW(sd->fd,4)  = battle_config.base_exp_rate;
+	WFIFOW(sd->fd,6)  = battle_config.death_penalty_base;
+	WFIFOW(sd->fd,8)  = 100;
+	WFIFOB(sd->fd,10) = 0;
+	WFIFOW(sd->fd,11) = bra_config.extra_exp_vip;
+	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip;
+	WFIFOW(sd->fd,15) = 100;
+	WFIFOSET(sd->fd,17);
+}
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/

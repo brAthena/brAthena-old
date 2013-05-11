@@ -862,6 +862,9 @@ struct hCSData {
 		unsigned int item_count[CASHSHOP_TAB_MAX];
 	} cs;
 
+//Sistema VIP
+void clif_vipshow(struct map_session_data *sd);
+
 //Sistema de canal
 struct DBMap* clif_get_channel_db(void);
 void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color);
