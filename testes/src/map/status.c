@@ -6883,11 +6883,6 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				return 0;
 
 		case SC_INCREASEAGI:
-			if(sd && pc_issit(sd)) {
-				pc_setstand(sd);
-				skill_sit(sd,0);
-			}
-
 		case SC_CONCENTRATE:
 		case SC_SPEARQUICKEN:
 		case SC_TRUESIGHT:

@@ -1662,7 +1662,7 @@ OnTouch:
 	else if(compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
 	else if(compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
 	else if(compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
-	sc_start2 SC_Stone,300000,0,10000;
+	sc_start SC_Stone,300000,0,10000;
 	if (getd("$gqse_"+.cas$+.casn$+"_gd") == 0) {
 		warp "que_q"+.cas$+.casn$,103,153;
 		disablenpc "#getspell1_"+.cas$+.casn$;
