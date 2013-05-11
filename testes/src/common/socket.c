@@ -301,8 +301,7 @@ void set_nonblocking(int fd, unsigned long yes)
 		ShowError(read_message("Source.common.set_nonblocking"), fd, error_msg());
 }
 
-void setsocketopts(int fd)
-{
+void setsocketopts(int fd,int delay_timeout){
 	int yes = 1; // reuse fix
 #if !defined(WIN32)
 	// set SO_REAUSEADDR to true, unix only. on windows this option causes
@@ -326,6 +325,16 @@ void setsocketopts(int fd)
 		opt.l_linger = 0; // Do not care
 		if(sSetsockopt(fd, SOL_SOCKET, SO_LINGER, (char *)&opt, sizeof(opt)))
 			ShowWarning(read_message("Source.common.setsocketopts"), fd);
+	}
+	if(delay_timeout){
+		struct timeval timeout;
+		timeout.tv_sec = delay_timeout;
+		timeout.tv_usec = 0;
+
+		if (sSetsockopt (fd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout,sizeof(timeout)) < 0)
+			ShowError("setsocketopts: Unable to set SO_RCVTIMEO timeout for connection #%d!\n");
+		if (sSetsockopt (fd, SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout,sizeof(timeout)) < 0)
+			ShowError("setsocketopts: Unable to set SO_SNDTIMEO timeout for connection #%d!\n");
 	}
 }
 
@@ -449,7 +458,7 @@ int connect_client(int listen_fd)
 		return -1;
 	}
 
-	setsocketopts(fd);
+	setsocketopts(fd,0);
 	set_nonblocking(fd, 1);
 
 #ifndef MINICORE
@@ -493,7 +502,7 @@ int make_listen_bind(uint32 ip, uint16 port)
 		return -1;
 	}
 
-	setsocketopts(fd);
+	setsocketopts(fd,0);
 	set_nonblocking(fd, 1);
 
 	server_address.sin_family      = AF_INET;
@@ -521,8 +530,7 @@ int make_listen_bind(uint32 ip, uint16 port)
 	return fd;
 }
 
-int make_connection(uint32 ip, uint16 port, bool silent)
-{
+int make_connection(uint32 ip, uint16 port, bool silent,int timeout) {
 	struct sockaddr_in remote_address;
 	int fd;
 	int result;
@@ -546,7 +554,7 @@ int make_connection(uint32 ip, uint16 port, bool silent)
 		return -1;
 	}
 
-	setsocketopts(fd);
+	setsocketopts(fd,timeout);
 
 	remote_address.sin_family      = AF_INET;
 	remote_address.sin_addr.s_addr = htonl(ip);

@@ -1614,7 +1614,7 @@ static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_
 		}
 
 		chrif_state = 0;
-		char_fd = make_connection(char_ip, char_port,false);
+		char_fd = make_connection(char_ip, char_port,false,10);
 
 		if(char_fd == -1) //Attempt to connect later. [Skotlex]
 			return 0;
