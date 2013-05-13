@@ -12,136 +12,123 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Vers�es brA: 1.1                                       |
 //   |--------------------------------------------------------|
-//   | Descrição:  Torre do Relógio Modo Pesadelo.            |
+//   | Descri��o:  Torre do Rel�gio Modo Pesadelo.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criação [Megasantos]                               |
+//   | 1.0 Cria��o [Megasantos]                               |
+//   | 1.1 Tradu��o PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
-//   | - Anotações                                            |
+//   | - Anota��es                                            |
 //   \________________________________________________________/
 
-c_tower1,232,222,5	script	벨자민 버튼#ct	968,{
+c_tower1,232,222,5	script	Benjamin#ct	968,{
 
-	mes "[벨자민 버튼]";
-	mes "^FF0000뒤틀린 시간의 시계탑^000000에 대해";
-	mes "알고 있나요?";
+	mes "[Benjamin]";
+	mes "^FF0000O que sabe^000000sobre a torre";
+	mes "do rel�gio no modo pesadelo?";
 	next;
-	mes "[벨자민 버튼]";
-	mes "난 그곳에서 왔어요.";
-	mes "때문에 나의 시간 또한";
-	mes "심각하게 뒤틀려 버렸죠.";
+	mes "[Benjamin]";
+	mes "Eu vim de l�.";
+	mes "Mas, j� faz um tempo desde que cheguei at� aqui.";
 	next;
-	mes "[벨자민 버튼]";
-	mes "시간을 마음대로 부리는";
-	mes "몬스터들이 있는 곳이에요.";
-	mes "나이와 기억과 환경의 시간이";
-	mes "모두 뒤틀려 버린다구요.";
+	mes "[Benjamin]";
+	mes "L� o tempo continua contando e os monstros permanecem.";
+	mes "Mesmo com a idade e o ambiente ao seu redor se modificando.";
 	next;
-	mes "[벨자민 버튼]";
-	mes "당신의 시간마저 위태로워질 수";
-	mes "있으니 제발 내게 그곳의 위치를";
-	mes "묻지는 말아주세요.";
+	mes "[Benjamin]";
+	mes "Ir at� l� pode te trazer problemas.";
+	mes "E por favor, n�o fa�a perguntas.";
 	next;
-	switch(select("묻지 않는다:뒤틀린 시간의 시계탑 2층 입장:뒤틀린 시간의 시계탑 3층 입장")) {
+	switch(select("N�o fazer perguntas.:2� Andar da Torre do Rel�gio ( Pesadelo ):3� Andar da Torre do Rel�gio ( Pesadelo )")) {
 	case 1:
-		mes "[벨자민 버튼]";
-		mes "휴...잘 생각했어요.";
-		mes "신종 몬스터들이 경험치와 아이템을";
-		mes "마구 뿌려대는 위험한 곳이에요.";
-		mes "어서 안전한 곳으로 돌아가세요.";
+		mes "[Benjamin]";
+		mes "Hugh... Bem pensado.";
+		mes "Experimente enfrentar novos monstros e conhecer novos itens";
+		mes "em lugares menos perigosos.";
+		mes "Vamos l�, v� para um lugar seguro.";
 		close;
 		return;
 		break;
 	case 2:
-		mes "[벨자민 버튼]";
-		mes "위험한 선택이에요.";
+		mes "[Benjamin]";
+		mes "� arriscado.";
 		next;
-		mes "[벨자민 버튼]";
-		mes "너무 위험해서 ";
-		mes "입장료 ^0000FF10000z^000000가 필요해요.";
+		mes "[Benjamin]";
+		mes "Muito perigoso ";
+		mes "E existe uma taxa de ^0000FF10000z^000000.";
 		next;
-		switch(select("관둔다:10000z를 낸다:입장료를 왜 받지?")) {
+		switch(select("Sair.:Pagar 10000z.:Como?")) {
 		case 1:
-			mes "[벨자민 버튼]";
-			mes "잘 생각했어요!";
-			mes "신종 몬스터들이 경험치와 아이템을";
-			mes "듬뿍 뿌려대는 무시무시한 곳이에요.";
-			mes "어서 안전한 곳으로 돌아가세요.";
+			mes "[Benjamin]";
+			mes "Bem pensado!";
+			mes "Experimente enfrentar novos monstros e conhecer novos itens";
+			mes "em lugares menos perigosos.";
+			mes "Vamos l�, v� para um lugar seguro.";
 			close;
 			return;
 			break;
 		case 2:
 			if (Zeny < 10000) {
-				mes "[벨자민 버튼]";
-				mes "돈이 부족한데요?";
-				mes "위험한 장소예요.";
-				mes "^0000FF10000z^000000를 내지 않으면";
-				mes "당신의 안전을 위해";
-				mes "입장시키지 않겠어요!";
+				mes "[Benjamin]";
+				mes "N�o est� faltando os zenys?";
+				mes "� um lugar perigoso.";
+				mes "^0000FF10000z^000000, n�o deixarei que voc�";
+				mes "v� at� l� sem que pague o valor necess�rio.";
 				close;
 				return;
 			}
 			set zeny, zeny - 10000;
-			mes "[벨자민 버튼]";
-			mes "부디 나처럼 시간에 휩쓸리지 말고";
-			mes "무사하기를...";
+			mes "[Benjamin]";
+			mes "At� mais...";
 			close2;
 			warp "c_tower2_",268,26;
 			break;
 		case 3:
-			mes "[벨자민 버튼]";
-			mes "모험자들의 안전을 위해";
-			mes "이곳에서 온종일 위험한 장소의";
-			mes "전격 출현!을 알리고 있으니";
-			mes "수고비가 필요할 수 밖에요.";
+			mes "[Benjamin]";
+			mes "L� � um lugar perigoso para todos os aventureiros que queiram frequent�-lo, e a seguran�a s� � concedida caso o valor necess�rio seja pago.";
 			emotion 4;
 			close;
 			break;
 		}
 		break;
 	case 3:
-		mes "[벨자민 버튼]";
-		mes "위험한 선택이에요.";
+		mes "[Benjamin]";
+		mes "� arriscado.";
 		next;
-		mes "[벨자민 버튼]";
-		mes "너무 위험해서 ";
-		mes "입장료 ^0000FF10000z^000000가 필요해요.";
+		mes "[Benjamin]";
+		mes "Muito perigoso ";
+		mes "E existe uma taxa de ^0000FF10000z^000000.";
 		next;
-		switch(select("관둔다:10000z를 낸다:입장료를 왜 받지?")) {
+		switch(select("Sair.:Pagar 10000z.:Como?")) {
 		case 1:
-			mes "[벨자민 버튼]";
-			mes "잘 생각했어요!";
-			mes "신종 몬스터들이 경험치와 아이템을";
-			mes "듬뿍 뿌려대는 무시무시한 곳이에요.";
-			mes "어서 안전한 곳으로 돌아가세요.";
+			mes "[Benjamin]";
+			mes "Bem pensado!";
+			mes "Experimente enfrentar novos monstros e conhecer novos itens";
+			mes "em lugares menos perigosos.";
+			mes "Vamos l�, v� para um lugar seguro.";
 			close;
 			break;
 		case 2:
 			if (Zeny < 10000) {
-				mes "[벨자민 버튼]";
-				mes "돈이 부족한데요?";
-				mes "위험한 장소예요.";
-				mes "^0000FF10000z^000000를 내지 않으면";
-				mes "당신의 안전을 위해";
-				mes "입장시키지 않겠어요!";
+				mes "[Benjamin]";
+				mes "N�o est� faltando os zenys?";
+				mes "� um lugar perigoso.";
+				mes "^0000FF10000z^000000, n�o deixarei que voc�";
+				mes "v� at� l� sem que pague o valor necess�rio.";
 				close;
 				return;
 			}
 			set zeny, zeny - 10000;
-			mes "[벨자민 버튼]";
-			mes "부디 나처럼 시간에 휩쓸리지 말고";
-			mes "무사하기를...";
+			mes "[Benjamin]";
+			mes "At� mais...";
 			close2;
 			warp "c_tower3_",65,147;
 			break;
 		case 3:
-			mes "[벨자민 버튼]";
-			mes "모험자들의 안전을 위해";
-			mes "이곳에서 온종일 위험한 장소의";
-			mes "전격 출현!을 알리고 있으니";
-			mes "수고비가 필요할 수 밖에요.";
+			mes "[Benjamin]";
+			mes "L� � um lugar perigoso para todos os aventureiros que queiram frequent�-lo, e a seguran�a s� � concedida caso o valor necess�rio seja pago.";
 			emotion 4;
 			close;
 		}
@@ -151,62 +138,51 @@ c_tower1,232,222,5	script	벨자민 버튼#ct	968,{
 }
 
 
-c_tower2_,274,26,3	script	벨자민 버튼#ct1	962,{
+c_tower2_,274,26,3	script	Benjamin#ct1	962,{
 
-	mes "[벨자민 버튼]";
-	mes "아마도 나를 본 적이 있는";
-	mes "사람이겠죠?";
+	mes "[Benjamin]";
+	mes "Provavelmente nunca nos encontramos, n�o foi?";
 	next;
-	mes "[벨자민 버튼]";
-	mes "지금과는 다른 모습으로";
-	mes "다른 장소에서 만났겠군요.";
+	mes "[Benjamin]";
+	mes "Ent�o irei te orientar.";
 	next;
-	switch(select("이곳에 대해 알고 싶어요:;밖으로 보내줘요")) {
+	switch(select("Informa��es sobre o lugar.:Sair.")) {
 	case 1:
-		mes "[벨자민 버튼]";
-		mes "이곳에서 무슨 일을 겪었고,";
-		mes "뭘 알아냈는지 당신은 내게";
-		mes "설명할 수 있겠어요?";
+		mes "[Benjamin]";
+		mes "Voc� aparentemente acabou encontrando dificuldades, acha que consegue continuar sozinh"+((Sex) ? "o":"a")+"";
 		next;
-		mes "[벨자민 버튼]";
-		mes "나도 마찬가지예요.";
-		mes "목적도 모른 채 이곳에 서있게 될";
-		mes "사람이 바로 당신이 될 수도 있어요.";
+		mes "[Benjamin]";
+		mes "Tamb�m estou assim.";
+		mes "Ainda n�o tenho um prop�sito aqui.";
 		next;
-		mes "[벨자민 버튼]";
-		mes "돌아갈 시간이에요.";
-		mes "부디 당신의 시간을 소중히";
-		mes "생각하세요.";
+		mes "[Benjamin]";
+		mes "Por favor, aproveite e saia enquanto � tempo.";
 		next;
-		switch(select("조금 더 머무른다:밖으로 나간다")) {
+		switch(select("Ficar um pouco mais.:Sair.")) {
 		case 1:
-			mes "[벨자민 버튼]";
-			mes "이곳의 경치가";
-			mes "마음에 드는가 보군요.";
-			mes "그럼, 얼마든지.";
+			mes "[Benjamin]";
+			mes "Como voc� gostou daqui, ent�o n�o h� problema.";
 			close;
 			break;
 		case 2:
-			mes "[벨자민 버튼]";
-			mes "컵에 담김 음료를 떠올려 보세요.";
-			mes "스푼으로 천천히 음료를 젓습니다.";
-			mes "그리고 색이 변해가는 걸";
-			mes "바라봅니다.";
+			mes "[Benjamin]";
+			mes "Um feiti�o est� sendo pronto.";
+			mes "Bebidas misturadas s�o adicionadas ao copo e mexidas lentamente.";
+			mes "Seu efeito est� completo !";
 			close2;
 			warp "c_tower1",235,223;
 			break;
 		}
 		break;
 	case 2:
-		mes "[벨자민 버튼]";
-		mes "헤어질 시간이군요.";
-		mes "좋아하는 음료가 있나요?";
+		mes "[Benjamin]";
+		mes "� hora de dizer.";
+		mes "Qual sua bebida favorita?";
 		next;
-		mes "[벨자민 버튼]";
-		mes "컵에 담김 음료를 떠올려 보세요.";
-		mes "스푼으로 천천히 음료를 젓습니다.";
-		mes "그리고 색이 변해가는 걸";
-		mes "바라봅니다.";
+		mes "[Benjamin]";
+		mes "Um feiti�o est� sendo pronto.";
+		mes "Bebidas misturadas s�o adicionadas ao copo e mexidas lentamente.";
+		mes "Seu efeito est� completo !";
 		close2;
 		warp "c_tower1",235,223;
 		break;
@@ -214,80 +190,23 @@ c_tower2_,274,26,3	script	벨자민 버튼#ct1	962,{
 	return;
 }
 
-c_tower3_,59,148,5	script	벨자민 버튼#ct2	574,{
-		
-		mes "[벨자민 버튼]";
-		mes "어디선가 나를 본 적이 있는";
-		mes "사람이겠군요?";
-		next;
-		mes "[벨자민 버튼]";
-		mes "지금과는 다른 모습으로,";
-		mes "다른 장소에서 만났겠죠.";
-		next;
-		switch(select("당신은 대체 누구죠?:밖으로 보내줘요")) {
-		case 1:
-			mes "[벨자민 버튼]";
-			mes "굉장히 자주 듣는 질문이에요.";
-			mes "훗날 당신 역시 지겹게 듣게 되겠죠.";
-			next;
-			mes "[벨자민 버튼]";
-			mes "책장을 차근차근 넘기다 보면";
-			mes "결말에 이르게 되듯,";
-			mes "이 또한 마찬가지겠지요.";
-			next;
-			mes "[벨자민 버튼]";
-			mes "이제 돌아갈 시간이에요.";
-			mes "부디 당신의 시간을 소중히";
-			mes "생각하세요.";
-			next;
-			switch(select("조금 더 머무른다:밖으로 나간다")) {
-			case 1:
-				mes "[벨자민 버튼]";
-				mes "이곳의 경치가";
-				mes "마음에 드는가 보군요.";
-				mes "그럼, 얼마든지.";
-				close;
-				break;
-			case 2:
-				mes "[벨자민 버튼]";
-				mes "컵에 담김 음료를 떠올려 보세요.";
-				mes "스푼으로 천천히 음료를 젓습니다.";
-				mes "그리고 색이 변해가는 걸";
-				mes "바라봅니다.";
-				close2;
-				warp "c_tower1",235,223;
-				break;
-			}
-			break;
-		case 2:
-			mes "[벨자민 버튼]";
-			mes "컵에 담김 음료를 떠올려 보세요.";
-			mes "스푼으로 천천히 음료를 젓습니다.";
-			mes "그리고 색이 변해가는 걸";
-			mes "바라봅니다.";
-			close2;
-			warp "c_tower1",235,223;
-			break;
-		}
-		return;
+c_tower3_,59,148,5	duplicate(Benjamin#ct1)	Benjamin#ct2	574
 
-	}
 // c_tower2_
-c_tower2_,0,0,0,0	monster	NG RIDEWORD	2478,2,300000,0,0
-c_tower2_,0,0,0,0	monster	NG RIDEWORD	2478,2,120000,0,0
-c_tower2_,0,0,0,0	monster	NG RIDEWORD	2478,1,60000,0,0
-c_tower2_,0,0,0,0	monster	NG MIMIC	2479,3,5000,0,0
-c_tower2_,0,0,0,0	monster	BIG BEN	2916,40,5000,0,0
-c_tower2_,0,0,0,0	monster	NEO PUNK	2919,40,5000,0,0
-c_tower2_,0,0,0,0	monster	TIME KEEPER	2918,1,5000 0,0
-c_tower2_,0,0,0,0	monster	ARC ELDER	2920,2,3600000,0,0
-
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,2,300000,0,0
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,2,120000,0,0
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,1,60000,0,0
+c_tower2_,0,0,0,0	monster	M�mico - Pesadelo	2479,3,5000,0,0
+c_tower2_,0,0,0,0	monster	Grande Ben	2916,40,5000,0,0
+c_tower2_,0,0,0,0	monster	Neo Punk	2919,40,5000,0,0
+c_tower2_,0,0,0,0	monster	Cron�metro	2918,1,5000 0,0
+c_tower2_,0,0,0,0	monster	Anci�o Arcaico	2920,2,3600000,0,0
 
 // c_tower3_
-c_tower3_,0,0,0,0	monster	NG MIMIC	2479,8,5000,0,0
-c_tower3_,0,0,0,0	monster	NG RIDEWORD	2478,8,5000,0,0
-c_tower3_,0,0,0,0	monster	BIG BELL	2917,110,5000,0,0
-c_tower3_,0,0,0,0	monster	TIME KEEPER	2918,3,5000,0,0
-c_tower3_,0,0,0,0	monster	OWL VISCOUNT	2921,1,5000,0,0
-c_tower3_,0,0,0,0	monster	TIMEHOLDER	3074,1,5000,0,0
-c_tower3_,0,0,0,0	monster	OWL MARQUEES	2923,1,5000,0,0
+c_tower3_,0,0,0,0	monster	M�mico - Pesadelo	2479,8,5000,0,0
+c_tower3_,0,0,0,0	monster	Rideword - Pesadelo	2478,8,5000,0,0
+c_tower3_,0,0,0,0	monster	Grande Sino	2917,110,5000,0,0
+c_tower3_,0,0,0,0	monster	Cron�metro	2918,3,5000,0,0
+c_tower3_,0,0,0,0	monster	Visconde Coruja	2921,1,5000,0,0
+c_tower3_,0,0,0,0	monster	Mestre do Tempo	3074,1,5000,0,0
+c_tower3_,0,0,0,0	monster	Marqu�s Coruja	2923,1,5000,0,0
