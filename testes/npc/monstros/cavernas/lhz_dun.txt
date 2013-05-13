@@ -118,7 +118,7 @@ lhz_dun02,0,0,0,0	monster#re	Egnigem Cenia	1652,50,5000,0,0
 lhz_dun02,0,0,0,0	monster#re	Armeyer Dinze	1654,50,5000,0,0
 lhz_dun02,0,0,0,0	monster#re	Exterminador	1682,20,5000,0,0
 lhz_dun02,0,0,0,0	monster#re	Gemini-S58	1681,10,5000,0,0
-lhz_dun02,0,0,0,0	monster#re	Eremes Guile	1635,1,5000,0,0
+lhz_dun02,0,0,0,0	monster#re	Eremes Guile	1635,1,5000,0,0,{}
 
 //========================================================================================
 // [Pré-Renovação] lhz_dun03 - Laboratório de Somatologia (Terceiro Andar)
