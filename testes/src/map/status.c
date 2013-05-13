@@ -5362,22 +5362,22 @@ static short status_calc_aspd(struct block_list *bl, struct status_change *sc, s
 		if(sc->data[SC_STAR_COMFORT])
 			skills1 = 5; // needs more info
 
-		if(sc->data[SC_TWOHANDQUICKEN] && skills1 < 7)
-			skills1 = 7;
+		if(sc->data[SC_TWOHANDQUICKEN] && skills1 < 14)
+			skills1 = 14;
 
-		if(sc->data[SC_ONEHAND] && skills1 < 7) skills1 = 7;
+		if(sc->data[SC_ONEHAND] && skills1 < 14) skills1 = 14;
 
-		if(sc->data[SC_MERC_QUICKEN] && skills1 < 7) // needs more info
-			skills1 = 7;
+		if(sc->data[SC_MERC_QUICKEN] && skills1 < 14) // needs more info
+			skills1 = 14;
 
-		if(sc->data[SC_ADRENALINE2] && skills1 < 6)
-			skills1 = 6;
+		if(sc->data[SC_ADRENALINE2] && skills1 < 12)
+			skills1 = 12;
 
-		if(sc->data[SC_ADRENALINE] && skills1 < 7)
-			skills1 = 7;
+		if(sc->data[SC_ADRENALINE] && skills1 < 14)
+			skills1 = 14;
 
-		if(sc->data[SC_SPEARQUICKEN] && skills1 < 7)
-			skills1 = 7;
+		if(sc->data[SC_SPEARQUICKEN] && skills1 < 14)
+			skills1 = 14;
 
 		if(sc->data[SC_GATLINGFEVER] && skills1 < 9) // needs more info
 			skills1 = 9;
