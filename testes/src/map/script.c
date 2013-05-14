@@ -17341,6 +17341,8 @@ BUILDIN_FUNC(recall)
 	return 0;
 }
 
+#include "../custom/scripts.inc"
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -17811,6 +17813,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(showevent, "ii"),
 
 	// brAthena
+	
+#include "../custom/scripts_def.inc"
+	
 	BUILDIN_DEF(unloadnpc,"s"),  // [Holy]
 	BUILDIN_DEF(recall,"s?"),
 	{NULL,NULL,NULL},

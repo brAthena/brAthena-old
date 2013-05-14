@@ -9399,6 +9399,9 @@ ACMD_FUNC(costume) {
 	
 	return true;
 }
+
+#include "../custom/commands.inc"
+
 /**
  * Fills the reference of available commands in atcommand DBMap
  **/
@@ -9657,6 +9660,7 @@ void atcommand_basecommands(void)
 		ACMD_DEF(channel),
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(reload),
+#include "../custom/commands_def.inc"
 		ACMD_DEF(costume)
 	};
 	AtCommandInfo *atcommand;
