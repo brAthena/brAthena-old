@@ -2616,7 +2616,7 @@ manuk,252,116,3	script	Manuk Garton#ep13_2day	450,{
  - Coleta de Bradium
  - Artesã Esplêndida
  - Coletando Ovos de Dragão (npc incluído quest 'Procurado')
- ============================================================ /*
+ ============================================================ */
 man_in01,378,276,3	script	Engenheiro de Manuk#ep13_2	453,{
 	if (checkweight(1201,2) == 0) {
 		mes "Espere um momento!!";
