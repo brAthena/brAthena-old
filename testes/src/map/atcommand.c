@@ -462,7 +462,7 @@ ACMD_FUNC(mapmove)
 		return -1;
 	}
 
-	if((x || y) && map_getcell(m, x, y, CELL_CHKNOPASS)) {
+	if((x || y) && map_getcell(m, x, y, CELL_CHKNOPASS) && pc_get_group_level(sd) < battle_config.gm_ignore_warpable_area) {
 		//This is to prevent the pc_setpos call from printing an error.
 		clif_displaymessage(fd, msg_txt(2));
 		if(!map_search_freecell(NULL, m, &x, &y, 10, 10, 1))

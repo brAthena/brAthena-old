@@ -5995,6 +5995,7 @@ static const struct _battle_data {
 	{ "skill_trap_type",                    &battle_config.skill_trap_type,                 0,      0,      1,              },
 	{ "item_restricted_consumption_type",   &battle_config.item_restricted_consumption_type,1,      0,      1,              },
 	{ "max_walk_path",			&battle_config.max_walk_path,			17,     1,      MAX_WALKPATH,   },
+	{ "gm_ignore_warpable_area",		&battle_config.gm_ignore_warpable_area,		0,	2,	100,		},
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },

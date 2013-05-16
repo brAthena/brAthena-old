@@ -3038,6 +3038,10 @@ void clif_changelook(struct block_list *bl,int type,int val)
 		WBUFL(buf,7)=val;
 	}
 	clif_send(buf,packet_len(0x1d7),bl,target);
+	if(disguised(bl) && ((TBL_PC*)sd)->fontcolor) {
+		WBUFL(buf,2)=-bl->id;
+		clif_send(buf,packet_len(0x1d7),bl,SELF);
+	}
 #endif
 }
 
@@ -5945,9 +5949,14 @@ void clif_resurrection(struct block_list *bl,int type)
 	WBUFL(buf,2)=bl->id;
 	WBUFW(buf,6)=0;
 
-	clif_send(buf,packet_len(0x148),bl,type==1 ? AREA : AREA_WOS);
-	if(disguised(bl))
-		clif_spawn(bl);
+	clif_send(buf,packet_len(0x148),bl,type == 1 ? AREA : AREA_WOS);
+	if(disguised(bl)) {
+		if(((TBL_PC*)bl)->fontcolor) {
+			WBUFL(buf,2)=-bl->id;
+			clif_send(buf,packet_len(0x148),bl, SELF);
+		} else
+			clif_spawn(bl);
+	}
 }
 
 
@@ -9951,6 +9960,8 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 
 		if(sd->disguise == -1) {
 			pc_disguise(sd,sd->status.class_);
+			if(pc_isdead(sd))
+				clif_clearunit_single(-sd->bl.id, CLR_DEAD, sd->fd);
 			sd->fontcolor_tid = add_timer(gettick()+5000, clif_undisguise_timer, sd->bl.id, 0);
 		} else if (sd->disguise == sd->status.class_ && sd->fontcolor_tid != INVALID_TIMER) {
 			const struct TimerData *timer;

@@ -13501,6 +13501,28 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 		return 0;
 	}
 
+	if(sd->sc.data[SC_COMBO]) {
+		switch(skill_id) {
+			case MO_CHAINCOMBO:
+			case MO_COMBOFINISH:
+			case CH_TIGERFIST:
+			case CH_CHAINCRUSH:
+			case MO_EXTREMITYFIST:
+			case TK_TURNKICK:
+			case TK_STORMKICK:
+			case TK_DOWNKICK:
+			case TK_COUNTER:
+			case HT_POWER:
+			case GC_COUNTERSLASH:
+			case GC_WEAPONCRUSH:
+			case SR_FALLENEMPIRE:
+			case SR_DRAGONCOMBO:
+			case SR_TIGERCANNON:
+				break;
+			default: return 0;
+		}
+	}
+			
 	return 1;
 }
 

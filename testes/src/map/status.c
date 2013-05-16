@@ -9304,7 +9304,7 @@ int status_change_clear(struct block_list *bl, int type)
 		if(!sc->data[i])
 			continue;
 
-		if(type == 0)
+		if(type == 0) {
 			switch(i) { //Type 0: PC killed -> Place here statuses that do not dispel on death.
 				case SC_ELEMENTALCHANGE: //Only when its Holy or Dark that it doesn't dispell on death
 					if(sc->data[i]->val2 != ELE_HOLY && sc->data[i]->val2 != ELE_DARK)
@@ -9355,8 +9355,8 @@ int status_change_clear(struct block_list *bl, int type)
 				case SC_PUSH_CART:
 				case SC_ALL_RIDING:
 					continue;
-
 			}
+		}
 
 		if(type == 3) {
 			switch(i) { // TODO: This list may be incomplete
@@ -9388,10 +9388,12 @@ int status_change_clear(struct block_list *bl, int type)
 //cleaning all extras vars
 	sc->comet_x = 0;
 	sc->comet_y = 0;
+
+	sc->bs_counter = 0;
+
 #ifndef RENEWAL
 	sc->sg_counter = 0;
 #endif
-	sc->bs_counter = 0;
 
 	if(type == 0 || type == 2)
 		clif_changeoption(bl);
