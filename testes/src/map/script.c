@@ -4267,6 +4267,8 @@ BUILDIN_FUNC(mes)
 		}
 	}
 
+	st->mes_active = 1;
+
 	return 0;
 }
 
@@ -4301,8 +4303,15 @@ BUILDIN_FUNC(close)
 	if(sd == NULL)
 		return 0;
 
-	if(st->mes_active)
-	st->state = CLOSE;
+	if(!st->mes_active) {
+		TBL_NPC* nd = map_id2nd(st->oid);
+		st->state = END;
+		ShowWarning("Uso indevido do comando 'close' (fonte:%s / caminho:%s)\n",nd?nd->name:"Desconhecido",nd?nd->path:"Desconhecido");
+	} else {
+		st->state = CLOSE;
+		st->mes_active = 0;
+	}
+
 	clif_scriptclose(sd, st->oid);
 	return 0;
 }
@@ -4320,6 +4329,10 @@ BUILDIN_FUNC(close2)
 		return 0;
 
 	st->state = STOP;
+
+	if(st->mes_active)
+		st->mes_active = 0;
+
 	clif_scriptclose(sd, st->oid);
 	return 0;
 }
