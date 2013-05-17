@@ -7522,7 +7522,13 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 
 	switch(type) {
 		case LOOK_BASE:
-			sd->vd.class_ = val;
+			status_set_viewdata(&sd->bl, val);
+			clif_changelook(&sd->bl,LOOK_BASE,sd->vd.class_);
+			clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
+			if (sd->vd.cloth_color)
+				clif_changelook(&sd->bl,LOOK_CLOTHES_COLOR,sd->vd.cloth_color);
+			clif_skillinfoblock(sd);
+			return 0;
 			break;
 		case LOOK_HAIR: //Use the battle_config limits! [Skotlex]
 			val = cap_value(val, MIN_HAIR_STYLE, MAX_HAIR_STYLE);
