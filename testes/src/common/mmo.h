@@ -63,6 +63,9 @@
 	#define PACKETVER 20120410
 #endif
 
+/// Comentar a linha a seguir se seu cliente não é ragexeRE (necessário por causa de pacotes conflitantes em ragexe vs ragexeRE)
+#define PACKETVER_RE
+
 //Remove/Comment this line to disable sc_data saving. [Skotlex]
 #define ENABLE_SC_SAVING
 //Remove/Comment this line to disable server-side hot-key saving support [Skotlex]

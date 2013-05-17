@@ -34,7 +34,8 @@ struct status_change_entry;
 #define MAX_SKILL_ABRA_DB    210
 #define MAX_SKILL_IMPROVISE_DB 30
 
-#define MAX_SKILL_LEVEL 100
+#define MAX_SKILL_LEVEL 10
+#define MAX_SPIRITBALL 15 // Esferas espirituais
 
 DBMap* skilldb_name2id;
 

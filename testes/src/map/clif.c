@@ -16802,6 +16802,27 @@ void clif_parse_CashShopBuy(int fd, struct map_session_data *sd) {
 
 	}
 }
+/* [Ind] */
+void clif_parse_CashShopReqTab(int fd, struct map_session_data *sd) {
+	short tab = RFIFOW(fd, 2);
+	int j;
+
+	if(tab < 0 || tab > CASHSHOP_TAB_MAX)
+		return;
+
+	WFIFOHEAD(fd, 10 + (cs.item_count[tab] * 6));
+	WFIFOW(fd, 0) = 0x8c0;
+	WFIFOW(fd, 2) = 10 + (cs.item_count[tab] * 6);
+	WFIFOL(fd, 4) = tab;
+	WFIFOW(fd, 8) = cs.item_count[tab];
+
+	for(j = 0; j < cs.item_count[tab]; j++) {
+		WFIFOW(fd, 10 + (6 * j)) = cs.data[tab][j]->id;
+		WFIFOL(fd, 12 + (6 * j)) = cs.data[tab][j]->price;
+	}
+
+	WFIFOSET(fd, 10 + (cs.item_count[tab] * 6));
+}
 
 void clif_status_change2(struct block_list *bl, int tid, enum send_target target, int type, int val1, int val2, int val3) {
 	unsigned char buf[32];
@@ -17338,6 +17359,7 @@ void clif_defaults(void) {
 	/* RagExe Botão de Cash */
 	clif->pCashShopOpen = clif_parse_CashShopOpen;
 	clif->pCashShopClose = clif_parse_CashShopClose;
+	clif->pCashShopReqTab = clif_parse_CashShopReqTab;
 	clif->pCashShopSchedule = clif_parse_CashShopSchedule;
 	clif->pCashShopBuy = clif_parse_CashShopBuy;
 	clif->pPartyTick = clif_parse_PartyTick;
