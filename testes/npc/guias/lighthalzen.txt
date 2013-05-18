@@ -29,9 +29,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 	mes "[Guia de Lighthalzen]";
 	mes "Bem-vindo à Lighthalzen, a Cidade-Estado da Corporação.";
 	mes "Se você precisar de orientação referente à cidade, sinta-se à vontade para me perguntar, e eu farei o melhor para ajudá-lo.";
-	callsub "Guialhz"+(checkre(0) ? "RE":"PRE");
-	
-  GuialhzRE:
+  if(checkre(0)) {
 	next;
 	mes "[Guia de Lighthalzen]";
 	mes "Please be aware that I'm";
@@ -188,8 +186,8 @@ L_Mark:
 	mes "on your mini-map.";
 	mes "Would you like to check any other locations?";
 	return;
-
-  GuialhzPRE:
+} 
+  else {
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
@@ -322,7 +320,7 @@ L_Mark:
 	}
 	cutin "ein_soldier",255;
 	end;
-
+  }
 }
 
 lighthalzen,220,310,3	duplicate(Guia#lhz01)	Guia#lhz02	852

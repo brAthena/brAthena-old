@@ -322,7 +322,7 @@ prontera,154,187,4	script	Guia#01prontera	105,{
 				if (.@compass_check == 0) {
 					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 					next;
-					if (select("Sim:No") == 1) set .@compass_check,1;
+					if (select("Sim:Não") == 1) set .@compass_check,1;
 				}
 				set .@loop2,1;
 				while (.@loop2) {

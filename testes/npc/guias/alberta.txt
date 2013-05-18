@@ -29,7 +29,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 	mes "[Guia de Alberta]";
 	mes "Be-vindo a ^8B4513Alberta^000000,";
 	mes "a Cidade Portuária.";
-	mes "Você precisa de ajuda?";
+	mes "Você deseja conhecer a cidade?";
 	next;
 	set .@loop1,1;
 	if(checkre(0)) { // Renewal
@@ -102,7 +102,7 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 			case 2:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Oficiais de Teleporte Éden ]:[ Funcionárias Kafra ]:[ Funcionário Eventos Incríveis ]:[ Loja de Munições ]:[ Loja de Ingredientes ]:Menu Anterior")) {
+					switch(select("[ Oficiais do Éden ]:[ Funcionárias Kafra ]:[ Funcionário Eventos Incríveis ]:[ Loja de Munições ]:[ Loja de Ingredientes ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Alberta]";
 						mes "^B9062FOficiais de Teleporte Éden^000000 estão localizados ao sul de Alberta";
@@ -115,8 +115,8 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 						break;
 					case 2:
 						mes "[Guia de Alberta]";
-						mes "Deixe-me marcar para você a localização";
-						mes "^0000FFKafra Employees^000000";
+						mes "Deixe-me marcar para você a localização das";
+						mes "^0000FFFuncionárias Kafra^000000";
 						mes "em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,33,41,8,0x0A82FF;
