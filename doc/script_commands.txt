@@ -3,9 +3,9 @@
 //===== By: ==================================================
 //= rAthena Dev Team
 //===== Current Version: =====================================
-//= $Revision: 17075 $
+//= $Revision: 17328 $
 //===== Last Updated: ========================================
-//= $LastChangedDate: 2013-01-04 16:38:44 -0200 (Fri, 04 Jan 2013) $
+//= $LastChangedDate: 2013-05-15 02:16:19 -0300 (qua, 15 mai 2013) $
 //===== Description: =========================================
 //= A reference manual for the rAthena scripting language.
 //= Commands are sorted depending on their functionality.
@@ -122,7 +122,7 @@ expect commands, command name first, but rather, normally start with a map name.
 What's more confusing about the top-level commands is that most of them use a 
 tab symbol to divide their arguments.
 
-To prevent problems and confusion, the tab symbols are written as '%TAB%' 
+To prevent problems and confusion, the tab symbols are written as '%TAB%' or '<TAB>'
 throughout this document, even though this makes the text a bit less readable. 
 Using an invisible symbol to denote arguments is one of the bad things about 
 this language, but we're stuck with it for now. :)
@@ -286,9 +286,9 @@ to -1, the 'buy price' given in the item database will be used. Otherwise, the
 price you gave will be used for this item, which is how you create differing 
 prices for items in different shops.
 
-Since trunk r12264 you can alternatively use "cashshop" in place of "shop"
-to use the Cash Shop interface, allowing you to buy items with special points
-(Currently stored as account vars in global_reg #CASHPOINTS and #KAFRAPOINTS.)
+You can alternatively use "cashshop" in place of "shop" to use the Cash Shop 
+interface, allowing you to buy items with special points (Currently stored as 
+account vars in global_reg #CASHPOINTS and #KAFRAPOINTS).
 This type of shop will not allow you to sell items at it, you may only
 purchase items here. The layout used to define sale items still count, and
 "<price>" refers to how many points will be spent purchasing the them.
@@ -544,9 +544,9 @@ If you try to set Zeny to a negative number, the script will be terminated with 
 Assigning variables
 --------- ---------
 
-As of rAthena revision 15982, variables can be accessed and assigned values directly
-without the use of the built-in 'set' function. This means that variables can be
-accessed and modified much like other programming languages.
+Variables can be accessed and assigned values directly without the use of the built-in 
+'set' function. This means that variables can be accessed and modified much like other 
+programming languages.
 
     @x = 100;
     @x = @y = 100;
@@ -995,7 +995,9 @@ From here on, we will have the commands sorted as follow:
 7.- Instance commands.
 8.- Quest Log commands.
 9.- Battleground commands.
-10.- Mercenary commands.
+10.- Pet commands.
+11.- Homunculus commands.
+12.- Mercenary commands.
 
 =====================
 |1.- Basic commands.|
@@ -1084,7 +1086,7 @@ the message box will have closed, the script execution will not stop, and comman
 make it stop in some other manner.
 
     mes "[Woman]";
-    mes "I will warp you now";
+    mes "I will warp you now.";
     close2;
     warp "place",50,50;
     end;
@@ -1143,7 +1145,7 @@ will make @x equal 100.
 will compute 1+5/8+9 (which is, surprisingly, 10 - remember, all numbers are 
 integer in this language) and make @x equal it.
 
-Returns the variable reference (since trunk r12870).
+Returns the variable reference.
 
 ---------------------------------------
 
@@ -1427,7 +1429,7 @@ This is done to prevent exploits in badly written scripts, which would
 let people, for example, put negative amounts of Zeny into a bank script and 
 receive free Zeny as a result.
 
-Since trunk r12192 the command has two optional arguments and a return value.
+The command has two optional arguments and a return value. 
 The default value of 'min' and 'max' can be set with 'input_min_value' and 
 'input_max_value' in script_athena.conf.
 For numeric inputs the value is capped to the range [min,max]. Returns 1 if 
@@ -1479,15 +1481,15 @@ generally cleaner:
 		return 1;// it's odd
 	}
 
-Alternately, as of rAthena revision 15979 and 15981, user-defined functions
-may be called directly without the use of the 'callfunc' script command.
+Alternately, user-defined functions may be called directly without the use of 
+the 'callfunc' script command.
 
-	function<tab>script<tab>SayHello<tab>{
+	function<TAB>script<TAB>SayHello<TAB>{
 		mes "Hello " + getarg(0);
 		return 0;
 	}
 
-	place,50,50,6<tab>script<tab>Man<tab>115,{
+	place,50,50,6<TAB>script<TAB>Man<TAB>115,{
 		mes "[Man]";
 		SayHello strcharinfo(0);
 		close;
@@ -1603,7 +1605,7 @@ You can pass multiple arguments in a function call:
 
 getarg(0) would be 5, getarg(1) would be 4 and getarg(2) would be 3.
 
-Getarg has an optional argument since trunk r10773 and stable r10958.
+Getarg has an optional argument:
 If the target argument exists, it is returned.
 Otherwise, if <default_value> is present it is returned instead, 
 if not the script terminates immediately.
@@ -2160,13 +2162,13 @@ Also useful when passing arrays to functions or accessing another npc's arrays:
 
 ---------------------------------------
 
-*readparam(<parameter number>)
+*readparam(<parameter number>{,"<character name>"})
 
-This function will return the basic stats of an invoking character, referred to 
-by the parameter number. Instead of a number, you can use a parameter name if it 
-is defined in 'db/const.txt'.
+This function will return the specified stat of the invoking character, or, if a
+character name is specified, of that player. The stat can either be a number or
+paramter name, defined in 'db/const.txt'.
 
-For reference, these things are defined:
+Some example parameters:
 
 StatusPoint, BaseLevel, SkillPoint, Class, Upper, Zeny, Sex, Weight, MaxWeight,
 JobLevel, BaseExp, JobExp, NextBaseExp, NextJobExp, Hp, MaxHp, Sp, MaxSp,
@@ -2219,7 +2221,8 @@ doesn't have an attached RID. Note that this will cause the map server to
 print "player not attached!" error messages, so it is preferred to use
 "playerattached" to check for the character attached to the script.
 
-if( getcharid(2) == 0 ) mes "Only members of a guild are allowed here!";
+if (getcharid(2) == 0)
+	mes "Only members of a guild are allowed here!";
 
 ---------------------------------------
 
@@ -2453,16 +2456,20 @@ This function returns the item ID of the item equipped in the equipment slot
 specified on the invoking character. If nothing is equipped there, it returns -1. 
 Valid equipment slots are:
 
-EQI_HEAD_TOP (1)  - Upper head gear
-EQI_ARMOR (2)     - Armor (Where you keep your Jackets and Robes)
-EQI_HAND_L (3)    - What is in your Left hand.
-EQI_HAND_R (4)    - What is in your Right hand.
-EQI_GARMENT (5)   - The garment slot (Mufflers, Hoods, Manteaus)
-EQI_SHOES (6)     - What foot gear the player has on.
-EQI_ACC_L (7)     - Accessory 1.
-EQI_ACC_R (8)     - Accessory 2.
-EQI_HEAD_MID (9)  - Middle Headgear (masks and glasses)
-EQI_HEAD_LOW (10) - Lower Headgear (beards, some masks)
+EQI_HEAD_TOP (1)          - Upper head gear
+EQI_ARMOR (2)             - Armor (Where you keep your Jackets and Robes)
+EQI_HAND_L (3)            - What is in your Left hand.
+EQI_HAND_R (4)            - What is in your Right hand.
+EQI_GARMENT (5)           - The garment slot (Mufflers, Hoods, Manteaus)
+EQI_SHOES (6)             - What foot gear the player has on.
+EQI_ACC_L (7)             - Accessory 1.
+EQI_ACC_R (8)             - Accessory 2.
+EQI_HEAD_MID (9)          - Middle Headgear (masks and glasses)
+EQI_HEAD_LOW (10)         - Lower Headgear (beards, some masks)
+EQI_COSTUME_HEAD_LOW (11) - Lower Costume Headgear
+EQI_COSTUME_HEAD_MID (12) - Middle Costume Headgear
+EQI_COSTUME_HEAD_TOP (13) - Upper Costume Headgear
+EQI_COSTUME_GARMENT (14)  - Costume Garment
 
 Notice that a few items occupy several equipment slots, and if the character is 
 wearing such an item, 'getequipid' will return it's ID number for either slot.
@@ -2960,6 +2967,7 @@ You need to put a 'close' after that yourself.
 2,2.- Guild-related commands
 \\
 ---------------------------------------
+
 *getguildname(<guild id>)
 
 This function returns a guild's name given an ID number. If there is no such 
@@ -3001,7 +3009,6 @@ Maybe you want to make a room only guild masters can enter:
     L_GuildMaster:
         mes "Welcome guild master of "+GetGuildName(@GID);
         close;
-
 
 ---------------------------------------
 
@@ -3130,7 +3137,7 @@ Example 2:
 
 *getskilllist;
 
-This command sets a bunch of arrays with a complete list of skills the 
+This command sets a bunch of arrays with a complete list of skills the
 invoking character has. Here's what you get:
 
 @skilllist_id[]   - skill ids.
@@ -3143,52 +3150,7 @@ easiest way to store all the skills and make the character something else for a
 while. Advanced job for a day? :) This could also be useful to see how many 
 skills a character has.
 
----------------------------------------
-
-*getpetinfo(<type>)
-
-This function will return pet information for the pet the invoking character 
-currently has active. Valid types are:
-
- 0 - Unique pet ID number as stored by the char server and distinguishing it 
-     from all other pets the characters actually have. This value is currently 
-     useless, at most you can use it to tell pets apart reliably.
- 1 - Pet class number as per 'db/pet_db.txt' - will tell you what kind of a pet it 
-     is.
- 2 - Pet name. Will return "null" if there's no pet. 
- 3 - Pet friendly level (intimacy score). 1000 is full loyalty.
- 4 - Pet hungry level. 100 is completely full.
- 5 - Pet rename flag. 0 means this pet has not been named yet.
-
----------------------------------------
-
-*gethominfo(<type>)
-
-This function works as a direct counterpart of 'getpetinfo':
- 0 - Homunculus unique ID
- 1 - Homunculus Class
- 2 - Name
- 3 - Friendly level (intimacy score). 100000 is full loyalty.
- 4 - Hungry level. 100 is completely full.
- 5 - Rename flag. 0 means this homunculus has not been named yet.
- 6 - Homunculus level
-
----------------------------------------
-
-*petstat(<flag>)
-
-Returns current pet status, all are integers except name.
-Returns 0 or "" if the player doesn't have pets.
-
-Flags usable >>
-PET_CLASS
-PET_NAME
-PET_LEVEL
-PET_HUNGRY
-PET_INTIMATE
-
-Example:
-	set @i, petstat(PET_CLASS);
+This command does not count skills which are set as flag 4 (permament granted) (ALL_BUYING_STORE/ALL_INCCARRY)
 
 ---------------------------------------
 
@@ -3283,6 +3245,7 @@ Example:
 Returns the total amount of skill points a character possesses (SkillPoint+SP's used in skills)
 This command can be used to check the currently attached characters total amount of skill points.
 This means the skill points used in skill are counted, and added to SkillPoints (number of skill points not used).
+This command does not count skills which are set as flag 4 (permament granted) (ALL_BUYING_STORE/ALL_INCCARRY)
 
 Example:
 
@@ -3392,7 +3355,7 @@ things might in some cases be required.
 The 'setoption' series of functions check for a so-called option that is set on 
 the invoking character. 'Options' are used to store status conditions and a lot 
 of other non-permanent character data of the yes-no kind. For most common cases, 
-it is better to use 'checkcart','checkfalcon','checkpeco' and other similar 
+it is better to use 'checkcart','checkfalcon','checkriding' and other similar 
 functions, but there are some options which you cannot get at this way. They 
 return 1 if the option is set and 0 if the option is not set.
 
@@ -3436,8 +3399,8 @@ Option numbers valid for the third version (opt2) of this command are:
 0x80 - Deadly poisoned.
 
 Option numbers (except for opt1) are bit-masks - you can add them up to check
- for several states, but the functions will return true if at least one of them
- is in effect.
+for several states, but the functions will return true if at least one of them
+is in effect.
 
 'setoption' will set options on the invoking character. There are no second and 
 third versions of this command, so you can only change the values in the first 
@@ -3549,7 +3512,7 @@ warg and 0 if they don't.
 
 ---------------------------------------
 
-*checkvending({"<player name>"})
+*checkvending({"<Player Name>"})
 *checkchatting({"<Player Name>"})
 
 Checks if the player is vending or in a chatroom.
@@ -3571,6 +3534,13 @@ Examples:
 	//This will check if the attached player in a chat room or not.
 	if (checkchatting())
 		mes "You are currently in a chat room!";
+
+---------------------------------------
+
+*checkidle({"<Player Name>"})
+
+	Returns the time, in seconds, that the specified player has been idle.
+	Name is optional, and defaults to the attached player if omitted.
 
 ---------------------------------------
 
@@ -3638,6 +3608,9 @@ in February 2005, but it will work just fine in normal NPC scripts.
 This function is similar to 'isequipped', but instead of 1 or 0, it will return 
 the number of cards in the list given that were found on the invoking character.
 
+If a given parameter is not a card, the function returns the amount of that
+item equipped on the invoking character.
+
     if (isequippedcnt(4001,4005,4033,4196) == 4) mes "Finally got all four poring cards?";
 
 ---------------------------------------
@@ -3674,12 +3647,12 @@ For a list of equipment slots see 'getequipid'.
 *detachrid;
 
 These commands allow the manipulation of the script's currently attached player.
-While attachrid allows attaching of a different player by using it's account id
-for the parameter rid, detachrid makes the following commands run, as if the
+While 'attachrid' allows attaching of a different player by using its account id
+for the parameter RID, 'detachrid' makes the following commands run as if the
 script was never invoked by a player. 
 
-In case, that the player cannot be attached, such as, when the player went
-offline in the mean time, attachrid returns 0, otherwise 1.
+The command returns 0 if the player cannot be attached (if the account is offline
+or does not exist), and 1 upon success.
 
 ---------------------------------------
 
@@ -3777,7 +3750,7 @@ SavePoint:    All party members are warped to the save point of the currently
 Leader:       All party members are warped to the leader's position. The leader must
               be online and in the current map-server for this to work.
 
-If you specify a from_mapname, warpparty will only affect those on that map.
+If you specify a from_mapname, 'warpparty' will only affect those on that map.
 
 Example:
 
@@ -3808,10 +3781,10 @@ Warps a guild to specified map and coordinate given the guild id, which you can 
 getcharid(2). You can also request another guild id given the member's name with getcharid(2,<player_name>).
  
 You can use the following "map names" for special warping behavior:
-Random:       All party members are randomly warped in their current map (as if they
+Random:       All guild members are randomly warped in their current map (as if they
               all used a fly wing)
-SavePointAll: All party members are warped to their respective save point.
-SavePoint:    All party members are warped to the save point of the currently
+SavePointAll: All guild members are warped to their respective save point.
+SavePoint:    All guild members are warped to the save point of the currently
               attached player (will fail if there's no player attached).
 
 Example:
@@ -3885,10 +3858,41 @@ you have maximum. Like 'heal', this will not call up any animations or effects.
 
 ---------------------------------------
 
-*recovery;
+*recovery <type>{,<option>,<revive_flag>{,<map name>}};
 
-This command will revive and restore full HP and SP to all characters currently 
-connected to the server.
+This command will revive and fully restore the HP/SP of the selected characters.
+It returns 1 upon successful use.
+
+<type> is the target, and determines the <option> parameter:
+ 0: Player  -> Character ID number
+ 1: Party   -> Party ID number
+ 2: Guild   -> Guild ID number
+ 3: Map     -> Map name (a string)
+ 4: All     -> None (takes <revive_flag> as option)
+
+If no option is specified, the invoking player's character ID, party ID, guild ID,
+or map will be used.
+
+<revive_flag> determines the action:
+ 1: Revive and heal all players (default)
+ 2: Heal living players only
+ 4: Revive dead players only
+
+<map name> can optionally be used to define a single map to execute the command on
+for types 1 (party) and 2 (guild).
+
+Examples:
+	// Only revive characters in invoking party on map "morocc"
+	recovery 1,getcharid(1),4,"morocc";
+
+	// Fully heal (don't revive) all members of invoking character's guild
+	recovery 2,getcharid(2),2;
+
+	// Revive and fully heal everyone in map "prontera"
+	recovery 3,"prontera";
+
+	// Only revive all dead characters on server
+	recovery 4,4;
 
 ---------------------------------------
 
@@ -3922,9 +3926,9 @@ changing jobs, which can be checked for later in scripts.
 
 ---------------------------------------
 
-*jobname (<job number>)
+*jobname(<job number>)
 
-This command retrieves the name of the given job using the msg_athena entries 550->650.
+This command retrieves the name of the given job using the map_msg entries 550->655.
 
 	mes "[Kid]";
 	mes "I never thought I'd met a "+jobname(Class)+" here of all places.";
@@ -3932,17 +3936,17 @@ This command retrieves the name of the given job using the msg_athena entries 55
 
 ---------------------------------------
 
-*eaclass ({<job number>})
+*eaclass({<job number>})
 
-This commands returns the "eA job-number" corresponding to the given class (if none is given, it returns uses
-the invoking player's class as argument). The eA job-number is also a class number system, but it's one that
-comes with constants which make it easy to convert among classes. The command will return -1 if you pass it a
-job number which doesn't has a eA Job value equivalent.
+This commands returns the "eA job-number" corresponding to the given class, and
+uses the invoking player's class if none is given. The eA job-number is also a
+class number system, but it's one that comes with constants which make it easy
+to convert among classes. The command will return -1 if you pass it a job number
+which doesn't have an eA job-number equivalent.
 
 	set @eac, eaclass();
 	if ((@eac&EAJ_BASEMASK) == EAJ_SWORDMAN)
-		mes "You must be a swordman, knight, crusader, paladin, high swordman, lord knight, baby swordman,";
-		mes "baby knight or baby crusader.";
+		mes "Your base job is Swordman.";
 	if (@eac&EAJL_UPPER)
 		mes "You are a rebirth job.";
 	if ((@eac&EAJ_UPPERMASK) == EAJ_SWORDMAN)
@@ -3953,11 +3957,12 @@ For more information on the eA Job System, see the docs/ea_job_system.txt file.
 ---------------------------------------
 *roclass <job number> {,<gender>}
 
-Does the opposite of eaclass. That is, given a eA Job class, it returns which is the corresponding RO class number. 
-A gender is required because both Bard and Dancers share the same eA Job value (EAJ_BARDDANCER), if it isn't given, the
-gender of the executing player is taken (if there's no player running the script, male will be used by default).
-The command returns -1 when there isn't a valid class to represent the required job (for example, if you try to get the
-baby version of a Taekwon class).
+Does the opposite of eaclass. That is, given an eA job-number, it returns the
+corresponding RO class number. A gender is required because both Bard and Dancers
+share the same eA job-number (EAJ_BARDDANCER), and uses the invoking player's
+gender if none is given (if no player is attached, male will be used by default).
+The command will return -1 if there is no valid class to represent the specified
+job (for example, if you try to get the baby version of a Taekwon class).
 
 	set @eac, eaclass();
 	//Check if class is already rebirth
@@ -3974,16 +3979,18 @@ baby version of a Taekwon class).
 
 ---------------------------------------
 
-*changebase <job ID number>;
+*changebase <job ID number>{,<account ID>};
 
-This will change the appearance of the invoking character to that of a specified 
-job class. Nothing but appearance will change. This command is used in item 
-scripts for "Wedding Dress" and "Tuxedo" so the character like job 22, which is 
-the job number of the wedding sprites.
+This command will change the appearance of the invoking character to that of a
+specified job class. Nothing but appearance will change.
 
-It would be entered in the equip bonus section of an item
+Examples:
 
 2338,Wedding_Dress,Wedding Dress,5,43000,,500,,0,,0,119529470,7,0,16,,0,1,0,{ bonus bMdef,15; changebase 22; }
+
+changebase Job_Novice; // Changes player to Novice sprite.
+
+changebase Class; // Changes player back to default sprite.
 
 ---------------------------------------
 
@@ -4159,7 +4166,7 @@ current SVN, drops only Jellopies anyway.
 This transaction is logged if the log script generated transactions option is 
 enabled.
 
-You may also create an item by it's name in the 'english name' field in the 
+You may also create an item by its name in the 'english name' field in the 
 item database:
 
     getitem "RED_POTION",10;
@@ -4349,14 +4356,11 @@ the results array is limited to 10 items.
 *delitem <item id>,<amount>{,<account ID>};
 *delitem "<item name>",<amount>{,<account ID>};
 
-This command will take a specified amount of items from the invoking/target character. 
-As all the item commands, this one uses the ID of the item found inside 
-'db/(pre-)re/item_db.txt'. The items are destroyed - there is no way an NPC can simply 
-own items and have an inventory of them, other as by destroying and recreating 
-them when needed.
+This command will remove a specified amount of items from the invoking/target character. 
+Like all the item commands, it uses the item ID found inside 'db/(pre-)re/item_db.txt'.
 
-    delitem 502,10 // The person will lose 10 apples
-    delitem 617,1  // The person will lose 1 Old Violet Box
+    delitem 502,10; // The person will lose 10 apples
+    delitem 617,1;  // The person will lose 1 Old Violet Box
 
 It is always a good idea to check if the player actually has the items before you delete them.
 If you try to delete more items that the player has, the player will lose the ones he/she has 
@@ -4370,7 +4374,7 @@ database. If the name is not found, nothing will be deleted.
 *delitem2 <item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>{,<account ID>};
 *delitem2 "<item name>",<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>{,<account ID>};
 
-This command will take a specified amount of items from the invoking/target character. 
+This command will remove a specified amount of items from the invoking/target character. 
 Check 'getitem2' to understand its expanded parameters.
 
 ---------------------------------------
@@ -4435,28 +4439,40 @@ getrandgroupitem(1,3);
 *enable_items;
 *disable_items;
 
-These commands enable item usage while an NPC is running. When enable_items is
-run, items can be used during scripts until disable_items is called. 
-To avoid possible exploits, when enable_items is invoked, it will only enable
-item usage while running that script in particular. Note that if a different
-script also calls enable_items, it will override the last call (so you may
+These commands enable/disable changing of equipments while an NPC is running. When disable_items is
+run, equipments cannot be changed during scripts until enable_items is called or the script has terminated. 
+To avoid possible exploits, when disable_items is invoked, it will only disable
+changing equips while running that script in particular. Note that if a different
+script also calls disable_items, it will override the last call (so you may
 want to call this command at the start of your script without assuming the
 effect is still in effect).
+If 'item_enabled_npc' option is set to Yes in 'items.conf' all NPC are allowing changing of equipment by default
+except for those have been set with 'disable_items'.
 
 ---------------------------------------
 
-*itemskill <skill id>,<skill level>;
-*itemskill "<skill name>",<skill level>;
+*itemskill <skill id>,<skill level>,{flag};
+*itemskill "<skill name>",<skill level>,{flag};
 
 This command meant for item scripts to replicate single-use skills in usable
-items. It will not work properly, if there is a visible dialog window or menu.
-If the skill is self or auto-targeting, it will be used immediately otherwise a
+items. It will not work properly if there is a visible dialog window or menu.
+If the skill is self or auto-targeting it will be used immediately otherwise a
 target cursor is shown.
+Flag is a optional param and when present the command will not check for skill requirements
 
 // When Anodyne is used, it will cast Endure (8), Level 1, as if the actual
 // skill has been used from skill tree.
 605,Anodyne,Anodyne,11,2000,0,100,,,,,10477567,2,,,,,{ itemskill 8,1; },{}
 
+---------------------------------------
+
+*consumeitem <item id>;
+*consumeitem "<item name>";
+
+This command will run the item script of the specified item on the invoking
+character. The character does not need to possess the item, and the item will
+not be deleted. While this command is intended for usable items, it will run
+for any item type.
 
 ---------------------------------------
 
@@ -4464,7 +4480,7 @@ target cursor is shown.
 
 This command will open a crafting window on the client connected to the invoking 
 character. The 'item level' is a number which determines what kind of a crafting 
-window will pop-up. 
+window will pop-up.
 
 You can see the full list of such item levels in 'db/produce_db.txt' which determines 
 what can actually be produced. The window will not be empty only if the invoking 
@@ -4598,9 +4614,9 @@ since jAthena, so probably nobody knows for sure why is it so.
 
 *downrefitem <equipment slot>;
 
-This command will downgrade an item by - 1 in the specified equipment slot of the 
-invoking character. So the item will not be destroyed unlike in the failedrefitem script command.
-This will also display a 'refine failure' effect on the character and put appropriate
+This command will downgrade an item in the specified equipment slot of the invoking
+character by -1. For a list of equipment slots see 'getequipid'. This command will
+also display a 'refine failure' effect on the character and put appropriate
 messages into their chat window.
 
 The official scripts seems to use the 'downrefitem' command as a function 
@@ -4617,6 +4633,14 @@ slots see 'getequipid'.
 
 If an item occupies several equipment slots, it will get unequipped from all of 
 them.
+
+---------------------------------------
+
+*delequip <equipment slot>;
+
+This command will destroy whatever is currently equipped in the invoking
+character's specified equipment slot. For a full list of possible equipment 
+slots see 'getequipid'.
 
 ---------------------------------------
 
@@ -4697,7 +4721,7 @@ The storage window opens regardless of whether there are open NPC dialogs or
 not, but it is preferred to close the dialog before displaying the storage
 window, to avoid any disruption when both windows overlap.
 
-    mes "I will now open your stash for you";
+    mes "Close this window to open your storage.";
     close2;
     openstorage;
     end;
@@ -4766,7 +4790,7 @@ any guild.
 
 This command will bump up the specified guild skill by the specified number of 
 levels. This refers to the invoking character and will only work if the invoking 
-character is a member of a guild AND it's guild master, otherwise no failure 
+character is a member of a guild AND its guild master, otherwise no failure 
 message will be given and no error will occur, but nothing will happen - same 
 about the guild skill trying to exceed the possible maximum. The full list of 
 guild skills is available in 'db/(pre-)re/skill_db.txt', these are all the GD_ skills at 
@@ -4838,52 +4862,59 @@ Used in reset NPC's (duh!)
 
 ---------------------------------------
 
-*sc_start 	<effect type>,<ticks>,<extra argument>{,<GID>};
-*sc_start2 	<effect type>,<ticks>,<extra argument>,<percent chance>{,<GID>};
-*sc_start4	<effect type>,<ticks>,<value 1>,<value 2>,<value 3>,<value 4>{,<GID>};
+*sc_start 	<effect type>,<ticks>,<value 1>{,<rate>,<flag>{,<GID>}};
+*sc_start2 	<effect type>,<ticks>,<value 1>,<value 2>{,<rate>,<flag>{,<GID>}};
+*sc_start4 	<effect type>,<ticks>,<value 1>,<value 2>,<value 3>,<value 4>{,<rate>,<flag>{,<GID>}};
 *sc_end 	<effect type>{,<GID>};
 
-These command bestow a status effect on the invoking character. This command is 
-used a lot in the item scripts.
+These commands will bestow a status effect on a character.
 
-    // This would poison them for 10 min
-    sc_start SC_Poison,600000,0;
+The <effect type> determines which status is invoked. This can be either a number
+or constant, with the common statuses (mostly negative) found in 'db/const.txt'
+with the 'SC_' prefix. A full list is located in 'src/map/status.h', though
+they are not currently documented.
 
-Effect type is a number of effect, 'db/const.txt' lists the common (mostly 
-negative) status effect types as constants, starting with 'SC_'. You can also 
-use this to give someone an effect of a player-cast spell:
+The duration of the status is given in <ticks>, or milleseconds.
 
-    // This will bless someone as if with Bless 10:
-    sc_start 10,240000,10;
-    
-Extra argument's meaning differs depending on the effect type, for most effects 
-caused by a player skill the extra argument means the level of the skill that 
-would have been used to create that effect, for others it might have no meaning 
-whatsoever. You can actually bless someone with a 0 bless spell level this way, 
-which is fun, but weird.
+Certain status changes take an additional parameter <value 1>, which typically
+modifies player stats by the given number or percentage. This differs for each
+status, and is sometimes zero.
 
-The GID, if given, will cause the status effect to appear on a 
-specified character, instead of the one attached to the running script. This has 
-not been properly tested.
+Optional value <rate> is the chance that the status will be invoked (100 = 1%).
+This is used primarily in item scripts. When used in an NPC script, a flag MUST
+be defined for the rate to work.
 
-'sc_start2' is perfectly equivalent, but unlike 'sc_start', a status change 
-effect will only occur with a specified percentage chance. 10000 given as the 
-chance is equivalent to a 100% chance, 0 is a zero.
+Optional value <flag> is how the status change start will be handled (a bitmask).
+ 1: Status change cannot be avoided.
+ 2: Tick cannot be reduced by stats (default).
+ 4: sc_data loaded, so no value will be altered.
+ 8: Rate cannot be reduced.
 
-'sc_start4' is just like sc_start, however it takes four parameters for the
-status change instead of one. What these values are depends on the status
-change in question. For example, elemental armor defense takes the following
-four values:
-- val1 is the first element, val2 is the resistance to the element val1.
-- val3 is the second element, val4 is the resistance to said element.
-eg: sc_start4 SC_DefEle,60000,Ele_Fire,20,Ele_Water,-15;
+If a <GID> is given, the status change will be invoked on the specified character
+instead of the one attached to the script. This can only be defined after setting
+a rate and flag.
 
-'sc_end' will remove a specified status effect. If SC_All is used (-1), it will
-do a complete removal of all statuses (although permanent ones will re-apply).
+'sc_start2' and 'sc_start4' allow extra parameters to be passed, and are used only
+for effects that require them. The meaning of the extra values vary depending on the
+effect type.
 
-You can see the full list of status effects caused by skills in 
-'src/map/status.h' - they are currently not fully documented, but most of that 
-should be rather obvious.
+'sc_end' will remove a specified status effect. If SC_ALL (-1) is given, it will
+perform a complete removal of all statuses (although permanent ones will re-apply).
+
+Examples:
+	// This will poison the invoking character for 10 minutes at 50% chance.
+	sc_start SC_POISON,600000,0,5000;
+
+	// This will bestow the effect of Level 10 Blessing.
+	sc_start 10,240000,10;
+
+	// Elemental armor defense takes the following four values:
+	// val1 is the first element, val2 is the resistance to the element val1.
+	// val3 is the second element, val4 is the resistance to the element val3.
+	sc_start4 SC_DefEle,60000,Ele_Fire,20,Ele_Water,-15;
+
+	// This will end the Freezing status for the invoking character.
+	sc_end SC_FREEZE;
 
 ---------------------------------------
 
@@ -5094,6 +5125,9 @@ Flag 2 means that the level parameter is to be interpreted as a stackable
 additional bonus to the skill level. If the character did not have that skill 
 previously, they will now at 0+the level given.
 
+Flag 4 is the same as flag 1 in that it saves to the database.  However, these skills
+are ignored when any action is taken that adjusts the skill tree (reset/job change).
+
 // This will permanently give the character Stone Throw (TF_THROWSTONE,152), at 
 // level 1.
     skill 152,1,0;
@@ -5106,6 +5140,14 @@ This command will unequip anything equipped on the invoking character.
 
 It is not required to do this when changing jobs since 'jobchange' will unequip 
 everything not equippable by the new job class anyway.
+
+---------------------------------------
+
+*sit {"<character name>"};
+*stand {"<character name>"};
+
+These commands will make a character sit if standing and stand if sitting.
+If no character is specified, the command will run for the invoking character.
 
 ---------------------------------------
 
@@ -5374,7 +5416,7 @@ four arguments serve the same purpose as in the monster script command, The
 If <master id> is given, the clone will be a 'slave/minion' of it. Master_id
 must be a character id of another online player.
 
-The mode can be specified to determine the behavior of the clone, it's
+The mode can be specified to determine the behavior of the clone. Its
 values are the same as the ones used for the mode field in the mob_db. The
 default mode is aggressive, assists, can move, can attack.
 
@@ -5390,7 +5432,7 @@ returned value is zero.
 
 ---------------------------------------
 
-*summon "Monster name",<monster id>{,<Time Out>{,"event label"}};
+*summon "monster name",<monster id>{,<Time Out>{,"event label"}};
 
 This command will summon a monster. (see also 'monster') Unlike monsters spawned
 with other commands, this one will set up the monster to fight to protect the
@@ -5412,64 +5454,23 @@ summon "--ja--",-1;
 
 ---------------------------------------
 
-*homevolution;
+*addmonsterdrop <monster id>,<item id>,<rate>;
+*addmonsterdrop "<monster name>",<item id>,<rate>;
+*delmonsterdrop <monster id>,<item id>;
+*delmonsterdrop "<monster name>",<item id>;
 
-This command will try to evolve the current player's homunculus.
-If it doesn't work, the /swt emotion is shown.
+These commands will temporarily add or delete a monster drop, which will be reset
+when the mob database reloads or the server shuts down. They return 1 upon success.
 
-To evolve a homunculus, the invoking player must have a homunculus,
-the homunculus must not be the last evolution and
-the homunculus must have above 91000 intimacy with its owner.
-
----------------------------------------
-
-*hommutate {<ID>};
-
-This command will try to evolve the current player's homunculus into the
-new Homunculus S. If it doesn't work, the /swt emotion is shown.
-
-To mutate a homunculus, the invoking player must have an evolved
-homunculus and it must be at least level 99.
-
-If the optional parameter <ID> is set, the invoking player's homunculus will
-change into the given homunculus ID. Otherwise, a random Homunculus S
-will be chosen.
-
----------------------------------------
-
-*unitwalk <GID>,<x>,<y>;
-*unitwalk <GID>,<mapid>;
-
-This is one command, but can be used in two ways. If only the first argument is given,
-the unit whose GID is given will start walking towards the map with the given mapid 
-(we believe these are the map-indexes found in db/map_index.txt).
-
-When 2 arguments are passed, the given unit will walk to the given x,y coordinates on 
-the map where the unit currently is.
+If the monster already drops the specified item, its drop rate will be updated with
+the given rate (100 = 1%).
 
 Examples:
+	// Makes Owl Baron drop Honey at an 80% rate.
+	addmonsterdrop 1295,518,8000;
 
-//Will move/walk the poring we made to the coordinates 150,150
-	unitwalk .GID,150,150;
-
-//Will move the poring towards alberta (if my assumed map-indexes are correct).
-	unitwalk .GID,3;
-
----------------------------------------
-
-*unitkill <GID>;
-*unitwarp <GID>,<Mapname>,<x>,<y>;
-*unitattack <GID>,<Target ID>;
-*unitstop <GID>;
-*unittalk <GID>,<Text>;
-*unitemote <GID>,<Emote>;
-
-Okay, these commands should be fairly self explaining.
-For the emotions, you can look in db/const.txt for prefixes with e_
-PS: unitwarp supports a <GID> of zero, which causes the executor of the script to be affected. This can be used with OnTouchNPC to warp monsters:
-
-OnTouchNPC:
-	unitwarp 0,"this",-1,-1;
+	// Deletes Executioner's Mitten from Rybio.
+	delmonsterdrop 1201,7017;
 
 ---------------------------------------
 
@@ -5609,6 +5610,7 @@ Size is 0 = normal 1 = small 2 = big.
 5,1.- Time-related commands
 \\
 ---------------------------------------
+
 *addtimer <ticks>,"NPC::OnLabel";
 *deltimer "NPC::OnLabel";
 *addtimercount <ticks>,"NPC::OnLabel";
@@ -5794,6 +5796,7 @@ currently ignored by the client and appears always green.
 //
 5,1.- End of time-related commands
 //
+---------------------------------------
 
 *announce "<text>",<flag>{,<fontColor>{,<fontType>{,<fontSize>{,<fontAlign>{,<fontY>}}}}};
 
@@ -5875,37 +5878,38 @@ optional parameters are the same as in 'announce', but target and source flags a
 *callshop "<name>",<option>;
 
 These are a series of commands used to create dynamic shops. 
-The callshop function calls a invisible shop (view -1) as if the player clicked on it.
+The 'callshop' function calls an invisible shop (view -1) as if the player clicked on it.
 
-For the options on callShop:
+The options are:
 	0 = The normal window (buy, sell and cancel)
 	1 = The buy window
 	2 = The sell window
-	
-Example:
 
-callshop "DaShop",1;	//Will call the shop named DaShop and opens the buy menu.
+A shop called with this command will trigger the labels "OnBuyItem" and "OnSellItem"
+(as long as an npcshop* command is executed from that NPC, see note below). These
+labels, if used, will replace how the shop handles the buying and selling of items,
+allowing for the creation of dynamic shops.
 
-The shop which is called by callshop (as long as an npcshop* command is executed
-from that NPC (see note 1)) will trigger the labels OnBuyItem and OnSellitem. These
-labels can take over handling for relatively the buying of items from the shop 
-and selling the items to a shop. Via these labels you can customize the way an item
-is bought or sold by a player. 
+The label "OnBuyItem" sets the following arrays:
+	@bought_nameid   - item ID bought
+	@bought_quantity - amount bought
 
-In the OnBuyItem, two arrays are set (@bought_nameid and @bought_quantity), which
-hold information about the name id (item id) sold and the amount sold of it. Same 
-goes for the OnSellItem label, only the variables are named different 
-(@sold_nameid, @sold_quantity, @sold_refine, @sold_attribute, @sold_identify,
-@sold_card1, @sold_card2, @sold_card3, @sold_card4). An example on a shop comes
-with rAthena, and can be found in the doc/sample/npc_dynamic_shop.txt file.
- 
-This example shows how to use the labels and their set variables to create a dynamic shop.
+The label "OnSellItem" sets the following arrays:
+	@sold_nameid     - item ID sold
+	@sold_quantity   - amount sold
+	@sold_refine     - refine count
+	@sold_attribute  - if the item is broken (1) or not (0)
+	@sold_identify   - if the item is identified (1) or not (0)
+	@sold_card1      - card slot 1
+	@sold_card2      - card slot 2
+	@sold_card3      - card slot 3
+	@sold_card4      - card slot 4
 
-Note 1: These labels will only be triggered if a npcshop* command is executed, this is
-because these commands set a special data on the shop NPC,named master_nd in the source. 
-The OnSellItem and OnBuyItem are triggered in the NPC whose master_nd is given in the shop.
-This was found out thanks to 'Hondacrx', noticing the OnBuyItem wasn't triggered unless
-npcshopitem was used. After rechecking the source, I found what caused this.
+Note: These labels will only be triggered if an npcshop* command is executed because these
+commands set a special data on the shop NPC, named master_nd in the source. The above labels
+are triggered in the NPC whose master_nd is given in the shop.
+
+A full example of a dynamic shop can be found in doc/sample/npc_dynamic_shop.txt.
 
 ---------------------------------------
 
@@ -6157,11 +6161,11 @@ Examples:
 
 ---------------------------------------
 
-*warpportal <x>,<y>,"<mapname>",<x>,<y>;
+*warpportal <source x>,<source y>,"<map name>",<target x>,<target y>;
 
-Creates a warp Portal as if a acolyte class character did it.
-The first x and y is the place of the warp portal on the map where the NPC is on
-The mapname and second x and y is the target area of the warp portal.
+Creates a warp portal identical to the Acolyte "Warp Portal" skill.
+The source coordinates specify the portal's location on the map of the invoking NPC.
+The target map and coordinates determine the destination of the portal.
 
 Examples:
 
@@ -6190,7 +6194,7 @@ Example:
 
 ---------------------------------------
 \\
-5,2.- Guild-related Commands
+5,2.- Guild-related commands
 \\
 ---------------------------------------
 
@@ -6300,12 +6304,15 @@ an NPC move randomly around the map.
 'npcspeed' will set the NPCs walking speed to a specified value. As in the 
 @speed GM command, 200 is the slowest possible speed while 0 is the fastest 
 possible (instant motion). 100 is the default character walking speed.
+
 'npcwalkto' will start the NPC sprite moving towards the specified coordinates 
-on the same map as it is currently on.
+on the same map it is currently on. The script proceeds immediately after the
+NPC begins moving.
+
 'npcstop' will stop the motion.
 
 While in transit, the NPC will be clickable, but invoking it will cause it to 
-stop motion, which will make it's coordinates different from what the client 
+stop moving, which will make its coordinates different from what the client 
 computed based on the speed and motion coordinates. The effect is rather 
 unnerving.
 
@@ -6329,7 +6336,7 @@ Example:
 
 // This will move Bugga from to the coordinates 100,20 (if those coordinates are legit).
 	moveNPC "Bugga",100,20;
-	
+
 ---------------------------------------
 
 =====================
@@ -6451,17 +6458,6 @@ must be used.
     close2;
     cutin "",255;
     end;
-
----------------------------------------
-
-*pet <pet id>;
-
-This command is used in all the item scripts for taming items. Running this 
-command will make the pet catching cursor appear on the client connected to the 
-invoking character, usable on the monsters with the specified pet ID number. It 
-will still work outside an item script.
-
-A full list of pet IDs can be found inside 'db/pet_db.txt'
 
 ---------------------------------------
 
@@ -6614,6 +6610,89 @@ This command will execute an atcommand binding on the attached RID from a script
 The three .@atcmd_***** variables will NOT be set when invoking scripts-atcommands this way.
 
 ---------------------------------------
+\\
+6,1.- Unit-related commands
+\\
+---------------------------------------
+
+*unitwalk <GID>,<x>,<y>;
+*unitwalk <GID>,<Target ID>;
+
+This command will tell a <GID> to walk to a position, defined either as a set of
+coordinates or another object. The command returns a 1 for success and 0 upon failure.
+
+If coordinates are passed, the <GID> will walk to the given x,y coordinates on the
+unit's current map. While there is no way to move across an entire map with 1 command
+use, this could be used in a loop to move long distances.
+
+If an object ID is passed, the initial <GID> will walk to the <Target ID> (similar to
+walking to attack). This is based on the distance from <GID> to <Target ID>. This command
+uses a hard walk check, so it will calculate a walk path with obstacles. Sending a bad
+target ID will result in an error.
+
+Examples:
+
+// Makes player walk to the coordinates (150,150).
+	unitwalk getcharid(3),150,150;
+
+// Performs a conditional check with the command and reports success or failure to the player.
+	if(unitwalk(getcharid(3),150,150))
+		dispbottom "Walking you there...";
+	else
+		dispbottom "That's too far away, man.";
+
+// Makes player walk to another character named "WalkToMe".
+	unitwalk getcharid(3),getcharid(3,"WalkToMe");
+
+---------------------------------------
+
+*unitattack <GID>,<Target ID>{,<action type>};
+*unitattack <GID>,"<Target Name>"{,<action type>};
+
+This command will make a <GID> attack the specified target. It returns 1 upon
+success and 0 for all failures.
+
+If <GID> is a player and a non-zero <action type> is given, the unit will perform a
+continuous attack instead of a single attack.
+
+---------------------------------------
+
+*unitkill <GID>;
+
+This command will kill a <GID>.
+
+---------------------------------------
+
+*unitwarp <GID>,"<map name>",<x>,<y>;
+
+This command will warp a <GID> to the specified map and coordinates.
+
+If <GID> is zero, the command runs for the unit that invoked the script. This can be
+used with "OnTouch" to warp monsters:
+
+OnTouch:
+	unitwarp 0,"this",-1,-1;
+
+---------------------------------------
+
+*unitstop <GID>;
+
+This command will make a <GID> stop attacking and moving.
+
+---------------------------------------
+
+*unittalk <GID>,"<text>";
+
+This command will make a <GID> say a message.
+
+---------------------------------------
+
+*unitemote <GID>,<emotion number>;
+
+This command will make a <GID> display an emotion sprite.
+For a full list of emotion numbers, see 'db/const.txt' under 'e_'.
+
+---------------------------------------
 
 *unitskilluseid <GID>,<skill id>,<skill lvl>{,<target id>};
 *unitskilluseid <GID>,"<skill name>",<skill lvl>{,<target id>};
@@ -6626,6 +6705,10 @@ GID as the other unit* commands (See 'GID').
 Skill ID is the ID of the skill, skill level is the level of the skill.
 For the position, the x and y are given in the unitSkillUsePos.
 
+---------------------------------------
+\\
+6,1.- End of unit-related commands
+\\
 ---------------------------------------
 
 *npcskill <skill id>,<skill lvl>,<stat point>,<NPC level>;
@@ -6875,56 +6958,52 @@ The first letter is position 0.
 *charat(<string>,<index>)
 
 Returns char at specified index. If index is out of range, returns empty string.
-	
+The first letter of a string is index 0.
+
 Example:
-	
 	charat("This is a string", 10); //returns "s"
-	
+
 ---------------------------------------
-	
+
 *setchar(<string>,<char>,<index>)
 
 Returns the original string with the char at the specified index set to the
 specified char. If index out of range, the original string will be returned.
 Only the 1st char in the <char> parameter will be used.
-	
+
 Example:
-	
 	setchar("Cat", "B", 0); //returns "Bat"
-	
+
 ---------------------------------------
 
 *insertchar(<string>,<char>,<index>)
-	
+
 Returns the original string with the specified char inserted at the specified
 index. If index is out of range, the char will be inserted on the end of the
 string that it is closest. Only the 1st char in the <char> parameter will be used.
-	
+
 Example:
-	
 	insertchar("laughter", "s", 0); //returns "slaughter"
-	
+
 ---------------------------------------
 
 *delchar(<string>,<index>)
 
 Returns the original string with the char at the specified index removed.
 If index is out of range, original string will be returned.
-	
+
 Example:
-	
 	delchar("Diet", 3); //returns "Die"
-	
+
 ---------------------------------------
 
 *strtoupper(<string>)
 *strtolower(<string>)
 
-Returns the specified string in it's uppercase/lowercase form.
+Returns the specified string in its uppercase/lowercase form.
 All non-alpha characters will be preserved.
-	
+
 Example:
-	
 	strtoupper("The duck is blue!!"); //returns "THE DUCK IS BLUE!!"
 
 ---------------------------------------
@@ -6933,24 +7012,22 @@ Example:
 *charislower(<string>,<index>)
 
 Returns 1 if character at specified index of specified string is
-uppercase/lowercase. Otherwise, 0. Characters not of the alphabelt will return 0.
+uppercase/lowercase. Otherwise, 0. Characters not of the alphabet will return 0.
 
 Example:
-	
 	charisupper("rAthena", 1); //returns 1
-	
+
 ---------------------------------------
 
 *substr(<string>,<start_index>,<end_index>)
-	
+
 Returns the sub-string of the specified string inclusively between the set
 indexes. If indexes are out of range, or the start index is after the end
 index, an empty string will be returned.
 
 Example:
-	
 	substr("foobar", 3, 5); //returns "bar"
-	
+
 ---------------------------------------
 
 *explode(<dest_array>,<string>,<delimiter>)
@@ -6958,10 +7035,9 @@ Example:
 Breaks a string up into substrings based on the specified delimiter. Substrings
 will be stored within the specified string array. Only the 1st char of the
 delimiter parameter will be used. If an empty string is passed as a delimiter,
-the string will be placed in the array in it's original form.
+the string will be placed in the array in its original form.
 
 Example:
-	
 	explode(.@my_array$, "Explode:Test:1965:red:PIE", ":");
 	//.@my_array$ contents will be...
 	//.@my_array$[0]: "Explode"
@@ -6976,28 +7052,28 @@ Example:
 
 Combines all substrings within the specified string array into a single string.
 If the glue parameter is specified, it will be inserted inbetween each substring.
-	
+
 Example:
 	setarray .@my_array$[0], "This", "is", "a", "test";
 	implode(.@my_array$, " "); //returns "This is a test"
 
 ---------------------------------------
 
-*sprintf(<format>[,param[,param[,...]]]) [Mirei]
+*sprintf(<format>[,param[,param[,...]]])
 
 C style sprintf. The resulting string is returned same as in PHP. All C format 
 specifiers are supported except %n. More info: sprintf @ www.cplusplus.com. 
 The number of params is only limited by rA's script engine.
 
 Example:
-	.@format$ = 'The %s contains %d monkeys';
+	set .@format$, "The %s contains %d monkeys";
 	dispbottom(sprintf(.@format$, "zoo", 5));        //prints "The zoo contains 5 monkeys"
 	dispbottom(sprintf(.@format$, "barrel", 82));    //prints "The barrel contains 82 monkeys"
-	
+
 ---------------------------------------
 
-*sscanf(<string>,<format>[,param[,param[,...]]]) [Mirei]
-	
+*sscanf(<string>,<format>[,param[,param[,...]]])
+
 C style sscanf. All C format specifiers are supported. 
 More info: sscanf @ www.cplusplus.com. The number of params is only limited 
 by rA's script engine.
@@ -7005,7 +7081,7 @@ by rA's script engine.
 Example:
 	sscanf("This is a test: 42 foobar", "This is a test: %d %s", .@num, .@str$);
 	dispbottom(.@num + " " + .@str$); //prints "42 foobar"
-	
+
 ---------------------------------------
 
 *strpos(<haystack>,<needle>{,<offset>})
@@ -7019,7 +7095,7 @@ Example:
 	strpos("foobar", "bar", 0); //returns 3
 	strpos("foobarfoo", "foo", 0); //returns 0
 	strpos("foobarfoo", "foo", 1); //returns 6
-	
+
 ---------------------------------------
 
 *replacestr(<input>, <search>, <replace>{, <usecase>{, <count>}})
@@ -7031,9 +7107,9 @@ in the count parameter.
 
 Example:
 	replacestr("testing tester", "test", "dash"); //returns "dashing dasher"
-	replacestr("Donkey", "don", "mon", 0);	//returns "monkey"
-	replacestr("test test test test test", "yay", 0, 3); //returns "yay yay yay test test"
-	
+	replacestr("Donkey", "don", "mon", 0); //returns "monkey"
+	replacestr("test test test test test", "test", "yay", 0, 3); //returns "yay yay yay test test"
+
 ---------------------------------------
 
 *countstr(<input>, <search>{, <usecase>})
@@ -7091,115 +7167,6 @@ script command does not have the optional parameter.
 
     // counter that starts at 60 and runs for 60 seconds
     showdigit 60,3;
-
----------------------------------------
-
-* The Pet AI commands
-
-These commands will only work if the invoking character has a pet, and are meant 
-to be executed from pet scripts. They will modify the pet AI decision-making for 
-the current pet of the invoking character, and will NOT have any independent 
-effect by themselves, which is why only one of them each may be in effect at any 
-time for a specific pet. A pet may have 'petloot', 'petskillbonus', 
-'petskillattack' OR 'petpetskillattack2' and 'petskillsupport' OR 'petheal' at 
-the same time. 'petheal' is deprecated and is no longer used in the default pet 
-scripts. 
-
-*petskillbonus <bonus type>,<value>,<duration>,<delay>;
-
-This command will make the pet give a bonus to the owner's stat (bonus type -
-bInt,bVit,bDex,bAgi,bLuk,bStr,bSpeedRate - for a full list, see the values 
-starting with 'b' in 'db/const.txt')
-
-*petrecovery <status type>,<delay>;
-
-This command will make the pet cure a specified status condition. The curing 
-actions will occur once every Delay seconds. For a full list of status 
-conditions that can be cured, see the list of 'SC_' status condition constants 
-in 'db/const.txt'
-
-*petloot <max items>;
-
-This command will turn on pet looting, with a maximum number of items to loot 
-specified. Pet will store items and return them when the maximum is reached or 
-when pet performance is activated.
-
-*petskillsupport <skill id>,<skill level>,<delay>,<percent hp>,<percent sp>;
-*petskillsupport "<skill name>",<skill level>,<delay>,<percent hp>,<percent sp>;
-*petheal <level>,<delay>,<percent hp>,<percent sp>;
-
-This will make the pet use a specified support skill on the owner whenever the 
-HP and SP are below the given percent values, with a specified delay time 
-between activations. The skill numbers are as per 'db/(pre-)re/skill_db.txt'.
-'petheal' works the same as 'petskillsupport' but has the skill ID hard-coded to 
-28 (Heal). This command is deprecated.
-It's not quite certain who's stats will be used for the skills cast, the 
-character's or the pets. Probably, Skotlex can answer that question.
-
-*petskillattack <skill id>,<skill level>,<rate>,<bonusrate>;
-*petskillattack "<skill name>",<skill level>,<rate>,<bonusrate>;
-*petskillattack2 <skill id>,<damage>,<number of attacks>,<rate>,<bonusrate>;
-*petskillattack2 "<skill name>",<damage>,<number of attacks>,<rate>,<bonusrate>;
-
-These two commands will make the pet cast an attack skill on the enemy the pet's 
-owner is currently fighting. Skill IDs and levels are as per 'petskillsupport'. 
-'petskillattack2' will make the pet cast the skill with a fixed amount of damage 
-inflicted and the specified number of attacks.
-
-All commands with delays and durations will only make the behavior active for 
-the specified duration of seconds, with a delay of the specified number of 
-seconds between activations. Rates are a chance of the effect occurring and are 
-given in percent. 'bonusrate' is added to the normal rate if the pet intimacy is 
-at the maximum possible.
-
-The behavior modified with the above mentioned commands will only be exhibited if 
-the pet is loyal and appropriate configuration options are set in 
-'battle_athena.conf'.
-
-Pet scripts in the database normally run whenever a pet of that type hatches 
-from the egg. Other commands usable in item scripts (see 'bonus') will also 
-happily run from pet scripts. Apparently, the pet-specific commands will also 
-work in NPC scripts and modify the behavior of the current pet up until the pet 
-is hatched again. (Which will also occur when the character is logged in again 
-with the pet still out of the egg.) It is not certain for how long the effect of 
-such command running from an NPC script will eventually persist, but apparently, 
-it is possible to usefully employ them in usable item scripts to create pet 
-buffing items.
-
-Nobody tried this before, so you're essentially on your own here.
-
----------------------------------------
-
-*bpet;
-
-This command opens up a pet hatching window on the client connected to the 
-invoking character. It is used in item script for the pet incubators and will 
-let the player hatch an owned egg. If the character has no eggs, it will just 
-open up an empty incubator window.
-This is still usable outside item scripts.
-
----------------------------------------
-
-*makepet <pet id>;
-
-This command will create a pet egg and put it in the invoking character's 
-inventory. The kind of pet is specified by pet ID numbers listed in 
-'db/pet_db.txt'. The egg is created exactly as if the character just successfully 
-caught a pet in the normal way.
-
-    // This will make you a poring:
-    makepet 1002;
-
-Notice that you absolutely have to create pet eggs with this command. If you try 
-to give a pet egg with 'getitem', pet data will not be created by the char 
-server and the egg will disappear when anyone tries to hatch it.
-
----------------------------------------
-
-*homshuffle;
-
-This will recalculate the homunculus stats according to its level, of the 
-current invoking character.
 
 ---------------------------------------
 
@@ -7517,84 +7484,84 @@ If parameter "HUNTING" is supplied:
 *showevent <state>, <color>;
 
 Show a colored mark in the mini-map like "viewpoint" and an emotion on top of a NPC.
-This is used to indicate that a NPC has a quest or an event to certain player/s.
+This is used to indicate that a NPC has a quest or an event to certain players.
 
 state can be:
-	0 = disable ( Used to disable and remove the mark and the emotion from the NPC. )
-	1 = exclamation emotion ( Used to show an important quest event to certain player. )
-	2 = interrogation emotion ( Used to show an non-important quest event to certain player. )
-	Other value may cause client crashes.
+	0 = disable (Used to disable and remove the mark and the emotion from the NPC.)
+	1 = exclamation emotion (Used to show an important quest event to certain player.)
+	2 = interrogation emotion (Used to show an non-important quest event to certain player.)
+	Other values may cause client crashes.
 
 color can be:
 	0 = yellow "Quest"
 	1 = orange "Job"
 	2 = green "Event"
 	3 = an MVP flag
-	other values show a transparent mark in the mini-map.
+	Other values show a transparent mark in the mini-map.
 
-----------------------------------------
+---------------------------------------
 
 ============================
 |9.- Battleground commands.|
 ============================
 ---------------------------------------
 
-*waitingroom2bg_single(<battle group>,"<mapname>",<x>,<y>,"<npc name>");
+*waitingroom2bg_single(<battle group>,"<map name>",<x>,<y>,"<npc name>");
 
-Adds the first waiting player from the chat room of given NPC to an
-existing battleground group and warps it to specified coordinates on
-given map.
+Adds the first waiting player from the chat room of the given NPC to an
+existing battleground group and warps it to the specified coordinates on
+the given map.
 
 ---------------------------------------
 
-*waitingroom2bg("<mapname>",<x>,<y>,"<On Quit Event>","<On Death Event>"{,"<npc name>"});
+*waitingroom2bg("<map name>",<x>,<y>,"<On Quit Event>","<On Death Event>"{,"<NPC Name>"});
 
-<Mapname> and X Y coordinates refer to where the "respawn" base is, where the player group will respawn when they die.
+<map name>,<x>,<y> refer to where the "respawn" base is, where the player group will respawn when they die.
 <On Quit Event> refers to an NPC label that attaches to the character and is run when they relog.
 <On Death Event> refers to an NPC label that attaches to the character and is run when they die. Can be "" for empty.
 
 Unlike the prior command, the latter will attach a GROUP in a waiting room to the battleground, and 
 sets the array $@arenamembers[0] where 0 holds the IDs of the first group, and 1 holds the IDs of the second.
 
-If the option parameter is left out, the waiting room of the current NPC is used.
+If the optional NPC Name parameter is left out, the waiting room of the current NPC is used.
 
 Example:
 	// Battle Group will be referred to as $@KvM01BG_id1, and when they die, respawn at bat_c01,52,129.
 	set $@KvM01BG_id1, waitingroom2bg("bat_c01",52,129,"KvM01_BG::OnGuillaumeQuit","KvM01_BG::OnGuillaumeDie");
 	end;
 
-----------------------------------------
+---------------------------------------
 
 *bg_team_setxy <Battle Group ID>,<x>,<y>;
 
-Update the respawn point of the given battle group to x, y on the same map. The <Battle Group ID> can be retrieved using getcharid(4)
+Updates the respawn point of the given Battle Group to x,y on the same map. <Battle Group ID> can be retrieved using getcharid(4).
 
 Example:
 	bg_team_setxy getcharid(4),56,212;
 	mapannounce "bat_a01", "Group [1] has taken the work shop, and will now respawn there.",bc_map,"0xFFCE00";
 	end;
 
-----------------------------------------
+---------------------------------------
 
-*bg_warp <Battle Group>,"<Mapname>",<x>,<y>;
+*bg_warp <Battle Group>,"<map name>",<x>,<y>;
 
-Similar to warp command.
-Place all members of <Battle Group> at <mapname> at x y.
+Similar to the 'warp' command.
+Places all members of <Battle Group> at the specified map and coordinates.
 
 Example:
 	//place the battle group one for Tierra Gorge at starting position.
 	bg_warp $@TierraBG1_id1,"bat_a01",352,342;
 	end;
 
-----------------------------------------
+---------------------------------------
 
 *bg_monster <Battle Group>,"<map name>",<x>,<y>,"<name to show>",<mob id>,"<event label>";
 *bg_monster(<Battle Group>,"<map name>",<x>,<y>,"<name to show>",<mob id>,"<event label>");
 
-Similar to monster script command.
-Spawn a monster with allegiance to the given battle group.
+Similar to the 'monster' command.
+Spawns a monster with allegiance to the given Battle Group.
 Does not allow for the summoning of multiple monsters.
-Monsters are similar to that in War of Emperium, in that the specified Battle group is considered friendly.
+Monsters are similar to those in War of Emperium, in that the specified Battle Group is considered friendly.
 
 Example:
 	// It can be used in two different ways.
@@ -7606,12 +7573,12 @@ Example:
 	set $@Guardian_3, bg_monster($@TierraBG1_id2,"bat_a01",268,204,"Guardian",1949,"NPCNAME::OnMyMobDead");
 	end;
 
-----------------------------------------
+---------------------------------------
 
 *bg_monster_set_team <GID>,<Battle Group>;
 
 This command will change the allegiance if a monster in a battle ground.
-GID can be set when spawning the monster via the bg_monster command.
+GID can be set when spawning the monster via the 'bg_monster' command.
 
 Example:
 
@@ -7629,55 +7596,302 @@ OnTimer1000:
 	bg_monster_set_team $@Guardian, $@BG_1;
 	end;
 
-----------------------------------------
+---------------------------------------
 
 *bg_leave;
 
 Removes attached player from their Battle Group.
 
-----------------------------------------
+---------------------------------------
 
 *bg_destroy <Batte Group>;
 
-As the name says, destroys the battle group created for that battle ground.
+Destroys the Battle Group created for that battle ground.
 
-----------------------------------------
+---------------------------------------
 
-*areapercentheal "<mapname>",<x1>,<y1>,<x2>,<y2>,<hp>,<sp>;
+*areapercentheal "<map name>",<x1>,<y1>,<x2>,<y2>,<hp>,<sp>;
 
-Not exactly limited to battleground use, this will restore HP/SP in a defined area at a percentage.
+Restores a percentage of the maximum HP/SP of players within a defined area.
+This is primarily used in battleground scripts, but is not limited to them.
 
 Example:
 	areapercentheal "bat_a01",52,208,61,217,100,100;
 	end;
 
-----------------------------------------
+---------------------------------------
 
 *bg_get_data(<Battle Group>,<type>);
 
-Retrieves data related to given battle group. Type can be one of the following:
+Retrieves data related to given Battle Group. Type can be one of the following:
 
     0 - Amount of players currently belonging to the group.
 
-----------------------------------------
+---------------------------------------
 
-*bg_getareausers(<battle group>,<map name>,<x0>,<y0>,<x1>,<y1>);
+*bg_getareausers(<Battle Group>,"<map name>",<x0>,<y0>,<x1>,<y1>);
 
-Retrieves amount of players belonging to given battle group on given
-map within an specified rectangular area.
+Retrieves the amount of players belonging to the given Battle Group on the given
+map within the specified rectangular area.
 
-----------------------------------------
+---------------------------------------
 
-*bg_updatescore "<mapname>",<Guillaume Score>,<Croix Score>;
+*bg_updatescore "<map name>",<Guillaume Score>,<Croix Score>;
 
 This command will force the update of the displayed scoreboard.
 It is only usable when the map is defined as a Type 2 Battleground:
-mapflag	<mapname>	battleground	2
+mapflag	<map name>	battleground	2
 
-----------------------------------------
+---------------------------------------
+
+====================
+|10.- Pet commands.|
+====================
+---------------------------------------
+
+*bpet;
+
+This command opens up a pet hatching window on the client connected to the 
+invoking character. It is used in item script for the pet incubators and will 
+let the player hatch an owned egg. If the character has no eggs, it will just 
+open up an empty incubator window.
+This is still usable outside item scripts.
+
+---------------------------------------
+
+*pet <pet id>;
+
+This command is used in all the item scripts for taming items. Running this 
+command will make the pet catching cursor appear on the client connected to the 
+invoking character, usable on the monsters with the specified pet ID number. It 
+will still work outside an item script.
+
+A full list of pet IDs can be found inside 'db/pet_db.txt'.
+
+---------------------------------------
+
+*makepet <pet id>;
+
+This command will create a pet egg and put it in the invoking character's 
+inventory. The kind of pet is specified by pet ID numbers listed in 
+'db/pet_db.txt'. The egg is created exactly as if the character just successfully 
+caught a pet in the normal way.
+
+    // This will make you a poring:
+    makepet 1002;
+
+Notice that you absolutely have to create pet eggs with this command. If you try 
+to give a pet egg with 'getitem', pet data will not be created by the char 
+server and the egg will disappear when anyone tries to hatch it.
+
+---------------------------------------
+
+*getpetinfo(<type>)
+
+This function will return pet information for the pet the invoking character 
+currently has active. Valid types are:
+
+ 0 - Unique pet ID number as stored by the char server and distinguishing it 
+     from all other pets the characters actually have. This value is currently 
+     useless, at most you can use it to tell pets apart reliably.
+ 1 - Pet class number as per 'db/pet_db.txt' - will tell you what kind of a pet it 
+     is.
+ 2 - Pet name. Will return "null" if there's no pet. 
+ 3 - Pet friendly level (intimacy score). 1000 is full loyalty.
+ 4 - Pet hungry level. 100 is completely full.
+ 5 - Pet rename flag. 0 means this pet has not been named yet.
+
+---------------------------------------
+
+*petstat(<flag>)
+
+Returns current pet status, all are integers except name.
+Returns 0 or "" if the player doesn't have pets.
+
+Flags usable:
+- PET_CLASS
+- PET_NAME
+- PET_LEVEL
+- PET_HUNGRY
+- PET_INTIMATE
+
+Example:
+	set @i, petstat(PET_CLASS);
+
+---------------------------------------
+
+* The Pet AI commands
+  -------------------
+
+These commands will only work if the invoking character has a pet, and are meant 
+to be executed from pet scripts. They will modify the pet AI decision-making for 
+the current pet of the invoking character, and will NOT have any independent 
+effect by themselves, which is why only one of them each may be in effect at any 
+time for a specific pet. A pet may have 'petloot', 'petskillbonus', 
+'petskillattack' OR 'petpetskillattack2' and 'petskillsupport' OR 'petheal' at 
+the same time. 'petheal' is deprecated and is no longer used in the default pet 
+scripts.
+
+All commands with delays and durations will only make the behavior active for 
+the specified duration of seconds, with a delay of the specified number of 
+seconds between activations. Rates are a chance of the effect occurring and are 
+given in percent. 'bonusrate' is added to the normal rate if the pet intimacy is 
+at the maximum possible.
+
+The behavior modified with the below mentioned commands will only be exhibited if 
+the pet is loyal and appropriate configuration options are set in 
+'battle_athena.conf'.
+
+Pet scripts in the database normally run whenever a pet of that type hatches 
+from the egg. Other commands usable in item scripts (see 'bonus') will also 
+happily run from pet scripts. Apparently, the pet-specific commands will also 
+work in NPC scripts and modify the behavior of the current pet up until the pet 
+is hatched again. (Which will also occur when the character is logged in again 
+with the pet still out of the egg.) It is not certain for how long the effect of 
+such command running from an NPC script will eventually persist, but apparently, 
+it is possible to usefully employ them in usable item scripts to create pet 
+buffing items.
+
+Nobody tried this before, so you're essentially on your own here.
+
+---------------------------------------
+
+*petskillbonus <bonus type>,<value>,<duration>,<delay>;
+
+This command will make the pet give a bonus to the owner's stat (bonus type -
+bInt,bVit,bDex,bAgi,bLuk,bStr,bSpeedRate - for a full list, see the values 
+starting with 'b' in 'db/const.txt')
+
+---------------------------------------
+
+*petrecovery <status type>,<delay>;
+
+This command will make the pet cure a specified status condition. The curing 
+actions will occur once every Delay seconds. For a full list of status 
+conditions that can be cured, see the list of 'SC_' status condition constants 
+in 'db/const.txt'.
+
+---------------------------------------
+
+*petloot <max items>;
+
+This command will turn on pet looting, with a maximum number of items to loot 
+specified. Pet will store items and return them when the maximum is reached or 
+when pet performance is activated.
+
+---------------------------------------
+
+*petskillsupport <skill id>,<skill level>,<delay>,<percent hp>,<percent sp>;
+*petskillsupport "<skill name>",<skill level>,<delay>,<percent hp>,<percent sp>;
+*petheal <level>,<delay>,<percent hp>,<percent sp>;
+
+This will make the pet use a specified support skill on the owner whenever the 
+HP and SP are below the given percent values, with a specified delay time 
+between activations. The skill numbers are as per 'db/(pre-)re/skill_db.txt'.
+'petheal' works the same as 'petskillsupport' but has the skill ID hard-coded to 
+28 (Heal). This command is deprecated.
+It's not quite certain who's stats will be used for the skills cast, the 
+character's or the pets. Probably, Skotlex can answer that question.
+
+---------------------------------------
+
+*petskillattack <skill id>,<skill level>,<rate>,<bonusrate>;
+*petskillattack "<skill name>",<skill level>,<rate>,<bonusrate>;
+*petskillattack2 <skill id>,<damage>,<number of attacks>,<rate>,<bonusrate>;
+*petskillattack2 "<skill name>",<damage>,<number of attacks>,<rate>,<bonusrate>;
+
+These two commands will make the pet cast an attack skill on the enemy the pet's 
+owner is currently fighting. Skill IDs and levels are as per 'petskillsupport'. 
+'petskillattack2' will make the pet cast the skill with a fixed amount of damage 
+inflicted and the specified number of attacks.
+
+---------------------------------------
+
+===========================
+|11.- Homunculus commands.|
+===========================
+---------------------------------------
+
+*homevolution;
+
+This command will try to evolve the current player's homunculus.
+If it doesn't work, the /swt emotion is shown.
+
+To evolve a homunculus, the invoking player must have a homunculus,
+the homunculus must not be the last evolution and
+the homunculus must have above 91000 intimacy with its owner.
+
+---------------------------------------
+
+*morphembryo;
+
+This command will try to put the invoking player's Homunculus in an
+uncallable state, required for mutation into a Homunculus S. The player
+will also receive a Strange Embryo (ID 6415) in their inventory if
+successful, which is deleted upon mutation.
+
+The command will fail if the invoking player does not have an evolved
+Homunculus at level 99 or above. The /swt emotion is shown upon failure.
+
+Returns 1 upon success and 0 for all failures.
+
+---------------------------------------
+
+*hommutate {<ID>};
+
+This command will try to mutate the invoking player's Homunculus into
+a Homunculus S. The Strange Embryo (ID 6415) is deleted upon success.
+
+The command will fail if the invoking player does not have an evolved
+Homunculus at level 99 or above, if it is not in the embryo state
+(from the 'morphembryo' command), or if the invoking player does not
+possess a Strange Embryo. The /swt emotion is shown upon failure.
+
+If the optional parameter <ID> is set, the invoking player's Homunculus
+will change into the specified Homunculus ID. Otherwise, a random Homunculus S
+will be chosen. See 'db/homunculus_db.txt' for a full list of IDs.
+
+Returns 1 upon success and 0 for all failures.
+
+---------------------------------------
+
+*checkhomcall()
+
+This function checks if the attached player's Homunculus is active,
+and will return the following values:
+ -1: The player has no Homunculus.
+  0: The player's Homunculus is active.
+  1: The player's Homunculus is vaporized.
+  2: The player's Homunculus is in morph state.
+
+---------------------------------------
+
+*gethominfo(<type>)
+
+This function will return Homunculus information for the Homunculus of the
+invoking character, regardless of its vaporize state. It returns zero or
+"null" if the player does not own a Homunculus.
+
+Valid types are:
+ 0 - Homunculus unique ID
+ 1 - Homunculus Class
+ 2 - Name
+ 3 - Friendly level (intimacy score). 100000 is full loyalty.
+ 4 - Hungry level. 100 is completely full.
+ 5 - Rename flag. 0 means this homunculus has not been named yet.
+ 6 - Homunculus level
+
+---------------------------------------
+
+*homshuffle;
+
+This will recalculate the homunculus stats according to its level, of the 
+current invoking character.
+
+---------------------------------------
 
 ==========================
-|10.- Mercenary commands.|
+|12.- Mercenary commands.|
 ==========================
 ---------------------------------------
 
@@ -7687,21 +7901,21 @@ This command summons a mercenary of given class, for given amount of
 time in milliseconds. Typically used in item scripts of mercenary
 scrolls.
 
-----------------------------------------
+---------------------------------------
 
 *mercenary_heal <hp>,<sp>;
 
 This command works like 'heal', but affects the mercenary of the
 currently attached character.
 
-----------------------------------------
+---------------------------------------
 
 *mercenary_sc_start <type>,<tick>,<val1>;
 
 This command works like 'sc_start', but affects the mercenary of the
 currently attached character.
 
-----------------------------------------
+---------------------------------------
 
 *mercenary_get_calls(<guild>);
 *mercenary_set_calls <guild>,<value>;
@@ -7713,7 +7927,7 @@ attached character. Guild can be one or the following constants:
     SPEAR_MERC_GUILD
     SWORD_MERC_GUILD
 
-----------------------------------------
+---------------------------------------
 
 *mercenary_get_faith(<guild>);
 *mercenary_set_faith <guild>,<value>;
@@ -7746,7 +7960,7 @@ can be one of the following:
 If the character does not have a mercenary, the command returns ""
 for name and 0 for all other types.
 
-----------------------------------------
+---------------------------------------
 
 Whew.
 That's about all of them.
