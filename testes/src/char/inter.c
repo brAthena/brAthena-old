@@ -814,7 +814,7 @@ int inter_init_sql(const char *file)
 	inter_auction_sql_init();
 
 	geoip_readdb();
-	msg_config_read("conf/msg_brathena.conf");
+	msg_config_read("conf/messages.conf");
 	return 0;
 }
 

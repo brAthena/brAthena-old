@@ -26,8 +26,8 @@ enum E_LOGINSERVER_ST {
     LOGINSERVER_ST_LAST
 };
 
-#define LOGIN_CONF_NAME "conf/login_brathena.conf"
-#define LAN_CONF_NAME "conf/subnet_brathena.conf"
+#define LOGIN_CONF_NAME "conf/login-server.conf"
+#define LAN_CONF_NAME "conf/subnet.conf"
 
 // supported encryption types: 1- passwordencrypt, 2- passwordencrypt2, 3- both
 #define PASSWORDENC 3

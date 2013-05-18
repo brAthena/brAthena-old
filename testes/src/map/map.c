@@ -5281,13 +5281,13 @@ int do_init(int argc, char *argv[])
 	GC_enable_incremental();
 #endif
 
-	INTER_CONF_NAME="conf/inter_brathena.conf";
-	LOG_CONF_NAME="conf/log_brathena.conf";
-	MAP_CONF_NAME = "conf/map_brathena.conf";
-	BATTLE_CONF_FILENAME = "conf/battle_brathena.conf";
-	ATCOMMAND_CONF_FILENAME = "conf/atcommand_brathena.conf";
-	SCRIPT_CONF_NAME = "conf/script_brathena.conf";
-	MSG_CONF_NAME = "conf/msg_brathena.conf";
+	INTER_CONF_NAME="conf/inter-server.conf";
+	LOG_CONF_NAME="conf/logs.conf";
+	MAP_CONF_NAME = "conf/map-server.conf";
+	BATTLE_CONF_FILENAME = "conf/battle.conf";
+	ATCOMMAND_CONF_FILENAME = "conf/atcommand.conf";
+	SCRIPT_CONF_NAME = "conf/scripts.conf";
+	MSG_CONF_NAME = "conf/messages.conf";
 	GRF_PATH_FILENAME = "conf/grf-files.conf";
 
 	rnd_init();

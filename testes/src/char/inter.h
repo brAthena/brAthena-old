@@ -29,7 +29,7 @@ int mapif_disconnectplayer(int fd, int account_id, int char_id, int reason);
 
 int inter_log(char* fmt,...);
 
-#define inter_cfgName "conf/inter_brathena.conf"
+#define inter_cfgName "conf/inter-server.conf"
 
 extern unsigned int party_share_level;
 extern unsigned int party_family_share_level;
