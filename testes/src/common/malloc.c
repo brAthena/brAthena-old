@@ -262,7 +262,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 			p->unit_head.block = NULL;
 			p->unit_head.size  = 0;
 			p->unit_head.file  = file;
-			p->unit_head.line  = line;
+			p->unit_head.line  = (unsigned short)line;
 			p->prev = NULL;
 			if(unit_head_large_first == NULL)
 				p->next = NULL;
@@ -287,7 +287,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 	}
 
 	if(block->unit_unfill == 0xFFFF) {
-		// free�ςݗ̈悪�c��Ă��Ȃ�
+		// there are no more free space that
 		memmgr_assert(block->unit_used <  block->unit_count);
 		memmgr_assert(block->unit_used == block->unit_maxused);
 		head = block2unit(block, block->unit_maxused);
@@ -300,7 +300,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 	}
 
 	if(block->unit_unfill == 0xFFFF && block->unit_maxused >= block->unit_count) {
-		// ���j�b�g���g���ʂ������̂ŁAunfill���X�g�����폜
+		// Since I ran out of the unit, removed from the list unfill
 		if(block->unfill_prev == &block_head) {
 			hash_unfill[ size_hash ] = block->unfill_next;
 		} else {
@@ -331,7 +331,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 
 	head->block = block;
 	head->file  = file;
-	head->line  = line;
+	head->line  = (unsigned short)line;
 	head->size  = (unsigned short)size;
 	*(long *)((char *)head + sizeof(struct unit_head) - sizeof(long) + size) = 0xdeadbeaf;
 	return (char *)head + sizeof(struct unit_head) - sizeof(long);
@@ -428,7 +428,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func)
 #ifdef DEBUG_MEMMGR
 			memset(ptr, 0xfd, block->unit_size - sizeof(struct unit_head) + sizeof(long));
 			head->file = file;
-			head->line = line;
+			head->line = (unsigned short)line;
 #endif
 			memmgr_assert(block->unit_used > 0);
 			if(--block->unit_used == 0) {

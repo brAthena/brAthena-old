@@ -292,7 +292,7 @@ static bool account_db_sql_set_property(AccountDB *self, const char *key, const 
 		else if(strcmpi(key, "codepage") == 0)
 			safestrncpy(db->codepage, value, sizeof(db->codepage));
 		else if(strcmpi(key, "case_sensitive") == 0)
-			db->case_sensitive = config_switch(value);
+			db->case_sensitive = (bool)config_switch(value);
 		else if(strcmpi(key, "account_db") == 0)
 			safestrncpy(db->account_db, value, sizeof(db->account_db));
 		else if(strcmpi(key, "accreg_db") == 0)
@@ -524,7 +524,7 @@ static bool mmo_auth_fromsql(AccountDB_SQL *db, struct mmo_account *acc, int acc
 	Sql_GetData(sql_handle, 10, &data, NULL); safestrncpy(acc->lastlogin, data, sizeof(acc->lastlogin));
 	Sql_GetData(sql_handle, 11, &data, NULL); safestrncpy(acc->last_ip, data, sizeof(acc->last_ip));
 	Sql_GetData(sql_handle, 12, &data, NULL); safestrncpy(acc->birthdate, data, sizeof(acc->birthdate));
-	Sql_GetData(sql_handle, 13, &data, NULL); acc->char_slots = atoi(data);
+	Sql_GetData(sql_handle, 13, &data, NULL); acc->char_slots = (uint8)atoi(data);
 	Sql_GetData(sql_handle, 14, &data, NULL); safestrncpy(acc->pincode, data, sizeof(acc->pincode));
 	Sql_GetData(sql_handle, 15, &data, NULL); acc->pincode_change = atol(data);
 

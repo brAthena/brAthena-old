@@ -181,7 +181,7 @@ static void grf_decode_full(unsigned char *buf, size_t len, int cycle)
 	scycle = 7;
 
 	// so decrypt/de-shuffle periodically
-	j = -1; // 0, adjusted to fit the ++j step
+	j = (size_t)-1; // 0, adjusted to fit the ++j step
 	for(i = 20; i < nblocks; ++i) {
 		if(i % dcycle == 0) {
 			// decrypt block
@@ -407,7 +407,7 @@ void *grfio_reads(const char *fname, int *size)
 			declen = ftell(in);
 			fseek(in,0,SEEK_SET);
 			buf2 = (unsigned char *)aMalloc(declen+1);  // +1 for resnametable zero-termination
-			if(fread(buf2, 1, declen, in) != declen) ShowError(read_message("Source.common.grfio_read"),fname);
+			if(fread(buf2, 1, declen, in) != (size_t)declen) ShowError(read_message("Source.common.grfio_read"),fname);
 			fclose(in);
 
 			if(size)
@@ -429,7 +429,7 @@ void *grfio_reads(const char *fname, int *size)
 			int fsize = entry->srclen_aligned;
 			unsigned char *buf = (unsigned char *)aMalloc(fsize);
 			fseek(in, entry->srcpos, 0);
-			if(fread(buf, 1, fsize, in) != fsize) ShowError(read_message("Source.common.grfio_read3"),grfname);
+			if(fread(buf, 1, fsize, in) != (size_t)fsize) ShowError(read_message("Source.common.grfio_read3"),grfname);
 			fclose(in);
 
 			buf2 = (unsigned char *)aMalloc(entry->declen+1);  // +1 for resnametable zero-termination
@@ -527,7 +527,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 		long list_size;
 		list_size = grf_size - ftell(fp);
 		grf_filelist = (unsigned char *) aMalloc(list_size);
-		if(fread(grf_filelist,1,list_size,fp) != list_size) {
+		if(fread(grf_filelist,1,list_size,fp) != (size_t)list_size) {
 			ShowError(read_message("Source.common.grfio_entryread"), 198, 214, grfname);
 		}
 		fclose(fp);
@@ -562,7 +562,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 #ifdef  GRFIO_LOCAL
 				aentry.gentry         = -(gentry+1);    // As Flag for making it a negative number carrying out the first time LocalFileCheck
 #else
-				aentry.gentry         = gentry+1;       // With no first time LocalFileCheck
+				aentry.gentry         = (char)(gentry+1);       // With no first time LocalFileCheck
 #endif
 				filelist_modify(&aentry);
 			}
@@ -614,13 +614,13 @@ static int grfio_entryread(const char *grfname, int gentry)
 				aentry.srclen_aligned = getlong(grf_filelist+ofs2+4);
 				aentry.declen         = getlong(grf_filelist+ofs2+8);
 				aentry.srcpos         = getlong(grf_filelist+ofs2+13)+0x2e;
-				aentry.type           = type;
+				aentry.type           = (char)type;
 				safestrncpy(aentry.fn, fname, sizeof(aentry.fn));
 				aentry.fnd            = NULL;
 #ifdef  GRFIO_LOCAL
 				aentry.gentry         = -(gentry+1);    // As Flag for making it a negative number carrying out the first time LocalFileCheck
 #else
-				aentry.gentry         = gentry+1;       // With no first time LocalFileCheck
+				aentry.gentry         = (char)(gentry+1);       // With no first time LocalFileCheck
 #endif
 				filelist_modify(&aentry);
 			}

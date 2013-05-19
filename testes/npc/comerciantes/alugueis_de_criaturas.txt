@@ -280,7 +280,7 @@ prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 
 // -------------- Aluguel de Robôs --------------
 //============================================================
-prontera,163,178,4	script#re	Artilheiro Mágico	105,{
+prontera,163,178,3	script#re	Artilheiro Mágico	105,{
 	mes "[Artilheiro Mágico]";
 	if (Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
 		mes "Bem-vindo. Você deseja adquirir um Robô?";

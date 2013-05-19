@@ -481,7 +481,6 @@ int party_member_added(int party_id,int account_id,int char_id, int flag)
 	sd->status.party_id = party_id;
 
 	clif_party_member_info(p,sd);
-	clif_party_option(p,sd,0x100);
 	clif_party_info(p,sd);
 
 	if(sd2 != NULL)
@@ -724,7 +723,6 @@ void party_send_movemap(struct map_session_data *sd)
 
 	if(sd->state.connect_new) {
 		//Note that this works because this function is invoked before connect_new is cleared.
-		clif_party_option(p,sd,0x100);
 		clif_party_info(p,sd);
 		clif_party_member_info(p,sd);
 	}
