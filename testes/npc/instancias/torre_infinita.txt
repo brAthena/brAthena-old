@@ -255,7 +255,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 					donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnInstanceInit";
 					donpcevent instance_npcname("Fonte da Vida#1", instance_id())+"::OnInstanceInit";
 					donpcevent instance_npcname("Trono do Tirano#", instance_id())+"::OnInstanceInit";
-					donpcevent instance_npcname("Alma Pe° andarida#102", instance_id())+"::OnInstanceInit";
+					donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnInstanceInit";
 					donpcevent instance_npcname("#Efeito30", instance_id())+"::OnInstanceInit";
 					donpcevent instance_npcname("#Efeito31", instance_id())+"::OnInstanceInit";
 				}
@@ -4200,14 +4200,14 @@ OnMyMobDead:
 		mes "Você está carregando muito equipamento. Porque não joga alguns fora e depois retorna?";
 		close;
 	}
-	mes "[Alma Perdidas]";
+	mes "[Alma Perdida]";
 	mes "Foram vocês que nos libertaram do terrível Naght Sieger.";
 	next;
 	mes "[Alma Perdida]";
 	mes "Muito obrigado. Agora podemos escapar deste lugar frio e escuro... para o céu.";
 	next;
 	if ((countitem(13412) > 0) && (countitem(13413) > 0)) {
-		mes "[Alma Perdidas]";
+		mes "[Alma Perdida]";
 		mes "Ei, você tem os restos de Naght Sieger com você.";
 		next;
 		mes "[Alma Perdida]";
@@ -4221,12 +4221,12 @@ OnMyMobDead:
 			delitem 13412,1; // Lâmina Gêmea de Naght Sieger
 			delitem 13413,1; // Lâmina Gêmea de Naght Sieger
 			getitem 1185,1;  // Terror Violeta
-			mes "[Alma Perdidas]";
+			mes "[Alma Perdida]";
 			mes "Eu gostaria de falar mais com vocês, mas eu tenho... Eu tenho que ir agora.";
 			next;
 			break;
 		case 2:
-			mes "[Alma Perdidas]";
+			mes "[Alma Perdida]";
 			mes "Eu vejo. Eu acho que você não são tão gananciosos ou ambiciosos quanto aqueles outros aventureiros.";
 			next;
 			mes "[Alma Perdida]";
@@ -4235,7 +4235,7 @@ OnMyMobDead:
 			break;
 		}
 	}
-	mes "[Alma Perdidas]";
+	mes "[Alma Perdida]";
 	mes "Adeus, jovens aventureiros. Desejo-lhes boa sorte.";
 	close2;
 	warp "alberta",223,36;
