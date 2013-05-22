@@ -15,3 +15,8 @@
 // Basta seguir o modelo abaixo. ex:
 
 //BUILDIN_DEF(minha_func, ""),
+
+	BUILDIN_DEF2(grouprandomitem2,"groupranditem2","i"),	// [Hold]
+	BUILDIN_DEF2(grouprandomquantity2,"grouprandqt2","ii"),	// [Hold]
+	BUILDIN_DEF(unloadnpc,"s"),	// [Holy]
+	BUILDIN_DEF(recall,"s?"),	// [Holy]

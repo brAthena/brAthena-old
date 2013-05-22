@@ -8789,8 +8789,8 @@ ACMD_FUNC(join) {
 		}
 	}
 
-	clif_chsys_join(channel,sd);
 
+	clif_chsys_join(channel,sd);
 	return 0;
 }
 
@@ -9350,6 +9350,7 @@ ACMD_FUNC(fontcolor) {
 }
 
 ACMD_FUNC(costume) {
+
 	const char* names[4] = {
 		"Casamento",
 		"Natal",
@@ -9358,7 +9359,7 @@ ACMD_FUNC(costume) {
 	};
 	const int name2id[4] = { SC_WEDDING, SC_XMAS, SC_SUMMER, SC_HANBOK };
 	unsigned short k = 0;
-	
+
 	if(!message || !*message) {
 		for( k = 0; k < 4; k++ ) {
 			if(sd->sc.data[name2id[k]]) {
@@ -9368,7 +9369,7 @@ ACMD_FUNC(costume) {
 				return true;
 			}
 		}
-		
+
 		clif_displaymessage(sd->fd,msg_txt(1475));
 		for( k = 0; k < 4; k++ ) {
 			sprintf(atcmd_output,msg_txt(1474),names[k]);//-- %s
@@ -9376,7 +9377,7 @@ ACMD_FUNC(costume) {
 		}
 		return false;
 	}
-	
+
 	for(k = 0; k < 4; k++) {
 		if(sd->sc.data[name2id[k]]) {
 			sprintf(atcmd_output,msg_txt(1473),names[k]);// You're already with a '%s' costume, type '@costume' to remove it.
@@ -9384,7 +9385,7 @@ ACMD_FUNC(costume) {
 			return false;
 		}
 	}
-	
+
 	for( k = 0; k < 4; k++ ) {
 		if(strcmpi(message,names[k]) == 0)
 			break;
@@ -9394,9 +9395,9 @@ ACMD_FUNC(costume) {
 		clif_displaymessage(sd->fd,atcmd_output);
 		return false;
 	}
-	
+
 	sc_start(NULL,&sd->bl, name2id[k], 100, 0, -1);
-	
+
 	return true;
 }
 
