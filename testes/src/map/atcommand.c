@@ -1791,7 +1791,7 @@ ACMD_FUNC(go)
 		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
 		{ MAP_MIDCAMP,     180, 240 }, // 26=Midgard Camp
 		{ MAP_MANUK,       282, 138 }, // 27=Manuk
-		{ MAP_SPLENDIDE,   197, 176 }, // 28=Splendide
+		{ MAP_SPLENDIDE,   201, 147 }, // 28=Splendide
 #ifdef RENEWAL
 		{ MAP_BRASILIS,    182, 239 }, // 29=Brasilis
 		{ MAP_DICASTES,    198, 187 }, // 30=El Dicastes

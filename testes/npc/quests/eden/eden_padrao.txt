@@ -235,7 +235,7 @@ yuno,144,189,5	duplicate(Oficial do Éden#0)	Oficial do Éden#15	729
 rachel,125,144,3	duplicate(Oficial do Éden#0)	Oficial do Éden#16	729
 morocc,161,97,6	duplicate(Oficial do Éden#0)	Oficial do Éden#17	729
 comodo,202,151,4	duplicate(Oficial do Éden#0)	Oficial do Éden#18	729
-umbala,104,158,4	duplicate(Oficial do Éden#0)	Oficial do Éden#19	729
+umbala,96,160,3	duplicate(Oficial do Éden#0)	Oficial do Éden#19	729
 veins,220,109,4	duplicate(Oficial do Éden#0)	Oficial do Éden#20	729
 lighthalzen,164,86,4	duplicate(Oficial do Éden#0)	Oficial do Éden#21	729
 einbroch,250,211,4	duplicate(Oficial do Éden#0)	Oficial do Éden#22	729

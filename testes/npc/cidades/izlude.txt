@@ -320,7 +320,7 @@ izlude,85,103,4	script	Dega#izlude	84,{
 	}
 }
 
-izlude,85,103,4	script	Kylick#izlude	97,{
+izlude,140,186,4	script	Kylick#izlude	97,{
 	mes "[Kylick]";
 	if (rand(2)) {
 		mes "Você não acha o Binóculos";
