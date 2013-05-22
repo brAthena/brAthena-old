@@ -1,0 +1,956 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |	
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: hospital_bangongo.txt                  |
+//   |--------------------------------------------------------|
+//   | Criado por: Ar/brA Dev. Team                           |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.2                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Hospital Bangongo Malaya.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [brAthena]                        |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+1@ma_h,43,157,0	script	ma_h_start	139,2,2,{
+OnStart:
+	if('host > 0)
+		end;
+	set 'host,1;
+	hideonnpc ボス部屋入口2;
+	hideonnpc ボス部屋出口;
+	hideonnpc ボス訪問;
+	hideonnpc ボス訪問1;
+	hideonnpc ボス訪問2;
+	hideonnpc ボス訪問3;
+	hideonnpc ma_h_warp2;
+	hideonnpc ma_h_warp3;
+	hideonnpc ma_h_warp4;
+	hideonnpc ma_h_warp5;
+	hideonnpc ma_h_warp6;
+	hideonnpc ma_h_warp7;
+	hideonnpc ma_h_warp8;
+	hideonnpc ma_h_warp34;
+	hideonnpc ma_h_warp35;
+	hideonnpc ma_h_warp36;
+	hideonnpc ma_h_warp37;
+	hideonnpc ma_h_warp38;
+	hideonnpc ma_h_warp41;
+	hideonnpc ma_h_warp42;
+	hideonnpc ma_h_warp43;
+	hideonnpc ma_h_warp44;
+	hideonnpc ma_h_warp45;
+	hideonnpc ma_h_warp46;
+	hideonnpc ma_h_warp47;
+	hideonnpc ma_h_warp48;
+	hideonnpc ma_h_warp49;
+	hideonnpc ma_h_warp10;
+	hideonnpc ma_h_warp11;
+	hideonnpc ma_h_warp12;
+	hideonnpc ma_h_warp13;
+	hideonnpc ma_h_warp14;
+	hideonnpc ma_h_warp15;
+	hideonnpc ma_h_warp16;
+	hideonnpc ma_h_warp17;
+	hideonnpc ma_h_warp18;
+	hideonnpc ma_h_warp19;
+	hideonnpc ma_h_warp20;
+	hideonnpc ma_h_warp21;
+	hideonnpc ma_h_warp22;
+	hideonnpc ma_h_warp25;
+	hideonnpc ma_h_warp26;
+	hideonnpc ma_h_warp27;
+	hideonnpc ma_h_warp28;
+	hideonnpc ma_h_warp29;
+	hideonnpc ma_h_warp30;
+	hideonnpc ma_h_warp31;
+	hideonnpc ma_h_warp32;
+	hideonnpc ma_h_warp33;
+	hideonnpc ボス部屋入口a;
+	hideonnpc ボス部屋入口b;
+	hideonnpc ボス部屋入口c;
+	hideonnpc ボス部屋入口d;
+	hideonnpc ボス部屋入口e;
+	hideonnpc ボス部屋入口f;
+	hideonnpc ボス部屋入口g;
+	hideonnpc ボス部屋入口h;
+	end;
+OnTouch:
+	announce "ビョンウンゴ：愚かな " +strcharinfo(0)+ "……。死ぬ前にここから出ていけ……。",0x9,0xff82ff;
+	monster 1@ma_h,45,157,"悪夢のマンククーラム",2339,1,ma_h_start_tim+ "::OnKilled";
+	donpcevent ma_h_start_tim+ "::OnStart";
+	misceffect 360,ma_h_start;
+	hideonnpc ma_h_start;
+	end;
+}
+1@ma_h,43,157,0	script	ma_h_start_tim	139,{
+OnStart:
+	initnpctimer;
+	end;
+OnTimer5000:
+	announce "ビョンウンゴ：もう私を止める事はできないぞ……。",0x9,0xff82ff;
+	end;
+OnTimer10000:
+	stopnpctimer;
+	announce "ビョンウンゴ：ふふふふふ!!",0x9,0xff82ff;
+	end;
+OnKilled:
+	announce "ビョンウンゴ：それが返答か……いいだろう、恐ろしい悪夢を見せてやる。",0x9,0xff82ff;
+	donpcevent 病室1入口+ "::OnStart";
+	end;
+}
+1@ma_h,46,165,0	script	病室1入口	139,{
+OnStart:
+	set 'mob,2;
+	initnpctimer;
+	end;
+OnTimer2000:
+	announce "看護師マエン：聞こえる？　ビョンウンゴが居る部屋の入口は閉じているわ。",0x9,0xff8200;
+	end;
+OnTimer4000:
+	announce "看護師マエン：まずは病室を順番にまわってビョンウンゴの部下を退治して。",0x9,0xff8200;
+	misceffect 360, 病室1入口;
+	monster 1@ma_h,50,173,"悪夢のマンククーラム",2339,1,病室1入口+ "::OnKilled";
+	monster 1@ma_h,53,172,"悪夢のマンククーラム",2339,1,病室1入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 病室2入口+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,57,147,0	script	病室2入口	139,{
+OnStart:
+	set 'mob,2;
+	misceffect 360, 病室1入口;
+	announce "ビョンウンゴ：本当の痛みと苦しみを教えてやろう……。",0x9,0xff82ff;
+	misceffect 360, 病室2入口;
+	monster 1@ma_h,54,141,"悪夢のマンククーラム",2339,1,病室2入口+ "::OnKilled";
+	monster 1@ma_h,45,140,"悪夢のマンククーラム",2339,1,病室2入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 病室3入口+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,67,165,0	script	病室3入口	139,{
+OnStart:
+	set 'mob,3;
+	misceffect 360, 病室2入口;
+	announce "ビョンウンゴ：お前たちの苦しみは私の力となる……。",0x9,0xff82ff;
+	misceffect 360, 病室3入口;
+	monster 1@ma_h,71,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
+	monster 1@ma_h,73,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
+	monster 1@ma_h,74,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 病室4入口+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,79,147,0	script	病室4入口	139,{
+OnStart:
+	set 'mob,3;
+	misceffect 360, 病室3入口;
+	announce "ビョンウンゴ：私に聞かせてみろ……お前の苦しみを!!",0x9,0xff82ff;
+	misceffect 360, 病室4入口;
+	monster 1@ma_h,73,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
+	monster 1@ma_h,75,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
+	monster 1@ma_h,76,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 病室5入口+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,90,165,0	script	病室5入口	139,{
+OnStart:
+	set 'mob,4;
+	misceffect 360, 病室4入口;
+	announce "ビョンウンゴ：もっと……もっと苦しむがいい……。",0x9,0xff82ff;
+	misceffect 360, 病室5入口;
+	monster 1@ma_h,94,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
+	monster 1@ma_h,95,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
+	monster 1@ma_h,98,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
+	monster 1@ma_h,95,176,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 病室6入口+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,101,147,0	script	病室6入口	139,{
+OnStart:
+	set 'mob,5;
+	misceffect 360, 病室5入口;
+	announce "ビョンウンゴ：もっと怯えろ……怖がれ……。",0x9,0xff82ff;
+	misceffect 360, 病室6入口;
+	monster 1@ma_h,94,137,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
+	monster 1@ma_h,96,139,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
+	monster 1@ma_h,99,138,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
+	monster 1@ma_h,94,140,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
+	monster 1@ma_h,95,141,"悪夢のマナナンガル",2338,1,病室6入口+ "::OnKilled";
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent ボス召喚+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,110,177,0	script	ボス召喚	139,{
+OnStart:
+	set 'mob,1;
+	misceffect 360, 病室6入口;
+	announce "ビョンウンゴ：愚かな……生きて帰ることはできないぞ……。",0x9,0xff82ff;
+	hideoffnpc ボス部屋入口a;
+	hideoffnpc ボス部屋入口b;
+	hideoffnpc ボス部屋入口c;
+	hideoffnpc ボス部屋入口d;
+	hideoffnpc ボス部屋入口e;
+	hideoffnpc ボス部屋入口f;
+	hideoffnpc ボス部屋入口g;
+	hideoffnpc ボス部屋入口h;
+	hideoffnpc ボス訪問;
+	hideoffnpc ボス訪問1;
+	hideoffnpc ボス訪問2;
+	hideoffnpc ボス訪問3;
+	donpcevent ボスエフェクト+ "::OnStart";
+	monster 1@ma_h,143,158,"ビョンウンゴ",2317,1,ボス召喚+ "::OnKilled";
+	monster 1@ma_h,131,62,"憤怒のビョンウンゴ",2318,1;
+	end;
+OnKilled:
+	set 'mob,'mob-1;
+	if('mob<=0) {
+		donpcevent 柱召喚+ "::OnStart";
+	}
+	end;
+}
+1@ma_h,147,143,0	script	ボス部屋入口	139,{
+OnStart:
+	donpcevent ボス部屋入口_time+ "::OnStart";
+	end;
+}
+1@ma_h,147,143,0	script	ボス部屋入口_time	139,{
+OnStart:
+	initnpctimer;
+	end;
+OnTimer5000:
+	announce "ビョンウンゴ：哀れな者よ……本当の苦しみを教えてやろう……。",0x9,0xff82ff;
+	end;
+OnTimer30000:
+	announce "ビョンウンゴ：呼吸もできぬほど痛く、苦しい病が ",0x9,0xff82ff;
+	end;
+OnTimer40000:
+	announce "ビョンウンゴ：どのようなものか……知っているか？",0x9,0xff82ff;
+	end;
+OnTimer50000:
+	announce "ビョンウンゴ：病に苦しむ者たちの悲鳴を聞いたことが・るか？",0x9,0xff82ff;
+	end;
+OnTimer60000:
+	announce "ビョンウンゴ：聞いたことがないなら私が聞かせてやる！",0x9,0xff82ff;
+	end;
+OnTimer65000:
+	stopnpctimer;
+	hideoffnpc 病室召喚;
+	hideonnpc ma_h_warp10;
+	hideonnpc ma_h_warp11;
+	hideonnpc ma_h_warp12;
+	hideonnpc ma_h_warp13;
+	hideonnpc ma_h_warp14;
+	hideonnpc ma_h_warp15;
+	hideonnpc ma_h_warp16;
+	hideonnpc ma_h_warp17;
+	hideonnpc ma_h_warp18;
+	hideonnpc ma_h_warp19;
+	hideonnpc ma_h_warp20;
+	hideonnpc ma_h_warp21;
+	hideonnpc ma_h_warp22;
+	hideonnpc ma_h_warp25;
+	hideonnpc ma_h_warp26;
+	hideonnpc ma_h_warp27;
+	hideonnpc ma_h_warp28;
+	hideonnpc ma_h_warp29;
+	hideonnpc ma_h_warp30;
+	hideonnpc ma_h_warp31;
+	hideonnpc ma_h_warp32;
+	hideonnpc ma_h_warp33;
+	hideoffnpc ma_h_warp2;
+	hideoffnpc ma_h_warp3;
+	hideoffnpc ma_h_warp4;
+	hideoffnpc ma_h_warp5;
+	hideoffnpc ma_h_warp6;
+	hideoffnpc ma_h_warp7;
+	hideoffnpc ma_h_warp8;
+	hideoffnpc ma_h_warp34;
+	hideoffnpc ma_h_warp35;
+	hideoffnpc ma_h_warp36;
+	hideoffnpc ma_h_warp37;
+	hideoffnpc ma_h_warp38;
+	hideoffnpc ma_h_warp41;
+	hideoffnpc ma_h_warp42;
+	hideoffnpc ma_h_warp43;
+	hideoffnpc ma_h_warp44;
+	hideoffnpc ma_h_warp45;
+	hideoffnpc ma_h_warp46;
+	hideoffnpc ma_h_warp47;
+	hideoffnpc ma_h_warp48;
+	hideoffnpc ma_h_warp49;
+	end;
+}
+1@ma_h,111,177,0	script	ボス部屋入口2	45,1,1,{
+	// 未調査
+OnTouch:
+	mes "‐闇のビョンウンゴ病院2階の";
+	mes "　外に出ますか？‐";
+	next;
+	if(select("外に出ない","外に出る==1){
+		close;
+	}
+	mes "‐外に出ました‐";
+	close2;
+	warp "ma_dun01",150,8;
+	end;
+}
+1@ma_h,118,63,0	script	病室召喚	139,1,1,{
+OnTouch:
+	donpcevent 病室召喚_time+ "::OnStart";
+	misceffect 196, 病室召喚;
+	hideonnpc 病室召喚;
+	end;
+}
+1@ma_h,118,64,0	script	病室召喚_time	139,{
+OnStart:
+	initnpctimer;
+	set 'flag,rand(1,12);
+	end;
+OnTimer4000:
+	switch('flag) {
+	case 1:	//唸っている患者
+		donpcevent ma_h_patient01+ "::OnStart";
+		break;
+	case 2:	//絶叫する患者
+		donpcevent ma_h_patient02+ "::OnStart";
+		break;
+	case 3:	//苦しんでいる患者
+		donpcevent ma_h_patient03+ "::OnStart";
+		break;
+	case 4:	//気絶した患者
+		donpcevent ma_h_patient04+ "::OnStart";
+		break;
+	case 5:	//悪夢を見る患者
+		donpcevent ma_h_patient05+ "::OnStart";
+		break;
+	case 6:	//痛そうに見える患者
+		donpcevent ma_h_patient06+ "::OnStart";
+		break;
+	case 7:	//恐怖に怯えている患者
+		donpcevent ma_h_patient07+ "::OnStart";
+		break;
+	case 8:	//悲しんでいる患者
+		donpcevent ma_h_patient08+ "::OnStart";
+		break;
+	case 9:	//顔を歪める患者
+		donpcevent ma_h_patient09+ "::OnStart";
+		break;
+	case 10:	//身悶える患者
+		donpcevent ma_h_patient10+ "::OnStart";
+		break;
+	case 11:	//冷汗をかく患者
+		donpcevent ma_h_patient11+ "::OnStart";
+		break;
+	case 12:	//叫んでいる患者
+		donpcevent ma_h_patient12+ "::OnStart";
+		break;
+	}
+	end;
+OnTimer8000:
+	announce "ビョンウンゴ：呪いにかかった奴らに憑りついてやろう……。",0x9,0xff82ff;
+	end;
+OnTimer11000:
+	announce "ビョンウンゴ：部下たちよ！　行け！　病室の患者たちを苦しめろ!!",0x9,0xff82ff;
+	end;
+OnTimer13000:
+	announce "看護師マエン：まさか……患者の苦しみから力を蓄えるつもり!?",0x9,0xff8200;
+	end;
+OnTimer15000:
+	announce "看護師マエン：ビョンウンゴが力を蓄える前に病室の部下たちを退治して！",0x9,0xff8200;
+	end;
+OnTimer17000:
+	switch('flag) {
+	case 1:	//唸っている患者
+	case 2:	//絶叫する患者
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
+		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	case 3:	//苦しんでいる患者
+	case 4:	//気絶した患者
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	case 5:	//悪夢を見る患者
+	case 6:	//痛そうに見える患者
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	case 7:	//恐怖に怯えている患者
+	case 8:	//悲しんでいる患者
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	case 9:	//顔を歪める患者
+	case 10:	//身悶える患者
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	case 11:	//冷汗をかく患者
+	case 12:	//叫んでいる患者
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
+		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
+		break;
+	}
+	end;
+OnTimer36000:
+	announce "ビョンウンゴ：患者の苦しみが私の力となっていく……。",0x9,0xff82ff;
+	end;
+OnTimer56000:
+	announce "ビョンウンゴ：もっと苦しめろ……呪われし病よ！",0x9,0xff82ff;
+	end;
+OnTimer71000:
+	announce "ビョンウンゴ：もうそろそろ私と遊んでみるか……？",0x9,0xff82ff;
+	end;
+OnTimer73000:
+	stopnpctimer;
+	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
+	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
+	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
+	hideoffnpc ボス部屋入口a;
+	hideoffnpc ボス部屋入口b;
+	hideoffnpc ボス部屋入口c;
+	hideoffnpc ボス部屋入口d;
+	hideoffnpc ボス部屋入口e;
+	hideoffnpc ボス部屋入口f;
+	hideoffnpc ボス部屋入口g;
+	hideoffnpc ボス部屋入口h;
+	hideoffnpc ma_h_warp10;
+	hideoffnpc ma_h_warp11;
+	hideoffnpc ma_h_warp12;
+	hideoffnpc ma_h_warp13;
+	hideoffnpc ma_h_warp14;
+	hideoffnpc ma_h_warp15;
+	hideoffnpc ma_h_warp16;
+	hideoffnpc ma_h_warp17;
+	hideoffnpc ma_h_warp18;
+	hideoffnpc ma_h_warp19;
+	hideoffnpc ma_h_warp20;
+	hideoffnpc ma_h_warp21;
+	hideoffnpc ma_h_warp22;
+	hideoffnpc ma_h_warp25;
+	hideoffnpc ma_h_warp26;
+	hideoffnpc ma_h_warp27;
+	hideoffnpc ma_h_warp28;
+	hideoffnpc ma_h_warp29;
+	hideoffnpc ma_h_warp30;
+	hideoffnpc ma_h_warp31;
+	hideoffnpc ma_h_warp32;
+	hideoffnpc ma_h_warp33;
+	hideonnpc ma_h_warp2;
+	hideonnpc ma_h_warp3;
+	hideonnpc ma_h_warp4;
+	hideonnpc ma_h_warp5;
+	hideonnpc ma_h_warp6;
+	hideonnpc ma_h_warp7;
+	hideonnpc ma_h_warp8;
+	hideonnpc ma_h_warp34;
+	hideonnpc ma_h_warp35;
+	hideonnpc ma_h_warp36;
+	hideonnpc ma_h_warp37;
+	hideonnpc ma_h_warp38;
+	hideonnpc ma_h_warp41;
+	hideonnpc ma_h_warp42;
+	hideonnpc ma_h_warp43;
+	hideonnpc ma_h_warp44;
+	hideonnpc ma_h_warp45;
+	hideonnpc ma_h_warp46;
+	hideonnpc ma_h_warp47;
+	hideonnpc ma_h_warp48;
+	hideonnpc ma_h_warp49;
+	end;
+}
+1@ma_h,112,177,0	script	柱召喚	139,{
+OnStart:
+	donpcevent 柱召喚_time+ "::OnStart";
+	monster 1@ma_h,131,157,"忌み木のビョンウンゴ",2327,1,柱召喚+ "::OnKilled";
+	end;
+OnKilled:
+	killmonster "this","All";
+	stopnpctimer 柱召喚_time;
+	stopnpctimer ボス部屋入口_time;
+	stopnpctimer 病室召喚_time;
+	hideoffnpc ボス部屋入口2;
+	hideoffnpc ボス部屋出口;
+	announce "ビョンウンゴ：くっ……これで終わりだと思うな!!　私は必ず戻ってくる!!",0x9,0xff0000;
+	sleep 2000;
+	announce "看護師マエン：お疲れ様！　外に出て報告を聞かせてね。",0x9,0xff8200;
+	end;
+}
+1@ma_h,112,178,0	script	柱召喚_time	139,{
+OnStart:
+	initnpctimer;
+	stopnpctimer ボス部屋入口_time;
+	stopnpctimer 病室召喚_time;
+	announce "ビョンウンゴ：こ……これで終わりだと思うなよ。",0x9,0xff82ff;
+	end;
+OnTimer2000:
+	announce "看護師マエン：ビョンウンゴの力がどんどん回復しているわ！",0x9,0xff8200;
+	end;
+OnTimer4000:
+	announce "看護師マエン：復活してしまう前に早く倒すのよ!!",0x9,0xff8200;
+	end;
+OnTimer6000:
+	misceffect 247,ma_h_warp45;
+	end;
+OnTimer8000:
+	announce "ビョンウンゴ：私は不死身だ!!",0x9,0xff82ff;
+	end;
+OnTimer10000:
+	misceffect 247,ma_h_warp45;
+	end;
+OnTimer12000:
+	announce "ビョンウンゴ：殺せるものなら殺してみろ!!　すぐに復活してやる!!",0x9,0xff82ff;
+	end;
+OnTimer14000:
+	misceffect 247,ma_h_warp45;
+	end;
+OnTimer16000:
+	announce "ビョンウンゴ：このまま勝てるなどと思わないことだな!!",0x9,0xff82ff;
+	end;
+OnTimer18000:
+	misceffect 247,ma_h_warp45;
+	end;
+OnTimer22000:
+	misceffect 247,ma_h_warp45;
+	end;
+OnTimer26000:
+	killmonster "this",柱召喚+ "::OnKilled";
+	donpcevent ボス部屋入口+ "::OnStart";
+	announce "ビョンウンゴ：ははははは!!　柱の中で力を回復して戻ってきたぞ!!",0x9,0xff82ff;
+	end;
+OnTimer30000:
+	monster 1@ma_h,143,158,"ビョンウンゴ",2317,1,ボス召喚+ "::OnKilled";
+	end;
+OnTimer46000:
+	announce "ビョンウンゴ：ふふふ……その程度の力では無駄だ、私には勝てないぞ……。",0x9,0xff82ff;
+	end;
+}
+1@ma_h,35,156,0	warp	ボス部屋出口	1,1,ma_dun01,150,8
+1@ma_h,105,157,0	warp	ボス訪問	1,1,1@ma_h,116,157
+1@ma_h,112,157,0	warp	ボス訪問1	1,1,1@ma_h,100,157
+1@ma_h,104,63,0	warp	ボス訪問2	1,1,1@ma_h,117,63
+1@ma_h,112,63,0	warp	ボス訪問3	1,1,1@ma_h,100,63
+1@ma_h,53,157,0	script	ma_h_warp2	139,5,5,{
+OnTouch:
+	warp 1@ma_h,117,63;
+	end;
+}
+1@ma_h,57,157,0	duplicate(ma_h_warp2)	ma_h_warp3	139,5,5
+1@ma_h,67,157,0	duplicate(ma_h_warp2)	ma_h_warp4	139,5,5
+1@ma_h,79,157,0	duplicate(ma_h_warp2)	ma_h_warp5	139,5,5
+1@ma_h,89,157,0	duplicate(ma_h_warp2)	ma_h_warp6	139,5,5
+1@ma_h,100,157,0	duplicate(ma_h_warp2)	ma_h_warp7	139,5,5
+1@ma_h,51,173,0	duplicate(ma_h_warp2)	ma_h_warp8	139,10,10
+1@ma_h,52,140,0	duplicate(ma_h_warp2)	ma_h_warp34	139,10,10
+1@ma_h,73,173,0	duplicate(ma_h_warp2)	ma_h_warp35	139,10,10
+1@ma_h,73,140,0	duplicate(ma_h_warp2)	ma_h_warp36	139,10,10
+1@ma_h,95,173,0	duplicate(ma_h_warp2)	ma_h_warp37	139,10,10
+1@ma_h,95,140,0	duplicate(ma_h_warp2)	ma_h_warp38	139,10,10
+1@ma_h,117,171,0	duplicate(ma_h_warp2)	ma_h_warp41	139,7,7
+1@ma_h,131,171,0	duplicate(ma_h_warp2)	ma_h_warp42	139,7,7
+1@ma_h,146,171,0	duplicate(ma_h_warp2)	ma_h_warp43	139,7,7
+1@ma_h,117,157,0	duplicate(ma_h_warp2)	ma_h_warp44	139,7,7
+1@ma_h,131,157,0	duplicate(ma_h_warp2)	ma_h_warp45	139,7,7
+1@ma_h,146,157,0	duplicate(ma_h_warp2)	ma_h_warp46	139,7,7
+1@ma_h,117,143,0	duplicate(ma_h_warp2)	ma_h_warp47	139,7,7
+1@ma_h,131,143,0	duplicate(ma_h_warp2)	ma_h_warp48	139,7,7
+1@ma_h,146,143,0	duplicate(ma_h_warp2)	ma_h_warp49	139,7,7
+1@ma_h,36,63,0	script	ma_h_warp10	139,5,5,{
+OnTouch:
+	warp 1@ma_h,116,157;
+	end;
+}
+1@ma_h,46,63,0	duplicate(ma_h_warp10)	ma_h_warp11	139,5,5
+1@ma_h,56,63,0	duplicate(ma_h_warp10)	ma_h_warp12	139,5,5
+1@ma_h,67,63,0	duplicate(ma_h_warp10)	ma_h_warp13	139,5,5
+1@ma_h,78,63,0	duplicate(ma_h_warp10)	ma_h_warp14	139,5,5
+1@ma_h,89,63,0	duplicate(ma_h_warp10)	ma_h_warp15	139,5,5
+1@ma_h,100,63,0	duplicate(ma_h_warp10)	ma_h_warp16	139,5,5
+1@ma_h,51,79,0	duplicate(ma_h_warp10)	ma_h_warp17	139,10,10
+1@ma_h,51,46,0	duplicate(ma_h_warp10)	ma_h_warp18	139,10,10
+1@ma_h,73,80,0	duplicate(ma_h_warp10)	ma_h_warp19	139,10,10
+1@ma_h,73,46,0	duplicate(ma_h_warp10)	ma_h_warp20	139,10,10
+1@ma_h,95,79,0	duplicate(ma_h_warp10)	ma_h_warp21	139,10,10
+1@ma_h,95,46,0	duplicate(ma_h_warp10)	ma_h_warp22	139,10,10
+1@ma_h,117,77,0	duplicate(ma_h_warp10)	ma_h_warp25	139,7,7
+1@ma_h,131,77,0	duplicate(ma_h_warp10)	ma_h_warp26	139,7,7
+1@ma_h,146,77,0	duplicate(ma_h_warp10)	ma_h_warp27	139,7,7
+1@ma_h,117,63,0	duplicate(ma_h_warp10)	ma_h_warp28	139,7,7
+1@ma_h,131,63,0	duplicate(ma_h_warp10)	ma_h_warp29	139,7,7
+1@ma_h,146,63,0	duplicate(ma_h_warp10)	ma_h_warp30	139,7,7
+1@ma_h,117,49,0	duplicate(ma_h_warp10)	ma_h_warp31	139,7,7
+1@ma_h,131,49,0	duplicate(ma_h_warp10)	ma_h_warp32	139,7,7
+1@ma_h,146,49,0	duplicate(ma_h_warp10)	ma_h_warp33	139,7,7
+1@ma_h,118,171,0	script	ボス部屋入口a	139,7,7,{
+OnTouch:
+	misceffect 358,strnpcinfo(0);
+	hideonnpc ボス部屋入口a;
+	hideonnpc ボス部屋入口b;
+	hideonnpc ボス部屋入口c;
+	hideonnpc ボス部屋入口d;
+	hideonnpc ボス部屋入口e;
+	hideonnpc ボス部屋入口f;
+	hideonnpc ボス部屋入口g;
+	hideonnpc ボス部屋入口h;
+	donpcevent ボス部屋入口+ "::OnStart";
+	end;
+}
+1@ma_h,132,171,0	duplicate(ボス部屋入口a)	ボス部屋入口b	139,7,7
+1@ma_h,147,171,0	duplicate(ボス部屋入口a)	ボス部屋入口c	139,7,7
+1@ma_h,118,157,0	duplicate(ボス部屋入口a)	ボス部屋入口d	139,7,7
+1@ma_h,132,157,0	duplicate(ボス部屋入口a)	ボス部屋入口e	139,7,7
+1@ma_h,147,157,0	duplicate(ボス部屋入口a)	ボス部屋入口f	139,7,7
+1@ma_h,118,143,0	duplicate(ボス部屋入口a)	ボス部屋入口g	139,7,7
+1@ma_h,132,143,0	duplicate(ボス部屋入口a)	ボス部屋入口h	139,7,7
+1@ma_h,131,62,0	script	ボスエフェクト	139,{
+OnStart:
+	initnpctimer;
+	end;
+OnTimer3000:
+	setnpctimer 0;
+	misceffect 63;
+	end;
+}
+1@ma_h,43,86,4	script	唸っている患者::ma_h_patient01	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "唸っている患者：うう……うっ……く……!!",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,60,87,4	script	絶叫する患者::ma_h_patient02	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "絶叫する患者: うわ・・・・・・・・・・・!! ",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,60,39,7	script	苦しんでいる患者::ma_h_patient03	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "苦しんでいる患者：痛い……痛い……!!",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,43,39,7	script	気絶した患者::ma_h_patient04	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "気絶した患者:う、うう……!! ",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,77,86,4	script	悪夢を見る患者::ma_h_patient05	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "悪夢を見る患者：助けて!!　誰か助けて!!　・・……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,69,87,4	script	痛そうに見える患者::ma_h_patient06	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "痛そうに見える患者：は・・……う……ううう……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,73,39,7	script	恐怖に怯えてる患者::ma_h_patient07	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "恐怖に怯えている患者：・っちに行って!!　お願い……来ないで……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,65,51,7	script	悲しんでいる患者::ma_h_patient08	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "悲しんでいる患者：うう……どうして……こんな……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,87,86,4	script	顔を歪める患者::ma_h_patient09	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "顔を歪める患者：もうやめて……お願い……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,104,86,4	script	身悶える患者::ma_h_patient10	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "身悶える患者：くわ・・……う……くっ……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,99,39,7	script	冷汗をかく患者::ma_h_patient11	584,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "冷汗をかく患者：は・・……た、助けて……。",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220;
+	misceffect 196;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220;
+	misceffect 196;
+	end;
+}
+1@ma_h,87,39,7	script	叫んでいる患者::ma_h_patient12	585,{
+	end;
+OnStart:
+	initnpctimer;
+	announce "叫んでいる患者：く、来るな・・・・・・・・・・・!!",0x9,0xff0000;
+OnTimer5000:
+OnTimer8000:
+OnTimer11000:
+OnTimer14000:
+OnTimer17000:
+OnTimer20000:
+OnTimer23000:
+OnTimer26000:
+	misceffect 220, 叫んでいる患者;
+	misceffect 196, 叫んでいる患者;
+	end;
+OnTimer30000:
+	stopnpctimer;
+	misceffect 220, 叫んでいる患者;
+	misceffect 196, 叫んでいる患者;
+	end;
+}
+1@ma_h,43,181,4	script	唸っている患者	584,{ end; }
+1@ma_h,60,182,4	script	絶叫する患者	585,{ end; }
+1@ma_h,60,132,7	script	苦しんでいる患者	584,{ end; }
+1@ma_h,43,132,7	script	気絶した患者	585,{ end; }
+1@ma_h,77,182,4	script	悪夢を見る患者	584,{ end; }
+1@ma_h,69,182,4	script	痛そうに見える患者	585,{ end; }
+1@ma_h,73,132,7	script	恐怖に怯えてる患者	584,{ end; }
+1@ma_h,65,144,7	script	悲しんでいる患者	585,{ end; }
+1@ma_h,87,181,4	script	顔を歪める患者	584,{ end; }
+1@ma_h,104,181,4	script	身悶える患者	585,{ end; }
+1@ma_h,99,132,7	script	冷汗をかく患者	584,{ end; }
+1@ma_h,87,132,7	script	叫んでいる患者	585,{ end; }

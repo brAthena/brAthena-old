@@ -1791,11 +1791,11 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 	}
 }
 
-morocc_in,146,179,0	script	Employee#megin1	66,{
+morocc_in,146,179,0	script	Funcionária#megin1	66,{
 	if($God1 > 49 && $God2 < 100) {
 		if(god_eremes > 17 && god_megin_2 < 1) {
-			mes "^3355FFA Funcionária Inn";
-			mes "olhou sua desconfiança.^000000";
+			mes "^3355FFA Funcionária";
+			mes "olhou com desconfiança.^000000";
 			next;
 			mes "[Funcionária Inn]";
 			mes "Desculpe-me.";
@@ -1996,7 +1996,7 @@ morocc_in,146,179,0	script	Employee#megin1	66,{
 	}
 }
 
-in_rogue,243,61,0	script	Suspicious Man#megin	748,{
+in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
 	if($God1 > 49 && $God2 < 100) {
 		if(god_eremes == 18) {
 			mes "[Cuaque Donon]";
@@ -2265,7 +2265,7 @@ in_rogue,243,61,0	script	Suspicious Man#megin	748,{
 	}
 }
 
-alberta,196,146,0	script	Crusader#megin2	751,{
+alberta,196,146,0	script	Templário#megin2	751,{
 	if ($God1 > 49 && $God2 < 100) {
 		if(god_eremes == 18) {
 			mes "[Jack O]";
@@ -2456,7 +2456,7 @@ alberta,196,146,0	script	Crusader#megin2	751,{
 	}
 }
 
-aldebaran,66,213,0	script	Lady#megin	69,{
+aldebaran,66,213,0	script	Senhorita#megin	69,{
 	if ($God1 > 49 && $God2 < 100) {
 		if(god_eremes == 18) {
 			mes "[Emma Searth]";
@@ -2681,7 +2681,7 @@ aldebaran,66,213,0	script	Lady#megin	69,{
 	}
 }
 
-cmd_in02,190,94,3	script	Man#megin	828,{
+cmd_in02,190,94,3	script	Homem#megin	828,{
 	if ($God1 > 49 && $God2 < 100) {
 		if (god_eremes == 18) {
 			mes "[Royal Myst]";

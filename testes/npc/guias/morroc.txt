@@ -19,73 +19,71 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
-//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-morocc,153,286,6	script	Guide#01morocc	707,{
+morocc,153,286,6	script	Guia#01morocc	707,{
 	cutin "moc_soldier",2;
 	mes "[Guia de Morroc]";
 	if(checkre(0)) {
-		mes "Welcome to ^8B4513Morroc^000000,";
-		mes "the Desert Town.";
-		mes "Do you need help navigating the town?";
+		mes "Bem-vindo a ^8B4513Morroc^000000,";
+		mes "a Cidade do Deserto.";
+		mes "Você deseja conhecer a cidade?";
 		next;
 		set .@loop1,1;
 		while (1) {
-			switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+			switch(select("[ Principais Lugares ]:[ Mercadores & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Thief Guild ]:[ Sphinx Dungeon ]:[ Oasis Entrance ]:[ Forge ]:[ Weapon & Armor Shop ]:[ Inn ]:[ Tavern ]:Previous Menu")) {
+					switch(select("[ Guilda dos Gatunos ]:[ Esfinge ]:[ Oásis ]:[ Forja ]:[ Loja de Armas & Armaduras ]:[ Hotel ]:[ Taverna ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Morroc]";
-						mes "The ^B9062FThief Guild^000000 is located";
-						mes "inside the ^B9062FPyramids^000000";
-						mes "that is near the ^B9062FOasis^000000.";
-						mes "Would you like to check any other locations?";
+						mes "A ^B9062FGuilda de Gatunos^000000 está localizada";
+						mes "no interior das ^B9062FPirâmides^000000";
+						mes "próximo ao ^B9062FOásis^000000.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,26,294,0,0xFF0000;
 						next;
 						break;
 					case 2:
 						mes "[Guia de Morroc]";
-						mes "The ^0000FFSphinx Dungeon^000000 is";
-						mes "right outside the western gate.";
-						mes "Would you like to check any other locations?";
+						mes "A ^0000FFEsfinge^000000 está";
+						mes "em frente ao portão do oeste.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,26,164,1,0x0A82FF;
 						next;
 						break;
 					case 3:
 						mes "[Guia de Morroc]";
-						mes "Let me mark the entrance to the ^FF5400Oasis^000000";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "Deixe-me marcar para você a localização do ^FF5400Oásis^000000";
+						mes "em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,26,294,2,0xFFB400;
 						next;
 						break;
 					case 4:
-						callsub L_Mark,"^006400Forge";
+						callsub L_Mark,"^006400Forja";
 						viewpoint 1,47,47,3,0xAAFF00;
 						next;
 						break;
 					case 5:
-						callsub L_Mark,"^7F3300Weapon & Armor Shop";
+						callsub L_Mark,"^7F3300Loja de Armas & Armaduras";
 						viewpoint 1,253,56,4,0xD2691E;
 						next;
 						break;
 					case 6:
 						mes "[Guia de Morroc]";
-						mes "Currently the ^800080Inn^000000";
-						mes "has been shut down until further notice,";
-						mes "but I'll mark its location";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "Atualmente o ^800080Hotel^000000";
+						mes "está inativo, mas irei marcar sua localização em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,273,269,5,0xDA70D6;
 						next;
 						break;
 					case 7:
-						callsub L_Mark,"^B9062FTavern";
+						callsub L_Mark,"^B9062FTaverna";
 						viewpoint 1,52,259,6,0xFF0000;
 						next;
 						break;
@@ -98,37 +96,32 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 			case 2:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Kafra Employee ]:[ Poison Herb Salesman ]:[ Dye Maker ]:[ Seiyablem ]:Previous Menu")) {
+					switch(select("[ Funcionárias Kafra ]:[ Vendedora de Ervas Tóxicas ]:[ Criador de Tinturas ]:[ Seiyablem ]:Menu Anterior")) {
 					case 1:
-						callsub L_Mark,"^0000FFKafra Employees";
+						callsub L_Mark,"^0000FFFuncionárias Kafra";
 						viewpoint 1,156,97,7,0x0A82FF;
 						viewpoint 1,160,258,8,0x0A82FF;
 						next;
 						break;
 					case 2:
-						callsub L_Mark,"^006400Poison Herb Salesman";
+						callsub L_Mark,"^006400Vendedora de Ervas Tóxicas";
 						viewpoint 1,190,96,9,0xAAFF00;
 						next;
 						break;
 					case 3:
 						mes "[Guia de Morroc]";
-						mes "The ^7F3300Dye Maker^000000 is";
-						mes "currently staying";
-						mes "on the 1st floor of the Inn.";
-						mes "Let me mark his location";
-						mes "on your mini-map.";
-						mes "Would you like to check any other locations?";
+						mes "O ^7F3300Criador de Tinturas^000000 está atualmente no primeiro andar da pousada.";
+						mes "Deixe-me marcar a localização em seu mini-mapa.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,273,269,10,0xD2691E;
 						next;
 						break;
 					case 4:
 						mes "[Guia de Morroc]";
-						mes "^800080Seiyablem^000000";
-						mes "is a technician";
-						mes "who can create ^0000FFslots^000000 on weapons and armors,";
-						mes "but not all equipment";
-						mes "can be slotted. Well, that's what he says.";
-						mes "Would you like to check any other locations?";
+						mes "^B9062FSeiyablem^000000";
+						mes "é um técnico que pode";
+						mes "adicionar ^0000FFslots^000000 em armas e armaduras.";
+						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,51,41,11,0xDA70D6;
 						next;
 						break;
@@ -140,8 +133,8 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 				break;
 			case 3:
 				mes "[Guia de Morroc]";
-				mes "Sure, I'll remove all marks from your mini-map.";
-				mes "Is there anything else I can do for you?";
+				mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
+				mes "Há mais algo que eu possa fazer por você?";
 				viewpoint 2,1,1,0,0xFFFF00;
 				viewpoint 2,1,1,1,0x000000;
 				viewpoint 2,1,1,2,0xFF0000;
@@ -158,7 +151,7 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 				break;
 			case 4:
 				mes "[Guia de Morroc]";
-				mes "Be safe on your travels.";
+				mes "Aproveite sua estadia.";
 				close2;
 				cutin "moc_soldier",255;
 				end;
@@ -167,10 +160,10 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 		end;
 	L_Mark:
 		mes "[Guia de Morroc]";
-		mes "Let me mark the location of the";
+		mes "Deixe-me marcar para você a localização para";
 		mes getarg(0)+"^000000";
-		mes "on your mini-map.";
-		mes "Would you like to check any other locations?";
+		mes "em seu mini-mapa.";
+		mes "Gostaria de verificar outras localizações?";
 		return;
 	} else {
 		mes "Bem vindo à Morroc, a cidade do deserto.";
@@ -270,44 +263,41 @@ morocc,153,286,6	script	Guide#01morocc	707,{
 	}
 }
 
-moc_ruins,159,53,3	script#re	Guide#01ruins	707,{
+moc_ruins,159,53,3	script#re	Guia#01ruins	707,{
 	cutin "moc_soldier",2;
 	mes "[Guia de Morroc]";
-	mes "Welcome to ^8B4513Morroc^000000,";
-	mes "the Desert Town.";
-	mes "Do you need help navigating the town?";
+	mes "Bem-vindo a ^8B4513Morroc^000000, a Cidade do Deserto.";
+	mes "Você deseja conhecer a cidade?";
 	next;
 	while (1) {
-		switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ Principais Facilidades ]:[ Lojas & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Thief Guild ]:[ Sphinx Dungeon ]:[ Morroc Entrance ]:Previous Menu")) {
+				switch(select("[ Guilda dos Gatunos ]:[ Esfinge ]:[ Entrada de Morroc ]:Menu Anterior")) {
 				case 1:
 					mes "[Guia de Morroc]";
-					mes "The ^B9062FThief Guild^000000 is located";
-					mes "inside the ^B9062FPyramids^000000.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "A ^B9062FGuilda de Gatunos^000000 está localizada";
+					mes "no interior das ^B9062FPirâmides^000000";
+					mes "Deixe-me marcar sua localização em seu mini-mapa.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,56,161,0,0xFF0000;
 					next;
 					break;
 				case 2:
 					mes "[Guia de Morroc]";
-					mes "The ^0000FFSphinx Dungeon^000000";
-					mes "is outside the south entrance of this Oasis.";
-					mes "Would you like to check any other locations?";
+					mes "A ^0000FFEsfinge^000000";
+					mes "está em frente à entrada sul do Oasis.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,71,19,1,0x0A82FF;
 					next;
 					break;
 				case 3:
 					mes "[Guia de Morroc]";
-					mes "^FF5400Morroc^000000 is";
-					mes "right outside the southeast entrance of this Oasis.";
-					mes "Let me mark its location";
-					mes "on your mini-map.";
-					mes "Would you like to check any other locations?";
+					mes "^FF5400Morroc^000000 está";
+					mes "a direita da entrada sudeste desse Oásis.";
+					mes "Deixe-me marcar sua localização em seu mini-mapa.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,158,40,2,0xFFB400;
 					next;
 					break;
@@ -320,46 +310,44 @@ moc_ruins,159,53,3	script#re	Guide#01ruins	707,{
 		case 2:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Eden Teleport Officer ]:[ Tool Dealer ]:[ Kafra Employee ]:[ Repairman ]:[ Pet Groomer ]:[ Chef Assistant ]:[ Leablem ]:Previous Menu")) {
+				switch(select("[ Oficial do Éden ]:[ Loja de Utilidades ]:[ Funcionária Kafra ]:[ Reparador ]:[ Loja de Bichinhos ]:[ Chefe Assistente ]:[ Leablem ]:Menu Anterior")) {
 				case 1:
-					callsub L_Mark,"^006400Eden Teleport Officer";
+					callsub L_Mark,"^006400Oficial do Éden";
 					viewpoint 1,68,164,3,0xAAFF00;
 					next;
 					break;
 				case 2:
-					callsub L_Mark,"^800080Tool Dealers";
+					callsub L_Mark,"^800080Loja de Utilidades";
 					viewpoint 1,92,128,5,0xDA70D6;
 					viewpoint 1,114,63,6,0xDA70D6;
 					next;
 					break;
 				case 3:
-					callsub L_Mark,"^B9062FKafra Employee";
+					callsub L_Mark,"^B9062FFuncionária Kafra";
 					viewpoint 1,59,157,7,0xFF0000;
 					next;
 					break;
 				case 4:
-					callsub L_Mark,"^0000FFRepairman";
+					callsub L_Mark,"^0000FFReparador";
 					viewpoint 1,107,94,8,0x0A82FF;
 					next;
 					break;
 				case 5:
-					callsub L_Mark,"^FF5400Pet Groomer";
+					callsub L_Mark,"^FF5400Loja de Bichinhos";
 					viewpoint 1,118,170,9,0xFFB400;
 					next;
 					break;
 				case 6:
-					callsub L_Mark,"^006400Chef Assistant";
+					callsub L_Mark,"^006400Chefe Assistente";
 					viewpoint 1,115,123,10,0xAAFF00;
 					next;
 					break;
 				case 7:
 					mes "[Guia de Morroc]";
 					mes "^7F3300Leablem^000000";
-					mes "is a technician";
-					mes "who can create ^0000FFslots^000000 on weapons and armors,";
-					mes "but not all equipment";
-					mes "can be slotted. Well, that's what he says.";
-					mes "Would you like to check any other locations?";
+					mes "é um técnico que pode";
+					mes "adicionar ^0000FFslots^000000 em armas e armaduras.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,154,86,11,0xD2691E;
 					next;
 					break;
@@ -371,8 +359,8 @@ moc_ruins,159,53,3	script#re	Guide#01ruins	707,{
 			break;
 		case 3:
 			mes "[Guia de Morroc]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
+			mes "Há mais algo que eu possa fazer por você?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -389,7 +377,7 @@ moc_ruins,159,53,3	script#re	Guide#01ruins	707,{
 			break;
 		case 4:
 			mes "[Guia de Morroc]";
-			mes "Be safe on your travels.";
+			mes "Aproveite sua estadia.";
 			close2;
 			cutin "moc_soldier",255;
 			end;
@@ -398,16 +386,16 @@ moc_ruins,159,53,3	script#re	Guide#01ruins	707,{
 	end;
 L_Mark:
 	mes "[Guia de Morroc]";
-	mes "Let me mark the location of the";
+	mes "Deixe-me marcar para você a localização para";
 	mes getarg(0)+"^000000";
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "em seu mini-mapa.";
+	mes "Gostaria de verificar outras localizações?";
 	return;
 }
 
-moc_ruins,70,164,3	duplicatr(Guide#01ruins)	Guide#02ruins	707
-moc_ruins,65,44,5	duplicatr(Guide#01ruins)	Guide#03ruins	707,{}
-morocc,154,38,6	duplicate(Guide#01morocc)	Guide#02morocc	707
-morocc,28,170,5	duplicate(Guide#01morocc)	Guide#04morocc	707
-morocc,54,97,0	duplicate(Guide#01morocc)	Guide#2moc	707
-morocc,296,213,4	duplicate(Guide#01morocc)	Guide#03morocc	707
+moc_ruins,70,164,3	duplicatr(Guia#01ruins)	Guia#02ruins	707
+moc_ruins,65,44,5	duplicatr(Guia#01ruins)	Guia#03ruins	707,{}
+morocc,154,38,6	duplicate(Guia#01morocc)	Guia#02morocc	707
+morocc,28,170,5	duplicate(Guia#01morocc)	Guia#04morocc	707
+morocc,54,97,0	duplicate(Guia#01morocc)	Guia#2moc	707
+morocc,296,213,4	duplicate(Guia#01morocc)	Guia#03morocc	707

@@ -33,21 +33,20 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
-	mes "[Vendedor de Ervas Tóxicas]";
-	mes "Eu sou um vendedor profissional";
-	mes "de ervas tóxicas.";
+	mes "[Vendedora de Ervas Tóxicas]";
+	mes "Eu sou uma vendedora profissional de ervas tóxicas.";
 	mes "Qual delas você deseja comprar?";
 	mes "Cada uma irá custar 4,000 zeny!";
 	set .@i, select("Nerium:Rantana:Makulata:Seratum:Scopolia:Amoena:Kit de Veneno")-1;
 	next;
 	if (.@i < 6) {
-		mes "[Vendedor de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas Tóxicas]";
 		mes "Quantas você deseja? É possível";
 		mes "comprar até 2000 por vez";
 		mes "e se por acaso quiser cancelar, digite '0'.";
 		next;
 		input .@amount;
-		mes "[Vendedor de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas Tóxicas]";
 		if (.@amount == 0) {
 			mes "Você cancelou a negociação.";
 			close;
@@ -67,17 +66,17 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		mes "Obrigado e até mais~!";
 		close;
     }
-		mes "[Vendedor de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas Tóxicas]";
 		mes "Você pode comprar apenas";
 		mes "1 Kit de Veneno e o custo será de 5,000 zeny.";
 		mes "Você deseja comprá-lo?";
 		next;
 		if(select("Sim, desejo.:Não, eu não quero.") == 2) {
-			mes "[Vendedor de Ervas Tóxicas]";
+			mes "[Vendedora de Ervas Tóxicas]";
 			mes "Bem então, eu entendo. Até mais~!";
 			close;
 		}
-		mes "[Vendedor de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas Tóxicas]";
 		if (Zeny < 5000) {
 			mes "Por favor verifique se você possui a quantia necessária.";
 			mes "Me parece que você não possui o dinheiro suficiente.";
@@ -88,8 +87,8 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		mes "Obrigado. Até mais~!";
 		close;
 }
-morocc,190,96,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#moc	877
-lhz_in02,16,205,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#lhz	877
+morocc,190,96,4	duplicate(Ervas Tóxicas)	Vendedora de Ervas Tóxicas#moc	877
+lhz_in02,16,205,4	duplicate(Ervas Tóxicas)	Vendedora de Ervas Tóxicas#lhz	877
 
 job3_rune01,90,62,3	script	Vendedor de Runas	853,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
@@ -196,7 +195,7 @@ gef_tower,105,172,5	script	Vendedora de Fragmentos#Feiticeiro	700,{
 		close;
 	}
 	mes "[Vendedora de Fragmentos]";
-	mes "Olá. Eu sou o Vendedor de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
+	mes "Olá. Eu sou a Vendedora de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
 	next;
 	set .@i, select("Fragmento Escarlate - 200z:Fragmento Verde - 200z:Fragmento Azul - 200z:Fragmento Amarelo - 200z:Cancelar")-1;
 	mes "[Vendedora de Fragmentos]";

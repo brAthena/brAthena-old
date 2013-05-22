@@ -70,8 +70,7 @@ alberta,20,183,0	script	Chad	49,{
 alberta,131,139,2	script	Velho Bêbado	54,{
 	mes "[Deagle]";
 	mes "^666666*Hiccup*^000000";
-	mes "O que... O que está";
-	mes "olhando? Desaparece!!";
+	mes "O que... O que está olhando? Desaparece!!";
 	next;
 	if (select("Nada.:Irei lhe deixar em paz.") == 1) {
 		mes "[Deagle]";
@@ -105,8 +104,7 @@ alberta,131,139,2	script	Velho Bêbado	54,{
 		close;
 	}
 	mes "[Deagle]";
-	mes "É isso mesmo!";
-	mes "Vai-te embora!";
+	mes "É isso mesmo! Vá embora!";
 	close;
 }
 
@@ -203,7 +201,7 @@ alberta,189,151,5	script	Fisk	100,{
 				mes "Eu disse 250 zeny!";
 				close;
 			}
-			set Zeny,Zeny - 250;
+			set Zeny,Zeny - 250; close2;
 			warp "alb2trea",43,53;
 			end;
 		case 2:
@@ -255,10 +253,10 @@ alberta,195,151,4	script	Paul	86,{
 		if (Zeny < 200) {
 			mes "[Paul]";
 			mes "Parece que você não tem o dinheiro, mas por favor, volte quando for capaz de pagar.";
-			close;
-			}
+			} else {
 			set Zeny,Zeny - 200;
 			warp "alb2trea",62,69;
+			}
 			close;
 	}
 	mes "[Paul]";
@@ -277,7 +275,7 @@ alberta,190,173,4	script	Phelix	85,{
 		mes "Por favor, reduza a quantidade de itens, e então venha me ver novamente.";
 		close;
 	}
-	if (@event_zelopy == 0) {
+	if (!@event_zelopy) {
 		mes "Mas que diabos você está fazendo aqui? Não há nada que você possa obter gratuitamente nesse navio. Se você quiser alguma coisa, trabalhe!";
 		next;
 		mes "[Phelix]";
@@ -291,29 +289,29 @@ alberta,190,173,4	script	Phelix	85,{
 	}
 	mes "Hum... você quer trocar Jellopys por Poção Vermelha ou por Cenouras? Bom, decida-se.";
 	next;
-	if (select("Poção Vermelha.:Cenouras.") == 1) {
+	if (select("Poção Vermelha.:Cenouras."))
+	if(@menu == 1 || @menu == 2) {
+		set .@v,((@menu == 1) ? 1:2);
 		mes "[Phelix]";
 		mes "Bem...";
 		mes "deixe me ver...";
-		mes "Toma, é seu.";
 		next;
 		mes "[Phelix]";
-		if (countitem(909) < 10) {
-			mes "Ei! Não está me ouvindo? Eu disse 10 Jellopys por 1 Poção Vermelha...";
-			mes "Está surdo?";
+		if ((.@v == 1 && countitem(909) < 10) || (.@v == 2 && countitem(909) < 3)) {
+			mes "Ei! Não está me ouvindo? Eu disse "+((.@v == 1) ? "10 Jellopys por 1 Poção Vermelha, entendeu?" : "3 Jellopys por 1 cenoura, entendeu?")+"...";
 			close;
 		}
-		set .@max,countitem(909)/10;
+		set .@max,countitem(909)/((.@v == 1) ? 10:3);
 		mes "Hum, nada mal.";
-		mes "Quantas poções você vai querer?";
+		mes "Quantas "+((.@v == 1) ? "poções" : "cenouras")+" você vai querer?";
 		next;
-		switch(select("Quantas você puder trocar:Quero esta quantidade.:Esquece, amo meus Jellopys")) {
-		case 1:
-			delitem 909,.@max*10;	// Jellopy
-			getitem 501,.@max;	// Poção Vermelha
-			break;
-		case 2:
+		if(select("Quantas você puder trocar:Quero esta quantidade.:Esquece, amo meus Jellopys"))
 			mes "[Phelix]";
+		if(@menu == 1) {
+			delitem 909,.@max*((.@v == 1) ? 10:3);	// Jellopy
+			getitem (.@v == 1) ? 501:515,.@max;	// Poção Vermelha & Cenoura
+			}
+		else if(@menu == 2) {
 			mes "Não posso dar mais que 100 por vez, portanto nem tente. Se você não quer nenhum, basta dizer '0'.";
 			mes "Neste momento, o máximo que você pode obter é 100, mas lembre-se 100 é muito, você quer me falir?";
 			input .@amount;
@@ -324,69 +322,21 @@ alberta,190,173,4	script	Phelix	85,{
 				close;
 			}
 			if (.@amount > 100) {
-				mes "Ei, Eu disse 100 de cada vez, você está querendo me falir, não é";
+				mes "Ei, Eu disse 100 de cada vez, você está querendo me falir, não é?";
 				close;
 			}
-			if (countitem(909) < .@amount*10) {
+			if ((.@v == 1 && countitem(909) < .@amount*10) || (.@v == 2 && countitem(909) < .@amount*3)) {
 				mes "Hum, parece que você não tem o necessário. Vai pegar mais Jellopys se ainda quiser algo de mim.";
 				close;
 			}
-			delitem 909,.@amount*10;	// Jellopy
-			getitem 501,.@amount;	// Poção Vermelha
-			break;
-		case 3:
-			mes "[Phelix]";
+			delitem 909,.@amount*(.@v == 1) ? 10:3;	// Jellopy
+			getitem (.@v == 1) ? 501:515,.@amount;	// Poção Vermelha & Cenoura
+			}
+		else if(@menu == 3) {
 			mes "Não tem problema. Vejo você outra hora.";
 			close;
 		}
-		mes "[Phelix]";
 		mes "Ai está, como prometido. Não vai usar tudo de uma vez.";
 		close;
 	}
-	mes "[Phelix]";
-	mes "Muito bem, vamos ver o que tenho...";
-	next;
-	mes "[Phelix]";
-	if (countitem(909) < 3) {
-		mes "Hum, olha, eu disse 3 Jellopys por 1 cenoura, entendeu?";
-		close;
-	}
-	set .@max,countitem(909)/3;
-	mes "Nada mal...";
-	mes "Quantos você quer?";
-	next;
-	switch(select("Quantos puder, por favor:Quero esta quantidade:Esquece, amo meus Jellopys.")) {
-	case 1:
-		delitem 909,.@max*3;	// Jellopy
-		getitem 515,.@max;	// Cenoura
-		break;
-	case 2:
-		mes "[Phelix]";
-		mes "Não posso lhe dar mais de 100 por vez, portanto nem tente, ok? Se não quiser nenhum, basta dizer '0'.";
-		input .@amount;
-		next;
-		mes "[Phelix]";
-		if (!.@amount) {
-			mes "Muito bem, até a próxima.";
-			close;
-		}
-		if (.@amount > 100) {
-			mes "Ei, eu disse 100 no máximo, não mais do que isso! Eu não quero quebrar minhas costas por sua culpa!";
-			close;
-		}
-		if (countitem(909) < .@amount*10) {
-			mes "Parece que você não tem o necessário. Vá buscar mais se quiser algo de mim.";
-			close;
-		}
-		delitem 909,.@amount*3;	// Jellopy
-		getitem 515,.@amount;	// Cenoura
-		break;
-	case 3:
-		mes "[Phelix]";
-		mes "Te vejo depois.";
-		close;
-	}
-	mes "[Phelix]";
-	mes "Ai está como prometi. Tente não exagerar.";
-	close;
 }
