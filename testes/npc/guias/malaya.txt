@@ -28,7 +28,7 @@ malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
 	mes "[Guia do Porto de Malaya]";
 	mes "Onde as culturas e lendas ganham vida! A Respiração do Vilarejo, o Porto Malaya";
 	mes "te deseja as boas-vindas. Eu irei te mostrar o vilarejo. Por favor diga-me o que deseja saber.";
-		while(1) {
+	while(1) {
 		next;
 		switch(select("Funcionária Kafra:Hospedaria & Taverna:Loja de Armas:Loja de Utilidades:Hospital:Parque:Porto:Limpar o mini-mapa.:Cancelar")) {
 		case 1:
@@ -91,8 +91,8 @@ malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
 			mes "[Guia do Porto de Malaya]";
 			mes "Espero que aproveite sua estadia.";
 			close;	
-}
-}
+		}
+	}
 }
 
 malaya,71,72,3	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	579
