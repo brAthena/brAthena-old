@@ -13566,7 +13566,7 @@ int skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, 
 			break;
 	}
 
-	if(sd->state.abra_flag)   // Casting finished (Hocus-Pocus)
+	if(sd->skillitem == skill_id || sd->state.abra_flag)   // Casting finished (Hocus-Pocus)
 		return 1;
 
 	if(pc_is90overweight(sd)) {
@@ -13766,7 +13766,7 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 	if(!sd)
 		return req;
 
-	if(sd->state.abra_flag)
+	if(sd->skillitem == skill_id || sd->state.abra_flag)
 		return req; // Hocus-Pocus don't have requirements.
 
 	sc = &sd->sc;

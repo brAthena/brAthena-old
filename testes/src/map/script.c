@@ -8361,7 +8361,7 @@ BUILDIN_FUNC(itemskill)
 	lv = script_getnum(st,3);
 
 	if(!script_hasdata(st, 4)) {
-		if(!skill_check_condition_castbegin(sd,id,lv)|| !skill_check_condition_castend(sd,id,lv))
+		if(!skill_check_condition_castbegin(sd,id,lv))
 			return 0;
 	}
 
