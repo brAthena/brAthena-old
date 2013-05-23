@@ -2192,30 +2192,33 @@ void script_set_constant(const char *name, int value, bool isparameter)
 }
 
 /*==========================================
- * ???f?[?^?x?[?X???????
+ * Leitura estruturada const_db.
  *------------------------------------------*/
 static void read_constdb(void)
 {
-	FILE *fp;
-	char line[1024],name[1024],val[1024];
-	int type;
+	Sql *tmp_ptr = mmysql_handle;
+	int i, count = 0, type;
 
-	sprintf(line, "%s/const.txt", db_path);
-	fp=fopen(line, "r");
-	if(fp==NULL) {
-		ShowError("nao foi possivel ler %s\n", line);
-		return ;
+	if(SQL_ERROR == Sql_Query(tmp_ptr, "SELECT * FROM `%s`.`%s`", db_db2name, get_database_name(59))) {
+		Sql_ShowDebug(tmp_ptr);
+		return;
 	}
-	while(fgets(line, sizeof(line), fp)) {
-		if(line[0]=='/' && line[1]=='/')
-			continue;
-		type=0;
-		if(sscanf(line,"%[A-Za-z0-9_],%[-0-9xXA-Fa-f],%d",name,val,&type)>=2 ||
-		   sscanf(line,"%[A-Za-z0-9_] %[-0-9xXA-Fa-f] %d",name,val,&type)>=2) {
-			script_set_constant(name, (int)strtol(val, NULL, 0), (bool)type);
-		}
+
+	while(SQL_SUCCESS == Sql_NextRow(tmp_ptr)) {
+		char *row[3], in_line[1024], constant[1024], val[1024];
+
+		for(i = 0; i < 3; ++i)
+			Sql_GetData(tmp_ptr, i, &row[i], NULL);
+			
+		sprintf(in_line, "%s %s %s", row[0], row[1], row[2]);
+		
+		if(sscanf(in_line, "%[A-Za-z0-9_] %[-0-9xXA-Fa-f] %d", constant, val, &type) >= 2)
+			script_set_constant(constant, (int)strtol(val, NULL, 0), (bool)type);
+		++count;
 	}
-	fclose(fp);
+
+	ShowSQL("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(59));
+	Sql_FreeResult(tmp_ptr);
 }
 
 /*==========================================

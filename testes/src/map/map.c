@@ -3574,7 +3574,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 
 char *get_database_name(int database_id)
 {
-	char *db_name = NULL;
+	char *db_name = "Desconhecida";
 
 	switch(database_id) {
 		case 0: db_name = "skill_db"; break;
@@ -3648,6 +3648,7 @@ char *get_database_name(int database_id)
 		case 57: db_name = "item_bro"; break;
 		case 58: db_name = "item_nouse_sit"; break;
 		#endif
+		case 59: db_name = "const_db"; break;
 	}
 
 	return db_name;
