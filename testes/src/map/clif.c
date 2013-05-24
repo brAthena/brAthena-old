@@ -16929,6 +16929,174 @@ void clif_vipshow2(struct map_session_data* sd)
 	WFIFOW(sd->fd,10) = 100;
 	WFIFOSET(sd->fd,12);
 }
+
+/// Sistema de grupo
+void clif_party_bookingackregister(struct map_session_data *sd, int flag)
+{
+
+	nullpo_retv(sd);
+
+	sd->fd = (int)sd->fd;
+
+#if PACKETVER < 20120222
+	WFIFOW(sd->fd,0) = 0x803;
+	WFIFOW(sd->fd,2) = flag;
+	WFIFOSET(sd->fd,packet_len(0x803));
+#else
+	WFIFOW(sd->fd,0) = 0x8e6;
+	WFIFOW(sd->fd,2) = flag;
+	WFIFOSET(sd->fd,packet_len(0x8e6));
+#endif
+
+	return;
+}
+
+void clif_party_bookingacksearch(struct map_session_data *sd, struct booking_party **list, int count, int flag)
+{
+	int i;
+	int party = 0;
+
+	nullpo_retv(sd);
+
+	sd->fd = (int)sd->fd;
+#if PACKETVER < 20120222
+	WFIFOW(sd->fd,0) = 0x805;
+	if(list) {
+		int j;
+		for(i=0; i<count; i++) {
+			struct booking_party *bl = list[i];
+			WFIFOL(sd->fd,party*48+5)=bl->id; 
+			memcpy(WFIFOP(sd->fd,party*48+9),bl->name,24);
+			WFIFOL(sd->fd,party*48+33)=bl->time;
+			WFIFOW(sd->fd,party*48+37)=bl->lv;
+			WFIFOW(sd->fd,party*48+39)=bl->map;
+			for(j=0; j<6; j++)
+				WFIFOW(sd->fd,party*48+41+j*2) = bl->job[j];
+			party++;
+		}
+	}
+	WFIFOW(sd->fd,2)=5+party*48;
+	WFIFOB(sd->fd,4)=(flag > 0) ? 1 : 0;
+	WFIFOSET(sd->fd,WFIFOW(sd->fd,2));
+#else
+	WFIFOW(sd->fd,0) = 0x8e8;
+	if(list) {
+		for(i = 0; i < count; i++) {
+			struct booking_party *bl = list[i];
+			WFIFOL(sd->fd,party*71+5)=bl->id;
+			WFIFOL(sd->fd,party*71+9)=bl->time;
+			memcpy(WFIFOP(sd->fd,party*71+13),bl->name,24);
+			WFIFOW(sd->fd,party*71+37)=bl->lv;
+			memcpy(WFIFOP(sd->fd,party*71+39),bl->memo,MAX_PARTY_BOOKING_LENGTH);
+			party++;
+		}
+	}
+	WFIFOW(sd->fd,2)=5+party*71;
+	WFIFOB(sd->fd,4)=(flag > 0) ? 1 : 0;
+	WFIFOSET(sd->fd,WFIFOW(sd->fd,2));
+#endif
+
+	return;
+}
+
+void clif_party_bookingackdelete(struct map_session_data *sd, int flag)
+{
+
+	nullpo_retv(sd);
+
+	sd->fd = (int)sd->fd;
+#if PACKETVER < 20120222
+	WFIFOW(sd->fd,0) = 0x807;
+	WFIFOW(sd->fd,2) = flag;
+	WFIFOSET(sd->fd,packet_len(0x807));
+#else
+	WFIFOW(sd->fd,0) = 0x8ea;
+	WFIFOW(sd->fd,2) = flag;
+	WFIFOSET(sd->fd,packet_len(0x8ea));
+#endif
+
+	return;
+}
+
+void clif_party_bookinglistinsert(struct map_session_data *sd, struct booking_party *bl)
+{
+	unsigned char buf[73];
+
+	nullpo_retv(sd);
+	nullpo_retv(bl);
+
+#if PACKETVER < 20120222
+	WBUFW(buf,0) = 0x809;
+	WBUFL(buf,2) = bl->id;
+	memcpy(WBUFP(buf,6),bl->name,24);
+	WBUFL(buf,30) = bl->time;
+	WBUFW(buf,34) = bl->lv;
+	WBUFW(buf,36) = bl->map;
+	{
+		int i;
+		for(i=0; i<6; i++)
+			WBUFW(buf,38+i*2) = bl->job[i];
+	}
+	clif_send(buf,packet_len(0x809),&sd->bl,ALL_CLIENT);
+#else
+	WBUFW(buf,0) = 0x8ec;
+	WBUFL(buf,2) = bl->id;
+	WBUFL(buf,6) = bl->time;
+	memcpy(WBUFP(buf,10),bl->name,24);
+	WBUFW(buf,34) = bl->lv;
+	memcpy(WBUFP(buf,36),bl->memo,MAX_PARTY_BOOKING_LENGTH);
+
+	clif_send(buf,packet_len(0x8ec),&sd->bl,ALL_CLIENT);
+#endif
+
+	return;
+}
+
+void clif_party_bookinglistupdate(struct map_session_data *sd, struct booking_party *bl)
+{
+	unsigned char buf[47];
+
+	nullpo_retv(sd);
+	nullpo_retv(bl);
+
+#if PACKETVER < 20120222
+	WBUFW(buf,0) = 0x80a;
+	WBUFL(buf,2) = bl->id;
+	{
+		int i;
+		for(i=0; i<6; i++)
+			WBUFW(buf,6+i*2) = bl->job[i];
+	}
+	clif_send(buf,packet_len(0x80a),&sd->bl,ALL_CLIENT);
+#else
+	WBUFW(buf,0) = 0x8ed;
+	WBUFL(buf,2) = bl->id;
+	memcpy(WBUFP(buf,6),bl->memo,MAX_PARTY_BOOKING_LENGTH);
+	clif_send(buf,packet_len(0x8ed),&sd->bl,ALL_CLIENT);
+#endif
+
+	return;
+}
+
+void clif_party_bookingdelete(struct map_session_data *sd, unsigned int id)
+{
+	unsigned char buf[6];
+
+	nullpo_retv(sd);
+
+#if PACKETVER < 20120222
+	WBUFW(buf,0) = 0x80b;
+	WBUFL(buf,2) = id;
+	clif_send(buf,packet_len(0x80b),&sd->bl,ALL_CLIENT);
+#else
+	WBUFW(buf,0) = 0x8ee;
+	WBUFL(buf,2) = id;
+	clif_send(buf,packet_len(0x8ee),&sd->bl,ALL_CLIENT);
+#endif
+
+	return;
+}
+
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/

@@ -724,6 +724,14 @@ void clif_buyingstore_update_item(struct map_session_data *sd, unsigned short na
 void clif_buyingstore_delete_item(struct map_session_data *sd, short index, unsigned short amount, int price);
 void clif_buyingstore_trade_failed_seller(struct map_session_data *sd, short result, unsigned short nameid);
 
+/// Sistema de grupo
+void clif_party_bookingackregister(struct map_session_data *sd, int flag);
+void clif_party_bookingacksearch(struct map_session_data *sd, struct booking_party **list, int count, int flag);
+void clif_party_bookingackdelete(struct map_session_data *sd, int flag);
+void clif_party_bookinglistinsert(struct map_session_data *sd, struct booking_party *bl);
+void clif_party_bookinglistupdate(struct map_session_data *sd, struct booking_party *bl);
+void clif_party_bookingdelete(struct map_session_data *sd, unsigned int id);
+
 /// Search Store System
 void clif_search_store_info_ack(struct map_session_data *sd);
 void clif_search_store_info_failed(struct map_session_data *sd, unsigned char reason);
