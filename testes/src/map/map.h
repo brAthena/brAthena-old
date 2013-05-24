@@ -57,7 +57,6 @@ enum E_MAPSERVER_ST
 #define MAX_IGNORE_LIST 20 // official is 14
 #define MAX_VENDING 12
 #define MAX_MAP_SIZE 512*512 // Wasn't there something like this already? Can't find it.. [Shinryo]
-#define MAX_PARTY_BOOKING_LENGTH 50 // Sistema de grupo
 
 // Added definitions for WoESE objects. [L0ne_W0lf]
 enum MOBID {
@@ -703,17 +702,6 @@ struct map_data {
 	unsigned short short_damage_rate;
 	/* long_damage_rate mapflag */
 	unsigned short long_damage_rate;
-};
-
-// Sistema de grupo
-struct booking_party {
-	unsigned int id;
-	char name[24];
-	char memo[MAX_PARTY_BOOKING_LENGTH];
-	unsigned int time;
-	int lv;
-	int map;
-	int job[6];
 };
 
 /// Stores information about a remote map (for multi-mapserver setups).
