@@ -2318,6 +2318,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				if(battle_config.drops_by_luk2)
 					drop_rate += (int)(0.5+drop_rate*status_get_luk(src)*battle_config.drops_by_luk2/10000.);
 			}
+			// Taxa de queda Sitema VIP iRO.
+			/*if(bra_config.enable_system_vip && (sd && pc_isvip(sd)))
+				drop_rate += (int)(0.5+drop_rate*bra_config.drop_rate/100);*/
+
 			if(sd && battle_config.pk_mode &&
 			   (int)(md->level - sd->status.base_level) >= 20)
 				drop_rate = (int)(drop_rate*1.25); // pk_mode increase drops if 20 level difference [Valaris]

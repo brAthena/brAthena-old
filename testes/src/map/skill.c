@@ -13889,7 +13889,10 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 		req.itemid[i] = skill_db[idx].itemid[i];
 		req.amount[i] = skill_db[idx].amount[i];
 
-		if(itemid_isgemstone(req.itemid[i])&& skill_id != HW_GANBANTEIN) {
+		// Remove uso de Gemas Sistema VIP iRO
+		/*if(itemid_isgemstone(req.itemid[i]) && (sd->special_state.no_gemstone == 2))
+			req.itemid[i] = req.amount[i] = 0;
+		else*/ if(itemid_isgemstone(req.itemid[i])&& skill_id != HW_GANBANTEIN) {
 			if(sd->special_state.no_gemstone) {   // Todas as habilidades exceto Abracadabra e Ganbantein podem usar habilidades sem gemas
 				if(skill_id != SA_ABRACADABRA)
 					req.itemid[i] = req.amount[i] = 0;

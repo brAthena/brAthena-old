@@ -87,6 +87,7 @@
 #define MAX_INVENTORY 100
 //Max number of characters per account. Note that changing this setting alone is not enough if the client is not hexed to support more characters as well.
 #define MAX_CHARS 9
+#define MAX_CHARS_VIP 12
 //Number of slots carded equipment can have. Never set to less than 4 as they are also used to keep the data of forged items/equipment. [Skotlex]
 //Note: The client seems unable to receive data for more than 4 slots due to all related packets having a fixed size.
 #define MAX_SLOTS 4
@@ -106,6 +107,7 @@
 #define MIN_WALK_SPEED 0
 #define MAX_WALK_SPEED 1000
 #define MAX_STORAGE 600
+#define MAX_STORAGE_VIP 600
 #define MAX_GUILD_STORAGE 600
 #define MAX_PARTY 12
 #define MAX_GUILD 16+10*6   // increased max guild members +6 per 1 extension levels [Lupus]

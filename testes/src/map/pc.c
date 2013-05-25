@@ -1213,6 +1213,10 @@ int pc_reg_received(struct map_session_data *sd)
 	if(sd->status.pet_id > 0)
 		intif_request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
 
+	// Sistema VIP iRO
+	/*if(bra_config.enable_system_vip && pc_isvip(sd))
+		sd->special_state.no_gemstone = 2;*/
+
 	// Homunculus [albator]
 	if(sd->status.hom_id > 0)
 		intif_homunculus_requestload(sd->status.account_id, sd->status.hom_id);
@@ -2391,7 +2395,8 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			break;
 		case SP_NO_GEMSTONE:
 			if(sd->state.lr_flag != 2)
-				sd->special_state.no_gemstone = 1;
+				/*if(sd->special_state.no_gemstone != 2)*/
+				   sd->special_state.no_gemstone = 1;
 			break;
 		case SP_INTRAVISION: // Maya Purple Card effect allowing to see Hiding/Cloaking people [DracoRPG]
 			if(sd->state.lr_flag != 2) {
@@ -5657,8 +5662,13 @@ static void pc_calcexp(struct map_session_data *sd, unsigned int *base_exp, unsi
 	   (int)(status_get_lv(src) - sd->status.base_level) >= 20)
 		bonus += 15; // pk_mode additional exp if monster >20 levels [Valaris]
 
-	if(sd->sc.data[SC_EXPBOOST])
-		bonus += sd->sc.data[SC_EXPBOOST]->val1;
+	if(sd->sc.data[SC_EXPBOOST]) {
+		// Manual de batalha VIP iRO
+		/*if(bra_config.enable_system_vip && pc_isvip(sd))
+			bonus += sd->sc.data[SC_EXPBOOST]->val1 + (sd->sc.data[SC_EXPBOOST]->val1 / 2);
+		else*/
+			bonus += sd->sc.data[SC_EXPBOOST]->val1;
+	}
 
 	*base_exp = (unsigned int) cap_value(*base_exp + (double)*base_exp * bonus/100., 1, UINT_MAX);
 
