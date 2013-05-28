@@ -27,6 +27,10 @@
 /// Modo renovação
 #define RENEWAL
 
+/*		Fórmula de Ataque Base		 *
+ *	Valor da constante [ Renovação ] */
+#define RENEWAL_ATK
+
 /// Tempo de conjuração de habilidades, da renovação
 /// Dentro dos padrões da renovação, a conjuração:
 ///  - Tem sua fórmula reduzida por DEX * 2 + INT

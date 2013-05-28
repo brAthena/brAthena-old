@@ -1935,7 +1935,7 @@ int status_base_amotion_pc(struct map_session_data *sd, struct status_data *stat
 static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status)
 {
 	int flag = 0, str, dex,
-#ifdef RENEWAL
+#ifdef RENEWAL_ATK
 	    rstr,
 #endif
 	    dstr;
@@ -1957,13 +1957,13 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 				flag = 1;
 		}
 	if(flag) {
-#ifdef RENEWAL
+#ifdef RENEWAL_ATK
 		rstr =
 #endif
 		    str = status->dex;
 		dex = status->str;
 	} else {
-#ifdef RENEWAL
+#ifdef RENEWAL_ATK
 		rstr =
 #endif
 		    str = status->str;
@@ -1975,7 +1975,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	dstr = str/10;
 	str += dstr*dstr;
 	if(bl->type == BL_PC)
-#ifdef RENEWAL
+#ifdef RENEWAL_ATK
 		if(battle_config.bRO_Renewal)    // Fórmula de ataque base [brAthena - bRO]
 			str = (rstr*12/10 + dex/5 + status->luk/3 + ((TBL_PC *)bl)->status.base_level/4);
 		else
