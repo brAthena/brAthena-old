@@ -17131,8 +17131,6 @@ int clif_parse(int fd) {
 	return 0;
 }
 
-}
-
 static void __attribute__ ((unused)) packetdb_addpacket(short cmd, int len, ...) {
 	va_list va;
 	int i;
