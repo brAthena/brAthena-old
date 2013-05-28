@@ -44,12 +44,16 @@ alberta,237,71,4	script	Tripulante#alberta	100,{
 	
 		case 2:
 			mes "[Tripulante]";
+			if(Zeny > 10000) {
 			mes "Ótimo!";
 			mes "Rumo ao Porto de Malaya!!";
 			close2;
 			warp "malaya",271,55;
+			} else {
+			mes "Desculpe, mas você não possui a quantia necessária em Zenys.";
+			}
 			end;
-	
+
 		case 3:
 			mes "[Tripulante]";
 			mes "Hoje em dia os aventureiros estão sempre ocupados. Volte quando tiver tempo para que possamos ir visitar Malaya Juntos.";
