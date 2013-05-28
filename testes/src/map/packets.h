@@ -2063,12 +2063,15 @@ packet(0x020d,-1);
 //2013-03-20Ragexe
 #if PACKETVER >= 20130320
 	packet(0x088E,7,clif->pActionRequest,2,6);
+	packet(0x014f,6,clif->pGuildRequestInfo,2);
 	packet(0x089B,10,clif->pUseSkillToId,2,4,6);
 	packet(0x0881,5,clif->pWalkToXY,2);
 	packet(0x0363,6,clif->pTickSend,2);
 	packet(0x0897,5,clif->pChangeDir,2,4);
 	packet(0x0933,6,clif->pTakeItem,2);
 	packet(0x0438,6,clif->pDropItem,2,4);
+	packet(0x0447,2,clif->pBlockingPlaycancel,0);
+	packet(0x044A,6,clif->pClientVersion,2);
 	packet(0x08AC,8,clif->pMoveToKafra,2,4);
 	packet(0x0874,8,clif->pMoveFromKafra,2,4);
 	packet(0x0959,10,clif->pUseSkillToPos,2,4,6,8);

@@ -25,6 +25,7 @@
 #include "clif.h"  // clif_buyingstore_*
 #include "log.h"  // log_pick_pc, log_zeny
 #include "pc.h"  // struct map_session_data
+#include "chrif.h"
 
 
 /// constants (client-side restrictions)
@@ -388,6 +389,11 @@ void buyingstore_trade(struct map_session_data *sd, int account_id, unsigned int
 		// notify clients
 		clif_buyingstore_delete_item(sd, index, amount, pl_sd->buyingstore.items[listidx].price);
 		clif_buyingstore_update_item(pl_sd, nameid, amount);
+	}
+
+	if(save_settings&128) {
+		chrif_save(sd, 0);
+		chrif_save(pl_sd, 0);
 	}
 
 	// check whether or not there is still something to buy

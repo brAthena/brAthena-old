@@ -1095,6 +1095,8 @@ struct clif_interface {
 	void (*pPartyTick) (int fd, struct map_session_data *sd);
 	void (*pGuildInvite2) (int fd, struct map_session_data *sd);
 	void (*pReqworldinfo) (int fd,struct map_session_data *sd);
+	void (*pClientVersion) (int fd,struct map_session_data *sd);
+	void (*pBlockingPlaycancel) (int fd,struct map_session_data *sd);
 } clif_s;
 
 struct clif_interface *clif;

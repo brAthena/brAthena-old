@@ -17557,6 +17557,7 @@ REPLACE INTO `mob_boss_db` VALUES(1832,'Ifrit',500000);
 REPLACE INTO `mob_boss_db` VALUES(1871,'Falling Bishop',500000);
 REPLACE INTO `mob_boss_db` VALUES(1873,'Beelzebub',500000);
 REPLACE INTO `mob_boss_db` VALUES(1885,'Gopinich',500000);
+REPLACE INTO `mob_boss_db` VALUES(2022,'Nidhoggur\'s Shadow',500000);
 
 --
 -- Table structure for table `mob_branch_db`

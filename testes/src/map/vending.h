@@ -23,10 +23,14 @@ struct map_session_data;
 struct s_search_store_search;
 
 struct s_vending {
-	short index;
-	short amount;
-	unsigned int value;
+	short index; //cart index (return item data)
+	short amount; //amout of the item for vending
+	unsigned int value; //at wich price
 };
+
+DBMap * vending_getdb();
+void do_final_vending(void);
+void do_init_vending(void);
 
 void vending_closevending(struct map_session_data* sd);
 void vending_openvending(struct map_session_data* sd, const char* message, const uint8* data, int count);

@@ -3938,6 +3938,20 @@ ACMD_FUNC(mapinfo)
 		strcat(atcmd_output, msg_txt(1096)); // PartyLock |
 	if(map[m_id].flag.guildlock)
 		strcat(atcmd_output, msg_txt(1097)); // GuildLock |
+	if (map[m_id].flag.loadevent)
+		strcat(atcmd_output, msg_txt(457)); //Loadevent |
+	if (map[m_id].flag.src4instance)
+		strcat(atcmd_output, msg_txt(458)); // Src4instance |
+	if (map[m_id].flag.nousecart)
+		strcat(atcmd_output, msg_txt(459)); // nousecart |
+	if (map[m_id].flag.noitemconsumption)
+		strcat(atcmd_output, msg_txt(460)); // noitemconsumption |
+	if (map[m_id].flag.nosumstarmiracle)
+		strcat(atcmd_output, msg_txt(461)); // nosumstarmiracle |
+	if (map[m_id].flag.nomineeffect)
+		strcat(atcmd_output, msg_txt(462)); // nomineeffect |
+	if (map[m_id].flag.nolockon)
+		strcat(atcmd_output, msg_txt(463)); // nolockon |
 	clif_displaymessage(fd, atcmd_output);
 
 	switch(list) {

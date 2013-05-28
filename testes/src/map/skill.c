@@ -1103,7 +1103,8 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 #ifndef RENEWAL
 		case WZ_FROSTNOVA:
 #endif
-			sc_start(src,bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv));
+			if(!sc_start(src,bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv)))
+				clif_skill_fail(sd,skill_id,0,0);
 			break;
 
 #ifdef RENEWAL
@@ -5314,9 +5315,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 		case SA_INSTANTDEATH:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-			status_set_hp(bl,1,0);
+			status_kill(src);
 			break;
 		case SA_QUESTION:
+			clif_emotion(src,E_WHAT);
 		case SA_GRAVITY:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			break;

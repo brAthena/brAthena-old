@@ -1774,9 +1774,13 @@ struct mercenary_data *map_id2mc(int id) {
 	return BL_CAST(BL_MER, bl);
 }
 
-struct chat_data *map_id2cd(int id) {
-	struct block_list *bl = map_id2bl(id);
+struct pet_data *map_id2pd(int id){
+	struct block_list* bl = map_id2bl(id);
+	return BL_CAST(BL_PET, bl);
+}
 
+struct chat_data *map_id2cd(int id){
+	struct block_list* bl = map_id2bl(id);
 	return BL_CAST(BL_CHAT, bl);
 }
 
@@ -4160,15 +4164,6 @@ bool map_zone_mf_cache(int m, char *flag, char *params) {
 			else if(map[m].flag.nightenabled)
 				map_zone_mf_cache_add(m,"nightenabled");
 		}
-	} else if (!strcmpi(flag,"nogo")) {
-		if(state && map[m].flag.nogo)
-			;/* nothing to do */
-		else {
-			if( state )
-				map_zone_mf_cache_add(m,"nogo	off");
-			else if(map[m].flag.nogo)
-				map_zone_mf_cache_add(m,"nogo");
-		}
 	} else if (!strcmpi(flag,"noexp")) {
 		if(state && map[m].flag.nobaseexp)
 			;/* nothing to do */
@@ -5151,6 +5146,7 @@ void do_final(void)
 	do_final_duel();
 	do_final_elemental();
 	do_final_maps();
+	do_final_vending();
 
 	map_db->destroy(map_db, map_db_final);
 
@@ -5446,6 +5442,7 @@ int do_init(int argc, char *argv[])
 	do_init_unit();
 	do_init_battleground();
 	do_init_duel();
+	do_init_vending();
 
 	npc_event_do_oninit();  // Init npcs (OnInit)
 

@@ -4044,6 +4044,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		case 602: // ButterFly Wing
 		case 14527: // Dungeon Teleport Scroll
 		case 14581: // Dungeon Teleport Scroll
+		case 12352: // Dungeon Teleport Scroll 3
 		case 14582: // Yellow Butterfly Wing
 		case 14583: // Green Butterfly Wing
 		case 14584: // Red Butterfly Wing

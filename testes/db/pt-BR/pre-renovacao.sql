@@ -17456,6 +17456,7 @@ REPLACE INTO `mob_boss_db` VALUES(1832,'Ifrit',500000);
 REPLACE INTO `mob_boss_db` VALUES(1871,'Bispo Decadente',500000);
 REPLACE INTO `mob_boss_db` VALUES(1873,'Belzebu',500000);
 REPLACE INTO `mob_boss_db` VALUES(1885,'Gorynych',500000);
+REPLACE INTO `mob_boss_db` VALUES(2022,'Nidhoggur\'s Shadow',500000);
 
 --
 -- Estrutura da tabela `mob_branch_db`
