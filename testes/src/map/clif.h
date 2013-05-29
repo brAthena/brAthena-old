@@ -316,10 +316,11 @@ enum useskill_fail_cause {
 };
 
 enum clif_messages {
-	MERC_MSG_BASE = 1266, //0x4f2
+	MERC_MSG_BASE = 0x4f2,
 	SKILL_CANT_USE_AREA = 0x536,
 	VIEW_EQUIP_FAIL = 0x54d,
 	USAGE_FAIL = 0x783,
+	ITEM_NOUSE_SITTING = 0x297,
 };
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
