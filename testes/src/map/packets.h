@@ -2070,7 +2070,6 @@ packet(0x020d,-1);
 	packet(0x0897,5,clif->pChangeDir,2,4);
 	packet(0x0933,6,clif->pTakeItem,2);
 	packet(0x0438,6,clif->pDropItem,2,4);
-	packet(0x0447,2,clif->pBlockingPlaycancel,0);
 	packet(0x044A,6,clif->pClientVersion,2);
 	packet(0x08AC,8,clif->pMoveToKafra,2,4);
 	packet(0x0874,8,clif->pMoveFromKafra,2,4);
@@ -2101,6 +2100,7 @@ packet(0x020d,-1);
 	packet(0x978,6,clif->pReqworldinfo,2);
 	packet(0x979,50);
 	packet(0x99a,9);
+	packet(0x099b,8);
 	packet(0x991,-1);
 	packet(0x992,-1);
 	packet(0x993,-1);
@@ -2111,7 +2111,7 @@ packet(0x020d,-1);
 	packet(0x999,11);
 	// Novos Pacotes
 	packet(0x0998,8,clif->pEquipItem,2,4);
-	packet(0x0447,2); // PACKET_CZ_BLOCKING_PLAY_CANCEL
+	packet(0x0447,2,clif->pBlockingPlaycancel,0); // PACKET_CZ_BLOCKING_PLAY_CANCEL
 #endif
 
 //2013-05-15aRagexe
