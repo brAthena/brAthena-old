@@ -20,6 +20,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/db.h" //dbmap
 #include "../common/mmo.h"
+#include "../common/socket.h"
 struct item;
 struct storage_data;
 struct guild_storage;
@@ -45,6 +46,7 @@ struct party_booking_ad_info;
 #include <stdarg.h>
 
 #define packet_len(cmd) packet_db[cmd].len
+#define P2PTR(fd,cmd) RFIFO2PTR(fd,packet_db[cmd].len)
 
 enum { // packet DB
     MAX_PACKET_DB  = 0xF00,
@@ -84,6 +86,8 @@ typedef enum send_target {
     BG_SAMEMAP_WOS,
     BG_AREA,
     BG_AREA_WOS,
+
+    BG_QUEUE,
 } send_target;
 
 typedef enum emotion_type {
@@ -343,7 +347,7 @@ void clif_clearunit_delayed(struct block_list *bl, clr_type type, unsigned int t
 int clif_spawn(struct block_list *bl);  //area
 void clif_walkok(struct map_session_data *sd);  // self
 void clif_move(struct unit_data *ud); //area
-void clif_changemap(struct map_session_data *sd, short map, int x, int y);  //self
+void clif_changemap(struct map_session_data *sd, short m, int x, int y);  //self
 void clif_changemapserver(struct map_session_data *sd, unsigned short map_index, int x, int y, uint32 ip, uint16 port); //self
 void clif_blown(struct block_list *bl); // area
 void clif_slide(struct block_list *bl, int x, int y); // area
@@ -761,6 +765,7 @@ void clif_snap(struct block_list *bl, short x, short y);
 void clif_monster_hp_bar(struct mob_data *md, int fd);
 
 void clif_partytickack (struct map_session_data* sd, bool flag);
+
 /**
  * Color Table
  **/
@@ -811,6 +816,29 @@ enum CASH_SHOP_BUY_RESULT {
 	CSBR_RUNE_OVERCOUNT		= 0x9,
 	CSBR_EACHITEM_OVERCOUNT		= 0xa,
 	CSBR_UNKNOWN			= 0xb,
+};
+
+enum BATTLEGROUNDS_QUEUE_ACK {
+	BGQA_SUCCESS = 1,
+	BGQA_FAIL_QUEUING_FINISHED,
+	BGQA_FAIL_BGNAME_INVALID,
+	BGQA_FAIL_TYPE_INVALID,
+	BGQA_FAIL_PPL_OVERAMOUNT,
+	BGQA_FAIL_LEVEL_INCORRECT,
+	BGQA_DUPLICATE_REQUEST,
+	BGQA_PLEASE_RELOGIN,
+	BGQA_NOT_PARTY_GUILD_LEADER,
+	BGQA_FAIL_CLASS_INVALID,
+	/* not official way to respond (gotta find packet?) */
+	BGQA_FAIL_DESERTER,
+	BGQA_FAIL_COOLDOWN,
+	BGQA_FAIL_TEAM_COUNT,
+};
+
+enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED {
+	BGQND_CLOSEWINDOW = 1,
+	BGQND_FAIL_BGNAME_WRONG = 3,
+	BGQND_FAIL_NOT_QUEUING = 11,
 };
 
 /**
@@ -1098,6 +1126,19 @@ struct clif_interface {
 	void (*pReqworldinfo) (int fd,struct map_session_data *sd);
 	void (*pClientVersion) (int fd,struct map_session_data *sd);
 	void (*pBlockingPlaycancel) (int fd,struct map_session_data *sd);
+	/* bgqueue */
+	void (*bgqueue_ack) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_ACK response, unsigned char arena_id);
+	void (*bgqueue_notice_delete) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED response, unsigned char arena_id);
+	void (*bgqueue_update_info) (struct map_session_data *sd, unsigned char arena_id, int position);
+	void (*bgqueue_joined) (struct map_session_data *sd, int pos);
+	void (*bgqueue_pcleft) (struct map_session_data *sd);
+	void (*bgqueue_battlebegins) (struct map_session_data *sd, unsigned char arena_id, enum send_target target);
+	/* BGQueue */
+	void (*pBGQueueRegister) (int fd, struct map_session_data *sd, int type);
+	void (*pBGQueueCheckState) (int fd, struct map_session_data *sd);
+	void (*pBGQueueRevokeReq) (int fd, struct map_session_data *sd);
+	void (*pBGQueueBattleBeginAck) (int fd, struct map_session_data *sd);
+	
 } clif_s;
 
 struct clif_interface *clif;

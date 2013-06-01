@@ -314,9 +314,9 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 // Trepadeira não-cortável
 1@mist,247,123,0	script	Trepadeira#trepadeira	527,{
 	if(strnpcinfo(0) == "Trepadeira#trepadeira13")
-		instance_announce 0, "Jardineiros: Nós ainda não fomos completamente derrotados!!!",bc_map,"0x008000";
+		instance_announce -1, "Jardineiros: Nós ainda não fomos completamente derrotados!!!",bc_map,"0x008000";
 	else
-		instance_announce 0, "Trepadeira: Eu sou a guardiã deste lugar! Ninguém passará!",bc_map,"0x008000";
+		instance_announce -1, "Trepadeira: Eu sou a guardiã deste lugar! Ninguém passará!",bc_map,"0x008000";
 	end;
 }
 
@@ -333,40 +333,40 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 		close2;
 		switch(.@i) {
 		case 0:
-			instance_announce 0, "A lança de Tom está quebrada! Cuidado, Tomba! Cuidado, Tomba!",bc_map,"0x008000";
+			instance_announce -1, "A lança de Tom está quebrada! Cuidado, Tomba! Cuidado, Tomba!",bc_map,"0x008000";
 			break;
 		case 1:
-			instance_announce 0, "A árvore do Jardim de Tomba foi cortada. Remi, o que você vai fazer agora?",bc_map,"0x008000";
+			instance_announce -1, "A árvore do Jardim de Tomba foi cortada. Remi, o que você vai fazer agora?",bc_map,"0x008000";
 			break;
 		case 2:
-			instance_announce 0, "Remi... A Árvore do Jardim de Remi foi cortada... Rem, você é o próximo. Pobre Rem!",bc_map,"0x008000";
+			instance_announce -1, "Remi... A Árvore do Jardim de Remi foi cortada... Rem, você é o próximo. Pobre Rem!",bc_map,"0x008000";
 			break;
 		case 3:
-			instance_announce 0, "Argh... Rem vai dormir. Rem vai dormir agora e nunca mais acordar!",bc_map,"0x008000";
+			instance_announce -1, "Argh... Rem vai dormir. Rem vai dormir agora e nunca mais acordar!",bc_map,"0x008000";
 			break;
 		case 4:
-			instance_announce 0, "Não trabalho mais! Não procurem mais por Ron, o segundo jardineiro!!",bc_map,"0x008000";
+			instance_announce -1, "Não trabalho mais! Não procurem mais por Ron, o segundo jardineiro!!",bc_map,"0x008000";
 			break;
 		case 5:
-			instance_announce 0, "As árvores de Ron e Rover também foram cortadas. Quem está tentando abrir o caminho pela floresta? Quem?",bc_map,"0x008000";
+			instance_announce -1, "As árvores de Ron e Rover também foram cortadas. Quem está tentando abrir o caminho pela floresta? Quem?",bc_map,"0x008000";
 			break;
 		case 6:
-			instance_announce 0, "A árvore do jardim de Mona, a Catadora de Sementes, se foi! Mona também! Namon vai ficar bem porque é corajoso, não é? Namon, você está bem?",bc_map,"0x008000";
+			instance_announce -1, "A árvore do jardim de Mona, a Catadora de Sementes, se foi! Mona também! Namon vai ficar bem porque é corajoso, não é? Namon, você está bem?",bc_map,"0x008000";
 			break;
 		case 7:
 		case 8:
 			break;
 		case 9:
-			instance_announce 0, "O Corajoso Namon encarou seu destino sem muita coragem... *hi hi hi*",bc_map,"0x008000";
+			instance_announce -1, "O Corajoso Namon encarou seu destino sem muita coragem... *hi hi hi*",bc_map,"0x008000";
 			break;
 		case 10:
-			instance_announce 0, "*snif* *snif* Tito se foi! Tito já era! Buááááá!!",bc_map,"0x008000";
+			instance_announce -1, "*snif* *snif* Tito se foi! Tito já era! Buááááá!!",bc_map,"0x008000";
 			break;
 		case 11:
-			instance_announce 0, "Tito, o Trabalhador, foi derrotado! Pare de brincar e vá trabalhar, Tete! Comece a Trabalhar!",bc_map,"0x008000";
+			instance_announce -1, "Tito, o Trabalhador, foi derrotado! Pare de brincar e vá trabalhar, Tete! Comece a Trabalhar!",bc_map,"0x008000";
 			break;
 		case 12:
-			instance_announce 0, "Eles são fortes, fortes mesmo. O que vamos fazer agora? Há algum jardineiro sobrando? Há algum?",bc_map,"0x008000";
+			instance_announce -1, "Eles são fortes, fortes mesmo. O que vamos fazer agora? Há algum jardineiro sobrando? Há algum?",bc_map,"0x008000";
 			break;
 		case 13:
 			break;
@@ -432,7 +432,7 @@ OnMyMobDead:
 		disablenpc instance_npcname("Jovem Misterioso#npc_mist3", instance_id());
 		enablenpc instance_npcname("Loki#npc_mist2", instance_id());
 		enablenpc instance_npcname("Garota Desmaiada#npc_mist1", instance_id());
-		instance_announce 0, "Dragão Púrpura: Estou sendo punido... por ter abandonado... meu caminho de Guardião?",bc_map,"0xFFFF00";
+		instance_announce -1, "Dragão Púrpura: Estou sendo punido... por ter abandonado... meu caminho de Guardião?",bc_map,"0xFFFF00";
 		disablenpc instance_npcname("mist#spawn_mvp", instance_id());
 	}
 	end;
@@ -1319,7 +1319,7 @@ OnMyMobDead:
 		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
 	}
-	//instance_announce 0, "",bc_map,"0x008000";
+	//instance_announce -1, "",bc_map,"0x008000";
 	disablenpc instance_npcname("Trepadeira#trepadeira7", instance_id());
 	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel7", instance_id());
 	end;
@@ -1342,7 +1342,7 @@ OnMyMobDead:
 		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
 	}
-	//instance_announce 0, "",bc_map,"0x008000";
+	//instance_announce -1, "",bc_map,"0x008000";
 	disablenpc instance_npcname("Trepadeira#trepadeira8", instance_id());
 	enablenpc instance_npcname("Trepadeira#trepadeira_cortavel8", instance_id());
 	end;
@@ -1441,7 +1441,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead");
 	if(.@mc <= 0) {
-		//instance_announce 0, "",bc_map,"0x008000";
+		//instance_announce -1, "",bc_map,"0x008000";
 		disablenpc instance_npcname("Trepadeira#trepadeira13", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel13", instance_id());
 	}

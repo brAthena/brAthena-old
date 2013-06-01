@@ -155,7 +155,7 @@ void mvptomb_create(struct mob_data *md, char *killer, time_t time)
 
 	nd->bl.id = md->tomb_nid = npc_get_new_npc_id();
 
-	nd->ud.dir = md->ud.dir;
+    	nd->dir = md->ud.dir;
 	nd->bl.m = md->bl.m;
 	nd->bl.x = md->bl.x;
 	nd->bl.y = md->bl.y;
@@ -178,8 +178,6 @@ void mvptomb_create(struct mob_data *md, char *killer, time_t time)
 	map_addnpc(nd->bl.m, nd);
 	map_addblock(&nd->bl);
 	status_set_viewdata(&nd->bl, nd->class_);
-	status_change_init(&nd->bl);
-	unit_dataset(&nd->bl);
 	clif_spawn(&nd->bl);
 
 }

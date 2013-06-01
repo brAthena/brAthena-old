@@ -61,7 +61,7 @@ struct unit_data *unit_bl2ud(struct block_list *bl) {
 	if(bl->type == BL_PC)  return &((struct map_session_data *)bl)->ud;
 	if(bl->type == BL_MOB) return &((struct mob_data *)bl)->ud;
 	if(bl->type == BL_PET) return &((struct pet_data *)bl)->ud;
-	if(bl->type == BL_NPC) return &((struct npc_data *)bl)->ud;
+	if(bl->type == BL_NPC) return ((struct npc_data *)bl)->ud;
 	if(bl->type == BL_HOM) return &((struct homun_data *)bl)->ud;
 	if(bl->type == BL_MER) return &((struct mercenary_data *)bl)->ud;
 	if(bl->type == BL_ELEM) return &((struct elemental_data *)bl)->ud;
@@ -685,6 +685,9 @@ uint8 unit_getdir(struct block_list *bl)
 {
 	struct unit_data *ud;
 	nullpo_ret(bl);
+
+	if(bl->type == BL_NPC)
+		return ((TBL_NPC*)bl)->dir;
 	ud = unit_bl2ud(bl);
 	if(!ud) return 0;
 	return ud->dir;
@@ -2130,9 +2133,9 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, 
 					// decrement the number of active pvp players on the map
 					--map[bl->m].users_pvp;
 				}
-				if(map[bl->m].instance_id) {
-					instance[map[bl->m].instance_id].users--;
-					instance_check_idle(map[bl->m].instance_id);
+				if(map[bl->m].instance_id >= 0) {
+					instances[map[bl->m].instance_id].users--;
+					instance->check_idle(map[bl->m].instance_id);
 				}
 				sd->state.debug_remove_map = 1; // temporary state to track double remove_map's [FlavioJS]
 				sd->debug_file = file;
@@ -2312,10 +2315,20 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 					ers_free(pc_sc_display_ers, sd->sc_display[i]);
 				}
 				sd->sc_display_count = 0;
+			}
+			if(sd->sc_display != NULL) {
 				aFree(sd->sc_display);
 				sd->sc_display = NULL;
 			}
-				break;
+			if(sd->instance != NULL) {
+				aFree(sd->instance);
+				sd->instance = NULL;
+			}
+			if(sd->queues != NULL) {
+				aFree(sd->queues);
+				sd->queues = NULL;
+			}
+			break;
 			}
 		case BL_PET: {
 				struct pet_data *pd = (struct pet_data *)bl;

@@ -301,8 +301,10 @@ void set_nonblocking(int fd, unsigned long yes)
 		ShowError(read_message("Source.common.set_nonblocking"), fd, error_msg());
 }
 
-void setsocketopts(int fd,int delay_timeout){
+void setsocketopts(int fd,struct hSockOpt *opt){
 	int yes = 1; // reuse fix
+	struct linger lopt;
+
 #if !defined(WIN32)
 	// set SO_REAUSEADDR to true, unix only. on windows this option causes
 	// the previous owner of the socket to give up, which is not desirable
@@ -317,25 +319,22 @@ void setsocketopts(int fd,int delay_timeout){
 	// The RO protocol is mainly single-packet request/response, plus the FIFO model already does packet grouping anyway.
 	sSetsockopt(fd, IPPROTO_TCP, TCP_NODELAY, (char *)&yes, sizeof(yes));
 
-	// force the socket into no-wait, graceful-close mode (should be the default, but better make sure)
-	//(http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winsock/winsock/closesocket_2.asp)
-	{
-		struct linger opt;
-		opt.l_onoff = 0; // SO_DONTLINGER
-		opt.l_linger = 0; // Do not care
-		if(sSetsockopt(fd, SOL_SOCKET, SO_LINGER, (char *)&opt, sizeof(opt)))
-			ShowWarning(read_message("Source.common.setsocketopts"), fd);
-	}
-	if(delay_timeout){
+	if( opt && opt->setTimeo ) {
 		struct timeval timeout;
-		timeout.tv_sec = delay_timeout;
+
+		timeout.tv_sec = 5;
 		timeout.tv_usec = 0;
 
-		if (sSetsockopt (fd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout,sizeof(timeout)) < 0)
-			ShowError("setsocketopts: Unable to set SO_RCVTIMEO timeout for connection #%d!\n");
-		if (sSetsockopt (fd, SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout,sizeof(timeout)) < 0)
-			ShowError("setsocketopts: Unable to set SO_SNDTIMEO timeout for connection #%d!\n");
+		sSetsockopt(fd,SOL_SOCKET,SO_RCVTIMEO,(char *)&timeout,sizeof(timeout));
+		sSetsockopt(fd,SOL_SOCKET,SO_SNDTIMEO,(char *)&timeout,sizeof(timeout));
 	}
+
+	// force the socket into no-wait, graceful-close mode (should be the default, but better make sure)
+	//(http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winsock/winsock/closesocket_2.asp)
+	lopt.l_onoff = 0; // SO_DONTLINGER
+	lopt.l_linger = 0; // Do not care
+	if( sSetsockopt(fd, SOL_SOCKET, SO_LINGER, (char*)&lopt, sizeof(lopt)) )
+		ShowWarning("setsocketopts: Unable to set SO_LINGER mode for connection #%d!\n", fd);
 }
 
 /*======================================
@@ -458,7 +457,7 @@ int connect_client(int listen_fd)
 		return -1;
 	}
 
-	setsocketopts(fd,0);
+	setsocketopts(fd,NULL);
 	set_nonblocking(fd, 1);
 
 #ifndef MINICORE
@@ -502,7 +501,7 @@ int make_listen_bind(uint32 ip, uint16 port)
 		return -1;
 	}
 
-	setsocketopts(fd,0);
+	setsocketopts(fd,NULL);
 	set_nonblocking(fd, 1);
 
 	server_address.sin_family      = AF_INET;
@@ -530,7 +529,7 @@ int make_listen_bind(uint32 ip, uint16 port)
 	return fd;
 }
 
-int make_connection(uint32 ip, uint16 port, bool silent,int timeout) {
+int make_connection(uint32 ip, uint16 port, struct hSockOpt *opt) {
 	struct sockaddr_in remote_address;
 	int fd;
 	int result;
@@ -554,18 +553,18 @@ int make_connection(uint32 ip, uint16 port, bool silent,int timeout) {
 		return -1;
 	}
 
-	setsocketopts(fd,timeout);
+	setsocketopts(fd,opt);
 
 	remote_address.sin_family      = AF_INET;
 	remote_address.sin_addr.s_addr = htonl(ip);
 	remote_address.sin_port        = htons(port);
 
-	if(!silent)
+	if(!( opt && opt->silent ))
 		ShowStatus(read_message("Source.common.make_connect"), CONVIP(ip), port);
 
 	result = sConnect(fd, (struct sockaddr *)(&remote_address), sizeof(struct sockaddr_in));
 	if(result == SOCKET_ERROR) {
-		if(!silent)
+		if(!( opt && opt->silent ))
 			ShowError(read_message("Source.common.make_sConnect"), fd, error_msg());
 		do_close(fd);
 		return -1;

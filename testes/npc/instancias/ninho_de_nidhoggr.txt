@@ -1757,7 +1757,7 @@ OnEnable:
 	monster "1@nyd",255,255,"Guardião de Nidhogg#10",2021,1,instance_npcname("nyd_call_mon_1", instance_id())+"::OnMyMobDead";
 	monster "1@nyd",225,245,"Guardião de Nidhogg#11",2021,1,instance_npcname("nyd_call_mon_1", instance_id())+"::OnMyMobDead";
 	monster "1@nyd",230,280,"Guardião de Nidhogg#12",2021,1,instance_npcname("nyd_call_mon_1", instance_id())+"::OnMyMobDead";
-	instance_announce 0, "Guardião de Nidhogg : Protejam o santuário. Livrem-se dos intrusos.",bc_map,"0x00ff99";
+	instance_announce -1, "Guardião de Nidhogg : Protejam o santuário. Livrem-se dos intrusos.",bc_map,"0x00ff99";
 	end;
 
 OnDisable:
@@ -1768,7 +1768,7 @@ OnDisable:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@nyd", instance_npcname("nyd_call_mon_1", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Todos os Guardiões de Nidhogg foram derrotados!",bc_map,"0x00ff99";
+		instance_announce -1, "Todos os Guardiões de Nidhogg foram derrotados!",bc_map,"0x00ff99";
 		donpcevent instance_npcname("ins_nyd_1f_timer", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_to2f_warp", instance_id())+"::OnEnable";
 		set 'ins_nyd2,2;
@@ -1794,23 +1794,23 @@ OnDisable:
 	end;
 
 OnTimer900000:
-	instance_announce 0, "Yggdrasilid : Não resta muito tempo. Por favor apresse-se.",bc_map,"0xFFFF00";
+	instance_announce -1, "Yggdrasilid : Não resta muito tempo. Por favor apresse-se.",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1200000:
-	instance_announce 0, "Yggdrasilid : Meus poderes estão acabando aos poucos. Por favor apresse-se.",bc_map,"0xFFFF00";
+	instance_announce -1, "Yggdrasilid : Meus poderes estão acabando aos poucos. Por favor apresse-se.",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1500000:
-	instance_announce 0, "Yggdrasilid : Eu... estou próxima do meu limite... por favor apresse-se."	,bc_map,"0xFFFF00";
+	instance_announce -1, "Yggdrasilid : Eu... estou próxima do meu limite... por favor apresse-se."	,bc_map,"0xFFFF00";
 	end;
 
 OnTimer1800000:
-	instance_announce 0, "Yggdrasilid : Você falhou... mas irei usar meus poderes restantes... para lhe tirar daqui.",bc_map,"0xFFFF00";
+	instance_announce -1, "Yggdrasilid : Você falhou... mas irei usar meus poderes restantes... para lhe tirar daqui.",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1830000:
-	instance_announce 0, "A abertura do portão falhou.",bc_map,"0xFFFF00";
+	instance_announce -1, "A abertura do portão falhou.",bc_map,"0xFFFF00";
 	end;
 
 OnTimer1850000:
@@ -1879,15 +1879,15 @@ OnDisable:
 	end;
 
 OnTimer12000:
-	instance_announce 0, "Sombra de Nidhogg : Não mais... Não posso mais aturar isto...",bc_map,"0xFFFF00";
+	instance_announce -1, "Sombra de Nidhogg : Não mais... Não posso mais aturar isto...",bc_map,"0xFFFF00";
 	end;
 
 OnTimer15000:
-	instance_announce 0, "Sombra de Nidhogg : Eu preciso... preciso dos poderes da Grande Árvore Yggdrasil...",bc_map,"0xFFFF00";
+	instance_announce -1, "Sombra de Nidhogg : Eu preciso... preciso dos poderes da Grande Árvore Yggdrasil...",bc_map,"0xFFFF00";
 	end;
 
 OnTimer18000:
-	instance_announce 0, "Sombra de Nidhogg : Destruirei...tudo...",bc_map,"0xFFFF00";
+	instance_announce -1, "Sombra de Nidhogg : Destruirei...tudo...",bc_map,"0xFFFF00";
 	end;
 	/*
 	stopnpctimer;
@@ -1929,7 +1929,7 @@ OnInstanceInit:
 OnEnable:
 	enablenpc instance_npcname("nyd_2f_boss_enter_call", instance_id());
 	monster "2@nyd",199,327,"Sombra de Nidhogg#",2022,1,instance_npcname("nyd_2f_boss_enter_call", instance_id())+"::OnMyMobDead";
-	instance_announce 0, "Sombra de Nidhogg : Eu vou devorar todos vocês... junto com a Grande Árvore Yggdrasil.",bc_map,"0x00ff99";
+	instance_announce -1, "Sombra de Nidhogg : Eu vou devorar todos vocês... junto com a Grande Árvore Yggdrasil.",bc_map,"0x00ff99";
 	//donpcevent instance_npcname("nyd_2f_boss_enter_call", instance_id())+"::Ongo";
 	initnpctimer;
 	end;
@@ -1942,7 +1942,7 @@ OnDisable:
 OnTimer180000:
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -1950,7 +1950,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -1958,7 +1958,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -1966,7 +1966,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
@@ -1980,7 +1980,7 @@ OnTimer180000:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@nyd",instance_npcname("nyd_2f_boss_enter_call", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Sombra de Nidhogg : Guardião da Árvore Yggdrasil... seus poderes estão indo embora...",bc_map,"0x00ff99";
+		instance_announce -1, "Sombra de Nidhogg : Guardião da Árvore Yggdrasil... seus poderes estão indo embora...",bc_map,"0x00ff99";
 		donpcevent instance_npcname("Yggdrasilid#2F", instance_id())+"::OnEnable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_call", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic", instance_id())+"::OnDisable";
@@ -2012,7 +2012,7 @@ OnDisable:
 OnTimer180000:
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2020,7 +2020,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2028,7 +2028,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2036,7 +2036,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
@@ -2088,7 +2088,7 @@ OnInstanceInit:
 
 OnEnable:
 	enablenpc instance_npcname("Yggdrasilid#2F", instance_id());
-	instance_announce 0, "Yggdrasilid : Bom trabalho! Venham todos para o circulo central, para começarmos os preparativos para destruição do ninho.",bc_map,"0x00ff99";
+	instance_announce -1, "Yggdrasilid : Bom trabalho! Venham todos para o circulo central, para começarmos os preparativos para destruição do ninho.",bc_map,"0x00ff99";
 	end;
 
 OnDisable:
@@ -2147,7 +2147,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@nyd",instance_npcname("nyd_2f_red_c", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
+		instance_announce -1, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
 		donpcevent instance_npcname("nyd_2f_red_c", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic", instance_id())+"::OnEnable";
 		end;
@@ -2165,7 +2165,7 @@ OnTimer180000:
 	stopnpctimer;
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2173,7 +2173,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2181,7 +2181,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2189,7 +2189,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
@@ -2304,7 +2304,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@nyd",instance_npcname("nyd_2f_white_c", instance_id())+"::OnMyMobDead");
 	 if (.@mob_dead_num < 1) {
-		instance_announce 0, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
+		instance_announce -1, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
 		donpcevent instance_npcname("nyd_2f_white_c", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic", instance_id())+"::OnEnable";
 		end;
@@ -2322,7 +2322,7 @@ OnTimer180000:
 	stopnpctimer;
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2330,7 +2330,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2338,7 +2338,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2346,7 +2346,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
@@ -2462,7 +2462,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@nyd",instance_npcname("nyd_2f_yellow_c", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
+		instance_announce -1, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
 		donpcevent instance_npcname("nyd_2f_yellow_c", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic", instance_id())+"::OnEnable";
 		end;
@@ -2486,7 +2486,7 @@ OnTimer180000:
 	stopnpctimer;
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2494,7 +2494,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2502,7 +2502,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2510,7 +2510,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
@@ -2625,7 +2625,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@nyd",instance_npcname("nyd_2f_green_c", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
+		instance_announce -1, "Sombra de Nidhogg : Você não é tão ruim... mas eu serei seu oponente desta vez.",bc_map,"0x00ff99";
 		donpcevent instance_npcname("nyd_2f_green_c", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_boss_enter_logic", instance_id())+"::OnEnable";
 		end;
@@ -2649,7 +2649,7 @@ OnTimer180000:
 	stopnpctimer;
 	set .@rullet,rand(1,4);
 	if (.@rullet == 1) {
-		instance_announce 0, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Em meio a todo este caos... seu sangue é tudo que preciso.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2657,7 +2657,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,278;
 		end;
 	} else if (.@rullet == 2) {
-		instance_announce 0, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Eu irei congelar até a última gota do seu sangue.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2665,7 +2665,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",115,373;
 		end;
 	} else if (.@rullet == 3) {
-		instance_announce 0, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Durma para sempre em uma ilusão vazia.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_green", instance_id())+"::OnDisable";
@@ -2673,7 +2673,7 @@ OnTimer180000:
 		instance_warpall "2@nyd",284,278;
 		end;
 	} else if (.@rullet == 4) {
-		instance_announce 0, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
+		instance_announce -1, "Sombra de Nidhogg : Farei você experimentar a dor de morrer lentamente.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("nyd_2f_red", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_white", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("nyd_2f_yellow", instance_id())+"::OnDisable";

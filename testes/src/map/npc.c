@@ -135,7 +135,7 @@ struct view_data *npc_get_viewdata(int class_) {
 static int npc_isnear_sub(struct block_list* bl, va_list args) {
     struct npc_data *nd = (struct npc_data*)bl;
 
-    if(nd->sc.option & (OPTION_HIDE|OPTION_INVISIBLE))
+    if(nd->option & (OPTION_HIDE|OPTION_INVISIBLE))
         return 0;
 
     return 1;
@@ -187,7 +187,7 @@ int npc_enable_sub(struct block_list *bl, va_list ap)
 	if(bl->type == BL_PC) {
 		TBL_PC *sd = (TBL_PC *)bl;
 
-		if(nd->sc.option&OPTION_INVISIBLE)
+		if(nd->option&OPTION_INVISIBLE)
 			return 1;
 
 		if(npc_ontouch_event(sd,nd) > 0 && npc_ontouch2_event(sd,nd) > 0) {
@@ -215,20 +215,20 @@ int npc_enable(const char *name, int flag)
 	}
 
 	if(flag&1) {
-		nd->sc.option&=~OPTION_INVISIBLE;
+		nd->option&=~OPTION_INVISIBLE;
 		clif_spawn(&nd->bl);
 	} else if(flag&2)
-		nd->sc.option&=~OPTION_HIDE;
+		nd->option&=~OPTION_HIDE;
 	else if(flag&4)
-		nd->sc.option|= OPTION_HIDE;
+		nd->option|= OPTION_HIDE;
 	else {  //Can't change the view_data to invisible class because the view_data for all npcs is shared! [Skotlex]
-		nd->sc.option|= OPTION_INVISIBLE;
+		nd->option|= OPTION_INVISIBLE;
 		clif_clearunit_area(&nd->bl,CLR_OUTSIGHT);  // Hack to trick maya purple card [Xazax]
 	}
 
 	if(nd->class_ == WARP_CLASS || nd->class_ == FLAG_CLASS) {
 		//Client won't display option changes for these classes [Toms]
-		if(nd->sc.option&(OPTION_HIDE|OPTION_INVISIBLE))
+		if(nd->option&(OPTION_HIDE|OPTION_INVISIBLE))
 			clif_clearunit_area(&nd->bl, CLR_OUTSIGHT);
 		else
 			clif_spawn(&nd->bl);
@@ -794,7 +794,7 @@ int npc_event_sub(struct map_session_data *sd, struct event_data *ev, const char
 		ShowWarning("npc_event: player's event queue is full, can't add event '%s' !\n", eventname);
 		return 1;
 	}
-	if(ev->nd->sc.option&OPTION_INVISIBLE) {
+	if(ev->nd->option&OPTION_INVISIBLE) {
 		//Disabled npc, shouldn't trigger event.
 		npc_event_dequeue(sd);
 		return 2;
@@ -904,7 +904,7 @@ int npc_touch_areanpc(struct map_session_data *sd, int16 m, int16 x, int16 y)
 	//  return 1;
 
 	for(i=0; i<map[m].npc_num; i++) {
-		if(map[m].npc[i]->sc.option&OPTION_INVISIBLE) {
+		if(map[m].npc[i]->option&OPTION_INVISIBLE) {
 			f=0; // a npc was found, but it is disabled; don't print warning
 			continue;
 		}
@@ -982,7 +982,7 @@ int npc_touch_areanpc2(struct mob_data *md)
 	int xs, ys;
 
 	for(i = 0; i < map[m].npc_num; i++) {
-		if(map[m].npc[i]->sc.option&OPTION_INVISIBLE)
+		if(map[m].npc[i]->option&OPTION_INVISIBLE)
 			continue;
 
 		switch(map[m].npc[i]->subtype) {
@@ -1058,7 +1058,7 @@ int npc_check_areanpc(int flag, int16 m, int16 x, int16 y, int16 range)
 
 	//Now check for the actual NPC on said range.
 	for(i=0; i<map[m].npc_num; i++) {
-		if(map[m].npc[i]->sc.option&OPTION_INVISIBLE)
+		if(map[m].npc[i]->option&OPTION_INVISIBLE)
 			continue;
 
 		switch(map[m].npc[i]->subtype) {
@@ -1173,7 +1173,7 @@ int npc_click(struct map_session_data *sd, struct npc_data *nd)
 	if((nd = npc_checknear(sd,&nd->bl)) == NULL)
 		return 1;
 	//Hidden/Disabled npc.
-	if(nd->class_ < 0 || nd->sc.option&(OPTION_INVISIBLE|OPTION_HIDE))
+	if(nd->class_ < 0 || nd->option&(OPTION_INVISIBLE|OPTION_HIDE))
 		return 1;
 
 	if(nd->src_id && !map_id2bl(nd->src_id))
@@ -1261,7 +1261,7 @@ int npc_buysellsel(struct map_session_data *sd, int id, int type)
 			sd->npc_id=0;
 		return 1;
 	}
-	if(nd->sc.option & OPTION_INVISIBLE)  // can't buy if npc is not visible (hack?)
+	if(nd->option & OPTION_INVISIBLE)  // can't buy if npc is not visible (hack?)
 		return 1;
 	if(nd->class_ < 0 && !sd->state.callshop) {
 		// not called through a script and is not a visible NPC so an invalid call
@@ -1854,6 +1854,11 @@ int npc_unload(struct npc_data *nd, bool single)
 			guild_flag_remove(nd);
 	}
 
+	if(nd->ud != &npc_base_ud) {
+		aFree(nd->ud);
+		nd->ud = NULL;
+	}
+
 	script_stop_sleeptimers(nd->bl.id);
 
 	aFree(nd);
@@ -2055,8 +2060,7 @@ struct npc_data *npc_add_warp(char *name, short from_mapid, short from_x, short 
 	npc_setcells(nd);
 	map_addblock(&nd->bl);
 	status_set_viewdata(&nd->bl, nd->class_);
-	status_change_init(&nd->bl);
-	unit_dataset(&nd->bl);
+	nd->ud = &npc_base_ud;
 	if(map[nd->bl.m].users)
 		clif_spawn(&nd->bl);
 	strdb_put(npcname_db, nd->exname, nd);
@@ -2119,8 +2123,7 @@ static const char *npc_parse_warp(char *w1, char *w2, char *w3, char *w4, const 
 	npc_setcells(nd);
 	map_addblock(&nd->bl);
 	status_set_viewdata(&nd->bl, nd->class_);
-	status_change_init(&nd->bl);
-	unit_dataset(&nd->bl);
+	nd->ud = &npc_base_ud;
 	if(map[nd->bl.m].users)
 		clif_spawn(&nd->bl);
 	strdb_put(npcname_db, nd->exname, nd);
@@ -2228,9 +2231,8 @@ static const char *npc_parse_shop(char *w1, char *w2, char *w3, char *w4, const 
 		map_addnpc(m,nd);
 		map_addblock(&nd->bl);
 		status_set_viewdata(&nd->bl, nd->class_);
-		status_change_init(&nd->bl);
-		unit_dataset(&nd->bl);
-		nd->ud.dir = dir;
+		nd->ud = &npc_base_ud;
+		nd->dir = dir;
 		if(map[nd->bl.m].users)
 			clif_spawn(&nd->bl);
 	} else {
@@ -2420,9 +2422,8 @@ static const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, cons
 
 	if(m >= 0) {
 		map_addnpc(m, nd);
-		status_change_init(&nd->bl);
-		unit_dataset(&nd->bl);
-		nd->ud.dir = dir;
+		nd->ud = &npc_base_ud;
+		nd->dir = dir;
 		npc_setcells(nd);
 		map_addblock(&nd->bl);
 		if(class_ >= 0) {
@@ -2579,9 +2580,8 @@ const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const ch
 	//Add the npc to its location
 	if(m >= 0) {
 		map_addnpc(m, nd);
-		status_change_init(&nd->bl);
-		unit_dataset(&nd->bl);
-		nd->ud.dir = dir;
+		nd->ud = &npc_base_ud;
+		nd->dir = dir;
 		npc_setcells(nd);
 		map_addblock(&nd->bl);
 		if(class_ >= 0) {
@@ -2617,7 +2617,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m)
 {
 	char newname[NAME_LENGTH];
 
-	if(map[m].instance_id == 0)
+	if(map[m].instance_id == -1)
 		return 1;
 
 	snprintf(newname, ARRAYLENGTH(newname), "dup_%d_%d", map[m].instance_id, snd->bl.id);
@@ -2633,8 +2633,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m)
 		int dm = map_mapindex2mapid(snd->u.warp.mapindex), im;
 		if(dm < 0) return 1;
 
-		im = instance_mapid2imapid(dm, map[m].instance_id);
-		if(im == -1) {
+		if((im = instance->mapid2imapid(dm, map[m].instance_id)) == -1) {
 			ShowError("npc_duplicate4instance: warp (%s) leading to instanced map (%s), but instance map is not attached to current instance.\n", map[dm].name, snd->exname);
 			return 1;
 		}
@@ -2660,8 +2659,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m)
 		npc_setcells(wnd);
 		map_addblock(&wnd->bl);
 		status_set_viewdata(&wnd->bl, wnd->class_);
-		status_change_init(&wnd->bl);
-		unit_dataset(&wnd->bl);
+		wnd->ud = &npc_base_ud;
 		if(map[wnd->bl.m].users)
 			clif_spawn(&wnd->bl);
 		strdb_put(npcname_db, wnd->exname, wnd);
@@ -2669,7 +2667,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m)
 		static char w1[50], w2[50], w3[50], w4[50];
 		const char *stat_buf = "- call from instancing subsystem -\n";
 
-		snprintf(w1, sizeof(w1), "%s,%d,%d,%d", map[m].name, snd->bl.x, snd->bl.y, snd->ud.dir);
+		snprintf(w1, sizeof(w1), "%s,%d,%d,%d", map[m].name, snd->bl.x, snd->bl.y, snd->dir);
 		snprintf(w2, sizeof(w2), "duplicate(%s)", snd->exname);
 		snprintf(w3, sizeof(w3), "%s::%s", snd->name, newname);
 
@@ -2703,14 +2701,14 @@ void npc_setcells(struct npc_data *nd)
 			return; // Other types doesn't have touch area
 	}
 
-	if(m < 0 || xs < 0 || ys < 0)  //invalid range or map
+	if (m < 0 || xs < 0 || ys < 0 || map[m].cell == (struct mapcell *)0xdeadbeaf) //invalid range or map
 		return;
 
 	for(i = y-ys; i <= y+ys; i++) {
 		for(j = x-xs; j <= x+xs; j++) {
 			if(map_getcell(m, j, i, CELL_CHKNOPASS))
 				continue;
-			map_setcell(m, j, i, CELL_NPC, true);
+			map[m].setcell(m, j, i, CELL_NPC, true);
 		}
 	}
 }
@@ -2737,7 +2735,7 @@ void npc_unsetcells(struct npc_data *nd)
 		ys = nd->u.scr.ys;
 	}
 
-	if(m < 0 || xs < 0 || ys < 0)
+	if (m < 0 || xs < 0 || ys < 0 || map[m].cell == (struct mapcell *)0xdeadbeaf)
 		return;
 
 	//Locate max range on which we can locate npc cells
@@ -2750,7 +2748,7 @@ void npc_unsetcells(struct npc_data *nd)
 	//Erase this npc's cells
 	for(i = y-ys; i <= y+ys; i++)
 		for(j = x-xs; j <= x+xs; j++)
-			map_setcell(m, j, i, CELL_NPC, false);
+			map[m].setcell(m, j, i, CELL_NPC, false);
 
 	//Re-deploy NPC cells for other nearby npcs.
 	map_foreachinarea(npc_unsetcells_sub, m, x0, y0, x1, y1, BL_NPC, nd->bl.id);
@@ -2829,7 +2827,7 @@ int npc_do_atcmd_event(struct map_session_data *sd, const char *command, const c
 		return 1;
 	}
 
-	if(ev->nd->sc.option&OPTION_INVISIBLE) {   // Disabled npc, shouldn't trigger event.
+	if(ev->nd->option&OPTION_INVISIBLE) {   // Disabled npc, shouldn't trigger event.
 		npc_event_dequeue(sd);
 		return 2;
 	}
@@ -3071,8 +3069,9 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 		// check if target map has players
 		// (usually shouldn't occur when map server is just starting,
 		// but not the case when we do @reloadscript
-		if(map[data->m].users > 0)
+		if(map[data->m].users > 0) {
 			npc_parse_mob2(data);
+		}
 	} else {
 		data->state.dynamic = false;
 		npc_parse_mob2(data);
@@ -3190,16 +3189,11 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			else if(!strcmpi(drop_arg2,"all"))
 				drop_type = 3;
 
-			if(drop_id != 0) {
-				int i;
-				for(i = 0; i < MAX_DROP_PER_MAP; i++) {
-					if(map[m].drop_list[i].drop_id == 0) {
-						map[m].drop_list[i].drop_id = drop_id;
-						map[m].drop_list[i].drop_type = drop_type;
-						map[m].drop_list[i].drop_per = drop_per;
-						break;
-					}
-				}
+			if (drop_id != 0) {
+				RECREATE(map[m].drop_list, struct map_drop_list, ++map[m].drop_list_count);
+				map[m].drop_list[map[m].drop_list_count-1].drop_id = drop_id;
+				map[m].drop_list[map[m].drop_list_count-1].drop_type = drop_type;
+				map[m].drop_list[map[m].drop_list_count-1].drop_per = drop_per;
 				map[m].flag.pvp_nightmaredrop = 1;
 			}
 		} else if(!state)  //Disable
@@ -3809,10 +3803,7 @@ int npc_reload(void)
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 	         npc_id - npc_new_min, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
 
-	do_final_instance();
-
-	for(i = 0; i < ARRAYLENGTH(instance); ++i)
-		instance_init(instance[i].instance_id);
+	instance->final();
 
 	map_zone_init();
 	
@@ -3916,8 +3907,18 @@ int do_init_npc(void)
 	struct npc_src_list *file;
 	int i;
 
+	memset(&npc_base_ud, 0, sizeof( struct unit_data) );
+	npc_base_ud.bl             = NULL;
+	npc_base_ud.walktimer      = INVALID_TIMER;
+	npc_base_ud.skilltimer     = INVALID_TIMER;
+	npc_base_ud.attacktimer    = INVALID_TIMER;
+	npc_base_ud.attackabletime =
+	npc_base_ud.canact_tick    =
+	npc_base_ud.canmove_tick   = gettick();
+
 	//Stock view data for normal npcs.
 	memset(&npc_viewdb, 0, sizeof(npc_viewdb));
+
 	npc_viewdb[0].class_ = INVISIBLE_CLASS; //Invisible class is stored here.
 	for(i = 1; i < MAX_NPC_CLASS; i++)
 		npc_viewdb[i].class_ = i;

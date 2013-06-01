@@ -36,6 +36,7 @@
 #include "clif.h"
 #include "skill.h"
 #include "log.h"
+#include "instance.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -512,6 +513,8 @@ int guild_recv_info(struct guild *sg)
 	if((g = guild_search(sg->guild_id))==NULL) {
 		guild_new = true;
 		g=(struct guild *)aCalloc(1,sizeof(struct guild));
+		g->instance = NULL;
+		g->instances = 0;
 		idb_put(guild_db,sg->guild_id,g);
 		if( raChSys.ally ) {
 			struct raChSysCh *channel;
@@ -933,7 +936,8 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 		sd->status.guild_id = 0;
 		sd->guild = NULL;
 		sd->guild_emblem_id = 0;
-
+		if(g->instances)
+			instance->check_kick(sd);
 		clif_charnameupdate(sd); //Update display name [Skotlex]
 		//TODO: send emblem update to self and people around
 	}
@@ -2227,9 +2231,13 @@ void do_final_guild(void)
 	DBIterator *iter = db_iterator(guild_db);
 	struct guild *g;
 
-	for( g = dbi_first(iter); dbi_exists(iter); g = dbi_next(iter) ) {
+	for(g = dbi_first(iter); dbi_exists(iter); g = dbi_next(iter)) {
 		if( g->channel != NULL )
 			clif_chsys_delete((struct raChSysCh *)g->channel);
+		if(g->instance != NULL) {
+			aFree(g->instance);
+			g->instance = NULL;
+		}
 	}
 
 	dbi_destroy(iter);

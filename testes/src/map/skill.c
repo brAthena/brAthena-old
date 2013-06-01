@@ -2860,7 +2860,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			if(sc && sc->data[SC__REPRODUCE] && (lv = sc->data[SC__REPRODUCE]->val1)) {
 				//Level dependent and limitation.
 				lv = min(lv,skill_get_max(copy_skill));
-				idx = skill_get_index(tsd->reproduceskill_id);
+
 				if( tsd->reproduceskill_id ) {
 					idx = skill_get_index(tsd->reproduceskill_id);
 					if(tsd->status.skill[idx].flag == SKILL_FLAG_PLAGIARIZED ) {
@@ -2897,9 +2897,9 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 				pc_setglobalreg(tsd, "CLONE_SKILL", copy_skill);
 				pc_setglobalreg(tsd, "CLONE_SKILL_LV", lv);
 				
-				tsd->status.skill[idx].id = copy_skill;
-				tsd->status.skill[idx].lv = lv;
-				tsd->status.skill[idx].flag = SKILL_FLAG_PLAGIARIZED;
+				tsd->status.skill[cidx].id = copy_skill;
+				tsd->status.skill[cidx].lv = lv;
+				tsd->status.skill[cidx].flag = SKILL_FLAG_PLAGIARIZED;
 				clif_addskill(tsd,copy_skill); 
 			}
 		}
@@ -14823,7 +14823,7 @@ static void skill_unitsetmapcell(struct skill_unit *src, uint16 skill_id, uint16
 
 	for(y = src->bl.y - range; y <= src->bl.y + range; ++y)
 		for(x = src->bl.x - range; x <= src->bl.x + range; ++x)
-			map_setcell(src->bl.m, x, y, cell, flag);
+			map[src->bl.m].setcell(src->bl.m, x, y, cell, flag);
 }
 
 /*==========================================

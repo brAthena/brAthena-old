@@ -216,13 +216,13 @@ OnDisable:
 	disablenpc instance_npcname("pol_entr_larg", instance_id());
 	end;
 OnTimer1000:
-	instance_announce 0,"Polvo Pervertido : Como você se atreve entrar no meu território!",bc_map,"0xFFFF00";
+	instance_announce -1,"Polvo Pervertido : Como você se atreve entrar no meu território!",bc_map,"0xFFFF00";
 	end;
 OnTimer4000:
-	instance_announce 0,"Polvo Pervertido : Mas eu bloquiei todos os portões da caverna, não há nada que você possa fazer!",bc_map,"0xFFFF00";
+	instance_announce -1,"Polvo Pervertido : Mas eu bloquiei todos os portões da caverna, não há nada que você possa fazer!",bc_map,"0xFFFF00";
 	end;
 OnTimer7000:
-	instance_announce 0,"Polvo Pervertido : Meu pequeno ~ isso não é seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
+	instance_announce -1,"Polvo Pervertido : Meu pequeno ~ isso não é seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
 	stopnpctimer;
 	donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnDisable";
 	end;
@@ -250,12 +250,12 @@ OnDisable:
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("pol_c_c", instance_id())+"::OnEnable";
-		instance_announce 0,"Ei você!! Eu irei cuidar pessoalmente de todos vocês! Vamos traga-os!",bc_map,"0x00ff99";
+		instance_announce -1,"Ei você!! Eu irei cuidar pessoalmente de todos vocês! Vamos traga-os!",bc_map,"0x00ff99";
 		enablenpc instance_npcname("pol_c_p", instance_id());
 		instance_warpall "1@cash",199,99;
 		end;
 	}
-	instance_announce 0,"Arrgg!! Isso dói!!! Eu preciso de uma outra estratégia...",bc_map,"0x00ff99";
+	instance_announce -1,"Arrgg!! Isso dói!!! Eu preciso de uma outra estratégia...",bc_map,"0x00ff99";
 	end;
 }
 
@@ -331,11 +331,11 @@ OnTouch:
 	if (getd("."+strnpcinfo(0)+instance_id())) end;
 	setd "."+strnpcinfo(0)+instance_id(),1;
 	hideonnpc instance_npcname(strnpcinfo(0), instance_id());
-	instance_announce 0,"Saiam filhos e me ajudem!",bc_map,"0xFFFF00";
+	instance_announce -1,"Saiam filhos e me ajudem!",bc_map,"0xFFFF00";
 	initnpctimer;
 	end;
 OnTimer5000:
-	instance_announce 0,"Vamos dar-lhes uma lição!",bc_map,"0xFFFF00";
+	instance_announce -1,"Vamos dar-lhes uma lição!",bc_map,"0xFFFF00";
 	set .@label$, instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
 	switch(.@i) {
@@ -366,7 +366,7 @@ OnTimer30000:
 	end;
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce 0,"Você feriu meus bebês!? Você vai ter que pagar por isso!!!",bc_map,"0x00ff99";
+		instance_announce -1,"Você feriu meus bebês!? Você vai ter que pagar por isso!!!",bc_map,"0x00ff99";
 		setd "."+strnpcinfo(0)+instance_id(),0;
 		stopnpctimer;
 		set .@i, atoi(charat(strnpcinfo(0),8));
@@ -470,7 +470,7 @@ OnTouch:
 	monster "1@cash",48,50,"Hidra",1068,1;
 	monster "1@cash",49,50,"Hidra",1068,1;
 	monster "1@cash",41,53,"Polvo Pequeno",2192,1;
-	instance_announce 0,"Não deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
+	instance_announce -1,"Não deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
 	specialeffect EF_BASH;
 	disablenpc instance_npcname("pol_atv1", instance_id());
 	end;
@@ -489,24 +489,24 @@ OnTouch:
 	setd "."+instance_id(),1;
 	initnpctimer;
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"O centro está vazio, Vá!!!",bc_map,"0x00ff99";
+	instance_announce -1,"O centro está vazio, Vá!!!",bc_map,"0x00ff99";
 	hideonnpc instance_npcname("pol_atv2", instance_id());
 	end;
 OnTimer2000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"Corra, corra! Vá, vá!!!",bc_map,"0x00ff99";
+	instance_announce -1,"Corra, corra! Vá, vá!!!",bc_map,"0x00ff99";
 	end;
 OnTimer4000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"Não há tempo, saia rápido!",bc_map,"0x00ff99";
+	instance_announce -1,"Não há tempo, saia rápido!",bc_map,"0x00ff99";
 	end;
 OnTimer6000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,3;
-	instance_announce 0,"Vamos conquiste o centro!!!",bc_map,"0x00ff99";
+	instance_announce -1,"Vamos conquiste o centro!!!",bc_map,"0x00ff99";
 	end;
 OnTimer8000:
 	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce 0,"Não há tempo a perder, rápido!!!",bc_map,"0x00ff99";
+	instance_announce -1,"Não há tempo a perder, rápido!!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -527,12 +527,12 @@ OnTouch:
 	monster "1@cash",292,153,"Polvo Pequeno ",2192,1;
 	monster "1@cash",293,151,"Polvo Pequeno ",2192,1;
 	monster "1@cash",293,152,"Polvo Pequeno ?",2175,1;
-	instance_announce 0,"Kakaka! Surpreso??!!",bc_map,"0x00ff99";
+	instance_announce -1,"Kakaka! Surpreso??!!",bc_map,"0x00ff99";
 	initnpctimer;
 	hideonnpc instance_npcname("pol_atv3", instance_id());
 	end;
 OnTimer5000:
-	instance_announce 0,"... Parece que temos um espião entre nós.",bc_map,"0x00ff99";
+	instance_announce -1,"... Parece que temos um espião entre nós.",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -561,15 +561,15 @@ OnTouch:
 	monster "1@cash",260,39,"Lula Mercenária",2175,1;
 	monster "1@cash",259,40,"Lula Mercenária",2175,1;
 	monster "1@cash",261,40,"Lula Mercenária",2175,1;
-	instance_announce 0,"Um ataque estratégico! O inimigo é forte! Não vamos ser derrotados! Onde estão todos os mercenários??",bc_map,"0x00ff99";
+	instance_announce -1,"Um ataque estratégico! O inimigo é forte! Não vamos ser derrotados! Onde estão todos os mercenários??",bc_map,"0x00ff99";
 	initnpctimer;
 	hideonnpc instance_npcname("pol_atv4", instance_id());
 	end;
 OnTimer5000:
-	instance_announce 0,"Lula Mercenária : eh...eh... direção errada. Não há inimigos nessa direção.",bc_map,"0x00ff99";
+	instance_announce -1,"Lula Mercenária : eh...eh... direção errada. Não há inimigos nessa direção.",bc_map,"0x00ff99";
 	end;
 OnTimer7000:
-	instance_announce 0,"Polvo Pervertido : Estúpido ! Não conseguem ler o mapa ?! Inúteis!!",bc_map,"0x00ff99";
+	instance_announce -1,"Polvo Pervertido : Estúpido ! Não conseguem ler o mapa ?! Inúteis!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
@@ -636,11 +636,11 @@ OnTimer49000:
 	initnpctimer;
 	end;
 OnAnnounce:
-	instance_announce 0,"Polvo Gigante : "+getarg(rand(3)),bc_map,"0xFFFF00";
+	instance_announce -1,"Polvo Gigante : "+getarg(rand(3)),bc_map,"0xFFFF00";
 	return;
 OnMyMobDead:
 	if (mobcount("1@cash",instance_npcname("pol_c_c", instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce 0,"Polvo Gigante : Isso é tudo por hoje! Da próxima vez, eu vou brincar a sério com você!",bc_map,"0xFFFF00";
+		instance_announce -1,"Polvo Gigante : Isso é tudo por hoje! Da próxima vez, eu vou brincar a sério com você!",bc_map,"0xFFFF00";
 		enablenpc instance_npcname("pol_s_1", instance_id());
 		enablenpc instance_npcname("pol_s_2", instance_id());
 		donpcevent instance_npcname("pol_c_t", instance_id())+"::OnDisable";
@@ -664,11 +664,11 @@ OnCall:
 	if (mobcount("1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead") < 100) {
 		switch(rand(2)) {
 		case 0:
-			instance_announce 0,"Polvo Gigante : Você sabe quantas pernas tem o polvo? Não importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
+			instance_announce -1,"Polvo Gigante : Você sabe quantas pernas tem o polvo? Não importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
 			areamonster "1@cash",192,181,206,195,"Tentáculo de Polvo",2193,1,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
 			break;
 		case 1:
-			instance_announce 0,"Polvo Gigante : Eu... não posso... segurar mais, meus bebês ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
+			instance_announce -1,"Polvo Gigante : Eu... não posso... segurar mais, meus bebês ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
 			areamonster "1@cash",192,181,206,195,"Polvo Pequeno",2192,5,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
 			break;
 		}

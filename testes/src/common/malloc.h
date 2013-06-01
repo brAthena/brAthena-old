@@ -101,5 +101,6 @@ bool malloc_verify_ptr(void *ptr);
 size_t malloc_usage(void);
 void malloc_init(void);
 void malloc_final(void);
+void memmgr_report (int extra);
 
 #endif /* _MALLOC_H_ */

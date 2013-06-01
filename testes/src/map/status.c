@@ -2701,8 +2701,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 				data = itemdb_exists(c);
 				if(!data)
 					continue;
-				if(first && data->equip_script) {
-					//Execute equip-script on login
+				if(first && data->equip_script) { //Execute equip-script on login
 					run_script(data->equip_script,0,sd->bl.id,0);
 					if(!calculating)
 						return 1;
@@ -2711,12 +2710,12 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 					continue;
 
 				for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
-					if( map[sd->bl.m].zone->disabled_items[k] == sd->inventory_data[index]->nameid ) {
+					if(map[sd->bl.m].zone->disabled_items[k] == data->nameid) {
 						break;
 					}
 				}
 				
-				if( k < map[sd->bl.m].zone->disabled_items_count )
+				if(k < map[sd->bl.m].zone->disabled_items_count)
 					continue;
 
 				if(i == EQI_HAND_L && sd->status.inventory[index].equip == EQP_HAND_L) { //Left hand status.
@@ -6237,15 +6236,16 @@ void status_set_viewdata(struct block_list *bl, int class_)
 
 /// Returns the status_change data of bl or NULL if it doesn't exist.
 struct status_change *status_get_sc(struct block_list *bl) {
-	if(bl)
+	if(bl) {
 		switch(bl->type) {
 			case BL_PC:  return &((TBL_PC *)bl)->sc;
 			case BL_MOB: return &((TBL_MOB *)bl)->sc;
-			case BL_NPC: return &((TBL_NPC *)bl)->sc;
+			case BL_NPC: return NULL;
 			case BL_HOM: return &((TBL_HOM *)bl)->sc;
 			case BL_MER: return &((TBL_MER *)bl)->sc;
 			case BL_ELEM: return &((TBL_ELEM *)bl)->sc;
 		}
+	}
 	return NULL;
 }
 
