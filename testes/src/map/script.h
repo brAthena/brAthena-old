@@ -232,6 +232,8 @@ int script_reload(void);
 // @commands (script based)
 void setd_sub(struct script_state *st, TBL_PC *sd, const char *varname, int elem, void *value, struct DBMap **ref);
 
+TBL_PC *script_rid2sd(struct script_state *st);
+
 #ifdef BETA_THREAD_TEST
 void queryThread_log(char *entry, int length);
 #endif

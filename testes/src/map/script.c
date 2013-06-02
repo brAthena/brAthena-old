@@ -2472,8 +2472,8 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 /// If there is no player attached, the script is terminated.
 TBL_PC *script_rid2sd(struct script_state *st)
 {
-	TBL_PC *sd=map_id2sd(st->rid);
-	if(!sd) {
+	TBL_PC *sd;
+	if(!( sd = map_id2sd(st->rid))){
 		ShowError("script_rid2sd: erro fatal! nenhum jogador anexado!\n");
 		script_reportfunc(st);
 		script_reportsrc(st);
