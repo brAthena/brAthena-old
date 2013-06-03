@@ -62,5 +62,8 @@
 /// - Algumas habilidades e itens mudam a fórmula de bonificar velocidade de ataque, para valores fixos.
 #define RENEWAL_ASPD
 
+/// Leitura para modificações exclusivas de Brasil Ragnarok Online (bRO)
+#define BRO
+
 #endif // _CONFIG_RENEWAL_H_
 #endif // _RENEWAL
