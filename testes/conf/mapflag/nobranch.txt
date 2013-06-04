@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.8/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.9/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Configuração Mapflag que desabilita uso de  |
 //   | Galho Seco nos mapas.                                  |
@@ -273,6 +273,10 @@ turbo_e_4	mapflag	nobranch
 turbo_e_8	mapflag	nobranch
 turbo_e_16	mapflag	nobranch
 
+// ======= Guerra dos Porings =======
+poring_w01	mapflag	nobranch
+poring_w02	mapflag	nobranch
+
 // ======= Corridas de Monstros =======
 p_track01	mapflag	nobranch
 p_track02	mapflag	nobranch
@@ -337,14 +341,17 @@ moc_para01	mapflag	nobranch
 job3_arch01	mapflag	nobranch
 job3_arch02	mapflag	nobranch
 job3_arch03	mapflag	nobranch
+job3_gen01	mapflag	nobranch
 job3_guil01	mapflag	nobranch
 job3_guil02	mapflag	nobranch
 job3_guil03	mapflag	nobranch
+job_ko	mapflag	nobranch
 job3_rang01	mapflag	nobranch
 job3_rang02	mapflag	nobranch
 job3_rune01	mapflag	nobranch
 job3_rune02	mapflag	nobranch
 job3_rune03	mapflag	nobranch
+job3_sha01	mapflag	nobranch
 job3_war01	mapflag	nobranch
 job3_war02	mapflag	nobranch
 jupe_core2	mapflag	nobranch
@@ -373,9 +380,19 @@ mal_in02	mapflag	nobranch
 1@pump	mapflag	nobranch
 2@pump	mapflag	nobranch
 1@lhz	mapflag	nobranch
+que_lhz	mapflag	nobranch
 malaya	mapflag	nobranch
 ma_scene01	mapflag	nobranch
 ma_in01	mapflag	nobranch
+ma_zif01	mapflag	nobranch
+ma_zif02	mapflag	nobranch
+ma_zif03	mapflag	nobranch
+ma_zif04	mapflag	nobranch
+ma_zif05	mapflag	nobranch
+ma_zif06	mapflag	nobranch
+ma_zif07	mapflag	nobranch
+ma_zif08	mapflag	nobranch
+ma_zif09	mapflag	nobranch
 1@ma_h	mapflag	nobranch
 1@ma_c	mapflag	nobranch
 1@ma_b	mapflag	nobranch
@@ -388,9 +405,6 @@ ecl_in03	mapflag	nobranch
 ecl_in04	mapflag	nobranch
 1@ecl	mapflag	nobranch
 ecl_hub01	mapflag	nobranch
+que_avan01	mapflag	nobranch
 
 //evt_zombie	mapflag	nobranch
-
-// ======= Guerra dos Porings =======
-poring_w01	mapflag	nobranch
-poring_w02	mapflag	nobranch

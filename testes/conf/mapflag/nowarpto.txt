@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.3/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.4/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Configuração Mapflag que impede a           |
 //   | teleportação para o mapa.                              |
@@ -98,6 +98,10 @@ prt_are_in	mapflag	nowarpto
 p_track01	mapflag	nowarpto
 p_track02	mapflag	nowarpto
 
+// ============== Guerra dos Porings ==============
+poring_w01	mapflag	nowarpto
+poring_w02	mapflag	nowarpto
+
 // ============== Visões de Okolnir ==============
 que_qsch01	mapflag	nowarpto
 que_qsch02	mapflag	nowarpto
@@ -163,9 +167,49 @@ spl_in01	mapflag	nowarpto
 1@nyd	mapflag	nowarpto
 2@nyd	mapflag	nowarpto
 
-// ============== Guerra dos Porings ==============
-poring_w01	mapflag	nowarpto
-poring_w02	mapflag	nowarpto
+// Mora ==================
+1@mist	mapflag	nowarpto
+
+que_house_s	mapflag	nowarpto
+
+// Malangdo =================
+1@pump	mapflag	nowarpto
+2@pump	mapflag	nowarpto
+1@cash	mapflag	nowarpto
+
+// Lighthalzen Dungeon F4 ========
+1@lhz	mapflag	nowarpto
+lhz_dun04	mapflag	nowarpto
+que_lhz	mapflag	nowarpto
+
+// Porto de Malaya ===================
+1@ma_b	mapflag	nowarpto
+1@ma_c	mapflag	nowarpto
+1@ma_h	mapflag	nowarpto
+
+// Eclage ===================
+1@ecl	mapflag	nowarpto
+
+// Pirâmides modo pesadelo
+moc_prydn1	mapflag	nowarpto
+moc_prydn2	mapflag	nowarpto
+
+// Glast Heim Memorial Dungeon / modo pesadelo ===
+1@gl_k	mapflag	nowarpto
+2@gl_k	mapflag	nowarpto
+gl_chyard_	mapflag	nowarpto
+gl_cas02_	mapflag	nowarpto
+
+// Wave Mode Memorial Dungeon ====
+1@def01	mapflag	nowarpto
+1@def02	mapflag	nowarpto
+1@def03	mapflag	nowarpto
+
+// Heroes' Trails - Part 1 =======
+1@gef	mapflag	nowarpto
+1@face	mapflag	nowarpto
+1@sara	mapflag	nowarpto
+1@gef_in	mapflag	nowarpto
 
 // Bossnia (custom) ==============
 bossnia_01	mapflag	nowarpto

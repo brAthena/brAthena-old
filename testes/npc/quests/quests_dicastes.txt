@@ -253,7 +253,7 @@ dic_dun01,284,102,5	script	Dirty Vigilante#ep13_3	450,{
 			next;
 			if (select("Enter after spraying perfume.:Do not enter because it's dangerous.") == 1) {
 				if (!countitem(6437)) {
-					mes "- You Scaraba Perfume disappeared. -";
+					mes "- Your Scaraba Perfume disappeared. -";
 					close;
 				}
 				mes "[Vigilante]";
@@ -270,7 +270,7 @@ dic_dun01,284,102,5	script	Dirty Vigilante#ep13_3	450,{
 		close;
 	}
 	mes "[Vigilante]";
-	mes "Phew, what happened?! Why are they all over me";
+	mes "Phew, what happened?! Why are they all over me?";
 	next;
 	mes "[Vigilante]";
 	mes "I already had bad luck in falling into Scaraba Hall and being drenched with this awful ^FF0000stench^000000 my head is starting to ache!";
@@ -414,7 +414,6 @@ dic_in01,254,119,0	script	Item Storage#01	844,{
 
 // Civil Services
 //============================================================
-
 function	script	que_dic	{
 	if (!getarg(0)) {
 		if (checkquest(getarg(1),HUNTING) != 2) return;
@@ -774,18 +773,18 @@ dic_in01,43,273,1	script	Transport Dept. 1 Mgr	449,{
 	next;
 	mes "[Transport Dept. 1 Manager]";
 	set .@s$, "Quantity check finished. Ahhh, you going to rest? Then why don't you visit the famous pub of the Capital? They have no yummy food though....";
-	que_dic(1,12137,30000,7143,4,.@s);
-	que_dic(1,12138,25000,744,5,.@s);
-	que_dic(1,12139,47500,748,1,.@s);
-	que_dic(1,12140,27500,736,15,.@s);
-	que_dic(1,12141,27000,746,10,.@s);
-	que_dic(1,12142,27500,740,15,.@s);
-	que_dic(1,12143,21600,925,50,.@s);
-	que_dic(1,12144,21400,965,50,.@s);
-	que_dic(1,12145,20900,964,20,.@s);
-	que_dic(1,12146,22400,911,30,.@s);
-	que_dic(1,12147,20800,910,40,.@s);
-	mes "Um......What do you want me to do?";
+	que_dic(1,12137,30000,7143,4,.@s$);
+	que_dic(1,12138,25000,744,5,.@s$);
+	que_dic(1,12139,47500,748,1,.@s$);
+	que_dic(1,12140,27500,736,15,.@s$);
+	que_dic(1,12141,27000,746,10,.@s$);
+	que_dic(1,12142,27500,740,15,.@s$);
+	que_dic(1,12143,21600,925,50,.@s$);
+	que_dic(1,12144,21400,965,50,.@s$);
+	que_dic(1,12145,20900,964,20,.@s$);
+	que_dic(1,12146,22400,911,30,.@s$);
+	que_dic(1,12147,20800,910,40,.@s$);
+	mes "Um...... What do you want me to do?";
 	next;
 	mes "[Transport Dept. 1 Manager]";
 	mes "....";
@@ -974,7 +973,6 @@ dic_in01,40,193,1	script	Papyrus#0001	453,{
 
 // Document Packages
 //============================================================
-
 -	script	Document Package#main	-1,{
 	function	eldicastes_dp;
 	if (isequipped(2782) < 1) {
@@ -1082,7 +1080,6 @@ dic_in01,25,187,0	duplicate(Document Package#main)	Document Package#0004	844
 
 // Unknown Relics
 //============================================================
-
 function	script	unknown_d	{
 	if (checkquest(getarg(0)) == -1) {
 		mes "You see some traces of digging.";
@@ -3346,10 +3343,8 @@ dicastes01,225,211,3	script	Tragis#pa0829	453,{
 
 // Doha's Secret Orders
 //============================================================
-
 mid_campin,168,170,3	script	Inspector Doha#ep133	59,{
-//	if ((GetInventoryRemainCount 1301 3 == 2) || (GetInventoryRemainCount 1301 3 == 3)) {
-	if ((MaxWeight - Weight) < 1000) {
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
 		mes "- You can too many items to proceed with the quest. -";
 		close;
 	}
@@ -5119,7 +5114,7 @@ dic_in01,165,104,0	script	Frede#13_3_in	454,{
 			mes "Maybe......they forgot?";
 			next;
 			mes "[Frede]";
-			mes "Oh.. what should I do......";
+			mes "Oh... what should I do......";
 			mes "I would run there myself if only my legs would move normally.";
 			next;
 			mes "[Frede]";
@@ -5150,7 +5145,7 @@ dic_in01,165,104,0	script	Frede#13_3_in	454,{
 		}
 		else if (ep13_3_bra == 3) {
 			mes "[Frede]";
-			mes "Oh.. what should I do......";
+			mes "Oh... what should I do......";
 			mes "I would run there myself if only my legs would move normally.";
 			next;
 			mes "[Frede]";
@@ -6904,7 +6899,6 @@ dic_in01,42,264,3	script	Adventurer Clerk#ep133	453,{
 }
 // Enchantment NPCs
 //============================================================
-
 -	script	dic_enc#main	-1,{
 	set .@re$, strnpcinfo(1);
 	set .@n$, "["+.@re$+"]";
@@ -6965,21 +6959,21 @@ dic_in01,42,264,3	script	Adventurer Clerk#ep133	453,{
 		mes .@n$;
 		set .@cat_hi, rand(1,30);
 		if (.@cat_hi == 1) mes "It is difficult to find fish here. Can't find any so Jahbong would forget that he's busy or angry at the sight of a Fish Tail.";
-		if (.@cat_hi == 2) mes "Grrr... I was punished with a ladle for peeing on my blanket yesterday.";
-		if (.@cat_hi == 3) mes "I dream sometimes of a giant patting me on the head. But I feel more annoyed than afraid.";
-		if (.@cat_hi == 4) mes "Newbie Jarute, Ahat doesn't seem to look like a Sapha.";
-		if (.@cat_hi == 5) mes "Our people say Ahat looks like a beautiful cat.";
-		if (.@cat_hi == 6) mes "I heard there was a superior equipment upgrade craftsman in the capital city of Manuk.";
-		if (.@cat_hi == 7) mes "Grrr... I don't think my voice sounds normal these days. I think it's the weather.";
-		if (.@cat_hi == 8) mes "There are times when I shout out loud but it is only because I am in a good mood. No need to be startled.";
-		if (.@cat_hi == 9) mes "I feel an urge to jump on a pile with my four paws when I see one.";
-		if (.@cat_hi == 10) mes "I must have been a cat in my previous life.";
-		if (.@cat_hi == 11) mes "I dreamt about the giant again. I waved my paws annoyed and he kept on patting me.";
-		if (.@cat_hi == 12) mes "Yup!! Was the rumor true that Ahat looks like a human?! ";
-		if (.@cat_hi == 13) mes "I heard on my way that this Pinqucula Dark has a Withered Flower.";
-		if (.@cat_hi == 14) mes "There is a guy named Pinguicula nearby who has the Sharp Leaf nearby.";
-		if (.@cat_hi == 15) mes "There is a guy named Pinguicula nearby who has the Great Leaf nearby.";
-		if (.@cat_hi == 16) mes "I recommend getting it from the Dracos nearby. But then, they only drop it randomly so you may come back empty handed...";
+		else if (.@cat_hi == 2) mes "Grrr... I was punished with a ladle for peeing on my blanket yesterday.";
+		else if (.@cat_hi == 3) mes "I dream sometimes of a giant patting me on the head. But I feel more annoyed than afraid.";
+		else if (.@cat_hi == 4) mes "Newbie Jarute, Ahat doesn't seem to look like a Sapha.";
+		else if (.@cat_hi == 5) mes "Our people say Ahat looks like a beautiful cat.";
+		else if (.@cat_hi == 6) mes "I heard there was a superior equipment upgrade craftsman in the capital city of Manuk.";
+		else if (.@cat_hi == 7) mes "Grrr... I don't think my voice sounds normal these days. I think it's the weather.";
+		else if (.@cat_hi == 8) mes "There are times when I shout out loud but it is only because I am in a good mood. No need to be startled.";
+		else if (.@cat_hi == 9) mes "I feel an urge to jump on a pile with my four paws when I see one.";
+		else if (.@cat_hi == 10) mes "I must have been a cat in my previous life.";
+		else if (.@cat_hi == 11) mes "I dreamt about the giant again. I waved my paws annoyed and he kept on patting me.";
+		else if (.@cat_hi == 12) mes "Yup!! Was the rumor true that Ahat looks like a human?! ";
+		else if (.@cat_hi == 13) mes "I heard on my way that this Pinqucula Dark has a Withered Flower.";
+		else if (.@cat_hi == 14) mes "There is a guy named Pinguicula nearby who has the Sharp Leaf nearby.";
+		else if (.@cat_hi == 15) mes "There is a guy named Pinguicula nearby who has the Great Leaf nearby.";
+		else if (.@cat_hi == 16) mes "I recommend getting it from the Dracos nearby. But then, they only drop it randomly so you may come back empty handed...";
 		else mes "Hmm... This may not be important to you but.";
 		next;
 		mes .@n$;
@@ -7365,19 +7359,17 @@ dic_fild01,228,159,4	script	Jahbong#pa0829	496,{
 	mes "[Jahbong]";
 	mes "Are you really buying something?!";
 	next;
-	switch(select("Nope:Give me!!!")) {
-		case 1:
-			mes "[Jahbong]";
-			mes "Okay!";
-			close;
-		case 2:
-			setarray .@items[1],2463,2564,2843;
-			mes "[Jahbong]";
-			mes "Here you go!";
-			delitem 6304,1;
-			getitem .@items[.@i],1;
-			close;
+	if (select("Nope:Give me!!!") == 1) {
+		mes "[Jahbong]";
+		mes "Okay!";
+		close;
 	}
+	setarray .@items[1],2463,2564,2843;
+	mes "[Jahbong]";
+	mes "Here you go!";
+	delitem 6304,1;
+	getitem .@items[.@i],1;
+	close;
 }
 
 // Cat Hand Agent
@@ -7386,8 +7378,10 @@ moc_para01,44,19,3	script	Cat Hand Agent#gekk	496,{
 	if (BaseLevel < 70)	{
 		mes "[Cat Hand Agent]";
 		mes "Hey, human! Did you come to make a request, too? When will it be my turn?";
+		next;
 		mes "[Cat Hand Agent]";
 		mes "Our Cat Hand Merchant group really needs any help it can get. But by the looks of all those requests that Ebenor is holding in his hand, Cat Hand Merchant will be closed by the time my request is put up on the board!";
+		next;
 		mes "[Cat Hand Agent]";
 		mes "It breaks my heart to think my colleagues will be shivering in the blizzard. I hope I don't get into trouble since I can't do anything about it, right?";
 		close;
@@ -7403,7 +7397,7 @@ moc_para01,44,19,3	script	Cat Hand Agent#gekk	496,{
 		mes "It breaks my heart to think my colleagues will be shivering in the blizzard. I hope I don't get into trouble since I can't do anything about it, right?";
 		next;
 		if (select ("Why don't you collect it yourself?:I'm sorry to hear that.") == 1) {
-				emotion ET_HUK;
+				emotion e_omg;
 				mes "[Cat Hand Agent]";
 				mes "Human!! You're a genius!!";
 				mes "How did you come up with that?";
@@ -7445,7 +7439,7 @@ moc_para01,44,19,3	script	Cat Hand Agent#gekk	496,{
 						next;
 						input .@inputstr$;
 						mes "[Agent Geck]";
-						mes "" + name + "? Human names are strange to me.";
+						mes "" + strcharinfo(0) + "? Human names are strange to me.";
 						next;
 						mes "[Agent Geck]";
 						mes "Now you are Geck's personal slav... sponsor.";
@@ -7530,7 +7524,7 @@ moc_fild20,368,197,3	script	Cat#to22	876,{
 		mes "The small body isn't as tall as your ankle and its small but thick paws look like little cushions. The ears that bent backwards when it looked at how big you were stirred up your protective instinct.";
 		next;
 		mes "You don't seem to have the nerve to step on the Cat Hand Agent.";
-		emotion ET_CRY;
+		emotion e_sob;
 		close;
 	}
 	mes "You look at the Cat Hand Agent's small back and climb over the wall as quick as possible so that it wouldn't notice your weight.";

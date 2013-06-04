@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.7/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.8/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Configuração Mapflag que bloqueia           |
 //   | salvar ponto de retorno.                               |
@@ -256,6 +256,10 @@ turbo_e_16	mapflag	nosave	SavePoint
 p_track01	mapflag	nosave	SavePoint
 p_track02	mapflag	nosave	SavePoint
 
+// Guerra dos Porings ====================
+poring_w01	mapflag	nosave	SavePoint
+poring_w02	mapflag	nosave	SavePoint
+
 // ============= Visões de Okolnir =============
 que_qsch01	mapflag	nosave	SavePoint
 que_qsch02	mapflag	nosave	SavePoint
@@ -321,6 +325,17 @@ arug_dun01	mapflag	nosave	SavePoint
 que_lhz	mapflag	nosave	SavePoint
 1@lhz	mapflag	nosave	SavePoint
 
+// Porto de Malaya ====================
+ma_zif01	mapflag	nosave	SavePoint
+ma_zif02	mapflag	nosave	SavePoint
+ma_zif03	mapflag	nosave	SavePoint
+ma_zif04	mapflag	nosave	SavePoint
+ma_zif05	mapflag	nosave	SavePoint
+ma_zif06	mapflag	nosave	SavePoint
+ma_zif07	mapflag	nosave	SavePoint
+ma_zif08	mapflag	nosave	SavePoint
+ma_zif09	mapflag	nosave	SavePoint
+
 // ============= Hospital de Bangungot =============
 1@ma_h	mapflag	nosave	SavePoint
 
@@ -331,10 +346,24 @@ que_lhz	mapflag	nosave	SavePoint
 1@ma_b	mapflag	nosave	SavePoint
 
 // ============= Interior de Eclage =============
+que_avan01	mapflag	nosave	SavePoint
 1@ecl	mapflag	nosave	SavePoint
 
-//evt_zombie	mapflag	nosave	SavePoint
+// Glast Heim Memorial Dungeon / modo pesadelo ====
+1@gl_k	mapflag	nosave	SavePoint
+2@gl_k	mapflag	nosave	SavePoint
 
-// Guerra dos Porings ====================
-poring_w01	mapflag	nosave	SavePoint
-poring_w02	mapflag	nosave	SavePoint
+// Modo Wave Memorial Dungeon =====
+1@def01	mapflag	nosave	SavePoint
+1@def02	mapflag	nosave	SavePoint
+1@def03	mapflag	nosave	SavePoint
+
+// Triçha do Herói ========
+1@gef	mapflag	nosave	SavePoint
+1@face	mapflag	nosave	SavePoint
+1@sara	mapflag	nosave	SavePoint
+1@gef_in	mapflag	nosave	SavePoint
+dali	mapflag	nosave	SavePoint
+
+evt_bomb	mapflag	nosave	SavePoint
+//evt_zombie	mapflag	nosave	SavePoint

@@ -13,7 +13,7 @@
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.4/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.5/1.0                         |
 //   | Descrição: Configuração Mapflag que não penaliza a     |
 //   | experiência ao morrer.                                 |
 //   |--------------------------------------------------------|
@@ -178,6 +178,7 @@ ecl_in02	mapflag	nopenalty
 ecl_in03	mapflag	nopenalty
 ecl_in04	mapflag	nopenalty
 ecl_hub01	mapflag	nopenalty
+que_avan01	mapflag	nopenalty
 
 // ============= Quests de Classes =============
 job_sword1	mapflag	nopenalty
@@ -300,6 +301,9 @@ turbo_e_16	mapflag	nopenalty
 p_track01	mapflag	nopenalty
 p_track02	mapflag	nopenalty
 
+// ============= Gerra dos Porings =============
+poring_w02	mapflag	nopenalty
+
 // ============= Visões de Okolnir =============
 que_qsch01	mapflag	nopenalty
 que_qsch02	mapflag	nopenalty
@@ -323,6 +327,3 @@ bat_a01	mapflag	nopenalty
 bat_a02	mapflag	nopenalty
 
 //evt_zombie	mapflag	nopenalty
-
-// ============= Gerra dos Porings =============
-poring_w02	mapflag	nopenalty

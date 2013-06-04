@@ -906,7 +906,7 @@ const char *skip_space(const char *p)
 }
 
 /// Skips a word.
-/// A word consists of undercores and/or alfanumeric characters,
+/// A word consists of undercores and/or alphanumeric characters,
 /// and valid variable prefixes/postfixes.
 static
 const char *skip_word(const char *p)
@@ -1228,7 +1228,7 @@ const char *parse_simpleexpr(const char *p)
 	p=skip_space(p);
 
 	if(*p==';' || *p==',')
-		disp_error_message("parse_simpleexpr: fim de expr inesperado",p);
+		disp_error_message("parse_simpleexpr: fim inesperado de expressão",p);
 	if(*p=='(') {
 		if((i=syntax.curly_count-1) >= 0 && syntax.curly[i].type == TYPE_ARGLIST)
 			++syntax.curly[i].count;
@@ -14172,7 +14172,7 @@ BUILDIN_FUNC(setnpcdisplay)
 	else if(data_isint(data))
 		class_ = conv_num(st,data);
 	else {
-		ShowError("script:setnpcdisplay: expected a string or number\n");
+		ShowError("script:setnpcdisplay: expected string or number\n");
 		script_reportdata(data);
 		return 1;
 	}
