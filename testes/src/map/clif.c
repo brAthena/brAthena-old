@@ -12054,17 +12054,12 @@ void clif_parse_PartyBookingRegisterReq(int fd, struct map_session_data *sd)
 ///     2 = already registered
 void clif_PartyBookingRegisterAck(struct map_session_data *sd, int flag)
 {
-#if PACKETVER < 20120222
-	int packet = 0x803;
-#else
-	int packet = 0x8e6;
-#endif
 	int fd = sd->fd;
 
-	WFIFOHEAD(fd,packet_len(packet));
-	WFIFOW(fd,0) = packet;
+	WFIFOHEAD(fd,packet_len(0x803));
+	WFIFOW(fd,0) = 0x803;
 	WFIFOW(fd,2) = flag;
-	WFIFOSET(fd,packet_len(packet));
+	WFIFOSET(fd,packet_len(0x803));
 }
 
 
@@ -12089,17 +12084,11 @@ void clif_parse_PartyBookingSearchReq(int fd, struct map_session_data *sd)
 ///     1 = yes
 void clif_PartyBookingSearchAck(int fd, struct party_booking_ad_info **results, int count, bool more_result)
 {
-#if PACKETVER < 20120222
-	int packet = 0x805;
-#else
-	int packet = 0x8e8;
-#endif
-
 	int i, j;
 	int size = sizeof(struct party_booking_ad_info); // structure size (48)
 	struct party_booking_ad_info *pb_ad;
 	WFIFOHEAD(fd,size*count + 5);
-	WFIFOW(fd,0) = packet;
+	WFIFOW(fd,0) = 0x805;
 	WFIFOW(fd,2) = size*count + 5;
 	WFIFOB(fd,4) = more_result;
 	for(i=0; i<count; i++) {
@@ -12134,17 +12123,12 @@ void clif_parse_PartyBookingDeleteReq(int fd, struct map_session_data *sd)
 ///     3 = nothing registered
 void clif_PartyBookingDeleteAck(struct map_session_data *sd, int flag)
 {
-#if PACKETVER < 20120222
-	int packet = 0x807;
-#else
-	int packet = 0x8ea;
-#endif
 	int fd = sd->fd;
 
-	WFIFOHEAD(fd,packet_len(packet));
-	WFIFOW(fd,0) = packet;
+	WFIFOHEAD(fd,packet_len(0x807));
+	WFIFOW(fd,0) = 0x807;
 	WFIFOW(fd,2) = flag;
-	WFIFOSET(fd,packet_len(packet));
+	WFIFOSET(fd,packet_len(0x807));
 }
 
 
@@ -12166,42 +12150,21 @@ void clif_parse_PartyBookingUpdateReq(int fd, struct map_session_data *sd)
 /// 0809 <index>.L <char name>.24B <expire time>.L <level>.W <map id>.W { <job>.W }*6
 void clif_PartyBookingInsertNotify(struct map_session_data *sd, struct party_booking_ad_info *pb_ad)
 {
-#if PACKETVER < 20120222
-	int packet = 0x809;
 	int i;
-#else
-	int packet = 0x8ec;
-#endif
-
 	uint8 buf[38+PARTY_BOOKING_JOBS*2];
 
 	if(pb_ad == NULL) return;
 
-	WBUFW(buf,0) = packet;
+	WBUFW(buf,0) = 0x809;
 	WBUFL(buf,2) = pb_ad->index;
-#if PACKETVER < 20120222
 	memcpy(WBUFP(buf,6),pb_ad->charname,NAME_LENGTH);
-#else
-	WBUFL(buf,6) = pb_ad->starttime;
-#endif
-#if PACKETVER < 20120222
 	WBUFL(buf,30) = pb_ad->starttime;  // FIXME: This is expire time
-#else
-	memcpy(WBUFP(buf,10),pb_ad->charname,NAME_LENGTH);
-#endif
 	WBUFW(buf,34) = pb_ad->p_detail.level;
-	
-#if PACKETVER < 20120222
 	WBUFW(buf,36) = pb_ad->p_detail.mapid;
-#else
-	memcpy(WBUFP(buf,36),pb_ad->memo,PARTY_BOOKING_LENGTH);
-#endif
-#if PACKETVER < 20120222
 	for(i=0; i<PARTY_BOOKING_JOBS; i++)
 		WBUFW(buf,38+i*2) = pb_ad->p_detail.job[i];
-#endif
 
-	clif_send(buf, packet_len(packet), &sd->bl, ALL_CLIENT);
+	clif_send(buf, packet_len(0x809), &sd->bl, ALL_CLIENT);
 }
 
 
@@ -12209,26 +12172,16 @@ void clif_PartyBookingInsertNotify(struct map_session_data *sd, struct party_boo
 /// 080a <index>.L { <job>.W }*6
 void clif_PartyBookingUpdateNotify(struct map_session_data *sd, struct party_booking_ad_info *pb_ad)
 {
-#if PACKETVER < 20120222
-	int packet = 0x80a;
 	int i;
-#else
-	int packet = 0x8ed;
-#endif
-
 	uint8 buf[6+PARTY_BOOKING_JOBS*2];
 
 	if(pb_ad == NULL) return;
 
-	WBUFW(buf,0) = packet;
+	WBUFW(buf,0) = 0x80a;
 	WBUFL(buf,2) = pb_ad->index;
-#if PACKETVER < 20120222
 	for(i=0; i<PARTY_BOOKING_JOBS; i++)
 		WBUFW(buf,6+i*2) = pb_ad->p_detail.job[i];
-#else
-	memcpy(WBUFP(buf,6),pb_ad->memo,PARTY_BOOKING_LENGTH);
-#endif
-	clif_send(buf,packet_len(packet),&sd->bl,ALL_CLIENT); // Now UPDATE all client.
+	clif_send(buf,packet_len(0x80a),&sd->bl,ALL_CLIENT); // Now UPDATE all client.
 }
 
 
@@ -12236,17 +12189,12 @@ void clif_PartyBookingUpdateNotify(struct map_session_data *sd, struct party_boo
 /// 080b <index>.L
 void clif_PartyBookingDeleteNotify(struct map_session_data *sd, int index)
 {
-#if PACKETVER < 20120222
-	int packet = 0x80b;
-#else
-	int packet = 0x8ee;
-#endif
 	uint8 buf[6];
 
-	WBUFW(buf,0) = packet;
+	WBUFW(buf,0) = 0x80b;
 	WBUFL(buf,2) = index;
 
-	clif_send(buf, packet_len(packet), &sd->bl, ALL_CLIENT); // Now UPDATE all client.
+	clif_send(buf, packet_len(0x80b), &sd->bl, ALL_CLIENT); // Now UPDATE all client.
 }
 
 

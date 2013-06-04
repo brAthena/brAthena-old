@@ -27,7 +27,6 @@ struct item;
 
 #define PARTY_BOOKING_JOBS 6
 #define PARTY_BOOKING_RESULTS 10
-#define PARTY_BOOKING_LENGTH 50
 
 struct party_member_data {
 	struct map_session_data *sd;
@@ -58,7 +57,6 @@ struct party_booking_detail {
 struct party_booking_ad_info {
 	unsigned long index;
 	char charname[NAME_LENGTH];
-	char memo[PARTY_BOOKING_LENGTH];
 	long starttime;
 	struct party_booking_detail p_detail;
 };
