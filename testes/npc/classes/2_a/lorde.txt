@@ -82,7 +82,7 @@ valkyrie,44,39,5	script	Lorde#Valquíria	56,{
 	mes "a Valhalla,";
 	mes "o Salão de Honras.";
 	next;
-	mes "[Atirador de Elite]";
+	mes "[Lorde]";
 	mes "Por favor, sinta-se";
 	mes "confortável enquanto";
 	mes "você estiver aqui.";

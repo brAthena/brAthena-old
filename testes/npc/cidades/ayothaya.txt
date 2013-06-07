@@ -28,10 +28,7 @@
 alberta,246,29,3	script	Aibakthing#ayo	843,{
 	mes "[Aibakthing]";
 	mes "Hoo! Hah! Hoo! Hah!";
-	mes "Deixe-me levar-te para um lugar";
-	mes "espiritual distante,";
-	mes "uma terra de mistério exótico,";
-	mes "minha cidade natal Ayothaya!";
+	mes "Deixe-me levar-te para um lugar espiritual distante, uma terra de mistério exótico, minha cidade natal Ayothaya!";
 	next;
 	switch(select("Sobre Ayothaya.:Ir para Ayothaya.:Cancelar.")) {
 	case 1:
@@ -46,47 +43,32 @@ alberta,246,29,3	script	Aibakthing#ayo	843,{
 		next;
 		mes "[Aibakthing]";
 		mes "Hoo! Hahh! Hoo! Hahh!";
-		mes "Nenhum homem vive pode resistir";
-		mes "ao convite desta bela terra.";
-		mes "Habitantes de toda Rune-Midgard";
-		mes "são sempre bem-vindos!";
+		mes "Nenhum homem vive pode resistir ao convite desta bela terra.";
+		mes "Habitantes de toda Rune-Midgard são sempre bem-vindos!";
 		close;
 	case 2:
 		mes "[Aibakthing]";
-		mes "Ah, você tem que pegar 10.000 Zeny";
-		mes "se quiser visitar Ayothaya.";
-		mes "Quando estiver pronto,";
-		mes "poderemos ir!";
+		mes "Ah, você tem que pegar 10.000 Zeny se quiser visitar Ayothaya.";
+		mes "Quando estiver pronto, poderemos ir!";
 		next;
 		if (select("Estou pronto, vamos lá!:Não.") == 1) {
-			if (Zeny > 9999) {
 				mes "[Aibakthing]";
+			if (Zeny > 9999) {
 				mes "Hoo! Hah! Hoo! Hah!";
-				mes "Vamos partir! Voltar para";
-				mes "a minha bela Ayothaya!";
+				mes "Vamos partir! Voltar para a minha bela Ayothaya!";
 				close2;
 				set zeny,zeny-10000;
 				warp "ayothaya",149,71;
 				end;
 			}
-			mes "[Aibakthing]";
 			mes "Lamento, mas você não possui 10.000 zeny para viajar para Ayothaya. Tal preço não é nada comparado com as experiências que esperam por você!";
 			close;
 		}
+		break;
+		
+		case 3:
 		mes "[Aibakthing]";
-		mes "Alguma vez você já sonhou";
-		mes "com um belo lugar cheio";
-		mes "de serenidade espiritual? Você";
-		mes "deve ter sonhado com";
-		mes "Ayothaya, meu amigo.";
-		close;
-	case 3:
-		mes "[Aibakthing]";
-		mes "Alguma vez você já sonhou";
-		mes "com um belo lugar cheio";
-		mes "de serenidade espiritual? Você";
-		mes "deve ter sonhado com";
-		mes "Ayothaya, meu amigo.";
+		mes "Alguma vez você já sonhou com um belo lugar cheio de serenidade espiritual? Você deve ter sonhado com Ayothaya, meu amigo.";
 		close;
 	}
 }
@@ -116,10 +98,7 @@ ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
 //============================================================
 ayothaya,189,120,3	script	Jovem#Thang	843,{
 	mes "[Thang]";
-	mes "Há uma antiga,";
-	mes "terrível construção em";
-	mes "Ayothaya que ninguém se";
-	mes "atreve a chegar perto...";
+	mes "Há uma antiga, terrível construção em Ayothaya que ninguém se atreve a chegar perto...";
 	next;
 	mes "[Thang]";
 	mes "No passado, alguns curiosos entraram ali, apesar das histórias de terror, e nunca mais retornaram. O que será que aconteceu nesse lugar?";
@@ -138,16 +117,14 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 		mes "Creio que não nos conhecemos.";
 		next;
 		mes "[Lalitha]";
-		mes "Você deve ser";
-		mes "de Rune-Midgard.";
+		mes "Você deve ser de Rune-Midgard.";
 		mes "Afinal, eu conheço todo mundo que vive nessa aldeia.";
 		mes "Heh heh~";
 		next;
 		mes "[Lalitha]";
 		mes "Hmm...";
-		mes "Posso perguntar sobre as terras de";
-		mes "onde você veio? Sou curiosa sobre";
-		mes "um monte de coisas do mundo fora da aldeia.";
+		mes "Posso perguntar sobre as terras de onde você veio?";
+		mes "Sou curiosa sobre um monte de coisas do mundo fora da aldeia.";
 		next;
 		mes "[Lalitha]";
 		mes "Você sabe, como as moças se vestem ou usam jóias em outras cidades, se os homens reparam ou não, que tipos de músicas vocês ouvem, que tipos de garotas os homens gostam...";
@@ -162,39 +139,32 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 		next;
 		mes "[Lalitha]";
 		mes "Ok!";
-		mes "Tome cuidado e";
-		mes "aproveite a viagem!";
+		mes "Tome cuidado e aproveite a viagem!";
 		close;
 	} else if (.@sit > 2 && .@sit < 6) {
 		mes "[Lalitha]";
-		mes "Se você for ao Oriente a partir";
-		mes "dessa vila, irá chegar às ruínas de um velho santuário. Ele é hoje";
-		mes "um ninho cheio de terríveis monstros.";
+		mes "Se você for ao Oriente a partir dessa vila, irá chegar às ruínas de um velho santuário.";
+		mes "Ele é hoje um ninho cheio de terríveis monstros.";
 		next;
 		mes "[Lalitha]";
-		mes "Se você pretende ir além dessas ruínas, é bom se preparar";
-		mes "o máximo que puder!";
+		mes "Se você pretende ir além dessas ruínas, é bom se preparar o máximo que puder!";
 		next;
 		mes "[Lalitha]";
 		mes "Ah...";
-		mes "Pergunto-me onde está";
-		mes "meu Cavaleiro Negro...";
+		mes "Pergunto-me onde está meu Cavaleiro Negro...";
 		emotion e_lv;
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Não queres dizer...";
-		mes "Cavaleiro com uma armadura";
-		mes "brilhante montado em um cavalo branco?";
+		mes "Não queres dizer... Cavaleiro com uma armadura brilhante montado em um cavalo branco?";
 		next;
 		mes "[Lalitha]";
 		mes "Hmm...?";
-		mes "Oh, bem...";
-		mes "Vou levar ambos!";
-		mes "Hee hee~!";
+		mes "Oh, bem... Vou levar ambos!";
+		mes "Hehe~!";
 		close;
 	}
 	mes "[Lalitha]";
-	mes "Mmm...?";
+	mes "Humm...?";
 	mes "E aí, novidades?";
 	close;
 }
@@ -206,64 +176,46 @@ ayothaya,143,102,5	script	Velho#ayothaya	842,{
 	mes "Hmmmmm...?";
 	next;
 	mes "[Habitante]";
-	mes "Você deve ser";
-	mes "um forasteiro.";
+	mes "Você deve ser um forasteiro.";
 	mes "Sim. Sim, realmente.";
 	next;
 	mes "[Habitante]";
-	mes "Você me perguntou";
-	mes "onde vou? Porque há";
-	mes "um lugar para pescaria";
-	mes "logo ali. Isso é o que nós";
-	mes "velhos fazemos: pescar.";
+	mes "Você me perguntou onde vou? Porque há um lugar para pescaria logo ali.";
+	mes "Isso é o que nós velhos fazemos: pescar.";
 	next;
 	mes "[Habitante]";
 	mes "Hmmm...";
-	mes "Gostaria de ouvir algo";
-	mes "interessante? Ouvi dizer que alguém encontrou um anel dentro de um";
-	mes "peixe que peguei nesse local de";
-	mes "pescaria.";
+	mes "Gostaria de ouvir algo interessante? Ouvi dizer que alguém encontrou um anel dentro de um peixe que peguei nesse local de pescaria.";
 	next;
 	mes "[Habitante]";
 	mes "Supostamente, há muitas histórias sobre pessoas que encontraram algo de valor dentro de peixes que pescaram lá.";
 	next;
 	mes "[Habitante]";
-	mes "Se você tiver sorte,";
-	mes "você poderá até se tornar";
-	mes "um milionário.";
-	mes "Heh heh heh~";
+	mes "Se você tiver sorte, você poderá até se tornar um milionário.";
+	mes "Hehehe~";
 	next;
 	mes "[Habitante]";
 	mes "...!?";
 	mes "Ah, eu vim do mercado de peixe! ^666666*Sigh*^000000 Parece que fui pelo caminho errado. O local de pescaria é do lado oposto dessa vila.";
 	next;
 	mes "[Habitante]";
-	mes "Desde que estou aqui, não era uma";
-	mes "má idéia olhar ao redor. Todos os mariscos neste mercado são doces e saborosos. Você vai se arrepender se não experimentar alguns destes";
-	mes "mariscos pelo menos uma vez.";
+	mes "Desde que estou aqui, não era uma má idéia olhar ao redor. Todos os mariscos neste mercado são doces e saborosos. Você vai se arrepender se não experimentar alguns destes mariscos pelo menos uma vez.";
 	close;
 }
 
 ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
 	mes "[Kwan]";
-	mes "Uff~ Não está";
-	mes "tãããão quente hoje?";
+	mes "Uff~ Não está tãããão quente hoje?";
 	next;
 	mes "[Kwan]";
-	mes "Você deve ser de";
-	mes "Rune-Midgard, né?";
-	mes "Eu vi um monte de turistas";
-	mes "vindo de lá recentemente.";
+	mes "Você deve ser de Rune-Midgard, né?";
+	mes "Eu vi um monte de turistas vindo de lá recentemente.";
 	next;
 	mes "[Kwan]";
-	mes "Será bom você ser muito cuidadoso em sua viagem fora dessa cidade. Faça o que for, mas não vá para";
-	mes "as ruínas de um antigo santuário";
-	mes "na floresta.";
+	mes "Será bom você ser muito cuidadoso em sua viagem fora dessa cidade. Faça o que for, mas não vá para as ruínas de um antigo santuário na floresta.";
 	next;
 	mes "[Kwan]";
-	mes "Esse lugar é muito perigoso";
-	mes "para visitar. Ainda assim, ouvi dizer que se você tiver um tipo de amuleto, você poderia ir lá com";
-	mes "menos preocupação...";
+	mes "Esse lugar é muito perigoso para visitar. Ainda assim, ouvi dizer que se você tiver um tipo de amuleto, você poderia ir lá com menos preocupação...";
 	next;
 	mes "[Kwan]";
 	mes "De qualquer maneira, é realmente uma boa idéia que você fique longe dali. Espero que goste de Ayothaya, e que esteja sempre seguro~";
@@ -283,14 +235,12 @@ ayothaya,241,264,5	script	Jovem#5ayothaya2	843,{
 	mes "[Eik]";
 	mes "Ei...";
 	mes "Você parece bastante forte.";
-	mes "Deseja desafiar-me";
-	mes "para uma duelo?";
+	mes "Deseja desafiar-me para uma duelo?";
 	next;
 	if (select("Sim!:Não~") == 1) {
 		mes "[Eik]";
 		mes "Ou ou ou!";
-		mes "Eu estava só";
-		mes "brincando, cara!";
+		mes "Eu estava só brincando, cara!";
 		next;
 		mes "[Eik]";
 		mes "Eu não sou tão rude para iniciar duelos com estranhos sem motivo!";

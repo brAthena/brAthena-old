@@ -26,8 +26,7 @@
 
 geffen,59,143,0	script	Meera	91,{
 	mes "[Meera]";
-	mes "Bem-vindo a Geffen,";
-	mes "a Cidade da Magia!";
+	mes "Bem-vindo a Geffen, a Cidade da Magia!";
 	next;
 	mes "[Meera]";
 	mes "Eu não conheço muitos feitiços, mas sabe o que tem um gosto mágico? ^CC6600Mel^000000!";
@@ -51,8 +50,7 @@ geffen,156,190,0	script	Orwalk	82,{
 	mes "[Orwalk]";
 	mes "...Interessante.";
 	mes "Muito intrigante.";
-	mes "Ah! Deixe-me contar uma";
-	mes "história maravilhosa~";
+	mes "Ah! Deixe-me contar uma história maravilhosa~";
 	next;
 	mes "[Orwalk]";
 	mes "Quando eu estava estudando magia, descobri um documento misterioso. Ele descrevia a árvore Yggdrasil.";
@@ -98,25 +96,20 @@ geffen,147,26,0	script	Ralphie	97,{
 	mes "Em algum lugar existe um cajado que pode transformar energia psíquica em força física, dando ao seu dono ^990000poder destrutivo^000000...";
 	next;
 	mes "[Ralphie]";
-	mes "Com isso, qualquer um pode ser tão forte quanto Hércules... Mesmo um fracote como eu! Hahahaha,";
-	mes "eu preciso tê-la!";
+	mes "Com isso, qualquer um pode ser tão forte quanto Hércules... Mesmo um fracote como eu! Hahahaha, eu preciso tê-la!";
 	next;
 	Emotion e_gasp;
 	mes "[Ralphie]";
 	mes "...Meu Deus!";
-	mes "Desde quando você";
-	mes "estava ouvindo?";
+	mes "Desde quando você estava ouvindo?";
 	next;
 	mes "[Ralphie]";
-	mes "Você por acaso ouviu";
-	mes "tudo o que eu falei?";
-	mes "Muhwaha... ha. Ha.";
+	mes "Você por acaso ouviu tudo o que eu falei?";
+	mes "Muhwaha... ha.";
 	next;
 	mes "[Ralphie]";
 	mes "Bem...";
-	mes "Eu não disse nada. Mas";
-	mes "se eu falei, esqueça,";
-	mes "seja lá o que for~";
+	mes "Eu não disse nada. Mas se eu falei, esqueça, seja lá o que for~";
 	next;
 	mes "[Ralphie]";
 	mes "...Cara, isso é constrangedor.";
@@ -145,8 +138,7 @@ geffen,111,48,0	script	Senhora	101,{
 		next;
 		mes "[Senhora]";
 		mes "Isso...";
-		mes "Isso é um elmo";
-		mes "de um Orc Hero!";
+		mes "Isso é um elmo de um Orc Herói!";
 		next;
 		mes "[Senhora]";
 		if (sex) {
@@ -164,8 +156,7 @@ geffen,111,48,0	script	Senhora	101,{
 	} else {
 		mes "[Senhora]";
 		mes "Olá~!";
-		mes "Ah, você é um";
-		mes "aventureiro?";
+		mes "Ah, você é um aventureiro?";
 		next;
 		mes "[Senhora]";
 		mes "Você já viu um Orc? Se você seguir para o sul, encontrará Orcs na floresta.";
@@ -182,9 +173,7 @@ geffen,111,48,0	script	Senhora	101,{
 geffen_in,34,170,0	script	Theodoro	47,{
 	mes "[Theodoro]";
 	mes "Olá!";
-	mes "Hoje não";
-	mes "é um dia";
-	mes "maravilhoso?";
+	mes "Hoje não é um dia maravilhoso?";
 	next;
 	mes "[Theodoro]";
 	mes "Bem, eu não sei. Eu estou estudando muito para virar um mago. Estou até sem dormir, pensando em tudo relacionado à Magia.";
@@ -201,13 +190,10 @@ geffen_in,34,170,0	script	Theodoro	47,{
 	next;
 	mes "[Theodoro]";
 	mes "Algum tipo de...";
-	mes "Lançador de projéteis";
-	mes "fino e afiado, preferencialmente feito de madeira.";
+	mes "Lançador de projéteis fino e afiado, preferencialmente feito de madeira.";
 	next;
 	mes "[Theodoro]";
-	mes "Mas onde eu poderia";
-	mes "encontrar algo";
-	mes "assim?!";
+	mes "Mas onde eu poderia encontrar algo assim?!";
 	close;
 }
 
@@ -246,8 +232,7 @@ OnTouch:
 		mes "Você pode curar todas as suas feridas com Red Potions! E eu vou te vender uma por apenas ^FF3333500 zeny^000000!";
 		next;
 		mes "[Cara Suspeito]";
-		mes "E aí, não é muito barato?! Já que a demanda é muito grande, só posso te vender 100 delas";
-		mes "de cada vez.";
+		mes "E aí, não é muito barato?! Já que a demanda é muito grande, só posso te vender 100 delas de cada vez.";
 		next;
 		while(1) {
 			input .@input;
@@ -270,8 +255,7 @@ OnTouch:
 		if (Zeny < .@Red_potion_hap) {
 			mes "[Cara Suspeito]";
 			mes "Ahh~";
-			mes "Então você";
-			mes "está sem grana?";
+			mes "Então você está sem grana?";
 			mes "Que pena.";
 			next;
 			mes "[Cara Suspeito]";
@@ -288,21 +272,18 @@ OnTouch:
 			next;
 			mes "[Cara Suspeito]";
 			mes "Agora...";
-			mes "O que você realmente";
-			mes "precisa é de uma ^FF3333faca para homem^000000.";
+			mes "O que você realmente precisa é de uma ^FF3333faca para homem^000000.";
 		} else {
 			mes "Uma boa moça como você querendo uma faca? Ah, facas de cozinha são para esposas donas de casa.";
 			next;
 			mes "[Cara Suspeito]";
 			mes "Agora...";
-			mes "O que você realmente";
-			mes "precisa é de uma boa e afiada";
+			mes "O que você realmente precisa é de uma boa e afiada";
 			mes "^FF3333Adaga Francesa^000000 para combinar com sua beleza e elegância.";
 		}
 		next;
 		mes "[Cara Suspeito]";
-		mes "Eu a chamo de...";
-		mes "^FF3333Main Gauche^000000! Eu mesmo inventei-a. E vendo por apenas 9400 zenys!";
+		mes "Eu a chamo de... ^FF3333Main Gauche^000000! Eu mesmo inventei-a. E vendo por apenas 9400 zenys!";
 		next;
 		select("Você vai me dar a bainha também?");
 		mes "[Cara Suspeito]";
@@ -310,8 +291,7 @@ OnTouch:
 		mes "Nossa, você está pedindo demais! Mas está bem...";
 		next;
 		mes "[Cara Suspeito]";
-		mes "Como eu gostei de você, vou te dar uma bainha de graça. Que tal isso,";
-		mes "não é uma excelente barganha?";
+		mes "Como eu gostei de você, vou te dar uma bainha de graça. Que tal isso, não é uma excelente barganha?";
 		next;
 		mes "[Cara Suspeito]";
 		mes "Você não pode perder essa chance! Quantas você quer?";
@@ -321,8 +301,7 @@ OnTouch:
 			if (.@input == 0) {
 				mes "[Cara Suspeito]";
 				mes "Nossa, quantas chances como essa você deixou passar? Espero que você ganhe na loteria...";
-				mes "Você provavelmente";
-				mes "deixaria passar também.";
+				mes "Você provavelmente deixaria passar também.";
 				close;
 
 			} else if (.@input > 100) {
@@ -413,8 +392,7 @@ OnTouch:
 geffen_in,22,125,1	script	Crumpler	52,{
 	mes "[Crumpler]";
 	mes "Ooooh~!";
-	mes "Você está bem vestido, maguinho,";
-	mes "vai tirar um coelho da cartola?";
+	mes "Você está bem vestido, maguinho, vai tirar um coelho da cartola?";
 	next;
 	if (Class == Job_Mage) {
 		mes "^3355FFAlgum dia, você promete a si mesmo, você se vingará desse bêbado que difamou os Magos. Algum dia...^000000";
@@ -508,8 +486,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 geffen_in,59,61,1	script	Skyler	61,{
 	mes "[Skyler]";
 	mes "Olá, olá.";
-	mes "Você não está procurando";
-	mes "pelo Eric, está?";
+	mes "Você não está procurando pelo Eric, está?";
 	next;
 	if (select("Eric? Quem é esse?:Sim. Sim, estou.") == 1) {
 		mes "[Skyler]";
@@ -533,16 +510,14 @@ geffen_in,59,61,1	script	Skyler	61,{
 geffen_in,27,134,5	script	Garçonete#elen	91,{
 	mes "[Elenore]";
 	mes "Esse lugar...";
-	mes "Tem uma atmosfera";
-	mes "diferente.";
+	mes "Tem uma atmosfera diferente.";
 	next;
 	mes "[Elenore]";
 	mes "Nós temos uma espécie de vidente que está sempre por aí, e um bêbado que passa o dia inteiro reclamando dos magos.";
 	next;
 	mes "[Elenore]";
 	mes "Bem...";
-	mes "O que posso";
-	mes "fazer por você?";
+	mes "O que posso fazer por você?";
 	next;
 	if (select("Posso beber algo?:Você tem novidades para me contar?") == 1) {
 		mes "[Elenore]";
@@ -560,8 +535,7 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 	case 1:
 		mes "[Elenore]";
 		mes "Novidades...?";
-		mes "Bem, ouvi dizer que estão abrindo";
-		mes "um novo aeroporto em Juno!";
+		mes "Bem, ouvi dizer que estão abrindo um novo aeroporto em Juno!";
 		next;
 		mes "[Elenore]";
 		mes "Ou pelo menos, estão planejando. O avião ainda não está pronto para decolar. Enquanto isso existe uma espécie de representante da corporação lá, oferecendo serviços de teletransporte.";
@@ -581,9 +555,7 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 		mes "Claro, nem todo estilo popular me agrada. Porque sabe, eu vi um cara andando com um cogumelo na cabeça. E ouvi dizer que tem alguém fazendo chapéus de peixes!";
 		next;
 		mes "[Elenore]";
-		mes "Acho que chapéus";
-		mes "como esses são";
-		mes "artísticos demais para o meu gosto.";
+		mes "Acho que chapéus como esses são artísticos demais para o meu gosto.";
 		break;
 	case 3:
 		mes "[Elenore]";
@@ -616,14 +588,11 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 			mes "*Cof*";
 			mes "Oh...!";
 			mes "Me desculpe!";
-			mes "Acho que estou";
-			mes "ficando gripada!";
+			mes "Acho que estou ficando gripada!";
 			mes "...Ou algo assim.";
 			next;
 			mes "^3355FFEsquisito...";
-			mes "A voz dela estava";
-			mes "muito estranha";
-			mes "por um minuto...";
+			mes "A voz dela estava muito estranha por um minuto...";
 			close;
 		}
 		mes "[Espírito do William]";
@@ -654,8 +623,7 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 			mes "^990000Que parte de ^FF0000I vou acabar com você^000000 ^990000você não entendeu?! Vá embora, seu pervertido!^000000";
 			next;
 			mes "^3355FFAaaah~!";
-			mes "Como ela ficou";
-			mes "desse jeito?!^000000";
+			mes "Como ela ficou desse jeito?!^000000";
 			close;
 		}
 	}
@@ -686,26 +654,21 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 	switch(rand(1,4)) {
 	case 1:
 		mes "[Elisa]";
-		mes "Sabe o que é";
-		mes "muito estranho?";
+		mes "Sabe o que é muito estranho?";
 		next;
 		mes "[Elisa]";
-		mes "Fui até o Santuário de Prontera, e juro que";
-		mes "vi um sacerdote casando com uma sacerdotisa!";
+		mes "Fui até o Santuário de Prontera, e juro que vi um sacerdote casando com uma sacerdotisa!";
 		next;
 		mes "[Elisa]";
-		mes "Não sabia se sacerdotes podiam se casar, mas como o Rei Tristam III era um,";
-		mes "acho que não tem problema!";
+		mes "Não sabia se sacerdotes podiam se casar, mas como o Rei Tristam III era um, acho que não tem problema!";
 		break;
 	case 2:
 		mes "[Elisa]";
-		mes "Não gosto de colocar estereótipos, mas você não acha que Swordsmen e Knights";
-		mes "tendem a ser, sabe...";
+		mes "Não gosto de colocar estereótipos, mas você não acha que Espadachins e Cavaleiros tendem a ser, sabe...";
 		next;
 		mes "[Elisa]";
-		mes "não muito inteligentes?";
-		mes "Eles parecem só saber";
-		mes "como bater em coisas!";
+		mes "Não muito inteligentes?";
+		mes "Eles parecem só saber como bater em coisas!";
 		break;
 	case 3:
 		mes "[Elisa]";
@@ -713,9 +676,8 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 		mes "Hmmm, bem...";
 		next;
 		mes "[Elisa]";
-		mes "Você sabe o nome do";
-		mes "nosso reino, certo?";
-		mes "Reino de Rune-Midgarts?";
+		mes "Você sabe o nome do nosso reino, certo?";
+		mes "Reino de Rune-Midgards?";
 		next;
 		mes "[Elisa]";
 		mes "Ouvi dizer que era anteriormente chamado de Reino de Rune-Midgard, por causa do continente. Mas mudaram para Rune-Midgarts.";
@@ -769,9 +731,7 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 		next;
 		mes "[Elisa]";
 		mes "É que...";
-		mes "O espírito do meu pai,";
-		mes "que Deus tenha sua alma,";
-		mes "é meio superprotetor!";
+		mes "O espírito do meu pai, que Deus tenha sua alma, é meio superprotetor!";
 		next;
 		mes "^3355FFVocê se afasta.";
 		mes "Cuidadosamente.^000000";
@@ -781,12 +741,10 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 
 geffen_in,79,76,2	script	Mercador Daven	120,{
 	mes "[Mercador Daven]";
-	mes "Eu me lembro de Geffen";
-	mes "no tempo em que era chato.";
+	mes "Eu me lembro de Geffen no tempo em que era chato.";
 	next;
 	mes "[Mercador Daven]";
-	mes "Mas agora existem Mages e Wizards, e a";
-	mes "economia está desabrochando nessa cidade!";
+	mes "Mas agora existem Mages e Wizards, e a economia está desabrochando nessa cidade!";
 	next;
 	switch(select("Mages...?:Economia?:Quem é você?")) {
 	case 1:
@@ -942,9 +900,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 			mes "Mesmo se você estiver sem tempo, é melhor planejar tudo cuidadosamente para não desperdiçar esforços ou cometer erros.";
 			next;
 			mes "[Vidente]";
-			mes "Lembre-se de que calma";
-			mes "e paciência são as chaves";
-			mes "para resolver qualquer crise.";
+			mes "Lembre-se de que calma e paciência são as chaves para resolver qualquer crise.";
 			next;
 			break;
 		case 4:
@@ -1009,9 +965,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 			if (sex)
 				mes "A menina com quem você";
 			else
-				mes "O menino com quem você";
-			mes "está saindo agora";
-			mes "é ideal para você!";
+				mes "O menino com quem você está saindo agora é ideal para você!";
 			next;
 			switch(select("Como você sabe?:Você está errado!:Estou solteiro!")) {
 			case 1:
@@ -1057,8 +1011,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 			mes "Querendo um romance, eh? Sempre bom ter novas emoções.";
 			next;
 			mes "[Vidente]";
-			mes "Estranho, eu vejo um triângulo amoroso em seu futuro. Não, espere! Na verdade...";
-			mes "Um decágono amoroso?";
+			mes "Estranho, eu vejo um triângulo amoroso em seu futuro. Não, espere! Na verdade... Um decágono amoroso?";
 			next;
 			mes "[Vidente]";
 			mes "Qual o polígono com onze lados? Ah, você não pode esperar que eu saiba qual é. Sou um vidente, não um matemático.";
@@ -1131,8 +1084,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 			next;
 			mes "[Vidente]";
 			mes "Sim...";
-			mes "Os espíritos estão";
-			mes "incrivelmente preguiçosos hoje.";
+			mes "Os espíritos estão incrivelmente preguiçosos hoje.";
 			next;
 			break;
 		case 3:
@@ -1369,21 +1321,15 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 
 geffen,203,146,5	script	Cidadão	97,{
 	mes "[Cidadão]";
-	mes "Havia um hábil criador de armas";
-	mes "em Al De Baran, e ele tinha 4 filhos.";
-	mes "Infelizmente, ele perdeu todos";
-	mes "enquanto desenvolvia uma arma poderosa.";
+	mes "Havia um hábil criador de armas em Al De Baran, e ele tinha 4 filhos.";
+	mes "Infelizmente, ele perdeu todos enquanto desenvolvia uma arma poderosa.";
 	mes "Somente ele sobreviveu à tragédia.";
 	next;
 	mes "[Cidadão]";
 	mes "Como deve ter sido triste para ele...";
-	mes "Graças ao incidente, o criador de armas";
-	mes "se aposentou e foi embora, viver em";
-	mes "outro lugar. Depois disso, ninguém nunca";
-	mes "pôde ver a arma que eles estavam desenvolvendo.";
+	mes "Graças ao incidente, o criador de armas se aposentou e foi embora, viver em outro lugar. Depois disso, ninguém nunca pôde ver a arma que eles estavam desenvolvendo.";
 	next;
 	mes "[Cidadão]";
-	mes "Não acho que os filhos dele foram";
-	mes "para o céu com a ansiedade.";
+	mes "Não acho que os filhos dele foram para o céu com a ansiedade.";
 	close;
 }

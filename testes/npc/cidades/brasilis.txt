@@ -32,33 +32,28 @@ alberta,246,82,3	script	Marinheiro#bra2	100,{
 	mes "Recentemente, encontrei um caminho novo no oceano que leva até lá.";
 	mes "O custo é apenas 10,000 zeny por uma viagem de ida e volta. Que tal?";
 	next;
-	switch(select("Vamos para Brasilis!!:Não fiz minhas malas.")) {
-	case 1:
-		if (Zeny > 9999) {
+	if(select("Vamos para Brasilis!!:Não fiz minhas malas.") == 1) {
 			mes "[Marinheiro]";
+		if (Zeny > 9999) {
 			mes "Ótimo~!! Vamos lá~!";
 			set zeny,zeny-10000;
 			close2;
 			warp "brasilis",314,60;
 			end;
-		} else {
-			mes "[Marinheiro]";
+			}
 			mes "Eu disse 10,000 zeny.";
 			close;
-		}
-	case 2:
+			}
 		mes "[Marinheiro]";
 		mes "Bem se você estiver interessado, fale comigo e eu poderei te levar lá.";
 		close;
-	}
 }
 
 brasilis,316,57,3	script	Marinheiro#bra1	100,{
 	mes "[Marinheiro]";
 	mes "Meu barco está indo para Alberta, quer se juntar a nós?";
 	next;
-	switch(select("Voltar para Alberta.:Ainda não~")) {
-	case 1:
+	if(select("Voltar para Alberta.:Ainda não~") == 1) {
 		mes "[Marinheiro]";
 		mes "Tenho certeza que sente falta de casa.";
 		close2;
@@ -67,11 +62,10 @@ brasilis,316,57,3	script	Marinheiro#bra1	100,{
 			else
 				warp "alberta",244,115;
 		end;
-	case 2:
+		}
 		mes "[Marinheiro]";
 		mes "Ok, fique à vontade. Quando quiser partir avise.";
 		close;
-	}
 }
 
 brasilis,155,165,3	script	Orientação#bra1	858,{
@@ -119,13 +113,12 @@ brasilis,137,77,5	script	Sorveteiro	85,{
 		next;
 		while(1) {
 			input .@input; //,1,5;
-			if (.@input == 0) {
 				mes "[Sorveteiro]";
+			if (.@input == 0) {
 				mes "Nada?";
 				mes "Então saia daqui, eu tenho muitos clientes para atender.";
 				close;
-			} else if ((.@input < 0) || (.@input > 5)) {
-				mes "[Sorveteiro]";
+			} else if ((!.@input) || (.@input > 5)) {
 				mes "Uau.";
 				mes "Você pediu uma quantidade não permitida.";
 				next;
@@ -151,10 +144,8 @@ brasilis,137,77,5	script	Sorveteiro	85,{
 	case 2:
 		mes "[Sorveteiro]";
 		mes "'Sorvetes são...'";
-		mes "Espere, você não sabe";
-		mes "o que é um sorvete?";
-		mes "Como você está conseguindo";
-		mes "viver nesse calor?";
+		mes "Espere, você não sabe o que é um sorvete?";
+		mes "Como você está conseguindo viver nesse calor?";
 		next;
 		mes "[Sorveteiro]";
 		mes "Isso parece estranho.";

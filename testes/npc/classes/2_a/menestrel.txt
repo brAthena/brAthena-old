@@ -60,8 +60,8 @@ valkyrie,53,54,3	script	Menestrel#Valquiria	741,{
 		}
 		if (SkillPoint) {
 			mes "[Menestrel]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
+			mes "Você ainda tem pontos de habilidades. Por favor,";
+			mes "use todos os seus pontos de habilidade restantes, e depois volte aqui.";
 			close;
 		}
 		jobchange Job_Clown;

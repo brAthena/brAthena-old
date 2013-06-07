@@ -74,11 +74,10 @@ aldebaran,64,104,4	script	Ferreiro#alde	55,{
 	close;
 }
 
-aldebaran,49,93,4	script	Young Man#alde	83,{
-	mes "[Miller]";
+aldebaran,49,93,4	script	Jovem#alde	83,{
+	mes "[Miguel]";
 	mes "Armas nível 4 são legais!";
-	mes "Nem posso acreditar que essas armas";
-	mes "tão poderosas existem!";
+	mes "Nem posso acreditar que essas armas tão poderosas existem!";
 	next;
 	mes "[Miguel]";
 	mes "Bem, é raro encontrar em mercados, mas monstros deixam cair com uma chance muito baixa e você tem que ter capacidade para matá-los.";
@@ -94,35 +93,25 @@ aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
 		mes "Quando você ver bolhas saindo da areia, tente cavar um pouco o solo, você pode encontrar algumas conchas embaixo da areia.";
 		next;
 		mes "[Joanne]";
-		mes "Já ouviu falar";
-		mes "de Ambernite?";
-		mes "Aquele monstro que tem uma concha.";
-		mes "Eu acho ele lindo~";
+		mes "Já ouviu falar do Ambernite?"+"\nAquele monstro que tem uma concha.\nEu acho ele lindo~";
 		next;
 		mes "[Joanne]";
 		mes "É geralmente visto na praia perto da província oeste de Prontera. Se você tentar atacá-lo sem estar preparado, você pode se meter em apuros.";
 		next;
-		mes "[Joanne]";
-		mes "Ambernite é";
-		mes "bem forte!";
-		mes "Portanto fique atento!";
-		close;
 	}
 	mes "[Joanne]";
-	mes "Ambernite é";
-	mes "bem forte!";
+	mes "Ambernite é bem forte!";
 	mes "Portanto fique atento!";
 	close;
 }
 
-aldebaran,46,129,4	script	Canal Guy#alde	97,{
+aldebaran,46,129,4	script	Panama#alde	97,{
 	mes "[Panama]";
 	mes "Aldebaran é conhecida no mundo inteiro como a cidade dos canais. As vias são realmente sofisticadas, toque romântico à nossa cidade justa.";
 	next;
 	if (select("Sobre os canais:Encerrar conversa") == 1) {
 		mes "[Panama]";
-		mes "Bem, um canal é uma via fluvial artificial utilizada para a viagem,";
-		mes "com transporte marítimo, ou irrigação.";
+		mes "Bem, um canal é uma via fluvial artificial utilizada para a viagem, com transporte marítimo, ou irrigação.";
 		next;
 		mes "[Panama]";
 		mes "No entanto, os canais por aqui são apenas artificiais. Se necessário para o transporte de qualquer coisa, só usar o serviço de teleporte da Corporação Kafra!";
@@ -133,7 +122,7 @@ aldebaran,46,129,4	script	Canal Guy#alde	97,{
 	close;
 }
 
-aldebaran,67,154,4	script	Forest Guy#alde	98,{
+aldebaran,67,154,4	script	Isenberg#alde	98,{
 	mes "[Isenberg]";
 	mes "Monte Mjolnir e Floresta de Payon.";
 	mes "Ambos locais são dificeis";
@@ -145,8 +134,7 @@ aldebaran,67,154,4	script	Forest Guy#alde	98,{
 		mes "Para chegar aqui a partir de Prontera ou Geffen, você tem que atravessar as Montanhas de Mjolnir.";
 		next;
 		mes "[Isenberg]";
-		mes "Se você tiver que chegar aqui a pé sem usar o serviço de teleporte que as Kafras oferecem,";
-		mes "te desejo boa sorte";
+		mes "Se você tiver que chegar aqui a pé sem usar o serviço de teleporte que as Kafras oferecem, te desejo boa sorte.";
 		next;
 		mes "[Isenberg]";
 		mes "As Montanhas de Mjolnir são realmente íngrimes, e são cheias de monstros agressivos e hostis. Portanto, é sempre um risco viajar sozinho por lá.";
@@ -163,11 +151,8 @@ aldebaran,67,154,4	script	Forest Guy#alde	98,{
 		close;
 	case 3:
 		mes "[Isenberg]";
-		mes "As enormes Montanhas em torno desta cidade";
-		mes "bloqueiam pessoas de fora entrar.";
-		mes "Isso pode ser uma parte da razão de como";
-		mes "temos sido capazes de manter este canal belo";
-		mes "e misterioso com sua alquimia sem qualquer influência do exterior.";
+		mes "As enormes Montanhas em torno desta cidade bloqueiam pessoas de fora entrar.";
+		mes "Isso pode ser uma parte da razão de como temos sido capazes de manter este canal belo e misterioso com sua alquimia sem qualquer influência do exterior.";
 		close;
 	}
 }
@@ -204,11 +189,11 @@ aldebaran,90,170,4	script	Epthiel#alde	47,{
 	}
 }
 
-aldebaran,117,181,4	script	Phracon Guy#alde	48,{
+aldebaran,117,181,4	script	Joy#alde	48,{
 	mes "[Joy]";
 	mes "Armas nível 1, que é o menor nível, precisa de um metal chamado ^3355FFFracon^000000 para ser refinado.";
 	next;
-	switch(select("Sobre Fracon:Dicas sobre fracon:Fim de conversa")) {
+	switch(select("Sobre o Fracon:Dicas sobre o Fracon:Fim da conversa")) {
 	case 1:
 		mes "[Joy]";
 		mes "Fracon é um metal comum que pode ser encontrado facilmente em Rune-Midgard.";
@@ -265,30 +250,22 @@ aldebaran,121,231,4	script	Estudante#alde	49,{
 		mes "Como você já sabe, se você nunca tiver obtido uma carta de monstro antes,";
 		next;
 		mes "[Chemirre]";
-		mes "você só pode inserir uma carta de monstro no item";
-		mes "que seja compatível com a carta.";
+		mes "você só pode inserir uma carta de monstro no item que seja compatível com a carta.";
 		mes "Por exemplo, vamos dizer, você tem obtido uma carta Poring.";
 		next;
 		mes "[Chemirre]";
-		mes "Quando você clicar com o botão direito do mouse, você verá";
-		mes "que ela habilita +2 de SOR e +1 de Esquiva Perfeita";
-		mes "e a sua localização é 'armadura'. ";
+		mes "Quando você clicar com o botão direito do mouse, você verá que ela habilita +2 de SOR e +1 de Esquiva Perfeita e a sua localização é 'armadura'.";
 		next;
 		mes "[Chemirre]";
-		mes "Se você tentar inserir esta carta em uma faca com muitos slots,";
-		mes "não vai funcionar por que esta carta está destinada apenas para";
-		mes "armaduras.";
+		mes "Se você tentar inserir esta carta em uma faca com muitos slots, não vai funcionar por que esta carta está destinada apenas para armaduras.";
 		next;
 		mes "[Chemirre]";
-		mes "Quase todas armaduras vendidas nas";
-		mes "lojas não possuem slots.";
-		mes "Isso significa, que você só consegue";
-		mes "armaduras com slots caçando monstros.";
+		mes "Quase todas armaduras vendidas nas lojas não possuem slots.";
+		mes "Isso significa, que você só consegue armaduras com slots caçando monstros.";
 		next;
 		mes "[Chemirre]";
 		mes "Ah, deixa eu lhe dizer como você pode colocar uma carta em um item.";
-		mes "Se você deseja equipar a carta na sua armadura,";
-		mes "você deve desequipar a armadura primeiro.";
+		mes "Se você deseja equipar a carta na sua armadura, você deve desequipar a armadura primeiro.";
 		mes "Em seguida, clique duas vezes em uma carta que pretende utilizar.";
 		mes "Após isso, aparecerá uma lista de armadura, para você escolher onde inserir a carta.";
 		next;
@@ -297,8 +274,7 @@ aldebaran,121,231,4	script	Estudante#alde	49,{
 		close;
 	case 4:
 		mes "[Chemirre]";
-		mes "Você não pode falar da alquimia de Rune-Midgard";
-		mes "sem falar da guilda dos alquimistas de Aldebaran!";
+		mes "Você não pode falar da alquimia de Rune-Midgard sem falar da guilda dos alquimistas de Aldebaran!";
 		mes "Vida longa aos alquimistas!";
 		close;
 	}
@@ -315,7 +291,7 @@ aldebaran,86,228,4	script	Criança#alde	62,{
 		mes "Eu estava caminhando para cima de um caminho estreito, e de repente, um gigante feio e plantas começaram a me atacar e atacar o NukNuk!";
 		next;
 		mes "[Bebe]";
-		mes "Eu estava tão surpreso, que eu e o NukNuk tivemos que fugir. Eu joguei pedras neles, mas acho que eles não se machucaram. Devem ser muito fortes!";
+		mes "Estavamos tão surpresos, que eu e o NukNuk tivemos que fugir. Eu joguei pedras neles, mas acho que eles não se machucaram. Devem ser muito fortes!";
 		next;
 		mes "[Bebe]";
 		mes "O que realmente me surpreendeu foi a planta ter me atacado, parecia uma flor enorme com o rosto de uma pessoa! Então eu olhei para o rosto. Parecia ser perigoso!";
@@ -343,7 +319,7 @@ aldebaran,159,242,4	script	Tio Inseto#alde	119,{
 	mes "Mesmo com os fortes espadachins, os insetos do Monte de Mjolnir representam uma ameaça considerável. Você tem que conhecer o inimigo antes de batalhar com ele!";
 	next;
 	if (select("Sobre Insetos:Encerrar conversa") == 1) {
-		mes "[Stellone]";
+		mes "[Stromme]";
 		mes "Moscas, borboletas e mariposas parecem simples criaturas, mas isso não significa que você deva subestimá-los.";
 		next;
 		mes "[Stromme]";
@@ -392,8 +368,7 @@ aldebaran,60,70,4	script	Sylvia#alde	69,{
 		close;
 	}
 	mes "[Sylvia]";
-	mes "Ei...";
-	mes "Você está se expressando com sarcasmo ao dizer isso?";
+	mes "Ei... Você está se expressando com sarcasmo ao dizer isso?";
 	close;
 }
 
@@ -403,7 +378,7 @@ aldebaran,93,80,4	script	Issei#alde	48,{
 	next;
 	if (select("Você tem uma namorada?:Encerrar conversa.") == 1) {
 		mes "[Issei]";
-		mes "Hey...";
+		mes "Ei...";
 		mes "É tão dificil assim acreditar? Sim, pode perguntar para qualquer um! Ela existe! Só que de vez em quando, só de vez em quando, ela se anima com armas e armaduras.";
 		next;
 		mes "[Issei]";
@@ -413,9 +388,7 @@ aldebaran,93,80,4	script	Issei#alde	48,{
 		mes "Quer dizer, por que me importar se equipamentos que cairam de monstros tem mais slots? Eu não posso mesmo matar nem um Poring!";
 		next;
 		mes "[Issei]";
-		mes "Como você pode ver,";
-		mes "eu sou um apaixonado,";
-		mes "não um lutador.";
+		mes "Como você pode ver, eu sou um apaixonado, não um lutador.";
 		close;
 	}
 	mes "[Issei]";
@@ -451,9 +424,7 @@ aldebaran,180,46,4	script	Joo Jahk#alde	88,{
 aldebaran,212,122,4	script	Citizen#alde	97,{
 	mes "[Gavin]";
 	mes "Bem-vindo!";
-	mes "Esta é a Torre";
-	mes "de Al De Baran.";
-	mes "Estamos feliz com a sua visita!";
+	mes "Esta é a Torre de Al De Baran. Estamos feliz com a sua visita!";
 	next;
 	mes "[Gavin]";
 	mes "Bem, isso pode ser um exagero. Eu não sou importante, eu só gosto de receber visitantes.";
@@ -475,8 +446,7 @@ aldebaran,212,122,4	script	Citizen#alde	97,{
 		close;
 	}
 	mes "[Gavin]";
-	mes "Awww...";
-	mes "Não fique muito desapontado por que apenas uma pessoa te deu boas vindas!";
+	mes "Awww... Não fique muito desapontado por que apenas uma pessoa te deu boas vindas!";
 	close;
 }
 
@@ -539,15 +509,12 @@ aldeba_in,232,241,4	script	RS125#alde	48,{
 	next;
 	if (select("Ouça a história.:Encerrar Conversa") == 1) {
 		mes "[RS125]";
-		mes "Há três anos atrás,";
-		mes "Meu irmão 996 era atleta de uma equipe aqui na cidade Al De Baran.";
-		mes "Naquela época, as pessoas lhe deram um apelido de Peco Peco de Al De Baran,";
-		mes "por ser impressionantemente rápido...";
+		mes "Há três anos atrás, meu irmão 996 era atleta de uma equipe aqui na cidade Al De Baran.";
+		mes "Naquela época, as pessoas lhe deram um apelido de Peco Peco de Al De Baran, por ser impressionantemente rápido...";
 		next;
 		mes "[RS125]";
 		mes "Ele se tornou popular por suas corridas emocionantes.";
-		mes "Quando a 'Aldebaran Turbo Track' é realizada, uma vez a cada 4 anos,";
-		mes "muitas pessoas de todo o continente vinham até aqui só para ver o meu irmão.";
+		mes "Quando a 'Aldebaran Turbo Track' é realizada, uma vez a cada 4 anos, muitas pessoas de todo o continente vinham até aqui só para ver o meu irmão.";
 		mes "Eu era seu empresário, e ficava muito estressado por causa dos seus fãs.";
 		next;
 		mes "[RS125]";
@@ -560,13 +527,11 @@ aldeba_in,232,241,4	script	RS125#alde	48,{
 		mes "Ele ainda está de cama.";
 		next;
 		mes "[RS125]";
-		mes "Eu sou a única esperança do meu irmão e o futuro de Al De Baran!";
-		mes "Por favor, me deseje sorte, eu vou vencer a brisa de Payon!";
+		mes "Eu sou a única esperança do meu irmão e o futuro de Al De Baran! Por favor, me deseje sorte, eu vou vencer a brisa de Payon!";
 		close;
 	}
 	mes "[RS125]";
-	mes "Eu quero viajar em torno do mundo.";
-	mes "Eu quero ver o mar a partir do porto de Alberta, deve ser maravilhoso.";
+	mes "Eu quero viajar em torno do mundo. Eu quero ver o mar a partir do porto de Alberta, deve ser maravilhoso.";
 	mes "Depois desses anos de competição atlética, vou fazer uma turnê e dar voltas pelo mundo com meu irmão.";
 	close;
 }
@@ -611,9 +576,7 @@ aldeba_in,223,121,4	script	Homem Louco	63,{
 		close;
 	}
 	mes "[Homem Louco]";
-	mes "Agora, saia!";
-	mes "se for um policial, mostre-me a sua carteira,";
-	mes "se for um membro da minha família, prove com a marca do seu nascimento!";
+	mes "Agora, saia! Se for um policial, mostre-me a sua carteira, se for um membro da minha família, prove com a marca do seu nascimento!";
 	close;
 }
 

@@ -27,12 +27,12 @@ valkyrie,53,47,3	script	Professor#Valquiria	743,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Scholar]";
+			mes "[Professor]";
 			mes "Parabéns.";
 			mes "Honra aos guerreiros!";
 			close;
 		}
-		mes "[Scholar]";
+		mes "[Professor]";
 		mes "Isso leva uma vida toda...";
 		mes "Literalmente uma vida toda";
 		mes "para acumular o conhecimento";
@@ -48,7 +48,7 @@ valkyrie,53,47,3	script	Professor#Valquiria	743,{
 		mes "processo de aprendizagem...";
 		close;
 	} else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
-		mes "[Scholar]";
+		mes "[Professor]";
 		mes "Rune-Midgard não";
 		mes "tem Professores suficientes";
 		mes "para ajudar o povo nessa nova era";
@@ -69,14 +69,14 @@ valkyrie,53,47,3	script	Professor#Valquiria	743,{
 			close;
 		}
 		if (SkillPoint) {
-			mes "[Scholar]";
+			mes "[Professor]";
 			mes "Você ainda tem pontos de habilidade. Por favor,";
 			mes "use todos os pontos de habilidade restantes.";
 			close;
 		}
 		jobchange Job_Professor;
 		set ADVJOB,0;
-		mes "[Scholar]";
+		mes "[Professor]";
 		mes "Parabéns!";
 		mes "Como Professor, eu espero";
 		mes "que você fará sua parte";
@@ -85,7 +85,7 @@ valkyrie,53,47,3	script	Professor#Valquiria	743,{
 		mes "onde há escuridão.";
 		close;
 	}
-	mes "[Scholar]";
+	mes "[Professor]";
 	mes "Bem-vindo";
 	mes "a Valhalla,";
 	mes "o Salão da Honra.";
