@@ -3528,6 +3528,7 @@ static void script_detach_state(struct script_state *st, bool dequeue_event)
 	if(st->rid && (sd = map_id2sd(st->rid))!=NULL) {
 		sd->st = st->bk_st;
 		sd->npc_id = st->bk_npcid;
+		sd->state.dialog = 0;
 		if(st->bk_st) {
 			//Remove tag for removal.
 			st->bk_st = NULL;
@@ -4291,8 +4292,6 @@ BUILDIN_FUNC(mes)
 		}
 	}
 
-	st->mes_active = 1;
-
 	return 0;
 }
 
@@ -4327,15 +4326,7 @@ BUILDIN_FUNC(close)
 	if(sd == NULL)
 		return 0;
 
-	if(!st->mes_active) {
-		TBL_NPC* nd = map_id2nd(st->oid);
-		st->state = END;
-		ShowWarning("Uso indevido do comando 'close' (fonte:%s / caminho:%s)\n",nd?nd->name:"Desconhecido",nd?nd->path:"Desconhecido");
-	} else {
-		st->state = CLOSE;
-		st->mes_active = 0;
-	}
-
+	st->state = sd->state.dialog == 1 ? CLOSE : END;
 	clif_scriptclose(sd, st->oid);
 	return 0;
 }
@@ -4353,9 +4344,6 @@ BUILDIN_FUNC(close2)
 		return 0;
 
 	st->state = STOP;
-
-	if(st->mes_active)
-		st->mes_active = 0;
 
 	clif_scriptclose(sd, st->oid);
 	return 0;
