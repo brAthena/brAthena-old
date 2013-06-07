@@ -5784,10 +5784,10 @@ prt_castle,391,205,3	script	Príncipe#poe	993,{
 				mes "Posso dizer apenas que sobrevivi a muitos jogos e batalhas? Isso combina comigo. Hahaha !";
 				next;
 				mes "[Poe]";
-				mes "I've had to cope with many accidents and challenges... from which I have survived, and have been pursuing new things. Life means...";
+				mes "Tive que lidar com muitos acidentes e desafios... a todos eles sobrevivi, e tenho buscado coisas novas. A vida é isso...";
 				next;
 				mes "[Poe]";
-				mes "Never let yourself down with given cards, and aim at deadly strokes!";
+				mes "Nunca se deixe abater com as cartas que lhe dão e jogue o melhor que puder!";
 				next;
 				mes "[Poe]";
 				mes "......";
@@ -6410,9 +6410,6 @@ prt_castle,314,373,4	script	Príncipe#eisen	983,{
 				mes "No futuro, as pessoas falarão na família Walter do distinto Eigen Ahrum e não em Eigen Ahrum da distinta família Walter.";
 				next;
 				mes "[Ahrum]";
-				mes "In the coming age, people will talk about me as Eigen Ahrum from the Walter family, not Eigen Ahrum of Walter.";
-				next;
-				mes "[Ahrum]";
 				mes "A família Walter tem grande fama, mas vou fazer meu nome brilhar mais, e os outros terão orgulho de mim.";
 				next;
 				break;
@@ -6460,10 +6457,8 @@ prt_castle,314,373,4	script	Príncipe#eisen	983,{
 			case 3:
 				mes "[Ahrum]";
 				mes "Gosto de atividade.";
-				mes "Não suporto jogos passivos,";
-				mes "como os de cartas e de tabuleiro";
-				mes "Acho que esses jogos";
-				mes "servem mais para acadêmicos, por exemplo.";
+				mes "Não suporto jogos passivos, como os de cartas e de tabuleiro";
+				mes "Acho que esses jogos servem mais para acadêmicos, por exemplo.";
 				next;
 				mes "[Ahrum]";
 				mes "Meu irmão Ernst pode se ater a qualquer coisa por muito tempo, como livros ou estudos.";

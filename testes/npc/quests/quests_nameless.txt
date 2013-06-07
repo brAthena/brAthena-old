@@ -78,13 +78,11 @@ cmd_in02,174,89,7	script	Larjes#pc1	97,{
 		next;
 		select ("O ^6B8E23Sacerdote Bamph^000000 me Homemdou.");
 		mes "[Larjes]";
-		mes "Oh, I see. I apologize";
 		mes "Oh, entendo. Desculpe";
 		mes "se meus gritos";
 		mes "incomodaram você.";
 		mes "Só estou aqui matando o";
-		mes "tempo... I now see firsthand";
-		mes "that gambling is truly evil!";
+		mes "tempo... Agora entendo que jogar é algo prejudicial!";
 		next;
 		mes "[Larjes]";
 		mes "Certo, poderia vir";
@@ -11586,7 +11584,7 @@ OnTouch:
 
 // Rogue Guild Investigation
 //============================================================ 
-prontera,163,204,3	script	Homem from Morroc	99,{
+prontera,163,204,3	script	Viajante de Morroc	99,{
 	if (rumour_nd == 0) {
 		mes "[Viajante de Morroc]";
 		mes "Ah, é tão bom e";
