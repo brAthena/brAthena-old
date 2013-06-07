@@ -6643,6 +6643,9 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			duel_reject(sd->duel_invite, sd);
 	}
 
+	if (sd->npc_id && sd->st && sd->st->state != RUN)
+	npc_event_dequeue(sd);
+
 	pc_close_npc(sd,2); //close npc if we were using one
 
 	/* e.g. not killed thru pc_damage */
@@ -6692,7 +6695,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	for(i = 1; i < 5; i++)
 		pc_del_talisman(sd, sd->talisman[i], i);
 
-	if(src)
+	if(src) {
 		switch(src->type) {
 			case BL_MOB: {
 					struct mob_data *md=(struct mob_data *)src;
@@ -6725,6 +6728,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 				src = &((TBL_MER *)src)->master->bl;
 				break;
 		}
+	}
 
 	if(src && src->type == BL_PC) {
 		struct map_session_data *ssd = (struct map_session_data *)src;

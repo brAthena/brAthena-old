@@ -214,181 +214,189 @@ void skill_chk(int16 *skill_id)
 }
 
 #define skill_get(var,id) { skill_chk(&id); if(!id) return 0; return var; }
-#define skill_get2(var,id,lv) { skill_chk(&id); if(!id) return 0; if( lv > MAX_SKILL_LEVEL ) { int lv2 = lv; lv = skill_db[id].max; return (var) + (lv2-lv); } return var; } 
-
+#define skill_get2(var,id,lv) { \
+	skill_chk(&id); \
+	if(!id) return 0; \
+	if( lv >= MAX_SKILL_LEVEL && var > 1 ) { \
+		int lv2 = lv; lv = skill_db[id].max; \
+		return (var) + (lv2-lv);\
+	} \
+	return var;\
+}
+#define skill_glv(lv) min(lv,MAX_SKILL_LEVEL-1)
 // Skill DB
-int skill_get_hit(uint16 skill_id)
+int skill_get_hit(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].hit, skill_id);
+	skill_get (skill_db[skill_id].hit, skill_id);
 }
-int skill_get_inf(uint16 skill_id)
+int skill_get_inf(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].inf, skill_id);
+	skill_get (skill_db[skill_id].inf, skill_id);
 }
-int skill_get_ele(uint16 skill_id, uint16 skill_lv)
+int skill_get_ele(uint16 skill_id , uint16 skill_lv)   
 {
-	skill_get2 (skill_db[skill_id].element[skill_lv-1], skill_id, skill_lv);
+	skill_get (skill_db[skill_id].element[skill_glv(skill_lv-1)], skill_id);
 }
-int skill_get_nk(uint16 skill_id)
+int skill_get_nk(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].nk, skill_id);
+	skill_get (skill_db[skill_id].nk, skill_id);
 }
-int skill_get_max(uint16 skill_id)
+int skill_get_max(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].max, skill_id);
+	skill_get (skill_db[skill_id].max, skill_id);
 }
-int skill_get_range(uint16 skill_id, uint16 skill_lv)
+int skill_get_range(uint16 skill_id , uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].range[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].range[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_splash(uint16 skill_id, uint16 skill_lv)
+int skill_get_splash(uint16 skill_id , uint16 skill_lv) 
 {
-	skill_get2 ((skill_db[skill_id].splash[skill_lv-1]>=0?skill_db[skill_id].splash[skill_lv-1]:AREA_SIZE), skill_id, skill_lv);
+	skill_get2 ((skill_db[skill_id].splash[skill_glv(skill_lv-1)]>=0?skill_db[skill_id].splash[skill_glv(skill_lv-1)]:AREA_SIZE), skill_id, skill_lv); 
 }
-int skill_get_hp(uint16 skill_id, uint16 skill_lv)
+int skill_get_hp(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].hp[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].hp[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_sp(uint16 skill_id, uint16 skill_lv)
+int skill_get_sp(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].sp[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].sp[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_hp_rate(uint16 skill_id, uint16 skill_lv)
+int skill_get_hp_rate(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].hp_rate[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].hp_rate[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_sp_rate(uint16 skill_id, uint16 skill_lv)
+int skill_get_sp_rate(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].sp_rate[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].sp_rate[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_state(uint16 skill_id)
+int skill_get_state(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].state, skill_id);
+	skill_get (skill_db[skill_id].state, skill_id);
 }
-int skill_get_spiritball(uint16 skill_id, uint16 skill_lv)
+int skill_get_spiritball(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].spiritball[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].spiritball[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_itemid(uint16 skill_id, int idx)
+int skill_get_itemid(uint16 skill_id, int idx) 
 {
-	skill_get(skill_db[skill_id].itemid[idx], skill_id);
+	skill_get (skill_db[skill_id].itemid[idx], skill_id);
 }
-int skill_get_itemqty(uint16 skill_id, int idx)
+int skill_get_itemqty(uint16 skill_id, int idx) 
 {
-	skill_get(skill_db[skill_id].amount[idx], skill_id);
+	skill_get (skill_db[skill_id].amount[idx], skill_id);
 }
-int skill_get_zeny(uint16 skill_id, uint16 skill_lv)
+int skill_get_zeny(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].zeny[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].zeny[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_num(uint16 skill_id, uint16 skill_lv)
+int skill_get_num(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].num[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].num[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_cast(uint16 skill_id, uint16 skill_lv)
+int skill_get_cast(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].cast[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].cast[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_delay(uint16 skill_id, uint16 skill_lv)
+int skill_get_delay(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].delay[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].delay[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_walkdelay(uint16 skill_id ,uint16 skill_lv)
+int skill_get_walkdelay(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].walkdelay[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].walkdelay[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_time(uint16 skill_id, uint16 skill_lv)
+int skill_get_time(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].upkeep_time[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].upkeep_time[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_time2(uint16 skill_id, uint16 skill_lv)
+int skill_get_time2(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].upkeep_time2[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].upkeep_time2[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_castdef(uint16 skill_id)
+int skill_get_castdef(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].cast_def_rate, skill_id);
+	skill_get (skill_db[skill_id].cast_def_rate, skill_id);
 }
-int skill_get_weapontype(uint16 skill_id)
+int skill_get_weapontype(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].weapon, skill_id);
+	skill_get (skill_db[skill_id].weapon, skill_id);
 }
-int skill_get_ammotype(uint16 skill_id)
+int skill_get_ammotype(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].ammo, skill_id);
+	skill_get (skill_db[skill_id].ammo, skill_id);
 }
-int skill_get_ammo_qty(uint16 skill_id, uint16 skill_lv)
+int skill_get_ammo_qty(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].ammo_qty[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].ammo_qty[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_inf2(uint16 skill_id)
+int skill_get_inf2(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].inf2, skill_id);
+	skill_get (skill_db[skill_id].inf2, skill_id);
 }
-int skill_get_castcancel(uint16 skill_id)
+int skill_get_castcancel(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].castcancel, skill_id);
+	skill_get (skill_db[skill_id].castcancel, skill_id);
 }
-int skill_get_maxcount(uint16 skill_id ,uint16 skill_lv)
+int skill_get_maxcount(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].maxcount[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].maxcount[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_blewcount(uint16 skill_id ,uint16 skill_lv)
+int skill_get_blewcount(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].blewcount[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].blewcount[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_mhp(uint16 skill_id ,uint16 skill_lv)
+int skill_get_mhp(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].mhp[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].mhp[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_castnodex(uint16 skill_id ,uint16 skill_lv)
+int skill_get_castnodex(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].castnodex[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].castnodex[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_delaynodex(uint16 skill_id ,uint16 skill_lv)
+int skill_get_delaynodex(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].delaynodex[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].delaynodex[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_type(uint16 skill_id)
+int skill_get_type(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].skill_type, skill_id);
+	skill_get (skill_db[skill_id].skill_type, skill_id);
 }
-int skill_get_unit_id (uint16 skill_id, int flag)
+int skill_get_unit_id (uint16 skill_id, int flag) 
 {
-	skill_get(skill_db[skill_id].unit_id[flag], skill_id);
+	skill_get (skill_db[skill_id].unit_id[flag], skill_id);
 }
-int skill_get_unit_interval(uint16 skill_id)
+int skill_get_unit_interval(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].unit_interval, skill_id);
+	skill_get (skill_db[skill_id].unit_interval, skill_id);
 }
-int skill_get_unit_range(uint16 skill_id, uint16 skill_lv)
+int skill_get_unit_range(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].unit_range[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].unit_range[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_unit_target(uint16 skill_id)
+int skill_get_unit_target(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].unit_target&BCT_ALL, skill_id);
+	skill_get (skill_db[skill_id].unit_target&BCT_ALL, skill_id);
 }
-int skill_get_unit_bl_target(uint16 skill_id)
+int skill_get_unit_bl_target(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].unit_target&BL_ALL, skill_id);
+	skill_get (skill_db[skill_id].unit_target&BL_ALL, skill_id);
 }
-int skill_get_unit_flag(uint16 skill_id)
+int skill_get_unit_flag(uint16 skill_id) 
 {
-	skill_get(skill_db[skill_id].unit_flag, skill_id);
+	skill_get (skill_db[skill_id].unit_flag, skill_id);
 }
-int skill_get_unit_layout_type(uint16 skill_id ,uint16 skill_lv)
+int skill_get_unit_layout_type(uint16 skill_id ,uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].unit_layout_type[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].unit_layout_type[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-int skill_get_cooldown(uint16 skill_id, uint16 skill_lv)
+int skill_get_cooldown(uint16 skill_id, uint16 skill_lv) 
 {
-	skill_get2 (skill_db[skill_id].cooldown[skill_lv-1], skill_id, skill_lv);
-} 
+	skill_get2 (skill_db[skill_id].cooldown[skill_glv(skill_lv-1)], skill_id, skill_lv);
+}
 #ifdef RENEWAL_CAST
-int skill_get_fixed_cast(uint16 skill_id ,uint16 skill_lv)
+int skill_get_fixed_cast( uint16 skill_id ,uint16 skill_lv ) 
 {
-	skill_get2 (skill_db[skill_id].fixed_cast[skill_lv-1], skill_id, skill_lv);
+	skill_get2 (skill_db[skill_id].fixed_cast[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
 #endif
 int skill_tree_get_max(uint16 skill_id, int b_class)
@@ -6454,7 +6462,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case AM_BERSERKPITCHER:
 		case AM_POTIONPITCHER: {
-				int i,hp = 0,sp = 0;
+				int i,sp = 0;
+				int64 hp = 0;
 				if(dstmd && dstmd->class_ == MOBID_EMPERIUM) {
 					map_freeblock_unlock();
 					return 1;
@@ -6551,14 +6560,14 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				}
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 				if(hp > 0 || (skill_id == AM_POTIONPITCHER && sp <= 0))
-					clif_skill_nodamage(NULL,bl,AL_HEAL,hp,1);
+					clif_skill_nodamage(NULL,bl,AL_HEAL,(int)hp,1);
 				if(sp > 0)
 					clif_skill_nodamage(NULL,bl,MG_SRECOVERY,sp,1);
 #ifdef RENEWAL
 				if(tsc && tsc->data[SC_EXTREMITYFIST2])
 					sp = 0;
 #endif
-				status_heal(bl,hp,sp,0);
+				status_heal(bl,(int)hp,sp,0);
 			}
 			break;
 		case AM_CP_WEAPON:
@@ -15678,7 +15687,7 @@ struct skill_unit_group_tickset *skill_unitgrouptickset_search(struct block_list
 	}
 
 	if(j == -1) {
-		ShowWarning("skill_unitgrouptickset_search: tickset is full\n");
+		ShowWarning("skill_unitgrouptickset_search: tickset is full. ( failed for skill '%s' on unit %d )\n",skill_get_name(group->skill_id),bl->type);
 		j = id % MAX_SKILLUNITGROUPTICKSET;
 	}
 

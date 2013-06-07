@@ -12954,7 +12954,7 @@ BUILDIN_FUNC(getmapxy)
 			script_pushint(st,-1);
 			return 1;
 	}
-	if(!bl) {  //No object found.
+	if(!bl || bl->m == -1) {  //No object found.
 		script_pushint(st,-1);
 		return 0;
 	}
