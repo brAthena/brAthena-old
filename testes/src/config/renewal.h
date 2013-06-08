@@ -65,5 +65,8 @@
 /// Leitura para modificações exclusivas de Brasil Ragnarok Online (bRO)
 #define BRO
 
+/// Utilizar o brAthena em Modo Old Times
+//#define OLD_TIMES
+
 #endif // _CONFIG_RENEWAL_H_
 #endif // _RENEWAL
