@@ -17239,7 +17239,7 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 	}
 
 	if(battle_config.display_status_timers)
-		clif_skill_cooldown(sd, idx, tick);
+		clif_skill_cooldown(sd, skill_id, tick);
 
 	if(!load) {
 		// not being loaded initially so ensure the skill delay is recorded
