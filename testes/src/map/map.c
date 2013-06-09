@@ -3285,7 +3285,11 @@ int map_readallmaps(void)
 #ifdef RENEWAL
 		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_re.dat");
 #else
+#ifdef OLD_TIMES 
+		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_old-times.dat");
+#else
 		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_pre-re.dat");
+#endif
 #endif
 		ShowStatus("Carregando mapas (usando %s como map cache)...\n", mapcachefilepath);
 		if((fp = fopen(mapcachefilepath, "rb")) == NULL) {
