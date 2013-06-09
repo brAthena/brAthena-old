@@ -107,7 +107,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 
 			if(!instance_check_party(.@party_id,2,75)){
 				mes "Me desculpe mas seu grupo não cumpre os requisitos necesários do Santuário Selado.";
-				close;
+				break;
 			}
 
 			if (.@ins_bapho_check == -1) {
