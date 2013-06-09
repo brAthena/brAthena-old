@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.1/2.2/1.0                         |
+//   | Versões eA/rA/brA: 2.1/2.3/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest Irmãos em Veins, Base do Vulcão de    |
 //   | Thor, Espião / O Conto do Bardo, Sr Zabaroo Coletor de |
@@ -5163,14 +5163,12 @@ ra_temin,87,133,1	script	Rachel Guard#vol1	934,5,2,{
 		disablenpc "Rachel Guard#vol1";
 		end;
 	}
-	else {
-		mes "[Guard Karlum]";
-		mes "High Priest Vildt isn't";
-		mes "here right now. Please";
-		mes "come back later if you";
-		mes "wish to see him.";
-		close;
-	}
+	mes "[Guard Karlum]";
+	mes "High Priest Vildt isn't";
+	mes "here right now. Please";
+	mes "come back later if you";
+	mes "wish to see him.";
+	close;
 
 OnInit:
 	enablenpc "Rachel Guard#vol1";
@@ -5178,7 +5176,7 @@ OnInit:
 
 OnTouch:
 	warp "ra_temin",85,137;
-	close;
+	end;
 }
 
 ra_temin,82,133,7	script	Rachel Guard#vol2	934,5,2,{
@@ -7117,6 +7115,7 @@ thor_camp,156,57,3	duplicate(VeinsDummy)	Dummy#5	111
 thor_camp,162,57,3	duplicate(VeinsDummy)	Dummy#6	111
 
 thor_camp,248,104,5	script	Aitra#vol	939,{
+	end;
 OnInit:
 	disablenpc "Aitra#vol";
 	end;

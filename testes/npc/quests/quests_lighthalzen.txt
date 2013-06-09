@@ -12,13 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 4.7/4.8/1.1                         |
+//   | Versões eA/rA/brA: 4.7/4.9/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests de Lighthalzen                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
-//   | 1.1 Tradução PT-BR [Avassalador]                       |            
+//   | 1.1 Tradução PT-BR [Avassalador]                       |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -5228,8 +5228,9 @@ OnTouch_:
 			getexp 1500000,800000;
 		else if (BaseLevel > 89)
 			getexp 2000000,1000000;
+		close;
 	}
-	close;
+	end;
 }
 
 lhz_in01,114,181,5	script	Atendente#li_01	71,{
@@ -5279,10 +5280,10 @@ lhz_in01,114,181,5	script	Atendente#li_01	71,{
           mes "o ^3131FFEscritório da Secretaria^000000,";
           mes "o ^3131FFAuditório^000000 e";
           mes "o ^3131FFEscritório da Presidência^000000.";
-					next;
-					break;
-				case 3:
-					mes "[Atendente]";
+	next;
+	break;
+	case 3:
+	mes "[Atendente]";
           mes "O primeiro subsolo";
           mes "é usado pelo ^3131FFRegenschirm^000000,";
           mes "nosso laboratório afiliado. Por";

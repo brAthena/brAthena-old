@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.0/1.0                          |
+//   | Versões eA/rA/brA: ??/1.0b/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Instância Bueiro de Malangdo                |
 //   |--------------------------------------------------------|
@@ -388,7 +388,7 @@ mal_in01,160,34,4	script	Missing, the Cleaner	545,{
 	}
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Culvert";
-	if (!instance_check_party(.@party_id,2)) {
+	if (!.@party_id) {
 		mes "^0000ffYou have to organize a party of";
 		mes "more than 1 member or be a member";
 		mes "of the party and come back.^000000";
@@ -467,11 +467,10 @@ mal_in01,160,34,4	script	Missing, the Cleaner	545,{
 			case 3:
 				goto L_Enter;
 			}
-		} else {
-			if(select("Enter Culvert:Cancel") == 2)
-				close;
-			goto L_Enter;
 		}
+		if(select("Enter Culvert:Cancel") == 2)
+			end;
+		goto L_Enter;
 	} else if (.@playtime == 0 || .@playtime == 1) {
 		mes "You can enter the Culvert if the gate is open.";
 		next;

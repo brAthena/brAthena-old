@@ -1138,6 +1138,19 @@ struct clif_interface {
 	void (*pBGQueueCheckState) (int fd, struct map_session_data *sd);
 	void (*pBGQueueRevokeReq) (int fd, struct map_session_data *sd);
 	void (*pBGQueueBattleBeginAck) (int fd, struct map_session_data *sd);
+/* Atualização de sistema de pesquisa do grupo */
+#ifdef PARTY_RECRUIT
+	void (*PartyBookingVolunteerInfo) (int index, struct map_session_data *sd);
+	void (*PartyBookingRefuseVolunteer) (unsigned long aid, struct map_session_data *sd);
+	void (*PartyBookingCancelVolunteer) (int index, struct map_session_data *sd);
+	void (*PartyBookingAddFilteringList) (int index, struct map_session_data *sd);
+	void (*PartyBookingSubFilteringList) (int gid, struct map_session_data *sd);
+	void (*pPartyBookingAddFilter) (int fd, struct map_session_data *sd);
+	void (*pPartyBookingSubFilter) (int fd, struct map_session_data *sd);
+	void (*pPartyBookingReqVolunteer) (int fd, struct map_session_data *sd);
+	void (*pPartyBookingRefuseVolunteer) (int fd, struct map_session_data *sd);
+	void (*pPartyBookingCancelVolunteer) (int fd, struct map_session_data *sd);
+#endif
 	
 } clif_s;
 

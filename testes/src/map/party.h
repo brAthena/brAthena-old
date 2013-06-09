@@ -18,6 +18,7 @@
 #define _PARTY_H_
 
 #include "../common/mmo.h" // struct party
+#include "../config/core.h"
 struct block_list;
 struct map_session_data;
 struct party;
@@ -48,6 +49,7 @@ struct party_data {
 	} state;
 };
 
+#ifndef PARTY_RECRUIT
 struct party_booking_detail {
 	short level;
 	short mapid;
@@ -57,9 +59,23 @@ struct party_booking_detail {
 struct party_booking_ad_info {
 	unsigned long index;
 	char charname[NAME_LENGTH];
-	long starttime;
+	long expiretime;
 	struct party_booking_detail p_detail;
 };
+#else
+#define PB_NOTICE_LENGTH (36 + 1)
+struct party_booking_detail {
+	short level;
+	char notice[PB_NOTICE_LENGTH];
+};
+
+struct party_booking_ad_info {
+	unsigned long index;
+	long expiretime;
+	char charname[NAME_LENGTH];
+	struct party_booking_detail p_detail;
+};
+#endif
 
 void do_init_party(void);
 void do_final_party(void);
@@ -101,9 +117,15 @@ int party_foreachsamemap(int (*func)(struct block_list *,va_list),struct map_ses
 /*==========================================
  * Party Booking in KRO [Spiria]
  *------------------------------------------*/
-void party_booking_register(struct map_session_data *sd, short level, short mapid, short *job);
-void party_booking_update(struct map_session_data *sd, short *job);
-void party_booking_search(struct map_session_data *sd, short level, short mapid, short job, unsigned long lastindex, short resultcount);
-bool party_booking_delete(struct map_session_data *sd);
+#ifndef PARTY_RECRUIT
+	void party_booking_register(struct map_session_data *sd, short level, short mapid, short *job);
+	void party_booking_update(struct map_session_data *sd, short *job);
+	void party_booking_search(struct map_session_data *sd, short level, short mapid, short job, unsigned long lastindex, short resultcount);
+#else
+	void party_booking_register(struct map_session_data *sd, short level, const char *notice);
+	void party_booking_update(struct map_session_data *sd, const char *notice);
+	void party_booking_search(struct map_session_data *sd, short level, short mapid, unsigned long lastindex, short resultcount);
+#endif
+	bool party_booking_delete(struct map_session_data *sd);
 
 #endif /* _PARTY_H_ */

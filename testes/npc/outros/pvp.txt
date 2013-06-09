@@ -12,7 +12,7 @@
 //   |-----------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                           |
 //   |-----------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.3/2.3/1.2                            |
+//   | Versões eA/rA/brA: 2.3/2.4/1.2                            |
 //   |-----------------------------------------------------------|
 //   | Descrição: PvP NPCs que são encontrados em pousadas nas   |
 //   | principais cidades.                                       |
@@ -291,15 +291,16 @@ pvp_y_room,86,85,4	script	Recepção	105,{
 	if (getmapusers(.@Maps$[.@i]) >= .@Limit[.@i]) {
 		mes "[Equipe de Registro PVP]";
 		mes "O mapa está cheio.";
+		close;
 	}
-	else warp .@Maps$[.@i],0,0;
-	close;
+	warp .@Maps$[.@i],0,0;
+	end;
 
 OnInit:
 	waitingroom "Aberta para todos",0;
 end;
 }
-
+pvp_y_room,86,85,4	duplicateRecepção)	Recepção#f1	105
 pvp_n_room,30,85,4	duplicate(Recepção)	Recepção#f2	105
 
 pvp_n_8-4,33,122,0	warp	Link_1-11	0,2,pvp_n_8-4,0,0
@@ -322,11 +323,10 @@ pvp_room,54,85,4	script	Equipe de Registro#1	105,{
 		close;
 	}
 
-	if (.pvp_close_n_room == 1 && .pvp_close_s_room == 1 && .pvp_close_w_room == 1 && .pvp_close_e_room == 1) {
-		Set .pvp_close_n_room,0;
-		Set .pvp_close_s_room,0;
-		Set .pvp_close_w_room,0;
-		Set .pvp_close_e_room,0;
+	set .@size, getarraysize(.warp_x);
+	if (.@size == 0) {
+		setarray .warp_x,40,59,20,40;
+		setarray .warp_y,59,40,40,20;
 	}
 
 	if (select("Arena de combate :Cancelar") == 1) {
@@ -340,34 +340,11 @@ pvp_room,54,85,4	script	Equipe de Registro#1	105,{
 			mes "Boa sorte!";
 			close2;
 			delitem 7028,1; // Convite para Duelo
-			while(1) {
-				switch(rand(1,4)) {
-				case 1:
-					if (.pvp_close_n_room == 0) {
-						set .pvp_close_n_room,1;
-						warp "pvp_2vs2",40,59;
-						end;
-					}
-				case 2:
-					if (.pvp_close_s_room == 0) {
-						set .pvp_close_s_room,1;
-						warp "pvp_2vs2",59,40;
-						end;
-					}
-				case 3:
-					if (.pvp_close_w_room == 0) {
-						set .pvp_close_w_room,1;
-						warp "pvp_2vs2",20,40;
-						end;
-					}
-				case 4:
-					if (.pvp_close_e_room == 0) {
-						set .pvp_close_e_room,1;
-						warp "pvp_2vs2",40,20;
-						end;
-					}
-				}
-			}
+			set .@rand, rand(.@size);
+			warp "pvp_2vs2", .warp_x[.@rand], .warp_y[.@rand];
+			deletearray .warp_x[.@rand],1;
+			deletearray .warp_y[.@rand],1;
+			end;
 		}
 		mes "[Equipe de Registro PVP]";
 		mes "Volte quando você estiver pronto.";
@@ -376,10 +353,6 @@ pvp_room,54,85,4	script	Equipe de Registro#1	105,{
 	close;
 
 OnInit:
-	Set .pvp_close_n_room,0;
-	Set .pvp_close_s_room,0;
-	Set .pvp_close_w_room,0;
-	Set .pvp_close_e_room,0;
 	waitingroom "Arena de combate apenas para jogadores",0;
 	end;
 }

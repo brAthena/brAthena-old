@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.5a/1.1                         |
+//   | Versões eA/rA/brA: ??/1.5/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests de Malangdo.                         |
 //   |--------------------------------------------------------|
@@ -1804,7 +1804,7 @@ mal_in01,114,169,5	script	Rican#mal	547,{
 		mes "If you see my son, please tell him to get back soon~";
 		close;
 	} else if (ma_tomas > 99) {
-		if (checkquest(11238,PLAYTIME) == 0 || checkquest(11238,PLAYTIME) == 1) {
+		if (checkquest(11238) != -1) {
 			if (countitem(6435) < 30) {
 				mes "[Rican]";
 				mes "You need exactly 30 to get a set!";
@@ -1891,20 +1891,12 @@ mal_in01,116,168,0	script	Dry Machine#mal	563,{
 
 -	script	Suspicious Sand Pile#0	-1,{
 	if (.off) end;	// Official script uses a 1-second timer to disable sand piles. Added to prevent abuse.
-	if (checkweight(1201,1) == 0) {
-		mes " - Notice !! -";
-		mes " - Since you have too many items - ";
-		mes " - you cannot get the item. - ";
-		mes " - Let your body lighten - ";
-		mes " - and try this again. - ";
+	if (MaxWeight - Weight < 1000) {
+		mes "Your inventory is too heavy to proceed. Come back after lightening your load.";
 		close;
 	}
-	if (MaxWeight - Weight < 1000) {
-		mes " - Notice !! -";
-		mes " - Since your items are too heavy - ";
-		mes " - you cannot get the item. - ";
-		mes " - Let your body lighten - ";
-		mes " - and try this again. - ";
+	if (checkweight(1201,1) == 0) {
+		mes "Your inventory is too full to proceed. Come back after reducing your load.";
 		close;
 	}
 	if (ma_tomas == 9 || checkquest(11238) > -1) {
@@ -2765,7 +2757,7 @@ malangdo,137,200,6	script	Pipielle	549,{
 		mes "Your inventory is too heavy to proceed. Come back after lightening your load.";
 		close;
 	}
-	if(checkweight(1201,1) == 0) {
+	if (checkweight(1201,1) == 0) {
 		mes "Your inventory is too full to proceed. Come back after reducing your load.";
 		close;
 	}
@@ -2779,7 +2771,7 @@ malangdo,137,200,6	script	Pipielle	549,{
 		mes "^770099This cat is working on something, but she asks for help above level 60.^000000";
 		close;
 	}
-	set .@fish_ss1$, "What are you doing??";
+	set .@fish_ss1$, "What are you doing?";
 	if (countitem(6451) > 29)
 		set .@fish_ss2$, "I caught a lot of strange fishes!";
 	else
@@ -2792,7 +2784,7 @@ malangdo,137,200,6	script	Pipielle	549,{
 	switch(select(.@fish_ss1$,.@fish_ss2$,.@fish_ss3$)) {
 	case 1:
 		mes "[Pipielle]";
-		mes "There are many beautiful fishes around here. So I feel my heart beating as I stand here.";
+		mes "There are many beautiful fish around here. So I feel my heart beating standing here.";
 		next;
 		select("I think my heart is beating faster...");
 		mes "[Pipielle]";
@@ -2802,7 +2794,8 @@ malangdo,137,200,6	script	Pipielle	549,{
 		mes "I've studied at a human university before and I learned to speak there so don't treat me like some animal.";
 		next;
 		mes "[Pipielle]";
-		mes "I am a scholar of fish research. It's important for cats to research fish.";
+		mes "I am a scholar of fish research.";
+		mes "It's important for cats to research fish.";
 		next;
 		select("How's your research going?");
 		mes "[Pipielle]";
@@ -3861,11 +3854,11 @@ mal_in02,76,63,7	script	Cleanyang	544,{
 			mes "Recently, there are 9 spot that hided cat's ship biscuit as well.";
 			next;
 			mes "[Cleanyang]";
-			mes "Someone think that good angel took them all as I collected and threw away";
+			mes "Someone think that good angel took them all as I collected and threw away.";
 			mes "He still hide them that place.";
 			next;
 			mes "[Cleanyang]";
-			mes "It is so easy because I don't have to search everywhere, but";
+			mes "It is so easy because I don't have to search everywhere, but...";
 			mes "Please search the 9 spot where hiding frequently.";
 			close;
 		}
@@ -3880,7 +3873,7 @@ mal_in02,76,63,7	script	Cleanyang	544,{
 		case 1:
 			mes "[Cleanyang]";
 			mes "My service to you today.";
-			mes "The inside of ship Navi, home and cat tower too. Don't even miss a blade of grass";
+			mes "The inside of ship Navi, home and cat tower too. Don't even miss a blade of grass.";
 			mes "Search everywhere.";
 			setquest 7268;
 			close;

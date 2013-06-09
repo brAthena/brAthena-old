@@ -1936,7 +1936,7 @@ packet(0x020d,-1);
 	packet(0x0885,7,clif->pActionRequest,2,6);
 	packet(0x0889,10,clif->pUseSkillToId,2,4,6);
 	packet(0x0870,-1,clif->pItemListWindowSelected,2,4,8);
-	packet(0x0926,18,clif->pPartyBookingRegisterReq,2,4,6);
+	packet(0x0365,18,clif->pPartyBookingRegisterReq,2,4,6);
 	packet(0x0815,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
 	packet(0x0817,2,clif->pReqCloseBuyingStore,0);
 	packet(0x0360,6,clif->pReqClickBuyingStore,2);
@@ -1988,9 +1988,11 @@ packet(0x020d,-1);
 	packet(0x08EC,73);
 	packet(0x08ED,43);
 	packet(0x08EE,6);
+#ifdef PARTY_RECRUIT
 	packet(0x08EF,6,clif->pDull,2); //bookingignorereq
-	packet(0x08F0,6);
+	packet(0x08F0,6,clif->pDull,2);
 	packet(0x08F1,6,clif->pDull,2); //bookingjoinpartyreq
+#endif
 	packet(0x08F2,36);
 	packet(0x08F3,-1);
 	packet(0x08F4,6);
@@ -1999,6 +2001,9 @@ packet(0x020d,-1);
 	packet(0x08F7,3);
 	packet(0x08F8,7);
 	packet(0x08F9,6);
+#ifdef PARTY_RECRUIT
+	packet(0x08F9,6,clif->pDull,2);
+#endif
 	packet(0x08FA,6);
 	packet(0x08FB,6,clif->pDull,2); //bookingcanceljoinparty
 	packet(0x0907,5,clif->pMoveItem,2,4);
