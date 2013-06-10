@@ -11739,6 +11739,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 				}
 
 				map_foreachinrange(skill_trap_splash, &src->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &src->bl, tick);
+				sg->limit = DIFF_TICK(tick,sg->tick);
 				sg->unit_id = UNT_USED_TRAPS; //Changed ID so it does not invoke a for each in area again.
 			}
 			break;
