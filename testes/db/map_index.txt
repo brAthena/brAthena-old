@@ -948,7 +948,25 @@ c_tower2_
 c_tower3_
 1@jtb
 1@eom
-
+1@gl_kh
+2@gl_kh
+//prt_evt
+//prt_castle_evt
+//prt_in_evt
+//prt_church_evt
+//lhz_cube_evt
+//pay_dun00_evt
+//iz_dun03_evt
+//gl_church_evt
+//new_1-1_evt
+//new_1-2_evt
+//airplane_evt
+e_hugel
+1@mcd
+ver_eju
+ver_tunn
+verus04
+verus03
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
