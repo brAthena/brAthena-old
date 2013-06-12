@@ -3754,7 +3754,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 
 char *get_database_name(int database_id)
 {
-	char *db_name = "Desconhecida";
+	char *db_name = NULL;
 
 	switch(database_id) {
 		case 0: db_name = "skill_db"; break;

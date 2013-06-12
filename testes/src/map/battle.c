@@ -2006,6 +2006,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(sd && pc_checkskill(sd, GN_REMODELING_CART))
 						hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
 					break;
+				case LG_BANISHINGPOINT:
+					hitrate += 3 * skill_lv;
+					break;
 				case GC_VENOMPRESSURE:
 					hitrate += 10 + 4 * skill_lv;
 					break;
