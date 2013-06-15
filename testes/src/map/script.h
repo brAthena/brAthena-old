@@ -219,6 +219,8 @@ void script_run_autobonus(const char *autobonus,int id, int pos);
 bool script_get_constant(const char *name, int *value);
 void script_set_constant(const char *name, int value, bool isparameter);
 
+void script_detach_rid(struct script_state *st);
+
 void script_cleararray_pc(struct map_session_data *sd, const char *varname, void *value);
 void script_setarray_pc(struct map_session_data *sd, const char *varname, uint8 idx, void *value, int *refcache);
 
@@ -246,6 +248,8 @@ struct script_interface {
 	int hqs, hqis;
 	int hqe[HQO_MAX];
 	/* */
+	char *word_buf;
+	int word_size;
 	struct hQueue *(*queue) (int idx);
 	bool (*queue_add) (int idx, int var);
 	bool (*queue_del) (int idx);

@@ -44,13 +44,23 @@ enum refine_type {
     REFINE_TYPE_MAX     = 5
 };
 
+typedef enum sc_conf_type {
+    SC_NO_REM_DEATH   = 0x1,
+    SC_NO_SAVE = 0x2,
+    SC_NO_DISPELL = 0x4,
+    SC_NO_CLEARANCE = 0x8,
+    SC_BUFF = 0x10,
+    SC_DEBUFF = 0x20,
+    SC_MADO_NO_RESET = 0x40
+} sc_conf_type;
+
 int status_get_refine_chance(enum refine_type wlv, int refine);
 
 // Status changes listing. These code are for use by the server.
 typedef enum sc_type {
     SC_NONE = -1,
 
-    //First we enumerate common status ailments which are often used around.
+	//First we enumerate common status ailments which are often used around.
     SC_STONE = 0,
     SC_COMMON_MIN = 0, // begin
     SC_FREEZE,
@@ -61,25 +71,26 @@ typedef enum sc_type {
     SC_SILENCE,
     SC_CONFUSION,
     SC_BLIND,
-    SC_BLEEDING,
-    SC_DPOISON, //10
-    SC_COMMON_MAX = 10, // end
-
-    //Next up, we continue on 20, to leave enough room for additional "common" ailments in the future.
+    SC_BLOODING,
+    SC_DPOISON,
+    SC_BURNING, //11
+    SC_COMMON_MAX = 11, // end
+	
+	//Next up, we continue on 20, to leave enough room for additional "common" ailments in the future.
     SC_PROVOKE = 20,
     SC_ENDURE,
     SC_TWOHANDQUICKEN,
-    SC_CONCENTRATE,
+    SC_CONCENTRATION,
     SC_HIDING,
     SC_CLOAKING,
-    SC_ENCPOISON,
+    SC_ENCHANTPOISON,
     SC_POISONREACT,
     SC_QUAGMIRE,
     SC_ANGELUS,
     SC_BLESSING, //30
-    SC_SIGNUMCRUCIS,
-    SC_INCREASEAGI,
-    SC_DECREASEAGI,
+    SC_CRUCIS,
+    SC_INC_AGI,
+    SC_DEC_AGI,
     SC_SLOWPOISON,
     SC_IMPOSITIO  ,
     SC_SUFFRAGIUM,
@@ -88,40 +99,40 @@ typedef enum sc_type {
     SC_KYRIE,
     SC_MAGNIFICAT, //40
     SC_GLORIA,
-    SC_AETERNA,
+    SC_LEXAETERNA,
     SC_ADRENALINE,
-    SC_WEAPONPERFECTION,
+    SC_WEAPONPERFECT,
     SC_OVERTHRUST,
     SC_MAXIMIZEPOWER,
     SC_TRICKDEAD,
-    SC_LOUD,
+    SC_SHOUT,
     SC_ENERGYCOAT,
     SC_BROKENARMOR, //50 - NOTE: These two aren't used anywhere, and they have an icon...
     SC_BROKENWEAPON,
-    SC_HALLUCINATION,
-    SC_WEIGHT50,
-    SC_WEIGHT90,
-    SC_ASPDPOTION0,
-    SC_ASPDPOTION1,
-    SC_ASPDPOTION2,
-    SC_ASPDPOTION3,
-    SC_SPEEDUP0,
-    SC_SPEEDUP1, //60
-    SC_ATKPOTION,
-    SC_MATKPOTION,
+    SC_ILLUSION,
+    SC_WEIGHTOVER50,
+    SC_WEIGHTOVER90,
+    SC_ATTHASTE_POTION1,
+    SC_ATTHASTE_POTION2,
+    SC_ATTHASTE_POTION3,
+    SC_ATTHASTE_INFINITY,
+    SC_MOVHASTE_HORSE,
+    SC_MOVHASTE_INFINITY, //60
+    SC_PLUSATTACKPOWER,
+    SC_PLUSMAGICPOWER,
     SC_WEDDING,
     SC_SLOWDOWN,
-    SC_ANKLE,
+    SC_ANKLESNARE,
     SC_KEEPING,
     SC_BARRIER,
-    SC_STRIPWEAPON,
-    SC_STRIPSHIELD,
-    SC_STRIPARMOR, //70
-    SC_STRIPHELM,
-    SC_CP_WEAPON,
-    SC_CP_SHIELD,
-    SC_CP_ARMOR,
-    SC_CP_HELM,
+    SC_NOEQUIPWEAPON,
+    SC_NOEQUIPSHIELD,
+    SC_NOEQUIPARMOR, //70
+    SC_NOEQUIPHELM,
+    SC_PROTECTWEAPON,
+    SC_PROTECTSHIELD,
+    SC_PROTECTARMOR,
+    SC_PROTECTHELM,
     SC_AUTOGUARD,
     SC_REFLECTSHIELD,
     SC_SPLASHER,
@@ -139,24 +150,24 @@ typedef enum sc_type {
     SC_RUWACH, //90
     SC_EXTREMITYFIST,
     SC_EXPLOSIONSPIRITS,
-    SC_COMBO,
+    SC_COMBOATTACK,
     SC_BLADESTOP_WAIT,
     SC_BLADESTOP,
-    SC_FIREWEAPON,
-    SC_WATERWEAPON,
-    SC_WINDWEAPON,
-    SC_EARTHWEAPON,
+    SC_PROPERTYFIRE,
+    SC_PROPERTYWATER,
+    SC_PROPERTYWIND,
+    SC_PROPERTYGROUND,
     SC_VOLCANO, //100,
     SC_DELUGE,
     SC_VIOLENTGALE,
     SC_WATK_ELEMENT,
     SC_ARMOR,
-    SC_ARMOR_ELEMENT,
+    SC_ARMORPROPERTY,
     SC_NOCHAT,
     SC_BABY,
     SC_AURABLADE,
     SC_PARRYING,
-    SC_CONCENTRATION, //110
+    SC_LKCONCENTRATION, //110
     SC_TENSIONRELAX,
     SC_BERSERK,
     SC_FURY,
@@ -171,10 +182,10 @@ typedef enum sc_type {
     SC_MELTDOWN,
     SC_CARTBOOST,
     SC_CHASEWALK,
-    SC_REJECTSWORD,
+    SC_SWORDREJECT,
+    SC_MARIONETTE_MASTER,
     SC_MARIONETTE,
-    SC_MARIONETTE2,
-    SC_CHANGEUNDEAD,
+    SC_PROPERTYUNDEAD,
     SC_JOINTBEAT,
     SC_MINDBREAKER, //130
     SC_MEMORIZE,
@@ -184,39 +195,40 @@ typedef enum sc_type {
     SC_SACRIFICE,
     SC_STEELBODY,
     SC_ORCISH,
-    SC_READYSTORM,
-    SC_READYDOWN,
-    SC_READYTURN, //140
-    SC_READYCOUNTER,
-    SC_DODGE,
+    SC_STORMKICK_READY,
+    SC_DOWNKICK_READY,
+    SC_TURNKICK_READY, //140
+    SC_COUNTERKICK_READY,
+    SC_DODGE_READY,
     SC_RUN,
-    SC_SHADOWWEAPON,
+    SC_PROPERTYDARK,
     SC_ADRENALINE2,
-    SC_GHOSTWEAPON,
+    SC_PROPERTYTELEKINESIS,
     SC_KAIZEL,
     SC_KAAHI,
     SC_KAUPE,
-    SC_ONEHAND, //150
+    SC_ONEHANDQUICKEN, //150
     SC_PRESERVE,
-    SC_BATTLEORDERS,
-    SC_REGENERATION,
-    SC_DOUBLECAST,
+    SC_GDSKILL_BATTLEORDER,
+    SC_GDSKILL_REGENERATION,
+    SC_DOUBLECASTING,
     SC_GRAVITATION,
-    SC_MAXOVERTHRUST,
+    SC_OVERTHRUSTMAX,
     SC_LONGING,
     SC_HERMODE,
-    SC_SHRINK,
-    SC_SIGHTBLASTER, //160
-    SC_WINKCHARM,
-    SC_CLOSECONFINE,
-    SC_CLOSECONFINE2,
+    SC_TAROTCARD,
+    SC_CR_SHRINK, //160
+    SC_WZ_SIGHTBLASTER,
+    SC_DC_WINKCHARM,
+    SC_RG_CCONFINE_M,
+    SC_RG_CCONFINE_S,
     SC_DANCING,
-    SC_ELEMENTALCHANGE,
+    SC_ARMOR_PROPERTY,
     SC_RICHMANKIM,
     SC_ETERNALCHAOS,
     SC_DRUMBATTLE,
-    SC_NIBELUNGEN,
-    SC_ROKISWEIL, //170
+    SC_NIBELUNGEN, //170
+    SC_ROKISWEIL,
     SC_INTOABYSS,
     SC_SIEGFRIED,
     SC_WHISTLE,
@@ -225,18 +237,18 @@ typedef enum sc_type {
     SC_APPLEIDUN,
     SC_MODECHANGE,
     SC_HUMMING,
-    SC_DONTFORGETME,
-    SC_FORTUNE, //180
-    SC_SERVICE4U,
-    SC_STOP,    //Prevents inflicted chars from walking. [Skotlex]
-    SC_SPURT,
-    SC_SPIRIT,
+    SC_DONTFORGETME, //180
+    SC_FORTUNE,
+    SC_SERVICEFORYOU,
+    SC_STOP,	//Prevents inflicted chars from walking. [Skotlex]
+    SC_STRUP,
+    SC_SOULLINK,
     SC_COMA, //Not a real SC_, it makes a char's HP/SP hit 1.
-    SC_INTRAVISION,
+    SC_CLAIRVOYANCE,
     SC_INCALLSTATUS,
-    SC_INCSTR,
-    SC_INCAGI,
-    SC_INCVIT, //190
+    SC_CHASEWALK2,
+    SC_INCAGI, //190
+    SC_INCVIT,
     SC_INCINT,
     SC_INCDEX,
     SC_INCLUK,
@@ -245,18 +257,18 @@ typedef enum sc_type {
     SC_INCFLEE,
     SC_INCFLEERATE,
     SC_INCMHPRATE,
-    SC_INCMSPRATE,
-    SC_INCATKRATE, //200
+    SC_INCMSPRATE, //200
+    SC_INCATKRATE,
     SC_INCMATKRATE,
     SC_INCDEFRATE,
-    SC_STRFOOD,
-    SC_AGIFOOD,
-    SC_VITFOOD,
-    SC_INTFOOD,
-    SC_DEXFOOD,
-    SC_LUKFOOD,
-    SC_HITFOOD,
-    SC_FLEEFOOD, //210
+    SC_FOOD_STR,
+    SC_FOOD_AGI,
+    SC_FOOD_VIT,
+    SC_FOOD_INT,
+    SC_FOOD_DEX,
+    SC_FOOD_LUK,
+    SC_FOOD_BASICHIT, //210
+    SC_FOOD_BASICAVOIDANCE,
     SC_BATKFOOD,
     SC_WATKFOOD,
     SC_MATKFOOD,
@@ -265,8 +277,8 @@ typedef enum sc_type {
     SC_WARM, //SG skills [Komurka]
     SC_SUN_COMFORT,
     SC_MOON_COMFORT,
-    SC_STAR_COMFORT,
-    SC_FUSION, //220
+    SC_STAR_COMFORT, //220
+    SC_FUSION,
     SC_SKILLRATE_UP,
     SC_SKE,
     SC_KAITE,
@@ -274,82 +286,82 @@ typedef enum sc_type {
     SC_SKA, // [marquis007]
     SC_EARTHSCROLL,
     SC_MIRACLE, //SG 'hidden' skill [Komurka]
-    SC_MADNESSCANCEL,
-    SC_ADJUSTMENT,
-    SC_INCREASING,  //230
-    SC_GATLINGFEVER,
-    SC_TATAMIGAESHI,
-    SC_UTSUSEMI,
-    SC_BUNSINJYUTSU,
-    SC_KAENSIN,
-    SC_SUITON,
-    SC_NEN,
+    SC_GS_MADNESSCANCEL,
+    SC_GS_ADJUSTMENT,  //230
+    SC_GS_ACCURACY,
+    SC_GS_GATLINGFEVER,
+    SC_NJ_TATAMIGAESHI,
+    SC_NJ_UTSUSEMI,
+    SC_NJ_BUNSINJYUTSU,
+    SC_NJ_KAENSIN,
+    SC_NJ_SUITON,
+    SC_NJ_NEN,
     SC_KNOWLEDGE,
-    SC_SMA,
-    SC_FLING,   //240
-    SC_AVOID,
-    SC_CHANGE,
-    SC_BLOODLUST,
-    SC_FLEET,
-    SC_SPEED,
-    SC_DEFENCE,
+    SC_SMA_READY,	//240
+    SC_FLING,
+    SC_HLIF_AVOID,
+    SC_HLIF_CHANGE,
+    SC_HAMI_BLOODLUST,
+    SC_HLIF_FLEET,
+    SC_HLIF_SPEED,
+    SC_HAMI_DEFENCE,
     SC_INCASPDRATE,
-    SC_INCFLEE2 = 248,
-    SC_JAILED,
-    SC_ENCHANTARMS, //250
+    SC_PLUSAVOIDVALUE,
+    SC_JAILED,	//250
+    SC_ENCHANTARMS,
     SC_MAGICALATTACK,
-    SC_ARMORCHANGE,
+    SC_STONESKIN,
     SC_CRITICALWOUND,
     SC_MAGICMIRROR,
     SC_SLOWCAST,
     SC_SUMMER,
-    SC_EXPBOOST,
-    SC_ITEMBOOST,
-    SC_BOSSMAPINFO,
-    SC_LIFEINSURANCE, //260
-    SC_INCCRI,
-    //SC_INCDEF,
-    //SC_INCBASEATK = 263,
-    //SC_FASTCAST,
-    SC_MDEF_RATE = 265,
-    //SC_HPREGEN,
-    SC_INCHEALRATE = 267,
+    SC_CASH_PLUSEXP,
+    SC_CASH_RECEIVEITEM,
+    SC_CASH_BOSS_ALARM,  //260
+    SC_CASH_DEATHPENALTY,
+    SC_CRITICALPERCENT,
+	//SC_INCDEF,
+	//SC_INCBASEATK = 264,
+	//SC_FASTCAST,
+    SC_PROTECT_MDEF = 266,
+	//SC_HPREGEN,
+    SC_HEALPLUS = 268,
     SC_PNEUMA,
-    SC_AUTOTRADE,
-    SC_KSPROTECTED, //270
-    SC_ARMOR_RESIST = 271,
-    SC_SPCOST_RATE,
-    SC_COMMONSC_RESIST,
-    SC_SEVENWIND,
-    SC_DEF_RATE,
-    //SC_SPREGEN,
-    SC_WALKSPEED = 277,
+    SC_AUTOTRADE, //270
+    SC_KSPROTECTED,
+    SC_ARMOR_RESIST,
+    SC_ATKER_BLOOD,
+    SC_TARGET_BLOOD,
+    SC_TK_SEVENWIND,
+    SC_PROTECT_DEF,
+	//SC_SPREGEN,
+    SC_WALKSPEED = 278,
 
-    // Mercenary Only Bonus Effects
-    SC_MERC_FLEEUP,
-    SC_MERC_ATKUP,
-    SC_MERC_HPUP, //280
-    SC_MERC_SPUP,
-    SC_MERC_HITUP,
-    SC_MERC_QUICKEN,
+	// Mercenary Only Bonus Effects
+    SC_MER_FLEE,
+    SC_MER_ATK, //280
+    SC_MER_HP,
+    SC_MER_SP,
+    SC_MER_HIT,
+    SC_MER_QUICKEN,
 
     SC_REBIRTH,
-    //SC_SKILLCASTRATE, //285
-    //SC_DEFRATIOATK,
-    //SC_HPDRAIN,
-    //SC_SKILLATKBONUS,
-    SC_ITEMSCRIPT = 289,
-    SC_S_LIFEPOTION, //290
+	//SC_SKILLCASTRATE, //286
+	//SC_DEFRATIOATK,
+	//SC_HPDRAIN,
+	//SC_SKILLATKBONUS,
+    SC_ITEMSCRIPT = 290,
+    SC_S_LIFEPOTION,
     SC_L_LIFEPOTION,
-    SC_JEXPBOOST,
-    //SC_IGNOREDEF,
-    SC_HELLPOWER = 294,
-    SC_INVINCIBLE, //295
+    SC_CASH_PLUSONLYJOBEXP,
+	//SC_IGNOREDEF,
+    SC_HELLPOWER = 295,
+    SC_INVINCIBLE,
     SC_INVINCIBLEOFF,
     SC_MANU_ATK,
     SC_MANU_DEF,
-    SC_SPL_ATK,
-    SC_SPL_DEF, //300
+    SC_SPL_ATK, //300
+    SC_SPL_DEF,
     SC_MANU_MATK,
     SC_SPL_MATK,
     SC_FOOD_STR_CASH,
@@ -357,656 +369,655 @@ typedef enum sc_type {
     SC_FOOD_VIT_CASH,
     SC_FOOD_DEX_CASH,
     SC_FOOD_INT_CASH,
-    SC_FOOD_LUK_CASH,//308
-    /**
-     * 3rd
-     **/
-    SC_FEAR,//309
-    SC_BURNING,//310
-    SC_FREEZING,//311
-    /**
-     * Rune Knight
-     **/
-    SC_ENCHANTBLADE,//312
-    SC_DEATHBOUND,//313
+    SC_FOOD_LUK_CASH,
+	/**
+	 * 3rd
+	 **/
+    SC_FEAR,
+    SC_FROSTMISTY,
+	/**
+	 * Rune Knight
+	 **/
+    SC_ENCHANTBLADE,
+    SC_DEATHBOUND,
     SC_MILLENNIUMSHIELD,
-    SC_CRUSHSTRIKE,//315
+    SC_CRUSHSTRIKE,
     SC_REFRESH,
     SC_REUSE_REFRESH,
     SC_GIANTGROWTH,
     SC_STONEHARDSKIN,
-    SC_VITALITYACTIVATION,//320
+    SC_VITALITYACTIVATION,
     SC_STORMBLAST,
     SC_FIGHTINGSPIRIT,
     SC_ABUNDANCE,
-    /**
-     * Arch Bishop
+	/**
+	 * Arch Bishop
      **/
     SC_ADORAMUS,
-    SC_EPICLESIS,//325
+    SC_EPICLESIS,
     SC_ORATIO,
     SC_LAUDAAGNUS,
     SC_LAUDARAMUS,
     SC_RENOVATIO,
-    SC_EXPIATIO,//330
+    SC_EXPIATIO,
     SC_DUPLELIGHT,
     SC_SECRAMENT,
-    /**
-     * Warlock
-     **/
+	/**
+	 * Warlock
+	 **/
     SC_WHITEIMPRISON,
     SC_MARSHOFABYSS,
-    SC_RECOGNIZEDSPELL,//335
+    SC_RECOGNIZEDSPELL,
     SC_STASIS,
-    SC_SPHERE_1,
-    SC_SPHERE_2,
-    SC_SPHERE_3,
-    SC_SPHERE_4,//340
-    SC_SPHERE_5,
+    SC_SUMMON1,
+    SC_SUMMON2,
+    SC_SUMMON3,
+    SC_SUMMON4,
+    SC_SUMMON5,
     SC_READING_SB,
-    SC_FREEZINGSPELL,
-    /**
-     * Ranger
-     **/
+    SC_FREEZINGSP,
+	/**
+	 * Ranger
+	 **/
     SC_FEARBREEZE,
-    SC_ELECTRICSHOCKER,//345
+    SC_ELECTRICSHOCKER,
     SC_WUGDASH,
-    SC_BITE,
+    SC_WUGBITE,
     SC_CAMOUFLAGE,
-    /**
-     * Mechanic
-     **/
+	/**
+	 * Mechanic
+	 **/
     SC_ACCELERATION,
-    SC_HOVERING,//350
+    SC_HOVERING,
     SC_SHAPESHIFT,
     SC_INFRAREDSCAN,
     SC_ANALYZE,
     SC_MAGNETICFIELD,
-    SC_NEUTRALBARRIER,//355
+    SC_NEUTRALBARRIER,
     SC_NEUTRALBARRIER_MASTER,
     SC_STEALTHFIELD,
     SC_STEALTHFIELD_MASTER,
     SC_OVERHEAT,
-    SC_OVERHEAT_LIMITPOINT,//360
-    /**
-     * Guillotine Cross
-     **/
+    SC_OVERHEAT_LIMITPOINT,
+	/**
+	 * Guillotine Cross
+	 **/
     SC_VENOMIMPRESS,
     SC_POISONINGWEAPON,
     SC_WEAPONBLOCKING,
     SC_CLOAKINGEXCEED,
-    SC_HALLUCINATIONWALK,//365
+    SC_HALLUCINATIONWALK,
     SC_HALLUCINATIONWALK_POSTDELAY,
     SC_ROLLINGCUTTER,
     SC_TOXIN,
     SC_PARALYSE,
-    SC_VENOMBLEED,//370
+    SC_VENOMBLEED,
     SC_MAGICMUSHROOM,
     SC_DEATHHURT,
     SC_PYREXIA,
     SC_OBLIVIONCURSE,
-    SC_LEECHESEND,//375
-    /**
-     * Royal Guard
-     **/
-    SC_REFLECTDAMAGE,
+    SC_LEECHESEND,
+	/**
+	 * Royal Guard
+	 **/
+    SC_LG_REFLECTDAMAGE,
     SC_FORCEOFVANGUARD,
     SC_SHIELDSPELL_DEF,
     SC_SHIELDSPELL_MDEF,
-    SC_SHIELDSPELL_REF,//380
+    SC_SHIELDSPELL_REF,
     SC_EXEEDBREAK,
     SC_PRESTIGE,
     SC_BANDING,
     SC_BANDING_DEFENCE,
-    SC_EARTHDRIVE,//385
+    SC_EARTHDRIVE,
     SC_INSPIRATION,
-    /**
-     * Sorcerer
-     **/
+	/**
+	 * Sorcerer
+	 **/
     SC_SPELLFIST,
     SC_CRYSTALIZE,
     SC_STRIKING,
-    SC_WARMER,//390
+    SC_WARMER,
     SC_VACUUM_EXTREME,
     SC_PROPERTYWALK,
-    /**
-     * Minstrel / Wanderer
-     **/
-    SC_SWINGDANCE,
-    SC_SYMPHONYOFLOVER,
-    SC_MOONLITSERENADE,//395
-    SC_RUSHWINDMILL,
+	/**
+	 * Minstrel / Wanderer
+	 **/
+    SC_SWING,
+    SC_SYMPHONY_LOVE,
+    SC_MOONLIT_SERENADE,
+    SC_RUSH_WINDMILL,
     SC_ECHOSONG,
     SC_HARMONIZE,
-    SC_VOICEOFSIREN,
-    SC_DEEPSLEEP,//400
+    SC_SIREN,
+    SC_DEEP_SLEEP,
     SC_SIRCLEOFNATURE,
     SC_GLOOMYDAY,
     SC_GLOOMYDAY_SK,
-    SC_SONGOFMANA,
-    SC_DANCEWITHWUG,//405
-    SC_SATURDAYNIGHTFEVER,
-    SC_LERADSDEW,
+    SC_SONG_OF_MANA,
+    SC_DANCE_WITH_WUG,
+    SC_SATURDAY_NIGHT_FEVER,
+    SC_LERADS_DEW,
     SC_MELODYOFSINK,
-    SC_BEYONDOFWARCRY,
-    SC_UNLIMITEDHUMMINGVOICE,//410
+    SC_BEYOND_OF_WARCRY,
+    SC_UNLIMITED_HUMMING_VOICE,
     SC_SITDOWN_FORCE,
     SC_NETHERWORLD,
-    /**
-     * Sura
-     **/
+	/**
+	 * Sura
+	 **/
     SC_CRESCENTELBOW,
     SC_CURSEDCIRCLE_ATKER,
     SC_CURSEDCIRCLE_TARGET,
-    SC_LIGHTNINGWALK,//416
+    SC_LIGHTNINGWALK,
     SC_RAISINGDRAGON,
-    SC_GT_ENERGYGAIN,
-    SC_GT_CHANGE,
-    SC_GT_REVITALIZE,
-    /**
-     * Genetic
-     **/
-    SC_GN_CARTBOOST,//427
-    SC_THORNSTRAP,
-    SC_BLOODSUCKER,
-    SC_SMOKEPOWDER,
-    SC_TEARGAS,
-    SC_MANDRAGORA,//426
+    SC_GENTLETOUCH_ENERGYGAIN,
+    SC_GENTLETOUCH_CHANGE,
+    SC_GENTLETOUCH_REVITALIZE,
+	/**
+	 * Genetic
+	 **/
+    SC_GN_CARTBOOST,
+    SC_THORNS_TRAP,
+    SC_BLOOD_SUCKER,
+    SC_FIRE_EXPANSION_SMOKE_POWDER,
+    SC_FIRE_EXPANSION_TEAR_GAS,
+    SC_MANDRAGORA,
     SC_STOMACHACHE,
     SC_MYSTERIOUS_POWDER,
     SC_MELON_BOMB,
     SC_BANANA_BOMB,
-    SC_BANANA_BOMB_SITDOWN,//431
+    SC_BANANA_BOMB_SITDOWN_POSTDELAY,
     SC_SAVAGE_STEAK,
     SC_COCKTAIL_WARG_BLOOD,
     SC_MINOR_BBQ,
     SC_SIROMA_ICE_TEA,
-    SC_DROCERA_HERB_STEAMED,//436
+    SC_DROCERA_HERB_STEAMED,
     SC_PUTTI_TAILS_NOODLES,
     SC_BOOST500,
     SC_FULL_SWING_K,
     SC_MANA_PLUS,
-    SC_MUSTLE_M,//441
+    SC_MUSTLE_M,
     SC_LIFE_FORCE_F,
     SC_EXTRACT_WHITE_POTION_Z,
     SC_VITATA_500,
     SC_EXTRACT_SALAMINE_JUICE,
-    /**
-     * Shadow Chaser
-     **/
-    SC__REPRODUCE,//446
+	/**
+	 * Shadow Chaser
+	 **/
+    SC__REPRODUCE,
     SC__AUTOSHADOWSPELL,
     SC__SHADOWFORM,
     SC__BODYPAINT,
     SC__INVISIBILITY,
-    SC__DEADLYINFECT,//451
+    SC__DEADLYINFECT,
     SC__ENERVATION,
     SC__GROOMY,
     SC__IGNORANCE,
     SC__LAZINESS,
-    SC__UNLUCKY,//456
+    SC__UNLUCKY,
     SC__WEAKNESS,
-    SC__STRIPACCESSORY,
+    SC__STRIPACCESSARY,
     SC__MANHOLE,
-    SC__BLOODYLUST,//460
-    /**
-     * Elemental Spirits
-     **/
+    SC__BLOODYLUST,
+	/**
+	 * Elemental Spirits
+	 **/
     SC_CIRCLE_OF_FIRE,
     SC_CIRCLE_OF_FIRE_OPTION,
     SC_FIRE_CLOAK,
     SC_FIRE_CLOAK_OPTION,
-    SC_WATER_SCREEN,//465
+    SC_WATER_SCREEN,
     SC_WATER_SCREEN_OPTION,
     SC_WATER_DROP,
     SC_WATER_DROP_OPTION,
     SC_WATER_BARRIER,
-    SC_WIND_STEP,//470
+    SC_WIND_STEP,
     SC_WIND_STEP_OPTION,
     SC_WIND_CURTAIN,
     SC_WIND_CURTAIN_OPTION,
     SC_ZEPHYR,
-    SC_SOLID_SKIN,//475
+    SC_SOLID_SKIN,
     SC_SOLID_SKIN_OPTION,
     SC_STONE_SHIELD,
     SC_STONE_SHIELD_OPTION,
     SC_POWER_OF_GAIA,
-    SC_PYROTECHNIC,//480
+    SC_PYROTECHNIC,
     SC_PYROTECHNIC_OPTION,
     SC_HEATER,
     SC_HEATER_OPTION,
     SC_TROPIC,
-    SC_TROPIC_OPTION,//485
+    SC_TROPIC_OPTION,
     SC_AQUAPLAY,
     SC_AQUAPLAY_OPTION,
     SC_COOLER,
     SC_COOLER_OPTION,
-    SC_CHILLY_AIR,//490
+    SC_CHILLY_AIR,
     SC_CHILLY_AIR_OPTION,
     SC_GUST,
     SC_GUST_OPTION,
     SC_BLAST,
-    SC_BLAST_OPTION,//495
+    SC_BLAST_OPTION,
     SC_WILD_STORM,
     SC_WILD_STORM_OPTION,
     SC_PETROLOGY,
     SC_PETROLOGY_OPTION,
-    SC_CURSED_SOIL,//500
+    SC_CURSED_SOIL,
     SC_CURSED_SOIL_OPTION,
     SC_UPHEAVAL,
     SC_UPHEAVAL_OPTION,
     SC_TIDAL_WEAPON,
-    SC_TIDAL_WEAPON_OPTION,//505
+    SC_TIDAL_WEAPON_OPTION,
     SC_ROCK_CRUSHER,
     SC_ROCK_CRUSHER_ATK,
-    /* Guild Aura */
+	/* Guild Aura */
     SC_LEADERSHIP,
     SC_GLORYWOUNDS,
-    SC_SOULCOLD, //508
+    SC_SOULCOLD,
     SC_HAWKEYES,
-    /* ... */
+	/* ... */
     SC_ODINS_POWER,
-    SC_RAID,
-    /* Sorcerer .extra */
+	/* Sorcerer .extra */
     SC_FIRE_INSIGNIA,
     SC_WATER_INSIGNIA,
-    SC_WIND_INSIGNIA, //516
+    SC_WIND_INSIGNIA, 
     SC_EARTH_INSIGNIA,
-    /* new pushcart */
+	/* new pushcart */
     SC_PUSH_CART,
-    /* Warlock Spell books */
+	/* Warlock Spell books */
     SC_SPELLBOOK1,
     SC_SPELLBOOK2,
     SC_SPELLBOOK3,
     SC_SPELLBOOK4,
     SC_SPELLBOOK5,
     SC_SPELLBOOK6,
-    /**
-     * In official server there are only 7 maximum number of spell books that can be memorized
-     * To increase the maximum value just add another status type before SC_MAXSPELLBOOK (ex. SC_SPELLBOOK7, SC_SPELLBOOK8 and so on)
-     **/
-    SC_MAXSPELLBOOK,
-    /* Max HP & SP */
+/**
+ * In official server there are only 7 maximum number of spell books that can be memorized
+ * To increase the maximum value just add another status type before SC_SPELLBOOK7 (ex. SC_SPELLBOOK8, SC_SPELLBOOK9 and so on)
+ **/
+    SC_SPELLBOOK7,
+	/* Max HP & SP */
     SC_INCMHP,
     SC_INCMSP,
-    SC_PARTYFLEE, // 531
-    /**
-    * Kagerou & Oboro [malufett]
-    **/
+    SC_PARTYFLEE, 
+	/**
+	* Kagerou & Oboro [malufett]
+	**/
     SC_MEIKYOUSISUI,
-    SC_JYUMONJIKIRI,
+    SC_KO_JYUMONJIKIRI,
     SC_KYOUGAKU,
     SC_IZAYOI,
     SC_ZENKAI,
-    SC_KAGEHUMI,
+    SC_KG_KAGEHUMI,
     SC_KYOMU,
     SC_KAGEMUSYA,
     SC_ZANGETSU,
     SC_GENSOU,
     SC_AKAITSUKI,
 
-    //homon S
+	//homon S
     SC_STYLE_CHANGE,
     SC_TINDER_BREAKER,
     SC_TINDER_BREAKER2,
     SC_CBC,
     SC_EQC,
+
     SC_GOLDENE_FERSE,
     SC_ANGRIFFS_MODUS,
-    SC_OVERED_BOOST,
+    SC_ERASER_CUTTER,
+    SC_OVERED_BOOST,        
     SC_LIGHT_OF_REGENE,
-    SC_ASH,
+    SC_VOLCANIC_ASH,
     SC_GRANITIC_ARMOR,
     SC_MAGMA_FLOW,
     SC_PYROCLASTIC,
-    SC_PARALYSIS,
+    SC_NEEDLE_OF_PARALYZE,
     SC_PAIN_KILLER,
-    /**
-    * Hanbok [Megasantos]
-    **/
-    SC_HANBOK = 600,
-    SC_ALL_RIDING,
+#ifdef RENEWAL
+    SC_EXTREMITYFIST2,
+    SC_RAID,
+#endif
     /**
     * Novas Habilidades 3rd [Megasantos]
     **/
-    SC_TELEKINESIS_INTENSE,
-    SC_UNLIMIT,
-    SC_OFFERTORIUM,
-    SC_DARKCROW,
-    SC_KINGS_GRACE,
-    SC_FRIGG_SONG,
-    SC_FLASH_COMBO_ATK,
+    SC_DARKCROW = 557,
     SC_FULL_THROTTLE,
     SC_REBOUND,
+    SC_UNLIMIT,
+    SC_KINGS_GRACE,
+    SC_TELEKINESIS_INTENSE,
+    SC_OFFERTORIUM,
+    SC_FRIGG_SONG,
+    SC_FLASH_COMBO_ATK,
 
-
-
-#ifdef RENEWAL
-    SC_EXTREMITYFIST2,
-#endif
+    /**
+    * Hanbok [Megasantos]
+    **/
+    SC_ALL_RIDING,
+    SC_HANBOK,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
 
 // Official status change ids, used to display status icons on the client.
 enum si_type {
-    SI_BLANK        = -1,
-    SI_PROVOKE      = 0,
-    SI_ENDURE       = 1,
-    SI_TWOHANDQUICKEN   = 2,
-    SI_CONCENTRATE      = 3,
-    SI_HIDING       = 4,
-    SI_CLOAKING     = 5,
-    SI_ENCPOISON        = 6,
-    SI_POISONREACT      = 7,
-    SI_QUAGMIRE     = 8,
-    SI_ANGELUS      = 9,
-    SI_BLESSING     = 10,
-    SI_SIGNUMCRUCIS     = 11,
-    SI_INCREASEAGI      = 12,
-    SI_DECREASEAGI      = 13,
-    SI_SLOWPOISON       = 14,
-    SI_IMPOSITIO        = 15,
-    SI_SUFFRAGIUM       = 16,
-    SI_ASPERSIO     = 17,
-    SI_BENEDICTIO       = 18,
-    SI_KYRIE        = 19,
-    SI_MAGNIFICAT       = 20,
-    SI_GLORIA       = 21,
-    SI_AETERNA      = 22,
-    SI_ADRENALINE       = 23,
-    SI_WEAPONPERFECTION = 24,
-    SI_OVERTHRUST       = 25,
-    SI_MAXIMIZEPOWER    = 26,
-    SI_RIDING       = 27,
-    SI_FALCON       = 28,
-    SI_TRICKDEAD        = 29,
-    SI_LOUD         = 30,
-    SI_ENERGYCOAT       = 31,
-    SI_BROKENARMOR      = 32,
-    SI_BROKENWEAPON     = 33,
-    SI_HALLUCINATION    = 34,
-    SI_WEIGHT50         = 35,
-    SI_WEIGHT90     = 36,
-    SI_ASPDPOTION0      = 37,
-    SI_ASPDPOTION1 = 38,
-    SI_ASPDPOTION2 = 39,
-    SI_ASPDPOTIONINFINITY = 40,
-    SI_SPEEDPOTION1     = 41,
-//	SI_MOVHASTE_INFINITY     = 42,
-//	SI_AUTOCOUNTER = 43,
-//	SI_SPLASHER = 44,
-//	SI_ANKLESNARE = 45,
-    SI_ACTIONDELAY      = 46,
-//	SI_NOACTION = 47,
-//	SI_IMPOSSIBLEPICKUP = 48,
-//	SI_BARRIER = 49,
-    SI_STRIPWEAPON      = 50,
-    SI_STRIPSHIELD      = 51,
-    SI_STRIPARMOR       = 52,
-    SI_STRIPHELM        = 53,
-    SI_CP_WEAPON        = 54,
-    SI_CP_SHIELD        = 55,
-    SI_CP_ARMOR     = 56,
-    SI_CP_HELM      = 57,
-    SI_AUTOGUARD        = 58,
-    SI_REFLECTSHIELD    = 59,
-//	SI_DEVOTION = 60,
+    SI_BLANK		= -1,
+    SI_PROVOKE		= 0, 
+    SI_ENDURE		= 1, 
+    SI_TWOHANDQUICKEN		= 2, 
+    SI_CONCENTRATION		= 3, 
+    SI_HIDING		= 4, 
+    SI_CLOAKING		= 5, 
+    SI_ENCHANTPOISON		= 6, 
+    SI_POISONREACT		= 7, 
+    SI_QUAGMIRE		= 8, 
+    SI_ANGELUS		= 9, 
+    SI_BLESSING		= 10, 
+    SI_CRUCIS		= 11, 
+    SI_INC_AGI		= 12, 
+    SI_DEC_AGI		= 13, 
+    SI_SLOWPOISON		= 14, 
+    SI_IMPOSITIO		= 15, 
+    SI_SUFFRAGIUM		= 16, 
+    SI_ASPERSIO		= 17, 
+    SI_BENEDICTIO		= 18, 
+    SI_KYRIE		= 19, 
+    SI_MAGNIFICAT		= 20, 
+    SI_GLORIA		= 21, 
+    SI_LEXAETERNA		= 22, 
+    SI_ADRENALINE		= 23, 
+    SI_WEAPONPERFECT		= 24, 
+    SI_OVERTHRUST		= 25, 
+    SI_MAXIMIZE		= 26, 
+    SI_RIDING		= 27, 
+    SI_FALCON		= 28, 
+    SI_TRICKDEAD		= 29, 
+    SI_SHOUT		= 30, 
+    SI_ENERGYCOAT		= 31, 
+    SI_BROKENARMOR		= 32, 
+    SI_BROKENWEAPON		= 33, 
+    SI_ILLUSION		= 34, 
+    SI_WEIGHTOVER50		= 35, 
+    SI_WEIGHTOVER90		= 36, 
+    SI_ATTHASTE_POTION1		= 37, 
+    SI_ATTHASTE_POTION2		= 38, 
+    SI_ATTHASTE_POTION3		= 39, 
+    SI_ATTHASTE_INFINITY		= 40, 
+    SI_MOVHASTE_POTION		= 41, 
+    SI_MOVHASTE_INFINITY		= 42,
+//  SI_AUTOCOUNTER = 43,
+//  SI_SPLASHER = 44,
+    SI_ANKLESNARE = 45,
+    SI_POSTDELAY		= 46,
+//  SI_NOACTION = 47,
+//  SI_IMPOSSIBLEPICKUP = 48,
+//  SI_BARRIER = 49,
+    SI_NOEQUIPWEAPON		= 50, 
+    SI_NOEQUIPSHIELD		= 51, 
+    SI_NOEQUIPARMOR		= 52, 
+    SI_NOEQUIPHELM		= 53, 
+    SI_PROTECTWEAPON		= 54, 
+    SI_PROTECTSHIELD		= 55, 
+    SI_PROTECTARMOR		= 56, 
+    SI_PROTECTHELM		= 57, 
+    SI_AUTOGUARD		= 58, 
+    SI_REFLECTSHIELD		= 59, 
+//  SI_DEVOTION = 60,
     SI_PROVIDENCE       = 61,
     SI_DEFENDER     = 62,
-//	SI_MAGICROD = 63,
-//	SI_WEAPONPROPERTY = 64,
+//  SI_MAGICROD = 63,
+//  SI_WEAPONPROPERTY = 64,
     SI_AUTOSPELL        = 65,
-//	SI_SPECIALZONE = 66,
-//	SI_MASK = 67,
+//  SI_SPECIALZONE = 66,
+//  SI_MASK = 67,
     SI_SPEARQUICKEN     = 68,
-//	SI_BDPLAYING = 69,
-//	SI_WHISTLE = 70,
-//	SI_ASSASSINCROSS = 71,
-//	SI_POEMBRAGI = 72,
-//	SI_APPLEIDUN = 73,
-//	SI_HUMMING = 74,
-//	SI_DONTFORGETME = 75,
-//	SI_FORTUNEKISS = 76,
-//	SI_SERVICEFORYOU = 77,
-//	SI_RICHMANKIM = 78,
-//	SI_ETERNALCHAOS = 79,
-//	SI_DRUMBATTLEFIELD = 80,
-//	SI_RINGNIBELUNGEN = 81,
-//	SI_ROKISWEIL = 82,
-//	SI_INTOABYSS = 83,
-//	SI_SIEGFRIED = 84,
-//	SI_BLADESTOP = 85,
+//  SI_BDPLAYING = 69,
+//  SI_WHISTLE = 70,
+//  SI_ASSASSINCROSS = 71,
+//  SI_POEMBRAGI = 72,
+//  SI_APPLEIDUN = 73,
+//  SI_HUMMING = 74,
+//  SI_DONTFORGETME = 75,
+//  SI_FORTUNEKISS = 76,
+//  SI_SERVICEFORYOU = 77,
+//  SI_RICHMANKIM = 78,
+//  SI_ETERNALCHAOS = 79,
+//  SI_DRUMBATTLEFIELD = 80,
+//  SI_RINGNIBELUNGEN = 81,
+//  SI_ROKISWEIL = 82,
+//  SI_INTOABYSS = 83,
+//  SI_SIEGFRIED = 84,
+//  SI_BLADESTOP = 85,
     SI_EXPLOSIONSPIRITS = 86,
     SI_STEELBODY        = 87,
     SI_EXTREMITYFIST = 88,
-//	SI_COMBOATTACK = 89,
-    SI_FIREWEAPON       = 90,
-    SI_WATERWEAPON      = 91,
-    SI_WINDWEAPON       = 92,
-    SI_EARTHWEAPON      = 93,
-//	SI_MAGICATTACK = 94,
+//  SI_COMBOATTACK = 89,
+    SI_PROPERTYFIRE		= 90, 
+    SI_PROPERTYWATER		= 91, 
+    SI_PROPERTYWIND		= 92, 
+    SI_PROPERTYGROUND		= 93, 
+//  SI_MAGICATTACK = 94,
     SI_STOP         = 95,
-//	SI_WEAPONBRAKER = 96,
-    SI_UNDEAD       = 97,
-//	SI_POWERUP = 98,
-//	SI_AGIUP = 99,
-//	SI_SIEGEMODE = 100,
-//	SI_INVISIBLE = 101,
-//	SI_STATUSONE = 102,
-    SI_AURABLADE        = 103,
-    SI_PARRYING     = 104,
-    SI_CONCENTRATION    = 105,
-    SI_TENSIONRELAX     = 106,
-    SI_BERSERK      = 107,
-//	SI_SACRIFICE = 108,
-//	SI_GOSPEL = 109,
+//  SI_WEAPONBRAKER = 96,
+    SI_PROPERTYUNDEAD		= 97, 
+//  SI_POWERUP = 98,
+//  SI_AGIUP = 99,
+//  SI_SIEGEMODE = 100,
+//  SI_INVISIBLE = 101,
+//  SI_STATUSONE = 102,
+    SI_AURABLADE		= 103, 
+    SI_PARRYING		= 104, 
+    SI_LKCONCENTRATION		= 105, 
+    SI_TENSIONRELAX		= 106, 
+    SI_BERSERK		= 107,
+//  SI_SACRIFICE = 108,
+//  SI_GOSPEL = 109,
     SI_ASSUMPTIO        = 110,
-//	SI_BASILICA = 111,
-    SI_LANDENDOW        = 112,
-    SI_MAGICPOWER       = 113,
-    SI_EDP          = 114,
-    SI_TRUESIGHT        = 115,
-    SI_WINDWALK     = 116,
-    SI_MELTDOWN     = 117,
-    SI_CARTBOOST        = 118,
-//	SI_CHASEWALK = 119,
-    SI_REJECTSWORD      = 120,
-    SI_MARIONETTE       = 121,
-    SI_MARIONETTE2      = 122,
-    SI_MOONLIT      = 123,
-    SI_BLEEDING     = 124,
-    SI_JOINTBEAT        = 125,
-//	SI_MINDBREAKER = 126,
-//	SI_MEMORIZE = 127,
-//	SI_FOGWALL = 128,
-//	SI_SPIDERWEB = 129,
-    SI_BABY         = 130,
-//	SI_SUB_WEAPONPROPERTY = 131,
-    SI_AUTOBERSERK      = 132,
-    SI_RUN          = 133,
-    SI_BUMP         = 134,
-    SI_READYSTORM       = 135,
-//	SI_STORMKICK_READY = 136,
-    SI_READYDOWN        = 137,
-//	SI_DOWNKICK_READY = 138,
-    SI_READYTURN        = 139,
-//	SI_TURNKICK_READY = 140,
-    SI_READYCOUNTER     = 141,
-//	SI_COUNTER_READY = 142,
-    SI_DODGE        = 143,
-//	SI_DODGE_READY = 144,
-    SI_SPURT        = 145,
-    SI_SHADOWWEAPON     = 146,
-    SI_ADRENALINE2      = 147,
-    SI_GHOSTWEAPON      = 148,
-    SI_SPIRIT       = 149,
-    SI_PLUSATTACKPOWER = 150,
-    SI_PLUSMAGICPOWER = 151,
-    SI_DEVIL        = 152,
-    SI_KAITE        = 153,
-//	SI_SWOO = 154,
-//	SI_STAR2 = 155,
-    SI_KAIZEL       = 156,
-    SI_KAAHI        = 157,
-    SI_KAUPE        = 158,
-    SI_SMA          = 159,
-    SI_NIGHT        = 160,
-    SI_ONEHAND      = 161,
-//	SI_FRIEND = 162,
-//	SI_FRIENDUP = 163,
-//	SI_SG_WARM = 164,
-    SI_WARM         = 165,
+//  SI_BASILICA = 111,
+    SI_GROUNDMAGIC		= 112,
+    SI_MAGICPOWER		= 113,
+    SI_EDP			= 114,
+    SI_TRUESIGHT		= 115,
+    SI_WINDWALK		= 116,
+    SI_MELTDOWN		= 117,
+    SI_CARTBOOST		= 118,
+//  SI_CHASEWALK = 119,
+    SI_SWORDREJECT		= 120, 
+    SI_MARIONETTE_MASTER		= 121, 
+    SI_MARIONETTE		= 122, 
+    SI_MOON		= 123, 
+    SI_BLOODING		= 124, 
+    SI_JOINTBEAT		= 125,
+//  SI_MINDBREAKER = 126,
+//  SI_MEMORIZE = 127,
+//  SI_FOGWALL = 128,
+//  SI_SPIDERWEB = 129,
+    SI_PROTECTEXP			= 130,
+//  SI_SUB_WEAPONPROPERTY = 131,
+    SI_AUTOBERSERK		= 132,
+    SI_RUN			= 133,
+    SI_TING			= 134,
+    SI_STORMKICK_ON		= 135, 
+    SI_STORMKICK_READY		= 136, 
+    SI_DOWNKICK_ON		= 137, 
+    SI_DOWNKICK_READY		= 138, 
+    SI_TURNKICK_ON		= 139, 
+    SI_TURNKICK_READY		= 140, 
+    SI_COUNTER_ON		= 141, 
+    SI_COUNTER_READY		= 142, 
+    SI_DODGE_ON		= 143, 
+    SI_DODGE_READY		= 144, 
+    SI_STRUP		= 145,
+    SI_PROPERTYDARK		= 146, 
+    SI_ADRENALINE2		= 147, 
+    SI_PROPERTYTELEKINESIS		= 148, 
+    SI_SOULLINK		= 149, 
+    SI_PLUSATTACKPOWER		= 150, 
+    SI_PLUSMAGICPOWER		= 151, 
+    SI_DEVIL1		= 152, 
+    SI_KAITE		= 153,
+//  SI_SWOO = 154,
+//  SI_STAR2 = 155,
+    SI_KAIZEL		= 156,
+    SI_KAAHI		= 157,
+    SI_KAUPE		= 158,
+    SI_SMA_READY			= 159,
+    SI_SKE		= 160,
+    SI_ONEHANDQUICKEN		= 161,
+//  SI_FRIEND = 162,
+//  SI_FRIENDUP = 163,
+//  SI_SG_WARM = 164,
+    SI_SG_SUN_WARM			= 165,
 //	166 | The three show the exact same display: ultra red character (165, 166, 167)
 //	167 | Their names would be SI_SG_SUN_WARM, SI_SG_MOON_WARM, SI_SG_STAR_WARM
-//	SI_EMOTION = 168,
+//  SI_EMOTION = 168,
     SI_SUN_COMFORT      = 169,
     SI_MOON_COMFORT     = 170,
     SI_STAR_COMFORT     = 171,
-//	SI_EXPUP = 172,
-//	SI_GDSKILL_BATTLEORDER = 173,
-//	SI_GDSKILL_REGENERATION = 174,
-//	SI_GDSKILL_POSTDELAY = 175,
-//	SI_RESISTHANDICAP = 176,
-//	SI_MAXHPPERCENT = 177,
-//	SI_MAXSPPERCENT = 178,
-//	SI_DEFENCE = 179,
-//	SI_SLOWDOWN = 180,
+//  SI_EXPUP = 172,
+//  SI_GDSKILL_BATTLEORDER = 173,
+//  SI_GDSKILL_REGENERATION = 174,
+//  SI_GDSKILL_POSTDELAY = 175,
+//  SI_RESISTHANDICAP = 176,
+//  SI_MAXHPPERCENT = 177,
+//  SI_MAXSPPERCENT = 178,
+//  SI_DEFENCE = 179,
+//  SI_SLOWDOWN = 180,
     SI_PRESERVE     = 181,
     SI_INCSTR       = 182,
-//	SI_NOT_EXTREMITYFIST = 183,
-    SI_INTRAVISION      = 184,
-//	SI_MOVESLOW_POTION = 185,
-    SI_DOUBLECAST       = 186,
-//	SI_GRAVITATION = 187,
-    SI_MAXOVERTHRUST    = 188,
-//	SI_LONGING = 189,
-//	SI_HERMODE = 190,
-    SI_TAROT        = 191, // the icon allows no doubt... but what is it really used for ?? [DracoRPG]
-//	SI_HLIF_AVOID = 192,
-//	SI_HFLI_FLEET = 193,
-//	SI_HFLI_SPEED = 194,
-//	SI_HLIF_CHANGE = 195,
-//	SI_HAMI_BLOODLUST = 196,
-    SI_SHRINK       = 197,
-    SI_SIGHTBLASTER     = 198,
-    SI_WINKCHARM        = 199,
-    SI_CLOSECONFINE     = 200,
-    SI_CLOSECONFINE2    = 201,
-//	SI_DISABLEMOVE = 202,
-    SI_MADNESSCANCEL    = 203,  //[blackhole89]
-    SI_GATLINGFEVER     = 204,
-    SI_EARTHSCROLL = 205,
-    SI_UTSUSEMI     = 206,
-    SI_BUNSINJYUTSU     = 207,
-    SI_NEN          = 208,
-    SI_ADJUSTMENT       = 209,
-    SI_ACCURACY     = 210,
-//	SI_NJ_SUITON = 211,
-//	SI_PET = 212,
-//	SI_MENTAL = 213,
-//	SI_EXPMEMORY = 214,
-//	SI_PERFORMANCE = 215,
-//	SI_GAIN = 216,
-//	SI_GRIFFON = 217,
-//	SI_DRIFT = 218,
-//	SI_WALLSHIFT = 219,
-//	SI_REINCARNATION = 220,
-//	SI_PATTACK = 221,
-//	SI_PSPEED = 222,
-//	SI_PDEFENSE = 223,
-//	SI_PCRITICAL = 224,
-//	SI_RANKING = 225,
-//	SI_PTRIPLE = 226,
-//	SI_DENERGY = 227,
-//	SI_WAVE1 = 228,
-//	SI_WAVE2 = 229,
-//	SI_WAVE3 = 230,
-//	SI_WAVE4 = 231,
-//	SI_DAURA = 232,
-//	SI_DFREEZER = 233,
-//	SI_DPUNISH = 234,
-//	SI_DBARRIER = 235,
-//	SI_DWARNING = 236,
-//	SI_MOUSEWHEEL = 237,
-//	SI_DGAUGE = 238,
-//	SI_DACCEL = 239,
-//	SI_DBLOCK = 240,
-    SI_FOODSTR      = 241,
-    SI_FOODAGI      = 242,
-    SI_FOODVIT      = 243,
-    SI_FOODDEX      = 244,
-    SI_FOODINT      = 245,
-    SI_FOODLUK      = 246,
-    SI_FOODFLEE     = 247,
-    SI_FOODHIT      = 248,
-    SI_FOODCRI      = 249,
-    SI_EXPBOOST     = 250,
-    SI_LIFEINSURANCE    = 251,
-    SI_ITEMBOOST        = 252,
-    SI_BOSSMAPINFO      = 253,
-//	SI_DA_ENERGY = 254,
-//	SI_DA_FIRSTSLOT = 255,
-//	SI_DA_HEADDEF = 256,
-//	SI_DA_SPACE = 257,
-//	SI_DA_TRANSFORM = 258,
-//	SI_DA_ITEMREBUILD = 259,
-//	SI_DA_ILLUSION = 260, //All mobs display as Turtle General
-//	SI_DA_DARKPOWER = 261,
-//	SI_DA_EARPLUG = 262,
-//	SI_DA_CONTRACT = 263, //Bio Mob effect on you and SI_TRICKDEAD icon
-//	SI_DA_BLACK = 264, //For short time blurry screen
-//	SI_DA_MAGICCART = 265,
-//	SI_CRYSTAL = 266,
-//	SI_DA_REBUILD = 267,
-//	SI_DA_EDARKNESS = 268,
-//	SI_DA_EGUARDIAN = 269,
-//	SI_DA_TIMEOUT = 270,
+//  SI_NOT_EXTREMITYFIST = 183,
+    SI_CLAIRVOYANCE		= 184,
+//  SI_MOVESLOW_POTION = 185,
+    SI_DOUBLECASTING		= 186,
+//  SI_GRAVITATION = 187,
+    SI_OVERTHRUSTMAX	= 188,
+//  SI_LONGING = 189,
+//  SI_HERMODE = 190,
+    SI_TAROTCARD		= 191, // the icon allows no doubt... but what is it really used for ?? [DracoRPG]
+//  SI_HLIF_AVOID = 192,
+//  SI_HFLI_FLEET = 193,
+//  SI_HFLI_SPEED = 194,
+//  SI_HLIF_CHANGE = 195,
+//  SI_HAMI_BLOODLUST = 196,
+    SI_CR_SHRINK		= 197, 
+    SI_WZ_SIGHTBLASTER		= 198, 
+    SI_DC_WINKCHARM		= 199, 
+    SI_RG_CCONFINE_M		= 200, 
+    SI_RG_CCONFINE_S		= 201, 
+//  SI_DISABLEMOVE = 202,
+    SI_GS_MADNESSCANCEL	= 203,	//[blackhole89] 
+    SI_GS_GATLINGFEVER		= 204, 
+    SI_EARTHSCROLL		= 205, 
+    SI_NJ_UTSUSEMI		= 206, 
+    SI_NJ_BUNSINJYUTSU		= 207, 
+    SI_NJ_NEN		= 208, 
+    SI_GS_ADJUSTMENT		= 209, 
+    SI_GS_ACCURACY		= 210, 
+    SI_NJ_SUITON = 211,
+//  SI_PET = 212,
+//  SI_MENTAL = 213,
+//  SI_EXPMEMORY = 214,
+//  SI_PERFORMANCE = 215,
+//  SI_GAIN = 216,
+//  SI_GRIFFON = 217,
+//  SI_DRIFT = 218,
+//  SI_WALLSHIFT = 219,
+//  SI_REINCARNATION = 220,
+//  SI_PATTACK = 221,
+//  SI_PSPEED = 222,
+//  SI_PDEFENSE = 223,
+//  SI_PCRITICAL = 224,
+//  SI_RANKING = 225,
+//  SI_PTRIPLE = 226,
+//  SI_DENERGY = 227,
+//  SI_WAVE1 = 228,
+//  SI_WAVE2 = 229,
+//  SI_WAVE3 = 230,
+//  SI_WAVE4 = 231,
+//  SI_DAURA = 232,
+//  SI_DFREEZER = 233,
+//  SI_DPUNISH = 234,
+//  SI_DBARRIER = 235,
+//  SI_DWARNING = 236,
+//  SI_MOUSEWHEEL = 237,
+//  SI_DGAUGE = 238,
+//  SI_DACCEL = 239,
+//  SI_DBLOCK = 240,
+    SI_FOOD_STR		= 241,
+    SI_FOOD_AGI		= 242,
+    SI_FOOD_VIT		= 243,
+    SI_FOOD_DEX		= 244,
+    SI_FOOD_INT		= 245,
+    SI_FOOD_LUK		= 246,
+    SI_FOOD_BASICAVOIDANCE		= 247, 
+    SI_FOOD_BASICHIT		= 248, 
+    SI_FOOD_CRITICALSUCCESSVALUE		= 249, 
+    SI_CASH_PLUSEXP		= 250, 
+    SI_CASH_DEATHPENALTY		= 251, 
+    SI_CASH_RECEIVEITEM		= 252, 
+    SI_CASH_BOSS_ALARM		= 253, 
+//  SI_DA_ENERGY = 254,
+//  SI_DA_FIRSTSLOT = 255,
+//  SI_DA_HEADDEF = 256,
+//  SI_DA_SPACE = 257,
+//  SI_DA_TRANSFORM = 258,
+//  SI_DA_ITEMREBUILD = 259,
+//  SI_DA_ILLUSION = 260, //All mobs display as Turtle General
+//  SI_DA_DARKPOWER = 261,
+//  SI_DA_EARPLUG = 262,
+//  SI_DA_CONTRACT = 263, //Bio Mob effect on you and SI_TRICKDEAD icon
+//  SI_DA_BLACK = 264, //For short time blurry screen
+//  SI_DA_MAGICCART = 265,
+//  SI_CRYSTAL = 266,
+//  SI_DA_REBUILD = 267,
+//  SI_DA_EDARKNESS = 268,
+//  SI_DA_EGUARDIAN = 269,
+//  SI_DA_TIMEOUT = 270,
     SI_FOOD_STR_CASH = 271,
     SI_FOOD_AGI_CASH = 272,
     SI_FOOD_VIT_CASH = 273,
     SI_FOOD_DEX_CASH = 274,
     SI_FOOD_INT_CASH = 275,
     SI_FOOD_LUK_CASH = 276,
-    SI_MERC_FLEEUP  = 277,
-    SI_MERC_ATKUP   = 278,
-    SI_MERC_HPUP    = 279,
-    SI_MERC_SPUP    = 280,
-    SI_MERC_HITUP   = 281,
-    SI_SLOWCAST     = 282,
-//	SI_MAGICMIRROR = 283,
-//	SI_STONESKIN = 284,
-//	SI_ANTIMAGIC = 285,
+    SI_MER_FLEE	= 277,
+    SI_MER_ATK	= 278,
+    SI_MER_HP	= 279,
+    SI_MER_SP	= 280,
+    SI_MER_HIT	= 281,
+    SI_SLOWCAST		= 282,
+//  SI_MAGICMIRROR = 283,
+//  SI_STONESKIN = 284,
+//  SI_ANTIMAGIC = 285,
     SI_CRITICALWOUND    = 286,
-//	SI_NPC_DEFENDER = 287,
-//	SI_NOACTION_WAIT = 288,
-    SI_MOVHASTE_HORSE = 289,
-    SI_DEF_RATE     = 290,
-    SI_MDEF_RATE    = 291,
-    SI_INCHEALRATE  = 292,
-    SI_S_LIFEPOTION = 293,
-    SI_L_LIFEPOTION = 294,
-    SI_INCCRI       = 295,
-    SI_PLUSAVOIDVALUE = 296,
-//	SI_ATKER_ASPD = 297,
-//	SI_TARGET_ASPD = 298,
-//	SI_ATKER_MOVESPEED = 299,
+//  SI_NPC_DEFENDER = 287,
+//  SI_NOACTION_WAIT = 288,
+    SI_MOVHASTE_HORSE		= 289, 
+    SI_PROTECT_DEF		= 290, 
+    SI_PROTECT_MDEF		= 291, 
+    SI_HEALPLUS		= 292, 
+    SI_S_LIFEPOTION		= 293, 
+    SI_L_LIFEPOTION		= 294, 
+    SI_CRITICALPERCENT		= 295, 
+    SI_PLUSAVOIDVALUE		= 296, 
+//  SI_ATKER_ASPD = 297,
+//  SI_TARGET_ASPD = 298,
+//  SI_ATKER_MOVESPEED = 299,
     SI_ATKER_BLOOD = 300,
     SI_TARGET_BLOOD = 301,
     SI_ARMOR_PROPERTY = 302,
-//	SI_REUSE_LIMIT_A = 303,
+//  SI_REUSE_LIMIT_A = 303,
     SI_HELLPOWER = 304,
-//	SI_STEAMPACK = 305,
-//	SI_REUSE_LIMIT_B = 306,
-//	SI_REUSE_LIMIT_C = 307,
-//	SI_REUSE_LIMIT_D = 308,
-//	SI_REUSE_LIMIT_E = 309,
-//	SI_REUSE_LIMIT_F = 310,
+//  SI_STEAMPACK = 305,
+//  SI_REUSE_LIMIT_B = 306,
+//  SI_REUSE_LIMIT_C = 307,
+//  SI_REUSE_LIMIT_D = 308,
+//  SI_REUSE_LIMIT_E = 309,
+//  SI_REUSE_LIMIT_F = 310,
     SI_INVINCIBLE = 311,
     SI_CASH_PLUSONLYJOBEXP = 312,
     SI_PARTYFLEE = 313,
-//	SI_ANGEL_PROTECT = 314,
-    SI_ENDURE_MDEF = 315,
+//  SI_ANGEL_PROTECT = 314,
+//  SI_ENDURE_MDEF = 315,
     SI_ENCHANTBLADE = 316,
     SI_DEATHBOUND = 317,
     SI_REFRESH = 318,
@@ -1072,10 +1083,10 @@ enum si_type {
     SI_NEUTRALBARRIER_MASTER = 378,
     SI_STEALTHFIELD = 379,
     SI_STEALTHFIELD_MASTER = 380,
-    SI_MANU_ATK = 381,
-    SI_MANU_DEF = 382,
-    SI_SPL_ATK = 383,
-    SI_SPL_DEF = 384,
+    SI_MANU_ATK = 381, 
+    SI_MANU_DEF = 382, 
+    SI_SPL_ATK = 383, 
+    SI_SPL_DEF = 384, 
     SI_REPRODUCE = 385,
     SI_MANU_MATK = 386,
     SI_SPL_MATK = 387,
@@ -1125,12 +1136,12 @@ enum si_type {
     SI_PROPERTYWALK = 431,
     SI_SPELLFIST = 432,
     SI_NETHERWORLD = 433,
-    SI_VOICEOFSIREN = 434,
+    SI_SIREN = 434,
     SI_DEEPSLEEP = 435,
     SI_SIRCLEOFNATURE = 436,
     SI_COLD = 437,
     SI_GLOOMYDAY = 438,
-    SI_SONGOFMANA = 439,
+    SI_SONG_OF_MANA = 439,
     SI_CLOUDKILL = 440,
     SI_DANCEWITHWUG = 441,
     SI_RUSHWINDMILL = 442,
@@ -1225,11 +1236,11 @@ enum si_type {
     SI_STONE_SHIELD = 531,
     SI_STONE_SHIELD_OPTION = 532,
     SI_POWER_OF_GAIA = 533,
-    //  SI_EL_WAIT = 534,
-    //  SI_EL_PASSIVE = 535,
-    //  SI_EL_DEFENSIVE = 536,
-    //  SI_EL_OFFENSIVE = 537,
-    //  SI_EL_COST = 538,
+//  SI_EL_WAIT = 534,
+//  SI_EL_PASSIVE = 535,
+//  SI_EL_DEFENSIVE = 536,
+//  SI_EL_OFFENSIVE = 537,
+//  SI_EL_COST = 538,
     SI_PYROTECHNIC = 539,
     SI_PYROTECHNIC_OPTION = 540,
     SI_HEATER = 541,
@@ -1277,7 +1288,7 @@ enum si_type {
     SI_ODINS_POWER = 583,
     SI_STYLE_CHANGE = 584,
     SI_SONIC_CLAW_POSTDELAY = 585,
-    // ID's 586 - 595 Currently Unused
+	// ID's 586 - 595 Currently Unused
     SI_SILVERVEIN_RUSH_POSTDELAY = 596,
     SI_MIDNIGHT_FRENZY_POSTDELAY = 597,
     SI_GOLDENE_FERSE = 598,
@@ -1416,8 +1427,8 @@ enum si_type {
     SI_2013_VALENTINE1 = 731,
     SI_2013_VALENTINE2 = 732,
     SI_2013_VALENTINE3 = 733,
-//  SI_ = 734,
-//  SI_ = 735,
+    //SI_ = 734,
+    //SI_ = 735,
     SI_CHILL = 736,
     SI_BURNT = 737,
     SI_MAX,
@@ -1566,18 +1577,6 @@ enum manner_flags {
     MANNER_NOROOM    = 0x10,
 };
 
-/* Status Change State Flags */
-enum scs_flag {
-    SCS_NOMOVECOND      = 0x00000001, /* cond flag for nomove */
-    SCS_NOMOVE          = 0x00000002, /* unit unable to move */
-    SCS_NOPICKITEMCOND  = 0x00000004, /* cond flag for nopickitem */
-    SCS_NOPICKITEM      = 0x00000008, /* player unable to pick up items */
-    SCS_NODROPITEMCOND  = 0x00000010, /* cond flag for nodropitem */
-    SCS_NODROPITEM      = 0x00000020, /* player unable to drop items */
-    SCS_NOCASTCOND      = 0x00000040, /* cond flag for nocast */
-    SCS_NOCAST          = 0x00000080, /* unit unable to cast skills */
-};
-
 //Define flags for the status_calc_bl function. [Skotlex]
 enum scb_flag {
     SCB_NONE    = 0x00000000,
@@ -1627,7 +1626,7 @@ enum scb_flag {
 //Basic damage info of a weapon
 //Required because players have two of these, one in status_data
 //and another for their left hand weapon.
-struct weapon_atk {
+typedef struct weapon_atk {
 	unsigned short atk, atk2;
 	unsigned short range;
 	unsigned char ele;
@@ -1635,7 +1634,7 @@ struct weapon_atk {
 	unsigned short matk;
 	unsigned char wlv;
 #endif
-};
+}weapon_atk;
 
 sc_type SkillStatusChangeTable[MAX_SKILL];  // skill  -> status
 int StatusIconChangeTable[SC_MAX];          // status -> "icon" (icon is a bit of a misnomer, since there exist values with no icon associated)
@@ -1739,12 +1738,6 @@ struct status_change {
 	unsigned char count;
 	//TODO: See if it is possible to implement the following SC's without requiring extra parameters while the SC is inactive.
 	unsigned char jb_flag; //Joint Beat type flag
-	struct {
-		unsigned char move;
-		unsigned char pickup;
-		unsigned char drop;
-		unsigned char cast;
-	} cant;/* status change state flags */
 	//int sg_id; //ID of the previous Storm gust that hit you
 	short comet_x, comet_y; // Point where src casted Comet - required to calculate damage from this point
 	/**
@@ -1762,6 +1755,7 @@ sc_type status_skill2sc(int skill);
 int status_sc2skill(sc_type sc);
 unsigned int status_sc2scb_flag(sc_type sc);
 int status_type2relevant_bl_types(int type);
+int status_get_sc_type(sc_type idx);
 
 int status_damage(struct block_list *src,struct block_list *target,int hp,int sp, int walkdelay, int flag);
 //Define for standard HP damage attacks.
@@ -1882,9 +1876,19 @@ int status_check_visibility(struct block_list *src, struct block_list *target); 
 
 int status_change_spread(struct block_list *src, struct block_list *bl);
 
+defType status_calc_def(struct block_list *bl, struct status_change *sc, int, bool);
+signed short status_calc_def2(struct block_list *,struct status_change *, int, bool);
+defType status_calc_mdef(struct block_list *bl, struct status_change *sc, int, bool);
+signed short status_calc_mdef2(struct block_list *,struct status_change *, int, bool);
+
 #ifdef RENEWAL
 unsigned short status_base_matk(const struct status_data *status, int level);
+int status_get_weapon_atk(struct block_list *src, struct weapon_atk *watk, int flag);
+int status_get_total_mdef(struct block_list *src);
+int status_get_total_def(struct block_list *src);
 #endif
+
+int status_get_matk(struct block_list *src, int flag);
 
 int status_readdb(void);
 int do_init_status(void);

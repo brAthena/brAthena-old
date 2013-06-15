@@ -268,6 +268,9 @@ static struct db_stats {
 #define DB_COUNTSTAT(token)
 #endif /* !defined(DB_ENABLE_STATS) */
 
+struct eri *db_iterator_ers;
+struct eri *db_alloc_ers;
+
 /*****************************************************************************\
  *  (2) Section of private functions used by the database system.            *
  *  db_rotate_left     - Rotate a tree node to the left.                     *
@@ -2323,10 +2326,11 @@ DBReleaser db_custom_release(DBRelease which)
  * @see #DBMap_impl
  * @see #db_fix_options(DBType,DBOptions)
  */
-DBMap *db_alloc(const char *file, int line, DBType type, DBOptions options, unsigned short maxlen)
+DBMap *db_alloc(const char *file, const char *func, int line, DBType type, DBOptions options, unsigned short maxlen)
 {
 	DBMap_impl *db;
 	unsigned int i;
+	char ers_name[50];
 
 #ifdef DB_ENABLE_STATS
 	DB_COUNTSTAT(db_alloc);
@@ -2368,7 +2372,8 @@ DBMap *db_alloc(const char *file, int line, DBType type, DBOptions options, unsi
 	db->free_max = 0;
 	db->free_lock = 0;
 	/* Other */
-	db->nodes = ers_new(sizeof(struct dbn),"db.c::db_alloc",ERS_OPT_NONE);
+	snprintf(ers_name, 50, "db_alloc:nodes:%s:%s:%d",func,file,line);
+	db->nodes = ers_new(sizeof(struct dbn),ers_name,ERS_OPT_WAIT|ERS_OPT_FREE_NAME);
 	db->cmp = db_default_cmp(type);
 	db->hash = db_default_hash(type);
 	db->release = db_default_release(type, options);
@@ -2532,6 +2537,9 @@ void *db_data2ptr(DBData *data)
  */
 void db_init(void)
 {
+	db_iterator_ers = ers_new(sizeof(struct DBIterator_impl),"db.c::db_iterator_ers",ERS_OPT_NONE);
+	db_alloc_ers = ers_new(sizeof(struct DBMap_impl),"db.c::db_alloc_ers",ERS_OPT_NONE);
+	ers_chunk_size(db_alloc_ers, 50);
 	DB_COUNTSTAT(db_init);
 }
 

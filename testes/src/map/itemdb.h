@@ -35,11 +35,13 @@
 #define MAX_ITEMS_PER_COMBO 6
 
 enum item_itemid {
+    ITEMID_HOLY_WATER = 523,
     ITEMID_EMPERIUM = 714,
     ITEMID_YELLOW_GEMSTONE = 715,
     ITEMID_RED_GEMSTONE = 716,
     ITEMID_BLUE_GEMSTONE = 717,
     ITEMID_TRAP = 1065,
+    ITEMID_FACE_PAINT = 6120,
     ITEMID_STRANGE_EMBRYO = 6415,
     ITEMID_STONE = 7049,
     ITEMID_SKULL_ = 7420,
@@ -81,6 +83,7 @@ enum {
     ITEMID_CAMOUFLAGE_GENERATOR,
     ITEMID_HIGH_QUALITY_COOLER,
     ITEMID_SPECIAL_COOLER,
+    ITEMID_MONKEY_SPANNER = 6186,
 } mecha_item_list;
 
 enum {
@@ -251,6 +254,7 @@ int itemdb_isrestricted(struct item *item, int gmlv, int gmlv2, int (*func)(stru
 int itemdb_isequip(int);
 int itemdb_isequip2(struct item_data *);
 int itemdb_isidentified(int);
+int itemdb_isidentified2(struct item_data *data);
 int itemdb_isstackable(int);
 int itemdb_isstackable2(struct item_data *);
 uint64 itemdb_unique_id(int8 flag, int64 value); // Unique Item ID

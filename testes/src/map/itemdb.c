@@ -501,6 +501,17 @@ int itemdb_isidentified(int nameid)
 	}
 }
 
+/* same as itemdb_isidentified but without a lookup */
+int itemdb_isidentified2(struct item_data *data) {
+	switch (data->type) {
+		case IT_WEAPON:
+		case IT_ARMOR:
+		case IT_PETARMOR:
+			return 0;
+		default:
+			return 1;
+	}
+}
 /*==========================================
  * Search by name for the override flags available items
  * (Give item another sprite)

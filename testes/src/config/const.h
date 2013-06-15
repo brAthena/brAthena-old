@@ -68,7 +68,7 @@
 /* Cálculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
 #ifdef RENEWAL
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + 100 )
-	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + 175 )
+	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + 150 )
 #else
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi )
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex )
@@ -82,6 +82,7 @@
 	#define RE_LVL_MDMOD(val) \
 		if( status_get_lv(src) > 100 && val > 0) \
 			md.damage = md.damage * status_get_lv(src) / val;
+	/* Armadilhas Especiais Sentinelas */
 	#define RE_LVL_TMDMOD() \
 		if( status_get_lv(src) > 100 ) \
 			md.damage = md.damage * 150 / 100 + md.damage * status_get_lv(src) / 100;
@@ -100,10 +101,11 @@
 #endif
 
 /* Cliente suporta sistema de recrutar grupo? */
+#ifdef PACKETVER_RE
 #if (PACKETVER == 20120410) || (PACKETVER == 20120418)
 	#define	PARTY_RECRUIT
 #endif
-
+#endif
 // Redução do tempo de conjuração variável da renovação.
 #ifdef RENEWAL_CAST
 	#define VARCAST_REDUCTION(val){ \

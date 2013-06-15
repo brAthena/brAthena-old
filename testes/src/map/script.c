@@ -744,18 +744,18 @@ int add_str(const char *p)
 
 	// grow list if neccessary
 	if(str_num >= str_data_size) {
-		str_data_size += 128;
+		str_data_size += 1280;
 		RECREATE(str_data,struct str_data_struct,str_data_size);
-		memset(str_data + (str_data_size - 128), '\0', 128);
+		memset(str_data + (str_data_size - 1280), '\0', 1280);
 	}
 
 	len=(int)strlen(p);
 
 	// grow string buffer if neccessary
 	while(str_pos+len+1 >= str_size) {
-		str_size += 256;
+		str_size += 10240;
 		RECREATE(str_buf,char,str_size);
-		memset(str_buf + (str_size - 256), '\0', 256);
+		memset(str_buf + (str_size - 10240), '\0', 10240);
 	}
 
 	safestrncpy(str_buf+str_pos, p, len+1);
@@ -938,10 +938,7 @@ const char *skip_word(const char *p)
 /// Adds a word to str_data.
 /// @see skip_word
 /// @see add_str
-static
-int add_word(const char *p)
-{
-	char *word;
+static int add_word(const char *p) {
 	int len;
 	int i;
 
@@ -951,13 +948,15 @@ int add_word(const char *p)
 		disp_error_message("script:add_word: palavra invalida. Uma palavra consiste de caracteres alfanumericos, e prefixos/sufixos de variavel validos.", p);
 
 	// Duplicate the word
-	word = (char *)aMalloc(len+1);
-	memcpy(word, p, len);
-	word[len] = 0;
+	if(len+1 > script->word_size)
+		RECREATE(script->word_buf, char, (script->word_size = (len+1)));
+
+	memcpy(script->word_buf, p, len);
+	script->word_buf[len] = 0;
 
 	// add the word
-	i = add_str(word);
-	aFree(word);
+	i = add_str(script->word_buf);
+
 	return i;
 }
 
@@ -2464,7 +2463,7 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 	CREATE(code,struct script_code,1);
 	code->script_buf  = script_buf;
 	code->script_size = script_size;
-	code->script_vars = idb_alloc(DB_OPT_RELEASE_DATA);
+	code->script_vars = NULL;
 	return code;
 }
 
@@ -2977,6 +2976,10 @@ struct script_state *script_alloc_state(struct script_code *script, int pos, int
 	st->oid = oid;
 	st->sleep.timer = INVALID_TIMER;
 	st->npc_item_flag = battle_config.item_enabled_npc;
+
+	if(!st->script->script_vars)
+		st->script->script_vars = idb_alloc(DB_OPT_RELEASE_DATA);
+
 	return st;
 }
 
@@ -2995,6 +2998,10 @@ void script_free_state(struct script_state *st)
 	pop_stack(st, 0, st->stack->sp);
 	aFree(st->stack->stack_data);
 	aFree(st->stack);
+	if(st->script && st->script->script_vars && !db_size(st->script->script_vars)) {
+		script_free_vars(st->script->script_vars);
+		st->script->script_vars = NULL;
+	}
 	st->stack = NULL;
 	st->pos = -1;
 	aFree(st);
@@ -3596,7 +3603,7 @@ void run_script_main(struct script_state *st)
 	int cmdcount = script_config.check_cmdcount;
 	int gotocount = script_config.check_gotocount;
 	TBL_PC *sd;
-	struct script_stack *stack=st->stack;
+	struct script_stack *stack = st->stack;
 	struct npc_data *nd;
 
 	script_attach_state(st);
@@ -4145,6 +4152,8 @@ int do_final_script()
 		aFree(script->hq);
 	if(script->hqi != NULL)
 		aFree(script->hqi);
+	if( script->word_buf != NULL )
+		aFree(script->word_buf);
 
 #ifdef BETA_THREAD_TEST
 	/* QueryThread */
@@ -7398,7 +7407,7 @@ BUILDIN_FUNC(successrefitem)
 		ep=sd->status.inventory[i].equip;
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
 
 		sd->status.inventory[i].refine++;
 		pc_unequipitem(sd,i,2); // status calc will happen in pc_equipitem() below
@@ -7407,7 +7416,7 @@ BUILDIN_FUNC(successrefitem)
 		clif_delitem(sd,i,1,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i],sd->inventory_data[i]);
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
@@ -7480,7 +7489,7 @@ BUILDIN_FUNC(downrefitem)
 		ep = sd->status.inventory[i].equip;
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
 
 		sd->status.inventory[i].refine++;
 		pc_unequipitem(sd,i,2); // status calc will happen in pc_equipitem() below
@@ -7489,7 +7498,7 @@ BUILDIN_FUNC(downrefitem)
 		clif_delitem(sd,i,1,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i],sd->inventory_data[i]);
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
@@ -9593,8 +9602,8 @@ BUILDIN_FUNC(sc_end)
 
 
 		switch(type) {
-			case SC_WEIGHT50:
-			case SC_WEIGHT90:
+			case SC_WEIGHTOVER50:
+			case SC_WEIGHTOVER90:
 			case SC_NOCHAT:
 			case SC_PUSH_CART:
 				return 0;
@@ -10253,7 +10262,7 @@ BUILDIN_FUNC(warpwaitingpc)
 /// Detaches a character from a script.
 ///
 /// @param st Script state to detach the character from.
-static void script_detach_rid(struct script_state *st)
+void script_detach_rid(struct script_state *st)
 {
 	if(st->rid) {
 		script_detach_state(st, false);
@@ -18208,6 +18217,8 @@ void script_defaults(void) {
 	script->hqs = script->hqis = 0;
 	memset(&script->hqe, 0, sizeof(script->hqe));
 
+	script->word_buf = NULL;
+	script->word_size = 0;
 	script->queue = script_hqueue_get;
 	script->queue_add = script_hqueue_add;
 	script->queue_del = script_hqueue_del;

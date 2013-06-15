@@ -47,8 +47,9 @@ struct block_list;
 // Damage Calculation
 
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,uint16 skill_id,uint16 skill_lv,int count);
+struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int wflag);
 
-int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int *, int flag, uint16 skill_id);
+int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int *, int flag, uint16 skill_id, int*);
 
 void battle_drain(struct map_session_data *sd, struct block_list *tbl, int rdamage, int ldamage, int race, int boss);
 
@@ -108,6 +109,27 @@ enum e_battle_check_target {
 int battle_check_undead(int race,int element);
 int battle_check_target(struct block_list *src, struct block_list *target,int flag);
 bool battle_check_range(struct block_list *src,struct block_list *bl,int range);
+
+/* applies element modifiers */  
+int battle_calc_elefix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int nk, int n_ele, int s_ele, int s_ele_, bool left, int flag);
+  /* applies mastery modifiers */  
+int battle_calc_masteryfix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int div, bool left, bool weapon);
+  /* applies skill modifiers */  
+int battle_calc_skillratio(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int skillratio, int flag);
+  /* applies size modifiers */
+int battle_calc_sizefix(struct map_session_data *sd, int damage, int type, int size,  bool ignore);
+  /* get weapon damage */
+#ifdef RENEWAL
+int battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2);
+#endif
+  /* applies defense reductions */
+int battle_calc_defense(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int flag, int pdef);
+
+#ifdef RENEWAL
+	int battle_calc_base_damage (struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
+#else
+	int battle_calc_base_damage (struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
+#endif
 
 void battle_consume_ammo(struct map_session_data *sd, int skill, int lv);
 // Settings
@@ -383,7 +405,6 @@ extern struct Battle_Config {
 
 	int copyskill_restrict; // [Aru]
 	int berserk_cancels_buffs; // [Aru]
-	int debuff_on_logout; // Removes a few "official" negative Scs on logout. [Skotlex]
 	int mob_ai; //Configures various mob_ai settings to make them smarter or dumber(official). [Skotlex]
 	int hom_setting; //Configures various homunc settings which make them behave unlike normal characters.. [Skotlex]
 	int dynamic_mobs; // Dynamic Mobs [Wizputer] - battle_athena flag implemented by [random]

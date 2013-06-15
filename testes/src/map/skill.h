@@ -287,6 +287,7 @@ int skill_get_unit_target(uint16 skill_id);
 int skill_tree_get_max(uint16 skill_id, int b_class);    // Celest
 const char *skill_get_name(uint16 skill_id);     // [Skotlex]
 const char *skill_get_desc(uint16 skill_id);     // [Skotlex]
+int skill_check_condition_char_sub(struct block_list *bl, va_list ap);
 
 int skill_name2id(const char *name);
 

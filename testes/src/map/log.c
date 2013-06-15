@@ -219,7 +219,7 @@ void log_pick(int id, int16 m, e_log_pick_type type, int amount, struct item *it
 }
 
 /// logs item transactions (players)
-void log_pick_pc(struct map_session_data *sd, e_log_pick_type type, int amount, struct item *itm)
+void log_pick_pc(struct map_session_data *sd, e_log_pick_type type, int amount, struct item *itm, struct item_data *data)
 {
 	nullpo_retv(sd);
 	log_pick(sd->status.char_id, sd->bl.m, type, amount, itm);
@@ -227,7 +227,7 @@ void log_pick_pc(struct map_session_data *sd, e_log_pick_type type, int amount, 
 
 
 /// logs item transactions (monsters)
-void log_pick_mob(struct mob_data *md, e_log_pick_type type, int amount, struct item *itm)
+void log_pick_mob(struct mob_data *md, e_log_pick_type type, int amount, struct item *itm, struct item_data *data)
 {
 	nullpo_retv(md);
 	log_pick(md->class_, md->bl.m, type, amount, itm);

@@ -1445,7 +1445,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 			if(!battle_check_range(&md->bl, tbl, md->status.rhw.range)
 			   && (  //Can't attack back and can't reach back.
 			       (!can_move && DIFF_TICK(tick, md->ud.canmove_tick) > 0 && (battle_config.mob_ai&0x2 || (md->sc.data[SC_SPIDERWEB] && md->sc.data[SC_SPIDERWEB]->val1)
-			               || md->sc.data[SC_BITE] || md->sc.data[SC_VACUUM_EXTREME] || md->sc.data[SC_THORNSTRAP]
+			               || md->sc.data[SC_WUGBITE] || md->sc.data[SC_VACUUM_EXTREME] || md->sc.data[SC_THORNS_TRAP]
 			               || md->sc.data[SC__MANHOLE])) // Not yet confirmed if boss will teleport once it can't reach target.
 			       || !mob_can_reach(md, tbl, md->min_chase, MSS_RUSH)
 			   )
@@ -1465,7 +1465,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 			   || (!battle_check_range(&md->bl, abl, md->status.rhw.range) // Not on Melee Range and ...
 			       && ( // Reach check
 			           (!can_move && DIFF_TICK(tick, md->ud.canmove_tick) > 0 && (battle_config.mob_ai&0x2 || (md->sc.data[SC_SPIDERWEB] && md->sc.data[SC_SPIDERWEB]->val1)
-			                   || md->sc.data[SC_BITE] || md->sc.data[SC_VACUUM_EXTREME] || md->sc.data[SC_THORNSTRAP]
+			                   || md->sc.data[SC_WUGBITE] || md->sc.data[SC_VACUUM_EXTREME] || md->sc.data[SC_THORNS_TRAP]
 			                   || md->sc.data[SC__MANHOLE])) // Not yet confirmed if boss will teleport once it can't reach target.
 			           || !mob_can_reach(md, abl, dist+md->db->range3, MSS_RUSH)
 			       )
@@ -1572,7 +1572,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 
 		fitem = (struct flooritem_data *)tbl;
 		//Logs items, taken by (L)ooter Mobs [Lupus]
-		log_pick_mob(md, LOG_TYPE_LOOT, fitem->item_data.amount, &fitem->item_data);
+		log_pick_mob(md, LOG_TYPE_LOOT, fitem->item_data.amount, &fitem->item_data, NULL);
 
 		if(md->lootitem_count < LOOTITEM_SIZE) {
 			memcpy(&md->lootitem[md->lootitem_count++], &fitem->item_data, sizeof(md->lootitem[0]));
@@ -1806,7 +1806,7 @@ static void mob_item_drop(struct mob_data *md, struct item_drop_list *dlist, str
 	TBL_PC *sd;
 
 	//Logs items, dropped by mobs [Lupus]
-	log_pick_mob(md, loot?LOG_TYPE_LOOT:LOG_TYPE_PICKDROP_MONSTER, -ditem->item_data.amount, &ditem->item_data);
+	log_pick_mob(md, loot?LOG_TYPE_LOOT:LOG_TYPE_PICKDROP_MONSTER, -ditem->item_data.amount, &ditem->item_data, NULL);
 
 	sd = map_charid2sd(dlist->first_charid);
 	if(sd == NULL) sd = map_charid2sd(dlist->second_charid);
@@ -2322,9 +2322,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			   (int)(md->level - sd->status.base_level) >= 20)
 				drop_rate = (int)(drop_rate*1.25); // pk_mode increase drops if 20 level difference [Valaris]
 
-			// Increase drop rate if user has SC_ITEMBOOST
-			if(sd && sd->sc.data[SC_ITEMBOOST])  // now rig the drop rate to never be over 90% unless it is originally >90%.
-				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_ITEMBOOST]->val1)/100.),0,9000));
+			// Increase drop rate if user has SC_CASH_RECEIVEITEM
+			if(sd && sd->sc.data[SC_CASH_RECEIVEITEM])  // now rig the drop rate to never be over 90% unless it is originally >90%.
+				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_CASH_RECEIVEITEM]->val1)/100.),0,9000));
 #ifdef RENEWAL_DROP
 			if(drop_modifier != 100) {
 				drop_rate = drop_rate * drop_modifier / 100;
@@ -2460,9 +2460,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			for(i = 0; i < MAX_MVP_DROP; i++) {
+				struct item_data *data;
 				if(mdrop_id[i] <= 0)
 					continue;
-				if(!itemdb_exists(mdrop_id[i]))
+				if(!(data = itemdb_exists(mdrop_id[i])))
 					continue;
 
 				temp = mdrop_p[i];
@@ -2473,7 +2474,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 				memset(&item,0,sizeof(item));
 				item.nameid=mdrop_id[i];
-				item.identify = itemdb_isidentified(item.nameid);
+				item.identify = itemdb_isidentified2(data);
 				if(battle_config.mob_drop_identified)
 					item.identify = 1;
 				clif_mvp_item(mvp_sd,item.nameid);
@@ -2481,10 +2482,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 				//A Rare MVP Drop Global Announce by Lupus
 				if(temp<=battle_config.rare_drop_announce) {
-					struct item_data *i_data;
 					char message[128];
-					i_data = itemdb_exists(item.nameid);
-					sprintf(message, msg_txt(541), mvp_sd->status.name, md->name, i_data->jname, temp/100.);
+					sprintf(message, msg_txt(541), mvp_sd->status.name, md->name, data->jname, temp/100.);
 					//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
 					intif_broadcast(message,strlen(message)+1,0);
 				}
@@ -2495,7 +2494,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 
 				//Logs items, MVP prizes [Lupus]
-				log_pick_mob(md, LOG_TYPE_MVP, -1, &item);
+				log_pick_mob(md, LOG_TYPE_MVP, -1, &item, data);
 				break;
 			}
 		}

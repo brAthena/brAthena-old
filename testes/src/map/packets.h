@@ -1978,7 +1978,11 @@ packet(0x020d,-1);
 	packet(0x0366,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
 	packet(0x0889,6,clif->pGetCharNameRequest,2);
 	packet(0x0884,6,clif->pSolveCharName,2);
+#ifndef PACKETVER_RE
+	packet(0x091D,18,clif->pPartyBookingRegisterReq,2,4,6);
+#else
 	packet(0x08E5,41,clif->pPartyBookingRegisterReq,2,4);
+#endif
 	packet(0x08E6,4);
 	packet(0x08E7,10,clif->pPartyBookingSearchReq,2);
 	packet(0x08E8,-1);
@@ -2031,6 +2035,12 @@ packet(0x020d,-1);
 	packet(0x08E5,41,clif->pPartyBookingRegisterReq,2,4);
 	packet(0x08d2,10);
 	packet(0x0916,26,clif->pGuildInvite2,2);
+#endif
+
+#ifndef PACKETVER_RE
+#if PACKETVER >= 20120604
+	packet(0x0861,18,clif->pPartyBookingRegisterReq,2,4,6);
+#endif
 #endif
 
 //2012-06-18aRagexeRE
@@ -2120,6 +2130,7 @@ packet(0x020d,-1);
 	// Novos Pacotes
 	packet(0x0998,8,clif->pEquipItem,2,4);
 	packet(0x0447,2,clif->pBlockingPlaycancel,0); // PACKET_CZ_BLOCKING_PLAY_CANCEL
+	packet(0x099f,24);
 #endif
 
 //2013-05-15aRagexe

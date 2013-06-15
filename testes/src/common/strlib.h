@@ -20,9 +20,13 @@
 #include "../common/cbasetypes.h"
 #include <stdarg.h>
 
-#define __USE_GNU  // required to enable strnlen on some platforms
-#include <string.h>
-#undef __USE_GNU
+#ifndef __USE_GNU
+	#define __USE_GNU  // required to enable strnlen on some platforms
+	#include <string.h>
+	#undef __USE_GNU
+#else
+	#include <string.h>
+#endif
 
 char *jstrescape(char *pt);
 char *jstrescapecpy(char *pt, const char *spt);

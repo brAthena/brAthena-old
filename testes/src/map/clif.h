@@ -231,8 +231,7 @@ enum map_type {
     MAPTYPE_UNUSED               = 29,
 };
 
-enum useskill_fail_cause {
-    // clif_skill_fail
+typedef enum useskill_fail_cause { // clif_skill_fail
     USESKILL_FAIL_LEVEL = 0,
     USESKILL_FAIL_SP_INSUFFICIENT = 1,
     USESKILL_FAIL_HP_INSUFFICIENT = 2,
@@ -273,7 +272,7 @@ enum useskill_fail_cause {
     USESKILL_FAIL_CANONBALL = 37,
     //XXX_USESKILL_FAIL_II_MADOGEAR_ACCELERATION = 38,
     //XXX_USESKILL_FAIL_II_MADOGEAR_HOVERING_BOOSTER = 39,
-    USESKILL_FAIL_MADOGEAR_HOVERING = 40,
+   //XXX_USESKILL_FAIL_MADOGEAR_HOVERING = 40,
     //XXX_USESKILL_FAIL_II_MADOGEAR_SELFDESTRUCTION_DEVICE = 41,
     //XXX_USESKILL_FAIL_II_MADOGEAR_SHAPESHIFTER = 42,
     USESKILL_FAIL_GUILLONTINE_POISON = 43,
@@ -317,7 +316,7 @@ enum useskill_fail_cause {
     USESKILL_FAIL_STYLE_CHANGE_FIGHTER = 81,
     USESKILL_FAIL_STYLE_CHANGE_GRAPPLER = 82,
     USESKILL_FAIL_THERE_ARE_NPC_AROUND = 83,
-};
+}useskill_fail_cause;
 
 enum clif_messages {
 	MERC_MSG_BASE = 0x4f2,
@@ -440,6 +439,8 @@ void clif_skillinfo(struct map_session_data *sd,int skill, int inf);
 void clif_addskill(struct map_session_data *sd, int id);
 void clif_deleteskill(struct map_session_data *sd, int id);
 
+void clif_initialstatus(struct map_session_data *sd);
+
 void clif_skillcasting(struct block_list *bl, int src_id, int dst_id, int dst_x, int dst_y, uint16 skill_id, int property, int casttime);
 void clif_skillcastcancel(struct block_list *bl);
 void clif_skill_fail(struct map_session_data *sd,uint16 skill_id,enum useskill_fail_cause cause,int btype);
@@ -451,7 +452,7 @@ void clif_skill_poseffect(struct block_list *src,uint16 skill_id,int val,int x,i
 void clif_skill_estimation(struct map_session_data *sd,struct block_list *dst);
 void clif_skill_warppoint(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv, unsigned short map1, unsigned short map2, unsigned short map3, unsigned short map4);
 void clif_skill_memomessage(struct map_session_data *sd, int type);
-void clif_skill_teleportmessage(struct map_session_data *sd, int type);
+void clif_skill_mapinfomessage(struct map_session_data *sd, int type);
 void clif_skill_produce_mix_list(struct map_session_data *sd, int skill_id, int trigger);
 void clif_cooking_list(struct map_session_data *sd, int trigger, uint16 skill_id, int qty, int list_type);
 
@@ -759,7 +760,8 @@ int clif_skill_itemlistwindow(struct map_session_data *sd, uint16 skill_id, uint
 void clif_elemental_info(struct map_session_data *sd);
 void clif_elemental_updatestatus(struct map_session_data *sd, int type);
 
-void clif_talisman(struct map_session_data *sd, short type);
+void clif_charm(struct map_session_data *sd, short type);
+void clif_charm_single(int fd, struct map_session_data *sd, short type);
 
 void clif_snap(struct block_list *bl, short x, short y);
 void clif_monster_hp_bar(struct mob_data *md, int fd);
