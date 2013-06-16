@@ -510,7 +510,7 @@ M_WARP:
 	sc_end SC_IMPOSITIO;
 	sc_end SC_SUFFRAGIUM;
 	sc_end SC_MAGNIFICAT;
-	sc_end SC_WEAPONPERFECTION;
+	sc_end SC_WEAPONPERFECT;
 	sc_end SC_GOSPEL;
 	sc_end SC_BASILICA;
 	sc_end SC_MAGICPOWER;
@@ -518,8 +518,8 @@ M_WARP:
 	sc_end SC_MARIONETTE2;
 	sc_end SC_DEVOTION;
 	sc_end SC_SACRIFICE;
-	sc_end SC_MAXOVERTHRUST;
-	sc_end SC_SPIRIT;
+	sc_end SC_OVERTHRUSTMAX;
+	sc_end SC_SOULLINK;
 	warp "n_castle",102,93+rand(14);
 	close;
 }
