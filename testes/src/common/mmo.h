@@ -66,8 +66,16 @@
 /// Comentar a linha a seguir se seu cliente não é ragexeRE (necessário por causa de pacotes conflitantes em ragexe vs ragexeRE)
 #define PACKETVER_RE
 
-//Remove/Comment this line to disable sc_data saving. [Skotlex]
+// Client support for experimental RagexeRE UI present in 2012-04-10 and 2012-04-18
+#ifdef PACKETVER_RE
+#if (PACKETVER == 20120410) || (PACKETVER == 20120418)
+	#define	PARTY_RECRUIT
+#endif
+#endif
+
+// Comment the following line to disable sc_data saving. [Skotlex]
 #define ENABLE_SC_SAVING
+
 //Remove/Comment this line to disable server-side hot-key saving support [Skotlex]
 //Note that newer clients no longer save hotkeys in the registry!
 #define HOTKEY_SAVING

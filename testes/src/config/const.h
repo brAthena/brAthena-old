@@ -100,12 +100,6 @@
 	#define MAX_CARTS 5
 #endif
 
-/* Cliente suporta sistema de recrutar grupo? */
-#ifdef PACKETVER_RE
-#if (PACKETVER == 20120410) || (PACKETVER == 20120418)
-	#define	PARTY_RECRUIT
-#endif
-#endif
 // Redução do tempo de conjuração variável da renovação.
 #ifdef RENEWAL_CAST
 	#define VARCAST_REDUCTION(val){ \

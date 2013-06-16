@@ -7409,6 +7409,9 @@ BUILDIN_FUNC(successrefitem)
 		//Logs items, got from (N)PC scripts [Lupus]
 		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
 
+		if (sd->status.inventory[i].refine >= MAX_REFINE)
+			return 0;
+
 		sd->status.inventory[i].refine++;
 		pc_unequipitem(sd,i,2); // status calc will happen in pc_equipitem() below
 

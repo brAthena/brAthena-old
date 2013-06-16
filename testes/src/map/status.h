@@ -657,10 +657,6 @@ typedef enum sc_type {
 
 	//homon S
     SC_STYLE_CHANGE,
-    SC_TINDER_BREAKER,
-    SC_TINDER_BREAKER2,
-    SC_CBC,
-    SC_EQC,
 
     SC_GOLDENE_FERSE,
     SC_ANGRIFFS_MODUS,
@@ -680,7 +676,7 @@ typedef enum sc_type {
     /**
     * Novas Habilidades 3rd [Megasantos]
     **/
-    SC_DARKCROW = 557,
+    SC_DARKCROW = 553,
     SC_FULL_THROTTLE,
     SC_REBOUND,
     SC_UNLIMIT,
@@ -688,13 +684,20 @@ typedef enum sc_type {
     SC_TELEKINESIS_INTENSE,
     SC_OFFERTORIUM,
     SC_FRIGG_SONG,
-    SC_FLASH_COMBO_ATK,
 
     /**
     * Hanbok [Megasantos]
     **/
     SC_ALL_RIDING,
     SC_HANBOK,
+
+    SC_MONSTER_TRANSFORM,
+
+    //homon S
+    SC_TINDER_BREAKER,
+    SC_TINDER_BREAKER2,
+    SC_CBC,
+    SC_EQC,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
