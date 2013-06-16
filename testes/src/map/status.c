@@ -815,6 +815,9 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_SPL_MATK] = SI_SPL_MATK;
 	StatusIconChangeTable[SC_PLUSATTACKPOWER] = SI_PLUSATTACKPOWER;
 	StatusIconChangeTable[SC_PLUSMAGICPOWER] = SI_PLUSMAGICPOWER;
+	StatusIconChangeTable[SC_INCMHPRATE] = SI_ATKER_ASPD;
+	StatusIconChangeTable[SC_INCMSPRATE] = SI_ATKER_MOVESPEED;
+	
 	//Cash Items
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = SI_FOOD_STR_CASH;
 	StatusIconChangeTable[SC_FOOD_AGI_CASH] = SI_FOOD_AGI_CASH;

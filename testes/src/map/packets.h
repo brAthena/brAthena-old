@@ -2128,6 +2128,7 @@ packet(0x020d,-1);
 	packet(0x997,-1);
 	packet(0x999,11);
 	// Novos Pacotes
+	packet(0x084b,19);
 	packet(0x0998,8,clif->pEquipItem,2,4);
 	packet(0x0447,2,clif->pBlockingPlaycancel,0); // PACKET_CZ_BLOCKING_PLAY_CANCEL
 	packet(0x099f,24);
