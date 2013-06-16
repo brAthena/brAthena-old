@@ -3603,6 +3603,8 @@ void map_reloadnpc(bool clear)
 
 #ifdef RENEWAL
 	map_reloadnpc_sub("npc/scripts_renovacao.conf");
+#elif OLD_TIMES
+	map_reloadnpc_sub("npc/scripts_old_times.conf");
 #else
 	map_reloadnpc_sub("npc/scripts_pre-renovacao.conf");
 #endif
@@ -3749,10 +3751,12 @@ char *get_database_name(int database_id)
 		#endif
 		case 13: db_name = "skill_changematerial_db"; break;
 		case 14: db_name = "castle_db"; break;
+		#ifndef OLD_TIMES
 		case 15: db_name = "homunculus_db"; break;
 		case 16: db_name = "homun_skill_tree_db"; break;
 		case 17: db_name = "mercenary_db"; break;
 		case 18: db_name = "mercenary_skill_db"; break;
+		#endif
 		case 19: db_name = "guild_skill_tree_db"; break;
 		case 20: db_name = "item_avail_db"; break;
 		case 21: db_name = "item_noequip_db"; break;
@@ -3790,7 +3794,9 @@ char *get_database_name(int database_id)
 			//case 49: db_name = "pet_db2"; break;
 		case 50: db_name = "quest_db"; break;
 		case 51: db_name = "size_fix_db"; break;
+		#ifndef OLD_TIMES
 		case 52: db_name = "exp_homun_db"; break;
+		#endif
 		case 53: db_name = "statpoint_db"; break;
 		#ifdef RENEWAL
 		case 54: db_name = "level_penalty_db"; break;

@@ -17021,7 +17021,7 @@ BUILDIN_FUNC(useatcmd)
 	return 0;
 }
 
-BUILDIN_FUNC(checkre)
+BUILDIN_FUNC(checkversion)
 {
 	int num;
 
@@ -17029,6 +17029,8 @@ BUILDIN_FUNC(checkre)
 	switch(num) {
 		case 0:
 #ifdef RENEWAL
+			script_pushint(st, 2);
+#elif OLD_TIMES
 			script_pushint(st, 1);
 #else
 			script_pushint(st, 0);
@@ -17077,7 +17079,7 @@ BUILDIN_FUNC(checkre)
 #endif
 			break;
 		default:
-			ShowWarning("buildin_checkre: unknown parameter.\n");
+			ShowWarning("buildin_checkversion: unknown parameter.\n");
 			break;
 	}
 	return 0;
@@ -18154,7 +18156,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(setdragon,"?"),//[Ind]
 	BUILDIN_DEF(ismounting,""),//[Ind]
 	BUILDIN_DEF(setmounting,""),//[Ind]
-	BUILDIN_DEF(checkre,"i"),
+	BUILDIN_DEF(checkversion,"i"),
 	/**
 	 * rAthena and beyond!
 	 **/

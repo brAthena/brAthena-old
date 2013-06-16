@@ -995,6 +995,7 @@ ACMD_FUNC(jobchange)
 
 		upper = 0;
 
+#ifndef OLD_TIMES
 		// Classes Normais
 		for(i = JOB_NOVICE; i < JOB_MAX_BASIC && !found; i++) {
 			if (strncmpi(message, job_name(i), 16) == 0) {
@@ -1011,6 +1012,7 @@ ACMD_FUNC(jobchange)
 			}
 		}
 
+#endif
 		if(!found) {
 			text = atcommand_help_string(command);
 			if(text)
@@ -1019,9 +1021,10 @@ ACMD_FUNC(jobchange)
 		}
 	}
 
-	if(job == JOB_KNIGHT2 || job == JOB_CRUSADER2 || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER || job == JOB_HANBOK
-	   || job == JOB_LORD_KNIGHT2 || job == JOB_PALADIN2 || job == JOB_BABY_KNIGHT2 || job == JOB_BABY_CRUSADER2 || job == JOB_STAR_GLADIATOR2
-	   || (job >= JOB_RUNE_KNIGHT2 && job <= JOB_MECHANIC_T2) || (job >= JOB_BABY_RUNE2 && job <= JOB_BABY_MECHANIC2)
+	if(job == JOB_KNIGHT2 || job == JOB_CRUSADER2 || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER 
+	#ifndef OLD_TIMES
+	|| job == JOB_HANBOK || job == JOB_LORD_KNIGHT2 || job == JOB_PALADIN2 || job == JOB_BABY_KNIGHT2 || job == JOB_BABY_CRUSADER2 || job == JOB_STAR_GLADIATOR2 || (job >= JOB_RUNE_KNIGHT2 && job <= JOB_MECHANIC_T2) || (job >= JOB_BABY_RUNE2 && job <= JOB_BABY_MECHANIC2)
+	#endif
 	  ) { // Deny direct transformation into dummy jobs
 		clif_displaymessage(fd, msg_txt(923)); //"You can not change to this job by command."
 		return 0;
@@ -1041,7 +1044,11 @@ ACMD_FUNC(jobchange)
 		return -1;
 	}
 
-	if(pc_jobchange(sd, job, upper) == 0 && (!pc_isriding(sd) || !pc_isridingdragon(sd)) && (job != 7 && job != 14 && job != 4008 && job != 4015))
+	if(pc_jobchange(sd, job, upper) == 0 && (!pc_isriding(sd) 
+	#ifndef OLD_TIMES
+	|| !pc_isridingdragon(sd)
+	#endif
+	) && (job != 7 && job != 14 && job != 4008 && job != 4015))
 		clif_status_load(&sd->bl,SI_RIDING,0);
 	return 0;
 }
@@ -1775,6 +1782,7 @@ ACMD_FUNC(go)
 		{ MAP_YUNO,        157,  51 }, //  9=Yuno
 		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
 		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
+#ifndef OLD_TIMES
 		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
 		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
 		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
@@ -1800,6 +1808,7 @@ ACMD_FUNC(go)
 		{ MAP_MALANGDO,    140, 114 }, // 33=Malangdo Island
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
+#endif
 #endif
 	};
 

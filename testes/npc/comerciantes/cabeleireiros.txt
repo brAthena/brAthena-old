@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: cabelereiros.txt                       |
+//   | Nome do Script: cabeleireiros.txt                      |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -24,9 +24,9 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Cabeleleira Veronica
+// Cabeleireiro Veronica
 // ============================================================
-alberta_in,55,142,7	script	Cabelereira	91,{
+alberta_in,55,142,7	script	Cabeleireira	91,{
 	mes "[Veronica]";
 	mes "Bem-Vindo ao Veronicas Salão de Beleza.";
 	mes "Como posso lhe ajudar?";
@@ -267,12 +267,12 @@ L_cutin:
 	return;
 }
 
-// Roving Hair Dresser
+// Cabeleireiro Roving
 // ============================================================
-alberta,33,141,7	script	Cabelereiro Roving	87,{
+alberta,33,141,7	script	Cabeleireiro Roving	87,{
 	mes "[Rui Vishop]";
 	mes "Essa Veronica...";
-	mes "Hah! Melhor cabelereira, nada.";
+	mes "Hah! Melhor cabeleireira, nada.";
 	mes "Ela não é a melhor...";
 	mes "...";
 	mes "Eu sou!";
