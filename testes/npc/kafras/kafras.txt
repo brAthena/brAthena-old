@@ -393,7 +393,7 @@ izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
 	mes "Os serviços da Corporação Kafra sempre estarão ao seu lado.";
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,1,40,820;
-	if (checkre(0))
+	if (checkversion(0))
 		savepoint "izlude",129,97;
 	else
 		savepoint "izlude",94,103;
@@ -542,7 +542,7 @@ umbala,87,160,4	script	Funcionária Kafra::kaf_umbala	721,{
 	mes "[Funcionária Kafra]";
 	mes "Bem-vindo a Corporação Kafra.";
 	mes "Você sabe que os nossos serviços estarão sempre ao seu lado~";
-	callfunc "F_Kafra",5,(checkre(0)) ? 0 : 3,1,80,0;
+	callfunc "F_Kafra",5,(checkversion(0)) ? 0 : 3,1,80,0;
 	savepoint "umbala",126,131;
 	callfunc "F_KafEnd",0,1,"na cidade de Umbala";
 }
@@ -560,7 +560,7 @@ niflheim,202,180,3	script	Funcionária Kafra::kaf_niflheim	791,{
 // - Ilha Byalan
 izlu2dun,106,58,8	script	Funcionária Kafra::kaf_izlu2dun	115,{
 	cutin "kafra_03",2;
-	if(!checkre(0) && BaseJob==Job_Novice && job_merchant_q2 > 0) {
+	if(!checkversion(0) && BaseJob==Job_Novice && job_merchant_q2 > 0) {
 		callfunc "F_MercKafra";
 	}
 	mes "[Funcionária Kafra]";

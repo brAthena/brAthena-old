@@ -27,12 +27,12 @@
 alberta,23,238,4	script	Guia#01alberta	105,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Alberta]";
-	mes "Be-vindo a ^8B4513Alberta^000000,";
+	mes "Bem-vindo a ^8B4513Alberta^000000,";
 	mes "a Cidade Portuária.";
 	mes "Você deseja conhecer a cidade?";
 	next;
 	set .@loop1,1;
-	if(checkre(0)) { // Renewal
+	if(checkversion(0)) { // Renewal
 		while (1) {
 			switch(select("[ Principais Lugares ]:[ Lojas & Ajudantes ]:[ Portos ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:

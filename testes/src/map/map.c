@@ -3603,10 +3603,12 @@ void map_reloadnpc(bool clear)
 
 #ifdef RENEWAL
 	map_reloadnpc_sub("npc/scripts_renovacao.conf");
-#elif OLD_TIMES
+#else
+#ifdef OLD_TIMES
 	map_reloadnpc_sub("npc/scripts_old_times.conf");
 #else
 	map_reloadnpc_sub("npc/scripts_pre-renovacao.conf");
+#endif
 #endif
 
 #ifdef BRO

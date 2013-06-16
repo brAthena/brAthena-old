@@ -838,7 +838,7 @@ ra_temple,165,57,5	script	Niren#ss	915,{
 				mes "vier daquele lugar.";
 				delitem 7755,1; // Nota de Pesquisa
 				set aru_monas,26;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 50000,0;
 				else
 					getexp 500000,0;
@@ -1310,7 +1310,7 @@ ra_temple,165,57,5	script	Niren#ss	915,{
 			mes "você vê essa";
 			mes "expressão em seu rosto.^000000";
 			set aru_em,23;
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 100000,0;
 			else
 				getexp 1000000,0;
@@ -1890,7 +1890,7 @@ nameless_n,259,218,3	script	Larjes#Boat1	97,{
 		mes "por toda a sua ajuda.";
 		set aru_monas,24;
 		delitem 7726,1; //Token_Of_King
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 100000,0;
 		else
 			getexp 1000000,0;
@@ -6524,7 +6524,7 @@ prontera,148,326,3	script	Chefe da Polícia#edq	734,{
 		mes "Parabéns! ";
 		completequest 3134;
 		set zdan_edq,19;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 100000,0;
 		else
 			getexp 1000000,0;
@@ -11040,7 +11040,7 @@ prontera,140,304,5	script	Velho Soldado	901,{
 						getitem 607,1; //Yggdrasilberry
 						next;
 					}
-					if(checkre(0)) {
+					if(checkversion(0)) {
 						if ((BaseLevel > 65) && (BaseLevel < 75)) {
 							getexp 5000,0;
 							next;

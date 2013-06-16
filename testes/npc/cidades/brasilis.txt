@@ -57,10 +57,7 @@ brasilis,316,57,3	script	Marinheiro#bra1	100,{
 		mes "[Marinheiro]";
 		mes "Tenho certeza que sente falta de casa.";
 		close2;
-		if (checkre(0))
-				warp "alberta",243,82;
-			else
-				warp "alberta",244,115;
+		warp "alberta",243,82;
 		end;
 		}
 		mes "[Marinheiro]";

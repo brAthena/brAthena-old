@@ -2578,7 +2578,7 @@ OnTouch:
 		mes "Who would be to blame?";
 		next;
 		set rach_vice,24;
-		if(checkre(0)) {
+		if(checkversion(0)) {
 		if (BaseLevel > 90) getexp 130000,0;
 		else if (BaseLevel > 75) getexp 85000,0;
 		else getexp 45000,0;
@@ -2888,7 +2888,7 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 			mes "token of my appreication for";
 			mes " what you have done for me.";
 			delitem 7573,1; //Magic_Necklace_
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 70000,0;
 			else
 				getexp 700000,0;
@@ -4233,7 +4233,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 				if (countitem(12018) >= 20) {
 					cutin "ra_nemma04",2;
 					delitem 12018,20; //FireCracker";
-					if(checkre(0))
+					if(checkversion(0))
 						getexp 20000,0;
 					else
 						getexp 200000,0;
@@ -5439,7 +5439,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		set ra_tem_q,0;
 		cutin "",255;
 		specialeffect2 EF_ABSORBSPIRITS;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 90000,60000;
 		else
 			getexp 900000,600000;
@@ -5998,7 +5998,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "peace between our nations.";
 				completequest 60213;
 				set aru_vol,27;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 20000,0;
 				else
 					getexp 200000,0;

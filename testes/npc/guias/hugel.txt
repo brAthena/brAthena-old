@@ -26,7 +26,7 @@
 
 hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 	mes "[Vovó Guia de Hugel]";
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		mes "Oh, hello~ you are one energetic adventurer.";
 		mes "Welcome to ^8B4513Hugel^000000. I am honored to guide you in this beautiful village.";
 		mes "If this is the first time for you to use the guide services, you should ask a lot of questions.";

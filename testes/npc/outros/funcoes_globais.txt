@@ -29,7 +29,7 @@
  
 	OnInit:
 
-	set(.@version, checkre(0));
+	set(.@version, checkversion(0));
 		
 	if(!.@version){ // pre-re
 		movenpc("Dega#izlude",150,118,2);

@@ -1236,7 +1236,7 @@ OnInit:
 
 OnEnable:
 	enablenpc "Knight1";
-	if (!checkre(0)) {
+	if (!checkversion(0)) {
 		set .MeusMonstros,12;
 		monster "job_knt",39,150,"Poeira",1114,1,"Knight1::OnMyMobDead";
 		monster "job_knt",47,150,"Poeira",1114,1,"Knight1::OnMyMobDead";
@@ -1302,7 +1302,7 @@ OnInit:
 
 OnEnable:
 	enablenpc "Cavaleiro2";
-	if (!checkre(0)) {
+	if (!checkversion(0)) {
 		set .MeusMonstros,12;
 		monster "job_knt",43,42,"Lobo do Deserto",1106,1,"Cavaleiro2::OnMyMobDead";
 		monster "job_knt",43,62,"Lobo do Deserto",1106,1,"Cavaleiro2::OnMyMobDead";
@@ -1367,7 +1367,7 @@ OnInit:
 
 OnEnable:
 	enablenpc "Cavaleiro3";
-	if (!checkre(0)) {
+	if (!checkversion(0)) {
 		set .MeusMonstros,7;
 		monster "job_knt",147,167,"Goblin Arqueiro",1258,1,"Cavaleiro3::OnMyMobDead";
 		monster "job_knt",136,158,"Goblin á Vapor",1280,1,"Cavaleiro3::OnMyMobDead";

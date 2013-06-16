@@ -265,7 +265,7 @@ function	script	F_KafTele	{
 	else if (@wrpD$[.@j] == "Comodo") warp "comodo", 209, 143;
 	else if (@wrpD$[.@j] == "Comodo Ilha do Farol") warp "cmd_fild07", 127, 134;
 	else if (@wrpD$[.@j] == "Geffen") warp "geffen", 120, 39;
-	else if (@wrpD$[.@j] == "Izlude") { if (checkre(0)) warp "izlude", 128, 98; else warp "izlude", 91, 105; }
+	else if (@wrpD$[.@j] == "Izlude") { if (checkversion(0)) warp "izlude", 128, 98; else warp "izlude", 91, 105; }
 	else if (@wrpD$[.@j] == "Juno") warp "yuno", 158, 125;
 	else if (@wrpD$[.@j] == "Mina Abandonada de Mjolnir") warp "mjolnir_02", 99, 351;
 	else if (@wrpD$[.@j] == "Morroc") warp "morocc", 156, 46;
@@ -522,7 +522,7 @@ function	script	F_KafSet	{
 	cleararray @viewpX[0],"",getarraysize(@viewpX);
 	cleararray @viewpY[0],"",getarraysize(@viewpY);
 	if (strnpcinfo(4) == "prontera") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Caverna dos Orcs", "Alberta";
 		setarray @wrpP[0], 2000, 1400, 900, 1800, 1700, 1700;
 	 } else { // Pré-Renovação.
@@ -532,7 +532,7 @@ function	script	F_KafSet	{
 		setarray @viewpX[0], 151, 29, 282, 152;
 		setarray @viewpY[0], 29, 207, 200, 326;
 	} else if (strnpcinfo(4) == "alberta") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Payon", "Morroc", "Prontera";
 		setarray @wrpP[0], 1200, 1800, 1800;
 	 } else { // Pré-Renovação.
@@ -542,7 +542,7 @@ function	script	F_KafSet	{
 		setarray @viewpX[0], 28, 113, 0, 0;
 		setarray @viewpY[0], 229, 60, 0, 0;
 	} else if (strnpcinfo(4) == "aldebaran") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Geffen", "Juno", "Izlude", "Mina Abandonada de Mjolnir";
 		setarray @wrpP[0], 1200, 1200, 1800, 1700;
 	 } else { // Pré-Renovação.
@@ -550,7 +550,7 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 2200, 1600, 1700, 1700;
 		}
 	} else if (strnpcinfo(4) == "comodo" ) {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Morroc", "Comodo Ilha do Farol", "Umbala";
 		setarray @wrpP[0], 1800, 1200, 1800;
 	 } else { // Pré-Renovação.
@@ -559,13 +559,13 @@ function	script	F_KafSet	{
 		}
 	} else if (strnpcinfo(4) == "cmd_fild07") {
 		setarray @wrpD$[0], "Comodo", "Morroc";
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpP[0], 1200, 1200;
 	 } else { // Pré-Renovação.
 		setarray @wrpP[0], 500, 2500;
 		}
 	} else if (strnpcinfo(4) == "geffen") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Prontera", "Al De Baran", "Vila dos Orcs", "Mina Abandonada de Mjolnir";
 		setarray @wrpP[0], 1200, 1200, 1700, 1700;
 	 } else { // Pré-Renovação.
@@ -575,7 +575,7 @@ function	script	F_KafSet	{
 		setarray @viewpX[0], 120, 203;
 		setarray @viewpY[0], 62, 123;
 	} else if (strnpcinfo(4) == "izlude") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Geffen", "Payon", "Morroc", "Al De Baran";
 		setarray @wrpP[0], 1200, 1200, 1200, 1800;
 	 } else { // Pré-Renovação.
@@ -583,7 +583,7 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 2000, 1800, 1700, 900;
 		}
 	} else if (strnpcinfo(4) == "morocc") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Prontera", "Payon", "Alberta", "Comodo", "Farol de Comodo";
 		setarray @wrpP[0], 1200, 1200, 1800, 1800, 1200;
 	 } else { // Pré-Renovação.
@@ -596,7 +596,7 @@ function	script	F_KafSet	{
 		setarray @wrpD$[0], "Comodo";
 		setarray @wrpP[0], 1800;
 	} else if (strnpcinfo(4) == "payon") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Prontera", "Alberta", "Morroc";
 		setarray @wrpP[0], 1200, 1200, 1200;
 	 } else { // Pré-Renovação.
@@ -604,7 +604,7 @@ function	script	F_KafSet	{
 		setarray @wrpP[0], 1800, 1300, 1800, 1800;
 		}
 	} else if (strnpcinfo(4) == "yuno") {
-	 if(checkre(0)) { // Renovação.
+	 if(checkversion(0)) { // Renovação.
 		setarray @wrpD$[0], "Al De Baran";
 		setarray @wrpP[0], 1200;
 	 } else { // Pré-Renovação.

@@ -32,7 +32,7 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 	mes "Meu nome é Amachang, sou a 13ª Miss Amatsu.";
 	mes "Como uma das minhas funções, eu guiarei-lhe pela cidade.";
 	mes "Se você precisar de algo, é só me dizer.";
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		// Renewal
 		while (1) {
 			next;

@@ -269,7 +269,7 @@ prt_castle,83,67,5	script	Recruiter for the Brave	109,{
 		next;
 		changequest 10064,10065;
 		set ep13_ryu,9;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 66000,21000;
 		else
 			getexp 660000,210000;
@@ -1918,7 +1918,7 @@ moc_fild22b,230,197,5	script	Munkenro#2	967,{
 		next;
 		completequest 10078;
 		set ep13_ryu,100;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 66000,21000;
 		else
 			getexp 660000,210000;
@@ -2814,7 +2814,7 @@ mid_camp,261,284,4	script	Instructor#ep13bs	405,{
 			set ep13_newbs,100;
 			getitem 617,1; //Old_Violet_Box
 			getitem 12322,5; //Chocolate_Pie
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 100000,10000;
 			else
 				getexp 1000000,100000;
@@ -4347,7 +4347,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "I hope you'll make yourself known in Ash Vacuum with your great accomplishments.";
 				set ep13_animal,15;
 				completequest 2157;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 100000,0;
 				else
 					getexp 1500000,0;
@@ -4448,7 +4448,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "- You pat his shoulder gently, it's worrying that Rumis is not able to return to his country. -";
 				set ep13_animal,100;
 				delitem 6033,1; //Horn_Of_Tendrilion
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 50000,0;
 				else
 					getexp 1000000,0;
@@ -5283,7 +5283,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 			mes "I'll discuss this more with the expedition management.";
 			mes "Thank you for your valuable information.";
 			completequest 2158;
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 90000,0;
 			else
 				getexp 900000,0;
@@ -5307,7 +5307,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 				mes "I'll discuss this more with the expedition management.";
 				mes "Thank you for your valuable information.";
 				completequest 2159;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 90000,0;
 				else
 					getexp 900000,0;
@@ -5332,7 +5332,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 				mes "I'll discuss this more with the expedition management.";
 				mes "Thank you for your valuable information.";
 				completequest 2159;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 90000,0;
 				else
 					getexp 900000,0;
@@ -5761,7 +5761,7 @@ OnTouch:
 			mes "- You feel so refreshed and light, as you drink the tea that the Official offered. -";
 			specialeffect2 EF_ABSORBSPIRITS;
 			set ep13_1_rhea,100;
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 80000,3000;
 			else
 				getexp 300000,10000;
@@ -7581,7 +7581,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				next;
 				delitem 579,50; //Delicious_Fish
 				set ep13_alba,6;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 8000,3000;
 				else
 					getexp 80000,30000;
@@ -7617,7 +7617,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 7198,30; //Great_Leaf
 				delitem 7188,30; //Browny_Root
 				set ep13_alba,6;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 9000,4000;
 				else
 					getexp 90000,40000;
@@ -7658,7 +7658,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 528,20; //Monster's_Feed
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 8000,3000;
 				else
 					getexp 80000,30000;
@@ -7696,7 +7696,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 517,50; //Meat
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 8000,3000;
 				else
 					getexp 80000,30000;
@@ -7731,7 +7731,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				next;
 				delitem 6020,30; //Fur
 				set ep13_alba,6;
-				if(checkre(0))
+				if(checkversion(0))
 					getexp 8000,3000;
 				else
 					getexp 80000,30000;
@@ -9248,7 +9248,7 @@ mid_campin,90,121,5	script	Hibba Agip	459,{
 		mes "And please take this small reward.";
 		mes "Thank you for your help so far.";
 		next;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 30000,0; //kRO
 			//getexp 3750000,0; //iRO?
 		else
@@ -11648,7 +11648,7 @@ mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 		mes "[Echinacea]";
 		mes "Keep up the good work assisting the explorers in this camp.";
 		set mao_morocc2,100;
-		if(checkre(0))
+		if(checkversion(0))
 			getexp 120000,20000;
 		else
 			getexp 1200000,200000;
@@ -12028,7 +12028,7 @@ mid_camp,199,311,7	script	Mr. Kidd#ep13_dan01	884,{
 			delitem 6029,1; //Morocc_Tracing_Log
 			delitem 6027,1; //Crystal_Of_Feardoom
 			set mao_morocc2,10;
-			if(checkre(0))
+			if(checkversion(0))
 				getexp 20000,1000;
 			else
 				getexp 200000,10000;

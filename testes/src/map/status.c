@@ -6560,7 +6560,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	#ifndef RENEWAL
 	tick -= tick*tick_def/100;
 	// Changed to 5 seconds according to recent tests [Playtester]
-	if(type == SC_ANKLE && tick < 5000)
+	if(type == SC_ANKLESNARE && tick < 5000)
 		tick = 5000;
 	return tick<=0?0:tick;
 	#else

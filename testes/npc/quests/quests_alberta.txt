@@ -1226,7 +1226,7 @@ tur_dun01,165,29,4	script	Sailor#tur2	709,{
 		mes "I certainly hope you've found what you were looking for. Alright, I guess there's always a time for an adventurer to return home...";
 		next;
 		mes "^3355FF* Choo Choo *^000000";
-		if (checkre(0)) 
+		if (checkversion(0)) 
 				warp "alberta",238,112; 
 			else 
 				warp "alberta",241,115;

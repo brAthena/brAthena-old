@@ -113,7 +113,7 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 		mes "novamente!";
 		mes "Tchau!";
 		close2;
-		if (checkre(0))
+		if (checkversion(0))
 			warp "alberta",236,40;
 		else
 			warp "alberta",235,45;

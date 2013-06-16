@@ -990,7 +990,7 @@ ACMD_FUNC(jobchange)
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1) {
-		int i;
+		int i = 0;
 		bool found = false;
 
 		upper = 0;

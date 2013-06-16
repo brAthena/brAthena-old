@@ -28,7 +28,7 @@ yuno,59,212,4	script	Juno Guide#yuno01	700,{
 	mes "[Juno Guide]";
 	mes "A place that takes the vision of the future, and gives it form in the present. Welcome to";
 	mes "the city of ^8B4513Juno^000000!";
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		next;
 		while (1) {
 			switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove marks from Mini-Map:Cancel")) {

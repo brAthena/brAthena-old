@@ -82,7 +82,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes "Quer ser um Mago? É...";
 		next;
 		mes "[Maga Guardiã]";
-		if( !checkre(0) ) {
+		if( !checkversion(0) ) {
 		if (job_magician_q == 0) {
 			mes "Você, "+((Sex)?"é mesmo uma gracinha. Definitivamente, meu tipo...":"até que você é bonitinha, deve fazer um grande sucesso...")+"";
 			next;
@@ -209,10 +209,10 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes ((Sex)?"Para uma gracinha como você ficarei feliz em explicar!":"Eu ficaria feliz de explicar para uma garotinha tão bonita como você!");
 		next;
 		mes "[Maga Guardiã]";
-		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. "+((!checkre(0)) ? "E então passar pelo teste de mago":"")+"";
+		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. "+((!checkversion(0)) ? "E então passar pelo teste de mago":"")+"";
 		next;
 		mes "[Maga Guardiã]";
-		if(!checkre(0)) {
+		if(!checkversion(0)) {
 		if (job_magician_q != 0) {
 			mes "O seu teste é";
 			switch(job_magician_q) {

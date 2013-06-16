@@ -250,7 +250,7 @@ OnTouch:
 		case 3: warp "geffen",120,39; end;
 		case 4: warp "alberta",117,56; end;
 		case 5: warp "aldebaran",168,112; end;
-		case 6: if (checkre(0)) warp "izlude",134,118; else warp "izlude",127,142; end;
+		case 6: if (checkversion(0)) warp "izlude",134,118; else warp "izlude",127,142; end;
 		case 7: warp "prt_church",99,78; end;
 		case 8: warp "geffen_in",162,99; end;
 		case 9: warp "moc_prydb1",51,118; end;

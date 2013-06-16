@@ -117,7 +117,7 @@ moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
 	mes "Por favor venha vistar-nos.";
 	mes "Certo, vamos indo.";
 	close2;
-	if (checkre(0))
+	if (checkversion(0))
 		warp "alberta",244,52;
 	else
 		warp "alberta",243,67;

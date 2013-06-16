@@ -211,7 +211,7 @@ alberta,189,151,5	script	Fisk	100,{
 				close;
 			}
 			set Zeny,Zeny - 500;
-			if(checkre(0))
+			if(checkversion(0))
 				warp "izlude",195,212;
 			else
 				warp "izlude",176,182;

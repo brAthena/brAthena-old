@@ -33,7 +33,7 @@ einbroch,72,202,4	script	Guia de Einbroch#ein01	852,{
 	mes "Please ask me if you";
 	mes "have any questions.";
 	next;
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		// Renewal
 		while (1) {
 			switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove Marks from Mini-Map:Cancel")) {
@@ -346,7 +346,7 @@ einbech,67,37,4	script	Guia de Einbech#einbech01	852,{
 	mes "Bem-vindo a Einbech,";
 	mes "Nós estamos aqui para ajudar os turistas, então por favor sinta-se a vontade para fazer as perguntas que quiser.";
 	next;
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		while (1) {
 			switch(select("[ Tavern ]:[ Tool Shop ]:[ Train Station ]:[ Mine ]:[ Kafra Employee ]:Remove Marks from Mini-Map:Cancel")) {
 			case 1:

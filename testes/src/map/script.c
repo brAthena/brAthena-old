@@ -17029,11 +17029,13 @@ BUILDIN_FUNC(checkversion)
 	switch(num) {
 		case 0:
 #ifdef RENEWAL
-			script_pushint(st, 2);
-#elif OLD_TIMES
 			script_pushint(st, 1);
 #else
+#ifdef OLD_TIMES
 			script_pushint(st, 0);
+#else
+			script_pushint(st, -1);
+#endif
 #endif
 			break;
 		case 1:

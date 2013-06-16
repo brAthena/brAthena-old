@@ -57,7 +57,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 				close;
 				}
 			}
-	if ( checkre(0) ) {
+	if ( checkversion(0) ) {
 	if(q_job_thief == 1) {
 		mes "[Gatuna Ajudante]";
 		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
@@ -67,7 +67,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "Se você quer se tornar um gatuno, fale com esse cara ao meu lado.";
 		close;
 		}
-	} if ( !checkre(0) ) {
+	} if ( !checkversion(0) ) {
 		mes "[Gatuna Ajudante]";
 		if(BaseJob == Job_Thief) {
 		mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
@@ -353,7 +353,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 
 moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		mes "[Brad]";
-if( checkre(0) ) {
+if( checkversion(0) ) {
 	if(q_job_thief == 1) {
 		mes "Certo. Você conseguiu passar na entrevista, correto?";
 		mes "Bom. Eu irei aceitá-lo.";

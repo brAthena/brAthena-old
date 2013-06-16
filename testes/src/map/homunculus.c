@@ -1257,9 +1257,11 @@ void merc_skill_reload(void)
 int do_init_merc(void)
 {
 	int class_;
+	#ifndef OLD_TIMES
 	read_homunculusdb();
 	read_homunculus_expdb();
 	read_homunculus_skilldb();
+	#endif
 	// Add homunc timer function to timer func list [Toms]
 	add_timer_func_list(merc_hom_hungry, "merc_hom_hungry");
 

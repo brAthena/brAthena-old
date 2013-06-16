@@ -26,7 +26,7 @@
 
 ayothaya,203,169,4	script	Ayothaya Guide Noi#01ay	839,{
 	mes "[Noi]";
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		// Renewal
 		mes "Hello~";
 		mes "Welcome to ^8B4513Ayothaya^000000.";

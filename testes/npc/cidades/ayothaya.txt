@@ -82,7 +82,7 @@ ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
 		mes "[Aibakthing]";
 		mes "Você será bem-vindo quando quiser voltar. Espero que possamos ver-nos outra vez em breve. Obrigado~";
 		close2;
-		if (checkre(0))
+		if (checkversion(0))
 			warp "alberta",235,45;
 		else
 			warp "alberta",238,22;

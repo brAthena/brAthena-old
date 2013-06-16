@@ -35,7 +35,7 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 	mes "Com uma história tão antiga, há muitas coisas para se ver.";
 	mes "Como nós nunca tínhamos negociado antes deve haver algumas coisas agradáveis e valiosas que não poderei lhe mostrar.";
 	mes "Por favor, fique quanto tempo quiser.";
-	if(checkre(0)) {
+	if(checkversion(0)) {
 		while (1) {
 			next;
 			switch(select("[ Castelo do Dragão ]:[ Consultório Médico ]:[ Prefeitura ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Taverna ]:[ Observatório ]:[ Retornar para Alberta ]:Remover marcadores do mini-mapa:Cancelar")) {

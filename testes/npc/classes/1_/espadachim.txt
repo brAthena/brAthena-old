@@ -67,7 +67,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "fazer por você.";
 			close;
 	}
-  if( !checkre(0) ) {
+  if( !checkversion(0) ) {
 	mes "Bem-vindo à Associação dos Espadachins! Em que posso ajudá-lo?";
 	next;
 	switch(select("Mudança de Classe:Sobre os Espadachins:Sobre os requisitos da Classe:Cancelar")) {
