@@ -13060,11 +13060,6 @@ REPLACE INTO `item_delay_db` VALUES(11522,1000);
 REPLACE INTO `item_delay_db` VALUES(11523,2000);
 REPLACE INTO `item_delay_db` VALUES(11524,3000);
 REPLACE INTO `item_delay_db` VALUES(11525,5000);
-REPLACE INTO `item_delay_db` VALUES(12622,3000);
-REPLACE INTO `item_delay_db` VALUES(12725,120000);
-REPLACE INTO `item_delay_db` VALUES(12726,30000);
-REPLACE INTO `item_delay_db` VALUES(12727,60000);
-REPLACE INTO `item_delay_db` VALUES(12732,1000);
 
 --
 -- Table structure for table `item_findingore_db`
@@ -27787,7 +27782,6 @@ REPLACE INTO `skill_cast_db` VALUES(10010,'0','0','0','180000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10011,'0','0','0','60000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10012,'10000','0','0','0','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10013,'5000','0','0','0','300000','0');
-REPLACE INTO `skill_cast_db` VALUES(5014,'0','0','0','10000:15000:20000:25000:30000','10000','20000:25000:30000:35000:40000');
 
 --
 -- Table structure for table `skill_castnodex_db`
