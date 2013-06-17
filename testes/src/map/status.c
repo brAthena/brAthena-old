@@ -817,7 +817,11 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_PLUSMAGICPOWER] = SI_PLUSMAGICPOWER;
 	StatusIconChangeTable[SC_INCMHPRATE] = SI_ATKER_ASPD;
 	StatusIconChangeTable[SC_INCMSPRATE] = SI_ATKER_MOVESPEED;
-	
+	StatusIconChangeTable[SC_ACARAJE] = SI_ACARAJE;
+	StatusIconChangeTable[SC_MVPCARD_TAOGUNKA] = SI_MVPCARD_TAOGUNKA;
+	StatusIconChangeTable[SC_MVPCARD_MISTRESS] = SI_MVPCARD_MISTRESS;
+	StatusIconChangeTable[SC_MVPCARD_ORCHERO] = SI_MVPCARD_ORCHERO;
+	StatusIconChangeTable[SC_MVPCARD_ORCLORD] = SI_MVPCARD_ORCLORD;
 	//Cash Items
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = SI_FOOD_STR_CASH;
 	StatusIconChangeTable[SC_FOOD_AGI_CASH] = SI_FOOD_AGI_CASH;
@@ -979,6 +983,10 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_ATKER_BLOOD] |= SCB_ALL;
 	StatusChangeFlagTable[SC_WALKSPEED] |= SCB_SPEED;
 	StatusChangeFlagTable[SC_ITEMSCRIPT] |= SCB_ALL;
+	StatusChangeFlagTable[SC_MVPCARD_TAOGUNKA] |= SCB_ALL;
+	StatusChangeFlagTable[SC_MVPCARD_MISTRESS] |= SCB_ALL;
+	StatusChangeFlagTable[SC_MVPCARD_ORCHERO] |= SCB_ALL;
+	StatusChangeFlagTable[SC_MVPCARD_ORCLORD] |= SCB_ALL;
 	StatusChangeFlagTable[SC_SLOWDOWN] |= SCB_SPEED;
 	// Cash Items
 	StatusChangeFlagTable[SC_FOOD_STR_CASH] = SCB_STR;
@@ -1014,8 +1022,8 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_VITATA_500] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_EXTRACT_SALAMINE_JUICE] |= SCB_ASPD;
 	StatusChangeFlagTable[SC_REBOUND] |= SCB_SPEED|SCB_REGEN;
-
 	StatusChangeFlagTable[SC_ALL_RIDING] = SCB_SPEED;
+	StatusChangeFlagTable[SC_ACARAJE] |= SCB_ASPD|SCB_HIT;
 
 	/* StatusDisplayType Table [Ind/Hercules] */
 	StatusDisplayType[SC_ALL_RIDING]		= true;
@@ -2352,7 +2360,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	const struct status_change *sc = &sd->sc;
 	struct s_skill b_skill[MAX_SKILL]; // previous skill tree
 	int b_weight, b_max_weight, b_cart_weight_max, // previous weight
-	i, k, index, skill,refinedef=0;
+	i, k, index, skill,refinedef=0,effectsc;
 	int64 i64;
 
 	if(++calculating > 10)  //Too many recursive calls!
@@ -2686,9 +2694,8 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 			}
 		}
 	}
-
-	if(sc->count && sc->data[SC_ITEMSCRIPT]) {
-		struct item_data *data = itemdb_exists(sc->data[SC_ITEMSCRIPT]->val1);
+	if(sc->count && (sc->data[effectsc = SC_ITEMSCRIPT] || sc->data[effectsc = SC_MVPCARD_TAOGUNKA] || sc->data[effectsc = SC_MVPCARD_MISTRESS] || sc->data[effectsc = SC_MVPCARD_ORCHERO] || sc->data[effectsc = SC_MVPCARD_ORCLORD])) {
+		struct item_data *data = itemdb_exists(sc->data[effectsc]->val1);
 		if(data && data->script)
 			run_script(data->script,0,sd->bl.id,0);
 	}
@@ -4762,6 +4769,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * 20 / 100;
 	if(sc->data[SC_VOLCANIC_ASH])
 		hit -= (hit * sc->data[SC_VOLCANIC_ASH]->val2) / 100;
+	if (sc->data[SC_ACARAJE])
+		hit += 5;
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -5425,6 +5434,8 @@ static short status_calc_fix_aspd(struct block_list *bl, struct status_change *s
 		aspd -= 50; // +5 ASPD
 	if(sc && sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2)
 		aspd -= (bl->type==BL_PC?pc_checkskill((TBL_PC *)bl, RK_RUNEMASTERY):10) / 10 * 40;
+	if (sc->data[SC_ACARAJE])
+		aspd -= 10;
 
 	return cap_value(aspd, 0, 2000); // will be recap for proper bl anyway
 }

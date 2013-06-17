@@ -699,6 +699,13 @@ typedef enum sc_type {
     SC_CBC,
     SC_EQC,
 
+	// Pergaminhos e itens[Megasantos]
+    SC_MVPCARD_TAOGUNKA = 800,
+    SC_MVPCARD_MISTRESS,
+    SC_MVPCARD_ORCHERO,
+    SC_MVPCARD_ORCLORD,
+    SC_ACARAJE,
+
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
 
@@ -1434,6 +1441,10 @@ enum si_type {
     //SI_ = 735,
     SI_CHILL = 736,
     SI_BURNT = 737,
+    SI_SWORDCLAN = 762,
+    SI_ARCWANDCLAN = 763,
+    SI_GOLDENMACECLAN = 764,
+    SI_CROSSBOWCLAN = 765,
     SI_MAX,
 };
 
