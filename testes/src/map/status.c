@@ -9263,7 +9263,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			}
 			break;
 		case SC_COMBOATTACK:
-			switch(sce->val1) {
+			switch (sce->val1) {
 				case TK_STORMKICK:
 					clif_skill_nodamage(bl,bl,TK_READYSTORM,1,1);
 					break;
@@ -9276,8 +9276,25 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				case TK_COUNTER:
 					clif_skill_nodamage(bl,bl,TK_READYCOUNTER,1,1);
 					break;
-				default: //rest just toogle inf to enable autotarget
-					skill_combo_toogle_inf(bl,sce->val1,INF_SELF_SKILL);
+				case MO_COMBOFINISH:
+				case CH_TIGERFIST:
+				case CH_CHAINCRUSH:
+					if (sd)
+						clif_skillinfo(sd,MO_EXTREMITYFIST, INF_SELF_SKILL);
+					break;
+				case TK_JUMPKICK:
+					if (sd)
+						clif_skillinfo(sd,TK_JUMPKICK, INF_SELF_SKILL);
+					break;
+				case MO_TRIPLEATTACK:
+					if (sd && pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
+						clif_skillinfo(sd,SR_DRAGONCOMBO, INF_SELF_SKILL);
+					break;
+				case SR_FALLENEMPIRE:
+					if (sd){
+						clif_skillinfo(sd,SR_GATEOFHELL, INF_SELF_SKILL);
+						clif_skillinfo(sd,SR_TIGERCANNON, INF_SELF_SKILL);
+					}
 					break;
 			}
 			break;
@@ -9609,7 +9626,25 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 			break;
 		case SC_COMBOATTACK:
-			skill_combo_toogle_inf(bl,sce->val1,0);
+			if( sd )
+			switch (sce->val1) {
+				case MO_COMBOFINISH:
+				case CH_TIGERFIST:
+				case CH_CHAINCRUSH:
+					clif_skillinfo(sd, MO_EXTREMITYFIST, 0);
+					break;
+				case TK_JUMPKICK:
+					clif_skillinfo(sd, TK_JUMPKICK, 0);
+					break;
+				case MO_TRIPLEATTACK:
+					if (pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
+						clif_skillinfo(sd, SR_DRAGONCOMBO, 0);
+					break;
+				case SR_FALLENEMPIRE:
+					clif_skillinfo(sd, SR_GATEOFHELL, 0);
+					clif_skillinfo(sd, SR_TIGERCANNON, 0);
+					break;
+			}
 			break;
 		case SC_MARIONETTE_MASTER:
 		case SC_MARIONETTE:    /// Marionette target
