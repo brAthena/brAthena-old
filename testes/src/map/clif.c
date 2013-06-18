@@ -10690,7 +10690,7 @@ void clif_parse_NpcClicked(int fd,struct map_session_data *sd)
 		return;
 	}
 
-	if (pc_cant_act2(sd) || !(bl = bl = map_id2bl(RFIFOL(fd,2))) || sd->state.vending)
+	if (pc_cant_act2(sd) || !(bl = map_id2bl(RFIFOL(fd,2))) || sd->state.vending)
 		return;
 
 
