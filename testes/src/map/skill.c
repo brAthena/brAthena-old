@@ -4000,6 +4000,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case AB_JUDEX:
 		case WL_SOULEXPANSION:
 		case WL_CRIMSONROCK:
+		case WL_COMET:
 		case WL_JACKFROST:
 		case RA_ARROWSTORM:
 		case RA_WUGDASH:
@@ -4077,12 +4078,10 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 				map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), (skill_id == WM_REVERBERATION_MELEE || skill_id == WM_REVERBERATION_MAGIC)?BL_CHAR:splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 			}
 			break;
-
-		case WL_COMET:
+		/*case WL_COMET:
 			if(!map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR)) // Nothing should happen if the target is on Land Protector
 				skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, flag);
-			break;
-
+			break;*/
 		case KN_BRANDISHSPEAR:
 		case ML_BRANDISH:
 			//Coded apart for it needs the flag passed to the damage calculation.
