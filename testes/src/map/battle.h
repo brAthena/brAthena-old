@@ -43,6 +43,9 @@ extern int attr_fix_table[4][10][10];
 struct map_session_data;
 struct mob_data;
 struct block_list;
+struct weapon_atk;
+struct status_change;
+struct status_data;
 
 // Damage Calculation
 
@@ -513,6 +516,7 @@ extern struct Battle_Config {
 	int item_onfloor; // Whether to drop an undroppable item on the map or destroy it if inventory is full.
 	int bowling_bash_area;
 	int gm_ignore_warpable_area;
+	int packet_obfuscation;
 
 } battle_config;
 

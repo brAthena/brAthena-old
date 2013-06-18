@@ -22,6 +22,7 @@ struct block_list;
 struct map_session_data;
 struct mob_data;
 struct item;
+struct item_data;
 
 
 typedef enum e_log_chat_type {

@@ -21,10 +21,11 @@
 #include "../common/db.h" //dbmap
 #include "../common/mmo.h"
 #include "../common/socket.h"
+#include <stdarg.h>
 struct item;
+struct item_data;
 struct storage_data;
 struct guild_storage;
-//#include "map.h"
 struct block_list;
 struct unit_data;
 struct map_session_data;
@@ -43,7 +44,9 @@ struct guild;
 struct battleground_data;
 struct quest;
 struct party_booking_ad_info;
-#include <stdarg.h>
+struct view_data;
+struct eri;
+
 
 #define packet_len(cmd) packet_db[cmd].len
 #define P2PTR(fd,cmd) RFIFO2PTR(fd,packet_db[cmd].len)
@@ -923,6 +926,13 @@ struct s_packet_db packet_db[MAX_PACKET_DB + 1];
 
 
 struct clif_interface {
+	/*  */
+	unsigned int cryptKey[3];
+	unsigned short (*parse_cmd) ( int fd, struct map_session_data *sd );
+	unsigned short (*decrypt_cmd) ( int cmd, struct map_session_data *sd );
+	/* Outros */
+	void (*bc_ready) (void);
+	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
 	void (*pTickSend) (int fd, struct map_session_data *sd);

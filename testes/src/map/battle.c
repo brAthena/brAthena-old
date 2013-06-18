@@ -6357,6 +6357,7 @@ static const struct _battle_data {
 // BattleGround Settings
 	{ "bg_update_interval",                 &battle_config.bg_update_interval,              1000,   100,    INT_MAX,        },
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
+	{ "packet_obfuscation",			&battle_config.packet_obfuscation,		1,	0,	3,		},
 	/**
 	 * rAthena
 	 **/
