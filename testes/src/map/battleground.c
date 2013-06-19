@@ -450,7 +450,7 @@ void bg_queue_ready_ack (struct bg_arena *arena, struct map_session_data *sd, bo
 }
 void bg_queue_player_cleanup(struct map_session_data *sd) {
 	if (sd->bg_queue.client_has_bg_data) {
-		clif->bgqueue_notice_delete(sd,BGQND_CLOSEWINDOW, sd->bg_queue.arena->id);
+		clif->bgqueue_notice_delete(sd,BGQND_CLOSEWINDOW, sd->bg_queue.arena ? sd->bg_queue.arena->id : 0);
 	}
 	script->queue_remove(sd->bg_queue.arena->queue_id,sd->status.account_id);
 	sd->bg_queue.arena = NULL;
