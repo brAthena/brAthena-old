@@ -8951,23 +8951,26 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case ALL_GUARDIAN_RECALL:
 		case ECLAGE_RECALL:
 			if(sd) {
-				short x, y; // Destiny position.
-				unsigned short mapindex;
+				short x=0, y=0; // Destiny position.
+				unsigned short mapindex=0;
 
-				if(skill_id == RETURN_TO_ELDICASTES) {
+				switch(skill_id){
+				default:
+				case RETURN_TO_ELDICASTES:
 					x = 198;
 					y = 187;
 					mapindex  = mapindex_name2id(MAP_DICASTES);
-				} else {
+					break;
+				case ALL_GUARDIAN_RECALL:
 					x = 44;
 					y = 151;
 					mapindex  = mapindex_name2id(MAP_MORA);
-				}
-				if(skill_id == ECLAGE_RECALL)
-				{
+					break;
+				case ECLAGE_RECALL:
 					x = 47;
 					y = 31;
 					mapindex  = mapindex_name2id("ecl_in01");
+					break;
 				}
 
 				if(!mapindex) {
@@ -8984,33 +8987,31 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 	case ECL_PEONYMAMY:
 	case ECL_SADAGUI:
 	case ECL_SEQUOIADUST:
-		if ( skill_id == ECL_SNOWFLIP )
-		{
+		switch(skill_id){
+		case ECL_SNOWFLIP:
 			status_change_end(bl, SC_SLEEP, INVALID_TIMER);
 			status_change_end(bl, SC_BLOODING, INVALID_TIMER);
 			status_change_end(bl, SC_BURNING, INVALID_TIMER);
 			status_change_end(bl, SC_DEEP_SLEEP, INVALID_TIMER);
-		}
-		else if ( skill_id == ECL_PEONYMAMY )
-		{
+			break;
+		case ECL_PEONYMAMY:
 			status_change_end(bl, SC_FREEZE, INVALID_TIMER);
 			status_change_end(bl, SC_FROSTMISTY, INVALID_TIMER);
 			status_change_end(bl, SC_CRYSTALIZE, INVALID_TIMER);
-		}
-		else if ( skill_id == ECL_SADAGUI )
-		{
+			break;
+		case ECL_SADAGUI:
 			status_change_end(bl, SC_STUN, INVALID_TIMER);
 			status_change_end(bl, SC_CONFUSION, INVALID_TIMER);
 			status_change_end(bl, SC_ILLUSION, INVALID_TIMER);
 			status_change_end(bl, SC_FEAR, INVALID_TIMER);
-		}
-		else if ( skill_id == ECL_SEQUOIADUST )
-		{
+			break;
+		case ECL_SEQUOIADUST:
 			status_change_end(bl, SC_STONE, INVALID_TIMER);
 			status_change_end(bl, SC_POISON, INVALID_TIMER);
 			status_change_end(bl, SC_CURSE, INVALID_TIMER);
 			status_change_end(bl, SC_BLIND, INVALID_TIMER);
 			status_change_end(bl, SC_ORCISH, INVALID_TIMER);
+			break;
 		}
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, 0, 1, skill_id, -2, 6);

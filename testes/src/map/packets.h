@@ -2304,7 +2304,7 @@ packet(0x020d,-1);
 	packet(0x0964,36,clif->pStoragePassword,0);
 #endif
 
-//2013-06-12aRagexe (Shakto)
+//2013-06-18aRagexe (Shakto)
 #if PACKETVER >= 20130618
 	packet(0x0889,7,clif->pActionRequest,2,6);
 	packet(0x0951,10,clif->pUseSkillToId,2,4,6);
