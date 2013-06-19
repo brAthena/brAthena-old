@@ -8774,7 +8774,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case SR_FLASHCOMBO:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			for(i = SR_FLASHCOMBO_ATK_STEP1; i <= SR_FLASHCOMBO_ATK_STEP4; i++)
-				skill_addtimerskill(src, tick + 200 * (i - SR_FLASHCOMBO_ATK_STEP1), bl->id, 0, 0, i, skill_lv, BF_WEAPON, flag|SD_LEVEL);
+				skill_addtimerskill(src, tick + 400 * (i - SR_FLASHCOMBO_ATK_STEP1), bl->id, 0, 0, i, skill_lv, BF_WEAPON, flag|SD_LEVEL);
 			break;
 		case WA_SWING_DANCE:
 		case WA_MOONLIT_SERENADE:
