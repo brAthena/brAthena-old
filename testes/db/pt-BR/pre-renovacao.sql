@@ -29023,7 +29023,7 @@ REPLACE INTO `skill_require_db` VALUES (8240,'15','0','18:21:24:27:30:33:36:39:4
 -- Estrutura da tabela `skill_tree_db`
 --
 
-CREATE TABLE IF NOT EXISTS `skill_tree_db` (
+/*CREATE TABLE IF NOT EXISTS `skill_tree_db` (
   `JobNo` smallint unsigned NOT NULL DEFAULT '0',
   `SkillID` smallint unsigned NOT NULL DEFAULT '0',
   `MaxLV` smallint unsigned NOT NULL DEFAULT '0',
@@ -31309,7 +31309,7 @@ REPLACE INTO `skill_tree_db` VALUES(4191,259,10,23,10,22,10,0,0,0,0,0,0);
 REPLACE INTO `skill_tree_db` VALUES(4191,261,5,259,2,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_tree_db` VALUES(4191,262,1,261,5,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_tree_db` VALUES(4191,365,1,9,1,0,0,0,0,0,0,0,0);
-REPLACE INTO `skill_tree_db` VALUES(4191,2535,1,41,1,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_tree_db` VALUES(4191,2535,1,41,1,0,0,0,0,0,0,0,0);*/
 
 --
 -- Estrutura da tabela `skill_unit_db`

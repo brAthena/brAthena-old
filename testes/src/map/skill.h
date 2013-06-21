@@ -36,6 +36,7 @@ struct status_change_entry;
 
 #define MAX_SKILL_LEVEL 10
 #define MAX_SPIRITBALL 15 // Esferas espirituais
+#define MAX_SKILL_NAME_LENGTH 30
 
 DBMap* skilldb_name2id;
 
@@ -105,7 +106,7 @@ struct skill_condition {
 
 struct s_skill_db {
 	unsigned short nameid;
-	char name[NAME_LENGTH];
+	char name[MAX_SKILL_NAME_LENGTH];
 	char desc[40];
 	int range[MAX_SKILL_LEVEL],hit,inf,element[MAX_SKILL_LEVEL],nk,splash[MAX_SKILL_LEVEL],max;
 	int num[MAX_SKILL_LEVEL];

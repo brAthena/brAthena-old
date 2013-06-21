@@ -18242,7 +18242,7 @@ void skill_reload(void)
  *------------------------------------------*/
 int do_init_skill(void)
 {
-	skilldb_name2id = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, 0);
+	skilldb_name2id = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, MAX_SKILL_NAME_LENGTH);
 	skill_readdb();
 
 	group_db = idb_alloc(DB_OPT_BASE);
