@@ -4618,8 +4618,6 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					default:
 						ATK_ADDRATE(sc->data[SC_EDP]->val3);
 #endif
-					default:
-						ATK_ADDRATE(sc->data[SC_EDP]->val3);
 				}
 			}
 			if(sc->data[SC_STYLE_CHANGE]) {
