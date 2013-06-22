@@ -1049,7 +1049,7 @@ ACMD_FUNC(jobchange)
 	|| !pc_isridingdragon(sd)
 	#endif
 	) && (job != 7 && job != 14 && job != 4008 && job != 4015))
-		clif_status_load(&sd->bl,SI_RIDING,0);
+		clif->status_change(&sd->bl,SI_RIDING,0, 0, 0, 0, 0);
 	return 0;
 }
 
@@ -2307,7 +2307,7 @@ ACMD_FUNC(displaystatus)
 	if(flag == 0)
 		clif_status_change_end(&sd->bl,sd->bl.id,AREA,type);
 	else
-		clif_status_change(&sd->bl, type, flag, tick, val1, val2, val3);
+		clif->status_change(&sd->bl, type, flag, tick, val1, val2, val3);
 
 	return 0;
 }

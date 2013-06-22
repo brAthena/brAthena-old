@@ -2434,7 +2434,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_INTRAVISION: // Maya Purple Card effect allowing to see Hiding/Cloaking people [DracoRPG]
 			if(sd->state.lr_flag != 2) {
 				sd->special_state.intravision = 1;
-				clif_status_load(&sd->bl, SI_CLAIRVOYANCE, 1);
+				clif->status_change(&sd->bl, SI_CLAIRVOYANCE, 1, 0, 0, 0, 0);
 			}
 			break;
 		case SP_NO_KNOCKBACK:
@@ -5710,7 +5710,7 @@ int pc_checkjoblevelup(struct map_session_data *sd)
 	status_calc_pc(sd,0);
 	clif_misceffect(&sd->bl,1);
 	if(pc_checkskill(sd, SG_DEVIL) && !pc_nextjobexp(sd))
-		clif_status_change(&sd->bl,SI_DEVIL1, 1, 0, 0, 0, 1); //Permanent blind effect from SG_DEVIL.
+		clif->status_change(&sd->bl,SI_DEVIL1, 1, 0, 0, 0, 1); //Permanent blind effect from SG_DEVIL.
 
 	npc_script_event(sd, NPCE_JOBLVUP);
 	return 1;
@@ -9206,7 +9206,7 @@ static int pc_daynight_timer_sub(struct map_session_data *sd,va_list ap)
 {
 	if(sd->state.night != night_flag && map[sd->bl.m].flag.nightenabled) {
 		//Night/day state does not match.
-		clif_status_load(&sd->bl, SI_SKE, night_flag); //New night effect by dynamix [Skotlex]
+		clif->status_change(&sd->bl, SI_SKE, night_flag, 0, 0, 0, 0); //New night effect by dynamix [Skotlex]
 		sd->state.night = night_flag;
 		return 1;
 	}

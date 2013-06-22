@@ -48,6 +48,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+      <ClInclude Include="..\src\map\packets.h">
+      <Filter>map_sql</Filter>
+      </ClInclude>
     <ClInclude Include="..\src\common\cbasetypes.h">
       <Filter>common</Filter>
     </ClInclude>

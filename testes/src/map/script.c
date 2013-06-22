@@ -419,11 +419,6 @@ enum {
     MF_BATTLEGROUND,
     MF_RESET,
     MF_SET_CASTLE,
-    MF_NOUSECART,
-    MF_NOITEMCONSUMPTION,
-    MF_SUMSTARTMIRACLE,
-    MF_NOMINEEFFECT,
-    MF_NOLOCKON,
 };
 
 const char *script_op2name(int op)
@@ -10403,11 +10398,6 @@ BUILDIN_FUNC(getmapflag)
 			case MF_BATTLEGROUND:       script_pushint(st,map[m].flag.battleground); break;
 			case MF_RESET:              script_pushint(st,map[m].flag.reset); break;
 			case MF_SET_CASTLE:         script_pushint(st,map[m].set_castle); break;
-			case MF_NOUSECART:	    script_pushint(st,map[m].flag.nousecart); break;
-			case MF_NOITEMCONSUMPTION:  script_pushint(st,map[m].flag.noitemconsumption); break;
-			case MF_SUMSTARTMIRACLE:    script_pushint(st,map[m].flag.nosumstarmiracle); break;
-			case MF_NOMINEEFFECT:	    script_pushint(st,map[m].flag.nomineeffect); break;
-			case MF_NOLOCKON:	    script_pushint(st,map[m].flag.nolockon); break;
 		}
 	}
 
@@ -10527,11 +10517,6 @@ BUILDIN_FUNC(setmapflag)
 			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 1; break;
 			case MF_BATTLEGROUND:       map[m].flag.battleground = (val <= 0 || val > 2) ? 1 : val; break;
 			case MF_RESET:              map[m].flag.reset = 1; break;
-			case MF_NOUSECART:	    map[m].flag.nousecart = 1 ; break;
-			case MF_NOITEMCONSUMPTION:  map[m].flag.noitemconsumption = 1 ; break;
-			case MF_SUMSTARTMIRACLE:    map[m].flag.nosumstarmiracle = 1 ; break;
-			case MF_NOMINEEFFECT:	    map[m].flag.nomineeffect = 1 ; break;
-			case MF_NOLOCKON:	    map[m].flag.nolockon = 1 ; break;
 		}
 	}
 
@@ -10624,11 +10609,6 @@ BUILDIN_FUNC(removemapflag)
 			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 0; break;
 			case MF_BATTLEGROUND:       map[m].flag.battleground = 0; break;
 			case MF_RESET:              map[m].flag.reset = 0; break;
-			case MF_NOUSECART:	    map[m].flag.nousecart = 0 ; break;
-			case MF_NOITEMCONSUMPTION:  map[m].flag.noitemconsumption = 0 ; break;
-			case MF_SUMSTARTMIRACLE:    map[m].flag.nosumstarmiracle = 0 ; break;
-			case MF_NOMINEEFFECT:	    map[m].flag.nomineeffect = 0 ; break;
-			case MF_NOLOCKON:	    map[m].flag.nolockon = 0 ; break;
 		}
 	}
 

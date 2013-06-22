@@ -7631,7 +7631,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				//val3 : Brings the skill_lv (merged into val1 here)
 				//val4 : Partner
 				if(val1 == CG_MOONLIT)
-					clif_status_change(bl,SI_MOON,1,tick,0, 0, 0);
+					clif->status_change(bl,SI_MOON,1,tick,0, 0, 0);
 				val1|= (val3<<16);
 				val3 = tick/1000; //Tick duration
 				tick_time = 1000; // [GodLesZ] tick time
@@ -8784,7 +8784,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				break;
 			case SC_KYOUGAKU:
 				val2 = 2*val1 + rand()%(3 * val1);
-				clif_status_change(bl, SI_ACTIVE_MONSTER_TRANSFORM, 1, 0, 1002, 0, 0); // Poring in disguise
+				clif->status_change(bl, SI_ACTIVE_MONSTER_TRANSFORM, 1, 0, 1002, 0, 0); // Poring in disguise
 				break;
 			case SC_KAGEMUSYA:
 				val3 = val1 * 2;
@@ -8939,7 +8939,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val_flag |= 1;
 				break;
 			case SC_KYOUGAKU:
-				clif_status_change(bl, SI_ACTIVE_MONSTER_TRANSFORM, 1, 0, 1002, 0, 0); // Poring in disguise
+				clif->status_change(bl, SI_ACTIVE_MONSTER_TRANSFORM, 1, 0, 1002, 0, 0); // Poring in disguise
 				break;
 		}
 	}
@@ -9195,7 +9195,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	}
 
 	if(!(flag&4 && StatusDisplayType[type]))
-		clif_status_change(bl,StatusIconChangeTable[type],1,tick,(val_flag&1)?val1:1,(val_flag&2)?val2:0,(val_flag&4)?val3:0);
+		clif->status_change(bl,StatusIconChangeTable[type],1,tick,(val_flag&1)?val1:1,(val_flag&2)?val2:0,(val_flag&4)?val3:0);
 
 	/**
 	 * used as temporary storage for scs with interval ticks, so that the actual duration is sent to the client first.

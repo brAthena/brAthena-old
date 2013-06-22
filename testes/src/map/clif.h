@@ -474,7 +474,6 @@ void clif_bladestop(struct block_list *src, int dst_id, int active);
 void clif_changemapcell(int fd, int16 m, int x, int y, int type, enum send_target target);
 
 #define clif_status_load(bl, type, flag) clif_status_change((bl), (type), (flag), 0, 0, 0, 0)
-void clif_status_change(struct block_list *bl,int type,int flag,int tick,int val1, int val2, int val3);
 
 void clif_wis_message(int fd, const char *nick, const char *mes, int mes_len);
 void clif_wis_end(int fd, int flag);
@@ -513,7 +512,7 @@ void clif_changed_dir(struct block_list *bl, enum send_target target);
 void clif_openvendingreq(struct map_session_data *sd, int num);
 void clif_showvendingboard(struct block_list *bl, const char *message, int fd);
 void clif_closevendingboard(struct block_list *bl, int fd);
-void clif_vendinglist(struct map_session_data *sd, int id, struct s_vending *vending);
+void clif_vendinglist(struct map_session_data *sd, unsigned int id, struct s_vending *vending);
 void clif_buyvending(struct map_session_data *sd, int index, int amount, int fail);
 void clif_openvending(struct map_session_data *sd, int id, struct s_vending *vending);
 void clif_vendingreport(struct map_session_data *sd, int index, int amount);
@@ -662,7 +661,7 @@ void clif_quest_update_objective(struct map_session_data *sd, struct quest *qd, 
 void clif_quest_show_event(struct map_session_data *sd, struct block_list *bl, short state, short color);
 void clif_displayexp(struct map_session_data *sd, unsigned int exp, char type, bool quest);
 
-int clif_send(const uint8 *buf, int len, struct block_list *bl, enum send_target type);
+int clif_send(const void *buf, int len, struct block_list *bl, enum send_target type);
 int do_init_clif(void);
 void do_final_clif(void);
 
@@ -767,9 +766,15 @@ void clif_charm(struct map_session_data *sd, short type);
 void clif_charm_single(int fd, struct map_session_data *sd, short type);
 
 void clif_snap(struct block_list *bl, short x, short y);
-void clif_monster_hp_bar(struct mob_data *md, int fd);
+void clif_monster_hp_bar(struct mob_data* md, struct map_session_data *sd);
 
 void clif_partytickack (struct map_session_data* sd, bool flag);
+void clif_set_unit_idle(struct block_list* bl, struct map_session_data *tsd, enum send_target target);
+void clif_spawn_unit(struct block_list* bl, enum send_target target);
+void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, struct unit_data* ud, enum send_target target);
+void clif_favorite_item(struct map_session_data *sd, unsigned short index);
+void clif_move2(struct block_list *bl, struct view_data *vd, struct unit_data *ud);
+void clif_scriptclear(struct map_session_data *sd, int npcid);
 
 /**
  * Color Table
@@ -932,6 +937,8 @@ struct clif_interface {
 	unsigned short (*decrypt_cmd) ( int cmd, struct map_session_data *sd );
 	/* Outros */
 	void (*bc_ready) (void);
+	void (*addcards2) (unsigned short *cards, struct item* item);
+	void (*status_change) (struct block_list *bl,int type,int flag,int tick,int val1, int val2, int val3);
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
@@ -1146,7 +1153,7 @@ struct clif_interface {
 	void (*bgqueue_pcleft) (struct map_session_data *sd);
 	void (*bgqueue_battlebegins) (struct map_session_data *sd, unsigned char arena_id, enum send_target target);
 	/* BGQueue */
-	void (*pBGQueueRegister) (int fd, struct map_session_data *sd, int type);
+	void (*pBGQueueRegister) (int fd, struct map_session_data *sd);
 	void (*pBGQueueCheckState) (int fd, struct map_session_data *sd);
 	void (*pBGQueueRevokeReq) (int fd, struct map_session_data *sd);
 	void (*pBGQueueBattleBeginAck) (int fd, struct map_session_data *sd);
