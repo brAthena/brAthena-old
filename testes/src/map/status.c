@@ -794,6 +794,7 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_ATTHASTE_POTION2] = SI_ATTHASTE_POTION2;
 	StatusIconChangeTable[SC_ATTHASTE_POTION3] = SI_ATTHASTE_POTION3;
 	StatusIconChangeTable[SC_ATTHASTE_INFINITY] = SI_ATTHASTE_INFINITY;
+	StatusIconChangeTable[SC_ATTHASTE_CASH] = SI_ATTHASTE_CASH;
 	StatusIconChangeTable[SC_MOVHASTE_HORSE] = SI_MOVHASTE_HORSE;
 	StatusIconChangeTable[SC_MOVHASTE_INFINITY] = SI_MOVHASTE_INFINITY;
 	StatusIconChangeTable[SC_CHASEWALK2] = SI_INCSTR;
@@ -942,6 +943,7 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_ATTHASTE_POTION2] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ATTHASTE_POTION3] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ATTHASTE_INFINITY] = SCB_ASPD;
+	StatusChangeFlagTable[SC_ATTHASTE_CASH] = SCB_ASPD;
 	StatusChangeFlagTable[SC_MOVHASTE_HORSE] = SCB_SPEED;
 	StatusChangeFlagTable[SC_MOVHASTE_INFINITY] = SCB_SPEED;
 	StatusChangeFlagTable[SC_PLUSATTACKPOWER] = SCB_BATK;
@@ -5313,7 +5315,8 @@ static short status_calc_aspd(struct block_list *bl, struct status_change *sc, s
 	if(sc->data[i=SC_ATTHASTE_INFINITY] ||
 		sc->data[i=SC_ATTHASTE_POTION3] ||
 		sc->data[i=SC_ATTHASTE_POTION2] ||
-		sc->data[i=SC_ATTHASTE_POTION1])
+		sc->data[i=SC_ATTHASTE_POTION1] ||
+		sc->data[i=SC_ATTHASTE_CASH])
 		pots += sc->data[i]->val1;
 
 	if( !sc->data[SC_QUAGMIRE]) {
@@ -5514,7 +5517,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[i=SC_ATTHASTE_INFINITY] ||
 		sc->data[i=SC_ATTHASTE_POTION3] ||
 		sc->data[i=SC_ATTHASTE_POTION2] ||
-		sc->data[i=SC_ATTHASTE_POTION1] )
+		sc->data[i=SC_ATTHASTE_POTION1] ||
+		sc->data[i=SC_ATTHASTE_CASH])
 		aspd_rate -= sc->data[i]->val2;
 
 	if(sc->data[SC_DONTFORGETME])
@@ -7132,6 +7136,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			status_change_end(bl, SC_ATTHASTE_POTION2, INVALID_TIMER);
 			status_change_end(bl, SC_ATTHASTE_POTION3, INVALID_TIMER);
 			status_change_end(bl, SC_ATTHASTE_INFINITY, INVALID_TIMER);
+			status_change_end(bl, SC_ATTHASTE_CASH, INVALID_TIMER);
 			break;
 		case SC_OVERTHRUSTMAX:
 			//Cancels Normal Overthrust. [Skotlex]
@@ -7248,6 +7253,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			status_change_end(bl, SC_ATTHASTE_POTION2, INVALID_TIMER);
 			status_change_end(bl, SC_ATTHASTE_POTION3, INVALID_TIMER);
 			status_change_end(bl, SC_ATTHASTE_INFINITY, INVALID_TIMER);
+			status_change_end(bl, SC_ATTHASTE_CASH, INVALID_TIMER);
 			break;
 	case SC_SWING:
 	case SC_SYMPHONY_LOVE:
@@ -7379,6 +7385,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			case SC_ATTHASTE_POTION2:
 			case SC_ATTHASTE_POTION3:
 			case SC_ATTHASTE_INFINITY:
+			case SC_ATTHASTE_CASH:
 			case SC_PLUSATTACKPOWER:
 			case SC_PLUSMAGICPOWER:
 			case SC_ENCHANTARMS:
@@ -7650,6 +7657,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			case SC_ATTHASTE_POTION1:
 			case SC_ATTHASTE_POTION2:
 			case SC_ATTHASTE_POTION3:
+			case SC_ATTHASTE_CASH:
 			case SC_ATTHASTE_INFINITY:
 				val2 = 50*(2+type-SC_ATTHASTE_POTION1);
 				break;

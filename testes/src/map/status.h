@@ -705,6 +705,7 @@ typedef enum sc_type {
     SC_MVPCARD_ORCHERO,
     SC_MVPCARD_ORCLORD,
     SC_ACARAJE,
+    SC_ATTHASTE_CASH,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
