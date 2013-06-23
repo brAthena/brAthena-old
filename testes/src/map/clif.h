@@ -327,7 +327,7 @@ enum clif_messages {
 	VIEW_EQUIP_FAIL = 0x54d,
 	USAGE_FAIL = 0x783,
 	ITEM_NOUSE_SITTING = 0x297,
-	SEGURO_EXTENDIDO = 0x729,
+	DEATH_PENALTY = 0x729,
 };
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
