@@ -6682,10 +6682,12 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 #ifdef RENEWAL
 	// Seguro Estendido - remove o item e evita a perda de EXP. ~ tmp fix
 	for(; l < MAX_INVENTORY; ++l) {
-		if(sd && sd->status.inventory[l].nameid == 6413) {
-			status_change_start(&sd->bl, &sd->bl, SC_CASH_DEATHPENALTY, 10000, 1, 0, 0, 0, 1800000, 2);
-			pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
-			clif_msgtable(sd->fd,DEATH_PENALTY);
+		if(!sd->sc.data[SC_CASH_DEATHPENALTY]) {
+			if(sd && sd->status.inventory[l].nameid == 6413) {
+				status_change_start(&sd->bl, &sd->bl, SC_CASH_DEATHPENALTY, 10000, 1, 0, 0, 0, 1800000, 2);
+				pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
+				clif_msgtable(sd->fd,DEATH_PENALTY);
+			}
 		}
 	}
 #endif
