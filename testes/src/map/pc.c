@@ -6685,6 +6685,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		if(sd && sd->status.inventory[l].nameid == 6413) {
 			status_change_start(&sd->bl, &sd->bl, SC_CASH_DEATHPENALTY, 10000, 1, 0, 0, 0, 1800000, 2);
 			pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
+			clif_msgtable(sd->fd,SEGURO_EXTENDIDO);
 		}
 	}
 #endif
