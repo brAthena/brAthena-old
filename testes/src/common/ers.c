@@ -22,8 +22,7 @@
 
 #ifndef DISABLE_ERS
 
-#define ERS_ROOT_SIZE 256
-#define ERS_BLOCK_ENTRIES 4096
+#define ERS_BLOCK_ENTRIES 2048
 
 struct ers_list {
 	struct ers_list *Next;
