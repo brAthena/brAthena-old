@@ -58,10 +58,11 @@ bool instance_is_valid(int instance_id) {
  * On success return instance_id
  *--------------------------------------*/
 int instance_create(int owner_id, const char *name, enum instance_owner_type type) {
-	unsigned short *iptr = NULL, *icptr = NULL;
 	struct map_session_data *sd = NULL;
+	unsigned short *icptr = NULL;
 	struct party_data *p = NULL;
 	struct guild *g = NULL;
+	short *iptr = NULL;
 	int i, j;
 
 	switch (type) {
@@ -121,10 +122,9 @@ int instance_create(int owner_id, const char *name, enum instance_owner_type typ
 	instances[i].vars = idb_alloc(DB_OPT_RELEASE_DATA);
 
 	safestrncpy(instances[i].name, name, sizeof(instances[i].name));
-	instances[i].map = NULL;
 
 	if(type != IOT_NONE) {
-		ARR_FIND(0, *icptr, j, iptr[j] == 0);
+		ARR_FIND(0, *icptr, j, iptr[j] == -1);
 		if(j == *icptr) {
 			switch( type ) {
 				case IOT_CHAR:
@@ -174,7 +174,7 @@ int instance_add_map(const char *name, int instance_id, bool usebasename, const 
 		return -4;
 	}
 
-	ARR_FIND( instance->start_id, map_num, i, !map[i].name[0] ); // Searching for a Free Map
+	ARR_FIND(instance->start_id, map_num, i, map[i].name[0] == 0); // Searching for a Free Map
 
 	if(i < map_num)
 		im = i; // Unused map found (old instance)
@@ -388,6 +388,7 @@ void instance_del_map(int16 m)
 
 	map_removemapdb(&map[m]);
 	memset(&map[m], 0x00, sizeof(map[0]));
+	map[m].name[0] = 0;
 	map[m].instance_id = -1;
 	map[m].mob_delete_timer = INVALID_TIMER;
 }
@@ -404,11 +405,12 @@ int instance_destroy_timer(int tid, unsigned int tick, int id, intptr_t data){
  * Removes a instance, all its maps and npcs.
  *--------------------------------------*/
 void instance_destroy(int instance_id) {
-	unsigned short *iptr = NULL, *icptr = NULL;
 	struct map_session_data *sd = NULL;
+	unsigned short *icptr = NULL;
 	struct party_data *p = NULL;
 	struct guild *g = NULL;
-	int last = 0, type, j;
+	short *iptr = NULL;
+	int type, j, last = 0;
 	unsigned int now = (unsigned int)time(NULL);
 
 	if(!instance->valid(instance_id))
@@ -448,14 +450,14 @@ void instance_destroy(int instance_id) {
 			icptr = &g->instances;
 			break;
 		default:
-			ShowError("instance_destroy: unknown type %d for owner_id %d and name %s.\n", instances[instance_id].owner_type,instances[instance_id].owner_id,instances[instance_id].name);
+			ShowError("instance_destroy: unknown type %d for owner_id %d and name '%s'.\n", instances[instance_id].owner_type,instances[instance_id].owner_id,instances[instance_id].name);
 			break;
 	}
 
 	if(iptr != NULL) {
 		ARR_FIND(0, *icptr, j, iptr[j] == instance_id);
 		if( j != *icptr )
-			iptr[j] = 0;
+			iptr[j] = -1;
 	}
 
 	while(instances[instance_id].num_map && last != instances[instance_id].map[0]) { // Remove all maps from instance
@@ -473,10 +475,12 @@ void instance_destroy(int instance_id) {
 
 	instances[instance_id].vars = NULL;
 
-	aFree(instances[instance_id].map);
+	if(instances[instance_id].map)
+		aFree(instances[instance_id].map);
 
-	memset(&instances[instance_id], 0x00, sizeof(struct instance_data));
-
+	instances[instance_id].map = NULL;
+	instances[instance_id].state = INSTANCE_FREE;
+	instances[instance_id].num_map = 0;
 }
 
 /*--------------------------------------
@@ -563,10 +567,13 @@ void do_final_instance(void)
 	int i;
 
 	for(i = 0; i < instance->instances; i++) {
-		instance_destroy(i);
+		instance->destroy(i);
 	}
 
-	aFree(instances);
+	if(instances)
+		aFree(instances);
+
+	instance->instances = 0;
 }
 
 void do_init_instance(void) {

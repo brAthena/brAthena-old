@@ -3792,7 +3792,9 @@ int npc_reload(void)
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 	         npc_id - npc_new_min, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
 
-	instance->final();
+	for(i = 0; i < instance->instances; i++) {
+		instance->destroy(i);
+	}
 
 	map_zone_init();
 	

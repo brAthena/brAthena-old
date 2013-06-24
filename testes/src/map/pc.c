@@ -4651,7 +4651,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 
 	nullpo_ret(sd);
 
-	if(!mapindex || !mapindex_id2name(mapindex)) {
+	if(!mapindex || !mapindex_id2name(mapindex) || (m = map_mapindex2mapid(mapindex)) == -1) {
 		ShowDebug("pc_setpos: Passed mapindex(%d) is invalid!\n", mapindex);
 		return 1;
 	}
@@ -4661,7 +4661,6 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		pc_setstand(sd);
 		pc_setrestartvalue(sd,1);
 	}
-	m = map_mapindex2mapid(mapindex);
 
 	if(map[m].flag.src4instance) {
 		struct party_data *p;
@@ -4670,9 +4669,11 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 
 		if(sd->instances) {
 			for(i = 0; i < sd->instances; i++) {
-				ARR_FIND(0, instances[sd->instance[i]].num_map, j, map[instances[sd->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->instance[i]].map[j]].cName);
-				if(j != instances[sd->instance[i]].num_map)
-					break;
+				if(sd->instance[i] >= 0) {
+					ARR_FIND(0, instances[sd->instance[i]].num_map, j, map[instances[sd->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->instance[i]].map[j]].cName);
+					if(j != instances[sd->instance[i]].num_map)
+						break;
+				}
 			}
 			if(i != sd->instances) {
 				m = instances[sd->instance[i]].map[j];
@@ -4682,9 +4683,11 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		}
 		if (!stop && sd->status.party_id && (p = party_search(sd->status.party_id)) && p->instances) {
 			for(i = 0; i < p->instances; i++) {
-				ARR_FIND(0, instances[p->instance[i]].num_map, j, map[instances[p->instance[i]].map[j]].instance_src_map == m && !map[instances[p->instance[i]].map[j]].cName);
-				if(j != instances[p->instance[i]].num_map)
-					break;
+				if(p->instance[i] >= 0) {
+					ARR_FIND(0, instances[p->instance[i]].num_map, j, map[instances[p->instance[i]].map[j]].instance_src_map == m && !map[instances[p->instance[i]].map[j]].cName);
+					if(j != instances[p->instance[i]].num_map)
+						break;
+				}
 			}
 			if(i != p->instances) {
 				m = instances[p->instance[i]].map[j];
@@ -4694,9 +4697,11 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		}
 		if (!stop && sd->status.guild_id && sd->guild && sd->guild->instances) {
 			for(i = 0; i < sd->guild->instances; i++) {
-				ARR_FIND(0, instances[sd->guild->instance[i]].num_map, j, map[instances[sd->guild->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->guild->instance[i]].map[j]].cName);
-				if(j != instances[sd->guild->instance[i]].num_map)
-					break;
+				if(sd->guild->instance[i] >= 0) {
+					ARR_FIND(0, instances[sd->guild->instance[i]].num_map, j, map[instances[sd->guild->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->guild->instance[i]].map[j]].cName);
+					if(j != instances[sd->guild->instance[i]].num_map)
+						break;
+				}
 			}
 			if(i != sd->guild->instances) {
 				m = instances[sd->guild->instance[i]].map[j];
