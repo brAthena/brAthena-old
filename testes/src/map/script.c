@@ -417,6 +417,7 @@ enum {
     MF_BATTLEGROUND,
     MF_RESET,
     MF_SET_CASTLE,
+    MF_NOTOMB,
 };
 
 const char *script_op2name(int op)
@@ -10414,6 +10415,7 @@ BUILDIN_FUNC(getmapflag)
 			case MF_BATTLEGROUND:       script_pushint(st,map[m].flag.battleground); break;
 			case MF_RESET:              script_pushint(st,map[m].flag.reset); break;
 			case MF_SET_CASTLE:         script_pushint(st,map[m].set_castle); break;
+			case MF_NOTOMB:		    script_pushint(st,map[m].flag.notomb); break;
 		}
 	}
 
@@ -10533,6 +10535,7 @@ BUILDIN_FUNC(setmapflag)
 			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 1; break;
 			case MF_BATTLEGROUND:       map[m].flag.battleground = (val <= 0 || val > 2) ? 1 : val; break;
 			case MF_RESET:              map[m].flag.reset = 1; break;
+			case MF_NOTOMB:		    map[m].flag.notomb = 1; break;
 		}
 	}
 
@@ -10625,6 +10628,7 @@ BUILDIN_FUNC(removemapflag)
 			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 0; break;
 			case MF_BATTLEGROUND:       map[m].flag.battleground = 0; break;
 			case MF_RESET:              map[m].flag.reset = 0; break;
+			case MF_NOTOMB:		    map[m].flag.notomb = 0; break;
 		}
 	}
 

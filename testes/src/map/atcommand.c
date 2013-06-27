@@ -7615,6 +7615,7 @@ ACMD_FUNC(mapflag)
 		checkflag(nojobexp);            checkflag(nomobloot);           checkflag(nomvploot);   checkflag(nightenabled);
 		checkflag(nodrop);              checkflag(novending);   	checkflag(loadevent);
 		checkflag(nochat);              checkflag(partylock);           checkflag(guildlock);   checkflag(src4instance);
+		checkflag(notomb);
 		clif_displaymessage(sd->fd," ");
 		clif_displaymessage(sd->fd,msg_txt(1312)); // Usage: "@mapflag monster_noteleport 1" (0=Off | 1=On)
 		clif_displaymessage(sd->fd,msg_txt(1313)); // Type "@mapflag available" to list the available mapflags.
@@ -7651,6 +7652,7 @@ ACMD_FUNC(mapflag)
 	setflag(nojobexp);          setflag(nomobloot);         setflag(nomvploot);         setflag(nightenabled);
 	setflag(nodrop);            setflag(novending);         setflag(loadevent);
 	setflag(nochat);            setflag(partylock);         setflag(guildlock);         setflag(src4instance);
+	setflag(notomb);
 
 	clif_displaymessage(sd->fd,msg_txt(1314)); // Invalid flag name or flag.
 	clif_displaymessage(sd->fd,msg_txt(1312)); // Usage: "@mapflag monster_noteleport 1" (0=Off | 1=On)
@@ -7662,7 +7664,7 @@ ACMD_FUNC(mapflag)
 	clif_displaymessage(sd->fd,"nozenypenalty, notrade, noskill, nowarp, nowarpto, noicewall, snow, clouds, clouds2,");
 	clif_displaymessage(sd->fd,"fog, fireworks, sakura, leaves, nobaseexp, nojobexp, nomobloot,");
 	clif_displaymessage(sd->fd,"nomvploot, nightenabled, nodrop, novending, loadevent, nochat, partylock,");
-	clif_displaymessage(sd->fd,"guildlock, src4instance");
+	clif_displaymessage(sd->fd,"guildlock, src4instance, notomb");
 
 #undef checkflag
 #undef setflag
@@ -9058,6 +9060,12 @@ ACMD_FUNC(channel) {
 			sprintf(atcmd_output, msg_txt(1415), sub1);// You're not the owner of channel '%s'
 			clif_displaymessage(fd, atcmd_output);
 			return -1;
+		}
+
+		if (!message || !*message || sscanf(message, "%s %s %24[^\n]", key, sub1, sub2) < 1) {
+		        sprintf(atcmd_output, msg_txt(1439), sub2);// Player '%s' was not found
+		         clif_displaymessage(fd, atcmd_output);
+		         return -1;
 		}
 		
 		if( sub2[0] == '\0' || ( pl_sd = map_nick2sd(sub2) ) == NULL ) {

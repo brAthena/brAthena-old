@@ -3394,6 +3394,8 @@ static unsigned char status_calc_element_lv(struct block_list *bl, struct status
 static unsigned short status_calc_mode(struct block_list *bl, struct status_change *sc, int mode);
 #ifdef RENEWAL
 static unsigned short status_calc_ematk(struct block_list *,struct status_change *,int);
+#else
+static unsigned short status_calc_batk(struct block_list *,struct status_change *,int,bool);
 #endif
 
 //Calculates base regen values.
@@ -4452,8 +4454,11 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
-
+#ifdef RENEWAL
 unsigned short status_calc_batk(struct block_list *bl, struct status_change *sc, int batk, bool viewable)
+#else
+static unsigned short status_calc_batk(struct block_list *bl, struct status_change *sc, int batk, bool viewable)
+#endif
 {
 	if(!sc || !sc->count)
 		return cap_value(batk,0,USHRT_MAX);
@@ -6762,6 +6767,15 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	undead_flag = battle_check_undead(status->race,status->def_ele);
 	//Check for inmunities / sc fails
 	switch(type) {
+		case SC_DRUMBATTLE:
+		case SC_NIBELUNGEN:
+		case SC_INTOABYSS:
+		case SC_SIEGFRIED:
+			if(bl->type == BL_PC) { 
+				struct map_session_data *sd = BL_CAST(BL_PC,bl);
+				if (!sd->status.party_id) return 0;
+			}
+			break;
 		case SC_ANGRIFFS_MODUS:
 		case SC_GOLDENE_FERSE:
 			if((type==SC_GOLDENE_FERSE && sc->data[SC_ANGRIFFS_MODUS])
