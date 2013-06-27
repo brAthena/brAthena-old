@@ -5001,6 +5001,7 @@ int pc_checkallowskill(struct map_session_data *sd)
 		SC_DANCING,
 		SC_GS_GATLINGFEVER,
 #ifdef RENEWAL
+		SC_LKCONCENTRATION,
 		SC_EDP,
 #endif
 		SC_FEARBREEZE

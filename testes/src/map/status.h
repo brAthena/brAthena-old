@@ -160,7 +160,7 @@ typedef enum sc_type {
     SC_VOLCANO, //100,
     SC_DELUGE,
     SC_VIOLENTGALE,
-    SC_WATK_ELEMENT,
+    SC_SUB_WEAPONPROPERTY,
     SC_ARMOR,
     SC_ARMORPROPERTY,
     SC_NOCHAT,
@@ -706,6 +706,7 @@ typedef enum sc_type {
     SC_MVPCARD_ORCLORD,
     SC_ACARAJE,
     SC_ATTHASTE_CASH,
+    SC_ANGEL_PROTECT,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
@@ -1027,7 +1028,7 @@ enum si_type {
     SI_INVINCIBLE = 311,
     SI_CASH_PLUSONLYJOBEXP = 312,
     SI_PARTYFLEE = 313,
-//  SI_ANGEL_PROTECT = 314,
+    SI_ANGEL_PROTECT = 314,
 //  SI_ENDURE_MDEF = 315,
     SI_ENCHANTBLADE = 316,
     SI_DEATHBOUND = 317,
@@ -1897,6 +1898,7 @@ defType status_calc_mdef(struct block_list *bl, struct status_change *sc, int, b
 signed short status_calc_mdef2(struct block_list *,struct status_change *, int, bool);
 
 #ifdef RENEWAL
+unsigned short status_calc_batk(struct block_list *, struct status_change *, int, bool);
 unsigned short status_base_matk(const struct status_data *status, int level);
 int status_get_weapon_atk(struct block_list *src, struct weapon_atk *watk, int flag);
 int status_get_total_mdef(struct block_list *src);

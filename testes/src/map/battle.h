@@ -58,7 +58,7 @@ void battle_drain(struct map_session_data *sd, struct block_list *tbl, int rdama
 
 int battle_attr_ratio(int atk_elem,int def_type, int def_lv);
 int battle_attr_fix(struct block_list *src, struct block_list *target, int damage,int atk_elem,int def_type, int def_lv);
-int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_list *target, int nk, int s_ele, int s_ele_, int damage, int left, int flag);
+int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_list *target, int nk, int s_ele, int s_ele_, int damage, int cflag, int wflag);
 
 // Final calculation Damage
 int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,uint16 skill_id,uint16 skill_lv);
@@ -128,10 +128,11 @@ int battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uin
   /* applies defense reductions */
 int battle_calc_defense(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int flag, int pdef);
 
+int battle_calc_base_damage
 #ifdef RENEWAL
-	int battle_calc_base_damage (struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
+	(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
 #else
-	int battle_calc_base_damage (struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
+	(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
 #endif
 
 void battle_consume_ammo(struct map_session_data *sd, int skill, int lv);
