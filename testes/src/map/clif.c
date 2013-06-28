@@ -17331,6 +17331,9 @@ void clif_parse_reqworldinfo(int fd,struct map_session_data *sd){
 void clif_status_change_end(struct block_list *bl, int tid, enum send_target target, int type) {
 	struct packet_status_change_end p;
 
+	if(bl->type == BL_PC && !((TBL_PC*)bl)->state.active)
+		return;
+
 	p.PacketType = status_change_endType;
 	p.index = type;
 	p.AID = tid;

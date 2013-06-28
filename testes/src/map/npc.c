@@ -3364,7 +3364,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 						if(map[m].units[k] == NULL)
 							continue;
 
-						memmove(&map[m].units[cursor], &map[m].units[k], sizeof(struct mapflag_skill_adjust));
+						map[m].units[cursor] = map[m].units[k];
 
 						cursor++;
 					}
@@ -3418,7 +3418,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 						if(map[m].skills[k] == NULL)
 							continue;
 
-						memmove(&map[m].skills[cursor], &map[m].skills[k], sizeof(struct mapflag_skill_adjust));
+						map[m].skills[cursor] = map[m].skills[k];
 
 						cursor++;
 					}

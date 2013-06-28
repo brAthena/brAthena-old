@@ -4042,6 +4042,11 @@ ACMD_FUNC(mount_peco)
 		return -1;
 	}
 
+	if(sd->sc.data[SC_ALL_RIDING]) {
+		clif_displaymessage(fd, msg_txt(1477)); // You are already mounting something else
+		return false;
+	}
+
 	if((sd->class_&MAPID_THIRDMASK) == MAPID_RUNE_KNIGHT && pc_checkskill(sd,RK_DRAGONTRAINING) > 0) {
 		if(!pc_isridingdragon(sd)) {
 			clif_displaymessage(sd->fd,msg_txt(1119)); // You have mounted your Dragon.
@@ -8482,6 +8487,10 @@ ACMD_FUNC(charcommands)
 /* for new mounts */
 ACMD_FUNC(mount2)
 {
+	if(sd->sc.option&(OPTION_WUGRIDER|OPTION_RIDING|OPTION_DRAGON|OPTION_MADOGEAR)) {
+		clif_displaymessage(fd, msg_txt(1477)); // You are already mounting something else
+		return false;
+	}
 
 	clif_displaymessage(sd->fd,msg_txt(1362)); // NOTICE: If you crash with mount your LUA is outdated.
 	if(!(sd->sc.data[SC_ALL_RIDING])) {
