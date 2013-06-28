@@ -17463,8 +17463,14 @@ BUILDIN_FUNC(queuesize) {
 	if(idx < 0 || idx >= script->hqs || script->hq[idx].items == -1) {
 		ShowWarning("buildin_queuesize: unknown queue id %d\n",idx);
 		script_pushint(st, 0);
-	} else
-		script_pushint(st, script->hq[ idx ].items );
+	} else {
+		/* value of script->hq[].items isn't to be trusted for we dont reduce the size when members are removed to save on memory allocation */
+		int i, count = 0;
+		for(i = 0; i < script->hq[ idx ].items; i++)
+			if(script->hq[ idx ].item[i] != -1 )
+				count++;
+		script_pushint(st, count);
+	}
 
 	return 0;
 }
@@ -17531,13 +17537,13 @@ bool script_hqueue_remove(int idx, int var) {
 
 		for(i = 0; i < script->hq[idx].items; i++) {
 			if(script->hq[idx].item[i] == var) {
-				return 0;
+				break;
 			}
 		}
 
 		if(i != script->hq[idx].items) {
 			struct map_session_data *sd;
-			script->hq[idx].item[i] = 0;
+			script->hq[idx].item[i] = -1;
 
 			if(var >= START_ACCOUNT_NUM && (sd = map_id2sd(var))) {
 				for(i = 0; i < sd->queues_count; i++) {
@@ -17652,7 +17658,7 @@ BUILDIN_FUNC(queueiterator) {
 	int idx = script->hqis;
 	int i;
 
-	if(qid < 0 || qid >= script->hqs || script->hq[idx].items == -1 || !(queue = script->queue(qid))) {
+	if(qid < 0 || qid >= script->hqs || script->hq[qid].items == -1 || !(queue = script->queue(qid))) {
 		ShowWarning("queueiterator: invalid queue id %d\n",qid);
 		return 0;
 	}
@@ -17663,14 +17669,15 @@ BUILDIN_FUNC(queueiterator) {
 		}
 	}
 	
-	if(i == script->hqis)
+	if(i == script->hqis) {
 		RECREATE(script->hqi, struct hQueueIterator, ++script->hqis);
-	else
+		script->hqi[ idx ].item = NULL;
+	} else
 		idx = i;
 
 	RECREATE(script->hqi[ idx ].item, int, queue->items);
 
-	memcpy(&script->hqi[idx].item, &queue->item, sizeof(int)*queue->items);
+	memcpy(script->hqi[idx].item, queue->item, sizeof(int)*queue->items);
 
 	script->hqi[ idx ].items = queue->items;
 	script->hqi[ idx ].pos = 0;
