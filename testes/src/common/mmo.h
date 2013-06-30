@@ -105,6 +105,9 @@
 #define MAX_CART 100
 #define MAX_SKILL 1478
 #define MAX_SKILL_ID 10015 //[Ind/Hercules] max used skill id 
+//Update this max as necessary. 55 is the value needed for Super Baby currently
+//Raised to 84 since Expanded Super Novice needs it.
+#define MAX_SKILL_TREE 84
 #define GLOBAL_REG_NUM 256   // max permanent character variables per char
 #define ACCOUNT_REG_NUM 64   // max permanent local account variables per account
 #define ACCOUNT_REG2_NUM 16  // max permanent global account variables per account

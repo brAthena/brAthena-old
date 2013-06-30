@@ -1841,7 +1841,7 @@ int npc_unload(struct npc_data *nd, bool single)
 			aFree(nd->u.scr.timer_event);
 		if(nd->src_id == 0) {
 			if(nd->u.scr.script) {
-				script_stop_instances(nd->bl.id);
+				script_stop_instances(nd->u.scr.script);
 				script_free_code(nd->u.scr.script);
 				nd->u.scr.script = NULL;
 			}
@@ -2243,50 +2243,34 @@ static const char *npc_parse_shop(char *w1, char *w2, char *w3, char *w4, const 
 	return strchr(start,'\n');// continue
 }
 
-/**
- * NPC other label
- * Not sure, seem to add label in a chainlink
- * @see DBApply
- */
-int npc_convertlabel_db(DBKey key, DBData *data, va_list ap)
-{
-	const char *lname = (const char *)key.str;
-	int lpos = db_data2i(data);
-	struct npc_label_list **label_list;
-	int *label_list_num;
-	const char *filepath;
-	struct npc_label_list *label;
-	const char *p;
-	int len;
+void npc_convertlabel_db(struct npc_label_list* label_list, const char *filepath) {
+	int i;
 
-	nullpo_ret(label_list = va_arg(ap,struct npc_label_list **));
-	nullpo_ret(label_list_num = va_arg(ap,int *));
-	nullpo_ret(filepath = va_arg(ap,const char *));
+	for( i = 0; i < script->label_count; i++ ) {
+		const char* lname = get_str(script->labels[i].key);
+		int lpos = script->labels[i].pos;
+		struct npc_label_list* label;
+		const char *p;
+		int len;
+				
+		// In case of labels not terminated with ':', for user defined function support
+		p = lname;
 
-	// In case of labels not terminated with ':', for user defined function support
-	p = lname;
-	while(ISALNUM(*p) || *p == '_')
-		++p;
-	len = p-lname;
+		while(ISALNUM(*p) || *p == '_')
+			++p;
+		len = p-lname;
 
-	// here we check if the label fit into the buffer
-	if(len > 23) {
-		ShowError("npc_parse_script: label name longer than 23 chars! '%s'\n (%s)", lname, filepath);
-		return 0;
+		// here we check if the label fit into the buffer
+		if(len > 23) {
+			ShowError("npc_parse_script: label name longer than 23 chars! '%s'\n (%s)", lname, filepath);
+			return;
+		}
+
+		label = &label_list[i];
+				
+		safestrncpy(label->name, lname, sizeof(label->name));
+		label->pos = lpos;
 	}
-
-	if(*label_list == NULL) {
-		*label_list = (struct npc_label_list *) aCalloc(1, sizeof(struct npc_label_list));
-		*label_list_num = 0;
-	} else
-		*label_list = (struct npc_label_list *) aRealloc(*label_list, sizeof(struct npc_label_list)*(*label_list_num+1));
-	label = *label_list+*label_list_num;
-
-	safestrncpy(label->name, lname, sizeof(label->name));
-	label->pos = lpos;
-	++(*label_list_num);
-
-	return 0;
 }
 
 // Skip the contents of a script.
@@ -2300,7 +2284,7 @@ static const char *npc_skip_script(const char *start, const char *buffer, const 
 
 	// initial bracket (assumes the previous part is ok)
 	p = strchr(start,'{');
-	if(!p) {
+	if(p == NULL) {
 		ShowError("npc_skip_script: Missing left curly in file '%s', line'%d'.", filepath, strline(buffer,start-buffer));
 		return NULL;// can't continue
 	}
@@ -2346,7 +2330,7 @@ static const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, cons
 {
 	int x, y, dir = 0, m, xs = 0, ys = 0, class_ = 0;   // [Valaris] thanks to fov
 	char mapname[32];
-	struct script_code *script;
+	struct script_code *scriptroot;
 	int i;
 	const char *end;
 	const char *script_start;
@@ -2381,13 +2365,13 @@ static const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, cons
 	if(end == NULL)
 		return NULL;// (simple) parse error, don't continue
 
-	script = parse_script(script_start, filepath, strline(buffer,script_start-buffer), SCRIPT_USE_LABEL_DB);
+	scriptroot = parse_script(script_start, filepath, strline(buffer,script_start-buffer), SCRIPT_USE_LABEL_DB);
 	label_list = NULL;
 	label_list_num = 0;
-	if(script) {
-		DBMap *label_db = script_get_label_db();
-		label_db->foreach(label_db, npc_convertlabel_db, &label_list, &label_list_num, filepath);
-		db_clear(label_db); // not needed anymore, so clear the db
+	if(script->label_count) {
+		CREATE(label_list,struct npc_label_list,script->label_count);
+		label_list_num = script->label_count;
+		npc_convertlabel_db(label_list,filepath);
 	}
 
 	CREATE(nd, struct npc_data, 1);
@@ -2411,7 +2395,7 @@ static const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, cons
 	nd->bl.id = npc_get_new_npc_id();
 	nd->class_ = class_;
 	nd->speed = 200;
-	nd->u.scr.script = script;
+	nd->u.scr.script = scriptroot;
 	nd->u.scr.label_list = label_list;
 	nd->u.scr.label_list_num = label_list_num;
 
@@ -3736,6 +3720,10 @@ int npc_reload(void)
 	db_clear(npcname_db);
 	db_clear(ev_db);
 
+	npc_last_npd = NULL;
+	npc_last_path = NULL;
+	npc_last_ref = NULL;
+
 	//Remove all npcs/mobs. [Skotlex]
 
 	iter = mapit_geteachiddb();
@@ -3918,9 +3906,13 @@ int do_init_npc(void)
 
 	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NPC_NAME_LENGTH+2+1);
 	npcname_db = strdb_alloc(DB_OPT_BASE,NPC_NAME_LENGTH);
-	npc_path_db = strdb_alloc(DB_OPT_BASE|DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA,80);
+	npc_path_db = strdb_alloc(DB_OPT_BASE|DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA,0);
 
 	timer_event_ers = ers_new(sizeof(struct timer_event_data),"clif.c::timer_event_ers",ERS_OPT_NONE);
+
+	npc_last_npd = NULL;
+	npc_last_path = NULL;
+	npc_last_ref = NULL;
 
 	// process all npc files
 	ShowNpc("Carregando NPCs...\r");

@@ -77,20 +77,6 @@ static DBMap* bowling_db = NULL; // int mob_id -> struct mob_data*
 DBMap *skillunit_db = NULL; // int id -> struct skill_unit*
 
 /**
- * Skill Cool Down Delay Saving
- * Struct skill_cd is not a member of struct map_session_data
- * to keep cooldowns in memory between player log-ins.
- * All cooldowns are reset when server is restarted.
- **/
-DBMap *skillcd_db = NULL; // char_id -> struct skill_cd
-struct skill_cd {
-	int duration[MAX_SKILL_TREE];//milliseconds
-	short skidx[MAX_SKILL_TREE];//the skill index entries belong to
-	short nameid[MAX_SKILL_TREE];//skill id
-	unsigned char cursor;
-};
-
-/**
  * Skill Unit Persistency during endack routes (mostly for songs see bugreport:4574)
  **/
 DBMap *skillusave_db = NULL; // char_id -> struct skill_usave
@@ -8279,9 +8265,6 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(src == bl) rate = 100;   // Success Chance: On self, 100%
 				else if(bl->type == BL_PC) rate += 20 + 10 * skill_lv; // On Players, (20 + 10 * Skill Level) %
 				else rate += 40 + 10 * skill_lv; // On Monsters, (40 + 10 * Skill Level) %
-
-				if(sd)
-					skill_blockpc_start(sd,skill_id,4000);
 
 				if(!(tsc && tsc->data[type])) {
 					i = sc_start2(src,bl,type,rate,skill_lv,src->id,(src == bl)?5000:(bl->type == BL_PC)?skill_get_time(skill_id,skill_lv):skill_get_time2(skill_id, skill_lv));
@@ -17198,16 +17181,24 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
 		int i,cursor;
 		ARR_FIND(0, cd->cursor+1, cursor, cd->skidx[cursor] == data);
 		cd->duration[cursor] = 0;
+#if PACKETVER >= 20120604
+		cd->total[cursor] = 0;
+#endif
 		cd->skidx[cursor] = 0;
 		cd->nameid[cursor] = 0;
+		cd->started[cursor] = 0;
 		// compact the cool down list
 		for(i = 0, cursor = 0; i < cd->cursor; i++) {
 			if(cd->duration[i] == 0)
 				continue;
 			if(cursor != i) {
 				cd->duration[cursor] = cd->duration[i];
+#if PACKETVER >= 20120604
+				cd->total[cursor] = cd->total[i];
+#endif
 				cd->skidx[cursor] = cd->skidx[i];
 				cd->nameid[cursor] = cd->nameid[i];
+				cd->started[cursor] = cd->started[i];
 			}
 			cursor++;
 		}
@@ -17231,7 +17222,6 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
  */
 int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick, bool load)
 {
-	int oskill_id = skill_id;
 	struct skill_cd *cd = NULL;
 	uint16 idx = skill_get_index(skill_id);
 
@@ -17245,7 +17235,7 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 		return -1;
 	}
 
-	if(battle_config.display_status_timers)
+	if(!load && battle_config.display_status_timers)
 		clif_skill_cooldown(sd, skill_id, tick);
 
 	if(!load) {
@@ -17258,8 +17248,12 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 
 		// record the skill duration in the database map
 		cd->duration[cd->cursor] = tick;
+#if PACKETVER >= 20120604
+		cd->total[cd->cursor] = tick;
+#endif
 		cd->skidx[cd->cursor] = idx;
-		cd->nameid[cd->cursor] = oskill_id;
+		cd->nameid[cd->cursor] = skill_id;
+		cd->started[cd->cursor] = gettick();
 		cd->cursor++;
 	}
 
@@ -17809,6 +17803,30 @@ int skill_get_elemental_type(uint16 skill_id , uint16 skill_lv)
 }
 
 /**
+ * update stored skill cooldowns for player logout
+ * @param   sd     the affected player structure
+ */
+void skill_cooldown_save(struct map_session_data * sd) {
+	int i;
+	struct skill_cd* cd = NULL;
+	unsigned int now = 0;
+
+	// always check to make sure the session properly exists
+	nullpo_retv(sd);
+
+	if(!(cd = idb_get(skillcd_db, sd->status.char_id))) {// no skill cooldown is associated with this character
+		return;
+	}
+
+	now = gettick();
+		
+	// process each individual cooldown associated with the character
+	for(i = 0; i < cd->cursor; i++) {
+		cd->duration[i] = DIFF_TICK(cd->started[i]+cd->duration[i],now);
+	}
+}
+	
+/**
  * reload stored skill cooldowns when a player logs in.
  * @param   sd     the affected player structure
  */
@@ -17816,6 +17834,7 @@ void skill_cooldown_load(struct map_session_data *sd)
 {
 	int i;
 	struct skill_cd *cd = NULL;
+	unsigned int now = 0;
 
 	// always check to make sure the session properly exists
 	nullpo_retv(sd);
@@ -17825,8 +17844,13 @@ void skill_cooldown_load(struct map_session_data *sd)
 		return;
 	}
 
+	clif->cooldown_list(sd->fd,cd);
+
+	now = gettick();
+
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
+		cd->started[i] = now;
 		// block the skill from usage but ensure it is not recorded (load = true)
 		skill_blockpc_start_(sd, cd->nameid[i], cd->duration[i], true);
 	}

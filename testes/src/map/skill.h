@@ -38,8 +38,6 @@ struct status_change_entry;
 #define MAX_SPIRITBALL 15 // Esferas espirituais
 #define MAX_SKILL_NAME_LENGTH 30
 
-DBMap* skilldb_name2id;
-
 //Constants to identify the skill's inf value:
 enum e_skill_inf {
     INF_ATTACK_SKILL  = 0x01,
@@ -239,8 +237,13 @@ struct s_skill_abra_db {
 };
 extern struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
 
+/**
+ * Vars
+ **/
 extern int enchant_eff[5];
 extern int deluge_eff[5];
+DBMap* skilldb_name2id;
+DBMap* skillcd_db; // char_id -> struct skill_cd
 
 int do_init_skill(void);
 int do_final_skill(void);
@@ -374,6 +377,9 @@ int skill_can_produce_mix(struct map_session_data *sd, int nameid, int trigger, 
 int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, int slot1, int slot2, int slot3, int qty);
 
 int skill_arrow_create(struct map_session_data *sd,int nameid);
+
+// Cool Down
+void skill_cooldown_save(struct map_session_data * sd);
 
 // skills for the mob
 int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl,uint16 skill_id,uint16 skill_lv,unsigned int tick,int flag);
@@ -1883,6 +1889,24 @@ struct s_skill_magicmushroom_db {
 	uint16 skill_id;
 };
 extern struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
+
+/**
+ * Skill Cool Down Delay Saving
+ * Struct skill_cd is not a member of struct map_session_data
+ * to keep cooldowns in memory between player log-ins.
+ * All cooldowns are reset when server is restarted.
+ **/
+struct skill_cd {
+	int duration[MAX_SKILL_TREE];//milliseconds
+#if PACKETVER >= 20120604
+	int total[MAX_SKILL_TREE];
+#endif
+	short skidx[MAX_SKILL_TREE];//the skill index entries belong to
+	short nameid[MAX_SKILL_TREE];//skill id
+	unsigned int started[MAX_SKILL_TREE];
+	unsigned char cursor;
+};
+
 /**
  * Ranger
  **/

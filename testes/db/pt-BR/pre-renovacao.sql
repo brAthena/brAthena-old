@@ -3462,6 +3462,9 @@ REPLACE INTO `const_db` VALUES('IT_PETARMOR','8',0);
 REPLACE INTO `const_db` VALUES('IT_AMMO','10',0);
 REPLACE INTO `const_db` VALUES('IT_DELAYCONSUME','11',0);
 REPLACE INTO `const_db` VALUES('IT_CASH','18',0);
+REPLACE INTO `const_db` VALUES('HQO_OnDeath','0');
+REPLACE INTO `const_db` VALUES('HQO_OnLogout','1');
+REPLACE INTO `const_db` VALUES('HQO_OnMapChange','2');
 
 --
 -- Estrutura da tabela `castle_db`

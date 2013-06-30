@@ -207,14 +207,13 @@ const char *conv_str(struct script_state *st,struct script_data *data);
 int run_script_timer(int tid, unsigned int tick, int id, intptr_t data);
 void run_script_main(struct script_state *st);
 
-void script_stop_instances(int id);
+void script_stop_instances(struct script_code *code);
 struct linkdb_node *script_erase_sleepdb(struct linkdb_node *n);
 void script_free_code(struct script_code *code);
 void script_free_vars(struct DBMap *storage);
 struct script_state *script_alloc_state(struct script_code *rootscript, int pos, int rid, int oid);
 void script_free_state(struct script_state *st);
 
-struct DBMap *script_get_label_db(void);
 struct DBMap *script_get_userfunc_db(void);
 void script_run_autobonus(const char *autobonus,int id, int pos);
 
@@ -227,7 +226,7 @@ void script_cleararray_pc(struct map_session_data *sd, const char *varname, void
 void script_setarray_pc(struct map_session_data *sd, const char *varname, uint8 idx, void *value, int *refcache);
 
 int script_config_read(char *cfgName);
-int do_init_script(void);
+void do_init_script(void);
 int do_final_script(void);
 int add_str(const char *p);
 const char *get_str(int id);
@@ -241,6 +240,9 @@ TBL_PC *script_rid2sd(struct script_state *st);
 #ifdef BETA_THREAD_TEST
 void queryThread_log(char *entry, int length);
 #endif
+struct script_label_entry {
+	int key,pos;
+};
 
 /* script.c interface (incomplete) */
 struct script_interface {
@@ -260,10 +262,19 @@ struct script_interface {
 	/* */
 	char *word_buf;
 	int word_size;
+	/* */
+	struct script_label_entry *labels;
+	int label_count;
+	int labels_size;
+	/*  */
+	void (*label_add)(int key, int pos);
+	/* */
 	struct hQueue *(*queue) (int idx);
 	bool (*queue_add) (int idx, int var);
 	bool (*queue_del) (int idx);
 	bool (*queue_remove) (int idx, int var);
+	int (*queue_create) (void);
+	void (*queue_clear) (int idx);
 } script_s;
 
 struct script_interface *script;

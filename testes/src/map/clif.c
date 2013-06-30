@@ -586,6 +586,22 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 				}
 			break;
 
+		case BG_QUEUE:
+			if(sd && sd->bg_queue.arena) {
+				struct hQueue *queue = &script->hq[sd->bg_queue.arena->queue_id];
+
+				for(i = 0; i < queue->items; i++) {
+					struct map_session_data * sd = NULL;
+
+					if((sd = map_id2sd(queue->item[i]))) {
+						WFIFOHEAD(sd->fd,len);
+						memcpy(WFIFOP(sd->fd,0), buf, len);
+						WFIFOSET(sd->fd,len);
+					}
+				}
+			}
+			break;
+
 		default:
 			ShowError("clif_send: Unrecognized type %d\n",type);
 			return -1;
@@ -17424,7 +17440,7 @@ void clif_bgqueue_notice_delete(struct map_session_data *sd, enum BATTLEGROUNDS_
 }
 
 void clif_parse_bgqueue_register(int fd, struct map_session_data *sd) {
-	struct packet_bgqueue_register *p = P2PTR(fd, bgqueue_registerType);
+	struct packet_bgqueue_register *p = P2PTR(fd);
 	struct bg_arena *arena = NULL;
 
 	if(!bg->queue_on) return; /* temp, until feature is complete */
@@ -17433,6 +17449,8 @@ void clif_parse_bgqueue_register(int fd, struct map_session_data *sd) {
 		clif->bgqueue_ack(sd,BGQA_FAIL_BGNAME_INVALID,0);
 		return;
 	}
+	//debug
+	safestrncpy(arena->name, p->bg_name, sizeof(arena->name));
 
 	switch((enum bg_queue_types)p->type) {
 		case BGQT_INDIVIDUAL:
@@ -17463,7 +17481,6 @@ void clif_parse_bgqueue_checkstate(int fd, struct map_session_data *sd) {
 	//struct packet_bgqueue_checkstate *p = P2PTR(fd, bgqueue_checkstateType); /* TODO: bgqueue_notice_delete should use this p->bg_name */
 	if(!bg->queue_on) return; /* temp, until feature is complete */
 	if (sd->bg_queue.arena && sd->bg_queue.type) {
-		sd->bg_queue.client_has_bg_data = true;
 		clif->bgqueue_update_info(sd,sd->bg_queue.arena->id,bg->id2pos(sd->bg_queue.arena->queue_id,sd->status.account_id));
 	} else
 		clif->bgqueue_notice_delete(sd, BGQND_FAIL_NOT_QUEUING,0);/* TODO: wrong response, should respond with p->bg_name not id 0 */
@@ -17476,7 +17493,7 @@ void clif_parse_bgqueue_revoke_req(int fd, struct map_session_data *sd) {
 }
 
 void clif_parse_bgqueue_battlebegin_ack(int fd, struct map_session_data *sd) {
-	struct packet_bgqueue_battlebegin_ack *p = P2PTR(fd, bgqueue_checkstateType);
+	struct packet_bgqueue_battlebegin_ack *p = P2PTR(fd);
 	struct bg_arena *arena;
 	if(!bg->queue_on ) return; // temp, until feature is complete
 	if((arena = bg->name2arena(p->bg_name))) {
@@ -17514,6 +17531,40 @@ void clif_bgqueue_battlebegins(struct map_session_data *sd, unsigned char arena_
 	safestrncpy(p.game_name, bg->arena[arena_id]->name, sizeof(p.game_name));
 
 	clif_send(&p,sizeof(p), &sd->bl, target);
+}
+/* [Ind] */
+void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
+#if PACKETVER >= 20120604
+	const int offset = 10;
+#else
+	const int offset = 6;
+#endif
+	int i, count = 0;
+
+	WFIFOHEAD(fd,4+(offset*cd->cursor));
+
+#if PACKETVER >= 20120604
+	WFIFOW(fd,0) = 0x985;
+#else
+	WFIFOW(fd,0) = 0x43e;
+#endif
+
+	for(i = 0; i < cd->cursor; i++) {
+		if(cd->duration[i] < 1) continue;
+#if PACKETVER >= 20120604
+		WFIFOW(fd, 4  + (i*10)) = cd->nameid[i];
+		WFIFOL(fd, 6  + (i*10)) = cd->total[i];
+		WFIFOL(fd, 10 + (i*10)) = cd->duration[i];
+#else
+		WFIFOW(fd, 4 + (i*6)) = cd->nameid[i];
+		WFIFOL(fd, 6 + (i*6)) = cd->duration[i];
+#endif
+		count++;
+	}
+
+	WFIFOW(fd,2) = 4+(offset*count);
+
+	WFIFOSET(fd,4+(offset*count));
 }
 
 /// unknown usage (CZ_BLOCKING_PLAY_CANCEL)
@@ -17839,6 +17890,7 @@ void clif_defaults(void) {
 	/*  */
 	clif->parse_cmd = clif_parse_cmd_optional;
 	clif->decrypt_cmd = clif_decrypt_cmd;
+	clif->cooldown_list = clif_skill_cooldown_list;
 	/* Outros */
 	clif->bc_ready = clif_bc_ready;
 	clif->status_change = clif_status_change;

@@ -46,10 +46,12 @@ struct quest;
 struct party_booking_ad_info;
 struct view_data;
 struct eri;
+struct skill_cd;
 
 
 #define packet_len(cmd) packet_db[cmd].len
-#define P2PTR(fd,cmd) RFIFO2PTR(fd,packet_db[cmd].len)
+#define P2PTR(fd) RFIFO2PTR(fd)
+#define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 
 enum { // packet DB
     MAX_PACKET_DB  = 0xF00,
@@ -922,9 +924,6 @@ void clif_chsys_gjoin(struct guild *g1,struct guild *g2);
 void clif_chsys_gleave(struct guild *g1,struct guild *g2);
 int clif_undisguise_timer(int tid, unsigned int tick, int id, intptr_t data);
 
-#define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
-
-
 /**
  * Vars
  **/
@@ -936,6 +935,7 @@ struct clif_interface {
 	unsigned int cryptKey[3];
 	unsigned short (*parse_cmd) ( int fd, struct map_session_data *sd );
 	unsigned short (*decrypt_cmd) ( int cmd, struct map_session_data *sd );
+	void (*cooldown_list) (int fd, struct skill_cd* cd);
 	/* Outros */
 	void (*bc_ready) (void);
 	void (*addcards2) (unsigned short *cards, struct item* item);

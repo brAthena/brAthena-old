@@ -1688,6 +1688,7 @@ int map_quit(struct map_session_data *sd)
 	if(sd->bg_id)
 		bg_team_leave(sd,1);
 
+	skill_cooldown_save(sd);
 	pc_itemcd_do(sd,false);
 
 	for(i = 0; i < sd->queues_count; i++) {
@@ -1698,7 +1699,8 @@ int map_quit(struct map_session_data *sd)
 	}
 	/* two times, the npc event above may assign a new one or delete others */
 	for(i = 0; i < sd->queues_count; i++) {
-		script->queue_remove(sd->queues[i],sd->status.account_id);
+		if(sd->queues[i] != -1)
+			script->queue_remove(sd->queues[i],sd->status.account_id);
 	}
 	
 	npc_script_event(sd, NPCE_LOGOUT);

@@ -62,7 +62,7 @@ typedef long in_addr_t;
 	} while(0)
 
 /* [Ind] */
-#define RFIFO2PTR(fd,len) (void*)(session[fd]->rdata + len)
+#define RFIFO2PTR(fd) (void*)(session[fd]->rdata + session[fd]->rdata_pos)
 
 // buffer I/O macros
 #define RBUFP(p,pos) (((uint8*)(p)) + (pos))
