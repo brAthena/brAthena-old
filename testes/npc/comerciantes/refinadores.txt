@@ -595,16 +595,6 @@ function	script	refinemain	{
 		mes "refine this item at all...";
 		close;
 	}
-	//Check if the item is identified... (Don't know why this is in here... but kept it anyway)
-	if(!getequipisidentify(.@part)) {
-		mes "[" + getarg(0) + "]";
-		mes "You can't refine this";
-		mes "if you haven't appraised";
-		mes "it first. Make sure your";
-		mes "stuff is identified before";
-		mes "I can refine it.";
-		close;
-	}
 	//Check to see if the items is already +10
 	if(getequiprefinerycnt(.@part) >= 10) {
 		mes "[" + getarg(0) + "]";
@@ -1231,15 +1221,15 @@ function	script	repairmain	{
 // +11 and above Refiners
 //============================================================
 prt_in,90,72,5	script#re	Bestry#prt	826,{
-	callfunc "refinenew","Bestry",0,0;
+	callfunc "refinenew","Bestry",0;
 	end;
 }
 morocc_in,64,41,5	script#re	Bestry#moc	826,{
-	callfunc "refinenew","Bestry",0,0;
+	callfunc "refinenew","Bestry",0;
 	end;
 }
 payon_in01,18,132,3	script#re	Bestry#pay	826,{
-	callfunc "refinenew","Bestry",0,0;
+	callfunc "refinenew","Bestry",0;
 	end;
 }
 
@@ -1251,10 +1241,8 @@ payon_in01,18,132,3	script#re	Bestry#pay	826,{
 //= If you enable this function, be sure to edit the value of
 //= .@safe to the max safe refine in refine_db.txt as well.
 //=
-//= The official script uses a command which seems to generate a
-//= random result upon refining: success, downgrade, or failure.
-//= To enable that feature, set the third argument to '1' in the
-//= function call.  Otherwise, the chance in refine_db.txt is used.
+//= On official servers, if an item is unsuccessfully refined
+//= it will break at a 20% rate and downgrade at an 80% rate.
 //============================================================
 function	script	refinenew	{
 	disable_items;
@@ -1291,16 +1279,6 @@ function	script	refinenew	{
 		mes "refine this item at all...";
 		close;
 	}
-	//Check if the item is identified... (Don't know why this is in here... but kept it anyway)
-	if(!getequipisidentify(.@part)) {
-		mes "[" + getarg(0) + "]";
-		mes "You can't refine this";
-		mes "if you haven't appraised";
-		mes "it first. Make sure your";
-		mes "stuff is identified before";
-		mes "I can refine it.";
-		close;
-	}
 	//Check to see if the items is at least +10
 	if(getequiprefinerycnt(.@part) < 10) {
 		mes "["+ getarg(0) +"]";
@@ -1319,7 +1297,12 @@ function	script	refinenew	{
 	if ((getequipweaponlv(.@part) >= 1) && (getequipweaponlv(.@part) <= 4)) {
 		set .@material,6224;
 		set .@price,100000;
-		set .@safe,10;
+		switch(getequipweaponlv(.@part)) {
+			case 1: set .@safe,17; break;
+			case 2: set .@safe,16; break;
+			case 3: set .@safe,15; break;
+			case 4: set .@safe,14; break;
+		}
 		mes "["+ getarg(0) +"]";
 		mes "Hmm a weapon, is that ok?";
 		mes "If you want to refine this weapon,";
@@ -1328,7 +1311,7 @@ function	script	refinenew	{
 	} else {
 		set .@material,6223;
 		set .@price,100000;
-		set .@safe,10;
+		set .@safe,14;
 		mes "["+ getarg(0) +"]";
 		mes "Hmm an armor, is that ok?";
 		mes "If you want to refine this armor,";
@@ -1394,19 +1377,17 @@ function	script	refinenew	{
 			mes "You switched the item while I wasn't looking! Get out of here!";
 			close;
 		}
-		if(getarg(2) == 1){
-			set .@rand,rand(1,3);
-			if (.@rand == 1) {
-				mes "Clang! Clang! Clang! Clang!";
-				successrefitem .@part;
-				next;
-				emotion e_no1;
-				mes "["+ getarg(0) +"]";
-				mes "Good! Succes!!!";
-				mes "I am the best Blacksmith.";
-				close;
-			}
-			if (.@rand == 2) {
+		if (getequippercentrefinery(.@part) > rand(100)) {
+			mes "Clang! Clang! Clang! Clang!";
+			successrefitem .@part;
+			next;
+			emotion e_no1;
+			mes "["+ getarg(0) +"]";
+			mes "Good! Succes!!!";
+			mes "I am the best Blacksmith.";
+			close;
+		} else {
+			if (rand(100) < 80) {
 				mes "["+ getarg(0) +"]";
 				mes "Clang! Clang! Clang! Clang!";
 				downrefitem .@part;
@@ -1424,72 +1405,26 @@ function	script	refinenew	{
 				mes "["+ getarg(0) +"]";
 				mes "I will do a better job next time! Don't worry!";
 				close;
+			} else {
+				mes "["+ getarg(0) +"]";
+				mes "Clang! Clang! Clang!";
+				failedrefitem .@part;
+				next;
+				emotion (!rand(5))?e_cash:e_omg;
+				mes "["+ getarg(0) +"]";
+				mes "Hmmm!";
+				next;
+				mes "["+ getarg(0) +"]";
+				mes "Oh my! I've failed to refine stuff...";
+				mes "I didn't mean it!";
+				mes "There could've been made an mistake even though I am the best ever.";
+				mes "It was out of my hands.";
+				next;
+				mes "["+ getarg(0) +"]";
+				mes "I will do a better job next time! Don't worry!";
+				close;
 			}
-			mes "["+ getarg(0) +"]";
-			mes "Clang! Clang! Clang!";
-			failedrefitem .@part;
-			next;
-			emotion (!rand(5))?e_cash:e_omg;
-			mes "["+ getarg(0) +"]";
-			mes "Hmmm!";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "Oh my! I've failed to refine stuff...";
-			mes "I didn't mean it!";
-			mes "There could've been made an mistake even though I am the best ever.";
-			mes "It was out of my hands.";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "I will do a better job next time! Don't worry!";
-			close;
 		}
-		set .@rand,rand(100);
-		if (getequippercentrefinery(.@part) > .@rand) {
-			mes "Clang! Clang! Clang! Clang!";
-			successrefitem .@part;
-			next;
-			emotion e_no1;
-			mes "["+ getarg(0) +"]";
-			mes "Good! Succes!!!";
-			mes "I am the best Blacksmith.";
-			close;
-		}
-		if (getequippercentrefinery(.@part) < .@rand) {
-			mes "["+ getarg(0) +"]";
-			mes "Clang! Clang! Clang! Clang!";
-			downrefitem .@part;
-			next;
-			emotion (!rand(5))?e_cash:e_omg;
-			mes "["+ getarg(0) +"]";
-			mes "Ahhh!!!";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "Oh my!";
-			mes "The upgrade level has dropped...";
-			mes "There could've been made an mistake even though I am the best ever.";
-			mes "It was out of my hands.";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "I will do a better job next time! Don't worry!";
-			close;
-		}
-		mes "["+ getarg(0) +"]";
-		mes "Clang! Clang! Clang!";
-		failedrefitem .@part;
-		next;
-		emotion (!rand(5))?e_cash:e_omg;
-		mes "["+ getarg(0) +"]";
-		mes "Hmmm!";
-		next;
-		mes "["+ getarg(0) +"]";
-		mes "Oh my! I've failed to refine stuff...";
-		mes "I didn't mean it!";
-		mes "There could've been made an mistake even though I am the best ever.";
-		mes "It was out of my hands.";
-		next;
-		mes "["+ getarg(0) +"]";
-		mes "I will do a better job next time! Don't worry!";
-		close;
 	}
 // New +11 and above Refining Functions ========================
 	if(getequiprefinerycnt(.@part) < .@safe) {
@@ -1504,13 +1439,12 @@ function	script	refinenew	{
 		set .@refinecnt,.@safe - getequiprefinerycnt(.@part);
 		break;
 	case 2:
-		next;
 		mes "[" + getarg(0) + "]";
 		mes "How many times would you like me to refine your item?";
 		next;
 		input .@refinecnt;
 		set .@refinecheck,.@refinecnt + getequiprefinerycnt(.@part);
-		if (.@refinecnt < 1 || .@refinecheck > 10) {
+		if (.@refinecnt < 1 || .@refinecheck > 20) {
 			mes "[" + getarg(0) + "]";
 			mes "I can't refine this item that many times.";
 			close;
@@ -1528,7 +1462,6 @@ function	script	refinenew	{
 		}
 		break;
 	case 3:
-		next;
 		mes "[" + getarg(0) + "]";
 		mes "You said so... So be it.";
 		close;
@@ -1562,20 +1495,13 @@ function	script	refinenew	{
 			mes "Get out before I stun you with my Hammer!!";
 			close;
 		}
-		if(getarg(2) == 1){
-			set .@rand,rand(1,3);
-			if (.@rand == 1) {
-				mes "["+ getarg(0) +"]";
-				mes "Clang! Clang! Clang! Clang!";
-				successrefitem .@part;
-				next;
-				emotion e_no1;
-				mes "["+ getarg(0) +"]";
-				mes "Good! Succes!!!";
-				mes "I am the best Blacksmith.";
-				close;
-			}
-			if (.@rand == 2) {
+		if (getequippercentrefinery(.@part) > rand(100)) {
+			mes "Clang! Clang! Clang! Clang!";
+			successrefitem .@part;
+			set .@refinecnt,.@refinecnt - 1;
+			next;
+		} else {
+			if (rand(100) < 80) {
 				mes "["+ getarg(0) +"]";
 				mes "Clang! Clang! Clang! Clang!";
 				downrefitem .@part;
@@ -1593,75 +1519,31 @@ function	script	refinenew	{
 				mes "["+ getarg(0) +"]";
 				mes "I will do a better job next time! Don't worry!";
 				close;
+			} else {
+				mes "["+ getarg(0) +"]";
+				mes "Clang! Clang! Clang!";
+				failedrefitem .@part;
+				next;
+				emotion (!rand(5))?e_cash:e_omg;
+				mes "["+ getarg(0) +"]";
+				mes "Hmmm!";
+				next;
+				mes "["+ getarg(0) +"]";
+				mes "Oh my! I've failed to refine stuff...";
+				mes "I didn't mean it!";
+				mes "There could've been made an mistake even though I am the best ever.";
+				mes "It was out of my hands.";
+				next;
+				mes "["+ getarg(0) +"]";
+				mes "I will do a better job next time! Don't worry!";
+				close;
 			}
-			mes "["+ getarg(0) +"]";
-			mes "Clang! Clang! Clang!";
-			failedrefitem .@part;
-			next;
-			emotion (!rand(5))?e_cash:e_omg;
-			mes "["+ getarg(0) +"]";
-			mes "Hmmm!";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "Oh my! I've failed to refine stuff...";
-			mes "I didn't mean it!";
-			mes "There could've been made an mistake even though I am the best ever.";
-			mes "It was out of my hands.";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "I will do a better job next time! Don't worry!";
-			close;
 		}
-		set .@rand,rand(100);
-		if (getequippercentrefinery(.@part) > .@rand) {
-			mes "Clang! Clang! Clang! Clang!";
-			successrefitem .@part;
-			next;
-			emotion e_no1;
-			mes "["+ getarg(0) +"]";
-			mes "Good! Succes!!!";
-			mes "I am the best Blacksmith.";
-			close;
-		}
-		if (getequippercentrefinery(.@part) < .@rand) {
-			mes "["+ getarg(0) +"]";
-			mes "Clang! Clang! Clang! Clang!";
-			downrefitem .@part;
-			next;
-			emotion (!rand(5))?e_cash:e_omg;
-			mes "["+ getarg(0) +"]";
-			mes "Ahhh!!!";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "Oh my!";
-			mes "The upgrade level has dropped...";
-			mes "There could've been made an mistake even though I am the best ever.";
-			mes "It was out of my hands.";
-			next;
-			mes "["+ getarg(0) +"]";
-			mes "I will do a better job next time! Don't worry!";
-			close;
-		}
-		mes "["+ getarg(0) +"]";
-		mes "Clang! Clang! Clang!";
-		failedrefitem .@part;
-		next;
-		emotion (!rand(5))?e_cash:e_omg;
-		mes "["+ getarg(0) +"]";
-		mes "Hmmm!";
-		next;
-		mes "["+ getarg(0) +"]";
-		mes "Oh my! I've failed to refine stuff...";
-		mes "I didn't mean it!";
-		mes "There could've been made an mistake even though I am the best ever.";
-		mes "It was out of my hands.";
-		next;
-		mes "["+ getarg(0) +"]";
-		mes "I will do a better job next time! Don't worry!";
-		close;
 	}
-	mes "[" + getarg(0) + "]";
-	mes "All finished... Come again soon.";
+	emotion e_no1;
+	mes "["+ getarg(0) +"]";
+	mes "Good! Succes!!!";
+	mes "I am the best Blacksmith.";
 	close;
 }
 
@@ -1716,7 +1598,7 @@ morocc_in,60,38,5	duplicatr(Austry#ref)	Austry#moc	826,{}
 
 // Malangdo Refiner
 //============================================================
-malangdo,224,172,6	script	Clink#mal_normal	544,{
+malangdo,224,172,6#re	script	Clink#mal_normal	544,{
 	disable_items;
 	mes "[Clink]";
 	mes "My cool dad Holink said I have the world's greatest refine hammer!!";
@@ -1764,11 +1646,6 @@ malangdo,224,172,6	script	Clink#mal_normal	544,{
 	if (!getequipisenableref(.@part)) {
 		mes "[Clink]";
 		mes "This can't be refined!!";
-		close;
-	}
-	if (!getequipisidentify(.@part)) {
-		mes "[Clink]";
-		mes "How did you wear something that wasn't appraised?";
 		close;
 	}
 	if (getequiprefinerycnt(.@part) >= 10) {

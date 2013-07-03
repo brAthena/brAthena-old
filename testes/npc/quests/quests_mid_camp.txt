@@ -30,8 +30,7 @@ prontera,163,53,3	script	Promotional Staff#prt	100,{
 	mes "Join us for a wonderful adventure!";
 	next;
 	mes "[Promotional Staff]";
-	mes "Hey, you're a knowledgeable person, right?";
-	mes "Are you interested in my story?";
+	mes "Hey, you're a knowledgeable person, right? Are you interested in my story?";
 	next;
 	switch(select("Yes.:No, thanks.")) {
 	case 1:
@@ -43,8 +42,7 @@ prontera,163,53,3	script	Promotional Staff#prt	100,{
 		mes "[Promotional Staff]";
 		mes "I usually send adventurers to";
 		mes "newly found places for research.";
-		mes "It's quite challenging, as nobody's";
-		mes "ever been to these places.";
+		mes "It's quite challeging, as nobody's ever been to these places.";
 		next;
 		mes "[Promotional Staff]";
 		mes "The missions are quite dangerous,";
@@ -53,15 +51,10 @@ prontera,163,53,3	script	Promotional Staff#prt	100,{
 		mes "of this mission.";
 		next;
 		mes "[Promotional Staff]";
-		mes "I'm not sure that you're strong";
-		mes "enough, but you seem brave. How";
-		mes "about going to the kingdom";
-		mes "receptionist? He should be in the";
-		mes "first room of Prontera Castle.";
+		mes "I'm not sure that you're strong enough, but you seem brave. How about going to the kingdom receptionist? He should be in the first room of Prontera Castle.";
 		next;
 		mes "[Promotional Staff]";
-		mes "From what I've heard about this";
-		mes "new place... It's not a new continent.";
+		mes "From what I've heard about this place... It's not a new continent.";
 		mes "I don't know where it is.";
 		mes "Hmm... Inside of the sky?";
 		next;
@@ -71,16 +64,12 @@ prontera,163,53,3	script	Promotional Staff#prt	100,{
 		mes "It's not my business.";
 		next;
 		mes "[Promotional Staff]";
-		mes "Anyway, I'm supposed to inform many";
-		mes "adventurers about it.";
+		mes "Anyway, I'm supposed to inform many adventurers about it.";
 		mes "There's no time to waste!";
 		close;
 	case 2:
 		mes "[Promotional Staff]";
-		mes "Huh, I thought you were a real";
-		mes "adventurer. You're missing a big";
-		mes "opportunity. You're definitely not";
-		mes "brave. Absolutely not!";
+		mes "Huh, I thought you were a real adventurer. You're missing a big opportunity. You're definitely not brave. Absolutely not!";
 		close;
 	}
 }
@@ -655,7 +644,7 @@ geffen,90,67,3	script	Promotional Staff#gef	100,{
 	}
 }
 
-izlude,101,173,6	script	Promotional Staff#iz	100,{
+-	script	::PromotionalStaff_izlude	-1,{
 	if (ep13_ryu > 8) {
 		mes "[Promotional Staff]";
 		mes "I bless you for your future! May it be full of happiness!";
@@ -667,7 +656,21 @@ izlude,101,173,6	script	Promotional Staff#iz	100,{
 		mes "If you have any other business, go to the palace.";
 		close;
 	}
-	if ((ep13_ryu == 7) && (BaseLevel > 69)) {
+	if (ep13_ryu == 7) {
+		if (BaseLevel < 70) {
+			mes "[Promotional Staff]";
+			mes "You don't look that strong.";
+			mes "Nothing but skin and bones!";
+			mes "Not reliable.";
+			mes "You should level up more before";
+			mes "considering this adventure.";
+			next;
+			mes "[Promotional Staff]";
+			mes "I don't need adventurers who are";
+			mes "body-builders... but at least";
+			mes "someone not so little!!";
+			close;
+		}
 		mes "[Promotional Staff]";
 		mes "Wow! You are considerably";
 		mes "stronger than before!";
@@ -704,20 +707,6 @@ izlude,101,173,6	script	Promotional Staff#iz	100,{
 		mes "[Promotional Staff]";
 		mes "Bless all of your heart,";
 		mes "for your great future!";
-		close;
-	}
-	if (ep13_ryu == 7) {
-		mes "[Promotional Staff]";
-		mes "You don't look that strong.";
-		mes "Nothing but skin and bones!";
-		mes "Not reliable.";
-		mes "You should level up more before";
-		mes "considering this adventure.";
-		next;
-		mes "[Promotional Staff]";
-		mes "I don't need adventurers who are";
-		mes "body-builders... but at least";
-		mes "someone not so little!!";
 		close;
 	}
 	if (ep13_ryu == 6) {
@@ -784,54 +773,8 @@ izlude,101,173,6	script	Promotional Staff#iz	100,{
 			close;
 		}
 	}
-	mes "[Promotional Staff]";
-	mes "We want the adventurers who are super curious";
-	mes "and extremely brave.";
-	mes "Join us for a wonderful adventure!";
-	next;
-	mes "[Promotional Staff]";
-	mes "Hey, you're a well-knowledged person, as I know. Are you interested in my story?";
-	next;
-	switch(select("Yes.:No, thanks.")) {
-	case 1:
-		mes "[Promotional Staff]";
-		mes "You're a real adventurer.";
-		mes "Good for you!";
-		mes "You won't regret it.";
-		next;
-		mes "[Promotional Staff]";
-		mes "I usually send adventurers to";
-		mes "newly found places for research.";
-		mes "It's quite challeging, as nobody's ever been to these places.";
-		next;
-		mes "[Promotional Staff]";
-		mes "The missions are quite dangerous,";
-		mes "so only those who are courageous";
-		mes "are qualified for the challenge";
-		mes "of this mission.";
-		next;
-		mes "[Promotional Staff]";
-		mes "I'm not sure that you're strong enough, but you seem brave. How about going to the kingdom receptionist? He should be in the first room of Prontera Castle.";
-		next;
-		mes "[Promotional Staff]";
-		mes "From what I've heard about this place... It's not a new continent.";
-		mes "I don't know where it is.";
-		mes "Hmm... Inside of the sky?";
-		next;
-		mes "[Promotional Staff]";
-		mes "Could just be a rumor,";
-		mes "but I don't know exactly.";
-		mes "It's not my business.";
-		next;
-		mes "[Promotional Staff]";
-		mes "Anyway, I'm supposed to inform many adventurers about it.";
-		mes "There's no time to waste!";
-		close;
-	case 2:
-		mes "[Promotional Staff]";
-		mes "Huh, I thought you were a real adventurer. You're missing a big opportunity. You're definitely not brave. Absolutely not!";
-		close;
-	}
+	callfunc "Promotional_Staff";
+	end;
 }
 
 lighthalzen,220,292,3	script	Guide#ep13_1	899,{
@@ -1918,7 +1861,7 @@ moc_fild22b,230,197,5	script	Munkenro#2	967,{
 		next;
 		completequest 10078;
 		set ep13_ryu,100;
-		if(checkversion(0))
+		if (checkversion(0))
 			getexp 66000,21000;
 		else
 			getexp 660000,210000;
@@ -2814,7 +2757,7 @@ mid_camp,261,284,4	script	Instructor#ep13bs	405,{
 			set ep13_newbs,100;
 			getitem 617,1; //Old_Violet_Box
 			getitem 12322,5; //Chocolate_Pie
-			if(checkversion(0))
+			if (checkversion(0))
 				getexp 100000,10000;
 			else
 				getexp 1000000,100000;
@@ -4347,7 +4290,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "I hope you'll make yourself known in Ash Vacuum with your great accomplishments.";
 				set ep13_animal,15;
 				completequest 2157;
-				if(checkversion(0))
+				if (checkversion(0))
 					getexp 100000,0;
 				else
 					getexp 1500000,0;
@@ -4448,7 +4391,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "- You pat his shoulder gently, it's worrying that Rumis is not able to return to his country. -";
 				set ep13_animal,100;
 				delitem 6033,1; //Horn_Of_Tendrilion
-				if(checkversion(0))
+				if (checkversion(0))
 					getexp 50000,0;
 				else
 					getexp 1000000,0;
@@ -5283,7 +5226,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 			mes "I'll discuss this more with the expedition management.";
 			mes "Thank you for your valuable information.";
 			completequest 2158;
-			if(checkversion(0))
+			if (checkversion(0))
 				getexp 90000,0;
 			else
 				getexp 900000,0;
@@ -5294,31 +5237,6 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 			mes "Oh, nothing.";
 			mes "Sorry to bother you.";
 			close;
-		}
-		else if (checkquest(2158) == 2) {
-			if (checkquest(2159) == 1) {
-				mes "- You report your encounter with a tree giant in the Manuk area to the guard captain. -";
-				next;
-				mes "[Captain]";
-				mes "That sounds very important.";
-				mes "It's too early to say this, but we might have to dispatch an investigation group to the area.";
-				next;
-				mes "[Captain]";
-				mes "I'll discuss this more with the expedition management.";
-				mes "Thank you for your valuable information.";
-				completequest 2159;
-				if(checkversion(0))
-					getexp 90000,0;
-				else
-					getexp 900000,0;
-				close;
-			}
-			else {
-				mes "["+strcharinfo(0)+"]";
-				mes "Oh, nothing.";
-				mes "Sorry to bother you.";
-				close;
-			}
 		}
 		else {
 			if (checkquest(2159) == 1) {
@@ -5332,7 +5250,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 				mes "I'll discuss this more with the expedition management.";
 				mes "Thank you for your valuable information.";
 				completequest 2159;
-				if(checkversion(0))
+				if (checkversion(0))
 					getexp 90000,0;
 				else
 					getexp 900000,0;
@@ -5761,7 +5679,7 @@ OnTouch:
 			mes "- You feel so refreshed and light, as you drink the tea that the Official offered. -";
 			specialeffect2 EF_ABSORBSPIRITS;
 			set ep13_1_rhea,100;
-			if(checkversion(0))
+			if (checkversion(0))
 				getexp 80000,3000;
 			else
 				getexp 300000,10000;
@@ -7581,7 +7499,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				next;
 				delitem 579,50; //Delicious_Fish
 				set ep13_alba,6;
-				if(checkversion(0))
+				if (checkversion(0))
 					getexp 8000,3000;
 				else
 					getexp 80000,30000;
@@ -7617,7 +7535,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 7198,30; //Great_Leaf
 				delitem 7188,30; //Browny_Root
 				set ep13_alba,6;
-				if(checkversion(0))
+				if (checkversion(0))
 					getexp 9000,4000;
 				else
 					getexp 90000,40000;

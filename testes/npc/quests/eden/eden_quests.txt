@@ -23,7 +23,6 @@
 //   \________________________________________________________/
 
 moc_para01,25,35,4	script	Instructor Boya#para01	469,{
-
 	if (countitem(6219) > 0) {
 		if (para_suv01 == 0) {
 			mes "[Boya]";
