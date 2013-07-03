@@ -5191,7 +5191,7 @@ void read_map_zone_db(void) {
 int map_db_final(DBKey key, DBData *data, va_list ap)
 {
 	struct map_data_other_server *mdos = db_data2ptr(data);
-	if(mdos && malloc_verify_ptr(mdos) && mdos->cell == NULL)
+	if(mdos && iMalloc->verify_ptr(mdos) && mdos->cell == NULL)
 		aFree(mdos);
 
 	return 0;

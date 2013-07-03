@@ -315,8 +315,9 @@ int main(int argc, char **argv)
 		arg_c = argc;
 		arg_v = argv;
 	}
+	malloc_defaults();
 
-	malloc_init();// needed for Show* in display_title() [FlavioJS]
+	iMalloc->init();// needed for Show* in display_title() [FlavioJS]
 	read_brathena_config();
 
 #ifdef MINICORE // minimalist Core
@@ -362,7 +363,7 @@ int main(int argc, char **argv)
 	rathread_final();
 #endif
 
-	malloc_final();
+	iMalloc->final();
 
 	return 0;
 }

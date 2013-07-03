@@ -342,7 +342,7 @@ void *_mmalloc(size_t size, const char *file, int line, const char *func)
 
 void *_mcalloc(size_t num, size_t size, const char *file, int line, const char *func)
 {
-	void *p = _mmalloc(num * size,file,line,func);
+	void *p = iMalloc->malloc(num * size,file,line,func);
 	memset(p,0,num * size);
 	return p;
 }
@@ -351,7 +351,7 @@ void *_mrealloc(void *memblock, size_t size, const char *file, int line, const c
 {
 	size_t old_size;
 	if(memblock == NULL) {
-		return _mmalloc(size,file,line,func);
+		return iMalloc->malloc(size,file,line,func);
 	}
 
 	old_size = ((struct unit_head *)((char *)memblock - sizeof(struct unit_head) + sizeof(long)))->size;
@@ -363,11 +363,11 @@ void *_mrealloc(void *memblock, size_t size, const char *file, int line, const c
 		return memblock;
 	}  else {
 		// Size Large
-		void *p = _mmalloc(size,file,line,func);
+		void *p = iMalloc->malloc(size,file,line,func);
 		if(p != NULL) {
 			memcpy(p,memblock,old_size);
 		}
-		_mfree(memblock,file,line,func);
+		iMalloc->free(memblock,file,line,func);
 		return p;
 	}
 }
@@ -378,7 +378,7 @@ char *_mstrdup(const char *p, const char *file, int line, const char *func)
 		return NULL;
 	} else {
 		size_t len = strlen(p);
-		char *string  = (char *)_mmalloc(len + 1,file,line,func);
+		char *string  = (char *)iMalloc->malloc(len + 1,file,line,func);
 		memcpy(string,p,len+1);
 		return string;
 	}
@@ -544,13 +544,14 @@ static void memmgr_log(char *buf)
 	if(!log_fp) {
 		time_t raw;
 		struct tm *t;
+		const char* svn = get_svn_revision();
 
 		log_fp = fopen(memmer_logfile,"at");
 		if(!log_fp) log_fp = stdout;
 
 		time(&raw);
 		t = localtime(&raw);
-		fprintf(log_fp, (read_message("Source.common.memmgr_log")),(t->tm_year+1900), (t->tm_mon+1), t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec, get_svn_revision());
+		fprintf(log_fp, (read_message("Source.common.memmgr_log")),(t->tm_year+1900), (t->tm_mon+1), t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec, svn);
 	}
 	fprintf(log_fp, "%s", buf);
 	return;
@@ -623,7 +624,7 @@ static void memmgr_final(void)
 					memmgr_log(buf);
 #endif /* LOG_MEMMGR */
 					// get block pointer and free it [celest]
-					_mfree(ptr, ALC_MARK);
+					iMalloc->free(ptr, ALC_MARK);
 				}
 			}
 		}
@@ -799,5 +800,29 @@ void malloc_init(void)
 #endif
 #ifdef USE_MEMMGR
 	memmgr_init();
+#endif
+}
+
+void malloc_defaults(void) {
+	iMalloc = &iMalloc_s;
+	iMalloc->init = malloc_init;
+	iMalloc->final = malloc_final;
+	iMalloc->memory_check = malloc_memory_check;
+	iMalloc->usage = malloc_usage;
+	iMalloc->verify_ptr = malloc_verify_ptr;
+
+// Athena's built-in Memory Manager
+#ifdef USE_MEMMGR
+	iMalloc->malloc  =	 _mmalloc;
+	iMalloc->calloc  =	 _mcalloc;
+	iMalloc->realloc =	 _mrealloc;
+	iMalloc->astrdup =	 _mstrdup;
+	iMalloc->free    =	 _mfree;
+#else
+	iMalloc->malloc  =	aMalloc_;
+	iMalloc->calloc  =	aCalloc_;
+	iMalloc->realloc =	aRealloc_;
+	iMalloc->astrdup =	aStrdup_;
+	iMalloc->free    =	aFree_;
 #endif
 }
