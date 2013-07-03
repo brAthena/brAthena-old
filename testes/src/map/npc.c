@@ -3754,9 +3754,9 @@ int npc_reload(void)
 					map[m].mob_delete_timer = INVALID_TIMER;
 				}
 			}
+		if (map[m].npc_num > 0)
+				ShowWarning("npc_reload: %d npcs weren't removed at map %s!\n", map[m].npc_num, map[m].name);
 		}
-		if(map[m].npc_num > 0)
-			ShowWarning("npc_reload: %d npcs weren't removed at map %s!\n", map[m].npc_num, map[m].name);
 	}
 
 	npc_warp = npc_shop = npc_script = 0;

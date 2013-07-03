@@ -64,6 +64,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+struct clif_interface clif_s;
 /* for clif_clearunit_delayed */
 static struct eri *delay_clearunit_ers;
 static DBMap* channel_db; // channels 

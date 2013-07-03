@@ -23,7 +23,8 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,237,71,4	script	Tripulante#alberta	100,{
+Antiga coordenada: alberta (237,71)
+alberta,196,202,3	script	Tripulante#alberta	100,{
 	mes "[Tripulante]";
 	mes "Ei!";
 	mes "São 10,000 Zeny para ir até o Porto de Malaya. Está interessad"+((Sex) ? "o":"a")+" ?";

@@ -1171,8 +1171,7 @@ struct clif_interface {
 	void (*pPartyBookingRefuseVolunteer) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingCancelVolunteer) (int fd, struct map_session_data *sd);
 #endif
-	
-} clif_s;
+};
 
 struct clif_interface *clif;
 

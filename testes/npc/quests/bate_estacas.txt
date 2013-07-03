@@ -24,6 +24,16 @@
 //   \________________________________________________________/
 
 yuno,179,174,4	script	Gomer	851,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
+		mes "[Gomer]";
+		mes "Você está acima do peso. Volte quando esvaziar seu inventário";
+		close;
+	}
+	if (countitem(1549)) {
+		mes "[Gomer]";
+		mes "Então como é que o Bate Estacas está funcionando?";
+		close;
+	}
 	if (Class != Job_Mechanic && Class != Job_Mechanic_T && Class != Job_Baby_Mechanic) {
 		mes "[Gomer]";
 		mes "Eu sou um mecânico aposentado e não acho que eu tenha algo a tratar com você.";
@@ -84,11 +94,7 @@ yuno,179,174,4	script	Gomer	851,{
 		mes "Por fim, o mais dificel será encontrar a Broca, mas você deve ser capaz de fazer algo a respeito. Haha, procure-a!";
 		close;
 	case 4:
-		if (countitem(1549)) {
-			mes "[Gomer]";
-			mes "Então como é que o Bate Estacas está funcionando?";
-			close;
-		} else if (countitem(1415) < 1 || countitem(999) < 200 || countitem(7325) < 30) {
+		if (countitem(999) < 200 || countitem(7325) < 30 || countitem(1415) < 1) {
 			mes "[Gomer]";
 			mes "Você não trouxe todos os materiais que eu pedi.";
 			next;
