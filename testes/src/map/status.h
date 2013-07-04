@@ -692,6 +692,8 @@ typedef enum sc_type {
     SC_HANBOK,
 
     SC_MONSTER_TRANSFORM,
+    SC_ANGEL_PROTECT,
+    SC_ILLUSIONDOPING,
 
     //homon S
     SC_TINDER_BREAKER,
@@ -706,7 +708,6 @@ typedef enum sc_type {
     SC_MVPCARD_ORCLORD,
     SC_ACARAJE,
     SC_ATTHASTE_CASH,
-    SC_ANGEL_PROTECT,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
@@ -1439,7 +1440,7 @@ enum si_type {
     SI_2013_VALENTINE1 = 731,
     SI_2013_VALENTINE2 = 732,
     SI_2013_VALENTINE3 = 733,
-    //SI_ = 734,
+    SI_ILLUSIONDOPING = 734,
     //SI_ = 735,
     SI_CHILL = 736,
     SI_BURNT = 737,

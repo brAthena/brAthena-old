@@ -867,11 +867,15 @@ int pc_isequip(struct map_session_data *sd,int n)
 
 	if(item == NULL)
 		return 0;
-	if(item->elv && sd->status.base_level < (unsigned int)item->elv)
+	if(item->elv && sd->status.base_level < (unsigned int)item->elv) {
+		clif_msg(sd, 0x6ED);
 		return 0;
+	}
 #if VERSION == 1
-	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax)
+	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax) {
+		clif_msg(sd, 0x6ED);
 		return 0;
+	}
 #endif
 	if(item->sex != 2 && sd->status.sex != item->sex)
 		return 0;
@@ -4166,12 +4170,16 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	if(item->sex != 2 && sd->status.sex != item->sex)
 		return 0;
 	//Required level check
-	if(item->elv && sd->status.base_level < (unsigned int)item->elv)
+	if(item->elv && sd->status.base_level < (unsigned int)item->elv) {
+		clif_msg(sd, 0x6EE);
 		return 0;
+	}
 
 #if VERSION == 1
-	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax)
+	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax) {
+		clif_msg(sd, 0x6EE);
 		return 0;
+	}
 #endif
 
 	//Not equipable by class. [Skotlex]
@@ -4721,6 +4729,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 
 	sd->state.changemap = (sd->mapindex != mapindex);
 	sd->state.warping = 1;
+	sd->state.workinprogress = 0;
 	if(sd->state.changemap) {   // Misc map-changing settings
 		int i;
 		sd->state.pmap = sd->bl.m;
@@ -6567,8 +6576,10 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 		skill_sit(sd,0);
 	}
 
-	if(sd->progressbar.npc_id)
+	if(sd->progressbar.npc_id) {
 		clif_progressbar_abort(sd);
+		sd->state.workinprogress = 0;
+	}
 
 	if(sd->status.pet_id > 0 && sd->pd && battle_config.pet_damage_support)
 		pet_target_check(sd,src,1);

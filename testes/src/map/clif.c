@@ -10538,11 +10538,13 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	// if player ignores the source character
-	ARR_FIND(0, MAX_IGNORE_LIST, i, dstsd->ignore[i].name[0] == '\0' || strcmp(dstsd->ignore[i].name, sd->status.name) == 0);
-	if(i < MAX_IGNORE_LIST && dstsd->ignore[i].name[0] != '\0') { // source char present in ignore list
-		clif_wis_end(fd, 2); // 2: ignored by target
-		return;
+	if(pc_get_group_level(sd) <= pc_get_group_level(dstsd)) {
+		// if player ignores the source character
+		ARR_FIND(0, MAX_IGNORE_LIST, i, dstsd->ignore[i].name[0] == '\0' || strcmp(dstsd->ignore[i].name, sd->status.name) == 0);
+		if(i < MAX_IGNORE_LIST && dstsd->ignore[i].name[0] != '\0') { // source char present in ignore list
+			clif_wis_end(fd, 2); // 2: ignored by target
+			return;
+		}
 	}
 
 	// notify sender of success
@@ -11126,6 +11128,13 @@ void clif_parse_ChangeCart(int fd,struct map_session_data *sd)
 	if(sd && pc_checkskill(sd, MC_CHANGECART) < 1)
 		return;
 
+#if VERSION == 1
+	if(sd->npc_id || sd->state.workinprogress&1) {
+		clif_msg(sd, 0x783);
+		return;
+	}
+#endif
+
 	type = (int)RFIFOW(fd,2);
 #ifdef NEW_CARTS
 	if((type == 9 && sd->status.base_level > 131) ||
@@ -11384,6 +11393,13 @@ static void clif_parse_UseSkillToPosSub(int fd, struct map_session_data *sd, uin
 		return;
 	}
 
+#if VERSION == 1
+	if(sd->state.workinprogress&1 ){
+		clif_msg(sd, 0x783); // TODO look for the client date that has this message.
+		return;
+	}
+#endif
+
 	//Whether skill fails or not is irrelevant, the char ain't idle. [Skotlex]
 	sd->idletime = last_tick;
 
@@ -11487,7 +11503,9 @@ void clif_parse_UseSkillMap(int fd, struct map_session_data *sd)
 {
 	uint16 skill_id = RFIFOW(fd,2);
 	char map_name[MAP_NAME_LENGTH];
+
 	mapindex_getmapname((char *)RFIFOP(fd,4), map_name);
+	sd->state.workinprogress = 0;
 
 	if(skill_id != sd->menuskill_id)
 		return;
@@ -11741,6 +11759,7 @@ void clif_parse_AutoSpell(int fd,struct map_session_data *sd)
 		return;
 	skill_autospell(sd,RFIFOL(fd,2));
 	clif_menuskill_clear(sd);
+	sd->state.workinprogress = 0;
 }
 
 

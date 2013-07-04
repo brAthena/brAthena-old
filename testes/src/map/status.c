@@ -795,6 +795,8 @@ void initChangeTables(void)
 	add_sc(NPC_WIDE_DEEP_SLEEP  , SC_DEEP_SLEEP);
 	add_sc(NPC_WIDESIREN        , SC_SIREN);
 
+	set_sc_with_vfx(GN_ILLUSIONDOPING   , SC_ILLUSIONDOPING    , SI_ILLUSIONDOPING     , SCB_HIT);
+
 	// Storing the target job rather than simply SC_SOULLINK simplifies code later on.
 	SkillStatusChangeTable[SL_ALCHEMIST]   = (sc_type)MAPID_ALCHEMIST,
 	SkillStatusChangeTable[SL_MONK]        = (sc_type)MAPID_MONK,
@@ -4807,8 +4809,10 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * 20 / 100;
 	if(sc->data[SC_VOLCANIC_ASH])
 		hit -= (hit * sc->data[SC_VOLCANIC_ASH]->val2) / 100;
-	if (sc->data[SC_ACARAJE])
+	if(sc->data[SC_ACARAJE])
 		hit += 5;
+	if(sc->data[SC_ILLUSIONDOPING])
+		hit -= hit * (5 + sc->data[SC_ILLUSIONDOPING]->val1) / 100;
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -7537,11 +7541,9 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				break;
 			case SC_EDP:    // [Celest]
 				val2 = val1 + 2; //Chance to Poison enemies.
-#ifdef RENEWAL_EDP
-				val3 = 50*(val1+3);
-				val4 = 100 * ((val1 + 1)/2 + 2);
-#else
 				val3 = 50*(val1+1); //Damage increase (+50 +50*lv%)
+#ifdef RENEWAL_EDP
+			val4 = 100 * ((val1 + 1)/2 + 2);
 #endif
 				if(sd)  //[Ind] - iROwiki says each level increases its duration by 3 seconds
 					tick += pc_checkskill(sd,GC_RESEARCHNEWPOISON)*3000;
@@ -11208,6 +11210,10 @@ int status_change_clear_buffs(struct block_list *bl, int type)
 					continue;
 				sc->data[i]->val2 = 0;
 				break;
+			default:
+				if(type&4)
+					continue;
+
 		}
 		status_change_end(bl, (sc_type)i, INVALID_TIMER);
 	}
