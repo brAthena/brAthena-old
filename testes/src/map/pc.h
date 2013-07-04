@@ -709,7 +709,7 @@ enum equip_pos {
 #define pcdb_checkid(class_) pcdb_checkid_sub((unsigned int)class_)
 
 // clientside display macros (values to the left/right of the "+")
-#ifdef RENEWAL
+#if VERSION == 1
 #define pc_leftside_atk(sd) ((sd)->battle_status.batk)
 #define pc_rightside_atk(sd) ((sd)->battle_status.rhw.atk + (sd)->battle_status.lhw.atk + (sd)->battle_status.rhw.atk2 + (sd)->battle_status.lhw.atk2  + (sd)->bonus.eatk)
 #define pc_leftside_def(sd) ((sd)->battle_status.def2)

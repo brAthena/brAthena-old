@@ -6,7 +6,7 @@
 *               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
 *                                                                            *
 *                                                                            *
-* \file src/config/renewal.h                                                 *
+* \file src/config/configs.h                                                 *
 * Descrição Primária.                                                        *
 * Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, rAthena                                                  *
@@ -14,18 +14,21 @@
 * \todo ?                                                                    *  
 *****************************************************************************/
 
-#ifndef _RENEWAL
-#define _RENEWAL
-#ifndef _CONFIG_RENEWAL_H_
-#define _CONFIG_RENEWAL_H_
+#ifndef _VERSION
+#define _VERSION
+#ifndef _CONFIG_CONFIGS_H_
+#define _CONFIG_CONFIGS_H_
 
 /**
  * @INFO: Este arquivo tem o proposito de definir configurações apenas da renovação.
  * Para desabilitar uma configuração, comente a linha que contém o #define com //
  **/
 
-/// Modo renovação
-#define RENEWAL
+/* Define o modo do Emulador [brAthena] *
+ *  1 - Renovação                       *
+ *  0 - Pré-Renovação                   *
+ * -1 - Old-Times                       */
+#define VERSION 1
 
 /*		Fórmula de Ataque Base		 *
  *	Valor da constante [ Renovação ] */
@@ -62,11 +65,5 @@
 /// - Algumas habilidades e itens mudam a fórmula de bonificar velocidade de ataque, para valores fixos.
 #define RENEWAL_ASPD
 
-/// Leitura para modificações exclusivas de Brasil Ragnarok Online (bRO)
-#define BRO
-
-/// Utilizar o brAthena em Modo Old Times
-//#define OLD_TIMES
-
-#endif // _CONFIG_RENEWAL_H_
-#endif // _RENEWAL
+#endif // _CONFIG_CONFIGS_H_
+#endif // _VERSION

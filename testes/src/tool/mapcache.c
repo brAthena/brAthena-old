@@ -19,7 +19,7 @@
 #include "../common/malloc.h"
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
-#include "../config/renewal.h"
+#include "../config/configs.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -269,10 +269,12 @@ int do_init(int argc, char **argv)
 	char name[MAP_NAME_LENGTH_EXT];
 
 	/* setup pre-defined, #define-dependant */
-#ifdef RENEWAL
+#if VERSION == 1
 	sprintf(map_cache_file,"db/map_cache_re.dat");
-#else
+#elif VERSION == 0
 	sprintf(map_cache_file,"db/map_cache_pre-re.dat");
+#else
+	sprintf(map_cache_file,"db/map_cache_ot.dat");
 #endif
 
 	// Process the command-line arguments

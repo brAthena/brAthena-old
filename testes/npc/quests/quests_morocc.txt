@@ -1169,11 +1169,11 @@ OnTouch:
 	end;
 }
 
-prontera,164,304,3	duplicate(ConMensageiro)	Guarda Continental#001	997,3,3
-geffen,128,90,3	duplicate(ConMensageiro)	Guarda Continental#002	997,3,3
-payon,200,113,3	duplicate(ConMensageiro)	Guarda Continental#003	997,3,3
-alberta,127,64,3	duplicate(ConMensageiro)	Guarda Continental#004	998,3,3
-aldebaran,135,128,3	duplicate(ConMensageiro)	Guarda Continental#005	998,3,3
+prontera,164,304,3	duplicatv(ConMensageiro)	Guarda Continental#001	997,3,3
+geffen,128,90,3	duplicatv(ConMensageiro)	Guarda Continental#002	997,3,3
+payon,200,113,3	duplicatv(ConMensageiro)	Guarda Continental#003	997,3,3
+alberta,127,64,3	duplicatv(ConMensageiro)	Guarda Continental#004	998,3,3
+aldebaran,135,128,3	duplicatv(ConMensageiro)	Guarda Continental#005	998,3,3
 
 morocc,176,103,3	script	Guarda Oficial	754,{
 	if (rebirth_moc_edq > 3) {

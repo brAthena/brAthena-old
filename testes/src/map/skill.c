@@ -126,7 +126,7 @@ static int skill_check_condition_mob_master_sub (struct block_list *bl, va_list 
 //Since only mob-casted splash skills can hit ice-walls
 static inline int splash_target(struct block_list *bl)
 {
-#ifndef RENEWAL
+#if VERSION != 1
 	return (bl->type == BL_MOB) ? BL_SKILL|BL_CHAR : BL_CHAR;
 #else // Some skills can now hit ground skills(traps, ice wall & etc.)
 	return BL_SKILL|BL_CHAR;
@@ -548,7 +548,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 
 	switch(skill_id) {
 		case BA_APPLEIDUN:
-#ifdef RENEWAL
+#if VERSION == 1
 			hp = 100+5*skill_lv+5*(status_get_vit(src)/10); // HP recovery
 #else
 			hp = 30+5*skill_lv+5*(status_get_vit(src)/10); // HP recovery
@@ -565,7 +565,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 		default:
 			if(skill_lv >= battle_config.max_heal_lv)
 				return battle_config.max_heal;
-#ifdef RENEWAL
+#if VERSION == 1
 			/**
 			 * Renewal Heal Formula
 			 * Formula: ( [(Base Level + INT) / 5] × 30 ) × (Heal Level / 10) × (Modifiers) + MATK
@@ -608,7 +608,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 			hp += hp * sc->data[SC_OFFERTORIUM]->val2 / 100;
 	}
 
-#ifdef RENEWAL
+#if VERSION == 1
 	// MATK part of the RE heal formula [malufett]
 	// Note: in this part matk bonuses from items or skills are not applied
 	switch(skill_id) {
@@ -1113,7 +1113,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case AS_SONICBLOW:
 			sc_start(src,bl,SC_STUN,(2*skill_lv+10),skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
-#ifdef RENEWAL
+#if VERSION == 1
 		case NJ_KAENSIN:
 			unit_set_walkdelay(bl, tick, skill_get_unit_interval(skill_id) * 2, 1);
 			break;
@@ -1124,14 +1124,14 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case MG_FROSTDIVER:
-#ifndef RENEWAL
+#if VERSION != 1
 		case WZ_FROSTNOVA:
 #endif
 			if(!sc_start(src,bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv)))
 				clif_skill_fail(sd,skill_id,0,0);
 			break;
 
-#ifdef RENEWAL
+#if VERSION == 1
 		case WZ_FROSTNOVA:
 			sc_start(src,bl,SC_FREEZE,skill_lv*5+33,skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
@@ -1141,7 +1141,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			/**
 			 * Storm Gust counter was dropped in renewal
 			 **/
-#ifdef RENEWAL
+#if VERSION == 1
 			sc_start(src,bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
 #else
 			//On third hit, there is a 150% to freeze the target
@@ -1231,7 +1231,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			sc_start(src,bl,SC_STUN,(10+3*skill_lv),skill_lv,skill_get_time(skill_id,skill_lv));
 			sc_start(src,bl,SC_BLIND,(10+3*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
 
-#ifdef RENEWAL
+#if VERSION == 1
 			sc_start(src,bl,SC_RAID,100,7,5000);
 			break;
 
@@ -3751,7 +3751,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case GS_FULLBUSTER:
 		case NJ_SYURIKEN:
 		case NJ_KUNAI:
-#ifndef RENEWAL
+#if VERSION != 1
 		case ASC_BREAKER:
 #endif
 		case HFLI_MOON:	//[orn]
@@ -3926,14 +3926,14 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					status_set_sp(src, 0, 0);
 					status_change_end(src, SC_EXPLOSIONSPIRITS, INVALID_TIMER);
 					status_change_end(src, SC_BLADESTOP, INVALID_TIMER);
-#ifdef RENEWAL
+#if VERSION == 1
 					sc_start(src,src,SC_EXTREMITYFIST2,100,skill_lv,skill_get_time(skill_id,skill_lv));
 #endif
 				}else{
 					status_change_end(src, SC_NJ_NEN, INVALID_TIMER);
 					status_change_end(src, SC_HIDING, INVALID_TIMER);
 					status_set_hp(src, 
-#ifdef RENEWAL
+#if VERSION == 1
 					max(status_get_max_hp(src)/100, 1)
 #else
 					1
@@ -4302,7 +4302,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case NJ_ZENYNAGE:
 		case GN_THORNS_TRAP:
 		case GN_HELLS_PLANT_ATK:
-#ifdef RENEWAL
+#if VERSION == 1
 		case ASC_BREAKER:
 #endif
 			skill_attack(BF_MISC,src,src,bl,skill_id,skill_lv,tick,flag);
@@ -5175,7 +5175,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 		{	//End states
 			status_change_end(src, SC_EXPLOSIONSPIRITS, INVALID_TIMER);
 			status_change_end(src, SC_BLADESTOP, INVALID_TIMER);
-#ifdef RENEWAL
+#if VERSION == 1
 			sc_start(src, src, SC_EXTREMITYFIST2, 100, ud->skill_lv, skill_get_time(ud->skill_id, ud->skill_lv));
 #endif
 		}
@@ -6828,7 +6828,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_nodamage(NULL,bl,AL_HEAL,(int)hp,1);
 				if(sp > 0)
 					clif_skill_nodamage(NULL,bl,MG_SRECOVERY,sp,1);
-#ifdef RENEWAL
+#if VERSION == 1
 				if(tsc && tsc->data[SC_EXTREMITYFIST2])
 					sp = 0;
 #endif
@@ -7385,7 +7385,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			   /**
 			    * Renewal dropped the 3/4 hp requirement
 			    **/
-#ifndef RENEWAL
+#if VERSION != 1
 			   || tstatus-> hp > tstatus->max_hp*3/4
 #endif
 			  ) {
@@ -7395,7 +7395,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			}
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,
 			                    sc_start4(src, bl,type,100,skill_lv,skill_id,src->id,skill_get_time(skill_id,skill_lv),1000));
-#ifndef RENEWAL
+#if VERSION != 1
 			if(sd) skill_blockpc_start(sd, skill_id, skill_get_time(skill_id, skill_lv)+3000);
 #endif
 			break;
@@ -7450,7 +7450,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				}
 				sp1 = sstatus->sp;
 				sp2 = tstatus->sp;
-#ifdef  RENEWAL
+#if VERSION == 1
 				sp1 = sp1 / 2;
 				sp2 = sp2 / 2;
 				if(tsc && tsc->data[SC_EXTREMITYFIST2])
@@ -10012,7 +10012,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 		case NJ_HYOUSYOURAKU:
 		case NJ_RAIGEKISAI:
 		case NJ_KAMAITACHI:
-#ifdef RENEWAL
+#if VERSION == 1
 		case NJ_HUUMA:
 #endif
 		case NPC_EVILLAND:
@@ -10691,7 +10691,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 	switch(skill_id) {
 		case MH_STEINWAND:
 		case MG_SAFETYWALL:
-#ifdef RENEWAL
+#if VERSION == 1
 			if(skill_id == MH_STEINWAND)
 			val2 = 300 * skill_lv + 65 * ( status->int_ +  status_get_lv(src) ) + status->max_sp; //nb hp
 		else
@@ -10812,7 +10812,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			break;
 		case DC_HUMMING:
 			val1 = 2*skill_lv+status->dex/10; // Hit increase
-#ifdef RENEWAL
+#if VERSION == 1
 			val1 *= 2;
 #endif
 			if(sd)
@@ -10828,7 +10828,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			}
 			break;
 		case DC_DONTFORGETME:
-#ifdef RENEWAL
+#if VERSION == 1
 			val1 = status->dex/10 + 3*skill_lv; // ASPD decrease
 			val2 = status->agi/10 + 2*skill_lv; // Movement speed adjustment.
 #else
@@ -10854,7 +10854,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			}
 			break;
 		case BA_ASSASSINCROSS:
-#ifdef RENEWAL
+#if VERSION == 1
 			val1 = 10 + skill_lv + (status->agi/10); // ASPD increase
 			if(sd)
 				val1 += 4*pc_checkskill(sd,BA_MUSICALLESSON);
@@ -10871,7 +10871,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			val1*=10; //Because every 10 crit is an actual cri point.
 			break;
 		case BD_DRUMBATTLEFIELD:
-#ifdef RENEWAL
+#if VERSION == 1
 			val1 = (skill_lv+5)*25; //Watk increase
 			val2 = skill_lv*10;     //Def increase
 #else
@@ -11451,7 +11451,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 			} else {
 				int heal = skill_calc_heal(ss,bl,sg->skill_id,sg->skill_lv,true);
 				struct mob_data *md = BL_CAST(BL_MOB, bl);
-#ifdef RENEWAL
+#if VERSION == 1
 				if(md && md->class_ == MOBID_EMPERIUM)
 					break;
 #endif
@@ -11523,7 +11523,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 					/**
 					 * The storm gust counter was dropped in renewal
 					 **/
-#ifndef RENEWAL
+#if VERSION != 1
 				case WZ_STORMGUST: //SG counter does not reset per stormgust. IE: One hit from a SG and two hits from another will freeze you.
 					if(tsc)
 						tsc->sg_counter++; //SG hit counter.
@@ -11671,7 +11671,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 
 		case UNT_APPLEIDUN: { //Apple of Idun [Skotlex]
 				int heal;
-#ifdef RENEWAL
+#if VERSION == 1
 				struct mob_data *md = BL_CAST(BL_MOB, bl);
 				if(md && md->class_ == MOBID_EMPERIUM)
 					break;
@@ -12941,7 +12941,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			break;
 
 		case NJ_ISSEN:
-#ifdef RENEWAL
+#if VERSION == 1
 			if(status->hp < (status->hp/100)) {
 #else
 			if(status->hp < 2) {
@@ -15731,7 +15731,7 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 		// skill unit expired (inlined from skill_unit_onlimit())
 		switch(group->unit_id) {
 			case UNT_BLASTMINE:
-#ifdef RENEWAL
+#if VERSION == 1
 			case UNT_CLAYMORETRAP:
 #endif
 			case UNT_GROUNDDRIFT_WIND:
@@ -15758,7 +15758,7 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 			case UNT_SANDMAN:
 			case UNT_FLASHER:
 			case UNT_FREEZINGTRAP:
-#ifndef RENEWAL
+#if VERSION != 1
 			case UNT_CLAYMORETRAP:
 #endif
 			case UNT_TALKIEBOX:
@@ -16894,7 +16894,7 @@ static void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id)
 		} else {
 			sc->data[SC_MAGICPOWER]->val4 = 1;
 			status_calc_bl(bl, status_sc2scb_flag(SC_MAGICPOWER));
-#ifndef RENEWAL
+#if VERSION != 1
 			if(bl->type == BL_PC) { // update current display.
 				clif_updatestatus(((TBL_PC *)bl),SP_MATK1);
 				clif_updatestatus(((TBL_PC *)bl),SP_MATK2);

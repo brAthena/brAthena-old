@@ -954,7 +954,7 @@ prtg_cas05,36,37,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas05	-1
 // |___________________________________________|
 
 // Juno
-yuno,109,167,5	script	Himinn	722,{
+yuno,109,167,5	script#dv	Himinn	722,{
 	end;
 
 OnAgitInit2:
@@ -963,7 +963,7 @@ OnRecvCastlesc01:
 	end;
 }
 
-yuno,110,171,5	script	Andlangr	722,{
+yuno,110,171,5	script#dv	Andlangr	722,{
 	end;
 
 OnAgitInit2:
@@ -972,7 +972,7 @@ OnRecvCastlesc02:
 	end;
 }
 
-yuno,111,175,5	script	Viblainn	722,{
+yuno,111,175,5	script#dv	Viblainn	722,{
 	end;
 
 OnAgitInit2:
@@ -981,7 +981,7 @@ OnRecvCastlesc03:
 	end;
 }
 
-yuno,112,179,5	script	Hljod	722,{
+yuno,112,179,5	script#dv	Hljod	722,{
 	end;
 
 OnAgitInit2:
@@ -990,7 +990,7 @@ OnRecvCastlesc04:
 	end;
 }
 
-yuno,114,183,5	script	Skidbladnir	722,{
+yuno,114,183,5	script#dv	Skidbladnir	722,{
 	end;
 
 OnAgitInit2:

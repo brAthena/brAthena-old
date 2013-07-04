@@ -105,7 +105,8 @@ extern struct brathena_config {
 	enable_system_vip,
 	level_vip,
 	extra_exp_vip,
-	penalty_exp_vip;
+	penalty_exp_vip,
+	msg_maps_removed;
 	
 	char lang_file[128];
 	

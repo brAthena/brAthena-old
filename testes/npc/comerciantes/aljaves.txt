@@ -137,7 +137,7 @@ S_BuyQuiver:
 	close;
 }
 
-mora,106,117,4	script#re	Quiver Maker#mora	516,{
+-	script#re	Quiver Maker#mora	516,{
 	mes "[Quiver Maker]";
 	mes "Mora villagers ask what good quivers are. They just don't know how the world works.";
 	mes "No wonder they don't know a thing about quivers - spreading jam over leaves all day long.";
@@ -222,3 +222,4 @@ S_BuyQuiver:
 	getitem getarg(3),.@quiver;
 	close;
 }
+mora,106,117,4	duplicatr	Quiver Maker#mora	516,{}

@@ -670,7 +670,7 @@ int itemdb_read_itemgroup2_sub()
 static void itemdb_read_itemgroup(void)
 {
 	itemdb_read_itemgroup_sub();
-	#ifdef RENEWAL
+	#if VERSION == 1
 	itemdb_read_itemgroup2_sub();
 	#endif
 	return;
@@ -1047,7 +1047,7 @@ static bool itemdb_parse_dbrow(char **str, const char *source, int line, int scr
 		            id->value_buy, id->value_sell, nameid, id->jname);
 
 	id->weight = atoi(str[6]);
-#ifdef RENEWAL
+#if VERSION == 1
 	itemdb_re_split_atoi(str[7],&id->atk,&id->matk);
 #else
 	id->atk = atoi(str[7]);
@@ -1072,7 +1072,7 @@ static bool itemdb_parse_dbrow(char **str, const char *source, int line, int scr
 	}
 
 	id->wlv = cap_value(atoi(str[15]), REFINE_TYPE_ARMOR, REFINE_TYPE_MAX);
-#ifdef RENEWAL
+#if VERSION == 1
 	itemdb_re_split_atoi(str[16],&id->elv,&id->elvmax);
 #else
 	id->elv = atoi(str[16]);

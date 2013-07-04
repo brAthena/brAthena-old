@@ -869,7 +869,7 @@ int pc_isequip(struct map_session_data *sd,int n)
 		return 0;
 	if(item->elv && sd->status.base_level < (unsigned int)item->elv)
 		return 0;
-#ifdef RENEWAL
+#if VERSION == 1
 	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax)
 		return 0;
 #endif
@@ -2076,7 +2076,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			break;
 		case SP_BASE_ATK:
 			if(sd->state.lr_flag != 2) {
-#ifdef RENEWAL
+#if VERSION == 1
 				sd->bonus.eatk += val;
 				clif_updatestatus(sd,SP_ATK2);
 #else
@@ -2088,7 +2088,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_DEF1:
 			if(sd->state.lr_flag != 2) {
 				bonus = status->def + val;
-#ifdef RENEWAL
+#if VERSION == 1
 				status->def = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 #else
 				status->def = cap_value(bonus, CHAR_MIN, CHAR_MAX);
@@ -2104,7 +2104,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_MDEF1:
 			if(sd->state.lr_flag != 2) {
 				bonus = status->mdef + val;
-#ifdef RENEWAL
+#if VERSION == 1
 				status->mdef = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 #else
 				status->mdef = cap_value(bonus, CHAR_MIN, CHAR_MAX);
@@ -4169,7 +4169,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	if(item->elv && sd->status.base_level < (unsigned int)item->elv)
 		return 0;
 
-#ifdef RENEWAL
+#if VERSION == 1
 	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax)
 		return 0;
 #endif
@@ -4213,7 +4213,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 
 	if(sd->npc_id || sd->state.workinprogress&1){
 		/* TODO: add to clif_messages enum */
-#ifdef RENEWAL
+#if VERSION == 1
 		clif_msg(sd, USAGE_FAIL); // TODO look for the client date that has this message.
 #endif
 		return 0;
@@ -5008,7 +5008,7 @@ int pc_checkallowskill(struct map_session_data *sd)
 		SC_ADRENALINE2,
 		SC_DANCING,
 		SC_GS_GATLINGFEVER,
-#ifdef RENEWAL
+#if VERSION == 1
 		SC_LKCONCENTRATION,
 		SC_EDP,
 #endif
@@ -5687,7 +5687,7 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 
 void pc_baselevelchanged(struct map_session_data *sd)
 {
-#ifdef RENEWAL
+#if VERSION == 1
 	int i;
 	for(i = 0; i < EQI_MAX; i++) {
 		if(sd->equip_index[i] >= 0) {
@@ -5976,7 +5976,7 @@ int pc_need_status_point(struct map_session_data *sd, int type, int val)
 		swap(low, high);
 
 	for(; low < high; low++)
-#ifdef RENEWAL // renewal status point cost formula
+#if VERSION == 1 // renewal status point cost formula
 		sp += (low < 100) ? (2 + (low - 1) / 10) : (16 + 4 * ((low - 100) / 5));
 #else
 		sp += (1 + (low + 9) / 10);
@@ -6693,7 +6693,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			npc_event(sd, bg->die_event, 0);
 	}
 	
-#ifdef RENEWAL
+#if VERSION == 1
 	// Seguro Estendido - remove o item e evita a perda de EXP. ~ tmp fix
 	for(; l < MAX_INVENTORY; ++l) {
 		if(!sd->sc.data[SC_CASH_DEATHPENALTY]) {
@@ -7358,7 +7358,7 @@ int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 			hp += hp / 10;
 			sp += sp / 10;
 		}
-#ifdef RENEWAL
+#if VERSION == 1
 		if(sd->sc.data[SC_EXTREMITYFIST2])
 			sp = 0;
 #endif
@@ -7430,7 +7430,14 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 
 	if(job < 0)
 		return 1;
-
+	
+	#if VERSION == 0
+    if(job > JOB_SOUL_LINKER)
+	#elif VERSION == -1
+    if(job > JOB_MAX_BASIC)
+	#endif
+			return 1;
+	
 	//Normalize job.
 	b_class = pc_jobid2mapid(job);
 	if(b_class == -1)
@@ -9533,10 +9540,12 @@ int pc_split_atoui(char *str, unsigned int *val, char sep, int max)
 void pc_read_skill_tree(void) {
 	config_t skill_tree_conf;
 	config_setting_t *skt = NULL, *inherit = NULL, *skills = NULL, *sk = NULL;
-#ifdef RENEWAL
+#if VERSION == 1
 	const char *config_filename = "db/skill_tree_re.conf"; // FIXME hardcoded name
-#else
+#elif VERSION == 0 
 	const char *config_filename = "db/skill_tree_pre-re.conf"; // FIXME hardcoded name
+#else
+	const char *config_filename = "db/skill_tree_ot.conf"; // FIXME hardcoded name
 #endif
 	int i = 0, jnamelen = 0, skillid = 0;
 	struct {
@@ -9832,8 +9841,12 @@ int pc_readdb(void)
 	//reset
 	memset(exp_table,0,sizeof(exp_table));
 	memset(max_level,0,sizeof(max_level));
-
+  
+	#if VERSION == -1
+	sprintf(line, "%s/exp_pre-re.txt", db_path);
+	#else
 	sprintf(line, "%s/exp"DBPATH"", db_path);
+	#endif
 
 	fp=fopen(line, "r");
 	if(fp==NULL) {
@@ -9901,7 +9914,13 @@ int pc_readdb(void)
 		}
 	}
 	fclose(fp);
+	#if VERSION == 1
 	for(i = 0; i < JOB_MAX; i++) {
+	#elif VERSION == 0
+	for(i = 0; i < JOB_SOUL_LINKER; i++) {
+	#else
+	for(i = 0; i < JOB_SUPER_NOVICE; i++) {
+	#endif
 		if(!pcdb_checkid(i)) continue;
 		if(i == JOB_WEDDING || i == JOB_XMAS || i == JOB_SUMMER || i == JOB_HANBOK)
 			continue; //Classes that do not need exp tables.
@@ -9939,7 +9958,11 @@ int pc_readdb(void)
 			for(k=0; k<ELE_MAX; k++)
 				attr_fix_table[i][j][k]=100;
 
-	sprintf(line, "%s/attr_fix"DBPATH"", db_path);
+	#if VERSION == 1
+	sprintf(line, "%s/attr_fix_re.txt", db_path);
+	#else
+	sprintf(line, "%s/attr_fix_pre-re.txt", db_path);
+	#endif
 
 	fp=fopen(line,"r");
 	if(fp==NULL) {

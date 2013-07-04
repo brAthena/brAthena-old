@@ -35,12 +35,12 @@ payon,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 comodo,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 izlude,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 yuno,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 einbroch,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 lighthalzen,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 hugel,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 umbala,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
-amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
-gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 louyang,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 ayothaya,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 moscovia,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0

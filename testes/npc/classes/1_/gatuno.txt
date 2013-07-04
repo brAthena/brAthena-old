@@ -466,7 +466,7 @@ if( checkversion(0) ) {
 	}
 }
 
-moc_ruins,141,125,3	script#pre	Bogus	83,{
+-	script#vpo	Bogus	83,{
 		mes "[Bogus]";
 	if (BaseJob == Job_Thief) {
 		mes "Oh! Veja só que ótimo Gatuno você se tornou!";
@@ -528,9 +528,9 @@ moc_ruins,141,125,3	script#pre	Bogus	83,{
 }
 
 //============================================================ 
-// [Pré-Renovação] Teste para se tornar Gatuno.
+// [Pré-Renovação & Old-Times] Teste para se tornar Gatuno.
 //============================================================ 
-job_thief1,0,0,0,0	monster#pre	Cogumelo	1182,180,0,0,0
-job_thief1,0,0,0,0	monster#pre	Fabre	1184,50,0,0,0
-job_thief1,0,0,0,0	monster#pre	Chonchon	1183,50,0,0,0
-job_thief1,0,0,0,0	monster#pre	Esporo	1014,30,0,0,0,{}
+job_thief1,0,0,0,0	monster#vpo	Cogumelo	1182,180,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Fabre	1184,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Chonchon	1183,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Esporo	1014,30,0,0,0,{}

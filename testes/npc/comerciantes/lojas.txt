@@ -355,7 +355,7 @@ ma_in01,67,13,5	shop#re	Loja de Armaduras#ma	536,2211:-1,2401:-1,2403:-1,2501:-1
 // Duplicatas
 //=======================================================
 prontera,113,42,0	duplicatr(Florista#prt)	Florista#prt1	90,{}
-prontera,113,42,0	duplicatp(Florista#prt)	Florista#prt1	90,{}
+prontera,113,42,0	duplicatv(Florista#prt)	Florista#prt1	90,{}
 prt_in,109,68,4	duplicate(Especialista em Armadilhas#pay)	Especialista em Armadilhas#prt	66
 moscovia,199,110,3	duplicate(Vendedora de Leite#p)	Vendedora de Leite#m	959
 moc_ruins,81,113,0	duplicate(Coletor de Itens#moc1)	Coletor de Itens#moc2	85

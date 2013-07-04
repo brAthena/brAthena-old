@@ -941,7 +941,7 @@ void reload_elemental_skilldb(void)
 
 int do_init_elemental(void)
 {
-#ifdef RENEWAL
+#if VERSION == 1
 	read_elementaldb();
 	read_elemental_skilldb();
 #endif

@@ -36,10 +36,12 @@
 /**
  * Sufixo para arquivos no banco de dados da renovação/pré-renovação
  **/
-#ifdef RENEWAL
+#if VERSION == 1
 	#define DBPATH "_re.txt"
-#else
+#elif VERSION == 0
 	#define DBPATH "_pre-re.txt"
+#else
+	#define DBPATH "_ot.txt"
 #endif
 
 /**
@@ -66,7 +68,7 @@
 #endif
 
 /* Cálculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
-#ifdef RENEWAL
+#if VERSION == 1
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + 100 )
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + 150 )
 #else

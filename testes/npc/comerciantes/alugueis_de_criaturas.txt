@@ -122,7 +122,7 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 
 // -------------- Criador de Dragões --------------
 //============================================================
-job3_rune01,88,62,5	script#re	Criador de Dragões	105,{
+-	script#re	Criador de Dragões	105,{
 	mes "[Criador de Dragões]";
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja adquirir um Dragão?";
@@ -146,6 +146,7 @@ job3_rune01,88,62,5	script#re	Criador de Dragões	105,{
 	close;
 }
 
+job3_rune01,88,62,5	duplicatr	Criador de Dragões	105
 // -------------- Mestre de Dragões / Grifos --------------
 //============================================================
 prontera,130,213,5	script#re	Domador de Feras	105,{

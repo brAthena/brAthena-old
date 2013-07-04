@@ -24,15 +24,15 @@
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação] gon_fild01 - Campo de Kunlun
+// [Pré-Renovação & Old-Times] gon_fild01 - Campo de Kunlun
 //==================================================
-gon_fild01,0,0,0,0	monster#pre	Filhote de Leopardo	1415,40,600000,300000,0
-gon_fild01,0,0,0,0	monster#pre	Zipper	1417,20,0,0,0
-gon_fild01,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
-gon_fild01,0,0,0,0	monster#pre	Pirralho	1409,30,0,0,0
-gon_fild01,0,0,0,0	monster#pre	Ermitão Selvagem	1413,2,630000,330000,0
-gon_fild01,0,0,0,0	monster#pre	Planta Verde	1080,5,0,0,0
-gon_fild01,0,0,0,0	monster#pre	Planta Brilhante	1083,1,0,0,0,{}
+gon_fild01,0,0,0,0	monster#vpo	Filhote de Leopardo	1415,40,600000,300000,0
+gon_fild01,0,0,0,0	monster#vpo	Zipper	1417,20,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Poporing	1031,20,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Pirralho	1409,30,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Ermitão Selvagem	1413,2,630000,330000,0
+gon_fild01,0,0,0,0	monster#vpo	Planta Verde	1080,5,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Planta Brilhante	1083,1,0,0,0,{}
 
 //==================================================
 // [Renovação] gon_fild01 - Campo de Kunlun

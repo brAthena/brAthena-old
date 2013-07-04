@@ -288,73 +288,73 @@ payon,210,110,1	script	Bêbado#payon	120,{
 	}
 }
 
-payon,132,235,3	script	Escola de Monstros#02	98,{
-	mes "[Escola de Monstros Vuicokk]";
+payon,132,235,3	script	Estudante de Monstros#02	98,{
+	mes "[Estudante de Monstros Vuicokk]";
 	mes "É um prazer te conhecer!";
 	mes "Eu sou chamado Vuicokk.";
 	mes "Eu sou um estudioso da organização de Pesquisa de monstros do reino de Rune Midgard. Você tem alguma dúvida sobre monstros?";
 	next;
 	switch(select("Quer saber alguma notícia?:Sobre monstros?:Sobre a Organização de Pesquisas de monstros?")) {
 	case 1:
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Payon fica no fundo da floresta, onde ela pode ser facilmente atacada por monstros. Eles também vêm da caverna perigosa localizada perto da cidade.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Há algum tempo os monstros da caverna de payon tem atraído a atenção da organização de pesquisa de monstros. Meu trabalho principal é estudar as suas caracteristicas.";
 		close;
 	case 2:
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "O mais interessante sobre esses monstros é que eles um dia foram cidadãos de payon.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "No entanto, essas almas são incapazes.";
 		mes "de descansar em paz, por isso ainda vagam como mortos-vivos.";
 		mes "neste mundo";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Estes monstros não podem ser classificados como monstros comuns, porque eles foram gerados a partir de seres vivos, então o nosso governante sábio e benevolente, o rei Tristam III, tomou um grande interesse pelos mortos vivos de Payon.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Afinal, algumas desses ";
 		mes "mortos- vivos pertenceram ao";
 		mes "Reino de Rune - Midgard";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "E eram súditos do rei";
 		mes "Então o rei Tristram III";
 		mes "sente-se no dever de";
 		mes "liberar as suas almas.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Vossa Magestade tem vindo nos apoiar";
 		mes " nossas buscas para descobrir como eliminar todos os zumbis no mundo. Vamos tentar alcançar este objetivo,";
 		mes "logo que possível.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Para a segurança do nosso povo,";
 		mes "para o bem das famílias enlutadas, e em concordância com a ordem do rei Tristam III, teremos que ter sucesso!";
 		close;
 	case 3:
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Como você bem sabe";
 		mes "os monstros foram infinitamente desovados neste mundo, e a ameaça dos seus ataques estão crescendo a cada dia.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Em resposta disso";
 		mes "A organização de pesquisa";
 		mes "de monstros foi formada.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Algumas pessoas talentosas de todo o mundo se uniram em um unico propósito: Descobrir a origem dos monstros, e também uma maneira de eliminá-los de uma vez por todas.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Claro que não é";
 		mes "tão fácil como você pode imaginar, muitos já sacrificaram suas vidas em busca desse conhecimento.";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "Em nossas missões, os números de vitimas atacadas por monstros foram incontáveis.Ainda sim, nada vai nos parar.Se o nosso sofrimento poderá salvar a humanidade, que assim seja!";
 		next;
-		mes "[Escola de Monstros Vuicokk]";
+		mes "[Estudante de Monstros Vuicokk]";
 		mes "^666666*Ahem*^000000 Mil desculpas, eu fico muito animado,ás vezes.Mas se você encontrar outros estudiosos, como eu, por favor trate-os bem. Nosso trabalho é memorável, porém muito dificil.";
 		close;
 	}

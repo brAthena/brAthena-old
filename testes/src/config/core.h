@@ -59,7 +59,7 @@
 /// By enabling it, the system will create an unique id for each new non stackable item created
 //#define NSI_UNIQUE_ID
 
-#include "./renewal.h"
+#include "./configs.h"
 #include "./secure.h"
 #include "./classes/general.h"
 #include "./const.h"

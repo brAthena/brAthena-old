@@ -60,7 +60,7 @@ izlude,197,205,1	script#re	Marinheiro#izlude	100,{
 	}
 }
 
-izlude,201,181,2	script#pre	Marinheiro#izlude	100,{
+izlude,201,181,2	script#vpo	Marinheiro#izlude	100,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -118,7 +118,7 @@ izlude,71,92,2	script#re	Bonne#izlude	90,{
 	close;
 }
 
-izlude,55,74,2	script#pre	Bonne#izlude	90,{
+izlude,55,74,2	script#vpo	Bonne#izlude	90,{
 	mes "[Bonne]";
 	mes "Saudações!";
 	mes "Os habitantes de Izlude lhe dão boas vindas.";
@@ -170,7 +170,7 @@ izlude,172,215,4	script#re	Charfri#izlude	91,{
 	close;
 }
 
-izlude,135,78,2	script#pre	Charfri#izlude	91,{
+izlude,135,78,2	script#vpo	Charfri#izlude	91,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -221,7 +221,7 @@ izlude,127,175,4	script#re	Cuskoal#izlude	124,{
 	close;
 }
 
-izlude,119,121,2	script#pre	Cuskoal#izlude	124,{
+izlude,119,121,2	script#vpo	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";

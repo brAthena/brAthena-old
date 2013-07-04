@@ -1257,7 +1257,7 @@ void merc_skill_reload(void)
 int do_init_merc(void)
 {
 	int class_;
-	#ifndef OLD_TIMES
+	#if VERSION != -1
 	read_homunculusdb();
 	read_homunculus_expdb();
 	read_homunculus_skilldb();

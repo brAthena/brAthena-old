@@ -103,7 +103,7 @@
 #define MAX_ZENY 1000000000
 #define MAX_FAME 1000000000
 #define MAX_CART 100
-#define MAX_SKILL 1478
+#define MAX_SKILL 1700
 #define MAX_SKILL_ID 10015 //[Ind/Hercules] max used skill id 
 //Update this max as necessary. 55 is the value needed for Super Baby currently
 //Raised to 84 since Expanded Super Novice needs it.

@@ -19,6 +19,7 @@
 #include "../common/malloc.h"
 #include "../common/strlib.h"
 #include "../common/db.h"
+#include "../config/configs.h"
 #include "mapindex.h"
 
 #include <string.h>
@@ -141,7 +142,9 @@ unsigned short mapindex_name2id(const char *name)
 
 		if((i = strdb_iget(mapindex_db, map_name)))
 			return i;
-	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name);
+	#if VERSION == 1
+ 	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name);
+	#endif
 	return 0;
 }
 
@@ -157,8 +160,7 @@ void mapindex_init(void)
 {
 	FILE *fp;
 	char line[1024];
-	int last_index = -1;
-	int index;
+	int last_index = -1, index, lines = 0;
 	char map_name[12];
 
 	if((fp = fopen(mapindex_cfgfile,"r")) == NULL) {
@@ -168,6 +170,14 @@ void mapindex_init(void)
 	memset (&indexes, 0, sizeof (indexes));
 	mapindex_db = strdb_alloc(DB_OPT_DUP_KEY, MAP_NAME_LENGTH);
 	while(fgets(line, sizeof(line), fp)) {
+
+	lines++;
+	
+	#if VERSION == -1
+	if(lines >= 970)
+		lines = 0;
+	#endif
+
 		if(line[0] == '/' && line[1] == '/')
 			continue;
 
@@ -175,6 +185,9 @@ void mapindex_init(void)
 			case 1: //Map with no ID given, auto-assign
 				index = last_index+1;
 			case 2: //Map with ID given
+      #if VERSION == -1
+				if(lines < 446)
+			#endif
 				mapindex_addmap(index,map_name);
 				break;
 			default:

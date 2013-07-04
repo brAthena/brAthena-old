@@ -995,7 +995,6 @@ ACMD_FUNC(jobchange)
 
 		upper = 0;
 
-#ifndef OLD_TIMES
 		// Classes Normais
 		for(i = JOB_NOVICE; i < JOB_MAX_BASIC && !found; i++) {
 			if (strncmpi(message, job_name(i), 16) == 0) {
@@ -1004,6 +1003,7 @@ ACMD_FUNC(jobchange)
 			}
 		}
 
+#if VERSION != -1
 		// Classes Expandidas, Bebês e 3rd
 		for(i = JOB_NOVICE_HIGH; i < JOB_MAX && !found; i++) {
 			if (strncmpi(message, job_name(i), 16) == 0) {
@@ -1022,7 +1022,7 @@ ACMD_FUNC(jobchange)
 	}
 
 	if(job == JOB_KNIGHT2 || job == JOB_CRUSADER2 || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER 
-	#ifndef OLD_TIMES
+	#if VERSION != -1
 	|| job == JOB_HANBOK || job == JOB_LORD_KNIGHT2 || job == JOB_PALADIN2 || job == JOB_BABY_KNIGHT2 || job == JOB_BABY_CRUSADER2 || job == JOB_STAR_GLADIATOR2 || (job >= JOB_RUNE_KNIGHT2 && job <= JOB_MECHANIC_T2) || (job >= JOB_BABY_RUNE2 && job <= JOB_BABY_MECHANIC2)
 	#endif
 	  ) { // Deny direct transformation into dummy jobs
@@ -1045,7 +1045,7 @@ ACMD_FUNC(jobchange)
 	}
 
 	if(pc_jobchange(sd, job, upper) == 0 && (!pc_isriding(sd) 
-	#ifndef OLD_TIMES
+	#if VERSION != -1
 	|| !pc_isridingdragon(sd)
 	#endif
 	) && (job != 7 && job != 14 && job != 4008 && job != 4015))
@@ -1771,8 +1771,8 @@ ACMD_FUNC(go)
 		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
 		{ MAP_PAYON,       162, 233 }, //  3=Payon
 		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
-#ifdef RENEWAL
-		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renewal)
+#if VERSION == 1
+		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renovação)
 #else
 		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
 #endif
@@ -1782,11 +1782,13 @@ ACMD_FUNC(go)
 		{ MAP_YUNO,        157,  51 }, //  9=Yuno
 		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
 		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
-#ifndef OLD_TIMES
+#if VERSION != -1
 		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
 		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
 		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
+#endif
 		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
+#if VERSION != -1
 		{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
 		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
@@ -1800,7 +1802,6 @@ ACMD_FUNC(go)
 		{ MAP_MIDCAMP,     180, 240 }, // 26=Midgard Camp
 		{ MAP_MANUK,       282, 138 }, // 27=Manuk
 		{ MAP_SPLENDIDE,   201, 147 }, // 28=Splendide
-#ifdef RENEWAL
 		{ MAP_BRASILIS,    182, 239 }, // 29=Brasilis
 		{ MAP_DICASTES,    198, 187 }, // 30=El Dicastes
 		{ MAP_MORA,         44, 151 }, // 31=Mora
@@ -1808,7 +1809,6 @@ ACMD_FUNC(go)
 		{ MAP_MALANGDO,    140, 114 }, // 33=Malangdo Island
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
-#endif
 #endif
 	};
 
@@ -3610,14 +3610,14 @@ ACMD_FUNC(partyrecall)
  *------------------------------------------*/
 ACMD_FUNC(reload)
 {
-	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "mapflag", "groups", "quest_db", "homunculus_db", "pet_db", "motd" };
+	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "quest_db", "homunculus_db", "pet_db", "motd" };
 	int option;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, mapflag, groups, quest_db, homunculus_db, pet_db & motd.");
+		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups, quest_db, homunculus_db, pet_db & motd.");
 		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
@@ -3629,23 +3629,22 @@ ACMD_FUNC(reload)
 	switch(option) {
 		case 0: itemdb_reload(); break;
 		case 1: mob_reload(); read_petdb(); merc_reload(); 
-		#ifdef RENEWAL
+		#if VERSION == 1
 		reload_elementaldb();
 		#endif
 		break;
 		case 2: skill_reload(); merc_skill_reload(); 
-    #ifdef RENEWAL
+		#if VERSION == 1
 		reload_elemental_skilldb();
 		#endif
 		read_mercenary_skilldb(); break;
 		case 3: status_readdb(); break;
 		case 4: pc_readdb(); break;
-		case 5: map_flags_init(); break;
-		case 6: pc_groups_reload(); break;
-		case 7: do_reload_quest(); break;
-		case 8: merc_reload(); break;
-		case 9: read_petdb(); break;
-		case 10: pc_read_motd(); break;
+		case 5: pc_groups_reload(); break;
+		case 6: do_reload_quest(); break;
+		case 7: merc_reload(); break;
+		case 8: read_petdb(); break;
+		case 9: pc_read_motd(); break;
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 

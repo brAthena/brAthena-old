@@ -2891,6 +2891,7 @@ int map_addmap(char* mapname) {
 
 static void map_delmapid(int id)
 {
+	if(bra_config.msg_maps_removed)
 	ShowNotice("Removendo mapa [ %s ] da lista de mapas %d."CL_CLL"\n",map[id].name,id);
 	memmove(map+id, map+id+1, sizeof(map[0])*(map_num-id-1));
 	map_num--;
@@ -3257,14 +3258,12 @@ int map_readallmaps(void)
 		ShowStatus("Carregando mapas (usando arquivos GRF)...\n");
 	else {
 		char mapcachefilepath[254];
-#ifdef RENEWAL
+#if VERSION == 1
 		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_re.dat");
+#elif VERSION == 0
+    sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_pre-re.dat");
 #else
-#ifdef OLD_TIMES 
-		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_old-times.dat");
-#else
-		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_pre-re.dat");
-#endif
+		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_ot.dat");
 #endif
 		ShowStatus("Carregando mapas (usando %s como map cache)...\n", mapcachefilepath);
 		if((fp = fopen(mapcachefilepath, "rb")) == NULL) {
@@ -3603,19 +3602,14 @@ void map_reloadnpc(bool clear)
 	if(clear)
 		npc_addsrcfile("clear"); // this will clear the current script list
 
-#ifdef RENEWAL
+#if VERSION == 1
 	map_reloadnpc_sub("npc/scripts_renovacao.conf");
-#else
-#ifdef OLD_TIMES
-	map_reloadnpc_sub("npc/scripts_old_times.conf");
-#else
+#elif VERSION == 0
 	map_reloadnpc_sub("npc/scripts_pre-renovacao.conf");
-#endif
+#else
+	map_reloadnpc_sub("npc/scripts_old_times.conf");
 #endif
 
-#ifdef BRO
-	map_reloadnpc_sub("npc/scripts_bRO.conf");
-#endif
 }
 
 int inter_config_read(char *cfgName)
@@ -3745,17 +3739,17 @@ char *get_database_name(int database_id)
 		case 6: db_name = "produce_db"; break;
 		case 7: db_name = "create_arrow_db"; break;
 		case 8: db_name = "abra_db"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 9: db_name = "spellbook_db"; break;
 		#endif
 		case 10: db_name = "magicmushroom_db"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 11: db_name = "skill_reproduce_db"; break;
 		case 12: db_name = "skill_improvise_db"; break;
 		#endif
 		case 13: db_name = "skill_changematerial_db"; break;
 		case 14: db_name = "castle_db"; break;
-		#ifndef OLD_TIMES
+		#if VERSION != -1
 		case 15: db_name = "homunculus_db"; break;
 		case 16: db_name = "homun_skill_tree_db"; break;
 		case 17: db_name = "mercenary_db"; break;
@@ -3766,7 +3760,7 @@ char *get_database_name(int database_id)
 		case 21: db_name = "item_noequip_db"; break;
 		case 22: db_name = "item_trade_db"; break;
 		case 23: db_name = "item_delay_db"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 24: db_name = "item_stack_db"; break;
 		#endif
 		case 25: db_name = "item_buyingstore_db"; break;
@@ -3780,7 +3774,7 @@ char *get_database_name(int database_id)
 		case 33: db_name = "refine_db"; break;
 		case 34: db_name = "job_db1"; break;
 		case 35: db_name = "job_db2"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
 		#endif
@@ -3798,16 +3792,16 @@ char *get_database_name(int database_id)
 			//case 49: db_name = "pet_db2"; break;
 		case 50: db_name = "quest_db"; break;
 		case 51: db_name = "size_fix_db"; break;
-		#ifndef OLD_TIMES
+		#if VERSION != -1
 		case 52: db_name = "exp_homun_db"; break;
 		#endif
 		case 53: db_name = "statpoint_db"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 54: db_name = "level_penalty_db"; break;
 		#endif
 		case 55: db_name = "item_db"; break;
 		case 56: db_name = "mob_db"; break;
-		#ifdef RENEWAL
+		#if VERSION == 1
 		case 57: db_name = "item_bro"; break;
 		case 58: db_name = "item_nouse_sit"; break;
 		#endif
@@ -4781,15 +4775,16 @@ enum bl_type map_zone_bl_type(const char *entry, enum map_zone_skill_subtype *su
 void read_map_zone_db(void) {
 	config_t map_zone_db;
 	config_setting_t *zones = NULL;
-	/* TODO: #ifndef required for re/pre-re */
 	const char *config_filename = "db/map_zone.conf"; // FIXME hardcoded name
 
 	if (conf_read_file(&map_zone_db, config_filename))
 		return;
-#ifdef RENEWAL
+#if VERSION == 1
 	zones = config_lookup(&map_zone_db, "zonesre");
-#else
+#elif VERSION == 0
 	zones = config_lookup(&map_zone_db, "zonespre");
+#else
+	zones = config_lookup(&map_zone_db, "zonesot");
 #endif
 
 	if (zones != NULL) {

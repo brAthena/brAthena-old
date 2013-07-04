@@ -2912,10 +2912,12 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 	memset(&mob, 0, sizeof(struct spawn_data));
 
 	if(!strcmpi(w2,"boss_monster") ||
-#ifdef RENEWAL
-		!strcmpi(w2,"boss_monster#re"))
+#if VERSION == 1
+		!strcmpi(w2,"boss_monster#re") || !strcmpi(w2,"boss_monster#dv"))
+#elif VERSION == 0
+		!strcmpi(w2,"boss_monster#pre") || !strcmpi(w2,"boss_monster#dv") || !strcmpi(w2,"boss_monster#vpo"))
 #else
-		!strcmpi(w2,"boss_monster#pre"))
+		!strcmpi(w2,"boss_monster#ot") || !strcmpi(w2,"boss_monster#vpo"))
 #endif
 		mob.state.boss = 1;
 	else
@@ -3521,11 +3523,13 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 		} else
 			w4[0] = '\0';
 
+		#if VERSION != -1
 		if(count < 3) {
 			// Unknown syntax
 			ShowError("Sintaxe desconhecida no arquivo '%s', linha '%d'. Parando leitura...\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,p-buffer), w1, w2, w3, w4);
 			break;
 		}
+		#endif
 
 		if(strcmp(w1,"-") !=0 && strcasecmp(w1,"function") != 0) {
 			// w1 = <map name>,<x>,<y>,<facing>
@@ -3534,7 +3538,9 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 			sscanf(w1,"%23[^,],%hd,%hd[^,]",mapname,&x,&y);
 			if(!mapindex_name2id(mapname)) {
 				// Incorrect map, we must skip the script info...
-				ShowError("npc_parsesrcfile: Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Pulando linha...\n", mapname, filepath, strline(buffer,p-buffer));
+				#if VERSION != -1
+					ShowError("npc_parsesrcfile: Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Pulando linha...\n", mapname, filepath, strline(buffer,p-buffer));
+				#endif
 				if(strcasecmp(w2,"script") == 0 && count > 3) {
 					if((p = npc_skip_script(p,buffer,filepath)) == NULL) {
 						break;
@@ -3566,47 +3572,59 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 			}
 		}
 
-			#ifdef RENEWAL
-			if((!strcasecmp(w2,"warp") || !strcasecmp(w2,"warp#re")) && count > 3) {
+			#if VERSION == 1
+			if((!strcasecmp(w2,"warp") || !strcasecmp(w2,"warp#re") || !strcasecmp(w2,"warp#dv")) && count > 3) {
+			#elif VERSION == 0
+			if((!strcasecmp(w2,"warp") ||	!strcasecmp(w2,"warp#pre") || !strcasecmp(w2,"warp#dv") || !strcasecmp(w2,"warp#vpo")) && count > 3) {
 			#else
-			if((!strcasecmp(w2,"warp") ||	!strcasecmp(w2,"warp#pre")) && count > 3) {
+			if((!strcasecmp(w2,"warp") ||	!strcasecmp(w2,"warp#ot") || !strcasecmp(w2,"warp#vpo")) && count > 3) {
 			#endif
 			p = npc_parse_warp(w1,w2,w3,w4, p, buffer, filepath);
-			#ifdef RENEWAL
-		} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#re") == 0 || strcasecmp(w2,"cashshop#re") == 0) && count > 3) {
+			#if VERSION == 1
+			} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#re") == 0 || strcasecmp(w2,"cashshop#re") == 0 || strcasecmp(w2,"shop#dv") == 0 || strcasecmp(w2,"cashshop#dv") == 0) && count > 3) {
+			#elif VERSION == 0
+			} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#pre") == 0 || strcasecmp(w2,"cashshop#pre") == 0 || strcasecmp(w2,"shop#dv") == 0 || strcasecmp(w2,"cashshop#dv") == 0 || strcasecmp(w2,"shop#vpo") == 0 || strcasecmp(w2,"cashshop#vpo") == 0) && count > 3) {
 			#else
-		} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#pre") == 0 || strcasecmp(w2,"cashshop#pre") == 0) && count > 3) {
+			} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#ot") == 0 || strcasecmp(w2,"cashshop#ot" ) == 0 || strcasecmp(w2,"shop#vpo") == 0 || strcasecmp(w2,"cashshop#vpo") == 0) && count > 3) {
 			#endif
 			p = npc_parse_shop(w1,w2,w3,w4, p, buffer, filepath);
-			#ifdef RENEWAL
-		} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#re") == 0) && count > 3) {
+			#if VERSION == 1
+			} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#re") == 0 || strcasecmp(w2,"script#dv") == 0) && count > 3) {
+			#elif VERSION == 0
+			} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#pre") == 0 || strcasecmp(w2,"script#dv") == 0 || strcasecmp(w2,"script#vpo") == 0) && count > 3) {
 			#else
-		} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#pre") == 0) && count > 3) {
+			} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#ot") == 0 || strcasecmp(w2,"script#vpo") == 0) && count > 3) {
 			#endif
 			if(strcasecmp(w1,"function") == 0)
 				p = npc_parse_function(w1, w2, w3, w4, p, buffer, filepath);
 			else
 				p = npc_parse_script(w1,w2,w3,w4, p, buffer, filepath,runOnInit);
 		}
-		#ifdef RENEWAL
-		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatr%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
+		#if VERSION == 1
+		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatr%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicata%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
+		#elif VERSION == 0
+		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatp%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicata%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatv%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
 		#else
-		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatp%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
+		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicato%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatv%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
 		#endif
 			p = npc_parse_duplicate(w1,w2,w3,w4, p, buffer, filepath);
-			#ifdef RENEWAL
-		} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#re") || !strcmpi(w2,"boss_monster#re")) && count > 3) {
+			#if VERSION == 1
+			} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#re") || !strcmpi(w2,"boss_monster#re") || !strcmpi(w2,"monster#dv") || !strcmpi(w2,"boss_monster#dv")) && count > 3) {
+			#elif VERSION == 0
+			} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#pre") || !strcmpi(w2,"boss_monster#pre") || !strcmpi(w2,"monster#dv") || !strcmpi(w2,"boss_monster#dv") || !strcmpi(w2,"monster#vpo") || !strcmpi(w2,"boss_monster#vpo")) && count > 3) {
 			#else
-		} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#pre") || !strcmpi(w2,"boss_monster#pre")) && count > 3) {
+			} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#ot") || !strcmpi(w2,"boss_monster#ot") || !strcmpi(w2,"monster#vpo") || !strcmpi(w2,"boss_monster#vpo")) && count > 3) {
 			#endif
 			p = npc_parse_mob(w1, w2, w3, w4, p, buffer, filepath);
-		} else if(strcmpi(w2,"mapflag") == 0 && count >= 3) {
+			} else if(strcmpi(w2,"mapflag") == 0 && count >= 3) {
 			p = npc_parse_mapflag(w1, w2, trim(w3), trim(w4), p, buffer, filepath);
     } else {
-		#ifdef RENEWAL
-		if(strcmp(w2,"warp#re") || strcmp(w2,"shop#re") || strcmp(w2,"script#re") || strcmp(w2,"duplicatr") || strcmpi(w2,"monster#re") || strcmpi(w2,"boss_monster#re"))
+		#if VERSION == 1
+		if(strcmp(w2,"warp#re") || strcmp(w2,"shop#re") || strcmp(w2,"script#re") || strcmp(w2,"duplicatr") || strcmpi(w2,"monster#re") || strcmpi(w2,"boss_monster#re") || strcmp(w2,"warp#dv") || strcmp(w2,"shop#dv") || strcmp(w2,"script#dv") || strcmp(w2,"duplicata") || strcmpi(w2,"monster#dv") || strcmpi(w2,"boss_monster#dv"))
+		#elif VERSION == 0
+		if(strcmp(w2,"warp#pre") || strcmp(w2,"shop#pre") || strcmp(w2,"script#pre") || strcmp(w2,"duplicatp") || strcmpi(w2,"monster#pre") || strcmpi(w2,"boss_monster#pre") || strcmp(w2,"warp#dv") || strcmp(w2,"shop#dv") || strcmp(w2,"script#dv") || strcmp(w2,"duplicata") || strcmpi(w2,"monster#dv") || strcmpi(w2,"boss_monster#dv") || strcmp(w2,"warp#vpo") || strcmp(w2,"shop#vpo") || strcmp(w2,"script#vpo") || strcmp(w2,"duplicatv") || strcmpi(w2,"monster#vpo") || strcmpi(w2,"boss_monster#vpo"))
 		#else
-		if(strcmp(w2,"warp#pre") || strcmp(w2,"shop#pre") || strcmp(w2,"script#pre") || strcmp(w2,"duplicatp") || strcmpi(w2,"monster#pre") || strcmpi(w2,"boss_monster#pre"))
+		if(strcmp(w2,"warp#ot") || strcmp(w2,"shop#ot") || strcmp(w2,"script#ot") || strcmp(w2,"duplicato") || strcmpi(w2,"monster#ot") || strcmpi(w2,"boss_monster#ot") || strcmp(w2,"warp#vpo") || strcmp(w2,"shop#vpo") || strcmp(w2,"script#vpo") || strcmp(w2,"duplicatv") || strcmpi(w2,"monster#vpo") || strcmpi(w2,"boss_monster#vpo"))
 		#endif
 				p = npc_skip_script(p,buffer,filepath);
 		else {

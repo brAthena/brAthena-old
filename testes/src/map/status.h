@@ -28,7 +28,7 @@ struct status_change;
  * Max Refine available to your server
  * Changing this limit requires edits to refine_db.txt
  **/
-#ifdef RENEWAL
+#if VERSION == 1
 	#define MAX_REFINE 20
 #else
 	#define MAX_REFINE 10
@@ -669,7 +669,7 @@ typedef enum sc_type {
     SC_PYROCLASTIC,
     SC_NEEDLE_OF_PARALYZE,
     SC_PAIN_KILLER,
-#ifdef RENEWAL
+#if VERSION == 1
     SC_EXTREMITYFIST2,
     SC_RAID,
 #endif
@@ -1646,7 +1646,7 @@ typedef struct weapon_atk {
 	unsigned short atk, atk2;
 	unsigned short range;
 	unsigned char ele;
-#ifdef RENEWAL
+#if VERSION == 1
 	unsigned short matk;
 	unsigned char wlv;
 #endif
@@ -1759,7 +1759,7 @@ struct status_change {
 	/**
 	 * The Storm Gust counter was dropped in renewal
 	 **/
-#ifndef RENEWAL
+#if VERSION != 1
 	unsigned char sg_counter; //Storm gust counter (previous hits from storm gust)
 #endif
 	unsigned char bs_counter; // Blood Sucker counter
@@ -1897,7 +1897,7 @@ signed short status_calc_def2(struct block_list *,struct status_change *, int, b
 defType status_calc_mdef(struct block_list *bl, struct status_change *sc, int, bool);
 signed short status_calc_mdef2(struct block_list *,struct status_change *, int, bool);
 
-#ifdef RENEWAL
+#if (VERSION == 1)
 unsigned short status_calc_batk(struct block_list *, struct status_change *, int, bool);
 unsigned short status_base_matk(const struct status_data *status, int level);
 int status_get_weapon_atk(struct block_list *src, struct weapon_atk *watk, int flag);

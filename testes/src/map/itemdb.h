@@ -24,7 +24,7 @@
 // 32k array entries in array (the rest goes to the db)
 #define MAX_ITEMDB 0x8000
 
-#define MAX_RANDITEM    11000
+#define MAX_RANDITEM    20000
 
 // The maximum number of item delays
 #define MAX_ITEMDELAYS  10
@@ -126,7 +126,7 @@ struct item_data {
 	int elv;
 	int wlv;
 	int view_id;
-#ifdef RENEWAL
+#if VERSION == 1
 	int matk;
 	int elvmax;/* maximum level for this item */
 #endif

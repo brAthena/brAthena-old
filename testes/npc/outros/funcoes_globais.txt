@@ -31,14 +31,19 @@
 
 	set(.@version, checkversion(0));
 		
-	if(!.@version){ // pre-re
+	if(.@version == 0) { // Pré-Renovação
+		movenpc("Negociador de Projéteis Tony#iz",171,133);
+		movenpc("Vendedor de Caixas de Munição#iz",171,127);
+		movenpc("Locador de Mercenários#Espadachim",47,139);
+		movenpc("Artigos para Mercenários#Espadachim",56,139);
+	}
+
+	if(!.@version) { // Pré-Renovação & Old-Times
 		movenpc("Dega#izlude",150,118,2);
 		movenpc("Kylick#izlude",150,143,2);
 		movenpc("Red#izlude",56,126);
 		movenpc("Cebalis#izlude",58,126);
 		movenpc("Soldado#izlude",124,178);
-		movenpc("Negociador de Projéteis Tony#iz",171,133);
-		movenpc("Vendedor de Caixas de Munição#iz",171,127);
 		movenpc("Auxiliar Lua de Mel",171,185,3);
 		movenpc("Açougueiro#iz",105,99);
 		movenpc("Vendedora de Frutas#iz",94,98);
@@ -48,10 +53,8 @@
 		movenpc("Dona Risadinha#iz",129,118);
 		movenpc("Sr. Noel",168,168);
 		movenpc("Funcionária Kafra#izlude",134,87,3);
-		movenpc("Locador de Mercenários#Espadachim",47,139);
-		movenpc("Artigos para Mercenários#Espadachim",56,139);
 	}
-	
+
 	end();
 
 	OnDisguise:

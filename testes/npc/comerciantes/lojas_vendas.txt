@@ -249,7 +249,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 
 // Catalogador Mágico
 //============================================================ 
-moc_para01,22,16,5	script#re	Catalogador Mágico#catal01	704,{
+-	script#re	Catalogador Mágico#catal01	704,{
 	mes "[Catalogador Mágico]";
 	if (!checkweight(1201,2)) {
 		mes "- Você possui muitos itens. Por favor diminua seu peso. -";
@@ -337,3 +337,4 @@ moc_para01,22,16,5	script#re	Catalogador Mágico#catal01	704,{
 		close;
 	}
 }
+moc_para01,22,16,5	duplicatr(Catalogador Mágico#catal01)	Catalogador Mágico#01	704,{}

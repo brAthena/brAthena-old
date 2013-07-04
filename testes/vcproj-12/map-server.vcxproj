@@ -192,9 +192,9 @@
     <ClInclude Include="..\src\map\pc_groups.h" />
     <ClInclude Include="..\src\map\pet.h" />
     <ClInclude Include="..\src\map\quest.h" />
+    <ClInclude Include="..\src\config\configs.h" />
     <ClInclude Include="..\src\config\const.h" />
     <ClInclude Include="..\src\config\core.h" />
-    <ClInclude Include="..\src\config\renewal.h" />
     <ClInclude Include="..\src\config\secure.h" />
     <ClInclude Include="..\src\config\classes\general.h" />
     <ClInclude Include="..\src\map\script.h" />

@@ -2883,7 +2883,7 @@ void clif_updatestatus(struct map_session_data *sd,int type)
 				int mdef2 = pc_rightside_mdef(sd);
 
 				WFIFOL(fd,4)=
-#ifndef RENEWAL
+#if VERSION != 1
 				    (mdef2 < 0) ? 0 :
 #endif
 				    mdef2;
@@ -3244,7 +3244,7 @@ void clif_initialstatus(struct map_session_data *sd)
 	WBUFW(buf,28) = pc_leftside_mdef(sd);
 	mdef2 = pc_rightside_mdef(sd);
 	WBUFW(buf,30) =
-#ifndef RENEWAL
+#if VERSION != 1
 	    (mdef2 < 0) ? 0 :   //Negative check for Frenzy'ed characters.
 #endif
 	    mdef2;
@@ -10763,7 +10763,7 @@ void clif_parse_NpcClicked(int fd,struct map_session_data *sd)
 		return;
 	}
 	if(sd->npc_id || sd->state.workinprogress&2) {
-#ifdef RENEWAL
+#if VERSION == 1
 		clif_msg(sd, 0x783); // TODO look for the client date that has this message.
 #endif
 		return;
@@ -10780,7 +10780,7 @@ void clif_parse_NpcClicked(int fd,struct map_session_data *sd)
 			break;
 		case BL_NPC:
 			if(sd->ud.skill_id < RK_ENCHANTBLADE && sd->ud.skilltimer != INVALID_TIMER) {// TODO: should only work with none 3rd job skills
-#ifdef RENEWAL
+#if VERSION == 1
 				clif_msg(sd, 0x783);
 #endif
 				break;
@@ -11294,7 +11294,7 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 	sd->idletime = last_tick;
 
 	if(sd->npc_id || sd->state.workinprogress&1) {
-#ifdef RENEWAL
+#if VERSION == 1
 		clif_msg(sd, USAGE_FAIL); // TODO look for the client date that has this message.
 #endif
 		return;
@@ -17038,7 +17038,7 @@ void clif_parse_MoveItem(int fd, struct map_session_data *sd)
 void clif_cashshop_db(void) {
 	config_t cashshop_conf;
 	config_setting_t *cashshop = NULL;
-	const char *config_filename = "db/cashshop.conf"; // FIXME hardcoded name
+	const char *config_filename = "conf/cashshop.conf"; // FIXME hardcoded name
 	int i;
 	for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
 		CREATE(cs.data[i], struct hCSData *, 1);

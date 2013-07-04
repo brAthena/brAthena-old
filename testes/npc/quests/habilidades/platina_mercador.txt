@@ -366,7 +366,7 @@ alberta,232,103,6	script	Gershaun	57,{
 			mes "Mmm, você deve ser capaz de aprender";
 			mes "Cavalo de Pau!";
 			next;
-			switch(select("Ei ~ é por isso que eu vim.":O que é isso?")) {
+			switch(select("Ei ~ é por isso que eu vim.:O que é isso?")) {
 			case 1:
 				set .@care_random,rand(1,3);
 				if (.@care_random == 1) {

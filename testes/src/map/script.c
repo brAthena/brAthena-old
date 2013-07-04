@@ -5270,7 +5270,7 @@ BUILDIN_FUNC(percentheal)
 	sd = script_rid2sd(st);
 	if(sd == NULL)
 		return 0;
-#ifdef RENEWAL
+#if VERSION == 1
 	if(sd->sc.data[SC_EXTREMITYFIST2])
 		sp = 0;
 #endif
@@ -17031,14 +17031,12 @@ BUILDIN_FUNC(checkversion)
 	num=script_getnum(st,2);
 	switch(num) {
 		case 0:
-#ifdef RENEWAL
+#if VERSION == 1
 			script_pushint(st, 1);
-#else
-#ifdef OLD_TIMES
+#elif VERSION == 0
 			script_pushint(st, 0);
 #else
 			script_pushint(st, -1);
-#endif
 #endif
 			break;
 		case 1:

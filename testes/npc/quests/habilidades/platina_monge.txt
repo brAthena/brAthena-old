@@ -330,7 +330,7 @@ monk_test,316,69,5	script	Monge#qsk_mo	823,{
 			mes "se não for impossível.";
 			next;
 			mes "[Monge]";			
-			mes "Segundo, você precisará".
+			mes "Segundo, você precisará.";
 			mes "passar em meu pequeno teste de";
 			mes "força, para que eu possar saber";
 			mes "se seu corpo suporta o";
@@ -340,7 +340,7 @@ monk_test,316,69,5	script	Monge#qsk_mo	823,{
 			mes "Hum. Eu sei que aquelas Mandrágoras";
 			mes "têem incomodado os viajantes,";
 			mes "então se você me provar que";
-			mes "consegue caçá-las, você provará".
+			mes "consegue caçá-las, você provará.";
 			mes "que é capaz de aprender";
 			mes "Punhos Intensos.";
 			next;
@@ -356,7 +356,7 @@ monk_test,316,69,5	script	Monge#qsk_mo	823,{
 			mes "Mas claro, não será possível";
 			mes "concluir meu teste se você";
 			mes "não aprender antes a";
-			mes "Concessão Espiritual. ";
+			mes "Concessão Espiritual.";
 			mes "Desejo-lhe boa sorte...";
 			set MONK_SK,4;
 			close;
