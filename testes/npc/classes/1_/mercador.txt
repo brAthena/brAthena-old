@@ -86,15 +86,13 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			case 1:
 				mes "[Chefe Mansur]";
 				if (Zeny < 500) {
-					mes "Humm...";
-					mes "Acho que no momento você não tem zeny suficiente para a compra da licença.";
+					mes "Humm...\nAcho que no momento você não tem zeny suficiente para a compra da licença.";
 					next;
 					mes "[Chefe Mansur]"+"\nVolte aqui quando você estiver com os 500 zeny para se tornar um Mercador.";
 					close;
 				}
 				set zeny,zeny-500;
-				mes "Isso...!";
-				mes "Agora sua licença já está toda paga.";
+				mes "Isso...!\nAgora sua licença já está toda paga.";
 				break;
 			case 2:
 				mes "[Chefe Mansur]"+"\nEu suponho que você necessite de tempo para conseguir o zeny necessário. Por favor, volte quando estiver pronto.";
@@ -105,18 +103,10 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 		mes "[Chefe Mansur]"+"\nParabéns!\nEstou muito feliz que você tenha se integrado a Guilda dos Mercadores, e espero que você desempenhe um papel ativo na economia de Rune-Midgard.";
 		callfunc "Job_Change",Job_Merchant;
 		callfunc "F_ClearJobVar";
-		if(checkquest(1009) != -1) {
-			completequest 1009;
-		}
-		else if(checkquest(1010) != -1) {
-			completequest 1010;
-		}
-		else if(checkquest(1011) != -1) {
-			completequest 1011;
-		}
-		else {
-			completequest 1012;
-		}
+		if(checkquest(1009) != -1) completequest 1009;
+		else if(checkquest(1010) != -1) completequest 1010;
+		else if(checkquest(1011) != -1) completequest 1011;
+		else completequest 1012;
 		next;
 		if (quest_alb_01 == 1) {
 			mes "[Chefe Mansur]"+"\n*Aham* Eeeeeee deixe-me dar um pouco de dinheiro por ter entregado a mensagem para mim.\nEu espero que você possa me ajudar novamente~";
@@ -320,12 +310,9 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 		if(BaseJob != Job_Novice) {
 			mes "[Chefe Mansur]";
 			if(BaseJob == Job_Merchant) {
-				mes ".....? Desculpe? O que você está dizendo?";
-				mes "Você já é um mercador. Ah meu..";
-				mes "Hum?! ...Eu preciso rir agora?!";
+				mes ".....? Desculpe? O que você está dizendo?\nVocê já é um mercador. Ah meu..\nHum?! ...Eu preciso rir agora?!";
 			}else{
-				mes "Ahh? Você está tentando possuir duas classes?";
-				mes "Como pensa em desperdiçar tudo que conquistou até agora?";
+				mes "Ahh? Você está tentando possuir duas classes?\nComo pensa em desperdiçar tudo que conquistou até agora?\n";
 				next;
 				mes "[Chefe Mansur]"+"\nVocê sabe que temos a ética em nossos negócios.";
 			}
@@ -513,13 +500,11 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 							close;
 						}
 						next;
-					}
-					else if (.@input < 1000000 || .@input > 5000000) {
+					}else if (.@input < 1000000 || .@input > 5000000) {
 						mes "[Guarda Kay]"+"\nEi, ei. Esse número não é válido! Insira um valor entre 1000000-5000000. entendeu?";
 						next;
 					}
-					else 
-						break;
+					else break;
 				}
 				mes "[Guarda Kay]"+"\n"+((.@where_village == 1) ? "Destino é Prontera. O número de série é " + .@input + ". Está certo?" : (.@where_village == 2) ? "Destino é Geffen. Ufa! É muito longe! O número de série é "+.@input+". Está certo?" : (.@where_village == 3) ? "Destino é Morocc. Você ir? ir longe! O número de série é "+.@input+". Está certo?" : "Boa sorte! Seu destino é a Ilha de Byalan. O número de série é "+.@input+". Está certo?")+"";
 				next;
@@ -658,15 +643,13 @@ geffen_in,155,122,4	script#vpo	Funcionário#mer	47,{
 			mes "Esse número está errado. Esse não é o que nós pedimos ...";
 			next;
 			mes "[Funcionário]";
-			if (job_merchant_q2 == 3) {
+			if (job_merchant_q2 == 3)
 				mes "O número de série é 2989396.";
-			} else if (job_merchant_q2 == 4) {
+			else if (job_merchant_q2 == 4)
 				mes "O número de série é 2191737.";
-			} else {
+			else
 				mes "O número de série é 2989396 ou 2191737, um dos dois.";
-			}
-			mes "Olha aqui!";
-			mes "Você não vê que está errado?";
+			mes "Olha aqui!\nVocê não vê que está errado?";
 			close;
 		} if (job_merchant_q == 4)
 			set job_merchant_q,6;
@@ -696,8 +679,7 @@ prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
 		if (countitem(1081) == 1 || countitem(1082) == 1 || countitem(1091) == 1) {
 			mes "Você deve estar muito cansado depois de carregar essas coisas por tanto tempo!";
 		} else {
-			mes "E-espere. Você não trouxe o pacote?";
-			mes "Onde está o pacote?";
+			mes "E-espere. Você não trouxe o pacote?\nOnde está o pacote?";
 			close2;
 			cutin "",255;
 			end;
@@ -719,7 +701,7 @@ prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
 			if (job_merchant_q2 == 1) mes "eu pedi o número de série é 2485741. Tenho certeza de que não é esse.";
 			else if (job_merchant_q2 == 2) mes "eu pedi o número de série é 2328137. Tenho certeza de que não é esse.";
 			else
-				mes "eu pedi o número de série é 2328137 ou 2328137.";
+				mes "Eu pedi o número de série é 2328137 ou 2328137.";
 			next;
 			mes "[Funcionária Kafra]"+"\nEstou com medo, algum problema deve ter ocorrido.\nTalvez você tenha que voltar à Guilda dos Mercadores para resolver essa situação?";
 			close2;
@@ -738,23 +720,23 @@ prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
 		next;
 		mes "[Funcionária Kafra]"+"\nComo você pode ver, a Associação dos Espadachins se mudou para Izlude, a cidade satélite de Prontera.\nPor isso, oferecemos o Serviço de Teletransporte para Izlude por 600 Zeny.";
 		next;
-		if (select("Usar:Cancelar") == 1) {
-			if (Zeny < 600) {
-				mes "[Funcionária Kafra]"+"\nMe desculpe, mas você não tem zeny suficiente para utilizar o Serviço de Teletransporte.";
-				close2;
-				cutin "",255;
-				end;
-			}
-			set zeny,zeny-600;
-			set RESRVPTS, RESRVPTS + 37;
+		if (select("Usar:Cancelar") == 2) {
+			close2;
 			cutin "",255;
-			warp "izlude",94,103;
 			end;
 		}
-		close2;
+		if (Zeny < 600) {
+			mes "[Funcionária Kafra]"+"\nMe desculpe, mas você não tem zeny suficiente para utilizar o Serviço de Teletransporte.";
+			close2;
+			cutin "",255;
+			end;
+		}
+		set zeny,zeny-600;
+		set RESRVPTS, RESRVPTS + 37;
 		cutin "",255;
+		warp "izlude",94,103;
 		end;
-}
+	}
 }
 
 function	script	F_MercKafra {
@@ -784,8 +766,7 @@ function	script	F_MercKafra {
 			delitem 1082,1; // Caixa de Entrega
 			getitem 1080,1; // Recibo de Entrega
 		} else {
-			mes "Hmmm? Espere um pouco. Esse é o pacote errado.";
-			mes "O que eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
+			mes "Hmmm? Espere um pouco. Esse é o pacote errado.\nO que eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
 			close2;
 			cutin "",255;
 			end;
