@@ -700,13 +700,13 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 		case MSG_NONE: // direct printf replacement
 			break;
 		case MSG_STATUS: //Bright Green (To inform about good things)
-			strcat(prefix,CL_GREEN"[Sucesso]"CL_RESET":");
+			strcat(prefix,CL_LT_GREEN"[Sucesso]"CL_RESET":");
 			break;
 		case MSG_CONF: // Cor Ciano Escuro (Leitura para arquivo de configuração)
 			strcat(prefix,CL_LT_CYAN"[Conf]"CL_RESET":");
 			break;
-		case MSG_NPC: // Cor Branco (Leitura para arquivos de NPCS)
-			strcat(prefix,CL_WHITE"[NPC]"CL_RESET":");
+		case MSG_NPC: //Cor Amarelo escuro (Leitura para arquivos de NPCS)
+			strcat(prefix,CL_LT_YELLOW"[NPC]"CL_RESET":");
 			break;
 		case MSG_SQL: //Bright Violet (For dumping out anything related with SQL) <- Actually, this is mostly used for SQL errors with the database, as successes can as well just be anything else... [Skotlex]
 			strcat(prefix,CL_MAGENTA"[SQL]"CL_RESET":");
@@ -715,7 +715,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			sprintf(prefix,CL_WHITE"[Not%ccia]"CL_RESET":", 161);
+			sprintf(prefix,CL_GREEN"[Not%ccia]"CL_RESET":", 161);
 			break;
 		case MSG_WARNING: //Bright Yellow
 			strcat(prefix,CL_YELLOW"[Aviso]"CL_RESET":");

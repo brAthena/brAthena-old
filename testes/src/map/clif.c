@@ -13399,6 +13399,7 @@ void clif_parse_GMReqNoChat(int fd,struct map_session_data *sd)
 		if(pc_get_group_level(sd) > 0 || sd->bl.id != id)
 			return;
 
+		value = battle_config.client_accept_chatdori;
 		dstsd = sd;
 	} else {
 		dstsd = map_id2sd(id);
@@ -17078,7 +17079,7 @@ void clif_parse_MoveItem(int fd, struct map_session_data *sd)
 void clif_cashshop_db(void) {
 	config_t cashshop_conf;
 	config_setting_t *cashshop = NULL;
-	const char *config_filename = "conf/cashshop.conf"; // FIXME hardcoded name
+	const char *config_filename = "db/cashshop.conf"; // FIXME hardcoded name
 	int i;
 	for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
 		CREATE(cs.data[i], struct hCSData *, 1);
