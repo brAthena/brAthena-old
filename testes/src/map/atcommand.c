@@ -457,7 +457,7 @@ ACMD_FUNC(mapmove)
 	if(mapindex)
 		m = map_mapindex2mapid(mapindex);
 
-	if(!mapindex) {  // m < 0 means on different server! [Kevin]
+	if(!mapindex  || m < 0) {  // m < 0 means on different server! [Kevin]
 		clif_displaymessage(fd, msg_txt(1)); // Map not found.
 		return -1;
 	}

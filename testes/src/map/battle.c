@@ -6446,11 +6446,11 @@ static const struct _battle_data {
 	 **/
 	{ "skill_trap_type",                    &battle_config.skill_trap_type,                 0,      0,      1,              },
 	{ "item_restricted_consumption_type",   &battle_config.item_restricted_consumption_type,1,      0,      1,              },
-	{ "max_walk_path",			&battle_config.max_walk_path,			17,     1,      MAX_WALKPATH,   },
+	{ "max_walk_path",                      &battle_config.max_walk_path,                   17,     1,      MAX_WALKPATH,   },
 	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
-	{ "gm_ignore_warpable_area",		&battle_config.gm_ignore_warpable_area,		0,	2,	100,		},
-	{ "packet_obfuscation",			&battle_config.packet_obfuscation,		1,	0,	3,		},
-	{ "client_accept_chatdori",             &battle_config.client_accept_chatdori,          0,      0,      1,         	},
+	{ "gm_ignore_warpable_area",            &battle_config.gm_ignore_warpable_area,         0,      2,      100,            },
+	{ "packet_obfuscation",                 &battle_config.packet_obfuscation,              1,      0,      3,              },
+	{ "client_accept_chatdori",             &battle_config.client_accept_chatdori,          0,      0,      INT_MAX,        },
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
