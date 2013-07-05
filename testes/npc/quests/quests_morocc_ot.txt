@@ -1,0 +1,132 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Morroc - Old Times              |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.2                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest dos Binóculos & Placa-Pare.           |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Avassalador]                       |
+//   | 1.2 Adição das Quests ao modo Old-Times [Holy]         |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+morocc_in,142,100,4	script	Alquimista	89,{
+	mes "[Stair]";
+	mes "Bem-vindo a mais famosa loja de ^3355FF'Placa de PARE'^000000... a casa Stair.";
+	mes "Já ouviu falar de nossa família?..";
+	next;
+	mes "Nós produzimos sinais de trânsito a mais de 250 anos quando as pessoas ainda viajavam de carruagens.";
+	mes "E eu tenho recebido muitos pedidos de ^3355FF'Placas de PARE'^000000 recentemente. Está na moda como um tipo de acessório.";
+	next;
+	switch(select("Pedir ^3355FF'Placa de PARE'^000000.:Terminar conversa.")) {
+	case 1:
+		mes "[Stair]";
+		mes "Acessórios como o famoso ^3355FF'Placa de PARE'^000000 feitos por uma família de mais de 250 anos de tradição...";
+		mes "Com nossa experiência em sinais de trânsito, nós garantimos um uso duradouro.";
+		mes "Garantimos a satisfação de todos os clientes!.";
+		next;
+		mes "Para produzir ^3355FF'Placa de PARE'^000000, precisamos de ^3355FF'91100 Zeny'^000000";
+		mes "E 50 ^3355FF'Troncos'^000000 e uma ^3355FF'Tintura Preta'^000000.";
+		next;
+		if ((countitem(1019) > 49) && (countitem(983) > 0) && (Zeny > 91099)) {
+			delitem 1019,50;// Wooden_Block
+			delitem 983,1;  // Black_Dyestuffs
+			set Zeny,Zeny-91100;
+			mes "[Stair]";
+			mes "Ótimo! Este é a famosa ^3355FF'Placa de PARE '^000000 de 250 anos de história!";
+			mes "Obrigado pela preferência! Até logo!";
+			mes "...Uma piada?";
+			getitem 2272,1; // Stop_Post
+			close;
+		}
+		else {
+			mes "[Stair]";
+			mes "Você não tem os itens necessários...";
+			mes "Volte mais tarde!";
+			close;
+		}
+	case 2:
+		mes "[Stair]";
+		mes "Obrigado por escolher a Mackellan Stair..";
+		mes "Tudo de bom!";
+		close;
+	}
+}
+
+// Quest Binóculo
+// ============================================================
+morocc_in,76,163,4	script	Alquímista	64,{
+	mes "[Marius]";
+	mes "Ha! Ha! Ha! Outro cliente!";
+	mes "Eu sei o que vai dizer.";
+	mes "Você quer os Binóculos, certo?";
+	next;
+	switch(select("Binóculos?:Fazer Binóculos.:Cancelar.")) {
+	case 1:
+		mes "[Marius]";
+		mes "Certo!";
+		mes "É como um cilíndro...";
+		mes "Com várias lentes enfileiradas!";
+		mes "Que refletem a luz...";
+		mes "Para enxergar algo bem distante.";
+		mes "E não para algo perto!";
+		next;
+		mes "[Marius]";
+		mes "O que acha? Não é legal?";
+		mes "Ha! Ha! Ha!";
+		mes ". . . . .";
+		mes ".... Como? Você não acredita!";
+		mes "Estou dizendo a verdade!!";
+		next;
+		mes "[Marius]";
+		mes "Anote os itens que são precisos para fazer um Binóculo.";
+		mes "Um de cada vez...";
+		mes "Um ^3355FFQuatro Olhos^000000! 100 ^3355FFAços^000000^! E ^3355FF50000 Zeny^000000!";
+		close;
+	case 2:
+		if ((countitem(2243) > 0) && (countitem(999) > 99) && (Zeny > 49999)) {
+			mes "[Marius]";
+			mes "Ótimo! Ótimo!";
+			mes "Fiz um Binóculo!";
+			mes "E achei o dono certo para ele!";
+			next;
+			delitem 2243,1;  //Spinning_Eyes
+			delitem 999,100;  //Steel
+			set Zeny,Zeny-50000;
+			mes "[Marius]";
+			mes "Aqui está... Binóculo!";
+			getitem 2296,1; // Binoculars
+			next;
+			mes "[Marius]";
+			mes "Apenas lembre-se... Espero que não tenha que usar esse binóculo... Para ver algo que não deve... Ha! Ha! Ha!";
+			close;
+		}
+		else {
+			mes "[Marius]";
+			mes "Não há itens suficientes!";
+			mes "Como pode desrespeitar alquimistas sérios como eu?";
+			mes "Você tem problemas!";
+			mes "Que ridículo!";
+			close;
+		}
+	case 3:
+		mes "[Marius]";
+		mes "Ei! Você~!";
+		mes "Você está falando com... O mais famoso mestre em ótica do mundo... Ariel! Você não deve se comportar assim!";
+		close;
+	}
+}

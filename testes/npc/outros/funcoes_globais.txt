@@ -38,6 +38,10 @@
 		movenpc("Artigos para Mercenários#Espadachim",56,139);
 	}
 
+	if(.@version != -1) { // Pré-Renovação & Renovação
+		movenpc("Talpiz#BLS",214,79);
+	}
+
 	if(!.@version) { // Pré-Renovação & Old-Times
 		movenpc("Dega#izlude",150,118,2);
 		movenpc("Kylick#izlude",150,143,2);

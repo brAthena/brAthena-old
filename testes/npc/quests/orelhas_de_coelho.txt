@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.5/1.6/1.1                         |
+//   | Versões eA/rA/brA: 1.5/1.6/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest para obter as Orelhas de Coelho.      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR  [HoriaN]                           |
+//   | 1.2 Adição da Funcionária de [Payon Old-Times] [Holy]  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -167,3 +168,5 @@ alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 		close;
 	}
 }
+
+payon,97,116,4	duplicato(Funcionária Kafra#coe)	Funcionária Kafra#coe2	83,{}

@@ -174,7 +174,7 @@ prt_in,47,173,3	script	Morrison#suco	97,{
 	close;
 }
 
-payon_in03,188,146,5	script	Marx Hansen#suco	86,{
+-	script	Marx Hansen#suco	86,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um momento! -";
 		mes "- Atualmente você está carregando -";
@@ -340,3 +340,6 @@ payon_in03,188,146,5	script	Marx Hansen#suco	86,{
 		close;
 	}
 }
+
+payon_in01,177,113,2	duplicato(Marx Hansen#suco)	Marx Hansen#ot	86,{}
+payon_in03,188,146,5	duplicata(Marx Hansen#suco)	Marx Hansen#dv	86,{}

@@ -1151,7 +1151,7 @@ lighthalzen,209,80,4	script	Krongast#BLS	734,{
 	}
 }
 
-payon,214,79,4	script	Talpiz#BLS	59,{
+payon,151,39,4	script	Talpiz#BLS	59,{
 	if (BSMITH_Q == 12 && countitem(1713) > 0) {
 		mes "[Talpiz]";
 		mes "Oh~";

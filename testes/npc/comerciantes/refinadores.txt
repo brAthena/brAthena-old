@@ -534,10 +534,16 @@ morocc_in,73,38,6	script	Aragham	99,{
 	callfunc "refinemain","Aragham",0;
 	end;
 }
-payon,144,173,5	script	Antonio	88,{
+payon,144,173,5	script#dv	Antonio	88,{
 	callfunc "refinemain","Antonio",0;
 	end;
 }
+
+payon_in01,90,31,4	script#ot	Antonio#ot	88,{
+	callfunc "refinemain","Antonio",0;
+	end;
+}
+
 alberta_in,28,58,0	script	Fredrik	85,{
 	callfunc "refinemain","Fredrik",0;
 	end;
@@ -851,10 +857,16 @@ prt_in,56,68,5	script	Vurewell	86,{
 	callfunc "phramain","Vurewell";
 	end;
 }
-payon,145,178,3	script	Begnahd	88,{
+payon,145,178,3	script#dv	Begnahd	88,{
 	callfunc "phramain","Begnahd";
 	end;
 }
+
+payon_in01,84,26,4	script#ot	Begnahd#ot	88,{
+	callfunc "phramain","Begnahd";
+	end;
+}
+
 morocc_in,63,32,6	script	Sade	99,{
 	callfunc "phramain","Sade";
 	end;
@@ -964,10 +976,16 @@ prt_in,63,69,3	script	Dietrich	84,{
 	callfunc "orimain","Dietrich";
 	end;
 }
-payon,137,178,5	script	Hakhim	88,{
+payon,137,178,5	script#dv	Hakhim	88,{
 	callfunc "orimain","Hakhim";
 	end;
 }
+
+payon,81,31,4	script#ot	Hakhim#ot	88,{
+	callfunc "orimain","Hakhim";
+	end;
+}
+
 morocc_in,72,32,6	script	Abdula	99,{
 	callfunc "orimain","Abdula";
 	end;

@@ -669,7 +669,8 @@ geffen,109,123,2	duplicate(InsideFlagsG1)	Arsulf#11	722
 geffen,112,129,1	duplicate(InsideFlagsG2)	Trapesac#12	722
 geffen,120,132,8	duplicate(InsideFlagsG3)	Ruaden#15	722
 geffen,127,130,7	duplicate(InsideFlagsG4)	Saffran#11	722
-geffen,131,123,6	duplicate(InsideFlagsG5)	Arima#11	722
+geffen,131,123,6	duplicato(InsideFlagsG5)	Arima#11	722
+geffen,131,123,6	duplicata(InsideFlagsG5)	Arima#11	722
 //============================================================
 
 // Payon
@@ -683,7 +684,13 @@ payon,166,169,3	duplicate(InsideFlagsPA3)	Palácio da Sombra#12	722
 payon,118,322,4	duplicate(InsideFlagsPA4)	Palácio Escarlate#11	722
 payon,166,165,3	duplicate(InsideFlagsPA4)	Palácio Escarlate#12	722
 payon,123,322,4	duplicate(InsideFlagsPA5)	Palácio da Colina#11	722
-payon,166,161,3	duplicate(InsideFlagsPA5)	Palácio da Colina#12	722
+payon,166,161,3	duplicate(InsideFlagsPA5)	Palácio da Colina#12	722,{}
+//============================================================
+payon,89,155,4	duplicato(InsideFlagsPA1)	Palácio do Sol#11	722
+payon,82,155,4	duplicato(InsideFlagsPA2)	Palácio do Lago Sagrado#11	722
+payon,97,155,4	duplicato(InsideFlagsPA3)	Palácio da Sombra#11	722
+payon,103,155,4	duplicato(InsideFlagsPA4)	Palácio Escarlate#11	722
+payon,75,155,4	duplicato(InsideFlagsPA5)	Palácio da Colina#11	722,{}
 //============================================================
 
 // Prontera
