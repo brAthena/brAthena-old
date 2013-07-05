@@ -518,6 +518,7 @@ extern struct Battle_Config {
 	int bowling_bash_area;
 	int gm_ignore_warpable_area;
 	int packet_obfuscation;
+	int client_accept_chatdori; // [Ai4rei/Mirei]
 
 } battle_config;
 

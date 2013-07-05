@@ -2609,7 +2609,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if(sc->data[SC_WEAPONBLOCKING] && flag&(BF_SHORT|BF_WEAPON) && rnd()%100 < sc->data[SC_WEAPONBLOCKING]->val2) {
 			clif_skill_nodamage(bl,src,GC_WEAPONBLOCKING,1,1);
 			d->dmg_lv = ATK_BLOCK;
-			sc_start2(src,bl,SC_COMBOATTACK,100,GC_WEAPONBLOCKING,src->id,2000);
+			sc_start2(bl,SC_COMBOATTACK,100,GC_WEAPONBLOCKING,src->id,2000);
 			return 0;
 		}
 		if((sce=sc->data[SC_AUTOGUARD]) && flag&BF_WEAPON && !(skill_get_nk(skill_id)&NK_NO_CARDFIX_ATK) && rnd()%100 < sce->val2) {
@@ -2633,7 +2633,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			clif_skill_nodamage(bl, bl, RK_MILLENNIUMSHIELD, 1, 1);
 			sce->val3 -= damage; // absorb damage
 			d->dmg_lv = ATK_BLOCK;
-			sc_start(src,bl,SC_STUN,15,0,skill_get_time2(RK_MILLENNIUMSHIELD,sce->val1)); // There is a chance to be stuned when one shield is broken.
+			sc_start(bl,SC_STUN,15,0,skill_get_time2(RK_MILLENNIUMSHIELD,sce->val1)); // There is a chance to be stuned when one shield is broken.
 			if(sce->val3 <= 0) {   // Shield Down
 				sce->val2--;
 				if(sce->val2 > 0) {
@@ -2659,7 +2659,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if(sd && pc_issit(sd)) pc_setstand(sd);  //Stand it to dodge.
 			clif_skill_nodamage(bl,bl,TK_DODGE,1,1);
 			if(!sc->data[SC_COMBOATTACK])
-				sc_start4(src,bl, SC_COMBOATTACK, 100, TK_JUMPKICK, src->id, 1, 0, 2000);
+				sc_start4(bl, SC_COMBOATTACK, 100, TK_JUMPKICK, src->id, 1, 0, 2000);
 			return 0;
 		}
 
@@ -2844,7 +2844,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				skill_break_equip(src,src, EQP_WEAPON, 3000, BCT_SELF);
 			// 30% chance to reduce monster's ATK by 25% for 10 seconds.
 			if( src->type == BL_MOB )
-				sc_start(src,src, SC_NOEQUIPWEAPON, 30, 0, skill_get_time2(RK_STONEHARDSKIN, sce->val1));
+				sc_start(src, SC_NOEQUIPWEAPON, 30, 0, skill_get_time2(RK_STONEHARDSKIN, sce->val1));
 			if( sce->val2 <= 0 )
 				status_change_end(bl, SC_STONEHARDSKIN, INVALID_TIMER);
 		}
@@ -2965,7 +2965,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if( sc->data[SC_POISONINGWEAPON]
 			&& ((flag&BF_WEAPON) && (!skill_id || skill_id == GC_VENOMPRESSURE)) //chk skill type poison_smoke is a unit
 			&& (damage > 0 && rnd()%100 < sc->data[SC_POISONINGWEAPON]->val3 )) //did some dammage and chance ok (why no additional effect ??
-			sc_start(src,bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
+			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
 			status_change_spread(src, bl);
                 if(sc->data[SC_STYLE_CHANGE]) {
@@ -5400,11 +5400,11 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 		uint16 skill_lv = tsc->data[SC_BLADESTOP_WAIT]->val1;
 		int duration = skill_get_time2(MO_BLADESTOP,skill_lv);
 		status_change_end(target, SC_BLADESTOP_WAIT, INVALID_TIMER);
-		if(sc_start4(src,src, SC_BLADESTOP, 100, sd?pc_checkskill(sd, MO_BLADESTOP):5, 0, 0, target->id, duration)) {
+		if(sc_start4(src, SC_BLADESTOP, 100, sd?pc_checkskill(sd, MO_BLADESTOP):5, 0, 0, target->id, duration)) {
 			//Target locked.
 			clif_damage(src, target, tick, sstatus->amotion, 1, 0, 1, 0, 0); //Display MISS.
 			clif_bladestop(target, src->id, 1);
-			sc_start4(src,target, SC_BLADESTOP, 100, skill_lv, 0, 0, src->id, duration);
+			sc_start4(target, SC_BLADESTOP, 100, skill_lv, 0, 0, src->id, duration);
 			return ATK_BLOCK;
 		}
 	}
@@ -6425,7 +6425,6 @@ static const struct _battle_data {
 // BattleGround Settings
 	{ "bg_update_interval",                 &battle_config.bg_update_interval,              1000,   100,    INT_MAX,        },
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
-	{ "packet_obfuscation",			&battle_config.packet_obfuscation,		1,	0,	3,		},
 	/**
 	 * rAthena
 	 **/
@@ -6440,7 +6439,6 @@ static const struct _battle_data {
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      HOM_MAX_LEVEL,  },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      HOM_MAX_LEVEL,  },
 	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
-	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
 	{ "item_flooritem_check",               &battle_config.item_onfloor,                    1,      0,      1,              },
 	{ "bowling_bash_area",                  &battle_config.bowling_bash_area,               0,      0,      20,             },
 	/**
@@ -6449,7 +6447,10 @@ static const struct _battle_data {
 	{ "skill_trap_type",                    &battle_config.skill_trap_type,                 0,      0,      1,              },
 	{ "item_restricted_consumption_type",   &battle_config.item_restricted_consumption_type,1,      0,      1,              },
 	{ "max_walk_path",			&battle_config.max_walk_path,			17,     1,      MAX_WALKPATH,   },
+	{ "item_enabled_npc",                   &battle_config.item_enabled_npc,                1,      0,      1,              },
 	{ "gm_ignore_warpable_area",		&battle_config.gm_ignore_warpable_area,		0,	2,	100,		},
+	{ "packet_obfuscation",			&battle_config.packet_obfuscation,		1,	0,	3,		},
+	{ "client_accept_chatdori",             &battle_config.client_accept_chatdori,          0,      0,      1,         	},
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
@@ -6494,6 +6495,10 @@ void brAthena_report(char *date, char *time_c)
 	    C_SECURE_NPCTIMEOUT     = 0x1000,
 	    C_SQL_DBS               = 0x2000,
 	    C_SQL_LOGS              = 0x4000,
+	    C_MEMWATCH	            = 0x8000,
+	    C_DMALLOC	            = 0x10000,
+	    C_GCOLLECT	            = 0x20000,
+	    C_SEND_SHORTLIST        = 0x40000,
 	};
 
 	if((rev_str = get_svn_revision()) != 0)
@@ -6502,7 +6507,6 @@ void brAthena_report(char *date, char *time_c)
 	/* we get the current time */
 	time(&curtime);
 	strftime(timestring, 24, "%Y-%m-%d %H:%M:%S", localtime(&curtime));
-
 
 #ifdef CIRCULAR_AREA
 	config |= C_CIRCULAR_AREA;
@@ -6558,6 +6562,20 @@ void brAthena_report(char *date, char *time_c)
 
 	if(log_config.sql_logs)
 		config |= C_SQL_LOGS;
+
+#ifdef MEMWATCH
+	config |= C_MEMWATCH;
+#endif
+#ifdef DMALLOC
+	config |= C_DMALLOC;
+#endif
+#ifdef GCOLLECT
+	config |= C_GCOLLECT;
+#endif
+
+#ifdef SEND_SHORTLIST
+	config |= C_SEND_SHORTLIST;
+#endif
 
 #define BFLAG_LENGTH 35
 

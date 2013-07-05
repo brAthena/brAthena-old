@@ -51,6 +51,7 @@
 #include "script.h" // script_config
 #include "skill.h"
 #include "status.h" // struct status_data
+#include "storage.h"
 #include "pc.h"
 #include "pc_groups.h"
 #include "quest.h"
@@ -1668,9 +1669,9 @@ int pc_updateweightstatus(struct map_session_data *sd)
 
 	// start new status change
 	if(new_overweight == 1)
-		sc_start(&sd->bl,&sd->bl, SC_WEIGHTOVER50, 100, 0, 0);
+		sc_start(&sd->bl, SC_WEIGHTOVER50, 100, 0, 0);
 	else if(new_overweight == 2)
-		sc_start(&sd->bl,&sd->bl, SC_WEIGHTOVER90, 100, 0, 0);
+		sc_start(&sd->bl, SC_WEIGHTOVER90, 100, 0, 0);
 
 	// update overweight status
 	sd->regen.state.overweight = new_overweight;
@@ -5673,16 +5674,16 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 	status_percent_heal(&sd->bl,100,100);
 
 	if((sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE) {
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_KYRIE),100,1,skill_get_time(PR_KYRIE,1));
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_IMPOSITIO),100,1,skill_get_time(PR_IMPOSITIO,1));
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_MAGNIFICAT),100,1,skill_get_time(PR_MAGNIFICAT,1));
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_GLORIA),100,1,skill_get_time(PR_GLORIA,1));
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(PR_SUFFRAGIUM),100,1,skill_get_time(PR_SUFFRAGIUM,1));
+		sc_start(&sd->bl,status_skill2sc(PR_KYRIE),100,1,skill_get_time(PR_KYRIE,1));
+		sc_start(&sd->bl,status_skill2sc(PR_IMPOSITIO),100,1,skill_get_time(PR_IMPOSITIO,1));
+		sc_start(&sd->bl,status_skill2sc(PR_MAGNIFICAT),100,1,skill_get_time(PR_MAGNIFICAT,1));
+		sc_start(&sd->bl,status_skill2sc(PR_GLORIA),100,1,skill_get_time(PR_GLORIA,1));
+		sc_start(&sd->bl,status_skill2sc(PR_SUFFRAGIUM),100,1,skill_get_time(PR_SUFFRAGIUM,1));
 		if(sd->state.snovice_dead_flag)
 			sd->state.snovice_dead_flag = 0; //Reenable steelbody resurrection on dead.
 	} else if((sd->class_&MAPID_BASEMASK) == MAPID_TAEKWON) {
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(AL_INCAGI),100,10,600000);
-		sc_start(&sd->bl,&sd->bl,status_skill2sc(AL_BLESSING),100,10,600000);
+		sc_start(&sd->bl,status_skill2sc(AL_INCAGI),100,10,600000);
+		sc_start(&sd->bl,status_skill2sc(AL_BLESSING),100,10,600000);
 	}
 	clif_misceffect(&sd->bl,0);
 	npc_script_event(sd, NPCE_BASELVUP); //LORDALFA - LVLUPEVENT
@@ -6709,7 +6710,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	for(; l < MAX_INVENTORY; ++l) {
 		if(!sd->sc.data[SC_CASH_DEATHPENALTY]) {
 			if(sd && sd->status.inventory[l].nameid == 6413) {
-				status_change_start(&sd->bl, &sd->bl, SC_CASH_DEATHPENALTY, 10000, 1, 0, 0, 0, 1800000, 2);
+				status_change_start(&sd->bl, SC_CASH_DEATHPENALTY, 10000, 1, 0, 0, 0, 1800000, 2);
 				pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
 				clif_msgtable(sd->fd,DEATH_PENALTY);
 			}
@@ -6781,7 +6782,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		if(battle_config.pk_mode&2) {
 			ssd->status.manner -= 5;
 			if(ssd->status.manner < 0)
-				sc_start(&sd->bl,src,SC_NOCHAT,100,0,0);
+				sc_start(src,SC_NOCHAT,100,0,0);
 #if 0
 			// PK/Karma system code (not enabled yet) [celest]
 			// originally from Kade Online, so i don't know if any of these is correct ^^;
@@ -6832,7 +6833,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			clif_resurrection(&sd->bl, 1);
 			if(battle_config.pc_invincible_time)
 				pc_setinvincibletimer(sd, battle_config.pc_invincible_time);
-			sc_start(&sd->bl,&sd->bl,status_skill2sc(MO_STEELBODY),100,1,skill_get_time(MO_STEELBODY,1));
+			sc_start(&sd->bl,status_skill2sc(MO_STEELBODY),100,1,skill_get_time(MO_STEELBODY,1));
 			if(map_flag_gvg(sd->bl.m))
 				pc_respawn_timer(INVALID_TIMER, gettick(), sd->bl.id, 0);
 			return 0;
@@ -7846,7 +7847,7 @@ int pc_setcart(struct map_session_data *sd,int type)
 			if(!sd->sc.data[SC_PUSH_CART])   /* first time, so fill cart data */
 				clif_cartlist(sd);
 			clif_updatestatus(sd, SP_CARTINFO);
-			sc_start(&sd->bl,&sd->bl, SC_PUSH_CART, 100, type, 0);
+			sc_start(&sd->bl, SC_PUSH_CART, 100, type, 0);
 			clif_status_change2(&sd->bl, sd->bl.id, AREA, SI_ON_PUSH_CART, type, 0, 0);
 			if(sd->sc.data[SC_PUSH_CART])  /* forcefully update */
 				sd->sc.data[SC_PUSH_CART]->val1 = type;
@@ -8918,6 +8919,29 @@ int pc_checkitem(struct map_session_data *sd)
 				pc_cart_delitem(sd, i, sd->status.cart[i].amount, 0, LOG_TYPE_OTHER);
 			}
 		}
+
+		for(i = 0; i < MAX_STORAGE; i++) {
+			id = sd->status.storage.items[i].nameid;
+			if(id && !itemdb_available(id)) {
+				ShowWarning("Removed invalid/disabled item id %d from storage (amount=%d, char_id=%d).\n", id, sd->status.storage.items[i].amount, sd->status.char_id);
+				storage_delitem(sd, i, sd->status.storage.items[i].amount);
+				storage_storageclose(sd); // force closing
+			}
+		}
+
+		if(sd->state.gmaster_flag) {
+			struct guild_storage *guild_storage = guild2storage2(sd->state.gmaster_flag->guild_id);
+			if(guild_storage) {
+				for(i = 0; i < MAX_GUILD_STORAGE; i++) {
+					id = guild_storage->items[i].nameid;
+					if(id && !itemdb_available(id)) {
+						ShowWarning("Removed invalid/disabled item id %d from guild storage (amount=%d, char_id=%d, guild_id=%d).\n", id, guild_storage->items[i].amount, sd->status.char_id, sd->state.gmaster_flag->guild_id);
+						guild_storage_delitem(sd, guild_storage, i, guild_storage->items[i].amount);
+						storage_guild_storageclose(sd); // force closing
+					}
+				}
+			}
+		}
 	}
 
 	for(i = 0; i < MAX_INVENTORY; i++) {
@@ -9320,9 +9344,9 @@ void pc_overheat(struct map_session_data *sd, int val)
 
 	heat = max(0,heat); // Avoid negative HEAT
 	if(heat >= limit[skill])
-		sc_start(&sd->bl,&sd->bl,SC_OVERHEAT,100,0,1000);
+		sc_start(&sd->bl,SC_OVERHEAT,100,0,1000);
 	else
-		sc_start(&sd->bl,&sd->bl,SC_OVERHEAT_LIMITPOINT,100,heat,30000);
+		sc_start(&sd->bl,SC_OVERHEAT_LIMITPOINT,100,heat,30000);
 
 	return;
 }
