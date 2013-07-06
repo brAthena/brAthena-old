@@ -9527,7 +9527,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 		case SC_PYROCLASTIC:
 			if(bl->type == BL_PC)
-				skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
+				skill_break_equip(bl,EQP_WEAPON,10000,BCT_SELF);
 			break;
 		case SC_RUN: {
 				struct unit_data *ud = unit_bl2ud(bl);

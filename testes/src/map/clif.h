@@ -940,6 +940,7 @@ struct clif_interface {
 	void (*bc_ready) (void);
 	void (*addcards2) (unsigned short *cards, struct item* item);
 	void (*status_change) (struct block_list *bl,int type,int flag,int tick,int val1, int val2, int val3);
+	void (*scriptclear) (struct map_session_data *sd, int npcid);
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);

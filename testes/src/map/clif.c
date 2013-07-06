@@ -9708,7 +9708,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			//Display night.
 			if(!sd->state.night) {
 				sd->state.night = 1;
-				clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_SKE);
+				clif_status_change(&sd->bl, SI_SKE, 1, 0, 0, 0, 0);
 			}
 		} else if(sd->state.night) {
 			//Clear night display.
@@ -10701,7 +10701,7 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd)
 	else if (pc_cant_act2(sd) || sd->state.prerefining)
 		return;
 
-	if(!sd->status.inventory[index].identify) {
+	if(!sd->status.inventory[index].identify || sd->delayed_damage != 0) {
 		clif_equipitemack(sd,index,0,0);    // fail
 		return;
 	}
@@ -13231,12 +13231,18 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 			}
 			break;
 
-		case BL_NPC: {
-				char command[NAME_LENGTH+11];
-				sprintf(command, "%cunloadnpc %s", atcommand_symbol, status_get_name(target));
-				is_atcommand(fd, sd, command, 1);
+		case BL_NPC:
+		{
+			struct npc_data* nd = (struct npc_data *)target;
+			if(!pc_can_use_command(sd, "unloadnpc", COMMAND_ATCOMMAND)) {
+				clif_GM_kickack(sd, 0);
+				return;
 			}
-			break;
+			npc_unload_duplicates(nd);
+			npc_unload(nd,true);
+			npc_read_event_script();
+		}
+		break;
 
 		default:
 			clif_GM_kickack(sd, 0);
@@ -17574,6 +17580,15 @@ void clif_bgqueue_battlebegins(struct map_session_data *sd, unsigned char arena_
 
 	clif_send(&p,sizeof(p), &sd->bl, target);
 }
+
+void clif_scriptclear(struct map_session_data *sd, int npcid) {
+	struct packet_script_clear p;
+
+	p.PacketType = script_clearType;
+	p.NpcID = npcid;
+
+	clif_send(&p,sizeof(p), &sd->bl, SELF);
+}
 /* [Ind] */
 void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
 #if PACKETVER >= 20120604
@@ -17933,6 +17948,7 @@ void clif_defaults(void) {
 	clif->parse_cmd = clif_parse_cmd_optional;
 	clif->decrypt_cmd = clif_decrypt_cmd;
 	clif->cooldown_list = clif_skill_cooldown_list;
+	clif->scriptclear = clif_scriptclear;
 	/* Outros */
 	clif->bc_ready = clif_bc_ready;
 	clif->status_change = clif_status_change;

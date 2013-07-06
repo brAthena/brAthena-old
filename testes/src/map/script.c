@@ -4735,8 +4735,10 @@ BUILDIN_FUNC(callfunc)
 		if(data_isreference(data) && !data->ref) {
 			const char *name = reference_getname(data);
 			if(name[0] == '.') {
+				if(!ref) {
 					ref = (struct DBMap **)aCalloc(sizeof(struct DBMap *), 1);
 					ref[0] = (name[1] == '@' ? st->stack->var_function : st->script->script_vars);
+				}
 				data->ref = ref;
 			}
 		}
@@ -8588,7 +8590,12 @@ BUILDIN_FUNC(monster)
 	if(sd && strcmp(mapn, "this") == 0)
 		m = sd->bl.m;
 	else {
-		m = map_mapname2mapid(mapn);
+
+		if(( m = map_mapname2mapid(mapn) ) == -1) {
+			ShowWarning("buildin_monster: Attempted to spawn monster class %d on non-existing map '%s'\n",class_, mapn);
+			return 1;
+		}
+
 		if(map[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
 			if((m = instance->mapid2imapid(m, st->instance_id)) < 0) {
 				ShowError("buildin_monster: Trying to spawn monster (%d) on instance map (%s) without instance attached.\n", class_, mapn);

@@ -122,7 +122,7 @@ enum packet_headers {
 struct packet_authok {
 	short PacketType;
 	unsigned int startTime;
-	char PosDir[3];
+	unsigned char PosDir[3];
 	unsigned char xSize;
 	unsigned char ySize;
 #if PACKETVER >= 20080102
@@ -227,7 +227,7 @@ struct packet_spawn_unit {
 #endif
 	bool isPKModeON;
 	unsigned char sex;
-	char PosDir[3];
+	unsigned char PosDir[3];
 	unsigned char xSize;
 	unsigned char ySize;
 	short clevel;
@@ -286,7 +286,7 @@ struct packet_unit_walking {
 #endif
 	bool isPKModeON;
 	unsigned char sex;
-	char MoveData[6];
+	unsigned char MoveData[6];
 	unsigned char xSize;
 	unsigned char ySize;
 	short clevel;
@@ -344,7 +344,7 @@ struct packet_idle_unit {
 #endif
 	bool isPKModeON;
 	unsigned char sex;
-	char PosDir[3];
+	unsigned char PosDir[3];
 	unsigned char xSize;
 	unsigned char ySize;
 	unsigned char state;

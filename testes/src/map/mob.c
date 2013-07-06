@@ -3857,7 +3857,7 @@ static bool mob_parse_dbrow(char **str)
 
 	// Finally insert monster's data into the database.
 	if(mob_db_data[class_] == NULL)
-		mob_db_data[class_] = (struct mob_db *)aCalloc(1, sizeof(struct mob_db));
+		mob_db_data[class_] = (struct mob_db *)aMalloc(sizeof(struct mob_db));
 	else
 		//Copy over spawn data
 		memcpy(&db->spawn, mob_db_data[class_]->spawn, sizeof(db->spawn));
@@ -4442,7 +4442,7 @@ void mob_reload(void)
 
 	//Mob skills need to be cleared before re-reading them. [Skotlex]
 	for(i = 0; i < MAX_MOB_DB; i++)
-		if(mob_db_data[i]) {
+		if(mob_db_data[i] && !mob_is_clone(i)) {
 			memset(&mob_db_data[i]->skill,0,sizeof(mob_db_data[i]->skill));
 			mob_db_data[i]->maxskill=0;
 		}

@@ -618,6 +618,7 @@ static int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseF
 	session[fd]->func_send  = func_send;
 	session[fd]->func_parse = func_parse;
 	session[fd]->rdata_tick = last_tick;
+	session[fd]->session_data = NULL;
 	return 0;
 }
 
@@ -630,7 +631,8 @@ static void delete_session(int fd)
 #endif
 		aFree(session[fd]->rdata);
 		aFree(session[fd]->wdata);
-		aFree(session[fd]->session_data);
+		if( session[fd]->session_data )
+			aFree(session[fd]->session_data);
 		aFree(session[fd]);
 		session[fd] = NULL;
 	}

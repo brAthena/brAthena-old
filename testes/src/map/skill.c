@@ -194,7 +194,7 @@ const char *skill_get_desc(uint16 skill_id)
 }
 
 // out of bounds error checking [celest]
-void skill_chk(int16 *skill_id)
+void skill_chk(uint16 *skill_id)
 {
 	*skill_id = skill_get_index(*skill_id); // checks/adjusts id
 }
@@ -1211,12 +1211,12 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 
 		case AM_ACIDTERROR:
 			sc_start2(bl,SC_BLOODING,(skill_lv*3),skill_lv,src->id,skill_get_time2(skill_id,skill_lv));
-			if(skill_break_equip(src,bl, EQP_ARMOR, 100*skill_get_time(skill_id,skill_lv), BCT_ENEMY))
+			if(skill_break_equip(bl, EQP_ARMOR, 100*skill_get_time(skill_id,skill_lv), BCT_ENEMY))
 				clif_emotion(bl,E_OMG);
 			break;
 
 		case AM_DEMONSTRATION:
-			skill_break_equip(src,bl, EQP_WEAPON, 100*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_WEAPON, 100*skill_lv, BCT_ENEMY);
 			break;
 
 		case CR_SHIELDCHARGE:
@@ -1294,16 +1294,16 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			}
 			// Equipment breaking monster skills [Celest]
 		case NPC_WEAPONBRAKER:
-			skill_break_equip(src,bl, EQP_WEAPON, 150*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_WEAPON, 150*skill_lv, BCT_ENEMY);
 			break;
 		case NPC_ARMORBRAKE:
-			skill_break_equip(src,bl, EQP_ARMOR, 150*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_ARMOR, 150*skill_lv, BCT_ENEMY);
 			break;
 		case NPC_HELMBRAKE:
-			skill_break_equip(src,bl, EQP_HELM, 150*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_HELM, 150*skill_lv, BCT_ENEMY);
 			break;
 		case NPC_SHIELDBRAKE:
-			skill_break_equip(src,bl, EQP_SHIELD, 150*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_SHIELD, 150*skill_lv, BCT_ENEMY);
 			break;
 
 		case CH_TIGERFIST:
@@ -1360,7 +1360,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case CR_ACIDDEMONSTRATION:
-			skill_break_equip(src,bl, EQP_WEAPON|EQP_ARMOR, 100*skill_lv, BCT_ENEMY);
+			skill_break_equip(bl, EQP_WEAPON|EQP_ARMOR, 100*skill_lv, BCT_ENEMY);
 			break;
 
 		case TK_DOWNKICK:
@@ -1400,7 +1400,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			rate = 3*skill_lv;
 			if(sstatus->dex > tstatus->dex)
 				rate += (sstatus->dex - tstatus->dex)/5; //TODO: Made up formula
-			skill_strip_equip(src,bl, EQP_WEAPON, rate, skill_lv, skill_get_time(skill_id,skill_lv));
+			skill_strip_equip(bl, EQP_WEAPON, rate, skill_lv, skill_get_time(skill_id,skill_lv));
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			break;
 		case NPC_EVILLAND:
@@ -1434,7 +1434,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case WL_EARTHSTRAIN: {
 				// lv 1 & 2 = Strip Helm, lv 3 = Strip Armor, lv 4 = Strip Weapon and lv 5 = Strip Accessory. [malufett]
 				const int pos[5] = { EQP_HELM, EQP_HELM, EQP_ARMOR, EQP_WEAPON, EQP_ACC };
-				skill_strip_equip(src, bl, pos[skill_lv], 6 * skill_lv + status_get_lv(src) / 4 + status_get_dex(src) / 10,
+				skill_strip_equip(bl, pos[skill_lv], 6 * skill_lv + status_get_lv(src) / 4 + status_get_dex(src) / 10,
 					skill_lv, skill_get_time2(skill_id,skill_lv));
 			}
 			break;
@@ -1500,7 +1500,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 						pc_delspiritball(dstsd, dstsd->spiritball, 0);
 						break;
 				default:
-					skill_break_equip(src,bl,(skill_lv == 2) ? EQP_HELM : (skill_lv == 3) ? EQP_SHIELD : (skill_lv == 4) ? EQP_ARMOR : EQP_WEAPON,rate * 100,BCT_ENEMY);
+					skill_break_equip(bl,(skill_lv == 2) ? EQP_HELM : (skill_lv == 3) ? EQP_SHIELD : (skill_lv == 4) ? EQP_ARMOR : EQP_WEAPON,rate * 100,BCT_ENEMY);
 					break;
 			}
 			break;
@@ -1516,7 +1516,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 				sc_start(bl, SC_BLIND,50, skill_lv, skill_get_time(skill_id,skill_lv));
 			break;
 		case LG_EARTHDRIVE:
-			skill_break_equip(src,src, EQP_SHIELD, 500, BCT_SELF);
+			skill_break_equip(src, EQP_SHIELD, 500, BCT_SELF);
 			sc_start(bl, SC_EARTHDRIVE, 100, skill_lv, skill_get_time(skill_id, skill_lv));
 			break;
 		case SR_DRAGONCOMBO:
@@ -1680,7 +1680,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 					rate += 10;
 			}
 			if(rate)
-				skill_break_equip(src,src, EQP_WEAPON, rate, BCT_SELF);
+				skill_break_equip(src, EQP_WEAPON, rate, BCT_SELF);
 		}
 		if(battle_config.equip_skill_break_rate && skill_id != WS_CARTTERMINATION && skill_id != ITM_TOMAHAWK) {
 			// Cart Termination/Tomahawk won't trigger breaking data. Why? No idea, go ask Gravity.
@@ -1691,7 +1691,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			if(sc && sc->data[SC_MELTDOWN])
 				rate += sc->data[SC_MELTDOWN]->val2;
 			if(rate)
-				skill_break_equip(src,bl, EQP_WEAPON, rate, BCT_ENEMY);
+				skill_break_equip(bl, EQP_WEAPON, rate, BCT_ENEMY);
 
 			// Target armor breaking
 			rate = 0;
@@ -1700,7 +1700,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			if(sc && sc->data[SC_MELTDOWN])
 				rate += sc->data[SC_MELTDOWN]->val3;
 			if(rate)
-				skill_break_equip(src,bl, EQP_ARMOR, rate, BCT_ENEMY);
+				skill_break_equip(bl, EQP_ARMOR, rate, BCT_ENEMY);
 		}
 	}
 
@@ -2186,7 +2186,7 @@ int skill_counter_additional_effect(struct block_list *src, struct block_list *b
  - flag is a BCT_ flag to indicate which type of adjustment should be used
    (BCT_ENEMY/BCT_PARTY/BCT_SELF) are the valid values.
 --------------------------------------------------------------------------*/
-int skill_break_equip (struct block_list *src,struct block_list *bl, unsigned short where, int rate, int flag)
+int skill_break_equip (struct block_list *bl, unsigned short where, int rate, int flag)
 {
 	const int where_list[4]     = {EQP_WEAPON, EQP_ARMOR, EQP_SHIELD, EQP_HELM};
 	const enum sc_type scatk[4] = {SC_NOEQUIPWEAPON, SC_NOEQUIPARMOR, SC_NOEQUIPSHIELD, SC_NOEQUIPHELM};
@@ -2277,7 +2277,7 @@ int skill_break_equip (struct block_list *src,struct block_list *bl, unsigned sh
 	return where; //Return list of pieces broken.
 }
 
-int skill_strip_equip(struct block_list *src,struct block_list *bl, unsigned short where, int rate, int lv, int time)
+int skill_strip_equip(struct block_list *bl, unsigned short where, int rate, int lv, int time)
 {
 	struct status_change *sc;
 	const int pos[5]             = {EQP_WEAPON, EQP_SHIELD, EQP_ARMOR, EQP_HELM, EQP_ACC};
@@ -3009,7 +3009,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 		 **/
 		switch(skill_id) {
 			case RK_CRUSHSTRIKE:
-				skill_break_equip(src,src,EQP_WEAPON,2000,BCT_SELF); // 20% chance to destroy the weapon.
+				skill_break_equip(src,EQP_WEAPON,2000,BCT_SELF); // 20% chance to destroy the weapon.
 				break;
 			case GC_VENOMPRESSURE: {
 					struct status_change *ssc = status_get_sc(src);
@@ -5700,7 +5700,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			if(!clif_skill_nodamage(src,bl,skill_id,skill_lv, sc_start(bl,type,(60+skill_lv*10),skill_lv, skill_get_time(skill_id,skill_lv)))) {
 				if(sd)
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-				if(skill_break_equip(src,bl, EQP_WEAPON, 10000, BCT_PARTY) && sd && sd != dstsd)
+				if(skill_break_equip(bl, EQP_WEAPON, 10000, BCT_PARTY) && sd && sd != dstsd)
 					clif_displaymessage(sd->fd, msg_txt(669));
 			}
 			break;
@@ -6730,7 +6730,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				}
 
 				//Attempts to strip at rate i and duration d
-				if((i = skill_strip_equip(src,bl, location, i, skill_lv, d)) || (skill_id != ST_FULLSTRIP && skill_id != GC_WEAPONCRUSH))
+				if((i = skill_strip_equip(bl, location, i, skill_lv, d)) || (skill_id != ST_FULLSTRIP && skill_id != GC_WEAPONCRUSH))
 					clif_skill_nodamage(src,bl,skill_id,skill_lv,i);
 
 				//Nothing stripped.
@@ -7581,7 +7581,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 								clif_damage(src,bl,tick,0,0,1000,0,0,0);
 								if(!status_isdead(bl)) {
 									int where[] = { EQP_ARMOR, EQP_SHIELD, EQP_HELM, EQP_SHOES, EQP_GARMENT };
-									skill_break_equip(src,bl, where[rnd()%5], 10000, BCT_ENEMY);
+									skill_break_equip(bl, where[rnd()%5], 10000, BCT_ENEMY);
 								}
 							}
 							break;
@@ -8965,7 +8965,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					sc_start2(bl,type,100,skill_lv,sc->data[type]->val2,skill_get_time(skill_id,skill_lv));
 				}
 			} else if(sd) {
-				short lv = (short)skill_lv;
+				uint16 lv = skill_lv;
 				int count = skill_check_pc_partner(sd,skill_id,&lv,skill_get_splash(skill_id,skill_lv),1);
 				if(sc_start2(bl,type,100,skill_lv,count,skill_get_time(skill_id,skill_lv)))
 					party_foreachsamemap(skill_area_sub,sd,skill_get_splash(skill_id,skill_lv),src,skill_id,skill_lv,tick,flag|BCT_PARTY|1,skill_castend_nodamage_id);
@@ -8980,7 +8980,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			if(flag&1) {
 				sc_start2(bl,type,100,skill_lv,skill_area_temp[0],skill_get_time(skill_id,skill_lv));
 			} else {    // These affect to all targets arround the caster.
-				short lv = (short)skill_lv;
+				uint16 lv = skill_lv;
 				skill_area_temp[0] = (sd) ? skill_check_pc_partner(sd,skill_id,&lv,skill_get_splash(skill_id,skill_lv),1) : 50; // 50% chance in non BL_PC (clones).
 				map_foreachinrange(skill_area_sub, src, skill_get_splash(skill_id,skill_lv),BL_PC, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
@@ -12536,7 +12536,7 @@ int skill_check_condition_char_sub(struct block_list *bl, va_list ap)
 /*==========================================
  * Checks and stores partners for ensemble skills [Skotlex]
  *------------------------------------------*/
-int skill_check_pc_partner(struct map_session_data *sd, uint16 skill_id, short *skill_lv, int range, int cast_flag)
+int skill_check_pc_partner(struct map_session_data *sd, uint16 skill_id, uint16 *skill_lv, int range, int cast_flag)
 {
 	static int c=0;
 	static int p_sd[2] = { 0, 0 };

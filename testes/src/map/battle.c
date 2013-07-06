@@ -262,6 +262,9 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 			status_fix_damage(target, target, dat->damage, dat->delay);
 			map_freeblock_unlock();
 		}
+
+		if(src && src->type == BL_PC)
+			((TBL_PC*)src)->delayed_damage--;
 	}
 	ers_free(delay_damage_ers, dat);
 	return 0;
@@ -302,6 +305,9 @@ int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src,
 	dat->additional_effects = additional_effects;
 	if(src->type != BL_PC && amotion > 1000)
 		amotion = 1000; //Aegis places a damage-delay cap of 1 sec to non player attacks. [Skotlex]
+
+	if(src->type == BL_PC)
+		((TBL_PC*)src)->delayed_damage++;
 
 	add_timer(tick+amotion, battle_delay_damage_sub, 0, (intptr_t)dat);
 
@@ -1566,7 +1572,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 
 					if( sd && sd->status.party_id ){
 						struct map_session_data* psd;
-						int static p_sd[5] = {0, 0, 0, 0, 0}, c; // just limit it to 5
+						int p_sd[5] = {0, 0, 0, 0, 0}, c; // just limit it to 5
 
 						c = 0;
 						memset (p_sd, 0, sizeof(p_sd));
@@ -1606,7 +1612,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 				case LG_RAYOFGENESIS:
 				{
-					int16 lv = skill_lv;
+					uint16 lv = skill_lv;
 					int bandingBonus = 0;
 					if( sc && sc->data[SC_BANDING] )
 						bandingBonus = 200 * (sd ? skill_check_pc_partner(sd,skill_id,&lv,skill_get_splash(skill_id,skill_lv),0) : 1);
@@ -2390,7 +2396,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 				case WM_GREAT_ECHO:
 					skillratio += 800 + 100 * skill_lv;
 					if( sd ) {	// Still need official value [pakpil]
-						short lv = (short)skill_lv;
+						uint16 lv = skill_lv;
 						skillratio += 100 * skill_check_pc_partner(sd,skill_id,&lv,skill_get_splash(skill_id,skill_lv),0);
 					}
 					break;
@@ -2839,9 +2845,9 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if( src->type == BL_PC ) {
 				TBL_PC *ssd = BL_CAST(BL_PC, src);
 				if (ssd && ssd->status.weapon != W_BOW)
-					skill_break_equip(src,src, EQP_WEAPON, 3000, BCT_SELF);
+					skill_break_equip(src, EQP_WEAPON, 3000, BCT_SELF);
 			} else
-				skill_break_equip(src,src, EQP_WEAPON, 3000, BCT_SELF);
+				skill_break_equip(src, EQP_WEAPON, 3000, BCT_SELF);
 			// 30% chance to reduce monster's ATK by 25% for 10 seconds.
 			if( src->type == BL_MOB )
 				sc_start(src, SC_NOEQUIPWEAPON, 30, 0, skill_get_time2(RK_STONEHARDSKIN, sce->val1));
