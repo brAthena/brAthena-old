@@ -400,6 +400,9 @@ int skill_blockmerc_start(struct mercenary_data *,uint16 skill_id,int);
 // Skill action, (return dmg,heal)
 int skill_attack(int attack_type, struct block_list *src, struct block_list *dsrc,struct block_list *bl,uint16 skill_id,uint16 skill_lv,unsigned int tick,int flag);
 
+// Malestrom
+int skill_maelstrom_suction(struct block_list *bl, va_list ap);
+
 void skill_reload(void);
 
 enum {

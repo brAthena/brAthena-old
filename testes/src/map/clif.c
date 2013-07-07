@@ -10058,7 +10058,7 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 	if(is_atcommand(fd, sd, message, 1))
 		return;
 
-	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
 		return;
 
 	if(battle_config.min_chat_delay) {
@@ -10410,7 +10410,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 	if(is_atcommand(fd, sd, message, 1))
 		return;
 
-	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
 		return;
 
 	if(battle_config.min_chat_delay) {  //[Skotlex]
@@ -11755,11 +11755,18 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 /// 01ce <skill id>.L
 void clif_parse_AutoSpell(int fd,struct map_session_data *sd)
 {
+	uint16 skill_id = RFIFOL(fd,2);
+
+	sd->state.workinprogress = 0;
+
 	if(sd->menuskill_id != SA_AUTOSPELL)
 		return;
-	skill_autospell(sd,RFIFOL(fd,2));
+
+	if(!skill_id)
+		return;
+
+	skill_autospell(sd, skill_id);
 	clif_menuskill_clear(sd);
-	sd->state.workinprogress = 0;
 }
 
 
@@ -12150,7 +12157,7 @@ void clif_parse_PartyMessage(int fd, struct map_session_data *sd)
 	if(is_atcommand(fd, sd, message, 1))
 		return;
 
-	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
 		return;
 
 	if(battle_config.min_chat_delay) {
@@ -12994,7 +13001,7 @@ void clif_parse_GuildMessage(int fd, struct map_session_data *sd)
 	if(is_atcommand(fd, sd, message, 1))
 		return;
 
-	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
 		return;
 
 	if(battle_config.min_chat_delay) {
@@ -15892,7 +15899,7 @@ void clif_parse_BattleChat(int fd, struct map_session_data *sd)
 	if(is_atcommand(fd, sd, message, 1))
 		return;
 
-	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_DEEP_SLEEP] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
 		return;
 
 	if(battle_config.min_chat_delay) {
