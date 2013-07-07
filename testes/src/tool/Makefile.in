@@ -6,7 +6,7 @@ COMMON_OBJ = ../common/obj_all/minicore.o ../common/obj_all/malloc.o \
 	
 COMMON_H = ../common/core.h ../common/mmo.h \
 	../common/malloc.h ../common/showmsg.h ../common/strlib.h \
-	../common/utils.h ../common/cbasetypes.h ../common/des.h ../common/grfio.h ../config/renewal.h
+	../common/utils.h ../common/cbasetypes.h ../common/des.h ../common/grfio.h ../config/configs.h
 
 LIBCONFIG_OBJ = ../../3rdparty/libconfig/libconfig.o ../../3rdparty/libconfig/grammar.o \
 	../../3rdparty/libconfig/scanctx.o ../../3rdparty/libconfig/scanner.o ../../3rdparty/libconfig/strbuf.o
@@ -15,7 +15,7 @@ LIBCONFIG_H = ../../3rdparty/libconfig/libconfig.h ../../3rdparty/libconfig/gram
 	../../3rdparty/libconfig/strbuf.h ../../3rdparty/libconfig/wincompat.h
 LIBCONFIG_INCLUDE = -I../../3rdparty/libconfig
 
-OTHER_H = ../config/renewal.h
+OTHER_H = ../config/configs.h
 
 MAPCACHE_OBJ = obj_all/mapcache.o
 

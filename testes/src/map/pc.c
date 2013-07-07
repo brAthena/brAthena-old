@@ -7447,7 +7447,7 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	
 	#if VERSION == 0
     if(job > JOB_SOUL_LINKER)
-			return 1;
+		return 1;
 	#elif VERSION == -1
     if(job > JOB_MAX_BASIC)
     	return 1;
