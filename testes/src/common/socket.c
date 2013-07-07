@@ -20,6 +20,7 @@
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/strlib.h"
+#include "../config/core.h"
 #include "socket.h"
 
 #include <stdio.h>
