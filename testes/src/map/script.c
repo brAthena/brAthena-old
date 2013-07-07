@@ -17303,28 +17303,57 @@ BUILDIN_FUNC(delequip)
  * Note: Use readparam(Sitting) which returns 1 or 0 (sitting or standing). */
 BUILDIN_FUNC(sit)
 {
-	TBL_PC *sd;
-
-	if(script_hasdata(st, 2))
+	struct map_session_data *sd = NULL;
+	
+	if (script_hasdata(st, 2))
 		sd = map_nick2sd(script_getstr(st, 2));
-	else
+	
+	if (sd == NULL)
 		sd = script_rid2sd(st);
 
-	if(sd == NULL)
-		return 0;
-
-	if(pc_issit(sd)) {
-		pc_setstand(sd);
-		skill_sit(sd, 0);
-		clif_standing(&sd->bl);
-	} else {
-		unit_stop_walking(&sd->bl, 1|4);
+	if (!pc_issit(sd))
+	{
 		pc_setsit(sd);
-		skill_sit(sd, 1);
+		skill_sit(sd,1);
 		clif_sitting(&sd->bl);
 	}
+	return true;
+}
 
-	return 0;
+BUILDIN_FUNC(stand)
+{
+	struct map_session_data *sd = NULL;
+	
+	if (script_hasdata(st, 2))
+		sd = map_nick2sd(script_getstr(st, 2));
+	
+	if (sd == NULL)
+		sd = script_rid2sd(st);
+	
+	if (pc_issit(sd))
+	{
+		pc_setstand(sd);
+		skill_sit(sd,0);
+		clif_standing(&sd->bl);
+	}
+	return true;
+}
+
+BUILDIN_FUNC(issit)
+{
+	struct map_session_data *sd = NULL;
+	
+	if (script_hasdata(st, 2))
+		sd = map_nick2sd(script_getstr(st, 2));
+	
+	if (sd == NULL)
+		sd = script_rid2sd(st);
+
+	if (pc_issit(sd))
+		script_pushint(st, 1);
+	else
+		script_pushint(st, 0);
+	return true;
 }
 
 /*==========================================
@@ -18277,7 +18306,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(consumeitem,"v"),
 	BUILDIN_DEF(delequip,"i"),
 	BUILDIN_DEF(sit,"?"),
-	BUILDIN_DEF2(sit,"stand","?"),
+	BUILDIN_DEF(stand,"?"),
+	BUILDIN_DEF(issit,"?"),
 	/**
 	 * @commands (script based)
 	 **/
