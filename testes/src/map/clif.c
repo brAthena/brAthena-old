@@ -17965,6 +17965,7 @@ void clif_defaults(void) {
 	clif->decrypt_cmd = clif_decrypt_cmd;
 	clif->cooldown_list = clif_skill_cooldown_list;
 	clif->scriptclear = clif_scriptclear;
+	clif->package_announce = clif_package_item_announce;
 	/* Outros */
 	clif->bc_ready = clif_bc_ready;
 	clif->status_change = clif_status_change;

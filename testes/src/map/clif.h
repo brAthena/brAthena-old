@@ -936,6 +936,7 @@ struct clif_interface {
 	unsigned short (*parse_cmd) ( int fd, struct map_session_data *sd );
 	unsigned short (*decrypt_cmd) ( int cmd, struct map_session_data *sd );
 	void (*cooldown_list) (int fd, struct skill_cd* cd);
+	void (*package_announce) (struct map_session_data *sd, unsigned short nameid, unsigned short containerid);
 	/* Outros */
 	void (*bc_ready) (void);
 	void (*addcards2) (unsigned short *cards, struct item* item);
