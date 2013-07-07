@@ -17589,6 +17589,22 @@ void clif_scriptclear(struct map_session_data *sd, int npcid) {
 
 	clif_send(&p,sizeof(p), &sd->bl, SELF);
 }
+
+void clif_package_item_announce(struct map_session_data *sd, unsigned short nameid, unsigned short containerid) {
+	struct packet_package_item_announce p;
+
+	p.PacketType = package_item_announceType;
+	p.PacketLength = 11+NAME_LENGTH;
+	p.type = 0x0;
+	p.ItemID = nameid;
+	p.len = NAME_LENGTH;
+	safestrncpy(p.Name, sd->status.name, sizeof(p.Name));
+	p.unknown = 0x2; // some strange byte, IDA shows.. BYTE3(BoxItemIDLength) = 2;
+	p.BoxItemID = containerid;
+
+	clif_send(&p,sizeof(p), &sd->bl, ALL_CLIENT);
+}
+
 /* [Ind] */
 void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
 #if PACKETVER >= 20120604
