@@ -110,14 +110,8 @@ airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 		mes "a taxa não será cobrada. Você";
 		mes "deseja embarcar no Dirigível?";
 		next;
-		if (select("Sim:Não") == 1) {
-			if (countitem(7311))
-				delitem 7311,1; // Bilhete para Aeroplano
-			else if (Zeny >= 1200)
-        set Zeny, Zeny - 1200;
-				warp "airport",148,51;
-				end;
-			}
+		if (select("Sim:Não") == 2) close;
+		if (!countitem(7311) && Zeny < 1200) {
 			mes "[Equipe do Aeroporto]";
 			mes "Me desculpe, mas você não";
 			mes "possui um Bilhete para";
@@ -127,6 +121,13 @@ airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 			mes "taxa de embarque é 1,200 zeny.";
 			close;
 		}
+		if (countitem(7311))
+			delitem 7311,1; // Bilhete para Aeroplano
+		else if (Zeny >= 1200)
+			set Zeny, Zeny - 1200;
+		warp "airport",148,51;
+		end;
+	}
 	mes "[Equipe do Aeroporto]";
 	mes "Obrigado e";
 	mes "tenha um bom dia.";
