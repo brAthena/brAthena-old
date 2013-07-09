@@ -4096,11 +4096,6 @@ int do_final_script()
 	}
 #endif
 
-	mapreg_final();
-
-	userfunc_db->destroy(userfunc_db, db_script_free_code_sub);
-	autobonus_db->destroy(autobonus_db, db_script_free_code_sub);
-
 	iter = db_iterator(script->st_db);
 
 	for( st = dbi_first(iter); dbi_exists(iter); st = dbi_next(iter) ) {
@@ -4108,6 +4103,11 @@ int do_final_script()
 	}
 
 	dbi_destroy(iter);
+
+	mapreg_final();
+
+	userfunc_db->destroy(userfunc_db, db_script_free_code_sub);
+	autobonus_db->destroy(autobonus_db, db_script_free_code_sub);
 
 	if(str_data)
 		aFree(str_data);
@@ -4247,6 +4247,14 @@ int script_reload()
 #endif
 
 
+	iter = db_iterator(script->st_db);
+
+	for(st = dbi_first(iter); dbi_exists(iter); st = dbi_next(iter)) {
+		script_free_state(st);
+	}
+
+	dbi_destroy(iter);
+
 	userfunc_db->clear(userfunc_db, db_script_free_code_sub);
 	script->label_count = 0;
 
@@ -4260,14 +4268,6 @@ int script_reload()
 		aFree(atcmd_binding);
 
 	atcmd_binding_count = 0;
-
-	iter = db_iterator(script->st_db);
-
-	for(st = dbi_first(iter); dbi_exists(iter); st = dbi_next(iter)) {
-		script_free_state(st);
-	}
-
-	dbi_destroy(iter);
 
 	db_clear(script->st_db);
 

@@ -1893,6 +1893,16 @@ struct s_skill_magicmushroom_db {
 };
 extern struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
 
+struct skill_cd_entry {
+	int duration;//milliseconds
+#if PACKETVER >= 20120604
+	int total;
+#endif
+	short skidx;//the skill index entries belong to
+	unsigned int started;
+	uint16 skill_id;//skill id
+};
+
 /**
  * Skill Cool Down Delay Saving
  * Struct skill_cd is not a member of struct map_session_data
@@ -1900,15 +1910,13 @@ extern struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUS
  * All cooldowns are reset when server is restarted.
  **/
 struct skill_cd {
-	int duration[MAX_SKILL_TREE];//milliseconds
-#if PACKETVER >= 20120604
-	int total[MAX_SKILL_TREE];
-#endif
-	short skidx[MAX_SKILL_TREE];//the skill index entries belong to
-	short nameid[MAX_SKILL_TREE];//skill id
-	unsigned int started[MAX_SKILL_TREE];
+	struct skill_cd_entry *entry[MAX_SKILL_TREE];
 	unsigned char cursor;
 };
+struct eri *skill_unit_ers; //For handling skill_unit's [Skotlex]
+struct eri *skill_timer_ers; //For handling skill_timerskills [Skotlex]
+struct eri *skill_cd_ers; // ERS Storage for skill cool down managers [Ind]
+struct eri *skill_cd_entry_ers; // ERS Storage for skill cool down entries [Ind]
 
 /**
  * Ranger

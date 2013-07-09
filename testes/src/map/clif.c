@@ -297,7 +297,7 @@ static inline unsigned char clif_bl_type(struct block_list *bl)
  * - AREA_WOS (AREA WITHOUT SELF) : Not run for self
  * - AREA_CHAT_WOC : Everyone in the area of your chat without a chat
  *------------------------------------------*/
-static int clif_send_sub(struct block_list *bl, va_list ap)
+int clif_send_sub(struct block_list *bl, va_list ap)
 {
 	struct block_list *src_bl;
 	struct map_session_data *sd;
@@ -337,6 +337,13 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 				}
 			}
 			break;
+/* 0x120 crashes the client when warping for this packetver range [Ind] */
+#if PACKETVER > 20120418 && PACKETVER < 20130000
+		case AREA:
+			if(WBUFW(buf, 0) == 0x120 && sd->state.warping)
+				return 0;
+			break;
+#endif
 	}
 
 	WFIFOHEAD(fd, len);
@@ -434,6 +441,7 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 					}
 				}
 			break;
+
 		case PARTY_AREA:
 		case PARTY_AREA_WOS:
 			x0 = bl->x - AREA_SIZE;
@@ -610,7 +618,6 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 
 	return 0;
 }
-
 
 /// Notifies the client, that it's connection attempt was accepted.
 /// 0073 <start time>.L <position>.3B <x size>.B <y size>.B (ZC_ACCEPT_ENTER)
@@ -17630,15 +17637,14 @@ void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
 #endif
 
 	for(i = 0; i < cd->cursor; i++) {
-		if(cd->duration[i] < 1) continue;
+		if(cd->entry[i]->duration < 1) continue;
+
+		WFIFOW(fd, 4 + (count*offset)) = cd->entry[i]->skill_id;
+		WFIFOL(fd, 6 + (count*offset)) = cd->entry[i]->duration;
 #if PACKETVER >= 20120604
-		WFIFOW(fd, 4  + (i*10)) = cd->nameid[i];
-		WFIFOL(fd, 6  + (i*10)) = cd->total[i];
-		WFIFOL(fd, 10 + (i*10)) = cd->duration[i];
-#else
-		WFIFOW(fd, 4 + (i*6)) = cd->nameid[i];
-		WFIFOL(fd, 6 + (i*6)) = cd->duration[i];
+		WFIFOL(fd, 10 + (count*offset)) = cd->entry[i]->duration;
 #endif
+
 		count++;
 	}
 

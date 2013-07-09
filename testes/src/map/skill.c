@@ -70,8 +70,6 @@
 #if GD_SKILLRANGEMAX > 999
 #error GD_SKILLRANGEMAX is greater than 999
 #endif
-static struct eri *skill_unit_ers = NULL; //For handling skill_unit's [Skotlex]
-static struct eri *skill_timer_ers = NULL; //For handling skill_timerskills [Skotlex]
 static DBMap* bowling_db = NULL; // int mob_id -> struct mob_data*
 
 DBMap *skillunit_db = NULL; // int id -> struct skill_unit*
@@ -17277,34 +17275,35 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
 	if(sd->blockskill[data] != (0x1|(tid&0xFE))) return 0;
 
 	if((cd = idb_get(skillcd_db,sd->status.char_id))) {
-		int i,cursor;
-		ARR_FIND(0, cd->cursor+1, cursor, cd->skidx[cursor] == data);
-		cd->duration[cursor] = 0;
-#if PACKETVER >= 20120604
-		cd->total[cursor] = 0;
-#endif
-		cd->skidx[cursor] = 0;
-		cd->nameid[cursor] = 0;
-		cd->started[cursor] = 0;
-		// compact the cool down list
-		for(i = 0, cursor = 0; i < cd->cursor; i++) {
-			if(cd->duration[i] == 0)
-				continue;
-			if(cursor != i) {
-				cd->duration[cursor] = cd->duration[i];
-#if PACKETVER >= 20120604
-				cd->total[cursor] = cd->total[i];
-#endif
-				cd->skidx[cursor] = cd->skidx[i];
-				cd->nameid[cursor] = cd->nameid[i];
-				cd->started[cursor] = cd->started[i];
-			}
-			cursor++;
+		int i;
+
+		for(i = 0; i < cd->cursor; i++) {
+			if(cd->entry[i]->skidx == data)
+				break;
 		}
-		if(cursor == 0)
-			idb_remove(skillcd_db,sd->status.char_id);
-		else
-			cd->cursor = cursor;
+
+		if(i == cd->cursor) {
+			ShowError("skill_blockpc_end: '%s' : no data found for '%d'\n",sd->status.name,data);
+		} else {
+			int cursor = 0;
+
+			ers_free(skill_cd_entry_ers, cd->entry[i]);
+
+			cd->entry[i] = NULL;
+
+			for(i = 0, cursor = 0; i < cd->cursor; i++) {
+				if(!cd->entry[i])
+					continue;
+				if(cursor != i)
+					cd->entry[cursor] = cd->entry[i];
+				cursor++;
+			}
+
+			if((cd->cursor = cursor) == 0) {
+				idb_remove(skillcd_db,sd->status.char_id);
+				ers_free(skill_cd_ers, cd);
+			}
+		}
 	}
 
 	sd->blockskill[data] = 0;
@@ -17321,7 +17320,6 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
  */
 int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick, bool load)
 {
-	struct skill_cd *cd = NULL;
 	uint16 idx = skill_get_index(skill_id);
 
 	nullpo_retr(-1, sd);
@@ -17337,23 +17335,39 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 	if(!load && battle_config.display_status_timers)
 		clif_skill_cooldown(sd, skill_id, tick);
 
-	if(!load) {
-		// not being loaded initially so ensure the skill delay is recorded
-		if(!(cd = idb_get(skillcd_db,sd->status.char_id))) {
-			// create a new skill cooldown object for map storage
-			CREATE(cd, struct skill_cd, 1);
-			idb_put(skillcd_db, sd->status.char_id, cd);
+	if(!load) {// not being loaded initially so ensure the skill delay is recorded
+		struct skill_cd* cd = NULL;
+		int i;
+
+		if(!(cd = idb_get(skillcd_db,sd->status.char_id)) ) {// create a new skill cooldown object for map storage
+			cd = ers_alloc(skill_cd_ers, struct skill_cd);
+
+			cd->cursor = 0;
+			memset(cd->entry, 0, sizeof(cd->entry));
+
+			idb_put( skillcd_db, sd->status.char_id, cd );
 		}
 
-		// record the skill duration in the database map
-		cd->duration[cd->cursor] = tick;
+		for(i = 0; i < MAX_SKILL_TREE; i++) {
+			if(!cd->entry[i])
+				break;
+		}
+
+		if(i == MAX_SKILL_TREE) {
+			ShowError("skill_blockpc_start: '%s' got over '%d' skill cooldowns, no room to save!\n",sd->status.name,MAX_SKILL_TREE);
+		} else {
+			cd->entry[i] = ers_alloc(skill_cd_entry_ers,struct skill_cd_entry);
+
+			cd->entry[i]->duration = tick;
 #if PACKETVER >= 20120604
-		cd->total[cd->cursor] = tick;
+			cd->entry[i]->total = tick;
 #endif
-		cd->skidx[cd->cursor] = idx;
-		cd->nameid[cd->cursor] = skill_id;
-		cd->started[cd->cursor] = gettick();
-		cd->cursor++;
+			cd->entry[i]->skidx = idx;
+			cd->entry[i]->skill_id = skill_id;
+			cd->entry[i]->started = gettick();
+
+			cd->cursor++;
+		}
 	}
 
 	sd->blockskill[idx] = 0x1|(0xFE&add_timer(gettick()+tick,skill_blockpc_end,sd->bl.id,idx));
@@ -17921,7 +17935,7 @@ void skill_cooldown_save(struct map_session_data * sd) {
 		
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
-		cd->duration[i] = DIFF_TICK(cd->started[i]+cd->duration[i],now);
+		cd->entry[i]->duration = DIFF_TICK(cd->entry[i]->started+cd->entry[i]->duration,now);
 	}
 }
 	
@@ -17949,9 +17963,9 @@ void skill_cooldown_load(struct map_session_data *sd)
 
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
-		cd->started[i] = now;
+		cd->entry[i]->started = now;
 		// block the skill from usage but ensure it is not recorded (load = true)
-		skill_blockpc_start_(sd, cd->nameid[i], cd->duration[i], true);
+		skill_blockpc_start_(sd, cd->entry[i]->skill_id, cd->entry[i]->duration, true);
 	}
 }
 
@@ -18434,11 +18448,17 @@ int do_init_skill(void)
 
 	group_db = idb_alloc(DB_OPT_BASE);
 	skillunit_db = idb_alloc(DB_OPT_BASE);
-	skillcd_db = idb_alloc(DB_OPT_RELEASE_DATA);
+	skillcd_db = idb_alloc(DB_OPT_BASE);
 	skillusave_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	bowling_db = idb_alloc(DB_OPT_BASE);
+
 	skill_unit_ers = ers_new(sizeof(struct skill_unit_group),"skill.c::skill_unit_ers",ERS_OPT_NONE);
 	skill_timer_ers  = ers_new(sizeof(struct skill_timerskill),"skill.c::skill_timer_ers",ERS_OPT_NONE);
+	skill_cd_ers = ers_new(sizeof(struct skill_cd),"skill.c::skill_cd_ers",ERS_OPT_CLEAR);
+	skill_cd_entry_ers = ers_new(sizeof(struct skill_cd_entry),"skill.c::skill_cd_entry_ers",ERS_OPT_CLEAR);
+
+	ers_chunk_size(skill_cd_ers, 25);
+	ers_chunk_size(skill_cd_entry_ers, 100);
 
 	add_timer_func_list(skill_unit_timer,"skill_unit_timer");
 	add_timer_func_list(skill_castend_id,"skill_castend_id");
@@ -18459,7 +18479,10 @@ int do_final_skill(void)
 	db_destroy(skillcd_db);
 	db_destroy(skillusave_db);
 	db_destroy(bowling_db);
+
 	ers_destroy(skill_unit_ers);
 	ers_destroy(skill_timer_ers);
+	ers_destroy(skill_cd_ers);
+	ers_destroy(skill_cd_entry_ers);
 	return 0;
 }

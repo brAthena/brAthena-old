@@ -1887,8 +1887,11 @@ static int unit_attack_timer_sub(struct block_list *src, int tid, unsigned int t
 			unit_set_walkdelay(src, tick, sstatus->amotion, 1);
 	}
 
-	if(ud->state.attack_continue)
+	if(ud->state.attack_continue) {
+		if(src->type == BL_PC)
+			((TBL_PC*)src)->idletime = last_tick;
 		ud->attacktimer = add_timer(ud->attackabletime,unit_attack_timer,src->id,0);
+	}
 
 	return 1;
 }
