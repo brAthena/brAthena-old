@@ -1,0 +1,314 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: VIP.txt                                |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Npcs do Sistema VIP bRO.                    |
+//   |                                                        |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criação [Megasantos]                               |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,146,98,5	script	Kafra Especial	117,{
+
+	if(!getgroupid() ) {
+
+		mes "[Kafra Especial]";
+		mes "Este serviço é válido apenas para";
+		mes "membros cadastrados.";
+		mes "Volte após aderir esse serviço exclusivo.";
+		close;
+	} else {
+		mes "[Kafra Especial]";
+		mes "Forneço teleporte especial apenas";
+		mes "para membros exclusivos.";
+		mes "Selecione seu destino.";
+		next;
+		switch(select("Feudos:Calabouços:Calabouços 2:Cancelar")) {
+		case 1:
+			mes "[Kafra Especial]";
+			mes "Selecione a Área do Feudo que";
+			mes "gostaria de ir.";
+			next;
+			switch(select("Feudo das Valquírias:Britoniah:Bosque Celestial:Luina:Nithafjoll:Valfreyja:Cancelar")) {
+	
+			case 1: warp "prt_gld",160,35; end;
+			case 2: warp "gef_fild13",41,366; end;
+			case 3: warp "pay_gld",367,179; end;
+			case 4: warp "alde_gld",277,160; end;
+			case 5: warp "sch_gld",344,89; end;
+			case 6: warp "aru_gld",195,358; end;	
+			case 7:
+				mes "[Kafra Especial]";
+				mes "Estarei aqui caso precise";
+				mes "de meus serviços";
+				close;
+			}
+		case 2:
+			mes "[Kafra Especial]";
+			mes "Selecione a área desejada para";
+			mes "teleportar";
+			next;
+			switch(select("Calabouço de Magma:Mina Abandonada:Umbala:Calabouço da Mina:Caverna de Payon:Depósito de Brinquedos:Prisão Subterrânea de Glast Heim:Suei Long Gon:Tabuleiro de Go:Túnel Submarino:Calabouço da Ilha da Tartaruga:Subterrâneo do Relógio:Torre do Relógio:Esgoto de Glast Heim:Esfinge:Dentro da Pirâmide:Esgoto de Prontera:Labirinto de Tatames:Interior do Santuário Ancestral:Cancelar")) {
+
+			case 1: warp "mag_dun01",125,71; end;
+			case 2: warp "mjo_dun02",80,297; end;
+			case 3: warp "umbala",111,283; end;
+			case 4: warp "ein_dun01",261,262; end;
+			case 5: warp "pay_dun03",155,150; end;
+			case 6: warp "xmas_dun01",133,130; end;
+			case 7: warp "gl_prison",140,15; end;
+			case 8: warp "lou_dun03",165,38; end;
+			case 9: warp "gon_dun02",251,263; end;
+			case 10: warp "iz_dun02",350,335; end;
+			case 11: warp "tur_dun02",165,30; end;
+			case 12: warp "alde_dun03",275,180; end;
+			case 13: warp "c_tower3",34,42; end;
+			case 14: warp "gl_sew02",292,295; end;
+			case 15: warp "in_sphinx4",120,120; end;
+			case 16: warp "moc_pryd04",195,4; end;
+			case 17: warp "prt_sewb3",20,175; end;
+			case 18: warp "ama_dun01",222,144; end;
+			case 19: warp "ayo_dun02",70,240; end;
+			case 20:
+				mes "[Kafra Especial]";
+				mes "Estarei aqui caso precise";
+				mes "de meus serviços";
+				close;
+			}
+		case 3:
+			mes "[Kafra Especial]";
+			mes "Selecione a área desejada para";
+			mes "teleportar";
+			next;
+			switch(select("Caverna de Gelo:Vulcão de Thor:Caverna Subterrânea do Lago do Abismo:Torre de Thanatos:Templo de Freya:Lighthalzen:Ruínas de Juperos:Gefenia:Academia de Kiel Khayr:Labirinto da Floresta:Nifflheim:Navio Fantasma:Campo de Veins:Cancelar")) {
+
+			case 1: warp "ice_dun01",146,157; end;
+			case 2: warp "thor_v01",277,134; end;
+			case 3: warp "abyss_01",25,30; end;
+			case 4: warp "hu_fild01",140,157; end;
+			case 5: warp "ra_temple",119,175; end;
+			case 6: warp "lighthalzen",311,301; end;
+			case 7: warp "juperos_01",54,246; end;
+			case 8: warp "gefenia02",201,34; end;
+			case 9: warp "yuno_fild08",74,174; end;
+			case 10: warp "prt_maze03",100,100; end;
+			case 11: warp "niflheim",23,154; end;
+			case 12: warp "treasure01",69,32; end;
+			case 13: warp "ve_fild07",127,131; end;
+			case 14:
+				mes "[Kafra Especial]";
+				mes "Estarei aqui caso precise";
+				mes "de meus serviços";
+				close;
+			}
+		case 4:
+			mes "[Kafra Especial]";
+			mes "Estarei aqui caso precise";
+			mes "de meus serviços";
+			close;
+		}
+	}
+}
+
+prontera,146,93,5	script	Agente VIP	109,{
+
+	setarray .@itens[1], 14529,12274,12275,662;
+	setarray .@qnt[1], 10,1,1,1;
+	setarray .@zeny[1], 2000,10000,10000,10000;
+
+	mes "[Agente VIP]";
+	mes "Olá, é bom vê-lo, meu amigo.";
+	mes "Parece que você tem passado muito";
+	mes "por aqui.";
+	mes "Acho que você sabe disso,mas";
+	mes "direi novamente.";
+	next;
+
+	mes "[Agente VIP]";
+	mes "Eu atendo apenas jogadores VIPs,";
+	mes "então preciso checar o status da";
+	mes "sua conta.";
+	next;
+
+	if(!getgroupid() ) {
+
+		mes "[Agente VIP]";
+		mes "Sinto muito, mas a sua conta não";
+		mes "possui o status VIP.";
+		next;
+		mes "[Agente VIP]";
+		mes "Volte novamente";
+		mes "quando adquirir o status VIP.";
+		next;
+		mes "[Agente VIP]";
+		mes "Obrigado e tenha um bom dia.";
+		close;
+	} else {
+		mes "[Agente VIP]";
+		mes "Ok! Você é um VIP!";
+		mes "Bem, do que você precisa?";
+		mes "Você pode adquirir o Pergaminho de";
+		mes "Ganância, A Pílula de HP, a Pílula";
+		mes "de SP";
+		mes "e o Emblema Oficial....";
+		next;
+		mes "[Agente VIP]";
+		mes "O preço desses 4 itens são:";
+		mes "- Pergaminho de Ganância: 2000";
+		mes "zenys";
+		mes "- Pílula de HP 10000 zenys";
+		mes "- Pílula de SP 10000 zenys";
+		mes "- Emblema Oficial: 10000 zenys";
+		mes "Qual desses você deseja adquirir?";		
+		next;
+		set .@i, select("Pergaminho de Ganância:Pílula de HP:Pílula de SP:Emblema Oficial:Cancelar");
+		switch(.@i){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			mes "[Agente VIP]";
+			mes "Ok! Volte se precisar de meus";
+			mes "serviços.";
+			close;
+		}
+		if(countitem(.@itens[.@i]) > 0) {
+			mes "[Agente VIP]";
+			mes "Você já possui ^EE0000"+getitemname(.@itens[.@i])+"^000000.";
+			close;
+		}
+		mes "[Agente VIP]";
+		mes "Você fez uma boa escolha.";
+		mes "Aproveite o item!";
+		set Zeny,Zeny-.@zeny[.@i];
+		getitem .@itens[.@i],.@qnt[.@i];
+		next;
+		mes "[Agente VIP]";
+		mes "E.. o serviço de buffs prometido!";
+		mes "Você pode escolher um destes!!";
+		next;
+		mes "[Agente VIP]";
+		mes "Primeiro, ^EE0000FOR+8, AGI+6, DES+4,";
+		mes "ATQ+32, Esquiva+5!^000000";
+		mes "Segundo,^EE0000INT+8,DES+6,";
+		mes "VIT+4, ATQM+40!^000000";
+		next;
+		mes "[Agente VIP]";
+		mes "Terceiro, ^EE0000DES+8, AGI+6, SOR+4,";
+		mes "ATQ+24, ATQM+24!^000000";
+		mes "Quarto, ^EE0000Todos os Atributos+6,";
+		mes "ATQ+24,ATAQM+24!!^000000";
+		next;
+		mes "[Agente VIP]";
+		mes "Quais dos buffs você deseja?";
+		next;
+		set .@i, select("Primeiro:Segundo:Terceiro:Quarto");
+		mes "[Agente VIP]";
+		mes "Abracadabra~";
+		switch(.@i){
+		case 1:
+			sc_start SC_FOOD_STR,5400000,8;
+			sc_start SC_FOOD_AGI,5400000,6;
+			sc_start SC_FOOD_DEX,5400000,4;
+			sc_start SC_PLUSATTACKPOWER,5400000,32;
+			sc_start SC_FLEEFOOD,5400000,5;
+			break;
+		case 2:
+			sc_start SC_FOOD_INT,5400000,8;
+			sc_start SC_FOOD_DEX,5400000,6;
+			sc_start SC_FOOD_VIT,5400000,4;
+			sc_start SC_PLUSMAGICPOWER,5400000,40;
+			break;
+		case 3:
+			sc_start SC_FOOD_DEX,5400000,8;
+			sc_start SC_FOOD_AGI,5400000,6;
+			sc_start SC_FOOD_LUK,5400000,4;
+			sc_start SC_PLUSATTACKPOWER,5400000,24;
+			sc_start SC_PLUSMAGICPOWER,5400000,24;
+			break;
+		case 4:
+			sc_start SC_FOOD_STR,5400000,6;
+			sc_start SC_FOOD_AGI,5400000,6;
+			sc_start SC_FOOD_VIT,5400000,6;
+			sc_start SC_FOOD_INT,5400000,6;
+			sc_start SC_FOOD_DEX,5400000,6;
+			sc_start SC_FOOD_LUK,5400000,6;
+			sc_start SC_PLUSATTACKPOWER,5400000,24;
+			sc_start SC_PLUSMAGICPOWER,5400000,24;
+			break;	
+		}
+		next;
+		mes "[Agente VIP]";
+		mes "Eu te dei um poder especial!";
+		mes "Esse poder é fenomenal, não é?";
+		next;
+		mes "[Agente VIP]";
+		mes "Até mais, espero vê-lo novamente!!";
+		close;
+	}
+}
+
+// Duplicatas Kafra Especial
+yuno,147,187,3	duplicate(Kafra Especial)	Kafra Especial#jun	721
+izlude,124,88,3	duplicate(Kafra Especial)	Kafra Especial#iz	721
+alberta,114,64,3	duplicate(Kafra Especial)	Kafra Especial#alb	721
+comodo,185,153,3	duplicate(Kafra Especial)	Kafra Especial#com	721
+payon,190,104,3	duplicate(Kafra Especial)	Kafra Especial#pay	721
+geffen,135,53,3	duplicate(Kafra Especial)	Kafra Especial#gef	721
+morocc,160,97,3	duplicate(Kafra Especial)	Kafra Especial#mor	721
+aldebaran,137,119,3	duplicate(Kafra Especial)	Kafra Especial#ald	721
+einbroch,73,202,3	duplicate(Kafra Especial)	Kafra Especial#ein	721
+lighthalzen,167,100,3	duplicate(Kafra Especial)	Kafra Especial#lig	721
+xmas,139,311,3	duplicate(Kafra Especial)	Kafra Especial#lut	721
+gonryun,155,122,3	duplicate(Kafra Especial)	Kafra Especial#ku	721
+louyang,227,104,3	duplicate(Kafra Especial)	Kafra Especial#lou	721
+ayothaya,208,169,3	duplicate(Kafra Especial)	Kafra Especial#ayo	721
+
+// Duplicatas Agente VIP
+rachel,111,143,3	duplicate(Agente VIP)	Agente VIP#ra	109
+yuno,149,187,3	duplicate(Agente VIP)	Agente VIP#jun	109
+izlude,134,92,3	duplicate(Agente VIP)	Agente VIP#iz	109
+alberta,104,60,3	duplicate(Agente VIP)	Agente VIP#alb	109
+comodo,199,149,3	duplicate(Agente VIP)	Agente VIP#com	109
+umbala,93,160,3	duplicate(Agente VIP)	Agente VIP#um	109
+payon,184,102,3	duplicate(Agente VIP)	Agente VIP#pay	109
+geffen,126,64,3	duplicate(Agente VIP)	Agente VIP#gef	109
+morocc,164,255,3	duplicate(Agente VIP)	Agente VIP#mo	109
+aldebaran,146,116,3	duplicate(Agente VIP)	Agente VIP#ald	109
+hugel,80,152,3	duplicate(Agente VIP)	Agente VIP#hu	109
+einbroch,235,207,3	duplicate(Agente VIP)	Agente VIP#ein	109
+lighthalzen,167,97,3	duplicate(Agente VIP)	Agente VIP#lig	109
+veins,210,109,3	duplicate(Agente VIP)	Agente VIP#ve	109
+amatsu,102,152,3	duplicate(Agente VIP)	Agente VIP#am	109
+gonryun,156,122,3	duplicate(Agente VIP)	Agente VIP#ku	109
+louyang,210,107,3	duplicate(Agente VIP)	Agente VIP#lou	109
+ayothaya,212,173,3	duplicate(Agente VIP)	Agente VIP#ayo	109
+dewata,202,188,3	duplicate(Agente VIP)	Agente VIP#dew	109
+brasilis,200,224,3	duplicate(Agente VIP)	Agente VIP#bra	109
+moscovia,220,191,3	duplicate(Agente VIP)	Agente VIP#mos	109
+niflheim,206,179,3	duplicate(Agente VIP)	Agente VIP#nif	109
+dicastes01,193,191,3	duplicate(Agente VIP)	Agente VIP#dic	109
+manuk,296,147,3	duplicate(Agente VIP)	Agente VIP#man	109
+splendide,201,153,3	duplicate(Agente VIP)	Agente VIP#spl	109
+mora,113,112,3	duplicate(Agente VIP)	Agente VIP#mor	109
+mid_camp,201,237,3	duplicate(Agente VIP)	Agente VIP#mid	109

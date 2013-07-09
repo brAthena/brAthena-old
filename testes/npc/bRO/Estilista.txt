@@ -1,0 +1,181 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Estilista.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Estilista oficial do bRO.                   |
+//   |                                                        |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criação [Megasantos]                               |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,105,66,4	script	 Estilista Especial	97,{
+
+	setarray .@class$[0], "Aprendiz","Classes Espandidas","Taekwon","Espadachim","Arqueiro","Noviço","Mago","Gatuno","Mercador";
+	if(Sex)
+		setarray .@cutin$[0], "dress_novice","dress_m_ex","dress_m_tk","dress_m_swordman","dress_m_archer","dress_m_acolyte","dress_m_masician","dress_m_thief","dress_m_merchant";
+	else
+		setarray .@cutin$[0], "dress_novice","dress_f_ex","dress_f_tk","dress_f_swordman","dress_f_archer","dress_f_acolyte","dress_f_masician","dress_f_thief","dress_f_merchant";
+
+	mes "[Estilista]";
+	mes "Oooooooláááááá!!! Eu sou o";
+	mes "estilista que dá um colorido";
+	mes "muito especial nas suas roupas!";
+	next;
+	mes "[Estilista]";
+	mes "Se você me der um Cupom de Tintura,";
+	mes "eu troco a cor do seu vestuário~.";
+	mes "Ah, e se me der o Cupom Removedor,";
+	mes "eu devolvo a cor original da";
+	mes "roupa.";
+	next;
+	mes "[Estilista]";
+	mes "Avisinho: se você ^FF0000mudar de classe";
+	mes "após tingir suas roupas, a cor";
+	mes "original aparecerá na tela. Mas é só";
+	mes "sair do jogo e voltar para a";
+	mes "tintura";
+	mes "voltar ao seu lugar.^000000";
+	next;
+	mes "[Estilista]";
+	mes "Se você renascer, ^FF0000perderá o novo visual^000000";
+	mes "e precisará de um novo Cupom de Tintura para pintar";
+	mes "as roupas novamente.";
+	next;
+	mes "[Estilista]";
+	mes "Hihihi~! Prontinho, recados dados...";
+	mes "Já se decidiu?";
+	next;
+	while (1) {
+		switch(select("Abrir o catálogo de roupas:Tingir as roupas:Voltar a cor original:Cancelar.")) {
+		case 1:
+			mes "[Estilista]";
+			mes "Venha ver que cores mais lindas.";
+			mes "A primeira cor é a superior,";
+			mes "a segunda é a inferior.";
+			mes "Não se esqueça da sua cor";
+			mes "favorita";
+			next;
+			for(set .@i,0; .@i < getarraysize(.@class$); set .@i, .@i + 1){
+				mes "== "+.@class$[.@i]+" ==";
+				mes "Superior: Primeira cor";
+				mes "Inferior: Segunda cor";
+				mes "Alt+End: para ver a roupa sem as";
+				mes "barras de HP/SP na tela.";
+				cutin .@cutin$[.@i],4;
+				next;
+			}
+				cutin "",255;
+				mes "[Estilista]";
+				mes "Achou sua cor favorita?";
+				next;
+				break;
+			
+		case 2:
+			mes "[Estilista]";
+			mes "Ok, sem problema. Temos duas cores";
+			mes "agora, qual você deseja?";
+			next;
+			switch(select("Primeira:Segunda:Voltar")){
+			case 1:
+				mes "[Estilista]";
+				mes "Você escolheu a ^FF0000Primeira cor^000000, está";
+				mes "tudo bem?";
+				set .@look,2;
+				break;
+			case 2:
+				mes "[Estilista]";
+				mes "Você escolheu a ^FF0000Segunda cor^000000, está";
+				mes "tudo bem?";
+				set .@look,3;
+				break;
+			case 3:
+				set .@look,0;
+			}
+			if(!.@look)
+				break;
+			next;
+			if(select("Mude minha roupa.:Vou deixar assim mesmo(Cancelar).") == 2) {
+				mes "[Estilista]";
+				mes "Bem, gosto é gosto, não é mesmo? Se mudar";
+				mes "de idéia, é só aparecer!";
+				close;
+			}
+			if(countitem(6046) > 0) {
+				mes "[Estilista]";
+				mes "Bela escolha! Você tem um bom olho";
+				mes "para a alta-costura, não é mesmo?";
+				next;
+				mes "[Estilista]";
+				mes "*estalar de dedos*";
+				mes "Prontinho! Viu só? Não doeu nada!";
+				mes "Agora saia já daqui e desfile esta";
+				mes "peça magnífica pelas passarelas de Prontera!";
+				delitem 6046,1;
+				setlook 7,.@look;
+				close;
+			} else {
+				mes "[Estilista]";
+				mes "Hm, benzinho... Não esqueceu de nada não?";
+				mes "Você precisa de um ^0000FFCupom de Tintura^000000";
+				mes "para tingir suas roupas...";
+				close;
+			}
+		case 3:
+			if(getlook(7) == 0) {
+				mes "[Estilista]";
+				mes "Ops, você já está com a cor";
+				mes "original na sua roupa.";
+				mes "Tingir duas vezes não vai fazer diferença.";
+				close;
+			}
+				mes "[Estilista]";
+				mes "Tem certeza que deseja";
+				mes "voltar a cor da roupa ao normal?";
+				next;
+			if(select("Mude minha roupa.:Vou deixar assim mesmo(Cancelar).") == 2) {
+				mes "[Estilista]";
+				mes "Bem, gosto é gosto, não é mesmo? Se mudar";
+				mes "de idéia, é só aparecer!";
+				close;
+			}
+			if(countitem(6295) > 0) {
+				mes "[Estilista]";
+				mes "*estalar de dedos*";
+				mes "Prontinho! Viu só? Não doeu nada!";
+				mes "Agora saia já daqui e desfile esta";
+				mes "peça magnífica pelas passarelas de Prontera!";
+				delitem 6295,1;
+				setlook 7,0;
+				close;
+			} else {
+				mes "[Estilista]";
+				mes "Hm, benzinho... Não esqueceu de nada não?";
+				mes "Você precisa de um ^0000FFCupom Removedor^000000";
+				mes "para remover a tintura de suas roupas...";
+				close;
+			}
+		case 4:
+			mes "[Estilista]";
+			mes "Ai, você não acha essa história de ''cor original''";
+			mes "uma coisa muuuito ''retrô''?";
+			mes "Bem, gosto é gosto, não é mesmo? Se mudar";
+			mes "de idéia, é só aparecer!";
+			close;
+		}
+	}
+}

@@ -123,3 +123,12 @@ umbala	mapflag	zone	Towns
 veins	mapflag	zone	Towns
 xmas	mapflag	zone	Towns
 yuno	mapflag	zone	Towns
+
+// Mapas Especiais
+moc_fild15	mapflag	zone	Mapas Especiais
+moc_fild08	mapflag	zone	Mapas Especiais
+ra_fild02	mapflag	zone	Mapas Especiais
+moc_fild14	mapflag	zone	Mapas Especiais
+moc_fild10	mapflag	zone	Mapas Especiais
+moc_fild05	mapflag	zone	Mapas Especiais
+moc_fild06	mapflag	zone	Mapas Especiais

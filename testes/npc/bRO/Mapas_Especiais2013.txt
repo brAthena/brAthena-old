@@ -1,0 +1,261 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Mapas_Especiais.txt                    |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Evento Mapas especiais bRO.                 |
+//   |                                                        |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criação [Megasantos]                               |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,162,326,4	script	 Kolthar	749,{
+
+	if(registrado) {
+
+		mes "[Kolthar]";
+		mes "Ah, você voltou! Em qual mapa você";
+		mes "quer treinar ?";
+		next;
+		set .@i, select("Sala Sombria:Sala Selvagem:Sala do Terror:Sala Temporal:Sala Sinistra:Sala Draconiana:Sala Infernal:Sala Laboratorial:Não quero treinar agora");
+		switch(.@i){
+		case 1:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Marionete, Sacerdote Maldito,";
+			mes "Zumbi Atirador e";
+			mes "Zumbi Prisioneiro ?";
+			break;
+		case 2:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Kobold de Maça, Lobo do Deserto e";
+			mes "Vento da Colina ?";
+			break;
+		case 3:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Kobold de Machado, Pesadelo Sombrio";
+			mes "Serial Killer ?";
+			break;
+		case 4:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Dimik, Mímico Antigo,";
+			mes "Palavra Morta e Venatu ?";
+			break;
+		case 5:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Andarilho, Barão Coruja";
+			mes "Gremlin e Zumbi Dilacerado ?";
+			break;
+		case 6:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Ácidus, Ácidus Azul";
+			mes "Ferus Verde ?";
+			break;
+		case 7:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Kasa, Salamandra ?";
+			break;
+		case 8:
+			mes "[Kolthar]";
+			mes "Você quer ir ao mapa que contém";
+			mes "Armeyer Dinze, Egnigem Cenia";
+			mes "Errende Ebecee e Wickebine Tres ?";
+			break;
+		case 9:
+			mes "[Kolthar]";
+			mes "Ok, volte quando quiser!";
+			close;
+		}
+		next;
+		if(select("Sim:Não") == 2) {
+			mes "[Kolthar]";
+			mes "Ok, volte quando quiser!";
+			close;
+		}
+		mes "Ok, boa sorte!";
+		close2;
+		warp .map$[.@i],.x[.@i],.y[.@i];
+		end;
+
+	}
+
+	if (BaseLevel < 80) {
+		mes "[Kolthar]";
+		mes "Seu nível não é maior que 80";
+		mes "Volte quando estiver pronto.";
+		close;
+	}
+
+	mes "[Kolthar]";
+	mes "Olá aventureiro! Tenho uma";
+	mes "informação quente para lhe dar!";
+	next;
+	if(select("Não tenho interesse.:Sim, posso ajudá-lo?") == 1) {
+		mes "[Kolthar]";
+		mes "Ahh, tudo bem então.";
+		next;
+		mes "[Kolthar]";
+		mes "Siga seu caminho.";
+		close;
+	}
+	mes "[Kolthar]";
+	mes "Vou lhe contar um segredo!";
+	next;
+	mes "[Kolthar]";
+	mes "Existem mapas secretos que estão";
+	mes "repletos de criaturas fortes e que";
+	mes "nascem instantaneamente!";
+	next;
+	mes "["+strcharinfo(0)+"]";
+	mes "Sério? E como eu faço para acessá-lo?";
+	next;
+	mes "[Kolthar]";
+	mes "Você parece experiente o suficiente. Por que não se junta ao nosso grupo secreto para ter acesso a esses mapas?";
+	next;
+	mes "[Kolthar]";
+	mes "Estes mapas possuem como função";
+	mes "proporcionar uma experiência muito";
+	mes "boa e lucrativa para os";
+	mes "aventureiros de Rune-Midgard.";
+	next;
+	mes "[Kolthar]";
+	mes "Você gostaria de se juntar a nós?";
+	mes "Nestes mapas diversos monstros";
+	mes "estarão à sua disposição, e não";
+	mes "existem penalidades na experiência ao ser derrotado.";
+	next;
+	mes "[Kolthar]";
+	mes "Só pedimos uma pequena";
+	mes "contribuição. Você adquirir o Ticket de Doação";
+	mes "vendido no mercador de itens";
+	mes "Especiais, ou contribuir com 200";
+	mes "Chifres Místicos, 100 Flores";
+	mes "Murchas, 50 Cristas Espirituais";
+	mes "Vermelhas, 50 Fragmentos Sombrios e 1 Emperium.";
+	mes "Como prefere contribuir ?";
+	next;
+	switch(select("Ticket de Doação:Lista de Itens")) {
+	case 1:
+		if(countitem(7711) >= 1) {
+			mes "[Kolthar]";
+			mes "Seu acesso está liberado para";
+			mes "os Mapas especiais";
+			delitem 7711,1;
+			set registrado,1;
+			close;
+		} else {
+			mes "[Kolthar]";
+			mes "Você pode fazer a doação no";
+			mes "mercador de Itens Especiais.";
+			mes "Comprando o Ticket de Doação você";
+			mes "terá acesso livre aos mapas.";
+			close;
+		}
+
+	case 2:
+		if(countitem(6023) >= 200 && countitem(6086) >= 100 && countitem(6088) >= 50 && countitem(6089) >= 50 && countitem(714) >= 1) {
+			mes "[Kolthar]";
+			mes "Seu acesso está liberado para";
+			mes "os Mapas especiais";
+			delitem 6023,200;
+			delitem 6086,100;
+			delitem 6088,50;
+			delitem 6089,50;
+			delitem 714,1;
+			set registrado,1;
+			close;
+		} else {
+			mes "[Kolthar]";
+			mes "Sem a doação você não poderá";
+			mes "entrar. Se os itens forem difíceis";
+			mes "demais para você, você pode";
+			mes "comprar um Ticket de Doação por";
+			mes "ROPs no mercado de itens especiais.";
+			close;
+		}
+	}
+OnInit:
+	setarray .map$[1], "moc_fild15","moc_fild08","ra_fild02","moc_fild14","moc_fild10","moc_fild05","moc_fild06","moc_fild04";
+	setarray .x[1], 172, 184, 377, 208, 201, 212, 223, 191;
+	setarray .y[1], 354, 364, 137, 350, 263, 357, 341, 354;
+	end;
+
+OnPCDieEvent:
+	getmapxy @maps$,@x,@y,0;
+	for(set @i,1; @i <= getarraysize(.map$); set @i, @i+1)
+	if(@maps$ == .map$[@i])
+	warp "SavePoint",0,0;
+	end;
+}
+
+//==================================================
+// moc_fild15 - Sala Sombria
+//==================================================
+moc_fild15,0,0,0,0	monster	Marionete	1143,150,0,0,0
+moc_fild15,0,0,0,0	monster	Zumbi Prisioneiro	1197,150,0,0,0
+moc_fild15,0,0,0,0	monster	Soldado Atirador	1403,150,0,0,0
+moc_fild15,0,0,0,0	monster	Sacerdote Maldito	1198,300,0,0,0
+//==================================================
+// moc_fild08 - Sala Selvagem
+//==================================================
+moc_fild08,0,0,0,0	monster	Lobo do Deserto	1220,300,0,0,0
+moc_fild08,0,0,0,0	monster	Vento da Colina	1680,150,0,0,0
+moc_fild08,0,0,0,0	monster	Cobold	1134,300,0,0,0
+//==================================================
+// ra_fild02 - Sala do Terror
+//==================================================
+ra_fild02,0,0,0,0	monster	Pesadelo Sombrio	1379,300,0,0,0
+ra_fild02,0,0,0,0	monster	Cobold	1133,150,0,0,0
+ra_fild02,0,0,0,0	monster	Serial Killer	1507,300,0,0,0
+//==================================================
+// moc_fild14 - Sala Temporal
+//==================================================
+moc_fild14,0,0,0,0	monster	Venatu	1677,150,0,0,0
+moc_fild14,0,0,0,0	monster	Dimik	1670,150,0,0,0
+moc_fild14,0,0,0,0	monster	Palavra Morta	1698,300,0,0,0
+moc_fild14,0,0,0,0	monster	Mímico Antigo	1699,150,0,0,0
+//==================================================
+// moc_fild10 - Sala Sinistra
+//==================================================
+moc_fild10,0,0,0,0	monster	Andarilho	1208,150,0,0,0
+moc_fild10,0,0,0,0	monster	Gremlin	1632,150,0,0,0
+moc_fild10,0,0,0,0	monster	Barão Coruja	1295,150,0,0,0
+moc_fild10,0,0,0,0	monster	Zumbi Dilacerado	1865,300,0,0,0
+//==================================================
+// moc_fild05 - Sala Draconiana
+//==================================================
+moc_fild05,0,0,0,0	monster	Acidus	1713,300,0,0,0
+moc_fild05,0,0,0,0	monster	Acidus	1716,150,0,0,0
+moc_fild05,0,0,0,0	monster	Ferus	1295,150,0,0,0
+//==================================================
+// moc_fild06 - Sala Infernal
+//==================================================
+moc_fild06,0,0,0,0	monster	Salamandra	1831,300,0,0,0
+moc_fild06,0,0,0,0	monster	Kasa	1833,300,0,0,0
+//==================================================
+// moc_fild04 - Sala Laboratorial
+//==================================================
+moc_fild04,0,0,0,0	monster	Egnigem Cenia	1652,300,0,0,0
+moc_fild04,0,0,0,0	monster	Wickebine Tres	1653,150,0,0,0
+moc_fild04,0,0,0,0	monster	Armeyer Dinze	1654,150,0,0,0
+moc_fild04,0,0,0,0	monster	Errende Ebecee	1655,150,0,0,0
