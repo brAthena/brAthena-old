@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: guia_niflheim.txt                      |
+//   | Nome do Script: niflheim.txt                           |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -25,10 +25,7 @@
 //   \________________________________________________________/
 
 niflheim,201,187,3	script#re	Guia de Nifflheim#01nif	849,{
-	mes "[Guia de Nifflheim]";
-	mes "Bem-vindo a.. ^8B4513Niflheim^000000...";
-	mes "o Reino dos Mortos...";
-	mes "Gostaria de conhecer o reino...?";
+	mes "[Guia de Nifflheim]"+"\nBem-vindo a.. ^8B4513Niflheim^000000...\nO Reino dos Mortos...\nGostaria de conhecer o reino...?";
 	while (1) {
 		next;
 		switch(select("[ Loja de Utilidades ]:[ Bar ]:[ Loja de Armas ]:[ Castelo da Bruxa ]:Remover marcadores do mini-mapa:Cancelar")) {
@@ -49,75 +46,53 @@ niflheim,201,187,3	script#re	Guia de Nifflheim#01nif	849,{
 			viewpoint 1,255,195,3,0xFF1493;
 			break;
 		case 5:
-			mes "[Guia de Nifflheim]";
-			mes "Claro, irei remover todos os pontos marcados de seu mini-mapa...";
-			mes "Há mais algo que eu possa fazer por você...?";
+			mes "[Guia de Nifflheim]"+"\nClaro, irei remover todos os pontos marcados de seu mini-mapa...\nHá mais algo que eu possa fazer por você...?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
 			viewpoint 2,1,1,3,0xFFFFFF;
 			break;
 		case 6:
-			mes "[Guia de Nifflheim]";
-			mes "......Adeus~!..";
+			mes "[Guia de Nifflheim]"+"\n......Adeus~!..";
 			close;
 		}
 	}
 	end;
 L_Mark:
-	mes "[Guia de Nifflheim]";
-	mes "Deixe-me marcar para você a localização para";
-	mes getarg(0)+"^000000...";
-	mes "em seu mini-mapa.";
-	mes "Gostaria de verificar outras localizações?";
+	mes "[Guia de Nifflheim]"+"\nDeixe-me marcar para você a localização para "+getarg(0)+"^000000 em seu mini-mapa.\nGostaria de verificar outras localizações?";
 	return;
 }
 
 niflheim,107,156,6	script#pre	Homem Nervoso#nif	798,{
-	mes "[Lee karl]";
-	mes "Por que você veio a um lugar tão horrível como este? Acho que você acabou se perdendo, isso sim.";
-	mes "Eu fui atraído pelas altas árvores deste lugar. Demorou um bom tempo até eu perceber que eu estava perdido. E que não havia mais volta.";
+	mes "[Lee karl]"+"\nPor que você veio a um lugar tão horrível como este? Acho que você acabou se perdendo, isso sim.\nEu fui atraído pelas altas árvores deste lugar. Demorou um bom tempo até eu perceber que eu estava perdido. E que não havia mais volta.";
 	next;
-	mes "[Lee karl]";
-	mes "Eu já procurei pela saída em todos os lugares. Por isso, estou bem acostumado com o lugar.";
-	mes "Lembrar das localidades por aqui pode significar a diferença entre a vida e a morte.";
+	mes "[Lee karl]"+"\nEu já procurei pela saída em todos os lugares. Por isso, estou bem acostumado com o lugar.\nLembrar das localidades por aqui pode significar a diferença entre a vida e a morte.";
 	next;
 	switch(select("Perguntar sobre a cidade.:Limpar indicações do minimapa.:Cancelar.")) {
 	case 1:
-		mes "[Lee Karl]";
-		mes "Então, onde você quer ir?";
+		mes "[Lee Karl]"+"\nEntão, onde você quer ir?";
 		next;
 		switch(select("Castelo da Feiticeira.:Loja de Útilidades.:Loja de Armas.:Hotel.:Cancelar.")) {
 		case 1:
-			mes "[Lee karl]";
-			mes "Uma feiticeira medonha vive em Nifflheim.";
-			mes "^FF3355+^000000O castelo dela é logo ali.";
-			mes "Se você sentir um calafrio na espinha, saia correndo!";
+			mes "[Lee karl]"+"\nUma feiticeira medonha vive em Nifflheim.\n^FF3355+^000000O castelo dela é logo ali.\nSe você sentir um calafrio na espinha, saia correndo!";
 			viewpoint 1,253,191,2,0xFF3355;
 			break;
 		case 2:
-			mes "[Lee Karl]";
-			mes "A loja de utilidades é bem ali ^CE6300+^000000.";
-			mes "Existem alguns itens que você não pode comprar no mundo dos vivos. Confira.";
+			mes "[Lee Karl]"+"\nA loja de utilidades é bem ali ^CE6300+^000000.\nExistem alguns itens que você não pode comprar no mundo dos vivos. Confira.";
 			Emotion e_wah;
 			viewpoint 1,217,196,3,0xCE6300;
 			break;
 		case 3:
-			mes "[Lee karl]";
-			mes "A loja de armas é por ali ^55FF33+^000000.";
-			mes "Existem algumas armas que você não pode comprar no mundo dos vivos. Confira.";
+			mes "[Lee karl]"+"\nA loja de armas é por ali ^55FF33+^000000.\nExistem algumas armas que você não pode comprar no mundo dos vivos. Confira.";
 			Emotion e_wah;
 			viewpoint 1,216,171,4,0x55FF33;
 			break;
 		case 4:
-			mes "[Lee Karl]";
-			mes "O hotel fica ali ^3355FF+^000000,";
-			mes "As pessoas mortas costumam fazer festas por lá. Mexa o esqueleto!";
+			mes "[Lee Karl]"+"\nO hotel fica ali ^3355FF+^000000, as pessoas mortas costumam fazer festas por lá.\nMexa o esqueleto!";
 			viewpoint 1,189,207,5,0x3355FF;
 			break;
 		case 5:
-			mes "[Lee Karl]";
-			mes "Se você quiser apagar todas as marcações no seu mapa, selecione a opção 'Limpar indicações do minimapa'";
+			mes "[Lee Karl]"+"\nSe você quiser apagar todas as indicações no seu mapa, selecione a opção 'Limpar indicações do minimapa'";
 		}
 		break;
 	case 2:
@@ -125,14 +100,10 @@ niflheim,107,156,6	script#pre	Homem Nervoso#nif	798,{
 		viewpoint 2,217,196,3,0xCE6300;
 		viewpoint 2,216,171,4,0x55FF33;
 		viewpoint 2,189,207,5,0x3355FF;
-		mes "[Lee Karl]";
-		mes "Apaguei todas as marcações do seu mapa.";
-		mes "Volte se quiser que eu indique as direções novamente.";
+		mes "[Lee Karl]"+"\nApaguei todas as indicações do seu mapa.\nVolte se quiser que eu indique as direções novamente.";
 		break;
 	case 3:
-		mes "[Lee karl]";
-		mes "Tome cuidado, algumas coisas parecem mortas mas estão bem vivas...";
-		mes "Boa sorte!";
+		mes "[Lee karl]"+"\nTome cuidado, algumas coisas parecem mortas mas estão bem vivas...\nBoa sorte!";
 		break;
 	}
 	close;

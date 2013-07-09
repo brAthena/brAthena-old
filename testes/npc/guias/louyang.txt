@@ -8,11 +8,11 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: guia_louyang.txt                       |
+//   | Nome do Script: louyang.txt                            |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Louyang.                 |
 //   |--------------------------------------------------------|
@@ -20,94 +20,63 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
+//   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 louyang,224,104,4	script	Soldado#01louyang	818,{
-	mes "[Soldado]";
-	mes "Bem-vindo à Castelo do Dragão, que tem uma história longa e vigorosa.";
+	mes "[Soldado]"+"\nBem-vindo à Castelo do Dragão, que tem uma história longa e vigorosa.";
 	next;
-	mes "Nós desenvolvemos um modo novo de negociar com estrangeiros.";
-	mes "Depois disso, os estrangeiros puderam ir e vir com mais facilidade.";
+	mes "Nós desenvolvemos um modo novo de negociar com estrangeiros.\nDepois disso, os estrangeiros puderam ir e vir com mais facilidade.";
 	next;
-	mes "[Soldado]";
-	mes "Com uma história tão antiga, há muitas coisas para se ver.";
-	mes "Como nós nunca tínhamos negociado antes deve haver algumas coisas agradáveis e valiosas que não poderei lhe mostrar.";
-	mes "Por favor, fique quanto tempo quiser.";
+	mes "[Soldado]"+"\nCom uma história tão antiga, há muitas coisas para se ver.\nComo nós nunca tínhamos negociado antes deve haver algumas coisas agradáveis e valiosas que não poderei lhe mostrar.\nPor favor, fique quanto tempo quiser.";
 	if(checkversion(0)) {
 		while (1) {
 			next;
 			switch(select("[ Castelo do Dragão ]:[ Consultório Médico ]:[ Prefeitura ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Taverna ]:[ Observatório ]:[ Retornar para Alberta ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
-				mes "[Soldado]";
-				mes "O Castelo do Dragão está localizado no ^0A82FF+^000000. É o lugar onde moram os nobres, incluindo nosso senhor.";
-				mes "Já que você é "+((Sex) ? "um":"uma")+" turista, eu recomendo que você visite nosso Senhor antes de mais nada.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nO Castelo do Dragão está localizado no ^0A82FF+^000000. É o lugar onde moram os nobres, incluindo nosso senhor.\nJá que você é "+((Sex) ? "um":"uma")+" turista, eu recomendo que você visite nosso Senhor antes de mais nada.\nGostaria de verificar outras localizações?";
 				viewpoint 1,218,253,0,0x0A82FF;
 				break;
 			case 2:
-				mes "[Soldado]";
-				mes "É um famoso ^AAFF00Consultório Médico^000000";
-				mes "de acordo com rumores que dizem que lá é possível se curar todas as doenças. Mas eu não tenho certeza se isso é verdade ou não.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nÉ um famoso ^AAFF00Consultório Médico^000000, de acordo com rumores que dizem que lá é possível se curar todas as doenças.\nMas eu não tenho certeza se isso é verdade ou não.\nGostaria de verificar outras localizações?";
 				viewpoint 1,261,93,1,0xAAFF00;
 				break;
 			case 3:
-				mes "[Soldado]";
-				mes "Temos uma Prefeitura onde nosso governo federal atua.";
-				mes "Ela está localizada no ^008080+^000000.";
+				mes "[Soldado]"+"\nTemos uma Prefeitura onde nosso governo federal atua.\nEla está localizada no ^008080+^000000.";
 				next;
-				mes "[Soldado]";
-				mes "Se você encontrar algum problema, você pode conversar com um dos funcionários daqui.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nSe você encontrar algum problema, você pode conversar com um dos funcionários daqui.\nGostaria de verificar outras localizações?";
 				viewpoint 1,309,78,2,0x20B2AA;
 				break;
 			case 4:
-				mes "[Soldado]";
-				mes "A Loja de Armas está localizada no ^55FF33+^000000.";
+				mes "[Soldado]"+"\nA Loja de Armas está localizada no ^55FF33+^000000.";
 				next;
-				mes "[Soldado]";
-				mes "Você poderá obter armas maravilhosas forjadas por experientes Ferreiros de Louyang.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nVocê poderá obter armas maravilhosas forjadas por experientes Ferreiros de Louyang.\nGostaria de verificar outras localizações?";
 				viewpoint 1,145,172,3,0xFF1493;
 				break;
 			case 5:
-				mes "[Soldado]";
-				mes "A Loja de Utilidades está localizada no ^3355FF+^000000.";
+				mes "[Soldado]"+"\nA Loja de Utilidades está localizada no ^3355FF+^000000.";
 				next;
-				mes "[Soldado]";
-				mes "Conheça seu inimigo durante a batalha!";
-				mes "Prepare-se antes para não se arrepender mais tarde. Por que você não verifica seus suprimentos?";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nConheça seu inimigo durante a batalha!\nPrepare-se antes para não se arrepender mais tarde. Por que você não verifica seus suprimentos?\nGostaria de verificar outras localizações?";
 				viewpoint 1,138,99,4,0xFF0000;
 				break;
 			case 6:
-				mes "[Soldado]";
-				mes "Quando você se cansar durante sua viagem, sugiro que visite a Taverna. Ela está localizada no ^00FF00+^000000.";
+				mes "[Soldado]"+"\nQuando você se cansar durante sua viagem, sugiro que visite a Taverna. Ela está localizada no ^00FF00+^000000.";
 				next;
-				mes "[Soldier]";
-				mes "A Taverna é um bom lugar para conhecer novos turistas, assim como obter qualquer informação útil";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldier]"+"\nA Taverna é um bom lugar para conhecer novos turistas, assim como obter qualquer informação útil\nGostaria de verificar outras localizações?";
 				viewpoint 1,280,165,5,0xDAA520;
 				break;
 			case 7:
-				mes "[Soldado]";
-				mes "Você poderá expandir sua visão de mundo no Observatório. É necessário conhecê-lo.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nVocê poderá expandir sua visão de mundo no Observatório. É necessário conhecê-lo.\nGostaria de verificar outras localizações?";
 				viewpoint 1,136,245,6,0xD8BFD8;
 				break;
 			case 8:
-				mes "[Soldado]";
-				mes "Se você quiser retornar para Alberta,";
-				mes "encontre a ^00BFFFKGarota^000000.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nSe você quiser retornar para Alberta, encontre a ^00BFFFKGarota^000000.\nGostaria de verificar outras localizações?";
 				viewpoint 1,218,22,7,0x00BFFF;
 				break;
 			case 9:
-				mes "[Soldado]";
-				mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Soldado]"+"\nClaro, irei remover todos os pontos marcados de seu mini-mapa.\nGostaria de verificar outras localizações?";
 				viewpoint 2,1,1,0,0xFFFFFF;
 				viewpoint 2,1,1,1,0xFFFFFF;
 				viewpoint 2,1,1,2,0xFFFFFF;
@@ -118,8 +87,7 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 				viewpoint 2,1,1,7,0xFFFFFF;
 				break;
 			case 10:
-				mes "[Soldado]";
-				mes "Aproveite sua estadia~!";
+				mes "[Soldado]"+"\nAproveite sua estadia~!";
 				close;
 			}
 		}
@@ -128,58 +96,39 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 		switch(select("Indicações.:Limpar indicações do minimapa.:Cancelar.")) {
 		case 1:
 			set .@compass_check,1;
-			mes "[Soldado]";
-			mes "O que você gostaria de conhecer?";
+			mes "[Soldado]"+"\nO que você gostaria de conhecer?";
 			next;
 			switch(select("O Castelo.:O Hospital.:A Sede do Governo.:A Loja de Armas.:A Loja de Utilidades.:A Taverna.:Cancelar.")) {
 			case 1:
-				mes "[Soldado]";
-				mes "O castelo está localizado em ^FF3355+^000000.";
-				mes "O castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.";
-				mes "Isso é uma boa etiqueta, não acha?";
+				mes "[Soldado]"+"\nO castelo está localizado em ^FF3355+^000000.\nO castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.\nIsso é uma boa etiqueta, não acha?";
 				viewpoint 1,218,255,2,0xFFFF33;
 				break;
 			case 2:
-				mes "[Soldado]";
-				mes "Tem um famoso doutor de medicina oriental no castelo.";
-				mes "^CE6300+^000000";
-				mes "Dizem que não há nada que ele não cure mas não sei se isso é verdade.";
+				mes "[Soldado]"+"\nTem um famoso doutor de medicina oriental no castelo.\n^CE6300+^000000\nDizem que não há nada que ele não cure mas não sei se isso é verdade.";
 				viewpoint 1,263,94,3,0xFFCE63;
 				break;
 			case 3:
-				mes "[Soldado]";
-				mes "Existe uma sede do governo no Castelo do Dragão.";
-				mes "A sede se localiza em ^A5BAAD+^000000";
-				mes "Se estiver em apuros, vá direto para a sede do governo.";
+				mes "[Soldado]"+"\nExiste uma sede do governo no Castelo do Dragão.\nA sede se localiza em ^A5BAAD+^000000\nSe estiver em apuros, vá direto para a sede do governo.";
 				viewpoint 1,309,80,4,0xFF00FF;
 				break;
 			case 4:
-				mes "[Soldado]";
-				mes "A loja de armas está localizada em ^55FF33+^000000.";
-				mes "Lá você encontra as melhores armas feitas por ferreiros experientes.";
+				mes "[Soldado]"+"\nA loja de armas está localizada em ^55FF33+^000000.\nLá você encontra as melhores armas feitas por ferreiros experientes.";
 				viewpoint 1,145,174,5,0xFF55FF;
 				break;
 			case 5:
-				mes "[Soldado]";
-				mes "A loja de utilidades está localizada em ^3355FF+^000000.";
-				mes "Para vencer sempre, conheça o seu inimigo!";
+				mes "[Soldado]"+"\nA loja de utilidades está localizada em ^3355FF+^000000.\nPara vencer sempre, conheça o seu inimigo!";
 				next;
-				mes "[Soldado]";
-				mes "Você precisa estar sempre preparado.";
-				mes "E não perca tempo filosofando. Haha.";
+				mes "[Soldado]"+"\nVocê precisa estar sempre preparado.\nE não perca tempo filosofando. Haha.";
 				viewpoint 1,135,98,6,0xFF3355;
 				break;
 			case 6:
-				mes "[Soldado]";
-				mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
+				mes "[Soldado]"+"\nSe ficar cansado das suas viagens, descanse na Taverna Oriental.";
 				next;
-				mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
-				mes "Lá se pode escutar muitas histórias de outros viajantes.";
+				mes "A Taverna Oriental está localizada em ^00FF00+^000000.\nLá se pode escutar muitas histórias de outros viajantes.";
 				viewpoint 1,280,167,7,0xFF00FF;
 				break;
 			case 7:
-				mes "[Soldado]";
-				mes "Se quiser remover as marcações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
+				mes "[Soldado]"+"\nSe quiser remover as indicações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
 			}
 			break;
 		case 2:
@@ -189,12 +138,10 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 			viewpoint 2,145,174,5,0xFF00FF;
 			viewpoint 2,135,98,6,0xFF00FF;
 			viewpoint 2,280,167,7,0xFF00FF;
-			mes "[Soldado]";
-			mes "Eu apaguei todas as indicações do minimapa. Se quer marcá-las de novo, fale novamente comigo.";
+			mes "[Soldado]"+"\nEu apaguei todas as indicações do minimapa. Se quer marcá-las de novo, fale novamente comigo.";
 			break;
 		case 3:
-			mes "[Soldado]";
-			mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
+			mes "[Soldado]"+"\nVocê pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
 			break;
 		}
 		close;
@@ -202,73 +149,47 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 }
 
 louyang,213,213,3	script#pre	Soldado#Lou	825,{
-	mes "[Soldado]";
-	mes "Este é o castelo do Dragão.";
-	mes "Um lugar como esse possui uma longa história de orgulho e espírito de guerra.";
-	mes "Porém, de uns tempos para cá, temos focado nossos esforços em desenvolver mais nosso comércio com terras distantes.";
-	mes "Por esse motivo, estrangeiros podem entrar e sair mais facilmente desta região.";
+	mes "[Soldado]"+"\nEste é o castelo do Dragão.\nUm lugar como esse possui uma longa história de orgulho e espírito de guerra.\nPorém, de uns tempos para cá, temos focado nossos esforços em desenvolver mais nosso comércio com terras distantes.\nPor esse motivo, estrangeiros podem entrar e sair mais facilmente desta região.";
 	next;
-	mes "[Soldado]";
-	mes "Com uma história tão antiga, há muitas coisas para se ver.";
-	mes "Como nós nunca tínhamos negociado antes, deve haver algumas coisa agradáveis e valiosas que não poderei lhe mostrar.";
-	mes "Por favor, fique quanto tempo quiser.";
+	mes "[Soldado]"+"\nCom uma história tão antiga, há muitas coisas para se ver.\nComo nós nunca tínhamos negociado antes, deve haver algumas coisa agradáveis e valiosas que não poderei lhe mostrar.\nPor favor, fique quanto tempo quiser.";
 	next;
 	switch(select("Indicações.:Limpar indicações do minimapa.:Cancelar.")) {
 	case 1:
-		mes "[Soldado]";
-		mes "O que você gostaria de conhecer?";
+		mes "[Soldado]"+"\nO que você gostaria de conhecer?";
 		next;
 		switch(select("O Castelo.:O Hospital.:A Sede do Governo.:A Loja de Utilidades.:A Loja de Armas.:A Taverna.:Cancelar.")) {
 		case 1:
-			mes "[Soldado]";
-			mes "O castelo está localizado em ^FF3355+^000000.";
-			mes "O castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.";
-			mes "Isso é uma boa etiqueta, não acha?";
+			mes "[Soldado]"+"\nO castelo está localizado em ^FF3355+^000000.\nO castelo é o lar do seu senhor e hospeda muitas pessoas de alta classe. Se for um convidado aqui, primeiro vá até lá e faça uma visita.\nIsso é uma boa etiqueta, não acha?";
 			viewpoint 1,218,255,2,0xFF3355;
 			break;
 		case 2:
-			mes "[Soldado]";
-			mes "Tem um famoso professor de medicina oriental no castelo.";
+			mes "[Soldado]"+"\nTem um famoso professor de medicina oriental no castelo.";
 			next;
-			mes "[Soldier]";
-			mes "Dizem que não há nada que ele não cure, mas não sei se isso é verdade.";
+			mes "[Soldier]"+"\nDizem que não há nada que ele não cure, mas não sei se isso é verdade.";
 			viewpoint 1,263,94,3,0xCE6300;
 			break;
 		case 3:
-			mes "[Soldado]";
-			mes "Existe uma sede do governo em Castelo do Dragão.";
-			mes "A sede se localiza em ^A5BAAD+^000000.";
-			mes "Se estiver em apuros, vá direto para a sede do governo.";
+			mes "[Soldado]"+"\nExiste uma sede do governo em Castelo do Dragão.\nA sede se localiza em ^A5BAAD+^000000.\nSe estiver em apuros, vá direto para a sede do governo.";
 			viewpoint 1,309,80,4,0xA5BAAD;
 			break;
 		case 4:
-			mes "[Soldado]";
-			mes "A loja de utilidades está localizada em ^55FF33+^000000.";
-			mes "Lá você encontra as melhores armas feitas por ferreiros experientes.";
+			mes "[Soldado]"+"\nA loja de utilidades está localizada em ^55FF33+^000000.\nLá você encontra as melhores armas feitas por ferreiros experientes.";
 			viewpoint 1,145,174,5,0x55FF33;
 			break;
 		case 5:
-			mes "[Soldado]";
-			mes "A loja de armas está localizada em ^3355FF+^000000.";
-			mes "Para vencer sempre, conheça o seu inimigo!";
+			mes "[Soldado]"+"\nA loja de armas está localizada em ^3355FF+^000000.\nPara vencer sempre, conheça o seu inimigo!";
 			next;
-			mes "[Soldado]";
-			mes "Você precisa estar sempre preparado.";
-			mes "E não perca tempo filosofando... Haha.";
+			mes "[Soldado]"+"\nVocê precisa estar sempre preparado.\nE não perca tempo filosofando... Haha.";
 			viewpoint 1,135,98,6,0x3355FF;
 			break;
 		case 6:
-			mes "[Soldado]";
-			mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
+			mes "[Soldado]"+"\nSe ficar cansado das suas viagens, descanse na Taverna Oriental.";
 			next;
-			mes "[Soldado]";
-			mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
-			mes "Lá se pode escutar muitas histórias de outros viajantes.";
+			mes "[Soldado]"+"\nA Taverna Oriental está localizada em ^00FF00+^000000.\nLá se pode escutar muitas histórias de outros viajantes.";
 			viewpoint 1,280,167,7,0x00FF00;
 			break;
 		case 7:
-			mes "[Soldado]";
-			mes "Se quiser apagar as indicações no minimapa, selecione no menu 'Limpar indicações do minimapa'.";
+			mes "[Soldado]"+"\nSe quiser apagar as indicações no minimapa, selecione no menu 'Limpar indicações do minimapa'.";
 		}
 		break;
 	case 2:
@@ -278,12 +199,10 @@ louyang,213,213,3	script#pre	Soldado#Lou	825,{
 		viewpoint 2,145,174,5,0xFF00FF;
 		viewpoint 2,135,98,6,0xFF00FF;
 		viewpoint 2,280,167,7,0xFF00FF;
-		mes "[Soldado]";
-		mes "Eu apaguei todas as indicações do minimapa. Se quiser marcá-las denovo, fale novamente comigo.";
+		mes "[Soldado]"+"\nEu apaguei todas as indicações do minimapa. Se quiser marcá-las denovo, fale novamente comigo.";
 		break;
 	case 3:
-		mes "[Soldier]";
-		mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
+		mes "[Soldier]"+"\nVocê pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
 	}
 	close;
 }

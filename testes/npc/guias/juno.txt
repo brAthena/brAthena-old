@@ -8,96 +8,95 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: guia_juno.txt                          |
+//   | Nome do Script: juno.txt                               |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Juno.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
-//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   | 1.2 Tradução PT-BR [Protimus, lututuiBR & Holy]        |
+//   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-yuno,59,212,4	script	Juno Guide#yuno01	700,{
-	mes "[Juno Guide]";
-	mes "A place that takes the vision of the future, and gives it form in the present. Welcome to";
-	mes "the city of ^8B4513Juno^000000!";
+yuno,59,212,4	script	Guia de Juno#yuno01	700,{
+	mes "[Guia de Juno]"+"\nUm lugar que tem a visão do futuro, e lhe dá forma, no presente.\nBem-vindo a cidade de ^8B4513Juno^000000!";
 	if(checkversion(0)) {
 		next;
 		while (1) {
-			switch(select("[ Main Facilities ]:[ Merchants & Helpers ]:Remove marks from Mini-Map:Cancel")) {
+			switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar")) {
 			case 1:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Tool Shop ]:[ Forge ]:[ Airport ]:[ Government Building ]:[ Street of Book Stores ]:[ Inn & Pub ]:[ Sage Castle ]:[ Monster Academy ]:[ Library of the Republic ]:[ Weapon & Armor Shop ]:[ Juphero Plaze ]:[ Monster Museum ]:[ Schweicherbil Magic Academy ]:Previous Menu")) {
+					switch(select("[ Loja de Utilidades ]:[ Forja ]:[ Aeroporto ]:[ Prédio do Governo ]:[ Rua das Livrarias ]:[ Pousada & Pub ]:[ Castelo dos Sábios ]:[ Academia dos Monstros ]:[ Biblioteca da República ]:[ Loja de Armas & Armaduras ]:[ Praça de Juperos ]:[ Museu de Monstros ]:[ Academia Mágica de Schweicherbil ]:Menu Anterior")) {
 					case 1:
-						callsub L_Mark,"^FF0000Tool Shop";
+						callsub L_Mark,"^FF0000Loja de Utilidades";
 						viewpoint 1,194,140,0,0xFF0000;
 						next;
 						break;
 					case 2:
-						callsub L_Mark,"^FF4500Forge";
+						callsub L_Mark,"^FF4500Forja";
 						viewpoint 1,120,137,1,0xFF4500;
 						next;
 						break;
 					case 3:
-						callsub L_Mark,"^DAA520Airport";
+						callsub L_Mark,"^DAA520Aeroporto";
 						viewpoint 1,16,261,2,0xDAA520;
 						next;
 						break;
 					case 4:
-						callsub L_Mark,"^008000Government Building";
+						callsub L_Mark,"^008000Prédio do Governo";
 						viewpoint 1,157,317,3,0x008000;
 						next;
 						break;
 					case 5:
-						callsub L_Mark,"^0000FFStreet of Book Stores";
+						callsub L_Mark,"^0000FFRua das Livrarias";
 						viewpoint 1,172,100,4,0x0000FF;
 						next;
 						break;
 					case 6:
-						callsub L_Mark,"^000080Inn & Pub";
+						callsub L_Mark,"^000080Pousada & Pub";
 						viewpoint 1,51,105,5,0x000080;
 						next;
 						break;
 					case 7:
-						callsub L_Mark,"^800080Sage Castle";
+						callsub L_Mark,"^800080Castelo dos Sábios";
 						viewpoint 1,90,318,6,0x800080;
 						next;
 						break;
 					case 8:
-						callsub L_Mark,"^834683Monster Academy";
+						callsub L_Mark,"^834683Academia dos Monstros";
 						viewpoint 1,95,184,7,0x834683;
 						next;
 						break;
 					case 9:
-						callsub L_Mark,"^4B0082Juno Library";
+						callsub L_Mark,"^4B0082Biblioteca de Juno";
 						viewpoint 1,338,203,8,0x4B0082;
 						next;
 						break;
 					case 10:
-						callsub L_Mark,"^008080Weapon & Armor Shop";
+						callsub L_Mark,"^008080Loja de Armas & Armaduras";
 						viewpoint 1,120,137,9,0x008080;
 						next;
 						break;
 					case 11:
-						callsub L_Mark,"^FF1493Juphero Plaza";
+						callsub L_Mark,"^FF1493Praça de Juperos";
 						viewpoint 1,115,157,10,0xFF1493;
 						next;
 						break;
 					case 12:
-						callsub L_Mark,"^DA70D6Monster Museum";
+						callsub L_Mark,"^DA70D6Museu de Monstros";
 						viewpoint 1,278,290,11,0xDA70D6;
 						next;
 						break;
 					case 13:
-						callsub L_Mark,"^CD1039Schweicherbil Magic Academy";
+						callsub L_Mark,"^CD1039Academia Mágica de Schweicherbil";
 						viewpoint 1,323,280,12,0xCD1039;
 						next;
 						break;
@@ -110,16 +109,16 @@ yuno,59,212,4	script	Juno Guide#yuno01	700,{
 			case 2:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Kafra Employees ]:[ Eden Teleport Officer ]:Previous Menu")) {
+					switch(select("[ Funcionárias Kafra ]:[ Oficial de Teleporte do Éden ]:Menu Anterior")) {
 					case 1:
-						callsub L_Mark,"^FA8072Kafra Employees";
+						callsub L_Mark,"^FA8072Funcionárias Kafra";
 						viewpoint 1,152,187,13,0xFA8072;
 						viewpoint 1,277,221,14,0xFA8072;
 						viewpoint 1,327,108,15,0xFA8072;
 						next;
 						break;
 					case 2:
-						callsub L_Mark,"^803232Eden Teleport Officer";
+						callsub L_Mark,"^803232Oficial de Teleporte do Éden";
 						viewpoint 1,144,189,16,0x803232;
 						next;
 						break;
@@ -130,9 +129,7 @@ yuno,59,212,4	script	Juno Guide#yuno01	700,{
 				}
 				break;
 			case 3:
-				mes "[Juno Guide]";
-				mes "Sure, I'll remove all marks from your mini-map.";
-				mes "Is there anything else I can do for you?";
+				mes "[Guia de Juno]"+"\nCerto, removerei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,194,140,0,0xFFFFFF;
 				viewpoint 2,120,137,1,0xFFFFFF;
 				viewpoint 2,16,261,2,0xFFFFFF;
@@ -153,100 +150,62 @@ yuno,59,212,4	script	Juno Guide#yuno01	700,{
 				next;
 				break;
 			case 4:
-				mes "[Juno Guide]";
-				mes "Have fun on your adventures!";
+				mes "[Guia de Juno]"+"\nDivirta-se em suas aventuras!";
 				close;
 			}
 		}
 		end;
 	L_Mark:
-		mes "[Juno Guide]";
-		mes "I will mark the location";
-		mes "of the "+getarg(0)+"^000000";
-		mes "on your mini-map.";
-		mes "Would you like to check any other locations?";
+		mes "[Guia de Juno]"+"\nMarcarei a localização para "+getarg(0)+"^000000\n no seu mini-mapa\nGostaria de checar outras localizações?";
 		return;
 	} else {
 		next;
-		switch(select("Loja de Armas.:Loja de Útilidades.:A Universidade de Juno (Guilda dos Sábios).:A Rua das Livrarias.:A Praça de Jupero.:A Biblioteca da República.:A Escola de Magia de Schbeitser.:O Museu dos Monstros.:Ferreiro.:Aeroporto.:Cancelar.")) {
+		switch(select("Loja de Armas.:Loja de Utilidades.:A Universidade de Juno (Guilda dos Sábios).:A Rua das Livrarias.:A Praça de Jupero.:A Biblioteca da República.:A Escola de Magia de Schbeitser.:O Museu dos Monstros.:Ferreiro.:Aeroporto.:Cancelar.")) {
 		case 1:
 			viewpoint 1,120,138,0,0xFF3355;
-			mes "[Guia de Juno]";
-			mes "^FF3355+^000000 -> Aqui está a Loja de Armamentos.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Loja de Armamentos.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 2:
 			viewpoint 1,193,142,1,0x3355FF;
-			mes "[Guia de Juno]";
-			mes "^3355FF+^000000 -> Aqui está a Loja de Utilidades.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está a Loja de Utilidades.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 3:
 			viewpoint 1,90,318,2,0x33FF55;
-			mes "[Guia de Juno]";
-			mes "^33FF55+^000000 -> Aqui está a Universidade de Juno (O local onde os Magos se tornam Sábios).";
-			mes "O lugar mais procurado de Juno.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^33FF55+^000000 -> Aqui está a Universidade de Juno (O local onde os Magos se tornam Sábios).\nO lugar mais procurado de Juno.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 4:
 			viewpoint 1,257,102,3,0xFF3355;
-			mes "[Guia de Juno]";
-			mes "^FF3355+^000000 -> Aqui está a Rua das Livrarias";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Rua das Livrarias.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 5:
 			viewpoint 1,157,170,4,0x3355FF;
-			mes "[Guia de Juno]";
-			mes "^3355FF+^000000 -> Aqui está a Praça Jupero não tem como perdê-la de vista!";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está a Praça Jupero não tem como perdê-la de vista!\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 6:
 			viewpoint 1,336,204,5,0x33FF55;
-			mes "[Guia de Juno]";
-			mes "^33FF55+^000000 -> Aqui está a Biblioteca da República.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^33FF55+^000000 -> Aqui está a Biblioteca da República.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 7:
 			viewpoint 1,323,281,6,0xFF3355;
-			mes "[Guia de Juno]";
-			mes "^FF3355+^000000 -> Aqui está a Escola de Magia de Schbeitser.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Escola de Magia de Schbeitser.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 8:
 			viewpoint 1,278,288,7,0x3355FF;
-			mes "[Guia de Juno]";
-			mes "^3355FF+^000000 -> Aqui está o Museu dos Monstros.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está o Museu dos Monstros.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 9:
 			viewpoint 1,120,138,8,0xFF3355;
-			mes "[Guia de Juno]";
-			mes "^FF3355+^000000 -> Aqui está o Ferreiro.";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está o Ferreiro.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 10:
 			viewpoint 1,53,214,9,0xFF3355;
-			mes "[Guia de Juno]";
-			mes "^FF3355+^000000 -> Aqui está o Aeroporto de Juno";
-			mes "Tenha um bom dia.";
-			mes "Foi um prazer ajudá-lo.";
+			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está o Aeroporto de Juno\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 11:
-			mes "[Guia de Juno]";
-			mes "Seja bem vindo à Juno!";
-			mes "A capital da sabedoria, a cidade do conhecimento!";
+			mes "[Guia de Juno]"+"\nSeja bem vindo à Juno!\nA capital da sabedoria, a cidade do conhecimento!";
 			close;
 		}
 	}
 }
 
-yuno,153,47,4	duplicatr(Juno Guide#yuno01)	Juno Guide#yuno02	700,{}
+yuno,153,47,4	duplicatr(Guia de Juno#yuno01)	Guia de Juno#yuno02	700,{}
