@@ -8,37 +8,33 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: guia_amatsu.txt                        |
+//   | Nome do Script: amatsu.txt                             |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Amatsu.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
-//   | 1.2 Tradução PT-BR [Protimus]                          |
+//   | 1.2 Tradução PT-BR [Protimus, lututuiBR & Holy]        |
+//   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
-	mes "[Amachang]";
-	mes "Bem-vindo a Amatsu, a cidade dos cidadãos gentis e das belas flores de cerejeiras.";
+amatsu,202,91,3	script	Guia de Amatsu#amatsu	758,{
+	mes "[Amachang]"+"\nBem-vindo a Amatsu, a cidade dos cidadãos gentis e das belas flores de cerejeiras.";
 	next;
-	mes "[Amachang]";
-	mes "Meu nome é Amachang, sou a 13ª Miss Amatsu.";
-	mes "Como uma das minhas funções, eu guiarei-lhe pela cidade.";
-	mes "Se você precisar de algo, é só me dizer.";
+	mes "[Amachang]"+"\nMeu nome é Amachang, sou a 13ª Miss Amatsu.\nComo uma das minhas funções, eu guiarei-lhe pela cidade.\nSe você precisar de algo, é só me dizer.";
 	if(checkversion(0)) {
-		// Renewal
 		while (1) {
 			next;
-			switch(select("[ Kafra Employee ]:[ Bar ]:[ Weapon Dealer ]:[ Tool Dealer ]:[ Amatsu Palace ]:[ Chef Assistant ]:[ Ninja Guild Building ]:[ Sea Captain ]:Remove Marks from Mini-Map:Cancel")) {
+			switch(select("[ Funcionária Kafra ]:[ Bar ]:[ Vendedor de Armas ]:[ Vendedor de Utilidades ]:[ Palácio de Amatsu ]:[ Chefe de Cozinha ]:[ Prédio da Guilda dos Ninjas ]:[ Capitão do Mar ]:Remover indicações do Mini-Mapa:Cancelar")) {
 			case 1:
-				callsub L_Mark,"^0000FFKafra Employee";
+				callsub L_Mark,"^0000FFFuncionária Kafra";
 				viewpoint 1,102,149,0,0x0A82FF;
 				break;
 			case 2:
@@ -46,33 +42,31 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 				viewpoint 1,215,116,1,0xAAFF00;
 				break;
 			case 3:
-				callsub L_Mark,"^008080Weapon Dealer";
+				callsub L_Mark,"^008080Vendedor de Armas";
 				viewpoint 1,129,117,2,0x008080;
 				break;
 			case 4:
-				callsub L_Mark,"^FF1493Tool Dealer";
+				callsub L_Mark,"^FF1493Vendedor de Utilidades";
 				viewpoint 1,97,117,3,0xFF1493;
 				break;
 			case 5:
-				callsub L_Mark,"^8B4513Amatsu Palace";
+				callsub L_Mark,"^8B4513Palácio de Amatsu";
 				viewpoint 1,87,235,4,0x8B4513;
 				break;
 			case 6:
-				callsub L_Mark,"^8A2BE2Chef Assistant";
+				callsub L_Mark,"^8A2BE2Chefe de Cozinha";
 				viewpoint 1,206,150,5,0x8A2BE2;
 				break;
 			case 7:
-				callsub L_Mark,"^4B0082Ninja Guild Building";
+				callsub L_Mark,"^4B0082Prédio da Guilda dos Ninjas";
 				viewpoint 1,148,137,6,0x4B0082;
 				break;
 			case 8:
-				callsub L_Mark,"^00BFFFSea Captain";
+				callsub L_Mark,"^00BFFFCapitão do Mar";
 				viewpoint 1,195,79,7,0x00BFFF;
 				break;
 			case 9:
-				mes "[Amachang]";
-				mes "I'll remove all marks from your mini-map.";
-				mes "Is there anything else I can do for you?";
+				mes "[Amachang]"+"\nRemoverei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,1,1,0,0xFFFFFF;
 				viewpoint 2,1,1,1,0xFFFFFF;
 				viewpoint 2,1,1,2,0xFFFFFF;
@@ -83,82 +77,59 @@ amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 				viewpoint 2,1,1,7,0xFFFFFF;
 				break;
 			case 10:
-				mes "[Amachang]";
-				mes "Enjoy your trip~!!";
+				mes "[Amachang]"+"\nAproveite sua viagem~!!";
 				close;
 			}
 		}
 		end;
 	L_Mark:
-		mes "[Amachang]";
-		mes "The "+getarg(0)+"^000000 is";
-		mes "marked on your mini-map.";
-		mes "Is there anything else I can do for you?";
+		mes "[Amachang]"+"\n"+getarg(0)+"^000000 está marcado no seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
 		return;
 	} else {
 		// pré-Renewal
-		switch(select("Palácio.:Loja de Útilidades.:Loja de Armas.:Bar")) {
+		switch(select("Palácio.:Loja de Utilidades.:Loja de Armas.:Bar")) {
 		next;
 		case 1:
 			viewpoint 1,85,235,0,0xFF3355;
-			mes "[Amachang]";
-     	mes "No mini-mapa, vá em ^FF3355+^000000 para visitar o Palácio.";
-			mes "Aproveite a estadia em Amatsu.";
+			mes "[Amachang]"+"\nNo mini-mapa, vá em ^FF3355+^000000 para visitar o Palácio.\nAproveite sua estadia em Amatsu.";
 			close;
 		case 2:
 			viewpoint 1,96,118,1,0xCE6300;
-			mes "[Amachang]";
-			mes "No mini-mapa, vá em ^FF3355+^000000 para chegar à Loja de Utilidades.";
-			mes "Aproveite a estadia em Amatsu.";
+			mes "[Amachang]"+"\nNo mini-mapa, vá em ^FF3355+^000000 para chegar à Loja de Utilidades.\nAproveite sua estadia em Amatsu.";
 			close;
 		case 3:
 			viewpoint 1,132,117,2,0x55FF33;
-			mes "[Amachang]";
-			mes "No mini-mapa, vá em ^55FF33+^000000 e encontrará a Loja de Armas.";
-			mes "Aproveite a estadia em Amatsu.";
+			mes "[Amachang]"+"\nNo mini-mapa, vá em ^55FF33+^000000 e encontrará a Loja de Armas.\nAproveite sua estadia em Amatsu.";
 			close;
 		case 4:
 			viewpoint 1,217,116,3,0x3355FF;
-			mes "[Amachang]";
-			mes "No mini-mapa, vá em ^3355FF+^000000 e chegará ao Bar.";
-			mes "Aproveite a estadia em Amatsu.";
+			mes "[Amachang]"+"\nNo mini-mapa, vá em ^3355FF+^000000 e chegará ao Bar.\nAproveite sua estadia em Amatsu.";
 			close;
 		}
 	}
 }
 	
-amatsu,251,283,4	script#pre	Guia#2ama	767,{
-	mes "[Guia]";
-	mes "Bem-vindo, turista de outro continente.";
-	mes "Eu sou o Guia de Amatsu, a cidade das belas cerejeiras.";
+amatsu,251,283,4	script#vpo	Guia#2ama	767,{
+	mes "[Guia]"+"\nBem-vindo, turista de outro continente.\nEu sou o Guia de Amatsu, a cidade das belas cerejeiras.";
 	next;
-	mes "[Guia]";
-	mes "O que você está procurando?";
+	mes "[Guia]"+"\nO que você está procurando?";
 	next;
 	switch(select("Palácio:Loja de Utilidades:Loja de Armas:Bar")) {
 	case 1:
 		viewpoint 1,85,235,0,0xFF3355;
-		mes "[Guia]";
-		mes "No mini-mapa, vá para ^FF3355+^000000 para encontrar o Palácio.";
-		mes "Aproveite a estadia em Amatsu.";
+		mes "[Guia]"+"\nNo mini-mapa, vá para ^FF3355+^000000 para encontrar o Palácio.\nAproveite sua estadia em Amatsu.";
 		close;
 	case 2:
 		viewpoint 1,96,118,1,0xCE6300;
-		mes "[Guia]";
-		mes "No mini-mapa, vá em ^FF3355+^000000 para encontrar a Loja de Utilidades.";
-		mes "Aproveite a estadia em Amatsu.";
+		mes "[Guia]"+"\nNo mini-mapa, vá em ^FF3355+^000000 para encontrar a Loja de Utilidades.\nAproveite sua estadia em Amatsu.";
 		close;
 	case 3:
 		viewpoint 1,132,117,2,0x55FF33;
-		mes "[Guia]";
-		mes "No mini-mapa, vá em ^55FF33+^000000 para encontrar a Loja de Armas.";
-		mes "Aproveite a estadia em Amatsu.";
+		mes "[Guia]"+"\nNo mini-mapa, vá em ^55FF33+^000000 para encontrar a Loja de Armas.\nAproveite sua estadia em Amatsu.";
 		close;
 	case 4:
 		viewpoint 1,217,116,3,0x3355FF;
-		mes "[Guia]";
-		mes "No mini-mapa, vá em ^3355FF+^000000 para encontrar o Bar.";
-		mes "Aproveite a estadia em Amatsu.";
+		mes "[Guia]"+"\nNo mini-mapa, vá em ^3355FF+^000000 para encontrar o Bar.\nAproveite sua estadia em Amatsu.";
 		close;
 	}
 }

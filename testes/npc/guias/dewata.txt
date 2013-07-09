@@ -12,66 +12,62 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0/1.0                         |
+//   | Versões eA/rA/brA: 1.0/1.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da ilha de Dewata.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [lututuiBR & Holy]                  |
+//   | 1.2 Formatação nos Diálogos [lututuiBR & Holy]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dewata,202,106,4	script	Dewata Guide#dewata01	535,{
-	mes "[Dewata Guide]";
-	mes "Welcome to ^8B4513Dewata Island^000000,";
-	mes "a place with dazzling waves and charming views it's a great place to relax.";
-	mes "If you have any questions, please ask me.";
+dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
+	mes "[Guia de Dewata]"+"\nBem-vindo a ^8B4513Ilha de Dewata^000000, um lugar com ondas deslumbrantes e vistas encantadores, é um ótimo lugar para relaxar.\nSe tiver alguma dúvida, por favor me pergunte.";
 	next;
-	mes "[Dewata Guide]";
-	mes "Where can I guide you?";
+	mes "[Guia de Dewata]"+"\nPara onde posso guiá-l"+((Sex) ? "o":"a")+"?";
 	while (1) {
 		next;
-		switch(select("[ Kafra Employee ]:[ Weapon Dealer ]:[ Armor Dealer ]:[ Tool Dealer ]:[ Krakatau Gatekeeper ]:[ Lodge Owner ]:[ Alberta Sailor ]:Remove marks from Mini-Map:Cancel")) {
+		switch(select("[ Funcionária Kafra ]:[ Vendedor de Armas ]:[ Vendedor de Armaduras ]:[ Vendedor de Utilidades ]:[ Porteiro de Krakatau ]:[ Proprietário da Hospedaria ]:[ Marinheiro de Alberta ]:Remover indicações do Mini-Mapa:Cancelar")) {
 			case 1:
-				callsub L_Mark,"^0000FFKafra Employee";
+				callsub L_Mark,"^0000FFFuncionária Kafra";
 				viewpoint 1,202,184,0,0x000FFF;
 				break;
 
 			case 2:
-				callsub L_Mark,"^008080Armor Dealer";
+				callsub L_Mark,"^008080Vendedor de Armaduras";
 				viewpoint 1,218,163,1,0x008080;
 				break;
 
 			case 3:
-				callsub L_Mark,"^008080Weapon Dealer";
+				callsub L_Mark,"^008080Vendedor de Armas";
 				viewpoint 1,158,182,2,0x008080;
 				break;
 
 			case 4:
-				callsub L_Mark,"^FF1493Tool Dealer";
+				callsub L_Mark,"^FF1493Vendedor de Utilidades";
 				viewpoint 1,182,164,3,0xFF1493;
 				break;
 
 			case 5:
-				callsub L_Mark,"^FF1493Krakau Gatekeeper";
+				callsub L_Mark,"^FF1493Porteiro de Krakatau";
 				viewpoint 1,232,59,4,0xFF1493;
 				break;
 
 			case 6:
-				callsub L_Mark,"^8A2BE2Lodge Owner";
+				callsub L_Mark,"^8A2BE2Proprietário da Pousada";
 				viewpoint 1,195,235,5,0x8A2BE2;
 				break;
 
 			case 7:
-				callsub L_Mark,"^00BFFFAlberta Sailor";
+				callsub L_Mark,"^00BFFFMarinheiro de Alberta";
 				viewpoint 1,230,52,6,0x00BFFF;
 				break;
 
 			case 8:
-				mes "[Dewata Guide]";
-				mes "I'll remove all marks from your mini-map.";
-				mes "Is there anything else I can do for you?";
+				mes "[Guia de Dewata]"+"\nRemoverei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,202,184,0,0xFFFFFF;
 				viewpoint 2,218,163,1,0xFFFFFF;
 				viewpoint 2,158,182,2,0xFFFFFF;
@@ -82,19 +78,14 @@ dewata,202,106,4	script	Dewata Guide#dewata01	535,{
 				break;
 
 			case 9:
-				mes "[Dewata Guide]";
-				mes "Enjoy your trip!!";
+				mes "[Guia de Dewata]"+"\nAproveite sua viagem!!";
 				close;
 		}
 	}
 
 L_Mark:
-	mes "[Dewata Guide]";
-	mes "The "+getarg(0)+"^000000 is";
-	mes "marked on your mini-map.";
-	mes "Check your mini-map.";
-	mes "Is there anything else I can do for you?";
+	mes "[Guia de Dewata]"+"\n"+getarg(0)+"^000000 está marcado no seu mini-mapa.\nVerifique seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
 	return;
 }
 
-dewata,197,184,4	duplicate(Dewata Guide#dewata01)	Dewata Guide#dewata02	535
+dewata,197,184,4	duplicate(Guia de Dewata#dewata01)	Guia de Dewata#dewata02	535

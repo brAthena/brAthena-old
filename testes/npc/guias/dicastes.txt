@@ -12,80 +12,57 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.0                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de El Dicastes.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy & lututuiBR]                  |
+//   | 1.2 Formatação nos Diálogos [Holy & lututuiBR]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dicastes01,181,191,5	script	Traveler Ichack#info	481,2,2,{
-	mes "[Traveler Ichack]";
-	mes "Oh!! You are a stranger!";
-	mes "I'm Ichack, the first adventurer that arrived here in El Dicastes!";
+dicastes01,181,191,5	script	Viajante Ichack#info	481,2,2,{
+	mes "[Viajante Ichack]"+"\nOh!! Você é "+((Sex) ? "o":"a")+"!\nSou Ichack, o primeiro aventureiro que chegou aqui em El Dicastes!";
 	next;
-	mes "[Traveler Ichack]";
-	mes "There was someone in the expedition team claiming that he was the first, but it WAS me. That's right.";
+	mes "[Viajante Ichack]"+"\nHavia alguém na equipe de expedição alegando que foi o primeiro a chegar aqui, mas fui eu. Certo!?";
 	next;
-	mes "[Traveler Ichack]";
-	mes "That's why I will provide a service to guide adventurers from Rune-Midgard.";
-	mes "What would you like to know?";
+	mes "[Viajante Ichack]"+"\nÉ por isso que eu presto um serviço orientação para aventureiros de Rune-Midgard.\nO que você gostaria de saber?";
 	next;
-	switch(select("Dicastes Diel:Residential Area:Training Room:Factory:Pub:Cat Hand Caravan")) {
+	switch(select("Diel:Residência:Academia de Treino:Mineradora:Bar:Agência Pata de Gat")) {
 	case 1:
-		mes "[Traveler Ichack]";
-		mes "Ah~ That's a beautiful building.";
-		mes "It's said they discuss important things...";
+		mes "[Viajante Ichack]"+"\nAh~ É uma linda construção.\nLá são discutidas coisas muito importantes...";
 		next;
-		mes "[Traveler Ichack]";
-		mes "Please make sure you signed in at the dior, otherwise you'll get in trouble.";
-		mes "Go directly north from here and you can't miss it.";
+		mes "[Viajante Ichack]"+"\nPor favor, certifique-se de estar registrado no Diel, caso contrário você estará em apuros.\nVá diretamente para o norte e lá você encontrará o Diel.";
 		viewpoint 1,351,198,0,0x00FF00;
 		close;
 	case 2:
-		mes "[Traveler Ichack]";
-		mes "The Sapha tribe is so weird. How can they sleep in there?";
+		mes "[Viajante Ichack]"+"\nA tribo Sapha é tão estranha. Como podem dormir lá?";
 		next;
-		mes "[Traveler Ichack]";
-		mes "You don't understand?";
-		mes "You won't believe me until you see it! Go see it for yourself!";
+		mes "[Viajante Ichack]"+"\nVocê não está entendendo?\nVocê não vão acreditar até ver! Vá e veja por si mesmo!";
 		next;
-		mes "[Traveler Ichack]";
-		mes "The residential area is divided into 2 area's.";
-		mes "The lower residential area is around 7 o'clock and, the upper area is around 1 o'clock.";
+		mes "[Viajante Ichack]"+"\nA área residencial é divivida em 2 áreas.\nA área da residência inferior têm como referência o ponteiro 7 do relógio, e a área superior tem como referência o ponteiro 1 do relógio.";
 		viewpoint 1,283,280,1,0x01FF01;
 		viewpoint 1,106,136,2,0x0066FF;
 		close;
 	case 3:
-		mes "[Traveler Ichack]";
-		mes "Because of the dangers here, we need better security..";
-		mes "Have you ever been to the training room? The training guards seem to never sleep!";
+		mes "[Viajante Ichack]"+"\nDevido aos perigos, precisamos de mais segurança...\nVocê já foi para a sala de treinamento? Os guardas parecem que nunca dormem!";
 		viewpoint 1,172,255,3,0xFFCCCC;
 		close;
 	case 4:
-		mes "[Traveler Ichack]";
-		mes "This is one of the most important reasons why they live here.";
-		mes "If you go to factory, you can see the recently refined Bradium.";
+		mes "[Viajante Ichack]"+"\nEsta é uma das razões mais importantes pelas quais eles vivem aqui.\nSe você for para a Mineradora, você poderá ver o Brádium recentemente refinado.";
 		viewpoint 1,256,97,4,0x0066FF;
 		close;
 	case 5:
-		mes "[Traveler Ichack]";
-		mes "Although I arrived here as the first adventurer, the owner of the pub was the first person here.";
-		mes "Bumen Florine's pub is located underground in the lower residential area.";
-		mes "He might have some valuable information for you.";
+		mes "[Viajante Ichack]"+"\nEmbora tenha chegado aqui como o primeiro aventureiro, o dono do Bar foi o primeiro habitante de El Dicastes.\nO bar de Bumen Florine está localizado abaixo da área residencial inferior.\nEle pode ter algumas informações valiosas para você.";
 		viewpoint 1,106,136,5,0xFF3300;
 		close;
 	case 6:
-		mes "[Traveler Ichack]";
-		mes "The cats seems that don't have good relationship with sapha same as us.";
-		mes "Perhaps it's because trading is involved.";
-		mes "Poor cats. They must be shivering from the cold out there.";
+		mes "[Viajante Ichack]"+"\nOs gatos parecem não possuir um bom relacionamento com os Sapha, assim como nós.\nTalvez seja porque uma negociação esteja ocorrendo.\nPobres gatos. Eles devem estar tremendo de frio lá fora.";
 		next;
-		mes "[Traveler Ichack]";
-		mes "You can find their caravan just outside the gates.";
+		mes "[Viajante Ichack]"+"\nVocê pode encontrar a agência do lado externo dos portões.";
 		viewpoint 1,39,199,6,0x9933FF;
 		close;
 	}

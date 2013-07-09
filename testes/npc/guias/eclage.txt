@@ -12,48 +12,39 @@
 //   |--------------------------------------------------------|
 //   | Criado por: rA/brA Dev. Team                           |
 //   |--------------------------------------------------------|
-//   | Versões rA/brA: 1.0/1.0                                |
+//   | Versões rA/brA: 1.0/1.2                                |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Eclage.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy & lututuiBR]                  |
+//   | 1.2 Formatação nos Diálogos [Holy & lututuiBR]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ecl_in01,48,60,4	script	Eclage Guard#obb	447,{
-	mes "[Eclage Guard]";
-	mes "Welcome, Adventurer. This is the plaza of Eclage, a great and sacred tree. How can I help you?";
+ecl_in01,48,60,4	script	Guarda de Eclage#obb	447,{
+	mes "[Guarda de Eclage]"+"\nBem-vindo, aventureiro. Esta é a praça de Eclage, uma grande e ságrada árvore. Possu ajudá-lo?";
 	next;
-	switch(select("Palace:Orb:Store:Prison:Clinic:Residential Area:Finish the conversation")) {
+	switch(select("Palácio:Globo:Armazém:Prisão:Clínica:Área Residencial:Encerrar conversa")) {
 	case 1:
-		mes "[Eclage Guard]";
-		mes "Our great king, courageous generals, and scholars are all staying at the palace.";
-		mes "The palace is located at the top of Eclage. We usually fly there, but I see you don't have wings. Follow the path on your right then. It will lead you to the palace.";
+		mes "[Guarda de Eclage]"+"\nNosso grande rei, generais corajosos e estudiosos estão hospedados no palácio.\nO palácio está situado no topo de Eclage. Costumamos voar para lá, mas percebo que você não possui asas. Siga o caminho a direita. Ele irá levar você até o palácio.";
 		close;
 	case 2:
-		mes "[Eclage Guard]";
-		mes "The Orb behind me is like a symbol of us Laphines.";
-		mes "It's filled with great and mysterious power. We always keep an eye on it and guard it carefully.";
+		mes "[Guarda de Eclage]"+"\nO globo está atrás de mim, ele é como um símbolo para nós os Laphines.\nEle acumula um grande e misterioso poder. Nós sempre o vigiamos e o protegemos com cuidado.";
 		close;
 	case 3:
-		mes "[Eclage Guard]";
-		mes "This is the plaza of Eclage. You'll find everything you need around here.";
+		mes "[Guarda de Eclage]"+"\nEsta é a praça de Eclage. Você pode encontrar tudo o que precisa aqui.";
 		close;
 	case 4:
-		mes "[Eclage Guard]";
-		mes "Prison is a place for criminals. Why would an adventurer like you go there?";
-		mes "Well, it's a little suspicious...but I'll tell you the location. Follow the path on your left. They don't let anyone in though.";
+		mes "[Guarda de Eclage]"+"\nA Prisão é o lugar onde ficam os prisioneiros. Por que um aventureir"+((Sex) ? "o":"a")+" como você quer ir até lá?\nBem, é um pouco suspeito... Mas irei te dizer a localização. Siga o caminho à sua esquerda. Eles não confundem ninguém.";
 		close;
 	case 5:
-		mes "[Eclage Guard]";
-		mes "All your pain and weariness melt away in the arms of nature. Restore your mind and body at Eclage Clinic.";
-		mes "Follow the path on your left.";
+		mes "[Guarda de Eclage]"+"\nToda a sua dor e cansaço serão curados nos braços da natureza.\nSiga o caminho para esquerda.";
 		close;
 	case 6:
-		mes "[Eclage Guard]";
-		mes "Haven't you seen our decorations for Yai? Take a trip outside. You'll see our residential area.";
+		mes "[Guarda de Eclage]"+"\nVocê não viu as nossas decorações ? Faça uma visita. Você verá a nossa área residencial.";
 		close;
 	case 7:
 		close;
