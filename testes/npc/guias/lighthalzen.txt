@@ -37,7 +37,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Hotel ]:[ Banco ]:[ Aeroporto ]:[ Loja de Armas ]:[ Shopping ]:[ Quartel General ]:[ Jewelry Store ]:[ Corp. Eventos Incríveis ]:[ Laboratório de Somatologia ]:[ Alchemist Association ]:Menu Anterior")) {
+				switch(select("[ Hotel ]:[ Banco ]:[ Aeroporto ]:[ Loja de Armas ]:[ Shopping ]:[ Quartel General ]:[ Joalheria ]:[ Corp. Eventos Incríveis ]:[ Laboratório de Somatologia ]:[ Associação de Alquimistas ]:Menu Anterior")) {
 				case 1:
 					callsub L_Mark,"^FF0000Hotel";
 					viewpoint 1,160,217,0,0xFF0000;
@@ -84,7 +84,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 					next;
 					break;
 				case 10:
-					callsub L_Mark,"^0A9696Associação Alquímista";
+					callsub L_Mark,"^0A9696Associação de Alquimistas";
 					viewpoint 1,54,132,9,0x0A9696;
 					next;
 					break;

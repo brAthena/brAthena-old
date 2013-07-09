@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.2                                       |
+//   | Versões brA: 1.3                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias de Mora.                              |
 //   |--------------------------------------------------------|
@@ -57,7 +57,7 @@ mora,25,158,6	script	Guia de Mora#oeste	516,{
 	}
 }
 
-mora,167,76,4	script	Guia de Mora#east	522,{
+mora,167,76,4	script	Guia de Mora#leste	522,{
 	mes "[Raffuh]"+"\nUh...\nEste, este é o Vilarejo de Mora.\nUh... que lugar você desejaria conhecer?";
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
@@ -90,7 +90,7 @@ mora,167,76,4	script	Guia de Mora#east	522,{
 	}
 }
 
-mora,115,138,4	script	Guia de Mora#center	524,{
+mora,115,138,4	script	Guia de Mora#centro	524,{
 	mes "[Raffla]"+"\nLala!\nBem-vindo ao Vilarejo de Mora!\nSe você quiser conhecer o vilarejo, é só falar!";
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair.")) {
@@ -123,7 +123,7 @@ mora,115,138,4	script	Guia de Mora#center	524,{
 	}
 }
 
-mora,72,51,4	script	Guia de Mora#south	518,{
+mora,72,51,4	script	Guia de Mora#sul	518,{
 	mes "[Raffli]"+"\nLali?\nBem-vindo ao vilarejo de Mora.\nSe você precisa saber algo sobre a aldeia, é só me falar.";
 	next;
 	switch(select("[ Pousada ]:[ Residences ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
