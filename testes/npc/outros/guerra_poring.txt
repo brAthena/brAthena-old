@@ -146,7 +146,10 @@ poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 							}
 							mes "A nice " + getitemname(.@Random_Figure) + ".";
 							delitem 7539,50; // Poring_Coin
+							if(!$evento_batalhas_campais)
 							getitem .@Random_Figure,1;
+							else
+							getitem .@Random_Figure,1 * 2;
 							close;
 						}else{
 							mes "Not enough coins.";
@@ -218,7 +221,10 @@ S_PoringVending:
 	if(countitem(7539) >= getarg(1)) {
 		mes "Click~ The item came out of the mouth of the Poring with a rumbling sound.";
 		delitem 7539,getarg(1); // Poring_Coin
+		if(!$evento_batalhas_campais)
 		getitem getarg(0),1;
+		else
+		getitem getarg(0),1 * 2;
 	}else{
 		mes "Not enough coins.";
 	}
@@ -1235,7 +1241,10 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				mes "[Devi]";
 				mes "Goodbye, my human friend.";
 				close2;
+				if(!$evento_batalhas_campais)
 				getitem 7539,3; // Poring_Coin
+				else
+				getitem 7539,3 * 2; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
 			} else {
@@ -1259,7 +1268,10 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				mes "[Devi]";
 				mes "Goodbye, my human friend.";
 				close2;
+				if(!$evento_batalhas_campais)
 				getitem 7539,1; // Poring_Coin
+				else
+				getitem 7539,1 * 2; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
 			} else {
@@ -1310,7 +1322,10 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				mes "[Devi]";
 				mes "Goodbye, my human friend.";
 				close2;
+				if(!$evento_batalhas_campais)
 				getitem 7539,3; // Poring_Coin
+				else
+				getitem 7539,3 * 2; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
 			} else {
@@ -1334,7 +1349,10 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				mes "[Devi]";
 				mes "Goodbye, my human friend.";
 				close2;
+				if(!$evento_batalhas_campais)
 				getitem 7539,1; // Poring_Coin
+				else
+				getitem 7539,1 * 2; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
 			} else {

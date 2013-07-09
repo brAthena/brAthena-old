@@ -388,20 +388,20 @@ bat_c01,51,130,5	script	Oficial do KVM#KVM01A	419,{
 	if( $@KvM01BG_Victory )
 	{
 		if( $@KvM01BG_Victory == Bat_Team )
-		{ // Victory
-			set kvm_point,kvm_point + 5;
+		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";
 			mes "Que a glória do KvM esteja com você.";
-			mes "Você adquiriu os pontos dos vencedores: 5";
+			mes "Você adquiriu os pontos dos vencedores: "+((!$evento_batalhas_campais) ? "5" : "10")+"";
+			set kvm_point,kvm_point + ((!$evento_batalhas_campais) ? 5 : 10);
 		}
 		else
-		{ // 
-			set kvm_point,kvm_point + 1;
+		{
 			mes "[Oficial do KVM]";
 			mes "Eu sinto muito.";
 			mes "Eu te desejo mais sorte na próxima vez.";
-			mes "Você adquiriu os pontos dos perdedores: 1";
+			mes "Você adquiriu os pontos dos perdedores: "+((!$evento_batalhas_campais) ? "1" : "2")+"";
+			set kvm_point,kvm_point + ((!$evento_batalhas_campais) ? 1 : 2);
 		}
 		close2;
 		bg_leave;
@@ -772,15 +772,15 @@ bat_c02,51,130,5	script	Oficial do KVM#KVM02A	419,{
 	if( $@KvM01BG_Victory )
 	{
 		if( $@KvM02BG_Victory == Bat_Team )
-		{ // Victory
-			set kvm_point,kvm_point + 1;
+		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";
 			mes "Que a glória do KvM esteja com você.";
-			mes "Você adquiriu os pontos dos vencedores: 1";
+			mes "Você adquiriu os pontos dos vencedores: "+((!$evento_batalhas_campais) ? "1" : "2")+"";
+			set kvm_point,kvm_point + ((!$evento_batalhas_campais) ? 1 : 2);
 		}
 		else
-		{ // 
+		{
 			mes "[Oficial do KVM]";
 			mes "Eu sinto muito.";
 			mes "Eu te desejo mais sorte na próxima vez.";
@@ -795,7 +795,6 @@ bat_c02,51,130,5	script	Oficial do KVM#KVM02A	419,{
 }
 
 bat_c02,148,53,1	duplicate(Oficial do KVM#KVM02A)	Oficial do KVM#KVM02B	415
-
 
 // KvM 60-80
 //============================================================
@@ -1155,20 +1154,20 @@ bat_c03,51,130,5	script	Oficial do KVM#KVM03A	419,{
 	if( $@KvM01BG_Victory )
 	{
 		if( $@KvM03BG_Victory == Bat_Team )
-		{ // Victory
-			set kvm_point,kvm_point + 2;
+		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";
 			mes "Que a glória do KvM esteja com você.";
-			mes "Você adquiriu os pontos dos vencedores: 2";
+			mes "Você adquiriu os pontos dos vencedores: "+((!$evento_batalhas_campais) ? "2" : "4")+"";
+			set kvm_point,kvm_point + ((!$evento_batalhas_campais) ? 2 : 4);
 		}
 		else
-		{ // 
-			set kvm_point,kvm_point + 1;
+		{
 			mes "[Oficial do KVM]";
 			mes "Eu sinto muito.";
 			mes "Eu te desejo mais sorte na próxima vez.";
-			mes "Você adquiriu os pontos dos perdedores: 1";
+			mes "Você adquiriu os pontos dos perdedores: "+((!$evento_batalhas_campais) ? "1" : "2")+"";
+			set kvm_point,kvm_point + ((!$evento_batalhas_campais) ? 1 : 2);
 		}
 		close2;
 		bg_leave;

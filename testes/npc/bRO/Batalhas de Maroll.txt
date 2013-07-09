@@ -1,0 +1,52 @@
+/*  _____________________________________________________________________________
+   /                                                                             \
+   |                 _           _   _   _                                       |
+   |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  |
+   |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 |
+   |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 |
+   |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_                  |
+   |                                                                             |
+   |                              brAthena Script                                |
+   |-----------------------------------------------------------------------------|
+   | Nome do Script:  Batalhas de Maroll.txt                                     |
+   |-----------------------------------------------------------------------------|
+   | Criado por: brAthena                                                        |
+   |-----------------------------------------------------------------------------|
+   | Versão brA: 1.0                                                             |
+   |-----------------------------------------------------------------------------|
+   | Descrição: A batalha pela supremacia do pequeno reino de Maroll acaba de    |
+   | ficar ainda mais intensa. Como se não bastasse, o conflito entre Angelings  |
+   | e Devilings também atingiu um novo patamar. No fim, quem se dá bem é você,  |
+   | pois para recrutarem mais aventureiros para suas fileiras, as batalhas      |
+   | especiais de PvP prometem o dobro de recompensas!                           |
+   |                                                                             |
+   | Durante o período do evento, ao participar de partidas da Guerra dos Porings|
+   | ou das Batalhas Campais (seja na KVM, Desfiladeiro de Tierra ou Arena de    |
+   | Flavius), você receberá o dobro de recompensas. Assim, será mais fácil      |
+   | juntar Moedas Porings ou Medalhas de Valor e de Bravura para trocá-las pelos|
+   | prêmios especiais destas arenas de combate.                                 |
+   |-----------------------------------------------------------------------------|
+   | Changelog:                                                                  |
+   | 1.0 Script Criado [brAthena]                                                |
+   \_____________________________________________________________________________/ */
+
+-	script	Batalhas de Maroll	-1,{
+  
+  OnInit:
+  
+  setarray .day_start_end[0], 8, 22;        // [ Horários de Início & Término em Dias ].
+  setarray .day_start_end_times[0], 00, 23; // [ Horário de Início & Término em Horas ].
+  end;
+  
+  OnMinute00:
+       if( ((gettime(5) == .day_start_end[0]) && (gettime(3) == .day_start_end_times[0])) ) {
+        announce ( "O Evento Batalhas de Maroll começou e irá até o dia "+.day_start_end[1]+". Aproveite o Evento e ganhe o dobro de recompensas nas Batalhas Campais e na Guerra Poring." ), bc_all;
+        set ( $evento_batalhas_campais, 1 );
+        }
+    
+       else if( ((gettime(5) == .day_start_end[1]) && (gettime(3) == .day_start_end_times[1])) ) {
+        announce ( "O Evento Batalhas de Maroll terminou." ), bc_all;
+        set ( $evento_batalhas_campais, 0 );
+        }
+        end;
+}

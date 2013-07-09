@@ -611,7 +611,10 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 			mes "Vamos comemorar o nosso glorioso triunfo!";
 			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2);  // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Axl Rose]";
@@ -619,7 +622,10 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 			mes "Este é o prêmio por você ter se dedicado ao grande Guillaume Marollo!";
 			mes "Tome esta derrota somente como lição, na próxima vez você irá se sair vitorioso com certeza.";
 			close2;
-			getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 0) ? 1 * 2 : .@medal_gap * 2);  // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	else {
@@ -629,7 +635,10 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 			mes "Este é o prêmio por você ter se dedicado ao grande Guillaume Marollo!";
 			mes "Tome esta derrota somente como lição, na próxima vez você irá se sair vitorioso com certeza.";
 			close2;
-			getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 0) ? 1 * 2 : .@medal_gap * 2);  // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Axl Rose]";
@@ -637,7 +646,10 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 			mes "Vamos comemorar o nosso glorioso triunfo!";
 			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	bg_leave;
@@ -659,7 +671,10 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 			mes "Vamos comemorar a nossa gloriosa vitória!";
 			mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Swandery]";
@@ -667,7 +682,10 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 			mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
 			mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 			close2;
-			getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 0) ? 1 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	else {
@@ -677,7 +695,10 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 			mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
 			mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 			close2;
-			getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 0) ? 1 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 0) ? 1 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Swandery]";
@@ -685,7 +706,10 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 			mes "Vamos comemorar a nossa gloriosa vitória!";
 			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	bg_leave;
@@ -1410,7 +1434,10 @@ bat_a02,53,377,3	script	Vintenar Guillaume#a02_a	419,{
 			mes "Vamos comemorar o nosso glorioso triunfo!";
 			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);	// BF_Badge1
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap);	// Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2 ); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Axl Rose]";
@@ -1418,7 +1445,10 @@ bat_a02,53,377,3	script	Vintenar Guillaume#a02_a	419,{
 			mes "Este é o prêmio por você ter se dedicado ao grande Guillaume Marollo!";
 			mes "Tome esta derrota somente como lição, na próxima vez você irá se sair vitorioso com certeza.";
 			close2;
-			getitem 7828,((.@medal_gap) ? 1 : .@medal_gap);		// BF_Badge1
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap) ? 1 : .@medal_gap);	// Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap) ? 1 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	bg_leave;
@@ -1439,7 +1469,10 @@ bat_a02,45,19,3	script	Vintenar Croix#a02_b	415,{
 			mes "Vamos comemorar a nossa gloriosa vitória!";
 			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 			close2;
-			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); //BF_Badge1
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap > 2) ? 3 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 		else {
 			mes "[Swandery]";
@@ -1447,7 +1480,10 @@ bat_a02,45,19,3	script	Vintenar Croix#a02_b	415,{
 			mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
 			mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 			close2;
-			getitem 7828,((.@medal_gap) ? 1 : .@medal_gap); //BF_Badge1
+			if(!$evento_batalhas_campais)
+				getitem 7828,((.@medal_gap) ? 1 : .@medal_gap); // Emblema de Valor
+			else
+				getitem 7828,((.@medal_gap) ? 1 * 2 : .@medal_gap * 2); // Emblema de Valor [ Premiação Dobrada pelo Evento Batalhas Campais quando Ativo ]
 		}
 	}
 	bg_leave;
