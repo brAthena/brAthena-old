@@ -201,9 +201,9 @@ void skill_chk(uint16 *skill_id)
 #define skill_get2(var,id,lv) { \
 	skill_chk(&id); \
 	if(!id) return 0; \
-	if( lv >= MAX_SKILL_LEVEL && var > 1 ) { \
+	if( lv > MAX_SKILL_LEVEL && var > 1 ) { \
 		int lv2 = lv; lv = skill_db[id].max; \
-		return (var) + (lv2-lv);\
+		return (var) + ((lv2-lv)/2);\
 	} \
 	return var;\
 }
@@ -2914,6 +2914,11 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 				break;
 
 		}
+
+		/* monsters with skill lv higher than MAX_SKILL_LEVEL may get this value beyond the max depending on conditions, we cap to the system's limit */
+		if(dsrc && dsrc->type == BL_MOB && skill_lv > MAX_SKILL_LEVEL && dmg.blewcount > 25)
+			dmg.blewcount = 25;
+
 		//blown-specific handling
 		switch(skill_id) {
 			case LG_OVERBRAND:
@@ -17356,15 +17361,15 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 		if(i == MAX_SKILL_TREE) {
 			ShowError("skill_blockpc_start: '%s' got over '%d' skill cooldowns, no room to save!\n",sd->status.name,MAX_SKILL_TREE);
 		} else {
-			cd->entry[i] = ers_alloc(skill_cd_entry_ers,struct skill_cd_entry);
+			cd->entry[cd->cursor] = ers_alloc(skill_cd_entry_ers,struct skill_cd_entry);
 
-			cd->entry[i]->duration = tick;
+			cd->entry[cd->cursor]->duration = tick;
 #if PACKETVER >= 20120604
-			cd->entry[i]->total = tick;
+			cd->entry[cd->cursor]->total = tick;
 #endif
-			cd->entry[i]->skidx = idx;
-			cd->entry[i]->skill_id = skill_id;
-			cd->entry[i]->started = gettick();
+			cd->entry[cd->cursor]->skidx = idx;
+			cd->entry[cd->cursor]->skill_id = skill_id;
+			cd->entry[cd->cursor]->started = gettick();
 
 			cd->cursor++;
 		}

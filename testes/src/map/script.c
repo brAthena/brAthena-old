@@ -6412,18 +6412,23 @@ BUILDIN_FUNC(makeitem)
 	const char *mapname;
 	struct item item_tmp;
 	struct script_data *data;
+	struct item_data *item_data;
 
 	data=script_getdata(st,2);
 	get_val(st,data);
 	if(data_isstring(data)) {
 		const char *name=conv_str(st,data);
-		struct item_data *item_data = itemdb_searchname(name);
-		if(item_data)
+		if(item_data = itemdb_searchname(name))
 			nameid=item_data->nameid;
 		else
 			nameid=UNKNOWN_ITEM_ID;
-	} else
+	} else {
 		nameid=conv_num(st,data);
+		if(nameid <= 0 || !(item_data = itemdb_exists(nameid))) {
+			ShowError("makeitem: Nonexistant item %d requested.\n", nameid);
+			return 1; //No item created.
+		}
+	}
 
 	amount=script_getnum(st,3);
 	mapname =script_getstr(st,4);
@@ -6438,23 +6443,22 @@ BUILDIN_FUNC(makeitem)
 	} else
 		m=map_mapname2mapid(mapname);
 
-	if(nameid<0) { // ?????_??
-		nameid = -nameid;
-		flag = 1;
+	if(m == -1) {
+		ShowError("makeitem: creating map on unexistent map '%s'!\n", mapname);
+		return 1;
 	}
 
-	if(nameid > 0) {
+
 		memset(&item_tmp,0,sizeof(item_tmp));
 		item_tmp.nameid=nameid;
 		if(!flag)
 			item_tmp.identify=1;
 		else
-			item_tmp.identify=itemdb_isidentified(nameid);
+			item_tmp.identify=itemdb_isidentified2(item_data);
 
-		map_addflooritem(&item_tmp,amount,m,x,y,0,0,0,4);
-	}
+		map_addflooritem(&item_tmp,amount,m,x,y,0,0,0,0);
 
-	return 0;
+		return 0;
 }
 
 
@@ -8688,7 +8692,10 @@ BUILDIN_FUNC(areamonster)
 	if(sd && strcmp(mapn, "this") == 0)
 		m = sd->bl.m;
 	else {
-		m = map_mapname2mapid(mapn);
+		if ((m = map_mapname2mapid(mapn)) == -1)  {
+			ShowWarning("buildin_areamonster: Attempted to spawn monster class %d on non-existing map '%s'\n",class_, mapn);
+			return 1;
+		}
 		if(map[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
 			if((m = instance->mapid2imapid(m, st->instance_id)) < 0) {
 				ShowError("buildin_areamonster: Trying to spawn monster (%d) on instance map (%s) without instance attached.\n", class_, mapn);
@@ -11964,19 +11971,30 @@ BUILDIN_FUNC(playBGMall)
 		int y0 = script_getnum(st,5);
 		int x1 = script_getnum(st,6);
 		int y1 = script_getnum(st,7);
+		int m;
 
-		map_foreachinarea(playBGM_sub, map_mapname2mapid(map), x0, y0, x1, y1, BL_PC, name);
-	} else if(script_hasdata(st,3)) {
-		// entire map
-		const char *map = script_getstr(st,3);
+		if((m = map_mapname2mapid(map)) == -1) {
+			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, map);
+			return 0;
+		}
 
-		map_foreachinmap(playBGM_sub, map_mapname2mapid(map), BL_PC, name);
-	} else {
-		// entire server
+		map_foreachinarea(playBGM_sub, m, x0, y0, x1, y1, BL_PC, name);
+	}
+	else if( script_hasdata(st,3)) {// entire map
+		const char* map = script_getstr(st,3);
+		int m;
+
+		if ((m = map_mapname2mapid(map)) == -1) {
+			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, map);
+			return 0;
+		}
+
+		map_foreachinmap(playBGM_sub, m, BL_PC, name);
+	} else {// entire server
 		map_foreachpc(&playBGM_foreachpc_sub, name);
 	}
 
-	return 0;
+	return true;
 }
 
 /*==========================================
@@ -12023,23 +12041,36 @@ BUILDIN_FUNC(soundeffectall)
 
 	//FIXME: enumerating map squares (map_foreach) is slower than enumerating the list of online players (map_foreachpc?) [ultramage]
 
-	if(!script_hasdata(st,4)) {
-		// area around
+	if(!script_hasdata(st,4)) { // area around
 		clif_soundeffectall(bl, name, type, AREA);
-	} else if(!script_hasdata(st,5)) {
-		// entire map
-		const char *map = script_getstr(st,4);
-		map_foreachinmap(soundeffect_sub, map_mapname2mapid(map), BL_PC, name, type);
-	} else if(script_hasdata(st,8)) {
-		// specified part of map
+	} else {
+		 if(!script_hasdata(st,5)) { // entire map
+			const char *map = script_getstr(st,4);
+			int m;
+
+			if((m = map_mapname2mapid(map)) == -1) {
+				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, map);
+				return 0;
+			}
+
+		map_foreachinmap(soundeffect_sub, m, BL_PC, name, type);
+	} else if(script_hasdata(st,8)) { // specified part of map
 		const char *map = script_getstr(st,4);
 		int x0 = script_getnum(st,5);
 		int y0 = script_getnum(st,6);
 		int x1 = script_getnum(st,7);
 		int y1 = script_getnum(st,8);
-		map_foreachinarea(soundeffect_sub, map_mapname2mapid(map), x0, y0, x1, y1, BL_PC, name, type);
-	} else {
-		ShowError("buildin_soundeffectall: insufficient arguments for specific area broadcast.\n");
+		int m;
+
+			if ((m = map_mapname2mapid(map)) == -1) {
+				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, map);
+				return 0;
+			}
+
+			map_foreachinarea(soundeffect_sub, m, x0, y0, x1, y1, BL_PC, name, type);
+		} else {
+			ShowError("buildin_soundeffectall: insufficient arguments for specific area broadcast.\n");
+		}
 	}
 
 	return 0;
@@ -15560,6 +15591,11 @@ BUILDIN_FUNC(checkcell)
 	int16 y = script_getnum(st,4);
 	cell_chk type = (cell_chk)script_getnum(st,5);
 
+	if(m == -1) {
+		ShowWarning("checkcell: Attempted to run on unexsitent map '%s', type %d, x/y %d,%d\n",script_getstr(st,2),type,x,y);
+		return 0;
+	}
+
 	script_pushint(st, map_getcell(m, x, y, type));
 
 	return 0;
@@ -15581,6 +15617,11 @@ BUILDIN_FUNC(setcell)
 	bool flag = (bool)script_getnum(st,8);
 
 	int x,y;
+
+	if (m == -1) {
+		ShowWarning("setcell: Attempted to run on unexistent map '%s', type %d, x1/y1 - %d,%d | x2/y2 - %d,%d\n",script_getstr(st, 2),type,x1,y1,x2,y2);
+		return 0;
+	}
 
 	if(x1 > x2) swap(x1,x2);
 	if(y1 > y2) swap(y1,y2);
@@ -17163,7 +17204,7 @@ BUILDIN_FUNC(cleanmap)
 
 	map = script_getstr(st, 2);
 	m = map_mapname2mapid(map);
-	if(!m)
+	if (m == -1)
 		return 1;
 
 	if((script_lastdata(st) - 2) < 4) {
