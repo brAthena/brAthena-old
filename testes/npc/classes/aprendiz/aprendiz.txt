@@ -961,7 +961,8 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 		mes "Se você matar Porings, receberá um item chamado 'Jellopy'.";
 		mes "É fácil enfrentar Porings, então se anime.";
 		mes "Tente de novo.";
-		npcskill "AL_HEAL",10,99,60;
+		npcskill "AL_HEAL",11,99,60;
+		percentheal 100,100;
 		close;
 	}
 	mes "[Brade]";
@@ -974,7 +975,8 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 	mes "[Brade]";
 	mes "Tente usar os manuais de classe para encontrar as características das habilidades de cada classe.";
 	mes "Eu vou recuperar o seu HP e SP... Continue firme.";
-	npcskill "AL_HEAL",10,99,60;
+	npcskill "AL_HEAL",11,99,60;
+	percentheal 100,100;
 	close;
 }
 

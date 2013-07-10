@@ -25,9 +25,9 @@
 //   \________________________________________________________/
 
 prt_in,85,99,3	script	Cavaleiro#kabuto	734,{
-			mes "[Essofeit]";
-	if (BaseJob == job_Cavaleiro) {
+	if (BaseJob == Job_Knight) {
 		if (KNGT_SK == 10) {
+			mes "[Essofeit]";
 			mes "Ah, deve ser ótimo";
 			mes "ser um Cavaleiro aventureiro";
 			mes "neste mundo. Você deve ter";

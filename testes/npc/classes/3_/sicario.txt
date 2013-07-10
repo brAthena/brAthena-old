@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.3/1.0                          |
+//   | Versões eA/rA/brA: ??/1.4/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Sicário.             |
 //   |--------------------------------------------------------|
@@ -3060,6 +3060,8 @@ OnTouch:
 	monster "job3_guil03",93,33,"Front Gate Guard",1985,1,"Front Gate Guard#g01::OnMyMobDead";
 	monster "job3_guil03",93,32,"Guard Dog",1866,1,"Front Gate Guard#g01::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 job3_guil03,93,36,3	duplicate(#3rdgc_guard00)	Front Gate Guard#g03	456
 job3_guil03,93,34,3	duplicate(#3rdgc_guard00)	Front Gate Guard#g04	456
@@ -3088,6 +3090,8 @@ OnTouch:
 	monster "job3_guil03",133,51,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
 	monster "job3_guil03",133,50,"Back Gate Guard",1985,1,"Back Gate Guard#g01::OnMyMobDead";
 	monster "job3_guil03",133,49,"Guard Dog",1866,1,"Back Gate Guard#g01::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 job3_guil03,133,53,5	duplicate(#3rdgc_guard00)	Back Gate Guard#g03	456
@@ -3118,6 +3122,8 @@ OnTouch:
 	monster "job3_guil03",117,49,"Interior Guard",1985,1,"Interior Guard#g01::OnMyMobDead";
 	monster "job3_guil03",117,48,"Guard Dog",1866,1,"Interior Guard#g01::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 job3_guil03,117,52,4	duplicate(#3rdgc_guard00)	Interior Guard#g03	456
 job3_guil03,117,50,4	duplicate(#3rdgc_guard00)	Interior Guard#g04	456
@@ -3142,6 +3148,8 @@ OnTouch:
 	monster "job3_guil03",88,43,"Exterior Guard",1985,1,"Exterior Guard#g01::OnMyMobDead";
 	monster "job3_guil03",88,45,"Guard Dog",1866,1,"Exterior Guard#g01::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 
 job3_guil03,88,55,4	script	Exterior Guard#g02	456,5,5,{
@@ -3162,6 +3170,8 @@ OnTouch:
 	monster "job3_guil03",88,55,"Exterior Guard",1985,1,"Exterior Guard#g02::OnMyMobDead";
 	monster "job3_guil03",88,54,"Exterior Guard",1985,1,"Exterior Guard#g02::OnMyMobDead";
 	monster "job3_guil03",88,56,"Guard Dog",1866,1,"Exterior Guard#g02::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 
@@ -3184,6 +3194,8 @@ OnTouch:
 	monster "job3_guil03",88,63,"Exterior Guard",1985,1,"Exterior Guard#g03::OnMyMobDead";
 	monster "job3_guil03",88,65,"Guard Dog",1866,1,"Exterior Guard#g03::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 
 job3_guil03,73,62,4	script	Exterior Guard#g04	456,5,5,{
@@ -3204,6 +3216,8 @@ OnTouch:
 	monster "job3_guil03",73,62,"Exterior Guard",1985,1,"Exterior Guard#g04::OnMyMobDead";
 	monster "job3_guil03",73,61,"Exterior Guard",1985,1,"Exterior Guard#g04::OnMyMobDead";
 	monster "job3_guil03",73,63,"Guard Dog",1866,1,"Exterior Guard#g04::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 
@@ -3226,6 +3240,8 @@ OnTouch:
 	monster "job3_guil03",77,50,"Exterior Guards",1985,1,"Exterior Guard#g05::OnMyMobDead";
 	monster "job3_guil03",77,49,"Guard Dog",1866,1,"Exterior Guard#g05::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 
 job3_guil03,73,34,4	script	Exterior Guard#g06	456,5,5,{
@@ -3246,6 +3262,8 @@ OnTouch:
 	monster "job3_guil03",73,34,"Exterior Guards",1985,1,"Exterior Guard#g06::OnMyMobDead";
 	monster "job3_guil03",73,33,"Exterior guards",1985,1,"Exterior Guard#g06::OnMyMobDead";
 	monster "job3_guil03",73,32,"Guard Dog",1866,1,"Exterior Guard#g06::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 
@@ -3268,6 +3286,8 @@ OnTouch:
 	monster "job3_guil03",104,27,"Dog Trainer's Assistant",1985,1,"Guard Dog#dog01::OnMyMobDead";
 	monster "job3_guil03",98,27,"Guard",1985,1,"Guard Dog#dog01::OnMyMobDead";
 	end;
+OnMyMobDead:
+	end;
 }
 
 job3_guil03,119,27,3	script	Guard Dog#dog02	1866,3,1,{
@@ -3288,6 +3308,8 @@ OnTouch:
 	monster "job3_guil03",126,27,"Dog Trainer",1985,1,"Guard Dog#dog02::OnMyMobDead";
 	monster "job3_guil03",104,27,"Trainer's Assistant",1985,1,"Guard Dog#dog02::OnMyMobDead";
 	monster "job3_guil03",131,27,"Guard",1985,1,"Guard Dog#dog02::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 
@@ -3323,6 +3345,8 @@ OnEnable:
 	end;
 OnReset:
 	killmonster "job3_guil03","#3rdgc_sunchal_nomal::OnMyMobDead";
+	end;
+OnMyMobDead:
 	end;
 }
 

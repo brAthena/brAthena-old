@@ -48,7 +48,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "volte até mim...";
 		close;
 	}
-	if(BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER)){
+	if(BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER|EAJL_THIRD)){
 		mes "Pelas suas roupas,";
 		mes "eu vejo que você é";
 		if(Sex)
@@ -115,8 +115,12 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui é uma humilde recompensa pelo";
 			mes "seu grande esforço. Mas não deixe que os seus talentos o tornem arrogante!";
 			set tu_swordman, 23;
-			getexp 1860,0;
-			getitem 1113, 1;
+			completequest 8228;
+			if (checkversion(3))
+				getexp 186,0;
+			else
+				getexp 1860,0;
+			getitem 1113,1;
 			next;
 			mes "[Shurank]";
 			mes "Isso é tudo que tenho para lhe ensinar sobre sobre as habilidades de Espadachim. Espero ter sido capaz de explicar qualquer coisa que você não sabia sobre sua classe e habilidades.";
@@ -170,7 +174,8 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "Antes de ir, por favor pegue isso.";
 		mes "Eu espero que você faça bom uso dela em seu treinamento e se torne cada vez mais forte e mais forte. Boa sorte lá fora.";
 		set tu_swordman, 23;
-		getitem 1113, 1;
+		completequest 8228;
+		getitem 1113,1;
 		close;
 		break;
 	case 21:
@@ -202,7 +207,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "é um reconhecimento";
 			mes "pelo seu feito.";
 			set tu_swordman, 22;
-			getexp 1860,0;
+			changequest 8227,8228;
+			if (checkversion(3))
+				getexp 186,0;
+			else
+				getexp 1860,0;
 			next;
 			mes "[Shurank]";
 			mes "Da próxima vez, eu vou lhe dizer mais sobre a habilidade Impacto Explosivo.";
@@ -229,7 +238,12 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Vendo a resistência de sua pele, vejo que fui um tolo em perguntar. Bom trabalho~";
 			set tu_swordman, 13;
-			getexp 1260,0;
+			erasequest 8221;
+			setquest 8222;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "[Shurank]";
 			mes "Ah, mais uma vez eu tenho";
@@ -273,6 +287,8 @@ izlude_in,82,163,3	script	Shurank	733,{
 			next;
 			mes "[Shurank]";
 			mes "Uma vez que você já aprendeu a habilidade Vigor, eu não acho que será preciso te explicar mais nada. Você fez bem.";
+			erasequest 8221;
+			setquest 8222;
 			set tu_swordman, 13;
 			next;
 			mes "[Shurank]";
@@ -288,7 +304,12 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Vendo a resistência de sua pele, vejo que fui um tolo em perguntar. Bom trabalho~";
 			set tu_swordman, 13;
-			getexp 1260,0;
+			erasequest 8221;
+			setquest 8222;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "[Shurank]";
 			mes "Ah, mais uma vez, eu tenho";
@@ -328,6 +349,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "se você puder suportar os ataques";
 			mes "de seus inimigos!";
 			set tu_swordman, 11;
+			changequest 8220,8221;
 			close;
 		} else if((@chk_endure > 0) && (@chk_endure < 2)){
 			mes "[Shurank]";
@@ -348,6 +370,8 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Uma vez que você já aprendeu a habilidade Vigor, eu não acho que será preciso te explicar mais nada. Você fez bem.";
 			set tu_swordman, 13;
+			erasequest 8221;
+			setquest 8222;
 			next;
 			mes "[Shurank]";
 			mes "Ah, mais uma vez, eu tenho";
@@ -361,7 +385,12 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Hm. Mas julgando pela resistência de sua pele, suponho que explicar-lhe sobre o Vigor seria uma perca de tempo para você. Você fez bem!";
 			set tu_swordman, 13;
-			getexp 1260,0;
+			erasequest 8221;
+			setquest 8222;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "[Shurank]";
 			mes "Ah, mais uma vez, eu tenho";
@@ -383,7 +412,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
-			getexp 1120,0;
+			if (checkversion(3))
+				getexp 112,0;
+			else
+				getexp 1120,0;
 			next;
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
@@ -397,7 +429,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "para se tornar um excelente Espadachim.";
 			mes "Aqui está uma pequena recompensa...";
 			set tu_swordman, 10;
-			getexp 1260,0;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte a ate mim.";
@@ -447,7 +482,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
-			getexp 1120,0;
+			if (checkversion(3))
+				getexp 112,0;
+			else
+				getexp 1120,0;
 			next;
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
@@ -461,7 +499,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "para se tornar um excelente Espadachim.";
 			mes "Aqui está uma pequena recompensa...";
 			set tu_swordman, 10;
-			getexp 1260,0;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "Da proxima vez que nos falarmos, vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
 			close;
@@ -510,6 +551,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Agora eu peço que você treine o uso de Provoke. Volte";
 			mes "ate mim quando você estiver suficientemente qualificado para o uso de Provoke.";
 			set tu_swordman, 8;
+			changequest 8217,8218;
 			close;
 		} else if((@chk_provoke > 0) && (@chk_provoke < 5)){
 			mes "[Shurank]";
@@ -536,12 +578,17 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Agora eu peço que você treine o uso de Provoke. Volte";
 			mes "ate mim quando você estiver suficientemente qualificado para o uso de Provoke.";
 			set tu_swordman, 9;
+			changequest 8218,8219;
 			close;
 		} else if((@chk_provoke > 4) && (@chk_provoke < 10)){
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
-			getexp 1120,0;
+			changequest 8219,8220;
+			if (checkversion(3))
+				getexp 112,0;
+			else
+				getexp 1120,0;
 			next;
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
@@ -555,7 +602,14 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "para se tornar um excelente Espadachim.";
 			mes "Aqui está uma pequena recompensa...";
 			set tu_swordman, 10;
-			getexp 1260,0;
+			completequest 8218;
+			completequest 8219;
+			completequest 8220;
+			setquest 8221;
+			if (checkversion(3))
+				getexp 126,0;
+			else
+				getexp 1260,0;
 			next;
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
@@ -610,6 +664,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "Embora haja um serviço de teleporte,";
 		mes "recomendo que você viaje a pé. Você não pode tornar-se forte sem testar sua força e praticar suas habilidades!";
 		set tu_swordman, 6;
+		changequest 8215,8216;
 		close;
 		break;
 	case 4:
@@ -646,7 +701,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Ah! que rosto saudável!";
 			mes "Eu vejo que você já domina essa habilidade. Deixe-me dar-lhe uma pequena recompensa pelo seu trabalho duro!";
 			set tu_swordman, 5;
-			getexp 1120,0;
+			if (checkversion(3))
+				getexp 112,0;
+			else
+				getexp 1120,0;
 			next;
 		} else {
 			mes "[Shurank]";
@@ -687,8 +745,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui está um pequeno prêmio em reconhecimento dos seus esforços até agora. mas ainda não relaxe! Você tem um longo caminho a percorrer antes de conquistar";
 			mes "as principais coisas.";
 			set tu_swordman, 4;
-			getexp 970,0;
-			getitem 2503, 1;
+			if (checkversion(3))
+				getexp 97,0;
+			else
+				getexp 970,0;
+			getitem 2503,1;
 			close;
 		} else {
 			mes "[Shurank]";
@@ -723,7 +784,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui está uma pequena recompensa por todo o trabalho duro. Eu espero que você perceba a importância do uso Golpe Fuminante para";
 			mes "para tornar-se mais forte.";
 			set tu_swordman, 3;
-			getexp 830,0;
+			if (checkversion(3))
+				getexp 83,0;
+			else
+				getexp 830,0;
 			close;
 		} else if(@chk_bash == 10){
 			mes "[Shurank]";
@@ -734,8 +798,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui está um pequeno prêmio em reconhecimento dos seus esforços até agora. mas ainda não relaxe! Você tem um longo caminho a percorrer antes de conquistar";
 			mes "as principais coisas.";
 			set tu_swordman, 4;
-			getexp 970,0;
-			getitem 2503, 1;
+			if (checkversion(3))
+				getexp 97,0;
+			else
+				getexp 970,0;
+			getitem 2503,1;
 			close;
 		} else {
 			mes "[Shurank]";
@@ -770,7 +837,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Ainda assim, pelo seu esforço no treinamento, deixe-me lhe dar uma humilde recompensa. Mas lembre-se, ainda temos mais";
 			mes "fundamentos para aprender!";
 			set tu_swordman, 2;
-			getexp 585,0;
+			if (checkversion(3))
+				getexp 58,0;
+			else
+				getexp 580,0;
 			close;
 		} else if((@chk_bash > 4) && (@chk_bash < 10)){
 			mes "[Shurank]";
@@ -795,7 +865,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Por seu esforço e paciência, eu lhe ofereço essa pequena recompensa. Por favor pegue-a e use para se tornar cada vez mais forte...";
 			set tu_swordman, 3;
-			getexp 830,0;
+			setquest 8211;
+			if (checkversion(3))
+				getexp 83,0;
+			else
+				getexp 830,0;
 			next;
 			mes "[Shurank]";
 			mes "Eu acredito que todo Espadachim de verdade deve dominar a habilidade Golpe Fuminante. Quando você dominar essa habilidade, volte até mim.";
@@ -809,8 +883,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui está um pequeno prêmio em reconhecimento dos seus esforços até agora. mas ainda não relaxe! Você tem um longo caminho a percorrer antes de conquistar";
 			mes "as principais coisas.";
 			set tu_swordman, 4;
-			getexp 970,0;
-			getitem 2503, 1;
+			if (checkversion(3))
+				getexp 97,0;
+			else
+				getexp 970,0;
+			getitem 2503,1;
 			close;
 		} else {
 			mes "[Shurank]";
@@ -843,7 +920,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Agora, se você deseja torna-se um Espadachim de verdade, você precisa aprender a habilidade Golpe Fuminante. Não tenha dúvidas quanto a isso: você tem de conhecer esses principios! Tome isso, e vá aprender Golpe Fuminante!";
 			set tu_swordman, 1;
-			getexp 490,0;
+			if (checkversion(3))
+				getexp 49,0;
+			else
+				getexp 490,0;
+			setquest 8211;
 			close;
 		} else if((@chk_bash > 0) && (@chk_bash < 5)){
 			mes "[Shurank]";
@@ -866,7 +947,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Ainda assim, pelo seu esforço no treinamento, deixe-me lhe dar uma humilde recompensa. Mas lembre-se, ainda temos mais";
 			mes "fundamentos para aprender!";
 			set tu_swordman, 2;
-			getexp 585,0;
+			changequest 8211,8212;
+			if (checkversion(3))
+				getexp 58,0;
+			else
+				getexp 580,0;
 			close;
 		} else if((@chk_bash > 4) && (@chk_bash < 10)){
 			mes "[Shurank]";
@@ -888,7 +973,11 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Ainda assim, pelo seu esforço no treinamento, deixe-me lhe dar uma humilde recompensa. Mas lembre-se, ainda temos mais.";
 			mes "dos fundamentos para aprender!";
 			set tu_swordman, 3;
-			getexp 830,0;
+			changequest 8212,8213;
+			if (checkversion(3))
+				getexp 83,0;
+			else
+				getexp 830,0;
 			next;
 			mes "[Shurank]";
 			mes "Mas se você quiser mesmo ser visto por mim como um verdadeiro Espadachim, você deverá dominar Golpe Fuminante!";
@@ -902,8 +991,15 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Aqui está um pequeno prêmio em reconhecimento dos seus esforços até agora. mas ainda não relaxe! Você tem um longo caminho a percorrer antes de conquistar";
 			mes "as principais coisas.";
 			set tu_swordman, 4;
-			getexp 970,0;
-			getitem 2503, 1;
+			completequest 8211;
+			completequest 8212;
+			completequest 8213;
+			setquest 8214;
+			if(checkversion(3))
+				getexp 97,0;
+			else
+				getexp 970,0;
+			getitem 2503,1;
 			close;
 		}
 		break;
@@ -2153,14 +2249,21 @@ if(tu_swordman == 6){
 							mes "[Dequ'ee]";
 							mes "Obrigado por ter o trabalho de vir até aqui. Deixe-me te recompensar com alguns pontos de experiência.";
 							set tu_swordman, 7;
-							getexp 1120,0;
+							changequest 8216,8217;
+							if (checkversion(3))
+								getexp 112,0;
+							else
+								getexp 1120,0;
 							next;
 							mes "[Dequ'ee]";
 							mes "Tome conta";
 							mes "de si mesmo,";
 							mes "corajoso Espadachim.";
 							next;
-							warp "izlude",35,78;
+							if (checkversion(0))
+								warp "izlude",127,100;
+							else
+								warp "izlude",35,78;
 							close;
 							break;
 					}
@@ -2394,6 +2497,7 @@ morocc_in,12,156,3	script	Bankley	97,{
 		mes "^3355FFBankley tinha uma triste expresão em seu rosto. Pela cor do seu rosto e sangue, ele estava naquele estado a pouco tempo.";
 		mes "^3355FFHá uma longa e profunda ferida em seu peito, e ele está apertando com a sua mão direita uma faca coberta de sangue.^000000";
 		set tu_swordman, 20;
+		changequest 8225,8226;
 		close;
 	}
 	mes "[Bankley]";
