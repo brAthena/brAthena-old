@@ -6026,8 +6026,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case ML_DEVOTION:
 		case CR_DEVOTION: {
 				int count, lv;
-				if(!dstsd || (!sd && !mer)) {
-					// Only players can be devoted
+				if(!dstsd || (!sd && !mer) || dstsd->state.monster_ignore) {
+					// Apenas Jogadores podem receber a Redenção, também é restringido o uso da habilidade em Jogadores imunes a Batalhas. 
 					if(sd)
 						clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
 					break;
