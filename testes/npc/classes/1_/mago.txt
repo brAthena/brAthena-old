@@ -479,7 +479,7 @@ pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 	close;
 }
 
-moc_ruins,91,150,0	duplicatv(Dollshoi)	Ponka-Hontas	93
+moc_ruins,91,150,0	duplicatv(Dollshoi)	Ponka-Hontas	93,{}
 
 geffen_in,177,112,4	script#vpo	Estante de Livros	111,{
 	mes "[Livro Guia]"+" Este guia é propriedade da Guilda dos Magos de Geffen.";
@@ -552,7 +552,7 @@ geffen_in,177,112,4	script#vpo	Estante de Livros	111,{
 		mes "5429";
 		next;
 		mes "["+getitemname(1087)+"]";
-		mes "* Catalisador *"
+		mes "* Catalisador *";
 		mes getitemname(730)+" (Provida pela Máquina de mistura)";
 		close;
 	}
