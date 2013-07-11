@@ -29,6 +29,7 @@ struct EQUIPSLOTINFO {
  *
  **/
 enum packet_headers {
+	cart_additem_ackType = 0x12c,
 	sc_notickType = 0x196,
 #if PACKETVER < 20061218
 	additemType = 0xa0,
@@ -479,6 +480,11 @@ struct packet_package_item_announce {
 	char Name[NAME_LENGTH];
 	char unknown;
 	unsigned short BoxItemID;
+} __attribute__((packed));
+
+struct packet_cart_additem_ack {
+	short PacketType;
+	char result;
 } __attribute__((packed));
 
 #pragma pack(pop)

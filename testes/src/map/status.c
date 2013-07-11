@@ -4100,6 +4100,10 @@ void status_calc_bl_(struct block_list *bl, enum scb_flag flag, bool first)
 			clif_updatestatus(sd,SP_HP);
 		if(b_status.sp != status->sp)
 			clif_updatestatus(sd,SP_SP);
+#if VERSION == 1
+		if(b_status.equip_atk != status->equip_atk)
+			clif_updatestatus(sd,SP_ATK2);
+#endif
 	} else if(bl->type == BL_HOM) {
 		TBL_HOM *hd = BL_CAST(BL_HOM, bl);
 		if(hd->master && memcmp(&b_status, status, sizeof(struct status_data)) != 0)

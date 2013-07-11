@@ -1691,6 +1691,9 @@ struct status_data {
 	         size, race;
 
 	struct weapon_atk rhw, lhw; //Right Hand/Left Hand Weapon.
+#if VERSION == 1
+	int equip_atk;
+#endif
 };
 
 //Additional regen data that only players have.

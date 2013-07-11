@@ -2084,8 +2084,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_BASE_ATK:
 			if(sd->state.lr_flag != 2) {
 #if VERSION == 1
-				sd->bonus.eatk += val;
-				clif_updatestatus(sd,SP_ATK2);
+				status->equip_atk += val;
 #else
 				bonus = status->batk + val;
 				status->batk = cap_value(bonus, 0, USHRT_MAX);
@@ -4375,7 +4374,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 	if(!itemdb_cancartstore(item_data, pc_get_group_level(sd))) {
 		// Check item trade restrictions  [Skotlex]
 		clif_displaymessage(sd->fd, msg_txt(264));
-		return 1;
+		return 1; /* TODO: there is no official response to this? */
 	}
 
 	if((w = data->weight*amount) + sd->cart_weight > sd->cart_weight_max)
@@ -4392,7 +4391,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 	if(i < MAX_CART) {
 		// item already in cart, stack it
 		if(amount > MAX_AMOUNT - sd->status.cart[i].amount || (data->stack.cart && amount > data->stack.amount - sd->status.cart[i].amount))
-			return 1; // no room
+			return 2; // no room
 
 		sd->status.cart[i].amount+=amount;
 		clif_cart_additem(sd,i,amount,0);
@@ -4400,7 +4399,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 		// item not stackable or not present, add it
 		ARR_FIND(0, MAX_CART, i, sd->status.cart[i].nameid == 0);
 		if(i == MAX_CART)
-			return 1; // no room
+			return 2; // no room
 
 		memcpy(&sd->status.cart[i],item_data,sizeof(sd->status.cart[0]));
 		sd->status.cart[i].amount=amount;
@@ -4408,7 +4407,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 		clif_cart_additem(sd,i,amount,0);
 	}
 	sd->status.cart[i].favorite = 0;/* clear */
-	log_pick_pc(sd, log_type, amount, &sd->status.cart[i],sd->inventory_data[i]);
+	log_pick_pc(sd, log_type, amount, &sd->status.cart[i],data);
 
 	sd->cart_weight += w;
 	clif_updatestatus(sd,SP_CARTINFO);
@@ -4424,16 +4423,16 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
  *------------------------------------------*/
 int pc_cart_delitem(struct map_session_data *sd,int n,int amount,int type,e_log_pick_type log_type)
 {
+	struct item_data * data;
 	nullpo_retr(1, sd);
 
-	if(sd->status.cart[n].nameid==0 ||
-	   sd->status.cart[n].amount<amount)
+	if(sd->status.cart[n].nameid == 0 || sd->status.cart[n].amount < amount || !(data = itemdb_exists(sd->status.cart[n].nameid)))
 		return 1;
 
-	log_pick_pc(sd, log_type, -amount, &sd->status.cart[n],sd->inventory_data[n]);
+	log_pick_pc(sd, log_type, -amount, &sd->status.cart[n],data);
 
 	sd->status.cart[n].amount -= amount;
-	sd->cart_weight -= itemdb_weight(sd->status.cart[n].nameid)*amount ;
+	sd->cart_weight -= data->weight*amount;
 	if(sd->status.cart[n].amount <= 0) {
 		memset(&sd->status.cart[n],0,sizeof(sd->status.cart[0]));
 		sd->cart_num--;
@@ -4455,6 +4454,7 @@ int pc_cart_delitem(struct map_session_data *sd,int n,int amount,int type,e_log_
 int pc_putitemtocart(struct map_session_data *sd,int idx,int amount)
 {
 	struct item *item_data;
+	int flag;
 
 	nullpo_ret(sd);
 
@@ -4466,10 +4466,10 @@ int pc_putitemtocart(struct map_session_data *sd,int idx,int amount)
 	if(item_data->nameid == 0 || amount < 1 || item_data->amount < amount || sd->state.vending)
 		return 1;
 
-	if(pc_cart_additem(sd,item_data,amount,LOG_TYPE_NONE) == 0)
+	if((flag = pc_cart_additem(sd,item_data,amount,LOG_TYPE_NONE)) == 0)
 		return pc_delitem(sd,idx,amount,0,5,LOG_TYPE_NONE);
 
-	return 1;
+	return flag;
 }
 
 /*==========================================
@@ -4511,11 +4511,11 @@ int pc_getitemfromcart(struct map_session_data *sd,int idx,int amount)
 
 	if(item_data->nameid==0 || amount < 1 || item_data->amount<amount || sd->state.vending)
 		return 1;
+
 	if((flag = pc_additem(sd,item_data,amount,LOG_TYPE_NONE)) == 0)
 		return pc_cart_delitem(sd,idx,amount,0,LOG_TYPE_NONE);
 
-	clif_additem(sd,0,0,flag);
-	return 1;
+	return flag;
 }
 
 /*==========================================
@@ -4553,6 +4553,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 	struct status_data *sd_status, *md_status;
 	struct mob_data *md;
 	struct item tmp_item;
+	struct item_data *data = NULL;
 
 	if(!sd || !bl || bl->type!=BL_MOB)
 		return 0;
@@ -4584,7 +4585,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 	// Try dropping one item, in the order from first to last possible slot.
 	// Droprate is affected by the skill success rate.
 	for(i = 0; i < MAX_STEAL_DROP; i++)
-		if(md->db->dropitem[i].nameid > 0 && itemdb_exists(md->db->dropitem[i].nameid) && rnd() % 10000 < md->db->dropitem[i].p * rate/100.)
+		if(md->db->dropitem[i].nameid > 0 && (data = itemdb_exists(md->db->dropitem[i].nameid)) && rnd() % 10000 < md->db->dropitem[i].p * rate/100. )
 			break;
 	if(i == MAX_STEAL_DROP)
 		return 0;
@@ -4593,7 +4594,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 	memset(&tmp_item,0,sizeof(tmp_item));
 	tmp_item.nameid = itemid;
 	tmp_item.amount = 1;
-	tmp_item.identify = itemdb_isidentified(itemid);
+	tmp_item.identify = itemdb_isidentified2(data);
 	if(battle_config.mob_drop_identified)
 		tmp_item.identify = 1;
 	flag = pc_additem(sd,&tmp_item,1,LOG_TYPE_PICKDROP_PLAYER);
@@ -4610,14 +4611,12 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 		party_foreachsamemap(pc_show_steal,sd,AREA_SIZE,sd,tmp_item.nameid);
 
 	//Logs items, Stolen from mobs [Lupus]
-	log_pick_mob(md, LOG_TYPE_STEAL, -1, &tmp_item,sd->inventory_data[i]);
+	log_pick_mob(md, LOG_TYPE_STEAL, -1, &tmp_item,data);
 
 	//A Rare Steal Global Announce by Lupus
 	if(md->db->dropitem[i].p<=battle_config.rare_drop_announce) {
-		struct item_data *i_data;
 		char message[128];
-		i_data = itemdb_search(itemid);
-		sprintf(message, msg_txt(542), (sd->status.name != NULL)?sd->status.name :"GM", md->db->jname, i_data->jname, (float)md->db->dropitem[i].p/100);
+		sprintf(message, msg_txt(542), (sd->status.name != NULL)?sd->status.name :"GM", md->db->jname, data->jname, (float)md->db->dropitem[i].p/100);
 		//MSG: "'%s' stole %s's %s (chance: %0.02f%%)"
 		intif_broadcast(message,strlen(message)+1,0);
 	}

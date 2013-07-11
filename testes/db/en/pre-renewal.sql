@@ -816,6 +816,7 @@ REPLACE INTO `const_db` VALUES('Eff_Blind','8',0);
 REPLACE INTO `const_db` VALUES('Eff_Bleeding','9',0);
 REPLACE INTO `const_db` VALUES('Eff_DPoison','10',0);
 REPLACE INTO `const_db` VALUES('Eff_Fear','11',0);
+REPLACE INTO `const_db` VALUES('Eff_Burning','12',0);
 REPLACE INTO `const_db` VALUES('Ele_Neutral','0',0);
 REPLACE INTO `const_db` VALUES('Ele_Water','1',0);
 REPLACE INTO `const_db` VALUES('Ele_Earth','2',0);
