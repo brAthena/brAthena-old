@@ -9969,7 +9969,7 @@ int pc_readdb(void)
 			ShowWarning("Class %s (%d) does not has a job exp table.\n", job_name(i), i);
 	}
 	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp"DBPATH"");
-
+	pc_read_skill_tree();
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
 	sv_readsqldb(get_database_name(54), NULL, 4, -1, &pc_readdb_levelpenalty);
 	for(k=1; k < 3; k++) {  // fill in the blanks
