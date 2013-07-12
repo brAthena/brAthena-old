@@ -3628,12 +3628,12 @@ ACMD_FUNC(reload)
 
 	switch(option) {
 		case 0: itemdb_reload(); break;
-		case 1: mob_reload(); read_petdb(); merc_reload(); 
+		case 1: mob_reload(); read_petdb(); merc_reload();
 		#if VERSION == 1
 		reload_elementaldb();
 		#endif
 		break;
-		case 2: skill_reload(); merc_skill_reload(); 
+		case 2: skill_reload(); merc_skill_reload(); pc_read_skill_tree();
 		#if VERSION == 1
 		reload_elemental_skilldb();
 		#endif

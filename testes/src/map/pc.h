@@ -964,6 +964,7 @@ extern struct fame_list taekwon_fame_list[MAX_FAME_LIST];
 int pc_readdb(void);
 int do_init_pc(void);
 void do_final_pc(void);
+void pc_read_skill_tree(void);
 
 enum {ADDITEM_EXIST,ADDITEM_NEW,ADDITEM_OVERAMOUNT};
 

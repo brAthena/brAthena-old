@@ -9703,7 +9703,9 @@ void pc_read_skill_tree(void) {
 		{ "Kagerou", JOB_KAGEROU },
 		{ "Oboro", JOB_OBORO },
 	};
-	
+
+	memset(skill_tree,0,sizeof(skill_tree));
+
 	if (conf_read_file(&skill_tree_conf, config_filename)) {
 		ShowError("can't read %s\n", config_filename);
 		return;
@@ -9865,7 +9867,6 @@ static bool pc_readdb_levelpenalty(char *fields[], int columns, int current)
 /*==========================================
  * pc DB reading.
  * exp.txt        - required experience values
- * skill_tree.txt - skill tree for every class
  * attr_fix.txt   - elemental adjustment table
  *------------------------------------------*/
 int pc_readdb(void)
@@ -9969,9 +9970,6 @@ int pc_readdb(void)
 	}
 	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp"DBPATH"");
 
-	// Reset and read skilltree
-	memset(skill_tree,0,sizeof(skill_tree));
-	pc_read_skill_tree();
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
 	sv_readsqldb(get_database_name(54), NULL, 4, -1, &pc_readdb_levelpenalty);
 	for(k=1; k < 3; k++) {  // fill in the blanks
