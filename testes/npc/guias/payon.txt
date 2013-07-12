@@ -27,7 +27,9 @@
 
 payon,163,64,3	script#re	Guia#01payon	708,{
 	cutin "pay_soldier",2;
-	mes "[Guia de Payon]"+"\nBem-vindo a ^8B4513Payon^000000, o Vilarejo da Montanha.\nVocê deseja conhecer a cidade?";
+	mes "[Guia de Payon]";
+	mes "Bem-vindo a ^8B4513Payon^000000, o Vilarejo da Montanha.";
+	mes "Você deseja conhecer a cidade?";
 	next;
 	while (1) {
 		switch(select("[ Principais Lugares ]:[ Mercadores & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
@@ -36,7 +38,9 @@ payon,163,64,3	script#re	Guia#01payon	708,{
 			while (.@loop) {
 				switch(select("[ Vilarejo dos Arqueiros ]:[ Loja de Utilidades ]:[ Loja de Armas & Armaduras ]:[ Hotel & Taverna ]:[ Palácio Central ]:[ Palácio da Corte ]:[ Cozinha Real ]:Menu Anterior")) {
 				case 1:
-					mes "[Guia de Payon]"+"\nO ^B9062FVilarejo dos Arqueiros^000000 é onde reside a Associação de Arqueiros.\nPor favor, utilize o portão ao norte para entrar no vilarejo.\nGostaria de verificar outras localizações?";
+					mes "[Guia de Payon]";
+					mes "O ^B9062FVilarejo dos Arqueiros^000000 é onde reside a Associação de Arqueiros.";
+					mes "Por favor, utilize o portão ao norte para entrar no vilarejo. Gostaria de verificar outras localizações?";
 					viewpoint 1,227,328,0,0xFF0000;
 					next;
 					break;
@@ -107,17 +111,23 @@ payon,163,64,3	script#re	Guia#01payon	708,{
 					next;
 					break;
 				case 6:
-					mes "[Guia de Payon]"+"\n^B9062FSeiyablem^000000 é um técnico que pode adicionar ^0000FFslots^000000 em armas e armaduras.\nGostaria de verificar outras localizações?";
+					mes "[Guia de Payon]";
+					mes "^B9062FSeiyablem^000000 é um técnico que pode adicionar ^0000FFslots^000000 em armas e armaduras.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,140,151,13,0xFF0000;
 					next;
 					break;
 				case 7:
-					mes "[Guia de Payon]"+"\n^0000FFLeablem^000000 é um técnico que pode adicionar ^0000FFslots^000000 em armas e armaduras.\nGostaria de verificar outras localizações?";
+					mes "[Guia de Payon]";
+					mes "^0000FFLeablem^000000 é um técnico que pode adicionar ^0000FFslots^000000 em armas e armaduras.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,236,199,14,0x0A82FF;
 					next;
 					break;
 				case 8:
-					mes "[Guia de Payon]"+"\n^FF5400Jade^000000 pode trocar diferentes tipos de ^FF5400Gemas^000000.\nGostaria de verificar outras localizações?";
+					mes "[Guia de Payon]";
+					mes "^FF5400Jade^000000 pode trocar diferentes tipos de ^FF5400Gemas^000000.";
+					mes "Gostaria de verificar outras localizações?";
 					viewpoint 1,173,238,15,0xFFB400;
 					next;
 					break;
@@ -138,7 +148,9 @@ payon,163,64,3	script#re	Guia#01payon	708,{
 			}
 			break;
 		case 3:
-			mes "[Guia de Payon]"+"\nClaro, irei remover todos os pontos marcados de seu mini-mapa.\nHá mais algo que eu possa fazer por você?";
+			mes "[Guia de Payon]";
+			mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
+			mes "Há mais algo que eu possa fazer por você?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -160,7 +172,8 @@ payon,163,64,3	script#re	Guia#01payon	708,{
 			next;
 			break;
 		case 4:
-			mes "[Guia de Payon]"+"\nAproveite sua estadia.";
+			mes "[Guia de Payon]";
+			mes "Aproveite sua estadia.";
 			close;
 			cutin "pay_soldier",255;
 			end;
@@ -168,7 +181,9 @@ payon,163,64,3	script#re	Guia#01payon	708,{
 	}
 	end;
 L_Mark:
-	mes "[Guia de Payon]"+"\nDeixe-me marcar para você a localização para "+getarg(0)+"^000000 em seu mini-mapa.\nGostaria de verificar outras localizações?";
+	mes "[Guia de Payon]";
+	mes "Deixe-me marcar para você a localização para "+getarg(0)+"^000000 em seu mini-mapa.";
+	mes "Gostaria de verificar outras localizações?";
 	return;
 }
 
@@ -178,48 +193,66 @@ payon,233,324,4	duplicatr(Guia#01payon)	Guia#04payon	708
 
 pay_arche,86,33,4	script#re	Guia#05payon	708,{
 	cutin "pay_soldier",2;
-	mes "[Guia de Payon]"+"\nBem-Vindo ao  ^8B4513Vilarejo dos Arqueiros^000000, um vilarejo de Payon.\nVocê precisa de ajuda para navegar pelo vilarejo?";
+	mes "[Guia de Payon]";
+	mes "Bem-Vindo ao  ^8B4513Vilarejo dos Arqueiros^000000, um vilarejo de Payon.";
+	mes "Você precisa de ajuda para navegar pelo vilarejo?";
 	next;
 	set .@str$,"Gostaria de verificar outras localizações?";
 	while (1) {
 		switch(select("[ Caverna de Payon ]:[ Guilda dos Arqueiros ]:[ Loja de Utilidades ]:[ Funcionária Kafra ]:[ Mercenary Guildsman ]:[ Alchemist Guildsman ]:[ Eden Teleport Officer ]:Remove Marks from Mini-Map:Cancel")) {
 		case 1:
-			mes "[Guia de Payon]"+"\nDeixe-me marcar para você a ^B9062FCaverna de Payon^000000 no seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Deixe-me marcar para você a ^B9062FCaverna de Payon^000000 no seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,38,131,0,0xFF0000;
 			next;
 			break;
 		case 2:
-			mes "[Guia de Payon]"+"\nA ^0000FFGuilda dos Arqueiros^000000 é onde você pode mudar de classe para Arqueiro.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "A ^0000FFGuilda dos Arqueiros^000000 é onde você pode mudar de classe para Arqueiro.";
+			mes .@str$;
 			viewpoint 1,143,164,1,0x0A82FF;
 			next;
 			break;
 		case 3:
-			mes "[Guia de Payon]"+"\nDeixe-me marcar a localização da ^FF5400Loja de Utilidades^000000 no seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Deixe-me marcar a localização da ^FF5400Loja de Utilidades^000000 no seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,72,156,2,0xFFB400;
 			next;
 			break;
 		case 4:
-			mes "[Guia de Payon]"+"\nDeixe-me marcar para você a localização da ^006400Funcionária Kafra^000000 em seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Deixe-me marcar para você a localização da ^006400Funcionária Kafra^000000 em seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,55,123,3,0xAAFF00;
 			next;
 			break;
 		case 5:
-			mes "[Guia de Payon]"+"\nDeixe-me marcar a localização do ^7F3300Locador de Mercenários^000000 e do ^7F3300Artigos para Mercenários^000000 no seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Deixe-me marcar a localização do ^7F3300Locador de Mercenários^000000 e do ^7F3300Artigos para Mercenários^000000 no seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,101,166,4,0xD2691E;
 			next;
 			break;
 		case 6:
-			mes "[Guia de Payon]"+"\nDeixe-me marcar a localização do ^800080Alquimista da Guilda^000000 no seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Deixe-me marcar a localização do ^800080Alquimista da Guilda^000000 no seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,127,113,5,0xDA70D6;
 			next;
 			break;
 		case 7:
-			mes "[Guia de Payon]"+"\nO ^0000FFOficial de Teleporte do Éden^000000 está atualmente dentro da Guilda dos Arqueiros.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "O ^0000FFOficial de Teleporte do Éden^000000 está atualmente dentro da Guilda dos Arqueiros.";
+			mes .@str$;
 			viewpoint 1,143,164,6,0x0A82FF;
 			next;
 			break;
 		case 8:
-			mes "[Guia de Payon]"+"\nCerto, removerei todas as marcações do seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Payon]";
+			mes "Certo, removerei todas as marcações do seu mini-mapa.";
+			mes .@str$;
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -230,7 +263,8 @@ pay_arche,86,33,4	script#re	Guia#05payon	708,{
 			next;
 			break;
 		case 9:
-			mes "[Guia de Payon]"+"\nAproveite sua estadia.";
+			mes "[Guia de Payon]";
+			mes "Aproveite sua estadia.";
 			close2;
 			cutin "pay_soldier",255;
 			end;
@@ -240,13 +274,18 @@ pay_arche,86,33,4	script#re	Guia#05payon	708,{
 
 payon,162,67,4	script#pre	Guia#pay	708,{
 	cutin "pay_soldier",2;
-	mes "[Guia de Payon]"+"\nBem-vindo à Payon, a cidade das montanhas.\nNós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.\nSe esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
+	mes "[Guia de Payon]";
+	mes "Bem-vindo à Payon, a cidade das montanhas.";
+	mes "Nós estamos aqui para ajudar os visitantes da cidade.";
+	mes "Se você tem alguma dúvida, consulte-nos.";
+	mes "Se esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
 		switch(select("Indicações.:Limpar indicações do mini-mapa.:Tutorial.:Cancelar")) {
 		case 1:
-			mes "[Guia de Payon]"+"\nPor favor, selecione uma das opções.";
+			mes "[Guia de Payon]";
+			mes "Por favor, selecione uma das opções.";
 			if (.@compass_check == 0) {
 				mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 				next;
@@ -258,52 +297,65 @@ payon,162,67,4	script#pre	Guia#pay	708,{
 				else next;
 				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Utilidades.:Estalagem.:Palácio Central.:A Imperatriz.:Anexo do Palácio.:Cozinha Real.:Forja:Cancelar")) {
 				case 1:
-					mes "[Guia de Payon]"+"\nA Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.\nPara chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
+					mes "[Guia de Payon]";
+					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros.";
+					mes "Ela se encontra ao Norte da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
 					if (.@compass_check)
 						viewpoint 1,227,328,2,0xFF0000;
 					break;
 				case 2:
-					mes "[Guia de Payon]"+"\nA 'Loja de Armas' se encontra ao noroeste da cidade.";
+					mes "[Guia de Payon]";
+					mes "A 'Loja de Armas' se encontra ao noroeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,139,159,3,0xFF00FF;
 					break;
 				case 3:
-					mes "[Guia de Payon]"+"\nA 'Loja de Ferramentas' se encontra ao noroeste da Vila dos Arqueiros. Para chegar na Vila dos Arqueiros, saia pela saída nordeste da cidade.";
+					mes "[Guia de Payon]";
+					mes "A 'Loja de Ferramentas' se encontra ao noroeste da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia pela saída nordeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,144,85,4,0xFF00FF;
 					break;
 				case 4:
-					mes "[Guia de Payon]"+"\nA 'Estalagem' se encontra a leste do centro da cidade.";
+					mes "[Guia de Payon]";
+					mes "A 'Estalagem' se encontra a leste do centro da cidade.";
 					if (.@compass_check)
 						viewpoint 1,220,117,5,0xFF00FF;
 					break;
 				case 5:
-					mes "[Guia de Payon]"+"\nO 'Palácio Central' se encontra ao norte do centro da cidade.";
+					mes "[Guia de Payon]";
+					mes "O 'Palácio Central' se encontra ao norte do centro da cidade.";
 					if (.@compass_check)
 						viewpoint 1,155,245,6,0x00FF00;
 					break;
 				case 6:
-					mes "[Guia de Payon]"+"\nA Imperatriz pode ser encontrada a noroeste da cidade.";
+					mes "[Guia de Payon]";
+					mes "A Imperatriz pode ser encontrada a noroeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,107,324,7,0x00FF00;
 					break;
 				case 7:
-					mes "[Guia de Payon]"+"\nO Anexo do Palácio pode ser encontrada na parte ocidental de Payon.";
+					mes "[Guia de Payon]";
+					mes "O Anexo do Palácio pode ser encontrada na parte ocidental de Payon.";
 					if (.@compass_check)
 						viewpoint 1,130,204,8,0x00FF00;
 					break;
 				case 8:
-					mes "[Guia de Payon]"+"\nA Cozinha Real está localizada perto da extremidade norte de Payon.";
+					mes "[Guia de Payon]";
+					mes "A Cozinha Real está localizada perto da extremidade norte de Payon.";
 					if (.@compass_check)
 						viewpoint 1,154,325,9,0x00FF00;
 					break;
 				case 9:
-					mes "[Guia de Payon]"+"\nA Forja está situada próxima ao centro de Payon.";
+					mes "[Guia de Payon]";
+					mes "A Forja está situada próxima ao centro de Payon.";
 					if (.@compass_check)
 						viewpoint 1,126,169,10,0xFFFF00;
 					break;
 				case 10:
-					mes "[Guia de Payon]"+"\nPor favor, me peça para ''Limpar indicações do mini-mapa'' se você não quiser mais ter as indicações exibidas no seu mini-mapa.";
+					mes "[Guia de Payon]";
+					mes "Por favor, me peça para ''Limpar indicações do mini-mapa'' se você não quiser mais ter as indicações exibidas no seu mini-mapa.";
 					set .@loop2,0;
 					break;
 				}
@@ -322,14 +374,20 @@ payon,162,67,4	script#pre	Guia#pay	708,{
 			set .@compass_check,0;
 			break;
 		case 3:
-			mes "[Guia de Payon]"+"\nAvanços na magia e na tecnologia nos permitiram atualizar nosso sistema de informações, permitindo-nos marcar localizações no seu mini-mapa, para uma navegação mais fácil.";
+			mes "[Guia de Payon]";
+			mes "Avanços na magia e na tecnologia nos permitiram atualizar nosso sistema de informações, permitindo-nos marcar localizações no seu mini-mapa, para uma navegação mais fácil.";
 			next;
-			mes "[Guia de Payon]"+"\nSeu mini-mapa está localizado no canto superior direito da tela. Se você não puder vê-lo, clique nas teclas Ctrl + Tab ou clique no botão ''Mapa'' na sua Janela de Informações Básicas.";
+			mes "[Guia de Payon]";
+			mes "Seu mini-mapa está localizado no canto superior direito da tela.";
+			mes "Se você não puder vê-lo, clique nas teclas Ctrl + Tab ou clique no botão ''Mapa'' na sua Janela de Informações Básicas.";
 			next;
-			mes "[Guia de Payon]"+"\nNo seu mini-mapa, clique nos símbolos ''+'' e ''-'' para aumentar e diminuir o zoom do seu mini-mapa. Nós esperamos que você aproveite sua viagem aqui em Payon.";
+			mes "[Guia de Payon]";
+			mes "No seu mini-mapa, clique nos símbolos ''+'' e ''-'' para aumentar e diminuir o zoom do seu mini-mapa.";
+			mes "Nós esperamos que você aproveite sua viagem aqui em Payon.";
 			break;
 		case 4:
-			mes "[Guia de Payon]"+"\nFique seguro em suas viagens, bravo aventureiro.";
+			mes "[Guia de Payon]";
+			mes "Fique seguro em suas viagens, bravo aventureiro.";
 			close2;
 			set .@loop1,0;
 			break;
@@ -341,13 +399,17 @@ payon,162,67,4	script#pre	Guia#pay	708,{
 
 pay_arche,85,30,2	script#pre	Guia#2pay	708,{
 	cutin "pay_soldier",2;
-	mes "[Guia de Payon]"+"\nBem-vindo à Payon, a cidade das montanhas.\nNós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.\nSe esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
+	mes "[Guia de Payon]";
+	mes "Bem-vindo à Payon, a cidade das montanhas.";
+	mes "Nós estamos aqui para ajudar os visitantes da cidade.";
+	mes "Se você tem alguma dúvida, consulte-nos.";
+	mes "Se esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
 		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar.")) {
 		case 1:
-			mes "[Guia de Payon]"+"\nPor favor, selecione uma das opções.";
+			mes "[Guia de Payon]"+" Por favor, selecione uma das opções.";
 			if (.@compass_check == 0) {
 				mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 				next;
@@ -359,22 +421,29 @@ pay_arche,85,30,2	script#pre	Guia#2pay	708,{
 				else next;
 				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Ferramentas.:Caverna de Payon:Cancelar")) {
 				case 1:
-					mes "[Guia de Payon]"+"\nA guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.\nPara chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
+					mes "[Guia de Payon]";
+					mes "A guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros.";
+					mes "Ela se encontra ao Norte da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
 					if (.@compass_check)
 						viewpoint 1,144,164,0,0xFFFF00;
 					break;
 				case 2:
-					mes "[Guia de Payon]"+"\nA 'Loja de Armas' se encontra ao noroeste da cidade.";
+					mes "[Guia de Payon]";
+					mes "A 'Loja de Armas' se encontra ao noroeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,71,156,1,0xFFFF00;
 					break;
 				case 3:
-					mes "[Guia de Payon]"+"\nA 'Caverna de Payon' se encontra a noroeste da Vila dos Arqueiros. Para chegar na Vila dos Arqueiros, saia pela saida nordeste da cidade.";
+					mes "[Guia de Payon]";
+					mes "A 'Caverna de Payon' se encontra a noroeste da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia pela saida nordeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,34,132,2,0xFFFFFF;
 					break;
 				case 4:
-					mes "[Guia de Payon]"+"\nSe você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
+					mes "[Guia de Payon]";
+					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
 					set @loop2,0;
 					break;
 				}
@@ -387,12 +456,18 @@ pay_arche,85,30,2	script#pre	Guia#2pay	708,{
 			set .@compass_check,0;
 			break;
 		case 3:
-			mes "[Guia de Payon]"+"\nNós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.\nAssim você tem a garantia das melhores indicações possiveis.";
+			mes "[Guia de Payon]";
+			mes "Nós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possiveis.";
 			next;
-			mes "[Guia de Payon]"+"\nAs indicações que lhe daremos podem ser marcadas no seu mini-mapa.\nPara visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.\nControle o seu 'zoom' no mini-mapa por meio dos símbolos '+' e '-'.";
+			mes "[Guia de Payon]";
+			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";
+			mes "Para visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.";
+			mes "Controle o seu 'zoom' no mini-mapa por meio dos símbolos '+' e '-'.";
 			break;
 		case 4:
-			mes "[Guia de Payon]"+"\nEspero que você tenha uma jornada segura e aproveite sua estadia.";
+			mes "[Guia de Payon]";
+			mes "Espero que você tenha uma jornada segura e aproveite sua estadia.";
 			close2;
 			set .@loop1,0;
 			break;

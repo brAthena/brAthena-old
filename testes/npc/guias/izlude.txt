@@ -27,7 +27,9 @@
 
 izlude,129,175,4	script#re	Guia#01izlude	105,{
 	cutin "prt_soldier",2;
-	mes "[Guia de Izlude]"+"\nBem-vindo a ^8B4513Izlude^000000, a cidade-satélite de Prontera.\nVocê precisa de ajuda para navegar pela cidade?";
+	mes "[Guia de Izlude]";
+	mes "Bem-vindo a ^8B4513Izlude^000000, a cidade-satélite de Prontera.";
+	mes "Você precisa de ajuda para navegar pela cidade?";
 	next;
 	while (1) {
 		switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar")) {
@@ -36,37 +38,55 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 			while (.@loop) {
 				switch(select("[ Marina ]:[ AeroMarina ]:[ Arena ]:[ Loja de Utilidades ]:[ Loja de Armas & Armaduras ]:[ Guilda dos Espadachins ]:[ Associação dos Espadachins ]:Menu Anterior")) {
 				case 1:
-					mes "[Guia de Izlude]"+"\nVocê pode usar a ^B9062FMarina^000000 a nordeste para ir para ^8B4513Alberta^000000 ou para a ^8B4513Ilha Byalan^000000.\nTenha cuidado com os ^8B4513Calabouços de Izlude^000000 na Ilha Byalan desde que ela é cheia de monstros terríveis.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Você pode usar a ^B9062FMarina^000000 a nordeste para ir para ^8B4513Alberta^000000 ou para a ^8B4513Ilha Byalan^000000.";
+					mes "Tenha cuidado com os ^8B4513Calabouços de Izlude^000000 na Ilha Byalan desde que ela é cheia de monstros terríveis.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,197,205,0,0xFF0000;
 					next;
 					break;
 				case 2:
-					mes "[Guia de Izlude]"+"\nO ^0000FFAeroplano Internacional^000000 a o sudeste vai para ^8B4513Juno^000000 e ^8B4513Rachel^000000.\nDeixe-me marcar sua localização no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "O ^0000FFAeroplano Internacional^000000 a o sudeste vai para ^8B4513Juno^000000 e ^8B4513Rachel^000000.";
+					mes "Deixe-me marcar sua localização no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,204,75,1,0x0A82FF;
 					next;
 					break;
 				case 3:
-					mes "[Guia de Izlude]"+"\nA ^FF5400Arena^000000 no norte é um local perfeito para tesar suas habilidades de combate.\nDeixe-me marcar sua localização no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "A ^FF5400Arena^000000 no norte é um local perfeito para tesar suas habilidades de combate.";
+					mes "Deixe-me marcar sua localização no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,128,255,2,0xFF5400;
 					next;
 					break;
 				case 4:
-					mes "[Guia de Izlude]"+"\nDeixe-me marcar a localização da ^006400Loja de Utilidades^000000 no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Deixe-me marcar a localização da ^006400Loja de Utilidades^000000 no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,160,125,3,0xAAFF00;
 					next;
 					break;
 				case 5:
-					mes "[Guia de Izlude]"+"\nDeixe-me marcar a localização da ^7F3300Loja de Armas & Armaduras^000000 no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Deixe-me marcar a localização da ^7F3300Loja de Armas & Armaduras^000000 no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,109,182,4,0xD2691E;
 					next;
 					break;
 				case 6:
-					mes "[Guia de Izlude]"+"\nA Guilda dos Espadachins é onde você pode ^800080mudar de classe para Espadachim.^000000\nDeixe-me marcar sua localização no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "A Guilda dos Espadachins é onde você pode ^800080mudar de classe para Espadachim.^000000";
+					mes "Deixe-me marcar sua localização no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,52,172,5,0xDA70D6;
 					next;
 					break;
 				case 7:
-					mes "[Guia de Izlude]"+"\nDeixe-me marcar a localização da ^B9062FAssociação dos Espadachins^000000 no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Deixe-me marcar a localização da ^B9062FAssociação dos Espadachins^000000 no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,212,161,6,0xFF0000;
 					next;
 					break;
@@ -81,27 +101,39 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 			while (.@loop) {
 				switch(select("[ Oficial de Teleporte do Éden ]:[ Funcionária Kafra ]:[ Ajudante de Recém-Casados ]:[ Mercador de Balas ]:[ Guilda dos Assistentes ]:Menu Anterior")) {
 				case 1:
-					mes "[Guia de Izlude]"+"\nO ^0000FFOficial de Teleporte do Éden^000000 está atualmente dentro da Guilda dos Espadachins.\nDeixe-me marcar sua localização no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "O ^0000FFOficial de Teleporte do Éden^000000 está atualmente dentro da Guilda dos Espadachins.";
+					mes "Deixe-me marcar sua localização no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,131,148,7,0x0A82FF;
 					next;
 					break;
 				case 2:
-					mes "[Guia de Izlude]"+"\nDeixe-me marcar a localização da ^FF5400Funcionária Kafra^000000 no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Deixe-me marcar a localização da ^FF5400Funcionária Kafra^000000 no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,128,148,8,0xFF5400;
 					next;
 					break;
 				case 3:
-					mes "[Guia de Izlude]"+"\nSe você gostaria de estar em Lua de Mel em ^8B4513Jawaii^000000, o paraíso dos recém-casados, por favor, fale com ^B9062FAjudante de Recém-Casados^000000.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Se você gostaria de estar em Lua de Mel em ^8B4513Jawaii^000000, o paraíso dos recém-casados, por favor, fale com ^B9062FAjudante de Recém-Casados^000000.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,180,224,9,0xFF0000;
 					next;
 					break;
 				case 4:
-					mes "[Guia de Izlude]"+"\nO ^7F3300Mercador de Balas^000000 para ^7F3300Justiceiros^000000 está localizado a leste.\nDeixe-me marcar sua localização no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "O ^7F3300Mercador de Balas^000000 para ^7F3300Justiceiros^000000 está localizado a leste.";
+					mes "Deixe-me marcar sua localização no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,158,130,10,0xD2691E;
 					next;
 					break;
 				case 5:
-					mes "[Guia de Izlude]"+"Deixe-me marcar a localização do ^0000FFLocador de Mercenários^000000 e do ^0000FFArtigos para Mercenários^000000 no seu mini-mapa.\nGostaria de verificar quaisquer outros locais?";
+					mes "[Guia de Izlude]";
+					mes "Deixe-me marcar a localização do ^0000FFLocador de Mercenários^000000 e do ^0000FFArtigos para Mercenários^000000 no seu mini-mapa.";
+					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,56,169,11,0xDA70D6;
 					next;
 					break;
@@ -112,7 +144,9 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 			}
 			break;
 		case 3:
-			mes "[Guia de Izlude]"+"\nCerto, removerei todas as indicações do seu mini-mapa\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Guia de Izlude]";
+			mes "Certo, removerei todas as indicações do seu mini-mapa.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
 			viewpoint 2,1,1,0,0xFFFF00;
 			viewpoint 2,1,1,1,0x000000;
 			viewpoint 2,1,1,2,0xFF0000;
@@ -128,7 +162,8 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 			next;
 			break;
 		case 4:
-			mes "[Guia de Izlude]"+"\nAproveite sua estadia\nAdeus~!";
+			mes "[Guia de Izlude]";
+			mes "Aproveite sua estadia Adeus~!";
 			close2;
 			cutin "prt_soldier",255;
 			end;
@@ -141,13 +176,17 @@ izlude,120,206,4	duplicatr(Guia#01izlude)	Guia#04izlude	105,{}
 
 izlude,121,87,6	script#vpo	Guia#iz	105,{
 	cutin "prt_soldier",2;
-	mes "[Guia de Izlude]"+"\nBem-vindo a Izlude, a cidade-satélite de Prontera.\nNós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";
+	mes "[Guia de Izlude]";
+	mes "Bem-vindo a Izlude, a cidade-satélite de Prontera.";
+	mes "Nós estamos aqui para ajudar os visitantes da cidade.";
+	mes "Se você tem alguma dúvida, consulte-nos.";
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
 		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar")) {
 		case 1:
-			mes "[Guia de Izlude]"+"\nPor favor, selecione uma das opções.";
+			mes "[Guia de Izlude]";
+			mes "Por favor, selecione uma das opções.";
 			if (.@compass_check == 0) {
 				mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 				next;
@@ -160,37 +199,46 @@ izlude,121,87,6	script#vpo	Guia#iz	105,{
 				
 				switch(select("^FF0000Associação dos Espadachins^000000.:Sede dos Espadachins.:Arena.:Marina de Izlude.:Loja de Armas.:Loja de Ferramentas.:Cancelar.")) {
 				case 1:
-					mes "[Guia de Izlude]"+"\nA Associação se encontra na ilha do extremo oeste.";
+					mes "[Guia de Izlude]";
+					mes "A Associação se encontra na ilha do extremo oeste.";
 					if (.@compass_check)
 						viewpoint 1,52,140,0,0xFF0000;
 					break;
 				case 2:
-					mes "[Guia de Izlude]"+"\nA Sede se encontra na ilha do extremo leste.";
+					mes "[Guia de Izlude]";
+					mes "A Sede se encontra na ilha do extremo leste.";
 					if (.@compass_check)
 						viewpoint 1,214,130,1,0x00FF00;
 					break;
 				case 3:
-					mes "[Guia de Izlude]"+"\nA Arena se encontra no extremo norte de Izlude.\nPorém ela ainda não está funcionando.";
+					mes "[Guia de Izlude]";
+					mes "A Arena se encontra no extremo norte de Izlude.";
+					mes "Porém ela ainda não está funcionando.";
 					if (.@compass_check)
 						viewpoint 1,128,225,2,0x00FF00;
 					break;
 				case 4:
-					mes "[Guia de Izlude]"+"\nDa Marina é possível ir até Alberta ou a ilha de Byalan, nosso calabouço.\nEla se localiza ao nordeste.";
+					mes "[Guia de Izlude]";
+					mes "Da Marina é possível ir até Alberta ou a ilha de Byalan, nosso calabouço.";
+					mes "Ela se localiza ao nordeste.";
 					if (.@compass_check)
 						viewpoint 1,200,180,3,0xFF0000;
 					break;
 				case 5:
-					mes "[Guia de Izlude]"+"\nVocê pode facilmente encontrar a Loja de Armas a noroeste da cidade.";
+					mes "[Guia de Izlude]";
+					mes "Você pode facilmente encontrar a Loja de Armas a noroeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,111,149,4,0xFF00FF;
 					break;
 				case 6:
-					mes "[Guia de Izlude]"+"\nA Loja de Utilidades não deve ser difícil de encontrar na parte nordeste da cidade.";
+					mes "[Guia de Izlude]";
+					mes "A Loja de Utilidades não deve ser difícil de encontrar na parte nordeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,148,148,5,0xFF00FF;
 					break;
 				case 7:
-					mes "[Guia de Izlude]"+"\nSe você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
+					mes "[Guia de Izlude]";
+					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
 					set .@loop2,0;
 					break;
 				}
@@ -206,12 +254,18 @@ izlude,121,87,6	script#vpo	Guia#iz	105,{
 			set .@compass_check,0;
 			break;
 		case 3:
-			mes "[Guia de Izlude]"+"\nNós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.\nAssim você tem a garantia das melhores indicações possíveis.";
+			mes "[Guia de Izlude]";
+			mes "Nós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possíveis.";
 			next;
-			mes "[Guia de Izlude]"+"\nAs indicações que lhe daremos podem ser marcadas no seu mini-mapa.\nPara visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.\nControle o seu 'zoom' no mini-mapa por meio dos símbolos '+' e '-'.";
+			mes "[Guia de Izlude]";
+			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";
+			mes "Para visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.";
+			mes "Controle o seu 'zoom' no mini-mapa por meio dos símbolos '+' e '-'.";
 			break;
 		case 4:
-			mes "[Guia de Izlude]"+"\nEspero que você tenha uma jornada segura e aproveite sua estadia.";
+			mes "[Guia de Izlude]";
+			mes "Espero que você tenha uma jornada segura e aproveite sua estadia.";
 			close2;
 			set .@loop1,0;
 			break;

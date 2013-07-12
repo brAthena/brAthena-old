@@ -25,9 +25,12 @@
 //   \________________________________________________________/
 
 dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
-	mes "[Guia de Dewata]"+"\nBem-vindo a ^8B4513Ilha de Dewata^000000, um lugar com ondas deslumbrantes e vistas encantadores, é um ótimo lugar para relaxar.\nSe tiver alguma dúvida, por favor me pergunte.";
+	mes "[Guia de Dewata]";
+	mes "Bem-vindo a ^8B4513Ilha de Dewata^000000, um lugar com ondas deslumbrantes e vistas encantadores, é um ótimo lugar para relaxar.";
+	mes "Se tiver alguma dúvida, por favor me pergunte.";
 	next;
-	mes "[Guia de Dewata]"+"\nPara onde posso guiá-l"+((Sex) ? "o":"a")+"?";
+	mes "[Guia de Dewata]";
+	mes "Para onde posso guiá-l"+((Sex) ? "o":"a")+"?";
 	while (1) {
 		next;
 		switch(select("[ Funcionária Kafra ]:[ Vendedor de Armas ]:[ Vendedor de Armaduras ]:[ Vendedor de Utilidades ]:[ Porteiro de Krakatau ]:[ Proprietário da Hospedaria ]:[ Marinheiro de Alberta ]:Remover indicações do Mini-Mapa:Cancelar")) {
@@ -67,7 +70,9 @@ dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
 				break;
 
 			case 8:
-				mes "[Guia de Dewata]"+"\nRemoverei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Guia de Dewata]";
+				mes "Removerei todas as indicações do seu mini-mapa.";
+				mes "Há mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,202,184,0,0xFFFFFF;
 				viewpoint 2,218,163,1,0xFFFFFF;
 				viewpoint 2,158,182,2,0xFFFFFF;
@@ -78,13 +83,17 @@ dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
 				break;
 
 			case 9:
-				mes "[Guia de Dewata]"+"\nAproveite sua viagem!!";
+				mes "[Guia de Dewata]";
+				mes "Aproveite sua viagem!!";
 				close;
 		}
 	}
 
 L_Mark:
-	mes "[Guia de Dewata]"+"\n"+getarg(0)+"^000000 está marcado no seu mini-mapa.\nVerifique seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+	mes "[Guia de Dewata]";
+	mes getarg(0)+"^000000 está marcado no seu mini-mapa.";
+	mes "Verifique seu mini-mapa.";
+	mes "Há mais alguma coisa que eu possa fazer por você?";
 	return;
 }
 

@@ -26,7 +26,9 @@
 //   \________________________________________________________/
 
 yuno,59,212,4	script	Guia de Juno#yuno01	700,{
-	mes "[Guia de Juno]"+"\nUm lugar que tem a visão do futuro, e lhe dá forma, no presente.\nBem-vindo a cidade de ^8B4513Juno^000000!";
+	mes "[Guia de Juno]";
+	mes "Um lugar que tem a visão do futuro, e lhe dá forma, no presente.";
+	mes "Bem-vindo a cidade de ^8B4513Juno^000000!";
 	if(checkversion(0)) {
 		next;
 		while (1) {
@@ -129,7 +131,9 @@ yuno,59,212,4	script	Guia de Juno#yuno01	700,{
 				}
 				break;
 			case 3:
-				mes "[Guia de Juno]"+"\nCerto, removerei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Guia de Juno]";
+				mes "Certo, removerei todas as indicações do seu mini-mapa.";
+				mes "Há mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,194,140,0,0xFFFFFF;
 				viewpoint 2,120,137,1,0xFFFFFF;
 				viewpoint 2,16,261,2,0xFFFFFF;
@@ -150,59 +154,95 @@ yuno,59,212,4	script	Guia de Juno#yuno01	700,{
 				next;
 				break;
 			case 4:
-				mes "[Guia de Juno]"+"\nDivirta-se em suas aventuras!";
+				mes "[Guia de Juno]";
+				mes "Divirta-se em suas aventuras!";
 				close;
 			}
 		}
 		end;
 	L_Mark:
-		mes "[Guia de Juno]"+"\nMarcarei a localização para "+getarg(0)+"^000000\n no seu mini-mapa\nGostaria de checar outras localizações?";
+		mes "[Guia de Juno]";
+		mes "Marcarei a localização para "+getarg(0)+"^000000  no seu mini-mapa.";
+		mes "Gostaria de checar outras localizações?";
 		return;
 	} else {
 		next;
 		switch(select("Loja de Armas.:Loja de Utilidades.:A Universidade de Juno (Guilda dos Sábios).:A Rua das Livrarias.:A Praça de Jupero.:A Biblioteca da República.:A Escola de Magia de Schbeitser.:O Museu dos Monstros.:Ferreiro.:Aeroporto.:Cancelar.")) {
 		case 1:
 			viewpoint 1,120,138,0,0xFF3355;
-			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Loja de Armamentos.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^FF3355+^000000 -> Aqui está a Loja de Armamentos.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 2:
 			viewpoint 1,193,142,1,0x3355FF;
-			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está a Loja de Utilidades.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^3355FF+^000000 -> Aqui está a Loja de Utilidades.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 3:
 			viewpoint 1,90,318,2,0x33FF55;
-			mes "[Guia de Juno]"+"\n^33FF55+^000000 -> Aqui está a Universidade de Juno (O local onde os Magos se tornam Sábios).\nO lugar mais procurado de Juno.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^33FF55+^000000 -> Aqui está a Universidade de Juno (O local onde os Magos se tornam Sábios).";
+			mes "O lugar mais procurado de Juno.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 4:
 			viewpoint 1,257,102,3,0xFF3355;
-			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Rua das Livrarias.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^FF3355+^000000 -> Aqui está a Rua das Livrarias.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 5:
 			viewpoint 1,157,170,4,0x3355FF;
-			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está a Praça Jupero não tem como perdê-la de vista!\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^3355FF+^000000 -> Aqui está a Praça Jupero";
+			mes "Não tem como perdê-la de vista!.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 6:
 			viewpoint 1,336,204,5,0x33FF55;
-			mes "[Guia de Juno]"+"\n^33FF55+^000000 -> Aqui está a Biblioteca da República.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^33FF55+^000000 -> Aqui está a Biblioteca da República.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 7:
 			viewpoint 1,323,281,6,0xFF3355;
-			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está a Escola de Magia de Schbeitser.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^FF3355+^000000 -> Aqui está a Escola de Magia de Schbeitser.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 8:
 			viewpoint 1,278,288,7,0x3355FF;
-			mes "[Guia de Juno]"+"\n^3355FF+^000000 -> Aqui está o Museu dos Monstros.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^3355FF+^000000 -> Aqui está o Museu dos Monstros.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 9:
 			viewpoint 1,120,138,8,0xFF3355;
-			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está o Ferreiro.\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^FF3355+^000000 -> Aqui está o Ferreiro.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 10:
 			viewpoint 1,53,214,9,0xFF3355;
-			mes "[Guia de Juno]"+"\n^FF3355+^000000 -> Aqui está o Aeroporto de Juno\nTenha um bom dia.\nFoi um prazer ajudá-l"+((Sex) ? "o":"a");
+			mes "[Guia de Juno]";
+			mes "^FF3355+^000000 -> Aqui está o Aeroporto de Juno.";
+			mes "Tenha um bom dia.";
+			mes "Foi um prazer ajudá-l"+((Sex) ? "o":"a");
 			close;
 		case 11:
-			mes "[Guia de Juno]"+"\nSeja bem vindo à Juno!\nA capital da sabedoria, a cidade do conhecimento!";
+			mes "[Guia de Juno]";
+			mes "Seja bem vindo à Juno! A capital da sabedoria, a cidade do conhecimento!";
 			close;
 		}
 	}

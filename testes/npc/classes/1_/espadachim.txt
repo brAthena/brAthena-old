@@ -32,7 +32,8 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "Isso... Não pode ser... Você renasceu, não foi?";
 			next;
 			mes "[Chefe Espadachim]";
-			mes "Saiba que está se entregando ao caminho dos Espadachins! Uma vez que você se acostumou a brandir uma espada, você nunca poderá voltar atrás!!";
+			mes "Saiba que está se entregando ao caminho dos Espadachins!";
+			mes "Uma vez que você se acostumou a brandir uma espada, você nunca poderá voltar atrás!!";
 			next;
 			mes "[Chefe Espadachim]";
 			if (getskilllv("NV_BASIC") < 9) {
@@ -50,13 +51,15 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			skill 145,1,0;
 			skill 146,1,0;
 			mes "[Chefe Espadachim]";
-			mes "Hum... Você parece um Espadachim bem experiente. Ainda assim, eu tenho certeza que você deve treinar para melhorar suas habilidades e ganhar força!";
+			mes "Hum... Você parece um Espadachim bem experiente.";
+			mes "Ainda assim, eu tenho certeza que você deve treinar para melhorar suas habilidades e ganhar força!";
 			close;
 		}
 		mes "Hum...? Você é um guerreiro renascido, não é?";
 		next;
 		mes "[Chefe Espadachim]";
-		mes "Humm... Parece que ser um Espadachim não é parte do seu destino. Me desculpe, mas não há nada que possa fazer por você.";
+		mes "Humm... Parece que ser um Espadachim não é parte do seu destino.";
+		mes "Me desculpe, mas não há nada que possa fazer por você.";
 		close;
 	}
   if( !checkversion(0) ) {
@@ -69,7 +72,8 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "Hahahaha! Você deve estar de brincadeira! Você já é um Espadachim!";
 			close;
 		} else if (BaseJob != Job_Novice) {
-			mes "Hahaha! Vejamos... eu recuso sua oferta em nome da Associação dos Espadachins. Você já pertence a outra classe, não é?";
+			mes "Hahaha! Vejamos... eu recuso sua oferta em nome da Associação dos Espadachins.";
+			mes "Você já pertence a outra classe, não é?";
 			close;
 		}
 		if (job_sword_q == 0) {
@@ -95,7 +99,8 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 				next;
 			} else {
 				mes "[Chefe Espadachim]";
-				mes "Fique à vontade para me procurar quando quiser. Tudo o que resta para você fazer é cumprir com as exigências que estabelecemos. Boa sorte, meu jovem.";
+				mes "Fique à vontade para me procurar quando quiser.";
+				mes "Tudo o que resta para você fazer é cumprir com as exigências que estabelecemos. Boa sorte, meu jovem.";
 				close;
 			}
 		}
@@ -106,29 +111,35 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "Verifique os requisitos novamente e aprenda as habilidades.";
 			close;
 		} else if (job_sword_q <= 3) {
-			mes "Você aprendeu habilidades o suficiente mas ainda não fez o teste. Se você não passar no teste, seu desejo de se tornar um Espadachim ficará fora de seu alcance.";
+			mes "Você aprendeu habilidades o suficiente mas ainda não fez o teste.";
+			mes "Se você não passar no teste, seu desejo de se tornar um Espadachim ficará fora de seu alcance.";
 			next;
 			mes "[Chefe Espadachim]";
 			mes "Você pode fazer o teste na sala ao lado Mesmo que a porta pareça bloqueada por aquele homem, você pode entrar. Peça-lhe licença.";
 			close;
 		} else if (job_sword_q == 4) {
-			mes "Parabéns! Agora você está qualificado para ser um verdadeiro Espadachim! Executarei a mudança imediatamente!";
+			mes "Parabéns! Agora você está qualificado para ser um verdadeiro Espadachim!";
+			mes "Executarei a mudança imediatamente!";
 			next;
 			callfunc "Job_Change",Job_Swordman;
 			set job_sword_q,0;
 			completequest 1014;
 			mes "[Chefe Espadachim]";
-			mes "Mais uma vez, meus parabéns! Acredito que você esteja a caminho de ser um grande representante da Associação dos Espadachins.";
+			mes "Mais uma vez, meus parabéns!";
+			mes "Acredito que você esteja a caminho de ser um grande representante da Associação dos Espadachins.";
 			close;
 		}
 	case 2:
 		mes "Quer saber sobre os Espadachins? Está bem, eu explicarei para você.";
 		next;
 		mes "[Chefe Espadachim]";
-		mes "O diferencial de um Espadachim é o melhor ataque com armas brancas dentre as 6 classes. O Espadachim é o melhor para uma luta por 3 motivos!";
+		mes "O diferencial de um Espadachim é o melhor ataque com armas brancas dentre as 6 classes.";
+		mes "O Espadachim é o melhor para uma luta por 3 motivos!";
 		next;
 		mes "[Chefe Espadachim]";
-		mes "Primeiro: Espadachins têm um HP maior. Segundo: eles podem usar mais tipos de armas que os outros. Terceiro: a maioria das habilidades dos Espadachins são de ataques físicos.";
+		mes "Primeiro: Espadachins têm um HP maior.";
+		mes "Segundo: eles podem usar mais tipos de armas que os outros.";
+		mes "Terceiro: a maioria das habilidades dos Espadachins são de ataques físicos.";
 		next;
 		mes "[Chefe Espadachim]";
 		mes "Uma explicação simples, mas é tudo que um calouro como você precisa saber. Na minha opinião, a classe 'Espadachim' é a melhor do mundo!";

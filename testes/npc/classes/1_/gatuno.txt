@@ -53,7 +53,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 				close;
 			}
 			mes "[Gatuna Ajudante]";
-			mes "Ei, "+((Sex) ? "cara.":"moça~")+" Você parece muito uma boa pessoa para querer ser um gatuno! Agora suma, estou ocupado. Próximo!";
+			mes "Ei, "+((Sex) ? "cara.":"moça~");
+			mes "Você parece muito uma boa pessoa para querer ser um gatuno! Agora suma, estou ocupado. Próximo!";
 			close;
 		}
 	}
@@ -63,7 +64,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Bem, eu não sou o encarregado de te tornar um gatuno. Eu só aceito pedidos, entendeu? Se você quer se tornar um gatuno, fale com esse cara ao meu lado.";
+		mes "Bem, eu não sou o encarregado de te tornar um gatuno.";
+		mes "Eu só aceito pedidos, entendeu? Se você quer se tornar um gatuno, fale com esse cara ao meu lado.";
 		close;
 		}
   } if ( !checkversion(0) ) {
@@ -75,18 +77,19 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
 		mes "O que você quer...?";
 		switch(Class) {
-		case 1: mes "Mais um Espadachim metido...";	break;
-		case 2:	mes "Não precisamos de fogos de artíficio aqui.. vai acender fogueira sem isqueiro, vai...."; break;
-		case 3:	mes "Haha... apenas um arqueiro cegueta...."; break;
-		case 4:	mes "Ei noviço, ajoelha aí e reza um terço...";	break;
+		case 1: mes "Mais um Espadachim metido..."; break;
+		case 2: mes "Não precisamos de fogos de artíficio aqui... Vai acender fogueira sem isqueiro, vai...."; break;
+		case 3: mes "Haha... apenas um arqueiro cegueta...."; break;
+		case 4: mes "Ei noviço, ajoelha aí e reza um terço..."; break;
 		case 5:	mes "Ahhh um mercador trambiqueiro!! Vou te denunciar pros GMs...";	break;
-		case 8:	mes "Por que mais um sacerdote veio aqui? Eu acho que é melhor eu começar confessando todos os meus pecados."; break;
+		case 8: mes "Por que mais um sacerdote veio aqui? Eu acho que é melhor eu começar confessando todos os meus pecados."; break;
 		case 12: mes "Será que você não era um de nós?! Cara, você mudou. Você parece ser perigoso agora..."; break;
 		case 17: mes "Você deve ter algumas habilidades que só posso imaginá-las!";	break;
 		}
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "*Suspiro* Bem, aqui não é lugar para você. Você deveria sair daqui.";
+		mes "*Suspiro*";
+		mes "Bem, aqui não é lugar para você. Você deveria sair daqui.";
 		close;
 	}
 	if (job_thief_q == 3 && (countitem(1069) || countitem(1070))) {
@@ -102,7 +105,9 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		next;
 		if (select("É, até que foi legal...:Foi terrível!") == 1) {
 			mes "[Gatuna Ajudante]";
-			mes "Caramba! Você é O cara mesmo! Todos os outros foram uns %#@%#%%@ comparados a você! Humm... Você não vai tentar me substituir, não é? Por que se você sequer tentar, eu vou enfiar uma faca em você tão rápido que você nem vai perceber...";
+			mes "Caramba! Você é O cara mesmo!";
+			mes "Todos os outros foram uns %#@%#%%@ comparados a você!";
+			mes "Humm... Você não vai tentar me substituir, não é? Por que se você sequer tentar, eu vou enfiar uma faca em você tão rápido que você nem vai perceber...";
 			close;
 		}
 		mes "[Gatuna Ajudante]";
@@ -121,7 +126,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "É, sempre tem aqueles mais lentinhos... Pode deixar que eu te explico, mas só essa vez hein!";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "O teste pra se tornar um Gatuno é o seguinte: Você deve roubar cogumelos da fazenda do 'Shibu', um dos maiores mercadores de Morroc. Você deve colher dois tipos de cogumelos: os ^0000FFCogumelos Venenosos^000000 e os  ^0000FFCogumelos Borrachentos^000000.";
+		mes "O teste pra se tornar um Gatuno é o seguinte: Você deve roubar cogumelos da fazenda do 'Shibu', um dos maiores mercadores de Morroc.";
+		mes "Você deve colher dois tipos de cogumelos: os ^0000FFCogumelos Venenosos^000000 e os  ^0000FFCogumelos Borrachentos^000000.";
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "Sabia que existem monstros terríveis guardando a fazenda? É isso aí, é hora de você largar a mamadeira e se preparar, essa vai ser a experiência mais difícil da sua vida!";
@@ -130,10 +136,12 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "Quando você já tiver colhido os cogumelos, iremos contar os seus pontos... São 3 pontos para cada 1 Cogumelo Venenoso, e 1 ponto para cada Cogumelo Borrachento. Quando você tiver pelo menos 25 pontos, eu deixo você virar um Gatuno.";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Saia daqui e ande na direção leste. Procure pelo nosso camarada, ele vai estar entre duas colunas. Fale com ele. Ele vai te colocar para dentro da fazenda usando uma passagem secreta";
+		mes "Saia daqui e ande na direção leste. Procure pelo nosso camarada, ele vai estar entre duas colunas.";
+		mes "Fale com ele. Ele vai te colocar para dentro da fazenda usando uma passagem secreta";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Hmmm... acho que eu me lembro das coordernadas dele, são  '^FF0000141, 125^000000'. Você sabe o que são coordenadas? Elas te dizem qual a sua localização no momento, é só teclar '/where'";
+		mes "Hmmm... acho que eu me lembro das coordernadas dele, são  '^FF0000141, 125^000000'.";
+		mes "Você sabe o que são coordenadas? Elas te dizem qual a sua localização no momento, é só teclar '/where'";
 		close;
 	}
 	if (job_thief_q == 0 || job_thief_q != 0)
@@ -142,7 +150,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	if (select("Sim, estou pronto para ser um Gatuno!:Err... não, eu acho que não...") == 2) close;
 	mes "[Gatuna Ajudante]";
 	if (job_thief_q == 0) {
-		mes "Opa, calma aí... Ser um Gatuno não é algo para se orgulhar, e muito menos sair exibindo por aí... Você tem que tomar cuidado para não ser pego! Por que você não vai e pinta uma placa escrito 'Eu Quero Roubar! Ser um Gatuno e Roubar as Coisas Dos Outros.' e pendura no pescoço?";
+		mes "Opa, calma aí... Ser um Gatuno não é algo para se orgulhar, e muito menos sair exibindo por aí...";
+		mes "Você tem que tomar cuidado para não ser pego! Por que você não vai e pinta uma placa escrito 'Eu Quero Roubar! Ser um Gatuno e Roubar as Coisas Dos Outros.' e pendura no pescoço?";
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "Então você quer mesmo ser um Gatuno, hein?";
@@ -167,7 +176,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		next;
 		if (select("Sim!:Não, meus pais não deixaram.")==2) {
 			mes "[Gatuna Ajudante]";
-			mes "Eles não deixam, é? Bem, é melhor mesmo obedecer seus pais... Então eu acho que você devia ser Noviço... Não é tão mal, mas com certeza não é tão legal quanto Gatuno, hehehehehe.";
+			mes "Eles não deixam, é? Bem, é melhor mesmo obedecer seus pais...";
+			mes "Então eu acho que você devia ser Noviço... Não é tão mal, mas com certeza não é tão legal quanto Gatuno, hehehehehe.";
 			close;
 		}
 		mes "[Gatuna Ajudante]";
@@ -178,7 +188,9 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		set job_thief_q,1;
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Ok, sua inscrição está pronta. Nós já podemos fazer o teste se você se sentir preparado... Tentar não custa nada! Quer fazer agora?";
+		mes "Ok, sua inscrição está pronta.";
+		mes "Nós já podemos fazer o teste se você se sentir preparado...";
+		mes "Tentar não custa nada! Quer fazer agora?";
 		next;
 		if (select("Quero tentar.:Ainda não estou pronto.")==2) {
 			mes "[Gatuna Ajudante]";
@@ -190,14 +202,17 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	mes "Vamos ver como você se saiu...";
 	next;
 	mes "[Gatuna Ajudante]";
-	mes "O seu nome é "+strcharinfo(0)+"? Certo, vamos ver onde está a sua inscrição... Ah! Aqui está! Nome "+strcharinfo(0)+" Vaaaaaaaaamos ver....";
+	mes "O seu nome é "+strcharinfo(0)+"? Certo, vamos ver onde está a sua inscrição...";
+	mes "Ah! Aqui está! Nome "+strcharinfo(0)+" Vaaaaaaaaamos ver....";
 	next;
 	mes "[Gatuna Ajudante]";
 	if (getskilllv("NV_BASIC") < 9) {
-		mes "Humm... você é bem ambicioso hein? Apressadinho hein?! Volte quando tiver o nível necessário.";
+		mes "Humm... você é bem ambicioso hein?";
+		mes "Apressadinho hein?! Volte quando tiver o nível necessário.";
 		close;
 	}
-	mes "Hum.. Eu vi a sua Ficha Policial e fiquei sabendo de sua fama nas ruas de Morroc, você deve ser capaz de roubar como um bom Gatuno...";
+	mes "Hum...";
+	mes "Eu vi a sua Ficha Policial e fiquei sabendo de sua fama nas ruas de Morroc, você deve ser capaz de roubar como um bom Gatuno...";
 	next;
 	mes "[Gatuna Ajudante]";
 	mes "Ok, então você, passou na entrevista pessoal. Parabéns!";
@@ -205,19 +220,23 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	setquest 1013;
 	next;
 	mes "[Gatuna Ajudante]";
-	mes "Agora vamos testar se você é mesmo capaz de roubar... Você sabe como é o teste?";
+	mes "Agora vamos testar se você é mesmo capaz de roubar...";
+	mes "Você sabe como é o teste?";
 	next;
 	switch(select("Sim, eu sei.:Não, eu não sei...")) {
 	case 1:
 		mes "[Gatuna Ajudante]";
-		mes "Sabe mesmo? Ótimo, assim as coisas ficam mais rápidas.";
+		mes "Sabe mesmo?";
+		mes "Ótimo, assim as coisas ficam mais rápidas.";
 		break;
 	case 2:
 		mes "[Gatuna Ajudante]";
-		mes "Não!?!? Tá, então eu vou te explicar...";
+		mes "Não!?!?";
+		mes "Tá, então eu vou te explicar...";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Você vai entrar sorrateiramente na fazenda do Shibu e roubar cogumelos. Essa é a parte principal do teste para Gatunos. Sendo que o 'Shibu' é um terrível e ganancioso mercador de Morroc Você vai encontrar dois tipos de cogumelos: os ^0000FFCogumelos Venenosos^000000 e os ^0000FFCogumelos Borrachentos^000000.";
+		mes "Você vai entrar sorrateiramente na fazenda do Shibu e roubar cogumelos. Essa é a parte principal do teste para Gatunos.";
+		mes "Sendo que o 'Shibu' é um terrível e ganancioso mercador de Morroc. Você vai encontrar dois tipos de cogumelos: os ^0000FFCogumelos Venenosos^000000 e os ^0000FFCogumelos Borrachentos^000000.";
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "Quando você já tiver colhido os cogumelos, iremos contar os seus pontos... São 3 pontos para cada Cogumelo Venenoso, e 1 ponto para cada Cogumelo Borrachento. Quando você tiver pelo menos 25 pontos, eu deixo você virar um Gatuno.";
@@ -226,17 +245,23 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		mes "Saia daqui e ande na direção leste. Procure pelo nosso camarada, ele vai estar entre duas colunas";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Fale com ele. Ele vai te colocar para dentro da fazenda usando uma passagem secreta Humm... acho que eu me lembro das coordernadas dele, são  '^FF0000141, 125^000000'. Você sabe o que são coordenadas? Elas te dizem qual a sua localização no momento, é só teclar '/where'";
+		mes "Fale com ele. Ele vai te colocar para dentro da fazenda usando uma passagem secreta.";
+		mes "Humm... acho que eu me lembro das coordernadas dele, são  '^FF0000141, 125^000000'. Você sabe o que são coordenadas?";
+		mes "Elas te dizem qual a sua localização no momento, é só teclar '/where'";
 	}
 	next;
 	mes "[Gatuna Ajudante]";
 	mes "Lembre-se de duas coisas muitos importantes";
 	next;
 	mes "[Gatuna Ajudante]";
-	mes "Sabia que existem monstros terríveis guardando a fazenda? É isso aí! É hora de você largar a mamadeira e se preparar, essa vai ser a experiência mais difícil da sua vida.";
+	mes "Sabia que existem monstros terríveis guardando a fazenda? É isso aí!";
+	mes "É hora de você largar a mamadeira e se preparar, essa vai ser a experiência mais difícil da sua vida.";
 	next;
 	mes "[Gatuna Ajudante]";
-	mes "Então aqui está a minha dica.. Vá bem preparado! Hmmmm e sobre os cogumelos, bem, acabe com eles o mais rápido possível! Se não os monstros vão te alcançar e te matar... e você não quer morrer antes de sequer mesmo se tornar um Gatuno, não é? Eu até me sinto um pouco culpada com esse teste... Você nem é um Gatuno ainda e nós já te forçamos a roubar...";
+	mes "Então aqui está a minha dica... Vá bem preparado!";
+	mes "Hmmmm e sobre os cogumelos, bem, acabe com eles o mais rápido possível!";
+	mes "Se não os monstros vão te alcançar e te matar... e você não quer morrer antes de sequer mesmo se tornar um Gatuno, não é?";
+	mes "Eu até me sinto um pouco culpada com esse teste... Você nem é um Gatuno ainda e nós já te forçamos a roubar...";
 	next;
 	mes "[Gatuna Ajudante]";
 	mes "Sem mais perguntas. Mãos à obra!";
@@ -247,11 +272,13 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	next;
 	if(select("Eu quero me tornar um Gatuno.:Nada.") == 2) {
 		mes "[Gatuna Ajudante]";
-		mes "Você sabe que não pode ser um gatuno sem uma aplicação..... O que está pensando..?";
+		mes "Você sabe que não pode ser um gatuno sem uma aplicação... O que está pensando..?";
 		close;
 	}
 	mes "[Gatuna Ajudante]";
-	mes "Bem, você é o orgulho deles? Você está me dizendo que quer se tornar um gatuno! Por que você não vai a todas as aldeias e anuncia que é um  gatuno? 'Hahaha! Vá colocar uma bandeira que diz: Eu vou ser um ladrão que rouba orgulhoso coisas de outras pessoas.'";
+	mes "Bem, você é o orgulho deles? Você está me dizendo que quer se tornar um gatuno!";
+	mes "Por que você não vai a todas as aldeias e anuncia que é um gatuno? 'Hahaha!";
+	mes "Vá colocar uma bandeira que diz: Eu vou ser um ladrão que rouba orgulhoso coisas de outras pessoas.'";
 	next;
 	mes "[Gatuna Ajudante]";
 	mes "Você quer ser um gatuno do mal?";
@@ -259,7 +286,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	switch(select("Sim.:Não.:O que acha?")) {
 	case 1:
 		mes "[Gatuna Ajudante]";
-		mes "Ah, você...? Hum.. bem... Eu vivo e aprendo a ver pessoas estranhas como você.";
+		mes "Ah, você...? Hum... bem... Eu vivo e aprendo a ver pessoas estranhas como você.";
 		next;
 		break;
 	case 2:
@@ -269,7 +296,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		break;
 	case 3:
 		mes "[Gatuna Ajudante]";
-		mes "Hã..? Eu? Eu? Bem... Eu só tenho vocação para ser um gatuno... caracteristicamente... Eu não me importo com assuntos bobos.";
+		mes "Hã..? Eu? Eu? Bem... Eu só tenho vocação para ser um gatuno... caracteristicamente...";
+		mes "Eu não me importo com assuntos bobos.";
 		next;
 		break;
 	}
@@ -290,13 +318,18 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	next;
 	mes "[Gatuna Ajudante]";
 	if (getskilllv("NV_BASIC") < 9) {
-		mes "Eu posso ver a sua forte vontade de se tornar um Gatuno...... Mas só com a sua vontade, você não pode vencer em uma luta real, não é? Então, vá e atinja pelo menos o Nível de Habilidades Básicas 9.";
+		mes "Eu posso ver a sua forte vontade de se tornar um Gatuno......";
+		mes "Mas só com a sua vontade, você não pode vencer em uma luta real, não é?";
+		mes "Então, vá e atinja pelo menos o Nível de Habilidades Básicas 9.";
 		close;
 	}
-	mes "Hum.... Eu encontrei seus interessantes registros criminais a partir dos dados da agência de detetives. Bem parece que você tem o que é preciso para ser um bom gatuno. "+strcharinfo(0)+". Eu agora declaro que você passou na entrevista de classe!";
+	mes "Hum.... Eu encontrei seus interessantes registros criminais a partir dos dados da agência de detetives.";
+	mes "Bem parece que você tem o que é preciso para ser um bom gatuno. "+strcharinfo(0)+".";
+	mes "Eu agora declaro que você passou na entrevista de classe!";
 	next;
 	mes "[Gatuna Ajudante]";
-	mes "Bem, Eu não sou o responsável por torná-lo um Gatuno. Eu só aceito pedidos, entendeu? Se você quer se tornar um gatuno, fale com o cara próximo a mim.";
+	mes "Bem, Eu não sou o responsável por torná-lo um Gatuno.";
+	mes "Eu só aceito pedidos, entendeu? Se você quer se tornar um gatuno, fale com o cara próximo a mim.";
 	set q_job_thief,1;
 	close;
 }
@@ -305,16 +338,22 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 	mes "[Brad]";
   if( checkversion(0) ) {
 	if(q_job_thief == 1) {
-		mes "Certo. Você conseguiu passar na entrevista, correto? Bom. Eu irei aceitá-lo. Vamos começar a cerimônia de mudança de classe da nossa Guilda!";
+		mes "Certo. Você conseguiu passar na entrevista, correto?";
+		mes "Bom. Eu irei aceitá-lo. Vamos começar a cerimônia de mudança de classe da nossa Guilda!";
 		next;
 		mes "[Brad]";
-		mes "'"+strcharinfo(0)+".' 'Para aqueles que estão prontos, o luar deve abrir o caminho. Agora você está totalmente pronto, oficialmente permitem que você se torne um membro da Guilda dos Gatunos.'";
+		mes "'"+strcharinfo(0)+".'";
+		mes "'Para aqueles que estão prontos, o luar deve abrir o caminho.";
+		mes "Agora você está totalmente pronto, oficialmente permitem que você se torne um membro da Guilda dos Gatunos.'";
 		callfunc "Job_Change",Job_Thief;
 		set q_job_thief,0;
 		getitem 13041,1; // Main Gauche de Iniciante
 		next;
 		mes "[Brad]";
-		mes "'Parabéns por se tornar um Gatuno.' 'A partir de agora, manter as regras da nossa aliança e ser um membro honorário.' 'Se você nos trazer desgraça por violarem as nossas regras, é melhor você assistir a sua volta.' 'De qualquer forma, eu espero que você seja um grande Gatuno.'";
+		mes "'Parabéns por se tornar um Gatuno.'";
+		mes "'A partir de agora, manter as regras da nossa aliança e ser um membro honorário.'";
+		mes "'Se você nos trazer desgraça por violarem as nossas regras, é melhor você assistir a sua volta.'";
+		mes "'De qualquer forma, eu espero que você seja um grande Gatuno.'";
 		next;
 		mes "[Brad]";
 		mes "Heee~Yaaaa~! Parabéns!";
@@ -325,10 +364,12 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		close;
 	}
 	if(BaseJob != Job_Novice) {
-		if(BaseJob == Job_Thief)
+		if(BaseJob == Job_Thief) {
 			mes "Eu não tenho quaisquer eventos especiais agora. Então, vá no seu caminho e voltar mais tarde.";
-		else
-			mes "Ei~ Ei~ Você não é um Aprendiz ou um Gatuno! O que você está fazendo aqui? Você não é bem-vindo para este lugar de sua casa~ Hweeeee~ Saia daqui~";
+		} else {
+			mes "Ei~ Ei~ Você não é um Aprendiz ou um Gatuno! O que você está fazendo aqui?";
+			mes "Você não é bem-vindo para este lugar de sua casa~ Hweeeee~ Saia daqui~";
+		}
 		close;
 	}
 	mes "Hã? Porque é que um novato como você visitando aqui? Se você está aqui para se tornar um Gatuno, fale com a senhora que está perto de mim.";
@@ -338,8 +379,7 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		mes "Você não tem por que estar aqui. Quando a guilda precisar de você, você saberá. Agora dá o fora daqui.";
 		close;
 	} else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
-		mes "??? Você não é um Gatuno...";
-		mes "O que diabos você tá fazendo aqui?! Saia daqui antes que eu enfie uma faca em você!";
+		mes "??? Você não é um Gatuno... O que diabos você tá fazendo aqui?! Saia daqui antes que eu enfie uma faca em você!";
 		close;
 	}
 	if (job_thief_q == 0 || job_thief_q == 1) {
@@ -353,8 +393,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		next;
 		if (countitem(1069) == 0 && countitem(1070) == 0) {
 			mes "[Brad]";
-			mes "......";
-			mes "Huh! Que diabos!! Você nem pegou os cogumelos!! Vai, vai pegar os cogumelos! E nem pense em voltar aqui sem cogumelos outra vez! Assim você nunca vai virar um Gatuno!";
+			mes "...... Huh! Que diabos!! Você nem pegou os cogumelos!! Vai, vai pegar os cogumelos!";
+			mes "E nem pense em voltar aqui sem cogumelos outra vez! Assim você nunca vai virar um Gatuno!";
 			close;
 		}
 		set .@thief_item1,countitem(1069) * 3;
@@ -373,7 +413,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		else mes ( .@total_thief == 25 ) ? "Ok, você passou no teste.":"Eu sei que você consegue fazer melhor do que isso...";
 		next;
 		mes "[Brad]";
-		mes strcharinfo(0)+"... Você passou no Teste Oficial Para Gatuno, vou permitir que se torne um de nós.";
+		mes strcharinfo(0)+"...";
+		mes "Você passou no Teste Oficial Para Gatuno, vou permitir que se torne um de nós.";
 		if (countitem(1069)) delitem 1069,countitem(1069); // Cogumelo Venenoso
 		if (countitem(1070)) delitem 1070,countitem(1070); // Cogumelo Borrachento
 		callfunc "Job_Change",Job_Thief;
@@ -381,10 +422,12 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		completequest 1013;
 		next;
 		mes "[Brad]";
-		mes "Meus parabéns por se tornar um Gatuno! De agora em diante, comporte-se como um companheiro nosso, um verdadeiro Gatuno Se você trouxer degraça para a nossa guilda, será rapidamente eliminado Espero que você se torne um Grande Gatuno! Pode ir embora agora...";
+		mes "Meus parabéns por se tornar um Gatuno! De agora em diante, comporte-se como um companheiro nosso, um verdadeiro Gatuno.";
+		mes "Se você trouxer desgraça para a nossa guilda, será rapidamente eliminado. Espero que você se torne um Grande Gatuno! Pode ir embora agora...";
 		next;
 		mes "[Brad]";
-		mes "Isso aí! Bem-Vindo à Guilda, camarada! Eu me chamo Bernardo e sou responsável pelos Recursos Humanos da nossa guilda Você não me conhece muito bem ainda, mas você me verá de vez em quando.";
+		mes "Isso aí! Bem-Vindo à Guilda, camarada! Eu me chamo Bernardo e sou responsável pelos Recursos Humanos da nossa guilda.";
+		mes "Você não me conhece muito bem ainda, mas você me verá de vez em quando.";
 		next;
 		mes "[Brad]";
 		mes "Aqui está um ajudinha para você começar sua vida de Gatuno. Gaste no que quiser.";
@@ -398,7 +441,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 -	script#vpo	Bogus	83,{
 	mes "[Bogus]";
 	if (BaseJob == Job_Thief) {
-		mes "Oh! Veja só que ótimo Gatuno você se tornou! Como você já é um Gatuno, não pode entrar aqui... Esse lugar é apenas para aprendizes que querem se tornar Gatunos. Por que você não sai dessa cidade e se torna ainda mais forte?";
+		mes "Oh! Veja só que ótimo Gatuno você se tornou! Como você já é um Gatuno, não pode entrar aqui...";
+		mes "Esse lugar é apenas para aprendizes que querem se tornar Gatunos. Por que você não sai dessa cidade e se torna ainda mais forte?";
 		close;
 	} else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
 		switch(rand(4)) {
@@ -409,7 +453,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 			next;
 			close;
 		case 3:
-			mes "Caramba! E.U N.Ã.O S.O.U U.M.A P.E.S.S.O.A E.S.T.R.A.N.H.A! N.Ã.O M.E O.L.H.E A.S.S.I.M";
+			mes "Caramba!";
+			mes "E.U N.Ã.O S.O.U U.M.A P.E.S.S.O.A E.S.T.R.A.N.H.A! N.Ã.O M.E O.L.H.E A.S.S.I.M";
 			close;
 		case 4:
 			mes "...eu não tenho nada pra te dizer, meta-se com a sua própria vida, ninguém te chamou aqui.";
@@ -420,15 +465,16 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		}
 	}
 	if (job_thief_q == 3) {
-		mes "Meu Deus! Você ainda não passou no teste?!?! Haha, que panaca! É impressão minha, ou só os paspalhos tentam se tornar Gatunos?! Se você quer continuar insistindo, pode entrar...";
+		mes "Meu Deus! Você ainda não passou no teste?!?! Haha, que panaca! É impressão minha, ou só os paspalhos tentam se tornar Gatunos?!";
+		mes "Se você quer continuar insistindo, pode entrar...";
 	} else if (job_thief_q == 2) {
-		mes "Humm... Você veio aqui fazer o teste, não é? Qual o seu nome? "+strcharinfo(0)+"? ... é... é o que está escrito aqui na lista... Então pode entrar, desejo boa sorte, mas não tenho como garantir sua segurança!";
+		mes "Humm... Você veio aqui fazer o teste, não é? Qual o seu nome? "+strcharinfo(0)+"? ...É... É o que está escrito aqui na lista...";
+		mes "Então pode entrar, desejo boa sorte, mas não tenho como garantir sua segurança!";
 		set job_thief_q,3;
     } else if (job_thief_q == 1) {
 		mes "[Bogus]";
 		mes "....";
-		mes "Sinto um cheiro estranho.....";
-		mes "Você é um..... Candidato a Gatuno...?";
+		mes "Sinto um cheiro estranho..... Você é um..... Candidato a Gatuno...?";
 		close;
 	}
 	close2;
@@ -440,7 +486,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 	default: warp "job_thief1",309,234; end;
 	}
 	mes "[Bogus]";
-	mes "Ei! Aprendiz! Você quer levar uma vida fácil? Ser forte e poderoso? Então você deveria ser um Gatuno! Venha para a nossa guilda, você será sempre bem-vindo!";
+	mes "Ei! Aprendiz! Você quer levar uma vida fácil? Ser forte e poderoso?";
+	mes "Então você deveria ser um Gatuno! Venha para a nossa guilda, você será sempre bem-vindo!";
 	next;
 	mes "[Bogus]";
 	mes "Quem pode lhe dar mais informações a respeito da nossa guilda são os meus camaradas no subterrâneo da Pirâmide.";

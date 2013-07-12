@@ -26,9 +26,13 @@
 //   \________________________________________________________/
 
 gonryun,163,60,4	script	Guia de Kunlun#01gonryun	780,{
-	mes "[He Yuen Zhe]"+"\nBem-vindo a Kunlun, uma cidade cheia de paixão e energia!\nVocê pode sentir a alegria só de passear pela cidade!";
+	mes "[He Yuen Zhe]";
+	mes "Bem-vindo a Kunlun, uma cidade cheia de paixão e energia!";
+	mes "Você pode sentir a alegria só de passear pela cidade!";
 	next;
-	mes "[He Yuen Zhe]"+"\nEu sou o responsável por responder suas dúvidas sobre a cidade.\nPor favor, sinta-se à vontade para perguntar.";
+	mes "[He Yuen Zhe]";
+	mes "Eu sou o responsável por responder suas dúvidas sobre a cidade.";
+	mes "Por favor, sinta-se à vontade para perguntar.";
 	if(checkversion(0)) {
 		while (1) {
 			next;
@@ -62,7 +66,9 @@ gonryun,163,60,4	script	Guia de Kunlun#01gonryun	780,{
 				viewpoint 1,161,11,6,0x00BFFF;
 				break;
 			case 8:
-				mes "[He Yuen Zhe]"+"\nRemoverei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[He Yuen Zhe]";
+				mes "Removerei todas as indicações do seu mini-mapa.";
+				mes "Há mais alguma coisa que eu possa fazer por você?";
 				viewpoint 2,1,1,0,0xFFFFFF;
 				viewpoint 2,1,1,1,0xFFFFFF;
 				viewpoint 2,1,1,2,0xFFFFFF;
@@ -72,35 +78,54 @@ gonryun,163,60,4	script	Guia de Kunlun#01gonryun	780,{
 				viewpoint 2,1,1,6,0xFFFFFF;
 				break;
 			case 9:
-				mes "[He Yuen Zhe]"+"\nBon voyage!";
+				mes "[He Yuen Zhe]";
+				mes "Bon voyage!";
 				close;
 			}
 		}
 		end;
 	L_Mark:
-		mes "[He Yuen Zhe]"+"\n"+getarg(0)+"^000000 está marcado no seu mini-mapa.\nVerifique seu mini-mapa\nHá mais alguma coisa que eu possa fazer por você?";
+		mes "[He Yuen Zhe]";
+		mes getarg(0)+"^000000 está marcado no seu mini-mapa.";
+		mes "Verifique seu mini-mapa.";
+		mes "Há mais alguma coisa que eu possa fazer por você?";
 		return;
 	} else {
 		switch(select("Residência do Chefe.:Vendedor de Utilidades.:Vendedor de Armas.:Vendedor de Armaduras.:Loja de Vinhos.")) {
 		case 1:
 			viewpoint 1,109,131,0,0xFF3355;
-			mes "[He Yuen Zhe]"+"\nVeja seu mini-mapa.\nSe você for no ^FF3355+^000000 encontrará o governador.\nAproveite sua estada na adorável KunLun!";
+			mes "[He Yuen Zhe]";
+			mes "Veja seu mini-mapa.";
+			mes "Se você for no ^FF3355+^000000 encontrará o governador.";
+			mes "Aproveite sua estada na adorável Kunlun!";
 			close;
 		case 2:
 			viewpoint 1,147,82,1,0xCE6300;
-			mes "[He Yuen Zhe]"+"\nVeja seu mini-mapa.\nSe você for no ^CE6300+^000000 encontrará um Vendedor de Utilidades.\nAproveite sua estada na adorável KunLun!";
+			mes "[He Yuen Zhe]";
+			mes "Veja seu mini-mapa.";
+			mes "Se você for no ^CE6300+^000000 encontrará um Vendedor de Utilidades.";
+			mes "Aproveite sua estada na adorável Kunlun!";
 			close;
 		case 3:
 			viewpoint 1,174,104,2,0x55FF33;
-			mes "[He Yuen Zhe]"+"\nVeja seu mini-mapa.\nSe você for no ^55FF33+^000000 encontrará um Vendedor de Armas.\nAproveite sua estada na adorável KunLun!";
+			mes "[He Yuen Zhe]";
+			mes "Veja seu mini-mapa.";
+			mes "Se você for no ^55FF33+^000000 encontrará um Vendedor de Armas.";
+			mes "Aproveite sua estada na adorável Kunlun!";
 			close;
 		case 4:
 			viewpoint 1,173,84,3,0x3355FF;
-			mes "[He Yuen Zhe]"+"\nVeja seu mini-mapa.\nSe você for no ^3355FF+^000000 encontrará um Vendedor de Armaduras.\nAproveite sua estada na adorável KunLun!";
+			mes "[He Yuen Zhe]";
+			mes "Veja seu mini-mapa.";
+			mes "Se você for no ^3355FF+^000000 encontrará um Vendedor de Armaduras.";
+			mes "Aproveite sua estada na adorável Kunlun!";
 			close;
 		case 5:
 			viewpoint 1,215,114,3,0xCD69C9;
-			mes "[WonChi Ha]"+"\nVeja seu mini-mapa.\nSe você for no ^FFFFFF+^000000 encontrará uma loja de vinhos.\nAproveite sua estada na adorável KunLun!";
+			mes "[He Yuen Zhe]";
+			mes "Veja seu mini-mapa.";
+			mes "Se você for no ^FFFFFF+^000000 encontrará uma loja de vinhos.";
+			mes "Aproveite sua estada na adorável Kunlun!";
 			close;
 		}
 	}

@@ -25,133 +25,204 @@
 //   \________________________________________________________/
 
 mora,25,158,6	script	Guia de Mora#oeste	516,{
-	mes "[Raffoh]"+"\nOlá~!\nBem-vindo ao vilarejo de Mora.\nEu posso te dizer o que você quiser sobre o vilarejo~!";
+	mes "[Raffoh]";
+	mes "Olá~! Bem-vindo ao vilarejo de Mora.";
+	mes "Eu posso te dizer o que você quiser sobre o vilarejo~!";
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
-		mes "[Raffoh]"+"\nLaoh~!\nNós temos uma estalagem, mas não posso ficar lá dormindo...\nDescanse um pouco lá!";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "Nós temos uma estalagem, mas não posso ficar lá dormindo...";
+		mes "Descanse um pouco lá!";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
-		mes "[Raffoh]"+"\nLaoh~!\nSão as moradas dos Rafflens...\nMas não faça barulho ao se aproximar, por que as pessoas estão dormindo~!";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "São as moradas dos Rafflens...";
+		mes "Mas não faça barulho ao se aproximar, por que as pessoas estão dormindo~!";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
-		mes "[Raffoh]"+"\nLaoh~!\nSe você está a procura de lembranças, você pode encontrar várias lá.";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "Se você está a procura de lembranças, você pode encontrar várias lá.";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
-		mes "[Raffoh]"+"\nLaoh~!\nLá é o lugar onde guardam todos os tipos de pacotes e mantimentos.\nHá muitas coisas que não pertencem aos Raffles, então tome cuidado!";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "Lá é o lugar onde guardam todos os tipos de pacotes e mantimentos.";
+		mes "Há muitas coisas que não pertencem aos Raffles, então tome cuidado!";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
 	case 5:
-		mes "[Raffoh]"+"\nLaoh~! Estou removendo todos~!";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "Estou removendo todos~!";
 		viewpoint 2,1,1,0,0xFFFF00;
 		viewpoint 2,1,1,1,0xFFFF00;
 		viewpoint 2,1,1,2,0xFFFF00;
 		viewpoint 2,1,1,3,0xFFFF00;
 		close;
 	case 6:
-		mes "[Raffoh]"+"\nLaoh~!\nQuais os tipos de esportes são populares na sua terra?";
+		mes "[Raffoh]";
+		mes "Laoh~!";
+		mes "Quais os tipos de esportes são populares na sua terra?";
 		close;
 	}
 }
 
 mora,167,76,4	script	Guia de Mora#leste	522,{
-	mes "[Raffuh]"+"\nUh...\nEste, este é o Vilarejo de Mora.\nUh... que lugar você desejaria conhecer?";
+	mes "[Raffuh]";
+	mes "Uh...";
+	mes "Este, este é o Vilarejo de Mora.";
+	mes "Uh... que lugar você desejaria conhecer?";
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
-		mes "[Raffuh]"+"\nUh...\nVocê deseja dormir?\nVocê pode durmir aqui!! Coloque seu material em baixo E-- e---";
+		mes "[Raffuh]";
+		mes "Uh...";
+		mes "Você deseja dormir?";
+		mes "Você pode durmir aqui!! Coloque seu material em baixo E-- e---";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
-		mes "[Raffuh]"+"\nUh...\nPor que você está tentando descobrir onde eu moro--?\nUh, não... Eu gostaria de viver com os meus amigos--";
+		mes "[Raffuh]";
+		mes "Uh...";
+		mes "Por que você está tentando descobrir onde eu moro--?";
+		mes "Uh, não...";
+		mes "Eu gostaria de viver com os meus amigos--";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
-		mes "[Raffuh]"+"\nUh...\nHá um monte de coisas na loja-- ah, há uma primavera quente também!";
+		mes "[Raffuh]";
+		mes "Uh...";
+		mes "Há um monte de coisas na loja-- ah, há uma primavera quente também!";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
-		mes "[Raffuh]"+"\nUh...\nVocê não pode ir para o armazém, caso vá estará em apuros --\nMuitas das coisas que são de fora do vilarejo-- Raffuh ficou em apuros várias vezes--";
+		mes "[Raffuh]";
+		mes "Uh...";
+		mes "Você não pode ir para o armazém, caso vá estará em apuros";
+		mes "-- Muitas das coisas que são de fora do vilarejo--";
+		mes "Raffuh ficou em apuros várias vezes--";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
 	case 5:
-		mes "[Raffuh]"+"\nTem certeza de que deseja removê-los?";
+		mes "[Raffuh]";
+		mes "Tem certeza de que deseja removê-los?";
 		viewpoint 2,1,1,0,0xFFFF00;
 		viewpoint 2,1,1,1,0xFFFF00;
 		viewpoint 2,1,1,2,0xFFFF00;
 		viewpoint 2,1,1,3,0xFFFF00;
 		close;
 	case 6:
-		mes "[Raffuh]"+"\nUh...\nSer um guia não ajuda muito a minha fobia social--";
+		mes "[Raffuh]";
+		mes "Uh...";
+		mes "Ser um guia não ajuda muito a minha fobia social--";
 		close;
 	}
 }
 
 mora,115,138,4	script	Guia de Mora#centro	524,{
-	mes "[Raffla]"+"\nLala!\nBem-vindo ao Vilarejo de Mora!\nSe você quiser conhecer o vilarejo, é só falar!";
+	mes "[Raffla]";
+	mes "Lala!";
+	mes "Bem-vindo ao Vilarejo de Mora!";
+	mes "Se você quiser conhecer o vilarejo, é só falar!";
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair.")) {
 	case 1:
-		mes "[Raffla]"+"\nLala!\nEste é o lugar onde os viajantes podem descançar.\nA Recepção da Pousada é muito gentil, você deve conhecê-la.";
+		mes "[Raffla]";
+		mes "Lala!";
+		mes "Este é o lugar onde os viajantes podem descançar.";
+		mes "A Recepção da Pousada é muito gentil, você deve conhecê-la.";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
-		mes "[Raffla]"+"\nLala!\nÉ o lugar onde os Raffles vivem.\nApareça por lá!";
+		mes "[Raffla]";
+		mes "Lala!";
+		mes "É o lugar onde os Raffles vivem. Apareça por lá!";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
-		mes "[Raffla]"+"\nLala!\nEntão você quer comprar algo, la?\nHá um monte de Lojas e Cafeterias, então visite-os la!";
+		mes "[Raffla]";
+		mes "Lala!";
+		mes "Então você quer comprar algo, la?";
+		mes "Há um monte de Lojas e Cafeterias, então visite-os la!";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
-		mes "[Raffla]"+"\nLala!\nO Armazém é onde você pode guardar as suas preciosidades.\nFique tranquilo, lá você não será roubado la!";
+		mes "[Raffla]";
+		mes "Lala!";
+		mes "O Armazém é onde você pode guardar as suas preciosidades.";
+		mes "Fique tranquilo, lá você não será roubado la!";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
 	case 5:
-		mes "[Raffla]"+"\nCerto, irei remover todos os marcadores do seu mapa la!";
+		mes "[Raffla]";
+		mes "Certo, irei remover todos os marcadores do seu mapa la!";
 		viewpoint 2,1,1,0,0xFFFF00;
 		viewpoint 2,1,1,1,0xFFFF00;
 		viewpoint 2,1,1,2,0xFFFF00;
 		viewpoint 2,1,1,3,0xFFFF00;
 		close;
 	case 6:
-		mes "[Raffla]"+"\nLala!\nEu realmente não sei como a minha família acaba fazendo essas coisas la!";
+		mes "[Raffla]";
+		mes "Lala!";
+		mes "Eu realmente não sei como a minha família acaba fazendo essas coisas la!";
 		close;
 	}
 }
 
 mora,72,51,4	script	Guia de Mora#sul	518,{
-	mes "[Raffli]"+"\nLali?\nBem-vindo ao vilarejo de Mora.\nSe você precisa saber algo sobre a aldeia, é só me falar.";
+	mes "[Raffli]";
+	mes "Lali?";
+	mes "Bem-vindo ao vilarejo de Mora.";
+	mes "Se você precisa saber algo sobre a aldeia, é só me falar.";
 	next;
 	switch(select("[ Pousada ]:[ Residences ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
-		mes "[Raffli]"+"\nLali?\nEste é o lugar onde os viajantes podem descançar.\nA Recepção da Pousada é muito gentil, você deve conhecê-la.";
+		mes "[Raffli]";
+		mes "Lali?";
+		mes "Este é o lugar onde os viajantes podem descançar.";
+		mes "A Recepção da Pousada é muito gentil, você deve conhecê-la.";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
-		mes "[Raffli]"+"\nLali?\nÉ o lugar onde os Raffles vivem.\nVocê irá para a minha casa? Estou tão feliz.";
+		mes "[Raffli]";
+		mes "Lali?";
+		mes "É o lugar onde os Raffles vivem.";
+		mes "Você irá para a minha casa? Estou tão feliz.";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
-		mes "[Raffli]"+"\nLali?\nLá é o lugar onde você pode comprar muitas coisas.\nVocê pode encontrar toneladas de coisas para comer e comprar.";
+		mes "[Raffli]";
+		mes "Lali?";
+		mes "Lá é o lugar onde você pode comprar muitas coisas.";
+		mes "Você pode encontrar toneladas de coisas para comer e comprar.";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
-		mes "[Raffli]"+"\nLali?\nO Armazém é onde você pode guardar as suas preciosidades.\nFique tranquilo, lá você não será roubado.";
+		mes "[Raffli]";
+		mes "Lali?";
+		mes "O Armazém é onde você pode guardar as suas preciosidades.";
+		mes "Fique tranquilo, lá você não será roubado.";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
 	case 5:
-		mes "[Raffli]"+"\nIrei remover todos os marcadores.";
+		mes "[Raffli]";
+		mes "Irei remover todos os marcadores.";
 		viewpoint 2,1,1,0,0xFFFF00;
 		viewpoint 2,1,1,1,0xFFFF00;
 		viewpoint 2,1,1,2,0xFFFF00;
 		viewpoint 2,1,1,3,0xFFFF00;
 		close;
 	case 6:
-		mes "[Raffli]"+"\nLali?\nParece estar chatead"+((Sex) ? "o":"a")+" hoje, te fiz algo?";
+		mes "[Raffli]";
+		mes "Lali?";
+		mes "Parece estar chatead"+((Sex) ? "o":"a")+" hoje, te fiz algo?";
 		close;
 	}
 }

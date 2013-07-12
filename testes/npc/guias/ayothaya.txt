@@ -29,36 +29,58 @@ ayothaya,203,169,4	script	Guia de Ayothaya Noi#01ay	839,{
 	mes "[Noi]";
 	if(checkversion(0)) {
 		// Renewal
-		mes "Olá\nBem-vind"+((Sex) ? "o":"a")+" ^8B4513Ayothaya^000000.\nEsta cidade está ligada a um rio que atravessa a floresta selvagem.\nÉ um país muito calmo.\nLeve o seu tempo para olhar em volta.";
+		mes "Olá Bem-vind"+((Sex) ? "o":"a")+" ^8B4513Ayothaya^000000.";
+		mes "Esta cidade está ligada a um rio que atravessa a floresta selvagem.";
+		mes "É um país muito calmo. Leve o seu tempo para olhar em volta.";
+		set .@str$,"Há mais alguma coisa que eu possa fazer por você?";
 		while (1) {
 			next;
 			switch(select("[ Loja de Armas ]:[ Loja de Utilidades ]:[ Taverna ]:[ Santuário ]:[ Local de Pesca ]:[ Aibakthing ]:Remover indicações do Mini-Mapa:Cancelar")) {
 			case 1:
-				mes "[Noi]"+"\nA ^0000FFLoja de Armas^000000 em Ayothaya tem armas especiais.\nVocê pode achar ótimas armas lá.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Noi]";
+				mes "A ^0000FFLoja de Armas^000000 em Ayothaya tem armas especiais.";
+				mes "Você pode achar ótimas armas lá.";
+				mes .@str$;
 				viewpoint 1,163,90,0,0x0A82FF;
 				break;
 			case 2:
-				mes "[Noi]"+"\nNossos cidadãos compram muitos produtos na ^006400Loja de Utilidades^000000.\nCertifique-se de comprar tudo o que precisa lá.\nPrecisa de algo mais??";
+				mes "[Noi]";
+				mes "Nossos cidadãos compram muitos produtos na ^006400Loja de Utilidades^000000.";
+				mes "Certifique-se de comprar tudo o que precisa lá.";
+				mes "Precisa de algo mais??";
 				viewpoint 1,131,86,1,0xAAFF00;
 				break;
 			case 3:
-				mes "[Noi]"+"\nParte da aventura é coletar informações.\nA ^008080Taverna^000000 está lotada com muitos viajantes aonde você pode conseguir informações úteis.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Noi]";
+				mes "Parte da aventura é coletar informações.";
+				mes "A ^008080Taverna^000000 está lotada com muitos viajantes aonde você pode conseguir informações úteis.";
+				mes .@str$;
 				viewpoint 1,229,72,2,0x008080;
 				break;
 			case 4:
-				mes "[Noi]"+"\nPara acalmar seu coração, vá ao ^FF1493Santuário^000000 e faça uma oração.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Noi]";
+				mes "Para acalmar seu coração, vá ao ^FF1493Santuário^000000 e faça uma oração.";
+				mes .@str$;
 				viewpoint 1,208,280,3,0xFF1493;
 				break;
 			case 5:
-				mes "[Noi]"+"\nAyothaya fica próxima a praia, então a maioria das pessoas apreciam pescar.\nEles realmente adoram pescar.\nVá ^8B4513pescar^000000 e tente apanhar um peixe grande.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Noi]";
+				mes "Ayothaya fica próxima a praia, então a maioria das pessoas apreciam pescar.";
+				mes "Eles realmente adoram pescar.";
+				mes "Vá ^8B4513pescar^000000 e tente apanhar um peixe grande.";
+				mes .@str$;
 				viewpoint 1,255,99,4,0x8B4513;
 				break;
 			case 6:
-				mes "[Noi]"+"\nSe quiser retornar para casa encontre ^00BFFFAibakthing^000000 e peça para ele te mandar de volta.\nHá mais alguma coisa que eu possa fazer por você?";
+				mes "[Noi]";
+				mes "Se quiser retornar para casa encontre ^00BFFFAibakthing^000000 e peça para ele te mandar de volta.";
+				mes .@str$;
 				viewpoint 1,151,68,5,0x00BFFF;
 				break;
 			case 7:
-				mes "[Noi]"+"\nRemoverei todas as indicações do seu mini-mapa.\nPrecisa de algo mais??";
+				mes "[Noi]";
+				mes "Removerei todas as indicações do seu mini-mapa.";
+				mes "Precisa de algo mais??";
 				viewpoint 2,1,1,0,0xFFFFFF;
 				viewpoint 2,1,1,1,0xFFFFFF;
 				viewpoint 2,1,1,2,0xFFFFFF;
@@ -67,47 +89,67 @@ ayothaya,203,169,4	script	Guia de Ayothaya Noi#01ay	839,{
 				viewpoint 2,1,1,5,0xFFFFFF;
 				break;
 			case 8:
-				mes "[Noi]"+"\nAproveite sua viagem~!";
+				mes "[Noi]"+" Aproveite sua viagem~!";
 				close;
 			}
 		}
 	} else {
 		// pré-Renewal
-		mes "Bem-vindo a Ayothaya!\nAyothaya foi construída sobre a água e você pode ver a floresta densa cercando a cidade ao fundo.";
+		mes "Bem-vindo a Ayothaya!";
+		mes "Ayothaya foi construída sobre a água e você pode ver a floresta densa cercando a cidade ao fundo.";
 		next;
-		mes "[Noi]"+"\nHá muitas atrações turísticas na vila que você raramente vê em outros locais, como peixarias e edifícios construídos de maneira singular.";
+		mes "[Noi]";
+		mes "Há muitas atrações turísticas na vila que você raramente vê em outros locais, como peixarias e edifícios construídos de maneira singular.";
 		next;
-		mes "[Noi]"+"\nSinta-se livre para passear por Ayothaya.";
+		mes "[Noi]";
+		mes "Sinta-se livre para passear por Ayothaya.";
 		next;
 		switch(select("Indicações.:Limpar as indicações do minimapa.:Cancelar.")) {
 		case 1:
-			mes "[Noi]"+"\nO que você gostaria de visitar?";
+			mes "[Noi]";
+			mes "O que você gostaria de visitar?";
 			next;
-			switch(select("Loja de Armas.:Loja de Útilidades.:Tavernaa.:Templo.:Pesqueiro.:Cancelar")) {
+			switch(select("Loja de Armas.:Loja de Útilidades.:Taverna.:Templo.:Pesqueiro.:Cancelar")) {
 			case 1:
-				mes "[Noi]"+"\nA loja de armas está localizada em ^55FF33+^000000.\nVocê encontrará as armas favoritas dos marinheiros de Ayothaya na loja.";
+				mes "[Noi]";
+				mes "A loja de armas está localizada em ^55FF33+^000000.";
+				mes "Você encontrará as armas favoritas dos marinheiros de Ayothaya na loja.";
 				viewpoint 1,165,90,2,0x55FF33;
 				close;
 			case 2:
-				mes "[Noi]"+"\nA Loja de Utilidades está localizada em ^3355FF+^000000.\nNós, habitantes de Ayothaya, sempre nos organizamos com perfeição antes de viajar.\nMal não fará, não é?";
+				mes "[Noi]";
+				mes "A Loja de Utilidades está localizada em ^3355FF+^000000.";
+				mes "Nós, habitantes de Ayothaya, sempre nos organizamos com perfeição antes de viajar.";
+				mes "Mal não fará, não é?";
 				viewpoint 1,129,86,3,0x3355FF;
 				close;
 			case 3:
-				mes "[Noi]"+"\nÉ claro que você tem de passar na Tavernaa.\nEla está localizada em ^00FF00+^000000.\nDizem que o básico de uma aventura é obter informações\nA Taverna é onde pode-se conhecer pessoas de todos os lugares.\nGaranto que você obterá ótimas informações para a sua jornada.";
+				mes "[Noi]";
+				mes "É claro que você tem de passar na Taverna.";
+				mes "Ela está localizada em ^00FF00+^000000.";
+				mes "Dizem que o básico de uma aventura é obter informações.";
+				mes "A Taverna é onde pode-se conhecer pessoas de todos os lugares.";
+				mes "Garanto que você obterá ótimas informações para a sua jornada.";
 				viewpoint 1,232,76,4,0x00FF00;
 				close;
 			case 4:
-				mes "[Noi]"+"\nSe você desejar rezar para Deus por paz de espírito, sugiro que visite o nosso Templo em ^00FF00+^000000.";mes "Se você desejar rezar para Deus por paz de espírito, sugiro que visite o nosso Templo em ^00FF00+^000000.";
+				mes "[Noi]";
+				mes "Se você desejar rezar para Deus por paz de espírito, sugiro que visite o nosso Templo em ^00FF00+^000000.";
 				next;
-				mes "[Noi]"+"\nNosso santuário está localizado em ^00FF00+^000000.";
+				mes "[Noi]";
+				mes "Nosso santuário está localizado em ^00FF00+^000000.";
 				viewpoint 1,208,283,5,0x00FF00;
 				close;
 			case 5:
-				mes "[Noi]"+"\nAyothaya tornou-se o local favorito dos pescadores, já que foi construída sobre a água e fica próxima à praia.\nO Pesqueiro localizado em ^00FF00+^000000 é, de longe, o lugar mais famoso da cidade.\nSe estiver interessado em pescar, que tal pegarmos alguns peixes hoje à noite?";
+				mes "[Noi]";
+				mes "Ayothaya tornou-se o local favorito dos pescadores, já que foi construída sobre a água e fica próxima à praia.";
+				mes "O Pesqueiro localizado em ^00FF00+^000000 é, de longe, o lugar mais famoso da cidade.";
+				mes "Se estiver interessado em pescar, que tal pegarmos alguns peixes hoje à noite?";
 				viewpoint 1,253,99,6,0x00FF00;
 				close;
 			case 6:
-				mes "[Noi]"+"\nSe quiser remover as indicações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
+				mes "[Noi]";
+				mes "Se quiser remover as indicações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
 				close;
 			}
 		case 2:
@@ -116,50 +158,79 @@ ayothaya,203,169,4	script	Guia de Ayothaya Noi#01ay	839,{
 			viewpoint 2,232,76,4,0x00FF00;
 			viewpoint 2,208,283,5,0x00FF00;
 			viewpoint 2,253,99,6,0x00FF00;
-			mes "[Noi]"+"\nTodas as indicações dos locais foram removidas no seu minimapa.\nObrigado.";
+			mes "[Noi]";
+			mes "Todas as indicações dos locais foram removidas no seu minimapa.";
+			mes "Obrigado.";
 			close;
 		case 3:
-			mes "[Noi]"+"\nAproveite a viagem.";
+			mes "[Noi]";
+			mes "Aproveite a viagem.";
 			close;
 		}
 	}
 }
 
 ayothaya,146,86,4	script#re	Guia de Ayothaya Noa#01ay	839,{
-	mes "[Noa]"+"\nOlá~\nBem-vindo a ^8B4513Ayothaya^000000.\nEsta cidade está ligada com um rio que atravessa a floresta selvagem.\nÉ um país muito calmo.\nLeve o seu tempo para olhar em volta.";
+	mes "[Noa]";
+	mes "Olá~ Bem-vind"+((Sex) ? "o":"a")+" a ^8B4513Ayothaya^000000.";
+	mes "Esta cidade está ligada com um rio que atravessa a floresta selvagem.";
+	mes "É um país muito calmo.";
+	mes "Leve o seu tempo para olhar em volta.";
+	set .@str$,"Há mais alguma coisa que eu possa fazer por você?";
 	while (1) {
 		next;
 		switch(select("[ Funcionária Kafra ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Taverna ]:[ Santuário ]:[ Local de Pesca ]:[ Aibakthing ]:	Remover indicações do Mini-Mapa:Cancelar")) {
 		case 1:
-			mes "[Noa]"+"\nA ^0000FFFuncionária Kafra^000000 está marcada no seu mini-mapa.\nVerifique seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "A ^0000FFFuncionária Kafra^000000 está marcada no seu mini-mapa.";
+			mes .@str$;
 			viewpoint 1,212,169,0,0x0A82FF;
 			break;
 		case 2:
-			mes "[Noa]"+"\nA ^0000FFLoja de Armas^000000 em Ayothaya tem armas especiais.\nVocê pode achar ótimas armas lá.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "A ^0000FFLoja de Armas^000000 em Ayothaya tem armas especiais.";
+			mes "Você pode achar ótimas armas lá.";
+			mes .@str$;
 			viewpoint 1,163,90,1,0xAAFF00;
 			break;
 		case 3:
-			mes "[Noa]"+"\nNossos cidadões compram muitos produtos na ^006400Loja de Utilidades^000000.\nCertifique-se de comprar tudo o que precisa lá.\nPrecisa de algo mais??";
+			mes "[Noa]";
+			mes "Nossos cidadões compram muitos produtos na ^006400Loja de Utilidades^000000.";
+			mes "Certifique-se de comprar tudo o que precisa lá.";
+			mes "Precisa de algo mais??";
 			viewpoint 1,131,86,2,0x008080;
 			break;
 		case 4:
-			mes "[Noa]"+"\nParte da aventura é coletar informações.\nA ^008080Taverna^000000 está lotada com muitos viajantes aonde você pode conseguir informações úteis.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "Parte da aventura é coletar informações.";
+			mes "A ^008080Taverna^000000 está lotada com muitos viajantes aonde você pode conseguir informações úteis.";
+			mes .@str$;
 			viewpoint 1,229,72,3,0xFF1493;
 			break;
 		case 5:
-			mes "[Noa]"+"\nPara acalmar seu coração, vá ao ^FF1493Santuário^000000 e faça uma oração.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "Para acalmar seu coração, vá ao ^FF1493Santuário^000000 e faça uma oração.";
+			mes .@str$;
 			viewpoint 1,208,280,4,0x8B4513;
 			break;
 		case 6:
-			mes "[Noa]"+"\nAyothaya fica próxima a praia, então a maioria das pessoas aprecia pescar.\nEles realmente adoram pescar.\nVá ^8B4513pescar^000000 e tente apanhar um peixe grande.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "Ayothaya fica próxima a praia, então a maioria das pessoas aprecia pescar.";
+			mes "Eles realmente adoram pescar.";
+			mes "Vá ^8B4513pescar^000000 e tente apanhar um peixe grande.";
+			mes .@str$;
 			viewpoint 1,255,99,5,0x9400D3;
 			break;
 		case 7:
-			mes "[Noa]"+"\nSe quiser retornar para casa encontre ^00BFFFAibakthing^000000 e peça para ele te mandar de volta.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Noa]";
+			mes "Se quiser retornar para casa encontre ^00BFFFAibakthing^000000 e peça para ele te mandar de volta.";
+			mes .@str$;
 			viewpoint 1,151,68,6,0x00BFFF;
 			break;
 		case 8:
-			mes "[Noa]"+"\nRemoverei todas as indicações do seu mini-mapa.\nPrecisa de algo mais??";
+			mes "[Noa]";
+			mes "Removerei todas as indicações do seu mini-mapa.";
+			mes "Precisa de algo mais??";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -169,7 +240,8 @@ ayothaya,146,86,4	script#re	Guia de Ayothaya Noa#01ay	839,{
 			viewpoint 2,1,1,6,0xFFFFFF;
 			break;
 		case 9:
-			mes "[Noa]"+"\nAproveite sua viagem~!";
+			mes "[Noa]";
+			mes "Aproveite sua viagem~!";
 			close;
 		}
 	}

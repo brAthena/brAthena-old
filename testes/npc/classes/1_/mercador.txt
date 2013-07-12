@@ -29,21 +29,26 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Whitesmith || ADVJOB == Job_Creator)) {
 			mes "[Chefe Mansur]";
-			mes "Faz bastante tempo que não nos vemos! Ei, você não deixou sua classe, não foi? Está feliz?";
+			mes "Faz bastante tempo que não nos vemos!";
+			mes "Ei, você não deixou sua classe, não foi? Está feliz?";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Nossa... Você realmente veio de Valhalla?! Uau, você já percorreu um longo caminho...";
+			mes "Nossa... Você realmente veio de Valhalla?!";
+			mes "Uau, você já percorreu um longo caminho...";
 			next;
 			if (getskilllv("NV_BASIC") < 9) {
 				mes "[Chefe Mansur]";
-				mes "Humm... Parece que você não está pronto para se tornar um mercador de novo. Primeiro termine de aprender as Habilidades Básicas.";
+				mes "Humm... Parece que você não está pronto para se tornar um mercador de novo.";
+				mes "Primeiro termine de aprender as Habilidades Básicas.";
 				next;
 				mes "[Chefe Mansur]";
-				mes "Não se preocupe, nós vamos ter sempre um lugar nos Mercadores aberto para você. Basta voltar quando estiver pronto, ok?";
+				mes "Não se preocupe, nós vamos ter sempre um lugar nos Mercadores aberto para você.";
+				mes "Basta voltar quando estiver pronto, ok?";
 				close;
 			}
 			mes "[Chefe Mansur]";
-			mes "Eu acho que é o destino nos encontrarmos denovo. Deixe-me transformá-lo em um Mercador!";
+			mes "Eu acho que é o destino nos encontrarmos denovo.";
+			mes "Deixe-me transformá-lo em um Mercador!";
 			next;
 			skill 143,0,0;
 			jobchange Job_Merchant_High;
@@ -51,12 +56,15 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			skill 154,1,0;
 			skill 155,1,0;
 			mes "[Chefe Mansur]";
-			mes "Ah~ Como é nostálgico. Assim como nos velhos tempos! Tudo bem, dê o seu melhor!";
+			mes "Ah~ Como é nostálgico.";
+			mes "Assim como nos velhos tempos!";
+			mes "Tudo bem, dê o seu melhor!";
 			close;
 			}
 			mes "[Chefe Mansur]";
 			mes "^333333*Suspiro*^000000";
-			mes "Estou tão entediado... Quando vou ouvir minha linda flor?";
+			mes "Estou tão entediado...";
+			mes "Quando vou ouvir minha linda flor?";
 			close;
 
 	}
@@ -70,17 +78,20 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 		close;
 	} else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
 		mes "[Chefe Mansur]";
-		mes "Nós Mercadores odiamos pessoas que são duas caras. É ruim para os nossos negócios.";
+		mes "Nós Mercadores odiamos pessoas que são duas caras.";
+		mes "É ruim para os nossos negócios.";
 		next;
 		mes "[Chefe Mansur]";
 		mes "Pessoas que sempre tentam tirar vantagem de outras pessoas vendendo coisas a um preço rídiculo, são os piores mercadores.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Bem, de qualquer jeito, nós só aceitamos aprendizes que querem ser mercador. Mas agradecemos seu interesse pelo que fazemos.";
+		mes "Bem, de qualquer jeito, nós só aceitamos aprendizes que querem ser mercador.";
+		mes "Mas agradecemos seu interesse pelo que fazemos.";
 		close;
 	} else if (job_merchant_q == 9) {
 		mes "[Chefe Mansur]";
-		mes "Olá,"+ strcharinfo(0) +". Infelizmente, você falhou no teste e não poderá receber a Licença de Mercador.";
+		mes "Olá,"+ strcharinfo(0) +".";
+		mes "Infelizmente, você falhou no teste e não poderá receber a Licença de Mercador.";
 		set job_merchant_q,0;
 		set job_merchant_q2,0;
 		set quest_alb_01,0;
@@ -91,10 +102,12 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 	}
 	else if (job_merchant_q == 8 || job_merchant_q == 7) {
 		mes "[Chefe Mansur]";
-		mes "Olá,"+ strcharinfo(0) +". Fico feliz em dizer que tenho boas notícias!";
+		mes "Olá,"+ strcharinfo(0) +".";
+		mes "Fico feliz em dizer que tenho boas notícias!";
 		next;
 		mes "[Chefe Mansur]";
-		mes "A Guilda dos Mercadores aceitou o seu pedido. Você provou que está totalmente qualificado para se tornar um Mercador.";
+		mes "A Guilda dos Mercadores aceitou o seu pedido.";
+		mes "Você provou que está totalmente qualificado para se tornar um Mercador.";
 		if (job_merchant_q == 7) {
 			next;
 			mes "[Chefe Mansur]";
@@ -115,13 +128,15 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 				break;
 			case 2:
 				mes "[Chefe Mansur]";
-				mes "Eu suponho que você necessite de tempo para conseguir o zeny necessário. Por favor, volte quando estiver pronto.";
+				mes "Eu suponho que você necessite de tempo para conseguir o zeny necessário.";
+				mes "Por favor, volte quando estiver pronto.";
 				close;
 			}
 		}
 		next;
 		mes "[Chefe Mansur]";
-		mes "Parabéns! Estou muito feliz que você tenha se integrado a Guilda dos Mercadores, e espero que você desempenhe um papel ativo na economia de Rune-Midgard.";
+		mes "Parabéns!";
+		mes "Estou muito feliz que você tenha se integrado a Guilda dos Mercadores, e espero que você desempenhe um papel ativo na economia de Rune-Midgard.";
 		callfunc "Job_Change",Job_Merchant;
 		callfunc "F_ClearJobVar";
 		if(checkquest(1009) != -1) completequest 1009;
@@ -132,19 +147,23 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 		if (quest_alb_01 == 1) {
 			mes "[Chefe Mansur]";
 			mes "*Aham*";
-			mes "Eeeeeee deixe-me dar um pouco de dinheiro por ter entregado a mensagem para mim. Eu espero que você possa me ajudar novamente~";
+			mes "Eeeeeee deixe-me dar um pouco de dinheiro por ter entregado a mensagem para mim.";
+			mes "Eu espero que você possa me ajudar novamente~";
 			set zeny,zeny+200;
 			set quest_alb_01,2;
 		} else {
 			mes "[Chefe Mansur]";
-			mes "A mensagem foi entregue como eu te pedi? Você se esqueceu? Ah bem. Bom trabalho!";
+			mes "A mensagem foi entregue como eu te pedi?";
+			mes "Você se esqueceu? Ah bem. Bom trabalho!";
 		}
 		next;
 		mes "[Chefe Mansur]";
-		mes "Nosso objetivo é controlar 20% da renda mundial! E nós vamos precisar de jovens, como você!";
+		mes "Nosso objetivo é controlar 20% da renda mundial!";
+		mes "E nós vamos precisar de jovens, como você!";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Mas no entanto, nós vamos seremos felizes para realizar empréstimos. Todos sabemos~";
+		mes "Mas no entanto, nós vamos seremos felizes para realizar empréstimos.";
+		mes "Todos sabemos~";
 		close;
 	}
 	else if (job_merchant_q <= 6 && job_merchant_q != 0) {
@@ -153,7 +172,8 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			mes "Primeiramente, pegue o pacote de entrega dentro do armazém, e depois leve na antiga Associação dos Espadachins em Prontera.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Após a chegada, entregue o pacote a Funcionária Kafra que fica alí por perto, o nome dela é Flor. Você consegue fazer isso?";
+			mes "Após a chegada, entregue o pacote a Funcionária Kafra que fica alí por perto, o nome dela é Flor.";
+			mes "Você consegue fazer isso?";
 			next;
 			if (job_merchant_q2 == 1 || job_merchant_q2 != 1) {
 				mes "[Chefe Mansur]";
@@ -165,7 +185,8 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			next;
 			if (job_merchant_q2 == 3 || job_merchant_q2 != 3) {
 				mes "[Chefe Mansur]";
-				mes "Após a chegada, entregue o pacote ao Mago da Guilda que fica alí por perto. Lembre-se que o número de série do pacote é ^3355FF"+((job_merchant_q2 == 3) ? "2989396":"2191737")+"^000000.";
+				mes "Após a chegada, entregue o pacote ao Mago da Guilda que fica alí por perto.";
+				mes "Lembre-se que o número de série do pacote é ^3355FF"+((job_merchant_q2 == 3) ? "2989396":"2191737")+"^000000.";
 				setquest 1010;
 			}
 		} else if (job_merchant_q2 == 5 || job_merchant_q2 == 6) {
@@ -176,7 +197,8 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			next;
 			if (job_merchant_q2 == 5 || job_merchant_q2 != 5) {
 				mes "[Chefe Mansur]";
-				mes "Mas ele é um pouco esquecido, então entregue o pacote a seus alunos. Lembre-se que o número de série do pacote é ^3355FF"+((job_merchant_q2 == 5) ? "3012685":"3487372")+"^000000.";
+				mes "Mas ele é um pouco esquecido, então entregue o pacote a seus alunos.";
+				mes "Lembre-se que o número de série do pacote é ^3355FF"+((job_merchant_q2 == 5) ? "3012685":"3487372")+"^000000.";
 				setquest 1011;
 			}
 		} else if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
@@ -191,24 +213,31 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 		if (job_merchant_q2 == 7 || job_merchant_q2 == 8) {
 			next;
 			mes "[Chefe Mansur]";
-			mes "Eeeeeee... Não se esqueça de entregar a mensagem para mim~";
+			mes "Eeeeeee...";
+			mes "Não se esqueça de entregar a mensagem para mim~";
 		}
 		next;
 		mes "[Chefe Mansur]";
-		mes "Não esqueça o seu destino e o número de série do pacote. Você vai ter que falar para o guarda do armazém.";
+		mes "Não esqueça o seu destino e o número de série do pacote.";
+		mes "Você vai ter que falar para o guarda do armazém.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "O armazém está nessa sala à minha direta. Lá, você pode conversar com o guarda, ele pode te ajudar.";
+		mes "O armazém está nessa sala à minha direta.";
+		mes "Lá, você pode conversar com o guarda, ele pode te ajudar.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Depois de fazer a entrega, retorne ao armazém e dê o recibo para o guarda. Depos, volte e fale comigo.";
+		mes "Depois de fazer a entrega, retorne ao armazém e dê o recibo para o guarda.";
+		mes "Depos, volte e fale comigo.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Está claro? Tudo bem, esse é o espírito. Se cuida!";
+		mes "Está claro?";
+		mes "Tudo bem, esse é o espírito.";
+		mes "Se cuida!";
 		close;
 	} else if (job_merchant_q == 0) {
 		mes "[Chefe Mansur]";
-		mes "Então, oque te traz à Associação dos Mercadores? Existe alguma maneira que eu possa te ajudar?";
+		mes "Então, oque te traz à Associação dos Mercadores?";
+		mes "Existe alguma maneira que eu possa te ajudar?";
 		next;
 		switch(select("Eu quero ser um Mercador.:Conte-me sobre os Mercadores.:Conte-me os requerimentos.:Nada.")) {
 		case 1:
@@ -216,24 +245,28 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			next;
 			if (getskilllv("NV_BASIC") < 9) {
 				mes "[Chefe Mansur]";
-				mes "Primeiro, você tem que ser um aprendiz com o nível de classe 10. Depois disso, aprenda as habilidades básicas.";
+				mes "Primeiro, você tem que ser um aprendiz com o nível de classe 10.";
+				mes "Depois disso, aprenda as habilidades básicas.";
 				next;
 				mes "[Chefe Mansur]";
-				mes "Nós não fabricarmos apenas dinheiro! Nós nos orgulhamos de ter normas e aceitar apenas candidatos qualificados!";
+				mes "Nós não fabricarmos apenas dinheiro!";
+				mes "Nós nos orgulhamos de ter normas e aceitar apenas candidatos qualificados!";
 				close;
 			}
 			mes "[Chefe Mansur]";
 			mes "Tudo bem, você vai precisar preencher sua aplicação e pagar 1.000 Zeny para o pagamento de sua licença.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Ah...! Se você não tiver todo o dinheiro, eu posso pegar a metade agora. Aí você paga a outra metade depois de passar no teste e ganhar sua Licença da Guilda dos Mercadores..";
+			mes "Ah...! Se você não tiver todo o dinheiro, eu posso pegar a metade agora.";
+			mes "Aí você paga a outra metade depois de passar no teste e ganhar sua Licença da Guilda dos Mercadores..";
 			next;
 			mes "[Chefe Mansur]";
 			mes "Então, o que você acha? Você está pronto pra começar?";
 			next;
 			if (select("Sim, estou.:Humm, talvez depois...") ==2 ) {
 				mes "[Chefe Mansur]";
-				mes "Você não tem o zeny suficiente, certo? Não tem problema, volte aqui quando você estiver, ok?";
+				mes "Você não tem o zeny suficiente, certo?";
+				mes "Não tem problema, volte aqui quando você estiver, ok?";
 				close;
 			}
 			mes "[Chefe Mansur]";
@@ -243,7 +276,8 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			mes "Hum..."+strcharinfo(0)+"... É um bonito nome.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Esse formulário só será aceito depois que a taxa da licença for paga. De que maneira você vai querer pagar?";
+			mes "Esse formulário só será aceito depois que a taxa da licença for paga.";
+			mes "De que maneira você vai querer pagar?";
 			next;
 			switch(select("Pagar os 1,000 Zeny agora!:Pagar a metade, 500 Zeny.:Sair")) {
 			case 1:
@@ -253,7 +287,8 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 					set zeny,zeny-1000;
 					mes "Bom~ 1,000 zeny. Excelente, excelente.";
 				} else {
-					mes "Você não tem o zeny suficiente. Porque você não paga 500 zeny agora? Pense sobre isso.";
+					mes "Você não tem o zeny suficiente.";
+					mes "Porque você não paga 500 zeny agora? Pense sobre isso.";
 					close;
 				}
 				break;
@@ -262,9 +297,12 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 				if (Zeny >= 500) {
 					set job_merchant_q,1;
 					set zeny,zeny-500;
-					mes "Vamos ver... 500 Zeny. Eu acho que parcelar não é uma boa idéia para um Mercador, tudo bem desde que você aprenda.";
+					mes "Vamos ver... 500 Zeny.";
+					mes "Eu acho que parcelar não é uma boa idéia para um Mercador, tudo bem desde que você aprenda.";
 				} else {
-					mes "Hum... Parece que você não tem nem a metade para pagar a licença. Por favor, volte quando estiver a taxa necessária.";
+					mes "Hum...";
+					mes "Parece que você não tem nem a metade para pagar a licença.";
+					mes "Por favor, volte quando estiver a taxa necessária.";
 					close;
 				}
 				break;
@@ -275,10 +313,12 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			}
 			next;
 			mes "[Chefe Mansur]";
-			mes "Tudo bem, agora você está na lista de candidatos. Ah, antes de começar deixe-me dizer apenas uma coisa.";
+			mes "Tudo bem, agora você está na lista de candidatos.";
+			mes "Ah, antes de começar deixe-me dizer apenas uma coisa.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Há pessoas gananciosas e idiotas por aí que não sabem o que significa ser um Mercador. Espero que você não seja como essas pessoas, você não vai ser né?";
+			mes "Há pessoas gananciosas e idiotas por aí que não sabem o que significa ser um Mercador.";
+			mes "Espero que você não seja como essas pessoas, você não vai ser né?";
 			next;
 			mes "[Chefe Mansur]";
 			mes "Agora, deixe-me explicar oque é necessário para você conseguir sua Licença de Mercador.";
@@ -313,17 +353,21 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			}
 			next;
 			mes "[Chefe Mansur]";
-			mes "Não esqueça seu destino e nem o número de série. Você precisa falar com esse guarda do armazém ao meu lado e ele te dará o pacote.";
+			mes "Não esqueça seu destino e nem o número de série.";
+			mes "Você precisa falar com esse guarda do armazém ao meu lado e ele te dará o pacote.";
 			next;
 			mes "[Chefe Mansur]";
 			mes "Depois da entrega, dê o recibo ao guarda, e fale comigo novamente.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Certo? Tudo bem, esse é o espírito. Se cuida!";
+			mes "Certo?";
+			mes "Tudo bem, esse é o espírito. Se cuida!";
 			close;
 		case 2:
 			mes "[Chefe Mansur]";
-			mes "Mercador? Bem, nós basicamente vendemos para ganhar dinheiro. Essa é a função de um Mercador.";
+			mes "Mercador?";
+			mes "Bem, nós basicamente vendemos para ganhar dinheiro.";
+			mes "Essa é a função de um Mercador.";
 			next;
 			mes "[Chefe Mansur]";
 			mes "Só que nós não somos tão bons na luta, não temos tantas habilidades especiais, e também não temos habilidades de cura...";
@@ -332,16 +376,20 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			mes "Mas podemos comprar produtos a preços mais baixos nos NPC e vendê-los a um preço mais alto a outras pessoas ~";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Nossa habilidade de ataque é a 'Mammonita.' A força da Mammonita vem da raiva de quando nós somos forçados a jogar nosso dinheiro fora para atacar.";
+			mes "Nossa habilidade de ataque é a 'Mammonita.'";
+			mes "A força da Mammonita vem da raiva de quando nós somos forçados a jogar nosso dinheiro fora para atacar.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Jogando zeny fora dessa maneira faz com que qualquer Mercador fique com uma raiva mortal no coração! Só de pensar nisso faz meu sangue ferver!";
+			mes "Jogando zeny fora dessa maneira faz com que qualquer Mercador fique com uma raiva mortal no coração!";
+			mes "Só de pensar nisso faz meu sangue ferver!";
 			next;
 			mes "[Chefe Mansur]";
-			mes "De qualquer maneira, podemos usar mais armas, exceto arcos, bastões e espadas de duas mãos. Mas podemos vendê-los.";
+			mes "De qualquer maneira, podemos usar mais armas, exceto arcos, bastões e espadas de duas mãos.";
+			mes "Mas podemos vendê-los.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "Sim... Nós mercadores, de forma geral, sempre temos dinheiro...";
+			mes "Sim...";
+			mes "Nós mercadores, de forma geral, sempre temos dinheiro...";
 			close;
 		case 3:
 			mes "[Chefe Mansur]";
@@ -351,10 +399,12 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			mes "A primeira, você tem que ser um aprendiz com o nível de classe 10, e aprender as habilidades básicas.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "A segunda, Você tem que pagar 1,000 Zeny para a licença. Eu acredito que um candidato a Mercador tenha essa quantia de 1,000 Zeny.";
+			mes "A segunda, Você tem que pagar 1,000 Zeny para a licença.";
+			mes "Eu acredito que um candidato a Mercador tenha essa quantia de 1,000 Zeny.";
 			next;
 			mes "[Chefe Mansur]";
-			mes "A terceira, há um teste físico para a licença que você deve fazer, para testar sua força física e seu senso de direção. Você vai entregar um pacote para uma pessoa específica em uma localidade específico.";
+			mes "A terceira, há um teste físico para a licença que você deve fazer, para testar sua força física e seu senso de direção.";
+			mes "Você vai entregar um pacote para uma pessoa específica em uma localidade específico.";
 			close;
 		case 4:
 			close;
@@ -368,10 +418,12 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 	case 1:
 		if(BaseJob != Job_Novice) {
 			mes "[Chefe Mansur]";
-			if(BaseJob == Job_Merchant)
-				mes ".....? Desculpe? O que você está dizendo? Você já é um mercador. Ah meu.. Hum?! ...Eu preciso rir agora?!";
-			else{
-				mes "Ahh? Você está tentando possuir duas classes? Como pensa em desperdiçar tudo que conquistou até agora? ";
+			if(BaseJob == Job_Merchant) {
+				mes ".....? Desculpe? O que você está dizendo?";
+				mes "Você já é um mercador. Ah meu.. Hum?! ...Eu preciso rir agora?!";
+			} else{
+				mes "Ahh? Você está tentando possuir duas classes?";
+				mes "Como pensa em desperdiçar tudo que conquistou até agora? ";
 				next;
 				mes "[Chefe Mansur]";
 				mes "Você sabe que temos a ética em nossos negócios.";
@@ -390,32 +442,47 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 			close;
 		}
 		mes "[Chefe Mansur]";
-		mes "Bom, eu acho que você está totalmente pronto para isso vendo que o seu nível de habilidade básica é suficiente. Agora eu permito que você seja um mercador.";
+		mes "Bom, eu acho que você está totalmente pronto para isso vendo que o seu nível de habilidade básica é suficiente.";
+		mes "Agora eu permito que você seja um mercador.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Parabéns por se tornar um mercador! Parabéns mais uma vez por ser um membro da guilda de mercadores e um dos nossos colegas. Espero sua participação ativa apartir de agora!";
+		mes "Parabéns por se tornar um mercador!";
+		mes "Parabéns mais uma vez por ser um membro da guilda de mercadores e um dos nossos colegas.";
+		mes "Espero sua participação ativa apartir de agora!";
 		callfunc "Job_Change",Job_Merchant;
 		getitem	1381,1; // Machado de Batalha de Iniciante
 		next;
 		mes "[Chefe Mansur]";
-		mes "Absolutamente, nós precisamos de pessoas jovens que têm paixão para alcançar o nosso grande objetivo que é garantir 20% do volume de moedas em todo o mundo. Você conseguiu isso? huh? Bem, eu só estou dizendo... Isso significa que vamos ganhar muito dinheiro no final. Você sabe disso~";
+		mes "Absolutamente, nós precisamos de pessoas jovens que têm paixão para alcançar o nosso grande objetivo que é garantir 20% do volume de moedas em todo o mundo.";
+		mes "Você conseguiu isso? huh? Bem, eu só estou dizendo...";
+		mes "Isso significa que vamos ganhar muito dinheiro no final. Você sabe disso~";
 		close;
 	case 2:
 		mes "[Chefe Mansur]";
-		mes "Mercador? Definindo, a pessoa que vende bem e faz o seu dinheiro é um mercador. Não é bom em combate e não tem ataque especial / capacidades de recuperação... Mas um comerciante pode comprar coisas a um preço baixo e, em seguida vendê-los e ganhar dinheiro.";
+		mes "Mercador?";
+		mes "Definindo, a pessoa que vende bem e faz o seu dinheiro é um mercador.";
+		mes "Não é bom em combate e não tem ataque especial / capacidades de recuperação...";
+		mes "Mas um comerciante pode comprar coisas a um preço baixo e, em seguida vendê-los e ganhar dinheiro.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Bem, um comerciante tem uma habilidade final chamado Mammonita que atinge um inimigo com seu dinheiro... Podemos equipar tudo, exceto Arcos, Cajados e espadas de duas mãos. Mas sempre podemos vendê-los e comprá-los. Sim... Nós os mercadores temos sempre o dinheiro em nossos pensamentos, entendeu?";
+		mes "Bem, um comerciante tem uma habilidade final chamado Mammonita que atinge um inimigo com seu dinheiro...";
+		mes "Podemos equipar tudo, exceto Arcos, Cajados e espadas de duas mãos.";
+		mes "Mas sempre podemos vendê-los e comprá-los.";
+		mes "Sim...";
+		mes "Nós os mercadores temos sempre o dinheiro em nossos pensamentos, entendeu?";
 		close;
 	case 3:
 		mes "[Chefe Mansur]";
 		mes "Para tornar-se um mercador, embora nosso trabalho seja apenas vendermos e recebermos dinheiro, você deve alcançar pelo menos o nível 9 de habilidades básicas.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Bem, estavamos habituados a receber uma comissão antes. Foi difícil fazer o dinheiro? Havia muitas pessoas que não podiam reunir esse dinheiro e ficavam sempre reclamando.";
+		mes "Bem, estavamos habituados a receber uma comissão antes.";
+		mes "Foi difícil fazer o dinheiro?";
+		mes "Havia muitas pessoas que não podiam reunir esse dinheiro e ficavam sempre reclamando.";
 		next;
 		mes "[Chefe Mansur]";
-		mes "Então, recentemente decidimos permitir que qualquer principiante que queira ser um mercador possa ter a possibilidade de fazer o teste. Porque depois se continuarão vivos ou não é tudo habilidade.";
+		mes "Então, recentemente decidimos permitir que qualquer principiante que queira ser um mercador possa ter a possibilidade de fazer o teste.";
+		mes "Porque depois se continuarão vivos ou não é tudo habilidade.";
 		close;
 	case 4:
 		close;
@@ -442,19 +509,26 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 		close;
 	} else if (BaseJob != Job_Merchant && BaseJob != Job_Novice) {
 		mes "[Guarda Kay]";
-		mes "Ei você. Nós não temos nada para você no momento. Se você quer ganhar zeny, vá procurar noutro lugar.";
+		mes "Ei você. Nós não temos nada para você no momento.";
+		mes "Se você quer ganhar zeny, vá procurar noutro lugar.";
 		close;
 	} else if (job_merchant_q == 9) {
 		mes "[Guarda Kay]";
-		mes "Ei você. Sim, você. Se você quiser reiniciar o teste, visite Mansur na outra sala. Para que assim, podermos conversar.";
+		mes "Ei você. Sim, você.";
+		mes "Se você quiser reiniciar o teste, visite Mansur na outra sala.";
+		mes "Para que assim, podermos conversar.";
 		close;
 	} else if (job_merchant_q == 8 || job_merchant_q == 7) {
 		mes "[Guarda Kay]";
-		mes "Certo! Tudo perfeito! Vou relatar o seu sucesso para o chefe. Agora vá falar com o Chefe Mansur, ok?";
+		mes "Certo! Tudo perfeito!";
+		mes "Vou relatar o seu sucesso para o chefe.";
+		mes "Agora vá falar com o Chefe Mansur, ok?";
 		close;
 	} else if (job_merchant_q == 6 || job_merchant_q == 5) {
 		mes "[Guarda Kay]";
-		mes "Ah, sim? Ok, deixa eu verificar. Seu nome é "+strcharinfo(0)+"? Tudo bem, seu destino era ...";
+		mes "Ah, sim?";
+		mes "Ok, deixa eu verificar.";
+		mes "Seu nome é "+strcharinfo(0)+"? Tudo bem, seu destino era ...";
 		next;
 		mes "[Guarda Kay]";
 		mes ((job_merchant_q2 == 1 || job_merchant_q2 == 2) ? "Uau! Você encontrou a Kafra em Prontera? Sorte sua~... Recibo?" : (job_merchant_q2 == 3 || job_merchant_q2 == 4) ? "Academia Mágica de Geffen. Ok, recibo?" : (job_merchant_q2 == 5 || job_merchant_q2 == 6) ? "O tintureiro em morroc. Nada mal. Recibo?" : "Oh hohohoho~! A Kafra na Ilha de Baylan?! Incrível! De qualquer maneira, você trouxe o recibo?");
@@ -482,12 +556,16 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 			mes "O que aconteceu?";
 			next;
 			mes "[Guarda Kay]";
-			mes "Se você não tiver o recibo, você falhou no teste! É melhor você falar com Mansur, ok? Preste atenção na próxima vez!";
+			mes "Se você não tiver o recibo, você falhou no teste!";
+			mes "É melhor você falar com Mansur, ok?";
+			mes "Preste atenção na próxima vez!";
 			close;
 		}
 		next;
 		mes " [Guarda Kay]";
-		mes "...Excelente! Tudo perfeito! Vou relatar o seu sucesso ao chefe. É melhor falar com o Chefe Mansur agora, ok?";
+		mes "...Excelente! Tudo perfeito!";
+		mes "Vou relatar o seu sucesso ao chefe.";
+		mes "É melhor falar com o Chefe Mansur agora, ok?";
 		close2;
 		if (job_merchant_q == 6)
 			set job_merchant_q,8;
@@ -496,7 +574,8 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 		end;
 	} else if (job_merchant_q == 4 || job_merchant_q == 3 && !countitem(1081) && !countitem(1082) && !countitem(1091)) {
 		mes "[Guarda Kay]";
-		mes "Hã? Você está de volta? Então, como é que vai a entrega?";
+		mes "Hã? Você está de volta?";
+		mes "Então, como é que vai a entrega?";
 		next;
 		if (select("*Suspiro* Eu perdi o pacote.:Bem.") == 2) {
 			mes "[Guarda Kay]";
@@ -505,14 +584,18 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 		}
 		set job_merchant_q,9;
 		mes "[Guarda Kay]";
-		mes "Você está brincando comigo? Você falhará no teste se você perder o pacote!";
+		mes "Você está brincando comigo?";
+		mes "Você falhará no teste se você perder o pacote!";
 		next;
 		mes "[Guarda Kay]";
-		mes "Awwww homem. Bem, se você quiser começar novamente o teste, fale com o Mansur, ok? Você tem sorte que você está recebendo uma nova chance!";
+		mes "Awwww homem.";
+		mes "Bem, se você quiser começar novamente o teste, fale com o Mansur, ok?";
+		mes "Você tem sorte que você está recebendo uma nova chance!";
 		close;
 	} else if (job_merchant_q == 4 || job_merchant_q == 3 && countitem(1081) || countitem(1082) || countitem(1091)) {
 		mes "[Guarda Kay]";
-		mes "Ei, o que você ainda está fazendo aqui? Não era para você já estar no caminho?";
+		mes "Ei, o que você ainda está fazendo aqui?";
+		mes "Não era para você já estar no caminho?";
 		next;
 		if (select("Eu preciso de um novo pacote.:Ah, sim. Você está certo!") == 2) {
 			mes "[Guarda Kay]";
@@ -525,7 +608,8 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 			next;
 			if (select("*Suspiro* Eu perdi!:Está aqui.") == 2) {
 				mes "[Guarda Kay]";
-				mes "Hã. Pensei que você tinha perdido. Você não precisa de um novo.";
+				mes "Hã. Pensei que você tinha perdido.";
+				mes "Você não precisa de um novo.";
 				close;
 			}
 			set job_merchant_q,9;
@@ -533,11 +617,14 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 			mes "Você... perdeu?! Você falhou no teste!";
 			next;
 			mes "[Guarda Kay]";
-			mes "*Suspiro* Se você quiser fazer o teste novamente, fale com Mansur na outra sala, ok?";
+			mes "*Suspiro*";
+			mes "Se você quiser fazer o teste novamente, fale com Mansur na outra sala, ok?";
 			close;
 		}
 		mes "[Guarda Kay]";
-		mes "*Suspiro* Cara, você está começando a me dar dor de cabeça. Espere, deixa eu cancelar o seu registro...";
+		mes "*Suspiro*";
+		mes "Cara, você está começando a me dar dor de cabeça.";
+		mes "Espere, deixa eu cancelar o seu registro...";
 		if (countitem(1081))
 			delitem 1081,1; // Caixa de Entrega
 		else if (countitem(1082))
@@ -560,18 +647,21 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 		switch(select("Minha Licença de Mercador.:Estou à procura de trabalho a tempo parcial.:Nada.")) {
 		case 1:
 			mes "[Guarda Kay]";
-			mes "Entendo. Tudo bem. Qual o seu nome? "+strcharinfo(0)+"...?";
+			mes "Entendo. Tudo bem.";
+			mes "Qual o seu nome? "+strcharinfo(0)+"...?";
 			next;
 			if (job_merchant_q == 0) {
 				mes "[Guarda Kay]";
-				mes "Huh. Seu nome não está na minha lista. Será que você não se alistou para o teste da classe?";
+				mes "Huh. Seu nome não está na minha lista.";
+				mes "Será que você não se alistou para o teste da classe?";
 				next;
 				mes "[Guarda Kay]";
 				mes "Você primeiro tem que se alistar falando com o Chefe Mansur ao centro desse local, ok?";
 				close;
 			}
 			mes "[Guarda Kay]";
-			mes "Tudo bem, lá vai. Vou te dar o pacote. Agora, escolha o destino da entrega.";
+			mes "Tudo bem, lá vai. Vou te dar o pacote.";
+			mes "Agora, escolha o destino da entrega.";
 			next;
 			switch(select("Prontera.:Geffen.:Morocc.:Ilha de Byalan.")) {
 			case 1: set .@where_village,1; break;
@@ -580,7 +670,8 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 			case 4: set .@where_village,4; break;
 			}
 			mes "[Guarda Kay]";
-			mes "Ok, agora você precisa me dar o número de série do pacote. Se você quiser cancelar, basta digitar \"0\", ok?";
+			mes "Ok, agora você precisa me dar o número de série do pacote.";
+			mes "Se você quiser cancelar, basta digitar \"0\", ok?";
 			next;
 			while(1) {
 				while(1) {
@@ -595,7 +686,8 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 						next;
 					}else if (.@input < 1000000 || .@input > 5000000) {
 						mes "[Guarda Kay]";
-						mes "Ei, ei. Esse número não é válido! Insira um valor entre 1000000-5000000. entendeu?";
+						mes "Ei, ei. Esse número não é válido!";
+						mes "Insira um valor entre 1000000-5000000. Entendeu?";
 						next;
 					}
 					else break;
@@ -640,18 +732,23 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 			else if (job_merchant_q == 1)
 				set job_merchant_q,3;
 			mes "[Guarda Kay]";
-			mes "Tudo bem. Pegue esse pacote e guarde-o com você até que seja entregue com segurança ao cliente. Não perca o pacote, entendeu?";
+			mes "Tudo bem.";
+			mes "Pegue esse pacote e guarde-o com você até que seja entregue com segurança ao cliente.";
+			mes "Não perca o pacote, entendeu?";
 			next;
 			mes "[Guarda Kay]";
-			mes "Pois bem, desejo-lhe sorte. Lembre-se, você tem que me trazer um recibo depois de terminar a entrega, ok?";
+			mes "Pois bem, desejo-lhe sorte.";
+			mes "Lembre-se, você tem que me trazer um recibo depois de terminar a entrega, ok?";
 			close;
 		case 2:
 			mes "[Guarda Kay]";
-			mes "Trabalho parcial? Desculpe amigo, não temos nada para oferecer ainda...";
+			mes "Trabalho parcial?";
+			mes "Desculpe amigo, não temos nada para oferecer ainda...";
 			close;
 		case 3:
 			mes "[Guarda Kay]";
-			mes "Nada, né? Eu acho que você gosta de incomodar as pessoas sem nenhuma razão, né?";
+			mes "Nada, né?";
+			mes "Eu acho que você gosta de incomodar as pessoas sem nenhuma razão, né?";
 			close;
 		}
 	}
@@ -660,7 +757,8 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
 	if ((job_merchant_q == 4) || (job_merchant_q == 3)) {
 		mes "[Estudante de Tintas]";
-		mes "Você é da Guilda dos Mercadores? Sim! Você veio ao lugar certo.";
+		mes "Você é da Guilda dos Mercadores?";
+		mes "Sim! Você veio ao lugar certo.";
 		next;
 		mes "[Estudante de Tintas]";
 		if (countitem(1081) || countitem(1082) || countitem(1091)) {
@@ -687,7 +785,8 @@ morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
 			getitem 1078,1; // Recibo de Entrega
 		} else {
 			mes "Desculpe-me, mas...";
-			mes "Eu acho que este não é o pacote que pedimos. O número de série deve ser "+((job_merchant_q2 == 5) ? "3012685. Entende?" : (job_merchant_q2 == 6) ? "3487372. Entende?" : "3012685 ou 3487372. Bom, um dos dois...");
+			mes "Eu acho que este não é o pacote que pedimos.";
+			mes "O número de série deve ser "+((job_merchant_q2 == 5) ? "3012685. Entende?" : (job_merchant_q2 == 6) ? "3487372. Entende?" : "3012685 ou 3487372. Bom, um dos dois...");
 			close;
 		}
 		if (job_merchant_q == 4) set job_merchant_q,6;
@@ -705,7 +804,8 @@ morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
 	mes "Sr. Java Dullihan é o primeiro e único melhor fabricante de tintura no continente de Rune-Midgard.";
 	next;
 	mes "[Estudante de Tintas]";
-	mes "Eeeeee eu tenho orgulho de dizer que sou seu aluno! Algum dia, eu realmente serei capaz de fazer lindas tinturas!";
+	mes "Eeeeee eu tenho orgulho de dizer que sou seu aluno!";
+	mes "Algum dia, eu realmente serei capaz de fazer lindas tinturas!";
 	next;
 	mes "[Estudante de Tintas]";
 	mes "Claro, eu estou aprendendo o básico agora, mas um dia...";
@@ -715,7 +815,8 @@ morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
 geffen_in,155,122,4	script#vpo	Funcionário#mer	47,{
 	if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Funcionário]";
-		mes "Ah, você deve estar com a Guilda dos Mercadores. Finalmente, o meu pacote chegou! Beleza...!";
+		mes "Ah, você deve estar com a Guilda dos Mercadores.";
+		mes "Finalmente, o meu pacote chegou! Beleza...!";
 		next;
 		mes "[Funcionário]";
 		if (countitem(1081) || countitem(1082) || countitem(1091))
@@ -763,7 +864,8 @@ geffen_in,155,122,4	script#vpo	Funcionário#mer	47,{
 		close;
 	}
 	mes "[Funcionário]";
-	mes "Meu pacote já deveria ter chegado. Hã. Eu acho que esses Mercadores estão um pouco lerdos...";
+	mes "Meu pacote já deveria ter chegado.";
+	mes "Hã. Eu acho que esses Mercadores estão um pouco lerdos...";
 	close;
 }
 
@@ -806,7 +908,8 @@ prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
 			else mes "Eu pedi o número de série é 2328137 ou 2328137.";
 			next;
 			mes "[Funcionária Kafra]";
-			mes "Estou com medo, algum problema deve ter ocorrido. Talvez você tenha que voltar à Guilda dos Mercadores para resolver essa situação?";
+			mes "Estou com medo, algum problema deve ter ocorrido.";
+			mes "Talvez você tenha que voltar à Guilda dos Mercadores para resolver essa situação?";
 			close2;
 			cutin "",255;
 			end;
@@ -825,7 +928,8 @@ prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
 	mes "Bem vindo à Corporação Kafra, onde nossos serviços estão sempre ao seu lado~";
 	next;
 	mes "[Funcionária Kafra]";
-	mes "Como você pode ver, a Associação dos Espadachins se mudou para Izlude, a cidade satélite de Prontera. Por isso, oferecemos o Serviço de Teletransporte para Izlude por 600 Zeny.";
+	mes "Como você pode ver, a Associação dos Espadachins se mudou para Izlude, a cidade satélite de Prontera.";
+	mes "Por isso, oferecemos o Serviço de Teletransporte para Izlude por 600 Zeny.";
 	next;
 	if (select("Usar:Cancelar") == 2) {
 		close2;
@@ -855,13 +959,15 @@ function	script	F_MercKafra {
 		end;
 	} else if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Funcionária Kafra]";
-		mes "Uma entrega da Guilda dos Mercadores? Ah, sim, deixe-me ver se está tudo correto...";
+		mes "Uma entrega da Guilda dos Mercadores?";
+		mes "Ah, sim, deixe-me ver se está tudo correto...";
 		if (countitem(1081) || countitem(1082) || countitem(1091)) {
 			mes "[Funcionária Kafra]";
 			mes "Você deve estar muito cansado depois de carregar essas coisas por tanto tempo!";
 		} else {
 			mes "[Funcionária Kafra]";
-			mes "E-espere. Você não trouxe o pacote? Onde está o pacote?";
+			mes "E-espere. Você não trouxe o pacote?";
+			mes "Onde está o pacote?";
 			close2;
 			cutin "",255;
 			end;
@@ -878,7 +984,9 @@ function	script	F_MercKafra {
 			delitem 1082,1; // Caixa de Entrega
 			getitem 1080,1; // Recibo de Entrega
 		} else {
-			mes "Hmmm? Espere um pouco. Esse é o pacote errado. O que eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
+			mes "Hmmm? Espere um pouco.";
+			mes "Esse é o pacote errado.";
+			mes "O que eu pedi o número de série é "+((job_merchant_q2 == 7) ? "3318702": (job_merchant_q2 == 8) ? "3543625" : "3318702 ou 3543625")+". Tenho certeza de que não é esse.";
 			close2;
 			cutin "",255;
 			end;
@@ -891,10 +999,14 @@ function	script	F_MercKafra {
 			delitem 1072,1; // Mensagem ( Envelope de Entrega )
 			set quest_alb_01,1;
 			mes "[Funcionária Kafra]";
-			mes "Ah~! Uma carta de Mansur! Muito obrigado, estava morrendo de vontade de ouvi-lo. Como é que ele está, ele está bem? Eu não posso esperar para lê-la...";
+			mes "Ah~! Uma carta de Mansur!";
+			mes "Muito obrigado, estava morrendo de vontade de ouvi-lo.";
+			mes "Como é que ele está, ele está bem? Eu não posso esperar para lê-la...";
 			next;
 			mes "[Funcionária Kafra]";
-			mes "Ah, muito obrigado por passar por todos esses problemas para entregar isso para mim. Isso não é nada especial, mas por favor, leve-o. Bem, vejo você de novo~";
+			mes "Ah, muito obrigado por passar por todos esses problemas para entregar isso para mim.";
+			mes "Isso não é nada especial, mas por favor, leve-o.";
+			mes "Bem, vejo você de novo~";
 			getitem 513,3; //Banana
 		} else {
 			mes "[Funcionária Kafra]";

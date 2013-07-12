@@ -25,8 +25,11 @@
 //   \________________________________________________________/
 
 comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
-	mes "[Guia de Comodo]"+"\nBem-vindo a ^8B4513Comodo^000000, a cidade litorânea do Reino de Rune-Midgards.\nVocê precisa de ajuda para navegar pela cidade?";
+	mes "[Guia de Comodo]";
+	mes "Bem-vindo a ^8B4513Comodo^000000, a cidade litorânea do Reino de Rune-Midgards.";
+	mes "Você precisa de ajuda para navegar pela cidade?";
 	next;
+	set .@str$,"Gostaria de checar outras localizações?";
 	while (1) {
 		switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar:Sobre ^8B4513Comodo^000000")) {
 		case 1:
@@ -104,7 +107,9 @@ comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
 					next;
 					break;
 				case 2:
-					mes "[Guia de Comodo]"+"\n^228B22Bor Robin^000000 ajuda aventureiras a se tornarem ^228B22Odaliscas^000000.\nGostaria de checar outras localizações?";
+					mes "[Guia de Comodo]";
+					mes "^228B22Bor Robin^000000 ajuda aventureiras a se tornarem ^228B22Odaliscas^000000.";
+					mes .@str$;
 					viewpoint 1,193,151,12,0x228B22;
 					next;
 					break;
@@ -114,7 +119,9 @@ comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
 					next;
 					break;
 				case 4:
-					mes "[Guia de Comodo]"+"\nO ^DB7093Bardo Andarilho^000000 ajuda aventureiros a se tornarem ^DB7093Bardos^000000.\nGostaria de checar outras localizações?";
+					mes "[Guia de Comodo]";
+					mes "O ^DB7093Bardo Andarilho^000000 ajuda aventureiros a se tornarem ^DB7093Bardos^000000.";
+					mes .@str$;
 					viewpoint 1,211,155,14,0xDB7093;
 					next;
 					break;
@@ -125,7 +132,9 @@ comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
 			}
 			break;
 		case 3:
-			mes "[Guia de Comodo]"+"\nCerto, removerei todas as indicações do seu mini-mapa.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Guia de Comodo]";
+			mes "Certo, removerei todas as indicações do seu mini-mapa.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
 			viewpoint 2,166,298,0,0xFFFFFF;
 			viewpoint 2,140,98,1,0xFFFFFF;
 			viewpoint 2,266,70,2,0xFFFFFF;
@@ -144,25 +153,31 @@ comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
 			next;
 			break;
 		case 4:
-			mes "[Guia de Comodo]"+"\nAproveite sua estadia.";
+			mes "[Guia de Comodo]";
+			mes "Aproveite sua estadia.";
 			close;
 		case 5:
-			mes "[Guia de Comodo]"+"\n^8B4513Comodo^000000 é localizada dentro de uma caverna e nunca pode ser atingida pela luz do sol.";
+			mes "[Guia de Comodo]";
+			mes "^8B4513Comodo^000000 é localizada dentro de uma caverna e nunca pode ser atingida pela luz do sol.";
 			next;
-			mes "[Guia de Comodo]"+"\nOs aldeões de ^8B4513Comodo^00000 tem superado seus ambientes naturais probres para criar um local turístico popular.\nHá mais alguma coisa que eu possa fazer por você?";
+			mes "[Guia de Comodo]";
+			mes "Os aldeões de ^8B4513Comodo^00000 tem superado seus ambientes naturais probres para criar um local turístico popular.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
 			next;
 			break;
 		}
 	}
 	end;
 L_Mark:
-	mes "[Guia de Comodo]"+"\nDeixe-me marcar a localização para"+getarg(0)+"^000000 no seu mini-mapa.\nGostaria de checar outras localizações?";
+	mes "[Guia de Comodo]";
+	mes "Deixe-me marcar a localização para"+getarg(0)+"^000000 no seu mini-mapa.";
+	mes .@str$;
 	return;
 }
 
 comodo,181,347,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#02comodo	700
 comodo,197,149,3	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#03comodo	700
-comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	700,{}
+comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	700
 
 comodo,322,178,4	script#vpo	Guia Turístico#cmd	700,{
 	callfunc "F_CmdGuide","Aborígene Nutcoco";
@@ -172,47 +187,75 @@ comodo,176,350,4	duplicatv(Guia Turístico#cmd)	Guia de Comodo#2cmd	700
 comodo,37,219,4	duplicatv(Guia Turístico#cmd)	Guia#2cmd	700
 
 function	script	F_CmdGuide	{
-	mes "["+getarg(0)+"]"+"\nA Cidade da Alegria, Capital da Diversão...\nTerra dos Sonhos e Fantasia!\nBem-vindo a Comodo!\nEstou ao seu dispor para lhe mostrar a cidade.\nSe quiser ir à algum lugar, basta me dizer...";
+	mes "["+getarg(0)+"]";
+	mes "A Cidade da Alegria, Capital da Diversão...";
+	mes "Terra dos Sonhos e Fantasia! Bem-vindo a Comodo!";
+	mes "Estou ao seu dispor para lhe mostrar a cidade.";
+	mes "Se quiser ir à algum lugar, basta me dizer...";
 	next;
 	switch(select("Cassino.:Show de Hula Hula ^3355FF(Guilda as Odaliscas)^000000.:Loja de Armas.:Loja de Utilidades.:Loja das Conchas.:Filial Oeste das Kafras.:Casa do Prefeito.:Bar.:Acampamento.:Cancelar.")) {
 	case 1:
 		viewpoint 1,140,98,0,0xFF6633;
-		mes "^FF6633+^000000 -> O Cassino...\nÉ o que faz Comodo ser Comodo!\nA diversão não para... dia ou noite é diversão no Cassino de Comodo.";
+		mes "^FF6633+^000000 -> O Cassino...";
+		mes "É o que faz Comodo ser Comodo! A diversão não para... dia ou noite é diversão no Cassino de Comodo.";
 		close;
 	case 2:
 		viewpoint 1,188,168,1,0x0000FF;
-		mes "^FF6633+^000000 -> Show de Hula Hula.\nQuer conhecer as nossas odaliscas?\nElas são umas das grandes atrações de Comodo!\nVocê tem interesse em Hula Hula?";
+		mes "^FF6633+^000000 -> Show de Hula Hula.";
+		mes "Quer conhecer as nossas odaliscas?";
+		mes "Elas são umas das grandes atrações de Comodo!";
+		mes "Você tem interesse em Hula Hula?";
 		close;
 	case 3:
 		viewpoint 1,266,70,2,0x00FFFF;
-		mes "^FF6633+^000000 -> Loja de Armas.\nTemos coisas especiais em Comodo...\nItens especiais...\nLoja de Armas de Comodo!";
+		mes "^FF6633+^000000 -> Loja de Armas.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais... Loja de Armas de Comodo!";
 		close;
 	case 4:
 		viewpoint 1,86,128,3,0x515151;
-		mes "^FF6633+^000000 -> Loja de Utilidades.\nTemos coisas especiais em Comodo...\nItens especiais...\nLoja de Utilidades de Comodo!";
+		mes "^FF6633+^000000 -> Loja de Utilidades.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais... Loja de Utilidades de Comodo!";
 		close;
 	case 5:
 		viewpoint 1,298,124,4,0x3355FF;
-		mes "^FF6633+^000000 -> Loja das Conchas.\nTemos coisas especiais em Comodo...\nItens especiais...\nLoja de Souveniers de Comodo!";
+		mes "^FF6633+^000000 -> Loja das Conchas.";
+		mes "Temos coisas especiais em Comodo...";
+		mes "Itens especiais... Loja de Souveniers de Comodo!";
 		close;
 	case 6:
 		viewpoint 1,136,202,5,0xFF5555;
-		mes "^FF6633+^000000 -> Filial Oeste das Kafras.\nÉ responsável pela região Oeste de Midgard.\nO maior centro de serviços do mundo!\nA Filial Oeste da Central Kafra, fica em Comodo!";
+		mes "^FF6633+^000000 -> Filial Oeste das Kafras.";
+		mes "É responsável pela região Oeste de Midgard.";
+		mes "O maior centro de serviços do mundo!";
+		mes "A Filial Oeste da Central Kafra, fica em Comodo!";
 		close;
 	case 7:
 		viewpoint 1,114,294,5,0xFF5555;
-		mes "^FF6633+^000000 -> Casa do Prefeito.\nOnde mora o prefeito de Comodo...\nSe você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
+		mes "^FF6633+^000000 -> Casa do Prefeito.";
+		mes "Onde mora o prefeito de Comodo...";
+		mes "Se você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
 		close;
 	case 8:
 		viewpoint 1,166,298,5,0xFF5555;
-		mes "^FF6633+^000000 -> Casa do Prefeito.\nOnde mora o prefeito de Comodo...\nSe você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
+		mes "^FF6633+^000000 -> Bar.";
+		mes "Lá você pode conhecer outros turistas, relaxar e conversar em um agradável ambiente";
 		close;
 	case 9:
 		viewpoint 1,210,308,5,0xFF5555;
-		mes "^FF6633+^000000 -> Acampamento.\nVenha acampe com sua família ou namorada...\nViva momentos para guardar por toda a vida... e delicie-se com nosso Camping Churrasco!\nCostelas de porco na brasa são um prato tradicional da culinária de Comodo e só aqui você pode encontrá-la!";
+		mes "^FF6633+^000000 -> Acampamento.";
+		mes "Venha acampe com sua família ou namorada...";
+		mes "Viva momentos para guardar por toda a vida...";
+		mes "Delicie-se com nosso Camping Churrasco!";
+		mes "Costelas de porco na brasa são um prato tradicional da culinária de Comodo e só aqui você pode encontrá-la!";
 		close;
 	case 10:
-		mes "["+getarg(0)+"]"+"\nComodo fica em uma caverna...\nEntão a luz do sol nunca brilha aqui...\nO turismo de Comodo se baseia nisso... 24 horas de vida noturna!\nÉ o jeito que ganhamos a vida...";
+		mes "["+getarg(0)+"]";
+		mes "Comodo fica em uma caverna...";
+		mes "Então a luz do sol nunca brilha aqui...";
+		mes "O turismo de Comodo se baseia nisso...";
+		mes "24 horas de vida noturna! É o jeito que ganhamos a vida...";
 		close;
 	}
 }

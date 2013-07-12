@@ -30,40 +30,62 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 	if(checkversion(0)) {
 		mes "Bem-vindo a ^8B4513Umbala^000000, o Vilarejo da Tribo Wotan.";
 		next;
-		mes "Desde quando cheguei aqui comecei a explorar.\nEstou familiarizada com a geografia e os pontos turísticos desse vilarejo.\nVocê deseja conhecer o vilarejo?";
+		mes "Desde quando cheguei aqui comecei a explorar.";
+		mes "Estou familiarizada com a geografia e os pontos turísticos desse vilarejo.";
+		mes "Você deseja conhecer o vilarejo?";
 		while (1) {
 			next;
 			switch(select("[ Funcionárias Kafra ]:[ Casa do Líder ]:[ Casa do Xamã ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Bungee Jump ]:[ Árvore Yggdrasil ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
-				mes "[Exploradora]"+"\nDeixe-me marcar para você a localização das ^0000FFFuncionárias Kafra^000000 em seu mini-mapa.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "Deixe-me marcar para você a localização das ^0000FFFuncionárias Kafra^000000 em seu mini-mapa.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,87,160,0,0x0A82FF;
 				break;
 			case 2:
-				mes "[Exploradora]"+"\nApenas o ^006400Chefe^000000 sabe falar a lingua do mundo exterior.\nEntão é melhor você visitá-lo antes de explorar o vilarejo.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "Apenas o ^006400Chefe^000000 sabe falar a lingua do mundo exterior.";
+				mes "Então é melhor você visitá-lo antes de explorar o vilarejo.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,68,251,1,0xAAFF00;
 				break;
 			case 3:
-				mes "[Exploradora]"+"\nO ^008080Xamã^000000 possui algum tipo de poder místico.\nAs pessoas dizem que ele pode criar e combinar pedras encantadas.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "O ^008080Xamã^000000 possui algum tipo de poder místico.";
+				mes "As pessoas dizem que ele pode criar e combinar pedras encantadas.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,219,188,2,0x008080;
 				break;
 			case 4:
-				mes "[Exploradora]"+"\nA ^FF1493Loja de Armas^000000 no interior de Umbala contém as armas utilizadas em defesas contra os inimigos.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "A ^FF1493Loja de Armas^000000 no interior de Umbala contém as armas utilizadas em defesas contra os inimigos.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,125,155,3,0xFF1493;
 				break;
 			case 5:
-				mes "[Exploradora]"+"\nHá muitas coisas úteis para se comprar na ^8B4513Loja de Utilidades^000000 de Umbala.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "Há muitas coisas úteis para se comprar na ^8B4513Loja de Utilidades^000000 de Umbala.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,136,127,4,0x8B4513;
 				break;
 			case 6:
-				mes "[Exploradora]"+"\nUmbala possui um lugar único chamado de 'Bungee Jump'\nSe você estiver interessado em testar sua coragem, por que não o conhece!?\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "Umbala possui um lugar único chamado de 'Bungee Jump'.";
+				mes "Se você estiver interessado em testar sua coragem, por que não o conhece!?";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,221,176,5,0x9400D3;
 				break;
 			case 7:
-				mes "[Exploradora]"+"\nExiste uma Árvore chamada de Yggdrasil, na parte norte da cidade.\nVocê deve pagar uma visita, já que estou te guiando por Umbala.\nGostaria de verificar outras localizações?";
+				mes "[Exploradora]";
+				mes "Existe uma Árvore chamada de Yggdrasil, na parte norte da cidade.";
+				mes "Você deve pagar uma visita, já que estou te guiando por Umbala.";
+				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,107,284,6,0xA52A2A;
 				break;
 			case 8:
-				mes "[Exploradora]"+"\nClaro, irei remover todos os pontos marcados de seu mini-mapa.\nHá mais algo que eu possa fazer por você?";
+				mes "[Exploradora]";
+				mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
+				mes "Há mais algo que eu possa fazer por você?";
 				viewpoint 2,1,1,0,0xFFFFFF;
 				viewpoint 2,1,1,1,0xFFFFFF;
 				viewpoint 2,1,1,2,0xFFFFFF;
@@ -73,42 +95,62 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 				viewpoint 2,1,1,6,0xFFFFFF;
 				break;
 			case 9:
-				mes "[Exploradora]"+"\nAproveite sua estadia.";
+				mes "[Exploradora]";
+				mes "Aproveite sua estadia.";
 				close;
 			}
 		}
 	} else {
-		mes "Este lugar é muito estranho...\nTodas essas trilhas e estradinhas são confusas.\nAcho que é o que podemos esperar de uma cultura primitiva como a de Umbala.";
+		mes "Este lugar é muito estranho...";
+		mes "Todas essas trilhas e estradinhas são confusas.";
+		mes "Acho que é o que podemos esperar de uma cultura primitiva como a de Umbala.";
 		next;
-		mes "[Exploradora]"+"\nEu estou aqui há alguns meses, conhecendo a vila e seus habitantes.\nSe você tiver alguma pergunta sobre Umbala, posso responder pra você. ";
+		mes "[Exploradora]";
+		mes "Eu estou aqui há alguns meses, conhecendo a vila e seus habitantes.";
+		mes "Se você tiver alguma pergunta sobre Umbala, posso responder pra você. ";
 		next;
 		switch(select("Indicações.:Limpar indicações do minimapa.:Cancelar.")) {
 		case 1:
-			mes "[Exploradora]"+"\nO que você quer localizar?";
+			mes "[Exploradora]";
+			mes "O que você quer localizar?";
 			next;
 			switch(select("Casa do Chefe.:Casa do Xamã.:Loja de Armas.:Loja de Utilidades.:O Bungee Jumping.:Cancelar.")) {
 			case 1:
-				mes "[Exploradora]"+"\nA casa do chefe da cidade fica em ^FF3355+^000000.\nSó o chefe fala a nossa língua. Por isso, é melhor você falar com ele antes de mais nada.";
+				mes "[Exploradora]";
+				mes "A casa do chefe da cidade fica em ^FF3355+^000000.";
+				mes "Só o chefe fala a nossa língua.";
+				mes "Por isso, é melhor você falar com ele antes de mais nada.";
 				viewpoint 1,66,250,2,0xFF3355;
 				break;
 			case 2:
-				mes "[Exploradora]"+"\nO xamã tem misteriosos poderes.\nSua casa fica em ^CE6300+^000000.\nEu ouvi dizer que ele consegue combinar ou desfazer propriedades da natureza...";
+				mes "[Exploradora]";
+				mes "O xamã tem misteriosos poderes.";
+				mes "Sua casa fica em ^CE6300+^000000.";
+				mes "Eu ouvi dizer que ele consegue combinar ou desfazer propriedades da natureza...";
 				viewpoint 1,217,186,3,0xCE6300;
 				break;
 			case 3:
-				mes "[Exploradora]"+"\nA loja de armas fica em ^55FF33+^000000.\nOs nativos têm um grande número de armas no estoque, por causa de invasores estrangeiros.";
+				mes "[Exploradora]";
+				mes "A loja de armas fica em ^55FF33+^000000.";
+				mes "Os nativos têm um grande número de armas no estoque, por causa de invasores estrangeiros.";
 				viewpoint 1,126,154,4,0x55FF33;
 				break;
 			case 4:
-				mes "[Exploradora]"+"\nA loja de utilidades fica em ^3355FF+^000000.\nEles vendem várias coisas que podem te ajudar em sua jornada.";
+				mes "[Exploradora]";
+				mes "A loja de utilidades fica em ^3355FF+^000000.";
+				mes "Eles vendem várias coisas que podem te ajudar em sua jornada.";
 				viewpoint 1,136,127,5,0x3355FF;
 				break;
 			case 5:
-				mes "[Exploradora]"+"\nEm Umbala existe uma coisa que não se vê em nenhum outro lugar em Rune-Midgard, um Bungee Jumping.\nEle fica em ^00FF00+^000000.\nVocê pode tentar pular, se tiver coragem pra isso.";
+				mes "[Exploradora]";
+				mes "Em Umbala existe uma coisa que não se vê em nenhum outro lugar em Rune-Midgard, um Bungee Jumping.";
+				mes "Ele fica em ^00FF00+^000000.";
+				mes "Você pode tentar pular, se tiver coragem pra isso.";
 				viewpoint 1,139,198,6,0x00FF00;
 				break;
 			case 6:
-				mes "[Exploradora]"+"\nSe quiser apagar as indicações no minimapa, selecione 'Limpar indicações do minimapa'.";
+				mes "[Exploradora]";
+				mes "Se quiser apagar as indicações no minimapa, selecione 'Limpar indicações do minimapa'.";
 			}
 			break;
 		case 2:
@@ -117,10 +159,14 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 			viewpoint 2,126,154,4,0x55FF33;
 			viewpoint 2,136,127,5,0x3355FF;
 			viewpoint 2,139,198,6,0x00FF00;
-			mes "[Exploradora]"+"\nOk, removi as indicações no mapa.\nSe precisar achar algum outro lugar, é só pedir.";
+			mes "[Exploradora]";
+			mes "Ok, removi as indicações no mapa.";
+			mes "Se precisar achar algum outro lugar, é só pedir.";
 			break;
 		case 3:
-			mes "[Exploradora]"+"\nOk, aproveite para conhecer a cidade e a cultura de Umbala. Cuide-se.";
+			mes "[Exploradora]";
+			mes "Ok, aproveite para conhecer a cidade e a cultura de Umbala.";
+			mes "Cuide-se.";
 			break;
 		}
 		close;

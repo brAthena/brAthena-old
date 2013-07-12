@@ -26,7 +26,9 @@
 //   \________________________________________________________/	
 
 xmas,140,137,3	script	Guia de Lutie#xmas	717,{
-	mes "[Guia de Lutie]"+"\nBem-vindo à ^8B4513Lutie^000000, a Cidade da Neve.\nPrecisa de alguma ajuda para andar pela cidade?";
+	mes "[Guia de Lutie]";
+	mes "Bem-vindo à ^8B4513Lutie^000000, a Cidade da Neve.";
+	mes "Precisa de alguma ajuda para andar pela cidade?";
 	while (1) {
 		next;
 		switch(select("[ Loja de Presentes ]:[ Igreja ]:[ Loja de Armas & Armaduras ]:[ Loja de Ferramentas ]:[ Casa do Papai Noel ]:[ Fábrica de Brinquedos ]:Remover marcadores do mini-mapa:Cancelar")) {
@@ -55,7 +57,9 @@ xmas,140,137,3	script	Guia de Lutie#xmas	717,{
 			viewpoint 1,143,312,6,0xFF0000;
 			break;
 		case 7:
-			mes "[Guia de Lutie]"+"\nCerto, vou remover os marcadores do seu mini-mapa.\nHá mais algo em que eu possa lhe ajudar?";
+			mes "[Guia de Lutie]";
+			mes "Certo, vou remover as indicações do seu mini-mapa.";
+			mes "Há mais algo em que eu possa lhe ajudar?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -65,12 +69,15 @@ xmas,140,137,3	script	Guia de Lutie#xmas	717,{
 			viewpoint 2,1,1,6,0xFFFFFF;
 			break;
 		case 8:
-			mes "[Guia de Lutie]"+"\nBoa sorte em suas viagens.";
+			mes "[Guia de Lutie]";
+			mes "Boa sorte em suas viagens.";
 			close;
 		}
 	}
 	end;
 L_Mark:
-	mes "[Guia de Lutie]"+"\nDeixe-me marcar a localização para "+getarg(0)+"^000000 em seu mini-mapa.\nGostaria de verificar a localização de outros locais?";
+	mes "[Guia de Lutie]";
+	mes "Deixe-me marcar a localização para "+getarg(0)+"^000000 em seu mini-mapa.";
+	mes "Gostaria de verificar a localização de outros locais?";
 	return;
 }

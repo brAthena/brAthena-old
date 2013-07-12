@@ -26,41 +26,62 @@
 //   \________________________________________________________/
 
 moscovia,226,191,4	script#re	Guia de Moscóvia#02mosc	959,{
-	mes "[Guia de Moscóvia]"+"\nUm paraíso em um belo mar e com um sol caloroso ^8B4513Moscovia^000000 está esperando por você. Seja bem-vindo.\nEstou apoiando e oferendo informações para viajantes.\nSe quiser alguma orientação fique a vontade para pedir.";
+	mes "[Guia de Moscóvia]";
+	mes "Um paraíso em um belo mar e com um sol caloroso ^8B4513Moscovia^000000 está esperando por você.";
+	mes "Seja bem-vindo. Estou apoiando e oferendo informações para viajantes.";
+	mes "Se quiser alguma orientação fique a vontade para pedir.";
 	set .@str$,"Gostaria de verificar outras localizações?";
 	while (1) {
 		next;
 		switch(select("[ Palácio ]:[ Capela ]:[ Loja de Armas ]:[ Loja de Armaduras ]:[ Loja de Utilidades ]:[ Hotel ]:[ Retornar para Alberta ]:Remover marcadores do mini-mapa:Cancelar")) {
 		case 1:
-			mes "[Guia de Moscóvia]"+"\nNo ^006400Palácio^000000 você pode encontrar nosso Senhor, o Czar e outros servos.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "No ^006400Palácio^000000 você pode encontrar nosso Senhor, o Czar e outros servos.";
+			mes .@str$;
 			viewpoint 1,255,140,0,0x0A82FF;
 			break;
 		case 2:
-			mes "[Guia de Moscóvia]"+"\nA ^008080Capela^000000 encontra-se aqui.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "A ^008080Capela^000000 encontra-se aqui.";
+			mes .@str$;
 			viewpoint 1,253,179,1,0xAAFF00;
 			break;
 		case 3:
-			mes "[Guia de Moscóvia]"+"\nVocê pode comprar armas com os melhores artesãos de Moscovia na ^FF1493Loja de Armas^000000.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "Você pode comprar armas com os melhores artesãos de Moscovia na ^FF1493Loja de Armas^000000.";
+			mes .@str$;
 			viewpoint 1,186,191,2,0x008080;
 			break;
 		case 4:
-			mes "[Guia de Moscóvia]"+"\nVocê apenas poderá encontrar os melhores equipamentos de Moscovia na ^8B4513Loja de Armaduras^000000.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "Você apenas poderá encontrar os melhores equipamentos de Moscovia na ^8B4513Loja de Armaduras^000000.";
+			mes .@str$;
 			viewpoint 1,204,169,3,0xB200FF;
 			break;
 		case 5:
-			mes "[Guia de Moscóvia]"+"\nA ^FF1493Loja de Utilidades^000000 está localizada ao sul do centro da cidade.\nLá você poderá encontrar qualquer coisa que precisar utilizar em sua cidade.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "A ^FF1493Loja de Utilidades^000000 está localizada ao sul do centro da cidade.";
+			mes "Lá você poderá encontrar qualquer coisa que precisar utilizar em sua cidade.";
+			mes .@str$;
 			viewpoint 1,221,176,4,0xFF1493;
 			break;
 		case 6:
-			mes "[Guia de Moscóvia]"+"\nO Hotel 'Erva de Árvore Pegajosa' está ao norte do centro da cidade.\nSe você precisar repousar, não há nenhum lugar melhor do que lá.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "O Hotel 'Erva de Árvore Pegajosa' está ao norte do centro da cidade.";
+			mes "Se você precisar repousar, não há nenhum lugar melhor do que lá.";
+			mes .@str$;
 			viewpoint 1,227,206,5,0x8B4513;
 			break;
 		case 7:
-			mes "[Guia de Moscóvia]"+"\nVocê poderá voltar para alberta através do Porto.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "Você poderá voltar para alberta através do Porto.";
+			mes .@str$;
 			viewpoint 1,166,53,6,0x00BFFF;
 			break;
 		case 8:
-			mes "[Guia de Moscóvia]"+"\nIrei remover todos os pontos marcados de seu mini-mapa.\n"+.@str$;
+			mes "[Guia de Moscóvia]";
+			mes "Irei remover todos os pontos marcados de seu mini-mapa.";
+			mes .@str$;
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -70,38 +91,50 @@ moscovia,226,191,4	script#re	Guia de Moscóvia#02mosc	959,{
 			viewpoint 2,1,1,6,0xFFFFFF;
 			break;
 		case 9:
-			mes "[Guia de Moscóvia]"+"\nAproveite sua estadia~!";
+			mes "[Guia de Moscóvia]";
+			mes "Aproveite sua estadia~!";
 			close;
 		}
 	}
 }
 
 moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	959,{
-	mes "[Guia de Moscóvia]"+"\nBem-vindo à Moscóvia.\nEste é o paraíso em meio ao mar sem fim.\nVocê vai adorar as belas paisagens e a luz do sol!";
+	mes "[Guia de Moscóvia]";
+	mes "Bem-vindo à Moscóvia.";
+	mes "Este é o paraíso em meio ao mar sem fim.";
+	mes "Você vai adorar as belas paisagens e a luz do sol!";
 	next;
-	mes "[Guia de Moscóvia]"+"\nEu fui mandada pelo Palácio de Moscóvia para guiar os turistas e dar informações sobre esta cidade.\nSe tiver alguma pergunta, por favor me diga.";
+	mes "[Guia de Moscóvia]";
+	mes "Eu fui mandada pelo Palácio de Moscóvia para guiar os turistas e dar informações sobre esta cidade.";
+	mes "Se tiver alguma pergunta, por favor me diga.";
 	next;
 	switch(select("Perguntar aonde posso ir.:Apagar todas as marcas do mapa.:Cancelar.")) {
 		case 1:
-			mes "[Guia de Moscóvia]"+"\nAonde você gostaria de ir?";
+			mes "[Guia de Moscóvia]";
+			mes "Aonde você gostaria de ir?";
 			next;
 			switch(select("O palácio.:Uma capela.:Loja de Armas.:Loja de Utilidades.:Uma estalagem.")) {
 				case 1:
-					mes "[Guia de Moscóvia]"+"\nO palácio é ao fim do mar Norte de Rune-Midgard.\nÉ onde ficam o nosso Senhor Czar de Moscóvia e seus vassalos.";
+					mes "[Guia de Moscóvia]";
+					mes "O palácio é ao fim do mar Norte de Rune-Midgard.";
+					mes "É onde ficam o nosso Senhor Czar de Moscóvia e seus vassalos.";
 					close2;
 					viewpoint 1,257,138,1,0xFF0000;
 					end;
 				case 2:
 					viewpoint 1,185,187,2,0x00FF00;
-					mes "[Guia de Moscóvia]"+"\nA capela é onde os monges rezam pela paz de Moscóvia.";
+					mes "[Guia de Moscóvia]";
+					mes "A capela é onde os monges rezam pela paz de Moscóvia.";
 					close;
 				case 3:
-					mes "[Guia de Moscóvia]"+"\nA Loja de Armas é o lugar onde você pode comprar armas feitas pelos melhores fabricantes de Moscóvia.";
+					mes "[Guia de Moscóvia]";
+					mes "A Loja de Armas é o lugar onde você pode comprar armas feitas pelos melhores fabricantes de Moscóvia.";
 					close2;
 					viewpoint 1,223,174,3,0x00FF00;
 					end;
 				case 4:
-					mes "[Guia de Moscóvia]"+"\nA Loja de Utilidades é o lugar onde você pode se preparar com o que precisa para as suas viagens.";
+					mes "[Guia de Moscóvia]";
+					mes "A Loja de Utilidades é o lugar onde você pode se preparar com o que precisa para as suas viagens.";
 					close2;
 					viewpoint 1,229,208,4,0x3355FF;
 					end;
@@ -109,7 +142,9 @@ moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	959,{
 					close;
 			}
 		case 2:
-			mes "[Guia de Moscóvia]"+"\nEu apaguei todas as marcas do mapa.\nQuando quiser colocar as marcas no mapa, pode pedir para mim.";
+			mes "[Guia de Moscóvia]";
+			mes "Eu apaguei todas as marcas do mapa.";
+			mes "Quando quiser colocar as marcas no mapa, pode pedir para mim.";
 			viewpoint 2,257,138,1,0xFF0000;
 			viewpoint 2,185,187,2,0x00FF00;
 			viewpoint 2,223,174,3,0x00FF00;
@@ -117,7 +152,9 @@ moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	959,{
 			close;
 		
 		case 3:
-			mes "[Guia de Moscóvia]"+"\nUma caminhada a sós também é muito bom. Cuide-se.";
+			mes "[Guia de Moscóvia]";
+			mes "Uma caminhada a sós também é muito bom.";
+			mes "Cuide-se.";
 			close;
 	}
 }

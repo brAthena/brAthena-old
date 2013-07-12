@@ -25,44 +25,71 @@
 //   \________________________________________________________/
 
 dicastes01,181,191,5	script	Viajante Ichack#info	481,2,2,{
-	mes "[Viajante Ichack]"+"\nOh!! Você é "+((Sex) ? "o":"a")+"!\nSou Ichack, o primeiro aventureiro que chegou aqui em El Dicastes!";
+	mes "[Viajante Ichack]";
+	mes " Oh!! Você é um"+((Sex) ? " estrangeiro":"a estrangeira")+"!";
+	mes "Sou Ichack, o primeiro aventureiro que chegou aqui em El Dicastes!";
 	next;
-	mes "[Viajante Ichack]"+"\nHavia alguém na equipe de expedição alegando que foi o primeiro a chegar aqui, mas fui eu. Certo!?";
+	mes "[Viajante Ichack]";
+	mes "Havia alguém na equipe de expedição alegando que foi o primeiro a chegar aqui, mas fui eu. Certo!?";
 	next;
-	mes "[Viajante Ichack]"+"\nÉ por isso que eu presto um serviço orientação para aventureiros de Rune-Midgard.\nO que você gostaria de saber?";
+	mes "[Viajante Ichack]";
+	mes "É por isso que eu presto um serviço orientação para aventureiros de Rune-Midgard.";
+	mes "O que você gostaria de saber?";
 	next;
 	switch(select("Diel:Residência:Academia de Treino:Mineradora:Bar:Agência Pata de Gat")) {
 	case 1:
-		mes "[Viajante Ichack]"+"\nAh~ É uma linda construção.\nLá são discutidas coisas muito importantes...";
+		mes "[Viajante Ichack]";
+		mes "Ah~ É uma linda construção.";
+		mes "Lá são discutidas coisas muito importantes...";
 		next;
-		mes "[Viajante Ichack]"+"\nPor favor, certifique-se de estar registrado no Diel, caso contrário você estará em apuros.\nVá diretamente para o norte e lá você encontrará o Diel.";
+		mes "[Viajante Ichack]";
+		mes "Por favor, certifique-se de estar registrado no Diel, caso contrário você estará em apuros.";
+		mes "Vá diretamente para o norte e lá você encontrará o Diel.";
 		viewpoint 1,351,198,0,0x00FF00;
 		close;
 	case 2:
-		mes "[Viajante Ichack]"+"\nA tribo Sapha é tão estranha. Como podem dormir lá?";
+		mes "[Viajante Ichack]";
+		mes "A tribo Sapha é tão estranha.";
+		mes "Como podem dormir lá?";
 		next;
-		mes "[Viajante Ichack]"+"\nVocê não está entendendo?\nVocê não vão acreditar até ver! Vá e veja por si mesmo!";
+		mes "[Viajante Ichack]";
+		mes "Você não está entendendo?";
+		mes "Você não vão acreditar até ver!";
+		mes "Vá e veja por si mesmo!";
 		next;
-		mes "[Viajante Ichack]"+"\nA área residencial é divivida em 2 áreas.\nA área da residência inferior têm como referência o ponteiro 7 do relógio, e a área superior tem como referência o ponteiro 1 do relógio.";
+		mes "[Viajante Ichack]";
+		mes "A área residencial é divivida em 2 áreas.";
+		mes "A área da residência inferior têm como referência o ponteiro 7 do relógio, e a área superior tem como referência o ponteiro 1 do relógio.";
 		viewpoint 1,283,280,1,0x01FF01;
 		viewpoint 1,106,136,2,0x0066FF;
 		close;
 	case 3:
-		mes "[Viajante Ichack]"+"\nDevido aos perigos, precisamos de mais segurança...\nVocê já foi para a sala de treinamento? Os guardas parecem que nunca dormem!";
+		mes "[Viajante Ichack]";
+		mes "Devido aos perigos, precisamos de mais segurança...";
+		mes "Você já foi para a sala de treinamento? Os guardas parecem que nunca dormem!";
 		viewpoint 1,172,255,3,0xFFCCCC;
 		close;
 	case 4:
-		mes "[Viajante Ichack]"+"\nEsta é uma das razões mais importantes pelas quais eles vivem aqui.\nSe você for para a Mineradora, você poderá ver o Brádium recentemente refinado.";
+		mes "[Viajante Ichack]";
+		mes "Esta é uma das razões mais importantes pelas quais eles vivem aqui.";
+		mes "Se você for para a Mineradora, você poderá ver o Brádium recentemente refinado.";
 		viewpoint 1,256,97,4,0x0066FF;
 		close;
 	case 5:
-		mes "[Viajante Ichack]"+"\nEmbora tenha chegado aqui como o primeiro aventureiro, o dono do Bar foi o primeiro habitante de El Dicastes.\nO bar de Bumen Florine está localizado abaixo da área residencial inferior.\nEle pode ter algumas informações valiosas para você.";
+		mes "[Viajante Ichack]";
+		mes "Embora tenha chegado aqui como o primeiro aventureiro, o dono do Bar foi o primeiro habitante de El Dicastes.";
+		mes "O bar de Bumen Florine está localizado abaixo da área residencial inferior.";
+		mes "Ele pode ter algumas informações valiosas para você.";
 		viewpoint 1,106,136,5,0xFF3300;
 		close;
 	case 6:
-		mes "[Viajante Ichack]"+"\nOs gatos parecem não possuir um bom relacionamento com os Sapha, assim como nós.\nTalvez seja porque uma negociação esteja ocorrendo.\nPobres gatos. Eles devem estar tremendo de frio lá fora.";
+		mes "[Viajante Ichack]";
+		mes "Os gatos parecem não possuir um bom relacionamento com os Sapha, assim como nós.";
+		mes "Talvez seja porque uma negociação esteja ocorrendo.";
+		mes "Pobres gatos. Eles devem estar tremendo de frio lá fora.";
 		next;
-		mes "[Viajante Ichack]"+"\nVocê pode encontrar a agência do lado externo dos portões.";
+		mes "[Viajante Ichack]";
+		mes "Você pode encontrar a agência do lado externo dos portões.";
 		viewpoint 1,39,199,6,0x9933FF;
 		close;
 	}

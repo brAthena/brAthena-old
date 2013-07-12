@@ -33,41 +33,56 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {
 			if (Class == Job_Novice_High) {
-				mes "Olá, faz bastante tempo que não nos vemos! Mas você não deveria estar morto?";
+				mes "Olá, faz bastante tempo que não nos vemos!";
+				mes "Mas você não deveria estar morto?";
 				next;
 				mes "[Maga Guardiã]";
-				mes "Ah, você deve ter sido renascido. Bem, eu estou contente em vê-lo novamente.";
+				mes "Ah, você deve ter sido renascido.";
+				mes "Bem, eu estou contente em vê-lo novamente.";
 				next;
 				mes "[Maga Guardiã]";
 				if (getskilllv("NV_BASIC") < 9) {
-					mes "Sinto muito, mas eu acho que você ainda não está pronto para se tornar um Mago. Por que você não termina de aprender as habilidades básicas primeiro?";
+					mes "Sinto muito, mas eu acho que você ainda não está pronto para se tornar um Mago.";
+					mes "Por que você não termina de aprender as habilidades básicas primeiro?";
 					next;
 					mes "[Maga Guardiã]";
-					mes "Fique à vontade. Quanto mais você aprende, mais você estará pronto para aprender magia.";
+					mes "Fique à vontade.";
+					mes "Quanto mais você aprende, mais você estará pronto para aprender magia.";
 					close;
 				}
-				mes "Bem, já que que você passou no teste de Mago uma vez, eu não vou questionar a sua qualificação. Você quer ter suas habilidades mágicas de volta imediatamente, não é?";
+				mes "Bem, já que que você passou no teste de Mago uma vez, eu não vou questionar a sua qualificação.";
+				mes "Você quer ter suas habilidades mágicas de volta imediatamente, não é?";
 				next;
 				skill 143,0,0;
 				jobchange Job_Mage_High;
 				skill 157,1,0;
 				mes "[Maga Guardiã]";
-				mes "Uau, por alguma razão você está bem melhor do que antes. De qualquer forma, eu acredito que você irá fazer um trabalho melhor sendo um Arquimago.";
+				mes "Uau, por alguma razão você está bem melhor do que antes.";
+				mes "De qualquer forma, eu acredito que você irá fazer um trabalho melhor sendo um Arquimago.";
 				close;
 			}
 			mes "[Maga Guardiã]";
-			mes "Há algo mais que eu possa ajudá-lo? Se não, por que você não vai testar suas habilidades? O mundo está esperando por você~!";
+			mes "Há algo mais que eu possa ajudá-lo?";
+			mes "Se não, por que você não vai testar suas habilidades?";
+			mes "O mundo está esperando por você~!";
 			close;
 		}
-		mes "O que, você está interessado na Guilda dos Magos? Eu não queria dizer isso, mas você não pertence a ela.";
+		mes "O que, você está interessado na Guilda dos Magos?";
+		mes "Eu não queria dizer isso, mas você não pertence a ela.";
 		next;
 		mes "[Maga Guardiã]";
 		mes "Eu não sei por que você ainda está na minha frente, mas eu posso dizer que você não está destinado a ser um Mago.";
 		close;
 	}
 	if(BaseJob != Job_Novice) {
-		if(BaseJob == Job_Mage) mes "Ei, o que faz aqui? Você já é um Mago, bobo! Um dia você irá perceber o poder que existe dentro de você quando puder fazer fogo com sua mente!";
-		else mes "Ei~ Vamos. Pare de bricadeiras. Você não pode ser um Mago porque você já possui outra classe.";
+		if(BaseJob == Job_Mage) {
+			mes "Ei, o que faz aqui?";
+			mes "Você já é um Mago, bobo!";
+			mes "Um dia você irá perceber o poder que existe dentro de você quando puder fazer fogo com sua mente!";
+		} else {
+			mes "Ei~ Vamos. Pare de bricadeiras.";
+			mes "Você não pode ser um Mago porque você já possui outra classe.";
+		}
 		close;
     }
 	mes "Hum?";
@@ -83,15 +98,19 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 			mes "Você, "+((Sex)?"é mesmo uma gracinha. Definitivamente, meu tipo...":"até que você é bonitinha, deve fazer um grande sucesso...");
 			next;
 			mes "[Maga Guardiã]";
-			mes "Aham... Como eu ia dizendo, você quer ser Mago? Então, preencha a ficha de inscrição, por favor.";
+			mes "Aham... Como eu ia dizendo, você quer ser Mago?";
+			mes "Então, preencha a ficha de inscrição, por favor.";
 			next;
 			if (select("Se inscrever para o teste.:Desistir.") == 2) {
 				mes "[Maga Guardiã]";
-				mes "O QUE~?! Mesmo após me dizer que queria ser um mago, você mudou de idéia?! Seja um pouco mais decisivo!";
+				mes "O QUE~?! Mesmo após me dizer que queria ser um mago, você mudou de idéia?!";
+				mes "Seja um pouco mais decisivo!";
 				close;
 			}
 			mes "[Maga Guardiã]";
-			mes "Certo. Assine aqui mesmo. Oh, você é muito bom para escrever. Certo. seu nome é... "+strcharinfo(0)+".";
+			mes "Certo. Assine aqui mesmo.";
+			mes "Oh, você é muito bom para escrever.";
+			mes "Certo. seu nome é... "+strcharinfo(0)+".";
 			next;
 			mes "[Maga Guardiã]";
 			mes "Agora é a hora que vou te dar o teste.";
@@ -102,7 +121,8 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 			next;
 			getitem 1092,1; // Tubo de Ensaio
 			mes "[Maga Guardiã]";
-			mes "Você pode achar os ingredientes nos livros da guilda. Então acho melhor dar uma olhada antes de ir embora.";
+			mes "Você pode achar os ingredientes nos livros da guilda.";
+			mes "Então acho melhor dar uma olhada antes de ir embora.";
 			next;
 			mes "[Maga Guardiã]";
 			mes "Assim que coletar todos os itens, use na máquina do centro para misturar eles e fazer a solução. Boa sorte!";
@@ -112,10 +132,12 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		next;
 		mes "[Maga Guardiã]";	
 		if (getskilllv("NV_BASIC") < 9) {
-			mes "Oh, mas que bobalhão. Você não tem os requerimentos para fazer o teste.";
+			mes "Oh, mas que bobalhão.";
+			mes "Não tem os requerimentos para fazer o teste.";
 			next;
 			mes "[Maga Guardiã]";
-			mes "Volte e alcance level 9 de Classe primeiro. Não esqueça de que você também precisa aprender todas as Habilidades Básicas antes de voltar.";
+			mes "Volte e alcance level 9 de Classe primeiro.";
+			mes "Não esqueça de que você também precisa aprender todas as Habilidades Básicas antes de voltar.";
 			close;
 		}
 		mes strcharinfo(0)+" o que eu posso fazer por você?";
@@ -129,7 +151,8 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		next;
 		mes "[Maga Guardiã]";
 		if (!countitem(1071) && !countitem(1085) && !countitem(1086) && !countitem(1087) && !countitem(1090)) {
-			mes "Onde está a Poção Mágica que eu pedi? Não posso saber se você fez certo se não me mostrar.";
+			mes "Onde está a Poção Mágica que eu pedi?";
+			mes "Não posso saber se você fez certo se não me mostrar.";
 			close;
 		}
 		if ((job_magician_q == 1 && !countitem(1071)) || (job_magician_q == 2 && !countitem(1085)) || (job_magician_q == 3 && !countitem(1086)) || (job_magician_q == 4 && !countitem(1087))) {
@@ -141,10 +164,12 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 			close;
 		}
 		delitem ((countitem(1071)) ? 1071 : (countitem(1085)) ? 1085 : (countitem(1086)) ? 1086 : (countitem(1087)) ? 1087 : 1090),1;      // Tubo de Ensaio com Líquido Desconhecido
-		mes "Hum... Eu vejo que você tentou bastante. Para um iniciante, está muito bom. Grande trabalho!";
+		mes "Hum... Eu vejo que você tentou bastante.";
+		mes "Para um iniciante, está muito bom. Grande trabalho!";
 		next;
 		mes "[Maga Guardiã]";
-		mes "Isso ai! Eu tenho o prazer de lhe parabenizar e dizer que você passou no teste.!";
+		mes "Isso ai!";
+		mes "Eu tenho o prazer de lhe parabenizar e dizer que você passou no teste.!";
 		next;
 		mes "[Maga Guardiã]";
 		mes "*Que bom*";
@@ -156,7 +181,8 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		completequest (checkquest(1005) != -1) ? 1005 : (checkquest(1006) != -1) ? 1006 : (checkquest(1007) != -1) ? 1007 : 1008;
 		mes "[Maga Guardiã]";
 		mes "'Bem vindo ao meu mundo~'";
-		mes "Heh heh, eu sempre quis dizer isso. Você sabe, é como um filme já visto.";
+		mes "Heh heh, eu sempre quis dizer isso.";
+		mes "Você sabe, é como um filme já visto.";
 		next;
 		mes "[Maga Guardiã]";
 		mes "Agora que você é um mago como nós, vamos ser amigos, ok?";
@@ -166,21 +192,29 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		next;
 		if(select("Eu quero me tornar um Mago.:Não, obrigado.") == 2) {
 			mes "[Maga Guardiã]";
-			mes "Oquuuuue~?! Logo depois que você me diz que quer se tornar um Mago você muda de idéia?! Tenha certeza no que faz!";
+			mes "Oquuuuue~?!";
+			mes "Logo depois que você me diz que quer se tornar um Mago você muda de idéia?!";
+			mes "Tenha certeza no que faz!";
 			close;
 		}
 		mes "[Maga Guardiã]";
 		if (getskilllv("NV_BASIC") < 9) {
-			mes "Ah, seu nível de Habilidades Básicas não atinge o nível suficiente para se tornar um Mago. Volte e atinga o seu nível de habilidades básicas no máximo.";
+			mes "Ah, seu nível de Habilidades Básicas não atinge o nível suficiente para se tornar um Mago.";
+			mes "Volte e atinga o seu nível de habilidades básicas no máximo.";
 			close;
 		}
-		mes "Tudo bem... assine o formulário.... Uau ~ você tem boa caligrafia! Ahh, tudo bem. Basta. Você é... "+strcharinfo(0)+".";
+		mes "Tudo bem... assine o formulário....";
+		mes "Uau ~ você tem boa caligrafia!";
+		mes "Ahh, tudo bem. Basta. Você é... "+strcharinfo(0)+".";
 		next;
 		mes "[Maga Guardiã]";
-		mes "Hum vejo que você se esforçou, embora pareça ser um pouco desajeitado, mas bem eu acho que está tudo certo! Bom! Sempre adquira aos princípios básicos é o melhor! Vou transformá-lo imediatamente.";
+		mes "Hum vejo que você se esforçou, embora pareça ser um pouco desajeitado, mas bem eu acho que está tudo certo!";
+		mes "Bom! Sempre adquira aos princípios básicos é o melhor!";
+		mes "Vou transformá-lo imediatamente.";
 		next;
 		mes "[Maga Guardiã]";
-		mes "Haha..! Você agora é um mago, um dos nossos colegas! Recrutamos você para a Guilda dos Magos, nosso novo amigo!";
+		mes "Haha..! Você agora é um mago, um dos nossos colegas!";
+		mes "Recrutamos você para a Guilda dos Magos, nosso novo amigo!";
 		next;
 		mes "[Maga Guardiã]";
 		mes "'Bem-vindo a Guilda de Magos~'";
@@ -215,7 +249,9 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes "[Maga Guardiã]";
 		mes "Me diga quando estiver pronto para ser um mago, tudo bem?";
 	  } else {
-		mes "No passado, vimos que esse teste estava um pouco complicado. Por causa disso, perdemos mais candidatos. Então, decidimos aceitar todos os candidatos que preencham os requisitos básicos.";
+		mes "No passado, vimos que esse teste estava um pouco complicado.";
+		mes "Por causa disso, perdemos mais candidatos.";
+		mes "Então, decidimos aceitar todos os candidatos que preencham os requisitos básicos.";
 		next;
 		mes "[Maga Guardiã]";
 		mes "Não hesite. Torne-se um Mago!";
@@ -239,7 +275,9 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 	switch(select("Solução de Payon.:Solução de Morroc.:Nenhum Solvente.")) {
 	case 1:
 		if (!countitem(1089)) {
-			mes "Erro. Item não encontrado. Por favor, verifique novamente. Processo cancelado.";
+			mes "Erro. Item não encontrado.";
+			mes "Por favor, verifique novamente.";
+			mes "Processo cancelado.";
 			close;
 		}
 		set .@mixitem2,1;
@@ -247,7 +285,9 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 	case 2:
 		if (!countitem(1088)) {
 			mes "[Máquina de Mistura]";
-			mes "Erro. Item não encontado. Por favor, verifique novamente. Processo Cancelado.";
+			mes "Erro. Item não encontado.";
+			mes "Por favor, verifique novamente.";
+			mes "Processo Cancelado.";
 			close;
 		}
 		set .@mixitem2,2;
@@ -264,18 +304,21 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 			if (.@mixitem1_3 != 0) mes getitemname(519)+": "+.@mixitem1_3+" unidades.";
 			mes "Solvente: "+(!.@mixitem2) ? "Nenhum" : (.@mixitem2 == 1) ? "getitemname(1089)" : "getitemname(1088)"+".";
 			next;
-			mes "[Máquina de Mistura]"+" Por favor escolha o que você deseja começar a misturar, ou reponha os itens que deseja usar.";
+			mes "[Máquina de Mistura]";
+			mes "Por favor escolha o que você deseja começar a misturar, ou reponha os itens que deseja usar.";
 			next;
 			switch(select("Começar a misturar.:Repor o número de itens.:Resetar.")) {
 			case 1:
 				mes "[Máquina de Mistura]";
-				mes "Por favor coloque os itens no recipiente. Tenha certeza que eles estão colocados na quantidade correta.";
+				mes "Por favor coloque os itens no recipiente.";
+				mes "Tenha certeza que eles estão colocados na quantidade correta.";
 				next;
 				mes "[Máquina de Mistura]";
 				mes "Você não pode adicionar ou restaurar os itens que forem colocados no recipiente.";
 				next;
 				mes "[Máquina de Mistura]";
-				mes "Se está tudo correto, aperte o botão 'misturar'. Caso contrário, aperte 'cancelar'.";
+				mes "Se está tudo correto, aperte o botão 'misturar'.";
+				mes "Caso contrário, aperte 'cancelar'.";
 				next;
 				if (select("Misturar.:Cancelar.") == 2) break;
 				mes "[Máquina de Mistura]";
@@ -287,7 +330,11 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 				else if(countitem(519) < .@mixitem1_3) mes getitemname(519)+" insuficiente.";
 				else if (.@mixitem2 == 1 || .@mixitem2 == 2) {
 					if (!countitem(1089) && !countitem(1088)) {
-						mes "Solução não encontrada. Por favor, verifique novamente. Processo interrompido. Por favor, verifique novamente. Processo interrompido.";
+						mes "Solução não encontrada.";
+						mes "Por favor, verifique novamente.";
+						mes "Processo interrompido.";
+						mes "Por favor, verifique novamente.";
+						mes "Processo interrompido.";
 						close;
 					}
 				}
@@ -310,7 +357,8 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 				set .@progress,0;
 				set .@continue,0;
 				mes "[Máquina de Mistura]";
-				mes "Processo resetado. Começar novamente?";
+				mes "Processo resetado.";
+				mes "Começar novamente?";
 				next;
 				if (select("Sim.:Não.") == 1)
 					break;
@@ -334,7 +382,8 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 						if (.@input > 10000) {
 							next;
 							mes "[Máquina de Mistura]";
-							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							mes "Erro: O limite de itens ultrapassou.";
+							mes "Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						} else {
 							if (countitem(909)) set .@mixitem1_1,.@mixitem1_1 + .@input;
@@ -349,7 +398,8 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 						if (.@input > 10000) {
 							next;
 							mes "[Máquina de Mistura]";
-							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							mes "Erro: O limite de itens ultrapassou.";
+							mes "Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						} else {
 							if (countitem(914) > 0) set .@mixitem1_2,.@mixitem1_2 + .@input;
@@ -364,7 +414,8 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 						if (.@input > 10000) {
 							next;
 							mes "[Máquina de Mistura]";
-							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
+							mes "Erro: O limite de itens ultrapassou.";
+							mes "Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						} else {
 						if (countitem(519) > 0) set .@mixitem1_3,.@mixitem1_3 + .@input;
@@ -460,7 +511,8 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 
 pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 	mes "[Dollshoi]";
-	mes "Você quer uma solução? Hum, me dê 50z e um "+getitemname(1092)+".";
+	mes "Você quer uma solução?";
+	mes "Hum, me dê 50z e um "+getitemname(1092)+".";
 	next;
 	if (select("Negócio Fechado.:Não, esquece.") == 2) close;
 	if (Zeny < 50) {
@@ -470,7 +522,8 @@ pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 	}
 	if (!countitem(1092)) {
 		mes "[Dollshoi]";
-		mes "Você não pode carregar as soluções! Me traga um tubo.";
+		mes "Você não pode carregar as soluções!";
+		mes "Me traga um tubo.";
 		close;
 	}
 	delitem 1092,1; // Tubo de Ensaio
@@ -482,7 +535,8 @@ pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 moc_ruins,91,150,0	duplicatv(Dollshoi)	Ponka-Hontas	93,{}
 
 geffen_in,177,112,4	script#vpo	Estante de Livros	111,{
-	mes "[Livro Guia]"+" Este guia é propriedade da Guilda dos Magos de Geffen.";
+	mes "[Livro Guia]";
+	mes "Este guia é propriedade da Guilda dos Magos de Geffen.";
 	next;
 	switch(select("Solução No. 1.:Solução No. 2.:Solução No. 3.:Solução No. 4.:Sair.")) {
 	case 1:
