@@ -607,7 +607,7 @@ geffen_in,177,112,4	script#vpo	Estante de Livros	111,{
 		next;
 		mes "["+getitemname(1087)+"]";
 		mes "* Catalisador *";
-		mes getitemname(730)+" (Provida pela Máquina de mistura)";
+		mes "+getitemname(730) (Provida pela Máquina de mistura)";
 		close;
 	}
 	close;

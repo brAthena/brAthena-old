@@ -12,13 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.0                                       |
+//   | Versões brA: 1.1                                       |
 //   |--------------------------------------------------------|
-//   | Descrição: Npcs do Sistema VIP bRO.                    |
-//   |                                                        |
+//   | Descrição: NPCs do Sistema VIP bRO.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criação [Megasantos]                               |
+//   | 1.1 Correção na contagem do FOR & Fix em SC_ [Holy]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -231,7 +231,7 @@ prontera,146,93,5	script	Agente VIP	109,{
 			sc_start SC_FOOD_AGI,5400000,6;
 			sc_start SC_FOOD_DEX,5400000,4;
 			sc_start SC_PLUSATTACKPOWER,5400000,32;
-			sc_start SC_FLEEFOOD,5400000,5;
+			sc_start SC_FOOD_BASICAVOIDANCE,5400000,5;
 			break;
 		case 2:
 			sc_start SC_FOOD_INT,5400000,8;
@@ -264,7 +264,8 @@ prontera,146,93,5	script	Agente VIP	109,{
 		next;
 		mes "[Agente VIP]";
 		mes "Até mais, espero vê-lo novamente!!";
-		close;
+		close2;
+		end;
 	}
 }
 

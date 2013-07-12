@@ -1395,7 +1395,7 @@ pay_arche,76,135,3	script	#Target	111,{ end; }
 
 // Acolyte
 //============================================================
-pay_fild08,40,83,5	script#re	Acolyte#tu	95,{
+-	script	Acolyte#tu	95,{
 	mes "[Acolyte]";
 	if(tu_archer01 == 14){
 		if(gettime(3) >= 18 && gettime(3) < 22){
@@ -1974,5 +1974,5 @@ monk_in,19,43,1	script	Bishop Maugins	60,{
 	mes "Would you come back later?";
 	close;
 }
-
-mjolnir_11,27,223,3	duplicatp(Acolyte)	Acolyte#tu	95,{}
+pay_fild08,40,83,5	duplicatr(Acolyte#tu)	Acolyte#tur	95,{}
+mjolnir_11,27,223,3	duplicatp(Acolyte#tu)	Acolyte#tup	95,{}
