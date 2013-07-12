@@ -158,7 +158,7 @@ amatsu,251,283,4	script#vpo	Guia#2ama	767,{
 	case 4:
 		viewpoint 1,217,116,3,0x3355FF;
 		mes "[Guia]";
-		mes "No mini-mapa, vá em ^3355FF+^000000 para encontrar o Bar."
+		mes "No mini-mapa, vá em ^3355FF+^000000 para encontrar o Bar.";
 		mes .@str$;
 		close;
 	}

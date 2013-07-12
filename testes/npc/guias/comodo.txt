@@ -177,7 +177,7 @@ L_Mark:
 
 comodo,181,347,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#02comodo	700
 comodo,197,149,3	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#03comodo	700
-comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	700
+comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	700,{}
 
 comodo,322,178,4	script#vpo	Guia Turístico#cmd	700,{
 	callfunc "F_CmdGuide","Aborígene Nutcoco";
