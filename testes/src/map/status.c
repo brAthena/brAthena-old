@@ -7538,7 +7538,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				break;
 			case SC_EDP:    // [Celest]
 				val2 = val1 + 2; //Chance to Poison enemies.
-				val3 = 50*(val1+1); //Damage increase (+50 +50*lv%)
+				val3 = 50*(val1+1) * battle_config.edp_rate / 100; //Damage increase (+50 +50*lv%)
 #ifdef RENEWAL_EDP
 			val4 = 100 * ((val1 + 1)/2 + 2);
 #endif
