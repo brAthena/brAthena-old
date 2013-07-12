@@ -1125,8 +1125,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 #if VERSION != 1
 		case WZ_FROSTNOVA:
 #endif
-			if(!sc_start(bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv)))
-				clif_skill_fail(sd,skill_id,0,0);
+			sc_start(bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
 
 #if VERSION == 1
