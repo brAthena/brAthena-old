@@ -1783,11 +1783,11 @@ ACMD_FUNC(go)
 		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
 		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
 #if VERSION != -1
-		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
+		{ MAP_UMBALA,       89, 157 }, // 12=Umbala [ Pré-Renovação & Renovação ]
 		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
 		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
 #endif
-		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
+		{ MAP_NOVICE,       53, 111 }, // Campo de Treinamento [ Pré-Renovação & Renovação @go 15 / Old-Times @go 12 ]
 #if VERSION != -1
 		{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii

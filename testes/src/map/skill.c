@@ -1135,22 +1135,27 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 #endif
 
 		case WZ_STORMGUST:
-			/**
-			 * Storm Gust counter was dropped in renewal
-			 **/
-#if VERSION == 1
-			sc_start(bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
-#else
-			//On third hit, there is a 150% to freeze the target
-			if(tsc->sg_counter >= 3 &&
-			   sc_start(bl,SC_FREEZE,150,skill_lv,skill_get_time2(skill_id,skill_lv)))
-				tsc->sg_counter = 0;
+			#if VERSION == 1
+				// Nevasca modo Renovação.
+				sc_start(bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
+			#elif VERSION == 0
+				// Nevasca modo Pré-Renovação.
+				if(tsc->sg_counter >= 3 && sc_start(bl,SC_FREEZE,150,skill_lv,skill_get_time2(skill_id,skill_lv)))
+					tsc->sg_counter = 0;
+			#else
+				// Nevasca modo Old-Times.
+				if(tsc->sg_counter >= 2) {
+					sc_start(bl,SC_FREEZE,300,skill_lv,skill_get_time2(skill_id,skill_lv));
+					tsc->sg_counter = 0;
+				}
+			#endif
 			/**
 			 * being it only resets on success it'd keep stacking and eventually overflowing on mvps, so we reset at a high value
 			 **/
-			else if(tsc->sg_counter > 250)
-				tsc->sg_counter = 0;
-#endif
+			#if VERSION != 1
+				else if(tsc->sg_counter > 250)
+					tsc->sg_counter = 0;
+			#endif
 			break;
 
 		case WZ_METEOR:
@@ -6026,7 +6031,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case CR_DEVOTION: {
 				int count, lv;
 				if(!dstsd || (!sd && !mer) || dstsd->state.monster_ignore) {
-					// Apenas Jogadores podem receber a Redenção, também é restringido o uso da habilidade em Jogadores imunes a Batalhas. 
+					// Apenas Jogadores podem receber a Redenção, também é restringido o uso da habilidade em Jogadores imunes a Batalhas.
 					if(sd)
 						clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
 					break;
@@ -11603,14 +11608,20 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 					/**
 					 * The storm gust counter was dropped in renewal
 					 **/
-#if VERSION != 1
+			#if VERSION != 1
 				case WZ_STORMGUST: //SG counter does not reset per stormgust. IE: One hit from a SG and two hits from another will freeze you.
 					if(tsc)
 						tsc->sg_counter++; //SG hit counter.
+			#if VERSION == -1
+				if (tsc && bl->id != sg->group_id) {	// Reseta o acúmulo de hits quando uma nova Nevasca é lançada [Old-Times].
+					sg->group_id = bl->id;
+					tsc->sg_counter = 0;
+				}
+		    #endif
 					if(skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0) <= 0 && tsc)
 						tsc->sg_counter=0; //Attack absorbed.
 					break;
-#endif
+			#endif
 				case GS_DESPERADO:
 					if(rnd()%100 < src->val1)
 						skill_attack(BF_WEAPON,ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
