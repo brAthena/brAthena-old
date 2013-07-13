@@ -1530,8 +1530,8 @@ OnEnable:
 	donpcevent "#arch_redcell::OnRed";
 	donpcevent "mob#arch_1::OnKill";
 	donpcevent "mob#arch_2::OnKill";
-	donpcevent "start#arch::OnTimeoff";
-	donpcevent "start#arch::OnTimeon";
+	donpcevent "start#arch::OnTimeOff";
+	donpcevent "start#arch::OnTimeOn";
 	donpcevent "#arch_val01::OnKill";
 	donpcevent "#arch_val02::OnKill";
 	donpcevent "mob#arch_1::OnKill";
@@ -1539,10 +1539,10 @@ OnEnable:
 	donpcevent "mob#arch_1::OnEnable";
 	donpcevent "#arch_val01::OnEnable";
 	end;
-OnTimeon:
+OnTimeOn:
 	initnpctimer;
 	end;
-OnTimeoff:
+OnTimeOff:
 	stopnpctimer;
 	end;
 OnTimer60000:

@@ -516,7 +516,7 @@ OnTimer6000:
 	stopnpctimer;
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#gq_miromob2_"+.cas$+.casn$+"::OnMyMobDead";
 	stopnpctimer;
 	end;
@@ -568,14 +568,14 @@ OnDisable:
 	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
 	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
 	disablenpc "Dama dos Desejos#"+.cas$+"g_cas"+.casn$;
-	donpcevent "#gq_miromob2_"+.cas$+.casn$+"::Onreset";
+	donpcevent "#gq_miromob2_"+.cas$+.casn$+"::OnReset";
 	disablenpc "Piamette#"+.cas$+"g_cas"+.casn$;
-	donpcevent "#gdtimer1_"+.cas$+.casn$+"::Onstop";
-	donpcevent "#gdtimer2_"+.cas$+.casn$+"::Onstop";
-	donpcevent "#piamette_"+.cas$+.casn$+"::Onreset";
+	donpcevent "#gdtimer1_"+.cas$+.casn$+"::OnStop";
+	donpcevent "#gdtimer2_"+.cas$+.casn$+"::OnStop";
+	donpcevent "#piamette_"+.cas$+.casn$+"::OnReset";
 	donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::OnDisable";
 	donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_gift::OnDisable";
-	donpcevent "#gd_"+.cas$+.casn$+"_mobctrl::Onreset";
+	donpcevent "#gd_"+.cas$+.casn$+"_mobctrl::OnReset";
 	donpcevent "Gate01#"+.cas$+"g_cas"+.casn$+"::OnDisable";
 	donpcevent "#Maze_Manager_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#event_start1_"+.cas$+.casn$+"::OnDisable";
@@ -594,9 +594,9 @@ OnDisable:
 	donpcevent "Guardião do Templo#"+.cas$+.casn$+"_ac1::OnDisable";
 	donpcevent "Guardião do Templo#"+.cas$+.casn$+"_ac2::OnDisable";
 	disablenpc "#to_agit_"+.cas$+.casn$+"_gate";
-	donpcevent "#"+.cas$+.casn$+"_stone1::Onreset";
-	donpcevent "#"+.cas$+.casn$+"_stone2::Onreset";
-	donpcevent "#"+.cas$+.casn$+"_stone3::Onreset";
+	donpcevent "#"+.cas$+.casn$+"_stone1::OnReset";
+	donpcevent "#"+.cas$+.casn$+"_stone2::OnReset";
+	donpcevent "#"+.cas$+.casn$+"_stone3::OnReset";
 	disablenpc "#"+.cas$+.casn$+"_cage1";
 	disablenpc "#"+.cas$+.casn$+"_cage2";
 	disablenpc "#"+.cas$+.casn$+"_cage3";
@@ -612,7 +612,7 @@ OnDisable:
 	stopnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	end;
 
@@ -655,14 +655,14 @@ OnTimer3540000:
 OnTimer3600000:
 	mapannounce "que_q"+.cas$+.casn$,"Okolnir começou a desaparecer.",bc_map,"0x4d4dff";
 	disablenpc "Dama dos Desejos#"+.cas$+"g_cas"+.casn$;
-	donpcevent "#gq_miromob2_"+.cas$+.casn$+"::Onreset";
+	donpcevent "#gq_miromob2_"+.cas$+.casn$+"::OnReset";
 	disablenpc "Piamette#"+.cas$+"g_cas"+.casn$;
-	donpcevent "#gdtimer1_"+.cas$+.casn$+"::Onstop";
-	donpcevent "#gdtimer2_"+.cas$+.casn$+"::Onstop";
-	donpcevent "#piamette_"+.cas$+.casn$+"::Onreset";
-	donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::onDisable";
+	donpcevent "#gdtimer1_"+.cas$+.casn$+"::OnStop";
+	donpcevent "#gdtimer2_"+.cas$+.casn$+"::OnStop";
+	donpcevent "#piamette_"+.cas$+.casn$+"::OnReset";
+	donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::OnDisable";
 	donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_gift::OnDisable";
-	donpcevent "#gd_"+.cas$+.casn$+"_mobctrl::Onreset";
+	donpcevent "#gd_"+.cas$+.casn$+"_mobctrl::OnReset";
 	donpcevent "Gate01#"+.cas$+"g_cas"+.casn$+"::OnDisable";
 	donpcevent "#Maze_Manager_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#event_start1_"+.cas$+.casn$+"::OnDisable";
@@ -681,9 +681,9 @@ OnTimer3600000:
 	donpcevent "Guardião do Templo#"+.cas$+.casn$+"_ac1::OnDisable";
 	donpcevent "Guardião do Templo#"+.cas$+.casn$+"_ac2::OnDisable";
 	disablenpc "#to_agit_"+.cas$+.casn$+"_gate";
-	donpcevent "#"+.cas$+.casn$+"_stone1::Onreset";
-	donpcevent "#"+.cas$+.casn$+"_stone2::Onreset";
-	donpcevent "#"+.cas$+.casn$+"_stone3::Onreset";
+	donpcevent "#"+.cas$+.casn$+"_stone1::OnReset";
+	donpcevent "#"+.cas$+.casn$+"_stone2::OnReset";
+	donpcevent "#"+.cas$+.casn$+"_stone3::OnReset";
 	disablenpc "#"+.cas$+.casn$+"_cage1";
 	disablenpc "#"+.cas$+.casn$+"_cage2";
 	disablenpc "#"+.cas$+.casn$+"_cage3";
@@ -1382,7 +1382,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	donpcevent "#getspell1_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#getspell2_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#getspell3_"+.cas$+.casn$+"::OnDisable";
@@ -1486,7 +1486,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	killmonster "que_q"+.cas$+.casn$,"#gdtimer2_"+.cas$+.casn$+"::OnMyMobDead";
 	end;
@@ -1532,7 +1532,7 @@ OnTimer113000:
 	stopnpctimer;
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#gdtimer2_"+.cas$+.casn$+"::OnMyMobDead";
 	end;
 
@@ -1575,7 +1575,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#piamette_"+.cas$+.casn$+"::OnMyMobDead";
 	stopnpctimer;
 	end;
@@ -1699,7 +1699,7 @@ OnTouch:
 		setd "$gqse_"+.cas$+.casn$+"_gd",6;
 		mapannounce "que_q"+.cas$+.casn$,"Piamette : O último quebrou o pescoço se contorcendo para sair de sua casca!",bc_map,"0xFF0000";
 		donpcevent "#gdtimer2_"+.cas$+.casn$+"::OnEnable";
-		donpcevent "#gdtimer1_"+.cas$+.casn$+"::Onstop";
+		donpcevent "#gdtimer1_"+.cas$+.casn$+"::OnStop";
 	}
 	end;
 }
@@ -1818,7 +1818,7 @@ OnEnable:
 	monster "que_q"+.cas$+.casn$,112,130,"Mímico Antigo",1699,1,"#gd_"+.cas$+.casn$+"_mobctrl::OnMyMobDead";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#gd_"+.cas$+.casn$+"_mobctrl::OnMyMobDead";
 	end;
 
@@ -2084,7 +2084,7 @@ OnEnable:
 	monster "que_q"+.cas$+.casn$,225,295,"Guardião Mágico do Oeste",1752,1,"#"+.cas$+.casn$+"_stone1::OnMyMobDead";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#"+.cas$+.casn$+"_stone1::OnMyMobDead";
 	end;
 
@@ -2093,7 +2093,7 @@ OnMyMobDead:
 		setd "$gqse_"+.cas$+.casn$+"_nm",getd ("$gqse_"+.cas$+.casn$+"_nm") +1;
 		donpcevent "#nmsom"+.cas$+.casn$+"_jin1::OnDisable";
 		if (getd ("$gqse_"+.cas$+.casn$+"_nm") == 3) {
-			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::Onfight";
+			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::OnFight";
 		}
 	}
 	end;
@@ -2231,7 +2231,7 @@ OnEnable:
 	monster "que_q"+.cas$+.casn$,273,300,"Guardião Mágico do Leste",1753,1,"#"+.cas$+.casn$+"_stone2::OnMyMobDead";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#"+.cas$+.casn$+"_stone2::OnMyMobDead";
 	end;
 
@@ -2240,7 +2240,7 @@ OnMyMobDead:
 		setd "$gqse_"+.cas$+.casn$+"_nm",getd ("$gqse_"+.cas$+.casn$+"_nm") +1;
 		donpcevent "#nmsom"+.cas$+.casn$+"_jin2::OnDisable";
 		if (getd ("$gqse_"+.cas$+.casn$+"_nm")) {
-			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::Onfight";
+			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::OnFight";
 		}
 	}
 	end;
@@ -2371,7 +2371,7 @@ OnEnable:
 	monster "que_q"+.cas$+.casn$,248,341,"Guardião Mágico do Norte",1933,1,"#"+.cas$+.casn$+"_stone3::OnMyMobDead";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "que_q"+.cas$+.casn$,"#"+.cas$+.casn$+"_stone3::OnMyMobDead";
 	end;
 
@@ -2381,7 +2381,7 @@ OnMyMobDead:
 		donpcevent "#nmsom"+.cas$+.casn$+"_jin3::OnDisable";
 
 		if (getd ("$gqse_"+.cas$+.casn$+"_nm") == 3) {
-			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::Onfight";
+			donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_boss::OnFight";
 		}
 	}
 	end;
@@ -2503,7 +2503,7 @@ OnDisable:
 	stopnpctimer;
 	end;
 
-Onfight:
+OnFight:
 	if(strnpcinfo(2) == "bossSE") end;
 	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
@@ -2533,7 +2533,7 @@ OnTimer5000:
 
 OnMyMobDead:
 	if (mobcount("que_q"+.cas$+.casn$,"Dama dos Desejos#"+.cas$+.casn$+"_boss::OnMyMobDead") == 0) {
-		donpcevent "#okolnir_"+.cas$+.casn$+"::Onstop";
+		donpcevent "#okolnir_"+.cas$+.casn$+"::OnStop";
 		donpcevent "Dama dos Desejos#"+.cas$+.casn$+"_gift::OnEnable";
 		mapannounce "que_q"+.cas$+.casn$,"Dama dos Desejos : ..Bom, você merece a recompensa da Deusa.",bc_map,"0x00ff00";
 	}
@@ -2754,7 +2754,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onreset:
+OnReset:
 	setd "$siz_"+.cas$+.casn$+"_on",0;
 	setd "$gqse_"+.cas$+.casn$+"_time",0;
 	stopnpctimer;

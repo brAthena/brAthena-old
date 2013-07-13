@@ -12,19 +12,19 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Gerenciador para as arenas de batalha.     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Thor]                              |
+//   | 1.2 Organização de Labels [lututuiBR]                  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 arena_room,94,93,5	script	Vendigos	97,{
-
 	mes "[Vendigos]";
 	mes "Bem-vindo ao mundo da Arena, a batalha contra um limite de tempo.";
 	mes "Meu nome é Vendigos, estou aqui para ajudá-lo.";
@@ -85,26 +85,26 @@ L_Menu:
 	mes "Existe algo em mais que eu possa ajudá-lo?";
 	goto L_Menu;
 
-Onlinerec_50:
+OnLineRec_50:
 	mapannounce "arena_room",""+$arena_50topn$+" renovou o recorde na arena Time Force Battle nível 50. Parabéns!",0;
 	end;
 
-Onlinerec_60:
+OnLineRec_60:
 	mapannounce "arena_room",""+$arena_60topn$+" renovou o recorde na arena Time Force Battle nível 60. Parabéns!",0;
 	end;
 
-Onlinerec_70:
+OnLineRec_70:
 	mapannounce "arena_room",""+$arena_70topn$+" renovou o recorde na arena Time Force Battle nível 70. Parabéns!",0;
 	end;
-Onlinerec_80:
+OnLineRec_80:
 	mapannounce "arena_room",""+$arena_80topn$+" renovou o recorde na arena Time Force Battle nível 80. Parabéns!",0;
 	end;
 
-Onlinerec_pt:
+OnLineRec_pt:
 	mapannounce "arena_room","Party "+$arena_pttopn$+"  renovou o recorde superior na arena Time Force Battle. Parabéns!",0;
 	end;
 
-//OnCommand: "linerec_vs"
+//OnCommand: "LineRec_vs"
 // var vs_winner = GetGlobalStr "040611_arn_vstopn"
 // broadcastinmap "Party "+vs_winner+" renovou o recorde superior na arena "Time Force Battle". Parabéns!"
 // end;
@@ -456,7 +456,7 @@ sec_in02,72,180,3	script	Administrador da Arena	802,{
 						switch( select( "Sim","Não" ) )
 						{
 							case 1:
-								donpcevent "Ponox::Onstart";
+								donpcevent "Ponox::OnStart";
 								mes "[Administrador da Arena]";
 								mes "A Arena foi reiniciada com sucesso.";
 								close;
@@ -475,7 +475,7 @@ sec_in02,72,180,3	script	Administrador da Arena	802,{
 				switch( select( "Sim","Não" ) )
 				{
 					case 1:
-						donpcevent "lvl "+.@arena+"s Waiting Room::Onstart";
+						donpcevent "lvl "+.@arena+"s Waiting Room::OnStart";
 						mes "[Administrador da Arena]";
 						mes "A arena foi reativada com sucesso.";
 						close;
@@ -1036,7 +1036,6 @@ OnTimer62000:
 }
 
 sec_in02,72,171,3	script	Administrador de Fotos	802,{
-
 	input .@arena;
 	if(!.@arena)
 	{

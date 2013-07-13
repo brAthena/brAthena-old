@@ -666,7 +666,7 @@ ein_in01,201,27,3	script	Guildsman#alberta	63,{
 					mes "Em todo caso, leve isso";
 					mes "para ^8E6B23Whichebain^000000 em Morroc do Reino de Rune-Midgard,";
 					break;
-				Case 11:
+				case 11:
 					mes "Certo, agora leve isso para ^8E6B23Grongast^000000 em Lighthalzen. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1119,1; // Tsurugi
 					if(checkquest(2005) != -1) {

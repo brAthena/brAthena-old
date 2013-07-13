@@ -388,8 +388,8 @@ OnTimer927000:
 	}
 	enablenpc "No_Unfair_Start#"+.@w$+"-1";
 	enablenpc "No_Unfair_Start#"+.@w$+"-2";
-	donpcevent "snake#"+.@w$+"::Onreset";
-	donpcevent "hunting#"+.@w$+"::Onreset";
+	donpcevent "snake#"+.@w$+"::OnReset";
+	donpcevent "hunting#"+.@w$+"::OnReset";
 	disablenpc "bing2#"+.@w$;
 	disablenpc "Auxiliar do Vencedor#TBT_"+.@w$;
 	enablenpc "#cos_"+.@w$+"_end";
@@ -443,9 +443,9 @@ turbo_n_1,68,379,5	duplicate(NoUnfair#tt_main)	No_Unfair_Start#n1-2	-1,5,31
 -	script	LogTrap#tt_main	-1,{
 OnTouch:
 	switch (rand(1,3)) {
-		Case 1: warp strnpcinfo(4),72,372; end;
-		Case 2: warp strnpcinfo(4),72,365; end;
-		Case 3: warp strnpcinfo(4),72,357; end;
+		case 1: warp strnpcinfo(4),72,372; end;
+		case 2: warp strnpcinfo(4),72,365; end;
+		case 3: warp strnpcinfo(4),72,357; end;
 	}
 }
 turbo_e_4,118,377,0	duplicate(LogTrap#tt_main)	trap_a#e4-1	-1,44,1
@@ -998,25 +998,25 @@ turbo_n_1,148,357,0	duplicate(LogTrap#tt_main)	trap_d#n1-15	-1,1,2
 -	script	SandTrap#tt_main	-1,{
 OnTouch:
 	switch(rand(1,10)) {
-		Case 1:
-		Case 9:
+		case 1:
+		case 9:
 			sc_start SC_CONFUSION,8000,0;
 			emotion e_swt2,1;
 			end;
-		Case 2:
+		case 2:
 			sc_start SC_STONE,4000,0;
 			end;
-		Case 4:
+		case 4:
 			sc_start SC_SLEEP,4000,0;
 			end;
-		Case 6:
+		case 6:
 			sc_start SC_FREEZE,4000,0;
 			emotion e_swt2,1;
 			end;
-		Case 8:
+		case 8:
 			sc_start SC_STUN,4000,0;
 			end;
-		Case 10:
+		case 10:
 			sc_start SC_CURSE,80000,0;
 			end;
 	}
@@ -1688,7 +1688,7 @@ turbo_n_1,332,270,0	duplicate(snake04#tt_main)	snake04#n1	45,1,1
 -	script	SnakeHunt#tt_main	-1,{
 	end;
 	
-Onreset:
+OnReset:
 	killmonsterall strnpcinfo(4);
 	end;
 
@@ -1728,39 +1728,39 @@ turbo_n_1,90,46,0	duplicate(SnakeHunt#tt_main)	hunting#n1	111
 OnTouch:
 	set .@n, charat(strnpcinfo(2),getstrlen(strnpcinfo(2))-1);
 	switch (.@n) {
-		Case 1:
+		case 1:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso da Ponte de Madeira!",bc_map,"0x70DBDB";
 			switch (rand(1,3)) {
-				Case 1: warp strnpcinfo(4),210,369; end;
-				Case 2: warp strnpcinfo(4),210,361; end;
-				Case 3: warp strnpcinfo(4),210,354; end;
+				case 1: warp strnpcinfo(4),210,369; end;
+				case 2: warp strnpcinfo(4),210,361; end;
+				case 3: warp strnpcinfo(4),210,354; end;
 			}
-		Case 2:
+		case 2:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso das Caixas Empilhadas!",bc_map,"0x70DBDB";
 			warp strnpcinfo(4),316,365;
 			end;		
-		Case 3:
+		case 3:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso do Deserto!",bc_map,"0x70DBDB";
 			switch (rand(1,4)) {
-				Case 1: warp strnpcinfo(4),46,254; end;
-				Case 2: warp strnpcinfo(4),76,227; end;
-				Case 3: warp strnpcinfo(4),42,197; end;
-				Case 4: warp strnpcinfo(4),86,220; end;
+				case 1: warp strnpcinfo(4),46,254; end;
+				case 2: warp strnpcinfo(4),76,227; end;
+				case 3: warp strnpcinfo(4),42,197; end;
+				case 4: warp strnpcinfo(4),86,220; end;
 			}
-		Case 5:
+		case 5:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso Caracol!",bc_map,"0x70DBDB";
 			warp strnpcinfo(4),268,275;
 			end;
-		Case 6:
+		case 6:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso da Serpente!",bc_map,"0x70DBDB";
 			warp strnpcinfo(4),5,91;
 			end;
-		Case 7:
+		case 7:
 			mapannounce strnpcinfo(4),strcharinfo(0) +" acaba de passar o Percurso da Caverna! Rápido, você está quase na chegada!",bc_map,"0x70DBDB";
 			switch(rand(1,3)) {
-				Case 1: warp strnpcinfo(4),307,52; end;
-				Case 2: warp strnpcinfo(4),307,46; end;
-				Case 3: warp strnpcinfo(4),307,40; end;
+				case 1: warp strnpcinfo(4),307,52; end;
+				case 2: warp strnpcinfo(4),307,46; end;
+				case 3: warp strnpcinfo(4),307,40; end;
 			}
 	}
 }
@@ -2102,7 +2102,7 @@ turbo_n_1,114,190,0	duplicate(Flasher#tt_main)	Flasher_Exit_2#n1	45,1,1
 			mes "Parabéns!";
 			mes "Você agora é o líder";
 			mes "entre o ranking de vencedores!";
-			donpcevent "TBT_Guia#Broadcast::Onnew_top1";
+			donpcevent "TBT_Guia#Broadcast::OnNew_top1";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
@@ -2125,7 +2125,7 @@ turbo_n_1,114,190,0	duplicate(Flasher#tt_main)	Flasher_Exit_2#n1	45,1,1
 			mes "Parabéns!";
 			mes "Você conquistou o Segundo";
 			mes "lugar no Ranking dos melhores!";
-			donpcevent "TBT_Guia#Broadcast::Onnew_top2";
+			donpcevent "TBT_Guia#Broadcast::OnNew_top2";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
@@ -2148,7 +2148,7 @@ turbo_n_1,114,190,0	duplicate(Flasher#tt_main)	Flasher_Exit_2#n1	45,1,1
 			mes "Parabéns!";
 			mes "Você conquistou o Terceiro";
 			mes "lugar no Ranking dos melhores!";
-			donpcevent "TBT_Guia#Broadcast::Onnew_top3";
+			donpcevent "TBT_Guia#Broadcast::OnNew_top3";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
@@ -2171,7 +2171,7 @@ turbo_n_1,114,190,0	duplicate(Flasher#tt_main)	Flasher_Exit_2#n1	45,1,1
 			mes "Parabéns!";
 			mes "Você conquistou o Quarto";
 			mes "lugar no Ranking dos melhores!";
-			donpcevent "TBT_Guia#Broadcast::Onnew_top4";
+			donpcevent "TBT_Guia#Broadcast::OnNew_top4";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
@@ -2194,7 +2194,7 @@ turbo_n_1,114,190,0	duplicate(Flasher#tt_main)	Flasher_Exit_2#n1	45,1,1
 			mes "Parabéns!";
 			mes "Você conquistou o Quinto";
 			mes "lugar no Ranking dos melhores!";
-			donpcevent "TBT_Guia#Broadcast::Onnew_top5";
+			donpcevent "TBT_Guia#Broadcast::OnNew_top5";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
@@ -2456,8 +2456,8 @@ OnTimer60000:
 		disablenpc "Flasher_Exit_2#"+.@w$;
 		enablenpc "No_Unfair_Start#"+.@w$+"-1";
 		enablenpc "No_Unfair_Start#"+.@w$+"-2";
-		donpcevent "snake#"+.@w$+"::Onreset";
-		donpcevent "hunting#"+.@w$+"::Onreset";
+		donpcevent "snake#"+.@w$+"::OnReset";
+		donpcevent "hunting#"+.@w$+"::OnReset";
 		donpcevent RName(.@w$)+"::OnEnable";
 		disablenpc "bing2#"+.@w$;
 		enablenpc "#cos_"+.@w$+"_end";
@@ -2492,8 +2492,8 @@ OnTimer71000:
 		enablenpc "Flasher_Exit_2#"+.@w$;
 		enablenpc "No_Unfair_Start#"+.@w$+"-1";
 		enablenpc "No_Unfair_Start#"+.@w$+"-2";
-		donpcevent "snake#"+.@w$+"::Onreset";
-		donpcevent "hunting#"+.@w$+"::Onreset";
+		donpcevent "snake#"+.@w$+"::OnReset";
+		donpcevent "hunting#"+.@w$+"::OnReset";
 		donpcevent RName(.@w$)+"::OnEnable";
 		disablenpc "bing2#"+.@w$;
 		stopnpctimer;
@@ -2706,8 +2706,8 @@ OnTimer60000:
 	disablenpc "Flasher_Exit_2#"+.@w$;
 	enablenpc "No_Unfair_Start#"+.@w$+"-1";
 	enablenpc "No_Unfair_Start#"+.@w$+"-2";
-	donpcevent "snake#"+.@w$+"::Onreset";
-	donpcevent "hunting#"+.@w$+"::Onreset";
+	donpcevent "snake#"+.@w$+"::OnReset";
+	donpcevent "hunting#"+.@w$+"::OnReset";
 	donpcevent "Modo Solo#"+.@w$+"::OnEnable";
 	stopnpctimer;
 	end;
@@ -2722,7 +2722,7 @@ OnInit:
 OnTouch:
 	set .@w$,callfunc("F_tt");
 	mapannounce strnpcinfo(4),strcharinfo(0) +" está entrando agora no Percurso da Caverna! " + strcharinfo(0) +" está agora na dianteira!",bc_map,"0xFFFF00";
-	donpcevent "TBT_Guia#Broadcast::Onend_"+.@w$;
+	donpcevent "TBT_Guia#Broadcast::OnEnd_"+.@w$;
 	disablenpc "Notice_Maker1#TBT_"+.@w$;
 	end;
 	
@@ -2783,11 +2783,11 @@ turbo_n_1,226,15,0	duplicate(NMaker4#tt_main)	Notice_Maker4#TBT_n1	-1,3,3
 -	script	warp#tt_main	-1,{
 OnTouch:
 	switch (rand(1,20)) {
-		Case 1: warp strnpcinfo(4),216,378; break;
-		Case 2: warp strnpcinfo(4),218,360; break;
-		Case 3: warp strnpcinfo(4),223,361; break;
-		Case 4: warp strnpcinfo(4),243,342; break;
-		Case 5: warp strnpcinfo(4),247,364; break;
+		case 1: warp strnpcinfo(4),216,378; break;
+		case 2: warp strnpcinfo(4),218,360; break;
+		case 3: warp strnpcinfo(4),223,361; break;
+		case 4: warp strnpcinfo(4),243,342; break;
+		case 5: warp strnpcinfo(4),247,364; break;
 		Default: break;
 	}
 	end;
@@ -3575,12 +3575,12 @@ turbo_n_16,217,214,0	duplicate(bing_1#tt_main)	bing#n16	45,3,3
 	end;
 OnTouch:
 	switch (rand(1,10)) {
-		Case 1: warp strnpcinfo(4),217,232; break;
-		Case 2: warp strnpcinfo(4),233,207; break;
-		Case 3: warp strnpcinfo(4),208,219; break;
-		Case 4: warp strnpcinfo(4),219,202; break;
-		Case 5: warp strnpcinfo(4),218,228; break;
-		Case 6: warp strnpcinfo(4),220,195; break;
+		case 1: warp strnpcinfo(4),217,232; break;
+		case 2: warp strnpcinfo(4),233,207; break;
+		case 3: warp strnpcinfo(4),208,219; break;
+		case 4: warp strnpcinfo(4),219,202; break;
+		case 5: warp strnpcinfo(4),218,228; break;
+		case 6: warp strnpcinfo(4),220,195; break;
 		Default: break;
 	}
 	end;
@@ -3792,51 +3792,51 @@ OnInit:
 	}
 	end;
 
-Onend_n1:
+OnEnd_n1:
 	mapannounce "turbo_room","[Modo Normal - Solo] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_n4:
+OnEnd_n4:
 	mapannounce "turbo_room","[Modo Normal - 4 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_n8:
+OnEnd_n8:
 	mapannounce "turbo_room","[Modo Normal - 8 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_n16:
+OnEnd_n16:
 	mapannounce "turbo_room","[Modo Normal - 16 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_e4:
+OnEnd_e4:
 	mapannounce "turbo_room","[Modo Avançado - 4 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_e8:
+OnEnd_e8:
 	mapannounce "turbo_room","[Modo Avançado - 8 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onend_e16:
+OnEnd_e16:
 	mapannounce "turbo_room","[Modo Avançado - 16 Pessoas] O jogo terminará brevemente.",bc_map,"0xadff2f";
 	end;
 
-Onnew_top1:
+OnNew_top1:
 	mapannounce "turbo_room","Parabéns! " + $ttnames$[9] + " classificou-se como Número Um no Hall da Fama da Turbo Track!",bc_map,"0x00ff00";
 	end;
 
-Onnew_top2:
+OnNew_top2:
 	mapannounce "turbo_room","Parabéns! " + $ttnames$[10] + " classificou-se como Segundo no Hall da Fama da Turbo Track!",bc_map,"0x00ff00";
 	end;
 
-Onnew_top3:
+OnNew_top3:
 	mapannounce "turbo_room","Parabéns! " + $ttnames$[11] + " classificou-se como Terceiro no Hall da Fama da Turbo Track!",bc_map,"0x00ff00";
 	end;
 
-Onnew_top4:
+OnNew_top4:
 	mapannounce "turbo_room","Parabéns! " + $ttnames$[12] + " classificou-se como Quarto no Hall da Fama da Turbo Track!",bc_map,"0x00ff00";
 	end;
 
-Onnew_top5:
+OnNew_top5:
 	mapannounce "turbo_room","Parabéns! " + $ttnames$[13] + " classificou-se como Quinto no Hall da Fama da Turbo Track!",bc_map,"0x00ff00";
 	end;
 

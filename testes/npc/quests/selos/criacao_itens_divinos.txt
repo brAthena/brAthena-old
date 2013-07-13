@@ -806,7 +806,7 @@ OnTimer612000:
 
 OnTimer615000:
 	donpcevent "god_wep_warpmaster::OnDisable";
-	donpcevent " #god_hopewarp1::Onreset";
+	donpcevent " #god_hopewarp1::OnReset";
 	stopnpctimer;
 	end;
 }
@@ -858,7 +858,7 @@ que_god01,293,3,0	script	Itens Divinos#god	90,{
 			mes "[Use em caso de emergência]";
 			mes "Por favor, pressione o botão 'Próximo' para redefinir a sala de chat arena em que_god01.";
 			next;
-			donpcevent " #god_hopewarp1::Onreset";
+			donpcevent " #god_hopewarp1::OnReset";
 			mes "[Use em caso de emergência]";
 			mes "Você acabou de redefinir a sala de chat arena (Laboratório de Entrada 1/2).";
 			close;

@@ -408,7 +408,7 @@ function	script	F_SetKafCode	{
 		mes "Seu armazém está protegido com uma senha. O que você fará agora?";
 		next;
 		switch (select("Mudar senha antiga -> 5000z:Remover senha do Armazém -> 1000z:Cancelar")) {
-			Case 1:
+			case 1:
 				mes getarg(0);
 				mes "Primeiro, digite sua ^0000FFsenha antiga^000000.";
 				set @code,callfunc("F_EntKafCode");
@@ -420,7 +420,7 @@ function	script	F_SetKafCode	{
 				next;
 				callsub S_SET,getarg(0),getarg(1);
 				break;
-			Case 2:
+			case 2:
 				mes getarg(0);
 				mes "Por favor, entre com a senha antes de sua retirada.";
 				set @code,callfunc("F_EntKafCode");
@@ -448,7 +448,7 @@ function	script	F_SetKafCode	{
 					emotion e_sry;
 				}
 				break;
-			Case 3:
+			case 3:
 				break;
 		}
 	} else {
@@ -456,8 +456,8 @@ function	script	F_SetKafCode	{
 		mes "Proteção adicional do seu armazém com senha.";
 		next;
 		switch (select("Definir nova senha -> 5000z:Cancelar")) {
-			Case 1: callsub S_SET,getarg(0),getarg(1); break;
-			Case 2: break;		
+			case 1: callsub S_SET,getarg(0),getarg(1); break;
+			case 2: break;		
 		}
 	}
 	close2;

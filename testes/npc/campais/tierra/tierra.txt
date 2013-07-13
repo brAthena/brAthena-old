@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.0/1.4                         |
+//   | Versões eA/rA/brA: 1.3/1.0/1.5                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de Tierra 01 e 02.                    |
 //   | - NPC's da Sala de Espera                              |
@@ -24,6 +24,7 @@
 //   | 1.2 Otimizações [Holy & Hold]                          |
 //   | 1.3 Arquivos unidos [Holy & Hold]                      |
 //   | 1.4 Feitas algumas correções [Hold]                    |
+//   | 1.5 Organização de Labels [lututuiBR]                  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -60,7 +61,7 @@ OnEnterBG:
 bat_room,1,151,3	script	#bat_a01_timer	844,{
 	end;
 
-onInit:
+OnInit:
 OnEnable:
 	initnpctimer;
 	end;
@@ -112,9 +113,9 @@ OnInit:
 
 OnEnable:
 	setarray .@doev$,
-	"OBJ#bat_a01_a::Onkill","OBJ#bat_a01_a::OnEnable","OBJ#bat_a01_b::Onkill","OBJ#bat_a01_b::OnEnable","barricade#bat_a01_a::Onkill",
-	"barricade#bat_a01_a::OnEnable","barricade#bat_a01_b::Onkill","barricade#bat_a01_b::OnEnable","OBJ#bat_a01_n::Onkill","OBJ#bat_a01_n::OnEnable",
-	"NOBJ_mob#bat_a01_a::Onkill","NOBJ_mob#bat_a01_b::Onkill","Terapeuta de Batalha#a01_a::OnEnable","Terapeuta de Batalha#a01_b::OnEnable","countdown#bat_a01::OnEnable";
+	"OBJ#bat_a01_a::OnKill","OBJ#bat_a01_a::OnEnable","OBJ#bat_a01_b::OnKill","OBJ#bat_a01_b::OnEnable","barricade#bat_a01_a::OnKill",
+	"barricade#bat_a01_a::OnEnable","barricade#bat_a01_b::OnKill","barricade#bat_a01_b::OnEnable","OBJ#bat_a01_n::OnKill","OBJ#bat_a01_n::OnEnable",
+	"NOBJ_mob#bat_a01_a::OnKill","NOBJ_mob#bat_a01_b::OnKill","Terapeuta de Batalha#a01_a::OnEnable","Terapeuta de Batalha#a01_b::OnEnable","countdown#bat_a01::OnEnable";
 	
 	setarray .@disb$,"Ferreiro Guillaume#a01","Ferreiro Croix#bat_a01","Vintenar Guillaume#a01_a","Vintenar Croix#a01_b";
 	
@@ -145,7 +146,7 @@ OnReadyCheck:
 	set $@TierraBG1,1;
 	donpcevent "Tenente Kalos::OnEnterBG";
 	donpcevent "Tenente Eyor::OnEnterBG";
-	donpcevent "start#bat_a01::onEnable";
+	donpcevent "start#bat_a01::OnEnable";
 	bg_warp $@TierraBG1_id1,"bat_a01",352,342;
 	bg_warp $@TierraBG1_id2,"bat_a01",353,52;
 	initnpctimer;
@@ -162,7 +163,7 @@ OnEnable:
 	bg_monster $@TierraBG1_id1,"bat_a01",177,345,"Suprimentos",1909,"OBJ#bat_a01_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","OBJ#bat_a01_a::OnMyMobDead";
 	end;
 
@@ -185,7 +186,7 @@ OnEnable:
 	bg_monster $@TierraBG1_id2,"bat_a01",167,50,"Suprimentos",1910,"OBJ#bat_a01_b::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","OBJ#bat_a01_b::OnMyMobDead";
 	end;
 
@@ -210,7 +211,7 @@ OnEnable:
 	setwall "bat_a01",186,266,16,6,1,"bat_a01_c1";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","barricade#bat_a01_a::OnMyMobDead";
 	delwall "bat_a01_c1";
 	end;
@@ -232,7 +233,7 @@ OnEnable:
 	setwall "bat_a01",170,129,16,6,1,"bat_a01_g1";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","barricade#bat_a01_b::OnMyMobDead";
 	delwall "bat_a01_g1";
 	end;
@@ -252,7 +253,7 @@ OnEnable:
 	monster "bat_a01",273,203,"Bandeira Neutra",1911,1,"OBJ#bat_a01_n::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","OBJ#bat_a01_n::OnMyMobDead";
 	end;
 
@@ -273,13 +274,13 @@ OnMyMobDead:
 
 bat_a01,15,21,3	script	NOBJ_mob#bat_a01_a	844,{
 OnEnable:
-	donpcevent "NOBJ_mob#bat_a01_b::Onkill";
+	donpcevent "NOBJ_mob#bat_a01_b::OnKill";
 	bg_monster $@TierraBG1_id1,"bat_a01",272,204,"Guardião do Exército Guillaume",1949,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	bg_monster $@TierraBG1_id1,"bat_a01",272,213,"Guardião do Exército Guillaume",1949,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	bg_monster $@TierraBG1_id1,"bat_a01",273,197,"Guardião do Exército Guillaume",1950,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","NOBJ_mob#bat_a01_a::OnMyMobDead";
 	end;
 
@@ -289,13 +290,13 @@ OnMyMobDead:
 
 bat_a01,15,22,3	script	NOBJ_mob#bat_a01_b	844,{
 OnEnable:
-	donpcevent "NOBJ_mob#bat_a01_a::Onkill";
+	donpcevent "NOBJ_mob#bat_a01_a::OnKill";
 	bg_monster $@TierraBG1_id2,"bat_a01",272,204,"Guardião do Exército Croix",1949,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	bg_monster $@TierraBG1_id2,"bat_a01",272,213,"Guardião do Exército Croix",1949,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	bg_monster $@TierraBG1_id2,"bat_a01",273,197,"Guardião do Exército Croix",1950,"NOBJ_mob#bat_a01_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a01","NOBJ_mob#bat_a01_b::OnMyMobDead";
 	end;
 
@@ -404,7 +405,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#a01_a";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_a01_rp1_a_warp";
 	disablenpc "Terapeuta de Batalha#a01_a";
 	stopnpctimer;
@@ -454,7 +455,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#a01_b";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_a01_rp1_b_warp";
 	disablenpc "Terapeuta de Batalha#a01_b";
 	stopnpctimer;
@@ -726,7 +727,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	end;
 
@@ -760,7 +761,7 @@ OnTimer1825000:
 
 OnTimer1830000:
 	mapwarp "bat_a01","bat_room",154,150;
-	donpcevent "countdown#bat_a01::Onstop";
+	donpcevent "countdown#bat_a01::OnStop";
 	end;
 }
 
@@ -798,7 +799,7 @@ OnEnterBG:
 bat_room,1,151,3	script	#bat_a02_timer	844,{
 	end;
 
-onInit:
+OnInit:
 OnEnable:
 	initnpctimer;
 	end;
@@ -850,9 +851,9 @@ OnInit:
 
 OnEnable:
 	setarray .@doev$,
-	"OBJ#bat_a02_a::Onkill","OBJ#bat_a02_a::OnEnable","OBJ#bat_a02_b::Onkill","OBJ#bat_a02_b::OnEnable","barricade#bat_a02_a::Onkill",
-	"barricade#bat_a02_a::OnEnable","barricade#bat_a02_b::Onkill","barricade#bat_a02_b::OnEnable","OBJ#bat_a02_n::Onkill","OBJ#bat_a02_n::OnEnable",
-	"NOBJ_mob#bat_a02_a::Onkill","NOBJ_mob#bat_a02_b::Onkill","Terapeuta de Batalha#a02_a::OnEnable","Terapeuta de Batalha#a02_b::OnEnable","countdown#bat_a02::OnEnable";
+	"OBJ#bat_a02_a::OnKill","OBJ#bat_a02_a::OnEnable","OBJ#bat_a02_b::OnKill","OBJ#bat_a02_b::OnEnable","barricade#bat_a02_a::OnKill",
+	"barricade#bat_a02_a::OnEnable","barricade#bat_a02_b::OnKill","barricade#bat_a02_b::OnEnable","OBJ#bat_a02_n::OnKill","OBJ#bat_a02_n::OnEnable",
+	"NOBJ_mob#bat_a02_a::OnKill","NOBJ_mob#bat_a02_b::OnKill","Terapeuta de Batalha#a02_a::OnEnable","Terapeuta de Batalha#a02_b::OnEnable","countdown#bat_a02::OnEnable";
 	
 	setarray .@disb$,"Ferreiro Guillaume#a02","Ferreiro Croix#bat_a02","Vintenar Guillaume#a02_a","Vintenar Croix#a02_b";
 	
@@ -882,7 +883,7 @@ OnReadyCheck:
 	set $@TierraBG2,1;
 	donpcevent "Tenente Rundel::OnEnterBG";
 	donpcevent "Tenente Guerrit::OnEnterBG";
-	donpcevent "start#bat_a02::onEnable";
+	donpcevent "start#bat_a02::OnEnable";
 	bg_warp $@TierraBG2_id1,"bat_a02",352,342;
 	bg_warp $@TierraBG2_id2,"bat_a02",353,52;
 	initnpctimer;
@@ -899,7 +900,7 @@ OnEnable:
 	bg_monster $@TierraBG2_id1,"bat_a02",177,345,"Suprimentos",1909,"OBJ#bat_a02_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","OBJ#bat_a02_a::OnMyMobDead";
 	end;
 
@@ -922,7 +923,7 @@ OnEnable:
 	bg_monster $@TierraBG2_id2,"bat_a02",167,50,"Suprimentos",1910,"OBJ#bat_a02_b::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","OBJ#bat_a02_b::OnMyMobDead";
 	end;
 
@@ -947,7 +948,7 @@ OnEnable:
 	setwall "bat_a02",186,266,16,6,1,"bat_a02_c1";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","barricade#bat_a02_a::OnMyMobDead";
 	delwall "bat_a02_c1";
 	end;
@@ -969,7 +970,7 @@ OnEnable:
 	setwall "bat_a02",170,129,16,6,1,"bat_a02_g1";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","barricade#bat_a02_b::OnMyMobDead";
 	delwall "bat_a02_g1";
 	end;
@@ -989,7 +990,7 @@ OnEnable:
 	monster "bat_a02",273,203,"Neutrality Flag",1911,1,"OBJ#bat_a02_n::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","OBJ#bat_a02_n::OnMyMobDead";
 	end;
 
@@ -1010,13 +1011,13 @@ OnMyMobDead:
 
 bat_a02,15,21,3	script	NOBJ_mob#bat_a02_a	844,{
 OnEnable:
-	donpcevent "NOBJ_mob#bat_a02_b::Onkill";
+	donpcevent "NOBJ_mob#bat_a02_b::OnKill";
 	bg_monster $@TierraBG2_id1,"bat_a02",272,204,"Guardião do Exército Guillaume",1949,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	bg_monster $@TierraBG2_id1,"bat_a02",272,213,"Guardião do Exército Guillaume",1949,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	bg_monster $@TierraBG2_id1,"bat_a02",273,197,"Guardião do Exército Guillaume",1950,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","NOBJ_mob#bat_a02_a::OnMyMobDead";
 	end;
 
@@ -1026,13 +1027,13 @@ OnMyMobDead:
 
 bat_a02,15,22,3	script	NOBJ_mob#bat_a02_b	844,{
 OnEnable:
-	donpcevent "NOBJ_mob#bat_a02_a::Onkill";
+	donpcevent "NOBJ_mob#bat_a02_a::OnKill";
 	bg_monster $@TierraBG2_id2,"bat_a02",272,204,"Guardião do Exército Croix",1949,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	bg_monster $@TierraBG2_id2,"bat_a02",272,213,"Guardião do Exército Croix",1949,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	bg_monster $@TierraBG2_id2,"bat_a02",273,197,"Guardião do Exército Croix",1950,"NOBJ_mob#bat_a02_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_a02","NOBJ_mob#bat_a02_b::OnMyMobDead";
 	end;
 
@@ -1227,7 +1228,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#a02_a";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_a02_rp1_a_warp";
 	disablenpc "Terapeuta de Batalha#a02_a";
 	stopnpctimer;
@@ -1277,7 +1278,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#a02_b";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_a02_rp1_b_warp";
 	disablenpc "Terapeuta de Batalha#a02_b";
 	stopnpctimer;
@@ -1500,7 +1501,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	end;
 
@@ -1534,6 +1535,6 @@ OnTimer1825000:
 
 OnTimer1830000:
 	mapwarp "bat_a02","bat_room",154,150;
-	donpcevent "countdown#bat_a02::Onstop";
+	donpcevent "countdown#bat_a02::OnStop";
 	end;
 }

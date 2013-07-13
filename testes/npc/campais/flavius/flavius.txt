@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.0/1.3                         |
+//   | Versões eA/rA/brA: 1.3/1.0/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de Flavius.                           |
 //   | - NPCs da Sala de Espera                               |
@@ -22,7 +22,8 @@
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Tyler]                             |
 //   | 1.2 União dos NPCs [Holy & Hold]                       |
-//   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Otimização [Hold & Holy]                           |
+//   | 1.4 Organização de Labels [lututuiBR]                  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -84,7 +85,7 @@ bat_b01,15,15,3	script	start#bat_b01	844,{
 
 OnInit:
 	mapwarp "bat_b01","bat_room",154,150;
-	setarray .npcsevent$[0], "Tenente Ator::OnEnterBG", "Tenente Thelokus::OnEnterBG", "OBJ#bat_b01_a::Onkill", "OBJ#bat_b01_a::OnEnable", "OBJ#bat_b01_b::Onkill", "OBJ#bat_b01_b::OnEnable", "guardian#bat_b01_a::Onkill", "guardian#bat_b01_b::Onkill", "guardian#bat_b01_a::OnEnable", "guardian#bat_b01_b::OnEnable", "cell#bat_b01_a::Onred", "cell#bat_b01_b::Onred", "time#bat_b01::OnEnable";
+	setarray .npcsevent$[0], "Tenente Ator::OnEnterBG", "Tenente Thelokus::OnEnterBG", "OBJ#bat_b01_a::OnKill", "OBJ#bat_b01_a::OnEnable", "OBJ#bat_b01_b::OnKill", "OBJ#bat_b01_b::OnEnable", "guardian#bat_b01_a::OnKill", "guardian#bat_b01_b::OnKill", "guardian#bat_b01_a::OnEnable", "guardian#bat_b01_b::OnEnable", "cell#bat_b01_a::OnRed", "cell#bat_b01_b::OnRed", "time#bat_b01::OnEnable";
 	setarray .npcsenpc$[0], "Vintenar Guillaume#b01_a", "Vintenar Croix#b01_b", "Vintenar#bat_b01_aover", "Vintenar#bat_b01_bover";
 	end;
 
@@ -140,7 +141,7 @@ OnEnable:
 	bg_monster $@FlaviusBG1_id1,"bat_b01",61,150,"Cristal Vermelho",1915,"OBJ#bat_b01_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b01","OBJ#bat_b01_a::OnMyMobDead";
 	end;
 
@@ -152,12 +153,12 @@ OnMyMobDead:
 			set $@Croix_ScoreBG1,$@Croix_ScoreBG1+1;
 			enablenpc "Vintenar Guillaume#b01_a";
 			enablenpc "Vintenar Croix#b01_b";
-			donpcevent "time#bat_b01::Onstop";
+			donpcevent "time#bat_b01::OnStop";
 		}
 		else {
 			set $@Croix_ScoreBG1,1;
 			donpcevent "time#bat_b01::OnEnable";
-			donpcevent "start#bat_b01::onReset";
+			donpcevent "start#bat_b01::OnReset";
 		}
 		donpcevent "#bat_b01_timer::OnStop";
 		bg_updatescore "bat_b01",$@Guill_ScoreBG1,$@Croix_ScoreBG1;
@@ -173,7 +174,7 @@ OnEnable:
 	bg_monster $@FlaviusBG1_id2,"bat_b01",328,150,"Cristal Azul",1914,"OBJ#bat_b01_b::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b01","OBJ#bat_b01_b::OnMyMobDead";
 	end;
 	
@@ -185,12 +186,12 @@ OnMyMobDead:
 			set $@Guill_ScoreBG1,$@Guill_ScoreBG1+1;
 			enablenpc "Vintenar Guillaume#b01_a";
 			enablenpc "Vintenar Croix#b01_b";
-			donpcevent "time#bat_b01::Onstop";
+			donpcevent "time#bat_b01::OnStop";
 		}
 		else {
 			set $@Guill_ScoreBG1,1;
 			donpcevent "time#bat_b01::OnEnable";
-			donpcevent "start#bat_b01::onReset";
+			donpcevent "start#bat_b01::OnReset";
 		}
 		donpcevent "#bat_b01_timer::OnStop";
 		bg_updatescore "bat_b01",$@Guill_ScoreBG1,$@Croix_ScoreBG1;
@@ -207,13 +208,13 @@ OnEnable:
 	bg_monster $@FlaviusBG1_id1,"bat_b01",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b01","guardian#bat_b01_a::OnMyMobDead";
 	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b01","guardian#bat_b01_a::OnMyMobDead") < 1) {
-		donpcevent "cell#bat_b01_a::Ongreen";
+		donpcevent "cell#bat_b01_a::OnGreen";
 		mapannounce "bat_b01", "O Guardião que protegia o Cristal Guillaume foi morto.",bc_map,"0xFFCE00";
 	}
 	end;
@@ -225,37 +226,37 @@ OnEnable:
 	bg_monster $@FlaviusBG1_id2,"bat_b01",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b01","guardian#bat_b01_b::OnMyMobDead";
 	end;
 
 OnMyMobDead:
 	if (mobcount("bat_b01","guardian#bat_b01_b::OnMyMobDead") < 1) {
-		donpcevent "cell#bat_b01_b::Ongreen";
+		donpcevent "cell#bat_b01_b::OnGreen";
 		mapannounce "bat_b01", "O Guardião que protegia o Cristal Croix foi morto.",bc_map,"0xFFCE00";
 	}
 	end;
 }
 
 bat_b01,1,4,3	script	cell#bat_b01_a	844,{
-Onred:
+OnRed:
 	setcell "bat_b01",62,149,60,151,cell_basilica,1;
 	setcell "bat_b01",62,149,60,151,cell_walkable,0;
 	end;
 
-Ongreen:
+OnGreen:
 	setcell "bat_b01",62,149,60,151,cell_basilica,0;
 	setcell "bat_b01",62,149,60,151,cell_walkable,1;
 	end;
 }
 
 bat_b01,1,5,3	script	cell#bat_b01_b	844,{
-Onred:
+OnRed:
 	setcell "bat_b01",327,151,329,149,cell_basilica,1;
 	setcell "bat_b01",327,151,329,149,cell_walkable,0;
 	end;
 
-Ongreen:
+OnGreen:
 	setcell "bat_b01",327,151,329,149,cell_basilica,0;
 	setcell "bat_b01",327,151,329,149,cell_walkable,1;
 	end;
@@ -267,7 +268,7 @@ OnEnable:
 	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
 	end;
 
-Onstop:
+OnStop:
 	donpcevent "Terapeuta de Batalha#b01_a::OnStop";
 	donpcevent "Terapeuta de Batalha#b01_b::OnStop";
 	end;
@@ -292,7 +293,7 @@ OnTimer26000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Terapeuta de Batalha#b01_a::onEnable";
+	donpcevent "Terapeuta de Batalha#b01_a::OnEnable";
 	end;
 
 OnEnable:
@@ -300,7 +301,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#b01_a";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_b01_rp1_a_warp";
 	disablenpc "Terapeuta de Batalha#b01_a";
 	stopnpctimer;
@@ -345,7 +346,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#b01_b";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_b01_rp1_b_warp";
 	disablenpc "Terapeuta de Batalha#b01_b";
 	stopnpctimer;
@@ -457,7 +458,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	end;
 
@@ -490,7 +491,7 @@ OnTimer1825000:
 	end;
 
 OnTimer1830000:
-	donpcevent "time#bat_b01::Onstop";
+	donpcevent "time#bat_b01::OnStop";
 	bg_warp $@FlaviusBG1_id1,"bat_b01",10,290;
 	bg_warp $@FlaviusBG1_id2,"bat_b01",390,10;
 	enablenpc "Vintenar#bat_b01_aover";
@@ -499,7 +500,7 @@ OnTimer1830000:
 
 OnTimer1900000:
 	mapwarp "bat_b01","bat_room",154,150;
-	donpcevent "countdown#bat_b01::Onstop";
+	donpcevent "countdown#bat_b01::OnStop";
 	end;
 }
 
@@ -666,7 +667,7 @@ OnTimer1000:
 bat_b02,15,15,3	script	start#bat_b02	844,{
 OnInit:
 	mapwarp "bat_b02","bat_room",154,150;
-	setarray .npcsevent2$[0], "Tenente Huvas::OnEnterBG", "Tenente Yukon::OnEnterBG", "OBJ#bat_b02_a::Onkill", "OBJ#bat_b02_a::OnEnable", "OBJ#bat_b02_b::Onkill", "OBJ#bat_b02_b::OnEnable", "guardian#bat_b02_a::Onkill", "guardian#bat_b02_b::Onkill", "guardian#bat_b02_a::OnEnable", "guardian#bat_b02_b::OnEnable", "cell#bat_b02_a::Onred", "cell#bat_b02_b::Onred", "time#bat_b02::OnEnable";
+	setarray .npcsevent2$[0], "Tenente Huvas::OnEnterBG", "Tenente Yukon::OnEnterBG", "OBJ#bat_b02_a::OnKill", "OBJ#bat_b02_a::OnEnable", "OBJ#bat_b02_b::OnKill", "OBJ#bat_b02_b::OnEnable", "guardian#bat_b02_a::OnKill", "guardian#bat_b02_b::OnKill", "guardian#bat_b02_a::OnEnable", "guardian#bat_b02_b::OnEnable", "cell#bat_b02_a::OnRed", "cell#bat_b02_b::OnRed", "time#bat_b02::OnEnable";
 	setarray .npcsenpc2$[0], "Vintenar Guillaume#b02_a", "Vintenar Croix#b02_b", "Vintenar#bat_b02_aover", "Vintenar#bat_b02_bover";
 	end;
 
@@ -723,7 +724,7 @@ OnEnable:
 	bg_monster $@FlaviusBG2_id1,"bat_b02",61,150,"Cristal Vermelho",1915,"OBJ#bat_b02_a::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b02","OBJ#bat_b02_a::OnMyMobDead";
 	end;
 
@@ -735,12 +736,12 @@ OnMyMobDead:
 			set $@Croix_ScoreBG2,$@Croix_ScoreBG2+1;
 			enablenpc "Vintenar Guillaume#b02_a";
 			enablenpc "Vintenar Croix#b02_b";
-			donpcevent "time#bat_b02::Onstop";
+			donpcevent "time#bat_b02::OnStop";
 		}
 		else {
 			set $@Croix_ScoreBG2,1;
 			donpcevent "time#bat_b02::OnEnable";
-			donpcevent "start#bat_b02::onReset";
+			donpcevent "start#bat_b02::OnReset";
 		}
 		donpcevent "#bat_b02_timer::OnStop";
 		bg_updatescore "bat_b02",$@Guill_ScoreBG2,$@Croix_ScoreBG2;
@@ -756,7 +757,7 @@ OnEnable:
 	bg_monster $@FlaviusBG2_id2,"bat_b02",328,150,"Cristal Azul",1914,"OBJ#bat_b02_b::OnMyMobDead";
 	end;
 
-Onkill:
+OnKill:
 	killmonster "bat_b02","OBJ#bat_b02_b::OnMyMobDead";
 	end;
 
@@ -768,12 +769,12 @@ OnMyMobDead:
 			set $@Guill_ScoreBG2,$@Guill_ScoreBG2+1;
 			enablenpc "Vintenar Guillaume#b02_a";
 			enablenpc "Vintenar Croix#b02_b";
-			donpcevent "time#bat_b02::Onstop";
+			donpcevent "time#bat_b02::OnStop";
 		}
 		else {
 			set $@Guill_ScoreBG2,1;
 			donpcevent "time#bat_b02::OnEnable";
-			donpcevent "start#bat_b02::onReset";
+			donpcevent "start#bat_b02::OnReset";
 		}
 		donpcevent "#bat_b02_timer::OnStop";
 		bg_updatescore "bat_b02",$@Guill_ScoreBG2,$@Croix_ScoreBG2;
@@ -796,7 +797,7 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_a::OnMyMobDead") < 1) {
-		donpcevent "cell#bat_b02_a::Ongreen";
+		donpcevent "cell#bat_b02_a::OnGreen";
 		mapannounce "bat_b02", "O Guardião que protegia o Cristal Guillaume foi morto.",bc_map,"0xFFCE00";
 	}
 	end;
@@ -814,31 +815,31 @@ OnKill:
 
 OnMyMobDead:
 	if (mobcount("bat_b02","guardian#bat_b02_b::OnMyMobDead") < 1) {
-		donpcevent "cell#bat_b02_b::Ongreen";
+		donpcevent "cell#bat_b02_b::OnGreen";
 		mapannounce "bat_b02", "O Guardião que protegia o Cristal Guillaume foi morto.",bc_map,"0xFFCE00";
 	}
 	end;
 }
 
 bat_b02,1,4,3	script	cell#bat_b02_a	844,{
-Onred:
+OnRed:
 	setcell "bat_b02",62,149,60,151,cell_basilica,1;
 	setcell "bat_b02",62,149,60,151,cell_walkable,0;
 	end;
 
-Ongreen:
+OnGreen:
 	setcell "bat_b02",62,149,60,151,cell_basilica,0;
 	setcell "bat_b02",62,149,60,151,cell_walkable,1;
 	end;
 }
 
 bat_b02,1,5,3	script	cell#bat_b02_b	844,{
-Onred:
+OnRed:
 	setcell "bat_b02",327,151,329,149,cell_basilica,1;
 	setcell "bat_b02",327,151,329,149,cell_walkable,0;
 	end;
 
-Ongreen:
+OnGreen:
 	setcell "bat_b02",327,151,329,149,cell_basilica,0;
 	setcell "bat_b02",327,151,329,149,cell_walkable,1;
 	end;
@@ -850,7 +851,7 @@ OnEnable:
 	donpcevent "Terapeuta de Batalha#b02_b::OnEnable";
 	end;
 
-Onstop:
+OnStop:
 	donpcevent "Terapeuta de Batalha#b02_a::OnStop";
 	donpcevent "Terapeuta de Batalha#b02_b::OnStop";
 	end;
@@ -875,7 +876,7 @@ OnTimer26000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Terapeuta de Batalha#b02_a::onEnable";
+	donpcevent "Terapeuta de Batalha#b02_a::OnEnable";
 	end;
 
 OnEnable:
@@ -883,7 +884,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#b02_a";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_b02_rp1_a_warp";
 	disablenpc "Terapeuta de Batalha#b02_a";
 	stopnpctimer;
@@ -928,7 +929,7 @@ OnEnable:
 	enablenpc "Terapeuta de Batalha#b02_b";
 	end;
 
-Onstop:
+OnStop:
 	disablenpc "bat_b02_rp1_b_warp";
 	disablenpc "Terapeuta de Batalha#b02_b";
 	stopnpctimer;
@@ -1035,7 +1036,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onstop:
+OnStop:
 	stopnpctimer;
 	end;
 
@@ -1068,7 +1069,7 @@ OnTimer1825000:
 	end;
 
 OnTimer1830000:
-	donpcevent "time#bat_b02::Onstop";
+	donpcevent "time#bat_b02::OnStop";
 	bg_warp $@FlaviusBG2_id1,"bat_b02",10,290;
 	bg_warp $@FlaviusBG2_id2,"bat_b02",390,10;
 	enablenpc "Vintenar#bat_b02_aover";
@@ -1077,7 +1078,7 @@ OnTimer1830000:
 
 OnTimer1900000:
 	mapwarp "bat_b02","bat_room",154,150;
-	donpcevent "countdown#bat_b02::Onstop";
+	donpcevent "countdown#bat_b02::OnStop";
 	end;
 }
 

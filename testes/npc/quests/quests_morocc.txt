@@ -634,7 +634,7 @@ OnInit:
 	set $maobar_room,0;
 	end;
 
-Onreset:
+OnReset:
 	set $maobar_room,0;
 	end;
 
@@ -708,12 +708,12 @@ OnEnable:
 	mapannounce "que_job01","Você agora entrará na Zona Restrita, Área 1.",bc_map,"0x70DBDB";
 	end;
 
-Onstop:
+OnStop:
 	mapannounce "que_job01","A magia de segurança da Zona Restrita, Área 1 foi desativada.",bc_map,"0x70DBDB";
 	donpcevent "#room1_warp::OnDisable";
 	donpcevent "Valdes#moc_Chefe_1::OnDisable";
 	donpcevent "Marjana#poison::OnDisable";
-	donpcevent "que_job01#room_1::Onreset";
+	donpcevent "que_job01#room_1::OnReset";
 	stopnpctimer;
 	end;
 
@@ -729,7 +729,7 @@ OnTimer245000:
 
 OnTimer250000:
 	mapannounce "que_job01","A magia de segurança da Zona Restrita, Área 1 está ativada.",bc_map,"0x70DBDB";
-	donpcevent "que_job01#room_1::Onreset";
+	donpcevent "que_job01#room_1::OnReset";
 	stopnpctimer;
 	end;
 }

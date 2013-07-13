@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.0/1.0/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Evento de Convocação.                       |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Feanor]                            |
 //   | 1.2 Correções em frases, remoção de condição do if.    |
+//   | 1.3 Organização de Labels [lututuiBR]                  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -131,7 +132,7 @@ yuno,118,192,5	script	Rmimi Ravies#gq_fes01	891,{
 				next;
 				mes "[Rmimi Ravies]";
 				mes "Tenha um bom dia, divirta-se.";
-				donpcevent "Rmimi Ravies#gq_fes01::Onstart";
+				donpcevent "Rmimi Ravies#gq_fes01::OnStart";
 				announce "["+strcharinfo(0)+"] membro da ["+GetGuildName(.@GID)+"] está invocando um 'Presente da Valquíria' em 'Juno'.",bc_all,"0x70dbdb";
 				close;
 			}
@@ -175,7 +176,7 @@ OnDisable:
 	disablenpc "Rmimi Ravies#gq_fes01";
 	end;
 
-Onstart:
+OnStart:
 	initnpctimer;
 	set $@gqse_festival,1;
 	end;
@@ -518,7 +519,7 @@ rachel,132,117,3	script	Rhehe Ravies#gq_fes03	891,{
 				next;
 				mes "[Rhehe Ravies]";
 				mes "Divirta-se!";
-				donpcevent "Rhehe Ravies#gq_fes03::Onstart";
+				donpcevent "Rhehe Ravies#gq_fes03::OnStart";
 				announce "["+strcharinfo(0)+"] membro da ["+GetGuildName(.@GID)+"] is summoning a 'Presente da Valquíria' in 'Rachel'.",bc_all,"0x70dbdb";
 				close;
 			}
@@ -563,7 +564,7 @@ OnDisable:
 	disablenpc "Rhehe Ravies#gq_fes03";
 	end;
 
-Onstart:
+OnStart:
 	initnpctimer;
 	set $@gqse_festival,1;
 	end;

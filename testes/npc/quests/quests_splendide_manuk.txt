@@ -3283,11 +3283,11 @@ OnDisable:
 	disablenpc "Estranho#ep13_2_dan01";
 	end;
 
-Oncall:
+OnCall:
 	monster "nyd_dun02",144,103,"Membro Fugitivo Dandelion",2026,1,"Estranho#ep13_2_dan03::OnMonstroDerrotado";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "nyd_dun02","Estranho#ep13_2_dan03::OnMonstroDerrotado";
 	end;
 
@@ -3295,7 +3295,7 @@ OnTouch:
 	emotion e_gasp,1;
 	emotion e_omg;
 	disablenpc "Estranho#ep13_2_dan01";
-	donpcevent "Estranho#ep13_2_dan02::Oncall";
+	donpcevent "Estranho#ep13_2_dan02::OnCall";
 	end;
 }
 
@@ -3311,11 +3311,11 @@ OnEnable:
 	enablenpc "Estranho#ep13_2_dan02";
 	end;
 
-Oncall:
+OnCall:
 	monster "nyd_dun02",206,114,"Membro Fugitivo Dandelion",2026,1,"Estranho#ep13_2_dan04::OnMonstroDerrotado";
 	end;
 
-Onreset:
+OnReset:
 	killmonster "nyd_dun02","Estranho#ep13_2_dan04::OnMonstroDerrotado";
 	end;
 
@@ -3323,7 +3323,7 @@ OnTouch:
 	emotion e_gasp,1;
 	emotion e_omg;
 	disablenpc "Estranho#ep13_2_dan02";
-	donpcevent "Estranho#ep13_2_dan01::Oncall";
+	donpcevent "Estranho#ep13_2_dan01::OnCall";
 	end;
 }
 
@@ -6801,7 +6801,7 @@ nyd_dun02,139,274,0	script	Dispositivo Estranho#ep13_in	844,3,3,{
 	end;
 
 OnTimer70000:
-	donpcevent "ep13_nd2f_mng::Onreset";
+	donpcevent "ep13_nd2f_mng::OnReset";
 	set $@08_ep13nydun02_in,0;
 	stopnpctimer;
 	end;
@@ -7152,7 +7152,7 @@ nyd_dun02,1,1,0	script	ep13_nd2f_mng	844,{
 		next;
 		switch(select("Sim:Não")) {
 		case 1:
-			donpcevent "ep13_nd2f_mng::Onreset";
+			donpcevent "ep13_nd2f_mng::OnReset";
 			set $@08_ep13nydun02_in,0;
 			mes "Quebra-Cabeça redefinido";
 			close;
@@ -7167,7 +7167,7 @@ nyd_dun02,1,1,0	script	ep13_nd2f_mng	844,{
 	}
 	end;
 
-Onreset:
+OnReset:
 	donpcevent "ep13_warp_s1::OnEnable";
 	donpcevent "ep13_warp_s3::OnEnable";
 

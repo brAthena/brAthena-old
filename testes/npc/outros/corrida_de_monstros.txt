@@ -1456,12 +1456,12 @@ p_track02,73,22,1	script	Ajudante de Bilheteria#2	899,{
 				set .@m, 0;
 				set .@m, select (.@m$);
 				switch (.@m) {
-					Case 1: setarray .@w$, "a friendly","Raça Poring"; break;
-					Case 2: setarray .@w$, "an adorable","Raça Lunatic"; break;
-					Case 3: setarray .@w$, "a darling","Raça Savage"; break;
-					Case 4: setarray .@w$, "a gentle baby","Raça Desert Wolf"; break;
-					Case 5: setarray .@w$, "a small, yet","Raça Demonio, Deviruchi"; break;
-					Case 6: setarray .@w$, "a naughty","Raça Demonio, Baphomet Jr. "; break;
+					case 1: setarray .@w$, "a friendly","Raça Poring"; break;
+					case 2: setarray .@w$, "an adorable","Raça Lunatic"; break;
+					case 3: setarray .@w$, "a darling","Raça Savage"; break;
+					case 4: setarray .@w$, "a gentle baby","Raça Desert Wolf"; break;
+					case 5: setarray .@w$, "a small, yet","Raça Demonio, Deviruchi"; break;
+					case 6: setarray .@w$, "a naughty","Raça Demonio, Baphomet Jr. "; break;
 				}
 				mes "[Ajudante de Bilheteria]";
 				mes "Sua escolha";
@@ -2324,54 +2324,54 @@ ein_in01,85,208,5	script	Ei'felle#repay01	854,{
 		mes "que você quer, para eu criar.";
 		next;
 		switch (.@m) {
-			Case 0:
+			case 0:
 				setarray .@mw$, "Ginnungagap:Adaga Sinistra:Matadora de Dragão:Destruidor de Malha:Bazerald:Destruidor de Espada:Rondel:Sucsamad:Faca da Mamãe:Azoth:Adaga Exorcista:Adaga do Algoz:Walgwanggum:Faca de Capina:Adaga Profana:Adaga Certeira:Faca de Combate:Adaga da Boa Ventura";
 				setarray .@mw, 13002,1237,13001,1225,1231,1224,1230,1236,1229,1235,1233,1232,1234,1227,1241,1242,1228,1223;
 				break;
-			Case 1:
+			case 1:
 				setarray .@mw$, "Nagan:Espada Imaterial:Mysteltain:Byeollungum:Lâmina de Poeira Estelar:Espada de César:Alfanje de Gelo:Excalibur:Lâmina Turca:Cutelo:Espada Solar:Talefing:Língua de Fogo";
 				setarray .@mw, 1130,1141,1138,1140,1148,1134,1131,1137,1132,1135,1136,1139,1133;
 				break;
-			Case 2:	
+			case 2:	
 				setarray .@mw$, "Caçadora de Dragões:Masamune:Muramasa:Schweizersabel:Executora:Zweihander:Katzbalger";
 				setarray .@mw, 1166,1165,1164,1167,1169,1168,1170;
 				break;
-			Case 3:
+			case 3:
 				setarray .@mw$, "Machado Impetuoso:Guilhotina:Cruz Impiedosa:Machado Sangrento:Sabbath:Carniceiro:Talhador:Tacape";
 				setarray .@mw, 1364,1369,1366,1363,1365,1367,1305,1368;
 				break;
-			Case 4:
+			case 4:
 				setarray .@mw$, "Maça de Ouro:Grande Cruz:Maça Longa:Clava com Espetos:Maça de Talho:Quatrilho";
 				setarray .@mw, 1524,1528,1525,1523,1526,1527;
 				break;
-			Case 5:
+			case 5:
 				setarray .@mw$, "Arco Voraz:Asa de Dragão:Arco de Rudra:Ballista";
 				setarray .@mw, 1719,1724,1720,1722;
 				break;
-			Case 6:
+			case 6:
 				setarray .@mw$, "Cajado do Vento:Cajado Esfíngico";
 				setarray .@mw, 1616,1473;
-			Case 7:
+			case 7:
 				setarray .@mw$, "Herança do Dragão:Livro do Apocalipse:Diário da Menina:Livro Capa Dura";
 				setarray .@mw, 1559,1557,1558,1561;
 				break;
-			Case 8:
+			case 8:
 				setarray .@mw$, "Gae Bolg:Gelerdria:Gungnir:Broca:Lança de Longiness:Brionac:Guisarme-Bico:Zéfiro:Foice:Tjungkuletti:Fogo Infernal";
 				setarray .@mw, 1474,1414,1413,1415,1469,1470,1467,1468,1466,1416,1471;
 				break;
-			Case 9:
+			case 9:
 				setarray .@mw$, "Infiltrador:Rugido Sangrento:Toque Profano";
 				setarray .@mw, 1261,1265,1263;
 				break;
-			Case 10:
+			case 10:
 				setarray .@mw$, "Garra de Hatii:Fúria Insana:Punho de Kaiser";
 				setarray .@mw, 1815,1814,1813;
 				break;
-			Case 11:
+			case 11:
 				setarray .@mw$, "Serpente:Rosa Fustigante:Chicote Lâmina:Chemeti:Chicote da Rainha";
 				setarray .@mw, 1962,1963,1969,1964,1970;
 				break;
-			Case 12:
+			case 12:
 				setarray .@mw$, "Alaúde Oriental:Guitarra Elétrica";
 				setarray .@mw, 1918,1913;
 				break;		
@@ -2721,35 +2721,35 @@ hugel,71,83,4	script	Wayne	900,{
 			set .@m$, .@m$ + .@pm[.@i] + " Prize medal:";
 		set .@m, select (.@m$) - 1;
 		switch (.@m) {
-			Case 0: 
+			case 0: 
 				setarray .@mr$, "2 Folha de Hinalle:2 Folha de Aloe:1 Fruto de Mastela:5 Areia Estelar de Bruxa:4 Poção Vermelha Compacta";
 				setarray .@mr, 520,2,521,2,522,1,1061,5,545,4;
 				break;
-			Case 1:
+			case 1:
 				setarray .@mr$, "1 Geléia Real:6 Águas Bentas";
 				setarray .@mr, 526,1,523,6;
 				break;
-			Case 2:
+			case 2:
 				setarray .@mr$, "1 Sacola de Biscoitos:1 Kit de Primeiros Socorros";
 				setarray .@mr, 12130,1,12110,1;
 				break;
-			Case 3:
+			case 3:
 				set .@mr$, "1 Caixa de Presente";
 				setarray .@mr, 644,1;
 				break;
-			Case 4:
+			case 4:
 				set .@mr$, "1 Velha Caixa Azul";
 				setarray .@mr, 603,1;
 				break;
-			Case 5:
+			case 5:
 				set .@mr$, "1 Kit de Domesticação";
 				setarray .@mr, 12105,1;
 				break;
-			Case 6:
+			case 6:
 				set .@mr$, "1 Velha Caixa Roxa";
 				setarray .@mr, 617,1;
 				break;
-			Case 7:
+			case 7:
 				set .@mr$, "1 Caixa Poring";
 				setarray .@mr, 12109,1;
 				break;

@@ -375,7 +375,7 @@ OnEnable:
 		end;
 	}
 	mes "[Capital City Guard]";
-	mes "Unknown situation occurred. Case " + strnpcinfo(2);
+	mes "Unknown situation occurred. case " + strnpcinfo(2);
 	mes "Please inquiry with a GM.";
 	close;
 }
@@ -1445,13 +1445,13 @@ dic_in01,294,276,5	script	Secret Adjutant#ep133_2	498,{
 				close2;
 			}
 			else {
-				mes "This mustn't happen.Case4";
+				mes "This mustn't happen.case4";
 				mes "Request help from GM.";
 				close2;
 			}
 		}
 		else {
-			mes "This mustn't happen.Case5";
+			mes "This mustn't happen.case5";
 			mes "Request help from GM.";
 			close2;
 		}
@@ -3631,11 +3631,11 @@ dic_in01,245,119,4	script	Shay#ep133_13	884,{
 	cutin "ep13_shy",2;
 	mes "[Shay]";
 	switch (rand(1,5)) {
-		Case 1: mes ".. Burman Flone."; break;
-		Case 2: mes "What?"; break;
-		Case 3: mes "Boring. What is it?"; break;
-		Case 4: mes "Sigh... Ready to order?"; break;
-		Case 5:
+		case 1: mes ".. Burman Flone."; break;
+		case 2: mes "What?"; break;
+		case 3: mes "Boring. What is it?"; break;
+		case 4: mes "Sigh... Ready to order?"; break;
+		case 5:
 			mes "Another failure?.";
 			mes "I'm talking to myself. Don't bother.";
 			mes "What do you want?";
@@ -3948,7 +3948,7 @@ dic_in01,245,119,4	script	Shay#ep133_13	884,{
 					}
 				}
 				if (!.@crack) {
-					mes "- You do not have the item needed for the quest. Case3";
+					mes "- You do not have the item needed for the quest. case3";
 					mes "If your quest item was destroyed, request help from GM.-";
 					break;
 				}
