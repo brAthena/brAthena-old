@@ -295,7 +295,6 @@ lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
 		set Zeny, Zeny - 1200;
 	warp "lhz_airport",148,51;
 	end;
-	}
 }
 
 lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1b	90
