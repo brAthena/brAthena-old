@@ -87,7 +87,7 @@ int npc_get_new_npc_id(void)
 }
 
 static DBMap *ev_db; // const char* event_name -> struct event_data*
-static DBMap* ev_label_db; // const char* label_name (without leading "::") -> struct linkdb_node*   (key: struct npc_data*; data: struct event_data*)
+static DBMap* ev_label_db; // const char* label_name (without leading "::") -> struct linkdb_node**   (key: struct npc_data*; data: struct event_data*)
 static DBMap *npcname_db; // const char* npc_name -> struct npc_data*
 
 struct event_data {
@@ -328,6 +328,17 @@ int npc_event_dequeue(struct map_session_data *sd)
 	return 1;
 }
 
+/**
+ * @see DBCreateData
+ */
+static DBData npc_event_export_create(DBKey key, va_list args)
+{
+	struct linkdb_node** head_ptr;
+	CREATE(head_ptr, struct linkdb_node*, 1);
+	*head_ptr = NULL;
+	return db_ptr2data(head_ptr);
+}
+
 /*==========================================
  * exports a npc event label
  * called from npc_parse_script
@@ -338,18 +349,18 @@ static int npc_event_export(struct npc_data *nd, int i)
 	int pos = nd->u.scr.label_list[i].pos;
 	if((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n')) {
 		struct event_data *ev;
-		struct linkdb_node *label_linkdb = NULL;
+		struct linkdb_node **label_linkdb = NULL;
 		char buf[EVENT_NAME_LENGTH];
 		snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
+		if (strdb_exists(ev_db, buf)) // There was already another event of the same name?
+			return 1;
 		// generate the data and insert it
 		CREATE(ev, struct event_data, 1);
 		ev->nd = nd;
 		ev->pos = pos;
-		if(strdb_put(ev_db, buf, ev))  // There was already another event of the same name?
-			return 1;
-		label_linkdb = strdb_get(ev_label_db, lname);
-		linkdb_insert(&label_linkdb, nd, ev); // it changes head to the new node so...
-		strdb_put(ev_label_db, lname, label_linkdb); // ...we need to update db to point to new head
+		strdb_put(ev_db, buf, ev);
+		label_linkdb = strdb_ensure(ev_label_db, lname, npc_event_export_create);
+		linkdb_insert(label_linkdb, nd, ev);
 	}
 	return 0;
 }
@@ -403,12 +414,12 @@ int npc_event_do(const char* name)
 int npc_event_doall_id(const char* name, int rid)
 {
 	int c = 0;
-	struct linkdb_node *label_linkdb = strdb_get(ev_label_db, name);
+	struct linkdb_node **label_linkdb = strdb_get(ev_label_db, name);
 
 	if (label_linkdb == NULL)
 		return 0;
 
-	linkdb_foreach(&label_linkdb, npc_event_doall_sub, &c, name, rid);
+	linkdb_foreach(label_linkdb, npc_event_doall_sub, &c, name, rid);
 	return c;
 }
 
@@ -1755,10 +1766,10 @@ static int npc_unload_ev(DBKey key, DBData *data, va_list ap)
  */
 static int npc_unload_ev_label(DBKey key, DBData *data, va_list ap)
 {
-	struct linkdb_node* label_linkdb = db_data2ptr(data);
+	struct linkdb_node **label_linkdb = db_data2ptr(data);
 	struct npc_data* nd = va_arg(ap, struct npc_data *);
 
-	linkdb_erase(&label_linkdb, nd);
+	linkdb_erase(label_linkdb, nd);
 
 	return 0;
 }
@@ -3319,7 +3330,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		map[m].flag.reset=state;
 	else if(!strcmpi(w3,"set_castle"))
 		map[m].set_castle = atoi(w4);
-	else if (!strcmpi(w3,"notomb"))
+	else if(!strcmpi(w3,"notomb"))
 		map[m].flag.notomb=state;
 	else if (!strcmpi(w3,"adjust_unit_duration")) {
 		int skill_id, k;
@@ -3730,8 +3741,8 @@ static int npc_path_db_clear_sub(DBKey key, DBData *data, va_list args)
  */
 static int ev_label_db_clear_sub(DBKey key, DBData *data, va_list args)
 {
-	struct linkdb_node *label_linkdb = db_data2ptr(data);
-	linkdb_final(&label_linkdb); // linked data (struct event_data*) is freed when clearing ev_db
+	struct linkdb_node **label_linkdb = db_data2ptr(data);
+	linkdb_final(label_linkdb); // linked data (struct event_data*) is freed when clearing ev_db
 	return 0;
 }
 
@@ -3939,7 +3950,7 @@ int do_init_npc(void)
 		npc_viewdb2[i - MAX_NPC_CLASS2_START].class_ = i;
 
 	ev_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, EVENT_NAME_LENGTH);
-	ev_label_db = stridb_alloc(DB_OPT_DUP_KEY, NPC_NAME_LENGTH); // data is linkdb and is fully released in ev_label_db_clear_sub
+	ev_label_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, NPC_NAME_LENGTH); // data is linkdb and is fully released in ev_label_db_clear_sub
 	npcname_db = strdb_alloc(DB_OPT_BASE, NPC_NAME_LENGTH);
 	npc_path_db = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, 0);
 
