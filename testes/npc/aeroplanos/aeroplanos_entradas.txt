@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/??/1.1                           |
+//   | Versões eA/rA/brA: ??/??/1.2                           |
 //   |--------------------------------------------------------|
 //   | Descrição: Entradas para os aeroplanos                 |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho e União dos Arquivos [Hold & Holy]       |
-//   | 1.1 Script otimizado [Hold & Holy]                     |
+//   | 1.1 Script otimizado [Hold & Holy, lututuiBR]          |
+//   | 1.2 Formatação nos Diálogos [lututuiBR]                |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -41,11 +42,8 @@ izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
 	if(select("Sim:Não") == 2) close;
 	if(!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
-		mes "Me desculpe, mas você não";
-		mes "possui um Bilhete para Aeroplano";
-		mes "e nem a quantia necessária de Zenys";
-		mes "para embarcar. Lembre-se, a";
-		mes "taxa de embarque é de 1,200 Zenys.";
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e nem a quantia necessária de Zenys para embarcar.";
+		mes "Lembre-se, a taxa de embarque é de 1,200 Zenys.";
 		close;
 	}
 	if(countitem(7311))
@@ -71,11 +69,8 @@ izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 	if(select("Sim:Não") == 2) close;
 	if(!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
-		mes "Me desculpe, mas você não";
-		mes "possui um Bilhete para Aeroplano";
-		mes "e nem a quantia necessária de Zenys";
-		mes "para embarcar. Lembre-se, a";
-		mes "taxa de embarque é de 1,200 Zenys.";
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e nem a quantia necessária de Zenys para embarcar.";
+		mes "Lembre-se, a taxa de embarque é de 1,200 Zenys.";
 		close;
 	}
 	if(countitem(7311))
@@ -96,42 +91,30 @@ hugel,178,142,0	duplicate(Equipe do Aeroporto#Izlude)	paraoaeroplano#Hugel	45,1,
 // =====================================
 airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 	mes "[Equipe do Aeroporto]";
-	mes "Bem-vindo";
-	mes "ao Aeroporto de Einbroch,";
-	mes "onde oferecemos constantes";
-	mes "voos para as cidades de";
-	mes "Juno, Lighthalzen e Hugel.";
+	mes "Bem-vindo ao Aeroporto de Einbroch, onde oferecemos constantes voos para as cidades de Juno, Lighthalzen e Hugel.";
 	next;
-	if (select("Embarcar no Dirigível:Cancelar") == 1) {
+	if (select("Embarcar no Dirigível:Cancelar") == 2) {
 		mes "[Equipe do Aeroporto]";
-		mes "A taxa de embarque do Dirigível";
-		mes "é 1,200 zeny, mas se você";
-		mes "possuir um Bilhete para Aeroplano,";
-		mes "a taxa não será cobrada. Você";
-		mes "deseja embarcar no Dirigível?";
-		next;
-		if (select("Sim:Não") == 2) close;
-		if (!countitem(7311) && Zeny < 1200) {
-			mes "[Equipe do Aeroporto]";
-			mes "Me desculpe, mas você não";
-			mes "possui um Bilhete para";
-			mes "Aeroplano e você não possui";
-			mes "a quantidade de zenys suficientes";
-			mes "para embarcar. Lembre, a";
-			mes "taxa de embarque é 1,200 zeny.";
-			close;
-		}
-		if (countitem(7311))
-			delitem 7311,1; // Bilhete para Aeroplano
-		else if (Zeny >= 1200)
-			set Zeny, Zeny - 1200;
-		warp "airport",148,51;
-		end;
+		mes "Obrigado e tenha um bom dia.";
+		close;
 	}
 	mes "[Equipe do Aeroporto]";
-	mes "Obrigado e";
-	mes "tenha um bom dia.";
-	close;
+	mes "A taxa de embarque do Dirigível é 1,200 zeny, mas se você possuir um Bilhete para Aeroplano, a taxa não será cobrada.";
+	mes "Você deseja embarcar no Dirigível?";
+	next;
+	if (select("Sim:Não") == 2) close;
+	if (!countitem(7311) && Zeny < 1200) {
+		mes "[Equipe do Aeroporto]";
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e você não possui a quantidade de zenys suficientes para embarcar.";
+		mes "Lembre, a taxa de embarque é 1,200 zeny.";
+		close;
+	}
+	if (countitem(7311))
+		delitem 7311,1; // Bilhete para Aeroplano
+	else if (Zeny >= 1200)
+		set Zeny, Zeny - 1200;
+	warp "airport",148,51;
+	end;
 }
 
 airport,158,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1b	90
@@ -140,29 +123,22 @@ airport,126,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1c	90
 airport,143,49,3	script	Equipe de Recepção#aeroportoa::aeroporto	90,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Einbroch.";
-	mes "Se você acaba de chegar do seu";
-	mes "voo, deixe-me guiá-lo até seu";
-	mes "terminal principal. Caso contrário, por favor embarque no Dirigível para ir até";
-	mes "Juno, Lighthalzen ou Hugel.";
+	mes "Se você acaba de chegar do seu voo, deixe-me guiá-lo até seu terminal principal.";
+	mes "Caso contrário, por favor embarque no Dirigível para ir até Juno, Lighthalzen ou Hugel.";
 	next;
-	if (select("Sair do terminal principal.:Cancelar.") == 1) {
+	if (select("Sair do terminal principal.:Cancelar.") == 2) {
 		mes "[Equipe de Recepção]";
-		mes "Uma vez no terminal principal, você terá que pagar a taxa novamente";
-		mes "para embarcar no Dirigível. Você só";
-		mes "deve sair se a cidade de Einbroch";
-		mes "for seu destino final.";
-		mes "Deseja prosseguir para o terminal principal?";
-		next;
-		if (select("Sim:Não") == 2) close;
-			warp "airport",142,40;
-			end;
+		mes "Certo, obrigado pelo seu apoio, e espero que você tenha um voo agradável~";
+		close;
 	}
 	mes "[Equipe de Recepção]";
-	mes "Certo, obrigado!";
-	mes "pelo seu apoio,";
-	mes "e espero que você tenha";
-	mes "um voo agradável~";
-	close;
+	mes "Uma vez no terminal principal, você terá que pagar a taxa novamente para embarcar no Dirigível.";
+	mes "Você só deve sair se a cidade de Einbroch for seu destino final.";
+	mes "Deseja prosseguir para o terminal principal?";
+	next;
+	if (select("Sim:Não") == 2) close;
+	warp "airport",142,40;
+	end;
 }
 
 airport,126,51,3	duplicate(aeroporto)	Equipe de Recepção#aeroportob	90
@@ -170,20 +146,12 @@ airport,158,50,3	duplicate(aeroporto)	Equipe de Recepção#aeroportoc	90
 
 einbroch,94,267,3	script	Equipe do Aeroporto#ein01	91,{
 	mes "[Equipe do Aeroporto]";
-	mes "Bem-vindo ao";
-	mes "Aeroporto de Einbroch.";
-	mes "Por favor utilize esta porta";
-	mes "para embarcar no dirigível que irá partir";
-	mes "até Juno, Lighthalzen e";
-	mes "Hugel na República de Schwarzwald.";
+	mes "Bem-vindo ao Aeroporto de Einbroch.";
+	mes "Por favor utilize esta porta para embarcar no dirigível que irá partir até Juno, Lighthalzen e Hugel na República de Schwarzwald.";
 	next;
 	mes "[Equipe do Aeroporto]";
-	mes "Caso contrário, se é Einbroch";
-	mes "seu destino pretendido,";
-	mes "por favor, desça as escadas";
-	mes "e pergunte a Equipe de Recepção para levar";
-	mes "você até o terminal. Te";
-	mes "agradeço, e tenha uma boa viagem.";
+	mes "Caso contrário, se é Einbroch seu destino pretendido, por favor, desça as escadas e perça a Equipe de Recepção para levar você até o terminal.";
+	mes "Te agradeço, e tenha uma boa viagem.";
 	close;
 }
 
@@ -191,40 +159,32 @@ einbroch,94,267,3	script	Equipe do Aeroporto#ein01	91,{
 // =====================================
 y_airport,143,43,5	script	Equipe do Aeroporto#juno	90,{
 	mes "[Equipe do Aeroporto]";
-	mes "Bem-vindo ao Aeroporto de Juno onde oferecemos voos domésticos para Einbroch, Lighthalzen e Hugel,";
-	mes "e internacionais para Izlude e Rachel.";
+	mes "Bem-vindo ao Aeroporto de Juno onde oferecemos voos domésticos para Einbroch, Lighthalzen e Hugel, e internacionais para Izlude e Rachel.";
 	mes "Gostaria de usar algum serviço?";
 	next;
-	if (select("Embarcar no Dirigível.:Cancelar.") == 1) {
+	if (select("Embarcar no Dirigível.:Cancelar.") == 2) {
 		mes "[Equipe do Aeroporto]";
-		mes "A taxa de embarque do Dirigível";
-		mes "é 1,200 zeny, mas se você";
-		mes "possuir um Bilhete para Aeroplano,";
-		mes "a taxa não será cobrada. Você";
-		mes "deseja embarcar?";
-		next;
-		if (select("Sim:Não") == 1) {
-			if (countitem(7311))
-				delitem 7311,1; // Bilhete para Aeroplano
-      else if (Zeny >= 1200)
-				set Zeny, Zeny - 1200;
-				warp "y_airport",148,51;
-				end;
-			}
-			mes "[Equipe do Aeroporto]";
-			mes "Me desculpe, mas você não";
-			mes "possui um Bilhete para";
-			mes "Aeroplano e você não possui";
-			mes "a quantidade de zenys suficientes";
-			mes "para embarcar. Lembre, a";
-			mes "taxa de embarque é 1,200 zeny.";
-			close;
+		mes "Obrigado e por favor volte novamente.";
+		mes "Tenha um bom dia~";
+		close;
 	}
 	mes "[Equipe do Aeroporto]";
-	mes "Obrigado e";
-	mes "por favor volte novamente.";
-	mes "Tenha um bom dia~";
-	close;
+	mes "A taxa de embarque do Dirigível é 1,200 zeny, mas se você possuir um Bilhete para Aeroplano, a taxa não será cobrada.";
+	mes "Você deseja embarcar?";
+	next;
+	if (select("Sim:Não") == 2) close;
+	if (!countitem(7311) && Zeny < 1200) {
+		mes "[Equipe do Aeroporto]";
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e você não possui a quantidade de zenys suficientes para embarcar.";
+		mes "Lembre, a taxa de embarque é 1,200 zeny.";
+		close;
+	}
+	if (countitem(7311))
+		delitem 7311,1; // Bilhete para Aeroplano
+	else if (Zeny >= 1200)
+		set Zeny, Zeny - 1200;
+	warp "y_airport",148,51;
+	end;
 }
 
 y_airport,158,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air1b	90
@@ -232,28 +192,23 @@ y_airport,126,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air
 
 y_airport,143,49,3	script	Equipe de Recepção#y_ar2a::aeroportoy	90,{
 	mes "[Equipe de Recepção]";
-	mes "Bem-vindo ao Aeroporto de Juno. Se você acabou de chegar de seu";
-	mes "voo, deixe-me guiá-lo até o terminal. Caso contrário, por favor";
-	mes "embarque no dirigível para voar até seu destino.";
+	mes "Bem-vindo ao Aeroporto de Juno.";
+	mes "Se você acabou de chegar de seu voo, deixe-me guiá-lo até o terminal.";
+	mes "Caso contrário, por favor embarque no dirigível para voar até seu destino.";
 	next;
-	if (select("Sair do terminal principal.:Cancelar") == 1) {
+	if (select("Sair do terminal principal.:Cancelar") == 2) {
 		mes "[Equipe de Recepção]";
-		mes "Uma vez no terminal principal, você terá que pagar a taxa novamente";
-		mes "para embarcar no Dirigível. Você só";
-		mes "deve sair se a cidade de Einbroch";
-		mes "para seu destino Juno.";
-		mes "Deseja prosseguir para o terminal principal?";
-		next;
-		if (select("Sim:Não") == 2) close;
-			warp "y_airport",142,40;
-			end;
+		mes "Certo, obrigado pelo seu apoio, e espero que você tenha um voo agradável~";
+		close;
 	}
 	mes "[Equipe de Recepção]";
-	mes "Certo, obrigado!";
-	mes "pelo seu apoio,";
-	mes "e espero que você tenha";
-	mes "um voo agradável~";
-	close;
+	mes "Uma vez no terminal principal, você terá que pagar a taxa novamente para embarcar no Dirigível.";
+	mes "Você só deve sair se a cidade de Juno for seu destino final.";
+	mes "Deseja prosseguir para o terminal principal?";
+	next;
+	if (select("Sim:Não") == 2) close;
+	warp "y_airport",142,40;
+	end;
 }
 
 y_airport,126,51,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2b	90
@@ -261,11 +216,8 @@ y_airport,158,50,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2c	90
 
 y_airport,145,63,5	script	Voos Domésticos	91,{
 	mes "[Equipe de Bordo]";
-	mes "Você deseja embarcar no Dirigível";
-	mes "que voa até Einbroch,";
-	mes "Lighthalzen e Hugel? Se sim,";
-	mes "por favor deixe-me guiá-lo até";
-	mes "a área de embarque do Dirigível.";
+	mes "Você deseja embarcar no Dirigível que voa até Einbroch, Lighthalzen e Hugel?";
+	mes "Se sim, por favor deixe-me guiá-lo até a área de embarque do Dirigível.";
 	next;
 	if (select("Sim:Não") == 1) {
 		warp "yuno",59,244;
@@ -273,19 +225,14 @@ y_airport,145,63,5	script	Voos Domésticos	91,{
 	}
 	mes "[Equipe de Bordo]";
 	mes "Muito bem, então.";
-	mes "Obrigado por seu";
-	mes "clientismo, e espero";
-	mes "que você se divirta na viagem~";
+	mes "Obrigado por seu clientismo, e espero que você se divirta na viagem~";
 	close;
 }
 
 y_airport,140,63,5	script	Voos Internacionais	91,{
 	mes "[Equipe de Bordo]";
-	mes "Você deseja embarcar no Dirigível";
-	mes "que voa até Juno,";
-	mes "Izlude e Rachel? Se sim,";
-	mes "por favor deixe-me guiá-lo até";
-	mes "a área de embarque do Dirigível.";
+	mes "Você deseja embarcar no Dirigível que voa até Juno, Izlude e Rachel?";
+	mes "Se sim, por favor deixe-me guiá-lo até a área de embarque do Dirigível.";
 	next;
 	if (select("Sim:Não") == 1) {
 		warp "yuno",47,244;
@@ -293,48 +240,29 @@ y_airport,140,63,5	script	Voos Internacionais	91,{
 	}
 	mes "[Equipe de Bordo]";
 	mes "Certo, então.";
-	mes "Obrigado por voar";
-	mes "conosco, e espero que você";
-	mes "se divirta enquanto";
-	mes "estiver viajando.";
+	mes "Obrigado por voar conosco, e espero que você se divirta enquanto estiver viajando.";
 	close;
 }
 
 yuno,14,262,5	script	Equipe do Aeroporto#yuno01	91,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Juno.";
-	mes "Utilize este porta para";
-	mes "embarcar no Dirigível que";
-	mes "voa até Izlude";
-	mes "dentro do Reino de Rune-Midgard,";
-	mes "e para Rachel na República de";
-	mes "Arunafeltz.";
+	mes "Utilize este porta para embarcar no Dirigível que voa até Izlude dentro do Reino de Rune-Midgard, e para Rachel na República de Arunafeltz.";
 	next;
 	mes "[Equipe do Aeroporto]";
-	mes "Caso contrário, se seu destino";
-	mes "pretendido é Juno,";
-	mes "por favor, desça as escadas";
-	mes "e pergunte a Equipe de Recepção para levar";
-	mes "você até o terminal. Te";
-	mes "agradeço, e tenha uma boa viagem.";
+	mes "Caso contrário, se seu destino pretendido é Juno, por favor, desça as escadas e peça a Equipe de Recepção para levar você até o terminal.";
+	mes "Te agradeço, e tenha uma boa viagem.";
 	close;
 }
 
 yuno,88,263,3	script	Equipe do Aeroporto#yuno02	91,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Juno.";
-	mes "Utilize este porta para";
-	mes "embarcar no Dirigível que vai";
-	mes "até Einbroch, Lighthalzen e";
-	mes "Hugel na República de Schwartzwald.";
+	mes "Utilize este porta para embarcar no Dirigível que vai até Einbroch, Lighthalzen e Hugel na República de Schwartzwald.";
 	next;
 	mes "[Equipe do Aeroporto]";
-	mes "Caso contrário, se seu destino";
-	mes "pretendido é Juno,";
-	mes "por favor, desça as escadas";
-	mes "e pergunte a Equipe de Recepção para levar";
-	mes "você até o terminal. Te";
-	mes "agradeço, e tenha uma boa viagem.";
+	mes "Caso contrário, se seu destino pretendido é Juno, por favor, desça as escadas e pergunte a Equipe de Recepção para levar você até o terminal.";
+	mes "Te agradeço, e tenha uma boa viagem.";
 	close;
 }
 
@@ -342,41 +270,32 @@ yuno,88,263,3	script	Equipe do Aeroporto#yuno02	91,{
 // =====================================
 lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
 	mes "[Equipe do Aeroporto]";
-	mes "Bem-vindo";
-	mes "ao Aeroporto de Lighthalzen,";
-	mes "onde oferecemos constantes";
-	mes "voos para as cidades de";
-	mes "Einbroch, Juno e Hugel.";
+	mes "Bem-vindo ao Aeroporto de Lighthalzen, onde oferecemos constantes voos para as cidades de Einbroch, Juno e Hugel.";
 	next;
 	if(select("Embarcar no Dirigível:Cancelar.") == 2) {
 		mes "[Equipe do Aeroporto]";
-		mes "Obrigado e por favor";
-		mes "volte novamente.";
+		mes "Obrigado e por favor volte novamente.";
 		mes "Tenha um bom dia~";
 		close;
 	}
 	mes "[Equipe do Aeroporto]";
-	mes "A taxa de embarque do Dirigível";
-	mes "é 1,200 zeny, mas se você";
-	mes "possuir um Bilhete para Aeroplano,";
-	mes "a taxa não será cobrada. Você";
-	mes "deseja embarcar no Dirigível?";
+	mes "A taxa de embarque do Dirigível é 1,200 zeny, mas se você possuir um Bilhete para Aeroplano, a taxa não será cobrada.";
+	mes "Você deseja embarcar no Dirigível?";
 	next;
-	if (select("Sim:Não") == 1) {
-		if (countitem(7311) > 0)
-			delitem 7311,1; // Bilhete para Aeroplano
-		else if (Zeny >= 1200)
-			warp "lhz_airport",148,51;
-			end;
+	if (select("Sim:Não") == 2) close;
+	if (!countitem(7311) && Zeny < 1220) {
+		mes "[Equipe do Aeroporto]";
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e você não possui a quantidade de zenys suficientes para embarcar.";
+		mes "Lembre, a taxa de embarque é 1,200 zeny.";
+		close;
 	}
-	mes "[Equipe do Aeroporto]";
-	mes "Me desculpe, mas você não";
-	mes "possui um Bilhete para";
-	mes "Aeroplano e você não possui";
-	mes "a quantidade de zenys suficientes";
-	mes "para embarcar. Lembre, a";
-	mes "taxa de embarque é 1,200 zeny.";
-	close;
+	if (!countitem(7311))
+		delitem 7311,1; // Bilhete para Aeroplano
+	else if (Zeny >= 1200)
+		set Zeny, Zeny - 1200;
+	warp "lhz_airport",148,51;
+	end;
+	}
 }
 
 lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1b	90
@@ -385,16 +304,13 @@ lhz_airport,126,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1c	90
 lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	90,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Lighthalzen.";
-	mes "Se você acaba de chegar do seu";
-	mes "voo, deixe-me guiá-lo até seu";
-	mes "terminal principal. Caso contrário, por favor embarque no Dirigível para seu destino.";
+	mes "Se você acaba de chegar do seu voo, deixe-me guiá-lo até seu terminal principal.";
+	mes "Caso contrário, por favor embarque no Dirigível para seu destino.";
 	next;
 	if (select("Sair do terminal principal.:Cancelar.") == 1) {
 		mes "[Equipe de Recepção]";
-		mes "Uma vez no terminal principal, você terá que pagar a taxa novamente";
-		mes "para embarcar no Dirigível. Você só";
-		mes "deve sair se a cidade de Lighthalzen";
-		mes "for seu destino final.";
+		mes "Uma vez no terminal principal, você terá que pagar a taxa novamente para embarcar no Dirigível.";
+		mes "Você só deve sair se a cidade de Lighthalzen for seu destino final.";
 		mes "Deseja prosseguir para o terminal principal?";
 		next;
 		if (select("Sim:Não") == 2) close;
@@ -402,10 +318,7 @@ lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	90,{
 			end;
 	}
 	mes "[Equipe de Recepção]";
-	mes "Certo, obrigado!";
-	mes "pelo seu apoio,";
-	mes "e espero que você tenha";
-	mes "um voo agradável~";
+	mes "Certo, obrigado pelo seu apoio, e espero que você tenha um voo agradável~";
 	close;
 }
 

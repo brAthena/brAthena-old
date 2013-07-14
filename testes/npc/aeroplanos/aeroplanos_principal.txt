@@ -12,14 +12,15 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.0/1.2                         |
+//   | Versões eA/rA/brA: 1.2/1.0/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Sistema de aeroplanos.                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR [Holy & Hold]                       |
-//   | 1.2 Otimização [Hold & Holy]                           |             
+//   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Formatação nos Diálogos [lututuiBR]                |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/ 
@@ -131,25 +132,18 @@ airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
 		mes "[Chrmlim]";
 	if (event_umbala >= 3) {
 		mes "Ei você~";
-		mes "Pela sua aparência,";
-		mes "percebo que você";
-		mes "consegue me entender.";
+		mes "Pela sua aparência, percebo que você consegue me entender.";
 		mes "^333333*Legal...!*^000000";
 		next;
 		emotion e_pif;
 		mes "[Chrmlim]";
-		mes "Tenho ajudado a equipe";
-		mes "do Dirigível auxiliando";
-		mes "seus Tripulantes que têm";
-		mes "medo de altura os levanto para pular";
-		mes "de bungee jumping em Umbala. Legal, em?";
+		mes "Tenho ajudado a equipe do Dirigível auxiliando seus Tripulantes que têm medo de altura os levanto para pular de bungee jumping em Umbala.";
+		mes "Legal, em?";
 		next;
 		mes "[Chrmlim]";
 		mes "Mas...";
-		mes "Alguns deles não podem";
-		mes "superar seus medos.";
-		mes "Devem participar de";
-		mes "algumas experiências, ^333333em Nifflheim^000000.";
+		mes "Alguns deles não podem superar seus medos.";
+		mes "Devem participar de algumas experiências, ^333333em Nifflheim^000000.";
 	} else {
 		mes "Bajoo ga";
 		mes "nukta Airship.";
@@ -171,8 +165,7 @@ airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
 airplane,250,58,2	script	Equipe do Dirigível#aeroplano	67,{
 	if (hg_ma1 == 3) {
 		mes "[Equipe do Dirigível]";
-		mes "Bem-vind"+(Sex?"o":"a")+"";
-		mes "ao Dirigível.";
+		mes "Bem-vind"+(Sex?"o":"a")+" ao Dirigível.";
 		mes "Como posso ajudá-lo?";
 		next;
 		select("Você tem um passageiro chamado Thierry?");
@@ -185,51 +178,32 @@ airplane,250,58,2	script	Equipe do Dirigível#aeroplano	67,{
 
 function	script	airplane_staff	{
 	mes "[Assistente do Aeroplano]";
-	mes "Bem-vind"+(Sex?"o":"a")+".";
-	mes "ao Aeroplano.";
+	mes "Bem-vind"+(Sex?"o":"a")+" ao Aeroplano.";
 	mes "Como posso lhe ajudar??";
 	next;
 	switch (select("Embarcar no Aeroplano:Cabine do Capitão:Atrativos:Cancelar")) {
 	case 1:
 		mes "[Assistente do Aeroplano]";
-		mes "Quando você ver o aviso";
-		mes "anunciando que chegamos";
-		mes "no seu destino desejado,";
-		mes "por favor, use uma das saídas";
-		mes "localizadas nas partes";
-		mes "norte e sul do Aeroplano.";
+		mes "Quando você ver o aviso anunciando que chegamos no seu destino desejado, por favor, use uma das saídas localizadas nas partes norte e sul do Aeroplano.";
 		next;
 		mes "[Assistente do Aeroplano]";
-		mes "Caso você perca o momento";
-		mes "de sua parada, não se preocupe.";
-		mes "O Aeroplano está constantemente";
-		mes "em uma rota única e você terá";
-		mes "outra chance para descer no";
-		mes "no destino exato que quiser.";
+		mes "Caso você perca o momento de sua parada, não se preocupe.";
+		mes "O Aeroplano está constantemente em uma rota única e você terá outra chance para descer no destino exato que quiser.";
 		close;
 	case 2:
 		mes "[Assistente do Aeroplano]";
-		mes "A Cabine do Capitão";
-		mes "fica na parte frontal";
-		mes "do Aeroplano. Lá, você";
-		mes "pode conhecer o capitão e";
-		mes "o piloto do Aeroplano.";
+		mes "A Cabine do Capitão fica na parte frontal do Aeroplano.";
+		mes "Lá, você pode conhecer o capitão e o piloto do Aeroplano.";
 		close;
 	case 3:
 		mes "[Assistente do Aeroplano]";
-		mes "O Aeroplano possui";
-		mes "vários mini-jogos para";
-		mes "o entretenimento de todos";
-		mes "os passageiros. Você está";
-		mes "convidad"+(Sex?"o":"a")+" a testar sua sorte";
-		mes "no Mini-Jogos do Aeroplano~";
+		mes "O Aeroplano possui vários mini-jogos para o entretenimento de todos os passageiros.";
+		mes "Você está convidad"+(Sex?"o":"a")+" a testar sua sorte no Mini-Jogos do Aeroplano~";
 		close;
 	case 4:
 		mes "[Assistente do Aeroplano]";
-		mes "Bem, desejo-lhe uma boa";
-		mes "estadia durante o vôo em";
-		mes "nosso Aeroplano. Obrigado";
-		mes "e tenha um bom dia.";
+		mes "Bem, desejo-lhe uma boa estadia durante o vôo em nosso Aeroplano.";
+		mes "Obrigado e tenha um bom dia.";
 		close;
 	}
 }
@@ -237,20 +211,14 @@ function	script	airplane_staff	{
 airplane,80,71,2	script	Zerta#01aeroplano	834,{
 	mes "[Zerta]";
 	mes "Ah, olá aventureiro.";
-	mes "Eu estou atualmente em";
-	mes "uma jornada sacrada, oferecendo";
-	mes "sacrifícios por todo o";
-	mes "continente de Rune-Midgard.";
+	mes "Eu estou atualmente em uma jornada sacrada, oferecendo sacrifícios por todo o continente de Rune-Midgard.";
 	close;
 }
 
 airplane,65,63,4	script	Maelin#01aeroplano	714,{
 	mes "[Maelin]";
-	mes "Hum, o Dirigível vai até";
-	mes "Lutie, não é? Eu tenho";
-	mes "esperado durante um longo tempo,";
-	mes "mas até agora não tenho";
-	mes "tido notícias de Lutie.";
+	mes "Hum, o Dirigível vai até Lutie, não é?";
+	mes "Eu tenho esperado durante um longo tempo, mas até agora não tenho tido notícias de Lutie.";
 	close;
 }
 
@@ -275,16 +243,12 @@ airplane,221,158,2	script	Piloto#aeroplano	852,{
 		next;
 		select("Você conhece um passageiro chamado Thierry?");
 		mes "[Piloto]";
-		mes "Este uniforme";
-		mes "é realmente bonito, mas";
-		mes "não gosto de usá-lo";
-		mes "enquanto estou no Dirigível.";
+		mes "Este uniforme é realmente bonito, mas não gosto de usá-lo enquanto estou no Dirigível.";
 		next;
 		mes "[Piloto]";
 		mes "...";
 		mes "......";
-		mes "Ninguém nunca realmente";
-		mes "entrou neste quarto.";
+		mes "Ninguém nunca realmente entrou neste quarto.";
 		mes "E como sou o capitão.^FFFFFF ^000000 Eu poderia simplesmente ficar de cuecas.";
 		next;
 		emotion e_omg;
@@ -298,61 +262,39 @@ airplane,221,158,2	script	Piloto#aeroplano	852,{
 	switch (rand(1,4)) {
 	case 1:
 		mes "[Piloto]";
-		mes "Faz bastante tempo";
-		mes "desde que eu";
-		mes "esperimentei um bom e gelado";
-		mes "álcool. Mas a";
-		mes "profissão requer que eu";
-		mes "esteja sempre sóbrio!";
+		mes "Faz bastante tempo desde que eu esperimentei um bom e gelado álcool.";
+		mes "Mas a profissão requer que eu esteja sempre sóbrio!";
 		next;
 		mes "[Piloto]";
 		mes "Sempre beba com responsabilidade!";
-		mes "Ainda sim, não me lembro a";
-		mes "última vez que entrei de férias.";
-		mes "Sim, uma bebida, uma TV";
-		mes "e tudo ficará ótimo.";
+		mes "Ainda sim, não me lembro a última vez que entrei de férias.";
+		mes "Sim, uma bebida, uma TV e tudo ficará ótimo.";
 		emotion e_sob;
 		close;
 	case 2:
 		mes "[Piloto]";
-		mes "Cara, o clima";
-		mes "está ótimo hoje.";
-		mes "Brilho, o céu está aberto";
-		mes "com uma boa visibilidade";
-		mes "e segurança, um voo despreocupado.";
+		mes "Cara, o clima está ótimo hoje.";
+		mes "Brilho, o céu está aberto com uma boa visibilidade e segurança, um voo despreocupado.";
 		close;
 	case 3:
 		mes "[Piloto]";
-		mes "Você sabe, seu capitão é";
-		mes "um homem respeitado. Ele e";
-		mes "seu irmão são atualmente";
-		mes "os mais conhecidos na indústria aérea.";
-		mes "Quem diria que nos tornariamos";
-		mes "capitões de voo tão bons?";
+		mes "Você sabe, seu capitão é um homem respeitado.";
+		mes "Ele e seu irmão são atualmente os mais conhecidos na indústria aérea.";
+		mes "Quem diria que nos tornariamos capitões de voo tão bons?";
 		next;
 		mes "[Piloto]";
-		mes "Apenas entre nós,";
-		mes "Tenho que dizer a você,";
-		mes "o Papai Noel foi para algum";
-		mes "lugar com renas e elfos";
-		mes "que trabalham para ele.";
+		mes "Apenas entre nós, tenho que dizer a você, o Papai Noel foi para algum lugar com renas e elfos que trabalham para ele.";
 		mes "Aquele cara é um gênio!";
 		close;
 	default:
 		mes "[Piloto]";
-		mes "Você sabe, toda essa";
-		mes "coisa de pilotagem no ar,";
-		mes "é algo bastante recente, você sabe não é?";
-		mes "Sim, temos um Dirigível";
-		mes "voando a uma incrível velocidade.";
+		mes "Você sabe, toda essa coisa de pilotagem no ar, é algo bastante recente, você sabe não é?";
+		mes "Sim, temos um Dirigível voando a uma incrível velocidade.";
 		next;
 		emotion e_omg;
 		mes "[Piloto]";
-		mes "Ainda assim, há sempre algo sério,";
-		mes "realmente acontecendo.";
-		mes "Quer dizer, estavamos";
-		mes "treinando enquanto o Dirigível";
-		mes "estava sendo inventado.";
+		mes "Ainda assim, há sempre algo sério, realmente acontecendo.";
+		mes "Quer dizer, estavamos treinando enquanto o Dirigível estava sendo inventado.";
 		mes "Não é uma loucura?!";
 		close;
 	}
@@ -368,19 +310,14 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 		close;
 	}
 	mes "[Vendedor de Maçãs]";
-	mes "Bem-vindo a Banca de";
-	mes "Frutas onde você pode";
-	mes "comprar Maçãs ou juntar ingredientes";
-	mes "para fazer o Suco de Maçã.";
+	mes "Bem-vindo a Banca de Frutas onde você pode comprar Maçãs ou juntar ingredientes para fazer o Suco de Maçã.";
 	next;
 	switch(select("Comprar Maçãs.:Fazer Suco de Maçã.:Por que você está aqui?:Cancelar.")) {
 	case 1:
 		mes "[Vendedor de Maçãs]";
-		mes "Por favor me diga a quantidade";
-		mes "de Maçãs que você deseja";
-		mes "comprar. Cada Maçã custa 15 zeny";
-		mes "e você pode comprar no máximo";
-		mes "500 por vez. Digite '0' para cancelar sua compra.";
+		mes "Por favor me diga a quantidade de Maçãs que você deseja comprar.";
+		mes "Cada Maçã custa 15 zeny e você pode comprar no máximo 500 por vez.";
+		mes "Digite '0' para cancelar sua compra.";
 		next;
 		while (1) {
 			input .@input;
@@ -394,24 +331,19 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 				close;
 			} else if (.@input < 1 || .@input > 500) {
 				mes "[Vendedor de Maçãs]";
-				mes "Você escolheu uma quantia";
-				mes "muito baixa ou muito alta, o";
-				mes "valor mínimo é 1 e o máximo são 500. Por favor digite";
-				mes "o número de maçãs que você";
-				mes "deseja comprar.";
+				mes "Você escolheu uma quantia muito baixa ou muito alta, o valor mínimo é 1 e o máximo são 500.";
+				mes "Por favor digite o número de maçãs que você deseja comprar.";
 				next;
 			} else {
 				mes "[Vendedor de Maçãs]";
-				mes "Um total de ^FF0000" + .@input + "^000000 Maçãs";
-				mes "que irá custar a você ^FF0000" + .@pay + " Zeny^000000 zeny.";
+				mes "Um total de ^FF0000" + .@input + "^000000 Maçãs irá custar a você ^FF0000" + .@pay + " Zeny^000000 zeny.";
 				mes "Você gostaria de continuar?";
 				next;
 				if (select("Sim:Não") == 2) {
 					mes "[Vendedor de Maçãs]";
 					mes "Obrigado por visitar minha banca.";
 					mes "Adeus!";
-					mes "Venha quando você";
-					mes "sentir que precisa de uma Maçã.";
+					mes "Venha quando você sentir que precisa de uma Maçã.";
 					close;
 				}
 				break;
@@ -419,17 +351,12 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 		}
 		if (Zeny < .@pay) {
 			mes "[Vendedor de Maçãs]";
-			mes "Me desculpe, mas você não";
-			mes "possui a quantidade de zenys necessária";
-			mes "para comprar essas Maçãs.";
-			mes "Por favor verifique a quantidade";
-			mes "de zenys que você possui e quantas Maçãs quer comprar.";
+			mes "Me desculpe, mas você não possui a quantidade de zenys necessária para comprar essas Maçãs.";
+			mes "Por favor verifique a quantidade de zenys que você possui e quantas Maçãs quer comprar.";
 			close;
 		} else if (checkweight(512,.@input) == 0) {
 			mes "[Vendedor de Maçãs]";
-			mes "Humm, eu acho que você";
-			mes "não pode carregar mais itens";
-			mes "em seu inventário, assim não pode comprar mais Maçãs.";
+			mes "Humm, eu acho que você não pode carregar mais itens em seu inventário, assim não pode comprar mais Maçãs.";
 			mes "Você poderia liberar um pouco de espaço em seu inventário?";
 			close;
 		} else {
@@ -444,24 +371,18 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 		}
 	case 2:
 		mes "[Vendedor de Maçãs]";
-		mes "Tudo bem, irei precisar de";
-		mes "^FF00003 Maçãs e 1 Garrafa Vazia^000000";
-		mes "para criar 1 Suco de Maçã para você";
+		mes "Tudo bem, irei precisar de ^FF00003 Maçãs e 1 Garrafa Vazia^000000 para criar 1 Suco de Maçã para você.";
 		mes "Você deseja continuar?";
 		next;
 		switch (select("Sim:Não")) {
 		case 1:
 				mes "[Vendedor de Maçãs]";
 			if (countitem(512) < 3 || !countitem(713)) {
-				mes "Me desculpe,mas você não possui";
-				mes "os materiais suficientes para";
-				mes "criar uma Garrafa de Suco de Maçã.";
-				mes "Lembre-se, irei precisar de 3 Maçãs";
-				mes "e 1 Garrafa Vazia.";
+				mes "Me desculpe,mas você não possui os materiais suficientes para criar uma Garrafa de Suco de Maçã.";
+				mes "Lembre-se, irei precisar de 3 Maçãs e 1 Garrafa Vazia.";
 				close;
 			  }
-				mes "Obrigado,";
-				mes "por favor espere um momento.";
+				mes "Obrigado, por favor espere um momento.";
 				next;
 				mes "^3355FF*Moer moer*";
 				mes "*Moer moer*";
@@ -473,69 +394,45 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 				mes "[Vendedor de Maçãs]";
 				mes "Aqui está~";
 				mes "Espero que você goste!";
-				mes "Por favor fique a vontade";
-				mes "para comprar Maçãs";
-				mes "ou fazer Sucos de Maçãs quando";
-				mes "você precisar, aventureiro~";
+				mes "Por favor fique a vontade para comprar Maçãs ou fazer Sucos de Maçãs quando você precisar, aventureiro~";
 				close;
 		case 2:
 			mes "[Vendedor de Maçãs]";
 			mes "Obrigado por visitar minha banca.";
 			mes "Adeus!";
-			mes "Venha quando você";
-			mes "sentir que precisa de uma Maçã ~.";
+			mes "Venha quando você sentir que precisa de uma Maçã ~.";
 			close;
 		}
 	case 3:
 		mes "[Vendedor de Maçãs]";
-		mes "Eu costumava ser um andarilho";
-		mes "vagabundo, até que um dia,";
-		mes "Tirei uma soneca e algo";
-		mes "atingiu minha cabeça e";
-		mes "acordei do meu sono tranquilo.";
+		mes "Eu costumava ser um andarilho vagabundo, até que um dia, tirei uma soneca e algo atingiu minha cabeça e acordei do meu sono tranquilo.";
 		next;
 		mes "[Vendedor de Maçãs]";
-		mes "Acontece que eu estava";
-		mes "dormindo embaixo de uma Macieira";
-		mes "e foi quando uma maçã caiu";
-		mes "e atingiu minha cabeça.";
-		mes "Eu estava morrendo de fome";
-		mes "e estava prestes a comer aquela Maçã...";
+		mes "Acontece que eu estava dormindo embaixo de uma Macieira e foi quando uma maçã caiu e atingiu minha cabeça.";
+		mes "Eu estava morrendo de fome e estava prestes a comer aquela Maçã...";
 		next;
 		mes "[Vendedor de Maçãs]";
-		mes "Mas de repente, Kain, meu antigo";
-		mes "amigo desde os tempos de mineração,";
-		mes "me pediu para ajudá-lo aqui";
-		mes "no Dirigível. Então eu aceitei, e";
-		mes "foi lá que encontrei pessoas";
-		mes "jogando um Jogo de Dados.";
+		mes "Mas de repente, Kain, meu antigo amigo desde os tempos de mineração, me pediu para ajudá-lo aqui no Dirigível.";
+		mes "Então eu aceitei, e foi lá que encontrei pessoas jogando um Jogo de Dados.";
 		next;
 		mes "[Vendedor de Maçãs]";
-		mes "Estava entediado e curioso";
-		mes "e acabei apostando algumas simples";
-		mes "Maçãs no jogo dos dados.";
-		mes "Mas por alguma razão,";
-		mes "eu tive uma incrível sorte.";
+		mes "Estava entediado e curioso e acabei apostando algumas simples Maçãs no jogo dos dados.";
+		mes "Mas por alguma razão, eu tive uma incrível sorte.";
 		mes "Uma maçã se multiplicou em duas... ";
 		next;
 		mes "[Vendedor de Maçãs]";
-		mes "Duas tornaram-se quatro";
-		mes "e antes que eu percebesse, eu já tinha feito";
-		mes "uma banca de Maçãs!";
-		mes "Ganhei tantas maçãs, e eu";
-		mes "acabei começando meu próprio negócio";
-		mes "aqui no Dirigível. Estranho, não acha?";
+		mes "Duas tornaram-se quatro e antes que eu percebesse, eu já tinha feito uma banca de Maçãs!";
+		mes "Ganhei tantas maçãs, e eu acabei começando meu próprio negócio aqui no Dirigível.";
+		mes "Estranho, não acha?";
 		next;
 		mes "[Vendedor de Maçãs]";
-		mes "Maçãs são boas para";
-		mes "você. Elas são";
-		mes "concerteza muito boas";
-		mes "para mim. Hahahahaah~!";
+		mes "Maçãs são boas para você.";
+		mes "Elas são concerteza muito boas para mim.";
+		mes "Hahahahaah~!";
 		close;
 	case 4:
 		mes "[Vendedor de Maçãs]";
-		mes "Obrigado por utilizar";
-		mes "a minha loja.";
+		mes "Obrigado por utilizar a minha loja.";
 		mes "Tchau~";
 		close;
 	}
@@ -629,19 +526,14 @@ airplane_01,221,158,2	script	Piloto#aeroplano_01	852,{
 		close;
 	case 2:
 		mes "[Piloto]";
-		mes "Parece ser um dia com";
-		mes "muita neblina. É Sempre";
-		mes "difícil voar quando os céus";
-		mes "não estão limpos. Acho que";
-		mes "precisaremos utilizar o radar.";
+		mes "Parece ser um dia com muita neblina.";
+		mes "É Sempre difícil voar quando os céus não estão limpos.";
+		mes "Acho que precisaremos utilizar o radar.";
 		close;
 	case 3:
 		mes "[Piloto]";
-		mes "O capitão é um excelente";
-		mes "homem e não consigo pensar";
-		mes "em ninguém melhor para comandar";
-		mes "este Aeroplano. E ainda, é";
-		mes "realmente, um piloto talentoso.";
+		mes "O capitão é um excelente homem e não consigo pensar em ninguém melhor para comandar este Aeroplano.";
+		mes "E ainda, é realmente, um piloto talentoso.";
 		next;
 		mes "[^ff0000Tarlock^000000]";
 		mes "^ff0000Eii...!^000000";
@@ -654,16 +546,12 @@ airplane_01,221,158,2	script	Piloto#aeroplano_01	852,{
 		close;
 	default:
 		mes "[Piloto]";
-		mes "Este uniforme é";
-		mes "bem elegante, mas";
-		mes "é muito chamativo para";
-		mes "usar pelo Aeroplano.";
+		mes "Este uniforme é bem elegante, mas é muito chamativo para usar pelo Aeroplano.";
 		next;
 		mes "[Piloto]";
 		mes "...";
 		mes "......";
-		mes "Realmente ninguém";
-		mes "veio a este quarto.";
+		mes "Realmente ninguém veio a este quarto.";
 		mes "E o capitão É um alce.";
 		//mes "Eu poderia somente tirar minhas cuecas."; <-- ????
 		next;
@@ -678,11 +566,8 @@ airplane_01,221,158,2	script	Piloto#aeroplano_01	852,{
 airplane_01,83,61,2	script	Dianne#01aeroplano_01	72,2,2,{
 	mes "[Dianne]";
 	mes "É tão estranho!";
-	mes "Eu venho visitar";
-	mes "o Capitão do Aeroplano";
-	mes "e tudo que vejo é esse";
-	mes "alce estúpido. Oh!";
-	mes "Não esperava por essa...";
+	mes "Eu venho visitar o Capitão do Aeroplano e tudo que vejo é esse alce estúpido.";
+	mes "Oh! Não esperava por essa...";
 	close;
 
 OnTouch:
@@ -692,28 +577,21 @@ OnTouch:
 
 airplane_01,69,63,2	script	Mendel#01aeroplano_01	55,{
 	mes "[Mendel]";
-	mes "Como eu esperava, as";
-	mes "comidas do vôo são";
-	mes "no máximo 3 estrelas.";
-	mes "*Harrrumph* Eu deveria mesmo";
-	mes "ter trazido meu cozinheiro";
-	mes "então poderia apreciar uma";
-	mes "comida de verdade.";
+	mes "Como eu esperava, as comidas do vôo são no máximo 3 estrelas.";
+	mes "*Harrrumph*";
+	mes "Eu deveria mesmo ter trazido meu cozinheiro então poderia apreciar uma comida de verdade.";
 	close;
 }
 
 airplane_01,71,31,2	script	Espadachim Shimizu#air_01	106,{
 	mes "[Espadachim Shimizu]";
-	mes "Finalmente, depois de cinco";
-	mes "anos esperando...";
+	mes "Finalmente, depois de cinco anos esperando...";
 	mes "Eu terei minha vingança!";
 	next;
 	mes "[Espadachim Shimizu]";
 	mes "Eu só...";
-	mes "Só tenho que me certificar";
-	mes "de que não perderei minha";
-	mes "parada. Mas logo, muito breve,";
-	mes "eu terei minha vingança.";
+	mes "Só tenho que me certificar de que não perderei minha parada.";
+	mes "Mas logo, muito breve, eu terei minha vingança.";
 	close;
 }
 
@@ -722,20 +600,15 @@ airplane_01,71,31,2	script	Espadachim Shimizu#air_01	106,{
 //============================================================ 
 airplane_01,32,61,4	script	Nils#ein	49,1,1,{
 	mes "[Nils]";
-	mes "Bem-vind"+(Sex?"o":"a")+" ao";
-	mes "^ff0000Desafio de Escrita de RO^000000.";
-	mes "Você gostaria de jogar";
-	mes "um rápido jogo de escrita?";
+	mes "Bem-vind"+(Sex?"o":"a")+" ao ^ff0000Desafio de Escrita de RO^000000.";
+	mes "Você gostaria de jogar um rápido jogo de escrita?";
 	next;
 	switch (select("Jogar ^ff0000Desafio de Escrita de RO^000000:Informações:Ver recordes:Cancelar")) {
 	case 1:
 		mes "[Nils]";
-		mes "Ok, nós temos";
-		mes "um novo desafio!";
-		mes "Digite o seguinte";
-		mes "texto o mais rápido";
-		mes "que puder sem cometer";
-		mes "nenhum erro! Vamos começar~!";
+		mes "Ok, nós temos um novo desafio!";
+		mes "Digite o seguinte texto o mais rápido que puder sem cometer nenhum erro!";
+		mes "Vamos começar~!";
 		setarray .@line1_1$[0],	"^3cbcbccallipygian salacius lascivious^000000",
 					"^3cbcbcPelo poder de^000000",
 					"^0000ffthkelfkskeldmsiejdlslehfndkelsheidl^000000",
@@ -814,72 +687,51 @@ airplane_01,32,61,4	script	Nils#ein	49,1,1,{
 		set .@tasoo, (.@letters[.@wordtest] / .@total_time) * 6;
 		if ((.@save1$ == .@word1$[.@wordtest]) && (.@save2$ == .@word2$[.@wordtest])) {
 			mes "[Nils]";
-			mes "Seu recorde é ^ff0000" + .@total_time + " segundos^000000 e";
-			mes "o total de letras são " + .@tasoo + ".";
+			mes "Seu recorde é ^ff0000" + .@total_time + " segundos^000000 e o total de letras são " + .@tasoo + ".";
 			next;
 			if (.@tasoo >= 1300) {
 				mes "[Nils]";
-				mes "Humm, não é possível";
-				mes "humanamente falando, a menos que";
-				mes "copie e cole toda a";
-				mes "sentença. Por favor, jogue novamente.";
+				mes "Humm, não é possível humanamente falando, a menos que copie e cole toda a sentença.";
+				mes "Por favor, jogue novamente.";
 				close;
 			}
 			if (.@tasoo >= $050320_ein_typing) {
 				mes "[Nils]";
-				mes "O recorde anterior foi";
-				mes "feito por ^0000ff" + $050320_minus1_typing$ + "^000000";
-				mes "com o total de ^0000ff" + $050320_ein_typing + "^000000 letras.";
-				mes "Porém, ^ff0000" + strcharinfo(0) + "^000000,";
-				mes "você conseguiu batê-lo.";
+				mes "O recorde anterior foi feito por ^0000ff" + $050320_minus1_typing$ + "^000000 com o total de ^0000ff" + $050320_ein_typing + "^000000 letras.";
+				mes "Porém, ^ff0000" + strcharinfo(0) + "^000000, você conseguiu batê-lo.";
 				mes "Parabéns!";
 				set $050320_minus1_typing$, strcharinfo(0);
 				set $050320_ein_typing, .@tasoo;
 				close;
-				}
-				mes "[Nils]";
-				mes "^0000ff" + $050320_minus1_typing$ + "^000000";
-				mes "esse é o recorde";
-				mes "atual conquistado com";
-				mes "um total de ^0000ff" + $050320_ein_typing + "^000000 letras.";
-				mes "Tente bater esse recorde na próxima~";
-				close;
 			}
 			mes "[Nils]";
-			mes "Aaah...";
-			mes "Me desculpe, mas";
-			mes "você digitou o";
-			mes "texto incorreto...";
+			mes "^0000ff" + $050320_minus1_typing$ + "^000000 esse é o recorde atual conquistado com um total de ^0000ff" + $050320_ein_typing + "^000000 letras.";
+			mes "Tente bater esse recorde na próxima~";
 			close;
+		}
+		mes "[Nils]";
+		mes "Aaah...";
+		mes "Me desculpe, mas você digitou o texto incorreto...";
+		close;
 
 	case 2:
 		mes "[Nils]";
-		mes "O ^ff0000Desafio de Digitação de RO^000000";
-		mes "é um jogo onde você deve digitar";
-		mes "o texto exibido o mais rápido que você";
-		mes "puder. O nome do jogador que possuir o";
-		mes "recorde será gravado nos registros. Se você";
-		mes "procura fama, essa é sua chance!";
+		mes "O ^ff0000Desafio de Digitação de RO^000000 é um jogo onde você deve digitar o texto exibido o mais rápido que você puder.";
+		mes "O nome do jogador que possuir o recorde será gravado nos registros.";
+		mes "Se você procura fama, essa é sua chance!";
 		next;
 		mes "[Nils]";
-		mes "Eu apenas gostaria de";
-		mes "dizer que você deve digitar";
-		mes "todo o texto em uma simples";
-		mes "linha que será apresentada a você.";
+		mes "Eu apenas gostaria de dizer que você deve digitar todo o texto em uma simples linha que será apresentada a você.";
 		mes "Então não pressione uma tecla, apenas clique em 'OK.'";
 		close;
 	case 3:
 		mes "[Nils]";
-		mes "^0000ff" + $050320_minus1_typing$ + "^000000";
-		mes "atualmente";
-		mes "o recordista com o";
-		mes "total de letras ^0000ff" + $050320_ein_typing + "^000000.";
+		mes "^0000ff" + $050320_minus1_typing$ + "^000000 é atualmente o recordista com o total de ^0000ff" + $050320_ein_typing + "^000000 letras.";
 		mes "Tente quebrar o recorde na próxima vez~";
 		close;
 	case 4:
 		mes "[Nils]";
-		mes "Sinta-se livre para voltar quando quiser e jogar o";
-		mes "^ff0000Desafio de Digitação de RO.^000000";
+		mes "Sinta-se livre para voltar quando quiser e jogar o ^ff0000Desafio de Digitação de RO.^000000";
 		mes "Até logo~";
 		close;
 	}
@@ -891,9 +743,7 @@ airplane_01,32,61,4	script	Nils#ein	49,1,1,{
 airplane_01,33,68,4	script	Clarice	74,{
 	mes "[Clarice]";
 	mes "Oi, eu sou Clarice~";
-	mes "Você gostaria de";
-	mes "apostar algumas maçãs";
-	mes "no amigável jogo dos Dados?";
+	mes "Você gostaria de apostar algumas maçãs no amigável Jogo dos Dados?";
 	next;
 	callfunc "jogodamaçã","Clarice";
 	end;
@@ -904,63 +754,46 @@ function	script	jogodamaçã	{
 	switch (select("Jogar:Regras do Jogo:Cancelar")) {
 	case 3:
 		mes "["+getarg(0)+"]";
-		mes "Eu estou pronta para jogar o jogo dos";
-		mes "dados quando você quiser.";
+		mes "Eu estou pronta para jogar o jogo dos dados quando você quiser.";
 		mes "Quando quiser jogar basta me dizer, certo?";
 		close;
 	case 2:
 		mes "["+getarg(0)+"]";
-		mes "As regras do Jogo dos Dados";
-		mes "são bastante simples. Primeiro, você";
-		mes "deve saber que as apostas são Maçãs.";
-		mes "Você pode apostar no máximo 50";
-		mes "Maçãs por vez. Para que tudo ocorra";
-		mes "bem, eu aceito apenas Maçãs.";
+		mes "As regras do Jogo dos Dados são bastante simples.";
+		mes "Primeiro, você deve saber que as apostas são Maçãs.";
+		mes "Você pode apostar no máximo 50 Maçãs por vez.";
+		mes "Para que tudo ocorra bem, eu aceito apenas Maçãs.";
 		next;
 		mes "["+getarg(0)+"]";
-		mes "Mas ei, se você possuir tantos zenys";
-		mes "que já não cabem mais em seus bolsos,";
-		mes "tire os para fora e você pode comprar quantas";
-		mes "maçãs quiser no Vendedor de Maçãs~";
+		mes "Mas ei, se você possuir tantos zenys que já não cabem mais em seus bolsos, tire os para fora e você pode comprar quantas maçãs quiser no Vendedor de Maçãs~";
 		next;
 		mes "["+getarg(0)+"]";
-		mes "Agora, nós iremos começar rolando";
-		mes "dois dados de 6 lados.";
-		mes "Enquanto for seu turno, você poderá";
-		mes "rolar dois dados de 6 lados. Após";
-		mes "isso, nós teremos a opção";
-		mes "de rolar um terceiro dado.";
+		mes "Agora, nós iremos começar rolando dois dados de 6 lados.";
+		mes "Enquanto for seu turno, você poderá rolar dois dados de 6 lados.";
+		mes "Após isso, nós teremos a opção de rolar um terceiro dado.";
 		next;
 		mes "["+getarg(0)+"]";
 		mes "Agora aqui é a parte importante.";
-		mes "Se ao total nos dados você atingir 12,";
-		mes "você irá a falência";
-		mes "e irá perder. Caso contrário, a";
-		mes "a pessoa com a maior pontuação";
-		mes "irá vencer. O que acha?";
+		mes "Se ao total nos dados você atingir 12, você irá a falência e irá perder.";
+		mes "Caso contrário, a pessoa com a maior pontuação irá vencer.";
+		mes "O que acha?";
 		next;
 		mes "["+getarg(0)+"]";
-		mes "Agora, primeiro você deve";
-		mes "decidir se quer jogar o";
-		mes "terceiro dado ou não. Então,";
-		mes "dependendo do seu resultado, eu irei";
-		mes "rolar meu terceiro dado... Ou talvez não.";
+		mes "Agora, primeiro você deve decidir se quer jogar o terceiro dado ou não.";
+		mes "Então, dependendo do seu resultado, eu irei rolar meu terceiro dado...";
+		mes "Ou talvez não.";
 		next;
 		mes "["+getarg(0)+"]";
-		mes "Enquanto você ganhar, você irá";
-		mes "receber o dobro de Maçãs";
-		mes "que você apostou.";
-		mes "Mas se por acaso você empatar, você irá";
-		mes "receber de volta apenas as Maçãs";
-		mes "que você apostou. Justo não?";
+		mes "Quando você ganhar, você irá receber o dobro de Maçãs que você apostou.";
+		mes "Mas se por acaso você empatar, você irá receber de volta apenas as Maçãs que você apostou.";
+		mes "Justo não?";
 		close;
 	case 1:
 		break;
 	}
 	mes "["+getarg(0)+"]";
 	mes "Ah, Então você quer jogar comigo?";
-	mes "Ótimo! Quantas Maçãs";
-	mes "você deseja apostar?";
+	mes "Ótimo! Quantas Maçãs você deseja apostar?";
 	mes "Lembre-se, seu limite são 50 Maçãs.";
 	mes "Se você deseja cancelar, por favor digite '0'.";
 	next;
@@ -969,8 +802,7 @@ function	script	jogodamaçã	{
 		if (.@amount == 0) {
 			mes "["+getarg(0)+"]";
 			mes "Mudou de idéia?";
-			mes "Eu entendo. Bem então,";
-			mes "espero que possamos jogar depois.";
+			mes "Eu entendo. Bem então, espero que possamos jogar depois.";
 			close;
 		}
 		else if (.@amount < 1 || .@amount > 50) {
@@ -981,22 +813,18 @@ function	script	jogodamaçã	{
 			continue;
 		}
 		mes "["+getarg(0)+"]";
-		mes "Então você deseja";
-		mes "apostar ^FF0000"+.@amount+"^000000 Maçãs.";
+		mes "Então você deseja apostar ^FF0000"+.@amount+"^000000 Maçãs.";
 		mes "Certo?";
 		next;
 		if (select("Sim:Não") == 2) {
 			mes "["+getarg(0)+"]";
 			mes "Hum, cometi um erro?";
-			mes "Certo, por favor digite";
-			mes "o número de Maçãs que";
-			mes "você deseja apostar.";
+			mes "Certo, por favor digite o número de Maçãs que você deseja apostar.";
 			next;
 			continue;
 		}
 		if (countitem(512) <.@amount) {
-			mes "Me desculpe, mas você";
-			mes "não possui essa quantidade de Maçãs que deseja apostar...";
+			mes "Me desculpe, mas você não possui essa quantidade de Maçãs que deseja apostar...";
 			mes "Você não pode apostar se não tem a aposta, você sabe disso.";
 			next;
 			continue;
@@ -1004,8 +832,8 @@ function	script	jogodamaçã	{
 		delitem 512,.@amount;
 		mes "["+getarg(0)+"]";
 		mes "Bom!";
-		mes "Agora nós vamos começar";
-		mes "o Jogo! Eu irei rolar primeiro~";
+		mes "Agora nós vamos começar o Jogo!";
+		mes "Eu irei rolar primeiro~";
 		break;
 	}
 	mes "^3355FF*Rolando*^000000";
@@ -1033,7 +861,7 @@ function	script	jogodamaçã	{
 	set .@jogadortotal, .@jogadorsub;
 	next;
 	mes "["+getarg(0)+"]";
-	mes "^FF0000" + strcharinfo(0) + "^000000, você possui ^FF0000" + .@jogador1 + "^000000 e ^FF0000" + .@jogador2 + "^000000. The total is ^FF0000" + .@jogadorsub + "^000000 .";
+	mes "^FF0000" + strcharinfo(0) + "^000000, você possui ^FF0000" + .@jogador1 + "^000000 e ^FF0000" + .@jogador2 + "^000000. O total é ^FF0000" + .@jogadorsub + "^000000 .";
 	next;
 	mes "["+getarg(0)+"]";
 	if(.@jogadorsub == .@tabelasub) {
@@ -1087,8 +915,7 @@ function	script	jogodamaçã	{
 		} else {
 			mes "Não faria mal tentar.";
 			mes "Bem, eu venci dessa vez.";
-			mes "Me desculpe, mas poderemos jogar";
-			mes "denovo numa próxima.";
+			mes "Me desculpe, mas poderemos jogar denovo numa próxima.";
 			close;
 		}
 		break;
