@@ -3650,8 +3650,8 @@ ACMD_FUNC(reload)
 
 			for(sd = (TBL_PC*)mapit_first(sd_cash); mapit_exists(sd_cash); sd = (TBL_PC*)mapit_next(sd_cash)) {
 					sd->status.cash_shop = true;
-					intif_broadcast(msg_txt(1478), strlen(msg_txt(1478))+1, 0);
 			}
+			intif_broadcast(msg_txt(1478), strlen(msg_txt(1478))+1, 0);
 			clif_cashshop_db();
 			mapit_free(sd_cash);
 			break;
