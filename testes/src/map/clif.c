@@ -17212,6 +17212,12 @@ void __attribute__ ((unused)) clif_parse_dull(int fd,struct map_session_data *sd
 }
 
 void clif_parse_CashShopOpen(int fd, struct map_session_data *sd) {
+
+	 if(sd->status.cash_shop == true) {
+		clif_displaymessage(sd->fd, msg_txt(1479));
+		return;
+	}
+			
 	WFIFOHEAD(fd, 10);
 	WFIFOW(fd, 0) = 0x845;
 	WFIFOL(fd, 2) = sd->cashPoints; //- switched positions to reflect proper values

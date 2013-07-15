@@ -3610,14 +3610,14 @@ ACMD_FUNC(partyrecall)
  *------------------------------------------*/
 ACMD_FUNC(reload)
 {
-	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "quest_db", "homunculus_db", "pet_db", "motd" };
+	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db", "pc_db", "groups", "quest_db", "homunculus_db", "pet_db", "motd", "cashshop" };
 	int option;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups, quest_db, homunculus_db, pet_db & motd.");
+		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db, status_db, pc_db, groups, quest_db, homunculus_db, pet_db, motd & cashshop");
 		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
@@ -3645,6 +3645,17 @@ ACMD_FUNC(reload)
 		case 7: merc_reload(); break;
 		case 8: read_petdb(); break;
 		case 9: pc_read_motd(); break;
+		case 10: {
+			struct s_mapiterator* sd_cash = mapit_getallusers();
+
+			for(sd = (TBL_PC*)mapit_first(sd_cash); mapit_exists(sd_cash); sd = (TBL_PC*)mapit_next(sd_cash)) {
+					sd->status.cash_shop = true;
+					intif_broadcast(msg_txt(1478), strlen(msg_txt(1478))+1, 0);
+			}
+			clif_cashshop_db();
+			mapit_free(sd_cash);
+			break;
+		}
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
