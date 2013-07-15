@@ -5578,7 +5578,7 @@ void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, e
  *------------------------------------------*/
 void clif_GlobalMessage(struct block_list *bl, const char *message, enum send_target target)
 {
-	char buf[100];
+	char buf[150];
 	int len;
 	nullpo_retv(bl);
 
@@ -10529,7 +10529,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 	}
 
 	// if player ignores everyone
-	if(dstsd->state.ignoreAll) {
+	if(dstsd->state.ignoreAll && pc_get_group_level(sd) <= pc_get_group_level(dstsd)) {
 		if(dstsd->sc.option & OPTION_INVISIBLE && pc_get_group_level(sd) < pc_get_group_level(dstsd))
 			clif_wis_end(fd, 1); // 1: target character is not loged in
 		else
