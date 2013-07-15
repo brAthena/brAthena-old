@@ -2579,6 +2579,9 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 		flag|=SD_ANIMATION;
 	}
 
+	if(sc && sc->data[SC_HOVERING] && (skill_id == LG_MOONSLASHER || skill_id == SR_WINDMILL))
+		return 0;
+	
 	if(sd) {
 		int flag = 0; //Used to signal if this skill can be combo'ed later on.
 		struct status_change_entry *sce;
