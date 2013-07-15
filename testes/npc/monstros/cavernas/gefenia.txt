@@ -35,7 +35,7 @@ gefenia01,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,10,0,0,0
 gefenia01,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
 gefenia01,0,0,0,0	monster	Mysteltainn	1203,1,10800000,7200000,0
 gefenia01,0,0,0,0	monster	Executor	1205,1,18000000,14400000,0
-gefenia01,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
+gefenia01,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0,{}
 
 //==================================================
 // [Renovação] gefenia01 - Geffenia 1
