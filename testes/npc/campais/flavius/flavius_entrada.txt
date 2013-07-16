@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Batalhas Campais - Entrada Flavius     |
+//   | Nome do Script: flavius_entrada.txt                    |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -66,7 +66,7 @@ bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
 			} else {
 					if ( (.@npcbgf3 == 1) && $@FlaviusBG1 > 0 || (.@npcbgf3 == 2) && $@FlaviusBG2 > 0) {
 						mes "[Oficial do Exército "+.@npcbgf$+"]";
-					mes "Uma unidade do batalhão já está preparada e esperando ser despachada ao campo de batalha.";
+						mes "Uma unidade do batalhão já está preparada e esperando ser despachada ao campo de batalha.";
 						mes "Por que você não espera um instante? Eu aconselho você a afiar suas armas e preparar seus suprimentos até a hora da batalha.";
 					} else {
 						mes "[Oficial do Exército "+.@npcbgf$+"]";
@@ -117,6 +117,8 @@ bat_room,135,178,5	script	Cavaleiro Guillaume#3	417,{
 	close;
 }
 
+//============================================================
 bat_room,151,178,5	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Guillaume#4	417
 bat_room,135,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#3	413
 bat_room,151,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#4	413
+//============================================================

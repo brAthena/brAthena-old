@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.1/2.1/1.2                         |
+//   | Versões eA/rA/brA: 2.1/2.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Prontera.                 |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Otimização [Architect]                             |
+//   | 1.3 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -122,17 +123,14 @@ prontera,216,70,2	script	Strife#pront	48,{
 	if (Class == Job_Novice) {
 		if (event_prt_nov_dreamtalk == 0) {
 			mes "Ufa!";
-			mes "Homem oh homem...";
-			mes "Eu vou ser como";
-			mes "Um cavaleiro impressionante!";
+			mes "Homem oh homem... Eu vou ser como um cavaleiro incrível!";
 			next;
 			mes "[Strife]";
-			mes "Eu sei, eu sei ...";
+			mes "Eu sei, eu sei...";
 			mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie impressionante. E, depois que ...";
 			next;
 			mes "[Strife]";
-			mes "Eu vou ser o mais";
-			mes "Impressionante  cavaleiro dos arredores!";
+			mes "Eu vou ser o mais impressionante  cavaleiro dos arredores!";
 			mes "É...  É o meu sonho mais precioso.";
 			next;
 			mes "[Strife]";
@@ -143,8 +141,7 @@ prontera,216,70,2	script	Strife#pront	48,{
 				mes "[Strife]";
 				mes "Uau...";
 				mes "Isso é tão impressionante!";
-				mes "Nós  compartilhamos";
-				mes "do mesmo sonho!";
+				mes "Nós compartilhamos do mesmo sonho!";
 				next;
 				mes "[Strife]";
 				mes "Ei, se você quiser se tornar um Swordie, você tem que ir para Izlude. Lá, você pode ir em frente e fazer o teste para  o  emprego de Swordman. A primeira vez, eu, falhei miseravelmente. Mas eu não vou deixar isso acontecer  de novo!";
@@ -167,12 +164,10 @@ prontera,216,70,2	script	Strife#pront	48,{
 			next;
 			mes "[Strife]";
 			mes "Estou com tanta inveja";
-			mes "Acho que  isso significa,";
-			mes "que, agora, ";
-			mes "tenho que treinar ainda mais duro!";
+			mes "Acho que  isso significa, que, agora, tenho que treinar ainda mais duro!";
 			next;
 			set event_prt_nov_dreamtalk,2;
-			getitem 2501,1; //Hood
+			getitem 2501,1; // Capuz
 			mes "[Strife]";
 			mes "Bom, isto é pra você para te ajudar a ficar ainda mais forte. Acho que devo lhe agradecer por ser um bom exemplo";
 			close;
@@ -182,17 +177,14 @@ prontera,216,70,2	script	Strife#pront	48,{
 		}
 		mes "[Strife]";
 		mes "Ufa!";
-		mes "Homem  oh homem...";
-		mes "Eu vou ser como";
-		mes "um Cavaleiro incrível !";
+		mes "Homem oh homem... Eu vou ser como um cavaleiro incrível!";
 		next;
 		mes "[Strife]";
 		mes "Eu sei, eu sei ...";
 		mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie incrível.E depois disso...";
 		next;
 		mes "[Strife]";
-		mes "eu vou ser o mais";
-		mes "Incrível dos cavaleiros dos arredores.";
+		mes "Eu vou ser o mais incrível dos cavaleiros dos arredores.";
 		mes "É... É o meu sonho mais precioso.";
 		next;
 		if (select("Faça o seu melhor.:Para com isso, garoto.") == 1) {
@@ -255,10 +247,7 @@ prt_in,26,31,0	script	Um Velho Homem#2pront	54,{
 	mes "Lá, eu vi uma luz trêmula. Eu estava completamente cativado e fui abordá-la. Deve ter sido algum tipo de fada bela ...";
 	next;
 	mes "[Velho Homem]";
-	mes "Mas quando eu cheguei";
-	mes "perto o suficiente";
-	mes "eu vi que era";
-	mes "um ^000077Besouro Ladrão^000000!";
+	mes "Mas quando eu cheguei perto o suficiente eu vi que era um ^000077Besouro Ladrão^000000!";
 	next;
 	mes "[Velho Homem]";
 	mes "Eu nunca vi um Besouro Ladrão brilhando com uma luz antes! As vezes o você pensa que já viu de tudo... ";
@@ -276,8 +265,7 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 	mes "Eu não posso fazer o meu ultra menu agradável, com ingredientes comuns porque ele é  super especial!";
 	next;
 	mes "[Garçon]";
-	mes "Então, eu tenho contato com caçadores campeões que trazem bastante ingredientes frescos e especiais";
-	mes "Mas a demanda tem excedido a oferta nestes dias.";
+	mes "Então, eu tenho contato com caçadores campeões que trazem bastante ingredientes frescos e especiais mas a demanda tem excedido a oferta nestes dias.";
 	next;
 	mes "[Garçon]";
 	mes "Eu não posso manter o meu negócio equilibrado  sem o meu menu especial 'Crunch Crunch Savory Sour 'e' Yum Yum'...* Sigh *";
@@ -291,7 +279,7 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 			mes "Há rumores de que os números das formigas têm sido muito maior, e elas se tornaram mais violentas, de modo que ninguém quer ficar no lugar.";
 			next;
 			mes "[Garçon]";
-			mes "* Sigh *... Tenho medo de que meus dias estejam contados no ramo do negócio agora.";
+			mes "* Suspiro *... Tenho medo de que meus dias estejam contados no ramo do negócio agora.";
 			next;
 			break;
 		case 2:
@@ -300,7 +288,7 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 			mes "Dizem que eles se tornaram muito violentos e abelhas construíram seu habitat, naquele  lugar, de modo que ninguém quer entrar ali.";
 			next;
 			mes "[Garçon]";
-			mes "* Sigh *... Tenho medo de que meus dias estão contados no ramo do negócio agora.";
+			mes "* Suspiro *... Tenho medo de que meus dias estão contados no ramo do negócio agora.";
 			next;
 			break;
 		case 3:
@@ -317,21 +305,20 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 
 prt_in,173,24,2	script	Shevild#pront	85,{
 	mes "[Shevild]";
-	mes "Ei, venham aqui vamos beber! Tenho muitas histórias interessantes para contar! ";
+	mes "Ei, venham aqui vamos beber! Tenho muitas histórias interessantes para contar!";
 	mes "Sei muitas coisas sobre Prontera. Tenho visto muitas belas vistas e também tenho explorado alguns esconderijo de monstros em torno desta cidade.";
 	next;
 	if (select("Pode me contar mais?:Cancelar") == 1) {
 		mes "[Shevild]";
 		mes "Eu posso parecer um homem embriagado, mas eu sou mais do que possam ver.";
-		mes "Bem, aconteceu que quando eu entrei em alguns  lugares para transportar armas para caçadores ou para a entrega de animais ";
-		mes "Você pode me encarar  como um simples entregador,";
+		mes "Bem, aconteceu que quando eu entrei em alguns  lugares para transportar armas para caçadores ou para a entrega de animais você pode me encarar  como um simples entregador,";
 		next;
 		mes "[Shevild]";
-		mes "Mas estou muito orgulhoso do meu trabalho. Você sabe o quão duro o mundo se tornou? ";
+		mes "Mas estou muito orgulhoso do meu trabalho. Você sabe o quão duro o mundo se tornou?";
 		mes "Não importa o quanto uma obra é, eu não tenho medo de fazer isso.";
 		next;
 		mes "[Shevild]";
-		mes "De qualquer forma, é assim que eu ter explorado alguns lugares estranhos como tocas monstro ... ";
+		mes "De qualquer forma, é assim que eu ter explorado alguns lugares estranhos como tocas monstro...";
 		mes "Essa é também uma razão para eu manter o meu trabalho.";
 		mes "Ah, eu só lembro de ter ido para  dentro do labirinto de  uma floresta asustadora!";
 		next;
@@ -341,11 +328,11 @@ prt_in,173,24,2	script	Shevild#pront	85,{
 			mes "Sim. Poucos dias atrás, eu entrei num labirinto misterioso seguindo a sequência de um grupo de caçadores no norte de Prontera.";
 			next;
 			mes "[Shevild]";
-			mes "Eles disseram que eles poderiam obter lotes e lotes de itens raros do labirinto, mesmo que o labirinto fosse preenchido por  monstros  terrivelmente fortes.";
+			mes "Eles disseram que eles poderiam obter lotes e lotes de itens raros do labirinto, mesmo que o labirinto fosse preenchido por monstros  terrivelmente fortes.";
 			mes "Então fomos lá, mas assim que entramos, estávamos apenas preso dentro do labirinto ainda, você sabe.";
 			next;
 			mes "[Shevild]";
-			mes "Nós estávamos apenas andando em circulos  e então decidimos deixar o lugar. Aquilo  era um inferno em forma  de  labirinto.";
+			mes "Nós estávamos apenas andando em circulos  e então decidimos deixar o lugar. Aquilo  era um inferno em forma de labirinto.";
 			mes "Mas eu pus minha cabeça que eu iria explorar com sucesso aquele  labirinto um dia.";
 			next;
 			if (select("Agora eu posso entrar aqui?:Cancelar") == 1) {
@@ -355,13 +342,13 @@ prt_in,173,24,2	script	Shevild#pront	85,{
 				close;
 			}
 			mes "[Shevild]";
-			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
+			mes "Sim, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 
 		case 2:
 			mes "[Shevild]";
 			mes "Quando você vai para fora do Prontrea mais ou menos  na  direção nordeste, chega-se as ruínas pacíficas. Eu estive lá há um tempo atrás, para entregar algo a um padre.";
-			mes "Eu tive que passar por uma floresta no caminho para as ruínas, ea floresta estava cheia de macacos e guaxinins.";
+			mes "Tive que passar por uma floresta no caminho para as ruínas, ea floresta estava cheia de macacos e guaxinins.";
 			next;
 			mes "[Shevild]";
 			mes "Esteja avisado que a floresta não é um lugar para ir a um piquenique. Se algo cair no chão, os macacos saem do nada e tirarão  todas as suas posses.";
@@ -373,12 +360,12 @@ prt_in,173,24,2	script	Shevild#pront	85,{
 				close;
 			}
 			mes "[Shevild]";
-			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
+			mes "Sim, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 
 		case 3:
 			mes "[Shevild]";
-			mes "Yeap, seja cuidadoso quando for se aventurar sozinho ~";
+			mes "Sim, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 		}
 	}
@@ -413,7 +400,7 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 		mes "Bem, ainda assim, sinto que tomar a rota cênica valeu a pena. Havia alguns pontos turísticos  magníficos pelo o caminho.";
 		next;
 		mes "[TenSue]";
-		mes "Até Mesmo a cidade de Al de Baran é uma visão esplêndida para os olhos, com sua arquitetura elegante e romântico canal.";
+		mes "Até mesmo a cidade de Al de Baran é uma visão esplêndida para os olhos, com sua arquitetura elegante e romântico canal.";
 		next;
 		mes "[TenSue]";
 		mes "A sede Corporação  da Kafra  também está localizada em Al de Baran. Você realmente deve parar para checar tudo.";
@@ -656,7 +643,7 @@ prt_church,103,71,0	script	Henson#pront	120,{
 			mes "O ^6666CCSignum Crusis^000000 é uma habilidade que reduz a Defesa de monstros mortos-vivos ou propriedades das Trevas. Tem um amploe poder e é  bastante poderoso.";
 			next;
 			mes "[Henson]";
-			mes "Entanto, é uma habilidade muito difícil de usar, e tem uma taxa de sucesso relativamente baixo. Mas, não se desespere se esta habilidade não for  é bem sucedida o tempo todo.";
+			mes "Entanto, é uma habilidade muito difícil de usar, e tem uma taxa de sucesso relativamente baixo. Mas, não se desespere se esta habilidade não for é bem sucedida o tempo todo.";
 			next;
 			mes "[Henson]";
 			mes " Quando ela não funciona, ele lhe dará uma vantagem grande batalha.Lembre-se, você vai usar ^6666CCFlagelo do Mal Level 3^000000 para adquirir esta habilidade ..";
@@ -667,7 +654,7 @@ prt_church,103,71,0	script	Henson#pront	120,{
 			mes "A  ^6666CCEscudo Sagrado^000000 permite-lhe gerar uma barreira que irá bloquear todos os ataques de longo alcance em um certo intervalo, a criação de uma zona que irá protegê-lo dos monstros que atacam à distância. ";
 			next;
 			mes "[Henson]";
-			mes "Para tornar-se pronto para aprender Pneuma, você deve primeiro dominar completamente o  ^6666CCPortal^000000 .";
+			mes "Para tornar-se pronto para aprender Pneuma, você deve primeiro dominar completamente o ^6666CCPortal^000000.";
 			next;
 			break;
 		case 6:
@@ -675,7 +662,7 @@ prt_church,103,71,0	script	Henson#pront	120,{
 			mes "Nada escapa aos olhos do Santo! ^6666CCRevelação^000000 permite-lhe ver monstros, assim como outros aventureiros, que estão escondidos ou invisíveis.";
 			next;
 			mes "[Henson]";
-			mes "Uma vez que você aprende a usar Revelação , você será capaz de aprender o ^6666CCTeleporte^000000 .";
+			mes "Uma vez que você aprende a usar Revelação , você será capaz de aprender o ^6666CCTeleporte^000000.";
 			next;
 			break;
 		case 7:
@@ -689,7 +676,7 @@ prt_church,103,71,0	script	Henson#pront	120,{
 			mes "Quando a habilidade Teleporte é dominada, você pode usar teleport como último portal salvo que você fez com uma Funcionária Kafra. Eu não sei porque é dessa maneira, mas o Senhor trabalha de maneiras misteriosas.";
 			next;
 			mes "[Henson]";
-			mes "Quando Teleporte é dominado, você também pode aprender a usar o ^6666CCPortal^000000 . ";
+			mes "Quando Teleporte é dominado, você também pode aprender a usar o ^6666CCPortal^000000.";
 			next;
 			break;
 		case 8:

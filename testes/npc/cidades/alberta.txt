@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.5/1.6/1.2                         |
+//   | Versões eA/rA/brA: 1.5/1.6/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Alberta.                  |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Dani]                              |
 //   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Formatação nos Diálogos [Holy & lututuiBR]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -43,8 +44,7 @@ alberta,97,51,0	script	Fabian	84,{
 alberta,53,39,0	script	Steiner	100,{
 	mes "[Steiner]";
 	mes "Ah...!";
-	mes "Bem-vindo à Alberta,";
-	mes "jovem aventureiro!";
+	mes "Bem-vindo à Alberta, jovem aventureiro!";
 	next;
 	mes "[Steiner]";
 	mes "Perdoe-me se pareço distraído. Eu estou tentando fazer um plano. Está vendo? Eu ouvi que existe uma Loja em Geffen que vende armaduras que são resistentes à magia.";
@@ -59,7 +59,7 @@ alberta,20,183,0	script	Chad	49,{
 	mes "As pessoas dizem que a lendária arma Gungnir nunca erra o alvo. Pergunto-me se é possivelmente verdade...";
 	next;
 	mes "[Chad]";
-	mes "As pessoas também dizem que os bebês são feitos por cegonhas antes da entrega, que meninas desenterraram caras que agem como idiotas, e que Papai Noel existe! Mas só em Lutie.";
+	mes "Também dizem que os bebês são feitos por cegonhas antes da entrega, que meninas desenterraram caras que agem como idiotas, e que Papai Noel existe! Mas só em Lutie.";
 	next;
 	mes "[Chad]";
 	mes "Pergunto-me...";
@@ -237,10 +237,7 @@ alb2trea,39,50,6	script	Fisk#a2t	100,{
 alberta,195,151,4	script	Paul	86,{
 	mes "[Paul]";
 	mes "Bom dia!";
-	mes "Você gostaria de";
-	mes "participar da equipe";
-	mes "de exploração do";
-	mes "navio afundado?";
+	mes "Você gostaria de participar da equipe de exploração do navio afundado?";
 	next;
 	mes "[Paul]";
 	mes "Ah! Antes de entrar, devo avisá-lo. Se você não é forte e corajoso, talvez seja melhor não ir.";

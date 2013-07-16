@@ -81,8 +81,7 @@ alberta,245,69,3	script	Barqueiro de Kunlun#gon	776,{
 				end;
 			}
 			mes "[Wabakho]";
-			mes "Sinto muito, você precisa de";
-			mes "10 000 zenys para viajar à Kunlun.";
+			mes "Sinto muito, você precisa de 10 000 zenys para viajar à Kunlun.";
 			mes "Certifique-se de ter dinheiro suficiente em suas mãos. Obrigado e retorne quando quiser!";
 			close;
 		}
@@ -116,8 +115,7 @@ gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	776,{
 	}
 	mes "[Wabakho]";
 	mes "Aproveite sua estadia, meu convidado.";
-	mes "Provavelmente ainda existem muitos";
-	mes "lugares para você visitar.";
+	mes "Provavelmente ainda existem muitos lugares para você visitar.";
 	close;
 }
 
@@ -217,8 +215,7 @@ gon_in,73,82,5	script	Ji Chung Zhe#gon	778,{
 		mes "Sou Ji Chung Zhe, um renomado fazedor de chás. Todo dia, dedico meu esforço para fazer deliciosos chás.";
 		next;
 		mes "[Ji Chung Zhe]";
-		mes "*Suspiro* Mas ultimamente, meus chás";
-		mes "não estão tão maravilhosos...";
+		mes "*Suspiro* Mas ultimamente, meus chás não estão tão maravilhosos...";
 		mes "Se eu tivesse alguns ingredientes especiais...";
 		next;
 		mes "[Ji Chung Zhe]";

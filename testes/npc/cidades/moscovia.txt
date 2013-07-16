@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.2/1.2                         |
+//   | Versões eA/rA/brA: 1.1/1.2/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Moscóvia.                 |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Otimização [Holy & Hold]                           |
+//   | 1.3 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -36,53 +37,38 @@ alberta,246,51,4	script	Oficial de Moscovia#1	960,{
 	switch(select("Sobre Moscovia...:Ir para Moscovia.:Cancelar")) {
 	case 1:
 		mes "[Oficial de Moscovia]";
-		mes "Moscovia é um lindo reino,";
-		mes "uma ilha localizada no norte";
-		mes "de Rune-Midgard.";
+		mes "Moscovia é um lindo reino, uma ilha localizada no norte de Rune-Midgard.";
 		next;
 		mes "[Oficial de Moscovia]";
-		mes "Sei que você ficará";
-		mes "fascinado pelo lindo";
-		mes "cenário de Moscovia,";
-		mes "e pelo belo palácio.";
+		mes "Sei que você ficará fascinado pelo lindo cenário de Moscovia, e pelo belo palácio.";
 		next;
 		mes "[Oficial de Moscovia]";
-		mes "Agora que nosso longo";
-		mes "inverno passou, estou";
-		mes "feliz por poder mostrar a você";
-		mes "nossa linda cidade.";
+		mes "Agora que nosso longo inverno passou, estou feliz por poder mostrar a você nossa linda cidade.";
 		next;
 		mes "[Oficial de Moscovia]";
-		mes "Se você quiser visitar";
-		mes "Moscovia, vá agora!";
-		mes "Eu levarei você em uma boa";
-		mes "viagem por Moscovia!";
+		mes "Se você quiser visitar Moscovia, vá agora!";
+		mes "Eu levarei você em uma boa viagem por Moscovia!";
 		close;
 
 	case 2:
 		mes "[Oficial de Moscovia]";
 		mes "Ok, vamos começar agora.";
-		mes "Você deve me pagar 10 000 zenys";
-		mes "para ir a Moscovia.";
-		mes "Mas não precisa pagar";
-		mes "para voltar.";
+		mes "Você deve me pagar 10 000 zenys para ir a Moscovia.";
+		mes "Mas não precisa pagar para voltar.";
 		next;
 		mes "[Oficial de Moscovia]";
 		mes "Podemos ir?";
 		next;
 		if (select("Vamos!:Cancelar") == 2) {
 			mes "[Oficial de Moscovia]";
-			mes "Se você está ocupado agora,";
-			mes "me avise quando quiser ir.";
+			mes "Se você está ocupado agora, me avise quando quiser ir.";
 			mes "Estou sempre pronto para guiar alguém por Moscovia.";
 			close;
 		}
 			mes "[Oficial de Moscovia]";
       if (Zeny < 10000) {
-			mes "Sinto muito, mas você";
-			mes "não tem dinheiro suficiente.";
-			mes "Precisa de 10 000 zenys";
-			mes "para ir a Moscovia.";
+			mes "Sinto muito, mas você não tem dinheiro suficiente.";
+			mes "Precisa de 10 000 zenys para ir a Moscovia.";
 			mes "Obrigado.";
 			close;
       }
@@ -93,8 +79,7 @@ alberta,246,51,4	script	Oficial de Moscovia#1	960,{
 			end;
 	case 3:
 		mes "[Oficial de Moscovia]";
-		mes "Se você está ocupado agora,";
-		mes "me avise quando quiser ir.";
+		mes "Se você está ocupado agora, me avise quando quiser ir.";
 		mes "Estou sempre pronto para guiar alguém por Moscovia.";
 		close;
 	}
@@ -104,13 +89,11 @@ moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
 	mes "[Oficial de Moscovia]";
 	mes "Como foi sua viagem?";
 	mes "Tem boas lembranças de Moscovia?";
-	mes "Um navio sairá agora";
-	mes "para Rune-Midgard.";
+	mes "Um navio sairá agora para Rune-Midgard.";
 	next;
 	if (select("Retornar para Alberta:Cancelar") == 2) {
 		mes "[Oficial de Moscovia]";
-		mes "Se quiser passear mais,";
-		mes "leve o tempo que quiser.";
+		mes "Se quiser passear mais, leve o tempo que quiser.";
 		close;
 	}
 	mes "[Oficial de Moscovia]";

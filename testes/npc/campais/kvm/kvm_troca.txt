@@ -30,10 +30,9 @@ bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
 		set kvm_point,kvm_point+.@pointstoadd;
 		mes "[Negociante do KvM]";
 		mes "O que eu vejo aqui, estes são os "+getitemname(7773)+"(ões)?";
-		mes "Já não aceitamos mais este tipo de moeda,";
-		mes "mas eu posso trocá-los para você,";
+		mes "Já não aceitamos mais este tipo de moeda, mas eu posso trocá-los para você.";
 		mes "Então você possui "+.@pointstoadd+" "+getitemname(7773)+"(s)?";
-		mes "Então tá, tudo certo! Agora você possui ^580080"+ kvm_point +"^000000 Pontos do KvM.";
+		mes "Tudo certo! Agora você possui ^580080"+ kvm_point +"^000000 Pontos do KvM.";
 		next;
 	}
 	if (checkweight(1201,1) == 0) {
@@ -46,10 +45,8 @@ bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
 	}
 	mes "[Negociante do KvM]";
 	mes "Olá!";
-	mes "Eu sou o encarregado de distribuir";
-	mes "as recompensas por troca com os Pontos do KvM.";
-	mes "Qualquer seleção errada do item que você o fizer";
-	mes "não será revertida, ou seja, não aceitamos devoluções.";
+	mes "Eu sou o encarregado de distribuir as recompensas por troca com os Pontos do KvM.";
+	mes "Qualquer seleção errada do item que você o fizer não será revertida, ou seja, não aceitamos devoluções.";
 	mes "Por favor tenha cuidado. Selecione o próximo passo por gentileza.";
 	next;
 	set .@name$,strcharinfo(0);
@@ -57,18 +54,15 @@ bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
 	case 1:
 		mes "[Negociante do KvM]";
 		mes "Aqui está o Catálogo dos itens do KvM.";
-		mes "Cada arma pode ser comprada por 2.000 pontos";
-		mes "e cada Equipamento sai entre 10 a 1.200 pontos.";
-		mes "Então tome cuidado ao escolher entre";
-		mes "todas as recompensas.";
+		mes "Cada arma pode ser comprada por 2.000 pontos e cada Equipamento sai entre 10 a 1.200 pontos.";
+		mes "Então tome cuidado ao escolher entre todas as recompensas.";
 		close2;
 		ReadBook 11017,1;
 		end;
 	case 2:
 		mes "[Negociante do KvM]";
 		mes "Quais itens você deseja saber mais?";
-		mes "Para uma detalhada especificação de cada";
-		mes "um dos itens, por favor consulte o nosso";
+		mes "Para uma detalhada especificação de cada um dos itens, por favor consulte o nosso";
 		mes "^3131FFCatálogo^000000.";
 		next;
 		switch(select("Armas:Equipamentos/Acessórios:Equipamentos Industrializados/Acessórios Industrializados:Equipamentos Baratos/Acessórios Baratos")) {

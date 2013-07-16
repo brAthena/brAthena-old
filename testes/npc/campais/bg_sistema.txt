@@ -8,13 +8,14 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Sistema das Batalhas Campais           |
+//   | Nome do Script: bg_sistema.txt                         |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.3/1.2/1.2                         |
 //   |--------------------------------------------------------|
-//   | Descrição: NPC's da Batalha Campal                     |
+//   | Descrição: Sistema das Batalhas Campais                |
+//   |   NPC's da Batalha Campal                              |
 //   | - Gerais e Acessores                                   |
 //   | - Teleportador da Batalha Campal                       |
 //   | - Recrutadora da Batalha Campal                        |
@@ -461,7 +462,7 @@ bat_room,160,150,3	script	Erundek	109,{
 		default: break;
 	}
 	mes "Você pode trocar este item com ^FF0000"+.@Items[.@i+1]+" "+getitemname(7828)+" ou "+.@Items[.@i+1]+" "+getitemname(7829)+"^000000.";
-	mes "Você deseja realizar a transação?";
+	mes "Deseja realizar a transação?";
 	next;
 	if(select("Não trocar.:Trocar") == 1) {
 		mes "[Erundek]";

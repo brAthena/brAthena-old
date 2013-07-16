@@ -36,12 +36,12 @@ manuk,304,195,5	script	Soldado#ep13pa829	454,{
 }
 
 manuk,274,239,5	script	Soldado#ep13_2	455,{
-		mes "[Soldado ferido de Manuk]";
+		mes "[Soldado Ferido de Manuk]";
 	if (isequipped(2782)) {
 		mes "Não posso absorver a Essência de Bradium por causa do meu ferimento fatal.";
 		mes "Aquelas fadas perversas me atacaram e me deixaram assim.";
 		next;
-		mes "[Soldado ferido de Manuk]";
+		mes "[Soldado Ferido de Manuk]";
 		mes "Eu gostaria de poder matar todas as fadas...";
 		close;
     }
@@ -66,8 +66,7 @@ manuk,100,100,3	script	Piom	454,{
 		mes "[Piom]";
 	if ((isequipped(2782)) && (ep13_2_rhea == 100)) {
 		mes "Você é... pequeno. Mas você não parecer uma Fada.";
-		mes "Já que você não é uma maldita ,";
-		mes "então você não é nosso inimigo!";
+		mes "Já que você não é uma maldita, então você não é nosso inimigo!";
 		mes "Neste mundo, há apenas amigos ou inimigos!";
 		close;
     }
@@ -227,8 +226,7 @@ manuk,183,185,5	script	Piom#ep13_2_3	454,{
 manuk,256,143,3	script	Galtun#ep13_2_3	450,{
 		mes "[Galtun]";
 	if ((isequipped(2782)) && (ep13_2_rhea == 100)) {
-		mes "Vou me dedicar a";
-		mes "proteger a minha família e os Saphas.";
+		mes "Vou me dedicar a proteger a minha família e os Saphas.";
 		mes "Isso é tudo que eu quero...";
 		close;
     }

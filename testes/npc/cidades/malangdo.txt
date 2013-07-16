@@ -19,8 +19,8 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Hold & Holy]                           |
-//   | 1.2 Tradução [RoDrIgO]                                 |	
-//   | 1.3 Revisão [Gordis]                                   | 	
+//   | 1.2 Tradução PT-BR [RoDrIgO & Gordis]                  |
+//   | 1.3 Revisão [Gordis]                                   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -372,35 +372,32 @@ OnTouch:
 	end;
 }
 
-malangdo,164,203,3	script	Cat Trainer#mal2	853,{
+malangdo,164,203,3	script	Treinador de Gatos#mal2	853,{
 	emotion e_awsm;
-	mes "[Cat Trainer]";
-	mes "Ooo~ their soft puffy tails and soft fur~";
-	mes "I can't stand it, this is heaven~~!!";
+	mes "[Treinador de Gatos]";
+	mes "Ooo~ sua longa cauda e sua pele macia~";
+	mes "Eu não aguento mais, isso é o céu~~!!";
 	next;
 	emotion e_gg;
-	mes "[Cat Trainer]";
-	mes "This is my little secret called";
-	mes "^FF0000Silvervine Fruit^000000. I can use";
-	mes "it to make the Malangdo cats my";
-	mes "slaves~ muahahahaha~!";
+	mes "[Treinador de Gatos]";
+	mes "Este é o meu pequeno segredo chamado de ^FF0000Fruta dos Gatos Madura^000000. Eu posso usá-la e fazer com que todos os gatos de Malangdo sejam meus escravos~ muahahahaha~!";
 	next;
-	select("^FF0000Silvervine Fruit^000000?");
-	mes "[Cat Trainer]";
-	mes "Hmm, I guess it's no wonder you don't know.";
-	mes "These Malangdo cats can't resist it.";
-	mes "But it's too rare of an item to get so you shouldn't bother trying to find it.";
+	select("^FF0000Fruta dos Gatos Madura^000000?");
+	mes "[Treinador de Gatos]";
+	mes "Hum, é de admirar que você não a conheça.";
+	mes "Esses gatos de Malangdo não resistem a ela.";
+	mes "Mas é um item muito raro de se conseguir, por isso nem se preocupe em encontrá-la.";
 	next;
-	select("Where can I get ^FF0000Silvervine Fruit^000000?");
-	mes "[Cat Trainer]";
-	mes "Actually, it's simple. You just...";
+	select("Onde posso conseguir uma ^FF0000Fruta dos Gatos Madura^000000?");
+	mes "[Treinador de Gatos]";
+	mes "Atualmente, isso é simples. Você apenas...";
 	next;
-	mes "[Cat Trainer]";
-	mes "Hey, you almost made me tell my secret.";
+	mes "[Treinador de Gatos]";
+	mes "Ei, você quase me fez dizer meu segredo.";
 	next;
 	emotion e_gg;
-	mes "[Cat Trainer]";
-	mes "One day these cats will be mine.";
-	mes "I can be a king in Malangdo~ ohhh~!";
+	mes "[Treinador de Gatos]";
+	mes "Um dia todos esses gatos serão meus.";
+	mes "Eu me tornarei um Rei em Malangdo~ ohhh~!";
 	close;
 }

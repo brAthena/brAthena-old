@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/1.7/1.2                         |
+//   | Versões eA/rA/brA: 1.7/1.7/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Lutie.                    |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -30,8 +31,7 @@ aldebaran,223,222,4	script	Sr. Noel	718,{
 	mes "[Senhor Noel]";
 	mes "Ho Ho Ho~";
 	mes "Feliz Natal!!";
-	mes "Desejo toda a felicidade";
-	mes "natalina para você!";
+	mes "Desejo toda a felicidade natalina para você!";
 	next;
 	switch(select("Sobre Lutie:Ir para 'Lutie':Cancelar")) {
 		case 1:
@@ -105,18 +105,14 @@ xmas_in,167,173,4	script	Duffle	711,{
 		mes "Bem-vindo a Lutie!";
 		next;
 		mes "[Duffle]";
-		mes "Você ganhou um presente";
-		mes "do Papai Noel?!";
-		mes "Ha ha, você deve estar";
-		mes "muito animado!";
+		mes "Você ganhou um presente do Papai Noel?!";
+		mes "Ha ha, você deve estar muito animado!";
 		next;
 		mes "[Duffle]";
 		mes "Ei, você sabia que aqui em Lutie nós temos outra atração tão famosa quanto o Papai Noel?";
 		next;
 		mes "[Duffle]";
-		mes "É o ^3355FFBoneco de Neve^000000,";
-		mes "o homem de neve";
-		mes "falante!";
+		mes "É o ^3355FFBoneco de Neve^000000, o homem de neve falante!";
 		next;
 		mes "[Duffle]";
 		mes "Antes de ir embora, você realmente deve procurar Boneco de Neve. Ele é muito legal, e é divertido conversar com ele.";
@@ -156,9 +152,7 @@ xmas_in,27,103,4	script	Mima	701,{
 	mes "[Mima]";
 	switch (xmas_npc) {
 	case 5:
-		mes "Hmm? Aquele cabeludo";
-		mes "falou bem de mim,";
-		mes "não é? Bem...";
+		mes "Hmm? Aquele cabeludo falou bem de mim, não é? Bem...";
 		next;
 		mes "[Mima]";
 		mes "Eu sei o que ele quer... Ho ho ho~! Ele quer me deixar feliz para que eu dê a ele vegetais de graça! Ah bem~!";
@@ -182,8 +176,7 @@ xmas_in,27,103,4	script	Mima	701,{
 		mes "Se você realmente for amigo do Boneco de Neve, ele confiará em você para me devolver. E de qualquer forma, eu preciso do Sal de volta.";
 		next;
 		mes "[Mima]";
-		mes "Agora seja um bom";
-		mes "menino e se apresse.";
+		mes "Agora seja um bom menino e se apresse.";
 		mes "Volte rápido~";
 		set xmas_npc,6;
 		close;
@@ -194,8 +187,7 @@ xmas_in,27,103,4	script	Mima	701,{
 		mes "[Mima]";
 		mes "Você trouxe?";
 		mes "Oh Deus...!";
-		mes "Em breve poderei";
-		mes "temperar meus vegetais!";
+		mes "Em breve poderei temperar meus vegetais!";
 		next;
 		mes "[Mima]";
 		mes "Você...";
@@ -277,9 +269,7 @@ xmas_in,27,103,4	script	Mima	701,{
 xmas,117,304,4	script	Poze	713,{
 		mes "[Poze]";
 	if(xmas_npc == 3 || xmas_npc == 4) {
-		mes "Você foi falar com";
-		mes "^3355FFBoneco de Neve^000000 e ele";
-		mes "mencionou o meu nome?";
+		mes "Você foi falar com ^3355FFBoneco de Neve^000000 e ele mencionou o meu nome?";
 		next;
 		mes "[Poze]";
 		mes "Entendo...";
@@ -299,10 +289,7 @@ xmas,117,304,4	script	Poze	713,{
 		set xmas_npc,4;
 		close;
 	} else {
-		mes "Bem vindo a Lutie,";
-		mes "a cidade que abençoa os";
-		mes "visitantes com o espírito";
-		mes "de Natal!";
+		mes "Bem vindo a Lutie, a cidade que abençoa os visitantes com o espírito de Natal!";
 		mes "Feliz Natal!";
 		next;
 		mes "[Poze]";
@@ -323,8 +310,8 @@ xmas,176,236,4	script	Tio Peludo	712,{
 		if(countitem(1024) > 0 && countitem(938) > 0) {
 			mes "Oh? Vo-você trouxe os ingredientes? Óóóótimo. Faz tanto tempo que não provo disso... Dê-dê para mim!";
 			next;
-			delitem 1024,1;	// Chinese_Ink
-			delitem 938,1;	// Sticky_Mucus
+			delitem 1024,1;	// Tinta de Polvo
+			delitem 938,1;	// Muco Pegajoso
 			mes "^3355FFVocê rapidamente dá a ele o Squid Ink e o Sticky Mucus e olha com um pouco de nojo enquanto ele saboreia o drinque.^000000";
 			next;
 			mes "[Cantata]";
@@ -332,12 +319,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 			mes "Bem, é hora da história. Lembre-se que é tudo que sei. Não sei quanto você já ouviu...";
 			next;
 			mes "[Cantata]";
-			mes "Muito tempo atrás,";
-			mes "havia um poderoso";
-			mes "Alquimista vivendo";
-			mes "no Norte. Seu";
-			mes "nome era";
-			mes "^3355FFPhilip Varsez^000000!";
+			mes "Muito tempo atrás, havia um poderoso Alquimista vivendo no Norte. Seu nome era ^3355FFPhilip Varsez^000000!";
 			next;
 			mes "[Cantata]";
 			mes "Ele era um pioneiro em pesquisas sobre Alquimia, e precisava de materiais raros para seus estudos. Por isso, viajava o mundo atrás de materiais que continham energia mágica...";
@@ -395,10 +377,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 		mes "Heh heh heh~ Bom, não vou te contar sem ganhar nada em troca.";
 		next;
 		mes "[Cantata]";
-		mes "O ruim de morar nessa cidade";
-		mes "é que não tenho nenhuma";
-		mes "chance de tomar um drinque";
-		mes "de verdade. Vejamos, me traga...";
+		mes "O ruim de morar nessa cidade é que não tenho nenhuma chance de tomar um drinque de verdade. Vejamos, me traga...";
 		next;
 		mes "[Cantata]";
 		mes "^3355FF1 Squid Ink^000000 e";
@@ -430,9 +409,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 	mes "Achei que o mínimo que poderia fazer por ele era pegar algo frio para tentar abaixar sua febre, mas a neve de Lutie derretia assim que tocava em sua testa. Ele estava queimando em febre e eu não conseguia aliviá-lo.";
 	next;
 	mes "[Cantata]";
-	mes "E foi aí que eu";
-	mes "soube que precisaria";
-	mes "de gelo mágico.";
+	mes "E foi aí que eu soube que precisaria de gelo mágico.";
 	next;
 	mes "[Cantata]";
 	mes "Acabei chegando na Dungeon Natalina e lá encontrei, graças a Deus, uma criatura inteira de gelo!";
@@ -511,8 +488,7 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 			case 2:
 				mes "Oh...?";
 				mes "Você conheceu Duffle?";
-				mes "Ah, de vez em quando ela";
-				mes "passa aqui para me dar um oi...";
+				mes "Ah, de vez em quando ela passa aqui para me dar um oi...";
 				next;
 				mes "[Boneco de Neve]";
 				mes "É estranho que as pessoas de Lutie me chamem de boneco de neve misterioso. Porque por dentro somos todos iguais, não é?";
@@ -585,8 +561,7 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				mes "Adoro a comida dela, é deliciosa! Ela me traz suco de uva com flocos de neve. Bem, por favor entregue para ela, amigo~!";
 				break;
 			case 7:
-				mes "'^3355FFUm item para";
-				mes "colher vegetais^000000...'";
+				mes "'^3355FFUm item para colher vegetais^000000...'";
 				mes "Uau. A Tia Mima adora vegetais, então ela gostaria disso!";
 				break;
 			case 8:
@@ -613,12 +588,9 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				next;
 				mes "[Boneco de Neve]";
 				mes "Tah dah!";
-				mes "Escolha o que você";
-				mes "quiser daqui!";
+				mes "Escolha o que você quiser daqui!";
 				next;
-				mes "^3355FFVocê sorteia um";
-				mes "presente de dentro da bolsa";
-				mes "mágica de Boneco de Neve^000000.";
+				mes "^3355FFVocê sorteia um presente de dentro da bolsa mágica de Boneco de Neve^000000.";
 				set .@snownow,rand(1,8);
 				next;
 				set xmas_npc,11;
@@ -712,9 +684,7 @@ xmas,146,136,4	script	Hashokii	715,{
 			mes "Ah ha! Então você quer saber mais sobre Boneco de Neve! Vejamos...";
 			next;
 			mes "[Hashokii]";
-			mes "Bem, aqui existem duas crianças,";
-			mes "^3355FF' Charu Charu '^000000 e";
-			mes "^3355FF' Marcell '^000000. Eles sempre vão no meu show. Acho que Cantata já te contou a história?";
+			mes "Bem, aqui existem duas crianças, ^3355FF' Charu Charu '^000000 e ^3355FF' Marcell '^000000. Eles sempre vão no meu show. Acho que Cantata já te contou a história?";
 			next;
 			mes "[Hashokii]";
 			mes "Enfim, sabe os bebês que Boneco de Neve salvou? Sim, são eles mesmos. Mas acho que Charu Charu e Marcell não sabem disso.";
@@ -738,8 +708,7 @@ xmas,146,136,4	script	Hashokii	715,{
 			next;
 			mes "[Hashokii]";
 			mes "Hmmm, desculpe!";
-			mes "Enfim, Boneco de Neve";
-			mes "é um cara ótimo!";
+			mes "Enfim, Boneco de Neve é um cara ótimo!";
 			mes "La La La~!";
 			mes "Dum di Dum di Dum";
 			mes "Feliz Natal- !!";

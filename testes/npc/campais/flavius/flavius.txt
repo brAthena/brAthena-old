@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: flavius01.txt                          |
+//   | Nome do Script: flavius.txt                            |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -322,8 +322,7 @@ OnTouch:
 bat_b01,389,14,3	script	Terapeuta de Batalha#b01_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 
@@ -860,8 +859,7 @@ OnStop:
 bat_b02,10,294,3	script	Terapeuta de Batalha#b02_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 
@@ -905,8 +903,7 @@ OnTouch:
 bat_b02,389,14,3	script	Terapeuta de Batalha#b02_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 
@@ -1083,28 +1080,27 @@ OnTimer1900000:
 }
 
 bat_b02,81,83,3	script	Acampamento Guillaume#flag32	973,{ end; }
-bat_b02,94,83,3	script	Acampamento Guillaume#flag33	973,{ end; }
-bat_b02,81,66,3	script	Acampamento Guillaume#flag34	973,{ end; }
-bat_b02,94,66,3	script	Acampamento Guillaume#flag35	973,{ end; }
-bat_b02,139,142,3	script	Acampamento Guillaume#flag36	973,{ end; }
-bat_b02,139,158,3	script	Acampamento Guillaume#flag37	973,{ end; }
-bat_b02,110,161,3	script	Acampamento Guillaume#flag38	973,{ end; }
-bat_b02,110,137,3	script	Acampamento Guillaume#flag39	973,{ end; }
-bat_b02,63,135,3	script	Acampamento Guillaume#flag40	973,{ end; }
-bat_b02,63,165,3	script	Acampamento Guillaume#flag41	973,{ end; }
-bat_b02,10,296,3	script	Acampamento Guillaume#flag42	973,{ end; }
-
-bat_b02,306,233,3	script	Acampamento Croix#flag32	974,{ end; }
-bat_b02,317,233,3	script	Acampamento Croix#flag33	974,{ end; }
-bat_b02,306,216,3	script	Acampamento Croix#flag34	974,{ end; }
-bat_b02,317,216,3	script	Acampamento Croix#flag35	974,{ end; }
-bat_b02,257,158,3	script	Acampamento Croix#flag36	974,{ end; }
-bat_b02,257,141,3	script	Acampamento Croix#flag37	974,{ end; }
-bat_b02,297,164,3	script	Acampamento Croix#flag38	974,{ end; }
-bat_b02,297,136,3	script	Acampamento Croix#flag39	974,{ end; }
-bat_b02,336,161,3	script	Acampamento Croix#flag40	974,{ end; }
-bat_b02,336,139,3	script	Acampamento Croix#flag41	974,{ end; }
-bat_b02,389,16,3	script	Acampamento Croix#flag42	974,{ end; }
+bat_b02,94,83,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag33	973
+bat_b02,81,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag34	973
+bat_b02,94,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag35	973
+bat_b02,139,142,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag36	973
+bat_b02,139,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag37	973
+bat_b02,110,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag38	973
+bat_b02,110,137,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag39	973
+bat_b02,63,135,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag40	973
+bat_b02,63,165,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag41	973
+bat_b02,10,296,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag42	973
+bat_b02,306,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag32	974
+bat_b02,317,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag33	974
+bat_b02,306,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag34	974
+bat_b02,317,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag35	974
+bat_b02,257,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag36	974
+bat_b02,257,141,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag37	974
+bat_b02,297,164,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag38	974
+bat_b02,297,136,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag39	974
+bat_b02,336,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag40	974
+bat_b02,336,139,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag41	974
+bat_b02,389,16,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag42	974
 
 bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
 	set .@A_B_gap,$@Guill_ScoreBG2 - $@Croix_ScoreBG2;

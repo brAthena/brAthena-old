@@ -218,7 +218,7 @@ cmd_fild07,299,83,4	script	Zain#cmd	100,{
 	set .@n$,"["+strnpcinfo(1)+"]";
 	mes .@n$;
 	mes "Você gostaria de embarcar em um navio da rota Reudelus?";
-	mes "Você pode viajar para Alberta ou Izlude.";
+	mes "É possível viajar para Alberta ou Izlude.";
 	next;
 	switch(select("Alberta - 600 Zeny:Izlude - 800 Zeny:Cancelar")) {
 	case 1:
@@ -261,7 +261,7 @@ cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	721,{
 	end;
 }
 
-// Morroc Campos
+// Campos de Morroc
 //============================================================
 moc_fild12,35,303,4	script	Serutero#cmd	59,{
 	mes "[Serutero]";

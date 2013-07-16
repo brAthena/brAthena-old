@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.6/1.6/1.2                         |
+//   | Versões eA/rA/brA: 1.6/1.6/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Einbech.                  |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -400,7 +401,7 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 				mes "Metalling é também uma daquelas bolinhas de gelatina que comem tudo que estiver jogado no chão.";
 				next;
 				mes "[Shena]";
-				mes "Se você matar um Metalling, ele pode dropar uma Large Jellopy, um Iron Ore ou até um Iron.";
+				mes "Se você matar um Metalling, ele pode dropar uma Large Jellopy, um Minério de Ferro ou até um Ferro.";
 				mes "Bom saber disso, não é?";
 				next;
 				mes "[Shena]";
@@ -430,7 +431,7 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 				mes "Por alguma razão eles não podem deixar esse mundo, então apenas vagam pelas minas.";
 				next;
 				mes "[Shena]";
-				mes "Se você derrotá-los, eles podem dropar Old Pick, Lantern, Iron, Steel, Coal, Flashlight e Old Iron Plate.";
+				mes "Se você derrotá-los, eles podem dropar Old Pick, Lantern, Ferro, Steel, Coal, Flashlight e Placa de Ferro Usada.";
 				next;
 				mes "[Shena]";
 				mes "Você quer me perguntar sobre outro monstro daqui?";
@@ -446,7 +447,7 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 					mes "Agora você entende a importância de reciclar e preservar nossos recursos naturais, certo? Agora, me faria bem saber que você reciclaria os metais desse Fogão-Monstro.";
 					next;
 					mes "[Shena]";
-					mes "Old Stoves normalmente dropam Battered Pot, Burnt Tree, Iron, Iron Ore e Old Iron Plate. Mas as vezes podem soltar itens bons como Rusty Iron ou até Dead Branch.";
+					mes "Fornalhas Velhas normalmente dropam Panela Velha, Madeira Queimada, Ferro, Minério de Ferro e Placa de Ferro Usada. Mas as vezes podem soltar itens bons como Ferro Enferrujado ou até Galho Seco.";
 					next;
 					break;
 				case 2:
@@ -454,14 +455,14 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 					mes "Sim. Essa criatura cruel e impiedosa talvez seja o melhor símbolo do mal que eu já vi.";
 					next;
 					mes "[Shena]";
-					mes "Diferente de novas aparições, Old Stoves foram feitos a mão por mestres artesãos, eu acho, e desenvolveram suas próprias almas.";
+					mes "Diferente de novas aparições, Fornalhas Velhas foram feitos a mão por mestres artesãos, eu acho, e desenvolveram suas próprias almas.";
 					mes "Antes eram máquinas benevolentes, que proviam um calor aconchegante.";
 					next;
 					mes "[Shena]";
 					mes "Por anos eles serviam seus donos com lealdade. Mas quando a tecnologia avançou e eles se tornaram obsoletos, foram descartados como lixo. E converteram seus corações para o ^FF0000mal^000000.";
 					next;
 					mes "[Shena]";
-					mes "Old Stoves normalmente dropam Battered Pot, Burnt Tree, Iron, Iron Ore e Old Iron Plate. Mas as vezes eles podem soltar itens interessantes como Rusty Iron ou até Dead Branch.";
+					mes "Fornalhas Velhas normalmente dropam Panela Velha, Madeira Queimada, Ferro, Minério de Ferro e Placa de Ferro Usada. Mas as vezes eles podem soltar itens interessantes como Ferro Enferrujado ou até Galho Seco.";
 					next;
 					break;
 				}
@@ -549,7 +550,7 @@ einbech,148,242,5	script	Jung#ein	855,{
 			mes "Supostamente, um pedaço de Obsidian tem energia suficiente para iluminar o céu noturno. Infelizmente, é impossível capturar um deles vivo e não é fácil caçá-los.";
 			next;
 			mes "[Jung]";
-			mes "Obsidian é um monstro pequeno e amorfo, que dropa Clear Jewel, Piece of Black Crystal, Coal, Elunium, Iron e Steel.";
+			mes "Obsidian é um monstro pequeno e amorfo, que dropa Clear Jewel, Piece of Black Crystal, Coal, Elunium, Ferro e Steel.";
 			next;
 			mes "[Jung]";
 			mes "Isso é tudo sobre o Obsidian.";
@@ -632,9 +633,7 @@ einbech,148,246,5	script	Franz#ein	851,{
 	}
 	mes "[Franz]";
 	mes "Ah, certo.";
-	mes "Você está ocupado e tem coisas para fazer. Eu entendo.";
-	mes "Você provavelmente precisa ir a algum lugar agora mesmo.";
-	mes "Certo. Entendi.";
+	mes "Você está ocupado e tem coisas para fazer. Eu entendo. Provavelmente precisa ir a algum lugar agora mesmo. Certo. Entendi.";
 	next;
 	mes "[Franz]";
 	mes "Eu...";

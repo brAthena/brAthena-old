@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.3/2.3/1.2                         |
+//   | Versões eA/rA/brA: 2.3/2.3/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Alberta.                  |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Dani]                              |
 //   | 1.2 Otimização [Hold & Holy]                           |
+//   | 1.3 Formatação nos Diálogos [Holy & lututuiBR]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -93,7 +94,9 @@ aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
 		mes "Quando você ver bolhas saindo da areia, tente cavar um pouco o solo, você pode encontrar algumas conchas embaixo da areia.";
 		next;
 		mes "[Joanne]";
-		mes "Já ouviu falar do Ambernite?"+"\nAquele monstro que tem uma concha.\nEu acho ele lindo~";
+		mes "Já ouviu falar do Ambernite?";
+		mes "Aquele monstro que tem uma concha.";
+		mes "Eu acho ele lindo~";
 		next;
 		mes "[Joanne]";
 		mes "É geralmente visto na praia perto da província oeste de Prontera. Se você tentar atacá-lo sem estar preparado, você pode se meter em apuros.";
@@ -125,8 +128,7 @@ aldebaran,46,129,4	script	Panama#alde	97,{
 aldebaran,67,154,4	script	Isenberg#alde	98,{
 	mes "[Isenberg]";
 	mes "Monte Mjolnir e Floresta de Payon.";
-	mes "Ambos locais são dificeis";
-	mes "de viajar.";
+	mes "Ambos locais são dificeis de viajar.";
 	next;
 	switch(select("Monte de Mjolnir?:Floresta de Payon...?:Encerrar conversa")) {
 	case 1:
@@ -561,8 +563,7 @@ aldeba_in,223,121,4	script	Homem Louco	63,{
 		next;
 		mes "[Homem Louco]";
 		mes "Verifique se seu nariz está limpo e úmido.";
-		mes "Um bom soldado mercenário tem que ter o nariz molhado";
-		mes "porque mostra que o soldado está em bom estado de saúde.";
+		mes "Um bom soldado mercenário tem que ter o nariz molhado porque mostra que o soldado está em bom estado de saúde.";
 		mes "Se o nariz tiver seco, significa que ele está resfriado.";
 		next;
 		mes "[Homem Louco]";
@@ -583,8 +584,7 @@ aldeba_in,223,121,4	script	Homem Louco	63,{
 aldeba_in,219,61,4	script	Homem Gentil#ald	109,{
 	mes "[Friendly-Looking Man]";
 	mes "Não dê ouvidos ao rapaz que fica perto do meu quarto.";
-	mes "Dois anos atrás, ele estava se formando como mercenário e caiu de uma árvore";
-	mes "enquanto tentava recolher nóz.";
+	mes "Dois anos atrás, ele estava se formando como mercenário e caiu de uma árvore enquanto tentava recolher nóz.";
 	next;
 	mes "[Homem Gentil]";
 	mes "Ele fica falando alto e consigo mesmo, me dá dor de cabeça...";
@@ -607,8 +607,7 @@ aldeba_in,152,47,4	script	Homem Agitado#alde	97,{
 		if (select("Que? Esse nome aborrece!:. . . . .") == 1) {
 			mes "[Homem Agitado]";
 			mes "Não seja tão ridículo!";
-			mes "'Incrível Picky' é o nome mais maravilhoso";
-			mes "do mundo, minha galinha merece esse nome!";
+			mes "'Incrível Picky' é o nome mais maravilhoso do mundo, minha galinha merece esse nome!";
 			close;
 		}
 		mes "[Homem Agitado]";
@@ -625,10 +624,9 @@ aldeba_in,152,47,4	script	Homem Agitado#alde	97,{
 }
 
 aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
-	mes "[Master]";
-	mes "a Sede da Corporação Kafra está localizada aqui em Al De Baran.";
-	mes "Sabe o que isso";
-	mes "significa?";
+	mes "[Gerente do Bar]";
+	mes "A Sede da Corporação Kafra está localizada aqui em Al De Baran.";
+	mes "Sabe o que isso significa?";
 	next;
 	mes "[Gerente do Bar]";
 	mes "Isso significa que aquelas lindas funcionárias vêm aqui para almoçar, não é maravilhoso?!";
@@ -636,8 +634,7 @@ aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
 	mes "[Gerente do Bar]";
 	mes "Muito bem!";
 	mes "Está na hora das perguntas!";
-	mes "Qual sua Kafra";
-	mes "favorita?";
+	mes "Qual sua Kafra favorita?";
 	next;
 	if (sex == 0) {
 		mes "[Gerente do Bar]";
@@ -725,9 +722,7 @@ aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
 	if (select("Vender Bilhete de Kafra:Ok, até mais~") == 1) {
 		if (countitem(1084) == 0) {
 			mes "[Kafra Denise]";
-			mes "Me desculpe,";
-			mes "mas você não tem";
-			mes "nenhum Bilhete de Kafra.";
+			mes "Me desculpe, mas você não tem nenhum Bilhete de Kafra.";
 			close2;
 			cutin "",255;
 			end;
@@ -772,10 +767,8 @@ aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
 aldeba_in,83,245,4	script	Kafra Tatiana#2alde	116,{
 	cutin "kafra_02",2;
 	mes "[Kafra Tatiana]";
-	mes "Bem vindo à";
-	mes "Corporação kafra.";
-	mes "As Funcionárias Kafra estão";
-	mes "sempre aqui para serví-lo.";
+	mes "Bem vindo à Corporação kafra.";
+	mes "As Funcionárias Kafra estão sempre aqui para serví-lo.";
 	next;
 	mes "[Kafra Tatiana]";
 	mes "Continue fazendo uso dos Serviços Kafra. Sinta-se livre para perguntar caso tenha alguma dúvida.";
@@ -839,8 +832,7 @@ aldeba_in,24,245,4	script	Kafra Marianne#alde	115,{
 	cutin "kafra_03",2;
 	mes "[Kafra Marianne]";
 	mes "Bem-vindo!";
-	mes "O serviço da Kafra";
-	mes "está sempre do seu lado.";
+	mes "O serviço da Kafra está sempre do seu lado.";
 	next;
 	mes "[Kafra Marianne]";
 	mes "Obrigada por vir de longe para visitar a Sede da Corporação Kafra de Al De Baran!";
@@ -903,10 +895,7 @@ aldeba_in,142,238,4	script	Kafra Bianca#3alde	114,{
 	next;
 	mes "[Kafra Bianca]";
 	mes "Meu nome é Bianca!";
-	mes "Espero que você goste";
-	mes "da sua visita";
-	mes "à Sede da Corporação";
-	mes "Kafra.";
+	mes "Espero que você goste da sua visita à Sede da Corporação Kafra.";
 	next;
 	mes "[Kafra Bianca]";
 	mes "Eu estou aqui para responder qualquer pergunta relacionada a sociedade política das Kafras, tenho conhecimento para qualquer uma das suas perguntas.";
@@ -955,8 +944,7 @@ aldeba_in,142,238,4	script	Kafra Bianca#3alde	114,{
 		case 3:
 			mes "[Kafra Bianca]";
 			mes "Ah, tudo bem!";
-			mes "Se você tiver alguma dúvida,";
-			mes "por favor avise!";
+			mes "Se você tiver alguma dúvida, por favor avise!";
 			break;
 		}
 		break;
@@ -975,9 +963,7 @@ aldeba_in,91,244,4	script	Kafra Deborah#4alde	112,{
 	cutin "kafra_06",2;
 	mes "[Kafra Deborah]";
 	mes "Olá, olá!";
-	mes "Eu sou a Deborah,";
-	mes "sou a mais nova";
-	mes "do grupo das Kafras!";
+	mes "Eu sou a Deborah, sou a mais nova do grupo das Kafras!";
 	next;
 	mes "[Kafra Deborah]";
 	mes "Eu ainda poderei aprender mais sobre as necessidades dos nossos clientes, mas estou sempre a fazer o meu melhor!";
@@ -1307,67 +1293,44 @@ alde_dun03,264,16,4	script	Gatekeeper#ct1	101,{
 
 function	script	F_ClockTowerGate	{
 	mes "[Gatekeeper Boy]";
-	mes "Bem vindo à";
-	mes "Kinase - Gallino Azul";
+	mes "Bem vindo à Kinase - Gallino Azul.";
 	mes "O único lugar de especialidades em Aldebaran.";
-	mes "Você não pode ir através do "+getarg(0)+" nível,";
-	mes "volte.";
+	mes "Você não pode ir através do "+getarg(0)+" nível, volte.";
 	next;
 	switch(select("Sobre Torre do Relógio:Sobre o "+getarg(0)+" nível:Mover para o "+getarg(0)+" nível:Encerrar Diálogo")) {
 	case 1:
 		mes "[Guardião do Portal]";
 		mes "A guilda de Alquimia de Aldebaran!";
-		mes "A muito tempo atrás, tinha";
-		mes "3 Alquimistas Lendários...eram eles";
-		mes "Bruke Seimer";
-		mes "Philip Warisez";
+		mes "A muito tempo atrás, tinha 3 Alquimistas Lendários... eram eles Bruke Seimer, Philip Warisez";
 		mes "e...";
 		next;
 		mes "[Guardião do Portal]";
 		mes "Romero Specialre!";
-		mes "Esta magnífica arquitetura";
-		mes "é uma obra deles.";
-		mes "Presumo que se você sentir algo incomum";
-		mes "andando por este chão,";
-		mes "e característico da Torre do Relógio.";
+		mes "Esta magnífica arquitetura é uma obra deles.";
+		mes "Presumo que se você sentir algo incomum andando por este chão, e característico da Torre do Relógio.";
 		next;
 		mes "[Guardião do Portal]";
 		mes "Consiste em misteriosas magias ancestrais.";
-		mes "Se você simplesmente passear por aqui,";
-		mes "sem qualquer intenção,";
+		mes "Se você simplesmente passear por aqui, sem qualquer intenção,";
 		next;
 		mes "[Guardião do Portal]";
-		mes "de qualquer maneira,";
-		mes "você encontrará acidentalmente";
-		mes "uma criatura.";
+		mes "De qualquer maneira, você encontrará acidentalmente uma criatura.";
 		mes "Por favor, cuide-se...";
 		close;
 	case 2:
 		mes "[Guardião do Portal]";
-		mes "Alquimistas ancestrais";
-		mes "selaram o portão do 4ª andar usando um dispositivo de alquimia";
-		mes "para manter longe";
-		mes "criaturas como demônios e inimigos dos humanos.";
-		mes "Para passar por este portal";
+		mes "Alquimistas ancestrais selaram o portão do 4ª andar usando um dispositivo de alquimia para manter longe criaturas como demônios e inimigos dos humanos.";
 		next;
 		mes "[Guardião do Portal]";
-		mes "precisa de uma chave.";
-		mes "Esta chave tem rumores de ser adquirido pela porta detentora de criaturas";
-		mes "por uma donzela em torno daqui.";
+		mes "Para passar por este portal é necessário uma chave.";
+		mes "Esta chave tem rumores de ser adquirido pela porta detentora de criaturas por uma donzela em torno daqui.";
 		next;
 		mes "[Guardião do Portal]";
-		mes "A chave é a intensidade da alquimia antiga,";
-		mes "segundo boatos,";
-		mes "será liberada a partir de dígitos";
-		mes "e desaparecerá.";
+		mes "A chave é a intensidade da alquimia antiga, segundo boatos, será liberada a partir de dígitos e desaparecerá.";
 		next;
 		mes "[Guardião do Portal]";
-		mes "Se essa chave";
-		mes "for adquirida por você,";
-		mes "por favor, mostre-me.";
-		mes "A pessoa que possui a chave";
-		mes "terá acesso";
-		mes "a esta porta livremente!";
+		mes "Se essa chave for adquirida por você, por favor, mostre-me.";
+		mes "A pessoa que possui a chave terá acesso a esta porta livremente!";
 		next;
 		mes "[Guardião do Portal]";
 		mes "Eu vou te dar uma chance.";
@@ -1376,8 +1339,7 @@ function	script	F_ClockTowerGate	{
 	case 3:
 		if (countitem(getarg(1)) > 0) {
 			mes "[Guardião do Portal]";
-			mes "Hmm! Já sinto que você não é uma pessoa normal,";
-			mes "parece que você foi bem sucedido na especulação.";
+			mes "Hmm! Já sinto que você não é uma pessoa normal, parece que você foi bem sucedido na especulação.";
 			mes "Por favor, você pode entrar.";
 			mes "Que Deus o abençoe ..";
 			close2;
@@ -1387,18 +1349,13 @@ function	script	F_ClockTowerGate	{
 		} else {
 			mes "[Guardião do Portal]";
 			mes ". . . . . .";
-			mes "Infelizmente você não tem um privilégio";
-			mes "Para entrar nesta porta ..";
-			mes "Você não será capaz de passar pelos";
-			mes "Alquimistas Ancestrais.";
+			mes "Infelizmente você não tem um privilégio. Para entrar nesta porta... Você não será capaz de passar pelos Alquimistas Ancestrais.";
 			mes "Não vou deixar você ir.";
 			close;
 		}
 	case 4:
 		mes "[Guardião do Portal]";
-		mes "Esta Torre do Relógio";
-		mes "é o lugar onde três Lendários Alquimistas";
-		mes "treinavam suas habilidades espirituais.";
+		mes "Esta Torre do Relógio é o lugar onde três Lendários Alquimistas treinavam suas habilidades espirituais.";
 		mes "Por favor, não danifique nada aqui.";
 		close;
 	}

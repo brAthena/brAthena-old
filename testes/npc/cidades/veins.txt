@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Veins.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -32,8 +33,7 @@ veins,162,34,5	script	Morador#ve1	943,{
 	mes "Às vezes, são os únicos sinais de vida nessa terra árida.";
 	next;
 	mes "[Morador]";
-	mes "Se você sentir uma palpitação em seu coração quando olhar para um cacto,";
-	mes "você deve apreciar a verdadeira beleza do deserto.";
+	mes "Se você sentir uma palpitação em seu coração quando olhar para um cacto, você deve apreciar a verdadeira beleza do deserto.";
 	next;
 	mes "[Morador]";
 	mes "Bem, eu não sei se posso encontrar alguém que ache o deserto maravilhoso e encantador quanto eu.";
@@ -43,15 +43,11 @@ veins,162,34,5	script	Morador#ve1	943,{
 
 veins,148,41,3	script	Morador#ve2	940,{
 	mes "[Morador]";
-	mes "Bem-vindo à Veins,";
-	mes "a cidade próxima do templo de Cheshrumnir.";
-	mes "Você pode achar que essa é uma cidade monótona e deserta,";
-	mes "mas você verá que ela é tão viva como qualquer outro lugar.";
+	mes "Bem-vindo à Veins, a cidade próxima do templo de Cheshrumnir.";
+	mes "Você pode achar que essa é uma cidade monótona e deserta, mas você verá que ela é tão viva como qualquer outro lugar.";
 	next;
 	mes "[Morador]";
-	mes "Claro que tem algumas figuras na cidade,";
-	mes "como o louco que adora cactos ali,";
-	mes "mas todos gostam dele.";
+	mes "Claro que tem algumas figuras na cidade, como o louco que adora cactos ali, mas todos gostam dele.";
 	mes "Há muitas pessoas legais que você pode conhecer.";
 	next;
 	mes "[Morador]";
@@ -78,8 +74,7 @@ veins,166,91,5	script	Morador#ve4	946,{
 	mes "Tolos! A Deusa Freya irá sempre nos proteger!";
 	next;
 	mes "[Morador]";
-	mes "Enquanto continuarmos treinando,";
-	mes "Freya irá nos proteger e nos abençoará com a vitória sobre nosses inimigos.";
+	mes "Enquanto continuarmos treinando, Freya irá nos proteger e nos abençoará com a vitória sobre nosses inimigos.";
 	mes "Isso amigo, é o poder da fé.";
 	close;
 }
@@ -104,14 +99,11 @@ veins,253,133,3	script	Criança#ve2	944,{
 
 veins,270,164,5	script	Velho#ve1	945,{
 	mes "[Velho]";
-	mes "Bendita seja Freya que me abençoou com vida longa,";
-	mes "mas me pergunto se vivi bem a vida.";
+	mes "Bendita seja Freya que me abençoou com vida longa, mas me pergunto se vivi bem a vida.";
 	next;
 	mes "[Velho]";
-	mes "Não tenho qualquer dúvida ou lamento,";
-	mes "mas talvez haja algumas coisas que perdi.";
-	mes "Eu acho que estou velho, mas também não ajuda";
-	mes "pensar nesse tipo de coisas...";
+	mes "Não tenho qualquer dúvida ou lamento, mas talvez haja algumas coisas que perdi.";
+	mes "Eu acho que estou velho, mas também não ajuda pensar nesse tipo de coisas...";
 	close;
 }
 
@@ -121,8 +113,7 @@ veins,310,195,1	script	Morador#ve5	946,{
 	mes "Sim, devemos cuidar delas";
 	next;
 	mes "[Morador]";
-	mes "Cactos regulares são muito incomuns,";
-	mes "mas eu ouvi que no deserto tem um tipo de cacto que faz barulhos irritantes e passeia por aí.";
+	mes "Cactos regulares são muito incomuns, mas eu ouvi que no deserto tem um tipo de cacto que faz barulhos irritantes e passeia por aí.";
 	mes "Como isso pode ser verdade?";
 	close;
 }
@@ -166,7 +157,7 @@ veins,218,323,1	script	Morador#ve8	945,{
 	next;
 	mes "[Morador]";
 	mes "O que eu quero dizer com 'Olhar atentamente'?";
-	mes "Heh, talvez você veja...";
+	mes "Hehe, talvez você veja...";
 	mes "De qualquer, modo isso não importa...";
 	mes "Que Freya te abençoe";
 	close;
@@ -174,16 +165,14 @@ veins,218,323,1	script	Morador#ve8	945,{
 
 veins,206,275,3	script	Criança#ve3	941,{
 	mes "[Criança]";
-	mes "Eu queria olhar por dentro do templo,";
-	mes "mas ele parece assustador por fora!";
+	mes "Eu queria olhar por dentro do templo, mas ele parece assustador por fora!";
 	mes "Eu me pergunto por que parece assim?";
 	close;
 }
 
 veins,171,256,3	script	Morador#ve9	943,{
 	mes "[Morador]";
-	mes "Não me interpretem mal, eu daria minha vida à Freya,";
-	mes "mas este chamado templo, parece tão estranho e suspeito.";
+	mes "Não me interpretem mal, eu daria minha vida à Freya, mas este chamado templo, parece tão estranho e suspeito.";
 	mes "Como pode ser um lugar para cultuar?";
 	close;
 }
@@ -203,7 +192,7 @@ veins,232,169,5	script	Velha#ve1	942,{
 	mes "Acho que você não entenderia, não importa o quanto eu explique.";
 	next;
 	mes "[Velha]";
-	mes "EU acho que isso é uma das coisas que você aprende com a idade.";
+	mes "Eu acho que isso é uma das coisas que você aprende com a idade.";
 	mes "Sim, não há nada que substitua a experiência quando se trata de algumas coisas";
 	mes "Você verá.";
 	close;
@@ -224,14 +213,11 @@ veins,121,199,3	script	Velho#ve2	945,{
 
 veins,111,50,3	script	Morador#ve11	943,{
 	mes "[Morador]";
-	mes "As pessoas valorizam água por aqui,";
-	mes "mas eu tenho algo mais precioso para mim.";
-	mes "sim, até mais precioso que água...";
-	mes "Você advinhou -- amor verdadeiro.";
+	mes "As pessoas valorizam água por aqui, mas eu tenho algo mais precioso para mim.";
+	mes "Sim, até mais precioso que água... Você advinhou -- amor verdadeiro.";
 	next;
 	mes "[Morador]";
-	mes "Na verdade, começamos a namorar aqui,";
-	mes "por isso que este lugar realmente significa muito para mim.";
+	mes "Na verdade, começamos a namorar aqui, por isso que este lugar realmente significa muito para mim.";
 	mes "É o meu lugar favorito para passar o tempo com a minha namorada.";
 	mes "Hahaha~";
 	close;
@@ -240,8 +226,7 @@ veins,111,50,3	script	Morador#ve11	943,{
 veins,112,51,3	script	Moradora#ve12	940,{
 	mes "[Moradora]";
 	mes "Bem, eu realmente estou um pouco cansada de vir aqui o tempo todo.";
-	mes "Eu quero tentar ir em outro lugar,";
-	mes "mas eu sei que ele adora vir aqui.";
+	mes "Eu quero tentar ir em outro lugar, mas eu sei que ele adora vir aqui.";
 	next;
 	mes "[Moradora]";
 	mes "Seria muito triste se parássemos de vir aqui juntos.";
@@ -256,32 +241,27 @@ veins,191,134,3	script	Velho#ve3	945,{
 	mes "Eu tenho muitas coisas que devem te interessar";
 	next;
 	mes "[Velho]";
-	mes "Bendita seja Freya, que nos protege,";
-	mes "e nos abençoa com água e comida.";
-	mes "Você não acha isso maravilhoso,";
-	mes "jovem aventureiro?";
+	mes "Bendita seja Freya, que nos protege, e nos abençoa com água e comida.";
+	mes "Você não acha isso maravilhoso, jovem aventureiro?";
 	close;
 }
 
 veins,177,147,3	script	Senhora#ve2	942,{
 	mes "[Senhora]";
-	mes "Ter um monte de coisas pode paracer legal,";
-	mes "mas muitas coisas não são assim tão importante quando você pensa em valor emocional.";
+	mes "Ter um monte de coisas pode paracer legal, mas muitas coisas não são assim tão importante quando você pensa em valor emocional.";
 	next;
 	mes "[Senhora]";
 	mes "Bem, isso parece ser uma observação perigosas quando estou tentando vender as coisas para meus clientes.";
 	mes "Ainda assim, gostaria de poder ter uma vasta variedade de produtos.";
 	next;
 	mes "[Senhora]";
-	mes "Claro, estamos no meio do deserto,";
-	mes "então talvez eu esteja pedindo demais.";
+	mes "Claro, estamos no meio do deserto, então talvez eu esteja pedindo demais.";
 	close;
 }
 
 veins,223,165,5	script	Criança#ve4	944,{
 	mes "[Criança]";
-	mes "Ei, você acha que eu consigo alcançar a ponte";
-	mes "se eu pular daqui?";
+	mes "Ei, você acha que eu consigo alcançar a ponte se eu pular daqui?";
 	mes "Você acha que pode tentar isso?";
 	next;
 	mes "[Criança]";
@@ -294,14 +274,13 @@ veins,223,165,5	script	Criança#ve4	944,{
 
 veins,263,153,5	script	Morador#ve13	943,{
 	mes "[Morador]";
-	mes "As roupas que fazemos aqui são leves,";
-	mes "arejadas, e com tecido de qualidade.";
+	mes "As roupas que fazemos aqui são leves, arejadas, e com tecido de qualidade.";
 	mes "Evidentemente, precisamos de usar coisas assim desde que o tempo está insuportavelmente quente.";
 	next;
 	mes "[Morador]";
 	mes "O tecido? Bem, eu vou te dar uma dica.";
 	mes "É feita de algo relacionado com camelos.";
-	mes "Heh! Vou deixar que você descubra por conta própria. Haha!";
+	mes "Hehe! Vou deixar que você descubra por conta própria. Haha!";
 	close;
 }
 
@@ -316,10 +295,7 @@ veins,296,184,3	script	Moradora#ve14	940,{
 	mes "Irá destruir todos os países exceto Arunafeltz";
 	next;
 	mes "[Moradora]";
-	mes "Esse robô pode soprar furacões de sua boca,";
-	mes "e atirar raios de seus chifres,";
-	mes "e pode atirar seus punhos longe,";
-	mes "e o seu toráx é um lança-chamas.";
+	mes "Esse robô pode soprar furacões de sua boca, e atirar raios de seus chifres, e pode atirar seus punhos longe, e o seu toráx é um lança-chamas.";
 	next;
 	mes "[Moradora]";
 	mes "...........";
@@ -338,11 +314,10 @@ veins,291,205,3	script	Criança#ve5	944,{
 	next;
 	mes "[Criança]";
 	mes "Queimem, hereges, queeimeeem!";
-	mes "Destruam vossas casas, vossas famílias ,";
-	mes "e construam um novo e perfeito mundo para Freya!";
+	mes "Destruam vossas casas, vossas família, e construam um novo e perfeito mundo para Freya!";
 	next;
 	mes "[Criança]";
-	mes "Hee hee! Isso não soa maravilhoso?!";
+	mes "Hehe! Isso não soa maravilhoso?!";
 	mes "Quando eu crescer, quero ser esse tipo de herói!";
 	close;
 }
@@ -399,15 +374,12 @@ veins,161,63,3	script	Velho#ve5	945,{
 	next;
 	mes "[Velho]";
 	mes "Eu espero que você aprecie a sua estadia.";
-	mes "Agora se me der licença,";
-	mes "Eu gostaria de continuar com as minhas orações para Freya.";
+	mes "Agora se me der licença, eu gostaria de continuar com as minhas orações para Freya.";
 	next;
 	mes "[Velho]";
-	mes "Oh, graciosa Freya, seu servo";
-	mes "humildemente se ajoelha perante ti...";
+	mes "Oh, graciosa Freya, seu servo humildemente se ajoelha perante ti...";
 	mes "Me cure dessa enfermidade!";
-	mes "O corpo está fraco,";
-	mes "mas o espírito é de boa vontade...!";
+	mes "O corpo está fraco, mas o espírito é de boa vontade...!";
 	mes "Deve ser... o Templo de Cheshrumnir.";
 	close;
 }
@@ -432,8 +404,7 @@ ve_in,119,386,3	script	Prisoneiro#ve1	946,{
 	next;
 	mes "[Prisoneiro]";
 	mes "Isso não é civilizado!";
-	mes "Se vocês não respeitam minha crenças, vocês são um bando de selvagens,";
-	mes "sabia disso?";
+	mes "Se vocês não respeitam minha crenças, vocês são um bando de selvagens, sabia disso?";
 	mes "Alguém, algém me ajude!";
 	close;
 }
@@ -450,12 +421,10 @@ ve_in,111,379,8	script	Guarda#ve1	946,{
 ve_in,126,378,3	script	Guarda#ve2	946,{
 	mes "[Guarda]";
 	mes "Sou grato por nossa cidade ser pacífica.";
-	mes "Se fosse qualquer outro lugar,";
-	mes "essa pequena cela estaria cheia de criminosos.";
+	mes "Se fosse qualquer outro lugar, essa pequena cela estaria cheia de criminosos.";
 	next;
 	mes "[Guarda]";
-	mes "Agradeço Freya por eu ter sido enviado a um lugar pacífico";
-	mes "e quieto.";
+	mes "Agradeço Freya por eu ter sido enviado a um lugar pacífico e quieto.";
 	close;
 }
 
@@ -603,8 +572,7 @@ ve_in,239,135,5	script	Morador#ve27	946,{
 	mes "Bem, você pode querer saciar sua sede com um licor!";
 	next;
 	mes "[Morador]";
-	mes "Meu trabalho é servir deliciosos";
-	mes "licores aos meus clientes para que possam matar a sede.";
+	mes "Meu trabalho é servir deliciosos licores aos meus clientes para que possam matar a sede.";
 	mes "Ver seus sorrisos bêbados alegra meu dia.";
 	close;
 }
@@ -625,8 +593,7 @@ ve_in,234,105,3	script	Morador#ve29	946,{
 	mes "[Morador]";
 	mes "Cara o mundo é justo...";
 	mes "É apenas um desejo...!";
-	mes "Fé? isto ajuda, sabia?";
-	mes "porque desejos não são nada!";
+	mes "Fé? isto ajuda, sabia? Porque desejos não são nada!";
 	mes "Eles não são NAAADA!";
 	next;
 	mes "[Morador]";

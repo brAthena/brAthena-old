@@ -75,7 +75,7 @@ bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
 		close;
 	case 2:
 		mes "["+strnpcinfo(1)+"]";
-		mes "KvM é uma abreviação para Krieger von Midgard .";
+		mes "KvM é uma abreviação para Krieger von Midgard.";
 		mes "Aventureiro, você está ciente de que o caminho para o novo mundo já se abriu?";
 		next;
 		mes "["+strnpcinfo(1)+"]";
@@ -100,8 +100,7 @@ bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
 		mes "Primeiramente você deve se inscrever com um recepcionista do KvM, em um grupo ou sozinho.";
 		next;
 		mes "["+strnpcinfo(1)+"]";
-		mes "As inscrições de grupo são feitas quando você pretende entrar no KvM com seus membros de grupo";
-		mes "e a inscrição individual é feita quando você pretende entrar no KvM sozinho.";
+		mes "As inscrições de grupo são feitas quando você pretende entrar no KvM com seus membros de grupo e a inscrição individual é feita quando você pretende entrar no KvM sozinho.";
 		next;
 		mes "["+strnpcinfo(1)+"]";
 		mes "Por favor inscreva-se com os Oficiais do KvM, ele entrará em contato com você mais tarde quando você estiver em Prontera.";

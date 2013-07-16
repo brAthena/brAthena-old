@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: tierra01.txt                           |
+//   | Nome do Script: tierra.txt                             |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -314,7 +314,7 @@ bat_a01,185,270,1	script	Ferreiro Guillaume#a01	851,{
 	}
 	mes "["+strnpcinfo(1)+"]";
 	mes "Nós estamos em uma emergência! A Barricada foi destruída!";
-	mes "Nós podemos reparar a Barricada com ^3131FF50 Pedras, 3 Nervos de Urso, 500 Pedaços de Metal, 30 Minérios de Elunium e 100 Ouro.^000000";
+	mes "Podemos reparar a Barricada com ^3131FF50 Pedras, 3 Nervos de Urso, 500 Pedaços de Metal, 30 Minérios de Elunium e 100 Ouro.^000000";
 	mes "E nós temos tudo isso, exceto as 50 Pedras!";
 	next;
 	if(select("Reparar.:Deixar assim.") == 2) {
@@ -389,8 +389,7 @@ bat_a01,170,121,5	duplicate(Ferreiro Guillaume#a01)	Ferreiro Croix#bat_a01	851
 bat_a01,53,377,3	script	Terapeuta de Batalha#a01_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 	end;
@@ -439,8 +438,7 @@ OnTouch_:
 bat_a01,45,19,3	script	Terapeuta de Batalha#a01_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 	end;
@@ -591,7 +589,6 @@ bat_a01,173,380,3	script	Acampamento Guillaume#flag6	973,{ end; }
 bat_a01,210,344,3	script	Acampamento Guillaume#flag7	973,{ end; }
 bat_a01,350,325,3	script	Acampamento Guillaume#flag8	973,{ end; }
 bat_a01,358,325,3	script	Acampamento Guillaume#flag9	973,{ end; }
-
 bat_a01,138,12,3	script	Acampamento Croix#flag1	974,{ end; }
 bat_a01,108,36,3	script	Acampamento Croix#flag2	974,{ end; }
 bat_a01,108,63,3	script	Acampamento Croix#flag3	974,{ end; }
@@ -1045,7 +1042,7 @@ bat_a02,185,270,1	script	Ferreiro Guillaume#a02	851,{
 	if (getcharid(4) == $@TierraBG2_id1) {
 		mes "[Ferreiro Guillaume]";
 		mes "Nós estamos em uma emergência! A Barricada foi destruída!";
-		mes "Nós podemos reparar a Barricada com ^3131FF50 Pedras, 3 Nervos de Urso, 500 Pedaços de Metal, 30 Minérios de Elunium e 100 Ouro.^000000";
+		mes "Podemos reparar a Barricada com ^3131FF50 Pedras, 3 Nervos de Urso, 500 Pedaços de Metal, 30 Minérios de Elunium e 100 Ouro.^000000";
 		mes "E nós temos tudo isso, exceto as 50 Pedras!";
 		next;
 		switch(select("Reparar.:Deixar assim.")) {
@@ -1212,8 +1209,7 @@ OnInit:
 bat_a02,53,377,3	script	Terapeuta de Batalha#a02_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 	end;
@@ -1262,8 +1258,7 @@ OnTouch_:
 bat_a02,45,19,3	script	Terapeuta de Batalha#a02_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
-	mes "Agora feche o seus olhos";
-	mes "e respire bem fundo.";
+	mes "Agora feche o seus olhos e respire bem fundo.";
 	mes "Você pode se libertar da dor agora.";
 	close;
 	end;

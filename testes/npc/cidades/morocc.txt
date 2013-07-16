@@ -12,14 +12,15 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.2/2.2/1.2                         |
+//   | Versões eA/rA/brA: 2.2/2.2/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Morroc.                   |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
-//   | 1.2 Otimização [Architect]                             |     
+//   | 1.2 Otimização [Architect]                             |
+//   | 1.3 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -103,18 +104,11 @@ morocc,223,102,0	script	Voluntário - Morroc#06	741,{
 	mes "Certo, você tem que ouvir! A música se chama... 'A Saga do Renascimento do Satan Morroc'!!";
 	next;
 	mes "[Voluntário]";
-	mes "Quando finalmente acorda, é só a mesma escuridão";
-	mes "Não consegue sair daquele lugar,";
-	mes "Precisa tentar cada vez mais e nunca desistir";
-	mes "Mas mesmo depois de milhares de anos tentando";
-	mes "O grande Satan Morroc não consegue renascer~";
+	mes "Quando finalmente acorda, é só a mesma escuridão não consegue sair daquele lugar, precisa tentar cada vez mais e nunca desistir.";
+	mes "Mas mesmo depois de milhares de anos tentando o grande Satan Morroc não consegue renascer~";
 	next;
 	mes "[Voluntário]";
-	mes "Meus homens são inúteis";
-	mes "Contra esses aventureiros,";
-	mes "Dessa vez eu preciso renascer";
-	mes "Embaralhando o espaço e o tempo,";
-	mes "E eu finalmente estarei salvo~~";
+	mes "Meus homens são inúteis contra esses aventureiros, dessa vez eu preciso renascer embaralhando o espaço e o tempo, e eu finalmente estarei salvo~~";
 	next;
 	mes "[Voz Estridente]";
 	mes "Cale a boca! Você não vê o que está acontecendo?!";
@@ -339,10 +333,10 @@ moc_ruins,155,107,4	script	Homem Formiga#moc	47,{
 	mes "Ei, você. Você atravessou o deserto?";
 	next;
 	mes "[Akira]";
-	mes "Quando você viajar pelo deserto, se for um mapa para o Norte e três mapas para o Leste, você encontrará a entrada para o formiga Hell.";
+	mes "Quando você viajar pelo deserto, se for um mapa para o Norte e três mapas para o Leste, você encontrará a entrada para o Formigueiro Infernal.";
 	next;
 	mes "[Akira]";
-	mes "Existem duas entradas para o formiga Hell. Quando você entrar, o primeiro e o segundo níveis subterrâneos são conectados entre si.";
+	mes "Existem duas entradas para o Formigueiro Infernal. Quando você entrar, o primeiro e o segundo níveis subterrâneos são conectados entre si.";
 	next;
 	mes "[Akira]";
 	mes "Me pergunto como estão essas entradas após essa destruição, mas não posso ir até lá... Se você souber de algo, por favor venha me contar.";
@@ -354,11 +348,11 @@ moc_ruins,155,107,4	script	Homem Formiga#moc	47,{
 		mes "Vá para o Leste até encontrar a ponte que leva a Floresta de Payon.";
 		next;
 		mes "[Akira]";
-		mes "No mapa antes da ponte, vá para o Norte para achar a entrada do formiga Hell, apesar de eu não saber se ela ainda está lá.";
+		mes "No mapa antes da ponte, vá para o Norte para achar a entrada do Formigueiro Infernal, apesar de eu não saber se ela ainda está lá.";
 		close;
 	case 2:
 		mes "[Akira]";
-		mes "formiga Hell está infestado de monstros 'Ant', formigas. Você verá que existem vários tipos diferentes...";
+		mes "O Formigueiro está infestado de monstros 'Formiga'. Você verá que existem vários tipos diferentes...";
 		next;
 		mes "[Akira]";
 		mes "Andre é o mais fraco, Piere é mediano, e Deniro é o mais forte. Lembre-se disso para não se meter com Ants mais fortes que você.";
@@ -428,7 +422,7 @@ moc_ruins,143,43,4	script	Criança Estranha#moc	118,{
 		close;
 	case 3:
 		mes "[Criança Estranha]";
-		mes "assassino é uma das profissões que vem depois do Gatuno, especializado em lutas de propriedade Neutra ou Poison.";
+		mes "Mercenário é uma das profissões que vem depois do Gatuno, especializado em lutas de propriedade Neutra ou Poison.";
 		next;
 		mes "[Criança Estranha]";
 		mes "Eles também são muito furtivos! Ouvi dizer que se escondem e ninguém consegue vê-los!";
@@ -462,7 +456,7 @@ moc_ruins,173,141,4	script	Dimitri#moc	49,{
 		mes "[Dimitri]";
 		mes "Recuperação!";
 		mes "É para isso que servem as poções!";
-		mes "Red Potions ficaram populares por serem muito baratas, apesar de recuperarem pouco HP.";
+		mes "Poções Vermelhas ficaram populares por serem muito baratas, apesar de recuperarem pouco HP.";
 		next;
 		mes "[Dimitri]";
 		mes "Tente essa garrafa de poção gelada quando você for ao Oasis perto da Pirâmide...";
@@ -491,10 +485,10 @@ moc_ruins,174,120,4	script	Homem Mosca#moc	54,{
 	mes "[Armani]";
 	mes "O que está acontecendo? É possível sobrevivermos?";
 	next;
-	select("Mosca Dragão?!");
+	select("Libélula?!");
 	mes "[Armani]";
 	mes "Sim, sim! A mosca dragão, mestre dos monstros insetos!";
-	mes "O Dragon Fly é um especial, que fica no Nordeste da cidade.";
+	mes "A Libélula é especial, que fica no Nordeste da cidade.";
 	next;
 	mes "[Armani]";
 	mes "É muito mais forte que os outros insetos.";
@@ -551,148 +545,84 @@ moc_ruins,173,70,4	script	Tio Morroc#moc	48,{
 
 moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
 	mes "[Hashisid]";
-	mes "...Assassinos são treinados";
-	mes "para se aproximar dos inimigos";
-	mes "furtivamente e esconder";
-	mes "seus propósitos.";
-	mes "Por isso,";
-	mes "nunca olhamos";
-	mes "nossos alvos nos olhos.";
+	mes "...Assassinos são treinados para se aproximar dos inimigos furtivamente e esconder seus propósitos.";
+	mes "Por isso, nunca olhamos nossos alvos nos olhos.";
 	next;
 	if (select("Sobre Assassinos:Parar de conversar") == 1) {
 		mes "[Hashisid]";
 		mes "Bem, então...";
 		mes "Vou te contar sobre eles!";
 		mes "Assassino...";
-		mes "são comumente conhecidos";
-		mes "como matadores";
-		mes "sem remorsos.";
+		mes "São comumente conhecidos como matadores sem remorsos.";
 		next;
 		mes "[Hashisid]";
-		mes "Mas na verdade os membros";
-		mes "da guilda dos Assassinos";
-		mes "estão proibidos de machucar";
-		mes "pessoas inocentes sem";
-		mes "uma boa razão.";
+		mes "Mas na verdade os membros da guilda dos Mercenários estão proibidos de machucar pessoas inocentes sem uma boa razão.";
 		next;
 		mes "[Hashisid]";
-		mes "Nosso alvo são criaturas malignas,";
-		mes "e usamos nossa astúcia para adquirir conhecimento";
-		mes "pelo bem de Rune-Midgard.";
+		mes "Nosso alvo são criaturas malignas, e usamos nossa astúcia para adquirir conhecimento pelo bem de Rune-Midgard.";
 		close;
 	}
 	mes "[Hashisid]";
-	mes "Muito tempo atrás";
-	mes "nossos ancestrais fumavam";
-	mes "um tipo de tabaco chamado 'Hashish'";
-	mes "antes de irem cumprir suas missões.";
-	mes "Entretanto, não fazemos mais isso,";
-	mes "já que insetos e monstros são";
-	mes "muito sensíveis ao cheiro.";
+	mes "Muito tempo atrás nossos ancestrais fumavam um tipo de tabaco chamado 'Hashish' antes de irem cumprir suas missões.";
+	mes "Entretanto, não fazemos mais isso, já que insetos e monstros são muito sensíveis ao cheiro.";
 	next;
 	mes "[Hashisid]";
-	mes "É estritamente proibido";
-	mes "fumar ou comer";
-	mes "algo que tenha";
-	mes "cheiro forte...";
-	mes "Se alguma vez";
-	mes "você tentar comer esses";
-	mes "pedacinhos de alho com cebola,";
+	mes "É estritamente proibido fumar ou comer algo que tenha cheiro forte...";
+	mes "Se alguma vez você tentar comer esses pedacinhos de alho com cebola,";
 	next;
 	mes "[Hashisid]";
-	mes "e tentar se esconder";
-	mes "para caçar lobos,";
-	mes "acredite, você";
-	mes "será cortado em pedaços.";
+	mes "E tentar se esconder para caçar lobos, acredite, você será cortado em pedaços.";
 	close;
 }
 
 moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
 	mes "[La Conte]";
-	mes "Quando gatunos são promovidos";
-	mes "a assassinos, que são muito mais avançados,";
-	mes "poderão variar seu estilo de batalha.";
-	mes "Existem dois tipos principais";
-	mes "de estilos de batalha para um assassino.";
-	mes "Eles podem lutar com Adagas (facas)";
-	mes "ou com um set de Katars!";
+	mes "Quando gatunos são promovidos a assassinos, que são muito mais avançados, poderão variar seu estilo de batalha.";
+	mes "Existem dois tipos principais de estilos de batalha para um assassino.";
+	mes "Eles podem lutar com Adagas (facas) ou com um set de Katars!";
 	next;
 	switch(select("Especializados em Katar:Especializados em Adagas:Parar de conversar")) {
 	case 1:
 		mes "[La Conte]";
-		mes "Um set de Katars só é";
-		mes "utilizado com as duas mãos,";
-		mes "e permite que os assassinos";
-		mes "acabem com seus inimigos rapidamente.";
-		mes "Qualquer um pode comprar um set básico";
-		mes "em Morroc, mas claro que";
-		mes "somente assassinos podem utilizá-lo.";
+		mes "Um set de Katars só é utilizado com as duas mãos, e permite que os assassinos acabem com seus inimigos rapidamente.";
+		mes "Qualquer um pode comprar um set básico em Morroc, mas claro que somente assassinos podem utilizá-lo.";
 		next;
 		mes "[La Conte]";
-		mes "A Katar da mão direita";
-		mes "normalmente dá mais";
-		mes "dano que a da esquerda,";
-		mes "utilizada para completar o ataque.";
-		mes "Mas como elas são equipadas nas duas mãos,";
-		mes "você não pode usar um escudo ou outra arma.";
+		mes "A Katar da mão direita normalmente dá mais dano que a da esquerda, utilizada para completar o ataque.";
+		mes "Mas como elas são equipadas nas duas mãos, você não pode usar um escudo ou outra arma.";
 		next;
 		mes "[La Conte]";
-		mes "Comparadas com Adagas,";
-		mes "Katars te dão mais velocidade de ataque.";
-		mes "Além disso, a habilidade ^663399Lãminas Destruidoras^000000";
-		mes "só pode ser usada com Katars.";
+		mes "Comparadas com Adagas, Katars te dão mais velocidade de ataque.";
+		mes "Além disso, a habilidade ^663399Lãminas Destruidoras^000000 só pode ser usada com Katars.";
 		next;
 		mes "[La Conte]";
-		mes "Você pode aprender Lãminas Destruidoras se";
-		mes "tiver a habilidade ^663399Perícia com Katar nível 4^000000.";
-		mes "Se você é um assassino,";
-		mes "é uma habilidade muito útil.";
+		mes "Você pode aprender Lãminas Destruidoras se tiver a habilidade ^663399Perícia com Katar nível 4^000000.";
+		mes "Se você é um assassino, é uma habilidade muito útil.";
 		next;
 		mes "[La Conte]";
-		mes "Sonic Blow é uma habilidade que";
-		mes "dá oito hits contínuos de";
-		mes "dano neutro.";
+		mes "Lâminas Destruidoras é uma habilidade que dá oito hits contínuos de dano neutro.";
 		close;
 	case 2:
 		mes "[La Conte]";
-		mes "Você também pode";
-		mes "equipar duas Adagas diferentes";
-		mes "ao mesmo tempo.";
-		mes "Bem, na verdade";
-		mes "também existem";
-		mes "outras armas que você";
-		mes "pode equipar além de Adagas.";
+		mes "Você também pode equipar duas Adagas diferentes ao mesmo tempo.";
+		mes "Bem, na verdade também existem outras armas que você pode equipar além de Adagas.";
 		next;
 		mes "[La Conte]";
-		mes "Mas as outras te darão";
-		mes "menos velocidade de ataque.";
+		mes "Mas as outras te darão menos velocidade de ataque.";
 		mes "Então sugiro Adagas.";
-		mes "Além disso, se você não tiver";
-		mes "uma em sua mão direita,";
-		mes "não poderá usar a";
-		mes "habilidade ^663399Ataque Duplo^000000.";
+		mes "Além disso, se você não tiver uma em sua mão direita, não poderá usar a habilidade ^663399Ataque Duplo^000000.";
 		next;
 		mes "[La Conte]";
-		mes "Com duas Adagas,";
-		mes "você dará um ataque duplo";
-		mes "com a da mão direita";
-		mes "e um simples com a da esquerda.";
+		mes "Com duas Adagas, você dará um ataque duplo com a da mão direita e um simples com a da esquerda.";
 		next;
 		mes "[La Conte]";
-		mes "Então são três hits";
-		mes "em apenas um ataque!";
-		mes "Você não pode reclamar";
-		mes "desse dano!";
+		mes "Então são três hits em apenas um ataque!";
+		mes "Você não pode reclamar desse dano!";
 		close;
 	case 3:
 		mes "[La Conte]";
-		mes "Espero que você";
-		mes "use bem as suas armas.";
-		mes "Nunca se esqueça";
-		mes "da importância";
-		mes "de fazer uma estratégia e";
-		mes "planejar bem";
-		mes "os seus ataques.";
+		mes "Espero que você use bem as suas armas.";
+		mes "Nunca se esqueça da importância de fazer uma estratégia e planejar bem os seus ataques.";
 		close;
 	}
 }
@@ -712,8 +642,7 @@ morocc_in,166,76,3	script	Garçom#02	46,{
 			getitem 12112,1;
 			mes "[Garçom]";
 			mes "Aqui está.";
-			mes "Frutas são os ingredientes principais,";
-			mes "mas não exagere na bebida.";
+			mes "Frutas são os ingredientes principais, mas não exagere na bebida.";
 			close;
 		}
 		break;
@@ -722,8 +651,7 @@ morocc_in,166,76,3	script	Garçom#02	46,{
 			set zeny,zeny-1000;
 			getitem 12113,1;
 			mes "[Garçom]";
-			mes "Aqui está,";
-			mes "mas não beba muito.";
+			mes "Aqui está, mas não beba muito.";
 			close;
 		}
 		break;

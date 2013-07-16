@@ -61,8 +61,7 @@ splendide,125,227,3	script	Fada#ep13_3	444,{
 splendide,159,164,3	script	Fada#13_2_1	461,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
-		mes "É uma vergonha que eu";
-		mes "tenha que lutar contra esses monstros.";
+		mes "É uma vergonha que eu tenha que lutar contra esses monstros.";
 		mes "Sou delicada demais para lidar com eles.";
 		close;
 		} 
@@ -118,9 +117,7 @@ splendide,245,243,3	script	Fada#13_2_4	462,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Essa terra era desperdiçada.";
-		mes "Era muito fria e nada";
-		mes "podia viver aqui,";
-		mes "mas desde que chegamos, está melhor a cada dia.";
+		mes "Era muito fria e nada podia viver aqui, mas desde que chegamos, está melhor a cada dia.";
 		next;
 		mes "[Fada]";
 		mes "Agora todos os problemas se foram.";
@@ -240,8 +237,7 @@ splendide,305,129,3	script	Fada#13_2_10	436,{
 		mes "Até meus amigos estão lutando com esses gigantes, mas não sou boa o suficiente para ajudá-los.";
 		next;
 		mes "[Fada]";
-		mes "Melhor eu checar a minha maquiagem";
-		mes "na sala de vestir.";
+		mes "Melhor eu checar a minha maquiagem na sala de vestir.";
 		mes "Ou será que eu devia dormir para acordar ainda mais bela?";
 		close;
 		}
@@ -286,8 +282,7 @@ splendide,181,107,5	script	Fada#13_2_12	462,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Limpeza, organização e arrumação!";
-		mes "Essas são as palavras";
-		mes "que nos descrevem!";
+		mes "Essas são as palavras que nos descrevem!";
 		mes "Os outros são sujos e bagunçados!";
 		close;
 		}
@@ -391,7 +386,7 @@ OnTouch:
 		close;
 }
 
-spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
+spl_in01,172,225,3	script	Poeta Andarilho#ep13	51,{
 	cutin "god_nelluad02",2;
 	mes "[Poeta Nell]"	;
 	mes "Oi~~ você ouviu a bela música que está tocando ao longe~~?";
@@ -438,7 +433,7 @@ spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
 			break;
 		case 3:
 			mes "[Poeta Nell]";
-			mes "Sunset Assassin!";
+			mes "Crepúsculo Sangrento!";
 			mes "Você gosta de Assassinos?";
 			mes "Essa música fala sobre um Assassin Cross que morava no deserto.";
 			soundeffect "assassin_of_sunset.wav",0;
@@ -498,13 +493,13 @@ spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
 }
 
 spl_in01,182,213,1	script	Laphine Restante#ep13_1	438,{
-		mes "[Laphine descansando]";
+		mes "[Laphine Descansando]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Aquele poeta é muito misterioso.";
 		mes "Desde que você chegou...";
 		mes "Ele começou a tocar música.";
 		next;
-		mes "[Laphine descansando]";
+		mes "[Laphine Descansando]";
 		mes "Essa música é da sua terra natal?";
 		mes "Eu achei muito boa.";
 		close;
@@ -516,31 +511,31 @@ spl_in01,182,213,1	script	Laphine Restante#ep13_1	438,{
 }
 
 spl_in01,181,218,5	script	Laphine Restante#ep13_2	446,{
-		mes "[Laphine descansando]";
+		mes "[Laphine Descansando]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "- Ele está balançando a cabeça no ritmo da música -";
 		next;
-		mes "[Laphine descansando]";
+		mes "[Laphine Descansando]";
 		mes "Você sabe tocar música assim?";
 		mes "Esse ritmo é fantástico.";
 		close;
 		}
 		mes "- Ele está balançando a cabeça no ritmo da música -";
 		next;
-		mes "[Laphine descansando]";
+		mes "[Laphine Descansando]";
 		mes "GothTingNoth Di~ nar..";
 		mes "DiebIyazNud Yu FarAn";
 		mes "nesFarDor U ~";
 		close;
 }
 
-spl_in01,161,213,7	script	Restaurande te Laphine#ep13	447,{
-		mes "[Laphine jantando]";
+spl_in01,161,213,7	script	Laphine Comendo#ep13	447,{
+		mes "[Laphine Comendo]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Eu fico entediado quando janto comida caseira.";
 		mes "A única coisa que me faz voltar aqui é a sopa de frutas.";
 		next;
-		mes "[Laphine jantando]";
+		mes "[Laphine Comendo]";
 		mes "Ei você!";
 		mes "Por que você está me encarando enquanto eu janto?";
 		close;
@@ -552,18 +547,18 @@ spl_in01,161,213,7	script	Restaurande te Laphine#ep13	447,{
 		close;
 }
 
-spl_in01,162,202,5	script	Laphine fazendo anotações#1	436,{
-		mes "[Laphine fazendo anotações]";
+spl_in01,162,202,5	script	Laphine Fazendo Anotações#1	436,{
+		mes "[Laphine Fazendo Anotações]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Estamos muito impressionados com o poeta.";
 		mes "Nós, Laphines, adoramos música.";
 		mes "Eu nunca pensei que ouviria uma música tão exótica.";
 		next;
-		mes "[Laphine fazendo anotações]";
+		mes "[Laphine Fazendo Anotações]";
 		mes "Eu gostaria de estudar música algum dia.";
 		mes "Planejo escrever sobre o estudo dos instrumentos e da música.";
 		next;
-		mes "[Laphine fazendo anotações]";
+		mes "[Laphine Fazendo Anotações]";
 		mes "Algum dia você deveria ouvir a música do meu povo.";
 		close;
 		}

@@ -35,11 +35,11 @@ geffen,59,143,0	script	Meera	91,{
 	mes "É tããão doce e delicioso. Não sei se é afrodisíaco, mas tenho certeza de que alivia a fadiga e ajuda a curar feridas!";
 	next;
 	mes "[Meera]";
-	mes "Hornets que moram nos campos passam a vida juntando néctar, comandados pela Abelha-Rainha. O mel é feito a partir do néctar coletado.";
+	mes "Zangões que moram nos campos passam a vida juntando néctar, comandados pela Abelha-Rainha. O mel é feito a partir do néctar coletado.";
 	next;
 	mes "[Meera]";
 	mes "Mas isso não é tudo. Existe um tipo especial de mel, que é feito apenas para a Abelha-Rainha.";
-	mes "^CC6600Royal Jelly^000000!";
+	mes "^CC6600Geléia Real^000000!";
 	next;
 	mes "[Meera]";
 	mes "O sabor é incomparável. E acho que é ainda mais eficaz do que o mel comum.";
@@ -86,7 +86,7 @@ geffen_in,164,109,0	script	Mago Stanza	64,{
 	mes "Mas existe um item que pode protegê-lo dessas consequências, possibilitando o uso de certas magias. São as pedras brilhantes conhecidas como Gemstones.";
 	next;
 	mes "[Stanza]";
-	mes "Gemstone...";
+	mes "Gemas...";
 	mes "Se você quiser tirar o máximo de seus poderes, lembre-se desse item.";
 	close;
 }
@@ -278,8 +278,7 @@ OnTouch:
 			next;
 			mes "[Cara Suspeito]";
 			mes "Agora...";
-			mes "O que você realmente precisa é de uma boa e afiada";
-			mes "^FF3333Adaga Francesa^000000 para combinar com sua beleza e elegância.";
+			mes "O que você realmente precisa é de uma boa e afiada ^FF3333Adaga Francesa^000000 para combinar com sua beleza e elegância.";
 		}
 		next;
 		mes "[Cara Suspeito]";

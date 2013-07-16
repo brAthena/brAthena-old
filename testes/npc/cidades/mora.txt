@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.2/1.3                          |
+//   | Versões eA/rA/brA: ??/1.2/1.4                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Vila de Mora.                       |
 //   |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 //   | 1.1 Tradução PT-BR [Holy]                              |
 //   | 1.2 Otimização [Holy & Hold]                           |
 //   | 1.3 Adicionados novos NPCs [Hold]                      |
+//   | 1.4 Formatação nos Diálogos [Holy, Hold & lututuiBR]   |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -33,48 +34,31 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 	next;
 	if(select("Fundamentos do encantamento.:Nada.") == 1) {
 		mes "[Professor Gary]";
-		mes "Ah, imagino que você esteja interessado";
-		mes "em encantamentos!";
+		mes "Ah, imagino que você esteja interessado em encantamentos!";
 		mes "Certo, lhe ensinarei os conceitos básicos!!";
-		mes "Após eles você deve aprender";
-		mes "os mistérios sobre o encantamento!";
+		mes "Após eles você deve aprender os mistérios sobre o encantamento!";
 		next;
 		mes "[Professor Gary]";
-		mes "Primeiro de tudo, você deve saber";
-		mes "que este feitiço, não é uma";
-		mes "ciência exata.";
+		mes "Primeiro de tudo, você deve saber que este feitiço, não é uma ciência exata.";
 		next;
 		mes "[Professor Gary]";
-		mes "Nela você realmente não sabe o que irá";
-		mes "acontecer. Você pode ter sorte ou";
-		mes "azar, e também conseguir um encantamento";
-		mes "mais poderoso ou menos poderoso.";
+		mes "Nela você realmente não sabe o que irá acontecer. Você pode ter sorte ou azar, e também conseguir um encantamento mais poderoso ou menos poderoso.";
 		next;
 		mes "[Professor Gary]";
 		mes "Você também poder perder o feitiço!";
-		mes "Se isso acontecer enquanto seu equipamento";
-		mes "estiver sendo encantado, você irá perder";
-		mes "todos os encantamentos anteriores, cartas, e o refinamento!";
+		mes "Se isso acontecer enquanto seu equipamento estiver sendo encantado, você irá perder todos os encantamentos anteriores, cartas, e o refinamento!";
 		next;
 		mes "[Professor Gary]";
-		mes "Há também um risco de";
-		mes "quebrar seu encantamento";
-		mes "enquanto estiver tentando encantar";
-		mes "seu equipamento com um segundo encantamento!";
+		mes "Há também um risco de quebrar seu encantamento enquanto estiver tentando encantar seu equipamento com um segundo encantamento!";
 		next;
 		mes "[Professor Gary]";
-		mes "Cada tentativa de encantamento irá custar";
-		mes "a você 1 moeda de Mora e 100,000 zeny.";
-		mes "Se você não sabe, o dinheiro";
-		mes "obtido através desse serviço irá";
-		mes "direto para o povo de Mora!";
+		mes "Cada tentativa de encantamento irá custar a você 1 moeda de Mora e 100,000 zeny.";
+		mes "Se você não sabe, o dinheiro obtido através desse serviço irá direto para o povo de Mora!";
 		next;
 		mes "[Professor Gary]";
 		mes "Esses são os conceitos básicos.";
 		mes "Carregue-os em seu coração.";
-		mes "Para mais detalhes, você pode";
-		mes "visitar meu mestre,";
-		mes "Gougueulé Tonami!";
+		mes "Para mais detalhes, você pode visitar meu mestre, Gougueulé Tonami!";
 		close;
 		}
 		mes "[Professor Gary]";
@@ -85,35 +69,28 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 mora,52,138,8	script	Cidadão de Mora#2	516,{
 	mes "[Valere]";
 	mes "Olá, aventureiro!";
-	mes "Você parece que está";
-	mes "perdido, não é!?";
+	mes "Você parece que está perdido, não é!?";
 	next;
 	mes "[Valere]";
 	mes "...";
 	mes "Ah, certo.";
-	mes "Mas você parece que deseja";
-	mes "encantar seu equipamento!";
+	mes "Mas você parece que deseja encantar seu equipamento!";
 	next;
 	mes "[Valere]";
-	mes "Eu só preciso saber uma coisa";
-	mes "antes de lhe dizer mais sobre";
-	mes "o encatamento de equipamentos em Mora!";
+	mes "Eu só preciso saber uma coisa antes de lhe dizer mais sobre o encatamento de equipamentos em Mora!";
 	mes "Então diga-me, qual é sua classe?";
 	next;
 	switch(select("Arcano.:Arcebispo.:Sentinela.:Sicário.:Cavaleiro Rúnico.:Outra.:Sair.")) {
 	case 1:
 		mes "[Valere]";
-		mes "Hum, você deve visitar o";
-		mes "Artesão de Artefatos.";
-		mes "Ele é o nosso especialista";
-		mes "em equipamentos para Arcanos!";
+		mes "Hum, você deve visitar o Artesão de Artefatos.";
+		mes "Ele é o nosso especialista em equipamentos para Arcanos!";
 		close;
 	case 2:
 		mes "[Valere]";
 		mes "Hum, você deve visitar o";
 		mes "Mestre de Relíquias.";
-		mes "Ele é o nosso especialista";
-		mes "em equipamentos para Arcebispos!";
+		mes "Ele é o nosso especialista em equipamentos para Arcebispos!";
 		close;
 	case 3:
 	case 4:
@@ -121,22 +98,17 @@ mora,52,138,8	script	Cidadão de Mora#2	516,{
 		mes "[Valere]";
 		mes "Hum, você deve visitar o";
 		mes "Pesquisador de Artefatos.";
-		mes "Ele é o nosso especialista";
-		mes "em equipamentos de Sentinela, Sicário,";
-		mes "e Cavaleiro Rúnico!";
+		mes "Ele é o nosso especialista em equipamentos de Sentinela, Sicário, e Cavaleiro Rúnico!";
 		close;
 	case 6:
 		mes "[Valere]";
-		mes "Hum, há o Mestre Tailor";
-		mes "que vende e encanta 'Malha de Elite'.";
+		mes "Hum, há o Mestre Tailor que vende e encanta 'Malha de Elite'.";
 		next;
 		mes "[Valere]";
-		mes "Há também o Artesão de Pingentes";
-		mes "que encanta o 'Pingente do Guardião'.";
+		mes "Há também o Artesão de Pingentes que encanta o 'Pingente do Guardião'.";
 		next;
 		mes "[Valere]";
-		mes "E finalmente o Bulberry Westhood";
-		mes "que encanta o 'Manto de Loki'.";
+		mes "E finalmente o Bulberry Westhood que encanta o 'Manto de Loki'.";
 		close;
 	case 7:
 		mes "[Valere]";
@@ -147,32 +119,26 @@ mora,52,138,8	script	Cidadão de Mora#2	516,{
 
 mora,160,123,5	script	Cidadão de Mora#3	517,{
 	mes "[Boudril]";
-	mes "Ei, você parece estar";
-	mes "tão longe de sua casa!";
+	mes "Ei, você parece estar tão longe de sua casa!";
 	mes "Mora é uma cidade remota.";
-	mes "É por isso que nós temos";
-	mes "nossa própria moeda!";
+	mes "É por isso que nós temos nossa própria moeda!";
 	next;
 	mes "[Boudril]";
-	mes "Além disso, nossa comunidade";
-	mes "desenvolveu essa criação.";
-	mes "Itens encontrados aqui";
-	mes "não podem ser encontrados em nenhum outro lugar!";
+	mes "Além disso, nossa comunidade desenvolveu essa criação.";
+	mes "Itens encontrados aqui não podem ser encontrados em nenhum outro lugar!";
 	close;
 }
 
 mora,105,100,3	script	Cidadão de Mora#4	518,{
 	mes "[Buisso]";
 	mes "Olá, meu amigo.";
-	mes "O que o traz a este";
-	mes "lugar, tão longe?";
+	mes "O que o traz a este lugar, tão longe?";
 	mes "Você está procurando um desafio?";
 	mes "Então você não irá se decepcionar!";
 	next;
 	mes "[Buisso]";
 	mes "Estamos cercados por";
-	mes "Bifrost, uma área com poderosos";
-	mes "e misteriosos monstros...";
+	mes "Bifrost, uma área com poderosos e misteriosos monstros...";
 	mes "Tão fofos, mas ao mesmo tempo perigosos.";
 	close;
 }
@@ -185,9 +151,7 @@ mora,98,104,4	script	Cidadão de Mora#5	516,{
 	mes "Meu sonho era ser como você!";
 	next;
 	mes "[Malavida]";
-	mes "Viajar pelo mundo,";
-	mes "perseguindo monstros,";
-	mes "caçando tesouros...";
+	mes "Viajar pelo mundo, perseguindo monstros, caçando tesouros...";
 	mes "Você tem a chance. Aproveite-a!";
 	close;
 }
@@ -196,22 +160,18 @@ mora,102,107,6	script	Cidadão de Mora#6	517,{
 	mes "[Skape]";
 	mes "Você provou nosso prato?";
 	mes "A carne torrada!?";
-	mes "É um bife delicioso";
-	mes "que existe apenas em Bifrost!";
+	mes "É um bife delicioso que existe apenas em Bifrost!";
 	next;
 	mes "[Skape]";
-	mes "Se você quiser saborear este";
-	mes "prato, visite nosso chefe.";
-	mes "Ele faz o melhor";
-	mes "bife assado de Mora!";
+	mes "Se você quiser saborear este prato, visite nosso chefe.";
+	mes "Ele faz o melhor bife assado de Mora!";
 	close;
 }
 
 mora,101,107,4	script	Cidadão de Mora#7	518,{
 	mes "[Wouadel Kami]";
 	mes "*Danãs*";
-	mes "Eu sou um coreógrafo, mas";
-	mes "ninguém me entende.";
+	mes "Eu sou um coreógrafo, mas ninguém me entende.";
 	mes "*doridori*";
 	mes "*bingbing*";
 	mes "*bangbang*";
@@ -221,15 +181,14 @@ mora,101,107,4	script	Cidadão de Mora#7	518,{
 mora,103,100,6	script	Cidadão de Mora#8	518,{
 	mes "[Didier Lans]";
 	mes "Yooo gaba gaba!";
-	mes "Olá, meu caro. Você ouviu";
-	mes "falar sobre minhas técnicas, não foi?";
+	mes "Olá, meu caro. Você ouviu falar sobre minhas técnicas, não foi?";
 	mes "Não ataque seus amigos!";
 	mes "*ele dá pequenos passos para trás*";
 	next;
 	mes "[Didier Lans]";
 	mes "Yooo gaba gaba!";
 	mes "Coma seus vegetais.";
-	mes "*é um tolo*";
+	mes "*É um tolo*";
 	mes "Seja inteligente, seja educado!";
 	mes "Yooo gaba gaba!";
 	close;
@@ -237,22 +196,18 @@ mora,103,100,6	script	Cidadão de Mora#8	518,{
 
 mora,184,169,3	script	Cidadão de Mora#9	516,{
 	mes "[Moussa Wi]";
-	mes "Ah, já estive";
-	mes "aqui por muito tempo.";
+	mes "Ah, já estive aqui por muito tempo.";
 	mes "Viver com estes cães...";
 	mes "Não tem nada a ver...";
-	mes "Hum, o que acha de você";
-	mes "cuidar deles?";
+	mes "Hum, o que acha de você cuidar deles?";
 	close;
 }
 
 mora,108,182,3	script	Cidadão de Mora#10	516,{
 	mes "[Yosou Keh]";
 	mes "Olá!";
-	mes "Eu sou Yosou Keh,";
-	mes "um cidadão de Mora.";
-	mes "Bifrost é habitado";
-	mes "por monstros muito poderosos...";
+	mes "Eu sou Yosou Keh, um cidadão de Mora.";
+	mes "Bifrost é habitado por monstros muito poderosos...";
 	close;
 }
 
@@ -265,8 +220,7 @@ mora,113,185,5	script	Cidadão de Mora#11	516,{
   if(select("Por que você me chama de 'cara'?:Tchau.") == 1) {
     mes "[Ninkasi]";
     mes "Por que sim?";
-    mes "Chamar os outros de 'cara'";
-    mes "é a minha marca.";
+    mes "Chamar os outros de 'cara' é a minha marca.";
     mes "Fique frio, cara, relaxe!";
     mes "Aproveite a vida, cara!";
     close;
@@ -279,9 +233,7 @@ mora,113,185,5	script	Cidadão de Mora#11	516,{
 mora,43,127,4	script	Cidadão de Mora#12	522,{
 	mes "[Glouti Vori]";
 	mes "Hum, eu amo este bife de carne!";
-	mes "Ele é a única razão para eu";
-	mes "ainda estar aqui! Não há nada";
-	mes "melhor que o bife assado de Mora!";
+	mes "Ele é a única razão para eu ainda estar aqui! Não há nada melhor que o bife assado de Mora!";
 	close;
 }
 
@@ -294,35 +246,25 @@ mora,35,119,7	script	Negociador do Mundo Sul	513,{
 mora,139,102,4	script	Milvida	515,{
 	mes "[Milvida]";
 	mes "Bem-vindo a Mora~";
-	mes "No centro da cidade você";
-	mes "pode encontrar todas as lojas";
-	mes "e alguns encantadores.";
+	mes "No centro da cidade você pode encontrar todas as lojas e alguns encantadores.";
 	next;
 	mes "[Milvida]";
-	mes "O Nordeste da cidade";
-	mes "é onde a comida está localizada.";
+	mes "O Nordeste da cidade é onde a comida está localizada.";
 	close;
 }
 
 mora,55,124,2	script	Gato Viajante	495,{
 	mes "[Gato Viajante]";
-	mes "Esta cidade é parecida com Malangdo";
-	mes "em vários aspectos,";
-	mes "você não acha?";
+	mes "Esta cidade é parecida com Malangdo em vários aspectos, você não acha?";
 	close;
 }
 
 mora,131,165,4	script	Habitante de Bifrost#1	520,{
 	mes "[Habitante de Bifrost]";
-	mes "Bem-vindo à oficina ";
-	mes "do clã oeste. Se você";
-	mes "procura pela Capa de Loki";
-	mes "encantada, por favor fale com";
-	mes "meu chefe. Ele realiza milagres!";
+	mes "Bem-vindo à oficina do clã oeste. Se você procura pela Capa de Loki encantada, por favor fale com meu chefe. Ele realiza milagres!";
 	next;
 	mes "[Habitante de Bifrost]";
-	mes "Uma observação... Acho que sou";
-	mes "realmente linda, você não concorda?";
+	mes "Uma observação... Acho que sou realmente linda, você não concorda?";
 	close;
 }
 
@@ -585,7 +527,7 @@ mora,115,138,4	script	Purplesia	524,{
 	close;
 }
 
-//Guardas
+// Guardas
 mora,73,50,5	script	Guardião do Portal Sul#s	518,{
 	mes "[Guardião do Portal]";
 	if(strnpcinfo(2) == "s")
@@ -600,7 +542,7 @@ mora,73,50,5	script	Guardião do Portal Sul#s	518,{
 mora,25,158,5	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Norte#n	516
 mora,167,76,3	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Leste#l	522
 
-//Coral de Rafflesias
+// Coral de Rafflesias
 mora,132,185,4	script	Pequeno Rafflesia#1	518,{
 	if(strnpcinfo(2) == "9")
 		npctalk "Você quer nos ouvir cantar? Fale com nosso Avô!";

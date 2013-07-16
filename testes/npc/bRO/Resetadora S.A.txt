@@ -8,7 +8,7 @@
    |                                                                            |
    |                              brAthena Script                               |
    |----------------------------------------------------------------------------|
-   | Nome do Script:  Reset de habilidades e Atributos para Superaprendizes     |
+   | Nome do Script: Reset de Habilidades e Atributos para Superaprendizes      |
    |----------------------------------------------------------------------------|
    | Criado por: brAthena                                                       |
    |----------------------------------------------------------------------------|
@@ -26,7 +26,6 @@
 prontera,182,211,4	script	Resetadora de S.A's	69,{
 
      mes "[Resetadora de S.A's]";
-    
      if(Class != 23 && Class != 4045) {
      mes "Esse evento é valido apenas para os Superaprendizes e evoluções.";
      close;
@@ -38,32 +37,28 @@ prontera,182,211,4	script	Resetadora de S.A's	69,{
      mes "[Resetadora de S.A's]";
      mes "^EE0000100,000^000000 zenys é o valor necessário para usar o serviço, o que acha?";
      next;
-    
-     if(select("Tudo certo","Está muito caro")== 2) {
+     if(select("Tudo certo:Está muito caro")== 2) {
      mes "[Resetadora de S.A's]";
      mes "Certo, até logo "+strcharinfo(0)+".";
      close;
-     }
-          
+     }   
      mes "[Resetadora de S.A's]";
      mes "Então está tudo pronto agora para me dizer qual serviço deseja ?";
      next;
      if(select("[Reset de Habilidades]:[Reset de Atributos]:Cancelar")== 3) close;
 
      mes "[Resetadora de S.A's]";
-	  
      if(Zeny < 100000) {
      mes "Desculpe, mas você não possui zenys suficientes.";
      close;
-     }
-          
+     }  
      if(reset == 1 && reset2 == 1) {
      mes "Desculpe, mas você já utilizou meu serviço.";
      close;
      }
-	
+
 if(@menu == 1) { resetskill; set reset,1; }
-else if(@menu == 2) { resetstatus; set reset2,1; }
+else { resetstatus; set reset2,1; }
 set Zeny, Zeny - 100000;
 mes "Obrigado por utilizar meu serviço.";
 close;

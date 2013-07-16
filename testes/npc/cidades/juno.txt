@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Juno.                     |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Otimização [Holy & Hold]                           |
+//   | 1.3 Formatação nos Diálogos [Holy & lututuiBR]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -42,9 +43,7 @@ yuno,184,173,4	script	Freidrich#juno	729,{
 		close;
 	} else {
 		mes "[Freidrich]";
-		mes "A cidade dos sábios,";
-		mes "^3355FFJuno,^000000 é constituída por";
-		mes "três ilhas.";
+		mes "A cidade dos sábios, ^3355FFJuno,^000000 é constituída por três ilhas.";
 		next;
 		mes "[Freidrich]";
 		mes "São elas Solomon que é ilha da Honra, Mineta que é a ilha da Prosperidade, e Snotora que é a ilha do conhecimento.";
@@ -78,10 +77,10 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 				mes "Hi hi hi";
 				mes "Lá vai você~";
 				set zeny,zeny-1000;
-				getitem 529,1; //Candy
+				getitem 529,1; // Bala
 				next;
 				mes "[Avó]";
-				mes "Hi hi hi";
+				mes "Hihihi";
 				mes "Pois bem...";
 				mes "Até mais ~";
 				close;
@@ -110,9 +109,7 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 
 yuno,328,239,4	script	Lutador de Juno#juno	732,{
 	mes "[Sergiof]";
-	mes "Meu nome é Sergiof,";
-	mes "o lutador que";
-	mes "serve a Avó de Juno.";
+	mes "Meu nome é Sergiof, o lutador que serve a Avó de Juno.";
 	next;
 	mes "[Sergiof]";
 	mes "Vou te falar sobre o ^3355FFGrande Peco^000000 que é um Peco Peco de level alto. O Grande Peco é mais rápido que o Peco Peco e é bastante agressivo.";
@@ -283,28 +280,16 @@ yuno,263,320,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#7juno	105
 
 yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "[Representante do Dirigível]";
-	mes "Olá, estou aqui para informá-lo";
-	mes "sobre o Dirigível de Juno, o qual";
-	mes "pretendemos operar em um futuro próximo.";
+	mes "Olá, estou aqui para informá-lo sobre o Dirigível de Juno, o qual pretendemos operar em um futuro próximo.";
 	next;
 	mes "[Representante do Dirigível]";
-	mes "Infelizmente, ele ainda está em";
-	mes "construção e temos ainda,";
-	mes "que completar os testes. No entanto,";
-	mes "sentimos a necessidade de informar";
-	mes "nossos clientes sobre o";
-	mes "progresso.";
+	mes "Infelizmente, ele ainda está em construção e temos ainda, que completar os testes. No entanto, sentimos a necessidade de informar nossos clientes sobre o progresso.";
 	next;
 	mes "[Representante do Dirigível]";
 	mes "A aeronave que estamos desenvolvendo irá fornecer-lhe a conveniência de viajar para qualquer cidade. Você também pode admirar a paisagem enquanto flutua no céu. Produtos únicos de cada área também serão fornecidos.";
 	next;
 	mes "[Representante do Dirigível]";
-	mes "Nós prometemos a nossos clientes";
-	mes "uma experiência de viagem incrível";
-	mes "uma vez que a aeronave estiver em";
-	mes "operação. Entretanto,";
-	mes "estamos prestanto um serviço de";
-	mes "teletransporte especial.";
+	mes "Nós prometemos a nossos clientes uma experiência de viagem incrível uma vez que a aeronave estiver em operação. Entretanto, estamos prestanto um serviço de teletransporte especial.";
 	next;
 	mes "[Representante do Dirigível]";
 	mes "A taxa de teletransporte é 1,800 zeny, independente de onde queira ir, por favor, diga-me o local desejado.";
