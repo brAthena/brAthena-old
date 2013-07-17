@@ -742,7 +742,7 @@ enum equip_pos {
 int pc_class2idx(int class_);
 int pc_get_group_level(struct map_session_data *sd);
 int pc_get_group_id(struct map_session_data *sd);
-int pc_getrefinebonus(int lv,int type);
+//int pc_getrefinebonus(int lv,int type);
 bool pc_can_give_items(struct map_session_data *sd);
 
 bool pc_can_use_command(struct map_session_data *sd, const char *command, AtCommandType type);

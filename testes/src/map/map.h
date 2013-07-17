@@ -863,7 +863,7 @@ void map_iwall_remove(const char *wall_name);
 int map_addmobtolist(unsigned short m, struct spawn_data *spawn);	// [Wizputer]
 void map_spawnmobs(int16 m); // [Wizputer]
 void map_removemobs(int16 m); // [Wizputer]
-void do_reconnect_map(void); //Invoked on map-char reconnection [Skotlex]
+//void do_reconnect_map(void); //Invoked on map-char reconnection [Skotlex]
 void map_addmap2db(struct map_data *m);
 void map_removemapdb(struct map_data *m);
 void map_clean(int i);
