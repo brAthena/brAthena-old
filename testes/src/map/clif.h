@@ -783,14 +783,15 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 void clif_favorite_item(struct map_session_data *sd, unsigned short index);
 void clif_move2(struct block_list *bl, struct view_data *vd, struct unit_data *ud);
 void clif_scriptclear(struct map_session_data *sd, int npcid);
-void clif_viewequip_fail(struct map_session_data* sd);
 
 /**
  * Color Table
  **/
 enum clif_colors {
     COLOR_RED,
-	COLOR_MAX
+    COLOR_DEFAULT,
+    COLOR_WHITE,
+    COLOR_MAX
 };
 unsigned long color_table[COLOR_MAX];
 int clif_colormes(int fd, enum clif_colors color, const char *msg);
