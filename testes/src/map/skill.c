@@ -830,7 +830,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_TINDER_BREAKER: 
 			case MH_CBC: 
 				if(!hd->homunculus.spiritball) { 
-					clif_colormes(sd,COLOR_RED,"Homon need some spiritballs"); 
+					clif_colormes(sd->fd,COLOR_RED,"Homon need some spiritballs"); 
 					return 1; 
 				} 
 				break; 
@@ -838,7 +838,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_MIDNIGHT_FRENZY: 
 			case MH_EQC: 
 				if(hd->homunculus.spiritball < 2) { 
-					clif_colormes(sd,COLOR_RED,"Homon need at least 2 spiritballs"); 
+					clif_colormes(sd->fd,COLOR_RED,"Homon need at least 2 spiritballs"); 
 					return 1; 
 				} 
 				break; 
@@ -849,7 +849,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_SILVERVEIN_RUSH: 
 			case MH_MIDNIGHT_FRENZY: 
 				if (!(sce->val1 == MH_MD_FIGHTING)){ 
-					clif_colormes(sd,COLOR_RED,"Homon need to be in fighting mode to use that skill"); 
+					clif_colormes(sd->fd,COLOR_RED,"Homon need to be in fighting mode to use that skill"); 
 					return 1; 
 				} 
 				break; 
@@ -858,7 +858,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_CBC: 
 			case MH_EQC: 
 				if (!(sce->val1 == MH_MD_GRAPPLING)){ 
-					clif_colormes(sd,COLOR_RED,"Homon need to be in grappling mode to use that skill"); 
+					clif_colormes(sd->fd,COLOR_RED,"Homon need to be in grappling mode to use that skill"); 
 					return 1; 
 				} 
 				break; 
@@ -9557,7 +9557,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(hd->master && hd->sc.data[SC_STYLE_CHANGE]) {
 		    			char output[128];
 		    			safesnprintf(output,sizeof(output), msg_txt(453),(sce->val1==MH_MD_FIGHTING?"fighthing":"grappling"));
-		    			clif_colormes(hd->master,COLOR_RED,output);
+		    			clif_colormes(sd->fd,COLOR_RED,output);
 			}
 	    	}
 	    	break;
@@ -13226,7 +13226,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				                      MOBID_EMPERIUM, MOBID_GUARIDAN_STONE1, MOBID_GUARIDAN_STONE2)) {
 					char output[128];
 					sprintf(output, "%s", msg_txt(455));
-					clif_colormes(sd, COLOR_RED, output);
+					clif_colormes(sd->fd, COLOR_RED, output);
 					return 0;
 				}
 			}
@@ -13622,7 +13622,7 @@ int skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, 
 			        skill_get_desc(skill_id),
 			        require.ammo_qty,
 			        itemdb_jname(sd->status.inventory[i].nameid));
-			clif_colormes(sd,COLOR_RED,e_msg);
+			clif_colormes(sd->fd,COLOR_RED,e_msg);
 			return 0;
 		}
 		if(!(require.ammo&1<<sd->inventory_data[i]->look)) {  //Ammo type check. Send the "wrong weapon type" message

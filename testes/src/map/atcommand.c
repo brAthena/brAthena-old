@@ -9978,7 +9978,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		for(i = 0; i < map[sd->bl.m].zone->disabled_commands_count; i++) {
 			if(info->func == map[sd->bl.m].zone->disabled_commands[i]->cmd) {
 				if(sd->group_level < map[sd->bl.m].zone->disabled_commands[i]->group_lv) {
-					clif_colormes(sd,COLOR_RED,"Este comando está desativado nesta área");
+					clif_colormes(sd->fd,COLOR_RED,"Este comando está desativado nesta área");
 					return true;
 				} else
 					break;/* already found the matching command, no need to keep checking -- just go on */

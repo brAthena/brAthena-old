@@ -6117,7 +6117,7 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 		lv = sd->status.skill[skill_id].lv;
 		range = skill_get_range2(&sd->bl, skill_id, lv);
 		upgradable = (lv < skill_tree_get_max(sd->status.skill[skill_id].id, sd->status.class_)) ? 1 : 0;
-		clif_skillup(sd,skill_id,lv,range,upgradable);
+		clif_skillup(sd,skill_id);
 		clif_updatestatus(sd,SP_SKILLPOINT);
 		if(skill_id == GN_REMODELING_CART)   /* cart weight info was updated by status_calc_pc */
 			clif_updatestatus(sd,SP_CARTINFO);

@@ -4485,7 +4485,7 @@ void clif_getareachar_item(struct map_session_data *sd,struct flooritem_data *fi
 /// 01c9 <id>.L <creator id>.L <x>.W <y>.W <unit id>.B <visible>.B <has msg>.B <msg>.80B (ZC_SKILL_ENTRY2)
 /// 08c7 <lenght>.W <id> L <creator id>.L <x>.W <y>.W <unit id>.B <range>.W <visible>.B (ZC_SKILL_ENTRY3)
 /// 099f <lenght>.W <id> L <creator id>.L <x>.W <y>.W <unit id>.L <range>.W <visible>.B (ZC_SKILL_ENTRY4)
-static void clif_getareachar_skillunit(int type,struct map_session_data *sd, struct skill_unit *unit)
+void clif_getareachar_skillunit(struct map_session_data *sd, struct skill_unit *unit)
 {
 	int fd = sd->fd, header = 0x11f, pos=0;
 
@@ -4606,7 +4606,7 @@ static int clif_getareachar(struct block_list *bl,va_list ap)
 			clif_getareachar_item(sd,(struct flooritem_data *) bl);
 			break;
 		case BL_SKILL:
-			clif_getareachar_skillunit(1,sd,(TBL_SKILL *)bl);
+			clif_getareachar_skillunit(sd,(TBL_SKILL *)bl);
 			break;
 		default:
 			if(&sd->bl == bl)
@@ -4692,7 +4692,7 @@ int clif_insight(struct block_list *bl,va_list ap)
 				clif_getareachar_item(tsd,(struct flooritem_data *)bl);
 				break;
 			case BL_SKILL:
-				clif_getareachar_skillunit(1,tsd,(TBL_SKILL *)bl);
+				clif_getareachar_skillunit(tsd,(TBL_SKILL *)bl);
 				break;
 			default:
 				clif_getareachar_unit(tsd,bl);
@@ -4807,21 +4807,20 @@ void clif_deleteskill(struct map_session_data *sd, int id)
 
 /// Updates a skill in the skill tree (ZC_SKILLINFO_UPDATE).
 /// 010e <skill id>.W <level>.W <sp cost>.W <attack range>.W <upgradable>.B
-void clif_skillup(struct map_session_data *sd, uint16 skill_id, int lv, int range, int upgradable)
-{
-	int fd;
+void clif_skillup(struct map_session_data *sd,uint16 skill_id) {
+	int fd, idx = skill_get_index(skill_id);
 
 	nullpo_retv(sd);
 
-	fd = sd->fd;
-	WFIFOHEAD(fd, packet_len(0x10e));
-	WFIFOW(fd, 0) = 0x10e;
-	WFIFOW(fd, 2) = skill_id;
-	WFIFOW(fd, 4) = lv;
-	WFIFOW(fd, 6) = skill_get_sp(skill_id, lv);
-	WFIFOW(fd, 8) = range;
-	WFIFOB(fd, 10) = upgradable;
-	WFIFOSET(fd, packet_len(0x10e));
+	fd=sd->fd;
+	WFIFOHEAD(fd,packet_len(0x10e));
+	WFIFOW(fd,0) = 0x10e;
+	WFIFOW(fd,2) = skill_id;
+	WFIFOW(fd,4) = sd->status.skill[idx].lv;
+	WFIFOW(fd,6) = skill_get_sp(skill_id,sd->status.skill[idx].lv);
+	WFIFOW(fd,8) = skill_get_range2(&sd->bl,skill_id,sd->status.skill[idx].lv);
+	WFIFOB(fd,10) = (sd->status.skill[idx].lv < skill_tree_get_max(sd->status.skill[idx].id, sd->status.class_)) ? 1 : 0;
+	WFIFOSET(fd,packet_len(0x10e));
 }
 
 
@@ -5576,7 +5575,7 @@ void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, e
  * Displays a message on a 'bl' to all it's nearby clients
  * 008d <PacketLength>.W <GID> L (ZC_NOTIFY_CHAT)
  *------------------------------------------*/
-void clif_GlobalMessage(struct block_list *bl, const char *message, enum send_target target)
+void clif_GlobalMessage(struct block_list *bl, const char *message)
 {
 	char buf[150];
 	int len;
@@ -5596,7 +5595,7 @@ void clif_GlobalMessage(struct block_list *bl, const char *message, enum send_ta
 	WBUFW(buf,2)=len+8;
 	WBUFL(buf,4)=bl->id;
 	safestrncpy((char *) WBUFP(buf,8),message,len);
-	clif_send((unsigned char *) buf,WBUFW(buf,2),bl,target);
+	clif_send((unsigned char *) buf,WBUFW(buf,2),bl,ALL_CLIENT);
 
 }
 
@@ -5666,7 +5665,7 @@ void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd) {
 
 void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
 	if( channel->msg_delay != 0 && DIFF_TICK(sd->rachsysch_tick + ( channel->msg_delay * 1000 ), gettick()) > 0 && !pc_has_permission(sd, PC_PERM_CHANNEL_ADMIN) ) {
-		clif_colormes(sd,COLOR_RED,msg_txt(1455));
+		clif_colormes(sd->fd,COLOR_RED,msg_txt(1455));
 		return;
 	} else {
 		char message[150];
@@ -8704,17 +8703,17 @@ void clif_specialeffect_value(struct block_list *bl, int effect_id, int num, sen
 }
 // Modification of clif_messagecolor to send colored messages to players to chat log only (doesn't display overhead)
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
-int clif_colormes(struct map_session_data *sd, unsigned long color, const char *msg)
+int clif_colormes(int fd, enum clif_colors color, const char *msg)
 {
 	unsigned short msg_len = strlen(msg) + 1;
 
-	WFIFOHEAD(sd->fd,msg_len + 12);
-	WFIFOW(sd->fd,0) = 0x2C1;
-	WFIFOW(sd->fd,2) = msg_len + 12;
-	WFIFOL(sd->fd,4) = 0;
-	WFIFOL(sd->fd,8) = color_table[color];
-	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
-	WFIFOSET(sd->fd, msg_len + 12);
+	WFIFOHEAD(fd,msg_len + 12);
+	WFIFOW(fd,0) = 0x2C1;
+	WFIFOW(fd,2) = msg_len + 12;
+	WFIFOL(fd,4) = 0;
+	WFIFOL(fd,8) = color_table[color];
+	safestrncpy((char*)WFIFOP(fd,12), msg, msg_len);
+	WFIFOSET(fd, msg_len + 12);
 
 	return 0;
 }
@@ -8739,6 +8738,26 @@ void clif_messagecolor(struct block_list *bl, unsigned long color, const char *m
 	WBUFL(buf,4) = bl->id;
 	WBUFL(buf,8) = color;
 	memcpy(WBUFP(buf,12), msg, msg_len);
+
+	clif_send(buf, WBUFW(buf,2), bl, AREA_CHAT_WOC);
+}
+
+/// Public chat message [Valaris] (ZC_NOTIFY_CHAT).
+/// 008d <packet len>.W <id>.L <message>.?B
+void clif_message(struct block_list* bl, const char* msg) {
+	unsigned short msg_len = strlen(msg) + 1;
+	uint8 buf[256];
+	nullpo_retv(bl);
+
+	if(msg_len > sizeof(buf)-8) {
+		ShowWarning("clif_message: Truncating too long message '%s' (len=%u).\n", msg, msg_len);
+		msg_len = sizeof(buf)-8;
+	}
+
+	WBUFW(buf,0) = 0x8d;
+	WBUFW(buf,2) = msg_len + 8;
+	WBUFL(buf,4) = bl->id;
+	safestrncpy((char*)WBUFP(buf,8), msg, msg_len);
 
 	clif_send(buf, WBUFW(buf,2), bl, AREA_CHAT_WOC);
 }
@@ -10144,7 +10163,13 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 		textlen = strlen(fakename) + 1;
 	}
 	// send message to others (using the send buffer for temp. storage)
-	clif_GlobalMessage(&sd->bl,is_fake ? fakename : text,sd->chatID ? CHAT_WOS : AREA_CHAT_WOC);
+	WFIFOHEAD(fd, 8 + textlen);
+	WFIFOW(fd,0) = 0x8d;
+	WFIFOW(fd,2) = 8 + textlen;
+	WFIFOL(fd,4) = sd->bl.id;
+	safestrncpy((char*)WFIFOP(fd,8), is_fake ? fakename : text, textlen);
+	//FIXME: chat has range of 9 only
+	clif_send(WFIFOP(fd,0), WFIFOW(fd,2), &sd->bl, sd->chatID ? CHAT_WOS : AREA_CHAT_WOC);
 
 	// send back message to the speaker
 	if(is_fake) {

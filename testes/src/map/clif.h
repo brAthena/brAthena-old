@@ -390,7 +390,7 @@ void clif_misceffect(struct block_list *bl,int type);   // area
 void clif_changeoption(struct block_list *bl);  // area
 void clif_changeoption2(struct block_list *bl); // area
 void clif_useitemack(struct map_session_data *sd,int index,int amount,bool ok); // self
-void clif_GlobalMessage(struct block_list *bl, const char *message,enum send_target target);
+void clif_GlobalMessage(struct block_list *bl, const char *message);
 void clif_createchat(struct map_session_data *sd, int flag);    // self
 void clif_dispchat(struct chat_data *cd, int fd);   // area or fd
 void clif_joinchatfail(struct map_session_data *sd,int flag);   // self
@@ -440,12 +440,14 @@ void clif_class_change(struct block_list *bl,int class_,int type);
 #define clif_mob_class_change(md, class_) clif_class_change(&md->bl, class_, 1)
 
 void clif_skillinfoblock(struct map_session_data *sd);
-void clif_skillup(struct map_session_data *sd, uint16 skill_id, int lv, int range, int upgradable);
+void clif_skillup(struct map_session_data *sd,uint16 skill_id);
 void clif_skillinfo(struct map_session_data *sd,int skill, int inf);
 void clif_addskill(struct map_session_data *sd, int id);
 void clif_deleteskill(struct map_session_data *sd, int id);
 
 int clif_guild_skillup(struct map_session_data *sd,uint16 skill_id,int lv);
+
+void clif_getareachar_skillunit(struct map_session_data *sd, struct skill_unit *unit);
 
 void clif_initialstatus(struct map_session_data *sd);
 
@@ -621,6 +623,7 @@ void clif_weather(int16 m); // [Valaris]
 void clif_specialeffect(struct block_list *bl, int type, enum send_target target); // special effects [Valaris]
 void clif_specialeffect_single(struct block_list *bl, int type, int fd);
 void clif_messagecolor(struct block_list *bl, unsigned long color, const char *msg); // Mob/Npc color talk [SnakeDrak]
+void clif_message(struct block_list* bl, const char* msg);
 void clif_specialeffect_value(struct block_list *bl, int effect_id, int num, send_target target);
 
 void clif_GM_kickack(struct map_session_data *sd, int id);
@@ -780,17 +783,17 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 void clif_favorite_item(struct map_session_data *sd, unsigned short index);
 void clif_move2(struct block_list *bl, struct view_data *vd, struct unit_data *ud);
 void clif_scriptclear(struct map_session_data *sd, int npcid);
+void clif_viewequip_fail(struct map_session_data* sd);
 
 /**
  * Color Table
  **/
 enum clif_colors {
     COLOR_RED,
-
-    COLOR_MAX
+	COLOR_MAX
 };
 unsigned long color_table[COLOR_MAX];
-int clif_colormes(struct map_session_data *sd, unsigned long color, const char *msg);
+int clif_colormes(int fd, enum clif_colors color, const char *msg);
 
 /**
  * Channel System

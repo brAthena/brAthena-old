@@ -493,7 +493,7 @@ void bg_match_over(struct bg_arena *arena, bool canceled) {
 		if((sd = map_id2sd(queue->item[i]))) {
 			bg->queue_pc_cleanup(sd);
 			if(canceled)
-				clif_colormes(sd,COLOR_RED,"BG Match Cancelled: not enough players");
+				clif_colormes(sd->fd,COLOR_RED,"BG Match Cancelled: not enough players");
 			else {
 				pc_setglobalreg(sd, arena->delay_var, (unsigned int)time(NULL));
 			}
@@ -670,7 +670,7 @@ enum BATTLEGROUNDS_QUEUE_ACK bg_canqueue(struct map_session_data *sd, struct bg_
 			sprintf(response, "You are a deserter! Wait %d minute(s) before you can apply again",(tick-tsec)/60);
 		else
 			sprintf(response, "You are a deserter! Wait %d seconds before you can apply again",(tick-tsec));
-		clif_colormes(sd,COLOR_RED,response);
+		clif_colormes(sd->fd,COLOR_RED,response);
 		return BGQA_FAIL_DESERTER;
 	}
 	
@@ -680,7 +680,7 @@ enum BATTLEGROUNDS_QUEUE_ACK bg_canqueue(struct map_session_data *sd, struct bg_
 			sprintf(response, "You can't reapply to this arena so fast. Apply to the different arena or wait %d minute(s)",(tick-tsec)/60);
 		else
 			sprintf(response, "You can't reapply to this arena so fast. Apply to the different arena or wait %d seconds",(tick-tsec));
-		clif_colormes(sd,COLOR_RED,response);
+		clif_colormes(sd->fd,COLOR_RED,response);
 		return BGQA_FAIL_COOLDOWN;
 	}
 
@@ -688,7 +688,7 @@ enum BATTLEGROUNDS_QUEUE_ACK bg_canqueue(struct map_session_data *sd, struct bg_
 		return BGQA_DUPLICATE_REQUEST;
 
 	if(type != BGQT_INDIVIDUAL) { /* until we get the damn balancing correct */
-		clif_colormes(sd,COLOR_RED,"Queueing is only currently enabled only for Solo Mode");
+		clif_colormes(sd->fd,COLOR_RED,"Queueing is only currently enabled only for Solo Mode");
 		return BGQA_FAIL_TEAM_COUNT;
 	}
 
@@ -709,7 +709,7 @@ enum BATTLEGROUNDS_QUEUE_ACK bg_canqueue(struct map_session_data *sd, struct bg_
 						sprintf(response, "Can't apply: not enough members in your team/guild that have not entered the queue in individual mode, minimum is %d",arena->min_team_players);
 					else
 						sprintf(response, "Can't apply: not enough members in your team/guild, minimum is %d",arena->min_team_players);
-					clif_colormes(sd,COLOR_RED,response);
+					clif_colormes(sd->fd,COLOR_RED,response);
 					return BGQA_FAIL_TEAM_COUNT;
 				}
 			}
@@ -741,7 +741,7 @@ enum BATTLEGROUNDS_QUEUE_ACK bg_canqueue(struct map_session_data *sd, struct bg_
 							sprintf(response, "Can't apply: not enough members in your team/party that have not entered the queue in individual mode, minimum is %d",arena->min_team_players);
 						else
 							sprintf(response, "Can't apply: not enough members in your team/party, minimum is %d",arena->min_team_players);
-						clif_colormes(sd,COLOR_RED,response);
+						clif_colormes(sd->fd,COLOR_RED,response);
 						return BGQA_FAIL_TEAM_COUNT;
 					}
 					
