@@ -572,7 +572,7 @@ int guild_recv_info(struct guild *sg)
 
 			//Also set the guild master flag.
 			sd->guild = g;
-			sd->state.gmaster_flag = g;
+			sd->state.gmaster_flag = 1;
 			clif_charnameupdate(sd); // [LuzZza]
 			clif_guild_masterormember(sd);
 		}
@@ -737,7 +737,6 @@ int guild_reply_invite(struct map_session_data *sd, int guild_id, int flag)
 			return 0;
 		}
 
-		sd->guild = g;
 		guild_makemember(&m,sd);
 		intif_guild_addmember(guild_id, &m);
 		//TODO: send a minimap update to this player
@@ -761,7 +760,7 @@ void guild_member_joined(struct map_session_data *sd)
 	}
 	if(strcmp(sd->status.name,g->master) == 0) {
 		// set the Guild Master flag
-		sd->state.gmaster_flag = g;
+		sd->state.gmaster_flag = 1;
 		// prevent Guild Skills from being used directly after relog
 		if(battle_config.guild_skill_relog_delay)
 			guild_block_skill(sd, 300000);
@@ -784,7 +783,6 @@ void guild_member_joined(struct map_session_data *sd)
 				if(g->alliance[i].opposition == 0 && g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id))) {
 					if( !(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
 						clif_chsys_join((struct raChSysCh*)sg->channel,sd);
-					break;
 				}
 			}
 		}
@@ -939,6 +937,10 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 		if(g->instances)
 			instance->check_kick(sd);
 		clif_charnameupdate(sd); //Update display name [Skotlex]
+		status_change_end(&sd->bl, SC_LEADERSHIP, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_GLORYWOUNDS, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_SOULCOLD, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_HAWKEYES, INVALID_TIMER);
 		//TODO: send emblem update to self and people around
 	}
 	return 0;
@@ -1272,7 +1274,7 @@ unsigned int guild_payexp(struct map_session_data *sd,unsigned int exp)
 	if(!exp) return 0;
 
 	if(sd->status.guild_id == 0 ||
-	   (g = guild_search(sd->status.guild_id)) == NULL ||
+	   (g = sd->guild) == NULL ||
 	   (per = guild_getposition(g,sd)) < 0 ||
 	   (per = g->position[per].exp_mode) < 1)
 		return 0;
@@ -1348,9 +1350,7 @@ int guild_skillupack(int guild_id,uint16 skill_id,int account_id)
 	if(g==NULL)
 		return 0;
 	if(sd != NULL) {
-		int lv = g->skill[skill_id-GD_SKILLBASE].lv;
-		int range = skill_get_range(skill_id, lv);
-		clif_skillup(sd,skill_id,lv,range,1);
+		clif_guild_skillup(sd,skill_id,g->skill[skill_id-GD_SKILLBASE].lv);
 
 		/* Guild Aura handling */
 		switch(skill_id) {
@@ -1381,7 +1381,7 @@ void guild_guildaura_refresh(struct map_session_data *sd, uint16 skill_id, uint1
 	if(!skill_lv)
 		return;
 	if(sd->sc.data[type] && (group = skill_id2group(sd->sc.data[type]->val4))) {
-		skill_delunitgroup(group);
+		skill_delunitgroup(group,ALC_MARK);
 		status_change_end(&sd->bl,type,INVALID_TIMER);
 	}
 	group = skill_unitsetting(&sd->bl,skill_id,skill_lv,sd->bl.x,sd->bl.y,0);
@@ -1644,7 +1644,7 @@ int guild_allianceack(int guild_id1,int guild_id2,int account_id1,int account_id
 		sd[0]->guild_alliance_account=0;
 	}
 
-	if(flag&0x70) { // failure
+	if(flag & 0x70) { // failure
 		for(i=0; i<2-(flag&1); i++)
 			if(sd[i]!=NULL)
 				clif_guild_allianceack(sd[i],((flag>>4)==i+1)?3:4);
@@ -1660,7 +1660,7 @@ int guild_allianceack(int guild_id1,int guild_id2,int account_id1,int account_id
 		}
 	} 
 
-	if(!(flag&0x08)) {  // new relationship
+	if(!(flag & 0x08)) {  // new relationship
 		for(i=0; i<2-(flag&1); i++) {
 			if(g[i]!=NULL) {
 				ARR_FIND(0, MAX_GUILDALLIANCE, j, g[i]->alliance[j].guild_id == 0);
@@ -1673,26 +1673,26 @@ int guild_allianceack(int guild_id1,int guild_id2,int account_id1,int account_id
 		}
 	} else { // remove relationship
 		for(i=0; i<2-(flag&1); i++) {
-			if(g[i]!=NULL) {
+			if(g[i] != NULL) {
 				ARR_FIND(0, MAX_GUILDALLIANCE, j, g[i]->alliance[j].guild_id == guild_id[1-i] && g[i]->alliance[j].opposition == (flag&1));
 				if(j < MAX_GUILDALLIANCE)
 					g[i]->alliance[j].guild_id = 0;
 			}
-			if(sd[i]!=NULL)   // notify players
+			if(sd[i] != NULL)   // notify players
 				clif_guild_delalliance(sd[i],guild_id[1-i],(flag&1));
 		}
 	}
 
-	if((flag&0x0f)==0) { // alliance notification
+	if((flag & 0x0f) == 0) { // alliance notification
 		if(sd[1]!=NULL)
 			clif_guild_allianceack(sd[1],2);
-	} else if((flag&0x0f)==1) { // enemy notification
+	} else if((flag & 0x0f) == 1) { // enemy notification
 		if(sd[0]!=NULL)
 			clif_guild_oppositionack(sd[0],0);
 	}
 
 
-	for(i=0; i<2-(flag&1); i++) { // Retransmission of the relationship list to all members
+	for(i = 0; i < 2 -(flag & 1); i++) { // Retransmission of the relationship list to all members
 		struct map_session_data *sd;
 		if(g[i]!=NULL)
 			for(j=0; j<g[i]->max_member; j++)
@@ -1767,8 +1767,13 @@ int guild_broken(int guild_id,int flag)
 				storage_guild_storage_quit(sd,1);
 			sd->status.guild_id=0;
 			sd->guild = NULL;
+			sd->state.gmaster_flag = 0;
 			clif_guild_broken(g->member[i].sd,0);
 			clif_charnameupdate(sd); // [LuzZza]
+			status_change_end(&sd->bl, SC_LEADERSHIP, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_GLORYWOUNDS, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_SOULCOLD, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_HAWKEYES, INVALID_TIMER);
 		}
 	}
 
@@ -1839,7 +1844,7 @@ int guild_gm_changed(int guild_id, int account_id, int char_id)
 
 	if(g->member[0].sd && g->member[0].sd->fd) {
 		clif_displaymessage(g->member[0].sd->fd, msg_txt(679)); //"You have become the Guild Master!"
-		g->member[0].sd->state.gmaster_flag = g;
+		g->member[0].sd->state.gmaster_flag = 1;
 		//Block his skills for 5 minutes to prevent abuse.
 		guild_block_skill(g->member[0].sd, 300000);
 	}
@@ -1861,6 +1866,7 @@ int guild_gm_changed(int guild_id, int account_id, int char_id)
 int guild_break(struct map_session_data *sd,char *name)
 {
 	struct guild *g;
+	struct unit_data *ud;
 	int i;
 
 	nullpo_ret(sd);
@@ -1882,6 +1888,29 @@ int guild_break(struct map_session_data *sd,char *name)
 		return 0;
 	}
 
+	/* regardless of char server allowing it, we clear the guild master's auras */
+	if((ud = unit_bl2ud(&sd->bl))) {
+		int count = 0;
+		struct skill_unit_group *groups[4];
+		for (i=0;i<MAX_SKILLUNITGROUP && ud->skillunit[i];i++) {
+			switch (ud->skillunit[i]->skill_id) {
+				case GD_LEADERSHIP:
+				case GD_GLORYWOUNDS:
+				case GD_SOULCOLD:
+				case GD_HAWKEYES:
+					if(count == 4)
+						ShowWarning("guild_break:'%s' got more than 4 guild aura instances! (%d)\n",sd->status.name,ud->skillunit[i]->skill_id);
+					else
+						groups[count++] = ud->skillunit[i];
+					break;
+			}
+			
+		}
+		for(i = 0; i < count; i++) {
+			skill_delunitgroup(groups[i],ALC_MARK);
+		}
+	}
+	
 	intif_guild_break(g->guild_id);
 	return 1;
 }

@@ -1253,7 +1253,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			if((sce=sc->data[SC_GRAVITATION]) && sce->val3 == BCT_SELF) {
 				struct skill_unit_group *sg = skill_id2group(sce->val4);
 				if(sg) {
-					skill_delunitgroup(sg);
+					skill_delunitgroup(sg,ALC_MARK);
 					sce->val4 = 0;
 					status_change_end(target, SC_GRAVITATION, INVALID_TIMER);
 				}
@@ -9642,7 +9642,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 					}
 
 					sce->val2 = 0;
-					skill_delunitgroup(group);
+					skill_delunitgroup(group,ALC_MARK);
 				}
 
 				if((sce->val1&0xFFFF) == CG_MOONLIT)
@@ -9742,7 +9742,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			if(sce->val3) {  //Clear the group.
 				struct skill_unit_group *group = skill_id2group(sce->val3);
 				sce->val3 = 0;
-				skill_delunitgroup(group);
+				skill_delunitgroup(group,ALC_MARK);
 			}
 			break;
 		case SC_HERMODE:
@@ -9761,7 +9761,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				struct skill_unit_group *group = skill_id2group(sce->val4);
 				sce->val4 = 0;
 				if(group)   /* might have been cleared before status ended, e.g. land protector */
-					skill_delunitgroup(group);
+					skill_delunitgroup(group,ALC_MARK);
 			}
 			break;
 		case SC_KAAHI:
@@ -9849,7 +9849,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				struct skill_unit_group *group = skill_id2group(sce->val2);
 				sce->val2 = 0;
 				if(group)   /* might have been cleared before status ended, e.g. land protector */
-					skill_delunitgroup(group);
+					skill_delunitgroup(group,ALC_MARK);
 			}
 			break;
 		case SC_BANDING:
@@ -9857,7 +9857,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				struct skill_unit_group *group = skill_id2group(sce->val4);
 				sce->val4 = 0;
 				if(group)   /* might have been cleared before status ended, e.g. land protector */
-					skill_delunitgroup(group);
+					skill_delunitgroup(group,ALC_MARK);
 			}
 			break;
 		case SC_CURSEDCIRCLE_ATKER:

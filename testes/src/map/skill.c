@@ -3221,24 +3221,6 @@ static int skill_check_unit_range2(struct block_list *bl, int x, int y, uint16 s
 	                         type, skill_id);
 }
 
-int skill_guildaura_sub(struct map_session_data *sd, int id, int strvit, int agidex)
-{
-	if(id == sd->bl.id && battle_config.guild_aura&16)
-		return 0;  // Do not affect guild leader
-
-	if(sd->sc.data[SC_GUILDAURA]) {
-		struct status_change_entry *sce = sd->sc.data[SC_GUILDAURA];
-		if(sce->val3 != strvit || sce->val4 != agidex) {
-			sce->val3 = strvit;
-			sce->val4 = agidex;
-			status_calc_bl(&sd->bl, status_sc2scb_flag(SC_GUILDAURA));
-		}
-		return 0;
-	}
-	sc_start4(&sd->bl, SC_GUILDAURA,100, 1, id, strvit, agidex, 1000);
-	return 1;
-}
-
 /*==========================================
  * Checks that you have the requirements for casting a skill for homunculus/mercenary.
  * Flag:
@@ -7760,7 +7742,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				int j = 0;
 				struct guild *g;
 				// i don't know if it actually summons in a circle, but oh well. ;P
-				g = sd?sd->state.gmaster_flag:guild_search(status_get_guild_id(src));
+				g = sd ? sd->guild : guild_search(status_get_guild_id(src));
 				if(!g)
 					break;
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
@@ -11220,7 +11202,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 
 	if(!group->alive_count) {
 		//No cells? Something that was blocked completely by Land Protector?
-		skill_delunitgroup(group);
+		skill_delunitgroup(group,ALC_MARK);
 		return NULL;
 	}
 
@@ -11329,7 +11311,7 @@ static int skill_unit_onplace(struct skill_unit *src, struct block_list *bl, uns
 						unsigned short m = sg->val3;
 
 						if(--count <= 0)
-							skill_delunitgroup(sg);
+							skill_delunitgroup(sg,ALC_MARK);
 
 						if(map_mapindex2mapid(sg->val3) == sd->bl.m && x == sd->bl.x && y == sd->bl.y)
 							working = 1;/* we break it because officials break it, lovely stuff. */
@@ -11557,7 +11539,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 					sg->val1--;
 			}
 			if(sg->val1 <= 0)
-				skill_delunitgroup(sg);
+				skill_delunitgroup(sg,ALC_MARK);
 			break;
 
 		case UNT_EVILLAND:
@@ -14958,7 +14940,7 @@ int skill_clear_group(struct block_list *bl, int flag)
 
 	}
 	for(i=0; i<count; i++)
-		skill_delunitgroup(group[i]);
+		skill_delunitgroup(group[i],ALC_MARK);
 	return count;
 }
 
@@ -15522,7 +15504,7 @@ int skill_delunit(struct skill_unit *unit)
 	map_deliddb(&unit->bl);
 	idb_remove(skillunit_db, unit->bl.id);
 	if(--group->alive_count==0)
-		skill_delunitgroup(group);
+		skill_delunitgroup(group,ALC_MARK);
 
 	return 0;
 }
@@ -15581,7 +15563,7 @@ struct skill_unit_group *skill_initunitgroup(struct block_list *src, int count, 
 				maxdiff=x;
 				j=i;
 			}
-		skill_delunitgroup(ud->skillunit[j]);
+		skill_delunitgroup(ud->skillunit[j],ALC_MARK);
 		//Since elements must have shifted, we use the last slot.
 		i = MAX_SKILLUNITGROUP-1;
 	}
@@ -15619,7 +15601,7 @@ struct skill_unit_group *skill_initunitgroup(struct block_list *src, int count, 
 /*==========================================
  *
  *------------------------------------------*/
-int skill_delunitgroup_(struct skill_unit_group *group, const char *file, int line, const char *func)
+int skill_delunitgroup(struct skill_unit_group *group, const char *file, int line, const char *func)
 {
 	struct block_list *src;
 	struct unit_data *ud;
@@ -15754,7 +15736,7 @@ int skill_clear_unitgroup(struct block_list *src)
 	nullpo_ret(ud);
 
 	while(ud->skillunit[0])
-		skill_delunitgroup(ud->skillunit[0]);
+		skill_delunitgroup(ud->skillunit[0],ALC_MARK);
 
 	return 1;
 }

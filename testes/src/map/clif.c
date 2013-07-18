@@ -7611,7 +7611,7 @@ void clif_guild_belonginfo(struct map_session_data *sd, struct guild *g)
 	WFIFOL(fd,2)=g->guild_id;
 	WFIFOL(fd,6)=g->emblem_id;
 	WFIFOL(fd,10)=g->position[ps].mode;
-	WFIFOB(fd,14)=(bool)(sd->state.gmaster_flag==g);
+	WFIFOB(fd,14)=(bool)(sd->state.gmaster_flag == 1);
 	WFIFOL(fd,15)=0;  // InterSID (unknown purpose)
 	memcpy(WFIFOP(fd,19),g->name,NAME_LENGTH);
 	WFIFOSET(fd,packet_len(0x16c));
@@ -8172,6 +8172,29 @@ void clif_guild_message(struct guild *g,int account_id,const char *mes,int len)
 	if((sd = guild_getavailablesd(g)) != NULL)
 		clif_send(buf, WBUFW(buf,2), &sd->bl, GUILD_NOBG);
 }
+
+
+/*==========================================
+ * Server tells client 'sd' that his guild skill 'skill_id' gone to level 'lv'
+ *------------------------------------------*/
+int clif_guild_skillup(struct map_session_data *sd,uint16 skill_id,int lv)
+{// TODO: Merge with clif_skillup (same packet).
+	int fd;
+
+	nullpo_ret(sd);
+
+	fd=sd->fd;
+	WFIFOHEAD(fd,11);
+	WFIFOW(fd,0) = 0x10e;
+	WFIFOW(fd,2) = skill_id;
+	WFIFOW(fd,4) = lv;
+	WFIFOW(fd,6) = skill_get_sp(skill_id,lv);
+	WFIFOW(fd,8) = skill_get_range(skill_id,lv);
+	WFIFOB(fd,10) = 1;
+	WFIFOSET(fd,11);
+	return 0;
+}
+
 
 /// Request for guild alliance (ZC_REQ_ALLY_GUILD).
 /// 0171 <inviter account id>.L <guild name>.24B
@@ -9771,10 +9794,10 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	/* Guild Aura Init */
 	if(sd->state.gmaster_flag) {
-		guild_guildaura_refresh(sd,GD_LEADERSHIP,guild_checkskill(sd->state.gmaster_flag,GD_LEADERSHIP));
-		guild_guildaura_refresh(sd,GD_GLORYWOUNDS,guild_checkskill(sd->state.gmaster_flag,GD_GLORYWOUNDS));
-		guild_guildaura_refresh(sd,GD_SOULCOLD,guild_checkskill(sd->state.gmaster_flag,GD_SOULCOLD));
-		guild_guildaura_refresh(sd,GD_HAWKEYES,guild_checkskill(sd->state.gmaster_flag,GD_HAWKEYES));
+		guild_guildaura_refresh(sd,GD_LEADERSHIP,guild_checkskill(sd->guild,GD_LEADERSHIP));
+		guild_guildaura_refresh(sd,GD_GLORYWOUNDS,guild_checkskill(sd->guild,GD_GLORYWOUNDS));
+		guild_guildaura_refresh(sd,GD_SOULCOLD,guild_checkskill(sd->guild,GD_SOULCOLD));
+		guild_guildaura_refresh(sd,GD_HAWKEYES,guild_checkskill(sd->guild,GD_HAWKEYES));
 	}
 
 	if(sd->state.vending) {   /* show we have a vending */
@@ -11368,7 +11391,7 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 
 	if(skill_id >= GD_SKILLBASE) {
 		if(sd->state.gmaster_flag)
-			skill_lv = guild_checkskill(sd->state.gmaster_flag, skill_id);
+			skill_lv = guild_checkskill(sd->guild, skill_id);
 		else
 			skill_lv = 0;
 	} else {

@@ -2605,11 +2605,11 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				if((group->val2 - damage) > 0) {
 					group->val2 -= damage;
 				} else
-				skill_delunitgroup(group);
+				skill_delunitgroup(group,ALC_MARK);
 				return 0;
 #else
 				if(--group->val2<=0)
-					skill_delunitgroup(group);
+					skill_delunitgroup(group,ALC_MARK);
 				d->dmg_lv = ATK_BLOCK;
 				return 0;
 #endif
