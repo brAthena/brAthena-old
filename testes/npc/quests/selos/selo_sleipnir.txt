@@ -38,34 +38,30 @@ yuno,164,200,4	script	Noyee#G	101,{
 		mes "Ambos os Cards de Monstro e Armaduras com Slots raramente são derrubadas por monstros, e são, portanto comuns valiosos.";
 		close;
 	}
-	else {
-		if ($God1 > 99) {
-			mes "[Noyee]";
-			mes "Você sabia que existe uma diferença entre a armadura que você pode comprar de lojas de NPC e os tipos que obter caçando monstros?";
-			next;
-			mes "[Noyee]";
-			mes "A diferença, meu amigo, está no número de ^3355FFslots^000000 em sua armadura.";
-			next;
-			mes "[Noyee]";
-			mes "O mesmo tipo de Armor terá a mesma defesa. No entanto, se uma armadura tem um slot, você pode inserir uma Carta de Monstro que irá adicionar um aperfeiçoamento para a sua armadura.";
-			next;
-			mes "[Noyee]";
-			mes "Ambos os Cards de Monstro e Armaduras com Slots raramente são derrubadas por monstros, e são, portanto comuns valiosos.";
-			close;
-		}
-		else {
-			mes "[Noyee]";
-			mes "Você sabe, há um lugar muito interessante que parece";
-			mes "como uma espécie de laboratório em Juno.";
-			next;
-			mes "[Noyee]";
-			mes "Enfim, ninguém está realmente certo se ele é ou não. Recentemente, tem sido o foco de muitos boatos. Eu não tenho nenhuma idéia se alguma delas é verdadeira embora.";
-			close2;
-			if (god_sl_1 == 0) {
-				set god_sl_1,1;
-			}
-		}
+	if ($God1 > 99) {
+		mes "[Noyee]";
+		mes "Você sabia que existe uma diferença entre a armadura que você pode comprar de lojas de NPC e os tipos que obter caçando monstros?";
+		next;
+		mes "[Noyee]";
+		mes "A diferença, meu amigo, está no número de ^3355FFslots^000000 em sua armadura.";
+		next;
+		mes "[Noyee]";
+		mes "O mesmo tipo de Armor terá a mesma defesa. No entanto, se uma armadura tem um slot, você pode inserir uma Carta de Monstro que irá adicionar um aperfeiçoamento para a sua armadura.";
+		next;
+		mes "[Noyee]";
+		mes "Ambos os Cards de Monstro e Armaduras com Slots raramente são derrubadas por monstros, e são, portanto comuns valiosos.";
+		close;
 	}
+	mes "[Noyee]";
+	mes "Você sabe, há um lugar muito interessante que parece";
+	mes "como uma espécie de laboratório em Juno.";
+	next;
+	mes "[Noyee]";
+	mes "Enfim, ninguém está realmente certo se ele é ou não. Recentemente, tem sido o foco de muitos boatos. Eu não tenho nenhuma idéia se alguma delas é verdadeira embora.";
+	close2;
+	if (god_sl_1 == 0)
+		set god_sl_1,1;
+	end;
 }
 
 que_god01,98,98,4	script	Gerente#G	69,{
@@ -95,8 +91,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "que eu saí com um cara! A este ritmo, eu poderia aposentar-se antes que eu possa encontrar um namorado. Nããão, eu ainda estou com meu primo ~!";
 			emotion e_swt2;
 			close;
-		}
-		else if (god_sl_1 == 1) {
+		} else if (god_sl_1 == 1) {
 			mes "[Cukure]";
 			mes "Realizamos pesquisas em artefatos piedoso que foram deixados para trás pelos deuses há muito tempo. Mais especificamente, estamos interessados nas ferramentas que os deuses usavam.";
 			next;
@@ -104,7 +99,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "Recentemente, muitos dos membros do nosso grupo de pesquisa, além dos dirigentes, nos deixaram então agora estamos com pouco pessoal.";
 			next;
 			mes "[Cukure]";
-			mes "SJá que estamos com poucos membros, não podemos continuar, a maioria dos nossos projetos de pesquisa que estão atualmente em andamento. Falando de que...";
+			mes "Já que estamos com poucos membros, não podemos continuar, a maioria dos nossos projetos de pesquisa que estão atualmente em andamento. Falando de que...";
 			next;
 			mes "[Cukure]";
 			mes "Você se importa se eu perguntar";
@@ -114,8 +109,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "[Cukure]";
 			mes "Nós não iremos experimentar em você ou nada do tipo, precisamos apenas que você cumpra algumas tarefas simples. E, claro, você será recompensado.";
 			next;
-			switch(select("Eu estou meio ocupado...:Claro, porque não?")) {
-			case 1:
+			if(select("Eu estou meio ocupado...:Claro, porque não?")==1) {
 				mes "[Cukure]";
 				mes "Oh, eu entendo.";
 				mes "Bem, se acontecer de você encontrar alguém que possa trabalhar bem como um assistente de pesquisa temporário, você recomendaria-no-las?";
@@ -124,30 +118,25 @@ que_god01,98,98,4	script	Gerente#G	69,{
 				mes "Estou tão arrependido de pedir isso a você, mas eu espero que você entenda que nós estamos seriamente deficiente em termos";
 				mes "dos recursos humanos.";
 				close;
-			case 2:
-				cutin "god_kukur02",2;
-				mes "[Cukure]";
-				mes "Realmente~?!";
-				mes "Isso é ótimo!";
-				mes "Hahahahaha! Eu estou tão";
-				mes "contente de ouvir isso!";
-				next;
-				mes "[Cukure]";
-				mes "Vá lá dentro e fale com os investigadores. Todos eles estão meio congestionado, então eu tenho certeza que eles vão precisar de sua ajuda.";
-				next;
-				mes "[Cukure]";
-				mes "Ah, espere ...";
-				mes "Deixe-me dar-lhe uma passagem de admissão temporária. Obrigado";
-				mes "por nos ajudar~";
-				next;
-				mes "^3355FFVocê recebeu";
-				mes "uma permissão temporária^000000";
-				set god_sl_1,2;
-				close2;
-				break;
 			}
-		}
-		else if (god_sl_1 < 10) {
+			cutin "god_kukur02",2;
+			mes "[Cukure]";
+			mes "Realmente~?!";
+			mes "Isso é ótimo!";
+			mes "Hahahahaha! Eu estou tão contente de ouvir isso!";
+			next;
+			mes "[Cukure]";
+			mes "Vá lá dentro e fale com os investigadores. Todos eles estão meio congestionado, então eu tenho certeza que eles vão precisar de sua ajuda.";
+			next;
+			mes "[Cukure]";
+			mes "Ah, espere ...";
+			mes "Deixe-me dar-lhe uma passagem de admissão temporária. Obrigado por nos ajudar~";
+			next;
+			mes "^3355FFVocê recebeu";
+			mes "uma permissão temporária^000000";
+			set god_sl_1,2;
+			close2;
+		} else if (god_sl_1 < 10) {
 			cutin "god_kukur03",2;
 			mes "[Cukure]";
 			mes "É muito difícil gerenciar um laboratório. Laboratórios rivais sempre tentam seduzir o nosso pessoal afastando ou interrompendo o nosso progresso.";
@@ -162,8 +151,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "O que estou fazendo?";
 			mes "Por favor, apenas ignore o que eu disse. realmente não é um grande negócio.. ^333333*Suspiro...*^000000";
 			close2;
-		}
-		else if (god_sl_1 < 50) {
+		} else if (god_sl_1 < 50) {
 			mes "[Cukure]";
 			mes "Ah, obrigado";
 			mes "por nos ajudar.";
@@ -176,8 +164,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "[Cukure]";
 			mes "Então eu espero que você entenda, se alguns deles tratá-lo de uma forma que pareça um pouco rude.";
 			close2;
-		}
-		else if (god_sl_1 == 50) {
+		} else if (god_sl_1 == 50) {
 			cutin "god_kukur02",2;
 			mes "[Cukure]";
 			mes "Ah...";
@@ -204,305 +191,207 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "Ah, lá está ele.";
 			mes "Pode não ser muito, mas eu espero que você aceitá-lo como um símbolo de minha gratidão. Boa sorte em suas viagens!";
 			if ($God1 < 100)set $God1,$God1+1;
-			if ($God1 == 50) {
-				announce "The 1st seal of [Sleipnir] has appeared.",bc_all;
-			}
+			if ($God1 == 50)
+				announce "O primeiro selo da [Sleipnir] foi liberado.",bc_all;
 			else if ($God1 == 100) {
-				if ($God1 == 100 && $God2 == 100 && $God3 == 100 && $God4 == 100) {
-					announce "nossos selos foram liberados ao mesmo tempo, com o selo da [Sleipnir].",bc_all;
-				}
-				else {
+				if ($God1 == 100 && $God2 == 100 && $God3 == 100 && $God4 == 100)
+					announce "Nossos selos foram liberados ao mesmo tempo, com o selo da [Sleipnir].",bc_all;
+				else
 					announce "O primeiro selo da [Sleipnir] foi liberado.",bc_all;
-				}
 			}
 			set god_sl_1,51;
 			set .@god_treasure,rand(1,900);
 			set .@god_treasure1,rand(1,1000);
 			if (.@god_treasure < 101) {
-				if (.@god_treasure1 < 210) {
+				if (.@god_treasure1 < 210)
 					getitem 2102,1; // Guard_
-				}
-				else if (.@god_treasure1 < 420) {
+				else if (.@god_treasure1 < 420)
 					getitem 2104,1; // Buckler_
-				}
-				else if (.@god_treasure1 < 630) {
+				else if (.@god_treasure1 < 630)
 					getitem 2106,1; // Shield_
-				}
-				else if (.@god_treasure1 < 840) {
+				else if (.@god_treasure1 < 840)
 					getitem 2108,1; // Mirror_Shield_
-				}
-				else {
+				else
 					getitem 2109,1; // Memorize_Book
-				}
-			}
-			else if (.@god_treasure < 201) {
-				if (.@god_treasure1 < 48) {
+			} else if (.@god_treasure < 201) {
+				if (.@god_treasure1 < 48)
 					getitem 2254,1; // Angelic_Chain
-				}
-				else if (.@god_treasure1 < 96) {
+				else if (.@god_treasure1 < 96)
 					getitem 2210,1; // Hair_Band
-				}
-				else if (.@god_treasure1 < 150) {
+				else if (.@god_treasure1 < 150)
 					getitem 2213,1; // Cat_Hairband
-				}
-				else if (.@god_treasure1 < 190) {
+				else if (.@god_treasure1 < 190)
 					getitem 2255,1; // Satanic_Chain
-				}
-				else if (.@god_treasure1 < 238) {
+				else if (.@god_treasure1 < 238)
 					getitem 2217,1; // Biretta_
-				}
-				else if (.@god_treasure1 < 290) {
+				else if (.@god_treasure1 < 290)
 					getitem 2223,1; // Turban_
-				}
-				else if (.@god_treasure1 < 340) {
+				else if (.@god_treasure1 < 340)
 					getitem 2227,1; // Cap_
-				}
-				else if (.@god_treasure1 < 348) {
+				else if (.@god_treasure1 < 348)
 					getitem 2229,1; // Helm_
-				}
-				else if (.@god_treasure1 < 400) {
+				else if (.@god_treasure1 < 400)
 					getitem 2231,1; // Gemmed_Sallet_
-				}
-				else if (.@god_treasure1 < 448) {
+				else if (.@god_treasure1 < 448)
 					getitem 2233,1; // Circlet_
-				}
-				else if (.@god_treasure1 < 496) {
+				else if (.@god_treasure1 < 496)
 					getitem 5053,1; // Spinx_Helm
-				}
-				else if (.@god_treasure1 < 544) {
+				else if (.@god_treasure1 < 544)
 					getitem 5019,1; // Corsair
-				}
-				else if (.@god_treasure1 < 592) {
+				else if (.@god_treasure1 < 592)
 					getitem 2245,1; // Sweet_Gents
-				}
-				else if (.@god_treasure1 < 640) {
+				else if (.@god_treasure1 < 640)
 					getitem 2247,1; // Oldman's_Romance
-				}
-				else if (.@god_treasure1 < 688) {
+				else if (.@god_treasure1 < 688)
 					getitem 2248,1; // Western_Grace
-				}
-				else if (.@god_treasure1 < 736) {
+				else if (.@god_treasure1 < 736)
 					getitem 5166,1; // Spinx_Helm_
-				}
-				else if (.@god_treasure1 < 784) {
+				else if (.@god_treasure1 < 784)
 					getitem 5158,1; // Holy_Bonnet_
-				}
-				else if (.@god_treasure1 < 832) {
+				else if (.@god_treasure1 < 832)
 					getitem 2249,1; // Coronet
-				}
-				else if (.@god_treasure1 < 880) {
+				else if (.@god_treasure1 < 880)
 					getitem 5157,1; // Viking_Helm_
-				}
-				else if (.@god_treasure1 < 940) {
+				else if (.@god_treasure1 < 940)
 					getitem 2285,1; // Apple_Of_Archer
-				}
-				else {
+				else 
 					getitem 5093,1; // Blue_Coif_
-				}
-			}
-			else if (.@god_treasure < 301) {
-				if (.@god_treasure1 < 160) {
+			} else if (.@god_treasure < 301) {
+				if (.@god_treasure1 < 160)
 					getitem 5014,1; // Fin_Helm
-				}
-				else if (.@god_treasure1 < 320) {
+				else if (.@god_treasure1 < 320)
 					getitem 5005,1; // Gas_Mask
-				}
-				else if (.@god_treasure1 < 480) {
+				else if (.@god_treasure1 < 480)
 					getitem 5054,1; // Assasin_Mask
-				}
-				else if (.@god_treasure1 < 540) {
+				else if (.@god_treasure1 < 540)
 					getitem 2265,1; // Ganster_Mask
-				}
-				else if (.@god_treasure1 < 700) {
+				else if (.@god_treasure1 < 700)
 					getitem 2266,1; // Iron_Cane
-				}
-				else if (.@god_treasure1 < 800) {
+				else if (.@god_treasure1 < 800)
 					getitem 2260,1; // Mini_Glasses
-				}
-				else if (.@god_treasure1 < 900) {
+				else if (.@god_treasure1 < 900)
 					getitem 5113,1; // Angry_Mouth
-				}
 				else {
 					// Pirate Dagger is iRO only, and requires extra files in client.
 					getitem 2270,1; // Centimental_Leaf
 					//getitem 5305,1 // Pirate_Dagger
 				}
-			}
-			else if (.@god_treasure < 401) {
-				if (.@god_treasure1 < 70) {
+			} else if (.@god_treasure < 401) {
+				if (.@god_treasure1 < 70)
 					getitem 2286,1; // Elven_Ears
-				}
-				else if (.@god_treasure1 < 140) {
+				else if (.@god_treasure1 < 140)
 					getitem 5002,1; // Gemmed_Crown
-				}
-				else if (.@god_treasure1 < 210) {
+				else if (.@god_treasure1 < 210)
 					getitem 5147,1; // Baseball_Cap
-				}
-				else if (.@god_treasure1 < 280) {
+				else if (.@god_treasure1 < 280)
 					getitem 2217,1; // Biretta_
-				}
-				else if (.@god_treasure1 < 350) {
+				else if (.@god_treasure1 < 350)
 					getitem 5120,1; // Fedora_
-				}
-				else if (.@god_treasure1 < 420) {
+				else if (.@god_treasure1 < 420)
 					getitem 2261,1; // Prontera_Army_Cap
-				}
-				else if (.@god_treasure1 < 490) {
+				else if (.@god_treasure1 < 490)
 					getitem 5162,1; // Bone_Helm_
-				}
-				else if (.@god_treasure1 < 560) {
+				else if (.@god_treasure1 < 560)
 					getitem 5030,1; // Panda_Cap
-				}
-				else if (.@god_treasure1 < 630) {
+				else if (.@god_treasure1 < 630)
 					getitem 5109,1; // Red_Bonnet
-				}
-				else if (.@god_treasure1 < 700) {
+				else if (.@god_treasure1 < 700)
 					getitem 5084,1; // Lazy_Raccoon
-				}
-				else if (.@god_treasure1 < 770) {
+				else if (.@god_treasure1 < 770)
 					getitem 5168,1; // Bongun_Hat_
-				}
-				else if (.@god_treasure1 < 840) {
+				else if (.@god_treasure1 < 840)
 					getitem 2214,1; // Bunny_Band
-				}
-				else if (.@god_treasure1 < 900) {
+				else if (.@god_treasure1 < 900)
 					getitem 2295,1; // Blinker
-				}
-				else if (.@god_treasure1 < 950) {
+				else if (.@god_treasure1 < 950)
 					getitem 5167,1; // Munak_Turban_
-				}
-				else {
+				else
 					getitem 5018,1; // Feather_Bonnet
-				}
 			} else if (.@god_treasure < 501) {
-				if (.@god_treasure1 < 85) {
+				if (.@god_treasure1 < 85)
 					getitem 2310,1; // Coat_
-				}
-				else if (.@god_treasure1 < 170) {
+				else if (.@god_treasure1 < 170)
 					getitem 2311,1; // Mink_Coat
-				}
-				else if (.@god_treasure1 < 255) {
+				else if (.@god_treasure1 < 255)
 					getitem 2313,1; // Padded_Armor_
-				}
-				else if (.@god_treasure1 < 340) {
+				else if (.@god_treasure1 < 340)
 					getitem 2317,1; // Plate_Armor_
-				}
-				else if (.@god_treasure1 < 425) {
+				else if (.@god_treasure1 < 425)
 					getitem 2319,1; // Glittering_Clothes
-				}
-				else if (.@god_treasure1 < 510) {
+				else if (.@god_treasure1 < 510)
 					getitem 2320,1; // Formal_Suit
-				}
-				else if (.@god_treasure1 < 595) {
+				else if (.@god_treasure1 < 595)
 					getitem 2322,1; // Silk_Robe_
-				}
-				else if (.@god_treasure1 < 680) {
+				else if (.@god_treasure1 < 680)
 					getitem 2359,1; // Ninja_Suit_
-				}
-				else if (.@god_treasure1 < 765) {
+				else if (.@god_treasure1 < 765)
 					getitem 2326,1; // Saint_Robe_
-				}
-				else if (.@god_treasure1 < 850) {
+				else if (.@god_treasure1 < 850)
 					getitem 2342,1; // Full_Plate_Armor_
-				}
-				else if (.@god_treasure1 < 935) {
+				else if (.@god_treasure1 < 935)
 					getitem 2331,1; // Tights_
-				}
-				else {
+				else
 					getitem 2336,1; // Thief_Clothes_
-				}
-			}
-			else if (.@god_treasure < 601) {
-				if (.@god_treasure1 < 200) {
+			} else if (.@god_treasure < 601) {
+				if (.@god_treasure1 < 200)
 					getitem 2422,1; // High_Fashion_Sandals
-				}
-				else if (.@god_treasure1 < 400) {
+				else if (.@god_treasure1 < 400)
 					getitem 2404,1; // Shoes_
-				}
-				else if (.@god_treasure1 < 600) {
+				else if (.@god_treasure1 < 600)
 					getitem 2406,1; // Boots_
-				}
-				else if (.@god_treasure1 < 800) {
+				else if (.@god_treasure1 < 800)
 					getitem 2407,1; // Chrystal_Pumps
-				}
-				else {
+				else
 					getitem 2412,1; // Grave_
-				}
-			}
-			else if (.@god_treasure < 701) {
-				if (.@god_treasure1 < 200) {
+			} else if (.@god_treasure < 701) {
+				if (.@god_treasure1 < 200)
 					getitem 2513,1; // Celestial_Robe
-				}
-				else if (.@god_treasure1 < 400) {
+				else if (.@god_treasure1 < 400)
 					getitem 2504,1; // Muffler_
-				}
-				else if (.@god_treasure1 < 600) {
+				else if (.@god_treasure1 < 600)
 					getitem 2506,1; // Manteau_
-				}
-				else if (.@god_treasure1 < 800) {
+				else if (.@god_treasure1 < 800)
 					getitem 2514,1; // Pauldron
-				}
-				else {
+				else
 					getitem 2508,1; // Ragamuffin_Cape
-				}
-			}
-			else if (.@god_treasure < 801) {
-				if (.@god_treasure1 < 110) {
+			} else if (.@god_treasure < 801) {
+				if (.@god_treasure1 < 110)
 					getitem 1122,1; // Ring_
-				}
-				else if (.@god_treasure1 < 220) {
+				else if (.@god_treasure1 < 220)
 					getitem 2622,1; // Earring_
-				}
-				else if (.@god_treasure1 < 330) {
+				else if (.@god_treasure1 < 330)
 					getitem 2623,1; // Necklace_
-				}
-				else if (.@god_treasure1 < 440) {
+				else if (.@god_treasure1 < 440)
 					getitem 2624,1; // Glove_
-				}
-				else if (.@god_treasure1 < 550) {
+				else if (.@god_treasure1 < 550)
 					getitem 2625,1; // Brooch_
-				}
-				else if (.@god_treasure1 < 660) {
+				else if (.@god_treasure1 < 660)
 					getitem 2607,1; // Clip
-				}
-				else if (.@god_treasure1 < 770) {
+				else if (.@god_treasure1 < 770)
 					getitem 2626,1; // Rosary_
-				}
-				else if (.@god_treasure1 < 880) {
+				else if (.@god_treasure1 < 880)
 					getitem 2617,1; // Mitten_Of_Presbyter
-				}
-				else {
+				else
 					getitem 2671,1; // Thimble_Of_Archer_
-				}
-			}
-			else {
-				if (.@god_treasure1 < 150) {
+			} else {
+				if (.@god_treasure1 < 150)
 					getitem 2281,1; // Phantom_Of_Opera
-				}
-				else if (.@god_treasure1 < 260) {
+				else if (.@god_treasure1 < 260)
 					getitem 2297,1; // Goblini_Mask
-				}
-				else if (.@god_treasure1 < 370) {
+				else if (.@god_treasure1 < 370)
 					getitem 5087,1; // Goblin_Mask_01
-				}
-				else if (.@god_treasure1 < 480) {
+				else if (.@god_treasure1 < 480)
 					getitem 5088,1; // Goblin_Mask_02
-				}
-				else if (.@god_treasure1 < 590) {
+				else if (.@god_treasure1 < 590)
 					getitem 5089,1; // Goblin_Mask_03
-				}
-				else if (.@god_treasure1 < 700) {
+				else if (.@god_treasure1 < 700)
 					getitem 5090,1; // Goblin_Mask_04
-				}
-				else if (.@god_treasure1 < 810) {
+				else if (.@god_treasure1 < 810)
 					getitem 5086,1; // Alarm_Mask
-				}
-				else if (.@god_treasure1 < 920) {
+				else if (.@god_treasure1 < 920)
 					getitem 2292,1; // Welding_Mask
-				}
-				else {
+				else
 					getitem 5006,1; // Machoman_Glasses
-				}
 			}
 			next;
 			mes "[Cukure]";
@@ -513,8 +402,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "Obrigado por";
 			mes "toda a sua ajuda~";
 			close2;
-		}
-		else {
+		} else {
 			cutin "god_kukur02",2;
 			mes "[Cukure]";
 			mes "Com a sua ajuda, concluímos com sucesso o nosso estudo rudimentar.";
@@ -533,8 +421,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "Hahahahahaha~!";
 			close2;
 		}
-	}
-	else {
+	} else {
 		if (god_sl_1 == 0) {
 			cutin "god_kukur03",2;
 			mes "[Cukure]";
@@ -546,8 +433,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "vez que eu saí com um cara! A este ritmo, eu poderia aposentar-se antes que eu possa encontrar um namorado. Nããão, eu ainda estou no meu primo~!";
 			emotion e_swt2;
 			close2;
-		}
-		else if (god_sl_1 < 51) {
+		} else if (god_sl_1 < 51) {
 			mes "[Cukure]";
 			mes "Ah, você voltou.";
 			mes "Eu sei que você estava indo para nos ajudar, mas alguém já foi selecionada para o cargo de assistente.";
@@ -558,8 +444,7 @@ que_god01,98,98,4	script	Gerente#G	69,{
 			mes "[Cukure]";
 			mes "Obrigado de qualquer maneira, embora. Eu espero que você venha e nos ajude na próxima vez que precisar-mos de ajuda em nossos projetos.";
 			close2;
-		}
-		else {
+		} else {
 			mes "[Cukure]";
 			mes "Agora que nós terminamos nossos estudos rudimentares, vamos simplesmente planejar nossos projetos de pesquisa no futuro.";
 			next;
@@ -581,9 +466,8 @@ que_god01,98,98,4	script	Gerente#G	69,{
 
 que_god01,66,125,6	script	Pesquisador#G1	89,{
 	if ($God1 < 100) {
-		if (god_sl_1 == 2) {
+		if (god_sl_1 == 2)
 			set god_sl_1,11;
-		}
 		if ((god_sl_1 == 11) || (god_sl_1 == 22) || (god_sl_1 == 33) || (god_sl_1 == 44)) {
 			if (god_sl_2 == 0) {
 				mes "[Hallandaute]";
@@ -610,8 +494,7 @@ que_god01,66,125,6	script	Pesquisador#G1	89,{
 				mes "Desde que ele começou a trabalhando em um projeto semelhante ao meu, ele poderia estar em uma posição que para me ajudar. Metto vive em Juno, assim você pode facilmente encontra-lo.";
 				set god_sl_2,1;
 				close;
-			}
-			else if (god_sl_2 == 1) {
+			} else if (god_sl_2 == 1) {
 				if (metto_q == 0) {
 					mes "[Hallandaute]";
 					mes "Eu acho que você não tenha encontrado Metto ainda. Embora ele possa ter um pouco mais de entusiasmo, às vezes, ele não é um cara ruim.";
@@ -622,33 +505,29 @@ que_god01,66,125,6	script	Pesquisador#G1	89,{
 					mes "[Hallandaute]";
 					mes "Enfim, só perguntar a ele sobre qualquer progresso em sua pesquisa. E se ele por acaso pedir-lhe ajuda, por favor empreste-lhe a sua ajuda.";
 					close;
-				}
-				else if (metto_q < 9) {
+				} else if (metto_q < 9) {
 					mes "[Hallandaute]";
 					mes "Hmmm...";
 					mes "Então, como está o Metto?";
 					mes "Hmm? Parece que ele mudou...";
 					close;
 				}
-				else {
-					mes "[Hallandaute]";
-					mes "Hmmm...";
-					mes "Então, como está o Metto?";
-					next;
-					mes "[Hallandaute]";
-					mes "Se parece com Um cientista louco?";
-					mes "Isso não soa bem. Em meus sonhos, eu nunca teria suspeitado de Metto ter se transformar dessa maneira...";
-					emotion e_hmm;
-					next;
-					mes "[Hallandaute]";
-					mes "Huh.  Isso é...";
-					mes "Isso é muito ruim. Eu não sei o que dizer. Costumávamos ir assistir a filmes e comemorar nossos aniversários juntos. P-por favor me dê um momento...";
-					emotion e_dots;
-					set god_sl_2,2;
-					close;
-				}
-			}
-			else if (god_sl_2 == 2) {
+				mes "[Hallandaute]";
+				mes "Hmmm...";
+				mes "Então, como está o Metto?";
+				next;
+				mes "[Hallandaute]";
+				mes "Se parece com Um cientista louco?";
+				mes "Isso não soa bem. Em meus sonhos, eu nunca teria suspeitado de Metto ter se transformar dessa maneira...";
+				emotion e_hmm;
+				next;
+				mes "[Hallandaute]";
+				mes "Huh.  Isso é...";
+				mes "Isso é muito ruim. Eu não sei o que dizer. Costumávamos ir assistir a filmes e comemorar nossos aniversários juntos. P-por favor me dê um momento...";
+				emotion e_dots;
+				set god_sl_2,2;
+				close;
+			} else if (god_sl_2 == 2) {
 				if (rand(1,10) == 7) {
 					mes "[Hallandaute]";
 					mes "Ah...";
@@ -679,58 +558,34 @@ que_god01,66,125,6	script	Pesquisador#G1	89,{
 					mes "[Hallandaute]";
 					mes "De qualquer forma, agradeço por me ajudar a sair mais cedo. Isso é basicamente tudo que eu precisava, por favor fale com os outros pesquisadores e veja se eles precisam de assistência.";
 					set god_sl_2,0;
-					if (god_sl_1 == 11) {
+					if (god_sl_1 == 11)
 						set god_sl_1,12;
-					}
-					if (god_sl_1 == 22) {
+					if (god_sl_1 == 22)
 						set god_sl_1,23;
-					}
-					if (god_sl_1 == 33) {
+					if (god_sl_1 == 33)
 						set god_sl_1,34;
-					}
-					if (god_sl_1 == 44) {
+					if (god_sl_1 == 44)
 						set god_sl_1,50;
-					}
 					close;
 				}
-				else {
-					mes "[Hallandaute]";
-					mes "Ah, desculpe.";
-					mes "Eu estou bastante ocupado compilando todas essas informações no momento.";
-					next;
-					mes "[Hallandaute]";
-					mes "Vamos ver ...";
-					mes "Agora, como seria l...";
-					mes "^333333*Hum, hum*^000000";
-					close;
-				}
-			}
-			else {
 				mes "[Hallandaute]";
-				mes "Hmmm...";
-				mes "Como isso funciona?";
-				mes "Ainda há muito que não sabemos sobre os artefatos piedoso. ^333333*Suspiro*^000000";
+				mes "Ah, desculpe.";
+				mes "Eu estou bastante ocupado compilando todas essas informações no momento.";
+				next;
+				mes "[Hallandaute]";
+				mes "Vamos ver ...";
+				mes "Agora, como seria l...";
+				mes "^333333*Hum, hum*^000000";
 				close;
 			}
-		}
-		else {
 			mes "[Hallandaute]";
-			mes "Não é fácil, trabalhando sozinho. Ter um par extra de mãos é sempre bom.";
-			next;
-			mes "[Hallandaute]";
-			mes "Agora, eu só preciso de alguém com quem posso compartilhar a carga de trabalho. Ainda assim, assistentes diferentes poderiam ser melhor, dependendo do projeto.";
-			next;
-			mes "[Hallandaute]";
-			mes "Basicamente, se um assistente é especialmente treinado na área relacionada ao meu projeto de pesquisa atual, ele provavelmente vai ser mais útil do que alguém que não é.";
-			next;
-			mes "[Hallandaute]";
-			mes "Claro, há pessoas que são bons em tudo. Mas esses são raros, Eu tento escolher apenas um assistente para cada um dos meus projetos.";
+			mes "Hmmm...";
+			mes "Como isso funciona?";
+			mes "Ainda há muito que não sabemos sobre os artefatos piedoso. ^333333*Suspiro*^000000";
 			close;
 		}
-	}
-	else {
 		mes "[Hallandaute]";
-		mes "Não é fácil, trabalho nisso sozinho. Ter um par extra de mãos é sempre bom.";
+		mes "Não é fácil, trabalhando sozinho. Ter um par extra de mãos é sempre bom.";
 		next;
 		mes "[Hallandaute]";
 		mes "Agora, eu só preciso de alguém com quem posso compartilhar a carga de trabalho. Ainda assim, assistentes diferentes poderiam ser melhor, dependendo do projeto.";
@@ -742,13 +597,24 @@ que_god01,66,125,6	script	Pesquisador#G1	89,{
 		mes "Claro, há pessoas que são bons em tudo. Mas esses são raros, Eu tento escolher apenas um assistente para cada um dos meus projetos.";
 		close;
 	}
+	mes "[Hallandaute]";
+	mes "Não é fácil, trabalho nisso sozinho. Ter um par extra de mãos é sempre bom.";
+	next;
+	mes "[Hallandaute]";
+	mes "Agora, eu só preciso de alguém com quem posso compartilhar a carga de trabalho. Ainda assim, assistentes diferentes poderiam ser melhor, dependendo do projeto.";
+	next;
+	mes "[Hallandaute]";
+	mes "Basicamente, se um assistente é especialmente treinado na área relacionada ao meu projeto de pesquisa atual, ele provavelmente vai ser mais útil do que alguém que não é.";
+	next;
+	mes "[Hallandaute]";
+	mes "Claro, há pessoas que são bons em tudo. Mas esses são raros, Eu tento escolher apenas um assistente para cada um dos meus projetos.";
+	close;
 }
 
 que_god01,11,136,6	script	Pesquisador#G2	742,{
 	if ($God1 < 100) {
-		if (god_sl_1 == 2) {
+		if (god_sl_1 == 2)
 			set god_sl_1,21;
-		}
 		if ((god_sl_1 == 21) || (god_sl_1 == 32) || (god_sl_1 == 43) || (god_sl_1 == 14)) {
 			if (god_sl_2 == 0) {
 				mes "[Aadin]";
@@ -799,8 +665,7 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 				mes "Tenha uma viagem segura~";
 				set god_sl_2,1;
 				close;
-			}
-			else if (god_sl_2 == 1) {
+			} else if (god_sl_2 == 1) {
 				mes "[Aadin]";
 				mes "Mmm...?";
 				mes "Você ainda não foi a Payon para encontrar o homem que sabe sobre a origem da Sleipnir?";
@@ -810,8 +675,7 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 				mes "para que eu possa obter as informações que eu preciso para minha pesquisa. Obrigado e,";
 				mes "tenha uma viagem segura.";
 				close;
-			}
-			else if (god_sl_2 == 2) {
+			} else if (god_sl_2 == 2) {
 				mes "[Aadin]";
 				mes "Ah, você está de volta. Então, você memorizou a história?";
 				next;
@@ -850,8 +714,7 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 				mes "Tem certeza que você ouviu o conto até o fim? Desculpe perguntar isso novamente a você, mas poderia ir novamente a Payon e ouvir esta história mais uma vez?";
 				set god_sl_2,3;
 				close;
-			}
-			else if (god_sl_2 == 3) {
+			} else if (god_sl_2 == 3) {
 				mes "[Aadin]";
 				mes "Mm...?";
 				mes "Você ainda não foi a Payon";
@@ -863,8 +726,7 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 				mes "Enquanto isso, vou tentar completar o máximo de minha pesquisa";
 				mes "Eu posso com os detalhes da história que você já trouxe.";
 				close;
-			}
-			else if (god_sl_2 == 4) {
+			} else if (god_sl_2 == 4) {
 				mes "[Aadin]";
 				mes "Ah, você está de volta.";
 				mes "Então, você";
@@ -928,31 +790,17 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 				mes "[Aadin]";
 				mes "Afinal de contas, encontrar respostas tende a que surjam novas questões. No entanto, Agradeço a sua ajuda.";
 				set god_sl_2,0;
-				if (god_sl_1 == 21) {
+				if (god_sl_1 == 21)
 					set god_sl_1,22;
-				}
-				if (god_sl_1 == 32) {
+				if (god_sl_1 == 32)
 					set god_sl_1,33;
-				}
-				if (god_sl_1 == 43) {
+				if (god_sl_1 == 43)
 					set god_sl_1,44;
-				}
-				if (god_sl_1 == 14) {
+				if (god_sl_1 == 14)
 					set god_sl_1,50;
-				}
 				close;
 			}
 		}
-		else {
-			mes "[Aadin]";
-			mes "Às vezes, diferentes versões do mesmo mito ou surgimento de lenda.";
-			next;
-			mes "[Aadin]";
-			mes "Embora os mitos, como eles mudam com o tempo, podem entrar em conflito uns com os outros, a base fundamental dessas histórias é o que os torna intemporais.";
-			close;
-		}
-	}
-	else {
 		mes "[Aadin]";
 		mes "Às vezes, diferentes versões do mesmo mito ou surgimento de lenda.";
 		next;
@@ -960,18 +808,22 @@ que_god01,11,136,6	script	Pesquisador#G2	742,{
 		mes "Embora os mitos, como eles mudam com o tempo, podem entrar em conflito uns com os outros, a base fundamental dessas histórias é o que os torna intemporais.";
 		close;
 	}
+	mes "[Aadin]";
+	mes "Às vezes, diferentes versões do mesmo mito ou surgimento de lenda.";
+	next;
+	mes "[Aadin]";
+	mes "Embora os mitos, como eles mudam com o tempo, podem entrar em conflito uns com os outros, a base fundamental dessas histórias é o que os torna intemporais.";
+	close;
 }
 
 que_god01,55,47,3	script	Pesquisador#G3	803,{
+	mes "[Kurdt]";
 	if (god_sl2 < 100) {
-		if (god_sl_1 == 2) {
+		if (god_sl_1 == 2)
 			set god_sl_1,31;
-		}
 		if ((god_sl_1 == 31) || (god_sl_1 == 42) || (god_sl_1 == 13) || (god_sl_1 == 24)) {
 			if (god_sl_2 == 0) {
-				mes "[Kurdt]";
-				mes "Ah, você deve ser";
-				mes "o novo assistente.";
+				mes "Ah, você deve ser o novo assistente.";
 				mes "Prazer em conhecê-lo.";
 				next;
 				mes "[Kurdt]";
@@ -996,9 +848,7 @@ que_god01,55,47,3	script	Pesquisador#G3	803,{
 				mes "Basicamente, você deve coletar coisas como 'escamas de peixe' ou 'caudas de peixe', basicamente qualquer coisa que você pode obter a partir da vida marinha.";
 				next;
 				mes "[Kurdt]";
-				mes "Eu não preciso de uma";
-				mes "quantidade ridícula de um";
-				mes "tipo de material, eu diria que uma quantidade de 10 unidades por tipo de cada item deve funcionar.";
+				mes "Eu não preciso de uma quantidade ridícula de um tipo de material, eu diria que uma quantidade de 10 unidades por tipo de cada item deve funcionar.";
 				next;
 				mes "[Kurdt]";
 				mes "Devo mencionar que eu também exigo uma boa variedade de materiais relacionados a vida marinha. Você não pode realizar um experimento sem objetos diferentes para testar, certo?";
@@ -1007,9 +857,7 @@ que_god01,55,47,3	script	Pesquisador#G3	803,{
 				mes "De qualquer forma, eu espero que você não tenha muita dificuldade de encontrar o que eu preciso para essa experiência. Boa sorte~";
 				set god_sl_2,1;
 				close;
-			}
-			else if (god_sl_2 == 1) {
-				mes "[Kurdt]";
+			} else if (god_sl_2 == 1) {
 				mes "Ah, você voltou.";
 				mes "Ok, deixe-me ver";
 				mes "o que você trouxe para mim. Hmm...";
@@ -1020,201 +868,125 @@ que_god01,55,47,3	script	Pesquisador#G3	803,{
 				mes "E estes também. Oh!";
 				mes "Vocês aventureiros carregam";
 				mes "um monte de coisas, não é?";
-				if (countitem(918) > 8) {
+				if (countitem(918) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(950) > 8) {
+				if (countitem(950) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(951) > 8) {
+				if (countitem(951) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(956) > 8) {
+				if (countitem(956) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(959) > 8) {
+				if (countitem(959) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(960) > 8) {
+				if (countitem(960) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(961) > 8) {
+				if (countitem(961) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(962) > 8) {
+				if (countitem(962) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(963) > 8) {
+				if (countitem(963) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(964) > 8) {
+				if (countitem(964) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(965) > 8) {
+				if (countitem(965) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(966) > 8) {
+				if (countitem(966) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(7013) > 8) {
+				if (countitem(7013) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1054) > 8) {
+				if (countitem(1054) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1053) > 8) {
+				if (countitem(1053) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1052) > 8) {
+				if (countitem(1052) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1051) > 8) {
+				if (countitem(1051) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1050) > 8) {
+				if (countitem(1050) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1024) > 8) {
+				if (countitem(1024) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
-				if (countitem(1023) > 8) {
+				if (countitem(1023) > 8)
 					set .@count_sl_1,.@count_sl_1 + 1;
-				}
 				next;
+				mes "[Kurdt]";
 				if (.@count_sl_1 > 14) {
-					mes "[Kurdt]";
 					mes "Ah....!";
-					mes "Os materiais que você trouxe deveria ser o suficiente para eu realizar a minha experiência. Muito obrigado.";
+					mes "Os materiais que você trouxe devem ser o suficiente para eu realizar a minha experiência. Muito obrigado.";
 					next;
 					mes "[Kurdt]";
 					mes "Com estes, eu posso continuar minha pesquisa, sem qualquer problema. Estou agradavelmente surpreendido com o trabalho que você fez.";
 					next;
 					mes "[Kurdt]";
-					mes "Você realmente foi";
-					mes "uma grande ajuda.";
+					mes "Você realmente foi uma grande ajuda.";
 					mes "Muito obrigado.";
 					mes "Hahaha....!";
 					next;
 					mes "[Kurdt]";
-					mes "Agora, pode haver";
-					mes "outros pesquisadores";
-					mes "que podem precisar da sua ajuda para completar os seus projectos. Por que não anda ao redor para ver se";
-					mes "eles precisam de alguma coisa?";
-					if (countitem(918) > 8) {
+					mes "Agora, pode haver outros pesquisadores que podem precisar da sua ajuda para completar os seus projectos.";
+					mes "Por que não anda ao redor para ver se eles precisam de alguma coisa?";
+					if (countitem(918) > 8)
 						delitem 918,9;  //Sticky_Webfoot
-					}
-					if (countitem(950) > 8) {
+					if (countitem(950) > 8)
 						delitem 950,9;  //Heart_Of_Mermaid
-					}
-					if (countitem(951) > 8) {
+					if (countitem(951) > 8)
 						delitem 951,9;  //Fin
-					}
-					if (countitem(956) > 8) {
+					if (countitem(956) > 8)
 						delitem 956,9;  //Gill
-					}
-					if (countitem(959) > 8) {
+					if (countitem(959) > 8)
 						delitem 959,9;  //Rotten_Scale
-					}
-					if (countitem(960) > 8) {
+					if (countitem(960) > 8)
 						delitem 960,9;  //Nipper
-					}
-					if (countitem(961) > 8) {
+					if (countitem(961) > 8)
 						delitem 961,9;  //Conch
-					}
-					if (countitem(962) > 8) {
+					if (countitem(962) > 8)
 						delitem 962,9;  //Tentacle
-					}
-					if (countitem(963) > 8) {
+					if (countitem(963) > 8)
 						delitem 963,9;  //Sharp_Scale
-					}
-					if (countitem(964) > 8) {
+					if (countitem(964) > 8)
 						delitem 964,9;  //Crap_Shell
-					}
-					if (countitem(965) > 8) {
+					if (countitem(965) > 8)
 						delitem 965,9;  //Clam_Shell
-					}
-					if (countitem(966) > 8) {
+					if (countitem(966) > 8)
 						delitem 966,9;  //Flesh_Of_Clam
-					}
-					if (countitem(1023) > 8) {
+					if (countitem(1023) > 8)
 						delitem 1023,9;  //Fish_Tail
-					}
-					if (countitem(1024) > 8) {
+					if (countitem(1024) > 8)
 						delitem 1024,9;  //Chinese_Ink
-					}
-					if (countitem(1050) > 8) {
+					if (countitem(1050) > 8)
 						delitem 1050,9;  //Tendon
-					}
-					if (countitem(1051) > 8) {
+					if (countitem(1051) > 8)
 						delitem 1051,9;  //Detonator
-					}
-					if (countitem(1052) > 8) {
+					if (countitem(1052) > 8)
 						delitem 1052,9;  //Single_Cell
-					}
-					if (countitem(1053) > 8) {
+					if (countitem(1053) > 8)
 						delitem 1053,9;  //Tooth_Of_Ancient_Fish
-					}
-					if (countitem(1054) > 8) {
+					if (countitem(1054) > 8)
 						delitem 1054,9;  //Lip_Of_Ancient_Fish
-					}
-					if (countitem(7013) > 8) {
+					if (countitem(7013) > 8)
 						delitem 7013,9;  //Coral_Reef
-					}
 					set god_sl_2,0;
-					if (god_sl_1 ==31) {
+					if (god_sl_1 ==31)
 						set god_sl_1,32;
-					}
-					if (god_sl_1 == 42) {
+					if (god_sl_1 == 42)
 						set god_sl_1,43;
-					}
-					if (god_sl_1 == 13) {
+					if (god_sl_1 == 13)
 						set god_sl_1,14;
-					}
-					if (god_sl_1 == 24) {
+					if (god_sl_1 == 24)
 						set god_sl_1,50;
-					}
 					close;
 				}
-				else {
-					mes "[Kurdt]";
-					mes "Ainda assim, você não parece ter material suficiente para eu";
-					mes "completar minha pesquisa";
-					mes "Lembre-se, eu preciso";
-					mes "uma enorme variedade.";
-					next;
-					mes "[Kurdt]";
-					mes "Sinto muito pelo incômodo, mas você acha que poderia sair e recolher as coisas para que eu possa tentar recriar o";
-					mes "'Espírito de Peixe'?";
-					close;
-				}
+				mes "Ainda assim, você não parece ter material suficiente para eu completar minha pesquisa.";
+				mes "Lembre-se, eu preciso de uma enorme variedade.";
+				next;
+				mes "[Kurdt]";
+				mes "Sinto muito pelo incômodo, mas você acha que poderia sair e recolher as coisas para que eu possa tentar recriar o";
+				mes "'Espírito de Peixe'?";
+				close;
 			}
 		}
-		else {
-			mes "[Kurdt]";
-			mes "Hmmm....";
-			mes "Fundos e";
-			mes "mão de obra são";
-			mes "importante para";
-			mes "o progresso da investigação.";
-			next;
-			mes "[Kurdt]";
-			mes "Mas nenhuma quantidade de financiamento ou de recursos humanos pode substituir o valor do entusiasmo e a paixão na realização de pesquisas.";
-			next;
-			mes "[Kurdt]";
-			mes "Alguns financiadores são tão ignorantes que pensam que, se jogar mais dinheiro e pessoas em um projeto, os segredos da ciência será desbloqueado muito mais rápido.";
-			next;
-			mes "[Kurdt]";
-			mes "Mas o povo faz suas pesquisas sem inspiração, desmotivados, você nunca vai chegar a lugar nenhum.";
-			close;
-		}
-	}
-	else {
-		mes "[Kurdt]";
 		mes "Hmmm....";
-		mes "Fundos e";
-		mes "mão de obra são";
-		mes "importante para";
-		mes "o progresso da investigação.";
+		mes "Fundos e mão de obra são importantes para o progresso da investigação.";
 		next;
 		mes "[Kurdt]";
 		mes "Mas nenhuma quantidade de financiamento ou de recursos humanos pode substituir o valor do entusiasmo e a paixão na realização de pesquisas.";
@@ -1226,16 +998,27 @@ que_god01,55,47,3	script	Pesquisador#G3	803,{
 		mes "Mas o povo faz suas pesquisas sem inspiração, desmotivados, você nunca vai chegar a lugar nenhum.";
 		close;
 	}
+	mes "Hmmm....";
+	mes "Fundos e mão de obra são importantes para o progresso da investigação.";
+	next;
+	mes "[Kurdt]";
+	mes "Mas nenhuma quantidade de financiamento ou de recursos humanos pode substituir o valor do entusiasmo e a paixão na realização de pesquisas.";
+	next;
+	mes "[Kurdt]";
+	mes "Alguns financiadores são tão ignorantes que pensam que, se jogar mais dinheiro e pessoas em um projeto, os segredos da ciência será desbloqueado muito mais rápido.";
+	next;
+	mes "[Kurdt]";
+	mes "Mas o povo faz suas pesquisas sem inspiração, desmotivados, você nunca vai chegar a lugar nenhum.";
+	close;
 }
 
 que_god01,14,47,3	script	Pesquisador#G4	713,{
+	mes "[Pavel]";
 	if ($God1 < 100) {
-		if (god_sl_1 == 2) {
+		if (god_sl_1 == 2)
 			set god_sl_1,41;
-		}
 		if ((god_sl_1 == 41) || (god_sl_1 == 12) || (god_sl_1 == 23) || (god_sl_1 == 34)) {
 			if (god_sl_2 == 0) {
-				mes "[Pavel]";
 				mes "^333333*Fungar fungar*...";
 				mes "*Achoo!*^000000 Hâ?";
 				mes "Quem é você?";
@@ -1251,14 +1034,10 @@ que_god01,14,47,3	script	Pesquisador#G4	713,{
 				mes "Enfim, vá olhar --^333333*Aaachooo!*^000000 que ^333333*Achoooo!*^000000 coisa... ^333333*Fungar fungar*^000000";
 				set god_sl_2,1;
 				close;
-			}
-			else if (god_sl_2 == 1) {
-				mes "[Pavel]";
+			} else if (god_sl_2 == 1) {
 				mes "Eu lhe disse para ir olhar-- ^333333*Aaachhoooo!*^000000 que ^333333*Aaachoooo! Achoo! glhk glhk*^000000";
 				close;
-			}
-			else if (god_sl_2 == 2) {
-				mes "[Pavel]";
+			} else if (god_sl_2 == 2) {
 				mes "^333333*Tosse tosse*";
 				mes "*Fungar fungar...*^000000";
 				mes "Então você pode dar uma olhada nisso? Sim, eu não acho que você entenderia, mesmo que você tenha ouvido isso. ^333333*glhk glhk*^000000";
@@ -1284,16 +1063,12 @@ que_god01,14,47,3	script	Pesquisador#G4	713,{
 				mes "Então eu espero que você não se importe de ^333333*Achoo!*^000000 ajudandar-me a remover ^333333*Tosse*^000000 o dispositivo. Muito obrigado. ^333333*Fungar*^000000";
 				set god_sl_2,3;
 				close;
-			}
-			else if (god_sl_2 == 3) {
-				mes "[Pavel]";
+			} else if (god_sl_2 == 3) {
 				mes "^333333Aaaaaccccchhhhoooo...!*^000000";
 				mes "Hum, o que eu quis dizer --^333333AAAACHOOO!*^000000...";
 				mes "^333333*Fungar fungar...*^000000";
 				close;
-			}
-			else if (god_sl_2 == 4) {
-				mes "[Pavel]";
+			} else if (god_sl_2 == 4) {
 				mes "^333333*Tosse*^000000";
 				mes "Oh... ^333333*Fungar*^000000";
 				mes "Agora eu compreendo...";
@@ -1306,33 +1081,25 @@ que_god01,14,47,3	script	Pesquisador#G4	713,{
 				mes "Bom trabalho~";
 				mes "Você fez alguns ^333333*Fungar*^000000 bons trabalhos. Muito obrigado por me ajudar. ^333333*Achoo! Achoo!*^000000";
 				set god_sl_2,0;
-				if (god_sl_1 == 41) {
+				if (god_sl_1 == 41)
 					set god_sl_1,42;
-				}
-				if (god_sl_1 == 12) {
+				if (god_sl_1 == 12)
 					set god_sl_1,13;
-				}
-				if (god_sl_1 == 23) {
+				if (god_sl_1 == 23)
 					set god_sl_1,24;
-				}
-				if (god_sl_1 == 34) {
+				if (god_sl_1 == 34)
 					set god_sl_1,50;
-				}
 				close;
 			}
 		}
-		else {
-			mes "[Pavel]";
-			mes "Seja ou não podemos realmente detectar espíritos ou sentidos, mas não é tão importante quanto primeiro provar sua existência.";
-			close2;
-		}
-	}
-	else {
-		mes "[Pavel]";
 		mes "Seja ou não podemos realmente detectar espíritos ou sentidos, mas não é tão importante quanto primeiro provar sua existência.";
-		close2;
+		close;
 	}
+	mes "[Pavel]";
+	mes "Seja ou não podemos realmente detectar espíritos ou sentidos, mas não é tão importante quanto primeiro provar sua existência.";
+	close;
 }
+
 
 que_god01,20,48,0	script	Slab#G	111,{
 	if ($God1 < 100) {
@@ -1350,8 +1117,7 @@ que_god01,20,48,0	script	Slab#G	111,{
 				next;
 				mes "^3355FFAo tocar a superfície da placa, você sente que é surpreendentemente quente. Talvez haja mais detalhes nesta placa do que os olhos possam ver^000000";
 				close;
-			}
-			else if (god_sl_2 == 3) {
+			} else if (god_sl_2 == 3) {
 				mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfn";
 				mes "............djswhgks wkdusdnlrnlfn";
 				mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
@@ -1369,60 +1135,54 @@ que_god01,20,48,0	script	Slab#G	111,{
 				mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
 				next;
 				input .@input$;
-				if (.@input$ == "dirdnl") {
-					mes "Zap~";
-					mes "^3355FFQuando você pressiona a palavra '^ff0000dirdnl^3355FF,' a placa emiti um sinal sonoro estranho, mas nada acontece. Talvez você dêva pressionar algumas das outras palavras.^000000";
-					next;
-					mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
-					mes "............djswhgks wkdusdnlrnlfn";
-					mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
-					mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
-					mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
-					mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
-					next;
-				}
-				else {
+				if (.@input$ != "dirdnl") {
 					mes "^3355FFNada aconteceu.";
 					mes "Talvez a palavra";
 					mes "não esteja na placa^000000";
 					close;
 				}
+				mes "Zap~";
+				mes "^3355FFQuando você pressiona a palavra '^ff0000dirdnl^3355FF,' a placa emiti um sinal sonoro estranho, mas nada acontece. Talvez você dêva pressionar algumas das outras palavras.^000000";
+				next;
+				mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
+				mes "............djswhgks wkdusdnlrnlfn";
+				mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
+				mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
+				mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
+				mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
+				next;
 				input .@input$;
-				if (.@input$ == "tkaryf") {
-					mes "^3355FFVocê pressiona a palavra '^ff0000tkaryf^3355FF,' e outro sinal foi emitido";
-					mes "da placa.^000000";
-					next;
-					mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
-					mes "............djswhgks wkdusdnlrnlfn";
-					mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
-					mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
-					mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
-					mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
-					next;
-				}
-				else {
+				if (.@input$ != "tkaryf") {
 					mes "^3355FFNada aconteceu.";
 					mes "Talvez a palavra";
 					mes "não esteja na placa.^000000";
 					close;
 				}
+				mes "^3355FFVocê pressiona a palavra '^ff0000tkaryf^3355FF,' e outro sinal foi emitido";
+				mes "da placa.^000000";
+				next;
+				mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
+				mes "............djswhgks wkdusdnlrnlfn";
+				mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
+				mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
+				mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
+				mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
+				next;
 				input .@input$;
-				if (.@input$ == "ghswka") {
-					mes "^3355FFVocê pressiona a palavra '^ff0000ghswka^3355FF,' resultando em um sinal afirmativo. Nada aconteceu ainda, por isso, talvez você dêva pressionar uma outra palavra.^000000";
-					next;
-					mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
-					mes "............djswhgks wkdusdnlrnlfn";
-					mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
-					mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
-					mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
-					mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
-					next;
-				}
-				else {
+				if (.@input$ != "ghswka") {
 					mes "Você tocou uma palavra ^ff0000"+.@input+"^000000, nada aconteceu.";
 					mes "Você decidiu pensar em algo diferente.";
 					close;
 				}
+				mes "^3355FFVocê pressiona a palavra '^ff0000ghswka^3355FF,' resultando em um sinal afirmativo. Nada aconteceu ainda, por isso, talvez você dêva pressionar uma outra palavra.^000000";
+				next;
+				mes "....whgks ^ff00ffdirdnl^000000sjs wkrdjswhgks whdtnfb";
+				mes "............djswhgks wkdusdnlrnlfn";
+				mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
+				mes "wkdusgks ^ff00fftkaryf^000000dnl durjfflrhsjs wkrdjswhgks ......";
+				mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
+				mes "^ff00ffghswka^000000gks ........fusjs tmld.........";
+				next;
 				mes "^666666*Eeeeeeeeee~*^000000";
 				next;
 				mes "^3355FFA placa começou";
@@ -1446,21 +1206,6 @@ que_god01,20,48,0	script	Slab#G	111,{
 				mes "Depois de um tempo, a gravura original sobre a placa re-apareceu, mais uma vez a escrita esconde-se. Parece que você só pode revelar as letras escondidas temporariamente.";
 				close;
 			}
-			else {
-				mes "....whgks dirdnlsjs wkrdjswhgks whdtnfn";
-				mes "............djswhgks wkdusdnlrnlfn";
-				mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
-				mes "wkdusgks tkaryfdnl durjfflrhsjs wkrdjswhgks ......";
-				mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
-				mes "ghswkagks .........fusjs tmld.........";
-				next;
-				mes "^3355FFEstá placa de pedra foi resistindo com o tempo, e na superfície está gravada com um escrita de uma língua estranha.^000000";
-				next;
-				mes "^3355FFEstranhamente, a superfície da pedra emite o calor.^000000";
-				close;
-			}
-		}
-		else {
 			mes "....whgks dirdnlsjs wkrdjswhgks whdtnfn";
 			mes "............djswhgks wkdusdnlrnlfn";
 			mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
@@ -1468,389 +1213,38 @@ que_god01,20,48,0	script	Slab#G	111,{
 			mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
 			mes "ghswkagks .........fusjs tmld.........";
 			next;
-			mes "^3355FFExiste alguma escrita gravada nesta placa de pedra. Desde que você não pode lê-lo a pedra parece resistido com o tempo, parece estar escrito em uma língua antiga.^000000";
+			mes "^3355FFEstá placa de pedra foi resistindo com o tempo, e na superfície está gravada com um escrita de uma língua estranha.^000000";
 			next;
-			mes "^3355FFAo tocar a superfície da placa, você sente que é surpreendentemente quente. Talvez haja mais detalhes nesta placa do que os olhos possam ver^000000";
+			mes "^3355FFEstranhamente, a superfície da pedra emite o calor.^000000";
 			close;
 		}
-	}
-	else {
+		mes "....whgks dirdnlsjs wkrdjswhgks whdtnfn";
+		mes "............djswhgks wkdusdnlrnlfn";
+		mes ".......whsjs rhf tk dmqsjs rj ehddjfn";
+		mes "wkdusgks tkaryfdnl durjfflrhsjs wkrdjswhgks ......";
+		mes "wkrdjswhgks shfh wkrdjswhgks wkdus wkr...";
+		mes "ghswkagks .........fusjs tmld.........";
+		next;
 		mes "^3355FFExiste alguma escrita gravada nesta placa de pedra. Desde que você não pode lê-lo a pedra parece resistido com o tempo, parece estar escrito em uma língua antiga.^000000";
+		next;
+		mes "^3355FFAo tocar a superfície da placa, você sente que é surpreendentemente quente. Talvez haja mais detalhes nesta placa do que os olhos possam ver^000000";
 		close;
 	}
+	mes "^3355FFExiste alguma escrita gravada nesta placa de pedra. Desde que você não pode lê-lo a pedra parece resistido com o tempo, parece estar escrito em uma língua antiga.^000000";
+	close;
 }
 
 payon,79,171,4	script	Friar#G5	95,{
+	mes "[Lania]";
 	if ($God1 < 100) {
 		if ((god_sl_1 == 21) || (god_sl_1 == 32) || (god_sl_1 == 43) || (god_sl_1 == 14)) {
 			if ((god_sl_2 == 1) || (god_sl_2 == 3)) {
-				mes "[Lania]";
 				mes "Não importa quão as histórias são antigos, você pode sempre encontrar um bom conselho em contos populares e lendas.";
 				next;
 				mes "[Lania]";
 				mes "Apesar da passagem do tempo ea evolução da humanidade, certos fundamentos de vida são eternas e nunca vai mudar.";
 				next;
-				switch(select("Umm...:Eu entendo.")) {
-				case 1:
-					mes "[Lania]";
-					mes "Hmm...?";
-					mes "Você precisa de alguma";
-					mes "coisa de mim?";
-					mes "Vou tentar ajudá-lo";
-					mes "tanto quanto eu puder.";
-					next;
-					mes "[Lania]";
-					mes "Eu acredito que não adianta ter capacidade ou poder, a menos que você use esse poder para fins objectivos.";
-					next;
-					switch(select("Ah não, está tudo bem.:Conte a História da Sleipnir.")) {
-					case 1:
-						mes "[Lania]";
-						mes "Eu devo ter";
-						mes "entendido mal.";
-						mes "No entanto, sinta-se a vontade";
-						mes "para me pedir ajuda";
-						mes "se você precisar.";
-						next;
-						mes "[Lania]";
-						mes "Eu considero ajudar os outros como uma formação especial para o meu crescimento espiritual. Espero que você aja com bondade e generosidade com os outros também.";
-						close;
-					case 2:
-						mes "[Lania]";
-						mes "Ah, eu observei.";
-						mes "Posso dizer-vos que eu sei sobre Sleipnir. Vamos ver agora se consigo lembrar de tudo sobre ela.";
-						next;
-						mes "[Lania]";
-						mes "Ah, sim.";
-						mes "Eu me lembro agora.";
-						mes "Sim, Sleipnir foi o";
-						mes "nome do cavalo de Odin.";
-						next;
-						mes "[Lania]";
-						mes "No mundo dos";
-						mes "deuses, houve";
-						mes "três garanhões lendários: Sleipnir, Svadilfari e Gullfaxi.";
-						next;
-						mes "[Lania]";
-						mes "Gullfaxi era de propriedade de Hrungnir, o rei dos gigantes. Svadilfari, o garanhão que procriou a Sleipnir, também foi detida por um gigante.";
-						next;
-						mes "[Lania]";
-						mes "Ok, agora vamos falar sobre como a 'Sleipnir' nasceu. Esta história nos dá um vislumbre da falibilidade dos deuses e dos gigantes.";
-						next;
-						mes "[Lania]";
-						mes "Em Asgard, o reino dos deuses, houve uma enorme muralha de proteção que foi quase completamente destruída em uma guerra recente.";
-						next;
-						mes "[Lania]";
-						mes "No entanto...";
-						mes "Deuses são deuses,";
-						mes "eles não estavam ansiosos";
-						mes "para reconstruir os muros";
-						mes "eles mesmos.";
-						next;
-						mes "[Lania]";
-						mes "Um dia";
-						mes "um homem muito magro cavalgar sobre";
-						mes "um cavalo escuro e se ofereceu para reconstruir, e até mesmo melhorar a muralha e proteger Asgard.";
-						next;
-						mes "[Lania]";
-						mes "Sua oferta era tentadora aos deuses, que precisavam de toda a proteção contra seus inimigos.";
-						next;
-						mes "[Lania]";
-						mes "Este homem prometeu reconstruir";
-						mes "a muralha Asgardiano em apenas 18 meses, mas em troca ele queria a deusa Freyja como esposa, assim como a propriedade do sol e lua.";
-						next;
-						mes "[Lania]";
-						mes "Agora, esse preço era razoável para os deuses para pagar. Os Asgardianos foram insultados e indignados com a exigência do desconhecido. Mesmo assim, eles queriam que as suas muralhas sejam reconstruídas.";
-						next;
-						mes "[Lania]";
-						mes ".....";
-						mes "Você está entediado?";
-						mes "Se você estiver, nós podemos";
-						mes "terminar esta";
-						mes "história mais tarde.";
-						next;
-						switch(select("Sim, vamos terminar mais tarde.:Não, por favor vá em frente.")) {
-						case 1:
-							mes "[Lania]";
-							mes "Eu entendo que minha história não seja tão interessante. Mas vou tentar o meu melhor para entretê-lo na próxima vez. Por favor faça uma viagem segura.";
-							close;
-						case 2:
-							mes "[Lania]";
-							mes "Ah, tudo bem.";
-							mes "Então deixe-me continuar.";
-							next;
-							break;
-						}
-						mes "[Lania]";
-						mes "Os deuses ficaram furiosos com a exigência ridícula do estranho. Entretanto, Loki propôs a Odin";
-						mes "que eles deveriam deixar o estranho reconstruir as suas muralhas.";
-						next;
-						mes "[Lania]";
-						mes "Loki sugeriu que se o estrangeiro poderia renovar e completar a maior parte da muralha , mais tarde conforme o tal combinado, os deuses não seriam obrigados a pagar ao estranho qualquer preço.";
-						next;
-						mes "[Lania]";
-						mes "Odin decidiu seguir o conselho de Loki, e disse o estranho que as paredes devem ser reparados em seis meses, em vez de 18 meses que o estrangeiro havia proposto. Ele não poderia receber ajuda de ninguém.";
-						next;
-						mes "[Lania]";
-						mes "Em contrapartida, o estranho seria pago como havia perguntado se ele poderá responder a essas condições. Desde que ele seja apenas um homem normal, aquilo parecia impossível.";
-						next;
-						mes "[Lania]";
-						mes "Hmmm...";
-						mes "Eu sei que esta história é muito longa. Você quer ouvir um pouco mais, ou você precisa de um descanso?";
-						next;
-						switch(select("Deixe-me citar algumas notas em primeiro lugar.:Preciso de um descanso!:Não, por favor vá em frente.")) {
-						case 1:
-							mes "[Lania]";
-							mes "Ah....";
-							mes "Eu entendo essa história é bastante longa. Minhas desculpas. Tudo bem, eu vou esperar por você para terminar de escrever suas anotações.";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							mes "...............";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							mes "...............";
-							mes "..................";
-							next;
-							mes "[Lania]";
-							mes "Posso continuar a história agora?";
-							next;
-							select("Sim, por favor.");
-							mes "[Lania]";
-							mes "Ok, agora";
-							mes "onde eu estava?";
-							next;
-							break;
-						case 2:
-							mes "[Lania]";
-							mes "Eu sei que o conto da Sleipnir é bem longa. Mas se você tiver paciência, Vou tentar lhe contar esta história uma outra vez. Até logo~";
-							close;
-						case 3:
-							mes "[Lania]";
-							mes "Ah bom.";
-							mes "Então, por favor deixe-me continuar.";
-							next;
-							break;
-						}
-						mes "[Lania]";
-						mes "Agora, o estranho insistiu que ele fosse capaz de usar seu cavalo para ajudá-lo a realizar esse trabalho de reconstrução. Olhando o cavalo, era bastante simples e puro no olhar, Odin concordou.";
-						next;
-						mes "[Lania]";
-						mes "Odin não pensou";
-						mes "duas vezes sobre o seu";
-						mes "pedido, e lamentou esta decisão ao observar o primeiro dia estranho da reconstrução da muralha.";
-						next;
-						mes "[Lania]";
-						mes "Estranhamente, o estrangeiro, usava o seu cavalo para transportar os materiais, reconstruiu a muralha a uma velocidade desumano.";
-						next;
-						mes "[Lania]";
-						mes "Abalou os deuses, se tratando do homem desconhecido que poderia ser na verdade um poderoso gigante em disfarçado. Entretanto, isto não viola o acordo,";
-						mes "Assim, os deuses nada podiam fazer.";
-						next;
-						mes "[Lania]";
-						mes "Embora as competências do estrangeiro eram grandes, Seu cavalo acelerou extremamente a reconstrução da muralha. Este foi o lendário cavalo mágico, Svadilfari.";
-						next;
-						mes "[Lania]";
-						mes "Os deuses tornaram-se mais ansiosas do que a espera da reconstrução da muralha, iria em breve ser concluído antes do acordo de seis meses se esgotaram. O Asgardianos logo ficaram muito irritados com Loki.";
-						next;
-						mes "[Lania]";
-						mes "Apesar disso, Loki permaneceu calmo e assegurou que os deuses que ele tinha um plano. Os deuses desconfiava de sua astúcia, e desesperou com o trabalho do estrangeiro, rapidamente progrediu.";
-						next;
-						mes "[Lania]";
-						mes "Então, a reconstrução da muralha de repente parou. Ambos os deuses e os estrangeiros foram igualmente surpreendidos, o cavalo Svadilfari desapareceu.";
-						next;
-						mes "[Lania]";
-						mes "O estranho seria";
-						mes "agora ele terá que continuar";
-						mes "seu trabalho por ele próprio.";
-						next;
-						mes "[Lania]";
-						mes "Hmmm...";
-						mes "Você ainda está me ouvindo? Se você está cansado, eu entendo e nós podemos";
-						mes "parar por agora.";
-						next;
-						switch(select("Eu estou tão cansado(a)!:Não, por favor vá em frente.")) {
-						case 1:
-							mes "[Lania]";
-							mes "Eu sei que esta história pode parecer muito longa. Mas se você quiser se sentar e ouvi-lo novamente, Eu ficarei feliz em passar por isso novamente. Obrigado pela vossa atenção, aventureiro.";
-							close;
-						case 2:
-							mes "[Lania]";
-							mes "Oh bem,";
-							mes "Eu irei continuar.";
-							next;
-							break;
-						}
-						mes "[Lania]";
-						mes "Na curiosidade, os deuses decidiram investigar o desaparecimento de Savdilfari. ";
-						next;
-						mes "[Lania]";
-						mes "Surpreendentemente,";
-						mes "Eles descobriram que";
-						mes "Svadilfari se apaixonou por uma linda égua, razão pela qual";
-						mes "desapareceu do local onde o homem estava reconstruindo a muralha de Asgard.";
-						next;
-						mes "[Lania]";
-						mes "Assim, quando 6 meses se passaram, o estranho já estava quase terminando a reconstrução dos muros Asgardiano. Somente a porta do castelo estava intacto.";
-						next;
-						mes "[Lania]";
-						mes "Os deuses estavam felizes para contar ao estranho que não podiam pagar o que ele pediu, desde que ele não tinha completado a muralha, como no acordado.";
-						next;
-						mes "[Lania]";
-						mes "Em sua raiva, o desconhecido acusou os deuses de enganá-lo de modo que não tivessem que o pagar com a lua, a lua e a linda deusa Freya. Então, ele revelou sua verdadeira identidade.";
-						next;
-						mes "[Lania]";
-						mes "Ele era um";
-						mes "terrível gigante do gelo,";
-						mes "ou Hrimthurs como se costuma dizer.";
-						next;
-						mes "[Lania]";
-						mes ".....";
-						mes "Você está entediado?";
-						mes "Se você estiver, nós podemos";
-						mes "falar sobre isso";
-						mes "depois que você descansar.";
-						next;
-						switch(select("Estou tão entediado ~:Não, por favor vá em frente.")) {
-						case 1:
-							mes "[Lania]";
-							mes "Eu compreendo. Bem, as histórias são para ser apreciadas e eu suponho que você não está com vontade de sentar e ouvir.";
-							next;
-							mes "[Lania]";
-							mes "Mas se você quizer saber sobre a Sleipnir, sinta-se livre para me visitar mais uma vez. Tenha um bom dia~";
-							close;
-						case 2:
-							mes "[Lania]";
-							mes "Oh, eu estou feliz ~";
-							mes "algumas pessoas";
-							mes "na verdade estão dormindo";
-							mes "depois de passar tanto tempo ouvindo essa históriaempo ~";
-							next;
-							break;
-						}
-						mes "[Lania]";
-						mes "De qualquer maneira...";
-						mes "O estranho estava do ladro de fora";
-						mes "e se preparava com alvenaria de pedra.";
-						mes "Embora ele estava invadindo Asgard, os deuses não se preocupavam.";
-						next;
-						mes "[Lania]";
-						mes "Thor rapidamente matou o gigante com seu poderoso martelo, Mjolnir, lançando a cabeça do gigante, que explodiu em mil pedaços.";
-						next;
-						mes "[Lania]";
-						mes "Quanto ao cavalo, Svadilfari, ele estava longe de ser encontrado por";
-						mes "um longo, longo tempo.";
-						next;
-						mes "[Lania]";
-						mes ".....";
-						mes "Você está entediado?";
-						mes "Se estiver, vamos falar";
-						mes "sobre isso mais tarde.";
-						next;
-						switch(select("Deixe-me citar algumas notas em primeiro lugar.:Preciso de um descanso!:Não, por favor vá em frente.")) {
-						case 1:
-							mes "[Lania]";
-							mes "Ah....";
-							mes "Vejo que você realmente quer acompanhar cada detalhe importante!";
-							next;
-							mes "[Lania]";
-							mes "Minhas desculpas, eu vou esperar por você para concluir suas anotações depois.";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							mes "...............";
-							next;
-							mes "...";
-							mes "......";
-							mes ".........";
-							mes "............";
-							mes "...............";
-							mes "..................";
-							next;
-							mes "[Lania]";
-							mes "Posso continuar a história agora?";
-							next;
-							select("Sim, por favor.");
-							mes "[Lania]";
-							mes "Okay. Hmm...";
-							mes "Agora, onde eu estava mesmo?";
-							next;
-							break;
-						case 2:
-							mes "[Lania]";
-							mes "Ah, eu acho que minha história não era tão interessante. Mas se você quiser ouvir essa história novamente, por favor, venha me visitar novamente.";
-							next;
-							mes "[Lania]";
-							mes "Ok, então,";
-							mes "tenha uma boa viajem~";
-							close;
-						case 3:
-							mes "[Lania]";
-							mes "Okay. Hmm...";
-							mes "Agora, onde eu estava?";
-							next;
-							break;
-						}
-						mes "[Lania]";
-						mes "Depois de um tempo, Loki, que parecia ter sido surrado e estava muito gasto olhou para fora, trouxe um pônei de vista estranha com oito pés a Asgard.";
-						next;
-						mes "[Lania]";
-						mes "Loki apresenta o pônei como 'Sleipnir' e que apresentou a";
-						mes "Odin como um presente.";
-						next;
-						mes "[Lania]";
-						mes "Na realidade, Loki tinha transformado na égua que seduziu Svadilfari para que o trabalho do gigante não terminasse no prazo.";
-						next;
-						mes "[Lania]";
-						mes "Assim a 'Sleipnir' nasceu a partir da lendária égua Svadilfari, e o deus Loki que transformou-se próprio em um cavalo.";
-						next;
-						mes "[Lania]";
-						mes "Agora, as histórias que se propagam através do boca a boca pode ter diferenças nos pequenos detalhes, dependendo de quem está contando a história.";
-						next;
-						mes "[Lania]";
-						mes "Ainda assim, a linha da história fundamental nao devem ser diferentes.";
-						next;
-						mes "[Lania]";
-						mes "Eu não costumo praticar para contar histórias, e eu não estou muito confiante sobre a autenticidade da minha versão do conto da Sleipnir.";
-						next;
-						mes "[Lania]";
-						mes "Mas eu espero que você entenda que eu fiz o meu melhor. Foi o máximo que eu poderia fazer para ajudá-lo.";
-						next;
-						mes "[Lania]";
-						mes "Se quiser ouvir essa história de novo, você será sempre bem-vindos.";
-						mes "Boa sorte em suas aventuras~";
-						if (god_sl_2 == 1) {
-							set god_sl_2,2;
-						} else if (god_sl_2 == 3) {
-							set god_sl_2,4;
-						}
-						close;
-					}
-				case 2:
+				if(select("Umm...:Eu entendo.") == 2) {
 					mes "[Lania]";
 					mes "Em tempos de agonia, por favor reflita sobre o seu passado para ajudar a encontrar uma solução.";
 					next;
@@ -1858,27 +1252,352 @@ payon,79,171,4	script	Friar#G5	95,{
 					mes "Como os velhos mitos e lendas, suas experiências são histórias nas quais você pode aprender lições valiosas.";
 					close;
 				}
-			}
-			else {
 				mes "[Lania]";
-				mes "Eu falei tudo o que sei. Felizmente, eu espero ter servido de alguma ajuda para você. Por favor, trate os outros com a mesma generosidade e bondade.";
+				mes "Hmm...?";
+				mes "Você precisa de alguma";
+				mes "coisa de mim?";
+				mes "Vou tentar ajudá-lo";
+				mes "tanto quanto eu puder.";
+				next;
+				mes "[Lania]";
+				mes "Eu acredito que não adianta ter capacidade ou poder, a menos que você use esse poder para fins objectivos.";
+				next;
+				if(select("Ah não, está tudo bem.:Conte a História da Sleipnir.") == 1) {
+					mes "[Lania]";
+					mes "Eu devo ter";
+					mes "entendido mal.";
+					mes "No entanto, sinta-se a vontade";
+					mes "para me pedir ajuda";
+					mes "se você precisar.";
+					next;
+					mes "[Lania]";
+					mes "Eu considero ajudar os outros como uma formação especial para o meu crescimento espiritual. Espero que você aja com bondade e generosidade com os outros também.";
+					close;
+				}
+				mes "[Lania]";
+				mes "Ah, eu observei.";
+				mes "Posso dizer-vos que eu sei sobre Sleipnir. Vamos ver agora se consigo lembrar de tudo sobre ela.";
+				next;
+				mes "[Lania]";
+				mes "Ah, sim.";
+				mes "Eu me lembro agora.";
+				mes "Sim, Sleipnir foi o";
+				mes "nome do cavalo de Odin.";
+				next;
+				mes "[Lania]";
+				mes "No mundo dos";
+				mes "deuses, houve";
+				mes "três garanhões lendários: Sleipnir, Svadilfari e Gullfaxi.";
+				next;
+				mes "[Lania]";
+				mes "Gullfaxi era de propriedade de Hrungnir, o rei dos gigantes. Svadilfari, o garanhão que procriou a Sleipnir, também foi detida por um gigante.";
+				next;
+				mes "[Lania]";
+				mes "Ok, agora vamos falar sobre como a 'Sleipnir' nasceu. Esta história nos dá um vislumbre da falibilidade dos deuses e dos gigantes.";
+				next;
+				mes "[Lania]";
+				mes "Em Asgard, o reino dos deuses, houve uma enorme muralha de proteção que foi quase completamente destruída em uma guerra recente.";
+				next;
+				mes "[Lania]";
+				mes "No entanto...";
+				mes "Deuses são deuses,";
+				mes "eles não estavam ansiosos";
+				mes "para reconstruir os muros";
+				mes "eles mesmos.";
+				next;
+				mes "[Lania]";
+				mes "Um dia";
+				mes "um homem muito magro cavalgar sobre";
+				mes "um cavalo escuro e se ofereceu para reconstruir, e até mesmo melhorar a muralha e proteger Asgard.";
+				next;
+				mes "[Lania]";
+				mes "Sua oferta era tentadora aos deuses, que precisavam de toda a proteção contra seus inimigos.";
+				next;
+				mes "[Lania]";
+				mes "Este homem prometeu reconstruir";
+				mes "a muralha Asgardiano em apenas 18 meses, mas em troca ele queria a deusa Freyja como esposa, assim como a propriedade do sol e lua.";
+				next;
+				mes "[Lania]";
+				mes "Agora, esse preço era razoável para os deuses para pagar. Os Asgardianos foram insultados e indignados com a exigência do desconhecido. Mesmo assim, eles queriam que as suas muralhas sejam reconstruídas.";
+				next;
+				mes "[Lania]";
+				mes ".....";
+				mes "Você está entediado?";
+				mes "Se você estiver, nós podemos";
+				mes "terminar esta";
+				mes "história mais tarde.";
+				next;
+				switch(select("Sim, vamos terminar mais tarde.:Não, por favor vá em frente.") == 1) {
+					mes "[Lania]";
+					mes "Eu entendo que minha história não seja tão interessante. Mas vou tentar o meu melhor para entretê-lo na próxima vez. Por favor faça uma viagem segura.";
+					close;
+				}
+				mes "[Lania]";
+				mes "Ah, tudo bem.";
+				mes "Então deixe-me continuar.";
+				next;
+				mes "[Lania]";
+				mes "Os deuses ficaram furiosos com a exigência ridícula do estranho. Entretanto, Loki propôs a Odin";
+				mes "que eles deveriam deixar o estranho reconstruir as suas muralhas.";
+				next;
+				mes "[Lania]";
+				mes "Loki sugeriu que se o estrangeiro poderia renovar e completar a maior parte da muralha , mais tarde conforme o tal combinado, os deuses não seriam obrigados a pagar ao estranho qualquer preço.";
+				next;
+				mes "[Lania]";
+				mes "Odin decidiu seguir o conselho de Loki, e disse o estranho que as paredes devem ser reparados em seis meses, em vez de 18 meses que o estrangeiro havia proposto. Ele não poderia receber ajuda de ninguém.";
+				next;
+				mes "[Lania]";
+				mes "Em contrapartida, o estranho seria pago como havia perguntado se ele poderá responder a essas condições. Desde que ele seja apenas um homem normal, aquilo parecia impossível.";
+				next;
+				mes "[Lania]";
+				mes "Hmmm...";
+				mes "Eu sei que esta história é muito longa. Você quer ouvir um pouco mais, ou você precisa de um descanso?";
+				next;
+				switch(select("Deixe-me citar algumas notas em primeiro lugar.:Preciso de um descanso!:Não, por favor vá em frente.")) {
+				mes "[Lania]";
+				case 1:
+					mes "Ah....";
+					mes "Eu entendo essa história é bastante longa. Minhas desculpas. Tudo bem, eu vou esperar por você para terminar de escrever suas anotações.";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					mes "...............";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					mes "...............";
+					mes "..................";
+					next;
+					mes "[Lania]";
+					mes "Posso continuar a história agora?";
+					next;
+					select("Sim, por favor.");
+					mes "[Lania]";
+					mes "Ok, agora";
+					mes "onde eu estava?";
+					next;
+					break;
+				case 2:
+					mes "Eu sei que o conto da Sleipnir é bem longa. Mas se você tiver paciência, Vou tentar lhe contar esta história uma outra vez. Até logo~";
+					close;
+				case 3:
+					mes "Ah bom.";
+					mes "Então, por favor deixe-me continuar.";
+					next;
+					break;
+				}
+				mes "[Lania]";
+				mes "Agora, o estranho insistiu que ele fosse capaz de usar seu cavalo para ajudá-lo a realizar esse trabalho de reconstrução. Olhando o cavalo, era bastante simples e puro no olhar, Odin concordou.";
+				next;
+				mes "[Lania]";
+				mes "Odin não pensou";
+				mes "duas vezes sobre o seu";
+				mes "pedido, e lamentou esta decisão ao observar o primeiro dia estranho da reconstrução da muralha.";
+				next;
+				mes "[Lania]";
+				mes "Estranhamente, o estrangeiro, usava o seu cavalo para transportar os materiais, reconstruiu a muralha a uma velocidade desumano.";
+				next;
+				mes "[Lania]";
+				mes "Abalou os deuses, se tratando do homem desconhecido que poderia ser na verdade um poderoso gigante em disfarçado. Entretanto, isto não viola o acordo,";
+				mes "Assim, os deuses nada podiam fazer.";
+				next;
+				mes "[Lania]";
+				mes "Embora as competências do estrangeiro eram grandes, Seu cavalo acelerou extremamente a reconstrução da muralha. Este foi o lendário cavalo mágico, Svadilfari.";
+				next;
+				mes "[Lania]";
+				mes "Os deuses tornaram-se mais ansiosas do que a espera da reconstrução da muralha, iria em breve ser concluído antes do acordo de seis meses se esgotaram. O Asgardianos logo ficaram muito irritados com Loki.";
+				next;
+				mes "[Lania]";
+				mes "Apesar disso, Loki permaneceu calmo e assegurou que os deuses que ele tinha um plano. Os deuses desconfiava de sua astúcia, e desesperou com o trabalho do estrangeiro, rapidamente progrediu.";
+				next;
+				mes "[Lania]";
+				mes "Então, a reconstrução da muralha de repente parou. Ambos os deuses e os estrangeiros foram igualmente surpreendidos, o cavalo Svadilfari desapareceu.";
+				next;
+				mes "[Lania]";
+				mes "O estranho seria";
+				mes "agora ele terá que continuar";
+				mes "seu trabalho por ele próprio.";
+				next;
+				mes "[Lania]";
+				mes "Hmmm...";
+				mes "Você ainda está me ouvindo? Se você está cansado, eu entendo e nós podemos";
+				mes "parar por agora.";
+				next;
+				switch(select("Eu estou tão cansado(a)!:Não, por favor vá em frente.") == 1) {
+					mes "[Lania]";
+					mes "Eu sei que esta história pode parecer muito longa. Mas se você quiser se sentar e ouvi-lo novamente, Eu ficarei feliz em passar por isso novamente. Obrigado pela vossa atenção, aventureiro.";
+					close;
+				}
+				mes "[Lania]";
+				mes "Oh bem,";
+				mes "Eu irei continuar.";
+				next;
+				mes "[Lania]";
+				mes "Na curiosidade, os deuses decidiram investigar o desaparecimento de Savdilfari. ";
+				next;
+				mes "[Lania]";
+				mes "Surpreendentemente,";
+				mes "Eles descobriram que";
+				mes "Svadilfari se apaixonou por uma linda égua, razão pela qual";
+				mes "desapareceu do local onde o homem estava reconstruindo a muralha de Asgard.";
+				next;
+				mes "[Lania]";
+				mes "Assim, quando 6 meses se passaram, o estranho já estava quase terminando a reconstrução dos muros Asgardiano. Somente a porta do castelo estava intacto.";
+				next;
+				mes "[Lania]";
+				mes "Os deuses estavam felizes para contar ao estranho que não podiam pagar o que ele pediu, desde que ele não tinha completado a muralha, como no acordado.";
+				next;
+				mes "[Lania]";
+				mes "Em sua raiva, o desconhecido acusou os deuses de enganá-lo de modo que não tivessem que o pagar com a lua, a lua e a linda deusa Freya. Então, ele revelou sua verdadeira identidade.";
+				next;
+				mes "[Lania]";
+				mes "Ele era um";
+				mes "terrível gigante do gelo,";
+				mes "ou Hrimthurs como se costuma dizer.";
+				next;
+				mes "[Lania]";
+				mes ".....";
+				mes "Você está entediado?";
+				mes "Se você estiver, nós podemos";
+				mes "falar sobre isso";
+				mes "depois que você descansar.";
+				next;
+				switch(select("Estou tão entediado ~:Não, por favor vá em frente.") == 1) {
+					mes "[Lania]";
+					mes "Eu compreendo. Bem, as histórias são para ser apreciadas e eu suponho que você não está com vontade de sentar e ouvir.";
+					next;
+					mes "[Lania]";
+					mes "Mas se você quizer saber sobre a Sleipnir, sinta-se livre para me visitar mais uma vez. Tenha um bom dia~";
+					close;
+				}
+				mes "[Lania]";
+				mes "Oh, eu estou feliz ~";
+				mes "algumas pessoas";
+				mes "na verdade estão dormindo";
+				mes "depois de passar tanto tempo ouvindo essa históriaempo ~";
+				next;
+				mes "[Lania]";
+				mes "De qualquer maneira...";
+				mes "O estranho estava do ladro de fora";
+				mes "e se preparava com alvenaria de pedra.";
+				mes "Embora ele estava invadindo Asgard, os deuses não se preocupavam.";
+				next;
+				mes "[Lania]";
+				mes "Thor rapidamente matou o gigante com seu poderoso martelo, Mjolnir, lançando a cabeça do gigante, que explodiu em mil pedaços.";
+				next;
+				mes "[Lania]";
+				mes "Quanto ao cavalo, Svadilfari, ele estava longe de ser encontrado por";
+				mes "um longo, longo tempo.";
+				next;
+				mes "[Lania]";
+				mes ".....";
+				mes "Você está entediado?";
+				mes "Se estiver, vamos falar";
+				mes "sobre isso mais tarde.";
+				next;
+				switch(select("Deixe-me citar algumas notas em primeiro lugar.:Preciso de um descanso!:Não, por favor vá em frente.")) {
+				mes "[Lania]";
+				case 1:
+					mes "Ah....";
+					mes "Vejo que você realmente quer acompanhar cada detalhe importante!";
+					next;
+					mes "[Lania]";
+					mes "Minhas desculpas, eu vou esperar por você para concluir suas anotações depois.";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					mes "...............";
+					next;
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "............";
+					mes "...............";
+					mes "..................";
+					next;
+					mes "[Lania]";
+					mes "Posso continuar a história agora?";
+					next;
+					select("Sim, por favor.");
+					mes "[Lania]";
+					mes "Okay. Hmm...";
+					mes "Agora, onde eu estava mesmo?";
+					next;
+					break;
+				case 2:
+					mes "Ah, eu acho que minha história não era tão interessante. Mas se você quiser ouvir essa história novamente, por favor, venha me visitar novamente.";
+					next;
+					mes "[Lania]";
+					mes "Ok, então,";
+					mes "tenha uma boa viajem~";
+					close;
+				case 3:
+					mes "Okay. Hmm...";
+					mes "Agora, onde eu estava?";
+					next;
+					break;
+				}
+				mes "[Lania]";
+				mes "Depois de um tempo, Loki, que parecia ter sido surrado e estava muito gasto olhou para fora, trouxe um pônei de vista estranha com oito pés a Asgard.";
+				next;
+				mes "[Lania]";
+				mes "Loki apresenta o pônei como 'Sleipnir' e que apresentou a";
+				mes "Odin como um presente.";
+				next;
+				mes "[Lania]";
+				mes "Na realidade, Loki tinha transformado na égua que seduziu Svadilfari para que o trabalho do gigante não terminasse no prazo.";
+				next;
+				mes "[Lania]";
+				mes "Assim a 'Sleipnir' nasceu a partir da lendária égua Svadilfari, e o deus Loki que transformou-se próprio em um cavalo.";
+				next;
+				mes "[Lania]";
+				mes "Agora, as histórias que se propagam através do boca a boca pode ter diferenças nos pequenos detalhes, dependendo de quem está contando a história.";
+				next;
+				mes "[Lania]";
+				mes "Ainda assim, a linha da história fundamental nao devem ser diferentes.";
+				next;
+				mes "[Lania]";
+				mes "Eu não costumo praticar para contar histórias, e eu não estou muito confiante sobre a autenticidade da minha versão do conto da Sleipnir.";
+				next;
+				mes "[Lania]";
+				mes "Mas eu espero que você entenda que eu fiz o meu melhor. Foi o máximo que eu poderia fazer para ajudá-lo.";
+				next;
+				mes "[Lania]";
+				mes "Se quiser ouvir essa história de novo, você será sempre bem-vindos.";
+				mes "Boa sorte em suas aventuras~";
+				if (god_sl_2 == 1)
+					set god_sl_2,2;
+				else if (god_sl_2 == 3)
+					set god_sl_2,4;
 				close;
 			}
-		}
-		else {
-			mes "[Lania]";
-			mes "A formação não se limita apenas ao condicionamento físico e mental.";
-			next;
-			mes "[Lania]";
-			mes "A maneira como você conduzir a sua vida e interagir com outras pessoas também podem ser considerados como parte de seu treinamento.";
-			next;
-			mes "[Lania]";
-			mes "Todos vão aprender e se beneficiar de forma diferente, dependendo de como eles vivem suas vidas no dia-a-dia.";
+			mes "Eu falei tudo o que sei. Felizmente, eu espero ter servido de alguma ajuda para você. Por favor, trate os outros com a mesma generosidade e bondade.";
 			close;
 		}
-	}
-	else {
-		mes "[Lania]";
 		mes "A formação não se limita apenas ao condicionamento físico e mental.";
 		next;
 		mes "[Lania]";
@@ -1888,6 +1607,14 @@ payon,79,171,4	script	Friar#G5	95,{
 		mes "Todos vão aprender e se beneficiar de forma diferente, dependendo de como eles vivem suas vidas no dia-a-dia.";
 		close;
 	}
+	mes "A formação não se limita apenas ao condicionamento físico e mental.";
+	next;
+	mes "[Lania]";
+	mes "A maneira como você conduzir a sua vida e interagir com outras pessoas também podem ser considerados como parte de seu treinamento.";
+	next;
+	mes "[Lania]";
+	mes "Todos vão aprender e se beneficiar de forma diferente, dependendo de como eles vivem suas vidas no dia-a-dia.";
+	close;
 }
 
 que_god01,84,95,0	script	Switch#God0	111,{
@@ -1897,16 +1624,14 @@ que_god01,84,95,0	script	Switch#God0	111,{
 		warp "que_god01",60,88;
 		end;
 	}
-	else {
-		mes "^3355FFA porta está trancada.";
-		mes "Há algum";
-		mes "tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de";
-		mes "passe antes que você possa entrar.^000000";
-		close;
-	}
+	mes "^3355FFA porta está trancada.";
+	mes "Há algum";
+	mes "tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de";
+	mes "passe antes que você possa entrar.^000000";
+	close;
 }
 
-que_god01,84,92,0	script	god_sl_w0	45,1,1,{
+que_god01,84,92,0	script	god_sl_w0	45,1,1{
 OnTouch:
 	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
 		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
@@ -1914,116 +1639,15 @@ OnTouch:
 		warp "que_god01",60,88;
 		end;
 	}
-	else {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		close;
-	}
+	mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
+	close;
 }
 
-que_god01,49,97,0	script	Switch#God1	111,{
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",62,119;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,46,97,0	script	god_sl_w1	45,1,1,{
-OnTouch:
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",62,119;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,19,97,0	script	Switch#God2	111,{
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		next;
-		warp "que_god01",12,119;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,16,97,0	script	god_sl_w2	45,1,1,{
-OnTouch:
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",12,119;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,14,80,0	script	Switch#God3	111,{
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",12,52;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,17,80,0	script	god_sl_w3	45,1,1,{
-OnTouch:
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",12,52;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,44,80,0	script	Switch#God4	111,{
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",50,52;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
-
-que_god01,47,80,0	script	god_sl_w4	45,1,1,{
-OnTouch:
-	if ((god_sl_1 > 1) && (god_sl_1 < 51)) {
-		mes "^3355FFA porta está trancada. Você deve coloca o seu cartão temporário no dispositivo de segurança no lado direito da porta, ea porta abre.^000000";
-		next;
-		warp "que_god01",50,52;
-		end;
-	}
-	else {
-		mes "^3355FFA porta está trancada. Existe algum tipo de dispositivo de segurança no lado direito. Parece que o dispositivo precisa detectar algum tipo de passe antes que você possa entrar.^000000";
-		close;
-	}
-}
+que_god01,49,97,0	duplicate(Switch#God0)	Switch#God1	111
+que_god01,46,97,0	duplicate(god_sl_w0)	god_sl_w1	45,1,1
+que_god01,19,97,0	duplicate(Switch#God0)	Switch#God2	111
+que_god01,16,97,0	duplicate(god_sl_w0)	god_sl_w2	45,1,1
+que_god01,14,80,0	duplicate(Switch#God0)	Switch#God3	111
+que_god01,17,80,0	duplicate(god_sl_w0)	god_sl_w3	45,1,1
+que_god01,44,80,0	duplicate(Switch#God0)	Switch#God4	111
+que_god01,47,80,0	duplicate(god_sl_w0)	god_sl_w4	45,1,1
