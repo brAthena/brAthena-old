@@ -694,6 +694,9 @@ geffen,90,67,3	script	Promotional Staff#gef	100,{
 	end;
 }
 
+izlude,101,173,6	duplicatp(PromotionalStaff_izlude)	Promotional Staff#iz	100,{}
+izlude,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz	100,{}
+
 lighthalzen,220,292,3	script	Guide#ep13_1	899,{
 	if (ep13_ryu > 8) {
 		mes "[Guide]";

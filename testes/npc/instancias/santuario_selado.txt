@@ -274,7 +274,7 @@ monk_test,306,151,3	script	Túmulo de Bafomé#edq	111,{
 			} else if((party_instance_id4 != 0) && (party_instance_id4 != getcharid(1))) {
 				mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
 			} else {
-				mapannounce "monk_test","[" + strcharinfo(0) + "] member of the [" + getpartyname(.@party_id) + "] party has entered the Sealed Shrine.",bc_map,"0x00ff99";
+				mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
 				if (checkquest(3040) == -1) setquest 3040;
 				set party_instance_id4,getcharid(1);
 				warp "1@cata",100,224;
@@ -952,7 +952,7 @@ OnTouch:
 	} else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
-		mes "Você pegou as 10^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
+		mes "Você pegou as 10 ^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
 		next;
 		if ((countitem(6001) > 9) && (countitem(6002) > 0)) {
 			delitem 6001,countitem(6001); //Essence_Of_Fire
@@ -1041,7 +1041,7 @@ OnTouch:
 
 // Túmulos
 //============================================================
-1@cata,86,214,0	script	Túmulo#SS1	844,{
+1@cata,86,214,0	script	Túmulo#1F_1T	844,{
 	if ('ins_baphomet == 1) {
 		getitem 6003,1; // Pingente do Espírito
 		set 'ins_baphomet,2;
@@ -1055,39 +1055,39 @@ OnTouch:
 		close;
 	}
 }
-1@cata,200,209,0	duplicate(Túmulo#SS1)	Túmulo#1F_2T	844
-1@cata,230,195,0	duplicate(Túmulo#SS1)	Túmulo#1F_3T	844
-1@cata,118,182,0	duplicate(Túmulo#SS1)	Túmulo#1F_4T	844
-1@cata,193,182,0	duplicate(Túmulo#SS1)	Túmulo#1F_5T	844
-1@cata,253,156,0	duplicate(Túmulo#SS1)	Túmulo#1F_6T	844
-1@cata,88,154,0	duplicate(Túmulo#SS1)	Túmulo#1F_7T	844
-1@cata,127,116,0	duplicate(Túmulo#SS1)	Túmulo#1F_8T	844
-1@cata,90,98,0	duplicate(Túmulo#SS1)	Túmulo#1F_9T	844
-1@cata,188,84,0	duplicate(Túmulo#SS1)	Túmulo#1F_10T	844
-1@cata,244,42,0	duplicate(Túmulo#SS1)	Túmulo#1F_11T	844
-1@cata,127,32,0	duplicate(Túmulo#SS1)	Túmulo#1F_12T	844
-1@cata,267,30,0	duplicate(Túmulo#SS1)	Túmulo#1F_13T	844
+1@cata,200,209,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_2T	844
+1@cata,230,195,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_3T	844
+1@cata,118,182,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_4T	844
+1@cata,193,182,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_5T	844
+1@cata,253,156,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_6T	844
+1@cata,88,154,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_7T	844
+1@cata,127,116,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_8T	844
+1@cata,90,98,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_9T	844
+1@cata,188,84,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_10T	844
+1@cata,244,42,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_11T	844
+1@cata,127,32,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_12T	844
+1@cata,267,30,0	duplicate(Túmulo#1F_1T)	Túmulo#1F_13T	844
 
-1@cata,86,214,0	script	Túmulo#SS2	844,{
+1@cata,86,214,0	script	Túmulo#1F_1F	844,{
 	mes "Posso sentir a tristeza vinda desse túmulo.";
 	close;
 }
-1@cata,200,209,0	duplicate(Túmulo#SS2)	Túmulo#1F_2F	844
-1@cata,230,195,0	duplicate(Túmulo#SS2)	Túmulo#1F_3F	844
-1@cata,118,182,0	duplicate(Túmulo#SS2)	Túmulo#1F_4F	844
-1@cata,193,182,0	duplicate(Túmulo#SS2)	Túmulo#1F_5F	844
-1@cata,253,156,0	duplicate(Túmulo#SS2)	Túmulo#1F_6F	844
-1@cata,88,154,0	duplicate(Túmulo#SS2)	Túmulo#1F_7F	844
-1@cata,127,116,0	duplicate(Túmulo#SS2)	Túmulo#1F_8F	844
-1@cata,90,98,0	duplicate(Túmulo#SS2)	Túmulo#1F_9F	844
-1@cata,188,84,0	duplicate(Túmulo#SS2)	Túmulo#1F_10F	844
-1@cata,244,42,0	duplicate(Túmulo#SS2)	Túmulo#1F_11F	844
-1@cata,127,32,0	duplicate(Túmulo#SS2)	Túmulo#1F_12F	844
-1@cata,267,30,0	duplicate(Túmulo#SS2)	Túmulo#1F_13F	844
+1@cata,200,209,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_2F	844
+1@cata,230,195,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_3F	844
+1@cata,118,182,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_4F	844
+1@cata,193,182,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_5F	844
+1@cata,253,156,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_6F	844
+1@cata,88,154,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_7F	844
+1@cata,127,116,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_8F	844
+1@cata,90,98,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_9F	844
+1@cata,188,84,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_10F	844
+1@cata,244,42,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_11F	844
+1@cata,127,32,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_12F	844
+1@cata,267,30,0	duplicate(Túmulo#1F_1F)	Túmulo#1F_13F	844
 
 // Tochas
 //============================================================
-1@cata,267,210,0	script	Tocha#SS	844,{
+1@cata,267,210,0	script	Tocha#1	844,{
 	set .@party_id,getcharid(1);
 	if (getpartyleader(.@party_id,2) == getcharid(0)) {
 		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
@@ -1117,17 +1117,17 @@ OnTouch:
 		close;
 	}
 }
-1@cata,85,182,0	duplicate(Tocha#SS)	Tocha#2	844
-1@cata,267,154,0	duplicate(Tocha#SS)	Tocha#3	844
-1@cata,157,139,0	duplicate(Tocha#SS)	Tocha#4	844
-1@cata,193,138,0	duplicate(Tocha#SS)	Tocha#5	844
-1@cata,193,102,0	duplicate(Tocha#SS)	Tocha#6	844
-1@cata,157,102,0	duplicate(Tocha#SS)	Tocha#7	844
-1@cata,113,112,0	duplicate(Tocha#SS)	Tocha#8	844
-1@cata,253,56,0	duplicate(Tocha#SS)	Tocha#9	844
-1@cata,239,56,0	duplicate(Tocha#SS)	Tocha#10	844
-1@cata,71,42,0	duplicate(Tocha#SS)	Tocha#11	844
-1@cata,155,14,0	duplicate(Tocha#SS)	Tocha#12	844
+1@cata,85,182,0	duplicate(Tocha#1)	Tocha#2	844
+1@cata,267,154,0	duplicate(Tocha#1)	Tocha#3	844
+1@cata,157,139,0	duplicate(Tocha#1)	Tocha#4	844
+1@cata,193,138,0	duplicate(Tocha#1)	Tocha#5	844
+1@cata,193,102,0	duplicate(Tocha#1)	Tocha#6	844
+1@cata,157,102,0	duplicate(Tocha#1)	Tocha#7	844
+1@cata,113,112,0	duplicate(Tocha#1)	Tocha#8	844
+1@cata,253,56,0	duplicate(Tocha#1)	Tocha#9	844
+1@cata,239,56,0	duplicate(Tocha#1)	Tocha#10	844
+1@cata,71,42,0	duplicate(Tocha#1)	Tocha#11	844
+1@cata,155,14,0	duplicate(Tocha#1)	Tocha#12	844
 
 1@cata,1,1,0	script	ins_baphomet_1f_timer	-1,{
 OnEnable:
@@ -1273,7 +1273,7 @@ OnTouch:
 
 // Selo Mágicos
 //============================================================
-2@cata,79,81,0	script	Selo Mágico#SS	844,{
+2@cata,79,81,0	script	Selo Mágico#0	844,{
 	set .@seal_check,checkquest(3041,PLAYTIME);
 	if (.@seal_check == 0 || .@seal_check == 1) {
 		specialeffect2 EF_SILENCEATTACK;
@@ -1299,10 +1299,10 @@ OnTouch:
 	mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
 	close;
 }
-2@cata,123,109,0	duplicate(Selo Mágico#SS)	Selo Mágico#2	844
-2@cata,123,22,0	duplicate(Selo Mágico#SS)	Selo Mágico#4	844
-2@cata,35,21,0	duplicate(Selo Mágico#SS)	Selo Mágico#8	844
-2@cata,35,109,0	duplicate(Selo Mágico#SS)	Selo Mágico#10	844
+2@cata,123,109,0	duplicate(Selo Mágico#0)	Selo Mágico#2	844
+2@cata,123,22,0	duplicate(Selo Mágico#0)	Selo Mágico#4	844
+2@cata,35,21,0	duplicate(Selo Mágico#0)	Selo Mágico#8	844
+2@cata,35,109,0	duplicate(Selo Mágico#0)	Selo Mágico#10	844
 
 2@cata,79,65,0	script	Altar Principal#ss	844,{
 	set .@party_id,getcharid(1);

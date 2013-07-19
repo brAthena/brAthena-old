@@ -88,11 +88,11 @@ moc_para01,48,177,3	script	Missão [91 - 99]	857,{
 				next;
 				mes ":: Você adicionou informações";
 				mes ":: sobre a missão";
-				mes ":: Caçando ^0000FF"+.@names$[.@quest-4181]+" ^000000";
+				mes ":: Caçando ^0000FF"+.@Mob$[.@quest-4181]+" ^000000";
 				mes ":: em seu quadro de missões.";
 				mes ":: Você teve uma experiência saudável.";
 				erasequest .@quest;
-				getexp .@exp[.@quest-4181],0;
+				getexp .@Exp[.@quest-4181],0;
 				close;
 			}
 		}
