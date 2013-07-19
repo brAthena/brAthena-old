@@ -10629,6 +10629,7 @@ mal_in01,15,16,3	script	Fallen Angel#mal	403,{
 		else set .@enchant,0;
 
 		set Zeny, Zeny - 1000000;
+		delitem 6417,3; //Silvervine
 		delequip EQI_GARMENT;
 		if (.@enchant == 0) {
 			mes "[Fallen Angel]";
