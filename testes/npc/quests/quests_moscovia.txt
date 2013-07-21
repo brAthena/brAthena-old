@@ -2186,7 +2186,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 				mes "[Prime Minister Dmitree]";
 				mes "Even though I regard as your effort for the time so, award you. Take it and go out.";
 				getitem 12702,1;
-				getexp 50000,0;
+				getexp (checkversion(3))?50000:500000,0;
 				set mos_whale_edq,39;
 				close;
 			}
@@ -2214,7 +2214,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 			mes "[Prime Minister Dmitree]";
 			mes "Even though I regard as your effort for the time so, award you. Take it.";
 			getitem 12702,1;
-			getexp 70000,0;
+			getexp (checkversion(3))?70000:700000,0;
 			set mos_whale_edq,40;
 			close;
 		}
@@ -2296,7 +2296,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 			mes "in his palace. I will reward your";
 			mes "efforts, in the name of the Csar.";
 			getitem 617,1;
-			getexp 120000,0;
+			getexp (checkversion(3))?100000:1200000,0;
 			set mos_whale_edq,41;
 			close;
 		}
@@ -2753,7 +2753,7 @@ mosk_in,144,279,5	script	Gallina#mos	959,{
 		mes "Well, now I have to get to work!";
 		mes "I'll make you my hotcakes someday. Please visit me later";
 		set mos_swan,100;
-		getexp 100000,0;
+		getexp (checkversion(3))?90000:1000000,0;
 		close;
 	}
 	mes "[Gallina]";
@@ -2785,11 +2785,11 @@ mosk_in,148,274,1	script	Anna#mos	958,{
 					mes "Where is Mikhail?";
 					mes "Do you know where he is?";
 					next;
-					emotion 39;
+					emotion e_meh;
 					mes "[Anna]";
 					mes "If I had known that, I would have already found him, you fool.";
 					next;
-					emotion 4,1;
+					emotion e_swt,1;
 					mes "["+strcharinfo(0)+"]";
 					mes "Hahaha, you're right.";
 					next;
@@ -2855,7 +2855,7 @@ mosk_in,148,274,1	script	Anna#mos	958,{
 					mes "["+strcharinfo(0)+"]";
 					mes "Is there anyone who is close to him?";
 					next;
-					emotion 32;
+					emotion e_pif;
 					mes "[Anna]";
 					mes "(giggle) He's a fool and has no friends.";
 					mes "But among our villagers, the lady of ^3131FFInn 'Sticky Herb Tree'^000000 has held Mikhail dear.";
@@ -3195,7 +3195,7 @@ mosk_in,135,191,5	script	Landlord#mos	961,{
 				close;
 			case 3:
 				mes "[Landlord]";
-				emotion 3;
+				emotion e_lv;
 				mes "Oh~! You look great! Look at the "+((sex)?"solid muscle":"fair skin")+"!";
 				mes "But you look tired. Is it because of a long journey?";
 				next;
@@ -3220,7 +3220,7 @@ mosk_in,135,191,5	script	Landlord#mos	961,{
 				mes "If you promise me to stay overnight, I'll tell you about what you want to know. Deal?";
 				next;
 				if(select("Refuse.:Stay overnight and get the info. - 5000z") == 1) {
-					emotion 7;
+					emotion e_ag;
 					mes "[Landlord]";
 					mes "Well, get the info by yourself then.";
 					close;
@@ -6709,7 +6709,7 @@ mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 				percentheal -50,-50;
 				specialeffect2 EF_DARKBREATH;
 				specialeffect2 EF_HIT2;
-				emotion 23,1;
+				emotion e_omg,1;
 				next;
 				mes "- An unknown force has -";
 				mes "- drained your health -";
@@ -6724,7 +6724,7 @@ mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 					mes "- You decide to go to the left -";
 					next;
 					mes "- !!!!!! -";
-					emotion 23,1;
+					emotion e_omg,1;
 					next;
 					mes "- An unknown force has -";
 					mes "- cursed your body -";
@@ -6739,7 +6739,7 @@ mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 				mes "- You decide to go to the left -";
 				next;
 				mes "- !!!!!! -";
-				emotion 23,1;
+				emotion e_omg,1;
 				next;
 				mes "- Your trusty Pecopeco senses -";
 				mes "- an unknown force and tries -";
@@ -6757,7 +6757,7 @@ mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 				mes "- toward the middle -";
 				next;
 				mes "- !!!!!! -";
-				emotion 23,1;
+				emotion e_omg,1;
 				donpcevent "Gray Wolf#rus03::OnEnable";
 				set rhea_rus_main,2;
 				close;
@@ -6812,7 +6812,7 @@ mosk_dun01,167,160,3	script	Gray Wolf#rus03	972,{
 		mes "I'm warning you again!";
 		mes "Unless you want to be killed, leave now.";
 		set rhea_rus_main,3;
-		emotion 23,1;
+		emotion e_omg,1;
 		specialeffect2 EF_HIT2;
 		percentheal -50,0;
 		next;
@@ -6908,20 +6908,20 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 	if (rhea_rus_main < 5) {
 		mes "["+ strcharinfo(0) +"]";
 		mes "...?!";
-		emotion 1,1;
+		emotion e_what,1;
 		close;
 	} else if (rhea_rus_main == 5) {
 		set .@speak01,rand(1,3);
 		if (.@speak01 == 3) {
 			mes "["+ strcharinfo(0) +"]";
 			mes "...?!";
-			emotion 1,1;
+			emotion e_what,1;
 			donpcevent "Gray Wolf#rus05::OnEnable";
 			next;
 		} else {
 			mes "["+ strcharinfo(0) +"]";
 			mes "...?!";
-			emotion 1,1;
+			emotion e_what,1;
 			close;
 		}
 		mes "[Girl's Voice]";
@@ -7091,7 +7091,7 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 			mes "["+ strcharinfo(0) +"]";
 			mes "Maria?! What happened?!";
 			sc_start SC_CURSE,60000,0;
-			emotion 23,1;
+			emotion e_omg,1;
 			next;
 			mes "[Koshei, the Immortal]";
 			mes "I really want to thank you, human. Maria was imprisoned in the wall so I couldn't do anything!";
@@ -7155,7 +7155,7 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 		next;
 		mes "[Gray Wolf]";
 		mes "No, it's not too late!";
-		emotion 0,1;
+		emotion e_gasp,1;
 		donpcevent "Gray Wolf#rus05::OnEnable";
 		next;
 		mes "[Gray Wolf]";
@@ -7311,16 +7311,29 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 			case 5: getitem 12083,1; break;
 			case 6: getitem 12098,1; break;
 		}
-		if (BaseLevel < 56) getexp 1300,350;
-		else if (BaseLevel < 61) getexp 2460,615;
-		else if (BaseLevel < 66) getexp 4242,1061;
-		else if (BaseLevel < 71) getexp 6489,1622;
-		else if (BaseLevel < 76) getexp 16491,4123;
-		else if (BaseLevel < 81) getexp 27629,6907;
-		else if (BaseLevel < 86) getexp 34041,8510;
-		else if (BaseLevel < 91) getexp 41846,10462;
-		else if (BaseLevel < 150) getexp 88814,22204;
-		else getitem 617,1;
+		if (checkversion(3)) {
+			if (BaseLevel < 56) getexp 5700,500;
+			else if (BaseLevel < 61) getexp 6700,800;
+			else if (BaseLevel < 66) getexp 8000,1000;
+			else if (BaseLevel < 71) getexp 13000,1200;
+			else if (BaseLevel < 76) getexp 17000,1400;
+			else if (BaseLevel < 81) getexp 20000,1700;
+			else if (BaseLevel < 86) getexp 45000,2000;
+			else if (BaseLevel < 91) getexp 75000,3000;
+			else if (BaseLevel < 160) getexp 200000,4000;
+			else getitem 617,1; //Old_Violet_Box
+		} else {
+			if (BaseLevel < 56) getexp 13000,3500;
+			else if (BaseLevel < 61) getexp 24600,6150;
+			else if (BaseLevel < 66) getexp 42420,10605;
+			else if (BaseLevel < 71) getexp 64892,16223;
+			else if (BaseLevel < 76) getexp 164908,41227;
+			else if (BaseLevel < 81) getexp 276292,69073;
+			else if (BaseLevel < 86) getexp 340408,85102;
+			else if (BaseLevel < 91) getexp 418460,104615;
+			else if (BaseLevel < 99) getexp 888140,222035;
+			else getitem 617,1; //Old_Violet_Box
+		}
 		donpcevent "Gray Wolf#rus05::OnDisable";
 		donpcevent "Maria Morebna#rus46::OnDisable";
 		close;
@@ -7832,8 +7845,8 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 				mes "^ff0000Cold marsh swallowing my body^000000";
 				mes "^ff0000Red ring taken away^000000";
 				mes "^ff0000Red ring enchanted^000000";
-				emotion 23;
-				emotion 9,1;
+				emotion e_omg;
+				emotion e_dots,1;
 				next;
 				mes "[Vassili Grandpapa]";
 				mes "...W, what is this? Ehh??";
@@ -7894,8 +7907,8 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 				mes "^ff0000Cold marsh swallowing my body^000000";
 				mes "^ff0000Red ring taken away^000000";
 				mes "^ff0000Red ring enchanted^000000";
-				emotion 9;
-				emotion 9,1;
+				emotion e_dots;
+				emotion e_dots,1;
 				next;
 				mes "[Vassili Grandpapa]";
 				mes "It is.. It is true...";
@@ -7918,17 +7931,33 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 				mes "...It is my fault that this tragedy between my daughters happened. I will spend the rest of my life trying to make up for it...";
 				delitem 7883,1;
 				set rhea_rus_ring,10;
-				getitem 7877,1;
-				if (BaseLevel < 56) getexp 470,0;
-				else if (BaseLevel > 55 && BaseLevel < 61) getexp 615,0;
-				else if (BaseLevel > 60 && BaseLevel < 66) getexp 1061,0;
-				else if (BaseLevel > 65 && BaseLevel < 71) getexp 1622,0;
-				else if (BaseLevel > 70 && BaseLevel < 76) getexp 4123,0;
-				else if (BaseLevel > 75 && BaseLevel < 81) getexp 6907,0;
-				else if (BaseLevel > 80 && BaseLevel < 86) getexp 8510,0;
-				else if (BaseLevel > 85 && BaseLevel < 91) getexp 10462,0;
-				else if (BaseLevel > 90 && BaseLevel < 99) getexp 22204,0;
-				else getitem 607,1;
+				getitem 7877,1; //Red_Ring
+				if (checkversion(3)) {
+					if (BaseLevel < 56) getexp 470,0;
+					else if (BaseLevel > 55 && BaseLevel < 61) getexp 615,0;
+					else if (BaseLevel > 60 && BaseLevel < 66) getexp 750,0;
+					else if (BaseLevel > 65 && BaseLevel < 71) getexp 1000,0;
+					else if (BaseLevel > 70 && BaseLevel < 76) getexp 1500,0;
+					else if (BaseLevel > 75 && BaseLevel < 81) getexp 2000,0;
+					else if (BaseLevel > 80 && BaseLevel < 86) getexp 4500,0;
+					else if (BaseLevel > 85 && BaseLevel < 91) getexp 8500,0;
+					else if (BaseLevel > 90 && BaseLevel < 99) getexp 30000,0;
+					else {
+						getitem 607,1; //Yggdrasilberry
+						getexp 30000,0;
+					}
+				} else {
+					if (BaseLevel < 56) getexp 4700,0;
+					else if (BaseLevel > 55 && BaseLevel < 61) getexp 6150,0;
+					else if (BaseLevel > 60 && BaseLevel < 66) getexp 10605,0;
+					else if (BaseLevel > 65 && BaseLevel < 71) getexp 16223,0;
+					else if (BaseLevel > 70 && BaseLevel < 76) getexp 41227,0;
+					else if (BaseLevel > 75 && BaseLevel < 81) getexp 69073,0;
+					else if (BaseLevel > 80 && BaseLevel < 86) getexp 85102,0;
+					else if (BaseLevel > 85 && BaseLevel < 91) getexp 104615,0;
+					else if (BaseLevel > 90 && BaseLevel < 99) getexp 222035,0;
+					else getitem 607,1; //Yggdrasilberry
+				}
 				close;
 			}
 			mes "[Vassili Grandpapa]";
@@ -7938,7 +7967,7 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "Ehh?! This is weird. Where is the flute?!";
-			emotion 23,1;
+			emotion e_omg,1;
 			close;
 		} else if (rhea_rus_ring == 9) {
 			mes "[Vassili Grandpapa]";
@@ -7970,7 +7999,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 		next;
 		mes "[Ryubaba]";
 		mes "Mmm, you must be an adventurer? What would you say? Have you seen somebody more beautiful than me? I doubt it. How can you find anyone more beautiful than me?";
-		emotion 18;
+		emotion e_heh;
 		close;
 	}
 	else if (rhea_rus_main == 8) {
@@ -7980,7 +8009,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 			next;
 			mes "[Ryubaba]";
 			mes "Mmm, you must be an adventurer? What would you say? Have you seen somebody more beautiful than me? I doubt it. How can you find anyone more beautiful than me?";
-			emotion 18;
+			emotion e_heh;
 			close;
 		} else if (rhea_rus_ring == 1) {
 			if(getequipid(EQI_SHOES) != 2429) {
@@ -8019,7 +8048,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 			}
 			mes "["+ strcharinfo(0) +"]";;
 			mes "Yes, you are really beautiful.";
-			emotion 18,1;
+			emotion e_heh,1;
 			next;
 			mes "[Ryubaba]";
 			mes "Huhu, oh you jest. You know what you're talking about. Ah, this is a Choco drink that I have made. Give it a taste, isn't it good?";
@@ -8142,8 +8171,8 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				mes "^ff0000Cold marsh swallowing my body^000000";
 				mes "^ff0000Red ring taken away^000000";
 				mes "^ff0000Red ring enchanted^000000";
-				emotion 23;
-				emotion 9,1;
+				emotion e_omg;
+				emotion e_dots,1;
 				next;
 				mes "[Ryubaba]";
 				mes "S, stop! You'd better stop!?";
@@ -8170,7 +8199,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				next;
 				mes "[Ryubaba]";
 				mes "Please, I am begging you... Don't tell my father...";
-				emotion 28;
+				emotion e_sob;
 				next;
 				mes "- Suddenly, she sheds -";
 				mes "- tears and kneels down -";
@@ -8221,21 +8250,37 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				delitem 7883,1;
 				set rhea_rus_ring,9;
 				getitem 7877,1;
-				if (BaseLevel < 56) getexp 470,0;
-				else if (BaseLevel < 61) getexp 615,0;
-				else if (BaseLevel < 66) getexp 1061,0;
-				else if (BaseLevel < 71) getexp 1622,0;
-				else if (BaseLevel < 76) getexp 4123,0;
-				else if (BaseLevel < 81) getexp 6907,0;
-				else if (BaseLevel < 86) getexp 8510,0;
-				else if (BaseLevel < 91) getexp 10462,0;
-				else if (BaseLevel < 99) getexp 22204,0;
-				else getitem 607,1;
+				if (checkversion(3)) {
+					if (BaseLevel < 56) getexp 470,0;
+					else if (BaseLevel > 55 && BaseLevel < 61) getexp 615,0;
+					else if (BaseLevel > 60 && BaseLevel < 66) getexp 750,0;
+					else if (BaseLevel > 65 && BaseLevel < 71) getexp 1000,0;
+					else if (BaseLevel > 70 && BaseLevel < 76) getexp 1500,0;
+					else if (BaseLevel > 75 && BaseLevel < 81) getexp 2000,0;
+					else if (BaseLevel > 80 && BaseLevel < 86) getexp 4500,0;
+					else if (BaseLevel > 85 && BaseLevel < 91) getexp 8500,0;
+					else if (BaseLevel > 90 && BaseLevel < 99) getexp 30000,0;
+					else {
+						getitem 607,1; //Yggdrasilberry
+						getexp 30000,0;
+					}
+				} else {
+					if (BaseLevel < 56) getexp 4700,0;
+					else if (BaseLevel > 55 && BaseLevel < 61) getexp 6150,0;
+					else if (BaseLevel > 60 && BaseLevel < 66) getexp 10605,0;
+					else if (BaseLevel > 65 && BaseLevel < 71) getexp 16223,0;
+					else if (BaseLevel > 70 && BaseLevel < 76) getexp 41227,0;
+					else if (BaseLevel > 75 && BaseLevel < 81) getexp 69073,0;
+					else if (BaseLevel > 80 && BaseLevel < 86) getexp 85102,0;
+					else if (BaseLevel > 85 && BaseLevel < 91) getexp 104615,0;
+					else if (BaseLevel > 90 && BaseLevel < 99) getexp 222035,0;
+					else getitem 607,1; //Yggdrasilberry
+				}
 				close;
 			}
 			mes "["+ strcharinfo(0) +"]";
 			mes "...!? Where is the flute!?";
-			emotion 23,1;
+			emotion e_omg,1;
 			close;
 		} else if (rhea_rus_ring == 8) {
 			mes "[Ryubaba]";
@@ -8421,8 +8466,8 @@ mosk_fild02,157,233,0	script	Shepherdess#rus10	69,{
 				mes "^ff0000Cold marsh swallowing my body^000000";
 				mes "^ff0000Red ring taken away^000000";
 				mes "^ff0000Red ring enchanted^000000";
-				emotion 23;
-				emotion 23,1;
+				emotion e_omg;
+				emotion e_omg,1;
 				next;
 				mes "[Shepherdess]";
 				mes "W, what is this? Horrible! Why did this flute play a voice?";
@@ -8629,7 +8674,7 @@ mosk_fild02,116,202,3	script	Lusalka#07russai_22	-1,3,3,{
 	end;
 OnTouch:
 	if (rhea_rus_main < 8) {
-		emotion 1,1;
+		emotion e_what,1;
 		close;
 	} else if (rhea_rus_main == 8) {
 		if (rhea_rus_hair == 2) {
@@ -8704,7 +8749,7 @@ OnTouch:
 			close;
 		}
 	}
-	emotion 1,1;
+	emotion e_what,1;
 	close;
 }
 
@@ -8795,7 +8840,7 @@ mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 					next;
 					mes "[Lusalka]";
 					mes "Ah... but...";
-					emotion 28;
+					emotion e_sob;
 					donpcevent "Lusalka#rus23::OnDisable";
 					close;
 				}
@@ -8870,7 +8915,7 @@ mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 				mes "Aaaaaaaah!??!?!";
 				sc_start SC_CURSE,60000,0;
 				specialeffect2 EF_LORD;
-				emotion 23,1;
+				emotion e_omg,1;
 				percentheal -30,0;
 				next;
 				mes "["+ strcharinfo(0) +"]";
@@ -9001,7 +9046,7 @@ prontera,228,279,3	script	Wanderer#rus24	968,{
 			next;
 			mes "[A Wanderer from a strange land]";
 			mes "Ah, oh yes! How could I forget?";
-			emotion 5;
+			emotion e_ic;
 			next;
 			mes "[A Wanderer from a strange land]";
 			mes "We came here from Moscovia together. He called himself Igg. I came here with him but parted with him quite a while ago. He was sad because he couldn't forget about his lost lover.";
@@ -9327,7 +9372,7 @@ OnTouch:
 			close;
 		}
 	}
-	emotion 1,1;
+	emotion e_what,1;
 	close;
 }
 
@@ -9362,7 +9407,7 @@ mosk_que,45,131,0	script	Stone Furnace#rus28	111,{
 				mes "["+ strcharinfo(0) +"]";
 				mes "Oops, it's hot, hot!!!";
 				specialeffect2 EF_FIREHIT;
-				emotion 23,1;
+				emotion e_omg,1;
 				percentheal -5,0;
 				close;
 			}
@@ -9383,7 +9428,7 @@ mosk_que,45,131,0	script	Stone Furnace#rus28	111,{
 			close;
 		}
 	}
-	emotion 1,1;
+	emotion e_what,1;
 	close;
 
 OnInit:
@@ -9427,7 +9472,7 @@ mosk_que,56,202,0	script	Occult Apple Tree#rus29	111,{
 				next;
 				mes "["+ strcharinfo(0) +"]";
 				mes "Ahhhhhhhh!!!";
-				emotion 23,1;
+				emotion e_omg,1;
 				close;
 			}
 			mes "- ^0000ff You get 100 Apples !!^000000 -";
@@ -9436,7 +9481,7 @@ mosk_que,56,202,0	script	Occult Apple Tree#rus29	111,{
 			close;
 		}
 	}
-	emotion 1,1;
+	emotion e_what,1;
 	close;
 }
 
@@ -9608,8 +9653,8 @@ mosk_dun02,48,214,5	script	Baba Yaga#rus32	970,{
 		mes "[Baba Yaga]";
 		mes "...........................";
 		mes "If you lotter around here any longer, I will make myself some tasty human soup! Hehehehehe.";
-		emotion 29;
-		emotion 23,1;
+		emotion e_gg;
+		emotion e_omg,1;
 		close;
 	} else if (rhea_rus_main == 9) {
 		mes "[Baba Yaga]";
@@ -9626,7 +9671,7 @@ mosk_dun02,48,214,5	script	Baba Yaga#rus32	970,{
 		mes "'Presto Change-o!!'";
 		mes "'Turn into a pig!!'";
 		specialeffect2 EF_BARRIER;
-		emotion 23;
+		emotion e_omg;
 		next;
 		mes "[Baba Yaga]";
 		mes "Hmm? You are protected by a Protection Spell?";
@@ -9845,14 +9890,14 @@ mosk_dun02,48,214,5	script	Baba Yaga#rus32	970,{
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Hey, I am talking...";
-		emotion 28,1;
+		emotion e_sob,1;
 		next;
 		mes "[Baba Yaga]";
 		mes "'In the corner...'";
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "!!!!!!!!!!!!!!!!!!!!!!!!!";
-		emotion 23;
+		emotion e_omg;
 		next;
 		mes "[Baba Yaga]";
 		mes "What, child? Do you feel bad?";
@@ -10364,7 +10409,7 @@ OnTouch:
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "You! Go home now!";
-		emotion 23;
+		emotion e_omg;
 		next;
 		mes "- The cow seems surprised, jumps and tries to attack you !! -";
 		next;
@@ -10387,7 +10432,7 @@ OnTouch:
 				next;
 				mes "[Cow]";
 				mes "...Moo...";
-				emotion 9;
+				emotion e_dots;
 				next;
 				mes "- The cow, seems to gibe at you, looks at you quickly and runs to bushes !! -";
 				if (rand(1,2) == 1) {
@@ -10462,7 +10507,7 @@ OnTouch:
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "You! Go home now!";
-		emotion 23;
+		emotion e_omg;
 		next;
 		mes "- The cow seems surprised, jumps and tries to attack you !! -";
 		next;
@@ -10485,7 +10530,7 @@ OnTouch:
 				next;
 				mes "[Cow]";
 				mes "...Moo...";
-				emotion 9;
+				emotion e_dots;
 				next;
 				mes "- The cow, seems to gibe at you, looks at you quickly and runs to bushes !! -";
 				if (rand(1,2) == 1) {
@@ -10561,7 +10606,7 @@ OnTouch:
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "You! Go home now!";
-		emotion 23;
+		emotion e_omg;
 		next;
 		mes "- The cow seems surprised, jumps and tries to attack you !! -";
 		next;
@@ -10584,7 +10629,7 @@ OnTouch:
 				next;
 				mes "[Cow]";
 				mes "...Moo...";
-				emotion 9;
+				emotion e_dots;
 				next;
 				mes "- The cow, seems to gibe at you, looks at you quickly and runs to bushes !! -";
 				donpcevent "Cow#rus35::OnDisable";
@@ -10794,7 +10839,7 @@ mosk_dun02,65,232,0	script	Noisy Coffin#rus36	801,{
 		next;
 		mes "[Noisy Coffin]";
 		mes "................................";
-		emotion 9;
+		emotion e_dots;
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Hu, the job has been done.";
@@ -10807,7 +10852,7 @@ mosk_dun02,65,232,0	script	Noisy Coffin#rus36	801,{
 		next;
 		mes "[Noisy Coffin]";
 		mes "................................";
-		emotion 9;
+		emotion e_dots;
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Hu, the job has been done.";
@@ -10820,7 +10865,7 @@ mosk_dun02,65,232,0	script	Noisy Coffin#rus36	801,{
 		next;
 		mes "[Noisy Coffin]";
 		mes "................................";
-		emotion 9;
+		emotion e_dots;
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Hu, the job has been done.";
@@ -10963,7 +11008,7 @@ treasure01,24,39,0	script	Old Bed#rus38	111,{
 		viewpoint 2,61,183,2,0xFF00FF00;
 		viewpoint 2,98,118,3,0xFF00FF00;
 		viewpoint 2,27,115,4,0xFF00FF00;
-		emotion 23,1;
+		emotion e_omg,1;
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "Eek, it would be best to run away now!";
@@ -11067,7 +11112,7 @@ treasure01,27,115,0	script	Opened Treasure Chest#41	111,{
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "W, what is this!?";
-			emotion 23,1;
+			emotion e_omg,1;
 			close;
 		}
 		mes "["+ strcharinfo(0) +"]";
@@ -11170,7 +11215,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 		mes "- You tap the jar -";
 		mes "- with your hand -";
 		specialeffect EF_SIGHTRASHER;
-		emotion 23,1;
+		emotion e_omg,1;
 		next;
 		mes "- A voice laughs in the jar as -";
 		mes "- it shakes from right to left -";
@@ -11239,7 +11284,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 			mes "[House Ghost]";
 			mes "Ok, first let me shuffle these cards around.";
 			mes "Ready!";
-			emotion 56;
+			emotion e_loud;
 			next;
 			mes "[House Ghost]";
 			mes "One!";
@@ -11274,8 +11319,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				next;
 				if (.@rucard_game01 == 1) {
 					cutin "포링카드",4; // Poring Card
-					emotion 0;
-					emotion 5,1;
+					emotion e_gasp;
+					emotion e_ic,1;
 					next;
 					mes "[House Ghost]";
 					mes "You got it right. You are good.";
@@ -11289,8 +11334,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 						cutin "엔젤링카드",4; // Angeling Card
 					else
 						cutin "고스트링카드",4; // Ghostring Card
-					emotion 0;
-					emotion 23,1;
+					emotion e_gasp;
+					emotion e_omg,1;
 					next;
 					mes "[House Ghost]";
 					mes "Huuu...";
@@ -11310,8 +11355,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				next;
 				if (.@rucard_game01 == 2) {
 					cutin "고스트링카드",4; // Angeling Card
-					emotion 0;
-					emotion 5,1;
+					emotion e_gasp;
+					emotion e_ic,1;
 					next;
 					mes "[House Ghost]";
 					mes "You got it right. You are good.";
@@ -11325,8 +11370,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 						cutin "포링카드",4; // Poring Card
 					else
 						cutin "고스트링카드",4; // Ghostring Card
-					emotion 0;
-					emotion 23,1;
+					emotion e_gasp;
+					emotion e_omg,1;
 					next;
 					mes "[House Ghost]";
 					mes "Huuu...";
@@ -11346,8 +11391,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				next;
 				if (.@rucard_game01 == 3) {
 					cutin "고스트링카드",4; // Ghostring Card
-					emotion 0;
-					emotion 5,1;
+					emotion e_gasp;
+					emotion e_ic,1;
 					next;
 					mes "[House Ghost]";
 					mes "You got it right. You are good.";
@@ -11361,8 +11406,8 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 						cutin "포링카드",4; // Poring Card
 					else
 						cutin "고스트링카드",4; // Angeling Card
-					emotion 0;
-					emotion 23,1;
+					emotion e_gasp;
+					emotion e_omg,1;
 					next;
 					mes "[House Ghost]";
 					mes "Huuu...";
@@ -11764,7 +11809,7 @@ pay_dun04,163,186,0	script	Ghost Tree#rus45	111,{
 			mes "["+ strcharinfo(0) +"]";
 			if (.@rus_dice01 == .@tree_dice01) {
 				mes "Let's see... Wow, I got it! I've got ^0000ffNumber "+.@rus_dice01+"^000000!";
-				emotion 0;
+				emotion e_gasp;
 				next;
 				mes "[Ghost Tree]";
 				mes "You seem lucky...";
@@ -11775,7 +11820,7 @@ pay_dun04,163,186,0	script	Ghost Tree#rus45	111,{
 				mes "Let's see................... It is ^0000ff "+.@rus_dice01+" ^000000...";
 				mes "[Ghost Tree]";
 				mes "Huuu...";
-				emotion 18;
+				emotion e_heh;
 				set .@rustree_turn01,.@rustree_turn01+1;
 				next;
 			}

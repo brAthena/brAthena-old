@@ -85,27 +85,7 @@ payon,103,113,3	script	Ledrion#payon::RelayLedrion	109,{
 		else {
 			getitem 617,3; // Velha Caixa Roxa
 		}
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 19560,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Ledrion]";
 		mes "Então, eu espero que tenha gostado!";
 		mes "Se você não pode usar ele, então";
@@ -161,27 +141,7 @@ payon,103,113,3	script	Ledrion#payon::RelayLedrion	109,{
 		getitem 603,3; // Velha Caixa Azul
 		getitem 617,1; // Velha Caixa Roxa
 		getitem 7738,1; // Certificado de Missão 9
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 19560,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		next;
 		mes "[Ledrion]";
 		mes "Por favor dê este bilhete";
@@ -230,27 +190,7 @@ payon,103,113,3	script	Ledrion#payon::RelayLedrion	109,{
 		getitem 644,3; // Caixa de Presente
 		getitem 603,1; // Velha Caixa Azul
 		getitem 7734,1; //Certificado de Missão 5
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 19560,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		close;
 	}
 	if (countitem(7733) > 0) {
@@ -494,27 +434,7 @@ payon,83,327,3	script	Gatan#payon::RelayGatan	86,{
 		getitem 7739,1; // Certificado de Missão 10
 		getitem 610,2; // Folha de Yggdrasil
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 19560,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		next;
 		mes "[Gatan]";
 		mes "Parabéns por ter conseguido esse feito.";
@@ -979,27 +899,7 @@ payon,83,327,3	script	Gatan#payon::RelayGatan	86,{
 		set party_relay,17;
 		getitem 7735,1; // Certificado de Missão 6
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 19560,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		next;
 		mes "[Gatan]";
 		mes "Parabéns por ter conseguido esse feito.";
@@ -1470,27 +1370,7 @@ payon,83,327,3	script	Gatan#payon::RelayGatan	86,{
 		set party_relay,6;
 		getitem 7731,1; // Certificado de Missão 2
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		next;
 		mes "[Gatan]";
 		mes "Não se esqueça. ";
@@ -1992,27 +1872,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		getitem 7740,1; // Certificado de Missão 1
 		getitem 610,2; // Folha de Yggdrasil
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Certifique-se de entregar";
 		mes "esse bilhete para um membro do grupo";
@@ -2037,27 +1897,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		getitem 7740,1; //Certificado de Missão 1
 		getitem 610,2; // Folha de Yggdrasil
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Certifique-se de entregar";
 		mes "esse bilhete para um membro do grupo";
@@ -2178,27 +2018,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,20;
 		getitem 7736,1; // Certificado de Missão 7
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Faça-me um favor e";
 		mes "peça para um personagem";
@@ -2222,27 +2042,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,20;
 		getitem 7736,1; // Certificado de Missão 7
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Faça-me um favor e";
 		mes "peça para um personagem";
@@ -2284,27 +2084,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,20;
 		getitem 7736,1; // Certificado de Missão 7
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Faça-me um favor e";
 		mes "peça para um personagem";
@@ -2328,27 +2108,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,20;
 		getitem 7736,1; // Certificado de Missão 7
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Faça-me um favor e";
 		mes "peça para um personagem";
@@ -2488,27 +2248,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,9;
 		getitem 7732,1; // Certificado de Missão 3
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Bafhail]";
 		mes "Por favor dê este";
 		mes "bilhete para um membro";
@@ -2531,27 +2271,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		set party_relay,9;
 		getitem 7732,1; // Certificado de Missão 3
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		next;
 		mes "[Bafhail]";
 		mes "Por favor dê este";
@@ -2791,27 +2511,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		getitem 7741,1; // Certificado de Missão 12
 		getitem 610,2; // Folha de Yggdrasil
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -2847,27 +2547,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		set party_relay,32;
 		getitem 7741,1; // Certificado de Missão 12
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -3028,27 +2708,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		set party_relay,22;
 		getitem 7737,1; // Certificado de Missão 8
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -3084,27 +2744,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		set party_relay,22;
 		getitem 7737,1; // Certificado de Missão 8
 		getitem 610,2; // Folha de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -3265,27 +2905,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		set party_relay,11;
 		getitem 7733,1; // Certificado de Missão 4
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -3321,27 +2941,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		set party_relay,11;
 		getitem 7733,1; // Certificado de Missão 4
 		getitem 607,2; // Fruto de Yggdrasil
-		if (BaseLevel > 94) {
-			getexp 104760,0;
-		}
-		else if (BaseLevel > 89) {
-			getexp 85920,0;
-		}
-		else if (BaseLevel > 79) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 69) {
-			getexp 38520,0;
-		}
-		else if (BaseLevel > 59) {
-			getexp 67200,0;
-		}
-		else if (BaseLevel > 49) {
-			getexp 28800,0;
-		}
-		else {
-			getexp 1080,0;
-		}
+		callfunc "F_PartyRelay_Exp";
 		mes "[Lospii]";
 		mes "Ok, Agora pegue este";
 		mes "bilhete, e dê para o";
@@ -3481,6 +3081,28 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 	mes "Estou trabalhando! Eu estou";
 	mes "ajudando muito meus amigos!";
 	close;
+}
+
+// EXP Rewards
+function	script	F_PartyRelay_Exp	{
+	if (checkversion(3)) { //unconfirmed
+		if (BaseLevel > 94) getexp 104760,0;
+		else if (BaseLevel > 89) getexp 85920,0;
+		else if (BaseLevel > 79) getexp 38520,0;
+		else if (BaseLevel > 69) getexp 19560,0;
+		else if (BaseLevel > 59) getexp 6720,0;
+		else if (BaseLevel > 49) getexp 2880,0;
+		else getexp 1080,0;
+	} else {
+		if (BaseLevel > 94) getexp 1047600,0;
+		else if (BaseLevel > 89) getexp 859200,0;
+		else if (BaseLevel > 79) getexp 385200,0;
+		else if (BaseLevel > 69) getexp 195600,0;
+		else if (BaseLevel > 59) getexp 67200,0;
+		else if (BaseLevel > 49) getexp 28800,0;
+		else getexp 10800,0;
+	}
+	return;
 }
 
 // Comodo

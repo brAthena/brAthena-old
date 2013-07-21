@@ -1248,9 +1248,6 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 
 }
 
-//End of Lost Child quest
-//============================================================ 
-
 //Bruspetti Quest (Perequisite: Lighthalzen "Friendship" quest)
 //============================================================ 
 ra_in01,235,194,5	script	Katinshuell	931,{
@@ -2578,14 +2575,14 @@ OnTouch:
 		mes "Who would be to blame?";
 		next;
 		set rach_vice,24;
-		if(checkversion(0)) {
-		if (BaseLevel > 90) getexp 130000,0;
-		else if (BaseLevel > 75) getexp 85000,0;
-		else getexp 45000,0;
+		if(checkversion(3)) {
+			if (BaseLevel > 90) getexp 130000,0;
+			else if (BaseLevel > 75) getexp 85000,0;
+			else getexp 45000,0;
 		} else {
-		if (BaseLevel > 90) getexp 1400000,0;
-		else if (BaseLevel > 75) getexp 800000,0;
-		else getexp 400000,0;
+			if (BaseLevel > 90) getexp 1300000,0;
+			else if (BaseLevel > 75) getexp 850000,0;
+			else getexp 450000,0;
 		}
 		mes "[" + strcharinfo(0) + "]";
 		mes "Somehow, I wish that";
@@ -2696,9 +2693,6 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 	}
 
 }
-
-//End of Bruspetti quest
-//============================================================ 
 
 // Ice Necklace/Summon Ktullanux Quest and Glacial Heart buyer
 //============================================================ 
@@ -2888,10 +2882,7 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 			mes "token of my appreication for";
 			mes " what you have done for me.";
 			delitem 7573,1; //Magic_Necklace_
-			if(checkversion(0))
-				getexp 70000,0;
-			else
-				getexp 700000,0;
+			getexp (checkversion(3))?90000:700000,0;
 			completequest 2113;
 			set ice_necklace_q,6;
 			next;
@@ -3869,10 +3860,6 @@ OnEnable:
 
 }
 
-// End of Ice Necklace/Summon Ktullanux Quest
-//============================================================ 
-
-
 // Donation Lottery Quest/High Priest Quest
 //============================================================ 
 ra_temple,119,180,0	script	Temple Entrance#ra_tem	45,1,1,{
@@ -4233,10 +4220,7 @@ ra_temple,116,174,3	script	Nemma#ra_temple	920,{
 				if (countitem(12018) >= 20) {
 					cutin "ra_nemma04",2;
 					delitem 12018,20; //FireCracker";
-					if(checkversion(0))
-						getexp 20000,0;
-					else
-						getexp 200000,0;
+					getexp (checkversion(3))?50000:200000,0;
 					set ra_tem_q,14;
 					mes "[Priestess Nemma]";
 					mes "Yay!";
@@ -5024,7 +5008,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		cutin "ra_gman",255;
 		set lost_boy,13;
 		specialeffect2 EF_ABSORBSPIRITS;
-		getexp 90000,0;
+		getexp (checkversion(3))?90000:900000,0;
 		end;
 	}
 	else if ((lost_boy == 13) && (ra_tem_q < 14)) {
@@ -5439,7 +5423,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		set ra_tem_q,0;
 		cutin "",255;
 		specialeffect2 EF_ABSORBSPIRITS;
-		if(checkversion(0))
+		if(checkversion(3))
 			getexp 90000,60000;
 		else
 			getexp 900000,600000;
@@ -5998,10 +5982,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "peace between our nations.";
 				completequest 60213;
 				set aru_vol,27;
-				if(checkversion(0))
-					getexp 20000,0;
-				else
-					getexp 200000,0;
+				getexp (checkversion(3))?20000:200000,0;
 				close2;
 				cutin "ra_gman",255;
 				end;
@@ -6441,7 +6422,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					mes "Your place in Valhalla is";
 					mes "already assured, I'm sure.";
 					set aru_em,24;
-					getexp 150000,0;
+					getexp (checkversion(3))?150000:1500000,0; 
 				}
 				else {
 					mes "[High Priest Zhed]";
@@ -7642,6 +7623,3 @@ OnTouch:
 	if ((lost_boy == 13) && (ra_tem_q == 20)) goto L_Mes;
 	end;
 }
-
-// End of Donation Lottery/High Priest quest
-//============================================================

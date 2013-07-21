@@ -1569,7 +1569,7 @@ morocc,159,113,3	script	Chefe Balrog	752,{
 			mes "Mais uma vez, agradeço seu notável serviço em nome da Guarda Continental e do Reino de Rune-Midgard. Vou relatar sua grande conquista à Sua Majestade imediatamente.";
 			next;
 			delitem 7820,1; // Pele do Imperador Morroc
-			getexp 200000,0;
+			getexp (checkversion(3))?200000:2000000,0;
 			set rebirth_moc_edq,7;
 			changequest 3055,3056;
 			mes "[Chefe Balrog]";
@@ -2266,7 +2266,8 @@ moc_ruins,137,70,3	script	Homem com Livro#garas	48,{
 					delitem 7797,1; //Author_Memo
 					delitem 7796,1; //Author_Autograph
 					set barmunt_crow,16;
-					getexp 90000,90000;
+					if (checkversion(3)) getexp 90000,90000;
+					else getexp 900000,900000;
 					close;
 				case 2:
 					mes "[Benjamin]";
@@ -5130,23 +5131,20 @@ prt_castle,117,163,5	script	Inspetor#Príncipe	755,{
 			mes "[Inspetor]";
 			mes "Então, continue com o bom trabalho.";
 			mes "Pelo Reino de Rune-Midgard!";
-			if ((BaseLevel > 80) && (BaseLevel < 86)) {
-				getexp 40000,0;
-			}
-			else if ((BaseLevel > 85) && (BaseLevel < 91)) {
-				getexp 45000,0;
-			}
-			else if ((BaseLevel > 90) && (BaseLevel < 96)) {
-				getexp 50000,0;
-			}
-			else if ((BaseLevel > 95) && (BaseLevel < 150)) {
-				getexp 55000,0;
-			}
-			else if (BaseLevel == 150) {
-				getexp 110000,0;
-			}
-			else {
-				getexp 30000,0;
+			if (checkversion(3)) {
+				if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 40000,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 45000,0;
+				else if ((BaseLevel > 90) && (BaseLevel < 96)) getexp 50000,0;
+				else if ((BaseLevel > 95) && (BaseLevel < 99)) getexp 55000,0;
+				else if (BaseLevel > 99) getexp 110000,0;
+				else getexp 30000,0;
+			} else {
+				if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 400000,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 450000,0;
+				else if ((BaseLevel > 90) && (BaseLevel < 96)) getexp 500000,0;
+				else if ((BaseLevel > 95) && (BaseLevel < 99)) getexp 550000,0;
+				else if (BaseLevel >= 99) getexp 1100000,0;
+				else getexp 300000,0; 
 			}
 			set nk_prince,8;
 			completequest 10025;

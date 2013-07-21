@@ -2678,14 +2678,14 @@ lighthalzen,337,232,3	script	Maku	870,{
 		next;
 		delitem 7351,1; //Friend's_Diary
 		set friendship,14;
-		if (BaseLevel > 90) {
-			getexp 70000,0;
-		}
-		else if (BaseLevel > 75) {
-			getexp 40000,0;
-		}
-		else {
-			getexp 20000,0;
+		if (checkversion(3)) {
+			if (BaseLevel > 90) getexp 70000,0;
+			else if (BaseLevel > 75) getexp 40000,0;
+			else getexp 20000,0;
+		} else {
+			if (BaseLevel > 90) getexp 700000,0;
+			else if (BaseLevel > 75) getexp 400000,0;
+			else getexp 200000,0;
 		}
 		cutin "lhz_macu04",2;
 		mes "[Maku]";
@@ -3121,14 +3121,14 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		mes "entrar e sair das ^0000FFáreas rica e pobre^000000.";
 		next;
 		set friendship,16;
-		if (BaseLevel > 90) {
-			getexp 70000,0;
-		}
-		else if (BaseLevel > 75) {
-			getexp 40000,0;
-		}
-		else {
-			getexp 20000,0;
+		if (checkversion(3)) {
+			if (BaseLevel > 90) getexp 70000,0;
+			else if (BaseLevel > 75) getexp 40000,0;
+			else getexp 20000,0;
+		} else {
+			if (BaseLevel > 90) getexp 700000,0;
+			else if (BaseLevel > 75) getexp 400000,0;
+			else getexp 200000,0;
 		}
 		getitem 7350,1; //Pass
 		mes "[Benkaistein]";
@@ -5220,14 +5220,17 @@ OnTouch_:
 		mes "^FF0000Laboratório Regenschirm^000000.";
 		set lhz_curse,26;
 		changequest 2093,2094;
-		if (BaseLevel < 70)
-			getexp 800000,300000;
-		else if ((BaseLevel > 69) && (BaseLevel < 80))
-			getexp 1000000,500000;
-		else if ((BaseLevel > 79) && (BaseLevel < 90))
-			getexp 1500000,800000;
-		else if (BaseLevel > 89)
-			getexp 2000000,1000000;
+		if (checkversion(3)) {
+			if (BaseLevel < 70) getexp 30000,30000;
+			else if ((BaseLevel > 69) && (BaseLevel < 80)) getexp 40000,70000;
+			else if ((BaseLevel > 79) && (BaseLevel < 90)) getexp 70000,90000;
+			else getexp 90000,90000;
+		} else {
+			if (BaseLevel < 70) getexp 800000,300000;
+			else if ((BaseLevel > 69) && (BaseLevel < 80)) getexp 1000000,500000;
+			else if ((BaseLevel > 79) && (BaseLevel < 90)) getexp 1500000,800000;
+			else getexp 2000000,1000000;
+		} 
 		close;
 	}
 	end;
@@ -6978,8 +6981,8 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "não conseguimos completar o";
 		mes "que queríamos fazer. Ainda assim...";
 		set lhz_boss,44;
-		getitem 617,1;
-		getexp 180000,0;
+		getitem 617,1; //Old_Violet_Box
+		getexp (checkversion(3))?180000:1800000,0; 
 		next;
 		mes "[Ghalstein]";
 		mes "Eu gostaria de agradecer";
@@ -8510,8 +8513,8 @@ L_Mission:
 		mes "Prometo que um dia você ouvirá ótimas notícias sobre a república de Schwartzwald.";
 		mes "Agora, deixe-me começar a mover os pauzinhos e dar início ao plano.";
 		set hg_tre,57;
-		delitem 7342,1;
-		getexp 200000,0;
+		delitem 7342,1; //File01
+		getexp (checkversion(3))?200000:2000000,0;
 		getitem 617,1;
 		close2;
 		cutin "",255;
@@ -10381,7 +10384,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Lyozien. Isto é porque";
 		mes "você me faz sentir culpado...";
 		set lhz_rekenber,22;
-		getexp 55000,0;
+		getexp (checkversion(3))?55000:550000,0;
 		close;
 	}
 	else if(lhz_rekenber > 16)
@@ -10453,7 +10456,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "causar problemas para ele e";
 		mes "garanta que ele esteja seguro.";
 		set lhz_rekenber,17;
-		getexp 45000,0;
+		getexp (checkversion(3))?45000:450000,0;
 		close;
 	}
 	else if(lhz_rekenber > 11)
@@ -10530,7 +10533,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Reino de Rune-Midgard.";
 		next;
 		set lhz_rekenber,12;
-		getexp 40000,0;
+		getexp (checkversion(3))?40000:400000,0;
 		mes "[Kazien]";
 		mes "Certo, eu vejo você mais";
 		mes "tarde. O mais importante";

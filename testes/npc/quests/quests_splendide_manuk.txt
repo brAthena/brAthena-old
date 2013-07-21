@@ -4639,8 +4639,7 @@ man_in01,372,221,5	script	Cientista#salva-vidas	449,{
 				delitem 6076,1; // <-- Caixa de Ferramentas Portátil
 				set ep13_2_tre,100;
 				getitem 6080,3; // <-- Moeda Manuk
-				if(checkversion(3) == 0)
-					getexp 0,700000;
+				getexp 0,(checkversion(3))?50000:700000; //Não confirmado (RE) 
 				changequest 2179+(ep13_2_tre-2),2182;
 				set ep13_2_tre,100;
 				close;
@@ -5505,8 +5504,7 @@ spl_in01,30,324,3	script	Cientista de Esplendor#grenouille	446,{
 					set ep13_2_tre1,6;
 					changequest 2185,2186;
 					getitem 6081,3; // <-- Moeda Esplendor
-					if(checkversion(3))
-						getexp 0,700000;
+					getexp 0,(checkversion(3))?50000:700000; //Não confirmado (RE)
 					close;
 				}
 				else {

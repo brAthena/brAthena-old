@@ -1711,7 +1711,8 @@ airplane_01,238,154,3	script	Airship Captain#01	873,{
 			mes "letters.";
 			completequest 8035;
 			set lght_air, 7;
-			getexp 20000, 1000;
+			if (checkversion(3)) getexp 20000, 1000;
+			else getexp 200000, 10000;
 			close2;
 			cutin "",255;
 			end;
@@ -2054,7 +2055,8 @@ airplane,236,163,5	script	Airship Captain#03	873,{
 		specialeffect2 EF_ABSORBSPIRITS;
 		completequest 8043;
 		set lhz_heart,13;
-		getexp 70000,40000;
+		if (checkversion(3)) getexp 70000, 40000;
+		else getexp 700000, 400000;
 		cutin "",255;
 		end;
 	}
