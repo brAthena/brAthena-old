@@ -752,6 +752,7 @@ int add_str(const char *p)
 	safestrncpy(str_buf+str_pos, p, len+1);
 	str_data[str_num].type = C_NOP;
 	str_data[str_num].str = str_pos;
+	str_data[str_num].val = 0;
 	str_data[str_num].next = 0;
 	str_data[str_num].func = NULL;
 	str_data[str_num].backpatch = -1;
