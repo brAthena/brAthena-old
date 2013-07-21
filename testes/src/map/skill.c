@@ -1414,6 +1414,13 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case NPC_CRITICALWOUND:
 			sc_start(bl,SC_CRITICALWOUND,100,skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
+		case RK_HUNDREDSPEAR:
+			if(!sd || pc_checkskill(sd,KN_SPEARBOOMERANG) == 0)
+				break; // Spear Boomerang auto cast chance only works if you have mastered Spear Boomerang.
+			rate = 10 + 3 * skill_lv;
+			if(rnd()%100 < rate)
+				skill_castend_damage_id(src,bl,KN_SPEARBOOMERANG,1,tick,0);
+			break;
 		case RK_WINDCUTTER:
 			sc_start(bl,SC_FEAR,3+2*skill_lv,skill_lv,skill_get_time(skill_id,skill_lv));
 			break;
@@ -3492,13 +3499,6 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 							skill_castend_damage_id(src, target, cid, pc_checkskill(sd, cid), tick, 0);
 						}
 					}
-				case RK_HUNDREDSPEAR:
-					if(src->type == BL_PC) {
-						int skill_lv = pc_checkskill((struct map_session_data *)src,KN_SPEARBOOMERANG);
-						if(skill_lv > 0)
-							skill_attack(BF_WEAPON,src,src,target,KN_SPEARBOOMERANG,skill_lv,tick,skl->flag);
-					} else
-							skill_attack(BF_WEAPON,src,src,target,KN_SPEARBOOMERANG,1,tick,skl->flag);
 					break;
 				case SC_ESCAPE:
 					if(skl->type < 4+skl->skill_lv) {
@@ -3763,6 +3763,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case NPC_CRITICALWOUND:
 		case NPC_HELLPOWER:
 		case RK_SONICWAVE:
+		case RK_HUNDREDSPEAR:
 		case RK_STORMBLAST:
 		case RK_CRUSHSTRIKE:
 		case AB_DUPLELIGHT_MELEE:
@@ -4379,15 +4380,13 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			status_change_end(src, SC_HIDING, INVALID_TIMER);
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
-		case RK_HUNDREDSPEAR:
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
-			if(rnd()%100 < (10 + 3*skill_lv)) {
-				if( !sd || pc_checkskill(sd,KN_SPEARBOOMERANG) == 0 )
-					break; // Spear Boomerang auto cast chance only works if you have mastered Spear Boomerang.
-				skill_blown(src,bl,6,-1,0);
-				skill_addtimerskill(src,tick+800,bl->id,0,0,skill_id,skill_lv,BF_WEAPON,flag);
-				skill_castend_damage_id(src,bl,KN_SPEARBOOMERANG,1,tick,0);
-			}
+		case RK_PHANTOMTHRUST:
+			unit_setdir(src,map_calc_dir(src, bl->x, bl->y));
+			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
+
+			skill_blown(src,bl,distance_bl(src,bl)-1,unit_getdir(src),0);
+			if(battle_check_target(src,bl,BCT_ENEMY) > 0 )
+				skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 		case GC_DARKILLUSION: {
 				short x, y;
@@ -8087,14 +8086,6 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 				party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skill_id, skill_lv), src, skill_id, skill_lv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
 			}
-			break;
-		case RK_PHANTOMTHRUST:
-			unit_setdir(src,map_calc_dir(src, bl->x, bl->y));
-			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-
-			skill_blown(src,bl,distance_bl(src,bl)-1,unit_getdir(src),0);
-			if(battle_check_target(src,bl,BCT_ENEMY)>0)
-				skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 		/**
 		* Guilotine Cross
