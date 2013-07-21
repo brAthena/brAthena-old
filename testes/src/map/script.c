@@ -12767,11 +12767,7 @@ BUILDIN_FUNC(npcspeed)
 	nd =(struct npc_data *)map_id2bl(st->oid);
 
 	if(nd) {
-		if(nd->ud == &npc_base_ud) {
-			nd->ud = NULL;
-			CREATE(nd->ud, struct unit_data, 1);
-			unit_dataset(&nd->bl);
-		}
+		unit_bl2ud2(&nd->bl); // ensure nd->ud is safe to edit
 		nd->speed = speed;
 		nd->ud->state.speed_changed = 1;
 	}
@@ -12788,12 +12784,7 @@ BUILDIN_FUNC(npcwalkto)
 	y=script_getnum(st,3);
 
 	if(nd) {
-		if(nd->ud == &npc_base_ud) {
-			nd->ud = NULL;
-			CREATE(nd->ud, struct unit_data, 1);
-			unit_dataset(&nd->bl);
-		}
-
+		unit_bl2ud2(&nd->bl); // ensure nd->ud is safe to edit
 		if (!nd->status.hp) {
 			status_calc_npc(nd, true);
 		} else {
@@ -12807,9 +12798,10 @@ BUILDIN_FUNC(npcwalkto)
 // stop an npc's movement [Valaris]
 BUILDIN_FUNC(npcstop)
 {
-	struct npc_data *nd=(struct npc_data *)map_id2bl(st->oid);
+	struct npc_data *nd =(struct npc_data *)map_id2bl(st->oid);
 
 	if(nd) {
+		unit_bl2ud2(&nd->bl); // ensure nd->ud is safe to edit
 		unit_stop_walking(&nd->bl,1|4);
 	}
 
@@ -15126,22 +15118,21 @@ BUILDIN_FUNC(unitwalk)
 	struct block_list *bl;
 
 	bl = map_id2bl(script_getnum(st,2));
-	if(bl == NULL)
+	if(bl == NULL) {
 		script_pushint(st, 0);
-	else if(script_hasdata(st,4)) {
+		return 0;
+	}
+
+	if(bl->type == BL_NPC) {
+		unit_bl2ud2(bl); // ensure the ((TBL_NPC*)bl)->ud is safe to edit
+	}
+	if(script_hasdata(st,4)) {
 		int x = script_getnum(st,3);
 		int y = script_getnum(st,4);
-		if(script_pushint(st, unit_can_reach_pos(bl,x,y,0))) 
-			add_timer(gettick()+50, unit_delay_walktoxy_timer, bl->id, (x<<16)|(y&0xFFFF)); // Need timer to avoid mismatches
+		script_pushint(st, unit_walktoxy(bl,x,y,0));// We'll use harder calculations.
 	} else {
-		struct block_list* tbl = map_id2bl(script_getnum(st,3));
-		if(tbl == NULL) {
-			ShowError("script:unitwalk: bad target destination\n");
-			script_pushint(st, 0);
-			return 1;
-		}
-		else if(script_pushint(st, unit_can_reach_bl(bl, tbl, distance_bl(bl, tbl)+1, 0, NULL, NULL)))
-			add_timer(gettick()+50, unit_delay_walktobl_timer, bl->id, tbl->id); // Need timer to avoid mismatches
+		int map_id = script_getnum(st,3);
+		script_pushint(st, unit_walktobl(bl,map_id2bl(map_id),65025,1));
 	}
 
 	return 0;
@@ -15187,10 +15178,12 @@ BUILDIN_FUNC(unitwarp)
 	else
 		map = map_mapname2mapid(mapname);
 
-	if(map >= 0 && bl != NULL)
+	if(map >= 0 && bl != NULL) {
+		unit_bl2ud2(bl); // ensure ((TBL_NPC*)bl)->ud is safe to edit
 		script_pushint(st, unit_warp(bl,map,x,y,CLR_OUTSIGHT));
-	else
+	} else {
 		script_pushint(st, 0);
+	}
 
 	return 0;
 }
@@ -15266,6 +15259,7 @@ BUILDIN_FUNC(unitstop)
 
 	bl = map_id2bl(unit_id);
 	if(bl != NULL) {
+		unit_bl2ud2(bl); // ensure ((TBL_NPC*)bl)->ud is safe to edit
 		unit_stop_attack(bl);
 		unit_stop_walking(bl,4);
 		if(bl->type == BL_MOB)

@@ -6100,11 +6100,77 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 	if(!(index = skill_get_index(skill_id)))
 		return 0;
 
+	if(battle_config.skillup_limit) {
+		/* [Ind] */
+		if((sd->class_&JOBL_2) && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_NOVICE) {
+			while(1) {
+				int c, i = 0, k = 0, pts = 0, pts_second = 0, id = 0;
+				bool can_skip = false;
+
+				c = sd->class_ & MAPID_BASEMASK;
+
+				k = pc_class2idx(pc_mapid2jobid(c, sd->status.sex));
+
+				for(i = 0; i < MAX_SKILL_TREE && (id=skill_tree[k][i].id) > 0 ; i++){
+					int inf2 = skill_get_inf2(id), idx = skill_tree[k][i].idx;
+
+					if(skill_id == id) {
+						can_skip = true;
+						break;/* its oki we can skip */
+					}
+
+					if (inf2&INF2_QUEST_SKILL || (inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) || id == NV_BASIC)
+						continue;
+
+					if(sd->status.skill[idx].id && sd->status.skill[idx].flag == SKILL_FLAG_PERMANENT)
+						pts += pc_checkskill(sd, id);
+				}
+
+				if(can_skip) break;
+
+				if(pts < 40) {
+					clif_msg_value(sd, 0x61E, 40 - pts);
+					return 0;
+				}
+
+				if(sd->class_&JOBL_THIRD) {
+					bool is_trans = sd->class_&JOBL_UPPER? true : false;
+
+					c = is_trans ? (sd->class_ &~ JOBL_THIRD)/* find fancy way */ : sd->class_ & MAPID_UPPERMASK;
+
+					k = pc_class2idx(pc_mapid2jobid(c, sd->status.sex));
+
+					for(i = 0; i < MAX_SKILL_TREE && (id=skill_tree[k][i].id) > 0 ; i++){
+						int inf2 = skill_get_inf2(id), idx = skill_tree[k][i].idx;
+
+						if(skill_id == id) {
+							can_skip = true;
+							break;/* its oki we can skip */
+						}
+
+						if (inf2&INF2_QUEST_SKILL || (inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) || id == NV_BASIC)
+							continue;
+
+						if(sd->status.skill[idx].id && sd->status.skill[idx].flag == SKILL_FLAG_PERMANENT)
+							pts_second += pc_checkskill(sd, id);
+					}
+
+					if(can_skip) break;
+
+					if(pts_second - pts < ( is_trans ? 70 : 50)) {
+						clif_msg_value(sd, 0x61F, (is_trans ? 70 : 50) - (pts_second - pts));
+						return 0;
+					}
+				}
+				break;
+			}
+		}
+	}
+	
 	if(sd->status.skill_point > 0 &&
 		sd->status.skill[index].id &&
 		sd->status.skill[index].flag == SKILL_FLAG_PERMANENT && //Don't allow raising while you have granted skills. [Skotlex]
 		sd->status.skill[index].lv < skill_tree_get_max(skill_id, sd->status.class_) ) {
-		int lv,range, upgradable;
 		sd->status.skill[index].lv++;
 		sd->status.skill_point--;
 		if(!skill_db[index].inf)
@@ -6113,31 +6179,14 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 			pc_calc_skilltree(sd); // Required to grant all TK Ranger skills.
 		else
 			pc_check_skilltree(sd, skill_id); // Check if a new skill can Lvlup
-
-		lv = sd->status.skill[skill_id].lv;
-		range = skill_get_range2(&sd->bl, skill_id, lv);
-		upgradable = (lv < skill_tree_get_max(sd->status.skill[skill_id].id, sd->status.class_)) ? 1 : 0;
+	
 		clif_skillup(sd,skill_id);
 		clif_updatestatus(sd,SP_SKILLPOINT);
 		if(skill_id == GN_REMODELING_CART)   /* cart weight info was updated by status_calc_pc */
 			clif_updatestatus(sd,SP_CARTINFO);
 		if(!pc_has_permission(sd, PC_PERM_ALL_SKILL))  // may skill everything at any time anyways, and this would cause a huge slowdown
 			clif_skillinfoblock(sd);
-	}else if(battle_config.skillup_limit) {
-		int pts = 0, i, id;
-		for(i = 0; i < MAX_SKILL_TREE && (id=skill_tree[pc_class2idx(sd->status.class_)][i].id) > 0 ; i++) {
-			int inf2 = skill_get_inf2(id);
-			if (inf2&INF2_QUEST_SKILL || (inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) || id == NV_BASIC)
-				continue;
-			if(sd->status.skill[id].id && sd->status.skill[id].flag == SKILL_FLAG_PERMANENT)
-				pts += pc_checkskill(sd, id);
-		}
-		if(pts < sd->change_level_2nd)
-			clif_msg_value(sd, 0x61E, sd->change_level_2nd-pts);
-		else if(pts < (sd->change_level_3rd + sd->change_level_2nd))
-			clif_msg_value(sd, 0x61F, sd->change_level_3rd - (pts - sd->change_level_2nd));
 	}
-
 	return 0;
 }
 
