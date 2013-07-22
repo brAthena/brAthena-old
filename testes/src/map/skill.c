@@ -14147,7 +14147,7 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 
 	if(sc && sc->count && !(skill_get_castnodex(skill_id, skill_lv)&2)) {
 		// All variable cast additive bonuses must come first
-		if (sc->data[SC_MAGICPOWER] )
+		if (sc->data[SC_MAGICPOWER] && !(sd && time == 0 && skill_id))
 			time += 700;
 		if (sc->data[SC_SLOWCAST])
 			VARCAST_REDUCTION(-sc->data[SC_SLOWCAST]->val2);
