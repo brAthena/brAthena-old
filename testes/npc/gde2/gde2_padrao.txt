@@ -118,8 +118,8 @@ OnEmpSpawn:
 
 OnReset:
 	set .@str$, substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
-	donpcevent "df1#"+strnpcinfo(2)+"::OnEnable";
-	donpcevent "df2#"+strnpcinfo(2)+"::OnEnable";
+	donpcevent "df1#"+strnpcinfo(2)+"::OnDisable";
+	donpcevent "df2#"+strnpcinfo(2)+"::OnDisable";
 	donpcevent "gard1#"+strnpcinfo(2)+"::OnReset";
 	donpcevent "gard2#"+strnpcinfo(2)+"::OnReset";
 	donpcevent "1ª Runa Guardiã#"+.@str$+"::OnDisable";

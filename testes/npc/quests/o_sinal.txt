@@ -11357,7 +11357,7 @@ niflheim,102,54,4	script	Mad Man#s	739,{
 						emotion e_pif;
 						close;
 					case 2:
-						if (Zeny < 60000) {
+						if (Zeny < 20000) {
 							mes "[Laichin]";
 							mes "Que é isso?";
 							mes "Está tentando me enganar";
