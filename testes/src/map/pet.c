@@ -294,7 +294,7 @@ static int pet_performance(struct map_session_data *sd, struct pet_data *pd)
 		val = 1;
 
 	pet_stop_walking(pd,2000<<8);
-	clif_pet_performance(pd, rnd()%val + 1);
+	clif_send_petdata(NULL, pd, 4, rnd()%val + 1);
 	pet_lootitem_drop(pd,NULL);
 	return 1;
 }
@@ -423,7 +423,7 @@ int pet_birth_process(struct map_session_data *sd, struct s_pet *pet)
 		clif_spawn(&sd->pd->bl);
 		clif_send_petdata(sd,sd->pd, 0,0);
 		clif_send_petdata(sd,sd->pd, 5,battle_config.pet_hair_style);
-		clif_pet_equip_area(sd->pd);
+		clif_send_petdata(NULL, sd->pd, 3, sd->pd->vd.head_bottom);
 		clif_send_petstatus(sd);
 	}
 	Assert((sd->status.pet_id == 0 || sd->pd == 0) || sd->pd->msd == sd);
@@ -464,7 +464,7 @@ int pet_recv_petdata(int account_id,struct s_pet *p,int flag)
 			clif_spawn(&sd->pd->bl);
 			clif_send_petdata(sd,sd->pd,0,0);
 			clif_send_petdata(sd,sd->pd,5,battle_config.pet_hair_style);
-			clif_pet_equip_area(sd->pd);
+			clif_send_petdata(NULL, sd->pd, 3, sd->pd->vd.head_bottom);
 			clif_send_petstatus(sd);
 		}
 	}
@@ -534,7 +534,6 @@ int pet_catch_process2(struct map_session_data *sd, int target_id)
 
 	if(rnd()%10000 < pet_catch_rate) {
 		unit_remove_map(&md->bl,CLR_OUTSIGHT);
-		md->lootitem_count = 0;
 		status_kill(&md->bl);
 		clif_pet_roulette(sd,1);
 		intif_create_pet(sd->status.account_id,sd->status.char_id,pet_db[i].class_,mob_db(pet_db[i].class_)->lv,
@@ -660,7 +659,7 @@ int pet_change_name_ack(struct map_session_data *sd, char *name, int flag)
 	memcpy(pd->pet.name, name, NAME_LENGTH);
 	clif_charnameack(0,&pd->bl);
 	pd->pet.rename_flag = 1;
-	clif_pet_equip_area(pd);
+	clif_send_petdata(NULL, sd->pd, 3, sd->pd->vd.head_bottom);
 	clif_send_petstatus(sd);
 	return 1;
 }
@@ -684,7 +683,7 @@ int pet_equipitem(struct map_session_data *sd,int index)
 	pc_delitem(sd,index,1,0,0,LOG_TYPE_OTHER);
 	pd->pet.equip = nameid;
 	status_set_viewdata(&pd->bl, pd->pet.class_); //Updates view_data.
-	clif_pet_equip_area(pd);
+	clif_send_petdata(NULL, sd->pd, 3, sd->pd->vd.head_bottom);
 	if(battle_config.pet_equip_required) {
 		//Skotlex: start support timers if need
 		unsigned int tick = gettick();
@@ -712,7 +711,7 @@ static int pet_unequipitem(struct map_session_data *sd, struct pet_data *pd)
 	nameid = pd->pet.equip;
 	pd->pet.equip = 0;
 	status_set_viewdata(&pd->bl, pd->pet.class_);
-	clif_pet_equip_area(pd);
+	clif_send_petdata(NULL, sd->pd, 3, sd->pd->vd.head_bottom);
 	memset(&tmp_item,0,sizeof(tmp_item));
 	tmp_item.nameid = nameid;
 	tmp_item.identify = 1;
@@ -816,7 +815,7 @@ static int pet_randomwalk(struct pet_data *pd,unsigned int tick)
 		}
 		for(i=c=0; i<pd->ud.walkpath.path_len; i++) {
 			if(pd->ud.walkpath.path[i]&1)
-				c+=pd->status.speed*14/10;
+				c+=pd->status.speed*MOVE_DIAGONAL_COST/MOVE_COST;
 			else
 				c+=pd->status.speed;
 		}
@@ -883,7 +882,7 @@ static int pet_ai_sub_hard(struct pet_data *pd, struct map_session_data *sd, uns
 		}
 	}
 
-	if(!target && pd->loot && pd->loot->count < pd->loot->max && DIFF_TICK(tick,pd->ud.canact_tick)>0) {
+	if(!target && pd->loot && pd->msd && pc_has_permission(pd->msd, PC_PERM_TRADE) && pd->loot->count < pd->loot->max && DIFF_TICK(tick,pd->ud.canact_tick)>0) {
 		//Use half the pet's range of sight.
 		map_foreachinrange(pet_ai_sub_hard_lootsearch,&pd->bl,
 		                   pd->db->range2/2, BL_ITEM,pd,&target);
@@ -1036,7 +1035,7 @@ int pet_lootitem_drop(struct pet_data *pd,struct map_session_data *sd)
 	memset(pd->loot->item,0,pd->loot->max * sizeof(struct item));
 	pd->loot->count = 0;
 	pd->loot->weight = 0;
-	pd->ud.canact_tick = gettick()+10000;   //  10*1000ms?°?E?????
+	pd->ud.canact_tick = gettick()+10000;   //prevent picked up during 10*1000ms
 
 	if(dlist->item)
 		add_timer(gettick()+540,pet_delay_item_drop,0,(intptr_t)dlist);
@@ -1285,7 +1284,7 @@ int read_petdb()
 }
 
 /*==========================================
- * ?X?L????W??????????
+ * Initialization process relationship skills
  *------------------------------------------*/
 int do_init_pet(void)
 {

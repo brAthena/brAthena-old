@@ -6155,9 +6155,9 @@ ACMD_FUNC(cleanarea)
 	int x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 
 	if(!message || !*message || sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) < 1) {
-		map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, sd->bl.x - (AREA_SIZE * 2), sd->bl.y - (AREA_SIZE * 2), sd->bl.x + (AREA_SIZE * 2), sd->bl.y + (AREA_SIZE * 2), BL_ITEM);
+		map_foreachinrange(atcommand_cleanfloor_sub, &sd->bl, AREA_SIZE * 2, BL_ITEM);
 	} else if(sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) == 1) {
-		map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, sd->bl.x - x0, sd->bl.y - x0, sd->bl.x + x0, sd->bl.y + x0, BL_ITEM);
+		map_foreachinrange(atcommand_cleanfloor_sub, &sd->bl, x0, BL_ITEM);
 	} else if(sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) == 4) {
 		map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, x0, y0, x1, y1, BL_ITEM);
 	}
