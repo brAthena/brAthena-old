@@ -9545,11 +9545,6 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 	    		if(hd && (sce=hd->sc.data[SC_STYLE_CHANGE])){ //in preparation for other bl usage
 				if(sce->val1 == MH_MD_FIGHTING) sce->val1 = MH_MD_GRAPPLING;
 				else sce->val1 = MH_MD_FIGHTING;
-				if(hd->master && hd->sc.data[SC_STYLE_CHANGE]) {
-		    			char output[128];
-		    			safesnprintf(output,sizeof(output), msg_txt(453),(sce->val1==MH_MD_FIGHTING?"fighthing":"grappling"));
-		    			clif_colormes(sd->fd,COLOR_RED,output);
-			}
 	    	}
 	    	break;
 	}
