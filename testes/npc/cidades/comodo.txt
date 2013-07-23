@@ -246,7 +246,6 @@ cmd_fild07,299,83,4	script	Zain#cmd	100,{
 }
 cmd_fild07,94,134,4	duplicate(Zain#cmd)	Sarumane#cmd	100
 
-
 cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	721,{
 	cutin "kafra_07",2;
 	mes "[Kafra Misty]";

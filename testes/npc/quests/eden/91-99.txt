@@ -161,7 +161,7 @@ L_Quest:
 		close;
 	} else if (.@hunting == 2) {
 		mes "[Quadro de Missões 91-99]";
-		mes "Você concluiu a missão de ccaça.";
+		mes "Você concluiu a missão de caça.";
 		mes "Por favor aceite a premiação.";
 		erasequest .@quest1;
 		if (.@playtime > -1) erasequest .@quest2;
