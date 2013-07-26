@@ -10756,7 +10756,7 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd)
 	else if (pc_cant_act2(sd) || sd->state.prerefining)
 		return;
 
-	if(!sd->status.inventory[index].identify || sd->delayed_damage != 0) {
+	if(!sd->status.inventory[index].identify) {
 		clif_equipitemack(sd,index,0,0);    // fail
 		return;
 	}

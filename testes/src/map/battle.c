@@ -238,9 +238,11 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 		struct block_list *src = NULL;
 		struct block_list *target = map_id2bl(dat->target_id);
 
-		if(!target || status_isdead(target)) {  /* nothing we can do */
-			if(dat->src_type == BL_PC && ( src = map_id2bl(dat->src_id)))
-				((TBL_PC*)src)->delayed_damage--;
+		if(!target || status_isdead(target)) {/* nothing we can do */
+			if(dat->src_type == BL_PC && (src = map_id2bl(dat->src_id) ) && --((TBL_PC*)src)->delayed_damage == 0 && ((TBL_PC*)src)->state.hold_recalc) {
+				((TBL_PC*)src)->state.hold_recalc = 0;
+				status_calc_pc(((TBL_PC*)src),0);
+			}
 			ers_free(delay_damage_ers, dat);
 			return 0;
 		}
@@ -266,8 +268,10 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 			map_freeblock_unlock();
 		}
 
-		if(src && src->type == BL_PC)
-			((TBL_PC*)src)->delayed_damage--;
+		if(src && src->type == BL_PC && --((TBL_PC*)src)->delayed_damage == 0 && ((TBL_PC*)src)->state.hold_recalc) {
+			((TBL_PC*)src)->state.hold_recalc = 0;
+			status_calc_pc(((TBL_PC*)src),0);
+		}
 	}
 	ers_free(delay_damage_ers, dat);
 	return 0;
@@ -310,8 +314,9 @@ int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src,
 	if(src->type != BL_PC && amotion > 1000)
 		amotion = 1000; //Aegis places a damage-delay cap of 1 sec to non player attacks. [Skotlex]
 
-	if(src->type == BL_PC)
+	if(src->type == BL_PC) {
 		((TBL_PC*)src)->delayed_damage++;
+	}
 
 	add_timer(tick+amotion, battle_delay_damage_sub, 0, (intptr_t)dat);
 

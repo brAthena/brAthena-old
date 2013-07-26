@@ -3985,6 +3985,11 @@ void status_calc_bl_(struct block_list *bl, enum scb_flag flag, bool first)
 	struct status_data b_status; // previous battle status
 	struct status_data *status; // pointer to current battle status
 
+	if(bl->type == BL_PC && ((TBL_PC*)bl)->delayed_damage != 0) {
+		((TBL_PC*)bl)->state.hold_recalc = 1;
+		return;
+	}
+
 	// remember previous values
 	status = status_get_status_data(bl);
 	memcpy(&b_status, status, sizeof(struct status_data));
