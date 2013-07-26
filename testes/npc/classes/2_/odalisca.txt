@@ -1323,7 +1323,7 @@ OnDisable:
 
 // Backup Dancers
 //============================================================ 
-job_duncer,63,110,4	script	Backdancer#1::BackDancer	724,{
+job_duncer,63,110,4	script	Backdancer#1	724,{
 	end;
 
 OnSmile:

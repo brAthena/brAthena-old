@@ -25884,7 +25884,7 @@ REPLACE INTO `quest_db` VALUES(7154,0,1152,20,0,0,0,0,'O Treinamento ''conquista
 REPLACE INTO `quest_db` VALUES(7155,0,0,0,0,0,0,0,'O Treinamento ''conquistando a caverna dos orcs!'' - Complete a quest');
 REPLACE INTO `quest_db` VALUES(7156,0,0,0,0,0,0,0,'O Treinamento ''conquistando a cidade submarina!'' - Início');
 REPLACE INTO `quest_db` VALUES(7157,0,1264,15,0,0,0,0,'O Treinamento ''conquistando a cidade submarina!'' - A batalha real 1');
-REPLACE INTO `quest_db` VALUES(7158,0,1065,10,0,0,0,0,'0');
+REPLACE INTO `quest_db` VALUES(7158,0,1065,10,0,0,0,0,'O Treinamento ''conquistando a cidade submarina!'' - A batalha real 2');
 REPLACE INTO `quest_db` VALUES(7159,0,0,0,0,0,0,0,'O Treinamento ''conquistando a cidade submarina!'' - Complete a quest');
 REPLACE INTO `quest_db` VALUES(7160,0,0,0,0,0,0,0,'O Criptograma Misterioso');
 REPLACE INTO `quest_db` VALUES(7161,0,0,0,0,0,0,0,'O Criptograma Misterioso - 2');
