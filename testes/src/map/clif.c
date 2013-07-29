@@ -9762,7 +9762,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		} else if(sd->state.night) {
 			//Clear night display.
 			sd->state.night = 0;
-			clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_SKE);
+			clif_status_change(&sd->bl, SI_SKE, 1, 0, 0, 0, 0);
 		}
 
 		if(map[sd->bl.m].flag.battleground) {

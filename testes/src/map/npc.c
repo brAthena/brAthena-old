@@ -775,7 +775,7 @@ int npc_settimerevent_tick(struct npc_data *nd, int newtimer)
 	nd->u.scr.rid = 0;
 
 	// Check if timer is started
-	flag = (nd->u.scr.timerid != INVALID_TIMER);
+	flag = (nd->u.scr.timerid != INVALID_TIMER || nd->u.scr.timertick);
 
 	if(flag) npc_timerevent_stop(nd);
 	nd->u.scr.timer = newtimer;
@@ -3824,6 +3824,8 @@ int npc_reload(void)
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 	         npc_id - npc_new_min, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
 
+	itemdb->name_constants();
+
 	for(i = 0; i < instance->instances; i++) {
 		instance->destroy(i);
 	}
@@ -3974,6 +3976,8 @@ int do_init_npc(void)
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros em cache\n"
 	         "\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 	         npc_id - START_NPC_NUM, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
+
+	itemdb->name_constants();
 
 	map_zone_init();
 

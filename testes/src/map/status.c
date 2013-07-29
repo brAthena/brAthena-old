@@ -2692,13 +2692,6 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 				data = itemdb_exists(c);
 				if(!data)
 					continue;
-				if(first && data->equip_script) { //Execute equip-script on login
-					run_script(data->equip_script,0,sd->bl.id,0);
-					if(!calculating)
-						return 1;
-				}
-				if(!data->script)
-					continue;
 
 				for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
 					if(map[sd->bl.m].zone->disabled_items[k] == data->nameid) {
@@ -2707,6 +2700,15 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 				}
 				
 				if(k < map[sd->bl.m].zone->disabled_items_count)
+					continue;
+
+				if(first && data->equip_script) {//Execute equip-script on login
+					run_script(data->equip_script,0,sd->bl.id,0);
+					if(!calculating)
+						return 1;
+				}
+
+				if(!data->script)
 					continue;
 
 				if(i == EQI_HAND_L && sd->status.inventory[index].equip == EQP_HAND_L) { //Left hand status.

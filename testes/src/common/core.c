@@ -26,6 +26,8 @@
 #include "../common/thread.h"
 #include "../common/mempool.h"
 #include "../common/sql.h"
+#include "../config/core.h"
+#include "../common/utils.h"
 #endif
 
 #include <stdio.h>
@@ -299,7 +301,12 @@ void usercheck(void)
 	}
 #endif
 }
-
+void core_defaults(void) {
+#ifndef MINICORE
+	HCache_defaults();
+#endif
+	malloc_defaults();
+}
 /*======================================
  *  CORE : MAINROUTINE
  *--------------------------------------*/
@@ -316,7 +323,7 @@ int main(int argc, char **argv)
 		arg_c = argc;
 		arg_v = argv;
 	}
-	malloc_defaults();
+	core_defaults();
 
 	iMalloc->init();// needed for Show* in display_title() [FlavioJS]
 	read_brathena_config();
@@ -342,6 +349,7 @@ int main(int argc, char **argv)
 #endif
 
 	timer_init();
+	HCache->init();
 	socket_init();
 
 	do_init(argc,argv);

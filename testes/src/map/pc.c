@@ -4168,6 +4168,12 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	else if(itemdb_is_poison(nameid) && (sd->class_&MAPID_THIRDMASK) != MAPID_GUILLOTINE_CROSS)
 		return 0;
 
+	if((item->package || itemgroup_db) && pc_is90overweight(sd)) {
+		//##TODO## find official response to this
+		clif_colormes(sd->fd,COLOR_RED,msg_txt(1477));// Item cannot be open when overweight by 90%
+		return 0;
+	}
+
 	//Gender check
 	if(item->sex != 2 && sd->status.sex != item->sex)
 		return 0;
@@ -4217,7 +4223,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 {
 	unsigned int tick = gettick();
 	int amount, nameid, i;
-	struct script_code *script;
+	struct script_code *item_script;
 
 	nullpo_ret(sd);
 
@@ -4320,7 +4326,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 		sd->catch_target_class = -1;
 
 	amount = sd->status.inventory[n].amount;
-	script = sd->inventory_data[n]->script;
+	item_script = sd->inventory_data[n]->script;
 	//Check if the item is to be consumed immediately [Skotlex]
 	if(sd->inventory_data[n]->flag.delay_consume)
 		clif_useitemack(sd,n,amount,true);
@@ -4343,8 +4349,13 @@ int pc_useitem(struct map_session_data *sd,int n)
 	if(itemdb_iscashfood(nameid))
 		sd->canusecashfood_tick = tick + battle_config.cashfood_use_interval;
 
-	run_script(script,0,sd->bl.id,fake_nd->bl.id);
+	script->current_item_id = nameid;
+
+	run_script(item_script,0,sd->bl.id,fake_nd->bl.id);
+
+	script->current_item_id = 0;
 	potion_flag = 0;
+
 	return 1;
 }
 

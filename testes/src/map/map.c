@@ -3690,7 +3690,6 @@ char *get_database_name(int database_id)
 		case 55: db_name = "item_db"; break;
 		case 56: db_name = "mob_db"; break;
 		#if VERSION == 1
-		case 57: db_name = "item_bro"; break;
 		case 58: db_name = "item_nouse_sit"; break;
 		#endif
 		case 59: db_name = "const_db"; break;
@@ -4589,7 +4588,7 @@ unsigned short map_zone_str2itemid(const char *name) {
 
 	if(!name)
 		return 0;
-	if(name[0] == 'I' && name[1] == 'D' && strlen(name) <= 7) {
+	if(name[0] == 'I' && name[1] == 'D' && strlen(name) < 8) {
 		if(!( data = itemdb_exists(atoi(name+2)))) {
 			return 0;
 		}
@@ -4606,7 +4605,7 @@ unsigned short map_zone_str2skillid(const char *name) {
 	if( !name )
 		return 0;
 
-	if( name[0] == 'I' && name[1] == 'D' && strlen(name) <= 7) {
+	if( name[0] == 'I' && name[1] == 'D' && strlen(name) < 8) {
 		if( !skill_get_index((nameid = atoi(name+2))) )
 			return 0;
 	} else {
@@ -5405,6 +5404,7 @@ int do_init(int argc, char *argv[])
 	battleground_defaults();
 	clif_defaults();
 	instance_defaults();
+	itemdb_defaults();
 	script_defaults();
 
 	map_config_read(MAP_CONF_NAME);

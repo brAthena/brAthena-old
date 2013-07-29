@@ -263,10 +263,14 @@ struct script_interface {
 	char *word_buf;
 	int word_size;
 	/* */
+	unsigned short current_item_id;
+	/* */
 	struct script_label_entry *labels;
 	int label_count;
 	int labels_size;
 	/*  */
+	void (*set_constant2) (const char *name, int value, bool isparameter);
+	void (*set_constant_force) (const char *name, int value, bool isparameter);
 	void (*label_add)(int key, int pos);
 	/* */
 	struct hQueue *(*queue) (int idx);

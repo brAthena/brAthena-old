@@ -2183,6 +2183,40 @@ void script_set_constant(const char *name, int value, bool isparameter)
 		ShowError("script_set_constant: Invalid name for %s '%s' (already defined as %s).\n", isparameter ? "parameter" : "constant", name, script_op2name(str_data[n].type));
 	}
 }
+/* adds data to a existent constant in the database, inserted normally via parse */
+void script_set_constant2(const char *name, int value, bool isparameter) {
+	int n = add_str(name);
+
+	if((str_data[n].type == C_NAME || str_data[n].type == C_PARAM ) && ( str_data[n].val != 0 || str_data[n].backpatch != -1)) { // existing parameter or constant
+		ShowNotice("Conflicting item/script var '%s', prioritising the script var\n",name);
+		return;
+	}
+
+	if(str_data[n].type != C_NOP) {
+		str_data[n].func = NULL;
+		str_data[n].backpatch = -1;
+		str_data[n].label = -1;
+	}
+
+	str_data[n].type = isparameter ? C_PARAM : C_INT;
+	str_data[n].val  = value;
+
+}
+/* same as constant2 except it will override if necessary, used to clear conflicts during reload  */
+void script_set_constant_force(const char *name, int value, bool isparameter) {
+	int n = add_str(name);
+
+	if(str_data[n].type == C_PARAM)
+		return;/* the one type we don't mess with, reload doesn't affect it. */
+		
+	if(str_data[n].type != C_NOP) {
+		str_data[n].type = C_NOP;
+		str_data[n].val = 0;
+		str_data[n].func = NULL;
+		str_data[n].backpatch = -1;
+		str_data[n].label = -1;
+	}
+}
 
 /*==========================================
  * Leitura estruturada const_db.
@@ -4273,6 +4307,9 @@ int script_reload()
 	db_clear(script->st_db);
 
 	mapreg_reload();
+
+	itemdb->force_name_constants();
+
 	return 0;
 }
 
@@ -11992,7 +12029,7 @@ BUILDIN_FUNC(playBGMall)
 		map_foreachpc(&playBGM_foreachpc_sub, name);
 	}
 
-	return true;
+	return 0;
 }
 
 /*==========================================
@@ -17350,7 +17387,7 @@ BUILDIN_FUNC(sit)
 		skill_sit(sd,1);
 		clif_sitting(&sd->bl);
 	}
-	return true;
+	return 0;
 }
 
 BUILDIN_FUNC(stand)
@@ -17369,7 +17406,7 @@ BUILDIN_FUNC(stand)
 		skill_sit(sd,0);
 		clif_standing(&sd->bl);
 	}
-	return true;
+	return 0;
 }
 
 BUILDIN_FUNC(issit)
@@ -17386,56 +17423,6 @@ BUILDIN_FUNC(issit)
 		script_pushint(st, 1);
 	else
 		script_pushint(st, 0);
-	return true;
-}
-
-/*==========================================
- * [brAthena] retorna um ID de item randômico especial;
- *==========================================*/
-BUILDIN_FUNC(grouprandomitem2)
-{
-	struct script_data *data = script_getdata(st, 2);
-	struct item_group2 *ig;
-	int group;
-	get_val(st, data);
-	group = conv_num(st, data);
-	if(!(ig = itemdb_searchrandgroup2(group))) {
-		ShowError("buildin_grouprandomitem2: Grupo de itens inválido %d\n", group);
-		return 1;
-	}
-	script_pushint(st, ig->item[rnd() % ig->qty].nameid);
-	return 0;
-}
-
-/*==========================================
- * [brAthena] retorna uma quantidade aleatória de um item randômico especial;
- *==========================================*/
-BUILDIN_FUNC(grouprandomquantity2)
-{
-	struct script_data *data = script_getdata(st, 3);
-	struct item_group2 *ig;
-	int group, nameid, i, qt[2];
-	get_val(st, data);
-	group = conv_num(st, data);
-	if(!(ig = itemdb_searchrandgroup2(group))) {
-		ShowError("buildin_grouprandomquantity2: Grupo de itens inválido %d\n", group);
-		return 1;
-	}
-	data = script_getdata(st, 2);
-	get_val(st, data);
-	nameid = conv_num(st, data);
-	if(!itemdb_exists(nameid)) {
-		ShowError("buildin_grouprandomquantity2: Item de ID %d inexistente\n", nameid);
-		return 1;
-	}
-	ARR_FIND(0, ig->qty, i, ig->item[i].nameid == nameid);
-	if(i >= ig->qty) {
-		ShowError("buildin_grouprandomquantity2: Item %d inexistente no grupo %d\n", nameid, group);
-		return 1;
-	}
-	qt[0] = ig->item[i].qt[0];
-	qt[1] = ig->item[i].qt[1];
-	script_pushint(st, rnd() % (qt[1] - qt[0] + 1) + qt[0]);
 	return 0;
 }
 
@@ -17822,6 +17809,41 @@ BUILDIN_FUNC(qiclear) {
 		script_pushint(st, 0);
 	}
 
+	return 0;
+}
+/**
+ * CreatePackage({<Opcional: ID_do_item>})
+ * Quando nenhum item_id é fornecido tenta assumir a ID do item que vem do atual, que está sendo processado(se houver a função CreatePackage();)
+ **/
+BUILDIN_FUNC(CreatePackage) {
+	struct item_data *data = NULL;
+	struct map_session_data *sd = NULL;
+	int nameid;
+
+	if(script_hasdata(st, 2))
+		nameid = script_getnum(st, 2);
+	else if (script->current_item_id)
+		nameid = script->current_item_id;
+	else {
+		ShowWarning("buildin_packageitem: nenhuma id de item fornecido e nenhum item anexado\n");
+		script_pushint(st, 1);
+		return 0;
+	}
+
+	if(!(data = itemdb_exists(nameid))) {
+		ShowWarning("buildin_packageitem: id do item %d desconhecida \n",nameid);
+		script_pushint(st, 1);
+	} else if (!data->package ) {
+		ShowWarning("buildin_packageitem: item '%s' (%d) não é um pacote!\n",data->name,nameid);
+		script_pushint(st, 1);
+	} else if(!( sd = script_rid2sd(st))) {
+		ShowWarning("buildin_packageitem: nenhum jogador anexado!!!! (item %s (%d))\n",data->name,nameid);
+		script_pushint(st, 1);
+	} else {
+		itemdb->package_item(sd,data->package);
+		script_pushint(st, 0);
+	}
+	
 	return 0;
 }
 /* New Battlegrounds Stuff */
@@ -18368,15 +18390,15 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(qicheck,"i"),
 	BUILDIN_DEF(qiget,"i"),
 	BUILDIN_DEF(qiclear,"i"),
+
+	BUILDIN_DEF(CreatePackage,"?"),
+
 	/* New BG Commands */
 	BUILDIN_DEF(bg_create_team,"sii"),
 	BUILDIN_DEF(bg_join_team,"i?"),
 	BUILDIN_DEF(bg_match_over,"s?"),
 
   /* [brAthena] */
-
-	BUILDIN_DEF2(grouprandomitem2,"groupranditem2","i"),	// [Hold]
-	BUILDIN_DEF2(grouprandomquantity2,"grouprandqt2","ii"),	// [Hold]
 	BUILDIN_DEF(unloadnpc,"s"),	// [Holy]
 	BUILDIN_DEF(recall,"s?"),	// [Holy]
 
@@ -18418,9 +18440,17 @@ void script_defaults(void) {
 
 	script->word_buf = NULL;
 	script->word_size = 0;
+
+	script->current_item_id = 0;
+
 	script->labels = NULL;
 	script->label_count = 0;
 	script->labels_size = 0;
+
+	script->set_constant2 = script_set_constant2;
+	script->set_constant_force = script_set_constant_force;
+	script->label_add = script_label_add;
+
 	script->queue = script_hqueue_get;
 	script->queue_add = script_hqueue_add;
 	script->queue_del = script_hqueue_del;
@@ -18428,5 +18458,4 @@ void script_defaults(void) {
 	script->queue_create = script_hqueue_create;
 	script->queue_clear = script_hqueue_clear;
 
-	script->label_add = script_label_add;
 }

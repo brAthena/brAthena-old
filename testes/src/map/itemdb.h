@@ -21,18 +21,33 @@
 #include "../common/mmo.h" // ITEM_NAME_LENGTH
 #include "map.h"
 
-// 32k array entries in array (the rest goes to the db)
-#define MAX_ITEMDB 0x8000
+/**
+ * Declarations
+ **/
+struct item_package;
 
+/**
+ * Defines
+ **/
+#define MAX_ITEMDB 0x8000 // 32k array entries in array (the rest goes to the db)
+#define MAX_ITEMDELAYS 10 // The maximum number of item delays
+#define MAX_SEARCH 5 //Designed for search functions, species max number of matches to display.
+#define MAX_ITEMS_PER_COMBO 6 /* maximum amount of items a combo may require */
+#define IG_FINDINGORE 6
+#define IG_POTION 37
+//The max. item group count (increase this when needed).
+#define MAX_ITEMGROUP 140
 #define MAX_RANDITEM    20000
 
-// The maximum number of item delays
-#define MAX_ITEMDELAYS  10
+#define CARD0_FORGE 0x00FF
+#define CARD0_CREATE 0x00FE
+#define CARD0_PET ((short)0xFF00)
 
-#define MAX_SEARCH  5  //Designed for search functions, species max number of matches to display.
+//Marks if the card0 given is "special" (non-item id used to mark pets/created items. [Skotlex]
+#define itemdb_isspecial(i) (i == CARD0_FORGE || i == CARD0_CREATE || i == CARD0_PET)
 
-/* maximum amount of items a combo may require */
-#define MAX_ITEMS_PER_COMBO 6
+//Use apple for unknown items.
+#define UNKNOWN_ITEM_ID 512
 
 enum item_itemid {
     ITEMID_HOLY_WATER = 523,
@@ -90,22 +105,7 @@ enum {
 	NOUSE_SITTING = 0x01,
 } item_nouse_list;
 
-//The only item group required by the code to be known. See const.txt for the full list.
-#define IG_FINDINGORE 6
-#define IG_POTION 37
-//The max. item group count (increase this when needed).
-#define MAX_ITEMGROUP 140
-
-#define CARD0_FORGE 0x00FF
-#define CARD0_CREATE 0x00FE
-#define CARD0_PET ((short)0xFF00)
-
-//Marks if the card0 given is "special" (non-item id used to mark pets/created items. [Skotlex]
-#define itemdb_isspecial(i) (i == CARD0_FORGE || i == CARD0_CREATE || i == CARD0_PET)
-
-//Use apple for unknown items.
-#define UNKNOWN_ITEM_ID 512
-
+//
 struct item_data {
 	uint16 nameid;
 	char name[ITEM_NAME_LENGTH],jname[ITEM_NAME_LENGTH];
@@ -166,19 +166,13 @@ struct item_data {
 	/* bugreport:309 */
 	struct item_combo **combos;
 	unsigned char combos_count;
+	/* TODO add a pointer to some sort of (struct extra) and gather all the not-common vals into it to save memory */
+	struct item_package *package;
 };
 
 struct item_group {
 	int nameid[MAX_RANDITEM];
 	int qty; //Counts amount of items in the group.
-};
-
-struct item_group2 {
-	struct {
-		int nameid;
-		uint16 qt[2];
-	} item[MAX_RANDITEM];
-	int qty;
 };
 
 struct item_combo {
@@ -190,6 +184,37 @@ struct item_combo {
 };
 
 struct item_group itemgroup_db[MAX_ITEMGROUP];
+
+struct item_package_rand_entry {
+	unsigned short id;
+	unsigned short qty;
+	unsigned short probability;
+	unsigned short hour;
+	unsigned int onair : 1;
+	unsigned int guid : 1;
+	struct item_package_rand_entry *next;
+};
+
+struct item_package_must_entry {
+	unsigned short id;
+	unsigned short qty;
+	unsigned short hour;
+	unsigned int onair : 1;
+	unsigned int guid : 1;
+};
+
+struct item_package_rand_group {
+	struct item_package_rand_entry *random_list;
+	unsigned short random_qty;
+};
+
+struct item_package {
+	unsigned short id;
+	struct item_package_rand_group *random_groups;
+	struct item_package_must_entry *must_items;
+	unsigned short random_qty;
+	unsigned short must_qty;
+};
 
 struct item_data *itemdb_searchname(const char *name);
 int itemdb_searchname_array(struct item_data **data, int size, const char *str);
@@ -225,7 +250,6 @@ const char *itemdb_typename(int type);
 
 int itemdb_group_bonus(struct map_session_data *sd, int itemid);
 int itemdb_searchrandomid(int flags);
-struct item_group2 *itemdb_searchrandgroup2(int group);
 
 #define itemdb_value_buy(n) itemdb_search(n)->value_buy
 #define itemdb_value_sell(n) itemdb_search(n)->value_sell
@@ -260,8 +284,30 @@ int itemdb_isstackable2(struct item_data *);
 uint64 itemdb_unique_id(int8 flag, int64 value); // Unique Item ID
 
 void itemdb_reload(void);
-
 void do_final_itemdb(void);
-int do_init_itemdb(void);
+void do_init_itemdb(void);
+
+/* incomplete */
+struct itemdb_interface {
+	void (*name_constants) (void);
+	void (*force_name_constants) (void);
+	/* */
+	struct item_package *packages;
+	unsigned short package_count;
+	/* */
+	DBMap *names;
+	/* */
+	void (*read_packages) (void);
+	/* */
+	void (*write_cached_packages) (const char *config_filename);
+	bool (*read_cached_packages) (const char *config_filename);
+	/* */
+	struct item_data* (*name2id) (const char *str);
+	void (*package_item) (struct map_session_data *sd, struct item_package *package);
+};
+
+struct itemdb_interface *itemdb;
+
+void itemdb_defaults(void);
 
 #endif /* _ITEMDB_H_ */
