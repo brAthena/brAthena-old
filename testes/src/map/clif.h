@@ -330,6 +330,7 @@ enum clif_messages {
 	USAGE_FAIL = 0x783,
 	ITEM_NOUSE_SITTING = 0x297,
 	DEATH_PENALTY = 0x729,
+	PACKAGE_ITEM = 0x623,
 };
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
