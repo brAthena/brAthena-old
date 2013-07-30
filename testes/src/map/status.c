@@ -2990,7 +2990,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 #if VERSION != 1
 	if(!battle_config.weapon_defense_type && status->def > battle_config.max_def) {
 		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (signed short)battle_config.max_def;
+		status->def = (unsigned char)battle_config.max_def;
 	}
 #endif
 
@@ -3010,7 +3010,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 #if version != 1
 	if(!battle_config.magic_defense_type && status->mdef > battle_config.max_mdef) {
 		status->mdef2 += battle_config.over_def_bonus*(status->mdef -battle_config.max_mdef);
-		status->mdef = (signed short)battle_config.max_mdef;
+		status->mdef = (signed char)battle_config.max_mdef;
 	}
 #endif
 
@@ -6270,23 +6270,16 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 {
 	//Percentual resistance: 10000 = 100% Resist
 	//Example: 50% -> sc_def=5000 -> 25%; 5000ms -> tick_def=5000 -> 2500ms
-	int sc_def = 0, tick_def = 
-	#if VERSION == 1
-	-1;
-	#else
-	0;
-	#endif
-	//-1 = use sc_def
+	int sc_def = 0, tick_def = -1; //-1 = use sc_def
 	//Linear resistance substracted from rate and tick after percentual resistance was applied
 	//Example: 25% -> sc_def2=2000 -> 5%; 2500ms -> tick_def2=2000 -> 500ms
-	int sc_def2 = 0, tick_def2 = 0;
+	int sc_def2 = 0, tick_def2 = -1; //-1 = use sc_def2
 
-	struct status_data *status, *status_src;
+	struct status_data *status;
 	struct status_change *sc;
 	struct map_session_data *sd;
 
 	nullpo_ret(bl);
-	if(bl==NULL) return tick?tick:1;//If no source, it can't be resisted (NPC given)
 
 	//Status that are blocked by Golden Thief Bug card or Wand of Hermod
 	if(status_isimmune(bl))
@@ -6325,127 +6318,68 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 
 	sd = BL_CAST(BL_PC,bl);
 	status = status_get_status_data(bl);
-	status_src = status_get_status_data(bl);
 	sc = status_get_sc(bl);
 	if(sc && !sc->count)
 		sc = NULL;
-	switch(type) {
+	switch (type) {
+		case SC_STUN:
 		case SC_POISON:
 			if(sc && sc->data[SC__UNLUCKY])
 				return tick;
 		case SC_DPOISON:
-			sc_def = status->vit*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			if(sd) {
-				//For players: 60000 - 450*vit - 100*luk
-				tick_def = status->vit*75;
-				tick_def2 = status->luk*100;
-			} else {
-				//For monsters: 30000 - 200*vit
-				tick>>=1;
-				tick_def = (status->vit*200)/3;
-			}
-			break;
-		case SC_STUN:
-			if(sc && sc->data[SC__UNLUCKY])
-				return tick;
 		case SC_SILENCE:
 		case SC_BLOODING:
-		#if VERSION == 1
 			sc_def = status->vit*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			tick_def2 = status->luk*10;
-		#else
-		sc_def = 3 +status->vit;
-		#endif
+			sc_def2 = status->luk*10;
 			break;
 		case SC_SLEEP:
-		#if VERSION == 1
 			sc_def = status->int_*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			tick_def2 = status->luk*10;
-		#else
-			sc_def = 3 +status->vit;
-		#endif
-			break;
-		case SC_STONE:
-			sc_def = status->mdef*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			tick_def = 0; //No duration reduction
-			break;
-		case SC_FREEZE:
-		#if VERSION == 1
-			sc_def = status->mdef*100;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			tick_def2 = status_src->luk*-10; //Caster can increase final duration with luk
-		#else
-			sc_def = 3 +status->mdef;
-		#endif
-			break;
-		case SC_CURSE:
-			//Special property: immunity when luk is zero
-			if (status->luk == 0)
-				return 0;
-			#if VERSION == 1
-			sc_def = status->luk*100;
-			sc_def2 = status->luk*10 - status_get_lv(bl)*10; //Curse only has a level penalty and no resistance
-			tick_def = status->vit*100;
-			tick_def2 = status->luk*10;
-			#else
-			else
-			sc_def = 3 +status->luk;
-			tick_def = status->vit;
-			#endif
-			break;
-		case SC_BLIND:
-			if(sc && sc->data[SC__UNLUCKY])
-				return tick;
-			#if VERSION == 1
-			sc_def = (status->vit + status->int_)*50;
-			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(bl)*10;
-			tick_def2 = status->luk*10;
-			#else
-			sc_def = 3 +(status->vit + status->int_)/2;
-			#endif
-			break;
-		case SC_CONFUSION:
-			#if VERSION == 1
-			sc_def = (status->str + status->int_)*50;
-			sc_def2 = status_get_lv(bl)*10 - status_get_lv(bl)*10 - status->luk*10; //Reversed sc_def2
-			tick_def2 = status->luk*10;
-			#else
-			sc_def = 3 +(status->str + status->int_)/2;
-			#endif
-			break;
-		case SC_DEC_AGI:
-		case SC_ADORAMUS: //Arch Bishop
-			if (sd) tick>>=1; //Half duration for players.
-			sc_def = status->mdef*100;
-			tick_def = 0; //No duration reduction
-			break;
-		case SC_ANKLESNARE:
-			if(status->mode&MD_BOSS) // Lasts 5 times less on bosses
-				tick /= 5;
-			#if VERSION == 1
-			sc_def = status->agi*50;
-			#else
-			sc_def = status->agi / 2;
-			#endif
+			sc_def2 = status->luk*10;
 			break;
 		case SC_DEEP_SLEEP:
 			sc_def = status->int_*50;
-			tick_def = 0; //Linear reduction instead
-			tick_def2 = (status->int_ + status_get_lv(bl))*50; //kRO balance update lists this formula
+			tick_def = status->int_*10 + status_get_lv(bl) * 65 / 10; //Seems to be -1 sec every 10 int and -5% chance every 10 int.
+			break;
+		case SC_DEC_AGI:
+		case SC_ADORAMUS: //Arch Bishop
+			if(sd) tick>>=1; //Half duration for players.
+		case SC_STONE:
+			//Impossible to reduce duration with stats
+			tick_def = 0;
+			tick_def2 = 0;
+		case SC_FREEZE:
+			sc_def = status->mdef*100;
+			sc_def2 = status->luk*10;
+			break;
+		case SC_CURSE:
+			//Special property: inmunity when luk is greater than level or zero
+			if(status->luk > status_get_lv(bl) || status->luk == 0)
+				return 0;
+				sc_def = status->luk*100;
+				sc_def2 = status->luk*10;
+				tick_def = status->vit*100;
+			break;
+		case SC_BLIND:
+			if(sc && sc->data[SC__UNLUCKY])
+			return tick;
+			sc_def = (status->vit + status->int_)*50;
+			sc_def2 = status->luk*10;
+			break;
+		case SC_CONFUSION:
+			sc_def = (status->str + status->int_)*50;
+			sc_def2 = status->luk*10;
+			break;
+		case SC_ANKLESNARE:
+			if(status->mode&MD_BOSS) // Lasts 5 times less on bosses
+			tick /= 5;
+			sc_def = status->agi*50;
 			break;
 		case SC_MAGICMIRROR:
 		case SC_STONESKIN:
-			if(sd)  //Duration greatly reduced for players.
+			if (sd) //Duration greatly reduced for players.
 				tick /= 15;
-			#if VERSION == 1
 			sc_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10; // Lineal Reduction of Rate
-			#else
-			rate -= (status_get_lv(bl) / 5 + status->vit / 4 + status->agi / 10)*100; // Lineal Reduction of Rate
-			#endif
+			tick_def2 = 0; //No duration reduction
 			break;
 		case SC_MARSHOFABYSS:
 			//5 second (Fixed) + 25 second - {( INT + LUK ) / 20 second }
@@ -6455,14 +6389,11 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			//5 second (fixed) + { Stasis Skill level * 5 - (Target's VIT + DEX) / 20 }
 			tick_def2 = (status->vit + status->dex)*50;
 			break;
-		case SC_WHITEIMPRISON:
-			if(tick == 5000)   // 100% on caster
-				break;
 			if(bl->type == BL_PC)
-				tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
+				tick -= (status_get_lv(bl) / 5 + status->vit / 4 + status->agi / 10)*100;
 			else
-				tick_def2 = (status->vit + status->luk)*50;
-			break;
+				tick -= (status->vit + status->luk) / 20 * 1000;
+				break;
 		case SC_BURNING:
 			tick -= 75 * status->luk + 125 * status->agi;
 			tick = max(tick,5000); // Minimum Duration 5s.
@@ -6472,8 +6403,8 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			tick = max(tick,6000); // Minimum Duration 6s.
 			break;
 		case SC_OBLIVIONCURSE: // 100% - (100 - 0.8 x INT)
-			sc_def = status->int_*80;
-			sc_def = max(sc_def, 500); // minimum of 5% resist
+			sc_def = 100 - (100 - status->int_* 8 / 10);
+			sc_def = max(sc_def, 5); // minimum of 5%
 			break;
 		case SC_WUGBITE: // {(Base Success chance) - (Target's AGI / 4)}
 			rate -= status->agi*100/4;
@@ -6481,7 +6412,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			break;
 		case SC_ELECTRICSHOCKER:
 			if(bl->type == BL_MOB)
-				tick_def2 = status->agi*100;
+				tick -= 1000 * (status->agi/10);
 			break;
 		case SC_COLD:
 			tick -= (1000*(status->vit/10))+(status_get_lv(bl)/50);
@@ -6501,14 +6432,13 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			break;
 		default:
 			//Effect that cannot be reduced? Likely a buff.
-			if(!(rnd()%10000 < rate))
+			if (!(rnd()%10000 < rate))
 				return 0;
-			return tick ? tick : 1;
-	}
+			return tick?tick:1;
+		}
 
 	if(sd) {
 
-		#if VERSION == 1
 		if(battle_config.pc_sc_def_rate != 100) {
 			sc_def = sc_def*battle_config.pc_sc_def_rate/100;
 			sc_def2 = sc_def2*battle_config.pc_sc_def_rate/100;
@@ -6521,23 +6451,8 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			tick_def = tick_def*battle_config.pc_sc_def_rate/100;
 			tick_def2 = tick_def2*battle_config.pc_sc_def_rate/100;
 		}
-		#else
-		if(battle_config.pc_sc_def_rate != 100)
-			sc_def = sc_def*battle_config.pc_sc_def_rate/100;
-		if (sc_def < battle_config.pc_max_sc_def) 
-			sc_def += (battle_config.pc_max_sc_def - sc_def)* status->luk/battle_config.pc_luk_sc_def; 
-		else 
-			sc_def = battle_config.pc_max_sc_def; 
-
-		if (tick_def) {
-			if (battle_config.pc_sc_def_rate != 100) 
-			tick_def = tick_def*battle_config.pc_sc_def_rate/100; 
-		}
-		#endif
-	
 	} else {
 
-		#if VERSION == 1
 		if(battle_config.mob_sc_def_rate != 100) {
 			sc_def = sc_def*battle_config.mob_sc_def_rate/100;
 			sc_def2 = sc_def2*battle_config.mob_sc_def_rate/100;
@@ -6550,52 +6465,25 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			tick_def = tick_def*battle_config.mob_sc_def_rate/100;
 			tick_def2 = tick_def2*battle_config.mob_sc_def_rate/100;
 		}
-		#else
-		if(battle_config.mob_sc_def_rate != 100)
-			sc_def = sc_def*battle_config.mob_sc_def_rate/100;
-		if (sc_def < battle_config.mob_max_sc_def) 
-			sc_def += (battle_config.mob_max_sc_def - sc_def)* status->luk/battle_config.mob_luk_sc_def; 
-		else 
-			sc_def = battle_config.mob_max_sc_def; 
-	 	 
-		if (tick_def) {
-			if (battle_config.mob_sc_def_rate != 100)
-						tick_def = tick_def*battle_config.mob_sc_def_rate/100;
-			}
-		#endif
 	}
 
 	if(sc) {
 		if(sc->data[SC_SCRESIST])
-		#if VERSION == 1
 			sc_def += sc->data[SC_SCRESIST]->val1*100; //Status resist
-		#else
-			sc_def += sc->data[SC_SCRESIST]->val1; //Status resist
-		#endif
-		else if(sc->data[SC_SIEGFRIED])
-		#if VERSION == 1
+		else if (sc->data[SC_SIEGFRIED])
 			sc_def += sc->data[SC_SIEGFRIED]->val3*100; //Status resistance.
-		#else
-			sc_def += sc->data[SC_SIEGFRIED]->val3; //Status resistance.
-		#endif
 	}
 
-	//When tick def not set, reduction is the same for both.
-	#if VERSION != 1
-	if( !tick_def && type != SC_STONE )
-	#else
-	if(tick_def == -1)
-	#endif
+	//When no tick def, reduction is the same for both.
+	if(tick_def < 0)
 		tick_def = sc_def;
+	if(tick_def2 < 0)
+		tick_def2 = sc_def2;
 
 	//Natural resistance
 	if(!(flag&8)) {
-	#if VERSION != 1
-		rate -= rate*sc_def/100;
-	#else
 		rate -= rate*sc_def/10000;
 		rate -= sc_def2;
-	#endif
 
 		//Minimum chances
 		switch (type) {
@@ -6611,9 +6499,6 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			if(sd->sc.data[SC_TARGET_BLOOD])
 				rate -= rate*sd->sc.data[SC_TARGET_BLOOD]->val1/100;
 		}
-
-		//Aegis accuracy
-		if(rate > 0 && rate%10 != 0) rate += (10 - rate%10);
 	}
 
 	if(!(rnd()%10000 < rate))
@@ -6625,14 +6510,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	//Rate reduction
 	if(flag&2)
 		return tick;
-	
-	#if VERSION != 1
-	tick -= tick*tick_def/100;
-	// Changed to 5 seconds according to recent tests [Playtester]
-	if(type == SC_ANKLESNARE && tick < 5000)
-		tick = 5000;
-	return tick<=0?0:tick;
-	#else
+
 	tick -= tick*tick_def/10000;
 	tick -= tick_def2;
 	
@@ -6641,7 +6519,6 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		case SC_ANKLESNARE:
 		case SC_MARSHOFABYSS:
 		case SC_STASIS:
-		case SC_DEEP_SLEEP:
 			tick = max(tick, 5000); //Minimum duration 5s
 			break;
 		case SC_BURNING:
@@ -6655,7 +6532,6 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	}
 
 	return tick;
-	#endif
 }
 /* [Ind] fast-checkin sc-display array */
 void status_display_add(struct map_session_data *sd, enum sc_type type, int dval1, int dval2, int dval3) {
@@ -7121,12 +6997,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_NEEDLE_OF_PARALYZE:
 			case SC_DEEP_SLEEP:
 			case SC_COLD:
-			case SC__ENERVATION:
-			case SC__GROOMY:
-			case SC__IGNORANCE:
-			case SC__LAZINESS:
-			case SC__UNLUCKY:
-			case SC__WEAKNESS:
 
 				// Exploit prevention - kRO Fix
 			case SC_PYREXIA:
@@ -7142,6 +7012,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_WUGBITE:
 			case SC_ELECTRICSHOCKER:
 			case SC_MAGNETICFIELD:
+
+			// Masquerades
+			case SC__ENERVATION:
+			case SC__GROOMY:
+			case SC__LAZINESS:
+			case SC__UNLUCKY:
+			case SC__WEAKNESS:
+			case SC__IGNORANCE:
 
 				return 0;
 		}
@@ -10268,6 +10146,8 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			break;
 
 		case SC_POISON:
+			if(status->hp <= max(status->max_hp>>2, sce->val4)) //Stop damaging after 25% HP left.
+			break;
 		case SC_DPOISON:
 			if(--(sce->val3) > 0) {
 				if(!sc->data[SC_SLOWPOISON]) {
@@ -10277,7 +10157,6 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 							mob_log_damage((TBL_MOB *)bl,src,sce->val4);
 					}
 					map_freeblock_lock();
-					if(status->hp <= max(status->max_hp>>2, sce->val4)) //Stop damaging after 25% HP left.
 						status_zap(bl, sce->val4, 0);
 					if(sc->data[type]) {  // Check if the status still last ( can be dead since then ).
 						sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
@@ -10353,7 +10232,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			}
 			break;
 
-		case SC_DANCING: { //?_???X?X?L???"???SP???
+		case SC_DANCING: { //SP consumption by time of dancing skills
 				int s = 0;
 				int sp = 1;
 				if(--sce->val3 <= 0)
@@ -10663,12 +10542,12 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			break;
 
 		case SC_CAMOUFLAGE:
-			if (!status_charge(bl, 0, 7 - sce->val1))
-				break;
-			if (--sce->val4 >= 0)
-				sce->val3++;
+			if(--(sce->val4) > 0){
+				status_charge(bl,0,7 - sce->val1);
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 			return 0;
+		}
+		break;
 
 		case SC__REPRODUCE:
 			if(!status_charge(bl, 0, 1))
@@ -11041,7 +10920,6 @@ int status_get_weapon_atk(struct block_list *bl, struct weapon_atk *watk, int fl
 	int min = 0, max = 0, dstr;
 	float strdex_bonus, variance;
 	struct status_change *sc = status_get_sc(bl);
-	struct status_data *status = status_get_status_data(bl);
 
 	if (bl->type == BL_PC && watk->atk) {
 		if ( flag&2 )
@@ -11220,16 +11098,6 @@ int status_change_clear_buffs(struct block_list *bl, int type)
 		}
 		status_change_end(bl, (sc_type)i, INVALID_TIMER);
 	}
-
-	//cleaning all extras vars
-	sc->comet_x = 0;
-	sc->comet_y = 0;
-
-	sc->bs_counter = 0;
-
-#if VERSION != 1
-	sc->sg_counter = 0;
-#endif
 	return 0;
 }
 
