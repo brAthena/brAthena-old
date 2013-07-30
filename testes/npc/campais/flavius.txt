@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/He/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/He/brA: 1.3/1.4/1.4                         |
+//   | Versões He/brA: 1.3/1.4/1.4                            |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: NPC's de Flavius.                           |
+//   | Descrição: NPC's de Flavius.                           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 
@@ -126,9 +126,9 @@ L_OnPlayerQuit:
 	
 OnMatchOver:
 	if( $@FlaviusBG1_id1 || $@FlaviusBG1_id2 ) {
-		bg_match_over("Flavius");
 		queuedel($@Croix_QueueBG1);
 		queuedel($@Guill_QueueBG1);
+		bg_match_over("Flavius");
 	}
 	if( $@FlaviusBG1_id1 ) { bg_destroy $@FlaviusBG1_id1; set $@FlaviusBG1_id1, 0; }
 	if( $@FlaviusBG1_id2 ) { bg_destroy $@FlaviusBG1_id2; set $@FlaviusBG1_id2, 0; }
@@ -191,11 +191,9 @@ OnMyMobDead:
 			donpcevent "time#bat_b01::OnEnable";
 			donpcevent "start#bat_b01::onReset";
 		}
-		donpcevent "#bat_b01_timer::OnStop";
 		bg_updatescore "bat_b01",$@Guill_ScoreBG1,$@Croix_ScoreBG1;
 		bg_warp $@FlaviusBG1_id1,"bat_b01",10,290;
 		bg_warp $@FlaviusBG1_id2,"bat_b01",390,10;
-		donpcevent "#bat_b01_timer::OnEnable";
 	}
 	end;
 }

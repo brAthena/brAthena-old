@@ -5277,15 +5277,21 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				break ;
 			}
 		case AL_HEAL:
-		case ALL_RESURRECTION:
-		case PR_ASPERSIO:
-			/**
-			 * Arch Bishop
-			 **/
+
+		/**
+		 * Arch Bishop
+		 **/
 		case AB_RENOVATIO:
 		case AB_HIGHNESSHEAL:
+		case AL_INCAGI:	
+			if(sd && dstsd && pc_ismadogear(dstsd)) {
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_TOTARGET,0);
+				return 0;
+			}
+		case ALL_RESURRECTION:
+		case PR_ASPERSIO:
 			//Apparently only player casted skills can be offensive like this.
-			if(sd && battle_check_undead(tstatus->race,tstatus->def_ele)) {
+			if(sd && battle_check_undead(tstatus->race,tstatus->def_ele)  && skill_id != AL_INCAGI) {
 				if(battle_check_target(src, bl, BCT_ENEMY) < 1) {
 					//Offensive heal does not works on non-enemies. [Skotlex]
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
@@ -5345,16 +5351,23 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 	switch(skill_id) {
 		case HLIF_HEAL: //[orn]
 		case AL_HEAL:
-			/**
-			 * Arch Bishop
-			 **/
-		case AB_HIGHNESSHEAL: {
-				int heal = skill_calc_heal(src, bl, skill_id, skill_lv, true);
+		/**
+		 * Arch Bishop
+		 **/
+		case AB_HIGHNESSHEAL:
+			{
+				int heal = skill_calc_heal(src, bl, (skill_id == AB_HIGHNESSHEAL)?AL_HEAL:skill_id, (skill_id == AB_HIGHNESSHEAL)?10:skill_lv, true);
 				int heal_get_jobexp;
+				//Highness Heal: starts at 1.5 boost + 0.5 for each level
+				if(skill_id == AB_HIGHNESSHEAL) {
+					heal = heal * ( 15 + 5 * skill_lv ) / 10;
+				}
 				if(status_isimmune(bl) ||
-				   (dstmd && (dstmd->class_ == MOBID_EMPERIUM || mob_is_battleground(dstmd))) ||
-				   (dstsd && pc_ismadogear(dstsd))) //Mado is immune to heal
+						(dstmd && (dstmd->class_ == MOBID_EMPERIUM || mob_is_battleground(dstmd))))
 					heal=0;
+
+				if(sd && dstsd && sd->status.partner_id == dstsd->status.char_id && (sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE && sd->status.sex == 0)
+					heal = heal*2;
 
 				if(tsc && tsc->count) {
 					if(tsc->data[SC_KAITE] && !(sstatus->mode&MD_BOSS)) {
@@ -16526,13 +16539,8 @@ int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, 
 			 * Guilotine Cross
 			 **/
 			case GC_CREATENEWPOISON:
-				{
-					const int min[] = {2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
-					const int max[] = {4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
-					uint16 lv = pc_checkskill(sd,GC_RESEARCHNEWPOISON);
-					make_per = 3000 + 500 * lv ;
-					qty = min[lv] + rand()%(max[lv] - min[lv]);
-				}
+				make_per = 3000 + 500 * pc_checkskill(sd,GC_RESEARCHNEWPOISON);
+				qty = 1+rnd()%pc_checkskill(sd,GC_RESEARCHNEWPOISON);
 				break;
 			case GN_CHANGEMATERIAL:
 				for(i=0; i<MAX_SKILL_PRODUCE_DB; i++)
