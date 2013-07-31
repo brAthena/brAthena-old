@@ -1795,6 +1795,15 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 	//You cannot hide from ground skills.
 	if(skill_get_ele(skill_id,1) == ELE_EARTH)   //TODO: Need Skill Lv here :/
 		hide_flag &= ~OPTION_HIDE;
+	else {
+		switch (skill_id) {
+			case LG_OVERBRAND:
+			case LG_OVERBRAND_BRANDISH:
+			case LG_OVERBRAND_PLUSATK:
+				hide_flag &=~ OPTION_CLOAK|OPTION_CHASEWALK;
+				break;
+		}
+	}
 
 	switch(target->type) {
 		case BL_PC: {

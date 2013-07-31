@@ -950,6 +950,9 @@ struct clif_interface {
 	void (*status_change) (struct block_list *bl,int type,int flag,int tick,int val1, int val2, int val3);
 	void (*scriptclear) (struct map_session_data *sd, int npcid);
 	void (*cart_additem_ack) (struct map_session_data *sd, int flag);
+#if PACKETVER < 20091103
+  void (*spawn_unit2) (struct block_list* bl, enum send_target target);
+#endif
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);

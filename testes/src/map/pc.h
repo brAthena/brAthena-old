@@ -24,16 +24,17 @@
 #include "battle.h" // battle_config
 #include "battleground.h"
 #include "buyingstore.h"  // struct s_buyingstore
-#include "itemdb.h" // MAX_ITEMGROUP
+#include "itemdb.h"
+#include "log.h"
 #include "map.h" // RC_MAX
+#include "mob.h"
+#include "pc_groups.h"
 #include "script.h" // struct script_reg, struct script_regstr
 #include "searchstore.h"  // struct s_search_store_info
 #include "status.h" // OPTION_*, struct weapon_atk
 #include "unit.h" // unit_stop_attack(), unit_stop_walking()
 #include "vending.h" // struct s_vending
-#include "mob.h"
-#include "log.h"
-#include "pc_groups.h"
+
 
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
@@ -1000,6 +1001,6 @@ void pc_baselevelchanged(struct map_session_data *sd);
 #define pc_isvip(sd) ((sd->group_id==bra_config.level_vip?1:0)) // Verificação vip de forma rápida.
 
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
-int pc_level_penalty_mod(struct map_session_data *sd, int mob_level, uint32 mob_race, uint32 mob_mode, int type);
+int pc_level_penalty_mod(int diff, unsigned char race, unsigned short mode, int type);
 #endif
 #endif /* _PC_H_ */

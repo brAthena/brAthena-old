@@ -968,14 +968,10 @@ int party_exp_share(struct party_data *p, struct block_list *src, unsigned int b
 
 	for(i = 0; i < c; i++) {
 #ifdef RENEWAL_EXP
-		if(!(src && src->type == BL_MOB && ((TBL_MOB *)src)->db->mexp)) {
-		TBL_MOB *md = BL_CAST(BL_MOB, src);
-		int rate = 0;
+		if(!(src && src->type == BL_MOB && ((TBL_MOB*)src)->db->mexp)) {
+			struct mob_data *md = (TBL_MOB*)src;
+			int rate = pc_level_penalty_mod(md->level - (sd[i])->status.base_level, md->status.race, md->status.mode, 1);
 
-		if (!md)
-			return 0;
-
-			rate = pc_level_penalty_mod(sd[i], md->db->lv, md->db->status.race, md->db->status.mode, 1);
 			base_exp = (unsigned int)cap_value(base_exp_bonus * rate / 100, 1, UINT_MAX);
 			job_exp = (unsigned int)cap_value(job_exp_bonus * rate / 100, 1, UINT_MAX);
 		}

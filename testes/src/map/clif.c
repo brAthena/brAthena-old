@@ -965,7 +965,7 @@ void clif_set_unit_idle(struct block_list* bl, struct map_session_data *tsd, enu
 	clif_send(&p,sizeof(p),tsd?&tsd->bl:bl,target);
 
 	if( disguised(bl) ) {
-#if PACKETVER >= 20071106
+#if PACKETVER >= 20091103
 		p.objecttype = pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 		p.GID = -bl->id;
 #else
@@ -975,177 +975,57 @@ void clif_set_unit_idle(struct block_list* bl, struct map_session_data *tsd, enu
 	}
 
 }
-/* todo for packetver 20091103 0x7c non-pc-looking unit handling */
-int clif_spawn_unit2(struct block_list* bl, enum send_target target) {
-	return 0;
-	/*struct map_session_data* sd;
+#if PACKETVER < 20091103
+/* for 'packetver < 20091103' 0x7c non-pc-looking unit handling */
+void clif_spawn_unit2(struct block_list* bl, enum send_target target) {
+	struct map_session_data* sd;
 	struct status_change* sc = status_get_sc(bl);
 	struct view_data* vd = status_get_viewdata(bl);
-	unsigned char *buf = WBUFP(buffer,0);
-#if PACKETVER < 20091103
-	bool type = !pcdb_checkid(vd->class_);
-#endif
-	unsigned short offset = 0;
-#if PACKETVER >= 20091103
-	const char *name;
-#endif
+	struct packet_spawn_unit2 p;
+	int g_id = status_get_guild_id(bl);
+
 	sd = BL_CAST(BL_PC, bl);
 
-#if PACKETVER < 20091103
-	if(type)
-		WBUFW(buf,0) = 0x7c;
-	else
-#endif
-#if PACKETVER < 4
-		WBUFW(buf,0) = 0x79;
-#elif PACKETVER < 7
-	WBUFW(buf,0) = 0x1d9;
-#elif PACKETVER < 20080102
-	WBUFW(buf,0) = 0x22b;
-#elif PACKETVER < 20091103
-	WBUFW(buf,0) = 0x2ed;
-#elif PACKETVER < 20101124
-	WBUFW(buf,0) = 0x7f8;
-#else
-	WBUFW(buf,0) = 0x858;
-#endif
-	
-#if PACKETVER >= 20091103
-	name = status_get_name(bl);
-#if PACKETVER < 20110111
-	WBUFW(buf,2) = (spawn?62:63)+strlen(name);
-#else
-	WBUFW(buf,2) = (spawn?64:65)+strlen(name);
-#endif
-	WBUFB(buf,4) = clif_bl_type(bl);
-	offset+=3;
-	buf = WBUFP(buffer,offset);
-#elif PACKETVER >= 20071106
-	if (type) { //Non-player packets
-		WBUFB(buf,2) = clif_bl_type(bl);
-		offset++;
-		buf = WBUFP(buffer,offset);
+	p.PacketType = spawn_unit2Type;
+	p.objecttype = clif_bl_type(bl);
+	p.GID = bl->id;
+	p.speed = iStatus->get_speed(bl);
+	p.bodyState = (sc) ? sc->opt1 : 0;
+	p.healthState = (sc) ? sc->opt2 : 0;
+	p.effectState = (sc) ? sc->option : bl->type == BL_NPC ? ((TBL_NPC*)bl)->option : 0;
+	p.head = vd->hair_style;
+	p.weapon = vd->weapon;
+	p.accessory = vd->head_bottom;
+	p.job = vd->class_;
+	p.shield = vd->shield;
+	p.accessory2 = vd->head_top;
+	p.accessory3 = vd->head_mid;
+	if( bl->type == BL_NPC && vd->class_ == FLAG_CLASS ) { //The hell, why flags work like this?
+		p.accessory = g_id;
+		p.accessory2 = GetWord(g_id, 1);
+		p.accessory3 = GetWord(g_id, 0);
 	}
-#endif
-	WBUFL(buf, 2) = bl->id;
-	WBUFW(buf, 6) = status_get_speed(bl);
-	WBUFW(buf, 8) = (sc)? sc->opt1 : 0;
-	WBUFW(buf,10) = (sc)? sc->opt2 : 0;
-#if PACKETVER < 20091103
-	if (type&&spawn) { //uses an older and different packet structure
-		WBUFW(buf,12) = (sc)? sc->option : 0;
-		WBUFW(buf,14) = vd->hair_style;
-		WBUFW(buf,16) = vd->weapon;
-		WBUFW(buf,18) = vd->head_bottom;
-		WBUFW(buf,20) = vd->class_; //Pet armor (ignored by client)
-		WBUFW(buf,22) = vd->shield;
-	} else {
-#endif
-#if PACKETVER >= 20091103
-		WBUFL(buf,12) = (sc)? sc->option : 0;
-		offset+=2;
-		buf = WBUFP(buffer,offset);
-#elif PACKETVER >= 7
-		if (!type) {
-			WBUFL(buf,12) = (sc)? sc->option : 0;
-			offset+=2;
-			buf = WBUFP(buffer,offset);
-		} else
-			WBUFW(buf,12) = (sc)? sc->option : 0;
-#else
-		WBUFW(buf,12) = (sc)? sc->option : 0;
-#endif
-		WBUFW(buf,14) = vd->class_;
-		WBUFW(buf,16) = vd->hair_style;
-		WBUFW(buf,18) = vd->weapon;
-#if PACKETVER < 4
-		WBUFW(buf,20) = vd->head_bottom;
-		WBUFW(buf,22) = vd->shield;
-#else
-		WBUFW(buf,20) = vd->shield;
-		WBUFW(buf,22) = vd->head_bottom;
-#endif
-#if PACKETVER < 20091103
-	}
-#endif
-	WBUFW(buf,24) = vd->head_top;
-	WBUFW(buf,26) = vd->head_mid;
-	
-	if( bl->type == BL_NPC && vd->class_ == FLAG_CLASS )
-	{	//The hell, why flags work like this?
-		WBUFW(buf,22) = status_get_emblem_id(bl);
-		WBUFW(buf,24) = GetWord(status_get_guild_id(bl), 1);
-		WBUFW(buf,26) = GetWord(status_get_guild_id(bl), 0);
-	}
-	
-	WBUFW(buf,28) = vd->hair_color;
-	WBUFW(buf,30) = vd->cloth_color;
-	WBUFW(buf,32) = (sd)? sd->head_dir : 0;
-#if PACKETVER < 20091103
-	if (type&&spawn) { //End of packet 0x7c
-		WBUFB(buf,34) = (sd)?sd->status.karma:0; // karma
-		WBUFB(buf,35) = vd->sex;
-		WBUFPOS(buf,36,bl->x,bl->y,unit_getdir(bl));
-		WBUFB(buf,39) = 0;
-		WBUFB(buf,40) = 0;
-		return packet_len(0x7c);
-	}
-#endif
-#if PACKETVER >= 20110111
-	WBUFW(buf,34) = vd->robe;
-	offset+= 2;
-	buf = WBUFP(buffer,offset);
-#endif
-	WBUFL(buf,34) = status_get_guild_id(bl);
-	WBUFW(buf,38) = status_get_emblem_id(bl);
-	WBUFW(buf,40) = (sd)? sd->status.manner : 0;
-#if PACKETVER >= 20091103
-	WBUFL(buf,42) = (sc)? sc->opt3 : 0;
-	offset+=2;
-	buf = WBUFP(buffer,offset);
-#elif PACKETVER >= 7
-	if (!type) {
-		WBUFL(buf,42) = (sc)? sc->opt3 : 0;
-		offset+=2;
-		buf = WBUFP(buffer,offset);
-	} else
-		WBUFW(buf,42) = (sc)? sc->opt3 : 0;
-#else
-	WBUFW(buf,42) = (sc)? sc->opt3 : 0;
-#endif
-	WBUFB(buf,44) = (sd)? sd->status.karma : 0;
-	WBUFB(buf,45) = vd->sex;
-	WBUFPOS(buf,46,bl->x,bl->y,unit_getdir(bl));
-	WBUFB(buf,49) = (sd)? 5 : 0;
-	WBUFB(buf,50) = (sd)? 5 : 0;
-	if (!spawn) {
-		WBUFB(buf,51) = vd->dead_sit;
-		offset++;
-		buf = WBUFP(buffer,offset);
-	}
-	WBUFW(buf,51) = clif_setlevel(bl);
-#if PACKETVER < 20091103
-	if (type) //End for non-player packet
-		return packet_len(WBUFW(buffer,0));
-#endif
-#if PACKETVER >= 20080102
-	WBUFW(buf,53) = sd?sd->user_font:0;
-#endif
-#if PACKETVER >= 20091103
-	memcpy((char*)WBUFP(buf,55), name, NAME_LENGTH);
-	return WBUFW(buffer,2);
-#else
-	return packet_len(WBUFW(buffer,0));
-#endif
-	 */
+	p.headpalette = vd->hair_color;
+	p.bodypalette = vd->cloth_color;
+	p.headDir = (sd)? sd->head_dir : 0;
+	p.isPKModeON = (sd) ? sd->status.karma : 0;
+	p.sex = vd->sex;
+	WBUFPOS(&p.PosDir[0],0,bl->x,bl->y,unit_getdir(bl));
+	p.xSize = p.ySize = (sd) ? 5 : 0;
+	p.clevel = clif_setlevel(bl);
 }
-
+#endif
 void clif_spawn_unit(struct block_list* bl, enum send_target target) {
 	struct map_session_data* sd;
 	struct status_change* sc = status_get_sc(bl);
 	struct view_data* vd = status_get_viewdata(bl);
 	struct packet_spawn_unit p;
 	int g_id = status_get_guild_id(bl);
+
+#if PACKETVER < 20091103
+	if( !pcdb_checkid(vd->class_) )
+		return clif->spawn_unit2(bl,target);
+#endif
 
 	sd = BL_CAST(BL_PC, bl);
 
@@ -1205,7 +1085,7 @@ void clif_spawn_unit(struct block_list* bl, enum send_target target) {
 	if( disguised(bl) ) {
 		if( sd->status.class_ != sd->disguise )
 			clif_send(&p,sizeof(p),bl,target);
-#if PACKETVER >= 20071106
+#if PACKETVER >= 20091103
 		p.objecttype = pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 		p.GID = -bl->id;
 #else
@@ -1282,7 +1162,7 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 	clif_send(&p,sizeof(p),tsd?&tsd->bl:bl,target);
 
 	if( disguised(bl) ) {
-#if PACKETVER >= 20071106
+#if PACKETVER >= 20091103
 		p.objecttype = pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 		p.GID = -bl->id;
 #else
@@ -18056,6 +17936,9 @@ void clif_defaults(void) {
 	clif->status_change = clif_status_change;
 	clif->addcards2 = clif_addcards2;
 	clif->cart_additem_ack = clif_cart_additem_ack;
+#if PACKETVER < 20091103
+	clif->spawn_unit2 = clif_spawn_unit2;
+#endif
 	/* Pacotes de Entrada */
 	clif->pWantToConnection = clif_parse_WantToConnection;
 	clif->pLoadEndAck = clif_parse_LoadEndAck;

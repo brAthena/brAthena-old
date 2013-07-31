@@ -3480,6 +3480,11 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 					break;
 				case LG_OVERBRAND_BRANDISH:
 				case LG_OVERBRAND_PLUSATK:
+					if(status_check_skilluse(src, target, skl->skill_id, 1) )
+						skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
+					else
+						clif_skill_damage(src, target, tick, status_get_amotion(src), status_get_dmotion(target), 0, 1, skl->skill_id, skl->skill_lv, skill_get_hit(skl->skill_id));
+					break;
 				case SR_KNUCKLEARROW:
 					skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
 					break;
@@ -4653,7 +4658,10 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case LG_OVERBRAND:
-			skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag|SD_LEVEL);
+				if(status_check_skilluse(src, bl, skill_id, 1) )
+					skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag|SD_LEVEL);
+				else
+					clif_skill_damage(src, bl, tick, status_get_amotion(src), status_get_dmotion(bl), 0, 1, skill_id, skill_lv, skill_get_hit(skill_id));
 			break;
 
 		case LG_OVERBRAND_BRANDISH:
@@ -16539,8 +16547,13 @@ int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, 
 			 * Guilotine Cross
 			 **/
 			case GC_CREATENEWPOISON:
-				make_per = 3000 + 500 * pc_checkskill(sd,GC_RESEARCHNEWPOISON);
-				qty = 1+rnd()%pc_checkskill(sd,GC_RESEARCHNEWPOISON);
+				{
+					const int min[10] = {2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
+					const int max[10] = {4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
+					int lv = max(0, pc_checkskill(sd,GC_RESEARCHNEWPOISON) - 1);
+					qty = min[lv] + rnd()%(max[lv] - min[lv]);
+					make_per = 3000 + 500 * (lv+1);
+				}
 				break;
 			case GN_CHANGEMATERIAL:
 				for(i=0; i<MAX_SKILL_PRODUCE_DB; i++)

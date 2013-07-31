@@ -26,6 +26,7 @@
 #include "../common/conf.h"
 #include "../common/mmo.h" //NAME_LENGTH
 
+#include "pc.h"
 #include "atcommand.h" // get_atcommand_level()
 #include "battle.h" // battle_config
 #include "battleground.h"
@@ -52,7 +53,6 @@
 #include "skill.h"
 #include "status.h" // struct status_data
 #include "storage.h"
-#include "pc.h"
 #include "pc_groups.h"
 #include "quest.h"
 
@@ -9546,13 +9546,9 @@ int pc_del_charm(struct map_session_data *sd,int count,int type)
  * Renewal EXP/Itemdrop rate modifier base on level penalty
  * 1=exp 2=itemdrop
  *------------------------------------------*/
-int pc_level_penalty_mod(struct map_session_data *sd, int mob_level, uint32 mob_race, uint32 mob_mode, int type)
+int pc_level_penalty_mod(int diff, unsigned char race, unsigned short mode, int type)
 {
-	int diff, rate = 100, i;
-
-	nullpo_ret(sd);
-
-	diff = mob_level - sd->status.base_level;
+	int rate = 100, i;
 
 	if(diff < 0)
 		diff = MAX_LEVEL + (~diff + 1);
@@ -9560,8 +9556,8 @@ int pc_level_penalty_mod(struct map_session_data *sd, int mob_level, uint32 mob_
 	for(i=0; i<RC_MAX; i++) {
 		int tmp;
 
-		if(mob_race != i){
-			if(mob_mode&MD_BOSS && i < RC_BOSS)
+		if(race != i) {
+			if( mode&MD_BOSS && i < RC_BOSS )
 				i = RC_BOSS;
 			else if(i <= RC_BOSS)
 				continue;

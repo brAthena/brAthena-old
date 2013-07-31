@@ -6675,7 +6675,6 @@ ACMD_FUNC(mobinfo)
 	struct mob_db *mob, *mob_array[MAX_SEARCH];
 	int count;
 	int i, j, k;
-	unsigned int base_exp, job_exp;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	memset(atcmd_output2, '\0', sizeof(atcmd_output2));
@@ -6703,14 +6702,15 @@ ACMD_FUNC(mobinfo)
 		count = MAX_SEARCH;
 	}
 	for(k = 0; k < count; k++) {
+		unsigned int base_exp, job_exp;
 		mob = mob_array[k];
 		base_exp = mob->base_exp;
 		job_exp = mob->job_exp;
 
 #ifdef RENEWAL_EXP
 		if(battle_config.atcommand_mobinfo_type) {
-			base_exp = base_exp * pc_level_penalty_mod(sd, mob->lv, mob->status.race, mob->status.mode, 1) / 100;
-			job_exp = job_exp * pc_level_penalty_mod(sd, mob->lv, mob->status.race, mob->status.mode, 1) / 100;
+			base_exp = base_exp * pc_level_penalty_mod(mob->lv  - sd->status.base_level, mob->status.race, mob->status.mode, 1) / 100;
+			job_exp = job_exp * pc_level_penalty_mod(mob->lv - sd->status.base_level, mob->status.race, mob->status.mode, 1) / 100;
 		}
 #endif
 		// stats
@@ -6742,9 +6742,14 @@ ACMD_FUNC(mobinfo)
 			droprate = mob->dropitem[i].p;
 
 #ifdef RENEWAL_DROP
-			if(battle_config.atcommand_mobinfo_type)
-				droprate = droprate * pc_level_penalty_mod(sd, mob->lv, mob->status.race, mob->status.mode, 2) / 100;
+			if(battle_config.atcommand_mobinfo_type) {
+				droprate = droprate * pc_level_penalty_mod(mob->lv - sd->status.base_level, mob->status.race, mob->status.mode, 2) / 100;
+
+			if (droprate <= 0 && !battle_config.drop_rate0item)
+					droprate = 1;
+			}
 #endif
+
 			if (item_data->slot)
 				sprintf(atcmd_output2, " - %s[%d]  %02.02f%%", item_data->jname, item_data->slot, (float)droprate / 100);
 			else
@@ -6853,6 +6858,7 @@ ACMD_FUNC(homlevel)
 {
 	TBL_HOM *hd;
 	int level = 0, nooverflow;
+	enum homun_type htype;
 
 	nullpo_retr(-1, sd);
 
@@ -6875,6 +6881,32 @@ ACMD_FUNC(homlevel)
 
 	if (hd->homunculus.level >= nooverflow) // Already reach maximum level
 		return -1;
+
+	if((htype = hom_class2type(hd->homunculus.class_)) == -1) {
+		ShowError("atcommand_homlevel: invalid homun class %d (player %s)\n", hd->homunculus.class_,sd->status.name);
+		return -1;
+	}
+
+	switch(htype) {
+		case HT_REG:
+		case HT_EVO:
+			if(hd->homunculus.level >= battle_config.hom_max_level) {
+				snprintf(atcmd_output, sizeof(atcmd_output), msg_txt(1480), hd->homunculus.level); // Homun reached its maximum level of '%d'
+				clif_displaymessage(fd, atcmd_output);
+				return true;
+			}
+			break;
+		case HT_S:
+			if(hd->homunculus.level >= battle_config.hom_S_max_level ) {
+				snprintf(atcmd_output, sizeof(atcmd_output), msg_txt(1480), hd->homunculus.level); // Homun reached its maximum level of '%d'
+				clif_displaymessage(fd, atcmd_output);
+				return true;
+			}
+			break;
+		default:
+			ShowError("atcommand_homlevel: unknown htype '%d'\n",htype);
+			return -1;
+	}
 
 	do{
 		hd->homunculus.exp += hd->exp_next;
@@ -6941,11 +6973,6 @@ ACMD_FUNC(makehomun)
 	int homunid;
 	nullpo_retr(-1, sd);
 
-	if(sd->status.hom_id) {
-		clif_displaymessage(fd, msg_txt(450));
-		return -1;
-	}
-
 	if(!message || !*message) {
 	const char *text;
 	text = atcommand_help_string(command);
@@ -6959,6 +6986,20 @@ ACMD_FUNC(makehomun)
 	}
 
 	homunid = atoi(message);
+
+	if(homunid == -1 && sd->status.hom_id && !merc_is_hom_active(sd->hd)) {
+		if(!sd->hd->homunculus.vaporize )
+			merc_resurrect_homunculus(sd, 100, sd->bl.x, sd->bl.y);
+		else
+			merc_call_homunculus(sd);
+		return 0;
+	}
+
+	if(sd->status.hom_id) {
+		clif_displaymessage(fd, msg_txt(450));
+		return -1;
+	}
+
 	if(homunid < HM_CLASS_BASE || homunid > HM_CLASS_BASE + MAX_HOMUNCULUS_CLASS - 1) {
 		clif_displaymessage(fd, msg_txt(1257)); // Invalid Homunculus ID.
 		return -1;
@@ -7221,10 +7262,12 @@ ACMD_FUNC(iteminfo)
 
 		if(item_data->maxchance == -1)
 			strcpy(atcmd_output, msg_txt(1281)); //  - Available in the shops only.
-		else if(!battle_config.atcommand_mobinfo_type && item_data->maxchance)
-			sprintf(atcmd_output, msg_txt(1282), (float)item_data->maxchance / 100);  //  - Maximal monsters drop chance: %02.02f%%
-		else
-			strcpy(atcmd_output, msg_txt(1283)); //  - Monsters don't drop this item.
+		else if(!battle_config.atcommand_mobinfo_type) {
+			if( item_data->maxchance )
+				sprintf(atcmd_output, msg_txt(1282), (float)item_data->maxchance / 100);  //  - Maximal monsters drop chance: %02.02f%%
+			else
+				strcpy(atcmd_output, msg_txt(1283)); //  - Monsters don't drop this item.
+		}
 		clif_displaymessage(fd, atcmd_output);
 
 	}

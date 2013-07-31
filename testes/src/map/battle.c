@@ -5173,16 +5173,21 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 
 //Calculates BF_WEAPON returned damage.
 int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int *dmg, int flag, uint16 skill_id, int *delay) {
-	int rdamage = 0, damage = *dmg, rdelay = *delay, trdamage = 0;
+	int rdamage = 0, damage = *dmg, trdamage = 0;
 	struct map_session_data* sd;
 	struct status_change* sc;
+#if VERSION == 1
 	int max_reflect_damage;
 
+	max_reflect_damage = max(status_get_max_hp(bl), status_get_max_hp(bl) * status_get_lv(bl) / 100);
+#endif
 	sd = BL_CAST(BL_PC, bl);
 	sc = status_get_sc(bl);
-	max_reflect_damage = max(status_get_max_hp(bl), status_get_max_hp(bl) * status_get_lv(bl) / 100);
-
+#if VERSION == 1
 #define NORMALIZE_RDAMAGE(d){ trdamage += rdamage = max(1, min(max_reflect_damage, d)); }
+#else
+#define NORMALIZE_RDAMAGE(d){ trdamage += rdamage = max(1, d); }
+#endif
 
 	 if( sc && sc->data[SC_CRESCENTELBOW] && !is_boss(src) && rnd()%100 < sc->data[SC_CRESCENTELBOW]->val2 ){
 		//ATK [{(Target HP / 100) x Skill Level} x Caster Base Level / 125] % + [Received damage x {1 + (Skill Level x 0.2)}]
@@ -5200,18 +5205,18 @@ int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int
 	if(flag & BF_SHORT) {//Bounces back part of the damage.
 		if (sd && sd->bonus.short_weapon_damage_return) {
 			NORMALIZE_RDAMAGE(damage * sd->bonus.short_weapon_damage_return / 100);
-			rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+			*delay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
 		}
 		if(sc && sc->count) {
 			if(sc->data[SC_REFLECTSHIELD] && skill_id != WS_CARTTERMINATION ){
 				NORMALIZE_RDAMAGE(damage * sc->data[SC_REFLECTSHIELD]->val2 / 100);
-				rdelay = clif_skill_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, CR_REFLECTSHIELD, 1, 4);
+				*delay = clif_skill_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, CR_REFLECTSHIELD, 1, 4);
 			}
 			if(sc->data[SC_LG_REFLECTDAMAGE] && rand()%100 < (30 + 10*sc->data[SC_LG_REFLECTDAMAGE]->val1)) {
 				if( skill_id != HT_LANDMINE && skill_id  != HT_CLAYMORETRAP
 					&& skill_id  != RA_CLUSTERBOMB && (skill_id <= RA_VERDURETRAP || skill_id  > RA_ICEBOUNDTRAP) && skill_id != MA_LANDMINE) {
 					NORMALIZE_RDAMAGE((*dmg) * sc->data[SC_LG_REFLECTDAMAGE]->val2 / 100);
-					rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+					*delay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
 				}
 			}
 			if(sc->data[SC_DEATHBOUND] && skill_id != WS_CARTTERMINATION && !is_boss(src)) {
@@ -5225,18 +5230,18 @@ int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int
 					skill_blown(bl, src, skill_get_blewcount(RK_DEATHBOUND, sc->data[SC_DEATHBOUND]->val1), unit_getdir(src), 0);
 					if( skill_id )
 						status_change_end(bl, SC_DEATHBOUND, INVALID_TIMER);
-					rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+					*delay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
 			}
 		}
 			if( sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 2 && !is_boss(src) ){
 				NORMALIZE_RDAMAGE(damage * sc->data[SC_SHIELDSPELL_DEF]->val2 / 100);
-				rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+				*delay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
 			}
 		}
 	} else {
 		if (sd && sd->bonus.long_weapon_damage_return){ 
 			NORMALIZE_RDAMAGE(damage * sd->bonus.long_weapon_damage_return / 100);
-			rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+			*delay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
 		}
 	}
 		

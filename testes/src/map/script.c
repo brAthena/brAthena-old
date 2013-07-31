@@ -4399,7 +4399,12 @@ BUILDIN_FUNC(close2)
 	if(sd == NULL)
 		return 0;
 
-	st->state = STOP;
+	if(sd->state.dialog == 1)
+		st->state = STOP;
+	else {
+		ShowWarning("misuse of 'close2'! trying to use it without prior dialog! skipping...\n");
+		script_reportsrc(st);
+	}
 
 	clif_scriptclose(sd, st->oid);
 	return 0;
