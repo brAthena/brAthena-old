@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   | Versões eA/rA/brA: ??/1.1/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Monstros dos Campos de Brasilis.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução [Megasantos]                              |
+//   | 1.2 Tradução conforme bRO [Megasantos]                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -31,5 +32,5 @@ bra_fild01,0,0,0,0	monster	Dokebi	1110,10,5000,0,0
 bra_fild01,0,0,0,0	monster	Selvagem	1166,5,5000,0,0
 bra_fild01,0,0,0,0	monster	Mula sem Cabeça	2071,40,5000,0,0
 bra_fild01,0,0,0,0	monster	Cogumelo Vermelho	1085,5,5000,0,0
-bra_fild01,0,0,0,0	monster	Jaguar	2072,55,5000,0,0
-bra_fild01,0,0,0,0	monster	Tucano	2073,60,5000,0,0
+bra_fild01,0,0,0,0	monster	Espírito da Terra	2072,55,5000,0,0
+bra_fild01,0,0,0,0	monster	Espírito do Ar	2073,60,5000,0,0
