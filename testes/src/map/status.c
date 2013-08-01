@@ -2802,8 +2802,10 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	}
 
 	// Absolute modifiers from passive skills
-	if(pc_checkskill(sd,BS_HILTBINDING)>0)
+#if VERSION != -1
+	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
 		status->str++;
+#endif
 	if((skill=pc_checkskill(sd,SA_DRAGONOLOGY))>0)
 		status->int_ += (skill+1)/2; // +1 INT / 2 lv
 	if((skill=pc_checkskill(sd,AC_OWL))>0)
@@ -2832,8 +2834,8 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	if(sd->status.weapon < MAX_WEAPON_TYPE && sd->weapon_atk[sd->status.weapon])
 		status->batk += sd->weapon_atk[sd->status.weapon];
 	// Absolute modifiers from passive skills
-#if VERSION != 1
-	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0) // it doesn't work in RE.
+#if VERSION == 0
+	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0) // it doesn't work in RE, neither on OT
 		status->batk += 4;
 #endif
 
@@ -3072,7 +3074,11 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 
 	// Weight
 	if((skill=pc_checkskill(sd,MC_INCCARRY))>0)
+#if VERSION == -1
+		sd->max_weight += 1000*skill;
+#else
 		sd->max_weight += 2000*skill;
+#endif
 #if VERSION != -1
 	if(pc_isriding(sd) && pc_checkskill(sd,KN_RIDING)>0)
 		sd->max_weight += 10000;
@@ -3082,7 +3088,11 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	if(sc->data[SC_KNOWLEDGE])
 		sd->max_weight += sd->max_weight*sc->data[SC_KNOWLEDGE]->val1/10;
 	if((skill=pc_checkskill(sd,ALL_INCCARRY))>0)
+#if VERSION == -1
+		sd->max_weight += 1000*skill;
+#else
 		sd->max_weight += 2000*skill;
+#endif
 
 	sd->cart_weight_max = battle_config.max_cart_weight + (pc_checkskill(sd, GN_REMODELING_CART)*5000);
 
@@ -3117,8 +3127,13 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	if((skill=pc_checkskill(sd,CR_TRUST))>0)
 		sd->subele[ELE_HOLY] += skill*5;
 	if((skill=pc_checkskill(sd,BS_SKINTEMPER))>0) {
+
+#if VERSION == -1
+		sd->subele[ELE_FIRE] += skill*5;
+#else
 		sd->subele[ELE_NEUTRAL] += skill;
 		sd->subele[ELE_FIRE] += skill*4;
+#endif
 	}
 	if((skill=pc_checkskill(sd,NC_RESEARCHFE))>0) {
 		sd->subele[ELE_EARTH] += skill*10;
@@ -8013,15 +8028,19 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_OVERTHRUST:
 				//val2 holds if it was casted on self, or is bonus received from others
 				val3 = 5*val1; //Power increase
+#if VERSION != -1
 				if(sd && pc_checkskill(sd,BS_HILTBINDING)>0)
 					tick += tick / 10;
+#endif
 				break;
 			case SC_ADRENALINE2:
 			case SC_ADRENALINE:
 				val3 = (val2) ? 300 : 200; // aspd increase
+#if VERSION != -1
 			case SC_WEAPONPERFECT:
 				if(sd && pc_checkskill(sd,BS_HILTBINDING)>0)
 					tick += tick / 10;
+#endif
 				break;
 			case SC_LKCONCENTRATION:
 				val2 = 5*val1; //Batk/Watk Increase

@@ -1216,7 +1216,9 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case AM_ACIDTERROR:
+#if VERSION != -1
 			sc_start2(bl,SC_BLOODING,(skill_lv*3),skill_lv,src->id,skill_get_time2(skill_id,skill_lv));
+#endif
 			if(skill_break_equip(bl, EQP_ARMOR, 100*skill_get_time(skill_id,skill_lv), BCT_ENEMY))
 				clif_emotion(bl,E_OMG);
 			break;
@@ -10243,7 +10245,11 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 			break;
 		case AM_SPHEREMINE:
 		case AM_CANNIBALIZE: {
+#if VERSION == -1
+				int summons[5] = { 1575, 1575, 1575, 1575, 1575};
+#else
 				int summons[5] = { 1589, 1579, 1575, 1555, 1590 };
+#endif
 				//int summons[5] = { 1020, 1068, 1118, 1500, 1368 };
 				int class_ = skill_id==AM_SPHEREMINE?1142:summons[skill_lv-1];
 				struct mob_data *md;
@@ -13561,9 +13567,14 @@ int skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, 
 		case AM_CANNIBALIZE:
 		case AM_SPHEREMINE: {
 				int c=0;
+#if VERSION == -1
+				int summons[5] = { 1575, 1575, 1575, 1575, 1575 };
+				int maxcount = 3;
+#else
 				int summons[5] = { 1589, 1579, 1575, 1555, 1590 };
 				//int summons[5] = { 1020, 1068, 1118, 1500, 1368 };
 				int maxcount = (skill_id==AM_CANNIBALIZE)? 6-skill_lv : skill_get_maxcount(skill_id,skill_lv);
+#endif
 				int mob_class = (skill_id==AM_CANNIBALIZE)? summons[skill_lv-1] :1142;
 				if(battle_config.land_skill_limit && maxcount>0 && (battle_config.land_skill_limit&BL_PC)) {
 					i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, mob_class, skill_id, &c);
