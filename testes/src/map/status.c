@@ -2987,7 +2987,11 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,TF_MISS))>0)
+#if VERSION == -1
+		status->flee += skill*3;
+#else
 		status->flee += skill*(sd->class_&JOBL_2 && (sd->class_&MAPID_BASEMASK) == MAPID_THIEF? 4 : 3);
+#endif	
 	if((skill=pc_checkskill(sd,MO_DODGE))>0)
 		status->flee += (skill*3)>>1;
 // ----- EQUIPMENT-DEF CALCULATION -----
@@ -6833,7 +6837,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			//Due to the cloaking card, we have to check the wall versus to known
 			//skill level rather than the used one. [Skotlex]
 			//if (sd && val1 < 3 && skill_check_cloaking(bl,NULL))
+#if VERSION != -1
 			if(sd && pc_checkskill(sd, AS_CLOAKING) < 3 && !skill_check_cloaking(bl,NULL))
+#else
+			if(sd && !skill_check_cloaking(bl,NULL))			
+#endif
 				return 0;
 			break;
 		case SC_MODECHANGE: {

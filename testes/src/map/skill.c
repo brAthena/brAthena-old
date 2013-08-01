@@ -968,8 +968,10 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			int i;
 			for(i = 0; i < ARRAYLENGTH(sd->addeff) && sd->addeff[i].flag; i++) {
 				rate = sd->addeff[i].rate;
+#if VERSION != -1
 				if(attack_type&BF_LONG)   // Any ranged physical attack takes status arrows into account (Grimtooth...) [DracoRPG]
 					rate += sd->addeff[i].arrow_rate;
+#endif
 				if(!rate) continue;
 
 				if((sd->addeff[i].flag&(ATF_WEAPON|ATF_MAGIC|ATF_MISC)) != (ATF_WEAPON|ATF_MAGIC|ATF_MISC)) {
@@ -1111,10 +1113,12 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			  )
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			break;
-
+			
+#if VERSION != -1
 		case AS_SONICBLOW:
 			sc_start(bl,SC_STUN,(2*skill_lv+10),skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
+#endif
 #if VERSION == 1
 		case NJ_KAENSIN:
 			unit_set_walkdelay(bl, tick, skill_get_unit_interval(skill_id) * 2, 1);
@@ -1194,12 +1198,20 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case TF_SPRINKLESAND:
+#if VERSION == -1
+			sc_start(bl,SC_BLIND,15,skill_lv,skill_get_time2(skill_id,skill_lv));
+#else
 			sc_start(bl,SC_BLIND,20,skill_lv,skill_get_time2(skill_id,skill_lv));
+#endif
 			break;
 
 		case TF_THROWSTONE:
+#if VERSION == -1
+			if(!sc_start(bl,SC_STUN,5,skill_lv,skill_get_time(skill_id,skill_lv)))
+#else
 			if(!sc_start(bl,SC_STUN,3,skill_lv,skill_get_time(skill_id,skill_lv)))
 			sc_start(bl,SC_BLIND,3,skill_lv,skill_get_time2(skill_id,skill_lv));
+#endif
 			break;
 
 		case NPC_DARKCROSS:
@@ -15368,9 +15380,15 @@ bool skill_check_cloaking(struct block_list *bl, struct status_change_entry *sce
 
 	if(sce) {
 		if(!wall) {
+#if VERSION != -1
 			if(sce->val1 < 3)   //End cloaking.
+#endif
 				status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
+#if VERSION != -1
 			else if(sce->val4&1) {
+#else
+			if(sce->val4&1) {
+#endif
 				//Remove wall bonus
 				sce->val4&=~1;
 				status_calc_bl(bl,SCB_SPEED);
