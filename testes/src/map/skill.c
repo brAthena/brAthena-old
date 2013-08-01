@@ -1089,7 +1089,11 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 
 		case SM_BASH:
 			if(sd && skill_lv > 5 && pc_checkskill(sd,SM_FATALBLOW)>0)
+#if VERSION == -1
+			status_change_start(bl,SC_STUN,(5*(skill_lv-5)),
+#elif
 				status_change_start(bl,SC_STUN,500*(skill_lv-5)*sd->status.base_level/50,
+#endif
 					skill_lv,0,0,0,skill_get_time2(SM_FATALBLOW,skill_lv),0);
 			break;
 
