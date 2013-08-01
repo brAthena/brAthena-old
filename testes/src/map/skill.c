@@ -10833,7 +10833,11 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 
 		case PR_SANCTUARY:
 		case NPC_EVILLAND:
+#if VERSION == -1
+			val1=(skill_lv+3);
+#else
 			val1=(skill_lv+3)*2;
+#endif
 			break;
 
 		case WZ_FIREPILLAR:
@@ -12506,7 +12510,11 @@ int skill_check_condition_char_sub(struct block_list *bl, va_list ap)
 			case PR_BENEDICTIO: {
 					uint8 dir = map_calc_dir(&sd->bl,tsd->bl.x,tsd->bl.y);
 					dir = (unit_getdir(&sd->bl) + dir)%8; //This adjusts dir to account for the direction the sd is facing.
+#if VERSION == -1
+					if((tsd->class_== MAPID_ACOLYTE || tsd->class_== MAPID_PRIEST ) && (dir == 2 || dir == 6) // Holy
+#else
 					if((tsd->class_&MAPID_BASEMASK) == MAPID_ACOLYTE && (dir == 2 || dir == 6)  //Must be standing to the left/right of Priest.
+#endif
 					   && sd->status.sp >= 10)
 						p_sd[(*c)++]=tsd->bl.id;
 					return 1;
@@ -14017,10 +14025,12 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 			if(sc && sc->data[SC_SOULLINK] && sc->data[SC_SOULLINK]->val2 == SL_MONK)
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
+#if VERSION != -1
 		case MO_BODYRELOCATION:
 			if(sc && sc->data[SC_EXPLOSIONSPIRITS])
 				req.spiritball = 0;
 			break;
+#endif
 		case MO_EXTREMITYFIST:
 			if(sc) {
 				if(sc->data[SC_BLADESTOP])

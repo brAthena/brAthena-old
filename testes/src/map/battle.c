@@ -632,8 +632,12 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 	if((skill = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
 		target->type == BL_MOB && //This bonus doesnt work against players.
 		(battle_check_undead(status->race,status->def_ele) || status->race==RC_DEMON))
+#if VERSION == -1
+		damage += (skill * 3);
+#else
 		damage += (int)(skill*(3+sd->status.base_level/20.0));
-		//damage += (skill * 3);
+#endif
+
 	if((skill = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLANT || status->race == RC_FISH))
 		damage += (skill * 5);
 	if((skill = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH))
@@ -1283,7 +1287,11 @@ int battle_calc_defense(int attack_type, struct block_list *src, struct block_li
 #endif
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && //This bonus already doesnt work vs players
 					src->type == BL_MOB && (i=pc_checkskill(tsd,AL_DP)) > 0)
+#if VERSION == -1
+					vit_def += (skill_lv * 3);
+#else
 					vit_def += i*(int)(3 +(tsd->status.base_level+1)*0.04);   // submitted by orn
+#endif
 				if( src->type == BL_MOB && (i=pc_checkskill(tsd,RA_RANGERMAIN))>0 &&
 					(sstatus->race == RC_BRUTE || sstatus->race == RC_FISH || sstatus->race == RC_PLANT) )
 					vit_def += i*5;
@@ -1909,7 +1917,11 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio+= 50 * skill_lv;
 					break;
 				case MO_INVESTIGATE:
+#if VERSION == -1
+					skillratio += (int)(37.5*skill_lv);
+#else
 					skillratio += 75 * skill_lv;
+#endif
 					break;
 				#if VERSION != 1
 				case MO_EXTREMITYFIST:
