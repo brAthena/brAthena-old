@@ -3088,6 +3088,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	if(sc->data[SC_KNOWLEDGE])
 		sd->max_weight += sd->max_weight*sc->data[SC_KNOWLEDGE]->val1/10;
 	if((skill=pc_checkskill(sd,ALL_INCCARRY))>0)
+
 #if VERSION == -1
 		sd->max_weight += 1000*skill;
 #else
@@ -3168,6 +3169,10 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 		}
 		if(sc->data[SC_SIEGFRIED]) {
 			i = sc->data[SC_SIEGFRIED]->val2;
+#if VERSION == -1
+			sd->subele[ELE_WATER] += i;
+			sd->subele[ELE_FIRE] += i;			
+#else
 			sd->subele[ELE_WATER] += i;
 			sd->subele[ELE_EARTH] += i;
 			sd->subele[ELE_FIRE] += i;
@@ -3177,6 +3182,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 			sd->subele[ELE_DARK] += i;
 			sd->subele[ELE_GHOST] += i;
 			sd->subele[ELE_UNDEAD] += i;
+#endif
 		}
 		if(sc->data[SC_PROVIDENCE]) {
 			sd->subele[ELE_HOLY] += sc->data[SC_PROVIDENCE]->val2;

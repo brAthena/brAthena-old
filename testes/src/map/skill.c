@@ -1090,8 +1090,8 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case SM_BASH:
 			if(sd && skill_lv > 5 && pc_checkskill(sd,SM_FATALBLOW)>0)
 #if VERSION == -1
-			status_change_start(bl,SC_STUN,(5*(skill_lv-5)),
-#elif
+				status_change_start(bl,SC_STUN,(5*(skill_lv-5)),
+#else
 				status_change_start(bl,SC_STUN,500*(skill_lv-5)*sd->status.base_level/50,
 #endif
 					skill_lv,0,0,0,skill_get_time2(SM_FATALBLOW,skill_lv),0);
@@ -10927,6 +10927,9 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 		case DC_DONTFORGETME:
 #if VERSION == 1
 			val1 = status->dex/10 + 3*skill_lv; // ASPD decrease
+			val2 = status->agi/10 + 2*skill_lv; // Movement speed adjustment.			
+#elif VERSION == -1
+			val1 = status->str/10 + 3*skill_lv; // ASPD decrease
 			val2 = status->agi/10 + 2*skill_lv; // Movement speed adjustment.
 #else
 			val1 = status->dex/10 + 3*skill_lv + 5; // ASPD decrease
@@ -10983,7 +10986,11 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			val1 = 25 + 11*skill_lv; //Exp increase bonus.
 			break;
 		case BD_SIEGFRIED:
+#if VERSION == -1
+			val1 = 30 + skill_lv*10; //Elemental Resistance
+#else
 			val1 = 55 + skill_lv*5; //Elemental Resistance
+#endif
 			val2 = skill_lv*10; //Status ailment resistance
 			break;
 		case WE_CALLPARTNER:
