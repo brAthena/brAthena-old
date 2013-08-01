@@ -3152,7 +3152,9 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 #endif
 		sd->right_weapon.addrace[RC_DRAGON]+=skill;
 		sd->left_weapon.addrace[RC_DRAGON]+=skill;
+#if VERSION != -1
 		sd->magic_addrace[RC_DRAGON]+=skill;
+#endif
 		sd->subrace[RC_DRAGON]+=skill;
 	}
 	if((skill = pc_checkskill(sd, AB_EUCHARISTICA)) > 0) {

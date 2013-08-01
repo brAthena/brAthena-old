@@ -1420,10 +1420,12 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += skill_lv * 10 - 30;
 			#endif
 					break;
+#if VERSION != -1
 				case MG_SOULSTRIKE:
 					if (battle_check_undead(tstatus->race,tstatus->def_ele))
 						skillratio += 5*skill_lv;
 					break;
+#endif
 				case MG_FIREWALL:
 					skillratio -= 50;
 					break;

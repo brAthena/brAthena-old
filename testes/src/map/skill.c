@@ -1166,6 +1166,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			#endif
 			break;
 
+#if VERSION != -1
 		case WZ_METEOR:
 			sc_start(bl,SC_STUN,3*skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
@@ -1173,6 +1174,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case WZ_VERMILION:
 			sc_start(bl,SC_BLIND,4*skill_lv,skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
+#endif
 
 		case HT_FREEZINGTRAP:
 		case MA_FREEZINGTRAP:
@@ -6477,13 +6479,15 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 				else if(sd) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+#if VERSION != -1
 					// Level 6-10 doesn't consume a red gem if it fails [celest]
 					if(skill_lv > 5) {
 						// not to consume items
 						map_freeblock_unlock();
 						return 0;
 					}
-				}
+#endif
+				}				
 			}
 			break;
 
@@ -7056,8 +7060,12 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 							if(sd) clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 							break;
 						}
+#if VERSION != -1
 					} else if(!dstsd || map_flag_vs(bl->m))  //HP damage only on pvp-maps when against players.
 						hp = tstatus->max_hp/50; //Recover 2% HP [Skotlex]
+#else
+					}
+#endif
 
 					clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 					unit_skillcastcancel(bl,0);
@@ -13916,10 +13924,12 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 				if(i < 4)
 					continue;
 				break;
+#if VERSION != -1
 			case WZ_FIREPILLAR: // celest
 				if(skill_lv <= 5)   // no gems required at level 1-5
 					continue;
 				break;
+#endif
 			case AB_ADORAMUS:
 				if(itemid_isgemstone(skill_db[idx].itemid[i]) && skill_check_pc_partner(sd,skill_id,&skill_lv, 1, 2))
 					continue;
@@ -13952,17 +13962,25 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 		/*if(itemid_isgemstone(req.itemid[i]) && (sd->special_state.no_gemstone == 2))
 			req.itemid[i] = req.amount[i] = 0;
 		else*/ if(itemid_isgemstone(req.itemid[i])&& skill_id != HW_GANBANTEIN) {
-			if(sd->special_state.no_gemstone) {   // Todas as habilidades exceto Abracadabra e Ganbantein podem usar habilidades sem gemas
+			if(sd->special_state.no_gemstone) {   // Todas as habilidades exceto Abracadabra e Ganbantein podem usar habilidades sem gemas (exceção OT)
+#if VERSION != -1
 				if(skill_id != SA_ABRACADABRA)
+#endif
 					req.itemid[i] = req.amount[i] = 0;
+#if VERSION != -1
 				else if(--req.amount[i] < 1)
 					req.amount[i] = 1; // Abracadabra utiliza sempre 1 gema
+#endif
 			}
 			if(sc && sc->data[SC_INTOABYSS]) {
+#if VERSION != -1
 				if(skill_id != SA_ABRACADABRA)
+#endif
 					req.itemid[i] = req.amount[i] = 0;
+#if VERSION != -1
 				else if(--req.amount[i] < 1)
 					req.amount[i] = 1; // Hocus Pocus allways use at least 1 gem
+#endif
 			}
 		}
 		if(skill_id >= HT_SKIDTRAP && skill_id <= HT_TALKIEBOX && pc_checkskill(sd, RA_RESEARCHTRAP) > 0) {
