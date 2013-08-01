@@ -4921,7 +4921,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *target, *src;
-	struct map_session_data *sd;
+	struct map_session_data *sd, *tsd;
 	struct mob_data *md;
 	struct unit_data *ud;
 	struct status_change *sc = NULL;
@@ -5000,6 +5000,12 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 				ud->skilltimer = tid;
 				return skill_castend_pos(tid,tick,id,data);
 		}
+		
+		#if VERSION == -1
+			tsd = BL_CAST(BL_PC, target);
+			if(tsd && tsd->ud.skill_id == MO_EXTREMITYFIST && target->type == BL_PC)
+			unit_skillcastcancel(target, 1);
+		#endif
 
 		if(ud->skill_id == RG_BACKSTAP) {
 			uint8 dir = map_calc_dir(src,target->x,target->y),t_dir = unit_getdir(target);
@@ -13561,6 +13567,14 @@ int skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, 
 		sd->spiritball_old = sd->spiritball; //Need to do Spiritball check.
 		return 1;
 	}
+
+#if VERSION == -1
+	if( skill_id == MO_EXTREMITYFIST && sd->spiritball < 3)
+	{
+		clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
+		return 0;
+	}
+#endif
 
 	switch(sd->menuskill_id) {   // Cast start or cast end??
 		case AM_PHARMACY:

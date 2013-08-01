@@ -116,11 +116,19 @@
 #define DEFAULT_WALK_SPEED 150
 #define MIN_WALK_SPEED 0
 #define MAX_WALK_SPEED 1000
-#define MAX_STORAGE 600
+#if VERSION == -1
+	#define MAX_STORAGE 100
+#else	
+	#define MAX_STORAGE 600
+#endif
 #define MAX_STORAGE_VIP 600
 #define MAX_GUILD_STORAGE 600
 #define MAX_PARTY 12
-#define MAX_GUILD 16+10*6   // increased max guild members +6 per 1 extension levels [Lupus]
+#if VERSION == -1
+	#define MAX_GUILD 16+10*2   // increased max guild members +2 per 1 extension levels on OT [Neko]
+#else	
+	#define MAX_GUILD 16+10*6   // increased max guild members +6 per 1 extension levels [Lupus]
+#endif
 #define MAX_GUILDPOSITION 20    // increased max guild positions to accomodate for all members [Valaris] (removed) [PoW]
 #define MAX_GUILDEXPULSION 32
 #define MAX_GUILDALLIANCE 16
