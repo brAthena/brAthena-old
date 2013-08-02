@@ -12,19 +12,28 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros do Campo de Gonryun.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação & Old-Times] gon_fild01 - Campo de Kunlun
+// [Old Times] gon_fild01 - Campo de Kunlun
+//==================================================
+gon_fild01,0,0,0,0	monster#ot	Zipper	1417,15,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Filhote de Leopardo	1415,10,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Planta Verde	1080,5,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Pirralho	1409,10,0,0,0,{}
+
+//==================================================
+// [Pré-Renovação] gon_fild01 - Campo de Kunlun
 //==================================================
 gon_fild01,0,0,0,0	monster#vpo	Filhote de Leopardo	1415,40,600000,300000,0
 gon_fild01,0,0,0,0	monster#vpo	Zipper	1417,20,0,0,0

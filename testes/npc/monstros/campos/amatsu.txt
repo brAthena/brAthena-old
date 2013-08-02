@@ -12,17 +12,28 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   | Versões eA/rA/brA: 1.3/1.3/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros do Campo de Amatsu.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+//==================================================
+// [Old Times] ama_fild01 - Campo de Amatsu
+//==================================================
+ama_fild01,0,0,0,0	monster#ot	Poporing	1031,13,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Pé Grande	1060,8,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Hidra	1068,8,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Karakasa 	1400,10,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Sapo Venenoso	1402,2,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Boneco de Miyabi 	1404,2,0,0,0
+ama_fild01,0,0,0,0	monster#ot	Kapha	1406,13,0,0,0,{}
 //==================================================
 // [Pré-Renovação] ama_fild01 - Campo de Amatsu
 //==================================================

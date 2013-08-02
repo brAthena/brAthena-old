@@ -12,24 +12,32 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
+//   | Versões eA/rA/brA: 1.3/1.3/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros do Campo de Lutie.                |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação & Old-Times] xmas_fild01 - Campo de Lutie
+// [Old Times] xmas_fild01 - Campo de Lutie
 //==================================================
-xmas_fild01,0,0,0,0	monster#vpo	Marin	1242,35,0,0,0
-xmas_fild01,0,0,0,0	monster#vpo	Sasquatch	1243,20,0,0,0
-xmas_fild01,0,0,0,0	monster#vpo	Filhote de Hatii	1515,1,1800000,0,0,{}
-xmas_fild01,0,0,0,0	boss_monster	Hatii	1252,1,7200000,600000,1
+xmas_fild01,0,0,0,0	monster#ot	Marin	1242,25,0,0,0
+xmas_fild01,0,0,0,0	monster#ot	Sasquatch	1243,20,0,0,0
+xmas_fild01,0,0,0,0	boss_monster#ot	Hatii	1252,1,3600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] xmas_fild01 - Campo de Lutie
+//==================================================
+xmas_fild01,0,0,0,0	boss_monster#pre	Hatii	1252,1,7200000,600000,1
+xmas_fild01,0,0,0,0	monster#pre	Marin	1242,35,0,0,0
+xmas_fild01,0,0,0,0	monster#pre	Sasquatch	1243,20,0,0,0
+xmas_fild01,0,0,0,0	monster#pre	Filhote de Hatii	1515,1,1800000,0,0,{}
 
 //==================================================
 // [Renovação] xmas_fild01 - Arredores de Lutie
