@@ -4921,7 +4921,10 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *target, *src;
-	struct map_session_data *sd, *tsd;
+	struct map_session_data *sd;
+#if VERSION == -1
+	struct map_session_data *tsd;
+#endif
 	struct mob_data *md;
 	struct unit_data *ud;
 	struct status_change *sc = NULL;
