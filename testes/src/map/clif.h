@@ -53,9 +53,13 @@ struct skill_cd;
 #define P2PTR(fd) RFIFO2PTR(fd)
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
 
-enum { // packet DB
-    MAX_PACKET_DB  = 0xF00,
-    MAX_PACKET_POS = 20,
+/**
+ * Enumerations
+ **/
+enum {// packet DB
+	MIN_PACKET_DB  = 0x0064,
+	MAX_PACKET_DB  = 0x0F00,
+	MAX_PACKET_POS = 20,
 };
 
 typedef enum send_target {
@@ -951,8 +955,23 @@ struct clif_interface {
 	void (*scriptclear) (struct map_session_data *sd, int npcid);
 	void (*cart_additem_ack) (struct map_session_data *sd, int flag);
 #if PACKETVER < 20091103
-  void (*spawn_unit2) (struct block_list* bl, enum send_target target);
+  	void (*spawn_unit2) (struct block_list* bl, enum send_target target);
 #endif
+	/* Sistema de Grupos */
+#ifdef PARTY_RECRUIT
+	void (*PartyBookingVolunteerInfo) (int index, struct map_session_data *sd);
+	void (*PartyBookingRefuseVolunteer) (unsigned long aid, struct map_session_data *sd);
+	void (*PartyBookingCancelVolunteer) (int index, struct map_session_data *sd);
+	void (*PartyBookingAddFilteringList) (int index, struct map_session_data *sd);
+	void (*PartyBookingSubFilteringList) (int gid, struct map_session_data *sd);
+#endif
+	/* bgqueue */
+	void (*bgqueue_ack) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_ACK response, unsigned char arena_id);
+	void (*bgqueue_notice_delete) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED response, char *name);
+	void (*bgqueue_update_info) (struct map_session_data *sd, unsigned char arena_id, int position);
+	void (*bgqueue_joined) (struct map_session_data *sd, int pos);
+	void (*bgqueue_pcleft) (struct map_session_data *sd);
+	void (*bgqueue_battlebegins) (struct map_session_data *sd, unsigned char arena_id, enum send_target target);
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
@@ -1148,6 +1167,11 @@ struct clif_interface {
 	void (*pSkillSelectMenu) (int fd, struct map_session_data *sd);
 	void (*pMoveItem) (int fd, struct map_session_data *sd);
 	void (*pDull) (int fd, struct map_session_data *sd);
+	/* BGQueue */
+	void (*pBGQueueRegister) (int fd, struct map_session_data *sd);
+	void (*pBGQueueCheckState) (int fd, struct map_session_data *sd);
+	void (*pBGQueueRevokeReq) (int fd, struct map_session_data *sd);
+	void (*pBGQueueBattleBeginAck) (int fd, struct map_session_data *sd);
 	/* RagExe Cash Shop [Ind/Hercules] */
 	void (*pCashShopOpen) (int fd, struct map_session_data *sd);
 	void (*pCashShopClose) (int fd, struct map_session_data *sd);
@@ -1160,24 +1184,8 @@ struct clif_interface {
 	void (*pClientVersion) (int fd,struct map_session_data *sd);
 	void (*pBlockingPlaycancel) (int fd,struct map_session_data *sd);
 	/* bgqueue */
-	void (*bgqueue_ack) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_ACK response, unsigned char arena_id);
-	void (*bgqueue_notice_delete) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED response, char *name);
-	void (*bgqueue_update_info) (struct map_session_data *sd, unsigned char arena_id, int position);
-	void (*bgqueue_joined) (struct map_session_data *sd, int pos);
-	void (*bgqueue_pcleft) (struct map_session_data *sd);
-	void (*bgqueue_battlebegins) (struct map_session_data *sd, unsigned char arena_id, enum send_target target);
-	/* BGQueue */
-	void (*pBGQueueRegister) (int fd, struct map_session_data *sd);
-	void (*pBGQueueCheckState) (int fd, struct map_session_data *sd);
-	void (*pBGQueueRevokeReq) (int fd, struct map_session_data *sd);
-	void (*pBGQueueBattleBeginAck) (int fd, struct map_session_data *sd);
 /* Atualização de sistema de pesquisa do grupo */
 #ifdef PARTY_RECRUIT
-	void (*PartyBookingVolunteerInfo) (int index, struct map_session_data *sd);
-	void (*PartyBookingRefuseVolunteer) (unsigned long aid, struct map_session_data *sd);
-	void (*PartyBookingCancelVolunteer) (int index, struct map_session_data *sd);
-	void (*PartyBookingAddFilteringList) (int index, struct map_session_data *sd);
-	void (*PartyBookingSubFilteringList) (int gid, struct map_session_data *sd);
 	void (*pPartyBookingAddFilter) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingSubFilter) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingReqVolunteer) (int fd, struct map_session_data *sd);

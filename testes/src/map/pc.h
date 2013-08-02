@@ -415,16 +415,13 @@ struct map_session_data {
 	short guild_x,guild_y; // For guildmate position display. [Skotlex] should be short [zzo]
 	int guildspy; // [Syrus22]
 	int partyspy; // [Syrus22]
-
-	int vended_id;
-	int vender_id;
+	unsigned int vended_id;
+	unsigned int vender_id;
 	int vend_num;
 	char message[MESSAGE_SIZE];
 	struct s_vending vending[MAX_VENDING];
-
 	unsigned int buyer_id;  // uid of open buying store
 	struct s_buyingstore buyingstore;
-
 	struct s_search_store_info searchstore;
 
 	struct pet_data *pd;
@@ -549,7 +546,8 @@ struct map_session_data {
 	int *queues;
 	unsigned int queues_count;
 
-	unsigned int cryptKey;
+	unsigned int cryptKey;							///< Packet obfuscation key to be used for the next received packet
+	unsigned short (*parse_cmd_func)(int fd, struct map_session_data *sd); ///< parse_cmd_func used by this player
 
 	unsigned char delayed_damage;//ref. counter bugreport:7307 [Ind]
 
