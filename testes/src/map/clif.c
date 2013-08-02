@@ -971,7 +971,7 @@ void clif_set_unit_idle(struct block_list* bl, struct map_session_data *tsd, enu
 #else
 		p.GID = -bl->id;
 #endif
-		clif_send(&p,sizeof(p),tsd?&tsd->bl:bl,SELF);
+		clif_send(&p,sizeof(p),bl,SELF);
 	}
 
 }
@@ -1168,7 +1168,7 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 #else
 		p.GID = -bl->id;
 #endif 
-		clif_send(&p,sizeof(p),tsd?&tsd->bl:bl,SELF);
+		clif_send(&p,sizeof(p),bl,SELF);
 	}
 }
 
