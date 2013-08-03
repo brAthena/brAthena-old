@@ -25,6 +25,14 @@
 //   \________________________________________________________/
 
 //==================================================
+// [Old Times] yuno_fild01 - Fronteira de Aldebaran
+//==================================================
+yuno_fild01,0,0,0,0	monster#ot	Poring	1002,40,0,0,0
+yuno_fild01,0,0,0,0	monster#ot	Poporing	1031,30,0,0,0
+yuno_fild01,0,0,0,0	monster#ot	Poeira	1114,20,0,0,0
+yuno_fild01,0,0,0,0	monster#ot	Grande Peco	1369,20,0,0,0,{}
+
+//==================================================
 // [Pré-Renovação] yuno_fild01 - Fronteira de Aldebaran
 //==================================================
 yuno_fild01,0,0,0,0	monster#pre	Poeira	1114,50,0,0,0
