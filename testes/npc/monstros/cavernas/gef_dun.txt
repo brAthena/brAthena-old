@@ -12,31 +12,47 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros das cavernas de Geffen.           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação & Old-Times] gef_dun00 - Calabouço de Geffen (1° Andar)
+// [Old Times] gef_dun00 - Calabouço de Geffen (1° Andar)
 //==================================================
-gef_dun00,0,0,0,0	monster#vpo	Mosca Caçadora	1035,30,60000,30000,0
-gef_dun00,0,0,0,0	monster#vpo	Poporing	1031,15,0,0,0
-gef_dun00,0,0,0,0	monster#vpo	Esporo Venenoso	1077,25,0,0,0
-gef_dun00,91,106,0,0	monster#vpo	Planta Vermelha	1078,1,300000,150000,0
-gef_dun00,92,108,0,0	monster#vpo	Planta Amarela	1081,1,300000,150000,0
-gef_dun00,114,106,0,0	monster#vpo	Planta Verde	1080,1,300000,150000,0
-gef_dun00,0,0,0,0	monster#vpo	Planta Vermelha	1078,1,300000,150000,0
-gef_dun00,0,0,0,0	monster#vpo	Planta Brilhante	1083,1,3000000,1500000,0
-gef_dun00,0,0,0,0	monster#vpo	Planta Vermelha	1078,10,180000,90000,1
-gef_dun00,89,111,3,3	monster#vpo	Cogumelo Negro	1084,3,180000,90000,1
-gef_dun00,121,109,3,3	monster#vpo	Cogumelo Negro	1084,3,180000,90000,1,{}
+gef_dun00,0,0,0,0	monster#ot	Familiar	1005,30,0,0,0
+gef_dun00,0,0,0,0	monster#ot	Poporing	1031,25,0,0,0
+gef_dun00,0,0,0,0	monster#ot	Esporo Venenoso	1077,45,0,0,0
+gef_dun00,0,0,0,0	monster#ot	Poeira	1114,15,0,0,0
+gef_dun00,109,121,0,0	monster#ot	Planta Vermelha	1078,1,300000,0,0
+gef_dun00,109,121,0,0	monster#ot	Planta Brilhante	1083,1,3000000,0,0
+gef_dun00,114,106,0,0	monster#ot	Planta Verde	1080,1,300000,0,0
+gef_dun00,121,109,3,3	monster#ot	Cogumelo Negro	1084,3,180000,0,1
+gef_dun00,89,111,3,3	monster#ot	Cogumelo Negro	1084,3,180000,0,1
+gef_dun00,91,106,0,0	monster#ot	Planta Vermelha	1078,1,300000,0,0
+gef_dun00,92,108,0,0	monster#ot	Planta Amarela	1081,1,300000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] gef_dun00 - Calabouço de Geffen (1° Andar)
+//==================================================
+gef_dun00,0,0,0,0	monster#pre	Mosca Caçadora	1035,30,60000,30000,0
+gef_dun00,0,0,0,0	monster#pre	Poporing	1031,15,0,0,0
+gef_dun00,0,0,0,0	monster#pre	Esporo Venenoso	1077,25,0,0,0
+gef_dun00,91,106,0,0	monster#pre	Planta Vermelha	1078,1,300000,150000,0
+gef_dun00,92,108,0,0	monster#pre	Planta Amarela	1081,1,300000,150000,0
+gef_dun00,114,106,0,0	monster#pre	Planta Verde	1080,1,300000,150000,0
+gef_dun00,0,0,0,0	monster#pre	Planta Vermelha	1078,1,300000,150000,0
+gef_dun00,0,0,0,0	monster#pre	Planta Brilhante	1083,1,3000000,1500000,0
+gef_dun00,0,0,0,0	monster#pre	Planta Vermelha	1078,10,180000,90000,1
+gef_dun00,89,111,3,3	monster#pre	Cogumelo Negro	1084,3,180000,90000,1
+gef_dun00,121,109,3,3	monster#pre	Cogumelo Negro	1084,3,180000,90000,1,{}
 
 //==================================================
 // [Renovação] gef_dun00 - Calabouço de Geffen (1° Andar)
@@ -54,21 +70,33 @@ gef_dun00,89,111,3,3	monster#re	Cogumelo Negro	1084,3,180000,90000,1
 gef_dun00,121,109,3,3	monster#re	Cogumelo Negro	1084,3,180000,90000,1,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] gef_dun01 - Calabouço de Geffen (2° Andar)
+// [Old Times] gef_dun01 - Calabouço de Geffen (2° Andar)
 //==================================================
-gef_dun01,0,0,0,0	monster#vpo	Drainliar	1111,20,0,0,0
-gef_dun01,0,0,0,0	monster#vpo	Pesadelo	1061,30,0,0,0
-gef_dun01,0,0,0,0	monster#vpo	Tirfing	1204,1,1800000,1200000,0
-gef_dun01,0,0,0,0	monster#vpo	Zumbi	1015,25,0,0,0
-gef_dun01,0,0,0,0	monster#vpo	Carniçal	1036,40,0,0,0
-gef_dun01,0,0,0,0	monster#vpo	Jakk	1130,40,300000,100000,0
-gef_dun01,234,121,0,0	monster#vpo	Planta Azul	1079,1,300000,100000,0
-gef_dun01,0,0,0,0	boss_monster#vpo	Drácula	1389,1,3600000,600000,1
-gef_dun01,0,0,0,0	monster#vpo	Cogumelo Negro	1084,5,180000,90000,1
-gef_dun01,188,104,10,10	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun01,263,115,10,10	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun01,48,67,10,10	monster#vpo	Planta Branca	1082,2,180000,90000,1
-gef_dun01,150,237,10,10	monster#vpo	Planta Branca	1082,2,180000,90000,1,{}
+gef_dun01,0,0,0,0	monster#ot	Familiar	1005,20,0,0,0
+gef_dun01,0,0,0,0	monster#ot	Esporo Venenoso	1077,20,0,0,0
+gef_dun01,0,0,0,0	monster#ot	Argos	1100,40,0,0,0
+gef_dun01,0,0,0,0	monster#ot	Bathory	1102,1,0,0,0
+gef_dun01,0,0,0,0	monster#ot	Poeira	1114,30,0,0,0
+gef_dun01,0,0,0,0	monster#ot	Jakk	1130,20,300000,0,0
+gef_dun01,0,0,0,0	monster#ot	Sussurro	1179,30,0,0,0
+gef_dun01,234,121,0,0	monster#ot	Planta Azul	1079,1,300000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] gef_dun01 - Calabouço de Geffen (2° Andar)
+//==================================================
+gef_dun01,0,0,0,0	monster#pre	Drainliar	1111,20,0,0,0
+gef_dun01,0,0,0,0	monster#pre	Pesadelo	1061,30,0,0,0
+gef_dun01,0,0,0,0	monster#pre	Tirfing	1204,1,1800000,1200000,0
+gef_dun01,0,0,0,0	monster#pre	Zumbi	1015,25,0,0,0
+gef_dun01,0,0,0,0	monster#pre	Carniçal	1036,40,0,0,0
+gef_dun01,0,0,0,0	monster#pre	Jakk	1130,40,300000,100000,0
+gef_dun01,234,121,0,0	monster#pre	Planta Azul	1079,1,300000,100000,0
+gef_dun01,0,0,0,0	boss_monster#pre	Drácula	1389,1,3600000,600000,1
+gef_dun01,0,0,0,0	monster#pre	Cogumelo Negro	1084,5,180000,90000,1
+gef_dun01,188,104,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun01,263,115,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun01,48,67,10,10	monster#pre	Planta Branca	1082,2,180000,90000,1
+gef_dun01,150,237,10,10	monster#pre	Planta Branca	1082,2,180000,90000,1,{}
 
 //==================================================
 // [Renovação] gef_dun01 - Calabouço de Geffen (2° Andar)
@@ -87,21 +115,33 @@ gef_dun01,48,67,10,10	monster#re	Planta Branca	1082,2,180000,90000,1
 gef_dun01,150,237,10,10	monster#re	Planta Branca	1082,2,180000,90000,1,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] gef_dun02 - Geffenia (3° Andar)
+// [Old Times] gef_dun02 - Geffenia (3° Andar)
 //==================================================
-gef_dun02,0,0,0,0	monster#vpo	Carniçal	1036,10,0,0,0
-gef_dun02,0,0,0,0	monster#vpo	Sussurro	1179,20,0,0,0
-gef_dun02,0,0,0,0	monster#vpo	Mosca Caçadora	1035,10,0,0,0
-gef_dun02,0,0,0,0	monster#vpo	Marionete	1143,20,0,0,0
-gef_dun02,0,0,0,0	monster#vpo	Deviruchi	1109,35,0,0,0
-gef_dun02,0,0,0,0	monster#vpo	Pesadelo	1061,40,60000,0,0
-gef_dun02,0,0,0,0	boss_monster#vpo	Doppelganger	1046,1,7200000,600000,1
-gef_dun02,214,212,10,10	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun02,215,67,10,10	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun02,72,210,20,20	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun02,106,151,20,7	monster#vpo	Planta Branca	1082,3,180000,90000,1
-gef_dun02,58,167,10,10	monster#vpo	Planta Brilhante	1083,1,1800000,900000,1
-gef_dun02,185,83,3,3	monster#vpo	Planta Brilhante	1083,1,1800000,900000,1,{}
+gef_dun02,0,0,0,0	boss_monster#ot	Doppelganger	1046,1,3600000,0,1
+gef_dun02,0,0,0,0	monster#ot	Pesadelo	1061,8,300000,0,0
+gef_dun02,0,0,0,0	monster#ot	Argos	1100,30,0,0,0
+gef_dun02,0,0,0,0	monster#ot	Bathory	1102,4,300000,0,0
+gef_dun02,0,0,0,0	monster#ot	Jakk	1130,12,100000,0,0
+gef_dun02,0,0,0,0	monster#ot	Marionete	1143,14,0,0,0
+gef_dun02,0,0,0,0	monster#ot	Névoa	1151,10,0,0,0
+gef_dun02,0,0,0,0	monster#ot	Sussurro	1179,30,0,0,0,{}
+
+//==================================================
+// [Pré-Renovação] gef_dun02 - Geffenia (3° Andar)
+//==================================================
+gef_dun02,0,0,0,0	monster#pre	Carniçal	1036,10,0,0,0
+gef_dun02,0,0,0,0	monster#pre	Sussurro	1179,20,0,0,0
+gef_dun02,0,0,0,0	monster#pre	Mosca Caçadora	1035,10,0,0,0
+gef_dun02,0,0,0,0	monster#pre	Marionete	1143,20,0,0,0
+gef_dun02,0,0,0,0	monster#pre	Deviruchi	1109,35,0,0,0
+gef_dun02,0,0,0,0	monster#pre	Pesadelo	1061,40,60000,0,0
+gef_dun02,0,0,0,0	boss_monster#pre	Doppelganger	1046,1,7200000,600000,1
+gef_dun02,214,212,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun02,215,67,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun02,72,210,20,20	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun02,106,151,20,7	monster#pre	Planta Branca	1082,3,180000,90000,1
+gef_dun02,58,167,10,10	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
+gef_dun02,185,83,3,3	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] gef_dun02 - Geffenia (3° Andar)
@@ -121,14 +161,14 @@ gef_dun02,58,167,10,10	monster#re	Planta Brilhante	1083,1,1800000,900000,1
 gef_dun02,185,83,3,3	monster#re	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] gef_dun03 - Geffenia (4° Andar)
+// [Pré-Renovação] gef_dun03 - Geffenia (4° Andar)
 //==================================================
-gef_dun03,0,0,0,0	monster#vpo	Sacerdote Maldito	1626,1,600000,300000,0
-gef_dun03,0,0,0,0	monster#vpo	Alma Penada	1192,8,60000,30000,0
-gef_dun03,0,0,0,0	monster#vpo	Aparição	1291,2,60000,30000,0
-gef_dun03,0,0,0,0	monster#vpo	Xamã do Vento	1263,3,60000,30000,0
-gef_dun03,0,0,0,0	monster#vpo	Planta Brilhante	1083,3,1800000,900000,1
-gef_dun03,0,0,0,0	monster#vpo	Planta Branca	1082,10,180000,90000,1,{}
+gef_dun03,0,0,0,0	monster#pre	Sacerdote Maldito	1626,1,600000,300000,0
+gef_dun03,0,0,0,0	monster#pre	Alma Penada	1192,8,60000,30000,0
+gef_dun03,0,0,0,0	monster#pre	Aparição	1291,2,60000,30000,0
+gef_dun03,0,0,0,0	monster#pre	Xamã do Vento	1263,3,60000,30000,0
+gef_dun03,0,0,0,0	monster#pre	Planta Brilhante	1083,3,1800000,900000,1
+gef_dun03,0,0,0,0	monster#pre	Planta Branca	1082,10,180000,90000,1,{}
 
 //==================================================
 // [Renovação] gef_dun03 - Geffenia (4° Andar)
@@ -144,25 +184,25 @@ gef_dun03,0,0,0,0	monster#re	Planta Branca	1082,10,180000,90000,1,{}
 //==================================================
 // Monstros Antigos, ative-os caso queira usá-los.
 //==================================================
-//gef_dun03,0,0,0,0	monster#vpo	Bafomé	1039,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster#vpo	Doppelganger	1046,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster#vpo	Deviruchi	1109,8,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Coringa	1131,5,300000,100000,0
-//gef_dun03,0,0,0,0	monster#vpo	Khalitzburg	1132,2,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Cavaleiro do Abismo	1219,2,300000,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Grifo	1259,1,7200000,3600000,1
-//gef_dun03,0,0,0,0	monster#vpo	Cavaleiro Sanguinário	1268,2,300000,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Senhor das Trevas	1272,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster#vpo	Alice	1275,3,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Quimera	1283,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster#vpo	Diabinho	1292,2,300000,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Ilusão das Trevas	1302,2,300000,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Apocalipse	1365,2,300000,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Succubus	1370,10,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Anjo Fajuto	1371,8,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Senhor dos Mortos	1373,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster#vpo	Incubus	1374,10,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Pesadelo Sombrio	1379,3,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Violy	1390,10,0,0,0
-//gef_dun03,0,0,0,0	monster#vpo	Planta Brilhante	1083,3,1800000,900000,1
-//gef_dun03,0,0,0,0	monster#vpo	Planta Branca	1082,10,180000,90000,1,{}
+//gef_dun03,0,0,0,0	monster#pre	Bafomé	1039,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster#pre	Doppelganger	1046,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster#pre	Deviruchi	1109,8,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Coringa	1131,5,300000,100000,0
+//gef_dun03,0,0,0,0	monster#pre	Khalitzburg	1132,2,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Cavaleiro do Abismo	1219,2,300000,0,0
+//gef_dun03,0,0,0,0	monster#pre	Grifo	1259,1,7200000,3600000,1
+//gef_dun03,0,0,0,0	monster#pre	Cavaleiro Sanguinário	1268,2,300000,0,0
+//gef_dun03,0,0,0,0	monster#pre	Senhor das Trevas	1272,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster#pre	Alice	1275,3,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Quimera	1283,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster#pre	Diabinho	1292,2,300000,0,0
+//gef_dun03,0,0,0,0	monster#pre	Ilusão das Trevas	1302,2,300000,0,0
+//gef_dun03,0,0,0,0	monster#pre	Apocalipse	1365,2,300000,0,0
+//gef_dun03,0,0,0,0	monster#pre	Succubus	1370,10,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Anjo Fajuto	1371,8,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Senhor dos Mortos	1373,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster#pre	Incubus	1374,10,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Pesadelo Sombrio	1379,3,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Violy	1390,10,0,0,0
+//gef_dun03,0,0,0,0	monster#pre	Planta Brilhante	1083,3,1800000,900000,1
+//gef_dun03,0,0,0,0	monster#pre	Planta Branca	1082,10,180000,90000,1,{}

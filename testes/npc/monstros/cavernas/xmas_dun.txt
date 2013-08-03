@@ -12,30 +12,45 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros das cavernas de Xmas              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //===============================================================
-// [Pré-Renovação & Old-Times] xmas_dun01 - Depósito da Fábrica de Brinquedos
+// [Old Times] xmas_dun01 - Depósito da Fábrica de Brinquedos
 //===============================================================
-xmas_dun01,0,0,0,0	monster#vpo	Marin	1242,20,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Poring	1002,10,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Drops	1113,10,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Poporing	1031,20,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Cookie	1265,40,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Cookie Natalino	1246,40,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Presente	1249,5,0,0,0
-xmas_dun01,0,0,0,0	monster#vpo	Chepet	1250,1,1200000,900000,0
-xmas_dun01,0,0,0,0	monster#vpo	Mastering	1090,1,1800000,900000,0
-xmas_dun01,0,0,0,0	monster#vpo	Angeling	1096,1,3600000,1800000,0,{}
+xmas_dun01,0,0,0,0	monster#ot	Poring	1002,10,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Poporing	1031,20,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Mastering	1090,1,3600000,0,0
+xmas_dun01,0,0,0,0	monster#ot	Angeling	1096,1,1800000,0,0
+xmas_dun01,0,0,0,0	monster#ot	Drops	1113,10,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Marin	1242,20,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Cookie Natalino	1246,30,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Presente	1249,5,0,0,0
+xmas_dun01,0,0,0,0	monster#ot	Chepet	1250,1,1200000,0,0
+xmas_dun01,0,0,0,0	monster#ot	Cookie	1265,15,0,0,0,{}
+
+//===============================================================
+// [Pré-Renovação] xmas_dun01 - Depósito da Fábrica de Brinquedos
+//===============================================================
+xmas_dun01,0,0,0,0	monster#pre	Marin	1242,20,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Drops	1113,10,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Cookie	1265,40,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Cookie Natalino	1246,40,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Presente	1249,5,0,0,0
+xmas_dun01,0,0,0,0	monster#pre	Chepet	1250,1,1200000,900000,0
+xmas_dun01,0,0,0,0	monster#pre	Mastering	1090,1,1800000,900000,0
+xmas_dun01,0,0,0,0	monster#pre	Angeling	1096,1,3600000,1800000,0,{}
 
 //===========================================================
 // [Renovação] xmas_dun01 - Depósito da Fábrica de Brinquedos
@@ -52,14 +67,22 @@ xmas_dun01,0,0,0,0	monster#re	Mastering	1090,1,1800000,900000,0
 xmas_dun01,0,0,0,0	monster#re	Angeling	1096,1,3600000,1800000,0,{}
 
 //===============================================================
-// [Pré-Renovação & Old-Times] xmas_dun02 - Sala de Construção de Brinquedos
+// [Old Times] xmas_dun02 - Sala de Construção de Brinquedos
 //===============================================================
-xmas_dun02,0,0,0,0	monster#vpo	Cookie Natalino	1246,20,0,0,0
-xmas_dun02,0,0,0,0	monster#vpo	Cookie	1265,20,0,0,0
-xmas_dun02,0,0,0,0	monster#vpo	Soldadinho de Chumbo	1248,35,0,0,0
-xmas_dun02,0,0,0,0	monster#vpo	Presente	1249,50,0,0,0
-xmas_dun02,0,0,0,0	monster#vpo	Filhote de Hatii	1515,1,1800000,0,0
-xmas_dun02,0,0,0,0	boss_monster#vpo	Cavaleiro da Tempestade	1251,1,3600000,600000,0,{}
+xmas_dun02,0,0,0,0	monster#ot	Cookie  Natalino	1246,20,0,0,0
+xmas_dun02,0,0,0,0	monster#ot	Soldadinho de Chumbo	1248,35,0,0,0
+xmas_dun02,0,0,0,0	monster#ot	Presente	1249,60,0,0,0
+xmas_dun02,0,0,0,0	boss_monster#ot	Cavaleiro da Tempestade	1251,1,3600000,0,0,0,{}
+
+//===============================================================
+// [Pré-Renovação] xmas_dun02 - Sala de Construção de Brinquedos
+//===============================================================
+xmas_dun02,0,0,0,0	monster#pre	Cookie Natalino	1246,20,0,0,0
+xmas_dun02,0,0,0,0	monster#pre	Cookie	1265,20,0,0,0
+xmas_dun02,0,0,0,0	monster#pre	Soldadinho de Chumbo	1248,35,0,0,0
+xmas_dun02,0,0,0,0	monster#pre	Presente	1249,50,0,0,0
+xmas_dun02,0,0,0,0	monster#pre	Filhote de Hatii	1515,1,1800000,0,0
+xmas_dun02,0,0,0,0	boss_monster#pre	Cavaleiro da Tempestade	1251,1,3600000,600000,0,{}
 
 //===========================================================
 // [Renovação] xmas_dun02 - Sala de Construção de Brinquedos
