@@ -24,6 +24,187 @@
 //   | * Agradecimentos ao membro do eAthena [Sotto]          | 
 //   \________________________________________________________/
 
+// Guardas do Palacio (Exterior)
+//============================================================ 
+payon,92,164,3	script	Guarda do Palácio#payon	708,3,3,{
+	end;
+
+OnTouch:
+	mes "[Guarda]";
+	mes "Este é o Palácio Central de Payon. Este local é aberto ao público, mas de acordo com nossas leis, você deve se comportar de forma ordenada, uma vez dentro.";
+	next;
+	mes "[Guarda]";
+	mes "No interesse de proteger a paz, vamos desarmar o equipamento uma vez que você entrar.";
+	mes "Sua cooperação é";
+	mes "muito apreciada.";
+	nude;
+	close;
+}
+
+payon,87,164,3	script	Guarda do Palácio#1payon	708,{
+	mes "[Guarda do Palácio]";
+	mes ".............";
+	close;
+}
+
+// Guardas do Palacio (Interior)
+//============================================================ 
+payon_in01,69,90,4	script	Guarda Chefe do Palácio#payon	708,3,3,{
+	end;
+
+OnTouch:
+	mes "[Guarda Chefe]";
+	mes "O que trás";
+	mes "você aqui?";
+	next;
+	mes "[Guarda Chefe]";
+	mes "Eu posso ver que você não é morador de payon. Eu gostaria apenas de lembrá-lo, que estou aqui para conduzi-lo de forma correta. Lembre-se:";
+	mes "você é nosso convidado.";
+	next;
+	mes "[Guarda Chefe]";
+	mes "No interesse de proteger a paz pública, eu vou desarmar o seu equipamento. Obrigado pela sua cooperação.";
+	nude;
+	close;
+}
+
+payon_in01,79,147,2	script	Guarda Chefe#payon2	708,{
+	mes "[Guarda Chefe]";
+	if (BaseLevel < 30) {
+		mes "Ei...!";
+		mes "Você não está autorizado";
+		mes "a ficar aqui!";
+		mes "Volte agora!";
+    close;
+    }
+		mes "Eu lamento";
+		mes "mas você não pode";
+		mes "ficar aqui.";
+		mes "Por favor, saia.";
+    close;
+}
+
+payon_in01,70,154,4	script	Guarda do Palácio#2payon	708,{
+	end;
+}
+
+payon_in01,73,154,4	script	Guarda do Palácio#3payon	708,{
+	end;
+}
+
+// Guia
+//============================================================
+payon,82,116,4	script	Guia#pay	708,{
+	cutin "pay_soldier",2;
+	mes "[Guia de Payon]";
+	mes "Bem-vindo à Payon, a cidade das montanhas.";
+	mes "Nós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";
+	mes "Se esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
+	set .@loop1,1;
+	while (.@loop1) {
+		next;
+		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar")) {
+		case 1:
+			mes "[Guia de Payon]";
+			mes "Por favor, selecione uma das opções.";
+			if (.@compass_check == 0) {
+				mes "Você gostaria que as indicações permaneçam no mini-mapa?";
+				next;
+				if (select("Sim.:Não.") == 1) set .@compass_check,1;
+			}
+			set .@loop2,1;
+			while(.@loop2) {
+				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
+				else next;
+				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Palácio Central.:Cancelar")) {
+				case 1:
+					mes "[Guia de Payon]";
+					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
+					if (.@compass_check)
+						viewpoint 1,227,328,2,0xFF0000;
+					break;
+				case 2:
+					mes "[Guia de Payon]";
+					mes "A 'Loja de Armas' se encontra ao noroeste da cidade.";
+					if (.@compass_check)
+						viewpoint 1,30,176,2,0xFF00FF;
+					break;
+				case 3:
+					mes "[Guia de Payon]";
+					mes "A 'Loja de Ferramentas' se encontra ao noroeste da Vila dos Arqueiros. Para chegar na Vila dos Arqueiros, saia pela saída nordeste da cidade.";
+					if (.@compass_check)
+						viewpoint 1,174,189,3,0xFF00FF;
+					break;
+				case 4:
+					mes "[Guia de Payon]";
+					mes "A 'Estalagem' se encontra a leste do centro da cidade.";
+					if (.@compass_check)
+						viewpoint 1,139,93,4,0xFF00FF;
+					break;
+				case 5:
+					mes "[Guia de Payon]";
+					mes "O 'Palácio Central' se encontra ao norte do centro da cidade.";
+					if (.@compass_check)
+						viewpoint 1,89,166,5,0x00FF00;
+					break;
+				case 6:
+					mes "[Guia de Payon]";
+					mes "Please ask me to ''Remove";
+					mes "Marks from Mini-Map'' if you";
+					mes "no longer wish to have the";
+					mes "location marks displayed";
+					mes "on your Mini-Map.";
+					set .@loop2,0;
+					break;
+				}
+			}
+			break;
+		case 2:
+			viewpoint 2,174,189,1,0xFF0000;
+			viewpoint 2,30,176,2,0xFF00FF;
+			viewpoint 2,174,189,3,0xFF00FF;
+			viewpoint 2,172,134,4,0xFF00FF;
+			viewpoint 2,89,166,5,0x00FF00;
+			set .@compass_check,0;
+			break;
+		case 3:
+			mes "[Guia de Payon]";
+			mes "Advances in sorcery and";
+			mes "technology have allowed";
+			mes "us to update our information";
+			mes "system, enabling up to mark";
+			mes "locations on your Mini-Map";
+			mes "for easier navigation.";
+			next;
+			mes "[Guia de Payon]";
+			mes "Your Mini-Map is located";
+			mes "in the upper right corner";
+			mes "of the screen. If you can't";
+			mes "see it, press the Ctrl + Tab";
+			mes "keys or click the ''Map'' button in your Basic Info Window.";
+			next;
+			mes "[Guia de Payon]";
+			mes "On your Mini-Map,";
+			mes "click on the ''+'' and ''-''";
+			mes "symbols to zoom in and";
+			mes "our of your Mini-Map. We";
+			mes "hope you enjoy your travels";
+			mes "here in the city of Payon.";
+			break;
+		case 4:
+			mes "[Guia de Payon]";
+			mes "Be safe in";
+			mes "your travels,";
+			mes "brave adventurer.";
+			close2;
+			set .@loop1,0;
+			break;
+		}
+	}
+	cutin "pay_soldier",255;
+	end;
+}
+
 // Payon
 //============================================================ 
 payon,163,139,8	script	Senhorita#payon	77,{
@@ -128,7 +309,7 @@ payon,166,140,3	script	Mulher#payon	71,{
 	}
 }
 
-payon,163,142,5	script	Mãe de Jim#2payon	78,{
+payon,163,142,5	script	Mãe de Jim#payon	78,{
 	mes "[Mãe de Jim]";
 	mes "Oh Garoto~";
 	mes "Lá vai ela de novo.";
@@ -172,6 +353,79 @@ payon,163,142,5	script	Mãe de Jim#2payon	78,{
 	mes "um tempo, para ficar";
 	mes "e bater um papo comigo?";
 	close;
+}
+
+// Interior de Payon
+//============================================================
+payon_in01,95,181,3	script	Bêbado#payon	49,{
+	if (Class != Job_Archer) {
+		mes "[Bêbado]";
+		mes "Hey...";
+		mes "H-Hey...!";
+		next;
+		mes "[Bêbado]";
+		mes "Eu me pergunto porque esses";
+		mes "estupidos arqueiros vem";
+		mes "me incomodar com o mesmo objetivo sempre!";
+		mes "Você é tão fraco!";
+		mes "eu disse FRAAAAACO!";
+		next;
+		mes "[Bêbado]";
+		mes "Bwahahahaha!";
+		mes "Será que você poderia comprar para mim uma bebida?";
+	} else {
+		mes "[Bêbado]";
+		mes "Opa, um arqueiro!";
+		mes "seja homem ou um garoto";
+		mes "Vocês são os melhores!";
+		next;
+		mes "[Bêbado]";
+		mes "Bwahahahaha!";
+		mes "Será que você poderia comprar para mim uma bebida?";
+	}
+	next;
+	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
+	case 1:
+		set zeny,zeny-100;
+		mes "[Bêbado]";
+		mes "Obrigado...";
+		mes "...Irmão!";
+		next;
+		mes "[Bêbado]";
+		mes "A maioria das pessoas nunca querem ";
+		mes "com prar bebidas para mim! Talvez porque eu era acostumado abrincar demais com as senhoras da minha época!";
+		next;
+		mes "[Bêbado]";
+		mes "Embora, as mulheres que eu costumava brincar estão velhinhas agora! Hahahahaha! Um dia desses elas ainda se enfeitavam e colocavam maquiagem, você acredita nisso?";
+		next;
+		mes "[Bêbado]";
+		mes "Eu sou assim mesmo, um pouco brincalhão...";
+		mes "Vamos lá...";
+		mes "alguns rostos eram";
+		mes "minhas paixões!";
+		mes "Calma, hahaha eu fiz uma piada";
+		mes "Bwahahahahahah!";
+		next;
+		mes "[Bêbado]";
+		mes "^666666*Gulp~ Gulp~*^000000";
+		mes "cara isso é ótimo!";
+		mes "Você é o caraaaa!";
+		mes "Muhahahahaha!";
+		close;
+	case 2:
+		mes "[Bêbado]";
+		mes "Bah!";
+		mes "As crianças de hoje";
+		mes "não respeitam os";
+		mes "mais velhos";
+		mes "Por isso não te cobrarei respeito a mim";
+		close;
+	case 3:
+		mes "[Bêbado]";
+		mes "Tudo bem...";
+		mes "Por mim tudo bem, não preciso do seu respeito por mim!";
+		close;
+	}
 }
 
 payon_in01,164,165,2	script	Estudante de Monstros#02	55,{
@@ -246,8 +500,6 @@ payon_in01,164,165,2	script	Estudante de Monstros#02	55,{
 	}
 }
 
-// Pousada & Bar de Payon
-//============================================================
 payon_in01,101,174,5	script	Arqueiro Joe#payon	59,{
 	mes "[Arqueiro Joe]";
 	mes "Payon!";
@@ -330,7 +582,7 @@ payon_in01,101,174,5	script	Arqueiro Joe#payon	59,{
 	}
 }
 
-payon_in01,180,7,2	script	Garçonete#payon 90,{
+payon_in01,104,182,2	script	Garçonete#payon 80,{
 	mes "[Garçonete]";
 	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
 	next;
@@ -422,77 +674,6 @@ payon_in01,180,7,2	script	Garçonete#payon 90,{
 	close;
 }
 
-payon,95,181,3	script	Bêbado#payon	49,{
-	if (Class != Job_Archer) {
-		mes "[Bêbado]";
-		mes "Hey...";
-		mes "H-Hey...!";
-		next;
-		mes "[Bêbado]";
-		mes "Eu me pergunto porque esses";
-		mes "estupidos arqueiros vem";
-		mes "me incomodar com o mesmo objetivo sempre!";
-		mes "Você é tão fraco!";
-		mes "eu disse FRAAAAACO!";
-		next;
-		mes "[Bêbado]";
-		mes "Bwahahahaha!";
-		mes "Será que você poderia comprar para mim uma bebida?";
-	} else {
-		mes "[Bêbado]";
-		mes "Opa, um arqueiro!";
-		mes "seja homem ou um garoto";
-		mes "Vocês são os melhores!";
-		next;
-		mes "[Bêbado]";
-		mes "Bwahahahaha!";
-		mes "Será que você poderia comprar para mim uma bebida?";
-	}
-	next;
-	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
-	case 1:
-		set zeny,zeny-100;
-		mes "[Bêbado]";
-		mes "Obrigado...";
-		mes "...Irmão!";
-		next;
-		mes "[Bêbado]";
-		mes "A maioria das pessoas nunca querem ";
-		mes "com prar bebidas para mim! Talvez porque eu era acostumado abrincar demais com as senhoras da minha época!";
-		next;
-		mes "[Bêbado]";
-		mes "Embora, as mulheres que eu costumava brincar estão velhinhas agora! Hahahahaha! Um dia desses elas ainda se enfeitavam e colocavam maquiagem, você acredita nisso?";
-		next;
-		mes "[Bêbado]";
-		mes "Eu sou assim mesmo, um pouco brincalhão...";
-		mes "Vamos lá...";
-		mes "alguns rostos eram";
-		mes "minhas paixões!";
-		mes "Calma, hahaha eu fiz uma piada";
-		mes "Bwahahahahahah!";
-		next;
-		mes "[Bêbado]";
-		mes "^666666*Gulp~ Gulp~*^000000";
-		mes "cara isso é ótimo!";
-		mes "Você é o caraaaa!";
-		mes "Muhahahahaha!";
-		close;
-	case 2:
-		mes "[Bêbado]";
-		mes "Bah!";
-		mes "As crianças de hoje";
-		mes "não respeitam os";
-		mes "mais velhos";
-		mes "Por isso não te cobrarei respeito a mim";
-		close;
-	case 3:
-		mes "[Bêbado]";
-		mes "Tudo bem...";
-		mes "Por mim tudo bem, não preciso do seu respeito por mim!";
-		close;
-	}
-}
-
 payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 	mes "[Arqueiro Zakk]";
 	mes "Estou ocupado";
@@ -512,7 +693,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 		mes "Nossas vidas dependem do chefe fo pálacio central. ele é o guia espiritual de payon.";
 		next;
 		mes "[Arqueiro Zakk]";
-		mes "ele usou seu arco gakkung contra os monstros da floresta de payon, eu me lembro de vê-lo lutar quando eu era apenas uma criança.";
+		mes "Ele usou seu arco gakkung contra os monstros da floresta de payon, eu me lembro de vê-lo lutar quando eu era apenas uma criança.";
 		next;
 		mes "[Arqueiro Zakk]";
 		mes "Mas agora, ele";
@@ -542,7 +723,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 		next;
 		mes "[Arqueiro Zakk]";
 		mes "Enfim meu amigo Wolt não tem";
-		mes "uma casa própria, ele fica na pousada.Por que você não vai lá encontrá-lo? ele é realmente um cara legal, se você gostar de pessoas que falam muito.";
+		mes "uma casa própria, ele fica na pousada. Por que você não vai lá encontrá-lo? ele é realmente um cara legal, se você gostar de pessoas que falam muito.";
 		close;
 	}
 }
@@ -831,7 +1012,7 @@ payon_in01,176,176,2	script	Arqueiro Wolt#payon	88,{
 	}
 }
 
-// Guardas
+// Chefe de Payon
 payon_in01,137,143,2	script	Chefe#payon	120,2,2,{
 
 	if (BaseLevel < 30) {
@@ -959,212 +1140,6 @@ payon_in01,137,143,2	script	Chefe#payon	120,2,2,{
 		mes "cuide bem.";
 	}
 	close;
-}
-
-payon_in01,79,147,2	script	Guarda Chefe#payon2	708,{
-	mes "[Guarda Chefe]";
-	if (BaseLevel < 30) {
-		mes "Ei...!";
-		mes "Você não está autorizado";
-		mes "a ficar aqui!";
-		mes "Volte agora!";
-    close;
-    }
-		mes "Eu lamento";
-		mes "mas você não pode";
-		mes "ficar aqui.";
-		mes "Por favor, saia.";
-    close;
-}
-
-payon,92,164,3	script	Guarda#payon	708,3,3,{
-	end;
-
-OnTouch:
-	mes "[Guarda]";
-	mes "Este é o Palácio Central de Payon. Este local é aberto ao público, mas de acordo com nossas leis, você deve se comportar de forma ordenada, uma vez dentro.";
-	next;
-	mes "[Guarda]";
-	mes "No interesse de proteger a paz, vamos desarmar o equipamento uma vez que você entrar.";
-	mes "Sua cooperação é";
-	mes "muito apreciada.";
-	nude;
-	close;
-}
-
-
-payon_in03,69,90,4	script	Guarda Chefe do Palácio#payon	708,3,3,{
-	end;
-
-OnTouch:
-	mes "[Guarda Chefe]";
-	mes "O que trás";
-	mes "você aqui?";
-	next;
-	mes "[Guarda Chefe]";
-	mes "Eu posso ver que você não é morador de payon.Eu gostaria apenas de lembrá-lo, que estou aqui para conduzi-lo de forma correta. Lembre-se:";
-	mes "você é nosso convidado.";
-	next;
-	mes "[Guarda Chefe]";
-	mes "No interesse de proteger a paz pública, eu vou desarmar o seu equipamento.Obrigado pela sua cooperação.";
-	nude;
-	close;
-}
-
-pa2_in01,70,154,4	script	Guarda do Palácio#ot4	708,{
-	end;
-}
-
-pa2_in01,73,154,4	script	Guarda do Palácio#ot5	708,{
-	end;
-}
-
-payon,82,116,4	script	Guia#pay	708,{
-	cutin "pay_soldier",2;
-	mes "[Guia de Payon]";
-	mes "Bem-vindo à Payon, a cidade das montanhas.";
-	mes "Nós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";
-	mes "Se esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
-	set .@loop1,1;
-	while (.@loop1) {
-		next;
-		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar")) {
-		case 1:
-			mes "[Guia de Payon]";
-			mes "Por favor, selecione uma das opções.";
-			if (.@compass_check == 0) {
-				mes "Você gostaria que as indicações permaneçam no mini-mapa?";
-				next;
-				if (select("Sim.:Não.") == 1) set .@compass_check,1;
-			}
-			set .@loop2,1;
-			while(.@loop2) {
-				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
-				else next;
-				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Palácio Central.:Cancelar")) {
-				case 1:
-					mes "[Guia de Payon]";
-					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
-					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
-					if (.@compass_check)
-						viewpoint 1,227,328,2,0xFF0000;
-					break;
-				case 2:
-					mes "[Guia de Payon]";
-					mes "A 'Loja de Armas' se encontra ao noroeste da cidade.";
-					if (.@compass_check)
-						viewpoint 1,139,159,3,0xFF00FF;
-					break;
-				case 3:
-					mes "[Guia de Payon]";
-					mes "A 'Loja de Ferramentas' se encontra ao noroeste da Vila dos Arqueiros. Para chegar na Vila dos Arqueiros, saia pela saída nordeste da cidade.";
-					if (.@compass_check)
-						viewpoint 1,144,85,4,0xFF00FF;
-					break;
-				case 4:
-					mes "[Guia de Payon]";
-					mes "A 'Estalagem' se encontra a leste do centro da cidade.";
-					if (.@compass_check)
-						viewpoint 1,220,117,5,0xFF00FF;
-					break;
-				case 5:
-					mes "[Guia de Payon]";
-					mes "O 'Palácio Central' se encontra ao norte do centro da cidade.";
-					if (.@compass_check)
-						viewpoint 1,155,245,6,0x00FF00;
-					break;
-				case 6:
-					mes "[Guia de Payon]";
-					mes "The Empress";
-					mes "can be found to the";
-					mes "northwest in Payon.";
-					if (.@compass_check)
-						viewpoint 1,107,324,7,0x00FF00;
-					break;
-				case 7:
-					mes "[Guia de Payon]";
-					mes "The Palace Annex";
-					mes "can be found in the";
-					mes "western part of Payon.";
-					if (.@compass_check)
-						viewpoint 1,130,204,8,0x00FF00;
-					break;
-				case 8:
-					mes "[Guia de Payon]";
-					mes "The Royal Kitchen";
-					mes "is located near the";
-					mes "northern end of Payon.";
-					if (.@compass_check)
-						viewpoint 1,154,325,9,0x00FF00;
-					break;
-				case 9:
-					mes "[Guia de Payon]";
-					mes "The Forge is";
-					mes "situated near";
-					mes "the center of Payon.";
-					if (.@compass_check)
-						viewpoint 1,126,169,10,0xFFFF00;
-					break;
-				case 10:
-					mes "[Guia de Payon]";
-					mes "Please ask me to ''Remove";
-					mes "Marks from Mini-Map'' if you";
-					mes "no longer wish to have the";
-					mes "location marks displayed";
-					mes "on your Mini-Map.";
-					set .@loop2,0;
-					break;
-				}
-			}
-			break;
-		case 2:
-			viewpoint 2,237,41,2,0x00FF00;
-			viewpoint 2,237,41,3,0x0000FF;
-			viewpoint 2,46,345,4,0xFF00FF;
-			viewpoint 2,175,220,5,0xFF0000;
-			viewpoint 2,175,220,6,0xFF0000;
-			viewpoint 2,175,220,7,0xFF0000;
-			viewpoint 2,237,41,8,0x0000FF;
-			viewpoint 2,46,345,9,0x00FF00;
-			viewpoint 2,175,220,10,0xFF0000;
-			set .@compass_check,0;
-			break;
-		case 3:
-			mes "[Guia de Payon]";
-			mes "Advances in sorcery and";
-			mes "technology have allowed";
-			mes "us to update our information";
-			mes "system, enabling up to mark";
-			mes "locations on your Mini-Map";
-			mes "for easier navigation.";
-			next;
-			mes "[Guia de Payon]";
-			mes "Your Mini-Map is located";
-			mes "in the upper right corner";
-			mes "of the screen. If you can't";
-			mes "see it, press the Ctrl + Tab";
-			mes "keys or click the ''Map'' button in your Basic Info Window.";
-			next;
-			mes "[Guia de Payon]";
-			mes "On your Mini-Map,";
-			mes "click on the ''+'' and ''-''";
-			mes "symbols to zoom in and";
-			mes "our of your Mini-Map. We";
-			mes "hope you enjoy your travels";
-			mes "here in the city of Payon.";
-			break;
-		case 4:
-			mes "[Guia de Payon]";
-			mes "Be safe in";
-			mes "your travels,";
-			mes "brave adventurer.";
-			close2;
-			set .@loop1,0;
-			break;
-		}
-	}
-	cutin "pay_soldier",255;
-	end;
 }
 
 // * Estalagens
@@ -1325,76 +1300,3 @@ payon_in01,103,78,4	script	Senhora Mística	75,{
 		close;
 	}
 }
-
-// * ========================
-//   Portais
-// * ========================
-payon,17,151,0	warp	oldpay00	1,1,pay_gld,370,149
-payon,111,173,0	warp	oldpay01	1,2,payon_in01,15,68
-payon,133,81,0	warp	oldpay02	2,2,payon_in01,134,171
-payon,141,91,0	warp	oldpay03	2,2,payon_in01,98,173
-payon,172,133,0	warp	oldpay04	1,2,payon_in01,163,108
-payon,175,189,0	warp	oldpay05	4,2,pay_arche,81,22
-payon,189,69,0	warp	oldpay06	2,4,pay_fild08,20,74
-payon,22,174,0	warp	oldpay07	2,1,payon_in01,98,25
-payon,30,176,0	warp	oldpay08	2,1,payon_in01,80,63
-payon,38,174,0	warp	oldpay09	2,1,payon_in01,142,45
-payon,68,173,0	warp	oldpay10	1,2,payon_in01,44,138
-payon,90,167,0	warp	oldpay11	2,1,payon_in01,72,89
-payon,90,25,0	warp	oldpay12	5,3,pay_fild01,333,356
-payon_in01,101,25,0	warp	oldpay13	1,3,payon,22,171
-payon_in01,111,177,0	warp	oldpay14	2,3,payon_in01,129,177
-payon_in01,113,107,0	warp	oldpay15	1,2,payon_in01,63,107
-payon_in01,113,143,0	warp	oldpay16	1,2,payon_in01,63,145
-payon_in01,113,77,0	warp	oldpay17	1,2,payon_in01,63,99
-payon_in01,12,68,0	warp	oldpay18	1,3,payon,108,173
-payon_in01,122,107,0	warp	oldpay19	1,2,payon_in01,80,107
-payon_in01,122,77,0	warp	oldpay20	1,2,payon_in01,80,99
-payon_in01,124,143,0	warp	oldpay21	1,2,payon_in01,80,145
-payon_in01,126,177,0	warp	oldpay22	2,3,payon_in01,108,177
-payon_in01,130,36,0	warp	oldpay23	3,2,payon_in01,70,72
-payon_in01,134,168,0	warp	oldpay24	3,1,payon,129,81
-payon_in01,143,179,0	warp	oldpay25	1,3,payon_in01,167,179
-payon_in01,145,45,0	warp	oldpay26	1,3,payon,38,171
-payon_in01,160,108,0	warp	oldpay27	1,3,payon,169,133
-payon_in01,164,179,0	warp	oldpay28	1,2,payon_in01,140,179
-payon_in01,167,74,0	warp	oldpay29	1,2,payon_in01,168,50
-payon_in01,168,53,0	warp	oldpay30	1,2,payon_in01,167,77
-payon_in01,170,100,0	warp	oldpay31	1,2,payon_in01,170,83
-payon_in01,170,119,0	warp	oldpay32	1,2,payon_in01,170,136
-payon_in01,170,132,0	warp	oldpay33	1,2,payon_in01,170,115
-payon_in01,170,87,0	warp	oldpay34	1,2,payon_in01,170,104
-payon_in01,22,26,0	warp	oldpay35	3,2,payon_in01,30,78
-payon_in01,26,115,0	warp	oldpay36	3,2,payon_in01,30,129
-payon_in01,26,164,0	warp	oldpay37	3,2,payon_in01,30,148
-payon_in01,30,126,0	warp	oldpay38	3,2,payon_in01,26,112
-payon_in01,30,151,0	warp	oldpay39	3,2,payon_in01,26,167
-payon_in01,30,59,0	warp	oldpay40	3,1,payon_in01,52,32
-payon_in01,30,81,0	warp	oldpay41	3,2,payon_in01,22,29
-payon_in01,47,138,0	warp	oldpay42	1,3,payon,71,173
-payon_in01,52,35,0	warp	oldpay43	3,1,payon_in01,30,62
-payon_in01,60,107,0	warp	oldpay44	1,2,payon_in01,110,107
-payon_in01,60,145,0	warp	oldpay45	1,2,payon_in01,110,143
-payon_in01,60,170,0	warp	oldpay46	3,1,payon_in01,72,156
-payon_in01,60,99,0	warp	oldpay47	1,2,payon_in01,110,77
-payon_in01,70,52,0	warp	oldpay48	3,2,payon_in01,86,34
-payon_in01,70,75,0	warp	oldpay49	3,2,payon_in01,130,39
-payon_in01,72,121,0	warp	oldpay50	3,1,payon_in01,72,137
-payon_in01,72,134,0	warp	oldpay51	3,1,payon_in01,72,118
-payon_in01,72,159,0	warp	oldpay52	3,1,payon_in01,60,173
-payon_in01,72,86,0	warp	oldpay53	3,1,payon,90,164
-payon_in01,83,107,0	warp	oldpay54	1,2,payon_in01,125,107
-payon_in01,83,145,0	warp	oldpay55	1,2,payon_in01,127,143
-payon_in01,83,63,0	warp	oldpay56	1,3,payon,30,173
-payon_in01,83,99,0	warp	oldpay57	1,2,payon_in01,124,77
-payon_in01,86,37,0	warp	oldpay58	3,2,payon_in01,70,55
-payon_in01,98,170,0	warp	oldpay59	3,1,payon,141,95
-payon_in02,10,25,0	warp	oldpay60	2,2,payon_in02,72,67
-payon_in02,35,67,0	warp	oldpay61	2,2,payon_in02,55,67	
-payon_in02,50,4,0	warp	oldpay62	3,1,pay_arche,92,166
-payon_in02,52,67,0	warp	oldpay63	2,2,payon_in02,32,67
-payon_in02,61,33,0	warp	oldpay64	2,2,payon_in02,73,33
-payon_in02,64,56,0	warp	oldpay65	2,2,pay_arche,141,161
-payon_in02,70,33,0	warp	oldpay66	2,2,payon_in02,58,33
-payon_in02,75,67,0	warp	oldpay67	2,2,payon_in02,13,25
-payon_in02,82,45,0	warp	oldpay68	2,2,pay_arche,74,153

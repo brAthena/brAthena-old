@@ -190,7 +190,7 @@ payon,99,116,4	script	Funcionária Kafra::kaf_payon	113,{
 	mes "A Corporação Kafra está sempre trabalhando para oferecer serviços convenientes.";
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,1,60,930;
-	savepoint "payon",160,58;
+	savepoint "payon",69,100;
 	callfunc "F_KafEnd",0,1,"na cidade de Payon";
 }
 

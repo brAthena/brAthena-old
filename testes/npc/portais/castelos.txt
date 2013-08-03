@@ -221,9 +221,11 @@ gefg_cas05,190,20,0	warp	gefg-5-24_gefg-5-31	1,1,gefg_cas05,194,151
 gefg_cas05,194,147,0	warp	gefg-5-31_gefg-5-24	1,1,gefg_cas05,190,16
 
 // Feudo de Payon
-payon,16,143,0	warp	payon-a_payg01	1,1,pay_gld,370,149
+payon,17,151,0	warp#ot	oldpay00	1,1,pay_gld,370,149
+payon,16,143,0	warp#dv	payon-a_payg01	1,1,pay_gld,370,149
 moc_fild02,378,272,0	warp	moc02a_payg02	1,1,pay_gld,20,276
-pay_gld,374,149,0	warp	payg01_payon-a	1,1,payon,19,143
+pay_gld,374,149,0	warp#ot	oldpay01	1,1,payon,21,152
+pay_gld,374,149,0	warp#dv	payg01_payon-a	1,1,payon,19,143
 pay_gld,16,276,0	warp	payg02_moc02a	1,1,moc_fild02,374,272
 pay_gld,121,238,0	warp	payg-1_payg-1-06	1,1,payg_cas01,214,48
 pay_gld,291,116,0	warp	payg-2_payg-2-02	1,1,payg_cas02,272,57
@@ -398,45 +400,45 @@ aldeg_cas05,14,88,0	warp	aldeg-5-16_aldeg-5-15	1,1,aldeg_cas05,156,227
 // Episódio 12: WoE:SE
 // Conexão com Feudo de schwartzwald
 yuno,13,126,0	warp#dv	schg001	1,1,sch_gld,351,89
-sch_gld,354,89,0	warp	schg002	1,1,yuno,16,126
+sch_gld,354,89,0	warp#dv	schg002	1,1,yuno,16,126
 
 // Feudo de schwartzwald
-schg_cas01,119,4,0	warp	schg101	1,1,sch_gld,293,100
-sch_gld,293,90,0	warp	schg102	1,1,schg_cas01,119,8
-schg_cas01,275,240,0	warp	schg103	1,1,schg_cas01,120,7
-schg_cas02,339,73,0	warp	schg201	1,1,sch_gld,288,252
-sch_gld,288,258,0	warp	schg202	1,1,schg_cas02,339,78
-schg_cas02,101,301,0	warp	schg203	1,1,schg_cas02,340,78
-schg_cas03,337,336,0	warp	schg301	1,1,sch_gld,97,196
-sch_gld,97,183,0	warp	schg302	1,1,schg_cas03,337,330
-schg_cas03,57,9,0	warp	schg303	1,1,schg_cas03,337,330
-schg_cas04,119,4,0	warp	schg401	1,1,sch_gld,137,90
-sch_gld,137,98,0	warp	schg402	1,1,schg_cas04,119,8
-schg_cas04,275,240,0	warp	schg403	1,1,schg_cas04,120,7
-schg_cas05,119,4,0	warp	schg501	1,1,sch_gld,71,315
-sch_gld,65,315,0	warp	schg502	1,1,schg_cas05,119,8
-schg_cas05,275,240,0	warp	schg503	1,1,schg_cas05,120,7
+schg_cas01,119,4,0	warp#dv	schg101	1,1,sch_gld,293,100
+sch_gld,293,90,0	warp#dv	schg102	1,1,schg_cas01,119,8
+schg_cas01,275,240,0	warp#dv	schg103	1,1,schg_cas01,120,7
+schg_cas02,339,73,0	warp#dv	schg201	1,1,sch_gld,288,252
+sch_gld,288,258,0	warp#dv	schg202	1,1,schg_cas02,339,78
+schg_cas02,101,301,0	warp#dv	schg203	1,1,schg_cas02,340,78
+schg_cas03,337,336,0	warp#dv	schg301	1,1,sch_gld,97,196
+sch_gld,97,183,0	warp#dv	schg302	1,1,schg_cas03,337,330
+schg_cas03,57,9,0	warp#dv	schg303	1,1,schg_cas03,337,330
+schg_cas04,119,4,0	warp#dv	schg401	1,1,sch_gld,137,90
+sch_gld,137,98,0	warp#dv	schg402	1,1,schg_cas04,119,8
+schg_cas04,275,240,0	warp#dv	schg403	1,1,schg_cas04,120,7
+schg_cas05,119,4,0	warp#dv	schg501	1,1,sch_gld,71,315
+sch_gld,65,315,0	warp#dv	schg502	1,1,schg_cas05,119,8
+schg_cas05,275,240,0	warp#dv	schg503	1,1,schg_cas05,120,7
 
 // Conexão com Feudo de Arunafeltz
-ve_fild02,191,21,0	warp	arug001	1,1,aru_gld,195,360
-aru_gld,195,363,0	warp	arug002	1,1,ve_fild02,191,24
+ve_fild02,191,21,0	warp#dv	arug001	1,1,aru_gld,195,360
+aru_gld,195,363,0	warp#dv	arug002	1,1,ve_fild02,191,24
 
 // Feudo de Arunafeltz
-arug_cas01,281,93,0	warp	arug101	1,1,aru_gld,158,272
-aru_gld,155,274,0	warp	arug102	1,1,arug_cas01,275,93
-arug_cas01,127,357,0	warp	arug103	1,1,arug_cas01,275,93
-arug_cas02,139,25,0	warp	arug201	1,1,aru_gld,83,47
-aru_gld,78,47,0	warp	arug202	1,1,arug_cas02,139,31
-arug_cas02,393,324,0	warp	arug203	1,1,arug_cas02,139,31
-arug_cas03,141,40,0	warp	arug301	1,1,aru_gld,68,155
-aru_gld,68,150,0	warp	arug302	1,1,arug_cas03,141,45
-arug_cas03,321,52,0	warp	arug303	1,1,arug_cas03,141,45
-arug_cas04,141,40,0	warp	arug401	1,1,aru_gld,299,345
-aru_gld,289,347,0	warp	arug402	1,1,arug_cas04,141,45
-arug_cas04,321,52,0	warp	arug403	1,1,arug_cas04,141,45
-arug_cas05,141,40,0	warp	arug501	1,1,aru_gld,292,107
-aru_gld,287,107,0	warp	arug502	1,1,arug_cas05,141,45
-arug_cas05,321,52,0	warp	arug503	1,1,arug_cas05,141,45
+arug_cas01,281,93,0	warp#dv	arug101	1,1,aru_gld,158,272
+aru_gld,155,274,0	warp#dv	arug102	1,1,arug_cas01,275,93
+arug_cas01,127,357,0	warp#dv	arug103	1,1,arug_cas01,275,93
+arug_cas02,139,25,0	warp#dv	arug201	1,1,aru_gld,83,47
+aru_gld,78,47,0	warp#dv	arug202	1,1,arug_cas02,139,31
+arug_cas02,393,324,0	warp#dv	arug203	1,1,arug_cas02,139,31
+arug_cas03,141,40,0	warp#dv	arug301	1,1,aru_gld,68,155
+aru_gld,68,150,0	warp#dv	arug302	1,1,arug_cas03,141,45
+arug_cas03,321,52,0	warp#dv	arug303	1,1,arug_cas03,141,45
+arug_cas04,141,40,0	warp#dv	arug401	1,1,aru_gld,299,345
+aru_gld,289,347,0	warp#dv	arug402	1,1,arug_cas04,141,45
+arug_cas04,321,52,0	warp#dv	arug403	1,1,arug_cas04,141,45
+arug_cas05,141,40,0	warp#dv	arug501	1,1,aru_gld,292,107
+aru_gld,287,107,0	warp#dv	arug502	1,1,arug_cas05,141,45
+arug_cas05,321,52,0	warp#dv	arug503	1,1,arug_cas05,141,45
 
 //==================  4 Castelos de Aprendiz =============================
 
