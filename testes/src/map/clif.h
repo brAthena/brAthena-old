@@ -955,7 +955,8 @@ struct clif_interface {
 	void (*scriptclear) (struct map_session_data *sd, int npcid);
 	void (*cart_additem_ack) (struct map_session_data *sd, int flag);
 #if PACKETVER < 20091103
-  	void (*spawn_unit2) (struct block_list* bl, enum send_target target);
+	void (*spawn_unit2) (struct block_list* bl, enum send_target target);
+	void (*set_unit_idle2) (struct block_list* bl, struct map_session_data *tsd, enum send_target target);
 #endif
 	/* Sistema de Grupos */
 #ifdef PARTY_RECRUIT

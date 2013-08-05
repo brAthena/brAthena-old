@@ -66,6 +66,7 @@ enum packet_headers {
 	status_change_endType = 0x196,
 #if PACKETVER < 20091103
 	spawn_unit2Type = 0x7c,
+	idle_unit2Type = 0x78,
 #endif
 #if PACKETVER < 4
 	spawn_unitType = 0x79,
@@ -188,6 +189,36 @@ struct packet_dropflooritem {
 	short count;
 } __attribute__((packed));
 #if PACKETVER < 20091103
+struct packet_idle_unit2 {
+	short PacketType;
+	unsigned char objecttype;
+	unsigned int GID;
+	short speed;
+	short bodyState;
+	short healthState;
+	short effectState;
+	short job;
+	short head;
+	short weapon;
+	short accessory;
+	short shield;
+	short accessory2;
+	short accessory3;
+	short headpalette;
+	short bodypalette;
+	short headDir;
+	unsigned int GUID;
+	short GEmblemVer;
+	short honor;
+	short virtue;
+	bool isPKModeON;
+	unsigned char sex;
+	unsigned char PosDir[3];
+	unsigned char xSize;
+	unsigned char ySize;
+	unsigned char state;
+	short clevel;
+} __attribute__((packed));
 struct packet_spawn_unit2 {
 	short PacketType;
 	unsigned char objecttype;
@@ -251,7 +282,7 @@ struct packet_spawn_unit {
 	unsigned int GUID;
 	short GEmblemVer;
 	short honor;
-#if PACKETVER >= 20091103
+#if PACKETVER > 7
 	int virtue;
 #else
 	short virtue;
@@ -276,6 +307,8 @@ struct packet_unit_walking {
 	short PacketType;
 #if PACKETVER >= 20091103
 	short PacketLength;
+#endif
+#if PACKETVER > 7
 	unsigned char objecttype;
 #endif
 	unsigned int GID;
@@ -310,7 +343,7 @@ struct packet_unit_walking {
 	unsigned int GUID;
 	short GEmblemVer;
 	short honor;
-#if PACKETVER >= 20091103
+#if PACKETVER > 7
 	int virtue;
 #else
 	short virtue;
@@ -368,7 +401,7 @@ struct packet_idle_unit {
 	unsigned int GUID;
 	short GEmblemVer;
 	short honor;
-#if PACKETVER >= 20091103
+#if PACKETVER > 7
 	int virtue;
 #else
 	short virtue;
