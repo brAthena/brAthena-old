@@ -177,8 +177,14 @@ void itemdb_package_item(struct map_session_data *sd, struct item_package *packa
 			it.expire_time = (unsigned int)(time(NULL) + ((package->must_items[i].hour*60)*60));
 		}
 
-		if(package->must_items[i].onair) {
-			it.card[0] = CARD0_FORGE;
+		if(package->must_items[i].guid) {
+			struct item_data *itd = itemdb_search(it.nameid);
+			int card0 = CARD0_CREATE;
+
+			if(itd->type == 4 || itd->type == 5 || itd->type == 7 || itd->type == 8)
+				card0 = CARD0_FORGE;
+
+			it.card[0] = card0;
 			it.card[1] = 0;
 			it.card[2] = GetWord(sd->status.char_id, 0);
 			it.card[3] = GetWord(sd->status.char_id, 1);
@@ -219,7 +225,13 @@ void itemdb_package_item(struct map_session_data *sd, struct item_package *packa
 					}
 
 					if(entry->guid) {
-						it.card[0] = CARD0_FORGE;
+						struct item_data *itd = itemdb_search(it.nameid);
+						int card0 = CARD0_CREATE;
+
+						if(itd->type == 4 || itd->type == 5 || itd->type == 7 || itd->type == 8)
+							card0 = CARD0_FORGE;
+
+						it.card[0] = card0;
 						it.card[1] = 0;
 						it.card[2] = GetWord(sd->status.char_id, 0);
 						it.card[3] = GetWord(sd->status.char_id, 1);
@@ -917,8 +929,12 @@ void itemdb_read_packages(void) {
 		while((it = config_setting_get_elem(itg,c++))) {
 			int rval = 0;
 			const char *itname, *name2;
-			t = config_setting_get_member(it,"item");
-			itname = config_setting_get_string(t);
+			if(!(t = config_setting_get_member(it,"item")) || !(itname = config_setting_get_string(t))) {
+				ShowWarning("itemdb_read_packages: Valor do campo 'item' inválido no item '%d' do pacote '%s'. Ignorando entrada...\n",c,name);
+				config_setting_remove_elem(itg,c-1);
+				--c;
+				continue;
+			}
 			if(!(t = config_setting_get_member(it,"name")) || !(name2 = config_setting_get_string(t))) {
 				ShowWarning("itemdb_read_packages: valor de 'name' inválido para o item '%s' no pacote '%s', padronizando para 'must'!\n",itname,name);
 				config_setting_remove_elem(itg,c-1);
@@ -1006,11 +1022,6 @@ void itemdb_read_packages(void) {
 		while((it = config_setting_get_elem(itg,c++))) {
 			int icnt = 1, hour = 0, probability = 10000;
 			bool onair = false, guid = false, gid = 0;
-
-			if(!(t = config_setting_get_member(it, "item"))) {
-				ShowWarning("itemdb_read_packages: falta o campo 'item' para o pacote '%s'.\n",config_setting_name(itg));
-				return;
-			}
 
 			t = config_setting_get_member(it,"item");
 			itname = config_setting_get_string(t);
