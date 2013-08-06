@@ -14645,11 +14645,15 @@ void skill_repairweapon(struct map_session_data *sd, int idx)
 		clif_item_repaireffect(sd,idx,1);
 		return;
 	}
-
+	
+	#if VERSION != -1
 	if(target_sd->inventory_data[idx]->type == IT_WEAPON)
 		material = materials [ target_sd->inventory_data[idx]->wlv - 1 ]; // Lv1/2/3/4 weapons consume 1 Iron Ore/Iron/Steel/Rough Oridecon
 	else
 		material = materials [2]; // Armors consume 1 Steel
+	#else
+		material = materials [2]; // Armors consume 1 Steel
+	#endif
 	if(pc_search_inventory(sd,material) < 0) {
 		clif_skill_fail(sd,sd->menuskill_id,USESKILL_FAIL_LEVEL,0);
 		return;
