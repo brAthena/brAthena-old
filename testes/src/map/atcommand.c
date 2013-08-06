@@ -1769,26 +1769,30 @@ ACMD_FUNC(go)
 		{ MAP_PRONTERA,    156, 191 }, //  0=Prontera
 		{ MAP_MORROC,      156,  93 }, //  1=Morroc
 		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
+		#if VERSION != -1
 		{ MAP_PAYON,       162, 233 }, //  3=Payon
+		#else
+		{ MAP_PAYON,        90, 103 }, //  3=Payon Old-Times
+		#endif
 		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
-#if VERSION == 1
+		#if VERSION == 1
 		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renovação)
-#else
+		#else
 		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
-#endif
+		#endif
 		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
 		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
 		{ MAP_COMODO,      209, 143 }, //  8=Comodo
 		{ MAP_YUNO,        157,  51 }, //  9=Yuno
 		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
 		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
-#if VERSION != -1
+		#if VERSION != -1
 		{ MAP_UMBALA,       89, 157 }, // 12=Umbala [ Pré-Renovação & Renovação ]
 		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
 		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
-#endif
+		#endif
 		{ MAP_NOVICE,       53, 111 }, // Campo de Treinamento [ Pré-Renovação & Renovação @go 15 / Old-Times @go 12 ]
-#if VERSION != -1
+	#if VERSION != -1
 		{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
 		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
@@ -1802,7 +1806,7 @@ ACMD_FUNC(go)
 		{ MAP_MIDCAMP,     180, 240 }, // 26=Midgard Camp
 		{ MAP_MANUK,       282, 138 }, // 27=Manuk
 		{ MAP_SPLENDIDE,   201, 147 }, // 28=Splendide
-#if VERSION == 1
+		#if VERSION == 1
 		{ MAP_BRASILIS,    182, 239 }, // 29=Brasilis
 		{ MAP_DICASTES,    198, 187 }, // 30=El Dicastes
 		{ MAP_MORA,         44, 151 }, // 31=Mora
@@ -1810,8 +1814,8 @@ ACMD_FUNC(go)
 		{ MAP_MALANGDO,    140, 114 }, // 33=Malangdo Island
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
-#endif
-#endif
+		#endif
+	#endif
 	};
 
 	nullpo_retr(-1, sd);

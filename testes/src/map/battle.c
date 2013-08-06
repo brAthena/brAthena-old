@@ -4474,7 +4474,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight*80/100; //80% of weight
+						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
 				} else
 					wd.damage = sstatus->rhw.atk2*8/10; //Else use Atk2
 
