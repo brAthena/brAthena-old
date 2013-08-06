@@ -290,7 +290,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 
 // Paul Spanner: Einbroch Blacksmith Supplier
 //============================================================
-ein_in01,38,29,0	script	Paul Spanner	63,{
+ein_in01,38,29,0	script#dv	Paul Spanner	63,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute !! -";
 		mes "- Currently you're carrying -";
@@ -552,11 +552,11 @@ yuno_in01,171,21,4	script	Lambert	88,{
 	callfunc "refinemain","Lambert",0;
 	end;
 }
-ein_in01,24,87,5	script	Manthasman	826,{
+ein_in01,24,87,5	script#dv	Manthasman	826,{
 	callfunc "refinemain","Manthasman Pruhag",0;
 	end;
 }
-lhz_in02,282,20,7	script	Fulerr	869,{
+lhz_in02,282,20,7	script#dv	Fulerr	869,{
 	callfunc "refinemain","Fulerr",0;
 	end;
 }
@@ -879,11 +879,11 @@ yuno_in01,171,27,4	script	Dilemma	88,{
 	callfunc "phramain","Dilemma";
 	end;
 }
-ein_in01,15,87,3	script	Tirehaus	86,{
+ein_in01,15,87,3	script#dv	Tirehaus	86,{
 	callfunc "phramain","Tirehaus";
 	end;
 }
-lhz_in02,278,24,3	script	Krugg	86,{
+lhz_in02,278,24,3	script#dv	Krugg	86,{
 	callfunc "phramain","Krugg";
 	end;
 }
@@ -981,7 +981,7 @@ payon,137,178,5	script#dv	Hakhim	88,{
 	end;
 }
 
-payon,81,31,4	script#ot	Hakhim#ot	88,{
+payon_in01,81,31,4	script#ot	Hakhim#ot	88,{
 	callfunc "orimain","Hakhim";
 	end;
 }
@@ -998,11 +998,11 @@ yuno_in01,164,27,4	script	Delight	88,{
 	callfunc "orimain","Delight";
 	end;
 }
-ein_in01,18,82,6	script	Matestein	84,{
+ein_in01,18,82,6	script#dv	Matestein	84,{
 	callfunc "orimain","Matestein";
 	end;
 }
-lhz_in02,281,24,5	script	Fruel	84,{
+lhz_in02,281,24,5	script#dv	Fruel	84,{
 	callfunc "orimain","Fruel";
 	end;
 }
@@ -1088,7 +1088,7 @@ moc_ruins,107,94,4	script	Repairman#moc	99,{
 	end;
 }
 
-payon,143,165,4	script	Repairman#pay	88,{
+payon,143,165,4	script#dv	Repairman#pay	88,{
 	callfunc "repairmain","Repairman";
 	end;
 }
