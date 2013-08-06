@@ -5003,9 +5003,9 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 				ud->skilltimer = tid;
 				return skill_castend_pos(tid,tick,id,data);
 		}
-
-			tsd = BL_CAST(BL_PC, target);	
+	
 		#if VERSION == -1
+			tsd = BL_CAST(BL_PC, target);
 			if(tsd && tsd->ud.skill_id == MO_EXTREMITYFIST && target->type == BL_PC)
 			unit_skillcastcancel(target, 1);
 		#endif
