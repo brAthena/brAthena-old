@@ -46,17 +46,20 @@
 
 /**
  * DefType
- **/
+ *
+ *
 #if VERSION == 1
+ */
 	typedef short defType;
 	#define DEFTYPE_MIN SHRT_MIN
 	#define DEFTYPE_MAX SHRT_MAX
-
+/*
 #else
 	typedef signed char defType;
 	#define DEFTYPE_MIN CHAR_MIN
 	#define DEFTYPE_MAX CHAR_MAX
 #endif
+*/
 
 /* Definições para corrigir vários gcc warnings */
 #ifdef __64BIT__
