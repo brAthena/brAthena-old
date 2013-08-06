@@ -1203,9 +1203,10 @@ aldeba_in,92,58,5	duplicate(Funcionária#Sammy)	Funcionária#Rilim	53
 geffen_in,70,64,5	duplicate(Funcionária#Sammy)	Funcionária#Cena	53
 payon_in01,132,62,5	duplicate(Funcionária#Sammy)	Funcionária#Ahee	53
 
-// Quests
+// === Quests
+// Quest Faca Falsa
 //=============================================
-payon_in01,103,107,4	script	Vovó#pay	78,{
+payon_in01,103,107,4	script	Vovó#payonot	78,{
 	if (checkweight(908,1) == 0) {
 		mes "^3355FFEspere um segundo! Agora, você está carregando muitos itens com você. Por favor, volte depois de colocar algumas de suas coisas no Armazém da Kafra.^000000";
 		close;
@@ -1256,7 +1257,7 @@ payon_in01,103,107,4	script	Vovó#pay	78,{
 
 // Quest Aquecedor de Orelha
 //=============================================
-payon_in01,103,78,4	script	Senhora Mística	75,{
+payon_in01,103,78,4	script	Senhora Mística#payonot	75,{
 	mes "[Senhora Mística]";
 	mes "Minha família tem produzido e vendido um produto especial de inverno chamado ^3355FFAquecedor de Orelha^000000 por muitos anos. Nós nos mudamos para cá, mas o clima é sempre quente, então não poderemos ganhar a vida.";
 	next;
@@ -1297,6 +1298,280 @@ payon_in01,103,78,4	script	Senhora Mística	75,{
 		mes "encontraremos novamente.";
 		mes "...Um destes dias.";
 		emotion e_dots;
+		close;
+	}
+}
+
+// Quest Máscara de Oxigênio
+//=============================================
+payon_in02,25,71,4	script	Garoto#payonot	86,{
+	if (countitem(701) > 4) {
+		mes "[Jovem]";
+		mes "Arrrgggghh!";
+		mes "Ah, não, eu não posso...";
+		next;
+		mes "[Jovem]";
+		mes "*Huk*";
+		mes "Agora, até meus olhos ficaram loucos!! Por que esses insetos, de repente, parecem tão bonitos?! Nãooooooo!!!";
+		next;
+		switch(select("Mostrar Armadilhas para Insetos.:Entregar Armadilhas para Insetos.:Cancelar.")) {
+		case 1:
+			mes "[Jovem]";
+			mes "Oooooohhhh!!!";
+			mes "Isso, isso é";
+			mes "uma?!";
+			mes "Uma...";
+			mes "Armadilha para Insetos!!";
+			next;
+			mes "[Jovem]";
+			mes "Eu vou ser breve! Me dê ela, e eu te darei o meu tesouro! O que acha da minha idéia? Quer negociar?";
+			close;
+
+		case 2:
+			if (countitem(701) > 4) {
+				delitem 701,5;  // Armadilha para Insetos
+			}
+			mes "[Jovem]";
+			mes "Muhahahahah!!!";
+			mes "Eu finalmente tenho isso!";
+			mes "Armadilha para Insetos!";
+			mes "Estúpidos e nojentos";
+			mes "Besouros-Ladrões!";
+			mes "Vocês vão me pagar!!!";
+			next;
+			mes "[Jovem]";
+			mes "Huk...Huk...";
+			mes "Desculpe, acabei perdendo o meu controle por um momento. Agora vou dar o meu tesouro, como prometido.";
+			next;
+			getitem 5004,1; // Máscara de Oxigênio
+			mes "[Homem Jovem]";
+			mes "Quando você usar isso em sua boca e começar a respirar, ela vai filtrar as impuresas antes de chegar aos seus pulmões.";
+			next;
+			mes "[Jovem]";
+			mes "Hahahahahaha!";
+			mes "Mal posso esperar";
+			mes "para usar essa";
+			mes "Armadilha para Insetos!";
+			close;
+
+		case 3:
+			mes "[Jovem]";
+			mes "Huhuhuhuhu...";
+			mes "E se eu não conseguir me livrar desses Besouros-Ladrões? Talvez eu cresça e passe a amá-los... *Huk*";
+			close;
+		}
+	}
+	mes "[Jovem]";
+	mes "Wahhhhhh! Eu, eu...";
+	mes "Eu não aguento mais!";
+	mes "Seu besouro fedido, desgraçado!";
+	next;
+	switch(select("Continuar.:Cancelar.")) {
+	case 1:
+		mes "[Jovem]";
+		mes "Oh cara...";
+		mes "Tudo começou quando meus pais faleceram quando eu era um garotinho. No início eu tinha que trabalhar para viver, e teve um momento muito difícil sabe...";
+		next;
+		mes "[Jovem]";
+		mes "Eu trabalhei por 10 anos na esperança de comprar a minha casa dos sonhos, onde eu poderia encontrar alguma sensação de paz e conforto novamente. Eventualmente, eu pensei que tinha zenys para pagar o meu próprio lar doce lar.";
+		next;
+		mes "[Jovem]";
+		mes "Infelizmente eu não tenho dinheiro suficiente para comprar a casa agradável que eu estava de olho. Mas então, eu encontrei esta casa, que era maior e mais barata do que a primeira. Comprei sem pensar...";
+		next;
+		mes "[Jovem]";
+		mes "Doce Jesus! Acontece que, é um paraíso para Besouros-Ladrões!!!";
+		next;
+		mes "[Jovem]";
+		mes "Eu tentei fazer tudo o que eu podia fazer. Eu já tentei espantá-los, matá-los, mas isso só me trouxe paz por um momento! Eu já tentei até queimar e trazer essa casa abaixo!";
+		next;
+		mes "[Jovem]";
+		mes "*Suspiro* Quer dizer, que realmente, eu preciso da ^3355FF Armadilha para Insetos^000000 para se livrar deles? As pessoas dizem que raramente elas são encontradas em lugares distantes.";
+		next;
+		mes "[Jovem]";
+		mes "Se eu pudesse comprar 5 delas, eu não ficaria mais frustrado com esses insetos nojentos, nunca mais...";
+		close;
+
+	case 2:
+		mes "[Jovem]";
+		mes "Essa luta sem fim contra os insetos me deixam exausto. Eu desisto! Façam o quiserem seu canalhas!";
+		close;
+	}
+}
+
+// Quests Chapéu de Deviruchi / Elmo Angelical
+//=============================================
+payon_in01,56,12,7	script	Jovem#2payonot	89,{
+	mes "[Jovem]";
+	mes "...O que é isso?";
+	next;
+	switch(select("Você pode me fazer um item especial?:Ei.")) {
+	case 1:
+		mes "[Jovem]";
+		mes "Huh? Então você já sabe no que sou especializado? Não vejo necessidade de negar. Me diga o que você quer.";
+		next;
+		switch(select("Elmo Angelical.:Chapéu de Deviruchi.:Eu volto depois.")) {
+		case 1:
+			mes "[Jovem]";
+			mes "1 Elmo [1].";
+			mes "1 Asa de Anjo.";
+			mes "5 Presas de Hatii.";
+			mes "Isso é tudo que eu preciso.";
+			next;
+			mes "[Jovem]";
+			mes "Aguarde! Só para você saber, eu não me importo se os itens no seu inventário foram melhorados ou contém cartas.";
+			next;
+			mes "[Jovem]";
+			mes "Eu quero dizer, qualquer item melhorado ou com carta será perdido quando eu fizer este item. Portanto, tenha cuidado quando você entregar o material para mim.";
+			next;
+			mes "[Jovem]";
+			mes "Você reuniu os itens? Em seguida, entregue-os então.";
+			next;
+			switch(select("Entregar os itens.:Não entregar os itens.")) {
+			case 1:
+				if ((countitem(2229) > 0) && (countitem(2254) > 0) && (countitem(7036) > 4)) {
+					mes "[Jovem]";
+					mes ".....Hm.";
+					mes "Muito bem, aqui está o seu Elmo Angelical. Leve-o.";
+					delitem 2229,1;  // Elmo
+					delitem 2254,1;  // Asas de Anjo
+					delitem 7036,5;  // Presa de Hati
+					close2;
+					getitem 5025,1; // Elmo Angelical
+					end;
+				}
+				mes "[Jovem]";
+				mes "...O número de itens não está certo. É melhor checar.";
+				close;
+
+			case 2:
+				mes "[Jovem]";
+				mes "Faça como quiser...";
+				close;
+			}
+
+		case 2:
+			mes "[Jovem]";
+			mes "600 Pequenos Chifres Malignos.";
+			mes "40 Garras de Grifo.";
+			mes "Isso é tudo que eu preciso.";
+			next;
+			mes "[Jovem]";
+			mes "Aguarde! Só para você saber, eu não me importo se os itens no seu inventário foram melhorados ou contém cartas.";
+			next;
+			mes "[Jovem]";
+			mes "Eu quero dizer, qualquer item melhorado ou com carta será perdido quando eu fizer este item. Portanto, tenha cuidado quando você entregar o material para mim.";
+			next;
+			mes "[Jovem]";
+			mes "Você reuniu os itens? Em seguida, entregue-os então.";
+			next;
+			switch(select("Entregar os itens.:Não entregar os itens.")) {
+			case 1:
+				if ((countitem(1038) > 599) && (countitem(7048) > 39)) {
+					mes "[Jovem]";
+					mes ".....Hm. Aqui está o seu Chapéu de Deviruchi. Por favor, pegue-o.";
+					delitem 1038,600;// Pequeno Chifre Maligno
+					delitem 7048,40; // Garra de Grifo
+					close2;
+					getitem 5038,1;  // Chapéu de Deviruchi
+					end;
+				}
+				mes "[Jovem]";
+				mes "...O número de itens não está certo. É melhor checar.";
+				close;
+
+			case 2:
+				mes "[Jovem]";
+				mes "Faça como quiser...";
+				close;
+			}
+
+		case 3:
+			mes "[Jovem]";
+			mes "Hm. Tudo bem.";
+			mes "Então nos vemos depois.";
+			close;
+		}
+
+	case 2:
+		mes "[Jovem]";
+		mes "Hm.";
+		mes "Se cuide.";
+		close;
+	}
+}
+
+// Quest de Ferreiro - Talpiz
+//=============================================
+payon,214,79,4	script	Talpiz#BLS	59,{
+	if (BSMITH_Q == 12 && countitem(1713) > 0) {
+		mes "[Talpiz]";
+		mes "Oh~";
+		mes "Está finalmente aqui?";
+		mes "A minha encomenda?";
+		next;
+		mes "[Talpiz]";
+		mes "Hm, está do jeito que pedi, né? Eu não quero um Arbaleste que já foi usado antes.";
+		next;
+		if (select("Ops, está aqui é usada.:Tenho certeza, é novo!") == 1) {
+			mes "[Talpiz]";
+			mes "Hmmmm.";
+			mes "Por favor seja rápido";
+			mes "e traga o";
+			mes "item correto.";
+			mes "Eu já esperei";
+			mes "muito por isso...";
+			close;
+		}
+		mes "[Talpiz]";
+		mes "Então, você têm certeza?";
+		mes "Deixe-me dar uma olhada...";
+		next;
+		set BSMITH_Q,14;
+		delitem 1713,1; //Arbaleste
+		mes "[Talpiz]";
+		mes "*wheet whoo*";
+		mes "Muito bom!!";
+		next;
+		mes "[Talpiz]";
+		mes "Este é realmente um item personalizado de qualidade. Eu adoro como tem um estojo para o tapa-olho! Eu realmente amei~";
+		next;
+		mes "[Talpiz]";
+		mes "Obrigado!";
+		mes "Por algo desta qualidade,";
+		mes "eu até posso vendê-lo por um preço elevado, mesmo depois que eu usei ele!";
+		next;
+		getitem 1073,1; //Recibo de Entrega
+		mes "[Talpiz]";
+		mes "Aqui!";
+		mes "Pegue por favor,";
+		mes "seu recibo.";
+		mes "Eu realmente apreciei";
+		mes "seu trabalho duro.";
+		mapannounce "payon","Obrigado, " +strcharinfo(0)+ ", você realmente entregou. Cada vez que olho pra isso, eu amo ainda mais~",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Talpiz]";
+		mes "Realmente,";
+		mes "Eu não tenho";
+		mes "palavras. Este é";
+		mes "um trabalho de primeira qualidade~!";
+		close;
+	}
+	else {
+		mes "[Talpiz]";
+		mes "Eh...";
+		mes "Quando meu";
+		mes "pedido chegará?";
+		next;
+		mes "[Talpiz]";
+		mes "Um Arbaleste personalizado";
+		mes "feito com um estojo de qualidade para segurar seu tapa-olho. Só uma pessoa pode fazer uma coisa dessas...";
+		next;
+		mes "[Talpiz]";
+		mes "Ahhhhhh...";
+		mes "A espera é";
+		mes "agoniante!";
 		close;
 	}
 }

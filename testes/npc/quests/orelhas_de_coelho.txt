@@ -169,4 +169,4 @@ alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 	}
 }
 
-payon,97,116,4	duplicato(Funcionária Kafra#coe)	Funcionária Kafra#coe2	83,{}
+payon,104,117,4	duplicato(Funcionária Kafra#coe)	Funcionária Kafra#coe2	83,{}

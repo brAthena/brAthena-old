@@ -19,11 +19,12 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [FelipeM]                           |
+//   | 1.2 Quest adequada às 3 versões OT/PRE/RE [Neko]       |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ein_in01,18,28,4	script	Mestre Ferreiro#BLS	731,{
+-	script	Mestre Ferreiro#BLS	-1,{
 	if (Upper == 1) {
 		mes "[Altiregen]";
 		mes "Ei ei. Eu não tenho tempo para papo furado, sou um cara muito ocupado. Há todos esses Mercadores trabalhando duro para se tornarem Ferreiros.";
@@ -259,7 +260,7 @@ ein_in01,18,28,4	script	Mestre Ferreiro#BLS	731,{
 	}
 }
 
-ein_in01,201,27,3	script	Guildsman#alberta	63,{
+-	script	Guildsman#alberta	-1,{
 	mes "[Geschupenschte]";
   mes "Olá!";
 	mes "Eu sou ^8E6B23Geschupenschte^000000,";
@@ -1073,7 +1074,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 	}
 }
 
-lighthalzen,209,80,4	script	Krongast#BLS	734,{
+-	script	Krongast#BLS	-1,{
 	if (BSMITH_Q == 11 && countitem(1119) > 0) {
 		mes "[Krongast]";
 		mes "Ohhhhhh~";
@@ -1121,7 +1122,10 @@ lighthalzen,209,80,4	script	Krongast#BLS	734,{
 		mes "seu recibo.";
 		mes "Obrigado";
 		mes "pela entrega.!";
-		mapannounce "lighthalzen",strcharinfo(0)+"... Obrigado pela sua entrega.",bc_map;
+		if(checkversion(0) != -1)
+			mapannounce "lighthalzen",strcharinfo(0)+"... Obrigado pela sua entrega.",bc_map;
+		else
+			mapannounce "izlude",strcharinfo(0)+"... Obrigado pela sua entrega.",bc_map;
 		close;
 	}
 	else if (BSMITH_Q == 14) {
@@ -1151,81 +1155,7 @@ lighthalzen,209,80,4	script	Krongast#BLS	734,{
 	}
 }
 
-payon,151,39,4	script	Talpiz#BLS	59,{
-	if (BSMITH_Q == 12 && countitem(1713) > 0) {
-		mes "[Talpiz]";
-		mes "Oh~";
-		mes "Está finalmente aqui?";
-		mes "A minha encomenda?";
-		next;
-		mes "[Talpiz]";
-		mes "Hm, está do jeito que pedi, né? Eu não quero um Arbaleste que já foi usado antes.";
-		next;
-		if (select("Ops, está aqui é usada.:Tenho certeza, é novo!") == 1) {
-			mes "[Talpiz]";
-			mes "Hmmmm.";
-			mes "Por favor seja rápido";
-			mes "e traga o";
-			mes "item correto.";
-			mes "Eu já esperei";
-			mes "muito por isso...";
-			close;
-		}
-		mes "[Talpiz]";
-		mes "Então, você têm certeza?";
-		mes "Deixe-me dar uma olhada...";
-		next;
-		set BSMITH_Q,14;
-		delitem 1713,1; //Arbaleste
-		mes "[Talpiz]";
-		mes "*wheet whoo*";
-		mes "Muito bom!!";
-		next;
-		mes "[Talpiz]";
-		mes "Este é realmente um item personalizado de qualidade. Eu adoro como tem um estojo para o tapa-olho! Eu realmente amei~";
-		next;
-		mes "[Talpiz]";
-		mes "Obrigado!";
-		mes "Por algo desta qualidade,";
-		mes "eu até posso vendê-lo por um preço elevado, mesmo depois que eu usei ele!";
-		next;
-		getitem 1073,1; //Recibo de Entrega
-		mes "[Talpiz]";
-		mes "Aqui!";
-		mes "Pegue por favor,";
-		mes "seu recibo.";
-		mes "Eu realmente apreciei";
-		mes "seu trabalho duro.";
-		mapannounce "payon","Obrigado, " +strcharinfo(0)+ ", você realmente entregou. Cada vez que olho pra isso, eu amo ainda mais~",bc_map;
-		close;
-	}
-	else if (BSMITH_Q == 14) {
-		mes "[Talpiz]";
-		mes "Realmente,";
-		mes "Eu não tenho";
-		mes "palavras. Este é";
-		mes "um trabalho de primeira qualidade~!";
-		close;
-	}
-	else {
-		mes "[Talpiz]";
-		mes "Eh...";
-		mes "Quando meu";
-		mes "pedido chegará?";
-		next;
-		mes "[Talpiz]";
-		mes "Um Arbaleste personalizado";
-		mes "feito com um estojo de qualidade para segurar seu tapa-olho. Só uma pessoa pode fazer uma coisa dessas...";
-		next;
-		mes "[Talpiz]";
-		mes "Ahhhhhh...";
-		mes "A espera é";
-		mes "agoniante!";
-		close;
-	}
-}
-
-hugel,168,183,1	script	Bismarc#BLS	118,{
+-	script	Bismarc#BLS	-1,{
 	if (BSMITH_Q == 13 && countitem(1122) > 0) {
 		mes "[Bismarc]";
 		mes "Doce Senhor...";
@@ -1292,7 +1222,10 @@ hugel,168,183,1	script	Bismarc#BLS	118,{
 		mes "o seu recibo.";
 		mes "P-pegue-o...";
 		mes "É seu!";
-		mapannounce "hugel","Obrigado, " +strcharinfo(0)+ ", pela entrega. Você salvou minha vida...",bc_map;
+		if(checkversion(0) != -1)
+			mapannounce "hugel","Obrigado, " +strcharinfo(0)+ ", pela entrega. Você salvou minha vida...",bc_map;
+		else
+			mapannounce "comodo","Obrigado, " +strcharinfo(0)+ ", pela entrega. Você salvou minha vida...",bc_map;
 		close;
 	}
 	else if (BSMITH_Q == 14) {
@@ -1322,7 +1255,7 @@ hugel,168,183,1	script	Bismarc#BLS	118,{
 	}
 }
 
-ein_in01,24,41,5	script	Homem da Guilda dos Ferreiros#moc	726,{
+-	script	Homem da Guilda dos Ferreiros#moc	-1,{
 	if (BSMITH_Q == 16) {
 		emotion e_hmm;
 		mes "[Mitehmaeeuh]";
@@ -1544,7 +1477,81 @@ ein_in01,24,41,5	script	Homem da Guilda dos Ferreiros#moc	726,{
 	}
 }
 
-geffen_in,109,170,3	script	Guilda dos Ferreiros#gef	726,{
+payon,151,39,4	script#dv	Talpiz#BLS	59,{
+	if (BSMITH_Q == 12 && countitem(1713) > 0) {
+		mes "[Talpiz]";
+		mes "Oh~";
+		mes "Está finalmente aqui?";
+		mes "A minha encomenda?";
+		next;
+		mes "[Talpiz]";
+		mes "Hm, está do jeito que pedi, né? Eu não quero um Arbaleste que já foi usado antes.";
+		next;
+		if (select("Ops, está aqui é usada.:Tenho certeza, é novo!") == 1) {
+			mes "[Talpiz]";
+			mes "Hmmmm.";
+			mes "Por favor seja rápido";
+			mes "e traga o";
+			mes "item correto.";
+			mes "Eu já esperei";
+			mes "muito por isso...";
+			close;
+		}
+		mes "[Talpiz]";
+		mes "Então, você têm certeza?";
+		mes "Deixe-me dar uma olhada...";
+		next;
+		set BSMITH_Q,14;
+		delitem 1713,1; //Arbaleste
+		mes "[Talpiz]";
+		mes "*wheet whoo*";
+		mes "Muito bom!!";
+		next;
+		mes "[Talpiz]";
+		mes "Este é realmente um item personalizado de qualidade. Eu adoro como tem um estojo para o tapa-olho! Eu realmente amei~";
+		next;
+		mes "[Talpiz]";
+		mes "Obrigado!";
+		mes "Por algo desta qualidade,";
+		mes "eu até posso vendê-lo por um preço elevado, mesmo depois que eu usei ele!";
+		next;
+		getitem 1073,1; //Recibo de Entrega
+		mes "[Talpiz]";
+		mes "Aqui!";
+		mes "Pegue por favor,";
+		mes "seu recibo.";
+		mes "Eu realmente apreciei";
+		mes "seu trabalho duro.";
+		mapannounce "payon","Obrigado, " +strcharinfo(0)+ ", você realmente entregou. Cada vez que olho pra isso, eu amo ainda mais~",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Talpiz]";
+		mes "Realmente,";
+		mes "Eu não tenho";
+		mes "palavras. Este é";
+		mes "um trabalho de primeira qualidade~!";
+		close;
+	}
+	else {
+		mes "[Talpiz]";
+		mes "Eh...";
+		mes "Quando meu";
+		mes "pedido chegará?";
+		next;
+		mes "[Talpiz]";
+		mes "Um Arbaleste personalizado";
+		mes "feito com um estojo de qualidade para segurar seu tapa-olho. Só uma pessoa pode fazer uma coisa dessas...";
+		next;
+		mes "[Talpiz]";
+		mes "Ahhhhhh...";
+		mes "A espera é";
+		mes "agoniante!";
+		close;
+	}
+}
+
+geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	726,{
 	mes "[Homem da Guilda dos Ferreiros]";
 	mes "Bom dia, está aqui para visitar a Guilda dos Ferreiros?";
 	next;
@@ -1591,3 +1598,17 @@ geffen_in,109,170,3	script	Guilda dos Ferreiros#gef	726,{
 		close;
 	}
 }
+
+// Duplicatas OldTimes
+izlude,69,181,4	duplicato(Krongast#BLS)	Krongast#2BLS	734
+geffen_in,110,169,4	duplicato(Mestre Ferreiro#BLS)	Mestre Ferreiro#2BLS	731
+alberta_in,174,22,4	duplicato(Guildsman#alberta)	Guildsman#albertaot	63
+morocc,95,133,4	duplicato(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#2moc	726
+comodo,158,342,4	duplicato(Bismarc#BLS)	Bismarc#2BLS	118,{}
+
+// Duplicatas Pré-Renovação e Renovação
+ein_in01,201,27,3	duplicata(Guildsman#alberta)	Guildsman#albertare	63
+ein_in01,24,41,5	duplicata(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#3moc	726
+ein_in01,18,28,4	duplicata(Mestre Ferreiro#BLS)	Mestre Ferreiro#3BLS	731
+hugel,168,183,1	duplicata(Bismarc#BLS)	Bismarc#3BLS	118
+lighthalzen,209,80,4	duplicata(Krongast#BLS)	Krongast#3BLS	734,{}
