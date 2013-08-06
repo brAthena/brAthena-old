@@ -9375,6 +9375,7 @@ REPLACE INTO `item_db` VALUES(5527,'Lunatic_Hat','Chapéu de Lunático','5',20,NUL
 REPLACE INTO `item_db` VALUES(5528,'King_Frog_Hat','Chapéu do Rei Sapo','5',20,NULL,'500',NULL,4,NULL,1,0xFFFFFFFE,7,2,256,NULL,30,0,522,'bonus bAgi, 1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5529,'Evils_Bone_Hat','Elmo do Rei Youkai','5',20,NULL,'600',NULL,6,NULL,1,0xFFFFFFFF,7,2,768,NULL,70,1,523,'bonus bDex,3; bonus2 bSubEle,Ele_Neutral,5; skill "WZ_FROSTNOVA",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5530,'Raven_Cap','Chapéu de Corvo','5',20,NULL,'100',NULL,6,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,524,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES(5531,'B_Dragon_Hat','Chapéu de Bebê Dragão',5,20,NULL,100,NULL,3,NULL,1,0xFFFFFFFF,7,2,256,NULL,NULL,1,525,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(5532,'Pirate_Dagger_J','Adaga de Pirata','5',20,NULL,'100',NULL,0,NULL,0,0xFFFFFFFF,7,2,1,NULL,0,1,327,'bonus bShortWeaponDamageReturn,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5533,'Emperor_Wreath_J','Louros do Imperador','5',20,NULL,'800',NULL,3,NULL,1,0xFFFFFFFF,7,2,256,NULL,80,1,261,'bonus bAllStats,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5535,'Side_Cap','Boina Militar de Louyang','5',0,NULL,'500',NULL,3,NULL,0,0xFFFFFFFF,7,2,256,NULL,0,1,529,'bonus bVit,1; bonus bDex,1; bonus bMdef,3; bonus2 bSubRace,RC_DemiHuman,5; bonus2 bAddRace,RC_DemiHuman,3;',NULL,NULL);
@@ -12305,7 +12306,7 @@ REPLACE INTO `item_db` VALUES(13866,'Flying_Angel_Box','Flying Angel Box','18',2
 REPLACE INTO `item_db` VALUES(13867,'Neko_Mimi_Box','Neko Mimi Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 5099,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13868,'MFH_Box','Moonlight Flower Hat Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 5214,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13869,'Chick_Hat_Box','Baby Chick Hat Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 5283,1;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(13870,'New_Style_Box','Caixa de Corte de Cabelo','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 7622,1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(13870,'New_Style_Box','Caixa de Corte de Cabelo','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'CreatePackage();',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13871,'Magician_Card_Box','Cartas [Mago]','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'CreatePackage();',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13872,'Acolyte_Card_Box','Cartas [Noviço]','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'CreatePackage();',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13873,'Archer_Card_Box','Cartas [Arqueiro]','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'CreatePackage();',NULL,NULL);
