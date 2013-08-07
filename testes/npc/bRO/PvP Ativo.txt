@@ -1,0 +1,82 @@
+/*  _____________________________________________________________________________
+   /                                                                             \
+   |                 _           _   _   _                                       |
+   |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  |
+   |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 |
+   |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 |
+   |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_                  |
+   |                                                                             |
+   |                              brAthena Script                                |
+   |-----------------------------------------------------------------------------|
+   | Nome do Script: PvP Ativo.txt                                               |
+   |-----------------------------------------------------------------------------|
+   | Criado por: brAthena                                                        |
+   |-----------------------------------------------------------------------------|
+   | Versão brA: 1.0                                                             |
+   |-----------------------------------------------------------------------------|
+   | Descrição: Existem lugares que apenas os mais bravos heróis de Ragnarök     |
+   |  Online ousam adentrar. Se aventurar por calabouços ou masmorras que são    |
+   |  lares de MVPs é uma tarefa complicada, principalmente quando o próprio     |
+   |  chefão do local aparece para resolver a situação e vingar a eliminação de  |
+   |  seus lacaios.                                                              |
+   |                                                                             |
+   |  E para aumentar a emoção desses encontros, durante este evento, além de    |
+   |  batalhar contra os monstros, você terá também que enfrentar os outros      |
+   |  jogadores, que estão concorrendo contra você pelos valiosos espólios dos   |
+   |  MVPs! Isso porque, durante o período, o PVP ficará ativo nesses mapas.     |
+   |  Esta é a chance de testar suas habilidades e seu entrosamento com os demais|
+   |  membros de sua equipe ao enfrentar ambos os adversários para manter sua    |
+   |  supremacia!                                                                |
+   |                                                                             |
+   | Nota: Durante o período do Evento não haverá penalidade de EXP!             |
+   |-----------------------------------------------------------------------------|
+   | Changelog:                                                                  |
+   | 1.0 Script Criado [brAthena]                                                |
+   \_____________________________________________________________________________/ */
+
+-	script	PvP Ativo	-1,{
+
+  OnInit:
+
+  // ==============================================================================
+  // Definições de Horários ->
+  // ==============================================================================
+  set .mode, 0; // [ 0 = Padrão ] - [ 1 = Semanal ] - [ 2 = Mensal ].
+  setarray .day_start_end[0], ((!.mode) ? 29 : 7), ((!.mode) ? 4 : 31);
+  setarray .day_start_end_times[0], 16, 21; // ( Horário de Início & Término em Horas ).
+  setarray .days$[0], "Terça", "2", "Quarta", "3", "Quinta", "4"; // Modo Semanal
+  end;
+
+  OnMinute00:
+
+    if( (!.mode && (gettime(5) == .day_start_end[0]) && (gettime(3) == .day_start_end_times[1])) || (.mode == 1 && (gettime(4) == atoi(.days$[1])) && (gettime(3) == .day_start_end_times[0])) || 
+     (.mode == 2 && (gettime(5) == .day_start_end[0]) && (gettime(3) == .day_start_end_times[0])) )
+      callsub PvP_Ativo, ( (!.mode) ? 0 : (.mode == 1) ? 1 : 2 ), 1;
+
+     else if( (!.mode && (gettime(5) == .day_start_end[1]) && (gettime(3) == .day_start_end_times[1])) || (.mode == 1 && (gettime(4) == atoi(.days$[getarraysize(.days$)-1])) && 
+	 (gettime(3) == .day_start_end_times[1])) || (.mode == 2 && (gettime(5) == .day_start_end[1]) && (gettime(3) == .day_start_end_times[1])) )
+      callsub PvP_Ativo, 0, 2;
+
+  PvP_Ativo:
+
+   if(getarg(1) == 1) {
+    setarray .maps$[0], "moc_pryd06", "prt_maze03", "gl_chyard", "gef_dun01", "gef_dun02", "treasure02", "pay_fild10", "xmas_fild01", "prt_sewb4", "xmas_dun02",
+                        "anthell02", "mjolnir_04", "pay_dun04", "gef_fild03", "gef_fild10", "moc_pryd04", "in_sphinx5", "moc_fild17", "beach_dun", "tur_dun04", "odin_tem03";
+
+     for ( set .@c, 0; .@c < getarraysize(.maps$); set .@c, .@c + 1 ) {
+      pvpon .maps$[.@c];
+      setmapflag .maps$[.@c], mf_noexppenalty;
+      }
+      announce ( "O Evento PvP Ativo começou e irá até "+((getarg(0) == 0 || getarg(0) == 2) ? "o dia "+.day_start_end[1]+"" : ""+.days$[(getarraysize(.days$))-2]+"")+"" ), bc_all;
+      set $pvp_active,1;
+      }
+
+   else if(getarg(1) == 2) {
+    for ( set .@r, 0; .@r < getarraysize(.maps$); set .@r, .@r + 1 ) {
+      pvpoff .maps$[.@r];
+      removemapflag .maps$[.@r], mf_noexppenalty;
+      }
+      announce ( "O Evento PvP Ativo terminou." ), bc_all;
+      }
+      end;
+}
