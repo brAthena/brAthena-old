@@ -1,0 +1,87 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Mercadora_de_promocoes.txt             |
+//   |--------------------------------------------------------|
+//   | Criado por: brA Dev. Team                              |
+//   |--------------------------------------------------------|
+//   | Versões brA: 1.0                                       |
+//   |--------------------------------------------------------|
+//   | Descrição: NPC Mercadora de Promoções que troca Ticket |
+//   | de Promoção em itens aleatórios. A chances de não cair |
+//   | nenhum tipo de item.                                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criação [Megasantos]                               |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+prontera,142,227,3	script	Mercadora de Promoções	714,{
+
+	mes "[Mercadora de Promoções]";
+	mes "Olá aproveitando sua passagem pela cidade?!";
+	mes "Eu sou a mercadora responsável por trocar ^0000FFTicket de Promoção^000000 por prêmios aleatórios";
+	mes "Estarei aqui, trocando seus ^0000FFTickets de Promoção^000000 até a manutenção 13 de Agosto de 2013.";
+	next;
+	mes "[Mercadora de Promoções]";
+	mes "Você poderá receber um dos seguintes itens ao trocar o";
+	mes "Ticket de Aniversário dos Chapéus aqui comigo.";
+	next;
+	mes "[Mercadora de Promoções]";
+	for (.@i = 0; .@i < getarraysize(.item); .@i++) {
+		mes .qnt[.@i]+" - "+getitemname(.item[.@i])+"";
+	}
+	next;
+	mes "[Mercadora de Promoções]";
+	mes "Você gostaria de trocar agora?";
+	next;
+	if(select("Sim:Não") == 2) {
+		mes "[Mercadora de Promoções]";
+		mes "Quando quiser trocar um ticket,";
+		mes "basta vir e falar comigo!";
+		mes "Estarei aqui por pouco tempo.";
+		mes "Até mais!";
+		close;
+	}
+	mes "[Mercadora de Promoções]";
+	if(countitem(7558) >= 1) {
+		mes "OK! Vamos ver como anda a sua sorte!";
+		next;
+		mes "[Mercadora de Promoções]";
+		mes "Um... Dois... Três!";
+		delitem 7558,1;
+		for(.@i = 0; .@i < getarraysize(.item); .@i++) {
+			if(rand(1, 10000) <= .chance[.@i]) {
+				if(.item[.@i] == .GlobalMessage) {
+					announce "Atenção Heróis! "+strcharinfo(0)+" acabou de receber '"+getitemname(.item[.@i])+"' da NPC Promoções Especiais!",bc_all;
+				}
+				getitem .item[.@i],.qnt[.@i];
+				close;
+			}
+		}
+		close;
+	} else {
+		mes "Hmmm, você precisa ter o ^0000FFTicket de Promoção^000000";
+		mes "para receber um dos itens...";
+		close;
+	}
+
+	OnInit:
+
+		// Array dos itens, quantidade e chance.
+		// Chance 1 = 0.01
+		setarray .item[0], 5588, 5598, 5589, 5599, 12246, 616,  5372,  18693,  2855,  18529,  12276,  12208,  14592,  7621,  607,  12210,  12710;
+		setarray .qnt[0],     1,    1,    1,    1,     1,   1,     1,      1,     1,      1,      5,      5,      5,     3,    3,      3,      3;
+		setarray .chance[0],  1,    1,    1,    1,     1,  95,   900,    900,   900,    900,    900,    900,    900,   900,  900,    900,    900;
+
+		// Envia uma mensagem global para todos online quando ganhar item com a id
+		.GlobalMessage = 616;
+}
