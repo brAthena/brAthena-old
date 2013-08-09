@@ -1305,7 +1305,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		return hp+sp;
 	}
 
-	status->hp = 0;
+	status->hp = 1;
 	//NOTE: These dead functions should return: [Skotlex]
 	//0: Death cancelled, auto-revived.
 	//Non-zero: Standard death. Clear status, cancel move/attack, etc
@@ -1326,6 +1326,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		return hp+sp;
 
 	//Normal death
+	status->hp = 0;
 	if(battle_config.clear_unit_ondeath &&
 	   battle_config.clear_unit_ondeath&target->type)
 		skill_clear_unitgroup(target);
@@ -9371,11 +9372,6 @@ int status_change_clear(struct block_list *bl, int type)
 	sc->opt1 = 0;
 	sc->opt2 = 0;
 	sc->opt3 = 0;
-
-//cleaning all extras vars
-	sc->comet_x = 0;
-	sc->comet_y = 0;
-
 	sc->bs_counter = 0;
 
 	#if VERSION != 1
