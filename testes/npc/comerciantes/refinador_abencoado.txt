@@ -12,76 +12,77 @@
 //   |--------------------------------------------------------|
 //   | Criado por: rA/brA Dev. Team                           |
 //   |--------------------------------------------------------|
-//   | Versões rA/brA: 1.0/1.0                                |
+//   | Versões rA/brA: 1.0/1.1                                |
 //   |--------------------------------------------------------|
 //   | Descrição: Refinador abençoado.                        |
 //   | Refina equipamento sem quebrar. Refina de +6~12.       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [lututuiBR]                         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 -	script	::BlacksmithDister	-1,{
 	disable_items;
-	mes "[Blacksmith Dister]";
-	mes "In this highly competitive society, we must be different in order to survive!";
-	mes "I only refine equipment at the +6 ~ 12 levels.";
+	mes "[Ferreiro Dister]";
+	mes "Nesta sociedade altamente competitiva, nós devemos ser diferentes para sobreviver!";
+	mes "Eu refino equipamentos em nível +6 ~ +12.";
 	next;
-	mes "[Blacksmith Dister]";
-	mes "I will need ^ff9999Blessed Weapon Ore^000000 for weapons, and ^ff9999Blessed Armor Ore^000000 for armors.";
-	mes "Failed refines ^FF0000will not break or reduce the refine level^000000.";
+	mes "[Ferreiro Dister]";
+	mes "Eu precisarei de ^ff9999Omni-Oridecon^000000 para armas, ou de ^ff9999Mega-Elunium^000000 para armaduras.";
+	mes "Refinamentos fracassados ^FF0000não quebrarão ou reduzirão o nível de refino^000000.";
 	next;
-	mes "[Blacksmith Dister]";
-	mes "How about it? Do you want to refine?";
+	mes "[Ferreiro Dister]";
+	mes "Que tal? Você quer refinar?";
 	next;
-	setarray .@position$[1],"Head","Body","Left Hand","Right Hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+	setarray .@position$[1],"Cabeça Topo","Corpo","Mão Esquerda","Mão direita","Capa","Sapatos","Acessório 1","Acessório 2","Cabeça Meio","Cabeça Baixo";
 	set .@menu$,"";
 	for(set .@i,1; .@i<=10; set .@i,.@i+1)
-		set .@menu$, .@menu$+((getequipisequiped(.@i))?getequipname(.@i):.@position$[.@i]+"-[Unequipped]")+":";
+		set .@menu$, .@menu$+((getequipisequiped(.@i))?getequipname(.@i):.@position$[.@i]+"-[Não equipado]")+":";
 	set .@part, select(.@menu$);
 	if (!getequipisequiped(.@part)) {
-		mes "[Blacksmith Dister]";
+		mes "[Ferreiro Dister]";
 		switch(.@part) {
 		case 1:
-			mes "I'm a blacksmith, not a hairstylist.";
+			mes "Sou um ferreiro, não um cabeleireiro.";
 			break;
 		case 2:
-			mes "With my hammer, I will make you a star of the sky.";
+			mes "Com meu martelo, Farei você uma estrela do céu.";
 			break;
 		case 3:
 		case 4:
-			mes "Making artificial hands is not my specialty.";
+			mes "Fazer mãos artificiais não é minha especialidade.";
 			break;
 		case 5:
-			mes "Bring out the item so I can refine it!";
+			mes "Traga o item para que eu possa refiná-lo!";
 			break;
 		case 6:
-			mes "Where is this weird smell coming from?";
+			mes "De onde está vindo esse cheiro estranho?";
 			break;
 		case 7:
 		case 8:
-			mes "Where is the accessory?";
+			mes "Onde está o acessório?";
 			break;
 		case 9:
-			mes "What do you want me to refine?";
+			mes "O que quer que eu refine?";
 			break;
 		case 10:
-			mes "Huh? What do you want me to do?";
+			mes "Huh? O que quer que eu faça?";
 			break;
 		}
 		close;
 	}
 	if (!getequipisenableref(.@part)) {
-		mes "[Blacksmith Dister]";
-		mes "This item cannot be refined.";
+		mes "[Ferreiro Dister]";
+		mes "Este item não pode ser refinado.";
 		close;
 	}
 	set .@equip_refine, getequiprefinerycnt(.@part);
 	if (.@equip_refine < 6 || .@equip_refine > 12) {
-		mes "[Blacksmith Dister]";
-		mes "This equipment has refined to "+.@equip_refine+". I only handle items with refine levels from +6 to +12!";
+		mes "[Ferreiro Dister]";
+		mes "Este equipamento está refinado no nível "+.@equip_refine+". Eu só dou conta de itens com níveis de refino de +6 a +12!";
 		close;
 	}
 	set .@equip_lv, getequipweaponlv(.@part);
@@ -90,90 +91,90 @@
 	case 0:
 		set .@price,20000;
 		set .@material,6439; //Unbreakable_Def
-		set .@type$,"Armor";
+		set .@type$,"Armadura";
 		break;
 	case 1:
 		set .@price,1000;
 		set .@material,6438; //Unbreakable_Weap
-		set .@type$,"Weapon";
+		set .@type$,"Arma";
 		break;
 	case 2:
 		set .@price,2000;
 		set .@material,6438; //Unbreakable_Weap
-		set .@type$,"Weapon";
+		set .@type$,"Arma";
 		break;
 	case 3:
 		set .@price,20000;
 		set .@material,6438; //Unbreakable_Weap
-		set .@type$,"Weapon";
+		set .@type$,"Arma";
 		break;
 	case 4:
 		set .@price,40000;
 		set .@material,6438; //Unbreakable_Weap
-		set .@type$,"Weapon";
+		set .@type$,"Arma";
 		break;
 	}
 	set .@ore$,"^ff9999Blessed "+.@type$+" Ore^000000";
-	mes "[Blacksmith Dister]";
-	mes "This "+.@type$+" has been refined to "+.@equip_refine+". To refine it, I need "+.@ore$+" and a "+(.@price/1000)+",000 zeny refining fee.";
-	mes "Do you want to proceed?";
+	mes "[Ferreiro Dister]";
+	mes "Este "+.@type$+" está refinado em "+.@equip_refine+". Para refiná-lo, eu preciso de "+.@ore$+" e "+(.@price/1000)+",000 zeny de taxa do refinamento.";
+	mes "Quer continuar?";
 	next;
-	if(select("Yes:No") == 2) {
-		mes "[Blacksmith Dister]";
-		mes "I am busy, don't joke with me!";
+	if(select("Sim:Não") == 2) {
+		mes "[Ferreiro Dister]";
+		mes "Estou ocupado, não me incomode!";
 		close;
 	}
 	if (getequippercentrefinery(.@part) < 100) {
-		mes "[Blacksmith Dister]";
-		mes "This "+.@type$+" has been refined many times. Although it will not disappear upon failure, the "+.@ore$+" will disappear!";
+		mes "[Ferreiro Dister]";
+		mes "Este "+.@type$+" foi refinado muitas vezes. Embora ele não vá desaparecer no caso de falha, o "+.@ore$+" vai!";
 		next;
-		mes "[Blacksmith Dister]";
-		mes "Of course, the refining fee will not be returned! Do you want to continue?";
+		mes "[Ferreiro Dister]";
+		mes "É claro, a taxa de refinamento não será devolvida! Quer continuar?";
 		next;
-		if(select("Yes:No") == 2) {
-			mes "[Blacksmith Dister]";
-			mes "Good. I'd be sad if it failed, too.";
+		if(select("Sim:Não") == 2) {
+			mes "[Ferreiro Dister]";
+			mes "Bom. Eu também ficaria triste e falhasse.";
 			close;
 		}
 	}
 	if (countitem(.@material) == 0 || Zeny < .@price) {
-		mes "[Blacksmith Dister]";
-		mes "Materials insufficient.";
-		mes "To refine "+((.@equip_lv)?"a level "+.@equip_lv+" weapon":"armor")+", I need "+.@ore$+" and a "+(.@price/1000)+",000 zeny refining fee.";
+		mes "[Ferreiro Dister]";
+		mes "Material insuficiente.";
+		mes "Para refinar a "+((.@equip_lv)?"arma":"armadura")+", eu preciso de "+.@ore$+" e "+(.@price/1000)+",000 zeny de taxa de refinamento.";
 		close;
 	}
 	delitem .@material,1;
 	set Zeny, Zeny-.@price;
-	mes "[Blacksmith Dister]";
+	mes "[Ferreiro Dister]";
 	mes "Tac! Tac! Tac!";
 	if (getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100)) {
 		specialeffect EF_BLESSING;
 		successrefitem .@part;
 		next;
-		mes "[Blacksmith Dister]";
+		mes "[Ferreiro Dister]";
 		mes "Hahahahahaha!!!";
 		next;
-		mes "[Blacksmith Dister]";
-		mes "Refine was a huge success~ Hahaha!";
+		mes "[Ferreiro Dister]";
+		mes "O refino foi um grande sucesso~ Hahaha!";
 		close;
 	}
 	specialeffect EF_CURSEATTACK;
 	specialeffect2 EF_SUI_EXPLOSION;
 	next;
 	emotion (!rand(5))?e_ag:e_omg;
-	mes "[Blacksmith Dister]";
-	mes "Oh my goodness!!!!";
+	mes "[Ferreiro Dister]";
+	mes "Oh Meu Deus!!!!";
 	next;
-	mes "[Blacksmith Dister]";
-	mes "Oh! Although it was blessed by "+.@ore$+" to retain the equipment...";
+	mes "[Ferreiro Dister]";
+	mes "Oh! Embora tenha sido abençoado pelo "+.@ore$+" para preservar o equipamento...";
 	next;
-	mes "[Blacksmith Dister]";
-	mes "My mood is worse when I fail!!";
+	mes "[Ferreiro Dister]";
+	mes "Meu humor piora quando eu falho!!";
 	close;
 }
-prt_in,52,56,3	duplicate(BlacksmithDister)	Blacksmith Dister#prt	826
-payon,148,172,3	duplicate(BlacksmithDister)	Blacksmith Dister#pay	826
-alberta_in,20,56,3	duplicate(BlacksmithDister)	Blacksmith Dister#alb	826
-yuno_in01,175,18,3	duplicate(BlacksmithDister)	Blacksmith Dister#yuno	826
-ein_in01,26,82,3	duplicate(BlacksmithDister)	Blacksmith Dister#ein	826
-lhz_in02,280,15,3	duplicate(BlacksmithDister)	Blacksmith Dister#lhz	826
+prt_in,52,56,3	duplicate(BlacksmithDister)	Ferreiro Dister#prt	826
+payon,148,172,3	duplicate(BlacksmithDister)	Ferreiro Dister#pay	826
+alberta_in,20,56,3	duplicate(BlacksmithDister)	Ferreiro Dister#alb	826
+yuno_in01,175,18,3	duplicate(BlacksmithDister)	Ferreiro Dister#yuno	826
+ein_in01,26,82,3	duplicate(BlacksmithDister)	Ferreiro Dister#ein	826
+lhz_in02,280,15,3	duplicate(BlacksmithDister)	Ferreiro Dister#lhz	826

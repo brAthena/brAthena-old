@@ -28,7 +28,7 @@
  *  1 - Renovação                       *
  *  0 - Pré-Renovação                   *
  * -1 - Old-Times                       */
-#define VERSION 0
+#define VERSION 1
 
 /*		Fórmula de Ataque Base		 *
  *	Valor da constante [ Renovação ] */
