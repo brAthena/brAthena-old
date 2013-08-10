@@ -8793,10 +8793,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				tick_time = 1000;
 				break;
 			case SC_ZANGETSU:
-				val2 = status_get_lv(bl) / 3 + 20 * val1;
+				val2 = val4 = status_get_lv(bl) / 3 + 20 * val1;
 				val3 = status_get_lv(bl) / 2 + 30 * val1;
 				val2 = (!(status_get_hp(bl)%2) ? val2 : -val3);
-				val3 = (!(status_get_sp(bl)%2) ? val2 : -val3);
+				val3 = (!(status_get_sp(bl)%2) ? val4 : -val3);
 				break;
 			case SC_GENSOU: {
 					int hp = status_get_hp(bl), sp = status_get_sp(bl), lv = 5;
@@ -10978,8 +10978,8 @@ int status_get_weapon_atk(struct block_list *bl, struct weapon_atk *watk, int fl
 		variance = 5.0f * watk->atk *  watk->wlv / 100.0f;
 		strdex_bonus = watk->atk * dstr / 200.0f;
 
-		min = (watk->atk - (int)(variance + strdex_bonus)) + watk->atk2;
-		max = (watk->atk + (int)(variance + strdex_bonus)) + watk->atk2;
+		min = (int)(watk->atk - variance + strdex_bonus) + watk->atk2;
+		max = (int)(watk->atk + variance + strdex_bonus) + watk->atk2;
 	}else if(watk->atk) {
 		min = watk->atk * 80 / 100;
 		max = watk->atk * 120 / 100;
@@ -11030,10 +11030,10 @@ int status_get_matk(struct block_list *bl, int flag){
 	if(flag == 2) // just get matk
 		GETRANDMATK();
 
-	#if VERSION != 1
+#if VERSION != 1
 	status->matk_min = status_base_matk_min(status) + (sd?sd->bonus.ematk:0);
 	status->matk_max = status_base_matk_max(status) + (sd?sd->bonus.ematk:0);
-	#else
+#else
 	/**
 	 * RE MATK Formula (from irowiki:http://irowiki.org/wiki/MATK)
 	 * MATK = (sMATK + wMATK + eMATK) * Multiplicative Modifiers
@@ -11059,7 +11059,7 @@ int status_get_matk(struct block_list *bl, int flag){
 		status->matk_min += 70 * ((TBL_MOB*)bl)->status.rhw.atk2 / 100;
 		status->matk_max += 130 * ((TBL_MOB*)bl)->status.rhw.atk2 / 100;
 	}
-	#endif
+#endif
 	if (bl->type&BL_PC && sd->matk_rate != 100) {
 		status->matk_max = status->matk_max * sd->matk_rate/100;
 		status->matk_min = status->matk_min * sd->matk_rate/100;
@@ -11069,12 +11069,12 @@ int status_get_matk(struct block_list *bl, int flag){
 		|| (sc && sc->data[SC_RECOGNIZEDSPELL]))
 		status->matk_min = status->matk_max;
 
-	#if VERSION == 1
+#if VERSION == 1
 	if(sd && sd->right_weapon.overrefine > 0) {
 		status->matk_min++;
 		status->matk_max += sd->right_weapon.overrefine - 1;
 	}
-	#endif
+#endif
 
 	if( flag ) // get unmodified from sc matk
 		GETRANDMATK();
