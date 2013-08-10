@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.2/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Lighthalzen.             |
 //   |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -30,6 +31,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 	mes "[Guia de Lighthalzen]";
 	mes "Bem-vindo à Lighthalzen, a Cidade-Estado da Corporação.";
 	mes "Se você precisar de orientação referente à cidade, sinta-se à vontade para me perguntar, e eu farei o melhor para ajudá-lo.";
+	F_Navi("[Guia de Lighthalzen]");
   if(checkversion(0)) {
 	next;
 	mes "[Guia de Lighthalzen]";
@@ -43,52 +45,52 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 			while (.@loop) {
 				switch(select("[ Hotel ]:[ Banco ]:[ Aeroporto ]:[ Loja de Armas ]:[ Shopping ]:[ Quartel General ]:[ Joalheria ]:[ Corp. Eventos Incríveis ]:[ Laboratório de Somatologia ]:[ Associação de Alquimistas ]:Menu Anterior")) {
 				case 1:
-					callsub L_Mark,"^FF0000Hotel";
+					callsub L_Mark, F_Navi("Hotel","lighthalzen,159,133","^FF0000");
 					viewpoint 1,160,217,0,0xFF0000;
 					next;
 					break;
 				case 2:
-					callsub L_Mark,"^FF4500Banco";
+					callsub L_Mark, F_Navi("Banco","lighthalzen,203,257","^FF4500");
 					viewpoint 1,203,257,1,0xFF4500;
 					next;
 					break;
 				case 3:
-					callsub L_Mark,"^DAA520Aeroporto";
+					callsub L_Mark, F_Navi("Aeroporto","lighthalzen,262,75","^DAA520");
 					viewpoint 1,262,75,2,0xDAA520;
 					next;
 					break;
 				case 4:
-					callsub L_Mark,"^7B68EELoja de Armas";
+					callsub L_Mark, F_Navi("Loja de Armas","lighthalzen,194,35","^7B68EE");
 					viewpoint 1,194,35,3,0x7B68EE;
 					next;
 					break;
 				case 5:
-					callsub L_Mark,"^B91A4Shopping";
+					callsub L_Mark, F_Navi("Shopping","lighthalzen,199,164","^B91A4D");
 					viewpoint 1,202,106,4,0xB91A4D;
 					next;
 					break;
 				case 6:
-					callsub L_Mark,"^008000Quartel General";
+					callsub L_Mark, F_Navi("Quartel General","lighthalzen,234,276","^008000");
 					viewpoint 1,234,276,5,0x008000;
 					next;
 					break;
 				case 7:
-					callsub L_Mark,"^0000FFJoalheria";
+					callsub L_Mark, F_Navi("Joalheria","lighthalzen,96,110","^0000FF");
 					viewpoint 1,96,110,6,0x0000FF;
 					next;
 					break;
 				case 8:
-					callsub L_Mark,"^000080Corp. Eventos Incríveis";
+					callsub L_Mark, F_Navi("Corp. Eventos Incríveis","lighthalzen,238,217","^000080");
 					viewpoint 1,238,217,7,0x000080;
 					next;
 					break;
 				case 9:
-					callsub L_Mark,"^800080Laboratório de Somatologia";
+					callsub L_Mark, F_Navi("Laboratório de Somatologia","lighthalzen,101,243","^800080");
 					viewpoint 1,101,243,8,0x800080;
 					next;
 					break;
 				case 10:
-					callsub L_Mark,"^0A9696Associação de Alquimistas";
+					callsub L_Mark, F_Navi("Associação de Alquimistas","lighthalzen,54,132","^0A9696");
 					viewpoint 1,54,132,9,0x0A9696;
 					next;
 					break;
@@ -107,7 +109,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 					mes "Você pode encontrar Fulerr, o ^0A9696Armeiro^000000 no 1° andar da Loja de Armas.";
 					viewpoint 1,194,35,10,0x0A9696;
 					next;
-					callsub L_Mark,"^0A9696Armeiro";
+					callsub L_Mark, "^0A9696Armeiro^000000";
 					next;
 					break;
 				case 2:
@@ -115,22 +117,22 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 					mes "^4B0082Seiyablem^000000 pode adicionar slots em seus itens no 1° andar da Loja de Armas.";
 					viewpoint 1,194,35,11,0x4B0082;
 					next;
-					callsub L_Mark,"^4B0082Seiyablem",1;
+					callsub L_Mark, "^4B0082Seiyablem^000000",1;
 					next;
 					break;
 				case 3:
-					callsub L_Mark,"^FF4500Loja de Bichinhos";
+					callsub L_Mark, F_Navi("Loja de Bichinhos","lighthalzen,222,191","^FF4500");
 					viewpoint 1,222,191,12,0xFF4500;
 					next;
 					break;
 				case 4:
-					callsub L_Mark,"^008080Funcionárias Kafra";
+					callsub L_Mark, "^008080Funcionárias Kafra^000000";
 					viewpoint 1,164,99,13,0x008080;
 					viewpoint 1,164,99,14,0x008080;
 					next;
 					break;
 				case 5:
-					callsub L_Mark,"^FF1493Equipe da Corp. Eventos Incríveis";
+					callsub L_Mark, F_Navi("Equipe da Corp. Eventos Incríveis","lighthalzen,94,247","^FF1493");
 					viewpoint 1,94,247,15,0xFF1493;
 					next;
 					break;
@@ -172,7 +174,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 	end;
 L_Mark:
 	mes "[Guia de Lighthalzen]";
-	mes "Deixe-me marcar a localização para "+((getarg(1,0))?"a":"o ")+getarg(0)+"^000000 em seu mini-mapa.";
+	mes "Deixe-me marcar a localização para "+getarg(0)+" em seu mini-mapa.";
 	mes "Gostaria de verificar outras localizações?";
 	return;
 } 
@@ -310,7 +312,6 @@ L_Mark:
 	end;
   }
 }
-
 lighthalzen,220,310,3	duplicate(Guia#lhz01)	Guia#lhz02	852
 lighthalzen,154,100,5	duplicate(Guia#lhz01)	Guia#lhz03	852
 lighthalzen,307,224,3	duplicate(Guia#lhz01)	Guia#lhz04	852

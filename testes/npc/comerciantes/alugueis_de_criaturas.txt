@@ -198,26 +198,51 @@ prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 
 // -------------- Aluguel de Robôs --------------
 //============================================================
-prontera,163,178,3	script#re	Artilheiro Mágico	105,{
+-	script	::mgm	-1,{
 	mes "[Artilheiro Mágico]";
 	if (Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
-		mes "Bem-vindo. Você deseja adquirir um Robô?";
+		mes "Bem-vindo. Você deseja alugar um Carrinho ou um Robô?";
 		next;
-		if(select("Sim:Não"))
-			if(@menu == 1) {
-				if (!getskilllv("NC_MADOLICENCE") || checkmadogear() || ismounting()) {
+		switch(select("Alugar um Carrinho:Alugar um Robô:Cancelar")) {
+		case 1:
+			if (checkcart()) {
 				mes "[Artilheiro Mágico]";
-				mes ""+((!getskilllv("NC_MADOLICENCE")) ? "Por favor, aprenda a montar em um Robô primeiro" : "Você já possui uma montaria")+".";
+				mes "Você já possui um carrinho";
+				close;
 			}
-			else
-			setmadogear;
-			} else {
+			setcart;
 			mes "[Artilheiro Mágico]";
-			mes "Entendo. Então tenha um ótimo dia.";
-			}
+			mes "Aqui está!";
 			close;
+		case 2:
+			if (checkmadogear() || ismounting()) {
+				mes "[Artilheiro Mágico]";
+				mes "Você já possui uma montaria";
+				close;
+			} else if (!getskilllv("NC_MADOLICENCE")) {
+				mes "[Artilheiro Mágico]";
+				mes "Por favor, aprenda a montar em um Robô primeiro";
+				close;
+			}
+			setmadogear;
+			mes "[Artilheiro Mágico]";
+			mes "Divirta-se, e por favor, volte!";
+			close;
+		case 3:
+			close;
+		}
 	}
 	mes "Como posso te ajudar?";
 	mes "Os Robôs estão disponíveis apenas para Mecânicos.";
 	close;
 }
+prontera,163,178,3	duplicate(mgm)	Magic Gear Master#prt	105
+geffen,103,55,5	duplicate(mgm)	Magic Gear Master#gef	105
+payon,166,106,5	duplicate(mgm)	Magic Gear Master#pay	105
+aldebaran,133,112,5	duplicate(mgm)	Magic Gear Master#alde	105
+yuno,167,187,3	duplicate(mgm)	Magic Gear Master#yuno	105
+rachel,106,134,5	duplicate(mgm)	Magic Gear Master#ra	105
+dicastes01,187,207,3	duplicate(mgm)	Magic Gear Master#dic	105
+manuk,273,212,5	duplicate(mgm)	Magic Gear Master#man	105
+splendide,180,174,5	duplicate(mgm)	Magic Gear Master#spl	105
+mid_camp,242,243,3	duplicate(mgm)	Magic Gear Master#mid	105 

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0/1.2                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da ilha de Dewata.                    |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [lututuiBR & Holy]                  |
 //   | 1.2 Formatação nos Diálogos [lututuiBR & Holy]         |
+//   | 1.3 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -31,67 +32,60 @@ dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
 	next;
 	mes "[Guia de Dewata]";
 	mes "Para onde posso guiá-l"+((Sex) ? "o":"a")+"?";
+	F_Navi("[Dewata Guide]"); 
 	while (1) {
 		next;
 		switch(select("[ Funcionária Kafra ]:[ Vendedor de Armas ]:[ Vendedor de Armaduras ]:[ Vendedor de Utilidades ]:[ Porteiro de Krakatau ]:[ Proprietário da Hospedaria ]:[ Marinheiro de Alberta ]:Remover indicações do Mini-Mapa:Cancelar")) {
-			case 1:
-				callsub L_Mark,"^0000FFFuncionária Kafra";
-				viewpoint 1,202,184,0,0x000FFF;
-				break;
-
-			case 2:
-				callsub L_Mark,"^008080Vendedor de Armaduras";
-				viewpoint 1,218,163,1,0x008080;
-				break;
-
-			case 3:
-				callsub L_Mark,"^008080Vendedor de Armas";
-				viewpoint 1,158,182,2,0x008080;
-				break;
-
-			case 4:
-				callsub L_Mark,"^FF1493Vendedor de Utilidades";
-				viewpoint 1,182,164,3,0xFF1493;
-				break;
-
-			case 5:
-				callsub L_Mark,"^FF1493Porteiro de Krakatau";
-				viewpoint 1,232,59,4,0xFF1493;
-				break;
-
-			case 6:
-				callsub L_Mark,"^8A2BE2Proprietário da Pousada";
-				viewpoint 1,195,235,5,0x8A2BE2;
-				break;
-
-			case 7:
-				callsub L_Mark,"^00BFFFMarinheiro de Alberta";
-				viewpoint 1,230,52,6,0x00BFFF;
-				break;
-
-			case 8:
-				mes "[Guia de Dewata]";
-				mes "Removerei todas as indicações do seu mini-mapa.";
-				mes "Há mais alguma coisa que eu possa fazer por você?";
-				viewpoint 2,202,184,0,0xFFFFFF;
-				viewpoint 2,218,163,1,0xFFFFFF;
-				viewpoint 2,158,182,2,0xFFFFFF;
-				viewpoint 2,182,164,3,0xFFFFFF;
-				viewpoint 2,232,59,4,0xFFFFFF;
-				viewpoint 2,195,235,5,0xFFFFFF;
-				viewpoint 2,230,52,6,0xFFFFFF;
-				break;
-
-			case 9:
-				mes "[Guia de Dewata]";
-				mes "Aproveite sua viagem!!";
-				close;
+		case 1:
+			callsub L_Mark,"^0000FFFuncionária Kafra^000000";
+			viewpoint 1,202,184,0,0x000FFF;
+			break;
+		case 2:
+			callsub L_Mark, F_Navi("^008080Vendedor de Armas","dewata,218,164","^008080");
+			viewpoint 1,218,163,1,0x008080;
+			break;
+		case 3:
+			callsub L_Mark, F_Navi("^008080Vendedor de Armaduras","dewata,158,182","^008080");
+			viewpoint 1,158,182,2,0x008080;
+			break;
+		case 4:
+			callsub L_Mark, F_Navi("^FF1493Vendedor de Utilidades","dewata,182,164","^FF1493");
+			viewpoint 1,182,164,3,0xFF1493;
+			break;
+		case 5:
+			callsub L_Mark, F_Navi("^8A2BE2Proprietário do Restaurante","dewata,146,109","^FF1493");
+			viewpoint 1,146,109,4,0xFF1493;
+			break;
+		case 6:
+			callsub L_Mark, F_Navi("^8A2BE2Porteiro de Krakatau","dewata,235,56","^8A2BE2");
+			viewpoint 1,235,56,5,0x8A2BE2;
+			break;
+		case 7:
+			callsub L_Mark, F_Navi("^00BFFFMarinheiro de Alberta","dewata,229,49","^00BFFF"); 
+			viewpoint 1,229,49,6,0x00BFFF;
+			break;
+		case 8:
+			mes "[Guia de Dewata]";
+			mes "Removerei todas as indicações do seu mini-mapa.";
+			mes "Há mais alguma coisa que eu possa fazer por você?";
+			viewpoint 2,202,184,0,0xFFFFFF;
+			viewpoint 2,218,163,1,0xFFFFFF;
+			viewpoint 2,158,182,2,0xFFFFFF;
+			viewpoint 2,182,164,3,0xFFFFFF;
+			viewpoint 2,232,59,4,0xFFFFFF;
+			viewpoint 2,195,235,5,0xFFFFFF;
+			viewpoint 2,230,52,6,0xFFFFFF;
+			break;
+		case 9:
+			mes "[Guia de Dewata]";
+			mes "Aproveite sua viagem!!";
+			close;
 		}
 	}
 
 L_Mark:
 	mes "[Guia de Dewata]";
-	mes getarg(0)+"^000000 está marcado no seu mini-mapa.";
+	mes getarg(0)+" está marcado no seu mini-mapa.";
 	mes "Verifique seu mini-mapa.";
 	mes "Há mais alguma coisa que eu possa fazer por você?";
 	return;

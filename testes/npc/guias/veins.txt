@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Veins.                   |
 //   |--------------------------------------------------------|
@@ -21,84 +21,71 @@
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-veins,210,345,5	script	Guia#veins01	934,{
-	mes "[Guia]";
+veins,210,345,5	script	Guia de Veins#veins01	934,{
+	mes "[Guia de Veins]";
 	if(checkversion(0)) {
 		mes "Obrigado por surgir em meio a toda essa areia que existe aqui.";
 		mes "Bem-vindo a ^8B4513Veins^000000, o Vilarejo do Defiladeiro.";
 		mes "Se esta é a primeira vez aqui, por que não utiliza meus serviços primeiro?";
+		F_Navi("[Guia de Veins]");
 		next;
 		while (1) {
-			switch(select("[ Templo ]:[ Hotel ]:[ Bar ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Aeroporto ]:[ Instituto de Geologia & Pesquisa ]:[ Corporação de Eventos Incríveis ]:Remover marcadores do mini-mapa:Cancelar")) {
+			switch(select("[ Templo ]:[ Hotel ]:[ Bar ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Aeroporto ]:[ Instituto de Pesquisa Geológica ]:[ Corporação de Eventos Incríveis ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
-				mes "[Guia]";
-				mes "O templo está sempre cheio de oração dos fiéis que oram pela encarnação da Deusa Freya.";
-				mes "Ele está localizado ao lado norte de Veins.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "O "+F_Navi("Templo","veins,197,256")+" está sempre cheio de oração dos fiéis que oram pela encarnação da Deusa Freya. Ele está localizado ao lado norte de Veins. Gostaria de verificar outras localizações?";
 				viewpoint 1,197,256,0,0xFF0000;
 				next;
 				break;
 			case 2:
-				mes "[Guia]";
-				mes "Você pode repousar de sua viagem no Hotel.";
-				mes "O Hotel está localizado no lado Norte-Oeste de Veins.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Você pode repousar de sua viagem no "+F_Navi("Hotel","veins,110,278")+". O Hotel está localizado no lado Norte-Oeste de Veins. Gostaria de verificar outras localizações?";
 				viewpoint 1,110,278,1,0xFF4500;
 				next;
 				break;
 			case 3:
-				mes "[Guia]";
-				mes "Se você quiser falar com os Cidadãos de Veins, visite o Hotel de Veins.";
-				mes "O bar está localizado no lado oeste de Veins.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Se você quiser falar com os Cidadãos de Veins, visite o "+F_Navi("Bar","veins,150,215")+" de Veins. O bar está localizado no lado oeste de Veins. Gostaria de verificar outras localizações?";
 				viewpoint 1,150,215,2,0xDAA520;
 				next;
 				break;
 			case 4:
-				mes "[Guia]";
-				mes "Você tem que ser capaz de proteger seu próprio corpo.";
-				mes "A loja de Armas de Veins está vendendo ótimas armas por preços razoáveis...";
-				mes "Ela está localizada ao lado Oeste de Veins.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Você tem que ser capaz de proteger seu próprio corpo. A "+F_Navi("Loja de Armas","veins,150,175")+" de Veins está vendendo ótimas armas por preços razoáveis... Ela está localizada ao lado Oeste de Veins. Gostaria de verificar outras localizações?";
 				viewpoint 1,150,175,3,0x008000;
 				next;
 				break;
 			case 5:
-				mes "[Guia]";
-				mes "Itens essenciais!";
-				mes "Conheça a Loja de Utilidades no Centro da Cidade...";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Itens essenciais! Conheça a "+F_Navi("Loja","veins,230,161")+" de Utilidades no Centro da Cidade... Gostaria de verificar outras localizações?";
 				viewpoint 1,230,161,4,0x0000FF;
 				next;
 				break;
 			case 6:
-				mes "[Guia]";
-				mes "O Aeroporto de Veins é atualmente usado apenas para Cargas.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "O "+F_Navi("Aeroporto","veins,273,287")+" de Veins é atualmente usado apenas para Cargas. Gostaria de verificar outras localizações?";
 				viewpoint 1,273,287,5,0x000080;
 				next;
 				break;
 			case 7:
-				mes "[Guia]";
-				mes "Você gosta de Geologia?";
-				mes "Se sim, por favor viste o Instituto de Geologia & Pesquisa Geological no segundo andar da Loja de Armas.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Você gosta de Geologia? Se sim, por favor viste o "+F_Navi("Instituto de Pesquisa Geológica","veins,150,175")+" no segundo andar da Loja de Armas. Gostaria de verificar outras localizações?";
 				viewpoint 1,150,175,6,0x800080;
 				next;
 				break;
 			case 8:
-				mes "[Guia]";
-				mes "Deixe-me marcar para você a localização da ^808080Corporação de Eventos Incríveis^000000 em seu mini-mapa.";
-				mes "Gostaria de verificar outras localizações?";
+				mes "[Guia de Veins]";
+				mes "Deixe-me marcar para você a localização da "+F_Navi("Corporação de Eventos Incríveis","veins,209,127","^808080")+" em seu mini-mapa. Gostaria de verificar outras localizações?";
 				viewpoint 1,209,127,7,0x808080;
 				next;
 				break;
 			case 9:
-				mes "[Guia]";
+				mes "[Guia de Veins]";
 				mes "Claro, irei remover todos os pontos marcados de seu mini-mapa.";
 				mes "Há mais algo que eu possa fazer por você?";
 				viewpoint 2,197,256,0,0xFFFFFF;
@@ -112,7 +99,7 @@ veins,210,345,5	script	Guia#veins01	934,{
 				next;
 				break;
 			case 10:
-				mes "[Guia]";
+				mes "[Guia de Veins]";
 				mes "Aproveite sua estadia!";
 				close;
 			}
@@ -219,5 +206,4 @@ veins,210,345,5	script	Guia#veins01	934,{
 		close;
 	}
 }
-
-veins,189,101,5	duplicate(Guia#veins01)	Guia#veins02	934
+veins,189,101,5	duplicate(Guia de Veins#veins01)	Guia#veins02	934

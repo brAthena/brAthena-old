@@ -372,7 +372,7 @@ OnEnable:
 		select("The Ymir's Heart. Himmelmez...");
 		mes "["+strcharinfo(0)+"]";
 		mes "Himmelmez, the Valkyrie of the dead is looking to get a piece of the Ymir's heart hidden in the castle!";
-		unittalk getcharid(3),"Himmelmez, the Valkyrie of the dead is looking to get a piece of the Ymir's heart hidden in the castle";
+		unittalk getcharid(3),"Himmelmez, the Valkyrie of the dead is looking to get a piece of the Ymir's heart hidden in the castle!";
 		next;
 		mes "[Heinrich]";
 		mes "Haha. That's a nice joke. Now tell me what brings you here.";
@@ -406,7 +406,7 @@ OnEnable:
 		donpcevent instance_npcname("Heinrich#ghinstance2")+"::OnEnable";
 		donpcevent instance_npcname("Himmelmez#ghinstance1")+"::OnEnable";
 		donpcevent instance_npcname("#talkinstance1")+"::OnEnable";
-		instance_announce 0, "???? Shout: Ohohohoho~!",bc_map,"0xFFFF00";
+		instance_announce -1, "???? Shout: Ohohohoho~!",bc_map,"0xFFFF00";
 		close2;
 		cutin "gl_heinrich1",255;
 		end;
@@ -717,10 +717,10 @@ OnTimer97000:
 	end;
 OnTimer105000:
 	donpcevent instance_npcname("Heinrich#ghinstance2")+"::OnTalk10";
-	instance_announce 0, "Heinrich's Shout: Dead men, dead men all over the place!",bc_map,"0xFFFF00";
+	instance_announce -1, "Heinrich's Shout: Dead men, dead men all over the place!",bc_map,"0xFFFF00";
 	end;
 OnTimer107000:
-	instance_announce 0, "Heinrich's Shout: Everybody! Go back!",bc_map,"0xFFFF00";
+	instance_announce -1, "Heinrich's Shout: Everybody! Go back!",bc_map,"0xFFFF00";
 	end;
 OnTimer110000:
 	donpcevent instance_npcname(".#ghinstance22")+"::OnEffect1";
@@ -831,7 +831,7 @@ OnTimer168000:
 	stopnpctimer;
 	donpcevent instance_npcname("#ghinstancewarp1")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp2")+"::OnEnable";
-	instance_announce 0, "9 o'clock warp leading to zone 2 is now open.",bc_map,"0xFFFF00";
+	instance_announce -1, "9 o'clock warp leading to zone 2 is now open.",bc_map,"0xFFFF00";
 	donpcevent instance_npcname("#talkinstance1")+"::OnDisable";
 	donpcevent instance_npcname("#ghmemorialmob01")+"::OnEnable";
 	end;
@@ -975,7 +975,7 @@ OnMyMobDead:
 	set .@label$, instance_npcname("#ghmemorialmob01")+"::OnMyMobDead";
 	set .@mob_dead_num, 56 - mobcount(.@map$,.@label$);
 	if (.@mob_dead_num > 35) {
-		instance_announce 0, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
+		instance_announce -1, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
 		killmonster "1@gl_k",.@label$;
 		donpcevent instance_npcname("Aspiring Butcher#clearGH")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob01")+"::OnDisable";
@@ -1103,7 +1103,7 @@ OnEnable:
 	donpcevent instance_npcname("#ghinstancewarp3")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp4")+"::OnEnable";
 	set .@label$, instance_npcname("#ghmemorialmob02")+"::OnMyMobDead";
-	instance_announce 0, "3 o'clock warp leading to zone 3 is now open.",bc_map,"0xFFFF00";
+	instance_announce -1, "3 o'clock warp leading to zone 3 is now open.",bc_map,"0xFFFF00";
 	areamonster "1@gl_k",241,113,291,19,"Suffering Chamberlain",2466,12,.@label$;
 	areamonster "1@gl_k",241,113,291,19,"Decayed Monk",2464,12,.@label$;
 	areamonster "1@gl_k",227,217,291,135,"Suffering Chamberlain",2466,12,.@label$;
@@ -1113,7 +1113,7 @@ OnMyMobDead:
 	set .@label$, instance_npcname("#ghmemorialmob02")+"::OnMyMobDead";
 	set .@mob_dead_num, 48 - mobcount("1@gl_k",.@label$);
 	if (.@mob_dead_num > 28) {
-		instance_announce 0, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
+		instance_announce -1, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
 		killmonster "1@gl_k",.@label$;
 		donpcevent instance_npcname("Hollgrehenn Destroyer")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob02")+"::OnDisable";
@@ -1196,7 +1196,7 @@ OnEnable:
 	donpcevent instance_npcname("#ghinstancewarp6")+"::OnEnable";
 	set .@map$, "1@gl_k";
 	set .@label$, instance_npcname("#ghmemorialmob03")+"::OnMyMobDead";
-	instance_announce 0,"12 o'clock warp leading to the zone 4 was opened.",bc_map,"0xFFFF00";
+	instance_announce -1,"12 o'clock warp leading to the zone 4 was opened.",bc_map,"0xFFFF00";
 	areamonster .@map$,17,259,53,180,"Decayed Guard",2468,11,.@label$;
 	areamonster .@map$,17,259,53,180,"Sharpshooter Ranger",2469,14,.@label$;
 	areamonster .@map$,62,281,73,186,"Decayed Guard",2468,11,.@label$;
@@ -1211,7 +1211,7 @@ OnMyMobDead:
 	set .@label$, instance_npcname("#ghmemorialmob03")+"::OnMyMobDead";
 	set .@mob_dead_num, 100 - mobcount(.@map$,.@label$);
 	if (.@mob_dead_num > 85) {
-		instance_announce 0,"Himmelmez: Nice parry. I thought you were going to die slowly surrounded by the dead I summoned~",bc_map,"0xFFFFFF";
+		instance_announce -1,"Himmelmez: Nice parry. I thought you were going to die slowly surrounded by the dead I summoned~",bc_map,"0xFFFFFF";
 		killmonster .@map$,.@label$;
 		donpcevent instance_npcname("#GHMclear3")+"::OnEnable";
 		donpcevent instance_npcname("Heinrich#ghinstance4")+"::OnEnable";
@@ -1237,7 +1237,7 @@ OnEnable:
 	end;
 OnMyMobDead:
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob04")+"::OnMyMobDead") < 1) {
-		instance_announce 0, "12 o'clock warp leading to the Chivalry's Second Floor is now open.",bc_map,"0xFFFF00";
+		instance_announce -1, "12 o'clock warp leading to the Chivalry's Second Floor is now open.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp7")+"::OnEnable";
 		donpcevent instance_npcname("Varmunt#ghinstance3")+"::OnTalk2";
 		donpcevent instance_npcname("#effectGH01")+"::OnEnable";
@@ -1266,7 +1266,7 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer2000:
-	instance_announce 0, "Himmelmez: You got me tempted to go to the 2nd floor, come to the entrance. I'm curious about how far your luck goes.",bc_map,"0xFFFFFF";
+	instance_announce -1, "Himmelmez: You got me tempted to go to the 2nd floor, come to the entrance. I'm curious about how far your luck goes.",bc_map,"0xFFFFFF";
 	stopnpctimer;
 	end;
 }
@@ -1319,7 +1319,7 @@ OnTimer32000:
 	donpcevent instance_npcname("Heinrich#ghinstance4")+"::OnDisable";
 	end;
 OnTimer35000:
-	instance_announce 0, "An eerie echo from the depths can be heard as you get closer.",bc_map,"0xFFFFFF";
+	instance_announce -1, "An eerie echo from the depths can be heard as you get closer.",bc_map,"0xFFFFFF";
 	end;
 OnTimer38000:
 	donpcevent instance_npcname("#ghmemorialmob04")+"::OnEnable";
@@ -1631,7 +1631,7 @@ OnTimer66000:
 	donpcevent instance_npcname("Varmunt#ghinstance4")+"::OnTalk17";
 	end;
 OnTimer69000:
-	instance_announce 0, "9 o'clock positioned warp leading to the 1st zone has been opened. Move from the central hallway. A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+	instance_announce -1, "9 o'clock positioned warp leading to the 1st zone has been opened. Move from the central hallway. A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 	donpcevent instance_npcname("#ghinstancewarp8")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp9")+"::OnEnable";
 	donpcevent instance_npcname("#ghmemorialmob06")+"::OnEnable";
@@ -1665,7 +1665,7 @@ OnEnable:
 OnMyMobDead:
 	set .MyMobs, .MyMobs-1;
 	if (.MyMobs == 0) {
-		instance_announce 0, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+		instance_announce -1, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghmemorialmob06")+"::OnDisable2";
 		donpcevent instance_npcname("#ghmemorialmob07")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob05")+"::OnDisable";
@@ -1748,7 +1748,7 @@ OnEnable:
 	end;
 OnMyMobDead:
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob07")+"::OnMyMobDead") < 1) {
-		instance_announce 0, "3 o'clock positioned warp leading to the 2nd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
+		instance_announce -1, "3 o'clock positioned warp leading to the 2nd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp10")+"::OnEnable";
 		donpcevent instance_npcname("#ghinstancewarp11")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnEnable";
@@ -1778,7 +1778,7 @@ OnEnable:
 OnMyMobDead:
 	set .MyMobs, .MyMobs-1;
 	if (.MyMobs == 0) {
-		instance_announce 0, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+		instance_announce -1, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghmemorialmob09")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnDisable";
 	} else {
@@ -1817,7 +1817,7 @@ OnEnable:
 	end;
 OnMyMobDead:
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob09")+"::OnMyMobDead") < 1) {
-		instance_announce 0, "12 o'clock positioned warp leading to the 3rd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
+		instance_announce -1, "12 o'clock positioned warp leading to the 3rd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp12")+"::OnEnable";
 		donpcevent instance_npcname("#controlGH6")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnDisable";
@@ -1948,7 +1948,7 @@ OnTalk11:
 2@gl_k,150,179,0	script	#controlGH6	111,2,2,{
 	end;
 OnTouch:
-	instance_announce 0, "???: Do not come! There are traps everywhere here... Aaaaack!!!!",bc_map,"0xFF0000";
+	instance_announce -1, "???: Do not come! There are traps everywhere here... Aaaaack!!!!",bc_map,"0xFF0000";
 	specialeffect EF_BASH;
 	donpcevent instance_npcname("Himmelmez#ghinstance3")+"::OnEnable";
 	donpcevent instance_npcname("Heinrich#ghinstance6")+"::OnEnable";
@@ -2114,7 +2114,7 @@ OnTimer70000:
 	donpcevent instance_npcname("Varmunt#ghinstance5")+"::OnTalk1";
 	end;
 OnTimer73000:
-	instance_announce 0, "Leads toward Gerhard's body.",bc_map,"0xFFFFFF";
+	instance_announce -1, "Leads toward Gerhard's body.",bc_map,"0xFFFFFF";
 	end;
 OnTimer76000:
 	donpcevent instance_npcname("Gerhard#ghinstance1")+"::OnEffect5";

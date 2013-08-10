@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Umbala.                  |
 //   |--------------------------------------------------------|
@@ -21,18 +21,21 @@
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 umbala,128,94,3	script	Exploradora#01umbala	702,{
-		mes "[Exploradora]";
 	if(checkversion(0)) {
+		mes "[Exploradora]";
 		mes "Bem-vindo a ^8B4513Umbala^000000, o Vilarejo da Tribo Wotan.";
 		next;
+		mes "[Exploradora]";
 		mes "Desde quando cheguei aqui comecei a explorar.";
 		mes "Estou familiarizada com a geografia e os pontos turísticos desse vilarejo.";
 		mes "Você deseja conhecer o vilarejo?";
+		F_Navi("[Exploradora]");
 		while (1) {
 			next;
 			switch(select("[ Funcionárias Kafra ]:[ Casa do Líder ]:[ Casa do Xamã ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Bungee Jump ]:[ Árvore Yggdrasil ]:Remover marcadores do mini-mapa:Cancelar")) {
@@ -44,40 +47,40 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 				break;
 			case 2:
 				mes "[Exploradora]";
-				mes "Apenas o ^006400Chefe^000000 sabe falar a lingua do mundo exterior.";
+				mes "Apenas o "+F_Navi("Chefe","umbala,68,251","^006400")+" sabe falar a lingua do mundo exterior.";
 				mes "Então é melhor você visitá-lo antes de explorar o vilarejo.";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,68,251,1,0xAAFF00;
 				break;
 			case 3:
 				mes "[Exploradora]";
-				mes "O ^008080Xamã^000000 possui algum tipo de poder místico.";
+				mes "O "+F_Navi("Xamã","umbala,219,188","^008080")+" possui algum tipo de poder místico.";
 				mes "As pessoas dizem que ele pode criar e combinar pedras encantadas.";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,219,188,2,0x008080;
 				break;
 			case 4:
 				mes "[Exploradora]";
-				mes "A ^FF1493Loja de Armas^000000 no interior de Umbala contém as armas utilizadas em defesas contra os inimigos.";
+				mes "A "+F_Navi("Loja de Armas","umbala,125,155","^FF1493")+" no interior de Umbala contém as armas utilizadas em defesas contra os inimigos.";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,125,155,3,0xFF1493;
 				break;
 			case 5:
 				mes "[Exploradora]";
-				mes "Há muitas coisas úteis para se comprar na ^8B4513Loja de Utilidades^000000 de Umbala.";
+				mes "Há muitas coisas úteis para se comprar na "+F_Navi("Loja de Utilidades","umbala,136,127","^8B4513")+" de Umbala.";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,136,127,4,0x8B4513;
 				break;
 			case 6:
 				mes "[Exploradora]";
-				mes "Umbala possui um lugar único chamado de 'Bungee Jump'.";
+				mes "Umbala possui um lugar único chamado de "+F_Navi("'Bungee Jump'","umbala,138,198")+".";
 				mes "Se você estiver interessado em testar sua coragem, por que não o conhece!?";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,221,176,5,0x9400D3;
 				break;
 			case 7:
 				mes "[Exploradora]";
-				mes "Existe uma Árvore chamada de Yggdrasil, na parte norte da cidade.";
+				mes "Existe uma "+F_Navi("Árvore de Yggdrasil","umbala,107,284")+", na parte norte da cidade.";
 				mes "Você deve pagar uma visita, já que estou te guiando por Umbala.";
 				mes "Gostaria de verificar outras localizações?";
 				viewpoint 1,107,284,6,0xA52A2A;
@@ -101,6 +104,7 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 			}
 		}
 	} else {
+		mes "[Exploradora]";
 		mes "Este lugar é muito estranho...";
 		mes "Todas essas trilhas e estradinhas são confusas.";
 		mes "Acho que é o que podemos esperar de uma cultura primitiva como a de Umbala.";
@@ -172,5 +176,4 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 		close;
 	}
 }
-
 umbala,99,158,3	duplicatr(Exploradora#01umbala)	Exploradora#02umbala	702,{}

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.2/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Hugel.                   |
 //   |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Protimus, lututuiBR & Holy]        |
 //   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         | 
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -32,6 +33,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 		mes "Bem-vindo a ^8B4513Hugel^000000.";
 		mes "Estou honrada em guiar você por este belo vilarejo.";
 		mes "Se esta for a primeira vez em que usa os serviços de guia, você deve ter um monte de perguntas.";
+		F_Navi("[Vovó Guia de Hugel]");
 		next;
 		set .@str$,"Gostaria de saber mais localizações?";
 		while (1) {
@@ -39,10 +41,10 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 			case 1:
 				set .@loop,1;
 				while (.@loop) {
-					switch(select("[ Igreja ]:[ Hospedaria ]:[ Bar ]:[ Aeroporto ]:[ Loja de Armas ]:[ Tool Shop ]:[ Sala do Bingo ]:[ ^3131FFGuilda dos Caçadores^000000 ]:[ Loja de Artigos para Festas ]:[ ^3131FFExpedição ao Santuário^000000 ]:Menu Anterior")) {
+					switch(select("[ Igreja ]:[ Hospedaria ]:[ Bar ]:[ Aeroporto ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Sala do Bingo ]:[ ^3131FFGuilda dos Caçadores^000000 ]:[ Loja de Artigos para Festas ]:[ ^3131FFExpedição ao Santuário^000000 ]:Menu Anterior")) {
 					case 1:
 						mes "[Vovó Guia de Hugel]";
-						mes "Bem, para mim, esta Igreja é um tanto para velhos como eu, você sabe...";
+						mes "Bem, para mim, esta "+F_Navi("Igreja","hugel,159,113")+" é um tanto para velhos como eu, você sabe...";
 						mes @str$;
 						viewpoint 1,159,113,0,0xFF0000;
 						next;
@@ -50,14 +52,14 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 					case 2:
 						mes "[Vovó Guia de Hugel]";
 						mes "Dever antes da diversão.";
-						mes "É melhor desempacotar suas coisas antes de você começar a olhar ao redor desta vila.";
+						mes "É melhor desempacotar suas coisas na "+F_Navi("Hospedaria","hugel,101,77")+" antes de você começar a olhar ao redor desta vila.";
 						mes @str$;
 						viewpoint 1,101,77,1,0x8B4513;
 						next;
 						break;
 					case 3:
 						mes "[Vovó Guia de Hugel]";
-						mes "Sim, quando você viaja, você quer cair em um Bar e fazer novos amigos.";
+						mes "Sim, quando você viaja, você quer cair em um "+F_Navi("Bar","hugel,126,65")+" e fazer novos amigos.";
 						mes "Vá para leste apartir daqui, então você chegará ao Bar.";
 						mes @str$;
 						viewpoint 1,126,65,2,0xDAA520;
@@ -65,7 +67,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 						break;
 					case 4:
 						mes "[Vovó Guia de Hugel]";
-						mes "A um tempo atrás, estrangeiros vieram ao vilarejo e construíram aquele estranho Aeroporto, algo do gênero...";
+						mes "A um tempo atrás, estrangeiros vieram ao vilarejo e construíram aquele estranho "+F_Navi("Aeroporto","hugel,178,146")+", algo do gênero...";
 						mes "Como é que eles o chamam? Dirigível?";
 						mes @str$;
 						viewpoint 1,178,146,3,0xD7567F;
@@ -73,7 +75,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 						break;
 					case 5:
 						mes "[Vovó Guia de Hugel]";
-						mes "Bem, nós temos uma Loja de Armas no centro do vilarejo.";
+						mes "Bem, nós temos uma "+F_Navi("Loja de Armas","hugel,88,167")+" no centro do vilarejo.";
 						mes "Mas eu não sei se lá existe alguma arma que você ache útil.";
 						mes @str$;
 						viewpoint 1,88,167,4,0xCD5C5C;
@@ -83,14 +85,14 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 						mes "[Vovó Guia de Hugel]";
 						mes "Sim, eu adoro a qualidade das Poções Vemelhas de Hugel.";
 						mes "Eu não provei Poções Vermelhas de qualquer outra qualidade ainda...hohoho.";
-						mes "A Loja de Utilidades está localizada no centro do vilarejo.";
+						mes "A "+F_Navi("Loja de Utilidades","hugel,92,163")+" está localizada no centro do vilarejo.";
 						mes @str$;
 						viewpoint 1,92,163,5,0x000080;
 						next;
 						break;
 					case 7:
 						mes "[Vovó Guia de Hugel]";
-						mes "Marcarei a localização da ^800080Sala do Bingo^000000 no seu mini-mapa.";
+						mes "Marcarei a localização da "+F_Navi("Sala do Bingo","hugel,58,206","^800080")+" no seu mini-mapa.";
 						mes @str$;
 						viewpoint 1,58,206,6,0x800080;
 						next;
@@ -98,21 +100,21 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 					case 8:
 						mes "[Vovó Guia de Hugel]";
 						mes "Oh, você é um aspirante a Caçador?";
-						mes "Então dirija-se para o nordeste,seguindo a praia, então você encontrará athe Guilda dos Caçadores.";
+						mes "Então dirija-se para o nordeste,seguindo a praia, então você encontrará a "+F_Navi("Guilda dos Caçadores","hugel,209,224")+".";
 						mes @str$;
 						viewpoint 1,209,224,7,0xFF1493;
 						next;
 						break;
 					case 9:
 						mes "[Vovó Guia de Hugel]";
-						mes "Marcarei a localização da ^483D8BLoja de Artigos para Festas^000000 no seu mini-mapa.";
+						mes "Marcarei a localização da "+F_Navi("Loja de Artigos para Festas","hugel,95,103","^483D8B")+" no seu mini-mapa.";
 						mes @str$;
 						viewpoint 1,95,103,8,0x483D8B;
 						next;
 						break;
 					case 10:
 						mes "[Vovó Guia de Hugel]";
-						mes "Eu ouvi que a Expedição ao Santuário está hospedada em uma casa no oeste.";
+						mes "Eu ouvi que a "+F_Navi("Expedição ao Santuário","hugel,52,95")+" está hospedada em uma casa no oeste.";
 						mes "Eles colocaram uma placa no meio do vilarejo, então eu acho que eles estão recrutando pessoas para algo...";
 						mes "Eu me pergunto o que eles estão fazendo lá... hmmm.";
 						mes @str$;
@@ -317,12 +319,13 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 }
 
 hugel,187,172,6	script#re	Guia Rei Rico#hugel	414,{
-	mes "[Guia Rei Rico]";
+	mes "[Rei Rico]";
 	mes "Quais negócios você tem nesta vila rural?";
 	next;
 	mes "[Rei Rico]";
 	mes "Esta é ^8B4513Hugel^000000, na República Schwaltzvalt.";
 	mes "Você está muito honrado em receber a orientação de uma grande pessoa como eu.";
+	F_Navi("[Rei Rico]");
 	next;
 	while (1) {
 		switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar")) {
@@ -331,52 +334,52 @@ hugel,187,172,6	script#re	Guia Rei Rico#hugel	414,{
 			while (.@loop) {
 				switch(select("[ Igreja ]:[ Hospedaria ]:[ Bar ]:[ Aeroporto ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Sala do Bingo ]:[ Guilda dos Caçadores ]:[ Loja de Artigos para Festas ]:[ Expedição ao Santuário ]:Menu Anterior")) {
 				case 1:
-					callsub L_Mark,"^FF0000Igreja";
+					callsub L_Mark,F_Navi("Igreja","hugel,159,113","^FF0000");
 					viewpoint 1,159,113,0,0xFF0000;
 					next;
 					break;
 				case 2:
-					callsub L_Mark,"^8B4513Hospedaria";
+					callsub L_Mark,F_Navi("Hospedaria","hugel,101,77","^8B4513");
 					viewpoint 1,101,77,1,0x8B4513;
 					next;
 					break;
 				case 3:
-					callsub L_Mark,"^DAA520Bar";
+					callsub L_Mark,F_Navi("Bar","hugel,126,65","^DAA520");
 					viewpoint 1,126,65,2,0xDAA520;
 					next;
 					break;
 				case 4:
-					callsub L_Mark,"^D7567FAeroporto";
+					callsub L_Mark,F_Navi("Aeroporto","hugel,178,146","^D7567F");
 					viewpoint 1,178,146,3,0xD7567F;
 					next;
 					break;
 				case 5:
-					callsub L_Mark,"^CD5C5CLoja de Armas";
+					callsub L_Mark,F_Navi("Loja de Armas","hugel,88,167","^CD5C5C");
 					viewpoint 1,88,167,4,0xCD5C5C;
 					next;
 					break;
 				case 6:
-					callsub L_Mark,"^000080Loja de Utilidades";
+					callsub L_Mark,F_Navi("Loja de Utilidades","hugel,92,163","^000080");
 					viewpoint 1,92,163,5,0x000080;
 					next;
 					break;
 				case 7:
-					callsub L_Mark,"^800080Sala do Bingo";
+					callsub L_Mark,F_Navi("Sala do Bingo","hugel,58,206","^800080");
 					viewpoint 1,58,206,6,0x800080;
 					next;
 					break;
 				case 8:
-					callsub L_Mark,"^FF1493Guilda dos Caçadores";
+					callsub L_Mark, F_Navi("Guilda dos Caçadores","hugel,209,224","^FF1493");
 					viewpoint 1,209,224,7,0xFF1493;
 					next;
 					break;
 				case 9:
-					callsub L_Mark,"^483D8BLoja de Artigos para Festas";
+					callsub L_Mark, F_Navi("Loja de Artigos para Festas","hugel,95,103","^483D8B");
 					viewpoint 1,95,103,8,0x483D8B;
 					next;
 					break;
 				case 10:
-					callsub L_Mark,"^834683Expedição ao Santuário";
+					callsub L_Mark, F_Navi("Expedição ao Santuário","hugel,52,95","^834683");
 					viewpoint 1,52,95,9,0x834683;
 					next;
 					break;
@@ -391,12 +394,12 @@ hugel,187,172,6	script#re	Guia Rei Rico#hugel	414,{
 			while (.@loop) {
 				switch(select("[ Arena da Corrida de Monstros ]:[ Corporação Eventos Incríveis ]:Menu Anterior")) {
 				case 1:
-					callsub L_Mark,"^FF1493Arena da Corrida de Monstros";
+					callsub L_Mark,"^FF1493Arena da Corrida de Monstros^000000";
 					viewpoint 1,60,71,10,0xFF1493;
 					next;
 					break;
 				case 2:
-					callsub L_Mark,"^DA70D6Corporação Eventos Incríveis";
+					callsub L_Mark,"^DA70D6Corporação Eventos Incríveis^000000";
 					viewpoint 1,88,168,11,0xDA70D6;
 					next;
 					break;
@@ -434,7 +437,7 @@ hugel,187,172,6	script#re	Guia Rei Rico#hugel	414,{
 	end;
 L_Mark:
 	mes "[Rei Rico]";
-	mes "Marcarei a localização para "+getarg(0)+"^000000.";
+	mes "Marcarei a localização para "+getarg(0)+".";
 	mes "Você quer conhecer mais localizações?";
 	mes "Você vai continuar a me aborrecer e me fazer ficar chateado?";
 	return;

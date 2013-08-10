@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/1.9/1.3                         |
+//   | Versões eA/rA/brA: 1.9/1.9a/1.3                        |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Izlude.                   |
 //   |--------------------------------------------------------|
@@ -196,7 +196,7 @@ izlude,135,78,2	script#vpo	Charfri#izlude	91,{
 	close;
 }
 
-izlude,127,175,4	script#re	Cuskoal#izlude	124,{
+izlude,174,164,4	script#re	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -319,31 +319,31 @@ izlude,85,103,4	script	Dega#izlude	84,{
 
 izlude,140,186,4	script	Kylick#izlude	97,{
 	mes "[Kylick]";
-	if (rand(2)) {
-		mes "Você não acha o Binóculos algo muito útil?! Você pode ver todos os tipos de lugares...!";
+	if (!checkversion(0) && rand(2)) {
+		mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
 		next;
 		mes "[Kylick]";
-		mes "Aqui em Izlude, somos responsáveis pela manutenção da paz não só em terra, mas também no mar. É por isso que esta cidade tem um enorme telescópio.";
+		mes "Há outras culturas que desenvolveram uma vida totalmente longe do oceano. Claro que estou falando de Amatsu.";
 		next;
 		mes "[Kylick]";
-		mes "Este telescópio é modificado sempre, para que possamos evitar problemas graves que possam ocorrer. Sabe...";
-		next;
-		mes "[Kylick]";
-		mes "Afinal é melhor prevenir do que remediar!";
-		mes "Não concorda?";
+		mes "Eu ouvi dizer que a cozinha lá é muito boa! Embora a idéia de comer peixe cru é nova para mim, eu adoraria ir para lá, e experimentar só uma vez!";
 		close;
 	}
-	mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
+	mes "Você não acha o Binóculos algo muito útil?! Você pode ver todos os tipos de lugares...!";
 	next;
 	mes "[Kylick]";
-	mes "Há outras culturas que desenvolveram uma vida totalmente longe do oceano. Claro que estou falando de Amatsu.";
+	mes "Aqui em Izlude, somos responsáveis pela manutenção da paz não só em terra, mas também no mar. É por isso que esta cidade tem um enorme telescópio.";
 	next;
 	mes "[Kylick]";
-	mes "Eu ouvi dizer que a cozinha lá é muito boa! Embora a idéia de comer peixe cru é nova para mim, eu adoraria ir para lá, e experimentar só uma vez!";
+	mes "Este telescópio é modificado sempre, para que possamos evitar problemas graves que possam ocorrer. Sabe...";
+	next;
+	mes "[Kylick]";
+	mes "Afinal é melhor prevenir do que remediar!";
+	mes "Não concorda?";
 	close;
 }
 
-izlude,56,156,2	script	Red#izlude	85,{
+izlude,57,159,2	script	Red#izlude	85,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -409,7 +409,7 @@ izlude,56,156,2	script	Red#izlude	85,{
 	close;
 }
 
-izlude,58,156,2	script	Cebalis#izlude	98,{
+izlude,55,159,2	script	Cebalis#izlude	98,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -592,8 +592,6 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
 			warp "izlude",176,182;
 		end;
 }
-
-izlude,147,131,6	script#re	Ferreiro#izlude	726,{ end; }
 
 prt_fild08,350,219,4	script#re	Guarda#izlude	105,{
 	mes "[Guarda de Izlude]";

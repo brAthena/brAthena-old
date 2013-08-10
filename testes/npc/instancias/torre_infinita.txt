@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/2.0/1.1                         |
+//   | Versões eA/rA/brA: 1.7/2.3/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Instância da Torre Infinita                 |
 //   |--------------------------------------------------------|
@@ -488,6 +488,15 @@ e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
 		}
 		break;
 	}
+	end;
+
+OnInstanceInit:
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	instance_announce -1, "Aviso : Domesticar um monstro não conta como derrotá-lo.",bc_map,"0xff0000";
+	stopnpctimer;
 	end;
 }
 
@@ -1250,6 +1259,23 @@ OnEnable:
 
 OnTouch_:
 	warp "2@tower",52,354;
+	end;
+}
+
+1@tower,71,4,0	script	#Broadcast Mode1	844,{
+	end;
+
+OnInstanceInit:
+	initnpctimer;
+	end;
+
+OnTimer15000:
+OnTimer60000:
+	instance_announce -1, "Aviso : Caso um monstro for derrotado em qualquer situação anormal, você não poderá avançar para o próximo nível!",bc_map,"0xff0000";
+	end;
+OnTimer120000:
+	instance_announce -1, "Aviso : Caso um monstro for derrotado em qualquer situação anormal, você não poderá avançar para o próximo nível",bc_map,"0xff0000";
+	stopnpctimer;
 	end;
 }
 

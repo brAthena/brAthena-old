@@ -3157,23 +3157,23 @@ nyd_dun02,68,256,0	script	Ovo de Dragão#ep13_dovo_1	463,{
 	if ((ep13_2_ovodia == 1) && (countitem(6093) < 10)) {
 		mes "Acabamos de encontrar ovos frescos do ninho do dragão.";
 		getitem 6093,1; // <-- Ovo de Dragão
-		disablenpc strnpcinfo(1);
+		disablenpc strnpcinfo(0);
 		initnpctimer;
 		close;
 	}
 	end;
 
 OnTimer240000:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	stopnpctimer;
 	end;
 
 OnEnable:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	end;
 
 OnDisable:
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 }
 
@@ -3189,23 +3189,23 @@ nyd_dun02,201,166,0	script	Ovo de Dragão#ep13_dovo_2	463,{
 	if ((ep13_2_ovodia == 1) && (countitem(6093) < 10)) {
 		mes "Acabamos de encontrar ovos frescos do ninho do dragão.";
 		getitem 6093,1; // <-- Ovo de Dragão
-		disablenpc strnpcinfo(1);
+		disablenpc strnpcinfo(0);
 		initnpctimer;
 		close;
 	}
 	end;
 
 OnTimer120000:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	stopnpctimer;
 	end;
 
 OnEnable:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	end;
 
 OnDisable:
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 }
 
@@ -6811,7 +6811,7 @@ OnTouch:
 
 -	script	ep13_warp_s_0	-1,{
 OnEnable:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	initnpctimer;
 OnTimer2000:
 OnTimer4000:
@@ -6825,18 +6825,18 @@ OnTimer8000:
 
 OnTimer10000:
 	specialeffect EF_STEAL;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 
 OnDisable:
 	specialeffect EF_WIND;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 }
 
 -	script	ep13_warp_s_1	-1,{
 OnEnable:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	initnpctimer;
 OnTimer2000:
 OnTimer4000:
@@ -6851,18 +6851,18 @@ OnTimer10000:
 
 OnTimer12000:
 	specialeffect EF_STEAL;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 
 OnDisable:
 	specialeffect EF_WIND;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 }
 
 -	script	ep13_warp_s_2	-1,{
 OnEnable:
-	enablenpc strnpcinfo(1);
+	enablenpc strnpcinfo(0);
 	initnpctimer;
 OnTimer2000:
 OnTimer4000:
@@ -6878,12 +6878,12 @@ OnTimer12000:
 
 OnTimer15000:
 	specialeffect EF_STEAL;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 
 OnDisable:
 	specialeffect EF_WIND;
-	disablenpc strnpcinfo(1);
+	disablenpc strnpcinfo(0);
 	end;
 }
 

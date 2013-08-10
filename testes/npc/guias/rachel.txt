@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Rachel.                  |
 //   |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 //   | 1.1 Otimização [Holy & Hold]                           |
 //   | 1.2 Tradução PT-BR [Holy & Protimus]                   |
 //   | 1.3 Formatação nos Diálogos [lututuiBR & Holy]         |
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -30,6 +31,7 @@ rachel,138,146,5	script	Guia de Rachel#rachel	934,{
 	if(checkversion(0)) {
 		mes "Bem-vindo a Capital de Arunafeltz, ^8B4513Rachel^000000 onde o sopro quente da deusa Freya alcança.";
 		mes "Se essa é sua primeira que utiliza meus serviços, sugiro que escolha uma das opções:";
+		F_Navi("[Guia de Rachel]");
 		next;
 		while (1) {
 			switch(select("[ Principais Lugares ]:[ Mercadores & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
@@ -39,48 +41,39 @@ rachel,138,146,5	script	Guia de Rachel#rachel	934,{
 					switch(select("[ Hotel ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Aeroporto ]:[ Cheshrumnir ]:[ Mansão do Sacerdote Zed ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Rachel]";
-						mes "Você pode repousar de sua viagem no Hotel.";
-						mes "O edifício a minha esquerda é conhecido como o Hotel de Rachel.";
+						mes "Você pode repousar de sua viagem no "+F_Navi("Hotel","rachel,115,144")+". O edifício a minha esquerda é conhecido como o Hotel de Rachel.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,115,144,0,0xFF0000;
 						next;
 						break;
 					case 2:
 						mes "[Guia de Rachel]";
-						mes "Você quer verificar as Armas que são vendidas em Rachel!?";
-						mes "A Loja de Armas está localizada perto do portão Oeste.";
+						mes "Você quer verificar as Armas que são vendidas em Rachel? A "+F_Navi("Loja de Armas","rachel,42,82")+" está localizada perto do portão Oeste.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,42,82,1,0xFF4500;
 						next;
 						break;
 					case 3:
 						mes "[Guia de Rachel]";
-						mes "A Loja de Utilidadesde Rachel.";
-						mes "Vende as melhores poções.";
-						mes "Ela está localizada próxima ao portão oeste.";
-						mes "Gostaria de verificar outras localizações?";
+						mes "A "+F_Navi("Loja de Utilidades","rachel,83,73")+" de Rachel vende as melhores poções. Ela está localizada próxima ao portão oeste. Gostaria de verificar outras localizações?";
 						viewpoint 1,83,73,2,0xDAA520;
 						next;
 						break;
 					case 4:
 						mes "[Guia de Rachel]";
-						mes "O Aeroporto está localizado fora do portão leste.";
-						mes "Gostaria de verificar outras localizações?";
+						mes "O "+F_Navi("Aeroporto","rachel,272,125")+" está localizado fora do portão leste. Gostaria de verificar outras localizações?";
 						viewpoint 1,272,125,3,0x008000;
 						next;
 						break;
 					case 5:
 						mes "[Guia de Rachel]";
-						mes "Cheshrumnir é um solo sagrado onde papisa, que é a encarnação da Deusa Freya, permanece.";
-						mes "Pegue a estrada ao norte para encontrar o edifício.";
-						mes "Gostaria de verificar outras localizações?";
+						mes F_Navi("Cheshrumnir","rachel,150,243")+" é um solo sagrado onde papisa, que é a encarnação da Deusa Freya, permanece. Pegue a estrada ao norte para encontrar o edifício. Gostaria de verificar outras localizações?";
 						viewpoint 1,150,243,4,0x0000FF;
 						next;
 						break;
 					case 6:
 						mes "[Guia de Rachel]";
-						mes "Deixe-me marcar para você a localização da ^000080Mansão do Sacerdote Zed^000000 em seu mini-mapa.";
-						mes "Gostaria de verificar outras localizações?";
+						mes "Deixe-me marcar para você a localização da "+F_Navi("Mansão do Sacerdote Zed","rachel,98,238","^000080")+" em seu mini-mapa. Gostaria de verificar outras localizações?";
 						viewpoint 1,98,238,5,0x000080;
 						next;
 						break;
@@ -96,14 +89,14 @@ rachel,138,146,5	script	Guia de Rachel#rachel	934,{
 					switch(select("[ Corporação de Eventos Incrívels ]:[ Oficial do Éden ]:Menu Anterior")) {
 					case 1:
 						mes "[Guia de Rachel]";
-						mes "Deixe-me marcar para você a localização da ^803232Corporação de Eventos Incrívels^000000 em seu mini-mapa.";
+						mes "Deixe-me marcar para você a localização da "+F_Navi("Corporação de Eventos Incrívels","rachel,110,138","^803232")+" em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,110,138,7,0x803232;
 						next;
 						break;
 					case 2:
 						mes "[Guia de Rachel]";
-						mes "Deixe-me marcar para você a localização do ^556B2FOficial do Éden^000000 em seu mini-mapa.";
+						mes "Deixe-me marcar para você a localização do "+F_Navi("Oficial do Éden","rachel,125,144","^556B2F")+" em seu mini-mapa.";
 						mes "Gostaria de verificar outras localizações?";
 						viewpoint 1,125,144,8,0x556B2F;
 						next;

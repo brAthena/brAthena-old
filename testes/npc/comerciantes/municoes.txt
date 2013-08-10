@@ -91,10 +91,9 @@ Bullet_Trade:
 }
 
 // Caixa de Munições
-
-alberta,118,157,3	script	Vendedor de Caixas de Munição	83,{
-	set .n$, compare(strnpcinfo(1),"Tonny")?"[Tonny]":"[Kenny]";
-		mes .n$;
+alberta,118,157,3	script	Vendedor de Caixas de Munição#alb	83,{
+	set .n$,"[Kenny]";
+	mes .n$;
 	if(BaseJob == Job_Gunslinger) {
 		mes "Bem-vindo à minha loja de carregadores.";
 		mes "Como você sabe, um número maior de projéteis podem ser carregados mais facilmente quando estão em carregadores.";
@@ -164,6 +163,7 @@ Func_Casing:
 		mes ""+(countitem(getarg(0)) < (500*.@amount) ? "Desculpe, mas você não possui projéteis o suficiente para esta troca de Carregadores. Talvez você deveria checar novamente seu inventário, e voltar mais tarde" : "Desculpe, mas você não possui zeny o suficiente para esta troca de Carregadores")+".";
 		close;
 }
-
-izlude,158,130,3	duplicate(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
-izlude,155,132,3	duplicate(Vendedor de Caixas de Munição)	Vendedor de Caixas de Munição#iz	83
+que_ng,187,156,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#ng	86
+izlude,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
+que_ng,187,149,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#ng	83
+izlude,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz  83,{}

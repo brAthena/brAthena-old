@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4a/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Itens aleatórios Diamante de 3 quilates em  |
 //   | Comodo.                                                |
@@ -25,7 +25,11 @@
 //   \________________________________________________________/
 
 comodo,219,158,6	script	Kachua	91,{
-
+	if(checkweight(1201,1) == 0) {
+		mes "[Kachua]";
+		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
+		close;
+	}
 	cutin "katsua01.bmp",2;
 	mes "[Kachua]";
 	mes "Diamantes...!";
@@ -45,7 +49,7 @@ comodo,219,158,6	script	Kachua	91,{
 		cutin "katsua01.bmp",255;
 		end;
 	}
-	
+
 	if (countitem(732) == 0) {
 		cutin "katsua01.bmp",255;
 		cutin "katsua03.bmp",2;
@@ -57,7 +61,7 @@ comodo,219,158,6	script	Kachua	91,{
 		cutin "katsua03.bmp",255;
 		end;
 	}
-	
+
 	mes "[Kachua]";
 	mes "Tem certeza que você não se importa";
 	mes "em dá-lo para mim? Muito obrigado!";
@@ -65,8 +69,8 @@ comodo,219,158,6	script	Kachua	91,{
 	mes "em dinheiro, mas eu posso te dar algo";
 	mes "da minha coleção como forma de pagamento~";
 	next;
-	
-	if (Weight >= MaxWeight/2) {
+
+	if ((MaxWeight - Weight) < 5500) {
 		cutin "katsua01.bmp",255;
 		cutin "katsua03.bmp",2;
 		mes "[Kachua]";
@@ -78,21 +82,21 @@ comodo,219,158,6	script	Kachua	91,{
 		cutin "katsua03.bmp",255;
 		end;
 	}
-	
+
 	if (countitem(732) == 0) { // anti-roubo
 		logmes "Roubo: Você tentou ignorar a verificação de item.";
 		cutin "katsua01.bmp",255;
 		close;
 	}
 	delitem 732,1;
-	
+
 	mes "[Kachua]";
 	mes "Então, o que";
 	mes "você gostaria de possuir?";
 	next;
-	
+
 	switch(select("Arma:Armadura:Manto:Elmo:Sapatos:Escudo")) {
-	
+
 	case 1: // Armas
 			set .@gamble1,rand(1,1000);
 			if ((.@gamble1 > 920) && (.@gamble1 < 931)) {
@@ -370,7 +374,7 @@ comodo,219,158,6	script	Kachua	91,{
 			close;
 	break;
 	}
-	
+
 	getitem .@item,1;
 
 	cutin "katsua01.bmp",255;
@@ -479,9 +483,7 @@ comodo,210,154,2	script	Homem Suspeito#cmd	118,{
 
 mjolnir_02,85,362,3	script	Ferreiro Mineiro	726,{
 
-	if(checkweight(1201,1) == 0)
-	{
-		mes "[Kachua]";
+	if(checkweight(1201,1) == 0) {
 		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
 		close;
 	}
@@ -494,7 +496,7 @@ mjolnir_02,85,362,3	script	Ferreiro Mineiro	726,{
 	mes "de milhares de Diamantes,";
 	mes "todos eles na mina!";
 	mes "Estou rico!";
-	emotion 18;
+	emotion e_heh;
 	next;
 	switch(select("Eu quero comprar algum diamante.:Parabéns.")){
 	case 1:

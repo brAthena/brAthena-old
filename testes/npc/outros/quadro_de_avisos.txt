@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.8/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.8/1.9/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quadro de avisos.                           |
 //   |--------------------------------------------------------|
@@ -94,7 +94,7 @@ izlu2dun,104,92,5	script	Quadro de Avisos#4	837,{
 	mes "Com poucas exceções, a maioria dos monstros nesta caverna é de propriedade Água. Portanto, uma arma de propriedade Vento irá ajudar você.";
 	close;
 }
-	
+
 izlude,131,116,4	script	Quadro de Avisos#5	837,{
 	mes "[A Cidade Satélite, Izlude]";
 	mes "Bem-vindo a Izlude, a cidade satélite de Prontera. Izlude foi construída para apoiar a defesa de Prontera e para acomodar sua crescente população.";
@@ -110,7 +110,7 @@ izlude,131,116,4	script	Quadro de Avisos#5	837,{
 	mes "Aproveite sua viagem no Reino de Rune-Midgard.";
 	close;
 }
-	
+
 payon,178,108,5	script	Quadro de Avisos#06	837,{
 	mes "[A Cidade da Montanha, Payon]";
 	mes "Bem-vindo a Payon, a cidade da montanha. Payon foi recentemente renovada, então nós esperamos que você aproveite as ruas limpas, bonitas e seus edifícios.";
@@ -132,7 +132,7 @@ payon,178,108,5	script	Quadro de Avisos#06	837,{
 	mes "Enjoy your travels."; 
 	close;
 }
-	
+
 pay_arche,79,31,5	script	Quadro de Avisos#07	837,{
 	mes "[Vilarejo dos Arqueiros]"; 
 	mes "Bem-vindo ao Vilarejo dos Arqueiros de Payon, aqui Aprendizes podem se tornar Arqueiros.";
@@ -154,7 +154,7 @@ pay_arche,39,134,5	script	Quadro de Avisos#08	837,{
 	mes "No quinto nível, há uma linda, e terrível chefe conhecida como ^6B1312Flor do Luar^000000 que é invocada em determinados horários. Apróxime-se com bastante cuidado.";
 	close;
 }
-	
+
 prontera,148,49,5	script	Quadro de Avisos#09	837,{
 	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "Bem-vindo a Prontera, a capital de Rune-Midgard.";

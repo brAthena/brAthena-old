@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versões brA: 1.3                                       |
+//   | Versões brA: 1.4                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias de Mora.                              |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy & lututuiBR]                  |
 //   | 1.3 Formatação nos Diálogos [Holy & lututuiBR]         |
+//   | 1.4 Atualização no sistema de navegação [lututuiBR]    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -29,31 +30,32 @@ mora,25,158,6	script	Guia de Mora#oeste	516,{
 	mes "Olá~! Bem-vindo ao vilarejo de Mora.";
 	mes "Eu posso te dizer o que você quiser sobre o vilarejo~!";
 	next;
+	F_Navi("[Raffoh]");
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
 		mes "[Raffoh]";
 		mes "Laoh~!";
-		mes "Nós temos uma estalagem, mas não posso ficar lá dormindo...";
+		mes "Nós temos uma "+F_Navi("Estalagem","mora,44,138")+", mas não posso ficar lá dormindo...";
 		mes "Descanse um pouco lá!";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
 		mes "[Raffoh]";
 		mes "Laoh~!";
-		mes "São as moradas dos Rafflens...";
+		mes "São as "+F_Navi("moradas","mora,119,170")+" dos Rafflens...";
 		mes "Mas não faça barulho ao se aproximar, por que as pessoas estão dormindo~!";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
 		mes "[Raffoh]";
 		mes "Laoh~!";
-		mes "Se você está a procura de lembranças, você pode encontrar várias lá.";
+		mes "Se você está a procura de lembranças, você pode encontrar várias "+F_Navi("lá","mora,112,110")+".";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
 		mes "[Raffoh]";
 		mes "Laoh~!";
-		mes "Lá é o lugar onde guardam todos os tipos de pacotes e mantimentos.";
+		mes F_Navi("Lá","mora,182,161")+" é o lugar onde guardam todos os tipos de pacotes e mantimentos.";
 		mes "Há muitas coisas que não pertencem aos Raffles, então tome cuidado!";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
@@ -79,19 +81,20 @@ mora,167,76,4	script	Guia de Mora#leste	522,{
 	mes "Uh...";
 	mes "Este, este é o Vilarejo de Mora.";
 	mes "Uh... que lugar você desejaria conhecer?";
+	F_Navi("[Raffuh]");
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
 		mes "[Raffuh]";
 		mes "Uh...";
 		mes "Você deseja dormir?";
-		mes "Você pode durmir aqui!! Coloque seu material em baixo E-- e---";
+		mes "Você pode durmir "+F_Navi("aqui","mora,44,138")+"!! Coloque seu material em baixo E-- e---";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
 		mes "[Raffuh]";
 		mes "Uh...";
-		mes "Por que você está tentando descobrir onde eu moro--?";
+		mes "Por que você está tentando descobrir "+F_Navi("onde","mora,119,170")+" eu moro--?";
 		mes "Uh, não...";
 		mes "Eu gostaria de viver com os meus amigos--";
 		viewpoint 1,119,170,1,0xAAFF00;
@@ -99,13 +102,13 @@ mora,167,76,4	script	Guia de Mora#leste	522,{
 	case 3:
 		mes "[Raffuh]";
 		mes "Uh...";
-		mes "Há um monte de coisas na loja-- ah, há uma primavera quente também!";
+		mes "Há um monte de coisas na "+F_Navi("loja","mora,112,110")+"-- ah, há uma primavera quente também!";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
 		mes "[Raffuh]";
 		mes "Uh...";
-		mes "Você não pode ir para o armazém, caso vá estará em apuros";
+		mes "Você não pode ir para o "+F_Navi("armazém","mora,182,161")+", caso vá estará em apuros";
 		mes "-- Muitas das coisas que são de fora do vilarejo--";
 		mes "Raffuh ficou em apuros várias vezes--";
 		viewpoint 1,182,161,3,0xFF1493;
@@ -131,32 +134,33 @@ mora,115,138,4	script	Guia de Mora#centro	524,{
 	mes "Lala!";
 	mes "Bem-vindo ao Vilarejo de Mora!";
 	mes "Se você quiser conhecer o vilarejo, é só falar!";
+	F_Navi("[Raffla]");
 	next;
 	switch(select("[ Pousada ]:[ Residências ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair.")) {
 	case 1:
 		mes "[Raffla]";
 		mes "Lala!";
-		mes "Este é o lugar onde os viajantes podem descançar.";
+		mes F_Navi("Este","mora,44,138")+" é o lugar onde os viajantes podem descançar.";
 		mes "A Recepção da Pousada é muito gentil, você deve conhecê-la.";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
 		mes "[Raffla]";
 		mes "Lala!";
-		mes "É o lugar onde os Raffles vivem. Apareça por lá!";
+		mes F_Navi("Este","mora,119,170")+" é o lugar onde os Raffles vivem. Apareça por lá!";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
 	case 3:
 		mes "[Raffla]";
 		mes "Lala!";
 		mes "Então você quer comprar algo, la?";
-		mes "Há um monte de Lojas e Cafeterias, então visite-os la!";
+		mes "Há um monte de "+F_Navi("Lojas e Cafeterias","mora,112,110")+", então visite-os la!";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
 		mes "[Raffla]";
 		mes "Lala!";
-		mes "O Armazém é onde você pode guardar as suas preciosidades.";
+		mes "O "+F_Navi("Armazém","mora,182,161")+" é onde você pode guardar as suas preciosidades.";
 		mes "Fique tranquilo, lá você não será roubado la!";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;
@@ -181,19 +185,20 @@ mora,72,51,4	script	Guia de Mora#sul	518,{
 	mes "Lali?";
 	mes "Bem-vindo ao vilarejo de Mora.";
 	mes "Se você precisa saber algo sobre a aldeia, é só me falar.";
+	F_Navi("[Raffli]");
 	next;
 	switch(select("[ Pousada ]:[ Residences ]:[ Lojas ]:[ Armazém ]:Remover marcadores do mini-mapa:Sair")) {
 	case 1:
 		mes "[Raffli]";
 		mes "Lali?";
-		mes "Este é o lugar onde os viajantes podem descançar.";
+		mes F_Navi("Este","mora,44,138")+" é o lugar onde os viajantes podem descançar.";
 		mes "A Recepção da Pousada é muito gentil, você deve conhecê-la.";
 		viewpoint 1,44,134,0,0x0A82FF;
 		close;
 	case 2:
 		mes "[Raffli]";
 		mes "Lali?";
-		mes "É o lugar onde os Raffles vivem.";
+		mes F_Navi("Este","mora,119,170")+" é o lugar onde os Raffles vivem.";
 		mes "Você irá para a minha casa? Estou tão feliz.";
 		viewpoint 1,119,170,1,0xAAFF00;
 		close;
@@ -201,13 +206,13 @@ mora,72,51,4	script	Guia de Mora#sul	518,{
 		mes "[Raffli]";
 		mes "Lali?";
 		mes "Lá é o lugar onde você pode comprar muitas coisas.";
-		mes "Você pode encontrar toneladas de coisas para comer e comprar.";
+		mes "Você pode encontrar toneladas de "+F_Navi("coisas","mora,112,110")+" para comer e comprar.";
 		viewpoint 1,112,110,2,0xDA70D6;
 		close;
 	case 4:
 		mes "[Raffli]";
 		mes "Lali?";
-		mes "O Armazém é onde você pode guardar as suas preciosidades.";
+		mes "O "+F_Navi("Armazém","mora,182,161")+" é onde você pode guardar as suas preciosidades.";
 		mes "Fique tranquilo, lá você não será roubado.";
 		viewpoint 1,182,161,3,0xFF1493;
 		close;

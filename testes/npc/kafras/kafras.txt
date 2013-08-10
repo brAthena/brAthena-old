@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1a/1.2                        |
+//   | Versões eA/rA/brA: 1.0/1.3a/1.2                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Configurações callfunc "F_Kafra".           |
 //   | arg(0):                                                |
@@ -356,6 +356,16 @@ dewata,202,184,6	script#re	Kafra Employee::kaf_dewata	117,{
 	callfunc "F_KafEnd",0,1,"na ilha de Dewata";
 }
 
+// Grupo Eden
+//============================================================
+moc_para01,10,185,4	script	Funcionária Kafra::kaf_eden	721,{
+	cutin "kafra_07",2;
+	mes "[Funcionária Kafra]";
+	mes "Bem-vind"+((Sex)?"o":"a")+" a Corporação Kafra.";
+	mes "Eu ofereço apenas o serviço de Armazém!";
+	callfunc "F_Kafra",5,2,0,80,0;
+}
+
 // Comodo
 //============================================================
 comodo,195,150,4	script	Funcionária Kafra::kaf_comodo	721,{
@@ -633,4 +643,11 @@ alb2trea,59,69,5	script	Funcionária Kafra::kaf_alb2trea	117,{
 	callfunc "F_Kafra",5,2,1,50,0;
 	savepoint "alb2trea",92,64;
 	callfunc "F_KafEnd",0,1,0,"no Navio Fantasma";
+}
+
+// - Cavaleiro Rúnico
+job3_rune01,92,62,3	script	Kafra Employee::kaf_rune	114,{
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	callfunc "F_Kafra",0,9,2,80,700;
 }

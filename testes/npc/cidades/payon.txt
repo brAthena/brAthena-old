@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.1/2.1/1.3                         |
+//   | Versões eA/rA/brA: 2.1/2.1c/1.3                        |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Payon.                    |
 //   |--------------------------------------------------------|
@@ -211,9 +211,9 @@ payon,210,110,1	script	Bêbado#payon	120,{
 		mes "Será que você poderia comprar para mim uma bebida?";
 	}
 	next;
-	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
+	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, nem pensar!!")) {
 	case 1:
-		set zeny,zeny-100;
+		set Zeny,Zeny-100;
 		mes "[Bêbado]";
 		mes "Obrigado...";
 		mes "...Irmão!";
@@ -798,7 +798,7 @@ OnTouch:
 		mes "É melhor descansar um pouco.";
 		mes "Por favor, se cuide bem.";
 	}
-	close;
+	end;
 }
 
 payon_in03,102,185,5	script	Guarda#payon2	708,{
@@ -806,11 +806,11 @@ payon_in03,102,185,5	script	Guarda#payon2	708,{
 	if (BaseLevel < 30) {
 		mes "Ei...!";
 		mes "Você não está autorizado a ficar aqui!";
-		mes "Volte agora!";
-    close;
+		mes "Saia!";
+		close;
     }
-		mes "Eu lamento mas você não pode ficar aqui.";
-		mes "Por favor, saia.";
+	mes "Eu lamento mas você não pode ficar aqui.";
+	mes "Por favor, saia.";
     close;
 }
 

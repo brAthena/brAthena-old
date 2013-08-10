@@ -115,7 +115,7 @@ prt_monk,22,248,0	warp	monk001	2,2,prt_fild03,368,256
 prt_monk,245,106,0	warp	monk01	1,1,monk_in,98,30
 prt_monk,245,137,0	warp	monk02	1,1,monk_in,98,183
 
-prt_fild09,0,0	warp#dv	prtf025	7,2,moc_fild20,209,333
-prt_fild09,246,17,0	duplicata(prtf025)	prtf025-1
-prt_fild09,95,19,0	warp	prtf028	7,2,moc_fild20,209,333
-prt_fild10,263,22,0	warp	prtf029	6,2,moc_fild20,209,333,{}
+prt_fild09,0,0	warp#dv	prtf025	7,2,moc_fild20,209,333,{}
+//prt_fild09,246,17,0	duplicata(prtf025)	prtf025-1
+//prt_fild09,95,19,0	warp	prtf028	7,2,moc_fild20,209,333
+//prt_fild10,263,22,0	warp	prtf029	6,2,moc_fild20,209,333,{}

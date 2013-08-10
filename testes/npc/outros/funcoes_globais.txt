@@ -31,8 +31,8 @@
 	set(.@version, checkversion(0));
 		
 	if(.@version == 0) { // Pré-Renovação
-		movenpc("Negociador de Projéteis Tony#iz",171,133);
-		movenpc("Vendedor de Caixas de Munição#iz",171,127);
+		//movenpc("Negociador de Projéteis Tony#iz",171,133);
+		//movenpc("Vendedor de Caixas de Munição#iz",171,127);
 		movenpc("Locador de Mercenários#Espadachim",47,139);
 		movenpc("Artigos para Mercenários#Espadachim",56,139);
 	}
@@ -374,4 +374,34 @@ function	script	Time2Str	{
 		set .@Time$, .@Time$ + .@Time_Left + " second";
 	
 	return .@Time$;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// *** Função "F_Navi": Controla o sistema de navegação para guias da Renovação.
+// Hexeds anteriores a 2011-10-10 não tem suporte aos links de navegação, então
+// desabilite o sistema de isso se aplicar ao seu client
+//////////////////////////////////////////////////////////////////////////////////
+function	script	F_Navi	{
+	// Remova o comentário para desativar o sistema de navegação.
+	//set .@disabled,1;
+
+	// Esta função tem 0 ~ 3 parâmetros.
+	switch(getargcount()) {
+	case 0:	// Checa se o sistema está desativado
+		return .@disabled;
+	case 1:	// Mostra a mensagem informativa, se habilitado.
+		if (!.@disabled) {
+			next;
+			mes getarg(0);
+			mes "Quando você clicar no ^B9062F[nome da localização]^000000, você receberá os mais avançados serviços de ^B9062FNavegação^000000!";
+		}
+		return;
+	default:	// Mostra o link de navegação, se habilitado; se não, define a cor do texto, se disponível.
+		if (!.@disabled)
+			return "<NAVI>[" + getarg(0) + "]<INFO>" + getarg(1) + ",0,000,0</INFO></NAVI>";
+		else if (getargcount() == 3)
+			return getarg(2)+getarg(0)+"^000000";
+		else
+			return getarg(0);
+	}
 }
