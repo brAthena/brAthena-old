@@ -15,8 +15,8 @@
 //   | Versões brA: 1.0                                       |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC Mercadora de Promoções que troca Ticket |
-//   | de Promoção em itens aleatórios. A chances de não cair |
-//   | nenhum tipo de item.                                   |
+//   | de Promoção em itens aleatórios. Sempre vai ter queda  |
+//   | de um item.                                            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criação [Megasantos]                               |
@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,142,227,3	script	Mercadora de Promoções	714,{
+prontera,141,226,3	script	Mercadora de Promoções	714,{
 
 	mes "[Mercadora de Promoções]";
 	mes "Olá aproveitando sua passagem pela cidade?!";
@@ -64,10 +64,20 @@ prontera,142,227,3	script	Mercadora de Promoções	714,{
 					announce "Atenção Heróis! "+strcharinfo(0)+" acabou de receber '"+getitemname(.item[.@i])+"' da NPC Promoções Especiais!",bc_all;
 				}
 				getitem .item[.@i],.qnt[.@i];
+				set .@recompensa,1;
 				close;
 			}
+
+		}
+		if(!.@recompensa) {
+			.@i = rand(getarraysize(.item));
+			if(.item[.@i] == .GlobalMessage) {
+				announce "Atenção Heróis! "+strcharinfo(0)+" acabou de receber '"+getitemname(.item[.@i])+"' da NPC Promoções Especiais!",bc_all;
+			}
+			getitem .item[.@i], .qnt[.@i];
 		}
 		close;
+		
 	} else {
 		mes "Hmmm, você precisa ter o ^0000FFTicket de Promoção^000000";
 		mes "para receber um dos itens...";
