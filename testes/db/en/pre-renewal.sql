@@ -6709,7 +6709,7 @@ REPLACE INTO `item_combo_db` VALUES('5086:18656','{ bonus2 bAddMonsterDropItem,1
 REPLACE INTO `item_combo_db` VALUES('5176:18656','{ bonus bAspdRate,5; autobonus "{ bonus bAtk,50; }",5,10000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; }');
 REPLACE INTO `item_combo_db` VALUES('5358:5653','{ bonus bAgi,1; bonus bFlee,3; }');
 REPLACE INTO `item_combo_db` VALUES('5401:5653','{ bonus bInt,1; bonus bMatkRate,2; }');
-REPLACE INTO `item_combo_db` VALUES('13034:13035','{ bonus bMaxSP,20; bonus bMaxHPRate,5; bonus bHit,10; bonus2 bAddSize,Size_Large,30; autobonus "{ bonus bAspdRate,100; }",1,7000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; }');
+REPLACE INTO `item_combo_db` VALUES('13034:13035','{ bonus bMaxSP,20; bonus bMaxHPRate,5; bonus bHit,10; bonus2 bAddSize,Size_Large,30; autobonus "{ bonus bAspdRate,100; }",1,7000,BF_WEAPON,"{ specialeffect2 EF_POTION_BERSERK; }"; }');
 REPLACE INTO `item_combo_db` VALUES('18507:18539','{ bonus bUseSPrate,-3; }');
 
 --
