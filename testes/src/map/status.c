@@ -1244,14 +1244,14 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			status_change_end(target, SC_CAMOUFLAGE, INVALID_TIMER);
 			status_change_end(target, SC__INVISIBILITY, INVALID_TIMER);
 			status_change_end(target, SC_DEEP_SLEEP, INVALID_TIMER);
-			#if VERSION != -1
+#if VERSION != -1
 			if((sce=sc->data[SC_ENDURE]) && !sce->val4 && !sc->data[SC_LKCONCENTRATION]) {
 				//Endure count is only reduced by non-players on non-gvg maps.
 				//val4 signals infinite endure. [Skotlex]
 				if(src && src->type != BL_PC && !map_flag_gvg(target->m) && !map[target->m].flag.battleground && --(sce->val2) < 0)
 					status_change_end(target, SC_ENDURE, INVALID_TIMER);
 			}
-			#endif
+#endif
 			if((sce=sc->data[SC_GRAVITATION]) && sce->val3 == BCT_SELF) {
 				struct skill_unit_group *sg = skill_id2group(sce->val4);
 				if(sg) {
@@ -1365,7 +1365,6 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		TBL_PC *sd = BL_CAST(BL_PC,target);
 		TBL_HOM *hd = sd->hd;
 		if(hd && hd->sc.data[SC_LIGHT_OF_REGENE]) {
-			status_change_clear(target,0);
 			clif_skillcasting(&hd->bl, hd->bl.id, target->id, 0,0, MH_LIGHT_OF_REGENE, skill_get_ele(MH_LIGHT_OF_REGENE, 1), 10); //just to display usage
 			clif_skill_nodamage(&sd->bl, target, ALL_RESURRECTION, 1, status_revive(&sd->bl,hd->sc.data[SC_LIGHT_OF_REGENE]->val2,0));
 			status_change_end(&sd->hd->bl,SC_LIGHT_OF_REGENE,INVALID_TIMER);
@@ -8473,7 +8472,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				sc_start(bl,SC_NOEQUIPWEAPON,100,val1,tick);
 				sc_start(bl,SC_NOEQUIPSHIELD,100,val1,tick);
 				break;
-				break;
 			case SC_GN_CARTBOOST:
 				if(val1 < 3)
 					val2 = 50;
@@ -8732,8 +8730,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val_flag |= 1|2|4;
 				break;
 			case SC_UPHEAVAL_OPTION:
-				val2 = 15;
-				val3 = WZ_EARTHSPIKE;
+				val2 = WZ_EARTHSPIKE;
 				val_flag |= 1|2;
 				break;
 			case SC_CIRCLE_OF_FIRE_OPTION:
@@ -8830,19 +8827,16 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_OVERED_BOOST:
 				val2 = 300 + 40*val1; //flee bonus
 				val3 = 179 + 2*val1; //aspd bonus
-				val4 = 50; //def reduc %
 				break;
 			case SC_GRANITIC_ARMOR:
 				val2 = 2*val1; //dmg reduction
-				val3 = (6*status_get_max_hp(bl))/100; //dmg hp on status end
-			   	 val4 = 5 * val1; //unknow formula
+				val3 = 6*val1; //dmg on status end
 				break;
 			case SC_MAGMA_FLOW:
 				val2 = 3*val1; //activation chance
 				break;
 			case SC_PYROCLASTIC:
-			   	 val2 += 10*val1+status_get_lv(bl); //atk bonus
-			   	 val3 = 2*val1;//Chance To AutoCast Hammer Fall %
+			   	val2 += 10*val1; //atk bonus
 			  	 break;
 			case SC_NEEDLE_OF_PARALYZE: //[Lighta] need real info
 				val2 = 2*val1; //def reduction
@@ -8852,8 +8846,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			    	val2 = 20 * val1; //hp reco on death %
 			   	break;
 			case SC_PAIN_KILLER: // Yommy leak need confirm
-				val2 = 10 * val1; //aspd reduction %
-			    	val3 = (( 200 * val1 ) * status_get_lv(bl)) / 150; //dmg reduction linear
+				val2 = 2*val1; //aspd reduction %
+				val3 = 2*val1; //dmg reduction %
 				if(sc->data[SC_NEEDLE_OF_PARALYZE])
 					sc_start(bl, SC_ENDURE, 100, val1, tick); //start endure for same duration
 				break;

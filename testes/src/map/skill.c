@@ -3660,7 +3660,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 {
 	struct map_session_data *sd = NULL;
 	struct status_data *tstatus;
-	struct status_change *sc, *tsc;
+	struct status_change *sc;
 
 	if(skill_id > 0 && !skill_lv) return 0;
 
@@ -3688,11 +3688,8 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 	}
 
 	sc = status_get_sc(src);
-	tsc = status_get_sc(bl);
 	if(sc && !sc->count)
 		sc = NULL; //Unneeded
-	if (tsc && !tsc->count)
-		tsc = NULL;
 
 	tstatus = status_get_status_data(bl);
 
@@ -4539,9 +4536,6 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					if(!skill_check_condition_castbegin(sd, skill_id, skill_lv))
 						break;
 
-					// SC_MAGICPOWER needs to switch states before any damage is actually dealt
-					skill_toggle_magicpower(src, skill_id);
-
 					switch(skill_get_casttype(skill_id)) {
 						case CAST_GROUND:
 							skill_castend_pos2(src, bl->x, bl->y, skill_id, skill_lv, tick, 0);
@@ -4865,8 +4859,8 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 #endif
 
 			}
-			break;
 		}
+			break;
 
 		case 0:/* no skill - basic/normal attack */
 			if(sd) {
