@@ -227,20 +227,20 @@ izlude,121,87,6	script#vpo	Guia#iz	105,{
 					break;
 				case 4:
 					mes "[Guia de Izlude]";
-					mes "Da Marina <NAVI>[Marina]<INFO>izlude_a,200,180</INFO></NAVI> é possível ir até Alberta ou a ilha de Byalan, nosso calabouço.";
+					mes "Da "+F_Navi("Marina","izlude_a,200,180")+" é possível ir até Alberta ou a ilha de Byalan, nosso calabouço.";
 					mes "Ela se localiza ao nordeste.";
 					if (.@compass_check)
 						viewpoint 1,200,180,3,0xFF0000;
 					break;
 				case 5:
 					mes "[Guia de Izlude]";
-					mes "Você pode facilmente encontrar a <NAVI>[Loja de Armas]<INFO>izlude,111,149</INFO></NAVI> a noroeste da cidade.";
+					mes "Você pode facilmente encontrar a "+F_Navi("Loja de Armas","izlude,111,149")+" a noroeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,111,149,4,0xFF00FF;
 					break;
 				case 6:
 					mes "[Guia de Izlude]";
-					mes "A <NAVI>[Loja de Utilidades]<INFO>izlude,148,148</INFO></NAVI> não deve ser difícil de encontrar na parte nordeste da cidade.";
+					mes "A "+F_Navi("Loja de Utilidades","izlude,148,148")+" não deve ser difícil de encontrar na parte nordeste da cidade.";
 					if (.@compass_check)
 						viewpoint 1,148,148,5,0xFF00FF;
 					break;
