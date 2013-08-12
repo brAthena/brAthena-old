@@ -88,7 +88,7 @@ REPLACE INTO `abra_db` VALUES(81,'Supernova',2,4000);
 REPLACE INTO `abra_db` VALUES(83,'Chuva de Meteoros',6,4000);
 REPLACE INTO `abra_db` VALUES(84,'Trovão de Júpiter',2,4000);
 REPLACE INTO `abra_db` VALUES(85,'Ira de Thor',6,4000);
-REPLACE INTO `abra_db` VALUES(86,'Esfera d Água',4,4000);
+REPLACE INTO `abra_db` VALUES(86,'Esfera d''Água',4,4000);
 REPLACE INTO `abra_db` VALUES(87,'Barreira de Gelo',2,4000);
 REPLACE INTO `abra_db` VALUES(88,'Congelar',1,4000);
 REPLACE INTO `abra_db` VALUES(89,'Nevasca',6,4000);
@@ -7616,7 +7616,7 @@ REPLACE INTO `item_db` VALUES(1645,'Lich_Bone_Wand_M','Lichs Bone Wand','4',20,N
 REPLACE INTO `item_db` VALUES(1646,'Lacryma_Stick','Bastão de Lágrimas','4',20,NULL,'500',30,NULL,1,2,0x00010204,2,2,2,3,50,1,10,'bonus bInt,4; bonus bMatkRate,15; bonus bMdef,1; bonus2 bSkillAtk,"WZ_STORMGUST",getrefine(); if(getrefine()>9) bonus2 bCastrate,"WZ_STORMGUST",-8;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1647,'Croce_Staff','Cajado da Cruz','4',20,NULL,'500',30,NULL,1,1,0x00008110,2,2,2,3,50,1,10,'bonus bAtkEle,Ele_Holy; bonus bMatkRate,15; bonus bInt,4; bonus4 bAutoSpellOnSkill,"AL_HEAL","AL_BLESSING",getskilllv("AL_BLESSING")>1?getskilllv("AL_BLESSING"):1,20;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1648,'Staff_Of_Bordeaux','Cajado do Maestro','4',20,NULL,'500',30,NULL,1,0,0x00010204,2,2,2,4,50,1,10,'bonus bMatkRate,15; bonus bInt,2; bonus bDex,1; if(getskilllv("SA_DRAGONOLOGY")==5) { bonus bUseSPrate,-15; bonus bInt,3; }',NULL,NULL);
-REPLACE INTO `item_db` VALUES(1649,'Rafini_Staff','Cajado Raffine',4,20,NULL,500,'30:180',NULL,1,0,0x00818315,7,2,2,3,100,1,10,'bonus bFixedCastRate,-getrefine();',NULL,NULL);
+REPLACE INTO `item_db` VALUES(1649,'Rafini_Staff','Cajado Raffine',4,20,NULL,'500',30,NULL,1,0,0x00818315,7,2,2,3,100,1,10,'bonus bFixedCastRate,-getrefine();',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1701,'Bow','Arco','4',1000,NULL,'500',15,NULL,5,3,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1702,'Bow_','Arco','4',1000,NULL,'500',15,NULL,5,4,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1703,'Bow__','Arco','4',1000,NULL,'0',15,NULL,5,0,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
