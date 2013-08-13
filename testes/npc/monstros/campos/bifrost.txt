@@ -29,7 +29,7 @@
 //==================================================
 bif_fild01,0,0,0,0	monster	Vespa Vagalume	1994,25,0,0,0
 bif_fild01,0,0,0,0	monster	Cornus	1992,15,0,0,0
-bif_fild01,0,0,0,0	monster	Louva-a-Deus Angra	2132,5,0,0,0
+bif_fild01,0,0,0,0	monster	Aranha Pom	2132,5,0,0,0
 bif_fild01,0,0,0,0	monster	Louva-a-Deus Angra	2133,5,0,0,0
 bif_fild01,0,0,0,0	monster	Pequeno Fatum	2136,30,0,0,0
 bif_fild01,0,0,0,0	monster	Miming	2137,50,0,0,0
@@ -39,7 +39,7 @@ bif_fild01,0,0,0,0	monster	Miming	2137,50,0,0,0
 //==================================================
 bif_fild02,0,0,0,0	monster	Vespa Vagalume	1994,25,0,0,0
 bif_fild02,0,0,0,0	monster	Cornus	1992,15,0,0,0
-bif_fild02,0,0,0,0	monster	Louva-a-Deus Angra	2132,5,0,0,0
+bif_fild02,0,0,0,0	monster	Aranha Pom	2132,5,0,0,0
 bif_fild02,0,0,0,0	monster	Louva-a-Deus Angra	2133,5,0,0,0
 bif_fild02,0,0,0,0	monster	Pequeno Fatum	2136,50,0,0,0
 bif_fild02,0,0,0,0	monster	Miming	2137,30,0,0,0
@@ -98,23 +98,23 @@ bif_fild02,0,0,0,0	monster	Miming	2137,30,0,0,0
 1@mist,345,186,0,0	monster	Trepadeira	2135,1,1200000,600000,0
 1@mist,345,186,0,0	monster	Memória de Nidhogg	2142,1,1200000,600000,0
 1@mist,345,186,0,0	monster	Memória de Nidhogg	2143,1,1200000,600000,0
-1@mist,105,105,85,85	monster	Louva-a-Deus Angra	2132,8,1200000,600000,0
-1@mist,105,105,85,85	monster	Angra Mantis	2133,8,1200000,600000,0
+1@mist,105,105,85,85	monster	Aranha Pom	2132,8,1200000,600000,0
+1@mist,105,105,85,85	monster	Louva-a-Deus Angra	2133,8,1200000,600000,0
 1@mist,105,105,85,85	monster	Chapim	2134,8,1200000,600000,0
 1@mist,105,105,85,85	monster	Pequeno Fatum	2136,8,1200000,600000,0
 1@mist,105,105,85,85	monster	Miming	2137,5,1200000,600000,0
-1@mist,105,275,85,85	monster	Louva-a-Deus Angra	2132,10,1200000,600000,0
-1@mist,105,275,85,85	monster	Angra Mantis	2133,10,1200000,600000,0
+1@mist,105,275,85,85	monster	Aranha Pom	2132,10,1200000,600000,0
+1@mist,105,275,85,85	monster	Louva-a-Deus Angra	2133,10,1200000,600000,0
 1@mist,105,275,85,85	monster	Chapim	2134,10,1200000,600000,0
 1@mist,105,275,85,85	monster	Pequeno Fatum	2136,8,1200000,600000,0
 1@mist,105,275,85,85	monster	Miming	2137,5,1200000,600000,0
-1@mist,275,105,85,85	monster	Louva-a-Deus Angra	2132,12,1200000,600000,0
-1@mist,275,105,85,85	monster	Angra Mantis	2133,12,1200000,600000,0
+1@mist,275,105,85,85	monster	Aranha Pom	2132,12,1200000,600000,0
+1@mist,275,105,85,85	monster	Louva-a-Deus Angra	2133,12,1200000,600000,0
 1@mist,275,105,85,85	monster	Chapim	2134,10,1200000,600000,0
 1@mist,275,105,85,85	monster	Pequeno Fatum	2136,8,1200000,600000,0
 1@mist,275,105,85,85	monster	Miming	2137,5,1200000,600000,0
-1@mist,275,275,85,85	monster	Louva-a-Deus Angra	2132,15,1200000,600000,0
-1@mist,275,275,85,85	monster	Angra Mantis	2133,15,1200000,600000,0
+1@mist,275,275,85,85	monster	Aranha Pom	2132,15,1200000,600000,0
+1@mist,275,275,85,85	monster	Louva-a-Deus Angra	2133,15,1200000,600000,0
 1@mist,275,275,85,85	monster	Chapim	2134,10,1200000,600000,0
 1@mist,275,275,85,85	monster	Pequeno Fatum	2136,8,1200000,600000,0
 1@mist,275,275,85,85	monster	Miming	2137,5,1200000,600000,0
