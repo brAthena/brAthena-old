@@ -17126,9 +17126,8 @@ BUILDIN_FUNC(useatcmd)
 
 BUILDIN_FUNC(checkversion)
 {
-	int num;
+	int num = script_getnum(st,2);
 
-	num=script_getnum(st,2);
 	switch(num) {
 		case 0:
 #if VERSION == 1
@@ -17181,6 +17180,14 @@ BUILDIN_FUNC(checkversion)
 			script_pushint(st, 0);
 #endif
 			break;
+		case 7:
+#if (PACKETVER >= 20111010)
+			script_pushint(st, 1);
+#else
+			script_pushint(st, 0);
+#endif
+			break;
+			
 		default:
 			ShowWarning("buildin_checkversion: unknown parameter.\n");
 			break;
