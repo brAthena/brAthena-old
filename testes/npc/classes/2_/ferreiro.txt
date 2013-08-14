@@ -8,11 +8,11 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Quest do Ferreiro                      |
+//   | Nome do Script: ferreiro.txt                           |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 3.8/1.0/1.1                         |
+//   | Versões eA/rA/brA: 3.8/1.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Ferreiro.            |
 //   |--------------------------------------------------------|
@@ -260,7 +260,7 @@
 	}
 }
 
--	script	Guildsman#alberta	-1,{
+-	script	Líder da Guilda#alberta	-1,{
 	mes "[Geschupenschte]";
   mes "Olá!";
 	mes "Eu sou ^8E6B23Geschupenschte^000000,";
@@ -1477,7 +1477,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 	}
 }
 
-payon,151,39,4	script#dv	Talpiz#BLS	59,{
+payon,151,39,4	script	Talpiz#BLS	59,{
 	if (BSMITH_Q == 12 && countitem(1713) > 0) {
 		mes "[Talpiz]";
 		mes "Oh~";
@@ -1602,12 +1602,12 @@ geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	726,{
 // Duplicatas OldTimes
 izlude,69,181,4	duplicato(Krongast#BLS)	Krongast#2BLS	734
 geffen_in,110,169,4	duplicato(Mestre Ferreiro#BLS)	Mestre Ferreiro#2BLS	731
-alberta_in,174,22,4	duplicato(Guildsman#alberta)	Guildsman#albertaot	63
+alberta_in,174,22,4	duplicato(Líder da Guilda#alberta)	Líder da Guilda#albertaot	63
 morocc,95,133,4	duplicato(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#2moc	726
 comodo,158,342,4	duplicato(Bismarc#BLS)	Bismarc#2BLS	118,{}
 
 // Duplicatas Pré-Renovação e Renovação
-ein_in01,201,27,3	duplicata(Guildsman#alberta)	Guildsman#albertare	63
+ein_in01,201,27,3	duplicata(Líder da Guilda#alberta)	Líder da Guilda#albertare	63
 ein_in01,24,41,5	duplicata(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#3moc	726
 ein_in01,18,28,4	duplicata(Mestre Ferreiro#BLS)	Mestre Ferreiro#3BLS	731
 hugel,168,183,1	duplicata(Bismarc#BLS)	Bismarc#3BLS	118

@@ -3630,13 +3630,11 @@ char *get_database_name(int database_id)
 		case 8: db_name = "abra_db"; break;
 		#if VERSION == 1
 		case 9: db_name = "spellbook_db"; break;
-		#endif
 		case 10: db_name = "magicmushroom_db"; break;
-		#if VERSION == 1
 		case 11: db_name = "skill_reproduce_db"; break;
 		case 12: db_name = "skill_improvise_db"; break;
-		#endif
 		case 13: db_name = "skill_changematerial_db"; break;
+		#endif
 		case 14: db_name = "castle_db"; break;
 		#if VERSION != -1
 		case 15: db_name = "homunculus_db"; break;
@@ -3652,7 +3650,9 @@ char *get_database_name(int database_id)
 		#if VERSION == 1
 		case 24: db_name = "item_stack_db"; break;
 		#endif
+		#if VERSION != -1
 		case 25: db_name = "item_buyingstore_db"; break;
+		#endif
 		case 26: db_name = "item_bluebox_db"; break;
 		case 27: db_name = "item_violetbox_db"; break;
 		case 28: db_name = "item_cardalbum_db"; break;

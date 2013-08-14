@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 3.1/3.2a/1.0                        |
+//   | Versões eA/rA/brA: 3.1/3.2a/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Refinadores e refinadores especiais.        |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Adequado ao Modo Old-Times [Holy & Neko]           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -288,278 +289,20 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 	}
 }
 
-// Paul Spanner: Einbroch Blacksmith Supplier
-//============================================================
-ein_in01,38,29,0	script#dv	Paul Spanner	63,{
-	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you loose some weight. -";
-		close;
-	}
-	mes "[Paul Spanner]";
-	mes "Welcome, my friend.";
-	mes "In my shop, you will find everything that you need in forging.";
-	mes "Tell me what you need.";
-	next;
-	switch(select("Purchase Anvil.:Purchase Forging Items.:Purchase Metal.:Process Ores.:Quit.")) {
-	case 1:
-		mes "[Paul Spanner]";
-		mes "Anvil is the most necessary item for Blacksmiths.";
-		mes "Since you will use an Anvil more than once, you'd better buy a nice one.";
-		next;
-		switch(select("Anvil - 30,000z.:Oridecon Anvil - 120,000z.:Golden Anvil - 300,000z.:I need a better anvil.:Cancel.")) {
-		case 1:
-			if (zeny < 30000) {
-				mes "[Paul Spanner]";
-				mes "With that much of money, you cannot even buy a toy anvil!";
-				close;
-			}
-			getitem 986,1; //Anvil
-			set zeny,zeny-30000;
-			mes "[Paul Spanner]";
-			mes "It is the cheapest anvil which has the most basic ability.";
-			mes "Thank you for using my shop. If you need anything, just let me know.";
-			close;
-		case 2:
-			if (zeny < 120000) {
-				mes "[Paul Spanner]";
-				mes "With that much of money, you cannot even buy a toy anvil!";
-				close;
-			}
-			getitem 987,1; //Oridecon_Anvil
-			set zeny,zeny-120000;
-			mes "[Paul Spanner]";
-			mes "Ah, you have an eye for anvil. A Blacksmith needs an anvil at least as good as this.";
-			mes "Thank you for using my shop. If you need anything, just let me know.";
-			close;
-		case 3:
-			if (zeny < 300000) {
-				mes "[Paul Spanner]";
-				mes "With that much of money, you cannot even buy a toy anvil!";
-				close;
-			}
-			getitem 988,1; //Golden_Anvil
-			set zeny,zeny-300000;
-			mes "[Paul Spanner]";
-			mes "I can tell your ambition to become a good Blacksmith just by looking at you to choose this Golden Anvil!";
-			mes "This anvil will surely aid you in creating the best weapons.";
-			close;
-		case 4:
-			mes "[Paul Spanner]";
-			mes "I am sorry, but I do not sell better anvils than Golden Anvil.";
-			mes "Unless you find the legendary anvil of 'Linggell', I don't think that you could find better one than Golden Anvil in any other places.";
-			close;
-		case 5:
-			mes "[Paul Spanner]";
-			mes "If you need anything, just let me know.";
-			close;
-		}
-	case 2:
-		mes "[Paul Spanner]";
-		mes "You need various materials to process ores and to forge weapons.";
-		mes "I have everything that you need. Take a look.";
-		next;
-		switch(select("Mini Furnace - 150z.:Iron Hammer - 1,000z.:Golden Hammer - 3,000z.:Oridecon Hammer - 5,000z.:Cancel.")) {
-		case 1:
-			set .@item,612;
-			set .@item_cost,150;
-			set .@item_weight,200;
-			mes "[Paul Spanner]";
-			mes "You definately need this furnce to process ores!";
-			next;
-			break;
-		case 2:
-			set .@item,613;
-			set .@item_cost,1000;
-			set .@item_weight,200;
-			break;
-		case 3:
-			set .@item,614;
-			set .@item_cost,3000;
-			set .@item_weight,300;
-			break;
-		case 4:
-			set .@item,615;
-			set .@item_cost,5000;
-			set .@item_weight,400;
-			break;
-		case 5:
-			mes "[Paul Spanner]";
-			mes "If you need anything, just let me know.";
-			close;
-		}
-		mes "[Paul Spanner]";
-		mes "So, how many do you need? If you want to cancel the trade, enter '0'.";
-		next;
-		while(1) {
-			input .@input;
-			if (.@input == 0) {
-				mes "[Paul Spanner]";
-				mes "You have canceled the trade. If you need anything, just let me know.";
-				close;
-			}
-			else if ((.@input < 0) || (.@input > 500)) {
-				mes "[Paul Spanner]";
-				mes "You can only buy 500 or less at a time.";
-				next;
-			}
-			else {
-				break;
-			}
-		}
-		set .@sell,.@input * .@item_cost;
-		if (zeny < .@sell) {
-			mes "[Paul Spanner]";
-			mes "You don't have enough money. Sorry, I cannot sell them at a loss.";
-			close;
-		}
-		if (checkweight(.@item,.@input) == 0) {
-			mes "[Paul Spanner]";
-			mes "Hey, you look pale. Why don't you go lighten your weight first.";
-			close;
-		}
-		set zeny,zeny-.@sell;
-		getitem .@item,.@input;
-		mes "[Paul Spanner]";
-		mes "Thank you for using my shop. If you need anything, just let me know.";
-		close;
-	case 3:
-		mes "[Paul Spanner]";
-		mes "I have high quality metal.";
-		mes "So, which metal would you like to buy?";
-		next;
-		switch(select("Phracon - 200z.:Emveretarcon - 1,000z.:Quit.")) {
-		case 1:
-			set .@item,1010;
-			set .@item_price,200;
-			break;
-		case 2:
-			set .@item,1011;
-			set .@item_price,1000;
-			break;
-		case 3:
-			mes "[Paul Spanner]";
-			mes "If you need anything, just let me know.";
-			close;
-		}
-		mes "[Paul Spanner]";
-		mes "So, how many of them do you need? If you want to cancel the trade, enter '0'.";
-		next;
-		while(1) {
-			input .@input;
-			if (.@input == 0) {
-				mes "[Paul Spanner]";
-				mes "The trade has been canceled. If you need anything, just let me know.";
-				close;
-			}
-			else if ((.@input < 0) || (.@input > 500)) {
-				mes "[Paul Spanner]";
-				mes "You can buy 500 or less at a time.";
-				next;
-			}
-			else {
-				break;
-			}
-		}
-		set .@sell,.@input * .@item_price;
-		if (zeny < .@sell) {
-			mes "[Paul Spanner]";
-			mes "You don't have enough money. Sorry, I cannot sell them at a loss.";
-			close;
-		}
-		if (checkweight(.@item,.@input) == 0) {
-			mes "[Paul Spanner]";
-			mes "Hey, you look pale. Why don't you go lighten your weight first?";
-			close;
-		}
-		getitem .@item,.@input;
-		set zeny,zeny-.@sell;
-		mes "[Paul Spanner]";
-		mes "Thank you for using my shop. If you need anything, just let me know.";
-		close;
-	case 4:
-		mes "[Paul Spanner]";
-		mes "I can process Oridecon and Elunium for you.";
-		mes "You need 5 ores to process them into one Oridecon or Elunium.";
-		mes "So, which one do you want to process?";
-		switch(select("Oridecon:Elunium:Quit.")) {
-		case 1:
-			if (countitem(756) < 5) {
-				mes "[Paul Spanner]";
-				mes "You need 5 ores to process them into one pure Oridecon.";
-				close;
-			}
-			else {
-				delitem 756,5; //Oridecon_Stone
-				getitem 984,1; //Oridecon
-				mes "[Paul Spanner]";
-				mes "There you go. Thank you for using my service.";
-				close;
-			}
-		case 2:
-			if (countitem(757) < 5) {
-				mes "[Paul Spanner]";
-				mes "You need 5 ores to process them into one pure Elunium.";
-				close;
-			}
-			else {
-				delitem 757,5; //Elunium_Stone
-				getitem 985,1; //Elunium
-				mes "[Paul Spanner]";
-				mes "There you go. Thank you for using my service.";
-				close;
-			}
-		case 3:
-			mes "[Paul Spanner]";
-			mes "If you need anything, just let me know.";
-			close;
-		}
-	case 5:
-		mes "[Paul Spanner]";
-		mes "If you need anything, just let me know.";
-		close;
-	}
-}
-
 // Weapon/Armor Refiners
 //============================================================
 prt_in,63,60,0	script	Hollgrehenn	85,{
-	callfunc "refinemain","Hollgrehenn",0;
-	end;
-}
-morocc_in,73,38,6	script	Aragham	99,{
-	callfunc "refinemain","Aragham",0;
-	end;
-}
-payon,144,173,5	script#dv	Antonio	88,{
-	callfunc "refinemain","Antonio",0;
+	callfunc "refinemain",strnpcinfo(0),0;
 	end;
 }
 
-payon_in01,90,31,4	script#ot	Antonio#ot	88,{
-	callfunc "refinemain","Antonio",0;
-	end;
-}
-
-alberta_in,28,58,0	script	Fredrik	85,{
-	callfunc "refinemain","Fredrik",0;
-	end;
-}
-yuno_in01,171,21,4	script	Lambert	88,{
-	callfunc "refinemain","Lambert",0;
-	end;
-}
-ein_in01,24,87,5	script#dv	Manthasman	826,{
-	callfunc "refinemain","Manthasman Pruhag",0;
-	end;
-}
-lhz_in02,282,20,7	script#dv	Fulerr	869,{
-	callfunc "refinemain","Fulerr",0;
-	end;
-}
+morocc_in,73,38,6	duplicate(Hollgrehenn)	Aragham	99
+alberta_in,28,58,0	duplicate(Hollgrehenn)	Fredrik	85
+yuno_in01,171,21,4	duplicate(Hollgrehenn)	Lambert	88
+ein_in01,24,87,5	duplicata(Hollgrehenn)	Manthasman	826
+lhz_in02,282,20,7	duplicata(Hollgrehenn)	Fulerr	869
+payon,144,173,5	duplicata(Hollgrehenn)	Antonio	88,{}
+payon_in01,90,31,4	duplicato(Hollgrehenn)	Antonio#ot	88,{}
 
 //============================================================
 //= Main Refiner Function
@@ -854,39 +597,17 @@ function	script	refinemain	{
 // Material Salesmen
 //============================================================
 prt_in,56,68,5	script	Vurewell	86,{
-	callfunc "phramain","Vurewell";
-	end;
-}
-payon,145,178,3	script#dv	Begnahd	88,{
-	callfunc "phramain","Begnahd";
+	callfunc "phramain",strnpcinfo(0);
 	end;
 }
 
-payon_in01,84,26,4	script#ot	Begnahd#ot	88,{
-	callfunc "phramain","Begnahd";
-	end;
-}
-
-morocc_in,63,32,6	script	Sade	99,{
-	callfunc "phramain","Sade";
-	end;
-}
-alberta_in,13,71,3	script	Kahlamanlith	86,{
-	callfunc "phramain","Kahlamanlith";
-	end;
-}
-yuno_in01,171,27,4	script	Dilemma	88,{
-	callfunc "phramain","Dilemma";
-	end;
-}
-ein_in01,15,87,3	script#dv	Tirehaus	86,{
-	callfunc "phramain","Tirehaus";
-	end;
-}
-lhz_in02,278,24,3	script#dv	Krugg	86,{
-	callfunc "phramain","Krugg";
-	end;
-}
+morocc_in,63,32,6	duplicate(Vurewell)	Sade	99
+alberta_in,13,71,3	duplicate(Vurewell)	Kahlamanlith	86
+yuno_in01,171,27,4	duplicate(Vurewell)	Dilemma	88
+payon,145,178,3	duplicata(Vurewell)	Begnahd	88
+ein_in01,15,87,3	duplicata(Vurewell)	Tirehaus	86
+lhz_in02,278,24,3	duplicata(Vurewell)	Krugg	86,{}
+payon_in01,84,26,4	duplicato(Vurewell)	Begnahd	88,{}
 
 // Material Salesmen Functions
 //============================================================
@@ -973,39 +694,17 @@ function	script	phramain	{
 // Ori/Elu Refiners
 //============================================================
 prt_in,63,69,3	script	Dietrich	84,{
-	callfunc "orimain","Dietrich";
-	end;
-}
-payon,137,178,5	script#dv	Hakhim	88,{
-	callfunc "orimain","Hakhim";
+	callfunc "orimain",strnpcinfo(0);
 	end;
 }
 
-payon_in01,81,31,4	script#ot	Hakhim#ot	88,{
-	callfunc "orimain","Hakhim";
-	end;
-}
-
-morocc_in,72,32,6	script	Abdula	99,{
-	callfunc "orimain","Abdula";
-	end;
-}
-alberta_in,21,63,5	script	Xenophon	84,{
-	callfunc "orimain","Xenophon Zolotas";
-	end;
-}
-yuno_in01,164,27,4	script	Delight	88,{
-	callfunc "orimain","Delight";
-	end;
-}
-ein_in01,18,82,6	script#dv	Matestein	84,{
-	callfunc "orimain","Matestein";
-	end;
-}
-lhz_in02,281,24,5	script#dv	Fruel	84,{
-	callfunc "orimain","Fruel";
-	end;
-}
+morocc_in,72,32,6	duplicate(Dietrich)	Abdula	99
+alberta_in,21,63,5	duplicate(Dietrich)	Xenophon	84
+yuno_in01,164,27,4	duplicate(Dietrich)	Delight	88
+payon,137,178,5	duplicata(Dietrich)	Hakhim	88
+ein_in01,18,82,6	duplicata(Dietrich)	Matestein	84
+lhz_in02,281,24,5	duplicata(Dietrich)	Fruel	84,{}
+payon_in01,81,31,4	duplicato(Dietrich)	Hakhim#ot	88,{}
 
 // Ori/Elu Functions
 //============================================================
@@ -1079,74 +778,23 @@ function	script	orimain	{
 // Equipment Repairmen
 //============================================================
 alberta_in,31,65,4	script	Repairman#alb	86,{
-	callfunc "repairmain","Repairman";
+	callfunc "repairmain",((strnpcinfo(4) == "prt_in") ? "Grendal":"Repairman");
 	end;
 }
 
-moc_ruins,107,94,4	script	Repairman#moc	99,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-payon,143,165,4	script#dv	Repairman#pay	88,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-prt_in,63,54,2	script	Repairman#prt	86,{
-	callfunc "repairmain","Grendal";
-	end;
-}
-
-yuno_in01,175,28,3	script	Repairman#juno	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-geffen_in,34,166,3	script	Repairman#gef	99,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-aldeba_in,38,60,3	script	Repairman#alde	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-lhz_in02,284,14,3	script	Repairman#lhz	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-prt_gld,139,117,4	script	Repairman#prt_gld	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-gef_fild13,263,117,4	script	Repairman#gef_fild	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-pay_gld,295,183,4	script	Repairman#pay_gld	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-alde_gld,220,152,4	script	Repairman#alde_gld	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-aru_gld,189,336,4	script	Repairman#aru_gld	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
-
-sch_gld,340,80,7	script	Repairman#sch_gld	86,{
-	callfunc "repairmain","Repairman";
-	end;
-}
+prt_in,63,54,2	duplicate(Repairman#alb)	Repairman#prt	86
+yuno_in01,175,28,3	duplicate(Repairman#alb)	Repairman#juno	86
+geffen_in,34,166,3	duplicate(Repairman#alb)	Repairman#gef	99,
+aldeba_in,38,60,3	duplicate(Repairman#alb)	Repairman#alde	86
+prt_gld,139,117,4	duplicate(Repairman#alb)	Repairman#prt_gld	86
+gef_fild13,263,117,4	duplicate(Repairman#alb)	Repairman#gef_fild	86
+pay_gld,295,183,4	duplicate(Repairman#alb)	Repairman#pay_gld	86
+alde_gld,220,152,4	duplicate(Repairman#alb)	Repairman#alde_gld	86
+payon,143,165,4	duplicata(Repairman#alb)	Repairman#pay	88
+moc_ruins,107,94,4	duplicata(Repairman#alb)	Repairman#moc	99
+lhz_in02,284,14,3	duplicata(Repairman#alb)	Repairman#lhz	86
+aru_gld,189,336,4	duplicata(Repairman#alb)	Repairman#aru_gld	86
+sch_gld,340,80,7	duplicata(Repairman#alb)	Repairman#sch_gld	86,{}
 
 // Equipment Repair Function
 //============================================================
@@ -1612,7 +1260,244 @@ prt_in,85,71,5	script#re	Austry#ref	826,{
 	close;
 }
 payon_in01,14,125,5	duplicatr(Austry#ref)	Austry#pay	826
-morocc_in,60,38,5	duplicatr(Austry#ref)	Austry#moc	826,{}
+
+// Paul Spanner: Einbroch Blacksmith Supplier
+//============================================================
+ein_in01,38,29,0	script#dv	Paul Spanner	63,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a minute !! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please try again -";
+		mes "- after you loose some weight. -";
+		close;
+	}
+	mes "[Paul Spanner]";
+	mes "Welcome, my friend.";
+	mes "In my shop, you will find everything that you need in forging.";
+	mes "Tell me what you need.";
+	next;
+	switch(select("Purchase Anvil.:Purchase Forging Items.:Purchase Metal.:Process Ores.:Quit.")) {
+	case 1:
+		mes "[Paul Spanner]";
+		mes "Anvil is the most necessary item for Blacksmiths.";
+		mes "Since you will use an Anvil more than once, you'd better buy a nice one.";
+		next;
+		switch(select("Anvil - 30,000z.:Oridecon Anvil - 120,000z.:Golden Anvil - 300,000z.:I need a better anvil.:Cancel.")) {
+		case 1:
+			if (zeny < 30000) {
+				mes "[Paul Spanner]";
+				mes "With that much of money, you cannot even buy a toy anvil!";
+				close;
+			}
+			getitem 986,1; //Anvil
+			set zeny,zeny-30000;
+			mes "[Paul Spanner]";
+			mes "It is the cheapest anvil which has the most basic ability.";
+			mes "Thank you for using my shop. If you need anything, just let me know.";
+			close;
+		case 2:
+			if (zeny < 120000) {
+				mes "[Paul Spanner]";
+				mes "With that much of money, you cannot even buy a toy anvil!";
+				close;
+			}
+			getitem 987,1; //Oridecon_Anvil
+			set zeny,zeny-120000;
+			mes "[Paul Spanner]";
+			mes "Ah, you have an eye for anvil. A Blacksmith needs an anvil at least as good as this.";
+			mes "Thank you for using my shop. If you need anything, just let me know.";
+			close;
+		case 3:
+			if (zeny < 300000) {
+				mes "[Paul Spanner]";
+				mes "With that much of money, you cannot even buy a toy anvil!";
+				close;
+			}
+			getitem 988,1; //Golden_Anvil
+			set zeny,zeny-300000;
+			mes "[Paul Spanner]";
+			mes "I can tell your ambition to become a good Blacksmith just by looking at you to choose this Golden Anvil!";
+			mes "This anvil will surely aid you in creating the best weapons.";
+			close;
+		case 4:
+			mes "[Paul Spanner]";
+			mes "I am sorry, but I do not sell better anvils than Golden Anvil.";
+			mes "Unless you find the legendary anvil of 'Linggell', I don't think that you could find better one than Golden Anvil in any other places.";
+			close;
+		case 5:
+			mes "[Paul Spanner]";
+			mes "If you need anything, just let me know.";
+			close;
+		}
+	case 2:
+		mes "[Paul Spanner]";
+		mes "You need various materials to process ores and to forge weapons.";
+		mes "I have everything that you need. Take a look.";
+		next;
+		switch(select("Mini Furnace - 150z.:Iron Hammer - 1,000z.:Golden Hammer - 3,000z.:Oridecon Hammer - 5,000z.:Cancel.")) {
+		case 1:
+			set .@item,612;
+			set .@item_cost,150;
+			set .@item_weight,200;
+			mes "[Paul Spanner]";
+			mes "You definately need this furnce to process ores!";
+			next;
+			break;
+		case 2:
+			set .@item,613;
+			set .@item_cost,1000;
+			set .@item_weight,200;
+			break;
+		case 3:
+			set .@item,614;
+			set .@item_cost,3000;
+			set .@item_weight,300;
+			break;
+		case 4:
+			set .@item,615;
+			set .@item_cost,5000;
+			set .@item_weight,400;
+			break;
+		case 5:
+			mes "[Paul Spanner]";
+			mes "If you need anything, just let me know.";
+			close;
+		}
+		mes "[Paul Spanner]";
+		mes "So, how many do you need? If you want to cancel the trade, enter '0'.";
+		next;
+		while(1) {
+			input .@input;
+			if (.@input == 0) {
+				mes "[Paul Spanner]";
+				mes "You have canceled the trade. If you need anything, just let me know.";
+				close;
+			}
+			else if ((.@input < 0) || (.@input > 500)) {
+				mes "[Paul Spanner]";
+				mes "You can only buy 500 or less at a time.";
+				next;
+			}
+			else {
+				break;
+			}
+		}
+		set .@sell,.@input * .@item_cost;
+		if (zeny < .@sell) {
+			mes "[Paul Spanner]";
+			mes "You don't have enough money. Sorry, I cannot sell them at a loss.";
+			close;
+		}
+		if (checkweight(.@item,.@input) == 0) {
+			mes "[Paul Spanner]";
+			mes "Hey, you look pale. Why don't you go lighten your weight first.";
+			close;
+		}
+		set zeny,zeny-.@sell;
+		getitem .@item,.@input;
+		mes "[Paul Spanner]";
+		mes "Thank you for using my shop. If you need anything, just let me know.";
+		close;
+	case 3:
+		mes "[Paul Spanner]";
+		mes "I have high quality metal.";
+		mes "So, which metal would you like to buy?";
+		next;
+		switch(select("Phracon - 200z.:Emveretarcon - 1,000z.:Quit.")) {
+		case 1:
+			set .@item,1010;
+			set .@item_price,200;
+			break;
+		case 2:
+			set .@item,1011;
+			set .@item_price,1000;
+			break;
+		case 3:
+			mes "[Paul Spanner]";
+			mes "If you need anything, just let me know.";
+			close;
+		}
+		mes "[Paul Spanner]";
+		mes "So, how many of them do you need? If you want to cancel the trade, enter '0'.";
+		next;
+		while(1) {
+			input .@input;
+			if (.@input == 0) {
+				mes "[Paul Spanner]";
+				mes "The trade has been canceled. If you need anything, just let me know.";
+				close;
+			}
+			else if ((.@input < 0) || (.@input > 500)) {
+				mes "[Paul Spanner]";
+				mes "You can buy 500 or less at a time.";
+				next;
+			}
+			else {
+				break;
+			}
+		}
+		set .@sell,.@input * .@item_price;
+		if (zeny < .@sell) {
+			mes "[Paul Spanner]";
+			mes "You don't have enough money. Sorry, I cannot sell them at a loss.";
+			close;
+		}
+		if (checkweight(.@item,.@input) == 0) {
+			mes "[Paul Spanner]";
+			mes "Hey, you look pale. Why don't you go lighten your weight first?";
+			close;
+		}
+		getitem .@item,.@input;
+		set zeny,zeny-.@sell;
+		mes "[Paul Spanner]";
+		mes "Thank you for using my shop. If you need anything, just let me know.";
+		close;
+	case 4:
+		mes "[Paul Spanner]";
+		mes "I can process Oridecon and Elunium for you.";
+		mes "You need 5 ores to process them into one Oridecon or Elunium.";
+		mes "So, which one do you want to process?";
+		switch(select("Oridecon:Elunium:Quit.")) {
+		case 1:
+			if (countitem(756) < 5) {
+				mes "[Paul Spanner]";
+				mes "You need 5 ores to process them into one pure Oridecon.";
+				close;
+			}
+			else {
+				delitem 756,5; //Oridecon_Stone
+				getitem 984,1; //Oridecon
+				mes "[Paul Spanner]";
+				mes "There you go. Thank you for using my service.";
+				close;
+			}
+		case 2:
+			if (countitem(757) < 5) {
+				mes "[Paul Spanner]";
+				mes "You need 5 ores to process them into one pure Elunium.";
+				close;
+			}
+			else {
+				delitem 757,5; //Elunium_Stone
+				getitem 985,1; //Elunium
+				mes "[Paul Spanner]";
+				mes "There you go. Thank you for using my service.";
+				close;
+			}
+		case 3:
+			mes "[Paul Spanner]";
+			mes "If you need anything, just let me know.";
+			close;
+		}
+	case 5:
+		mes "[Paul Spanner]";
+		mes "If you need anything, just let me know.";
+		close;
+	}
+}
+
+morocc_in,60,38,5	duplicatr(Austry#ref)	Austry#moc	826
 
 // Malangdo Refiner
 //============================================================

@@ -883,7 +883,7 @@ void itemdb_read_packages(void) {
 	config_setting_t *itg = NULL, *it = NULL, *t = NULL;
 #if VERSION == 1
 	const char *config_filename = "db/PackageItem_re.conf"; // FIXME hardcoded name
-#else
+#elif VERSION == 0
 	const char *config_filename = "db/PackageItem_pre-re.conf"; // FIXME hardcoded name
 #endif
 	const char *itname;

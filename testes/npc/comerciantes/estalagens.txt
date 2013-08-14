@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.9/2.4a/1.2                        |
+//   | Versões eA/rA/brA: 2.9/2.4a/1.3                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Sistema de estalagens.                      |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy]                              |
 //   | 1.2 Otimização [Clare]                                 |
+//   | 1.3 Adequação ao Modo Old-Times [Neko & Holy]          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -27,37 +28,43 @@
 prt_in,244,135,2	script	Funcionária#Sammy	53,{
 
 	if ( strnpcinfo(0) == "Funcionária#Sammy" ) {
-	callsub InnMaid,"[Funcionária Sammy]","Nenkaras.","prt_in",238,130;
+	callsub InnMaid,"[Funcionária Sammy]","Nenkaras.","prt_in",238,130,5000;
 	warp "prt_in",247,104;
 	} else if ( strnpcinfo(0) == "Funcionária#Ahlma" ) {
-	callsub InnMaid,"[Funcionária Ahlma]","Nenkaras.","prt_in",64,136;
+	callsub InnMaid,"[Funcionária Ahlma]","Nenkaras.","prt_in",64,136,5000;
 	warp "prt_in",60,166;
 	} else if ( strnpcinfo(0) == "Funcionária#Jennie" ) {
-	callsub InnMaid,"[Funcionária Jennie]","Hotel de Pescadores!","alberta_in",26,142;
+	callsub InnMaid,"[Funcionária Jennie]","Hotel de Pescadores!","alberta_in",26,142,5000;
 	warp "alberta_in",18,188;
 	} else if ( strnpcinfo(0) == "Funcionária#Cena" ) {
-	callsub InnMaid,"[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59;
+	callsub InnMaid,"[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59,5000;
 	warp "geffen_in",31,31;
 	} else if ( strnpcinfo(0) == "Funcionária#Ahee" ) {
-	callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
-	warp "payon_in01",132,11;	
+		if (checkversion(0) != -1) {
+		callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61,5000;
+		warp "payon_in01",132,11;
+		}
+		else {
+		callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",133,178;
+		warp "payon_in01",176,163;
+		}
 	} else if ( strnpcinfo(0) == "Funcionária#Rilim" ) {
-	callsub InnMaid,"[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50;
+	callsub InnMaid,"[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50,5000;
 	warp "aldeba_in",92,112;
 	} else if ( strnpcinfo(0) == "Funcionário#Annie" ) {
-	callsub InnMaid,"[Funcionário Annie]","Interior de Rachel.","ra_in01",375,58;
+	callsub InnMaid,"[Funcionário Annie]","Interior de Rachel.","ra_in01",375,58,5000;
 	warp "ra_in01",384,128;
 	} else if ( strnpcinfo(0) == "Funcionário do Hotel#01" ) {
-	callsub InnMaid,"[Funcionário do Hotel]","Dragão Real.","lhz_in02",209,275;
+	callsub InnMaid,"[Funcionário do Hotel]","Dragão Real.","lhz_in02",209,275,5000;
 	warp "lhz_in02",219,150;
 	} else if ( strnpcinfo(0) == "Recepcionista#Recepcionista" ) {
-	callsub InnMaid,"[Recepcionista]","Interior de Hugel.","hu_in01",263,95;
+	callsub InnMaid,"[Recepcionista]","Interior de Hugel.","hu_in01",263,95,5000;
 	warp "hu_in01",267,5;
 	} else if ( strnpcinfo(0) == "Recepcionista#Re" ) {
-	callsub InnMaid,"[Recepcionista]","melhor hotel de Veins.","ve_in",157,209;
+	callsub InnMaid,"[Recepcionista]","melhor hotel de Veins.","ve_in",157,209,5000;
 	warp "ve_in",184,228;
 	} else if ( strnpcinfo(0) == "Recepcionista#bras1" ) {
-	callsub InnMaid,"[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69;
+	callsub InnMaid,"[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69,5000;
 	warp "bra_in01",144,69;
 	}
 	end;
@@ -68,7 +75,7 @@ InnMaid:
 	mes "Bem-vindo ao "+getarg(1)+"";
 	mes "Como posso te ajudar?";
 	next;
-	switch(select("Salvar:Descansar -> 5000 zeny:Cancelar")) {
+	switch(select("Salvar:Descansar -> "+getarg(5)+" zenys:Cancelar")) {
 	case 1:
 		mes getarg(0);
 		mes "Seu ponto de retorno foi salvo.";
@@ -77,28 +84,29 @@ InnMaid:
 		close;
 	case 2:
 		mes getarg(0);
-		if(Zeny < 5000){
-			mes "Me desculpe, mas o serviço irá custar 5,000 zeny. Por favor certifique-se de que você possui o dinheiro suficiente para utilizar o serviço da próxima vez, certo?";
+		if(Zeny < getarg(5)){
+			mes "Me desculpe, mas o serviço irá custar "+getarg(5)+". Por favor certifique-se de que você possui o dinheiro suficiente para utilizar o serviço da próxima vez, certo?";
 			close;
 		}
 		mes "Obrigado.";
 		mes "E espero que você aproveite sua estadia.";
 		close2;
-		set Zeny,Zeny - 5000;
+		set Zeny,Zeny - getarg(5);
 		percentheal 100,100;
 		return;
 	case 3:
 		close;
-	}	
+	}
 }
 
 prt_in,61,141,2	duplicate(Funcionária#Sammy)	Funcionária#Ahlma	53
 alberta_in,32,142,3	duplicate(Funcionária#Sammy)	Funcionária#Jennie	53
 aldeba_in,92,58,5	duplicate(Funcionária#Sammy)	Funcionária#Rilim	53
-ra_in01,376,69,4	duplicate(Funcionária#Sammy)	Funcionária#Annie	53
 geffen_in,70,64,5	duplicate(Funcionária#Sammy)	Funcionária#Cena	53
-payon_in01,132,62,5	duplicate(Funcionária#Sammy)	Funcionária#Ahee	53
-lhz_in02,230,284,4	duplicate(Funcionária#Sammy)	Funcionário do Hotel#01	86
-hu_in01,246,107,3	duplicate(Funcionária#Sammy)	Recepcionista#Recepcionista	53
-ve_in,157,219,5	duplicate(Funcionária#Sammy)	Recepcionista#Re	709
+payon_in01,137,173,5	duplicato(Funcionária#Sammy)	Funcionária#Ahee	78,{}
+payon_in01,132,62,5	duplicata(Funcionária#Sammy)	Funcionária#Ahee	53
+ra_in01,376,69,4	duplicata(Funcionária#Sammy)	Funcionária#Annie	53
+lhz_in02,230,284,4	duplicata(Funcionária#Sammy)	Funcionário do Hotel#01	86
+hu_in01,246,107,3	duplicata(Funcionária#Sammy)	Recepcionista#Recepcionista	53
+ve_in,157,219,5	duplicata(Funcionária#Sammy)	Recepcionista#Re	709
 bra_in01,27,24,3	duplicatr(Funcionária#Sammy)	Recepcionista#bras1	478,{}

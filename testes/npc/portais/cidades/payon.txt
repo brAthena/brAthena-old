@@ -18,7 +18,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
-//   | 1.1 Adicionados portais de Payon antiga [Neko]		  |
+//   | 1.1 Adicionados portais de Payon antiga [Neko]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -148,7 +148,7 @@ payon_in01,56,50,0	warp#dv	payonwarp029	2,2,payon,151,124
 
 // -- Meio do Castelo --
 payon,0,0,0	warp#dv	payonwarp030	4,1,payon_in03,98,117
-payon,155,248,0	duplicata(payonwarp030)	payonwarp030#1,{}
+payon,155,248,0	duplicata(payonwarp030)	payonwarp030#1
 payon_in03,98,114,0	warp#dv	payonwarp031	5,1,payon,155,245
 payon_in03,90,124,0	warp#dv	payonwarp032	2,2,payon_in03,80,124
 payon_in03,83,124,0	warp#dv	payonwarp033	2,2,payon_in03,93,124
@@ -222,4 +222,4 @@ payon_in03,27,172,0	warp#dv	payonwarp086	2,2,payon_in03,27,157
 payon_in01,86,9,0	warp#dv	payonwarp087	2,2,payon,266,152
 payon,270,152,0	warp#dv	payonwarp088	2,2,payon_in01,90,9
 payon_in01,107,71,0	warp#dv	payonwarp089	2,2,payon_in01,96,37
-payon_in01,93,37,0	warp#dv	payonwarp090	2,2,payon_in01,104,71
+payon_in01,93,37,0	warp#dv	payonwarp090	2,2,payon_in01,104,71,{}
