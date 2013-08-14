@@ -550,7 +550,10 @@ struct map_zone_skill_damage_cap_entry {
 #define MAP_ZONE_BG_NAME "Battlegrounds"
 #define MAP_ZONE_PK_NAME "PK Mode"
 #define MAP_ZONE_MAPFLAG_LENGTH 50
+
+//TODO place it in iMap
 DBMap *zone_db;/* string => struct map_zone_data */
+
 struct map_zone_data {
 	char name[MAP_ZONE_NAME_LENGTH];/* 20'd */
 	struct map_zone_disabled_skill_entry **disabled_skills;
