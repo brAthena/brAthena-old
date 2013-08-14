@@ -1201,28 +1201,28 @@ mjolnir_02,170,193,4	script	Casa de Muriniel#juno	111,{
 			next;
 			mes "^3355FFVocê pode ouvir fracamente a voz de alguém distânte.^000000";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Você, que está no futuro, deixe-me apresentar-me.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Meu nome é Muriniel, quando vivo fiz um selo artesanal em meu passado. Eu imagino que você teve de superar muitos obstáculos para chegar a este lugar.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "No entanto, você deve primeiro provar que você está qualificado para exercer o grande poder da Espada da Perdição.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Os grandes sábios em Juno me ajudaram a instalar este sistema mágico em minha casa para deixar a minha mensagem para você, aventureiro do futuro.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Eu sei que você procura mais poder através da obtenção de uma espada amaldiçoada. Mas não é qualquer um que pode lidar com o poder da Espada da Perdição.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "E eu estremeço só de pensar o que aconteceria se tal poder fosse cair nas mãos do mal. O teste que eu preparei não pode começar até o outono seguido de um verão quente.";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Vou dar-lhe um item que promete-lhe a missão que vos darei no futuro. Volte a este lugar quando as árvores começarem a lançar suas folhas...";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Até esse momento chegar, prepare-se. E fique vivo.";
 			next;
 			mes "^3355FF*Bzzzt!*";
@@ -1236,7 +1236,7 @@ mjolnir_02,170,193,4	script	Casa de Muriniel#juno	111,{
 		case 31:
 			mes "^3355FFVocê pode ouvir fracamente a voz de alguém vindo de algum lugar...^000000";
 			next;
-			mes "[Muriniel's Recording]";
+			mes "[Recado de Muriniel]";
 			mes "Por favor, lembre-se de voltar a este lugar quando as árvores começarem a perder suas folhas. Até então, prepare-se e continue vivo.";
 			close;
 		}
