@@ -551,6 +551,10 @@ struct map_session_data {
 
 	unsigned char delayed_damage;//ref. counter bugreport:7307 [Ind]
 
+	/* */
+	struct {
+		unsigned int second,third;
+	} sktree;
 	// temporary debugging of bug #3504
 	const char *delunit_prevfile;
 	int delunit_prevline;
@@ -858,6 +862,7 @@ int pc_useitem(struct map_session_data *,int);
 int pc_skillatk_bonus(struct map_session_data *sd, uint16 skill_id);
 int pc_skillheal_bonus(struct map_session_data *sd, uint16 skill_id);
 int pc_skillheal2_bonus(struct map_session_data *sd, uint16 skill_id);
+int pc_calc_skillpoint(struct map_session_data* sd);
 
 void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int hp, unsigned int sp);
 int pc_dead(struct map_session_data *sd,struct block_list *src);
