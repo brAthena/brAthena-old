@@ -563,15 +563,15 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 		default:
 			if(skill_lv >= battle_config.max_heal_lv)
 				return battle_config.max_heal;
-			#if VERSION == 1
+#if VERSION == 1
 			/**
 			 * Renewal Heal Formula
 			 * Formula: ( [(Base Level + INT) / 5] × 30 ) × (Heal Level / 10) × (Modifiers) + MATK
 			 **/
-			hp = (status_get_lv(src) + status_get_int(src)) / 5 * 30  * (skill_id == AB_HIGHNESSHEAL ? (sd ? pc_checkskill(sd,AL_HEAL) : 10) : skill_lv) / 10;
-			#else
-			hp = (status_get_lv(src) + status_get_int(src)) / 8 * (4 + ((skill_id == AB_HIGHNESSHEAL ? (sd ? pc_checkskill(sd,AL_HEAL) : 10) : skill_lv) * 8));
-			#endif
+			hp = (status_get_lv(src) + status_get_int(src)) / 5 * 30  * skill_lv / 10;
+#else
+			hp = (status_get_lv(src) + status_get_int(src)) / 8 * (4 + (skill_id == AB_HIGHNESSHEAL ? (sd ? pc_checkskill(sd,AL_HEAL) : 10) : skill_lv) * 8);
+#endif
 			if(skill_id == AB_HIGHNESSHEAL)
 				hp *= (17 + 3 * skill_lv) / 10;
 			if(sd && ((skill = pc_checkskill(sd, HP_MEDITATIO)) > 0))
@@ -583,7 +583,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 			break;
 	}
 
-	if((!heal || (target && target->type == BL_MER)) && skill_id != NPC_EVILLAND)
+	if(((target && target->type == BL_MER) || !heal ) && skill_id != NPC_EVILLAND)
 		hp >>= 1;
 
 	if(sd && (skill = pc_skillheal_bonus(sd, skill_id)))
@@ -594,9 +594,9 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 
 	sc = status_get_sc(target);
 	if(sc && sc->count) {
-		if(heal && sc->data[SC_CRITICALWOUND])   // Critical Wound has no effect on offensive heal. [Inkfish]
+		if(sc->data[SC_CRITICALWOUND] && heal)   // Critical Wound has no effect on offensive heal. [Inkfish]
 			hp -= hp * sc->data[SC_CRITICALWOUND]->val2/100;
-		if(heal && sc->data[SC_DEATHHURT])
+		if(sc->data[SC_DEATHHURT] && heal)
 			hp -= hp * 20/100;
 		if(sc->data[SC_HEALPLUS] && skill_id != NPC_EVILLAND && skill_id != BA_APPLEIDUN)
 			hp += hp * sc->data[SC_HEALPLUS]->val1/100; // Only affects Heal, Sanctuary and PotionPitcher.(like bHealPower) [Inkfish]
@@ -641,7 +641,7 @@ int can_copy(struct map_session_data *sd, uint16 skill_id, struct block_list *bl
 		return 0;
 
 	// Couldn't preserve 3rd Class skills except only when using Reproduce skill. [Jobbie]
-	if(!(sd->sc.data[SC__REPRODUCE]) && (skill_id >= RK_ENCHANTBLADE && skill_id <= SR_RIDEINLIGHTNING || (skill_id >= GC_DARKCROW && skill_id <= SR_FLASHCOMBO_ATK_STEP4)))
+	if(!(sd->sc.data[SC__REPRODUCE]) && (skill_id >= RK_ENCHANTBLADE && skill_id <= SR_RIDEINLIGHTNING))
 		return 0;
 	// Reproduce will only copy skills according on the list. [Jobbie]
 	else if(sd->sc.data[SC__REPRODUCE] && !skill_reproduce_db[skill_get_index(skill_id)])
@@ -803,15 +803,12 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 	case MH_OVERED_BOOST: 
 		if(hd->homunculus.hunger <= 1) //if we starving 
 		return 1; 
-		break; 
 	case MH_GOLDENE_FERSE: //cant be used with angriff 
 		if(hd->sc.data[SC_ANGRIFFS_MODUS]) 
 		return 1; 
-		break; 
 	case MH_ANGRIFFS_MODUS: 
 		if(hd->sc.data[SC_GOLDENE_FERSE]) 
-		return 1; 
-		break; 
+		return 1;  
 	case MH_TINDER_BREAKER: 
 	case MH_CBC: 
 	case MH_EQC: 
@@ -6877,10 +6874,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_nodamage(NULL,bl,AL_HEAL,(int)hp,1);
 				if(sp > 0)
 					clif_skill_nodamage(NULL,bl,MG_SRECOVERY,sp,1);
-				#if VERSION == 1
+	#if VERSION == 1
 				if(tsc && tsc->data[SC_EXTREMITYFIST2])
 					sp = 0;
-				#endif
+	#endif
 				status_heal(bl,(int)hp,sp,0);
 			}
 			break;
@@ -11800,11 +11797,11 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 
 		case UNT_APPLEIDUN: { //Apple of Idun [Skotlex]
 				int heal;
-				#if VERSION == 1
+#if VERSION == 1
 				struct mob_data *md = BL_CAST(BL_MOB, bl);
 				if(md && md->class_ == MOBID_EMPERIUM)
 					break;
-				#endif
+#endif
 				if(sg->src_id == bl->id && !(tsc && tsc->data[SC_SOULLINK] && tsc->data[SC_SOULLINK]->val2 == SL_BARDDANCER))
 					break; // affects self only when soullinked
 				heal = skill_calc_heal(ss,bl,sg->skill_id, sg->skill_lv, true);

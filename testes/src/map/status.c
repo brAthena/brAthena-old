@@ -1983,7 +1983,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 		else if(bl->type == BL_MOB)
 			str = rstr + ((TBL_MOB*)bl)->level;
 #else
-		str+= dex/5 + status->luk/5;
+			str+= dex/5 + status->luk/5;
 #endif
 	return cap_value(str, 0, battle_config.max_atk);
 }
@@ -2012,11 +2012,11 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	//Non players get the value set, players need to stack with previous bonuses.
 	if(bl->type != BL_PC)
 		status->batk =
-		    status->hit = status->flee =
-		                      status->def2 = status->mdef2 =
-		                              status->cri = status->flee2 = 0;
+		status->hit = status->flee =
+		status->def2 = status->mdef2 =
+		status->cri = status->flee2 = 0;
 
-	#if VERSION == 1 // renewal formulas
+#if VERSION == 1 // renewal formulas
 	status->matk_min = status->matk_max = bl->type == BL_PC ? status_base_matk(status, level) : level + status->int_;
     	status->hit += level + status->dex + (bl->type == BL_PC ? status->luk/3 + 175 : 150); //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
     	status->flee += level + status->agi + (bl->type == BL_PC ? status->luk/5 : 0) + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
@@ -2027,14 +2027,14 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
     	status->def2 += (int)(((float)level + status->vit)/2 + ( bl->type == BL_PC ? ((float)status->agi/5) : 0 )); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
     	status->mdef2 += (int)( bl->type == BL_PC ?(status->int_ + ((float)level/4) + ((float)(status->dex+status->vit)/5)):((float)(status->int_ + level)/4)); //(every 4 base level = +1 mdef) + (every 1 int = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
 	}
-	#else
+#else
 	status->matk_min = status_base_matk_min(status);
 	status->matk_max = status_base_matk_max(status);
 	status->hit += level + status->dex;
 	status->flee += level + status->agi;
 	status->def2 += status->vit;
 	status->mdef2 += status->int_ + (status->vit>>1);
-	#endif
+#endif
 
 	if(bl->type&battle_config.enable_critical)
 		status->cri += 10 + (status->luk*10/3); //(every 1 luk = +0.3 critical)
@@ -2063,11 +2063,11 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 				//Players don't have a critical adjustment setting as of yet.
 				break;
 			case BL_MER:
-				#if VERSION == 1
+#if VERSION == 1
 				status->matk_min = status->matk_max = status_base_matk_max(status);
 				status->def2 = status->vit + level / 10 + status->vit / 5;
 				status->mdef2 = level / 10 + status->int_ / 5;
-				#endif
+#endif
 				break;
 			default:
 				if(battle_config.critical_rate != 100)
@@ -2235,13 +2235,13 @@ int status_calc_mob_(struct mob_data *md, bool first)
 		if(!gc)
 			ShowError("status_calc_mob: No castle set at map %s\n", map[md->bl.m].name);
 		else if(gc->castle_id < 24 || md->class_ == MOBID_EMPERIUM) {
-			#if VERSION == 1
+#if VERSION == 1
 			status->max_hp += 50 * gc->defense;
 			status->max_sp += 70 * gc->defense;
-			#else
+#else
 			status->max_hp += 1000 * gc->defense;
 			status->max_sp += 200 * gc->defense;
-			#endif
+#endif
 			status->hp = status->max_hp;
 			status->sp = status->max_sp;
 			status->def += (gc->defense+2)/3;
@@ -3673,9 +3673,9 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	if(flag&SCB_AGI) {
 		status->agi = status_calc_agi(bl, sc, b_status->agi);
 		flag|=SCB_FLEE
-		#if VERSION == 1
+#if VERSION == 1
 		      |SCB_DEF2
-		#endif
+#endif
 		      ;
 		if(bl->type&(BL_PC|BL_HOM))
 			flag |= SCB_ASPD|SCB_DSPD;
@@ -3702,9 +3702,9 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	if(flag&SCB_DEX) {
 		status->dex = status_calc_dex(bl, sc, b_status->dex);
 		flag|=SCB_BATK|SCB_HIT
-			#if VERSION == 1
+#if VERSION == 1
 		      |SCB_MATK|SCB_MDEF2
-			#endif
+#endif
 		      ;
 		if(bl->type&(BL_PC|BL_HOM))
 			flag |= SCB_ASPD;
@@ -3715,9 +3715,9 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	if(flag&SCB_LUK) {
 		status->luk = status_calc_luk(bl, sc, b_status->luk);
 		flag|=SCB_BATK|SCB_CRI|SCB_FLEE2
-			#if VERSION == 1
+#if VERSION == 1
 		      |SCB_MATK|SCB_HIT|SCB_FLEE
-			#endif
+#endif
 		      ;
 	}
 
@@ -3757,31 +3757,31 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 
 	if(flag&SCB_HIT) {
 		if(status->dex == b_status->dex
-		#if VERSION == 1
+#if VERSION == 1
 		   && status->luk == b_status->luk
-		#endif
+#endif
 		  )
 			status->hit = status_calc_hit(bl, sc, b_status->hit, true);
 		else
 			status->hit = status_calc_hit(bl, sc, b_status->hit + (status->dex - b_status->dex)
-		#if VERSION == 1
+#if VERSION == 1
 			+ (status->luk/3 - b_status->luk/3)
-		#endif
+#endif
 			, true);
 	}
 
 	if(flag&SCB_FLEE) {
 		if(status->agi == b_status->agi
-		#if VERSION == 1
+#if VERSION == 1
 		   && status->luk == b_status->luk
-		#endif
+#endif
 		  )
 			status->flee = status_calc_flee(bl, sc, b_status->flee, true);
 		else
 			status->flee = status_calc_flee(bl, sc, b_status->flee +(status->agi - b_status->agi)
-		#if VERSION == 1
+#if VERSION == 1
 			                                + (status->luk/5 - b_status->luk/5)
-		#endif
+#endif
 			                               , true);
 	}
 
@@ -3794,18 +3794,18 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 
 	if(flag&SCB_DEF2) {
 		if(status->vit == b_status->vit
-		#if VERSION == 1
+#if VERSION == 1
 		   && status->agi == b_status->agi
 		#endif
 		  )
 			status->def2 = status_calc_def2(bl, sc, b_status->def2, true);
 		else
 			status->def2 = status_calc_def2(bl, sc, b_status->def2
-		#if VERSION == 1
+#if VERSION == 1
 			                                + (int)(((float)status->vit/2 - (float)b_status->vit/2) + ((float)status->agi/5 - (float)b_status->agi/5))
-		#else
+#else
 			                                + (status->vit - b_status->vit)
-		#endif
+#endif
 			                               , true);
 	}
 
@@ -4084,58 +4084,58 @@ void status_calc_bl_(struct block_list *bl, enum scb_flag flag, bool first)
 			clif_updatestatus(sd,SP_SPEED);
 
 		if(b_status.batk != status->batk
-		#if VERSION != 1
+#if VERSION != 1
 		   || b_status.rhw.atk != status->rhw.atk || b_status.lhw.atk != status->lhw.atk
-		#endif
+#endif
 		  )
 			clif_updatestatus(sd,SP_ATK1);
 
 		if(b_status.def != status->def) {
 			clif_updatestatus(sd,SP_DEF1);
-		#if VERSION == 1
+#if VERSION == 1
 			clif_updatestatus(sd,SP_DEF2);
-		#endif
+#endif
 		}
 
 		if(b_status.rhw.atk2 != status->rhw.atk2 || b_status.lhw.atk2 != status->lhw.atk2
-		#if VERSION == 1
+#if VERSION == 1
 		   || b_status.rhw.atk != status->rhw.atk || b_status.lhw.atk != status->lhw.atk
-		#endif
+#endif
 		  )
 			clif_updatestatus(sd,SP_ATK2);
 
 		if(b_status.def2 != status->def2) {
 			clif_updatestatus(sd,SP_DEF2);
-		#if VERSION == 1
+#if VERSION == 1
 			clif_updatestatus(sd,SP_DEF1);
-		#endif
+#endif
 		}
 		if(b_status.flee2 != status->flee2)
 			clif_updatestatus(sd,SP_FLEE2);
 		if(b_status.cri != status->cri)
 			clif_updatestatus(sd,SP_CRITICAL);
-		#if VERSION != 1
+#if VERSION != 1
 		if(b_status.matk_max != status->matk_max)
 			clif_updatestatus(sd,SP_MATK1);
 		if(b_status.matk_min != status->matk_min)
 			clif_updatestatus(sd,SP_MATK2);
-		#else
+#else
 		if(b_status.matk_max != status->matk_max || b_status.matk_min != status->matk_min) {
 			clif_updatestatus(sd,SP_MATK2);
 			clif_updatestatus(sd,SP_MATK1);
 		}
-		#endif
+#endif
 		if(b_status.mdef != status->mdef) {
 			clif_updatestatus(sd,SP_MDEF1);
-		#if VERSION == 1
+#if VERSION == 1
 			clif_updatestatus(sd,SP_MDEF2);
-		#endif
+#endif
 		}
 		if(b_status.mdef2 != status->mdef2) {
 			clif_updatestatus(sd,SP_MDEF2);
-		#if VERSION == 1
+#if VERSION == 1
 			clif_updatestatus(sd,SP_MDEF1);
-		#endif
+#endif
 		}
 		if(b_status.rhw.range != status->rhw.range)
 			clif_updatestatus(sd,SP_ATTACKRANGE);
@@ -4147,10 +4147,10 @@ void status_calc_bl_(struct block_list *bl, enum scb_flag flag, bool first)
 			clif_updatestatus(sd,SP_HP);
 		if(b_status.sp != status->sp)
 			clif_updatestatus(sd,SP_SP);
-		#if VERSION == 1
+#if VERSION == 1
 		if(b_status.equip_atk != status->equip_atk)
 			clif_updatestatus(sd,SP_ATK2);
-		#endif
+#endif
 	} else if(bl->type == BL_HOM) {
 		TBL_HOM *hd = BL_CAST(BL_HOM, bl);
 		if(hd->master && memcmp(&b_status, status, sizeof(struct status_data)) != 0)

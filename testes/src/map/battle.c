@@ -3375,11 +3375,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				if(rnd()%1000 < i && !(tstatus->mode&MD_BOSS))
 					ad.damage = tstatus->hp;
 				else {
-				#if VERSION == 1
+#if VERSION == 1
                     MATK_ADD(status_get_matk(src, 2));
-				#else
+#else
 					ad.damage = status_get_lv(src) + sstatus->int_ + skill_lv * 10;
-				#endif
+#endif
 				}
 				break;
 			case PF_SOULBURN:
