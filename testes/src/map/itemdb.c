@@ -911,6 +911,7 @@ void itemdb_read_packages(void) {
 		must[i] = 0;
 		random[i] = 0;
 		rgroup[i] = 0;
+		rgroups[i] = NULL;
 	}
 
 	/* validate tree, drop poisonous fruits! */
@@ -1020,8 +1021,8 @@ void itemdb_read_packages(void) {
 		
 		c = 0;
 		while((it = config_setting_get_elem(itg,c++))) {
-			int icnt = 1, hour = 0, probability = 10000;
-			bool onair = false, guid = false, gid = 0;
+			int icnt = 1, hour = 0, probability = 10000, gid = 0;
+			bool onair = false, guid = false;
 
 			t = config_setting_get_member(it,"item");
 			itname = config_setting_get_string(t);
