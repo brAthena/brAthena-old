@@ -45,7 +45,7 @@ prt_in,244,135,2	script	Funcionária#Sammy	53,{
 		warp "payon_in01",132,11;
 		}
 		else {
-		callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",133,178;
+		callsub InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",133,178,100;
 		warp "payon_in01",176,163;
 		}
 	} else if ( strnpcinfo(0) == "Funcionária#Rilim" ) {

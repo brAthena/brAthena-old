@@ -790,7 +790,6 @@ prt_gld,139,117,4	duplicate(Repairman#alb)	Repairman#prt_gld	86
 gef_fild13,263,117,4	duplicate(Repairman#alb)	Repairman#gef_fild	86
 pay_gld,295,183,4	duplicate(Repairman#alb)	Repairman#pay_gld	86
 alde_gld,220,152,4	duplicate(Repairman#alb)	Repairman#alde_gld	86
-payon,143,165,4	duplicata(Repairman#alb)	Repairman#pay	88
 moc_ruins,107,94,4	duplicata(Repairman#alb)	Repairman#moc	99
 lhz_in02,284,14,3	duplicata(Repairman#alb)	Repairman#lhz	86
 aru_gld,189,336,4	duplicata(Repairman#alb)	Repairman#aru_gld	86
@@ -1259,7 +1258,8 @@ prt_in,85,71,5	script#re	Austry#ref	826,{
 	mes "or "+getitemname(.@i[0])+".";
 	close;
 }
-payon_in01,14,125,5	duplicatr(Austry#ref)	Austry#pay	826
+payon_in01,14,125,5	duplicatr(Austry#ref)	Austry#pay	826,{}
+payon,143,165,4	duplicata(Repairman#alb)	Repairman#pay	88
 
 // Paul Spanner: Einbroch Blacksmith Supplier
 //============================================================
@@ -1501,7 +1501,7 @@ morocc_in,60,38,5	duplicatr(Austry#ref)	Austry#moc	826
 
 // Malangdo Refiner
 //============================================================
-malangdo,224,172,6#re	script	Clink#mal_normal	544,{
+malangdo,224,172,6	script#re	Clink#mal_normal	544,{
 	disable_items;
 	mes "[Clink]";
 	mes "My cool dad Holink said I have the world's greatest refine hammer!!";
