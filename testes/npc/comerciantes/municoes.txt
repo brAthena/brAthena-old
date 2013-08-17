@@ -163,7 +163,11 @@ Func_Casing:
 		mes ""+(countitem(getarg(0)) < (500*.@amount) ? "Desculpe, mas você não possui projéteis o suficiente para esta troca de Carregadores. Talvez você deveria checar novamente seu inventário, e voltar mais tarde" : "Desculpe, mas você não possui zeny o suficiente para esta troca de Carregadores")+".";
 		close;
 }
+// Renovação
 que_ng,187,156,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#ng	86
 izlude,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
 que_ng,187,149,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#ng	83
 izlude,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz  83,{}
+// Pré-renovação
+izlude,171,133,3	duplicatp(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
+izlude,171,127,3	duplicatp(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz	83,{}

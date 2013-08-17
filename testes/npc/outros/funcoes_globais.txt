@@ -31,8 +31,6 @@
 	set(.@version, checkversion(0));
 		
 	if(.@version == 0) { // Pré-Renovação
-		//movenpc("Negociador de Projéteis Tony#iz",171,133);
-		//movenpc("Vendedor de Caixas de Munição#iz",171,127);
 		movenpc("Locador de Mercenários#Espadachim",47,139);
 		movenpc("Artigos para Mercenários#Espadachim",56,139);
 	}
