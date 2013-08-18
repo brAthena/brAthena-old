@@ -17423,6 +17423,7 @@ void clif_status_change_end(struct block_list *bl, int tid, enum send_target tar
 /// 0x97b <packet len>.W <exp>.L <death>.L <drop>.L (ZC_PERSONAL_INFOMATION2)
 void clif_vipshow(struct map_session_data *sd)
 {
+#if PACKETVER >= 20120410
 	int packet;
 	nullpo_retv(sd);
 
@@ -17445,12 +17446,14 @@ void clif_vipshow(struct map_session_data *sd)
 	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip;
 	WFIFOW(sd->fd,15) = 100;
 	WFIFOSET(sd->fd,17);
+#endif
 }
 
 /// Mensagem do Sistema VIP Oficial - brAthena [Megasantos]
 /// 0981 <packet len>.W <exp>.W <death>.W <drop>.W <activity rate>.W (ZC_PERSONAL_INFOMATION_CHN)
 void clif_vipshow2(struct map_session_data* sd)
 {
+#if PACKETVER >= 20120410
 	int packet;
 	nullpo_retv(sd);
 	
@@ -17465,6 +17468,7 @@ void clif_vipshow2(struct map_session_data* sd)
 	WFIFOW(sd->fd,8)  = 100;
 	WFIFOW(sd->fd,10) = 100;
 	WFIFOSET(sd->fd,12);
+#endif
 }
 
 void clif_bgqueue_ack(struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_ACK response, unsigned char arena_id) {
