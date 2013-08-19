@@ -3493,12 +3493,12 @@ void map_reloadnpc(bool clear)
 
 #if VERSION == 1
 	map_reloadnpc_sub("npc/scripts_renovacao.conf");
+	map_reloadnpc_sub("npc/scripts_bRO.conf");
 #elif VERSION == 0
 	map_reloadnpc_sub("npc/scripts_pre-renovacao.conf");
 #else
 	map_reloadnpc_sub("npc/scripts_old_times.conf");
 #endif
-	map_reloadnpc_sub("npc/scripts_bRO.conf");
 }
 
 int inter_config_read(char *cfgName)
