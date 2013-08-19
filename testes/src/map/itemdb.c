@@ -683,6 +683,8 @@ static void itemdb_read_itemgroup(void)
 	itemdb_read_itemgroup_sub();
 	return;
 }
+
+#if VERSION != -1
 /* [Ind] - HCache for Packages */
 void itemdb_write_cached_packages(const char *config_filename) {
 	FILE *file;
@@ -878,6 +880,7 @@ bool itemdb_read_cached_packages(const char *config_filename) {
 
 	return true;
 }
+
 void itemdb_read_packages(void) {
 	config_t item_packages_conf;
 	config_setting_t *itg = NULL, *it = NULL, *t = NULL;
@@ -1142,7 +1145,7 @@ void itemdb_read_packages(void) {
 
 	ShowConf("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", cnt, config_filename);
 }
-
+#endif
 /*==========================================
  * Reads item trade restrictions [Skotlex]
  *------------------------------------------*/
@@ -1671,7 +1674,9 @@ static void itemdb_read(void)
 
 	itemdb_read_combos();
 	itemdb_read_itemgroup();
+#if VERSION != -1
 	itemdb->read_packages();
+#endif
 
 	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail);
 	sv_readsqldb(get_database_name(22), NULL, 3, -1, &itemdb_read_itemtrade);
@@ -1882,10 +1887,12 @@ void itemdb_defaults(void) {
 	/* */
 	itemdb->names = NULL;
 	/* */
+#if VERSION != -1
 	itemdb->read_packages = itemdb_read_packages;
 	/* */
 	itemdb->write_cached_packages = itemdb_write_cached_packages;
 	itemdb->read_cached_packages = itemdb_read_cached_packages;
+#endif
 	/* */
 	itemdb->name2id = itemdb_name2id;
 	itemdb->package_item = itemdb_package_item;

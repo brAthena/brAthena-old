@@ -297,10 +297,12 @@ struct itemdb_interface {
 	/* */
 	DBMap *names;
 	/* */
+#if VERSION != -1
 	void (*read_packages) (void);
 	/* */
 	void (*write_cached_packages) (const char *config_filename);
 	bool (*read_cached_packages) (const char *config_filename);
+#endif
 	/* */
 	struct item_data* (*name2id) (const char *str);
 	void (*package_item) (struct map_session_data *sd, struct item_package *package);
