@@ -12,24 +12,33 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros da Esfinge.                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy & Megasantos]                 |
+//   | 1.2 Adicionados Monstros OldTimes [Neko]               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// [Pré-Renovação & Old-Times] In_sphinx1 - Esfinge 1
+// [Old Times] In_sphinx1 - Esfinge 1
 //==================================================
-in_sphinx1,0,0,0,0	monster#vpo	Drainliar	1111,40,0,0,0
-in_sphinx1,0,0,0,0	monster#vpo	Réquiem	1164,20,0,0,0
-in_sphinx1,0,0,0,0	monster#vpo	Zerom	1178,20,0,0,0
-in_sphinx1,0,0,0,0	monster#vpo	Matyr	1146,10,0,0,0,{}
+in_sphinx1,0,0,0,0	monster#ot	Anaconda	1030,35,0,0,0
+in_sphinx1,0,0,0,0	monster#ot	Drainliar	1111,20,0,0,0
+in_sphinx1,0,0,0,0	monster#ot	Réquiem	1164,5,0,0,0
+in_sphinx1,0,0,0,0	monster#ot	Zerom	1178,65,0,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx1 - Esfinge 1
+//==================================================
+in_sphinx1,0,0,0,0	monster#pre	Drainliar	1111,40,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Réquiem	1164,20,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Zerom	1178,20,0,0,0
+in_sphinx1,0,0,0,0	monster#pre	Matyr	1146,10,0,0,0,{}
 
 //==================================================
 // [Renovação] In_sphinx5 - Esfinge 1
@@ -40,12 +49,21 @@ in_sphinx1,0,0,0,0	monster#re	Zerom	1178,20,5000,0,0
 in_sphinx1,0,0,0,0	monster#re	Matyr	1146,10,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] In_sphinx2 - Esfinge 2
+// [Old Times] In_sphinx2 - Esfinge 2
 //==================================================
-in_sphinx2,0,0,0,0	monster#vpo	Drainliar	1111,15,0,0,0
-in_sphinx2,0,0,0,0	monster#vpo	Réquiem	1164,50,0,0,0
-in_sphinx2,0,0,0,0	monster#vpo	Zerom	1178,50,0,0,0
-in_sphinx2,0,0,0,0	monster#vpo	Matyr	1146,20,0,0,0,{}
+in_sphinx2,0,0,0,0	monster#ot	Drainliar	1111,25,0,0,0
+in_sphinx2,0,0,0,0	monster#ot	Matyr	1146,45,0,0,0
+in_sphinx2,0,0,0,0	monster#ot	Réquiem	1164,15,0,0,0
+in_sphinx2,0,0,0,0	monster#ot	Zerom	1178,20,0,0,0
+in_sphinx2,0,0,0,0	monster#ot	Sussurro	1179,15,0,0,0,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx2 - Esfinge 2
+//==================================================
+in_sphinx2,0,0,0,0	monster#pre	Drainliar	1111,15,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Réquiem	1164,50,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Zerom	1178,50,0,0,0
+in_sphinx2,0,0,0,0	monster#pre	Matyr	1146,20,0,0,0,{}
 
 //==================================================
 // [Renovação] In_sphinx5 - Esfinge 2
@@ -56,12 +74,22 @@ in_sphinx2,0,0,0,0	monster#re	Matyr	1146,20,5000,0,0
 in_sphinx2,0,0,0,0	monster#re	Drainliar	1111,15,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] In_sphinx3 - Esfinge 3
+// [Old Times] In_sphinx3 - Esfinge 3
 //==================================================
-in_sphinx3,0,0,0,0	monster#vpo	Matyr	1146,15,0,0,0
-in_sphinx3,0,0,0,0	monster#vpo	Pasana	1154,5,0,0,0
-in_sphinx3,0,0,0,0	monster#vpo	Marduk	1140,65,0,0,0
-in_sphinx3,0,0,0,0	monster#vpo	Mímico	1191,5,600000,300000,1,{}
+in_sphinx3,0,0,0,0	monster#ot	Drainliar	1111,20,0,0,0
+in_sphinx3,0,0,0,0	monster#ot	Marduk	1140,5,0,0,0
+in_sphinx3,0,0,0,0	monster#ot	Matyr	1146,20,0,0,0
+in_sphinx3,0,0,0,0	monster#ot	Réquiem	1164,55,0,0,0
+in_sphinx3,0,0,0,0	monster#ot	Sussurro	1179,10,0,0,0
+in_sphinx3,0,0,0,0	monster#ot	Mímico	1191,2,600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx3 - Esfinge 3
+//==================================================
+in_sphinx3,0,0,0,0	monster#pre	Matyr	1146,15,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Pasana	1154,5,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Marduk	1140,65,0,0,0
+in_sphinx3,0,0,0,0	monster#pre	Mímico	1191,5,600000,300000,1,{}
 
 //==================================================
 // [Renovação] In_sphinx5 - Esfinge 3
@@ -72,12 +100,21 @@ in_sphinx3,0,0,0,0	monster#re	Mímico	1191,5,5000,0,0
 in_sphinx3,0,0,0,0	monster#re	Pasana	1154,5,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] In_sphinx4 - Esfinge 4
+// [Old Times] In_sphinx4 - Esfinge 4
 //==================================================
-in_sphinx4,0,0,0,0	monster#vpo	Minorous	1149,50,0,0,0
-in_sphinx4,0,0,0,0	monster#vpo	Anubis	1098,15,0,0,0
-in_sphinx4,0,0,0,0	monster#vpo	Mímico	1191,4,600000,300000,1
-in_sphinx4,0,0,0,0	monster#vpo	Pasana	1154,20,0,0,0,{}
+in_sphinx4,0,0,0,0	monster#ot	Sorrateiro	1037,15,0,0,0
+in_sphinx4,0,0,0,0	monster#ot	Druida Maligno	1117,1,600000,0,1
+in_sphinx4,0,0,0,0	monster#ot	Marduk	1140,25,0,0,0
+in_sphinx4,0,0,0,0	monster#ot	Minorous	1149,45,0,0,0
+in_sphinx4,0,0,0,0	monster#ot	Mímico	1191,4,600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx4 - Esfinge 4
+//==================================================
+in_sphinx4,0,0,0,0	monster#pre	Minorous	1149,50,0,0,0
+in_sphinx4,0,0,0,0	monster#pre	Anubis	1098,15,0,0,0
+in_sphinx4,0,0,0,0	monster#pre	Mímico	1191,4,600000,300000,1
+in_sphinx4,0,0,0,0	monster#pre	Pasana	1154,20,0,0,0,{}
 
 //==================================================
 // [Renovação] In_sphinx5 - Esfinge 4
@@ -88,14 +125,25 @@ in_sphinx4,0,0,0,0	monster#re	Anubis	1098,15,5000,0,0
 in_sphinx4,0,0,0,0	monster#re	Mímico	1191,4,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] In_sphinx5 - Esfinge 5
+// [Old Times] In_sphinx5 - Esfinge 5
 //==================================================
-in_sphinx5,0,0,0,0	monster#vpo	Pasana	1154,70,0,0,0
-in_sphinx5,0,0,0,0	monster#vpo	Matyr	1146,10,0,0,0
-in_sphinx5,0,0,0,0	monster#vpo	Sorrateiro	1037,20,0,0,0
-in_sphinx5,0,0,0,0	monster#vpo	Anubis	1098,10,0,0,0
-in_sphinx5,0,0,0,0	monster#vpo	Mímico	1191,7,600000,300000,1,{}
-in_sphinx5,0,0,0,0	boss_monster	Faraó	1157,1,3600000,600000,1
+in_sphinx5,0,0,0,0	monster#ot	Sorrateiro	1037,10,0,0,0
+in_sphinx5,0,0,0,0	monster#ot	Marduk	1140,30,0,0,0
+in_sphinx5,0,0,0,0	monster#ot	Matyr	1146,10,0,0,0
+in_sphinx5,0,0,0,0	monster#ot	Réquiem	1164,25,0,0,0
+in_sphinx5,0,0,0,0	monster#ot	Sussurro	1179,10,0,0,0
+in_sphinx5,0,0,0,0	monster#ot	Mímico	1191,7,600000,0,1
+in_sphinx5,0,0,0,0	monster#ot	Alma Penada	1192,1,3600000,0,1,{}
+
+//==================================================
+// [Pré-Renovação] In_sphinx5 - Esfinge 5
+//==================================================
+in_sphinx5,0,0,0,0	monster#pre	Pasana	1154,70,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Matyr	1146,10,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Sorrateiro	1037,20,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Anubis	1098,10,0,0,0
+in_sphinx5,0,0,0,0	monster#pre	Mímico	1191,7,600000,300000,1
+in_sphinx5,0,0,0,0	boss_monster#dv	Faraó	1157,1,3600000,600000,1,{}
 
 //==================================================
 // [Renovação] In_sphinx5 - Esfinge 5

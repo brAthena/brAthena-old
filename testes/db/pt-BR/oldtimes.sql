@@ -6832,6 +6832,23 @@ REPLACE INTO `mob_branch_db` VALUES(1413,'Ermitão Selvagem',71428);
 REPLACE INTO `mob_branch_db` VALUES(1415,'Filhote de Leopardo',214285);
 REPLACE INTO `mob_branch_db` VALUES(1416,'Ninfa Perversa',71428);
 REPLACE INTO `mob_branch_db` VALUES(1417,'Zipper',214285);
+-- MVPs
+REPLACE INTO `mob_branch_db` VALUES(1038,'Osíris',280);
+REPLACE INTO `mob_branch_db` VALUES(1039,'Bafomé',280);
+REPLACE INTO `mob_branch_db` VALUES(1046,'Doppelganger',280);
+REPLACE INTO `mob_branch_db` VALUES(1059,'Abelha-Rainha',280);
+REPLACE INTO `mob_branch_db` VALUES(1086,'Besouro-Ladrão Dourado',280);
+REPLACE INTO `mob_branch_db` VALUES(1087,'Orc Herói',280);
+REPLACE INTO `mob_branch_db` VALUES(1112,'Drake',280);
+REPLACE INTO `mob_branch_db` VALUES(1115,'Eddga',280);
+REPLACE INTO `mob_branch_db` VALUES(1159,'Freeoni',280);
+REPLACE INTO `mob_branch_db` VALUES(1190,'Senhor dos Orcs',280);
+REPLACE INTO `mob_branch_db` VALUES(1251,'Cavaleiro da Tempestade',280);
+REPLACE INTO `mob_branch_db` VALUES(1252,'Hatii',280);
+REPLACE INTO `mob_branch_db` VALUES(1272,'Senhor das Trevas',280);
+REPLACE INTO `mob_branch_db` VALUES(1312,'General Tartaruga',280);
+REPLACE INTO `mob_branch_db` VALUES(1418,'Serpente Suprema',280);
+REPLACE INTO `mob_branch_db` VALUES(1492,'Samurai Encarnado',280);
 
 --
 -- Estrutura da tabela `mob_chat_db`
@@ -10782,7 +10799,7 @@ CREATE TABLE IF NOT EXISTS `skill_cast_db` (
 -- Espadachim
 REPLACE INTO `skill_cast_db` VALUES(6,'0','0','0','30000','0','1000');
 REPLACE INTO `skill_cast_db` VALUES(7,'0','0','0','2000','10000','2000');
-REPLACE INTO `skill_cast_db` VALUES(8,'0','0','0','10000:13000:16000:19000:22000:25000:28000:31000:34000:37000','10000','10000');
+REPLACE INTO `skill_cast_db` VALUES(8,'0','0','0','10000:10000:15000:15000:20000:20000:25000:25000:30000:30000','0','0');
 -- Mago
 REPLACE INTO `skill_cast_db` VALUES(10,'0','0','0','10000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(11,'1000','1000:1000:1000:900:900:800:800:700:600:500','0','0','0','0');
@@ -10804,7 +10821,7 @@ REPLACE INTO `skill_cast_db` VALUES(27,'1000','0','0','5000:10000:15000:20000:25
 REPLACE INTO `skill_cast_db` VALUES(28,'0','1000','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(29,'1000','1000','0','60000:80000:100000:120000:140000:160000:180000:200000:220000:240000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(30,'1000','1000','0','40000:50000:60000:70000:80000:90000:100000:110000:120000:130000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(31,'1000','500','0','0','0','0');
+REPLACE INTO `skill_cast_db` VALUES(31,'0','500','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(32,'500','2000','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(33,'500','3500','0','30000:60000:90000:120000:150000:180000:210000:240000:270000:300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(34,'0','0','0','60000:80000:100000:120000:140000:160000:180000:200000:220000:240000','0','0');
@@ -10924,10 +10941,10 @@ REPLACE INTO `skill_cast_db` VALUES(230,'1000','0','0','3:7:10:12:13','120000','
 REPLACE INTO `skill_cast_db` VALUES(231,'0','500','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(232,'2000','500','0','300000:240000:180000:120000:60000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(233,'2000','500','0','30000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(234,'2000','0','0','120000:240000:360000:480000:600000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(235,'2000','0','0','120000:240000:360000:480000:600000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(236,'2000','0','0','120000:240000:360000:480000:600000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(237,'2000','0','0','120000:240000:360000:480000:600000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(234,'2000','0','0','60000:120000:180000:240000:300000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(235,'2000','0','0','60000:120000:180000:240000:300000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(236,'2000','0','0','60000:120000:180000:240000:300000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(237,'2000','0','0','60000:120000:180000:240000:300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(247,'2000','0','0','0','0','0');
 -- Templário
 REPLACE INTO `skill_cast_db` VALUES(249,'0','0','0','300000','0','0');
@@ -10956,10 +10973,10 @@ REPLACE INTO `skill_cast_db` VALUES(276,'0','0','0','400:600:800:1000:1200','0',
 -- Sábio
 REPLACE INTO `skill_cast_db` VALUES(277,'700','0','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(279,'3000','0','0','120000:150000:180000:210000:240000:270000:300000:330000:360000:390000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(280,'3000','0','0','1200000:1200000:1200000:1200000:1800000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(281,'3000','0','0','1200000:1200000:1200000:1200000:1800000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(282,'3000','0','0','1200000:1200000:1200000:1200000:1800000','0','0');
-REPLACE INTO `skill_cast_db` VALUES(283,'3000','0','0','1200000:1200000:1200000:1200000:1800000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(280,'3000','0','0','1200000:1200000:1200000:1200000:1200000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(281,'3000','0','0','1200000:1200000:1200000:1200000:1200000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(282,'3000','0','0','1200000:1200000:1200000:1200000:1200000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(283,'3000','0','0','1200000:1200000:1200000:1200000:1200000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(285,'5000','0','0','60000:120000:180000:240000:300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(286,'5000','0','0','60000:120000:180000:240000:300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(287,'5000','0','0','60000:120000:180000:240000:300000','0','0');
@@ -10980,22 +10997,22 @@ REPLACE INTO `skill_cast_db` VALUES(313,'0','0','0','60000','60000','0');
 REPLACE INTO `skill_cast_db` VALUES(316,'1500','0','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(317,'0','0','0','30000','3000','0');
 REPLACE INTO `skill_cast_db` VALUES(318,'0','3000','0','0','10000:11000:12000:13000:14000','0');
-REPLACE INTO `skill_cast_db` VALUES(319,'0','0','0','60000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(320,'0','0','0','120000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(321,'0','0','0','180000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(322,'0','0','0','180000','20000','0');
+REPLACE INTO `skill_cast_db` VALUES(319,'0','0','0','60000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(320,'0','0','0','120000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(321,'0','0','0','180000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(322,'0','0','0','180000','0','0');
 -- Odalisca
 REPLACE INTO `skill_cast_db` VALUES(324,'1500','0','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(325,'0','0','0','30000','3000','0');
 REPLACE INTO `skill_cast_db` VALUES(326,'0','3000','0','0','5000','0');
-REPLACE INTO `skill_cast_db` VALUES(327,'0','0','0','60000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(328,'0','0','0','180000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(329,'0','0','0','120000','20000','0');
-REPLACE INTO `skill_cast_db` VALUES(330,'0','0','0','180000','20000','0');
+REPLACE INTO `skill_cast_db` VALUES(327,'0','0','0','60000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(328,'0','0','0','180000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(329,'0','0','0','120000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(330,'0','0','0','180000','0','0');
 -- Habilidades de Casamento
 REPLACE INTO `skill_cast_db` VALUES(334,'3000','0','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(335,'3000','0','0','0','0','0');
-REPLACE INTO `skill_cast_db` VALUES(336,'0','0','0','20000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(336,'20000','0','0','20000','0','0');
 -- Habilidades de NPCs
 REPLACE INTO `skill_cast_db` VALUES(339,'2000','1500','900','900','10000:11000:12000:13000:14000:15000:16000:17000:18000:19000','0');
 REPLACE INTO `skill_cast_db` VALUES(342,'0','0','0','10000','0','0');
@@ -11101,7 +11118,7 @@ REPLACE INTO `skill_db` VALUES(3,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weap
 REPLACE INTO `skill_db` VALUES(4,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','SM_RECOVERY','Aumentar Recuperação de HP');
 REPLACE INTO `skill_db` VALUES(5,'-1',6,1,'-1','0','0',10,'1','no',0,'0','0','weapon','0','SM_BASH','Golpe Fulminante');
 REPLACE INTO `skill_db` VALUES(6,'9',6,1,'0','1','0',10,'1','no',0,'0','0','none','0','SM_PROVOKE','Provocar');
-REPLACE INTO `skill_db` VALUES(7,'0',6,4,'3','0x2','2',10,'1','no',0,'0','0','weapon','2','SM_MAGNUM','Impacto Explosivo');
+REPLACE INTO `skill_db` VALUES(7,'0',6,1,'3','0x2','2',10,'1','no',0,'0','0','weapon','2','SM_MAGNUM','Impacto Explosivo');
 REPLACE INTO `skill_db` VALUES(8,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','SM_ENDURE','Vigor');
 REPLACE INTO `skill_db` VALUES(9,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','MG_SRECOVERY','Aumentar Recuperação de SP');
 REPLACE INTO `skill_db` VALUES(10,'0',6,4,'3','0x3','3',1,'1','yes',0,'0','0','magic','0','MG_SIGHT','Chama Reveladora');
@@ -11141,7 +11158,7 @@ REPLACE INTO `skill_db` VALUES(43,'0',0,0,'0','0','0',10,'0','no',0,'0','0','non
 REPLACE INTO `skill_db` VALUES(44,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','AC_VULTURE','Olhos de Águia');
 REPLACE INTO `skill_db` VALUES(45,'0',6,4,'0','0x3','3',10,'1','no',0,'0','0','weapon','0','AC_CONCENTRATION','Concentração');
 REPLACE INTO `skill_db` VALUES(46,'-9',8,1,'-1','0','0',10,'2','no',0,'0','0','weapon','0','AC_DOUBLE','Rajada de Flechas');
-REPLACE INTO `skill_db` VALUES(47,'-9',6,2,'-1','0x2','2',10,'1','no',0,'0x2000','0','weapon','2','AC_SHOWER','Chuva de Flechas');
+REPLACE INTO `skill_db` VALUES(47,'-9',6,1,'-1','0x2','2',10,'1','no',0,'0x2000','0','weapon','2','AC_SHOWER','Chuva de Flechas');
 REPLACE INTO `skill_db` VALUES(48,'-1',8,0,'-1','0','0',10,'2','no',0,'0','0','weapon','0','TF_DOUBLE','Ataque Duplo');
 REPLACE INTO `skill_db` VALUES(49,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','TF_MISS','Perícia em Esquiva');
 REPLACE INTO `skill_db` VALUES(50,'1',6,1,'0','1','0',10,'1','no',0,'0','0','weapon','0','TF_STEAL','Furto');
@@ -11185,7 +11202,7 @@ REPLACE INTO `skill_db` VALUES(88,'0',6,4,'1','0x2','2',10,'1','yes',0,'0','0','
 REPLACE INTO `skill_db` VALUES(89,'9',6,2,'1','0','0',10,'1','yes',0,'0','0','magic','2','WZ_STORMGUST','Nevasca');
 REPLACE INTO `skill_db` VALUES(90,'9',8,1,'2','0','0',5,'1:2:3:4:5','yes',0,'0','0','magic','0','WZ_EARTHSPIKE','Coluna de Pedra');
 REPLACE INTO `skill_db` VALUES(91,'9',8,2,'2','0','0',5,'1:2:3:4:5','yes',0,'0','0','magic','0','WZ_HEAVENDRIVE','Fúria da Terra');
-REPLACE INTO `skill_db` VALUES(92,'9',6,2,'2','0x1','0',5,'1','yes',0,'0','3','magic','0','WZ_QUAGMIRE','Pântano dos Mortos');
+REPLACE INTO `skill_db` VALUES(92,'9',6,2,'2','0x1','0',5,'1','yes',0,'0','0','magic','0','WZ_QUAGMIRE','Pântano dos Mortos');
 REPLACE INTO `skill_db` VALUES(93,'9',6,1,'0','0x1','0',1,'1','yes',0,'0','0','magic','0','WZ_ESTIMATION','Sentido Sobrenatural');
 REPLACE INTO `skill_db` VALUES(94,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','BS_IRON','Trabalhar Ferro');
 REPLACE INTO `skill_db` VALUES(95,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','BS_STEEL','Trabalhar Aço');
@@ -11235,7 +11252,25 @@ REPLACE INTO `skill_db` VALUES(138,'1',6,16,'5','0x1','0',10,'1','no',0,'0x400',
 REPLACE INTO `skill_db` VALUES(139,'0',6,4,'0','0','0',10,'1','no',0,'0','0','weapon','0','AS_POISONREACT','Refletir Veneno');
 REPLACE INTO `skill_db` VALUES(140,'2',6,2,'5','0x1','0',10,'1','no',0,'0','0','weapon','0','AS_VENOMDUST','Névoa Tóxica');
 REPLACE INTO `skill_db` VALUES(141,'1',6,1,'-1','0x51','2',10,'1','yes',0,'0','0','weapon','0','AS_SPLASHER','Explosão Tóxica');
+-- Habilidades de Aprendiz
 REPLACE INTO `skill_db` VALUES(142,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','none','0','NV_FIRSTAID','Primeiros Socorros');
+REPLACE INTO `skill_db` VALUES(143,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','none','0','NV_TRICKDEAD','Fingir de Morto');
+-- Habilidades de Platina
+REPLACE INTO `skill_db` VALUES(144,'0',0,0,'0','0','0',1,'0','no',0,'0x1','0','none','0','SM_MOVINGRECOVERY','Recuperar HP em Movimento');
+REPLACE INTO `skill_db` VALUES(145,'0',0,0,'0','0','0',1,'0','no',0,'0x1','0','weapon','0','SM_FATALBLOW','Ataque Fatal');
+REPLACE INTO `skill_db` VALUES(146,'0',6,0,'0','0x1','0',1,'1','no',0,'0x1','0','weapon','0','SM_AUTOBERSERK','Instinto de Sobrevivência');
+REPLACE INTO `skill_db` VALUES(147,'0',0,4,'0','0x1','0',1,'0','no',0,'0x1','0','weapon','0','AC_MAKINGARROW','Fabricar Flechas');
+REPLACE INTO `skill_db` VALUES(148,'-9',6,1,'-1','0x2','0',1,'1','no',0,'0x1','0','weapon','6','AC_CHARGEARROW','Disparo Violento');
+REPLACE INTO `skill_db` VALUES(149,'1',6,1,'2','0','0',1,'1','no',0,'0x1','0','weapon','0','TF_SPRINKLESAND','Chutar Areia');
+REPLACE INTO `skill_db` VALUES(150,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','weapon','5','TF_BACKSLIDING','Recuar');
+REPLACE INTO `skill_db` VALUES(151,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','none','0','TF_PICKSTONE','Procurar Pedras');
+REPLACE INTO `skill_db` VALUES(152,'7',6,1,'0','0x40','0',1,'1','no',0,'0x1','0','misc','0','TF_THROWSTONE','Arremessar Pedra');
+REPLACE INTO `skill_db` VALUES(153,'1',6,1,'-1','0x2','1',1,'1','no',0,'0x1','0','weapon','2','MC_CARTREVOLUTION','Cavalo-de-Pau');
+REPLACE INTO `skill_db` VALUES(154,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','none','0','MC_CHANGECART','Personalizar Carrinho');
+REPLACE INTO `skill_db` VALUES(155,'0',6,4,'0','0x1','0',1,'1','no',0,'0x1','0','weapon','0','MC_LOUD','Grito de Guerra');
+REPLACE INTO `skill_db` VALUES(156,'9',6,1,'6','0','0',1,'1','yes',0,'0x1','0','magic','0','AL_HOLYLIGHT','Luz Divina');
+REPLACE INTO `skill_db` VALUES(157,'0',6,4,'0','0x1','0',1,'1','yes',0,'0x1','0','magic','0','MG_ENERGYCOAT','Proteção Arcana');
+-- Habilidades de NPC
 REPLACE INTO `skill_db` VALUES(158,'3',6,1,'-1','0','0',10,'1','no',0,'0x2','0','weapon','0','NPC_PIERCINGATT','Piercing Attack');
 REPLACE INTO `skill_db` VALUES(159,'-1',6,1,'-1','0x40','0',5,'1','no',0,'0x2','0','weapon','0','NPC_MENTALBREAKER','Spirit Destruction');
 REPLACE INTO `skill_db` VALUES(160,'9',6,1,'0','0','0',10,'1','no',0,'0x2','0','weapon','0','NPC_RANGEATTACK','Stand off attack');
@@ -11288,6 +11323,7 @@ REPLACE INTO `skill_db` VALUES(206,'1',6,1,'-1','0x1','0',5,'1','no',0,'0x2','0'
 REPLACE INTO `skill_db` VALUES(207,'9',0,1,'0','0x1','0',10,'1','no',0,'0x2','0','magic','0','NPC_HALLUCINATION','Hallucination');
 REPLACE INTO `skill_db` VALUES(208,'0',0,4,'0','0x1','0',1,'1','no',0,'0x2','0','magic','0','NPC_REBIRTH','Rebirth');
 REPLACE INTO `skill_db` VALUES(209,'0',0,4,'0','0x1','0',10,'1','no',0,'0x2','0','magic','0','NPC_SUMMONMONSTER','Monster Summons');
+-- Arruaceiro
 REPLACE INTO `skill_db` VALUES(210,'0',0,0,'-1','0','0',10,'0','no',0,'0','0','weapon','0','RG_SNATCHER','Mãos Leves');
 REPLACE INTO `skill_db` VALUES(211,'1',6,1,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','RG_STEALCOIN','Afanar');
 REPLACE INTO `skill_db` VALUES(212,'-1',6,1,'-1','0x40','0',10,'1','no',0,'0','0','weapon','0','RG_BACKSTAP','Apunhalar');
@@ -11304,6 +11340,7 @@ REPLACE INTO `skill_db` VALUES(222,'1',6,2,'0','0x3','5',1,'1','no',0,'0','0','n
 REPLACE INTO `skill_db` VALUES(223,'0',0,0,'0','0','1',1,'0','no',0,'0','0','none','0','RG_GANGSTER','Malandragem');
 REPLACE INTO `skill_db` VALUES(224,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','RG_COMPULSION','Extorquir');
 REPLACE INTO `skill_db` VALUES(225,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','RG_PLAGIARISM','Plágio');
+-- Alquimista
 REPLACE INTO `skill_db` VALUES(226,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','AM_AXEMASTERY','Perícia com Machado e Espada');
 REPLACE INTO `skill_db` VALUES(227,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','AM_LEARNINGPOTION','Pesquisa de Poções');
 REPLACE INTO `skill_db` VALUES(228,'0',6,4,'0','0x1','0',10,'0','no',0,'0','0','none','0','AM_PHARMACY','Preparar Poção');
@@ -11319,6 +11356,7 @@ REPLACE INTO `skill_db` VALUES(237,'1',6,16,'0','0x1','0',5,'1','yes',0,'0','0',
 REPLACE INTO `skill_db` VALUES(243,'0',0,4,'0','0x1','1',1,'0','no',0,'0','0','none','0','AM_CALLHOMUN','Criar Homunculus');
 REPLACE INTO `skill_db` VALUES(244,'0',0,4,'0','0x1','0',1,'0','no',0,'0','0','none','0','AM_REST','Vaporizar');
 REPLACE INTO `skill_db` VALUES(247,'9',6,4,'0','0x1','1',5,'0','no',0,'0','0','none','0','AM_RESURRECTHOMUN','Ressuscitar Homunculus');
+-- Templario
 REPLACE INTO `skill_db` VALUES(248,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','CR_TRUST','Fé');
 REPLACE INTO `skill_db` VALUES(249,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','CR_AUTOGUARD','Bloqueio');
 REPLACE INTO `skill_db` VALUES(250,'3',6,1,'0','0','0',5,'1','no',0,'0','0','weapon','5:6:7:8:9','CR_SHIELDCHARGE','Punição Divina');
@@ -11330,6 +11368,7 @@ REPLACE INTO `skill_db` VALUES(255,'7:8:9:10:11',6,16,'0','0x1','0',5,'1','yes',
 REPLACE INTO `skill_db` VALUES(256,'9',6,16,'0','0x1','0',5,'1','yes',0,'0x200','0','none','0','CR_PROVIDENCE','Divina Providência');
 REPLACE INTO `skill_db` VALUES(257,'0',6,4,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','CR_DEFENDER','Aura Sagrada');
 REPLACE INTO `skill_db` VALUES(258,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','CR_SPEARQUICKEN','Rapidez com Lança');
+-- Monge
 REPLACE INTO `skill_db` VALUES(259,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','MO_IRONHAND','Punhos de Ferro');
 REPLACE INTO `skill_db` VALUES(260,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','MO_SPIRITSRECOVERY','Meditação');
 REPLACE INTO `skill_db` VALUES(261,'0',6,4,'0','0x1','0',5,'1','no',0,'0','0','none','0','MO_CALLSPIRITS','Invocar Esfera Espiritual');
@@ -11345,6 +11384,7 @@ REPLACE INTO `skill_db` VALUES(270,'0',6,4,'0','0x1','0',5,'0','no',0,'0','0','w
 REPLACE INTO `skill_db` VALUES(271,'-2',6,1,'0','0x60','0',5,'1','yes',0,'0','0','weapon','0','MO_EXTREMITYFIST','Punho Supremo de Asura');
 REPLACE INTO `skill_db` VALUES(272,'-2',8,4,'-1','0','0',5,'-4','no',0,'0x200','0','weapon','0','MO_CHAINCOMBO','Combo Quádruplo');
 REPLACE INTO `skill_db` VALUES(273,'-2',6,4,'-1','0x2','2',5,'1','no',0,'0x200','0','weapon','0','MO_COMBOFINISH','O Último Dragão');
+-- Sabio
 REPLACE INTO `skill_db` VALUES(274,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','SA_ADVANCEDBOOK','Estudo de Livros');
 REPLACE INTO `skill_db` VALUES(275,'0',6,4,'0','0x1','0',5,'1','no',0,'0','0','magic','0','SA_CASTCANCEL','Cancelar magia');
 REPLACE INTO `skill_db` VALUES(276,'0',6,4,'0','0x1','0',5,'1','yes',0,'0','0','magic','0','SA_MAGICROD','Espelho Mágico');
@@ -11375,6 +11415,7 @@ REPLACE INTO `skill_db` VALUES(300,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x2','0'
 REPLACE INTO `skill_db` VALUES(301,'9',6,4,'0','0','0',1,'1','yes',0,'0x2','0','magic','0','SA_INSTANTDEATH','Suicídio');
 REPLACE INTO `skill_db` VALUES(302,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x2','0','magic','0','SA_FULLRECOVERY','Recuperação');
 REPLACE INTO `skill_db` VALUES(303,'9',6,4,'0','0','0',1,'1','yes',0,'0x2','0','magic','0','SA_COMA','Coma');
+-- Bardo/Odalisca
 REPLACE INTO `skill_db` VALUES(304,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','BD_ADAPTATION','Encerramento');
 REPLACE INTO `skill_db` VALUES(305,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','BD_ENCORE','Bis');
 REPLACE INTO `skill_db` VALUES(306,'0',6,4,'0','0x1','0',1,'1','no',0,'0x40','0','misc','0','BD_LULLABY','Cantiga de Ninar');
@@ -11385,6 +11426,7 @@ REPLACE INTO `skill_db` VALUES(310,'0',6,4,'0','0x1','0',5,'1','no',0,'0x40','0'
 REPLACE INTO `skill_db` VALUES(311,'0',6,4,'0','0x1','0',1,'1','no',0,'0x40','0','misc','0','BD_ROKISWEIL','Lamento de Loki');
 REPLACE INTO `skill_db` VALUES(312,'0',6,4,'0','0x1','0',1,'1','no',0,'0x40','0','misc','0','BD_INTOABYSS','Canção Preciosa');
 REPLACE INTO `skill_db` VALUES(313,'0',6,4,'0','0x1','0',5,'1','no',0,'0x40','0','misc','0','BD_SIEGFRIED','Ode a Siegfried');
+-- Bardo
 REPLACE INTO `skill_db` VALUES(315,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','BA_MUSICALLESSON','Lições de Música');
 REPLACE INTO `skill_db` VALUES(316,'9',6,1,'-1','0','0',5,'1','no',0,'0','0','weapon','0','BA_MUSICALSTRIKE','Flecha Melódica');
 REPLACE INTO `skill_db` VALUES(317,'0',8,4,'0','0x41','0',5,'1','no',0,'0x20','0','misc','0','BA_DISSONANCE','Dissonância');
@@ -11393,6 +11435,7 @@ REPLACE INTO `skill_db` VALUES(319,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0
 REPLACE INTO `skill_db` VALUES(320,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','BA_ASSASSINCROSS','Crepúsculo Sangrento');
 REPLACE INTO `skill_db` VALUES(321,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','BA_POEMBRAGI','Poema de Bragi');
 REPLACE INTO `skill_db` VALUES(322,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','BA_APPLEIDUN','Maçãs de Idun');
+-- Odalisca
 REPLACE INTO `skill_db` VALUES(323,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','DC_DANCINGLESSON','Lições de Dança');
 REPLACE INTO `skill_db` VALUES(324,'9',6,1,'-1','0','0',5,'1','no',0,'0','0','weapon','0','DC_THROWARROW','Estilingue');
 REPLACE INTO `skill_db` VALUES(325,'0',8,4,'0','0x1','0',5,'1','no',0,'0x20','0','misc','0','DC_UGLYDANCE','Dança do Ventre');
@@ -11401,12 +11444,15 @@ REPLACE INTO `skill_db` VALUES(327,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0
 REPLACE INTO `skill_db` VALUES(328,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','DC_DONTFORGETME','Não Me Abandones');
 REPLACE INTO `skill_db` VALUES(329,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','DC_FORTUNEKISS','Beijo da Sorte');
 REPLACE INTO `skill_db` VALUES(330,'0',6,4,'0','0x1','0',10,'1','no',0,'0x20','0','misc','0','DC_SERVICEFORYOU','Dança Cigana');
+-- Habilidades de NPC
 REPLACE INTO `skill_db` VALUES(331,'0',6,4,'0','0x1','0',10,'0','no',0,'0x2','0','none','0','NPC_RANDOMMOVE','Random Move');
 REPLACE INTO `skill_db` VALUES(332,'0',6,4,'0','0x1','0',10,'0','no',0,'0x2','0','none','0','NPC_SPEEDUP','Speed UP');
 REPLACE INTO `skill_db` VALUES(333,'0',6,4,'0','0x1','0',1,'0','no',0,'0x2','0','none','0','NPC_REVENGE','Revenge');
+-- Habilidades de Casamento
 REPLACE INTO `skill_db` VALUES(334,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x4','0','none','0','WE_MALE','Amor Verdadeiro');
 REPLACE INTO `skill_db` VALUES(335,'9',6,4,'0','0x1','0',1,'1','yes',0,'0x4','0','none','0','WE_FEMALE','Amor Eterno');
 REPLACE INTO `skill_db` VALUES(336,'9',6,4,'0','0x1','3',1,'1','yes',0,'0x4','1','none','0','WE_CALLPARTNER','Saudades de Você');
+-- Habilidades de Itens/NPC
 REPLACE INTO `skill_db` VALUES(337,'9',6,1,'-1','0','0',1,'1','no',0,'0x2','0','weapon','0','ITM_TOMAHAWK','Arremessar Tomahawk');
 REPLACE INTO `skill_db` VALUES(338,'-1',8,1,'7','0','0',10,'-2','no',0,'0x2','0','weapon','0','NPC_DARKCROSS','Cross of Darkness');
 REPLACE INTO `skill_db` VALUES(339,'5',6,4,'7','0x48','0',10,'1','no',0,'0x102','0','magic','0','NPC_GRANDDARKNESS','Grand cross of Darkness');
@@ -11467,21 +11513,12 @@ REPLACE INTO `skill_db` VALUES(694,'6',6,16,'0','0x1','0',1,'0','no',0,'0x202','
 REPLACE INTO `skill_db` VALUES(695,'0',6,4,'0','0x01','0',1,'1','no',0,'0x2','0','none',0,'ALL_DREAM_SUMMERNIGHT','Sonho de Verão');
 REPLACE INTO `skill_db` VALUES(697,'0',6,4,'0','0x01','0',1,'1','yes',0,'0x2','0','magic',0,'ALL_REVERSEORCISH','Transformação Orc');
 REPLACE INTO `skill_db` VALUES(698,'0',6,4,'0','0x01','0',1,'1','no',0,'0x2','0','none','0','ALL_WEWISH','Noite Feliz!');
+-- Habilidades de Clã
 REPLACE INTO `skill_db` VALUES(10000,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_APPROVAL','Autorização Oficial');
 REPLACE INTO `skill_db` VALUES(10001,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_KAFRACONTRACT','Contrato com Kafra');
 REPLACE INTO `skill_db` VALUES(10002,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_GUARDRESEARCH','Comandar Guardiões');
 REPLACE INTO `skill_db` VALUES(10003,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_GUARDUP','Fortalecer Guardiões');
 REPLACE INTO `skill_db` VALUES(10004,'0',0,0,'0','0','0',10,'0','no',0,'0x10','0','none','0','GD_EXTENSION','Expandir Clã');
-REPLACE INTO `skill_db` VALUES(10005,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_GLORYGUILD','Glória da Guilda');
-REPLACE INTO `skill_db` VALUES(10006,'0',0,0,'0','0','2',1,'0','no',0,'0x10','0','none','0','GD_LEADERSHIP','Grande Liderança');
-REPLACE INTO `skill_db` VALUES(10007,'0',0,0,'0','0','2',1,'0','no',0,'0x10','0','none','0','GD_GLORYWOUNDS','Ferimentos de Glória');
-REPLACE INTO `skill_db` VALUES(10008,'0',0,0,'0','0','2',1,'0','no',0,'0x10','0','none','0','GD_SOULCOLD','Coração de Frio');
-REPLACE INTO `skill_db` VALUES(10009,'0',0,0,'0','0','2',1,'0','no',0,'0x10','0','none','0','GD_HAWKEYES','Olhar Apurado');
-REPLACE INTO `skill_db` VALUES(10010,'0',0,4,'0','0x3','15',1,'0','yes',0,'0x10','0','none','0','GD_BATTLEORDER','Comando de Batalha');
-REPLACE INTO `skill_db` VALUES(10011,'0',0,4,'0','0x3','15',3,'0','yes',0,'0x10','0','none','0','GD_REGENERATION','Regeneração');
-REPLACE INTO `skill_db` VALUES(10012,'0',0,4,'0','0x3','15',1,'0','yes',0,'0x10','0','none','0','GD_RESTORE','Restauração');
-REPLACE INTO `skill_db` VALUES(10013,'0',0,4,'0','0x3','0',1,'0','yes',0,'0x10','0','none','0','GD_EMERGENCYCALL','Chamado Urgente');
-REPLACE INTO `skill_db` VALUES(10014,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_DEVELOPMENT','Desenvolvimento Permanente');
 
 -- Estrutura da tabela `skill_nocast_db`
 --
@@ -11700,7 +11737,7 @@ REPLACE INTO `skill_require_db` VALUES (285,'0','0','48:46:44:42:40','0','0','0'
 REPLACE INTO `skill_require_db` VALUES (286,'0','0','48:46:44:42:40','0','0','0','99',0,'0','none','0',715,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (287,'0','0','48:46:44:42:40','0','0','0','99',0,'0','none','0',715,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (288,'0','0','66:62:58:54:50','0','0','0','99',0,'0','none','0',717,1,715,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO `skill_require_db` VALUES (289,'0','0','1','0','0','0','99',0,'0','none','0',715,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (289,'0','0','1','0','0','0','99',0,'0','none','0',715,1,716,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (290,'0','0','50','0','0','0','99',0,'0','none','0',715,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (291,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (292,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -11741,7 +11778,7 @@ REPLACE INTO `skill_require_db` VALUES (329,'0','0','43:46:49:52:55:58:61:64:67:
 REPLACE INTO `skill_require_db` VALUES (330,'0','0','40:45:50:55:60:65:70:75:80:85','0','0','0','13:14',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (334,'0','0','1','-10','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (335,'0','0','1','0','-10','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO `skill_require_db` VALUES (336,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (336,'0','0','150','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (337,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (408,'0','0','1','0','-10','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (409,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -11825,16 +11862,16 @@ REPLACE INTO `skill_unit_db` VALUES(310,'0xa2',NULL,'4','0','-1','party','0x200'
 REPLACE INTO `skill_unit_db` VALUES(311,'0xa3','0x200','4','0','-1','all','0x200');
 REPLACE INTO `skill_unit_db` VALUES(312,'0xa4',NULL,'4','0','-1','party','0x240');
 REPLACE INTO `skill_unit_db` VALUES(313,'0xa5',NULL,'4','0','-1','party','0x200');
-REPLACE INTO `skill_unit_db` VALUES(317,'0xa6',NULL,'3','0','3000','enemy','0x400');
-REPLACE INTO `skill_unit_db` VALUES(319,'0xa7','0x440','3','0','-1','all','0x440');
-REPLACE INTO `skill_unit_db` VALUES(320,'0xa8','0x440','3','0','-1','all','0x440');
-REPLACE INTO `skill_unit_db` VALUES(321,'0xa9','0x440','3','0','-1','all','0x440');
-REPLACE INTO `skill_unit_db` VALUES(322,'0xaa','0xC40','3','0','6000','all','0xC40');
-REPLACE INTO `skill_unit_db` VALUES(325,'0xab',NULL,'3','0','3000','enemy','0x100');
-REPLACE INTO `skill_unit_db` VALUES(327,'0xac','0x140','3','0','-1','all','0x140');
-REPLACE INTO `skill_unit_db` VALUES(328,'0xad',NULL,'3','0','-1','enemy','0x100');
-REPLACE INTO `skill_unit_db` VALUES(329,'0xae','0x140','3','0','-1','all','0x140');
-REPLACE INTO `skill_unit_db` VALUES(330,'0xaf','0x140','3','0','-1','all','0x140');
+REPLACE INTO `skill_unit_db` VALUES(317,'0xa6',NULL,'4','0','3000','enemy','0x400');
+REPLACE INTO `skill_unit_db` VALUES(319,'0xa7','0x440','4','0','-1','all','0x440');
+REPLACE INTO `skill_unit_db` VALUES(320,'0xa8','0x440','4','0','-1','all','0x440');
+REPLACE INTO `skill_unit_db` VALUES(321,'0xa9','0x440','4','0','-1','all','0x440');
+REPLACE INTO `skill_unit_db` VALUES(322,'0xaa','0xC40','4','0','6000','all','0xC40');
+REPLACE INTO `skill_unit_db` VALUES(325,'0xab',NULL,'4','0','3000','enemy','0x100');
+REPLACE INTO `skill_unit_db` VALUES(327,'0xac','0x140','4','0','-1','all','0x140');
+REPLACE INTO `skill_unit_db` VALUES(328,'0xad',NULL,'4','0','-1','enemy','0x100');
+REPLACE INTO `skill_unit_db` VALUES(329,'0xae','0x140','4','0','-1','all','0x140');
+REPLACE INTO `skill_unit_db` VALUES(330,'0xaf','0x140','4','0','-1','all','0x140');
 REPLACE INTO `skill_unit_db` VALUES(336,'0xb2',NULL,'0','-1','-1','noone','0x000');
 REPLACE INTO `skill_unit_db` VALUES(339,'0x86',NULL,'-1','0','300','enemy','0x000');
 REPLACE INTO `skill_unit_db` VALUES(395,'0xb5','0x200','4','0','-1','all','0x200');
