@@ -177,7 +177,8 @@ void read_brathena_config(void)
 	if(config_lookup_int(&configbrA, "level_vip", &tmpint))			bra_config.level_vip = tmpint;
 	if(config_lookup_int(&configbrA, "extra_exp_vip", &tmpint))		bra_config.extra_exp_vip = tmpint;
 	if(config_lookup_int(&configbrA, "penalty_exp_vip", &tmpint))	bra_config.penalty_exp_vip = tmpint;
-	if(config_lookup_int(&configbrA, "msg_maps_removed", &tmpint))	bra_config.msg_maps_removed = tmpint;	
+	if(config_lookup_int(&configbrA, "msg_maps_removed", &tmpint))	bra_config.msg_maps_removed = tmpint;
+	if(config_lookup_int(&configbrA, "show_message_exp", &tmpint))	bra_config.show_message_exp = tmpint;	
 
 	config_destroy(&configbrA);
 }

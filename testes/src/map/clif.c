@@ -17417,11 +17417,11 @@ void clif_status_change_end(struct block_list *bl, int tid, enum send_target tar
 	clif_send(&p,sizeof(p), bl, target);
 }
 
-/// Mensagem do Sistema VIP Oficial - brAthena [Megasantos/Shiraz]
+/// Mensagem do Sistema Indicação de Exp e VIP Oficial - brAthena [Megasantos/Shiraz]
 /// Agradecimentos a Revok pelo pacote de client abaixo de 2013.
 /// 0x8cb <packet len>.W <exp>.W <death>.W <drop>.W (ZC_PERSONAL_INFOMATION)
 /// 0x97b <packet len>.W <exp>.L <death>.L <drop>.L (ZC_PERSONAL_INFOMATION2)
-void clif_vipshow(struct map_session_data *sd)
+void clif_personal_information(struct map_session_data *sd)
 {
 #if PACKETVER >= 20120410
 	int packet;
@@ -17435,39 +17435,39 @@ void clif_vipshow(struct map_session_data *sd)
 
 	sd->fd = (int)sd->fd;
 
+#if PACKETVER < 20130320
 	WFIFOHEAD(sd->fd,17);
+#else
+	WFIFOHEAD(sd->fd,34);
+#endif
 	WFIFOW(sd->fd,0)  = packet;
+#if PACKETVER < 20130320
 	WFIFOW(sd->fd,2)  = 17;
+#else
+	WFIFOW(sd->fd,2)  = 34;
+#endif
 	WFIFOW(sd->fd,4)  = battle_config.base_exp_rate;
+#if PACKETVER < 20130320
 	WFIFOW(sd->fd,6)  = battle_config.death_penalty_base;
 	WFIFOW(sd->fd,8)  = 100;
 	WFIFOB(sd->fd,10) = 0;
 	WFIFOW(sd->fd,11) = bra_config.extra_exp_vip;
 	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip;
 	WFIFOW(sd->fd,15) = 100;
-	WFIFOSET(sd->fd,17);
+#else
+	WFIFOW(sd->fd,8)  = battle_config.death_penalty_base;
+	WFIFOW(sd->fd,12) = 100;
+	WFIFOB(sd->fd,22) = 0;
+	WFIFOW(sd->fd,23) = 0;
+	WFIFOW(sd->fd,24) = bra_config.extra_exp_vip;;
+	WFIFOW(sd->fd,28) = bra_config.penalty_exp_vip;
+	WFIFOW(sd->fd,32) = 100;
 #endif
-}
-
-/// Mensagem do Sistema VIP Oficial - brAthena [Megasantos]
-/// 0981 <packet len>.W <exp>.W <death>.W <drop>.W <activity rate>.W (ZC_PERSONAL_INFOMATION_CHN)
-void clif_vipshow2(struct map_session_data* sd)
-{
-#if PACKETVER >= 20120410
-	int packet;
-	nullpo_retv(sd);
-	
-	sd->fd = (int)sd->fd;
-	packet = 0x981;
-	
-	WFIFOHEAD(sd->fd,12);
-	WFIFOW(sd->fd,0)  = packet;
-	WFIFOW(sd->fd,2)  = 12;
-	WFIFOW(sd->fd,4)  = battle_config.base_exp_rate;
-	WFIFOW(sd->fd,6)  = battle_config.death_penalty_base;
-	WFIFOW(sd->fd,8)  = 100;
-	WFIFOW(sd->fd,10) = 100;
-	WFIFOSET(sd->fd,12);
+#if PACKETVER < 20130320
+	WFIFOSET(sd->fd,17);
+#else
+	WFIFOSET(sd->fd,34);
+#endif
 #endif
 }
 

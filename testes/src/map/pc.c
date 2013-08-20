@@ -1125,8 +1125,8 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 		clif_changemap(sd,sd->bl.m,sd->bl.x,sd->bl.y);
 	}
 	
-	if(bra_config.enable_system_vip)
-		clif_vipshow(sd);
+	if(bra_config.show_message_exp)
+		clif_personal_information(sd);
 
 	/**
 	 * Check if player have any cool downs on
