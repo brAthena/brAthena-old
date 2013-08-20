@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.4/2.4/1.1                         |
+//   | Versões eA/rA/brA: 2.4/2.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests da Cidade de Alberta.                |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Adequação para 3 versões [Neko]					  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -2292,7 +2293,7 @@ tur_dun03,67,130,4	script	Cavaleiro#tur4	105,{
 
 // Garoto de Alberta
 //============================================================
-alberta_in,131,95,5	script	Iromo#ep3_2	706,{
+alberta_in,131,95,5	script#dv	Iromo#ep3_2	706,{
 	if (ep13_2_hiki == 13) {
 		mes "[Iromo]";
 		mes "Mas... este mundo é...";
@@ -2701,7 +2702,7 @@ alberta_in,131,95,5	script	Iromo#ep3_2	706,{
 	close;
 }
 
-alberta_in,120,93,3	script	Mãe de Iromo#ep3_2	53,{
+alberta_in,120,93,3	script#dv	Mãe de Iromo#ep3_2	53,{
 	if (ep13_2_hiki == 8) {
 		mes "[Mãe]";
 		mes "Obrigado por ajudar o meu filho.";
@@ -2797,7 +2798,7 @@ alberta_in,120,93,3	script	Mãe de Iromo#ep3_2	53,{
 	close;
 }
 
-alberta,45,106,5	script	Garoto#ep3_2	706,{
+alberta,45,106,5	script#dv	Garoto#ep3_2	706,{
 	if (ep13_2_hiki == 6) {
 		mes "[Garoto]";
 		mes "Iromo? Costumava gostar da ^FF0000Ração de Monstros^000000 e ^FF0000Poção Vermelha^000000.";

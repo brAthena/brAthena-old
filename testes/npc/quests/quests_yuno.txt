@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.0a/2.0a/1.1                       |
+//   | Versões eA/rA/brA: 2.0a/2.0a/1.2                       |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest Meto, Irmãos Alquímistas, Espadas     |
 //   | Amaldiçoadas.                                          |
@@ -20,11 +20,12 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Holy & Clare]                      |
+//   | 1.2 Adequação para 3 versões [Neko]					  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-yuno_in03,26,39,3	script	Meto#juno	709,{
+yuno_in03,26,39,3	script#dv	Meto#juno	709,{
 	mes "[Meto]";
 	if (Meto_q == 0) {
 		mes "Hoje e amanha no laboratório! Todo o dia será preenchido com a pesquisa! Mesmo que demore toda a minha vida, eu não vou desistir até criar uma nova Juno...";
@@ -126,7 +127,7 @@ yuno_in03,26,39,3	script	Meto#juno	709,{
 	}
 }
 
-yuno_in01,17,30,5	script	Wagan#juno	85,{
+yuno_in01,17,30,5	script#dv	Wagan#juno	85,{
 	mes "[Wagan]";
 	if (Meto_q == 0) {
 		mes "Eu tenho certeza que você sabe que a nossa cidade tem vivido fora de nossa pesquisa por muitos anos.";
@@ -246,7 +247,7 @@ yuno_in01,17,30,5	script	Wagan#juno	85,{
 	}
 }
 
-yuno_in01,17,95,5	script	Stangckle#juno	99,{
+yuno_in01,17,95,5	script#dv	Stangckle#juno	99,{
 	mes "[Stangckle]";
 	if (Meto_q == 2) {
 		mes "O que eu posso fazer por você? Meu colega Meto chegará aqui em breve, por isso eu não tenho muito tempo. Então, o que você disse que precisava?";
@@ -308,7 +309,7 @@ yuno_in01,17,95,5	script	Stangckle#juno	99,{
 	}
 }
 
-yuno_in01,19,183,5	script	Kato#juno	55,{
+yuno_in01,19,183,5	script#dv	Kato#juno	55,{
 	mes "[Kato]";
 	if (Meto_q == 4) {
 		mes "Eu sou um cientista a pesquisar todos os tipos de coisas.";
@@ -356,7 +357,7 @@ yuno_in01,19,183,5	script	Kato#juno	55,{
 	}
 }
 
-yuno_in03,178,43,0	script	CiCi#juno	121,{
+yuno_in03,178,43,0	script#dv	CiCi#juno	121,{
 	if (Meto_q == 6) {
 		mes "[CiCi]";
 		mes "Meu nome é CiCi. Eu sou um dos três grandes cientistas desta cidade.";
@@ -674,7 +675,7 @@ S_DelItems:
 
 // Espadas Amaldiçoadas - Parte Juno
 //============================================================
-yuno,157,87,4	script	Cidadão de Juno#juno	102,{
+yuno,157,87,4	script#dv	Cidadão de Juno#juno	102,{
 	mes "[Shalima]";
 	mes "Quando você vai para o norte de Al De Baran, você vai chegar ao 'Planalto Elmeth, um lugar coberto com rocha derretida.";
 	next;
@@ -709,7 +710,7 @@ yuno,157,87,4	script	Cidadão de Juno#juno	102,{
 	}
 }
 
-yuno,261,99,4	script	Sábio Yklah#juno	735,{
+yuno,261,99,4	script#dv	Sábio Yklah#juno	735,{
 	if (dmdswrd_Q == 23 || dmdswrd_Q == 24 || dmdswrd_Q == 25) {
 		switch(dmdswrd_Q) {
 		case 23:
@@ -909,7 +910,7 @@ yuno,261,99,4	script	Sábio Yklah#juno	735,{
 	}
 }
 
-yuno,305,207,4	script	Sábio Syklah#juno	735,{
+yuno,305,207,4	script#dv	Sábio Syklah#juno	735,{
 	if (dmdswrd_Q == 25 || dmdswrd_Q == 26 || dmdswrd_Q == 27) {
 		switch(dmdswrd_Q) {
 		case 25:
@@ -1032,7 +1033,7 @@ yuno,305,207,4	script	Sábio Syklah#juno	735,{
 	}
 }
 
-yuno,213,298,4	script	Sábio Esklah#juno	735,{
+yuno,213,298,4	script#dv	Sábio Esklah#juno	735,{
 	if (dmdswrd_Q == 27 || dmdswrd_Q == 28 || dmdswrd_Q == 29 || dmdswrd_Q == 30) {
 		switch(dmdswrd_Q) {
 		case 27:
@@ -1189,7 +1190,7 @@ yuno,213,298,4	script	Sábio Esklah#juno	735,{
 	}
 }
 
-mjolnir_02,170,193,4	script	Casa de Muriniel#juno	111,{
+mjolnir_02,170,193,4	script#dv	Casa de Muriniel#juno	111,{
 	if (dmdswrd_Q == 30 || dmdswrd_Q == 31) {
 		switch(dmdswrd_Q) {
 		case 30:

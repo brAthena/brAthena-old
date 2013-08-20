@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Izlude.                              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Barsaglini]                        |
+//   | 1.2 Adicionada duplicata no OT [Neko]				  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -107,6 +108,6 @@
 // ==========================
 izlude,179,219,2	duplicatr(Edgar#izlude)	Edgar#izludere	49,{}
 // ==========================
-// Pré-Renovação
+// Pré-Renovação && Old Times
 // ==========================
-izlude,182,186,2	duplicatp(Edgar#izlude)	Edgar#izludepre	49,{}
+izlude,182,186,2	duplicatv(Edgar#izlude)	Edgar#izludepre	49,{}

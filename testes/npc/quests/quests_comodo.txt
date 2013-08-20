@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.6/1.6/1.0                         |
+//   | Versões eA/rA/brA: 1.6/1.6/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição:                                             |
 //   |                                                        |       
@@ -23,6 +23,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adequação para 3 versões [Neko]					  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -467,7 +468,7 @@ comodo,273,137,4	script	Traveler#head	702,{
 
 // Doomed Swords - Comodo Portion. (Continued in Juno)
 //============================================================ 
-comodo,206,310,4	script	Campground Boy#cmd	704,{
+comodo,206,310,4	script#dv	Campground Boy#cmd	704,{
 	switch (dmdswrd_Q) {
 	case 0:
 		mes "[Rochito]";
@@ -627,7 +628,7 @@ comodo,206,310,4	script	Campground Boy#cmd	704,{
 	close;
 }
 
-comodo,204,310,4	script	Camping Youth#cmd	65,{
+comodo,204,310,4	script#dv	Camping Youth#cmd	65,{
 	switch (dmdswrd_Q) {
 	case 0:
 	case 1:
@@ -732,7 +733,7 @@ comodo,204,310,4	script	Camping Youth#cmd	65,{
 	close;
 }
 
-comodo,209,305,4	script	Camping Maiden#cmd	71,{
+comodo,209,305,4	script#dv	Camping Maiden#cmd	71,{
 	mes "[Emralhandas]";
 	mes "Rockha, let me pour";
 	mes "you another drink. We";
@@ -800,7 +801,7 @@ comodo,209,305,4	script	Camping Maiden#cmd	71,{
 	close;
 }
 
-comodo,209,314,4	script	Campground Lad#cmd	706,{
+comodo,209,314,4	script#dv	Campground Lad#cmd	706,{
 	switch (dmdswrd_Q) {
 	case 0:
 	case 1:
@@ -849,7 +850,7 @@ comodo,209,314,4	script	Campground Lad#cmd	706,{
 	close;
 }
 
-comodo,221,310,4	script	BBQ Boy#cmd	86,{
+comodo,221,310,4	script#dv	BBQ Boy#cmd	86,{
 	mes "[Rinta]";
 	mes "I didn't mean to,";
 	mes "but I accidentally";
@@ -867,7 +868,7 @@ comodo,221,310,4	script	BBQ Boy#cmd	86,{
 	close;
 }
 
-comodo,218,309,4	script	BBQ Visitor#cmd	90,{
+comodo,218,309,4	script#dv	BBQ Visitor#cmd	90,{
 	mes "[Razy]";
 	mes "Those people over there";
 	mes "are friends of the Village";
@@ -886,7 +887,7 @@ comodo,218,309,4	script	BBQ Visitor#cmd	90,{
 	close;
 }
 
-comodo,216,310,4	script	BBQ Papa#cmd::CmdFamily	50,{
+comodo,216,310,4	script#dv	BBQ Papa#cmd::CmdFamily	50,{
 	mes "[BBQ Boy]";
 	mes "D-daddy! Is what those";
 	mes "people talking about true?";
@@ -933,11 +934,11 @@ comodo,216,310,4	script	BBQ Papa#cmd::CmdFamily	50,{
 	close;
 }
 
-comodo,215,307,4	duplicate(CmdFamily)	BBQ Mama#cmd	74
+comodo,215,307,4	duplicata(CmdFamily)	BBQ Mama#cmd	74
 
-comodo,213,310,4	duplicate(CmdFamily)	BBQ Boy#cmd2	706
+comodo,213,310,4	duplicata(CmdFamily)	BBQ Boy#cmd2	706,{}
 
-cmd_in02,32,140,4	script	Chief#cmd	49,{
+cmd_in02,32,140,4	script#dv	Chief#cmd	49,{
 	if (dmdswrd_Q > 4) {
 		mes "[Tausupa]";
 		mes "Maybe you can't tell because";
@@ -1088,7 +1089,7 @@ cmd_in02,32,140,4	script	Chief#cmd	49,{
 	close;
 }
 
-comodo,88,97,4	script	Toruna#cmd	109,{
+comodo,88,97,4	script#dv	Toruna#cmd	109,{
 	mes "[Toruna]";
 	mes "When I think about it,";
 	mes "there are many fascinating";
@@ -1223,7 +1224,7 @@ comodo,88,97,4	script	Toruna#cmd	109,{
 	close;
 }
 
-comodo,164,291,4	script	Rakusa#cmd	73,{
+comodo,164,291,4	script#dv	Rakusa#cmd	73,{
 	switch (dmdswrd_Q) {
 	case 6:
 		mes "[Rakusa]";
@@ -1272,7 +1273,7 @@ comodo,164,291,4	script	Rakusa#cmd	73,{
 	close;
 }
 
-comodo,169,284,4	script	Kichiri#cmd	98,{
+comodo,169,284,4	script#dv	Kichiri#cmd	98,{
 	switch (dmdswrd_Q) {
 	case 7:
 		mes "[Kichiri]";
@@ -1320,7 +1321,7 @@ comodo,169,284,4	script	Kichiri#cmd	98,{
 	close;
 }
 
-comodo,163,280,4	script	Magatu#cmd	55,{
+comodo,163,280,4	script#dv	Magatu#cmd	55,{
 	switch (dmdswrd_Q) {
 	case 8:
 		mes "[Magatu]";
@@ -1381,7 +1382,7 @@ comodo,163,280,4	script	Magatu#cmd	55,{
 	close;
 }
 
-cmd_in02,189,99,4	script	Manzi#cmd	85,{
+cmd_in02,189,99,4	script#dv	Manzi#cmd	85,{
 	switch (dmdswrd_Q) {
 	case 9:
 		mes "["+strcharinfo(0)+"]";
@@ -1468,7 +1469,7 @@ cmd_in02,189,99,4	script	Manzi#cmd	85,{
 	close;
 }
 
-comodo,187,153,4	script	Hullaris#cmd	701,{
+comodo,187,153,4	script#dv	Hullaris#cmd	701,{
 	switch (dmdswrd_Q) {
 	case 10:
 		mes "[Hullaris]";
@@ -1703,7 +1704,7 @@ comodo,187,153,4	script	Hullaris#cmd	701,{
 	close;
 }
 
-beach_dun3,30,220,4	script	Nigirboran#cmd	704,{
+beach_dun3,30,220,4	script#dv	Nigirboran#cmd	704,{
 	switch (dmdswrd_Q) {
 	case 11:
 		mes "[Nigirboran]";
@@ -1935,7 +1936,7 @@ beach_dun3,30,220,4	script	Nigirboran#cmd	704,{
 	close;
 }
 
-aldebaran,44,53,4	script	Meteurengut#cmd	64,{
+aldebaran,44,53,4	script#dv	Meteurengut#cmd	64,{
 	switch (dmdswrd_Q) {
 	case 14:
 		mes "[Meteurengut]";
@@ -2157,7 +2158,7 @@ aldebaran,44,53,4	script	Meteurengut#cmd	64,{
 	close;
 }
 
-morocc,201,30,4	script	Zaka#cmd	99,{
+morocc,201,30,4	script#dv	Zaka#cmd	99,{
 	switch (dmdswrd_Q) {
 	case 17:
 		mes "[Zaka]";
@@ -2371,7 +2372,7 @@ morocc,201,30,4	script	Zaka#cmd	99,{
 	close;
 }
 
-comodo,232,87,4	script	Won#cmd	106,{
+comodo,232,87,4	script#dv	Won#cmd	106,{
 	switch (dmdswrd_Q) {
 	case 22:
 		mes "[Won]";
