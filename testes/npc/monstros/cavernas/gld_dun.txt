@@ -62,7 +62,7 @@ gld2_pay,0,0,0,0	monster#re	Esqueleto General	1290,60,5000,0,0
 gld2_pay,0,0,0,0	monster#re	Am Mut	1301,25,5000,0,0
 gld2_pay,0,0,0,0	monster#re	Gajomart	1309,30,5000,0,0
 gld2_pay,0,0,0,0	boss_monster#re	General Daehyun	2253,1,28800000,600000,1
-gld2_pay,0,0,0,0	monster	Samurai Soheon	2254,1,1800000,600000,1,{}
+gld2_pay,0,0,0,0	monster#re	Samurai Soheon	2254,1,1800000,600000,1,{}
 
 //==================================================
 // [Old Times] gld_dun02 - Calabouço do Feudo de Luina
