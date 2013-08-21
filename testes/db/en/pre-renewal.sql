@@ -11865,9 +11865,9 @@ REPLACE INTO `item_db` VALUES(12964,'Vesper_Core04_Box','Vesper Core 04 Box',18,
 REPLACE INTO `item_db` VALUES(12965,'Emergency_Box1','Emergency Level 1 Scroll Box',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12968,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12966,'Emergency_Box2','Emergency Level 2 Scroll Box',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12969,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12967,'Emergency_Box3','Emergency Level 3 Scroll Box',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12970,1;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(12968,'Emergency_Scroll1','Emergency Level 1 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'recall "guild",7;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(12969,'Emergency_Scroll2','Emergency Level 2 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'recall "guild",7;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(12970,'Emergency_Scroll3','Emergency Level 3 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'recall "guild",7;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(12968,'Emergency_Scroll1','Emergency Level 1 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'unitskilluseid getcharid(3),"GD_ITEMEMERGENCYCALL",1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(12969,'Emergency_Scroll2','Emergency Level 2 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'unitskilluseid getcharid(3),"GD_ITEMEMERGENCYCALL",2;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(12970,'Emergency_Scroll3','Emergency Level 3 Scroll',2,2,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'unitskilluseid getcharid(3),"GD_ITEMEMERGENCYCALL",3;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12971,'Teleport_Box1','Teleport Scroll Box 1',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12977,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12972,'Teleport_Box2','Teleport Scroll Box 2',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12978,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12973,'Teleport_Box3','Teleport Scroll Box 3',18,20,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12979,10;',NULL,NULL);
@@ -13090,6 +13090,9 @@ REPLACE INTO `item_delay_db` VALUES(11522,1000);
 REPLACE INTO `item_delay_db` VALUES(11523,2000);
 REPLACE INTO `item_delay_db` VALUES(11524,3000);
 REPLACE INTO `item_delay_db` VALUES(11525,5000);
+REPLACE INTO `item_delay_db` VALUES(12968,300000);
+REPLACE INTO `item_delay_db` VALUES(12969,300000);
+REPLACE INTO `item_delay_db` VALUES(12970,300000);
 
 --
 -- Table structure for table `item_findingore_db`
@@ -27814,6 +27817,7 @@ REPLACE INTO `skill_cast_db` VALUES(10010,'0','0','0','180000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10011,'0','0','0','60000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10012,'10000','0','0','0','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10013,'5000','0','0','0','300000','0');
+REPLACE INTO `skill_cast_db` VALUES(10015,'0','0','0','0','300000','0','-1');
 
 --
 -- Table structure for table `skill_castnodex_db`
@@ -27849,10 +27853,6 @@ REPLACE INTO `skill_castnodex_db` VALUES(512,3,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(1014,1,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(2534,7,7);
 REPLACE INTO `skill_castnodex_db` VALUES(2536,7,7);
-REPLACE INTO `skill_castnodex_db` VALUES(10010,3,NULL);
-REPLACE INTO `skill_castnodex_db` VALUES(10011,3,NULL);
-REPLACE INTO `skill_castnodex_db` VALUES(10012,6,NULL);
-REPLACE INTO `skill_castnodex_db` VALUES(10013,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8214,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8215,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8217,7,NULL);
@@ -27864,6 +27864,10 @@ REPLACE INTO `skill_castnodex_db` VALUES(8234,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8235,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8238,7,NULL);
 REPLACE INTO `skill_castnodex_db` VALUES(8240,7,NULL);
+REPLACE INTO `skill_castnodex_db` VALUES(10010,3,NULL);
+REPLACE INTO `skill_castnodex_db` VALUES(10011,3,NULL);
+REPLACE INTO `skill_castnodex_db` VALUES(10012,6,NULL);
+REPLACE INTO `skill_castnodex_db` VALUES(10013,7,NULL);
 
 --
 -- Table structure for table `skill_changematerial_db`
@@ -28653,6 +28657,7 @@ REPLACE INTO `skill_db` VALUES(10011,'0',0,4,'0','0x3','15',3,'0','yes',0,'0x10'
 REPLACE INTO `skill_db` VALUES(10012,'0',0,4,'0','0x3','15',1,'0','yes',0,'0x10','0','none','0','GD_RESTORE','Restoration');
 REPLACE INTO `skill_db` VALUES(10013,'0',0,4,'0','0x3','0',1,'0','yes',0,'0x10','0','none','0','GD_EMERGENCYCALL','Urgent Call');
 REPLACE INTO `skill_db` VALUES(10014,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_DEVELOPMENT','Permanent Development');
+REPLACE INTO `skill_db` VALUES(10015,'0',0,4,'0','0x3','0',3,'0','yes',0,'0x10','0','none',0,'GD_ITEMEMERGENCYCALL','Item Emergency Call');
 
 --
 -- Table structure for table `skill_require_db`
@@ -29159,6 +29164,7 @@ REPLACE INTO `skill_require_db` VALUES (8237,'0','0','10','0','0','0','99',0,'0'
 REPLACE INTO `skill_require_db` VALUES (8238,'0','0','20:20:20:25:25:25:30:30:30:35','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (8239,'0','0','28:32:36:40:44:48:52:56:60:64','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (8240,'15','0','18:21:24:27:30:33:36:39:42:45','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (10015,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
 --
 -- Table structure for table `skill_unit_db`
