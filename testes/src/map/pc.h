@@ -708,7 +708,8 @@ enum equip_pos {
 	  ||  ( (class_) >= JOB_RUNE_KNIGHT    && (class_) <= JOB_MECHANIC_T2    ) \
 	  ||  ( (class_) >= JOB_BABY_RUNE      && (class_) <= JOB_BABY_MECHANIC2 ) \
 	  ||  ( (class_) >= JOB_SUPER_NOVICE_E && (class_) <= JOB_SUPER_BABY_E   ) \
-	  ||  ( (class_) >= JOB_KAGEROU        && (class_) <  JOB_MAX            ) \
+	  ||  ( (class_) >= JOB_KAGEROU        && (class_) <= JOB_OBORO          ) \
+	  ||  ( (class_) >= JOB_REBELLION      && (class_) <  JOB_MAX            ) \
 	)
 #define pcdb_checkid(class_) pcdb_checkid_sub((unsigned int)class_)
 
