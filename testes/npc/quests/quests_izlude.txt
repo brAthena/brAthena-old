@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Barsaglini]                        |
-//   | 1.2 Adicionada duplicata no OT [Neko]				  |
+//   | 1.2 Adicionada duplicata no OT [Neko]                  |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
