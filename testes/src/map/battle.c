@@ -1985,14 +1985,14 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					if(sd)
 						skillratio += 20 * pc_checkskill(sd,AS_POISONREACT);
 					break;
-				#if VERSION != 1
+#if VERSION != 1
 				case ASC_BREAKER:
 					skillratio += 100*skill_lv-100;
-				#else
+#else
 				case LK_SPIRALPIERCE:
 				case ML_SPIRALPIERCE:
 					skillratio += 50 * skill_lv;
-				#endif
+#endif
 					break;
 				case PA_SACRIFICE:
 					skillratio += 10 * skill_lv - 10;
@@ -3659,7 +3659,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = 1+rnd()%9999;
 		break;
 	case CR_ACIDDEMONSTRATION: 
-		#if VERSION == 1
+#if VERSION == 1
 		{// [malufett]
 			int matk=0, atk;
 			short tdef = status_get_total_def(target);
@@ -3691,14 +3691,14 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			}
 			md.damage -= totaldef;
 		}
-		#else
+#else
 		// updated the formula based on a Japanese formula found to be exact [Reddozen]
 		if(tstatus->vit+sstatus->int_) //crash fix
 			md.damage = (int)(7*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit+sstatus->int_)));
 		else
 			md.damage = 0;
 		if (tsd) md.damage>>=1;
-		#endif
+#endif
 		if (md.damage < 0 || md.damage > INT_MAX>>1)
 	  	//Overflow prevention, will anyone whine if I cap it to a few billion?
 		//Not capped to INT_MAX to give some room for further damage increase.
@@ -3728,10 +3728,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break ;
 	case ASC_BREAKER:
 		{
-		#if VERSION != 1
+#if VERSION != 1
 		md.damage = 500+rnd()%500 + 5*skill_lv * sstatus->int_;
 		nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
-		#else
+#else
 		int ratio = 300 + 50 * skill_lv;
 		int matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, mflag).damage;
 		short totaldef = status_get_total_def(target) + status_get_total_mdef(target);
@@ -3782,11 +3782,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	 **/
 	case NC_SELFDESTRUCTION:
 		{
-			#if VERSION == 1
+#if VERSION == 1
 			short totaldef = status_get_total_def(target);
-			#else
+#else
 			short totaldef = tstatus->def2 + (short)status_get_def(target);
-			#endif
+#endif
 			md.damage = ((sd?pc_checkskill(sd,NC_MAINFRAME):10) + 8 ) * ( skill_lv + 1 ) * ( status_get_sp(src) + sstatus->vit);
 			RE_LVL_MDMOD(100);
 			md.damage += status_get_hp(src) - totaldef;
@@ -3805,11 +3805,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case KO_HAPPOKUNAI:
 		{
 			struct Damage wd = battle_calc_weapon_attack(src,target,skill_id,skill_lv,mflag);
-			#if VERSION == 1
+#if VERSION == 1
 			short totaldef = status_get_total_def(target);
-			#else
+#else
 			short totaldef = tstatus->def2 + (short)status_get_def(target);
-			#endif
+#endif
 			md.damage = 3 * wd.damage * (5 + skill_lv) / 5;
 			md.damage -= totaldef;
 		}
@@ -3833,11 +3833,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		else {
 			short
 				flee = tstatus->flee,
-				#if VERSION == 1
+#if VERSION == 1
 				hitrate = 0; //Default hitrate
-				#else
+#else
 				hitrate = 80; //Default hitrate
-				#endif
+#endif
 
 			if(battle_config.agi_penalty_type && battle_config.agi_penalty_target&target->type) {
 				unsigned char attacker_count; //256 max targets should be a sane max
@@ -3853,10 +3853,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			}
 
 			hitrate+= sstatus->hit - flee;
-			#if VERSION == 1
+#if VERSION == 1
 			if( sd ) //in Renewal hit bonus from Vultures Eye is not anymore shown in status window
 				hitrate += pc_checkskill(sd,AC_VULTURE);
-			#endif
+#endif
 			if( skill_id == KO_MUCHANAGE )
 				hitrate = (int)((10 - ((float)1 / (status_get_dex(src) + status_get_luk(src))) * 500) * ((float)skill_lv / 2 + 5));
 			
@@ -4319,10 +4319,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 
 		if(sd && flag.arrow)
 			hitrate += sd->bonus.arrow_hit;
-		#if VERSION == 1
+#if VERSION == 1
 		if(sd)   //in Renewal hit bonus from Vultures Eye is not anymore shown in status window
 			hitrate += pc_checkskill(sd,AC_VULTURE);
-		#endif
+#endif
 		if(skill_id)
 			switch(skill_id) {
 					//Hit skill modifiers
@@ -4382,10 +4382,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		}
 
 		hitrate = cap_value(hitrate, battle_config.min_hitrate, battle_config.max_hitrate);
-		#if VERSION == 1
+#if VERSION == 1
 		if(!sd)
 			hitrate = cap_value(hitrate, 5, 95);
-		#endif
+#endif
 		if(rnd()%100 >= hitrate)
 			wd.dmg_lv = ATK_FLEE;
 		else
@@ -4416,15 +4416,15 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			case PA_SACRIFICE:
 				wd.damage = sstatus->max_hp* 9/100;
 				wd.damage2 = 0;
-			#if VERSION == 1
+#if VERSION == 1
 				wd.damage = battle_calc_elefix(src, target, skill_id, skill_lv, wd.damage, nk, n_ele, s_ele, s_ele_, false, wd.flag); // temporary [malufett]
-			#endif
+#endif
 				break;
 			case NJ_ISSEN: // [malufett]
-			#if VERSION != 1
+#if VERSION != 1
 				wd.damage = 40*sstatus->str +skill_lv*(sstatus->hp/10 + 35);
 				wd.damage2 = 0;
-			#else
+#else
 				{
 					short totaldef = status_get_total_def(target);
 					i = 0;
@@ -4458,7 +4458,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				}
 #endif
 				break;	
-		#if VERSION != 1
+#if VERSION != 1
 			case LK_SPIRALPIERCE:
 			case ML_SPIRALPIERCE:
 				if(sd) {
@@ -4467,7 +4467,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight*80/100; //80% of weight
+						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
 				} else
 					wd.damage = sstatus->rhw.atk2*8/10; //Else use Atk2
 
@@ -4485,7 +4485,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						break;
 				}
 				break;
-		#endif
+#endif
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
 			case LG_SHIELDPRESS:
@@ -4508,15 +4508,15 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				}
 			default: {
 					i = (flag.cri
-				#if VERSION == 1
+#if VERSION == 1
 					|| (sc && sc->data[SC_MAXIMIZEPOWER])
-				#endif
+#endif
 					?1:0)|
 					(flag.arrow?2:0)|
-				#if VERSION != 1
+#if VERSION != 1
 					(skill_id == HW_MAGICCRASHER?4:0)|
 					(skill_id == MO_EXTREMITYFIST?8:0)|
-				#endif
+#endif
 					(!skill_id && sc && sc->data[SC_HLIF_CHANGE]?4:0)|
 					(sc && sc->data[SC_WEAPONPERFECT]?8:0);
 				if (flag.arrow && sd)
@@ -4530,18 +4530,18 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					default:
 						i |= 16; // for ex. shuriken must not be influenced by DEX
 				}
-				#if VERSION == 1
+#if VERSION == 1
 				GET_NORMAL_ATTACK(i);
 				wd.damage = battle_calc_masteryfix(src, target, skill_id, skill_lv, wd.damage, wd.div_, 0, flag.weapon);
 				if (flag.lh){
 					GET_NORMAL_ATTACK2(i);
 					wd.damage2 = battle_calc_masteryfix(src, target, skill_id, skill_lv, wd.damage2, wd.div_, 1, flag.weapon);
 				}
-				#else
+#else
 				wd.damage = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, sd, i);
 				if (flag.lh)
 					wd.damage2 = battle_calc_base_damage(sstatus, &sstatus->lhw, sc, tstatus->size, sd, i);
-				#endif
+#endif
 				if (nk&NK_SPLASHSPLIT){ // Divide ATK among targets
 					if(wflag>0)
 						wd.damage/= wflag;
@@ -4554,7 +4554,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						if(sd->bonus.atk_rate)
 							ATK_ADDRATE(sd->bonus.atk_rate);
 
-					#if VERSION != 1
+#if VERSION != 1
 						if(flag.cri && sd->bonus.crit_atk_rate)
 							ATK_ADDRATE(sd->bonus.crit_atk_rate);
 
@@ -4562,7 +4562,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 							if((i = party_foreachsamemap(party_sub_count, sd, 0)) > 1)   // exclude the player himself [Inkfish]
 								ATK_ADDRATE(2*skill*i);
 						}
-					#endif
+#endif
 					}
 					break;
 				}   //End default case
@@ -4578,12 +4578,12 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				skillratio += sc->data[SC_OVERTHRUSTMAX]->val2;
 			if(sc->data[SC_BERSERK] || sc->data[SC_SATURDAY_NIGHT_FEVER])
 				skillratio += 100;
-			#if VERSION == 1
+#if VERSION == 1
 			if(sc->data[SC_TRUESIGHT])
 				skillratio += 2*sc->data[SC_TRUESIGHT]->val1;
 			if( sc->data[SC_LKCONCENTRATION] )
 				skillratio += sc->data[SC_LKCONCENTRATION]->val2;
-			#endif
+#endif
 			if( sc->data[SC_UNLIMIT] && wd.flag&BF_LONG )
 				ATK_ADD( 50 * sc->data[SC_UNLIMIT]->val1 );
 		}
@@ -4599,14 +4599,14 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		else
 		{
 
-			#if VERSION == 1
+	#if VERSION == 1
 			if(sd && skill_id == NJ_KUNAI) {
 				flag.tdef = 1;
 				ATK_ADD(sd->bonus.arrow_atk);
 			}
-			#endif
+	#endif
 			switch(skill_id){
-			#if VERSION == 1
+	#if VERSION == 1
 				case NJ_TATAMIGAESHI:
 						ATK_RATE(200);
 				case LK_SPIRALPIERCE:
@@ -4631,22 +4631,22 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						}
 						wd.damage = battle_calc_masteryfix(src, target, skill_id, skill_lv, wd.damage, wd.div_, 0, flag.weapon);
 					}
-			#endif
+	#endif
 				default:
 					ATK_RATE(battle_calc_skillratio(BF_WEAPON, src, target, skill_id, skill_lv, skillratio, wflag));
 			}
 
 			//Constant/misc additions from skills
 			switch (skill_id) {
-				#if VERSION == 1
+#if VERSION == 1
 				case HW_MAGICCRASHER:
 					ATK_ADD(battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag).damage / 5);
 					break;
-				#else
+#else
 				case MO_EXTREMITYFIST:
 					ATK_ADD(250 + 150*skill_lv);
 					break;
-				#endif
+#endif
 				case TK_DOWNKICK:
 				case TK_STORMKICK:
 				case TK_TURNKICK:
@@ -4657,16 +4657,16 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						ATK_ADD(10*pc_checkskill(sd, TK_RUN));
 					break;
 				case GS_MAGICALBULLET:
-					#if VERSION != 1
+#if VERSION != 1
 					ATK_ADD( status_get_matk(src, 2) );
-					#else
+#else
 					ATK_ADD( battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag).damage );
 					flag.tdef = 1;
-					#endif
-				#if VERSION != 1
+#endif
+#if VERSION != 1
 				case NJ_SYURIKEN:
 					ATK_ADD(4*skill_lv);
-				#endif
+#endif
 					break;
 				case GC_COUNTERSLASH:
 					ATK_ADD(status_get_agi(src) * 2 + (sd?sd->status.job_level:0) * 4);
@@ -4696,16 +4696,16 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					break;
 			}
 		}
-		#if VERSION != 1
+#if VERSION != 1
 		//Div fix.
 		damage_div_fix(wd.damage, wd.div_);
-		#endif
+#endif
 		//The following are applied on top of current damage and are stackable.
 		if(sc) {
-		#if VERSION != 1
+#if VERSION != 1
 			if(sc->data[SC_TRUESIGHT])
 				ATK_ADDRATE(2*sc->data[SC_TRUESIGHT]->val1);
-		#endif
+#endif
 			if(sc->data[SC_GLOOMYDAY_SK] &&
 			   (skill_id == LK_SPIRALPIERCE || skill_id == KN_BRANDISHSPEAR ||
 			    skill_id == CR_SHIELDBOOMERANG || skill_id == PA_SHIELDCHAIN ||
@@ -4713,7 +4713,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				  skill_id == CR_SHIELDCHARGE))
 				ATK_ADDRATE(sc->data[SC_GLOOMYDAY_SK]->val2);
 
-		#ifndef RENEWAL_EDP
+#ifndef RENEWAL_EDP
 			if(sc->data[SC_EDP]) {
 				switch(skill_id){
 					case AS_SPLASHER:
@@ -4725,7 +4725,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						ATK_ADDRATE(sc->data[SC_EDP]->val3);
 				}
 			}
-		#endif
+#endif
 			if(sc->data[SC_STYLE_CHANGE]) {
 				TBL_HOM *hd = BL_CAST(BL_HOM,src);
 				if(hd) ATK_ADD(hd->homunculus.spiritball * 3);
@@ -4754,11 +4754,11 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 
 		if( (i = battle_adjust_skill_damage(src->m,skill_id)) )
 			ATK_RATE(i);
-	#if VERSION == 1
+#if VERSION == 1
 		if(skill_id && (wd.damage+wd.damage2)) {
 			RE_SKILL_REDUCTION();
 		}
-	#endif
+#endif
 		if(sd) {
 			if(skill_id && (i = pc_skillatk_bonus(sd, skill_id)))
 				ATK_ADDRATE(i);
@@ -4811,35 +4811,35 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		if(!flag.idef || !flag.idef2) { //Defense reduction
 			wd.damage = battle_calc_defense(BF_WEAPON, src, target, skill_id, skill_lv, wd.damage,
 				(flag.idef?1:0)|(flag.pdef?2:0)
-				#if VERSION == 1
+#if VERSION == 1
 				|(flag.tdef?4:0)
-				#endif
+#endif
 				, flag.pdef);
 			if( wd.damage2 )
 				wd.damage2 = battle_calc_defense(BF_WEAPON, src, target, skill_id, skill_lv, wd.damage2,
 					(flag.idef2?1:0)|(flag.pdef2?2:0)
-		#if VERSION == 1
+#if VERSION == 1
 				|(flag.tdef?4:0)
-		#endif
+#endif
 				, flag.pdef2);
 		}
 
-		#if VERSION == 1
+#if VERSION == 1
 		//Div fix.
 		damage_div_fix(wd.damage, wd.div_);
-		#endif
+#endif
 		//Post skill/vit reduction damage increases
 		if(sc) {
 			//SC skill damages
 			if(sc->data[SC_AURABLADE]
-			#if VERSION != 1
+#if VERSION != 1
 			   && skill_id != LK_SPIRALPIERCE && skill_id != ML_SPIRALPIERCE
-			#endif
+#endif
 			  ) {
 				int lv = sc->data[SC_AURABLADE]->val1;
-				#if VERSION == 1
+#if VERSION == 1
 				lv *= ((skill_id == LK_SPIRALPIERCE || skill_id == ML_SPIRALPIERCE)?wd.div_:1); // +100 per hit in lv 5
-				#endif
+#endif
 				ATK_ADD(20*lv);
 			}
 		}
@@ -5847,7 +5847,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 						case SR_RAMPAGEBLASTER:
 						case NC_COLDSLOWER:
 						case NC_SELFDESTRUCTION:
-						#if VERSION == 1
+#if VERSION == 1
 						case KN_BOWLINGBASH:
 						case KN_SPEARSTAB:
 						case LK_SPIRALPIERCE:
@@ -5863,7 +5863,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 						case HT_CLAYMORETRAP:
 						case RA_ICEBOUNDTRAP:
 						case RA_FIRINGTRAP:
-						#endif
+#endif
 							state |= BCT_ENEMY;
 							strip_enemy = 0;
 							break;
