@@ -3649,8 +3649,8 @@ static bool mob_parse_dbrow(char **str)
 	status->rhw.atk = mob_parse_dbrow_cap_value(class_,UINT16_MIN,UINT16_MAX,atoi(str[10]));
 	status->rhw.atk2 = mob_parse_dbrow_cap_value(class_,UINT16_MIN,UINT16_MAX,atoi(str[11]));
 
-	status->def  = mob_parse_dbrow_cap_value(class_,DEFTYPE_MIN,DEFTYPE_MAX+1,atoi(str[12]));
-	status->mdef = mob_parse_dbrow_cap_value(class_,DEFTYPE_MIN,DEFTYPE_MAX+1,atoi(str[13]));
+	status->def  = mob_parse_dbrow_cap_value(class_,DEFTYPE_MIN,DEFTYPE_MAX,atoi(str[12]));
+	status->mdef = mob_parse_dbrow_cap_value(class_,DEFTYPE_MIN,DEFTYPE_MAX,atoi(str[13]));
 
 	status->str  = mob_parse_dbrow_cap_value(class_,UINT16_MIN,UINT16_MAX,atoi(str[14]));
 	status->agi  = mob_parse_dbrow_cap_value(class_,UINT16_MIN,UINT16_MAX,atoi(str[15]));
