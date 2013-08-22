@@ -27817,7 +27817,7 @@ REPLACE INTO `skill_cast_db` VALUES(10010,'0','0','0','180000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10011,'0','0','0','60000','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10012,'10000','0','0','0','300000','0');
 REPLACE INTO `skill_cast_db` VALUES(10013,'5000','0','0','0','300000','0');
-REPLACE INTO `skill_cast_db` VALUES(10015,'0','0','0','0','300000','0','-1');
+REPLACE INTO `skill_cast_db` VALUES(10015,'0','0','0','0','300000','0');
 
 --
 -- Table structure for table `skill_castnodex_db`
