@@ -17,29 +17,11 @@
 #ifndef _BATTLE_H_
 #define _BATTLE_H_
 
-// state of a single attack attempt; used in flee/def penalty calculations when mobbed
-typedef enum damage_lv {
-    ATK_NONE,    // not an attack
-    ATK_LUCKY,   // attack was lucky-dodged
-    ATK_FLEE,    // attack was dodged
-    ATK_MISS,    // attack missed because of element/race modifier.
-    ATK_BLOCK,   // attack was blocked by some skills.
-    ATK_DEF      // attack connected
-} damage_lv;
+#include "../common/cbasetypes.h"
 
-// dammage structure
-struct Damage {
-	int damage,damage2; //right, left dmg
-	int type,div_; //chk clif_damage for type @TODO add an enum ? ;  nb of hit
-	int amotion,dmotion;
-	int blewcount; //nb of knockback
-	int flag; //chk BF_* flag, (enum below)
-	enum damage_lv dmg_lv;  //ATK_LUCKY,ATK_FLEE,ATK_DEF
-};
-
-// (Used in read pc.c,) attribute table (battle_attr_fix)
-extern int attr_fix_table[4][10][10];
-
+/**
+ * Declarations
+ **/
 struct map_session_data;
 struct mob_data;
 struct block_list;
@@ -47,25 +29,23 @@ struct weapon_atk;
 struct status_change;
 struct status_data;
 
-// Damage Calculation
+/**
+ * Defines
+ **/
+#define MIN_HAIR_STYLE battle_config.min_hair_style
+#define MAX_HAIR_STYLE battle_config.max_hair_style
+#define MIN_HAIR_COLOR battle_config.min_hair_color
+#define MAX_HAIR_COLOR battle_config.max_hair_color
+#define MIN_CLOTH_COLOR battle_config.min_cloth_color
+#define MAX_CLOTH_COLOR battle_config.max_cloth_color
 
-struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,uint16 skill_id,uint16 skill_lv,int count);
-struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int wflag);
+#define	is_boss(bl)	(status_get_mode(bl)&MD_BOSS)	// Can refine later [Aru]
 
-int battle_calc_return_damage(struct block_list *bl, struct block_list *src, int *, int flag, uint16 skill_id, int*);
+/**
+ * Enumerations
+ **/
 
-void battle_drain(struct map_session_data *sd, struct block_list *tbl, int rdamage, int ldamage, int race, int boss);
-
-int battle_attr_ratio(int atk_elem,int def_type, int def_lv);
-int battle_attr_fix(struct block_list *src, struct block_list *target, int damage,int atk_elem,int def_type, int def_lv);
-int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_list *target, int nk, int s_ele, int s_ele_, int damage, int cflag, int wflag);
-
-// Final calculation Damage
-int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,uint16 skill_id,uint16 skill_lv);
-int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
-int battle_calc_bg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
-
-enum {  // ?Flag of the final calculation
+enum {  // Flag of the final calculation
     BF_WEAPON   = 0x0001,
     BF_MAGIC    = 0x0002,
     BF_MISC     = 0x0004,
@@ -78,71 +58,47 @@ enum {  // ?Flag of the final calculation
     BF_SKILLMASK= 0x0f00,
 };
 
-int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects);
+// state of a single attack attempt; used in flee/def penalty calculations when mobbed
+typedef enum damage_lv {
+    ATK_NONE,    // not an attack
+    ATK_LUCKY,   // attack was lucky-dodged
+    ATK_FLEE,    // attack was dodged
+    ATK_MISS,    // attack missed because of element/race modifier.
+    ATK_BLOCK,   // attack was blocked by some skills.
+    ATK_DEF      // attack connected
+} damage_lv;
 
-// Summary normal attack treatment (basic attack)
-enum damage_lv battle_weapon_attack(struct block_list *bl,struct block_list *target,unsigned int tick,int flag);
+enum e_battle_check_target { //New definitions [Skotlex]
+    BCT_NOONE       =   0x000000,
+    BCT_SELF        =   0x010000,
+    BCT_ENEMY       =   0x020000,
+    BCT_PARTY       =   0x040000,
+    BCT_GUILDALLY   =   0x080000,	// Only allies, NOT guildmates
+    BCT_NEUTRAL     =   0x100000,
+    BCT_SAMEGUILD   =   0x200000,   // No Guild Allies
 
-// Accessors
-struct block_list *battle_get_master(struct block_list *src);
-struct block_list *battle_gettargeted(struct block_list *target);
-struct block_list *battle_getenemy(struct block_list *target, int type, int range);
-int battle_gettarget(struct block_list *bl);
-int battle_getcurrentskill(struct block_list *bl);
+    BCT_GUILD       =   0x280000,	// Guild AND allies (BCT_SAMEGUILD|BCT_GUILDALLY)
 
-enum e_battle_check_target {
-    //New definitions [Skotlex]
-   BCT_NOONE		=	0x000000,
-   BCT_SELF		=	0x010000,
-   BCT_ENEMY		=	0x020000,
-   BCT_PARTY		=	0x040000,
-   BCT_GUILD		=	0x080000,
-   BCT_NEUTRAL		=	0x100000,
-   BCT_SAMEGUILD	=	0x200000,	// No Guild Allies
+    BCT_NOGUILD     =   0x170000,	// This should be (~BCT_GUILD&BCT_ALL)
+    BCT_NOPARTY     =   0x3b0000,	// This should be (~BCT_PARTY&BCT_ALL)
+    BCT_NOENEMY     =   0x3d0000,	// This should be (~BCT_ENEMY&BCT_ALL)
 
-   BCT_NOGUILD		=	0x170000,	// This should be (~BCT_GUILD&BCT_ALL)
-   BCT_NOPARTY		=	0x1b0000,	// This should be (~BCT_PARTY&BCT_ALL)
-   BCT_NOENEMY		=	0x1d0000,	// This should be (~BCT_ENEMY&BCT_ALL)
-
-   BCT_ALL			=	0x1f0000,	// Sum of BCT_NOONE to BCT_NEUTRAL
+    BCT_ALL         =   0x3f0000,	// Sum of BCT_NOONE to BCT_SAMEGUILD
 };
 
-#define is_boss(bl) (status_get_mode(bl)&MD_BOSS)   // Can refine later [Aru]
+/**
+ * Structures
+ **/
 
-int battle_check_undead(int race,int element);
-int battle_check_target(struct block_list *src, struct block_list *target,int flag);
-bool battle_check_range(struct block_list *src,struct block_list *bl,int range);
-
-/* applies element modifiers */  
-int battle_calc_elefix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int nk, int n_ele, int s_ele, int s_ele_, bool left, int flag);
-  /* applies mastery modifiers */  
-int battle_calc_masteryfix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int div, bool left, bool weapon);
-  /* applies skill modifiers */  
-int battle_calc_skillratio(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int skillratio, int flag);
-  /* applies size modifiers */
-int battle_calc_sizefix(struct map_session_data *sd, int damage, int type, int size,  bool ignore);
-  /* get weapon damage */
-#if VERSION == 1
-int battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2);
-#endif
-  /* applies defense reductions */
-int battle_calc_defense(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int damage, int flag, int pdef);
-
-#if VERSION == 1
-	int battle_calc_base_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
-#else
-	int battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
-#endif
-
-void battle_consume_ammo(struct map_session_data *sd, int skill, int lv);
-// Settings
-
-#define MIN_HAIR_STYLE battle_config.min_hair_style
-#define MAX_HAIR_STYLE battle_config.max_hair_style
-#define MIN_HAIR_COLOR battle_config.min_hair_color
-#define MAX_HAIR_COLOR battle_config.max_hair_color
-#define MIN_CLOTH_COLOR battle_config.min_cloth_color
-#define MAX_CLOTH_COLOR battle_config.max_cloth_color
+// dammage structure
+struct Damage {
+	int64 damage,damage2; //right, left dmg
+	int type,div_; //chk clif_damage for type @TODO add an enum ? ;  nb of hit
+	int amotion,dmotion;
+	int blewcount; //nb of knockback
+	int flag; //chk BF_* flag, (enum below)
+	enum damage_lv dmg_lv;  //ATK_LUCKY,ATK_FLEE,ATK_DEF
+};
 
 extern struct Battle_Config {
 	int warp_point_debug;
@@ -421,7 +377,6 @@ extern struct Battle_Config {
 	int mob_npc_event_type; //Determines on who the npc_event is executed. [Skotlex]
 
 	int character_size; // if riders have size=2, and baby class riders size=1 [Lupus]
-	int mob_max_skilllvl; // Max possible skill level [Lupus]
 	int rare_drop_announce; // chance <= to show rare drops global announces
 
 	int retaliate_to_master;    //Whether when a mob is attacked by another mob, it will retaliate versus the mob or the mob's master. [Skotlex]
@@ -434,7 +389,7 @@ extern struct Battle_Config {
 	int duel_only_on_same_map; // [Toms]
 
 	int skip_teleport_lv1_menu; // possibility to disable (skip) Teleport Lv1 menu, that have only two lines `Random` and `Cancel` [LuzZza]
-
+	int mob_max_skilllvl; // Max possible skill level [Lupus]
 	int allow_skill_without_day; // [Komurka]
 	int allow_es_magic_pc; // [Skotlex]
 	int skill_wall_check; // [Skotlex]
@@ -514,12 +469,96 @@ extern struct Battle_Config {
 	int max_walk_path;
 	int item_enabled_npc;
 	int item_onfloor; // Whether to drop an undroppable item on the map or destroy it if inventory is full.
+	int packet_obfuscation;
 	int bowling_bash_area;
 	int gm_ignore_warpable_area;
-	int packet_obfuscation;
+
 	int client_accept_chatdori; // [Ai4rei/Mirei]
 
 } battle_config;
+
+
+/**
+ * Vars
+ **/
+// (Used in read pc.c,) attribute table (battle_attr_fix)
+extern int attr_fix_table[4][10][10];
+
+
+// Damage Calculation
+
+struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,uint16 skill_id,uint16 skill_lv,int count);
+struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int wflag);
+struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int mflag);
+struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int mflag);
+
+int64 battle_calc_return_damage(struct block_list *bl, struct block_list *src, int64 *dmg, int flag, uint16 skill_id, int *delay);
+
+void battle_drain(struct map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int race, int boss);
+
+int battle_attr_ratio(int atk_elem,int def_type, int def_lv);
+int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 damage,int atk_elem,int def_type, int def_lv);
+int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_list *target, int nk, int s_ele, int s_ele_, int64 damage, int cflag, int wflag);
+
+
+int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,int64 dmg,int type);
+int battle_calc_drain(int64 damage, int rate, int per);
+int battle_range_type(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv);
+int battle_adjust_skill_damage(int m, unsigned short skill_id);
+int battle_blewcount_bonus(struct map_session_data *sd, uint16 skill_id);
+int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data);
+int battle_getenemyarea_sub(struct block_list *bl, va_list ap);
+int battle_getenemy_sub(struct block_list *bl, va_list ap);
+int battle_gettargeted_sub(struct block_list *bl, va_list ap);
+
+
+// Final calculation Damage
+int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int64 damage,uint16 skill_id,uint16 skill_lv);
+int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
+int64 battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int64 damage, int div_, uint16 skill_id, uint16 skill_lv, int flag);
+
+int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects);
+
+// Summary normal attack treatment (basic attack)
+enum damage_lv battle_weapon_attack(struct block_list *bl,struct block_list *target,unsigned int tick,int flag);
+
+// Accessors
+struct block_list *battle_get_master(struct block_list *src);
+struct block_list *battle_gettargeted(struct block_list *target);
+struct block_list *battle_getenemy(struct block_list *target, int type, int range);
+int battle_gettarget(struct block_list *bl);
+int battle_getcurrentskill(struct block_list *bl);
+
+
+int battle_check_undead(int race,int element);
+int battle_check_target(struct block_list *src, struct block_list *target,int flag);
+bool battle_check_range(struct block_list *src,struct block_list *bl,int range);
+
+/* applies element modifiers */  
+int64 battle_calc_elefix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 damage, int nk, int n_ele, int s_ele, int s_ele_, bool left, int flag);
+  /* applies mastery modifiers */  
+int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 damage, int div, bool left, bool weapon);
+  /* applies skill modifiers */  
+int battle_calc_skillratio(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int skillratio, int flag);
+  /* applies size modifiers */
+int64 battle_calc_sizefix(struct map_session_data *sd, int64 damage, int type, int size,  bool ignore);
+  /* get weapon damage */
+#if VERSION == 1
+int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2);
+#endif
+  /* applies defense reductions */
+int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 damage, int flag, int pdef);
+
+	int64 battle_calc_base_damage
+#if VERSION == 1
+	(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
+#else
+	(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
+#endif
+
+void battle_consume_ammo(struct map_session_data *sd, int skill, int lv);
+// Settings
+
 
 void do_init_battle(void);
 void do_final_battle(void);

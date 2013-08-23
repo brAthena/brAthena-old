@@ -379,7 +379,7 @@ void clif_dropitem(struct map_session_data *sd,int n,int amount);   //self
 void clif_delitem(struct map_session_data *sd,int n,int amount, short reason); //self
 void clif_updatestatus(struct map_session_data *sd,int type);   //self
 void clif_changestatus(struct map_session_data *sd,int type,int val);   //area
-int clif_damage(struct block_list *src, struct block_list *dst, unsigned int tick, int sdelay, int ddelay, int damage, int div, int type, int damage2); // area
+int clif_damage(struct block_list *src, struct block_list *dst, unsigned int tick, int sdelay, int ddelay, int64 in_damage, int div, int type, int64 in_damage2);
 void clif_takeitem(struct block_list *src, struct block_list *dst);
 void clif_sitting(struct block_list *bl);
 void clif_standing(struct block_list *bl);
@@ -461,7 +461,7 @@ void clif_skillcasting(struct block_list *bl, int src_id, int dst_id, int dst_x,
 void clif_skillcastcancel(struct block_list *bl);
 void clif_skill_fail(struct map_session_data *sd,uint16 skill_id,enum useskill_fail_cause cause,int btype);
 void clif_skill_cooldown(struct map_session_data *sd, uint16 skill_id, unsigned int tick);
-int clif_skill_damage(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int damage,int div,uint16 skill_id,uint16 skill_lv,int type);
+int clif_skill_damage(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int64 in_damage,int div,uint16 skill_id,uint16 skill_lv,int type);
 //int clif_skill_damage2(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int damage,int div,uint16 skill_id,uint16 skill_lv,int type);
 int clif_skill_nodamage(struct block_list *src,struct block_list *dst,uint16 skill_id,int heal,int fail);
 void clif_skill_poseffect(struct block_list *src,uint16 skill_id,int val,int x,int y,int tick);
@@ -789,6 +789,8 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 void clif_favorite_item(struct map_session_data *sd, unsigned short index);
 void clif_move2(struct block_list *bl, struct view_data *vd, struct unit_data *ud);
 void clif_scriptclear(struct map_session_data *sd, int npcid);
+
+int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int damage, int div_);
 
 /**
  * Color Table

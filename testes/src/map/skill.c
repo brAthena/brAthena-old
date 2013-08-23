@@ -2445,7 +2445,8 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 	struct status_data *sstatus, *tstatus;
 	struct status_change *sc;
 	struct map_session_data *sd, *tsd;
-	int type,damage;
+	int type;
+	int64 damage;
 	int8 rmdamage=0;//magic reflected
 	bool additional_effects = true;
 
@@ -3079,7 +3080,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 
 	map_freeblock_unlock();
 
-	return damage;
+	return (int)cap_value(damage,INT_MIN,INT_MAX);
 }
 
 /*==========================================
@@ -12460,7 +12461,7 @@ static int skill_unit_effect(struct block_list *bl, va_list ap)
 /*==========================================
  *
  *------------------------------------------*/
-int skill_unit_ondamaged(struct skill_unit *src, struct block_list *bl, int damage, unsigned int tick)
+int skill_unit_ondamaged(struct skill_unit *src, struct block_list *bl, int64 damage, unsigned int tick)
 {
 	struct skill_unit_group *sg;
 
@@ -12481,13 +12482,13 @@ int skill_unit_ondamaged(struct skill_unit *src, struct block_list *bl, int dama
 		case UNT_ICEWALL:
 		case UNT_REVERBERATION:
 		case UNT_WALLOFTHORN:
-			src->val1-=damage;
+			src->val1 -= (int)cap_value(damage,INT_MIN,INT_MAX);
 			break;
 		default:
 			damage = 0;
 			break;
 	}
-	return damage;
+	return (int)cap_value(damage,INT_MIN,INT_MAX);
 }
 
 /*==========================================
