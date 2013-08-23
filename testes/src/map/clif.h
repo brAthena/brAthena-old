@@ -1186,8 +1186,7 @@ struct clif_interface {
 	void (*pReqworldinfo) (int fd,struct map_session_data *sd);
 	void (*pClientVersion) (int fd,struct map_session_data *sd);
 	void (*pBlockingPlaycancel) (int fd,struct map_session_data *sd);
-	/* bgqueue */
-/* Atualização de sistema de pesquisa do grupo */
+	/* Atualização de sistema de pesquisa do grupo */
 #ifdef PARTY_RECRUIT
 	void (*pPartyBookingAddFilter) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingSubFilter) (int fd, struct map_session_data *sd);
