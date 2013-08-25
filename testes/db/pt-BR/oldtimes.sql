@@ -5041,7 +5041,7 @@ REPLACE INTO `item_db` VALUES(1258,'Katar_Of_Raging_Blaze','Katar da Chama Impet
 REPLACE INTO `item_db` VALUES(1259,'Katar_Of_Piercing_Wind','Katar do Vento Perfurante','4',45000,NULL,'1200',105,NULL,1,0,0x00001000,7,2,34,3,55,1,16,'bonus bAtkEle,Ele_Wind; bonus2 bAddEff,Eff_Sleep,500;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1260,'Ghoul_Leg','Osso Afiado de Carniçal','4',52500,NULL,'1700',150,NULL,1,0,0x00001000,7,2,34,3,65,1,16,'bonus bAtkEle,Ele_Undead;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1261,'Infiltrator','Infiltrador','4',57000,NULL,'1500',140,NULL,1,0,0x00001000,7,2,34,4,75,1,16,'bonus2 bAddRace,RC_DemiHuman,50; bonus bDef,3; bonus bFlee,5; bonus bFlee2,2;',NULL,NULL);
-EPLACE INTO `item_db` VALUES(1301,'Axe','Machado','4',500,NULL,'800',38,NULL,1,3,0x000654E3,7,2,2,1,3,1,6,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES(1301,'Axe','Machado','4',500,NULL,'800',38,NULL,1,3,0x000654E3,7,2,2,1,3,1,6,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1302,'Axe_','Machado','4',500,NULL,'800',38,NULL,1,4,0x000654E3,7,2,2,1,3,1,6,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1303,'Axe__','Machado','4',500,NULL,'800',38,NULL,1,0,0x000654E3,7,2,2,1,3,1,6,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1304,'Orcish_Axe','Machado dos Orcs','4',20,NULL,'1500',75,NULL,1,0,0x000654E3,7,2,2,3,3,1,6,NULL,NULL,NULL);

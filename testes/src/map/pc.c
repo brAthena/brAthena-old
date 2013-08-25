@@ -9889,7 +9889,7 @@ int pc_readdb(void)
 	memset(max_level,0,sizeof(max_level));
   
 	#if VERSION == -1
-	sprintf(line, "%s/exp_pre-re.txt", db_path);
+	sprintf(line, "%s/exp_ot.txt", db_path);
 	#else
 	sprintf(line, "%s/exp"DBPATH"", db_path);
 	#endif
