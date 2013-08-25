@@ -165,8 +165,8 @@ rachel,121,126,4	duplicate(Dolangmal)	Dolangmal#7	553
 lighthalzen,254,83,5	duplicate(Dolangmal)	Dolangmal#8	553
 mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 
-izlude,182,218,4	script	Odgnalam#Izlude	554,{
-	mes "Recebendo o sol quente de "+strnpcinfo(2)+".";
+-	script	::Odgnalam	-1,{
+	mes "Recebendo o sol quente de "+((strnpcinfo(2) == "albe")?"Alberta":"Izlude")+".";
 	next;
 	if(select("Deixe ele durmir:Fale com ele") == 1) close;
 	mes "[Odgnalam]";
@@ -213,7 +213,13 @@ izlude,182,218,4	script	Odgnalam#Izlude	554,{
 	warp "malangdo",217,85;
 	close;
 }
-alberta,200,151,4	duplicate(Odgnalam#Izlude)	Odgnalam#Alberta	554
+
+alberta,200,151,4	duplicatr(Odgnalam)	Odgnalam#albe  554
+izlude,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz  554  // Old coordinates: (182,192)
+izlude_a,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_a  554
+izlude_b,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_b  554
+izlude_c,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_c  554
+izlude_d,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_d  554,{}
 
 malangdo,219,86,4	script	Kong#malang	545,{
 	mes "[Kong]";

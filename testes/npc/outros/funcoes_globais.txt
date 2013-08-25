@@ -50,10 +50,10 @@
 		movenpc("Vendedora de Frutas#iz",94,98);
 		movenpc("Vendedora de Leite#i",105,92,7);
 		movenpc("Loja de Bichinhos#iz",164,138);
-		movenpc("Scamp#2",186,57,5);
+		movenpc("Scamp#iz",186,57,5);
 		movenpc("Dona Risadinha#iz",129,118);
 		movenpc("Sr. Noel",168,168);
-		movenpc("Funcionária Kafra#izlude",134,87,3);
+		movenpc("Funcionária Kafra#iz",134,87,3);
 	}
 
 	end();

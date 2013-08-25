@@ -695,7 +695,11 @@ geffen,90,67,3	script	Promotional Staff#gef	100,{
 }
 
 izlude,101,173,6	duplicatp(PromotionalStaff_izlude)	Promotional Staff#iz	100,{}
-izlude,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz	100,{}
+izlude,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz	100
+izlude_a,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz_a	100
+izlude_b,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz_b	100
+izlude_c,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz_c	100
+izlude_d,102,171,6	duplicatr(PromotionalStaff_izlude)	Promotional Staff#iz_d	100,{}
 
 lighthalzen,220,292,3	script	Guide#ep13_1	899,{
 	if (ep13_ryu > 8) {
@@ -7948,13 +7952,14 @@ function Catwarp {
 	if (Zeny < getarg(0)) {
 		mes "[Cat Hand Agent]";
 		mes "Don't play with money.";
-		close; }
+		close;
+	}
 	close2;
 	set Zeny, Zeny-getarg(0);
 	switch(getarg(1)) {
 		case 1: warp "alberta",117,56; end;
 		case 2: warp "prontera",116,72; end;
-		case 3: warp "izlude",91,105; end;
+		case 3: if (checkversion(0)) warp "izlude",128,98; else warp "izlude",91,105; end;
 		case 4: warp "geffen",120,39; end;
 		case 5: warp "payon",161,58; end;
 		case 6: warp "morocc",156,46; end;
@@ -8438,7 +8443,8 @@ mid_camp,88,100,55	script	Cat Hand Mining Agent	876,{
 		else getitem 6048,1; //Unidentified_Mineral
 		initnpctimer;
 		disablenpc strnpcinfo(0);
-		end; }
+		end;
+	}
 	else {
 		mes "This rock contains unidentified minerals.";
 		mes "It's not possible to mine more than the limit.";
@@ -8450,7 +8456,6 @@ OnTimer120000:
 	stopnpctimer;
 	end;
 }
-
 man_fild01,180,170,0	duplicate(manukrock)	Mysterious Rock#1	844
 man_fild01,147,157,0	duplicate(manukrock)	Mysterious Rock#2	844
 man_fild01,114,174,0	duplicate(manukrock)	Mysterious Rock#3	844

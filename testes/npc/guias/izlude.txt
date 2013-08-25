@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude,129,175,4	script#re	Guia#01izlude	105,{
+-	script	::GuiaIzlude	-1,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Izlude]";
 	mes "Bem-vindo a ^8B4513Izlude^000000, a cidade-satélite de Prontera.";
@@ -34,22 +34,23 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 	F_Navi("[Guia de Izlude]");
 	next;
 	set .@str$, "Gostaria de verificar quaisquer outros locais?";
+	set .@map$, strnpcinfo(4);
 	while (1) {
 		switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar")) {
 		case 1:
 			set .@loop,1;
 			while (.@loop) {
-				switch(select("[ Academia Kelitula ]:[ Marina ]:[ Aeroplano Internacional ]:[ Arena ]:[ Loja de Equipamentos ]:[ Guilda dos Espadachins ]:[ Associação dos Mercenários ]:[ Forja ]:Menu Anterior")) {
+				switch(select("[ Academia Cryptura ]:[ Marina ]:[ Aeroplano Internacional ]:[ Arena ]:[ Loja de Equipamentos ]:[ Guilda dos Espadachins ]:[ Associação dos Mercenários ]:[ Forja ]:Menu Anterior")) {
 				case 1:
 					mes "[Guia de Izlude]";
-					mes "Aprendizes devem ir na "+F_Navi("Academia Kelitula","iz_ac01,100,39")+" para receber mais informações e treinamento.";
+					mes "Aprendizes devem ir na "+F_Navi("Academia Cryptura","iz_ac01,100,39")+" para receber mais informações e treinamento.";
 					mes .@str$;
 					viewpoint 1,128,260,0,0xD2691E;
 					next;
 					break;
 				case 2:
 					mes "[Guia de Izlude]";
-					mes "Você pode usar a "+F_Navi("Marina","izlude_a,197,205","^B9062F")+" a nordeste para ir para ^8B4513Alberta^000000 ou para a ^8B4513Ilha Byalan^000000.";
+					mes "Você pode usar a "+F_Navi("Marina",.@map$+",197,205","^B9062F")+" a nordeste para ir para ^8B4513Alberta^000000 ou para a ^8B4513Ilha Byalan^000000.";
 					mes "Tenha cuidado com os ^8B4513Calabouços de Izlude^000000 na Ilha Byalan desde que ela é cheia de monstros terríveis.";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,197,205,1,0xFFFF0000;
@@ -57,7 +58,7 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 					break;
 				case 3:
 					mes "[Guia de Izlude]";
-					mes "O "+F_Navi("Aeroplano Internacional","izlude,202,75","^0000FF")+" ao sudeste vai para ^8B4513Juno^000000 e ^8B4513Rachel^000000.";
+					mes "O "+F_Navi("Aeroplano Internacional",.@map$+",202,75","^0000FF")+" ao sudeste vai para ^8B4513Juno^000000 e ^8B4513Rachel^000000.";
 					mes "Deixe-me marcar sua localização no seu mini-mapa.";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,210,73,2,0xFF0A82FF;
@@ -65,32 +66,32 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 					break;
 				case 4:
 					mes "[Guia de Izlude]";
-					mes "A "+F_Navi("Arena","izlude,213,161","^FF5400")+" no norte é um local perfeito para tesar suas habilidades de combate.";
+					mes "A "+F_Navi("Arena",.@map$+",213,161","^FF5400")+" no norte é um local perfeito para tesar suas habilidades de combate.";
 					mes "Deixe-me marcar sua localização no seu mini-mapa.";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,213,161,3,0xFF5400;
 					next;
 					break;
 				case 5:
-					callsub L_Mark, F_Navi("Loja de Equipamentos","izlude,110,182","^006400");
+					callsub L_Mark, F_Navi("Loja de Equipamentos",.@map$+",110,182","^006400");
 					viewpoint 1,108,179,4,0xFFAAFF00;
 					next;
 					break;
 				case 6:
 					mes "[Guia de Izlude]";
-					mes "A "+F_Navi("Guilda dos Espadachins","izlude,51,172")+" é onde você pode ^800080mudar de classe para Espadachim.^000000";
+					mes "A "+F_Navi("Guilda dos Espadachins",.@map$+",51,172")+" é onde você pode ^800080mudar de classe para Espadachim.^000000";
 					mes "Deixe-me marcar sua localização no seu mini-mapa.";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,52,172,5,0xDA70D6;
 					next;
 					break;
 				case 7:
-					callsub L_Mark, F_Navi("Assossiação dos Mercenários","izlude,97,125","^B9062F"); 
+					callsub L_Mark, F_Navi("Assossiação dos Mercenários",.@map$+",97,125","^B9062F"); 
 					viewpoint 1,97,125,6,0xFF0000;
 					next;
 					break;
 				case 8:
-					callsub L_Mark, F_Navi("Forja","izlude,153,126");
+					callsub L_Mark, F_Navi("Forja",.@map$+",153,126");
 					viewpoint 1,153,126,7,0xAAFF00;
 					next;
 					break;
@@ -106,31 +107,31 @@ izlude,129,175,4	script#re	Guia#01izlude	105,{
 				switch(select("[ Oficial de Teleporte do Éden ]:[ Funcionária Kafra ]:[ Hipnotizadora ]:[ Ajudante de Recém-Casados ]:[ Guilda dos Assistentes ]:[ Loja de Bichinhos ]:Menu Anterior")) {
 				case 1:
 					mes "[Guia de Izlude]";
-					mes "O "+F_Navi("Oficial de Teleporte do Éden","izlude,131,148","^0000FF")+" está atualmente dentro da Guilda dos Espadachins.";
+					mes "O "+F_Navi("Oficial de Teleporte do Éden",.@map$+",131,148","^0000FF")+" está atualmente dentro da Guilda dos Espadachins.";
 					mes "Deixe-me marcar sua localização no seu mini-mapa.";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,131,148,8,0x0A82FF;
 					next;
 					break;
 				case 2:
-					callsub L_Mark, F_Navi("Funcionária Kafra","izlude,128,148","^FF5400"),1;
+					callsub L_Mark, F_Navi("Funcionária Kafra",.@map$+",128,148","^FF5400"),1;
 					viewpoint 1,128,148,9,0xFF5400;
 					next;
 					break;
 				case 3:
-					callsub L_Mark, F_Navi("Hipnotizadora","izlude,127,175"),1;
+					callsub L_Mark, F_Navi("Hipnotizadora",.@map$+",127,175"),1;
 					viewpoint 1,127,175,10,0x006400;
 					next;
 					break;
 				case 4:
 					mes "[Guia de Izlude]";
-					mes "Se você gostaria de estar em Lua de Mel em ^8B4513Jawaii^000000, o paraíso dos recém-casados, por favor, fale com a "+F_Navi("Ajudante de Recém Casados","izlude,180,224","^B9062F")+".";
+					mes "Se você gostaria de estar em Lua de Mel em ^8B4513Jawaii^000000, o paraíso dos recém-casados, por favor, fale com a "+F_Navi("Auxiliar Lua de Mel",.@map$+",180,224","^B9062F")+".";
 					mes "Gostaria de verificar quaisquer outros locais?";
 					viewpoint 1,180,224,11,0xFF0000;
 					next;
 					break;
 				case 5:
-					callsub L_Mark, F_Navi("Guilda dos Assistentes","izlude,47,170","^0000FF");
+					callsub L_Mark, F_Navi("Guilda dos Assistentes",.@map$+",47,170","^0000FF");
 					viewpoint 1,47,170,12,0xDA70D6;
 					next;
 					break;
@@ -181,6 +182,12 @@ L_Mark:
 	mes "Gostaria de checar quaisquer outras localizações?";
 	return; 
 }
+
+izlude,129,175,4	duplicatr(GuiaIzlude)	Guia#01izlude	105
+izlude_a,129,175,4	duplicatr(GuiaIzlude)	Guia#01izlude_a	105
+izlude_b,129,175,4	duplicatr(GuiaIzlude)	Guia#01izlude_b	105
+izlude_c,129,175,4	duplicatr(GuiaIzlude)	Guia#01izlude_c	105
+izlude_d,129,175,4	duplicatr(GuiaIzlude)	Guia#01izlude_d	105,{}
 
 izlude,121,87,6	script#vpo	Guia#iz	105,{
 	cutin "prt_soldier",2;
@@ -283,5 +290,9 @@ izlude,121,87,6	script#vpo	Guia#iz	105,{
 	end;
 }
 
-izlude,133,113,4	duplicatr(Guia#01izlude)	Guia#02izlude	105
-//izlude,120,206,4	duplicatr(Guia#01izlude)	Guia#03izlude	105,{}
+izlude,133,113,4	duplicatr(GuiaIzlude)	Guia#02izlude	105
+izlude_a,133,113,4	duplicatr(GuiaIzlude)	Guia#02izlude_a	105
+izlude_b,133,113,4	duplicatr(GuiaIzlude)	Guia#02izlude_b	105
+izlude_c,133,113,4	duplicatr(GuiaIzlude)	Guia#02izlude_c	105
+izlude_d,133,113,4	duplicatr(GuiaIzlude)	Guia#02izlude_d	105,{}
+//izlude,120,206,4	duplicatr(GuiaIzlude)	Guia#03izlude	105,{}

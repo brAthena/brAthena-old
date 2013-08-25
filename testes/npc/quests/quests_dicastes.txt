@@ -1107,6 +1107,10 @@ pay_fild01,152,171,0	script	Resin	844,{ unknown_d(12171,907); }
 gef_fild01,104,111,0	script	Spawn	844,{ unknown_d(12172,908); }
 prt_fild08,299,332,0	script	Jellopy	844,{ unknown_d(12173,909); }
 izlude,136,160,0	script	Fish Tails	844,{ unknown_d(12174,1023); } // Pré-Renovação : izlude (132,136)
+izlude_a,136,160,0	script#re	Fish Tails#a	844,{ unknown_d(12174,1023); }
+izlude_b,136,160,0	script#re	Fish Tails#b	844,{ unknown_d(12174,1023); }
+izlude_c,136,160,0	script#re	Fish Tails#c	844,{ unknown_d(12174,1023); }
+izlude_d,136,160,0	script#re	Fish Tails#d	844,{ unknown_d(12174,1023); } 
 prt_fild05,303,169,0	script	Worm Peelings	844,{ unknown_d(12175,955); }
 iz_dun03,155,165,0	script	Gills	844,{ unknown_d(12176,956); }
 mjo_dun01,222,226,0	script	Tooth of Bat	844,{ unknown_d(12177,913); }

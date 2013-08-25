@@ -805,8 +805,8 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 			mes "[Bibliotecário Jekan]";
 			mes "Maldição...!";
 			mes "Não posso ler quase nada quando a luz esta fraca! Não será nada bom se meus olhos ficaram ruins...";
-			next;
 			while(1) {
+				next;
 				switch(select("Você tem olhos ruins?:Eu gostaria de ler alguns documentos.:Deixe-me ajudá-lo a encontrar os arquivos...:Que tipo de arquivos que você está procurando?")) {
 				case 1:
 					mes "[Bibliotecário Jekan]";

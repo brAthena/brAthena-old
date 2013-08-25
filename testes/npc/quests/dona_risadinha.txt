@@ -97,6 +97,10 @@ izlude,125,175,4	script	Dona Risadinha#iz	92,{
 }
 
 // Duplicatas: Dona Risadinha
+izlude_a,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_a	92
+izlude_b,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_b	92
+izlude_c,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_c	92
+izlude_d,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_d	92,{}
 alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	92
 aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	92
 geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	92

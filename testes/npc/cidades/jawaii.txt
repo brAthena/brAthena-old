@@ -1248,3 +1248,8 @@ izlude,180,224,3	script	Auxiliar Lua de Mel	92,{
 		close;
 	}
 }
+
+izlude_a,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_a	71
+izlude_b,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_b	71
+izlude_c,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_c	71
+izlude_d,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_d	71,{}

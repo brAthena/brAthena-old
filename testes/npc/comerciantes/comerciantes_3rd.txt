@@ -272,4 +272,8 @@ mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	49
 prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	49
 ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	49
 malangdo,215,163,6	duplicate(pss)	Vendedora de Fragmentos#4	700
-mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#5	700
+mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#5	700,{}
+izlude_a,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_a  700
+izlude_b,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_b  700
+izlude_c,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_c  700
+izlude_d,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_d  700,{}

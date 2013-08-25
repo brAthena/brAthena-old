@@ -395,7 +395,7 @@ cmd_fild07,136,134,4	script	Funcionária Kafra::kaf_cmd_fild07	721,{
 
 // Izlude
 //============================================================
-izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
+izlude,128,148,6	script	Funcionária Kafra#iz	117,{
 	cutin "kafra_01",2;
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";
@@ -404,11 +404,16 @@ izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,1,40,820;
 	if (checkversion(0))
-		savepoint "izlude",129,97;
+		savepoint strnpcinfo(4),129,97;
 	else
 		savepoint "izlude",94,103;
 	callfunc "F_KafEnd",0,1,"na cidade de Izlude";
 }
+
+izlude_a,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_a	117
+izlude_b,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_b	117
+izlude_c,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_c	117
+izlude_d,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_d	117,{}
 
 // Moscovia
 //============================================================

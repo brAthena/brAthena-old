@@ -1122,6 +1122,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 		mes "De qualquer forma, é difícil se concentrar nos estudos, mas pode compensar. Espero que você se dê bem no que você decida fazer~";
 		close;
 	case 5:
+		mes "[Vidente]";
 		mes "O futuro? Achei que estava implícito que tudo que eu falar será sobre o futuro, de qualquer tema que você escolha.";
 		next;
 		mes "[Vidente]";
@@ -1183,6 +1184,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 		mes "Essa é a minha predição. Você pode argumentar com a sabedoria do mundo dos espíritos?";
 		close;
 	case 6:
+		mes "[Vidente]";
 		mes "Moda...?";
 		mes "O que isso tem a ver com o sobrenatural? Bem, entrarei em contato com os espíritos. Lá vamos nós...";
 		next;

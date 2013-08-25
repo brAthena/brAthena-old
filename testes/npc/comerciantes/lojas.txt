@@ -133,7 +133,15 @@ izlude_in,70,127,4	shop	Loja de Armaduras#iz	62,2103:-1,2105:-1,2403:-1,2405:-1,
 izlude_in,57,110,0	shop	Loja de Utilidades#iz	47,611:-1,501:-1,502:-1,503:-1,504:-1,506:-1,645:-1,656:-1,601:-1,602:-1,1065:-1,1750:-1
 izlude_in,72,110,3	shop	Mercador de Trocas#iz	900,13200:-1,13201:-1,13202:-1,13150:-1,13102:-1,13151:-1,13154:-1,13155:-1,13163:-1,13165:-1,13168:-1
 izlude,124,165,4	shop	Vendedora de Frutas#iz	53,512:-1,513:-1,515:-1,516:-1
+izlude_a,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_a	53
+izlude_b,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_b	53
+izlude_c,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_c	53
+izlude_d,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_d	53,{}
 izlude,160,186,0	shop	Açougueiro#iz	54,517:-1
+izlude_a,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_a	54
+izlude_b,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_b	54
+izlude_c,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_c	54
+izlude_d,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_d	54,{}
 izlude,72,98,4	shop	Loja de Bichinhos#iz	124,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
 
 //=======================================================
@@ -363,4 +371,8 @@ mid_camp,129,284,4	duplicate(Especialista em Armadilhas#pay)	Especialista em Arm
 ra_in01,254,300,3	duplicate(Vendedora de Frutas#prt)	Vendedor de Frutas#ra	931
 ra_in01,263,281,4	duplicate(Especialista em Armadilhas#pay)	Especialista em Armadilhas#ra	66
 hugel,105,169,5	duplicate(Vendedora de Leite#p)	Vendedora de Leite#h	90,519:-1
-izlude,128,158,7	duplicate(Vendedora de Leite#p)	Vendedora de Leite#i	90,519:-1
+izlude,128,158,7	duplicate(Vendedora de Leite#p)	Vendedora de Leite#i	90,519:-1,{}
+izlude_a,128,158,7	duplicatr(Vendedora de Leite#p)	Vendedora de Leite#a	90
+izlude_b,128,158,7	duplicatr(Vendedora de Leite#p)	Vendedora de Leite#b	90
+izlude_c,128,158,7	duplicatr(Vendedora de Leite#p)	Vendedora de Leite#c	90
+izlude_d,128,158,7	duplicatr(Vendedora de Leite#p)	Vendedora de Leite#d	90,{}

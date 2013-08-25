@@ -106,7 +106,11 @@
 }
 // Renovação
 // ==========================
-izlude,179,219,2	duplicatr(Edgar#izlude)	Edgar#izludere	49,{}
+izlude,179,219,2	duplicatr(Edgar#izlude)	Edgar#izludere	49
+izlude_a,179,219,2	duplicatr(Edgar#izlude)	Edgar#izlude_a	49
+izlude_b,179,219,2	duplicatr(Edgar#izlude)	Edgar#izlude_b	49
+izlude_c,179,219,2	duplicatr(Edgar#izlude)	Edgar#izlude_c	49
+izlude_d,179,219,2	duplicatr(Edgar#izlude)	Edgar#izlude_d	49,{}
 // ==========================
 // Pré-Renovação && Old Times
 // ==========================

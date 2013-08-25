@@ -68,7 +68,11 @@ prontera,34,212,0	duplicate(Caixa de Correio)	Caixa de Correio#3prt	888
 
 // Izlude
 //============================================================
-izlude,136,94,0	duplicate(Caixa de Correio)	Caixa de Correio#iz	888
+izlude,136,94,0	duplicate(Caixa de Correio)	Caixa de Correio#iz	888,{}
+izlude_a,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_a  888
+izlude_b,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_b  888
+izlude_c,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_c  888
+izlude_d,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_d  888,{} 
 
 // Morroc
 //============================================================

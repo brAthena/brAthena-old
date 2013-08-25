@@ -217,7 +217,11 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 	}
 }
 prontera,41,337,5	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Lanceiro	105
-pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Arqueiro	732
+pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Arqueiro	732,{}
+izlude_a,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_a	734
+izlude_b,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_b	734
+izlude_c,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_c	734
+izlude_d,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_d	734,{}
 
 // NPCs de Utilidades para Mercenários
 //============================================================
@@ -294,4 +298,8 @@ izlude,55,170,4	script	Artigos para Mercenários#Espadachim	892,{
 	close;
 }
 prontera,30,337,4	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Lanceiro	700
-pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Arqueiro	879
+pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Arqueiro	879,{}
+izlude_a,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_a	892
+izlude_b,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_b	892
+izlude_c,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_c	892
+izlude_d,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_d	892,{}

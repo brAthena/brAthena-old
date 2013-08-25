@@ -119,3 +119,25 @@ prt_fild09,0,0	warp#dv	prtf025	7,2,moc_fild20,209,333,{}
 //prt_fild09,246,17,0	duplicata(prtf025)	prtf025-1
 //prt_fild09,95,19,0	warp	prtf028	7,2,moc_fild20,209,333
 //prt_fild10,263,22,0	warp	prtf029	6,2,moc_fild20,209,333,{}
+
+//= Duplicatas de Prontera Field 8 ==============================
+prt_fild08a,16,187,0	warp#re	prtf15-1_a	3,17,prt_fild07,380,186
+prt_fild08b,16,187,0	warp#re	prtf15-1_b	3,17,prt_fild07,380,186
+prt_fild08c,16,187,0	warp#re	prtf15-1_c	3,17,prt_fild07,380,186
+prt_fild08d,16,187,0	warp#re	prtf15-1_d	3,17,prt_fild07,380,186
+prt_fild08a,16,239,0	warp#re	prtf14-1_a	3,15,prt_fild07,379,239
+prt_fild08b,16,239,0	warp#re	prtf14-1_b	3,15,prt_fild07,379,239
+prt_fild08c,16,239,0	warp#re	prtf14-1_c	3,15,prt_fild07,379,239
+prt_fild08d,16,239,0	warp#re	prtf14-1_d	3,15,prt_fild07,379,239
+prt_fild08a,170,378,0	warp#re	prtf004_a	3,2,prontera,156,26
+prt_fild08b,170,378,0	warp#re	prtf004_b	3,2,prontera,156,26
+prt_fild08c,170,378,0	warp#re	prtf004_c	3,2,prontera,156,26
+prt_fild08d,170,378,0	warp#re	prtf004_d	3,2,prontera,156,26
+prt_fild08a,233,16,0	warp#re	prtf023_a	12,1,moc_fild01,238,378
+prt_fild08b,233,16,0	warp#re	prtf023_b	12,1,moc_fild01,238,378
+prt_fild08c,233,16,0	warp#re	prtf023_c	12,1,moc_fild01,238,378
+prt_fild08d,233,16,0	warp#re	prtf023_d	12,1,moc_fild01,238,378
+prt_fild08a,55,21,0	warp#re	prtf024_a	4,2,moc_fild01,56,380
+prt_fild08b,55,21,0	warp#re	prtf024_b	4,2,moc_fild01,56,380
+prt_fild08c,55,21,0	warp#re	prtf024_c	4,2,moc_fild01,56,380
+prt_fild08d,55,21,0	warp#re	prtf024_d	4,2,moc_fild01,56,380,{}

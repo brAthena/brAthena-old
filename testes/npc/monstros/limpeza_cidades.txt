@@ -44,7 +44,23 @@ umbala,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 louyang,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 ayothaya,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 moscovia,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
-brasilis,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0,{}
+brasilis,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+dewata,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+malaya,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude_a,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude_b,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude_c,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude_d,0,0,0,0	monster#re	Rosa Selvagem	1261,1,7200000,3600000,0,{}
+
+//==================================================
+// Spawns de Besouro Ladrão em cidades
+//==================================================
+payon_in02,23,68,5,5	monster#pre	Besouro-Ladrão	1051,7,1200000,600000,0
+jawaii_in,73,117,4,4	monster#pre	Besouro-Ladrão	1051,1,5400000,3000000,0
+jawaii_in,83,117,5,5	monster#pre	Besouro-Ladrão	1051,1,4800000,2400000,0,{}
+payon_in02,23,68,5,5	monster#re	Ovo de Besouro-Ladrão	1048,7,1200000,600000,0
+jawaii_in,73,117,4,4	monster#re	Ovo de Besouro-Ladrão	1048,1,5400000,3000000,0
+jawaii_in,83,117,5,5	monster#re	Ovo de Besouro-Ladrão	1048,1,4800000,2400000,0,{}
 
 //==================================================
 // einbech - Einbech, a vila mineradora
@@ -56,4 +72,4 @@ einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0
 // payon_in02 - Casa em Payon (2° Andar)
 //==================================================
 payon_in02,23,68,5,5	monster	Ovo de Besouro-Ladrão	1048,7,1200000,600000,0
-job3_war01,19,33,5,5	monster	Thief Bug Egg	1213,1,12,60,0
+job3_war01,19,33,5,5	monster	Ovo de Besouro-Ladrão	1213,1,12,60,0

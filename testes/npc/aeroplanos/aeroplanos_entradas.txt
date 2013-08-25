@@ -54,6 +54,10 @@ izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
 	end;
 }
 
+izlude_b,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_b	90
+izlude_c,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_c	90
+izlude_d,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_d	90,{}
+
 izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 	OnTouch:
 	set .@npc$, strnpcinfo(2);

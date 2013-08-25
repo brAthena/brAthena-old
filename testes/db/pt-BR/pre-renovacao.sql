@@ -11969,7 +11969,7 @@ REPLACE INTO `item_db` VALUES(13521,'Garment_Card_Scroll_Box','Garment Card Pet 
 REPLACE INTO `item_db` VALUES(13522,'Shield_Card_Scroll_Box','Shield Card Pet Egg Scroll Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 13562,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13523,'Shoes_Card_Scroll_Box','Shoes Card Pet Egg Scroll Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 13563,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13524,'Accy_Card_Scroll_Box','Accessory Card Pet Egg Scroll Box','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 13564,1;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(13525,'Zeny_Card_Scroll_Box','Caixa de Ovo da Fortuna','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 14508,1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(13525,'Zeny_Scroll_Box','Caixa de Ovo da Fortuna','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 14508,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13526,'Pet_Egg_Scroll_Box1_','Pet Egg Scroll Box 12','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12925,30;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13527,'Pet_Egg_Scroll_Box2_','Pet Egg Scroll Box 13','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12926,30;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(13528,'Pet_Egg_Scroll_Box3_','Pet Egg Scroll Box 14','18',20,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12932,30;',NULL,NULL);
@@ -25074,7 +25074,7 @@ REPLACE INTO `pet_db` VALUES(1123,'GOBLIN_2','Goblin',14570,9033,0,7821,80,60,50
 REPLACE INTO `pet_db` VALUES(1125,'GOBLIN_4','Goblin',14571,9034,0,7821,80,60,50,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "NPC_GROUNDATTACK",5,5,5; }','{}');
 REPLACE INTO `pet_db` VALUES(1385,'DELETER_','Deletério',14572,9035,0,7822,80,60,20,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "SM_MAGNUM",5,5,5; }','{}');
 REPLACE INTO `pet_db` VALUES(1382,'DIABOLIC','Diabólico',14573,9036,0,7823,80,60,10,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "WZ_METEOR",2,5,5; }','{}');
-REPLACE INTO `pet_db` VALUES(1208,'WANDER_MAN','Andarilho',14574,9037,0,7824,80,60,20,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "NPC_UNDEADATTACK",5,5,5; }','{}');
+REPLACE INTO `pet_db` VALUES(1208,'WANDER_MAN','Andarilho',14574,9037,0,7824,80,60,20,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "NPC_UNDEADATTACK",5,5,5; }','{ bonus bAgi,3; bonus bDex,1; }');
 REPLACE INTO `pet_db` VALUES(1963,'P_CHUNG_E','Boneca do Ano Novo',0,9038,0,554,80,60,30,100,250,20,800,150,0,0,300,300,800,'{ petskillattack "CR_SHIELDCHARGE",5,5,5; }','{}');
 REPLACE INTO `pet_db` VALUES(1040,'GOLEM','Golem',12371,9053,10035,6111,80,60,20,100,250,20,500,150,0,0,300,300,800,'{}','{ bonus bMaxHP,100; bonus bFlee,-5; }');
 REPLACE INTO `pet_db` VALUES(1143,'MARIONETTE','Marionete',12361,9043,10025,6098,80,60,10,100,250,20,500,150,0,0,300,300,800,'{}','{ bonus bSPrecovRate,3; }');
@@ -25089,7 +25089,7 @@ REPLACE INTO `pet_db` VALUES(1404,'MIYABI_NINGYO','Boneco de Miyabi',12366,9048,
 REPLACE INTO `pet_db` VALUES(1416,'WICKED_NYMPH','Ninfa Perversa',12365,9047,10029,6105,80,60,15,100,250,20,500,150,0,0,300,300,800,'{}','{ bonus bMaxSP,30; bonus bSPrecovRate,5; }');
 REPLACE INTO `pet_db` VALUES(1495,'STONE_SHOOTER','Atirador de Pedras',12369,9051,10033,6109,80,60,20,100,250,20,500,150,0,0,300,300,800,'{}','{ bonus2 bSubEle,Ele_Fire,3; }');
 REPLACE INTO `pet_db` VALUES(1504,'DULLAHAN','Dullahan',12367,9049,10031,6107,80,60,10,100,250,20,200,150,0,0,300,300,800,'{}','{ bonus bCritAtkRate,5; }');
-REPLACE INTO `pet_db` VALUES(1505,'LOLI_RURI','Loli Ruri',12360,9042,10024,6097,80,60,15,100,250,20,200,150,0,0,300,300,800,'{}','{ bonus bMaxHPRate,3; bonus3 bAutoSpellWhenHit,"AL_HEAL",1,50; }');
+REPLACE INTO `pet_db` VALUES(1505,'LOLI_RURI','Loli Ruri',12360,9042,10024,6097,80,60,15,100,250,20,200,150,0,0,300,300,800,'{}','{ bonus bMaxHPRate,3; bonus3 bAutoSpellWhenHit,"AL_HEAL",1,10; }');
 REPLACE INTO `pet_db` VALUES(1513,'CIVIL_SERVANT','Mao Guai',12358,9040,10022,6095,80,60,10,100,250,20,500,150,0,0,300,300,800,'{}','{ bonus bMaxSP,10; }');
 REPLACE INTO `pet_db` VALUES(1586,'LEAF_CAT','Gato de Folha',12359,9041,10023,6096,80,60,20,100,250,20,200,150,0,0,300,300,800,'{}','{ bonus2 bSubRace,RC_Brute,3; }');
 REPLACE INTO `pet_db` VALUES(1630,'BACSOJIN_','Dama de Branco',12357,9039,10021,6094,80,60,10,100,250,20,2000,150,0,0,300,300,800,'{}','{}');
@@ -25893,7 +25893,7 @@ REPLACE INTO `quest_db` VALUES(7119,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7120,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7121,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7122,0,1002,1,0,0,0,0,'Primeira batalha - Caçando Porings');
-REPLACE INTO `quest_db` VALUES(7123,0,1050,2,0,0,0,0,'Batalhas Básicas - Espadachim');
+REPLACE INTO `quest_db` VALUES(7123,0,1049,2,0,0,0,0,'Batalhas Básicas - Espadachim');
 REPLACE INTO `quest_db` VALUES(7124,0,1063,5,0,0,0,0,'Batalhas Básicas - Mago');
 -- REPLACE INTO `quest_db` VALUES(7125,0,0,0,0,0,0,0,'não utilizada');
 REPLACE INTO `quest_db` VALUES(7126,0,0,0,0,0,0,0,'Vendendo items');

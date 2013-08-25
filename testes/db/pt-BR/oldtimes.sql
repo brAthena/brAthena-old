@@ -11724,7 +11724,7 @@ REPLACE INTO `quest_db` VALUES(7119,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7120,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7121,0,0,0,0,0,0,0,'Treinamento de Aprendiz');
 REPLACE INTO `quest_db` VALUES(7122,0,1002,1,0,0,0,0,'Primeira batalha - Caçando Porings');
-REPLACE INTO `quest_db` VALUES(7123,0,1050,2,0,0,0,0,'Batalhas Básicas - Espadachim');
+REPLACE INTO `quest_db` VALUES(7123,0,1049,2,0,0,0,0,'Batalhas Básicas - Espadachim');
 REPLACE INTO `quest_db` VALUES(7124,0,1063,5,0,0,0,0,'Batalhas Básicas - Mago');
 -- REPLACE INTO `quest_db` VALUES(7125,0,0,0,0,0,0,0,'não utilizada');
 REPLACE INTO `quest_db` VALUES(7126,0,0,0,0,0,0,0,'Vendendo itens');
