@@ -134,7 +134,7 @@ moc_para01,27,35,5	script	Secretária Lime Evenor	952,{
 				next;
 				mes "[Lime Evenor]";
 				mes "Me diga o tipo de missão você está procurando";
-				mes "Seja bem dirOficial do Éden#0, como 'Caçar 10 Porings'.";
+				mes "Seja bem direto, como 'Caçar 10 Porings'.";
 				input .@input$;
 				next;
 				mes "[Lime Evenor]";
