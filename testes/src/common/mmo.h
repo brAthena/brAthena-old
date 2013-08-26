@@ -19,6 +19,7 @@
 
 #include "cbasetypes.h"
 #include "../common/db.h"
+#include "../config/configs.h"
 #include <time.h>
 
 // server->client protocol version

@@ -12197,7 +12197,7 @@ REPLACE INTO `skill_db` VALUES(6,'9',6,1,'0','1','0',10,'1','no',0,'0','0','none
 REPLACE INTO `skill_db` VALUES(7,'0',6,1,'3','0x2','2',10,'1','no',0,'0','0','weapon','2','SM_MAGNUM','Impacto Explosivo');
 REPLACE INTO `skill_db` VALUES(8,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','SM_ENDURE','Vigor');
 REPLACE INTO `skill_db` VALUES(9,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','MG_SRECOVERY','Aumentar Recuperação de SP');
-REPLACE INTO `skill_db` VALUES(10,'0',6,4,'3','0x3','3',1,'1','yes',0,'0','0','magic','0','MG_SIGHT','Chama Reveladora');
+REPLACE INTO `skill_db` VALUES(10,'0',6,4,'3','0x3','-1',1,'1','yes',0,'0','0','magic','0','MG_SIGHT','Chama Reveladora');
 REPLACE INTO `skill_db` VALUES(11,'9',6,1,'8','0x6','1',10,'1','yes',0,'0','0','magic','0','MG_NAPALMBEAT','Ataque Espiritual');
 REPLACE INTO `skill_db` VALUES(12,'9',8,2,'8','0x1','0',10,'1','yes',0,'0','0','magic','0','MG_SAFETYWALL','Escudo Mágico');
 REPLACE INTO `skill_db` VALUES(13,'9',8,1,'8','0','0',10,'1:1:2:2:3:3:4:4:5:5','yes',0,'0','0','magic','0','MG_SOULSTRIKE','Espíritos Anciões');
@@ -12211,7 +12211,7 @@ REPLACE INTO `skill_db` VALUES(20,'9',8,1,'4','0','0',10,'1:2:3:4:5:6:7:8:9:10',
 REPLACE INTO `skill_db` VALUES(21,'9',8,2,'4','0','0',10,'1:2:3:4:5:6:7:8:9:10','yes',0,'0','0','magic','0','MG_THUNDERSTORM','Tempestade de Raios');
 REPLACE INTO `skill_db` VALUES(22,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','AL_DP','Proteção Divina');
 REPLACE INTO `skill_db` VALUES(23,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','AL_DEMONBANE','Flagelo do Mal');
-REPLACE INTO `skill_db` VALUES(24,'0',6,4,'6','0x3','2',1,'1','yes',0,'0','0','magic','0','AL_RUWACH','Revelação');
+REPLACE INTO `skill_db` VALUES(24,'0',6,4,'6','0x3','-1',1,'1','yes',0,'0','0','magic','0','AL_RUWACH','Revelação');
 REPLACE INTO `skill_db` VALUES(25,'9',6,2,'0','0x1','0',1,'1','yes',0,'0','0','magic','0','AL_PNEUMA','Escudo Sagrado');
 REPLACE INTO `skill_db` VALUES(26,'0',6,4,'0','0x1','0',2,'1','yes',0,'0','0','magic','0','AL_TELEPORT','Teleporte');
 REPLACE INTO `skill_db` VALUES(27,'9',6,2,'0','0x1','0',4,'1','yes',0,'0','3','magic','0','AL_WARP','Portal');
