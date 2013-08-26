@@ -84,7 +84,7 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 }
 
 // -------------- Adestrador de Falcões --------------
-payon_in01,131,77,4	script	Adestrador de Falcões#hnt	105,{
+in_hunter,146,100,4	script	Adestrador de Falcões#hnt	105,{
 	if(Upper >= 0 && Upper <= 2) set .@price, 2500; // Falcão Normal - Avançado e Bebê
 
 			mes "[Adestrador de Falcões]";

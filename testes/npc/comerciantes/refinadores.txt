@@ -786,10 +786,10 @@ prt_in,63,54,2	duplicate(Repairman#alb)	Repairman#prt	86
 yuno_in01,175,28,3	duplicate(Repairman#alb)	Repairman#juno	86
 geffen_in,34,166,3	duplicate(Repairman#alb)	Repairman#gef	99,
 aldeba_in,38,60,3	duplicate(Repairman#alb)	Repairman#alde	86
-prt_gld,139,117,4	duplicate(Repairman#alb)	Repairman#prt_gld	86
-gef_fild13,263,117,4	duplicate(Repairman#alb)	Repairman#gef_fild	86
-pay_gld,295,183,4	duplicate(Repairman#alb)	Repairman#pay_gld	86
-alde_gld,220,152,4	duplicate(Repairman#alb)	Repairman#alde_gld	86
+prt_gld,139,117,4	duplicata(Repairman#alb)	Repairman#prt_gld	86
+gef_fild13,263,117,4	duplicata(Repairman#alb)	Repairman#gef_fild	86
+pay_gld,295,183,4	duplicata(Repairman#alb)	Repairman#pay_gld	86
+alde_gld,220,152,4	duplicata(Repairman#alb)	Repairman#alde_gld	86
 moc_ruins,107,94,4	duplicata(Repairman#alb)	Repairman#moc	99
 lhz_in02,284,14,3	duplicata(Repairman#alb)	Repairman#lhz	86
 aru_gld,189,336,4	duplicata(Repairman#alb)	Repairman#aru_gld	86
@@ -798,16 +798,14 @@ sch_gld,340,80,7	duplicata(Repairman#alb)	Repairman#sch_gld	86,{}
 // Equipment Repair Function
 //============================================================
 function	script	repairmain	{
+		
 	set .@repairprice,5000;
 	mes "["+getarg(0)+"]";
-	mes "Hey there!";
-	mes "Do you want me";
-	mes "to repair any items?";
-	mes "You can count on me";
-	mes "for item repairs!";
+	mes "Ei você!";
+	mes "Você precisa que eu repare algum item?";
+	mes "Você pode contar comigo para reparar itens!";
 	next;
-	switch(select("Actually, I do have some items...:None at the moment.")) {
-	case 1:
+	if(select("Atualmente, eu tenho alguns...:Nenhum no momento.") == 1) {
 		set .@checkitem,1;
 		while (1) {
 			if (getbrokenid(.@checkitem) == 0) {
@@ -818,30 +816,38 @@ function	script	repairmain	{
 		set .@checkitem,.@checkitem-1;
 		if (!.@checkitem) {
 			mes "["+getarg(0)+"]";
-			mes "Oh wow, this is incredible!";
-			mes "You must take very good care of your things. None of your items are damaged!";
+			mes "Oh, isso ? incrivel!";
+			mes "Parece que você toma muito cuidado com as suas coisas. Nenhum dos seus itens foi danificado!";
 			next;
 			mes "["+getarg(0)+"]";
-			mes "If everyone is like you, I'm going to be unemployed!! Haha~!";
+			mes "Se todos fossem como você, eu estaria desempregado!! Haha~!";
 			close;
 		}
 		mes "["+getarg(0)+"]";
 		mes "Hmm...";
-		mes "Let's see...";
-		mes "Out of all your items,";
-		mes "" + .@checkitem + " are damaged.";
-		mes "Would you like to repair?";
+		mes "Vamos ver...";
+		mes "De todos os seus itens,";
+		mes .@checkitem + " estão danificados.";
+		mes "Você gostaria de reparar?";
 		next;
 		set .@totalcost,.@repairprice*.@checkitem;
 		mes "["+getarg(0)+"]";
-		mes "Each repair costs " + .@repairprice + " Zeny. So to repair all your damaged items would cost " + .@totalcost + " Zeny! Would you like to repair the items?";
+		if(checkversion(0) == -1)
+			mes "Cada reparo custa 1 Aço. Então para reparar todos os itens vou precisar de " + .@checkitem + " Aços! Você gostaria de reparar todos os itens?";
+		else
+			mes "Cada reparo custa " + .@repairprice + " Zenys. Então para reparar todos os itens vou precisar de " + .@totalcost + " Zenys! Você gostaria de reparar todos os itens?";
 		next;
-		switch(select("Yes:No")) {
-		case 1:
-			if (Zeny < .@totalcost) {
+		if(select("Sim:Não") == 1) {
+			if (checkversion(0) == -1 && countitem(999) < .@checkitem) {
 				mes "["+getarg(0)+"]";
-				mes "Whoa whoa...";
-				mes "Check your wallet before you receive the repair bill! I can't repair anything because you don't have enough Zeny.";
+				mes "Ei ei...";
+				mes "Olhe o seu inventário antes de pedir para repararem um item, cara! Eu não posso reparar nada porque você não possui material suficiente.";
+				close;
+			}
+			else if (Zeny < .@totalcost) {
+				mes "["+getarg(0)+"]";
+				mes "Ei ei...";
+				mes "Olhe a sua carteira antes de pedir para repararem um item, cara! Eu não posso reparar nada porque você não possui Zeny suficiente.";
 				close;
 			}
 			set .@checkitem2,1;
@@ -853,32 +859,32 @@ function	script	repairmain	{
 			}
 			set .@checkitem2,.@checkitem2-1;
 			if (.@checkitem == .@checkitem2) {
-				set zeny,zeny-.@totalcost;
+				if(checkversion(0) == -1)
+					delitem 999,.@checkitem;
+				else
+					set zeny,zeny-.@totalcost;
 				while (.@checkitem) {
 					repair(.@checkitem);
 					set .@checkitem,.@checkitem-1;
 				}
 				mes "["+getarg(0)+"]";
-				mes "Okay! All done. Now, try to be a little more careful. Items have lives too you know.";
+				mes "Okay! Tudo pronto. Agora, tente ter um pouco mais de cuidado. Você sabe, itens tem vida também.";
 				close;
 			}
 			else {
 				mes "["+getarg(0)+"]";
-				mes "Mmm? Something's wrong. Wait... Equip the items you need to repair and then come back to me.";
+				mes "Mmm? Tem algo errado. Espere... Pegue os itens que você quer reparar e volte aqui.";
 				close;
 			}
-		case 2:
+		} else {
 			mes "["+getarg(0)+"]";
-			mes "Well, it's no skin off my nose, but it's not good to leave items damaged. You should get them repaired as soon as possible!";
+			mes "Bem, não é da minha conta, mas não é bom levar itens quebrados embora. Você deve repará-los o mais rápido possivel!";
 			close;
 		}
-	case 2:
+	} else {
 		mes "["+getarg(0)+"]";
 		mes "Hohoho...";
-		mes "You don't have";
-		mes "any business with me";
-		mes "if you don't have any";
-		mes "items to repair.";
+		mes "Você não tem nada para fazer aqui se você não tiver itens para reparar.";
 		close;
 	}
 }
