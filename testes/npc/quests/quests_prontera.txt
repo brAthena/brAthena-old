@@ -3382,7 +3382,7 @@ moc_fild16,201,295,5	script#dv	Assassin Guildsman#poiso	884,{
 	}
 }
 
-que_job01,10,16,5	script#dv	Marjana#poison	885,{
+que_job01,10,16,5	script	Marjana#poison	885,{
 	if (prt_curse == 24) {
 		mes "[Marjana]";
 		mes "What business brings";

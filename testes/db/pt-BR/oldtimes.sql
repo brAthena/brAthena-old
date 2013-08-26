@@ -7279,18 +7279,19 @@ REPLACE INTO `item_violetbox_db` VALUES(2,2338,7);	-- Vestido de Casamento
 REPLACE INTO `item_violetbox_db` VALUES(2,2339,7);	-- Roupa de Baixo
 REPLACE INTO `item_violetbox_db` VALUES(2,2340,7);	-- Armadura de Aprendiz
 REPLACE INTO `item_violetbox_db` VALUES(2,2352,7);	-- Traje do Aprendiz
-REPLACE INTO `item_violetbox_db` VALUES(2,2602,7);	-- Sandálias
-REPLACE INTO `item_violetbox_db` VALUES(2,2604,7);	-- Sapatos
-REPLACE INTO `item_violetbox_db` VALUES(2,2607,7);	-- Sapatilha de Cristal
-REPLACE INTO `item_violetbox_db` VALUES(2,2608,7);	-- Grilhões
-REPLACE INTO `item_violetbox_db` VALUES(2,2609,7);	-- Salto Alto
-REPLACE INTO `item_violetbox_db` VALUES(2,2611,7);	-- Grevas
-REPLACE INTO `item_violetbox_db` VALUES(2,2602,7);	-- Capuz
-REPLACE INTO `item_violetbox_db` VALUES(2,2604,7);	-- Sobrepeliz
-REPLACE INTO `item_violetbox_db` VALUES(2,2606,7);	-- Manteau
-REPLACE INTO `item_violetbox_db` VALUES(2,2607,7);	-- Capa do Marquês
-REPLACE INTO `item_violetbox_db` VALUES(2,2608,7);	-- Capa Velha
-REPLACE INTO `item_violetbox_db` VALUES(2,2610,7);	-- Capuz do Aprendiz
+REPLACE INTO `item_violetbox_db` VALUES(2,2402,7);	-- Sandálias
+REPLACE INTO `item_violetbox_db` VALUES(2,2404,7);	-- Sapatos
+REPLACE INTO `item_violetbox_db` VALUES(2,2406,7);	-- Sapatos
+REPLACE INTO `item_violetbox_db` VALUES(2,2407,7);	-- Sapatilha de Cristal
+REPLACE INTO `item_violetbox_db` VALUES(2,2408,7);	-- Grilhões
+REPLACE INTO `item_violetbox_db` VALUES(2,2409,7);	-- Salto Alto
+REPLACE INTO `item_violetbox_db` VALUES(2,2411,7);	-- Grevas
+REPLACE INTO `item_violetbox_db` VALUES(2,2502,7);	-- Capuz
+REPLACE INTO `item_violetbox_db` VALUES(2,2504,7);	-- Sobrepeliz
+REPLACE INTO `item_violetbox_db` VALUES(2,2506,7);	-- Manteau
+REPLACE INTO `item_violetbox_db` VALUES(2,2507,7);	-- Capa do Marquês
+REPLACE INTO `item_violetbox_db` VALUES(2,2508,7);	-- Capa Velha
+REPLACE INTO `item_violetbox_db` VALUES(2,2510,7);	-- Capuz do Aprendiz
 REPLACE INTO `item_violetbox_db` VALUES(2,2601,7);	-- Anel
 REPLACE INTO `item_violetbox_db` VALUES(2,2602,7);	-- Brinco
 REPLACE INTO `item_violetbox_db` VALUES(2,2603,7);	-- Colar

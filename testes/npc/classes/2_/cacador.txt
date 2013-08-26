@@ -1619,7 +1619,7 @@ in_hunter,99,99,4	script#dv	Informações de Caçador#cac::CaçadorNotícia	727,{
 	close;
 }
 
-payon_in03,131,7,3	script#dv	Caçador#htnGM	59,{
+payon_in03,131,7,3	script	Caçador#htnGM	59,{
 	if (CACA_Q == 10) {
 		mes "[Líder da Guilda de Caçadores]";
 		mes "Você deve estar aqui para o teste de Caçador. Posso dar informações sobre o processo do teste. O que você deseja saber?";
