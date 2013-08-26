@@ -3438,7 +3438,7 @@ ACMD_FUNC(idsearch)
 
 	sprintf(atcmd_output, msg_txt(77), item_name); // The reference result of '%s' (name: id):
 	clif_displaymessage(fd, atcmd_output);
-	match = itemdb_searchname_array(item_array, MAX_SEARCH, item_name);
+	match = itemdb_searchname_array(item_array, MAX_SEARCH, item_name, 0);
 	if(match > MAX_SEARCH) {
 		sprintf(atcmd_output, msg_txt(269), MAX_SEARCH, match);
 		clif_displaymessage(fd, atcmd_output);
@@ -6693,7 +6693,7 @@ ACMD_FUNC(mobinfo)
 		mob_array[0] = mob_db(i);
 		count = 1;
 	} else
-		count = mobdb_searchname_array(mob_array, MAX_SEARCH, message);
+		count = mobdb_searchname_array(mob_array, MAX_SEARCH, message, 0);
 
 	if(!count) {
 		clif_displaymessage(fd, msg_txt(40)); // Invalid monster ID or name.
@@ -7240,7 +7240,7 @@ ACMD_FUNC(iteminfo)
 		return -1;
 	}
 	if((item_array[0] = itemdb_exists(atoi(message))) == NULL)
-		count = itemdb_searchname_array(item_array, MAX_SEARCH, message);
+		count = itemdb_searchname_array(item_array, MAX_SEARCH, message, 0);
 
 	if(!count) {
 		clif_displaymessage(fd, msg_txt(19));   // Invalid item ID or name.
@@ -7291,7 +7291,7 @@ ACMD_FUNC(whodrops)
 		return -1;
 	}
 	if((item_array[0] = itemdb_exists(atoi(message))) == NULL)
-		count = itemdb_searchname_array(item_array, MAX_SEARCH, message);
+		count = itemdb_searchname_array(item_array, MAX_SEARCH, message, 0);
 
 	if(!count) {
 		clif_displaymessage(fd, msg_txt(19));   // Invalid item ID or name.
@@ -7340,7 +7340,7 @@ ACMD_FUNC(whereis)
 		mob_array[0] = mob_db(i);
 		count = 1;
 	} else
-		count = mobdb_searchname_array(mob_array, MAX_SEARCH, message);
+		count = mobdb_searchname_array(mob_array, MAX_SEARCH, message, 0);
 
 	if(!count) {
 		clif_displaymessage(fd, msg_txt(40)); // Invalid monster ID or name.

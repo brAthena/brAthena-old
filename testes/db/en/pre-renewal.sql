@@ -28127,7 +28127,7 @@ REPLACE INTO `skill_db` VALUES(132,'0',0,0,'0','0','0',5,'0','no',0,'0','0','wea
 REPLACE INTO `skill_db` VALUES(133,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','AS_LEFT','Lefthand Mastery');
 REPLACE INTO `skill_db` VALUES(134,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','AS_KATAR','Katar Mastery');
 REPLACE INTO `skill_db` VALUES(135,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','AS_CLOAKING','Cloaking');
-REPLACE INTO `skill_db` VALUES(136,'1',8,1,'-1','0','0',10,'8','no',0,'0','0','weapon','0','AS_SONICBLOW','Sonic Blow');
+REPLACE INTO `skill_db` VALUES(136,'1',8,1,'-1','0','0',10,'-8','no',0,'0','0','weapon','0','AS_SONICBLOW','Sonic Blow');
 REPLACE INTO `skill_db` VALUES(137,'3:4:5:6:7',6,1,'-1','0x2','1',5,'1','no',0,'0','0','weapon','0','AS_GRIMTOOTH','Grimtooth');
 REPLACE INTO `skill_db` VALUES(138,'1',6,16,'5','0x1','0',10,'1','no',0,'0x400','0','weapon','0','AS_ENCHANTPOISON','Enchant Poison');
 REPLACE INTO `skill_db` VALUES(139,'0',6,4,'0','0','0',10,'1','no',0,'0','0','weapon','0','AS_POISONREACT','Poison React');

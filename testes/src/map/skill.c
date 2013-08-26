@@ -1112,16 +1112,16 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			break;
 			
-		#if VERSION != -1
+#if VERSION != -1
 		case AS_SONICBLOW:
 			sc_start(bl,SC_STUN,(2*skill_lv+10),skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
-		#endif
-		#if VERSION == 1
+#endif
+#if VERSION == 1
 		case NJ_KAENSIN:
 			unit_set_walkdelay(bl, tick, skill_get_unit_interval(skill_id) * 2, 1);
 			break;
-		#endif
+#endif
 
 		case WZ_FIREPILLAR:
 			unit_set_walkdelay(bl, tick, skill_get_time2(skill_id, skill_lv), 1);
@@ -1131,7 +1131,9 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		#if VERSION != 1
 		case WZ_FROSTNOVA:
 		#endif
-			sc_start(bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv));
+			if(!sc_start(bl,SC_FREEZE,skill_lv*3+35,skill_lv,skill_get_time2(skill_id,skill_lv))
+				&& sd && skill_id == MG_FROSTDIVER)
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			break;
 
 		#if VERSION == 1
@@ -1146,7 +1148,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 				sc_start(bl,SC_FREEZE,65-(5*skill_lv),skill_lv,skill_get_time2(skill_id,skill_lv));
 			#elif VERSION == 0
 				// Nevasca modo Pré-Renovação.
-				if(tsc->sg_counter >= 3 && sc_start(bl,SC_FREEZE,150,skill_lv,skill_get_time2(skill_id,skill_lv)))
+				if(tsc->sg_counter >= 3 && sc_start(bl,SC_FREEZE,300,skill_lv,skill_get_time2(skill_id,skill_lv)))
 					tsc->sg_counter = 0;
 			#else
 				// Nevasca modo Old-Times.
@@ -1198,20 +1200,20 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case TF_SPRINKLESAND:
-			#if VERSION == -1
+	#if VERSION == -1
 			sc_start(bl,SC_BLIND,15,skill_lv,skill_get_time2(skill_id,skill_lv));
-			#else
+	#else
 			sc_start(bl,SC_BLIND,20,skill_lv,skill_get_time2(skill_id,skill_lv));
-			#endif
+	#endif
 			break;
 
 		case TF_THROWSTONE:
-			#if VERSION == -1
+	#if VERSION == -1
 			if(!sc_start(bl,SC_STUN,5,skill_lv,skill_get_time(skill_id,skill_lv)))
-			#else
+	#else
 			if(!sc_start(bl,SC_STUN,3,skill_lv,skill_get_time(skill_id,skill_lv)))
 			sc_start(bl,SC_BLIND,3,skill_lv,skill_get_time2(skill_id,skill_lv));
-			#endif
+	#endif
 			break;
 
 		case NPC_DARKCROSS:
@@ -1986,8 +1988,9 @@ int skill_onskillusage(struct map_session_data *sd, struct block_list *bl, uint1
 
 	return 1;
 }
-
-/* Splitted off from skill_additional_effect, which is never called when the
+//Early declaration
+static int skill_area_temp[8];
+/* Splitted off from skill->additional_effect, which is never called when the
  * attack skill kills the enemy. Place in this function counter status effects
  * when using skills (eg: Asura's sp regen penalty, or counter-status effects
  * from cards) that will take effect on the source, not the target. [Skotlex]
@@ -2067,13 +2070,17 @@ int skill_counter_additional_effect(struct block_list *src, struct block_list *b
 	   (rate=pc_checkskill(sd,HW_SOULDRAIN))>0
 	  ) { //Soul Drain should only work on targetted spells [Skotlex]
 		if(pc_issit(sd)) pc_setstand(sd);  //Character stuck in attacking animation while 'sitting' fix. [Skotlex]
-		clif_skill_nodamage(src,bl,HW_SOULDRAIN,rate,1);
-		status_heal(src, 0, status_get_lv(bl)*(95+15*rate)/100, 2);
+		if(skill_get_nk(skill_id)&NK_SPLASH && skill_area_temp[1] != bl->id)
+			;
+		else{
+			clif_skill_nodamage(src,bl,HW_SOULDRAIN,rate,1);
+			status_heal(src, 0, status_get_lv(bl)*(95+15*rate)/100, 2);
+		}
 	}
 
 	if(sd && status_isdead(bl)) {
 		int sp = 0, hp = 0;
-		if((attack_type&(BF_WEAPON|BF_SHORT)) == (BF_WEAPON|BF_SHORT) ) {
+		if(attack_type&BF_WEAPON) {
 			sp += sd->bonus.sp_gain_value;
 			sp += sd->sp_gain_race[status_get_race(bl)];
 			sp += sd->sp_gain_race[is_boss(bl)?RC_BOSS:RC_NONBOSS];
@@ -2331,8 +2338,6 @@ int skill_strip_equip(struct block_list *bl, unsigned short where, int rate, int
 	}
 	return where?1:0;
 }
-//Early declaration
-static int skill_area_temp[8];
 /*=========================================================================
  Used to knock back players, monsters, traps, etc
  - 'count' is the number of squares to knock back
@@ -3975,8 +3980,8 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 				if((mbl == src || (!map_flag_gvg(src->m) && !map[src->m].flag.battleground)) &&  // only NJ_ISSEN don't have slide effect in GVG
 				   unit_movepos(src, mbl->x+x, mbl->y+y, 1, 1)) {
 					clif_slide(src, src->x, src->y);
-					//uncomment this if you want to remove MO_EXTREMITYFIST glitchy walking effect. [malufett]
-					//clif_fixpos(src);
+					clif_fixpos(src);
+					clif_spiritball(src);
 				}
 			}
 			break;
@@ -5225,7 +5230,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 			if (unit_movepos(src, src->x+x, src->y+y, 1, 1))
 			{	//Display movement + animation.
 				clif_slide(src,src->x,src->y);
-				clif_skill_damage(src,target,tick,sd->battle_status.amotion,0,0,1,ud->skill_id, ud->skill_lv, 5);
+				clif_spiritball(src);
 			}
 			clif_skill_fail(sd,ud->skill_id,USESKILL_FAIL_LEVEL,0);
 		}
@@ -14264,8 +14269,6 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 
 	if(sc && sc->count && !(skill_get_castnodex(skill_id, skill_lv)&2)) {
 		// All variable cast additive bonuses must come first
-		if (sc->data[SC_MAGICPOWER] && !(sd && time == 0 && skill_id))
-			time += 700;
 		if (sc->data[SC_SLOWCAST])
 			VARCAST_REDUCTION(-sc->data[SC_SLOWCAST]->val2);
 		if (sc->data[SC_FROSTMISTY])

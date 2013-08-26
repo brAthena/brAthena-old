@@ -1101,10 +1101,10 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 							}
 						}
 					}
-
+#if VERSION != 1
 				if(wflag&BF_LONG)
 					cardfix = cardfix * (100 + sd->bonus.long_attack_atk_rate) / 100;
-
+#endif
 				if((cflag&1) && cardfix_ != 1000)
 					damage = damage * cardfix_ / 1000;
 					else if(cardfix != 1000)
@@ -1394,7 +1394,7 @@ int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_
 }
 
 int battle_calc_skillratio(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int skillratio, int flag){
-	int i, addedratio;
+	int i;
 	struct status_change *sc, *tsc;
 	struct map_session_data *sd, *tsd;
 	struct status_data *status, *tstatus;
@@ -1409,7 +1409,6 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 	status = status_get_status_data(src);
 	tstatus = status_get_status_data(target);
 
-	addedratio = skillratio - 100;
 
 	switch(attack_type){
 		case BF_MAGIC:
@@ -1850,7 +1849,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += 30 * skill_lv;
 					break;
 				case AS_SONICBLOW:
-					skillratio += -50 + 5 * skill_lv;
+					skillratio += 300 + 40 * skill_lv;
 					break;
 				case TF_SPRINKLESAND:
 					skillratio += 30;
@@ -2537,13 +2536,30 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += -100 + 100 * skill_lv;
 					break;
 			}
-			if(sc && sc->data[SC_EDP]) {
-				skillratio -= addedratio;
-				if(skill_id == AS_SONICBLOW ||
-					skill_id == GC_COUNTERSLASH ||
-					skill_id == GC_CROSSIMPACT)
-						skillratio >>= 1;
-				skillratio += addedratio;
+			//Skill damage modifiers that stack linearly
+			if(sc && skill_id != PA_SACRIFICE){
+				if(sc->data[SC_EDP]){
+					if(skill_id == AS_SONICBLOW ||
+						skill_id == GC_COUNTERSLASH ||
+						skill_id == GC_CROSSIMPACT)
+							skillratio >>= 1;
+				}
+				if(sc->data[SC_OVERTHRUST])
+					skillratio += sc->data[SC_OVERTHRUST]->val3;
+				if(sc->data[SC_OVERTHRUSTMAX])
+					skillratio += sc->data[SC_OVERTHRUSTMAX]->val2;
+				if(sc->data[SC_BERSERK] || sc->data[SC_SATURDAY_NIGHT_FEVER])
+#if VERSION != 1
+					skillratio += 100;
+#else
+					skillratio += 200;
+				if(sc->data[SC_TRUESIGHT])
+					skillratio += 2*sc->data[SC_TRUESIGHT]->val1;
+				if(sc->data[SC_LKCONCENTRATION])
+					skillratio += sc->data[SC_LKCONCENTRATION]->val2;
+				if(sd && sd->status.weapon == W_KATAR && (i=pc_checkskill(sd,ASC_KATAR)) > 0)
+					skillratio += skillratio * (10 + 2 * i) / 100;
+#endif
 			}
 	}
 	if(skillratio < 1)
@@ -4562,9 +4578,9 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						if(sd->bonus.atk_rate)
 							ATK_ADDRATE(sd->bonus.atk_rate);
 
-#if VERSION != 1
 						if(flag.cri && sd->bonus.crit_atk_rate)
 							ATK_ADDRATE(sd->bonus.crit_atk_rate);
+#if VERSION != 1
 
 						if(sd->status.party_id && (skill=pc_checkskill(sd,TK_POWER)) > 0) {
 							if((i = party_foreachsamemap(party_sub_count, sd, 0)) > 1)   // exclude the player himself [Inkfish]
@@ -4576,36 +4592,14 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				}   //End default case
 		} //End switch(skill_id)
 
-		//Skill damage modifiers that stack linearly
-		if(sd && sd->status.weapon == W_KATAR && (i=pc_checkskill(sd,ASC_KATAR)) > 0)
-			skillratio += skillratio * (13 + 2 * i) / 100;
 		if(sc && skill_id != PA_SACRIFICE) {
-			if(sc->data[SC_OVERTHRUST])
-				skillratio += sc->data[SC_OVERTHRUST]->val3;
-			if(sc->data[SC_OVERTHRUSTMAX])
-				skillratio += sc->data[SC_OVERTHRUSTMAX]->val2;
-			if(sc->data[SC_BERSERK] || sc->data[SC_SATURDAY_NIGHT_FEVER])
-				skillratio += 100;
-#if VERSION == 1
-			if(sc->data[SC_TRUESIGHT])
-				skillratio += 2*sc->data[SC_TRUESIGHT]->val1;
-			if( sc->data[SC_LKCONCENTRATION] )
-				skillratio += sc->data[SC_LKCONCENTRATION]->val2;
-#endif
-			if( sc->data[SC_UNLIMIT] && wd.flag&BF_LONG )
-				ATK_ADD( 50 * sc->data[SC_UNLIMIT]->val1 );
+			if(sc->data[SC_UNLIMIT] && wd.flag&BF_LONG)
+				ATK_ADD(50 * sc->data[SC_UNLIMIT]->val1);
 		}
 		if(tsc && skill_id != PA_SACRIFICE) {
 			if(tsc->data[SC_DARKCROW] && wd.flag&BF_SHORT)
-				ATK_ADD( 30 * tsc->data[SC_DARKCROW]->val1);
+				ATK_ADD(30 * tsc->data[SC_DARKCROW]->val1);
 		}
-
-		if( !skill_id )
-		{
-			ATK_RATE(skillratio);
-		}
-		else
-		{
 
 	#if VERSION == 1
 			if(sd && skill_id == NJ_KUNAI) {
@@ -4666,9 +4660,9 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					break;
 				case GS_MAGICALBULLET:
 #if VERSION != 1
-					ATK_ADD( status_get_matk(src, 2) );
+					ATK_ADD(status_get_matk(src, 2));
 #else
-					ATK_ADD( battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag).damage );
+					ATK_ADD(battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag).damage);
 					flag.tdef = 1;
 #endif
 #if VERSION != 1
@@ -4703,7 +4697,6 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					wd.damage = 20 * skill_lv;
 					break;
 			}
-		}
 #if VERSION != 1
 		//Div fix.
 		damage_div_fix(wd.damage, wd.div_);
@@ -4770,6 +4763,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		if(sd) {
 			if(skill_id && (i = pc_skillatk_bonus(sd, skill_id)))
 				ATK_ADDRATE(i);
+#if VERSION == 1
+			if(wflag&BF_LONG)
+				ATK_ADDRATE(sd->bonus.long_attack_atk_rate);
+#endif
 			if((i=pc_checkskill(sd,AB_EUCHARISTICA)) > 0 &&
 				(tstatus->race == RC_DEMON || tstatus->def_ele == ELE_DARK) )
 				ATK_ADDRATE(-i);
@@ -4850,6 +4847,19 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 #endif
 				ATK_ADD(20*lv);
 			}
+
+			if(!skill_id) {
+				if(sc->data[SC_ENCHANTBLADE]) {
+					//[( ( Skill Lv x 20 ) + 100 ) x ( casterBaseLevel / 150 )] + casterInt
+					i = (sc->data[SC_ENCHANTBLADE]->val1 * 20 + 100) * status_get_lv(src) / 150 + status_get_int(src);
+					i = i - status_get_total_mdef(target) + status_get_matk(src, 2);
+					if(i)
+						ATK_ADD(i);
+				}
+				if(sc->data[SC_GIANTGROWTH] && rnd()%100 < 15)
+					ATK_ADDRATE(200); // Triple Damage
+			}
+			
 		}
 #if VERSION != 1
 		//Refine bonus
@@ -4876,7 +4886,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			wd.damage2 = battle_calc_masteryfix(src, target, skill_id, skill_lv, wd.damage2, wd.div_, 1, flag.weapon);
 #else
 		if(sd && flag.cri)
-			ATK_ADDRATE(sd->bonus.crit_atk_rate >= 100 ? sd->bonus.crit_atk_rate : 40);
+			ATK_ADDRATE(40);
 #endif
 	} //Here ends flag.hit section, the rest of the function applies to both hitting and missing attacks
 	else if(wd.div_ < 0) //Since the attack missed...
@@ -4915,6 +4925,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		}
 	}
 #endif
+
 #if VERSION != 1
 	if(sd) {
 		if(skill_id != CR_SHIELDBOOMERANG)  //Only Shield boomerang doesn't takes the Star Crumbs bonus.
@@ -4981,23 +4992,23 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						skill = pc_checkskill(sd,KO_LEFT) * 10 +20;
 						ATK_RATEL(30 + skill);
 			}
-			#if VERSION == 1
+#if VERSION == 1
 			if(wd.damage < 0) wd.damage = 0;
 			if(wd.damage2 < 0) wd.damage2 = 0;
-			#else
+#else
 			if(wd.damage < 1) wd.damage = 1;
 			if(wd.damage2 < 1) wd.damage2 = 1;
-			#endif
+#endif
 		} else if(sd->status.weapon == W_KATAR && !skill_id) { //Katars (offhand damage only applies to normal attacks, tested on Aegis 10.2)
 			skill = pc_checkskill(sd,TF_DOUBLE);
 			wd.damage2 = wd.damage * (1 + (skill * 2))/100;
 
 			if(wd.damage && !wd.damage2) wd.damage2 = 
-			#if VERSION == 1
+#if VERSION == 1
 				0;
-			#else
+#else
 				1;
-			#endif
+#endif
 			flag.lh = 1;
 		}
 	}
@@ -5019,12 +5030,6 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			} else
 				hp = 2*hp/100; //2% hp loss per hit
 			status_zap(src, hp, 0);
-		}
-		if(!skill_id) {
-			if( sc->data[SC_ENCHANTBLADE] ) { // it also works with bear hands..intended in official
-				//[( ( Skill Lv x 20 ) + 100 ) x ( casterBaseLevel / 150 )] + casterInt
-				ATK_ADD(( sc->data[SC_ENCHANTBLADE]->val1 * 20 + 100 ) * status_get_lv(src) / 150 + status_get_int(src));
-			}
 		}
 		status_change_end(src,SC_CAMOUFLAGE, INVALID_TIMER);
 	}
@@ -5534,8 +5539,6 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 			} else
 				status_change_end(src,SC_SPELLFIST,INVALID_TIMER);
 		}
-		if(sc->data[SC_GIANTGROWTH] && (wd.flag&BF_SHORT) && rnd()%100 < sc->data[SC_GIANTGROWTH]->val2)
-			wd.damage *= 3; // Triple Damage
 
 		if(sd && sc->data[SC_FEARBREEZE] && sc->data[SC_FEARBREEZE]->val4 > 0 && sd->status.inventory[sd->equip_index[EQI_AMMO]].amount >= sc->data[SC_FEARBREEZE]->val4 && battle_config.arrow_decrement) {
 			pc_delitem(sd,sd->equip_index[EQI_AMMO],sc->data[SC_FEARBREEZE]->val4,0,1,LOG_TYPE_CONSUME);

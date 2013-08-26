@@ -114,8 +114,11 @@ static int itemdb_searchname_array_sub(DBKey key, DBData data, va_list ap)
 
 /*==========================================
  * Founds up to N matches. Returns number of matches [Skotlex]
+ * search flag :
+ * 0 - approximate match
+ * 1 - exact match
  *------------------------------------------*/
-int itemdb_searchname_array(struct item_data **data, int size, const char *str)
+int itemdb_searchname_array(struct item_data **data, int size, const char *str, int flag)
 {
 	struct item_data *item;
 	int i;
@@ -127,7 +130,9 @@ int itemdb_searchname_array(struct item_data **data, int size, const char *str)
 		if(item == NULL)
 			continue;
 
-		if(stristr(item->jname,str) || stristr(item->name,str)) {
+		if((!flag && (stristr(item->jname,str) || stristr(item->name,str))) ||
+			(flag && (strcmp(item->jname,str) == 0 || strcmp(item->name,str) == 0)))
+		{
 			if(count < size)
 				data[count] = item;
 			++count;
