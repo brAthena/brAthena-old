@@ -119,6 +119,7 @@ extern struct Battle_Config {
 	int pc_damage_delay_rate;
 	int defnotenemy;
 	int vs_traps_bctall;
+	int vs_traps_bctall_ot;
 	int traps_setting;
 	int summon_flora; //[Skotlex]
 	int clear_unit_ondeath; //[Skotlex]
@@ -220,6 +221,7 @@ extern struct Battle_Config {
 	int natural_heal_skill_interval;
 	int natural_heal_weight_rate;
 	int arrow_decrement;
+	int arrow_decrement_ot;
 	int max_aspd;
 	int max_walk_speed; //Maximum walking speed after buffs [Skotlex]
 	int max_hp;
@@ -261,6 +263,7 @@ extern struct Battle_Config {
 	int mob_warp;
 	int dead_branch_active;
 	int vending_max_value;
+	int vending_max_value_ot;
 	int vending_over_max;
 	int vending_tax;
 	int show_steal_in_same_party;
@@ -300,6 +303,7 @@ extern struct Battle_Config {
 	int show_mob_info;
 
 	int gx_allhit;
+	int gx_allhit_ot;
 	int gx_disptype;
 	int devotion_level_difference;
 	int player_skill_partner_check;
@@ -309,11 +313,13 @@ extern struct Battle_Config {
 	int disp_zeny;
 	int castle_defense_rate;
 	int backstab_bow_penalty;
+	int backstab_bow_penalty_ot;
 	int hp_rate;
 	int sp_rate;
 	int bone_drop;
 	int buyer_name;
 	int dancing_weaponswitch_fix;
+	int dancing_weaponswitch_fix_ot;
 
 // eAthena additions
 	int night_at_start; // added by [Yor]

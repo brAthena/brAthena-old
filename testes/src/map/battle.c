@@ -1885,7 +1885,11 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += 100 * (skill_lv-1);
 					break;
 				case RG_BACKSTAP:
+#if VERSION == -1
+					if( sd && sd->status.weapon == W_BOW && battle_config.backstab_bow_penalty_ot )
+#else
 					if( sd && sd->status.weapon == W_BOW && battle_config.backstab_bow_penalty )
+#endif
 						skillratio += (200 + 40 * skill_lv) / 2;
 					else
 						skillratio += 200 + 40 * skill_lv;
@@ -3175,7 +3179,11 @@ int battle_calc_drain(int64 damage, int rate, int per)
 void battle_consume_ammo(TBL_PC *sd, int skill_id, int lv)
 {
 	int qty=1;
+#if VERSION == -1
+	if(!battle_config.arrow_decrement_ot)
+#else
 	if(!battle_config.arrow_decrement)
+#endif
 		return;
 
 	if(skill_id) {
@@ -6135,6 +6143,7 @@ static const struct _battle_data {
 	{ "player_damage_delay_rate",           &battle_config.pc_damage_delay_rate,            100,    0,      INT_MAX,        },
 	{ "defunit_not_enemy",                  &battle_config.defnotenemy,                     0,      0,      1,              },
 	{ "gvg_traps_target_all",               &battle_config.vs_traps_bctall,                 BL_PC,  BL_NUL, BL_ALL,         },
+	{ "gvg_traps_target_all_ot",            &battle_config.vs_traps_bctall_ot,              BL_PC,  BL_NUL, BL_ALL,         },
 	{ "traps_setting",                      &battle_config.traps_setting,                   0,      0,      1,              },
 	{ "summon_flora_setting",               &battle_config.summon_flora,                    1|2,    0,      1|2,            },
 	{ "clear_skills_on_death",              &battle_config.clear_unit_ondeath,              BL_NUL, BL_NUL, BL_ALL,         },
@@ -6240,6 +6249,7 @@ static const struct _battle_data {
 	{ "natural_heal_skill_interval",        &battle_config.natural_heal_skill_interval,     10000,  NATURAL_HEAL_INTERVAL, INT_MAX, },
 	{ "natural_heal_weight_rate",           &battle_config.natural_heal_weight_rate,        50,     50,     101             },
 	{ "arrow_decrement",                    &battle_config.arrow_decrement,                 1,      0,      2,              },
+	{ "arrow_decrement_ot",                 &battle_config.arrow_decrement_ot,              0,      0,      2,              },
 	{ "max_aspd",                           &battle_config.max_aspd,                        190,    100,    199,            },
 	{ "max_third_aspd",                     &battle_config.max_third_aspd,                  193,    100,    199,            },
 	{ "max_walk_speed",                     &battle_config.max_walk_speed,                  300,    100,    100*DEFAULT_WALK_SPEED, },
@@ -6287,6 +6297,7 @@ static const struct _battle_data {
 	{ "mob_warp",                           &battle_config.mob_warp,                        0,      0,      1|2|4,          },
 	{ "dead_branch_active",                 &battle_config.dead_branch_active,              1,      0,      1,              },
 	{ "vending_max_value",                  &battle_config.vending_max_value,               10000000, 1,    MAX_ZENY,       },
+	{ "vending_max_value_ot",               &battle_config.vending_max_value_ot,            10000000, 1,    MAX_ZENY,       },
 	{ "vending_over_max",                   &battle_config.vending_over_max,                1,      0,      1,              },
 	{ "show_steal_in_same_party",           &battle_config.show_steal_in_same_party,        0,      0,      1,              },
 	{ "party_hp_mode",                      &battle_config.party_hp_mode,                   0,      0,      1,              },
@@ -6296,6 +6307,7 @@ static const struct _battle_data {
 	{ "party_item_share_type",              &battle_config.party_share_type,                0,      0,      1|2|3,          },
 	{ "attack_attr_none",                   &battle_config.attack_attr_none,                ~BL_PC, BL_NUL, BL_ALL,         },
 	{ "gx_allhit",                          &battle_config.gx_allhit,                       0,      0,      1,              },
+	{ "gx_allhit_ot",                       &battle_config.gx_allhit_ot,                    1,      0,      1,              },
 	{ "gx_disptype",                        &battle_config.gx_disptype,                     1,      0,      1,              },
 	{ "devotion_level_difference",          &battle_config.devotion_level_difference,       10,     0,      INT_MAX,        },
 	{ "player_skill_partner_check",         &battle_config.player_skill_partner_check,      1,      0,      1,              },
@@ -6309,6 +6321,7 @@ static const struct _battle_data {
 	{ "skill_wall_check",                   &battle_config.skill_wall_check,                1,      0,      1,              },
 	{ "cell_stack_limit",                   &battle_config.cell_stack_limit,                1,      1,      255,            },
 	{ "dancing_weaponswitch_fix",           &battle_config.dancing_weaponswitch_fix,        1,      0,      1,              },
+	{ "dancing_weaponswitch_fix_ot",        &battle_config.dancing_weaponswitch_fix_ot,     0,      0,      1,              },
 
 // eAthena additions
 	{ "item_logarithmic_drops",             &battle_config.logarithmic_drops,               0,      0,      1,              },
@@ -6355,6 +6368,7 @@ static const struct _battle_data {
 	{ "multi_level_up",                     &battle_config.multi_level_up,                  0,      0,      1,              },
 	{ "max_exp_gain_rate",                  &battle_config.max_exp_gain_rate,               0,      0,      INT_MAX,        },
 	{ "backstab_bow_penalty",               &battle_config.backstab_bow_penalty,            0,      0,      1,              },
+	{ "backstab_bow_penalty_ot",            &battle_config.backstab_bow_penalty_ot,         0,      0,      1,              },
 	{ "night_at_start",                     &battle_config.night_at_start,                  0,      0,      1,              },
 	{ "show_mob_info",                      &battle_config.show_mob_info,                   0,      0,      1|2|4,          },
 	{ "ban_hack_trade",                     &battle_config.ban_hack_trade,                  0,      0,      INT_MAX,        },

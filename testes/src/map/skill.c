@@ -10910,7 +10910,11 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 					req_item = req.itemid[i];
 				if(map_flag_gvg(src->m) || map[src->m].flag.battleground)
 					limit *= 4; // longer trap times in WOE [celest]
+#if VERSION == -1
+				if(battle_config.vs_traps_bctall_ot && map_flag_vs(src->m) && (src->type&battle_config.vs_traps_bctall_ot))
+#else
 				if(battle_config.vs_traps_bctall && map_flag_vs(src->m) && (src->type&battle_config.vs_traps_bctall))
+#endif
 					target = BCT_ALL;
 			}
 			break;
@@ -11554,7 +11558,12 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 			return 0;
 		ts->tick = tick+sg->interval;
 
-		if((skill_id==CR_GRANDCROSS || skill_id==NPC_GRANDDARKNESS) && !battle_config.gx_allhit)
+		if((skill_id==CR_GRANDCROSS || skill_id==NPC_GRANDDARKNESS) &&
+	#if VERSION == -1
+		!battle_config.gx_allhit_ot)
+	#else
+		!battle_config.gx_allhit)
+	#endif
 			ts->tick += sg->interval*(map_count_oncell(bl->m,bl->x,bl->y,BL_CHAR)-1);
 	}
 
@@ -12676,7 +12685,11 @@ static int skill_check_condition_mob_master_sub(struct block_list *bl, va_list a
 int skill_isammotype(struct map_session_data *sd, int skill)
 {
 	return (
+	#if VERSION == -1
+		   battle_config.arrow_decrement_ot==2 &&
+	#else
 	           battle_config.arrow_decrement==2 &&
+	#endif
 	           (sd->status.weapon == W_BOW || (sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE)) &&
 	           skill != HT_PHANTASMIC &&
 	           skill_get_type(skill) == BF_WEAPON &&

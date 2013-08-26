@@ -8778,7 +8778,11 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		sd->status.weapon = sd->weapontype2;
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
+#if VERSION == -1
+		if(!battle_config.dancing_weaponswitch_fix_ot)
+#else
 		if(!battle_config.dancing_weaponswitch_fix)
+#endif
 			status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); // Unequipping => stop dancing.
 	}
 	if(sd->status.inventory[n].equip & EQP_HAND_L) {
