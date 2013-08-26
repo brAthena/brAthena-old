@@ -12,41 +12,21 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 3.6/3.7/1.1                         |
+//   | Versões eA/rA/brA: 3.6/3.7/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Caçador.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Adequação para 3 versões [Neko]                    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Notícias da antiga Guilda de Caçadores
-//============================================================ 
-in_hunter,99,99,4	script	Informações de Caçador#cac::CaçadorNotícia	727,{
-	mes "============ Notícia ============";
-	mes "Gostaríamos de informar que o local do teste de Caçador";
-	mes "foi transferido para ^ff0000Hugel^000000 na República Schwartzwald.";
-	next;
-	mes "Agora você pode usar a companhia aérea de Hugel, então por favor utilize o dirigível para visitar Hugel.";
-	next;
-	mes "Você irá encontrar o novo local do teste em ^ ff0000 Hugel 208 222 ^ 000000.";
-	next;
-	mes "^804000(Você encontrou uma pequena linha escrita no final do anúncio.)^000000";
-	mes " ";
-	mes " ";
-	mes " ";
-	mes "Eu, o criador de Falcão também me mudei.";
-	close;
-}
-
-pay_fild10,148,252,3	duplicate(CaçadorNotícia)	Local da Mudança de Classe#hu	857
-
 // Início atual da quest para o teste
 //============================================================ 
-hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
+-	script	Caçadora da Guilda#cac	-1,{
 	if (Upper == 1) {
 		mes "[Caçadora Sherin]";
 		mes "Vomo você tem estado? Já faz um longo tempo, não é?";
@@ -433,7 +413,7 @@ hu_in01,386,373,4	script	Caçadora da Guilda#cac	727,{
 	close;
 }
 
-hu_in01,382,382,4	script	Recepcionista da Guilda#cac	732,{
+-	script	Recepcionista da Guilda#cac	-1,{
 	if (CACA_Q == 2) {
 		mes "[Recepcionista da Guilda]";
 		mes "Saudações. Eles me chamam... de ^660000O Caçador de Demônio^000000. Eu sou o encarregado pelas aplicações de classe. Seu nome é... "+strcharinfo(0)+", correto?";
@@ -573,159 +553,6 @@ hu_in01,382,382,4	script	Recepcionista da Guilda#cac	732,{
 	else {
 		mes "[Recepcionista da Guilda]";
 		mes "Se você deseja mudar a sua classe para um caçador, você deve registrar-se primeiro.";
-		close;
-	}
-}
-
-payon_in03,131,7,3	script	Caçador#htnGM	59,{
-	if (CACA_Q == 10) {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Você deve estar aqui para o teste de Caçador. Posso dar informações sobre o processo do teste. O que você deseja saber?";
-		next;
-		switch(select("Qual é o teste?:Quais são os requisitos para passar?:Alguma advertência?:Começar o teste.")) {
-		case 1:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Você tem que caçar certos monstros com um nome específico. Você deve evitar todas as armadilhas enquanto você estiver lá.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Isso é para testar sua capacidade de mover-se rapidamente e localizar alvos em diversas situações.";
-			close;
-		case 2:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Dentro do limite de tempo, começando na direção das 6 horas do mapa, você deve caçar os monstros-alvo,e em seguida, aperte o interruptor de fuga que aparecerá no centro do mapa.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Você passará se você for capaz de escapar na direção das 12 horas do mapa depois de bater no interruptor.";
-			close;
-		case 3:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Hum. Advertências... Se você cair em uma armadilha, você terá que começar tudo denovo desde o início. Além disso, apenas uma pessoa pode fazer o teste de cada vez.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Vou mandá-lo para o lugar da prova. Haverá uma sala de espera, mas se alguém estiver fazendo o teste, você deve esperar na sala.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Quando a pessoa na sua frente terminar, falhando ou não, a próxima pessoa que esteja esperando na sala de conversa é enviada para a área do teste. Se ninguém está esperando, o teste vai começar logo que você entrar na sala de conversa.";
-			close;
-		case 4:
-			if (.@a0) {
-        mes "[Líder da Guilda de Caçadores]";
-				mes "Ok. Mandarei você para a área de testes agora. Não me culpe se você ficar perdido ou confuso, pois você não ouviu a minha explicação.";
-				next;
-			}
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Ok. Boa sorte.";
-			mes "Vou enviá-lo agora.";
-			next;
-		}
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Bem. Suas flechas provavelmente ainda estão sendo feitas, para que você possa usar no teste.";
-		set CACA_Q,12;
-		changequest 4009,4011;
-		getitem 1751,200; //  Flecha de Prata
-		close2;
-		warp "job_hunte",176,22;
-		end;
-	}
-	else if (CACA_Q > 1 && CACA_Q < 10) {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Hum...?";
-		mes "Por que um arqueiro";
-		mes "está me visitando?";
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Eu não fui notificado sobre nada em particular da Guilda de Caçadores. Você não está tentando pular a parte do meio do teste de Caçador, está?";
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Reuna os itens para o teste, e volte depois que você visitou a Guilda de Caçadores.";
-		close;
-	}
-	else if (CACA_Q == 11) {
-		mes "[Caçador]";
-		mes "Hum? Posso ajudá-lo? Se você deseja mudar de classe, você deve visitar a pessoa na Guilda de Caçadores, não eu.";
-		close;
-	}
-	else if (CACA_Q > 11 && CACA_Q < 16) {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Hmm. Você é o arqueiro que quase desistiu de mudar de classe. Você tem tudo pronto, certo? Então eu vou mandar você para fazer o teste imediatamente.";
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Se você tiver qualquer";
-		mes "dúvida, pergunte agora.";
-		next;
-		switch(select("Qual é o teste?:Quais são os requisitos para passar?:Alguma advertência?:Começar o teste.")) {
-		case 1:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Você tem que caçar certos monstros com um nome específico. Você deve evitar todas as armadilhas enquanto você estiver lá. Isso é para testar sua capacidade de mover-se rapidamente e localizar alvos em diversas situações.";
-			close;
-		case 2:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Dentro do limite de tempo, começando na direção das 6 horas do mapa, você deve caçar os monstros-alvo,e em seguida, aperte o interruptor de fuga que aparecerá no centro do mapa.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Você passará se você for capaz de escapar na direção das 12 horas do mapa depois de bater no interruptor.";
-			close;
-		case 3:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Hum. Advertências... Se você cair em uma armadilha, você terá que começar tudo denovo desde o início. Além disso, apenas uma pessoa pode fazer o teste de cada vez.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Vou mandá-lo para o lugar da prova. Haverá uma sala de espera, mas se alguém estiver fazendo o teste, você deve esperar na sala.";
-			next;
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Quando a pessoa na sua frente terminar, falhando ou não, a próxima pessoa que esteja esperando na sala de conversa é enviada para a área do teste. Se ninguém está esperando, o teste vai começar logo que você entrar na sala de conversa.";
-			close;
-		case 4:
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Ok. Boa sorte.";
-			mes "Vou enviá-lo agora.";
-			next;
-		}
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Hã? Por que não te darei Flechas de Prata? Não espere nada enquanto você não trouxer nenhum dos materiais.";
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "De qualquer forma, acredito que você tenha preparado sozinho. Vamos começar agora.";
-		next;
-		if (select("Ok. Vamos começar...:Ah, espere um segundo.") == 1) {
-			mes "[Líder da Guilda de Caçadores]";
-			mes "Ok!! Eu espero";
-			mes "você vai passar desta vez!";
-			close2;
-			set CACA_Q,12;
-			warp "job_hunte",176,22;
-			end;
-		}
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Então apresse-se e termine";
-		mes "todas as suas preparações.";
-		close;
-	}
-	else if (CACA_Q == 16) {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Uau, você voltou em um instante!";
-		mes "Quer dizer, bom trabalho. Vou te dar o item que prova que você passou no teste.";
-		set CACA_Q,17;
-		savepoint "payon",104,99;
-		getitem 1007,1; // Colar da Sabedoria
-		changequest 4012,4013;
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Ok, aqui está. Agora, volte para a Guilda de Caçadores. Eu tenho que fazer mais alguns negócios aqui, mas eu espero que você possa se tornar um Caçador em breve.";
-		close;
-	}
-	else if (CACA_Q == 17) {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Vejo que você não está com pressa para se tornar um Caçador? Quando me tornei um caçador, eu corri cerca de um mês descontroladamente empunhando o meu arco, porque eu estava tão feliz. Hehe ~";
-		next;
-		mes "[Líder da Guilda de Caçadores]";
-		mes "Agora, você deve voltar para a Guilda de Caçadores ~";
-		close;
-	}
-	else {
-		mes "[Líder da Guilda de Caçadores]";
-		mes "...Eu posso ajudá-lo?";
-		mes "Estou aqui para um negócio oficial e estou ocupado no momento. Me dê licença...";
 		close;
 	}
 }
@@ -1763,3 +1590,188 @@ job_hunte,126,70,0	duplicate(ArmadilhaCaçador2)	97-1	-1,0,0
 job_hunte,126,71,0	duplicate(ArmadilhaCaçador2)	97-2	-1,0,0
 job_hunte,127,70,0	duplicate(ArmadilhaCaçador2)	97-3	-1,0,0
 job_hunte,127,71,0	duplicate(ArmadilhaCaçador2)	97-4	-1,0,0
+
+//<================================ Guildsman: Warps you to guild =======================================>\\
+pay_fild10,148,251,4	script#ot	Caçador da Guilda	98,{
+	warp "in_hunter",100,18;
+	end;
+}
+
+in_hunter,99,99,4	duplicato(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	727
+in_hunter,55,99,7	duplicato(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacot	732,{}
+
+// Notícias da antiga Guilda de Caçadores
+//============================================================ 
+in_hunter,99,99,4	script#dv	Informações de Caçador#cac::CaçadorNotícia	727,{
+	mes "============ Notícia ============";
+	mes "Gostaríamos de informar que o local do teste de Caçador";
+	mes "foi transferido para ^ff0000Hugel^000000 na República Schwartzwald.";
+	next;
+	mes "Agora você pode usar a companhia aérea de Hugel, então por favor utilize o dirigível para visitar Hugel.";
+	next;
+	mes "Você irá encontrar o novo local do teste em ^ ff0000 Hugel 208 222 ^ 000000.";
+	next;
+	mes "^804000(Você encontrou uma pequena linha escrita no final do anúncio.)^000000";
+	mes " ";
+	mes " ";
+	mes " ";
+	mes "Eu, o criador de Falcão também me mudei.";
+	close;
+}
+
+payon_in03,131,7,3	script#dv	Caçador#htnGM	59,{
+	if (CACA_Q == 10) {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Você deve estar aqui para o teste de Caçador. Posso dar informações sobre o processo do teste. O que você deseja saber?";
+		next;
+		switch(select("Qual é o teste?:Quais são os requisitos para passar?:Alguma advertência?:Começar o teste.")) {
+		case 1:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Você tem que caçar certos monstros com um nome específico. Você deve evitar todas as armadilhas enquanto você estiver lá.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Isso é para testar sua capacidade de mover-se rapidamente e localizar alvos em diversas situações.";
+			close;
+		case 2:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Dentro do limite de tempo, começando na direção das 6 horas do mapa, você deve caçar os monstros-alvo,e em seguida, aperte o interruptor de fuga que aparecerá no centro do mapa.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Você passará se você for capaz de escapar na direção das 12 horas do mapa depois de bater no interruptor.";
+			close;
+		case 3:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Hum. Advertências... Se você cair em uma armadilha, você terá que começar tudo denovo desde o início. Além disso, apenas uma pessoa pode fazer o teste de cada vez.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Vou mandá-lo para o lugar da prova. Haverá uma sala de espera, mas se alguém estiver fazendo o teste, você deve esperar na sala.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Quando a pessoa na sua frente terminar, falhando ou não, a próxima pessoa que esteja esperando na sala de conversa é enviada para a área do teste. Se ninguém está esperando, o teste vai começar logo que você entrar na sala de conversa.";
+			close;
+		case 4:
+			if (.@a0) {
+        mes "[Líder da Guilda de Caçadores]";
+				mes "Ok. Mandarei você para a área de testes agora. Não me culpe se você ficar perdido ou confuso, pois você não ouviu a minha explicação.";
+				next;
+			}
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Ok. Boa sorte.";
+			mes "Vou enviá-lo agora.";
+			next;
+		}
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Bem. Suas flechas provavelmente ainda estão sendo feitas, para que você possa usar no teste.";
+		set CACA_Q,12;
+		changequest 4009,4011;
+		getitem 1751,200; //  Flecha de Prata
+		close2;
+		warp "job_hunte",176,22;
+		end;
+	}
+	else if (CACA_Q > 1 && CACA_Q < 10) {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Hum...?";
+		mes "Por que um arqueiro";
+		mes "está me visitando?";
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Eu não fui notificado sobre nada em particular da Guilda de Caçadores. Você não está tentando pular a parte do meio do teste de Caçador, está?";
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Reuna os itens para o teste, e volte depois que você visitou a Guilda de Caçadores.";
+		close;
+	}
+	else if (CACA_Q == 11) {
+		mes "[Caçador]";
+		mes "Hum? Posso ajudá-lo? Se você deseja mudar de classe, você deve visitar a pessoa na Guilda de Caçadores, não eu.";
+		close;
+	}
+	else if (CACA_Q > 11 && CACA_Q < 16) {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Hmm. Você é o arqueiro que quase desistiu de mudar de classe. Você tem tudo pronto, certo? Então eu vou mandar você para fazer o teste imediatamente.";
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Se você tiver qualquer";
+		mes "dúvida, pergunte agora.";
+		next;
+		switch(select("Qual é o teste?:Quais são os requisitos para passar?:Alguma advertência?:Começar o teste.")) {
+		case 1:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Você tem que caçar certos monstros com um nome específico. Você deve evitar todas as armadilhas enquanto você estiver lá. Isso é para testar sua capacidade de mover-se rapidamente e localizar alvos em diversas situações.";
+			close;
+		case 2:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Dentro do limite de tempo, começando na direção das 6 horas do mapa, você deve caçar os monstros-alvo,e em seguida, aperte o interruptor de fuga que aparecerá no centro do mapa.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Você passará se você for capaz de escapar na direção das 12 horas do mapa depois de bater no interruptor.";
+			close;
+		case 3:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Hum. Advertências... Se você cair em uma armadilha, você terá que começar tudo denovo desde o início. Além disso, apenas uma pessoa pode fazer o teste de cada vez.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Vou mandá-lo para o lugar da prova. Haverá uma sala de espera, mas se alguém estiver fazendo o teste, você deve esperar na sala.";
+			next;
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Quando a pessoa na sua frente terminar, falhando ou não, a próxima pessoa que esteja esperando na sala de conversa é enviada para a área do teste. Se ninguém está esperando, o teste vai começar logo que você entrar na sala de conversa.";
+			close;
+		case 4:
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Ok. Boa sorte.";
+			mes "Vou enviá-lo agora.";
+			next;
+		}
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Hã? Por que não te darei Flechas de Prata? Não espere nada enquanto você não trouxer nenhum dos materiais.";
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "De qualquer forma, acredito que você tenha preparado sozinho. Vamos começar agora.";
+		next;
+		if (select("Ok. Vamos começar...:Ah, espere um segundo.") == 1) {
+			mes "[Líder da Guilda de Caçadores]";
+			mes "Ok!! Eu espero";
+			mes "você vai passar desta vez!";
+			close2;
+			set CACA_Q,12;
+			warp "job_hunte",176,22;
+			end;
+		}
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Então apresse-se e termine";
+		mes "todas as suas preparações.";
+		close;
+	}
+	else if (CACA_Q == 16) {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Uau, você voltou em um instante!";
+		mes "Quer dizer, bom trabalho. Vou te dar o item que prova que você passou no teste.";
+		set CACA_Q,17;
+		savepoint "payon",104,99;
+		getitem 1007,1; // Colar da Sabedoria
+		changequest 4012,4013;
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Ok, aqui está. Agora, volte para a Guilda de Caçadores. Eu tenho que fazer mais alguns negócios aqui, mas eu espero que você possa se tornar um Caçador em breve.";
+		close;
+	}
+	else if (CACA_Q == 17) {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Vejo que você não está com pressa para se tornar um Caçador? Quando me tornei um caçador, eu corri cerca de um mês descontroladamente empunhando o meu arco, porque eu estava tão feliz. Hehe ~";
+		next;
+		mes "[Líder da Guilda de Caçadores]";
+		mes "Agora, você deve voltar para a Guilda de Caçadores ~";
+		close;
+	}
+	else {
+		mes "[Líder da Guilda de Caçadores]";
+		mes "...Eu posso ajudá-lo?";
+		mes "Estou aqui para um negócio oficial e estou ocupado no momento. Me dê licença...";
+		close;
+	}
+}
+
+pay_fild10,148,252,3	duplicata(CaçadorNotícia)	Local da Mudança de Classe#hu	857
+hu_in01,386,373,4	duplicata(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	727
+hu_in01,382,382,4	duplicata(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacre	732,{}
