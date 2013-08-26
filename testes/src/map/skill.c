@@ -4171,9 +4171,11 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					(map_foreachinarea(skill_area_sub, bl->m, max(min_x,tx-1), max(min_y,ty-1), min(max_x,tx+1), min(max_y,ty+1), splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY, skill_area_sub_count))) {
 					// Recursive call
 					map_foreachinarea(skill_area_sub, bl->m, max(min_x,tx-1), max(min_y,ty-1), min(max_x,tx+1), min(max_y,ty+1), splash_target(src), src, skill_id, skill_lv, tick, (flag|BCT_ENEMY)+1, skill_castend_damage_id);
+#if VERSION != -1					
 					// Self-collision
 					if(bl->x >= min_x && bl->x <= max_x && bl->y >= min_y && bl->y <= max_y)
 						skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,(flag&0xFFF)>0?SD_ANIMATION:0);
+#endif
 					break;
 				}
 			}

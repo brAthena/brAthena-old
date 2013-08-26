@@ -270,7 +270,11 @@ function	script	F_KafTele	{
 	else if (@wrpD$[.@j] == "Mina Abandonada de Mjolnir") warp "mjolnir_02", 99, 351;
 	else if (@wrpD$[.@j] == "Morroc") warp "morocc", 156, 46;
 	else if (@wrpD$[.@j] == "Caverna dos Orcs") warp "gef_fild10", 52, 326;
-	else if (@wrpD$[.@j] == "Payon") warp "payon", 161, 58;
+	else if (@wrpD$[.@j] == "Payon") 
+		if(checkversion(0) != -1)
+			warp "payon", 161, 58;
+		else
+			warp "payon", 69, 100;
 	else if (@wrpD$[.@j] == "Prontera") warp "prontera", 116, 72;
 	else if (@wrpD$[.@j] == "Umbala") warp "umbala", 100, 154;
 	end;

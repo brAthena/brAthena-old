@@ -1772,7 +1772,7 @@ ACMD_FUNC(go)
 		#if VERSION != -1
 		{ MAP_PAYON,       162, 233 }, //  3=Payon
 		#else
-		{ MAP_PAYON,        90, 103 }, //  3=Payon Old-Times
+		{ MAP_PAYON,        90, 113 }, //  3=Payon Old-Times
 		#endif
 		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
 		#if VERSION == 1
