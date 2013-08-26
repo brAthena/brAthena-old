@@ -664,8 +664,8 @@ function	script	F_IzludeChannel	{
 	}
 	close;
 }
-izlude,122,105,5	script	Izlude Copy Warper	64,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_a,122,105,5	script	Izlude Copy Warper#_a	64,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_b,122,105,5	script	Izlude Copy Warper#_b	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
-izlude_c,122,105,5	script	Izlude Copy Warper#_c	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
-izlude_d,122,105,5	script	Izlude Copy Warper#_d	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; } 
+izlude,122,105,5	script#re	Izlude Copy Warper	64,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
+izlude_a,122,105,5	script#re	Izlude Copy Warper#_a	64,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
+izlude_b,122,105,5	script#re	Izlude Copy Warper#_b	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
+izlude_c,122,105,5	script#re	Izlude Copy Warper#_c	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
+izlude_d,122,105,5	script#re	Izlude Copy Warper#_d	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; } 

@@ -26,8 +26,6 @@
 // Payon Antiga
 // -- Entrada/Saída --
 //Castelos
-payon,17,151,0	warp#ot	oldpay00	1,1,pay_gld,370,149
-pay_gld,374,149,0	warp#ot	oldpay01	1,1,payon,21,152
 payon,175,189,0	warp#ot	oldpay02	4,2,pay_arche,81,22
 pay_arche,81,18,0	warp#ot	oldpay03	5,2,payon,174,185
 payon,189,69,0	warp#ot	oldpay04	2,4,pay_fild08,20,74

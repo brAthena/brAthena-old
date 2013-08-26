@@ -221,9 +221,11 @@ gefg_cas05,190,20,0	warp	gefg-5-24_gefg-5-31	1,1,gefg_cas05,194,151
 gefg_cas05,194,147,0	warp	gefg-5-31_gefg-5-24	1,1,gefg_cas05,190,16
 
 // Feudo de Payon
-payon,16,143,0	warp#dv	payon-a_payg01	1,1,pay_gld,370,149,{}
+payon,17,151,0	warp#ot	oldpay00	1,1,pay_gld,370,149
+pay_gld,374,149,0	warp#ot	oldpay01	1,1,payon,21,152,{}
+payon,16,143,0	warp#dv	payon-a_payg01	1,1,pay_gld,370,149
+pay_gld,374,149,0	warp#dv	payg01_payon-a	1,1,payon,19,143,{}
 moc_fild02,378,272,0	warp	moc02a_payg02	1,1,pay_gld,20,276
-pay_gld,374,149,0	warp	payg01_payon-a	1,1,payon,19,143
 pay_gld,16,276,0	warp	payg02_moc02a	1,1,moc_fild02,374,272
 pay_gld,121,238,0	warp	payg-1_payg-1-06	1,1,payg_cas01,214,48
 pay_gld,291,116,0	warp	payg-2_payg-2-02	1,1,payg_cas02,272,57
@@ -231,7 +233,7 @@ pay_gld,323,293,0	warp	payg-3_payg-3-07	1,1,payg_cas03,226,26
 pay_gld,140,156,0	warp	payg-4_payg-4-01	1,1,payg_cas04,252,271
 pay_gld,204,270,0	warp	payg-5_payg-5-03	1,1,payg_cas05,62,227
 
-// Castelos de Prontera
+// Castelos de Payon
 payg_cas01,201,126,0	warp	payg-1-01_payg-1-12	1,1,payg_cas01,102,21
 payg_cas01,222,130,0	warp	payg-1-02_payg-1-11	1,1,payg_cas01,130,43
 payg_cas01,218,112,0	warp	payg-1-03_payg-1-04	1,1,payg_cas01,230,94

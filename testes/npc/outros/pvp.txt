@@ -12,7 +12,7 @@
 //   |-----------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                           |
 //   |-----------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.3/2.4/1.2                            |
+//   | Versões eA/rA/brA: 2.3/2.4/1.3                            |
 //   |-----------------------------------------------------------|
 //   | Descrição: PvP NPCs que são encontrados em pousadas nas   |
 //   | principais cidades.                                       |
@@ -27,6 +27,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                         |
 //   | 1.1 Tradução PT-BR [cleyton]                              |
 //   | 1.2 Otimização [brn0]                                     |
+//   | 1.3 Duplicatas OldTimes [Neko]                            |
 //   |-----------------------------------------------------------|
 //   | - Anotações                                               |
 //   \___________________________________________________________/
@@ -186,8 +187,9 @@ morocc_in,144,138,4	script	Guia do PVP	84,{
 alberta_in,22,146,4	duplicate(Guia do PVP)	Guia do PVP#pe2	84
 prt_in,56,140,4	duplicate(Guia do PVP)	Guia do PVP#pe3	84
 geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe4	84
-payon_in01,142,50,4	duplicate(Guia do PVP)	Guia do PVP#pe5	84
 geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe6	84
+payon_in01,142,50,4	duplicata(Guia do PVP)	Guia do PVP#pe5	84,{}
+payon_in01,136,182,4	duplicato(Guia do PVP)	Guia do PVP#pe5	84,{}
 
 // Porteiro
 morocc_in,144,142,4	script	Porteiro#PvP	83,{
@@ -271,7 +273,8 @@ morocc_in,144,142,4	script	Porteiro#PvP	83,{
 alberta_in,26,146,4	duplicate(Porteiro#PvP)	Porteiro#gke2	83
 prt_in,52,140,4	duplicate(Porteiro#PvP)	Porteiro#gke3	83
 geffen_in,63,63,4	duplicate(Porteiro#PvP)	Porteiro#gke4	83
-payon_in01,140,53,4	duplicate(Porteiro#PvP)	Porteiro#gke5	83
+payon_in01,140,53,4	duplicata(Porteiro#PvP)	Porteiro#gke5	83,{}
+payon_in01,133,182,4	duplicato(Porteiro#PvP)	Porteiro#gke6	83,{}
 
 pvp_y_room,86,85,4	script	Recepção	105,{
 	if(strnpcinfo(4) == "pvp_y_room") {
@@ -300,7 +303,7 @@ OnInit:
 	waitingroom "Aberta para todos",0;
 end;
 }
-pvp_y_room,86,85,4	duplicateRecepção)	Recepção#f1	105
+pvp_y_room,86,85,4	duplicate(Recepção)	Recepção#f1	105
 pvp_n_room,30,85,4	duplicate(Recepção)	Recepção#f2	105
 
 pvp_n_8-4,33,122,0	warp	Link_1-11	0,2,pvp_n_8-4,0,0

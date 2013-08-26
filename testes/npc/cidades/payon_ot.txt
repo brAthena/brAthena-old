@@ -1339,7 +1339,7 @@ payon_in02,25,71,4	script	Garoto#payonot	86,{
 
 // Quests Chapéu de Deviruchi / Elmo Angelical
 //=============================================
-payon_in01,56,12,7	script	Jovem#2payonot	89,{
+payon_in01,123,40,7	script	Jovem#2payonot	89,{
 	mes "[Jovem]";
 	mes "...O que é isso?";
 	next;
