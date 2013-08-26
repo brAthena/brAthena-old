@@ -285,13 +285,17 @@ function	script	F_KafCart	{
 	if(BaseClass != Job_Merchant){
 		mes "[Funcionária Kafra]";
 		mes "Eu lamento, mas o serviço de aluguel de carrinho está disponível somente para Mercadores,Ferreiros, Mestre Ferreiros,Alquimistas e Criadores";
-		close;
+		close2;
+		cutin "", 255;
+		end;
 	}
 	else if(checkcart() == 1){
 		mes "[Funcionária Kafra]";
 		mes "Você já possui um carrinho equipado.";
 		mes "Infelizmente, nós não podemos alugar mais de um carrinho por vez.";
-		close;
+		close2;
+		cutin "", 255;
+		end;
 	}
 	if(countitem(7061) > 0 && getarg(0) != 2) delitem 7061,1;
 	else {
@@ -305,7 +309,9 @@ function	script	F_KafCart	{
 				mes "[Funcionária Kafra]";
 				mes "Lamento, mas você não possui Zenys suficientes para alugar um carrinho.";
 				mes "O aluguel custa "+getarg(1)+" Zenys.";
-				close;
+				close2;
+				cutin "", 255;
+				end;
 			}
 			set Zeny,Zeny-getarg(1);
 			set RESRVPTS, RESRVPTS + 48;
