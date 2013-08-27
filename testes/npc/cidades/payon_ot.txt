@@ -121,7 +121,7 @@ payon,82,116,4	script	Guia#pay	708,{
 					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
 					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
 					if (.@compass_check)
-						viewpoint 1,227,328,2,0xFF0000;
+						viewpoint 1,174,189,1,0xFF0000;
 					break;
 				case 2:
 					mes "[Guia de Payon]";
@@ -163,7 +163,7 @@ payon,82,116,4	script	Guia#pay	708,{
 			viewpoint 2,174,189,1,0xFF0000;
 			viewpoint 2,30,176,2,0xFF00FF;
 			viewpoint 2,174,189,3,0xFF00FF;
-			viewpoint 2,172,134,4,0xFF00FF;
+			viewpoint 2,139,93,4,0xFF00FF;
 			viewpoint 2,89,166,5,0x00FF00;
 			set .@compass_check,0;
 			break;
@@ -193,9 +193,9 @@ payon,82,116,4	script	Guia#pay	708,{
 			break;
 		case 4:
 			mes "[Guia de Payon]";
-			mes "Be safe in";
-			mes "your travels,";
-			mes "brave adventurer.";
+			mes "Boa sorte";
+			mes "em suas viagens,";
+			mes "bravo aventureiro!";
 			close2;
 			set .@loop1,0;
 			break;
