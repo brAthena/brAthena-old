@@ -582,7 +582,7 @@ payon_in01,101,174,5	script	Arqueiro Joe#payon	59,{
 	}
 }
 
-payon_in01,104,182,2	script	Garçonete#payon 80,{
+payon_in01,104,182,2	script	Garçonete#payon	80,{
 	mes "[Garçonete]";
 	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
 	next;

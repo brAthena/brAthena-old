@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4b/1.8/1.2                        |
+//   | Versões eA/rA/brA: 1.4b/1.8/1.3                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest das habilidades Chutar Areia, Recuar, |
 //   | Procurar Pedras e Arremesar Pedras.                    |
@@ -21,6 +21,7 @@
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [~Zangetsu]                         |
 //   | 1.2 Revisão [Battousai & Gordis]                       |
+//   | 1.3 Adaptado para 3 versões [Neko]                     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -442,7 +443,7 @@ moc_prydb1,154,128,4	script	Alcouskou#qsk_tf	118,{
 	}
 }
 
-payon,91,77,3	script	Bag Seller#qsk_tf	99,{
+-	script	Bag Seller#qsk_tf	-1,{
 	mes "[RuRumuni]";
 	mes "Eu sou um comerciante humilde aqui";
 	mes "em Payon. Eu compro couro e";
@@ -510,3 +511,6 @@ payon,91,77,3	script	Bag Seller#qsk_tf	99,{
 		close;
 	}
 }
+
+payon,91,77,3	duplicata(Bag Seller#qsk_tf)	Bag Seller#2qsk_tf	99,{}
+payon,112,65,3	duplicato(Bag Seller#qsk_tf)	Bag Seller#qsk_tfot	99,{}

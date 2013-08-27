@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude_in,175,130,2	script#pre	Knight De Thomas	98,4,4,{
+izlude_in,175,130,2	script	Knight De Thomas	98,4,4,{
 	if ((BaseClass == Job_Swordman) && (sm_movingrecovery_x < 1)) {
 		mes "[De Thomas]";
 		mes "Oh, no! You must have been hurt! Are you ok?";

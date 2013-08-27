@@ -12,18 +12,19 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4b/1.7/1.0                        |
+//   | Versões eA/rA/brA: 1.4b/1.7/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests das habilidades Fabricar Flechas e   |
 //   | Disparo Violento.                                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adaptado para 3 versões [Neko]                     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_ruins,118,99,5	script	Roberto	88,{
+-	script	Roberto	-1,{
 	if (BaseClass == Job_Archer) {
 		if (getskilllv("AC_MAKINGARROW") == 1) {
 			mes "[Roberto]";
@@ -149,7 +150,7 @@ moc_ruins,118,99,5	script	Roberto	88,{
 	close;
 }
 
-payon,103,63,3	script	Jason	88,3,3,{
+-	script	Jason	-1,{
 	if (BaseClass == Job_Archer) {
 		if (getskilllv("AC_CHARGEARROW") == 1) {
 			mes "[Jason]";
@@ -273,3 +274,8 @@ OnTouch:
 	mes "Errrrrrr...";
 	close;
 }
+
+payon,30,94,3	duplicato(Jason)	Jason#ot	88,3,3
+morocc,121,109,5	duplicato(Roberto)	Roberto#ot	88,{}
+payon,103,63,3	duplicata(Jason)	Jason#dv	88,3,3
+moc_ruins,118,99,5	duplicata(Roberto)	Roberto#dv	88,{}
