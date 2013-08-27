@@ -19,36 +19,20 @@
 
 #include "map.h" //EVENT_NAME_LENGTH
 
-#define NUM_WHISPER_VAR 10
-
+/**
+ * Declarations
+ **/
 struct map_session_data;
 struct eri;
 
-extern int potion_flag; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
-extern int potion_hp, potion_per_hp, potion_sp, potion_per_sp;
-extern int potion_target;
+/**
+ * Defines
+ **/
+#define NUM_WHISPER_VAR 10
 
-extern struct Script_Config {
-	unsigned warn_func_mismatch_argtypes : 1;
-	unsigned warn_func_mismatch_paramnum : 1;
-	int check_cmdcount;
-	int check_gotocount;
-	int input_min_value;
-	int input_max_value;
-
-	const char *die_event_name;
-	const char *kill_pc_event_name;
-	const char *kill_mob_event_name;
-	const char *login_event_name;
-	const char *logout_event_name;
-	const char *loadmap_event_name;
-	const char *baselvup_event_name;
-	const char *joblvup_event_name;
-
-	const char *ontouch_name;
-	const char *ontouch2_name;
-} script_config;
-
+/**
+ * Enumerations
+ **/
 typedef enum c_op {
     C_NOP, // end of script/no value (nil)
     C_POS,
@@ -92,6 +76,46 @@ typedef enum c_op {
     C_SUB_PP, // --a
 } c_op;
 
+enum hQueueOpt {
+	HQO_NONE,
+	HQO_onLogOut,
+	HQO_OnDeath,
+	HQO_OnMapChange,
+	HQO_MAX,
+};
+
+enum e_script_state { RUN,STOP,END,RERUNLINE,GOTO,RETFUNC,CLOSE };
+
+enum script_parse_options {
+    SCRIPT_USE_LABEL_DB = 0x1,// records labels in scriptlabel_db
+    SCRIPT_IGNORE_EXTERNAL_BRACKETS = 0x2,// ignores the check for {} brackets around the script
+    SCRIPT_RETURN_EMPTY_SCRIPT = 0x4// returns the script object instead of NULL for empty scripts
+};
+
+/**
+ * Structures
+ **/
+
+extern struct Script_Config {
+	unsigned warn_func_mismatch_argtypes : 1;
+	unsigned warn_func_mismatch_paramnum : 1;
+	int check_cmdcount;
+	int check_gotocount;
+	int input_min_value;
+	int input_max_value;
+
+	const char *die_event_name;
+	const char *kill_pc_event_name;
+	const char *kill_mob_event_name;
+	const char *login_event_name;
+	const char *logout_event_name;
+	const char *loadmap_event_name;
+	const char *baselvup_event_name;
+	const char *joblvup_event_name;
+
+	const char *ontouch_name;
+	const char *ontouch2_name;
+} script_config;
 struct script_retinfo {
 	struct DBMap *var_function;// scope variables
 	struct script_code *script;// script code
@@ -126,14 +150,6 @@ struct script_stack {
 	struct DBMap *var_function;// scope variables
 };
 
-enum hQueueOpt {
-	HQO_NONE,
-	HQO_onLogOut,
-	HQO_OnDeath,
-	HQO_OnMapChange,
-	HQO_MAX,
-};
-
 /* [Ind/Hercules] */
 struct hQueue {
 	int id;
@@ -151,11 +167,6 @@ struct hQueueIterator {
 	int items;
 	int pos;
 };
-
-//
-// Script state
-//
-enum e_script_state { RUN,STOP,END,RERUNLINE,GOTO,RETFUNC,CLOSE };
 
 struct script_state {
 	struct script_stack *stack;
@@ -189,11 +200,10 @@ struct script_regstr {
 	char *data;
 };
 
-enum script_parse_options {
-    SCRIPT_USE_LABEL_DB = 0x1,// records labels in scriptlabel_db
-    SCRIPT_IGNORE_EXTERNAL_BRACKETS = 0x2,// ignores the check for {} brackets around the script
-    SCRIPT_RETURN_EMPTY_SCRIPT = 0x4// returns the script object instead of NULL for empty scripts
-};
+
+extern int potion_flag; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
+extern int potion_hp, potion_per_hp, potion_sp, potion_per_sp;
+extern int potion_target;
 
 const char *skip_space(const char *p);
 void script_error(const char *src, const char *file, int start_line, const char *error_msg, const char *error_pos);
@@ -273,6 +283,7 @@ struct script_interface {
 	void (*set_constant2) (const char *name, int value, bool isparameter);
 	void (*set_constant_force) (const char *name, int value, bool isparameter);
 	void (*label_add)(int key, int pos);
+	void (*warning) (const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos);
 	/* */
 	struct hQueue *(*queue) (int idx);
 	bool (*queue_add) (int idx, int var);

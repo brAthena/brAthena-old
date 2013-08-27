@@ -261,6 +261,7 @@ typedef uint32 usysint;
 #endif
 #if defined(_MSC_VER) && _MSC_VER > 1200
 #define strtoull            _strtoui64
+#define strtoll             _strtoi64
 #endif
 
 // keyword replacement
