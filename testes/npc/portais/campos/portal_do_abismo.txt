@@ -32,9 +32,9 @@ hu_fild05,168,304,0	script	Coluna#abismo1	111,{
 	mes "que certas partes do corpo de um dragão";
 	mes "encaixariam perfeitamente";
 	mes "nessas rachaduras.^000000";
-	if((countitem(1035)) && (countitem(1036)) && (countitem(1037))) {
+	if ((countitem(1035)) && (countitem(1036)) && (countitem(1037))) {
 		next;
-		switch( select( "Inserir partes do Corpo do Dragão","Comer Partes do Corpo do Dragão" ) ) {
+		switch(select("Inserir partes do Corpo do Dragão","Comer Partes do Corpo do Dragão" ) ) {
 			case 1:
 				mes "^3355FFVocê coloca cuidadosamente o";
 				mes "Canino do Dragão dentro de uma";
@@ -98,7 +98,7 @@ hu_fild05,171,211,0	script	Coluna#abismo2	111,1,1,{
 	mes "no lago. Há";
 	mes "encaixe azul na superficíe.^000000";
 	next;
-	switch( select( "Tocar o Encaixe","Tirar item do Encaixe" ) )
+	switch(select("Tocar o Encaixe","Tirar item do Encaixe" ) )
 	{
 		case 1:
 			mes "^3355FF*Ruído ruído*^000000";

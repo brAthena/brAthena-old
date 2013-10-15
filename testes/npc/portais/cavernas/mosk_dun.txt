@@ -62,7 +62,7 @@ OnTouch:
 		mes "that you would appear again.";
 		mes "What is your business with the Csar?";
 		next;
-		if(select("Run away.:Explain the situation.") == 1) {
+		if (select("Run away.:Explain the situation.") == 1) {
 			mes "["+strcharinfo(0)+"]";
 			mes "I should get out of here...";
 			close2;
@@ -93,7 +93,7 @@ OnTouch:
 		mes "that you would appear again.";
 		mes "What is your business with the Csar?";
 		next;
-		if(select("Run away.:Explain the situation.") == 1) {
+		if (select("Run away.:Explain the situation.") == 1) {
 			mes "["+strcharinfo(0)+"]";
 			mes "I should get out of here...";
 			close2;
@@ -183,7 +183,7 @@ mosk_dun01,207,276,3	script	Milestone#1-2	111,{
 	mes "^3131FF- Those who advance may get hurt but are courageous of heart and those who move back will remain safe.";
 	mes "If you have courage, step forward. Otherwise, step backward. -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
+	if (select("Step forward.:Stay.") == 1) {
 		mes "- You follow the way before you. -";
 		close2;
 		warp "mosk_dun02",165,30;
@@ -199,7 +199,7 @@ mosk_dun01,264,191,3	script	Milestone#1-3	111,{
 	mes "^3131FF- Those who advance may get hurt but are brave of heart and those who move back will remain safe.";
 	mes "If you are brave, then take a step forward. Otherwise, step back. -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
+	if (select("Step forward.:Stay.") == 1) {
 		mes "- You follow the way before you. -";
 		close2;
 		warp "mosk_dun03",117,36;
@@ -215,7 +215,7 @@ mosk_dun02,168,28,3	script	Milestone#2-1	111,{
 	mes "^3131FF- Those who advance may get hurt but are valorous of heart and those who move back will remain safe.";
 	mes "If you valorous, then take a step forward. Otherwise, step back. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
+	if (select("Go back.:Stay.") == 1) {
 		mes "- You sense danger and decide to go back -";
 		close2;
 		warp "mosk_dun01",201,269;
@@ -231,7 +231,7 @@ mosk_dun02,268,117,3	script	Milestone#2-3	111,{
 	mes "^3131FF- Those who step forward will gain honor but may die, those who step backward will have courage but may still get hurt.";
 	mes "If you are truly brave, step forward. Otherwise, step back -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
+	if (select("Step forward.:Stay.") == 1) {
 		mes "- You bravely step forward. -";
 		close2;
 		warp "mosk_dun03",32,135;
@@ -247,7 +247,7 @@ mosk_dun03,27,131,3	script	Milestone#3-2	111,{
 	mes "^3131FF- Those who stay may die but will gain honor, those who go back may get hurt but will gain courage.";
 	mes "Those who have courage will go back, otherwise step forward and stay. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
+	if (select("Go back.:Stay.") == 1) {
 		mes "- You sense danger and decide to go back -";
 		close2;
 		warp "mosk_dun02",262,118;
@@ -263,7 +263,7 @@ mosk_dun03,119,46,3	script	Milestone#3-1	111,{
 	mes "^3131FF- Those who stay may die but will gain honor, those who go back may get hurt but will gain courage.";
 	mes "Those who are afraid of the death will go back, otherwise step forward and stay. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
+	if (select("Go back.:Stay.") == 1) {
 		mes "- You sense danger and decide to go back -";
 		close2;
 		warp "mosk_dun01",257,190;
@@ -283,7 +283,7 @@ mosk_dun01,194,43,3	script	Milestone#1-1	111,{
 mosk_fild02,198,53,3	script	Ship#mos_dun	111,{
 	mes "- You find a ship at anchor. -";
 	next;
-	if(select("Take the ship and go back to the village.:Explore more.") == 1) {
+	if (select("Take the ship and go back to the village.:Explore more.") == 1) {
 		mes "- You board the ship and pull at the oars. -";
 		close2;
 		warp "moscovia",140,54;
