@@ -43,7 +43,7 @@ alberta,30,65,3	script	Akagi	730,{
 	mes "Você deve ter vindo aqui sentindo que alguém estava esperando por você.";
 	mes "Diga-me, você busca o caminho da paciência?";
 	next;
-	if(select("Não:Sim") == 1) {
+	if (select("Não:Sim") == 1) {
 		mes "[Akagi]";
 		mes "Entendo.";
 		mes "Cada um por si, suponho.";
@@ -125,7 +125,7 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 			mes "Talvez você possa me ajudar.";
 			mes "Faça o que peço, e irei ensiná-lo algumas de minhas habilidades se você realmente quiser se tornar um Ninja.";
 			next;
-			if(select("Com certeza!:Não, obrigado.") == 2) {
+			if (select("Com certeza!:Não, obrigado.") == 2) {
 				mes "[Cougar]";
 				mes "Hm? Bem, tudo bem. Entretanto, não entendo porque não podemos nos ajudar neste pequeno dilema...";
 				close;
@@ -146,17 +146,17 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 			set NINJ_Q,1;
 			setquest 6015;
 			close;
-		} else if(NINJ_Q == 1) {
+		} else if (NINJ_Q == 1) {
 			mes "[Cougar]";
 			mes "Mesmo que esta tarefa não seja tão urgente, por favor, corra para Einbroch e entregue minha carta para Wildcat Joe.";
 			close;
-		} else if(NINJ_Q == 2) {
+		} else if (NINJ_Q == 2) {
 			mes "[Cougar]";
 			mes "Você entregou aquela carta para Wildcat Joe?";
 			mes "Eu ainda preciso saber a resposta dele para minha proposta de trégua.";
 			mes "De qualquer maneira, veja se consegue forçá-lo a isso.";
 			close;
-		} else if(NINJ_Q == 3) {
+		} else if (NINJ_Q == 3) {
 			mes "[Cougar]";
 			mes "Ah, você voltou.";
 			mes "Então, Wildcat Joe mandou você de volta com a resposta dele?";
@@ -189,7 +189,7 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 			set NINJ_Q,4;
 			changequest 6017,6018;
 			close;
-		} else if(NINJ_Q == 4) {
+		} else if (NINJ_Q == 4) {
 			if (countitem(7053) < 5 || !(countitem(1010))) {
 				mes "[Cougar]";
 				mes "Se apresse e traga";
@@ -198,7 +198,7 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 				mes "para mim, então poderei criar minha própria Kunai para usar contra Wildcat Joe!";
 				close;
 			}
-			if (Skillpoint) {
+			if (SkillPoint) {
 				mes "[Cougar]";
 				mes "Whoa, whoa...";
 				mes "Você ainda tem alguns Pontos de Habilidade restantes.";
@@ -282,7 +282,7 @@ einbroch,184,194,3	script	Homem Suspeito#nq	 	881,{
 		mes "Se não se importar, poderia me ajudar?";
 		mes "Depois posso te ajudar a encontrar Joe.";
 		next;
-		if(select("Não se preocupe, eu o encontrarei sozinho.:Claro, eu te ajudarei.") == 1) {
+		if (select("Não se preocupe, eu o encontrarei sozinho.:Claro, eu te ajudarei.") == 1) {
 			mes "[Homem Suspeito]";
 			mes "Tem certeza...? Red Leopard Joe é realmente um mestre dos disfarces.";
 			mes "Você precisará de toda ajudar que puder para encontrá-lo...";
@@ -294,7 +294,7 @@ einbroch,184,194,3	script	Homem Suspeito#nq	 	881,{
 		set NINJ_Q,2;
 		changequest 6015,6016;
 		close;
-	} else if(NINJ_Q == 2) {
+	} else if (NINJ_Q == 2) {
 		if (countitem(7053) < 5 || !(countitem(1010))) {
 			mes "[Homem Suspeito]";
 			mes "Por favor, traga ";
@@ -366,12 +366,12 @@ einbroch,184,194,3	script	Homem Suspeito#nq	 	881,{
 		close2;
 		warp "amatsu",113,127;
 		end;
-	} else if(NINJ_Q == 3) {
+	} else if (NINJ_Q == 3) {
 		mes "[Red Leopard Joe]";
 		mes "Eh? Não sei o que aconteceu, mas parece que você ainda não entregou minha resposta para Cougar.";
 		mes "Devo enviar-lhe diretamente para Amatsu agora?";
 		next;
-		if(select("Não, obrigado.:Sim, por favor.") == 1) {
+		if (select("Não, obrigado.:Sim, por favor.") == 1) {
 			mes "[Red Leopard Joe]";
 			mes "Certo. Bem, eu estava só tentando poupar algum tempo seu.";
 			close;
@@ -381,13 +381,13 @@ einbroch,184,194,3	script	Homem Suspeito#nq	 	881,{
 		close2;
 		warp "amatsu",113,127;
 		end;
-	} else if(NINJ_Q == 4) {
+	} else if (NINJ_Q == 4) {
 		mes "[Red Leopard Joe]";
 		mes "Cougar te pediu para obter alguns materiais também?";
 		mes "Oh, bem, suponho que não posso culpá-lo.";
 		mes "Aliás, devo ser capaz de vencê-lo em uma luta justa~";
 		close;
-	} else if(NINJ_Q == 5 && Class == Job_Ninja) {
+	} else if (NINJ_Q == 5 && Class == Job_Ninja) {
 		mes "[Red Leopard Joe]";
 		mes "Oh, você é um Ninja~";
 		mes "Espero que continue a treinar e maximizar todas as habilidades de Ninja que puder.";

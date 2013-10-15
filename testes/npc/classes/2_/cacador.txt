@@ -73,7 +73,7 @@
 		mes "Ah, uma pessoa que serve a Deus! Prazer em conhecê lo. Não há muitas pessoas como você que visitam este lugar ~ Hehe.";
 		close;
 	}
-	else if (Baseclass == Job_Merchant) {
+	else if (BaseClass == Job_Merchant) {
 		mes "[Caçadora Sherin]";
 		mes "Hum...";
 		mes "Como estão seus negócios, bem?";
@@ -130,7 +130,7 @@
 			mes "[Caçadora Sherin]";
 			mes "~Parabéns!";
 			mes "Você está ótimo como Caçador!!";
-			set .@joblvl,joblevel;
+			set .@joblvl,JobLevel;
 			completequest 4013;
 			callfunc "Job_Change",Job_Hunter;
 			callfunc "F_ClearJobVar";		// clears all job variables for the current player
@@ -172,7 +172,7 @@
 					mes "Pois bem, vamos começar?";
 					next;
 					if (select("Sim~ vamos começar agora.:Não, eu volto mais tarde.") == 1) {
-						if(checkquest(4000) == -1) {
+						if (checkquest(4000) == -1) {
 							setquest 4000;
 						}
 						mes "[Caçadora Sherin]";
@@ -446,7 +446,7 @@
 		mes "[Caçador de Demônio]";
 		mes "Você vê, estamos tendo alguns problemas financeiros. Vejamos, estamos escasso destes itens...";
 		next;
-		if(checkversion(0)) set .@i,1;
+		if (checkversion(0)) set .@i,1;
 		switch(rand(1,7)) {
     // Antenas de Inseto / Garra de Lobo do Deserto, Tronco, Erva Branca
 		case 1: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 3; changequest 4001,4002; break;
@@ -477,7 +477,7 @@
 		close;
 	}
 	else if (CACA_Q >= 3 && CACA_Q <= 9) {
-		if(checkversion(0)) set .@i,1;
+		if (checkversion(0)) set .@i,1;
 		switch(CACA_Q) {
     // Antenas de Inseto / Garra de Lobo do Deserto, Tronco, Erva Branca
 		case 3: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 10; break;
@@ -501,22 +501,22 @@
 			mes "[Caçador de Demônio]";
 			mes "Você trouxe todos os materiais necessários ... Você pode obter instruções para a área de testes do nosso líder que está atualmente no Palácio Central de Payon.";
 			set CACA_Q,.@items[6];
-			if(checkquest(4002) != -1) {
+			if (checkquest(4002) != -1) {
 				changequest 4002,4009;
 			}
-			else if(checkquest(4003) != -1) {
+			else if (checkquest(4003) != -1) {
 				changequest 4003,4009;
 			}
-			else if(checkquest(4004) != -1) {
+			else if (checkquest(4004) != -1) {
 				changequest 4004,4009;
 			}
-			else if(checkquest(4005) != -1) {
+			else if (checkquest(4005) != -1) {
 				changequest 4005,4009;
 			}
-			else if(checkquest(4006) != -1) {
+			else if (checkquest(4006) != -1) {
 				changequest 4006,4010;
 			}
-			else if(checkquest(4007) != -1) {
+			else if (checkquest(4007) != -1) {
 				changequest 4007,4010;
 			}
 			else {

@@ -56,7 +56,7 @@
 	mes "e ferramentas é realmente uma forma de arte!";
 	next;
 	if (BaseClass == Job_Novice) {
-		if (sex == 0) {
+		if (Sex == 0) {
 			mes "[Altiregen]";
 			mes "Oh~";
 			mes "mas que";
@@ -232,7 +232,7 @@
 		else if (BSMITH_Q == 17 && countitem(1005) > 0 && JobLevel > 39) {
 			mes "[Altiregen]";
 			mes "Excelente, Eu posso falar pelo brilho em seus olhos que você teve sucesso. Eu posso agora colocar em prática o dom da forja, a arte dos Ferreiros.";
-			if(checkquest(2015) != -1) {
+			if (checkquest(2015) != -1) {
 				changequest 2015,2016;
 			}
 			next;
@@ -450,9 +450,9 @@
 				mes "Vamos ver...sua pontuação é..." + .@black_q + " pontos.";
 				if (.@black_q == 100) {
 					set BSMITH_Q,3;
-					if(checkquest(2001) != -1) {
+					if (checkquest(2001) != -1) {
 						changequest 2001,2002;
-					}else{
+					} else {
 						changequest 2000,2002;
 					}
 					mes "Oh ho ho~";
@@ -467,7 +467,7 @@
 					close;
 				}
 				set BSMITH_Q,2;
-				if(checkquest(2001) == -1) {
+				if (checkquest(2001) == -1) {
 					changequest 2000,2001;
 				}
 				mes ".............";
@@ -620,7 +620,7 @@
 				case 9:
 					mes "Muito bem, agora leve isso para ^8E6B23Bysliter^000000 em Geffen do Reino de Rune-Midgard. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1610,1; // Cetro
-					if(checkquest(2003) != -1) {
+					if (checkquest(2003) != -1) {
 						changequest 2003,2008;
 					}
 					next;
@@ -645,7 +645,7 @@
 				case 10:
 					mes "Certo, agora leve isso para ^8E6B23Whichebain^000000 em Morroc do Reino de Rune-Midgard. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1219,1; // Gladius
-					if(checkquest(2004) != -1) {
+					if (checkquest(2004) != -1) {
 						changequest 2004,2009;
 					}
 					next;
@@ -670,7 +670,7 @@
 				case 11:
 					mes "Certo, agora leve isso para ^8E6B23Grongast^000000 em Lighthalzen. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1119,1; // Tsurugi
-					if(checkquest(2005) != -1) {
+					if (checkquest(2005) != -1) {
 						changequest 2005,2010;
 					}
 					next;
@@ -696,7 +696,7 @@
 				case 12:
 					mes "Certo, agora leve isso para ^8E6B23Talpiz^000000 em Payon do Reino de Rune-Midgard. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1713,1; // Arbaleste
-					if(checkquest(2006) != -1) {
+					if (checkquest(2006) != -1) {
 						changequest 2006,2011;
 					}
 					next;
@@ -720,7 +720,7 @@
 				case 13:
 					mes "Certo, agora leve isso para ^8E6B23Bismark^000000 em Hugel. Basta entregá-lo e trazer para mim o recibo.";
 					getitem 1122,1; // Sabre de Impacto
-					if(checkquest(2007) != -1) {
+					if (checkquest(2007) != -1) {
 						changequest 2007,2012;
 					}
 					next;
@@ -817,16 +817,16 @@
 				if (countitem(1073) > 0) {
 					set BSMITH_Q,15;
 					delitem 1073,1; //Recibo de Entrega
-					if(checkquest(2008) != -1) {
+					if (checkquest(2008) != -1) {
 						changequest 2008,2013;
 					}
-					else if(checkquest(2009) != -1) {
+					else if (checkquest(2009) != -1) {
 						changequest 2009,2013;
 					}
-					else if(checkquest(2010) != -1) {
+					else if (checkquest(2010) != -1) {
 						changequest 2010,2013;
 					}
-					else if(checkquest(2011) != -1) {
+					else if (checkquest(2011) != -1) {
 						changequest 2011,2013;
 					}
 					else {
@@ -1122,7 +1122,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 		mes "seu recibo.";
 		mes "Obrigado";
 		mes "pela entrega.!";
-		if(checkversion(0) != -1)
+		if (checkversion(0) != -1)
 			mapannounce "lighthalzen",strcharinfo(0)+"... Obrigado pela sua entrega.",bc_map;
 		else
 			mapannounce "izlude",strcharinfo(0)+"... Obrigado pela sua entrega.",bc_map;
@@ -1222,7 +1222,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 		mes "o seu recibo.";
 		mes "P-pegue-o...";
 		mes "É seu!";
-		if(checkversion(0) != -1)
+		if (checkversion(0) != -1)
 			mapannounce "hugel","Obrigado, " +strcharinfo(0)+ ", pela entrega. Você salvou minha vida...",bc_map;
 		else
 			mapannounce "comodo","Obrigado, " +strcharinfo(0)+ ", pela entrega. Você salvou minha vida...",bc_map;
@@ -1589,7 +1589,7 @@ geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	726,{
 			mes "Desculpe-me, mas você não tem dinheiro suficiente.";
 			close;
 		}
-		set zeny,zeny-600;
+		set Zeny, Zeny-600;
 		warp "izlude",94,103;
 		end;
 	case 3:

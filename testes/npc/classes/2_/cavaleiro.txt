@@ -357,7 +357,7 @@ prt_in,88,101,4	script	Chefe dos Cavaleiros#cav	56,{
 		mes "a opinião da Ana.";
 		next;
 		mes "[Cavaleira Educada]";
-		if (sex) {
+		if (Sex) {
 			mes "Hum ~ Ele é tão educado!";
 			mes "Ele vai crescer para ser um cavaleiro maravilhoso.!";
 		}
@@ -376,7 +376,7 @@ prt_in,88,101,4	script	Chefe dos Cavaleiros#cav	56,{
 		mes "sua opinião.";
 		next;
 		mes "[Cavaleiro Devotado]";
-		if (sex) {
+		if (Sex) {
 			mes "Ele parece um pouco bruto, mas algo brilha dentro dele. Com um polimento, seu verdadeiro valor vai brilhar";
 			mes "como o sol.";
 		}
@@ -678,7 +678,7 @@ prt_in,71,91,0	script	Cavaleiro Honroso#cav	65,{
 			mes "Se você pegar qualquer um dos novos recrutas agindo de forma imprópria para um cavaleiro, repreenda-os para mim por favor?";
 			close;
 		}
-		else if (Baseclass == Job_Novice) {
+		else if (BaseClass == Job_Novice) {
 			mes "Opa?";
 			mes "O que um aprendiz";
 			mes "faz aqui?";
@@ -1111,7 +1111,7 @@ prt_in,79,94,4	script	Cavaleiro das Lutas#cav	733,{
 				mes "...Por aqui.";
 			}
 			close2;
-			if(checkquest(9006) == -1) changequest 9005,9006;
+			if (checkquest(9006) == -1) changequest 9005,9006;
 			warp "job_knt",89,101;
 			end;
 		}
@@ -1401,7 +1401,7 @@ OnMyMobDead:
 		mes "a Cavaleira Educada agora.";
 		close2;
 		set CAVALEIRO_Q,8;
-		if(checkquest(9007) == -1) {
+		if (checkquest(9007) == -1) {
 			changequest 9006,9007;
 		}
 		warp "prt_in",80,100;
@@ -1527,7 +1527,7 @@ prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
 			mes "veio até Ana?";
 			next;
 			if (select("Cavaleiro das Lutas me mandou:Ah, nada.") == 1) {
-				if(checkquest(9008) == -1) changequest 9007,9008;
+				if (checkquest(9008) == -1) changequest 9007,9008;
 				mes "[Cavaleira Educada]";
 				mes "Ah!";
 				mes "Não é preciso dizer";
@@ -1634,7 +1634,7 @@ prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
 		mes "a batalha. Qual";
 		mes "sua ação?";
 		next;
-		if(select("Dou a quem mais merecer.:Finjo que nada aconteceu e fico pra mim.:Decido com o grupo quem irá ficar com o item.") != 2)
+		if (select("Dou a quem mais merecer.:Finjo que nada aconteceu e fico pra mim.:Decido com o grupo quem irá ficar com o item.") != 2)
 			set .@knight_t,.@knight_t+10;
 		mes "[Cavaleira Educada]";
 		mes "Você acaba com o item e você vai para Prontera vendê-lo. Há muitas pessoas com lojas e salas abertas procurando vender itens.";
@@ -1661,7 +1661,7 @@ prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
 		mes "alguém que está perdido.";
 		mes "O que você deve fazer?";
 		next;
-		if(select("Diga a pessoa como faz para alcançar a saída.:Levo a pessoa até a saída.:Dou uma asa de borboleta.") != 3)
+		if (select("Diga a pessoa como faz para alcançar a saída.:Levo a pessoa até a saída.:Dou uma asa de borboleta.") != 3)
 			set .@knight_t,.@knight_t+10;
 		mes "[Cavaleira Educada]";
 		mes "Você está caçando por um bom tempo, e agora você está com pouco HP!";

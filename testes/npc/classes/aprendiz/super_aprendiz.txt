@@ -341,7 +341,7 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 				}
 				if (Zeny >= 1899) {
 					set RESRVPTS, RESRVPTS + 190;
-					set zeny,zeny-1900;
+					set Zeny, Zeny-1900;
 					if (getskilllv("MC_PUSHCART") > 0) setcart;
 					mes "[Recepcionista Kafra]";
 					mes "[Recepcionista Kafra]";

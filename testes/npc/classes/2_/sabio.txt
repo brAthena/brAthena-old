@@ -338,7 +338,7 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 				next;
 				if (select("Pay 70,000 zeny.:Give him Old Magicbook and Necklace of Wisdom.") == 1) {
 					if (Zeny > 69999) {
-						set zeny,zeny-70000;
+						set Zeny, Zeny-70000;
 						mes "[Metheus Sylphe]";
 						mes "Thank you, your application has been accepted.";
 						mes "Next, you will take an entrance test.";
@@ -510,7 +510,7 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 			next;
 		}
 		else if (Zeny > 69999) {
-			set zeny,zeny-70000;
+			set Zeny, Zeny-70000;
 			mes "[Metheus Sylphe]";
 			mes "Well done. Let me proceed with your application request.";
 			set SAGE_Q,4;
@@ -536,11 +536,11 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 			}
 			set .@size, (getarraysize(.@item)-1); 
 			for( set .@i,0 ; .@i < .@size && countitem(.@item[.@i]) >= .@count[.@i] ; set .@i,.@i+1 );
-			if(.@i == .@size) {  
+			if (.@i == .@size) {  
 				if (Zeny > 29999) {
 					for (set .@i, 0; .@i < .@size ; set .@i, .@i+1)
 						delitem .@item[.@i], .@count[.@i];  
-					set zeny,zeny-30000;
+					set Zeny, Zeny-30000;
 					mes "[Metheus Sylphe]";
 					mes "Well done. Let me proceed with your application request.";
 					set .@SAGE_Q_T,SAGE_Q;
@@ -590,13 +590,13 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 		mes "Ah yes, everything is in readiness.";
 		mes "Next, you will take an entrance test.";
 		set SAGE_Q,4;
-		if(checkquest(2043) != -1) {
+		if (checkquest(2043) != -1) {
 			changequest 2043,2041;
 		}
-		else if(checkquest(2044) != -1) {
+		else if (checkquest(2044) != -1) {
 			changequest 2044,2041;
 		}
-		else if(checkquest(2045) != -1) {
+		else if (checkquest(2045) != -1) {
 			changequest 2045,2041;
 		}
 		else {
@@ -1876,10 +1876,10 @@ yuno_in03,32,102,1	script	Biology Professor#sa	755,{
 				switch(rand(1,4)) {
 				case 1:
 					set SAGE_Q2,4;
-					if(checkquest(2053) != -1) {
+					if (checkquest(2053) != -1) {
 						changequest 2053,2056;
 					}
-					else if(checkquest(2054) != -1) {
+					else if (checkquest(2054) != -1) {
 						changequest 2054,2056;
 					}
 					else {
@@ -1891,10 +1891,10 @@ yuno_in03,32,102,1	script	Biology Professor#sa	755,{
 					break;
 				case 2:
 					set SAGE_Q2,5;
-					if(checkquest(2053) != -1) {
+					if (checkquest(2053) != -1) {
 						changequest 2053,2057;
 					}
-					else if(checkquest(2054) != -1) {
+					else if (checkquest(2054) != -1) {
 						changequest 2054,2057;
 					}
 					else {
@@ -1906,10 +1906,10 @@ yuno_in03,32,102,1	script	Biology Professor#sa	755,{
 					break;
 				case 3:
 					set SAGE_Q2,6;
-					if(checkquest(2053) != -1) {
+					if (checkquest(2053) != -1) {
 						changequest 2053,2058;
 					}
-					else if(checkquest(2054) != -1) {
+					else if (checkquest(2054) != -1) {
 						changequest 2054,2058;
 					}
 					else {
@@ -1921,10 +1921,10 @@ yuno_in03,32,102,1	script	Biology Professor#sa	755,{
 					break;
 				case 4:
 					set SAGE_Q2,7;
-					if(checkquest(2053) != -1) {
+					if (checkquest(2053) != -1) {
 						changequest 2053,2059;
 					}
-					else if(checkquest(2054) != -1) {
+					else if (checkquest(2054) != -1) {
 						changequest 2054,2059;
 					}
 					else {
@@ -1997,13 +1997,13 @@ yuno_in03,32,102,1	script	Biology Professor#sa	755,{
 				next;
 				set SAGE_Q2,0;
 				set SAGE_Q,12;
-				if(checkquest(2056) != -1) {
+				if (checkquest(2056) != -1) {
 					changequest 2056,2051;
 				}
-				else if(checkquest(2057) != -1) {
+				else if (checkquest(2057) != -1) {
 					changequest 2057,2051;
 				}
-				else if(checkquest(2058) != -1) {
+				else if (checkquest(2058) != -1) {
 					changequest 2058,2051;
 				}
 				else {

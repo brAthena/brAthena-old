@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.4a/1.0                         |
+//   | Versões eA/rA/brA: ??/1.5/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Cavaleiro Rúnico.    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -40,7 +41,7 @@ prt_in,162,24,3	script	Splendid-Looking Knight	470,2,2,{
 		mes "[Rune Knight Manuel]";
 		mes "Anyway the drinks here are really good. Would you like to have one?";
 		next;
-		if(select("Sure, let's have a drink.:I refuse.") == 2) {
+		if (select("Sure, let's have a drink.:I refuse.") == 2) {
 			mes "[Rune Knight Manuel]";
 			mes "Are you sure? You don't know the true elegance of these drinks...";
 			close;
@@ -917,7 +918,7 @@ job3_rune01,58,51,1	script	Rune Furnace	844,{
 	} else if (job_rune_edq == 15) {
 		mes "I can see a hole under the huge Rune Stone Statue behind Renoa. Clearly this is a mass-produced rune heating furnace that I read in the book.";
 		next;
-		if(select("Use the Rune Heating Furnace:Stop.") == 2) close;
+		if (select("Use the Rune Heating Furnace:Stop.") == 2) close;
 		switch(rand(24)) {
 			case 0: setarray .@str$[0],"Ehwaz","This red hot spiral is..."; break;
 			case 1: setarray .@str$[0],"Osilla","The rune flashing with this violet oblique line shape is..."; break;
@@ -1226,13 +1227,13 @@ mid_camp,13,138,3	script	Dispatched Rune Knight#1	83,2,2,{
 		if (strnpcinfo(0) == "Dispatched Rune Knight#1") {
 			mes "Do you want to go out to the Splendide field?";
 			next;
-			if(select("Move to Splendide field:Cancel.") == 1)
+			if (select("Move to Splendide field:Cancel.") == 1)
 				warp "spl_fild01",355,325;
 			close;
 		} else if (strnpcinfo(0) == "Dispatched Rune Knight#2") {
 			mes "Do you want to go back to the expeditionary team's post?";
 			next;
-			if(select("Yes please.:Not yet.") == 1)
+			if (select("Yes please.:Not yet.") == 1)
 				warp "mid_camp",50,153;
 			close;
 		}
@@ -1384,7 +1385,7 @@ mid_camp,235,250,3	script	Sage Serpeone	435,2,2,{
 				mes "[Sage Serpeone]";
 				mes "Do you want to go back the Rune Knight gathering place?";
 				next;
-				if(select("I want to go back.:I want to cancel.") == 1)
+				if (select("I want to go back.:I want to cancel.") == 1)
 					warp "job3_rune01",80,65;
 				close;
 			case 3:
@@ -1393,7 +1394,7 @@ mid_camp,235,250,3	script	Sage Serpeone	435,2,2,{
 		} else if (job_rune_edq == 14) {
 			mes "Are you ready to go back to the Rune Knight gathering place?";
 			next;
-			if(select("I want to go back now.:I am not ready yet.") == 1)
+			if (select("I want to go back now.:I am not ready yet.") == 1)
 				warp "job3_rune01",80,65;
 			close;
 		}
@@ -1405,7 +1406,7 @@ mid_camp,235,250,3	script	Sage Serpeone	435,2,2,{
 		mes "[Sage Serpeone]";
 		mes "Then I'll send you to the Rune Knight gathering place where you should be.";
 		next;
-		if(select("I'll go back now.:I'll stay.") == 1)
+		if (select("I'll go back now.:I'll stay.") == 1)
 			warp "job3_rune01",80,65;
 		close;
 	}
@@ -1479,7 +1480,7 @@ job3_rune01,114,50,3	script	Rune Knight Velpino	468,{
 				mes "If all of your preparations are done, I'll send you to the final test field.";
 				set job_rune_edq,18;
 				next;
-				if(select("Enter the final test field.:I'm not ready yet.") == 2) close;
+				if (select("Enter the final test field.:I'm not ready yet.") == 2) close;
 				if (getequipisequiped(EQI_HEAD_TOP) || getequipisequiped(EQI_ARMOR) || getequipisequiped(EQI_GARMENT) || getequipisequiped(EQI_SHOES) ||
 				    getequipisequiped(EQI_ACC_L) || getequipisequiped(EQI_ACC_R) || getequipisequiped(EQI_HEAD_MID) || getequipisequiped(EQI_HEAD_LOW)) {
 					mes "[Rune Knight Velpino]";
@@ -2139,12 +2140,11 @@ OnMyMobDead:
 	end;
 }
 
-/*
 sec_in02,34,167,3	script	R.Knight Job Manager	470,1,1,{
+	callfunc "F_GM_NPC";
 	mes "Enter the Password.";
 	next;
-	input .@inputstr$;
-	if (.@inputstr$ == "1854") {
+	if (callfunc("F_GM_NPC","1854",1) == 1) {
 		mes "Rune Knight Job Change Managing Module Start";
 		next;
 		switch(select("GlobalVar check:GlobalVar Oneshot Modification")) {
@@ -2160,5 +2160,4 @@ sec_in02,34,167,3	script	R.Knight Job Manager	470,1,1,{
 	}
 	close;
 }
-job3_rune01,1,1,3	duplicate(R.Knight Job Manager)	#renshucheck	844
-*/
+job3_rune01,1,1,3	duplicate(R.Knight Job Manager)	#renshucheck	844,{}

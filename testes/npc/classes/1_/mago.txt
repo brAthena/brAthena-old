@@ -74,8 +74,8 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes "Eu não sei por que você ainda está na minha frente, mas eu posso dizer que você não está destinado a ser um Mago.";
 		close;
 	}
-	if(BaseJob != Job_Novice) {
-		if(BaseJob == Job_Mage) {
+	if (BaseJob != Job_Novice) {
+		if (BaseJob == Job_Mage) {
 			mes "Ei, o que faz aqui?";
 			mes "Você já é um Mago, bobo!";
 			mes "Um dia você irá perceber o poder que existe dentro de você quando puder fazer fogo com sua mente!";
@@ -93,7 +93,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes "Quer ser um Mago? É...";
 		next;
 		mes "[Maga Guardiã]";
-	  if( !checkversion(0) ) {
+	  if ( !checkversion(0) ) {
 		if (job_magician_q == 0) {
 			mes "Você, "+((Sex)?"é mesmo uma gracinha. Definitivamente, meu tipo...":"até que você é bonitinha, deve fazer um grande sucesso...");
 			next;
@@ -190,7 +190,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 	  }
 		mes ""+(Sex) ? "Ei, olhe para você! Você é bonitinho~! Embora não faça meu tipo..." : "Aaah, você é uma garota tão linda~! Eu gosto de garotas como você~"+" Certo, você disse que quer ser um Mago?";
 		next;
-		if(select("Eu quero me tornar um Mago.:Não, obrigado.") == 2) {
+		if (select("Eu quero me tornar um Mago.:Não, obrigado.") == 2) {
 			mes "[Maga Guardiã]";
 			mes "Oquuuuue~?!";
 			mes "Logo depois que você me diz que quer se tornar um Mago você muda de idéia?!";
@@ -230,7 +230,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. "+((!checkversion(0)) ? "E então passar pelo teste de mago":"")+"";
 		next;
 		mes "[Maga Guardiã]";
-	  if(!checkversion(0)) {
+	  if (!checkversion(0)) {
 		if (job_magician_q != 0) {
 			mes "O seu teste é fazer uma";
 			switch(job_magician_q) {
@@ -325,9 +325,9 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 				mes "Colocando os itens no recipiente. Por favor, aguarde.";
 				next;
 				mes "[Máquina de Mistura]";
-				if(countitem(909) < .@mixitem1_1) mes getitemname(909)+" insuficiente";
-				else if(countitem(914) < .@mixitem1_2) mes getitemname(914)+" insuficiente."; 
-				else if(countitem(519) < .@mixitem1_3) mes getitemname(519)+" insuficiente.";
+				if (countitem(909) < .@mixitem1_1) mes getitemname(909)+" insuficiente";
+				else if (countitem(914) < .@mixitem1_2) mes getitemname(914)+" insuficiente."; 
+				else if (countitem(519) < .@mixitem1_3) mes getitemname(519)+" insuficiente.";
 				else if (.@mixitem2 == 1 || .@mixitem2 == 2) {
 					if (!countitem(1089) && !countitem(1088)) {
 						mes "Solução não encontrada.";
@@ -527,7 +527,7 @@ pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 		close;
 	}
 	delitem 1092,1; // Tubo de Ensaio
-	set zeny,zeny-50;
+	set Zeny, Zeny-50;
 	getitem (strnpcinfo(0) == "Dollshoi") ? 1089 : 1088,1; // Solução de Payon e Solução de Morroc
 	close;
 }

@@ -36,7 +36,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 		mes "por aqui.";
 		mes "Honra aos guerreiros!";
 		close;
-	} else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	} else if (BaseLevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		mes "[Valquíria]";
 		mes "Bem-vindo";
 		mes "ao Valhalla,";
@@ -126,8 +126,8 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			mes "Dois......";
 			mes "e três.";
 			set ADVJOB, Class+Job_Novice_High; // salva o ID da Terceira Classe
-			if(ADVJOB == Job_Lord_Knight2) set ADVJOB,Job_Lord_Knight;
-			if(ADVJOB == Job_Paladin2) set ADVJOB,Job_Paladin;
+			if (ADVJOB == Job_Lord_Knight2) set ADVJOB,Job_Lord_Knight;
+			if (ADVJOB == Job_Paladin2) set ADVJOB,Job_Paladin;
 			jobchange Job_Novice_High;
 			resetlvl(1);
 			set MISC_QUEST,MISC_QUEST | 1024; //<- Evento que reseta as habilidades
@@ -192,7 +192,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 }
 
 yuno_in02,88,164,5	script	Metheus Sylphe#Livraria	742,{
-	if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	if (BaseLevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		if (valkyrie_Q == 0) {
 			mes "[Metheus Sylphe]";
 			mes "Bem-vindo à Biblioteca da Academia Mágica de Schweicherbil.";
@@ -212,7 +212,7 @@ yuno_in02,88,164,5	script	Metheus Sylphe#Livraria	742,{
 			next;
 			if (select("Doar.:Cancelar.") == 1) {
 				if (Zeny >= 1285000) {
-					set zeny,zeny-1285000;
+					set Zeny, Zeny-1285000;
 					set valkyrie_Q,1;
 					mes "[Metheus Sylphe]";
 					mes "Obrigado, sua doação será utilizada para uma boa causa.";
@@ -256,7 +256,7 @@ yuno_in02,93,207,1	script	Livro de Ymir	111,{
 		close2;
 		warp "valkyrie",48,8;
 		end;
-	} else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	} else if (BaseLevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		if (valkyrie_Q != 0) {
 			mes "[O Livro de Ymir]";
 			mes "...Portanto, antigos heróis vieram";
@@ -304,7 +304,7 @@ yuno_in02,93,207,1	script	Livro de Ymir	111,{
 			mes "registro na esperança de que alguém no futuro possa confirmar que Valquíria e Valhalla existiram realmente.";
 			next;
 			set valkyrie_Q,2;
-			if(checkquest(1000) == -1) {
+			if (checkquest(1000) == -1) {
 				setquest 1000;
 			}
 			mes "[O Livro de Ymir]";
@@ -323,7 +323,7 @@ yuno_in02,93,207,1	script	Livro de Ymir	111,{
 }
 
 yuno_in05,49,43,1	script	Coração de Ymir	111,{
-	if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	if (BaseLevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		if (valkyrie_Q == 2) warp "valkyrie",48,8;
 	}
 	end;

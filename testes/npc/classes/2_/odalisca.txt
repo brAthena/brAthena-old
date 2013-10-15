@@ -208,7 +208,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		cutin "",255;
 		end;
 	}
-	else if (sex == 1) {
+	else if (Sex == 1) {
 		cutin "job_dancer_eir03",2;
 		mes "[Aile]";
 		mes "Welco--Mmm?";
@@ -302,11 +302,11 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		}
 		set .@size, getarraysize(.@item);
 		for( set .@i, 0; .@i < .@size; set .@i,.@i+1 ) {
-			if( countitem(.@item[.@i]) < .@count[.@i] ) {
+			if ( countitem(.@item[.@i]) < .@count[.@i] ) {
 				break;
 			}
 		}
-		if( .@i == .@size && Zeny > 9999 ) {
+		if ( .@i == .@size && Zeny > 9999 ) {
 			cutin "job_dancer_eir02",2;
 			mes "[Aile]";
 			mes "Oh...!";
@@ -317,14 +317,14 @@ job_duncer,43,93,4	script	Aile#da	724,{
 			mes "tuition fee.";
 			next;
 			cutin "job_dancer_eir01",2;
-			set zeny,zeny-10000;
+			set Zeny, Zeny-10000;
 			mes "[Aile]";
 			mes "Next, go to ^CD6889Bijou^000000, who is in charge of the interviewing process. She will have a couple of things she'll need to ask you.";
 			set DANC_Q,5;
-			if(checkquest(7001) != -1) {
+			if (checkquest(7001) != -1) {
 				changequest 7001,7004;
 			}
-			else if(checkquest(7002) != -1) {
+			else if (checkquest(7002) != -1) {
 				changequest 7002,7004;
 			}
 			else {
@@ -1327,14 +1327,14 @@ job_duncer,63,110,4	script	Backdancer#1	724,{
 	end;
 
 OnSmile:
-	Emotion e_no1;
+	emotion e_no1;
 	donpcevent "Backdancer#2::OnSmile";
 	donpcevent "Backdancer#3::OnSmile";
 	donpcevent "Backdancer#4::OnSmile";
 	end;
 
 OnOmg:
-	Emotion e_omg;
+	emotion e_omg;
 	donpcevent "Backdancer#2::OnOmg";
 	donpcevent "Backdancer#3::OnOmg";
 	donpcevent "Backdancer#4::OnOmg";
@@ -1345,11 +1345,11 @@ job_duncer,66,113,4	script	Backdancer#2	724,{
 	end;
 
 OnSmile:
-	Emotion e_no1;
+	emotion e_no1;
 	end;
 
 OnOmg:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -1357,11 +1357,11 @@ job_duncer,72,113,4	script	Backdancer#3	724,{
 	end;
 
 OnSmile:
-	Emotion e_no1;
+	emotion e_no1;
 	end;
 
 OnOmg:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -1369,10 +1369,10 @@ job_duncer,75,110,4	script	Backdancer#4	724,{
 	end;
 
 OnSmile:
-	Emotion e_no1;
+	emotion e_no1;
 	end;
 
 OnOmg:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }

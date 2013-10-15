@@ -281,7 +281,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "^FF0000Se você se tornar um bioquímico, você não pode largar a alquimia e os estudos bioquímicos .^000000";
 		mes "Se está tudo bem para você, o que acha de tentar?";
 		next;
-		if(select("Vou tentar mais tarde.:Eu quero me tornar um Bioquímico!") == 1){
+		if (select("Vou tentar mais tarde.:Eu quero me tornar um Bioquímico!") == 1){
 			mes "[Devries]";
 			mes "Tudo bem.";
 			mes "Mesmo que seu conhecimento não seja grande como o de um Bioquímico, conhecimentos fundamentais também são importantes.";
@@ -299,7 +299,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "Popo!";
 		mes "Você está pronto para tentar?";
 		next;
-		if(select("Não.:Sim!") == 1){
+		if (select("Não.:Sim!") == 1){
 			mes "[Devries]";
 			mes "You have to do your best! There is no easy way when looking for knowledge!";
 			close;
@@ -382,7 +382,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 		mes "[Devries]";
 		mes "Existe um problema?";
 		next;
-		if(select("Nada.: O experimento falhou.") == 1){
+		if (select("Nada.: O experimento falhou.") == 1){
 			mes "[Devries]";
 			mes "Melhor começar, ou eu vou começar a gritar!!!";
 			close;
@@ -693,7 +693,7 @@ job3_gen01,7,50,3	script	Mesa de Testes#gen	844,{
 	if (job_gen == 7) {
 		mes "- Esta é uma tabela de teste com uma grande quantidade de equipementos. Com ela podemos estudar as combinações de plantas. -";
 		next;
-		if(select("Realizar um experimento.:Não realizar um experimento.") == 1){
+		if (select("Realizar um experimento.:Não realizar um experimento.") == 1){
 			mes "- Não é o momento de começar um experimento. -";
 			close;
 		}

@@ -26,7 +26,7 @@
 // Sprakki (Início - Campo de Treinamento, Fora do Castelo).
 //============================================================
 new_1-1,53,114,4	script#re	Sprakki#nv1	90,{
-	if(job_novice_q < 1) {
+	if (job_novice_q < 1) {
 		mes "[Sprakki]";
 		mes "Olá! Bem-vindo ao mundo de Ragnarok Online. Meu nome é Sprakki e eu estou encarregada de dar a você o guia básico do jogo.";
 		mes "Clique no botão [Próximo] ou pressione [Enter] para continuar com a conversa.";
@@ -76,7 +76,7 @@ new_1-1,53,114,4	script#re	Sprakki#nv1	90,{
 // Sprakki (Inside Castle)
 //============================================================
 new_1-2,100,29,4	script#re	Sprakki#nv2	90,{
-	if(job_novice_q < 1) {
+	if (job_novice_q < 1) {
 		mes "[Sprakki]";
 		mes "Olá! Bem-vindo ao mundo de Ragnarok Online. Meu nome é Sprakki e eu estou encarregada de dar a você o guia básico do jogo.";
 		mes "Clique no botão [Próximo] ou pressione [Enter] para continuar com a conversa.";
@@ -110,7 +110,7 @@ new_1-2,100,29,4	script#re	Sprakki#nv2	90,{
 		mes "Bom, depois fale comigo.";
 		close;
 	}
-	if(job_novice_q == 1) {
+	if (job_novice_q == 1) {
 		getexp 300,0;
 		getexp 300,5;
 		completequest 7117;
@@ -148,14 +148,14 @@ new_1-2,100,29,4	script#re	Sprakki#nv2	90,{
 // Instrutor Brade
 //============================================================
 new_1-2,100,105,4	script#re	Brade#nv	733,{
-	if(job_novice_q < 3) {
+	if (job_novice_q < 3) {
 		mes "[Instrutor Brade]";
 		mes "Como você chegou aqui?";
 		close2;
 		warp "new_1-1",53,111;
 		end;
 	}
-	else if(job_novice_q == 3) {
+	else if (job_novice_q == 3) {
 		getexp 300,0;
 		getexp 300,0;
 		getexp 300,10;
@@ -231,7 +231,7 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 		cutin "",255;
 		end;
 	}
-	else if(job_novice_q == 4) {
+	else if (job_novice_q == 4) {
 		mes "[Instrutor Brade]";
 		mes "Hum... Onde nós estávamos? Ah, Certo, vamos continuar.";
 		mes "Falávamos sobre itens e equipamentos.";
@@ -288,11 +288,11 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 		cutin "",255;
 		end;
 	}
-	else if(job_novice_q == 5 || job_novice_q == 6) {
+	else if (job_novice_q == 5 || job_novice_q == 6) {
 		for(set .@i,1; .@i<7; set .@i,.@i+1)
 			if (getequipisequiped(.@i)) set .@EquipCheck, .@EquipCheck+1;
-		if(.@EquipCheck >= 4) {
-			if(job_novice_q == 5) {
+		if (.@EquipCheck >= 4) {
+			if (job_novice_q == 5) {
 				mes "[Instrutor Brade]";
 				mes "Você está pronto.";
 				mes "Você está indo bem até agora.";
@@ -356,13 +356,13 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 		mes "Coloque os sapatos, vista as roupas e arme-se com essa arma.";
 		close;
 	}
-	else if(job_novice_q == 7) {
+	else if (job_novice_q == 7) {
 		mes "[Instrutor Brade]";
 		mes "Nesta sala, há uma pessoa chamada ^4A4AFFJinha^000000.";
 		mes "Encontre Jinha e aprenda ^4A4AFF[Primeiros Socorros]^000000 com ele.";
 		close;
 	}
-	else if(job_novice_q == 8) {
+	else if (job_novice_q == 8) {
 		mes "[Instrutor Brade]";
 		mes "Agora você aprendeu [Primeiros Socorros].";
 		mes "Assim como eu ensinei antes, registrando a Habilidade de Primeiros Socorros na Janela de Atalhos, você poderá usá-la com facilidade e agilidade.";
@@ -384,12 +384,12 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 		set job_novice_q,9;
 		close;
 	}
-	else if(job_novice_q > 8) {
+	else if (job_novice_q > 8) {
 		mes "[Instrutor Brade]";
 		mes "O próximo passo do Treinamento é feito em uma sala a oeste daqui.";
 		mes "Se está perdido, posso mandar você para lá diretamente...";
 		next;
-		if(select("Eu posso chegar lá por conta própria.:Por favor, me mande para a próxima sala.") == 2) {
+		if (select("Eu posso chegar lá por conta própria.:Por favor, me mande para a próxima sala.") == 2) {
 			mes "[Instrutor Brade]";
 			mes "Ah, bem.";
 			mes "Eu acho que é melhor do que ver você perdido e vagando por aí.";
@@ -414,7 +414,7 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 // Instrutor Jinha
 //============================================================
 new_1-2,115,120,4	script#re	Jinha#nv	59,{
-	if(job_novice_q < 7) {
+	if (job_novice_q < 7) {
 		mes "[Jinha]";
 		mes "Em que posso ajudar?";
 		mes "Hmm? Você não seguiu o currículo corretamente.";
@@ -425,7 +425,7 @@ new_1-2,115,120,4	script#re	Jinha#nv	59,{
 		warp "new_1-2",100,100;
 		end;
 	}
-	else if(job_novice_q == 7) {
+	else if (job_novice_q == 7) {
 		mes "[Jinha]";
 		mes "Olá!";
 		mes "Em que posso ajudar?";
@@ -453,13 +453,13 @@ new_1-2,115,120,4	script#re	Jinha#nv	59,{
 		mes "Volte até o instrutor Brade e mostre para ele o que você aprendeu aqui.";
 		close;
 	}
-	else if(job_novice_q == 8) {
+	else if (job_novice_q == 8) {
 		mes "[Jinha]";
 		mes "Você já não aprendeu a Habilidade de [Primeiros Socorros]?";
 		mes "Confira com o Instrutor Brade.";
 		mes "Se não sabe como chegar até ele, eu posso mandar você para lá.";
 		next;
-		if(select("Estou bem sozinho.:Por favor, me mande até ele.") == 2) {
+		if (select("Estou bem sozinho.:Por favor, me mande até ele.") == 2) {
 			mes "[Jinha]";
 			mes "Vou mandar você até o instrutor Brade.";
 			close2;
@@ -472,7 +472,7 @@ new_1-2,115,120,4	script#re	Jinha#nv	59,{
 		mes "Você terá muito futuro como aventureiro.";
 		close;
 	}
-	else if(job_novice_q > 8) {
+	else if (job_novice_q > 8) {
 		mes "[Jinha]";
 		mes "O que posso fazer por você?";
 		mes "O próximo curso continuará na Sala Oeste.";
@@ -491,7 +491,7 @@ new_1-2,115,120,4	script#re	Jinha#nv	59,{
 //============================================================================
 // ---------- Chocolati ----------
 new_1-2,32,172,4	script#re	Chocolati#nv	96,{
-	if(job_novice_q < 9) {
+	if (job_novice_q < 9) {
 		mes "[Chocolati]";
 		mes "Humm? Estranho.";
 		mes "Deixe me ver sua Identificação de Aprendiz por um instante.";
@@ -503,7 +503,7 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		mes "[Chocolati]";
 		mes "Se você não sabe como encontrá-los, eu posso mandá-lo até o Instrutor Brade, que tal?";
 		next;
-		if(select("Eu vou sozinho.:Você pode fazer isso por mim?") == 2) {
+		if (select("Eu vou sozinho.:Você pode fazer isso por mim?") == 2) {
 			mes "[Chocolati]";
 			mes "Claro.";
 			mes "Vejo você mais tarde.";
@@ -515,7 +515,7 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		mes "Claro. Saia pela porta à direita.";
 		close;
 	}
-	else if(job_novice_q == 9) {
+	else if (job_novice_q == 9) {
 		mes "[Chocolati]";
 		mes "Eu vou falar sobre as pessoas que você verá na Cidade.";
 		mes "Há muitos tipos de pessoas vivendo na cidade e será útil conhecer algumas delas.";
@@ -534,13 +534,13 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		set job_novice_q,10;
 		close;
 	}
-	else if(job_novice_q == 10) {
+	else if (job_novice_q == 10) {
 		mes "[Chocolati]";
 		mes "Fale com esses caras atrás de mim.";
 		mes "Comece com a irmã [Kafra] à esquerda.";
 		close;
 	}
-	else if(job_novice_q == 11) {
+	else if (job_novice_q == 11) {
 		mes "[Chocolati]";
 		mes "Você aprendeu muito sobre o serviço Kafra, hein?";
 		mes "A partir de agora, você pode usar os serviços Kafra.";
@@ -551,7 +551,7 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		mes "Bom, por que você mesmo não fala com eles?";
 		close;
 	}
-	else if(job_novice_q == 12) {
+	else if (job_novice_q == 12) {
 		mes "[Chocolati]";
 		mes "Afinal, [Kafra] e [Zonda] são [Guias das Cidades]!";
 		mes "Eles podem ser insignificantes, mas ajudam muito na hora certa.";
@@ -561,7 +561,7 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		mes "Pergunte o que ele realmente faz na cidade.";
 		close;
 	}
-	else if(job_novice_q == 13) {
+	else if (job_novice_q == 13) {
 		mes "[Chocolati]";
 		mes "Como foi a orientação do [Guia das Cidades]?";
 		mes "Agora, como usar a [Inn].";
@@ -602,7 +602,7 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 		warp "new_1-3",96,21;
 		end;
 	}
-	else if(job_novice_q > 13) {
+	else if (job_novice_q > 13) {
 		mes "[Chocolati]";
 		mes "O que posso fazer por você?";
 		next;
@@ -623,14 +623,14 @@ new_1-2,32,172,4	script#re	Chocolati#nv	96,{
 
 // ---------- Kafra ----------
 new_1-2,29,176,4	script#re	Kafra#nv	117,{
-	if(job_novice_q < 10) {
+	if (job_novice_q < 10) {
 		mes "[Funcionária Kafra]";
 		mes "Olá.";
 		mes "Eu não acho que seja o meu turno.";
 		mes "Por favor, fale com 'Chocolat' primeiro.";
 		close;
 	}
-	else if(job_novice_q == 10) {
+	else if (job_novice_q == 10) {
 		mes "[Funcionária Kafra]";
 		mes "Olá.";
 		mes "Fui designada pelo Escritório Central Kafra a cuidar de Aprendizes como você.";
@@ -781,13 +781,13 @@ new_1-2,29,176,4	script#re	Kafra#nv	117,{
 
 // ---------- Funcionário Zonda ----------
 new_1-2,32,176,4	script#re	Funcionário Zonda#nv	874,{
-	if(job_novice_q < 11) {
+	if (job_novice_q < 11) {
 		mes "[Funcionário Zonda]";
 		mes "Não é meu turno.";
 		mes "Você já terminou de falar com a Kafra?";
 		close;
 	}
-	else if(job_novice_q == 11) {
+	else if (job_novice_q == 11) {
 		mes "[Cool Event Staff]";
 		mes "Olá!";
 		mes "Nós trabalhamos no setor de itens e eventos em Midgard, assim como o serviço Kafra no reino de Rune-Midgard.";
@@ -818,13 +818,13 @@ new_1-2,32,176,4	script#re	Funcionário Zonda#nv	874,{
 
 // ---------- Soldado ----------
 new_1-2,35,176,4	script#re	Soldado#nv	105,{
-	if(job_novice_q < 12) {
+	if (job_novice_q < 12) {
 		mes "[Soldado]";
 		mes "Ainda não é o meu turno.";
 		mes "Fale com 'Chocolat' para receber informações.";
 		close;
 	}
-	else if(job_novice_q == 12) {
+	else if (job_novice_q == 12) {
 		mes "[Soldado]";
 		mes "Nossos Soldados servirão como guia dentro dos portões da cidade.";
 		mes "Pergunte-nos onde você quer ir e nós vamos marcar o seu mini-mapa com um ^4A4AFF + ^000000.";
@@ -843,7 +843,7 @@ new_1-2,35,176,4	script#re	Soldado#nv	105,{
 	mes "Em que posso ajudá-lo?";
 	mes "Posso explicar novamente?";
 	next;
-	if(select("Sim, Eu preciso de uma explicação.:Não, já sei o que fazer.") == 2) {
+	if (select("Sim, Eu preciso de uma explicação.:Não, já sei o que fazer.") == 2) {
 		mes "[Soldado]";
 		mes "Está bem, fale com 'Chocolat', se já terminou de falar conosco.";
 		close;
@@ -878,14 +878,14 @@ new_1-2,121,101,2	script#vpo	Soldado Guia#nv1	105,{
 // Instrutor Brade (Treinamento de Combate Real)
 //============================================================================
 new_1-3,96,30,4	script#re	Brade#nvs	733,{
-	if(job_novice_q < 14) {
+	if (job_novice_q < 14) {
 		mes "[Brade]";
 		mes "Como você chegou aqui?";
 		close2;
 		warp "new_1-2",100,100;
 		end;
 	}
-	else if(job_novice_q == 14) {
+	else if (job_novice_q == 14) {
 		mes "[Brade]";
 		mes "Bem-vindo.";
 		mes "Agora, o treino de verdade.";
@@ -914,8 +914,8 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 		mes "^4A4AFFVerifique na janela de informações de missão. -^000000";
 		close;
 	}
-	else if(job_novice_q == 15) {
-		if(checkquest(7122,HUNTING) == 2) {
+	else if (job_novice_q == 15) {
+		if (checkquest(7122,HUNTING) == 2) {
 			mes "[Brade]";
 			mes "Você viu que não é dificil, né?";
 			mes "Bom trabalho.";
@@ -1008,7 +1008,7 @@ function	script	F_NvErase	{
 //============================================================================
 // ---------------------------- Instrutor Espadachim -------------------------------
 new_1-3,97,41,4	script#re	Espadachim#nv	728,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Espadachim]";
 		mes "Eu não posso ajudá-lo até terminar a aula do Brade.";
 		close;
@@ -1044,13 +1044,13 @@ new_1-3,97,41,4	script#re	Espadachim#nv	728,{
 			mes "[Espadachim]";
 			mes "O Espadachim pode evoluir para ^8C2121Cavaleiro^000000 ou ^8C2121Templário^000000 em sua 2ª classe.";
 			mes "E apenas recentemente as terceiras classes foram descobertos.";
-			if(countitem(2819) == 0 && (getequipid(EQI_ACC_L) != 2819 || getequipid(EQI_ACC_R) != 2819)) {
+			if (countitem(2819) == 0 && (getequipid(EQI_ACC_L) != 2819 || getequipid(EQI_ACC_R) != 2819)) {
 				next;
 				mes "[Espadachim]";
 				mes "Se você está interessado em ser um Espadachim, nós vamos oferecer esse manual para você.";
 				mes "Você quer experimentar as habilidades de Espadachim?";
 				next;
-				if(select("Eu vou experimentar as habilidades de um Espadachim.:Não, obrigado.") == 2) {
+				if (select("Eu vou experimentar as habilidades de um Espadachim.:Não, obrigado.") == 2) {
 					mes "[Espadachim]";
 					mes "Hum. Ah, é?";
 					mes "Certo, eu concordo com você. A escolha de classe é muito importante para sua vida.";
@@ -1077,7 +1077,7 @@ new_1-3,97,41,4	script#re	Espadachim#nv	728,{
 			mes "Acho que você tem o nível de classe necessário, certo?";
 			mes "Você quer sair do Campo de Treinamento agora e ir para a Guilda dos Espadachins?";
 			next;
-			if(select("Pensarei mais um pouco sobre isso.:Eu vou para a Guilda dos Espadachins.") == 2) {
+			if (select("Pensarei mais um pouco sobre isso.:Eu vou para a Guilda dos Espadachins.") == 2) {
 				mes "[Espadachim]";
 				mes "Eu vejo.";
 				mes "Então encerrarei o processo de treinamento e vou mandar você para a Guilda dos Espadachins.";
@@ -1158,7 +1158,7 @@ new_5-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv5	728
 
 // ---------------------------- Instrutor Mago ----------------------------------
 new_1-3,101,41,4	script#re	Mago#nv	123,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Mago]";
 		mes "Você ainda está no processo de treinamento com o senhor Brade.";
 		close;
@@ -1187,13 +1187,13 @@ new_1-3,101,41,4	script#re	Mago#nv	123,{
 		next;
 		mes "[Mago]";
 		mes "^8C2121Magos podem se transformar em Arquimagos ou em Sábios.^000000";
-		if(countitem(2824) == 0 && (getequipid(EQI_ACC_L) != 2824 || getequipid(EQI_ACC_R) != 2824)) {
+		if (countitem(2824) == 0 && (getequipid(EQI_ACC_L) != 2824 || getequipid(EQI_ACC_R) != 2824)) {
 			next;
 			mes "[Mago]";
 			mes "Você quer se cadastrar para experimentar como é ser um Mago?";
 			mes "Gostaria de testar as habilidades de Mago?";
 			next;
-			if(select("Eu quero testar as habilidades de Mago.:Eu não quero testar isso.") == 2) {
+			if (select("Eu quero testar as habilidades de Mago.:Eu não quero testar isso.") == 2) {
 				mes "[Mago]";
 				mes "Hum. Ah, é?";
 				mes "Certo, eu concordo com você. A escolha de classe é muito importante para sua vida.";
@@ -1224,7 +1224,7 @@ new_1-3,101,41,4	script#re	Mago#nv	123,{
 		mes "Espere, Você já verificou seu nível de classe?";
 		mes "Você quer encerrar o treinamento de Aprendiz e ir para a Guilda dos Magos?";
 		next;
-		if(select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Magos.") == 2) {
+		if (select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Magos.") == 2) {
 			mes "[Mago]";
 			mes "Bem-vindo!!";
 			mes "Eu vou mandar você para a Guilda dos Magos depois que você completar o treinamento de Aprendiz.";
@@ -1299,7 +1299,7 @@ new_5-3,101,41,4	duplicatr(Mago#nv)	Mago#nv5	123
 
 // ---------------------------- Instrutor Gatuno ---------------------------------
 new_1-3,105,41,4	script#re	Gatuno#nv	118,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Gatuno]";
 		mes "Você ainda está fazendo o curso do Instrutor Brade.";
 		close;
@@ -1322,13 +1322,13 @@ new_1-3,105,41,4	script#re	Gatuno#nv	118,{
 		next;
 		mes "[Gatuno]";
 		mes "Gatunos também podem mudar de classe para ^8C2121Mercenários^000000 ou ^8C2121Arruaceiros.^000000";
-		if(countitem(2820) == 0 && (getequipid(EQI_ACC_L) != 2820 || getequipid(EQI_ACC_R) != 2820)) {
+		if (countitem(2820) == 0 && (getequipid(EQI_ACC_L) != 2820 || getequipid(EQI_ACC_R) != 2820)) {
 			next;
 			mes "[Gatuno]";
 			mes "Se quiser, posso fornecer o manual de classe para você.";
 			mes "Gostaria de experimentar as habilidades de Gatuno?";
 			next;
-			if(select("Sim, Eu gostaria.:Não.") == 2) {
+			if (select("Sim, Eu gostaria.:Não.") == 2) {
 				mes "[Gatuno]";
 				mes "Ah, você está certo!";
 				mes "A escolha de classe é muito importante. Portanto considere.";
@@ -1360,7 +1360,7 @@ new_1-3,105,41,4	script#re	Gatuno#nv	118,{
 		mes "Você já chegou ao nível de classe necessário, não chegou?";
 		mes "Você quer encerrar o treinamento de aprendiz e ir para a Guilda dos Gatunos?";
 		next;
-		if(select("Deixe-me pensar um pouco.:Sim, eu quero.") == 2) {
+		if (select("Deixe-me pensar um pouco.:Sim, eu quero.") == 2) {
 			mes "[Gatuno]";
 			mes "Certo, entendo.";
 			mes "Bem-vindo. Então nosso treinamento de aprendiz está concluído e você será enviado para a Guilda dos Gatunos.";
@@ -1432,7 +1432,7 @@ new_5-3,105,41,4	duplicatr(Gatuno#nv)	Gatuno#nv5	118
 
 // ---------------------------- Instrutor Mercador ------------------------------
 new_1-3,109,41,4	script#re	Mercador#nvs	97,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Mercador]";
 		mes "Você ainda está no treinamento com o senhor Brade.";
 		close;
@@ -1455,12 +1455,12 @@ new_1-3,109,41,4	script#re	Mercador#nvs	97,{
 		next;
 		mes "[Mercador]";
 		mes "^8C2121Mercadores^000000 podem se transformar em ^8C2121 Ferreiros^000000 ou ^8C2121Alquimistas^000000.";
-		if(countitem(2823) == 0 && (getequipid(EQI_ACC_L) != 2823 || getequipid(EQI_ACC_R) != 2823)) {
+		if (countitem(2823) == 0 && (getequipid(EQI_ACC_L) != 2823 || getequipid(EQI_ACC_R) != 2823)) {
 			next;
 			mes "[Mercador]";
 			mes "Você gostaria de ver o que é ser um Mercador?";
 			next;
-			if(select("Eu quero experimentar as habilidades do Mercador.:Eu não quero testar isso.") == 2) {
+			if (select("Eu quero experimentar as habilidades do Mercador.:Eu não quero testar isso.") == 2) {
 				mes "[Mercador]";
 				mes "Hum. Ah, é?";
 				mes "Certo, eu concordo com você. a escolha de classe é muito importante para sua vida.";
@@ -1492,7 +1492,7 @@ new_1-3,109,41,4	script#re	Mercador#nvs	97,{
 		mes "Espere, Você já verificou seu nível de classe?";
 		mes "Você quer encerrar o treinamento de Aprendiz e ir para a Guilda dos Mercadores?";
 		next;
-		if(select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Mercadores.") == 2) {
+		if (select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Mercadores.") == 2) {
 			mes "[Mercador]";
 			mes "Bem-vindo.";
 			mes "Eu vou mandar você para a Guilda dos Mercadores depois que completar seu treinamento de Aprendiz.";
@@ -1584,7 +1584,7 @@ new_5-3,109,41,4	duplicatr(Mercador#nvs)	Mercador#nv5	97
 
 // ---------------------------- Instrutor Arqueiro --------------------------------
 new_1-3,113,41,4	script#re	Arqueiro#nv	727,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Arqueiro]";
 		mes "Você ainda está no processo de treinamento com o senhor Brade.";
 		close;
@@ -1609,13 +1609,13 @@ new_1-3,113,41,4	script#re	Arqueiro#nv	727,{
 		mes "Arqueiros podem se transformar em ^8C2121Caçadores^000000.";
 		mes "Além de Caçadores, Arqueiros podem se transformar em ^8C2121Bardo, se forem homens.^000000.";
 		mes "E também podem se tornar ^8C2121Odaliscas, se forem mulheres^000000.";
-		if(countitem(2822) == 0 && (getequipid(EQI_ACC_L) != 2822 || getequipid(EQI_ACC_R) != 2822)) {
+		if (countitem(2822) == 0 && (getequipid(EQI_ACC_L) != 2822 || getequipid(EQI_ACC_R) != 2822)) {
 			next;
 			mes "[Arqueiro]";
 			mes "Você quer se cadastrar para testar nossas habilidades?";
 			mes "Gostaria de testar as habilidades de Arqueiro?";
 			next;
-			if(select("Eu quero testar as habilidades de Arqueiro.:Eu não quero testar isso.") == 2) {
+			if (select("Eu quero testar as habilidades de Arqueiro.:Eu não quero testar isso.") == 2) {
 				mes "[Arqueiro]";
 				mes "Hum. Ah, é?";
 				mes "certo, eu concordo com você. A escolha de classe é muito importante para sua vida.";
@@ -1645,7 +1645,7 @@ new_1-3,113,41,4	script#re	Arqueiro#nv	727,{
 		mes "Espere, Você já verificou seu nível de classe?";
 		mes "Você quer encerrar o treinamento de Aprendiz e ir para a Guilda dos Arqueiros?";
 		next;
-		if(select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Arqueiros.") == 2) {
+		if (select("Eu vou pensar mais um pouco.:Sim, eu quero ir para a Guilda dos Arqueiros.") == 2) {
 			mes "[Arqueiro]";
 			mes "Bem-vindo.";
 			mes "Eu vou mandar você para a Guilda dos Arqueiros depois que completar seu treinamento de Aprendiz.";
@@ -1674,7 +1674,7 @@ new_5-3,113,41,4	duplicatr(Arqueiro#nv)	Arqueiro#nv5	727
 
 // ---------------------------- Instrutor Noviço -------------------------------
 new_1-3,117,41,4	script#re	Noviço#nv	95,{
-	if(job_novice_q < 16) {
+	if (job_novice_q < 16) {
 		mes "[Noviço]";
 		mes "Parece que você ainda não terminou as lições do Instrutor Brade.";
 		close;
@@ -1695,13 +1695,13 @@ new_1-3,117,41,4	script#re	Noviço#nv	95,{
 		mes "Um Noviço pode evoluir para as classes^8C2121Sacerdote ou Monge^000000.";
 		next;
 		mes "[Noviço]";
-		if(countitem(2821) == 0 && (getequipid(EQI_ACC_L) != 2821 || getequipid(EQI_ACC_R) != 2821)) {
+		if (countitem(2821) == 0 && (getequipid(EQI_ACC_L) != 2821 || getequipid(EQI_ACC_R) != 2821)) {
 			next;
 			mes "[Noviço]";
 			mes "Se você quiser, eu posso dar o manual para você experimentar as habilidades como Noviço.";
 			mes "Gostaria de experimentar as habilidades de Noviço?";
 			next;
-			if(select("Sim, por favor.:Não, não estou interessado.") == 2) {
+			if (select("Sim, por favor.:Não, não estou interessado.") == 2) {
 				mes "[Noviço]";
 				mes "Hum. Ah, é?";
 				mes "Certo, eu concordo com você. A escolha de classe é muito importante para sua vida.";
@@ -1728,7 +1728,7 @@ new_1-3,117,41,4	script#re	Noviço#nv	95,{
 		mes "Certamente, eu suponho que você tem nível de classe suficiente para se tornar um Noviço certo?";
 		mes "Gostaria de sair do processo de treinamento e ir para a Catedral de Prontera?";
 		next;
-		if(select("Eu vou pensar mais um pouco.:Eu vou para a Catedral.") == 2) {
+		if (select("Eu vou pensar mais um pouco.:Eu vou para a Catedral.") == 2) {
 			mes "[Noviço]";
 			mes "Está ótimo.";
 			mes "Então encerrarei o processo de treinamento e vou mandar você para a Catedral de Prontera.";
@@ -2680,7 +2680,7 @@ new_1-2,38,182,3	script#vpo	Ajudante#nv	92,{
 // Oficial do Éden (Treinamento de Combate Real)
 //============================================================================
 new_1-3,97,50,4	script#re	Oficial do Éden#nv	729,5,5,{
-	if(BaseLevel < 10) {
+	if (BaseLevel < 10) {
 		mes "[Oficial do Éden]";
 		mes "Olá, eu sou uma representante do Grupo Éden.";
 		mes "Estamos aqui para ajudar os aventureiros de Rune Midgard.";
@@ -2695,7 +2695,7 @@ new_1-3,97,50,4	script#re	Oficial do Éden#nv	729,5,5,{
 		mes "Fale comigo novamente depois de ter atingido Nível Base 10 e eu vou mandar você pra fora do campo de treinamento.";
 		mes "Você já pegou as missões de todas as guias ainda?";
 		close;
-	}else{
+	} else {
 		mes "[Oficial do Éden]";
 		mes "Ótimo! Você está pronto para enfrentar os desafios do mundo.";
 		mes "O que você gostaria de fazer?";
@@ -4116,7 +4116,7 @@ S_UserJobchoice:
 	set nov_3_magician,0;
 	set nov_3_acolyte,0;
 	set nov_3_merchant,0;
-	if(@menu == 1) {
+	if (@menu == 1) {
 		savepoint "izlude",93,104;
 		warp "izlude_in",74,167;
 	}
@@ -4262,7 +4262,7 @@ new_1-1,144,116,2	script	Guarda#nv1	105,{
 
 new_1-1,144,107,2	script	Guarda#nv2	105,{
 	mes "[Guarda do Campo de Treinamento]";
-	if(rand(2)) {
+	if (rand(2)) {
 		mes "Entre, todos são bem-vindos para o treinamento!";
 		next;
 		mes "[Guarda do Campo de Treinamento]";
@@ -4284,7 +4284,7 @@ new_5-3,100,50,4	duplicatr(Comerciante#nvs)	Comerciante#nv5	93,{}
 
 new_1-2,161,182,5	script	Assistente de Interface#nv	92,{
 	mes "[Edwin]";
-if( checkversion(0)) {	
+if ( checkversion(0)) {	
 	mes "Hein? Por que você ainda está aqui?";
 	mes "Não há mais cursos que você precisa fazer.";
 	next;

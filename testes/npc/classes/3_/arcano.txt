@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.3b/1.0                         |
+//   | Versões eA/rA/brA: ??/1.4/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição:  Mudança de Classe para Arcano.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -1054,8 +1055,8 @@ OnTimer6000:
 	end;
 }
 
-/*
 job3_war01,1,2,0	script	Button Girl	66,{
+	callfunc "F_GM_NPC";
 	switch(select("Open Arena:Close Arena:Open the Chamber of Magic:Close the Chamber of Magic:Hollow Stone On:Hollow Stone Off:Cancel")) {
 	case 1:
 		mes "Opening the Arena.";
@@ -1091,7 +1092,6 @@ job3_war01,1,2,0	script	Button Girl	66,{
 		close;
 	}
 }
-*/
 
 spl_fild02,0,0,0,0	monster	Bradium Golem	2049,20,5000,0,0
 spl_fild02,0,0,0,0	monster	Naga	2047,20,5000,0,0

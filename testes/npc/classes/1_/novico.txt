@@ -202,8 +202,8 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 	switch(select("Mudar de classe para Noviço.:Saber os requerimentos para se tornar um Noviço.:Sair.")) {
 	case 1:
 		mes "[Tomas Cerbantes]";
-		if(BaseJob != Job_Novice) {
-			if(BaseJob == Job_Acolyte) {
+		if (BaseJob != Job_Novice) {
+			if (BaseJob == Job_Acolyte) {
 				mes "Você está se sentindo bem hoje?";
 				mes "Eu posso dizer pelo seu traje que você já é um Noviço.";
 				mes "Você não está brincando, você está?";

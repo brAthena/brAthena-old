@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.4/1.0                          |
+//   | Versões eA/rA/brA: ??/1.5/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Sicário.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -200,7 +201,7 @@ function	script	func_3rdgc	{
 			mes "Madelle said that she witnessed a guy.";
 			next;
 			if (getarg(0)) {
-				if(select("Madelle witnessed 2...:There are more than 2...") == 1) {
+				if (select("Madelle witnessed 2...:There are more than 2...") == 1) {
 					mes .@n$;
 					mes "Madelle said that she saw one more person in the darkness.";
 					mes "Then is it a girl who brought the supplies?";
@@ -482,7 +483,7 @@ job3_guil01,82,95,3	script	Daora#3rdgc02	940,{
 						mes "[Daora]";
 						mes "Can you let me know about an information you collected?";
 						next;
-						if(select("You have a heart-to-heart talk with him.:That's impossible.") == 2) {
+						if (select("You have a heart-to-heart talk with him.:That's impossible.") == 2) {
 							mes "[Daora]";
 							mes "What, I can't support you properly?";
 							mes "You solve it by yourself.";
@@ -2102,7 +2103,7 @@ OnTouch:
 				mes "Who are you?";
 				mes "What are you doing?";
 				next;
-				if(select("Who sent you?:Who's from Rachel?") == 2) {
+				if (select("Who sent you?:Who's from Rachel?") == 2) {
 					mes "[Estillda]";
 					mes "I don't know! I don't have any idea. I don't know him!";
 					next;
@@ -2828,7 +2829,7 @@ OnDisable:
 OnTouch:
 	mes "There is space on the bottom of the old fence.";
 	next;
-	if(select("Find another way.:Climb into the space.") == 2) {
+	if (select("Find another way.:Climb into the space.") == 2) {
 		mes "You climb into the narrow space.";
 		mes "The hole is blocked with the old barbed-wire entanglements.";
 		close2;
@@ -3835,12 +3836,11 @@ OnTouch:
 	end;
 }
 
-/*
 job3_guil02,1,3,0	script	#GMhelper01_gc	844,{
+	callfunc "F_GM_NPC";
 	mes "What can I do for you?";
 	next;
-	input .@input;
-	if (.@input == 1854) {
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		set .@room01, $@3rdgc_room01;
 		mes "I check the recent situation.";
 		mes "The battle situation of storage: "+.@room01+"";
@@ -3875,10 +3875,10 @@ job3_guil02,1,3,0	script	#GMhelper01_gc	844,{
 }
 
 job3_guil03,1,8,0	script	#GMhelper02_gc	844,{
+	callfunc "F_GM_NPC";
 	mes "What can I do for you?";
 	next;
-	input .@input;
-	if (.@input == 1854) {
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		set .@room02, $@3rdgc_room02;
 		mes "Check the recent situation.";
 		mes "The battle situation of the mansion is: "+.@room02+"";
@@ -3943,4 +3943,3 @@ job3_guil03,1,8,0	script	#GMhelper02_gc	844,{
 	mes "-_-.";
 	close;
 }
-*/

@@ -318,7 +318,7 @@ comodo,140,86,5	script	Trovador Triste	479,{
 		mes "*Você encontrou um Trovador*";
 		mes "*cantando uma música estranha*";
 		next;
-		if(select("Isso é uma música estranha.:Ignorá-lo.") == 2) {
+		if (select("Isso é uma música estranha.:Ignorá-lo.") == 2) {
 			mes "- É apenas uma pessoa estranha, é melhor eu ficar longe. -";
 			close;
 		}
@@ -687,7 +687,7 @@ hu_in01,305,251,5	script	Moça Triste#wnd	879,{
 		mes "Eu acho que a minha vida de dança como Musa Kim está acabada.";
 		mes "Boo hoo hoo hoo!";
 		next;
-		if(select("Ei, não desista.:Eu sinto pena de você.") == 2) {
+		if (select("Ei, não desista.:Eu sinto pena de você.") == 2) {
 			mes "[Dançarina Kim]";
 			mes "Sinto que minha vida não pode sair do abismo agora......";
 			close;
@@ -709,7 +709,7 @@ hu_in01,305,251,5	script	Moça Triste#wnd	879,{
 		mes "Mas se eu ficar cansada desistirei facilmente.";
 		mes "Eu acho que o melhor é eu desistir.";
 		next;
-		if(select("Bem, não há nenhuma outra maneira.:Vamos trabalhar juntas?") == 1) {
+		if (select("Bem, não há nenhuma outra maneira.:Vamos trabalhar juntas?") == 1) {
 			mes "[Dançarina Kim]";
 			mes "Sem sonhos e sem esperança...";
 			close;
@@ -766,7 +766,7 @@ hu_fild05,342,130,5	script	Dançarina Kim#fild	879,{
 		mes "Você precisa derrotar 50 Novus Amarelos!";
 		mes "Você está pronta?";
 		next;
-		if(select("Não.:Sim.") == 1) {
+		if (select("Não.:Sim.") == 1) {
 			mes "[Dançarina Kim]";
 			mes "Apresse-se antes que eu perca o interesse!";
 			close;

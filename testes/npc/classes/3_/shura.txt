@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   | Versões eA/rA/brA: ??/1.3/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Shura.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Battousai]                         |
+//   | 1.2 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -837,8 +838,8 @@ sword_1-1,223,167,2	script	Mestre#job_shu	483,{
 	end;
 }
 
-/*
 sword_2-1,1,2,0	script	Arena Shura#sura	66,{
+	callfunc "F_GM_NPC";
 	switch(select("Abrir Arena:Fechar Arena:Ativar Sala de Estar:Ativar Companheiro:Ativar Naigara:Desligar Todos:Cancelar")) {
 	case 1:
 		mes "Arena de abertura.";
@@ -872,4 +873,3 @@ sword_2-1,1,2,0	script	Arena Shura#sura	66,{
 		close;
 	}
 }
-*/

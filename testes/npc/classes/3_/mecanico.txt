@@ -441,7 +441,7 @@ jupe_core2,149,273,3	script	Ghostfire#1	802,{
 		mes "If you focus on me,";
 		mes "you might get attacked.";
 		next;
-		if(select("Well then, later.:Focus.") == 1) close;
+		if (select("Well then, later.:Focus.") == 1) close;
 		mes "[?]";
 		mes "I was once a human scholar.";
 		mes "I wanted to know the limitation of science that humankind didn't know of, so I learned a lot of things, studied,";
@@ -494,7 +494,7 @@ jupe_core2,53,75,3	script	Ghostfire#2	802,{
 		mes "If you focus on me,";
 		mes "you might get attacked.";
 		next;
-		if(select("Well then, later:Focus") == 1) close;
+		if (select("Well then, later:Focus") == 1) close;
 		mes "[?]";
 		mes "When I had a body";
 		mes "I wanted to prove the";
@@ -556,7 +556,7 @@ jupe_core2,242,62,3	script	Ghostfire#3	802,{
 		mes "If you focus on me,";
 		mes "you might get attacked.";
 		next;
-		if(select("Well then, later:Focus") == 1) close;
+		if (select("Well then, later:Focus") == 1) close;
 		mes "[?]";
 		mes "I wasn't satisfied with my success so I came back here time and time again.";
 		next;

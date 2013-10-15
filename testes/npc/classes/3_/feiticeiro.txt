@@ -50,7 +50,7 @@ gef_tower,102,34,5	script	Merito	742,{
 		mes "[Merito]";
 		mes "What made you want to be a sorcerer?";
 		next;
-		if(select("The spirit of fire led me here.:The spirit of water led me here.:The spirit of earth led me here:The spirit of meat led me here.") == 4) {
+		if (select("The spirit of fire led me here.:The spirit of water led me here.:The spirit of earth led me here:The spirit of meat led me here.") == 4) {
 			mes "[Merito]";
 			mes "That kind of spirit doesn't exist!";
 			close;
@@ -62,7 +62,7 @@ gef_tower,102,34,5	script	Merito	742,{
 		mes "[Merito]";
 		mes "Hmm... Then first, can you write down your name on this list?";
 		next;
-		if(select("Write name.:I won't.") == 2) {
+		if (select("Write name.:I won't.") == 2) {
 			mes "[Merito]";
 			mes "Well, okay. See you again when you get a chance.";
 			close;
@@ -81,7 +81,7 @@ gef_tower,102,34,5	script	Merito	742,{
 		mes "[Merito]";
 		mes "[" + strcharinfo(0) + "], can you handle magic skillfully?";
 		next;
-		if(select("Yes, I can.:No, I'm not really good at it.") == 2) {
+		if (select("Yes, I can.:No, I'm not really good at it.") == 2) {
 			mes "[Merito]";
 			mes "What!? You don't know how to use magic?";
 			mes "What are you doing here then? Get out of here. Right now!";
@@ -178,7 +178,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 		mes "[Karacas]";
 		mes "So, you are [" + strcharinfo(0) + "]... right?";
 		next;
-		if(select("Yes, I am.:No, I'm not!") == 2) {
+		if (select("Yes, I am.:No, I'm not!") == 2) {
 			mes "[Karacas]";
 			mes "Oh, there must be some mistake in the list, I think. Will you come again later?";
 			close;
@@ -295,7 +295,7 @@ gef_tower,113,161,5	script	Karacas	754,{
 			mes "[Karacas]";
 			mes "Have any questions?";
 			next;
-			if(select("No.:Please explain it again.") == 2) {
+			if (select("No.:Please explain it again.") == 2) {
 				mes "[Karacas]";
 				mes "Haha, then can I have a cup of water for a minute? Please come and find me again later.";
 				next;

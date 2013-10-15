@@ -227,9 +227,9 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 					mes "you to the office.";
 					close2;
 					set ASSIN_Q,0;
-					if(checkquest(8000) != -1) {
+					if (checkquest(8000) != -1) {
 						changequest 8000,8001;
-					}else{
+					} else {
 						setquest 8001;
 					}
 					warp "in_moc_16",19,76;
@@ -266,7 +266,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 in_moc_16,25,90,1	script	Guildsman#ASN2	730,2,2,{
 	mes "[Assassin 'Khai']";
 	mes "Umm?!";
-	Emotion e_gasp;
+	emotion e_gasp;
 	next;
 	mes "[Assassin 'Khai']";
 	mes "Come closer. I prefer to talk to people face to face. It really irritates me if I have to raise my voice, just so you can hear me.";
@@ -354,7 +354,7 @@ OnTouch:
 			close;
 		case 2:
 			mes "[Assassin 'Khai']";
-			if (sex) {
+			if (Sex) {
 				mes "Huh. You must have a lot of self confidence to be a Thief nowadays.";
 				next;
 				mes "[Assassin 'Khai']";
@@ -1079,7 +1079,7 @@ OnInit:
 OnStartArena:
 	warpwaitingpc "in_moc_16", 66, 151;
 	attachrid($@warpwaitingpc[0]);
-	if(ASSIN_Q2<5)
+	if (ASSIN_Q2<5)
 	{
 		warpchar "in_moc_16",20,145,getcharid(0);
 		end;

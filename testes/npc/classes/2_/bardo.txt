@@ -26,7 +26,7 @@
 // Ayealo
 //============================================================
 comodo,226,123,5	script	Bardo Andarilho	741,{
-	if(Upper == 1) {
+	if (Upper == 1) {
 		mes "[Ayealo]";
 		mes "Escolhidos os que estão destinados a se tornarem deuses são tantos nesta época mas eles nunca percebem o seu destino enquanto vivos.";
 		mes "E acabam se tornando homens comuns...";
@@ -39,8 +39,8 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 		cutin "job_bard_aiolo01",255;
 		end;
 	}
-	else if(BaseJob != Job_Archer) {
-		if(BaseJob == Job_Bard) {
+	else if (BaseJob != Job_Archer) {
+		if (BaseJob == Job_Bard) {
 			mes "[Ayealo]";
 			mes "Ah ei! O que você tem cantado esses dias?";
 			mes "Me perguntou se sua voz está melhor.";
@@ -53,7 +53,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Nunca se esqueça de ter uma atitude positiva e de continuar alegre.";
 			mes "Nossas músicas são feitas para alegrar as pessoas.";
 		}
-		else if(Class == Job_Novice) {
+		else if (Class == Job_Novice) {
 			cutin "job_bard_aiolo01",2;
 			mes "[Ayealo]";
 			mes "A tristeza que supera o meu coração.. ";
@@ -76,7 +76,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Sempre cheia de momentos felizes~";
 			next;
 			mes "[Ayealo]";
-			if (sex) {
+			if (Sex) {
 				mes "Esqueça as suas preocupações~";
 				mes "E aproveite~";
 			}
@@ -87,10 +87,10 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 		cutin "job_bard_aiolo01",255;
 		end;
 	}
-	else if(BARD_Q == 0) {
+	else if (BARD_Q == 0) {
 		cutin "job_bard_aiolo01",2;
 		mes "[Ayealo]";
-		if (sex) mes "Oi! Encantador Arqueiro.";
+		if (Sex) mes "Oi! Encantador Arqueiro.";
 		else mes "Olá! Linda Senhorita Arqueira.";
 		mes "Como um andarilho como eu pode te ajudar?";
 		next;
@@ -177,7 +177,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 		cutin "job_bard_aiolo02",255;
 		end;
 	}
-	else if(BARD_Q == 1) {
+	else if (BARD_Q == 1) {
 		cutin "job_bard_aiolo01",2;
 		mes "[Ayealo]";
 		mes "Olá amigo Arqueiro.";
@@ -239,7 +239,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 		cutin "job_bard_aiolo01",255;
 		end;
 	}
-	else if(BARD_Q == 2) {
+	else if (BARD_Q == 2) {
 		cutin "job_bard_aiolo01",2;
 		mes "[Ayealo]";
 		mes "Bem-Vindo! Amigo arqueiro.";
@@ -255,7 +255,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Meu amigo Tchaikovsky gosta muito delas.";
 			mes "Me pergunto o que ele está fazendo agora...";
 		}
-		else if(countitem(703) > 0) {
+		else if (countitem(703) > 0) {
 			mes "Aah... uma linda Hinalle...";
 			mes "Ela não tem cheiro, mas é uma linda flor.";
 			next;
@@ -264,7 +264,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "As folhas me dão força quando eu costumo cair.";
 			mes "Eu realmente gosto dessa flor, obrigado.";
 		}
-		else if(countitem(704) > 0) {
+		else if (countitem(704) > 0) {
 			mes "Aloe... É uma flor rara.";
 			mes "Como você a conseguiu? Você é um perito?";
 			next;
@@ -273,7 +273,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "As folhas são boas e a Aloe Vera é deliciosa...";
 			mes "e ela é definitivamente a mais bela das flores.";
 		}
-		else if(countitem(708) > 0) {
+		else if (countitem(708) > 0) {
 			mes "Menta... Você pode esquecer todos os seus problemas com uma dessas.";
 			mes "É ótimo ver uma depois de tanto tempo!";
 			next;
@@ -282,7 +282,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Ouvi dizer que é possível fazer Analgésicos com ela...";
 			mes "Mas pode ser apenas um boato.. obrigado!";
 		}
-		else if(countitem(709) > 0) {
+		else if (countitem(709) > 0) {
 			mes "Nossa, é uma Izidor?";
 			mes "É uma perigosa e bela flor...";
 			next;
@@ -291,7 +291,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Possui os profundos encantos de uma pessoa.. ";
 			mes "Obrigado, eu gosto muito dessa flor.";
 		}
-		else if(countitem(748) > 0) {
+		else if (countitem(748) > 0) {
 			mes "Uma Rosa Eterna. A flor forte, que não murcha.";
 			mes "Ótimo presente para sua namorada.";
 			next;
@@ -300,7 +300,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Eu me pergunto se é permitido que um andarilho como eu tenha uma dessas.";
 			mes "Haha, deve ficar tudo bem... certo?";
 		}
-		else if(countitem(749) > 0 ) {
+		else if (countitem(749) > 0 ) {
 			mes "Rosa de Gelo... você não pode chamar isso de flor, porém ainda sim é linda... uma Rosa clara.";
 			next;
 			delitem 749,1; // Rosa de Gelo
@@ -308,7 +308,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Ela não possui mais seu aroma.";
 			mes "Estou muito contente, pois é uma flor diferente.";
 		}
-		else if(countitem(710) > 0) {
+		else if (countitem(710) > 0) {
 			mes "Ah, isso não é uma Flor das Ilusões!?";
 			mes "Uau, como você conseguiu essa flor rara!!";
 			next;
@@ -317,7 +317,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			mes "Muito obrigado, aah... me sinto como se o céu estivesse na frente dos meus olhos.";
 			mes "Que sensação maravilhosa! Estou muito feliz.";
 		}
-		else if(countitem(712) > 0) {
+		else if (countitem(712) > 0) {
 			cutin "job_bard_aiolo02",2;
 			mes "Hã? É apenas uma flor comum.";
 			mes "eu gosto... mas não é o suficiente.";
@@ -329,7 +329,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			cutin "job_bard_aiolo02",255;
 			end;
 		}
-		else if(countitem(744) > 0) {
+		else if (countitem(744) > 0) {
 			mes "Ah não, você trouxe um Buquê?";
 			mes "Você não pode me trazer algo assim.";
 			next;
@@ -340,7 +340,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			cutin "job_bard_aiolo01",255;
 			end;
 		}
-		else if(countitem(745) > 0) {
+		else if (countitem(745) > 0) {
 			cutin "job_bard_aiolo02",2;
 			mes "Ai ai... você vai ao casamento ou algo assim?";
 			mes "O que você acha que um homem faz com um Buquê de Casamento?";
@@ -352,7 +352,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			cutin "job_bard_aiolo02",255;
 			end;
 		}
-		else if(countitem(2207) > 0) {
+		else if (countitem(2207) > 0) {
 			mes "Humm... uma Florzinha.";
 			mes "Ótimo... mas não é o suficiente.";
 			next;
@@ -363,7 +363,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			cutin "job_bard_aiolo01",255;
 			end;
 		}
-		else if(countitem(1032) > 0) {
+		else if (countitem(1032) > 0) {
 			cutin "job_bard_aiolo02",2;
 			mes "...Agh, por que você me traz algo tão horrível?";
 			mes "Você pensou nisso?";
@@ -412,7 +412,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 	}
 	else if ((BARD_Q >= 3) || (BARD_Q <= 5)) {
 		if (BARD_Q == 3) {
-			if(xmas_npc > 10) { //this var is set in LUTIE.TXT
+			if (xmas_npc > 10) { //this var is set in LUTIE.TXT
 				cutin "job_bard_aiolo01",2;
 				mes "[Ayealo]";
 				mes "Como foi a viagem? Você conheceu um monte de gente?";
@@ -422,7 +422,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 				mes "Então, você quer tentar cantar...?";
 				mes "Irei cantar uma curta melodia...";
 				mes "e você tenta depois.";
-				if(checkquest(3003) == -1) {
+				if (checkquest(3003) == -1) {
 					changequest 3002,3003;
 				}
 				next;
@@ -833,7 +833,7 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			set .@selection,select("Só me mude de classe.:Eu ficaria grato com um presente.");
 		}
 		if ((.@selection == 1) || (BARD_Q == 5)) {
-			if(SkillPoint) {
+			if (SkillPoint) {
 				cutin "job_bard_aiolo01",2;
 				mes "[Ayealo]";
 				mes "Ah... Está tudo bem, mas você ainda tem alguns pontos de classe sobrando.";
@@ -850,11 +850,11 @@ comodo,226,123,5	script	Bardo Andarilho	741,{
 			else {
 				switch(BARD_Q) {
 				case 5:
-					if(countitem(1019) > 59) callsub S_ChangeJob,1019,1901;
-					else if(countitem(1068) > 59) callsub S_ChangeJob,1068,1903;
-					else if(countitem(1067) > 59) callsub S_ChangeJob,1067,1903;
-					else if(countitem(1066) > 59) {
-						if(JobLevel > 49) callsub S_ChangeJob,1066,1910;
+					if (countitem(1019) > 59) callsub S_ChangeJob,1019,1901;
+					else if (countitem(1068) > 59) callsub S_ChangeJob,1068,1903;
+					else if (countitem(1067) > 59) callsub S_ChangeJob,1067,1903;
+					else if (countitem(1066) > 59) {
+						if (JobLevel > 49) callsub S_ChangeJob,1066,1910;
 						else callsub S_ChangeJob,1066,1905;
 					}
 					cutin "job_bard_aiolo01",2;

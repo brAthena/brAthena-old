@@ -114,7 +114,7 @@ alberta,196,133,4	script	Bardo#job_min	486,{
 			mes "[Karian]";
 			mes "Se você está interessado, por que não me ajuda a encontrar o paradeiro do trovador ^f57d7d'Song'^000000?";
 			next;
-			if(select("Ok.:No.") == 2) {
+			if (select("Ok.:No.") == 2) {
 				mes "["+strcharinfo(0)+"]";
 				mes "Não estou interessado.";
 				next;
@@ -511,7 +511,7 @@ hu_in01,361,103,3	script	Pessoa Surda	995,{
 		mes "- esses sons possam vir -";
 		mes "- de um ser humano. -";
 		next;
-		if(select("Ir embora.:Ficar e escutar.")==1) close;
+		if (select("Ir embora.:Ficar e escutar.")==1) close;
 		mes "[Pessoa Surda]";
 		mes "Turuturú~";
 		mes "Daradá~";
@@ -1352,7 +1352,7 @@ function Choice;
 		next;
 		mes "-Não é facil acreditar nele-";
 		next;
-		if(select("I don't like this.:Take the kayak.") == 1) {
+		if (select("I don't like this.:Take the kayak.") == 1) {
 			mes "[Karian]";
 			mes "Eu nunca mais vou pegar um dirigível...";
 			donpcevent "Karian#cmd5::OnDisable";

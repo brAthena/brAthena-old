@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.5/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.5/1.6/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Espiritualista.      |
 //   | [Var Usada]                                            |
@@ -21,6 +21,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Clare]                             |
+//   | 1.2 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -402,6 +403,13 @@ OnTouch:
 				mes "você falar comigo mais tarde...";
 				close;
 			}
+			if (ismounting()) {
+				mes "[Maia]";
+				mes "Você está em uma montaria,";
+				mes "então você não pode mudar de classe.";
+				mes "Por favor, remova sua montaria e tente novamente!";
+				close;
+			}
 			mes "[Maia]";
 			mes "Então vamos começar a";
 			mes "cerimônia. Esses itens serão";
@@ -435,9 +443,13 @@ OnTouch:
 			mes "de Espiritualista";
 			mes "com sabedoria e para fins justos.";
 			next;
+			if (SkillPoint) {
+				mes "^0000ffVocê ainda tem pontos de habilidade sobrando. Por favor, use todos os pontos de habilidades restantes e tente novamente!^000000";
+				close;
+			}
 			completequest 6008;
 			callfunc "Job_Change",Job_Soul_Linker;
-			callfunc "F_ClearJobVar";		// Limpa todas as variáveis de classe do jogador
+			callfunc "F_ClearJobVar";	// Limpa todas as variáveis de classe do jogador
 			set SOUL_Q,0;
 			mes "[Maia]";
 			mes "Desejo a você boa sorte";
@@ -513,7 +525,7 @@ job_soul,30,35,6	script	Espírito do Monge#link4	827,{
 		mes "tornar isso possível.";
 		next;
 		set SOUL_Q,4;
-		if(checkquest(6008) == -1) {
+		if (checkquest(6008) == -1) {
 			changequest 6007,6008;
 		}
 		mes "[Espírito do Monge]";
@@ -562,7 +574,7 @@ job_soul,30,25,7	script	Espírito do Sábio#link5	754,{
 		mes "sua ajuda. Eu imploro,";
 		mes "deixe-me ser seu espirito aliado.";
 		set SOUL_Q,4;
-		if(checkquest(6008) == -1) {
+		if (checkquest(6008) == -1) {
 			changequest 6007,6008;
 		}
 		next;
@@ -606,7 +618,7 @@ job_soul,25,30,5	script	Espírito do Alquimista#link7	744,{
 		mes "ir para o outro mundo, não antes de";
 		mes "re-passar minhas tecnicas...";
 		set SOUL_Q,4;
-		if(checkquest(6008) == -1) {
+		if (checkquest(6008) == -1) {
 			changequest 6007,6008;
 		}
 		next;
@@ -654,4 +666,41 @@ OnTimer183000:
 	mapwarp "job_soul","morocc",157,47;
 	set getvariableofnpc(.SoulLinkerTest,"Garoto#link1"),0;
 	stopnpctimer;
+}
+
+sec_in02,35,153,0	script	Variáveis Espiritualista	871,{
+	callfunc "F_GM_NPC";
+	mes "[Variáveis Espiritualista]";
+	mes "Eu posso resetar os NPCs da mudança de classe";
+	mes "para Espiritualista se um candidato";
+	mes "encontrar problemas durante o";
+	mes "final da quest. Por favor,";
+	mes "não utilize essa função se ainda existirem jogadores no mapa.";
+	next;
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "[Variáveis Espiritualista]";
+		mes "Senha";
+		mes "incorreta.";
+		close;
+	} else {
+		mes "[Variáveis Espiritualista]";
+		mes "Você gostaria de";
+		mes "resetar a Variável Global";
+		mes "da Mudança de Classe para Espiritualista?";
+		next;
+		switch(select("Resetar:Cancelar")) {
+		case 1:
+			mes "[Variáveis Espiritualista]";
+			mes "Os NPCs da mudança";
+			mes "de classe para Espiritualista";
+			mes "foram resetados.";
+			set getvariableofnpc(SOUL_Q,"Garoto#link1"),0;
+			close;
+		case 2:
+			mes "[Variáveis Espiritualista]";
+			mes "Você cancelou";
+			mes "este comando.";
+			close;
+		}
+	}
 }

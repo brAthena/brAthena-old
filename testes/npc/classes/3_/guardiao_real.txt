@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.1                          |
+//   | Versões eA/rA/brA: ??/1.2/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Guardião Real.       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [~Zangestsu]                        |
+//   | 1.2 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -73,7 +74,7 @@ prt_castle,48,161,3	script	Senhor#rg	57,{
 		mes "[Senhor Hainrich]";
 		mes "Do you want to argue with me? Do you know who I am?";
 		next;
-		if(select("Not really, who are you?:Sorry, I won't hurt your feelings.") == 2) {
+		if (select("Not really, who are you?:Sorry, I won't hurt your feelings.") == 2) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Sorry. I had to be sure. I didn't know that you are from the royal palace.";
 			next;
@@ -182,7 +183,7 @@ prt_castle,48,161,3	script	Senhor#rg	57,{
 		mes "[Heinrich]";
 		mes "If you want to hear more story, you have to show me your similar attitude.";
 		next;
-		if(select("That's an unfair demand.:I will try.") == 1) {
+		if (select("That's an unfair demand.:I will try.") == 1) {
 			mes "[Heinrich]";
 			mes "Good idea, it would better to find something more worthy.";
 			close;
@@ -266,7 +267,7 @@ prt_castle,48,161,3	script	Senhor#rg	57,{
 		mes "[Heinrich]";
 		mes "Now I can't tell you why the trace is there.";
 		next;
-		if(select("Interesting. Can I go there?:Seems really dangerous.") == 2) {
+		if (select("Interesting. Can I go there?:Seems really dangerous.") == 2) {
 			mes "[Heinrich]";
 			mes "Good idea, that's useless work to explore there.";
 			close;
@@ -404,7 +405,7 @@ glast_01,240,366,5	script	Memory of King Schmidtz	844,{
 		mes "[Memory of King Schmidtz]";
 		mes "I'm planning to accept you as a member of the Royal Guard to continue their lost traditions. Are you ready to do it?";
 		next;
-		if(select("Sure, of course:Not yet") == 2) {
+		if (select("Sure, of course:Not yet") == 2) {
 			mes "[Memory of King Schmidtz]";
 			mes "Umm, maybe Heinrich had wrong judgement.";
 			close;
@@ -412,7 +413,7 @@ glast_01,240,366,5	script	Memory of King Schmidtz	844,{
 		mes "[Memory of King Schmidtz]";
 		mes "If so, I will proceed to making you a Royal Guard.";
 		next;
-		if(select("Great.:Not yet.") == 2) {
+		if (select("Great.:Not yet.") == 2) {
 			mes "[Memory of King Schmidtz]";
 			mes "Perhaps Heinrich had the wrong image of you.";
 			close;
@@ -504,8 +505,8 @@ OnTouch:
 	end;
 }
 
-/*
 sec_in02,12,43,3	script	sorcereryal	57,1,1,{
+	callfunc "F_GM_NPC";
 	switch(select("Royal Guard:Rune Knight:Sorcerer")) {
 	case 1:
 		mes "1~5";
@@ -545,4 +546,3 @@ sec_in02,12,43,3	script	sorcereryal	57,1,1,{
 		close;
 	}
 }
-*/

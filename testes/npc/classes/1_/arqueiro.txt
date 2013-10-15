@@ -27,7 +27,7 @@
 
 payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
 	mes "[Guia dos Arqueiros]";
-	if(Upper == 1) {
+	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {
 			mes "Ei, eu te conheço.";
 			mes "Você já fez esse teste antes, não foi?";
@@ -68,7 +68,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
 	switch(select("Eu quero me tornar um Arqueiro.:Eu preciso saber dos requerimentos, por favor.:Nada, obrigado.")) {
 	case 1:
 		mes "[Guia dos Arqueiros]";
-		if(BaseJob != Job_Novice) {
+		if (BaseJob != Job_Novice) {
 			mes ""+((BaseJob == Job_Archer) ? "Haha, você está brincando comigo.." : "Eu sinto muito, mas apenas Aprendizes podem mudar de classe. Você já tem a sua própria classe, não é?")+"";
 			close;
 		} if ( !checkversion(0) ){
@@ -195,7 +195,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
 			close;
 	case 2:
 	mes "[Guia dos Arqueiros]";
-	if( !checkversion(0) ) {
+	if ( !checkversion(0) ) {
 		mes "Eu irei te dizer os requerimentos para se tornar um Arqueiro.";
 		next;
 		mes "[Guia dos Arqueiros]";

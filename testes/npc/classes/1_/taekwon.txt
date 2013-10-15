@@ -25,16 +25,16 @@
 //   \________________________________________________________/
 
 payon,157,141,5	script	Fênix#TKJobChange	753,{
-	if(Upper == 2) {
+	if (Upper == 2) {
 		mes "[Fênix]";
 		mes "Olá, criança.";
 		close;
-	} else if(Class == Job_Taekwon) {
+	} else if (Class == Job_Taekwon) {
 		mes "[Fênix]";
 		mes "Como vai seu treinamento?";
 		mes "Enquanto suas técnicas se tornam mais refinadas e espetaculares, nunca se esqueça que você pode sempre contar com o básico.";
 		close;
-	} else if(Class > Job_Novice) || (Class == Job_Novice && TK_Q == 0) {
+	} else if (Class > Job_Novice) || (Class == Job_Novice && TK_Q == 0) {
 		mes "[Fênix]";
 		mes "Esta terra.";
 		mes "Nosso único e belo mundo tem sido manchado pelo mal: existem muitos homens corrompidos pelas trevas, demasiados monstros ameaçando os inocentes...";
@@ -61,14 +61,14 @@ payon,157,141,5	script	Fênix#TKJobChange	753,{
 		mes "Se você ainda não decidiu o caminho que deseja tomar na vida, eu gostaria que considerasse se tornar um praticante da minha arte.";
 		mes "Não será fácil, mas o levará a um grande poder.";
 		next;
-		if(select("Ok, eu me juntarei a você.","Não, obrigado.") == 2) {
+		if (select("Ok, eu me juntarei a você.","Não, obrigado.") == 2) {
 			mes "[Fênix]";
 			mes "Entendo.";
 			mes "A vida de alguém pode ter muitos caminhos, mas você tem que escolher somente um para viajar por vez.";
 			mes "Espero que você trabalhe rumo à iluminação no seu próprio caminho, aventureiro.";
 			close;
 		}
-		if(getskilllv("NV_BASIC") < 9) {
+		if (getskilllv("NV_BASIC") < 9) {
 			mes "[Fênix]";
 			mes "Que pena!";
 			mes "Você não está preparado para começar a treinar sob minha orientação no seu atual Nível de Classe.";
@@ -79,7 +79,7 @@ payon,157,141,5	script	Fênix#TKJobChange	753,{
 		mes "Muito bem... Eu te aceito como meu aluno.";
 		mes "Para começar o treinamento, seu físico deve ser primeiro condicionado a fim de realizar as habilidades que você aprenderá.";
 		next;
-		if(BaseLevel > 19) {
+		if (BaseLevel > 19) {
 			mes "[Fênix]";
 			mes "Hm. Vejo que você tem uma formação física suficiente como Aprendiz.";
 			mes "Muito bem. Então vamos nos preparar para seu treinamento espiritual.";
@@ -102,7 +102,7 @@ payon,157,141,5	script	Fênix#TKJobChange	753,{
 	}
 	switch(TK_Q) {
 	case 1:
-		if(BaseLevel == TAEK_Q) {
+		if (BaseLevel == TAEK_Q) {
 			mes "[Fênix]";
 			mes "Você tem que ganhar ^FF00001 mais um Nível de Base^000000 para provar que você pode suportar o sofrimento que esta classe carrega.";
 			mes "Nunca negligencie seu treinamento.";
@@ -233,7 +233,7 @@ payon,157,141,5	script	Fênix#TKJobChange	753,{
 		mes "[Fênix]";
 		mes "^FF0000Você está pronto para se dedicar a arte especial que eu te ensinarei, e defender a dignidade de sua filosofia?";
 		next;
-		if(select("Sim.:Não.") == 2) {
+		if (select("Sim.:Não.") == 2) {
 			mes "[Fênix]";
 			mes "Hm, talvez você não esteja completamente pront"+((Sex)?"o":"a")+" para avançar do seu status de aluno para um verdadeiro discípulo.";
 			mes "Quando se sentir preparado, venha falar comigo.";

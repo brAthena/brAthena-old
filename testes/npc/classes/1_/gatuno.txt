@@ -59,7 +59,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		}
 	}
   if ( checkversion(0) ) {
-	if(q_job_thief == 1) {
+	if (q_job_thief == 1) {
 		mes "[Gatuna Ajudante]";
 		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
 		next;
@@ -70,7 +70,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 		}
   } if ( !checkversion(0) ) {
 		mes "[Gatuna Ajudante]";
-		if(BaseJob == Job_Thief) {
+		if (BaseJob == Job_Thief) {
 		mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
 		close;
     }
@@ -270,7 +270,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	mes "[Gatuna Ajudante]";
 	mes "Ehh... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
 	next;
-	if(select("Eu quero me tornar um Gatuno.:Nada.") == 2) {
+	if (select("Eu quero me tornar um Gatuno.:Nada.") == 2) {
 		mes "[Gatuna Ajudante]";
 		mes "Você sabe que não pode ser um gatuno sem uma aplicação... O que está pensando..?";
 		close;
@@ -307,7 +307,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	mes "[Gatuna Ajudante]";
 	mes "Então, você quer se candidatar a ser um Gatuno?";
 	next;
-	if(select("Sim, eu quero.:Não.") == 2) {
+	if (select("Sim, eu quero.:Não.") == 2) {
 		mes "[Gatuna Ajudante]";
 		mes "Bem... faça o que quiser, siga seu caminho~";
 		close;
@@ -336,8 +336,8 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 
 moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 	mes "[Brad]";
-  if( checkversion(0) ) {
-	if(q_job_thief == 1) {
+  if ( checkversion(0) ) {
+	if (q_job_thief == 1) {
 		mes "Certo. Você conseguiu passar na entrevista, correto?";
 		mes "Bom. Eu irei aceitá-lo. Vamos começar a cerimônia de mudança de classe da nossa Guilda!";
 		next;
@@ -363,8 +363,8 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		mes "Ok, eu fiz o que eu posso fazer para você, para ir em seu caminho. Eu sou um homem bastante ocupado. Vejamos novamente.";
 		close;
 	}
-	if(BaseJob != Job_Novice) {
-		if(BaseJob == Job_Thief) {
+	if (BaseJob != Job_Novice) {
+		if (BaseJob == Job_Thief) {
 			mes "Eu não tenho quaisquer eventos especiais agora. Então, vá no seu caminho e voltar mais tarde.";
 		} else {
 			mes "Ei~ Ei~ Você não é um Aprendiz ou um Gatuno! O que você está fazendo aqui?";
@@ -431,7 +431,7 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 		next;
 		mes "[Brad]";
 		mes "Aqui está um ajudinha para você começar sua vida de Gatuno. Gaste no que quiser.";
-		set zeny,zeny+.@money_thief;
+		set Zeny, Zeny+.@money_thief;
 		next;
 		mes "Ok, acho que você está pronto para o mundo! E espero que o mundo esteja pronto para mais um Gatuno! Boa Sorte!";
 		close;

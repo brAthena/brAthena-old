@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.5/1.1                          |
+//   | Versões eA/rA/brA: ??/1.6/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição:  Mudança de Classe para Sentinela.          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -34,7 +35,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 			mes "O que está acontecendo?";
 			mes "Os monstros aqui são um pouco dificeis de se derrotar, então tome cuidado.";
 			next;
-			if(select("Estou aqui para me tornar um Sentinela.:Estou apenas passeando.") == 2) {
+			if (select("Estou aqui para me tornar um Sentinela.:Estou apenas passeando.") == 2) {
 				mes "[Instrutor Sobrevivente]";
 				mes "Hã?";
 				mes "O clima está realmente ótimo. Vamos tirar uma foto para comemorar?";
@@ -156,7 +157,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 			if (Weight < 1) {
 				mes "Hum. Então significa que você está determinad"+((Sex) ? "o":"a")+" em se tornar Sentinela.";
 				next;
-				if(select("Irei pensar um pouco mais.:Eu estou pronto para me tornar um Sentinela") == 1) {
+				if (select("Irei pensar um pouco mais.:Eu estou pronto para me tornar um Sentinela") == 1) {
 					mes "[Instrutor Sobrevivente]";
 					mes "Prepare-se muito bem antes de iniciar o teste.";
 					next;
@@ -179,7 +180,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 				mes "Lembre-se que você não possui nenhum outro equipamento, por isso tenha cuidado com os monstros.";
 				mes "Pronto para começar?";
 				next;
-				if(select("Espere um segundo:Sim, estou pronto") == 1) {
+				if (select("Espere um segundo:Sim, estou pronto") == 1) {
 					mes "[Instrutor Sobrevivente]";
 					mes "Que tipo de preparação pode levar tanto tempo.";
 					next;
@@ -211,7 +212,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 			mes "Humm?";
 			mes "Pelo que você está esperando?";
 			next;
-			if(select("Me fale sobre a missão novamente.:Estou apenas querendo conversar.") == 1) {
+			if (select("Me fale sobre a missão novamente.:Estou apenas querendo conversar.") == 1) {
 				mes "[Instrutor Sobrevivente]";
 				mes "Ah, sim.";
 				mes "Este é o espírito de uma pessoa que vai fazer um teste?";
@@ -227,7 +228,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 				mes "Como você não está com nenhum equipamento, então tome cuidado com os monstros.";
 				mes "Bem, vamos começar?";
 				next;
-				if(select("Espere um minuto:Eu irei começar") == 1) {
+				if (select("Espere um minuto:Eu irei começar") == 1) {
 					mes "[Instrutor Sobrevivente]";
 					mes "Que tipo de preparação pode levar tanto tempo.";
 					next;
@@ -326,7 +327,7 @@ tur_dun01,91,169,3	script	Instrutor do Teste#jr02	732,{
 			mes "[Instrutor do Teste]";
 			mes "Já que você está aqui para encomodar, você poderia parar?!";
 			next;
-			if(select("Teste prático de Sentinela?:Eu vim para o teste.") == 1) {
+			if (select("Teste prático de Sentinela?:Eu vim para o teste.") == 1) {
 				mes "[Instrutor do Teste]";
 				mes "O que, quem é você...?";
 				next;
@@ -482,7 +483,7 @@ tur_dun01,91,169,3	script	Instrutor do Teste#jr02	732,{
 			mes "[Instrutor do Teste]";
 			mes "Agora, eu irei te levar para o local do teste prático, sua preparação está terminada?";
 			next;
-			if(select("Por favor espere um pouco:Vamos para o local do teste prático!") == 1) {
+			if (select("Por favor espere um pouco:Vamos para o local do teste prático!") == 1) {
 				mes "[Instrutor do Teste]";
 				mes "Hã? Você está realmente pronto?";
 				next;
@@ -1654,7 +1655,7 @@ job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	832,{
 		mes "[Mestre dos Sentinelas]";
 		mes "Antes de mudar de classe ^0000ffse dispessa de seu falcão^000000, e verifique se você já utilizou todos os seus ^0000ffPontos de Habilidade^000000.";
 		next;
-		if(select("Espere um minuto:Estou pronto") == 1) {
+		if (select("Espere um minuto:Estou pronto") == 1) {
 			mes "[Mestre dos Sentinelas]";
 			mes "Eu não estou fugindo para ganhar tempo.";
 			close;
@@ -1680,7 +1681,7 @@ job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	832,{
 		mes "Okay, before you really change the job into a ranger, I'll ask you on more time.";
 		mes "Do you really want to become a ranger?";
 		next;
-		if(select("No:Yes!") == 1) {
+		if (select("No:Yes!") == 1) {
 			mes "[Mestre dos Sentinelas]";
 			mes "...Um? That's not the answer that I was waiting for...";
 			next;
@@ -1750,5 +1751,52 @@ job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	832,{
 		close2;
 		warp "alberta",117,57;
 		end;
+	}
+}
+
+job3_rang01,58,1,0	script	Worker#job_ranger	88,{
+	callfunc "F_GM_NPC";
+	switch(select("Enable Waiting Room:Disable Waiting Room:Enable 1st Test:Disable 1st Test:Enable 2nd Test:Disable 2nd Test:Enable 3rd Test:Disable 3rd Test:Cancel")) {
+	case 1:
+		mes "Enabled Waiting Room";
+		donpcevent "Test Waiting Room#jr_03::OnEnable";
+		close;
+	case 2:
+		mes "Disabled Waiting Room";
+		donpcevent "Test Waiting Room#jr_03::OnDisable";
+		close;
+	case 3:
+		mes "1st Test Enabled";
+		donpcevent "Test Supervisor#jr_04::OnEnable";
+		close;
+	case 4:
+		mes "1st Test Disabled";
+		donpcevent "Test Supervisor#jr_04::OnDisable";
+		donpcevent "First Test Timer#jr_05::OnDisable";
+		donpcevent "CallCorrectAnswer#jr::OnReset";
+		donpcevent "CallWrongAnswer#jr::OnReset";
+		donpcevent "CallCorrectAnswer#jr::OnDisable";
+		donpcevent "CallWrongAnswer#jr::OnDisable";
+		close;
+	case 5:
+		mes "2nd Test Enabled";
+		donpcevent "Second Test Timer#jr_08::OnEnable";
+		close;
+	case 6:
+		mes "2nd Test Disabled";
+		donpcevent "Second Test Timer#jr_08::OnDisable";
+		close;
+	case 7:
+		mes "3rd Test has been Enabled";
+		donpcevent "Third Test Timer#jr_12::OnEnable";
+		close;
+	case 8:
+		mes "3rd Test has been Disabled";
+		donpcevent "Third Test Timer#jr_12::OnDisable";
+		for(set .@i,14; .@i<=28; set .@i,.@i+1)
+			donpcevent "Egg Bomb#"+.@i+"::OnDisable";
+		close;
+	case 9:
+		close;
 	}
 }

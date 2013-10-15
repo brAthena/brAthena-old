@@ -1993,7 +1993,7 @@ job3_sha01,22,78,0	script	????#keybox01	844,{
 	}
 	mes "You don't have to stay in here.";
 	next;
-	if(select("Go outside.:Stay here.") == 1)
+	if (select("Go outside.:Stay here.") == 1)
 		warp "tur_dun03",40,201;
 	close;
 }
