@@ -76,7 +76,7 @@ alberta,245,69,3	script	Barqueiro de Kunlun#gon	776,{
 				mes "[Wabakho]";
 				mes "Obrigado, levarei você imediatamente.";
 				close2;
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				warp "gon_fild01",258,82;
 				end;
 			}

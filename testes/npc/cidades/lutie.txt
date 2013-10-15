@@ -34,42 +34,42 @@ aldebaran,223,222,4	script	Sr. Noel	718,{
 	mes "Desejo toda a felicidade natalina para você!";
 	next;
 	switch(select("Sobre Lutie:Ir para 'Lutie':Cancelar")) {
-		case 1:
-			mes "[Senhor Noel]";
-			mes "^3355FFLutie^000000, a maravilhosa Cidade do Natal! Sempre cheia do espírito natalino, Lutie é cheia de bolos apetitosos, soldadinhos de brinquedos e várias outras coisas maravilhosas~!";
-			next;
-			mes "[Senhor Noel]";
-			mes "Ho Ho Ho~";
-			mes "É uma terra maravilhosa, abençoada com a beleza do inverno, e com uma atmosfera festiva o ano todo!";
-			next;
-			mes "[Senhor Noel]";
-			mes "Eu guio as pessoas até Lutie, a Cidade Natalina. Quando quiser ir lá, me peça, e eu o enviarei~";
-			close;
-		case 2:
-			mes "[Senhor Noel]";
-			mes "Ho Ho Ho~";
-			mes "O único jeito de chegar em Lutie é comigo, aqui em Al de Baran!";
-			next;
-			mes "[Senhor Noel]";
-			mes "Eu mantenho esse lugar e transporto pessoalmente as pessoas que querem visitar Lutie. Peça para o Papai Noel se quiser ir lá. Ele te mostrará o caminho para Lutie.";
-			next;
-			mes "[Senhor Noel]";
-			mes "Ho Ho Ho~";
-			mes "Bem, você está pronto?";
-			mes "Tenha uma boa viagem!";
-			mes "Feliiiiiiiz Nataaaal!";
-			close2;
-			warp "xmas_fild01",78,68;
-			end;
-		case 3:
-			mes "[Senhor Noel]";
-			mes "Ho Ho Ho~";
-			mes "Quando quiser visitar Lutie, venha falar comigo!";
-			next;
-			mes "[Senhor Noel]";
-			mes "Ho ho hooooo!!";
-			mes "Boas Festaaaas!";
-			close;
+	case 1:
+		mes "[Senhor Noel]";
+		mes "^3355FFLutie^000000, a maravilhosa Cidade do Natal! Sempre cheia do espírito natalino, Lutie é cheia de bolos apetitosos, soldadinhos de brinquedos e várias outras coisas maravilhosas~!";
+		next;
+		mes "[Senhor Noel]";
+		mes "Ho Ho Ho~";
+		mes "É uma terra maravilhosa, abençoada com a beleza do inverno, e com uma atmosfera festiva o ano todo!";
+		next;
+		mes "[Senhor Noel]";
+		mes "Eu guio as pessoas até Lutie, a Cidade Natalina. Quando quiser ir lá, me peça, e eu o enviarei~";
+		close;
+	case 2:
+		mes "[Senhor Noel]";
+		mes "Ho Ho Ho~";
+		mes "O único jeito de chegar em Lutie é comigo, aqui em Al de Baran!";
+		next;
+		mes "[Senhor Noel]";
+		mes "Eu mantenho esse lugar e transporto pessoalmente as pessoas que querem visitar Lutie. Peça para o Papai Noel se quiser ir lá. Ele te mostrará o caminho para Lutie.";
+		next;
+		mes "[Senhor Noel]";
+		mes "Ho Ho Ho~";
+		mes "Bem, você está pronto?";
+		mes "Tenha uma boa viagem!";
+		mes "Feliiiiiiiz Nataaaal!";
+		close2;
+		warp "xmas_fild01",78,68;
+		end;
+	case 3:
+		mes "[Senhor Noel]";
+		mes "Ho Ho Ho~";
+		mes "Quando quiser visitar Lutie, venha falar comigo!";
+		next;
+		mes "[Senhor Noel]";
+		mes "Ho ho hooooo!!";
+		mes "Boas Festaaaas!";
+		close;
 	}
 }
 
@@ -100,7 +100,7 @@ xmas_in,100,96,4	script	Papai Noel	718,{
 
 xmas_in,167,173,4	script	Duffle	711,{
 		mes "[Duffle]";
-		if(xmas_npc == 1) {
+		if (xmas_npc == 1) {
 		mes "Feliz Natal!";
 		mes "Bem-vindo a Lutie!";
 		next;
@@ -268,7 +268,7 @@ xmas_in,27,103,4	script	Mima	701,{
 //============================================================
 xmas,117,304,4	script	Poze	713,{
 		mes "[Poze]";
-	if(xmas_npc == 3 || xmas_npc == 4) {
+	if (xmas_npc == 3 || xmas_npc == 4) {
 		mes "Você foi falar com ^3355FFBoneco de Neve^000000 e ele mencionou o meu nome?";
 		next;
 		mes "[Poze]";
@@ -306,8 +306,8 @@ xmas,117,304,4	script	Poze	713,{
 
 xmas,176,236,4	script	Tio Peludo	712,{
 	mes "[Cantata]";
-	if(xmas_npc == 4) {
-		if(countitem(1024) > 0 && countitem(938) > 0) {
+	if (xmas_npc == 4) {
+		if (countitem(1024) > 0 && countitem(938) > 0) {
 			mes "Oh? Vo-você trouxe os ingredientes? Óóóótimo. Faz tanto tempo que não provo disso... Dê-dê para mim!";
 			next;
 			delitem 1024,1;	// Tinta de Polvo
@@ -596,19 +596,19 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				set xmas_npc,11;
 				cutin "rutie_snownow02.bmp",2;
 				mes "[Boneco de Neve]";
-				if(.@snownow == 1 || .@snownow == 2) {
+				if (.@snownow == 1 || .@snownow == 2) {
 				getitem 529, ((.@snownow == 1) ? 5 : 10);	// Bala
 				mes ""+((.@snownow == 1) ? "Uau":"Ooh")+"~!";
 				mes "^3355FF"+((.@snownow == 1) ? "5":"10")+" Bala^000000!";
-				} else if(.@snownow == 3 || .@snownow == 4) {
+				} else if (.@snownow == 3 || .@snownow == 4) {
 				getitem 530, ((.@snownow == 3) ? 5 : 10);	// Bengala Doce
 				mes ""+((.@snownow == 3) ? "Eeeeebaa~" : "Eba, isso é ótimo")+"!";
 				mes "^3355FF"+((.@snownow == 3) ? "5":"10")+" Bengala Doce^000000!";
-				} else if(.@snownow == 5 || .@snownow == 6) {
+				} else if (.@snownow == 5 || .@snownow == 6) {
 				getitem 539,((.@snownow == 5) ? 1 : 2);		// Pedaço de Bolo
 				mes ""+((.@snownow == 5) ? "Nossa que sorte!" : "Poxa, isso não é legal?")+"";
 				mes "^3355FF"+((.@snownow == 5) ? "1":"2")+" Pedaço de Bolo^000000!";
-				} else if(.@snownow == 7 || .@snownow == 8) {
+				} else if (.@snownow == 7 || .@snownow == 8) {
 				getitem 538,((.@snownow == 7) ? 5 : 10);		// Biscoito de Gengibre
 				mes ""+((.@snownow == 7) ? "Ah nossaaaa~!" : "*Gasp!* Ieei~")+"";
 				mes "^3355FF5"+((.@snownow == 7) ? "5":"10")+" Biscoito de Gengibre^000000!";

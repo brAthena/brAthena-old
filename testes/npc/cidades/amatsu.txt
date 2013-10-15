@@ -86,7 +86,7 @@ alberta,246,74,3	script	Capitão do Mar#ama1	709,{
 				mes "[Walter Moers]";
 				mes "Certo, liguem as máquinas!";
 				close2;
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				warp "amatsu",197,83;
 				end;
 			}

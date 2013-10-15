@@ -98,7 +98,7 @@ geffen,147,26,0	script	Ralphie	97,{
 	mes "[Ralphie]";
 	mes "Com isso, qualquer um pode ser tão forte quanto Hércules... Mesmo um fracote como eu! Hahahaha, eu preciso tê-la!";
 	next;
-	Emotion e_gasp;
+	emotion e_gasp;
 	mes "[Ralphie]";
 	mes "...Meu Deus!";
 	mes "Desde quando você estava ouvindo?";
@@ -123,7 +123,7 @@ geffen,111,48,0	script	Senhora	101,{
 		mes "Você está usando um Orc Helm?! Que legal! Uau...";
 		next;
 		mes "[Senhora]";
-		if (sex) {
+		if (Sex) {
 			mes "Você parece tão...";
 			mes "Forte e bonitão~";
 		} else {
@@ -141,11 +141,11 @@ geffen,111,48,0	script	Senhora	101,{
 		mes "Isso é um elmo de um Orc Herói!";
 		next;
 		mes "[Senhora]";
-		if (sex) {
+		if (Sex) {
 			mes "É...";
 			mes "É como se você estivesse rodeado por essa incrível aura masculina! Oooh~! Nenhuma garota deve resistir a você!";
 			next;
-			Emotion e_lv;
+			emotion e_lv;
 			mes "[Senhora]";
 			mes "E eu não sou uma exceção.";
 		} else {
@@ -238,7 +238,7 @@ OnTouch:
 			input .@input;
 			if (.@input == 0) {
 				mes "[Cara Suspeito]";
-				if (sex)
+				if (Sex)
 					mes "Ah caaaaara~ Você partiu meu coração! Poxa, com esses preços eu estou praticamente fazendo caridade!";
 				else
 					mes "E-espereee! Você não me deixou explicar como Red Potions te ajudam a perder e ganhar peso nos lugares certos! Espereeee!";
@@ -262,12 +262,12 @@ OnTouch:
 			mes "^333333Agora preciso achar outra pessoa para comprar esse lixo!^000000 *Cof* Digo, volte sempre!";
 			close;
 		}
-		set zeny,zeny-.@Red_potion_hap;
+		set Zeny, Zeny-.@Red_potion_hap;
 		getitem 501,.@input; //Red_Potion
 		break;
 	case 2:
 		mes "[Cara Suspeito]";
-		if (sex) {
+		if (Sex) {
 			mes "Por que um cara forte como você precisaria de uma faca? Ela iria quebrar com a força dos seus golpes!";
 			next;
 			mes "[Cara Suspeito]";
@@ -318,12 +318,12 @@ OnTouch:
 			mes "Quando o melhor negócio da sua vida seria fechado? Trágico, realmente trágico...";
 			close;
 		}
-		set zeny,zeny-.@Main_gauche_hap;
+		set Zeny, Zeny-.@Main_gauche_hap;
 		getitem 1207,.@input; //Main_Gauche
 		break;
 	case 3:
 		mes "[Cara Suspeito]";
-		if (sex)
+		if (Sex)
 			mes "Um manto? Que besteira! Existe algo muito melhor em matéria de armaduras!";
 		else
 			mes "Por que uma menina tão bonita usaria algo tão fora de moda? Sabe o que te deixaria ainda mais bela?";
@@ -362,13 +362,13 @@ OnTouch:
 				break;
 		}
 		set .@Hood__hap,.@input * 930;
-		if (zeny < .@Hood__hap) {
+		if (Zeny < .@Hood__hap) {
 			mes "[Cara Suspeito]";
 			mes "Ah...";
 			mes "Sem dinheiro, não é?";
 			close;
 		}
-		set zeny,zeny-.@Hood__hap;
+		set Zeny, Zeny-.@Hood__hap;
 		getitem 2501,.@input; //Hood
 		break;
 	case 4:
@@ -421,7 +421,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 			mes "[Crumpler]";
 			mes "Ooooooooh";
 			mes "droooooga!";
-			Emotion e_gasp;
+			emotion e_gasp;
 			next;
 			mes "[Crumpler]";
 			mes "Socorrooooo!";
@@ -458,7 +458,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 		mes "[Crumpler]";
 		mes "Um...";
 		mes "Sage?";
-		Emotion e_What;
+		emotion e_What;
 		next;
 		mes "[Crumpler]";
 		mes "Não sei o que é isso. Mas suponho que não pode ser tão ruim quanto um Mage.";
@@ -598,7 +598,7 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 		mes "^990000Ei, seu tarado! Pare de olhar minha filha assim antes que eu arranque seus olhos!^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		if (sex) {
+		if (Sex) {
 			mes "Huh...?";
 			mes "C-como";
 			next;
@@ -703,7 +703,7 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 			mes "^990000Afaste-se da minha filha ou arrancarei seu cérebro! Ela vai casar com um médico! Ou com um advogado!^000000";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			if (sex) {
+			if (Sex) {
 				mes "S-s-sim, senhor!";
 				next;
 				mes "^3355FFQue assustador...!";
@@ -961,7 +961,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 			break;
 		case 3:
 			mes "Um...";
-			if (sex)
+			if (Sex)
 				mes "A menina com quem você";
 			else
 				mes "O menino com quem você está saindo agora é ideal para você!";
@@ -977,7 +977,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 				mes "Você não me deixou terminar a frase.";
 				next;
 				mes "[Vidente]"				;
-				if (sex)
+				if (Sex)
 					mes "A menina com quem você";
 				else
 					mes "O menino com quem você";
@@ -996,7 +996,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 				mes "As vezes eu misturo o presente e o futuro. Você entende não é, já que estou sempre prevendo o futuro...";
 				next;
 				mes "[Vidente]";
-				if (sex) {
+				if (Sex) {
 					mes "O que eu quis dizer na verdade foi que";
 					mes "^3355FFvocê encontrará a mulher perfeita em breve^000000. Sim, foi isso que eu quis dizer!";
 				} else {

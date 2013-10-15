@@ -211,7 +211,7 @@ alberta,189,151,5	script	Fisk	100,{
 				close;
 			}
 			set Zeny,Zeny - 500;
-			if(checkversion(0))
+			if (checkversion(0))
 				warp "izlude",195,212;
 			else
 				warp "izlude",176,182;
@@ -229,7 +229,7 @@ alb2trea,39,50,6	script	Fisk#a2t	100,{
 	mes "[Fisk]";
 	mes "Então você quer voltar para o continente em Alberta, né?";
 	next;
-	if(select("Sim, por favor.:Eu mudei de idéia.") == 1)
+	if (select("Sim, por favor.:Eu mudei de idéia.") == 1)
 		warp "alberta",192,169;
 	close;
 }
@@ -287,7 +287,7 @@ alberta,190,173,4	script	Phelix	85,{
 	mes "Hum... você quer trocar Jellopys por Poção Vermelha ou por Cenouras? Bom, decida-se.";
 	next;
 	if (select("Poção Vermelha.:Cenouras."))
-	if(@menu == 1 || @menu == 2) {
+	if (@menu == 1 || @menu == 2) {
 		set .@v,((@menu == 1) ? 1:2);
 		mes "[Phelix]";
 		mes "Bem...";
@@ -302,13 +302,13 @@ alberta,190,173,4	script	Phelix	85,{
 		mes "Hum, nada mal.";
 		mes "Quantas "+((.@v == 1) ? "poções" : "cenouras")+" você vai querer?";
 		next;
-		if(select("Quantas você puder trocar:Quero esta quantidade.:Esquece, amo meus Jellopys"))
+		if (select("Quantas você puder trocar:Quero esta quantidade.:Esquece, amo meus Jellopys"))
 			mes "[Phelix]";
-			if(@menu == 1) {
+			if (@menu == 1) {
 			delitem 909,.@max*((.@v == 1) ? 10:3);	// Jellopy
 			getitem (.@v == 1) ? 501:515,.@max;	// Poção Vermelha & Cenoura
 			}
-			else if(@menu == 2) {
+			else if (@menu == 2) {
 			mes "Não posso dar mais que 100 por vez, portanto nem tente. Se você não quer nenhum, basta dizer '0'.";
 			mes "Neste momento, o máximo que você pode obter é 100, mas lembre-se 100 é muito, você quer me falir?";
 			input .@amount;
@@ -329,7 +329,7 @@ alberta,190,173,4	script	Phelix	85,{
 			delitem 909,.@amount*(.@v == 1) ? 10:3;	// Jellopy
 			getitem (.@v == 1) ? 501:515,.@amount;	// Poção Vermelha & Cenoura
 			}
-			else if(@menu == 3) {
+			else if (@menu == 3) {
 			mes "Não tem problema. Vejo você outra hora.";
 			close;
 		}

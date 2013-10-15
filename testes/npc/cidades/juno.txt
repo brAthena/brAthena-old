@@ -76,7 +76,7 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 				mes "[Avó]";
 				mes "Hi hi hi";
 				mes "Lá vai você~";
-				set zeny,zeny-1000;
+				set Zeny, Zeny-1000;
 				getitem 529,1; // Bala
 				next;
 				mes "[Avó]";
@@ -161,7 +161,7 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 			if (select("Escolher ^FF3355Erva Vermelha^000000:Escolher ^3355FFErva Azul^000000.") == 1) {
 				mes "[Le Morpheus]";
 				mes "A que você escolheu, vai te desligar de tudo e te mostrar alucinações.";
-				set zeny,zeny-5000;
+				set Zeny, Zeny-5000;
 				getitem 507,1; // Erva Vermelha
 				close2;
 				warp "prontera",182,206;
@@ -169,7 +169,7 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 			}
 			mes "[Le Morpheus]";
 			mes "Você verá a verdade.";
-			set zeny,zeny-5000;
+			set Zeny, Zeny-5000;
 			getitem 510,1; // Erva Verde
 			close2;
 			warp "pay_dun03",200,222;
@@ -229,7 +229,7 @@ yuno,157,205,4	script	Artesão de Juno#juno	54,{
 	}
 }
 
-yuno,150,283,4	script	Soldado de Juno#juno	105,{
+-	script	::SoldadoJuno1	-1,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
 	next;
@@ -271,12 +271,22 @@ yuno,150,283,4	script	Soldado de Juno#juno	105,{
 	}
 	close;
 }
-yuno,165,283,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#2juno	105
-yuno,227,292,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#3juno	105
-yuno,165,228,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#4juno	105
-yuno,150,228,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#5juno	105
-yuno,334,182,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#6juno	105
-yuno,263,320,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#7juno	105
+
+yuno,150,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#juno	852
+yuno,165,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#2juno	852
+yuno,227,292,4	duplicatr(SoldadoJuno1)	Soldado de Juno#3juno	852
+yuno,165,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#4juno	852
+yuno,150,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#5juno	852
+yuno,334,182,4	duplicatr(SoldadoJuno1)	Soldado de Juno#6juno	852
+yuno,263,320,4	duplicatr(SoldadoJuno1)	Soldado de Juno#7juno	852,{}
+
+yuno,150,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#juno	105
+yuno,165,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#2juno	105
+yuno,227,292,4	duplicatv(SoldadoJuno1)	Soldado de Juno#3juno	105
+yuno,165,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#4juno	105
+yuno,150,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#5juno	105
+yuno,334,182,4	duplicatv(SoldadoJuno1)	Soldado de Juno#6juno	105
+yuno,263,320,4	duplicatv(SoldadoJuno1)	Soldado de Juno#7juno	105,{}
 
 yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "[Representante do Dirigível]";
@@ -296,10 +306,10 @@ yuno,142,183,5	script	Representante do Dirigível	100,{
 	next;
 	switch(select("Prontera:Izlude:Geffen:Morroc:Payon:Alberta:Comodo:Cancelar")) {
 		case 1: callsub S_Portal,"prontera",116,72;
-		case 2: callsub S_Portal,"izlude",94,103;
+		case 2: if (checkversion(0)) callsub S_Portal,"izlude",128,98; else callsub S_Portal,"izlude",94,103;
 		case 3: callsub S_Portal,"geffen",120,39;
 		case 4: callsub S_Portal,"morocc",156,46;
-		case 5: callsub S_Portal,"payon",69,100;
+		case 5: if (checkversion(0)) callsub S_Portal,"payon",162,59; else callsub S_Portal,"payon",69,100;
 		case 6: callsub S_Portal,"alberta",117,56;
 		case 7: callsub S_Portal,"comodo",209,143;
 		case 8: close;
@@ -307,7 +317,7 @@ yuno,142,183,5	script	Representante do Dirigível	100,{
 
 S_Portal:
 	if (Zeny >= 1800) {
-		set zeny,zeny-1800;
+		set Zeny, Zeny-1800;
 		close2;
 		warp getarg(0),getarg(1),getarg(2);
 		end;

@@ -39,7 +39,7 @@ jawaii,239,112,7	script	Marinheiro#toizu	100,{
 		mes "[Marinheiro]";
 		mes "Agora, deixe-m guiar você para Izlude.";
 		close2;
-		if(checkversion(0))
+		if (checkversion(0))
 			warp "izlude",195,212;
 		else
 			warp "izlude",176,182;
@@ -179,12 +179,12 @@ jawaii,141,200,3	script	Funcionário#sroom	798,{
 	next;
 	if (select("Usar.:Cancelar.") == 1) {
 		mes "[Alowa]";
-		if (zeny > 999) {
+		if (Zeny > 999) {
 			mes "Mu-muito o-obrigado!";
 			mes "De-deixe-me abrir os aposento para você. Obriga-gado.";
 			mes "Te-tenha um ótimo dia.";
 			close2;
-			set zeny,zeny-1000;
+			set Zeny, Zeny-1000;
 			warp "jawaii_in",116,64;
 			end;
 		}
@@ -196,7 +196,7 @@ jawaii,141,200,3	script	Funcionário#sroom	798,{
 	mes "[Alowa]";
 	mes "^666666*Sniff*^000000";
 	mes "Ma-mas, eu prometo, es-se quarto é o mais bonito e li-limpo! Po-porfavor! Volte quando quiser!";
-	Emotion e_sob;
+	emotion e_sob;
 	close;
 }
 
@@ -220,12 +220,12 @@ jawaii,108,199,5	script	Funcionária#antroom	74,{
 	next;
 	if (select("Usar.:Cancelar.") == 1) {
 		mes "[Oran Pinheiro]";
-		if (zeny > 999) {
+		if (Zeny > 999) {
 			mes "Muito obrigado por usar nossos serviços.";
 			mes "Por favor...";
 			mes "Sinta-se confortável.";
 			close2;
-			set zeny,zeny-1000;
+			set Zeny, Zeny-1000;
 			warp "jawaii_in",129,110;
 			end;
 		}
@@ -249,11 +249,11 @@ jawaii,107,189,5	script	Funcionária#horoom	93,{
 	next;
 	if (select("Usar.:Cancelar.") == 1) {
 		mes "[Sharkie Rania]";
-		if (zeny > 999) {
+		if (Zeny > 999) {
 			mes "Ehh, certo.";
 			mes "Vamos indo.";
 			close2;
-			set zeny,zeny-1000;
+			set Zeny, Zeny-1000;
 			warp "jawaii_in",86,117;
 			end;
 		}
@@ -282,11 +282,11 @@ jawaii,112,173,7	script	Funcionária#villroom	93,{
 	next;
 	if (select("Usar.:Cancelar.") == 1) {
 		mes "[Larks Rania]";
-		if (zeny > 999) {
+		if (Zeny > 999) {
 			mes "Muito obrigado~";
 			mes "Aproveite sua estadia.";
 			close2;
-			set zeny,zeny-1000;
+			set Zeny, Zeny-1000;
 			warp "jawaii_in",87,75;
 			end;
 		}
@@ -330,8 +330,8 @@ jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	71,{
 	next;
 	if (select("Eu vou comprar isso.:Não, obrigado.") == 1) {
 		mes "[Auxiliar]";
-		if (zeny > 49999) {
-			set zeny,zeny-50000;
+		if (Zeny > 49999) {
+			set Zeny, Zeny-50000;
 			getitem 681,1; //Memory_Of_Wedding
 			mes "Muito obrigada~!";
 			mes "Por favor, lembre-se, você deve usar isso com a sua pessoa amada em um lugar especial para vocês dois.";
@@ -366,10 +366,10 @@ jawaii_in,25,94,0	script	Funcionaria#jaw1	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -392,10 +392,10 @@ jawaii_in,25,96,0	script	Funcionaria#jaw2	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -416,7 +416,7 @@ jawaii_in,25,98,0	script	Funcionaria#jaw3	724,{
 		mes "[Funcionária Buffy]";
 		mes "Hmm...?";
 		mes "Vocês não parecem casados, certo?";
-		if (sex) {
+		if (Sex) {
 			next;
 			mes "[Funcionária Buffy]";
 			mes "Sou muito competente para cozinhar e limpar.";
@@ -429,10 +429,10 @@ jawaii_in,25,98,0	script	Funcionaria#jaw3	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -461,10 +461,10 @@ jawaii_in,25,100,0	script	Funcionaria#jaw4	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -492,10 +492,10 @@ jawaii_in,30,94,4	script	Funcionaria#jaw5	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -516,10 +516,10 @@ jawaii_in,30,96,4	script	Funcionaria#jaw6	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -546,10 +546,10 @@ jawaii_in,30,98,4	script	Funcionaria#jaw7	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -569,10 +569,10 @@ jawaii_in,30,100,4	script	Funcionaria#jaw8	724,{
 	close;
 
 OnWelcome:
-	Emotion e_kis;
+	emotion e_kis;
 	end;
 OnSolo:
-	Emotion e_omg;
+	emotion e_omg;
 	end;
 }
 
@@ -609,7 +609,7 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 	if (getpartnerid()) {
 		mes "[Garçonete]";
 		mes "Olá, posso ajudá-lo?";
-		Emotion e_kis;
+		emotion e_kis;
 		next;
 		switch(select("Quero comida.:Me traga uma bebida.:Onde fica o bar?")) {
 		case 1:
@@ -619,8 +619,8 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 			next;
 			if (select("Sim.:Como--! É caro demais!") == 1) {
 				mes "[Garçonete]";
-				if (zeny > 999) {
-					set zeny,zeny-1000;
+				if (Zeny > 999) {
+					set Zeny, Zeny-1000;
 					getitem 517,1; //Meat
 					mes "Aqui está~";
 					mes "Aproveite sua refeição~!";
@@ -641,8 +641,8 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 			next;
 			if (select("Sim.:Como--! É caro demais!") == 1) {
 				mes "[Garçonete]";
-				if (zeny > 999) {
-					set zeny,zeny-1000;
+				if (Zeny > 999) {
+					set Zeny, Zeny-1000;
 					getitem 503,1; //Yelow_Potion
 					mes "Aqui está~";
 					mes "Aproveite sua refeição~!";
@@ -661,7 +661,7 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 			close;
 		}
 	}
-	Emotion e_omg;
+	emotion e_omg;
 	mes "[Garçonete]";
 	mes "Ei, ei...!";
 	mes "Não sei porque você está aqui...";
@@ -697,7 +697,7 @@ jawaii_in,28,124,0	script	Garçom#jaw	46,{
 	mes "Bem vindo à Taverna de Jawaii.";
 	mes "O que você gostaria de beber?";
 	next;
-	if (zeny < 99) {
+	if (Zeny < 99) {
 		set .@r_jaw,rand(1,100);
 		mes "[Garçom]";
 		if (.@r_jaw > 29) {
@@ -749,7 +749,7 @@ jawaii_in,28,124,0	script	Garçom#jaw	46,{
 				percentheal -100,0;
 				end;
 			}
-			if (zeny > 99) set zeny,zeny-100;
+			if (Zeny > 99) set Zeny, Zeny-100;
 			switch(rand(4)) {
 			case 1:
 				mes "[Garçom]";
@@ -933,7 +933,7 @@ S_KillChar:
 		percentheal -100,0;
 		end;
 	}
-	if (zeny > 99) set zeny,zeny-100;
+	if (Zeny > 99) set Zeny, Zeny-100;
 	set .@roof_jaw,.@roof_jaw+getarg(0);
 	mes "[Garçom]";
 	mes "Aqui está.";
@@ -944,7 +944,7 @@ S_KillChar:
 
 jawaii_in,43,115,0	script	Cliente#jaw_1	97,{
 	if (!getpartnerid()) {
-		if (zeny > 99) {
+		if (Zeny > 99) {
 			mes "[Buchi]";
 			mes "Grrrr...";
 			mes "Droga! Não gosto desse lugar!";
@@ -997,7 +997,7 @@ jawaii_in,41,106,3	script	Cliente#Cage	98,{
 		mes "Todos sabemos que o casamento é para pessoas desesperadas e solitárias!";
 		next;
 		mes "[Cage]";
-		if (sex) {
+		if (Sex) {
 			mes "Não confio em ninguém!";
 			mes "Você é um tolo por amarrar-se em uma moça para sempre!";
 			mes "Entendeu?!";
@@ -1165,7 +1165,7 @@ prt_in,173,13,4	script	Cliente#SoloHan	86,{
 		mes "...O quê!?";
 		mes "Ah rapaz!";
 		mes "Saia da minha frente!";
-		if (sex) {
+		if (Sex) {
 			mes "Você parece um daqueles maridos que só obedece a mulher!";
 		} else {
 			next;
@@ -1228,8 +1228,8 @@ izlude,180,224,3	script	Auxiliar Lua de Mel	92,{
 			mes "Hummm....";
 			mes "Infelizmente, solteiros não são permitidos na ilha. Porque você não vai esquecer sua solidão no barzinho de Prontera?";
 			close;
-		} else if (zeny > 99999) {
-			set zeny,zeny-100000;
+		} else if (Zeny > 99999) {
+			set Zeny, Zeny-100000;
 			mes "Bon Voyage...!!";
 			mes "Deixe-me guiar você para 'Jawaii'";
 			close2;

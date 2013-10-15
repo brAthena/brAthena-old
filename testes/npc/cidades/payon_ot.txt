@@ -386,7 +386,7 @@ payon_in01,95,181,3	script	Bêbado#payon	49,{
 	next;
 	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
 	case 1:
-		set zeny,zeny-100;
+		set Zeny, Zeny-100;
 		mes "[Bêbado]";
 		mes "Obrigado...";
 		mes "...Irmão!";

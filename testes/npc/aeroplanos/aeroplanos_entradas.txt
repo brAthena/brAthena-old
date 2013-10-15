@@ -39,16 +39,16 @@ izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
 	mes "Para usar o aeroplano, você precisa pagar uma taxa de 1,200 Zenys ou possuir um Bilhete para Aeroplano.";
 	mes "Você deseja usar o serviço?";
 	next;
-	if(select("Sim:Não") == 2) close;
-	if(!countitem(7311) && Zeny < 1200) {
+	if (select("Sim:Não") == 2) close;
+	if (!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
 		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e nem a quantia necessária de Zenys para embarcar.";
 		mes "Lembre-se, a taxa de embarque é de 1,200 Zenys.";
 		close;
 	}
-	if(countitem(7311))
+	if (countitem(7311))
 		delitem 7311,1;
-	else if(Zeny >= 1200)
+	else if (Zeny >= 1200)
 		set Zeny, Zeny - 1200;
 	warp "airplane_01",245,60;
 	end;
@@ -70,16 +70,16 @@ izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 	mes "Para usar o aeroplano, você precisa pagar uma taxa de 1,200 Zenys ou possuir um Bilhete para Aeroplano.";
 	mes "Você deseja usar o serviço?";
 	next;
-	if(select("Sim:Não") == 2) close;
-	if(!countitem(7311) && Zeny < 1200) {
+	if (select("Sim:Não") == 2) close;
+	if (!countitem(7311) && Zeny < 1200) {
 		mes "[Equipe do Aeroporto]";
 		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e nem a quantia necessária de Zenys para embarcar.";
 		mes "Lembre-se, a taxa de embarque é de 1,200 Zenys.";
 		close;
 	}
-	if(countitem(7311))
+	if (countitem(7311))
 		delitem 7311,1;
-	else if(Zeny >= 1200)
+	else if (Zeny >= 1200)
 		set Zeny, Zeny - 1200;
 	warp "airplane_01",245,60;
 	end;
@@ -276,7 +276,7 @@ lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Lighthalzen, onde oferecemos constantes voos para as cidades de Einbroch, Juno e Hugel.";
 	next;
-	if(select("Embarcar no Dirigível:Cancelar.") == 2) {
+	if (select("Embarcar no Dirigível:Cancelar.") == 2) {
 		mes "[Equipe do Aeroporto]";
 		mes "Obrigado e por favor volte novamente.";
 		mes "Tenha um bom dia~";

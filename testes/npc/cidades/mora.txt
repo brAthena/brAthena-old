@@ -32,7 +32,7 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 	mes "Eu sou Gary, um expert na área de encantamentos.";
 	mes "O que você deseja saber?";
 	next;
-	if(select("Fundamentos do encantamento.:Nada.") == 1) {
+	if (select("Fundamentos do encantamento.:Nada.") == 1) {
 		mes "[Professor Gary]";
 		mes "Ah, imagino que você esteja interessado em encantamentos!";
 		mes "Certo, lhe ensinarei os conceitos básicos!!";
@@ -217,7 +217,7 @@ mora,113,185,5	script	Cidadão de Mora#11	516,{
 	mes "Como você está, cara?";
 	mes "O que eu posso fazer por você, cara?";
 	next;
-  if(select("Por que você me chama de 'cara'?:Tchau.") == 1) {
+  if (select("Por que você me chama de 'cara'?:Tchau.") == 1) {
     mes "[Ninkasi]";
     mes "Por que sim?";
     mes "Chamar os outros de 'cara' é a minha marca.";
@@ -323,7 +323,7 @@ mora,123,94,8	script	Garota Viajante	515,{
 	mes "[Garota Viajante]";
 	mes "Oops, me desculpe não vi você. Precisa de alguma coisa?";
 	next;
-	if(select("Continuar conversa.:Não, Nada.") == 1) {
+	if (select("Continuar conversa.:Não, Nada.") == 1) {
 		mes "[Garota Viajante]";
 		mes "Eu estava falando com meu amigo sobre o cheiro das frutas de Mora. Achei ele muito bom. E você?";
 		next;
@@ -514,7 +514,7 @@ mora,115,138,4	script	Purplesia	524,{
 	mes "[Purplesia]";
 	mes "Bem-vindo à Mora... Você é?";
 	next;
-	if(select("Porque está me perguntando?","E quem é você?") == 1) {
+	if (select("Porque está me perguntando?","E quem é você?") == 1) {
 		mes "[Purplesia]";
 		mes "Eu faço essa pergunta para todas as pessoas novas que vejo aqui. Enfim, eu já sei a resposta. Você é "+strcharinfo(0)+", e veio para cá do Reino de Rune-Midgard correto?";
 		next;
@@ -530,9 +530,9 @@ mora,115,138,4	script	Purplesia	524,{
 // Guardas
 mora,73,50,5	script	Guardião do Portal Sul#s	518,{
 	mes "[Guardião do Portal]";
-	if(strnpcinfo(2) == "s")
+	if (strnpcinfo(2) == "s")
 		mes "Atrás desse portal fica o campo sul de Bifrost.";
-	else if(strnpcinfo(2) == "n")
+	else if (strnpcinfo(2) == "n")
 		mes "Atrás desse portal fica o campo norte de Bifrost.";
 	else
 		mes "Atrás desse portal fica o campo leste de Bifrost.";
@@ -544,7 +544,7 @@ mora,167,76,3	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Leste#l	522
 
 // Coral de Rafflesias
 mora,132,185,4	script	Pequeno Rafflesia#1	518,{
-	if(strnpcinfo(2) == "9")
+	if (strnpcinfo(2) == "9")
 		npctalk "Você quer nos ouvir cantar? Fale com nosso Avô!";
 	else
 		npctalk "Gloria !!";
@@ -559,7 +559,7 @@ mora,133,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#8	518
 mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	522
 
 mora,140,186,4	script	Vovô Rafflesia	517,{
-	if($gloriasong == 1) {
+	if ($gloriasong == 1) {
 		mes "[Vovô Rafflesia]";
 		mes "Escute minhas crianças cantando... Não são lindas?";
 		close;
@@ -573,7 +573,7 @@ mora,140,186,4	script	Vovô Rafflesia	517,{
 	mes "[Vovô Rafflesia]";
 	mes "Você quer ouvir eles cantando?";
 	next;
-	if(select("Sim.:Não obrigado.") == 1){
+	if (select("Sim.:Não obrigado.") == 1){
 		mes "[Vovô Rafflesia]";
 		mes "Nós ainda temos muito que praticar mas vamos fazer nosso melhor!";
 		next;

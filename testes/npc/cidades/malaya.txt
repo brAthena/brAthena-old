@@ -45,7 +45,7 @@ alberta,196,202,3	script	Tripulante#alberta	100,{
 	
 		case 2:
 			mes "[Tripulante]";
-			if(Zeny > 10000) {
+			if (Zeny > 10000) {
 			mes "Ótimo!";
 			mes "Rumo ao Porto de Malaya!!";
 			close2;
@@ -83,13 +83,13 @@ malaya,276,55,4	script	Tripulante#malaya	100,{
 	
 malaya,270,59,4	script	Guarda do Porto#ma03	570,{
 
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		emotion 19;
 		mes "[Guarda do Porto]";
 		mes "O vilarejo está caótico esses dias. Há algum problema em estar aqui fora ?";
 		close;
 	}
-		if(MALAYA_1QUE < 6) {
+		if (MALAYA_1QUE < 6) {
 		mes "[Guarda do Porto]";
 		emotion 22;
 		mes "O vilarejo está um pouco estável no momento, mas tenha cuidado ao andar por aqui a noite.";
@@ -97,7 +97,7 @@ malaya,270,59,4	script	Guarda do Porto#ma03	570,{
 	}
 	switch(rand(1,2)) {
 	case 1:
-		if($MalayaName$[3] != "" && $MalayaName$[3] != strcharinfo(0)) {
+		if ($MalayaName$[3] != "" && $MalayaName$[3] != strcharinfo(0)) {
 			mes "[港の警備隊員]";
 			mes $MalayaName$[3];
 			mes "という冒険者が、";
@@ -131,7 +131,7 @@ malaya,270,59,4	script	Guarda do Porto#ma03	570,{
 		mes "モンスターが頻繁に出没するので";
 		mes "注意しろとも言われました。";
 		next;
-		if(select("わかった","対処方法はないのか？")==1) {
+		if (select("わかった","対処方法はないのか？")==1) {
 			mes "[港の警備隊員]";
 			mes "夜には気を付けて！";
 			close;
@@ -152,12 +152,12 @@ malaya,270,59,4	script	Guarda do Porto#ma03	570,{
 }
 
 malaya,257,58,6	script	Motorista do Jipe#09	582,{
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
 		mes "...Você é "+((Sex) ? "um":"uma")+" turista... Não saia andando para qualquer canto...";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[Motorista do Jipe]";
 		mes "A cidade ainda é bastante perigosa. Melhor não tocar em nada até que tudo esteja calmo.";
 		close;
@@ -172,7 +172,7 @@ malaya,257,58,6	script	Motorista do Jipe#09	582,{
 }
 
 malaya,304,100,4	script	Neta do Homem Velho	576,{
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 	mes "- Ele parece receioso com você. -";
 	close;
   }
@@ -397,8 +397,8 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 		cutin "malaya_diwata02.bmp",255;
 		end;
 	case 6:
-		if(checkquest(7401) || checkquest(7403)) {
-			if(checkquest(7401) & 0x2) {
+		if (checkquest(7401) || checkquest(7403)) {
+			if (checkquest(7401) & 0x2) {
 				cutin "malaya_diwata01.bmp",2;
 				mes "[ディワタ]";
 				mes "・っちに行って!!";
@@ -415,7 +415,7 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 			mes "温かい国の花たちは";
 			mes "こんな甘い香りがするんだね。";
 			next;
-			if(select("また持ってくるよ","なぜこの船に乗っているの？")==1) {
+			if (select("また持ってくるよ","なぜこの船に乗っているの？")==1) {
 				mes "[ディワタ]";
 				mes "・りがとう。";
 				mes "・なたが持って来る花を見ると";
@@ -440,7 +440,7 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 			mes "それで船員にも私が";
 			mes "見えちゃったのね。";
 			next;
-			emotion 2;
+			emotion e_ho;
 			mes "[ディワタ]";
 			mes "でも、船での生活も悪くはないわね！";
 			mes "私のいた山では見たことのない花を";
@@ -460,7 +460,7 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 		mes "　手を差し伸べた。";
 		mes "　何かを要求しているようだ‐";
 		next;
-		if(select("花束を渡す","手を握り合う")==2) {
+		if (select("花束を渡す","手を握り合う")==2) {
 			mes "[ディワタ]";
 			mes "やめてよ、気持ち悪い！";
 			mes "・・、ただでさえ今は";
@@ -513,12 +513,12 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 }
 malaya,282,129,4	script	Motorista do Jipe#03	582,{
 	
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
 		mes "Não é bom conversar com pessoas desconhecidas... Talvez o líder Mumbaki possa ter uma solução para isso .";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[ジプニードライバー]";
 		mes "最近ムンバキ様に会ったというのは";
 		mes "君たちなのか……？";
@@ -544,7 +544,7 @@ malaya,341,153,3	script	Motorista do Jipe#05	582,{
 
 malaya,295,171,4	script	Vendedor de Antiguidades	582,{
 	mes "[Woeon]";
-	if(checkquest(7350) == 2) {
+	if (checkquest(7350) == 2) {
 	mes "Suspiro... A vida está tão difícil nos dias de hoje.";
 	mes "Por que os fantasmas se unem para me encomodar.";
 	mes "Eu gostaria de ter um amuleto da sorte ou algo assim...";
@@ -732,7 +732,7 @@ malaya,264,338,4	script	Donzela Assustada#bako1	576,{
 
 malaya,276,367,4	script	Xamã#ma	782,{
 
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[Xamã]";
 		mes "…………";
 		next;
@@ -746,7 +746,7 @@ malaya,276,367,4	script	Xamã#ma	782,{
 	mes "[Xamã]";
 	mes "何か不吉な気配を";
 	mes "おぬしから感じる……";
-	if(MALAYA_3QUE==24) {
+	if (MALAYA_3QUE==24) {
 		next;
 		mes "[Xamã]";
 		mes "……";
@@ -776,7 +776,7 @@ malaya,276,367,4	script	Xamã#ma	782,{
 		set MALAYA_3QUE,25;
 		close;
 	}
-	if(MALAYA_3QUE==25) {
+	if (MALAYA_3QUE==25) {
 		next;
 		mes "‐看護師ラズのところに戻ろう‐";
 		close;
@@ -785,7 +785,7 @@ malaya,276,367,4	script	Xamã#ma	782,{
 }
 
 malaya,289,364,4	script	Jovem Banqueiro#ba	583,{
-		if(MALAYA_1QUE < 6) {
+		if (MALAYA_1QUE < 6) {
 		mes "- Ele parece receioso com você. -";
 		close;
 	}
@@ -798,7 +798,7 @@ malaya,289,364,4	script	Jovem Banqueiro#ba	583,{
 }
 
 malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
-		if(MALAYA_1QUE < 6) {
+		if (MALAYA_1QUE < 6) {
 		mes "- Olha para você com receio enquanto sussura com outros guardas. -";
 		close;
 	}
@@ -812,7 +812,7 @@ malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
 		mes "だが、警備は万全の体制で臨んでいる。";
 		mes "安心してポートマラヤを楽しんでくれ。";
 		next;
-		if(select("ブワヤの事を知らせる","会話を終える")==2)
+		if (select("ブワヤの事を知らせる","会話を終える")==2)
 			close;
 		mes "[警備隊長]";
 		mes "なに!?　ブワヤだって？";
@@ -836,7 +836,7 @@ malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
 		mes "ポートマラヤのために";
 		mes "少し力を貸してくれるかね？";
 		next;
-		if(select("任せて下さい","お断りします")==2) {
+		if (select("任せて下さい","お断りします")==2) {
 			mes "[警備隊長]";
 			mes "ばかな!?";
 			mes "このままでは町の人たちが";
@@ -917,7 +917,7 @@ malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
 		mes "バリオ・フォレストの深い森で";
 		mes "ブワヤが発見されたらしい。";
 		next;
-		if(BaseLevel < 130) {
+		if (BaseLevel < 130) {
 			mes "[警備隊長]";
 			mes "ブワヤはとても恐ろしい怪物だ";
 			mes "今の君の手には余るだろう。";
@@ -939,7 +939,7 @@ malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
 
 malaya,227,311,4	script	Avó#ma01	575,{
 
-		if(MALAYA_1QUE < 2) {
+		if (MALAYA_1QUE < 2) {
 		mes "[Avó]";
 		mes "Você não é daqui? Cuide-se.";
 		next;
@@ -947,7 +947,7 @@ malaya,227,311,4	script	Avó#ma01	575,{
 		mes "Estou preocupado com a minha filah que está grávida. Espero que nada dê errado.";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[お婆ちゃん]";
 		mes "この町の外から来た人が";
 		mes "頑張ってくれているらしいよ。";
@@ -959,7 +959,7 @@ malaya,227,311,4	script	Avó#ma01	575,{
 	set '@rand,rand(5);
 	switch(rand(1,2)) {
 	case 1:
-		if($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
+		if ($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
 			mes "[お婆ちゃん]";
 			mes "最近、マナナンガルが好きで";
 			mes "追っている";
@@ -1017,7 +1017,7 @@ malaya,227,311,4	script	Avó#ma01	575,{
 }
 
 malaya,169,350,4	script	Imelda#pm03	475,{
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		mes "..........";
 		mes "Nada mal.";
 		mes "Manterei meus olhos em você.. *chuckle*";
@@ -1025,7 +1025,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "- A Pequena Garota é um pouco irritante. -";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[イメルダー]";
 		mes "ふぅん……";
 		mes "なかなかやりますわね。";
@@ -1045,7 +1045,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "[イメルダー]";
 		mes "はぁ……材料をなんとかしなくちゃ……";
 		next;
-		emotion 0;
+		emotion e_gasp;
 		mes "[イメルダー]";
 		mes "！";
 		next;
@@ -1055,7 +1055,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "英雄様じゃない。";
 		mes "私に何か用かしら？";
 		next;
-		if(select("お守りを作ることになったんだって？","君には真似出来ないだろうね")==1) {
+		if (select("お守りを作ることになったんだって？","君には真似出来ないだろうね")==1) {
 			mes "[イメルダー]";
 			mes "・ら、よくご存じね。";
 			mes "そうよ。私のおじいちゃんが";
@@ -1082,7 +1082,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "よそ者の・なたが出る場面はないわ。";
 		mes "この町を守るのは私の仕事だもの！";
 		next;
-		if(select("何か手伝おうか？","それじゃ・一人で頑張って！")==2) {
+		if (select("何か手伝おうか？","それじゃ・一人で頑張って！")==2) {
 			mes "[イメルダー]";
 			mes "ええ！　別に・なたに手伝って";
 			mes "もらわなくてもけっこうよ！";
@@ -1105,7 +1105,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "それとも・なた、まだ町のみんなに";
 		mes "良い顔をしたいのかしら？";
 		next;
-		if(select("そんなことないよ","君が大変そうだったから")==1) {
+		if (select("そんなことないよ","君が大変そうだったから")==1) {
 			mes "[イメルダー]";
 			mes "ふん、どうかしらね。";
 			emotion 32;
@@ -1117,7 +1117,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 			emotion 19;
 		}
 		next;
-		if(BaseLevel < 100) {
+		if (BaseLevel < 100) {
 			mes "[イメルダー]";
 			mes "……ま・いいわ。";
 			mes "そこまで手伝いたいって言うなら、";
@@ -1199,7 +1199,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		set MALAYA_5QUE,1;
 		close;
 	case 1:
-		if(countitem(6500) < 6 || countitem(6501) < 6 || countitem(6502) < 6) {
+		if (countitem(6500) < 6 || countitem(6501) < 6 || countitem(6502) < 6) {
 			mes "[イメルダー]";
 			mes "もしかして、必要な材料を";
 			mes "忘れてしまったの？";
@@ -1232,7 +1232,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "[イメルダー]";
 		mes "すごい……本当に集めてきたのね。";
 		mes "無理だと思ってたのに……。";
-		emotion 0;
+		emotion e_gasp;
 		next;
 		menu "全部揃ってるかな？",-;
 		mes "[イメルダー]";
@@ -1276,7 +1276,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "やっぱりおじいちゃんは凄いわ！";
 		mes "これさえ・れば、町のみんなを";
 		mes "悩ませている悪霊も怖くなくなるわね。";
-		emotion 2;
+		emotion e_ho;
 		next;
 		mes "‐無事お守りを作り終えて";
 		mes "　嬉しそうなイメルダーだが、";
@@ -1300,7 +1300,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		menu "そうそう、だから少し休んでなよ",-;
 		mes "[イメルダー]";
 		mes "・……。";
-		emotion 0;
+		emotion e_gasp;
 		next;
 		mes "[イメルダー]";
 		mes "（この人、私が疲れているからって";
@@ -1353,17 +1353,17 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "リストと地図を見ればわかるわ。";
 		mes "みんな不安だと思うから、";
 		mes "できるだけ早く配ってきてね。";
-		if(!(MALAYA_5SUBQUE & 0x1))
+		if (!(MALAYA_5SUBQUE & 0x1))
 			viewpoint 1,181,353,0,0xFFFFFF;
-		if(!(MALAYA_5SUBQUE & 0x2))
+		if (!(MALAYA_5SUBQUE & 0x2))
 			viewpoint 1,228,267,1,0xFFFF00;
-		if(!(MALAYA_5SUBQUE & 0x8))
+		if (!(MALAYA_5SUBQUE & 0x8))
 			viewpoint 1,295,171,2,0x0000FF;
-		if(!(MALAYA_5SUBQUE & 0x10))
+		if (!(MALAYA_5SUBQUE & 0x10))
 			viewpoint 1,119,217,3,0xCCCCCC;
-		if(!(MALAYA_5SUBQUE & 0x20))
+		if (!(MALAYA_5SUBQUE & 0x20))
 			viewpoint 1,326,68,4,0x00FF00;
-		if(!(MALAYA_5SUBQUE & 0x4))
+		if (!(MALAYA_5SUBQUE & 0x4))
 			viewpoint 1,223,267,5,0xFF0000;
 		close;
 	case 4:
@@ -1428,7 +1428,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		mes "[イメルダー]";
 		mes "良かった！　嬉しいわ。";
 		mes "これからよろしくね。";
-		emotion 3;
+		emotion e_lv;
 		next;
 		mes "[イメルダー]";
 		mes "これは手伝ってくれたお礼よ。";
@@ -1456,8 +1456,8 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		emotion 40;
 		close;
 	case 5:
-		if(checkquest(7379)) {
-			emotion 15;
+		if (checkquest(7379)) {
+			emotion e_thx;
 			mes "[イメルダー]";
 			mes "全部配り終えたのね。お疲れさま。";
 			next;
@@ -1473,7 +1473,7 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 			mes "いつか来るのかしら。";
 			mes "そうなって欲しいけど……。";
 			next;
-			if(checkitemblank()==0) {
+			if (checkitemblank()==0) {
 				mes "[イメルダー]";
 				mes "……荷物がいっぱいのようね。";
 				mes "お礼を渡したいから、持ち物を";
@@ -1494,8 +1494,8 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 			getexp 0,200000,0;
 			close;
 		}
-		if(checkquest(7380)) {
-			if(countitem(6500) < 6 || countitem(6501) < 6 || countitem(6502) < 6) {
+		if (checkquest(7380)) {
+			if (countitem(6500) < 6 || countitem(6501) < 6 || countitem(6502) < 6) {
 				mes "[イメルダー]";
 				mes "^4d4dff尖った竹、塩袋、銀の十字架^000000を";
 				mes "各6個ずつ集めてきてね。";
@@ -1514,14 +1514,14 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 				mes "無事を祈っています。";
 				close;
 			}
-			emotion 2;
+			emotion e_ho;
 			mes "[イメルダー]";
 			mes "全部揃ってるわね。";
 			mes "いつも・りがとう！";
 			mes "こんなに優しい人を疑ってたなんて、";
 			mes "私、恥ずかしいわ。";
 			next;
-			if(checkitemblank()==0) {
+			if (checkitemblank()==0) {
 				mes "[イメルダー]";
 				mes "……荷物がいっぱいのようね。";
 				mes "お礼を渡したいから、持ち物を";
@@ -1542,24 +1542,24 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 			getexp 0,200000,0;
 			close;
 		}
-		if(checkquest(72170)) {
+		if (checkquest(72170)) {
 			mes "[イメルダー]";
 			mes "新しい^FF0000退魔のお守り^000000を";
 			mes "町のみんなに渡してきてね。";
 			mes "届け先はリストと地図を";
 			mes "見ればわかるわ。";
 			mes "それじゃ・、よろしくね！";
-			if(!(MALAYA_5SUBQUE & 0x1))
+			if (!(MALAYA_5SUBQUE & 0x1))
 				viewpoint 1,181,353,0,0xFFFFFF;
-			if(!(MALAYA_5SUBQUE & 0x2))
+			if (!(MALAYA_5SUBQUE & 0x2))
 				viewpoint 1,228,267,1,0xFFFF00;
-			if(!(MALAYA_5SUBQUE & 0x8))
+			if (!(MALAYA_5SUBQUE & 0x8))
 				viewpoint 1,295,171,2,0x0000FF;
-			if(!(MALAYA_5SUBQUE & 0x10))
+			if (!(MALAYA_5SUBQUE & 0x10))
 				viewpoint 1,119,217,3,0xCCCCCC;
-			if(!(MALAYA_5SUBQUE & 0x20))
+			if (!(MALAYA_5SUBQUE & 0x20))
 				viewpoint 1,326,68,4,0x00FF00;
-			if(!(MALAYA_5SUBQUE & 0x4))
+			if (!(MALAYA_5SUBQUE & 0x4))
 				viewpoint 1,223,267,5,0xFF0000;
 			close;
 		}
@@ -1575,8 +1575,8 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 		next;
 		switch(select("退魔のお守り材料集めを手伝う","退魔のお守り配布を手伝う")) {
 		case 1:
-			if(checkquest(7381)) {
-				if(!(checkquest(7381) & 0x2)) {
+			if (checkquest(7381)) {
+				if (!(checkquest(7381) & 0x2)) {
 					mes "[イメルダー]";
 					mes "気遣ってくれて・りがとう。";
 					mes "でも、今日は材料が十分足りているわ。";
@@ -1584,14 +1584,14 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 					close;
 				}
 			}
-			emotion 2;
+			emotion e_ho;
 			mes "[イメルダー]";
 			mes "丁度お守りの材料が無くなって";
 			mes "困っていたところなの。";
 			mes "・なたが来てくれて助かったわ。";
 			mes "それじゃお願いできる？";
 			next;
-			if(select("もちろん","今はできないので後で手伝う")==2) {
+			if (select("もちろん","今はできないので後で手伝う")==2) {
 				mes "[イメルダー]";
 				mes "そう……わかったわ。";
 				mes "また後でね。";
@@ -1618,9 +1618,9 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 			mes "無事を祈っています。";
 			close;
 		case 2:
-			if(checkquest(7375)) {
-				if(!(checkquest(7375) & 0x2)) {
-					emotion 2;
+			if (checkquest(7375)) {
+				if (!(checkquest(7375) & 0x2)) {
+					emotion e_ho;
 					mes "[イメルダー]";
 					mes "この前の^FF0000退魔のお守り^000000の効果が";
 					mes "まだ発揮しているわ。";
@@ -1632,21 +1632,21 @@ malaya,169,350,4	script	Imelda#pm03	475,{
 				mes "[イメルダー]";
 				mes "今日もお守りを配ってくれるの？";
 				next;
-				if(select("配る","配らない")==2) {
+				if (select("配る","配らない")==2) {
 					mes "[イメルダー]";
 					mes "そう……。";
 					mes "残念だけど、";
 					mes "・なたにも都合が・るものね。";
 					close;
 				}
-				if(checkquest(7381) & 0x2) {
+				if (checkquest(7381) & 0x2) {
 					mes "[イメルダー]";
 					mes "・りがとう。でも、材料がなくて";
 					mes "まだ^FF0000退魔のお守り^000000が完成してないの。";
 					mes "良かったら材料を集めてきてくれない？";
 					close;
 				}
-				emotion 3;
+				emotion e_lv;
 				mes "[イメルダー]";
 				mes "・りがとう！";
 				mes "それじゃ今日もお願いするわ。";
@@ -1678,7 +1678,7 @@ OnInit:
 }
 
 malaya,291,152,3	script	#buwaya_soil	557,{
-	if(MALAYA_4QUE!=9) {
+	if (MALAYA_4QUE!=9) {
 		mes "- Você cheira a algo ruim -";
 		close;
 	}
@@ -1761,7 +1761,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 		mes "左手だけで倒してしまった。";
 		mes "おっと。何か用かな？";
 		next;
-		if(select("トトイから聞いた話をする","特に用は無い")==2) {
+		if (select("トトイから聞いた話をする","特に用は無い")==2) {
 			mes "[狩りの達人]";
 			mes "おい？　君！　どこに行くんだ?!";
 			close;
@@ -1795,7 +1795,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 		mes "全く、強すぎるのも罪で・る。";
 		mes "ひゅぅうぅぅ!!　ふぉぉぉぉ！";
 		next;
-		if(select("トトイを信じる","トトイを疑う")==2) {
+		if (select("トトイを信じる","トトイを疑う")==2) {
 			mes "[狩りの達人]";
 			mes "子供たちはよく";
 			mes "自分たちが有利な話だけをする。";
@@ -1804,11 +1804,11 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 			close;
 		}
 	case 6:
-		if(MALAYA_4QUE==6) {
+		if (MALAYA_4QUE==6) {
 			mes "[狩りの達人]";
 			mes "なんだ、また来たのか。";
 			next;
-			if(select("怪物を探してみる！","怪物はいないようです")==2) {
+			if (select("怪物を探してみる！","怪物はいないようです")==2) {
 				mes "[狩りの達人]";
 				mes "全部子供のいたずらだよ。";
 				close;
@@ -1845,7 +1845,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 		set MALAYA_4QUE,7;
 		close;
 	case 7:
-		if(countitem(6519) < 10) {
+		if (countitem(6519) < 10) {
 			mes "[狩りの達人]";
 			mes "どうした。標本はまだか？";
 			mes "それとも君には難しかったかな。";
@@ -1904,7 +1904,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 		mes "町の北側の地域にいるはずだ。";
 		close;
 	default:
-		if(MALAYA_4QUE < 11) {
+		if (MALAYA_4QUE < 11) {
 			mes "[狩りの達人]";
 			mes "Ah! Ha! Ha!";
 			mes "Eu sou o mestre de Caça! Eu não estou com medo de nada, com apenas uma exceção! Tenho medo de estranhos...";
@@ -1917,7 +1917,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 }
 
 malaya,363,283,4	script	Local#ma06	582,{
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		mes "[Local]";
 		mes "Hum... é hora de tomar cuidado com a maldição das bruxas?";
 		next;
@@ -1925,7 +1925,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 		mes "Cuidado com a agulha Monkukurums, forasteir"+((Sex) ? "o":"a")+".";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[住民]";
 		mes "ポートマラヤへようこそ。";
 		mes "異邦人よ……。";
@@ -1939,7 +1939,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 	set '@rand,rand(5);
 	switch(rand(1,5)) {
 	case 1:
-		if($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
+		if ($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
 			mes "[住民]";
 			mes "夜に町を歩き回る時は気を付けなさい。";
 			mes $MalayaName$['@rand];
@@ -1948,7 +1948,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 			close;
 		}
 	case 2:
-		if($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
+		if ($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
 			mes "[住民]";
 			mes $MalayaName$['@rand];
 			mes "という冒険者が、";
@@ -1962,7 +1962,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 			close;
 		}
 	case 3:
-		if($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
+		if ($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
 			mes "[住民]";
 			mes "ブギスギスを見かけましたか。";
 			mes "最近";
@@ -1973,7 +1973,7 @@ malaya,363,283,4	script	Local#ma06	582,{
 			close;
 		}
 	case 4:
-		if($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
+		if ($MalayaName$['@rand] != "" && $MalayaName$['@rand] != strcharinfo(0)) {
 			mes "[住民]";
 			mes "もし町の外に出ることが・るようなら、";
 			mes "チャナックには気を付けなさい。";
@@ -2159,19 +2159,19 @@ malaya,70,282,4	duplicate(ArmaAre)	Armadilha de Areia#mal03	557
 
 malaya,88,252,4	script	Pequena Garota#ma04	576,{
 
-		if(MALAYA_1QUE < 2) {
+		if (MALAYA_1QUE < 2) {
 		mes "[Pequena Garota]";
 		mes "Estou com medo, mas tenho que visitar a fada na floresta.";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[Pequena Garota]";
 		mes "Hehe. Meu pai disse que posso visitar a fada na floresta quando o vilarejo estiver calmo.";
 		close;
 	}
 	switch(rand(1,2)) {
 	case 1:
-		if($MalayaName$[2] != "" && $MalayaName$[2] != strcharinfo(0)) {
+		if ($MalayaName$[2] != "" && $MalayaName$[2] != strcharinfo(0)) {
 			mes "[少女]";
 			mes "少し前に";
 			mes $MalayaName$[2];
@@ -2208,12 +2208,12 @@ malaya,88,252,4	script	Pequena Garota#ma04	576,{
 
 malaya,134,250,6	script	Motorista do Jipe#04	582,{
 
-	if(MALAYA_1QUE < 2) {
+	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
 		mes "S...Sa... Saia...";
 		close;
 	}
-	if(MALAYA_1QUE < 6) {
+	if (MALAYA_1QUE < 6) {
 		mes "[ジプニードライバー]";
 		mes "うわ・・……";
 		mes "びっくりしたじゃないか……";
@@ -2336,7 +2336,7 @@ malaya,114,183,3	script	Senhora Encurvada#ma	575,{
 	mes "そうじゃない？";
 	mes "ワシも若いころは";
 	mes "町で評判の美人だったのじゃ。";
-	if(MALAYA_3QUE==16) {
+	if (MALAYA_3QUE==16) {
 		next;
 		mes "[Senhora Encurvada]";
 		mes "違う？";
@@ -2362,7 +2362,7 @@ malaya,114,183,3	script	Senhora Encurvada#ma	575,{
 		mes "けして……けっして";
 		mes "近寄ってはならぬぞ。";
 		next;
-		if(select("病院のことを聞く","娘のことを聞く")==2) {
+		if (select("病院のことを聞く","娘のことを聞く")==2) {
 			mes "[Senhora Encurvada]";
 			mes "私の娘は、命を落とすほどの";
 			mes "病ではなかった。";
@@ -2416,7 +2416,7 @@ malaya,189,263,4	script	Jovem Tocando#ma0	578,{
 	if (checkquest(7350) == 2){
 	mes "Acho que a aldeia foi salva por um aventureir"+((Sex) ? "o":"a")+" sem nome.";
 	next;
-	emotion 54;
+	emotion e_sigh;
 	mes "[Jovem Tocando]";
 	mes "Puxa... Pensei que Bakonawa fosse aparecer novamente.";
 	close;

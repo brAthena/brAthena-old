@@ -68,7 +68,7 @@ alberta,245,45,3	script	Garota#0lou	815,{
 				mes "Pronto!";
 				mes "Divirta-se!";
 				close2;
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				warp "lou_fild01",190,101;
 				end;
 			}
@@ -267,7 +267,7 @@ lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
 		mes "Tentamos providenciar o melhor serviço possível.";
 		mes "Por favor volte novamente.";
 		next;
-		set zeny,zeny-500;
+		set Zeny, Zeny-500;
 		warp "lou_in01",17,19;
 		end;
 	case 3:

@@ -135,7 +135,7 @@ einbech,39,215,5	script	Funcionário Ferroviário#e1	852,{
 			mes "Obrigado e aproveite a sua viagem.";
 			mes "Todos a bordo!";
 			close2;
-			set zeny,zeny-200;
+			set Zeny, Zeny-200;
 			warp "einbroch",226,276;
 			end;
 		}

@@ -224,7 +224,7 @@ dic_in01,91,113,5	script	Piom Suspeito#a	489,{
 	if (isequipped(2782)) {
 		mes "Você já ouviu falar sobre o Ahat?";
 		next;
-		if(select("Não!:Você primeiro.") == 1) {
+		if (select("Não!:Você primeiro.") == 1) {
 			mes "[Piom Suspeito]";
 			mes "Nem Pensar.";
 			close; 
@@ -234,7 +234,7 @@ dic_in01,91,113,5	script	Piom Suspeito#a	489,{
 		mes "Eu preciso coletar informações.";
 		mes "Você sabe algo, não é?";
 		next;
-		if(select("Algo é suspeito?:Se você não quer falar, então não falarei!") == 1) {
+		if (select("Algo é suspeito?:Se você não quer falar, então não falarei!") == 1) {
 			mes "[Piom Suspeito]";
 			mes "Eu sou apenas um curioso e ordinário Piom.";
 			close; 
@@ -246,7 +246,7 @@ dic_in01,91,113,5	script	Piom Suspeito#a	489,{
 	mes "¡ó¢³¡ó ¡ó ¡ó¡þ¡ö";
 	mes "¡õ ¢³¢²¡÷ ¡ó¡ó";
 	next;
-	if(select("Não posso dizer o que significa:É uma maldição??") == 2) {
+	if (select("Não posso dizer o que significa:É uma maldição??") == 2) {
 		mes "[Piom Suspeito]";
 		mes "Que pena.";
 		close; 
@@ -559,7 +559,7 @@ dicastes01,191,202,4	script	Galten Insatisfeito#fihs	450,{
 		mes "[Galten Insatisfeito]";
 		mes "Alguma vez ele já te falou sobre ela?";
 		next;
-		if(select("Não:Sim") == 1) {
+		if (select("Não:Sim") == 1) {
 			mes "[Galten Insatisfeito]";
 			mes "Você não conhece a lenda que ronda a estátua?";
 			mes "Então, nem sei o que dizer a você.";
@@ -595,7 +595,7 @@ dicastes01,202,197,4	script	Venknick Maluco#fihsing1	449,{
 		mes "Com apenas 5000 Zenys.";
 		mes "Vou lhe dizer a triste lenda por trás dessa estátua.";
 		next;
-		if(select("Entregar 5000 Zenys.:Não Entregar 5000 Zenys.") == 2) {
+		if (select("Entregar 5000 Zenys.:Não Entregar 5000 Zenys.") == 2) {
 			mes "[Venknick Maluco]";
 			mes "Não volte com arrependimentos.";
 			close; 

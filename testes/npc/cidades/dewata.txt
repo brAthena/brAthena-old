@@ -184,7 +184,7 @@ dewata,114,243,6	script	Jovem em Dewata#dew	536,1,1,{
 		mes "Hã~!! É o Suco de Palmeira?";
 		mes "Você pode me dá-lo? Eu acabei de acordar, e minha garganta está seca!";
 		next;
-		if(select("Dar:Não dar") == 1) {
+		if (select("Dar:Não dar") == 1) {
 			mes "[Jovem em Dewata]";
 			mes "Sério? Para mim?? Eu vou te presentear... Obrigado... Hehe~";
 			delitem 11534,1; //Coco_Juice
@@ -286,13 +286,13 @@ dewata,146,109,5	script	Sr. Dwi Oblo#dew	886,{
 			break;
 		}
 		next;
-		if(select("Experimentar:Ir embora") == 2) {
+		if (select("Experimentar:Ir embora") == 2) {
 				mes "[Sr. Dwi Oblo]";
 				mes "É uma pena você não experimentar esse prato, ele é ótimo...";
 				close;
 			}
 			mes "[Sr. Dwi Oblo]";
-			if(Zeny < 5000) {
+			if (Zeny < 5000) {
 				mes "Onde está o dinheiro? Hã!! Aqui não tem comida de graça! Certo?";
 				close;
 			}

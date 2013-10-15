@@ -57,7 +57,7 @@ alberta,246,29,3	script	Aibakthing#ayo	843,{
 				mes "Hoo! Hah! Hoo! Hah!";
 				mes "Vamos partir! Voltar para a minha bela Ayothaya!";
 				close2;
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				warp "ayothaya",149,71;
 				end;
 			}

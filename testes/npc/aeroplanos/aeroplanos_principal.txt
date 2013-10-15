@@ -30,13 +30,13 @@ airplane,243,73,0	script	#AeroplanoPortal-1	45,1,1,{
 
 OnInit:
 OnHide:
-	misceffect 16;
+	specialeffect EF_BASH;
 	disablenpc strnpcinfo(0);
 	end;
 
 OnUnhide:
 	enablenpc strnpcinfo(0);
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnTouch:
@@ -56,7 +56,7 @@ airplane,1,1,0	script	Aeroplano_Domestico	-1,{
 	freeloop(1);
 	setarray $@airplanecitys$, "Juno","0xff8200","Einbroch","0x00ff00","Lighthalzen","0x70dbdb","Hugel","0xca4bf3";
 	while(1) {
-		if($@airplanelocation >= 4) set $@airplanelocation, 0;
+		if ($@airplanelocation >= 4) set $@airplanelocation, 0;
 		mapannounce "airplane","O Dirigível está decolando agora. Seu próximo destino é "+$@airplanecitys$[$@airplanelocation*2]+".",bc_map,$@airplanecitys$[$@airplanelocation*2+1];
 		sleep(20000);
 		mapannounce "airplane","Nós estamos partindo para "+$@airplanecitys$[$@airplanelocation*2]+".",bc_map,$@airplanecitys$[$@airplanelocation*2+1];
@@ -450,7 +450,7 @@ OnTouch:
 	switch ($@airplanelocation2) {
 	case 0: warp "ra_fild12",292,204; end;
 	case 1: 
-		if(checkversion(0))
+		if (checkversion(0))
 			warp "izlude",200,73;
 		else
 			warp "izlude",200,56;
@@ -460,13 +460,13 @@ OnTouch:
 
 OnInit:
 OnHide:
-	misceffect 16;
+	specialeffect EF_BASH;
 	disablenpc strnpcinfo(0);
 	end;
 	
 OnUnhide:
 	enablenpc strnpcinfo(0);
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 }
 
@@ -478,7 +478,7 @@ airplane_01,1,1,0	script	Aeroplano_Internacional	-1,{
 	freeloop(1);
 	setarray $@airplanecitys2$,"Rachel","0xFF8200","Izlude","0x00ff00","Juno","0x70dbdb";
 	while(1) {
-		if($@airplanelocation2 >= 3) set $@airplanelocation2, 0;
+		if ($@airplanelocation2 >= 3) set $@airplanelocation2, 0;
 		mapannounce "airplane_01","O Dirigível está decolando agora. Seu próximo destino é "+$@airplanecitys2$[$@airplanelocation2*2]+".",bc_map,$@airplanecitys2$[$@airplanelocation2*2+1];
 		sleep(25000);
 		mapannounce "airplane_01","Nós estamos partindo para "+$@airplanecitys2$[$@airplanelocation2*2]+".",bc_map,$@airplanecitys2$[$@airplanelocation2*2+1];
@@ -864,11 +864,11 @@ function	script	jogodamaçã	{
 	mes "^FF0000" + strcharinfo(0) + "^000000, você possui ^FF0000" + .@jogador1 + "^000000 e ^FF0000" + .@jogador2 + "^000000. O total é ^FF0000" + .@jogadorsub + "^000000 .";
 	next;
 	mes "["+getarg(0)+"]";
-	if(.@jogadorsub == .@tabelasub) {
+	if (.@jogadorsub == .@tabelasub) {
 		mes "Atualmente meu total é ^0000FF" + .@tabelasub + "^000000 e ^FF0000" + strcharinfo(0) + "^000000, seu total é ^FF0000" + .@jogadorsub + "^000000. Estamos empatados, gostaria de lançar o dado novamente?";
 	} else if (.@jogadorsub > .@tabelasub) {
 		mes "Atualmente meu total é ^0000FF" + .@tabelasub + "^000000 e ^FF0000" + strcharinfo(0) + "^000000, seu total é ^FF0000" + .@jogadorsub + "^000000. ^FF0000" + strcharinfo(0) + "^000000, atualmente você está ganhando o jogo, gostaria de lançar o dado novamente?";
-	} else if(.@tabelasub > .@jogadorsub) {
+	} else if (.@tabelasub > .@jogadorsub) {
 		mes "Atualmente meu total é ^0000FF" + .@tabelasub + "^000000 e ^FF0000" + strcharinfo(0) + "^000000, seu total é ^FF0000" + .@jogadorsub + "^000000. Eu estou vencendo o jogo. Gostaria de lançar o dado novamente?";
 	}
 	next;

@@ -92,7 +92,7 @@ function	script	EinTower	{
 			mes "[" + getarg(0) + "]";
 			mes "Obrigado por utilizar nossos serviços.";
 			mes "Deixe-me guiá-lo para a torre agora.";
-			set zeny,zeny-10;
+			set Zeny, Zeny-10;
 			close2;
 			warp "einbroch",181,196;
 			end;
@@ -110,7 +110,7 @@ function	script	EinTower	{
 				mes "[" + getarg(0) + "]";
 				mes "Obrigado por utilizar os nossos serviços.";
 				mes "Deixe-me guiá-lo até a torre agora.";
-				set zeny,zeny-20;
+				set Zeny, Zeny-20;
 				getitem 512,1; //Apple
 				close2;
 				warp "einbroch",174,204;
@@ -146,7 +146,7 @@ einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	852,{
 			mes "Desejo uma boa viagem para você.";
 			mes "^333333*Ahem*^000000 Todos a bordo!";
 			close2;
-			set zeny,zeny-200;
+			set Zeny, Zeny-200;
 			warp "einbech",43,215;
 			end;
       }
@@ -541,7 +541,7 @@ ein_in01,206,224,3	script	Funcionário do Hotel#ein	855,{
 				mes "Obrigado.";
 				mes "Aproveite seu descanso~";
 				close2;
-				set zeny,zeny-5000;
+				set Zeny, Zeny-5000;
 				percentheal 100,100;
 				warp "ein_in01",272,167;
 				end;

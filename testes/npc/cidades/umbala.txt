@@ -80,7 +80,7 @@ comodo,171,137,1	script	Haith#um	92,{
 	next;
 	if (select("Pagar 1000 zenys:Recusar-se a pagar") == 1) {
 		if (Zeny > 999) {
-			set zeny,zeny-1000;
+			set Zeny, Zeny-1000;
 			mes "Hahahaha! Você é o cara!";
 			next;
 			mes "[La Ed]";
@@ -223,8 +223,8 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 			mes "Aeeeee!!";
 			mes "Você é o cara~!";
 			mes "Muito obrigado, eba~!";
-			if (zeny > 1000) {
-				set zeny,zeny-1000;
+			if (Zeny > 1000) {
+				set Zeny, Zeny-1000;
 				if (checkweight(517,1)) {
 					getitem 517,1; // Carne
 				}
@@ -282,8 +282,8 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 			mes "Umbaumbah!!";
 			mes "Um~bahumbah~ Um~baumbah~";
 			mes "Um~baumbah~ um~baumbah~";
-			if (zeny > 1000) {
-				set zeny,zeny-1000;
+			if (Zeny > 1000) {
+				set Zeny, Zeny-1000;
 				if (checkweight(517,1)) {
 					getitem 517,1; // Carne
 				}

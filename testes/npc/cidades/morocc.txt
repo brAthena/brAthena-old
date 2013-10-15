@@ -129,7 +129,7 @@ morocc,223,102,0	script#dv	Voluntário - Morroc#06	741,{
 morocc,226,102,4	duplicata(Voluntário - Morroc#06)	Voluntário - Morroc#07	726,{}
 
 -	script	Jovem#moc01	-1,{
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		mes "[Jovem]";
 		mes "A cidade está totalmente destruída, mas aquelas estruturas triangulares gigantes não sofreram nenhum dano. Talvez estejam protegidas por algum poder especial.";
 		next;
@@ -198,7 +198,7 @@ moc_ruins,132,144,0	script#dv	Jovem Homem Lobo#moc	85,{
 	next;
 	mes "[Jovem]";
 	mes "E também tem que ser um cristal perfeito, sem rachaduras, se você quiser vendê-lo por muitos zenys.";
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		next;
 		mes "[Jovem]";
 		mes "Mas olha! A pedra mais resistente do mundo se quebrou em duas!";
@@ -212,7 +212,7 @@ moc_ruins,132,144,0	script#dv	Jovem Homem Lobo#moc	85,{
 -	script	Jovem#moc02	-1,{
 	mes "[Jovem Bêbado]";
 	mes "Espera um pouco...! Você é um aventureiro? Bem-vindo! Como vai sua viagem?";
-	if(checkversion(0) == -1){	
+	if (checkversion(0) == -1){	
 		mes "Acho que estávamos predestinados a nos encontrar!!";
 		next;
 		mes "[Jovem Bêbado]";
@@ -307,7 +307,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	mes "[Syvia]";
 	mes "E, que tal quando o Picky usa aquelas cascas de ovo?..";
 	next;
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		mes "[Syvia]";
 		mes "Não acredito no que aconteceu. Nossa cidade tinha esses monstros fofos, não esse horrível que chegou agora!";
 		next;
@@ -361,7 +361,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	mes "[Akira]";
 	mes "Existem duas entradas para o Formigueiro Infernal. Quando você entrar, o primeiro e o segundo níveis subterrâneos são conectados entre si.";
 	next;
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		mes "[Akira]";
 		mes "Me pergunto como estão essas entradas após essa destruição, mas não posso ir até lá... Se você souber de algo, por favor venha me contar.";
 		next;
@@ -372,7 +372,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		mes "O caverna é perigosa, grudenta... São dois níveis subterrâneos.";
 		mes "Vá para o Leste até encontrar a ponte que leva a Floresta de Payon.";
 		mes "No mapa antes da ponte, vá para o Norte para achar a entrada do Formigueiro Infernal.";
-		if(checkversion(0) != -1){		
+		if (checkversion(0) != -1){		
 			next;
 			mes "[Akira]";
 			mes "...apesar de eu não saber se ela ainda está lá.";
@@ -391,7 +391,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Akira]";
 		mes "Ah, e essas formigas são como Porings, vão tentar roubar seus itens. Lembre-se disso.";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Akira]";
 			mes "Se você conseguir cruzar o deserto sem ser perturbado pelo Satan...";
@@ -403,7 +403,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Akira]";
 		mes "Tenha cuidado com os dentes afiados e as garras fortes das formigas, mas as habilidades desse vovô você realmente deve evitar.";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Akira]";
 			mes "...Nossa, do que eu estou falando? De que mais precisamos ter medo agora que o Satan Morroc renasceu? Huh..huhhuh...";
@@ -427,7 +427,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		mes "[Criança Estranha]";
 		mes "Fugi de casa três anos atrás, e desde então procuro pela guilda dos assassino...";
 		mes "Eles são tão invisíveis assim?";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Criança Estranha]";
 			mes "Bem... Acho que agora é tarde demais...";
@@ -447,7 +447,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Criança Estranha]";
 		mes "Se você encontrá-los, e o líder do clã achar que você está qualificado, você pode virar um assassino! Bem, pelo menos eu acho que é assim...";
-		if(checkversion(0) != -1){		
+		if (checkversion(0) != -1){		
 			next;
 			mes "[Criança Estranha]";
 			mes "E ouvi dizer que o melhor assassino é o assassino Cross! Mas esse é um mistério ainda maior~ Você não irá encontrá-los a menos que seja um gatuno de primeira!";
@@ -462,7 +462,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Criança Estranha]";
 		mes "Eles também são muito furtivos! Ouvi dizer que se escondem e ninguém consegue vê-los!";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Criança Estranha]";
 			mes "Mas... O que diabos eles estavam fazendo quando Morroc foi destruída?!!";
@@ -486,7 +486,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Dimitri]";
 		mes "É por isso que todo mundo pode recuperar HP e SP no meio do deserto.";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Dimitri]";
 			mes "Agora que penso nisso, talvez a razão de Morroc ter temperaturas tão altas seja porque o Satan estava preso embaixo da terra.";
@@ -500,7 +500,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		next;
 		mes "[Dimitri]";
 		mes "Tente essa garrafa de poção gelada quando você for ao Oasis perto da Pirâmide...";
-		if(checkversion(0) != -1)
+		if (checkversion(0) != -1)
 			mes "Sim... você quer muito... mas a situação não está boa...";
 		close;
 	case 3:
@@ -511,14 +511,14 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		mes "[Dimitri]";
 		mes "Posso não ser um cientista, mas isso é possível?";
 		mes "Digo, o Leite veio junto com o ovo, ou entrou lá de algum jeito?..";
-		if(checkversion(0) != -1)
+		if (checkversion(0) != -1)
 			mes "Ah, que seja... Não é hora de discutir isso.";
 		close;
 	}
 }
 
 -	script	Homem Mosca#moc	-1,{
-	if(checkversion(0) == -1){
+	if (checkversion(0) == -1){
 		mes "[Armani]";
 		mes "Eu vi, eu vi!";
 		mes "Existe uma mosca especial à Nordeste desta cidade";
@@ -546,7 +546,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	next;
 	mes "[Armani]";
 	mes "E se você vencê-lo, pode até ganhar um ^880000Clip^000000 !";
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		next;
 		mes "[Armani]";
 		mes "Enfim, você não acha o Satan Morroc muito cruel?";
@@ -563,7 +563,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	mes "Morroc fica em uma região extremamente seca e cercada por um deserto.";
 	mes "Não existe lugar no mundo mais quente que Morroc.";
 	next;
-	if(checkversion(0) != -1){	
+	if (checkversion(0) != -1){	
 		mes "[Phlanette]";
 		mes "Imagino que esse clima quente e seco de Morroc aconteça porque o Satan Morroc esteve enterrado no subterrâneo por tanto tempo.";
 		next;
@@ -579,7 +579,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 		mes "[Phlanette]";
 		mes "Infelizmente algumas dessas plantas que crescem perto de Morroc sofreram mutações e viraram monstros.";
 		mes "Um desses é Muka, o cacto.";
-		if(checkversion(0) != -1){
+		if (checkversion(0) != -1){
 			next;
 			mes "[Phlanette]";
 			mes "Mas agora que Satan renasceu, ninguém sabe que mudanças ocorrerão no ciclo de vida dos animais de Morroc.";
@@ -591,7 +591,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	mes "Areia por todos os lados!";
 	mes "Ah, eu vou amaldiçoar o deserto de Morroc!";
 	mes "Droga!";
-	if(checkversion(0) != -1){
+	if (checkversion(0) != -1){
 		next;
 		mes "[Phlanette]";
 		mes "Mas mesmo odiando-o, não queria que tivesse sido completamente destruído...";
@@ -687,7 +687,7 @@ moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
 }
 
 morocc,281,178,4	script#ot	Cetsu	97,{
-	if(countitem(1237) > 0){
+	if (countitem(1237) > 0){
 		mes "[Cetsu]";
 		mes "Eu gostaria de saber o segredo para forjar um Adaga Sinistra... ahh... Que seja, eu não sou um Ferreiro mesmo.";
 		close;
@@ -740,8 +740,8 @@ morocc_in,166,76,3	script#dv	Garçom#02	46,{
 	next;
 	switch(select("Deserto Tropical:Praia de Vemillion:Nada.")) {
 	case 1:
-		if (zeny >= 1000 ) {
-			set zeny,zeny-1000;
+		if (Zeny >= 1000 ) {
+			set Zeny, Zeny-1000;
 			getitem 12112,1;
 			mes "[Garçom]";
 			mes "Aqui está.";
@@ -750,8 +750,8 @@ morocc_in,166,76,3	script#dv	Garçom#02	46,{
 		}
 		break;
 	case 2:
-		if (zeny >= 1000 ) {
-			set zeny,zeny-1000;
+		if (Zeny >= 1000 ) {
+			set Zeny, Zeny-1000;
 			getitem 12113,1;
 			mes "[Garçom]";
 			mes "Aqui está, mas não beba muito.";
@@ -775,7 +775,7 @@ morocc_in,166,76,3	script#dv	Garçom#02	46,{
 //===================================================
 moc_fild16,195,281,4	script	Guardião Assassino#1	707,{
 	mes "[Guardião Assassino]";
-	if(BaseJob == Job_Assassin) {
+	if (BaseJob == Job_Assassin) {
 		mes "Bem-vindo.";
 		close;
 	}

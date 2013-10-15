@@ -356,7 +356,7 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 				mes "Ainda assim, estou um pouco desapontado. Um aventureiro como você deveria doar o máximo possível...";
 				close;
 			}
-			set zeny,zeny-.@input;
+			set Zeny, Zeny-.@input;
 			set $donatedzeny,$donatedzeny + .@input;
 			mes "Até agora, eu recebi um total de " + $donatedzeny + " zennys em doações. Estou muito feliz de ver que ainda existem pessoas boas e generosas no mundo.";
 			if ($donatedzeny > 260000) {
@@ -649,7 +649,7 @@ OnTouch:
 		}
 		mes "[" + strcharinfo(0) + "]";
 		mes "Aqui, pegue.";
-		set zeny,zeny-50;
+		set Zeny, Zeny-50;
 		next;
 		mes "[Carente]";
 		mes "Muito obrigado.";
@@ -1262,12 +1262,12 @@ OnTouch:
 lhz_in01,25,141,4	script	Guarda Regenschirm	868,{
 
 	mes "[Guarda Regenschirm]";
-	if(isequipped(2241) && isequipped(2243)){
+	if (isequipped(2241) && isequipped(2243)){
 		mes "Você quer ir ao";
 		mes "subterrâneo?";
 		next;
-		if(select("Sim:Não")==1) {
-			if(isequipped(2657)) {
+		if (select("Sim:Não")==1) {
+			if (isequipped(2657)) {
 				warp "lhz_dun01",150,288;
 				end;
 			}

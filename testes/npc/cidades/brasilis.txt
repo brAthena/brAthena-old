@@ -32,11 +32,11 @@ alberta,246,82,3	script	Marinheiro#bra2	100,{
 	mes "Recentemente, encontrei um caminho novo no oceano que leva até lá.";
 	mes "O custo é apenas 10,000 zeny por uma viagem de ida e volta. Que tal?";
 	next;
-	if(select("Vamos para Brasilis!!:Não fiz minhas malas.") == 1) {
+	if (select("Vamos para Brasilis!!:Não fiz minhas malas.") == 1) {
 			mes "[Marinheiro]";
 		if (Zeny > 9999) {
 			mes "Ótimo~!! Vamos lá~!";
-			set zeny,zeny-10000;
+			set Zeny, Zeny-10000;
 			close2;
 			warp "brasilis",314,60;
 			end;
@@ -53,7 +53,7 @@ brasilis,316,57,3	script	Marinheiro#bra1	100,{
 	mes "[Marinheiro]";
 	mes "Meu barco está indo para Alberta, quer se juntar a nós?";
 	next;
-	if(select("Voltar para Alberta.:Ainda não~") == 1) {
+	if (select("Voltar para Alberta.:Ainda não~") == 1) {
 		mes "[Marinheiro]";
 		mes "Tenho certeza que sente falta de casa.";
 		close2;
@@ -135,7 +135,7 @@ brasilis,137,77,5	script	Sorveteiro	85,{
 			mes "Reduza um pouco de seu peso antes.";
 			close;
 		}
-		set zeny,zeny-.@icecream_hap;
+		set Zeny, Zeny-.@icecream_hap;
 		getitem 536,.@input; //Sorvete
 		close;
 	case 2:

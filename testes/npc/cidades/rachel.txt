@@ -190,7 +190,7 @@ rachel,206,30,3	script	Sacerdote de Freya#play	920,{
 	mes "[Sacerdote de Freya]";
 	mes "Você!";
 	mes "Entrerta-me!";
-	Emotion e_ag;
+	emotion e_ag;
 	next;
 	if (select("O quê? Você não pode me dizer o que fazer!:Você sabe disto.") == 1) {
 		mes "[Sacerdote de Freya]";
@@ -244,7 +244,7 @@ rachel,197,137,3	script	Bardo#aru	51,{
 	mes ".........";
 	mes ".........";
 	mes ".........";
-	Emotion e_sob;
+	emotion e_sob;
 	close;
 }
 

@@ -49,7 +49,7 @@ prontera,114,77,6	script	Dolangmal	553,{
 			case 9: mes .@s$+"O cheiro que vem do mar é muito melhor que Mora que cheira a grama."; break;
 		}
 		next;
-		if(select("Não:^A2314BIlha dos Gatos^000000~ Vamos~ Vamos~") == 1) {
+		if (select("Não:^A2314BIlha dos Gatos^000000~ Vamos~ Vamos~") == 1) {
 			mes "[Dolangmal]";
 			mes "O que!? você Não quer ir para a ^A2314BIlha dos Gatos^000000? Chet!";
 			next;
@@ -168,7 +168,7 @@ mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 -	script	::Odgnalam	-1,{
 	mes "Recebendo o sol quente de "+((strnpcinfo(2) == "albe")?"Alberta":"Izlude")+".";
 	next;
-	if(select("Deixe ele durmir:Fale com ele") == 1) close;
+	if (select("Deixe ele durmir:Fale com ele") == 1) close;
 	mes "[Odgnalam]";
 	mes "Miau? Hã?";
 	next;
@@ -191,7 +191,7 @@ mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 		mes "[Odgnalam]";
 		mes "Já que você é o herói da frota então vou lhe enviar para a ^A2314BIlha dos Gatos^000000 gratuitamente.";
 		next;
-		if(select("Vamos para Ilha dos Gatos!!:Não quero ir.") == 1) {
+		if (select("Vamos para Ilha dos Gatos!!:Não quero ir.") == 1) {
 			mes "[Odgnalam]";
 			mes "Tenha uma viagem confortável... Ok, vamos nessa~";
 			warp "malangdo",217,85;
@@ -201,7 +201,7 @@ mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
 	mes "[Odgnalam]";
 	mes .@s1$;
 	next;
-	if(select("Vamos para Ilha dos Gatos!:Não quero ir.") == 2) close;
+	if (select("Vamos para Ilha dos Gatos!:Não quero ir.") == 2) close;
 	if (Zeny < .@price) {
 		mes "[Odgnalam]";
 		mes "Dinheiro? Onde está o dinheiro? você não vai a qualquer lugar sem o dinheiro. Tenha vergonha de si mesmo.";
@@ -282,7 +282,7 @@ malangdo,147,117,3	script	Recepcionista#malang	554,{
 		mes "[Recepcionista]";
 		mes "Você pode usar a rede, mas precisa me dar ^FF00005 Peixes Enlatados de Malangdo^000000, para você poder desestressar.";
 		next;
-		if(select("Dar as latas.:Não preciso.") == 1) {
+		if (select("Dar as latas.:Não preciso.") == 1) {
 				mes "[Recepcionista]";
 			if (countitem(12636) > 4) {
 				delitem 12636,5; // Peixes Enlatados de Malangdo
