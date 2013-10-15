@@ -179,6 +179,7 @@
     <ClCompile Include="..\3rdparty\libconfig\strbuf.c" />
     <ClCompile Include="..\3rdparty\mt19937ar\mt19937ar.c" />
 	<ClCompile Include="..\src\common\conf.c" />
+	<ClCompile Include="..\src\common\lang.c" />
     <ClCompile Include="..\src\common\core.c" />
     <ClCompile Include="..\src\common\db.c" />
     <ClCompile Include="..\src\common\ers.c" />

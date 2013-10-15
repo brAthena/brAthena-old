@@ -21,7 +21,6 @@
 #include <string.h> // read_message
 
 struct brathena_config bra_config;
-static int index_prt = 0;
 
 int conf_read_file(config_t *config, const char *config_filename)
 {
@@ -122,38 +121,6 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 		config_setting_copy_simple(parent, src);
 	}
 	return CONFIG_TRUE;
-}
-
-// ----------------------------------------------------------------------------------------
-// Sistema Multilinguagem
-// ----------------------------------------------------------------------------------------
-// read_message("Grupo.SubGrupo.String");
-// ----------------------------------------------------------------------------------------
-// http://www.hyperrealm.com/libconfig/libconfig_manual.html
-// ----------------------------------------------------------------------------------------
-char *read_message(const char *param)
-{
-	static char message[512];
-	config_setting_t *str;
-	config_t configLang;
-
-	config_init(&configLang);
-
-	if(!config_read_file(&configLang, (!strlen(bra_config.lang_file)?"conf/lang/pt_br.conf":bra_config.lang_file))) {
-		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
-		config_destroy(&configLang);
-		return "";
-	}
-
-	if(!(str = config_lookup(&configLang, param))) {
-		ShowError("read_message erro: %s\n", param);
-		config_destroy(&configLang);
-		return "";
-	}
-	
-	strncpy(message, config_setting_get_string(str), sizeof(message));
-	config_destroy(&configLang);
-	return message;
 }
 
 // Leitura de configurações exclusivas do brAthena.

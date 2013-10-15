@@ -4,6 +4,9 @@
     <ClCompile Include="..\src\common\conf.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\lang.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\common\core.c">
       <Filter>common</Filter>
     </ClCompile>
@@ -43,6 +46,9 @@
     <ClCompile Include="..\src\common\conf.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\lang.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\tool\mapcache.c">
       <Filter>mapcache</Filter>
     </ClCompile>
@@ -55,6 +61,9 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\conf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\lang.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\core.h">

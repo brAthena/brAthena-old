@@ -55,6 +55,9 @@
     <ClCompile Include="..\src\common\conf.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\lang.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\3rdparty\mt19937ar\mt19937ar.c">
       <Filter>3rdparty\mt19937ar</Filter>
     </ClCompile>

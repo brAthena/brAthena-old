@@ -129,6 +129,7 @@
     <ClCompile Include="..\3rdparty\libconfig\scanner.c" />
     <ClCompile Include="..\3rdparty\libconfig\strbuf.c" />
 	<ClCompile Include="..\src\common\conf.c" />
+	<ClCompile Include="..\src\common\lang.c" />
     <ClCompile Include="..\src\common\core.c" />
     <ClCompile Include="..\src\common\des.c" />
     <ClCompile Include="..\src\common\grfio.c" />
@@ -148,6 +149,7 @@
     <ClInclude Include="..\3rdparty\libconfig\wincompat.h" />
     <ClInclude Include="..\src\common\cbasetypes.h" />
 	<ClInclude Include="..\src\common\conf.h" />
+	<ClInclude Include="..\src\common\lang.h" />
     <ClInclude Include="..\src\common\core.h" />
     <ClInclude Include="..\src\common\des.h" />
     <ClInclude Include="..\src\common\grfio.h" />

@@ -6,7 +6,7 @@
 *               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *
 *                                                                            *
 *                                                                            *
-* \file src/custom/commands.inc                                              *
+* \file src/custom/commands_def.inc                                          *
 * Arquivo de inclusão para comandos custumizados.                            *
 * \author brAthena                                                           *
 * \date 14/05/2013                                                           *

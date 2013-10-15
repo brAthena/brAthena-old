@@ -6,7 +6,7 @@
 *               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *
 *                                                                            *
 *                                                                            *
-* \file src/custom/commands.inc                                              *
+* \file src/custom/scripts_def.inc                                           *
 * Arquivo de inclusão para funções de scripts custumizadas.                  *
 * \author brAthena                                                           *
 * \date 14/05/2013                                                           *

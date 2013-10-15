@@ -18,6 +18,7 @@
 #define _SHOWMSG_H_
 
 #include "libconfig.h"
+#include "lang.h"
 
 // for help with the console colors look here:
 // http://www.edoceo.com/liberum/?doc=printf-with-color
@@ -127,7 +128,6 @@ extern void ShowError(const char *, ...);
 extern void ShowFatalError(const char *, ...);
 extern void ShowConfigWarning(config_setting_t *config, const char *string, ...);
 
-extern char *read_message(const char *param);
 extern void read_brathena_config(void);
 
 #endif /* _SHOWMSG_H_ */

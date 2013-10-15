@@ -13,7 +13,7 @@ LIBCONFIG_INCLUDE = -I$(LIBCONFIG_D)
 
 COMMON_SHARED_OBJ = conf.o db.o des.o ers.o grfio.o mapindex.o \
 		    md5calc.o mempool.o mutex.o nullpo.o raconf.o random.o \
-		    showmsg.o strlib.o thread.o timer.o utils.o
+		    showmsg.o strlib.o thread.o timer.o utils.o lang.o
 COMMON_OBJ = $(addprefix obj_all/, $(COMMON_SHARED_OBJ) \
 	     core.o malloc.o socket.o)
 COMMON_MINI_OBJ = $(addprefix obj_all/, $(COMMON_SHARED_OBJ) \
@@ -22,7 +22,7 @@ COMMON_H = atomic.h cbasetypes.h conf.h core.h db.h des.h ers.h \
 	   evdp.h grfio.h malloc.h mapindex.h md5calc.h \
 	   mempool.h mmo.h mutex.h netbuffer.h network.h nullpo.h raconf.h \
 	   random.h showmsg.h socket.h spinlock.h sql.h strlib.h thread.h \
-	   timer.h utils.h winapi.h
+	   timer.h utils.h winapi.h lang.h
 
 COMMON_SQL_OBJ = obj_sql/sql.o
 COMMON_SQL_H = sql.h
