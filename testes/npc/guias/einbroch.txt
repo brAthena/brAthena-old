@@ -33,7 +33,7 @@ einbroch,72,202,4	script	Guia de Einbroch#ein01	852,{
 	mes "Por favor me pergunte caso queira saber alguma informação.";
 	F_Navi("[Guia de Einbroch]");
 	next;
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		while (1) {
 			switch(select("[ Principais Lugares ]:[ Lojas & Ajudantes ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:
@@ -311,7 +311,7 @@ einbech,67,37,4	script	Guia de Einbech#einbech01	852,{
 	mes "Bem-vindo a Einbech, nós estamos aqui para ajudar os turistas, então por favor sinta-se a vontade para fazer as perguntas que quiser.";
 	F_Navi("[Guia de Einbech]");
 	next;
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		while (1) {
 			switch(select("[ Taverna ]:[ Loja de Utilidades ]:[ Estação de Trem ]:[ Mina ]:[ Funcionária Kafra ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:

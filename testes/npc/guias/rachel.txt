@@ -28,7 +28,7 @@
 
 rachel,138,146,5	script	Guia de Rachel#rachel	934,{
 	mes "[Guia de Rachel]";
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		mes "Bem-vindo a Capital de Arunafeltz, ^8B4513Rachel^000000 onde o sopro quente da deusa Freya alcança.";
 		mes "Se essa é sua primeira que utiliza meus serviços, sugiro que escolha uma das opções:";
 		F_Navi("[Guia de Rachel]");

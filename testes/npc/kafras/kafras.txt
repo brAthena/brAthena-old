@@ -575,7 +575,7 @@ niflheim,202,180,3	script	Funcionária Kafra::kaf_niflheim	791,{
 // - Ilha Byalan
 izlu2dun,106,58,8	script	Funcionária Kafra::kaf_izlu2dun	115,{
 	cutin "kafra_03",2;
-	if(!checkversion(0) && BaseJob==Job_Novice && job_merchant_q2 > 0) {
+	if (!checkversion(0) && BaseJob==Job_Novice && job_merchant_q2 > 0) {
 		callfunc "F_MercKafra";
 	}
 	mes "[Funcionária Kafra]";

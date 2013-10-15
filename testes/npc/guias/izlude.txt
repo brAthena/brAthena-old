@@ -53,7 +53,7 @@
 					mes "Você pode usar a "+F_Navi("Marina",.@map$+",197,205","^B9062F")+" a nordeste para ir para ^8B4513Alberta^000000 ou para a ^8B4513Ilha Byalan^000000.";
 					mes "Tenha cuidado com os ^8B4513Calabouços de Izlude^000000 na Ilha Byalan desde que ela é cheia de monstros terríveis.";
 					mes "Gostaria de verificar quaisquer outros locais?";
-					viewpoint 1,197,205,1,0xFFFF0000;
+					viewpoint 1,197,205,1,0xFF0000;
 					next;
 					break;
 				case 3:
@@ -61,7 +61,7 @@
 					mes "O "+F_Navi("Aeroplano Internacional",.@map$+",202,75","^0000FF")+" ao sudeste vai para ^8B4513Juno^000000 e ^8B4513Rachel^000000.";
 					mes "Deixe-me marcar sua localização no seu mini-mapa.";
 					mes "Gostaria de verificar quaisquer outros locais?";
-					viewpoint 1,210,73,2,0xFF0A82FF;
+					viewpoint 1,210,73,2,0x0A82FF;
 					next;
 					break;
 				case 4:
@@ -74,7 +74,7 @@
 					break;
 				case 5:
 					callsub L_Mark, F_Navi("Loja de Equipamentos",.@map$+",110,182","^006400");
-					viewpoint 1,108,179,4,0xFFAAFF00;
+					viewpoint 1,108,179,4,0xAAFF00;
 					next;
 					break;
 				case 6:

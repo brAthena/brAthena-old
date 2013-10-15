@@ -32,7 +32,7 @@ ayothaya,203,169,4	script	Guia de Ayothaya Noi#01ay	839,{
 	else
 		set .@n$, "[Noa]";
 	mes .@n$;
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		// Renewal
 		mes "Olá Bem-vind"+((Sex) ? "o":"a")+" ^8B4513Ayothaya^000000.";
 		mes "Esta cidade está ligada a um rio que atravessa a floresta selvagem.";

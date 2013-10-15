@@ -30,7 +30,7 @@ niflheim,201,187,3	script#re	Guia de Nifflheim#01nif	849,{
 	mes "[Guia de Nifflheim]";
 	mes "Bem-vindo a... ^8B4513Niflheim^000000... O Reino dos Mortos...";
 	mes "Gostaria de conhecer o reino...?";
-	if(F_Navi() == 0) {
+	if (F_Navi() == 0) {
 		next;
 		mes "[Guia de Nifflheim]";
 		mes "Quando você clicar no... ^B9062F[nome da localização]^000000... você receberá os mais avançados serviços de ^B9062FNavegação^000000...!";
@@ -107,14 +107,14 @@ niflheim,107,156,6	script#pre	Homem Nervoso#nif	798,{
 			mes "[Lee Karl]";
 			mes "A loja de utilidades é bem ali ^CE6300+^000000.";
 			mes "Existem alguns itens que você não pode comprar no mundo dos vivos. Confira.";
-			Emotion e_wah;
+			emotion e_wah;
 			viewpoint 1,217,196,3,0xCE6300;
 			break;
 		case 3:
 			mes "[Lee karl]";
 			mes "A loja de armas é por ali ^55FF33+^000000.";
 			mes "Existem algumas armas que você não pode comprar no mundo dos vivos. Confira.";
-			Emotion e_wah;
+			emotion e_wah;
 			viewpoint 1,216,171,4,0x55FF33;
 			break;
 		case 4:

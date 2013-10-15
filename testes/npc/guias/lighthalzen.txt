@@ -32,7 +32,7 @@ lighthalzen,207,310,5	script	Guia#lhz01	852,{
 	mes "Bem-vindo à Lighthalzen, a Cidade-Estado da Corporação.";
 	mes "Se você precisar de orientação referente à cidade, sinta-se à vontade para me perguntar, e eu farei o melhor para ajudá-lo.";
 	F_Navi("[Guia de Lighthalzen]");
-  if(checkversion(0)) {
+  if (checkversion(0)) {
 	next;
 	mes "[Guia de Lighthalzen]";
 	mes "Por favor, esteja ciente de que sou o responsável pelo distrito Oeste de ^8B4513Lighthalzen^000000.";
@@ -217,7 +217,7 @@ L_Mark:
 					mes "Nossa Delegacia fica ao norte do centro da cidade.";
 					mes "Por favor, não hesite em relatar quaisquer pessoas e atividades suspeitas, ou qualquer outro problema que tiver.";
 					if (.@compass_check)
-						viewpoint 1,236,276,4,0x99FFFFF;
+						viewpoint 1,236,276,4,0x99FFFF;
 					break;
 				case 4:
 					mes "[Guia de Lighthalzen]";

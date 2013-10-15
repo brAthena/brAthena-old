@@ -28,7 +28,7 @@
 
 hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 	mes "[Vovó Guia de Hugel]";
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		mes "Oh, olá~ Você é um aventureiro energético.";
 		mes "Bem-vindo a ^8B4513Hugel^000000.";
 		mes "Estou honrada em guiar você por este belo vilarejo.";

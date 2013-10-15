@@ -28,7 +28,7 @@
 
 veins,210,345,5	script	Guia de Veins#veins01	934,{
 	mes "[Guia de Veins]";
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		mes "Obrigado por surgir em meio a toda essa areia que existe aqui.";
 		mes "Bem-vindo a ^8B4513Veins^000000, o Vilarejo do Defiladeiro.";
 		mes "Se esta é a primeira vez aqui, por que não utiliza meus serviços primeiro?";

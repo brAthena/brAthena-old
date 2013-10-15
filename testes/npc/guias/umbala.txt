@@ -27,7 +27,7 @@
 //   \________________________________________________________/
 
 umbala,128,94,3	script	Exploradora#01umbala	702,{
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		mes "[Exploradora]";
 		mes "Bem-vindo a ^8B4513Umbala^000000, o Vilarejo da Tribo Wotan.";
 		next;

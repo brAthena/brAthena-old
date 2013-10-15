@@ -39,7 +39,7 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 	mes "Por favor, fique quanto tempo quiser.";
 	F_Navi("[Soldado]");
 	set .@str$, "Gostaria de verificar outras localizações?";
-	if(checkversion(0)) {
+	if (checkversion(0)) {
 		while (1) {
 			next;
 			switch(select("[ Castelo do Dragão ]:[ Consultório Médico ]:[ Prefeitura ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Taverna ]:[ Observatório ]:[ Retornar para Alberta ]:Remover marcadores do mini-mapa:Cancelar")) {
