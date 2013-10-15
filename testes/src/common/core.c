@@ -290,6 +290,9 @@ static void display_title(void)
 	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
 	ShowInfo(read_message("Source.common.core_revision"), CL_WHITE, get_svn_revision(), CL_RESET);
+	ShowInfo(read_message("Source.common.client_version1"), CL_RED, CL_RESET, CL_GREEN, PACKETVER, CL_RESET);
+	ShowInfo(read_message("Source.common.client_version2"), CL_RED, CL_RESET);
+	
 }
 
 // Warning if executed as superuser (root)
