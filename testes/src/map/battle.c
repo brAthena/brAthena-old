@@ -827,6 +827,8 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 		damage += div * sd->spiritball * 3;
 	if(skill_id != CR_SHIELDBOOMERANG) // Only Shield boomerang doesn't takes the Star Crumbs bonus.
 		damage += div * (left ? sd->left_weapon.star : sd->right_weapon.star);
+	if(skill_id != MC_CARTREVOLUTION && (skill=pc_checkskill(sd,BS_HILTBINDING)) > 0)
+		damage += 4;
 
 	if(sd->status.party_id && (skill=pc_checkskill(sd,TK_POWER)) > 0) {
 		if((i = party_foreachsamemap(party_sub_count, sd, 0)) > 1)
@@ -2366,7 +2368,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 						int hp = status_get_max_hp(src) * (10 + 2 * skill_lv) / 100,
 							sp = status_get_max_sp(src) * (6 + skill_lv) / 100;
 						if( sc && sc->data[SC_COMBOATTACK] && sc->data[SC_COMBOATTACK]->val1 == SR_FALLENEMPIRE ) // ATK [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
-							skillratio += -100 + hp+sp / 2;
+							skillratio += -100 + (hp+sp) / 2;
 						else
 							skillratio += -100 + (hp+sp) / 4;
 						RE_LVL_DMOD(100);
@@ -4492,10 +4494,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
 						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
-				} else
-					wd.damage = sstatus->rhw.atk2*8/10; //Else use Atk2
-
-				ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
+					ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
+				} else {
+					wd.damage = battle->calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, sd, 0); //Monsters have no weight and use ATK instead
+				}
 				i = sstatus->str/10;
 				i*=i;
 				ATK_ADD(i); //Add str bonus.
@@ -6510,6 +6512,10 @@ static const struct _battle_data {
 	{ "gm_ignore_warpable_area",            &battle_config.gm_ignore_warpable_area,         0,      2,      100,            },
 	{ "packet_obfuscation",                 &battle_config.packet_obfuscation,              1,      0,      3,              },
 	{ "client_accept_chatdori",             &battle_config.client_accept_chatdori,          0,      0,      INT_MAX,        },
+	{ "snovice_call_type",			&battle_config.snovice_call_type,		0,	0,	1,		},
+	{ "guild_notice_changemap",		&battle_config.guild_notice_changemap,		2,	0,	2,		},
+	{ "feature.banking",                    &battle_config.feature_banking,                 1,      0,      1,              },
+	{ "feature.auction",                    &battle_config.feature_auction,                 0,      0,      2,              },
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
@@ -6749,6 +6755,22 @@ void battle_adjust_conf()
 		battle_config.feature_search_stores = 0;
 	}
 #endif
+	
+#if PACKETVER < 20130724
+	if(battle_config.feature_banking) {
+		ShowWarning("conf/battle/feature.conf Sistema de banco está  habilitado, mas requer PACKETVER 2013-07-24 ou mais recente, desativando...\n");
+		battle_config.feature_banking = 0;
+	}
+#endif
+
+#if PACKETVER > 20120000 && PACKETVER < 20130515 /* data exata (de quando começou) não é conhecida */
+	if( battle_config.feature_auction == 1 ) {
+		ShowWarning("conf/battle/feature.conf: Leião está habilitado, mas não é estável na PACKETVER "EXPAND_AND_QUOTE(PACKETVER)", desabilitar...\n");
+		ShowWarning("conf/battle/feature.conf:alterar o valor de Leilão para '2' para silenciar este aviso e manter ele habilitado\n");
+		battle_config.feature_auction = 0;
+	}
+#endif
+
 
 #ifndef CELL_NOSTACK
 	if(battle_config.cell_stack_limit != 1)

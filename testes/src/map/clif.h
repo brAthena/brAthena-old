@@ -22,6 +22,10 @@
 #include "../common/mmo.h"
 #include "../common/socket.h"
 #include <stdarg.h>
+
+/**
+ * Declarations
+ **/
 struct item;
 struct item_data;
 struct storage_data;
@@ -48,7 +52,9 @@ struct view_data;
 struct eri;
 struct skill_cd;
 
-
+/**
+ * Defines
+ **/
 #define packet_len(cmd) packet_db[cmd].len
 #define P2PTR(fd) RFIFO2PTR(fd)
 #define clif_menuskill_clear(sd) (sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0;
@@ -98,6 +104,25 @@ typedef enum send_target {
 
     BG_QUEUE,
 } send_target;
+
+typedef enum broadcast_flags {
+    BC_ALL         =    0,
+    BC_MAP         =    1,
+    BC_AREA        =    2,
+    BC_SELF        =    3,
+    BC_TARGET_MASK = 0x07,
+
+    BC_PC          = 0x00,
+    BC_NPC         = 0x08,
+    BC_SOURCE_MASK = 0x08, // BC_PC|BC_NPC
+
+    BC_YELLOW      = 0x00,
+    BC_BLUE        = 0x10,
+    BC_WOE         = 0x20,
+    BC_COLOR_MASK  = 0x30, // BC_YELLOW|BC_BLUE|BC_WOE
+
+    BC_DEFAULT     = BC_ALL|BC_PC|BC_YELLOW
+} broadcast_flags;
 
 typedef enum emotion_type {
     E_GASP = 0,     // /!
@@ -188,7 +213,7 @@ typedef enum emotion_type {
     E_YUT5,
     E_YUT6,
     E_YUT7,
-    //
+    /* ... */
     E_MAX
 } emotion_type;
 
@@ -200,8 +225,7 @@ typedef enum clr_type {
     CLR_TRICKDEAD,
 } clr_type;
 
-enum map_property {
-    // clif_map_property
+enum map_property { // clif_map_property
     MAPPROPERTY_NOTHING       = 0,
     MAPPROPERTY_FREEPVPZONE   = 1,
     MAPPROPERTY_EVENTPVPZONE  = 2,
@@ -211,8 +235,7 @@ enum map_property {
     MAPPROPERTY_DENYSKILLZONE = 6,
 };
 
-enum map_type {
-    // clif_map_type
+enum map_type { // clif_map_type
     MAPTYPE_VILLAGE              = 0,
     MAPTYPE_VILLAGE_IN           = 1,
     MAPTYPE_FIELD                = 2,
@@ -336,6 +359,10 @@ enum clif_messages {
 	DEATH_PENALTY = 0x729,
 	PACKAGE_ITEM = 0x623,
 	ITEM_CANT_USE_AREA =  0x537,
+	SUPER_NOVICE_MESSAGEM1 = 0x316,
+	SUPER_NOVICE_MESSAGEM2 = 0x317,
+	SUPER_NOVICE_MESSAGEM3 = 0x318,
+	SUPER_NOVICE_MESSAGEM4 = 0x31A,
 };
 int clif_setip(const char *ip);
 void clif_setbindip(const char *ip);
@@ -868,6 +895,19 @@ enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED {
 	BGQND_FAIL_NOT_QUEUING = 11,
 };
 
+enum e_BANKING_DEPOSIT_ACK {
+	BDA_SUCCESS  = 0x0,
+	BDA_ERROR    = 0x1,
+	BDA_NO_MONEY = 0x2,
+	BDA_OVERFLOW = 0x3,
+};
+enum e_BANKING_WITHDRAW_ACK {
+	BWA_SUCCESS       = 0x0,
+	BWA_NO_MONEY      = 0x1,
+	BWA_UNKNOWN_ERROR = 0x2,
+};
+
+
 /**
  * Structures
  **/
@@ -956,18 +996,27 @@ struct clif_interface {
 	void (*status_change) (struct block_list *bl,int type,int flag,int tick,int val1, int val2, int val3);
 	void (*scriptclear) (struct map_session_data *sd, int npcid);
 	void (*cart_additem_ack) (struct map_session_data *sd, int flag);
-#if PACKETVER < 20091103
 	void (*spawn_unit2) (struct block_list* bl, enum send_target target);
 	void (*set_unit_idle2) (struct block_list* bl, struct map_session_data *tsd, enum send_target target);
-#endif
+	void (*ranklist) (struct map_session_data *sd, enum fame_list_type type);
+	void (*update_rankingpoint) (struct map_session_data *sd, enum fame_list_type type, int points);
+	void (*pRanklist) (int fd, struct map_session_data *sd);
 	/* Sistema de Grupos */
-#ifdef PARTY_RECRUIT
+	void (*PartyRecruitRegisterAck) (struct map_session_data *sd, int flag);
+	void (*PartyRecruitSearchAck) (int fd, struct party_booking_ad_info** results, int count, bool more_result);
 	void (*PartyBookingVolunteerInfo) (int index, struct map_session_data *sd);
 	void (*PartyBookingRefuseVolunteer) (unsigned long aid, struct map_session_data *sd);
 	void (*PartyBookingCancelVolunteer) (int index, struct map_session_data *sd);
 	void (*PartyBookingAddFilteringList) (int index, struct map_session_data *sd);
 	void (*PartyBookingSubFilteringList) (int gid, struct map_session_data *sd);
-#endif
+	void (*pPartyRecruitSearchReq) (int fd, struct map_session_data* sd);
+	void (*pPartyRecruitDeleteReq) (int fd, struct map_session_data* sd);
+	void (*PartyRecruitDeleteAck) (struct map_session_data* sd, int flag);
+	void (*pPartyRecruitUpdateReq) (int fd, struct map_session_data* sd);
+	void (*PartyRecruitInsertNotify) (struct map_session_data* sd, struct party_booking_ad_info* pb_ad);
+	void (*PartyRecruitUpdateNotify) (struct map_session_data* sd, struct party_booking_ad_info* pb_ad);
+	void (*PartyRecruitDeleteNotify) (struct map_session_data* sd, int index);
+	void (*pPartyRecruitRegisterReq) (int fd, struct map_session_data* sd);
 	/* bgqueue */
 	void (*bgqueue_ack) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_ACK response, unsigned char arena_id);
 	void (*bgqueue_notice_delete) (struct map_session_data *sd, enum BATTLEGROUNDS_QUEUE_NOTICE_DELETED response, char *name);
@@ -975,6 +1024,9 @@ struct clif_interface {
 	void (*bgqueue_joined) (struct map_session_data *sd, int pos);
 	void (*bgqueue_pcleft) (struct map_session_data *sd);
 	void (*bgqueue_battlebegins) (struct map_session_data *sd, unsigned char arena_id, enum send_target target);
+	/* Sistema de Banco */
+	void (*bank_deposit) (struct map_session_data *sd, enum e_BANKING_DEPOSIT_ACK reason);
+	void (*bank_withdraw) (struct map_session_data *sd,enum e_BANKING_WITHDRAW_ACK reason);
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
@@ -1187,13 +1239,18 @@ struct clif_interface {
 	void (*pClientVersion) (int fd,struct map_session_data *sd);
 	void (*pBlockingPlaycancel) (int fd,struct map_session_data *sd);
 	/* Atualização de sistema de pesquisa do grupo */
-#ifdef PARTY_RECRUIT
 	void (*pPartyBookingAddFilter) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingSubFilter) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingReqVolunteer) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingRefuseVolunteer) (int fd, struct map_session_data *sd);
 	void (*pPartyBookingCancelVolunteer) (int fd, struct map_session_data *sd);
-#endif
+	/* Sistema de Banco */
+	void (*pBankDeposit) (int fd, struct map_session_data *sd);
+	void (*pBankWithdraw) (int fd, struct map_session_data *sd);
+	void (*pBankCheck) (int fd, struct map_session_data *sd);
+	void (*pBankOpen) (int fd, struct map_session_data *sd);
+	void (*pBankClose) (int fd, struct map_session_data *sd);
+
 };
 
 struct clif_interface *clif;

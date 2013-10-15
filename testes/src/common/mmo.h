@@ -77,8 +77,9 @@
 // Comment the following line to disable sc_data saving. [Skotlex]
 #define ENABLE_SC_SAVING
 
-//Remove/Comment this line to disable server-side hot-key saving support [Skotlex]
-//Note that newer clients no longer save hotkeys in the registry!
+#if PACKETVER >= 20070227
+// Comment the following like to disable server-side hot-key saving support. [Skotlex]
+// Note that newer clients no longer save hotkeys in the registry!
 #define HOTKEY_SAVING
 
 #if PACKETVER < 20090603
@@ -87,10 +88,11 @@
 #elif PACKETVER < 20090617
 // (36 = 9 skills x 4 bars)               (0x07d9,254)
 #define MAX_HOTKEYS 36
-#else
+#else // >= 20090617
 // (38 = 9 skills x 4 bars & 2 Quickslots)(0x07d9,268)
 #define MAX_HOTKEYS 38
-#endif
+#endif  // 20090603
+#endif // 20070227
 
 #define MAX_INVENTORY 100
 //Max number of characters per account. Note that changing this setting alone is not enough if the client is not hexed to support more characters as well.
@@ -102,6 +104,10 @@
 //Max amount of a single stacked item
 #define MAX_AMOUNT 30000
 #define MAX_ZENY 1000000000
+
+// Limite oficial: 2.1b
+#define MAX_BANK_ZENY 2100000000
+
 #define MAX_FAME 1000000000
 #define MAX_CART 100
 #define MAX_SKILL 1700
@@ -389,6 +395,7 @@ struct mmo_charstatus {
 
 	unsigned int base_exp,job_exp;
 	int zeny;
+	int bank_vault;
 
 	short class_;
 	unsigned int status_point,skill_point;
@@ -599,11 +606,18 @@ struct fame_list {
 	char name[NAME_LENGTH];
 };
 
+enum fame_list_type {
+    RANKTYPE_BLACKSMITH = 0,
+    RANKTYPE_ALCHEMIST  = 1,
+    RANKTYPE_TAEKWON    = 2,
+    RANKTYPE_PK         = 3, //Not supported yet
+};
+
 enum { //Change Guild Infos
-    GBI_EXP =1,     // Guild Experience (EXP)
-    GBI_GUILDLV,        // Guild level
-    GBI_SKILLPOINT,     // Guild skillpoints
-    GBI_SKILLLV,        // Guild skill_lv ?? seem unused
+    GBI_EXP = 1,		// Guild Experience (EXP)
+    GBI_GUILDLV,		// Guild level
+    GBI_SKILLPOINT,		// Guild skillpoints
+    GBI_SKILLLV,		// Guild skill_lv ?? seem unused
 };
 
 enum { //Change Member Infos

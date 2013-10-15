@@ -120,9 +120,9 @@ enum {
 	MAPID_BLACKSMITH,
 	MAPID_ASSASSIN,
 	MAPID_STAR_GLADIATOR,
+	MAPID_REBELLION = JOBL_2_1|0x09,
 	MAPID_KAGEROUOBORO = JOBL_2_1|0x0A,
 	MAPID_DEATH_KNIGHT = JOBL_2_1|0x0E,
-	MAPID_REBELLION = JOBL_2_1|0x0F,
 //2-2 Jobs
 	MAPID_CRUSADER = JOBL_2_2|0x1,
 	MAPID_SAGE,
@@ -837,6 +837,9 @@ void map_foreachiddb(int (*func)(struct block_list* bl, va_list args), ...);
 struct map_session_data * map_nick2sd(const char*);
 struct mob_data * map_getmob_boss(int16 m);
 struct mob_data * map_id2boss(int id);
+
+void map_addblcell(struct block_list *bl);
+void map_delblcell(struct block_list *bl);
 
 // reload config file looking only for npcs
 void map_reloadnpc(bool clear);

@@ -19,6 +19,7 @@
 
 #include "status.h" // struct status_data, struct status_change
 #include "unit.h" // struct unit_data
+#include "pc.h"
 
 struct h_stats {
 	unsigned int HP, SP;
@@ -36,20 +37,27 @@ struct s_homunculus_db {
 };
 
 extern struct s_homunculus_db homunculus_db[MAX_HOMUNCULUS_CLASS];
-enum { HOMUNCULUS_CLASS, HOMUNCULUS_FOOD };
-
-enum { MH_MD_FIGHTING=1, MH_MD_GRAPPLING };
 
 enum {
-	HOM_ST_ACTIVE	= 0,
-	HOM_ST_REST	= 1,
-	HOM_ST_MORPH	= 2,
+	HOMUNCULUS_CLASS,
+	HOMUNCULUS_FOOD
 };
 
 enum {
-    SP_ACK      = 0x0,
-    SP_INTIMATE = 0x1,
-    SP_HUNGRY   = 0x2,
+	MH_MD_FIGHTING = 1,
+	MH_MD_GRAPPLING
+};
+
+enum {
+	SP_ACK      = 0x0,
+	SP_INTIMATE = 0x1,
+	SP_HUNGRY   = 0x2,
+};
+
+enum homun_state {
+	HOM_ST_ACTIVE = 0,/* either alive or dead */
+	HOM_ST_REST   = 1,/* is resting (vaporized) */
+	HOM_ST_MORPH  = 2,/* in morph state */
 };
 
 struct homun_data {
@@ -105,9 +113,10 @@ enum {
     MAPID_ELANOR,
 };
 enum homun_type {
-	HT_REG	= 0x1,
-	HT_EVO	= 0x2,
-	HT_S	= 0x4,
+	HT_REG,          // Regular Homunculus
+	HT_EVO,          // Evolved Homunculus
+	HT_S,            // Homunculus S
+	HT_INVALID = -1, // Invalid Homunculus
 };
 
 #define homdb_checkid(id) (id >=  HM_CLASS_BASE && id <= HM_CLASS_MAX)
@@ -129,7 +138,7 @@ int merc_hom_levelup(struct homun_data *hd);
 int merc_hom_evolution(struct homun_data *hd);
 int hom_mutate(struct homun_data *hd,int homun_id);
 void merc_hom_heal(struct homun_data *hd);
-int merc_hom_vaporize(struct map_session_data *sd, int flag);
+int merc_hom_vaporize(struct map_session_data *sd, enum homun_state flag);
 int merc_resurrect_homunculus(struct map_session_data *sd, unsigned char per, short x, short y);
 void merc_hom_revive(struct homun_data *hd, unsigned int hp, unsigned int sp);
 void merc_reset_stats(struct homun_data *hd);

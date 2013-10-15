@@ -211,6 +211,10 @@ int storage_delitem(struct map_session_data *sd, int n, int amount)
 
 /*==========================================
  * Add an item to the storage from the inventory.
+ * @index : inventory idx
+ * return
+ *	0 : fail
+ *	1 : success
  *------------------------------------------*/
 int storage_storageadd(struct map_session_data *sd, int index, int amount)
 {
@@ -230,12 +234,18 @@ int storage_storageadd(struct map_session_data *sd, int index, int amount)
 
 	if(storage_additem(sd,&sd->status.inventory[index],amount) == 0)
 		pc_delitem(sd,index,amount,0,4,LOG_TYPE_STORAGE);
+	else
+		clif_dropitem(sd, index,0);
 
 	return 1;
 }
 
 /*==========================================
- * Retrieve an item from the storage.
+ * Retrieve an item from the storage into inventory
+ * @index : storage idx
+ * return
+ *	0 : fail
+ *	1 : success
  *------------------------------------------*/
 int storage_storageget(struct map_session_data *sd, int index, int amount)
 {
@@ -260,6 +270,10 @@ int storage_storageget(struct map_session_data *sd, int index, int amount)
 
 /*==========================================
  * Move an item from cart to storage.
+ * @index : cart inventory index
+ * return
+ *	0 : fail
+ *	1 : success
  *------------------------------------------*/
 int storage_storageaddfromcart(struct map_session_data *sd, int index, int amount)
 {
@@ -284,7 +298,11 @@ int storage_storageaddfromcart(struct map_session_data *sd, int index, int amoun
 }
 
 /*==========================================
- * Get from Storage to the Cart
+ * Get from Storage to the Cart inventory
+ * @index : storage index
+ * return
+ *	0 : fail
+ *	1 : success
  *------------------------------------------*/
 int storage_storagegettocart(struct map_session_data *sd, int index, int amount) {
 	int flag = 0;
@@ -356,6 +374,7 @@ struct guild_storage *guild2storage(int guild_id) {
 	return gs;
 }
 
+//For just locating a storage without creating one. [Skotlex]
 struct guild_storage *guild2storage2(int guild_id) {
 	//For just locating a storage without creating one. [Skotlex]
 	return (struct guild_storage *)idb_get(guild_storage_db,guild_id);
@@ -367,6 +386,13 @@ int guild_storage_delete(int guild_id)
 	return 0;
 }
 
+/*==========================================
+* Attempt to open guild storage for sd
+* return
+* 	0 : success (open or req to create a new one)
+* 	1 : fail
+*	2 : no guild for sd
+ *------------------------------------------*/
 int storage_guild_storageopen(struct map_session_data *sd)
 {
 	struct guild_storage *gstor;
@@ -595,6 +621,13 @@ int storage_guild_storageaddfromcart(struct map_session_data *sd, int index, int
 	return 1;
 }
 
+/*==========================================
+* Attempt to retrieve an item from guild storage to cart, then refresh it
+* @index : storage idx
+* return
+* 	0 : fail
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storagegettocart(struct map_session_data *sd, int index, int amount)
 {
 	struct guild_storage *stor;
@@ -620,6 +653,12 @@ int storage_guild_storagegettocart(struct map_session_data *sd, int index, int a
 	return 1;
 }
 
+/*==========================================
+* Request to save guild storage
+* return
+* 	0 : fail (no storage)
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storagesave(int account_id, int guild_id, int flag)
 {
 	struct guild_storage *stor = guild2storage2(guild_id);
@@ -634,6 +673,12 @@ int storage_guild_storagesave(int account_id, int guild_id, int flag)
 	return 0;
 }
 
+/*==========================================
+* ACK save of guild storage
+* return
+* 	0 : fail (no storage)
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storagesaved(int guild_id)
 {
 	struct guild_storage *stor;

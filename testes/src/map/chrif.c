@@ -374,7 +374,7 @@ int chrif_sendmap(int fd)
 	WFIFOHEAD(fd, 4 + instance->start_id * 4);
 	WFIFOW(fd,0) = 0x2afa;
 	for(i = 0; i < instance->start_id; i++)
-		WFIFOW(fd,4+i*4) = map[i].index;
+		WFIFOW(fd,4+i*4) = map_id2index(i);
 	WFIFOW(fd,2) = 4 + i * 4;
 	WFIFOSET(fd,WFIFOW(fd,2));
 
@@ -1127,9 +1127,9 @@ int chrif_updatefamelist(struct map_session_data *sd)
 	chrif_check(-1);
 
 	switch(sd->class_ & MAPID_UPPERMASK) {
-		case MAPID_BLACKSMITH: type = 1; break;
-		case MAPID_ALCHEMIST:  type = 2; break;
-		case MAPID_TAEKWON:    type = 3; break;
+		case MAPID_BLACKSMITH: type = RANKTYPE_BLACKSMITH; break;
+		case MAPID_ALCHEMIST:  type = RANKTYPE_ALCHEMIST;  break;
+		case MAPID_TAEKWON:    type = RANKTYPE_TAEKWON;    break;
 		default:
 			return 0;
 	}
@@ -1204,9 +1204,9 @@ int chrif_updatefamelist_ack(int fd)
 	uint8 index;
 
 	switch(RFIFOB(fd,2)) {
-		case 1: list = smith_fame_list;   break;
-		case 2: list = chemist_fame_list; break;
-		case 3: list = taekwon_fame_list; break;
+		case RANKTYPE_BLACKSMITH: list = smith_fame_list;   break;
+		case RANKTYPE_ALCHEMIST:  list = chemist_fame_list; break;
+		case RANKTYPE_TAEKWON:    list = taekwon_fame_list; break;
 		default: return 0;
 	}
 
@@ -1653,21 +1653,21 @@ int chrif_removefriend(int char_id, int friend_id)
 	return 0;
 }
 
-int chrif_send_report(char* buf, int len) {
+void chrif_send_report(char* buf, int len) {
 
 #ifndef STATS_OPT_OUT
-	chrif_check(-1);
-	WFIFOHEAD(char_fd,len + 2);
+	if(char_fd) {
+		WFIFOHEAD(char_fd,len + 2);
 
-	WFIFOW(char_fd,0) = 0x3008;
+		WFIFOW(char_fd,0) = 0x3008;
 
-	memcpy(WFIFOP(char_fd,2), buf, len);
+		memcpy(WFIFOP(char_fd,2), buf, len);
 
-	WFIFOSET(char_fd,len + 2);
+		WFIFOSET(char_fd,len + 2);
 
-	flush_fifo(char_fd); /* ensure it's sent now. */
+		flush_fifo(char_fd); /* ensure it's sent now. */
+	}
 #endif
-	return 0;
 }
 
 /**

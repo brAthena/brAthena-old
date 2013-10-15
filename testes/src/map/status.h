@@ -1923,11 +1923,10 @@ signed short status_calc_def2(struct block_list *,struct status_change *, int, b
 defType status_calc_mdef(struct block_list *bl, struct status_change *sc, int, bool);
 signed short status_calc_mdef2(struct block_list *,struct status_change *, int, bool);
 
-#if VERSION == 1
 unsigned short status_calc_batk(struct block_list *, struct status_change *, int, bool);
 unsigned short status_base_matk(const struct status_data *status, int level);
+short status_calc_aspd(struct block_list *bl, struct status_change *sc, short flag);
 int status_get_weapon_atk(struct block_list *src, struct weapon_atk *watk, int flag);
-#endif
 int status_get_total_mdef(struct block_list *src);
 int status_get_total_def(struct block_list *src);
 

@@ -691,3 +691,13 @@ CREATE TABLE IF NOT EXISTS `interreg` (
 ) ENGINE=InnoDB;
 INSERT INTO `interreg` (`varname`, `value`) VALUES
 ('unique_id', '0');
+
+--
+-- Estrutura da tabela `account_data`
+--
+
+CREATE TABLE IF NOT EXISTS `account_data` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `bank_vault` int(11) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`account_id`)
+) ENGINE=MyISAM; 

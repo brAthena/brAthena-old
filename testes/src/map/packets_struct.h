@@ -29,6 +29,9 @@ struct EQUIPSLOTINFO {
  *
  **/
 enum packet_headers {
+	banking_withdraw_ackType = 0x9aa,
+	banking_deposit_ackType = 0x9a8,
+	banking_checkType = 0x9a6,
 	cart_additem_ackType = 0x12c,
 	sc_notickType = 0x196,
 #if PACKETVER < 20061218
@@ -191,7 +194,9 @@ struct packet_dropflooritem {
 #if PACKETVER < 20091103
 struct packet_idle_unit2 {
 	short PacketType;
+#if PACKETVER >= 20071106
 	unsigned char objecttype;
+#endif
 	unsigned int GID;
 	short speed;
 	short bodyState;
@@ -221,7 +226,9 @@ struct packet_idle_unit2 {
 } __attribute__((packed));
 struct packet_spawn_unit2 {
 	short PacketType;
+#if PACKETVER >= 20071106
 	unsigned char objecttype;
+#endif
 	unsigned int GID;
 	short speed;
 	short bodyState;
@@ -242,7 +249,6 @@ struct packet_spawn_unit2 {
 	unsigned char PosDir[3];
 	unsigned char xSize;
 	unsigned char ySize;
-	short clevel;
 } __attribute__((packed));
 #endif
 struct packet_spawn_unit {
@@ -308,14 +314,14 @@ struct packet_unit_walking {
 #if PACKETVER >= 20091103
 	short PacketLength;
 #endif
-#if PACKETVER > 7
+#if PACKETVER > 20071106
 	unsigned char objecttype;
 #endif
 	unsigned int GID;
 	short speed;
 	short bodyState;
 	short healthState;
-#if PACKETVER < 20080102
+#if PACKETVER < 7
 	short effectState;
 #else
 	int effectState;
@@ -461,18 +467,18 @@ struct packet_maptypeproperty2 {
 	short PacketType;
 	short type;
 	struct {
-		unsigned int party					: 1;
-		unsigned int guild					: 1;
-		unsigned int siege					: 1;
-		unsigned int mineffect				: 1;
-		unsigned int nolockon				: 1;
-		unsigned int countpk				: 1;
-		unsigned int nopartyformation		: 1;
-		unsigned int bg						: 1;
-		unsigned int noitemconsumption		: 1;
-		unsigned int usecart				: 1;
-		unsigned int summonstarmiracle		: 1;
-		unsigned int SpareBits				: 15;
+		unsigned int party             : 1;  /// Exibe cursor de ataque para membros que não são do grupo em (PvP)
+		unsigned int guild             : 1;  /// Exibe cursor de ataque para membros que não são do clã em (GvG)
+		unsigned int siege             : 1;  /// Exibe emblema sobre a cabeça dos personagens quando em GvG (Castelo de WoE)
+		unsigned int mineffect         : 1;  /// Habilitar automaticamente /mineffect
+		unsigned int nolockon          : 1;  /// Exibe o cursor de ataque para membros sem partido
+		unsigned int countpk           : 1;  /// Exibe o contador de PvP
+		unsigned int nopartyformation  : 1;  /// Impede a criação/modificação do grupo
+		unsigned int bg                : 1;  /// Exibe cursor de ataque para membros que não são do grupo da (BG)
+		unsigned int noitemconsumption : 1;  /// Exibe uma mensagem "Nada encontrado no mapa selecionado" quando definida
+		unsigned int usecart           : 1;  /// Permitir abrir ou bloqueia o inventário do carrinho
+		unsigned int summonstarmiracle : 1;  /// Permitir ou bloquear que Milagre do Mestre Taekwon
+		unsigned int SpareBits         : 15; /// Ignorado, reservado para futuras atualizações
 	} flag;
 } __attribute__((packed));
 
@@ -547,6 +553,38 @@ struct packet_package_item_announce {
 struct packet_cart_additem_ack {
 	short PacketType;
 	char result;
+} __attribute__((packed));
+
+struct packet_banking_check {
+	short PacketType;
+	int64 Money;
+	short Reason;
+} __attribute__((packed));
+
+struct packet_banking_deposit_req {
+	short PacketType;
+	unsigned int AID;
+	int Money;
+} __attribute__((packed));
+
+struct packet_banking_withdraw_req {
+	short PacketType;
+	unsigned int AID;
+	int Money;
+} __attribute__((packed));
+
+struct packet_banking_deposit_ack {
+	short PacketType;
+	short Reason;
+	int64 Money;
+	int Balance;
+} __attribute__((packed));
+
+struct packet_banking_withdraw_ack {
+	short PacketType;
+	short Reason;
+	int64 Money;
+	int Balance;
 } __attribute__((packed));
 
 #pragma pack(pop)

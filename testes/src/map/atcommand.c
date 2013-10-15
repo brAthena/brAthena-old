@@ -1099,9 +1099,9 @@ ACMD_FUNC(kami)
 
 		sscanf(message, "%199[^\n]", atcmd_output);
 		if(strstr(command, "l") != NULL)
-			clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, 0, ALL_SAMEMAP);
+			clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
 		else
-			intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, (*(command + 5) == 'b' || *(command + 5) == 'B') ? 0x10 : 0);
+			intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, (*(command + 5) == 'b' || *(command + 5) == 'B') ? BC_BLUE : BC_YELLOW);
 	} else {
 		if(!message || !*message || (sscanf(message, "%lx %199[^\n]", &color, atcmd_output) < 2)) {
 			clif_displaymessage(fd, msg_txt(981)); // Please enter color and message (usage: @kamic <color> <message>).
@@ -3923,8 +3923,8 @@ ACMD_FUNC(mapinfo)
 	/**
 	 * No longer available, keeping here just in case it's back someday. [Ind]
 	 **/
-	//if (map[m_id].flag.rain)
-	//  strcat(atcmd_output, msg_txt(1079)); // Rain |
+	if(map[m_id].flag.rain)
+	  strcat(atcmd_output, msg_txt(1079)); // Rain |
 	if(map[m_id].flag.nightenabled)
 		strcat(atcmd_output, msg_txt(1080)); // Displays Night |
 	clif_displaymessage(fd, atcmd_output);
@@ -4269,7 +4269,7 @@ ACMD_FUNC(tonpc)
 	}
 
 	if((nd = npc_name2id(npcname)) != NULL) {
-		if(pc_setpos(sd, map_id2index(nd->bl.m), nd->bl.x, nd->bl.y, CLR_TELEPORT) == 0)
+		if(nd->bl.m != -1 && pc_setpos(sd, map_id2index(nd->bl.m), nd->bl.x, nd->bl.y, CLR_TELEPORT) == 0)
 			clif_displaymessage(fd, msg_txt(0)); // Warped.
 		else
 			return -1;
@@ -4986,7 +4986,7 @@ ACMD_FUNC(broadcast)
 	}
 
 	sprintf(atcmd_output, "%s: %s", sd->status.name, message);
-	intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, 0);
+	intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT);
 
 	return 0;
 }
@@ -5007,7 +5007,7 @@ ACMD_FUNC(localbroadcast)
 
 	sprintf(atcmd_output, "%s: %s", sd->status.name, message);
 
-	clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, 0, ALL_SAMEMAP);
+	clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
 
 	return 0;
 }
@@ -5890,20 +5890,20 @@ ACMD_FUNC(autolootitem)
 /*==========================================
  * It is made to rain.
  *------------------------------------------*/
-//ACMD_FUNC(rain)
-//{
-//	nullpo_retr(-1, sd);
-//	if (map[sd->bl.m].flag.rain) {
-//		map[sd->bl.m].flag.rain=0;
-//		clif_weather(sd->bl.m);
-//		clif_displaymessage(fd, msg_txt(1201)); // The rain has stopped.
-//	} else {
-//		map[sd->bl.m].flag.rain=1;
-//		clif_weather(sd->bl.m);
-//		clif_displaymessage(fd, msg_txt(1202)); // It has started to rain.
-//	}
-//	return 0;
-//}
+ACMD_FUNC(rain)
+{
+	nullpo_retr(-1, sd);
+	if (map[sd->bl.m].flag.rain) {
+		map[sd->bl.m].flag.rain=0;
+		clif_weather(sd->bl.m);
+		clif_displaymessage(fd, msg_txt(1201)); // The rain has stopped.
+	} else {
+		map[sd->bl.m].flag.rain=1;
+		clif_weather(sd->bl.m);
+		clif_displaymessage(fd, msg_txt(1202)); // It has started to rain.
+	}
+	return 0;
+}
 
 /*==========================================
  * It is made to snow.
@@ -6045,7 +6045,7 @@ ACMD_FUNC(clearweather)
 	/**
 	 * No longer available, keeping here just in case it's back someday. [Ind]
 	 **/
-	//map[sd->bl.m].flag.rain=0;
+	map[sd->bl.m].flag.rain=0;
 	map[sd->bl.m].flag.snow=0;
 	map[sd->bl.m].flag.sakura=0;
 	map[sd->bl.m].flag.clouds=0;
@@ -6886,7 +6886,7 @@ ACMD_FUNC(homlevel)
 	if (hd->homunculus.level >= nooverflow) // Already reach maximum level
 		return -1;
 
-	if((htype = hom_class2type(hd->homunculus.class_)) == -1) {
+	if((htype = hom_class2type(hd->homunculus.class_)) == HT_INVALID) {
 		ShowError("atcommand_homlevel: invalid homun class %d (player %s)\n", hd->homunculus.class_,sd->status.name);
 		return -1;
 	}
@@ -6961,7 +6961,7 @@ ACMD_FUNC(hommutate)
 	m_class = hom_class2mapid(sd->hd->homunculus.class_);
 	m_id    = hom_class2mapid(homun_id);
 
-	if(m_class != -1 && m_id != -1 && m_class&HOM_EVO && m_id&HOM_S && sd->hd->homunculus.level >= 99) {
+	if(m_class != HT_INVALID && m_id != HT_INVALID && m_class == HOM_EVO && m_id == HOM_S && sd->hd->homunculus.level >= 99) {
 		hom_mutate(sd->hd, homun_id);
 	} else {
 		clif_emotion(&sd->hd->bl, E_SWT);
@@ -8105,6 +8105,11 @@ ACMD_FUNC(feelreset)
 ACMD_FUNC(auction)
 {
 	nullpo_ret(sd);
+
+	if(!battle_config.feature_auction) {
+		clif_colormes(sd->fd,COLOR_RED,msg_txt(1486));
+		return 1;
+	}
 
 	clif_Auction_openwindow(sd);
 
@@ -9646,6 +9651,7 @@ void atcommand_basecommands(void)
 		ACMD_DEF(skillid),
 		ACMD_DEF(useskill),
 		ACMD_DEF(displayskill),
+		ACMD_DEF(rain),
 		ACMD_DEF(snow),
 		ACMD_DEF(sakura),
 		ACMD_DEF(clouds),

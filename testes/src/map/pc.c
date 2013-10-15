@@ -360,21 +360,17 @@ int pc_banding(struct map_session_data *sd, uint16 skill_lv)
 // Increases a player's fame points and displays a notice to him
 void pc_addfame(struct map_session_data *sd,int count)
 {
+	int ranktype = -1;
 	nullpo_retv(sd);
 	sd->status.fame += count;
 	if(sd->status.fame > MAX_FAME)
 		sd->status.fame = MAX_FAME;
-	switch(sd->class_&MAPID_UPPERMASK) {
-		case MAPID_BLACKSMITH: // Blacksmith
-			clif_fame_blacksmith(sd,count);
-			break;
-		case MAPID_ALCHEMIST: // Alchemist
-			clif_fame_alchemist(sd,count);
-			break;
-		case MAPID_TAEKWON: // Taekwon
-			clif_fame_taekwon(sd,count);
-			break;
+	switch(sd->class_&MAPID_UPPERMASK){
+		case MAPID_BLACKSMITH: ranktype = RANKTYPE_BLACKSMITH; break;
+		case MAPID_ALCHEMIST:  ranktype = RANKTYPE_ALCHEMIST; break;
+		case MAPID_TAEKWON: ranktype = RANKTYPE_TAEKWON; break;
 	}
+	clif->update_rankingpoint(sd, ranktype, count);
 	chrif_updatefamelist(sd);
 }
 
@@ -4078,7 +4074,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	}
 	switch(nameid) { //@TODO, lot oh harcoded nameid here
 		case 605: // Anodyne
-			if(map_flag_gvg(sd->bl.m))
+			if(map_flag_gvg2(sd->bl.m))
 				return 0;
 		case 606:
 			if(pc_issit(sd))
@@ -4086,7 +4082,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 			break;
 		case 601: // Fly Wing
 		case 12212: // Giant Fly Wing
-			if(map[sd->bl.m].flag.noteleport || map_flag_gvg(sd->bl.m)) {
+			if(map[sd->bl.m].flag.noteleport || map_flag_gvg2(sd->bl.m)) {
 				clif_skill_mapinfomessage(sd,0);
 				return 0;
 			}
@@ -4110,7 +4106,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		case 12024: // Red Pouch
 		case 12103: // Bloody Branch
 		case 12109: // Poring Box
-			if(map[sd->bl.m].flag.nobranch || map_flag_gvg(sd->bl.m))
+			if(map[sd->bl.m].flag.nobranch || map_flag_gvg2(sd->bl.m))
 				return 0;
 			break;
 		case 12210: // Bubble Gum
@@ -4631,7 +4627,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 		char message[128];
 		sprintf(message, msg_txt(542), (sd->status.name != NULL)?sd->status.name :"GM", md->db->jname, data->jname, (float)md->db->dropitem[i].p/100);
 		//MSG: "'%s' stole %s's %s (chance: %0.02f%%)"
-		intif_broadcast(message,strlen(message)+1,0);
+		intif_broadcast(message,strlen(message)+1, BC_DEFAULT);
 	}
 	return 1;
 }
@@ -4708,7 +4704,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			}
 			if(i != sd->instances) {
 				m = instances[sd->instance[i]].map[j];
-				mapindex = map[m].index;
+				mapindex = map_id2index(m);
 				stop = true;
 			}
 		}
@@ -4722,7 +4718,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			}
 			if(i != p->instances) {
 				m = instances[p->instance[i]].map[j];
-				mapindex = map[m].index;
+				mapindex = map_id2index(m);
 				stop = true;
 			}
 		}
@@ -4736,7 +4732,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			}
 			if(i != sd->guild->instances) {
 				m = instances[sd->guild->instance[i]].map[j];
-				mapindex = map[m].index;
+				mapindex = map_id2index(m);
 				stop = true;
 			}
 		}
@@ -4892,8 +4888,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
  *  0 = fail or FIXME success (from pc_setpos)
  *  x(1|2) = fail
  *------------------------------------------*/
-int pc_randomwarp(struct map_session_data *sd, clr_type type)
-{
+int pc_randomwarp(struct map_session_data *sd, clr_type type) {
 	int x,y,i=0;
 	int16 m;
 
@@ -4907,10 +4902,10 @@ int pc_randomwarp(struct map_session_data *sd, clr_type type)
 	do {
 		x=rnd()%(map[m].xs-2)+1;
 		y=rnd()%(map[m].ys-2)+1;
-	} while(map_getcell(m,x,y,CELL_CHKNOPASS) && (i++)<1000);
+	} while(map_getcell(m,x,y,CELL_CHKNOPASS) && (i++) < 1000);
 
 	if(i < 1000)
-		return pc_setpos(sd,map[sd->bl.m].index,x,y,type);
+		return pc_setpos(sd,map_id2index(sd->bl.m),x,y,type);
 
 	return 0;
 }
@@ -5588,7 +5583,7 @@ const char *job_name(int class_)
 			return msg_txt(653 - JOB_KAGEROU+class_);
 
 		case JOB_REBELLION:
-			return msg_txt(619 - JOB_REBELLION+class_);
+			return msg_txt(694);
 
 		default:
 			return msg_txt(655);
@@ -6846,7 +6841,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			if(battle_config.pc_invincible_time)
 				pc_setinvincibletimer(sd, battle_config.pc_invincible_time);
 			sc_start(&sd->bl,status_skill2sc(MO_STEELBODY),100,1,skill_get_time(MO_STEELBODY,1));
-			if(map_flag_gvg(sd->bl.m))
+			if(map_flag_gvg2(sd->bl.m))
 				pc_respawn_timer(INVALID_TIMER, gettick(), sd->bl.id, 0);
 			return 0;
 		}
@@ -6855,7 +6850,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	// changed penalty options, added death by player if pk_mode [Valaris]
 	if(battle_config.death_penalty_type
 	   && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE // only novices will receive no penalty
-	   && !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg(sd->bl.m)
+	   && !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg2(sd->bl.m)
 	   && !sd->sc.data[SC_BABY] && !sd->sc.data[SC_CASH_DEATHPENALTY]) {
 		unsigned int base_penalty =0;
 		if(bra_config.enable_system_vip && pc_isvip(sd)) {
@@ -6960,13 +6955,13 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			ssd->pvp_won++;
 		}
 		if(sd->pvp_point < 0) {
-			add_timer(tick+1000, pc_respawn_timer,sd->bl.id,0);
+			add_timer(tick+1, pc_respawn_timer,sd->bl.id,0);
 			return 1|8;
 		}
 	}
 	//GvG
-	if(map_flag_gvg(sd->bl.m)) {
-		add_timer(tick+1000, pc_respawn_timer, sd->bl.id, 0);
+	if(map_flag_gvg2(sd->bl.m)) {
+		add_timer(tick+1, pc_respawn_timer, sd->bl.id, 0);
 		return 1|8;
 	} else if(sd->bg_id) {
 		struct battleground_data *bg = bg_team_search(sd->bg_id);
@@ -9305,7 +9300,7 @@ int map_day_timer(int tid, unsigned int tick, int id, intptr_t data)
 	night_flag = 0; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(502) : msg_txt(60)); // The day has arrived!
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, 0);
+	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -9326,7 +9321,7 @@ int map_night_timer(int tid, unsigned int tick, int id, intptr_t data)
 	night_flag = 1; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(503) : msg_txt(59)); // The night has fallen...
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, 0);
+	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -9596,6 +9591,8 @@ void pc_read_skill_tree(void) {
 	const char *config_filename = "db/skill_tree_ot.conf"; // FIXME hardcoded name
 #endif
 	int i = 0, jnamelen = 0, skillid = 0;
+	struct s_mapiterator *iter;
+	struct map_session_data *sd;
 	struct {
 		const char *name;
 		int id;
@@ -9845,6 +9842,11 @@ void pc_read_skill_tree(void) {
 	ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", skillid, config_filename);
 	config_destroy(&skill_tree_conf);
 
+    /* lets update all players skill tree */
+    iter = mapit_getallusers();
+    for(sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
+        clif_skillinfoblock(sd);
+    mapit_free(iter);
 }
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
 static bool pc_readdb_levelpenalty(char *fields[], int columns, int current)
@@ -10177,6 +10179,52 @@ void pc_itemcd_do(struct map_session_data *sd, bool load)
 	}
 	return;
 }
+
+void pc_bank_deposit(struct map_session_data *sd, int money) {
+	unsigned int limit_check = money+sd->status.bank_vault;
+
+	if(money <= 0 || limit_check > MAX_BANK_ZENY) {
+		clif->bank_deposit(sd,BDA_OVERFLOW);
+		return;
+	} else if (money > sd->status.zeny) {
+		clif->bank_deposit(sd,BDA_NO_MONEY);
+		return;
+	}
+
+	if(pc_payzeny(sd,money, LOG_TYPE_BANK, NULL))
+		clif->bank_deposit(sd,BDA_NO_MONEY);
+	else {
+		sd->status.bank_vault += money;
+		if(save_settings&256)
+			chrif_save(sd,0);
+		clif->bank_deposit(sd,BDA_SUCCESS);
+	}
+}
+void pc_bank_withdraw(struct map_session_data *sd, int money) {
+	unsigned int limit_check = money+sd->status.zeny;
+
+	if(money <= 0) {
+		clif->bank_withdraw(sd,BWA_UNKNOWN_ERROR);
+		return;
+	} else if (money > sd->status.bank_vault) {
+		clif->bank_withdraw(sd,BWA_NO_MONEY);
+		return;
+	} else if (limit_check > MAX_ZENY) {
+		/* nenhuma resposta oficial para este cenário existente. */
+		clif_colormes(sd->fd,COLOR_RED,msg_txt(1484));
+		return;
+	}
+
+	if(pc_getzeny(sd,money, LOG_TYPE_BANK, NULL) )
+		clif->bank_withdraw(sd,BWA_NO_MONEY);
+	else {
+		sd->status.bank_vault -= money;
+		if(save_settings&256)
+			chrif_save(sd,0);
+		clif->bank_withdraw(sd,BWA_SUCCESS);
+	}
+}
+
 /*==========================================
  * pc Init/Terminate
  *------------------------------------------*/

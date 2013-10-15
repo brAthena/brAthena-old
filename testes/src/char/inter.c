@@ -477,7 +477,7 @@ void mapif_parse_accinfo(int fd)
 	account_id = atoi(query);
 
 	if(account_id < START_ACCOUNT_NUM) {    // is string
-		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `account_id`,`name`,`class`,`base_level`,`job_level`,`online` FROM `char` WHERE `name` LIKE '%s' LIMIT 10", query_esq)
+		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `account_id`,`name`,`class`,`base_level`,`job_level`,`online` FROM `%s` WHERE `name` LIKE '%s' LIMIT 10", char_db, query_esq)
 		   || Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
 				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s1"), query);
@@ -519,6 +519,7 @@ void mapif_parse_accinfo(int fd)
 		char userid[NAME_LENGTH], user_pass[NAME_LENGTH], email[40], last_ip[20], lastlogin[30], pincode[5], birthdate[11];
 		short level = -1;
 		int logincount = 0,state = 0;
+		// FIXME: No, this doesn't really look right.  We can't, and shouldn't, access the login table from the char server.
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `userid`, `user_pass`, `email`, `last_ip`, `group_id`, `lastlogin`, `logincount`, `state`,`pincode`,`birthdate` FROM `login` WHERE `account_id` = '%d' LIMIT 1", account_id)
 		   || Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
@@ -549,11 +550,12 @@ void mapif_parse_accinfo(int fd)
 		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s7"), account_id);
 		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s8"), userid, level, state);
 
-		if(level < castergroup)  /* only show pass if your gm level is greater than the one you're searching for */
+		if(level < castergroup) {  /* only show pass if your gm level is greater than the one you're searching for */
 			if(strlen(pincode))
 				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s17"), user_pass, pincode);
 			else
 				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s9"), user_pass);
+			}
 
 
 		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s10"), email, birthdate);
@@ -562,8 +564,8 @@ void mapif_parse_accinfo(int fd)
 		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s13"));
 
 
-		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`, `name`, `char_num`, `class`, `base_level`, `job_level`, `online` FROM `char` WHERE `account_id` = '%d' ORDER BY `char_num` LIMIT %d", account_id, MAX_CHARS)
-		   || Sql_NumRows(sql_handle) == 0) {
+		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`, `name`, `char_num`, `class`, `base_level`, `job_level`, `online` FROM `%s` WHERE `account_id` = '%d' ORDER BY `char_num` LIMIT %d", char_db, account_id, MAX_CHARS)
+				|| Sql_NumRows(sql_handle) == 0) {
 
 			if(Sql_NumRows(sql_handle) == 0)
 				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s14"));

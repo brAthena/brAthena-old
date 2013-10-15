@@ -101,7 +101,7 @@ int hom_class2mapid(int hom_class)
 		case 6051:                           return MAPID_DIETER;
 		case 6052:                           return MAPID_ELANOR;
 
-		default:                             return -1;
+		default:                             return HT_INVALID;
 	}
 }
 
@@ -171,14 +171,14 @@ int merc_hom_dead(struct homun_data *hd)
 }
 
 //Vaporize a character's homun. If flag == 1 then HP needs to be 80% or above, if flag == 2 then set to morph state.
-int merc_hom_vaporize(struct map_session_data *sd, int flag)
+int merc_hom_vaporize(struct map_session_data *sd, enum homun_state flag)
 {
 	struct homun_data *hd;
 
 	nullpo_ret(sd);
 
 	hd = sd->hd;
-	if(!hd || hd->homunculus.vaporize)
+	if(!hd || hd->homunculus.vaporize != HOM_ST_ACTIVE)
 		return 0;
 
 	if(status_isdead(&hd->bl))
@@ -190,7 +190,7 @@ int merc_hom_vaporize(struct map_session_data *sd, int flag)
 	hd->regen.state.block = 3; //Block regen while vaporized.
 	//Delete timers when vaporized.
 	merc_hom_hungry_timer_delete(hd);
-	hd->homunculus.vaporize = flag ? flag : HOM_ST_REST;
+	hd->homunculus.vaporize = flag;
 	if(battle_config.hom_setting&0x40)
 		memset(hd->blockskill, 0, sizeof(hd->blockskill));
 	clif_hominfo(sd, sd->hd, 0);
@@ -303,7 +303,7 @@ void merc_hom_skillup(struct homun_data *hd,uint16 skill_id)
 	int i = 0 ;
 	nullpo_retv(hd);
 
-	if(hd->homunculus.vaporize)
+	if(hd->homunculus.vaporize != HOM_ST_ACTIVE)
 		return;
 
 	i = skill_id - HM_SKILLBASE;
@@ -331,7 +331,7 @@ int merc_hom_levelup(struct homun_data *hd)
 	int growth_max_hp, growth_max_sp ;
 	int m_class;
 
-	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
+	if((m_class = hom_class2mapid(hd->homunculus.class_)) == HT_INVALID) {
 		ShowError(read_message("Source.map.map_homunculus_s1"), hd->homunculus.class_);
 		return 0;
 	}
@@ -463,7 +463,7 @@ int hom_mutate(struct homun_data *hd, int homun_id)
 	m_class = hom_class2mapid(hd->homunculus.class_);
 	m_id    = hom_class2mapid(homun_id);
 
-	if(m_class == -1 || m_id == -1 || !(m_class&HOM_EVO) || !(m_id&HOM_S)) {
+	if(m_class == HT_INVALID || m_id == HT_INVALID || m_class != HOM_EVO || m_id != HOM_S) {
 		clif_emotion(&hd->bl, E_SWT);
 		return 0;
 	}
@@ -504,10 +504,10 @@ int merc_hom_gainexp(struct homun_data *hd,int exp)
 {
 	int m_class;
 
-	if(hd->homunculus.vaporize)
+	if(hd->homunculus.vaporize != HOM_ST_ACTIVE)
 		return 1;
 
-	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
+	if((m_class = hom_class2mapid(hd->homunculus.class_)) == HT_INVALID) {
 		ShowError(read_message("Source.map.map_homunculus_s5"), hd->homunculus.class_);
 		return 0;
 	}
@@ -605,7 +605,7 @@ int merc_hom_food(struct map_session_data *sd, struct homun_data *hd)
 {
 	int i, foodID, emotion;
 
-	if(hd->homunculus.vaporize)
+	if(hd->homunculus.vaporize == HOM_ST_REST)
 		return 1 ;
 
 	foodID = hd->homunculusDB->foodID;
@@ -828,7 +828,7 @@ int merc_call_homunculus(struct map_session_data *sd)
 
 	hd = sd->hd;
 
-	if(!hd->homunculus.vaporize)
+	if(!hd->homunculus.vaporize != HOM_ST_REST)
 		return 0; //Can't use this if homun wasn't vaporized.
 
 	if (hd->homunculus.vaporize == HOM_ST_MORPH)
@@ -884,7 +884,7 @@ int merc_hom_recv_data(int account_id, struct s_homunculus *sh, int flag)
 		merc_hom_alloc(sd, sh);
 
 	hd = sd->hd;
-	if(hd && hd->homunculus.hp && !hd->homunculus.vaporize && hd->bl.prev == NULL && sd->bl.prev != NULL) {
+	if(hd && hd->homunculus.hp && hd->homunculus.vaporize == HOM_ST_ACTIVE && hd->bl.prev == NULL && sd->bl.prev != NULL) {
 		map_addblock(&hd->bl);
 		clif_spawn(&hd->bl);
 		clif_send_homdata(sd,SP_ACK,0);
@@ -946,7 +946,7 @@ int merc_resurrect_homunculus(struct map_session_data *sd, unsigned char per, sh
 
 	hd = sd->hd;
 
-	if(hd->homunculus.vaporize == HOM_ST_REST)
+	if(hd->homunculus.vaporize != HOM_ST_ACTIVE)
 		return 0; // vaporized homunculi need to be 'called'
 
 	if(!status_isdead(&hd->bl))

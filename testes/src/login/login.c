@@ -1397,7 +1397,7 @@ int parse_login(int fd)
 				{
 					uint32 version;
 					char username[NAME_LENGTH];
-					char password[NAME_LENGTH];
+					char password[PASSWD_LEN];
 					unsigned char passhash[16];
 					uint8 clienttype;
 					bool israwpass = (command==0x0064 || command==0x0277 || command==0x02b0 || command == 0x0825);
@@ -1411,13 +1411,13 @@ int parse_login(int fd)
 
 						version = RFIFOL(fd,4);
 
-						if(uAccLen > NAME_LENGTH - 1 || uAccLen <= 0 || uTokenLen > NAME_LENGTH - 1  || uTokenLen <= 0) {
+						if(uAccLen <= 0 || uTokenLen <= 0) {
 							login_auth_failed(sd, 3);
 							return 0;
 						}
 
-						safestrncpy(username, accname, uAccLen + 1);
-						safestrncpy(password, token, uTokenLen + 1);
+						safestrncpy(username, accname, NAME_LENGTH);
+						safestrncpy(password, token, PASSWD_LEN);
 						clienttype = RFIFOB(fd, 8);
 					} else {
 						version = RFIFOL(fd,2);
@@ -1437,7 +1437,7 @@ int parse_login(int fd)
 					safestrncpy(sd->userid, username, NAME_LENGTH);
 					if(israwpass) {
 						ShowStatus(read_message("Source.login.login_parse_login_s2"), sd->userid, ip);
-						safestrncpy(sd->passwd, password, NAME_LENGTH);
+						safestrncpy(sd->passwd, password, PASSWD_LEN);
 						if(login_config.use_md5_passwds)
 							MD5_String(sd->passwd, sd->passwd);
 						sd->passwdenc = 0;

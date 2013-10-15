@@ -1875,6 +1875,10 @@ enum {
     UNT_FLAMECROSS,
     UNT_HELLBURNING,
     UNT_MAGMA_ERUPTION,
+    UNT_KINGS_GRACE,
+    UNT_GLITTERING_GREED,
+    UNT_B_TRAP,
+    UNT_FIRE_RAIN,
 
     /**
      * Guild Auras

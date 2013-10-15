@@ -480,8 +480,7 @@ struct mob_data *mob_once_spawn_sub(struct block_list *bl, int16 m, int16 x, int
 /*==========================================
  * Spawn a single mob on the specified coordinates.
  *------------------------------------------*/
-int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const char *mobname, int class_, int amount, const char *event, unsigned int size, unsigned int ai)
-{
+int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const char *mobname, int class_, int amount, const char *event, unsigned int size, unsigned int ai) {
 	struct mob_data *md = NULL;
 	int count, lv;
 
@@ -498,7 +497,7 @@ int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const
 			continue;
 
 		if(class_ == MOBID_EMPERIUM) {
-			struct guild_castle *gc = guild_mapindex2gc(map[m].index);
+			struct guild_castle *gc = guild_mapindex2gc(map_id2index(m));
 			struct guild *g = (gc) ? guild_search(gc->guild_id) : NULL;
 			if(gc) {
 				md->guardian_data = (struct guardian_data *)aCalloc(1, sizeof(struct guardian_data));
@@ -515,10 +514,11 @@ int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const
 
 		mob_spawn(md);
 
-		if(class_ < 0 && battle_config.dead_branch_active)
+		if(class_ < 0 && battle_config.dead_branch_active) {
 			//Behold Aegis's masterful decisions yet again...
 			//"I understand the "Aggressive" part, but the "Can Move" and "Can Attack" is just stupid" - Poki#3
 			sc_start4(&md->bl, SC_MODECHANGE, 100, 1, 0, MD_AGGRESSIVE|MD_CANATTACK|MD_CANMOVE|MD_ANGRY, 0, 60000);
+		}
 	}
 
 	return (md) ? md->bl.id : 0; // id of last spawned mob
@@ -1181,7 +1181,7 @@ static int mob_warpchase_sub(struct block_list *bl,va_list ap)
 	if(nd->subtype != WARP)
 		return 0; //Not a warp
 
-	if(nd->u.warp.mapindex != map[target->m].index)
+	if(nd->u.warp.mapindex != map_id2index(target->m))
 		return 0; //Does not lead to the same map.
 
 	cur_distance = distance_blxy(target, nd->u.warp.x, nd->u.warp.y);
@@ -2353,7 +2353,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				char message[128];
 				sprintf(message, msg_txt(541), mvp_sd->status.name, md->name, it->jname, (float)drop_rate/100);
 				//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
-				intif_broadcast(message,strlen(message)+1,0);
+				intif_broadcast(message,strlen(message)+1, BC_DEFAULT);
 			}
 			// Announce first, or else ditem will be freed. [Lance]
 			// By popular demand, use base drop rate for autoloot code. [Skotlex]
@@ -2490,7 +2490,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 					char message[128];
 					sprintf(message, msg_txt(541), mvp_sd->status.name, md->name, data->jname, temp/100.);
 					//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
-					intif_broadcast(message,strlen(message)+1,0);
+					intif_broadcast(message,strlen(message)+1, BC_DEFAULT);
 				}
 
 				if((temp = pc_additem(mvp_sd,&item,1,LOG_TYPE_PICKDROP_PLAYER)) != 0) {
@@ -2776,7 +2776,7 @@ int mob_warpslave_sub(struct block_list *bl,va_list ap)
 		return 0;
 
 	map_search_freecell(master, 0, &x, &y, range, range, 0);
-	unit_warp(&md->bl, master->m, x, y,CLR_RESPAWN);
+	unit_warp(&md->bl, master->m, x, y,CLR_TELEPORT);
 	return 1;
 }
 

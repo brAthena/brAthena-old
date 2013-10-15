@@ -60,6 +60,7 @@
 #include "atcommand.h"
 #include "log.h"
 #include "mail.h"
+#include "vending.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -265,26 +266,29 @@ int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/
 static struct block_list bl_head;
 
-#ifdef CELL_NOSTACK
 /*==========================================
  * These pair of functions update the counter of how many objects
  * lie on a tile.
  *------------------------------------------*/
-static void map_addblcell(struct block_list *bl)
-{
-	if(bl->m<0 || bl->x<0 || bl->x>=map[bl->m].xs || bl->y<0 || bl->y>=map[bl->m].ys || !(bl->type&BL_CHAR))
+void map_addblcell(struct block_list *bl) {
+#ifdef CELL_NOSTACK
+	if(bl->m < 0 || bl->x < 0 || bl->x >= map[bl->m].xs || bl->y < 0 || bl->y >= map[bl->m].ys || !(bl->type&BL_CHAR))
 		return;
 	map[bl->m].cell[bl->x+bl->y*map[bl->m].xs].cell_bl++;
+#else
 	return;
+#endif
 }
 
-static void map_delblcell(struct block_list *bl)
-{
-	if(bl->m <0 || bl->x<0 || bl->x>=map[bl->m].xs || bl->y<0 || bl->y>=map[bl->m].ys || !(bl->type&BL_CHAR))
-		return;
+void map_delblcell(struct block_list *bl) {
+#ifdef CELL_NOSTACK
+	if(bl->m <0 || bl->x < 0 || bl->x >= map[bl->m].xs || bl->y < 0 || bl->y >= map[bl->m].ys || !(bl->type&BL_CHAR))
+
 	map[bl->m].cell[bl->x+bl->y*map[bl->m].xs].cell_bl--;
-}
+#else
+	return;
 #endif
+}
 
 /*==========================================
  * Adds a block to the map.
@@ -1639,7 +1643,7 @@ int map_quit(struct map_session_data *sd)
 
 	clif_chsys_quit(sd); 
 
-	unit_remove_map_pc(sd,CLR_TELEPORT);
+	unit_remove_map_pc(sd,CLR_RESPAWN);
 
 	if(map[sd->bl.m].instance_id >= 0 ) { // Avoid map conflicts and warnings on next login
 		int16 m;
@@ -1655,6 +1659,10 @@ int map_quit(struct map_session_data *sd)
 			sd->bl.y = pt->y;
 			sd->mapindex = pt->map;
 		}
+	}
+
+	if(sd->state.vending) {
+		idb_remove(vending_getdb(), sd->status.char_id);
 	}
 
 	party_booking_delete(sd); // Party Booking [Spiria]
@@ -3189,7 +3197,7 @@ int map_readallmaps(void)
 
 		map[i].index = mapindex_name2id(map[i].name);
 
-		if(index2mapid[map[i].index] != -1) {
+		if(index2mapid[map_id2index(i)] != -1) {
 			ShowWarning("Mapa %s já está carregado!"CL_CLL"\n", map[i].name);
 			if(map[i].cell && map[i].cell != (struct mapcell *)0xdeadbeaf) {
 				aFree(map[i].cell);
@@ -4132,6 +4140,15 @@ bool map_zone_mf_cache(int m, char *flag, char *params) {
 				map_zone_mf_cache_add(m,"noicewall	off");
 			else if(map[m].flag.noicewall)
 				map_zone_mf_cache_add(m,"noicewall");
+		}
+	} else if (!strcmpi(flag,"rain")) {
+		if(state && map[m].flag.rain)
+			;/* nothing to do */
+		else {
+			if(state)
+				map_zone_mf_cache_add(m,"rain	off");
+			else if(map[m].flag.rain)
+				map_zone_mf_cache_add(m,"rain");
 		}
 	} else if (!strcmpi(flag,"snow")) {
 		if(state && map[m].flag.snow)

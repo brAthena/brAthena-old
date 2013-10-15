@@ -78,6 +78,9 @@ char skill_homunculus_db[256] = "skill_homunculus";
 char mercenary_db[256] = "mercenary";
 char mercenary_owner_db[256] = "mercenary_owner";
 char ragsrvinfo_db[256] = "ragsrvinfo";
+char elemental_db[256] = "elemental";
+char interreg_db[32] = "interreg";
+char account_data_db[256] = "account_data";
 
 // show loading/saving messages
 int save_log = 1;
@@ -500,6 +503,14 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 			errors++;
 		} else
 			strcat(save_status, " status");
+	}
+
+	if(p->bank_vault != cp->bank_vault) {
+		if(SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`account_id`,`bank_vault`) VALUES ('%d','%d')",account_data_db,p->account_id,p->bank_vault)) {
+			Sql_ShowDebug(sql_handle);
+			errors++;
+		} else
+			strcat(save_status, " bank");
 	}
 
 	//Values that will seldom change (to speed up saving)
@@ -1034,15 +1045,7 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 		p.last_point.map = mapindex_name2id(last_map);
 		sd->found_char[p.slot] = p.char_id;
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
-
 		}
-
-#if PACKETVER >= 20130000
-	/* for some reason the client doesn't like "3" characters (yes...3) we gotta send a fake one or it wont display any =_= */
-	if(j == 432) {/* we just duplicate the last visually the client will say 4 chars instead of 3 though >_> */
-		j += mmo_char_tobuf(WBUFP(buf, j), &p);
-	}
-#endif
 
 	memset(sd->new_name,0,sizeof(sd->new_name));
 
@@ -1070,6 +1073,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	int hotkey_num;
 #endif
 	unsigned int opt;
+	int account_id;
 
 	memset(p, 0, sizeof(struct mmo_charstatus));
 
@@ -1156,6 +1160,9 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 		SqlStmt_Free(stmt);
 		return 0;
 	}
+
+	account_id = p->account_id;
+
 	p->last_point.map = mapindex_name2id(last_map);
 	p->save_point.map = mapindex_name2id(save_map);
 
@@ -1318,6 +1325,15 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	mercenary_owner_fromsql(char_id, p);
 	strcat(t_msg, " mercenary");
 
+	//`account_data` (`account_id`,`bank_vault`)
+	if(SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `bank_vault` FROM `%s` WHERE `account_id`=? LIMIT 1", account_data_db)
+	   ||	SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &account_id, 0)
+	   ||	SQL_ERROR == SqlStmt_Execute(stmt)
+	   ||	SQL_ERROR == SqlStmt_BindColumn(stmt, 0, SQLDT_INT, &p->bank_vault, 0, NULL, NULL))
+		SqlStmt_ShowDebug(stmt);
+
+	if(SQL_SUCCESS == SqlStmt_NextRow(stmt) )
+		strcat(t_msg, " bank");
 
 	if(save_log) ShowInfo(read_message("Source.char.char_save_log"), char_id, p->name, t_msg);  //ok. all data load successfuly!
 	SqlStmt_Free(stmt);
@@ -1818,10 +1834,15 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 	WBUFL(buf,32) = p->karma;
 	WBUFL(buf,36) = p->manner;
 	WBUFW(buf,40) = min(p->status_point, INT16_MAX);
-	WBUFL(buf,42) = p->hp;
-	WBUFL(buf,46) = p->max_hp;
-	offset+=4;
-	buf = WBUFP(buffer,offset);
+#if PACKETVER > 20081217
+ 	WBUFL(buf,42) = p->hp;
+ 	WBUFL(buf,46) = p->max_hp;
+ 	offset+=4;
+ 	buf = WBUFP(buffer,offset);
+#else
+	WBUFW(buf,42) = min(p->hp, INT16_MAX);
+	WBUFW(buf,44) = min(p->max_hp, INT16_MAX);
+#endif
 	WBUFW(buf,46) = min(p->sp, INT16_MAX);
 	WBUFW(buf,48) = min(p->max_sp, INT16_MAX);
 	WBUFW(buf,50) = DEFAULT_WALK_SPEED; // p->speed;
@@ -1847,14 +1868,16 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 	WBUFB(buf,102) = min(p->dex, UINT8_MAX);
 	WBUFB(buf,103) = min(p->luk, UINT8_MAX);
 	WBUFW(buf,104) = p->slot;
+#if PACKETVER >= 20061023
 	WBUFW(buf,106) = (p->rename > 0) ? 0 : 1;
 	offset += 2;
+#endif
 #if (PACKETVER >= 20100720 && PACKETVER <= 20100727) || PACKETVER >= 20100803
 	mapindex_getmapname_ext(mapindex_id2name(p->last_point.map), (char *)WBUFP(buf,108));
 	offset += MAP_NAME_LENGTH_EXT;
 #endif
 #if PACKETVER >= 20100803
-	WBUFL(buf,124) = TOL(p->delete_date);
+	WBUFL(buf,124) = (int)p->delete_date;
 	offset += 4;
 #endif
 #if PACKETVER >= 20110111
@@ -2772,8 +2795,9 @@ int parse_frommap(int fd)
 					int aid, cid;
 					aid = RFIFOL(fd,2);
 					cid = RFIFOL(fd,6);
-					if(SQL_ERROR == Sql_Query(sql_handle, "SELECT type, tick, val1, val2, val3, val4 from `%s` WHERE `account_id` = '%d' AND `char_id`='%d'",
-					                          scdata_db, aid, cid)) {
+					if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `type`, `tick`, `val1`, `val2`, `val3`, `val4` "
+						"FROM `%s` WHERE `account_id` = '%d' AND `char_id`='%d'",
+						scdata_db, aid, cid) ) {
 						Sql_ShowDebug(sql_handle);
 						break;
 					}
@@ -3145,10 +3169,10 @@ int parse_frommap(int fd)
 					int fame_pos;
 
 					switch(type) {
-						case 1:  size = fame_list_size_smith;   list = smith_fame_list;   break;
-						case 2:  size = fame_list_size_chemist; list = chemist_fame_list; break;
-						case 3:  size = fame_list_size_taekwon; list = taekwon_fame_list; break;
-						default: size = 0;                      list = NULL;              break;
+						case RANKTYPE_BLACKSMITH: size = fame_list_size_smith;   list = smith_fame_list;   break;
+						case RANKTYPE_ALCHEMIST:  size = fame_list_size_chemist; list = chemist_fame_list; break;
+						case RANKTYPE_TAEKWON:    size = fame_list_size_taekwon; list = taekwon_fame_list; break;
+						default:                  size = 0;                      list = NULL;              break;
 					}
 
 					ARR_FIND(0, size, player_pos, list[player_pos].id == cid);// position of the player
@@ -3464,7 +3488,12 @@ void char_delete2_ack(int fd, int char_id, uint32 result, time_t delete_date)
 	WFIFOW(fd,0) = 0x828;
 	WFIFOL(fd,2) = char_id;
 	WFIFOL(fd,6) = result;
-	WFIFOL(fd,10) = TOL(delete_date);
+#if PACKETVER >= 20130000
+	WFIFOL(fd,10) = (int)(delete_date - time(NULL));
+#else
+	WFIFOL(fd,10) = (int)delete_date;
+
+#endif
 	WFIFOSET(fd,14);
 }
 
@@ -4295,21 +4324,7 @@ int parse_char(int fd)
 					RFIFOSKIP(fd, 8);
 				}
 			break;
-				
-			/* [Ind] after hours reading over and over Shakto's network report, finally found this little ***hole */
-			case 0x9a1:
-				FIFOSD_CHECK(2);
-				{
-					int j = 4;
-					RFIFOSKIP(fd, 2);
-					WFIFOHEAD(fd,j + (MAX_CHARS*MAX_CHAR_BUF));
-					WFIFOW(fd,0) = 0x99d;
-					j+=mmo_chars_fromsql(sd, WFIFOP(fd,j));
-					WFIFOW(fd,2) = j;
-					WFIFOSET(fd,j);
-				}
-				break;
-	
+
 			// Pacote desconhecido recebido
 			default:
 				ShowError(read_message("Source.char.char_parse_char_s8"), CL_WHITE, RFIFOW(fd,0), CL_RESET, CL_WHITE, ip2str(ipl, NULL), CL_RESET);
@@ -4647,6 +4662,14 @@ void sql_config_read(const char *cfgName)
 			safestrncpy(mercenary_db,w2,sizeof(mercenary_db));
 		else if(!strcmpi(w1,"mercenary_owner_db"))
 			safestrncpy(mercenary_owner_db,w2,sizeof(mercenary_owner_db));
+		else if(!strcmpi(w1,"ragsrvinfo_db"))
+			safestrncpy(ragsrvinfo_db,w2,sizeof(ragsrvinfo_db));
+		else if(!strcmpi(w1,"elemental_db"))
+			safestrncpy(elemental_db,w2,sizeof(elemental_db));
+		else if(!strcmpi(w1,"interreg_db"))
+			safestrncpy(interreg_db,w2,sizeof(interreg_db));
+		else if(!strcmpi(w1,"account_data_db"))
+			safestrncpy(account_data_db,w2,sizeof(account_data_db));
 		//support the import command, just like any other config
 		else if(!strcmpi(w1,"import"))
 			sql_config_read(w2);

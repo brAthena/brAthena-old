@@ -791,6 +791,10 @@ REPLACE INTO `const_db` VALUES('EQI_ACC_L','7',0);
 REPLACE INTO `const_db` VALUES('EQI_ACC_R','8',0);
 REPLACE INTO `const_db` VALUES('EQI_HEAD_MID','9',0);
 REPLACE INTO `const_db` VALUES('EQI_HEAD_LOW','10',0);
+REPLACE INTO `const_db` VALUES('EQI_COSTUME_HEAD_LOW','11',0);
+REPLACE INTO `const_db` VALUES('EQI_COSTUME_HEAD_MID','12',0);
+REPLACE INTO `const_db` VALUES('EQI_COSTUME_HEAD_TOP','13',0);
+REPLACE INTO `const_db` VALUES('EQI_COSTUME_GARMENT','14',0);
 REPLACE INTO `const_db` VALUES('LOOK_BASE','0',0);
 REPLACE INTO `const_db` VALUES('LOOK_HAIR','1',0);
 REPLACE INTO `const_db` VALUES('LOOK_WEAPON','2',0);
@@ -3466,6 +3470,10 @@ REPLACE INTO `const_db` VALUES('IT_CASH','18',0);
 REPLACE INTO `const_db` VALUES('HQO_OnLogout','1',0);
 REPLACE INTO `const_db` VALUES('HQO_OnDeath','2',0);
 REPLACE INTO `const_db` VALUES('HQO_OnMapChange','3',0);
+REPLACE INTO `const_db` VALUES('IOT_NONE','0',0);
+REPLACE INTO `const_db` VALUES('IOT_CHAR','1',0);
+REPLACE INTO `const_db` VALUES('IOT_PARTY','2',0);
+REPLACE INTO `const_db` VALUES('IOT_GUILD','3',0);
 
 --
 -- Estrutura da tabela `castle_db`
@@ -27996,7 +28004,7 @@ REPLACE INTO `skill_db` VALUES(210,'0',0,0,'-1','0','0',10,'0','no',0,'0','0','w
 REPLACE INTO `skill_db` VALUES(211,'1',6,1,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','RG_STEALCOIN','Afanar');
 REPLACE INTO `skill_db` VALUES(212,'-1',6,1,'-1','0x40','0',10,'1','no',0,'0','0','weapon','0','RG_BACKSTAP','Apunhalar');
 REPLACE INTO `skill_db` VALUES(213,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','RG_TUNNELDRIVE','Túnel de Fuga');
-REPLACE INTO `skill_db` VALUES(214,'0',6,4,'-1','0x2','9',5,'1','no',0,'0','0','weapon','0','RG_RAID','Ataque Surpresa');
+REPLACE INTO `skill_db` VALUES(214,'0',6,4,'-1','0x2','1',5,'1','no',0,'0','0','weapon','0','RG_RAID','Ataque Surpresa');
 REPLACE INTO `skill_db` VALUES(215,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPWEAPON','Remover Arma');
 REPLACE INTO `skill_db` VALUES(216,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPSHIELD','Remover Escudo');
 REPLACE INTO `skill_db` VALUES(217,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPARMOR','Remover Armadura');
@@ -29841,6 +29849,7 @@ REPLACE INTO `sc_config` VALUES('SC_SOULCOLD',78);
 REPLACE INTO `sc_config` VALUES('SC_HAWKEYES',78);
 REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER50',79);
 REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER90',79);
+REPLACE INTO `sc_config` VALUES('SC_WEDDING',77);
 REPLACE INTO `sc_config` VALUES('SC_XMAS',77);
 REPLACE INTO `sc_config` VALUES('SC_SUMMER',77);
 REPLACE INTO `sc_config` VALUES('SC_NOCHAT',77);

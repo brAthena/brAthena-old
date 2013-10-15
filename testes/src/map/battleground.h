@@ -101,6 +101,8 @@ struct battleground_interface {
 	struct bg_arena **arena;
 	unsigned char arenas;
 	/* */
+	DBMap *team_db; // int bg_id -> struct battleground_data*
+	unsigned int team_counter; // Next bg_id
 	struct bg_arena *(*name2arena) (char *name);
 	void (*queue_add) (struct map_session_data *sd, struct bg_arena *arena, enum bg_queue_types type);
 	enum BATTLEGROUNDS_QUEUE_ACK (*can_queue) (struct map_session_data *sd, struct bg_arena *arena, enum bg_queue_types type);
