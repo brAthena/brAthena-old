@@ -283,7 +283,7 @@ te_alde_gld,234,192,4	script	攻城戦マスター#01_TE	107,{
 		mes "[攻城戦マスター]";
 		mes "さて、他にも何か質問は・るかね？";
 		next;
-		if(select("・ります、師・！","特にないです")==2) {
+		if (select("・ります、師・！","特にないです")==2) {
 			mes "[攻城戦マスター]";
 			mes "うむ！";
 			mes "私の説明だけでは、わからないことも";
@@ -377,7 +377,7 @@ te_alde_gld,215,184,5	script	TEポーション商人#alde	125,{
 	while(1) {
 		next;
 		input '@num;
-		if('@num == 0) {
+		if ('@num == 0) {
 			mes "[TEポーション商人]";
 			mes "・ら？";
 			mes "購入をやめるんだね。";
@@ -385,14 +385,14 @@ te_alde_gld,215,184,5	script	TEポーション商人#alde	125,{
 			mes "またお立ち寄りくださいね！";
 			close;
 		}
-		if('@num > 0 && '@num <= 200)
+		if ('@num > 0 && '@num <= 200)
 			break;
 		mes "[TEポーション商人]";
 		mes "一度に販売できるのは";
 		mes "200個までだよ！";
 		mes "購入数をもう一度確認してね～";
 	}
-	if('@price*'@num < Zeny) {
+	if ('@price*'@num < Zeny) {
 		mes "[TEポーション商人]";
 		mes "お客さん、お金が足りないようだよ。";
 		mes "1つ ^3355FF" +'@price+ " Zeny^000000なので……。";
@@ -433,7 +433,7 @@ te_alde_gld,211,184,5	script	TEポーション・作成商人::TE_alde	125,{
 		while(1) {
 			next;
 			input '@num;
-			if('@num == 0) {
+			if ('@num == 0) {
 				mes "[TEポーション・作成商人]";
 				mes "おや？";
 				mes "・にまとめなくていいのかな？";
@@ -441,20 +441,20 @@ te_alde_gld,211,184,5	script	TEポーション・作成商人::TE_alde	125,{
 				mes "いつでも来てくださいね！";
 				close;
 			}
-			if('@num > 0 && '@num <= 50)
+			if ('@num > 0 && '@num <= 50)
 				break;
 			mes "[TEポーション・作成商人]";
 			mes "一度にまとめることができるのは";
 			mes "50・までだよ！";
 			mes "数をもう一度確認してね～";
 		}
-		if(500*'@num < Zeny) {
+		if (500*'@num < Zeny) {
 			mes "[TEポーション・作成商人]";
 			mes "お客さん、お金が足りないようだよ。";
 			mes "1・ ^3355FF500 Zeny^000000なので……。";
 			close;
 		}
-		if(countitem(11558) < '@num*10) {
+		if (countitem(11558) < '@num*10) {
 			mes "[TEポーション・作成商人]";
 			mes "お客さん、その数作るには";
 			mes "攻城戦TEホワイトスリムポーションが";
@@ -512,7 +512,7 @@ te_prt_gld,116,153,5	duplicate(TE_alde)	TEポーション・作成商人::TE_prt
 // レンタル装備
 //------------------------------------------
 te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[レンタル装備管理者]";
 		mes "攻城戦TEルールが適用されている";
 		mes "グロリアとカプラガーデンで";
@@ -532,7 +532,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 	mes "使用することができる";
 	mes "レンタル装備の貸し出しを";
 	mes "行なっています。";
-	if(gettime(3) < 19 || gettime(3) >= 22) {
+	if (gettime(3) < 19 || gettime(3) >= 22) {
 		next;
 		mes "[レンタル装備管理者]";
 		mes "現在は貸し出し期間では・りません。";
@@ -568,13 +568,13 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 				case 9: set '@itemid,20704; break;
 				case 10:set '@itemid,0; break;
 				}
-				if('@itemid) {
-					if(countitem('@itemid) > 0) {
+				if ('@itemid) {
+					if (countitem('@itemid) > 0) {
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "は";
 						mes "すでに貸し出し中ですね。 ";
 						mes "他に必要なものは・りますか？";
-					} else if('@allow) {
+					} else if ('@allow) {
 						mes "[レンタル装備管理者]";
 						mes "・なたはそのアイテムを";
 						mes "装備できませんよ。";
@@ -583,7 +583,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "ですね。";
 						mes "^4d4dff今から約24時間貸し出します。^000000";
-						if(checkitemblank()==0) {
+						if (checkitemblank()==0) {
 							next;
 							mes "[レンタル装備管理者]";
 							mes "……と思いましたが、";
@@ -618,13 +618,13 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 				case 9: set '@itemid,2498; set '@over,0; break;
 				case 10:set '@itemid,0; break;
 				}
-				if('@itemid) {
-					if('@over && countitem('@itemid) > 0) {
+				if ('@itemid) {
+					if ('@over && countitem('@itemid) > 0) {
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "は";
 						mes "すでに貸し出し中ですね。 ";
 						mes "他に必要なものは・りますか？";
-					} else if('@allow) {
+					} else if ('@allow) {
 						mes "[レンタル装備管理者]";
 						mes "・なたはそのアイテムを";
 						mes "装備できませんよ。";
@@ -633,7 +633,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "ですね。";
 						mes "^4d4dff今から約24時間貸し出します。^000000";
-						if(checkitemblank()==0) {
+						if (checkitemblank()==0) {
 							next;
 							mes "[レンタル装備管理者]";
 							mes "……と思いましたが、";
@@ -668,13 +668,13 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 				case 9: set '@itemid,; break;
 				case 10:set '@itemid,0; break;
 				}
-				if('@itemid) {
-					if(countitem('@itemid) > 0) {
+				if ('@itemid) {
+					if (countitem('@itemid) > 0) {
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "は";
 						mes "すでに貸し出し中ですね。 ";
 						mes "他に必要なものは・りますか？";
-					} else if('@allow) {
+					} else if ('@allow) {
 						mes "[レンタル装備管理者]";
 						mes "・なたはそのアイテムを";
 						mes "装備できませんよ。";
@@ -683,7 +683,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "ですね。";
 						mes "^4d4dff今から約24時間貸し出します。^000000";
-						if(checkitemblank()==0) {
+						if (checkitemblank()==0) {
 							next;
 							mes "[レンタル装備管理者]";
 							mes "……と思いましたが、";
@@ -714,13 +714,13 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 				case 5: set '@itemid,1591; break;
 				case 6: set '@itemid,0; break;
 				}
-				if('@itemid) {
-					if(countitem('@itemid) > 0) {
+				if ('@itemid) {
+					if (countitem('@itemid) > 0) {
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "は";
 						mes "すでに貸し出し中ですね。 ";
 						mes "他に必要なものは・りますか？";
-					} else if('@allow) {
+					} else if ('@allow) {
 						mes "[レンタル装備管理者]";
 						mes "・なたはそのアイテムを";
 						mes "装備できませんよ。";
@@ -729,7 +729,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "ですね。";
 						mes "^4d4dff今から約24時間貸し出します。^000000";
-						if(checkitemblank()==0) {
+						if (checkitemblank()==0) {
 							next;
 							mes "[レンタル装備管理者]";
 							mes "……と思いましたが、";
@@ -763,13 +763,13 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 				case 8: set '@itemid,; break;
 				case 9: set '@itemid,0; break;
 				}
-				if('@itemid) {
-					if(countitem('@itemid) > 0) {
+				if ('@itemid) {
+					if (countitem('@itemid) > 0) {
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "は";
 						mes "すでに貸し出し中ですね。 ";
 						mes "他に必要なものは・りますか？";
-					} else if('@allow) {
+					} else if ('@allow) {
 						mes "[レンタル装備管理者]";
 						mes "・なたはそのアイテムを";
 						mes "装備できませんよ。";
@@ -778,7 +778,7 @@ te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
 						mes "[レンタル装備管理者]";
 						mes getitemname('@itemid)+ "ですね。";
 						mes "^4d4dff今から約24時間貸し出します。^000000";
-						if(checkitemblank()==0) {
+						if (checkitemblank()==0) {
 							next;
 							mes "[レンタル装備管理者]";
 							mes "……と思いましたが、";
@@ -939,7 +939,7 @@ te_alde_gld,202,180,5	script	貿易商人#alde	893,{
 		mes "取引を止める時は0にしてください。";
 		next;
 		input '@num;
-		if('@num < 1 || '@num > 500) {
+		if ('@num < 1 || '@num > 500) {
 			mes "[貿易商人]";
 			mes "かしこまりました。";
 			mes "取引を中止しました。";
@@ -973,7 +973,7 @@ te_prt_gld,129,160,3	duplicate(貿易商人#alde)	貿易商人#prt	893
 // TEミッション
 //------------------------------------------
 te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[訓練教官]";
 		mes "おや、・なたは……";
 		mes "すまないがTE地域は";
@@ -987,7 +987,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 		mes "申し訳ない……。";
 		close;
 	}
-	if(BaseLevel < 70) {
+	if (BaseLevel < 70) {
 		mes "[訓練教官]";
 		mes "・・、すまん！";
 		mes "悪いけどミッションは^4d4dffBaseLv70^000000以上を";
@@ -995,7 +995,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 		mes "もっと鍛えてから、来てくれるかな？";
 		close;
 	}
-	if(gettime(3) < 19 || gettime(3) >= 22) {
+	if (gettime(3) < 19 || gettime(3) >= 22) {
 		mes "[訓練教官]";
 		mes "ここでは、TE地域で遂行できる";
 		mes "ミッションが受けられるぞ。";
@@ -1038,7 +1038,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			('@kafra3? "^808080盗まれた明細書回収 -受注中-^000000": "盗まれた明細書回収")
 		)) {
 		case 1:
-			if('@kafra1) {
+			if ('@kafra1) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1100,7 +1100,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			mes '@num+ "匹以上退治^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1113,7 +1113,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			setquest '@quest; //state=1
 			close;
 		case 2:
-			if('@kafra2) {
+			if ('@kafra2) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1179,7 +1179,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			mes "^4d4dffエンペリウムを" +'@num+ "つ以上破壊^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1192,7 +1192,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			setquest '@quest; //state=1
 			close;
 		case 3:
-			if('@kafra3) {
+			if ('@kafra3) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1251,7 +1251,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			mes '@num+ "枚以上回収^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1265,7 +1265,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			close;
 		}
 	case 2:
-		if('@kafra1 == 0 && '@kafra2 == 0 && '@kafra3== 0 ) {
+		if ('@kafra1 == 0 && '@kafra2 == 0 && '@kafra3== 0 ) {
 			mes "[訓練教官]";
 			mes "おや？";
 			mes "確認しようにも、";
@@ -1287,18 +1287,18 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			('@kafra3? "盗まれた明細書回収　^4d4dff報告/確認^000000": "")
 		)) {
 		case 1:
-			if(checkquest(7510)) {
+			if (checkquest(7510)) {
 				set '@num,1;
 				set '@quest,7510;
-			} else if(checkquest(7511)) {
+			} else if (checkquest(7511)) {
 				set '@num,10;
 				set '@quest,7511;
-			} else if(checkquest(7512)) {
+			} else if (checkquest(7512)) {
 				set '@num,30;
 				set '@quest,7512;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1307,7 +1307,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 				delquest '@quest;
 				close;
 			}
-			if(checkquest('@quest) & 0x4) {
+			if (checkquest('@quest) & 0x4) {
 				mes "[訓練教官]";
 				mes "時間内に完了したようだね！";
 				mes "しかし、どうしてポリンが";
@@ -1332,18 +1332,18 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			mes "退治することなんだ。";
 			break;
 		case 2:
-			if(checkquest(7504)) {
+			if (checkquest(7504)) {
 				set '@num,1;
 				set '@quest,7504;
-			} else if(checkquest(7505)) {
+			} else if (checkquest(7505)) {
 				set '@num,3;
 				set '@quest,7505;
-			} else if(checkquest(7506)) {
+			} else if (checkquest(7506)) {
 				set '@num,5;
 				set '@quest,7506;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1352,7 +1352,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 				delquest '@quest;
 				close;
 			}
-			if(checkquest('@quest) & 0x4) {
+			if (checkquest('@quest) & 0x4) {
 				// 未調査
 			}
 			mes "[訓練教官]";
@@ -1366,18 +1366,18 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 			mes "破壊すること^000000だ。";
 			break;
 		case 3:
-			if(checkquest(7513)) {
+			if (checkquest(7513)) {
 				set '@num,10;
 				set '@quest,7513;
-			} else if(checkquest(7514)) {
+			} else if (checkquest(7514)) {
 				set '@num,20;
 				set '@quest,7514;
-			} else if(checkquest(7515)) {
+			} else if (checkquest(7515)) {
 				set '@num,30;
 				set '@quest,7515;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1386,7 +1386,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 				delquest '@quest;
 				close;
 			}
-			if(countitem(6668) >= '@num) {
+			if (countitem(6668) >= '@num) {
 				mes "[訓練教官]";
 				mes "明細書が" +'@num+ "枚以上！";
 				mes "ちゃんと回収したようだね。";
@@ -1414,7 +1414,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 		mes "[訓練教官]";
 		mes "・、もしかしてやめるのか？";
 		next;
-		if(select("いいえ","やめます")==1) {
+		if (select("いいえ","やめます")==1) {
 			mes "[訓練教官]";
 			mes "まだミッションを遂行できる時間が";
 			mes "残っているから頑張ってみて。";
@@ -1426,7 +1426,7 @@ te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
 		mes "無駄になってしまうが、";
 		mes "本当に取り消していいんだな？";
 		next;
-		if(select("取り消さない","はい")==1) {
+		if (select("取り消さない","はい")==1) {
 			mes "[訓練教官]";
 			mes "ミッションを続けるんだな？";
 			mes "まだ遂行できる時間が";
@@ -1478,7 +1478,7 @@ OnInit:
 }
 
 te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[訓練教官]";
 		mes "おや、・なたは……";
 		mes "すまないがTE地域は";
@@ -1492,7 +1492,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 		mes "申し訳ない……。";
 		close;
 	}
-	if(BaseLevel < 70) {
+	if (BaseLevel < 70) {
 		mes "[訓練教官]";
 		mes "・・、すまん！";
 		mes "悪いけどミッションは^4d4dffBaseLv70^000000以上を";
@@ -1500,7 +1500,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 		mes "もっと鍛えてから、来てくれるかな？";
 		close;
 	}
-	if(gettime(3) < 19 || gettime(3) >= 22) {
+	if (gettime(3) < 19 || gettime(3) >= 22) {
 		mes "[訓練教官]";
 		mes "ここでは、TE地域で遂行できる";
 		mes "ミッションが受けられるぞ。";
@@ -1527,7 +1527,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 	next;
 	switch(select('@str$,"受注したミッションの報告/確認をする","ミッションとは？","やめる")) {
 	case 1:
-		if(gettime(3) < 19 || gettime(3) >= 22)
+		if (gettime(3) < 19 || gettime(3) >= 22)
 			close;
 		mes "[訓練教官]";
 		mes "同じ内容のミッションの場合、";
@@ -1545,7 +1545,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			('@gloria3? "^808080小さな木・回収 -受注中-^000000": "小さな木・回収")
 		)) {
 		case 1:
-			if('@gloria1) {
+			if ('@gloria1) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1607,7 +1607,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			mes '@num+ "匹以上退治^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1620,7 +1620,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			setquest '@quest; //state=1
 			close;
 		case 2:
-			if('@gloria2) {
+			if ('@gloria2) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1686,7 +1686,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			mes "^4d4dffエンペリウムを" +'@num+ "つ以上破壊^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1699,7 +1699,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			setquest '@quest; //state=1
 			close;
 		case 3:
-			if('@gloria3) {
+			if ('@gloria3) {
 				mes "[訓練教官]";
 				mes "それは現在受注中の";
 				mes "ミッションだな。";
@@ -1759,7 +1759,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			mes '@num+ "個以上回収^000000して、";
 			mes "報告してくれ。";
 			next;
-			if(select("受ける","受けない")==2) {
+			if (select("受ける","受けない")==2) {
 				mes "[訓練教官]";
 				mes "そうか……";
 				mes "ま・気が変わったら、";
@@ -1773,7 +1773,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			close;
 		}
 	case 2:
-		if('@gloria1 == 0 && '@gloria2 == 0 && '@gloria3== 0 ) {
+		if ('@gloria1 == 0 && '@gloria2 == 0 && '@gloria3== 0 ) {
 			mes "[訓練教官]";
 			mes "おや？";
 			mes "確認しようにも、";
@@ -1795,18 +1795,18 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			('@gloria3? "小さな木・回収　^4d4dff報告/確認^000000": "")
 		)) {
 		case 1:
-			if(checkquest(7501)) {
+			if (checkquest(7501)) {
 				set '@num,1;
 				set '@quest,7501;
-			} else if(checkquest(7502)) {
+			} else if (checkquest(7502)) {
 				set '@num,10;
 				set '@quest,7502;
-			} else if(checkquest(7503)) {
+			} else if (checkquest(7503)) {
 				set '@num,30;
 				set '@quest,7503;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1815,7 +1815,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 				delquest '@quest;
 				close;
 			}
-			if(checkquest('@quest) & 0x4) {
+			if (checkquest('@quest) & 0x4) {
 				mes "[訓練教官]";
 				mes "時間内に完了したようだね！";
 				mes "しかし、どうしてオークベイビーが";
@@ -1840,18 +1840,18 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			mes "退治することなんだ。";
 			break;
 		case 2:
-			if(checkquest(7504)) {
+			if (checkquest(7504)) {
 				set '@num,1;
 				set '@quest,7504;
-			} else if(checkquest(7505)) {
+			} else if (checkquest(7505)) {
 				set '@num,3;
 				set '@quest,7505;
-			} else if(checkquest(7506)) {
+			} else if (checkquest(7506)) {
 				set '@num,5;
 				set '@quest,7506;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1860,7 +1860,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 				delquest '@quest;
 				close;
 			}
-			if(checkquest('@quest) & 0x4) {
+			if (checkquest('@quest) & 0x4) {
 				// 未調査
 			}
 			mes "[訓練教官]";
@@ -1874,18 +1874,18 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 			mes "破壊すること^000000だ。";
 			break;
 		case 3:
-			if(checkquest(7507)) {
+			if (checkquest(7507)) {
 				set '@num,10;
 				set '@quest,7507;
-			} else if(checkquest(7508)) {
+			} else if (checkquest(7508)) {
 				set '@num,20;
 				set '@quest,7508;
-			} else if(checkquest(7509)) {
+			} else if (checkquest(7509)) {
 				set '@num,30;
 				set '@quest,7509;
 			} else
 				close;
-			if(checkquest('@quest) & 0x2) {
+			if (checkquest('@quest) & 0x2) {
 				mes "[訓練教官]";
 				mes "これは……";
 				mes "タイムオーバーだね。";
@@ -1894,7 +1894,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 				delquest '@quest;
 				close;
 			}
-			if(countitem(6592) >= '@num) {
+			if (countitem(6592) >= '@num) {
 				mes "[訓練教官]";
 				mes "小さな木・が" +'@num+ "個以上！";
 				mes "ちゃんと回収したようだね。";
@@ -1924,7 +1924,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 		mes "[訓練教官]";
 		mes "・、もしかしてやめるのか？";
 		next;
-		if(select("いいえ","やめます")==1) {
+		if (select("いいえ","やめます")==1) {
 			mes "[訓練教官]";
 			mes "まだミッションを遂行できる時間が";
 			mes "残っているから頑張ってみて。";
@@ -1936,7 +1936,7 @@ te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
 		mes "無駄になってしまうが、";
 		mes "本当に取り消していいんだな？";
 		next;
-		if(select("取り消さない","はい")==1) {
+		if (select("取り消さない","はい")==1) {
 			mes "[訓練教官]";
 			mes "ミッションを続けるんだな？";
 			mes "まだ遂行できる時間が";
@@ -1988,7 +1988,7 @@ OnInit:
 }
 
 te_alde_gld,206,180,5	script	修練教官#kafra	899,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[修練教官]";
 		mes "攻城戦TEエリアのすべての";
 		mes "サービスおよびクエストは、";
@@ -2025,7 +2025,7 @@ te_alde_gld,206,180,5	script	修練教官#kafra	899,{
 		switch(select("カプラガーデン討伐依頼[1]","カプラガーデン討伐依頼[2]","必要ない")) {
 		case 1:
 		case 2:
-			if(BaseLevel < 70) {
+			if (BaseLevel < 70) {
 				mes "[修練教官]";
 				mes "うむ……";
 				mes "残念だが該当する討伐依頼は";
@@ -2082,7 +2082,7 @@ OnInit:
 }
 
 te_prt_gld,125,149,3	script	修練教官#gloria	899,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[修練教官]";
 		mes "攻城戦TEエリアのすべての";
 		mes "サービスおよびクエストは、";
@@ -2119,7 +2119,7 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 		next;
 		switch(select('@mes1$,'@mes2$,"必要ない")) {
 		case 1:
-			if(BaseLevel < 70) {
+			if (BaseLevel < 70) {
 				mes "[修練教官]";
 				mes "うむ……";
 				mes "残念だが、該当する討伐依頼は";
@@ -2128,15 +2128,15 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 				mes "また来てくれ。";
 				close;
 			}
-			if(checkquest(7541)) {
-				if(!(checkquest(7541) & 0x4)) {
+			if (checkquest(7541)) {
+				if (!(checkquest(7541) & 0x4)) {
 					mes "[修練教官]";
 					mes "ん？";
 					mes "まだ依頼を遂行できていない";
 					mes "ようだが……";
 					mes "何か問題でも・るのか？";
 					next;
-					if(select("いいえ","依頼を諦める")==1) {
+					if (select("いいえ","依頼を諦める")==1) {
 						mes "[修練教官]";
 						mes "いつまで君がギルドダンジョンを";
 						mes "使用できるかは分からないが";
@@ -2168,7 +2168,7 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 			mes "見事達成したら、それに見合う経験値を";
 			mes "報酬として与えよう。";
 			next;
-			if(select("受ける","やめる")==2) {
+			if (select("受ける","やめる")==2) {
 				mes "[修練教官]";
 				mes "ま・、好きなようにしな。";
 				close;
@@ -2181,7 +2181,7 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 			setquest 7541; //state=1
 			close;
 		case 2:
-			if(BaseLevel < 70) {
+			if (BaseLevel < 70) {
 				mes "[修練教官]";
 				mes "うむ……";
 				mes "残念だが、該当する討伐依頼は";
@@ -2190,15 +2190,15 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 				mes "また来てくれ。";
 				close;
 			}
-			if(checkquest(7542)) {
-				if(!(checkquest(7542) & 0x4)) {
+			if (checkquest(7542)) {
+				if (!(checkquest(7542) & 0x4)) {
 					mes "[修練教官]";
 					mes "ん？";
 					mes "まだ依頼を遂行できていない";
 					mes "ようだが……";
 					mes "何か問題でも・るのか？";
 					next;
-					if(select("いいえ","依頼を諦める")==1) {
+					if (select("いいえ","依頼を諦める")==1) {
 						mes "[修練教官]";
 						mes "いつまで君がギルドダンジョンを";
 						mes "使用できるかは分からないが";
@@ -2229,7 +2229,7 @@ te_prt_gld,125,149,3	script	修練教官#gloria	899,{
 			mes "見事達成したら、それに見合う経験値を";
 			mes "報酬として与えよう。";
 			next;
-			if(select("受ける","やめる")==2) {
+			if (select("受ける","やめる")==2) {
 				mes "[修練教官]";
 				mes "ま・、好きなようにしな。";
 				close;
@@ -2474,7 +2474,7 @@ te_alde_gld,267,153,7	script	ギルドフラッグ	722,{}
 // warp
 //------------------------------------------
 te_alde_gld,48,79,0		warp	aldeg-1_aldeg-1-1	45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2484,7 +2484,7 @@ te_alde_gld,48,79,0		warp	aldeg-1_aldeg-1-1	45,1,1,{
 	end;
 }
 te_alde_gld,95,253,0	warp	aldeg-2_aldeg-2-1	45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2494,7 +2494,7 @@ te_alde_gld,95,253,0	warp	aldeg-2_aldeg-2-1	45,1,1,{
 	end;
 }
 te_alde_gld,142,81,0	warp	aldeg-3_aldeg-3-1	45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2504,7 +2504,7 @@ te_alde_gld,142,81,0	warp	aldeg-3_aldeg-3-1	45,1,1,{
 	end;
 }
 te_alde_gld,243,242,0	warp	aldeg-4_aldeg-4-1	45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2514,7 +2514,7 @@ te_alde_gld,243,242,0	warp	aldeg-4_aldeg-4-1	45,1,1,{
 	end;
 }
 te_alde_gld,259,90,0	warp	aldeg-5_aldeg-5-1	45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2744,7 +2744,7 @@ te_prt_gld,167,213,5	script	ギルドフラッグ	722,{}
 // warp
 //------------------------------------------
 te_prt_gld,129,65,0		warp	prtg-1_prtg-1		45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2754,7 +2754,7 @@ te_prt_gld,129,65,0		warp	prtg-1_prtg-1		45,1,1,{
 	end;
 }
 te_prt_gld,240,124,0	warp	prtg-2_prtg-2		45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2764,7 +2764,7 @@ te_prt_gld,240,124,0	warp	prtg-2_prtg-2		45,1,1,{
 	end;
 }
 te_prt_gld,153,141,0	warp	prtg-3_prtg-3		45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2774,7 +2774,7 @@ te_prt_gld,153,141,0	warp	prtg-3_prtg-3		45,1,1,{
 	end;
 }
 te_prt_gld,107,240,0	warp	prtg-4_prtg-4		45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";
@@ -2784,7 +2784,7 @@ te_prt_gld,107,240,0	warp	prtg-4_prtg-4		45,1,1,{
 	end;
 }
 te_prt_gld,212,240,0	warp	prtg-5_prtg-5		45,1,1,{
-	if(Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
+	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "‐攻城戦TEには3次職及び";
 		mes "　限界突破したスーパーノービスは";
 		mes "　入場できません‐";

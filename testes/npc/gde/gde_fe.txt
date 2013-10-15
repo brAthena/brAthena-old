@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: rA/brA Dev. Team                           |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.1                             |
 //   |--------------------------------------------------------|
 //   | Descrição: Expansão para Guerra do Emperium FE.        |
 //   | Investir em cada domínio para desbloquear novos mapas: |
@@ -21,6 +21,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -398,11 +399,10 @@ OnReset:
 }
 
 prt_gld,2,2,0	script	Investment_total#fund00	844,{
-/*
+	callfunc "F_GM_NPC";
 	mes "Is this not working properly?";
 	next;
-	input .@input;
-	if (.@input == 1854) {
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		mes "If you think the investment timer is dead, please adjust the timer.";
 		next;
 		switch(select("Turn on the timer:Cancel")) {
@@ -418,8 +418,8 @@ prt_gld,2,2,0	script	Investment_total#fund00	844,{
 		mes "I don't need to adjust anything now.";
 		close;
 	}
-*/
 	end;
+
 OnInit:
 	if (callfunc("F_Invest_Status") == 1) {
 		initnpctimer;
@@ -585,7 +585,7 @@ prt_gld,164,98,3	script	Revoting Manager#Invest2	421,{
 	mes "[Revoting Manager]";
 	mes "Would you like to participate in the vote for choosing where to connect the 'Abyss Gate'?";
 	next;
-	if(select("Participate in the vote.:Skip for now.") == 2) {
+	if (select("Participate in the vote.:Skip for now.") == 2) {
 		mes "[Revoting Manager]";
 		mes "You've canceled the vote.";
 		close;
@@ -1456,7 +1456,7 @@ L_Check:
 	mes getarg(3);
 	mes "Oh! Almost forgot. Will you invest?";
 	next;
-	if(select("Invest:Don't Invest") == 2) {
+	if (select("Invest:Don't Invest") == 2) {
 		mes "[Namis]";
 		mes "Don't you mess with a busy cat!";
 		close;

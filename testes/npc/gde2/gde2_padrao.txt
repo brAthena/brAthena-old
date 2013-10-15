@@ -29,7 +29,7 @@
 OnAgitInit2:
 OnRecvCastle2:
 	if (strnpcinfo(2) == "template") end;
-if(getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2()) {
+if (getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2()) {
 	if (!getcastledata(strnpcinfo(2),1)) {
 		donpcevent strnpcinfo(0)+"::OnStart";
 		// A invocação de monstro é idêntica em todos os castelos.
@@ -112,7 +112,7 @@ OnEmpSpawn:
 		else if (strnpcinfo(2) == "schg_cas03") setarray .@i[0],338,202;
 		else setarray .@i[0],120,272;	// Castelos 1,4,5 são idênticos.
 	}
-	if(getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2())
+	if (getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2())
 	monster strnpcinfo(2),.@i[0],.@i[1],"Emperium",1288,1,"Mordomo#"+.@str$+"::OnStartArena";
 	end;
 
@@ -970,7 +970,8 @@ OnInit:
 		mes "5 Gemas Vermelhas";
 		next;
 		mes "^3355FFVocê quer continuar?^000000";
-		if(select("No:Continue") == 1) {
+		next;
+		if (select("Não:Continuar") == 1) {
 			mes "^3355FFTrabalho Cancelado.^000000";
 			close;
 		}
@@ -1507,8 +1508,9 @@ OnGuardianStoneDied:
 	end;
 
 OnTimer300000:
+	set .@num, atoi(charat(strnpcinfo(1),2));
 	set .@str$,substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
-	donpcevent "Runa Guardiã#"+.@str$+"::OnEnable";
+	donpcevent ((.@num == 1)?"1ª":"2ª")+"Runa Guardiã#"+.@str$+"::OnEnable";
 	setd "$agit_"+.@str$+"["+(atoi(charat(strnpcinfo(1),2))-1)+"]",2;
 	stopnpctimer;
 	end;
@@ -1699,7 +1701,7 @@ function	script	LinkFlag	{
 		mes "ao Castelo. Por favor";
 		mes "você deseja se teleportar para";
 		mes "o Serviço de Quarto?^000000";
-		if(select("Ir para o Serviço de Quarto:Cancelar") == 1)
+		if (select("Ir para o Serviço de Quarto:Cancelar") == 1)
 			warp strnpcinfo(4),getarg(1),getarg(2);
 		close;
 	}
@@ -1708,7 +1710,7 @@ function	script	LinkFlag	{
 		mes "ao Castelo. Por favor";
 		mes "você deseja se teleportar para";
 		mes "o Emperium Central?^000000";
-		if(select("Teleportar:Cancelar") == 1)
+		if (select("Teleportar:Cancelar") == 1)
 			warp strnpcinfo(4),getarg(1),getarg(2);
 		close;
 	}
@@ -1745,7 +1747,7 @@ function	script	ReturnFlag	{
 		mes "se você quiser voltar";
 		mes "para seu castelo?";
 		next;
-		if(select("Return to the Stronghold:Cancel") == 1 && getcharid(2) == getcastledata(getarg(0),1)) {
+		if (select("Return to the Stronghold:Cancel") == 1 && getcharid(2) == getcastledata(getarg(0),1)) {
 			if (compare(getarg(0),"arug")) {
 				if (getarg(0) == "arug_cas01") setarray .@i[0],67,193;
 				else if (getarg(0) == "arug_cas02") setarray .@i[0],43,256;
@@ -1782,7 +1784,7 @@ function	script	ReturnFlag	{
 	mes "^3355FFVocê vai puxar";
 	mes "esta pequena alavanca?^000000";
 	next;
-	if(select("Puxar:Cancelar") == 2) close;
+	if (select("Puxar:Cancelar") == 2) close;
 	if (compare(strnpcinfo(4),"arug")) {
 		if (strnpcinfo(4) == "arug_cas01") setarray .@i[0],121,357;
 		else if (strnpcinfo(4) == "arug_cas02") setarray .@i[0],387,323;

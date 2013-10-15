@@ -44,7 +44,7 @@ function	script	Bandeiras#1	{
     mes "Bravo guerreiro...";
     mes "Você deseja retornar ao seu lugar de honra?";
 		next;
-		if(select("Retornar para o castelo do Clã.:Não.") == 1) {
+		if (select("Retornar para o castelo do Clã.:Não.") == 1) {
 	   warp getarg(0),getarg(1),getarg(2);
 		 close;
 		}
@@ -757,7 +757,7 @@ function	script	Bandeiras#2	{
 	mes " ";
 	mes "Há uma pequena alavanca aqui?";
 	next;
-	if(select("Puxar.:Não puxar.") == 1) {
+	if (select("Puxar.:Não puxar.") == 1) {
 	  warp getarg(0),getarg(1),getarg(2);
 		close;
 }

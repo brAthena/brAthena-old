@@ -99,14 +99,14 @@ OnAgitBreak:
 		SetCastleData strnpcinfo(2), .@i, 0;
 	}
 	// Limpa os dados dos Guardiões, caso a nova Clã não tenha habilidades para usar Guardiões
-	if( getgdskilllv(.@GID,10002) == 0 ) {
+	if ( getgdskilllv(.@GID,10002) == 0 ) {
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 ) {
 			SetCastleData strnpcinfo(2), .@i, 0;
 		}
 	}
 	// Readiciona o Emperium e mostra a nova Clã ocupante.
 	sleep 500; // Slow down script execution slightly.
-	if( agitcheck() )
+	if ( agitcheck() )
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 	sleep 7000;
 	announce "O castelo [" + getcastlename(strnpcinfo(2)) + "] foi conquistado pelo Clã [" + getguildName(.@GID) + "].",bc_all|bc_woe;
@@ -142,7 +142,7 @@ OnRecvCastle:
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 	if (.@GID == 0) {
 		killmonsterall strnpcinfo(2);
-		if(getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck()) {
+		if (getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck()) {
 		if (compare(strnpcinfo(2),"aldeg")) {
 			// Spawns Normais (Fora da Sala do Emperium).
 			monster strnpcinfo(2),0,0,"Druida Maligno",1117,10;
@@ -875,7 +875,7 @@ OnRecvCastle:
 	mes " ";
 	mes "Há uma pequena alavanca aqui. Deseja puxar ela?";
 	next;
-	if(select("Puxar.:Não puxar.") == 1) {
+	if (select("Puxar.:Não puxar.") == 1) {
 		if (getcharid(2) == .@GID) {
 			close2;
 			warp .@destination$,.@coordinates[0],.@coordinates[1];

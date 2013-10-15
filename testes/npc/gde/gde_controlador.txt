@@ -80,12 +80,12 @@ arug_cas05	mapflag	set_castle	1  // Vanadis
 
 		// No exemplo acima a GDE vai ocorrer nos seguintes dias:  domingo 16h às 17h, terça 18h às 19h, quinta 20h às 21h e sabado 22h às 23h.
 		
-		if(!agitcheck() && gettime(3) == .inicio_hora[gettime(4)])
+		if (!agitcheck() && gettime(3) == .inicio_hora[gettime(4)])
 		{
 			announce("A guerra do Empérium Começou.",bc_all);
 			agitstart();
 		}
-		else if(agitcheck() && gettime(3) == .fim_hora[gettime(4)])
+		else if (agitcheck() && gettime(3) == .fim_hora[gettime(4)])
 		{
 			announce("A guerra do Empérium Terminou.",bc_all);
 			agitend();
@@ -111,12 +111,12 @@ arug_cas05	mapflag	set_castle	1  // Vanadis
 
 		// No exemplo acima a GDE 2.0 vai ocorrer nos seguintes dias:  domingo 14h às 15h, terça 16h às 17h, quinta 18h às 19h e sabado 20h às 21h.
 		
-		if(!agitcheck2() && gettime(3) == .inicio_hora2[gettime(4)])
+		if (!agitcheck2() && gettime(3) == .inicio_hora2[gettime(4)])
 		{
 			announce("Começou a guerra do emperium 2.0.",bc_all);
 			agitstart2();
 		}
-		else if(agitcheck2() && gettime(3) == .fim_hora2[gettime(4)])
+		else if (agitcheck2() && gettime(3) == .fim_hora2[gettime(4)])
 		{
 			announce("Terminou a guerra do emperium 2.0.",bc_all);
 			agitend2();
