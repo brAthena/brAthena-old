@@ -408,3 +408,9 @@ ecl_hub01	mapflag	nobranch
 que_avan01	mapflag	nobranch
 
 //evt_zombie	mapflag	nobranch
+
+// Izlude duplicates ===========
+izlude_a	mapflag	nobranch
+izlude_b	mapflag	nobranch
+izlude_c	mapflag	nobranch
+izlude_d	mapflag	nobranch

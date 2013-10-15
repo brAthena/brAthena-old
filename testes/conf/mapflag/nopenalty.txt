@@ -12,8 +12,8 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.1/1.5/1.0                         |
+//   |--------------------------------------------------------|
 //   | Descrição: Configuração Mapflag que não penaliza a     |
 //   | experiência ao morrer.                                 |
 //   |--------------------------------------------------------|
@@ -157,6 +157,10 @@ s_atelier	mapflag	nopenalty
 mora	mapflag	nopenalty
 dewata	mapflag	nopenalty
 dew_in01	mapflag	nopenalty
+izlude_a	mapflag	nopenalty
+izlude_b	mapflag	nopenalty
+izlude_c	mapflag	nopenalty
+izlude_d	mapflag	nopenalty
 malangdo	mapflag	nopenalty
 mal_in01	mapflag	nopenalty
 mal_in02	mapflag	nopenalty
