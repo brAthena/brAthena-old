@@ -62,7 +62,7 @@ moc_prydb1,103,54,3	script	Gato Suspeito#nightmare	547,{
 				switch(select("Pagar.","Dizer não.")) {
 				case 1:
 					if (Zeny >= 5000) {
-						set zeny,zeny-5000;
+						set Zeny, Zeny-5000;
 						mes "[Gato Suspeito]";
 						mes "O quê ? Hum... um dinheiro reluzente!?";
 						mes "Vamos, siga-me!";
