@@ -27,13 +27,13 @@
 // Leilão - Portais
 //============================================================
 moc_ruins,78,173,6	script	Guia do Leilão#moc	98,{
-	if(strnpcinfo(0) == "Guia do Leilão#moc")
+	if (strnpcinfo(0) == "Guia do Leilão#moc")
 	callsub LeiTeleporte,1;
-	else if(strnpcinfo(0) == "Guia do Leilão#prt")
+	else if (strnpcinfo(0) == "Guia do Leilão#prt")
 	callsub LeiTeleporte,2;
-	else if(strnpcinfo(0) == "Guia do Leilão#yuno")
+	else if (strnpcinfo(0) == "Guia do Leilão#yuno")
 	callsub LeiTeleporte,3;
-	else if(strnpcinfo(0) == "Guia do Leilão#lhz")
+	else if (strnpcinfo(0) == "Guia do Leilão#lhz")
 	callsub LeiTeleporte,4;
 	
 	LeiTeleporte:

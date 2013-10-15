@@ -48,7 +48,7 @@ mora,124,82,4	script	Colecionador de Artefatos#mora	522,{
 	mes "[Colecionador de Artefatos]";
 	mes "Se você tiver algumas Moedas de Mora e estiver querendo uma arma nova e mais poderosa, venha falar comigo!";
 	next;
-	if(select("Aprimorar equipamento.:Cancelar.") == 1) {
+	if (select("Aprimorar equipamento.:Cancelar.") == 1) {
 		mes "[Colecionador de Artefatos]";
 		mes "Você possui algum dos equipamentos que citei antes? Muito bom!";
 		mes "Qual equipamento você quer negociar?";
@@ -63,28 +63,28 @@ mora,124,82,4	script	Colecionador de Artefatos#mora	522,{
 			case 7: break;
 		}
 	}
-	if(.@item_got) {
-		if(isequipped(.@item_got)) {
-			if(getequiprefinerycnt(4) < 7) {
+	if (.@item_got) {
+		if (isequipped(.@item_got)) {
+			if (getequiprefinerycnt(4) < 7) {
 				mes "Este item precisa estar refinado +7 ou mais para que eu possa aprimorá-lo.";
 				close;
 			}
 			set .@card3,getequipcardid(4,2);
 			set .@card4,getequipcardid(4,3);
-			if(.@item_got > 2006 && .@item_got < 2011){
-				if((.@card3 != 4713 && .@card3 != 4761) && (.@card4 != 4713 && .@card4 != 4761)) {
+			if (.@item_got > 2006 && .@item_got < 2011){
+				if ((.@card3 != 4713 && .@card3 != 4761) && (.@card4 != 4713 && .@card4 != 4761)) {
 					mes "Este equipamento não possui o encantamento correto para que eu possa aprimorá-lo!";
 					mes "Eu preciso que esta arma tenha ^FF0000"+getitemname(4713)+"^000000 ou ^FF0000"+getitemname(4761)+"^000000.";
 					close;
 				}
-			} else if(.@item_got == 1657){
-				if((.@card3 != 4714 && .@card3 != 4761 && .@card3 != 4723) && (.@card4 != 4714 && .@card4 != 4761 && .@card4 != 4723)) {
+			} else if (.@item_got == 1657){
+				if ((.@card3 != 4714 && .@card3 != 4761 && .@card3 != 4723) && (.@card4 != 4714 && .@card4 != 4761 && .@card4 != 4723)) {
 					mes "Este equipamento não possui o encantamento correto para que eu possa aprimorá-lo!";
 					mes "Eu preciso que esta arma tenha ^FF0000"+getitemname(4714)+"^000000, ^FF0000"+getitemname(4761)+"^000000 ou ^FF0000"+getitemname(4723)+"^000000.";
 					close;
 				}
 			} else {
-				if((.@card3 != 4704 && .@card3 != 4767 && .@card3 != 4723) && (.@card4 != 4704 && .@card4 != 4767 && .@card4 != 4723)) {
+				if ((.@card3 != 4704 && .@card3 != 4767 && .@card3 != 4723) && (.@card4 != 4704 && .@card4 != 4767 && .@card4 != 4723)) {
 					mes "Este equipamento não possui o encantamento correto para que eu possa aprimorá-lo!";
 					mes "Eu preciso que esta arma tenha ^FF0000"+getitemname(4704)+"^000000, ^FF0000"+getitemname(4767)+"^000000 ou ^FF0000"+getitemname(4723)+"^000000.";
 					close;
@@ -94,12 +94,12 @@ mora,124,82,4	script	Colecionador de Artefatos#mora	522,{
 			mes "Você tem um ^FF0000"+getitemname(.@item_got)+"^000000? é bastante poderoso!";
 			mes "Você tem certeza que deseja aprimorar ^FF0000"+getitemname(.@item_got)+"^000000 por ^0000FF"+getitemname(.@item_get) +"^000000?";
 			next;
-			if(select("Aprimorar equipamento.:Cancelar.") == 2) close;
+			if (select("Aprimorar equipamento.:Cancelar.") == 2) close;
 			mes "[Colecionador de Artefatos]";
 			mes "Você quer trocar seu ^FF0000"+getitemname(.@item_got)+"^000000 é isso mesmo que você quer?";
 			next;
-			if(select("Continuar negociação.:Cancelar.") == 2) close;
-			if(!countitem(.@item_got)) {
+			if (select("Continuar negociação.:Cancelar.") == 2) close;
+			if (!countitem(.@item_got)) {
 				mes "[Colecionador de Artefatos]";
 				mes "Infelizmente, você não parece ter o equipamento em seu inventário...";
 				next;
@@ -109,7 +109,7 @@ mora,124,82,4	script	Colecionador de Artefatos#mora	522,{
 				mes "[Colecionador de Artefatos]";
 				mes "Tenha um bom dia!";
 				close;
-			} else if(countitem(.@item_got) > 1) {
+			} else if (countitem(.@item_got) > 1) {
 				mes "[Colecionador de Artefatos]";
 				mes "Infelizmente, você possui dois itens idênticos com você!";
 				next;
@@ -151,7 +151,7 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 	mes "Você deseja encantar um equipamento? Se sim, para qual classe seria?";
 	next;
 	set .@class, select("Sicário.:Sentinela.:Cavaleiro Rúnico.:Nada obrigado.");
-	if(.@class == 4) {
+	if (.@class == 4) {
 		mes "[Pesquisadora de Artefatos]";
 		mes "Ok, volte e fale comigo se precisar de algum de meus serviços.";
 		next;
@@ -259,7 +259,7 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 	mes "Ok, vamos começar o processo de encantamento...";
 	mes "Então você deseja encantar o equipamento ^FF0000"+getitemname(.@e_id)+"^000000... correto?";
 	next;
-	if(select("Iniciar encantamento.","Cancelar encantamento.") == 2) {
+	if (select("Iniciar encantamento.","Cancelar encantamento.") == 2) {
 		mes "[Pesquisadora de Artefatos]";
 		mes "Ok, volte e fale comigo caso precise de meus serviços.";
 		next;
@@ -271,7 +271,7 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 	mes "Ok, irei lhe dizer novamente. Cada encantamento custa ^0000FF1 Moeda de Mora^000000 e ^0000FF100,000 Zeny^000000.";
 	mes "Vamos começar o processo agora.";
 	next;
-	if(countitem(.@e_id) > 1) {
+	if (countitem(.@e_id) > 1) {
 		mes "==Informação==";
 		mes "Você só pode ter 1 equipamento para encantar.";
 		next;
@@ -279,14 +279,14 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 		mes "Por favor, remova equipamentos semelhantes.";
 		close;
 	}
-	if(!isequipped(.@e_id)) {
+	if (!isequipped(.@e_id)) {
 		mes "[Pesquisadora de Artefatos]";
 		mes "Você poderia equipar ^FF0000"+getitemname(.@e_id)+"^000000 em você? Se não, não poderei fazer o encantamento. Obrigada.";
 		close;
 	}
-	if(.@e_slot == 7 && getequipid(.@e_slot) != .@e_id) {
+	if (.@e_slot == 7 && getequipid(.@e_slot) != .@e_id) {
 		set .@e_slot,8;
-		if(getequipid(.@e_slot) != .@e_id) {
+		if (getequipid(.@e_slot) != .@e_id) {
 			mes "Parece que o equipamento não está em você. Por favor equipe-o.";
 			close;
 		}
@@ -295,16 +295,16 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 	set .@card3,getequipcardid(.@e_slot,2);
 	set .@card4,getequipcardid(.@e_slot,3);
 	mes "[Pesquisadora de Artefatos]";
-	if(.@card2) {
+	if (.@card2) {
 		mes "Este equipamento já foi encantado 3 vezes. Sinto muito, mas não posso trabalhar com equipamentos que já atingiram o máximo de encantamentos.";
 		close;
-	} else if(.@card3) {
-		if(.@e_slot == 7 || .@e_slot == 8) {
+	} else if (.@card3) {
+		if (.@e_slot == 7 || .@e_slot == 8) {
 			mes "Eu não posso encantar este equipamento mais de 2 vezes. Volte com outro diferente.";
 			close;
 		}
 		set .@chance,30;
-	} else if(.@card4 >= 1) {
+	} else if (.@card4 >= 1) {
 		if (.@e_slot == 7 || .@e_slot == 8)
 			setarray .@enchant_card[0],4700,4740,4730,4720,4793,4788,4802,4797;
 		set .@chance,60;
@@ -313,7 +313,7 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 			setarray .@enchant_card[0],4700,4740,4730,4720,4792,4787,4801,4796;
 		set .@chance,100;
 	}
-	if(getequiprefinerycnt(.@e_slot) >= 9) {
+	if (getequiprefinerycnt(.@e_slot) >= 9) {
 		mes "Se seu equipamento for refinado ^FF0000+9^000000 ou mais.";
 		mes "Você pode escolher uma opção alternativa para aumentar o poder de seu equipamento.";
 		next;
@@ -335,7 +335,7 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 		mes "[Pesquisadora de Artefatos]";
 		mes "Você tem certeza que quer "+.@opt_desc$+"?";
 		next;
-		if(select("Claro.:Não, estou pensando.") == 2) {
+		if (select("Claro.:Não, estou pensando.") == 2) {
 			mes "[Pesquisadora de Artefatos]";
 			mes "Ok, volte aqui caso precise de meus serviços.";
 			next;
@@ -402,38 +402,38 @@ mora,148,98,5	script	Pesquisadora de Artefatos	521,{
 	} else {
 		switch (.@class) {
 			case 1:
-				if(.@e_slot == 2) {
-					if(.@enchant_item == 15038)
+				if (.@e_slot == 2) {
+					if (.@enchant_item == 15038)
 						setarray .@enchant_card[0],4700,4701,4702,4703,4750,4751,4752,4753,4754,4764,4765,4817,4818;
 					else
 						setarray .@enchant_card[0],4700,4701,4702,4703,4819,4766,4767,4808,4809,4810,4811,4820;
-				} else if(.@e_slot == 5)
+				} else if (.@e_slot == 5)
 					setarray .@enchant_card[0],4730,4731,4732,4733,4750,4751,4752,4753,4754,4859,4860;	
-				else if(.@e_slot == 6)
+				else if (.@e_slot == 6)
 					setarray .@enchant_card[0],4700,4730,4740,4720,4796,4797,4801,4802,4791,4792,4787,4788;				
 				break;
 			case 2:
-				if(.@e_slot == 2)
+				if (.@e_slot == 2)
 					setarray .@enchant_card[0],4700,4701,4702,4750,4751,4752,4753,4754,4764,4765,4818,4817;
-				else if(.@e_slot == 5)
+				else if (.@e_slot == 5)
 					setarray .@enchant_card[0],4750,4751,4752,4753,4730,4731,4732,4733,4762,4763,4859,4860;
-				else if(.@e_slot == 6)
+				else if (.@e_slot == 6)
 					setarray .@enchant_card[0],4792,4793,4787,4788,4720,4721,4740,4741,4730,4731,4700,4701,4750,4751,4796,4797,4801,4802;
 				break;
 
 			case 3:
-				if(.@e_slot == 2){
-					if(.@enchant_item == 15036)
+				if (.@e_slot == 2){
+					if (.@enchant_item == 15036)
 						setarray .@enchant_card[0],4791,4792,4793,4740,4741,4742,4743,4797,4798,4799;
 					else
 						setarray .@enchant_card[0],4791,4796,4797;
-				} else if(.@e_slot == 5){
-					if(.@enchant_item == 2574)
+				} else if (.@e_slot == 5){
+					if (.@enchant_item == 2574)
 						setarray .@enchant_card[0],4700,4730,4731,4732,4750,4751,4752,4762,4763;
 					else
 						setarray .@enchant_card[0],4730,4731,4732,4733,4750,4751;
-				} else if(.@e_slot == 6){
-					if(.@enchant_item == 2475)
+				} else if (.@e_slot == 6){
+					if (.@enchant_item == 2475)
 						setarray .@enchant_card[0],4700,4730,4720,4740,4801,4802,4796,4797,4787,4788,4792,4793;
 					else
 						setarray .@enchant_card[0],4700,4730,4720,4740,4787;
@@ -528,7 +528,7 @@ mora,99,93,5	script	Forjador de Artefatos	495,{
 	mes "Então tenho que perguntar antes de começar-mos.";
 	mes "Você deseja continuar o encantamento?";
 	next;
-	if(select("Encantar Equipamento.:Não encantar equipamento.") == 2) {
+	if (select("Encantar Equipamento.:Não encantar equipamento.") == 2) {
 		mes "[Forjador de Artefatos]";
 		mes "Ok, não exite em voltar aqui caso precise de meus serviços.";
 		next;
@@ -540,7 +540,7 @@ mora,99,93,5	script	Forjador de Artefatos	495,{
 	mes "Também tenho que informar que cada encantamento irá lhe custar apenas ^0000FF5 Moedas de Mora^000000.";
 	mes "Vamos começar o processo de encantamento agora...";
 	next;
-	if(countitem(.@enchant_item) > 1) {
+	if (countitem(.@enchant_item) > 1) {
 		mes "==Informação==";
 		mes "Você só pode ter 1 equipamento para encantar.";
 		next;
@@ -548,7 +548,7 @@ mora,99,93,5	script	Forjador de Artefatos	495,{
 		mes "Por favor, remova equipamentos semelhantes.";
 		close;
 	}
-	if(!isequipped(.@enchant_item)) {
+	if (!isequipped(.@enchant_item)) {
 		mes "[Forjador de Artefatos]";
 		mes "Você pode equipar ^FF0000"+getitemname(.@enchant_item)+"^000000 em você? Se não, eu não posso fazer o encantamento. Obrigado.";
 		close;
@@ -556,7 +556,7 @@ mora,99,93,5	script	Forjador de Artefatos	495,{
 	switch(.@enchant_item) {
 		case 2859: case 2860:
 		case 2861: case 2862:
-			if(getequipid(7) == .@enchant_item)
+			if (getequipid(7) == .@enchant_item)
 				set .@e_type,7;
 			else
 				set .@e_type,8;
@@ -566,19 +566,19 @@ mora,99,93,5	script	Forjador de Artefatos	495,{
 	set .@card2,getequipcardid(.@e_type,1);
 	set .@card3,getequipcardid(.@e_type,2);
 	set .@card4,getequipcardid(.@e_type,3);
-	if(.@card2) {
+	if (.@card2) {
 		mes "[Forjador de Artefatos]";
 		mes "Eu já encantei esse equipamento 3 vezes. Sinto muito, mas não posso trabalhar em equipamentos que já atingiram o limite de encantamentos.";
 		close;
 	}
-	if(.@card3) {
-		if(.@e_type == 4) {
+	if (.@card3) {
+		if (.@e_type == 4) {
 			mes "Não posso encantar este equipamento mais que 2 vezes. Volte com outro diferente.";
 			close;
 		}
 		set .@chance,30;
 	}
-	else if(.@card4)
+	else if (.@card4)
 		set .@chance,60;
 	else
 		set .@chance,100;
@@ -656,7 +656,7 @@ mora,98,66,7	script	Mestre das Relíquias	518,{
 	}
 	set .@menu$, .@menu$ + ":Cancelar";
 	set .@enchant_item,.@enchantlist[select(.@menu$)-2];
-	if(.@enchant_item) {
+	if (.@enchant_item) {
 		mes "[Mestre das Relíquias]";
 		mes "Ok, vamos começar a cerimônia de encantamento.";
 		mes "Então você quer encantar o equipamento ^FF0000"+getitemname(.@enchant_item)+"^000000. Correto?";
@@ -665,12 +665,12 @@ mora,98,66,7	script	Mestre das Relíquias	518,{
 		mes "Então, tenho que te perguntar antes de começar-mos.";
 		mes "Você tem certeza que deseja continuar o processo de encantamento?";
 		next;
-		if(select("Iniciar encantamento.:Cancelar encantamento.") == 1) {
+		if (select("Iniciar encantamento.:Cancelar encantamento.") == 1) {
 			mes "[Mestre das Relíquias]";
 			mes "Eu quase esqueci de te dizer, cada encantamento custa ^0000FF5 Moedas de Mora^000000.";
 			mes "Então, vamos começar o processo.";
 			next;
-			if(countitem(.@enchant_item) > 1) {
+			if (countitem(.@enchant_item) > 1) {
 				mes "==Informação==";
 				mes "Você só pode ter 1 equipamento para ser encantado.";
 				next;
@@ -678,7 +678,7 @@ mora,98,66,7	script	Mestre das Relíquias	518,{
 				mes "Por favor remova os outros semelhantes.";
 				close;
 			}
-			if(!isequipped(.@enchant_item)) {
+			if (!isequipped(.@enchant_item)) {
 				mes "[Mestre das Relíquias]";
 				mes "Você pode por favor equipar o item? Assim fica mais fácil de encantar.";
 				close;
@@ -707,19 +707,19 @@ mora,98,66,7	script	Mestre das Relíquias	518,{
 			}
 			set .@card3,getequipcardid(.@e_type,2);
 			set .@card4,getequipcardid(.@e_type,3);
-			if(.@card2) {
+			if (.@card2) {
 				mes "[Mestre das Relíquias]";
 				mes "Eu já encantei este item 3 vezes. Sinto muito, mas não posso trabalhar em um equipamento que já antigiu o limite de encantamentos.";
 				close;
 			}
-			if(.@card3) {
-				if(.@e_type == 4 || (.@enchant_item > 2863 && .@enchant_item < 2867)) {
+			if (.@card3) {
+				if (.@e_type == 4 || (.@enchant_item > 2863 && .@enchant_item < 2867)) {
 					mes "Eu não posso encantar este item mais de 2 vezes. Volte com outro diferente.";
 					close;
 				}
 				set .@chance,30;
 			}
-			else if(.@card4)
+			else if (.@card4)
 				set .@chance,60;
 			else
 				set .@chance,100;
@@ -746,7 +746,7 @@ mora,152,97,4	script	Guardiã do Poder#Maset	515,{
 	mes "Nós vendemos cada equipamento por ^0000FF10 Moedas de Mora^000000";
 	mes "Gostaria de dar uma olhada na nossa coleção?";
 	next;
-	if(select("Ver equipamentos","Cancelar.") == 1) {
+	if (select("Ver equipamentos","Cancelar.") == 1) {
 		mes "[Guardiã do Poder]";
 		mes "Então, aqui estão os conjutos de equipamentos que tenho no momento. Por favor dê uma olhada.";
 		next;
@@ -814,15 +814,15 @@ mora,152,97,4	script	Guardiã do Poder#Maset	515,{
 	}
 	set .@menu$, .@menu$ + ":Cancelar";
 	set @guardian_item,.@itemlist[select(.@menu$)-2];
-	if(@guardian_item) {
+	if (@guardian_item) {
 		mes "[Guardiã do Poder]";
 		mes "Você tem certeza que deseja comprar o seguinte equipamento:";
 		mes "^FF0000"+getitemname(@guardian_item)+"^000000";
 		mes "por ^0000FF10 Moedas de Mora^000000?";
 		next;
-		if(select("Comprar equipamento.","Cancelar.") == 1) {
+		if (select("Comprar equipamento.","Cancelar.") == 1) {
 			mes "[Guardiã do Poder]";
-			if(countitem(6380) >=10) {
+			if (countitem(6380) >=10) {
 				delitem 6380,10;
 				getitem @guardian_item,1;
 				mes "Aqui está seu ^FF0000"+getitemname(@guardian_item)+"^000000!";
@@ -895,9 +895,9 @@ mora,105,75,4	script	Guardião de Artefatos	495,{
 	mes "[Guardião de Artefatos]";
 	mes "Você tem certeza que deseja continuar com a compra deste tipo de equipamento?";
 	next;
-	if(select("Continuar a compra.:Cancelar.") == 1) {
+	if (select("Continuar a compra.:Cancelar.") == 1) {
 		mes "[Guardião de Artefatos]";
-		if(countitem(6380) >=10) {
+		if (countitem(6380) >=10) {
 			set @artifact_item,.@itemlist[rand(0,getarraysize(.@itemlist)-1)];
 			delitem 6380,10;
 			getitem @artifact_item,1;
@@ -951,15 +951,15 @@ mora,87,88,6	script	Guardião dos Segredos	495,{
 			setarray .@itemlist$[0],"Bíblia da Promessa.","Luz da Cura.","Selo da Catedral.","Anel do Arcebispo.";
 			set .@type$,"Outro";
 			while(.@i < getarraysize(.@itemlist)) {
-				if(countitem(.@itemlist[.@i])) {
+				if (countitem(.@itemlist[.@i])) {
 					mes "[Guardião dos Segredos]";
 					mes "Eu não posso lhe dar algum desses itens enquanto outro igual já estiver no seu inventário.";
 					next;
 					mes "[Guardião dos Segredos]";
 					mes "Você gostaria de trocar seu equipamento em ^0000FF10 Moedas de Mora^000000?";
-					if(select("Claro.:Não.") == 1) {
+					if (select("Claro.:Não.") == 1) {
 						mes "Você irá perder qualquer encantamento que já existir em seu equipamento. Você realmente quer trocá-lo?";
-						if(select("Sim.:Não.") == 1) {
+						if (select("Sim.:Não.") == 1) {
 							next;
 							delitem .@itemlist[.@i],1;
 							getitem 6380,10;
@@ -979,7 +979,7 @@ mora,87,88,6	script	Guardião dos Segredos	495,{
 	next;
 	mes "[Guardião dos Segredos]";
 	mes "Esta é a lista de equipamentos que tenho para este tipo.";
-	if(.@type == 5) {
+	if (.@type == 5) {
 		mes "^0000FF"+.@itemlist$[0]+"^000000";
 		mes "^0000FF"+.@itemlist$[1]+"^000000";
 		mes "^0000FF"+.@itemlist$[2]+"^000000";
@@ -991,9 +991,9 @@ mora,87,88,6	script	Guardião dos Segredos	495,{
 	next;
 	mes "[Guardião dos Segredos]";
 	mes "Tem certeza que quer comprar uma peça do Conjunto ^0000FF"+.@type$+"^000000 por ^0000FF10 Moedas de Mora^000000?";
-	if(select("Comprar.:Não.") == 1) {
+	if (select("Comprar.:Não.") == 1) {
 		mes "[Guardião dos Segredos]";
-		if(countitem(6380) >=10) {
+		if (countitem(6380) >=10) {
 			set @keepersecret_item,.@itemlist[rand(0,getarraysize(.@itemlist)-1)];
 			delitem 6380,10;
 			getitem @keepersecret_item,1;
@@ -1024,7 +1024,7 @@ mora,134,166,3	script	Bulberry Westhood	509,{
 	mes "[Bulberry Westhood]";
 	mes "Então,você tem algum Sobrepeliz Sombrio do Sicário?";
 	next;
-	if(select("Encantar meu sobrepeliz.:Cancelar.") == 1) {
+	if (select("Encantar meu sobrepeliz.:Cancelar.") == 1) {
 		mes "[Bulberry Westhood]";
 		mes "Você quer encantar o Sobrepeliz Sombrio do Sicário! Legal, meu amigo.";
 		next;
@@ -1038,8 +1038,8 @@ mora,134,166,3	script	Bulberry Westhood	509,{
 		mes "[Bulberry Westhood]";
 		mes "Quer começar o encantamento do seu Sobrepeliz?";
 		next;
-		if(select("Iniciar encantamento.:Cancelar.") == 1) {
-			if(countitem(2568) > 1) {
+		if (select("Iniciar encantamento.:Cancelar.") == 1) {
+			if (countitem(2568) > 1) {
 				mes "==Informação==";
 				mes "Você só pode ter 1 equipamento para encantar.";
 				next;
@@ -1047,8 +1047,8 @@ mora,134,166,3	script	Bulberry Westhood	509,{
 				mes "Por favor, remova equipamentos semelhantes.";
 				close;
 			}
-			if(isequipped(2568)) {
-				if(countitem(6380) >=5) {
+			if (isequipped(2568)) {
+				if (countitem(6380) >=5) {
 					setarray .@enchant_card[0],4766,4767,4760,4761,4762,4763,4764,4765;
 					setarray .@enchant_card2[0],4720,4721,4710,4711,4750,4751;
 					setarray .@enchant_card3[0],4700,4701,4730,4731,4740,4741;
@@ -1105,8 +1105,8 @@ mora,105,176,6	script	Mestre Alfaite	509,{
 			mes "Então, como eu já te disse o custo é de 1 Moeda de Mora, e então o que você diz?";
 			mes "Quer mesmo comprar 1 Acolchoamento Militar?";
 			next;
-			if(select("Acolchoamento Militar.:Não comprar.") == 1) {
-				if(countitem(6380) >=1) {
+			if (select("Acolchoamento Militar.:Não comprar.") == 1) {
+				if (countitem(6380) >=1) {
 					delitem 6380,1;
 					getitem 15024,1;
 					mes "[Mestre Alfaite]";
@@ -1132,8 +1132,8 @@ mora,105,176,6	script	Mestre Alfaite	509,{
 			mes "[Mestre Alfaite]";
 			mes "Está pronto para continuar o encantamento do Acolchoamento Militar?";
 			next;
-			if(select("Começar encantamento.:Cancelar.") == 1) {
-				if(countitem(15024) > 1) {
+			if (select("Começar encantamento.:Cancelar.") == 1) {
+				if (countitem(15024) > 1) {
 					mes "==Informação==";
 					mes "Você só pode ter 1 item para encantar.";
 					next;
@@ -1141,8 +1141,8 @@ mora,105,176,6	script	Mestre Alfaite	509,{
 					mes "Por favor remova os outros itens semelhantes.";
 					close;
 				}
-				if(isequipped(15024)) {
-					if(countitem(6380) >=5) {
+				if (isequipped(15024)) {
+					if (countitem(6380) >=5) {
 						setarray .@enchant_card[0],4766,4767,4760,4761,4762,4763,4764,4765;
 						setarray .@enchant_card2[0],4720,4721,4710,4711,4750,4751;
 						setarray .@enchant_card3[0],4700,4701,4730,4731,4740,4741;
@@ -1191,7 +1191,7 @@ mora,123,177,4	script	Artesão de Pendantes	509,{
 	mes "[Artesão de Pendantes]";
 	mes "Então, você quer que eu encante seu Pendante do Guardião?";
 	next;
-	if(select("Encantar meu Pendante.:Sair.") == 1) {
+	if (select("Encantar meu Pendante.:Sair.") == 1) {
 		mes "[Artesão de Pendantes]";
 		mes "Ok, você quer encantar seu Pendante do Guardião.";
 		next;
@@ -1205,8 +1205,8 @@ mora,123,177,4	script	Artesão de Pendantes	509,{
 		mes "[Artesão de Pendantes]";
 		mes "Gostaria de iniciar o encantamento?";
 		next;
-		if(select("Vamos começar.:Cancelar.") == 1) {
-			if(countitem(2858) > 1) {
+		if (select("Vamos começar.:Cancelar.") == 1) {
+			if (countitem(2858) > 1) {
 				mes "==Informação==";
 				mes "Você só pode ter 1 item para encantamento.";
 				next;
@@ -1214,8 +1214,8 @@ mora,123,177,4	script	Artesão de Pendantes	509,{
 				mes "Por favor remova os outros itens semelhantes.";
 				close;
 			}
-			if(isequipped(2858)) {
-				if(countitem(6380) >=5) {
+			if (isequipped(2858)) {
+				if (countitem(6380) >=5) {
 					setarray .@enchant_card[0],4766,4767,4760,4761,4762,4763,4764,4765;
 					setarray .@enchant_card2[0],4720,4721,4710,4711,4750,4751;
 					setarray .@enchant_card3[0],4700,4701,4730,4731,4740,4741;
@@ -1256,8 +1256,8 @@ mora,123,177,4	script	Artesão de Pendantes	509,{
 //Enchant Item function usage
 //"EnchantItem",<Coin Cost>,<Zeny Cost>,<Chance>,<Item ID>,<Refine>,<Card to Enchant>,<First card>,<Second card>,<current card>,<NPC display name>
 function	script	EnchantItem	{
-	if(countitem(6380) >= getarg(0) && Zeny >= getarg(1)) {
-		if(getarg(2) == 100) {
+	if (countitem(6380) >= getarg(0) && Zeny >= getarg(1)) {
+		if (getarg(2) == 100) {
 			mes "["+getarg(9)+"]";
 			mes "Eu sinto o poder do ^FF0000"+getitemname(getarg(3))+"^000000. Este equipamento ainda é puro. Nós podemos continuar com a cerimônia normalmente.";
 			next;
@@ -1268,7 +1268,7 @@ function	script	EnchantItem	{
 			mes "Eu sinto o poder do ^FF0000"+getitemname(getarg(3))+"^000000. O encantamento desta armadura pode falhar.";
 			next;
 			mes "["+getarg(9)+"]";
-			if(getarg(2) > 50)
+			if (getarg(2) > 50)
 				mes "O encantamento tem uma chance de sucesso de ^FF0000"+getarg(2)+"%^000000! Se o feitiço falhar, não se preocupe. Seu equipamento não será quebrado, mas será retornado para sua forma original.";
 			else
 				mes "O encantamento tem uma chance de sucesso de ^FF0000"+getarg(2)+"%^000000! Se o feitiço falhar, seu equipamento poderá quebrar. Também há uma chance de ^FF000050%^000000 para remover todos os encantamentos.";
@@ -1279,19 +1279,19 @@ function	script	EnchantItem	{
 			mes "["+getarg(9)+"]";
 			mes "Tenho que te perguntar uma coisa. Você tem certeza que quer continuar com este encantamento?";
 			next;
-			if(select("Continuar o encantamento.:Cancelar o encantamento.") == 2)
+			if (select("Continuar o encantamento.:Cancelar o encantamento.") == 2)
 				return;
 			mes "["+getarg(9)+"]";
 			mes "Muito bem. Iremos continuar a cerimônia... ai vamos nós!!!";
 		}
 		next;
-		if(rand(100) > getarg(2)) {
+		if (rand(100) > getarg(2)) {
 			specialeffect 155;
 			delitem 6380,1;
 			set Zeny,Zeny-getarg(1);	
 			delitem getarg(3),1;
-			if(getarg(2)<50) {
-				if(rand(100) > 50){
+			if (getarg(2)<50) {
+				if (rand(100) > 50){
 					mes "Ah não! Não só o encantamento falhou, mas seu equipamento também foi quebrado!";
 					next;
 					mes "Nem sei te dizer o quanto eu sinto muito...";

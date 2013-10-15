@@ -47,7 +47,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
   	if (!getpartnerid()) {
 		mes "Bwah hah hah~!";
 		mes "Aquele olhar em seus olhos ~!";
-		if (sex) {
+		if (Sex) {
 			mes "Este é definitivamente o olhar";
 			mes "de um solitário solteirão do sexo masculino.";
 			mes "Tenho quase 100 por cento de certeza";
@@ -78,7 +78,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 	mes "Sinto que você carrega um";
 	mes "fardo pesado";
 	mes "se eu não estiver errado, você é";
-	if (sex)
+	if (Sex)
 		mes "um homem casado, certo?";
 	else
 		mes "uma mulher casada, certo?";
@@ -101,7 +101,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 	mes "No final do dia você e";
 	mes "sua luta acabam, e você se sentirá";
 	mes "totalmente totalmente infeliz.";
-	if (sex)
+	if (Sex)
 		mes "... tudo por causa DELE.";
 	else
 		mes "...tudo por causa DELA.";
@@ -125,7 +125,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 	mes "[Deviruchi]";
 	mes "*Sussurros*";
 	mes "^555555Eu vejo que você não está gostando^000000";
-	if (sex) {
+	if (Sex) {
 		mes "^555555de  suas promessas, e não é";
 		mes "como sua esposa e se importando com ela,";
 		mes "não sei...Você não";
@@ -172,7 +172,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 		mes "[Deviruchi]";
 		mes "Eu entendo.Mas se você quer pensar";
 		mes "sobre qualquer coisa, pense...";
-		if (sex) {
+		if (Sex) {
 			mes "Fascinante seria se";
 			mes "você se livrasse ";
 			mes "finalmente da sua esposa";
@@ -196,7 +196,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 		specialeffect EF_MAGICROD;
 		specialeffect2 EF_DEVIL;
 		set wedding_sign,0;
-		set zeny,zeny-2500000;
+		set Zeny, Zeny-2500000;
 		percentheal -100,-100;
 		divorce;
 		mes "[Deviruchi]";

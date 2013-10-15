@@ -440,7 +440,6 @@ moc_fild19,107,101,5	script	Quadro de Avisos#20	837,{
 }
 
 gef_tower,55,142,5	script	Quadro de Avisos#21	837,{
-
 	mes "[Caverna de Geffen]";
 	mes "^6B1312Atenção!^000000"; 
 	mes "A Caverna de Geffen é constituída por 3 nívels";
@@ -458,7 +457,6 @@ gef_tower,55,142,5	script	Quadro de Avisos#21	837,{
 }
 
 xmas_fild01,75,80,5	script	Quadro de Avisos#22	837,{
-
 	mes "[A Cidade do Inverno, Lutie]";
 	mes "Bem-vindo a Lutie, a cidade da neve.";
 	mes "A Fabricação de brinquedos na Fábrica de Brinquedos é o principal";
@@ -474,7 +472,6 @@ xmas_fild01,75,80,5	script	Quadro de Avisos#22	837,{
 }
 
 xmas,147,311,5	script	Quadro de Avisos#23	837,{
-
 	mes "[Fábrica de Brinquedos]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Fábrica de Brinquedos é constituída por 2 níveis.";
@@ -490,7 +487,6 @@ xmas,147,311,5	script	Quadro de Avisos#23	837,{
 }
 
 yuno_fild03,37,143,5	script	Quadro de Avisos#24	837,{
-
 	mes "[Caverna de Magma]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Caverna de Magma está repleta de criaturas muito perigosas.";
@@ -504,7 +500,6 @@ yuno_fild03,37,143,5	script	Quadro de Avisos#24	837,{
 }
 
 niflheim,200,191,5	script	Quadro de Avisos#25	837,{
-
 	mes "[A Cidade dos Mortos, Nifflheim]";
 	mes "Bem-vindo a Nifflheim, a Cidade dos Mortos.";
 	mes "Nifflheim era conhecida como o outro mundo, onde";
@@ -529,7 +524,6 @@ niflheim,200,191,5	script	Quadro de Avisos#25	837,{
 
 /*
 moc_fild15,267,264,5	script	Quadro de Avisos#26	837,{
-
 	mes "[Formigueiro Infernal]";
 	mes "^6B1312Atenção!^000000";
 	mes "O Formigueiro Infernal possui 2 níveis.";
@@ -546,7 +540,6 @@ moc_fild15,267,264,5	script	Quadro de Avisos#26	837,{
 */
 
 moc_ruins,61,164,5	script	Quadro de Avisos#27	837,{
-
 	mes "[Pirâmides]";
 	mes "^6B1312Atenção!^000000";
 	mes "As Pirâmides são constituídas em 7 níveis, onde 4 níveis estão localizados na superficíe e o restante abaixo.";
@@ -560,7 +553,6 @@ moc_ruins,61,164,5	script	Quadro de Avisos#27	837,{
 }
 
 glast_01,369,308,5	script	Quadro de Avisos#28	837,{
-
 	mes "[Glast Heim]";
 	mes "Glast Heim é um calabouço enorme, com inúmeros níveis.";
 	mes "Esse calabouço não é definitivamente recomendado para novos e experientes aventureiros";

@@ -164,11 +164,11 @@ morocc_in,144,138,4	script	Guia do PVP	84,{
 		  mes "com sucesso.";
 		  mes "Muito obrigado, Nós";
 		  mes "esperamos ver você novamente.";
-				if(strnpcinfo(4) == "morocc_in") { savepoint "morocc_in",141,139; }
-				if(strnpcinfo(4) == "alberta_in") { savepoint "alberta_in",22,148; }
-				if(strnpcinfo(4) == "prt_in") { savepoint "prt_in",54,137; }
-				if(strnpcinfo(4) == "geffen_in") { savepoint "geffen_in",70,59; }
-				if(strnpcinfo(4) == "payon_in01") { savepoint "payon_in01",142,46; }
+				if (strnpcinfo(4) == "morocc_in") { savepoint "morocc_in",141,139; }
+				if (strnpcinfo(4) == "alberta_in") { savepoint "alberta_in",22,148; }
+				if (strnpcinfo(4) == "prt_in") { savepoint "prt_in",54,137; }
+				if (strnpcinfo(4) == "geffen_in") { savepoint "geffen_in",70,59; }
+				if (strnpcinfo(4) == "payon_in01") { savepoint "payon_in01",142,46; }
 			break;
 		case 5:
 			mes "[Guia do PVP]";
@@ -214,7 +214,7 @@ morocc_in,144,142,4	script	Porteiro#PvP	83,{
 		  mes "para a arena de luta";
 		  mes "do modo Yoyo?";
 			next;
-			if(select("Entrar","Cancelar")==1) {
+			if (select("Entrar","Cancelar")==1) {
 				if ((Zeny > 499) && (BaseLevel > 30)) {
 					set Zeny, Zeny - 500;
 					warp "pvp_y_room",51,23;
@@ -277,7 +277,7 @@ payon_in01,140,53,4	duplicata(Porteiro#PvP)	Porteiro#gke5	83,{}
 payon_in01,133,182,4	duplicato(Porteiro#PvP)	Porteiro#gke6	83,{}
 
 pvp_y_room,86,85,4	script	Recepção	105,{
-	if(strnpcinfo(4) == "pvp_y_room") {
+	if (strnpcinfo(4) == "pvp_y_room") {
 		setarray .@Maps$[0],"pvp_y_8-1","pvp_y_8-2","pvp_y_8-3","pvp_y_8-4","pvp_y_8-5";
 		setarray .@Name$[0],"Prontera","Izlude","Payon","Alberta","Morroc";
 		setarray .@Limit[0],128,128,128,128,128;
@@ -467,7 +467,7 @@ pvp_y_room,77,85,4	script	Guia de Batalha dos Clãs	105,{
 	mes "do Time "+@menu+", você está pronto";
 	mes "para ser teleportado para o mapa agora?";
 	next;
-	if(select("Sim:Não")==1){
+	if (select("Sim:Não")==1){
 		mes "[Guia de Batalha dos Clãs]";
 		mes "Excelente! Tenha uma boa batalha!";
 		close2;

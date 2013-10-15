@@ -61,7 +61,7 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 			mes "Nível de base " + .@BaseLevel + " ou maior, e";
 			mes "precisa pagar " + .@ZenyCost + ",000 Zenys.";
 			next;
-			if(select("Continuar:Cancelar") == 2) {
+			if (select("Continuar:Cancelar") == 2) {
 				mes "[Locador de Mercenários]";
 				mes "Oh, sério? Bem, agora";
 				mes "pode não ser uma boa hora";
@@ -70,7 +70,7 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 				mes "a vontade para voltar quando";
 				mes "mudar de ideia. Obrigado~";
 			}
-			else if(.@FaithCost && .@faith_lancer < .@FaithCost) {
+			else if (.@FaithCost && .@faith_lancer < .@FaithCost) {
 				mes "[Locador de Mercenários]";
 				mes "Oh... Seu nível de fidelidade";
 				mes "com a Guilda dos Mercenários";

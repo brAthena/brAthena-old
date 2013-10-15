@@ -25,7 +25,7 @@
 //   \________________________________________________________/
 
 comodo,219,158,6	script	Kachua	91,{
-	if(checkweight(1201,1) == 0) {
+	if (checkweight(1201,1) == 0) {
 		mes "[Kachua]";
 		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
 		close;
@@ -483,7 +483,7 @@ comodo,210,154,2	script	Homem Suspeito#cmd	118,{
 
 mjolnir_02,85,362,3	script	Ferreiro Mineiro	726,{
 
-	if(checkweight(1201,1) == 0) {
+	if (checkweight(1201,1) == 0) {
 		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
 		close;
 	}

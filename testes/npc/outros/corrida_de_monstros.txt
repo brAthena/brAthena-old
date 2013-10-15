@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.8/1.0/1.2                         |
+//   | Versões eA/rA/brA: 1.8/2.0/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Corrida de Monstros em Hugel.               |
 //   |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [ShounLee]                          |
 //   | 1.2 Revisão [Battousai]                                |
+//   | 1.3 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -683,7 +684,7 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 			mes "Espero que você goste da raça.";
 			mes "Deixe-me guiá-lo para dentro da ";
 			mes "Arena da Corrida de Monstros, agora.";
-			set zeny,zeny-2000;
+			set Zeny, Zeny-2000;
 			set monster_race_1,0;
 			close2;
 			warp "p_track01",75,41;
@@ -703,7 +704,7 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 			mes "você goste da corrida.";
 			mes "Agora, deixe-me guiá-lo";
 			mes "para a Arena da Corrida";
-			set zeny,zeny-2000;
+			set Zeny, Zeny-2000;
 			set monster_race_1,0;
 			close2;
 			warp "p_track01",75,41;
@@ -739,7 +740,7 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 			mes "Obrigado";
 			mes "Espero que você se divirta";
 			mes "assistindo a corrida!";
-			set zeny,zeny-500;
+			set Zeny, Zeny-500;
 			set monster_race_1,0;
 			close2;
 			warp "p_track01",75,41;
@@ -759,7 +760,13 @@ hugel,58,72,6	script	Eckar Ellebird#single	798,{
 	mes "seus prêmios.";
 	mes "O portão será aberto em breve, ";
 	mes "portanto, espere.";
-	close;				
+	close;
+OnEnable:
+	enablenpc "Eckar Ellebird#single";
+	end;
+OnDisable:
+	disablenpc "Eckar Ellebird#single";
+	end; 
 }
 
 p_track01,39,49,3	script	Game Guide#single	845,{
@@ -1317,7 +1324,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			mes "Espero que você goste da raça.";
 			mes "Deixe-me guiá-lo para dentro da ";
 			mes "Arena da Corrida de Monstros, agora.";
-			set zeny,zeny-2000;
+			set Zeny, Zeny-2000;
 			set monster_race_2_1,0;
 			set monster_race_2_2,0;
 			close2;
@@ -1341,7 +1348,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			mes "na Corrida de Monstros";
 			mes "Deixe-me levá-lo até";
 			mes "a Arena da corrida";
-			set zeny,zeny-2000;
+			set Zeny, Zeny-2000;
 			set monster_race_2_1,0;
 			set monster_race_2_2,0;
 			close2;
@@ -1381,7 +1388,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			mes "Obrigado";
 			mes "Espero que você se divirta";
 			mes "assistindo a corrida!";
-			set zeny,zeny-500;
+			set Zeny, Zeny-500;
 			set monster_race_2_1,0;
 			set monster_race_2_2,0;
 			close2;
@@ -1393,7 +1400,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 		mes "mas você não tem a quantia";
 		mes "de 500 zeny para assistir";
 		mes "a corrida";
-		close;		
+		close;
 	}
 	mes "[Eckar Erenes]";
 	mes "Sinto muito, mas uma corrida de";
@@ -1403,8 +1410,13 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 	mes "seus prêmios.";
 	mes "O portão será aberto em breve, ";
 	mes "portanto, espere.";
-	
 	close;
+OnEnable:
+	enablenpc "Eckar Erenes#double";
+	end;
+OnDisable:
+	disablenpc "Eckar Erenes#double";
+	end;
 }
 
 p_track02,73,22,1	script	Ajudante de Bilheteria#2	899,{
@@ -3064,4 +3076,54 @@ p_track01,45,42,3	script	Homem Viciado#single	881,{
 	mes "uma vez, certo?";
 	mes "O que está acontecendo?";
 	close;
+}
+
+hugel,5,5,3	script	Adm. Corrida de Monstros	868,{
+	callfunc "F_GM_NPC";
+	mes "[Adm. Corrida de Monstros]";
+	mes "Eu posso ativar e";
+	mes "desativar os NPCs de";
+	mes "Entrada da Arena para as corridas";
+	mes "Simples e Dupla.";
+	next;
+	set .@select, select("Entrada Corrida Simples - ON:Entrada Corrida Dupla - ON:Entrada Corrida Simples - OFF:Entrada Corrida Dupla - OFF");
+	mes "[Adm. Corrida de Monstros]";
+	mes "Digite a senha.";
+	next;
+	set .@i, callfunc("F_GM_NPC",1854,0,0,2000);
+	if (.@i == -2) {
+		mes "[Adm. Corrida de Monstros]";
+		mes "Erro.";
+		close;
+	} else if (.@i == -1) {
+		mes "[Adm. Corrida de Monstros]";
+		mes "Senha incorreta.";
+		close;
+	} else if (.@i == 0) {
+		close;
+	} else {
+		mes "[Adm. Corrida de Monstros]";
+		switch(.@select) {
+		case 1:
+			mes "A Entrada da Corrida de";
+			mes "Monstros Simples está ativa.";
+			donpcevent "Eckar Ellebird#single::OnEnable";
+			close;
+		case 2:
+			mes "A Entrada da Corrida de";
+			mes "Monstros Dupla está ativa.";
+			donpcevent "Eckar Erenes#double::OnEnable";
+			close;
+		case 3:
+			mes "A Entrada da Corrida de";
+			mes "Monstros Simples está inativa.";
+			donpcevent "Eckar Ellebird#single::OnDisable";
+			close;
+		case 4:
+			mes "A Entrada da Corrida de";
+			mes "Monstros Dupla está inativa.";
+			donpcevent "Eckar Erenes#double::OnDisable";
+			close;
+		}
+	}
 }

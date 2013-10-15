@@ -35,12 +35,12 @@ prontera,113,294,3	script	Selos	837,{
 	mes " ";
 	mes "======= Seu Status dos Selos ========";
 	if (god_sl_1 < 51) mes "^ff0000Selo de Sleipnir: Incompleto^000000";
-		else mes "^00ff00Selo de Sleipnir: Completo^000000";
+	else mes "^00ff00Selo de Sleipnir: Completo^000000";
 	if (god_eremes < 28) mes "^ff0000Selo de Megingjard: Incompleto^000000";
-		else mes "^00ff00Selo de Megingjard: Completo^000000";
+	else mes "^00ff00Selo de Megingjard: Completo^000000";
 	if (god_brising < 50) mes "^ff0000Selo de Brisingamen: Incompleto^000000";
-		else mes "^00ff00Selo de Brisingamen: Completo^000000";
+	else mes "^00ff00Selo de Brisingamen: Completo^000000";
 	if (god_mjo_0 < 11) mes "^ff0000Selo de Mjolnir: Incompleto^000000";
-		else mes "^00ff00Selo de Mjolnir: Completo^000000";
+	else mes "^00ff00Selo de Mjolnir: Completo^000000";
 	close;
 }
