@@ -182,6 +182,11 @@ mora	mapflag	pvp	off
 dewata	mapflag	pvp	off
 dew_in01	mapflag	pvp	off
 
+izlude_a	mapflag	pvp	off
+izlude_b	mapflag	pvp	off
+izlude_c	mapflag	pvp	off
+izlude_d	mapflag	pvp	off
+
 malangdo	mapflag	pvp	off
 mal_in01	mapflag	pvp	off
 mal_in02	mapflag	pvp	off

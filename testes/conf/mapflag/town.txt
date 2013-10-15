@@ -50,3 +50,7 @@ dewata	mapflag	town
 malangdo	mapflag	town
 malaya	mapflag	town
 eclage	mapflag	town
+izlude_a	mapflag	town
+izlude_b	mapflag	town
+izlude_c	mapflag	town
+izlude_d	mapflag	town
