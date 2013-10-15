@@ -44,7 +44,7 @@ OnPlayerListReady:
 	set .@i, 0;
 	
 	for( set .@member, qiget(.@it); qicheck(.@it); set .@member,qiget(.@it) ) {
-		if( .@i % 2 == 0 ) {
+		if ( .@i % 2 == 0 ) {
 			bg_join_team($@FlaviusBG1_id1,.@member);
 			queueadd($@Guill_QueueBG1,.@member);
 		} else {
@@ -120,18 +120,18 @@ OnGuillaumeQuit:
 L_OnPlayerQuit:
 	bg_leave;
 	setd $@bg_delay_var$,gettimetick(2);
-	if( queuesize($@Guill_QueueBG1) == 0 || queuesize($@Croix_QueueBG1) == 0 ) /* todo check score and decide a winner if anyone left */
+	if ( queuesize($@Guill_QueueBG1) == 0 || queuesize($@Croix_QueueBG1) == 0 ) /* todo check score and decide a winner if anyone left */
 		callsub OnMatchOver;
 	end;
 	
 OnMatchOver:
-	if( $@FlaviusBG1_id1 || $@FlaviusBG1_id2 ) {
+	if ( $@FlaviusBG1_id1 || $@FlaviusBG1_id2 ) {
 		queuedel($@Croix_QueueBG1);
 		queuedel($@Guill_QueueBG1);
 		bg_match_over("Flavius");
 	}
-	if( $@FlaviusBG1_id1 ) { bg_destroy $@FlaviusBG1_id1; set $@FlaviusBG1_id1, 0; }
-	if( $@FlaviusBG1_id2 ) { bg_destroy $@FlaviusBG1_id2; set $@FlaviusBG1_id2, 0; }
+	if ( $@FlaviusBG1_id1 ) { bg_destroy $@FlaviusBG1_id1; set $@FlaviusBG1_id1, 0; }
+	if ( $@FlaviusBG1_id2 ) { bg_destroy $@FlaviusBG1_id2; set $@FlaviusBG1_id2, 0; }
 	end;
 }
 

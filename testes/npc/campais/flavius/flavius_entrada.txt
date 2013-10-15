@@ -46,7 +46,7 @@ bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
 	next;
 	switch(select("Eu quero me juntar ao seu exército!:Terminar a conversa")) {
 	case 1:
-		if ((Class == job_Novice) || (BaseClass == Job_Supernovice) || BaseLevel < 80) {
+		if ((Class == Job_Novice) || (BaseClass == Job_Supernovice) || BaseLevel < 80) {
 			mes "[Oficial do Exército "+.@npcbgf$+"]";
 			mes "Eu estou muito honrado que você queira se juntar para lutar contra o exército "+.@npcbgf2+" mas, eu sinto muito!: Eu não posso mandar um novato como você para morrer cruelmente no campo de batalha.";
 		} else {

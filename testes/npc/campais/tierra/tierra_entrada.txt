@@ -45,12 +45,12 @@ bat_room,124,178,5	script	Oficial do Desfiladeiro#01a	418,{
 	}
 	mes "Vamos mostrar todo o poder do Exército de "+.@npcbgt$+" para aqueles "+.@npcbgt2$+"s fedorentos!";
 	next;
-	if(select("Eu quero me juntar ao seu exército!:Terminar a conversa.") == 2) {
+	if (select("Eu quero me juntar ao seu exército!:Terminar a conversa.") == 2) {
 		mes "[Oficial do Exército "+.@npcbgt$+"]";
 		mes "Hoje nós sairemos vencedores!";
 		close;
 	}
-	if ((Class == job_Novice) || (BaseClass == Job_Supernovice) || BaseLevel < 80) {
+	if ((Class == Job_Novice) || (BaseClass == Job_Supernovice) || BaseLevel < 80) {
 		mes "[Oficial do Exército "+.@npcbgt$+"]";
 		mes "Eu estou muito honrado que você queira se juntar para lutar contra o exército "+.@npcbgt2$+" mas, eu sinto muito!: Eu não posso mandar um novato como você para morrer cruelmente no campo de batalha.";
 	}

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.2/1.2                         |
+//   | Versões eA/rA/brA: 1.3/1.4/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Sistema das Batalhas Campais                |
 //   |   NPC's da Batalha Campal                              |
@@ -26,6 +26,7 @@
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Tyler]                             |
 //   | 1.2 Script otimizado [Hold & Holy]                     |
+//   | 1.3 Ativado NPC de Administração [lututuiBR]           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -41,7 +42,7 @@ bat_room,160,141,3	script	Príncipe Croix	416,{
 	mes "Sábio aventureiro, por que você não nos empresta seu poder e juntos vamos rumo à vitória?";
 	next;
 	cutin "bat_crua2",2;
-	if(select("Qual o motivo desta batalha?:Me conte mais sobre o General Guillaume.") == 1) {
+	if (select("Qual o motivo desta batalha?:Me conte mais sobre o General Guillaume.") == 1) {
 		mes "[Príncipe Croix]";
 		mes "O grande Rei de Maroll, Marcel Marollo VII, está muito doente ultimamente.";
 		mes "A grande Majestade então declarou que deixará o futuro trono de Maroll para mim ou para o 3º príncipe, o General Guillaume.";
@@ -64,7 +65,7 @@ bat_room,160,141,3	script	Príncipe Croix	416,{
 		mes "Eu não quero derramar mais sangue mas, eu não tenho escolha e tenho que lutar pela possibilidade de paz e pelo bem do meu povo.";
 	}
 	next;
-	if(select("Sim, eu quero unir-me às suas forças.:Finalizar a conversa.") == 1) {
+	if (select("Sim, eu quero unir-me às suas forças.:Finalizar a conversa.") == 1) {
 		cutin "bat_crua1",2;
 		mes "[Príncipe Croix]";
 		mes "Muito obrigado. Eu sinto que a vitória se aproxima com aventureiros como você.";
@@ -87,7 +88,7 @@ bat_room,160,159,3	script	General Guillaume	420,{
 	mes "Audacioso aventureiro, nós precisamos de suas habilidades para vencer esta batalha.";
 	next;
 	cutin "bat_kiyom1",2;
-	if(select("Qual o motivo desta batalha?:Me conte mais sobre o Príncipe Croix.") == 1) {
+	if (select("Qual o motivo desta batalha?:Me conte mais sobre o Príncipe Croix.") == 1) {
 		mes "[General Guillaume]";
 		mes "Nosso grande Rei, Marcel Marollo VII, tem andando muito doente.";
 		mes "Sua Majestade declarou que ele escolherá entre eu ou o Príncipe Croix para ser o próximo rei dentre todos os seus 9 filhos.";
@@ -116,7 +117,7 @@ bat_room,160,159,3	script	General Guillaume	420,{
 		mes "Eu quero ensiná-lo o que fazer com que este pequeno país tão poderoso e próspero. É esse o poder militar!";
 	}
 	next;
-	if(select("Sim, eu quero me unir-me às suas forças.:Finalizar a conversa.") == 1) {
+	if (select("Sim, eu quero me unir-me às suas forças.:Finalizar a conversa.") == 1) {
 		cutin "bat_kiyom2",2;
 		mes "[General Guillaume]";
 		mes "Seja bem-vindo ao meu exército, camarada.";
@@ -147,7 +148,7 @@ bat_room,148,150,5	script	Teleportador#Battlefield	124,{
 	mes "[Teleportador]";
 	mes "Você deseja sair do campo de batalha? Utilize meus serviçoes para retornar a uma cidade.";
 	next;
-	if(select("Sair.:Não sair.") == 2) {
+	if (select("Sair.:Não sair.") == 2) {
 		mes "[Teleportador]";
 		mes "Eu estarei por aqui sempre que precisar dos meus serviços.";
 		close;
@@ -199,7 +200,7 @@ prontera,123,83,3	script	Emissária de Maroll::BatRecruit	728,{
 	mes "Os dois príncipes do reino estão agora batalhando pelo trono de Maroll e estão precisando de pessoas como você para se juntar á luta.";
 	mes "Você gostaria de compartilhar seus poderes com um dos príncipes do Reino de Maroll nesta grande guerra?";
 	next;
-	if(select("Juntar-se.:Não juntar-se.") == 2) {
+	if (select("Juntar-se.:Não juntar-se.") == 2) {
 		mes "[Emissária de Maroll]";
 		mes "Em todo caso eu estarei sempre aqui neste mesmo lugar. Sinta-se livre para voltar quando se sentir interessado.";
 		close;
@@ -269,23 +270,23 @@ bat_room,138,144,4	script	Reparador#bg	86,{
 	end;
 }
 
-/*
 // NPC de Administração
 //============================================================
 bat_room,1,151,3	script	Dispositivo#batgnd	81,{
-	input .@input,0,2000;
-	if (.@input == 0) {
+	set .@i, callfunc("F_GM_NPC",1854,0);
+	if (.@i == -1) {
 		mes "O comando foi cancelado.";
 		close;
-	}
-	else if (.@input == 1854) {
+	} else if (.@i == 0) {
+		end;
+	} else {
 		mes "Eu posso te ajudar?";
 		next;
 		switch(select("Fechar o Campo de Batalha.:Abrir o Campo de Batalha.:Resetar a01.:Resetar b01.:Resetar a02.:Resetar b02.")) {
 		case 1:
 			setarray .@bg1$[0], "Diretor Oficial de Tierra#01a", "Diretor Oficial de Tierra#02a", "Diretor Oficial de Tierra#01b", "Diretor Oficial de Tierra#02b", "Oficial de Flavius#01a", "Oficial de Flavius#01b", "Oficial de Flavius#02a", "Oficial de Flavius#02b";
-			for( set .@k,0; .@k < getarraysize(.@bg1$[0]); set .@k, .@k+1; )
-			disablenpc .@bg1$[.@k];
+			for(set .@k,0; .@k < getarraysize(.@bg1$[0]); set .@k, .@k+1)
+				disablenpc .@bg1$[.@k];
 			break;
 		case 2:
 			setarray .@bg2$[0],"Diretor Oficial de Tierra#01a","Diretor Oficial de Tierra#02a","Diretor Oficial de Tierra#01b","Diretor Oficial de Tierra#02b","Oficial de Flavius#01a","Oficial de Flavius#01b","Oficial de Flavius#02a","Oficial de Flavius#02b";
@@ -309,7 +310,6 @@ bat_room,1,151,3	script	Dispositivo#batgnd	81,{
 		close;
 	}
 }
-*/
 
 // Troca de Emblemas
 //============================================================
@@ -326,11 +326,11 @@ bat_room,160,150,3	script	Erundek	109,{
 	mes "Você possui os Emblemas da Batalha Campal?";
 	mes "Eu posso trocar Emblemas de Bravura e Emblemas de Valor por itens como recompensa.";
 	next;
-	if(select("Trocar os Emblemas.:Checar o catálogo.") == 2) {
+	if (select("Trocar os Emblemas.:Checar o catálogo.") == 2) {
 		mes "[Erundek]";
 		mes "Nós temos muitos itens como recompensa, então por favor dê uma olhada antes e compre com calma.";
 		close2;
-		ReadBook 11010,1;
+		readbook 11010,1;
 		end;
 	}
 	mes "[Erundek]";
@@ -464,7 +464,7 @@ bat_room,160,150,3	script	Erundek	109,{
 	mes "Você pode trocar este item com ^FF0000"+.@Items[.@i+1]+" "+getitemname(7828)+" ou "+.@Items[.@i+1]+" "+getitemname(7829)+"^000000.";
 	mes "Deseja realizar a transação?";
 	next;
-	if(select("Não trocar.:Trocar") == 1) {
+	if (select("Não trocar.:Trocar") == 1) {
 		mes "[Erundek]";
 		mes "Você precisa de mais tempo para checar melhor os itens?";
 		close;

@@ -41,7 +41,7 @@ bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
 	mes "["+strnpcinfo(1)+"]";
 	mes "Mostre a eles o real poder de "+((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? "Guillaume":"Croix")+"!";
 	next;
-	if(select("Eu vou lutar com vocês.:Fim da conversa.") == 1) {
+	if (select("Eu vou lutar com vocês.:Fim da conversa.") == 1) {
 		mes "["+strnpcinfo(1)+"]";
 		mes "Mostre-os o quão forte nós somos.";
 		mes "Hoje, todo o mundo vai ouvir o grito de triunfo do "+((strnpcinfo(0) == "Mercenário Oficial KVM#1") ? "General Guillaume":"Príncipe Croix")+"!";

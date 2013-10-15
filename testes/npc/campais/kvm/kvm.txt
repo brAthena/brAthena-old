@@ -68,11 +68,11 @@ bat_room,169,211,0	warp	#kvm802	2,2,bat_room,154,150
 	end;
 
 OnKvM01One: 
-	misceffect EF_CHANGECOLD;
+	specialeffect EF_CHANGECOLD;
 	end;
 
 OnKvM01Two: 
-	misceffect EF_CHANGEPOISON;
+	specialeffect EF_CHANGEPOISON;
 	end;
 }
 
@@ -156,11 +156,11 @@ OnCroixJoin:
 OnGuillaumeQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnGuillaumeDie:
-	if( $@KvM01BG == 2 )
+	if ( $@KvM01BG == 2 )
 	{
 		set .Guillaume_Count, .Guillaume_Count - 1;
 		bg_updatescore "bat_c01",.Guillaume_Count,.Croix_Count;
-		if( .Guillaume_Count < 1 ) donpcevent "KvM01_BG::OnCroixWin";
+		if ( .Guillaume_Count < 1 ) donpcevent "KvM01_BG::OnCroixWin";
 		else {
 			mapannounce "bat_c01", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c01", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -171,11 +171,11 @@ OnGuillaumeDie:
 OnCroixQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnCroixDie:
-	if( $@KvM01BG == 2 )
+	if ( $@KvM01BG == 2 )
 	{
 		set .Croix_Count, .Croix_Count - 1;
 		bg_updatescore "bat_c01",.Guillaume_Count,.Croix_Count;
-		if( .Croix_Count < 1 ) donpcevent "KvM01_BG::OnGuillaumeWin";
+		if ( .Croix_Count < 1 ) donpcevent "KvM01_BG::OnGuillaumeWin";
 		else {
 			mapannounce "bat_c01", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c01", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -184,12 +184,12 @@ OnCroixDie:
 	end;
 
 OnReadyCheck:
-	if( $@KvM01BG )
+	if ( $@KvM01BG )
 		end;
 	set .@Guillaume, getwaitingroomstate(0,"KvM01R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"KvM01R_Croix");
 
-	if( .@Guillaume < 5 || .@Croix < 5 )
+	if ( .@Guillaume < 5 || .@Croix < 5 )
 		end;
 
 	set $@KvM01BG, 1; // Starting
@@ -256,7 +256,7 @@ OnTimer61000:
 	// Team Members
 	set .Guillaume_Count, bg_get_data($@KvM01BG_id1, 0);
 	set .Croix_Count, bg_get_data($@KvM01BG_id2, 0);
-	if( .Guillaume_Count < 5 || .Croix_Count < 5 )
+	if ( .Guillaume_Count < 5 || .Croix_Count < 5 )
 	{
 		set $@KvM01BG_Victory, 3;
 		set $@KvM01BG, 3;
@@ -292,9 +292,9 @@ OnTimer355000:
 
 OnTimer360000:
 	mapannounce "bat_c01", "A Batalha pelo KvM terminou!.",bc_map,"0x00ff00";
-	if( .Croix_Count > .Guillaume_Count )
+	if ( .Croix_Count > .Guillaume_Count )
 		donpcevent "KvM01_BG::OnCroixWin";
-	else if( .Croix_Count < .Guillaume_Count )
+	else if ( .Croix_Count < .Guillaume_Count )
 		donpcevent "KvM01_BG::OnGuillaumeWin";
 	else
 	{ // Draw Game
@@ -339,8 +339,8 @@ OnReset:
 	set .Croix_Count, 0;
 	set .Guillaume_Count, 0;
 	set $@KvM01BG_Victory, 0;
-	if( $@KvM01BG_id1 ) { bg_destroy $@KvM01BG_id1; set $@KvM01BG_id1, 0; }
-	if( $@KvM01BG_id2 ) { bg_destroy $@KvM01BG_id2; set $@KvM01BG_id2, 0; }
+	if ( $@KvM01BG_id1 ) { bg_destroy $@KvM01BG_id1; set $@KvM01BG_id1, 0; }
+	if ( $@KvM01BG_id2 ) { bg_destroy $@KvM01BG_id2; set $@KvM01BG_id2, 0; }
 	disablenpc "Oficial do KVM#KVM01A";
 	disablenpc "Oficial do KVM#KVM01B";
 	mapwarp "bat_c01","bat_room",154,150;
@@ -385,9 +385,9 @@ OnTimer60000:
 // Recompensas do Campo de Batalha
 //============================================================
 bat_c01,51,130,5	script	Oficial do KVM#KVM01A	419,{
-	if( $@KvM01BG_Victory )
+	if ( $@KvM01BG_Victory )
 	{
-		if( $@KvM01BG_Victory == Bat_Team )
+		if ( $@KvM01BG_Victory == Bat_Team )
 		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";
@@ -452,11 +452,11 @@ bat_room,197,211,0	warp	#kvm602	2,2,bat_room,154,150
 	end;
 
 OnKvM02One: 
-	misceffect EF_CHANGECOLD;
+	specialeffect EF_CHANGECOLD;
 	end;
 
 OnKvM02Two: 
-	misceffect EF_CHANGEPOISON;
+	specialeffect EF_CHANGEPOISON;
 	end;
 }
 
@@ -540,11 +540,11 @@ OnCroixJoin:
 OnGuillaumeQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnGuillaumeDie:
-	if( $@KvM02BG == 2 )
+	if ( $@KvM02BG == 2 )
 	{
 		set .Guillaume_Count, .Guillaume_Count - 1;
 		bg_updatescore "bat_c02",.Guillaume_Count,.Croix_Count;
-		if( .Guillaume_Count < 1 ) donpcevent "KvM02_BG::OnCroixWin";
+		if ( .Guillaume_Count < 1 ) donpcevent "KvM02_BG::OnCroixWin";
 		else {
 			mapannounce "bat_c02", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c02", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -555,11 +555,11 @@ OnGuillaumeDie:
 OnCroixQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnCroixDie:
-	if( $@KvM02BG == 2 )
+	if ( $@KvM02BG == 2 )
 	{
 		set .Croix_Count, .Croix_Count - 1;
 		bg_updatescore "bat_c02",.Guillaume_Count,.Croix_Count;
-		if( .Croix_Count < 1 ) donpcevent "KvM02_BG::OnGuillaumeWin";
+		if ( .Croix_Count < 1 ) donpcevent "KvM02_BG::OnGuillaumeWin";
 		else {
 			mapannounce "bat_c02", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c02", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -568,12 +568,12 @@ OnCroixDie:
 	end;
 
 OnReadyCheck:
-	if( $@KvM02BG )
+	if ( $@KvM02BG )
 		end;
 	set .@Guillaume, getwaitingroomstate(0,"KvM02R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"KvM02R_Croix");
 
-	if( .@Guillaume < 5 || .@Croix < 5 )
+	if ( .@Guillaume < 5 || .@Croix < 5 )
 		end;
 
 	set $@KvM02BG, 1; // Starting
@@ -640,7 +640,7 @@ OnTimer61000:
 	// Team Members
 	set .Guillaume_Count, bg_get_data($@KvM02BG_id1, 0);
 	set .Croix_Count, bg_get_data($@KvM02BG_id2, 0);
-	if( .Guillaume_Count < 5 || .Croix_Count < 5 )
+	if ( .Guillaume_Count < 5 || .Croix_Count < 5 )
 	{
 		set $@KvM02BG_Victory, 3;
 		set $@KvM02BG, 3;
@@ -676,9 +676,9 @@ OnTimer355000:
 
 OnTimer360000:
 	mapannounce "bat_c02", "A Batalha pelo KvM terminou.",bc_map,"0x00ff00";
-	if( .Croix_Count > .Guillaume_Count )
+	if ( .Croix_Count > .Guillaume_Count )
 		donpcevent "KvM02_BG::OnCroixWin";
-	else if( .Croix_Count < .Guillaume_Count )
+	else if ( .Croix_Count < .Guillaume_Count )
 		donpcevent "KvM02_BG::OnGuillaumeWin";
 	else
 	{ // Draw Game
@@ -723,8 +723,8 @@ OnReset:
 	set .Croix_Count, 0;
 	set .Guillaume_Count, 0;
 	set $@KvM02BG_Victory, 0;
-	if( $@KvM02BG_id1 ) { bg_destroy $@KvM02BG_id1; set $@KvM02BG_id1, 0; }
-	if( $@KvM02BG_id2 ) { bg_destroy $@KvM02BG_id2; set $@KvM02BG_id2, 0; }
+	if ( $@KvM02BG_id1 ) { bg_destroy $@KvM02BG_id1; set $@KvM02BG_id1, 0; }
+	if ( $@KvM02BG_id2 ) { bg_destroy $@KvM02BG_id2; set $@KvM02BG_id2, 0; }
 	disablenpc "Oficial do KVM#KVM02A";
 	disablenpc "Oficial do KVM#KVM02B";
 	mapwarp "bat_c02","bat_room",154,150;
@@ -769,9 +769,9 @@ OnTimer60000:
 // Recompensas do Campo de Batalha
 //============================================================
 bat_c02,51,130,5	script	Oficial do KVM#KVM02A	419,{
-	if( $@KvM01BG_Victory )
+	if ( $@KvM01BG_Victory )
 	{
-		if( $@KvM02BG_Victory == Bat_Team )
+		if ( $@KvM02BG_Victory == Bat_Team )
 		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";
@@ -834,11 +834,11 @@ bat_room,225,211,0	warp	#kvm702	2,2,bat_room,154,150
 	end;
 
 OnKvM03One: 
-	misceffect EF_CHANGECOLD;
+	specialeffect EF_CHANGECOLD;
 	end;
 
 OnKvM03Two: 
-	misceffect EF_CHANGEPOISON;
+	specialeffect EF_CHANGEPOISON;
 	end;
 }
 
@@ -922,11 +922,11 @@ OnCroixJoin:
 OnGuillaumeQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnGuillaumeDie:
-	if( $@KvM03BG == 2 )
+	if ( $@KvM03BG == 2 )
 	{
 		set .Guillaume_Count, .Guillaume_Count - 1;
 		bg_updatescore "bat_c03",.Guillaume_Count,.Croix_Count;
-		if( .Guillaume_Count < 1 ) donpcevent "KvM03_BG::OnCroixWin";
+		if ( .Guillaume_Count < 1 ) donpcevent "KvM03_BG::OnCroixWin";
 		else {
 			mapannounce "bat_c03", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c03", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -937,11 +937,11 @@ OnGuillaumeDie:
 OnCroixQuit:
 	//set BG_Delay_Tick, gettimetick(2) + 1200;
 OnCroixDie:
-	if( $@KvM03BG == 2 )
+	if ( $@KvM03BG == 2 )
 	{
 		set .Croix_Count, .Croix_Count - 1;
 		bg_updatescore "bat_c03",.Guillaume_Count,.Croix_Count;
-		if( .Croix_Count < 1 ) donpcevent "KvM03_BG::OnGuillaumeWin";
+		if ( .Croix_Count < 1 ) donpcevent "KvM03_BG::OnGuillaumeWin";
 		else {
 			mapannounce "bat_c03", "O número de Guillaumes é "+.Guillaume_Count+".",bc_map,"0x00ff00";
 			mapannounce "bat_c03", "O número de Croixes é "+.Croix_Count+".",bc_map,"0x00ff00";
@@ -950,12 +950,12 @@ OnCroixDie:
 	end;
 
 OnReadyCheck:
-	if( $@KvM03BG )
+	if ( $@KvM03BG )
 		end;
 	set .@Guillaume, getwaitingroomstate(0,"KvM03R_Guillaume");
 	set .@Croix, getwaitingroomstate(0,"KvM03R_Croix");
 
-	if( .@Guillaume < 5 || .@Croix < 5 )
+	if ( .@Guillaume < 5 || .@Croix < 5 )
 		end;
 
 	set $@KvM03BG, 1; // Starting
@@ -1022,7 +1022,7 @@ OnTimer61000:
 	// Team Members
 	set .Guillaume_Count, bg_get_data($@KvM03BG_id1, 0);
 	set .Croix_Count, bg_get_data($@KvM03BG_id2, 0);
-	if( .Guillaume_Count < 5 || .Croix_Count < 5 )
+	if ( .Guillaume_Count < 5 || .Croix_Count < 5 )
 	{
 		set $@KvM03BG_Victory, 3;
 		set $@KvM03BG, 3;
@@ -1058,9 +1058,9 @@ OnTimer355000:
 
 OnTimer360000:
 	mapannounce "bat_c03", "A Batalha pelo KvM terminou.",bc_map,"0x00ff00";
-	if( .Croix_Count > .Guillaume_Count )
+	if ( .Croix_Count > .Guillaume_Count )
 		donpcevent "KvM03_BG::OnCroixWin";
-	else if( .Croix_Count < .Guillaume_Count )
+	else if ( .Croix_Count < .Guillaume_Count )
 		donpcevent "KvM03_BG::OnGuillaumeWin";
 	else
 	{ // Draw Game
@@ -1105,8 +1105,8 @@ OnReset:
 	set .Croix_Count, 0;
 	set .Guillaume_Count, 0;
 	set $@KvM03BG_Victory, 0;
-	if( $@KvM03BG_id1 ) { bg_destroy $@KvM03BG_id1; set $@KvM03BG_id1, 0; }
-	if( $@KvM03BG_id2 ) { bg_destroy $@KvM03BG_id2; set $@KvM03BG_id2, 0; }
+	if ( $@KvM03BG_id1 ) { bg_destroy $@KvM03BG_id1; set $@KvM03BG_id1, 0; }
+	if ( $@KvM03BG_id2 ) { bg_destroy $@KvM03BG_id2; set $@KvM03BG_id2, 0; }
 	disablenpc "Oficial do KVM#KVM03A";
 	disablenpc "Oficial do KVM#KVM03B";
 	mapwarp "bat_c03","bat_room",154,150;
@@ -1151,9 +1151,9 @@ OnTimer60000:
 // Recompensas do Campo de Batalha
 //============================================================
 bat_c03,51,130,5	script	Oficial do KVM#KVM03A	419,{
-	if( $@KvM01BG_Victory )
+	if ( $@KvM01BG_Victory )
 	{
-		if( $@KvM03BG_Victory == Bat_Team )
+		if ( $@KvM03BG_Victory == Bat_Team )
 		{
 			mes "[Oficial do KVM]";
 			mes "Ótima batalha!";

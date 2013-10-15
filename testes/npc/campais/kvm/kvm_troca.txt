@@ -57,7 +57,7 @@ bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
 		mes "Cada arma pode ser comprada por 2.000 pontos e cada Equipamento sai entre 10 a 1.200 pontos.";
 		mes "Então tome cuidado ao escolher entre todas as recompensas.";
 		close2;
-		ReadBook 11017,1;
+		readbook 11017,1;
 		end;
 	case 2:
 		mes "[Negociante do KvM]";
@@ -276,7 +276,7 @@ PurchaseItem:
 
 	mes "Você tem certeza que quer mesmo este item?";
 	next;
-	if(select("Não, eu não vou comprá-lo.:Sim, eu vou comprá-lo.") == 1) {
+	if (select("Não, eu não vou comprá-lo.:Sim, eu vou comprá-lo.") == 1) {
 		mes "[Negociante do KvM]";
 		mes "Você escolheu a opção 'Não, eu não vou comprá-lo'.";
 		mes "Quando você comprar um item, por favor tenha cuidado pois não há devoluções.";
