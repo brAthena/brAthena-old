@@ -30,7 +30,7 @@ bif_fild01,158,340,5	script	Soldado Esplêndido#inst	447,{
 		if (BaseLevel > 69) {
 			set .@party_id, getcharid(1);
 			if (.@party_id > 0) {
-				if(getcharid(0) == getpartyleader(getcharid(1),2)) {
+				if (getcharid(0) == getpartyleader(getcharid(1),2)) {
 					mes "Você quer entrar no Labirinto da Neblina?"; 
 					next;
 					mes "[Soldado Esplêndido]";
@@ -70,12 +70,12 @@ bif_fild01,158,340,5	script	Soldado Esplêndido#inst	447,{
 				mes "Você precisa de um grupo para poder entrar no Labirinto da Neblina.";
 		} else
 			mes "O que um Aprendiz está fazendo aqui?! Esse é um lugar perigoso, vá para casa!";
-	} else if(ins_bif == 1) {
+	} else if (ins_bif == 1) {
 		mes "[Soldado Esplêndido]";
 		if (BaseLevel > 69) {
 			set .@party_id, getcharid(1);
-			if(.@party_id > 0) {
-				if(getcharid(0) == getpartyleader(getcharid(1),2)) {
+			if (.@party_id > 0) {
+				if (getcharid(0) == getpartyleader(getcharid(1),2)) {
 					mes "Você quer entrar no Labirinto da Neblina?"; 
 					next;
 					mes "[Soldado Esplêndido]";
@@ -152,10 +152,10 @@ bif_fild01,161,355,0	script	Túnel	844,{
 							mes "Após fazer a reserva, você deve selecionar no menu a opção 'Entrar no Calabouço' caso deseje entrar no " + .@md_name$ + ".";
 
 							for( set .@i, 1; .@i <= 1; set .@i, .@i + 1 ) {
-								if( instance_attachmap(.@i + "@mist", .@instance) == "" )
+								if ( instance_attachmap(.@i + "@mist", .@instance) == "" )
 									break;
 							}
-							if( .@i < 1 ) {
+							if ( .@i < 1 ) {
 								instance_destroy(.@instance);
 								close;
 							}
@@ -235,7 +235,7 @@ bif_fild01,161,355,0	script	Túnel	844,{
 						close;
 					}
 				} else {
-					if(select("Entrar no "+.@md_name$+":Cancelar") == 1) {
+					if (select("Entrar no "+.@md_name$+":Cancelar") == 1) {
 						if (has_instance("1@mist") == "") {
 							mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
 							mes "O líder do grupo não reservou a entrada no calabouço.";
@@ -255,7 +255,7 @@ bif_fild01,161,355,0	script	Túnel	844,{
 			else if ((.@miststime == 0) || (.@miststime == 1)) {
 				mes "Você pode entrar no calabouço se já tiver gerado ele.";
 				next;
-				if(select("Entrar no "+.@md_name$+":Cancelar") == 1) {
+				if (select("Entrar no "+.@md_name$+":Cancelar") == 1) {
 					if (has_instance("1@mist") == "") {
 						mes "O Calabouço Memorial " + .@md_name$ + " não existe.";
 						mes "O líder do grupo não reservou a entrada no calabouço.";
@@ -275,7 +275,7 @@ bif_fild01,161,355,0	script	Túnel	844,{
 				if (.@delmists_time == 2) {
 					mes "^0000ffTodos os efeitos colaterias recebidos no Labirinto da Neblina já foram removidos. Você pode entrar ou gerar novamente um " + .@md_name$ + ".";
 					erasequest 7211;
-					if(ins_bif != 0)
+					if (ins_bif != 0)
 						set ins_bif,0;
 				} else
 					mes "Você não pode criar outra instância em um intervalo menor que 24 horas.";
@@ -288,7 +288,7 @@ bif_fild01,161,355,0	script	Túnel	844,{
 	} else {
 		mes "Você quer entrar no túnel do Labirinto da Neblina?";
 		next;
-		if(select("Entrar","Não entrar") == 1)
+		if (select("Entrar","Não entrar") == 1)
 			mes "No momento você não tem acesso à esta instância.";
 		close;
 	}
@@ -299,7 +299,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 	if (countitem(12561) >= 1) {
 		mes "A sua ^0000FFSemente Misteriosa^000000 está reagindo com as pétalas de flores, deseja usá-la?";
 		next;
-		if(select("Sim.","Não, obrigado.") == 1) {
+		if (select("Sim.","Não, obrigado.") == 1) {
 			delitem 12561,1;
 			mes "-As pétalas de flores estão levando-o até o topo-";
 			close2;
@@ -313,7 +313,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 
 // Trepadeira não-cortável
 1@mist,247,123,0	script	Trepadeira#trepadeira	527,{
-	if(strnpcinfo(0) == "Trepadeira#trepadeira13")
+	if (strnpcinfo(0) == "Trepadeira#trepadeira13")
 		instance_announce -1, "Jardineiros: Nós ainda não fomos completamente derrotados!!!",bc_map,"0x008000";
 	else
 		instance_announce -1, "Trepadeira: Eu sou a guardiã deste lugar! Ninguém passará!",bc_map,"0x008000";
@@ -324,10 +324,10 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 1@mist,247,123,0	script	Trepadeira#trepadeira_cortavel	527,{
 	mes "Não há mais um Jardineiro protetor desta árvore. Você pode cortá-la.";
 	next;
-	if(select("Cortá-la e continuar","Cancelar" ) == 1) {
+	if (select("Cortá-la e continuar","Cancelar" ) == 1) {
 		set .@i, atoi(replacestr(strnpcinfo(2), "trepadeira_cortavel", ""));
 		mes "Você pode continuar seu caminho através deste novo portal. Você destruiu a árvore.";
-		misceffect 16;
+		specialeffect EF_BASH;
 		disablenpc instance_npcname(strnpcinfo(0), instance_id());
 		enablenpc instance_npcname("mist#warp_jardim" + (.@i ? .@i:""), instance_id());
 		close2;
@@ -385,7 +385,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 	mes "[Aviso]";
 	mes "Precisa de algo?";
 	next;	
-	if(select("Atualize minha posição:Nada") == 1) {
+	if (select("Atualize minha posição:Nada") == 1) {
 		atcommand "@refresh";
 		end;
 	}
@@ -395,7 +395,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 // Semente Misteriosa
 1@mist,132,179,0	script	Semente Misteriosa#01	844,{
 	getitem 12561,1;
-	misceffect 16;
+	specialeffect EF_BASH;
 	disablenpc instance_npcname(strnpcinfo(0), instance_id());
 	end;
 }
@@ -1315,7 +1315,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead");
 	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead");
-	if(!.@mc && !.@mc2) {
+	if (!.@mc && !.@mc2) {
 		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
 	}
@@ -1338,7 +1338,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead");
 	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro9", instance_id())+"::OnMyMobDead");
-	if(!.@mc && !.@mc2) {
+	if (!.@mc && !.@mc2) {
 		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
 	}
@@ -1361,7 +1361,7 @@ OnEnable:
 OnMyMobDead:
 	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro7", instance_id())+"::OnMyMobDead");
 	set .@mc2, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro8", instance_id())+"::OnMyMobDead");
-	if(!.@mc && !.@mc2) {
+	if (!.@mc && !.@mc2) {
 		disablenpc instance_npcname("Trepadeira#trepadeira9", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel9", instance_id());
 	}
@@ -1440,7 +1440,7 @@ OnEnable:
 	end;
 OnMyMobDead:
 	set .@mc, mobcount("1@mist",instance_npcname("mist#spawn_jardineiro13", instance_id())+"::OnMyMobDead");
-	if(.@mc <= 0) {
+	if (.@mc <= 0) {
 		//instance_announce -1, "",bc_map,"0x008000";
 		disablenpc instance_npcname("Trepadeira#trepadeira13", instance_id());
 		enablenpc instance_npcname("Trepadeira#trepadeira_cortavel13", instance_id());

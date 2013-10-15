@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/2.3/1.1                         |
+//   | Versões eA/rA/brA: 1.7/2.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Instância da Torre Infinita                 |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR  [SoulSyntax]                       |
+//   | 1.2 Ativado NPC de Administração [lututuiBR]           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -105,7 +106,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "[Capitão Jassen]";
 		mes "Vamos partir agora?";
 		next;
-		if(select("Sim, vamos!:Não, ainda não estou pronto...") == 1) {
+		if (select("Sim, vamos!:Não, ainda não estou pronto...") == 1) {
 			mes "[Capitão Janssen]";
 			mes "Em seguida puxe a âncora, primeiro marujo!";
 			close2;
@@ -130,14 +131,14 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 			mes "Claro, sem problemas. Eu estarei esperando pelo seu retorno.";
 			close;
 		case 2:
-			if (zeny < 10000) {
+			if (Zeny < 10000) {
 				mes "[Capitão Jassen]";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Eu preciso de pelo menos 10.000 zenys para reabastecer os nossos suprimentos...";
 				close;
 			} else {
 				mes "[Capitão Jassen]";
 				mes "Excelente! Agora estamos pronto para ir. Vamos levantar a âncora de novo!";
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				close2;
 				warp "e_tower",70,114;
 				end;
@@ -153,7 +154,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "[Capitão Janssen]";
 		mes "Você pode doar ^0000ff10.000^000000 zenys para mim? É por uma causa importante para mim ...";
 		next;
-		if(select("Não!:Claro.") == 1) {
+		if (select("Não!:Claro.") == 1) {
 			mes "["+.@name_102$+"]";
 			mes "Me desculpe, mas você perguntou isso a pessoa errada.";
 			next;
@@ -164,7 +165,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 			mes "[Capitão Janssen]";
 			mes "Hã? Tem certeza que você não se importa em me dar tanto dinheiro? Uau, muito obrigado!";
 			next;
-			if (zeny < 10000) {
+			if (Zeny < 10000) {
 				mes "[Capitão Janssen]";
 				mes "...Sinto muito, mas eu não acho que você tenha 10.000 zenys. Obrigado pela sua gentileza, mas eu preciso mais do que isso.";
 				close;
@@ -176,7 +177,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 				next;
 				mes "[Capitão Janssen]";
 				mes "Muito obrigado! Agora posso estocar alimentos e materiais para o meu navio. Você é gentil e muito amável!";
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				set in_102tower,1;
 				close;
 			}
@@ -204,7 +205,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 	set .@dun_m,(.@dun_ent_t - (.@dun_h * 3600)) / 60;
 	set .@dun_s,.@dun_ent_t - ((.@dun_h * 3600) + (.@dun_m * 60));
 
-	if(!instance_check_party(.@party_id,2)){
+	if (!instance_check_party(.@party_id,2)){
 		mes "Me desculpe mas seu grupo não cumpre com as exigências para entrar na Torre.";
 		close;
 	}
@@ -225,7 +226,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 					mes "Depois de fazer uma reserva, você tem que falar com o NPC logo atrás e selecionar o menu 'Entrar no Calabouço' para entrar no calabouço.";
 					// 1,2,3,4,5,6
 					for( set .@i, 1; .@i <= 6; set .@i, .@i + 1 ) {
-						if( instance_attachmap(.@i + "@tower", .@instance) == "" ) {
+						if ( instance_attachmap(.@i + "@tower", .@instance) == "" ) {
 							mes "^0000ff"+.@md_name$+" ^000000- A reserva falhou!";
 							instance_destroy(.@instance);
 							close;
@@ -264,7 +265,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 				if (has_instance("1@tower") == "") {
 					mes "O calabouço da " + .@md_name$ + " não existe.";
 					mes "O líder do grupo não gerou o calabouço ainda.";
-				} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+				} else if ((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
 			    mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
 					next;
 					mes "Aqui é perigoso. Vá e volte para Alberta.";
@@ -296,7 +297,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 				if (has_instance("1@tower") == "") {
 					mes "O calabouço da " + .@md_name$ + " não existe.";
 					mes "O líder do grupo não gerou o calabouço ainda.";
-				} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+				} else if ((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
 			    mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
 					next;
 					mes "Aqui é perigoso. Vá e volte para Alberta.";
@@ -331,7 +332,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 			if (has_instance("1@tower") == "") {
 				mes "O calabouço da " + .@md_name$ + " não existe.";
 				mes "O líder do grupo não gerou o calabouço ainda.";
-			} else if((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
+			} else if ((party_instance_id != 0) && (party_instance_id != getcharid(1))) {
 			  mes "Devido às sequelas deixadas na torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restantes para entrar no próximo calabouço.";
 				next;
 				mes "Aqui é perigoso. Vá e volte para Alberta.";
@@ -374,18 +375,19 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 }
 
 e_tower,30,30,2	script	Grande Vortex	844,2,2,{
+	end;
 OnTouch:
 	mapannounce "e_tower","[ " + strcharinfo(0) + " ], parece ter sido engolido por um enorme vortex",bc_map,"0x00ff99",FW_NORMAL,12;
 	warp "alberta",223,36;
 	end;
 }
 
-/*
-e_tower,1,1,2	script	#102Administrador Modo104	844,{
+e_tower,1,1,2	script	#102Administrador Modo	844,{
+	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
-	input .@inputstr$;
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		switch(select("Gerar Pedra da Purificação.:Remover Pedra da Purificação.:Cancelar.")) {
 		case 1:
 			mes "Criar a pedra da Purificação que permanece por 30 minutos.";
@@ -438,13 +440,13 @@ OnTimer1800000:
 }
 
 e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
+	callfunc "F_GM_NPC";
 	set etower_timer,0;
 	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim.^000000";
-	close;
+	close2;
 	warp "e_tower",75,108;
 	end;
 }
-*/
 
 // Andares 1-25
 //============================================================
@@ -1279,12 +1281,12 @@ OnTimer120000:
 	end;
 }
 
-/*
 1@tower,71,1,0	script	#Gerente1	844,{
+	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
-	input .@inputstr$;
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		mes "Este NPC controla a torre do 1° ao 25° andar.";
 		mes "Por favor, digite o número do andar que queira abrir:";
 		mes "(ex.: 1F->1, 25F->25)";
@@ -1299,7 +1301,6 @@ OnTimer120000:
 	}
 	close;
 }
-*/
 
 // Andares 26-50
 //============================================================
@@ -2113,12 +2114,12 @@ OnTouch_:
 	end;
 }
 
-/*
 2@tower,71,1,0	script	#Manager Mode2	844,{
-	mes "Please enter the passwo° andar.";
-	input .@inputstr$;
+	callfunc "F_GM_NPC";
+	mes "Please enter the password.";
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		mes "This NPC manages the tower from the 26° to the 50° Floor.";
 		mes "Please enter andar number to open.";
 		mes "(i.g.: 26F->26, 50F->50)";
@@ -2133,7 +2134,6 @@ OnTouch_:
 	}
 	close;
 }
-*/
 
 // Andares 51-75
 //============================================================
@@ -2959,12 +2959,12 @@ OnTouch_:
 	end;
 }
 
-/*
 3@tower,71,1,0	script	#Modo Gerente3	844,{
+	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
-	input .@inputstr$;
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		mes "Este NPC controla a torre do 51° ao 75° andar.";
 		mes "Por favor, digite o número do andar que queira abrir.";
 		mes "(ex.: 51F->51, 75F->75)";
@@ -2979,7 +2979,6 @@ OnTouch_:
 	}
 	close;
 }
-*/
 
 // Andares 76-99
 //============================================================
@@ -3816,12 +3815,12 @@ OnTouch_:
 	end;
 }
 
-/*
 4@tower,71,1,0	script	#Modo Gerente	844,{
+	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
-	input .@inputstr$;
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		mes "Este NPC controla a torre do 76° ao 99° andar.";
 		mes "Por favor, digite o número do andar que queira abrir.";
 		mes "(ex.: 76F->76, 99F->99)";
@@ -3836,7 +3835,6 @@ OnTouch_:
 	}
 	close;
 }
-*/
 
 // Andar 100
 //============================================================
@@ -4013,19 +4011,19 @@ OnEnable:
 		monster "5@tower",84,85,"Espinho da Puresa",1961,1;
 	end;
 }
-/*
+
 5@tower,71,1,0	script	#Modo Gerente5	844,{
+	callfunc "F_GM_NPC";
 	mes "Este NPC controla o cristal no 100° andar. Por favor, digite a senha.";
-	input .@inputstr$;
+	set .@i, callfunc("F_GM_NPC","dmc2008",1);
 	next;
-	if (.@inputstr$ == "dmc2008") {
+	if (.@i == 1) {
 		donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnEnable";
 		mes "O cristal do 100° andar foi ativado.";
-	}
-	else
+	} else
 		mes "Por favor, digite a senha correta.";
 	close;
-} */
+}
 
 // Andar 101
 //============================================================

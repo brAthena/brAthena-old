@@ -443,7 +443,7 @@ OnEnable:
 OnTouch:
 	mes "Would like to go out?";
 	next;
-	if(select("Yes!:No, I will stay.") == 1)
+	if (select("Yes!:No, I will stay.") == 1)
 		warp "ma_fild02",315,315;
 	close;
 }

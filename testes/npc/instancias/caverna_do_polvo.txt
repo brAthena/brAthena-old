@@ -706,7 +706,7 @@ OnInstanceInit:
 OnTouch:
 	mes "Você quer sair da Caverna do Polvo?";
 	next;
-	if(select("Não!:Sim!") == 2)
+	if (select("Não!:Sim!") == 2)
 		warp "mal_dun01",153,233;
 	close;
 }

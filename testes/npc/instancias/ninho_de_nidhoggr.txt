@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.2/1.6/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Instância do Ninho de Nidhogg               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Script traduzido [Hold]                            |
+//   | 1.2 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -124,7 +125,7 @@ nyd_dun02,100,201,3	script	Portão Enigmático	111,8,8,{
 				set .@leader,getpartyleader(.@party,2);
 				set .@md_name$,"Ninho de Nidhogg";
 
-				if(!instance_check_party(.@party,2,70)){
+				if (!instance_check_party(.@party,2,70)){
 					mes "O Guardião parece querer ficar sozinho. Vou entrar e conferir, aguarde aqui por favor.";
 					close;
 				}
@@ -137,10 +138,10 @@ nyd_dun02,100,201,3	script	Portão Enigmático	111,8,8,{
 						close;
 					} else {
 						for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
-							if( instance_attachmap(.@i + "@nyd", .@instance) == "" )
+							if ( instance_attachmap(.@i + "@nyd", .@instance) == "" )
 								break;
 						}
-						if( .@i < 2 ) {
+						if ( .@i < 2 ) {
 							instance_destroy(.@instance);
 							close;
 						}
@@ -211,7 +212,7 @@ nyd_dun02,100,201,3	script	Portão Enigmático	111,8,8,{
 					set .@p_name2$,strcharinfo(0);
 					set .@md_name$,"Nidhoggur's Nest";
 
-					if(!instance_check_party(.@party,2,70)){
+					if (!instance_check_party(.@party,2,70)){
 						mes "Me desculpe mas seu Grupo não atende os requisitos necessários para entrar no Calabouço.";
 						close;
 					}
@@ -221,7 +222,7 @@ nyd_dun02,100,201,3	script	Portão Enigmático	111,8,8,{
 						mes "Você não tem permissão para entrar. Por favor, peça ao líder do seu grupo para solicitar a entrada.";
 						close;
 					}
-					if((party_instance_id2 != 0) && (party_instance_id2 != getcharid(1))) {
+					if ((party_instance_id2 != 0) && (party_instance_id2 != getcharid(1))) {
 						//Custom
 						mes "[Portão Enigmático]";
 						mes "Sua entrada no Ninho de Nidhogg não é mais permitida, já que sua instância expirou.";
@@ -807,7 +808,7 @@ spl_in01,109,60,3	script	Comandante Lebiordirr#edq	435,3,3,{
 			mes "[Comandante Lebiordirr]";
 			mes "Tem algo importante que deseja me dizer...? Seu rosto faz parecer que sim...";
 			next;
-			if(select("Não, nada.:Pretendo ficar aqui, por boas razões.")==1) close;
+			if (select("Não, nada.:Pretendo ficar aqui, por boas razões.")==1) close;
 			mes "[Guarda de Splendide]";
 			mes "Senhora, já posso retirar esta praga daqui?";
 			next;
@@ -1180,7 +1181,7 @@ man_in01,311,57,3	script	Neat Etorr#edq	453,3,3,{
 			mes "[Neat Etorr]";
 			mes "Acredito que seu povo será cuidadoso com suas ações em nosso mundo, evitando assim qualquer confronto desnecessário.";
 			next;
-			if(select("Sair discretamente.:Perguntar por mais detalhes.")==1) close;
+			if (select("Sair discretamente.:Perguntar por mais detalhes.")==1) close;
 			mes "[Soldado de Elite de Manuk]";
 			mes "Vamos realmente deixar eles impunes depois de causarem problemas em nossa terra?";
 			next;
@@ -1662,7 +1663,7 @@ OnTouch_:
 		mes "[Yggdrasilid]";
 		mes "Você estaria disposto a se arriscar nesta missão? Mesmo que tenha que sacrificar sua própria vida?";
 		next;
-		if(select("Sim, claro!:Não podemos fazer isto.") == 2) close;
+		if (select("Sim, claro!:Não podemos fazer isto.") == 2) close;
 		mes "[Yggdrasilid]";
 		mes "Sou profundamente grata por sua decisão. Irei usar o restante dos meus poderes para abrir o caminho para o Ninho do Guardião.";
 		next;
@@ -2748,5 +2749,111 @@ OnInstanceInit:
 	areamonster "2@nyd",200,92,180,80,"Phylla",2021,20;
 	areamonster "2@nyd",200,92,180,80,"Sombra Obscura",2023,20;
 	areamonster "2@nyd",200,92,180,80,"Pinguicula Sombria",2015,20;
+	end;
+}
+
+// NPCs de Administração
+//============================================================
+sec_in02,36,167,3	script	Gerente Nidhoggur	447,1,1,{
+	callfunc "F_GM_NPC";
+	mes "Digite a senha.";
+	next;
+	if (callfunc("F_GM_NPC","1854",1) == 0) {
+		mes "Senha incorreta.";
+		close;
+	}
+	mes "Do que você precisa?";
+	next;
+	switch(select("Resetar variáveis para permitir a entrada para Nidhoggur:Alterar variável 'ins_nyd':Remover tempo limite de 3 dias da quest 3135:Confirmar valor de váriável")) {
+	case 1:
+		set ins_nyd,200;
+		set ins_nyd2,0;
+		erasequest 3135;
+		mes "ins_nyd definida como 200";
+		mes "ins_nyd2 definida como 0";
+		mes "quest 3135 deletada.";
+		close;
+	case 2:
+		mes "Qual variável você quer alterar?";
+		next;
+		switch(select("ins_nyd:ins_nyd2")) {
+			case 1: set .@var$,"ins_nyd"; break;
+			case 2: set .@var$,"ins_nyd2"; break;
+		}
+		mes "Digite o valor da variável";
+		next;
+		input .@input;
+		setd .@var$, .@input;
+		mes .@var$+" foi definida como "+.@input+" .";
+		close;
+	case 3:
+		mes "O tempo limite de 3 dias será removido quando você fechar este diálogo.";
+		next;
+		erasequest 3135;
+		mes "Tempo limite removido.";
+		close;
+	case 4:
+		mes "ins_nyd tem valor "+ins_nyd+".";
+		mes "ins_nyd2 tem valor "+ins_nyd2+".";
+		close;
+	}
+}
+
+nyd_dun02,7,7,2	script	Adm. Pedra de Purificação#nyd2	844,2,0,{
+	callfunc "F_GM_NPC";
+	mes "Digite a senha";
+	set .@i, callfunc("F_GM_NPC","dragonslayer",1);
+	next;
+	if (.@i == 0) {
+		mes "Digite a senha corretamente.";
+		close;
+	}
+	switch(select("Gerar Pedra de Purificação:Remover Pedra de Purificação:Desativar NPC de entrada:Ativar NPC de entrada:Cancelar")) {
+	case 1:
+		mes "A Pedra de Purificação foi criada e permanecerá ativa por 30 minutos.";
+		donpcevent "Administração da Pedra de Purificação#nyd2::OnEnable";
+		close;
+	case 2:
+		mes "A Pedra de Purificação foi destruída.";
+		donpcevent "Administração da Pedra de Purificação#nyd2::OnDisable";
+		close;
+	case 3:
+		mes "O Portão Enigmático em nyd_dun02 100 201 foi desativado.";
+		disablenpc "Portão Enigmático";
+		close;
+	case 4:
+		mes "O Portão Enigmático em nyd_dun02 100 201 foi ativado.";
+		enablenpc "Portão Enigmático";
+		close;
+	case 5:
+		close;
+	}
+}
+
+nyd_dun02,88,195,4	script	Pedra de Purificação#nyd2	406,{
+	erasequest 3135;
+	erasequest 3136;
+	set ins_nyd,200;
+	set ins_nyd2,0;
+	mes "^0000FFOs registros e efeitos posteriores relacionados ao Ninho de Nidhoggur foram removidos. Você pode gerar e entrar em uma nova instância novamente.^000000";
+	close;
+OnInit:
+	disablenpc "Pedra de Purificação#nyd2";
+	end;
+OnEnable:
+	initnpctimer;
+	end;
+OnDisable:
+	stopnpctimer;
+	disablenpc "Pedra de Purificação#nyd2";
+	end;
+OnTimer1000:
+	enablenpc "Pedra de Purificação#nyd2";
+	end;
+OnTimer1740000:
+	mapannounce "nyd_dun02","A Pedra de Purificação será destruída em um minuto.",bc_map,"0x00FF99",FW_NORMAL,12;
+	end;
+OnTimer1800000:
+	disablenpc "Pedra de Purificação#nyd2";
 	end;
 }

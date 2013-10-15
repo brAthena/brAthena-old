@@ -60,7 +60,7 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 				close;
 			}
 			for(set .@i, 1; .@i <= 2; set .@i, .@i + 1) {
-				if( instance_attachmap(.@i + "@gl_k", .@instance) == "" ) {
+				if ( instance_attachmap(.@i + "@gl_k", .@instance) == "" ) {
 					mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
 					instance_destroy(.@instance);
 					close;
@@ -195,7 +195,7 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 			mes "The time gap was created. When you're ready, talk to me again.";
 			close;
 		case 2:
-			if(has_instance("1@gl_k")== "") {
+			if (has_instance("1@gl_k")== "") {
 				mes "The memorial dungeon "+.@md_name$+" does not exist.";
 				mes "The party leader did not generate the dungeon yet.";
 				close;

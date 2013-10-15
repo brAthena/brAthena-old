@@ -289,7 +289,7 @@ mal_in01,160,34,4	script	Missing, the Cleaner	545,{
 		next;
 		mes "^660066This cat looks like it's in bad shape. It is slightly trembling.^000000";
 		next;
-		if(select("Pet the cat:Are you ok?") == 1) {
+		if (select("Pet the cat:Are you ok?") == 1) {
 			mes "[Missing, the Cleaner]";
 			mes "Are you talking to me?!";
 			next;
@@ -342,7 +342,7 @@ mal_in01,160,34,4	script	Missing, the Cleaner	545,{
 		mes "Sometimes I can get a lucky box,";
 		mes "or even better, I can get cans...";
 		next;
-		if(select("Okay, cheers!:I will help if possible...") == 1) {
+		if (select("Okay, cheers!:I will help if possible...") == 1) {
 			mes "[Missing, the Cleaner]";
 			mes "Thank you. I am going back to pour the water!";
 			close;
@@ -468,13 +468,13 @@ mal_in01,160,34,4	script	Missing, the Cleaner	545,{
 				goto L_Enter;
 			}
 		}
-		if(select("Enter Culvert:Cancel") == 2)
+		if (select("Enter Culvert:Cancel") == 2)
 			end;
 		goto L_Enter;
 	} else if (.@playtime == 0 || .@playtime == 1) {
 		mes "You can enter the Culvert if the gate is open.";
 		next;
-		if(select("Enter Culvert:Cancel") == 2)
+		if (select("Enter Culvert:Cancel") == 2)
 			close;
 		goto L_Enter;
 	} else if (.@playtime == 2) {
@@ -520,7 +520,7 @@ L_Enter:
 		mes "[Missing, the Cleaner]";
 		mes "Ok then, I'll let you clean the culverts here as usual! I will prepare at the right-hand corner, please follow me!";
 		next;
-		if(select("Wait! I changed my mind!:As you wish~") == 1) {
+		if (select("Wait! I changed my mind!:As you wish~") == 1) {
 			mes "[Missing, the Cleaner]";
 			mes "Huh? Not ready yet? Talk to me again when you're ready.";
 			close;
@@ -542,7 +542,7 @@ L_Enter:
 		mes "[Missing, the Cleaner]";
 		mes "I must tell you that it's been such a long~~ time since we've cleaned that place, so anyone under level 140 cannot even enter! Are you sure you still want to go?";
 		next;
-		if(select("Wait! I changed my mind!:Sure, I'm prepared already~") == 1) {
+		if (select("Wait! I changed my mind!:Sure, I'm prepared already~") == 1) {
 			mes "[Missing, the Cleaner]";
 			mes "Hmm? Talk to me again when you're ready.";
 			close;
@@ -580,7 +580,7 @@ function	script	F_mal_missing	{
 	mes "[Missing, the Cleaner]";
 	mes "I will tell you how to clean shortly. Can you see the culverts around you?";
 	next;
-	if(select("What culverts??:Yes, I see them.") == 1) {
+	if (select("What culverts??:Yes, I see them.") == 1) {
 		mes "[Missing, the Cleaner]";
 		mes "Huh? Is this your first time seeing culverts? You'll see many buried machines in the ground. You may look around and come back!";
 		close;
