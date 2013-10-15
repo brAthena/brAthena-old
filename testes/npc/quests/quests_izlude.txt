@@ -42,7 +42,7 @@
 				mes "conseguir mais dinheiro?";
 				close ;
 			}
-			set zeny,zeny-250;
+			set Zeny, Zeny-250;
 			warp "alberta",195,164;
 			end;
 		}
@@ -89,7 +89,7 @@
 				mes "um pouco mais.";
 				close;
 			}
-			set zeny,zeny-250;
+			set Zeny, Zeny-250;
 			warp "alberta",195,164;
 			end;
 		}

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0/1.3                         |
+//   | Versões eA/rA/brA: 1.1/1.2/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Evento de Clã. (Schwartzwald)               |
 //   |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 //   | 1.1 Tradução PT-BR [Hail]                              |
 //   | 1.2 Revisão [Gordis]                                   |
 //   | 1.3 Organização de Labels [lututuiBR]                  |
+//   | 1.4 Ativado NPC de Administração [lututuiBR]           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -915,7 +916,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	715,{
 				mes "Quando é que a pessoa vem? Estou muito entediado ~!";
 				close;
 			}
-			emotion 18;
+			emotion e_heh;
 			mes "[Pierrot Pierre]";
 			mes "^3131FF<Embora você seja um maluco, você parece ser muito dedicado>^000000. Beep beep.";
 			next;
@@ -1524,15 +1525,16 @@ schg_que01,114,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_53	978
 schg_que01,109,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_54	977
 schg_que01,104,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_55	976
 
-/*
 schg_dun01,5,5,1	script	Controlador do Evento#sch_gd	81,{
-	input .@input; //,0,9999;
-	if (input == 1854) {
-		mes "How can I help you?";
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "Senha incorreta.";
+		close;
+	} else {
+		mes "Em que posso ajudar?";
 		next;
-		switch(select("Reset.:No, thanks.")) {
+		switch(select("Resetar.:Nada, obrigado.")) {
 		case 1:
-			mes "Completed.";
+			mes "Completado.";
 			donpcevent "Controlador de Monstros1#sch::OnControler1#sch_gd";
 			donpcevent "Controlador de Monstros1#sch::OnControler1#sch_gd";
 			disablenpc "Anão#sch_gd";
@@ -1541,13 +1543,8 @@ schg_dun01,5,5,1	script	Controlador do Evento#sch_gd	81,{
 			set $@gdevents_s$,"";
 			close;
 		case 2:
-			mes "Good bye~";
+			mes "Adeus~";
 			close;
 		}
 	}
-	else {
-		mes "Incorrect password.";
-		close;
-	}
 }
-*/

@@ -24,7 +24,7 @@
 
 prontera,174,328,3	script	Young Man#bard_q1	89,3,3,{
 	if (BaseJob == Job_Bard) {
-		Emotion e_omg;
+		emotion e_omg;
 		mes "[Timid Young Man]";
 		mes "Eh? Wwwaaaah--!";
 		mes "Y-you're--it's-it's--";
@@ -369,7 +369,7 @@ prontera,174,328,3	script	Young Man#bard_q1	89,3,3,{
 
 OnTouch:
 	if (BaseJob == Job_Bard) {
-		Emotion e_omg;
+		emotion e_omg;
 	}
 	end;
 }
@@ -649,7 +649,7 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 			mes "[Riott]";
 			mes "Hmmrmpf!";
 			mes "Eh heh heh heh!";
-			Emotion e_gg;
+			emotion e_gg;
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Um...";
@@ -834,7 +834,7 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 		mes "[Riott]";
 		mes "Hmmrmpf!";
 		mes "Eh heh heh heh!";
-		Emotion e_gg;
+		emotion e_gg;
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Um...";
@@ -893,15 +893,15 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 	}
 
 OnTouch:
-	Emotion e_gg;
+	emotion e_gg;
 	end;
 }
 
 // Yhelle the Chicken
 //============================================================ 
 niflheim,239,70,1	script	Yhelle#bard_chick1	800,3,3,{
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -933,8 +933,8 @@ OnTouch:
 }
 
 niflheim,185,205,3	script	Yhelle#bard_chick2	800,3,3,{
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -959,8 +959,8 @@ OnTouch:
 }
 
 niflheim,85,203,5	script	Yhelle#bard_chick3	800,3,3,{
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -985,8 +985,8 @@ OnTouch:
 }
 
 niflheim,149,81,7	script	Yhelle#bard_chick4	800,3,3,{
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -1011,8 +1011,8 @@ OnTouch:
 }
 
 niflheim,209,144,3	script	Yhelle#bard_chick5	800,3,3,{
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -1200,7 +1200,7 @@ morocc_in,166,76,7	script	Bartender#bard_qskill	46,{
 		mes "mild, but if you're not";
 		mes "careful, you'll pass out";
 		mes "in no time flat. Take it easy.";
-		set zeny,zeny-1000;
+		set Zeny, Zeny-1000;
 		getitem 12112,1; //Tropical_Sograt
 		close;
 
@@ -1231,7 +1231,7 @@ morocc_in,166,76,7	script	Bartender#bard_qskill	46,{
 		mes "Be sure that you";
 		mes "enjoy your drinking";
 		mes "without going crazy.";
-		set zeny,zeny-1000;
+		set Zeny, Zeny-1000;
 		getitem 12113,1; //Vermilion_The_Beach
 		close;
 
@@ -1258,8 +1258,8 @@ function	script	F_BardSkillYhelle	{
 		mes "You're carrying too many items and don't have enough inventory space to receive any rewards. Please make more inventory space available and come back to take this challenge.";
 		close;
 	}
-	Emotion e_omg,1;
-	Emotion e_omg;
+	emotion e_omg,1;
+	emotion e_omg;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";

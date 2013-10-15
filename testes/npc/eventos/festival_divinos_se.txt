@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0/1.3                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Evento de Convocação.                       |
 //   |--------------------------------------------------------|
@@ -21,18 +21,18 @@
 //   | 1.1 Tradução PT-BR [Feanor]                            |
 //   | 1.2 Correções em frases, remoção de condição do if.    |
 //   | 1.3 Organização de Labels [lututuiBR]                  |
+//   | 1.4 Ativado NPC de Administração [lututuiBR]           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-/*
 yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
+	callfunc "F_GM_NPC";
 	mes "[Gerente do Festival]";
 	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
 	mes "Por favor, insira sua senha.";
 	next;
-	input .@input$;
-	if (.@input$ != "07godsefes") {
+	if (callfunc("F_GM_NPC","07godsefes",1) == 0) {
 		mes "[Gerente do Festival]";
 		mes "Senha incorreta.";
 		close;
@@ -55,7 +55,6 @@ yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
 		close;
 	}
 }
-*/
 
 yuno,118,192,5	script	Rmimi Ravies#gq_fes01	891,{
 	set .@GID, getcharid(2);
@@ -407,14 +406,13 @@ OnTimer3900000:
 //===============================================================================================
 
 //------------------------------------- Gerente do Festival em Rachel -----------------------------------
-/*
-rachel,1,1,0	script	Festival Manager#god_se_fes02	891,{
+rachel,1,1,0	script	Festival Manager#gq_fes02	891,{
+	callfunc "F_GM_NPC";
 	mes "[Gerente do Festival]";
 	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
 	mes "Por favor, insira sua senha.";
 	next;
-	input .@input$;
-	if (.@input$ != "07godsefes") {
+	if (callfunc("F_GM_NPC","07godsefes",1) == 0) {
 		mes "[Gerente do Festival]";
 		mes "Senha incorreta.";
 		close;
@@ -437,7 +435,6 @@ rachel,1,1,0	script	Festival Manager#god_se_fes02	891,{
 		close;
 	}
 }
-*/
 //----------------------------------------Rhehe Ravies----------------------------------------
 
 rachel,132,117,3	script	Rhehe Ravies#gq_fes03	891,{

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/2.8/1.1                         |
+//   | Versões eA/rA/brA: 1.1/2.9/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest Esgoto de Prontera, Capello, Gaebolg a|
 //   | Família Amaldiçoada.                                   |
@@ -20,6 +20,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Adequação para 3 versões [Neko]                    |
+//   | 1.2 Suporte ao registro de quests [lututuiBR]          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -119,7 +120,7 @@ S_Volunteer:
 }
 
 prt_fild05,270,212,5	script	Culvert Guardian	105,{
-	if(MISC_QUEST & 8) {
+	if (MISC_QUEST & 8) {
 		mes "[Culvert Guardian]";
 		mes "Ah, you're one of our volunteers. This is the entrance of the Prontera Culvert.";
 		mes "Do you wish to";
@@ -254,7 +255,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 				mes ".........?";
 				next;
 				mes "[Busy-Looking Boy]";
-				if (sex) {
+				if (Sex) {
 					mes "Ack! You're that clumsy";
 					mes "dude who made me drop";
 				}
@@ -265,7 +266,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 				mes "all of those books earlier!";
 				mes "Wait, you ditched me before,";
 				mes "so why act all concerned now?";
-				Emotion e_gasp;
+				emotion e_gasp;
 			}
 			else {
 				mes "[Busy-Looking Boy]";
@@ -280,7 +281,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			next;
 			select("Well, I, um...");
 			mes "[Busy-Looking Boy]";
-			if (sex) {
+			if (Sex) {
 				mes "Yeah... A real";
 				mes "man wouldn't have";
 				mes "ditched back then";
@@ -303,10 +304,10 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "it was a natural reflex!^000000";
 			next;
 			Specialeffect EF_HITDARK;
-			Emotion e_omg;
+			emotion e_omg;
 			mes "^3355FF*BAM!*^000000";
 			next;
-			Emotion e_omg;
+			emotion e_omg;
 			mes "[Busy-Looking Boy]";
 			mes "Ack! Those books...!";
 			mes "It took me so long to";
@@ -318,13 +319,13 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "arrange these nicely";
 			mes "out of the bottom of";
 			mes "my freakin' heart.";
-			Emotion e_lv,1;
+			emotion e_lv,1;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "...";
 			mes "......";
 			mes ".........";
-			Emotion e_dots;
+			emotion e_dots;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Huh...?";
@@ -346,7 +347,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "easily, so it scares me to";
 			mes "death to ride the Airship";
 			mes "all the way to Juno.";
-			Emotion e_dots;
+			emotion e_dots;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Now I'm in trouble!";
@@ -354,7 +355,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "time I just can't help it.";
 			mes "There's nothing I can do!";
 			mes "Oh, I'm gonna lose this job!";
-			Emotion e_sob;
+			emotion e_sob;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Wait... You adventurers";
@@ -370,7 +371,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "It's none of your ";
 			mes "business, I know, but";
 			mes "I'm just so desperate...";
-			Emotion e_sob;
+			emotion e_sob;
 			set prt_curse,2;
 			close;
 		}
@@ -382,7 +383,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "Summon all my courage...";
 			mes "and b-board that Airship!";
 			mes "Argh! No, I can't do it!";
-			Emotion e_dots;
+			emotion e_dots;
 			next;
 			callsub S_GetBooks;
 			mes "[Busy-Looking Boy]";
@@ -391,7 +392,7 @@ prontera,248,212,3	script#dv	Busy Boy#prt	706,3,3,{
 			mes "That guy's been waiting";
 			mes "for me to deliver his books";
 			mes "for quite a while now...";
-			Emotion e_sob;
+			emotion e_sob;
 			close;
 		}
 		else if (prt_curse == 3) {
@@ -431,7 +432,7 @@ OnTouch:
 			mes "Hey, look out!";
 			mes "Can't you be more";
 			mes "careful?! Geeeeez!";
-			Emotion e_ag;
+			emotion e_ag;
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "Oops, I'm so sorry.";
@@ -480,7 +481,7 @@ OnTouch:
 			mes "easily, so it scares me to";
 			mes "death to ride the Airship";
 			mes "all the way to Juno.";
-			Emotion e_dots;
+			emotion e_dots;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Now I'm in trouble!";
@@ -488,7 +489,7 @@ OnTouch:
 			mes "time I just can't help it.";
 			mes "There's nothing I can do!";
 			mes "Oh, I'm gonna lose this job!";
-			Emotion e_sob;
+			emotion e_sob;
 			next;
 			mes "[Busy-Looking Boy]";
 			mes "Wait... You adventurers";
@@ -504,7 +505,7 @@ OnTouch:
 			mes "It's none of your ";
 			mes "business, I know, but";
 			mes "I'm just so desperate...";
-			Emotion e_sob;
+			emotion e_sob;
 			set prt_curse,2;
 			close;
 		}
@@ -598,7 +599,7 @@ yuno,311,195,3	script#dv	Historian#prt01	754,{
 		mes "[Historian]";
 		mes "GRRRRRRRRR!";
 		mes "Where are my books?!";
-		Emotion e_ag;
+		emotion e_ag;
 		next;
 		select("Are you alright?");
 		mes "[Historian]";
@@ -629,7 +630,7 @@ yuno,311,195,3	script#dv	Historian#prt01	754,{
 		}
 		else {
 			select("Oh, I'm delivering the books for him.");
-			Emotion e_what;
+			emotion e_what;
 			mes "[Historian]";
 			mes "Ah, really?";
 			mes "Great, you're here!";
@@ -786,7 +787,7 @@ yuno,311,195,3	script#dv	Historian#prt01	754,{
 		mes "ruling the kingdom, the 7 warriors agreed to hold a contest amongst";
 		mes "their families each generation to prevent royal corruption.";
 		next;
-		Emotion e_swt2;
+		emotion e_swt2;
 		mes "[Historian]";
 		mes "Oh... Not too excited";
 		mes "about history, huh? Well,";
@@ -931,7 +932,7 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 		mes "can't be good for my skin...";
 		mes "Ooh, I wish I were back home";
 		mes "in the Schwaltzvalt Republic~";
-		Emotion e_sob;
+		emotion e_sob;
 		next;
 		mes "[Historian Rodafrian]";
 		mes "Hello there.";
@@ -1182,11 +1183,11 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 			mes "that you have learned to";
 			mes "Rodafrian, choosing not";
 			mes "to withhold any secrets.^000000";
-			Emotion e_ic;
+			emotion e_ic;
 			next;
 			mes "[Historian Rodafrian]";
 			mes ".....................!";
-			Emotion e_gasp;
+			emotion e_gasp;
 			next;
 			mes "[Historian Rodafrian]";
 			mes "Thank you for sharing that";
@@ -1225,10 +1226,13 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 			mes "that she might spread around!";
 			mes "Oh well, I guess I better head";
 			mes "back to the priests...)^000000";
-			if (prt_curse == 30) 
+			if (prt_curse == 30) {
 				set prt_curse,31;
-			else 
+				changequest 18042,18044;
+			} else {
 				set prt_curse,60;
+				changequest 18051,18052;
+			}
 			close;
 		}
 
@@ -1253,10 +1257,13 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 		mes "through Karlomoff's report.";
 		mes "For now, it would be best";
 		mes "to return to Father Bamph.^000000";
-		if (prt_curse == 30)
+		if (prt_curse == 30) {
 			set prt_curse,40;
-		else
+			changequest 18042,18045;
+		} else {
 			set prt_curse,56;
+			completequest 18051;
+		}
 		close;
 	}
 	else if (prt_curse == 31 || prt_curse == 40) {
@@ -1268,7 +1275,7 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 		close;
 	}
 	else if (prt_curse == 56) {
-		Emotion e_an;
+		emotion e_an;
 		mes "[Historian Rodafrian]";
 		mes "I just paid a visit to";
 		mes "Karlomoff and gave him";
@@ -1279,7 +1286,7 @@ morocc_in,45,126,3	script#dv	Historian#prt02	702,{
 		close;
 	}
 	else if (prt_curse == 60) {
-		Emotion e_an;
+		emotion e_an;
 		mes "[Historian Rodafrian]";
 		mes "I just aid a visit to";
 		mes "Karlomoff and gave him";
@@ -1331,6 +1338,7 @@ S_GiveName:
 	mes "for the sake of my research...";
 	if (getarg(0) == 1) delitem 7342,1; //File01
 	set prt_curse,8;
+	changequest 18031,18032;
 	close;
 }
 
@@ -1469,6 +1477,7 @@ mjolnir_01,135,168,3	script#dv	Historian#prt03	754,{
 		mes "for. Good luck in your";
 		mes "travels, adventurer.";
 		set prt_curse,11;
+		changequest 18032,18033;
 		close;
 	}
 	else {
@@ -1909,8 +1918,9 @@ mjolnir_01,316,268,3	script#dv	Exhausted-Looking Woman	879,{
 		mes "I should deliver these";
 		mes "herbs to Prontera Church";
 		mes "before I talk to Rodafrian.)^000000";
-		getitem 7432,1;
+		getitem 7432,1; //Leather_Pouch
 		set prt_curse,13;
+		changequest 18033,18034;
 		close;
 	}
 	else if (prt_curse > 12 && prt_curse < 16) {
@@ -1962,7 +1972,7 @@ mjolnir_01,316,268,3	script#dv	Exhausted-Looking Woman	879,{
 		mes "with death. But the royal family and the Prontera Church took";
 		mes "mercy on me, and allowed";
 		mes "me to live here in exile.";
-		Emotion e_dots;
+		emotion e_dots;
 		next;
 		mes "[Bonnie Imbullea]";
 		mes "I began to sing this song";
@@ -1977,7 +1987,7 @@ mjolnir_01,316,268,3	script#dv	Exhausted-Looking Woman	879,{
 		mes "a maid found a fragment of a";
 		mes "Red Gemstone while cleaning";
 		mes "the secret ceremonial grounds.";
-		Emotion e_gasp,1;
+		emotion e_gasp,1;
 		next;
 		mes "[Bonnie Imbullea]";
 		mes "I always thought it";
@@ -2009,6 +2019,7 @@ mjolnir_01,316,268,3	script#dv	Exhausted-Looking Woman	879,{
 		mes "and let Father Bamph";
 		mes "know about this information.)^000000";
 		set prt_curse,17;
+		changequest 18035,18036;
 		close;
 	}
 	else if (prt_curse == 17) {
@@ -2083,14 +2094,19 @@ mjolnir_01,316,268,3	script#dv	Exhausted-Looking Woman	879,{
 		mes "I can finally free myself from";
 		mes "this burdensome guilt...";
 		mes "Thank you, kind adventurer~";
-		if (prt_curse == 35) set prt_curse,36;
-		else if (prt_curse == 44) set prt_curse,45;
-		else {
+		if (prt_curse == 35) {
+			set prt_curse,36;
+			completequest 18050;
+		} else if (prt_curse == 44) {
+			set prt_curse,45;
+			completequest 18049;
+		} else {
 			next;
 			mes "^3355FFNow, you can return to";
 			mes "Rodafrian, the historian";
 			mes "stationed in Morroc.^000000";
 			set prt_curse,55;
+			changequest 18049,18051;
 		}
 
 		close;
@@ -2220,7 +2236,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "sent this adventurer here";
 		mes "for a favor, it probably means";
 		mes "she trusts this person. Besides, we need somebody to carry out";
-		if (sex)
+		if (Sex)
 			mes "this task for us. Why not him?";
 		else
 			mes "this task for us. Why not her?";
@@ -2273,7 +2289,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "at a young age^000000. That is";
 		mes "Jormungand's curse and";
 		mes "the royal family's secret.";
-		Emotion e_omg,1;
+		emotion e_omg,1;
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "What...?!";
@@ -2336,7 +2352,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "complicated. Please";
 		mes "listen to what we have";
 		mes "to ask from here on...";
-		Emotion e_dots;
+		emotion e_dots;
 		set prt_curse,15;
 		close;
 	}
@@ -2348,7 +2364,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "looking marks on their bodies.";
 		mes "It almost looked as if they";
 		mes "were growing snake scales.";
-		Emotion e_gasp,1;
+		emotion e_gasp,1;
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Wait, they grew snake";
@@ -2417,6 +2433,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "remember anything that happened";
 		mes "after the exorcism failed...";
 		set prt_curse,16;
+		changequest 18034,18035;
 		close;
 	}
 	else if (prt_curse == 16) {
@@ -2457,6 +2474,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "within the bookshelf and";
 		mes "I will meet you there.";
 		set prt_curse,18;
+		changequest 18036,18037;
 		close;
 	}
 	else if (prt_curse > 17 && prt_curse < 22) {
@@ -2493,6 +2511,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "we can verify whether poison";
 		mes "was used to kill the princes?";
 		set prt_curse,23;
+		changequest 18039,18040;
 		close;
 	}
 	else if (prt_curse == 23) {
@@ -2526,6 +2545,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "to the secret ceremonial grounds as soon as you can? I will wait";
 		mes "over there for you once again.";
 		set prt_curse,32;
+		changequest 18044,18046;
 		close;
 	}
 	else if (prt_curse == 32 || prt_curse == 33 || prt_curse == 41 || prt_curse == 42 || prt_curse == 51 || prt_curse == 52) {
@@ -2566,6 +2586,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "you for all of your help. I'm very grateful for what you have done,";
 		mes "adventurer. May safety accompany you on all of your journeys.";
 		set prt_curse,35;
+		changequest 18047,18050;
 		close;
 	}
 	else if (prt_curse > 34 && prt_curse < 40 && !aru_monas) {
@@ -2598,6 +2619,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "to the secret ceremonial grounds as soon as you can? I will wait";
 		mes "over there for you once again.";
 		set prt_curse,41;
+		changequest 18045,18046;
 		close;
 	}
 	else if (prt_curse == 43 || prt_curse == 53) {
@@ -2637,7 +2659,8 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "adventurer. May safety accompany you on all of your journeys.";
 		if (prt_curse == 43) set prt_curse,44;
 		else set prt_curse,54;
-		if(checkversion(0))
+		changequest 18047,18049;
+		if (checkversion(0))
 			getexp 160000,0;
 		else
 			getexp 1600000,0;
@@ -2675,6 +2698,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "to the secret ceremonial grounds as soon as you can? I will wait";
 		mes "over there for you once again.";
 		set prt_curse,51;
+		changequest 18043,18046;
 		close;
 	}
 	else if (prt_curse == 60) {
@@ -2729,12 +2753,20 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 		mes "secret ceremonial grounds";
 		mes "from now on. Thanks again for your help, "+strcharinfo(0)+".";
 		set prt_curse,61;
+		completequest 18052;
 		close;
 	}
 	else {
 		if (prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) {
 // Begin Nameless Island Access Quest Addition
-			if (aru_monas == 1) {
+			if (aru_monas == 0) {
+				mes "[Father Bamph]";
+				mes "I'm sorry, but would it";
+				mes "be alright if we talked";
+				mes "later? I have to handle";
+				mes "a very important task now...";
+				close;
+			} else if (aru_monas == 1) {
 				mes "[Father Bamph]";
 				mes "Oh, I've been waiting for";
 				mes "you, adventurer. I'm sorry";
@@ -2765,6 +2797,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 				mes "and he will assist you in your";
 				mes "search for the lost official.";
 				set aru_monas,2;
+				changequest 17000,17001;
 				close;
 			}
 			else if (aru_monas == 2 || aru_monas == 3) {
@@ -2797,7 +2830,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 				close;
 			}
 			else if (aru_monas == 5) {
-				if (rand(1,10) == 10) {
+				if (rand(1,5) == 4) {
 					mes "[Father Bamph]";
 					mes "Well, I've considered all";
 					mes "possible scenarios. I think";
@@ -2837,8 +2870,9 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 					mes "Please accept this money";
 					mes "to cover your Airship fee.";
 					mes "Thank you, and good luck.";
-					set zeny,zeny+1500;
 					set aru_monas,6;
+					set Zeny, Zeny + (checkversion(0))?5000:1500;
+					changequest 17002,17003;
 					close;
 				}
 				else {
@@ -2862,7 +2896,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 				mes "Everything is tied to religion.";
 				close;
 			}
-			else if (aru_monas > 6 && aru_monas < 24) {
+			else if (aru_monas > 6 && aru_monas < 25) {
 				mes "[Father Bamph]";
 				mes "Thank you so much for all";
 				mes "of your hard work. Our agents";
@@ -2872,7 +2906,7 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 				mes "know what we've been doing.";
 				close;
 			}
-			else if (aru_monas == 24) {
+			else if (aru_monas == 25 || aru_monas == 26) {
 				mes "[Father Bamph]";
 				mes "Thank you for bring us such";
 				mes "important information. With";
@@ -2887,35 +2921,18 @@ prt_church,185,106,3	script#dv	Father Bamph	60,{
 				mes "own selfish needs. I pray that";
 				mes "it does not grow worse, devolve";
 				mes "into chaos. ^666666*Sigh*^000000 We'll see...";
-				set aru_monas,25;
 				close;
 			}
-			else if (aru_monas >= 25) {
+			else {
 				mes "[Father Bamph]";
-				mes "Thank you for bring us such";
-				mes "important information. With";
-				mes "your help, we were able to";
-				mes "clear a few unsolved cases.";
-				mes "We expected something like";
-				mes "this, but not this soon.";
-				next;
-				mes "[Father Bamph]";
-				mes "I fear that the Royal Court";
-				mes "has been bickering over their";
-				mes "own selfish needs. I pray that";
-				mes "it does not grow worse, devolve";
-				mes "into chaos. ^666666*Sigh*^000000 We'll see...";
+				mes "It's upsetting to me that";
+				mes "Arunafeltz has been so quiet";
+				mes "lately. You know the expression";
+				mes "about there being a quiet lull";
+				mes "before a raging storm, right?";
 				close;
 			}
 // End Nameless Island Access Quest Addition
-			else {
-				mes "[Father Bamph]";
-				mes "I'm sorry, but would it";
-				mes "be alright if we talked";
-				mes "later? I have to handle";
-				mes "a very important task now...";
-				close;
-			}
 		}
 	}
 }
@@ -2971,7 +2988,8 @@ prt_church,184,110,3	script#dv	Father Biscuss	60,{
 		mes "Church, I want to thank";
 		mes "you for all of your help.";
 		set prt_curse,36;
-		if(checkversion(0))
+		completequest 18048;
+		if (checkversion(0))
 			getexp 160000,0;
 		else
 			getexp 1600000,0;
@@ -3132,6 +3150,7 @@ prt_church,19,111,5	script#dv	#prince1	887,{
 		mes "note that the mark resembles";
 		mes "the scales of a serpent.^000000";
 		set prt_curse,20;
+		changequest 18037,18038;
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse > 41 && prt_curse < 51 || prt_curse == 52) {
@@ -3167,7 +3186,7 @@ prt_church,21,111,5	script#dv	#prince2	887,{
 		mes "curse, we all failed. Those";
 		mes "involved have begun to believe";
 		mes "that Odin may have abandoned us... ";
-		Emotion e_omg,1;
+		emotion e_omg,1;
 		next;
 		mes "^3355FFYou examine the body of";
 		mes "the second prince and notice";
@@ -3192,6 +3211,7 @@ prt_church,21,111,5	script#dv	#prince2	887,{
 		mes "involved. Let's go check";
 		mes "the body of the third prince.";
 		set prt_curse,21;
+		changequest 18038,18039;
 		close;
 	}
 	else if (prt_curse == 33 || prt_curse > 41 && prt_curse < 51 || prt_curse == 52) {
@@ -3302,6 +3322,7 @@ prt_church,24,111,5	script#dv	#prince3	887,{
 			if (prt_curse == 32) set prt_curse,33;
 			else if (prt_curse == 41) set prt_curse,42;
 			else set prt_curse,52;
+			changequest 18046,18047;
 			close;
 		}
 		mes "^3355FFYou'll need to have";
@@ -3361,6 +3382,7 @@ moc_fild16,201,295,5	script#dv	Assassin Guildsman#poiso	884,{
 			mes "in Morroc. Go find someone";
 			mes "named ^3131FFMarjana^000000 inside.";
 			set prt_curse,24;
+			changequest 18040,18041;
 			close;
 		}
 		mes "[Assassin Guildsman]";
@@ -3547,6 +3569,7 @@ OnTouch:
 			mes "Father Bamph, so I guess";
 			mes "that I'll go talk to her first.";
 			set prt_curse,30;
+			changequest 18041,18042;
 			close;
 		}
 		mes "["+strcharinfo(0)+"]";
@@ -3556,6 +3579,7 @@ OnTouch:
 		mes "bodies. I better head over";
 		mes "to Prontera right away.";
 		set prt_curse,50;
+		changequest 18041,18043;
 		close;
 	}
 }
@@ -3588,14 +3612,14 @@ prt_in,162,99,4	script#dv	Librarian#curse	67,{
 				mes "we will provide you with";
 				mes "replacement copies.";
 				next;
-				if (zeny > 699) {
+				if (Zeny > 699) {
 					mes "[Librarian]";
 					mes "Ah, here you are.";
 					mes "Please take these";
 					mes "replacement copies,";
 					mes "and try not to lose";
 					mes "them again. Thank you.";
-					set zeny,zeny-700;
+					set Zeny, Zeny-700;
 					getitem 7431,1; //Books
 					close;
 				}

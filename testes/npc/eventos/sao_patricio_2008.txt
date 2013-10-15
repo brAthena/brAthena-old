@@ -183,7 +183,7 @@ prt_fild05,170,286,4	script	Duende Ancioso#8pday	954,{
 		mes "sou muito grato";
 		next;
 		mes "[Duende O'Riley]";
-		if(countitem(7721) < 1) {
+		if (countitem(7721) < 1) {
 
 			mes "Vós perderam meu baú do tesouro ???";
 			mes "Agora vós me deixaram triste ...";

@@ -27,14 +27,14 @@
 //============================================================
 alberta_in,70,51,5	script	Guarnien	98,{
 	mes "[Guarnien]";
-	if(Class != Job_Merchant && Class != Job_Baby_Merchant){
+	if (Class != Job_Merchant && Class != Job_Baby_Merchant){
 		mes "Olá estranho.";
 		mes "Eu gostaria de poder lhe ajudar";
 		mes "em suas aventuras...";
 		next;
 		mes "[Guarnien]";
 		mes "No entanto, o que eu tenho para ensinar só iria beneficiar mercadores. Tomada de negociações e macacos são as minhas áreas de especialização. Se você tem algum amigo Merchant, pode convida-lo para vim aqui.";
-		if(Class == Job_Merchant_High){
+		if (Class == Job_Merchant_High){
 			next;
 			mes "[Guarnien]";
 			mes "Tecnicamente, sim, você é um comerciante, mas sei que você um perito. Você levava uma vida do comerciante antes, certo!";
@@ -62,14 +62,14 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "sobre Comércio?";
 		next;
 		set @chk_vend, getskilllv("MC_VENDING");
-		if((@chk_vend > 3) && (@chk_vend < 10)){
+		if ((@chk_vend > 3) && (@chk_vend < 10)){
 			mes "[Guarnien]";
 			mes "Excelente!";
 			mes "Você ensinou a si mesmo também. Aqui, você ganhou esta pouca recompensa~";
 			set tu_merchant, 17;
 			getexp 1860,604;
 			next;
-		} else if(@chk_vend == 10){
+		} else if (@chk_vend == 10){
 			mes "[Guarnien]";
 			mes "Oh, eu vejo que você é muito sério sobre ser um comerciante. Estou orgulhoso que você tenha dominado esta habilidade! Aqui, você merece esta recompensa!";
 			set tu_merchant, 17;
@@ -124,14 +124,14 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "aumentar em um.";
 		next;
 		set @chk_vend, getskilllv("MC_VENDING");
-		if((@chk_vend > 3) && (@chk_vend < 10)){
+		if ((@chk_vend > 3) && (@chk_vend < 10)){
 			mes "[Guarnien]";
 			mes "Mas vejo que você já deve saber disso, hein? Bem, já que você é tão inteligente, eu acho que você achou esse prêmio pouco~";
 			set tu_merchant, 17;
 			getexp 1860,604;
 			//misceffect EF_HIT5;
 			next;
-		} else if(@chk_vend == 10){
+		} else if (@chk_vend == 10){
 			mes "[Guarnien]";
 			mes "Sinto muito, eu não percebi que você já dominava a habilidade de Comércio...";
 			next;
@@ -174,7 +174,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "para o nível 4 como eu pedi?";
 		next;
 		set @chk_cart, getskilllv("MC_PUSHCART");
-		if(@chk_cart > 3 && @chk_cart < 10){
+		if (@chk_cart > 3 && @chk_cart < 10){
 			mes "[Guarnien]";
 			mes "bem feito~";
 			mes "Você tem sido muito";
@@ -188,7 +188,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "[Guarnien]";
 			mes "Da próxima vez, eu vou falar sobre a habilidade que define mercadores além de todas as outras classes: ^871F78Comércio^000000. Então, não perca!";
 			close;
-		} else if(@chk_cart == 10){
+		} else if (@chk_cart == 10){
 			mes "[Guarnien]";
 			mes "Excelente!";
 			mes "Você realmente foi além, dominou a habilidade Usar Carrinho. Grande trabalho!";
@@ -229,7 +229,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "para baixo!";
 		next;
 		set @chk_cart, getskilllv("MC_PUSHCART");
-		if(@chk_cart > 3 && @chk_cart < 10){
+		if (@chk_cart > 3 && @chk_cart < 10){
 			mes "[Guarnien]";
 			mes "Vejo que você está querendo usar um carrinho. Embora você possa ainda ter um problema com seu movimento";
 			mes "velocidade.";
@@ -240,7 +240,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "[Guarnien]";
 			mes "da próxima vez, vou falar com da habilidade que diferencia a todas as outras classes de mercadores: ^871F78Comércio^000000. Então não perca!";
 			close;
-		} else if(@chk_cart == 10){
+		} else if (@chk_cart == 10){
 			mes "[Guarnien]";
 			mes "Maravilhoso! Você já ";
 			mes "domina a habilidade de usar Carrinho.";
@@ -268,7 +268,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "^871F78Superfaturar^000000 habilidade?";
 		next;
 		set @chk_over, getskilllv("MC_OVERCHARGE");
-		if(@chk_over > 3 && @chk_over < 10){
+		if (@chk_over > 3 && @chk_over < 10){
 			mes "[Guarnien]";
 			mes "Bom trabalho!";
 			mes "Pode-se dizer que";
@@ -282,7 +282,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "[Guarnien]";
 			mes "da próxima vez, vou discutir a habilidade do carro do impulso. Prepare-se para esta aula, como empurrar o carrinho é uma das habilidades mais importantes para um comerciante.";
 			close;
-		} else if(@chk_over == 10){
+		} else if (@chk_over == 10){
 			mes "[Guarnien]";
 			mes "Caraca...";
 			mes "você realmente";
@@ -318,7 +318,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		mes "sobre a carga permite-lhe vender itens para lojas NPC para mais Zeny. Quanto maior seu nível de habilidade sobre a carga, mais Zeny você receberá.";
 		next;
 		set @chk_over, getskilllv("MC_OVERCHARGE");
-		if(@chk_over > 3 && @chk_over < 10){
+		if (@chk_over > 3 && @chk_over < 10){
 			mes "[Guarnien]";
 			mes "Ah, você já aprendeu nível 4 sobre a carga. Perfeito! Deixe-me dar-lhe uma pequena recompensa ~ ";
 			set tu_merchant, 13;
@@ -329,7 +329,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "da próxima vez, vou falar sobre a";
 			mes "habilidade de Usar Carrinho. Prepare-se para esta aula, como empurrar o carrinho é uma das habilidades mais importantes para um comerciante.";
 			close;
-		} else if(@chk_over == 10){
+		} else if (@chk_over == 10){
 			mes "[Guarnien]";
 			mes "Incrível! Você já dominou a habilidade sobre Charge!~ ";
 			set tu_merchant, 13;
@@ -427,7 +427,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		next;
 		mes "[Guarnien]";
 		set @chk_disc, getskilllv("MC_DISCOUNT");
-		if(@chk_disc > 3 && @chk_disc < 10){
+		if (@chk_disc > 3 && @chk_disc < 10){
 			mes "Ah, você já aprendeu";
 			mes "como usar a habilidade de desconto";
 			mes "Bom, aqui está uma pequena recompensa por seu trabalho duro~";
@@ -438,7 +438,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "[Guarnien]";
 			mes "Tudo bem, minha próxima lição espero oferecer-lhe mais um desafio. Volte quando você achar que está pronto, tudo bem? ";
 			close;
-		} else if(@chk_disc == 10){
+		} else if (@chk_disc == 10){
 			mes "Incrível!";
 			mes "Você realmente já domina a habilidade de desconto! Você é um grande aluno. Você merece uma recompensa! ";
 			set tu_merchant, 5;
@@ -467,7 +467,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		next;
 		mes "[Guarnien]";
 		set @chk_disc, getskilllv("MC_DISCOUNT");
-		if(@chk_disc > 3 && @chk_disc < 10){
+		if (@chk_disc > 3 && @chk_disc < 10){
 			mes "Oooh, bom trabalho.";
 			mes "Vejo que você elevou o";
 			mes "desconto";
@@ -482,7 +482,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "Tudo bem, minha próxima lição espero oferecer-lhe mais um desafio. Volte quando";
 			mes "achar que está pronto, certo?";
 			close;
-		} else if(@chk_disc == 10){
+		} else if (@chk_disc == 10){
 			mes "Incrível!";
 			mes "você realmente já domina a habilidade de desconto! Você é um grande estudante. Você merece uma recompensa! ";
 			set tu_merchant, 5;
@@ -520,7 +520,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		next;
 		mes "[Guarnien]";
 		set @chk_mam, getskilllv("MC_MAMMONITE");
-		if(@chk_mam > 3 && @chk_mam < 10){
+		if (@chk_mam > 3 && @chk_mam < 10){
 			mes "Ah, eu vejo que você já tentou usar esta habilidade. Quanto de dinheiro você perdeu usando Mammonita? Não muito, eu espero.";
 			next;
 			mes "[Guarnien]";
@@ -546,7 +546,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		next;
 		mes "[Guarnien]";
 		set @chk_soji, getskilllv("MC_INCCARRY");
-		if(@chk_soji > 3 && @chk_soji < 10){
+		if (@chk_soji > 3 && @chk_soji < 10){
 			mes "Nada mau! Agora você deve ser capaz de aprender a usar o ^871F78Desconto^000000 , mas vou te ensinar sobre isso mais tarde.";
 			next;
 			mes "[Guarnien]";
@@ -558,7 +558,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			mes "[Guarnien]";
 			mes "Esta habilidade funciona exatamente como um ^871F78Lupa^000000, assim você não terá que gastar qualquer Zeny neles.";
 			next;
-			if(getskilllv("MC_IDENTIFY")){
+			if (getskilllv("MC_IDENTIFY")){
 				mes "[Guarnien]";
 				mes "Vejo em seus olhos que você já aprendeu a apreciar o itens. Haha, apesar de ter esse conhecimento é a recompensa em si mesmo, vou dar algo extra!";
 				set tu_merchant, 2;
@@ -582,11 +582,11 @@ alberta_in,70,51,5	script	Guarnien	98,{
 
 	mes "Você apenas começou como um mercador, não é? Como você gostaria de aprender os fundamentos de negócio de um colega experiente? ";
 	next;
-	if(select("Certo!:Eu vou fazer isso sozinho!")==1){
+	if (select("Certo!:Eu vou fazer isso sozinho!")==1){
 		set tu_merchant, 1;
-		if(getskilllv("MC_INCCARRY") < 4){
+		if (getskilllv("MC_INCCARRY") < 4){
 			mes "[Guarnien]";
-			if(Sex == 1){
+			if (Sex == 1){
 				mes "Atta menino~!";
 			} else {
 				mes "Atta menina~!";
@@ -621,7 +621,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			next;
 			mes "[Guarnien]";
 			set tu_merchant, 2;
-			if(getskilllv("MC_IDENTIFY")){
+			if (getskilllv("MC_IDENTIFY")){
 				mes "Vejo em seus olhos que você já aprendeu a apreciar o itens. Haha, vou dar algo extra! ";
 				//misceffect EF_HIT5;
 				getexp 585,43;
@@ -657,7 +657,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 //============================================================
 prontera,66,111,3	script	Sagle	82,{
 	mes "[Sagle]";
-	if(tu_merchant == 8){
+	if (tu_merchant == 8){
 		mes "Olá, Olá ~";
 		mes "Por que você não compra";
 		mes "algumas poções vermelhas?";
@@ -671,7 +671,7 @@ prontera,66,111,3	script	Sagle	82,{
 			mes "[Sagle]";
 			mes "Excelente!";
 			mes "você certamente tem um olho de pechinchas. Aqui vai, 10 poções vermelha frescas do... Potioner... ";
-			if(Zeny < 420){
+			if (Zeny < 420){
 				next;
 				mes "[Sagle]";
 				mes "Caraca, espere!";
@@ -680,7 +680,7 @@ prontera,66,111,3	script	Sagle	82,{
 				mes "Por favor, volte";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Sagle]";
 				mes "Caraca, espere!";
@@ -704,7 +704,7 @@ prontera,66,111,3	script	Sagle	82,{
 			break;
 		}
 	}
-	if(tu_merchant == 7){
+	if (tu_merchant == 7){
 			mes "Olá, Olá ~";
 			mes "Por que você não compra";
 			mes "algumas poções vermelhas?";
@@ -718,7 +718,7 @@ prontera,66,111,3	script	Sagle	82,{
 				mes "[Sagle]";
 				mes "Excelente!";
 				mes "você certamente tem um olho de pechinchas.";
-				if(Zeny < 410){
+				if (Zeny < 410){
 					next;
 					mes "[Sagle]";
 					mes "Caraca, espere!";
@@ -729,7 +729,7 @@ prontera,66,111,3	script	Sagle	82,{
 					mes "suficiente, está bem?";
 					close;
 				}
-				if(MaxWeight - Weight < 71){
+				if (MaxWeight - Weight < 71){
 					next;
 					mes "[Sagle]";
 					mes "Caraca, espere!";
@@ -752,7 +752,7 @@ prontera,66,111,3	script	Sagle	82,{
 				break;
 		}
 	}
-	if(tu_merchant == 6){
+	if (tu_merchant == 6){
 		mes "Olá, Olá ~";
 		mes "Por que você não compra";
 		mes "algumas poções vermelhas?";
@@ -766,7 +766,7 @@ prontera,66,111,3	script	Sagle	82,{
 				mes "[Sagle]";
 				mes "Excelente!";
 				mes "Você certamente tem um olho de pechinchas.";
-				if(Zeny < 390){
+				if (Zeny < 390){
 					next;
 					mes "[Sagle]";
 					mes "Caraca, espere!";
@@ -777,7 +777,7 @@ prontera,66,111,3	script	Sagle	82,{
 					mes "suficiente, está bem?";
 					close;
 				}
-				if(MaxWeight - Weight < 71){
+				if (MaxWeight - Weight < 71){
 					next;
 					mes "[Sagle]";
 					mes "Caraca, espere!";
@@ -816,7 +816,7 @@ prontera,66,111,3	script	Sagle	82,{
 //============================================================
 prontera,93,330,3	script	Kellion	97,{
 	mes "[Kellion]";
-	if(tu_merchant == 8){
+	if (tu_merchant == 8){
 		mes "Estou vendendo conjuntos de";
 		mes " porções 10 vermelhas poções por 340 Zenys.";
 		mes "Deseja que alguns?";
@@ -826,14 +826,14 @@ prontera,93,330,3	script	Kellion	97,{
 			mes "[Kellion]";
 			mes "Boa escolha";
 			mes "Obrigado volte, loja.";
-			if(Zeny < 340){
+			if (Zeny < 340){
 				next;
 				mes "[Kellion]";
 				mes "Ooops!";
 				mes "Me desculpe, mas você não tem zeny suficiente. Eu tenho que permanecer nesse negócio de alguma forma, você sabe? ";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Kellion]";
 				mes "...Hein? ";
@@ -853,7 +853,7 @@ prontera,93,330,3	script	Kellion	97,{
 			break;
 		}
 	}
-	if(tu_merchant == 7){
+	if (tu_merchant == 7){
 		mes "Estou vendendo conjuntos de";
 		mes "10 porções vermelhas por 390 zenys.";
 		mes "Deseja algumas?";
@@ -864,14 +864,14 @@ prontera,93,330,3	script	Kellion	97,{
 			mes "~ Boa escolha";
 			mes "Obrigado por";
 			mes "comprar na minha loja.";
-			if(Zeny < 390){
+			if (Zeny < 390){
 				next;
 				mes "[Kellion]";
 				mes "Ooops!";
 				mes "me desculpe, mas você não tem zeny suficiente.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Kellion]";
 				mes "Hein...? ";
@@ -892,7 +892,7 @@ prontera,93,330,3	script	Kellion	97,{
 			break;
 		}
 	}
-	if(tu_merchant == 6){
+	if (tu_merchant == 6){
 		mes "Estou vendendo conjuntos de";
 		mes "10 poções vermelhas para por 400.";
 		mes "Deseja que alguns?";
@@ -903,14 +903,14 @@ prontera,93,330,3	script	Kellion	97,{
 			mes "~ Boa escolha";
 			mes "Obrigado por";
 			mes "comprar na minha loja.";
-			if(Zeny < 400){
+			if (Zeny < 400){
 				next;
 				mes "[Kellion]";
 				mes "Ooops!";
 				mes "me desculpe, mas você não tem zeny suficiente.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Kellion]";
 				mes "Hein...?";
@@ -947,7 +947,7 @@ prontera,93,330,3	script	Kellion	97,{
 // Aigie
 //============================================================
 prt_in,169,11,3	script	Aigie	92,{
-	if(tu_merchant == 8){
+	if (tu_merchant == 8){
 		mes "[Aigie]";
 		mes "Bem vindo ao meu shop.";
 		mes "Eu sou apenas uma jovem garota que é vítima da circunstância, obrigada a vender poções na rua a preços baratos.";
@@ -963,14 +963,14 @@ prt_in,169,11,3	script	Aigie	92,{
 			mes "Obrigado.";
 			mes "Agora eu posso finalmente";
 			mes "pagar minha comida novamente...";
-			if(Zeny < 390){
+			if (Zeny < 390){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Você conseguiria mais zenys antes de voltar aqui? ";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
@@ -994,7 +994,7 @@ prt_in,169,11,3	script	Aigie	92,{
 			break;
 		}
 	}
-	if(tu_merchant == 7){
+	if (tu_merchant == 7){
 		mes "[Aigie]";
 		mes "Bem-vindo à minha loja.";
 		mes "Eu sou apenas uma jovem garota que é vítima da circunstância, obrigada a vender poções na rua a preços baratos.";
@@ -1010,14 +1010,14 @@ prt_in,169,11,3	script	Aigie	92,{
 			mes "Obrigado.";
 			mes "Agora eu posso finalmente";
 			mes "pagar minha comida novamente...";
-			if(Zeny < 420){
+			if (Zeny < 420){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Você conseguiria mais zenys antes de voltar aqui? ";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
@@ -1041,7 +1041,7 @@ prt_in,169,11,3	script	Aigie	92,{
 			break;
 		}
 	}
-	if(tu_merchant == 6){
+	if (tu_merchant == 6){
 		mes "[Aigie]";
 		mes "Bem-vindo à minha loja.";
 		mes "Eu sou apenas uma jovem garota que é vítima da circunstância, obrigada a vender poções na rua a preços baratos.";
@@ -1057,14 +1057,14 @@ prt_in,169,11,3	script	Aigie	92,{
 			mes "Obrigado.";
 			mes "Agora eu posso finalmente";
 			mes "pagar minha comida novamente...";
-			if(Zeny < 340){
+			if (Zeny < 340){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Você conseguiria mais zenys antes de voltar aqui? ";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Aigie]";
 				mes "Espere, espere!";
@@ -1098,7 +1098,7 @@ prt_in,169,11,3	script	Aigie	92,{
 // Jayon
 //============================================================
 prontera,247,129,3	script	Jayon	85,{
-	if(tu_merchant == 8){
+	if (tu_merchant == 8){
 		mes "[Jayon]";
 		mes "Se você verificou as lojas de Poções Vermelhas, você deve saber que meu preço é o melhor oferecido, 10 Poções Vermelhas por apenas 410 Zeny.";
 		next;
@@ -1107,7 +1107,7 @@ prontera,247,129,3	script	Jayon	85,{
 			mes "[Jayon]";
 			mes "Hehe...!";
 			mes "Parece que você é um Mercador. Não é?";
-			if(Zeny < 410){
+			if (Zeny < 410){
 				next;
 				mes "[Jayon]";
 				mes "Mas camarada.";
@@ -1116,7 +1116,7 @@ prontera,247,129,3	script	Jayon	85,{
 				mes "se você quiser estas poções.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Jayon]";
 				mes "Me desculpe amigo, eu não posso deixar você carregar mais do que você pode levar.";
@@ -1138,7 +1138,7 @@ prontera,247,129,3	script	Jayon	85,{
 		}
 	}
 
-	if(tu_merchant == 7){
+	if (tu_merchant == 7){
 		mes "[Jayon]";		
 		mes "Se você verificou as lojas de Poções Vermelhas, você deve saber que meu preço é o melhor oferecido, 10 Poções Vermelhas por apenas 400 Zeny.";
 		next;
@@ -1147,7 +1147,7 @@ prontera,247,129,3	script	Jayon	85,{
 			mes "[Jayon]";
 			mes "Hehe...!";
 			mes "Parece que você é um Mercador. Não é?";
-			if(Zeny < 400){
+			if (Zeny < 400){
 				next;
 				mes "[Jayon]";
 				mes "Mas camarada.";
@@ -1156,7 +1156,7 @@ prontera,247,129,3	script	Jayon	85,{
 				mes "se você quiser estas poções.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Jayon]";
 				mes "Me desculpe amigo, eu não posso deixar você carregar mais do que você pode levar.";
@@ -1179,7 +1179,7 @@ prontera,247,129,3	script	Jayon	85,{
 		}
 	}
 
-	if(tu_merchant == 6){
+	if (tu_merchant == 6){
 		mes "[Jayon]";
 		mes "Se você verificou as lojas de Poções Vermelhas, você deve saber que meu preço é o melhor oferecido, 10 Poções Vermelhas por apenas 410 Zeny.";
 		next;
@@ -1188,7 +1188,7 @@ prontera,247,129,3	script	Jayon	85,{
 			mes "[Jayon]";
 			mes "Hehe...!";
 			mes "Parece que você é um Mercador. Não é?";
-			if(Zeny < 410){
+			if (Zeny < 410){
 				next;
 				mes "[Jayon]";
 				mes "Mas camarada.";
@@ -1197,7 +1197,7 @@ prontera,247,129,3	script	Jayon	85,{
 				mes "se você quiser estas poções.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Jayon]";
 				mes "Me desculpe amigo, eu não posso deixar você carregar mais do que você pode levar.";
@@ -1232,7 +1232,7 @@ prontera,247,129,3	script	Jayon	85,{
 // Maos
 //============================================================
 prt_in,251,129,3	script	Maos	709,{
-	if(tu_merchant == 8){
+	if (tu_merchant == 8){
 		mes "[Maos]";
 		mes "Não diga nada.";
 		mes "Eu sei o que você quer.";
@@ -1245,13 +1245,13 @@ prt_in,251,129,3	script	Maos	709,{
 			mes "[Maos]";
 			mes "Excelente escolha!";
 			mes "Bons produtos a preços acessíveis! Essa é a minha conduta como um mercador.";
-			if(Zeny < 420){
+			if (Zeny < 420){
 				next;
 				mes "[Maos]";
 				mes "Ah, mas você não tem dinheiro suficiente para comprar estas poções, me desculpe mas não posso vendê-las.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				next;
 				mes "[Maos]";
 				mes "Você não pode carregar mais itens. Por que você não coloca suas coisas no Armazém Kafra?";
@@ -1270,7 +1270,7 @@ prt_in,251,129,3	script	Maos	709,{
 			break;
 		}
 	}
-	if(tu_merchant == 7){
+	if (tu_merchant == 7){
 		mes "[Maos]";
 		mes "Não diga nada.";
 		mes "Eu sei o que você quer.";
@@ -1283,13 +1283,13 @@ prt_in,251,129,3	script	Maos	709,{
 			mes "[Maos]";
 			mes "Excelente escolha!";
 			mes "Bons produtos a preços acessíveis! Essa é a minha conduta como um mercador.";
-			if(Zeny < 340){
+			if (Zeny < 340){
 				next;
 				mes "[Maos]";
 				mes "Ah, mas você não tem dinheiro suficiente para comprar estas poções, me desculpe mas não posso vendê-las.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				mes "[Maos]";
 				mes "Você não pode carregar mais itens. Por que você não coloca suas coisas no Armazém Kafra?";
 				close;
@@ -1307,7 +1307,7 @@ prt_in,251,129,3	script	Maos	709,{
 			break;
 		}
 	}
-	if(tu_merchant == 6){
+	if (tu_merchant == 6){
 		mes "[Maos]";
 		mes "Não diga nada.";
 		mes "Eu sei o que você quer.";
@@ -1320,13 +1320,13 @@ prt_in,251,129,3	script	Maos	709,{
 			mes "[Maos]";
 			mes "Excelente escolha!";
 			mes "Bons produtos a preços acessíveis! Essa é a minha conduta como um mercador.";
-			if(Zeny < 400){
+			if (Zeny < 400){
 				next;
 				mes "[Maos]";
 				mes "Ah, mas você não tem dinheiro suficiente para comprar estas poções, me desculpe mas não posso vendê-las.";
 				close;
 			}
-			if(MaxWeight - Weight < 71){
+			if (MaxWeight - Weight < 71){
 				mes "[Maos]";
 				mes "Você não pode carregar mais itens. Por que você não coloca suas coisas no Armazém Kafra?";
 				close;

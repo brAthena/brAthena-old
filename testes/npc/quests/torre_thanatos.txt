@@ -418,7 +418,7 @@ tha_t01,140,78,4	script	Guia#premio	831,{
 	mes "Ah, olá!";
 	mes "Em que posso ajudar?";
 	next;
-	if(select("Recompensa:Nada") == 2) {
+	if (select("Recompensa:Nada") == 2) {
 		mes "[Liei]";
 		mes "Por favor, dê o melhor de si";
 		mes "para exterminar";
@@ -588,7 +588,7 @@ tha_t02,231,161,5	script	Guia da Entrada	874,{
 			mes "...?";
 			mes "Você tem alguma dúvida?";
 			next;
-			if(select("About the development.:The relationship of Cool Event Corporation and Rekenber Corporation.:Nope.") == 3) {
+			if (select("About the development.:The relationship of Cool Event Corporation and Rekenber Corporation.:Nope.") == 3) {
 				mes "[Burled]";
 				mes "Take care.";
 				close;
@@ -598,7 +598,7 @@ tha_t02,231,161,5	script	Guia da Entrada	874,{
 			mes "If you want to know more, would you do me a favor?";
 			mes "Since you asked for our confidential info...";
 			next;
-			if(select("Really? Don't make me afraid of it.:Just tell me about it.:I'll listen about it later.") == 3) {
+			if (select("Really? Don't make me afraid of it.:Just tell me about it.:I'll listen about it later.") == 3) {
 				mes "[Burled]";
 				mes "As you wish...";
 				mes "Take care!";
@@ -1140,7 +1140,7 @@ tha_t05,62,179,0	script	Brilliant Statue#tt3	111,3,3,{
 		mes "Red light is shining on a crack in the left wing, and gold light on a crack in the right one.";
 		mes "What will you do?";
 		next;
-		if(select("Stick the key into the crack...:Ignore it.") == 2) {
+		if (select("Stick the key into the crack...:Ignore it.") == 2) {
 			mes "^3355FFYou decide to leave";
 			mes "the statue alone.^000000";
 			close;
@@ -1226,7 +1226,7 @@ tha_t06,226,230,0	script	Brilliant Statue#tt4	111,3,3,{
 		mes "There're red, yellow, and blue light in a row.";
 		mes "What will you do?";
 		next;
-		if(select("Investigate.:Ignore it.") == 2) {
+		if (select("Investigate.:Ignore it.") == 2) {
 			mes "^3355FFYou don't see the need to";
 			mes "investigate if nothing seems";
 			mes "peculiar or out of place...^000000";
@@ -1499,7 +1499,7 @@ tha_t06,204,181,0	script	Splendid Sword#tt5	111,3,3,{
 			mes "suddenly respond with a mysterious power.";
 			specialeffect2 EF_ABSORBSPIRITS;
 			next;
-			if(select("Observe it.:Ignore it.") == 2) {
+			if (select("Observe it.:Ignore it.") == 2) {
 				mes "^3355FFYou decide to leave";
 				mes "the sword alone.^000000";
 				close;
@@ -1775,7 +1775,7 @@ tha_t12,161,57,0	script	Gold Religious Statue#tt	111,{
 			specialeffect EF_BEGINSPELL5;
 			specialeffect2 EF_BEGINSPELL5;
 			next;
-			if(select("Insert the Yellow Charm Stone.:Run away.") == 2) close;
+			if (select("Insert the Yellow Charm Stone.:Run away.") == 2) close;
 			if ($@thana_summon == 0) {
 				mes "After inserting the Yellow Charm Stone into the sword, the statue begins to react.";
 				specialeffect EF_BEGINSPELL5;
@@ -1805,7 +1805,7 @@ tha_t12,154,17,0	script	Green Wiseman Statue#tt	111,{
 			specialeffect EF_BEGINSPELL4;
 			specialeffect2 EF_BEGINSPELL4;
 			next;
-			if(select("Insert the Green Charm Stone.:Run away.") == 2) close;
+			if (select("Insert the Green Charm Stone.:Run away.") == 2) close;
 			if ($@thana_summon == 1) {
 				mes "After inserting the Green Charm Stone into the wand, the statue begins to react.";
 				specialeffect EF_BEGINSPELL4;
@@ -1835,7 +1835,7 @@ tha_t12,103,17,0	script	Blue Angel Statue#tt	111,{
 			specialeffect EF_BEGINSPELL2;
 			specialeffect2 EF_BEGINSPELL2;
 			next;
-			if(select("Insert the Blue Charm Stone.:Run away.") == 2) close;
+			if (select("Insert the Blue Charm Stone.:Run away.") == 2) close;
 			if ($@thana_summon == 2) {
 				mes "After inserting the Blue Charm Stone into the belt, the statue begins to react.";
 				specialeffect EF_BEGINSPELL2;
@@ -1865,7 +1865,7 @@ tha_t12,96,57,0	script	Bloody Knight Statue#tt	111,{
 			specialeffect EF_BEGINSPELL3;
 			specialeffect2 EF_BEGINSPELL3;
 			next;
-			if(select("Insert the Red Charm Stone.:Run away.") == 2) close;
+			if (select("Insert the Red Charm Stone.:Run away.") == 2) close;
 			if ($@thana_summon == 3) {
 				mes "After inserting the Red Charm Stone into the armor, the statue begins to react.";
 				specialeffect EF_BEGINSPELL3;
@@ -1895,7 +1895,7 @@ tha_t12,129,86,0	script	Dark Devil Statue#tt	111,{
 			specialeffect EF_BEGINSPELL7;
 			specialeffect2 EF_BEGINSPELL7;
 			next;
-			if(select("Insert the Black Charm Stone.:Run away.") == 2) close;
+			if (select("Insert the Black Charm Stone.:Run away.") == 2) close;
 			if ($@thana_summon == 4) {
 				mes "After inserting the Red Charm Stone into the eye socket, the statue begins to react.";
 				specialeffect EF_BEGINSPELL7;

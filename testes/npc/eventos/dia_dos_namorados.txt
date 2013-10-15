@@ -46,7 +46,7 @@ alberta,26,243,4	script	Stephen	58,{
 	mes "Está certo, você não gosta de chocolate?... Eu amo.";
 	mes "E você está com sorte, porque eu estou vendendo eles por apenas 5.000 zenys cada pedaço!";
 	next;
-	if(select("Eu quero chocolate!:Não obrigado.")==2) {
+	if (select("Eu quero chocolate!:Não obrigado.")==2) {
 		mes "[Stephen]";
     mes "Você não quer nenhum chocolate?";
     mes "Estou dizendo a você, vai se arrepender...";
@@ -109,7 +109,7 @@ prt_castle,54,34,4	script	Carl Orleans	47,{
 	mes "[Carl Orleans]";
 	mes "Sim?";
 	next;
-	if(select("Eu quero um Chocolate Caseiro...:Estou perdido, desculpe por incomodá-lo.")==2) {
+	if (select("Eu quero um Chocolate Caseiro...:Estou perdido, desculpe por incomodá-lo.")==2) {
 		mes "[Carl Orleans]";
     mes "Oh... Bem, se você quiser que eu faça alguns de meus chocolates...";
     mes "Você precisará me dar pelo menos ^0000FF 3 Chocolates^000000.";
@@ -226,7 +226,7 @@ prontera,164,174,4      script  Vendedor#Val09  58,{
                                 mes "Porque, eu não vou";
                                 mes "está aqui todos os dias.";
                                 close;
-                        }else{
+                        } else {
                                 mes "[Marco Bassinio]";
                                 mes "Bom para você!";
                                 mes "Tembém é perfeito como um presente!";
@@ -257,7 +257,7 @@ prontera,164,174,4      script  Vendedor#Val09  58,{
                         mes "nome na caixa.";
                         mes "Está tudo preparado...?";
                         next;
-                        if(countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 500) {
+                        if (countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 500) {
                                 mes "[Marco Bassinio]";
                                 mes "Hmm.. Parece que você não";
                                 mes "tem o material sufuciente";
@@ -275,7 +275,7 @@ prontera,164,174,4      script  Vendedor#Val09  58,{
                                 mes "Amor verdadeiro contigo!!";
                                 close;
                         }
-                        if(countitem(558) < 1) {
+                        if (countitem(558) < 1) {
                                 mes "[Marco Bassinio]";
                                 mes "Ei, olhe, aventureiro!";
                                 mes "Não posso criar algo imediatamente!";
@@ -376,7 +376,7 @@ prontera,147,171,5      script  Vendedor Embrulho#Val09 58,{
                                         mes "Por favor, verifique sua carteira.";
                                         next;
                                         break;
-                                }else{
+                                } else {
                                         mes "[Vendedor de Embrulho]";
                                         mes "Aqui está.";
                                         mes "Espero que torne seu";
@@ -422,7 +422,7 @@ prontera,147,171,5      script  Vendedor Embrulho#Val09 58,{
                                         mes "Por favor, verifique sua carteira.";
                                         next;
                                         break;
-                                }else{
+                                } else {
                                         mes "[Vendedor de Embrulho]";
                                         mes "Aqui está.";
                                         mes "Espero que torne seu";
@@ -468,7 +468,7 @@ prontera,147,171,5      script  Vendedor Embrulho#Val09 58,{
                                         mes "Por favor, verifique sua carteira.";
                                         next;
                                         break;
-                                }else{
+                                } else {
                                         mes "[Vendedor de Embrulho]";
                                         mes "Aqui está.";
                                         mes "Espero que torne seu";
@@ -571,7 +571,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
         mes "Irá custar 1,000 zeny.";
         mes "Gostaria de fazer um anel?";
         next;
-        if(select("Hmm.. Tenho que pensar em poco mais...:Certo.") == 1) {
+        if (select("Hmm.. Tenho que pensar em poco mais...:Certo.") == 1) {
                 mes "[Joalheiro]";
                 mes "Tudo bem!";
                 mes "Você não pode colocar pensamentos";
@@ -581,7 +581,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
                 mes "Apenas siga seu coração!";
                 close;
         }
-        if(countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 1000) {
+        if (countitem(7175) < 1 || countitem(7174) < 1 || countitem(7948) < 1 || Zeny < 1000) {
                 mes "[Joalheiro]";
                 mes "Bem, Você não tem";
                 mes "material suficiente";
@@ -602,7 +602,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
         set iROval09ring,1;
         if (Sex) {
                 getnameditem 12742,strcharinfo(0);
-        }else{
+        } else {
                 getnameditem 12743,strcharinfo(0);
         }
         mes "[Joalheiro]";
@@ -709,7 +709,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                         }
                                         next;
                                         break;
-                                }else{
+                                } else {
                                         if (countitem(7946) > .@input) {
                                                 mes "[Gerente de Votos]";
                                                 mes "Parece que o valor que você digitou é muito pequeno.";
@@ -793,7 +793,7 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
         mes "Posso ajuda-la com";
         mes "qualquer coisa, se a senhorita desejar...";
         next;
-        if(select("Por favor, faça-me um chocolate.:Não se incomode. Só estou de passagem.") == 2) {
+        if (select("Por favor, faça-me um chocolate.:Não se incomode. Só estou de passagem.") == 2) {
                 mes "[Charles Orleans]";
                 mes "Ahhh, isto é muito triste.";
                 mes "Como você pode dizer isso?";
@@ -806,7 +806,7 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
                 mes "Por favor.. Eu sinto como se estivesse perdido minha alma..";
                 close;
         }
-        if(countitem(558) < 3) {
+        if (countitem(558) < 3) {
                 mes "[Charles Orleans]";
                 mes "Ahhh, Mademoiselle.";
                 mes "Eu não sou um alquimista,";
@@ -859,7 +859,7 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
                 mes "Adios, Mademoiselle.....";
                 mes "Eu estarei esperando por você.";
                 close;
-        }else{
+        } else {
                 if (!checkweight(559,1)) {
                         mes "[Charles Orleans]";
                         mes "Você está carregando muitos itens.";
@@ -925,7 +925,7 @@ mosk_in,21,246,5	script	Pinkamenia	71,{
 		mes "Você terá que me dar Flores";
 		mes "do Amor, é claro!";
 		next;
-		if(select("Sim!","Não, nem pensar.") == 2) close;
+		if (select("Sim!","Não, nem pensar.") == 2) close;
 		next;
 		mes .@n$;
 		mes "Selecione um item.";
@@ -940,7 +940,7 @@ mosk_in,21,246,5	script	Pinkamenia	71,{
 			close;
 		}
 		mes "Tem certeza de que quer negociar ^00aa00"+.@DocesCusto[.@choice]+"x Flor do Amor ^000000 por ^0055FF"+getitemname(.@DocesID[.@choice])+"^000000?";
-		if(select("Não, eu mudei de idéia.:Sim, trocar!") == 1) close;
+		if (select("Não, eu mudei de idéia.:Sim, trocar!") == 1) close;
 		set .@new, .@FlorAID - .@DocesCusto[.@choice];
 		if (.@new < 0) set .@new, 0;
 		delitem .@FlorAID, .@DocesCusto[.@choice];
@@ -1007,15 +1007,15 @@ OnInit:
 
 mosk_in,21,244,3	script	Baker Extraordinaire	410,{
 	set .@n$,"^0000FF[Baker Extraordinaire]^000000";
-	if(#V_QUE12==3) {
+	if (#V_QUE12==3) {
 		mes .@n$;
 		mes "Troque suas Flores do Amor com Pinkamenia!";
 		close;
-	} else if(#V_QUE12==2) {
+	} else if (#V_QUE12==2) {
 		mes .@n$;
 		mes "Entregue 15 Flores do Amor para Pinkamenia!";
 		close;
-	} else if(#V_QUE12==1) { 
+	} else if (#V_QUE12==1) { 
 		mes .@n$;
 		if (getequipid(1) == 5024 && getequiprefinerycnt(1) >= 8) {
 			mes "Ah, Pinkamenia disse para";

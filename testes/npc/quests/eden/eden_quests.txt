@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.4b/1.0                         |
+//   | Versões eA/rA/brA: ??/1.5/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de quest do grupo Eden.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -3361,6 +3362,7 @@ moc_para01,112,96,5	script	Administrator Michael	967,{
 		mes "[Michael]";
 		mes "You mean upgrading equipment, right?";
 		mes "We can only upgrade the Eden Group Hat.";
+		next;
 		if (para_suv02 == 3) {
 			if (countitem(5583) > 0) {
 				disable_items;
@@ -3965,7 +3967,7 @@ moc_para01,23,35,4	script	Instructor Ur	468,{
 L_GiveQuest:
 	mes "You are just in time! I have a new quest for you, would you like to start it now?";
 	next;
-	if(select("Yes!:No, thanks.") == 2) {
+	if (select("Yes!:No, thanks.") == 2) {
 		mes "[Instructor Ur]";
 		mes "Thats too bad. I had some nice rewards I could have given to you for helping me.";
 		close;
@@ -4572,7 +4574,7 @@ moc_para01,111,83,3	script	Toren	813,{
 					mes "[Toren]";
 					mes "...Fine, I will sell you another one for ^FF0000250,000 Zeny^000000. Don't lose it this time.";
 					next;
-					if(select("Ok.:No, thanks.") == 2) {
+					if (select("Ok.:No, thanks.") == 2) {
 						mes "[Toren]";
 						mes "Come back if you change your mind.";
 						close;
@@ -4903,7 +4905,7 @@ moc_para01,112,79,3	script	Weapons Expert	851,{
 			mes "[Weapons Expert]";
 			mes "There are only 2 to choose from, which one would you like?";
 			next;
-			if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+			if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 			else set paraweaponenchant,4806;
 			callsub L_GetWeapon;
 			mes "[Weapons Expert]";
@@ -4929,7 +4931,7 @@ moc_para01,112,79,3	script	Weapons Expert	851,{
 				mes "[Weapons Expert]";
 				mes "There are only 2 to choose from, which one would you like?";
 				next;
-				if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+				if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 				else set paraweaponenchant,4806;
 				callsub L_GetWeapon;
 				mes "[Weapons Expert]";
@@ -4990,7 +4992,7 @@ moc_para01,112,79,3	script	Weapons Expert	851,{
 				mes "[Weapons Expert]";
 				mes "There are only 2 to choose from, which one would you like?";
 				next;
-				if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+				if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 				else set paraweaponenchant,4806;
 				callsub L_GetWeapon;
 				mes "[Weapons Expert]";
@@ -5122,32 +5124,21 @@ L_GetWeapon:
 	return;
 }
 
-/*
 sec_in02,25,33,4	script	Assistant	422,{
+	callfunc "F_GM_NPC";
 	mes "Password";
 	next;
-	input .@input;
-	if (.@input == 1854) {
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		mes "Please select the variable you want to modify.";
 		next;
-		switch (select("para_suv01:para_suv02")) {
-		case 1:
-			mes "Enter the modified value";
-			next;
-			input .@input;
-			mes "Value of para_suv01 has been changed to "+.@input+".";
-			set para_suv01,.@input;
-			close;
-		case 2:
-			mes "Enter the modified value";
-			next;
-			input .@input;
-			mes "Value of para_suv02 has been changed to "+.@input+".";
-			set para_suv02,.@input;
-			close;
-		}
+		set .@var, select("para_suv01:para_suv02");
+		mes "Enter the modified value";
+		next;
+		input .@input,0,9999;
+		mes "Value of para_suv0"+.@var+" has been changed to "+.@input+".";
+		setd "para_suv0"+.@var,.@input;
+		close;
 	}
 	mes "......meow wee.";
 	close;
 }
-*/

@@ -114,7 +114,7 @@ moc_para01,27,35,5	script	Secretária Lime Evenor	952,{
 			mes "[Lime Evenor]";
 			mes "Você quer registrar algumas missões que deseja cumpri-las?";
 			next;
-			if(select("Sim, eu quero registrá-las.:Não, eu não quero.") == 1) {
+			if (select("Sim, eu quero registrá-las.:Não, eu não quero.") == 1) {
 				mes "[Lime Evenor]";
 				mes "Certo. Por favor, escreva seu nome.";
 				input .@input$;

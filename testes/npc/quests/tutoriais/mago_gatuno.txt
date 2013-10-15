@@ -26,25 +26,25 @@
 // Traços de Batalha 1
 //============================================================
 moc_fild12,166,369,0	script	Traços de Batalha#1	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 5){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 5){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Você pode sentir a fragrância e decide que é mais seguro não chegar muito perto.^000000";
 			close;
-		} else if(tu_thief01 == 5){
+		} else if (tu_thief01 == 5){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Depois de examinar cuidadosamente, me sinto um pouco tonto.";
 			set tu_thief01, 6;
 			sc_start SC_Poison,60000,0;
 			specialeffect EF_VENOMDUST2;
 			close;
-		} else if(tu_thief01 == 6){
+		} else if (tu_thief01 == 6){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Depois de examinar cuidadosamente, me sinto um pouco tonto.";
 			sc_start SC_Poison,60000,0;
 			specialeffect EF_VENOMDUST2;
 			close;
-		} else if(tu_thief01 == 7){
+		} else if (tu_thief01 == 7){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Você pode sentir a fragrância e decide que é mais seguro não chegar muito perto.^000000";
 			close;
-		} else if(tu_thief01 == 8){
+		} else if (tu_thief01 == 8){
 			mes "^3355FFExistem outros vestígios como esse ao sul.^000000";
 			set tu_thief01, 9;
 			close;
@@ -55,12 +55,12 @@ moc_fild12,166,369,0	script	Traços de Batalha#1	844,{
 			close;
 		}
 	}
-	if(BaseClass == Job_Mage){
-		if(tu_magician01 < 8){
+	if (BaseClass == Job_Mage){
+		if (tu_magician01 < 8){
 			mes "Existem vestígios de veneno usados em uma batalha. Você pode sentir a fragrância e decide que é mais seguro não chegar muito perto.^000000";
 			specialeffect EF_VENOMDUST2;
 			close;
-		} else if(tu_magician01 == 8){
+		} else if (tu_magician01 == 8){
 			mes "^3355FFEstes vestígios estão espalhados por todos os lados na região. Esse cheiro contagia toda a área, parece que foi utilizado algum veneno letal durante a batalha...^000000";
 			set tu_magician01, 9;
 			close;
@@ -76,11 +76,11 @@ moc_fild12,166,369,0	script	Traços de Batalha#1	844,{
 // Traços de Batalha 2
 //============================================================
 moc_fild12,173,215,0	script	Traços de Batalha#2	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 9){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 9){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
-		} else if(tu_thief01 == 9){
+		} else if (tu_thief01 == 9){
 			mes "Há outros deste ao leste. Existe uma característica comum entre elas que chama minha atenção. Parece que uma pessoa foi perseguida.";
 			set tu_thief01, 10;
 			close;
@@ -88,11 +88,11 @@ moc_fild12,173,215,0	script	Traços de Batalha#2	844,{
 			mes "Há outros deste ao leste.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 9){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 9){
 			mes "Muitas pessoas ja passaram por aqui.";
 			close;
-		} else if(tu_magician01 == 9){
+		} else if (tu_magician01 == 9){
 			mes "Há outros deste ao leste. Existe uma característica comum entre elas que chama minha atenção. Parece que houve uma perseguição.";
 			set tu_magician01, 10;
 			close;
@@ -108,11 +108,11 @@ moc_fild12,173,215,0	script	Traços de Batalha#2	844,{
 // Traços de Batalha 3
 //============================================================
 moc_fild12,276,165,0	script	Traço de Batalha#3	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 10){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 10){
 			mes "Parece que poucas pessoas passaram por aqui.";
 			close;
-		} else if(tu_thief01 == 10){
+		} else if (tu_thief01 == 10){
 			mes "Estes vestígios estão bem estranhos. Parece que eles foram feitos de propósito.";
 			set tu_thief01, 11;
 			close;
@@ -120,11 +120,11 @@ moc_fild12,276,165,0	script	Traço de Batalha#3	844,{
 			mes "Estes vestígios estão bem estranhos.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 10){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 10){
 			mes "Parece que poucas pessoas passaram por aqui..";
 			close;
-		} else if(tu_magician01 == 10){	//CHECK
+		} else if (tu_magician01 == 10){	//CHECK
 			mes "Estes vestígios estão bem estranhos. Parece que eles foram feitos de propósito.";
 			set tu_magician01, 11;//Check
 			close;
@@ -140,11 +140,11 @@ moc_fild12,276,165,0	script	Traço de Batalha#3	844,{
 // Traços de Batalha 4
 //============================================================
 moc_fild11,39,163,0	script	Traços de Batalha#4	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 11){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 11){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
-		} else if(tu_thief01 == 11){
+		} else if (tu_thief01 == 11){
 			mes "Outro vestígio estranho. Ao contrário dos outros, ele é pequeno e claro, parece que outros ja vieram aqui.";
 			set tu_thief01, 12;
 			close;
@@ -152,11 +152,11 @@ moc_fild11,39,163,0	script	Traços de Batalha#4	844,{
 			mes "Outro vestígio foi descoberto.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 11){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 11){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
-		} else if(tu_magician01 == 11){
+		} else if (tu_magician01 == 11){
 			mes "Outro traço peculiar foi adicionado.";
 			mes "Diferente dos outros esse é pequeno e claro.";
 			mes "Parece que se uniu a um outro.";
@@ -174,14 +174,14 @@ moc_fild11,39,163,0	script	Traços de Batalha#4	844,{
 // Traços de Batalha 5
 //============================================================
 moc_fild11,205,52,0	script	Traços de Batalha#5	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 12){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 12){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
-		} else if(tu_thief01 == 12){
+		} else if (tu_thief01 == 12){
 			mes "Os traços são divididos em os que vêm do Leste";
 			mes "e do Norte e os que vêm do Sul.";
-			if(countitem(506) == 0){	// Poção Verde
+			if (countitem(506) == 0){	// Poção Verde
 				mes "Eu sinto um forte veneno nas proximidades";
 				mes "que torna dificil a aproximação.";
 				mes "Será dificil se livrar desse veneno.";
@@ -219,14 +219,14 @@ moc_fild11,205,52,0	script	Traços de Batalha#5	844,{
 			mes "Não foi possível encontrar mais nada. Apenas os traços que foram separados em dois permanecem.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 12){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 12){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
-		} else if(tu_magician01 == 12){
+		} else if (tu_magician01 == 12){
 			mes "Os traços são divididos em os que vêm do Leste";
 			mes "e do Norte e os que vêm do Sul.";
-			if(countitem(506) == 0){	// Poção Verde
+			if (countitem(506) == 0){	// Poção Verde
 				mes "Eu sinto um forte veneno nas proximidades";
 				mes "que torna dificil a aproximação.";
 				mes "Será dificil se livrar desse veneno.";
@@ -272,16 +272,16 @@ moc_fild11,205,52,0	script	Traços de Batalha#5	844,{
 // Traços de Batalha 6
 //============================================================
 moc_fild11,226,235,0	script	Traços de Batalha#6	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 13){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 13){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
 		} else {
 			mes "Há um traço do sul. Ele parece estar levando para o norte, mas eu não consigo ser capaz de entendê-lo.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 13){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 13){
 			mes "Parece que muitas pessoas já passaram por aqui.";
 			close;
 		} else {
@@ -296,16 +296,16 @@ moc_fild11,226,235,0	script	Traços de Batalha#6	844,{
 // Traços de Batalha 7
 //============================================================
 moc_fild11,184,342,0	script	Traço de Batalha#7	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 13){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 13){
 			mes "Há vestígios de que muitos já pararam aqui.";
 			close;
 		} else {
 			mes "Muitos traços estão conectados. Eles parecem ter ficado aqui por um tempo e foram para o norte.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 13){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 13){
 			mes "Há vestígios de que muitos já pararam aqui.";
 			close;
 		} else {
@@ -320,11 +320,11 @@ moc_fild11,184,342,0	script	Traço de Batalha#7	844,{
 // Traços de Batalha 8
 //============================================================
 moc_fild17,213,358,0	script	Traços de Batalha#8	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 13){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 13){
 			mes "Há vestígios de que cerca de duas pessoas pararam aqui.";
 			close;
-		} else if(tu_thief01 == 13){
+		} else if (tu_thief01 == 13){
 			mes "Eu não consigo visualizar mais traços deixados. Só vejo os dois.";
 			set tu_thief01, 14;
 			close;
@@ -332,11 +332,11 @@ moc_fild17,213,358,0	script	Traços de Batalha#8	844,{
 			mes "Há vestígios de um pequeno grupo de pessoas.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 13){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 13){
 			mes "Há vestígios de que cerca de duas pessoas pararam aqui.";
 			close;
-		} else if(tu_magician01 == 13){
+		} else if (tu_magician01 == 13){
 			mes "Eu não consigo visualizar mais traços deixados. Só vejo os dois.";
 			set tu_magician01, 14;
 			close;
@@ -352,19 +352,19 @@ moc_fild17,213,358,0	script	Traços de Batalha#8	844,{
 // Traços de Batalha 9
 //============================================================
 moc_fild17,228,274,0	script	Traços de Batalha#9	844,{
-	if(BaseClass == Job_Thief) {
-		if(tu_thief01 < 14){
+	if (BaseClass == Job_Thief) {
+		if (tu_thief01 < 14){
 			mes "Há vestígios de uma pequena batalha.";
 			close;
-		} else if(tu_thief01 == 14){
+		} else if (tu_thief01 == 14){
 			mes "Não parece ter sido uma pequena batalha. Existem rastros que vêm do norte e alguns do sudeste estão misturados.";
 			next;
 			mes "Em seguida, os rastros seguem para leste. Muitos podem ser encontrados através de uma investigação.";
 			set tu_thief01, 15;
 			close;
-		} else if(tu_thief01 == 15){
+		} else if (tu_thief01 == 15){
 			set @seek_tm, rand(1,10);
-			if(@seek_tm == 7){
+			if (@seek_tm == 7){
 				mes "Eu já encontrei um pedaço de pano com sangue como esse antes.";
 				next;
 				mes "- Você encontrou um pedaço de pano com sangue -";
@@ -378,19 +378,19 @@ moc_fild17,228,274,0	script	Traços de Batalha#9	844,{
 			mes "Não existem outros vestígios a oeste.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 14){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 14){
 			mes "Há vestígios de uma pequena batalha.";
 			close;
-		} else if(tu_magician01 == 14){
+		} else if (tu_magician01 == 14){
 			mes "Não parece ter sido uma pequena batalha. Existem rastros que vêm do norte e alguns do sudeste estão misturados.";
 			next;
 			mes "Em seguida, os rastros seguem para leste. Muitos podem ser encontrados através de uma investigação.";
 			set tu_magician01, 15;
 			close;
-		} else if(tu_magician01 == 15){
+		} else if (tu_magician01 == 15){
 			set @seek_tm1, rand(1,10);
-			if(@seek_tm1 == 7){
+			if (@seek_tm1 == 7){
 				mes "Eu já encontrei um pedaço de pano com sangue como esse antes.";
 				next;
 				mes "- Você encontrou um pedaço de pano com sangue -";
@@ -412,11 +412,11 @@ moc_fild17,228,274,0	script	Traços de Batalha#9	844,{
 // Traços de Batalha 10
 //============================================================
 moc_fild17,34,292,0	script	Traços de Batalha#10	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 16){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 16){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 16){
+		} else if (tu_thief01 == 16){
 			mes "Traços que seguem a leste. Os do que perseguia e os do que persegue parecem ser semelhantes. A diferença entre os dois rastros está diminuindo.";
 			set tu_thief01, 17;
 			close;
@@ -424,11 +424,11 @@ moc_fild17,34,292,0	script	Traços de Batalha#10	844,{
 			mes "Há traços que conduzem a leste.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 16){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 16){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 16){
+		} else if (tu_magician01 == 16){
 			mes "Traços que seguem a leste. Os do que perseguia e os do que persegue parecem ser semelhantes. A diferença entre os dois rastros está diminuindo.";
 			set tu_magician01, 17;
 			close;
@@ -444,11 +444,11 @@ moc_fild17,34,292,0	script	Traços de Batalha#10	844,{
 // Traços de Batalha 11
 //============================================================
 moc_fild18,346,296,0	script	Traços de Batalha#11	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 17){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 17){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 17){
+		} else if (tu_thief01 == 17){
 			mes "Traços de perseguição contínua. Alguém deve ter sido ferido já que existe sangue.";
 			set tu_thief01, 18;
 			close;
@@ -456,11 +456,11 @@ moc_fild18,346,296,0	script	Traços de Batalha#11	844,{
 			mes "Há sangue aqui e ali, deve ser fácil encontrar de onde vêm.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 17){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 17){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 17){
+		} else if (tu_magician01 == 17){
 			mes "Traços de perseguição contínua. Alguém deve ter sido ferido já que existe sangue.";
 			set tu_magician01, 18;
 			close;
@@ -476,11 +476,11 @@ moc_fild18,346,296,0	script	Traços de Batalha#11	844,{
 // Traços de Batalha 12
 //============================================================
 moc_fild18,309,257,0	script	Traços de Batalha#12	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 18){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 18){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 18){
+		} else if (tu_thief01 == 18){
 			mes "Traços que seguem a norte. Os do que perseguia e os do que persegue parecem ser semelhantes. A diferença entre os dois rastros está diminuindo.";
 			set tu_thief01, 19;
 			close;
@@ -488,11 +488,11 @@ moc_fild18,309,257,0	script	Traços de Batalha#12	844,{
 			mes "Há traços que conduzem a norte.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 18){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 18){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 18){
+		} else if (tu_magician01 == 18){
 			mes "Traços que seguem a norte. Os do que perseguia e os do que persegue parecem ser semelhantes. A diferença entre os dois rastros está diminuindo.";
 			set tu_magician01, 19;
 			close;
@@ -508,11 +508,11 @@ moc_fild18,309,257,0	script	Traços de Batalha#12	844,{
 // Traços de Batalha 13
 //============================================================
 moc_fild18,177,333,0	script	Traços de Batalha#13	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 19){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 19){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 19){
+		} else if (tu_thief01 == 19){
 			mes "Traços que conduzem ao norte mudaram de direção para o Sudoeste. Os perseguidores parecem que pararam e formaram-se em um grupo.";
 			set tu_thief01, 20;
 			close;
@@ -520,11 +520,11 @@ moc_fild18,177,333,0	script	Traços de Batalha#13	844,{
 			mes "Existem alguns traços de batalha que levam para sudoeste.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 19){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 19){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 19){
+		} else if (tu_magician01 == 19){
 			mes "Traços que conduzem ao norte mudaram de direção para o Sudoeste. Os perseguidores parecem que pararam e formaram-se em um grupo.";
 			set tu_magician01, 20;
 			close;
@@ -540,11 +540,11 @@ moc_fild18,177,333,0	script	Traços de Batalha#13	844,{
 // Traços de Batalha 14
 //============================================================
 moc_fild18,111,303,0	script	Traços de Batalha#14	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 20){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 20){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 20){
+		} else if (tu_thief01 == 20){
 			mes "Traços conduzem a sul. Perseguidores se juntaram a norte através de um grupo, assim os traços estão mais claros.";
 			set tu_thief01, 21;
 			close;
@@ -552,11 +552,11 @@ moc_fild18,111,303,0	script	Traços de Batalha#14	844,{
 			mes "Traços conduzem ao sul.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 20){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 20){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 20){
+		} else if (tu_magician01 == 20){
 			mes "Traços conduzem a sul. Perseguidores se juntaram a norte através de um grupo, assim os traços estão mais claros.";
 			set tu_magician01, 21;
 			close;
@@ -572,11 +572,11 @@ moc_fild18,111,303,0	script	Traços de Batalha#14	844,{
 // Traços de Batalha 15
 //============================================================
 moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 21){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 21){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 21){
+		} else if (tu_thief01 == 21){
 			mes "Há vestígios de uma dura batalha. Parece que há veneno em todo o lugar.";
 			next;
 			switch(select("Continuar seguindo os rastros.", "Olhar mais um pouco pelos arredores.")){
@@ -590,14 +590,14 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				close;
 				break;
 			}
-		} else if(tu_thief01 == 22){
+		} else if (tu_thief01 == 22){
 			set @trap_tm, rand(1,3);
-			if(@trap_tm == 3){
+			if (@trap_tm == 3){
 				mes "Uma armadilha estranha foi encontrada. Que tal derramar alguma poção verde sobre ela?";
 				next;
 				switch(select("Despejar Poção Verde.", "Fazer uma outra coisa.")){
 				case 1:
-					if(countitem(506) < 1){	// Poção Verde
+					if (countitem(506) < 1){	// Poção Verde
 						mes "...........";
 						mes "Você não possui nenhuma poção verde.";
 						close;
@@ -620,15 +620,15 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				percentheal -30,0;
 				close;
 			}
-		} else if(tu_thief01 == 23){
-			if(countitem(511) > 0 || countitem(716) > 0){
-				if(countitem(511) > 0 && countitem(716) > 0){
+		} else if (tu_thief01 == 23){
+			if (countitem(511) > 0 || countitem(716) > 0){
+				if (countitem(511) > 0 && countitem(716) > 0){
 					mes "Você faz pó de Erva Verde e despeja-a. Ao colocar uma gema vermelha na armadilha, ela brilha e desaparece. A armadilha foi desarmada.";
 					delitem 511, 1;
 					delitem 716, 1;
 					set tu_thief01, 24;
 					close;
-				} else if(countitem(511) > 0){	// Erva Verde
+				} else if (countitem(511) > 0){	// Erva Verde
 					mes "Você faz o pó de Erva Verde e despeja-a. Nada acontece. Talvez seja necessário um catalisador.";
 					close;
 				} else {
@@ -639,7 +639,7 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				mes "Parece que é necessário um outro catalisador.";
 				close;
 			}
-		} else if(tu_thief01 == 24){
+		} else if (tu_thief01 == 24){
 			mes "Na frente da armadilha desmontada, há um pedaço de tecido banhado de sangue que já foi encontrado antes por você.";
 			next;
 			mes "Você encontrou um 'Pedaço de Pano Ensanguentado'.";
@@ -649,11 +649,11 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 			mes "Aparentemente não existem mais armadilhas. Rastros conduzem para o sul.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 21){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 21){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 21){
+		} else if (tu_magician01 == 21){
 			mes "Há vestígios de uma dura batalha. Parece que há veneno em todo o lugar.";
 			next;
 			switch(select("Continuar seguindo os rastros.", "Olhar mais um pouco pelos arredores.")){
@@ -667,14 +667,14 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				close;
 				break;
 			}
-		} else if(tu_magician01 == 22){
+		} else if (tu_magician01 == 22){
 			set @trap_tm, rand(1,3);
-			if(@trap_tm == 3){
+			if (@trap_tm == 3){
 				mes "Uma armadilha estranha foi encontrada. Que tal derramar alguma poção verde sobre ela?";
 				next;
 				switch(select("Despejar Poção Verde.", "Fazer uma outra coisa.")){
 				case 1:
-					if(countitem(506) < 1){	// Poção Verde
+					if (countitem(506) < 1){	// Poção Verde
 						mes "...........";
 						mes "Você não possui nenhuma poção verde.";
 						close;
@@ -697,15 +697,15 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				percentheal -30,0;
 				close;
 			}
-		} else if(tu_magician01 == 23){
-			if(countitem(511) > 0 || countitem(716) > 0){
-				if(countitem(511) > 0 && countitem(716) > 0){
+		} else if (tu_magician01 == 23){
+			if (countitem(511) > 0 || countitem(716) > 0){
+				if (countitem(511) > 0 && countitem(716) > 0){
 					mes "Você faz pó de Erva Verde e despeja-a. Ao colocar uma gema vermelha na armadilha, ela brilha e desaparece. A armadilha foi desarmada.";
 					delitem 511,1; // Erva Verde
 					delitem 716,1; // Gema Vermelha
 					set tu_magician01, 24;
 					close;
-				} else if(countitem(511) > 0){
+				} else if (countitem(511) > 0){
 					mes "Você faz o pó de Erva Verde e despeja-a. Nada acontece. Talvez seja necessário um catalisador.";
 					close;
 				} else {
@@ -716,7 +716,7 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 				mes "Parece que é necessário um outro catalisador.";
 				close;
 			}
-		} else if(tu_magician01 == 24){
+		} else if (tu_magician01 == 24){
 			mes "Na frente da armadilha desmontada, há um pedaço de tecido banhado de sangue que já foi encontrado antes por você.";
 			next;
 			mes "Você encontrou um 'Pedaço de Pano Ensanguentado'.";
@@ -735,11 +735,11 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 // Traços de Batalha 16
 //============================================================
 moc_fild18,156,96,0	script	Traços de Batalha#16	844,{
-	if(BaseClass == Job_Thief){
-		if(tu_thief01 < 25){
+	if (BaseClass == Job_Thief){
+		if (tu_thief01 < 25){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_thief01 == 25){
+		} else if (tu_thief01 == 25){
 			mes "Rastros levam ao fim do precipício. Não existem outros vestígios a serem encontrados.";
 			next;
 			mes "...............";
@@ -753,11 +753,11 @@ moc_fild18,156,96,0	script	Traços de Batalha#16	844,{
 			mes "Não existem mais vestígios aqui em relação aos outros encontrados no norte.";
 			close;
 		}
-	} else if(BaseClass == Job_Mage){
-		if(tu_magician01 < 25){
+	} else if (BaseClass == Job_Mage){
+		if (tu_magician01 < 25){
 			mes "Um grande grupo de pessoas esteve aqui.";
 			close;
-		} else if(tu_magician01 == 25){
+		} else if (tu_magician01 == 25){
 			mes "Rastros levam ao fim do precipício. Não existem outros vestígios a serem encontrados.";
 			next;
 			mes "...............";

@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: ??/1.2/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests repetíveis para jogadores entre      |
-//   | Baselevel 26-40.                                       |
+//   | BaseLevel 26-40.                                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
@@ -91,7 +91,7 @@ L_Quest:
 	mes " ";
 	mes "Will you accept this mission?";
 	next;
-	if(select("No, I won't accept it.:Yes, I will accept it.") == 1) {
+	if (select("No, I won't accept it.:Yes, I will accept it.") == 1) {
 		mes "You have declined the "+getarg(2)+" mission.";
 		close;
 	}
@@ -125,7 +125,7 @@ geffen,103,42,5	script	Sponiac	99,{
 	mes "[Sponiac]";
 	mes "Why don't you do some hunting outside instead of walking around and wasting your time?";
 	next;
-	if(select("I am about to leave now.:I've got a Hunting Mission.") == 1) {
+	if (select("I am about to leave now.:I've got a Hunting Mission.") == 1) {
 		mes "[Sponiac]";
 		mes "Oh, well. Then, go figure.";
 		mes "Bye~ bye.";
@@ -204,7 +204,7 @@ moc_ruins,173,55,3	script	Dieshin Man	89,{
 	mes "[Dieshin Man]";
 	mes "How can I help you?";
 	next;
-	if(select("I don't need help.:I've got a Delivery Mission.") == 1) {
+	if (select("I don't need help.:I've got a Delivery Mission.") == 1) {
 		mes "[Dieshin Man]";
 		mes "Oh, well. Then, go figure. Bye~!";
 		close;
@@ -287,7 +287,7 @@ pay_fild07,83,89,7	script	Zoologist	89,{
 	mes "[Zoologist]";
 	mes "I am currently studying about it and try to prove the theory. So I plan to kill the flies around Bigfoot and observe his reaction.";
 	next;
-	if(select("...I am not interested.:Here is the Insecticide.") == 1) {
+	if (select("...I am not interested.:Here is the Insecticide.") == 1) {
 		mes "[Zoologist]";
 		mes "Oh, I need an Insecticide to continue the study.";
 		close;
@@ -352,7 +352,7 @@ prt_fild03,30,254,3	script	Entomologist	83,{
 	mes "[Entomologist]";
 	mes "I am currently studying about it and trying to prove the theory. So I plan to set a Honey trap on the places he usually passes and observe his reaction.";
 	next;
-	if(select("...I am not interested.:Here is the Honey.") == 1) {
+	if (select("...I am not interested.:Here is the Honey.") == 1) {
 		mes "[Entomologist]";
 		mes "Oh, I need Honey to continue the study.";
 		close;
@@ -417,7 +417,7 @@ xmas_fild01,92,57,3	script	Biologist	97,{
 	mes "[Biologist]";
 	mes "But, this place is freaking cold.";
 	next;
-	if(select("...I am not interested.:Here are the blankets.") == 1) {
+	if (select("...I am not interested.:Here are the blankets.") == 1) {
 		mes "[Biologist]";
 		mes "Huh, whatever. But be careful! It's very slippery here.";
 		close;
@@ -481,7 +481,7 @@ payon,179,66,3	script	Dashia	931,{
 	mes "[Dashia]";
 	mes "Hey~! Dude! You look like a very rich adventurer.";
 	next;
-	if(select("I am a poor adventurer.:I have a gathering mission.") == 1) {
+	if (select("I am a poor adventurer.:I have a gathering mission.") == 1) {
 		mes "[Dashia]";
 		mes "Really? Hmm, oh right. You don't look sophisticated.";
 		next;

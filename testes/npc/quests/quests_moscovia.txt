@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/2.0b/1.0                        |
+//   | Versões eA/rA/brA: 1.9/2.3/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest a Ilha que se Move, Ajudando Mikhail  |
 //   | Troca de Avelãs, Baba-Yaga, Gorro Chullos, Koshei O    |
@@ -20,6 +20,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -53,7 +54,7 @@ moscovia,171,71,3	script	Berbayeff#npc	968,{
 		mes "All the villagers are blockheads,";
 		mes "so they treat me like an idiot.";
 		next;
-		if(select("I'm not interested in any story.:Tell me.") == 1) {
+		if (select("I'm not interested in any story.:Tell me.") == 1) {
 			mes "[Berbayeff]";
 			mes "Indeed... You are not interested...";
 			mes "That's ok.";
@@ -283,7 +284,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 		mes "Yes. I am Mr. Ibanoff.";
 		mes "What's up?";
 		next;
-		if(select("Tell me an adventure story.:Lend me your ship.") == 1) {
+		if (select("Tell me an adventure story.:Lend me your ship.") == 1) {
 			mes "[Mr. Ibanoff]";
 			mes "You are an adventurer, right?";
 			mes "You come from a strange land?";
@@ -338,7 +339,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			mes "Next... Let's talk about";
 			mes "the haunting of a Goblin mob...!";
 			next;
-			if(select("I'll listen next time...:Interesting. Keep talking.") == 1) {
+			if (select("I'll listen next time...:Interesting. Keep talking.") == 1) {
 				mes "[Mr. Ibanoff]";
 				mes "If not...Ooo, I can just";
 				mes "keep going and going...";
@@ -523,7 +524,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 		mes "[Mr. Ibanoff]";
 		mes "Will you depart?";
 		next;
-		if(select("I'm not ready.:Let's go.") == 1) {
+		if (select("I'm not ready.:Let's go.") == 1) {
 			mes "[Mr. Ibanoff]";
 			mes "When you are ready to depart, tell me.";
 			close;
@@ -618,7 +619,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 		mes "once more, and I will gladly help";
 		mes "you find Whale Island!";
 		next;
-		if(select("Try again to find Whale Island.:Give up.") == 1) {
+		if (select("Try again to find Whale Island.:Give up.") == 1) {
 			mes "[Mr. Ibanoff]";
 			mes "That does it! I expected it.";
 			mes "I knew you weren't the type to give up an adventure!";
@@ -645,7 +646,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 		mes "[Mr. Ibanoff]";
 		mes "Oh! Are you ready to depart?";
 		next;
-		if(select("I'm not ready.:Let's go.") == 1) {
+		if (select("I'm not ready.:Let's go.") == 1) {
 			mes "[Mr. Ibanoff]";
 			mes "When you are ready to depart, tell me.";
 			close;
@@ -697,7 +698,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 		mes "[Mr. Ibanoff]";
 		mes "If so, do you want to go now?";
 		next;
-		if(select("Not yet.:Let's go.") == 1) {
+		if (select("Not yet.:Let's go.") == 1) {
 			mes "[Mr. Ibanoff]";
 			mes "I see. I will wait.";
 			close;
@@ -1331,7 +1332,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "Anyway, are you troubled?";
 		mes "What are you going to do?";
 		next;
-		if(select("Think more.:Don't you have a way?") == 1) {
+		if (select("Think more.:Don't you have a way?") == 1) {
 			mes "[Aged Stranger]";
 			mes "Do that. Think carefully, the";
 			mes "answer is to be found...";
@@ -1405,7 +1406,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "[Aged Stranger]";
 		mes "Okay, are you ready to go back to the mainland?";
 		next;
-		if(select("What are the materials?:I am ready.") == 1) {
+		if (select("What are the materials?:I am ready.") == 1) {
 			mes "[Aged Stranger]";
 			mes "You should bring these materials:";
 			next;
@@ -1452,7 +1453,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "to the mainland to find the";
 		mes "materials?";
 		next;
-		if(select("What are the materials?:I am ready.") == 1) {
+		if (select("What are the materials?:I am ready.") == 1) {
 			mes "[Aged Stranger]";
 			mes "You should bring these materials:";
 			next;
@@ -1507,7 +1508,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "Are you ready to learn the Gusli?";
 		mes "Please equip the Gusli.";
 		next;
-		if(getequipid(EQI_ACC_L) || getequipid(EQI_ACC_R) == 2707) {
+		if (getequipid(EQI_ACC_L) || getequipid(EQI_ACC_R) == 2707) {
 			mes "[Aged Stranger]";
 			mes "Hm... Very well.";
 			mes "At first, look at me how I play,";
@@ -1550,7 +1551,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "[Aged Stranger]";
 		mes "Are you ready to learn the Gusli?";
 		next;
-		if(getequipid(EQI_ACC_L) || getequipid(EQI_ACC_R) == 2707) {
+		if (getequipid(EQI_ACC_L) || getequipid(EQI_ACC_R) == 2707) {
 			mes "[Aged Stranger]";
 			mes "Um... You did well.";
 			next;
@@ -1617,7 +1618,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 			mes "[Aged Stranger]";
 			mes "If you want, I'll send you there. What do you think of that?";
 			next;
-			if(select("Consider it.:Ok, please send me there.") == 1) {
+			if (select("Consider it.:Ok, please send me there.") == 1) {
 				mes "[Aged Stranger]";
 				mes "Well, well... Do as you please.";
 				mes "If so, I will take a rest.";
@@ -1631,7 +1632,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 			warp "mosk_fild02",204,54;
 			end;
 		}
-	}else{
+	} else {
 		mes "[Aged Stranger]";
 		mes "Long time, no see!";
 		mes "You probably like the island, don't you?";
@@ -1641,7 +1642,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 		mes "Or if you want, I can send you back";
 		mes "to the mainland. What'll it be?";
 		next;
-		if(select("Look around.:Go back to the mainland.") == 1) {
+		if (select("Look around.:Go back to the mainland.") == 1) {
 			mes "[Aged Stranger]";
 			mes "Well, well... Do as you please.";
 			mes "If so, I will take a rest.";
@@ -1855,7 +1856,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 		mes "sure no one ever doubts you.";
 		next;
 		if (countitem(7762) > 39) {
-			if(select("Show the Yaga's Pestles.:Do nothing.") == 1) {
+			if (select("Show the Yaga's Pestles.:Do nothing.") == 1) {
 				mes "[" + strcharinfo(0) + "]";
 				mes "Yes, Here you are.";
 				next;
@@ -1896,7 +1897,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 		mes "Did you bring some evidence to";
 		mes "resolve your issue of doubt, traveler?";
 		next;
-		if(select("Yes, I did.:I am confused.") == 1) {
+		if (select("Yes, I did.:I am confused.") == 1) {
 			if (countitem(7762) > 39) {
 				delitem 7762,40;
 				mes "[Csar Alexsay III]";
@@ -2145,7 +2146,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 			mes "instrument. So mysterious... Hey!";
 			mes "Can you play it?";
 			next;
-			if(select("I can play.:I can't play it.") == 1) {
+			if (select("I can play.:I can't play it.") == 1) {
 				mes "[Csar Alexsay III]";
 				mes "You can play it!";
 				mes "Good, play it right away!";
@@ -2396,7 +2397,7 @@ mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 		mes "[Prime Minister Dmitree]";
 		mes "Traveler, why have you come to the Csar's Palace?";
 		next;
-		if(select("Just to look around.:To see the dear Csar.") == 1) {
+		if (select("Just to look around.:To see the dear Csar.") == 1) {
 			mes "[Prime Minister Dmitree]";
 			mes "If so... look around with caution. Do not bother the Csar.";
 			next;
@@ -2410,7 +2411,7 @@ mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 		mes "[Prime Minister Dmitree]";
 		mes "Did you come to see our dear Csar? If so, tell me your business with him in advance.";
 		next;
-		if(select("I'd like to say hello.:I have an adventure story for him.") == 1) {
+		if (select("I'd like to say hello.:I have an adventure story for him.") == 1) {
 			mes "[Prime Minister Dmitree]";
 			mes "I will tell him directly about your business. You don't need to worry yourself with the Csar.";
 			close;
@@ -2475,7 +2476,7 @@ OnTouch:
 	mes "["+strcharinfo(0)+"]";
 	mes "Stop by the whale island?";
 	next;
-	if(select("Go to Whale Island.:Stay put.") == 1) {
+	if (select("Go to Whale Island.:Stay put.") == 1) {
 		if (getequipid(EQI_ACC_L) == 2707 || getequipid(EQI_ACC_R) == 2707) {
 			soundeffect "mos_gusli2.wav",0;
 			mes "-Slowly, your hands are on the";
@@ -2494,7 +2495,7 @@ OnTouch:
 			mes "island...!!! Someday, I hope to go there! Hahaha.";
 			next;
 			warp "mosk_fild01",95,93;
-		}else{
+		} else {
 			mes "["+strcharinfo(0)+"]";
 			mes "Oh my goodness... Slipped right out";
 			mes "of my mind... to forget equipping the Gusli.";
@@ -2646,7 +2647,7 @@ function	script	F_MOS_1	{
 	mes "[Anna]";
 	mes "Oh, my................";
 	next;
-	if(select("Talk to her.:Just pass by her") == 2) {
+	if (select("Talk to her.:Just pass by her") == 2) {
 		mes "[Gallina]";
 		mes "I'm worried that he's making trouble somewhere...";
 		close;
@@ -2689,7 +2690,7 @@ function	script	F_MOS_1	{
 	mes "But it's not good that I refuse your kindness";
 	mes "Will you find Mikhail for me?";
 	next;
-	if(select("I was not serious.:Yes, I will!") == 1) {
+	if (select("I was not serious.:Yes, I will!") == 1) {
 		mes "[Gallina]";
 		mes "You meanie! I'm not in the mood for jokes.";
 		close;
@@ -2952,7 +2953,7 @@ mosk_in,136,279,3	script	Bed#mos1	111,{
 	mes "- There are sheets and a pillow which seem so neat and soft that I'll probably fall asleep as soon as I lie down on them. -";
 	if (mos_swan != 11) close;
 	next;
-	if(select("Check other things:Look it over ") == 1) {
+	if (select("Check other things:Look it over ") == 1) {
 		mes "- You'll examine the bed later -";
 		close;
 	}
@@ -2991,7 +2992,7 @@ mosk_in,205,268,3	script	Fire pot#mos	111,{
 		mes "- It's a fire pot that is used when Gallina bakes hotcakes.";
 		mes "It seems that it was used a long time ago. -";
 		next;
-		if(select("Check other things:Look it over") == 1) {
+		if (select("Check other things:Look it over") == 1) {
 			mes "- You decide to check out other things -";
 			close;
 		}
@@ -3219,7 +3220,7 @@ mosk_in,135,191,5	script	Landlord#mos	961,{
 				mes "[Landlord]";
 				mes "If you promise me to stay overnight, I'll tell you about what you want to know. Deal?";
 				next;
-				if(select("Refuse.:Stay overnight and get the info. - 5000z") == 1) {
+				if (select("Refuse.:Stay overnight and get the info. - 5000z") == 1) {
 					emotion e_ag;
 					mes "[Landlord]";
 					mes "Well, get the info by yourself then.";
@@ -3320,7 +3321,7 @@ mosk_in,135,191,5	script	Landlord#mos	961,{
 			}
 		}
 	}
-	if(select("Save:Stay the night - 5000z") == 1) {
+	if (select("Save:Stay the night - 5000z") == 1) {
 		mes "[Landlord]";
 		mes "Your respawn point has been saved.";
 		mes "Hope we can see you again next time hoho.";
@@ -3356,7 +3357,7 @@ mosk_in,141,212,3	script	Pub Owner#mos	964,{
 		mes "Welcome to our pub.";
 		mes "I'm Alexandre of ^3131FF'Pub Stream'^000000. You can call me 'Sasha'.";
 		next;
-		if(select("Ask him about Mikhail.:Order a drink.") == 1) {
+		if (select("Ask him about Mikhail.:Order a drink.") == 1) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Sasha, has a little boy called 'Mikhail' came here?";
 			next;
@@ -3804,7 +3805,7 @@ mosk_in,211,259,5	script	Larissa#mos_01	960,{
 		mes "Did the pancake taste good?";
 		mes "Would you like another pancake?";
 		next;
-		if(select("Yes:No") == 1) {
+		if (select("Yes:No") == 1) {
 			if (countitem(7031) && countitem(519) > 1 && countitem(504) > 1 && countitem(548) && countitem(1019) && countitem(518)) {
 				mes "[Larissa]";
 				mes "Let me check if you have all the ingredients.";
@@ -3843,7 +3844,7 @@ mosk_in,211,259,5	script	Larissa#mos_01	960,{
 				mes "And then I'm adding an egg, some milk and a white potion.";
 				mes "What next?";
 				next;
-				if(select("Stir it up with great speed.:Do the same as she said.") == 1) {
+				if (select("Stir it up with great speed.:Do the same as she said.") == 1) {
 					mes "[Larissa]";
 					mes "No, you don't have to do that way. It won't rise properly if you stir it too fast.";
 					next;
@@ -3860,7 +3861,7 @@ mosk_in,211,259,5	script	Larissa#mos_01	960,{
 				mes "Cook in low temperature. It'll rise and have bubbles on it.";
 				mes "When you see the bubbles, you can turn it over.";
 				next;
-				if(select("Cook in high temperature.:Can I turn it over now?") == 1) {
+				if (select("Cook in high temperature.:Can I turn it over now?") == 1) {
 					mes "[Larissa]";
 					mes "No, you don't do that.";
 					mes "You'll burn it up.";
@@ -3949,7 +3950,7 @@ moscovia,208,182,7	script	Acorn Dealer#mos	967,{
 	mes "We have very fresh acorns. Everyone will like them!";
 	mes "You can buy one acorn for 100zeny!";
 	next;
-	if(select("Buy one.:What can I use them for?") == 2) {
+	if (select("Buy one.:What can I use them for?") == 2) {
 		mes "[Acorn Dealer]";
 		mes "Well uh...";
 		mes "You can grind them to make";
@@ -4240,7 +4241,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 		mes "Yes, if you let me live, I will compensate you";
 		mes "with a present, how about that?";
 		next;
-		if(select("A present?:I don't need.") == 1) {
+		if (select("A present?:I don't need.") == 1) {
 			mes "[Baba Yaga, the Horrible]";
 			mes "Yes, if you let me live";
 			mes "I will give you the Yaga Pestles";
@@ -4275,7 +4276,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 		mes "interested... ya?";
 		mes "What do you think about that?";
 		next;
-		if(select("Good, but I think you're lying.:I am not interested.") == 1) {
+		if (select("Good, but I think you're lying.:I am not interested.") == 1) {
 			mes "[Baba Yaga, the Horrible]";
 			mes "Sure, you can trust me.";
 			mes "It is so complicated that I cannot";
@@ -4295,7 +4296,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 			mes "I can use the magic that";
 			mes "stops winter from returning. Will you help me?";
 			next;
-			if(select("Ok, I will.:No. I don't like it.") == 1) callsub S_BY_1;
+			if (select("Ok, I will.:No. I don't like it.") == 1) callsub S_BY_1;
 			mes "[Baba Yaga, the Horrible]";
 			mes "Heeeek,";
 			mes "Just, just I need a little help.. It is really little.";
@@ -4327,7 +4328,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 		mes "Isn't that better for you";
 		mes "than hurting me?";
 		next;
-		if(select("Ok, tell me the story.:Let me think...") == 1) {
+		if (select("Ok, tell me the story.:Let me think...") == 1) {
 			mes "[Baba Yaga, the Horrible]";
 			mes "Certainly, trust me.";
 			mes "It is so complicated that I cannot";
@@ -4347,7 +4348,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 			mes "I can use the magic that";
 			mes "stops winter from returning. Will you help me?";
 			next;
-			if(select("Ok, I will.:No. I don't like it.") == 1) callsub S_BY_1;
+			if (select("Ok, I will.:No. I don't like it.") == 1) callsub S_BY_1;
 			mes "[Baba Yaga, the Horrible]";
 			mes "Heeeeek,";
 			mes "Just, just I need a little help.. It is really little.";
@@ -4371,7 +4372,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 		mes "[Baba Yaga, the Horrible]";
 		mes "Well, did you change your mind?";
 		next;
-		if(select("Ok, let's try.:Let me think more...") == 1) callsub S_BY_1;
+		if (select("Ok, let's try.:Let me think more...") == 1) callsub S_BY_1;
 		mes "[Baba Yaga, the Horrible]";
 		mes "You think more...";
 		mes "What do you want from me...";
@@ -4414,7 +4415,7 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 		mes "a glue, no, to cast a spell";
 		mes "10 Sticky Mucus...";
 		next;
-		if(select("...Are you sure?:A glue? You want me to kill you?!") == 1) {
+		if (select("...Are you sure?:A glue? You want me to kill you?!") == 1) {
 			mes "[Baba Yaga, the Horrible]";
 			mes "Yes, yes, I am certain. Why don't you trust me...";
 			next;
@@ -5071,7 +5072,7 @@ mosk_in,217,45,0	script	#book_russia	111,{
 		mes "know where to read next time.";
 		close;
 	} else if (mos_nowinter == 16) {
-		if(select("Read from the preface.:Read from the marked page.") == 1) {
+		if (select("Read from the preface.:Read from the marked page.") == 1) {
 			mes "...Therefore, this spell is";
 			mes "particularly good among our mighty ones.";
 			mes "Usually, the magic is considered";
@@ -6353,7 +6354,7 @@ OnTouch:
 		mes "the dragon came back...";
 		next;
 		while(1) {
-			if(select("Look for it.:I will try next time.") == 1) {
+			if (select("Look for it.:I will try next time.") == 1) {
 				if (BaseJob == Job_Thief) {
 					mes "["+strcharinfo(0)+"]";
 					mes "Here it is.";
@@ -6432,7 +6433,7 @@ mosk_in,131,92,3	script	#Csar	-1,7,7,{
 		mes "sure no one ever doubts you.";
 		next;
 		if (countitem(7762) > 39) {
-			if(select("Show the Yaga's Pestles.:Do nothing.") == 1) {
+			if (select("Show the Yaga's Pestles.:Do nothing.") == 1) {
 				mes "[" + strcharinfo(0) + "]";
 				mes "Yes, Here you are.";
 				next;
@@ -6503,7 +6504,7 @@ moscovia,211,93,3	script	Irina#edq	958,{
 	mes "The Shafka has practicality and";
 	mes "it's spruce! Do you want one?";
 	next;
-	if(select("Learn about the Shafka.:Make a Shafka hat.") == 1) {
+	if (select("Learn about the Shafka.:Make a Shafka hat.") == 1) {
 		mes "[Irina]";
 		mes "When I look at you, you seem to";
 		mes "want to put on something of a thick";
@@ -6606,7 +6607,7 @@ mosk_fild02,198,252,3	script	Sage#rus01	755,{
 		mes "[Sage]";
 		mes "I've heard stories of the many adventurers from your lands. But, I haven't been able to talk with them much because they were always busy.";
 		next;
-		if(select("Sorry, but I'm busy.....:Ok, let's talk.") == 1) {
+		if (select("Sorry, but I'm busy.....:Ok, let's talk.") == 1) {
 			mes "[Sage]";
 			mes "Ah, you are...";
 			mes "I just wanted to hear about news from other lands...";
@@ -6860,7 +6861,7 @@ mosk_dun01,167,160,3	script	Gray Wolf#rus03	972,{
 		mes "[Gray Wolf]";
 		mes "I need brave adventurers, like you, to help me. Can you help me?";
 		next;
-		if(select("No, how can I trust you?:Ok, I'll help") == 1) {
+		if (select("No, how can I trust you?:Ok, I'll help") == 1) {
 			mes "[Gray Wolf]";
 			mes "Hu.. you won't. But, I ask you again. Can you help me?";
 			next;
@@ -6973,8 +6974,8 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 		close;
 	} else if (rhea_rus_main == 8) {
 		if (rhea_rus_quiz < 3) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -6995,7 +6996,7 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 			mes "[Girl's Voice]";
 			mes "What do you think? I can open a portal to the cave Do you want to go there now?";
 			next;
-			if(select("Not yet...:Open the portal!") == 1) {
+			if (select("Not yet...:Open the portal!") == 1) {
 				mes "[Girl's Voice]";
 				mes "... When you're ready, just tell me.";
 				close;
@@ -7205,7 +7206,7 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 		mes "["+ strcharinfo(0) +"]";
 		mes "Ok... First...";
 		next;
-		if(select("Death Water:Life Water") == 1) {
+		if (select("Death Water:Life Water") == 1) {
 			mes "["+ strcharinfo(0) +"]";
 			mes "I hope this works...";
 			next;
@@ -7244,7 +7245,7 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 		mes "["+ strcharinfo(0) +"]";
 		mes "Ok! Next...";
 		next;
-		if(select("Death Water:Life Water") == 1) {
+		if (select("Death Water:Life Water") == 1) {
 			mes "["+ strcharinfo(0) +"]";
 			mes "Pour the 'Death Water' again...";
 			next;
@@ -7585,8 +7586,8 @@ moscovia,178,127,0	script	The Blacksmith#rus06	63,{
 	} else if (rhea_rus_main == 8) {
 		if (countitem(724) > 1 && countitem(969) > 2 && countitem(7877) && countitem(7878) > 1 && countitem(7879) > 9) {
 			if (rhea_rus_ring > 8 && rhea_rus_hair > 8 && rhea_rus_quiz > 29) {
-				if(getequipid(EQI_SHOES) != 2429) {
-					if(getequipid(EQI_SHOES) != 2430) {
+				if (getequipid(EQI_SHOES) != 2429) {
+					if (getequipid(EQI_SHOES) != 2430) {
 						mes "["+ strcharinfo(0) +"]";
 						mes "...Hmm, did I forget to wear something...?";
 						close;
@@ -7741,8 +7742,8 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 		close;
 	} else if (rhea_rus_main == 8) {
 		if (rhea_rus_ring < 1) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -7751,7 +7752,7 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 			mes "[Vassili Grandpapa]";
 			mes "Hmm, are you an adventurer? So, how do you like it here?";
 			next;
-			if(select("It's so-so:I have something to ask...") == 1) {
+			if (select("It's so-so:I have something to ask...") == 1) {
 				mes "[Vassili Grandpapa]";
 				mes "Hmm, you have traveled so much. I guess if you're tired from your trip then it's only natural, huhu.";
 				close;
@@ -7814,8 +7815,8 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 			mes "She disappeared soon... after Now all I have is Ryubaba. She is also pretty and smart but nothing can relieve the sadnesss in my heart from losing Mashenka...";
 			close;
 		} else if (rhea_rus_ring == 8) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -8012,8 +8013,8 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 			emotion e_heh;
 			close;
 		} else if (rhea_rus_ring == 1) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -8025,7 +8026,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 			mes "[Ryubaba]";
 			mes "Mmm, you must be an adventurer? What would you say? Have you seen somebody more beautiful than me? I doubt it. How can you find anyone more beautiful than me?";
 			next;
-			if(select("Are you crazy!:Yes, you are right.") == 1) {
+			if (select("Are you crazy!:Yes, you are right.") == 1) {
 				mes "["+ strcharinfo(0) +"]";
 				mes "Are you crazy!? Don't you know how wide the world is and how many beautiful people there are? You're pretty full of it, country girl!";
 				next;
@@ -8140,8 +8141,8 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 			mes "Right... Let me finish talking. We tried searching for her but we couldn't find her. She must have been wearing the ring when she disappeared around the marsh.";
 			close;
 		} else if (rhea_rus_ring == 7) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -8219,12 +8220,12 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				mes "["+ strcharinfo(0) +"]";
 				mes "...Mmmm, what should I do...";
 				next;
-				if(select("Exchange:Not exchange") == 1) {
+				if (select("Exchange:Not exchange") == 1) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Mmmm, what should I do...";
 					mes "Ok, I will do it.";
 					next;
-				}else{
+				} else {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Mmmm, what should I do...";
 					mes "No, I can't do it!";
@@ -8337,7 +8338,7 @@ moscovia,223,210,3	script	Little Boy#rus09	962,{
 				mes "[Little Boy]";
 				mes "Ah, do you have candies or cookies?";
 				next;
-				if(select("Give some:Don't give") == 2) {
+				if (select("Give some:Don't give") == 2) {
 					mes "[Little Boy]";
 					mes "Hm! Hmph! Pish! !";
 					mes "You are the same as Sister Ryubaba!";
@@ -8397,8 +8398,8 @@ mosk_fild02,157,233,0	script	Shepherdess#rus10	69,{
 			mes "I wish that I could listen to music all the time.";
 			close;
 		} else if (rhea_rus_ring == 5) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -8428,8 +8429,8 @@ mosk_fild02,157,233,0	script	Shepherdess#rus10	69,{
 			close;
 		} else if (rhea_rus_ring == 6) {
 			if (countitem(7882) > 24) {
-				if(getequipid(EQI_SHOES) != 2429) {
-					if(getequipid(EQI_SHOES) != 2430) {
+				if (getequipid(EQI_SHOES) != 2429) {
+					if (getequipid(EQI_SHOES) != 2430) {
 						mes "["+ strcharinfo(0) +"]";
 						mes "...Hmm, did I forget to wear something...?";
 						close;
@@ -8569,8 +8570,8 @@ moscovia,166,145,1	script	Worried Mother#rus19	961,{
 		close;
 	} else if (rhea_rus_main == 8) {
 		if (rhea_rus_hair < 1) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -8588,7 +8589,7 @@ moscovia,166,145,1	script	Worried Mother#rus19	961,{
 			mes "[Worried Mother]";
 			mes "Did you go to the marsh in the Moscovia field? Did you see my daughter? I don't care even if she became Lusalka. I just want to know where she is.";
 			next;
-			if(select("Calm her down.:I will find her.") == 1) {
+			if (select("Calm her down.:I will find her.") == 1) {
 				mes "["+ strcharinfo(0) +"]";
 				mes "She should be ok.";
 				mes "She will be back soon.";
@@ -8771,8 +8772,8 @@ mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 				mes "What are you doing here...?";
 				close;
 			} else if (rhea_rus_hair == 2) {
-				if(getequipid(EQI_SHOES) != 2429) {
-					if(getequipid(EQI_SHOES) != 2430) {
+				if (getequipid(EQI_SHOES) != 2429) {
+					if (getequipid(EQI_SHOES) != 2430) {
 						mes "["+ strcharinfo(0) +"]";
 						mes "...Hmm, did I forget to wear something...?";
 						close;
@@ -8831,7 +8832,7 @@ mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 				mes "[Lusalka]";
 				mes "The night when he left, he said that he would go to the capital of Rune Midgarts. I am not sure if he is still there...";
 				next;
-				if(select("Ok, I will do it:I don't think I can do it...") == 2) {
+				if (select("Ok, I will do it:I don't think I can do it...") == 2) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "Rune Midgarts is large! I don't think I can do it.";
 					next;
@@ -8861,8 +8862,8 @@ mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 				mes "And please, tell him to stop suffering and to be happy. This is my request.";
 				close;
 			} else if (rhea_rus_hair == 7) {
-				if(getequipid(EQI_SHOES) != 2429) {
-					if(getequipid(EQI_SHOES) != 2430) {
+				if (getequipid(EQI_SHOES) != 2429) {
+					if (getequipid(EQI_SHOES) != 2430) {
 						mes "["+ strcharinfo(0) +"]";
 						mes "...Hmm, did I forget to wear something...?";
 						close;
@@ -9000,8 +9001,8 @@ prontera,228,279,3	script	Wanderer#rus24	968,{
 			mes "In your free time, come to see me! The weather here is even more favorable than our the best summer back home.";
 			close;
 		} else if (rhea_rus_hair == 3) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9105,8 +9106,8 @@ morocc,165,82,0	script	Morroc Villager#rus25	48,{
 			mes "But natives, like me, can tell the difference.";
 			close;
 		} else if (rhea_rus_hair == 4) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9172,8 +9173,8 @@ moc_pryd04,126,120,0	script	Soldier#rus26	967,{
 			mes "............................";
 			close;
 		} else if (rhea_rus_hair == 4 || rhea_rus_hair == 5) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9249,8 +9250,8 @@ moc_pryd04,126,120,0	script	Soldier#rus26	967,{
 			set rhea_rus_hair,6;
 			close;
 		} else if (rhea_rus_hair == 6) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9379,8 +9380,8 @@ OnTouch:
 mosk_que,45,131,0	script	Stone Furnace#rus28	111,{
 	if (rhea_rus_main == 8) {
 		if (rhea_rus_quiz == 1) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9450,8 +9451,8 @@ OnTimer300000:
 mosk_que,56,202,0	script	Occult Apple Tree#rus29	111,{
 	if (rhea_rus_main == 8) {
 		if (rhea_rus_quiz == 2) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9501,8 +9502,8 @@ mosk_fild02,243,270,0	script	Marozka#rus31	866,{
 			mes "...........................";
 			close;
 		} else if (rhea_rus_quiz == 3) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9568,8 +9569,8 @@ mosk_fild02,243,270,0	script	Marozka#rus31	866,{
 			set rhea_rus_quiz,29;
 			close;
 		} else if (rhea_rus_quiz == 29) {
-			if(getequipid(EQI_SHOES) != 2429) {
-				if(getequipid(EQI_SHOES) != 2430) {
+			if (getequipid(EQI_SHOES) != 2429) {
+				if (getequipid(EQI_SHOES) != 2430) {
 					mes "["+ strcharinfo(0) +"]";
 					mes "...Hmm, did I forget to wear something...?";
 					close;
@@ -9578,7 +9579,7 @@ mosk_fild02,243,270,0	script	Marozka#rus31	866,{
 			mes "[Marozka]";
 			mes "...So? Have you decided?";
 			next;
-			if(select("I need more time...:I will take it!") == 1) {
+			if (select("I need more time...:I will take it!") == 1) {
 				mes "[Marozka]";
 				mes "Ok then. Come back when you are ready.";
 				close;
@@ -10994,20 +10995,20 @@ treasure01,24,39,0	script	Old Bed#rus38	111,{
 		mes "...?! What is this?";
 		next;
 		mes "- There is a scar on the sheet that seems to have the location !! -";
-		viewpoint 1,165,58,1,0xFFFF0000;
-		viewpoint 1,61,183,2,0xFFFF0000;
-		viewpoint 1,98,118,3,0xFFFF0000;
-		viewpoint 1,27,115,4,0xFFFF0000;
+		viewpoint 1,165,58,1,0xFF0000;
+		viewpoint 1,61,183,2,0xFF0000;
+		viewpoint 1,98,118,3,0xFF0000;
+		viewpoint 1,27,115,4,0xFF0000;
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "...This may be?!";
 		next;
 		mes "[Voice unidentified]";
 		mes "Who is there!?";
-		viewpoint 2,165,58,1,0xFF00FF00;
-		viewpoint 2,61,183,2,0xFF00FF00;
-		viewpoint 2,98,118,3,0xFF00FF00;
-		viewpoint 2,27,115,4,0xFF00FF00;
+		viewpoint 2,165,58,1,0x00FF00;
+		viewpoint 2,61,183,2,0x00FF00;
+		viewpoint 2,98,118,3,0x00FF00;
+		viewpoint 2,27,115,4,0x00FF00;
 		emotion e_omg,1;
 		next;
 		mes "["+ strcharinfo(0) +"]";
@@ -11254,7 +11255,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 		mes "[House Ghost]";
 		mes "I can't even drink my favorite milk... Being a ghost is too inconvenient.";
 		next;
-		if(select("Can I play with you?:So what can I do for you?") == 1) {
+		if (select("Can I play with you?:So what can I do for you?") == 1) {
 			mes "[House Ghost]";
 			mes "Ehhh, are you sure?";
 			next;
@@ -11566,7 +11567,7 @@ pay_dun04,163,186,0	script	Ghost Tree#rus45	111,{
 		mes "[Ghost Tree]";
 		mes "Kuhuhuhu, if you want it, you must give me the correct answers to my questions!";
 		next;
-		if(select("Ok, ask me!:No, just give it to me!") == 2) {
+		if (select("Ok, ask me!:No, just give it to me!") == 2) {
 			mes "[Ghost Tree]";
 			mes "What!? You are rude to ask for what you want by doing nothing!";
 			next;
@@ -11854,4 +11855,57 @@ pay_dun04,163,186,0	script	Ghost Tree#rus45	111,{
 		close;
 	}
 	end;
+}
+
+mosk_dun01,3,3,3	script	Koshei GlobalVar#admin	958,{
+	callfunc "F_GM_NPC";
+	mes "[Koshei GlobalVar]";
+	mes "Please enter the password";
+	set .@i, callfunc("F_GM_NPC","orchid",1);
+	next;
+	if (.@i == 0) {
+		mes "[Koshei GlobalVar]";
+		mes "Please input the password exactly.";
+		close;
+	} else {
+		mes "[Koshei GlobalVar]";
+		mes "I can tell you what the";
+		mes "Koshei GlobalVar";
+		mes "$@rus_req02";
+		mes "on mosk_dun01";
+		mes "is currently set to.";
+		next;
+		if ($@rus_req02 == 0) {
+			mes "[Koshei GlobalVar]";
+			mes "Currently the GlobalVar $@rus_req02 is set to 0";
+			next;
+		} else if ($@rus_req02 == 1) {
+			mes "[Koshei GlobalVar]";
+			mes "Currently the GlobalVar $@rus_req02 is set to 1";
+			next;
+		} else {
+			mes "[Koshei GlobalVar]";
+			mes "error";
+			close;
+		}
+		mes "[Koshei GlobalVar]";
+		mes "What would you like to set the GlobalVar to?";
+		next;
+		switch(select("0:1:Cancel")) {
+		case 1:
+			mes "[Koshei GlobalVar]";
+			mes "GlobalVar $@rus_req02 will now be set to '0'";
+			set $@rus_req02,0;
+			donpcevent "Koshei#rus47::OnDisable";
+			close;
+		case 2:
+			mes "[Koshei GlobalVar]";
+			mes "GlobalVar $@rus_req02 will now be set to '1'";
+			set $@rus_req02,1;
+			donpcevent "Koshei#rus47::OnEnable";
+			close;
+		case 3:
+			close;
+		}
+	}
 }

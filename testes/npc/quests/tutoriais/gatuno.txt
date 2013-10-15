@@ -26,7 +26,7 @@
 //============================================================
 moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 	mes "[Yierhan]";
-	if(Class == Job_Novice){
+	if (Class == Job_Novice){
 		mes "Eh...?";
 		mes "A Novice?";
 		mes "Still thinking";
@@ -39,9 +39,9 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 		mes "I might add--come and talk to me. I'll show you the ropes!";
 		close;
 
-	} else if(Class == Job_Thief || Class == Job_Thief_High || Class == Job_Assassin || Class ==Job_Assassin_Cross || Class == Job_Rogue || Class == Job_Stalker){
-		if(Class == Job_Thief_High || Class == Job_Assassin || Class == Job_Assassin_Cross || Class == Job_Rogue || Class == Job_Stalker){
-			if(tu_thief01 < 8){
+	} else if (Class == Job_Thief || Class == Job_Thief_High || Class == Job_Assassin || Class ==Job_Assassin_Cross || Class == Job_Rogue || Class == Job_Stalker){
+		if (Class == Job_Thief_High || Class == Job_Assassin || Class == Job_Assassin_Cross || Class == Job_Rogue || Class == Job_Stalker){
+			if (tu_thief01 < 8){
 				mes "Whaaaat are you";
 				mes "doin' here? There's";
 				mes "nothing I can teach you!";
@@ -55,7 +55,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 				close;
 			}
 		}
-		if(tu_thief01 == 0){
+		if (tu_thief01 == 0){
 			mes "Heya pal.";
 			mes "I'm Yierhan.";
 			mes "I happen to be";
@@ -128,7 +128,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 				specialeffect2 EF_HIT5;
 				close;
 			}
-		} else if(tu_thief01 == 1){
+		} else if (tu_thief01 == 1){
 			mes "Alright, enough about stats.";
 			mes "You know what? I think I'll just talk to you about the skills that we Thieves use.";
 			next;
@@ -137,7 +137,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "then come back over here.";
 			set tu_thief01, 2;
 			close;
-		} else if(tu_thief01 == 2){
+		} else if (tu_thief01 == 2){
 			mes "Okay, let me see your skills. You know you gotta change your battle strategy depending on what skills you have, right? Skills are just as important as stats!";
 			next;
 			set .@chk_th_skill1, getskilllv("TF_DOUBLE");
@@ -147,12 +147,12 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			set .@chk_th_skill5, getskilllv("TF_POISON");
 			set .@chk_th_skill6, getskilllv("TF_DETOXIFY");
 
-			if(.@chk_th_skill1 == 0 && .@chk_th_skill2 == 0 && .@chk_th_skill3 == 0 && .@chk_th_skill4 == 0 && .@chk_th_skill5 == 0 && .@chk_th_skill6 == 0){
+			if (.@chk_th_skill1 == 0 && .@chk_th_skill2 == 0 && .@chk_th_skill3 == 0 && .@chk_th_skill4 == 0 && .@chk_th_skill5 == 0 && .@chk_th_skill6 == 0){
 				mes "[Yierhan]";
 				mes "You haven't learned any skills yet? Come on, it's your skills that'll set you apart from Novices and everyone else!";
 				close;
 			} else {
-				if(.@chk_th_skill1 > 0){
+				if (.@chk_th_skill1 > 0){
 					mes "[Yierhan]";
 					mes "Ah, so you've learned";
 					mes "Level "+.@chk_th_skill1+" Double Attack.";
@@ -163,7 +163,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "It's a Passive skill, so it's always in effect and won't have to use any SP to use it. The higher your Double Attack skill level, the more double attacks you'll do.";
 					next;
 				}
-				if(.@chk_th_skill2 > 0){
+				if (.@chk_th_skill2 > 0){
 					mes "[Yierhan]";
 					mes "Let's see...";
 					mes "Level "+.@chk_th_skill2+" Increase Dodge?";
@@ -174,7 +174,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "effect. If you don't like to bruise, this is your skill.";
 					next;
 				}
-				if(.@chk_th_skill3 > 0){
+				if (.@chk_th_skill3 > 0){
 					mes "[Yierhan]";
 					mes "Whoa, so you've";
 					mes "got Level "+.@chk_th_skill3+" Steal~";
@@ -185,7 +185,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "But you can use Steal to take items from monsters. If you're lucky, you can get some good items that way. Oh, and Steal doesn't affect monster drop rates.";
 					next;
 				}
-				if(.@chk_th_skill4 > 0){
+				if (.@chk_th_skill4 > 0){
 					mes "[Yierhan]";
 					mes "You've learned";
 					mes "Level "+.@chk_th_skill4+" Hiding?";
@@ -200,7 +200,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "Certain monsters will still be able to find you, no matter how well you hide. There are even a few monsters that can flush you out of hiding!";
 					next;
 				}
-				if(.@chk_th_skill5 > 0){
+				if (.@chk_th_skill5 > 0){
 					mes "[Yierhan]";
 					mes "Alright, I see that you";
 					mes "know Level "+.@chk_th_skill5+" Envenom.";
@@ -216,7 +216,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "If the monster's too strong for you, you might not be able to poison it. So don't go crazy.";
 					next;
 				}
-				if(.@chk_th_skill6 > 0){
+				if (.@chk_th_skill6 > 0){
 					mes "[Yierhan]";
 					mes "Level "+.@chk_th_skill6+" Detoxify.";
 					mes "If you took the trouble to learn that, you must be the cautious";
@@ -237,7 +237,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			getexp BaseLevel*30,BaseLevel*15;
 			specialeffect2 EF_HIT5;
 			close;
-		} else if(tu_thief01 == 3){
+		} else if (tu_thief01 == 3){
 			mes "So...";
 			mes "Are there any";
 			mes "skills you want";
@@ -333,16 +333,16 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					mes "Now that you're such an expert on skills, I want you to level up your skills and come back, got it?";
 					set tu_thief01, 4;
 					specialeffect2 EF_HIT5;
-					if(.@read_d) getexp 300,100;
-					if(.@read_f) getexp 300,100;
-					if(.@read_s) getexp 300,100;
-					if(.@read_p) getexp 300,100;
-					if(.@read_h) getexp 300,100;
-					if(.@read_r) getexp 300,100;
+					if (.@read_d) getexp 300,100;
+					if (.@read_f) getexp 300,100;
+					if (.@read_s) getexp 300,100;
+					if (.@read_p) getexp 300,100;
+					if (.@read_h) getexp 300,100;
+					if (.@read_r) getexp 300,100;
 					close;
 				}
 			}
-		} else if(tu_thief01 == 4){
+		} else if (tu_thief01 == 4){
 			mes "Alright, we studied the skills and you've been practicing a little, right? You better have...";
 			next;
 			mes "[Yierhan]";
@@ -360,8 +360,8 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			close2;
 			warp "moc_fild12",158,373;
 			end;
-		} else if(tu_thief01 == 5 || tu_thief01 == 6){
-			if(countitem(916) < 10){
+		} else if (tu_thief01 == 5 || tu_thief01 == 6){
+			if (countitem(916) < 10){
 				mes "'Ey, you don't have the 10 ^ff0000Feather of Birds^000000 I asked you for! You gotta apply what you know, you know.";
 				mes "Now hurry up and do it!";
 				close2;
@@ -379,7 +379,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 				mes "Always do your best! Oh,";
 				mes "and do you have any questions?";
 				next;
-				if(tu_thief01 == 6){
+				if (tu_thief01 == 6){
 					switch(select("About those traces...:Nope.")) {
  					case 1:
 						mes "[Yierhan]";
@@ -455,7 +455,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					close;
 				}
 			}
-		} else if(tu_thief01 == 7){
+		} else if (tu_thief01 == 7){
 			mes "[Yierhan]";
 			mes "You know...";
 			mes "There was this";
@@ -496,7 +496,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			getexp 200,100;
 			specialeffect2 EF_HIT5;
 			close;
-		} else if(tu_thief01 == 8){
+		} else if (tu_thief01 == 8){
 			mes "Heya pal.";
 			mes "You doin' alright?";
 			next;
@@ -508,7 +508,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "It's a good policy to just be really careful on your adventures. Look out for monsters and look";
 			mes "out for people! Got it?";
 			close;
-		} else if(tu_thief01 < 26){
+		} else if (tu_thief01 < 26){
 			mes "I heard there was";
 			mes "this one Assassin";
 			mes "that went on a mission";
@@ -524,7 +524,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "Anyway, take";
 			mes "care of yourself.";
 			close;
-		} else if(tu_thief01 == 26){
+		} else if (tu_thief01 == 26){
 			mes "'Ey, did you";
 			mes "complete your mission?";
 			mes "I know, I know, the thing you've gotta do is pretty rough.";
@@ -593,8 +593,8 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "I just like telling people to follow their dreams. So do it. Life without anything to look forward to is pretty boring, doncha think?";
 			close;
 		}
-	} else if(Class == Job_Mage || Class == Job_Mage_High || Class == Job_Wizard || Class == Job_High_Wizard || Class == Job_Sage || Class == Job_Professor){
-		if(tu_magician01 < 7){
+	} else if (Class == Job_Mage || Class == Job_Mage_High || Class == Job_Wizard || Class == Job_High_Wizard || Class == Job_Sage || Class == Job_Professor){
+		if (tu_magician01 < 7){
 			mes "[Yierhan]";
 			mes "Heya.";
 			mes "I'm the Thief trainer around here. Sure, it looks like we don't got much in common, but...";
@@ -603,7 +603,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "I actually got a few magic using friends here and there. That mystic stuff is waaay over my head, but";
 			mes "I got a lotta respect for it.";
 			close;
-		} else if(tu_magician01 == 7){
+		} else if (tu_magician01 == 7){
 			mes "Hm...?";
 			mes "That's weird, usually only";
 			mes "Thieves hang around this joint. What's someone like you doing";
@@ -627,7 +627,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 				set tu_magician01, 8;
 				break;
 			}
-		} else if(tu_magician01 < 26){
+		} else if (tu_magician01 < 26){
 			mes "I heard there was";
 			mes "this one Assassin";
 			mes "that went on a mission";
@@ -645,7 +645,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			mes "might be related to";
 			mes "that mysterious Assassin...";
 			close;
-		} else if(tu_magician01 == 26){
+		} else if (tu_magician01 == 26){
 			mes "So how's the";
 			mes "investigation";
 			mes "coming along?";

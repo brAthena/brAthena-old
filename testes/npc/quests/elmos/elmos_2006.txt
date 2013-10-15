@@ -208,7 +208,7 @@ hugel,147,130,3	script	Ghenirhemin	897,{
 	if (moza_valkylie == 5) {
 		set .@val2,rand(1,10);
 		if (.@val2 == 3) {
-			misceffect 348; //EF_LIGHTSPHERE
+			specialeffect EF_LIGHTSPHERE; //EF_LIGHTSPHERE
 			mes "[Ghenirhemin]";
 			mes "Os materiais ainda estão a ser fundidos.";
 			next;
@@ -216,7 +216,7 @@ hugel,147,130,3	script	Ghenirhemin	897,{
 			mes "Umm?! Oh...oh?! Não é este...";
 			mes "Não é este...?!";
 			next;
-			misceffect 322; //EF_FORESTLIGHT2
+			specialeffect EF_FORESTLIGHT2; //EF_FORESTLIGHT2
 			mes "[Ghenirhemin]";
 			mes "Ah...ahahaha, fizemos isso! Nós fizemos isso!";
 			mes "Elmo das Valquírias...Nós criamos Elmo das Valquírias,";
@@ -248,7 +248,7 @@ hugel,147,130,3	script	Ghenirhemin	897,{
 			mes "agora ele caminha para uma nova história.";
 			close;
 		}
-		misceffect 348; //EF_LIGHTSPHERE
+		specialeffect EF_LIGHTSPHERE; //EF_LIGHTSPHERE
 		mes "[Ghenirhemin]";
 		mes "Os materiais ainda estão a ser fundidos.";
 		close;
@@ -259,7 +259,7 @@ hugel,147,130,3	script	Ghenirhemin	897,{
 			mes "[Ghenirhemin]";
 			mes "............";
 			next;
-			misceffect 348; //EF_LIGHTSPHERE
+			specialeffect EF_LIGHTSPHERE; //EF_LIGHTSPHERE
 			mes "[Ghenirhemin]";
 			mes "Oh...oh? Eles.... eles omeçaram a se fundir!";
 			mes "Olhe para essa luz que brilha!";
@@ -954,7 +954,7 @@ payon_in03,139,124,3	script	Han Garam	88,{
 		mes "Ele está abanando o rabo, e me mostrando futuro!";
 		mes "Aaaaaahhhhhhh!";
 		next;
-		misceffect 90; //EF_LORD;
+		specialeffect EF_LORD; //EF_LORD;
 		mes "[Han Garam]";
 		mes "Waaaahhhh!";
 		next;
@@ -986,7 +986,7 @@ payon_in03,139,124,3	script	Han Garam	88,{
 		mes "Qualquer um que trouxer estes itens... Vou criar o chapéu para ele!";
 		mes "Ahhh~ Dragão Deus!";
 		next;
-		misceffect 7; //EF_EXIT;
+		specialeffect EF_EXIT; //EF_EXIT;
 		mes "[Han Garam]";
 		mes ".............";
 		next;

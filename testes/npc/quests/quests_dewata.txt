@@ -102,7 +102,7 @@ dew_in01,22,48,3	script	Sage Kasyapa#dew	541,{
 		mes "that you have something to say";
 		mes "you might as well tell me what it is.";
 		next;
-		if(select("I overheard talk about a crown?:Just looking for the gift shop.") == 2) {
+		if (select("I overheard talk about a crown?:Just looking for the gift shop.") == 2) {
 			mes "[Tribal Chief Paiko]";
 			mes "Really?";
 			mes "It looked as if your eyes";
@@ -234,7 +234,7 @@ dew_in01,15,49,4	script	Tribal Chief Paiko#dew	540,{
 		mes "from another land.";
 		mes "What brings you here?";
 		next;
-		if(select("I overheard the story by accident:I have nothing to say.") == 2) {
+		if (select("I overheard the story by accident:I have nothing to say.") == 2) {
 			mes "[Tribal Chief Paiko]";
 			mes "You are wasting your time here.";
 			mes "There are many other attractions around our village.";
@@ -282,7 +282,7 @@ dew_in01,15,49,4	script	Tribal Chief Paiko#dew	540,{
 		mes "Do you think you can help?";
 		mes "Your efforts will not go unrewarded.";
 		next;
-		if(select("Ok, I will help:I am sorry, I cannot help now.") == 2) {
+		if (select("Ok, I will help:I am sorry, I cannot help now.") == 2) {
 			mes "[Tribal Chief Paiko]";
 			mes "That's really sad.";
 			mes "If you ever change";
@@ -362,7 +362,7 @@ dew_in01,15,49,4	script	Tribal Chief Paiko#dew	540,{
 		mes "[Tribal Chief Paiko]";
 		mes "Are you up for a short delivery job?";
 		next;
-		if(select("Of course, I can help:Sorry, I am too busy to help.") == 2) {
+		if (select("Of course, I can help:Sorry, I am too busy to help.") == 2) {
 			mes "[Tribal Chief Paiko]";
 			mes "I believed you would definitely help me...";
 			mes "It's a little disappointing.";
@@ -831,7 +831,7 @@ dewata,109,262,4	script	Memo#dew_drink	534,{
 		mes "[Memo]";
 		mes "Ah, right! Are you busy now?";
 		next;
-		if(select("Sorry, I am busy.:No, I am not busy.") == 1) {
+		if (select("Sorry, I am busy.:No, I am not busy.") == 1) {
 			mes "[Memo]";
 			mes "Hmm, I have no choice.";
 			mes "You don't care that others are in trouble. What has this world come to?";
@@ -1620,7 +1620,7 @@ OnTimer60000:
 OnTimer180000:
 OnTimer120000:
 OnTimer240000:
-	if(rand(2))
+	if (rand(2))
 		donpcevent strnpcinfo(0)+"::OnEnable";
 	end;
 OnTimer300000:
@@ -1800,7 +1800,7 @@ dew_fild01,127,240,4	script	Gatti#weapon	813,{
 			end;
 		}
 		mes "[Gatti]";
-		if(Sex == 0)
+		if (Sex == 0)
 			mes "Lady, you possess a strong energy.";
 		else
 			mes "You possess a strong energy.";
@@ -2068,7 +2068,7 @@ dew_fild01,127,240,4	script	Gatti#weapon	813,{
 		case 3:
 			mes "[Gatti]";
 			mes "So, you want to reinforce your weapon? The weapon gets broken from time to time during the process, but it doesn't happen that often.";
-			if(select("Please reinforce the weapon.:May be next time.") == 2) {
+			if (select("Please reinforce the weapon.:May be next time.") == 2) {
 				mes "[Gatti]";
 				mes "Whenever you want to reinforce the Caress, just bring me the Caress and 100,000 zeny.";
 				close;
@@ -2088,7 +2088,7 @@ dew_fild01,127,240,4	script	Gatti#weapon	813,{
 			mes "[Gatti]";
 			mes "^FF0000Third!^009977 Sometimes reinfocing fails. The weapon doesn't get destroyed everytime you fail. However you should know that the weapon gets destroyed from time to time if you fail.^000000";
 			next;
-			if(select("Please reinforce the weapon.:Maybe next time.") == 2) {
+			if (select("Please reinforce the weapon.:Maybe next time.") == 2) {
 				mes "[Gatti]";
 				mes "Whenever you want to reinforce the Caress, just bring me the Caress and 100,000 zeny.";
 				close;

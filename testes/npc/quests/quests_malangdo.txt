@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.5/1.1                          |
+//   | Versões eA/rA/brA: ??/1.6/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests de Malangdo.                         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Megasantos]                      |
 //   | 1.1 Adicionados alguns NPCs conforme rAthena [Hold]    |
+//   | 1.2 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -183,7 +184,7 @@ mal_in02,134,31,5	script	Investment Cat Helper	505,{
 			mes "The number of cans you need is "+.@required+" pieces.";
 			mes "Do you want to go through with this?";
 			next;
-			if(select("Yes:No") == 2) {
+			if (select("Yes:No") == 2) {
 				mes "[Investment Cat Helper]";
 				mes "Oh? Is that wrong? Weird.";
 				mes "Please check again~";
@@ -265,7 +266,7 @@ mal_in02,134,31,5	script	Investment Cat Helper	505,{
 		mes "[Investment Cat Helper]";
 		mes "Want to donate?";
 		next;
-		if(select("Donate:No") == 2) {
+		if (select("Donate:No") == 2) {
 			mes "[Investment Cat Helper]";
 			mes "Hehe~ then have fun in here~";
 			close;
@@ -2816,7 +2817,7 @@ malangdo,137,200,6	script	Pipielle	549,{
 		mes "[Pipielle]";
 		mes "Anyways, now I'm collecting specimens to study the monsters here. I hope you can help me.";
 		next;
-		if(select("How can I help you?:I have to decline.") == 2) {
+		if (select("How can I help you?:I have to decline.") == 2) {
 			mes "[Pipielle]";
 			mes "Oh, okay. If you change your mind, please come again.";
 			close;
@@ -2851,12 +2852,12 @@ malangdo,137,200,6	script	Pipielle	549,{
 		mes "[Pipielle]";
 		mes "Oh, you met admiral Tomas... how was it?";
 		next;
-		if(select("He looks gentle:He looks terrible") == 2) {
+		if (select("He looks gentle:He looks terrible") == 2) {
 			mes "[Pipielle]";
 			mes "Hmm...";
 			mes "Frankly speaking, I was a real fan of Admiral Tomas. Can you take responsibility for your word?";
 			next;
-			if(select("Just kidding!:Oh yes, he was really terrible!") == 2) {
+			if (select("Just kidding!:Oh yes, he was really terrible!") == 2) {
 				mes "[Pipielle]";
 				mes "Is he?";
 				mes "Okay, it really depends on personal taste...";
@@ -3512,10 +3513,8 @@ malangdo,129,146,3	script	Crime Prevention Staff	545,{
 	close;
 }
 
-/*
 malangdo,3,1,3	script	Guidance for quest#ml	543,{
-	input .@input,1,9999;
-	if (.@input != 1854) {
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
 		mes "[Helper]";
 		mes "What is this security code?";
 		mes "Go away!";
@@ -3560,7 +3559,6 @@ malangdo,3,1,3	script	Guidance for quest#ml	543,{
 		close;
 	}
 }
-*/
 
 // Clean the Ship :: mal_day_qook
 //============================================================
@@ -6134,7 +6132,7 @@ malangdo,174,175,0	script	Noisy Machine#nya_13	844,{
 	mes "Go ahead!";
 	next;
 	cutin "",255;
-	if(select("Insert card.:Stop it.") == 2) {
+	if (select("Insert card.:Stop it.") == 2) {
 		mes "[Homnya]";
 		mes "Um? You aren't going to do this?";
 		mes "Really?";
@@ -10567,7 +10565,7 @@ mal_in01,15,16,3	script	Fallen Angel#mal	403,{
 		mes "Second, ^ff0000although the rate is not high, the Archangel Wing might be damaged^000000! This is very unlucky!";
  		mes "If you can accept these conditions, I will enchant the wing for you.";
 		next;
-		if(select("Let me consider...:I accept, let's enchant!") == 1) {
+		if (select("Let me consider...:I accept, let's enchant!") == 1) {
 			mes "[Fallen Angel]";
 			mes "Ok! Take your time to consider!";
 			close;
@@ -10655,7 +10653,7 @@ mal_in01,15,16,3	script	Fallen Angel#mal	403,{
 		mes "[Fallen Angel]";
 		mes "Initialization requires ^0000ff3 units of Silvervine Fruit^000000. The wing will not be damaged except for the enchanted capability.";
 		next;
-		if(select("Let me consider...:Ok, I want initialize it.") == 1) {
+		if (select("Let me consider...:Ok, I want initialize it.") == 1) {
 			mes "[Fallen Angel]";
 			mes "Ok! Take your time to consider!";
 			close;

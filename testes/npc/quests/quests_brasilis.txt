@@ -472,7 +472,7 @@ brasilis,187,162,5	script	Candy Maker	476,{
 			if (Zeny > 3999) {
 				mes "[Candy Maker]";
 				mes "Here is a delicious guarana candy.";
-				set zeny,zeny-4000;
+				set Zeny, Zeny-4000;
 				getitem 12414,1; //Guarana_Candy
 				close;
 			}
@@ -666,7 +666,7 @@ brasilis,203,64,3	script	Strange Kid#bra	706,{
 		mes "[Strange Kid]";
 		mes "................";
 		next;
-		if(select("Try to talk.:Pretend to pass by.") == 2) {
+		if (select("Try to talk.:Pretend to pass by.") == 2) {
 			mes "[Strange Kid]";
 			mes "................";
 			close;
@@ -1050,7 +1050,7 @@ brasilis,203,286,3	script	Botanist Karmen#bra	893,{
 		mes "One of them, a Water Lily, is a really gorgeous and unique plant.";
 		mes "This flower is quite sensitive so it doesn't bloom everywhere.";
 		next;
-		if(select("Interesting.:End conversation.") == 2) {
+		if (select("Interesting.:End conversation.") == 2) {
 			mes "[Karmen]";
 			mes "I guess you aren't interested in botany.";
 			close;
@@ -1438,7 +1438,7 @@ brasilis,270,145,5	script	Brasilis Girl#bra	473,5,5,{
 		mes "What's up? Why are you looking at me?";
 		mes "I don't want to be a showgirl!! Get out!!";
 		next;
-		if(select("Nothing, sorry.:What's wrong?") == 1) {
+		if (select("Nothing, sorry.:What's wrong?") == 1) {
 			mes "[Brasilis Girl]";
 			mes "I am so sad!!!";
 			close;
@@ -1447,7 +1447,7 @@ brasilis,270,145,5	script	Brasilis Girl#bra	473,5,5,{
 		mes "It's not your business.";
 		mes "You are just an outsider!";
 		next;
-		if(select("How rude!:Just trying to help.") == 1) {
+		if (select("How rude!:Just trying to help.") == 1) {
 			mes "[Brasilis Girl]";
 			mes "What's it matter to you that I'm rude??!!";
 			close;
@@ -1542,7 +1542,7 @@ brasilis,270,145,5	script	Brasilis Girl#bra	473,5,5,{
 		mes ".................";
 		mes "I wanna see him right now...";
 		next;
-		if(select("Help Jasira.:Ignore her.") == 2) {
+		if (select("Help Jasira.:Ignore her.") == 2) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Sorry I can't help you. Cheer up!";
 			next;
@@ -1703,7 +1703,7 @@ bra_dun02,67,205,5	script	Recluse#bra	475,3,3,{
 		mes "[Recluse]";
 		mes "Oh, I haven't seen another person in such a long time.";
 		next;
-		if(select("Keep going.:Are you the moon?") == 1) {
+		if (select("Keep going.:Are you the moon?") == 1) {
 			mes "[Recluse]";
 			mes "You don't have specific business with me.";
 			close;
@@ -1826,7 +1826,7 @@ bra_dun02,71,200,3	script	Water lily#bra	111,{
 	if (brazil_regia == 4) {
 		mes "An unusual Water lily is blooming here. You can't stop staring at it, knowing that few people have seen this flower bloom.";
 		next;
-		if(select("Pick up the flower.:Keep gazing.") == 2) {
+		if (select("Pick up the flower.:Keep gazing.") == 2) {
 			mes "- You can't avoid staring at it's beauty. -";
 			close;
 		}
@@ -2006,7 +2006,7 @@ brasilis,185,246,5	script	Pedro#bra	62,{
 		mes "[Daniel]";
 		mes "kkkickkkkkkkk";
 		next;
-		if(select("Walk by.:Ask about the gossip.") == 1) {
+		if (select("Walk by.:Ask about the gossip.") == 1) {
 			mes "[Fabio]";
 			mes "Mariana~ smells~ Nya nya~";
 			next;
@@ -2964,7 +2964,7 @@ brasilis,315,334,5	script	Shaman#nk	474,{
 				mes "Could you listen to my stories for a moment.";
 				mes "There's an emergency in our tribe.";
 				next;
-				if(select("No.:Okay.") == 1) {
+				if (select("No.:Okay.") == 1) {
 					mes "[Anori]";
 					mes "You are a heartless person...";
 					mes "You don't seem the helpful type.";

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.1/2.3/1.0                         |
+//   | Versões eA/rA/brA: 2.1/2.5/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest Irmãos em Veins, Base do Vulcão de    |
 //   | Thor, Espião / O Conto do Bardo, Sr Zabaroo Coletor de |
@@ -20,6 +20,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -695,7 +696,7 @@ prontera,202,122,0	script	Kid#sch	703,{
 		mes "[Rooney]";
 		mes "Hey, alright! Thanks";
 		mes "for the cash! Heh heh~";
-		set zeny,zeny-100;
+		set Zeny, Zeny-100;
 		set que_sch,3;
 		close;
 	}
@@ -733,7 +734,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 		mes "Ooooh... La la la-la~";
 		mes "Girls, girls, giiiirls...";
 		next;
-		if(select("Excuse me...:......") == 1) {
+		if (select("Excuse me...:......") == 1) {
 			mes "[Lasda]";
 			mes "Why, what a glorious";
 			mes "day! I should sing a song";
@@ -756,7 +757,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 		mes "me blush. Did you need to";
 		mes "talk to me or something?.";
 		next;
-		if(select("I'm sorry.:Are you ^ff0000Lasda Midar^000000?") == 1) {
+		if (select("I'm sorry.:Are you ^ff0000Lasda Midar^000000?") == 1) {
 			mes "[Lasda]";
 			mes "Oh, that's alright.";
 			mes "...............................";
@@ -791,7 +792,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 		mes "kid that was supposed";
 		mes "to come find me here.";
 		set que_sch,2;
-		set zeny,zeny+100;
+		set Zeny, Zeny+100;
 		next;
 		mes "[Lasda]";
 		mes "I'd like you to come";
@@ -1554,7 +1555,7 @@ job_duncer,93,106,6	script	Dance Instructor#sch	892,{
 			mes "your Megaphone. Thanks";
 			mes "for everything, and I'll see";
 			mes "you around, adventurer~";
-			set zeny,zeny-500000;
+			set Zeny, Zeny-500000;
 			set que_sch,18;
 			getitem 7040,1; //Megaphone
 			close;
@@ -1600,7 +1601,7 @@ job_duncer,93,106,6	script	Dance Instructor#sch	892,{
 				mes "so I'm not supposed to let";
 				mes "you have this. Don't let";
 				mes "anyone know I gave you this!";
-				set zeny,zeny-500000;
+				set Zeny, Zeny-500000;
 				getitem 7040,1; //Megaphone
 				close;
 			}
@@ -2621,6 +2622,20 @@ comodo,135,299,0	script	Young Man#sch2	809,{
 	}
 }
 
+sec_in02,10,43,4	script	Extra Story Patch	809,{
+	callfunc "F_GM_NPC";
+	mes "[Patch]";
+	mes "Yeah, you can try.";
+	next;
+	if (select("Now:How many?") == 2) {
+		input .@input,0,1000;
+		set que_sch, .@input;
+	}
+	mes " ";
+	mes ""+que_sch;
+	close;
+}
+
 // Siblings Quest
 //============================================================ 
 veins,327,185,3	script	Kid#camelcamel	944,{
@@ -3017,7 +3032,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			completequest 3083;
 			set rachel_camel,25;
 			specialeffect2 EF_ABSORBSPIRITS;
-			if(checkversion(3))
+			if (checkversion(3))
 				getexp 100000,50000;
 			else
 				getexp 1000000,700000;
@@ -3104,6 +3119,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 				mes "I'm happy that";
 				mes "I can help you too!";
 				set aru_monas,16;
+				changequest 17011,17012;
 				close;
 			}
 			else if (aru_monas < 26) {

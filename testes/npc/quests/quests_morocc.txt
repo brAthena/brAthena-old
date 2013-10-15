@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.9/3.1/1.1                         |
+//   | Versões eA/rA/brA: 2.9/3.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest dos Binóculos, Placa-Pare,            |
 //   | Ressurreição de Satan Morroc, O Corvo do Destino,      |
@@ -21,6 +21,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Avassalador]                       |
+//   | 1.2 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -230,7 +231,7 @@ OnTouch:
 					mes "Ei, barman! Traga-me o";
 					mes "de sempre! Eu gosto de seu";
 					mes "estilo, aventureiro...";
-					set zeny,zeny-1000;
+					set Zeny, Zeny-1000;
 					next;
 					mes "[Litheron]";
 					mes "Certo, você pode entrar";
@@ -372,7 +373,7 @@ que_job01,82,95,3	script	Chefe do Bar#moc_main01	46,{
 						mes "pedir 800. Divirta-se,";
 						mes "camarada, e beba tão saborosamente";
 						mes "quanto você beberia água. ";
-						set zeny,zeny-800;
+						set Zeny, Zeny-800;
 						getitem 12112,1; // Sograt Tropical
 					}
 					close;
@@ -395,7 +396,7 @@ que_job01,82,95,3	script	Chefe do Bar#moc_main01	46,{
 						mes "ressentimentos, mas você ";
 						mes "já tem sorte o bastante só de entrar aqui.";
 						mes "Ei, aprecie sua bebida!";
-						set zeny,zeny-1000;
+						set Zeny, Zeny-1000;
 						getitem 12112,1; // Sograt Tropical
 						close;
 					}
@@ -431,7 +432,7 @@ que_job01,82,95,3	script	Chefe do Bar#moc_main01	46,{
 						mes "pedir 800. Divirta-se,";
 						mes "camarada, e beba tão saborosamente";
 						mes "quanto você beberia água. ";
-						set zeny,zeny-800;
+						set Zeny, Zeny-800;
 						getitem 12113,1; // Escarlate Praiano
 					}
 					close;
@@ -454,7 +455,7 @@ que_job01,82,95,3	script	Chefe do Bar#moc_main01	46,{
 						mes "ressentimentos, mas você ";
 						mes "já tem sorte o bastante só de entrar aqui.";
 						mes "Ei, aprecie sua bebida!";
-						set zeny,zeny-1000;
+						set Zeny, Zeny-1000;
 						getitem 12113,1; // Escarlate Praiano
 						close;
 					}
@@ -1811,9 +1812,10 @@ morocc,159,113,3	script	Chefe Balrog	752,{
 }
 
 moc_fild21,38,193,0	script	Morocc Timer#edq	-1,6,6,{
-OnInit:
-	set $@re_moc,0;
-	end;
+//OnInit:
+//	set $@re_moc,0;
+//	set $@re_moc_time$,"";
+//	end;
 
 OnTouch:
 	if ($@re_moc == 0) {
@@ -1860,7 +1862,7 @@ moc_fild21,178,239,0	script	Aglomeração Maligna#edq	844,1,1,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "Wah...!";
 		close2;
-		if($@re_moc == 1) {
+		if ($@re_moc == 1) {
 			set $@re_moc,2;
 			donpcevent "Satan Summon#edq::OnEnable";
 		}
@@ -1879,6 +1881,7 @@ OnInit:
 
 OnEnable:
 	enablenpc "Aglomeração Maligna#edq";
+	set $@re_moc_time$,"";
 	end;
 
 OnDisable:
@@ -1953,6 +1956,7 @@ OnDisable:
 
 OnMyMobDead:
 	set $@re_moc,3;
+	set $@re_moc_time$, gettimestr("%H%M%S",7);
 	mapannounce "moc_fild21","Vou deixar você viver um pouco mais. Você nunca vai me encontrar nesta fenda tempo-espaço!",bc_map,"0xFFFF00";
 	donpcevent "Fenda Tempo-Espaço#edq::OnEnable";
 	donpcevent "Satan Broadcast#edq::OnDisable";
@@ -2003,7 +2007,85 @@ prt_fild09,246,17,1	duplicatr(Guarda Continental#man)	Guarda Continental#man5  8
 moc_fild13,32,171,6	duplicatr(Guarda Continental#man)	Guarda Continental#man6  852
 moc_fild16,124,381,4	duplicatr(Guarda Continental#man)	Guarda Continental#man7  852
 moc_fild16,333,380,4	duplicatr(Guarda Continental#man)	Guarda Continental#man8  852
-moc_fild01,84,19,1	duplicatr(Guarda Continental#man)	Guarda Continental#man9  852 
+moc_fild01,84,19,1	duplicatr(Guarda Continental#man)	Guarda Continental#man9  852,{}
+
+sec_in02,14,43,5	script	Morroc GlobalVar Admin	971,{
+	callfunc "F_GM_NPC";
+	mes "[Helper]";
+	mes "Please enter the password and # button.";
+	next;
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "[Helper]";
+		mes "Please press the numbers we always sing about.";
+		close;
+	} else {
+		mes "[Helper]";
+		mes "Hello. I am a post office.";
+		mes "I am currently checking Morroc status.";
+		next;
+		mes "=============";
+		mes "Current State";
+		mes "=============";
+		mes "^3131FF<Morroc>^000000";
+		if ($@re_moc == 0) {
+			mes "Reset. Enable to summon Morroc.";
+			mes "^3131FF<Continental Guards>^000000";
+			mes "Enable to enter to moc_fild21 field.";
+		} else if ($@re_moc == 1) {
+			mes "^3131FF<Morroc>^000000";
+			mes "Some warrior entered after the reset. However, the warrior hasn't started the quest yet.";
+			mes "The warrior who has rebirth_moc_edq 4 and 7 is now enabled to summon Morroc.";
+			mes "^3131FF<Continental Guards>^000000";
+			mes "The warrior who has rebirth_moc_edq 4 ~ 7 is now enabled to enter to moc_fild21.";
+		} else if ($@re_moc == 2) {
+			mes "^3131FF<Morroc>^000000";
+			mes "Morroc has been summoned. After 90 minutes has passed, it will revert back to reset status.";
+			mes "^3131FF<Continental Guards>^000000";
+			mes "The warrior who has rebirth_moc_edq 4 ~ 7 is now enabled to enter to moc_fild21.";
+		} else if ($@re_moc == 3) {
+			mes "^3131FF<Morroc>^000000";
+			mes "Morroc has been killed. Death time is "+$@re_moc_time$+"(00 hr/00 min/00 sec).";
+			mes "After 6 hours later since the death time, it will be reset.";
+			mes "The warriors whom has remained in the field can continue the quest via Time Space Gap.";
+			mes "^3131FF<Continental Guards>^000000";
+			mes "Disabled to enter to moc_fild21 from outside of the field.";
+		} else {
+			mes "^3131FF<Morroc>^000000";
+			mes "Morroc has been killed. Death time is "+$@re_moc_time$+"(00 hr/00 min/00 sec).";
+			mes "After 6 hours later since the death time, it will be reset.";
+			mes "It has been already passed 30 minutes after Morroc's death, so warriors can not continue the quest even if they click the Time Space Gap.";
+			mes "^3131FF<Continental Guards>^000000";
+			mes "Disabled to enter to moc_fild21 from outside of the field.";
+		}
+		next;
+		mes "[Helper]";
+		mes "What do you want?";
+		next;
+		switch(select("Cancel.:Reset")) {
+		case 1:
+			mes "[Helper]";
+			mes "Alright.";
+			close;
+		case 2:
+			if (strnpcinfo(4) == "sec_in02")
+				mes "You can reset at moc_fild21 5 5.";
+			else {
+				mes "Reset starts.";
+				next;
+				donpcevent "Group of Evil#edq::OnEnable";
+				mes "Group of Evil NPC is appeared.";
+				mes "Time-Space Gap NPC is disappeared.";
+				mes "6 hours term timer is stopped.";
+				donpcevent "Satan Summon#edq::OnDisable";
+				mes "Morroc 90 minutes survival timer is stopped.";
+				mes "Morroc is being killed.";
+				mes "Now, Continental Guards will let players enter.";
+			}
+			close;
+		}
+	}
+}
+moc_fild21,5,5,5	duplicate(Morroc GlobalVar Admin)	Morroc GlobalVar Admin::MorrocAdmin_moc	971
 
 // O Corvo do Destino
 // ============================================================
@@ -2020,7 +2102,7 @@ moc_ruins,137,70,3	script	Homem com Livro#garas	48,{
 			next;
 			mes "^660000Vê-lo faz você rir: ele não parece estar muito melhor do que os cadáveres secos na pirâmide, mas é óbvio que ele está vivo e que não é um monstro. De certa forma, você se sente forçado a se aproximar deste homem peculiar.^000000";
 			next;
-			emotion 3;
+			emotion e_lv;
 			mes "[Homem com Livro]";
 			mes "Ah... Mammi...";
 			next;
@@ -2053,7 +2135,7 @@ moc_ruins,137,70,3	script	Homem com Livro#garas	48,{
 				mes "[Homem com Livro]";
 				mes "O quê? Não conhece Mammi, um dos três maiores ídolos de Rune-Midgard?";
 				next;
-				emotion 54;
+				emotion e_sigh;
 				mes "[Homem com Livro]";
 				mes "Puxa, você não sabe de nada, não é?! Bem, só de ver esse olhar estúpido, dá para ver que você é um aventureiro que corre por aí para cumprir tarefas sem sentido para os outros. Hehehehe!";
 				next;
@@ -2066,7 +2148,7 @@ moc_ruins,137,70,3	script	Homem com Livro#garas	48,{
 				mes "[Homem com Livro]";
 				mes "Ela até mencionou em uma entrevista ao 'Diário de Morroc' que quer conhecer um homem que adore livros.";
 				next;
-				emotion 38;
+				emotion e_awsm;
 				mes "[Homem com Livro]";
 				mes "Isso significa que... Ela está esperando por alguém como eu. Hehehe!";
 				mes "Veja, cada livro da Biblioteca de Rune-Midgard tem o nome Benjamin escrito na ficha... Esse sou eu!";
@@ -2196,12 +2278,12 @@ moc_ruins,137,70,3	script	Homem com Livro#garas	48,{
 			next;
 			mes "[Benjamin]";
 			mes "Grrrr... Mammi! Aqui estou, seguindo seus nobres gostos e lendo um livro tão raro! Mammi...!";
-			emotion 14;
+			emotion e_lv2;
 			next;
 			mes "[Benjamin]";
 			mes "Fico tão empolgado quando penso em ter uma conversa profunda com Mammi sobre literatura! Êêê!";
 			mes "Preciso ler este livro agora mesmo. Hehehe!";
-			emotion 2;
+			emotion e_ho;
 			next;
 			mes "[Benjamin]";
 			mes "Ops, não posso esquecer de pagar você. Sou um homem educado, sabe?";
@@ -3349,7 +3431,7 @@ yuno_in04,167,120,3	script	Livro Desgastado#garas	111,{
 		cutin "oliver_smile",2;
 		mes "[Oliver Hilpert]";
 		mes "Lady Mammi!";
-		emotion 14;
+		emotion e_lv2;
 		next;
 		mes "^660000Sim, era o álbum de fotos de Mammi, considerada por Benjamin de Morroc uma das três maiores celebridades do Reino de Rune-Midgard. Deve ser por isso que Oliver está quase guinchando de alegria.^000000";
 		emotion e_dots,1;
@@ -3376,12 +3458,12 @@ yuno_in04,167,120,3	script	Livro Desgastado#garas	111,{
 		mes "[Oliver Hilpert]";
 		mes "...Oh!";
 		cutin "mami01",4;
-		emotion 3;
+		emotion e_lv;
 		next;
 		mes "[Oliver Hilpert]";
 		mes "...Ooooh!";
 		cutin "mami02",4;
-		emotion 3;
+		emotion e_lv;
 		next;
 		cutin "oliver_smile",2;
 		mes "[Oliver Hilpert]";
@@ -3403,7 +3485,7 @@ yuno_in04,167,120,3	script	Livro Desgastado#garas	111,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "...............";
 		mes "Eu... Entendo...";
-		emotion 4,1;
+		emotion e_swt,1;
 		next;
 		mes "[Oliver Hilpert]";
 		mes "Humm...";

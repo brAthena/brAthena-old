@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.2/1.2                         |
+//   | Versões eA/rA/brA: 1.2/1.3/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest de Criação dos Itens Divinos.         |
 //   |--------------------------------------------------------|
@@ -20,12 +20,12 @@
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Zangetsu]                          |
 //   | 1.2 Otimização [lututuiBR]                             |
+//   | 1.3 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
-	set .@GID,getcharid(2);
 	mes "[Anão Grunburti]";
 	mes "Um ser humano?!";
 	mes "Esta terra está cheia de sua espécie.";
@@ -75,8 +75,9 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 		mes "Pelo menos eu tive a sorte de encontrar uma caverna. Nós os anões somos subterrâneos, afinal de conta queremos ter uma vida mais confortável.";
 		close;
 	case 3:
-		if (($God1 < 100) || ($God2 < 100) || ($God3 < 100) || ($God4 < 100)){
-			if (($God1 < 49) && ($God2 < 49) && ($God3 < 49) && ($God4 < 49) && (strcharinfo(0) != getguildmaster(.@GID))) {
+		set .@GID,getcharid(2);
+		if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
+			if (($God1 >= $@god_check1) && ($God2 >= $@god_check1) && ($God3 >= $@god_check1) && ($God4 >= $@god_check1) && (strcharinfo(0) == getguildmaster(.@GID))) {
 				mes "Nós os anões, temos muito orgulho de demonstrar as nossas competências a frente de um humilde humano!";
 				next;
 				mes "[Anão Grunburti]";
@@ -283,7 +284,6 @@ gld_dun01,28,85,0	script	Grunburti#1::GodDwarf	826,{
 		close;
 	}
 }
-
 gld_dun02,85,84,0	duplicate(GodDwarf)	Grunburti#2	826
 gld_dun03,92,105,0	duplicate(GodDwarf)	Grunburti#3	826
 gld_dun04,268,230,0	duplicate(GodDwarf)	Grunburti#4	826
@@ -317,7 +317,7 @@ que_god01,213,128,0	duplicate(GodEntrance)	 #que_godnpc3	111
 
 que_god01,154,112,4	script	Grunburti#god	826,{
 	mes "[Anão Grunburti]";
-	if (($God1 < 100) || ($God2 < 100) || ($God3 < 100) || ($God4 < 100)){
+	if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 		mes "Um dos itens dos deuses foi criado, e os selos foram restaurados.";
 		mes "Você terá que esperar até que todos eles sejam quebrados novamente...!";
 		next;
@@ -452,7 +452,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 			mes "Vinte anos atrás, eu nunca acreditaria que algo tão poderoso e perigoso como o Megingjard acabaria nas mãos de um ser humano ...";
 			next;
 			mes "[Anão Grunburti]";
-			if (($God1 < 100) || ($God2 < 100) || ($God3 < 100) || ($God4 < 100)){
+			if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 				mes "Mas ...";
 				mes "Os selos já foram restaurados.";
 				mes "Você terá que esperar até que todos eles sejam liberados novamente...!";
@@ -515,7 +515,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 			mes "Aguarde um momento...";
 			next;
 			mes "[Anão Grunburti]";
-			if (($God1 < 100) || ($God2 < 100) || ($God3 < 100) || ($God4 < 100)){
+			if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 				mes "Mas ...";
 				mes "Os selos já foram restaurados.";
 				mes "Você terá que esperar até que todos eles sejam liberados novamente...!";
@@ -582,7 +582,7 @@ que_god01,154,112,4	script	Grunburti#god	826,{
 			mes "Marque minhas palavras...";
 			next;
 			mes "[Anão Grunburti]";
-			if (($God1 < 100) || ($God2 < 100) || ($God3 < 100) || ($God4 < 100)){
+			if (($God1 < $@god_check2) || ($God2 < $@god_check2) || ($God3 < $@god_check2) || ($God4 < $@god_check2)){
 				mes "Mas ...";
 				mes "Os selos já foram restaurados.";
 				mes "Você terá que esperar até que todos eles sejam liberados novamente...!";
@@ -631,12 +631,7 @@ OnTimer610000:
 	end;
 
 OnTimer612000:
-	areawarp "que_god01",154,67,4,7,"prontera",156,324;
-	areawarp "que_god01",154,82,4,7,"prontera",156,324;
-	areawarp "que_god01",145,99,9,9,"prontera",156,324;
-	areawarp "que_god01",164,99,9,9,"prontera",156,324;
-	areawarp "que_god01",145,118,9,9,"prontera",156,324;
-	areawarp "que_god01",164,118,9,9,"prontera",156,324;
+	donpcevent "god_wep_warpmaster::OnEnable";
 	end;
 
 OnTimer615000:
@@ -646,52 +641,78 @@ OnTimer615000:
 	end;
 }
 
-/*
-que_god01,293,3,0	script	Itens Divinos#god	90,{
+que_god01,169,82,0	script	god_wep_warpmaster	-1,{
+OnEnable:
+	for(set .@i,1; .@i<=6; set .@i,.@i+1)
+		enablenpc "god_failwarp#"+.@i;
+	end;
+OnDisable:
+	for(set .@i,1; .@i<=6; set .@i,.@i+1)
+		disablenpc "god_failwarp#"+.@i;
+	end;
+}
+
+que_god01,154,67,0	script	god_failwarp#1	-1,4,7,{
+OnInit:
+	disablenpc strnpcinfo(0);
+	end;
+OnTouch:
+	warp "prontera",156,324;
+	end;
+}
+que_god01,154,82,0	duplicate(god_failwarp#1)	god_failwarp#2	-1,4,7
+que_god01,145,99,0	duplicate(god_failwarp#1)	god_failwarp#3	-1,9,9
+que_god01,164,99,0	duplicate(god_failwarp#1)	god_failwarp#4	-1,9,9
+que_god01,145,118,0	duplicate(god_failwarp#1)	god_failwarp#5	-1,9,9
+que_god01,164,118,0	duplicate(god_failwarp#1)	god_failwarp#6	-1,9,9
+
+// Original name: "Godly Item Quests Related#god"
+que_god01,293,3,0	script	Quests Itens Divinos#god	90,{
+	callfunc "F_GM_NPC";
 	mes "[Use em caso de emergência]";
-	mes "Digite sua senha.";
-	mes "Se você deseja cancelar, digite 0.";
+	mes "Por favor, digite a senha.";
+	mes "Se desejar cancelar, digite 0.";
 	next;
-	input .@input,0,4001;
-	mes "[Use em caso de emergência]";
-	if (.@input < 0 || .@input > 4000) {
-		mes "A senha está incorreta.";
-		close;
-	} else if(.@input == 0) {
-		mes "Você cancelou o seu pedido.";
-		close;
-	} else if(.@input == 1854) {
-		mes "Quais os serviços que você gostaria de usar?";
-		next;
-		switch(select("Desligue Warps.:Redefinir Tempo.:Redefinir sala de chat.")) {
+	set .@i, callfunc("F_GM_NPC",1854,0,0,4000);
+	if (.@i == -2) {
 		mes "[Use em caso de emergência]";
+		mes "Senha incorreta.";
+		close;
+	} else if (.@i == -1) {
+		mes "[Use em caso de emergência]";
+		mes "Você cancelou a requisição.";
+		close;
+	} else if (.@i == 0) {
+		close;
+	} else {
+		mes "[Use em caso de emergência]";
+		mes "Quais serviços gostaria de usar?";
+		next;
+		switch(select("Desligar Portais.:Resetar Timer.:Resetar sala de chat.")) {
 		case 1:
-			mes "Pressione o botão 'Próximo' para desligar warps.";
-			next;
-			areawarp "que_god01",154,67,4,7,"prontera",156,324;
-			areawarp "que_god01",154,82,4,7,"prontera",156,324;
-			areawarp "que_god01",145,99,9,9,"prontera",156,324;
-			areawarp "que_god01",164,99,9,9,"prontera",156,324;
-			areawarp "que_god01",145,118,9,9,"prontera",156,324;
-			areawarp "que_god01",164,118,9,9,"prontera",156,324;
 			mes "[Use em caso de emergência]";
-			mes "Você conseguiu desligar os warps.";
+			mes "Pressione o botão 'Prox.' para desligar os portais.";
+			next;
+			donpcevent "god_wep_warpmaster::OnDisable";
+			mes "[Use em caso de emergência]";
+			mes "Você desligou os portais com sucesso.";
 			close;
 		case 2:
-			mes "Pressione o botão "Próximo" para repor o temporizador.";
+			mes "[Use em caso de emergência]";
+			mes "Pressione o botão 'Prox.' para resetar o timer.";
 			next;
 			donpcevent "Grunburti#god::OnEnable";
 			mes "[Use em caso de emergência]";
-			mes "Você conseguiu repor o temporizador.";
+			mes "Você resetou o timer com sucesso.";
 			close;
 		case 3:
-			mes "Por favor, pressione o botão 'Próximo' para redefinir a sala de chat arena em que_god01.";
-			next;
-			donpcevent " #god_hopewarp1::OnReset";
 			mes "[Use em caso de emergência]";
-			mes "Você acabou de redefinir a sala de chat arena (Laboratório de Entrada 1/2).";
+			mes "Pressione o botão 'Prox.' para resetar a sala de chat da arena em que_god01.";
+			next;
+			donpcevent "#god_hopewarp1::OnReset";
+			mes "[Use em caso de emergência]";
+			mes "Você resetou a sala de chat da arena (Laboratory Entrance 1/2) com sucesso.";
 			close;
 		}
 	}
 }
-*/

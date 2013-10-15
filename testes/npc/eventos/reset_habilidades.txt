@@ -28,30 +28,30 @@
 
 yuno,138,187,4	script	Hipnotizadora	124,{
 	mes "[^D5A500Hipnotizadora^000000]";
-	if(MISC_QUEST & 1024){
+	if (MISC_QUEST & 1024){
 		mes "Desculpe mas você só pode completar este evento uma vez.";
 		close;
 	}
-	if(BaseLevel < 60) {
+	if (BaseLevel < 60) {
 		mes "Por favor, retorne quando chegar ao Nv. de Base 60.";
 		close;
 	}
-	if(SkillPoint != 0) {
+	if (SkillPoint != 0) {
 		mes "Você precisará usar todos os seus pontos de habilidade caso queira continuar.";
 		close;
 	}
-	if(Weight || checkfalcon() || checkcart() || checkriding()) {
+	if (Weight || checkfalcon() || checkcart() || checkriding()) {
 		mes "Você gostaria de resetar suas habilidades?";
 		mes "Desculpe-me, mas...";
 		next;
 		mes "[^D5A500Hipnotizadora^000000]";
-		if(Weight)
+		if (Weight)
 			mes "Você não pode resetar suas habilidades enquanto estiver carregando algum item.";
-		else if(checkcart())
+		else if (checkcart())
 			mes "Por favor, livre-se do seu Carrinho para continuarmos.";
-		else if(checkfalcon())
+		else if (checkfalcon())
 			mes "Por favor, livre-se do seu Falcão para continuarmos.";
-		else if(checkriding())
+		else if (checkriding())
 			mes "Por favor, livre-se do seu PecoPeco para continuarmos.";
 		next;
 		mes "[^D5A500Hipnotizadora^000000]";
@@ -91,7 +91,7 @@ yuno,138,187,4	script	Hipnotizadora	124,{
 		mes "[^D5A500Hipnotizadora^000000]";
 		mes "O total de zenys necessários para resetar as habilidades é de ^529DFF" + @zeny + "zenys^000000.";
 		next;
-		if(Zeny < @zeny) {
+		if (Zeny < @zeny) {
 			mes "[^D5A500Hipnotizadora^000000]";
 			mes "Parece que você não tem dinheiro suficiente.";
 			emotion e_hmm;

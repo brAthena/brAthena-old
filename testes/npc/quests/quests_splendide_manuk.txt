@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/2.4a/1.1                         |
+//   | Versões eA/rA/brA: ??/2.8/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Coleção de quests do episódio 13.2.         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Hold, Holy, Zangetsu]              |
+//   | 1.2 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -73,13 +74,13 @@ function Teleporteagnt;
 			mes "Agora você poderá retornar diretamente para cá.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "[Agente da Pata de Gato]";
 				mes "Me desculpe, mas você precisa ter Habilidades Básicas nível 6 para usar o serviço de Armazém.";
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Agente da Pata de Gato]";
 				mes "Obrigado, seu Armazém será aberto agora mesmo.";
 				close2;
@@ -112,13 +113,13 @@ function Teleporteagnt;
 			mes "Agora você poderá retornar diretamente para cá.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "[Agente da Pata de Gato]";
 				mes "Me desculpe, mas você precisa ter Habilidades Básicas nível 6 para usar o serviço de Armazém.";
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Agente da Pata de Gato]";
 				mes "Obrigado, seu Armazém será aberto agora mesmo.";
 				close2;
@@ -223,12 +224,12 @@ function Teleporteagnt;
 			mes "Agora você poderá retornar diretamente para cá.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "Me desculpe, mas você precisa ter Habilidades Básicas nível 6 para usar o serviço de Armazém.";
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Agente da Pata de Gato]";
 				mes "Obrigado, seu Armazém será aberto agora mesmo.";
 				close2;
@@ -2255,7 +2256,7 @@ spl_in02,236,92,5	script	Arc#ep13md_l02	447,{
 			mes "Me desculpe, isso é tudo que posso lhe dar.";
 			set ep13_mdrama,27;
 			getitem 6081,25; // <-- Moeda de Esplendor
-			if(checkversion(3))
+			if (checkversion(3))
 				getexp 120000,10000;
 			else
 				getexp 1200000,100000;
@@ -2577,7 +2578,7 @@ manuk,252,116,3	script	Manuk Garton#ep13_2day	450,{
 				completequest 7074;
 				completequest 7075;
 				set ep13_2_days01,2;
-				if(checkversion(3))
+				if (checkversion(3))
 					getexp 50000,30000;
 				else
 					getexp 500000,300000;
@@ -3544,7 +3545,7 @@ mid_camp,197,237,3	script	Engenheiro Mecânico#1	869,{
 				mes "Espero que este anel seja de grande ajuda nas suas viagens por outros mundos.";
 				completequest 8253;
 				set ep13_2_rhea,100;
-				if(checkversion(3))
+				if (checkversion(3))
 					getexp 200000,5000;
 				else
 					getexp 1000000,300000;
@@ -4315,7 +4316,7 @@ function	script	jewel_13_2	{
 			mes "- há uma Gema "+getarg(0)+" -";
 			mes "- semi-enterrada. -";
 			next;
-			if(select("Desenterrar a Gema:Esquecer isso")==2) {
+			if (select("Desenterrar a Gema:Esquecer isso")==2) {
 				mes "- Você espalhou um pouco de terra sobre a Gema -";
 				mes "- e deixou a gema como estava. -";
 				next;
@@ -4418,73 +4419,64 @@ OnTimer300000:
 	end;
 }
 
-/*
 mid_camp,7,3,0	script	Translator Preparation#1	708,{
-	mes "[Plot13 Translator Quest Preparation]";
-	mes "Input password.";
+	callfunc "F_GM_NPC";
+	mes "[EP13 Translator Quest Preparation]";
+	mes "First, you must confirm that you are my master.";
 	next;
-	input .@input; //,0,2000;
-	if (.@input == 0) {
+	set .@i, callfunc("F_GM_NPC",1854,0);
+	if (.@i == -1) {
 		mes "[EP 13 Translator Quest Preparation]";
 		mes "Cancelled";
 		close;
-	}
-	else if (.@input == 1854) {
+	} else if (.@i == 0) {
 		mes "[EP 13 Translator Quest Preparation]";
-		mes "I'm the provider of ep13.2 Translator Quest's quest item's NPC" <--Not my fault, they used bad chinese grammar in first place;
+		mes "Try again.";
+		close;
+	} else {
+		mes "[EP 13 Translator Quest Preparation]";
+		mes "I'm the NPC who gives the Episode 13.2 Translator Quest's Linked-Quest Items.";
 		next;
-		mes "What you want?";
+		mes "What would you like to do?";
 		next;
-		switch(select("Finish quest:Accept fairy / giant meetup quest")) {
+		switch(select("Receive EP13.1 Quest:Receive Quest Window - Meeting with Fairy and Giant")) {
 		case 1:
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Acquired the report's quest completion item";
+			mes "Episode 13.1 - The Report Quest Reward Item Received.";
 			next;
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Current report quest's item is "+ ep13_1_edq +" ";
-			mes "Start Quest?";
+			mes "Currently the Report Quest's Set Item is "+ep13_1_edq+".";
+			mes "Do you want to proceed?";
 			next;
-			switch(select("Yes:No")) {
-			case 1:
+			if (select("No:Yes") == 1) {
 				mes "[EP 13 Translator Quest Preparation]";
 				mes "Cancelled";
 				close;
-			case 2:
-				break;
 			}
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Acquired the report's quest completion item";
+			mes "Episode 13.1 - The Report Quest Reward Item Received.";
 			set ep13_1_edq,14;
 			close;
 		case 2:
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Accept the fairy / giant meetup quest";
+			mes "Episode 13.1 - Receiving the Quest window - Meeting with Fairy and Giant.";
 			next;
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Start Quest?";
+			mes "Do you want to proceed?";
 			next;
-			switch(select("Yes:No")) {
-			case 1:
+			if (select("No:Yes") == 1) {
 				mes "[EP 13 Translator Quest Preparation]";
 				mes "Cancelled";
 				close;
-			case 2:
-				break;
 			}
 			mes "[EP 13 Translator Quest Preparation]";
-			mes "Acquired the report's quest completion item";
+			mes "Episode 13.1 - The Report Quest Reward Item Received.";
 			setquest 2158;
 			setquest 2159;
 			close;
 		}
 	}
-	else {
-		mes "[EP 13 Translator Quest Preparation]";
-		mes "Please try again";
-		close;
-	}
 }
-*/
 
 /*
     Quests Diárias:
@@ -7141,30 +7133,27 @@ nyd_dun02,56,264,0	warp	nynm_dun2f_to_1f	1,1,nyd_dun01,249,143
 
 //==============================================================================
 nyd_dun02,1,1,0	script	ep13_nd2f_mng	844,{
-/*
+	callfunc "F_GM_NPC";
 	mes "Digite a senha.";
 	next;
-	input .@input; //,0,4000;
-	if (.@input == 1854) {
-		mes "Redefinir enigma?";
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
+		mes "Resetar dispositivos de controle?";
 		next;
 		switch(select("Sim:Não")) {
 		case 1:
 			donpcevent "ep13_nd2f_mng::OnReset";
 			set $@08_ep13nydun02_in,0;
-			mes "Quebra-Cabeça redefinido";
+			mes "Feito.";
 			close;
 		case 2:
 			mes "Cancelado.";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "Inválido.";
 		close;
 	}
-*/
-	end;
+
 OnReset:
 	donpcevent "ep13_warp_s1::OnEnable";
 	donpcevent "ep13_warp_s3::OnEnable";

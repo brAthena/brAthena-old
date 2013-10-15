@@ -26,7 +26,7 @@
 // Lauds
 //============================================================
 prontera,182,214,4	script	Lauds#Memorial	58,{
-	if(Memorial08 < 1) {
+	if (Memorial08 < 1) {
 		mes "[Mad Sago Lauds]";
 		mes "Hei, Você!";
 		mes "O que você está fazendo aí!?";
@@ -38,7 +38,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		next;
 		mes "[Mad Sago Lauds]";
 		mes "Oque é isto?";
-		emotion 0;
+		emotion e_gasp;
 		next;
 		mes "[Mad Sago Lauds]";
 		mes "Onde está a sua toalha!?";
@@ -81,7 +81,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		close;
 	}
 
-	else if(Memorial08 == 1) {
+	else if (Memorial08 == 1) {
 		if (countitem(1059) < 30 || countitem(914) < 20) {
 			mes "[Mad Sago Lauds]";
 			mes "Quais são esses? Eles não são";
@@ -90,7 +90,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 			mes "novamente??!";
 			mes "Traga-me ^FF000030 Tecidos e 20 Felpas^000000.";
 			close;
-		}else{
+		} else {
 			mes "***Mad Sago Lauds parece estar";
 			mes "resmungando com sí mesmo***";
 			next;
@@ -114,7 +114,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		}
 	}
 	
-	else if(Memorial08 == 2) {
+	else if (Memorial08 == 2) {
 		mes "[Mad Sago Lauds]";
 		mes "Ah, agora você tem uma nova toalha macia Até cheguei a colocar o seu nome.";
 		next;
@@ -136,20 +136,20 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		close;
 	}
 
-	else if(Memorial08 == 3) {
+	else if (Memorial08 == 3) {
 		mes "[Mad Sago Lauds]";
 		mes "O que você está fazendo aqui?";
 		mes "Disse-lhe para ir falar com Grast em Prontera!";
 		close;
 	}
 
-	else if(Memorial08 == 4 || Memorial08 == 5 || Memorial08 == 6) {
+	else if (Memorial08 == 4 || Memorial08 == 5 || Memorial08 == 6) {
 		mes "[Mad Sago Lauds]";
 		mes "Vá ajudar Grast, e depois volte.";
 		close;
 	}
 
-	else if(Memorial08 == 7) {
+	else if (Memorial08 == 7) {
 		mes "[Mad Sago Lauds]";
 		mes "Ah, você trouxe tudo.";
 		mes "Hahaha!";
@@ -171,38 +171,38 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		close;
 	}
 
-	else if(Memorial08 == 8) {
+	else if (Memorial08 == 8) {
 		mes "[Mad Sago Lauds]";
 		mes "Pare de tentar me dar o seu lixo!";
 		mes "Vá para a placa ás 12 horas direção em Prontera para a sua jornada!";
 		close;
 	}
 	
-	else if(Memorial08 >= 9) {
+	else if (Memorial08 >= 9) {
 		set .@RandomMsg, rand(1,5);
-		if(.@RandomMsg == 1) {
+		if (.@RandomMsg == 1) {
 			mes "[Mad Sago Lauds]";
 			mes "Sem Pânico!";
-			emotion 0;
+			emotion e_gasp;
 			close;
 		}
-		else if(.@RandomMsg == 2) {
+		else if (.@RandomMsg == 2) {
 			mes "[Mad Sago Lauds]";
 			mes "Vida... é como um suco de laranja.";
 			mes "É laranja e mole, e tem alguns carossos e algumas pessoas têm a metade de um pequeno almoço...";
 			close;
 		}
-		else if(.@RandomMsg == 3) {
+		else if (.@RandomMsg == 3) {
 			mes "[Mad Sago Lauds]";
 			mes "Houve um ponto nessa história, mas alguem escapou temporariamente da mente cronista.";
 			close;
 		}
-		else if(.@RandomMsg == 4) {
+		else if (.@RandomMsg == 4) {
 			mes "[Mad Sago Lauds]";
 			mes "42!";
 			close;
 		}
-		else if(.@RandomMsg == 5) {
+		else if (.@RandomMsg == 5) {
 			mes "[Mad Sago Lauds]";
 			mes "É um erro pensar que você pode resolver os principais problemas de um major apenas com batatas.";
 			close;
@@ -213,13 +213,13 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 // Memorial Plaque
 //============================================================
 prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
-	if(Memorial08 < 8) {
+	if (Memorial08 < 8) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "- Placa empoeirada .-";
 		close;
 	}
 	
-	else if(Memorial08 == 8) {
+	else if (Memorial08 == 8) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "- Placa empoeirada .-";
 		mes "'Você deve ser o que Lauds estava falando'";
@@ -230,7 +230,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		goto L_CleanPlaque;
 	}
 	
-	else if(Memorial08 >= 9) {
+	else if (Memorial08 >= 9) {
 		goto L_CleanPlaque;
 	}
 	
@@ -241,7 +241,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "-e nem grava as suas ações,-";
 		mes "-ainda vai se lembrar como eles honraram a terra.-";
 		mes "-Daniel Webster-";
-		if(Memorial08 == 9) {
+		if (Memorial08 == 9) {
 			getexp 93750,43750;
 		}
 		next;
@@ -250,7 +250,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "-Talvez eu não tenha  ido para onde eu queria ir,-";
 		mes "-mas acho que acabou precisando ser.-";
 		mes "- Douglas Adams.-";
-		if(Memorial08 == 9) { 
+		if (Memorial08 == 9) { 
 			getexp 93750,43750;
 		}
 		next;
@@ -260,7 +260,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "-Não é o desejo  de  superar todos os outros a qualquer custo,-";
 		mes "- mas o desejo  de  servir aos outros em custe o que custar. -";
 		mes "- Arthur Ashe -";
-		if(Memorial08 == 9) { 
+		if (Memorial08 == 9) { 
 			getexp 93750,43750;
 			set Memorial08,10;
 		}
@@ -270,14 +270,14 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 // Grast
 //============================================================
 prontera,150,270,4	script	Grast#Memorial	900,{
-	if(Memorial08 < 3) {
+	if (Memorial08 < 3) {
 		mes "[Grast]";
 		mes "o Dia Memorial é triste e ao mesmo tempo glorioso.";
 		mes "Gostaria de saber  quantas  pessoas se lembram deles...";
 		close;
 	}
 	
-	else if(Memorial08 == 3) {
+	else if (Memorial08 == 3) {
 		mes "[Grast]";
 		mes "Ah, isso não é uma toalha de memória?";
 		mes "Estou tão feliz de conhecer alguém que compreende o significado do Dia Memorial.";
@@ -295,7 +295,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		close;
 	}
 
-	else if(Memorial08 == 4) {
+	else if (Memorial08 == 4) {
 		if (countitem(501) < 1 || countitem(506) < 1 || countitem(656) < 1 || countitem(602) < 1) {
 			mes "[Grast]";
 			mes "Oops, você  não  trouxe  todos os materiais.";
@@ -311,7 +311,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 				goto L_GiveUp;
 			}
 			goto L_Continue;
-		}else{
+		} else {
 			mes "[Grast]";
 			mes "Ah,você trouxe os materiais que eu pedi.";
 			next;
@@ -326,7 +326,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		}
 	}
 	
-	else if(Memorial08 == 5) {
+	else if (Memorial08 == 5) {
 		if (countitem(1065) < 1 || countitem(610) < 1 || countitem(717) < 1 || countitem(747) < 1 || countitem(517) < 1 || countitem(515) < 1) {
 			mes "[Grast]";
 			mes "Oops, você  não  trouxe  todos os materiais.";
@@ -341,7 +341,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 				goto L_GiveUp;
 			}
 			goto L_Continue;
-		}else{
+		} else {
 			mes "[Grast]";
 			mes "Ah, você trouxe tudo que eu pedi.";
 			mes "Hmm, eu acho que você precisa um pouco mais.";
@@ -353,7 +353,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		}
 	}
 	
-	else if(Memorial08 == 6) {
+	else if (Memorial08 == 6) {
 		if (countitem(643) < 1 || countitem(12018) < 1 || countitem(741) < 1 || countitem(745) < 1) {
 			mes "[Grast]";
 			mes "Oops, você  não  trouxe  todos os materiais.";
@@ -372,7 +372,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 				goto L_GiveUp;
 			}
 			goto L_Continue;
-		}else{
+		} else {
 			mes "[Grast]";
 			mes "Você trouxe o  materiais  que eu pedi?";
 			mes "Ah, obrigado pelo seu árduo trabalho você trouxe todos eles.";
@@ -408,14 +408,14 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		}
 	}
 	
-	else if(Memorial08 == 7) {
+	else if (Memorial08 == 7) {
 		mes "[Grast]";
 		mes "Você conheceu Laudes?";
 		mes "Eu espero que você se lembre de sua liberdade e felicidade são construídos sobre milhares de vidas sacrificados na guerra.";
 		close;
 	}
 
-	else if(Memorial08 >= 8) {
+	else if (Memorial08 >= 8) {
 		mes "[Grast]";
 		mes "Uma toalha é a coisa útil que um aventureiro pode ter.";
 		close;

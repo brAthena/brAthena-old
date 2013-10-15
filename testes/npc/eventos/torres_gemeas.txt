@@ -39,7 +39,7 @@ prontera,146,92,4	script	Torres Gêmeas#tg1::Torres-Gêmeas	812,{
 	mes "Por esta razão, estamos aqui ao seu serviço com a nossa magia especial.";
 	mes "Por favor, deixe-nos saber.";
 	next;
-	if(select("Irei aceitar a sua oferta.:Vou deixar para uma outra hora.") == 1) {
+	if (select("Irei aceitar a sua oferta.:Vou deixar para uma outra hora.") == 1) {
 	mes "[Torres Gêmeas]";
 	mes "A paixão ardente de um aventureiro,";
 	mes "O desejo de explorar os reinos desconhecidos,";

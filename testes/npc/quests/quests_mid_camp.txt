@@ -18,6 +18,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adicionado função de Administração [lututuiBR]     |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -263,7 +264,7 @@ prt_castle,83,67,5	script	Recruiter for the Brave	109,{
 		next;
 		changequest 10064,10065;
 		set ep13_ryu,9;
-		if(checkversion(3))
+		if (checkversion(3))
 			getexp 66000,21000;
 		else
 			getexp 660000,210000;
@@ -1922,23 +1923,25 @@ moc_ruins,137,89,5	script	Time-Space Gap Guard	707,{
 	close;
 }
 
-/*
 moc_fild22b,370,370,3	script	Allied Manager#gm	100,{
+	callfunc "F_GM_NPC";
 	mes "[Manager]";
 	mes "Please enter the password.";
 	next;
-	input .@input;
-	if ((.@input < 0) || (.@input > 9000) ) {
+	set .@i, callfunc("F_GM_NPC",8028,0,0,9000);
+	if (.@i == -2) {
 		mes "[Manager]";
 		mes "Incorrect password.";
 		close;
-	}
-	else if (.@input == 0) {
+	} else if (.@input == -1) {
 		mes "[Manager]";
 		mes "Please enter a password other then 0.";
 		close;
-	}
-	else if (.@input == 8028) {
+	} else if (.@i == 0) {
+		mes "[Manager]";
+		mes "Nevermind then.";
+		close;
+	} else {
 		mes "[Manager]";
 		mes "What would you like to do?";
 		next;
@@ -1955,13 +1958,7 @@ moc_fild22b,370,370,3	script	Allied Manager#gm	100,{
 			close;
 		}
 	}
-	else {
-		mes "[Manager]";
-		mes "Nevermind then.";
-		close;
-	}
 }
-*/
 
 // New Surroundings
 //============================================================ 
@@ -2668,7 +2665,7 @@ mid_camp,261,284,4	script	Instructor#ep13bs	405,{
 			mes "Hehe, don't mention it.";
 			mes "And Otto said that he";
 			mes "would come to see you.";
-			emotion 40,1;
+			emotion e_shy,1;
 			next;
 			mes "[Instructor Lugen]";
 			mes "Did he?";
@@ -2940,7 +2937,7 @@ mid_camp,264,263,4	script	Diego#ep13bs	931,{
 		case 1:
 			mes "[Diego]";
 			mes "Thanks.";
-			emotion 15;
+			emotion e_thx;
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "What do you need?";
@@ -3204,12 +3201,12 @@ mid_camp,160,298,4	script	Jan#ep13bs	865,{
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "Yes...";
-			emotion 4,1;
+			emotion e_swt,1;
 			next;
 			mes "[Jan]";
 			mes "Ahhh, it's exciting~";
 			mes "I love it.";
-			emotion 38;
+			emotion e_awsm;
 			next;
 			mes "[Jan]";
 			mes "I want to unwrap it right now~";
@@ -3283,7 +3280,7 @@ mid_camp,30,168,4	script	Gerard#ep13bs	939,{
 			mes "I was considering";
 			mes "going back to the camp.";
 			mes "I really appreciate this.";
-			emotion 37;
+			emotion e_rice;
 			next;
 			mes "["+ strcharinfo(0) +"]";
 			mes "...";
@@ -3351,7 +3348,7 @@ man_fild01,80,248,4	script	Alberto#ep13bs	934,{
 			mes "I finally got it.";
 			mes "My coat...sniff.";
 			mes "It's freezing here.";
-			emotion 28;
+			emotion e_sob;
 			next;
 			mes "[Alberto]";
 			mes "Sniff...";
@@ -3391,7 +3388,7 @@ man_fild01,80,248,4	script	Alberto#ep13bs	934,{
 			mes "[Alberto]";
 			mes "It's so cold here~~";
 			mes "the wind chills me to the bones~";
-			emotion 28;
+			emotion e_sob;
 			close;
 		}
 	}
@@ -3439,7 +3436,7 @@ mid_camp,166,248,4	script	Sorcerer#ep13bs	937,{
 	next;
 	mes "[Biolay]";
 	mes "I want to go back to my house.";
-	emotion 28;
+	emotion e_sob;
 	close;
 }
 
@@ -4340,7 +4337,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 		mes "Undiscovered life!";
 		mes "Everything about this world excites me.";
 		next;
-		emotion 14;
+		emotion e_lv2;
 		mes "[Botanist]";
 		mes "Oh, okay... Ah-hah!";
 		mes "This is how it goes...";
@@ -4353,7 +4350,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 			mes "Undiscovered life!";
 			mes "Everything about this world excites me.";
 			next;
-			emotion 14;
+			emotion e_lv2;
 			mes "[Botanist]";
 			mes "Oh, okay... Ah-hah!";
 			mes "This is how it goes...";
@@ -4364,7 +4361,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 			mes "Undiscovered life!";
 			mes "Everything about this world excites me.";
 			next;
-			emotion 14;
+			emotion e_lv2;
 			emotion e_dots,1;
 			mes "[Botanist]";
 			mes "Oh, okay... Ah-hah!";
@@ -4382,7 +4379,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 				next;
 				break;
 			case 2:
-				emotion 14,1;
+				emotion e_lv2,1;
 				mes "["+strcharinfo(0)+"]";
 				mes "I agree. There's so much to see around here!";
 				next;
@@ -4430,7 +4427,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 			mes "[Botanist]";
 			mes "Usually twins share the same feelings and ideas, I can see what he does or thinks if I try hard.";
 			next;
-			emotion 54;
+			emotion e_sigh;
 			mes "[Botanist]";
 			mes "Let me see what Rumis is doing right now... Oh, he's picking his nose with his left hand and eating a slice of bread with his right.";
 			mes "God, how disgusting!";
@@ -4450,7 +4447,7 @@ mid_camp,240,270,3	script	Botanist#ep13	750,{
 				next;
 				break;
 			case 2:
-				emotion 54;
+				emotion e_sigh;
 				mes "[Botanist]";
 				mes "Oh,";
 				mes "won't you cut me some slack? I was just joking to melt the ice.";
@@ -5590,7 +5587,7 @@ mid_camp,165,245,0	script	Ryosen#ep131_rhea01	748,{
 			mes "[Ryosen]";
 			mes "Whatever... Could you deliver this document to the Schwartzvalt and Arunafeltz researchers?";
 			next;
-			if(select("Why me?:Alright.") == 1) {
+			if (select("Why me?:Alright.") == 1) {
 				mes "[Ryosen]";
 				mes "... Eh? Didn't you come to help us?";
 				close;
@@ -5989,7 +5986,7 @@ mid_camp,165,245,0	script	Ryosen#ep131_rhea01	748,{
 				mes "[Ryosen]";
 				mes "Are you really, honestly, positively sure you want to exchange them for my cake?";
 				next;
-				if(select("No way.:Yeah... I'll exchange.") == 1) {
+				if (select("No way.:Yeah... I'll exchange.") == 1) {
 					mes "[Ryosen]";
 					mes "Ahhh...";
 					next;
@@ -6060,7 +6057,7 @@ mid_camp,247,255,1	script	Hue#ep131_rhea02	868,{
 				mes "[Hue]";
 				mes "You can't just come and go around as you please here. This is a restricted area.";
 				next;
-				if(select("Sorry...:I came to show you this.") == 1) {
+				if (select("Sorry...:I came to show you this.") == 1) {
 					mes "[Hue]";
 					mes "You're just helpless, aren't you?";
 					close;
@@ -6120,7 +6117,7 @@ mid_camp,247,255,1	script	Hue#ep131_rhea02	868,{
 				mes "[Hue]";
 				mes "Well, thank you for entertaining me. You should tell Ryosen that.";
 				next;
-				if(select("Ok, I will.:Please sign the invitation.") == 1) {
+				if (select("Ok, I will.:Please sign the invitation.") == 1) {
 					mes "[Hue]";
 					mes "Well, you should also tell him that I think he's very talented in settin up comedy. Hahaha.";
 					close;
@@ -6385,7 +6382,7 @@ mid_camp,247,255,1	script	Hue#ep131_rhea02	868,{
 				mes "[Hue]";
 				mes "Are you sure you want to exchange this for my Pineapple Jubilee?";
 				next;
-				if(select("No way.:Sure.") == 1) {
+				if (select("No way.:Sure.") == 1) {
 					mes "[Hue]";
 					mes "Ahhhhh...";
 					next;
@@ -6954,11 +6951,13 @@ OnTimer300000:
 // Part Time Work
 //============================================================ 
 mid_camp,1,1,0	script	#timer_alba01	844,{
-	/*
+	callfunc "F_GM_NPC";
 	mes "Please enter the password";
 	next;
-	input .@input;
-	if (.@input == "1854") {
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "Wrong password.";
+		close;
+	} else { 
 		mes "Current Status:";
 		if ($@PartTimeOn == 1) {
 			mes "Recruiting.";
@@ -6966,7 +6965,7 @@ mid_camp,1,1,0	script	#timer_alba01	844,{
 		else {
 			mes "Not Recruiting.";
 		}
-		mes "Recruited part-timers" + $@PartTimeSlots + "part-timers.";
+		mes "Recruited " + $@PartTimeSlots + " part-timers.";
 		mes "What do you want to do?";
 		next;
 		switch(select("Reset the recruiting.:Cancel.")) {
@@ -6988,12 +6987,6 @@ mid_camp,1,1,0	script	#timer_alba01	844,{
 			close;
 		}
 	}
-	else {
-		mes "Wrong password.";
-		close;
-	}
-	end;
-	*/
 
 OnInit:
 	set $@PartTimeOn,0;
@@ -7305,7 +7298,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 528,20; //Monster's_Feed
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				if(checkversion(3)) {
+				if (checkversion(3)) {
 					getexp 8000,3000;
 					mes "^4d4dff You have received 8,000 EXP";
 					mes "and 3,000 JEXP.^000000.";
@@ -7346,7 +7339,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 517,50; //Meat
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				if(checkversion(3)) {
+				if (checkversion(3)) {
 					getexp 8000,3000;
 					mes "^4d4dff You have received 8,000 EXP";
 					mes "and 3,000 JEXP.^000000.";
@@ -7384,7 +7377,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				next;
 				delitem 6020,30; //Fur
 				set ep13_alba,6;
-				if(checkversion(3)) {
+				if (checkversion(3)) {
 					getexp 8000,3000;
 					mes "^4d4dff You have received 8,000 EXP";
 					mes "and 3,000 JEXP.^000000.";
@@ -7664,7 +7657,7 @@ function Catwarp;
 			mes "You can now directly return to this camp.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "[Cat Hand Agent]";
 				mes "I'm sorry, but you";
 				mes "need the Novice's";
@@ -7673,7 +7666,7 @@ function Catwarp;
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Cat Hand Agent]";
 				mes "Thank you.";
 				mes "Your storage will";
@@ -7711,7 +7704,7 @@ function Catwarp;
 			mes "You can now directly return to this camp.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "[Cat Hand Agent]";
 				mes "I'm sorry, but you";
 				mes "need the Novice's";
@@ -7720,7 +7713,7 @@ function Catwarp;
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Cat Hand Agent]";
 				mes "Thank you.";
 				mes "Your storage will";
@@ -7833,7 +7826,7 @@ function Catwarp;
 			mes "You can now directly return to this camp.";
 			close;
 		case 2:
-			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6){
 				mes "[Cat Hand Agent]";
 				mes "I'm sorry, but you";
 				mes "need the Novice's";
@@ -7842,7 +7835,7 @@ function Catwarp;
 				close;
 			}
 			else if (Zeny >= 60) {
-				set zeny,zeny-60;
+				set Zeny, Zeny-60;
 				mes "[Cat Hand Agent]";
 				mes "Thank you.";
 				mes "Your storage will";
@@ -8475,6 +8468,21 @@ man_fild03,104,248,0	duplicate(manukrock)	Mysterious Rock#16	844
 man_fild03,91,272,0	duplicate(manukrock)	Mysterious Rock#17	844
 man_fild03,95,301,0	duplicate(manukrock)	Mysterious Rock#18	844
 
+sec_in02,80,171,0	script	Piece of crack#sec	406,{
+	callfunc "F_GM_NPC";
+	mes "1~3000";
+	input .@input;
+	next;
+	if (.@input < 1 || .@input > 3000) {
+		mes "Cat trading Point adjust";
+		mes "You can enter the number between 1~3000.";
+		close;
+	} else {
+		set ep13_yong1,.@input;
+		close;
+	}
+}
+
 // Report from the New World
 //============================================================ 
 mid_campin,90,121,5	script	Hibba Agip	459,{
@@ -8898,7 +8906,7 @@ mid_campin,90,121,5	script	Hibba Agip	459,{
 		mes "And please take this small reward.";
 		mes "Thank you for your help so far.";
 		next;
-		if(checkversion(3))
+		if (checkversion(3))
 			getexp 300000,0;
 		else
 			getexp 2500000,0;
@@ -10683,7 +10691,7 @@ mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 		mes "[Echinacea]";
 		mes "Keep up the good work assisting the explorers in this camp.";
 		set mao_morocc2,100;
-		if(checkversion(3))
+		if (checkversion(3))
 			getexp 120000,20000;
 		else
 			getexp 1200000,200000;
@@ -11063,7 +11071,7 @@ mid_camp,199,311,7	script	Mr. Kidd#ep13_dan01	884,{
 			delitem 6029,1; //Morocc_Tracing_Log
 			delitem 6027,1; //Crystal_Of_Feardoom
 			set mao_morocc2,10;
-			if(checkversion(3))
+			if (checkversion(3))
 				getexp 20000,1000;
 			else
 				getexp 200000,10000;
@@ -12060,7 +12068,7 @@ que_job01,82,95,3	script	Bar Master#moc2_01	46,{
 						mes "Here, drink up.";
 						mes "This drink is mainly made of fruit juice,";
 						mes "but you still shouldn't drink too much.";
-						set zeny,zeny-800;
+						set Zeny, Zeny-800;
 						getitem 12112,1; //Tropical_Sograt
 					}
 					close;
@@ -12078,7 +12086,7 @@ que_job01,82,95,3	script	Bar Master#moc2_01	46,{
 						mes "There you go.";
 						mes "This drink is mainly made of fruit juice,";
 						mes "but you still shouldn't drink too much.";
-						set zeny,zeny-1000;
+						set Zeny, Zeny-1000;
 						getitem 12112,1; //Tropical_Sograt
 						close;
 					}
@@ -12105,7 +12113,7 @@ que_job01,82,95,3	script	Bar Master#moc2_01	46,{
 						mes "[Karred]";
 						mes "I'll give you a special discount.";
 						mes "Here, enjoy.";
-						set zeny,zeny-800;
+						set Zeny, Zeny-800;
 						getitem 12113,1; //Vermilion_The_Beach
 					}
 					close;
@@ -12122,7 +12130,7 @@ que_job01,82,95,3	script	Bar Master#moc2_01	46,{
 						mes "[Karred]";
 						mes "There you go.";
 						mes "Don't drink too much, alright?";
-						set zeny,zeny-1000;
+						set Zeny, Zeny-1000;
 						getitem 12113,1; //Vermilion_The_Beach
 						close;
 					}
@@ -12270,7 +12278,7 @@ OnTouch:
 					mes "Hey, bartender! Gimme";
 					mes "the usual! I like your";
 					mes "style, adventurer...";
-					set zeny,zeny-1000;
+					set Zeny, Zeny-1000;
 					next;
 					mes "[Litheron]";
 					mes "Alright, you can come";
@@ -13965,8 +13973,8 @@ que_dan02,102,42,3	script	Disfigured Corpse#moc2	457,{
 }
 
 /*
-//Mid Camp Warper (gogoash), Translated from the Official [Slim]
-prontera,161,192,5	script	Ash Vacuum Warper	707,{
+// Event NPC (gogoash), now disabled on official servers.
+prontera,161,192,5	script	Ash-Vacuum Warper	707,{
 	mes "[Warp Soldier]";
 	mes "For a limited period.";
 	mes "I can send you to Ash-Vacuum without any fee.";
@@ -13974,24 +13982,21 @@ prontera,161,192,5	script	Ash Vacuum Warper	707,{
 	mes "[Warp Soldier]";
 	mes "Do you want to go to Ash-Vacuum right now?";
 	next;
-	switch(select("Yes, please","Not yet")) {
-
-		case 1:
-			mes "[Warp Soldier]";
-			mes "Ok. I hope you";
-			mes "enjoy your trip.";
-			close2;
-			set ep13_ryu,100;
-			warp "mid_camp",210,291;
-			break;
-		case 2:
-			mes "[Warp Soldier]";
-			mes "No problem. I understand.";
-			mes "Tell me when you change your mind.";
-			mes "See you.";
-			close;
-			break;
+	switch(select("Yes, please:Not yet")) {
+	case 1:
+		mes "[Warp Soldier]";
+		mes "Ok. I hope you";
+		mes "enjoy your trip.";
+		close2;
+		set ep13_ryu,100;
+		warp "mid_camp",210,291;
+		end;
+	case 2:
+		mes "[Warp Soldier]";
+		mes "No problem. I understand.";
+		mes "Tell me when you change your mind.";
+		mes "See you.";
+		close;
 	}
-	end;
 }
 */

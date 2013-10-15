@@ -33,7 +33,7 @@ geffen,61,174,4	script	Sign#M	111,{
 //============================================================
 geffen,67,180,4	script	New Mage Manager#M	102,{
 	mes "[Mana]";
-	if(Class == Job_Novice){
+	if (Class == Job_Novice){
 		mes "[Mana]";
 		mes "You're not ready for";
 		mes "any of the training I have";
@@ -42,7 +42,7 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 		mes "a Mage first. Alright, dear?";
 		close;
 	}
-	if(BaseClass != Job_Mage){
+	if (BaseClass != Job_Mage){
 		mes "You know, sometimes";
 		mes "other jobs might look a";
 		mes "little better in some battle";
@@ -51,7 +51,7 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 		mes "anyone can do what you do~";
 		close;
 	}
-	if(eaclass()&(EAJL_UPPER|EAJL_2|EAJL_THIRD) && tu_magician01 < 7){
+	if (eaclass()&(EAJL_UPPER|EAJL_2|EAJL_THIRD) && tu_magician01 < 7){
 		mes "[Mana]";
 		mes "Although I offer magic";
 		mes "training, it's not very helpful";
@@ -371,18 +371,18 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 				mes "ready, we'll cover some new";
 				mes "material for you to learn.";
 				next;
-				if(select("W-wait, not yet!:I'm ready to go on.") == 2) {
+				if (select("W-wait, not yet!:I'm ready to go on.") == 2) {
 					mes "[Mana]";
 					mes "Alrighty, we'll";
 					mes "move on to the next";
 					mes "subject then. Ho ho ho~!";
 					set tu_magician01,2;
 					specialeffect2 EF_HIT5;
-					if(.@eread_1) getexp 150,70;
-					if(.@eread_2) getexp 150,70;
-					if(.@eread_3) getexp 150,70;
-					if(.@eread_4) getexp 150,70;
-					if(.@eread_5) getexp 150,70;
+					if (.@eread_1) getexp 150,70;
+					if (.@eread_2) getexp 150,70;
+					if (.@eread_3) getexp 150,70;
+					if (.@eread_4) getexp 150,70;
+					if (.@eread_5) getexp 150,70;
 				}
 				close;
 			}
@@ -504,7 +504,7 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 		mes "like I asked? I hope so...";
 		mes "Because I'm going to check~";
 		next;
-		if(countitem(915) < 10){
+		if (countitem(915) < 10){
 			mes "[Mana]";
 			mes "Whoa, you need";
 			mes "more than just this.";
@@ -700,13 +700,13 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 				set tu_magician01, 6;
 				getitem 1604,1; //Wand
 				specialeffect2 EF_HIT5;
-				if(.@skill_e1) getexp 300,100;
-				if(.@skill_e2) getexp 300,100;
-				if(.@skill_e3) getexp 300,100;
-				if(.@skill_e4) getexp 300,100;
-				if(.@skill_e5) getexp 300,100;
-				if(.@skill_e6) getexp 300,100;
-				if(.@skill_e7) getexp 300,100;
+				if (.@skill_e1) getexp 300,100;
+				if (.@skill_e2) getexp 300,100;
+				if (.@skill_e3) getexp 300,100;
+				if (.@skill_e4) getexp 300,100;
+				if (.@skill_e5) getexp 300,100;
+				if (.@skill_e6) getexp 300,100;
+				if (.@skill_e7) getexp 300,100;
 				close;
 			default: 
 				break;
@@ -797,7 +797,7 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 		getexp 3000,1000;
 		close;
 	default:
-		if(tu_magician01 < 27){
+		if (tu_magician01 < 27){
 			mes "So...";
 			mes "It looks like something is";
 			mes "going on in the Rune-Midgarts";

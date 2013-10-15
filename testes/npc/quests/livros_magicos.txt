@@ -213,7 +213,7 @@ geffen_in,176,105,4	script	Master Velofos	64,{
 			close;
 		case 6:
 			if ((BaseLevel > 139) && (getskilllv(2217) > 0) || (getskilllv(2213) > 0)) {
-				if(mac_book < 1){
+				if (mac_book < 1){
 					mes "[Master Velofos]";
 					mes "I'm sorry, but could you ask someone else? I'm kind of busy right now.";
 					close;
@@ -434,7 +434,7 @@ geffen_in,175,112,4	script	Lea	123,{
 				mes "[Lea]";
 				mes "How does 200,000 Rune-Midgartian zeny sound?";
 				next;
-				if(select("I'm sorry, but I can't pay that much.:Sounds good.") == 1) {
+				if (select("I'm sorry, but I can't pay that much.:Sounds good.") == 1) {
 					mes "[Lea]";
 					mes "I see.";
 					close;
@@ -647,7 +647,7 @@ mid_camp,255,244,4	script	Galfos	735,{
 			mes "[Galfos]";
 			mes "I need at least ^0000aa1,000,000 zeny^000000 to buy all the necessary tools. Do you have the money?";
 			next;
-			if(select("Wh-what? No!:Sure.") == 1) {
+			if (select("Wh-what? No!:Sure.") == 1) {
 				mes "[Galfos]";
 				mes "Aw, you don't? It's disappointing, but there's nothing I can do. Come back when you have enough money, okay?";
 				close;

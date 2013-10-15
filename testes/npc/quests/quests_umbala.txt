@@ -1019,7 +1019,7 @@ um_in,139,48,5	script	Phrenetan	783,{
 
 um_in,144,45,5	script	Umpokoriohtan	789,{
 	if (event_umbala >= 3) {
-		if(rand(1,3) == 2) {
+		if (rand(1,3) == 2) {
 			mes "[Umpokoriohtan]";
 		  mes "Ei.";
 			mes "Não importa a esposa...";

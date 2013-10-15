@@ -141,7 +141,7 @@ xmas,117,295,4	script	Homem da Máquina de Vender	704,{
 		mes "Eu te amo";
 		mes "Senhor Boneco de Neve...";
 		mes "Máquina de Vendas.";
-		Emotion e_kis2;
+		emotion e_kis2;
 		next;
 		mes "^3355FF*O Gerente da Fábrica de Brinquedos Titicupe começa a pular e emitir gritos de êxtase descontrolados. Neste ponto, não é difícil duvidar de sua sanidade, bem como algo sobre o seu gênio.*";
 		close;
@@ -179,7 +179,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 1036,20;   // Escama de Dragão
 			delitem 7012,200;  // Pedaço de Escama Dura
 			delitem 7065,300;  // Pele de Lontra
-			Emotion e_Oh;
+			emotion e_Oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -200,7 +200,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 7033,850;  // Esporo Venenoso
 			delitem 7068,300;  // Madeira Queimada
 			delitem 1015,1;    // Língua
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -226,7 +226,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			mes "*Kapang!*";
 			mes "*BeepBoopBeepBoop*";
 			mes "*Beeeeeeoop*^000000";
-			Emotion e_oh;
+			emotion e_oh;
 			getitem 5050,1;    // Casca de Noz
 			next;
 			mes "[Audi]";
@@ -243,7 +243,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 5015,1;  // Casca de Ovo
 			delitem 978,1;   // Tintura Azul
 			delitem 7030,50; // Garra de Lobo do Deserto
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -262,7 +262,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
 			next;
 			delitem 7047,100;  // Avental de Alice
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -288,7 +288,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 982,1;    // Tintura Branca
 			delitem 949,330;  // Pluma
 			delitem 1036,450; // Escama de Dragão
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -310,7 +310,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 2279,1;   // Pavio
 			delitem 7035,50;  // Palito de Fósforo
 			delitem 526,100;  // Geléia Real
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -333,7 +333,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 			delitem 538,15;  // Biscoito de Gengibre
 			delitem 539,20;  // Pedaço de Bolo
 			delitem 999,10;  // Aço
-			Emotion e_oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -354,7 +354,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 		mes "Itens.^000000";
 		close;
 	}
-	Emotion e_x;
+	emotion e_x;
 	mes "[Audi]";
 	mes "^555555Erro Erro!";
 	mes "Itens incorretos!^000000";

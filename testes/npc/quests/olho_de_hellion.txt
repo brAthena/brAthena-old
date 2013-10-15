@@ -1370,7 +1370,7 @@ payon,182,132,3	script	Grout'he Tuccok#hellion	48,{
 					mes "clean and pure Skirt of Virgin.";
 					mes "If you got any more questions,";
 					mes "I guess you can ask me later~";
-					set zeny,zeny-10000;
+					set Zeny, Zeny-10000;
 					set HELLIONQ,48;
 					getitem 953,1; //Stone_Heart
 					getitem 511,1; //Green_Herb

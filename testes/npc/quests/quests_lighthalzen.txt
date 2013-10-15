@@ -12,13 +12,15 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 4.7/4.9/1.1                         |
+//   | Versões eA/rA/brA: 4.7/5.1/1.3                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests de Lighthalzen                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Avassalador]                       |
+//   | 1.2 Suporte ao registro de quests [lututuiBR]          |
+//   | 1.3 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -407,6 +409,7 @@ lighthalzen,341,224,3	script	Espinha	868,{
 				mes "exatamente 20 Jellopys,";
 				mes "certo? Até mais, amigão...";
 				set lhz_sincube,5;
+				setquest 12014;
 				close;
 			}
 			mes "[Espinha]";
@@ -568,6 +571,7 @@ lighthalzen,341,224,3	script	Espinha	868,{
 			mes "com o que tinha acontecido";
 			mes "com você. Então, conseguiu o que";
 			mes "queria lá?";
+			completequest 12014;
 			next;
 			mes "["+strcharinfo(0)+"]";
 			mes "Sim...";
@@ -1711,8 +1715,8 @@ OnTouch:
 	case 1:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 100) {
-			set zeny,zeny-100;
+		if (Zeny >= 100) {
+			set Zeny, Zeny-100;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1727,8 +1731,8 @@ OnTouch:
 	case 2:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 200) {
-			set zeny,zeny-200;
+		if (Zeny >= 200) {
+			set Zeny, Zeny-200;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1744,8 +1748,8 @@ OnTouch:
 	case 3:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 10) {
-			set zeny,zeny-10;
+		if (Zeny >= 10) {
+			set Zeny, Zeny-10;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1784,8 +1788,8 @@ OnTouch:
 	case 1:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 100) {
-			set zeny,zeny-100;
+		if (Zeny >= 100) {
+			set Zeny, Zeny-100;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1800,8 +1804,8 @@ OnTouch:
 	case 2:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 200) {
-			set zeny,zeny-200;
+		if (Zeny >= 200) {
+			set Zeny, Zeny-200;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1817,8 +1821,8 @@ OnTouch:
 	case 3:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 10) {
-			set zeny,zeny-10;
+		if (Zeny >= 10) {
+			set Zeny, Zeny-10;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1857,8 +1861,8 @@ OnTouch:
 	case 2:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 100) {
-			set zeny,zeny-100;
+		if (Zeny >= 100) {
+			set Zeny, Zeny-100;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1874,8 +1878,8 @@ OnTouch:
 	case 4:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 200) {
-			set zeny,zeny-200;
+		if (Zeny >= 200) {
+			set Zeny, Zeny-200;
 		}
 		next;
 		mes "["+strcharinfo(0)+"]";
@@ -1891,8 +1895,8 @@ OnTouch:
 	case 5:
 		mes "^3355FF*SHHHHHHUK!*^000000";
 		specialeffect EF_STEAL;
-		if (zeny >= 10) {
-			set zeny,zeny-10;
+		if (Zeny >= 10) {
+			set Zeny, Zeny-10;
 		}
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -2008,7 +2012,7 @@ OnTouch:
 						mes "mas eu espero nunca mais";
 						mes "trombar com você de novo!";
 					}
-					set zeny,zeny-.@price;
+					set Zeny, Zeny-.@price;
 					getitem 12016,.@number; //Speed_Up_Potion
 				}
 			}
@@ -2114,6 +2118,7 @@ lhz_in02,201,210,5	script	Digotz	869,{
 		mes "amar seus amigos.^000000 ";
 		next;
 		set friendship,15;
+		changequest 12005,12006;
 		getitem 1201,1; // Knife
 		close;
 	}
@@ -2320,6 +2325,7 @@ lhz_in02,201,210,5	script	Digotz	869,{
 		mes "discussões. Mas, mesmo assim, ";
 		mes "agora nem ele pode fazer algo...";
 		set friendship,7;
+		changequest 12002,12003;
 		next;
 		mes "[Digotz]";
 		mes "Eu não sei porquê,";
@@ -2479,6 +2485,7 @@ lhz_in02,201,210,5	script	Digotz	869,{
 		mes "éramos. Quer saber?";
 		mes "Esqueça tudo o que eu disse.";
 		set friendship,2;
+		changequest 12000,12001;
 		close;
 	}
 	mes "[Digotz]";
@@ -2934,6 +2941,7 @@ lighthalzen,337,232,3	script	Maku	870,{
 		mes "e ele provavelmente me odeia";
 		mes "por ser um pé rapado...";
 		set friendship,3;
+		changequest 12001,12002;
 		next;
 		mes "[Maku]";
 		mes "Claro, a gente era";
@@ -2987,6 +2995,7 @@ lighthalzen,337,232,3	script	Maku	870,{
 		mes "não é? Claro, todo mundo acaba";
 		mes "falando do próprio umbigo...";
 		set friendship,1;
+		setquest 12000;
 		next;
 		mes "[Maku]";
 		mes "Bem, quando ficar";
@@ -3121,6 +3130,7 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		mes "entrar e sair das ^0000FFáreas rica e pobre^000000.";
 		next;
 		set friendship,16;
+		completequest 12006;
 		if (checkversion(3)) {
 			if (BaseLevel > 90) getexp 70000,0;
 			else if (BaseLevel > 75) getexp 40000,0;
@@ -3171,6 +3181,7 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		mes "dos bons tempos que tivemos juntos.";
 		next;
 		set friendship,12;
+		changequest 12004,12005;
 		mes "[Benkaistein]";
 		mes "Ah que droga, isso está ";
 		mes "sendo muito mais demorado";
@@ -3242,6 +3253,7 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		mes "terminar essa tese. Vamos ver... O que é que eu posso fazer daqui?";
 		next;
 		set friendship,10;
+		changequest 12003,12004;
 		mes "[Benkaistein]";
 		mes "Ah, já sei o que posso fazer!";
 		mes "Espere um pouco, onde foi que eu coloquei?";
@@ -4426,10 +4438,10 @@ lighthalzen,346,263,3	script	Anciã#lhz	846,{
 				mes "você precisa procurar";
 				mes "serão mostrados para você agora! Não se";
 				mes "esqueça desses pontos de referência!";
-				viewpoint 1,104,282,1,0xFF99FF33;
-				viewpoint 1,105,282,2,0xFF99FF33;
-				viewpoint 1,104,281,3,0xFF99FF33;
-				viewpoint 1,105,281,4,0xFF99FF33;
+				viewpoint 1,104,282,1,0x99FF33;
+				viewpoint 1,105,282,2,0x99FF33;
+				viewpoint 1,104,281,3,0x99FF33;
+				viewpoint 1,105,281,4,0x99FF33;
 				next;
 				mes "[Anciã]";
 				mes "Boa sorte, meu jovem.";
@@ -6326,7 +6338,7 @@ lhz_in01,269,114,3	script	Um Arquivo#li-1	111,{
 //============================================================
 lighthalzen,179,170,4	script	Homem Comum	98,{
 
-	if(!lhz_boss)
+	if (!lhz_boss)
 	{
 		mes "[Ghalstein]";
 		mes "Olá!";
@@ -6363,7 +6375,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				break;
 		}
 		next;
-		if(BaseLevel < 60)
+		if (BaseLevel < 60)
 		{
 			mes "[Ghalstein]";
 			mes "Ha ha ha!";
@@ -6384,10 +6396,10 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		set lhz_boss,1;
 		close;
 	}
-	else if(lhz_boss == 1)
+	else if (lhz_boss == 1)
 	{
 		set @weather,rand(1,5);
-		if(@weather == 4)
+		if (@weather == 4)
 		{
 			mes "[Ghalstein]";
 			mes "Hm? Está um pouco";
@@ -6407,7 +6419,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "gostoso no rosto, não é?";
 		close;
 	}
-	else if(lhz_boss == 2)
+	else if (lhz_boss == 2)
 	{
 		mes "[Ghalstein]";
 		mes "O sol está brilhando";
@@ -6455,7 +6467,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				close;
 		}
 	}
-	else if(lhz_boss == 3)
+	else if (lhz_boss == 3)
 	{
 		mes "[Ghalstein]";
 		mes "Hm? Que cara é essa?";
@@ -6576,7 +6588,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				close;
 		}
 	}
-	else if(lhz_boss == 4)
+	else if (lhz_boss == 4)
 	{
 		mes "[Ghalstein]";
 		mes "Eu cheguei a uma";
@@ -6762,7 +6774,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		next;
 		mes "[??????]";
 		mes "^666666Agora...^000000";
-		if(Sex == 1) mes "^666666Faça ele^000000";
+		if (Sex == 1) mes "^666666Faça ele^000000";
 		else mes "^666666Faça ela^000000";
 		mes "^666666engolir essa pílula.^000000";
 		next;
@@ -6777,7 +6789,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		warp "lighthalzen",217,313;
 		end;
 	}
-	else if(lhz_boss == 5)
+	else if (lhz_boss == 5)
 	{
 		mes "[Ghalstein]";
 		mes "Então, como está se sentindo?";
@@ -6833,9 +6845,10 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "um contato que coloque você ";
 		mes "dentro do Laboratório.";
 		set lhz_boss,6;
+		changequest 12015,12016;
 		close;
 	}
-	else if(lhz_boss == 6)
+	else if (lhz_boss == 6)
 	{
 		mes "[Ghalstein]";
 		mes "Por enquanto, deve ser melhor";
@@ -6845,9 +6858,9 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "lhe colocar dentro do laboratório.";
 		close;
 	}
-	else if(lhz_boss == 7)
+	else if (lhz_boss == 7)
 	{
-		if(!MISC_QUEST&512)
+		if (!MISC_QUEST&512)
 		{
 			mes "[Ghalstein]";
 			mes "Ocorreu algum erro.";
@@ -6878,14 +6891,15 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 			mes "próxima missão. Mostre isso a";
 			mes "ele para provar que você ";
 			mes "trabalha com a gente. Não vá esquecer.";
-			delitem 7346,1;
-			delitem 7347,10;
-			delitem 7345,10;
+			delitem 7346,1; //Pile_Of_Ymir_Heart
+			delitem 7347,10; //Lab_Staff_Record
+			delitem 7345,10; //Armlet_Of_Prisoner
 			set lhz_boss,8;
-			getitem 7348,1;
+			getitem 7348,1; //Indication_Of_Member01
+			changequest 12016,12017;
 			close;
 		}
-		else if((!countitem(7346)) && (!countitem(7347)) && (!countitem(7345)))
+		else if ((!countitem(7346)) && (!countitem(7347)) && (!countitem(7345)))
 		{
 			mes "[Ghalstein]";
 			mes "Quando estiver dentro do";
@@ -6908,7 +6922,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 			close;
 		}
 	}
-	else if(lhz_boss == 8)
+	else if (lhz_boss == 8)
 	{
 		mes "[Ghalstein]";
 		mes "Por favor, encontre Gusharr";
@@ -6917,7 +6931,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "detalhes sobre sua próxima missão.";
 		close;
 	}
-	else if(lhz_boss < 25)
+	else if (lhz_boss < 25)
 	{
 		mes "[Ghalstein]";
 		mes "Você tomou a decisão de ";
@@ -6936,7 +6950,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "a pena ou não.";
 		close;
 	}
-	else if(lhz_boss < 43)
+	else if (lhz_boss < 43)
 	{
 		mes "[Ghalstein]";
 		mes "Você está tão perto";
@@ -6947,7 +6961,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "E você finalmente estará livre.";
 		close;
 	}
-	else if(lhz_boss == 43)
+	else if (lhz_boss == 43)
 	{
 		mes "[Ghalstein]";
 		mes "Eu não acredito no que";
@@ -6982,7 +6996,8 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "que queríamos fazer. Ainda assim...";
 		set lhz_boss,44;
 		getitem 617,1; //Old_Violet_Box
-		getexp (checkversion(3))?180000:1800000,0; 
+		getexp (checkversion(3))?180000:1800000,0;
+		completequest 12028;
 		next;
 		mes "[Ghalstein]";
 		mes "Eu gostaria de agradecer";
@@ -7009,7 +7024,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 lighthalzen,173,167,1	script	Switch	-1,2,4,{
 
 OnTouch:
-	if(lhz_boss == 1)
+	if (lhz_boss == 1)
 	{
 		mes "[??????]";
 		mes "^666666Vamos.";
@@ -7083,6 +7098,7 @@ OnTouch:
 				mes "se foi! O que";
 				mes "está acontecendo aqui?^000000";
 				set lhz_boss,2;
+				setquest 12015;
 				close;
 		}
 	}
@@ -7090,7 +7106,7 @@ OnTouch:
 
 yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 
-	if(lhz_boss < 8)
+	if (lhz_boss < 8)
 	{
 		mes "[Gushaar]";
 		mes "Decisões, decisões.";
@@ -7108,7 +7124,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 		mes "valor se não custasse algo, certo?";
 		close;
 	}
-	else if(lhz_boss == 8)
+	else if (lhz_boss == 8)
 	{
 		mes "[Gushaar]";
 		mes "Certo. Escolha";
@@ -7137,7 +7153,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 				next;
 				switch(select("Ah, claro!:Do que você está falando?"))  {
 					case 1:
-						if(!countitem(7348))
+						if (!countitem(7348))
 						{
 							mes "[Gushaar]";
 							mes "Ei... humm...";
@@ -7181,7 +7197,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 				close;
 		}
 	}
-	else if(lhz_boss == 9)
+	else if (lhz_boss == 9)
 	{
 		mes "[Gushaar]";
 		mes "Certo, antes de tudo,";
@@ -7229,7 +7245,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 		set lhz_boss,10;
 		close;
 	}
-	else if(lhz_boss == 10)
+	else if (lhz_boss == 10)
 	{
 		mes "[Gushaar]";
 		mes "Espero que agora tenha ";
@@ -7252,6 +7268,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 		mes "das ^FF000020 às 23^000000 horas";
 		mes "e das ^FF000011 às 14^000000 horas. Boa sorte nessa missão, meu amigo.";
 		set lhz_boss,11;
+		changequest 12017,12018;
 		close;
 	}
 	else
@@ -7267,7 +7284,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 
 yuno_pre,69,20,4	script	Secretária#1	862,{
 
-	if(lhz_boss < 11)
+	if (lhz_boss < 11)
 	{
 		mes "[Hes O'Neil]";
 		mes "Bom dia,";
@@ -7298,7 +7315,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 						mes "o seu nome para que eu possa";
 						mes "procurar na agenda de hoje?";
 						next;
-						switch( select( ""+strcharinfo(0)+"" ) )
+						switch(select(""+strcharinfo(0)+"" ) )
 						{
 							case 1:
 								break;
@@ -7333,7 +7350,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 				close;
 		}
 	}
-	else if(lhz_boss < 16)
+	else if (lhz_boss < 16)
 	{
 		mes "[Hes O'Neil]";
 		mes "Bim dia, como";
@@ -7341,7 +7358,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 		next;
 		switch(select("Mostre o Cartão da Asa Secreta.:Estou aqui para ver o presidente.:Nada.")) {
 			case 1:
-				if(!countitem(7348))
+				if (!countitem(7348))
 				{
 					mes "^3355FFEspere um pouco...";
 					mes "Parece que você não";
@@ -7350,7 +7367,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 					mes "''Asa Secreta''^000000.";
 					close;
 				}
-				if(((gettime(3) > 10) && (gettime(3) < 15)) || ((gettime(3) > 19) && (gettime(3) <= 23)))
+				if (((gettime(3) > 10) && (gettime(3) < 15)) || ((gettime(3) > 19) && (gettime(3) <= 23)))
 				{
 					mes "^3355FFDiscretamente você mostra";
 					mes "seu Cartão de Filiação da";
@@ -7422,9 +7439,9 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 				close;
 		}
 	}
-	else if(lhz_boss == 16)
+	else if (lhz_boss == 16)
 	{
-		if(!countitem(7342))
+		if (!countitem(7342))
 		{
 			mes "[Hes O'Neil]";
 			mes "Hm? Eu achei que o";
@@ -7451,7 +7468,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 		set lhz_boss,17;
 		close;
 	}
-	else if(lhz_boss < 21)
+	else if (lhz_boss < 21)
 	{
 		mes "[Hes O'Neil]";
 		mes "Desculpe, mas no";
@@ -7461,19 +7478,19 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 		mes "em uma outra hora.";
 		close;
 	}
-	else if(lhz_boss < 43)
+	else if (lhz_boss < 43)
 	{
 		mes "[Hes O'Neil]";
 		mes "Ah, o presidente";
 		mes "está esperando você.";
 		mes "Por favor, siga";
-		if(Sex == 1) mes "em frente, senhor.";
+		if (Sex == 1) mes "em frente, senhor.";
 		else mes "em frente, senhora.";
 		close2;
 		warp "yuno_pre",113,53;
 		end;
 	}
-	else if(hg_tre == 56)
+	else if (hg_tre == 56)
 	{
 		mes "[Hes O'Neil]";
 	        mes "Desculpe-me, parece que o presidente quer um pouco de privacidade.";
@@ -7495,7 +7512,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
         	warp "yuno_pre",113,53;
         	end;
         }
-        else if(hg_tre > 56)
+        else if (hg_tre > 56)
         {
         mes "[Hes O'Neil]";
         mes "Sr. Presidente lhe dá Boas Vindas.";
@@ -7513,7 +7530,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 
 yuno_pre,95,71,5	script	Guarda	852,{
 
-	if(lhz_boss < 11)
+	if (lhz_boss < 11)
 	{
 		mes "[Guarda]";
 		mes "Você está na";
@@ -7527,10 +7544,10 @@ yuno_pre,95,71,5	script	Guarda	852,{
 		warp "yuno_pre",83,22;
 		end;
 	}
-	else if(lhz_boss == 11 || lhz_boss == 12)
+	else if (lhz_boss == 11 || lhz_boss == 12)
 	{
-		if(lhz_boss == 12) set @visit_pre,rand(1,10);
-		if(@visit_pre == 7)
+		if (lhz_boss == 12) set @visit_pre,rand(1,10);
+		if (@visit_pre == 7)
 		{
 			mes "[?????]";
 			mes "É claro.";
@@ -7554,7 +7571,7 @@ yuno_pre,95,71,5	script	Guarda	852,{
 			mes "Sim, já está na minha";
 			mes "hora de ir. Ah,";
 			mes "posso perguntar quem é ";
-			if(Sex == 1) mes "esse jovem cavalheiro aqui?";
+			if (Sex == 1) mes "esse jovem cavalheiro aqui?";
 			else mes "essa adorável senhorita aqui?";
 			next;
 			mes "[Guarda]";
@@ -7582,10 +7599,10 @@ yuno_pre,95,71,5	script	Guarda	852,{
 		mes "No momento, o presidente";
 		mes "está atendendo outra pessoa.";
 		mes "Obrigado pela sua paciência.";
-		if(lhz_boss == 11) set lhz_boss,12;
+		if (lhz_boss == 11) set lhz_boss,12;
 		close;
 	}
-	else if(lhz_boss == 13)
+	else if (lhz_boss == 13)
 	{
 		mes "[Guarda]";
 		mes "Agora você pode entrar";
@@ -7595,7 +7612,7 @@ yuno_pre,95,71,5	script	Guarda	852,{
 		next;
 		switch(select( "Obrigado.:Quem era aquele cavalheiro...?")) {
 			case 1:
-				if(Sex == 1) mes "Um senhor "+strcharinfo(0)+"";
+				if (Sex == 1) mes "Um senhor "+strcharinfo(0)+"";
 					else mes "Uma senhorita "+strcharinfo(0)+"";
 				mes "está aqui para vê-lo.";
 				next;
@@ -7645,7 +7662,7 @@ OnInit:
 
 yuno_pre,69,79,4	script	Sr. President	872,{
 
-	if(checkweight(7342,1) != 1)
+	if (checkweight(7342,1) != 1)
 	{
 		mes "- Espere um momento! -";
 		mes "- No momento, você está carregando -";
@@ -7655,7 +7672,7 @@ yuno_pre,69,79,4	script	Sr. President	872,{
 		close;
 	}
 	cutin "lhz_karl.bmp",2;
-	if(lhz_boss < 11)
+	if (lhz_boss < 11)
 	{
 		mes "[Karl]";
 		mes "Como entrou aqui?";
@@ -7665,7 +7682,7 @@ yuno_pre,69,79,4	script	Sr. President	872,{
 		cutin "",255;
 		warp "yuno_pre",83,22;
 	}
-	else if(lhz_boss == 14)
+	else if (lhz_boss == 14)
 	{
 		mes "[Karl]";
 		mes "Ah, olá!";
@@ -7813,7 +7830,7 @@ L_Mission:
 				}
 		}
 	}
-	else if(lhz_boss == 15)
+	else if (lhz_boss == 15)
 	{
 		mes "[Karl]";
 		mes "Agora, primeiro, você precisa visitar";
@@ -7837,12 +7854,13 @@ L_Mission:
 		mes "antes de sair.";
 		mes "Muito obrigado.";
 		set lhz_boss,16;
-		getitem 7342,1;
+		getitem 7342,1; //File01
+		changequest 12018,12019;
 		close2;
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss < 21)
+	else if (lhz_boss < 21)
 	{
 		mes "[Karl]";
 		mes "Se apresse e complete ";
@@ -7855,9 +7873,9 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 21)
+	else if (lhz_boss == 21)
 	{
-		if(!countitem(7343))
+		if (!countitem(7343))
 		{
 			mes "[Karl]";
 			mes "Hm? Eu estava esperando que";
@@ -7897,10 +7915,10 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 22)
+	else if (lhz_boss == 22)
 	{
 		set @read_pre,rand(1,5);
-		if(@read_pre == 3)
+		if (@read_pre == 3)
 		{
 			mes "[Karl]";
 			mes "Hm. Depois de examinar";
@@ -7939,7 +7957,8 @@ L_Mission:
 			mes "Não quero que nossos inimigos";
 			mes "descubram Shinokas antes";
 			mes "de podermos falar com ele.";
-			if(Shinokas_Quest == 11) set lhz_boss,24;
+			changequest 12022,12023;
+			if (Shinokas_Quest == 11) set lhz_boss,24;
 			else set lhz_boss,23;
 			close2;
 			cutin "",255;
@@ -7962,9 +7981,9 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 23)
+	else if (lhz_boss == 23)
 	{
-		if(Shinokas_Quest == 11)
+		if (Shinokas_Quest == 11)
 		{
 			mes "[Karl]";
 			mes "Pedaços do Coração de Ymir?";
@@ -8002,6 +8021,8 @@ L_Mission:
 			mes "quem é você e";
 			mes "como lhe ajudar.";
 			set lhz_boss,26;
+			completequest 12023;
+			setquest 12024;
 			close2;
 			cutin "",255;
 			end;
@@ -8031,7 +8052,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 24)
+	else if (lhz_boss == 24)
 	{
 		mes "[Karl]";
 		mes "Hm? Tem algo errado?";
@@ -8117,10 +8138,10 @@ L_Mission:
 				end;
 		}
 	}
-	else if(lhz_boss == 25)
+	else if (lhz_boss == 25)
 	{
 		set @talk_pre,rand(1,10);
-		if(@talk_pre == 8)
+		if (@talk_pre == 8)
 		{
 			mes "[Karl]";
 			mes "Certo, Eu acabei";
@@ -8157,6 +8178,8 @@ L_Mission:
 			mes "quem é você e";
 			mes "como lhe ajudar.";
 			set lhz_boss,26;
+			completequest 12023;
+			setquest 12024;
 			close2;
 			cutin "",255;
 			end;
@@ -8172,7 +8195,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss < 37)
+	else if (lhz_boss < 37)
 	{
 		mes "[Karl]";
 		mes "Espero que continue";
@@ -8185,9 +8208,9 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 37)
+	else if (lhz_boss == 37)
 	{
-		if(!countitem(7344))
+		if (!countitem(7344))
 		{
 			mes "[Karl]";
 			mes "Você ainda não ";
@@ -8237,7 +8260,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 38)
+	else if (lhz_boss == 38)
 	{
 		mes "[Karl]";
 		mes "Por favor, apresse-se e encontre";
@@ -8250,9 +8273,9 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 39)
+	else if (lhz_boss == 39)
 	{
-		if(!countitem(7343))
+		if (!countitem(7343))
 		{
 			mes "[Karl]";
 			mes "Você não tem o";
@@ -8296,7 +8319,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 41)
+	else if (lhz_boss == 41)
 	{
 		mes "[Karl]";
 		mes "Não...";
@@ -8328,7 +8351,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(lhz_boss == 42)
+	else if (lhz_boss == 42)
 	{
 		mes "[Guarda]";
 		mes "O Conselheiro Kurelle";
@@ -8429,13 +8452,23 @@ L_Mission:
 		mes "com ^3355FFGhalstein^000000. É hora";
 		mes "de deixarmos você ir, aventureiro.";
 		set lhz_boss,43;
+		completequest 12028;
 		close2;
 		cutin "",255;
 		end;
-	}
-	else if(hg_tre == 56)
+	} else if (lght_boss == 43) {
+		mes "[Karl]";
+		mes ".........";
+		mes "............";
+		for(set .@i,12015; .@i<=12028; set .@i,.@i+1) {
+		if (checkquest(.@i) > 0 && checkquest(.@i) < 2)
+			completequest .@i;
+		}
+		close;
+	} 
+	else if (hg_tre == 56)
 	{
-		if(!countitem(7342))
+		if (!countitem(7342))
 		{
 			mes "["+strcharinfo(0)+"]";
 			mes "Erm... Onde coloquei os documentos!?";
@@ -8520,7 +8553,7 @@ L_Mission:
 		cutin "",255;
 		end;
 	}
-	else if(hg_tre == 57)
+	else if (hg_tre == 57)
 	{
 		mes "[Karl]";
 		mes "Por enquanto, estou juntando pessoas que posam me ajudar a derrubar a corporação de vez.";
@@ -8562,7 +8595,7 @@ OnInit:
 yuno_pre,117,60,0	script	Eavesdrop	-1,10,5,{
 
 OnTouch:
-	if(lhz_boss == 16)
+	if (lhz_boss == 16)
 	{
 		mes "^3355FFO quê...?";
 		mes "Você pode escutar";
@@ -8597,7 +8630,7 @@ OnTouch:
 
 aldebaran,58,225,4	script	Funcionária Kafra#l1	116,{
 
-	if(lhz_boss != 17)
+	if (lhz_boss != 17)
 	{
 		mes "[Kafra Recepcionista]";
 		mes "Seja bem-vindo à ";
@@ -8665,7 +8698,7 @@ aldebaran,58,225,4	script	Funcionária Kafra#l1	116,{
 
 aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 
-	if(checkweight(7343,1) != 1)
+	if (checkweight(7343,1) != 1)
 	{
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -8675,7 +8708,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 		mes "para armazenar alguns dos seus itens.^000000";
 		close;
 	}
-	if(lhz_boss < 17)
+	if (lhz_boss < 17)
 	{
 		mes "[Kafra Recepcionista]";
 		mes "Bem-vindo à ";
@@ -8710,7 +8743,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 		mes "de elegibilidade antes de votar.";
 		close;
 	}
-	else if(lhz_boss == 17)
+	else if (lhz_boss == 17)
 	{
 		mes "Bem-vindo à ";
 		mes "Sede da Corporação Kafra.";
@@ -8785,7 +8818,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 								close;
 
 							case 2:
-								if(!countitem(7348))
+								if (!countitem(7348))
 								{
 									mes "^3355FFEspere aí...";
 									mes "Você não pode mostrar";
@@ -8831,6 +8864,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 								mes "então, por favor, se apresse antes";
 								mes "que o inimigo o encontre...";
 								set lhz_boss,18;
+								changequest 12019,12020;
 								close;
 						}
 				}
@@ -8845,7 +8879,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 				close;
 		}
 	}
-	else if(lhz_boss == 18)
+	else if (lhz_boss == 18)
 	{
 		mes "[Benith]";
 		mes "Por favor, corra e salve";
@@ -8863,9 +8897,9 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 		mes "Einbroch e Lighthalzen.";
 		close;
 	}
-	else if(lhz_boss == 19)
+	else if (lhz_boss == 19)
 	{
-		if(!countitem(7343))
+		if (!countitem(7343))
 		{
 			mes "[Benith]";
 			mes "Se apresse por favor!";
@@ -8907,7 +8941,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 		set lhz_boss,20;
 		close;
 	}
-	else if(lhz_boss == 20)
+	else if (lhz_boss == 20)
 	{
 		mes "[Benith]";
 		mes "Certo. Por favor, leve";
@@ -8917,7 +8951,8 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 		mes "A Asa Secreta conta com";
 		mes "você, meu bravo aventureiro.";
 		set lhz_boss,21;
-		getitem 7343,1;
+		getitem 7343,1; //File02
+		changequest 12021,12022;
 		next;
 		mes "[Benith]";
 		mes "Eu juro pela tumba de";
@@ -8941,7 +8976,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 
 lhz_fild02,228,214,0	script	Homem Ferido	849,{
 
-	if(checkweight(7343,1) != 1)
+	if (checkweight(7343,1) != 1)
 	{
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -8951,7 +8986,7 @@ lhz_fild02,228,214,0	script	Homem Ferido	849,{
 		mes "para armazenar alguns dos seus itens.^000000";
 		close;
 	}
-	if(lhz_boss < 18)
+	if (lhz_boss < 18)
 	{
 		mes "[?????]";
 		mes "^333333*Cof cof*^000000";
@@ -8976,7 +9011,7 @@ lhz_fild02,228,214,0	script	Homem Ferido	849,{
 		mes "s-só caia fora daqui!";
 		close;
 	}
-	else if(lhz_boss == 18)
+	else if (lhz_boss == 18)
 	{
 		mes "[?????]";
 		mes "^333333*Cof cof*^000000";
@@ -8995,7 +9030,7 @@ lhz_fild02,228,214,0	script	Homem Ferido	849,{
 				mes "você trabalha...?";
 				next;
 				input @jargeah$;
-				if((@jargeah$ == "Corporação Kafra") || (@jargeah$ == "Asa Secreta"))
+				if ((@jargeah$ == "Corporação Kafra") || (@jargeah$ == "Asa Secreta"))
 				{
 					mes "[Jargeah]";
 					mes "Gr-graças aos céus!";
@@ -9004,7 +9039,8 @@ lhz_fild02,228,214,0	script	Homem Ferido	849,{
 					mes "Eu estaria perdido. A-aqui,";
 					mes "l-leve com você...";
 					set lhz_boss,19;
-					getitem 7343,1;
+					getitem 7343,1; //File02
+					changequest 12020,12021;
 					next;
 					mes "[Jargeah]";
 					mes "Argh... Oh não.";
@@ -9042,7 +9078,7 @@ OnInit:
 lhz_fild02,224,220,0	script	Homem Ferido Switch	-1,3,3,{
 
 OnTouch:
-	if(lhz_boss == 18)
+	if (lhz_boss == 18)
 	{
 		mes "[?????]";
 		mes "^333333*Cof cof*^000000";
@@ -9056,7 +9092,7 @@ OnTouch:
 lhz_fild01,76,214,0	script	Esuna Trigger	-1,5,5,{
 
 OnTouch:
-	if((lhz_boss == 26) || (lhz_boss == 36) || (lhz_boss == 38) || (lhz_boss == 40))
+	if ((lhz_boss == 26) || (lhz_boss == 36) || (lhz_boss == 38) || (lhz_boss == 40))
 	{
 		mes "[????]";
 		mes "Aqui,";
@@ -9070,9 +9106,9 @@ OnTouch:
 
 lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 
-	if(lhz_boss == 26)
+	if (lhz_boss == 26)
 	{
-		if(checkweight(7343,1) != 1)
+		if (checkweight(7343,1) != 1)
 		{
 			mes "^3355FFEspere um pouco!";
 			mes "No momento, você está carregando";
@@ -9120,11 +9156,12 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		mes "então tenha cuidado e não deixe";
 		mes "que eles suspeitem de você!";
 		set lhz_boss,27;
+		changequest 12024,12025;
 		close2;
 		disablenpc "Mysterious Woman";
 		end;
 	}
-	else if(lhz_boss == 27)
+	else if (lhz_boss == 27)
 	{
 		mes "[Esuna]";
 		mes "Use o passe que você ";
@@ -9134,13 +9171,13 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		mes "que ele está disfarçado...";
 		close;
 	}
-	else if(lhz_boss < 36)
+	else if (lhz_boss < 36)
 	{
 		mes "[Esuna]";
 		mes ".........";
 		close;
 	}
-	else if(lhz_boss == 36)
+	else if (lhz_boss == 36)
 	{
 		mes "[Esuna]";
 		mes "Bom trabalho.";
@@ -9162,14 +9199,14 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		disablenpc "Mysterious Woman";
 		end;
 	}
-	else if(lhz_boss < 38)
+	else if (lhz_boss < 38)
 	{
 		mes "[Esuna]";
 		mes "........";
 		mes ".....";
 		close;
 	}
-	else if(lhz_boss == 38)
+	else if (lhz_boss == 38)
 	{
 		mes "[Esuna]";
 		mes "Você voltou. Escute,";
@@ -9190,7 +9227,7 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		disablenpc "Mysterious Woman";
 		end;
 	}
-	else if(lhz_boss == 39)
+	else if (lhz_boss == 39)
 	{
 		mes "[Esuna]";
 		mes "O que você está ";
@@ -9201,7 +9238,7 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		mes "mas ele precisa saber...";
 		close;
 	}
-	else if(lhz_boss == 40)
+	else if (lhz_boss == 40)
 	{
 		mes "[Esuna]";
 		mes "Bom, você está de volta.";
@@ -9262,6 +9299,7 @@ lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
 		mes "Por enquanto, isso é ";
 		mes "um adeus. Cuide-se...";
 		set lhz_boss,41;
+		changequest 12027,12028;
 		close2;
 		disablenpc "Mulher Misteriosa";
 		end;
@@ -9282,7 +9320,7 @@ OnInit:
 
 lhz_in01,93,45,4	script	Researcher#1	865,{
 
-	if(lhz_boss < 28)
+	if (lhz_boss < 28)
 	{
 		mes "[Researcher]";
 		mes "Você sabe o que é estranho?";
@@ -9291,7 +9329,7 @@ lhz_in01,93,45,4	script	Researcher#1	865,{
 		mes "bombas? Há tantas outras";
 		mes "cores que se poderia usar,";
 		mes "como rosa, amarelo ou verde...";
-		if(lhz_boss == 27)
+		if (lhz_boss == 27)
 		{
 			next;
 			mes "[Researcher]";
@@ -9310,7 +9348,7 @@ lhz_in01,93,45,4	script	Researcher#1	865,{
 					mes "É, tá, igualzinho aos";
 					mes "filmes. Eu gosto";
 					mes "da forma que você pensa...";
-					if(!countitem(7348)) close;
+					if (!countitem(7348)) close;
 					next;
 					mes "^3355FFVocê, furtivamente, ";
 					mes "verifica o crachá do";
@@ -9381,7 +9419,7 @@ lhz_in01,93,45,4	script	Researcher#1	865,{
 
 lhz_in01,285,169,3	script	Pesquisador#2	865,{
 
-	if(checkweight(7349,1) != 1)
+	if (checkweight(7349,1) != 1)
 	{
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -9391,7 +9429,7 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "para armazenar alguns dos seus itens.^000000";
 		close;
 	}
-	if(lhz_boss < 27)
+	if (lhz_boss < 27)
 	{
 		mes "[Pesquisador]";
 		mes "Essa é uma área";
@@ -9399,7 +9437,7 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "imediatamente.";
 		close;
 	}
-	else if(lhz_boss == 27)
+	else if (lhz_boss == 27)
 	{
 		mes "[Lestin]";
 		mes "ser seguro para a gente falar";
@@ -9420,7 +9458,8 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "mas você só poderá ficar";
 		mes "lá 3 minutos";
 		mes "por vez. O Arquivo Secreto está à direita nesse laboratório.";
-		set lhz_boss,28;
+		set lhz_boss,28; //Indication_Of_Member02
+		changequest 12025,12026;
 		getitem 7349,1;
 		next;
 		mes "[Lestin]";
@@ -9432,7 +9471,7 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "arriscado, mas não impossível.";
 		close;
 	}
-	else if(lhz_boss < 35)
+	else if (lhz_boss < 35)
 	{
 		mes "[Lestin]";
 		mes "Lembre-se, você precisa";
@@ -9465,9 +9504,9 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "e não seja pego!";
 		close;
 	}
-	else if(lhz_boss == 35)
+	else if (lhz_boss == 35)
 	{
-		if((!countitem(7349)) || (!countitem(7344)))
+		if ((!countitem(7349)) || (!countitem(7344)))
 		{
 			mes "[Lestin]";
 			mes "Meu passe permitirá que você entre,";
@@ -9512,8 +9551,9 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 		mes "Lighthalzen, onde você ";
 		mes "a encontrou da última vez. Ela";
 		mes "saberá que você está indo.";
-		delitem 7349,1;
+		delitem 7349,1; //Indication_Of_Member02
 		set lhz_boss,36;
+		changequest 12026,12027;
 		close;
 	}
 	else
@@ -9534,10 +9574,10 @@ lhz_in01,187,31,0	script	#Sneak	111,4,3,{
 	end;
 
 OnTouch:
-	if((lhz_boss > 27) && (lhz_boss < 35))
+	if ((lhz_boss > 27) && (lhz_boss < 35))
 	{
 		set @sneaktime,gettimetick(0) % 100;
-		if((@sneaktime > 10 && @sneaktime < 59) || (@sneaktime < -10 && @sneaktime > -59))
+		if ((@sneaktime > 10 && @sneaktime < 59) || (@sneaktime < -10 && @sneaktime > -59))
 		{
 			mes "^3355FFConforme você se aproxima";
 			mes "do canto, você começa";
@@ -9583,7 +9623,7 @@ OnTouch:
 					next;
 					switch(select( "Colocar o Cartão:Recuar"))	{
 						case 1:
-							if(!countitem(7349))
+							if (!countitem(7349))
 							{
 								mes "^3355FFVocê se esqueceu de trazer";
 								mes "o cartão de passe que";
@@ -9601,7 +9641,7 @@ OnTouch:
 							next;
 L_Enter:
 							input @sneakpass;
-							if(@sneakpass == 738495)
+							if (@sneakpass == 738495)
 							{
 								mes "^3355FF*Bip…*";
 								mes "Você escuta o zunir de";
@@ -9641,7 +9681,7 @@ L_Enter:
 							mes "tentar inserir a senha de novo.^000000";
 							set @sneakerror,@sneakerror +1;
 							next;
-							if(@sneakerror > 2)
+							if (@sneakerror > 2)
 							{
 									mes "[Sistema de Segurança]";
 									mes "*Gizzzzz*";
@@ -9712,7 +9752,7 @@ OnTimer190000:
 
 lhz_in01,182,35,0	script	Fichário do Arquivo	111,{
 
-	if((lhz_boss > 28) && (lhz_boss < 35))
+	if ((lhz_boss > 28) && (lhz_boss < 35))
 	{
 		mes "^3355FFEsta máquina pode ser";
 		mes "usada para localizar documentos";
@@ -9734,7 +9774,7 @@ L_Search:
 				mes "maiúsculas.^000000";
 				next;
 				input @sneaksearch$;
-				if((@sneaksearch$ == "kafra") || (@sneaksearch$ == "eventos incríveis"))
+				if ((@sneaksearch$ == "kafra") || (@sneaksearch$ == "eventos incríveis"))
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9744,7 +9784,7 @@ L_Search:
 					set lhz_boss,30;
 					close;
 				}
-				else if(@sneaksearch$ == "shinokas")
+				else if (@sneaksearch$ == "shinokas")
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9753,7 +9793,7 @@ L_Search:
 					set lhz_boss,31;
 					close;
 				}
-				else if((@sneaksearch$ == "stein") || (@sneaksearch$ == "CANECA") || (@sneaksearch$ == "C.A.N.E.C.A"))
+				else if ((@sneaksearch$ == "stein") || (@sneaksearch$ == "CANECA") || (@sneaksearch$ == "C.A.N.E.C.A"))
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9761,7 +9801,7 @@ L_Search:
 					mes "na Área 1-5.^000000";
 					close;
 				}
-				else if(@sneaksearch$ == "ymir")
+				else if (@sneaksearch$ == "ymir")
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9771,7 +9811,7 @@ L_Search:
 					mes "por este sistema.^000000";
 					close;
 				}
-				else if((@sneaksearch$ == "president") || (@sneaksearch$ == "karl") || (@sneaksearch$ == "weierstrass"))
+				else if ((@sneaksearch$ == "president") || (@sneaksearch$ == "karl") || (@sneaksearch$ == "weierstrass"))
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Documentos de 2ª classe sobre";
@@ -9783,7 +9823,7 @@ L_Search:
 					set lhz_boss,32;
 					close;
 				}
-				else if(@sneaksearch$ == "einbroch")
+				else if (@sneaksearch$ == "einbroch")
 				{
 					mes "^663300[Search Result]";
 					mes "Documents regarding";
@@ -9792,7 +9832,7 @@ L_Search:
 					set lhz_boss,33;
 					close;
 				}
-				else if(@sneaksearch$ == "lighthalzen")
+				else if (@sneaksearch$ == "lighthalzen")
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9801,7 +9841,7 @@ L_Search:
 					set lhz_boss,34;
 					close;
 				}
-				else if(@sneaksearch$ == "rekenber")
+				else if (@sneaksearch$ == "rekenber")
 				{
 					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
@@ -9840,7 +9880,7 @@ L_Search:
 
 lhz_in01,177,31,0	script	Porta#sneak	111,{
 
-	if(lhz_boss < 29)
+	if (lhz_boss < 29)
 	{
 		mes "[Guarda]";
 		mes "Esta é uma";
@@ -9851,7 +9891,7 @@ lhz_in01,177,31,0	script	Porta#sneak	111,{
 		mes "Obrigado pela cooperação.";
 		close;
 	}
-	else if(lhz_boss < 36)
+	else if (lhz_boss < 36)
 	{
 		mes "^3355FFA porta está fechada, mas";
 		mes "tem um dispositivo que";
@@ -9877,7 +9917,7 @@ lhz_in01,177,31,0	script	Porta#sneak	111,{
 
 lhz_in01,184,40,0	script	Area 1-5	111,{
 
-	if(checkweight(7344,1) != 1)
+	if (checkweight(7344,1) != 1)
 	{
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -9887,7 +9927,7 @@ lhz_in01,184,40,0	script	Area 1-5	111,{
 		mes "para armazenar alguns dos seus itens.^000000";
 		close;
 	}
-	if((lhz_boss > 28) && (lhz_boss < 31))
+	if ((lhz_boss > 28) && (lhz_boss < 31))
 	{
 		mes "^3355FFLiteralmente há centenas";
 		mes "de documentos para olhar.";
@@ -9896,7 +9936,7 @@ lhz_in01,184,40,0	script	Area 1-5	111,{
 		mes "em apenas três minutos...^000000";
 		close;
 	}
-	else if(lhz_boss == 31)
+	else if (lhz_boss == 31)
 	{
 		mes "^3355FFEspere, um desses arquivos";
 		mes "parece bastante incriminador.";
@@ -9926,7 +9966,7 @@ lhz_in01,184,40,0	script	Area 1-5	111,{
 
 lhz_in01,184,52,0	script	Area 1-7	111,{
 
-	if((lhz_boss > 28) && (lhz_boss < 32))
+	if ((lhz_boss > 28) && (lhz_boss < 32))
 	{
 		mes "^3355FFLiteralmente há centenas";
 		mes "de documentos para olhar.";
@@ -9935,7 +9975,7 @@ lhz_in01,184,52,0	script	Area 1-7	111,{
 		mes "em apenas três minutos...^000000";
 		close;
 	}
-	else if(lhz_boss == 32)
+	else if (lhz_boss == 32)
 	{
 		mes "^3355FFParece que um arquivo";
 		mes "contém informações";
@@ -9988,7 +10028,7 @@ lhz_in01,184,52,0	script	Area 1-7	111,{
 
 lhz_in01,184,46,0	script	Area 3-2	111,{
 
-	if((lhz_boss > 28) && (lhz_boss < 30))
+	if ((lhz_boss > 28) && (lhz_boss < 30))
 	{
 		mes "^3355FFLiteralmente há centenas";
 		mes "de documentos para olhar.";
@@ -9997,7 +10037,7 @@ lhz_in01,184,46,0	script	Area 3-2	111,{
 		mes "em apenas três minutos...^000000";
 		close;
 	}
-	else if(lhz_boss == 30)
+	else if (lhz_boss == 30)
 	{
 		mes "^3355FFVocê encontrou um arquivo que";
 		mes "contém informações";
@@ -10053,7 +10093,7 @@ lhz_in01,184,46,0	script	Area 3-2	111,{
 
 lhz_in01,184,48,0	script	Area 3-3	111,{
 
-	if((lhz_boss > 28) && (lhz_boss < 34))
+	if ((lhz_boss > 28) && (lhz_boss < 34))
 	{
 		mes "^3355FFLiteralmente há centenas";
 		mes "de documentos para olhar.";
@@ -10062,7 +10102,7 @@ lhz_in01,184,48,0	script	Area 3-3	111,{
 		mes "em apenas três minutos...^000000";
 		close;
 	}
-	else if(lhz_boss == 34)
+	else if (lhz_boss == 34)
 	{
 		mes "[Classified Info]";
 		mes "^8C1717...Após negociar com os";
@@ -10101,7 +10141,7 @@ lhz_in01,184,48,0	script	Area 3-3	111,{
 
 lhz_in01,177,56,0	script	Area 6-1	111,{
 
-	if((lhz_boss > 28) && (lhz_boss < 33))
+	if ((lhz_boss > 28) && (lhz_boss < 33))
 	{
 		mes "^3355FFLiteralmente há centenas";
 		mes "de documentos para olhar.";
@@ -10110,7 +10150,7 @@ lhz_in01,177,56,0	script	Area 6-1	111,{
 		mes "em apenas três minutos...^000000";
 		close;
 	}
-	else if(lhz_boss == 33)
+	else if (lhz_boss == 33)
 	{
 		mes "[Informação Confidencial]";
 		mes "^8C1717........";
@@ -10148,7 +10188,7 @@ lhz_in01,177,56,0	script	Area 6-1	111,{
 
 lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
 
-	if(checkweight(7346,1) != 1)
+	if (checkweight(7346,1) != 1)
 	{
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -10158,7 +10198,7 @@ lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
 		mes "para armazenar alguns dos seus itens.^000000";
 		close;
 	}
-	if(lhz_boss < 6)
+	if (lhz_boss < 6)
 	{
 		mes "^3355FFHá várias máquinas";
 		mes "quebradas por aí.";
@@ -10166,7 +10206,7 @@ lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
 		mes "de muita utilidade.^000000";
 		close;
 	}
-	else if(lhz_boss == 6)
+	else if (lhz_boss == 6)
 	{
 		mes "^3355FFHá várias máquinas";
 		mes "quebradas por aí.";
@@ -10224,6 +10264,27 @@ lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
 	}
 }
 
+sec_in02,17,170,4	script	boss::lght_boss_admin	809,{
+	callfunc "F_GM_NPC";
+	mes "[Patch]";
+	mes "Tell me what you want.";
+	next;
+	switch(select("Current Variables:How Many:Shinokas - Quest Complete")) {
+	case 1:
+		break;
+	case 2:
+		input .@input,0,1000;
+		set lght_boss,.@input;
+		break;
+	case 3:
+		set Shinokas_Quest,11;
+		close;
+	}
+	mes " ";
+	mes ""+lght_boss;
+	close;
+}
+
 lhz_in02,19,274,2	script	Rapaz da Manutenção	851,{
 
 	mes "[Kudiuu]";
@@ -10240,8 +10301,9 @@ lhz_in02,19,274,2	script	Rapaz da Manutenção	851,{
 //============================================================
 lhz_in01,174,258,3	script	Young Man#reken	868,{
 
-	if(lhz_rekenber > 21)
+	if (lhz_rekenber > 21)
 	{
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Apenas...";
 		mes "Me deixe em paz.";
@@ -10255,10 +10317,13 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "quem... Céus. Eu só queria";
 		mes "poder viver do jeito que você vive.";
 		mes "Algum dia eu vou ser forte o suficiente...";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 21)
+	else if (lhz_rekenber == 21)
 	{
+		cutin "lhz_kaz03",2;
 		mes "[Kazien]";
 		mes "Ei, você voltou. Como sempre,";
 		mes "fez um bom trabalho. Você ";
@@ -10274,11 +10339,13 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "querer e eu vi o que estava";
 		mes "dentro dele.";
 		next;
+		cutin "lhz_kaz06",2;
 		mes "[Kazien]";
 		mes "......";
 		mes ".........";
 		mes "............";
 		next;
+		cutin "lhz_kaz08",2;
 		mes "[" + strcharinfo(0) + "]";
 		mes "P-Por que você está fornecendo";
 		mes "essas coisas? Se deixarmos esses";
@@ -10286,6 +10353,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "por outros países, vai ser";
 		mes "uma grande encrenca...!";
 		next;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Pare. Por favor.";
 		mes "Pare de falar.";
@@ -10308,6 +10376,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "perante o mundo para assegurar que essas";
 		mes "armas não sejam distribuídas?";
 		next;
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "Cale-se! Você não";
 		mes "sabe de nada! Fique";
@@ -10319,6 +10388,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "[" + strcharinfo(0) + "]";
 		mes ".................";
 		next;
+		cutin "lhz_kaz04",2;
 		mes "[Kazien]";
 		mes "Tinha dias que eu e meu";
 		mes "irmão não tínhamos nada";
@@ -10327,6 +10397,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "de um mundo em paz se eu nem mesmo";
 		mes "estou vivo para curtir, heim?";
 		next;
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "Mas meu irmão Lyozien é um";
 		mes "cara gentil, ele adora";
@@ -10335,6 +10406,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "que eu estava fazendo...ele nunca";
 		mes "concordaria com isso, acredite.";
 		next;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Eu odeio esse trabalho e o que";
 		mes "estou fazendo... e quero sair.";
@@ -10342,6 +10414,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "favela? Esqueça. Enquanto";
 		mes "Lyozien estiver feliz, eu não vou me importar de fazer este trabalho do inferno.";
 		next;
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "Ao menos assim, ficando";
 		mes "tudo em segredo, eu posso proteger";
@@ -10355,6 +10428,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "as pessoas se matarem! Mesmo se for para o bem";
 		mes "de sua família...";
 		next;
+		cutin "lhz_kaz05",2;
 		mes "[Kazien]";
 		mes "Olha, é isso o que eu";
 		mes "decidi. Eu não me importo com";
@@ -10368,6 +10442,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "com suas espadas e feitiços mágicos... Isso também não é tão ruim quanto?";
 		mes "Não é a arma nem o poder que é mau: é como são usados.";
 		next;
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "Lógico que a maioria dos meus clientes";
 		mes "são bastante suspeitos, e";
@@ -10376,6 +10451,10 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Que droga!!! Só... Não volte";
 		mes "mais. Eu não posso trabalhar assim...";
 		next;
+		set lhz_rekenber,22;
+		getexp (checkversion(3))?55000:550000,0;
+		completequest 12013;
+		cutin "lhz_kaz01",2;
 		mes "[Kazien]";
 		mes "Olha, eu não quero";
 		mes "mais que você trabalhe";
@@ -10383,21 +10462,24 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Desculpe, mas é para o bem de";
 		mes "Lyozien. Isto é porque";
 		mes "você me faz sentir culpado...";
-		set lhz_rekenber,22;
-		getexp (checkversion(3))?55000:550000,0;
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber > 16)
+	else if (lhz_rekenber > 16)
 	{
 		mes "[Kazien]";
 		mes "Hei, é melhor";
 		mes "você ir andando. Você precisa";
 		mes "ajudar em outra entrega para";
 		mes "o Reino de Rune-Midgard.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 16)
+	else if (lhz_rekenber == 16)
 	{
+		cutin "lhz_kaz03",2;
 		mes "[Kazien]";
 		mes "Ah, Lyozien me contou que";
 		mes "vocês já tinham terminado";
@@ -10405,6 +10487,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "o melhor parceiro que eu tive";
 		mes "em muito, muito tempo.";
 		next;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "De qualquer forma, nós temos ainda";
 		mes "outra entrega para o";
@@ -10412,6 +10495,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "estranho que a gente esteja com mais";
 		mes "pedidos de lá, mas os pedidos de outros países estão sumindo.";
 		next;
+		cutin "lhz_kaz07",2;
 		mes "[Kazien]";
 		mes "Bem, eu não tenho tempo";
 		mes "para ficar pensando nessas";
@@ -10426,6 +10510,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "pacotes? Por que";
 		mes "eles queriam fazer isso?";
 		next;
+		cutin "lhz_kaz02",2;
 		mes "[Kazien]";
 		mes "Olha... É melhor você ";
 		mes "não ficar sabendo. Ou você ";
@@ -10441,6 +10526,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "naqueles pacotes, e porque eu";
 		mes "e Lyozien estamos sendo atacados.";
 		next;
+		cutin "lhz_kaz08",2;
 		mes "[Kazien]";
 		mes "Escute, eu não sou obrigado...";
 		mes "Eu não posso lhe dizer. Droga, eu não";
@@ -10449,27 +10535,34 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "não entende? De qualquer forma, você ";
 		mes "pode com esses caras, certo?";
 		next;
+		set lhz_rekenber,17;
+		getexp (checkversion(3))?45000:450000,0;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Certo. Agora volte ao";
 		mes "Aeroplano e fale novamente";
 		mes "com Lyozien. Não vá ";
 		mes "causar problemas para ele e";
 		mes "garanta que ele esteja seguro.";
-		set lhz_rekenber,17;
-		getexp (checkversion(3))?45000:450000,0;
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber > 11)
+	else if (lhz_rekenber > 11)
 	{
+		cutin "lhz_kaz08",2;
 		mes "[Kazien]";
 		mes "O que você está fazendo,";
 		mes "esperando por";
 		mes "aqui? Você tem um trabalho para";
 		mes "fazer, então se apresse!";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 11)
+	else if (lhz_rekenber == 11)
 	{
+		cutin "lhz_kaz05",2;
 		mes "[Kazien]";
 		mes "Ei, você voltou. Eu tenho uma";
 		mes "mensagem de Rune-Midgard";
@@ -10483,6 +10576,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Lyozien não";
 		mes "são irmãos?";
 		next;
+		cutin "lhz_kaz03",2;
 		mes "[Kazien]";
 		mes "Opa, ele te contou isso?";
 		mes "Acho que ele sente que";
@@ -10507,6 +10601,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "sabe exatamente o que ";
 		mes "tem nesses pacotes.";
 		next;
+		cutin "lhz_kaz06",2;
 		mes "[Kazien]";
 		mes "Huh... Quer dizer que";
 		mes "você não pode trabalhar com a gente";
@@ -10533,7 +10628,9 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Reino de Rune-Midgard.";
 		next;
 		set lhz_rekenber,12;
+		changequest 5005,5006;
 		getexp (checkversion(3))?40000:400000,0;
+		cutin "lhz_kaz03",2;
 		mes "[Kazien]";
 		mes "Certo, eu vejo você mais";
 		mes "tarde. O mais importante";
@@ -10541,9 +10638,11 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "que puder.";
 		mes "E não dê trabalho";
 		mes "para Lyozien. Isso é trabalho meu!";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber > 7)
+	else if (lhz_rekenber > 7)
 	{
 		mes "[Kazien]";
 		mes "Lyozien está te esperando";
@@ -10554,7 +10653,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "vejo você mais tarde.";
 		close;
 	}
-	else if(lhz_rekenber == 7)
+	else if (lhz_rekenber == 7)
 	{
 		mes "[Kazien]";
 		mes "Ei, você voltou!";
@@ -10579,18 +10678,22 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "para outro trabalho, certo?";
 		next;
 		set lhz_rekenber,8;
+		changequest 12008,12010;
+		cutin "lhz_kaz01",2;
 		mes "[Kazien]";
 		mes "Não se esqueça...";
 		mes "Fale com ^FF0000Lyozien^000000, nosso";
 		mes "mensageiro, no aeroporto";
 		mes "internacional.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 6)
+	else if (lhz_rekenber == 6)
 	{
-		set @rekenrand,rand(1,15);
-		if(@rekenrand == 7)
+		if (rand(1,15) == 7)
 		{
+			cutin "lhz_kaz04",2;
 			mes "[Kazien]";
 			mes "Hei, é você de novo.";
 			mes "Espere. Hmm. Você me lembra";
@@ -10600,18 +10703,21 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 			mes "ficar tão ocupado, eu não consigo me concentrar!";
 			next;
 			set lhz_rekenber,0;
+			erasequest 12009;
 			mes "[Kazien]";
 			mes "Arrgh, não tem jeito.";
 			mes "Não somos muitos e por isso estamos muito ocupados,";
 			mes "mas ainda não está tão ruim";
 			mes "a ponto de precisarmos contratar mais gente.";
 			next;
+			cutin "lhz_kaz01",2;
 			mes "[Kazien]";
 			mes "Você poderia ir para trás? Esta atrapalhando minha visão.";
-			close;
+			close2;
 		}
 		else
 		{
+			cutin "lhz_kaz10",2;
 			mes "[Kazien]";
 			mes "Hei, é você de novo.";
 			mes "Escute, você não tinha vindo aqui";
@@ -10627,11 +10733,14 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 			mes "Não se sinta mal... Hm, qual";
 			mes "é mesmo o seu nome? Espere,";
 			mes "você já não tinha dito para mim...?";
-			close;
+			close2;
 		}
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 5)
+	else if (lhz_rekenber == 5)
 	{
+		cutin "lhz_kaz04",2;
 		mes "[Kazien]";
 		mes "Então, você conseguiu";
 		mes "falar com Garins? Ou";
@@ -10645,6 +10754,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "o guarda, mas eu não consegui";
 		mes "falar nada com ele.";
 		next;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "O quêêêê?";
 		mes "Eu tenho certeza que";
@@ -10659,6 +10769,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "contar para ninguém os detalhes";
 		mes "da minha tarefa.";
 		next;
+		cutin "lhz_kaz06",2;
 		mes "[Kazien]";
 		mes "Heh... Sim.";
 		mes "Sim, é isso aí.";
@@ -10672,6 +10783,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Eu não terminei a tarefa";
 		mes "que você passou para mim.";
 		next;
+		cutin "lhz_kaz09",2;
 		mes "[Kazien]";
 		mes "Garins é só um nome";
 		mes "legal que eu inventei.";
@@ -10686,16 +10798,20 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "palhaço. Como eu vou poder";
 		mes "confiar em você agora?";
 		next;
+		set lhz_rekenber,7;
+		cutin "lhz_kaz06",2;
 		mes "[Kazien]";
 		mes "Oh... Você...";
 		mes "Você está certo.";
 		mes "Huh, irônico, não? Desculpe, me perdoe.";
 		mes "Relaxe um pouco, pense se quer trabalhar para mim e, então, volte aqui, tá?";
-		set lhz_rekenber,7;
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 4)
+	else if (lhz_rekenber == 4)
 	{
+		cutin "lhz_kaz04",2;
 		mes "[Kazien]";
 		mes "Então, você conseguiu";
 		mes "falar com Garins? Ou";
@@ -10707,6 +10823,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "que Garins nem mesmo trabalha";
 		mes "no Laboratório Einbroch.";
 		next;
+		cutin "lhz_kaz08",2;
 		mes "[Kazien]";
 		mes "O quêêêê?";
 		mes "Isso não pode ser verdade.";
@@ -10719,6 +10836,8 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "ele não me deixou entrar.";
 		next;
 		set lhz_rekenber,6;
+		changequest 12008,12009;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Uh oh...";
 		mes "Foi o que pensei.";
@@ -10744,10 +10863,13 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "o objetivo, mas não pode";
 		mes "esquecer dos detalhes. De qualquer forma,";
 		mes "desculpe, mas não podemos usar você...";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 3)
+	else if (lhz_rekenber == 3)
 	{
+		cutin "lhz_kaz01",2;
 		mes "[Kazien]";
 		mes "Lembre-se, visite ^FF0000Garins^000000 ";
 		mes "no ^FF0000Laboratório Einbroch^000000 ";
@@ -10760,10 +10882,13 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "por aqui, então";
 		mes "quando terminar com";
 		mes "isso, venha aqui me ver.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 2)
+	else if (lhz_rekenber == 2)
 	{
+		cutin "lhz_kaz04",2;
 		mes "[Kazien]";
 		mes "Certo, eu entendi! Sua primeira";
 		mes "tarefa para nós é bem";
@@ -10788,6 +10913,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "para coisas mais importantes. E";
 		mes "eu queria muito poder confiar em você.";
 		next;
+		cutin "lhz_kaz05",2;
 		mes "[Kazien]";
 		mes "Lembre-se, visite ^FF0000Garins^000000 ";
 		mes "no ^FF0000Laboratório Einbroch^000000 ";
@@ -10796,15 +10922,19 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "de manter a confidencialidade dos clientes, por isso, mantenha segredo. Entendeu?";
 		next;
 		set lhz_rekenber,3;
+		changequest 12007,12008;
 		mes "[Kazien]";
 		mes "Eu vou ficar esperando";
 		mes "por aqui, então";
 		mes "quando terminar com";
 		mes "isso, venha aqui me ver.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 1)
+	else if (lhz_rekenber == 1)
 	{
+		cutin "lhz_kaz01",2;
 		mes "[Kazien]";
 		mes "Nós estamos tão ocupados, mal";
 		mes "temos pessoas suficientes para";
@@ -10826,6 +10956,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "uma certa quantia ou algum";
 		mes "tipo de recompensa. Você sabe...";
 		next;
+		cutin "lhz_kaz10",2;
 		mes "[Kazien]";
 		mes "Bem, está certo...";
 		mes "Bem que eu queria uma";
@@ -10834,7 +10965,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "você fala direto o que quer.";
 		mes "Eu gosto disso. Agora, vamos ver...";
 		next;
-		if(BaseLevel < 70)
+		if (BaseLevel < 70)
 		{
 			mes "[Kazien]";
 			mes "Ahh, me desculpe, companheiro.";
@@ -10843,7 +10974,9 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 			mes "é forte o suficiente para";
 			mes "esse tipo de trabalho. Hei, mas se você ganhar";
 			mes "uns músculos a mais, volte para falar comigo, tá?";
-			close;
+			close2;
+			cutin "",255;
+			end;
 		}
 		mes "[Kazien]";
 		mes "Tá, tudo bem. Parece que você ";
@@ -10853,7 +10986,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "manter informações confidenciais";
 		mes "sem contar para ninguém, certo?";
 		next;
-		switch( select( "Sim, é claro.","Não, eu adoro contar segredos." ) )
+		switch(select("Sim, é claro.","Não, eu adoro contar segredos." ) )
 		{
 			case 1:
 				set lhz_rekenber,2;
@@ -10864,9 +10997,11 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 				mes "negócios. Deixe-me pensar. Primeiro,";
 				mes "eu deveria dar algo";
 				mes "fácil para testar você...";
-				close;
-
+				close2;
+				cutin "",255;
+				end;
 			case 2:
+				cutin "lhz_kaz04",2;
 				mes "[Kazien]";
 				mes "Ahh, cara.";
 				mes "Eu não posso contratar você ";
@@ -10874,9 +11009,12 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 				mes "a boca. Desculpe, meu chapa,";
 				mes "mas eu não posso correr";
 				mes "nenhum risco. Você entende...?";
-				close;
+				close2;
+				cutin "",255;
+				end;
 		}
 	}
+	cutin "lhz_kaz01",2;
 	mes "[Kazien]";
 	mes "Nós estamos tão ocupados, mal";
 	mes "temos pessoas suficientes para";
@@ -10884,12 +11022,15 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 	mes "não seria má idéia";
 	mes "investir em novas contratações.";
 	next;
+	cutin "lhz_kaz04",2;
 	mes "[Kazien]";
 	mes "Ah, ei, desculpe meu chapa,";
 	mes "mas poderia dar um passo";
 	mes "para trás? É que você está ";
 	mes "bloqueando toda minha vista.";
-	close;
+	close2;
+	cutin "",255;
+	end;
 }
 
 lighthalzen,141,162,3	script	Velho#reken	85,{
@@ -10909,19 +11050,22 @@ lighthalzen,141,162,3	script	Velho#reken	85,{
 	mes "preciso nenhuma habilidade especial";
 	mes "para conseguir um trabalho.";
 	next;
+	if (!lhz_rekenber) {
+		set lhz_rekenber,1;
+		setquest 12007;
+	} 
 	mes "[Velho]";
 	mes "Bem, se estiver interessado,";
 	mes "você pode encontrar Kazien";
 	mes "ao lado do prédio da corporação.";
 	mes "Jovens como você nunca deveriam";
 	mes "ser tão orgulhosos a ponto de não pedir ajuda. Ele ainda precisa aprender isso...";
-	if(!lhz_rekenber) set lhz_rekenber,1;
 	close;
 }
 
 einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 
-	if(lhz_rekenber == 3)
+	if (lhz_rekenber == 3)
 	{
 		mes "[Guarda do Laboratório]";
 		mes "Essa é uma área";
@@ -10930,7 +11074,7 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 		mes "especial, eu peço";
 		mes "que você se retire.";
 		next;
-		switch( select( "Na verdade, eu tenho um assunto aqui.","Opa, estou de saída!" ) )
+		switch(select("Na verdade, eu tenho um assunto aqui.","Opa, estou de saída!" ) )
 		{
 			case 1:
 				mes "[Laboratory Guard]";
@@ -10940,7 +11084,7 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 				mes "que precise contatar dentro";
 				mes "das instalações do laboratório.";
 				next;
-				switch( select( "Eu preciso ver o Sr. Garins...","Eu... volto mais tarde." ) )
+				switch(select("Eu preciso ver o Sr. Garins...","Eu... volto mais tarde." ) )
 				{
 					case 1:
 						mes "[" + strcharinfo(0) + "]";
@@ -10964,21 +11108,31 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 						mes "ainda não posso deixar você ";
 						mes "entrar no laboratório.";
 						set lhz_rekenber,4;
+						changequest 12008,12010;
 						close;
 
 					case 2:
-						break;
+						mes "[" + strcharinfo(0) + "]";
+						mes "Eu... volto mais tarde.";
+						mes "(^333333É melhor eu falar com Kazien";
+						mes "e dizer que estou tendo";
+						mes "problemas para passar por";
+                        mes "esse guarda. Caso contrário, eu talvez";
+                        mes "nunca consiga terminar esta tarefa!^000000)";
+                        set lhz_rekenber,5;
+                        changequest 12008,12010;
+                        close;
 				}
-				
 			case 2:
 				mes "[" + strcharinfo(0) + "]";
 				mes "Eu... volto mais tarde.";
-				mes "(^333333É melhor eu conversar com Kazien";
-				mes "e dizer que eu estou tendo";
+				mes "(^333333É melhor eu falar com Kazien";
+				mes "e dizer que estou tendo";
 				mes "problemas para passar por";
-				mes "esse guarda. Ou eu nunca vou conseguir";
-				mes "terminar essa tarefa!^000000)";
+				mes "esse guarda. Caso contrário, eu talvez";
+				mes "nunca consiga terminar esta tarefa!^000000)";
 				set lhz_rekenber,5;
+				changequest 12008,12010;
 				close;
 		}
 	}
@@ -10993,8 +11147,9 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 
 airplane_01,96,48,3	script	Man#Lyozien	868,{
 
-	if(lhz_rekenber > 21)
+	if (lhz_rekenber > 21)
 	{
+		cutin "lhz_ryo11",2;
 		mes "[Lyozien]";
 		mes "Hei, meu irmão me";
 		mes "contou que você não vai poder";
@@ -11002,10 +11157,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "por uns problemas de horário.";
 		mes "É uma pena ouvir isso: foi";
 		mes "bem legal trabalhar com você...";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 21)
+	else if (lhz_rekenber == 21)
 	{
+		cutin "lhz_ryo03",2;
 		mes "[Lyozien]";
 		mes "Que bom, você voltou.";
 		mes "O Sr. Ahman acabou de sair";
@@ -11019,26 +11177,33 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Você parece meio chateado.";
 		mes "Quer dar uma parada";
 		mes "ou algo assim?";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 20)
+	else if (lhz_rekenber == 20)
 	{
+		cutin "lhz_ryo09",2;
 		mes "[Lyozien]";
 		mes "Hei, continue com";
 		mes "o bom trabalho. Assim que";
 		mes "falar com o Sr. Ahman dentro";
 		mes "do Aeroporto de Izlude,";
 		mes "vamos ter terminado essa entrega.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 19)
+	else if (lhz_rekenber == 19)
 	{
+		cutin "lhz_ryo06",2;
 		mes "[Lyozien]";
 		mes "Uau, você é fantástico!";
 		mes "Havia mais deles";
 		mes "dessa vez, mas você os despachou";
 		mes "facilmente. Grande trabalho!";
 		next;
+		cutin "lhz_ryo01",2;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Obrigado, mas...";
 		mes "Agora estou realmente";
@@ -11046,6 +11211,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "nesses pacotes. Você tem certeza";
 		mes "de que não sabe, Lyozien?";
 		next;
+		cutin "lhz_ryo02",2;
 		mes "[Lyozien]";
 		mes "Você não sabe quando";
 		mes "parar, né? Não, eu não";
@@ -11055,7 +11221,8 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "por mim mesmo. Oh, ei...";
 		next;
 		set lhz_rekenber,20;
-		getitem 504,1;
+		getitem 504,1; //White_Potion
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "Aqui tem um";
 		mes "'negocinho'; para se";
@@ -11063,10 +11230,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Continue fazendo um bom trabalho, tá?";
 		mes "Então, nós vamos terminar assim";
 		mes "que você falar com o Sr. Ahman em Izlude.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 18)
+	else if (lhz_rekenber == 18)
 	{
+		cutin "lhz_ryo06",2;
 		mes "[Lyozien]";
 		mes "Certo, exatamente como foi antes,";
 		mes "nós temos que levar esses pacotes";
@@ -11075,6 +11245,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Aeroporto e diga que os";
 		mes "pacotes dele chegaram.";
 		next;
+		cutin "lhz_ryo08",2;
 		mes "[Lyozien]";
 		mes "E-espere...";
 		mes "Você ouviu isso?";
@@ -11082,13 +11253,15 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Esses brutamontes estão de volta! Não ";
 		mes "deixe que eles danifiquem os pacotes!";
 		close2;
+		cutin "",255;
 		set lhz_rekenber,19;
 		donpcevent "#bully2::OnEnter";
 		donpcevent "Man#Lyozien::OnStop";
 		end;
 	}
-	else if(lhz_rekenber == 17)
+	else if (lhz_rekenber == 17)
 	{
+		cutin "lhz_ryo14",2;
 		mes "[Lyozien]";
 		mes "Eu fiquei sabendo que você ";
 		mes "chateou um pouco Kyozien com";
@@ -11097,12 +11270,14 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "você precisa se lembrar que";
 		mes "temos nossas obrigações.";
 		next;
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "Eu sei que esses pacotes";
 		mes "podem estar nos colocando em perigo,";
 		mes "mais eu confio no meu irmão. Se ele diz que esses brutamontes são os malvados, então";
 		mes "definitivamente eles são os malvados.";
 		next;
+		cutin "lhz_ryo13",2;
 		mes "[Lyozien]";
 		mes "Sim, desde que éramos";
 		mes "garotos, Kyozien sempre";
@@ -11112,15 +11287,19 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "quem vai desapontá-lo, entende?";
 		next;
 		set lhz_rekenber,18;
+		cutin "lhz_ryo10",2;
 		mes "[Lyozien]";
 		mes "Bem, chega de";
 		mes "jogar conversa";
 		mes "fora. Vamos voltar";
 		mes "ao trabalho, tá?";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 16)
+	else if (lhz_rekenber == 16)
 	{
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "Sorte minha ter você ";
 		mes "por perto para manter";
@@ -11128,10 +11307,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Hei, quando estiver pronto";
 		mes "para outro trabalho, é só ";
 		mes "falar com meu irmão Kazien, certo?";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 15)
+	else if (lhz_rekenber == 15)
 	{
+		cutin "lhz_ryo05",2;
 		mes "[Lyozien]";
 		mes "Então, você já ";
 		mes "falou com o Sr. Ahman?";
@@ -11147,10 +11329,16 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "que está trabalhando para nós.";
 		mes "Esses brutamontes me dão calafrios...";
 		set lhz_rekenber,16;
-		close;
+		cutin "lhz_ryo01",2;
+		mes "[Lyozien]";
+		mes "Agora me sinto muito mais seguro.";
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 14)
+	else if (lhz_rekenber == 14)
 	{
+		cutin "lhz_ryo13",2;
 		mes "[Lyozien]";
 		mes "Agora que esses brutamontes";
 		mes "se foram, vamos nos concentrar na";
@@ -11158,10 +11346,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "partir para Izlude e dizer ao";
 		mes "Sr. Ahman que seus pacotes";
 		mes "chegaram. Vejo você mais tarde...";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 13)
+	else if (lhz_rekenber == 13)
 	{
+		cutin "lhz_ryo13",2;
 		mes "[Lyozien]";
 		mes "Ah, obrigado!";
 		mes "Você salvou minha vida!";
@@ -11170,6 +11361,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Eu só corro e me escondo";
 		mes "quando aparecem esses brutamontes.";
 		next;
+		cutin "lhz_ryo04",2;
 		mes "[Lyozien]";
 		mes "Essa é uma das razões porque";
 		mes "meu irmão estava contratando";
@@ -11177,6 +11369,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "proteger os pacotes contra esses ladrões.";
 		mes "Eles estão sempre atrás da gente...";
 		next;
+		cutin "lhz_ryo07",2;
 		mes "[Lyozien]";
 		mes "Sempre que eu os vejo,";
 		mes "eles estão gritando coisas";
@@ -11185,10 +11378,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "ser destruídos. Nossa, fico contente";
 		mes "que você esteja aqui!";
 		set lhz_rekenber,14;
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 12)
+	else if (lhz_rekenber == 12)
 	{
+		cutin "lhz_ryo11",2;
 		mes "[Lyozien]";
 		mes "Hei, nós temos de novo outro";
 		mes "pacote para entregar";
@@ -11197,6 +11393,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "que estamos fazendo muitos";
 		mes "negócios por lá ultimamente.";
 		next;
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "É longe de casa,";
 		mes "mas trabalho é trabalho.";
@@ -11205,6 +11402,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "que a gente sai... opa. Você ";
 		mes "escutou isso? O-o que foi...?";
 		next;
+		cutin "lhz_ryo03",2;
 		mes "[Lyozien]";
 		mes "Ahhh, droga!";
 		mes "Esses brutamontes!";
@@ -11213,13 +11411,15 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "os pacotes e não deixar";
 		mes "que eles os peguem!";
 		close2;
+		cutin "",255;
 		set lhz_rekenber,13;
 		donpcevent "Man#Lyozien::OnStop";
 		donpcevent "#bully1::OnEnter";
 		end;
 	}
-	if(lhz_rekenber == 11)
+	if (lhz_rekenber == 11)
 	{
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "Hei, você poderia ir";
 		mes "ver meu irmão Kazien e";
@@ -11227,10 +11427,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "pra gente? Eu vou ficar por aqui";
 		mes "esperando você ";
 		mes "voltar. Até mais tarde!";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 10)
+	else if (lhz_rekenber == 10)
 	{
+		cutin "lhz_ryo14",2;
 		mes "[Lyozien]";
 		mes "Bom trabalho, o Sr. Ahman acabou";
 		mes "de chegar e pegou seus";
@@ -11244,6 +11447,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "tipo de coisa estamos";
 		mes "entregando?";
 		next;
+		cutin "lhz_ryo10",2;
 		mes "[Lyozien]";
 		mes "Não tenho idéia. Eu estava";
 		mes "um pouco curioso também,";
@@ -11252,6 +11456,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "acho que faria qualquer diferença";
 		mes "para o que a gente tem que fazer, certo?";
 		next;
+		cutin "lhz_ryo13",2;
 		mes "[Lyozien]";
 		mes "Seja como for, deve ser";
 		mes "legal. Quero dizer, nossos clientes";
@@ -11260,6 +11465,9 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "tipo de situação, certo? Sabe,";
 		mes "pedidos embaraçosos...";
 		next;
+		set lhz_rekenber,11;
+		changequest 12011,12012;
+		cutin "lhz_ryo01",2;
 		mes "[Lyozien]";
 		mes "Não? Bem, é só encontrar";
 		mes "meu irmão e ver se ele";
@@ -11267,10 +11475,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Se quiser me encontrar de novo,";
 		mes "vou estar esperando bem aqui.";
 		set lhz_rekenber,11;
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 9)
+	else if (lhz_rekenber == 9)
 	{
+		cutin "lhz_ryo05",2;
 		mes "[Lyozien]";
 		mes "Certo, quando esse Aeroplano";
 		mes "chegar em Izlude, desembarque e";
@@ -11278,10 +11489,13 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "um homem chamado Sr. Ahman.";
 		mes "Diga a ele que seu pedido";
 		mes "acabou de chegar, certo?";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
-	else if(lhz_rekenber == 8)
+	else if (lhz_rekenber == 8)
 	{
+		cutin "lhz_ryo02",2;
 		mes "[Lyozien]";
 		mes "Hmm, se importaria";
 		mes "em pisar de leve em volta";
@@ -11294,6 +11508,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "Me desculpe, mas";
 		mes "você é Lyozien?";
 		next;
+		cutin "lhz_ryo07",2;
 		mes "[Lyozien]";
 		mes "Hei, você é quem meu";
 		mes "irmão Kazien mandou?";
@@ -11302,6 +11517,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "eu estou tendo problemas em lidar";
 		mes "com todos esses pacotes aqui.";
 		next;
+		cutin "lhz_ryo14",2;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Espere, Kazien É ";
 		mes "seu irmão? Isso É ";
@@ -11316,6 +11532,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "a corporação e nos ajudou";
 		mes "a melhorar muito de vida...";
 		next;
+		cutin "lhz_ryo13",2;
 		mes "[Lyozien]";
 		mes "É por isso que eu acho legal";
 		mes "ele me deixar trabalhar para";
@@ -11324,6 +11541,7 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "entregar essas mercadorias";
 		mes "no Reino de Rune-Midgard.";
 		next;
+		cutin "lhz_ryo12",2;
 		mes "[Lyozien]";
 		mes "Eu preciso assegurar que esses";
 		mes "pacotes não sejam danificados";
@@ -11332,6 +11550,8 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "no Aeroporto e dizer a ele que seu pedido chegou em segurança.";
 		next;
 		set lhz_rekenber,9;
+		changequest 12010,12011;
+		cutin "lhz_ryo11",2;
 		mes "[Lyozien]";
 		mes "Assim que você der essa mensagem";
 		mes "ao Sr. Ahman, ele se encarregará ";
@@ -11339,8 +11559,11 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 		mes "pacotes. Mas até lá, precisamos";
 		mes "estar alertas e proteger esses";
 		mes "produtos.";
-		close;
+		close2;
+		cutin "",255;
+		end;
 	}
+	cutin "lhz_ryo12",2;
 	mes "[Lyozien]";
 	mes "Hmm, se importaria";
 	mes "em pisar de leve em volta";
@@ -11348,7 +11571,9 @@ airplane_01,96,48,3	script	Man#Lyozien	868,{
 	mes "perto dessas pilhas? É,";
 	mes "elas são bastante frágeis.";
 	mes "Obrigado, eu agradeço.";
-	close;
+	close2;
+	cutin "",255;
+	end;
 
 OnEnter:
 	enablenpc "Man#Lyozien";
@@ -11361,7 +11586,7 @@ OnStop:
 
 izlude,171,73,6	script	Scamp#iz	853,{
 
-	if(lhz_rekenber > 21)
+	if (lhz_rekenber > 21)
 	{
 		mes "[Ahman]";
 		mes "Oh, olá. Eu fiquei sabendo";
@@ -11372,7 +11597,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "sido destruídos por esses brutamontes.";
 		close;
 	}
-	else if(lhz_rekenber == 21)
+	else if (lhz_rekenber == 21)
 	{
 		mes "[Ahman]";
 		mes "Você não deveria";
@@ -11381,7 +11606,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "esperar você no Aeroplano, não é?";
 		close;
 	}
-	else if(lhz_rekenber == 20)
+	else if (lhz_rekenber == 20)
 	{
 		mes "[Ahman]";
 		mes "Oh, meus pacotes";
@@ -11411,7 +11636,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "entregas a serem feitas. Você não deveria estar em Lighthalzen?";
 		close;
 	}
-	else if(lhz_rekenber == 15)
+	else if (lhz_rekenber == 15)
 	{
 		mes "[Ahman]";
 		mes "Você não deveria estar";
@@ -11420,7 +11645,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "antes que o Aeroplano decole.";
 		close;
 	}
-	else if(lhz_rekenber == 14)
+	else if (lhz_rekenber == 14)
 	{
 		mes "[Ahman]";
 		mes "Ah, é você de novo.";
@@ -11463,7 +11688,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "mais entregas a serem feitas.";
 		close;
 	}
-	else if(lhz_rekenber == 10)
+	else if (lhz_rekenber == 10)
 	{
 		mes "[Ahman]";
 		mes "Obrigado por me informar";
@@ -11474,7 +11699,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "aventureiro.";
 		close;
 	}
-	else if(lhz_rekenber == 9)
+	else if (lhz_rekenber == 9)
 	{
 		mes "[Homem]";
 		mes "Hmm, como podem chamar";
@@ -11530,6 +11755,7 @@ izlude,171,73,6	script	Scamp#iz	853,{
 		mes "me informar da entrega.^FFFFFF   ^000000 Agora, você deveria voltar e ";
 		mes "contar a Lyozien. Cuide-se...";
 		set lhz_rekenber,10;
+		changequest 12012,12013;
 		close;
 	}
 	mes "[Homem]";
@@ -11566,7 +11792,7 @@ OnReset:
 
 OnMyMobDead:
 	set .bullymobs,.bullymobs -1;
-	if(.bullymobs < 1)
+	if (.bullymobs < 1)
 	{
 		mes "[Bully]";
 		mes "Droga!!! D-da próxima vez...";
@@ -11610,7 +11836,7 @@ OnReset:
 
 OnMyMobDead:
 	set .bullymobs,.bullymobs -1;
-	if(.bullymobs < 1)
+	if (.bullymobs < 1)
 	{
 		mes "^3355FFHei!... há um corte";
 		mes "no embrulho de um dos";
@@ -11645,7 +11871,7 @@ OnEnter:
 	end;
 
 OnTouch:
-	if(lhz_rekenber == 19)
+	if (lhz_rekenber == 19)
 	{
 		mes "^3355FFVocê olha pelo corte";
 		mes "no embrulho que";
@@ -11675,8 +11901,9 @@ OnTimer120000:
 lhz_in01,187,247,3	script	#flashback1	139,2,2,{
 
 OnTouch:
-	if(lhz_rekenber == 22)
+	if (lhz_rekenber == 22)
 	{
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "-Você não tem nada para proteger, heim?- ";
 		mes "-Tem certeza que você está fazendo a coisa certa?-";
@@ -11685,6 +11912,7 @@ OnTouch:
 		mes "Responde! Responde! Respondeee!";
 		next;
 		set lhz_rekenber,23;
+		cutin "",255;
 		mes "[" + strcharinfo(0) + "]";
 		mes ".............Droga.";
 		close;
@@ -11695,8 +11923,9 @@ OnTouch:
 lhz_in01,75,248,3	script	#flashback2	139,2,2,{
 
 OnTouch:
-	if(lhz_rekenber == 22)
+	if (lhz_rekenber == 22)
 	{
+		cutin "lhz_kaz11",2;
 		mes "[Kazien]";
 		mes "Olha, é isso o que eu";
 		mes "decidi. Eu não me importo";
@@ -11719,6 +11948,7 @@ OnTouch:
 		mes "estou vivo para curtir, heim?";
 		next;
 		set lhz_rekenber,23;
+		cutin "",255;
 		mes "[" + strcharinfo(0) + "]";
 		mes "......";
 		mes ".........";
@@ -12299,4 +12529,46 @@ OnDisable:
 OnEnable:
 	enablenpc "#lhz4mes2";
 	end;
+}
+
+airplane_01,10,10,3	script	#LyozienSwitch	111,{
+	callfunc "F_GM_NPC";
+	mes "[Lyozien Switch]";
+	mes "Input password.";
+	mes "Enter 0 to cancel.";
+	next;
+	set .@i, callfunc("F_GM_NPC",1028,0,0,4000);
+	if (.@i == -2) {
+		mes "[Lyozien Switch]";
+		mes "Incorrect.";
+		close;
+	} else if (.@i == -1) {
+		mes "[Lyozien Switch]";
+		mes "Canceled.";
+		close;
+	} else if (.@i == 0) {
+		close;
+	} else {
+		mes "[Lyozien Switch]";
+		mes "Do you want to";
+		mes "turn the Lyozien";
+		mes "NPC ON or OFF?";
+		next;
+		switch(select("On:OFF")) {
+		case 1:
+			set .@str$,"activated";
+			donpcevent "Man#Lyozien::OnEnable";
+			break;
+		case 2:
+			set .@str$,"deactivated";
+			donpcevent "Man#Lyozien::OnDisable";
+			break;
+		}
+		mes "[Lyozien Switch]";
+		mes "Lyozien NPC is";
+		mes "now "+.@str$+".";
+		mes " ";
+		mes "/mm airplane_01.gat 96 48";
+		close;
+	}
 }

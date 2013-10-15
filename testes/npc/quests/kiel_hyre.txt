@@ -218,7 +218,7 @@ yuno_in01,35,179,4	script	Pub Master#kh	46,5,5,{
 			mes "Thank you so much";
 			mes "for helping me out~";
 			getitem 7487,1; //Tavern_Wine
-			set zeny,zeny+1000;
+			set Zeny, Zeny+1000;
 			close;
 		}
 		else {
@@ -2019,7 +2019,7 @@ kh_vila,16,175,0	script	Box#khp1	111,{
 	next;
 	switch(select("Buy!:Cancel")) {
 	case 1:
-		if (zeny < 1100) {
+		if (Zeny < 1100) {
 			mes "^3355FFUnfortunately, you";
 			mes "don't have enough";
 			mes "zeny to insert into";
@@ -2039,7 +2039,7 @@ kh_vila,16,175,0	script	Box#khp1	111,{
 			mes "special about it";
 			mes "at all! It's just";
 			mes "normal Pet Food!";
-			set zeny,zeny-1100;
+			set Zeny, Zeny-1100;
 			getitem 537,1;	//Pet_Food
 			close;
 		}
@@ -4466,7 +4466,7 @@ kh_mansion,22,28,4	script	Kiel Hyre#kh	903,{
 		getitem 7509,1; //Fancy_Key_Card
 		set KielHyreQuest,108;
 		next;
-		if (sex == 0) {
+		if (Sex == 0) {
 			if (getpartnerid() == 0) set .@KHTitle$,"Miss";
 			else set .@KHSTitle$,"Mrs";
 		}
@@ -4976,12 +4976,12 @@ OnTouch:
 
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Kiehl_Room_Warp";
 	end;
 
@@ -5885,7 +5885,7 @@ kh_kiehl01,44,33,0	script	Big Door#BigDoorKHQ1	111,{
 kh_kiehl01,43,33,0	script	Big_Door_1_Warp	45,1,1,{
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnInit:
@@ -5894,7 +5894,7 @@ OnInit:
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Big_Door_1_Warp";
 	set getvariableofnpc(.KHDoor1Opened,"Big Door#BigDoorKHQ1"),0;
 	end;
@@ -5945,7 +5945,7 @@ kh_kiehl01,174,40,0	script	Big Door#BigDoorKHQ2	111,{
 kh_kiehl01,174,39,0	script	Big_Door_2_Warp	45,1,1,{
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnInit:
@@ -5954,7 +5954,7 @@ OnInit:
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Big_Door_2_Warp";
 	set getvariableofnpc(.KHDoor2Opened,"Big Door#BigDoorKHQ2"),0;
 	end;
@@ -6005,7 +6005,7 @@ kh_kiehl01,77,108,0	script	Big Door#BigDoorKHQ3	111,{
 kh_kiehl01,78,108,0	script	Big_Door_3_Warp	45,1,1,{
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnInit:
@@ -6014,7 +6014,7 @@ OnInit:
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Big_Door_3_Warp";
 	set getvariableofnpc(.KHDoor3Opened,"Big Door#BigDoorKHQ3"),0;
 	end;
@@ -6065,7 +6065,7 @@ kh_kiehl01,42,177,0	script	Big Door#BigDoorKHQ4	111,{
 kh_kiehl01,41,177,0	script	Big_Door_4_Warp	45,1,1,{
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnInit:
@@ -6074,7 +6074,7 @@ OnInit:
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Big_Door_4_Warp";
 	set getvariableofnpc(.KHDoor4Opened,"Big Door#BigDoorKHQ4"),0;
 	end;
@@ -6276,12 +6276,12 @@ kh_kiehl01,166,186,0	script	Big_Door_5_Warp	45,1,1,{
 
 OnEnable:
 	initnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnTimer30000:
 	stopnpctimer;
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	disablenpc "Big_Door_5_Warp";
 	set getvariableofnpc(.KHDoor5Opened,"Big Door#BigDoorKHQ5"),0;
 	end;
@@ -6954,7 +6954,7 @@ OnTouch:
 	end;
 
 OnEnable:
-	misceffect 215;
+	specialeffect EF_SUMMONSLAVE;
 	end;
 
 OnInit:

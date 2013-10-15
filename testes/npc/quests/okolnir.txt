@@ -26,14 +26,14 @@
 //   \________________________________________________________/
 
 -	script	Guia SE::guiaSE	-1,{
-	if(strnpcinfo(1) == "Guia SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Guia SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 	if (getcharid(2) == .@GID) {
 		if (getd("$siz_"+.cas$+.casn$+"_on") == 0) {
@@ -79,7 +79,7 @@
 					mes "Você pode entrar em Okolnir agora....";
 					mes "Você quer entrar lá?";
 					next;
-					if(select("Claro! Vamos lá.:Não.") == 1) {
+					if (select("Claro! Vamos lá.:Não.") == 1) {
 						if (countitem(7839) > 0) {
 							delitem 7839,countitem(7839); //Crystal_Key
 						}
@@ -111,7 +111,7 @@
 			mes "... OK...";
 			mes "Boa Sorte!";
 			next;
-			if(select("Entrar agora.:Não.")) {
+			if (select("Entrar agora.:Não.")) {
 				if (countitem(7839) > 0) {
 					delitem 7839,countitem(7839); //Crystal_Key
 				}
@@ -151,14 +151,14 @@
 	end;
 
 OnInit:
-	if(strnpcinfo(1) == "Guia SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Guia SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	setd "$gqse_"+.cas$+.casn$+"_miro",0;
 	setd "$gqse_"+.cas$+.casn$+"_pcc",0;
 	setd "$gqse_"+.cas$+.casn$+"_gd",0;
@@ -180,7 +180,7 @@ OnInit:
 			mes "Luto neste mundo virtual, Okolnir.";
 			mes "Em nome dos seres humanos que derrotaram o Deus daqui.";
 			next;
-			if(compare(strnpcinfo(2),"aru")){
+			if (compare(strnpcinfo(2),"aru")){
 				if ((countitem(7835) > 0) && (countitem(7836) > 0) && (countitem(7837) > 0) && (countitem(7838) > 0) && (countitem(2513) > 0) && (countitem(7291) > 9) && (countitem(7293) > 9) && (countitem(7063) > 99) && (countitem(985) > 19))
 					set .@itensreq,1;
 			} else {
@@ -192,7 +192,7 @@ OnInit:
 				mes "[Dama dos Desejos]";
 				mes "Você está pronto para encarar os testes para obter a Glória da Deusa?";
 				next;
-				if(select("Sim, estou pronto.:Desculpe, tentarei depois") == 1) {
+				if (select("Sim, estou pronto.:Desculpe, tentarei depois") == 1) {
 					cutin "wish_maiden12",1;
 					mes "[Dama dos Desejos]";
 					mes "Eu vou testar se você merece ou não a benção da Deusa...";
@@ -216,7 +216,7 @@ OnInit:
 					mes "[Dama dos Desejos]";
 					mes "Irei abrir o portão de Okolnir se seus membros estiverem prontos.";
 					next;
-					if(select("Estamos prontos.:Precisamos de mais tempo.") == 1) {
+					if (select("Estamos prontos.:Precisamos de mais tempo.") == 1) {
 						set .@saram,getmapusers("que_q"+.cas$+.casn$);
 						if (((.@saram > 15) && (.@saram < 21)) || (getgmlevel() == 99)) {
 							cutin "wish_maiden12",1;
@@ -281,7 +281,7 @@ OnInit:
 				mes "Você deve trazer alguns itens para entrar em Okolnir.";
 				next;
 				mes "[Dama dos Desejos]";
-				if(compare(strnpcinfo(2),"aru")){
+				if (compare(strnpcinfo(2),"aru")){
 					mes "Crepúsculo Vermelho";
 					mes "Essência do Alvorecer";
 					mes "Luar Gélido";
@@ -297,7 +297,7 @@ OnInit:
 				next;
 				mes "[Dama dos Desejos]";
 				mes "Por favor traga-me algumas coisas,";
-				if(compare(strnpcinfo(2),"aru")){
+				if (compare(strnpcinfo(2),"aru")){
 					mes "10 Ágata, 10 Quartzo Rosa, e 20 Elunium,";
 					mes "1 Robe da Donzela Celestial[1], bem como Penas Macias.";
 				} else {
@@ -352,14 +352,14 @@ OnInit:
 	end;
 
 OnInit:
-	if(strnpcinfo(1) == "Dama dos Desejos SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Dama dos Desejos SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	if (getd("$siz_"+.cas$+.casn$+"_on") == 0) {
 		enablenpc "Dama dos Desejos#"+strnpcinfo(2);
 	}
@@ -373,26 +373,26 @@ OnInit:
 	end;
 
 OnInit:
-	if(strnpcinfo(1) == "Gate01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Gate01 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	disablenpc "Gate01#"+strnpcinfo(2);
 	end;
 
 OnEnable:
-	if(strnpcinfo(1) == "Gate01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Gate01 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	enablenpc "Gate01#"+strnpcinfo(2);
 	setcell "que_q"+.cas$+.casn$,58,302,63,302,cell_walkable,0;
 	setcell "que_q"+.cas$+.casn$,58,302,63,302,cell_shootable,0;
@@ -456,16 +456,16 @@ OnTouch:
 }
 
 -	script	#Gate_manager SE::Gate_Manag_SE	-1,{
-	if(strnpcinfo(2) == "Gate_manager SE") end;
+	if (strnpcinfo(2) == "Gate_manager SE") end;
 
 OnMyMobDead:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	if (getd("$gqse_"+.cas$+.casn$+"_miro") == getd("$gqse_"+.cas$+.casn$+"_pcc")) {
 		if (mobcount("que_q"+.cas$+.casn$,"#Gate_manager_"+.cas$+.casn$+"::OnMyMobDead") == 0) {
 			donpcevent "#gq_miromob2_"+.cas$+.casn$+"::OnEnable";
@@ -476,14 +476,14 @@ OnMyMobDead:
 
 -	script	#gq_miromob2 SE::GateMob2	-1,{
 OnEnable:
-	if(strnpcinfo(2) == "gq_miromob2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gq_miromob2 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -534,14 +534,14 @@ OnMyMobDead:
 -	script	#okolnir SE::okolnir_SE	-1,{
 
 OnEnable:
-	if(strnpcinfo(2) == "okolnir SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "okolnir SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	donpcevent "Gate01#"+.cas$+"g_cas"+.casn$+"::OnEnable";
 	donpcevent "#Maze_Manager_"+.cas$+.casn$+"::OnEnable";
 	donpcevent "#event_start1_"+.cas$+.casn$+"::OnEnable";
@@ -560,13 +560,13 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	disablenpc "Dama dos Desejos#"+.cas$+"g_cas"+.casn$;
 	donpcevent "#gq_miromob2_"+.cas$+.casn$+"::OnReset";
 	disablenpc "Piamette#"+.cas$+"g_cas"+.casn$;
@@ -707,18 +707,18 @@ OnTimer3610000:
 	setd "$gqse_"+.cas$+.casn$+"_pcc",0;
 	setd "$gqse_"+.cas$+.casn$+"_gd",0;
 	setd "$gqse_"+.cas$+.casn$+"_nm",0;
-	if(compare(strnpcinfo(2),"aru")){
-		if(compare(strnpcinfo(2),"01")) setarray .@warp[0],157,369;
-		else if(compare(strnpcinfo(2),"02")) setarray .@warp[0],349,355;
-		else if(compare(strnpcinfo(2),"03")) setarray .@warp[0],321,153;
-		else if(compare(strnpcinfo(2),"04")) setarray .@warp[0],321,153;
-		else if(compare(strnpcinfo(2),"05")) setarray .@warp[0],321,153;
+	if (compare(strnpcinfo(2),"aru")){
+		if (compare(strnpcinfo(2),"01")) setarray .@warp[0],157,369;
+		else if (compare(strnpcinfo(2),"02")) setarray .@warp[0],349,355;
+		else if (compare(strnpcinfo(2),"03")) setarray .@warp[0],321,153;
+		else if (compare(strnpcinfo(2),"04")) setarray .@warp[0],321,153;
+		else if (compare(strnpcinfo(2),"05")) setarray .@warp[0],321,153;
 	} else {
-		if(compare(strnpcinfo(2),"01")) setarray .@warp[0],369,306;
-		else if(compare(strnpcinfo(2),"02")) setarray .@warp[0],177,355;
-		else if(compare(strnpcinfo(2),"03")) setarray .@warp[0],81,95;
-		else if(compare(strnpcinfo(2),"04")) setarray .@warp[0],369,306;
-		else if(compare(strnpcinfo(2),"05")) setarray .@warp[0],369,306;
+		if (compare(strnpcinfo(2),"01")) setarray .@warp[0],369,306;
+		else if (compare(strnpcinfo(2),"02")) setarray .@warp[0],177,355;
+		else if (compare(strnpcinfo(2),"03")) setarray .@warp[0],81,95;
+		else if (compare(strnpcinfo(2),"04")) setarray .@warp[0],369,306;
+		else if (compare(strnpcinfo(2),"05")) setarray .@warp[0],369,306;
 	}
 	mapwarp "que_q"+.cas$+.casn$,strnpcinfo(2),.@warp[0],.@warp[1];
 	end;
@@ -731,14 +731,14 @@ OnTimer3611000:
 
 -	script	#Maze_Manager SE::mazemanag_SE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "Maze_Manager SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "Maze_Manager SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	donpcevent "#miro_bf_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#miro_rf_"+.cas$+.casn$+"::OnDisable";
 	donpcevent "#miro_yf_"+.cas$+.casn$+"::OnDisable";
@@ -798,16 +798,16 @@ OnTimer360000:
 
 -	script	#miro_bf SE::MirobfSE	-1,{
 
-	if(strnpcinfo(2) == "miro_bf SE") end;
+	if (strnpcinfo(2) == "miro_bf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,44,270," ",1934,1,"#miro_bf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,46,270," ",1934,1,"#miro_bf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,50,287," ",1934,1,"#miro_bf_"+.cas$+.casn$+"::OnMyMobDead";
@@ -887,13 +887,13 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	killmonster "que_q"+.cas$+.casn$,"#miro_bf_"+.cas$+.casn$+"::OnMyMobDead";
 	setcell "que_q"+.cas$+.casn$,44,270,47,270,cell_walkable,1;
 	setcell "que_q"+.cas$+.casn$,44,270,47,270,cell_shootable,1;
@@ -940,16 +940,16 @@ OnMyMobDead:
 }
 
 -	script	#miro_rf SE::MirorfSE	-1,{
-	if(strnpcinfo(2) == "miro_rf SE") end;
+	if (strnpcinfo(2) == "miro_rf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,57,301," ",1935,1,"#miro_rf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,57,299," ",1935,1,"#miro_rf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,48,291," ",1935,1,"#miro_rf_"+.cas$+.casn$+"::OnMyMobDead";
@@ -1041,13 +1041,13 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	killmonster "que_q"+.cas$+.casn$,"#miro_rf_"+.cas$+.casn$+"::OnMyMobDead";
 	setcell "que_q"+.cas$+.casn$,57,298,57,301,cell_walkable,1;
 	setcell "que_q"+.cas$+.casn$,57,298,57,301,cell_shootable,1;
@@ -1101,16 +1101,16 @@ OnMyMobDead:
 
 -	script	#miro_yf SE::MiroyfSE	-1,{
 
-	if(strnpcinfo(2) == "miro_yf SE") end;
+	if (strnpcinfo(2) == "miro_yf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,44,292," ",1936,1,"#miro_yf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,46,292," ",1936,1,"#miro_yf_"+.cas$+.casn$+"::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,67,295," ",1936,1,"#miro_yf_"+.cas$+.casn$+"::OnMyMobDead";
@@ -1210,13 +1210,13 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	killmonster "que_q"+.cas$+.casn$,"#miro_yf_"+.cas$+.casn$+"::OnMyMobDead";
 	setcell "que_q"+.cas$+.casn$,44,292,47,292,cell_walkable,1;
 	setcell "que_q"+.cas$+.casn$,44,292,47,292,cell_shootable,1;
@@ -1273,15 +1273,15 @@ OnMyMobDead:
 }
 
 -	script	windpath01 SE::wind01SE	-1,{
-	if(strnpcinfo(1) == "windpath01 SE") end;
+	if (strnpcinfo(1) == "windpath01 SE") end;
 OnTouch:
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
+	if (compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(1),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(1),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(1),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(1),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(1),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(1),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(1),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(1),"05")) set .casn$,"05";
 	if (countitem(7839) > 0) {
 		mes "O portal do Portão responde à Chave de Cristal.";
 		delitem 7839,1; //Crystal_Key
@@ -1297,7 +1297,7 @@ OnTouch:
 
 -	script	Piamette SE::PiametSE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "Piamette SE") end;
+	if (strnpcinfo(1) == "Piamette SE") end;
 	enablenpc "Piamette#"+strnpcinfo(2);
 	end;
 }
@@ -1305,26 +1305,26 @@ OnInit:
 -	script	#event_start1 SE::eventstartSE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "event_start1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "event_start1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	disablenpc "#event_start1_"+.cas$+.casn$;
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "event_start1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "event_start1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	enablenpc "#event_start1_"+.cas$+.casn$;
 	end;
 
@@ -1360,25 +1360,25 @@ OnTimer14000:
 -	script	#gdtimer1 SE::gdtimer01SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "gdtimer1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gdtimer1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "gdtimer1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gdtimer1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -1464,25 +1464,25 @@ OnTimer80000:
 -	script	#gdtimer2 SE::gdtimer02SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "gdtimer2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gdtimer2 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "gdtimer2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gdtimer2 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -1553,25 +1553,25 @@ OnMyMobDead:
 -	script	#piamette SE::piametteSE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "piamette SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "piamette SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "piamette SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "piamette SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -1601,42 +1601,42 @@ OnMyMobDead:
 
 -	script	#getspell SE::getspellSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "getspell SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
-	else if(compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
-	else if(compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
-	else if(compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
-	else if(compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
-	else if(compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
-	else if(compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
-	else if(compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
+	else if (compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
+	else if (compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
+	else if (compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
+	else if (compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
+	else if (compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
+	else if (compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
+	else if (compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
 	disablenpc "#get"+.spell$+"_"+.cas$+.casn$;
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "getspell SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
-	else if(compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
-	else if(compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
-	else if(compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
-	else if(compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
-	else if(compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
-	else if(compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
-	else if(compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
+	else if (compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
+	else if (compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
+	else if (compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
+	else if (compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
+	else if (compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
+	else if (compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
+	else if (compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
 	enablenpc "#get"+.spell$+"_"+.cas$+.casn$;
 	specialeffect EF_LOCKON;
 	end;
@@ -1646,22 +1646,22 @@ OnDisable:
 	end;
 
 OnTouch:
-	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "getspell SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
-	else if(compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
-	else if(compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
-	else if(compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
-	else if(compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
-	else if(compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
-	else if(compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
-	else if(compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"spell1")) set .spell$,"spell1";
+	else if (compare(strnpcinfo(2),"spell2")) set .spell$,"spell2";
+	else if (compare(strnpcinfo(2),"spell3")) set .spell$,"spell3";
+	else if (compare(strnpcinfo(2),"spell4")) set .spell$,"spell4";
+	else if (compare(strnpcinfo(2),"spell5")) set .spell$,"spell5";
+	else if (compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
+	else if (compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
+	else if (compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
 	sc_start SC_Stone,300000,0,10000;
 	if (getd("$gqse_"+.cas$+.casn$+"_gd") == 0) {
 		warp "que_q"+.cas$+.casn$,103,153;
@@ -1706,38 +1706,38 @@ OnTouch:
 
 -	script	#cage SE::cageSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "cage SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "cage SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"cage1")){ set .cage$,"cage1"; setarray .cage[0],108,151;}
-	else if(compare(strnpcinfo(2),"cage2")){ set .cage$,"cage2"; setarray .cage[0],107,135;}
-	else if(compare(strnpcinfo(2),"cage3")){ set .cage$,"cage3"; setarray .cage[0],113,114;}
-	else if(compare(strnpcinfo(2),"cage4")){ set .cage$,"cage4"; setarray .cage[0],158,106;}
-	else if(compare(strnpcinfo(2),"cage5")){ set .cage$,"cage5"; setarray .cage[0],163,133;}
-	else if(compare(strnpcinfo(2),"cage6")){ set .cage$,"cage6"; setarray .cage[0],150,154;}
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"cage1")){ set .cage$,"cage1"; setarray .cage[0],108,151;}
+	else if (compare(strnpcinfo(2),"cage2")){ set .cage$,"cage2"; setarray .cage[0],107,135;}
+	else if (compare(strnpcinfo(2),"cage3")){ set .cage$,"cage3"; setarray .cage[0],113,114;}
+	else if (compare(strnpcinfo(2),"cage4")){ set .cage$,"cage4"; setarray .cage[0],158,106;}
+	else if (compare(strnpcinfo(2),"cage5")){ set .cage$,"cage5"; setarray .cage[0],163,133;}
+	else if (compare(strnpcinfo(2),"cage6")){ set .cage$,"cage6"; setarray .cage[0],150,154;}
 	disablenpc "#"+.cas$+.casn$+"_"+.cage$;
 	end;
 
 OnTouch:
-	if(strnpcinfo(2) == "cage SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "cage SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"cage1")){ set .cage$,"cage1"; setarray .cage[0],108,151;}
-	else if(compare(strnpcinfo(2),"cage2")){ set .cage$,"cage2"; setarray .cage[0],107,135;}
-	else if(compare(strnpcinfo(2),"cage3")){ set .cage$,"cage3"; setarray .cage[0],113,114;}
-	else if(compare(strnpcinfo(2),"cage4")){ set .cage$,"cage4"; setarray .cage[0],158,106;}
-	else if(compare(strnpcinfo(2),"cage5")){ set .cage$,"cage5"; setarray .cage[0],163,133;}
-	else if(compare(strnpcinfo(2),"cage6")){ set .cage$,"cage6"; setarray .cage[0],150,154;}
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"cage1")){ set .cage$,"cage1"; setarray .cage[0],108,151;}
+	else if (compare(strnpcinfo(2),"cage2")){ set .cage$,"cage2"; setarray .cage[0],107,135;}
+	else if (compare(strnpcinfo(2),"cage3")){ set .cage$,"cage3"; setarray .cage[0],113,114;}
+	else if (compare(strnpcinfo(2),"cage4")){ set .cage$,"cage4"; setarray .cage[0],158,106;}
+	else if (compare(strnpcinfo(2),"cage5")){ set .cage$,"cage5"; setarray .cage[0],163,133;}
+	else if (compare(strnpcinfo(2),"cage6")){ set .cage$,"cage6"; setarray .cage[0],150,154;}
 	sc_end SC_Stone;
 	warp "que_q"+.cas$+.casn$,.cage[0],.cage[1];
 	disablenpc "#"+.cas$+.casn$+"_"+.cage$;
@@ -1747,25 +1747,25 @@ OnTouch:
 -	script	#gd_mobctrl SE::mobctrlSE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "gd_mobctrl SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gd_mobctrl SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "gd_mobctrl SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "gd_mobctrl SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,107,152,"Bola de Piamette",1738,1,"#gd_"+.cas$+.casn$+"_mobctrl::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,109,135,"Bola de Piamette",1738,1,"#gd_"+.cas$+.casn$+"_mobctrl::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,113,116,"Bola de Piamette",1738,1,"#gd_"+.cas$+.casn$+"_mobctrl::OnMyMobDead";
@@ -1836,78 +1836,78 @@ OnMyMobDead:
 
 -	script	windpath3 SE::wind03SE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "windpath3 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "windpath3 SE") end;
+	if (compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(1),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(1),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(1),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(1),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(1),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(1),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(1),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(1),"05")) set .casn$,"05";
 	disablenpc "windpath3_"+.cas$+.casn$;
 	end;
 
 OnTouch:
-	if(strnpcinfo(1) == "windpath3 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "windpath3 SE") end;
+	if (compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(1),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(1),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(1),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(1),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(1),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(1),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(1),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(1),"05")) set .casn$,"05";
 	warp "que_q"+.cas$+.casn$,119,103;
 	end;
 }
 
 -	script	windpath4 SE::wind04SE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "windpath4 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "windpath4 SE") end;
+	if (compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(1),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(1),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(1),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(1),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(1),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(1),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(1),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(1),"05")) set .casn$,"05";
 	disablenpc "windpath4_"+.cas$+.casn$;
 	end;
 
 OnTouch:
-	if(strnpcinfo(1) == "windpath4 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "windpath4 SE") end;
+	if (compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(1),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(1),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(1),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(1),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(1),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(1),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(1),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(1),"05")) set .casn$,"05";
 	warp "que_q"+.cas$+.casn$,146,109;
 	end;
 }
 
 -	script	#nm_switch SE::nmswitchSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "nm_switch SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nm_switch SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	disablenpc "#nm_switch_"+.cas$+.casn$;
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "nm_switch SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nm_switch SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	enablenpc "#nm_switch_"+.cas$+.casn$;
 	hideoffnpc "Dama dos Desejos#"+.cas$+.casn$+"_boss";
 	end;
@@ -1954,25 +1954,25 @@ OnTimer370000:
 -	script	#nmsom_jin1 SE::jin01SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "nmsom_jin1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "nmsom_jin1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	donpcevent "#"+.cas$+.casn$+"_stone1::OnEnable";
 	initnpctimer;
 	end;
@@ -2053,25 +2053,25 @@ OnMyMobDead:
 -	script	#stone01 SE::stone01SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "stone01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone01 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "stone01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone01 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,227,294,"Guardião Mágico do Oeste",1752,1,"#"+.cas$+.casn$+"_stone1::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,229,294,"Guardião Mágico do Oeste",1752,1,"#"+.cas$+.casn$+"_stone1::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,231,296,"Guardião Mágico do Oeste",1752,1,"#"+.cas$+.casn$+"_stone1::OnMyMobDead";
@@ -2102,25 +2102,25 @@ OnMyMobDead:
 -	script	#nmsom_jin02 SE::jin02SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "nmsom_jin02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin02 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "nmsom_jin02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin02 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -2200,25 +2200,25 @@ OnMyMobDead:
 -	script	#stone02 SE::stone02SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "stone02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone02 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "stone02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone02 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,275,301,"Guardião Mágico do Leste",1753,1,"#"+.cas$+.casn$+"_stone2::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,277,301,"Guardião Mágico do Leste",1753,1,"#"+.cas$+.casn$+"_stone2::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,279,299,"Guardião Mágico do Leste",1753,1,"#"+.cas$+.casn$+"_stone2::OnMyMobDead";
@@ -2249,25 +2249,25 @@ OnMyMobDead:
 -	script	#nmsom_jin03 SE::jin03SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "nmsom_jin03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin03 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "nmsom_jin03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "nmsom_jin03 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -2340,25 +2340,25 @@ OnMyMobDead:
 -	script	#stone03 SE::stone03SE	-1,{
 
 OnInit:
-	if(strnpcinfo(2) == "stone03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone03 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "stone03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "stone03 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	monster "que_q"+.cas$+.casn$,251,343,"Guardião Mágico do Norte",1933,1,"#"+.cas$+.casn$+"_stone3::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,252,343,"Guardião Mágico do Norte",1933,1,"#"+.cas$+.casn$+"_stone3::OnMyMobDead";
 	monster "que_q"+.cas$+.casn$,255,341,"Guardião Mágico do Norte",1933,1,"#"+.cas$+.casn$+"_stone3::OnMyMobDead";
@@ -2389,18 +2389,18 @@ OnMyMobDead:
 
 -	script	Guard of Shadow SE::guardshadowSE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "Guard of Shadow SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Guard of Shadow SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"_1")){ set .shadow$,"_1"; setarray .shadow[0],234,284;}
-	else if(compare(strnpcinfo(2),"_2")){ set .shadow$,"_2"; setarray .shadow[0],223,289;}
-	else if(compare(strnpcinfo(2),"_3")){ set .shadow$,"_3"; setarray .shadow[0],235,295;}
-	else if(compare(strnpcinfo(2),"_4")){ set .shadow$,"_4"; setarray .shadow[0],224,302;}
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"_1")){ set .shadow$,"_1"; setarray .shadow[0],234,284;}
+	else if (compare(strnpcinfo(2),"_2")){ set .shadow$,"_2"; setarray .shadow[0],223,289;}
+	else if (compare(strnpcinfo(2),"_3")){ set .shadow$,"_3"; setarray .shadow[0],235,295;}
+	else if (compare(strnpcinfo(2),"_4")){ set .shadow$,"_4"; setarray .shadow[0],224,302;}
 	disablenpc "Guarda das Sombras#"+.cas$+.casn$+.shadow$;
 	end;
 
@@ -2422,18 +2422,18 @@ OnMyMobDead:
 
 -	script	Caçador Sanguinário SE::bloodyhuntSE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "Caçador Sanguinário SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Caçador Sanguinário SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"_ac1")){ set .bloody$,"_ac1"; setarray .bloody[0],265,297;}
-	else if(compare(strnpcinfo(2),"_ac2")){ set .bloody$,"_ac2"; setarray .bloody[0],270,284;}
-	else if(compare(strnpcinfo(2),"_ac3")){ set .bloody$,"_ac3"; setarray .bloody[0],269,308;}
-	else if(compare(strnpcinfo(2),"_ac4")){ set .bloody$,"_ac4"; setarray .bloody[0],278,301;}
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"_ac1")){ set .bloody$,"_ac1"; setarray .bloody[0],265,297;}
+	else if (compare(strnpcinfo(2),"_ac2")){ set .bloody$,"_ac2"; setarray .bloody[0],270,284;}
+	else if (compare(strnpcinfo(2),"_ac3")){ set .bloody$,"_ac3"; setarray .bloody[0],269,308;}
+	else if (compare(strnpcinfo(2),"_ac4")){ set .bloody$,"_ac4"; setarray .bloody[0],278,301;}
 	disablenpc "Caçador Sanguinário#"+.cas$+.casn$+.bloody$;
 	end;
 
@@ -2455,16 +2455,16 @@ OnMyMobDead:
 
 -	script	Guardião do Templo SE::templekeepSE	-1,{
 OnInit:
-	if(strnpcinfo(1) == "Guardião do Templo SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(1) == "Guardião do Templo SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
-	if(compare(strnpcinfo(2),"_ac1")){ set .temple$,"_ac1"; set .temple,246;}
-	else if(compare(strnpcinfo(2),"_ac2")){ set .temple$,"_ac2"; set .temple,254;}
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"_ac1")){ set .temple$,"_ac1"; set .temple,246;}
+	else if (compare(strnpcinfo(2),"_ac2")){ set .temple$,"_ac2"; set .temple,254;}
 	disablenpc "Guardião do Templo#"+.cas$+.casn$+.temple$;
 	end;
 
@@ -2486,14 +2486,14 @@ OnMyMobDead:
 
 -	script	Dama dos Desejos#bossSE::wishbossSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "bossSE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "bossSE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	hideonnpc "Dama dos Desejos#"+.cas$+.casn$+"_boss";
 	end;
 
@@ -2504,14 +2504,14 @@ OnDisable:
 	end;
 
 OnFight:
-	if(strnpcinfo(2) == "bossSE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "bossSE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	initnpctimer;
 	end;
 
@@ -2544,14 +2544,14 @@ OnMyMobDead:
 	set .@GID, GetCastleData(.cas$+"g_cas"+.casn$,1);
 	if (getcharid(2) == .@GID) {
 		if (strcharinfo(0) == getguildmaster(.@GID)) {
-			if(compare(strnpcinfo(2),"aru")) {
+			if (compare(strnpcinfo(2),"aru")) {
 				if ((countitem(7835) > 0) && (countitem(7836) > 0) && (countitem(7837) > 0) && (countitem(7838) > 0) && (countitem(2513) > 0) && (countitem(7291) > 9) && (countitem(7293) > 9) && (countitem(7063) > 99) && (countitem(985) > 19))
 					set .@wish,1;
 			} else {
 				if ((countitem(7830) > 0) && (countitem(7831) > 0) && (countitem(7832) > 0) && (countitem(7833) > 0) && (countitem(7834) > 0) && (countitem(2357) > 0) && (countitem(7510) > 99) && (countitem(969) > 9) && (countitem(985) > 19))
 					set .@wish,1;
 			}
-			if(.@wish){
+			if (.@wish){
 				cutin "wish_maiden12",1;
 				mes "[Dama dos Desejos]";
 				mes "Como eu disse, eu vou lhe dar a recompensa da Deusa.";
@@ -2571,7 +2571,7 @@ OnMyMobDead:
 				mes "[Dama dos Desejos]";
 				mes "Vou abrir o portão para você voltar aqui.";
 				mes "...Okolnir não vai durar para sempre...";
-				if(compare(strnpcinfo(2),"aru")) {
+				if (compare(strnpcinfo(2),"aru")) {
 					delitem 7835,1; //Dusk_Glow
 					delitem 7836,1; //Dawn_Essence
 					delitem 7837,1; //Cold_Moonlight
@@ -2634,41 +2634,41 @@ OnMyMobDead:
 	end;
 
 OnInit:
-	if(strnpcinfo(2) == "giftSE") end;
-	if(compare(strnpcinfo(2),"aru")){
+	if (strnpcinfo(2) == "giftSE") end;
+	if (compare(strnpcinfo(2),"aru")){
 		set .cas$,"aru";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
 	} else {
 		set .cas$,"sch";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
 	}
 	disablenpc "Dama dos Desejos#"+.cas$+.casn$+"_gift";
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "giftSE") end;
-	if(compare(strnpcinfo(2),"aru")){
+	if (strnpcinfo(2) == "giftSE") end;
+	if (compare(strnpcinfo(2),"aru")){
 		set .cas$,"aru";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
 	} else {
 		set .cas$,"sch";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
 	}
 	enablenpc "Dama dos Desejos#"+.cas$+.casn$+"_gift";
 	initnpctimer;
@@ -2702,21 +2702,21 @@ OnTimer300000:
 
 -	script	#to_agit_gate SE::agitgateSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "to_agit_gate SE") end;
-	if(compare(strnpcinfo(2),"aru")){
+	if (strnpcinfo(2) == "to_agit_gate SE") end;
+	if (compare(strnpcinfo(2),"aru")){
 		set .cas$,"aru";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],321,153;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],321,153;}
 	} else {
 		set .cas$,"sch";
-		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
-		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
-		else if(compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
-		else if(compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
+		if (compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],177,355;}
+		else if (compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],81,95;}
+		else if (compare(strnpcinfo(2),"04")){ set .casn$,"04"; setarray .caswarp[0],369,306;}
+		else if (compare(strnpcinfo(2),"05")){ set .casn$,"05"; setarray .caswarp[0],369,306;}
 	}
 	disablenpc "#to_agit_"+.cas$+.casn$+"_gate";
 	end;
@@ -2728,28 +2728,28 @@ OnTouch:
 
 -	script	#okolnir_time1 SE::okolnirtimeSE	-1,{
 OnInit:
-	if(strnpcinfo(2) == "okolnir_time1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "okolnir_time1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	if (getd ("$siz_"+.cas$+.casn$+"_on") == 2) {
 		initnpctimer;
 	}
 	end;
 
 OnEnable:
-	if(strnpcinfo(2) == "okolnir_time1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
+	if (strnpcinfo(2) == "okolnir_time1 SE") end;
+	if (compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
-	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
-	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
-	else if(compare(strnpcinfo(2),"03")) set .casn$,"03";
-	else if(compare(strnpcinfo(2),"04")) set .casn$,"04";
-	else if(compare(strnpcinfo(2),"05")) set .casn$,"05";
+	if (compare(strnpcinfo(2),"01")) set .casn$,"01";
+	else if (compare(strnpcinfo(2),"02")) set .casn$,"02";
+	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
+	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
+	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
 	setd "$gqse_"+.cas$+.casn$+"_time",0;
 	initnpctimer;
 	end;

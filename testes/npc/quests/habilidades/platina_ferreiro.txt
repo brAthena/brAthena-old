@@ -197,7 +197,7 @@ geffen,178,72,3	script	Akkie#qsk_bs	726,{
 						delitem 999,1; //Aço
 						delitem 971,1; //Detrimindexta
 						delitem 613,1; //Martelo de Ferro
-						set zeny,zeny-500;
+						set Zeny, Zeny-500;
 						set BLACK_SK,2;
 						close;
 					}

@@ -4416,7 +4416,7 @@ cmd_in02,88,51,4	script	Cara Estranho#sign	806,{
 		else {
 			mes "mim. Parece também que você tem alguns Zenys a mais! Acho que será de muita ajuda se você me emprestar alguma grana!";
 			mes "^FF0000Yoink!^000000";
-			set zeny,zeny-10000;
+			set Zeny, Zeny-10000;
 			specialeffect EF_COIN;
 			close;
 		}
@@ -4498,7 +4498,7 @@ cmd_in02,88,51,4	script	Cara Estranho#sign	806,{
 				mes "para cá amanhã à noite e";
 				mes "começaremos o seu teste...";
 				set sign_q,27;
-				set zeny,zeny-30000;
+				set Zeny, Zeny-30000;
 			}
 			close;
 		case 2:
@@ -4789,7 +4789,7 @@ cmd_in02,88,51,4	script	Cara Estranho#sign	806,{
 			mes "mim. Parece também que você tem uns Zenys a mais! Acho que muito me ajudará se você me emprestar alguma grana!";
 			mes "^FF0000Yoink!^000000";
 			mes "hihihihihihihihih.....";
-			set zeny,zeny-10000;
+			set Zeny, Zeny-10000;
 			close;
 		}
 	}
@@ -4802,7 +4802,7 @@ cmd_in02,88,51,4	script	Cara Estranho#sign	806,{
 			mes "de grana. Sabe como é, pelos";
 			mes "velhos tempos. ^FF0000Yoink!^000000";
 			emotion e_gg;
-			set zeny,zeny-10000;
+			set Zeny, Zeny-10000;
 		}
 		else {
 			mes "Não tenho nada para você e";
@@ -6322,7 +6322,7 @@ alde_alche,169,162,7	script	Alquimista#sign	749,{
 						mes "apenas uma garrafa, mas esse";
 						mes "remédio é extremamente potente!";
 						next;
-						set zeny,zeny-10000;
+						set Zeny, Zeny-10000;
 						delitem 526,10; //Royal_Jelly
 						delitem 518,20; //Honey
 						delitem 948,30; //Bear's_Foot
@@ -7139,7 +7139,7 @@ mjo_dun02,88,295,4	script	Homem Espirituoso	85,{
 	}
 	mes "[Engel]";
 	if ((sign_q > 1) && (sign_q < 54)) {
-		if(countitem(1002) > 0) {
+		if (countitem(1002) > 0) {
 			mes "Justo como suspeitei...";
 			mes "Não trouxe o suficiente.";
 			mes "Hmm, isso é sério. O que";
@@ -11325,7 +11325,7 @@ niflheim,102,54,4	script	Mad Man#s	739,{
 						mes "Hehehehe!";
 						close;
 					}
-					set zeny,zeny-40000;
+					set Zeny, Zeny-40000;
 					close;
 				case 2:
 					mes "[Laichin]";
@@ -11344,7 +11344,7 @@ niflheim,102,54,4	script	Mad Man#s	739,{
 						mes "implorando quando";
 						mes "não conseguir achar";
 						mes "os pedaços da alma!";
-						set zeny,zeny-40000;
+						set Zeny, Zeny-40000;
 						if (.@select_s == 1) set sign_q,97;
 						else if (.@select_s == 2) set sign_q,98;
 						else if (.@select_s == 3) set sign_q,99;
@@ -11380,7 +11380,7 @@ niflheim,102,54,4	script	Mad Man#s	739,{
 							mes "que as bordas do mapa.";
 							mes "Se é 'muito menor', você tem";
 							mes "de procurar perto do centro. Entendeu?";
-							set zeny,zeny-60000;
+							set Zeny, Zeny-60000;
 							if (.@select_s == 1) set sign_q,101;
 							else if (.@select_s == 2) set sign_q,102;
 							else if (.@select_s == 3) set sign_q,103;
@@ -11443,7 +11443,7 @@ niflheim,102,54,4	script	Mad Man#s	739,{
 				mes "que as bordas do mapa.";
 				mes "Se é 'muito menor', você tem";
 				mes "de procurar perto do centro. Entendeu?";
-				set zeny,zeny-20000;
+				set Zeny, Zeny-20000;
 				if (sign_q == 97) set sign_q,101;
 				else if (sign_q == 98) set sign_q,102;
 				else if (sign_q == 99) set sign_q,103;
@@ -11680,7 +11680,7 @@ OnTouch:
 						mes "livro e o dê àquela";
 						mes "bruxa fraca e patética!";
 						if (sign_q == 83) {
-							if(sign_sq == 0) {
+							if (sign_sq == 0) {
 								set sign_sq,1;
 								getitem 7304,1; //Witch's_Spell_Book
 							}

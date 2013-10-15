@@ -78,7 +78,7 @@ gef_tower,115,36,4	script	Miau#q_wiz	876,{
 			mes "comigo? Não me pertube";
 			mes "se não for dizer nada!";
 			next;
-			if(select("Um gato?:Agora também estou com sono...") == 1) {
+			if (select("Um gato?:Agora também estou com sono...") == 1) {
 				mes "[Miau]";
 				mes "Sim, claro. Eu sou um gato.";
 				mes "Mas só por enquanto. Aquela maldita";
@@ -110,7 +110,7 @@ gef_tower,115,36,4	script	Miau#q_wiz	876,{
 			mes "Embora eu não quisesse, eu meio";
 			mes "que não tenho escolha. E então gostaria de continuar?";
 			next;
-			if(select("Não, estou com muito sono...:Claro, quero aprender uma nova habilidade.") == 1) {
+			if (select("Não, estou com muito sono...:Claro, quero aprender uma nova habilidade.") == 1) {
 				mes "[Miau]";
 				mes "^333333*Ahhhhh*^000000";
 				mes "Tudo bem. Se você quer";
@@ -330,7 +330,7 @@ gef_tower,115,36,4	script	Miau#q_wiz	876,{
 		mes "me pertube se não";
 		mes "for dizer nada!";
 		next;
-		if(select("Um gato?:Agora estou com sono, também...") == 1) {
+		if (select("Um gato?:Agora estou com sono, também...") == 1) {
 			mes "[Miau]";
 			mes "Sim, claro. Eu sou um gato.";
 			mes "Mas só por enquanto. Aquela";
@@ -368,7 +368,7 @@ prt_in,82,98,3	script	Simon Mayace#q_wiz	46,{
 		mes "não sei dizer a diferença.";
 		mes "Ah, em que posso lhe ajudar?";
 		next;
-		if(select("Estou bem,"+(Sex?"obrigado":"obrigada")+".:Quero aprender sobre técnicas de repulsão.") == 1) {
+		if (select("Estou bem,"+(Sex?"obrigado":"obrigada")+".:Quero aprender sobre técnicas de repulsão.") == 1) {
 			mes "[Simon]";
 			mes "Estou surpreso que você tenha";
 			mes "escolhido praticar magia, julgando";

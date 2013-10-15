@@ -100,7 +100,7 @@ prontera,111,99,5	script	Vendedor de Ovos#prt	98,{
 				}
 				else {
 					set .@egg_zeny,.@input*500;
-					if (zeny < .@egg_zeny) {
+					if (Zeny < .@egg_zeny) {
 						mes "[Vendedor de Ovos]";
 						mes "Você não tem Zeny suficiente.";
 						next;
@@ -127,7 +127,7 @@ prontera,111,99,5	script	Vendedor de Ovos#prt	98,{
 							mes "deles, mas eu não sei de nada";
 							mes "sobre isso. Bem, tem um bom";
 							mes "dia, e espero vê-lo de novo!";
-							set zeny,zeny-.@egg_zeny;
+							set Zeny, Zeny-.@egg_zeny;
 							getitem 7605,.@input; //Chicken_Egg
 							close;
 						}

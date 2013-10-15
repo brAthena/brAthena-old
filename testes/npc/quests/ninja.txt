@@ -91,7 +91,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 		mes "Eu não estou certo de que farei, mas sinto que se ver aquele escudo ficarei inspirado.";
 		mes "O Que acha? Você poderia me trazer uma ^ff0000Vembrassa[1]^000000?";
 		next;
-		if(select("Hmm... eu não me sinto assim tão inspirado.: Tudo Bem! ") == 1) {
+		if (select("Hmm... eu não me sinto assim tão inspirado.: Tudo Bem! ") == 1) {
 			mes "[Boshuu]";
 			mes "Ahh... Que pena...";
 			mes "Você está jogando fora uma oportunidade de ter em suas mãos algo feito por um artesão genial como eu...";
@@ -123,14 +123,14 @@ que_ng,28,50,3	script	Boshuu	709,{
 		mes "[Boshuu]";
 		mes "O Que acha? Quer Tentar?";
 		next;
-		if(select("Não, valeu.:Ok, parece uma boa idéia.") == 1) {
+		if (select("Não, valeu.:Ok, parece uma boa idéia.") == 1) {
 			mes "[Boshuu]";
 			mes "Hmm, Ok.";
 			mes "Muito obrigado por trazer este objeto tão interessante para min.";
 			mes "Obrigado por tudo.";
 			set ninbo,0;
 			close;
-		}else{
+		} else {
 			mes "[Boshuu]";
 			mes "Oh ok.";
 			mes "Eu estou ancioso para começar";
@@ -169,7 +169,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 		mes "Mas antes de começar, quero te perguntar mais uma vez.";
 		mes "Você quer me dar os materiais que você trouxe para que eu faça uma Proteção de Braço[1]?";
 		next;
-		if(select("Não:Sim") == 1){
+		if (select("Não:Sim") == 1){
 			mes "[Boshuu]";
 			mes "Ok";
 			mes "Bem, se você mudar de idéia, volte e fale comigo.";
@@ -180,7 +180,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 			mes "Isto vai demorar so um segundo";
 			mes "Bang Clang~ Bang Clang~";
 			next;
-			if(countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
+			if (countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
 				mes "HACK DETECTED";
 				close;
 			}
@@ -202,12 +202,12 @@ que_ng,28,50,3	script	Boshuu	709,{
 		mes "Ohh, eu vejo que esta devolta.";
 		mes "Seria por causa de outra Proteção de Braço[1]?";
 		next;
-		if(select("Não, não realmente.:Sim, faça-me outra.") == 1){
+		if (select("Não, não realmente.:Sim, faça-me outra.") == 1){
 			mes "[Boshuu]";
 			mes "Hmmph. Você é realmente esquisito.";
 			mes "Bem, até logo.";
 			close;
-		}else{
+		} else {
 			if (countitem(2102) < 1 || countitem(2117) < 1){
 				mes "[Boshuu]";
 				mes "Hmm... Parece que os materiais ainda não são suficientes.";
@@ -233,13 +233,13 @@ que_ng,28,50,3	script	Boshuu	709,{
 			mes "Antes de começar, quero te perguntar mais uma vez";
 			mes "Você quer me entregar todos os itens que trouxe,e, em troco, receber uma Proteção de Braço[1]?";
 			next;
-			if(select("Não:Sim") == 1){
+			if (select("Não:Sim") == 1){
 				mes "[Boshuu]";
 				mes "Ok";
 				mes "Se você mudar de idéia";
 				mes "Volte e me encontre denovo";
 				close;
-			}else{
+			} else {
 				mes "[Boshuu]";
 				mes "Certo!";
 				mes "Isto só levará um segundo!";
@@ -249,7 +249,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 				mes "Aqui! Finalmente completo.";
 				mes "Eu apresento-o a Proteção de Braço[1].";
 				next;
-				if(countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
+				if (countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
 					mes "HACK DETECTED";
 					close;
 				}
@@ -300,13 +300,13 @@ que_ng,28,50,3	script	Boshuu	709,{
 		mes "Eu quero que você traga-me uma Proteção de Braço, uma Vembrassa[1] e 10,000 Zeny, então farei a você um Proteção de Braço[1].";
 		mes "O Que acha? Gostaria de obter um Proteção de Braço[1]?";
 		next;
-		if(select("Não... Não gostei muito da idéia.:Sim!!! Por favor, faça-o para min!") == 1){
+		if (select("Não... Não gostei muito da idéia.:Sim!!! Por favor, faça-o para min!") == 1){
 			mes "[Boshuu]";
 			mes "Hmm, tem certeza?";
 			mes "É realmente uma pena...";
 			mes "Bem, se você mudar de idéia, volte a falar comigo.";
 			close;
-		}else{
+		} else {
 			if (countitem(2102) < 1 || countitem(2117) < 1){
 				mes "[Boshuu]";
 				mes "Hmm... Parece-me que não trouxe todos os materiais suficientes.";
@@ -337,19 +337,19 @@ que_ng,28,50,3	script	Boshuu	709,{
 			mes "Iria você me entregar todos os itens que pedi,";
 			mes "e em troca, receber um Proteção de Braço[1]?";
 			next;
-			if(select("Não:Sim") == 1){
+			if (select("Não:Sim") == 1){
 				mes "[Boshuu]";
 				mes "Ok";
 				mes "Caso mude de idéia um dia,";
 				mes "volte a falar comigo.";
 				close;
-			}else{
+			} else {
 				mes "[Boshuu]";
 				mes "Certo!!";
 				mes "Vai levar só um segundo!";
 				mes "Bang Clang~ Bang Clang~";
 				next;
-				if(countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
+				if (countitem(2102) < 1 || countitem(2117) < 1 || Zeny < 10000){
 					mes "HACK DETECTED";
 					close;
 				}
@@ -370,7 +370,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 
 que_ng,28,45,3	script	Basshu	86,{
 
-	if(BaseClass != Job_Ninja){
+	if (BaseClass != Job_Ninja){
 		mes "[Basshu]";
 		mes "Eu sou um dos três irmãos artesãos de artefatos ninja do oriente chamado Murata Basshu";
 		next;
@@ -382,7 +382,7 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "Desculpe...";
 		close;
 	}
-	if(BaseLevel < 50){
+	if (BaseLevel < 50){
 		mes "[Basshu]";
 		mes "Eu sou um dos três irmãos artesãos de artefatos ninja do oriente chamado Murata Basshu";
 		next;
@@ -413,13 +413,13 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "Seria de grande ajuda se eu pudesse ver um destes escudos de perto.";
 		mes "Você poderia me ajudar?";
 		next;
-		if(select("Hmm...Acho que outro dia.:Claro!") == 1) {
+		if (select("Hmm...Acho que outro dia.:Claro!") == 1) {
 			mes "[Basshu]";
 			mes "Ah! Eu acho que deva ser um pedido impossível.";
 			mes "Me desculpe.";
 			mes "Se você algum dia encontrar um Escudo Espelhado e quiser se livrar dele, por favor, venha me ver.";
 			close;
-		}else{
+		} else {
 			mes "[Basshu]";
 			mes "Oh! Muito Obrigado.";
 			mes "Se você puder realmente encontrar-me um Escudo Espelhado, eu possivelmente terei boas idéias.";
@@ -448,7 +448,7 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "[Basshu]";
 		mes "O Que acha? Gostaria de fazer esta troca?";
 		next;
-		if(select("Não, não gostaria.:Sim, é claro!") == 1) {
+		if (select("Não, não gostaria.:Sim, é claro!") == 1) {
 			mes "[Basshu]";
 			mes "Hmm, tudo bem...";
 			mes "Estou muito agradecido que tenha me mostrado esse escudo tão interessante do ocidente.";
@@ -457,7 +457,7 @@ que_ng,28,45,3	script	Basshu	86,{
 			mes "Obrigado por tudo.";
 			set ninbot,0;
 			close;
-		}else{
+		} else {
 			mes "[Basshu]";
 			mes "Ótimo!";
 			mes "Estava realmente querendo fazer isto.";
@@ -475,7 +475,7 @@ que_ng,28,45,3	script	Basshu	86,{
 		}
 	}
 	else if (ninbot == 2){
-		if(countitem(2107) < 1 || countitem(2117) < 1){
+		if (countitem(2107) < 1 || countitem(2117) < 1){
 			mes "[Basshu]";
 			mes "Hmm.. Parece que não me trouxe todos os materiais que requisitei.";
 			mes "Para uma Proteção de Braço Avançada, eu preciso de...";
@@ -484,7 +484,7 @@ que_ng,28,45,3	script	Basshu	86,{
 			mes "Volte quando tiver todos estes materiais.";
 			close;
 		}
-		if(Zeny < 20000){
+		if (Zeny < 20000){
 			mes "[Basshu]";
 			mes "Hmm.. Você trouxe todos os materiais, mas esta com poucos zenys.";
 			mes "Para uma Proteção de Braço Avançada, eu preciso de...";
@@ -506,20 +506,20 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "Você vai me dar todos os materiais que conseguiu";
 		mes "e em troca, receber uma Proteção de Braço Avançada?";
 		next;
-		if(select("Não:Sim") == 1){
+		if (select("Não:Sim") == 1){
 			mes "[Basshu]";
 			mes "Bem...";
 			mes "Caso mude de idéia";
 			mes "Volte a me ver denovo.";
 			close;
-		}else{
+		} else {
 			mes "[Basshu]";
 			mes "Hmm. Ótimo então!";
 			mes "Devemos começar?";
 			mes "Bang Clang~ Bang Clang~";
 			mes "Sweep Sweep~ Saw Saw~";
 			next;
-			if(countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
+			if (countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
 				mes "HACK DETECTED";
 				close;
 			}
@@ -542,13 +542,13 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "Ohh! Vejo que está de volta!";
 		mes "Seria por causa de uma Proteção de Braço Avançada? Hein hein";
 		next;
-		if(select("Não realmente...:Sim! Faça-me outro.") == 1) {
+		if (select("Não realmente...:Sim! Faça-me outro.") == 1) {
 			mes "[Basshu]";
 			mes "Ahhh... Pena.";
 			mes "Volte a falar comigo quando quiser.";
 			close;
-		}else{
-			if(countitem(2107) < 1 || countitem(2117) < 1){
+		} else {
+			if (countitem(2107) < 1 || countitem(2117) < 1){
 				mes "[Basshu]";
 				mes "Hmm.. Parece que não me trouxe todos os materiais.";
 				mes "Para uma Proteção de Braço Avançada, eu preciso de...";
@@ -557,7 +557,7 @@ que_ng,28,45,3	script	Basshu	86,{
 				mes "Volte quando tiver todos os materiais.";
 				close;
 			}
-			if(Zeny < 20000){
+			if (Zeny < 20000){
 				mes "[Basshu]";
 				mes "Hmm.. Parece que não me trouxe todos os materiais.";
 				mes "Para uma Proteção de Braço Avançada, eu preciso de...";
@@ -577,13 +577,13 @@ que_ng,28,45,3	script	Basshu	86,{
 			mes "[Basshu]";
 			mes "iria você me dar os itens que me trouxe em troca de uma Proteção de Braço Avançada?";
 			next;
-			if(select("Não:Sim") == 1){
+			if (select("Não:Sim") == 1){
 				mes "[Basshu]";
 				mes "Pena...";
 				mes "Se mudar de idéia,";
 				mes "volte a me ver denovo.";
 				close;
-			}else{
+			} else {
 				mes "[Basshu]";
 				mes "Hmm... Ótimo!";
 				mes "Devemos começar?";
@@ -594,7 +594,7 @@ que_ng,28,45,3	script	Basshu	86,{
 				mes "Aqui está! Finalmente completo!";
 				mes "Eu fiz para você um Proteção de Braço Avançada";
 				next;
-				if(countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
+				if (countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
 					mes "HACK DETECTED";
 					close;
 				}
@@ -649,14 +649,14 @@ que_ng,28,45,3	script	Basshu	86,{
 		mes "Se você quiser, eu posso lhe fazer uma Proteção de Braço Avançada se me trouxer uma Proteção de Braço, um escudo espelhado, e 20,000 Zeny.";
 		mes "Gostaria de tentar uma?";
 		next;
-		if(select("Não, não quero!:Claro! Faça-me um rápido!") == 1){
+		if (select("Não, não quero!:Claro! Faça-me um rápido!") == 1){
 			mes "[Basshu]";
 			mes "Hmm, é isto.";
 			mes "É uma pena.";
 			mes "Volte a me procurar se mudar de idéia.";
 			close;
-		}else{
-			if(countitem(2107) < 1 || countitem(2117) < 1){
+		} else {
+			if (countitem(2107) < 1 || countitem(2117) < 1){
 				mes "[Basshu]";
 				mes "Hmm.. Parece-me que você não tem os materiais necessários.";
 				mes "Para que eu possa fazer um Proteção de Braço Avançada, eu necessito...";
@@ -665,7 +665,7 @@ que_ng,28,45,3	script	Basshu	86,{
 				mes "Volte quando tiver todos!";
 				close;
 			}
-			if(Zeny < 20000){
+			if (Zeny < 20000){
 				mes "[Basshu]";
 				mes "Hmm.. Você trouxe todos os materiais, mas esta com poucos zeni's.";
 				mes "Para que eu possa fazer um Proteção de Braço Avançada, eu necessito...";
@@ -687,20 +687,20 @@ que_ng,28,45,3	script	Basshu	86,{
 			mes "Você irá me dar todos os itens que recolheu";
 			mes "para receber uma Proteção de Braço Avançada?";
 			next;
-			if(select("Não:Sim") == 1){
+			if (select("Não:Sim") == 1){
 				mes "[Basshu]";
 				mes "Muito Bem.";
 				mes "Caso mude de idéia";
 				mes "volte a falar comigo.";
 				close;
-			}else{
+			} else {
 				mes "[Basshu]";
 				mes "Hmm. Ótimo então";
 				mes "Devemos começar?";
 				mes "Bang Clang~ Bang Clang~";
 				mes "Sweep Sweep~ Saw Saw~";
 				next;
-				if(countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
+				if (countitem(2107) < 1 || countitem(2117) < 1 || Zeny < 20000){
 					mes "HACK DETECTED";
 					close;
 				}
@@ -721,7 +721,7 @@ que_ng,28,45,3	script	Basshu	86,{
 
 que_ng,27,18,3	script	Toshu	709,{
 	
-	if(BaseClass != Job_Ninja){
+	if (BaseClass != Job_Ninja){
 		mes "[Toshu]";
 		mes "Olá, como você vai?";
 		mes "Jovem colega,";
@@ -752,14 +752,14 @@ que_ng,27,18,3	script	Toshu	709,{
 	mes "Mas eu sinto em dizer que há uma chance de que eu possa quebrar seus materiais e falhar ao criar sua Proteção de Braço Avançada[1], portanto você deve pensar sobre isto.";
 	mes "O Que acha? Temos um acordo?";
 	next;
-	if(select("Não. Não quero fazer isto.:Sim! Vamos tentar!") == 1){
+	if (select("Não. Não quero fazer isto.:Sim! Vamos tentar!") == 1){
 		mes "[Toshu]";
 		mes "Ok.";
 		mes "Claro, os escudos são importantes para você.";
 		mes "Caso mude sua idéia, volte a falar comigo.";
 		close;
-	}else{
-		if(countitem(2104) < 1 || countitem(2119) < 1){
+	} else {
+		if (countitem(2104) < 1 || countitem(2119) < 1){
 			mes "[Toshu]";
 			mes "Parece-me que esqueceu de algum material.";
 			mes "Os materiais necessários são um Broquel[1]";
@@ -769,7 +769,7 @@ que_ng,27,18,3	script	Toshu	709,{
 			mes "Não se esqueça disso.";
 			close;
 		}
-		if(Zeny < 40000){
+		if (Zeny < 40000){
 			mes "[Toshu]";
 			mes "Parece que você trouxe os materiais corretos.";
 			mes "Mas.. não trouxe Zeny suficiente.";
@@ -790,20 +790,20 @@ que_ng,27,18,3	script	Toshu	709,{
 		mes "[Toshu]";
 		mes "Você quer que eu tente produzir seu equipamento, mesmo com uma chance de que a produçaõ falhe?";
 		next;
-		if(select("Eu acho melhor desistir. Snif..:Claro! Vamos tentar!") == 1) {
+		if (select("Eu acho melhor desistir. Snif..:Claro! Vamos tentar!") == 1) {
 			mes "[Toshu]";
 			mes "Ok.";
 			mes "Bem, volte quando achar que deva tentar.";
 			mes "Erherherherher";
 			close;
-		}else{
+		} else {
 			mes "[Toshu]";
 			mes "OK! Eu tenho suas ordens!";
 			mes "Apenas espere 3 sgundos!!";
 			mes "Clink Clank~!Clink Clank~!!";
 			mes "Sweep Sweep~ Saw Saw~";
 			next;
-			if(countitem(2104) < 1 || countitem(2119) < 1 || Zeny < 40000){
+			if (countitem(2104) < 1 || countitem(2119) < 1 || Zeny < 40000){
 				mes "HACK DETECTED";
 				close;
 			}
@@ -880,13 +880,13 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 			mes "e 200,000 Zeny.";
 			mes "Quer que eu crie este item para você?";
 			next;
-			if(select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1){
+			if (select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1){
 				mes "[Kaibara]";
 				mes "Hrm. Eu entendo. Estes materiais são realmente dificeis de se obter...";
 				mes "Caso você consiga todos estes materiais um dia, sinta-se à vontade para voltar.";
 				close;
-			}else{
-				if(countitem(1036) < 400 || countitem(984) < 5 || countitem(7123) < 30){
+			} else {
+				if (countitem(1036) < 400 || countitem(984) < 5 || countitem(7123) < 30){
 					mes "[Kaibara]";
 					mes "Parece-me que não trouxe tudo que pedi para que eu fizesse uma Khukri.";
 					next;
@@ -898,7 +898,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 					mes "Esteja certo de que tem todos os itens quando voltar a falar comigo.";
 					close;
 				}
-				if(Zeny < 200000){
+				if (Zeny < 200000){
 					mes "[Kaibara]";
 					mes "Parece-me que não trouxe tudo que pedi para que eu fizesse uma Khukri.";
 					next;
@@ -932,13 +932,13 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 			mes "e 20,000 Zeny.";
 			mes "Quer que eu faça este item para você?";
 			next;
-			if(select("Não, obrigado. É muito caro.:Sim! Eu Quero um!") == 1) {
+			if (select("Não, obrigado. É muito caro.:Sim! Eu Quero um!") == 1) {
 				mes "[Kaibara]";
 				mes "Hrm. Eu entendo. Estes materiais são difíceis de se conseguir...";
 				mes "Se um dia conseguir coletar todos os materiais, volte e fale comigo.";
 				close;
-			}else{
-				if(countitem(999) < 30 || countitem(7022) < 1){
+			} else {
+				if (countitem(999) < 30 || countitem(7022) < 1){
 					mes "[Kaibara]";
 					mes "Parece que precisa de mais materiais para que eu possa fazer uma Jitte.";
 					next;
@@ -950,7 +950,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 					mes "Lembre-se dos materiais necessários, e volte depois que estiver certo de que tem todos.";
 					close;
 				}
-				if(Zeny < 20000){
+				if (Zeny < 20000){
 					mes "[Kaibara]";
 					mes "Hmm.. Você trouxe todos os materiais, mas está com poucos zenys.";
 					next;
@@ -981,13 +981,13 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 			mes "e 32,000 Zeny.";
 			mes "Quer que eu crie o item para você?";
 			next;
-			if(select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1) {
+			if (select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1) {
 				mes "[Kaibara]";
 				mes "Hrm. Eu entendo. Estes materiais são dificeis de se conseguir...";
 				mes "Se um dia conseguir coletar todos os materiais, volte e fale comigo..";
 				close;
-			}else{
-				if(countitem(999) < 25 || countitem(7099) < 5){
+			} else {
+				if (countitem(999) < 25 || countitem(7099) < 5){
 					mes "[Kaibara]";
 					mes "Parece que não tem todos os materiais para que eu faça uma Ashura[3] para você.";
 					next;
@@ -998,7 +998,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 32000){
+				if (Zeny < 32000){
 					mes "[Kaibara]";
 					mes "Parece que não tem todos os materiais para que eu faça uma Ashura[3] para você.";
 					next;
@@ -1028,13 +1028,13 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 			mes "e 48,000 Zeny.";
 			mes "Quer que eu crie este item para você?";
 			next;
-			if(select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1) {
+			if (select("Não, obrigado. É muito caro.:Sim! Eu quero uma!") == 1) {
 				mes "[Kaibara]";
 				mes "Hrm. Eu entendo. Estes materiais são dificeis de se conseguir...";
 				mes "Se um dia conseguir coletar todos os materiais, volte e fale comigo..";
 				close;
-			}else{
-				if(countitem(999) < 30 || countitem(720) < 10){
+			} else {
+				if (countitem(999) < 30 || countitem(720) < 10){
 					mes "[Kaibara]";
 					mes "Parece que não trouxe todos os materiais para que eu crie a Murasame.";
 					next;
@@ -1046,7 +1046,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 48000){
+				if (Zeny < 48000){
 					mes "[Kaibara]";
 					mes "Hmm.. Você trouxe todos os materiais, mas está com poucos Zenys.";
 					next;
@@ -1078,13 +1078,13 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 			mes "e 120,000 Zeny.";
 			mes "Você quer que eu crie este item para você?";
 			next;
-			if(select("Não, obrigado. É muito caro.:Sim! Eu quero um!") == 1) {
+			if (select("Não, obrigado. É muito caro.:Sim! Eu quero um!") == 1) {
 				mes "[Kaibara]";
 				mes "Hrm. Eu entendo. Estes materiais são dificeis de se conseguir...";
 				mes "Se um dia conseguir coletar todos os materiais, volte e fale comigo..";
 				close;
-			}else{
-				if(countitem(932) < 500 || countitem(12001) < 10 || countitem(722) < 5){
+			} else {
+				if (countitem(932) < 500 || countitem(12001) < 10 || countitem(722) < 5){
 					mes "[Kaibara]";
 					mes "Me parece que lhe faltam alguns materiais para que eu possa fazer uma Hakujin.";
 					next;
@@ -1096,7 +1096,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 120000){
+				if (Zeny < 120000){
 					mes "[Kaibara]";
 					mes "Hmm.. Você me trouxe todos os materiais, mas está com poucos zenys.";
 					next;
@@ -1132,7 +1132,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 que_ng,22,62,3	script	Tetsu	709,{
 
 	mes "[Tetsu]";
-	if(BaseClass != Job_Ninja){
+	if (BaseClass != Job_Ninja){
 		mes "Eu sou o artesão dos Ninja Fuuma chamado Tetsu.";
 		next;
 		mes "[Tetsu]";
@@ -1165,8 +1165,8 @@ que_ng,22,62,3	script	Tetsu	709,{
 			mes "5 Oridecons, e 90,000 Zeny.";
 			mes "Você quer que eu crie este item para você?";
 			next;
-			if(select("Bem... erm... é um pouco caro.:Sim! faça-o pra mim!") == 2) {
-				if(countitem(999) < 50 || countitem(7115) < 20 || countitem(984) < 5) {
+			if (select("Bem... erm... é um pouco caro.:Sim! faça-o pra mim!") == 2) {
+				if (countitem(999) < 50 || countitem(7115) < 20 || countitem(984) < 5) {
 					mes "[Tetsu]";
 					mes "Parece-me que não trouxe todos os materiais para que eu possa fazer uma Fuuma Shuriken Beneki.";
 					next;
@@ -1179,7 +1179,7 @@ que_ng,22,62,3	script	Tetsu	709,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 90000) {
+				if (Zeny < 90000) {
 					mes "[Tetsu]";
 					mes "Hmm.. Você trouxe todos os materiais, mas esta com poucos zenis.";
 					next;
@@ -1212,8 +1212,8 @@ que_ng,22,62,3	script	Tetsu	709,{
 			mes "2 Oridecons, e 40,000 Zeny.";
 			mes "Você quer que eu crie este item para você?";
 			next;
-			if(select("Bem... erm... é bem caro...:Sim! Faça um para mim!") == 2) {
-				if(countitem(999) < 30 || countitem(7301) < 100 || countitem(984) < 2) {
+			if (select("Bem... erm... é bem caro...:Sim! Faça um para mim!") == 2) {
+				if (countitem(999) < 30 || countitem(7301) < 100 || countitem(984) < 2) {
 					mes "[Tetsu]";
 					mes "Parece-me que não trouxe todos os materiais para que eu possa fazer uma Fuuma Shuriken Daisharin.";
 					next;
@@ -1226,7 +1226,7 @@ que_ng,22,62,3	script	Tetsu	709,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 40000) {
+				if (Zeny < 40000) {
 					mes "[Tetsu]";
 					mes "Hmm.. Você trouxe todos os materiais, mas está com poucos zenys.";
 					next;
@@ -1264,8 +1264,8 @@ que_ng,22,62,3	script	Tetsu	709,{
 			mes "No processo de fazer slotts na arma, sua arma perte todos os refinamentos e cartas, se ouver algum.";
 			mes "Pense nisso com cuidado, e decida se realmente quer fazer isto ou não.";
 			next;
-			if(select("Não, obrigado. É muito caro:Sim! Eu quero um!") == 2) {
-				if(countitem(733) < 20 || countitem(13301) < 1 || countitem(984) < 3) {
+			if (select("Não, obrigado. É muito caro:Sim! Eu quero um!") == 2) {
+				if (countitem(733) < 20 || countitem(13301) < 1 || countitem(984) < 3) {
 					mes "[Tetsu]";
 					mes "Parece-me que não trouxe todos os materiais para que eu possa fazer uma Fuuma Shuriken Daisharin[4].";
 					next;
@@ -1278,7 +1278,7 @@ que_ng,22,62,3	script	Tetsu	709,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 40000) {
+				if (Zeny < 40000) {
 					mes "[Tetsu]";
 					mes "Hmm.. Você trouxe todos os materiais, mas está com poucos zenys.";
 					next;
@@ -1312,8 +1312,8 @@ que_ng,22,62,3	script	Tetsu	709,{
 			mes "e 78,000 Zeny.";
 			mes "Quer que eu faça este item para você?";
 			next;
-			if(select("Bem... erm... é um pouco caro:Sim! faça-o para mim!") == 2) {
-				if(countitem(999) < 50 || countitem(7098) < 100 || countitem(7097) < 100 || countitem(7521) < 50) {
+			if (select("Bem... erm... é um pouco caro:Sim! faça-o para mim!") == 2) {
+				if (countitem(999) < 50 || countitem(7098) < 100 || countitem(7097) < 100 || countitem(7521) < 50) {
 					mes "[Tetsu]";
 					mes "Parece-me que não trouxe todos os materiais para que eu possa fazer uma Fuuma Shuriken Rekka.";
 					next;
@@ -1325,7 +1325,7 @@ que_ng,22,62,3	script	Tetsu	709,{
 					mes "Lembre-se destes materiais, e volte quando tiver todos eles.";
 					close;
 				}
-				if(Zeny < 78000) {
+				if (Zeny < 78000) {
 					mes "[Tetsu]";
 					mes "Hmm.. Você trouxe todos os materiais, mas está com poucos zenys.";
 					next;

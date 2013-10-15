@@ -28,7 +28,7 @@
 //============================================================
 izlude_in,82,163,3	script	Shurank	733,{
 	mes "[Shurank]";
-	if(Class == Job_Novice || Class == Job_Baby){
+	if (Class == Job_Novice || Class == Job_Baby){
 		mes "Ainda querendo saber";
 		mes "o que fazer com";
 		mes "com o seu futuro, hein?";
@@ -48,10 +48,10 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "volte até mim...";
 		close;
 	}
-	if(BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER|EAJL_THIRD)){
+	if (BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER|EAJL_THIRD)){
 		mes "Pelas suas roupas,";
 		mes "eu vejo que você é";
-		if(Sex)
+		if (Sex)
 			mes "um homem da espada.";
 		else
 			mes "uma mulher da espada.";
@@ -62,7 +62,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "Não há mais nada que eu possa te ensinar. Mas se você conhecer algum Espadachim novo que demonstre potencial, por favor encaminhe-o até mim.";
 		close;
 	}
-	if(BaseClass != Job_Swordman){
+	if (BaseClass != Job_Swordman){
 		mes "Saudações aventureiro.";
 		mes "Se por acaso você conhecer";
 		mes "algum novo Espadachim,";
@@ -107,7 +107,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "quando se está cercado por inimigos, mas tendo em mente que ela também causa um pequeno dano em seu usuário.";
 		next;
 		set @chk_magnum, getskilllv("SM_MAGNUM");
-		if(@chk_magnum > 5){
+		if (@chk_magnum > 5){
 			mes "[Shurank]";
 			mes "Eu vejo que você foi ao treinamento de Impacto Explosivo. Embora seja uma habilidade incrível, não é para todos os Espadachins. Ainda assim, não há mal nenhum em aprender.";
 			next;
@@ -197,7 +197,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		next;
 		set @chk_hanson, getskilllv("SM_SWORD");
 		set @chk_yangson, getskilllv("SM_TWOHAND");
-		if((@chk_hanson > 9) || (@chk_yangson > 9)){
+		if ((@chk_hanson > 9) || (@chk_yangson > 9)){
 			mes "[Shurank]";
 			mes "Ah, pela forma que você manuseia sua espada, eu vejo que você domina uma Habilidade com Espada. Eu estou completamento impressionado.";
 			next;
@@ -234,7 +234,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "habilidade Vigor?";
 		next;
 		set @chk_endure, getskilllv("SM_ENDURE");
-		if(@chk_endure > 1){
+		if (@chk_endure > 1){
 			mes "[Shurank]";
 			mes "Vendo a resistência de sua pele, vejo que fui um tolo em perguntar. Bom trabalho~";
 			set tu_swordman, 13;
@@ -269,7 +269,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "a habilidade Vigor certo?";
 		next;
 		set @chk_endure, getskilllv("SM_ENDURE");
-		if((@chk_endure > 0) && (@chk_endure < 2)){
+		if ((@chk_endure > 0) && (@chk_endure < 2)){
 			mes "[Shurank]";
 			mes "Eu vejo que você";
 			mes "já sabe usar";
@@ -300,7 +300,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Apresse-se, vá ate o Dequ'ee e volte até mim quando completar o que ele quer que você faça.";
 			close2;
 			end;
-		} else if(@chk_endure > 1){
+		} else if (@chk_endure > 1){
 			mes "[Shurank]";
 			mes "Vendo a resistência de sua pele, vejo que fui um tolo em perguntar. Bom trabalho~";
 			set tu_swordman, 13;
@@ -333,7 +333,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "a habilidade Vigor.";
 		next;
 		set @chk_endure, getskilllv("SM_ENDURE");
-		if(@chk_endure == 0){
+		if (@chk_endure == 0){
 			mes "[Shurank]";
 			mes "Como você já percebeu, receber qualquer dano faz com que você sinta dor, atordoando você por um estante. Assim, se os inimigos atacarem rápidamente será perigoso, pois será dificil escapar deles.";
 			next;
@@ -351,7 +351,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			set tu_swordman, 11;
 			changequest 8220,8221;
 			close;
-		} else if((@chk_endure > 0) && (@chk_endure < 2)){
+		} else if ((@chk_endure > 0) && (@chk_endure < 2)){
 			mes "[Shurank]";
 			mes "Eu vejo que você";
 			mes "já sabe usar";
@@ -381,7 +381,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Apresse-se, vá ate o Dequ'ee e volte até mim quando completar o que ele quer que você faça.";
 			close;
-		} else if(@chk_endure > 1){
+		} else if (@chk_endure > 1){
 			mes "[Shurank]";
 			mes "Hm. Mas julgando pela resistência de sua pele, suponho que explicar-lhe sobre o Vigor seria uma perca de tempo para você. Você fez bem!";
 			set tu_swordman, 13;
@@ -408,7 +408,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "o uso da habilidade Provoke?";
 		next;
 		set @chk_provoke, getskilllv("SM_PROVOKE");
-		if((@chk_provoke > 4) && (@chk_provoke < 10)){
+		if ((@chk_provoke > 4) && (@chk_provoke < 10)){
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
@@ -420,7 +420,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
 			close;
-		} else if(@chk_provoke == 10){
+		} else if (@chk_provoke == 10){
 			mes "[Shurank]";
 			mes "V-você domina";
 			mes "Provoke? Impressionante!";
@@ -452,7 +452,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "sua habilidade progrediu?";
 		next;
 		set @chk_provoke, getskilllv("SM_PROVOKE");
-		if((@chk_provoke > 0) && (@chk_provoke < 5)){
+		if ((@chk_provoke > 0) && (@chk_provoke < 5)){
 			mes "[Shurank]";
 			mes "Ah, agora eu posso ver que você";
 			mes "já sabe como usar. Isso é uma grande melhoria para quem não era capaz de usa-lá. Mesmo assim deixe-me revisar com você os detalhes de Provoke.";
@@ -478,7 +478,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "Tudo bem, volte ate mim quando você estiver suficientemente qualificado para o uso de Provoke. Enquanto isso, continue treinando.";
 			set tu_swordman, 9;
 			close;
-		} else if((@chk_provoke > 4) && (@chk_provoke < 10)){
+		} else if ((@chk_provoke > 4) && (@chk_provoke < 10)){
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
@@ -490,7 +490,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, Eu vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
 			close;
-		} else if(@chk_provoke == 10){
+		} else if (@chk_provoke == 10){
 			mes "[Shurank]";
 			mes "V-você domina";
 			mes "Provoke? Impressionante!";
@@ -523,7 +523,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "Bem, deixe-me continuar com as instruções das habilidades de Espadachim. Agora nós vamos falar de Provoke.";
 		next;
 		set @chk_provoke, getskilllv("SM_PROVOKE");
-		if(@chk_provoke == 0){
+		if (@chk_provoke == 0){
 			mes "[Shurank]";
 			mes "Você ainda não";
 			mes "aprendeu Provoke?";
@@ -553,7 +553,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			set tu_swordman, 8;
 			changequest 8217,8218;
 			close;
-		} else if((@chk_provoke > 0) && (@chk_provoke < 5)){
+		} else if ((@chk_provoke > 0) && (@chk_provoke < 5)){
 			mes "[Shurank]";
 			mes "Hm. Você parece ter o entendimento básico sobre Provoke, mas deixe-me dar-lhe alguns detalhes para que você possa entender melhor o uso dessa habilidade.";
 			next;
@@ -580,7 +580,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			set tu_swordman, 9;
 			changequest 8218,8219;
 			close;
-		} else if((@chk_provoke > 4) && (@chk_provoke < 10)){
+		} else if ((@chk_provoke > 4) && (@chk_provoke < 10)){
 			mes "[Shurank]";
 			mes "Ah, Eu vejo que você já compreende bem o uso da habilidade Provoke. Deixe-me te dar uma pequena recompensa pelos seus esforços.";
 			set tu_swordman, 10;
@@ -593,7 +593,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Da proxima vez que nos falarmos, vou te dizer tudo que eu sei sobre a habilidade ^5D478BVigor^000000. Quando você estiver pronto para aprender, volte ate mim.";
 			close;
-		} else if(@chk_provoke == 10){
+		} else if (@chk_provoke == 10){
 			mes "[Shurank]";
 			mes "V-você domina";
 			mes "Provoke? Impressionante!";
@@ -677,7 +677,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "capaz de recebe-ló e recuperá-lo depois.";
 		next;
 		set @chk_hp, getskilllv("SM_RECOVERY");
-		if(@chk_hp == 0){
+		if (@chk_hp == 0){
 			mes "[Shurank]";
 			mes "Mas julgando o quão";
 			mes "baixa é a sua recuperação,";
@@ -696,7 +696,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "aprenda essa habilidade! Claro, existem outras habilidades de Espadachim que também são importantes, porém...";
 			set tu_swordman, 5;
 			next;
-		} else if(@chk_hp == 10){
+		} else if (@chk_hp == 10){
 			mes "[Shurank]";
 			mes "Ah! que rosto saudável!";
 			mes "Eu vejo que você já domina essa habilidade. Deixe-me dar-lhe uma pequena recompensa pelo seu trabalho duro!";
@@ -736,7 +736,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "companheiro Espadachim está dando a você.";
 		next;
 		set @chk_bash, getskilllv("SM_BASH");
-		if(@chk_bash == 10){
+		if (@chk_bash == 10){
 			mes "[Shurank]";
 			mes "Esses calos...!";
 			mes "Apenas um mestre da habilidade Golpe Fuminante tem esses tipos de mãos. Ótimo trabalho, Espadachim. Estou muito impressionado.";
@@ -765,7 +765,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "necessidade de dominar essa habilidade";
 		next;
 		set @chk_bash, getskilllv("SM_BASH");
-		if((@chk_bash > 4) && (@chk_bash < 10)){
+		if ((@chk_bash > 4) && (@chk_bash < 10)){
 			mes "[Shurank]";
 			mes "Hm. Estou vendo que você ainda não dominou completamente Golpe Fuminante, mas parece que você está se esforçando.";
 			next;
@@ -789,7 +789,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			else
 				getexp 830,0;
 			close;
-		} else if(@chk_bash == 10){
+		} else if (@chk_bash == 10){
 			mes "[Shurank]";
 			mes "Esses calos...!";
 			mes "Apenas um mestre da habilidade Golpe Fuminante tem esses tipos de mãos. Ótimo trabalho, Espadachim. Estou muito impressionado.";
@@ -816,7 +816,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "a arte de usar Golpe Fuminante? Eu acredito que a habilidade Golpe Fuminante é totalmente a essência de esgrima!";
 		next;
 		set @chk_bash, getskilllv("SM_BASH");
-		if((@chk_bash > 0) && (@chk_bash < 5)){
+		if ((@chk_bash > 0) && (@chk_bash < 5)){
 			mes "[Shurank]";
 			mes "Eu vejo que você entende";
 			mes "um pouco sobre a habilidade Golpe Fuminante. Mas ainda assim, não é suficiente. Deixe-me explicar em detalhes...";
@@ -842,7 +842,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			else
 				getexp 580,0;
 			close;
-		} else if((@chk_bash > 4) && (@chk_bash < 10)){
+		} else if ((@chk_bash > 4) && (@chk_bash < 10)){
 			mes "[Shurank]";
 			mes "Hmm...";
 			mes "Ainda não domina Golpe Fuminante, ein? Bem, em todo caso, eu acho que você fez algum progresso.";
@@ -874,7 +874,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Eu acredito que todo Espadachim de verdade deve dominar a habilidade Golpe Fuminante. Quando você dominar essa habilidade, volte até mim.";
 			close;
-		} else if(@chk_bash == 10){
+		} else if (@chk_bash == 10){
 			mes "[Shurank]";
 			mes "Esses calos...!";
 			mes "Apenas um mestre da habilidade Golpe Fuminante tem esses tipos de mãos. Ótimo trabalho, Espadachim. Estou muito impressionado.";
@@ -912,7 +912,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 		mes "habilidades que é o ^5D478BGolpe Fuminante^000000.";
 		next;
 		set @chk_bash, getskilllv("SM_BASH");
-		if(@chk_bash == 0){
+		if (@chk_bash == 0){
 			mes "[Shurank]";
 			mes "^333333*Gasp*^000000";
 			mes "Essas suaves e delicadas mãos! Você nunca aprendeu a usar Golpe Fuminante?! Como você espera ir para a batalha sem saber usar Golpe Fuminante?";
@@ -926,7 +926,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 				getexp 490,0;
 			setquest 8211;
 			close;
-		} else if((@chk_bash > 0) && (@chk_bash < 5)){
+		} else if ((@chk_bash > 0) && (@chk_bash < 5)){
 			mes "[Shurank]";
 			mes "Eu vejo que você entende";
 			mes "um pouco sobre a habilidade Golpe Fuminante. Mas ainda assim, não é suficiente. Deixe-me explicar em detalhes...";
@@ -953,7 +953,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			else
 				getexp 580,0;
 			close;
-		} else if((@chk_bash > 4) && (@chk_bash < 10)){
+		} else if ((@chk_bash > 4) && (@chk_bash < 10)){
 			mes "[Shurank]";
 			mes "Eu vejo que você está melhorando no uso de Golpe Fuminante. Ainda assim, não é o suficiente. Deixe-me explicar...";
 			next;
@@ -982,7 +982,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			mes "[Shurank]";
 			mes "Mas se você quiser mesmo ser visto por mim como um verdadeiro Espadachim, você deverá dominar Golpe Fuminante!";
 			close;
-		} else if(@chk_bash == 10){
+		} else if (@chk_bash == 10){
 			mes "[Shurank]";
 			mes "Esses calos...!";
 			mes "Apenas um mestre da habilidade Golpe Fuminante tem esses tipos de mãos. Ótimo trabalho, Espadachim. Estou muito impressionado.";
@@ -995,7 +995,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 			completequest 8212;
 			completequest 8213;
 			setquest 8214;
-			if(checkversion(3))
+			if (checkversion(3))
 				getexp 97,0;
 			else
 				getexp 970,0;
@@ -1012,7 +1012,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 // Dequee
 //============================================================
 geffen,154,143,3	script	Dequ'ee	734,{
-	if(BaseJob == Job_Novice){
+	if (BaseJob == Job_Novice){
 		mes "[Dequ'ee]";
 		mes "Ei você!";
 		mes "Frustrado por";
@@ -1030,7 +1030,7 @@ geffen,154,143,3	script	Dequ'ee	734,{
 		mes "Eu não sei do que você quer viver, mas deveria pensar seriamente em pertencer a classe dos Espadachins...";
 		close;
 	}
-	if(BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER)){
+	if (BaseClass == Job_Swordman && eaclass()&(EAJL_2|EAJL_UPPER)){
 		mes "[Dequ'ee]";
 		mes "Ah...";
 		mes "Um companheiro portador de espada!";
@@ -1041,7 +1041,7 @@ geffen,154,143,3	script	Dequ'ee	734,{
 		mes "dependem da força de sua lâmina. É uma enorme responsabilidade, mas nunca devemos deixar nossos aliados em combate...";
 		close;
 	}
-	if(BaseClass != Job_Swordman){
+	if (BaseClass != Job_Swordman){
 		mes "[Dequ'ee]";
 		mes "Olá.";
 		mes "você não é um fã da espada?";
@@ -1057,7 +1057,7 @@ geffen,154,143,3	script	Dequ'ee	734,{
 		close;
 	}
 
-if(tu_swordman > 20){
+if (tu_swordman > 20){
 	mes "[Dequ'ee]";
 	mes "Eu espero que você continue";
 	mes "com seu treinamento";
@@ -1067,7 +1067,7 @@ if(tu_swordman > 20){
 	close;
 }
 
-if(tu_swordman == 20){
+if (tu_swordman == 20){
 	mes "[Dequ'ee]";
 	mes "Huh...?";
 	mes "Você não deveria";
@@ -1097,7 +1097,7 @@ if(tu_swordman == 20){
 	end;
 }
 
-if(tu_swordman == 19){
+if (tu_swordman == 19){
 	mes "[Dequ'ee]";
 	mes "O que ainda está fazendo aqui?";
 	mes "Vá depressa vigiar o Bankley!";
@@ -1106,15 +1106,15 @@ if(tu_swordman == 19){
 	close;
 }
 
-if((tu_swordman == 17) || (tu_swordman == 18)){
+if ((tu_swordman == 17) || (tu_swordman == 18)){
 	mes "[Dequ'ee]";
-	if(tu_swordman == 17){
+	if (tu_swordman == 17){
 		mes "TheisWesomeof";
 		mes "ConBanfoevidehi";
 		mes "victkleyundncem";
 		mes "hekdlfiDrindkelsd";
 		next;
-	} else if(tu_swordman == 18){
+	} else if (tu_swordman == 18){
 		mes "hekdlfiDrindkelsd";
 		mes "TheisWesomeof";
 		mes "ConBanfoevidehi";
@@ -1181,7 +1181,7 @@ if((tu_swordman == 17) || (tu_swordman == 18)){
 	}
 }
 
-if(tu_swordman == 16){
+if (tu_swordman == 16){
 	mes "[Dequ'ee]";
 	mes "Eu acho que esses códigos precisam ser organizados em uma certa ordem para que possamos desvendar seus segredos";
 	next;
@@ -1908,7 +1908,7 @@ if(tu_swordman == 16){
 	}
 }
 
-if(tu_swordman == 15){
+if (tu_swordman == 15){
 	set @hans$, "victkleyundncem";
 	set @bang$, "hekdlfiDrindkelsd";
 	set @mutr$, "ConBanfoevidehi";
@@ -1930,7 +1930,7 @@ if(tu_swordman == 15){
 	next;
 	set @inputstr$, NULL;
 	input @inputstr$;
-	if(@inputstr$ == @hans$){
+	if (@inputstr$ == @hans$){
 		mes "[Dequ'ee]";
 		mes "victkleyundncem?";
 		mes "Isso certamente";
@@ -1939,7 +1939,7 @@ if(tu_swordman == 15){
 		next;
 		set @inputstr$, NULL;
 		input @inputstr$;
-		if(@inputstr$ == @bang$){
+		if (@inputstr$ == @bang$){
 			mes "[Dequ'ee]";
 			mes "hekdlfiDrindkelsd..";
 			mes "Mas o que diabos é isso...?";
@@ -1948,7 +1948,7 @@ if(tu_swordman == 15){
 			next;
 			set @inputstr$, NULL;
 			input @inputstr$;
-			if(@inputstr$ == @mutr$){
+			if (@inputstr$ == @mutr$){
 				mes "[Dequ'ee]";
 				mes "ConBanfoevidehi.";
 				mes "Isso vai ser";
@@ -1958,7 +1958,7 @@ if(tu_swordman == 15){
 				next;
 				set @inputstr$, NULL;
 				input @inputstr$;
-				if(@inputstr$ == @geil$){
+				if (@inputstr$ == @geil$){
 					mes "[Dequ'ee]";
 					mes "TheisWesomeof...";
 					mes "Tudo bem, ótimo.";
@@ -2003,7 +2003,7 @@ if(tu_swordman == 15){
 	}
 }
 
-if(tu_swordman == 14){
+if (tu_swordman == 14){
 	mes "[Dequ'ee]";
 	mes "Não se importaria se eu pedise";
 	mes "para interrogar";
@@ -2014,7 +2014,7 @@ if(tu_swordman == 14){
 	close;
 }
 
-if(tu_swordman == 13){
+if (tu_swordman == 13){
 	mes "[Dequ'ee]";
 	mes "Ah, você está aqui!";
 	mes "Shurank deve ter";
@@ -2051,7 +2051,7 @@ if(tu_swordman == 13){
 	close;
 }
 
-if((tu_swordman > 7) && (tu_swordman < 13)){
+if ((tu_swordman > 7) && (tu_swordman < 13)){
 	mes "[Dequ'ee]";
 	mes "Hmm...";
 	mes "Ainda realizando o";
@@ -2064,7 +2064,7 @@ if((tu_swordman > 7) && (tu_swordman < 13)){
 	close;
 }
 
-if(tu_swordman == 7){
+if (tu_swordman == 7){
 	mes "[Dequ'ee]";
 	mes "O que você";
 	mes "ainda está fazendo aqui?";
@@ -2080,7 +2080,7 @@ if(tu_swordman == 7){
 	close;
 }
 
-if(tu_swordman == 6){
+if (tu_swordman == 6){
 	mes "[Dequ'ee]";
 	mes "Ah...!";
 	mes "É você o Espadachim";
@@ -2331,7 +2331,7 @@ if(tu_swordman == 6){
 //============================================================
 morocc_in,51,101,3	script	Geil	89,{
 	mes "[Geil]";
-	if(tu_swordman == 15){
+	if (tu_swordman == 15){
 		mes "Você foi enviado pelas autoridades? Me deixe, não estou bem! Eu não sou o assassino! Eu nem mesmo sei quem foi morto. Eu não sou aquele que você está procurando!";
 
 		next;
@@ -2350,7 +2350,7 @@ morocc_in,51,101,3	script	Geil	89,{
 		mes "O que é tão importante sobre esse código, e porque vocês estão me perseguindo falando sobre o assassino?!";
 		close;
 	}
-	if(tu_swordman == 14){
+	if (tu_swordman == 14){
 		mes "Você foi enviado pelas autoridades? Me deixe, não estou bem! Eu não sou o assassino! Eu nem mesmo sei quem foi morto. Eu não sou aquele que você está procurando!";
 
 		next;
@@ -2384,7 +2384,7 @@ morocc_in,51,101,3	script	Geil	89,{
 //============================================================
 morocc,82,292,5	script	Muetro	84,{
 	mes "[Muetro]";
-	if(tu_swordman == 15){
+	if (tu_swordman == 15){
 		mes "Você veio aqui apenas";
 		mes "pelo mesmo motivos dos outros.";
 		mes "Você quer o código que";
@@ -2397,7 +2397,7 @@ morocc,82,292,5	script	Muetro	84,{
 		mes "pegar o assassino.";
 		close;
 	}
-	if(tu_swordman == 14){
+	if (tu_swordman == 14){
 		mes "Você veio aqui apenas";
 		mes "pelo mesmo motivos dos outros.";
 		mes "Você quer o código que";
@@ -2425,7 +2425,7 @@ morocc,82,292,5	script	Muetro	84,{
 //============================================================
 morocc,240,72,3	script	Hans	86,{
 	mes "[Hans]";
-	if(tu_swordman == 15){
+	if (tu_swordman == 15){
 		mes "Ajude-me!";
 		mes "Por favor ajude-me!";
 		mes "Eu não sou o assassino!";
@@ -2449,7 +2449,7 @@ morocc,240,72,3	script	Hans	86,{
 		mes "E mesmo que ele tenha usado alguma magia para que eu não esquecese disso... Por favor deixe-me sozinho, isso é tudo que eu sei!";
 		close;
 	}
-	if(tu_swordman == 14){
+	if (tu_swordman == 14){
 		mes "Ajude-me!";
 		mes "Por favor ajude-me!";
 		mes "Eu não sou o assassino!";
@@ -2482,13 +2482,13 @@ morocc,240,72,3	script	Hans	86,{
 // Bankley
 //============================================================
 morocc_in,12,156,3	script	Bankley	97,{
-	if(tu_swordman > 19){
+	if (tu_swordman > 19){
 		mes "^3355FFBankley está com uma lamentável";
 		mes "expresão em seu rosto.^000000";
 		mes "^3355FFSeu corpo é completamente sem vida. Há uma ferida longa, e profunda em seu peito, e ele está apertando com sua mão direita uma faca coberta de sangue.^000000";
 		close;
 	}
-	if(tu_swordman == 19){
+	if (tu_swordman == 19){
 		mes "...";
 		mes "......";
 		next;
@@ -2501,7 +2501,7 @@ morocc_in,12,156,3	script	Bankley	97,{
 		close;
 	}
 	mes "[Bankley]";
-	if(tu_swordman == 15){
+	if (tu_swordman == 15){
 		mes "Eu não matei ninguém...!";
 		mes "Eu sou inocente e eu não";
 		mes "não tenho nada a esconder!";
@@ -2528,7 +2528,7 @@ morocc_in,12,156,3	script	Bankley	97,{
 		mes "o verdadeiro culpado!";
 		close;
 	}
-	if(tu_swordman == 14){
+	if (tu_swordman == 14){
 		mes "Eu não matei ninguém...!";
 		mes "Eu sou inocente e eu não";
 		mes "não tenho nada a esconder!";

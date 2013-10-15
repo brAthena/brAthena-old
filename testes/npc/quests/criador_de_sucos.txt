@@ -276,7 +276,7 @@ prt_in,47,173,3	script	Morrison#suco	97,{
 			}
 			delitem .@fruta,.@criar;
 			delitem 713,.@criar;
-			set zeny,zeny-.@total_zeny;
+			set Zeny, Zeny-.@total_zeny;
 			getitem .@suco,.@criar;
 
 			mes "[Mercador Marx Hansen]";

@@ -640,7 +640,7 @@ comodo,204,310,4	script#dv	Camping Youth#cmd	65,{
 		mes "together for this barbeque";
 		mes "for such a long time~";
 		next;
-		if(select("Buddies...?:Cancel") == 1) {
+		if (select("Buddies...?:Cancel") == 1) {
 			mes "[Rockha]";
 			mes "Yeah, some of us know";
 			mes "each other when we fought";
@@ -1574,7 +1574,7 @@ comodo,187,153,4	script#dv	Hullaris#cmd	701,{
 		mes "Love together~";
 		mes "Love! Love!";
 		mes "Love togeth-hm?";
-		if (sex) {
+		if (Sex) {
 			mes "Boy, you're ruining";
 			mes "my groove! Now beat it!";
 		}

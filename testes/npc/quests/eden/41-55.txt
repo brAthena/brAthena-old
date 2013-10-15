@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: ??/1.2/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests repetíveis para jogadores entre      |
-//   | Baselevel 41-55.                                       |
+//   | BaseLevel 41-55.                                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
@@ -41,7 +41,7 @@ moc_para01,40,38,3	script	Mission [41 - 55]	857,{
 		mes "[Mission Board]";
 		mes "Mission bulletin board.";
 		next;
-		if(select("Check the Missions.:Cancel.") == 2) {
+		if (select("Check the Missions.:Cancel.") == 2) {
 			mes "^000077Ok. Let's check the missions next time.^000000.";
 			close;
 		}
@@ -88,7 +88,7 @@ L_Quest:
 	mes "[Mission Board Memo]";
 	mes getarg(1);
 	next;
-	if(select("Accept the mission.:Cancel.") == 1) {
+	if (select("Accept the mission.:Cancel.") == 1) {
 		mes "[Mission Board]";
 		mes "You have accepted the mission. For more details, please press 'alt + u' keys, you can get information from the Quest Window.";
 		setquest 12088;

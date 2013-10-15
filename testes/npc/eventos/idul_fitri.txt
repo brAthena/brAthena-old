@@ -25,7 +25,7 @@
 
 prontera,146,92,3	script	Cellerb	58,{
 	mes "[Membro da Equipe Idul Fitri]";
-	if((gettime(6)==10 && (gettime(5)==24 || gettime(5)==25))==0) {
+	if ((gettime(6)==10 && (gettime(5)==24 || gettime(5)==25))==0) {
 		mes "Parabéns! Comemore a Festa do dia de Idul Filtri 1427 H.";
 		specialeffect EF_SANDMAN;
 		close;
@@ -41,7 +41,7 @@ prontera,146,92,3	script	Cellerb	58,{
 	mes "[Membro da Equipe Idul Fitri]";
 	mes "Se você tem interesse em participar desse evento, eu vou cozinhar para você.";
 	next;
-	if(select("Certo. Eu gostaria!!:Numa próxima.... Obrigado.") == 1) {
+	if (select("Certo. Eu gostaria!!:Numa próxima.... Obrigado.") == 1) {
 		mes "[Membro da Equipe Idul Fitri]";
 		mes "Eu tenho algo que lhe interessa.";
 		mes "Preciso de todos os seguintes itens:";

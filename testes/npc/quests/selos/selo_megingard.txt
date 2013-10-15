@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/1.9/1.2                         |
+//   | Versões eA/rA/brA: 1.9/2.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest do rompimento do Selo de Megingjard.  |
 //   |--------------------------------------------------------|
@@ -25,6 +25,10 @@
 //   \________________________________________________________/
 
 prt_castle,44,151,0	script	Rebarev Doug	56,{
+	if (checkweight(1301,3) == 0) {
+		mes "- Você está carregando itens demais! -";
+		close;
+	}
 	cutin "god_rebeireb",2;
 	if ((countitem(7080) > 3) && (countitem(7081) > 4) && (countitem(7082) > 3) && (countitem(7084) > 2) && (countitem(7085) > 2)) {
 		mes "[Rebarev Doug]";
@@ -55,7 +59,7 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 			break;
 		}
 	}
-	if ($God1 < 50) {
+	if ($God1 < $@god_check1) {
 		mes "[Rebarev Doug]";
 		mes "Somos os Paladinos e estamos";
 		mes "treinando em preparação";
@@ -141,9 +145,9 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 			break;
 		}
 	}
-	else if($God1 > 49 && $God2 < 100) {
-		if(BaseLevel > 59) {
-			if(god_eremes == 0) {
+	else if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (BaseLevel > 59) {
+			if (god_eremes == 0) {
 				mes "[Rebarev Doug]";
 				mes "...";
 				next;
@@ -265,8 +269,8 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 					break;
 				}
 			}
-			else if(god_eremes > 0 && god_eremes < 4) {
-				if(rand(1,10) > 6 && god_eremes == 2) {
+			else if (god_eremes > 0 && god_eremes < 4) {
+				if (rand(1,10) > 6 && god_eremes == 2) {
 					mes "[Rebarev Doug]";
 					mes "Me pergunto, o que meus velhos";
 					mes "companheiros estão fazendo agora.";
@@ -362,7 +366,7 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 					}
 				}
 			}
-			else if(god_eremes > 3 && god_eremes < 18) {
+			else if (god_eremes > 3 && god_eremes < 18) {
 				mes "[Rebarev Doug]";
 				mes "Huh...?";
 				mes "O bibliotecário";
@@ -383,8 +387,8 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 				mes "Oh...";
 				mes "Poderia ser útil saber que éramos da ^660000Terceira Companhia dos Paladinos, Terceiro Pelotão, do Primeiro Esquadrão^000000.";
 			}
-			else if(god_eremes > 17 && god_eremes < 20) {
-				if(god_megin_1 > 0 || god_megin_2 > 0 || god_megin_3 > 0 || god_megin_4 > 0 || god_megin_5 > 0 || god_megin_6 > 0) {
+			else if (god_eremes > 17 && god_eremes < 20) {
+				if (god_megin_1 > 0 || god_megin_2 > 0 || god_megin_3 > 0 || god_megin_4 > 0 || god_megin_5 > 0 || god_megin_6 > 0) {
 					mes "[Rebarev Doug]";
 					mes "Oh...";
 					mes "Então, você os conheceu?";
@@ -422,7 +426,7 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 					mes "estão fazendo.";
 				}
 			}
-			else if(god_eremes > 19 && god_eremes < 23) {
+			else if (god_eremes > 19 && god_eremes < 23) {
 				mes "[Rebarev Doug]";
 				mes "Bem-vindo de volta!";
 				mes "Ja faz um tempo desde que o vi pela última vez. Já conheceu o resto";
@@ -470,7 +474,7 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 					break;
 				}
 			}
-			else if(god_eremes > 22 && god_eremes < 25) {
+			else if (god_eremes > 22 && god_eremes < 25) {
 				mes "^3355FFVocê confronta";
 				mes "Rebarev Doug com as";
 				mes "informações que colheu";
@@ -500,7 +504,7 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 				mes "Se pelo menos 100 pessoas relatassem o mesmo crime, então talvez ele vá providenciar";
 				mes "um julgamento. Você realmente quer revelar isso para o público?";
 			}
-			else if(god_eremes > 23 && god_eremes < 26) {
+			else if (god_eremes > 23 && god_eremes < 26) {
 				mes "[Rebarev Doug]";
 				mes "Eu não acho";
 				mes "que você realmente irá fazê-lo.";
@@ -535,8 +539,8 @@ prt_castle,44,151,0	script	Rebarev Doug	56,{
 }
 
 prt_castle,48,164,0	script	Crusader#God	734,{
-	if($God1 > 49 && $God2 < 100) {
-		if(god_eremes > 22 && god_eremes < 25) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 22 && god_eremes < 25) {
 			mes "[Max Von Shedough]";
 			mes "Bem-vindo, amigo!";
 			mes "Aqui no castelo de Prontera, nós Paladinos estamos ocupados nos preparando para a guerra santa que está por vir.";
@@ -559,24 +563,24 @@ prt_castle,48,164,0	script	Crusader#God	734,{
 			mes "[Max Von Shedough]";
 			mes "No entanto, a partir de agora, a petição que você me entregou será considerado informação classificada. Por Favor, mantenha isso em segredo militar.";
 			set $God2,$God2+1;
-			if($God2 == 50) {
+			if ($God2 == $@god_check1) {
 				announce "O 2º selo de [Megingjard] apareceu.",bc_all;
 			}
-			else if($God1 > 99 && $God2 > 99 && $God3 > 99 && $God4 > 99) {
-				announce "quatro selos foram liberados ao mesmo tempo, com o selo de [Megingjard].",bc_all;
+			else if ($God2 == $@god_check2) {
+				if ($God1 == $@god_check2 && $God2 == $@god_check2 && $God3 == $@god_check2 && $God4 == $@god_check2)
+					announce "Four seals have been released at the same time with the seal of [Megingjard].",bc_all;
+				else
+					announce "The 2nd seal of [Megingjard] has been released.",bc_all;
 			}
-			else if($God2 > 99) {
-				announce "O 2º selo de [Megingjard] foi lançado.",bc_all;
-			}
-			if(god_eremes == 23) {
+			if (god_eremes == 23) {
 				set god_eremes,25;
 			}
-			else if(god_eremes == 24) {
+			else if (god_eremes == 24) {
 				set god_eremes,26;
 			}
 			close;
 		}
-		else if(god_eremes > 26) {
+		else if (god_eremes > 26) {
 			mes "[Max Von Shedough]";
 			mes "Infelizmente, não tenho certeza se será possível realizar um julgamento contra Rebarev Doug.";
 			next;
@@ -614,13 +618,13 @@ prt_castle,48,164,0	script	Crusader#God	734,{
 }
 
 prt_in,172,109,0	script	A File#megin1	111,{
-	if(god_eremes == 12) {
+	if (god_eremes == 12) {
 		mes "^3355FFVocê encontrou";
 		mes "^660000Os registros do 3º Pelotão^3355FF!^000000";
 		close;
 	}
-	else if(god_eremes > 6 && god_eremes < 12) {
-		if(rand(1,10) > 6 && god_eremes > 6) {
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
 			mes "^3355FFVocê vê uma prateleira cheia de arquivos. Você começar a procurar por eles, um por um.^000000";
 			set god_eremes,god_eremes+1;
 			close;
@@ -630,18 +634,13 @@ prt_in,172,109,0	script	A File#megin1	111,{
 			close2;
 		}
 	}
-	else if(god_eremes < 7) {
+	else if (god_eremes < 7) {
 		mes "[Bibliotecário Jekan]";
-		if(Sex) {
-			mes "Sinto muito, senhor,";
-		}
-		else {
-			mes "Sinto muito senhora,";
-		}
+		mes "Sinto muito, senhor"+((Sex)?"":"a")+",";
 		mes "mas é necessário uma autorização especial para pesquisar nessa seção. Caso contrário, você não poderá mecher nela.";
 		close;
 	}
-	 else {
+	else {
 		mes "[Bibliotecário Jekan]";
 		mes "Espere...!";
 		mes "Você não está autorizado";
@@ -651,11 +650,11 @@ prt_in,172,109,0	script	A File#megin1	111,{
 }
 
 prt_in,170,109,0	script	A File#megin2	111,{
-	if(god_eremes == 12) {
+	if (god_eremes == 12) {
 		mes "Você encontrou ^0000FFOs Registros do 3º Pelotão^000000!";
 		close;
 	}
-	else if(god_eremes > 6 && god_eremes < 12) {
+	else if (god_eremes > 6 && god_eremes < 12) {
 		if (rand(1,10) > 6 && god_eremes > 6) {
 			mes "^3355FFVocê vê uma prateleira cheia de arquivos. Você começar a procurar por eles, um por um.^000000";
 			set god_eremes,god_eremes+1;
@@ -666,7 +665,7 @@ prt_in,170,109,0	script	A File#megin2	111,{
 			close;
 		}
 	}
-	else if(god_eremes < 7) {
+	else if (god_eremes < 7) {
 		mes "[Bibliotecário Jekan]";
 		mes "Espere...!";
 		mes "Você não está autorizado";
@@ -683,12 +682,12 @@ prt_in,170,109,0	script	A File#megin2	111,{
 }
 
 prt_in,168,109,0	script	A File#megin3	111,{
-	if(god_eremes == 12) {
+	if (god_eremes == 12) {
 		mes "Você encontrou";
 		mes "^0000FFOs registros do 3º Pelotão^000000!";
 		close;
 	}
-	else if(god_eremes > 6 && god_eremes < 12) {
+	else if (god_eremes > 6 && god_eremes < 12) {
 		if (rand(1,10) > 6 && god_eremes > 6) {
 			mes "^3355FFVocê vê uma prateleira cheia de arquivos. Você começar a procurar por eles, um por um.^000000";
 			set god_eremes,god_eremes+1;
@@ -699,7 +698,7 @@ prt_in,168,109,0	script	A File#megin3	111,{
 			close;
 		}
 	}
-	else if(god_eremes < 7) {
+	else if (god_eremes < 7) {
 		mes "[Bibliotecário Jekan]";
 		mes "Espere...!";
 		mes "Você não está autorizado";
@@ -716,11 +715,11 @@ prt_in,168,109,0	script	A File#megin3	111,{
 }
 
 prt_in,169,109,0	script	A File#megin4	111,{
-	if(god_eremes == 12) {
+	if (god_eremes == 12) {
 		mes "Você encontrou ^0000FFOs Registros do 3º Pelotão^000000!";
 		close;
 	}
-	else if(god_eremes > 6 && god_eremes < 12) {
+	else if (god_eremes > 6 && god_eremes < 12) {
 		if (rand(1,10) > 6 && god_eremes > 6) {
 			mes "^3355FFVocê vê uma prateleira cheia de arquivos. Você começar a procurar por eles, um por um.^000000";
 			set god_eremes,god_eremes+1;
@@ -731,7 +730,7 @@ prt_in,169,109,0	script	A File#megin4	111,{
 			close;
 		}
 	}
-	else if(god_eremes < 7) {
+	else if (god_eremes < 7) {
 		mes "[Bibliotecário Jekan]";
 		mes "Espere...!";
 		mes "Você não está autorizado";
@@ -748,12 +747,12 @@ prt_in,169,109,0	script	A File#megin4	111,{
 }
 
 prt_in,166,109,0	script	A File#megin5	111,{
-	if(god_eremes == 12) {
+	if (god_eremes == 12) {
 		mes "Você encontrou";
 		mes "^0000FFOs Registros do 3º Pelotão^000000!";
 		close;
 	}
-	else if(god_eremes > 6 && god_eremes < 12) {
+	else if (god_eremes > 6 && god_eremes < 12) {
 		if (rand(1,10) > 6 && god_eremes > 6) {
 			mes "^3355FFVocê vê uma prateleira cheia de arquivos. Você começar a procurar por eles, um por um.^000000";
 			set god_eremes,god_eremes+1;
@@ -764,7 +763,7 @@ prt_in,166,109,0	script	A File#megin5	111,{
 			close;
 		}
 	}
-	else if(god_eremes < 7) {
+	else if (god_eremes < 7) {
 		mes "[Bibliotecário Jekan]";
 		mes "Espere...!";
 		mes "Você não está autorizado";
@@ -781,8 +780,8 @@ prt_in,166,109,0	script	A File#megin5	111,{
 }
 
 prt_in,172,106,0	script	Librarian#megin	833,{
-	if($God1 > 49 && $God2 < 100) {
-		if(god_eremes > 2 && god_eremes < 7) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 2 && god_eremes < 7) {
 			mes "[Bibliotecário Jekan]";
 			mes "Ah, por favor";
 			mes "não toque nos arquivos";
@@ -814,7 +813,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 					mes "sob a luz fraca";
 					mes "por muito tempo, meus olhos estão";
 					mes "ficando ruins. Eles deveriam me trazer^0000FFuma nova luz^000000, senão eu vou ficar cego, mais cedo ou mais tarde ...";
-					if(god_eremes == 5 && ( countitem(2203) > 0 || countitem(1041) > 0 ) ) {
+					if (god_eremes == 5 && ( countitem(2203) > 0 || countitem(1041) > 0 ) ) {
 						next;
 						mes "[Bibliotecário Jekan]";
 						mes "Ei, isso é algo bastante útil que você tem. Não se importaria de me emprestar por um tempo? Vai me ajudar a encontrar esses arquivos...";
@@ -830,14 +829,14 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 							mes "Oh, você é tão gentil!";
 							mes "você realmente quer";
 							mes "me ajudar, não é?";
-							if(countitem(2203) && countitem(1041)) {
+							if (countitem(2203) && countitem(1041)) {
 								delitem 1041,countitem(1041);  //Lantern
 								delitem 2203,1;  //Spectacles
 							}
-							else if(countitem(2203)) {
+							else if (countitem(2203)) {
 								delitem 2203,1;
 							}
-							else if(countitem(1041)) {
+							else if (countitem(1041)) {
 								delitem 1041,countitem(1041);
 							}
 							set god_eremes,6;
@@ -855,7 +854,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 							close;
 						}
 					}
-					else if(god_eremes > 5) {
+					else if (god_eremes > 5) {
 						next;
 						mes "[Bibliotecário Jekan]";
 						mes "Obrigado...";
@@ -866,7 +865,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 					}
 					break;
 				case 2:
-					if(god_eremes == 6) {
+					if (god_eremes == 6) {
 						mes "[Bibliotecário Jekan]";
 						mes "Ler alguns documentos?";
 						mes "Bem, você veio aqui";
@@ -899,7 +898,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						close;
 					}
 				case 3:
-					if(god_eremes == 4) {
+					if (god_eremes == 4) {
 						mes "[Bibliotecário Jekan]";
 						mes "Eu ficaria feliz em aceitar a sua";
 						mes "ajuda, se não fosse pelo fato de que não posso permitir que informações classificadas sejam liberadas para o público.";
@@ -915,7 +914,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "Trabalhar como funcionário do governo é fácil, exceto nos momentos em que os burocratas nos pedem para fazer coisas como essa.";
 						set god_eremes,5;
 					}
-					else if(god_eremes > 4) {
+					else if (god_eremes > 4) {
 						mes "[Bibliotecário Jekan]";
 						mes "Eu acho que eu vou";
 						mes "ficar louco procurando este arquivo...!";
@@ -959,7 +958,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 				}
 			}
 		}
-		else if(god_eremes == 2) {
+		else if (god_eremes == 2) {
 			mes "[Bibliotecário Jekan]";
 			mes "Ah, por favor, não toque nos arquivos desta seção. Normalmente, são de domínio público, mas parece que um arquivo classificado foi extraviado de lá.";
 			next;
@@ -1004,8 +1003,8 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 				close;
 			}
 		}
-		else if(god_eremes > 6 && god_eremes < 12) {
-			if(rand(1,10) > 4) {
+		else if (god_eremes > 6 && god_eremes < 12) {
+			if (rand(1,10) > 4) {
 				mes "[Bibliotecário Jekan]";
 				mes "Humm? Então você quer mesmo encontrá-lo? Tenho procurado por esse arquivo durante muito tempo, mas não fui capaz de encontrá-lo.";
 				next;
@@ -1020,7 +1019,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 				mes "Eu vou em frente e procurar do lado direito, você acha que poderia procurar a esquerda?";
 			}
 		}
-		else if(god_eremes == 12) {
+		else if (god_eremes == 12) {
 			mes "[Bibliotecário Jekan]";
 			mes "Ah! Aí está!";
 			mes "Muito obrigado!";
@@ -1061,8 +1060,8 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 			set god_eremes,13;
 			close;
 		}
-		else if(god_eremes == 13) {
-			if(countitem(7111) > 1 && countitem(7151) && countitem(1024) > 2 && countitem(916) > 2 && countitem(717) > 19) {
+		else if (god_eremes == 13) {
+			if (countitem(7111) > 1 && countitem(7151) && countitem(1024) > 2 && countitem(916) > 2 && countitem(717) > 19) {
 				mes "[Bibliotecário Jekan]";
 				mes "Oh, você voltou.";
 				mes "Não esperava que voltasse aqui tão rápido. O que quer que esteja aí dentro, deve ser realmente importante para você.";
@@ -1105,8 +1104,8 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 				close;
 			}
 		}
-		else if(god_eremes > 13 && god_eremes < 16) {
-			if(rand(1,10) > 4) {
+		else if (god_eremes > 13 && god_eremes < 16) {
+			if (rand(1,10) > 4) {
 				mes "[Bibliotecário Jekan]";
 				mes "Passe-me o documento e deixe-me analisar, antes de fazer uma cópia...";
 			}
@@ -1117,7 +1116,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 			}
 			close;
 		}
-		else if(god_eremes == 16) {
+		else if (god_eremes == 16) {
 			mes "[Bibliotecário Jekan]";
 			mes "Bem ai está. Como eu pensei, os documentos não parecem conter todos os dados crucialmente importantes.";
 			next;
@@ -1126,7 +1125,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 			set god_eremes,17;
 			close;
 		}
-		else if(god_eremes > 16) {
+		else if (god_eremes > 16) {
 			mes "[Bibliotecário Jekan]";
 			mes "Bem vindo, meu amigo!";
 			mes "Então, do que você precisa hoje?";
@@ -1211,7 +1210,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 								}
 							}
 						}
-						else if(compare(.@input$,"3º Pelotão") == 1) {
+						else if (compare(.@input$,"3º Pelotão") == 1) {
 							mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 							mes "Cada Companhia consiste";
 							mes "de 4 Pelotões. Por favor";
@@ -1219,13 +1218,13 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 							next;
 							close2;
 						}
-						else if(compare(.@input$,"1º esquadrão") == 1) {
+						else if (compare(.@input$,"1º esquadrão") == 1) {
 							mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 							mes "O 1º Esquadrão: Paladinos.";
 							mes "Cada pelotão é composto por quatro esquadrões. Por favor, especifique a Companhia e o Pelotão para obter informações sobre um pelotão específicado.^000000";
 							close2;
 						}
-						else if(compare(.@input$,"registro") == 1) {
+						else if (compare(.@input$,"registro") == 1) {
 							mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 							mes "- Nenhum resultado foi encontrado.-";
 							close2;
@@ -1302,28 +1301,28 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 							}
 						}
 					}
-					else if(compare(.@input$,"3º pelotão") == 1) {
+					else if (compare(.@input$,"3º pelotão") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "O 3º Pelotão: ";
 						mes "- Nenhum resultado foi encontrado.-";
 						mes "- Sugestão para introduzir uma palavra mais específica.-";
 						close2;
 					}
-					else if(compare(.@input$,"1º esquadrão") == 1) {
+					else if (compare(.@input$,"1º esquadrão") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "A 3ª Companhia : ";
 						mes "- Nenhum resultado foi encontrado.-";
 						mes "- Sugestão para introduzir uma palavra mais específica.-";
 						close2;
 					}
-					else if((compare(.@input$,"registro") == 1) && (god_eremes > 17)) {
+					else if ((compare(.@input$,"registro") == 1) && (god_eremes > 17)) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "- Nenhum resultado foi encontrado.-";
 						mes "- Sugestão para introduzir uma palavra mais específica para melhorar a pesquisa.-";
 						next;
 						close2;
 					}
-					else if(compare(.@input$,"rebarev doug") == 1) {
+					else if (compare(.@input$,"rebarev doug") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo líder da ";
 						mes "3ª Companhia, 3º Pelotão,";
@@ -1335,12 +1334,12 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Castelo de Prontera, em Prontera^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"egnigem") == 1) {
+					else if (compare(.@input$,"egnigem") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "^FF0000Termo de Pesquisa Proibido!^000000";
 						close2;
 					}
-					else if(compare(.@input$,"zan.huadoku") == 1) {
+					else if (compare(.@input$,"zan.huadoku") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Peltão";
@@ -1352,7 +1351,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Guilda dos Ferreiros, em Geffen^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"cuaque donon") == 1) {
+					else if (compare(.@input$,"cuaque donon") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Peltão";
@@ -1364,7 +1363,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Pousada, em Morroc^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"jack o") == 1) {
+					else if (compare(.@input$,"jack o") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Pelotão";
@@ -1375,7 +1374,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Porto de Alberta^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"emma searth") == 1) {
+					else if (compare(.@input$,"emma searth") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Peltão";
@@ -1387,7 +1386,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Al De Baran^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"royal myst") == 1) {
+					else if (compare(.@input$,"royal myst") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Peltão";
@@ -1398,7 +1397,7 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 						mes "^996633Cassino, em Comodo^663300.^000000";
 						close2;
 					}
-					else if(compare(.@input$,"nineball") == 1) {
+					else if (compare(.@input$,"nineball") == 1) {
 						mes "^663300[Senha: ^996633"+.@input$+"^663300]";
 						mes "Antigo membro da";
 						mes "3ª Companhia, 3º Peltão";
@@ -1538,8 +1537,8 @@ prt_in,172,106,0	script	Librarian#megin	833,{
 }
 
 geffen_in,109,161,3	script	Crusader#God1	751,{
-	if($God1 > 49 && $God2 < 100) {
-		if(god_eremes > 17 && god_megin_1 < 2) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 17 && god_megin_1 < 2) {
 			mes "[Zan.Huadoku]";
 			mes "^333333*Phew...*^000000";
 			mes "Este trabalho está realmente sendo demais pra mim. Quando eu ia em uma missão com meus companheiros de guerra, parecia ser melhor do que este.";
@@ -1554,7 +1553,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 			next;
 			switch(select("Perguntar a ele sobre o 1º Esquadrão.:Perguntar a ele o que anda fazendo.:Perguntar a ele sobre a última missão do 1º Esquadrão.")) {
 			case 1:
-				if(god_eremes == 18) {
+				if (god_eremes == 18) {
 					mes "[Zan.Huadoku]";
 					mes "Sim, eu era um membro do 1º Esquadrão no 3º Pelotão há muito tempo. Como você soube disso?";
 					next;
@@ -1564,7 +1563,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 					mes "^3355FFVocê fala com Zan sobre Rebarev Doug, e fala que ele é agora um instrutor para o Campo de Treinamento dos Paladinos. Ele parece estar distraído em seus pensamentos do passado.^000000";
 					close;
 				}
-				else if(god_eremes > 18) {
+				else if (god_eremes > 18) {
 					mes "[Zan.Huadoku]";
 					mes "Sim, eu era um membro do 1º Esquadrão, no 3º Pelotão há muito tempo. Como você sabia disso?";
 					next;
@@ -1598,7 +1597,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 					next;
 					mes "[Zan.Huadoku]";
 					mes "^3355FFZan parece muito confuso e seus olhos ficam vidrados com uma expressão distante . Você tenta falar com ele novamente, mas ele não responde.^000000";
-					if(!god_megin_1) {
+					if (!god_megin_1) {
 						set god_megin_1,1;
 					}
 					close;
@@ -1618,7 +1617,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 				mes "Muitas pessoas recentemente, têm me feito perguntas estranhas sobre mim. Sinto que estou sendo espionado, mas talvez eu só estou ficando paranóico.";
 				close;
 			case 3:
-				if(god_eremes == 18) {
+				if (god_eremes == 18) {
 					mes "[Zan.Huadoku]";
 					mes "Sim, em nossa";
 					mes "missão final...";
@@ -1633,7 +1632,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 					mes "^3355FFZan parece estar tendo muita difícildade em recordar as lembranças específicas de seu passado.^000000";
 					close;
 				}
-				else if(god_eremes > 18 && god_megin_1 > 0) {
+				else if (god_eremes > 18 && god_megin_1 > 0) {
 					mes "[Zan.Huadoku]";
 					mes "A missão final...";
 					next;
@@ -1669,7 +1668,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 					mes "Não consigo pensar em qualquer coisa depois disso. Eu nem me lembro o que encontramos. Mas eu tenho certeza de que era amaldiçado.";
 					next;
 					mes "^3355FFZan ficou parado em silêncio, com uma expressão de dor no rosto.^000000";
-					if(god_megin_1 == 1) {
+					if (god_megin_1 == 1) {
 						set god_megin_1,2;
 					}
 					close;
@@ -1688,7 +1687,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 				}
 			}
 		}
-		else if(god_megin_1 > 1 && god_megin_1 < 3) {
+		else if (god_megin_1 > 1 && god_megin_1 < 3) {
 			mes "...";
 			next;
 			mes "...";
@@ -1712,7 +1711,7 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 			set god_megin_1,3;
 			close;
 		}
-		else if(god_megin_1 > 2) {
+		else if (god_megin_1 > 2) {
 			mes "^3355FFAgarrando a sua cabeça,";
 			mes "arrancando os cabelos e se contorcendo em agonia, Zan continuou repetindo as mesmas palavras várias vezes...^000000";
 			next;
@@ -1792,8 +1791,8 @@ geffen_in,109,161,3	script	Crusader#God1	751,{
 }
 
 morocc_in,146,179,0	script	Funcionária#megin1	66,{
-	if($God1 > 49 && $God2 < 100) {
-		if(god_eremes > 17 && god_megin_2 < 1) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 17 && god_megin_2 < 1) {
 			mes "^3355FFA Funcionária";
 			mes "olhou com desconfiança.^000000";
 			next;
@@ -1816,7 +1815,7 @@ morocc_in,146,179,0	script	Funcionária#megin1	66,{
 					mes "talvez?";
 					close;
 				}
-				else if(god_eremes > 18) {
+				else if (god_eremes > 18) {
 					next;
 					mes "^3355FFUma vez você falou seu nome, ela imediatamente se aproximou de você";
 					mes "e começou a falar em um tom baixo e ameaçador.^000000";
@@ -1830,7 +1829,7 @@ morocc_in,146,179,0	script	Funcionária#megin1	66,{
 					next;
 					switch(select("Rebarev Doug me mandou!:Espere, ele está se escondendo?:Só ... curiosidade.")) {
 					case 1:
-						if(rand(1,10) > 3) {
+						if (rand(1,10) > 3) {
 							mes "[Funcionária Assustadora Ms. Inn]";
 							mes "Rebarev Doug...?!";
 							mes "Esse velho pateta deve estar com medo";
@@ -1867,7 +1866,7 @@ morocc_in,146,179,0	script	Funcionária#megin1	66,{
 							close;
 						}
 					case 2:
-						if(rand(1,10) > 4) {
+						if (rand(1,10) > 4) {
 							mes "[Funcionária Assustadora Ms. Inn]";
 							mes "Correto.";
 							mes "Se você está aqui";
@@ -1958,7 +1957,7 @@ morocc_in,146,179,0	script	Funcionária#megin1	66,{
 				close2;
 			}
 		}
-		else if(god_megin_2 > 0) {
+		else if (god_megin_2 > 0) {
 			mes "[Funcionária Inn]";
 			mes "Bem-vindo a Inn.";
 			mes "Quando você se mover para a entrada, também poderá entrar em uma zona de PvP através do porteiro PvP.";
@@ -1997,8 +1996,8 @@ morocc_in,146,179,0	script	Funcionária#megin1	66,{
 }
 
 in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
-	if($God1 > 49 && $God2 < 100) {
-		if(god_eremes == 18) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
 			mes "[Cuaque Donon]";
 			mes "Quem é você?!";
 			mes "Por diabos, como";
@@ -2007,8 +2006,8 @@ in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
 			mes "Caaiiaaa fooooraaaa!";
 			close;
 		}
-		else if(god_eremes > 18) {
-			if(god_megin_2 > 0 && god_megin_2 < 4) {
+		else if (god_eremes > 18) {
+			if (god_megin_2 > 0 && god_megin_2 < 4) {
 				mes "[Cuaque Donon]";
 				mes "Quem é você?!";
 				mes "Por diabos, como";
@@ -2022,31 +2021,31 @@ in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
 					if (countitem(740) > 0) {
 						set .@toy$,"Puppet";
 					}
-					else if(countitem(741) > 0) {
+					else if (countitem(741) > 0) {
 						set .@toy$,"Poring Doll";
 					}
-					else if(countitem(742) > 0) {
+					else if (countitem(742) > 0) {
 						set .@toy$,"Chonchon Doll";
 					}
-					else if(countitem(743) > 0) {
+					else if (countitem(743) > 0) {
 						set .@toy$,"Spore Doll";
 					}
 					else if (countitem(744) > 0) {
 						set .@toy$,"Baphomet Doll";
 					}
-					else if(countitem(751) > 0) {
+					else if (countitem(751) > 0) {
 						set .@toy$,"Osiris Doll";
 					}
-					else if(countitem(752) > 0) {
+					else if (countitem(752) > 0) {
 						set .@toy$,"Rocker Doll";
 					}
-					else if(countitem(753) > 0) {
+					else if (countitem(753) > 0) {
 						set .@toy$,"Yoyo Doll";
 					}
-					else if(countitem(754) > 0) {
+					else if (countitem(754) > 0) {
 						set .@toy$,"Racoon Doll";
 					}
-					else if(countitem(7206) > 0) {
+					else if (countitem(7206) > 0) {
 						set .@toy$,"Black Cat Doll";
 					}
 					else {
@@ -2191,7 +2190,7 @@ in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
 							}
 						}
 						else {
-							switch( select( "^FF0000Megingjard^000000!", "^FFFFFFMegingjard!^000000.", "^FFFFFFOuça-o em silêncio^000000" ) ) {
+							switch(select("^FF0000Megingjard^000000!", "^FFFFFFMegingjard!^000000.", "^FFFFFFOuça-o em silêncio^000000" ) ) {
 							case 1:
 								mes "[Cuaque Donon]";
 								mes "Waaaaaaaah~!";
@@ -2266,8 +2265,8 @@ in_rogue,243,61,0	script	Homem Suspeito#megin	748,{
 }
 
 alberta,196,146,0	script	Templário#megin2	751,{
-	if ($God1 > 49 && $God2 < 100) {
-		if(god_eremes == 18) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
 			mes "[Jack O]";
 			mes "^333333*Yawn...*^000000";
 			mes "Está calmo e tedioso, como de costume. Vamos ver se há algum Espadachim que possamos recrutar hoje.";
@@ -2457,14 +2456,18 @@ alberta,196,146,0	script	Templário#megin2	751,{
 }
 
 aldebaran,66,213,0	script	Senhorita#megin	69,{
-	if ($God1 > 49 && $God2 < 100) {
-		if(god_eremes == 18) {
+	if (checkweight(1301,3) == 0) {
+		mes "- Você está carregando itens demais!";
+		close;
+	}
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
 			mes "[Emma Searth]";
 			mes "^333333*Suspiro...*^000000 Eu não recebi nenhuma resposta deles. Não sei";
 			mes "se posso esperar muito tempo para me juntar à Corporação Kafra.";
 			close;
 		}
-		else if(god_eremes > 18 && god_eremes < 26) {
+		else if (god_eremes > 18 && god_eremes < 26) {
 			if (god_megin_4 < 2) {
 				mes "[Emma Searth]";
 				mes "^333333*Suspiro...*^000000 Eu não recebi nenhuma resposta deles. Não sei";
@@ -2614,7 +2617,7 @@ aldebaran,66,213,0	script	Senhorita#megin	69,{
 					}
 				}
 			}
-			else if(god_megin_4 > 1) {
+			else if (god_megin_4 > 1) {
 				mes "[Emma Searth]";
 				mes "^0000FFJack O, Nineball, Zan.Huadoku, Cuaque Donon, Egnigem.^000000 Oh, eu realmente sinto falta daqueles caras...";
 				close;
@@ -2702,7 +2705,7 @@ aldebaran,66,213,0	script	Senhorita#megin	69,{
 }
 
 cmd_in02,190,94,3	script	Homem#megin	828,{
-	if ($God1 > 49 && $God2 < 100) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
 		if (god_eremes == 18) {
 			mes "[Royal Myst]";
 			mes "O que...?";
@@ -2755,7 +2758,7 @@ cmd_in02,190,94,3	script	Homem#megin	828,{
 				mes "em qual deles eu aposto...?";
 				next;
 			}
-			else if(god_megin_6 > 0) {
+			else if (god_megin_6 > 0) {
 				mes "[Royal Myst]";
 				mes "Hmm?";
 				mes "O que é que há?";
@@ -2906,7 +2909,7 @@ cmd_in02,190,94,3	script	Homem#megin	828,{
 }
 
 jawaii_in,44,110,0	script	Security Officer#megin	734,{
-	if ($God1 > 49 && $God2 < 100) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
 		if (god_eremes == 18) {
 			mes "[Nineball]";
 			mes "Bem vindo ao Jawaii,";
@@ -2964,7 +2967,7 @@ jawaii_in,44,110,0	script	Security Officer#megin	734,{
 }
 
 niflheim,109,254,0	script	Egnigem	796,{
-	if ($God1 > 49 && $God2 < 100) {
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
 		if (god_eremes > 19 && god_eremes < 25) {
 			if (god_eremes > 22) {
 				mes "[Egnigem]";

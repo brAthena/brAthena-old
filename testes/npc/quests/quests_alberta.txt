@@ -521,7 +521,7 @@ alberta,120,53,1	script	Zic#new30	51,{
 		getitem 5042,1; // Bao-Bao
 		close;
 	}
-	else if((countitem(5041) > 0) && (countitem(999) > 9)) {
+	else if ((countitem(5041) > 0) && (countitem(999) > 9)) {
 		mes "[Zic]";
 		mes "Tudo bem! Puxa, sua Fivela de Lua estará pronta em pouco tempo, mas não consigo me concentrar no meu trabalho se você continuar me pertubando assim!";
 		next;
@@ -540,7 +540,7 @@ alberta,120,53,1	script	Zic#new30	51,{
 		getitem 5048,1; // Fivela de Lua
 		close;
 	}
-	else if((countitem(2271) > 0) && (countitem(975) > 0)) {
+	else if ((countitem(2271) > 0) && (countitem(975) > 0)) {
 		mes "[Zic]";
 		mes "Certo, você veio atrás dos Óculos Fashion. Só não me apresse, ou não vou ser capaz de me concentrar em meu trabalho, tudo bem? ";
 		next;
@@ -556,7 +556,7 @@ alberta,120,53,1	script	Zic#new30	51,{
 		getitem 5047,1; // Óculos Fashion
 		close;
 	}
-	else if(countitem(7013) > 1199){
+	else if (countitem(7013) > 1199){
 		mes "[Zic]";
 		mes "Ok, você quer que sua Fivela de Coração, Eu estou trabalhando nela. Porém, não consigo me concentrar com você me apressando, você sabia?";
 		next;
@@ -1059,7 +1059,7 @@ alberta_in,23,104,4	script	Grandpa Turtle#tur	120,{
 		close;
 	case 2:
 		if ((MISC_QUEST & 65536) || TURTLE) {
-			if(MISC_QUEST & 65536) set TURTLE,0; // Limpa a variável.
+			if (MISC_QUEST & 65536) set TURTLE,0; // Limpa a variável.
 			mes "[Vovô Tartaruga]";
 			mes "Bem...";
 			mes "Se você for até lado leste do porto de Alberta, você deve encontrar um velho Barqueiro.";
@@ -1190,7 +1190,7 @@ alberta,247,122,4	script	Barqueiro#tur	709,{
 					mes "Você já fez a sua escolha! Com a minha experiência, vamos chegar sem falhas! Eu aprecio seu espírito!";
 					next;
 					mes "^3355FF*Choo Choo*^000000";
-					set zeny,zeny-10000;
+					set Zeny, Zeny-10000;
 					warp "tur_dun01",157,39;
 					close;
 				}
@@ -2195,7 +2195,7 @@ tur_dun03,104,171,4	script	Cavaleiro#tur3	105,{
 	mes "[Squall]";
 	mes "Eu sou o único que sobrou? Onde estão todos os meus camaradas?! Eu... Estou prestes a ficar louco!";
 	next;
-	if(select("Talvez eles fugiram?:O que aconteceu?") == 1) {
+	if (select("Talvez eles fugiram?:O que aconteceu?") == 1) {
 		mes "[Squall]";
 		mes "Não, nós nunca iremos fugir diante do perigo.";
 		next;

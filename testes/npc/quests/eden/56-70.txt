@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: ??/1.4/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests repetíveis para jogadores entre      |
-//   | Baselevel 56-70.                                       |
+//   | BaseLevel 56-70.                                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |

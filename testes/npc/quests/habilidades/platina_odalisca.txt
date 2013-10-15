@@ -199,7 +199,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			next;
 			mes "^3355FFParece que ela";
 			mes "ficará com seu espelho...^000000";
-			Emotion e_ag,1;
+			emotion e_ag,1;
 			set DANCER_SK,3;
 			close;
 		}
@@ -211,7 +211,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes "Ah! É você. Então a minha";
 			mes "irmã da Catedral de Prontera";
 			mes "já ensinou-lhe alguma coisa?";
-			Emotion e_go;
+			emotion e_go;
 			close;
 		}
 		else if (DANCER_SK == 7) {
@@ -273,7 +273,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes "olhe para mim, tente fazer igual.";
 			mes "Assim! Um, dois, três~";
 			mes "Agora deixe-me vê-la a tentar.";
-			Emotion e_no1;
+			emotion e_no1;
 			next;
 			switch(select("Um-dois-três~:Um, dois-três~:Um, dois, três~")) {
 			default:
@@ -293,7 +293,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			case 3:
 				mes "["+ strcharinfo(0) +"]";
 				mes"Um, dois, três~";
-				Emotion e_no1,1;
+				emotion e_no1,1;
 				specialeffect2 EF_FLASHER;
 				next;
 				mes "[Canell]";
@@ -303,7 +303,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 				mes "ritmo e naturalidade";
 				mes "são absolutamente essenciais para";
 				mes "essa técnica de sedução.";
-				Emotion e_kis;
+				emotion e_kis;
 				next;
 				mes "[Canell]";
 				mes "Agora que você já domina";
@@ -318,7 +318,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 				mes "tem essa restrição. Ha-ha ~ ";
 				mes "Enfim, é hora de partir. Espero que você cresça";
 				mes "e se torne uma dançarina mais fascinante e encantadora no futuro.";
-				Emotion e_heh;
+				emotion e_heh;
 				next;
 				mes "^3355FFVocê finalmente aprendeu";
 				mes "a habilidade Piscadela.^000000";
@@ -336,7 +336,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes "de me perguntar? Ah, você deve";
 			mes "estar hipnotizada pela minha";
 			mes "beleza, não é?";
-			Emotion e_pif;
+			emotion e_pif;
 			next;
 			mes "[Canell]";
 			mes "Ah, ser tão bonita";
@@ -397,7 +397,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes "Ei,";
 			mes "bonitão~";
 			mes "^333333*Piscadela~*^000000";
-			Emotion e_kis;
+			emotion e_kis;
 			specialeffect2 EF_VALLENTINE2;
 			next;
 			mes "^3355FFEstranhamente,";
@@ -547,7 +547,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 				mes "Eu faço assim e... Piscadela! S-só";
 				mes "isso, ok? você entendeu?";
 				mes "^333333*Piiiiiiscadela*^000000";
-				Emotion e_no1;
+				emotion e_no1;
 				next;
 				mes "["+ strcharinfo(0) +"]";
 				mes "A-ahhhh...";
@@ -562,7 +562,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 				mes "*Soluço* É na...";
 				mes "Haahahahaahah!";
 				mes "Está tudo girando!";
-				Emotion e_heh;
+				emotion e_heh;
 				next;
 				mes "^3355FFEm sua loucura causada pelo álcool,";
 				mes "Aelle te dá uma";
@@ -570,7 +570,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 				mes "a rir como uma maníaca.^000000";
 				percentheal -10,0;
 				specialeffect2 EF_HIT2;
-				Emotion e_dots,1;
+				emotion e_dots,1;
 				delitem 970,1; //Álcool
 				delitem 512,1; //Maçã
 				delitem 513,3; //Banana
@@ -651,7 +651,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 			mes "[Aelle Sóbria]";
 			mes "Ohhh...";
 			mes "D-dor de cabeça...";
-			Emotion e_an;
+			emotion e_an;
 			next;
 			mes "[Aelle]";
 			mes "Ah, opa, olha só para você!";
@@ -688,14 +688,14 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 			mes "Ah droga, é o pastor!";
 			mes "Shhh, se alguém lhe perguntar,";
 			mes "eu não estava fazendo nada!";
-			Emotion e_omg;
+			emotion e_omg;
 			next;
 			mes "[Aelle]";
 			mes "Obrigada querida...";
 			mes "Eu sei que você pode";
 			mes "manter meu negócio";
 			mes "em segredo. ^333333*Piscadela*^000000";
-			Emotion e_no1;
+			emotion e_no1;
 			close;
 		}
 	}
@@ -718,14 +718,14 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 		mes "Ah droga, é o pastor!";
 		mes "Shhh, se alguém lhe perguntar,";
 		mes "eu não estava fazendo nada!";
-		Emotion e_omg;
+		emotion e_omg;
 		next;
 		mes "[Aelle]";
 		mes "Obrigada querida...";
 		mes "Eu sei que você pode";
 		mes "manter meu negócio";
 		mes "em segredo. ^333333*Piscadela*^000000";
-		Emotion e_no1;
+		emotion e_no1;
 		close;
 	}
 }

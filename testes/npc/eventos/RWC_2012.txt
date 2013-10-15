@@ -54,7 +54,7 @@ prontera,147,61,3	script	Driller#pron	87,{
 	mes "[Driller]";
 	mes "You should also know that making a card slot it extremely dangerous. ^ff0000Chances to succeed are about 50%.^000000 Do you wish to proceed?";
 	next;
-	if(select("Cancel:Let's go!") == 1) {
+	if (select("Cancel:Let's go!") == 1) {
 		mes "[Driller]";
 		mes "See ya then.";
 		close;
@@ -191,7 +191,7 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		mes "[Goldberg]";
 		mes "The power of the enchantment will be randomly chosen. ^ff0000Once infused, the enchantment cannot be removed.^000000 Shall we continue?";
 		next;
-		if(select("No, please stop.:Yes, please proceed.") == 1) {
+		if (select("No, please stop.:Yes, please proceed.") == 1) {
 			mes "[Goldberg]";
 			mes "Alright, then, see you next time...";
 			close;
@@ -305,7 +305,7 @@ prontera,147,59,3	script	Goldberg#pron	878,{
 		mes "[Goldberg]";
 		mes "I will just initialize the enchant option without doing anything to the slotted card. You wanna continue?";
 		next;
-		if(select("I will stop.:Yep, sure, go on.") == 1) {
+		if (select("I will stop.:Yep, sure, go on.") == 1) {
 			mes "[Goldberg]";
 			mes "Come back if you change your mind.";
 			close;

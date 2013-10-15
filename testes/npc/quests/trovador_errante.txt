@@ -218,7 +218,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "Olá, olá. Ah, você veio para ouvir a minha canção e esquecer suas preocupações?";
 		next;
 
-		if(select("Quem é você?:Ignorá-lo.")==1) {
+		if (select("Quem é você?:Ignorá-lo.")==1) {
 			cutin "bard_eland04",2;
 			mes "[" + @name$ + "]";
 			mes "Você parece ser";
@@ -253,7 +253,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "em paz.";
 		next;
 
-		if(select("Sem problemas: Existe alguma maneira de eu te ajudar?")==1) {
+		if (select("Sem problemas: Existe alguma maneira de eu te ajudar?")==1) {
 			cutin "bard_eland04",2;
 			mes "[Errante]";
 			mes "Aaaaah! Você está tão mau!";
@@ -322,7 +322,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "Estou arrependido de pedir um favor de você novamente, mas em suas viagens, você acha que poderia encontrar a letra original para esta canção? Posso esperar por ela...";
 			next;
 
-			if(select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
+			if (select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
 				mes "[Errante]";
 				mes "Ah, eu acho que era demais para pedir-lhe. Minhas desculpas. Não se preocupe, eu vou descobrir alguma outra maneira.";
 				set gef_bard_q,25;
@@ -394,7 +394,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "^3355FFErrante continua a cantar sobre o seu desespero pessoal. Ele parece estar decepcionado com a sua recusa em ajudá-lo. Claro, você começa a sentir pena dele.^000000";
 			next;
 
-			if(select("Bem, eu deveria ajudá-lo em seguida...:Ignora-o assim mesmo.")==1) {
+			if (select("Bem, eu deveria ajudá-lo em seguida...:Ignora-o assim mesmo.")==1) {
 				mes "[" + @name$ + "]";
 				mes "Ei. Ei, Errante. Pare de cantar essa canção. É embaraçoso, ok? Tudo bem, eu vou encontrar a canção original para você.";
 				next;
@@ -500,7 +500,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "Em nove, o amor renasce.";
 		mes "Em dez, meu amor se foi.";
 		mes "Em onze eu descubro porquê.";
-		if (sex)
+		if (Sex)
 			mes "Em doze vejo sua nova namorada?";
 		else
 			mes "Em doze vejo seu novo namorado?";
@@ -538,7 +538,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "Estou arrependido de pedir um favor de você novamente, mas em suas viagens, você acha que poderia encontrar a letra original para esta canção? Posso esperar por ela...";
 			next;
 
-			if(select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
+			if (select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
 				mes "[Errante]";
 				mes "Ah, eu acho que era demais para pedir-lhe. Minhas desculpas. Não se preocupe, eu vou descobrir alguma outra maneira.";
 				set gef_bard_q,25;
@@ -604,7 +604,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "Eu sou um inútil como Bardo! Por favor, só..., Por favor, deixe-me em paz.";
 		next;
 
-		if(select("Sem problemas:Existe alguma maneira de eu te ajudar?")==1){
+		if (select("Sem problemas:Existe alguma maneira de eu te ajudar?")==1){
 			mes "[Errante]";
 			mes "Aaaaah! Você está tão mau!";
 			mes "Você está pronto para dizer, 'Errante, o que há de errado? Posso te ajudar?'";
@@ -665,7 +665,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "Hmmm...";
 			mes "Estou arrependido de pedir um favor de você novamente, mas em suas viagens, você acha que poderia encontrar a letra original para esta canção? Posso esperar por ela...";
 			next;
-			if(select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
+			if (select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
 				mes "[Errante]";
 				mes "Ah, eu acho que era demais para pedir-lhe. Minhas desculpas. Não se preocupe, eu vou descobrir alguma outra maneira.";
 				set gef_bard_q,5;
@@ -721,7 +721,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "^3355FFErrante continua a cantar sobre o seu desespero pessoal. Ele parece estar decepcionado com a sua recusa em ajudá-lo. Claro, você começa a sentir pena dele.^000000";
 			next;
 
-			if(select("Bem, eu deveria ajudá-lo em seguida...:Ignora-o assim mesmo.")==1) {
+			if (select("Bem, eu deveria ajudá-lo em seguida...:Ignora-o assim mesmo.")==1) {
 				mes "[" + @name$ + "]";
 				mes "Ei. Ei, Errante. Pare de cantar essa canção. É embaraçoso, ok? Tudo bem, eu vou encontrar a canção original para você.";
 				next;
@@ -822,7 +822,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "Em nove, o amor renasce.";
 		mes "Em dez, meu amor se foi.";
 		mes "Em onze eu descubro porquê.";
-		if (sex)
+		if (Sex)
 			mes "Em doze vejo seu novo namorado?";
 		else
 			mes "Em doze vejo sua nova namorada?";
@@ -859,7 +859,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 			mes "Estou arrependido de pedir um favor de você novamente, mas em suas viagens, você acha que poderia encontrar a letra original para esta canção? Posso esperar por ela...";
 			next;
 
-			if(select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
+			if (select("Não, desculpe.:Posso, portanto pare de chorar.")==1) {
 				mes "[Errante]";
 				mes "Ah, eu acho que era demais para pedir-lhe. Minhas desculpas. Não se preocupe, eu vou descobrir alguma outra maneira.";
 				set gef_bard_q,5;
@@ -935,7 +935,7 @@ geffen,132,38,3	script	Bardo#2	51,{
 		mes "Olá, olá. Oh, você veio para ouvir a minha canção e esquecer suas preocupações?";
 		next;
 
-		if(select("Quem é você?:Ignora-o.")==1) {
+		if (select("Quem é você?:Ignora-o.")==1) {
 			cutin "bard_eland04",2;
 			mes "[" + @name$ + "]";
 			mes "Você parece ser";
@@ -975,7 +975,7 @@ S_StorySong:
 		mes "Você gosta de histórias, hein? Que tipo de história que você gostaria que eu contasse? Vou te contar o que eu sei ... Só para você, é claro.";
 		next;
 
-		if(select("Notícias e boatos.:Cancelar.")==1) {
+		if (select("Notícias e boatos.:Cancelar.")==1) {
 			cutin "bard_eland01",2;
 			mes "[Errante]";
 			set @random,rand(1,3);
@@ -1084,7 +1084,7 @@ S_StorySong:
 
 	case 2:
 		mes "[Errante]";
-		if(getarg(0) < 3)
+		if (getarg(0) < 3)
 			mes "Você conhece o meu talento, de modo que você merece ouvir minhas músicas! Agora, o que você gostaria de ouvir? Eu posso tocar tudo o que você quiser, você sabe.";
 		else
 			mes "Até que enfim, conheci alguém que reconhece o meu talento! Você merece a ouvir minhas músicas! Agora, o que você gostaria de ouvir? Eu posso tocar tudo o que você quiser, você sabe.";
@@ -1094,8 +1094,8 @@ S_StorySong:
 
 		case 1:
 			mes "[Errante]";
-			if (zeny > 499) {
-				set zeny,zeny-500;
+			if (Zeny > 499) {
+				set Zeny, Zeny-500;
 				cutin "bard_eland03",2;
 				mes "Certo.";
 				mes "Aqui vamos nós~";
@@ -1125,7 +1125,7 @@ S_StorySong:
 			mes "uma canção otimista...";
 			mes "Ok, aqui vamos nós~";
 			next;
-			if(getarg(0) == 3 || getarg(0) == 4)
+			if (getarg(0) == 3 || getarg(0) == 4)
 				set @random,rand(1,5);
 			else
 				set @random,rand(1,3);
@@ -1165,7 +1165,7 @@ S_StorySong:
 				mes "E seu espírito";
 				mes "Conduziram Valhalla.^000000";
 				//Expanded version for 2nd variant
-				if(getarg(0) == 2){
+				if (getarg(0) == 2){
 					next;
 					mes "[Errante]";
 					mes "...";
@@ -1216,9 +1216,9 @@ S_StorySong:
 
 			} else {
 				// For 3 and 4 cases we set more chance earlier on @random
-				if(getarg(0) == 3 || getarg(0) == 4){
+				if (getarg(0) == 3 || getarg(0) == 4){
 					mes "[Errante]";
-					if (sex)
+					if (Sex)
 						mes "Guerreiro heróico,";
 					else
 						mes "Minha justa senhora,";
@@ -1260,7 +1260,7 @@ S_StorySong:
 					mes "mas eu tenho um pedido a fazer.";
 					next;
 
-					if(select("Claro, sem problema.:Eu não vou te ajudar.")==1) {
+					if (select("Claro, sem problema.:Eu não vou te ajudar.")==1) {
 						cutin "bard_eland01",2;
 						mes "[Errante]";
 						mes "Muito obrigado!";
@@ -1275,15 +1275,15 @@ S_StorySong:
 						next;
 						mes "[Errante]";
 						mes "Eu te suplico, se você encontrá-lo, por favor, pergunte-lhe o 8º amor e me diga imediatamente a letra.";
-						if(gef_bard_q==1) set gef_bard_q,2;
-						if(gef_bard_q==21) set gef_bard_q,22;
+						if (gef_bard_q==1) set gef_bard_q,2;
+						if (gef_bard_q==21) set gef_bard_q,22;
 
 					} else {
 						mes "[Errante]";
 						mes "*Sigh...*";
 						mes "Não me lembro da 8ª parte desta canção... se minha vida dependesse disso... E depende! *Wahhhh*";
-						if(gef_bard_q==1) set gef_bard_q,7;
-						if(gef_bard_q==21) set gef_bard_q,27;
+						if (gef_bard_q==1) set gef_bard_q,7;
+						if (gef_bard_q==21) set gef_bard_q,27;
 					}
 					goto L_End;
 
@@ -1638,7 +1638,7 @@ morocc,134,111,3	script	Bardo#3	741,{
 		mes "Dessa forma, porque você tem que olhar na cara? Não encontrou o que queria? Haha, ia me mostrar a mão esquerda?";
 		next;
 
-		if(select("Aqui você vai.:Hm... Não!")==1) {
+		if (select("Aqui você vai.:Hm... Não!")==1) {
 			mes "[Gato Kino]";
 			mes "Bem, enquanto você estava desaparecido,";
 			mes "Eu lembrava a letra original da canção. Acho que elas são realmente importantes.";
@@ -1864,7 +1864,7 @@ morocc,134,111,3	script	Bardo#3	741,{
 		mes "princesa.";
 		next;
 
-		if(select("Hm, era uma canção de amor?:Desculpe-me por interromper-lhe.")==1) {
+		if (select("Hm, era uma canção de amor?:Desculpe-me por interromper-lhe.")==1) {
 			mes "[Bardo Misterioso]";
 			mes "Uma...";
 			mes "Canção de amor?";
@@ -1939,7 +1939,7 @@ morocc,134,111,3	script	Bardo#3	741,{
 				mes "Agora que pensei nisso, se você olhar para alguma coisa, ou se há uma razão para você querer falar comigo?";
 				next;
 
-				if(select("Estou procurando Gato Kino...:Não há nada mesmo.")==1) {
+				if (select("Estou procurando Gato Kino...:Não há nada mesmo.")==1) {
 					mes "[Gato Kino]";
 					mes "Como você";
 					mes "sabe meu nome?";
@@ -2005,7 +2005,7 @@ morocc,134,111,3	script	Bardo#3	741,{
 				}
 
 			} else {
-				if (sex) {
+				if (Sex) {
 					mes "[Gato Kino]";
 					mes "És uma pessoa jovem. Vou lembrar de seu nome. Gostaria muito que você me lembrasse também o meu.";
 					next;
@@ -2123,7 +2123,7 @@ yuno_in01,172,100,3	script	Velho Homem#bq1	712,{
 		mes "No entanto, não posso mostrá-los para ninguém esses frágeis livros. Por razões de preservação, só posso mostrar esses trabalhos para clientes preferenciais.";
 		next;
 
-		if(select("Mostra-lhe a mão esquerda.:Mostra-lhe a mão direita.")==1) {
+		if (select("Mostra-lhe a mão esquerda.:Mostra-lhe a mão direita.")==1) {
 			mes "[Sketzi Bundin]";
 			mes "Ah! Você deve ser o amigo bardo do alto escalão! Eu vejo, eu vejo. Você deve ser um amigo de Errante Menta.";
 			next;
@@ -2517,7 +2517,7 @@ payon,181,172,3	script	Bardo#4	51,{
 		mes "Certo?";
 		next;
 
-		if(select("Mostrar algum interesse.:Ignorar ele.")==1) {
+		if (select("Mostrar algum interesse.:Ignorar ele.")==1) {
 			mes "[Gunther]";
 			mes "Há! Eu já sabia!";
 			mes "Então você quer ouvir";

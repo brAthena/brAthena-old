@@ -56,7 +56,7 @@ payon,115,131,3	script	Neko Neko#1	725,{
 		delitem 2213,1; //Cat_Hairband
 		delitem 983,1; //Black_Dyestuffs
 		delitem 914,200; //Fluff
-		set zeny,zeny-10000;
+		set Zeny, Zeny-10000;
 		getitem 5057,1; //Ear_Of_Black_Cat
 		next;
 		mes "[Neko Neko]";
@@ -238,7 +238,7 @@ geffen,129,148,3	script	Argen#1	779,{
 			mes "Hey, that looks pretty smooth! Oh, and uh, you can keep this leftover Stem.";
 			delitem 2269,1; //Centimental_Flower
 			delitem 999,10; //Steel
-			set zeny,zeny-20000;
+			set Zeny, Zeny-20000;
 			getitem 5061,1; //Flower_Hairpin
 			getitem 905,1; //Stem
 			next;
@@ -512,7 +512,7 @@ comodo,237,217,5	script	Meruntei#1	732,{
 		delitem 5010,1; //Indian_Hair_Piece
 		delitem 5049,1; //Stripe_Band
 		delitem 7101,10; //Peco_Wing_Feather
-		set zeny,zeny-10000;
+		set Zeny, Zeny-10000;
 		getitem 5071,1; //Indian_Headband
 		next;
 		mes "[Meruntei]";
@@ -696,7 +696,7 @@ yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 						mes "'Angel Wing Ears!'";
 						delitem 2254,1; //Angelic_Chain
 						delitem 2286,1; //Elven_Ears
-						set zeny,zeny-20000;
+						set Zeny, Zeny-20000;
 						getitem 5074,1; //Ear_Of_Angel's_Wing
 						next;
 						mes "[Hatbyr Mhore]";
@@ -751,7 +751,7 @@ yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 						mes "There you go, buddy. I am proud to say this is my masterpiece. I call it... 'Devil Wing Ears!'";
 						delitem 2255,1; //Satanic_Chain
 						delitem 2286,1; //Elven_Ears
-						set zeny,zeny-20000;
+						set Zeny, Zeny-20000;
 						getitem 5068,1; //Ear_Of_Devil's_Wing
 						next;
 						mes "[Hatbyr Mhore]";
@@ -821,7 +821,7 @@ yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 						mes "I am proud to say this is my masterpiece. Please take this item. I call it... 'Devil Wing Ears!'";
 						delitem 2255,1; //Satanic_Chain
 						delitem 2286,1; //Elven_Ears
-						set zeny,zeny-20000;
+						set Zeny, Zeny-20000;
 						getitem 5068,1; //Ear_Of_Devil's_Wing
 						next;
 						mes "[Hatbyr Mhore]";
@@ -875,7 +875,7 @@ yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 						mes "I am proud to say this is my masterpiece. Please take this item. I call it... 'Angel Wing Ears!'";
 						delitem 2254,1; //Angelic_Chain
 						delitem 2286,1; //Elven_Ears
-						set zeny,zeny-20000;
+						set Zeny, Zeny-20000;
 						getitem 5074,1; //Ear_Of_Angel's_Wing
 						next;
 						mes "[Hatbyr Mhore]";
@@ -1766,7 +1766,7 @@ yuno_in03,20,18,6	script	Nehris#1	726,{
 			delitem 10016,1; //Golden_Bell
 			delitem 714,1; //Emperium
 			delitem 969,3; //Gold
-			set zeny,zeny-20000;
+			set Zeny, Zeny-20000;
 			getitem 5091,1; //Big_Golden_Bell
 			mes "[Nehris]";
 			mes "Yoohoo~";
@@ -1804,7 +1804,7 @@ yuno_in03,20,18,6	script	Nehris#1	726,{
 			delitem 10006,1; //Queen's_Hair_Ornament
 			delitem 714,1; //Emperium
 			delitem 969,3; //Gold
-			set zeny,zeny-20000;
+			set Zeny, Zeny-20000;
 			getitem 5080,1; //Headgear_Of_Queen
 			mes "[Nehris]";
 			mes "Tah dah!";
@@ -1854,7 +1854,7 @@ yuno_in03,20,18,6	script	Nehris#1	726,{
 				delitem 2249,1; //Coronet
 				delitem 714,1; //Emperium
 				delitem 969,3; //Gold
-				set zeny,zeny-40000;
+				set Zeny, Zeny-40000;
 				getitem 5081,1; //Mistress_Crown
 				mes "[Nehris]";
 				mes "Yay! You've got a great looking crown!";

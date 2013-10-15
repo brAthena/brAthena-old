@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/2.0/1.1                         |
+//   | Versões eA/rA/brA: 1.9/1.6/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest Teclas do Piano, Mensagem de Entrega  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Suporte ao registro de quests [lututuiBR]          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -355,6 +356,7 @@ prt_in,161,20,3	script	Erious#nif	92,{
 				mes "Obrigado por sua ajuda,";
 				mes "e por favor se cuide.";
 				set nif_revive,1;
+				setquest 11038;
 				close;
 			}
 			mes "[Erious]";
@@ -431,6 +433,7 @@ prt_in,161,20,3	script	Erious#nif	92,{
 				if (checkweight(610,26)) {
 					set MISC_QUEST,MISC_QUEST | 16384;
 					set nif_revive,0;
+					completequest 11043;
 					getitem 607,2; //Fruto de Yggdrasil
 					getitem 608,2; //Sementes de Yggdrasil
 					getitem 610,10; //Folha de Yggdrasil
@@ -474,6 +477,7 @@ prt_in,161,20,3	script	Erious#nif	92,{
 			if (checkweight(610,10)) {
 				set MISC_QUEST,MISC_QUEST | 16384;
 				set nif_revive,0;
+				completequest 11042;
 				getitem 610,10; //Folha de Yggdrasil
 				mes "[Erious]";
 				mes "Obrigado por tudo.";
@@ -537,6 +541,7 @@ umbala,215,181,3	script	Billik	733,{
 			mes "para ele. Dessa forma, ele irá saber que";
 			mes "eu o enviei.";
 			set nif_revive,2;
+			changequest 11038,11039;
 			next;
 			mes "[Billik]";
 			mes "A cidade dos mortos está localizada ao";
@@ -599,6 +604,7 @@ niflheim,153,215,3	script	Feylin	794,{
 		mes "você volte de onde veio";
 		mes "de antes que seja tarde demais.";
 		set nif_revive,3;
+		changequest 11039,11040;
 		close;
 	} else if (nif_revive == 3) {
 		mes "[Feylin]";
@@ -621,6 +627,7 @@ niflheim,153,215,3	script	Feylin	794,{
 			mes "a você. Além disso, falar sobre";
 			mes "tais coisas é tabu.";
 			set nif_revive,4;
+			changequest 11040,11041;
 			close;
 		}
 		mes "[Feylin]";
@@ -671,9 +678,10 @@ niflheim,153,215,3	script	Feylin	794,{
 								mes "como você pode ver. Eu realmente peço";
 								mes "sinceras desculpas.";
 								emotion e_omg;
-								delitem 748,1; // Rosa_Eterna
-								delitem 610,10;// Folha de Yggdrasil
+								delitem 748,1; //Rosa_Eterna
+								delitem 610,10;//Folha de Yggdrasil
 								set nif_revive,5;
+								changequest 11041,11042;
 								percentheal -99,0;
 								next;
 								mes "[Feylin]";
@@ -716,6 +724,7 @@ niflheim,153,215,3	script	Feylin	794,{
 								mes "com outra pessoa. Ah, também diga a";
 								mes "ele que eu o perdôo.";
 								set nif_revive,6;
+								changequest 11040,11043;
 								getitem 934,1; //Mementos
 								next;
 								mes "[Elly]";

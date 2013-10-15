@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/1.1/1.0                         |
+//   | Versões eA/rA/brA: 1.7/1.9/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests e Eventos - Ruínas de Juperos.       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -36,7 +37,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			mes "......";
 			mes "May I help you?";
 			next;
-			switch( select( "Oh! N-Nothing!","Excuse me..." ) )
+			switch(select("Oh! N-Nothing!","Excuse me..." ) )
 			{
 				case 1:
 					mes "[Scholar]";
@@ -90,7 +91,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			mes "......";
 			mes "May I help you?";
 			next;
-			switch( select( "Oh! N-Nothing!","By any chance..." ) )
+			switch(select("Oh! N-Nothing!","By any chance..." ) )
 			{
 				case 1:
 					mes "[Scholar]";
@@ -169,7 +170,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			}
 
 		case 2:
-			if((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
+			if ((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
 			{
 				mes "[Fayruz]";
 				mes "Ah, it's you! Listen,";
@@ -213,7 +214,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			mes "happened to put that";
 			mes "expression on your face?";
 			next;
-			switch( select( "I found something in Juperos.","Nothing much." ) )
+			switch(select("I found something in Juperos.","Nothing much." ) )
 			{
 		
 				case 1:
@@ -305,7 +306,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					close;
 			
 				case 2:
-					if((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
+					if ((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
 					{
 						mes "[Fayruz]";
 						mes "Oh, really?!";
@@ -329,10 +330,10 @@ yuno_in04,190,125,4	script	Scholar	700,{
 						switch( select ("Please, be my guest.","No way, you can't have it.") )
 						{
 							case 1:
-								if(countitem(7352)) callfunc "Func_JupHist",7352,1;
-								else if(countitem(7353)) callfunc "Func_JupHist",7353,2;
-								else if(countitem(7354)) callfunc "Func_JupHist",7354,4;
-								else if(countitem(7355)) callfunc "Func_JupHist",7352,8;
+								if (countitem(7352)) callfunc "Func_JupHist",7352,1;
+								else if (countitem(7353)) callfunc "Func_JupHist",7353,2;
+								else if (countitem(7354)) callfunc "Func_JupHist",7354,4;
+								else if (countitem(7355)) callfunc "Func_JupHist",7352,8;
 
 		
 							case 2:
@@ -394,7 +395,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			mes "back with something that'd";
 			mes "help me in my research!";
 			next;
-			switch( select( "Take a look at this.","Oh, I'm sorry...") )
+			switch(select("Take a look at this.","Oh, I'm sorry...") )
 			{
 				case 1:
 					switch(jupe_hist)
@@ -457,7 +458,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			mes "in Juperos for anything that";
 			mes "might help me in my research?";
 			next;
-			switch( select( "Yeah, take a look at this.","No, I'm sorry...") )
+			switch(select("Yeah, take a look at this.","No, I'm sorry...") )
 			{
 				case 1:
 					switch(jupe_hist)
@@ -568,7 +569,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			switch( select("I found another Transparent Plate.","Just visiting, really.") )
 			{
 				case 1:
-					if((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
+					if ((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
 					{
 						mes "[Fayruz]";
 						mes "Hmm, well, we've made as";
@@ -585,9 +586,9 @@ yuno_in04,190,125,4	script	Scholar	700,{
 						mes "you take this as my way";
 						mes "saying ''Thanks?'' You've been";
 						mes "great, "+strcharinfo(0)+"...";
-						if(countitem(7352)) delitem 7352,1;
-						else if(countitem(7353)) delitem 7353,1;
-						else if(countitem(7354)) delitem 7354,1;
+						if (countitem(7352)) delitem 7352,1;
+						else if (countitem(7353)) delitem 7353,1;
+						else if (countitem(7354)) delitem 7354,1;
 						else delitem 7355,1;
 						getitem 644,1;
 						close;
@@ -664,7 +665,7 @@ function	script	Func_JupHist	{
 			close;
 
 		case 5:
-			if((countitem(getarg(0))) || (countitem(getarg(1))) || (countitem(getarg(2))))
+			if ((countitem(getarg(0))) || (countitem(getarg(1))) || (countitem(getarg(2))))
 			{
 				mes "[Fayruz]";
 				mes "Oh, that's unexpected.";
@@ -707,22 +708,22 @@ function	script	Func_JupHist	{
 				mes "I think you'd agree that";
 				mes "it contains a truth about";
 				mes "mankind that can't be ignored.";
-				if(countitem(getarg(0)))
+				if (countitem(getarg(0)))
 				{
 					delitem getarg(0),1;
-					if(getarg(0) == 7352) set jupe_hist,jupe_hist +1;
+					if (getarg(0) == 7352) set jupe_hist,jupe_hist +1;
 					else set jupe_hist,jupe_hist +2;
 				}
-				else if(countitem(getarg(1)))
+				else if (countitem(getarg(1)))
 				{
 					delitem getarg(1),1;
-					if(getarg(1) == 7353) set jupe_hist,jupe_hist +2;
+					if (getarg(1) == 7353) set jupe_hist,jupe_hist +2;
 					else set jupe_hist,jupe_hist +4;
 				}
 				else
 				{
 					delitem getarg(2),1;
-					if(getarg(2) == 7354) set jupe_hist,jupe_hist +4;
+					if (getarg(2) == 7354) set jupe_hist,jupe_hist +4;
 					else set jupe_hist,jupe_hist +8;
 				}
 				set yuno_hist,6;
@@ -744,7 +745,7 @@ function	script	Func_JupHist	{
 				mes "story with you, "+strcharinfo(0)+".";
 				close;
 			}
-			else if(countitem(getarg(3)))
+			else if (countitem(getarg(3)))
 			{
 				mes "[Fayruz]";
 				mes "Oh, this one seems";
@@ -783,7 +784,7 @@ function	script	Func_JupHist	{
 			}
 
 		case 7:
-			if((countitem(getarg(0))) || (countitem(getarg(1))))
+			if ((countitem(getarg(0))) || (countitem(getarg(1))))
 			{
 				mes "[Fayruz]";
 				mes "Is this another";
@@ -841,18 +842,18 @@ function	script	Func_JupHist	{
 				mes "or another. Scary stories are";
 				mes "appealing because we actually";
 				mes "like the strange and grotesque.";
-				if(countitem(getarg(0)))
+				if (countitem(getarg(0)))
 				{
 					delitem getarg(0),1;
-					if(getarg(0) == 7352) set jupe_hist,jupe_hist +1;
-					else if(getarg(0) == 7353) set jupe_hist,jupe_hist +2;
+					if (getarg(0) == 7352) set jupe_hist,jupe_hist +1;
+					else if (getarg(0) == 7353) set jupe_hist,jupe_hist +2;
 					else set jupe_hist,jupe_hist +4;
 				}
-				else if(countitem(getarg(1)))
+				else if (countitem(getarg(1)))
 				{
 					delitem getarg(1),1;
-					if(getarg(1) == 7353) set jupe_hist,jupe_hist +2;
-					else if(getarg(1) == 7354) set jupe_hist,jupe_hist +4;
+					if (getarg(1) == 7353) set jupe_hist,jupe_hist +2;
+					else if (getarg(1) == 7354) set jupe_hist,jupe_hist +4;
 					else set jupe_hist,jupe_hist +8;
 				}
 				set yuno_hist,8;
@@ -867,7 +868,7 @@ function	script	Func_JupHist	{
 				mes "to me, alright? See you later~";
 				close;
 			}
-			else if((countitem(getarg(2))) || (countitem(getarg(3))))
+			else if ((countitem(getarg(2))) || (countitem(getarg(3))))
 			{
 				mes "[Fayruz]";
 				mes "Oh, this one seems";
@@ -890,8 +891,8 @@ function	script	Func_JupHist	{
 				mes "to compiling my research...";
 				mes "Thank you so much for";
 				mes "your help, "+strcharinfo(0)+".";
-				if(countitem(getarg(2))) delitem getarg(2),1;
-				else if(countitem(getarg(3))) delitem getarg(3),1;
+				if (countitem(getarg(2))) delitem getarg(2),1;
+				else if (countitem(getarg(3))) delitem getarg(3),1;
 				getitem 644,1;
 				close;
 			}
@@ -907,7 +908,7 @@ function	script	Func_JupHist	{
 			}
 
 		case 9:
-			if(countitem(getarg(0)))
+			if (countitem(getarg(0)))
 			{
 				mes "[Fayruz]";
 				mes "Oooh...! This one is";
@@ -951,9 +952,9 @@ function	script	Func_JupHist	{
 				mes "feeling of indefatigable";
 				mes "hope and inspiration...";
 				mes "You can make it if you try!^000000";
-				if(getarg(0) == 7352) set jupe_hist,jupe_hist+1;
-				else if(getarg(0) == 7353) set jupe_hist,jupe_hist+2;
-				else if(getarg(0) == 7354) set jupe_hist,jupe_hist+4;
+				if (getarg(0) == 7352) set jupe_hist,jupe_hist+1;
+				else if (getarg(0) == 7353) set jupe_hist,jupe_hist+2;
+				else if (getarg(0) == 7354) set jupe_hist,jupe_hist+4;
 				else set jupe_hist,jupe_hist+8;
 				set yuno_hist,10;
 				delitem getarg(0),1;
@@ -968,7 +969,7 @@ function	script	Func_JupHist	{
 				mes "research progress~";
 				close;
 			}
-			else if((countitem(getarg(1))) || (countitem(getarg(2))) || (countitem(getarg(3))))
+			else if ((countitem(getarg(1))) || (countitem(getarg(2))) || (countitem(getarg(3))))
 			{
 				mes "[Fayruz]";
 				mes "Hmm...";
@@ -987,8 +988,8 @@ function	script	Func_JupHist	{
 				next;
 				mes "[Fayruz]";
 				mes "Now, excuse me. I need to go back to my research.";
-				if(countitem(getarg(1))) delitem getarg(1),1;
-				else if(countitem(getarg(2))) delitem getarg(2),1;
+				if (countitem(getarg(1))) delitem getarg(1),1;
+				else if (countitem(getarg(2))) delitem getarg(2),1;
 				else delitem getarg(3),1;
 				getitem 644,1;
 				close;
@@ -1015,7 +1016,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 	switch( select("Table of Contents.","Leave it alone.") )
 	{
 		case 1:
-			if(yuno_hist > 4)
+			if (yuno_hist > 4)
 			{
 				mes "^8B6914 1. Preface";
 				mes " 2. Juperos Background";
@@ -1030,7 +1031,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 						mes "ground, but it is now buried";
 						mes "beneath the El Mes Plateau.";
 						mes "The reasons for the city's";
-						if(yuno_hist < 9)
+						if (yuno_hist < 9)
 						{
 							mes "ruin are still nebulous...^000000";
 							next;
@@ -1048,7 +1049,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 							mes "may be able to learn much";
 							mes "from that ancient city's ruins.";
 							mes "..................^000000";
-							if(yuno_hist < 7)
+							if (yuno_hist < 7)
 							{
 								next;
 								mes "["+strcharinfo(0)+"]";
@@ -1070,7 +1071,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 						close;
 				
 					case 2:
-						if(yuno_hist < 9)
+						if (yuno_hist < 9)
 						{
 							mes "^8B6914...";
 							mes "......";
@@ -1083,7 +1084,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 							mes "yet to be a real thesis...";
 							close;
 						}
-						else if(yuno_hist == 9)
+						else if (yuno_hist == 9)
 						{
 							mes "^8B6914Juperos was built over";
 							mes "a thousand years ago in";
@@ -1123,7 +1124,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 						close;
 
 					case 3:
-						if(yuno_hist < 10)
+						if (yuno_hist < 10)
 						{
 							mes "^8B6914...";
 							mes "......";
@@ -1136,7 +1137,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 							mes "less clear I am on what";
 							mes "the theory actually is.";
 							mes "I don't think there is one...";
-							emotion 4,1;
+							emotion e_swt,1;
 							close;
 						}
 						mes "^8B6914What is most unsettling";
@@ -1206,7 +1207,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 						close;
 				}
 			}
-			switch( select( "Preface","Close the file.") )
+			switch(select("Preface","Close the file.") )
 			{
 				case 1:
 					mes "^8B6914Scholars are certain";
@@ -1231,7 +1232,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 					mes "may be able to learn much";
 					mes "from that ancient city's ruins.";
 					mes "..................^000000";
-					if(!yuno_hist) set yuno_hist,1;
+					if (!yuno_hist) set yuno_hist,1;
 					next;
 					mes "["+strcharinfo(0)+"]";
 					mes "This...";
@@ -1251,7 +1252,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 					close;
 			}
 		case 2:
-			if(yuno_hist < 5)
+			if (yuno_hist < 5)
 			{
 				mes "["+strcharinfo(0)+"]";
 				mes "Nah...";
@@ -1259,7 +1260,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 				mes "Ironically enough.";
 				close;
 			}
-			else if(yuno_hist < 7)
+			else if (yuno_hist < 7)
 			{
 				mes "["+strcharinfo(0)+"]";
 				mes "I don't feel like";
@@ -1267,13 +1268,13 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 				mes "enough pictures...";
 				close;
 			}
-			else if(yuno_hist < 9)
+			else if (yuno_hist < 9)
 			{
 				mes "["+strcharinfo(0)+"]";
 				mes "It looks very sophisticated...";
 				close;
 			}
-			else if(yuno_hist < 10)
+			else if (yuno_hist < 10)
 			{
 				mes "["+strcharinfo(0)+"]";
 				mes "I know this book...";
@@ -1295,7 +1296,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 
 yuno_in04,188,118,4	script	Book#juperos	111,{
 
-	if(yuno_hist > 7)
+	if (yuno_hist > 7)
 	{
 		mes "^8B6914*Self-Honesty*";
 		mes "*'Benefits Fo' Life!'*";
@@ -1357,7 +1358,7 @@ yuno_in04,188,118,4	script	Book#juperos	111,{
 
 juperos_01,99,112,4	script	Bronze Statue#1	844,{
 
-	if(yuno_hist > 3)
+	if (yuno_hist > 3)
 	{
 		mes "^3355FF''Do you wish to see";
 		mes "the end of the madness?";
@@ -1366,7 +1367,7 @@ juperos_01,99,112,4	script	Bronze Statue#1	844,{
 		mes "two hundred illusions wander.''^000000";
 		close;
 	}
-	else if(yuno_hist == 3)
+	else if (yuno_hist == 3)
 	{
 		mes "["+strcharinfo(0)+"]";
 		mes "I better go and";
@@ -1381,7 +1382,7 @@ juperos_01,99,112,4	script	Bronze Statue#1	844,{
 		mes "engraving on the";
 		mes "Bronze Statue's rod.^000000";
 		next;
-		switch( select( "Investigate","Ignore it" ) )
+		switch(select("Investigate","Ignore it" ) )
 		{
 			case 1 :
 				mes "^3355FFIt's an inscription that's";
@@ -1399,7 +1400,7 @@ juperos_01,99,112,4	script	Bronze Statue#1	844,{
 				mes "I am. I know what sounds";
 				mes "all of these letters make...";
 				next;
-				if(yuno_hist == 2)
+				if (yuno_hist == 2)
 				{
 					mes "["+strcharinfo(0)+"]";
 					mes "Then again, Fayruz did";
@@ -1479,7 +1480,7 @@ yuno_in04,102,106,1	script	Popular Feasts	111,{
 	mes "Publisher:";
 	mes "Muha Books, Co.^000000";
 	next;
-	switch( select( " 1. Fried Yoyo Tails"," 14. Poring Salad"," 252. Beak Soup" ) )
+	switch(select(" 1. Fried Yoyo Tails"," 14. Poring Salad"," 252. Beak Soup" ) )
 	{
 		case 1:
 			mes "^8B6914...";
@@ -1531,7 +1532,7 @@ yuno_in04,167,127,1	script	Red Book	111,{
 	mes "^3355FFYou find a book";
 	mes "with red binding.^000000";
 	next;
-	switch( select( "Read.","Leave it alone." ) )
+	switch(select("Read.","Leave it alone." ) )
 	{
 		case 1:
 			mes "^8B6914...^000000";
@@ -1593,7 +1594,7 @@ yuno_in04,121,109,1	script	Scroll	111,{
 	mes "that's collected a";
 	mes "layer of fine dust.^000000";
 	next;
-	switch( select( "Peruse","Leave it alone" ) )
+	switch(select("Peruse","Leave it alone" ) )
 	{
 		case 1:
 			mes "^8B6914Item Upgrade Introduction";
@@ -1651,7 +1652,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 	switch( select("Read it.","Leave it alone.") )
 	{
 		case 1:
-			if(yuno_hist > 7)
+			if (yuno_hist > 7)
 			{
 				mes "^8B6914P.S.";
 				mes "Please...";
@@ -1677,7 +1678,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 			mes "you can forgive me for us.";
 			mes "- Love, Fayruz^000000";
 			next;
-			if(getpartnerid())
+			if (getpartnerid())
 			{
 				mes "["+strcharinfo(0)+"]";
 				mes "Ahhhhhh~";
@@ -1702,7 +1703,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 
 juperos_01,123,92,4	script	Stone Statue	844,{
 	
-	if(yuno_hist)
+	if (yuno_hist)
 	{
 		mes "^3355FFIt's a stone statue";
 		mes "that looks exactly like";
@@ -3114,7 +3115,7 @@ jupe_area1,112,162,0	script	Lever#ufe	844,{
 	next;
 	switch(select("Pull.:Cancel.")) {
 	case 1:
-		if($@JupreArea1InUse == 1) close;
+		if ($@JupreArea1InUse == 1) close;
 		initnpctimer;
 		donpcevent "LeverWarp#ufe::OnEnable";
 		disablenpc "Lever#ufe";
@@ -4327,7 +4328,7 @@ jupe_area2,51,162,0	script	Lever#ufe2	844,{
 	next;
 	switch(select("Pull.:Cancel.")) {
 	case 1:
-		if($@JupreArea2InUse == 1) close;
+		if ($@JupreArea2InUse == 1) close;
 		initnpctimer;
 		donpcevent "LeverWarp#ufe2::OnEnable";
 		disablenpc "Lever#ufe2";
@@ -4972,7 +4973,7 @@ OnTimer8000:
 OnMyMobDead:
 	set .MyMobs,.MyMobs-1;
 	if (.MyMobs < 1) {
-		if(getvariableofnpc(.MyMobs,"Guard-1#ufe") < 1 && getvariableofnpc(.MyMobs,"Guard-2#ufe") < 1 && getvariableofnpc(.MyMobs,"Guard-3#ufe") < 1)
+		if (getvariableofnpc(.MyMobs,"Guard-1#ufe") < 1 && getvariableofnpc(.MyMobs,"Guard-2#ufe") < 1 && getvariableofnpc(.MyMobs,"Guard-3#ufe") < 1)
 		{
 			donpcevent "GuardEnd#ufe::OnEnable";
 			stopnpctimer;
@@ -5111,4 +5112,70 @@ OnTouch:
 	case 4: warp "juperos_01",79,72; end;
 	}
 	end;
+}
+
+//============================================================
+// GM Management NPC
+//============================================================
+sec_in02,39,167,0	script	Juperos Manager	864,{
+	callfunc "F_GM_NPC";
+	mes "[Juperos Manager]";
+	mes "I'm the NPC in";
+	mes "charge of managing";
+	mes "the global variables for";
+	mes "the quests related to";
+	mes "Juperos. GM, please";
+	mes "enter the password.";
+	next;
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "[Juperos Manager]";
+		mes "Incorrect password.";
+		close;
+	} else {
+		mes "[Juperos Manager]";
+		mes "Select a map. Remember:";
+		mes "Make sure that users aren't";
+		mes "doing the quest on the map";
+		mes "you're going to reset, or else";
+		mes "you'll cancel their progress";
+		mes "through the quest.";
+		next;
+		switch(select("jupe_Area1:jupe_Area2:jupe_ele_r:jupe_ele")) {
+		case 1:
+			set .@loc$,"jupe_Area1";
+			set .@var$,"$@JupreArea1InUse";
+			break;
+		case 2:
+			set .@loc$,"jupe_Area2";
+			set .@var$,"$@JupreArea2InUse";
+			break;
+		case 3:
+			set .@loc$,"jupe_ele_r";
+			set .@var$,"$@JupeElevatorInUse";
+			break;
+		case 4:
+			set .@loc$,"jupe_ele";
+			set .@var$,"$@JupeElevatorInUse2";
+			break;
+		}
+		mes "[Juperos Manager]";
+		mes "You've decided";
+		mes "to reset "+.@loc$+".";
+		mes "Shall we proceed?";
+		next;
+		switch(select("Yes.:No.")) {
+		case 1:
+			mes "[Juperos Manager]";
+			mes "The global variable in";
+			mes .@loc$+" has been";
+			mes "reset to 0. Thank you.";
+			setd .@var$,0;
+			close;
+		case 2:
+			mes "[Juperos Manager]";
+			mes "This command";
+			mes "has been canceled.";
+			close;
+		}
+	}
 }

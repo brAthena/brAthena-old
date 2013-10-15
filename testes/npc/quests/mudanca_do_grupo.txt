@@ -1924,7 +1924,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "Não esqueça agora, certo?";
 		close;
 	}
-	if ((countitem(7739) > 0) && (.@relaytime >= 11) && (.@relaytime < 14) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+	if ((countitem(7739) > 0) && (.@relaytime >= 11) && (.@relaytime < 14) && ((BaseClass == Job_Thief) || (BaseClass == Job_Acolyte))) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -1951,7 +1951,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "Te vejo mais tarde~";
 		close;
 	}
-	else if ((countitem(7739) > 0) && (.@relaytime >= 0) && (.@relaytime < 3) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+	else if ((countitem(7739) > 0) && (.@relaytime >= 0) && (.@relaytime < 3) && ((BaseClass == Job_Thief) || (BaseClass == Job_Acolyte))) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -1978,7 +1978,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "Te vejo mais tarde~";
 		close;
 	}
-	if ((countitem(7739) > 0) && ((Baseclass == Job_Thief) || (BaseClass == Job_Acolyte))) {
+	if ((countitem(7739) > 0) && ((BaseClass == Job_Thief) || (BaseClass == Job_Acolyte))) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -2360,7 +2360,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "Padrão do Pacífico. Não se esqueça!";
 		close;
 	}
-	if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (Baseclass == Job_Thief)) {
+	if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 8) && (.@relaytime < 11)) && (BaseClass == Job_Thief)) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -2392,7 +2392,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "os itens da missão, ok?";
 		close;
 	}
-	else if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 21) && (Baseclass == Job_Thief))) {
+	else if ((countitem(7731) > 0) && (BaseLevel > 39) && ((.@relaytime >= 21) && (BaseClass == Job_Thief))) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -2424,7 +2424,7 @@ payon,204,221,3	script	Bafhail#payon::RelayBafhail	731,{
 		mes "os itens da missão, ok?";
 		close;
 	}
-	if ((countitem(7731) > 0) && (BaseLevel > 39) && (Baseclass == Job_Thief)) {
+	if ((countitem(7731) > 0) && (BaseLevel > 39) && (BaseClass == Job_Thief)) {
 		mes "[Bafhail]";
 		mes "Oh, este não é o bilhete...?";
 		mes "Ah, muito bem. Julgando";
@@ -2657,7 +2657,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		mes "É importante saber disso!";
 		close;
 	}
-	if ((countitem(7740) > 0) && ((Baseclass == Job_Archer) || (BaseClass == Job_Merchant))) {
+	if ((countitem(7740) > 0) && ((BaseClass == Job_Archer) || (BaseClass == Job_Merchant))) {
 		mes "[Lospii]";
 		mes "Olá, eu sou Lospii! Talvez";
 		mes "Eu seja mais novo do que você, mas";
@@ -2969,7 +2969,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		mes "Eu... Eu não sei ver as horas...";
 		close;
 	}
-	if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 14) && (.@relaytime < 17)) && (Baseclass == Job_Archer)) {
+	if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 14) && (.@relaytime < 17)) && (BaseClass == Job_Archer)) {
 		mes "[Lospii]";
 		mes "Olá, eu sou Lospii! Talvez";
 		mes "Eu seja mais novo do que você, mas";
@@ -3010,7 +3010,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		mes "É importante saber disso!";
 		close;
 	}
-	else if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 18) && (.@relaytime < 21)) && (Baseclass == Job_Archer)) {
+	else if ((countitem(7732) > 0) && (BaseLevel > 39) && ((.@relaytime >= 18) && (.@relaytime < 21)) && (BaseClass == Job_Archer)) {
 		mes "[Lospii]";
 		mes "Olá, eu sou Lospii! Talvez";
 		mes "Eu seja mais novo do que você, mas";
@@ -3051,7 +3051,7 @@ payon,168,314,3	script	Lospii#payon::RelayLospii	706,{
 		mes "É importante saber disso!";
 		close;
 	}
-	if ((countitem(7732) > 0) && (BaseLevel > 39) && (Baseclass == Job_Archer)) {
+	if ((countitem(7732) > 0) && (BaseLevel > 39) && (BaseClass == Job_Archer)) {
 		mes "[Lospii]";
 		mes "Olá, eu sou Lospii! Talvez";
 		mes "Eu seja mais novo do que você, mas";

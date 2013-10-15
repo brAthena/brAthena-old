@@ -670,7 +670,7 @@ nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
 		mes "Eu devo informar a palavra mágica.";
 		next;
 		input .@inputstr$;
-		if( .@inputstr$ == "Voltar" ) {
+		if ( .@inputstr$ == "Voltar" ) {
 			emotion e_omg;
 			specialeffect EF_TELEPORTATION;
 			mes "A magia está sendo carregada.";
@@ -695,7 +695,7 @@ nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
 
 -	script	Galinha#02	-1,{
 	set @egg_temp,rand(1,4);
-	if( @egg_temp == 3) {
+	if ( @egg_temp == 3) {
 		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
 		mes "Existe um 'ovo no lugar onde a galinha desapareceu.";
 		disablenpc "Galinha#"+strnpcinfo(1);
@@ -711,7 +711,7 @@ nif_fild01,167,113,3	script	Galinha#06_hw01	800,{
 
 -	script	Galinha#03	-1,{
 	set @egg_temp,rand(1,4);
-	if( @egg_temp == 3) {
+	if ( @egg_temp == 3) {
 		mes "Assim que você chegou perto da galinha, ela desapareceu completamente.";
 		mes "Você tem um 'ovo' no lugar onde a galinha desapareceu.";
 		disablenpc "Galinha#"+strnpcinfo(1);
@@ -1367,7 +1367,7 @@ nif_fild02,0,0,0,0	monster	Lude Alegre	1812,3,0,0,0
 
 payon,162,176,4	script	Halloween Magician#iRO08	704,{
 	
-	if(Hallow08 < 1) {
+	if (Hallow08 < 1) {
 		mes "[Halloween Magician]";
 		mes "Kkkkkkkkk!";
 		mes "I have a special event this Halloween that tests your luck and agility.";
@@ -1388,7 +1388,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 		mes "Do you know the rules?";
 		next;
 		set Hallow08Kill,0;
-		if(select("Yes, I know.:No, I don't know.") == 2) {
+		if (select("Yes, I know.:No, I don't know.") == 2) {
 			goto Rules;
 		}
 		goto Participate;
@@ -1410,7 +1410,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 		close;
 	}
 
-	if(Hallow08 > 0) {
+	if (Hallow08 > 0) {
 		mes "[Halloween Magician]";
 		mes "Well, do you want to hear the rules again or, just get back to it...";
 		next;
@@ -1446,7 +1446,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 				mes "Hey...";
 				mes "Come back once you're ready.";
 				close;
-			}else{
+			} else {
 				goto MainMenu;
 			}
 			
@@ -1464,7 +1464,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 				mes "You think I wouldn't notice that your weight is above '0'?";
 				mes "You're overweight...";
 				close;
-			}else{
+			} else {
 				mes "[Halloween Magician]";
 				mes "You seem good to go, and your weight is just right.";
 				next;
@@ -1508,52 +1508,51 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 			mes "What would you like to exchange for?";
 			next;
 			switch(select("Pumpkin Pie:Pumpkin-Head:Old Blue Box:Old Purple Box:Old Card Album")) {
-				case 1:
-					if(countitem(7941) < 5) {
-						goto NotEnough;
-					}else{
-						delitem 7941,5;
-						getitem 12192,1;
-						goto Enough;
-					}
-					break;
-				case 2:
-					if(countitem(7941) < 20) {
-						goto NotEnough;
-					}else{
-						delitem 7941,20;
-						getitem 5134,1;
-						goto Enough;
-					}
-					break;
-				case 3:
-					if(countitem(7941) < 50) {
-						goto NotEnough;
-					}else{
-						delitem 7941,50;
-						getitem 603,1;
-						goto Enough;
-					}
-					break;
-				case 4:
-					if(countitem(7941) < 70) {
-						goto NotEnough;
-					}else{
-						delitem 7941,70;
-						getitem 617,1;
-						goto Enough;
-					}
-					break;
-				case 5:
-					if(countitem(7941) < 200) {
-						goto NotEnough;
-					}else{
-						delitem 7941,200;
-						getitem 616,1;
-						goto Enough;
-					}
+			case 1:
+				if (countitem(7941) < 5)
+					goto NotEnough;
+				else {
+					delitem 7941,5;
+					getitem 12192,1;
+					goto Enough;
+				}
+				break;
+			case 2:
+				if (countitem(7941) < 20)
+					goto NotEnough;
+				else {
+					delitem 7941,20;
+					getitem 5134,1;
+					goto Enough;
+				}
+				break;
+			case 3:
+				if (countitem(7941) < 50)
+					goto NotEnough;
+				else {
+					delitem 7941,50;
+					getitem 603,1;
+					goto Enough;
+				}
+				break;
+			case 4:
+				if (countitem(7941) < 70)
+					goto NotEnough;
+				else {
+					delitem 7941,70;
+					getitem 617,1;
+					goto Enough;
+				}
+				break;
+			case 5:
+				if (countitem(7941) < 200)
+					goto NotEnough;
+				else {
+					delitem 7941,200;
+					getitem 616,1;
+					goto Enough;
+				}
 			}
-					
 		NextTime:
 			mes "[Halloween Magician]";
 			mes "Ok, see you then.";
@@ -1581,7 +1580,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 		next;
 		if (Hallow08 == 1) {
 			goto MainMenu2;
-		}else{
+		} else {
 			goto MainMenu;
 		}
 }
@@ -1590,7 +1589,7 @@ evt_zombie,16,142,1	script	zombiewarp001	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 1) {
 		set Hallow08Kill,2;
-		specialeffect 16;
+		specialeffect EF_BASH;
 		warp "payon",28,142;
 	}
 	end;
@@ -1600,7 +1599,7 @@ evt_zombie,122,27,1	script	zombiewarp002	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 2) {
 		set Hallow08Kill,2;
-		specialeffect 16;
+		specialeffect EF_BASH;
 		warp "payon",121,40;
 	}
 	end;
@@ -1610,7 +1609,7 @@ evt_zombie,267,89,1	script	zombiewarp003	45,2,2,{
 OnTouch:
 	if (@Hallow08Warp == 3) {
 		set Hallow08Kill,2;
-		specialeffect 16;
+		specialeffect EF_BASH;
 		warp "payon",253,95;
 	}
 	end;
@@ -1625,7 +1624,7 @@ evt_zombie,0,0,0,0	monster	Zombie Master	3002,20,0,0,0
 // Headgear Quest - Pumpkin Hat
 //============================================================
 prontera,152,192,5	script	Pumpkin Hat Researcher	712,{
-	if(BaseLevel < 45) {
+	if (BaseLevel < 45) {
 		mes "[Pumpkin Hat Researcher]";
 		mes "Shoo, I don't need a child. Shoo! I don't talk to novices.";
 		next;
@@ -1667,7 +1666,7 @@ prontera,152,192,5	script	Pumpkin Hat Researcher	712,{
 				mes "[Pumpkin Hat Researcher]";
 				mes "Do you want to get Pumpkin Pies? Okay, let me count the Jack o' Pumpkins you've brought.";
 				next;
-				if(countitem(1062) < 20) {
+				if (countitem(1062) < 20) {
 					mes "[Pumpkin Hat Researcher]";
 					mes "I need ^4a4aff20 Jack o' Pumpkin^000000.";
 					mes "I'm not an alchemist or a wizard to create something from nothing.";
@@ -1677,7 +1676,7 @@ prontera,152,192,5	script	Pumpkin Hat Researcher	712,{
 					mes "I'm going to stay here for a while so take your time.";
 					next;
 					break;
-				}else{
+				} else {
 					mes "[Pumpkin Hat Researcher]";
 					mes "I hope this will be useful to you. Don't forget to wear it while fighting to get your Pumpkin Pies.";
 					delitem 1062,20;	// Jack o' Pumpkin
@@ -1706,7 +1705,7 @@ OnTouch:
 	mes "Hooray! hooray! Hooray!";
 	mes "Trick or Treat?";
 	next;
-	if(select("Trick.:Treat.") == 1) {
+	if (select("Trick.:Treat.") == 1) {
 		mes "[Trick or Treater]";
 		mes "!!!!";
 		mes "Fine. I have no choice but to trick you back!";
@@ -1718,7 +1717,7 @@ OnTouch:
 	next;
 	switch(select("Candy:Candy Cane:Well-baked Cookie:Nothing")) {
 		case 1:
-			if(countitem(529) > 0) {
+			if (countitem(529) > 0) {
 				mes "[Trick or Treater]";
 				mes "Yay thank you!";
 				mes "Here, take this for being so nice!";
@@ -1731,7 +1730,7 @@ OnTouch:
 				sc_start SC_FOOD_BASICAVOIDANCE, 1800000, 15;
 				delitem 529,1;	// Candy
 				close;
-			}else{
+			} else {
 				mes "[Trick or Treater]";
 				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
 				mes "Fine. I have no choice but to trick you!";
@@ -1739,7 +1738,7 @@ OnTouch:
 				close;
 			}
 		case 2:
-			if(countitem(530) > 0) {
+			if (countitem(530) > 0) {
 				mes "[Trick or Treater]";
 				mes "Yay thank you!";
 				mes "Here, take this for being so nice!";
@@ -1752,7 +1751,7 @@ OnTouch:
 				sc_start SC_FOOD_BASICAVOIDANCE, 1800000, 15;
 				delitem 530,1;	// Candy Cane
 				close;
-			}else{
+			} else {
 				mes "[Trick or Treater]";
 				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
 				mes "Fine. I have no choice but to trick you!";
@@ -1760,7 +1759,7 @@ OnTouch:
 				close;
 			}
 		case 3:
-			if(countitem(538) > 0) {
+			if (countitem(538) > 0) {
 				mes "[Trick or Treater]";
 				mes "Yay thank you!";
 				mes "Here, take this for being so nice!";
@@ -1773,7 +1772,7 @@ OnTouch:
 				sc_start SC_FOOD_BASICAVOIDANCE, 1800000, 15;
 				delitem 538,1;	// Well-baked Cookie
 				close;
-			}else{
+			} else {
 				mes "[Trick or Treater]";
 				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
 				mes "Fine. I have no choice but to trick you!";
@@ -1960,7 +1959,7 @@ prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
 
 					set .@total,.@fabric + .@jack + .@worn + .@crushed;
 
-					if(.@total < .@input) {
+					if (.@total < .@input) {
 						mes "[Halloween Wizard]";
 						mes "Recount the number of items you have and tell me the total.";
 						mes "Huhuhuhuhuhu...";
@@ -1968,8 +1967,8 @@ prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
 						break;
 					}
 
-					if(.@fabric > 0) {
-						if(.@fabric >= .@input) {
+					if (.@fabric > 0) {
+						if (.@fabric >= .@input) {
 							delitem 1059,.@input;
 							set .@whispers,.@whispers+.@input;
 							set .@input,0;
@@ -1980,8 +1979,8 @@ prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
 							set .@whispers,.@whispers+.@fabric;
 						}
 					}
-					if(.@worn > 0 && .@input != 0) {
-						if(.@worn >= .@input) {
+					if (.@worn > 0 && .@input != 0) {
+						if (.@worn >= .@input) {
 							delitem 6299,.@input;
 							set .@whispers,.@whispers+.@input;
 							set .@input,0;
@@ -1992,8 +1991,8 @@ prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
 							set .@whispers,.@whispers+.@worn;
 						}
 					}
-					if(.@jack > 0 && .@input != 0) {
-						if(.@jack >= .@input) {
+					if (.@jack > 0 && .@input != 0) {
+						if (.@jack >= .@input) {
 							delitem 1062,.@input;
 							set .@darklords,.@darklords+.@input;
 							set .@input,0;
@@ -2004,8 +2003,8 @@ prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
 							set .@darklords,.@darklords+.@jack;
 						}
 					}
-					if(.@crushed > 0 && .@input != 0) {
-						if(.@crushed >= .@input) {
+					if (.@crushed > 0 && .@input != 0) {
+						if (.@crushed >= .@input) {
 							delitem 6298,.@input;
 							set .@darklords,.@darklords+.@input;
 							set .@input,0;

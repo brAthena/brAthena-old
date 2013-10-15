@@ -24,14 +24,14 @@
 
 que_ng,182,85,3	script	Garrison	109,{
 
-	if(BaseJob != Job_Gunslinger)
+	if (BaseJob != Job_Gunslinger)
 	{
 		mes "[Garrison]";
 		mes "You're not a gunslinger.";
 		mes "You're distracting me from my work. Go on.";
 		close;
 	}
-	else if(BaseLevel < 55)
+	else if (BaseLevel < 55)
 	{
 		mes "[Garrison]";
 		mes "My name is Garrison. I'm a master in crafting guns.";
@@ -45,7 +45,7 @@ que_ng,182,85,3	script	Garrison	109,{
 	switch(gun_gs)
 	{
 		case 0:
-			if(countitem(13104) < 1)
+			if (countitem(13104) < 1)
 			{
 				mes "[Garrison]";
 				mes "My name is Garrison. I'm a master in crafting guns.";
@@ -60,7 +60,7 @@ que_ng,182,85,3	script	Garrison	109,{
 			mes "Hmm~ What's going on?";
 			mes "Are you here because you need a weapon?";
 			next;
-			switch( select( "I need a Garrison.","Not really.","Cancel") )
+			switch(select("I need a Garrison.","Not really.","Cancel") )
 			{
 				case 1:
 					mes "[Garrison]";
@@ -95,7 +95,7 @@ que_ng,182,85,3	script	Garrison	109,{
 					mes "[Garrison]";
 					mes "Just so you know, if I slot your Garrison, any current refine points or slotted cards will disappear. Decide carefully.";
 					next;
-					switch( select( "I don't like the sound of this.","Ok, I'll try it out.") )
+					switch(select("I don't like the sound of this.","Ok, I'll try it out.") )
 					{
 						case 1:
 							mes "[Garrison]";
@@ -124,7 +124,7 @@ que_ng,182,85,3	script	Garrison	109,{
 			}
 
 		case 1:
-			if((countitem(999) < 10) || (countitem(7317) < 10) || (countitem(1011) < 10) || (countitem(1003) < 30) || (countitem(985) < 1))
+			if ((countitem(999) < 10) || (countitem(7317) < 10) || (countitem(1011) < 10) || (countitem(1003) < 30) || (countitem(985) < 1))
 			{
 				mes "[Garrison]";
 				mes "10 Steel, 1 Elunium, 10 Emveretarcon, 30 Coal, and 10 Rusty Screws.";
@@ -199,7 +199,7 @@ que_ng,182,85,3	script	Garrison	109,{
 			mes "I'm sorry about what happened.";
 			mes "But, as promised, I will slot your Garrison ...";
 			next;
-			if(countitem(13104) < 1)
+			if (countitem(13104) < 1)
 			{
 				mes "[Garrison]";
 				mes "Huh? Sigh.";
@@ -220,7 +220,7 @@ que_ng,182,85,3	script	Garrison	109,{
 			set gun_gs, 5;
 			close;
 		case 4:
-			if(countitem(13104) < 1)
+			if (countitem(13104) < 1)
 			{
 				mes "[Garrison]";
 				mes "Go and get your Garrison and then get back to me.";
@@ -242,7 +242,7 @@ que_ng,182,85,3	script	Garrison	109,{
 			mes "Did you come back because you need a weapon?";
 			mes "What do you need?";
 			next;
-			switch( select( "Garrison","Slot a Garrison","Cancel"))
+			switch(select("Garrison","Slot a Garrison","Cancel"))
 			{
 				case 1:
 					callsub SubGarrison;
@@ -264,7 +264,7 @@ SubGarrison:
 	mes "there's a fee of 30,000 Zeny.";
 	mes "Well, do you want one?.";
 	next;
-	switch( select( "Maybe later.","Yes, make it for me immediately.","Cancel") )
+	switch(select("Maybe later.","Yes, make it for me immediately.","Cancel") )
 	{
 		case 1:
 			mes "[Garrison]";
@@ -273,7 +273,7 @@ SubGarrison:
 			close;
 
 		case 2:
-			if((countitem(999) < 50) || (countitem(7317) < 20) || (countitem(984) < 1) || (countitem(1003) < 50) ||(countitem(985) < 3) )
+			if ((countitem(999) < 50) || (countitem(7317) < 20) || (countitem(984) < 1) || (countitem(1003) < 50) ||(countitem(985) < 3) )
 			{
 				mes "[Garrison]";
 				mes "You didn't bring enough materials";
@@ -285,14 +285,14 @@ SubGarrison:
 				mes "Don't forget.";
 				close;
 			}
-			else if(Zeny < 30000)
+			else if (Zeny < 30000)
 			{
 				mes "[Garrison]";
 				mes "You need more Zeny~!";
 				mes "More Zeny!!";
 				close;
 			}
-			else if(checkweight(13104,1) == 0)
+			else if (checkweight(13104,1) == 0)
 			{
 				mes "[Garrison]";
 				mes "There's no room in your inventory";
@@ -330,7 +330,7 @@ SubGarrison_:
 	mes "1 Garrison.";
 	mes "Well, do you want one?.";
 	next;
-	switch( select( "Maybe later.","Yes, make it for me immediately.","Cancel" ))
+	switch(select("Maybe later.","Yes, make it for me immediately.","Cancel" ))
 	{
 		case 1:
 			mes "[Garrison]";
@@ -339,7 +339,7 @@ SubGarrison_:
 			close;
 
 		case 2:
-			if((countitem(999) < 10) || (countitem(7317) < 10) || (countitem(1011) < 10) || (countitem(1003) < 30) || (countitem(985) < 1) || (countitem(13104) < 1))
+			if ((countitem(999) < 10) || (countitem(7317) < 10) || (countitem(1011) < 10) || (countitem(1003) < 30) || (countitem(985) < 1) || (countitem(13104) < 1))
 			{
 				mes "[Garrison]";
 				mes "You didn't bring enough materials";
@@ -351,7 +351,7 @@ SubGarrison_:
 				mes "Don't forget.";
 				close;
 			}
-			else if(checkweight(13105,1) != 1)
+			else if (checkweight(13105,1) != 1)
 			{
 				mes "[Garrison]";
 				mes "There's no room in your inventory";
@@ -383,7 +383,7 @@ SubGarrison_:
 
 lighthalzen,322,247,6	script	Ravey	 86,{
 
-	if(gun_gs == 2)
+	if (gun_gs == 2)
 	{
 		mes "["+strcharinfo(0)+"]";
 		mes "Excuse me. Hello.";
@@ -406,7 +406,7 @@ lighthalzen,322,247,6	script	Ravey	 86,{
 		mes "Let's hurry back to Garrison.-";
 		close;
 	}
-	if(gun_gs == 3)
+	if (gun_gs == 3)
 	{
 		mes "["+strcharinfo(0)+"]";
 		mes "- The man called Ravey suddenly attacks, as if he was waiting for the word Gunslinger...-";
@@ -426,7 +426,7 @@ lighthalzen,322,247,6	script	Ravey	 86,{
 
 que_ng,187,163,3	script	Ingrid	744,{
 
-	if(BaseJob != Job_Gunslinger)
+	if (BaseJob != Job_Gunslinger)
 	{
 		mes "[Ingrid]";
 		mes "How are you!";
@@ -508,7 +508,7 @@ que_ng,187,163,3	script	Ingrid	744,{
 			mes "I need 100 Used Iron Plates, 10 Oridecons, 50 Old Rusty Screws, 100 Burning Hearts, and 200,000 Zeny.";
 			mes "Would you like to produce it for you?";
 			next;
-			switch( select( "I'll think about it.", "Yes, please." ) )
+			switch(select("I'll think about it.", "Yes, please." ) )
 			{
 				case 1:
 					mes "[Ingrid]";
@@ -540,7 +540,7 @@ que_ng,187,163,3	script	Ingrid	744,{
 			mes "Hello~ You're back~";
 			mes "Are you back because you need an Inferno?";
 			next;
-			switch( select( "Nah, I'm back just because..","Yes, make me an Inferno." ) )
+			switch(select("Nah, I'm back just because..","Yes, make me an Inferno." ) )
 			{
 				case 1:
 					mes "[Ingrid]";
@@ -564,7 +564,7 @@ SubInferno:
 		mes "Please don't forget that.";
 		close;
 	}
-	else if(Zeny < 200000)
+	else if (Zeny < 200000)
 	{
 		mes "[Ingrid]";
 		mes "You've brought plenty of material,";
@@ -573,7 +573,7 @@ SubInferno:
 		mes "Please don't forget that.";
 		close;
 	}
-	else if(checkweight(13162,1) != 1)
+	else if (checkweight(13162,1) != 1)
 	{
 		mes "[Ingrid]";
 		mes "It looks like you have too many items to carry my creation, so I can't give it to you.";
@@ -592,14 +592,14 @@ SubInferno:
 		delitem 7317,50;
 		delitem 7097,100;
 		getitem 13162,1;
-		if(gun_inf == 1) set gun_inf,2;
+		if (gun_inf == 1) set gun_inf,2;
 		close;
 	}
 }
 
 que_ng,185,180,3	script	Vanessa	726,{
 
-	if(BaseJob != Job_Gunslinger)
+	if (BaseJob != Job_Gunslinger)
 	{
 		mes "[Vanessa]";
 		mes "Hah !Hah !!";
@@ -731,7 +731,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 			mes "opportunity is not common.";
 			mes "Want to make a request?";
 			next;
-			switch( select( "Maybe next time.","Okay.") )
+			switch(select("Maybe next time.","Okay.") )
 			{
 				case 1:
 					mes "[Vanessa]";
@@ -776,7 +776,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 					mes "You have to bring me the correct amount of materials.";
 					mes "Do you want it?";
 					next;
-					switch( select( "Maybe next time.","Okay.") )
+					switch(select("Maybe next time.","Okay.") )
 					{
                					case 1:
 							mes "[Vanessa]";
@@ -802,7 +802,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 					mes "You have to bring me the correct amount of materials.";
 					mes "Do you still want a Slotted Destroyer?";
 					next;
-					switch( select( "I'll think about it.","OK! I do!") )
+					switch(select("I'll think about it.","OK! I do!") )
 					{
                					case 1:
 							mes "[Vanessa]";
@@ -836,7 +836,7 @@ SubDestroyer:
 		mes "Keep in mind that you have to bring the correct amount.";
 		close;
 	}
-	else if(Zeny < 100000)
+	else if (Zeny < 100000)
 	{
 		mes "[Vanessa]";
 		mes "You've brought plenty of material,";
@@ -844,7 +844,7 @@ SubDestroyer:
 		mes "Keep that in mind.";
 		close;
 	}
-	else if(checkweight(13160,1) != 1)
+	else if (checkweight(13160,1) != 1)
 	{
 		mes "[Vanessa]";
 		mes "It looks like you wouldn't be able to carry my creation with you even if I made it.";
@@ -864,7 +864,7 @@ SubDestroyer:
 		delitem 984,5;
 		delitem 7317,70;
 		getitem 13160,1;
-		if(gunst == 1) set gunst,2;
+		if (gunst == 1) set gunst,2;
 		next;
 		mes "[Vanessa]";
 		mes "If you ever need one again later,";
@@ -883,7 +883,7 @@ SubDestroyer_:
 		mes "Keep in mind that the materials need to be exact.";
 		close;
 	}
-	else if(checkweight(13161,1) != 1)
+	else if (checkweight(13161,1) != 1)
 	{
 		mes "[Vanessa]";
 		mes "There's no space in your inventory.";
@@ -914,8 +914,8 @@ SubDestroyer_:
 
 que_ng,149,178,4	script	Lab Director	744,{
 
-	if(gun_na == 1){
-		if(countitem(1043) > 999 && countitem(932) > 999){
+	if (gun_na == 1){
+		if (countitem(1043) > 999 && countitem(932) > 999){
 			delitem 1043,1000;
 			delitem 932,1000;
 			set gun_na,2;
@@ -938,18 +938,18 @@ que_ng,149,178,4	script	Lab Director	744,{
 			mes "give the Butcher to you, after paying";
 			mes "the fee of 100000 zeny.";
 			close;
-		}else{
+		} else {
 			mes "[N. A]";
 			mes "Have you found ^ff00001000 Orc Claw^000000 and ^ff00001000 Skel Bone^000000 yet?";
 			mes "If you think it's too difficult,";
 			mes "you can choose to give up.";
 			next;
-			if(select("I'm not giving up!:I give up...") == 1){
+			if (select("I'm not giving up!:I give up...") == 1){
 				mes "[N. A]";
 				mes "Alright, I trust you.";
 				mes "Good luck.";
 				close;
-			}else{
+			} else {
 				mes "[N. A]";
 				mes "You're giving up huh?";
 				mes "Well, I'll admit that the";
@@ -963,7 +963,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 			}
 		}
 	}
-	else if(gun_na == 2){
+	else if (gun_na == 2){
 		mes "[N. A]";
 		mes "I already got Lady Celena's";
 		mes "permission to let you use the";
@@ -971,13 +971,13 @@ que_ng,149,178,4	script	Lab Director	744,{
 		mes "you've paid me 100000 zeny.";
 		mes "Do you want to pay now?";
 		next;
-		if(select("Nope.:Yeah.") == 1){
+		if (select("Nope.:Yeah.") == 1){
 			mes "[N. A]";
 			mes "Alright. I await you to return";
 			mes "with the money.";
 			close;
-		}else{
-			if(Zeny < 100000){
+		} else {
+			if (Zeny < 100000){
 				mes "[N. A]";
 				mes "Huh, I don't think you have";
 				mes "enough money on you.";
@@ -985,7 +985,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 				mes "alright?";
 				close;
 			}
-			if(checkweight(13158,1) == 0){
+			if (checkweight(13158,1) == 0){
 				mes "[N. A]";
 				mes "You are overweight.";
 				mes "Even if I give you the";
@@ -1015,7 +1015,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 			close;
 		}
 	}
-	else if(gun_na == 10){
+	else if (gun_na == 10){
 		if (countitem(999) > 69 && countitem(985) > 4 && countitem(984) > 2 && countitem(1003) > 69 && countitem(7317) > 49 && Zeny > 50000){
 			delitem 999,70;
 			delitem 985,5;
@@ -1030,7 +1030,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 			mes "to it right away! It'll take";
 			mes "some time, so wait up...";
 			close;
-		}else{
+		} else {
 			mes "[N. A]";
 			mes "Eh? You don't have the materials";
 			mes "with you yet?";
@@ -1048,12 +1048,12 @@ que_ng,149,178,4	script	Lab Director	744,{
 			mes "If you don't want it anymore,";
 			mes "you can cancel the request.";
 			next;
-			if(select("Don't cancel.:Cancel it.") == 1){
+			if (select("Don't cancel.:Cancel it.") == 1){
 				mes "[N. A]";
 				mes "Well, please come back with the";
 				mes "materials. I'll be waiting.";
 				close;
-			}else{
+			} else {
 				mes "[N. A]";
 				mes "Alright, request to make";
 				mes "a Drifter for you is cancelled.";
@@ -1064,8 +1064,8 @@ que_ng,149,178,4	script	Lab Director	744,{
 			}
 		}
 	}
-	else if(gun_na == 11){
-		if(checkweight(13157,1) == 0){
+	else if (gun_na == 11){
+		if (checkweight(13157,1) == 0){
 			mes "[N. A]";
 			mes "You are overweight.";
 			mes "Even if I made you the";
@@ -1086,7 +1086,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 		mes "be mentally helpful to you.";
 		close;
 	}
-	else if(gun_na == 101){
+	else if (gun_na == 101){
 		mes "[N. A]";
 		mes "Ah, hello?";
 		mes "I'm the Coordinator of";
@@ -1150,7 +1150,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 		set gun_na,102;
 		close;
 	}
-	else if(gun_na == 102){
+	else if (gun_na == 102){
 		mes "[N. A]";
 		mes "30 Poison Sphere, 30 Flare Sphere,";
 		mes "30 Lightning Sphere, 30 Blind";
@@ -1165,31 +1165,31 @@ que_ng,149,178,4	script	Lab Director	744,{
 			mes "you could find.";
 			close;
 		case 2:
-			if(countitem(13205) >= 30){
+			if (countitem(13205) >= 30){
 				delitem 13205,30;
 				set gun_na,103;
 			}
 			break;
 		case 3:
-			if(countitem(13203) >= 30){
+			if (countitem(13203) >= 30){
 				delitem 13203,30;
 				set gun_na,103;
 			}
 			break;
 		case 4:
-			if(countitem(13204) >= 30){
+			if (countitem(13204) >= 30){
 				delitem 13204,30;
 				set gun_na,103;
 			}
 			break;
 		case 5:
-			if(countitem(13206) >= 30){
+			if (countitem(13206) >= 30){
 				delitem 13206,30;
 				set gun_na,103;
 			}
 			break;
 		case 6:
-			if(countitem(13207) >= 30){
+			if (countitem(13207) >= 30){
 				delitem 13207,30;
 				set gun_na,103;
 			}
@@ -1219,7 +1219,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 		mes "Well, see you later!";
 		close;
 	}
-	else if(gun_na == 103 || gun_na == 104){
+	else if (gun_na == 103 || gun_na == 104){
 		mes "[N. A]";
 		mes "Mr. F. Harrison is very good.";
 		mes "I'm sure he can fix your";
@@ -1285,7 +1285,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 		mes "[N. A]";
 		mes "Do you think you can handle it?"; 
 		next;
-		if(select("I'm not sure...:Of course I can!!") == 1){
+		if (select("I'm not sure...:Of course I can!!") == 1){
 			mes "[N. A]";
 			mes "The ^ff0000Butcher^000000 is a weapon that you";
 			mes "can't handle without a strong";
@@ -1340,12 +1340,12 @@ que_ng,149,178,4	script	Lab Director	744,{
 		mes "[N. A]";
 		mes "Do you want to try using the ^ff0000Drifter^000000?"; 
 		next;
-		if(select("Um, no.:Yeah!") == 1){
+		if (select("Um, no.:Yeah!") == 1){
 			mes "[N. A]";
 			mes "If you want to try it out";
 			mes "some time, come back here.";
 			close;
-		}else{
+		} else {
 			set gun_na,10;
 			mes "[N. A]";
 			mes "Since it's really hard to find";
@@ -1382,7 +1382,7 @@ que_ng,149,178,4	script	Lab Director	744,{
 
 lighthalzen,205,284,6	script	F. Harrison	85,{
 	if (gun_na == 100){
-		if(checkweight(13102,1) == 0){
+		if (checkweight(13102,1) == 0){
 			mes "[F. Harrison]";
 			mes "You are overweight.";
 			mes "Even if I gave you the";
@@ -1467,7 +1467,7 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 		getitem 13102,1;
 		close;
 	}
-	else if(gun_na == 101 || gun_na == 102){
+	else if (gun_na == 101 || gun_na == 102){
 		mes "[F. Harrison]";
 		mes "The materials I need are";
 		mes "10 Steel, 2 Eluniums,";
@@ -1478,9 +1478,9 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 		mes "assistance on the Rod.";
 		close;
 	}
-	else if(gun_na == 103){
-		if(countitem(999) >= 10 && countitem(985) >= 2 && countitem(984) >= 1 && countitem(1003) >= 20){
-			if(countitem(13102) > 0){
+	else if (gun_na == 103){
+		if (countitem(999) >= 10 && countitem(985) >= 2 && countitem(984) >= 1 && countitem(1003) >= 20){
+			if (countitem(13102) > 0){
 				delitem 999,10;
 				delitem 985,2;
 				delitem 984,1;
@@ -1516,8 +1516,8 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 			close;
 		}
 	}
-	else if(gun_na == 104){
-		if(checkweight(13159,1) == 0){
+	else if (gun_na == 104){
+		if (checkweight(13159,1) == 0){
 			mes "-You're overweight already.-";
 			mes "-Come back after dropping some";
 			mes "stuff first.-";
@@ -1536,8 +1536,8 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 		mes "Well, enjoy it.";
 		close;
 	}
-	else if(gun_na == 0){
-		if(BaseJob != Job_Gunslinger) {
+	else if (gun_na == 0){
+		if (BaseJob != Job_Gunslinger) {
 			mes "[F. Harrison]";
 			mes "Man, I'm so bored...";
 			mes "I wonder if there's anything";
@@ -1548,7 +1548,7 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 			mes "beautiful 'Crimson Bolt'.";
 			close;
 		}
-		if(BaseLevel > 67 && countitem(13158) > 0){
+		if (BaseLevel > 67 && countitem(13158) > 0){
 			mes "[F. Harrison]";
 			mes "Man, I'm so bored...";
 			mes "I wonder if there's anything";
@@ -1565,7 +1565,7 @@ lighthalzen,205,284,6	script	F. Harrison	85,{
 			mes "I'm bored out of my mind here!";
 			mes "Pleeeeeeeeeeeease~?";
 			next;
-			if(select("No way.:Here...") == 1){
+			if (select("No way.:Here...") == 1){
 				mes "[F. Harrison]";
 				mes "Hah! You think you're the only";
 				mes "one with a cool weapon!? Well";

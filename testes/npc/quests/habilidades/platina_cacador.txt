@@ -48,7 +48,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes "I don't know what";
 				mes "you're talking about!";
 				close;
-			}else{
+			} else {
 				mes "[Arpesto]";
 				mes "I recognize you";
 				mes "from somewhere,";
@@ -216,7 +216,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				set qskill_hunter,100;
 				skill "HT_PHANTASMIC",1,0;
 				close;
-			}else{
+			} else {
 				mes "[Arpesto]";
 				mes "Hurry up and bring";
 				mes "^3131FF5 Cursed Rubies^000000,";
@@ -254,7 +254,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes "be able to grasp what I've been";
 				mes "teaching Hunters and Snipers.";
 				close;
-			}else{
+			} else {
 				mes "[Arpesto]";
 				mes "Has the master sent you?";
 				mes "Ah, you definitely have the";
@@ -357,7 +357,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				}
 			}
 		}
-	}else{
+	} else {
 		mes "[Arpesto]";
 		mes "The sky still looks clear, but recently the winds that have been blowing through the land seem to carry with them an air of misfortune.";
 		next;

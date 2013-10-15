@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: ??/1.2/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests repetíveis para jogadores entre      |
-//   | Baselevel 11-25.                                       |
+//   | BaseLevel 11-25.                                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
@@ -95,7 +95,7 @@ L_Quest:
 	mes " ";
 	mes " - Gerente : Spike - ";
 	next;
-	if(select("Vou fazer esta missão.:Olhar outras missões.") == 2) {
+	if (select("Vou fazer esta missão.:Olhar outras missões.") == 2) {
 		mes " - Vou procurar por outras missões. -";
 		close;
 	}

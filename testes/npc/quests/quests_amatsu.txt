@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4a/1.4a/1.1                       |
+//   | Versões eA/rA/brA: 1.4a/2.5/1.2                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Evento Momotaro, Quest do Sushi, Quest da   |
 //   | Caverna.                                               |
@@ -20,6 +20,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Suporte ao registro de quests [lututuiBR]          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -138,8 +139,12 @@ amatsu,223,236,3	script	Editora#ama	763,{
 		mes "Isto é um presente para você.";
 		mes "Por favor continue a se aventurar em histórias~";
 		mes " ";
+		set .@event_momo, event_momo;
+		set event_momo,4;
+		completequest 8128;
+		completequest 8129;
+		completequest 8130;
 		if (event_momo == 3) {
-			set event_momo,4;
 			set .@gift_1,rand(1,10);
 			if (.@gift_1 == 1) {
 				getitem 659,1; // Coração Apaixonado
@@ -171,9 +176,7 @@ amatsu,223,236,3	script	Editora#ama	763,{
 			if (.@gift_1 == 10) {
 				getitem 641,1; // Contratos das Sombras
 			}
-		}
-		else {
-			set event_momo,4;
+		} else {
 			set .@gift_2,rand(1,10);
 			if (.@gift_2 == 1) {
 				getitem 622,1; // Cenoura Arco-Íris
@@ -209,7 +212,7 @@ amatsu,223,236,3	script	Editora#ama	763,{
 		close;
 	}
 }
-	
+
 ama_test,52,44,3	script	Assistente#ama	109,{
 	if (event_momo == 0) {
 		mes "[Satoshi]";
@@ -395,7 +398,7 @@ OnTouch:
 	mes ".....ou um papel higiênico azul.... ";
 	close;
 }
-	
+
 ama_test,49,93,4	script	Avô#ama	766,{
 	end;
 
@@ -403,7 +406,7 @@ OnInit:
 	disablenpc "Avô#ama";
 	end;
 }
-	
+
 ama_test,50,93,4	script	Avó#ama1	761,10,10,{
 	end;
 
@@ -421,6 +424,7 @@ OnTouch:
 	mes "[Avô]";
 	mes "Hmm. O Chefe disse que o Dokebi ganhou 20 milhões de zenys através de roubos a outras contas...";
 	next;
+	setquest 8127;
 	mes "[Avó]";
 	mes "Dohhhhhhh!!!! ";
 	next;
@@ -459,7 +463,7 @@ OnTouch:
 	}
 	end;
 }
-	
+
 ama_test,34,15,0	script	Dokebi#ez	-1,{
 OnInit:
 	disablenpc "Dokebi#ez";
@@ -507,7 +511,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,34,16,0	script	Dokebi#hd	-1,{
 OnInit:
 	disablenpc "Dokebi#hd";
@@ -555,7 +559,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,50,100,3	script	Treinador#ama	762,15,15,{
 	mes "[Treinador]";
 	mes "Haha~ Bom.";
@@ -581,6 +585,7 @@ ama_test,50,100,3	script	Treinador#ama	762,15,15,{
 		mes "...Não olhe assim para mim.";
 		mes "Eu estava apenas brincando. Humhum.";
 		next;
+		changequest 8127,8128;
 		mes "[Treinador]";
 		mes "Agora, a história sobre Momotaro acabou.";
 		mes "Você pode conseguir sua recompensa ao falar com a Editora.";
@@ -602,6 +607,7 @@ ama_test,50,100,3	script	Treinador#ama	762,15,15,{
 		mes "Certo, que coisa interessante.";
 		mes "Você quer ouvir a minha proposta?";
 		next;
+		changequest 8127,8129;
 		mes "[Treinador]";
 		mes "Neste momento queria te mandar de volta...MAS!";
 		mes "Eu realmente quero saber";
@@ -616,7 +622,8 @@ ama_test,50,100,3	script	Treinador#ama	762,15,15,{
 		mes "[Treinador]";
 		mes "Deseja realizar o próximo desafio?";
 		next;
-		if (select("Não..está bem.:Vamos a batalha!") == 1) {
+		if (select("Não..estou bem.:Vamos a batalha!") == 1) {
+			erasequest 8129;
 			mes "[Treinador]";
 			mes "Haha~Eu entendo...";
 			mes "Você está desgastado fisicamente devido a última batalha. Foi uma grande batalha...";
@@ -629,6 +636,7 @@ ama_test,50,100,3	script	Treinador#ama	762,15,15,{
 			mes "Não perca sua auto-estima";
 			mes "no futuro. Adeus.";
 			next;
+			setquest 8128;
 			warp "amatsu",223,230;
 			disablenpc "Treinador#ama";
 			donpcevent "Cronômetro#ama::OnDisable";
@@ -656,7 +664,7 @@ OnTouch:
 	mes "Tada~~~ !";
 	close;
 }
-	
+
 ama_test,34,17,0	script	Am Mut#ama	-1,{
 OnInit:
 	disablenpc "Am Mut#ama";
@@ -693,7 +701,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,50,100,3	script	Treinador#after	762,5,5,{
 	end;
 
@@ -717,13 +725,14 @@ OnTouch:
 	mes "Não se esqueça do seu prêmio~";
 	close2;
 	set event_momo,3;
+	changequest 8129,8130;
 	warp "amatsu",223,230;
 	disablenpc "Treinador#after";
 	donpcevent "Cronômetro#ama::OnDisable";
 	donpcevent "Assistente#ama::Onreset";
 	end;
 }
-	
+
 ama_test,34,18,0	script	Cronômetro#ama	-1,{
 OnInit:
 	disablenpc "Cronômetro#ama";
@@ -765,7 +774,7 @@ OnTimer362500:
 	donpcevent "Cronômetro#ama::OnDisable";
 	end;
 }
-	
+
 ama_test,50,100,0	script	portalanterior#ama	-1,25,25,{
 OnInit:
 	disablenpc "portalanterior#ama";
@@ -811,6 +820,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			mes "Obrigado. Não é nada de mais, mas irei te dar minha especialidade, Peixe Cru.";
 			next;
 			set fish_r,0;
+			erasequest 10036;
 			delitem 529,10; // Bala
 			getitem 544,15; // Peixe Cru
 			mes "[Magumagu]";
@@ -840,6 +850,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			mes "Obrigado. Não é nada de mais, mas irei te dar dois conjuntos de Sushi.";
 			next;
 			set fish_r,0;
+			erasequest 10037;
 			delitem 964,10; // Casco de Caranguejo
 			getitem 551,20; // Sushi
 			mes "[Magumagu]";
@@ -868,6 +879,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			mes "Obrigado. Não é nada de mais, mas irei te dar muitos conjuntos de Sushi.";
 			next;
 			set fish_r,0;
+			erasequest 10038;
 			delitem 961,10; // Concha
 			getitem 551,30; // Sushi
 			mes "[Magumagu]";
@@ -895,8 +907,9 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			mes "[Magumagu]";
 			mes "Obrigado. Não é nada de mais, mas irei te dar uma grande quantidade de comida.";
 			next;
-			delitem 1023,10; // Cauda de Peixe
 			set fish_r,0;
+			erasequest 10039;
+			delitem 1023,10; // Cauda de Peixe
 			getitem 544,20;  // Peixe Cru
 			getitem 551,30;  // Sushi
 			mes "[Magumagu]";
@@ -926,6 +939,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			next;
 			delitem 736,1;  // Prato de Porcelana
 			set fish_r,0;
+			erasequest 10040;
 			getitem 551,20; // Sushi
 			mes "[Magumagu]";
 			mes "Divida com seus amigos e familiares.";
@@ -978,6 +992,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				next;
 				delitem 950,100; // Coração de Sereia
 				set ama_sushi,4;
+				erasequest 10041;
 				getitem 1144,1;  // Sashimi
 				mes "[Magumagu]";
 				mes "Aqui, pegue minha faca.";
@@ -1038,6 +1053,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				next;
 				set ama_sushi,ama_sushi+1;
 				set fish_r,0;
+				erasequest 10041;
 				mes "[Magumagu]";
 				mes "Muito obrigado por hoje! Haha!";
 				mes "Come back again when you feel like helping. Take care...!!!";
@@ -1084,7 +1100,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				mes "Se você quiser experimentar as deliciosas fatias de peixe, é melhor conseguir mais dinheiro.";
 				close;
 			}
-			set zeny,zeny-700;
+			set Zeny, Zeny-700;
 			getitem 551,10; // Sushi
 			mes "[Magumagu]";
 			mes "Aqui está. Se você gostar do sabor, por favor peça mais.";
@@ -1096,7 +1112,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				mes "Se você quiser experimentar um delicioso Sushi, é melhor conseguir mais dinheiro.";
 				close;
 			}
-			set zeny,zeny-74;
+			set Zeny, Zeny-74;
 			getitem 551,1; // Sushi
 			mes "[Magumagu]";
 			mes "Aqui está. Se você gostar do sabor, por favor peça mais.";
@@ -1122,7 +1138,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				mes "Se você quiser experimentar as deliciosas fatias de peixe, é melhor conseguir mais dinheiro.";
 				close;
 			}
-			set zeny,zeny-350;
+			set Zeny, Zeny-350;
 			getitem 544,10; // Peixe Cru
 			mes "[Magumagu]";
 			mes "Aqui está. Se você gostar do sabor, por favor peça mais.";
@@ -1135,7 +1151,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				mes "";
 				close;
 			}
-			set zeny,zeny-37;
+			set Zeny, Zeny-37;
 			getitem 544,1; // Peixe Cru
 			mes "[Magumagu]";
 			mes "Aqui está. Se você gostar do sabor, por favor peça mais.";
@@ -1165,6 +1181,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			set .@fish_m1,rand(1,10);
 			if (.@fish_m1 == 1 || .@fish_m1 == 2) {
 				set fish_r,1;
+				setquest 10036; 
 				mes "[Magumagu]";
 				mes "Eu preciso de algumas balas";
 				mes "a dessert for the customers.";
@@ -1174,6 +1191,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			}
 			else if (.@fish_m1 == 3 || .@fish_m1 == 4) {
 				set fish_r,2;
+				setquest 10037;
 				mes "[Magumagu]";
 				mes "Eu preciso de alguns cascos de caranguejo para o molho que utilizo na cozinha...";
 				mes "Se você me trouxer ^0000FF10 Cascos de Caranguejo^000000,";
@@ -1182,6 +1200,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			}
 			else if (.@fish_m1 == 5 || .@fish_m1 == 6) {
 				set fish_r,3;
+				setquest 10038;
 				mes "[Magumagu]";
 				mes "Eu utilizei todas as minhas conchas.";
 				mes "Preciso delas para fazer os aperitivos...";
@@ -1191,6 +1210,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			}
 			else if (.@fish_m1 == 7 || .@fish_m1 == 8) {
 				set fish_r,4;
+				setquest 10039;
 				mes "[Magumagu]";
 				mes "As Caudas de Peixe estão em falta no estoque.";
 				mes "Isso é urgente...";
@@ -1200,6 +1220,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			}
 			else if (.@fish_m1 == 9) {
 				set fish_r,5;
+				setquest 10040;
 				mes "[Magumagu]";
 				mes "Estamos deixando de servir pratos aos clientes por falta de pratos.";
 				mes "Isso é horrível...";
@@ -1209,6 +1230,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 			else {
 				if (rand(1,10) == 1) {
 					set fish_r,6;
+					setquest 10041;
 					mes "[Magumagu]";
 					mes "Não me pergunte por que...";
 					mes "Mas, eu preciso de algo especial...";
@@ -1221,6 +1243,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 				}
 				else {
 					set fish_r,5;
+					setquest 10040;
 					mes "[Magumagu]";
 					mes "Estamos deixando de servir pratos aos clientes por falta de pratos.";
 					mes "Isso é horrível...";
@@ -1258,7 +1281,7 @@ amatsu,112,164,4	script	Guarda do Portão#ama1	767,{
 	mes " ";
 	close;
 }
-	
+
 amatsu,119,164,4	script	Guarda do Portão#ama2	767,{
 	mes "[Guarda do Portão]";
 	mes "Você é de Rune-Midgard?";
@@ -1271,7 +1294,7 @@ amatsu,119,164,4	script	Guarda do Portão#ama2	767,{
 	mes "Ele investiu em diversas áreas de Amatsu, e o comércio intercontinental foi idéia dele.";
 	close;
 }
-	
+
 ama_in02,207,40,6	script	Guarda do Portão#ama3	767,{
 	mes "[Guarda do Portão]";
 	mes "Bem-vindo. O senhor do palácio permitiu a entrada especial de visitantes vindos de outros continentes.";
@@ -1280,7 +1303,7 @@ ama_in02,207,40,6	script	Guarda do Portão#ama3	767,{
 	mes "Olhe ao redor e aproveite.";
 	close;
 }
-	
+
 ama_in02,207,49,6	script	Guarda do Portão#ama4	767,{
 	mes "[Guarda do Portão]";
 	mes "O senhor é realmente uma ótima pessoa.";
@@ -1292,7 +1315,7 @@ ama_in02,207,49,6	script	Guarda do Portão#ama4	767,{
 	mes " ";
 	close;
 }
-	
+
 amatsu,164,174,4	script	Guarda do Portão#ama5	767,{
 	mes "[Guarda do Portão]";
 	if (event_amatsu == 0) {
@@ -1300,6 +1323,7 @@ amatsu,164,174,4	script	Guarda do Portão#ama5	767,{
 		mes "A mãe de nosso senhor está descansando aqui. Ela precisa descansar.";
 		next;
 		set event_amatsu,1;
+		setquest 8131;
 		mes "[Guarda do Portão]";
 		mes "Ela esteve doente por meses.";
 		mes "E é por isso que ela está hospedada aqui.";
@@ -1326,7 +1350,7 @@ amatsu,164,174,4	script	Guarda do Portão#ama5	767,{
 	}
 	close;
 }
-	
+
 amatsu,171,174,4	script	Guarda do Portão#ama6	767,{
 	mes "[Guarda do Portão]";
 	if (event_amatsu == 0) {
@@ -1363,7 +1387,7 @@ amatsu,171,174,4	script	Guarda do Portão#ama6	767,{
 	}
 	close;
 }
-	
+
 ama_in02,187,57,2	script	Soldado#ama1	767,{
 	mes "[Ichiro]";
 	mes "Bem-vindo.";
@@ -1375,7 +1399,7 @@ ama_in02,187,57,2	script	Soldado#ama1	767,{
 	mes "Isso tudo é fornecido por ele.";
 	close;
 }
-	
+
 ama_in02,170,62,4	script	Soldado#ama2	767,{
 	mes "[Jiro]";
 	mes "Sou Jiro, o administrador deste Palácio.";
@@ -1395,7 +1419,7 @@ ama_in02,170,62,4	script	Soldado#ama2	767,{
 			mes "É necessário uma taxa de 10,000 zeny para gera um NOVO Passe Imperial.";
 			next;
 			if (select("Gerar:Nos falamos mais tarde") == 1) {
-				set zeny,zeny-10000;
+				set Zeny, Zeny-10000;
 				getitem 7160,1; // Passe Imperial
 				mes "[Jiro]";
 				mes "Aqui está, não o perca.";
@@ -1422,7 +1446,7 @@ ama_in02,170,62,4	script	Soldado#ama2	767,{
 		close;
 	}
 }
-	
+
 ama_in02,37,157,4	script	Soldado#ama3	767,{
 	mes "[Saburo]";
 	mes "Este é o campo de treinamento onde melhoramos nossas habilidades de batalha.";
@@ -1444,7 +1468,7 @@ ama_in02,37,157,4	script	Soldado#ama3	767,{
 	mes "Tchau...";
 	close;
 }
-	
+
 ama_in02,32,51,6	script	Soldado#ama4	767,{
 	mes "[Shiro]";
 	mes "*Tosse, Tosse* O quê...";
@@ -1462,7 +1486,7 @@ ama_in02,32,51,6	script	Soldado#ama4	767,{
 	mes "*Tosse*... *Tosse*...";
 	close;
 }
-	
+
 ama_in02,40,167,3	script	Soldado#ama5	767,{
 	mes "[Goro]";
 	mes "*Psst*... Por favor, fique quieto.";
@@ -1485,7 +1509,7 @@ ama_in02,40,167,3	script	Soldado#ama5	767,{
 	mes "Just don't tell anyone that I've told you this, okay?";
 	close;
 }
-	
+
 ama_in02,32,167,5	script	Soldado#ama6	767,{
 	mes "[Rokuro]";
 	mes "Ele sempre fala bobagem.";
@@ -1502,7 +1526,7 @@ ama_in02,32,167,5	script	Soldado#ama6	767,{
 	mes "Eu acho que sua saúde não melhorou após essas visitas...";
 	close;
 }
-	
+
 ama_in02,42,34,2	script	Soldado#ama7	767,{
 	mes "[Shichiro]";
 	mes "Divirta-se.";
@@ -1516,7 +1540,7 @@ ama_in02,42,34,2	script	Soldado#ama7	767,{
 	mes "Tenha um bom dia.";
 	close;
 }
-	
+
 ama_in02,203,156,4	script	Soldado#ama8	767,{
 	mes "[Hachiro]";
 	mes "Meu senhor está lá dentro.";
@@ -1529,7 +1553,7 @@ ama_in02,203,156,4	script	Soldado#ama8	767,{
 	mes "O que poderia ter acontecido com ele...?";
 	close;
 }
-	
+
 ama_in02,195,156,4	script	Soldado#ama9	767,{
 	mes "[Kyuro]";
 	mes "Isso não é bom.";
@@ -1541,7 +1565,7 @@ ama_in02,195,156,4	script	Soldado#ama9	767,{
 	mes "É por isso que eu estou seguindo-o como um Soldado.";
 	close;
 }
-	
+
 ama_in02,115,177,7	script	Soldado#ama10	767,{
 	mes "[Jyuro]";
 	mes "O que você está fazendo aqui?";
@@ -1625,7 +1649,7 @@ ama_in02,115,177,7	script	Soldado#ama10	767,{
 	mes "Há mais coisas para desfrutar na cidade. Divirta-se...";
 	close;
 }
-	
+
 ama_dun01,229,7,0	script	Soldado#ama11	767,{
 	mes "[Jyuro]";
 	mes "Você quer voltar?";
@@ -1641,7 +1665,7 @@ ama_dun01,229,7,0	script	Soldado#ama11	767,{
 	mes "Tenha cuidado...";
 	close;
 }
-	
+
 ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
 	if (event_amatsu == 0) {
 		mes "[Ishida Yoshinaga]";
@@ -1679,6 +1703,7 @@ ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
 			mes "Você, que vêm de Rune-Midgard, pode ser capaz de curar a doença da minha mãe. Irei recompensá-lo se você fizer isso...";
 			next;
 			set event_amatsu,2;
+			changequest 8131,8132;
 			mes "[Ishida Yoshinaga]";
 			mes "Peço-lhe...por favor.";
 			mes "Minha mãe está morando em uma casa do lado de fora do Palácio.";
@@ -1730,6 +1755,7 @@ ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
 			mes "Você pode andar para qualquer lugar de Amatsu com esse passe.";
 			next;
 			set event_amatsu,6;
+			completequest 8135;
 			delitem 1022,1; // Nove-Caudas
 			getitem 7160,1; // Passe Imperial
 			mes "[Ishida Yoshinaga]";
@@ -1765,7 +1791,7 @@ ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
 	mes "Eu sei que você carrega o conhecimento de Rune-Midgard, eu tenho fé nas suas habilidades.";
 	close;
 }
-	
+
 ama_in01,22,111,0	script	Avó#ama2	761,{
 	if (event_amatsu == 4) {
 		mes "[....]";
@@ -1800,7 +1826,8 @@ ama_in01,22,111,0	script	Avó#ama2	761,{
 			monster "ama_in01",22,111,"Nove-Caudas",1180,1;
 			killmonsterall "ama_in01";
 			set event_amatsu,5;
-			getitem 1022,1; // 
+			changequest 8134,8135;
+			getitem 1022,1; //Fox_Tail
 			mes "[....]";
 			mes "^FF6060Yoshinaga não lhe causará infelicidade...^000000";
 			mes "^FF0000Yaaaaaaaaaaaaap!!^000000";
@@ -1887,7 +1914,7 @@ ama_in01,22,111,0	script	Avó#ama2	761,{
 	warp "amatsu",167,197;
 	end;
 }
-	
+
 amatsu,189,166,5	script	Kouji#ama	764,{
 	mes "[Kouji]";
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
@@ -1912,6 +1939,7 @@ amatsu,189,166,5	script	Kouji#ama	764,{
 		mes "A raposa está me seguindo!";
 		mes "Se ela não sair quando eu gritar e gritar!";
 		mes "O Santuário de Sacerdotes do Norte irá me ajudar~";
+		changequest 8132,8133;
 	}
 	else if (event_amatsu == 4) {
 		mes "Sacerdote, Sacerdote~";
@@ -1940,7 +1968,7 @@ amatsu,189,166,5	script	Kouji#ama	764,{
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
 	close;
 }
-	
+
 ama_in01,169,173,1	script	Shaman#ama	769,{
 	mes "[Tokako]";
 	mes "Er, eu não sou realmente um Guia Espiritual...";
@@ -1956,7 +1984,7 @@ ama_in01,169,173,1	script	Shaman#ama	769,{
 	mes " ";
 	close;
 }
-	
+
 ama_in01,180,173,3	script	Guia Espiritual#ama	762,{
 	if (event_amatsu == 3) {
 		mes "[Takehue]";
@@ -1990,6 +2018,7 @@ ama_in01,180,173,3	script	Guia Espiritual#ama	762,{
 		mes "Bom. Mostre sua energia espiritual por muito tempo.";
 		mes "Cedo ou tarde, você será bem sucedid"+((Sex) ? "o":"a")+".";
 		close;
+		changequest 8133,8134; 
 	}
 	else if (event_amatsu == 4) {
 		mes "[Takehue]";

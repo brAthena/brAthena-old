@@ -647,7 +647,7 @@ moc_para01,32,179,4	script	Tutorial Goal	895,{
 	mes "[Tutorial Goal]";
 	mes "Hey you! You look like an adventurer... Though you look a little dull...";
 	next;
-	if(select("What'd you say? I'm smart!:Yeah... I'm dull.") == 1) {
+	if (select("What'd you say? I'm smart!:Yeah... I'm dull.") == 1) {
 		mes "[Tutorial Goal]";
 		mes "Serious? Though I don't know if I can believe that. Look at the expert who is in front of me! He took up only one area of study for 16 years and now he is as dignified as can be!";
 		next;
@@ -657,7 +657,7 @@ moc_para01,32,179,4	script	Tutorial Goal	895,{
 		mes "[Tutorial Goal]";
 		mes "And I will apologize for calling you dull. How about it, Dull Expert?! Do you want to challenge them?";
 		next;
-		if(select("Ch... Challenge!!:Um... I think I'll just give up now...") == 1) {
+		if (select("Ch... Challenge!!:Um... I think I'll just give up now...") == 1) {
 			mes "[Tutorial Goal]";
 			mes "You're braver than you look. You can't go back now that you've decided to challenge!";
 			next;
@@ -720,18 +720,18 @@ moc_para01,24,175,4	script	Siege Master	734,{
 						mes "It's a war that happens between a [] and another [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Castle, User, Guild:Castle, Guild, Guild:Town, Guild, Guild:Town, User, User") == 2)
+						if (select("Castle, User, Guild:Castle, Guild, Guild:Town, Guild, Guild:Town, User, User") == 2)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "What is the wrong Siege time?";
 						next;
-						if(select("WoE 1 Tues 9-11:WoE 1 Sat 4-6:WoE 1 Thurs 8-10") == 3)
+						if (select("WoE 1 Tues 9-11:WoE 1 Sat 4-6:WoE 1 Thurs 8-10") == 3)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "When you get a castle, you must raise [] in order to get better benefits.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Commerce Development:Industrial Development:Guild Development:Town Development") == 1)
+						if (select("Commerce Development:Industrial Development:Guild Development:Town Development") == 1)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
@@ -741,36 +741,36 @@ moc_para01,24,175,4	script	Siege Master	734,{
 						mes "and then there is [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("War of Emperium MO:War of Emperium NE:War of Emperium SK:War of Emperium SE") == 4)
+						if (select("War of Emperium MO:War of Emperium NE:War of Emperium SK:War of Emperium SE") == 4)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "As the guild that owns a castle, you must protect the [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Emperial:Emperium:Emperiom:Imperial") == 2)
+						if (select("Emperial:Emperium:Emperiom:Imperial") == 2)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "What benefits does the guild get for winning the Siege?";
 						next;
-						if(select("30% off all items when purchasing:Increase experience gained by 20%:Access to Guild Dungeon:Getting Weapons everyday at midnight.") == 3)
+						if (select("30% off all items when purchasing:Increase experience gained by 20%:Access to Guild Dungeon:Getting Weapons everyday at midnight.") == 3)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
 						mes "[Siege Expert]";
 						mes "What benefits does the guild get for winning the Siege?";
 						next;
-						if(select("Increase experience gained by 20%:30% off all items when purchasing:Access to Guild Field:Treasure Box daily at midnight") == 4)
+						if (select("Increase experience gained by 20%:30% off all items when purchasing:Access to Guild Field:Treasure Box daily at midnight") == 4)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "How many hours does a siege last?";
 						next;
-						if(select("1 Hour:2 Hours:3 Hours:4 Hours") == 2)
+						if (select("1 Hour:2 Hours:3 Hours:4 Hours") == 2)
 							set .@correct, .@correct+10;
 						mes "[Siege Expert]";
 						mes "When you get a castle, you must raise [] in order to get better benefits.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Town Development:Industry Development:Guild Development:Commerce Development") == 4)
+						if (select("Town Development:Industry Development:Guild Development:Commerce Development") == 4)
 							set .@correct, .@correct+10;
 						break;
 					}
@@ -890,18 +890,18 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						mes "and those looking for a [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Guild, Guildmate:Club, Club Members:Paris, Party Members:Party, Party Members") == 4)
+						if (select("Guild, Guildmate:Club, Club Members:Paris, Party Members:Party, Party Members") == 4)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "The window that is used to help users look and search for a party is called a [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Party List:Party Wanted List:Party Recruiting List:Costume Party List") == 3)
+						if (select("Party List:Party Wanted List:Party Recruiting List:Costume Party List") == 3)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "Which of the choices are not listed as a choice to pick when making a party recruit notice?";
 						next;
-						if(select("LEVEL:SKILL:JOB:MAP") == 2)
+						if (select("LEVEL:SKILL:JOB:MAP") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
@@ -911,19 +911,19 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						mes "and the 2nd one is [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Search for Parties that are Recruiting:Parties that are starting to hunt:Party Recruit and Item Distribution:Party Stuff") == 1)
+						if (select("Search for Parties that are Recruiting:Parties that are starting to hunt:Party Recruit and Item Distribution:Party Stuff") == 1)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "In order to start Party Recruiting, you have to click the [] button which is located in the info section of the upper left hand side.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("party:guild:booking:skill") == 3)
+						if (select("party:guild:booking:skill") == 3)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "If you want to know more about commands for Party Recruiting, you have to press the [] button on the Party Recruting List window.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Basic Information:Help:Party:Confirm") == 2)
+						if (select("Basic Information:Help:Party:Confirm") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
@@ -933,14 +933,14 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						mes "You type in this command [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("/Party Collection Window:/Party Collection:/Party Recruitment Window:/Party Recruitment") == 4)
+						if (select("/Party Collection Window:/Party Collection:/Party Recruitment Window:/Party Recruitment") == 4)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "When recruiting for a party, you can set 3 parameters. Those 3 are";
 						mes "LEVEL, JOB, and [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("SKILL:GUILD:MAP:OPTION") == 3)
+						if (select("SKILL:GUILD:MAP:OPTION") == 3)
 							set .@correct, .@correct+10;
 						mes "[Party Recruiting Expert]";
 						mes "Party Recruiting is used to help";
@@ -948,7 +948,7 @@ moc_para01,21,172,4	script	Party Recruiting Expert	878,{
 						mes "and those looking for a [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Parry, Party Members:Club, Club Members:Party, Party Members:Guild, Guild Members") == 3)
+						if (select("Parry, Party Members:Club, Club Members:Party, Party Members:Guild, Guild Members") == 3)
 							set .@correct, .@correct+10;
 						break;
 					}
@@ -1071,19 +1071,19 @@ moc_para01,12,179,6	script	Battleground Master	419,{
 						mes "For starters, you have to pick either the side of [] Camp or [] Camp in order to to participate in Battleground.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Guillaume, Tierra:Rachel, KVM:Guillaume, Croix:Maroll, KVM") == 3)
+						if (select("Guillaume, Tierra:Rachel, KVM:Guillaume, Croix:Maroll, KVM") == 3)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "[] can do either 10vs10 and you have to attack the crystals of the opposing team while protecting yours.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Tierra:Flavius:KVM:Maroll") == 2)
+						if (select("Tierra:Flavius:KVM:Maroll") == 2)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "When you complete a battle, you may get a reward! From a KVM battle, you get [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 1)
+						if (select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 1)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
@@ -1091,18 +1091,18 @@ moc_para01,12,179,6	script	Battleground Master	419,{
 						mes "For [], it's 10vs10. You also need to attack the enemies supply depot while protecting your own.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Maroll:KVM:Flavius:Tierra") == 4)
+						if (select("Maroll:KVM:Flavius:Tierra") == 4)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "In order to get into the battlegrounds, which one is not the recruiter you need to find?";
 						next;
-						if(select("Maroll Mercenary Recruiter:KVM Mercenary Recruiter:Tierra Mercenary Recruiter:Flavius Mercenary Recruiter") == 1)
+						if (select("Maroll Mercenary Recruiter:KVM Mercenary Recruiter:Tierra Mercenary Recruiter:Flavius Mercenary Recruiter") == 1)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "You can get [] from participating in the Battlegrounds of Tierra.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 2)
+						if (select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
@@ -1110,19 +1110,19 @@ moc_para01,12,179,6	script	Battleground Master	419,{
 						mes "In every major city, you can find [] to enter the Battlegrounds.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Maroll Battleground Recruiter:Tierra Battleground Recruiter:Flavius Battleground Recruiter:KVM Battleground Recruiter") == 1)
+						if (select("Maroll Battleground Recruiter:Tierra Battleground Recruiter:Flavius Battleground Recruiter:KVM Battleground Recruiter") == 1)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "For [], you go in 5vs5 with the intention of trying to reduce the number of enemies on the opposite side.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Maroll:Flavius:KVM:Tierra") == 3)
+						if (select("Maroll:Flavius:KVM:Tierra") == 3)
 							set .@correct, .@correct+10;
 						mes "[Battleground Expert]";
 						mes "When you complete a battle, you get a prize. The prize from Flavius is called [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 3)
+						if (select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 3)
 							set .@correct, .@correct+10;
 						break;
 					}
@@ -1253,19 +1253,19 @@ moc_para01,28,167,3	script	Memorial Dungeon Expert	868,{
 						mes "^006400Memorial Dungeon^000000 isn't a dungeon that is open to all users. It's only available to you and your [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Party Members:Guildmates:Friends:Family") == 1)
+						if (select("Party Members:Guildmates:Friends:Family") == 1)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "If you go to [] and find [], he will give you information about Endless Tower- which is a huge and tall dungeon.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Prontera, Seiyablem:Alberta, Leyablem:Alberta, Captain Jansen:Prontera, Captin Jansen") == 3)
+						if (select("Prontera, Seiyablem:Alberta, Leyablem:Alberta, Captain Jansen:Prontera, Captin Jansen") == 3)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "In order to enter Memorial Dungeon the [] must apply and then be on stand-by to enter. You will enter in the order the application was put in.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Guild Member:Guild Leader:Party Leader:Party Member") == 3)
+						if (select("Guild Member:Guild Leader:Party Leader:Party Member") == 3)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
@@ -1273,20 +1273,20 @@ moc_para01,28,167,3	script	Memorial Dungeon Expert	868,{
 						mes "When you're done with the [], you cannot re-enter the same dungeon for a certain period of time.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Buff:Ritual:Exploration:Inspection") == 3)
+						if (select("Buff:Ritual:Exploration:Inspection") == 3)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "If you go to the Orc Map where all the orcs live, you will be able to find []. He will probably be able to give you information about the Orc's Memory dungeon.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Insane Scientist:Crazy Scientist:Insane Alchemist:Crazy Alchemist") == 1)
+						if (select("Insane Scientist:Crazy Scientist:Insane Alchemist:Crazy Alchemist") == 1)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "In order to enter Memorial Dungeon, the [] must apply- then you'll be able to enter in order of when your application was turned in.";
 						mes "You have to be on stand-by for this.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Guild Leader:Guildmate:Party Member:Party Leader") == 4)
+						if (select("Guild Leader:Guildmate:Party Member:Party Leader") == 4)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
@@ -1294,19 +1294,19 @@ moc_para01,28,167,3	script	Memorial Dungeon Expert	868,{
 						mes "If you go to the place where you can become a monk, the Capitolina Monastery, you can meet []. He will tell you about the dungeon with the Sealed Baphomet.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Agent Patrick:Patrolman Patrick:Drunken Patrick:Detective Patrick") == 4)
+						if (select("Agent Patrick:Patrolman Patrick:Drunken Patrick:Detective Patrick") == 4)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "When you're done with the [], you cannot re-enter the same dungeon for a certain period of time.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Exploration:Inspection:Buff:Ritual") == 1)
+						if (select("Exploration:Inspection:Buff:Ritual") == 1)
 							set .@correct, .@correct+10;
 						mes "[Memorial Dungeon Expert]";
 						mes "^006400Memorial Dungeon^000000 is not just open to all users. It is open available for you and your [].";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Friends:Family:Party Members:Guildmates") == 3)
+						if (select("Friends:Family:Party Members:Guildmates") == 3)
 							set .@correct, .@correct+10;
 						break;
 					}
@@ -1430,19 +1430,19 @@ moc_para01,14,168,6	script	Map Expert	743,{
 						mes "You can view the map by clicking on the [] button that is located in the upper left hand side.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("SKILL:GUILD:MAP:BOOKING") == 3)
+						if (select("SKILL:GUILD:MAP:BOOKING") == 3)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "When looking at the map, each area offers the [] and [] information about the monsters. That will take all the guess work out of where you should hunt.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Name, Age:Attributes, Level:Attributes, Tribe:Name, Level") == 4)
+						if (select("Name, Age:Attributes, Level:Attributes, Tribe:Name, Level") == 4)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "If you want to stop looking at the map, simple press the shortcut key of [] or ESC and it will close the map for you.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("ALT + F4:CTRL + %:CTRL + M:ALT + ESC") == 2)
+						if (select("ALT + F4:CTRL + %:CTRL + M:ALT + ESC") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 2:
@@ -1452,20 +1452,20 @@ moc_para01,14,168,6	script	Map Expert	743,{
 						mes "you can see the [] and [] of the region.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Name, Area Details:Name, Monster Attributes:Specialties, Area Details:Specialties, Name") == 1)
+						if (select("Name, Area Details:Name, Monster Attributes:Specialties, Area Details:Specialties, Name") == 1)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "If you look to the bottom right of the map, you will see a drawing of []. Click on that or press the TAB shortcut key and you can find out various information.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Desert Wolf:Mimic:Siroma:Poring") == 4)
+						if (select("Desert Wolf:Mimic:Siroma:Poring") == 4)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "While looking at the map, when you press the TAB shortcut key, you will be able to find and locate various dungeons and their Entrance Locations.";
 						mes "You can also find the [] of the monsters in that area.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Name:Level:Attribute:Size") == 2)
+						if (select("Name:Level:Attribute:Size") == 2)
 							set .@correct, .@correct+10;
 						break;
 					case 3:
@@ -1473,20 +1473,20 @@ moc_para01,14,168,6	script	Map Expert	743,{
 						mes "If you want to stop looking at the map, all you need to do is press the [] to go back to your normal screen.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("O:X:EXIT:ALT") == 2)
+						if (select("O:X:EXIT:ALT") == 2)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "While looking at the map, when you press the TAB shortcut key, you will be able to find and locate various dungeons and their Entrance Locations.";
 						mes "You can also find the [] of the monsters in that area.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("Level:Name:Size:Attribute") == 1)
+						if (select("Level:Name:Size:Attribute") == 1)
 							set .@correct, .@correct+10;
 						mes "[Map Expert]";
 						mes "You can view the map by clicking on the [] button that is located in the upper left hand side.";
 						mes "What words go in the empty spaces of []?";
 						next;
-						if(select("GUILD:SKILL:BOOKING:MAP") == 4)
+						if (select("GUILD:SKILL:BOOKING:MAP") == 4)
 							set .@correct, .@correct+10;
 						break;
 					}

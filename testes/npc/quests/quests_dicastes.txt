@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.8b/1.0                         |
+//   | Versões eA/rA/brA: ??/2.3/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest's da cidade de El Dicastes.           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -36,7 +37,7 @@ manuk,321,182,5	script	Entrance Manager#ep133	450,{
 		mes "[Entrance Manager]";
 		mes "Are you visiting the capital city, El Dicastes?";
 		next;
-		if(select("Yes.:No.") == 2) {
+		if (select("Yes.:No.") == 2) {
 			mes "[Entrance Manager]";
 			mes "Then use the tunnel next time.";
 			close; 
@@ -121,7 +122,7 @@ dic_dun01,266,113,5	script	Curious Sapha#ep13_3_	449,{
 		mes "[Curious Sapha]";
 		mes "Will you buy "+.@input+"?";
 		next;
-		if(select("Yes:No") == 2) {
+		if (select("Yes:No") == 2) {
 			mes "[Curious Sapha]";
 			mes "You changed your mind?";
 			close;
@@ -161,6 +162,20 @@ dic_dun01,266,113,5	script	Curious Sapha#ep13_3_	449,{
 			close;
 		}
 	}
+}
+
+sec_in02,16,43,5	script	Scaraba Dungeon Entrance	449,{
+	callfunc "F_GM_NPC";
+	mes "Setting you for dungeon entry.";
+	mes "You will be able to go through if the password is correct.";
+	if (callfunc("F_GM_NPC",1854,0) == 1) {
+		set ep13_3_secret,6;
+		getitem 2782,1; //Ring_Of_Wise_King
+		getitem 6437,2; //Scaraba_Perfume
+		mes "Setting Complete";
+	} else
+		mes "Wrong Password";
+	close;
 }
 
 // Vigilantes
@@ -396,7 +411,7 @@ dic_in01,254,119,0	script	Item Storage#01	844,{
 	mes "Insert Coins: Will you";
 	mes "put in 500 Zeny?";
 	next;
-	if(select("Use safe:No way.")==2) {
+	if (select("Use safe:No way.")==2) {
 		mes "["+strcharinfo(0)+"]";
 		mes "I will use it later.";
 		close; 
@@ -409,6 +424,19 @@ dic_in01,254,119,0	script	Item Storage#01	844,{
 	close2;
 	openstorage;
 	end;
+}
+
+sec_in02,10,42,1	script	13.3 Related Reset	449,{
+	callfunc "F_GM_NPC";
+	mes "[Reset]";
+	mes "Resets all quest windows including daily and map quests for 13.3.";
+	freeloop(1);
+	for(set .@i,12099; .@i<=12216; set .@i,.@i+1) {
+		if (checkquest(.@i) > -1)
+			erasequest .@i;
+	}
+	freeloop(0);
+	close;
 }
 
 // Civil Services
@@ -2308,7 +2336,7 @@ dicastes01,223,190,1	script	Calyon#pa8029	453,{
 	mes "Welcome.";
 	mes "What brings you here?";
 	next;
-	if(select("Please explain the request to me.", "Please give me a request.") == 1) {
+	if (select("Please explain the request to me.", "Please give me a request.") == 1) {
 		mes "[Calyon]";
 		mes "The Transport Dept. 1 and 2";
 		mes "brings in rare items";
@@ -6096,7 +6124,7 @@ dic_in01,349,129,5	script	Bouy#13_3	449,{
 	mes "All we need to do is wait for the announcement.";
 	mes "It will give us the answers.";
 	next;
-	if(select("What is it?:Stay silent and listen.") == 2) {
+	if (select("What is it?:Stay silent and listen.") == 2) {
 		mes "[Ben]";
 		mes "Hmm...";
 		mes "That can be true but aren't you thinking too much?";
@@ -6353,7 +6381,7 @@ function	script	eldicastes_c	{
 			mes strcharinfo(0)+"..?";
 			mes "Glad to meet you.";
 			next;
-			if(select("Same here.:A tree monster!")==1) {
+			if (select("Same here.:A tree monster!")==1) {
 				mes "[Vyhannus]";
 				mes "Amazing.";
 				mes "Like with Hound, that ring you humans made...";
@@ -6930,7 +6958,7 @@ dic_in01,42,264,3	script	Adventurer Clerk#ep133	453,{
 			mes "[Kareka]";
 			mes "Are you sure you want to do this?";
 			next;
-			if(select("No, let me think about it.:Take my Light of El Dicastes.") == 2) {
+			if (select("No, let me think about it.:Take my Light of El Dicastes.") == 2) {
 				if (countitem(2844) == 0 || countitem(6304) < 6) {
 					mes "[Kareka]";
 					mes "You need to bring the Light of El Dicastes and 6 Sapha Certifications!";
@@ -7109,7 +7137,7 @@ dic_in01,42,264,3	script	Adventurer Clerk#ep133	453,{
 					mes "This involves ^990000destroying the Golden Bell^000000 you are upgrading and cancelling all records of it. Are you sure?";
 				}
 				next;
-				if(select("Maybe next time.:Please reset it.") == 1) {
+				if (select("Maybe next time.:Please reset it.") == 1) {
 					mes .@n$;
 					mes "When you are ready,";
 					mes "Please come back again";
@@ -7217,7 +7245,7 @@ dic_in01,42,264,3	script	Adventurer Clerk#ep133	453,{
 		close;
 	}
 	next;
-	if(select("Maybe next time.:I want to upgrade.") == 1) {
+	if (select("Maybe next time.:I want to upgrade.") == 1) {
 		mes .@n$;
 		mes "When you are ready,";
 		mes "Please come back again.";
