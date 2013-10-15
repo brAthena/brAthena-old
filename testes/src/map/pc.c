@@ -4195,10 +4195,23 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		return 0;
 	//Not usable by upper class. [Inkfish]
 	while(1) {
-		if(item->class_upper&1 && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY))) break;
-		if(item->class_upper&2 && sd->class_&(JOBL_UPPER|JOBL_THIRD)) break;
-		if(item->class_upper&4 && sd->class_&JOBL_BABY) break;
-		if(item->class_upper&8 && sd->class_&JOBL_THIRD) break;
+		// Normal classes (no upper, no baby, no third classes)
+		if( item->class_upper&0x01 && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY)) ) break;
+#if VERSION == 1
+		// Upper classes (no third classes)
+		if( item->class_upper&0x02 && sd->class_&JOBL_UPPER && !(sd->class_&JOBL_THIRD) ) break;
+#else
+		//pre-re has no use for the extra, so we maintain the previous for backwards compatibility
+		if( item->class_upper&0x02 && sd->class_&(JOBL_UPPER|JOBL_THIRD) ) break;
+#endif
+		// Baby classes (no third classes)
+		if( item->class_upper&0x04 && sd->class_&JOBL_BABY && !(sd->class_&JOBL_THIRD) ) break;
+		// Third classes (no upper, no baby classes)
+		if( item->class_upper&0x08 && sd->class_&JOBL_THIRD && !(sd->class_&(JOBL_UPPER|JOBL_BABY)) ) break;
+		// Upper third classes
+		if( item->class_upper&0x10 && sd->class_&JOBL_THIRD && sd->class_&JOBL_UPPER ) break;
+		// Baby third classes
+		if( item->class_upper&0x20 && sd->class_&JOBL_THIRD && sd->class_&JOBL_BABY ) break;
 		return 0;
 	}
 

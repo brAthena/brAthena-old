@@ -1676,10 +1676,16 @@ int itemdb_uid_load()
 static void itemdb_read(void)
 {
 	int i;
+	DBData prev;
 	itemdb_read_sqldb();
-	for(i = 0; i < ARRAYLENGTH(itemdb_array); ++i)
-		if(itemdb_array[i])
-			strdb_put(itemdb->names, itemdb_array[i]->name, itemdb_array[i]);
+	for(i = 0; i < ARRAYLENGTH(itemdb_array); ++i) {
+		if(itemdb_array[i]) {
+			if(itemdb->names->put(itemdb->names,db_str2key(itemdb_array[i]->name),db_ptr2data(itemdb_array[i]),&prev)) {
+				struct item_data *data = db_data2ptr(&prev);
+				ShowError("itemdb_read: duplicate AegisName '%s' in item ID %d and %d\n",itemdb_array[i]->name,itemdb_array[i]->nameid,data->nameid);
+			}
+		}
+	}
 
 	itemdb_read_combos();
 	itemdb_read_itemgroup();
