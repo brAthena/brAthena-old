@@ -253,7 +253,7 @@ function	script	Func_Socket	{
 	}
 	mes "Você ainda quer tentar adicionar um slot?";
 	next;
-	if(select("Tentar Adicionar Slot:Cancelar") == 1) {
+	if (select("Tentar Adicionar Slot:Cancelar") == 1) {
 		if ((Zeny >= getarg(4)*1000) && (countitem(getarg(5)) >= getarg(6)) && (countitem(getarg(7,512)) >= getarg(8,0)) && (countitem(getarg(0)) > 0)) // if there's no getarg(7) and getarg(8) provided, check itemcount against 0 (we still need a valid item ID though)
 		{
 			mes "[Seiyablem]";

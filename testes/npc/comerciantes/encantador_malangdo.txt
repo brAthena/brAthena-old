@@ -36,21 +36,21 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 	mes "[Mayomayo]";
 	mes "Wow welcome. It is new Mayomayo refinement store~ I enchant some luxury weapons including level 4 weapons.";
 	next;
-	switch(select("Any store policy is changes?:Enhance high ranked weapons:Reset reinforcement capability")) {
+	switch(select("Any store policy changes?:Enchant High Ranked Weapons:Initialize Enchante (Need Silvervine Fruit)")) {
 	case 1:
 		mes "[Mayomayo]";
-		mes "When I enchanted weapons, the slotted cards or refined level sometimes dissipated. I hated it. However, one day I found how to do it without any extinction.";
+		mes "When I enchant weapons, the slotted cards or refined level are dissipated sometimes. I hated it. However, one day I found how to do it without any extinction.";
 		next;
 		mes "[Mayomayo]";
 		mes "Have you ever seen a building of person of reinforcement capacity association?";
 		next;
-		if(select("I've seen it before.:I haven't seen it before.") == 2) {
+		if (select("I've seen it before.:I haven't seen it before.") == 2) {
 			mes "[Mayomayo]";
 			mes "That builiding is located to the southeast of where I am. Why don't you go on a field trip there?";
 			close;
 		}
 		mes "[Mayomayo]";
-		mes "If you go the place, there is someone who enchants the Archangel Wing. At that time that was amazing, because that was impossible ability by my own skill.";
+		mes "If you go to the place, there is someone who enchants the Archangel Wing. At that time that was amazing, because that was impossible ability by my own skill.";
 		next;
 		mes "[Mayomayo]";
 		mes "Every night I became his butler and did odd jobs. That is how I learned to enchant.";
@@ -313,7 +313,7 @@ malangdo,213,167,4	script	Mayomayo#mal	555,{
 	}
 	mes "[Mayomayo]";
 	if (@mal_enchant_select == 1)
-		mes "This is not suitable equipment for the enchant. Don't forget we only take care of high class weapons, including level 4 weapons~";
+		mes "This is not a suitable equipment for the enchant. Don't forget we only take care of high class weapons, including level 4 weapons~";
 	else
 		mes "This equipment can not be initialized. Don't forget we only handle some luxury weapons, including level 4 weapons~";
 	set @mal_equip_id,0;
@@ -405,7 +405,7 @@ L_Socket:
 		mes "[Mayomayo]";
 		mes "I'm trying for the "+.@str$+" enchant. ^ff0000It will not touch previous refinement and cards. Also, the equipment will not be destroyed.^000000 Can I continue?";
 		next;
-		if(select("I'll come back later.:Please, continue.") == 1) {
+		if (select("I'll come back later.:Please, continue.") == 1) {
 			mes "[Mayomayo]";
 			mes "Ok. If you change your mind, come back again.";
 			close;
@@ -611,7 +611,7 @@ L_Socket:
 		mes "[Mayomayo]";
 		mes "I will only initialize the enchant effect without touching previous refined level and cards.";
 		next;
-		if(select("Stop:Continue") == 1) {
+		if (select("Stop:Continue") == 1) {
 			mes "[Mayomayo]";
 			mes "If you change your mind, come back anytime.";
 			close;
@@ -773,7 +773,7 @@ malangdo,215,166,4	script	Jeremy#mal	553,{
 			mes "[Jeremy]";
 			mes "This is pretty old equipment. There is a high rate of destroying the cards or equipment during the work. Are you sure you want to continue?";
 			next;
-			if(select("Next time...:Continue") == 1) {
+			if (select("Next time...:Continue") == 1) {
 				mes "[Jeremy]";
 				mes "Whenever you need the work, visit me here.";
 				close;
@@ -792,7 +792,7 @@ malangdo,215,166,4	script	Jeremy#mal	553,{
 			mes "[Jeremy]";
 			mes "If you use the Premium Lubricant, the rate of destruction will be decreased highly, but I can't give you a 100% guarantee. Are you sure you want to continue?";
 			next;
-			if(select("Next time...:Continue") == 1) {
+			if (select("Next time...:Continue") == 1) {
 				mes "[Jeremy]";
 				mes "Whenever you need the work, visit me here.";
 				close;
@@ -811,7 +811,7 @@ malangdo,215,166,4	script	Jeremy#mal	553,{
 			mes "[Jeremy]";
 			mes "If you use the Ordinary Lubricant, the rate of destruction will be decreased highly, but I can't give you a 100% guarantee. Are you sure you want to continue?";
 			next;
-			if(select("Next time...:Continue") == 1) {
+			if (select("Next time...:Continue") == 1) {
 				mes "[Jeremy]";
 				mes "Whenever you need the work, visit me here.";
 				close;

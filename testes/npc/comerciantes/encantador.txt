@@ -86,7 +86,7 @@ S_EnchantArmor:
 		mes "carta na armadura serão perdidos.^000000";
 		mes "Você ainda quer tentar encantar?";
 		next;
-		if(select("Hmm... Deixe-me pensar sobre isso.:Vá em frente.")==1) {
+		if (select("Hmm... Deixe-me pensar sobre isso.:Vá em frente.")==1) {
 			mes "[Aprendiz de Artesão]";
 			mes "Bem, eu não posso culpá-lo. Segurança em primeiro lugar, certo?";
 			mes "Agora tenha um bom dia.";
@@ -102,7 +102,7 @@ S_EnchantArmor:
 			close;
 		}
 		progressbar "ffff00",7;
-		set zeny,zeny-400000;
+		set Zeny, Zeny-400000;
 		delitem .@itemid,1;
 		switch (rand(1,.@failrate)) {
 			case 1: set .@addpart,4702;break;
@@ -293,14 +293,14 @@ S_EnchantArmor:
 					mes "Você escolheu a classe B - Média.";
 					mes "Então, que tipo de armadura você tem?";
 					next;
-					if(select("Anel de Caveira:Salto Alto") == 1) callfunc "Func_Socket2",2609,2715,40,61,300,999,5;
+					if (select("Anel de Caveira:Salto Alto") == 1) callfunc "Func_Socket2",2609,2715,40,61,300,999,5;
 					else callfunc "Func_Socket2",2409,2432,40,61,300,999,5;
 				case 3:
 					mes "[Leablem]";
 					mes "Classe A? você está querendo demais. Mais, sem problemas.";
 					mes "Então, que tipo de armadura você tem?";
 					next;
-					if(select("Bandana Pirata:Botas Pretas de Couro") == 1) callfunc "Func_Socket2",2287,5350,50,61,500,985,1; // 50,61 - it's not a typo
+					if (select("Bandana Pirata:Botas Pretas de Couro") == 1) callfunc "Func_Socket2",2287,5350,50,61,500,985,1; // 50,61 - it's not a typo
 					else callfunc "Func_Socket2",2425,2434,40,51,500,985,1;
 				case 4:
 					mes "[Leablem]";
@@ -355,7 +355,7 @@ S_EnchantArmor:
 			mes "experimentar, especialmente quando é proibido.";
 			mes "Eu só não quero que meu irmão grite comigo.";
 			next;
-			if(select("Usar o serviço.","Sair.") == 1) {
+			if (select("Usar o serviço.","Sair.") == 1) {
 				mes "[Leablem]";
 				mes ".................";
 				next;
@@ -505,7 +505,7 @@ function	script	Func_Socket2	{
 
 	disable_items;
 	mes "[Leablem]";
-	if(getarg(7,0) != 0 && getarg(8,0) != 0) {
+	if (getarg(7,0) != 0 && getarg(8,0) != 0) {
 		mes getitemname(getarg(0)) + "... Ok, então você precisa me trazer:";
 		mes "^FF0000" + (getarg(4) >= 1000 ? (getarg(4)/1000 + ",000") : getarg(4)) + " Zeny como taxa de serviço,";
 		mes "^FF0000" + getarg(6) + " cada " + getitemname(getarg(5)) + " e " + getarg(8) + " cada " + getitemname(getarg(7)) + ".";
@@ -524,7 +524,7 @@ function	script	Func_Socket2	{
 	mes "Lembre-se também, se a " + (getiteminfo(getarg(0),5)&2 ? "arma" : "armadura") + " foi slotado, e foi inserido uma carta,";
 	mes "você vai perdê-las, mesmo se você tiver sucesso na criação de um slot.";
 	next;
-	if(select("Pedir o encantamento de slot.:Talvez na próxima.") == 1) {
+	if (select("Pedir o encantamento de slot.:Talvez na próxima.") == 1) {
 			if ((Zeny >= getarg(4)*1000) && (countitem(getarg(5)) >= getarg(6)) && (countitem(getarg(7,512)) >= getarg(8,0)) && (countitem(getarg(0)) > 0)) {
 				mes "[Leablem]";
 				mes "Tudo bem então, vamos começar o trabalho!";

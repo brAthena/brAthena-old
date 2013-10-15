@@ -44,12 +44,12 @@ man_in01,286,16,1	script	Mercador de Manuk	439,{
 		if (.@i == 1) {
 			mes "Aqui está a descrição dos itens.";
 			close2;
-			ReadBook .@Livro,1;
+			readbook .@Livro,1;
 			end;
 		} else if (.@i < 5) {
 			mes "Eu posso lhe vender 3 "+getitemname(.@Items[.@i])+" por ^3131FF1 moedas^000000.";
 			next;
-			if(select("Comprar:Não comprar") == 1) {
+			if (select("Comprar:Não comprar") == 1) {
 				mes .@n$;
 				if (countitem(.@Moeda)) {
 					mes "Obrigado pelo bom negócio.";

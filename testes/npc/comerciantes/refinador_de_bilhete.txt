@@ -54,7 +54,7 @@ prontera,184,177,6	script	Mestre do Refino	851,{
 	mes "Eu posso refinar um item até o ^006400mesmo nível do seu ticket^000000.";
 	mes "Não precisa se preocupar! Não há chance de quebrar seu item.";
 	next;
-	if(select("Voltarei depois.:Refinar item com ticket.") == 1) {
+	if (select("Voltarei depois.:Refinar item com ticket.") == 1) {
 		mes "[Mestre do Refino]";
 		mes "Okay.";
 		mes "Você pode voltar depois.";
@@ -133,7 +133,7 @@ prontera,184,177,6	script	Mestre do Refino	851,{
 	mes "Eu vou refinar ^006400"+getequipname(.@part)+"^8B4513 até o nível +"+.@ticket_lv+"^000000 com o ^006400"+getitemname(.@ticket_id)+"^000000.";
 	mes "Devo continuar?";
 	next;
-	if(select("Não.:Sim.") == 1) {
+	if (select("Não.:Sim.") == 1) {
 		emotion e_dots;
 		mes "[Mestre do Refino]";
 		mes "Oh, você mudou de ideia.";

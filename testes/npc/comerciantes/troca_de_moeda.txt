@@ -896,7 +896,7 @@ ecl_in01,66,95,2	script	Armor Merchant Naphara	436,{
 	mes "It costs 10 Splendide Coins.";
 	mes "Would you like to buy it?";
 	next;
-	if(select("Buy it.:Don't buy it.") == 2)
+	if (select("Buy it.:Don't buy it.") == 2)
 		close;
 	if (countitem(6081) < 10) {
 		mes "[Armor Merchant]";
@@ -915,7 +915,7 @@ ecl_in01,64,97,4	script	Slot Expert Nattuer#ecl	436,{
 	mes "I am Slot Expert Nattuer.";
 	mes "If you bring me an item from my little brother Naphara along with 5 Splendide Coins, I will open up one Slot for you.";
 	next;
-	if(select("Activate a Slot.:Forget it.") == 2)
+	if (select("Activate a Slot.:Forget it.") == 2)
 		close;
 	mes "[Slot Expert]";
 	mes "Slot activation is an extremely difficult procedure that can fail even with heightened care and the use of a magnifying lens.";
@@ -923,7 +923,7 @@ ecl_in01,64,97,4	script	Slot Expert Nattuer#ecl	436,{
 	mes "[Slot Expert]";
 	mes "Of course, if your heart were as big as that flower-filled land, you wouldn't mind. Right? Should I go for it?";
 	next;
-	if(select("Continue.:Forget it.") == 2)
+	if (select("Continue.:Forget it.") == 2)
 		close;
 	mes "[Slot Expert]";
 	mes "Which item would you like to activate with a Slot?";
@@ -936,7 +936,7 @@ ecl_in01,64,97,4	script	Slot Expert Nattuer#ecl	436,{
 	mes "[Slot Expert]";
 	mes "Let's confirm for the last time. Is the one you want "+getitemname(.@item)+"?";
 	next;
-	if(select("Yes:No") == 2) {
+	if (select("Yes:No") == 2) {
 		mes "[Slot Expert]";
 		mes "Why don't you talk to me when you know for sure.";
 		close;
@@ -1029,7 +1029,7 @@ ecl_in01,67,39,4	script	Replication Expert Palt	445,{
 		mes "[Paltu]";
 		mes "What do you think? I'll make it happen as long as I have the ingredients and the compensation.";
 		next;
-		if(select("I'll do it later.:Show me what you got!") == 1) {
+		if (select("I'll do it later.:Show me what you got!") == 1) {
 			emotion e_dots;
 			mes "[Paltu]";
 			mes "What? Are you kidding me? Please tell me you are!";
@@ -1099,7 +1099,7 @@ ecl_in01,67,39,4	script	Replication Expert Palt	445,{
 		close;
 	}
 	//custom to the end
-	if(select("Continue.:Forget it.") == 2)
+	if (select("Continue.:Forget it.") == 2)
 		close;
 	delitem .@item,1;
 	delitem 6081,50; //Splendide_Coin
@@ -1167,7 +1167,7 @@ ecl_in01,33,98,4	script	Herb Merchant Plafina#e	443,{
 	mes "[Herb Merchant]";
 	mes "Would you like to buy "+.@amount+" "+getitemname(.@item)+"?";
 	next;
-	if(select("Buy.:Don't buy.") == 2)
+	if (select("Buy.:Don't buy.") == 2)
 		close;
 	if (countitem(6081) < .@price) {
 		mes "[Herb Merchant]";

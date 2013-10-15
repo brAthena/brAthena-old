@@ -30,7 +30,7 @@ alberta,120,45,2	script	Sorveteiro#alb	85,{
 	mes "Aproveite, ele não esterá à venda por muito tempo!";
 	mes "^3355FF100 Zeny^000000 por Sorvete!";
 	next;
-	if(select("Me dê sorvete!:Cancelar") == 2) {
+	if (select("Me dê sorvete!:Cancelar") == 2) {
 		mes "[Sorveteiro]";
 		mes "Você tem certeza que não quer nada?";
 		mes "Não estarei vendendo por muito tempo, e quando acabar de vender, não voltarei mais!!!";
@@ -41,26 +41,26 @@ alberta,120,45,2	script	Sorveteiro#alb	85,{
 	mes "Todos querem meus deliciosos sorvetes, mas nós temos uma certa quantia, então você só poderá comprar 5 por vez!!";
 	next;
 		input .@input;
-		if(.@input < 1) {
+		if (.@input < 1) {
 			mes "[Sorveteiro]";
 			mes "Já que você não quer comprar nada, por favor deixe eu atender o próximo cliente e deixá-lo fazer as compras?";
 			mes "Obrigado.";
 			close;
 		}
-		if(.@input > 5) {
+		if (.@input > 5) {
 			mes "[Sorveteiro]";
 			mes "Eita!";
 			mes "Você quer sorvetes demais.";
 			mes "Querido cliente, se você comer mais do que 5 Sorvetes, terá de ir ao banheiro várias vezes à noite....";
 			close;
 	}
-	if(Zeny<.@input*100) {
+	if (Zeny<.@input*100) {
 		mes "[Sorveteiro]";
 		mes "Querido cliente, sua carteira é a luz.";
 		mes "O preço é ^3355FF100 Zeny^000000 por Sorvete.";
 		close;
 	}
-	if(checkweight(536,.@input) == 0) {
+	if (checkweight(536,.@input) == 0) {
 		mes "[Sorveteiro]";
 		mes "Querido cliente, você está carregando coisas demais.";
 		mes "Sorvete é ótimo, mas primeiro verifique o que está carregando para depois comprá-lo.";

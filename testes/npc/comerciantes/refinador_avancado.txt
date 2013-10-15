@@ -35,23 +35,23 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 	set .@menu$,"";
 	for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
 	{
-		if( getequipisequiped(.@i) )
+		if ( getequipisequiped(.@i) )
 			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
 
 		set .@menu$, .@menu$ + ":";
 	}
 	set .@part,select(.@menu$);
 
-	if( !getequipisequiped(.@part) )
+	if ( !getequipisequiped(.@part) )
 		close;
 
-	if( !getequipisenableref(.@part) )
+	if ( !getequipisenableref(.@part) )
 	{
 		mes "[Suhnbi]";
 		mes "Eu acho que não consigo refinar esse item.";
 		close;
 	}
-	if( getequiprefinerycnt(.@part) >= 10 )
+	if ( getequiprefinerycnt(.@part) >= 10 )
 	{
 		mes "[Suhnbi]";
 		mes "Este item não pode ser refinado porque alcançou o nível máximo...";
@@ -67,13 +67,13 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 		default: callsub S_RefineValidate,0,7619,2000,.@part; break;
 	}
 
-	if( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) )
+	if ( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) )
 	{
 		mes "[Suhnbi]";
 		mes "Clink! Clank! Clunk!";
 		SuccessRefItem .@part;
 		next;
-		Emotion e_no1;
+		emotion e_no1;
 		mes "[Suhnbi]";
 		mes "Aqui está! Terminei.";
 		mes "Já faz um tempo desde que eu não faço uma arma tão boa. Você deve estar feliz porque ela se tornou mais forte!";
@@ -84,9 +84,9 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 	FailedRefItem .@part;
 	next;
 	if (rand(5) == 1){
-		Emotion e_cash;
+		emotion e_cash;
 	} else {
-		Emotion e_omg;
+		emotion e_omg;
 	}
 	mes "[Suhnbi]";
 	mes "Cough!!!!";
@@ -104,9 +104,9 @@ S_RefineValidate:
 	mes "Para refinar isto, Eu preciso de um ^ff9999" + getitemname(getarg(1)) + "^000000 e de uma taxa de serviço de " + getarg(2) + " Zeny.";
 	mes "Quer continuar?";
 	next;
-	if( select("Sim:Não") == 1 )
+	if ( select("Sim:Não") == 1 )
 	{
-		if( getequippercentrefinery(getarg(3)) < 100 )
+		if ( getequippercentrefinery(getarg(3)) < 100 )
 		{
 			mes "[Suhnbi]";
 			mes "Wow!!";
@@ -120,7 +120,7 @@ S_RefineValidate:
 			mes " ";
 			mes "Tem certeza que deseja continuar?";
 			next;
-			if( select("Sim:Não") == 2 )
+			if ( select("Sim:Não") == 2 )
 			{
 				mes "[Suhnbi]";
 				mes "Eu concordo...";
@@ -128,7 +128,7 @@ S_RefineValidate:
 				close;
 			}
 		}
-		if( countitem(getarg(1)) > 0 && Zeny > getarg(2) )
+		if ( countitem(getarg(1)) > 0 && Zeny > getarg(2) )
 		{
 			delitem getarg(1), 1;
 			set Zeny, Zeny - getarg(2);
@@ -246,7 +246,7 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 	mes "Você precisa de ^ff9999"+getitemname(.@material)+"^000000 e de ^ff9999"+.@price+"^000000 Zeny para este refinamento, meow~";
 	mes "Quer continuar, meow?~";
 	next;
-	if(select("Sim!!:Não!!") == 2) {
+	if (select("Sim!!:Não!!") == 2) {
 		mes "[Holink]";
 		mes "Kyack!!";
 		mes "Você não acredita no mestre do refino Holink, meow?~";
@@ -272,7 +272,7 @@ malangdo,221,174,6	script	Holink#mal_cash	559,{
 		mes "^ff0000cartas e encantamentos desaparecerão^000000.";
 		mes "Você ainda quer tentar, meow~?";
 		next;
-		if(select("Sim, eu quero!!:Esqueça!!") == 2) {
+		if (select("Sim, eu quero!!:Esqueça!!") == 2) {
 			mes "[Holink]";
 			mes "Meow! Sábia escolha, meow.";
 			mes "Mas!!";

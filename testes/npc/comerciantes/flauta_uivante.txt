@@ -59,7 +59,7 @@ hu_in01,386,306,3	script	Negociador de Flautas	51,{
 			next;
 		} else
 			set .@price,12500; 
-		if(select("Não comprar:Comprar uma Flauta do Falcão") == 1) {
+		if (select("Não comprar:Comprar uma Flauta do Falcão") == 1) {
 			mes "[Negociador da Flauta do Falcão]";
 			mes "Isso é muito chato! Se você quiser pode voltar a qualquer instante.";
 			close;

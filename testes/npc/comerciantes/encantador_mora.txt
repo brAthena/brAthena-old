@@ -356,7 +356,7 @@ mora,104,76,4	script	Guardian of Artifacts#p	495,{
 	mes "[Guardian of Artifacts]";
 	mes "Do you want to buy an artifact with your Mora Coins?";
 	next;
-	if(select("Maybe later... I have things to do.:Yes, I do.") == 1) {
+	if (select("Maybe later... I have things to do.:Yes, I do.") == 1) {
 		mes "[Guardian of Artifacts]";
 		mes "Okay, see you later then.";
 		close;
@@ -409,7 +409,7 @@ mora,99,93,5	script	Artifact Crafter#pa0829	495,{
 	mes "[Artifact Crafter]";
 	mes "My job is to imbue artifacts with new power. If you have enough Coins, you can have one of the following items reinforced.";
 	next;
-	if(select("Tell me more.:I want to have my item reinforced.") == 1) {
+	if (select("Tell me more.:I want to have my item reinforced.") == 1) {
 		mes "[Artifact Crafter]";
 		mes "Let me explain. One reinforcement costs you two Coins.";
 		next;
@@ -774,7 +774,7 @@ L_Socket:
 			close;
 		}
 		next;
-		if(select("I'll come back later.:Please continue!") == 1) {
+		if (select("I'll come back later.:Please continue!") == 1) {
 			mes "[Artifact Researcher]";
 			mes "If you change your mind, please come back.";
 			close;
@@ -1391,7 +1391,7 @@ mora,124,82,4	script	Artifact Collector#blan	522,{
 		mes "[Artifact Collector]";
 		mes "Surely you want to go on?";
 		next;
-		if(select("No, I don't.:Yes, do it!") == 1) {
+		if (select("No, I don't.:Yes, do it!") == 1) {
 			emotion e_an;
 			mes "[Artifact Collector]";
 			mes "You've got to be kidding... you got my hopes up...";

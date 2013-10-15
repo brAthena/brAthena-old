@@ -84,7 +84,7 @@ InnMaid:
 		close;
 	case 2:
 		mes getarg(0);
-		if(Zeny < getarg(5)){
+		if (Zeny < getarg(5)){
 			mes "Me desculpe, mas o serviço irá custar "+getarg(5)+". Por favor certifique-se de que você possui o dinheiro suficiente para utilizar o serviço da próxima vez, certo?";
 			close;
 		}

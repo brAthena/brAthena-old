@@ -25,15 +25,15 @@
 //   \________________________________________________________/
 
 prontera,123,102,5	script	Mercador#pron	85,{
-	if(strnpcinfo(0) == "Mercador#pron")
+	if (strnpcinfo(0) == "Mercador#pron")
 	callsub TrocaPocao,935,5,914,10;
-	else if(strnpcinfo(0) == "Mercador#morroc")
+	else if (strnpcinfo(0) == "Mercador#morroc")
 	callsub TrocaPocao,935,5,916,7;
-	else if(strnpcinfo(0) == "Mercador#pay")
+	else if (strnpcinfo(0) == "Mercador#pay")
 	callsub TrocaPocao,902,6,916,7;
-	else if(strnpcinfo(0) == "Mercador#alde")
+	else if (strnpcinfo(0) == "Mercador#alde")
 	callsub TrocaPocao,955,1,916,7;
-	else if(strnpcinfo(0) == "Mercador#gef")
+	else if (strnpcinfo(0) == "Mercador#gef")
 	callsub TrocaPocao,935,5,915,6;
 
 TrocaPocao:

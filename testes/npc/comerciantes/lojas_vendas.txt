@@ -111,7 +111,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 			mes "Eu sou Hugh da Equipe de Compras.";
 			mes "Como posso ajudá-lo hoje?";
 			next;
-			if(select("Comprar uma Licença:Sair") == 2) {
+			if (select("Comprar uma Licença:Sair") == 2) {
 				mes "[Sr. Hugh]";
 				mes "Por favor, não hesite em perguntar-me, se você precisar de alguma Licença para Loja de Compras em Massa fique a vontade para falar.";
 				close;
@@ -198,7 +198,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 			mes "Diga, gostaria de registrar agora?";
 			mes "Se o fizer, eu vou te ensinar como abrir uma Loja de Compras em Massa";
 			next;
-			if(select("Quero abrir uma loja!:Cancelar") == 2) {
+			if (select("Quero abrir uma loja!:Cancelar") == 2) {
 				mes "[Sr. Hugh]";
 				mes "Cara, isso é decepcionante!";
 				mes "Usando esta opção de compra em massa você pode beneficiar o seu negócio em muitas maneiras, mas a decisão é sua.";
@@ -291,7 +291,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 				next;
 			}
 		mes "[Catalogador Mágico]";
-		if(!.@quantidade) {
+		if (!.@quantidade) {
 		mes "A negociação não será concluída, mas...";
 		mes "Eu não sei o que fazer...";
 		mes "O que eu deveria fazer agora?";
@@ -301,7 +301,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 		mes "O número total de catálogo(s) que";
 		mes "está comprando é de "+.@quantidade+" itens";
 		mes "e vai sair por apenas "+set(.@preco,.@quantidade*200)+" zenys.";
-		if(.@preco > Zeny) {
+		if (.@preco > Zeny) {
 		mes "Parece que não possui dinheiro suficiente.";
 		mes "Você pode vender seus equipamentos";
 		mes "para fazer mais dinheiro... o que acha?";

@@ -25,7 +25,7 @@
 //   \________________________________________________________/
 
 que_ng,72,29,3	script	Mercador de Kunais	83,{
-	if(BaseClass == Job_Ninja) {
+	if (BaseClass == Job_Ninja) {
 		mes "[Kashin]";
 		mes "Sou Kashin, distribuidor de Kunais para Ninjas.";
 		mes "Dê uma olhada e me diga se você está interessado em alguns dos itens que tenho.";
@@ -63,18 +63,18 @@ Kunai_trade:
 	next;
 	input .@amount;
 	mes "[Kashin]";
-	if(.@amount < 1 || .@amount > 500) {
+	if (.@amount < 1 || .@amount > 500) {
 		mes "Hã? Me desculpe eu não posso lhe dar esse número de pacotes de Kunais.";
 		mes "Por favor, escreva um valor menor que 500.";
 		close;
 	}
-	if(countitem(getarg(0)) < .@amount*getarg(1) || countitem(getarg(2)) < .@amount*getarg(3)) {
+	if (countitem(getarg(0)) < .@amount*getarg(1) || countitem(getarg(2)) < .@amount*getarg(3)) {
 		mes "Hmm, você não tem";
 		mes "a quantidade de item certa para esse pacote de Kunai.";
 		mes "Por favor reveja seus itens e volte.";
 		close;
  	}
-	if(checkweight(getarg(4), .@amount*10) == 0) {
+	if (checkweight(getarg(4), .@amount*10) == 0) {
 		mes "Hmm, parece que você não tem espaço no seu inventório.";
 		mes "Arrume algum espaço nele e volte para que podemos finalizar a nossa negociação.";
 		close;

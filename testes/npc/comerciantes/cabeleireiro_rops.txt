@@ -35,13 +35,13 @@ itemmall,19,74,5	script	Cabeleireiro#cash	91,{
 	mes "Eu tenho dois penteados especiais para"+(( Sex == 1 ) ? "os homens, a Cura Emergencial Permanente e o Corte Lâmina de Aura" : "as mulheres, o Assumptio Permanente e o Corte Trocador de Alma")+".";
 	mes "Você quer ver como esses estilos são?";
 	next;
-	cutin "hair_"+((sex == 1) ? "m":"f")+"_24.bmp",4;
+	cutin "hair_"+((Sex == 1) ? "m":"f")+"_24.bmp",4;
 	mes "[Kaniki]";
 	mes "Este é"+(( Sex == 1 ) ? "a Cura Emergêncial Permanente" : "o Assumptio Permanente")+".";
 	mes "Ficaria muito bom em você, não acha?";
 	next;
 	cutin "",255;
-	cutin "hair_"+((sex == 1) ? "m":"f")+"_25.bmp",4;
+	cutin "hair_"+((Sex == 1) ? "m":"f")+"_25.bmp",4;
 	mes "[Kaniki]";
 	mes ""+(( Sex == 1 ) ? "Agora este é o Corte da Lâmina de Aura" : "Em seguida está o Corte Trocador de Alma")+".";
 	mes "Você não viu nada como isso antes, não é mesmo?";
@@ -50,13 +50,13 @@ itemmall,19,74,5	script	Cabeleireiro#cash	91,{
 	mes "[Kaniki]";
 	mes "Já decidiu se vai querer que eu mude o seu penteado?";
 	next;
-	if(select("Mudar Penteado:Não mude") == 1) {
+	if (select("Mudar Penteado:Não mude") == 1) {
 		mes "[Kaniki]";
 		if (countitem(7622) > 0) {
 			mes "Excelente, você trouxe um Cupom de Corte de Cabelo!";
 			mes "Tudo certo, qual penteado você quer?";
 			next;
-			if(select(""+( Sex == 1 ) ? "Cura Emergêncial Permanente:Corte da Lâmina de Aura" : "Assumptio Permanente:Corte Trocador de Alma"+"") == 1) {
+			if (select(""+( Sex == 1 ) ? "Cura Emergêncial Permanente:Corte da Lâmina de Aura" : "Assumptio Permanente:Corte Trocador de Alma"+"") == 1) {
 				setlook 1,24;
 			} else{
 				setlook 1,25;

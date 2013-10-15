@@ -38,7 +38,7 @@ payon_in01,5,134,5	script	Inventor Jaax	89,{
 	mes "Atualmente, eu tenho criado algo verdadeiramente extraordinário.";
 	mes "Eu os chamo de... ^663300Aljaves Mágicos^000000 !!";
 	mes "Isto será lembrado na história por uma Revolução das Flechas!";
-	Emotion e_no1;
+	emotion e_no1;
 	next;
 	mes "[Inventor Jaax]";
 	mes "Eu estudei magia e aljaves durante anos, trabalhando noite e dia até que finalmente descobri como condensar flechas com magia! Com Aljaves Mágicos, você estará transportando mais flechas, mas com menos peso!";
@@ -87,7 +87,7 @@ S_BuyQuiver:
 				if (.@arrow_zeny01 < Zeny) {
 					mes "Aqui estão!";
 					mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
-					set zeny,zeny-.@arrow_zeny01;
+					set Zeny, Zeny-.@arrow_zeny01;
 					delitem getarg(0),.@arrows_used; //Flechas
 					getitem getarg(1),.@quiver; //Aljaves
 					next;
@@ -106,10 +106,10 @@ S_BuyQuiver:
 			close;
 		case 2:
 			mes "[Inventor Jaax]";
-			if (zeny > 500) {
+			if (Zeny > 500) {
 				mes "Aqui está!";
 				mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
-				set zeny,zeny-500;
+				set Zeny, Zeny-500;
 				delitem getarg(0),500; // Flecha
 				getitem getarg(1),1; // Aljave
 				next;
@@ -191,7 +191,7 @@ S_BuyQuiver:
 		next;
 		mes "Trade?";
 		next;
-		if(select("Trade:Don't trade") == 2) {
+		if (select("Trade:Don't trade") == 2) {
 			mes "[Quiver Maker]";
 			mes "Hey, you don't doubt my skills, do you?";
 			close;

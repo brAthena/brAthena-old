@@ -119,7 +119,7 @@
 	mes "Este "+.@type$+" está refinado em "+.@equip_refine+". Para refiná-lo, eu preciso de "+.@ore$+" e "+(.@price/1000)+",000 zeny de taxa do refinamento.";
 	mes "Quer continuar?";
 	next;
-	if(select("Sim:Não") == 2) {
+	if (select("Sim:Não") == 2) {
 		mes "[Ferreiro Dister]";
 		mes "Estou ocupado, não me incomode!";
 		close;
@@ -131,7 +131,7 @@
 		mes "[Ferreiro Dister]";
 		mes "É claro, a taxa de refinamento não será devolvida! Quer continuar?";
 		next;
-		if(select("Sim:Não") == 2) {
+		if (select("Sim:Não") == 2) {
 			mes "[Ferreiro Dister]";
 			mes "Bom. Eu também ficaria triste e falhasse.";
 			close;

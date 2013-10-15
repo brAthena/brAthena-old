@@ -182,7 +182,7 @@ alde_alche,24,188,3	script	Comerciante da Guilda	740,{
 				mes "Por favor, verifique o espaço em seu inventário.";
 				close;
 			}
-			set zeny,zeny-.@sell;
+			set Zeny, Zeny-.@sell;
 			getitem 7134,.@input; // Vasilha de Mistura
 			mes "Obrigado.";
 			mes "Volte Sempre.";
@@ -245,7 +245,7 @@ Venda_Manual:
 	next;
 	if (select("Comprar.:Sair.") == 1) {
 		mes "[Gever Al Sharp]";
-		set zeny,zeny-getarg(1);
+		set Zeny, Zeny-getarg(1);
 		getitem getarg(0),1;
 		mes "Obrigado pela sua fidelidade.";
 		close;

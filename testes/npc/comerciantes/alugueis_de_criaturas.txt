@@ -25,20 +25,20 @@
 
 // -------------- Criador de Pecopecos (para Cavaleiros e evoluções) --------------
 prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
-	if(Upper >= 0 && Upper <= 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
+	if (Upper >= 0 && Upper <= 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
 
 	mes "[Criador de Pecopecos]";
 	if (BaseJob == Job_Knight && Class < Job_Rune_Knight) {
 		mes "Bom-dia honorável Cavaleiro gostaria de comprar um Pecopeco?";
 		mes "Você precisa ter a Habilidade Montaria e apenas "+.@price+" zeny sobrando.";
 		next;
-		if(select("Alugar um Pecopeco:Cancelar"))
-		if(@menu == 1) {
-			if (zeny < .@price || !getskilllv("KN_RIDING") || checkriding() || ismounting()) {
+		if (select("Alugar um Pecopeco:Cancelar"))
+		if (@menu == 1) {
+			if (Zeny < .@price || !getskilllv("KN_RIDING") || checkriding() || ismounting()) {
 				mes "[Criador de Pecopecos]";
 				mes ""+((zeny < .@price) ? "Você não possui zeny suficiente. Você está... pobre?" : (!getskilllv("KN_RIDING")) ? "Me desculpe, mas você não pode utilizar esse serviço. Por favor aprenda a habilidade Montaria primeiro." : "Você já está montado em uma montaria.")+"";
 			} else {
-			set zeny,zeny-.@price;
+			set Zeny, Zeny-.@price;
 			setriding;
 			}
 			close;
@@ -55,7 +55,7 @@ prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
 
 // -------------- Criador de Pecopecos (para Templários e evoluções) --------------
 prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
-	if(Upper >= 0 && Upper <= 2) set .@price,3500; // Pecopeco Normal - Avançado e Bebê
+	if (Upper >= 0 && Upper <= 2) set .@price,3500; // Pecopeco Normal - Avançado e Bebê
 
 		mes "[Criador de Pecopecos]";
 		if (BaseJob == Job_Crusader && Class < Job_Rune_Knight) {
@@ -63,13 +63,13 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 		mes "Nós possuímos um Pecopeco especial preparado para você.";
 		mes "Para adquirir um Pecopeco são necessários "+.@price+" zeny.";
 		next;
-		if(select("Alugar um Pecopeco:Sair"))
+		if (select("Alugar um Pecopeco:Sair"))
 			if (@menu == 1) {
-				if(zeny < .@price || !getskilllv("KN_RIDING") || (checkriding() || ismounting())) {
+				if (zeny < .@price || !getskilllv("KN_RIDING") || (checkriding() || ismounting())) {
 				mes "[Criador de Pecopecos]";
 				mes ""+((zeny < .@price) ? "Você não possui a quantidade de zenys suficientes. Se você quiser um Pecopeco por favor me traga "+.@price+" zenys..." : (!getskilllv("KN_RIDING")) ? "Você deve primeiro aprender a como montar um Pecopeco após isso eu poderei alugar um para você." : "Você já está montado em uma montaria")+"";
 				} else {
-				set zeny,zeny-.@price;
+				set Zeny, Zeny-.@price;
 				setriding;
 				}
 				close;
@@ -85,7 +85,7 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 
 // -------------- Adestrador de Falcões --------------
 hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
-	if(Upper >= 0 && Upper <= 2) set .@price, 2500; // Falcão Normal - Avançado e Bebê
+	if (Upper >= 0 && Upper <= 2) set .@price, 2500; // Falcão Normal - Avançado e Bebê
 
 			mes "[Adestrador de Falcões]";
 			if (BaseJob == Job_Hunter) {
@@ -97,13 +97,13 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 		mes "Você precisa de um Falcão?";
 		mes "Eles custam apenas "+.@price+" zenys!";
 		next;
-		if(select("Sim!:Esse preço é um assalto"))
-		 if(@menu == 1) {
-			if (zeny < .@price || !getskilllv("HT_FALCON") || checkfalcon()) {
+		if (select("Sim!:Esse preço é um assalto"))
+		 if (@menu == 1) {
+			if (Zeny < .@price || !getskilllv("HT_FALCON") || checkfalcon()) {
 				mes "[Adestrador de Falcões]";
 				mes ""+((zeny < .@price) ? "O quê? Você não possui a quantidade de zenys suficiente?! Primeiro você deve juntar dinheiro em vez de caçar monstros~" : (!getskilllv("HT_FALCON")) ? "Puxa~ Primeiro vá e aprenda a domesticar um Falcão! Eu não posso te entregar um falcão sendo que você não saberá cuidar dele." : "Hum... Você já possui um Falcão. Você não consegue vê-lo?")+"";
 				} else {
-				set zeny,zeny-.@price;
+				set Zeny, Zeny-.@price;
 				setfalcon;
 				}
 				close;
@@ -127,8 +127,8 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja adquirir um Dragão?";
 		next;
-		if(select("Sim:Não"))
-			if(@menu == 1) {
+		if (select("Sim:Não"))
+			if (@menu == 1) {
 				if ((!getskilllv("KN_RIDING") && !getskilllv("RK_DRAGONTRAINING")) || (checkriding() || ismounting())) {
 				mes "[Criador de Dragões]";
 				mes ""+((!getskilllv("KN_RIDING") && !getskilllv("RK_DRAGONTRAINING")) ? "Por favor aprenda a Montar em um Dragão primeiro" : "Você já está montado em uma montaria")+".";
@@ -154,12 +154,12 @@ prontera,130,213,5	script#re	Domador de Feras	105,{
 	if ((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) || (Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Guard)) {
 		mes "Bem-vindo. Você deseja obter um "+((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) ? "Dragão" : "Grifo")+"?";
 		next;
-		if(select("Sim:Não"))
-		if(@menu == 1) {
-				if(!getskilllv("KN_RIDING") || checkriding() || ismounting()) {
+		if (select("Sim:Não"))
+		if (@menu == 1) {
+				if (!getskilllv("KN_RIDING") || checkriding() || ismounting()) {
 				mes "[Mestre em Criaturas de Montaria]";
 				mes ""+((!getskilllv("KN_RIDING")) ? "Por favor, aprenda a montar em um "+((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) ? "Dragão" : "Grifo")+" primeiro" : "Você já possui uma Montaria")+".";
-			}   else if(Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune)
+			}   else if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune)
 				 setdragon;
 				else
 				 setriding;
@@ -177,7 +177,7 @@ prontera,130,213,5	script#re	Domador de Feras	105,{
 //============================================================
 prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 		mes "[Soldado]";
-		if(!checkriding())
+		if (!checkriding())
 		mes "Desculpe, mas você não possui um Peco Peco.";
 		else {
 		mes "Se voce deseja desmontar de seu Pecopeco por alguma razão, por favor fique a vontade para utilizar meu serviço.";
@@ -186,8 +186,8 @@ prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 		mes "Você está montado em um Pecopeco.";
 		mes "Deseja removê-lo?";
 		next;
-		if(select("Sim:Não"))
-			if(@menu == 1)
+		if (select("Sim:Não"))
+			if (@menu == 1)
 			setriding 0;
 			mes "[Soldado]";
 			mes ""+((@menu == 1) ? "Me diga, como se sente ao tocar o chão novamente?" : "Entendo. Por favor se mudar de idéia fique a vontade para voltar quando quiser.")+"";

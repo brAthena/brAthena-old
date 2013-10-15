@@ -94,7 +94,7 @@ Bullet_Trade:
 alberta,118,157,3	script	Vendedor de Caixas de Munição#alb	83,{
 	set .n$,"[Kenny]";
 	mes .n$;
-	if(BaseJob == Job_Gunslinger) {
+	if (BaseJob == Job_Gunslinger) {
 		mes "Bem-vindo à minha loja de carregadores.";
 		mes "Como você sabe, um número maior de projéteis podem ser carregados mais facilmente quando estão em carregadores.";
 		mes "Agora, posso ajudá-lo em algo em particular?";
@@ -140,7 +140,7 @@ Func_Casing:
 	mes "Se você deseja cancelar, digite '0'.";
 	next;
 	input .@amount;
-	if(.@amount > 50 || .@amount == 0) {
+	if (.@amount > 50 || .@amount == 0) {
 		mes .n$;
 		mes "Ei, não posso lhe dar esse número de Carregadores.";
 		mes "Por favor tente novamente, e digite um número menor que 50.";

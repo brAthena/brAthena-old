@@ -40,11 +40,11 @@ alberta_in,55,142,7	script	Cabeleireira	91,{
 		next;
 		input .@style;
 		mes "[Veronica]";
-		if(.@style > 19) {
+		if (.@style > 19) {
 			mes "Opa, me desculpe, mas esse estilo não existe.";
 			mes "Lembre-se apenas números entre 1 e 19.";
 			next;
-		} else if(.@style == 0) {
+		} else if (.@style == 0) {
 			mes "Então, como você gosta do estilo?";
 			mes "Sinta-se à vontade para perguntar sobre qualquer estilo.";
 			mes "Vai ser um prazer estilizar seus cabelos.";
@@ -140,11 +140,11 @@ alberta_in,55,142,7	script	Cabeleireira	91,{
 			}
 	case 2:
 		mes "[Veronica]";
-		if(BaseLevel < 60) {
+		if (BaseLevel < 60) {
 			mes "Oh, querido, você está fabuloso com seu cabelo atual.";
 			mes "Por que você não tenta um novo acessório para o cabelo?";
 			close;
-		} else if((countitem(973) < 3) || (countitem(974) < 3) || (countitem(901) <100) || (countitem(1094) <100) || (countitem(1020) <100) || (countitem(1060) <100) || (countitem(7152) <100) || (Zeny < 99800)) {
+		} else if ((countitem(973) < 3) || (countitem(974) < 3) || (countitem(901) <100) || (countitem(1094) <100) || (countitem(1020) <100) || (countitem(1060) <100) || (countitem(7152) <100) || (Zeny < 99800)) {
 			mes "Se você deseja mudar seu cabelo, você deve me trazer alguns ingredientes.";
 			mes "Sugiro que você anote todos os itens que precisa.";
 			next;
@@ -169,14 +169,14 @@ alberta_in,55,142,7	script	Cabeleireira	91,{
 		next;
 		mes "[Veronica]";
 		input .@style;
-		if(.@style > 19) {
+		if (.@style > 19) {
 			mes "Me desculpe, você escolheu um estilo inexistente.";
 			mes "Tenha certeza que digitou o número correto.";
 			close;
-		} else if(.@style == 0) {
+		} else if (.@style == 0) {
 			mes "Você cancelou a negociação.";
 			close;
-		} else if(getlook(1) == .@style) {
+		} else if (getlook(1) == .@style) {
 			mes "Me desculpe, mas você já está com o estilo que escolheu.";
 			mes "Você poderia escolher um estilo diferente?";
 			close;
@@ -186,9 +186,9 @@ alberta_in,55,142,7	script	Cabeleireira	91,{
 			mes "Irei proceguir com seu pedido.";
 			mes "Você se importa?";
 			next;
-			if(select("Não, tudo bem.:Sim, deixe-me escolher outro.") == 1) {
+			if (select("Não, tudo bem.:Sim, deixe-me escolher outro.") == 1) {
 				mes "[Veronica]";
-				if(getlook(6) == 0) {
+				if (getlook(6) == 0) {
 					mes "Oh, você não tingiu seu cabelo todo.";
 					mes "Você ficaria ainda mais fabuloso se tingisse seu cabelo...";
 					mes "Bem, irei fazer isso de graça.";
@@ -253,13 +253,13 @@ alberta_in,55,142,7	script	Cabeleireira	91,{
 	}
 
 L_cutin:
-	if(Sex == 1) {
-		if(getarg(0) < 10)
+	if (Sex == 1) {
+		if (getarg(0) < 10)
 			cutin "hair_m_0"+getarg(0),4;
 		else
 			cutin "hair_m_"+getarg(0),4;
 	} else {
-		if(getarg(0) < 10)
+		if (getarg(0) < 10)
 			cutin "hair_f_0"+getarg(0),4;
 		else
 			cutin "hair_f_"+getarg(0),4;
@@ -320,11 +320,11 @@ alberta,33,141,7	script	Cabeleireiro Roving	87,{
 		close;
 	case 2:
 		mes "[Rui Vishop]";
-		if(BaseLevel < 60) {
+		if (BaseLevel < 60) {
 			mes "Humm, Eu devo dizer, seu atual penteado lhe fica melhor.";
 			mes "Acredite, eu sei o que estou dizendo.";
 			close;
-		} else if(Zeny < 199800) {
+		} else if (Zeny < 199800) {
 			mes "Ah, vejo que você pode reconhecer um gênio quando está perto de você.";
 			mes "A luz de seu bom gosto, apenas vou precisar de algum dinheiro para meu serviço.";
 			next;
@@ -340,7 +340,7 @@ alberta,33,141,7	script	Cabeleireiro Roving	87,{
 		mes "Se você não quiser fazer isto agora, embora não possa imaginar porque,";
 		mes "você pode deixar aquela cabeleireira estúpida fazer aquele trabalho desajeitado em você...";
 		next;
-		if(select("Não, por favor faça meu cabelo.:Humm, mudei de idéia.") ==1 ) {
+		if (select("Não, por favor faça meu cabelo.:Humm, mudei de idéia.") ==1 ) {
 			mes "[Rui Vishop]";
 			mes "C~e~r~t~o!";
 			mes "Agora, vamos começar~!";
@@ -630,7 +630,7 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 			mes "Este é o No. "+.@input+", a propósito.";
 			next;
 			mes "[Príncipe Shammi]";
-			if(select("Sim.:Não.") == 1) {
+			if (select("Sim.:Não.") == 1) {
 				if (getlook(VAR_HEADPALETTE) == 0) {
 					mes "Oh, Doces de Natal, eu quase esqueci!";
 					mes "Você gostaria de tingir seu cabelo de graça?";
@@ -655,7 +655,7 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 				mes "*Clip clip clip clip*";
 				mes "*Bzzzzzzzzzzzzzzzzzzzz*^000000";
 				next;
-				set zeny,zeny-99800;
+				set Zeny, Zeny-99800;
 				delitem 973,3; //Counteragent
 				delitem 974,3; //Mixture
 				delitem 901,100; //Danggie
@@ -779,7 +779,7 @@ lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
 							cutin "hair_f_"+.@input+".BMP",4;
 					}
 					next;
-					if(select("Sim, vamos tentar isso~:Cancelar.") == 2) {
+					if (select("Sim, vamos tentar isso~:Cancelar.") == 2) {
 						mes "[Assistente de Cabeleireiro]";
 						mes "Oooh, este deve ser o penteado que você gosta, certo? Humm...";
 						close;
@@ -807,7 +807,7 @@ lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
 				mes "[Assistente de Cabeleireiro]";
 				mes "^333333*Pant Pant Pant*^000000";
 				next;
-				set zeny,zeny-250000;
+				set Zeny, Zeny-250000;
 				setlook VAR_HEAD,.@style_r;
 				setlook VAR_HEADPALETTE,.@color_r;
 				mes "[Assistente de Cabeleireiro]";
