@@ -5399,7 +5399,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 
 // flag&1 - fixed value [malufett]
 // flag&2 - percentage value
-static short status_calc_aspd(struct block_list *bl, struct status_change *sc, short flag) {
+short status_calc_aspd(struct block_list *bl, struct status_change *sc, short flag) {
 #ifdef RENEWAL_ASPD
 	int i, pots = 0, skills1 = 0, skills2 = 0;
 
