@@ -1,9 +1,10 @@
 
 COMMON_D = ../common
 COMMON_OBJ = $(addprefix $(COMMON_D)/obj_all/, des.o grfio.o malloc.o \
-	     minicore.o showmsg.o strlib.o utils.o lang.o)
+	     minicore.o showmsg.o strlib.o utils.o lang.o conf.o)
 COMMON_H = $(addprefix $(COMMON_D)/, cbasetypes.h core.h des.h \
-	   grfio.h malloc.h mmo.h showmsg.h strlib.h utils.h lang.h)
+	   grfio.h malloc.h mmo.h showmsg.h strlib.h utils.h lang.h \
+	   conf.h )
 
 LIBCONFIG_D = ../../3rdparty/libconfig
 LIBCONFIG_OBJ = $(addprefix $(LIBCONFIG_D)/, libconfig.o grammar.o scanctx.o \
