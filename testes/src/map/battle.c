@@ -979,11 +979,13 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 						break;
 					}
 				}
+#if VERSION != 1
 				//It was discovered that ranged defense also counts vs magic! [Skotlex]
 				if(wflag&BF_SHORT)
 					cardfix = cardfix * ( 100 - tsd->bonus.near_attack_def_rate ) / 100;
 				else
 					cardfix = cardfix * (100 - tsd->bonus.long_attack_def_rate) / 100;
+#endif
 
 				cardfix = cardfix * (100 - tsd->bonus.magic_def_rate) / 100;
 
@@ -6512,10 +6514,11 @@ static const struct _battle_data {
 	{ "gm_ignore_warpable_area",            &battle_config.gm_ignore_warpable_area,         0,      2,      100,            },
 	{ "packet_obfuscation",                 &battle_config.packet_obfuscation,              1,      0,      3,              },
 	{ "client_accept_chatdori",             &battle_config.client_accept_chatdori,          0,      0,      INT_MAX,        },
-	{ "snovice_call_type",			&battle_config.snovice_call_type,		0,	0,	1,		},
-	{ "guild_notice_changemap",		&battle_config.guild_notice_changemap,		2,	0,	2,		},
+	{ "snovice_call_type",                  &battle_config.snovice_call_type,               0,	0,	1,		},
+	{ "guild_notice_changemap",             &battle_config.guild_notice_changemap,          2,	0,	2,		},
 	{ "feature.banking",                    &battle_config.feature_banking,                 1,      0,      1,              },
 	{ "feature.auction",                    &battle_config.feature_auction,                 0,      0,      2,              },
+	{ "mon_trans_disable_in_gvg",           &battle_config.mon_trans_disable_in_gvg,        0,      0,      1,              },
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },

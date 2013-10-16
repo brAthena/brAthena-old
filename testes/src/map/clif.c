@@ -9792,6 +9792,11 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	if(sd->sc.opt2)  //Client loses these on warp.
 		clif_changeoption(&sd->bl);
 
+	if(battle_config.mon_trans_disable_in_gvg && map_flag_gvg2(sd->bl.m)) {
+		status_change_end(&sd->bl, SC_MONSTER_TRANSFORM, INVALID_TIMER);
+		clif_displaymessage(sd->fd, msg_txt(1490)); // Transforming into monster is not allowed in Guild Wars.
+	}
+
 	clif_weather_check(sd);
 
 	// For automatic triggering of NPCs after map loading (so you don't need to walk 1 step first)
@@ -17640,6 +17645,28 @@ void clif_partytickack(struct map_session_data* sd, bool flag) {
 	WFIFOSET(sd->fd, packet_len(0x2c9));
 }
 
+void clif_ShowScript(struct block_list* bl, const char* message) {
+	char buf[256];
+	int len;
+	nullpo_retv(bl);
+
+	if(!message)
+		return;
+
+	len = strlen(message)+1;
+
+	if(len > sizeof(buf)-8) {
+		ShowWarning("clif_ShowScript: Truncating too long message '%s' (len=%d).\n", message, len);
+		len = sizeof(buf)-8;
+	}
+
+	WBUFW(buf,0)=0x8b3;
+	WBUFW(buf,2)=len+8;
+	WBUFL(buf,4)=bl->id;
+	safestrncpy((char *) WBUFP(buf,8),message,len);
+	clif_send((unsigned char *) buf,WBUFW(buf,2),bl,ALL_CLIENT);
+}
+
 /// Ack world info (ZC_ACK_BEFORE_WORLD_INFO)
 /// 0979 <world name>.24B <char name>.24B
 void clif_ackworldinfo(struct map_session_data* sd) {
@@ -18345,6 +18372,7 @@ void clif_defaults(void) {
 	clif->ranklist = clif_ranklist;
 	clif->pRanklist = clif_parse_ranklist;
 	clif->update_rankingpoint = clif_update_rankingpoint;
+	clif->ShowScript = clif_ShowScript;
 	/* Sistema de Banco */
 	clif->bank_deposit = clif_bank_deposit;
 	clif->bank_withdraw = clif_bank_withdraw;

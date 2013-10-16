@@ -9844,6 +9844,10 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC_FULL_THROTTLE:
 			sc_start(bl,SC_REBOUND,100,sce->val1,skill_get_time2(ALL_FULL_THROTTLE,sce->val1));
+		case SC_MONSTER_TRANSFORM:
+		if(sce->val2)
+			status_change_end(bl, (sc_type)sce->val2, INVALID_TIMER);
+		break;
 			break;
 		}
 

@@ -157,6 +157,9 @@
     <ClCompile Include="..\src\common\conf.c">
       <Filter>common</Filter>
     </ClCompile>
+	<ClCompile Include="..\src\common\lang.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\map\pc_groups.c">
       <Filter>map_sql</Filter>
     </ClCompile>
@@ -362,6 +365,7 @@
     <ClInclude Include="..\src\config\core.h" />
     <ClInclude Include="..\src\config\secure.h" />
     <ClInclude Include="..\src\config\classes\general.h" />
+	<ClInclude Include="..\src\common\lang.h" />
     <ClInclude Include="..\src\common\conf.h">
       <Filter>common</Filter>
     </ClInclude>

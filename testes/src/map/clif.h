@@ -1001,6 +1001,7 @@ struct clif_interface {
 	void (*ranklist) (struct map_session_data *sd, enum fame_list_type type);
 	void (*update_rankingpoint) (struct map_session_data *sd, enum fame_list_type type, int points);
 	void (*pRanklist) (int fd, struct map_session_data *sd);
+	void (*ShowScript) (struct block_list* bl, const char* message);
 	/* Sistema de Grupos */
 	void (*PartyRecruitRegisterAck) (struct map_session_data *sd, int flag);
 	void (*PartyRecruitSearchAck) (int fd, struct party_booking_ad_info** results, int count, bool more_result);

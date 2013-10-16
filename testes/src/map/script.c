@@ -970,16 +970,16 @@ const char *parse_callfunc(const char *p, int require_paren, int is_custom)
 {
 	const char *p2;
 	const char *arg  = NULL;
+	char null_arg = '\0';
 	int func;
 
 	func = add_word(p);
 	if(str_data[func].type == C_FUNC) {
-		char argT = 0;
 		// buildin function
 		add_scriptl(func);
 		add_scriptc(C_ARG);
 		arg = buildin_func[str_data[func].val].arg;
-		if(!arg) arg = &argT;
+		if(!arg) arg = &null_arg; // Use a dummy, null string
 	} else if(str_data[func].type == C_USERFUNC || str_data[func].type == C_USERFUNC_POS) {
 		// script defined function
 		add_scriptl(buildin_callsub_ref);
@@ -17444,6 +17444,83 @@ BUILDIN_FUNC(delequip)
 	return 0;
 }
 
+/* Turns a player into a monster and grants SC attribute effect. [malufett]
+ * montransform <monster name/id>, <duration>, <sc type>, <val1>, <val2>, <val3>, <val4>; */
+BUILDIN_FUNC(montransform) {
+	int tick;
+	enum sc_type type;
+	struct block_list* bl;
+	char msg[CHAT_SIZE_MAX];
+	int mob_id, val1, val2, val3, val4;
+
+	if((bl = map_id2bl(st->rid)) == NULL)
+		return 0;
+
+	if(script_isstring(st, 2))
+		mob_id = mobdb_searchname(script_getstr(st, 2));
+	else{
+		mob_id = mobdb_checkid(script_getnum(st, 2));
+	}
+
+	tick = script_getnum(st, 3);
+	type = (sc_type)script_getnum(st, 4);
+	val1 = val2 = val3 = val4 = 0;
+
+	if(mob_id == 0) {
+		if(script_isstring(st,2))
+			ShowWarning("buildin_montransform: Attempted to use non-existing monster '%s'.\n", script_getstr(st, 2));
+		 else
+			ShowWarning("buildin_montransform: Attempted to use non-existing monster of ID '%d'.\n", script_getnum(st, 2));
+		return 1;
+	}
+
+	if(mob_id == MOBID_EMPERIUM) {
+		ShowWarning("buildin_montransform: Monster 'Emperium' cannot be used.\n");
+		return 1;
+	}
+
+	if(!(type > SC_NONE && type < SC_MAX)) {
+		ShowWarning("buildin_montransform: Unsupported status change id %d\n", type);
+		return 1;
+	}
+
+	if(script_hasdata(st, 5))
+		val1 = script_getnum(st, 5);
+
+	if(script_hasdata(st, 6))
+		val2 = script_getnum(st, 6);
+
+	if(script_hasdata(st, 7))
+		val3 = script_getnum(st, 7);
+
+	if(script_hasdata(st, 8))
+		val4 = script_getnum(st, 8);
+
+	if(tick != 0) {
+		struct map_session_data *sd = map_id2sd(bl->id);
+		struct mob_db *monster =  mob_db(mob_id);
+
+		if(!sd)	return 0;
+
+		if(battle_config.mon_trans_disable_in_gvg && map_flag_gvg2(sd->bl.m)) {
+			clif_displaymessage(sd->fd, msg_txt(1490)); // Transforming into monster is not allowed in Guild Wars.
+			return 0;
+		}
+
+		if(sd->disguise != -1) {
+			clif_displaymessage(sd->fd, msg_txt(1488)); // Cannot transform into monster while in disguise.
+			return 0;
+		}
+
+		sprintf(msg, msg_txt(1487), monster->name); // Traaaansformation-!! %s form!!
+		clif->ShowScript(&sd->bl, msg);
+		status_change_end(bl, SC_MONSTER_TRANSFORM, INVALID_TIMER); // Clear previous
+		sc_start2(bl, SC_MONSTER_TRANSFORM, 100, mob_id, type, tick);
+		sc_start4(bl, type, 100, val1, val2, val3, val4, tick);
+	}
+	return true;
+}
+
 /* Make a player sit/stand.
  * sit {"<character name>"};
  * stand {"<character name>"};
@@ -18476,6 +18553,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(qiclear,"i"),
 
 	BUILDIN_DEF(CreatePackage,"?"),
+	BUILDIN_DEF(montransform, "vii????"),
 
 	/* New BG Commands */
 	BUILDIN_DEF(bg_create_team,"sii"),
