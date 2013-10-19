@@ -471,6 +471,7 @@ extern struct Battle_Config {
 
 	int mob_size_influence; // Enable modifications on earned experience, drop rates and monster status depending on monster size. [mkbu95]
 	int skill_trap_type;
+	int skill_trap_type_ot;
 	int item_restricted_consumption_type;
 	int max_walk_path;
 	int item_enabled_npc;

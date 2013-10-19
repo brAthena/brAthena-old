@@ -9004,7 +9004,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			unit_stop_walking(bl,1);
 			break;
 		case SC_ANKLESNARE:
+#if VERSION != -1
 			if(battle_config.skill_trap_type || !map_flag_gvg(bl->m))
+#else
+			if(battle_config.skill_trap_type_ot || !map_flag_gvg(bl->m))
+#endif
 				unit_stop_walking(bl,1);
 			break;
 		case SC_HIDING:
