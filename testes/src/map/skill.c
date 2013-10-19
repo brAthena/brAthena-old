@@ -11746,7 +11746,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 #if VERSION != -1
 				if(sg->unit_id == UNT_MANHOLE || battle_config.skill_trap_type || !map_flag_gvg2(src->bl.m)) {
 #else
-				if(sg->unit_id == UNT_MANHOLE || battle_config.skill_trap_type_ot || !map_flag_gvg2(src->bl.m)) {
+				if(battle_config.skill_trap_type_ot || !map_flag_gvg2(src->bl.m)) {
 #endif
 					unit_movepos(bl, src->bl.x, src->bl.y, 0, 0);
 					clif_fixpos(bl);
