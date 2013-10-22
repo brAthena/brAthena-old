@@ -234,22 +234,25 @@ malangdo,219,86,4	script	Kong#malang	545,{
 		set .@no_money$, ""+(( !ep13_yong1 ) ? "É difícil conseguir uma viagem de graça.":"É difícil conseguir uma viagem de graça se você não tem nenhum relacionamento com as tropas")+".";
 		set .@yes_money$, ""+(( !ep13_yong1 ) ? "Tenha uma boa viagem." : "Obrigado, tenha uma viagem maravilhosa")+".";
 		mes ""+(( !ep13_yong1 ) ? "O custo da passagem é de 1000 zenys, aonde quer ir" : "Você tem uma conexão com a frota. Onde você deseja ir")+"?";
-	}	else if ( ep13_yong1 > 59 && ep13_yong1 < 80 || ep13_yong1 > 80 ) {
+	}	
+	else if ( ep13_yong1 > 59 && ep13_yong1 < 80 || ep13_yong1 > 80 ) {
 		set .@price,(( ep13_yong1 > 59 && ep13_yong1 < 80 ) ? 500 : 0);
 		set .@s1$,""+(( ep13_yong1 > 59 && ep13_yong1 < 80 ) ? "500 zeny" : "De graça para o Herói da frota!!")+"";
 		set .@s2$, ""+(( ep13_yong1 > 59 && ep13_yong1 < 80 ) ? "Tenha muita sorte e dinheiro na Ilha dos Gatos." : "Nenhum nega o herói da frota a sair da Ilha dos Gatos...")+"";
 		if ( ep13_yong1 > 59 && ep13_yong1 < 80 ) {
-		set .@no_money$, "Ah meu deus. Você não tem 500 zenys? Não dá pra viajar de graça.";
-		set .@yes_money$, "Tenha uma boa viagem e volte sempre.";
+			set .@no_money$, "Ah meu deus. Você não tem 500 zenys? Não dá pra viajar de graça.";
+			set .@yes_money$, "Tenha uma boa viagem e volte sempre.";
 		}
 		mes ""+(( ep13_yong1 > 59 && ep13_yong1 < 80 ) ? "Uau~ Você contribuiu muito com a frota. Ok!! Você tem um desconto de 500 zeny!" : "Ah... você é o o herói da frota dos gatos, você é lendário.")+"";
 		next;
 		if ( ep13_yong1 > 80 ) {
-		mes "[Kong]";
-		mes "Nós não cobramos nada do herói da frota. Qual é o seu destino?";
-		next;
+			mes "[Kong]";
+			mes "Nós não cobramos nada do herói da frota. Qual é o seu destino?";
+			next;
 		}
+	}
 	set .@i, select("- Izlude --- "+.@s1$+":- Alberta --- "+.@s1$+":- Ficar em Malangdo");
+	next;
 	mes "[Kong]";
 	if (.@i == 3) {
 		mes .@s2$;
@@ -268,7 +271,6 @@ malangdo,219,86,4	script	Kong#malang	545,{
 	mes .@yes_money$;
 	warp "((.@i == 1) ? izlude : alberta)",(.@i == 1) ? 195 : 192,((.@i == 1) ? 212 : 150);
 	close;
-}
 }
 
 // NPCs da Cidade
