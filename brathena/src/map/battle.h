@@ -556,18 +556,12 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
   /* applies size modifiers */
 int64 battle_calc_sizefix(struct map_session_data *sd, int64 damage, int type, int size,  bool ignore);
   /* get weapon damage */
-#if VERSION == 1
 int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2);
-#endif
   /* applies defense reductions */
 int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 damage, int flag, int pdef);
 
-	int64 battle_calc_base_damage
-#if VERSION == 1
-	(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
-#else
-	(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
-#endif
+int64 battle_calc_base_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2);
+int64 battle_calc_base_damage2(struct status_data *st, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag);
 
 void battle_consume_ammo(struct map_session_data *sd, int skill, int lv);
 // Settings

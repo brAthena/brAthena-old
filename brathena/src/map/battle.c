@@ -442,8 +442,8 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 		}
 	return damage*ratio/100;
 }
-#if VERSION == 1
 int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2){ // [malufett]
+#ifdef RENEWAL
 	int64 damage, eatk = 0;
 	struct status_change *sc;
 	struct map_session_data *sd;
@@ -502,8 +502,10 @@ int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, u
 	damage = battle_calc_cardfix(BF_WEAPON, src, bl, nk, s_ele, s_ele_, damage, 0, flag2);
 
 	return damage;
-}
+#else
+	return 0;
 #endif
+}
 /*==========================================
  * Calculates the standard damage of a normal attack assuming it hits,
  * it calculates nothing extra fancy, is needed for magnum break's WATK_ELEMENT bonus. [Skotlex]
@@ -516,7 +518,7 @@ int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, u
  * &8: Skip target size adjustment (Extremity Fist?)
  *&16: Arrow attack but BOW, REVOLVER, RIFLE, SHOTGUN, GATLING or GRENADE type weapon not equipped (i.e. shuriken, kunai and venom knives not affected by DEX)
  */
-#if VERSION == 1
+/* 'battle_calc_base_damage' is used on renewal, 'battle_calc_base_damage2' otherwise. */
 int64 battle_calc_base_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2)
 {
 	int64 damage, batk;
@@ -528,8 +530,9 @@ int64 battle_calc_base_damage(struct block_list *src, struct block_list *bl, uin
 		damage = batk + 3 * battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &status->lhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2) / 4;
 	else
 		damage = (batk << 1) + battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &status->rhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2);
-#else
-int64 battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
+	return damage;
+}
+int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
 {
 	unsigned int atkmin=0, atkmax=0;
 	short type = 0;
@@ -606,7 +609,6 @@ int64 battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa,
 				damage += damage * sd->weapon_atk_rate[sd->weapontype1] / 100;
 		}
 	}
-#endif
 	return damage;
 }
 
@@ -897,10 +899,10 @@ int64 battle_calc_elefix(struct block_list *src, struct block_list *target, uint
 		sc = status_get_sc(src);
 
 		if(sc && sc->data[SC_SUB_WEAPONPROPERTY]) { // Descriptions indicate this means adding a percent of a normal attack in another element. [Skotlex]
-			int64 temp = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, BL_CAST(BL_PC, src), (flag?2:0)) * sc->data[SC_SUB_WEAPONPROPERTY]->val2 / 100;
+			int64 temp = battle_calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, BL_CAST(BL_PC, src), (flag?2:0)) * sc->data[SC_SUB_WEAPONPROPERTY]->val2 / 100;
 			damage += battle_attr_fix(src, target, temp, sc->data[SC_SUB_WEAPONPROPERTY]->val1, tstatus->def_ele, tstatus->ele_lv);
 			if(left) {
-				temp = battle_calc_base_damage(sstatus, &sstatus->lhw, sc, tstatus->size, BL_CAST(BL_PC, src), (flag?2:0)) * sc->data[SC_SUB_WEAPONPROPERTY]->val2 / 100;
+				temp = battle_calc_base_damage2(sstatus, &sstatus->lhw, sc, tstatus->size, BL_CAST(BL_PC, src), (flag?2:0)) * sc->data[SC_SUB_WEAPONPROPERTY]->val2 / 100;
 				damage += battle_attr_fix(src, target, temp, sc->data[SC_SUB_WEAPONPROPERTY]->val1, tstatus->def_ele, tstatus->ele_lv);
 			}
 		}
@@ -4477,7 +4479,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
 					ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
 				} else {
-					wd.damage = battle->calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, sd, 0); //Monsters have no weight and use ATK instead
+					wd.damage = battle_calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, sd, 0); //Monsters have no weight and use ATK instead
 				}
 				i = sstatus->str/10;
 				i*=i;
@@ -4545,9 +4547,9 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					wd.damage2 = battle_calc_masteryfix(src, target, skill_id, skill_lv, wd.damage2, wd.div_, 1, flag.weapon);
 				}
 #else
-				wd.damage = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, sd, i);
+				wd.damage = battle_calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, sd, i);
 				if (flag.lh)
-					wd.damage2 = battle_calc_base_damage(sstatus, &sstatus->lhw, sc, tstatus->size, sd, i);
+					wd.damage2 = battle_calc_base_damage2(sstatus, &sstatus->lhw, sc, tstatus->size, sd, i);
 #endif
 				if (nk&NK_SPLASHSPLIT){ // Divide ATK among targets
 					if(wflag>0)

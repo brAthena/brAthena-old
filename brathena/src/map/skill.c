@@ -17560,7 +17560,7 @@ int skill_blockpc_start(struct map_session_data *sd, uint16 skill_id, int tick)
 			cd->entry[i]->total = tick;
 #endif
 			cd->entry[i]->started = now;
-			timer_settick(cd->entry[i]->timer,now+tick);
+			settick_timer(cd->entry[i]->timer,now+tick);
 			return 0;
 		}
 		
@@ -17580,7 +17580,7 @@ int skill_blockpc_start(struct map_session_data *sd, uint16 skill_id, int tick)
 			cd->entry[cd->cursor]->skidx = idx;
 			cd->entry[cd->cursor]->skill_id = skill_id;
 			cd->entry[cd->cursor]->started = now;
-			cd->entry[cd->cursor]->timer = timer->add(now+tick,skill->blockpc_end,sd->bl.id,idx);
+			cd->entry[cd->cursor]->timer = add_timer(now+tick,skill_blockpc_end,sd->bl.id,idx);
 
 			cd->cursor++;
 
@@ -18151,7 +18151,7 @@ void skill_cooldown_save(struct map_session_data * sd) {
 	for(i = 0; i < cd->cursor; i++) {
 		cd->entry[i]->duration = DIFF_TICK(cd->entry[i]->started+cd->entry[i]->duration,now);
 		if(cd->entry[i]->timer != INVALID_TIMER ) {
-			timer_delete(cd->entry[i]->timer,skill_blockpc_end);
+			delete_timer(cd->entry[i]->timer,skill_blockpc_end);
 			cd->entry[i]->timer = INVALID_TIMER;
 		}
 	}
@@ -18182,7 +18182,7 @@ void skill_cooldown_load(struct map_session_data *sd)
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
 		cd->entry[i]->started = now;
-		cd->entry[i]->timer   = timer_add(gettick()+cd->entry[i]->duration,skill_blockpc_end,sd->bl.id,cd->entry[i]->skidx);
+		cd->entry[i]->timer   = add_timer(gettick()+cd->entry[i]->duration,skill_blockpc_end,sd->bl.id,cd->entry[i]->skidx);
 		sd->blockskill[cd->entry[i]->skidx] = true;
 	}
 }
