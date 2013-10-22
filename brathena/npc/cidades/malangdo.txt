@@ -27,7 +27,7 @@
 
 // Ida para Ilha Malangdo
 //============================================================
-prontera,114,77,6	script	Dolangmal	553,{
+prontera,114,77,6	script	Dolangmal#1	553,{
 	if (checkquest(5091) == -1) {
 		mes "[Dolangmal]";
 		mes "Eii~! Olá humano, eu sou o Sr. Dolangmal. kakaka~";
@@ -39,8 +39,8 @@ prontera,114,77,6	script	Dolangmal	553,{
 		set .@s$,"Por que você não vai para ^A2314BIlha dos Gatos^000000? ";
 		switch(atoi(strnpcinfo(2))) {
 			case 1: mes "Pense Bem! Tem muita gente em Prontera, por que você não vem relaxar no paraíso dos gatos, ^A2314BA Ilha dos Gatos^000000?"; break;
-			case 2: mes "Por que você não vai para a ^A2314BIlha dos Gatos^000000? lá é melhor que geffen que está lotada de bruxos."; break;
-			case 3: mes "O ar fresco de payon não é tão ruim, mas por que você não vem para o paraíso dos gatos, ^A2314BA Ilha dos Gatos^000000?"; break;
+			case 2: mes "Por que você não vai para a ^A2314BIlha dos Gatos^000000? Lá é melhor que Geffen que está lotada de bruxos."; break;
+			case 3: mes "O ar fresco de Payon não é tão ruim, mas por que você não vem para o paraíso dos gatos, ^A2314BA Ilha dos Gatos^000000?"; break;
 			case 4: mes .@s$+"Lá é bonito e silencioso. É melhor que Aldebaran que é tão barulhenta com os ruídos do relógio."; break;
 			case 5: mes .@s$+"Lá é bonito e silencioso. É melhor que Morroc que é tão quente e tem tempestades de areia."; break;
 			case 6: mes .@s$+"Lá é muito bonito. É melhor que Juno que é cheia de livros que dão dor de cabeça."; break;
@@ -156,14 +156,14 @@ prontera,114,77,6	script	Dolangmal	553,{
 		close;
 	}
 }
-geffen,109,61,6	duplicate(Dolangmal)	Dolangmal#2	553
-payon,200,106,4	duplicate(Dolangmal)	Dolangmal#3	553
-aldebaran,170,104,4	duplicate(Dolangmal)	Dolangmal#4	553
-morocc,168,275,4	duplicate(Dolangmal)	Dolangmal#5	553
-yuno,165,122,4	duplicate(Dolangmal)	Dolangmal#6	553
-rachel,121,126,4	duplicate(Dolangmal)	Dolangmal#7	553
-lighthalzen,254,83,5	duplicate(Dolangmal)	Dolangmal#8	553
-mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
+geffen,109,61,6	duplicate(Dolangmal#1)	Dolangmal#2	553
+payon,200,106,4	duplicate(Dolangmal#1)	Dolangmal#3	553
+aldebaran,170,104,4	duplicate(Dolangmal#1)	Dolangmal#4	553
+morocc,168,275,4	duplicate(Dolangmal#1)	Dolangmal#5	553
+yuno,165,122,4	duplicate(Dolangmal#1)	Dolangmal#6	553
+rachel,121,126,4	duplicate(Dolangmal#1)	Dolangmal#7	553
+lighthalzen,254,83,5	duplicate(Dolangmal#1)	Dolangmal#8	553
+mora,57,150,4	duplicate(Dolangmal#1)	Dolangmal#9	553
 
 -	script	::Odgnalam	-1,{
 	mes "Recebendo o sol quente de "+((strnpcinfo(2) == "albe")?"Alberta":"Izlude")+".";
