@@ -106,5 +106,5 @@ aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	92
 geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	92
 moc_ruins,59,154,3	duplicata(Dona Risadinha#iz)	Dona Risadinha#moc	92
 payon,186,104,5	duplicata(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
-payon,84,153,4	duplicato(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
+payon,84,158,4	duplicato(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
 prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	92
