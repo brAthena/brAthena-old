@@ -443,7 +443,7 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 	return damage*ratio/100;
 }
 int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2){ // [malufett]
-#ifdef RENEWAL
+#if VERSION == 1
 	int64 damage, eatk = 0;
 	struct status_change *sc;
 	struct map_session_data *sd;
