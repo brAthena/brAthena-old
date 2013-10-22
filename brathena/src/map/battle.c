@@ -2787,14 +2787,14 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				status_change_end(bl, SC_LEXAETERNA, INVALID_TIMER); //Shouldn't end until Breaker's non-weapon part connects.
 		}
 
-	#if VERSION == 1
+#if VERSION == 1
 		if(sc->data[SC_RAID]) {
 			damage += damage * 20 / 100;
 
 			if(--sc->data[SC_RAID]->val1 == 0)
 				status_change_end(bl, SC_RAID, INVALID_TIMER);
 		}
-	#endif
+#endif
 
 		if(damage) {
 			struct map_session_data *tsd = BL_CAST(BL_PC, src);
@@ -2833,14 +2833,14 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 		//Finally damage reductions....
 		// Assumptio doubles the def & mdef on RE mode, otherwise gives a reduction on the final damage. [Igniz]
-	#if VERSION != 1
+#if VERSION != 1
 		if(sc->data[SC_ASSUMPTIO]) {
 			if(map_flag_vs(bl->m))
 				damage = damage*2/3; //Receive 66% damage
 			else
 				damage >>= 1; //Receive 50% damage
 		}
-	#endif
+#endif
 
 		if(sc->data[SC_DEFENDER] &&
 		   (flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
@@ -2878,11 +2878,11 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		   sce->val3&flag && sce->val4&flag)
 			damage -= damage * sc->data[SC_ARMOR]->val2 / 100;
 
-	#if VERSION == 1
+#if VERSION == 1
 		if(sc->data[SC_ENERGYCOAT] && (flag&BF_WEAPON || flag&BF_MAGIC) && skill_id != WS_CARTTERMINATION)
-	#else
+#else
 		if(sc->data[SC_ENERGYCOAT] && (flag&BF_WEAPON && skill_id != WS_CARTTERMINATION))
-	#endif
+#endif
 			{
 				struct status_data *status = status_get_status_data(bl);
 				int per = 100*status->sp / status->max_sp -1; //100% should be counted as the 80~99% interval
@@ -2981,27 +2981,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
 			status_change_spread(bl, src); // Deadly infect attacked side
-
-		if(sc && sc->data[SC__SHADOWFORM]) {
-			struct block_list *s_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2);
-			if(!s_bl || s_bl->m != bl->m) {   // If the shadow form target is not present remove the sc.
-				status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
-			} else if(status_isdead(s_bl) || !battle_check_target(src,s_bl,BCT_ENEMY)) {  // If the shadow form target is dead or not your enemy remove the sc in both.
-				status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
-				if(s_bl->type == BL_PC)
-					((TBL_PC *)s_bl)->shadowform_id = 0;
-			} else {
-				if((--sc->data[SC__SHADOWFORM]->val3) < 0) {   // If you have exceded max hits supported, remove the sc in both.
-					status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
-					if(s_bl->type == BL_PC)
-						((TBL_PC *)s_bl)->shadowform_id = 0;
-				} else {
-					status_damage(bl, s_bl, damage, 0, clif_damage(s_bl, s_bl, gettick(), 500, 500, damage, -1, 0, 0), 0);
-					return ATK_NONE;
-				}
-			}
-		}
-
 	}
 
 	//SC effects from caster side.
@@ -5576,6 +5555,12 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	}
 	map_freeblock_lock();
 
+	if(skill_check_shadowform(target, damage, wd.div_)){
+		if(!status_isdead(target))
+			skill_additional_effect(src, target, 0, 0, wd.flag, wd.dmg_lv, tick);
+		if(wd.dmg_lv > ATK_BLOCK)
+			skill_counter_additional_effect(src, target, 0, 0, wd.flag,tick);
+	}else
 	battle_delay_damage(tick, wd.amotion, src, target, wd.flag, 0, 0, damage, wd.dmg_lv, wd.dmotion, true);
 	if(tsc) {
 		if(tsc->data[SC_DEVOTION]) {

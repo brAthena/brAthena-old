@@ -23,6 +23,8 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+1@ma_c	mapflag	src4instance
+//============================================================
 ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 	if (BaseLevel < 130) {
 		mes "[Guard]";
@@ -82,7 +84,8 @@ ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 					erasequest 4229;
 					// fall through
 				}
-				if (instance_create(.@md_name$) < 0) {
+				set .@instance,instance_create(.@md_name$,.@party_id);
+				if (.@instance < 0) {
 					mes "[Guard]";
 					mes "Party name is... "+getpartyname(.@party_id)+".";;
 					mes "Party leader is... "+strcharinfo(0);
@@ -90,6 +93,14 @@ ma_fild02,312,317,5	script	Guard#buwaya_cave	570,{
 					mes "Please try a moment later.";
 					close;
 				}
+				if (instance_attachmap("1@ma_c",.@instance) == "") {
+					mes "^0000ff"+.@md_name$+"^000000 - Reservation Failed!";
+					instance_destroy(.@instance);
+					close;
+				}
+				instance_set_timeout 3600,300,.@instance;
+				instance_init(.@instance);
+				
 				mes "[Guard]";
 				mes "I will open up the tunnel to ^0000ff"+.@md_name$+"^000000.";
 				mes "I wish you good luck.";
@@ -133,26 +144,16 @@ OnTouch:
 	}
 	switch(select("Enter.:Turn back.")) {
 	case 1:
-		switch(instance_enter("Buwaya Cave")) {
-		case 3:
-			mes "[Guard]";
-			mes "Oh, now is not a good time.";
-			mes "Please try again a moment later.";
+		if( has_instance("1@ma_c") == "" ) {
+			mes "The memorial dungeon Buwaya Cave does not exist.";
+			mes "The party leader did not generate the dungeon yet.";
 			close;
-		case 2:
-		case 1:
-			mes "[Guard]";
-			mes "This place is dangerous. Please do not enter.";
-			close;
-		case 0:
+		} else {
 			mapannounce "ma_fild02",getpartyname(getcharid(1))+" party's "+strcharinfo(0)+" member began hunting Buwaya in Buwaya Cave.",bc_map,"0x00ff99"; //FW_NORMAL 12 0 0
 			setquest 4229;
-			//warp "1@ma_c",35,57;
+			warp "1@ma_c",35,57;
 			end;
-		default:
-			mes "- Could not enter due to an unidentified force. -";
-			close;
-		}
+		}	
 	case 2:
 		mes "[Guard]";
 		mes "You must value your life.";
@@ -443,7 +444,7 @@ OnEnable:
 OnTouch:
 	mes "Would like to go out?";
 	next;
-	if (select("Yes!:No, I will stay.") == 1)
+	if(select("Yes!:No, I will stay.") == 1)
 		warp "ma_fild02",315,315;
 	close;
 }

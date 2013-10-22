@@ -206,8 +206,12 @@ int map_usercount(void)
 int map_freeblock(struct block_list *bl)
 {
 	nullpo_retr(block_free_lock, bl);
+
 	if(block_free_lock == 0 || block_free_count >= block_free_max) {
-		aFree(bl);
+		if(bl->type == BL_ITEM)
+			ers_free(flooritem_ers, bl);
+		else
+			aFree(bl);
 		bl = NULL;
 		if(block_free_count >= block_free_max)
 			ShowWarning("map_freeblock: too many free block! %d %d\n", block_free_count, block_free_lock);
@@ -232,7 +236,10 @@ int map_freeblock_unlock(void)
 	if((--block_free_lock) == 0) {
 		int i;
 		for(i = 0; i < block_free_count; i++) {
-			aFree(block_free[i]);
+			if(block_free[i]->type == BL_ITEM )
+				ers_free(flooritem_ers, block_free[i]);
+			else
+				aFree(block_free[i]);
 			block_free[i] = NULL;
 		}
 		block_free_count = 0;
@@ -1245,7 +1252,7 @@ void map_clearflooritem(struct block_list *bl)
 {
 	struct flooritem_data *fitem = (struct flooritem_data *)bl;
 
-	if(fitem->cleartimer)
+	if(fitem->cleartimer != INVALID_TIMER)
 		delete_timer(fitem->cleartimer,map_clearflooritem_timer);
 
 	clif_clearflooritem(fitem, 0);
@@ -1390,15 +1397,15 @@ int map_addflooritem(struct item *item_data,int amount,int16 m,int16 x,int16 y,i
 		return 0;
 	r=rnd();
 
-	CREATE(fitem, struct flooritem_data, 1);
-	fitem->bl.type=BL_ITEM;
+	fitem = ers_alloc(flooritem_ers, struct flooritem_data);
+	fitem->bl.type = BL_ITEM;
 	fitem->bl.prev = fitem->bl.next = NULL;
-	fitem->bl.m=m;
-	fitem->bl.x=x;
-	fitem->bl.y=y;
+	fitem->bl.m = m;
+	fitem->bl.x = x;
+	fitem->bl.y = y;
 	fitem->bl.id = map_get_new_object_id();
 	if(fitem->bl.id==0) {
-		aFree(fitem);
+		ers_free(flooritem_ers, fitem);
 		return 0;
 	}
 
@@ -5224,12 +5231,13 @@ void do_final(void)
 	regen_db->destroy(regen_db, NULL);
 
 	map_sql_close();
-		ers_destroy(map_iterator_ers);
+	ers_destroy(map_iterator_ers);
+	ers_destroy(flooritem_ers);
 
-		aFree(map);
+	aFree(map);
 
-		if(!enable_grf)
-			aFree(map_cache_buffer);
+	if(!enable_grf)
+		aFree(map_cache_buffer);
 
 	ShowStatus("Finished.\n");
 }
@@ -5473,6 +5481,10 @@ int do_init(int argc, char *argv[])
 	zone_db = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, MAP_ZONE_NAME_LENGTH);
 
 	map_iterator_ers = ers_new(sizeof(struct s_mapiterator),"map.c::map_iterator_ers",ERS_OPT_NONE);
+
+	flooritem_ers = ers_new(sizeof(struct flooritem_data),"map.c::map_flooritem_ers",ERS_OPT_NONE);
+	ers_chunk_size(flooritem_ers, 100);
+
 	map_sql_init();
 	if(log_config.sql_logs)
 		log_sql_init();

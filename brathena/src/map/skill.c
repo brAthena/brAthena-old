@@ -679,10 +679,11 @@ int skillnotok(uint16 skill_id, struct map_session_data *sd)
 		return 1;
 	}
 
-	if(sd->blockskill[idx] > 0) {
+	if(sd->blockskill[idx]) {
 		clif_skill_fail(sd, skill_id, USESKILL_FAIL_SKILLINTERVAL, 0);
 		return 1;
 	}
+
 	/**
 	 * It has been confirmed on a official server (thanks to Yommy) that item-cast skills bypass all the restrictions above
 	 * Also, without this check, an exploit where an item casting + healing (or any other kind buff) isn't deleted after used on a restricted map
@@ -1465,7 +1466,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case WL_EARTHSTRAIN: {
 				// lv 1 & 2 = Strip Helm, lv 3 = Strip Armor, lv 4 = Strip Weapon and lv 5 = Strip Accessory. [malufett]
 				const int pos[5] = { EQP_HELM, EQP_HELM, EQP_ARMOR, EQP_WEAPON, EQP_ACC };
-				skill_strip_equip(bl, pos[skill_lv], 6 * skill_lv + status_get_lv(src) / 4 + status_get_dex(src) / 10,
+				skill_strip_equip(bl, pos[skill_lv-1], 6 * skill_lv + status_get_lv(src) / 4 + status_get_dex(src) / 10,
 					skill_lv, skill_get_time2(skill_id,skill_lv));
 			}
 			break;
@@ -2455,7 +2456,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 	int type;
 	int64 damage;
 	int8 rmdamage=0;//magic reflected
-	bool additional_effects = true;
+	bool additional_effects = true, shadow_flag = false;
 
 	if(skill_id > 0 && !skill_lv) return 0;
 
@@ -2915,9 +2916,11 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			ud->attackabletime = tick + type;
 	}
 
+	shadow_flag = skill_check_shadowform(bl, damage, dmg.div_);
+
 	if(!dmg.amotion) {
 		//Instant damage
-		if(!sc || (!sc->data[SC_DEVOTION] && skill_id != CR_REFLECTSHIELD))
+		if((!sc || (!sc->data[SC_DEVOTION] && skill_id != CR_REFLECTSHIELD)) && !shadow_flag)
 			status_fix_damage(src,bl,damage,dmg.dmotion); //Deal damage before knockback to allow stuff like firewall+storm gust combo.
 		if(!status_isdead(bl) && additional_effects)
 			skill_additional_effect(src,bl,skill_id,skill_lv,dmg.flag,dmg.dmg_lv,tick);
@@ -2997,8 +3000,15 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 	}
 
 	//Delayed damage must be dealt after the knockback (it needs to know actual position of target)
-	if(dmg.amotion)
-		battle_delay_damage(tick, dmg.amotion,src,bl,dmg.flag,skill_id,skill_lv,damage,dmg.dmg_lv,dmg.dmotion, additional_effects);
+	if (dmg.amotion){
+		if(shadow_flag) {
+			if(!status_isdead(bl) && additional_effects)
+				skill_additional_effect(src,bl,skill_id,skill_lv,dmg.flag,dmg.dmg_lv,tick);
+			if(dmg.flag > ATK_BLOCK)
+				skill_counter_additional_effect(src,bl,skill_id,skill_lv,dmg.flag,tick);
+		}else
+			battle_delay_damage(tick, dmg.amotion,src,bl,dmg.flag,skill_id,skill_lv,damage,dmg.dmg_lv,dmg.dmotion, additional_effects);
+	}
 
 	if(sc && sc->data[SC_DEVOTION] && skill_id != PA_PRESSURE) {
 		struct status_change_entry *sce = sc->data[SC_DEVOTION];
@@ -3402,8 +3412,23 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 				break; // Target not on Map
 			if(src->m != target->m)
 				break; // Different Maps
-			if(status_isdead(src))
-				break; // Caster is Dead
+			if(status_isdead(src)) {
+				// Exceptions
+				switch(skl->skill_id){
+					case WL_CHAINLIGHTNING_ATK:
+					case WL_TETRAVORTEX_FIRE:
+					case WL_TETRAVORTEX_WATER:
+					case WL_TETRAVORTEX_WIND:
+					case WL_TETRAVORTEX_GROUND:
+					case SR_FLASHCOMBO_ATK_STEP1:
+					case SR_FLASHCOMBO_ATK_STEP2:
+					case SR_FLASHCOMBO_ATK_STEP3:
+					case SR_FLASHCOMBO_ATK_STEP4:
+						break;
+					default:
+						continue; // Caster is Dead
+				}
+			}
 			if(status_isdead(target) && skl->skill_id != RG_INTIMIDATE && skl->skill_id != WZ_WATERBALL)
 				break;
 
@@ -3477,7 +3502,7 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 					if(skl->type == 4) { 
 						const enum sc_type scs[] = { SC_BURNING, SC_BLOODING, SC_FROSTMISTY, SC_STUN }; // status inflicts are depend on what summoned element is used.
 						int rate = skl->y, index = skl->x-1;
-						sc_start2(target, scs[index], rate, skl->skill_lv, src->id, skill_get_time(WL_TETRAVORTEX,index));
+						sc_start2(target, scs[index], rate, skl->skill_lv, src->id, skill_get_time(WL_TETRAVORTEX,index+1));
 					}
 					break;
 				case WM_REVERBERATION_MELEE:
@@ -3624,6 +3649,17 @@ int skill_cleartimerskill(struct block_list *src)
 
 	for(i=0; i<MAX_SKILLTIMERSKILL; i++) {
 		if(ud->skilltimerskill[i]) {
+			switch(ud->skilltimerskill[i]->skill_id){
+				case WL_TETRAVORTEX_FIRE:
+				case WL_TETRAVORTEX_WATER:
+				case WL_TETRAVORTEX_WIND:
+				case WL_TETRAVORTEX_GROUND:
+				case SR_FLASHCOMBO_ATK_STEP1:
+				case SR_FLASHCOMBO_ATK_STEP2:
+				case SR_FLASHCOMBO_ATK_STEP3:
+				case SR_FLASHCOMBO_ATK_STEP4:
+					continue;
+			}
 			delete_timer(ud->skilltimerskill[i]->timer, skill_timerskill);
 			ers_free(skill_timer_ers, ud->skilltimerskill[i]);
 			ud->skilltimerskill[i]=NULL;
@@ -3631,7 +3667,7 @@ int skill_cleartimerskill(struct block_list *src)
 	}
 	return 1;
 }
-static int skill_ative_reverberation(struct block_list *bl, va_list ap)
+static int skill_activate_reverbetion(struct block_list *bl, va_list ap)
 {
 	struct skill_unit *su = (TBL_SKILL *)bl;
 	struct skill_unit_group *sg;
@@ -10593,7 +10629,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 
 		case WM_DOMINION_IMPULSE:
 			i = skill_get_splash(skill_id, skill_lv);
-			map_foreachinarea(skill_ative_reverberation,
+			map_foreachinarea(skill_activate_reverbetion,
 			                  src->m, x-i, y-i, x+i,y+i,BL_SKILL);
 			break;
 
@@ -15514,6 +15550,39 @@ bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *s
 	return wall;
 }
 
+bool skill_check_shadowform(struct block_list *bl, int64 damage, int hit){
+	struct status_change *sc;
+	struct block_list *src;
+
+	nullpo_retr(false, bl);
+
+	sc = status_get_sc(bl);
+
+	if(sc && sc->data[SC__SHADOWFORM] && damage) {
+		src = map_id2bl(sc->data[SC__SHADOWFORM]->val2);
+
+		if(!src || src->m != bl->m) { 
+			status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
+			return false;
+		}
+
+		if(src && (status_isdead(src) || !battle_check_target(bl,src,BCT_ENEMY))) {
+			if(src->type == BL_PC)
+				((TBL_PC*)src)->shadowform_id = 0;
+			status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
+			return false;
+		}
+
+		status_damage(bl, src, damage, 0, clif_damage(src, src, gettick(), 500, 500, damage, hit, (hit > 1 ? 8 : 0), 0), 0);
+		if((--sc->data[SC__SHADOWFORM]->val3) <= 0) {
+			status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
+			if(src->type == BL_PC)
+				((TBL_PC*)src)->shadowform_id = 0;
+		}
+		return true;
+	}
+	return false;
+}
 /*==========================================
  *
  *------------------------------------------*/
@@ -17405,7 +17474,8 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
 
 	if(data <= 0 || data >= MAX_SKILL)
 		return 0;
-	if(!sd) return 0;
+	if(!sd || !sd->blockskill[data])
+		return 0;
 
 	if((cd = idb_get(skillcd_db,sd->status.char_id))) {
 		int i;
@@ -17439,9 +17509,7 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
 		}
 	}
 
-	if(sd->blockskill[data] != (0x1|(tid&0xFE))) return 0;
-
-	sd->blockskill[data] = 0;
+	sd->blockskill[data] = false;
 	return 1;
 }
 
@@ -17450,12 +17518,13 @@ int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
  * @param   sd        the player the skill delay affects
  * @param   skill_id   the skill which should be delayed
  * @param   tick      the length of time the delay should last
- * @param   load      whether this assignment is being loaded upon player login
  * @return  0 if successful, -1 otherwise
  */
-int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick, bool load)
+int skill_blockpc_start(struct map_session_data *sd, uint16 skill_id, int tick)
 {
+	struct skill_cd* cd = NULL;
 	uint16 idx = skill_get_index(skill_id);
+	unsigned int now = gettick();
 
 	nullpo_retr(-1, sd);
 
@@ -17463,16 +17532,12 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 		return -1;
 
 	if(tick < 1) {
-		sd->blockskill[idx] = 0;
+		sd->blockskill[idx] = false;
 		return -1;
 	}
 
-	if(!load && battle_config.display_status_timers)
+	if(battle_config.display_status_timers)
 		clif_skill_cooldown(sd, skill_id, tick);
-
-	if(!load) {// not being loaded initially so ensure the skill delay is recorded
-		struct skill_cd* cd = NULL;
-		int i;
 
 		if(!(cd = idb_get(skillcd_db,sd->status.char_id)) ) {// create a new skill cooldown object for map storage
 			cd = ers_alloc(skill_cd_ers, struct skill_cd);
@@ -17481,16 +17546,31 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 			memset(cd->entry, 0, sizeof(cd->entry));
 
 			idb_put( skillcd_db, sd->status.char_id, cd );
-		}
+		} else {
+		int i;
 
 		for(i = 0; i < MAX_SKILL_TREE; i++) {
-			if(!cd->entry[i])
+			if(cd->entry[i] && cd->entry[i]->skidx == idx)
 				break;
 		}
 
-		if(i == MAX_SKILL_TREE) {
+		if(i != MAX_SKILL_TREE) {/* duplicate, update necessary */
+			cd->entry[i]->duration = tick;
+#if PACKETVER >= 20120604
+			cd->entry[i]->total = tick;
+#endif
+			cd->entry[i]->started = now;
+			timer_settick(cd->entry[i]->timer,now+tick);
+			return 0;
+		}
+		
+	}
+
+		if(cd->cursor == MAX_SKILL_TREE) {
 			ShowError("skill_blockpc_start: '%s' got over '%d' skill cooldowns, no room to save!\n",sd->status.name,MAX_SKILL_TREE);
-		} else {
+			return -1;
+		}
+
 			cd->entry[cd->cursor] = ers_alloc(skill_cd_entry_ers,struct skill_cd_entry);
 
 			cd->entry[cd->cursor]->duration = tick;
@@ -17499,13 +17579,12 @@ int skill_blockpc_start_(struct map_session_data *sd, uint16 skill_id, int tick,
 #endif
 			cd->entry[cd->cursor]->skidx = idx;
 			cd->entry[cd->cursor]->skill_id = skill_id;
-			cd->entry[cd->cursor]->started = gettick();
+			cd->entry[cd->cursor]->started = now;
+			cd->entry[cd->cursor]->timer = timer->add(now+tick,skill->blockpc_end,sd->bl.id,idx);
 
 			cd->cursor++;
-		}
-	}
 
-	sd->blockskill[idx] = 0x1|(0xFE&add_timer(gettick()+tick,skill_blockpc_end,sd->bl.id,idx));
+	sd->blockskill[idx] = true;
 	return 0;
 }
 
@@ -18071,6 +18150,10 @@ void skill_cooldown_save(struct map_session_data * sd) {
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
 		cd->entry[i]->duration = DIFF_TICK(cd->entry[i]->started+cd->entry[i]->duration,now);
+		if(cd->entry[i]->timer != INVALID_TIMER ) {
+			timer_delete(cd->entry[i]->timer,skill_blockpc_end);
+			cd->entry[i]->timer = INVALID_TIMER;
+		}
 	}
 }
 	
@@ -18099,8 +18182,8 @@ void skill_cooldown_load(struct map_session_data *sd)
 	// process each individual cooldown associated with the character
 	for(i = 0; i < cd->cursor; i++) {
 		cd->entry[i]->started = now;
-		// block the skill from usage but ensure it is not recorded (load = true)
-		skill_blockpc_start_(sd, cd->entry[i]->skill_id, cd->entry[i]->duration, true);
+		cd->entry[i]->timer   = timer_add(gettick()+cd->entry[i]->duration,skill_blockpc_end,sd->bl.id,cd->entry[i]->skidx);
+		sd->blockskill[cd->entry[i]->skidx] = true;
 	}
 }
 

@@ -820,6 +820,8 @@ struct chat_data* map_id2cd(int id);
 struct block_list * map_id2bl(int id);
 bool map_blid_exists( int id );
 
+struct eri *flooritem_ers;
+
 #define map_id2index(id) map[(id)].index
 int16 map_mapindex2mapid(unsigned short mapindex);
 int16 map_mapname2mapid(const char* name);

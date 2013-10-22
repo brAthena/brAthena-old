@@ -17343,9 +17343,9 @@ void clif_parse_MoveItem(int fd, struct map_session_data *sd)
 /* [Ind] */
 void clif_cashshop_db(void) {
 	config_t cashshop_conf;
-	config_setting_t *cashshop = NULL;
+	config_setting_t *cashshop = NULL, *cats = NULL;
 	const char *config_filename = "db/cashshop.conf"; // FIXME hardcoded name
-	int i;
+	int i, item_count_t = 0;
 	for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
 		CREATE(cs.data[i], struct hCSData *, 1);
 		cs.item_count[i] = 0;
@@ -17358,27 +17358,16 @@ void clif_cashshop_db(void) {
 	
 	cashshop = config_lookup(&cashshop_conf, "cash_shop");
 
-	if (cashshop != NULL) {
-		config_setting_t *cats = config_setting_get_elem(cashshop, 0);
-		config_setting_t *cat;
-		int k, item_count_t = 0;
-		
+	if(cashshop != NULL && (cats = config_setting_get_elem(cashshop, 0)) != NULL) {
 		for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
+		config_setting_t *cat;
 			char entry_name[10];
 
 			sprintf(entry_name,"cat_%d",i);
 
 			if((cat = config_setting_get_member(cats, entry_name)) != NULL) {
-				int item_count = config_setting_length(cat);
+				int k, item_count = config_setting_length(cat);
 
-				if(item_count == 0) {
-					ShowWarning("cashshop_db: category '%s' is empty! adding dull apple!\n", entry_name);
-					RECREATE(cs.data[i], struct hCSData *, +cs.item_count[i]);
-					CREATE(cs.data[i][cs.item_count[i] - 1 ], struct hCSData , 1);
-
-					cs.data[i][cs.item_count[i] - 1 ]->id = UNKNOWN_ITEM_ID;
-					cs.data[i][cs.item_count[i] - 1 ]->price = 999;
-				} else {
 					for(k = 0; k < item_count; k++) {
 						config_setting_t *entry = config_setting_get_elem(cat,k);
 						const char *name = config_setting_name(entry);
@@ -17411,14 +17400,12 @@ void clif_cashshop_db(void) {
 						item_count_t++;
 					}
 				}
-			} else {
-				ShowError("cashshop_db: categoria '%s' (%d) não encontrada!!\n",entry_name,i);
 			}
+
+			config_destroy(&cashshop_conf);
 		}
-		
+	
 		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", item_count_t, config_filename);
-		config_destroy(&cashshop_conf);
-	}
 }
 /// Items that are in favorite tab of inventory (ZC_ITEM_FAVORITE).
 /// 0900 <index>.W <favorite>.B
@@ -17482,6 +17469,9 @@ void clif_parse_CashShopSchedule(int fd, struct map_session_data *sd) {
 	int i, j = 0;
 
 	for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
+		if(cs.item_count[i] == 0)
+			continue; // Skip empty tabs, the client only expects filled ones
+
 		WFIFOHEAD(fd, 8 + (cs.item_count[i] * 6));
 		WFIFOW(fd, 0) = 0x8ca;
 		WFIFOW(fd, 2) = 8 + ( cs.item_count[i] * 6 );
@@ -17583,7 +17573,7 @@ void clif_parse_CashShopReqTab(int fd, struct map_session_data *sd) {
 	short tab = RFIFOW(fd, 2);
 	int j;
 
-	if(tab < 0 || tab > CASHSHOP_TAB_MAX)
+	if(tab < 0 || tab > CASHSHOP_TAB_MAX || cs.item_count[tab] == 0)
 		return;
 
 	WFIFOHEAD(fd, 10 + (cs.item_count[tab] * 6));
@@ -17929,9 +17919,11 @@ void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
 		if(cd->entry[i]->duration < 1) continue;
 
 		WFIFOW(fd, 4 + (count*offset)) = cd->entry[i]->skill_id;
-		WFIFOL(fd, 6 + (count*offset)) = cd->entry[i]->duration;
 #if PACKETVER >= 20120604
+		WFIFOL(fd, 6  + (count*offset)) = cd->entry[i]->total;
 		WFIFOL(fd, 10 + (count*offset)) = cd->entry[i]->duration;
+#else
+		WFIFOL(fd, 6  + (count*offset)) = cd->entry[i]->duration;
 #endif
 
 		count++;

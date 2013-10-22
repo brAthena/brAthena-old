@@ -22,7 +22,9 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
+1@gl_k	mapflag	src4instance
+2@gl_k	mapflag	src4instance
+//============================================================
 glast_01,204,273,6	script	Hugin#ghinstance	755,{
 	mes "^ff0000This isn't considered a normal progression dungeon. Please note this point.^000000";
 	next;
@@ -33,11 +35,8 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 	if (.@ghins_time == -1) {
 
 		set .@party_id,getcharid(1);
-		set .@ins_mas,getpartyleader(.@party_id,2);
 		set .@p_name$,getpartyname(.@party_id);
-		set .@p_readers$,strcharinfo(0);
 		set .@md_name$,"Old Glast Heim";
-		set .@p_name2$,strcharinfo(0);
 
 		if (!instance_check_party(.@party_id,2)) {
 			//custom
@@ -46,156 +45,31 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 			close;
 		}
 
-		if (.@ins_mas == getcharid(0))
+		if (getcharid(0) == getpartyleader(.@party_id,2))
 			set .@menu$, "Create the time gap.:Enter the Old Glast Heim.:Cancel.";
 		else
 			set .@menu$, ":Enter the Old Glast Heim.:Cancel.";
 		switch(select(.@menu$)) {
 		case 1:
-			set .@instance, instance_create(.@md_name$, .@party_id);
+			set .@instance, instance_create(.@md_name$,.@party_id);
 			if (.@instance < 0) {
 				mes "Party Name: "+.@p_name$;
 				mes "Party Leader: "+strcharinfo(0);
 				mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
 				close;
 			}
-			for(set .@i, 1; .@i <= 2; set .@i, .@i + 1) {
-				if ( instance_attachmap(.@i + "@gl_k", .@instance) == "" ) {
-					mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
-					instance_destroy(.@instance);
-					close;
-				}
+			if (instance_attachmap("1@gl_k",.@instance) == "" || instance_attachmap("2@gl_k",.@instance) == "") {
+				mes "^0000ff"+.@md_name$+"^000000 - Reservation Failed!";
+				instance_destroy(.@instance);
+				close;
 			}
-			instance_attach(.@instance);
 			instance_set_timeout 3600,300,.@instance;
 			instance_init(.@instance);
-			donpcevent instance_npcname("#talkinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob01", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob02", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob03", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob04", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob05", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob06", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob07", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob08", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob09", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghmemorialmob10", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp7", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp8", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp9", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp10", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp11", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#ghinstancewarp12", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Varmunt#ghinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#7", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#8", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#9", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#10", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#11", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#12", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#13", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#14", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#15", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#16", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#17", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#18", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#19", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("White Knight#20", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#21", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Khalitzburg Crusader#22", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Heinrich#ghinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Varmunt#ghinstance2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Heinrich#ghinstance2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Himmelmez#ghinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance7", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance8", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance9", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance10", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance11", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance12", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance13", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance14", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance15", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance16", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance17", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance18", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance19", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance20", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance21", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname(".#ghinstance22", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Aspiring Butcher#clearGH", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Hollgrehenn Destroyer", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp7", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp8", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp9", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp10", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp11", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp12", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp13", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp14", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp15", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp16", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp17", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp18", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp19", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp20", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp21", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp22", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp23", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp24", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp25", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp26", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp27", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp28", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp29", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp30", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp31", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Breathless Man#GHtramp32", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#GHMclear3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#controlGH3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Heinrich#ghinstance4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Himmelmez#ghinstance2", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Varmunt#ghinstance3", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Heinrich#ghinstance5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Varmunt#ghinstance4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#effectGH01", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#controlGH4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Heinrich#ghinstance6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Varmunt#ghinstance5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Himmelmez#ghinstance4", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#controlGH6", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Gerhard#ghinstance1", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("#controlGH5", instance_id())+"::OnInstanceInit";
-			donpcevent instance_npcname("Hugin#ghinstance1", instance_id())+"::OnInstanceInit";
 			mes "[Hugin]";
 			mes "The time gap was created. When you're ready, talk to me again.";
 			close;
 		case 2:
-			if (has_instance("1@gl_k")== "") {
+			if( has_instance("1@gl_k") == "" ) {
 				mes "The memorial dungeon "+.@md_name$+" does not exist.";
 				mes "The party leader did not generate the dungeon yet.";
 				close;
@@ -203,8 +77,8 @@ glast_01,204,273,6	script	Hugin#ghinstance	755,{
 				mapannounce "glast_01",strcharinfo(0)+", member of the party "+.@p_name$+" entered the instance "+.@md_name$+".",bc_map,"0x00ff99";
 				setquest 12317;
 				setquest 12318;
-				//warp "1@gl_k",150,20;
-				close;
+				warp "1@gl_k",150,20;
+				end;
 			}
 		case 3:
 			close;
@@ -406,7 +280,7 @@ OnEnable:
 		donpcevent instance_npcname("Heinrich#ghinstance2")+"::OnEnable";
 		donpcevent instance_npcname("Himmelmez#ghinstance1")+"::OnEnable";
 		donpcevent instance_npcname("#talkinstance1")+"::OnEnable";
-		instance_announce -1, "???? Shout: Ohohohoho~!",bc_map,"0xFFFF00";
+		mapannounce instance_mapname("1@gl_k"), "???? Shout: Ohohohoho~!",bc_map,"0xFFFF00";
 		close2;
 		cutin "gl_heinrich1",255;
 		end;
@@ -653,7 +527,7 @@ OnTimer85000:
 	hideonnpc instance_npcname("Khalitzburg Crusader#21");
 	hideonnpc instance_npcname("Khalitzburg Crusader#22");
 
-	set .@map$, "1@gl_k";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#talkinstance1")+"::OnMyMobDead"; 
 	monster .@map$,145,59,"Abyss Knight",2470,1,.@label$;
 	monster .@map$,154,59,"Abyss Knight",2470,1,.@label$;
@@ -694,7 +568,7 @@ OnTimer88000:
 	hideonnpc instance_npcname(".#ghinstance21");
 	hideonnpc instance_npcname(".#ghinstance22");
 
-	set .@map$, "1@gl_k";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#talkinstance1")+"::OnMyMobDead"; 
 	monster .@map$,145,54,"Khalitzburg",2471,1,.@label$;
 	monster .@map$,154,54,"Khalitzburg",2471,1,.@label$;
@@ -717,10 +591,10 @@ OnTimer97000:
 	end;
 OnTimer105000:
 	donpcevent instance_npcname("Heinrich#ghinstance2")+"::OnTalk10";
-	instance_announce -1, "Heinrich's Shout: Dead men, dead men all over the place!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@gl_k"), "Heinrich's Shout: Dead men, dead men all over the place!",bc_map,"0xFFFF00";
 	end;
 OnTimer107000:
-	instance_announce -1, "Heinrich's Shout: Everybody! Go back!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@gl_k"), "Heinrich's Shout: Everybody! Go back!",bc_map,"0xFFFF00";
 	end;
 OnTimer110000:
 	donpcevent instance_npcname(".#ghinstance22")+"::OnEffect1";
@@ -790,7 +664,7 @@ OnTimer115000:
 	donpcevent instance_npcname("Heinrich#ghinstance3")+"::OnTalk1";
 	donpcevent instance_npcname(".#ghinstance2")+"::OnEffect1";
 	donpcevent instance_npcname(".#ghinstance1")+"::OnEffect1";
-	killmonster "1@gl_k",instance_npcname("#talkinstance1")+"::OnMyMobDead";
+	killmonster instance_mapname("1@gl_k"),instance_npcname("#talkinstance1")+"::OnMyMobDead";
 	end;
 OnTimer120000:
 	donpcevent instance_npcname("Varmunt#ghinstance2")+"::OnTalk5";
@@ -831,7 +705,7 @@ OnTimer168000:
 	stopnpctimer;
 	donpcevent instance_npcname("#ghinstancewarp1")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp2")+"::OnEnable";
-	instance_announce -1, "9 o'clock warp leading to zone 2 is now open.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@gl_k"), "9 o'clock warp leading to zone 2 is now open.",bc_map,"0xFFFF00";
 	donpcevent instance_npcname("#talkinstance1")+"::OnDisable";
 	donpcevent instance_npcname("#ghmemorialmob01")+"::OnEnable";
 	end;
@@ -921,8 +795,8 @@ OnEnable:
 	enablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnTouch:
-	set .@map1$, "1@gl_k";
-	set .@map2$, "2@gl_k";
+	set .@map1$, instance_mapname("1@gl_k");
+	set .@map2$, instance_mapname("2@gl_k");
 	switch(atoi(replacestr(strnpcinfo(2),"ghinstancewarp",""))) {
 		case 1: warp .@map1$,80,80; break;
 		case 2: warp .@map1$,105,80; break;
@@ -963,7 +837,7 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob01");
-	set .@map$, "1@gl_k";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob01")+"::OnMyMobDead";
 	areamonster .@map$,76,99,87,10,"Suffering Chamberlain",2466,15,.@label$;
 	areamonster .@map$,67,39,12,6,"Fallen Monk",2465,20,.@label$;
@@ -972,11 +846,12 @@ OnEnable:
 	areamonster .@map$,45,84,6,137,"Decayed Butler",2464,12,.@label$;
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob01")+"::OnMyMobDead";
 	set .@mob_dead_num, 56 - mobcount(.@map$,.@label$);
 	if (.@mob_dead_num > 35) {
-		instance_announce -1, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
-		killmonster "1@gl_k",.@label$;
+		mapannounce .@map$, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
+		killmonster .@map$,.@label$;
 		donpcevent instance_npcname("Aspiring Butcher#clearGH")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob01")+"::OnDisable";
 	}
@@ -1102,19 +977,21 @@ OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob02");
 	donpcevent instance_npcname("#ghinstancewarp3")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp4")+"::OnEnable";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob02")+"::OnMyMobDead";
-	instance_announce -1, "3 o'clock warp leading to zone 3 is now open.",bc_map,"0xFFFF00";
-	areamonster "1@gl_k",241,113,291,19,"Suffering Chamberlain",2466,12,.@label$;
-	areamonster "1@gl_k",241,113,291,19,"Decayed Monk",2464,12,.@label$;
-	areamonster "1@gl_k",227,217,291,135,"Suffering Chamberlain",2466,12,.@label$;
-	areamonster "1@gl_k",227,217,291,135,"Decayed Monk",2464,12,.@label$;
+	mapannounce .@map$,"3 o'clock warp leading to zone 3 is now open.",bc_map,"0xFFFF00";
+	areamonster .@map$,241,113,291,19,"Suffering Chamberlain",2466,12,.@label$;
+	areamonster .@map$,241,113,291,19,"Decayed Monk",2464,12,.@label$;
+	areamonster .@map$,227,217,291,135,"Suffering Chamberlain",2466,12,.@label$;
+	areamonster .@map$,227,217,291,135,"Decayed Monk",2464,12,.@label$;
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob02")+"::OnMyMobDead";
-	set .@mob_dead_num, 48 - mobcount("1@gl_k",.@label$);
+	set .@mob_dead_num, 48 - mobcount(.@map$,.@label$);
 	if (.@mob_dead_num > 28) {
-		instance_announce -1, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
-		killmonster "1@gl_k",.@label$;
+		mapannounce .@map$, "Seems like Himmelmez drains the dead's souls. They must be destroyed.",bc_map,"0xFFFFFF";
+		killmonster .@map$,.@label$;
 		donpcevent instance_npcname("Hollgrehenn Destroyer")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob02")+"::OnDisable";
 	}
@@ -1132,9 +1009,9 @@ OnTouch:
 	else if (.@i == 3) set .@mobs,5;
 	else if (.@i < 7) set .@mobs,6;
 	else set .@mobs,7;
-	getmapxy("1@gl_k",.@x,.@y,1);
+	getmapxy(.@map$,.@x,.@y,1);
 	specialeffect EF_VENOMDUST;
-	monster "1@gl_k",.@x,.@y,"Muck Worm",2467,.@mobs,instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	monster .@map$,.@x,.@y,"Muck Worm",2467,.@mobs,instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	disablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnMyMobDead:
@@ -1194,9 +1071,9 @@ OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob03");
 	donpcevent instance_npcname("#ghinstancewarp5")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp6")+"::OnEnable";
-	set .@map$, "1@gl_k";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob03")+"::OnMyMobDead";
-	instance_announce -1,"12 o'clock warp leading to the zone 4 was opened.",bc_map,"0xFFFF00";
+	mapannounce .@map$,"12 o'clock warp leading to the zone 4 was opened.",bc_map,"0xFFFF00";
 	areamonster .@map$,17,259,53,180,"Decayed Guard",2468,11,.@label$;
 	areamonster .@map$,17,259,53,180,"Sharpshooter Ranger",2469,14,.@label$;
 	areamonster .@map$,62,281,73,186,"Decayed Guard",2468,11,.@label$;
@@ -1207,11 +1084,11 @@ OnEnable:
 	areamonster .@map$,108,281,231,234,"Sharpshooter Ranger",2469,14,.@label$;
 	end;
 OnMyMobDead:
-	set .@map$, "1@gl_k";
+	set .@map$, instance_mapname("1@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob03")+"::OnMyMobDead";
 	set .@mob_dead_num, 100 - mobcount(.@map$,.@label$);
 	if (.@mob_dead_num > 85) {
-		instance_announce -1,"Himmelmez: Nice parry. I thought you were going to die slowly surrounded by the dead I summoned~",bc_map,"0xFFFFFF";
+		mapannounce .@map$,"Himmelmez: Nice parry. I thought you were going to die slowly surrounded by the dead I summoned~",bc_map,"0xFFFFFF";
 		killmonster .@map$,.@label$;
 		donpcevent instance_npcname("#GHMclear3")+"::OnEnable";
 		donpcevent instance_npcname("Heinrich#ghinstance4")+"::OnEnable";
@@ -1233,11 +1110,12 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob04");
-	monster "1@gl_k",150,258,"Root of Corruption",2475,1,instance_npcname("#ghmemorialmob04")+"::OnMyMobDead";
+	monster instance_mapname("1@gl_k"),150,258,"Root of Corruption",2475,1,instance_npcname("#ghmemorialmob04")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("1@gl_k");
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob04")+"::OnMyMobDead") < 1) {
-		instance_announce -1, "12 o'clock warp leading to the Chivalry's Second Floor is now open.",bc_map,"0xFFFF00";
+		mapannounce .@map$, "12 o'clock warp leading to the Chivalry's Second Floor is now open.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp7")+"::OnEnable";
 		donpcevent instance_npcname("Varmunt#ghinstance3")+"::OnTalk2";
 		donpcevent instance_npcname("#effectGH01")+"::OnEnable";
@@ -1266,7 +1144,7 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer2000:
-	instance_announce -1, "Himmelmez: You got me tempted to go to the 2nd floor, come to the entrance. I'm curious about how far your luck goes.",bc_map,"0xFFFFFF";
+	mapannounce instance_mapname("1@gl_k"), "Himmelmez: You got me tempted to go to the 2nd floor, come to the entrance. I'm curious about how far your luck goes.",bc_map,"0xFFFFFF";
 	stopnpctimer;
 	end;
 }
@@ -1319,7 +1197,7 @@ OnTimer32000:
 	donpcevent instance_npcname("Heinrich#ghinstance4")+"::OnDisable";
 	end;
 OnTimer35000:
-	instance_announce -1, "An eerie echo from the depths can be heard as you get closer.",bc_map,"0xFFFFFF";
+	mapannounce instance_mapname("1@gl_k"), "An eerie echo from the depths can be heard as you get closer.",bc_map,"0xFFFFFF";
 	end;
 OnTimer38000:
 	donpcevent instance_npcname("#ghmemorialmob04")+"::OnEnable";
@@ -1348,7 +1226,7 @@ OnTalk1:
 	npctalk "Himmelmez! I won't let you take even a single more step here.";
 	end;
 OnTalk2:
-	npctalk "What... is this?";
+	npctalk "What... is this?!";
 	end;
 OnTalk3:
 	npctalk "Varmunt Sir! Help the adventurers and I'll chase Himmelmez!";
@@ -1631,7 +1509,7 @@ OnTimer66000:
 	donpcevent instance_npcname("Varmunt#ghinstance4")+"::OnTalk17";
 	end;
 OnTimer69000:
-	instance_announce -1, "9 o'clock positioned warp leading to the 1st zone has been opened. Move from the central hallway. A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("2@gl_k"), "9 o'clock positioned warp leading to the 1st zone has been opened. Move from the central hallway. A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 	donpcevent instance_npcname("#ghinstancewarp8")+"::OnEnable";
 	donpcevent instance_npcname("#ghinstancewarp9")+"::OnEnable";
 	donpcevent instance_npcname("#ghmemorialmob06")+"::OnEnable";
@@ -1653,7 +1531,7 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob05");
-	set .@map$, "2@gl_k";
+	set .@map$, instance_mapname("2@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob05")+"::OnMyMobDead";
 	areamonster .@map$,124,20,31,162,"Decayed Guard",2468,8,.@label$;
 	areamonster .@map$,124,20,31,162,"Sharpshooter Ranger",2469,8,.@label$;
@@ -1663,9 +1541,10 @@ OnEnable:
 	set .MyMobs,80;
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("2@gl_k");
 	set .MyMobs, .MyMobs-1;
 	if (.MyMobs == 0) {
-		instance_announce -1, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+		mapannounce .@map$, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghmemorialmob06")+"::OnDisable2";
 		donpcevent instance_npcname("#ghmemorialmob07")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob05")+"::OnDisable";
@@ -1711,7 +1590,7 @@ OnSpawn:
 	initnpctimer;
 	end;
 OnTimer90000:
-	set .@map$, "2@gl_k";
+	set .@map$, instance_mapname("2@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob05")+"::OnMyMobDead";
 	setarray .@c[0],
 		114,141,118,139,
@@ -1744,11 +1623,12 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob07");
-	areamonster "2@gl_k",124,20,31,162,"The Destruction of the First Captain",2473,1,instance_npcname("#ghmemorialmob07")+"::OnMyMobDead";
+	areamonster instance_mapname("2@gl_k"),124,20,31,162,"The Destruction of the First Captain",2473,1,instance_npcname("#ghmemorialmob07")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("2@gl_k");
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob07")+"::OnMyMobDead") < 1) {
-		instance_announce -1, "3 o'clock positioned warp leading to the 2nd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
+		mapannounce .@map$, "3 o'clock positioned warp leading to the 2nd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp10")+"::OnEnable";
 		donpcevent instance_npcname("#ghinstancewarp11")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnEnable";
@@ -1766,7 +1646,7 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob08");
-	set .@map$, "2@gl_k";
+	set .@map$, instance_mapname("2@gl_k");
 	set .@label$, instance_npcname("#ghmemorialmob08")+"::OnMyMobDead";
 	areamonster .@map$,175,163,265,18,"Decayed Guard",2468,7,.@label$;
 	areamonster .@map$,175,163,265,18,"Sharpshooter Ranger",2469,7,.@label$;
@@ -1776,9 +1656,10 @@ OnEnable:
 	set .MyMobs,35;
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("2@gl_k");
 	set .MyMobs, .MyMobs-1;
 	if (.MyMobs == 0) {
-		instance_announce -1, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
+		mapannounce .@map$, "A being with an evil aura seems to be appearing in this region.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghmemorialmob09")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnDisable";
 	} else {
@@ -1813,11 +1694,12 @@ OnDisable:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob09");
-	areamonster "2@gl_k",175,163,265,18,"The Destruction of the Second Captain",2474,1,instance_npcname("#ghmemorialmob09")+"::OnMyMobDead";
+	areamonster instance_mapname("2@gl_k"),175,163,265,18,"The Destruction of the Second Captain",2474,1,instance_npcname("#ghmemorialmob09")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
+	set .@map$, instance_mapname("2@gl_k");
 	if (mobcount(.@map$,instance_npcname("#ghmemorialmob09")+"::OnMyMobDead") < 1) {
-		instance_announce -1, "12 o'clock positioned warp leading to the 3rd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
+		mapannounce .@map$, "12 o'clock positioned warp leading to the 3rd zone has been opened. Use the central hallway to get there.",bc_map,"0xFFFF00";
 		donpcevent instance_npcname("#ghinstancewarp12")+"::OnEnable";
 		donpcevent instance_npcname("#controlGH6")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob08")+"::OnDisable";
@@ -1836,10 +1718,10 @@ OnDisable:
 OnEnable:
 	enablenpc instance_npcname("#ghmemorialmob10");
 	donpcevent instance_npcname("Gerhard#ghinstance1")+"::OnDisable";
-	monster "2@gl_k",158,255,"Amdarias",2476,1,instance_npcname("#ghmemorialmob10")+"::OnMyMobDead";
+	monster instance_mapname("2@gl_k"),158,255,"Amdarias",2476,1,instance_npcname("#ghmemorialmob10")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
-	if (mobcount("2@gl_k",instance_npcname("#ghmemorialmob10")+"::OnMyMobDead") < 1) {
+	if (mobcount(instance_mapname("2@gl_k"),instance_npcname("#ghmemorialmob10")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("Hugin#ghinstance1")+"::OnEnable";
 		donpcevent instance_npcname("#ghmemorialmob10")+"::OnDisable";
 	}
@@ -1948,7 +1830,7 @@ OnTalk11:
 2@gl_k,150,179,0	script	#controlGH6	111,2,2,{
 	end;
 OnTouch:
-	instance_announce -1, "???: Do not come! There are traps everywhere here... Aaaaack!!!!",bc_map,"0xFF0000";
+	mapannounce instance_mapname("2@gl_k"), "???: Do not come! There are traps everywhere here... Aaaaack!!!!",bc_map,"0xFF0000";
 	specialeffect EF_BASH;
 	donpcevent instance_npcname("Himmelmez#ghinstance3")+"::OnEnable";
 	donpcevent instance_npcname("Heinrich#ghinstance6")+"::OnEnable";
@@ -2007,16 +1889,16 @@ OnTalk3:
 	npctalk "Even if you defile my body, I won't let you take my soul, Himmelmez!";
 	end;
 OnEffect1:
-	misceffect EF_BARRIER;
+	specialeffect EF_BARRIER;
 	end;
 OnEffect2:
-	misceffect EF_CHAINCOMBO;
+	specialeffect EF_CHAINCOMBO;
 	end;
 OnEffect3:
-	misceffect EF_MAPPILLAR2;
+	specialeffect EF_MAPPILLAR2;
 	end;
 OnEffect4:
-	misceffect EF_MAPPILLAR;
+	specialeffect EF_MAPPILLAR;
 	end;
 OnEffect5:
 	specialeffect EF_LORD;
@@ -2114,7 +1996,7 @@ OnTimer70000:
 	donpcevent instance_npcname("Varmunt#ghinstance5")+"::OnTalk1";
 	end;
 OnTimer73000:
-	instance_announce -1, "Leads toward Gerhard's body.",bc_map,"0xFFFFFF";
+	mapannounce instance_mapname("2@gl_k"), "Leads toward Gerhard's body.",bc_map,"0xFFFFFF";
 	end;
 OnTimer76000:
 	donpcevent instance_npcname("Gerhard#ghinstance1")+"::OnEffect5";

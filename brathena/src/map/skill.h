@@ -382,11 +382,9 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl,uint
 int skill_castend_damage_id(struct block_list *src, struct block_list *bl,uint16 skill_id,uint16 skill_lv,unsigned int tick,int flag);
 int skill_castend_pos2(struct block_list *src, int x,int y,uint16 skill_id,uint16 skill_lv,unsigned int tick,int flag);
 
-int skill_blockpc_start_(struct map_session_data *, uint16 skill_id, int, bool);
+int skill_blockpc_start(struct map_session_data *sd, uint16 skill_id, int tick);
 int skill_blockhomun_start(struct homun_data *,uint16 skill_id,int);
 int skill_blockmerc_start(struct mercenary_data *,uint16 skill_id,int);
-
-#define skill_blockpc_start(sd, skill_id, tick) skill_blockpc_start_( sd, skill_id, tick, false )
 
 // (Epoque:) To-do: replace this macro with some sort of skill tree check (rather than hard-coded skill names)
 #define skill_ischangesex(id) ( \
@@ -1187,6 +1185,13 @@ enum e_skill {
     NPC_DEATHSUMMON,
     NPC_HELLBURNING,
     NPC_JACKFROST,
+    NPC_WIDEWEB,
+    NPC_WIDESUCK,
+    NPC_STORMGUST2,
+    NPC_FIRESTORM,
+    NPC_REVERBERATION,
+    NPC_REVERBERATION_ATK,
+    NPC_LEX_AETERNA,
 
     KN_CHARGEATK = 1001,
     CR_SHRINK,
@@ -1923,10 +1928,11 @@ extern struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUS
 struct skill_cd_entry {
 	int duration;//milliseconds
 #if PACKETVER >= 20120604
-	int total;
+	int total;/* used for display on newer clients */
 #endif
 	short skidx;//the skill index entries belong to
-	unsigned int started;
+	unsigned int started;/* gettick() of when it started, used vs duration to measure how much left upon logout */
+	int timer;/* timer id */
 	uint16 skill_id;//skill id
 };
 
@@ -1972,6 +1978,7 @@ enum gx_poison {
  * Auto Shadow Spell (Shadow Chaser)
  **/
 int skill_select_menu(struct map_session_data *sd,uint16 skill_id);
+bool skill_check_shadowform(struct block_list *bl, int64 damage, int hit);
 
 int skill_elementalanalysis(struct map_session_data *sd, int n, uint16 skill_lv, unsigned short *item_list); // Sorcerer Four Elemental Analisys.
 int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);    // Genetic Change Material.

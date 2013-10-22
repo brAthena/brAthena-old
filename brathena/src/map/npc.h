@@ -129,6 +129,27 @@ enum npce_event {
 	NPCE_KILLNPC,
 	NPCE_MAX
 };
+
+DBMap *ev_db; // const char* event_name -> struct event_data*
+DBMap* ev_label_db; // const char* label_name (without leading "::") -> struct linkdb_node**   (key: struct npc_data*; data: struct event_data*)
+DBMap *npcname_db; // const char* npc_name -> struct npc_data*
+
+// linked list of npc source files
+struct npc_src_list {
+	struct npc_src_list* next;
+	char name[4]; // dynamic array, the structure is allocated with extra bytes (string length)
+};
+
+struct event_data {
+	struct npc_data *nd;
+	int pos;
+};
+
+struct npc_path_data {
+	char* path;
+	unsigned short references;
+};
+
 struct view_data* npc_get_viewdata(int class_);
 int npc_chat_sub(struct block_list* bl, va_list ap);
 int npc_event_dequeue(struct map_session_data* sd);

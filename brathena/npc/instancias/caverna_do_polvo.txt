@@ -23,6 +23,10 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+1@cash	mapflag	src4instance
+//============================================================
+
+
 mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 
 	set .@party_id,getcharid(1);
@@ -105,31 +109,8 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 					instance_destroy(.@instance);
 					close;
 				}
-				instance_attach(.@instance);
 				instance_set_timeout 3600,300,.@instance;
 				instance_init(.@instance);
-
-				donpcevent instance_npcname("pol_entr", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t_4", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t1", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t_s1", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t2", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t_s2", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t3", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t_s3", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t4", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_t_s4", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_m_c", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_atv1", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_atv2", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_atv3", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_atv4", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_c_c", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_c_t", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_c_p", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_s_1", instance_id())+"::OnInstanceInit";
-				donpcevent instance_npcname("pol_s_2", instance_id())+"::OnInstanceInit";
 
 				mes "[Estrela-do-Mar]";
 				mes "Eu irei abrir o portão durante ^0000ff"+.@md_name$+"^000000.";
@@ -174,7 +155,7 @@ mal_dun01,153,237,5	script	Entrada Estranha	844,{
 			mapannounce "mal_dun01", "o membro "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" inicio sua caçada ao Polvo!",bc_map,"0x00ff99";
 			if (checkquest(4197) == -1) setquest 4197;
 			warp "1@cash",199,99;
-			close;
+			end;
 		}
 		mes "[Entrada Estranha]";
 		mes "Prepare-se para encontrar,";
@@ -191,169 +172,170 @@ mal_dun01,153,237,5	script	Entrada Estranha	844,{
 
 1@cash,199,99,0	script	pol_entr	139,4,4,{
 	end;
-OnInstanceInit:
-	enablenpc instance_npcname("pol_entr", instance_id());
-	end;
 OnTouch:
-	donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("pol_entr_larg")+"::OnEnable";
 	specialeffect EF_BASH;
-	disablenpc instance_npcname("pol_entr", instance_id());
+	disablenpc instance_npcname("pol_entr");
 	end;
 }
 
 1@cash,1,1,0	script	pol_entr_larg	-1,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_entr_larg")+"::OnDisable";
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_entr_larg", instance_id());
-	donpcevent instance_npcname("pol_t_4", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_m_c", instance_id())+"::OnEnable";
+	enablenpc instance_npcname("pol_entr_larg");
+	donpcevent instance_npcname("pol_t_4")+"::OnEnable";
+	donpcevent instance_npcname("pol_m_c")+"::OnEnable";
 	initnpctimer;
 	end;
 OnDisable:
-	disablenpc instance_npcname("pol_entr_larg", instance_id());
+	disablenpc instance_npcname("pol_entr_larg");
 	end;
 OnTimer1000:
-	instance_announce -1,"Polvo Pervertido : Como você se atreve entrar no meu território!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash"),"Polvo Pervertido : Como você se atreve entrar no meu território!",bc_map,"0xFFFF00";
 	end;
 OnTimer4000:
-	instance_announce -1,"Polvo Pervertido : Mas eu bloquiei todos os portões da caverna, não há nada que você possa fazer!",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash"),"Polvo Pervertido : Mas eu bloquiei todos os portões da caverna, não há nada que você possa fazer!",bc_map,"0xFFFF00";
 	end;
 OnTimer7000:
-	instance_announce -1,"Polvo Pervertido : Meu pequeno ~ isso não é seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash"),"Polvo Pervertido : Meu pequeno ~ isso não é seu brinquedo! Para brincar ",bc_map,"0xFFFF00";
 	stopnpctimer;
-	donpcevent instance_npcname("pol_entr_larg", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_entr_larg")+"::OnDisable";
 	end;
 }
 
 1@cash,3,3,0	script	pol_t_4	-1,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname("pol_t_4", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_t_4")+"::OnDisable";
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_t_4", instance_id());
-	donpcevent instance_npcname("pol_t1", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_t2", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_t3", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_t4", instance_id())+"::OnEnable";
-	monster "1@cash",20,114,"Tentáculo de Polvo#1",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",88,190,"Tentáculo de Polvo#2",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",307,215,"Tentáculo de Polvo#3",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
-	monster "1@cash",372,131,"Tentáculo de Polvo#4",2193,1,instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead";
+	enablenpc instance_npcname("pol_t_4");
+	donpcevent instance_npcname("pol_t1")+"::OnEnable";
+	donpcevent instance_npcname("pol_t2")+"::OnEnable";
+	donpcevent instance_npcname("pol_t3")+"::OnEnable";
+	donpcevent instance_npcname("pol_t4")+"::OnEnable";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,20,114,"Tentáculo de Polvo#1",2193,1,instance_npcname("pol_t_4")+"::OnMyMobDead";
+	monster .@map$,88,190,"Tentáculo de Polvo#2",2193,1,instance_npcname("pol_t_4")+"::OnMyMobDead";
+	monster .@map$,307,215,"Tentáculo de Polvo#3",2193,1,instance_npcname("pol_t_4")+"::OnMyMobDead";
+	monster .@map$,372,131,"Tentáculo de Polvo#4",2193,1,instance_npcname("pol_t_4")+"::OnMyMobDead";
 	end;
 OnDisable:
-	disablenpc instance_npcname("pol_t_4", instance_id());
+	disablenpc instance_npcname("pol_t_4");
 	end;
 OnMyMobDead:
-	if (mobcount("1@cash",instance_npcname("pol_t_4", instance_id())+"::OnMyMobDead") < 1) {
-		donpcevent instance_npcname("pol_c_c", instance_id())+"::OnEnable";
-		instance_announce -1,"Ei você!! Eu irei cuidar pessoalmente de todos vocês! Vamos traga-os!",bc_map,"0x00ff99";
-		enablenpc instance_npcname("pol_c_p", instance_id());
-		instance_warpall "1@cash",199,99;
+	set .@map$, instance_mapname("1@cash");
+	if (mobcount(.@map$,instance_npcname("pol_t_4")+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("pol_c_c")+"::OnEnable";
+		mapannounce .@map$, "Ei você!! Eu irei cuidar pessoalmente de todos vocês! Vamos traga-os!",bc_map,"0x00ff99";
+		enablenpc instance_npcname("pol_c_p");
+		instance_warpall .@map$,199,99;
 		end;
 	}
-	instance_announce -1,"Arrgg!! Isso dói!!! Eu preciso de uma outra estratégia...",bc_map,"0x00ff99";
+	mapannounce .@map$,"Arrgg!! Isso dói!!! Eu preciso de uma outra estratégia...",bc_map,"0x00ff99";
 	end;
 }
 
 1@cash,20,114,0	script	pol_t1	139,6,6,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname(strnpcinfo(0), instance_id())+"::OnDisable";
+	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
 	end;
 OnEnable:
-	enablenpc instance_npcname(strnpcinfo(0), instance_id());
-	set .@label$, instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead";
+	enablenpc instance_npcname(strnpcinfo(0));
+	set .@label$, instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
+	set .@map$, instance_mapname("1@cash");
 	switch(.@i) {
 	case 1:
-		areamonster "1@cash",34,96,38,100,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",39,90,41,92,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",38,76,40,78,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",39,58,41,60,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",50,38,56,44,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",68,32,72,36,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",83,26,85,28,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",107,28,109,30,"Polvo Pequeno",2192,1,.@label$;
-		areamonster "1@cash",123,28,125,30,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",134,31,138,35,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",142,39,146,43,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,34,96,38,100,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,39,90,41,92,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,38,76,40,78,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,39,58,41,60,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,50,38,56,44,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,68,32,72,36,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,83,26,85,28,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,107,28,109,30,"Polvo Pequeno",2192,1,.@label$;
+		areamonster .@map$,123,28,125,30,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,134,31,138,35,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,142,39,146,43,"Polvo Pequeno",2192,2,.@label$;
 		break;
 	case 2:
-		areamonster "1@cash",139,113,143,117,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",135,104,137,106,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",123,93,127,97,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",113,90,115,92,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",103,89,105,91,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",89,90,91,92,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",74,104,76,106,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",74,120,76,122,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",83,131,87,135,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",92,142,94,144,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",98,159,100,161,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",94,180,98,184,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,139,113,143,117,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,135,104,137,106,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,123,93,127,97,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,113,90,115,92,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,103,89,105,91,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,89,90,91,92,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,74,104,76,106,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,74,120,76,122,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,83,131,87,135,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,92,142,94,144,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,98,159,100,161,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,94,180,98,184,"Polvo Pequeno",2192,5,.@label$;
 		break;
 	case 3:
-		areamonster "1@cash",299,209,303,213,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",292,203,296,207,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",291,186,293,188,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",292,166,294,168,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",293,151,295,153,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",299,137,303,141,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",300,123,304,127,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",300,104,304,108,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",279,101,281,103,"Polvo Pequeno",2192,2,.@label$;
-		monster "1@cash",260,103,"Polvo Pequeno",2192,1,.@label$;
+		areamonster .@map$,299,209,303,213,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,292,203,296,207,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,291,186,293,188,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,292,166,294,168,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,293,151,295,153,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,299,137,303,141,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,300,123,304,127,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,300,104,304,108,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,279,101,281,103,"Polvo Pequeno",2192,2,.@label$;
+		monster .@map$,260,103,"Polvo Pequeno",2192,1,.@label$;
 		break;
 	case 4:
-		areamonster "1@cash",363,123,367,127,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",364,108,368,112,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",363,93,367,97,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",364,72,366,74,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",364,58,366,60,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",355,44,359,48,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",346,36,350,40,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",319,28,325,34,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",305,27,307,29,"Polvo Pequeno",2192,2,.@label$;
-		areamonster "1@cash",276,29,280,33,"Polvo Pequeno",2192,5,.@label$;
-		areamonster "1@cash",258,37,262,41,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,363,123,367,127,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,364,108,368,112,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,363,93,367,97,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,364,72,366,74,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,364,58,366,60,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,355,44,359,48,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,346,36,350,40,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,319,28,325,34,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,305,27,307,29,"Polvo Pequeno",2192,2,.@label$;
+		areamonster .@map$,276,29,280,33,"Polvo Pequeno",2192,5,.@label$;
+		areamonster .@map$,258,37,262,41,"Polvo Pequeno",2192,2,.@label$;
 		break;
 	}
 	end;
 OnDisable:
-	killmonster "1@cash",instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead"; // Not in official script.
-	disablenpc instance_npcname(strnpcinfo(0), instance_id());
+	killmonster instance_mapname("1@cash"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead"; // Not in official script.
+	disablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnTouch:
 	if (getd("."+strnpcinfo(0)+instance_id())) end;
 	setd "."+strnpcinfo(0)+instance_id(),1;
-	hideonnpc instance_npcname(strnpcinfo(0), instance_id());
-	instance_announce -1,"Saiam filhos e me ajudem!",bc_map,"0xFFFF00";
+	hideonnpc instance_npcname(strnpcinfo(0));
+	mapannounce instance_mapname("1@cash"),"Saiam filhos e me ajudem!",bc_map,"0xFFFF00";
 	initnpctimer;
 	end;
 OnTimer5000:
-	instance_announce -1,"Vamos dar-lhes uma lição!",bc_map,"0xFFFF00";
-	set .@label$, instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead";
+	set .@map$, instance_mapname("1@cash");
+	mapannounce .@map$,"Vamos dar-lhes uma lição!",bc_map,"0xFFFF00";
+	set .@label$, instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	set .@i, atoi(charat(strnpcinfo(0),8));
 	switch(.@i) {
 	case 1:
-		areamonster "1@cash",18,112,22,116,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",18,112,22,116,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,18,112,22,116,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,18,112,22,116,"Polvo Pequeno",2192,3,.@label$;
 		break;
 	case 2:
-		areamonster "1@cash",86,188,90,192,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",96,98,100,102,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,86,188,90,192,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,96,98,100,102,"Polvo Pequeno",2192,3,.@label$;
 		break;
 	case 3:
-		areamonster "1@cash",305,213,309,217,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",305,213,309,217,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,305,213,309,217,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,305,213,309,217,"Polvo Pequeno",2192,3,.@label$;
 		break;
 	case 4:
-		areamonster "1@cash",370,129,374,133,"Polvo Pequeno",2192,3,.@label$;
-		areamonster "1@cash",370,129,374,133,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,370,129,374,133,"Polvo Pequeno",2192,3,.@label$;
+		areamonster .@map$,370,129,374,133,"Polvo Pequeno",2192,3,.@label$;
 		break;
 	}
 	end;
@@ -361,17 +343,18 @@ OnTimer30000:
 	setd "."+strnpcinfo(0)+instance_id(),0;
 	stopnpctimer;
 	set .@i, atoi(charat(strnpcinfo(0),8));
-	donpcevent instance_npcname("pol_t_s"+.@i, instance_id())+"::OnEnable";
-	donpcevent instance_npcname(strnpcinfo(0), instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_t_s"+.@i)+"::OnEnable";
+	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
 	end;
 OnMyMobDead:
-	if (mobcount("1@cash",instance_npcname(strnpcinfo(0), instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce -1,"Você feriu meus bebês!? Você vai ter que pagar por isso!!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	if (mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+		mapannounce .@map$,"Você feriu meus bebês!? Você vai ter que pagar por isso!!!",bc_map,"0x00ff99";
 		setd "."+strnpcinfo(0)+instance_id(),0;
 		stopnpctimer;
 		set .@i, atoi(charat(strnpcinfo(0),8));
-		donpcevent instance_npcname("pol_t_s"+.@i, instance_id())+"::OnEnable";
-		donpcevent instance_npcname(strnpcinfo(0), instance_id())+"::OnDisable";
+		donpcevent instance_npcname("pol_t_s"+.@i)+"::OnEnable";
+		donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
 		end;
 	}
 	end;
@@ -383,13 +366,13 @@ OnMyMobDead:
 1@cash,16,117,0	script	pol_t_s1	45,2,2,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname(strnpcinfo(0), instance_id());
+	disablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnEnable:
-	enablenpc instance_npcname(strnpcinfo(0), instance_id());
+	enablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnTouch:
-	warp "1@cash",198,99;
+	warp instance_mapname("1@cash"),198,99;
 	end;
 }
 1@cash,77,193,0	duplicate(pol_t_s1)	pol_t_s2	45,2,2
@@ -399,196 +382,205 @@ OnTouch:
 1@cash,15,15,0	script	pol_m_c	-1,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname("pol_m_c", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_m_c")+"::OnDisable";
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_m_c", instance_id());
-	monster "1@cash",32,94,"Hidra",1068,1;
-	monster "1@cash",41,101,"Hidra",1068,1;
-	monster "1@cash",35,78,"Hidra",1068,1;
-	monster "1@cash",35,62,"Hidra",1068,1;
-	monster "1@cash",49,54,"Hidra",1068,1;
-	monster "1@cash",70,28,"Hidra",1068,1;
-	monster "1@cash",83,22,"Hidra",1068,1;
-	monster "1@cash",99,23,"Hidra",1068,1;
-	monster "1@cash",115,23,"Hidra",1068,1;
-	monster "1@cash",132,25,"Hidra",1068,1;
-	monster "1@cash",100,185,"Hidra",1068,1;
-	monster "1@cash",92,178,"Hidra",1068,1;
-	monster "1@cash",92,162,"Hidra",1068,1;
-	monster "1@cash",70,121,"Hidra",1068,1;
-	monster "1@cash",70,105,"Hidra",1068,1;
-	monster "1@cash",105,85,"Hidra",1068,1;
-	monster "1@cash",121,84,"Hidra",1068,1;
-	monster "1@cash",292,209,"Hidra",1068,1;
-	monster "1@cash",303,206,"Hidra",1068,1;
-	monster "1@cash",290,163,"Hidra",1068,1;
-	monster "1@cash",299,150,"Hidra",1068,1;
-	monster "1@cash",308,141,"Hidra",1068,1;
-	monster "1@cash",308,125,"Hidra",1068,1;
-	monster "1@cash",295,97,"Hidra",1068,1;
-	monster "1@cash",279,97,"Hidra",1068,1;
-	monster "1@cash",370,111,"Hidra",1068,1;
-	monster "1@cash",370,110,"Hidra",1068,1;
-	monster "1@cash",371,96,"Hidra",1068,1;
-	monster "1@cash",371,80,"Hidra",1068,1;
-	monster "1@cash",367,55,"Hidra",1068,1;
-	monster "1@cash",343,29,"Hidra",1068,1;
-	monster "1@cash",327,24,"Hidra",1068,1;
-	monster "1@cash",311,22,"Hidra",1068,1;
-	monster "1@cash",295,22,"Hidra",1068,1;
-	monster "1@cash",279,22,"Hidra",1068,1;
-	areamonster "1@cash",30,67,50,87,"Stapo",1784,1;
-	areamonster "1@cash",102,19,122,39,"Stapo",1784,1;
-	areamonster "1@cash",89,138,109,158,"Stapo",1784,1;
-	areamonster "1@cash",112,83,132,103,"Stapo",1784,1;
-	areamonster "1@cash",283,168,303,188,"Stapo",1784,1;
-	areamonster "1@cash",292,97,312,117,"Stapo",1784,1;
-	areamonster "1@cash",355,64,375,84,"Stapo",1784,1;
-	areamonster "1@cash",317,17,337,37,"Stapo",1784,1;
-	donpcevent instance_npcname("pol_atv1", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_atv2", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_atv3", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_atv4", instance_id())+"::OnEnable";
-	donpcevent instance_npcname("pol_m_c", instance_id())+"::OnDisable";
+	set .@map$, instance_mapname("1@cash");
+	enablenpc instance_npcname("pol_m_c");
+	monster .@map$,32,94,"Hidra",1068,1;
+	monster .@map$,41,101,"Hidra",1068,1;
+	monster .@map$,35,78,"Hidra",1068,1;
+	monster .@map$,35,62,"Hidra",1068,1;
+	monster .@map$,49,54,"Hidra",1068,1;
+	monster .@map$,70,28,"Hidra",1068,1;
+	monster .@map$,83,22,"Hidra",1068,1;
+	monster .@map$,99,23,"Hidra",1068,1;
+	monster .@map$,115,23,"Hidra",1068,1;
+	monster .@map$,132,25,"Hidra",1068,1;
+	monster .@map$,100,185,"Hidra",1068,1;
+	monster .@map$,92,178,"Hidra",1068,1;
+	monster .@map$,92,162,"Hidra",1068,1;
+	monster .@map$,70,121,"Hidra",1068,1;
+	monster .@map$,70,105,"Hidra",1068,1;
+	monster .@map$,105,85,"Hidra",1068,1;
+	monster .@map$,121,84,"Hidra",1068,1;
+	monster .@map$,292,209,"Hidra",1068,1;
+	monster .@map$,303,206,"Hidra",1068,1;
+	monster .@map$,290,163,"Hidra",1068,1;
+	monster .@map$,299,150,"Hidra",1068,1;
+	monster .@map$,308,141,"Hidra",1068,1;
+	monster .@map$,308,125,"Hidra",1068,1;
+	monster .@map$,295,97,"Hidra",1068,1;
+	monster .@map$,279,97,"Hidra",1068,1;
+	monster .@map$,370,111,"Hidra",1068,1;
+	monster .@map$,370,110,"Hidra",1068,1;
+	monster .@map$,371,96,"Hidra",1068,1;
+	monster .@map$,371,80,"Hidra",1068,1;
+	monster .@map$,367,55,"Hidra",1068,1;
+	monster .@map$,343,29,"Hidra",1068,1;
+	monster .@map$,327,24,"Hidra",1068,1;
+	monster .@map$,311,22,"Hidra",1068,1;
+	monster .@map$,295,22,"Hidra",1068,1;
+	monster .@map$,279,22,"Hidra",1068,1;
+	areamonster .@map$,30,67,50,87,"Stapo",1784,1;
+	areamonster .@map$,102,19,122,39,"Stapo",1784,1;
+	areamonster .@map$,89,138,109,158,"Stapo",1784,1;
+	areamonster .@map$,112,83,132,103,"Stapo",1784,1;
+	areamonster .@map$,283,168,303,188,"Stapo",1784,1;
+	areamonster .@map$,292,97,312,117,"Stapo",1784,1;
+	areamonster .@map$,355,64,375,84,"Stapo",1784,1;
+	areamonster .@map$,317,17,337,37,"Stapo",1784,1;
+	donpcevent instance_npcname("pol_atv1")+"::OnEnable";
+	donpcevent instance_npcname("pol_atv2")+"::OnEnable";
+	donpcevent instance_npcname("pol_atv3")+"::OnEnable";
+	donpcevent instance_npcname("pol_atv4")+"::OnEnable";
+	donpcevent instance_npcname("pol_m_c")+"::OnDisable";
 	end;
 OnDisable:
-	disablenpc instance_npcname("pol_m_c", instance_id());
+	disablenpc instance_npcname("pol_m_c");
 	end;
 }
 
 1@cash,45,53,0	script	pol_atv1	139,3,3,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname("pol_atv1", instance_id());
+	disablenpc instance_npcname("pol_atv1");
 	end;
 OnTouch:
-	monster "1@cash",39,59,"Hidra",1068,1;
-	monster "1@cash",40,59,"Hidra",1068,1;
-	monster "1@cash",41,59,"Hidra",1068,1;
-	monster "1@cash",47,50,"Hidra",1068,1;
-	monster "1@cash",48,50,"Hidra",1068,1;
-	monster "1@cash",49,50,"Hidra",1068,1;
-	monster "1@cash",41,53,"Polvo Pequeno",2192,1;
-	instance_announce -1,"Não deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,39,59,"Hidra",1068,1;
+	monster .@map$,40,59,"Hidra",1068,1;
+	monster .@map$,41,59,"Hidra",1068,1;
+	monster .@map$,47,50,"Hidra",1068,1;
+	monster .@map$,48,50,"Hidra",1068,1;
+	monster .@map$,49,50,"Hidra",1068,1;
+	monster .@map$,41,53,"Polvo Pequeno",2192,1;
+	mapannounce .@map$,"Não deixem que as destrua, impessa!!!",bc_map,"0x00ff99";
 	specialeffect EF_BASH;
-	disablenpc instance_npcname("pol_atv1", instance_id());
+	disablenpc instance_npcname("pol_atv1");
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_atv1", instance_id());
+	enablenpc instance_npcname("pol_atv1");
 	end;
 }
 
 1@cash,78,99,0	script	pol_atv2	139,3,3,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname("pol_atv2", instance_id());
+	disablenpc instance_npcname("pol_atv2");
 	end;
 OnTouch:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
 	initnpctimer;
-	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce -1,"O centro está vazio, Vá!!!",bc_map,"0x00ff99";
-	hideonnpc instance_npcname("pol_atv2", instance_id());
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,71,105,"Polvo Pequeno ",2192,1;
+	mapannounce .@map$,"O centro está vazio, Vá!!!",bc_map,"0x00ff99";
+	hideonnpc instance_npcname("pol_atv2");
 	end;
 OnTimer2000:
-	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce -1,"Corra, corra! Vá, vá!!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,71,105,"Polvo Pequeno ",2192,1;
+	mapannounce .@map$,"Corra, corra! Vá, vá!!!",bc_map,"0x00ff99";
 	end;
 OnTimer4000:
-	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce -1,"Não há tempo, saia rápido!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,71,105,"Polvo Pequeno ",2192,1;
+	mapannounce .@map$,"Não há tempo, saia rápido!",bc_map,"0x00ff99";
 	end;
 OnTimer6000:
-	monster "1@cash",71,105,"Polvo Pequeno ",2192,3;
-	instance_announce -1,"Vamos conquiste o centro!!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,71,105,"Polvo Pequeno ",2192,3;
+	mapannounce .@map$,"Vamos conquiste o centro!!!",bc_map,"0x00ff99";
 	end;
 OnTimer8000:
-	monster "1@cash",71,105,"Polvo Pequeno ",2192,1;
-	instance_announce -1,"Não há tempo a perder, rápido!!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,71,105,"Polvo Pequeno ",2192,1;
+	mapannounce .@map$,"Não há tempo a perder, rápido!!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_atv2", instance_id());
+	enablenpc instance_npcname("pol_atv2");
 	end;
 }
 
 1@cash,299,144,0	script	pol_atv3	139,3,3,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname("pol_atv2", instance_id());
+	disablenpc instance_npcname("pol_atv2");
 	end;
 OnTouch:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
-	monster "1@cash",293,153,"Polvo Pequeno ",2192,1;
-	monster "1@cash",294,152,"Polvo Pequeno ",2192,1;
-	monster "1@cash",292,153,"Polvo Pequeno ",2192,1;
-	monster "1@cash",293,151,"Polvo Pequeno ",2192,1;
-	monster "1@cash",293,152,"Polvo Pequeno ?",2175,1;
-	instance_announce -1,"Kakaka! Surpreso??!!",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,293,153,"Polvo Pequeno ",2192,1;
+	monster .@map$,294,152,"Polvo Pequeno ",2192,1;
+	monster .@map$,292,153,"Polvo Pequeno ",2192,1;
+	monster .@map$,293,151,"Polvo Pequeno ",2192,1;
+	monster .@map$,293,152,"Polvo Pequeno ?",2175,1;
+	mapannounce .@map$,"Kakaka! Surpreso??!!",bc_map,"0x00ff99";
 	initnpctimer;
-	hideonnpc instance_npcname("pol_atv3", instance_id());
+	hideonnpc instance_npcname("pol_atv3");
 	end;
 OnTimer5000:
-	instance_announce -1,"... Parece que temos um espião entre nós.",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash"),"... Parece que temos um espião entre nós.",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_atv3", instance_id());
+	enablenpc instance_npcname("pol_atv3");
 	end;
 }
 
 1@cash,336,36,0	script	pol_atv4	139,3,3,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname("pol_atv2", instance_id());
+	disablenpc instance_npcname("pol_atv2");
 	end;
 OnTouch:
 	if (getd("."+instance_id())) end;
 	setd "."+instance_id(),1;
-	monster "1@cash",332,37,"Polvo Pequeno ",2192,1;
-	monster "1@cash",332,36,"Polvo Pequeno ",2192,1;
-	monster "1@cash",332,35,"Polvo Pequeno ",2192,1;
-	monster "1@cash",332,34,"Polvo Pequeno ",2192,1;
-	monster "1@cash",341,37,"Polvo Pequeno ",2192,1;
-	monster "1@cash",341,36,"Polvo Pequeno ",2192,1;
-	monster "1@cash",341,35,"Polvo Pequeno ",2192,1;
-	monster "1@cash",341,34,"Polvo Pequeno ",2192,1;
-	monster "1@cash",260,40,"Lula Mercenária",2175,1;
-	monster "1@cash",260,41,"Lula Mercenária",2175,1;
-	monster "1@cash",260,39,"Lula Mercenária",2175,1;
-	monster "1@cash",259,40,"Lula Mercenária",2175,1;
-	monster "1@cash",261,40,"Lula Mercenária",2175,1;
-	instance_announce -1,"Um ataque estratégico! O inimigo é forte! Não vamos ser derrotados! Onde estão todos os mercenários??",bc_map,"0x00ff99";
+	set .@map$, instance_mapname("1@cash");
+	monster .@map$,332,37,"Polvo Pequeno ",2192,1;
+	monster .@map$,332,36,"Polvo Pequeno ",2192,1;
+	monster .@map$,332,35,"Polvo Pequeno ",2192,1;
+	monster .@map$,332,34,"Polvo Pequeno ",2192,1;
+	monster .@map$,341,37,"Polvo Pequeno ",2192,1;
+	monster .@map$,341,36,"Polvo Pequeno ",2192,1;
+	monster .@map$,341,35,"Polvo Pequeno ",2192,1;
+	monster .@map$,341,34,"Polvo Pequeno ",2192,1;
+	monster .@map$,260,40,"Lula Mercenária",2175,1;
+	monster .@map$,260,41,"Lula Mercenária",2175,1;
+	monster .@map$,260,39,"Lula Mercenária",2175,1;
+	monster .@map$,259,40,"Lula Mercenária",2175,1;
+	monster .@map$,261,40,"Lula Mercenária",2175,1;
+	mapannounce .@map$,"Um ataque estratégico! O inimigo é forte! Não vamos ser derrotados! Onde estão todos os mercenários??",bc_map,"0x00ff99";
 	initnpctimer;
-	hideonnpc instance_npcname("pol_atv4", instance_id());
+	hideonnpc instance_npcname("pol_atv4");
 	end;
 OnTimer5000:
-	instance_announce -1,"Lula Mercenária : eh...eh... direção errada. Não há inimigos nessa direção.",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash"),"Lula Mercenária : eh...eh... direção errada. Não há inimigos nessa direção.",bc_map,"0x00ff99";
 	end;
 OnTimer7000:
-	instance_announce -1,"Polvo Pervertido : Estúpido ! Não conseguem ler o mapa ?! Inúteis!!",bc_map,"0x00ff99";
+	mapannounce instance_mapname("1@cash"),"Polvo Pervertido : Estúpido ! Não conseguem ler o mapa ?! Inúteis!!",bc_map,"0x00ff99";
 	stopnpctimer;
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_atv4", instance_id());
+	enablenpc instance_npcname("pol_atv4");
 	end;
 }
 
 1@cash,2,2,0	script	pol_c_c	-1,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname("pol_c_c", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_c_c")+"::OnDisable";
 	end;
 OnDisable:
-	disablenpc instance_npcname("pol_c_c", instance_id());
+	disablenpc instance_npcname("pol_c_c");
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_c_c", instance_id());
-	donpcevent instance_npcname("pol_c_t", instance_id())+"::OnEnable";
-	monster "1@cash",199,188,"Polvo Gigante",2194,1,instance_npcname("pol_c_c", instance_id())+"::OnMyMobDead";
+	enablenpc instance_npcname("pol_c_c");
+	donpcevent instance_npcname("pol_c_t")+"::OnEnable";
+	monster instance_mapname("1@cash"),199,188,"Polvo Gigante",2194,1,instance_npcname("pol_c_c")+"::OnMyMobDead";
 	initnpctimer;
 	end;
 OnTimer7000:
@@ -636,16 +628,17 @@ OnTimer49000:
 	initnpctimer;
 	end;
 OnAnnounce:
-	instance_announce -1,"Polvo Gigante : "+getarg(rand(3)),bc_map,"0xFFFF00";
+	mapannounce instance_mapname("1@cash"),"Polvo Gigante : "+getarg(rand(3)),bc_map,"0xFFFF00";
 	return;
 OnMyMobDead:
-	if (mobcount("1@cash",instance_npcname("pol_c_c", instance_id())+"::OnMyMobDead") < 1) {
-		instance_announce -1,"Polvo Gigante : Isso é tudo por hoje! Da próxima vez, eu vou brincar a sério com você!",bc_map,"0xFFFF00";
-		enablenpc instance_npcname("pol_s_1", instance_id());
-		enablenpc instance_npcname("pol_s_2", instance_id());
-		donpcevent instance_npcname("pol_c_t", instance_id())+"::OnDisable";
+	set .@map$, instance_mapname("1@cash");
+	if (mobcount(.@map$,instance_npcname("pol_c_c")+"::OnMyMobDead") < 1) {
+		mapannounce .@map$,"Polvo Gigante : Isso é tudo por hoje! Da próxima vez, eu vou brincar a sério com você!",bc_map,"0xFFFF00";
+		enablenpc instance_npcname("pol_s_1");
+		enablenpc instance_npcname("pol_s_2");
+		donpcevent instance_npcname("pol_c_t")+"::OnDisable";
 		stopnpctimer;
-		donpcevent instance_npcname("pol_c_c", instance_id())+"::OnDisable";
+		donpcevent instance_npcname("pol_c_c")+"::OnDisable";
 		end;
 	}
 	end;
@@ -654,22 +647,23 @@ OnMyMobDead:
 1@cash,4,4,0	script	pol_c_t	-1,{
 	end;
 OnInstanceInit:
-	donpcevent instance_npcname("pol_c_t", instance_id())+"::OnDisable";
+	donpcevent instance_npcname("pol_c_t")+"::OnDisable";
 	end;
 OnEnable:
-	enablenpc instance_npcname("pol_c_t", instance_id());
+	enablenpc instance_npcname("pol_c_t");
 	initnpctimer;
 	end;
 OnCall:
-	if (mobcount("1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead") < 100) {
+	set .@map$, instance_mapname("1@cash");
+	if (mobcount(.@map$,instance_npcname("pol_c_t")+"::OnMyMobDead") < 100) {
 		switch(rand(2)) {
 		case 0:
-			instance_announce -1,"Polvo Gigante : Você sabe quantas pernas tem o polvo? Não importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
-			areamonster "1@cash",192,181,206,195,"Tentáculo de Polvo",2193,1,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
+			mapannounce .@map$,"Polvo Gigante : Você sabe quantas pernas tem o polvo? Não importa, eu tenho pernas infinitas!!",bc_map,"0xFFFF00";
+			areamonster .@map$,192,181,206,195,"Tentáculo de Polvo",2193,1,instance_npcname("pol_c_t")+"::OnMyMobDead";
 			break;
 		case 1:
-			instance_announce -1,"Polvo Gigante : Eu... não posso... segurar mais, meus bebês ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
-			areamonster "1@cash",192,181,206,195,"Polvo Pequeno",2192,5,instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead";
+			mapannounce .@map$,"Polvo Gigante : Eu... não posso... segurar mais, meus bebês ~ por favor saiam e lutem!",bc_map,"0xFFFF00";
+			areamonster .@map$,192,181,206,195,"Polvo Pequeno",2192,5,instance_npcname("pol_c_t")+"::OnMyMobDead";
 			break;
 		}
 	}
@@ -677,12 +671,12 @@ OnCall:
 	end;
 OnTimer10000:
 	stopnpctimer;
-	donpcevent instance_npcname("pol_c_t", instance_id())+"::OnCall";
+	donpcevent instance_npcname("pol_c_t")+"::OnCall";
 	end;
 OnDisable:
 	stopnpctimer;
-	killmonster "1@cash",instance_npcname("pol_c_t", instance_id())+"::OnMyMobDead"; // Não existe (Script oficial).
-	disablenpc instance_npcname("pol_c_t", instance_id());
+	killmonster instance_mapname("1@cash"),instance_npcname("pol_c_t")+"::OnMyMobDead"; // Não existe (Script oficial).
+	disablenpc instance_npcname("pol_c_t");
 	end;
 OnMyMobDead:
 	end;
@@ -691,17 +685,17 @@ OnMyMobDead:
 1@cash,198,116,0	script	pol_c_p	45,2,2,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname("pol_c_p", instance_id());
+	disablenpc instance_npcname("pol_c_p");
 	end;
 OnTouch:
-	warp "1@cash",210,172;
+	warp instance_mapname("1@cash"),210,172;
 	end;
 }
 
 1@cash,190,208,0	script	pol_s_1	45,2,2,{
 	end;
 OnInstanceInit:
-	disablenpc instance_npcname(strnpcinfo(0), instance_id());
+	disablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnTouch:
 	mes "Você quer sair da Caverna do Polvo?";

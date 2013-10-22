@@ -52,10 +52,6 @@
 struct npc_data *fake_nd;
 
 // linked list of npc source files
-struct npc_src_list {
-	struct npc_src_list *next;
-	char name[4]; // dynamic array, the structure is allocated with extra bytes (string length)
-};
 static struct npc_src_list *npc_src_files = NULL;
 
 static int npc_id=START_NPC_NUM;
@@ -86,25 +82,13 @@ int npc_get_new_npc_id(void)
 	}
 }
 
-static DBMap *ev_db; // const char* event_name -> struct event_data*
-static DBMap* ev_label_db; // const char* label_name (without leading "::") -> struct linkdb_node**   (key: struct npc_data*; data: struct event_data*)
-static DBMap *npcname_db; // const char* npc_name -> struct npc_data*
-
-struct event_data {
-	struct npc_data *nd;
-	int pos;
-};
-
 static struct eri *timer_event_ers; //For the npc timer data. [Skotlex]
 
 /* hello */
 static char *npc_last_path;
 static char *npc_last_ref;
 
-struct npc_path_data {
-	char *path;
-	unsigned short references;
-};
+
 struct npc_path_data *npc_last_npd;
 static DBMap *npc_path_db;
 
@@ -3465,6 +3449,8 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		map[m].short_damage_rate = (state) ? atoi(w4) : 100;
 	} else if (!strcmpi(w3,"long_damage_rate")) {
 		map[m].long_damage_rate = (state) ? atoi(w4) : 100;
+	} else if ( !strcmpi(w3,"src4instance") ) {
+		map[m].flag.src4instance = (state) ? 1 : 0;
 	} else
 		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
 
@@ -3826,9 +3812,7 @@ int npc_reload(void)
 
 	itemdb->name_constants();
 
-	for(i = 0; i < instance->instances; i++) {
-		instance->destroy(i);
-	}
+	instance->reload();
 
 	map_zone_init();
 	

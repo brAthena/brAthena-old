@@ -12,21 +12,25 @@
 //   |--------------------------------------------------------|
 //   | Criado por: rA/brA Dev. Team                           |
 //   |--------------------------------------------------------|
-//   | Versões rA/brA: 1.1/1.1                                |
+//   | Vers�es rA/brA: 1.1/1.1                                |
 //   |--------------------------------------------------------|
-//   | Descrição: Hospital Bangongo Malaya.                   |
+//   | Descri��o: Hospital Bangongo Malaya.                   |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado Cabeçalho [brAthena]                        |
-//   | 1.1 Adicionado NPC de Administração [lututuiBR]        |
+//   | 1.0 Criado Cabe�alho [brAthena]                        |
+//   | 1.1 Adicionado NPC de Administra��o [lututuiBR]        |
 //   |--------------------------------------------------------|
-//   | - Anotações                                            |
+//   | - Anota��es                                            |
 //   \________________________________________________________/
+
+1@ma_h	mapflag	src4instance
+//============================================================
 
 // Instance Creation
 //============================================================
 ma_dun01,147,10,5	script	Nurse#ma_dun01	569,{
 	if (BaseLevel < 100) end;
+
 	set .@party_id,getcharid(1);
 	cutin "malaya_nurseB",2;
 	if (checkquest(9223) == -1) {
@@ -263,8 +267,8 @@ L_Enter:
 	}
 	next;
 	switch(select(((getarg(0))?"Prepare to enter the second floor.":"")+":Enter the second floor.:Do not enter.")) {
-	set .@instance, instance_create(.@md_name$,.@party_id);
 	case 1:
+		set .@instance, instance_create(.@md_name$,getcharid(1));
 		if (.@instance < 0) {
 			mes "[Nurse Maenne]";
 			mes "A critical situation has happened.";
@@ -273,6 +277,13 @@ L_Enter:
 			cutin "",255;
 			end;
 		}
+		if (instance_attachmap("1@ma_h",.@instance) == "") {
+			mes "^0000ff"+.@md_name$+"^000000 - Reservation Failed!";
+			instance_destroy(.@instance);
+			close;
+		}
+		instance_set_timeout 3600,300,.@instance;
+		instance_init(.@instance);
 		mes "[Nurse Maenne]";
 		mes "We are preparing to go up";
 		mes "to the second floor.";
@@ -285,43 +296,14 @@ L_Enter:
 		mes "When you finish everything,";
 		mes "please talk to me again.";
 		mes "I really appreciate it.";
-		instance_attach(.@instance);
-		instance_set_timeout 3600,300,.@instance;
-		instance_init(.@instance);
-		donpcevent instance_npcname("#Memorial Start_time", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Ward1 Entry", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Ward6 Entry", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Boss Room Entry", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Boss Room Entry_time", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Boss Room Entry_2", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Summon Ward Mob", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Summon Ward Mob_time", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Summon Pillar", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Summon Pillar_time", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Boss Room Entry_a", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#Boss Effect", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("Moaning Patient#1", instance_id())+"::OnInstanceInit";
-		donpcevent instance_npcname("#ma_hos_warp_init", instance_id())+"::OnInstanceInit";
 		close2;
 		cutin "",255;
 		end;
 	case 2:
-		if (has_instance("1@ma_h")== "") {
-			mes "[Nurse Maenne]";
-			mes "You can't go up to";
-			mes "the 2nd floor now.";
-			close2;
-			cutin "",255;
-			end;
-		} else if (!.@party_id||!instance_check_party(.@party_id,2)) {
-			mes "[Nurse Maenne]";
-			mes "It's too dangerous to go";
-			mes "up to the 2nd floor alone.";
-			mes "Please come here with";
-			mes "several people.";
-			close2;
-			cutin "",255;
-			end;
+		if( has_instance("1@ma_h") == "" ) {
+			mes "The memorial dungeon "+.@md_name$+" does not exist.";
+			mes "The party leader did not generate the dungeon yet.";
+			close;
 		} else {
 			mapannounce "ma_dun01", getpartyname(getcharid(1))+" party's "+strcharinfo(0)+" member entered "+.@md_name$+".",bc_map,"0x00ff99";
 			if (getarg(1)) {
@@ -337,7 +319,7 @@ L_Enter:
 			}
 			setquest 9224;
 			cutin "",255;
-			//warp "1@ma_h",40,157;
+			warp "1@ma_h",40,157;
 			end;
 		}
 	case 3:
@@ -393,9 +375,9 @@ sec_in02,27,30,0	script	Bangungot Gate	406,{
 1@ma_h,43,157,0	script	#Memorial Start	139,2,2,{
 	end;
 OnTouch:
-	set .@map$, "1@ma_h";
-	instance_announce -1,"Bangungot: You silly "+strcharinfo(0)+" ....",bc_map,"0xFF82FF";
-	instance_announce -1,"Bangungot: Get out before you die...",bc_map,"0xFF82FF";
+	set .@map$, instance_mapname("1@ma_h");
+	mapannounce .@map$,"Bangungot: You silly "+strcharinfo(0)+" ....",bc_map,"0xFF82FF";
+	mapannounce .@map$,"Bangungot: Get out before you die...",bc_map,"0xFF82FF";
 	areamonster .@map$,44,156,46,158,"Bangungot's Mangkukulam",2339,1,instance_npcname("#Memorial Start")+"::OnMyMobDead";
 	donpcevent instance_npcname("#Memorial Start_time")+"::OnEnable";
 	end;
@@ -403,11 +385,11 @@ OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	if (mobcount(.@map$,instance_npcname("#Memorial Start")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("#Ward1 Entry")+"::OnEnable1";
 		donpcevent instance_npcname("#Memorial Start_time")+"::OnDisable";
-		instance_announce -1,"Bangungot: This is where your NIGHTMARE starts...",bc_map,"0xFF82FF";
+		mapannounce .@map$,"Bangungot: This is where your NIGHTMARE starts...",bc_map,"0xFF82FF";
 		disablenpc instance_npcname("#Memorial Start");
 	}
 	stopnpctimer;
@@ -427,10 +409,10 @@ OnDisable:
 	stopnpctimer;
 	end;
 OnTimer5000:
-	instance_announce -1,"Bangungot: You cannot help.... you can't defeat me.",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You cannot help.... you can't defeat me.",bc_map,"0xFF82FF";
 	end;
 OnTimer10000:
-	instance_announce -1,"Bangungot: HAHAHAHAHAHAHAHA!!!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: HAHAHAHAHAHAHAHA!!!!",bc_map,"0xFF82FF";
 	stopnpctimer;
 	end;
 }
@@ -441,7 +423,7 @@ OnInstanceInit:
 	disablenpc instance_npcname(strnpcinfo(0));
 	end;
 OnEnable1:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
 	enablenpc instance_npcname(strnpcinfo(0));
 	specialeffect EF_BAT2;
@@ -474,7 +456,7 @@ OnEnable1:
 /*
 // Not called in official scripts.
 OnEnable2:
-	areamonster "1@ma_h",140,38,142,40,"Bangungot's Mangkukulam",2339,1,instance_npcname("#Ward1 Entry")+"::OnMyMobDead";
+	areamonster instance_mapname("1@ma_h"),140,38,142,40,"Bangungot's Mangkukulam",2339,1,instance_npcname("#Ward1 Entry")+"::OnMyMobDead";
 	end;
 */
 OnEnable3:
@@ -486,7 +468,7 @@ OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	if (mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
 		specialeffect EF_BAT2;
 		donpcevent instance_npcname(strnpcinfo(0))+"::OnEnable3";
@@ -497,7 +479,7 @@ OnTimer1000:
 			case 4: set .@str$,"Bangungot: Deeply and more deeply in pain..."; break;
 			case 5: set .@str$,"Bangungot: Be horrified...be petrified."; break;
 		}
-		instance_announce -1,.@str$,bc_map,"0xFF82FF";
+		mapannounce .@map$,.@str$,bc_map,"0xFF82FF";
 	}
 	stopnpctimer;
 	end;
@@ -513,7 +495,7 @@ OnInstanceInit:
 	disablenpc instance_npcname("#Ward6 Entry");
 	end;
 OnEnable1:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Ward6 Entry")+"::OnMyMobDead";
 	enablenpc instance_npcname("#Ward6 Entry");
 	specialeffect EF_BAT2;
@@ -526,18 +508,18 @@ OnEnable1:
 /*
 // Not called in official scripts.
 OnEnable2:
-	areamonster "1@ma_h",140,38,142,40,"Bangungot's Mangkukulam",2339,1,instance_npcname("#Ward6 Entry")+"::OnMyMobDead";
+	areamonster instance_mapname("1@ma_h"),140,38,142,40,"Bangungot's Mangkukulam",2339,1,instance_npcname("#Ward6 Entry")+"::OnMyMobDead";
 	end;
 */
 OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer3000:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	if (mobcount(.@map$,instance_npcname("#Ward6 Entry")+"::OnMyMobDead") < 1) {
 		specialeffect EF_BAT2;
 		donpcevent instance_npcname("#Summon Boss")+"::OnEnable";
-		instance_announce -1,"Bangungot: You had the choice to enter here, but you have no choice to get out as you want...",bc_map,"0xFF82FF";
+		mapannounce .@map$,"Bangungot: You had the choice to enter here, but you have no choice to get out as you want...",bc_map,"0xFF82FF";
 	}
 	stopnpctimer;
 	end;
@@ -550,7 +532,7 @@ OnInstanceInit:
 	end;
 OnEnable:
 	enablenpc instance_npcname("#Summon Boss");
-	monster "1@ma_h",143,158,"Bangungot",2317,1,instance_npcname("#Summon Boss")+"::OnMyMobDead";
+	monster instance_mapname("1@ma_h"),143,158,"Bangungot",2317,1,instance_npcname("#Summon Boss")+"::OnMyMobDead";
 	donpcevent instance_npcname("#Boss Room Entry")+"::OnEnableEntry";
 	donpcevent instance_npcname("#Boss Room Entry")+"::OnEnable";
 	end;
@@ -558,9 +540,9 @@ OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	if (mobcount("1@ma_h",instance_npcname("#Summon Boss")+"::OnMyMobDead") < 1) {
+	if (mobcount(instance_mapname("1@ma_h"),instance_npcname("#Summon Boss")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("#Summon Pillar")+"::OnEnable1";
-		instance_announce -1,"Bangungot: I....cannot.....finish...like.......this.",bc_map,"0xFF82FF";
+		mapannounce instance_mapname("1@ma_h"),"Bangungot: I....cannot.....finish...like.......this.",bc_map,"0xFF82FF";
 		disablenpc instance_npcname("#Summon Boss");
 	}
 	stopnpctimer;
@@ -583,18 +565,18 @@ OnEnable:
 	enablenpc instance_npcname("#Boss Room Door1");
 	end;
 OnSpawn:
-	areamonster "1@ma_h",123,152,137,166,"Bangungot's Manananggal",2338,1,instance_npcname("#Boss Room Entry")+"::OnMyMobDead";
+	areamonster instance_mapname("1@ma_h"),123,152,137,166,"Bangungot's Manananggal",2338,1,instance_npcname("#Boss Room Entry")+"::OnMyMobDead";
 	end;
 OnReset:
-	killmonster "1@ma_h",instance_npcname("#Boss Room Entry")+"::OnMyMobDead";
+	killmonster instance_mapname("1@ma_h"),instance_npcname("#Boss Room Entry")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	if (mobcount(.@map$,instance_npcname("#Boss Room Entry")+"::OnMyMobDead") < 1)
-		instance_announce -1,"Bangungot: HAHAHAH... That's not enough, I will be even stronger....",bc_map,"0xFF82FF";
+		mapannounce .@map$,"Bangungot: HAHAHAH... That's not enough, I will be even stronger....",bc_map,"0xFF82FF";
 	stopnpctimer;
 	end;
 
@@ -629,24 +611,24 @@ OnInstanceInit:
 	disablenpc instance_npcname("#Boss Room Entry_time");
 	end;
 OnEnable:
-	instance_announce -1,"Bangungot: You poor little things. I will invite you to the world of infectious disease...",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You poor little things. I will invite you to the world of infectious disease...",bc_map,"0xFF82FF";
 	initnpctimer;
 	end;
 OnTimer25000:
-	instance_announce -1,"Bangungot: You will know what it is...",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You will know what it is...",bc_map,"0xFF82FF";
 	for(set .@i,10; .@i<=22; set .@i,.@i+1)
 		disablenpc instance_npcname("#Patternwarp"+.@i);
 	end;
 OnTimer35000:
-	instance_announce -1,"Bangungot: Real pain! You will know!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: Real pain! You will know!!",bc_map,"0xFF82FF";
 	for(set .@i,25; .@i<=33; set .@i,.@i+1)
 		disablenpc instance_npcname("#Patternwarp"+.@i);
 	end;
 OnTimer45000:
-	instance_announce -1,"Bangungot: Have you ever heard the patients screaming?",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: Have you ever heard the patients screaming?",bc_map,"0xFF82FF";
 	end;
 OnTimer55000:
-	instance_announce -1,"Bangungot: If you haven't, I will let you!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: If you haven't, I will let you!!",bc_map,"0xFF82FF";
 	enablenpc instance_npcname("#Summon Ward Mob");
 	donpcevent instance_npcname("#Summon Ward Mob")+"::OnEnable7";
 	end;
@@ -661,15 +643,15 @@ OnTimer60500:
 		enablenpc instance_npcname("#Patternwarp"+.@i);
 	end;
 OnTimer90000:
-	instance_announce -1,"Bangungot: Delight coming from agony is my nutrient.",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: Delight coming from agony is my nutrient.",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Boss Room Entry")+"::OnSpawn";
 	end;
 OnTimer110000:
-	instance_announce -1,"Bangungot: Remain here, cursed disease.....",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: Remain here, cursed disease.....",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Boss Room Entry")+"::OnSpawn";
 	end;
 OnTimer125000:
-	instance_announce -1,"Bangungot: You wanna hang out with me ......?",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You wanna hang out with me ......?",bc_map,"0xFF82FF";
 	end;
 OnTimer128000:
 	for(set .@i,1; .@i<=8; set .@i,.@i+1)
@@ -705,14 +687,14 @@ OnInstanceInit:
 	disablenpc instance_npcname("#Boss Room Entry_2");
 	end;
 OnEnable:
-	instance_announce -1,"Bangungot: You are pretty powerful...",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You are pretty powerful...",bc_map,"0xFF82FF";
 	initnpctimer;
 	end;
 OnTimer3000:
-	instance_announce -1,"Bangungot: But can you...",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: But can you...",bc_map,"0xFF82FF";
 	end;
 OnTimer6000:
-	instance_announce -1,"Bangungot: ...defeat me again...?",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: ...defeat me again...?",bc_map,"0xFF82FF";
 	end;
 OnTimer9000:
 	for(set .@i,1; .@i<=8; set .@i,.@i+1)
@@ -725,7 +707,7 @@ OnTimer9500:
 		disablenpc instance_npcname("#Patternwarp"+.@i);
 	end;
 OnTimer10000:
-	instance_announce -1,"Bangungot: You stupid persoon....",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: You stupid persoon....",bc_map,"0xFF82FF";
 	for(set .@i,10; .@i<=22; set .@i,.@i+1)
 		enablenpc instance_npcname("#Patternwarp"+.@i);
 	end;
@@ -746,7 +728,7 @@ OnTouch:
 	specialeffect EF_CURSEATTACK;
 	end;
 OnEnable1:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,47,77,49,79,"Bangungot's Tiyanak",2340,1,.@label$;
 	areamonster .@map$,49,77,51,79,"Bangungot's Tiyanak",2340,1,.@label$;
@@ -757,7 +739,7 @@ OnEnable1:
 	areamonster .@map$,49,81,51,83,"Bangungot's Tiyanak",2339,1,.@label$;
 	end;
 OnEnable2:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,51,45,53,47,"Bangungot's Tiyanak",2339,1,.@label$;
 	areamonster .@map$,53,45,55,47,"Bangungot's Tiyanak",2339,1,.@label$;
@@ -768,7 +750,7 @@ OnEnable2:
 	areamonster .@map$,53,49,55,51,"Bangungot's Tiyanak",2340,1,.@label$;
 	end;
 OnEnable3:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,69,75,71,77,"Bangungot's Tiyanak",2340,1,.@label$;
 	areamonster .@map$,71,75,73,77,"Bangungot's Tiyanak",2340,1,.@label$;
@@ -779,7 +761,7 @@ OnEnable3:
 	areamonster .@map$,71,79,73,81,"Bangungot's Tiyanak",2339,1,.@label$;
 	end;
 OnEnable4:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,73,45,75,47,"Bangungot's Tiyanak",2339,1,.@label$;
 	areamonster .@map$,75,45,77,47,"Bangungot's Tiyanak",2339,1,.@label$;
@@ -790,7 +772,7 @@ OnEnable4:
 	areamonster .@map$,75,49,77,51,"Bangungot's Tiyanak",2340,1,.@label$;
 	end;
 OnEnable5:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,93,77,95,79,"Bangungot's Tiyanak",2340,1,.@label$;
 	areamonster .@map$,95,77,97,79,"Bangungot's Tiyanak",2340,1,.@label$;
@@ -801,7 +783,7 @@ OnEnable5:
 	areamonster .@map$,95,81,97,83,"Bangungot's Tiyanak",2339,1,.@label$;
 	end;
 OnEnable6:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	set .@label$, instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	areamonster .@map$,93,43,95,45,"Bangungot's Tiyanak",2339,1,.@label$;
 	areamonster .@map$,95,43,97,45,"Bangungot's Tiyanak",2339,1,.@label$;
@@ -812,13 +794,13 @@ OnEnable6:
 	areamonster .@map$,95,47,97,49,"Bangungot's Tiyanak",2340,1,.@label$;
 	end;
 OnEnable7:
-	killmonster "1@ma_h",instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
+	killmonster instance_mapname("1@ma_h"),instance_npcname("#Summon Ward Mob")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	if (mobcount("1@ma_h",instance_npcname("#Summon Ward Mob")+"::OnMyMobDead") < 1) {
+	if (mobcount(instance_mapname("1@ma_h"),instance_npcname("#Summon Ward Mob")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("#Boss Room Entry_2")+"::OnEnable";
 		donpcevent instance_npcname("#Boss Room Entry")+"::OnEnableEntry";
 		donpcevent instance_npcname("#Boss Room Entry_time")+"::OnStopTimer";
@@ -837,13 +819,13 @@ OnEnable:
 	disablenpc instance_npcname("#Summon Ward Mob");
 	end;
 OnTimer2000:
-	instance_announce -1,"Bangungot: My spirit will be with your cursed body...",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: My spirit will be with your cursed body...",bc_map,"0xFF82FF";
 	end;
 OnTimer4000:
-	instance_announce -1,"Bangungot: My inferiors...!! Go!! Go torment the patients in the wards!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: My inferiors...!! Go!! Go torment the patients in the wards!!",bc_map,"0xFF82FF";
 	end;
 OnTimer6000:
-	instance_announce -1,"- Bangungot's inferiors are bothering patients!! If you don't slay them all, Bangungot will be stronger. -",bc_map,"0xFF8200";
+	mapannounce instance_mapname("1@ma_h"),"- Bangungot's inferiors are bothering patients!! If you don't slay them all, Bangungot will be stronger. -",bc_map,"0xFF8200";
 	end;
 OnTimer10000:
 	setarray .@npc$[1],
@@ -867,27 +849,27 @@ OnEnable1:
 	enablenpc instance_npcname("#Summon Pillar");
 	donpcevent instance_npcname("#Boss Room Entry_time")+"::OnStopTimer";
 	donpcevent instance_npcname("#Summon Pillar_time")+"::OnEnable";
-	monster "1@ma_h",131,157,"Pillar of Spirit",2327,1,instance_npcname("#Summon Pillar")+"::OnMyMobDead";
+	monster instance_mapname("1@ma_h"),131,157,"Pillar of Spirit",2327,1,instance_npcname("#Summon Pillar")+"::OnMyMobDead";
 	end;
 OnEnable3:
 	enablenpc instance_npcname("#Boss Room Exit");
 	disablenpc instance_npcname("#Summon Pillar");
 	end;
 OnReset:
-	killmonster "1@ma_h",instance_npcname("#Summon Pillar")+"::OnMyMobDead";
+	killmonster instance_mapname("1@ma_h"),instance_npcname("#Summon Pillar")+"::OnMyMobDead";
 	end;
 OnMyMobDead:
 	initnpctimer;
 	end;
 OnTimer1000:
-	set .@map$, "1@ma_h";
+	set .@map$, instance_mapname("1@ma_h");
 	if (mobcount(.@map$,instance_npcname("#Summon Pillar")+"::OnMyMobDead") < 1) {
 		donpcevent instance_npcname("#Summon Pillar_time")+"::OnStopTimer";
 		donpcevent instance_npcname("#Summon Pillar")+"::OnEnable3";
 		donpcevent instance_npcname("#Boss Room Entry")+"::OnReset";
-		instance_announce -1,"Bangungot: Oh....cannot believe that I lost...",bc_map,"0xFF4500";
-		instance_announce -1,"Bangungot: But don't think this is the end!!",bc_map,"0xFF4500";
-		instance_announce -1,"Bangungot: I WILL BE BACK!!!!!",bc_map,"0xFF4500";
+		mapannounce .@map$,"Bangungot: Oh....cannot believe that I lost...",bc_map,"0xFF4500";
+		mapannounce .@map$,"Bangungot: But don't think this is the end!!",bc_map,"0xFF4500";
+		mapannounce .@map$,"Bangungot: I WILL BE BACK!!!!!",bc_map,"0xFF4500";
 	}
 	stopnpctimer;
 	end;
@@ -905,26 +887,26 @@ OnStopTimer:
 	stopnpctimer;
 	end;
 OnTimer1000:
-	instance_announce -1,"- Bangungot's Pillar of Spirit is curing Bangungot. If you don't hunt it now, he will fully recover!! -",bc_map,"0xFF8200";
+	mapannounce instance_mapname("1@ma_h"),"- Bangungot's Pillar of Spirit is curing Bangungot. If you don't hunt it now, he will fully recover!! -",bc_map,"0xFF8200";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Patternwarp45");
 	end;
 OnTimer7000:
-	instance_announce -1,"Bangungot: I never die!!!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: I never die!!!!",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Patternwarp45");
 	end;
 OnTimer14000:
-	instance_announce -1,"Bangungot: If you dare, kill me!! I will revive soon!!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: If you dare, kill me!! I will revive soon!!!",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Patternwarp45");
 	end;
 OnTimer21000:
-	instance_announce -1,"Bangungot: I cannot die this way...!!!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: I cannot die this way...!!!!",bc_map,"0xFF82FF";
 	specialeffect EF_MAPPILLAR2,AREA,instance_npcname("#Patternwarp45");
 	end;
 OnTimer30000:
 	donpcevent instance_npcname("#Summon Pillar")+"::OnReset";
 	end;
 OnTimer31000:
-	instance_announce -1,"Bangungot: Hahahahaha!! I'm back with the power from the pillar of spirit!!!",bc_map,"0xFF82FF";
+	mapannounce instance_mapname("1@ma_h"),"Bangungot: Hahahahaha!! I'm back with the power from the pillar of spirit!!!",bc_map,"0xFF82FF";
 	donpcevent instance_npcname("#Summon Pillar")+"::OnReset";
 	end;
 OnTimer36000:
@@ -969,10 +951,10 @@ OnTimer3000:
 1@ma_h,43,86,4	script	Moaning Patient#1	584,{
 	end;
 OnInstanceInit:
-	monster "1@ma_h",131,62,"Bangungot",2318,1;
+	monster instance_mapname("1@ma_h"),131,62,"Bangungot",2318,1;
 	end;
 OnEnable:
-	instance_announce -1,"Moaning Patient: aaawwww....",bc_map,"0xFF0000";
+	mapannounce instance_mapname("1@ma_h"),"Moaning Patient: aaawwww....",bc_map,"0xFF0000";
 	initnpctimer;
 	end;
 OnTimer5000:
@@ -1009,7 +991,7 @@ OnEnable:
 		case 11: set .@str$,"Patient in Cold Sweat: Help.....help...."; break;
 		case 12: set .@str$,"Howling Patient: aaaaahhhhhhhhhh!!"; break;
 	}
-	instance_announce -1,.@str$,bc_map,"0xFF0000";
+	mapannounce instance_mapname("1@ma_h"),.@str$,bc_map,"0xFF0000";
 	initnpctimer;
 	end;
 OnTimer5000:
@@ -1127,938 +1109,3 @@ OnInstanceInit:
 	disablenpc instance_npcname("#ma_hos_warp_init");
 	end;
 }
-
-/*
-1@ma_h,43,157,0	script	ma_h_start	139,2,2,{
-OnStart:
-	if ('host > 0)
-		end;
-	set 'host,1;
-	hideonnpc ボス部屋入口2;
-	hideonnpc ボス部屋出口;
-	hideonnpc ボス訪問;
-	hideonnpc ボス訪問1;
-	hideonnpc ボス訪問2;
-	hideonnpc ボス訪問3;
-	hideonnpc ma_h_warp2;
-	hideonnpc ma_h_warp3;
-	hideonnpc ma_h_warp4;
-	hideonnpc ma_h_warp5;
-	hideonnpc ma_h_warp6;
-	hideonnpc ma_h_warp7;
-	hideonnpc ma_h_warp8;
-	hideonnpc ma_h_warp34;
-	hideonnpc ma_h_warp35;
-	hideonnpc ma_h_warp36;
-	hideonnpc ma_h_warp37;
-	hideonnpc ma_h_warp38;
-	hideonnpc ma_h_warp41;
-	hideonnpc ma_h_warp42;
-	hideonnpc ma_h_warp43;
-	hideonnpc ma_h_warp44;
-	hideonnpc ma_h_warp45;
-	hideonnpc ma_h_warp46;
-	hideonnpc ma_h_warp47;
-	hideonnpc ma_h_warp48;
-	hideonnpc ma_h_warp49;
-	hideonnpc ma_h_warp10;
-	hideonnpc ma_h_warp11;
-	hideonnpc ma_h_warp12;
-	hideonnpc ma_h_warp13;
-	hideonnpc ma_h_warp14;
-	hideonnpc ma_h_warp15;
-	hideonnpc ma_h_warp16;
-	hideonnpc ma_h_warp17;
-	hideonnpc ma_h_warp18;
-	hideonnpc ma_h_warp19;
-	hideonnpc ma_h_warp20;
-	hideonnpc ma_h_warp21;
-	hideonnpc ma_h_warp22;
-	hideonnpc ma_h_warp25;
-	hideonnpc ma_h_warp26;
-	hideonnpc ma_h_warp27;
-	hideonnpc ma_h_warp28;
-	hideonnpc ma_h_warp29;
-	hideonnpc ma_h_warp30;
-	hideonnpc ma_h_warp31;
-	hideonnpc ma_h_warp32;
-	hideonnpc ma_h_warp33;
-	hideonnpc ボス部屋入口a;
-	hideonnpc ボス部屋入口b;
-	hideonnpc ボス部屋入口c;
-	hideonnpc ボス部屋入口d;
-	hideonnpc ボス部屋入口e;
-	hideonnpc ボス部屋入口f;
-	hideonnpc ボス部屋入口g;
-	hideonnpc ボス部屋入口h;
-	end;
-OnTouch:
-	announce "ビョンウンゴ：愚かな " +strcharinfo(0)+ "……。死ぬ前にここから出ていけ……。",0x9,0xff82ff;
-	monster 1@ma_h,45,157,"悪夢のマンククーラム",2339,1,ma_h_start_tim+ "::OnKilled";
-	donpcevent ma_h_start_tim+ "::OnStart";
-	misceffect 360,ma_h_start;
-	hideonnpc ma_h_start;
-	end;
-}
-1@ma_h,43,157,0	script	ma_h_start_tim	139,{
-OnStart:
-	initnpctimer;
-	end;
-OnTimer5000:
-	announce "ビョンウンゴ：もう私を止める事はできないぞ……。",0x9,0xff82ff;
-	end;
-OnTimer10000:
-	stopnpctimer;
-	announce "ビョンウンゴ：ふふふふふ!!",0x9,0xff82ff;
-	end;
-OnKilled:
-	announce "ビョンウンゴ：それが返答か……いいだろう、恐ろしい悪夢を見せてやる。",0x9,0xff82ff;
-	donpcevent 病室1入口+ "::OnStart";
-	end;
-}
-1@ma_h,46,165,0	script	病室1入口	139,{
-OnStart:
-	set 'mob,2;
-	initnpctimer;
-	end;
-OnTimer2000:
-	announce "看護師マエン：聞こえる？　ビョンウンゴが居る部屋の入口は閉じているわ。",0x9,0xff8200;
-	end;
-OnTimer4000:
-	announce "看護師マエン：まずは病室を順番にまわってビョンウンゴの部下を退治して。",0x9,0xff8200;
-	misceffect 360, 病室1入口;
-	monster 1@ma_h,50,173,"悪夢のマンククーラム",2339,1,病室1入口+ "::OnKilled";
-	monster 1@ma_h,53,172,"悪夢のマンククーラム",2339,1,病室1入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 病室2入口+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,57,147,0	script	病室2入口	139,{
-OnStart:
-	set 'mob,2;
-	misceffect 360, 病室1入口;
-	announce "ビョンウンゴ：本当の痛みと苦しみを教えてやろう……。",0x9,0xff82ff;
-	misceffect 360, 病室2入口;
-	monster 1@ma_h,54,141,"悪夢のマンククーラム",2339,1,病室2入口+ "::OnKilled";
-	monster 1@ma_h,45,140,"悪夢のマンククーラム",2339,1,病室2入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 病室3入口+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,67,165,0	script	病室3入口	139,{
-OnStart:
-	set 'mob,3;
-	misceffect 360, 病室2入口;
-	announce "ビョンウンゴ：お前たちの苦しみは私の力となる……。",0x9,0xff82ff;
-	misceffect 360, 病室3入口;
-	monster 1@ma_h,71,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
-	monster 1@ma_h,73,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
-	monster 1@ma_h,74,172,"悪夢のマンククーラム",2339,1,病室3入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 病室4入口+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,79,147,0	script	病室4入口	139,{
-OnStart:
-	set 'mob,3;
-	misceffect 360, 病室3入口;
-	announce "ビョンウンゴ：私に聞かせてみろ……お前の苦しみを!!",0x9,0xff82ff;
-	misceffect 360, 病室4入口;
-	monster 1@ma_h,73,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
-	monster 1@ma_h,75,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
-	monster 1@ma_h,76,140,"悪夢のマンククーラム",2339,1,病室4入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 病室5入口+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,90,165,0	script	病室5入口	139,{
-OnStart:
-	set 'mob,4;
-	misceffect 360, 病室4入口;
-	announce "ビョンウンゴ：もっと……もっと苦しむがいい……。",0x9,0xff82ff;
-	misceffect 360, 病室5入口;
-	monster 1@ma_h,94,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
-	monster 1@ma_h,95,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
-	monster 1@ma_h,98,174,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
-	monster 1@ma_h,95,176,"悪夢のマンククーラム",2339,1,病室5入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 病室6入口+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,101,147,0	script	病室6入口	139,{
-OnStart:
-	set 'mob,5;
-	misceffect 360, 病室5入口;
-	announce "ビョンウンゴ：もっと怯えろ……怖がれ……。",0x9,0xff82ff;
-	misceffect 360, 病室6入口;
-	monster 1@ma_h,94,137,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
-	monster 1@ma_h,96,139,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
-	monster 1@ma_h,99,138,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
-	monster 1@ma_h,94,140,"悪夢のマンククーラム",2339,1,病室6入口+ "::OnKilled";
-	monster 1@ma_h,95,141,"悪夢のマナナンガル",2338,1,病室6入口+ "::OnKilled";
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent ボス召喚+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,110,177,0	script	ボス召喚	139,{
-OnStart:
-	set 'mob,1;
-	misceffect 360, 病室6入口;
-	announce "ビョンウンゴ：愚かな……生きて帰ることはできないぞ……。",0x9,0xff82ff;
-	hideoffnpc ボス部屋入口a;
-	hideoffnpc ボス部屋入口b;
-	hideoffnpc ボス部屋入口c;
-	hideoffnpc ボス部屋入口d;
-	hideoffnpc ボス部屋入口e;
-	hideoffnpc ボス部屋入口f;
-	hideoffnpc ボス部屋入口g;
-	hideoffnpc ボス部屋入口h;
-	hideoffnpc ボス訪問;
-	hideoffnpc ボス訪問1;
-	hideoffnpc ボス訪問2;
-	hideoffnpc ボス訪問3;
-	donpcevent ボスエフェクト+ "::OnStart";
-	monster 1@ma_h,143,158,"ビョンウンゴ",2317,1,ボス召喚+ "::OnKilled";
-	monster 1@ma_h,131,62,"憤怒のビョンウンゴ",2318,1;
-	end;
-OnKilled:
-	set 'mob,'mob-1;
-	if ('mob<=0) {
-		donpcevent 柱召喚+ "::OnStart";
-	}
-	end;
-}
-1@ma_h,147,143,0	script	ボス部屋入口	139,{
-OnStart:
-	donpcevent ボス部屋入口_time+ "::OnStart";
-	end;
-}
-1@ma_h,147,143,0	script	ボス部屋入口_time	139,{
-OnStart:
-	initnpctimer;
-	end;
-OnTimer5000:
-	announce "ビョンウンゴ：哀れな者よ……本当の苦しみを教えてやろう……。",0x9,0xff82ff;
-	end;
-OnTimer30000:
-	announce "ビョンウンゴ：呼吸もできぬほど痛く、苦しい病が ",0x9,0xff82ff;
-	end;
-OnTimer40000:
-	announce "ビョンウンゴ：どのようなものか……知っているか？",0x9,0xff82ff;
-	end;
-OnTimer50000:
-	announce "ビョンウンゴ：病に苦しむ者たちの悲鳴を聞いたことが・るか？",0x9,0xff82ff;
-	end;
-OnTimer60000:
-	announce "ビョンウンゴ：聞いたことがないなら私が聞かせてやる！",0x9,0xff82ff;
-	end;
-OnTimer65000:
-	stopnpctimer;
-	hideoffnpc 病室召喚;
-	hideonnpc ma_h_warp10;
-	hideonnpc ma_h_warp11;
-	hideonnpc ma_h_warp12;
-	hideonnpc ma_h_warp13;
-	hideonnpc ma_h_warp14;
-	hideonnpc ma_h_warp15;
-	hideonnpc ma_h_warp16;
-	hideonnpc ma_h_warp17;
-	hideonnpc ma_h_warp18;
-	hideonnpc ma_h_warp19;
-	hideonnpc ma_h_warp20;
-	hideonnpc ma_h_warp21;
-	hideonnpc ma_h_warp22;
-	hideonnpc ma_h_warp25;
-	hideonnpc ma_h_warp26;
-	hideonnpc ma_h_warp27;
-	hideonnpc ma_h_warp28;
-	hideonnpc ma_h_warp29;
-	hideonnpc ma_h_warp30;
-	hideonnpc ma_h_warp31;
-	hideonnpc ma_h_warp32;
-	hideonnpc ma_h_warp33;
-	hideoffnpc ma_h_warp2;
-	hideoffnpc ma_h_warp3;
-	hideoffnpc ma_h_warp4;
-	hideoffnpc ma_h_warp5;
-	hideoffnpc ma_h_warp6;
-	hideoffnpc ma_h_warp7;
-	hideoffnpc ma_h_warp8;
-	hideoffnpc ma_h_warp34;
-	hideoffnpc ma_h_warp35;
-	hideoffnpc ma_h_warp36;
-	hideoffnpc ma_h_warp37;
-	hideoffnpc ma_h_warp38;
-	hideoffnpc ma_h_warp41;
-	hideoffnpc ma_h_warp42;
-	hideoffnpc ma_h_warp43;
-	hideoffnpc ma_h_warp44;
-	hideoffnpc ma_h_warp45;
-	hideoffnpc ma_h_warp46;
-	hideoffnpc ma_h_warp47;
-	hideoffnpc ma_h_warp48;
-	hideoffnpc ma_h_warp49;
-	end;
-}
-1@ma_h,111,177,0	script	ボス部屋入口2	45,1,1,{
-	// 未調査
-OnTouch:
-	mes "‐闇のビョンウンゴ病院2階の";
-	mes "　外に出ますか？‐";
-	next;
-	if (select("外に出ない","外に出る==1){
-		close;
-	}
-	mes "‐外に出ました‐";
-	close2;
-	warp "ma_dun01",150,8;
-	end;
-}
-1@ma_h,118,63,0	script	病室召喚	139,1,1,{
-OnTouch:
-	donpcevent 病室召喚_time+ "::OnStart";
-	misceffect 196, 病室召喚;
-	hideonnpc 病室召喚;
-	end;
-}
-1@ma_h,118,64,0	script	病室召喚_time	139,{
-OnStart:
-	initnpctimer;
-	set 'flag,rand(1,12);
-	end;
-OnTimer4000:
-	switch('flag) {
-	case 1:	//唸っている患者
-		donpcevent ma_h_patient01+ "::OnStart";
-		break;
-	case 2:	//絶叫する患者
-		donpcevent ma_h_patient02+ "::OnStart";
-		break;
-	case 3:	//苦しんでいる患者
-		donpcevent ma_h_patient03+ "::OnStart";
-		break;
-	case 4:	//気絶した患者
-		donpcevent ma_h_patient04+ "::OnStart";
-		break;
-	case 5:	//悪夢を見る患者
-		donpcevent ma_h_patient05+ "::OnStart";
-		break;
-	case 6:	//痛そうに見える患者
-		donpcevent ma_h_patient06+ "::OnStart";
-		break;
-	case 7:	//恐怖に怯えている患者
-		donpcevent ma_h_patient07+ "::OnStart";
-		break;
-	case 8:	//悲しんでいる患者
-		donpcevent ma_h_patient08+ "::OnStart";
-		break;
-	case 9:	//顔を歪める患者
-		donpcevent ma_h_patient09+ "::OnStart";
-		break;
-	case 10:	//身悶える患者
-		donpcevent ma_h_patient10+ "::OnStart";
-		break;
-	case 11:	//冷汗をかく患者
-		donpcevent ma_h_patient11+ "::OnStart";
-		break;
-	case 12:	//叫んでいる患者
-		donpcevent ma_h_patient12+ "::OnStart";
-		break;
-	}
-	end;
-OnTimer8000:
-	announce "ビョンウンゴ：呪いにかかった奴らに憑りついてやろう……。",0x9,0xff82ff;
-	end;
-OnTimer11000:
-	announce "ビョンウンゴ：部下たちよ！　行け！　病室の患者たちを苦しめろ!!",0x9,0xff82ff;
-	end;
-OnTimer13000:
-	announce "看護師マエン：まさか……患者の苦しみから力を蓄えるつもり!?",0x9,0xff8200;
-	end;
-OnTimer15000:
-	announce "看護師マエン：ビョンウンゴが力を蓄える前に病室の部下たちを退治して！",0x9,0xff8200;
-	end;
-OnTimer17000:
-	switch('flag) {
-	case 1:	//唸っている患者
-	case 2:	//絶叫する患者
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のマンククーラム",2339,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
-		monster "1@ma_h",48+rand(6),77+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	case 3:	//苦しんでいる患者
-	case 4:	//気絶した患者
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,50+rand(6),46+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	case 5:	//悪夢を見る患者
-	case 6:	//痛そうに見える患者
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,70+rand(6),75+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	case 7:	//恐怖に怯えている患者
-	case 8:	//悲しんでいる患者
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,71+rand(6),45+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	case 9:	//顔を歪める患者
-	case 10:	//身悶える患者
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,89+rand(6),76+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	case 11:	//冷汗をかく患者
-	case 12:	//叫んでいる患者
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のマンククーラム",2339,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
-		monster 1@ma_h,91+rand(6),44+rand(6),"悪夢のチャナック",2340,1;
-		break;
-	}
-	end;
-OnTimer36000:
-	announce "ビョンウンゴ：患者の苦しみが私の力となっていく……。",0x9,0xff82ff;
-	end;
-OnTimer56000:
-	announce "ビョンウンゴ：もっと苦しめろ……呪われし病よ！",0x9,0xff82ff;
-	end;
-OnTimer71000:
-	announce "ビョンウンゴ：もうそろそろ私と遊んでみるか……？",0x9,0xff82ff;
-	end;
-OnTimer73000:
-	stopnpctimer;
-	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
-	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
-	areamonster 1@ma_h,117,143,146,171,"悪夢のマナナンガル",2338,1;
-	hideoffnpc ボス部屋入口a;
-	hideoffnpc ボス部屋入口b;
-	hideoffnpc ボス部屋入口c;
-	hideoffnpc ボス部屋入口d;
-	hideoffnpc ボス部屋入口e;
-	hideoffnpc ボス部屋入口f;
-	hideoffnpc ボス部屋入口g;
-	hideoffnpc ボス部屋入口h;
-	hideoffnpc ma_h_warp10;
-	hideoffnpc ma_h_warp11;
-	hideoffnpc ma_h_warp12;
-	hideoffnpc ma_h_warp13;
-	hideoffnpc ma_h_warp14;
-	hideoffnpc ma_h_warp15;
-	hideoffnpc ma_h_warp16;
-	hideoffnpc ma_h_warp17;
-	hideoffnpc ma_h_warp18;
-	hideoffnpc ma_h_warp19;
-	hideoffnpc ma_h_warp20;
-	hideoffnpc ma_h_warp21;
-	hideoffnpc ma_h_warp22;
-	hideoffnpc ma_h_warp25;
-	hideoffnpc ma_h_warp26;
-	hideoffnpc ma_h_warp27;
-	hideoffnpc ma_h_warp28;
-	hideoffnpc ma_h_warp29;
-	hideoffnpc ma_h_warp30;
-	hideoffnpc ma_h_warp31;
-	hideoffnpc ma_h_warp32;
-	hideoffnpc ma_h_warp33;
-	hideonnpc ma_h_warp2;
-	hideonnpc ma_h_warp3;
-	hideonnpc ma_h_warp4;
-	hideonnpc ma_h_warp5;
-	hideonnpc ma_h_warp6;
-	hideonnpc ma_h_warp7;
-	hideonnpc ma_h_warp8;
-	hideonnpc ma_h_warp34;
-	hideonnpc ma_h_warp35;
-	hideonnpc ma_h_warp36;
-	hideonnpc ma_h_warp37;
-	hideonnpc ma_h_warp38;
-	hideonnpc ma_h_warp41;
-	hideonnpc ma_h_warp42;
-	hideonnpc ma_h_warp43;
-	hideonnpc ma_h_warp44;
-	hideonnpc ma_h_warp45;
-	hideonnpc ma_h_warp46;
-	hideonnpc ma_h_warp47;
-	hideonnpc ma_h_warp48;
-	hideonnpc ma_h_warp49;
-	end;
-}
-1@ma_h,112,177,0	script	柱召喚	139,{
-OnStart:
-	donpcevent 柱召喚_time+ "::OnStart";
-	monster 1@ma_h,131,157,"忌み木のビョンウンゴ",2327,1,柱召喚+ "::OnKilled";
-	end;
-OnKilled:
-	killmonster "this","All";
-	stopnpctimer 柱召喚_time;
-	stopnpctimer ボス部屋入口_time;
-	stopnpctimer 病室召喚_time;
-	hideoffnpc ボス部屋入口2;
-	hideoffnpc ボス部屋出口;
-	announce "ビョンウンゴ：くっ……これで終わりだと思うな!!　私は必ず戻ってくる!!",0x9,0xff0000;
-	sleep 2000;
-	announce "看護師マエン：お疲れ様！　外に出て報告を聞かせてね。",0x9,0xff8200;
-	end;
-}
-1@ma_h,112,178,0	script	柱召喚_time	139,{
-OnStart:
-	initnpctimer;
-	stopnpctimer ボス部屋入口_time;
-	stopnpctimer 病室召喚_time;
-	announce "ビョンウンゴ：こ……これで終わりだと思うなよ。",0x9,0xff82ff;
-	end;
-OnTimer2000:
-	announce "看護師マエン：ビョンウンゴの力がどんどん回復しているわ！",0x9,0xff8200;
-	end;
-OnTimer4000:
-	announce "看護師マエン：復活してしまう前に早く倒すのよ!!",0x9,0xff8200;
-	end;
-OnTimer6000:
-	misceffect 247,ma_h_warp45;
-	end;
-OnTimer8000:
-	announce "ビョンウンゴ：私は不死身だ!!",0x9,0xff82ff;
-	end;
-OnTimer10000:
-	misceffect 247,ma_h_warp45;
-	end;
-OnTimer12000:
-	announce "ビョンウンゴ：殺せるものなら殺してみろ!!　すぐに復活してやる!!",0x9,0xff82ff;
-	end;
-OnTimer14000:
-	misceffect 247,ma_h_warp45;
-	end;
-OnTimer16000:
-	announce "ビョンウンゴ：このまま勝てるなどと思わないことだな!!",0x9,0xff82ff;
-	end;
-OnTimer18000:
-	misceffect 247,ma_h_warp45;
-	end;
-OnTimer22000:
-	misceffect 247,ma_h_warp45;
-	end;
-OnTimer26000:
-	killmonster "this",柱召喚+ "::OnKilled";
-	donpcevent ボス部屋入口+ "::OnStart";
-	announce "ビョンウンゴ：ははははは!!　柱の中で力を回復して戻ってきたぞ!!",0x9,0xff82ff;
-	end;
-OnTimer30000:
-	monster 1@ma_h,143,158,"ビョンウンゴ",2317,1,ボス召喚+ "::OnKilled";
-	end;
-OnTimer46000:
-	announce "ビョンウンゴ：ふふふ……その程度の力では無駄だ、私には勝てないぞ……。",0x9,0xff82ff;
-	end;
-}
-1@ma_h,35,156,0	warp	ボス部屋出口	1,1,ma_dun01,150,8
-1@ma_h,105,157,0	warp	ボス訪問	1,1,1@ma_h,116,157
-1@ma_h,112,157,0	warp	ボス訪問1	1,1,1@ma_h,100,157
-1@ma_h,104,63,0	warp	ボス訪問2	1,1,1@ma_h,117,63
-1@ma_h,112,63,0	warp	ボス訪問3	1,1,1@ma_h,100,63
-1@ma_h,53,157,0	script	ma_h_warp2	139,5,5,{
-OnTouch:
-	warp 1@ma_h,117,63;
-	end;
-}
-1@ma_h,57,157,0	duplicate(ma_h_warp2)	ma_h_warp3	139,5,5
-1@ma_h,67,157,0	duplicate(ma_h_warp2)	ma_h_warp4	139,5,5
-1@ma_h,79,157,0	duplicate(ma_h_warp2)	ma_h_warp5	139,5,5
-1@ma_h,89,157,0	duplicate(ma_h_warp2)	ma_h_warp6	139,5,5
-1@ma_h,100,157,0	duplicate(ma_h_warp2)	ma_h_warp7	139,5,5
-1@ma_h,51,173,0	duplicate(ma_h_warp2)	ma_h_warp8	139,10,10
-1@ma_h,52,140,0	duplicate(ma_h_warp2)	ma_h_warp34	139,10,10
-1@ma_h,73,173,0	duplicate(ma_h_warp2)	ma_h_warp35	139,10,10
-1@ma_h,73,140,0	duplicate(ma_h_warp2)	ma_h_warp36	139,10,10
-1@ma_h,95,173,0	duplicate(ma_h_warp2)	ma_h_warp37	139,10,10
-1@ma_h,95,140,0	duplicate(ma_h_warp2)	ma_h_warp38	139,10,10
-1@ma_h,117,171,0	duplicate(ma_h_warp2)	ma_h_warp41	139,7,7
-1@ma_h,131,171,0	duplicate(ma_h_warp2)	ma_h_warp42	139,7,7
-1@ma_h,146,171,0	duplicate(ma_h_warp2)	ma_h_warp43	139,7,7
-1@ma_h,117,157,0	duplicate(ma_h_warp2)	ma_h_warp44	139,7,7
-1@ma_h,131,157,0	duplicate(ma_h_warp2)	ma_h_warp45	139,7,7
-1@ma_h,146,157,0	duplicate(ma_h_warp2)	ma_h_warp46	139,7,7
-1@ma_h,117,143,0	duplicate(ma_h_warp2)	ma_h_warp47	139,7,7
-1@ma_h,131,143,0	duplicate(ma_h_warp2)	ma_h_warp48	139,7,7
-1@ma_h,146,143,0	duplicate(ma_h_warp2)	ma_h_warp49	139,7,7
-1@ma_h,36,63,0	script	ma_h_warp10	139,5,5,{
-OnTouch:
-	warp 1@ma_h,116,157;
-	end;
-}
-1@ma_h,46,63,0	duplicate(ma_h_warp10)	ma_h_warp11	139,5,5
-1@ma_h,56,63,0	duplicate(ma_h_warp10)	ma_h_warp12	139,5,5
-1@ma_h,67,63,0	duplicate(ma_h_warp10)	ma_h_warp13	139,5,5
-1@ma_h,78,63,0	duplicate(ma_h_warp10)	ma_h_warp14	139,5,5
-1@ma_h,89,63,0	duplicate(ma_h_warp10)	ma_h_warp15	139,5,5
-1@ma_h,100,63,0	duplicate(ma_h_warp10)	ma_h_warp16	139,5,5
-1@ma_h,51,79,0	duplicate(ma_h_warp10)	ma_h_warp17	139,10,10
-1@ma_h,51,46,0	duplicate(ma_h_warp10)	ma_h_warp18	139,10,10
-1@ma_h,73,80,0	duplicate(ma_h_warp10)	ma_h_warp19	139,10,10
-1@ma_h,73,46,0	duplicate(ma_h_warp10)	ma_h_warp20	139,10,10
-1@ma_h,95,79,0	duplicate(ma_h_warp10)	ma_h_warp21	139,10,10
-1@ma_h,95,46,0	duplicate(ma_h_warp10)	ma_h_warp22	139,10,10
-1@ma_h,117,77,0	duplicate(ma_h_warp10)	ma_h_warp25	139,7,7
-1@ma_h,131,77,0	duplicate(ma_h_warp10)	ma_h_warp26	139,7,7
-1@ma_h,146,77,0	duplicate(ma_h_warp10)	ma_h_warp27	139,7,7
-1@ma_h,117,63,0	duplicate(ma_h_warp10)	ma_h_warp28	139,7,7
-1@ma_h,131,63,0	duplicate(ma_h_warp10)	ma_h_warp29	139,7,7
-1@ma_h,146,63,0	duplicate(ma_h_warp10)	ma_h_warp30	139,7,7
-1@ma_h,117,49,0	duplicate(ma_h_warp10)	ma_h_warp31	139,7,7
-1@ma_h,131,49,0	duplicate(ma_h_warp10)	ma_h_warp32	139,7,7
-1@ma_h,146,49,0	duplicate(ma_h_warp10)	ma_h_warp33	139,7,7
-1@ma_h,118,171,0	script	ボス部屋入口a	139,7,7,{
-OnTouch:
-	misceffect 358,strnpcinfo(0);
-	hideonnpc ボス部屋入口a;
-	hideonnpc ボス部屋入口b;
-	hideonnpc ボス部屋入口c;
-	hideonnpc ボス部屋入口d;
-	hideonnpc ボス部屋入口e;
-	hideonnpc ボス部屋入口f;
-	hideonnpc ボス部屋入口g;
-	hideonnpc ボス部屋入口h;
-	donpcevent ボス部屋入口+ "::OnStart";
-	end;
-}
-1@ma_h,132,171,0	duplicate(ボス部屋入口a)	ボス部屋入口b	139,7,7
-1@ma_h,147,171,0	duplicate(ボス部屋入口a)	ボス部屋入口c	139,7,7
-1@ma_h,118,157,0	duplicate(ボス部屋入口a)	ボス部屋入口d	139,7,7
-1@ma_h,132,157,0	duplicate(ボス部屋入口a)	ボス部屋入口e	139,7,7
-1@ma_h,147,157,0	duplicate(ボス部屋入口a)	ボス部屋入口f	139,7,7
-1@ma_h,118,143,0	duplicate(ボス部屋入口a)	ボス部屋入口g	139,7,7
-1@ma_h,132,143,0	duplicate(ボス部屋入口a)	ボス部屋入口h	139,7,7
-1@ma_h,131,62,0	script	ボスエフェクト	139,{
-OnStart:
-	initnpctimer;
-	end;
-OnTimer3000:
-	setnpctimer 0;
-	misceffect 63;
-	end;
-}
-1@ma_h,43,86,4	script	唸っている患者::ma_h_patient01	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "唸っている患者：うう……うっ……く……!!",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,60,87,4	script	絶叫する患者::ma_h_patient02	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "絶叫する患者: うわ・・・・・・・・・・・!! ",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,60,39,7	script	苦しんでいる患者::ma_h_patient03	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "苦しんでいる患者：痛い……痛い……!!",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,43,39,7	script	気絶した患者::ma_h_patient04	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "気絶した患者:う、うう……!! ",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,77,86,4	script	悪夢を見る患者::ma_h_patient05	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "悪夢を見る患者：助けて!!　誰か助けて!!　・・……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,69,87,4	script	痛そうに見える患者::ma_h_patient06	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "痛そうに見える患者：は・・……う……ううう……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,73,39,7	script	恐怖に怯えてる患者::ma_h_patient07	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "恐怖に怯えている患者：・っちに行って!!　お願い……来ないで……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,65,51,7	script	悲しんでいる患者::ma_h_patient08	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "悲しんでいる患者：うう……どうして……こんな……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,87,86,4	script	顔を歪める患者::ma_h_patient09	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "顔を歪める患者：もうやめて……お願い……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,104,86,4	script	身悶える患者::ma_h_patient10	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "身悶える患者：くわ・・……う……くっ……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,99,39,7	script	冷汗をかく患者::ma_h_patient11	584,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "冷汗をかく患者：は・・……た、助けて……。",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220;
-	misceffect 196;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220;
-	misceffect 196;
-	end;
-}
-1@ma_h,87,39,7	script	叫んでいる患者::ma_h_patient12	585,{
-	end;
-OnStart:
-	initnpctimer;
-	announce "叫んでいる患者：く、来るな・・・・・・・・・・・!!",0x9,0xff0000;
-OnTimer5000:
-OnTimer8000:
-OnTimer11000:
-OnTimer14000:
-OnTimer17000:
-OnTimer20000:
-OnTimer23000:
-OnTimer26000:
-	misceffect 220, 叫んでいる患者;
-	misceffect 196, 叫んでいる患者;
-	end;
-OnTimer30000:
-	stopnpctimer;
-	misceffect 220, 叫んでいる患者;
-	misceffect 196, 叫んでいる患者;
-	end;
-}
-1@ma_h,43,181,4	script	唸っている患者	584,{ end; }
-1@ma_h,60,182,4	script	絶叫する患者	585,{ end; }
-1@ma_h,60,132,7	script	苦しんでいる患者	584,{ end; }
-1@ma_h,43,132,7	script	気絶した患者	585,{ end; }
-1@ma_h,77,182,4	script	悪夢を見る患者	584,{ end; }
-1@ma_h,69,182,4	script	痛そうに見える患者	585,{ end; }
-1@ma_h,73,132,7	script	恐怖に怯えてる患者	584,{ end; }
-1@ma_h,65,144,7	script	悲しんでいる患者	585,{ end; }
-1@ma_h,87,181,4	script	顔を歪める患者	584,{ end; }
-1@ma_h,104,181,4	script	身悶える患者	585,{ end; }
-1@ma_h,99,132,7	script	冷汗をかく患者	584,{ end; }
-1@ma_h,87,132,7	script	叫んでいる患者	585,{ end; }
-*/
