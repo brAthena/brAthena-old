@@ -10112,6 +10112,9 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 		}
 	}
 
+	if(battle_config.idletime_criteria & BCIDLE_CHAT)
+		sd->idletime = last_tick;
+
 	if( sd->gcbind ) {
 		clif_chsys_send(sd->gcbind,sd,message);
 		return;
@@ -10276,6 +10279,9 @@ void clif_parse_Emotion(int fd, struct map_session_data *sd)
 		}
 		sd->emotionlasttime = time(NULL);
 
+		if(battle_config.idletime_criteria & BCIDLE_EMOTION)
+			sd->idletime = last_tick;
+
 		if(battle_config.client_reshuffle_dice && emoticon>=E_DICE1 && emoticon<=E_DICE6) {
 			// re-roll dice
 			emoticon = rnd()%6+E_DICE1;
@@ -10352,7 +10358,8 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 			}
 
 			pc_delinvincibletimer(sd);
-			sd->idletime = last_tick;
+			if(battle_config.idletime_criteria & BCIDLE_ATTACK)
+				sd->idletime = last_tick;
 			unit_attack(&sd->bl, target_id, action_type != 0);
 			break;
 		case 0x02: // sitdown
@@ -10376,7 +10383,9 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 			   )) //No sitting during these states either.
 				break;
 
-			sd->idletime = last_tick;
+			if(battle_config.idletime_criteria & BCIDLE_SIT)
+				sd->idletime = last_tick;
+
 			pc_setsit(sd);
 			skill_sit(sd,1);
 			clif_sitting(&sd->bl);
@@ -10388,7 +10397,9 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 				return;
 			}
 
-			sd->idletime = last_tick;
+			if(battle_config.idletime_criteria & BCIDLE_SIT)
+				sd->idletime = last_tick;
+
 			pc_setstand(sd);
 			skill_sit(sd,0);
 			clif_standing(&sd->bl);
@@ -10471,7 +10482,8 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 	}
 
 	// Reset idle time when using whisper/main chat.
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_CHAT)
+		sd->idletime = last_tick;
 
 	// Chat logging type 'W' / Whisper
 	log_chat(LOG_CHAT_WHISPER, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, target, message);
@@ -10693,6 +10705,9 @@ void clif_parse_DropItem(int fd, struct map_session_data *sd)
 		if(!pc_dropitem(sd, item_index, item_amount))
 			break;
 
+		if(battle_config.idletime_criteria & BCIDLE_DROPITEM)
+			sd->idletime = last_tick;
+
 		return;
 	}
 
@@ -10718,7 +10733,8 @@ void clif_parse_UseItem(int fd, struct map_session_data *sd)
 		return;
 
 	//Whether the item is used or not is irrelevant, the char ain't idle. [Skotlex]
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_USEITEM)
+		sd->idletime = last_tick;
 	n = RFIFOW(fd,packet_db[RFIFOW(fd,0)].pos[0])-2;
 
 	if(n <0 || n >= MAX_INVENTORY)
@@ -10764,6 +10780,9 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd)
 		return;
 	}
 
+	if(battle_config.idletime_criteria & BCIDLE_USEITEM)
+		sd->idletime = last_tick;
+
 	//Client doesn't send the position for ammo.
 	if(sd->inventory_data[index]->type == IT_AMMO)
 		pc_equipitem(sd,index,EQP_AMMO);
@@ -10798,6 +10817,10 @@ void clif_parse_UnequipItem(int fd,struct map_session_data *sd)
 		return;
 
 	index = RFIFOW(fd,2)-2;
+
+	if(battle_config.idletime_criteria & BCIDLE_USEITEM)
+		sd->idletime = last_tick;
+
 	pc_unequipitem(sd,index,1);
 }
 
@@ -11353,7 +11376,8 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 		return;
 
 	// Whether skill fails or not is irrelevant, the char ain't idle. [Skotlex]
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_USESKILLTOID)
+		sd->idletime = last_tick;
 
 	if(sd->npc_id || sd->state.workinprogress&1) {
 #if VERSION == 1
@@ -11454,7 +11478,8 @@ static void clif_parse_UseSkillToPosSub(int fd, struct map_session_data *sd, uin
 #endif
 
 	//Whether skill fails or not is irrelevant, the char ain't idle. [Skotlex]
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_USESKILLTOPOS)
+		sd->idletime = last_tick;
 
 	if(skillnotok(skill_id, sd))
 		return;
@@ -12221,7 +12246,8 @@ void clif_parse_PartyMessage(int fd, struct map_session_data *sd)
 	}
 
 	// Reset idle time when using party chat.
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_CHAT)
+		sd->idletime = last_tick;
 
 	party_send_message(sd, text, textlen);
 }
@@ -13183,7 +13209,8 @@ void clif_parse_GuildMessage(int fd, struct map_session_data *sd)
 	}
 
 	// Reset idle time when using guild chat.
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_CHAT)
+		sd->idletime = last_tick;
 
 	if(sd->bg_id)
 		bg_send_message(sd, text, textlen);
@@ -16161,7 +16188,8 @@ void clif_parse_BattleChat(int fd, struct map_session_data *sd)
 	}
 
 	// Reset idle time when using battleground chat.
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_CHAT)
+		sd->idletime = last_tick;
 
 	bg_send_message(sd, text, textlen);
 }

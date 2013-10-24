@@ -7974,23 +7974,21 @@ ACMD_FUNC(cash)
 			else clif_displaymessage(fd, msg_txt(149)); // Unable to decrease the number/value.
 		} else {
 			if((ret=pc_paycash(sd, -value, 0)) >= 0) {
-				// If this option is set, the message is already sent by pc function
-				if(!battle_config.cashshop_show_points) {
 					sprintf(output, msg_txt(410), ret, sd->cashPoints);
 					clif_disp_onlyself(sd, output, strlen(output));
-				}
-			}
-			else clif_displaymessage(fd, msg_txt(41)); // Unable to decrease the number/value.
+			} else
+				clif_displaymessage(fd, msg_txt(41)); // Unable to decrease the number/value.
 		}
-	}
-	else
-	{ // @points
+	} else { // @points
 		if(value > 0) {
 			if((ret=pc_getcash(sd, 0, value)) >= 0) {
-			    sprintf(output, msg_txt(506), ret, sd->kafraPoints);
-			    clif_disp_onlyself(sd, output, strlen(output));
-			}
-			else clif_displaymessage(fd, msg_txt(149)); // Unable to decrease the number/value.
+				// If this option is set, the message is already sent by pc function
+				if(!battle_config.cashshop_show_points) {
+			    		sprintf(output, msg_txt(506), ret, sd->kafraPoints);
+			    		clif_disp_onlyself(sd, output, strlen(output));
+				}
+			} else
+				clif_displaymessage(fd, msg_txt(149)); // Unable to decrease the number/value.
 		} else {
 			if((ret=pc_paycash(sd, -value, -value)) >= 0) {
 				sprintf(output, msg_txt(411), ret, sd->kafraPoints);
@@ -9976,6 +9974,9 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		//pass through the rest of the code compatible with both symbols
 		sprintf(atcmd_msg, "%s", message);
 	}
+
+	if(battle_config.idletime_criteria & BCIDLE_ATCOMMAND)
+		sd->idletime = last_tick;
 
 	//Clearing these to be used once more.
 	memset(command, '\0', sizeof(command));
