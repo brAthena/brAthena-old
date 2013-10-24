@@ -1416,7 +1416,7 @@ void clif_hominfo(struct map_session_data *sd, struct homun_data *hd, int flag)
 {
 	struct status_data *status;
 	unsigned char buf[128];
-	int htype;
+	enum homun_type htype;
 
 	nullpo_retv(hd);
 

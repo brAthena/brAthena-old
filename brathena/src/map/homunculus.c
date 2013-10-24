@@ -828,11 +828,8 @@ int merc_call_homunculus(struct map_session_data *sd)
 
 	hd = sd->hd;
 
-	if(!hd->homunculus.vaporize != HOM_ST_REST)
+	if(hd->homunculus.vaporize != HOM_ST_REST)
 		return 0; //Can't use this if homun wasn't vaporized.
-
-	if (hd->homunculus.vaporize == HOM_ST_MORPH)
-		return 0; // Can't call homunculus (morph state).
 
 	merc_hom_init_timers(hd);
 	hd->homunculus.vaporize = HOM_ST_ACTIVE;

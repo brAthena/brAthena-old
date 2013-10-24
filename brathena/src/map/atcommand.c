@@ -6998,7 +6998,7 @@ ACMD_FUNC(makehomun)
 	homunid = atoi(message);
 
 	if(homunid == -1 && sd->status.hom_id && !merc_is_hom_active(sd->hd)) {
-		if(!sd->hd->homunculus.vaporize )
+		if(sd->hd->homunculus.vaporize )
 			merc_resurrect_homunculus(sd, 100, sd->bl.x, sd->bl.y);
 		else
 			merc_call_homunculus(sd);
