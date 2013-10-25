@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
+malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	579,{
 	mes "[Guia do Porto de Malaya]";
 	mes "Onde as culturas e lendas ganham vida!";
 	mes "A Respiração do Vilarejo, o Porto Malaya te deseja as boas-vindas.";
@@ -38,50 +38,50 @@ malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
 		case 1:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização da ^A82FF0Funcionária Kafra^000000 será marcada em seu mini-mapa.";
-			viewpoint 1,71,79,1,0xA82FF;
-			viewpoint 1,234,204,2,0xA82FF;
+			viewpoint 1,71,79,0,0x0A82FF;
+			viewpoint 1,234,204,1,0x0A82FF;
 			break;
 		case 2:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização da "+F_Navi("Hospedaria & Taverna","malaya,193,215","^006400")+" será marcada em seu mini-mapa.";
-			viewpoint 1,193,215,3,0xAAFF00;
+			viewpoint 1,193,215,2,0xAAFF00;
 			break;
 		case 3:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização da "+F_Navi("Loja de Armas","malaya,114,212","^008080")+" será marcada em seu mini-mapa.";
-			viewpoint 1,114,212,4,0x8080;
+			viewpoint 1,114,212,3,0x4F543C;
 			break;
 		case 4:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização da "+F_Navi("Loja de Utilidades","malaya,297,167","^FF1493")+" será marcada em seu mini-mapa.";
-			viewpoint 1,297,167,5,0xFF1493;
+			viewpoint 1,297,167,4,0xFF1493;
 			break;
 		case 5:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização do "+F_Navi("Hospital","malaya,50,75","^8B4513")+" será marcada em seu mini-mapa.";
-			viewpoint 1,50,75,6,0x8B4513;
+			viewpoint 1,50,75,5,0x8B4513;
 			break;
 		case 6:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização do "+F_Navi("Parque","malaya,280,371","^8B4513")+" será marcada em seu mini-mapa.";
-			viewpoint 1,280,371,7,0x8B4513;
+			viewpoint 1,280,371,6,0x8B4513;
 			break;
 		case 7:
 			mes "[Guia do Porto de Malaya]";
 			mes "A localização do "+F_Navi("Porto","malaya,276,55","^8A2BE2")+" será marcada em seu mini-mapa.";
-			viewpoint 1,276,55,8,0x8A2BE2;
+			viewpoint 1,276,55,7,0x8A2BE2;
 			break;
 		case 8:
 			mes "[Guia do Porto de Malaya]";
 			mes "Indicações removidas.";
-			viewpoint 2,71,79,1,0xA82FF;
-			viewpoint 2,234,204,2,0xA82FF;
-			viewpoint 2,193,215,3,0xAAFF00;
-			viewpoint 2,114,212,4,0x8080;
-			viewpoint 2,297,167,5,0xFF1493;
-			viewpoint 2,50,75,6,0x8B4513;
-			viewpoint 2,280,371,7,0x8B4513;
-			viewpoint 2,276,55,8,0x8A2BE2;
+			viewpoint 2,1,1,0,0xFFFFFF;
+			viewpoint 2,1,1,1,0xFFFFFF;
+			viewpoint 2,1,1,2,0xFFFFFF;
+			viewpoint 2,1,1,3,0xFFFFFF;
+			viewpoint 2,1,1,4,0xFFFFFF;
+			viewpoint 2,1,1,5,0xFFFFFF;
+			viewpoint 2,1,1,6,0xFFFFFF;
+			viewpoint 2,1,1,7,0xFFFFFF;
 			break;
 		case 9:
 			mes "[Guia do Porto de Malaya]";
@@ -90,7 +90,7 @@ malaya,250,83,2	script	Guia do Porto de Malaya#02::Malaya	579,{
 		}
 		mes "Com o que mais posso te ajudar?";
 	}
+	end;
 }
-
-malaya,71,72,3	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	579
-malaya,224,204,3	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	579
+malaya,250,83,6	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	579
+malaya,224,204,6	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	579

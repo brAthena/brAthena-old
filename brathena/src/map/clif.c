@@ -9961,7 +9961,8 @@ void clif_parse_WalkToXY(int fd, struct map_session_data *sd)
 	RFIFOPOS(fd, packet_db[RFIFOW(fd,0)].pos[0], &x, &y, NULL);
 
 	//Set last idle time... [Skotlex]
-	sd->idletime = last_tick;
+	if(battle_config.idletime_criteria & BCIDLE_WALK)
+		sd->idletime = last_tick;
 
 	unit_walktoxy(&sd->bl, x, y, 4);
 }

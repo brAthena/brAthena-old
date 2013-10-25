@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	::hip	124,{
+izlude,127,175,3	script	Hipnotizadora#novice	124,{
 	mes "[Hipnotizadora]";
 	mes "Saudações aventureiro!";
 	mes "Eu sou um membro da academia";
@@ -47,7 +47,7 @@
 	mes "para estar qualificado.";
 	mes "Agora você tem mais alguma dúvida?";
 	next;
-	switch(select("Redefinir Habilidades?:Eu quero Redefinir minhas habilidades:Nada")) {
+	switch(select("Redefinir Habilidades?:Eu quero Redefinir meus atributos:Eu quero Redefinir minhas habilidades:Nada")) {
 
 	case 1:
 		mes "[Hipnotizadora]";
@@ -73,87 +73,99 @@
 		close;
 
 	case 2:
+		set .@str$,"Atributos";
+	case 3:
+		if (.@str$ == "")
+			set .@str$,"Habilidades";
 		mes "[Hipnotizadora]";
 		mes "Você tem certeza que ";
 		mes "deseja prosseguir com o";
-		mes "meu serviço de ^FF0000Redefinição de habilidades^000000 ?";
+		mes "meu serviço de ^FF0000Redefinição de "+.@str$+"^000000 ?";
 		next;
-		if (select("Sim:Cancelar") == 1) {
-			if (BaseLevel > 40) {
-				mes "[Hipnotizadora]";
-				mes "Eu sinto muito, mas personagens";
-				mes "com Nível superior";
-				mes "ao 40, não estão aptos para receberem";
-				mes "serviço de redefinição de habilidades.";
-				close;
-			}
-			if ((Class > 0 && Class < 7 && Upper == 0) || (Class == Job_Gunslinger) || (Class == Job_Ninja) || (Class == Job_Taekwon)) {
-				if (checkcart()) {
-					mes "[Hipnotizadora]";
-					mes "Opa! Por favor, remova seu";
-					mes "carrinho de mão para continuar";
-					mes "com o serviço de redefinição de habilidade.";
-					mes "Obribado por sua cooperação.";
-					close;
-				}
-				if (Weight) {
-					mes "[Hipnotizadora]";
-					mes "Se você usar meus serviços";
-					mes "de redefinção de habilidades, por favor";
-					mes "lembre-se, que para poder usar ";
-					mes "o serviço, você deverá";
-					mes "^FF0000remover todos os itens do seu inventário";
-					mes "até seu peso chegar a  0^000000.";
-					next;
-					mes "[Hipnotizadora]";
-					mes "Porque você não esvazia";
-					mes "seu inventário usando o Armazém da Kafra";
-					mes "agora? Fazendo isso você pode";
-					mes "guardar todos seus itens valiosos.";
-					close;
-				}
-				mes "[Hipnotizadora]";
-				mes "Muito obrigado por usar o";
-				mes "meu serviço de redefinição de";
-				mes "habilidades. Ah,  e boa sorte";
-				mes "em suas viagens";
-				mes "aventureiro.";
-				ResetSkill;
-				close;
-			}
-			mes "[Hipnotizadora]";
-			mes "Eu lamento, mas sua";
-			mes "profissão não está qualificada";
-			mes "para usar o serviço de Redefinição de habilidades";
-			mes "que estou oferecendo. Eu só posso";
-			mes "oferecer esse serviço para";
-			mes "as seguintes profissões...";
-			next;
-			mes "[Hipnotizadora]";
-			mes "^FF0000Espadachim, Noviço,";
-			mes "Mago, Gatuno, Arqueiro,";
-			mes "Mercador, Taekwon,";
-			mes "Justiceiro e Ninja^000000.";
-			close;
-		}
+		if(select("Sim:Cancelar") == 1)
+			break;
+	case 4:
 		mes "[Hipnotizadora]";
-		mes "Muito obrigado e tenha";
-		mes "boa sorte em suas aventuras.";
-		mes "Por favor, viagem em segurança!";
+		mes "Muito obrigado por usar o";
+		mes "meu serviço de redefinição de";
+		mes "habilidades. Ah,  e boa sorte";
+		mes "em suas viagens";
+		mes "aventureiro.";
 		close;
 
-	case 3:
+
+	}
+	if ((Class >= Job_Swordman && Class <= Job_Thief) || Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja) {
+		if (checkcart()) {
+			mes "[Hipnotizadora]";
+			mes "Opa! Por favor, remova seu";
+			mes "carrinho de mão para continuar";
+			mes "com o serviço de redefinição de habilidade.";
+			mes "Obribado por sua cooperação.";
+			close;
+		}
+		if (Weight != 0) {
+			mes "[Hipnotizadora]";
+			mes "Se você usar meus serviços";
+			mes "de redefinção de habilidades, por favor";
+			mes "lembre-se, que para poder usar ";
+			mes "o serviço, você deverá";
+			mes "^FF0000remover todos os itens do seu inventário";
+			mes "até seu peso chegar a  0^000000.";
+			next;
+			mes "[Hipnotizadora]";
+			mes "Porque você não esvazia";
+			mes "seu inventário usando o Armazém da Kafra";
+			mes "agora? Fazendo isso você pode";
+			mes "guardar todos seus itens valiosos.";
+			close;
+		}
+		if (BaseLevel >= 50 && (Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja)) {
+			mes "[Hipnotizadora]";
+			mes "Eu sinto muito, mas personagens";
+			mes "com Nível superior";
+			mes "ao 50, não estão aptos para receberem";
+			mes "serviço de redefinição de .@str$+.";
+
+			mes "[Hipnotizadora]";
+			mes "Eu sinto muito, mas personagens";
+			mes "com Nível superior";
+			mes "ao 40, não estão aptos para receberem";
+			mes "serviço de redefinição de habilidades.";
+			close;
+		}
+
+
 		mes "[Hipnotizadora]";
-		mes "Muito obrigado e tenha";
-		mes "boa sorte em suas aventuras.";
-		mes "Por favor, viagem em segurança!";
+		mes "Muito obrigado por usar o";
+		mes "meu serviço de redefinição de";
+		mes ""+.@str$+". Ah,  e boa sorte";
+		mes "em suas viagens";
+		mes "aventureiro.";
+		if (.@str$ == "Atributos")
+			resetstatus;
+		else
+			resetskill;
+		close;
+	} else {
+		mes "[Hipnotizadora]";
+		mes "Eu lamento, mas sua";
+		mes "profissão não está qualificada";
+		mes "para usar o serviço de Redefinição de habilidades";
+		mes "que estou oferecendo. Eu só posso";
+		mes "oferecer esse serviço para";
+		mes "as seguintes profissões...";
+		next;
+		mes "[Hipnotizadora]";
+		mes "^FF0000Espadachim, Noviço,";
+		mes "Mago, Gatuno, Arqueiro,";
+		mes "Mercador, Taekwon,";
+		mes "Justiceiro e Ninja^000000.";
 		close;
 	}
 }
-
-izlude,127,175,3	duplicatr(hip)	Hipnotizadora#novice	124
-izlude_a,127,175,3	duplicatr(hip)	Hipnotizadora#novice_a	124
-izlude_b,127,175,3	duplicatr(hip)	Hipnotizadora#novice_b	124
-izlude_c,127,175,3	duplicatr(hip)	Hipnotizadora#novice_c	124
-izlude_d,127,175,3	duplicatr(hip)	Hipnotizadora#novice_d	124,{}
-prontera,146,232,4	duplicatp(hip)	Hipnotizadora#prt	124,{}
+izlude_a,127,175,3	duplicatr(Hipnotizadora#novice)	Hipnotizadora#novice_a	124
+izlude_b,127,175,3	duplicatr(Hipnotizadora#novice)	Hipnotizadora#novice_b	124
+izlude_c,127,175,3	duplicatr(Hipnotizadora#novice)	Hipnotizadora#novice_c	124
+izlude_d,127,175,3	duplicatr(Hipnotizadora#novice)	Hipnotizadora#novice_d	124,{}
+prontera,146,232,4	duplicatp(Hipnotizadora#novice)	Hipnotizadora#prt	124,{}
