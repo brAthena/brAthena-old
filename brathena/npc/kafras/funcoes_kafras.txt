@@ -372,7 +372,7 @@ function	script	F_KafEnd	{
 	mes "[Funcionária Kafra]";
 	if (getarg(1)==1) {	
 		mes "Seu ponto de renascimento";
-		mes "foi salvo aqui em: "+getarg(2)+"";
+		mes "foi salvo aqui "+getarg(2)+".";
 		mes "Muito obrigado por usar";
 		mes "os serviços da Corporação Kafra.";
 	} else if (getarg(0)==0 || getarg(0)==5) {	

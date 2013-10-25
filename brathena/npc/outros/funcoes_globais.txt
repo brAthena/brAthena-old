@@ -30,30 +30,30 @@
 
 	set(.@version, checkversion(0));
 		
-	if (.@version == 0) { // Pré-Renovação
+	if (!.@version) { // Pré-Renovação
 		movenpc("Locador de Mercenários#Espadachim",47,139);
 		movenpc("Artigos para Mercenários#Espadachim",56,139);
+		movenpc("Auxiliar Lua de Mel",171,185,3);
+		movenpc("Scamp#iz",186,57,5);
+		movenpc("Funcionária Kafra#iz",134,88,3);
 	}
 
 	if (.@version != -1) { // Pré-Renovação & Renovação
 		movenpc("Talpiz#BLS",214,79);
 	}
 
-	if (!.@version) { // Pré-Renovação & Old-Times
+	if (!.@version || .@version == -1) { // Pré-Renovação & Old-Times
 		movenpc("Dega#izlude",150,118,2);
 		movenpc("Kylick#izlude",150,143,2);
 		movenpc("Red#izlude",56,126);
 		movenpc("Cebalis#izlude",58,126);
 		movenpc("Soldado#izlude",124,178,4);
-		movenpc("Auxiliar Lua de Mel",171,185,3);
 		movenpc("Açougueiro#iz",105,99);
 		movenpc("Vendedora de Frutas#iz",94,98);
 		movenpc("Vendedora de Leite#i",105,92,7);
 		movenpc("Loja de Bichinhos#iz",164,138);
-		movenpc("Scamp#iz",186,57,5);
 		movenpc("Dona Risadinha#iz",129,118);
 		movenpc("Sr. Noel",168,168);
-		movenpc("Funcionária Kafra#iz",134,87,3);
 	}
 
 	end();

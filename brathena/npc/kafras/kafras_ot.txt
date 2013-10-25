@@ -356,7 +356,7 @@ cmd_fild07,136,134,4	script	Funcionária Kafra::kaf_cmd_fild07	721,{
 
 // Izlude
 //============================================================
-izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
+izlude,134,88,6	script	Funcionária Kafra#izlude	117,{
 	cutin "kafra_01",2;
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";
