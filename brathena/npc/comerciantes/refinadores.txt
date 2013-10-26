@@ -617,7 +617,7 @@ function	script	phramain	{
 		mes "- Currently you're carrying -";
 		mes "- too many items with you. -";
 		mes "- Please try again -";
-		mes "- after you loose some weight. -";
+		mes "- after you lose some weight. -";
 		close;
 	}
 	mes "[" + getarg(0) + "]";
@@ -714,7 +714,7 @@ function	script	orimain	{
 		mes "- Currently you're carrying -";
 		mes "- too many items with you. -";
 		mes "- Please try again -";
-		mes "- after you loose some weight. -";
+		mes "- after you lose some weight. -";
 		close;
 	}
 	mes "[" + getarg(0) + "]";
@@ -930,12 +930,19 @@ function	script	refinenew	{
 	setarray .@position$[1],"Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
 	set .@menu$,"";
 	for(set .@i,1; .@i<=10; set .@i,.@i+1) {
-		if (getequipisequiped(.@i))
+		if (getequipisequiped(.@i)) {
 			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+			set .@equipped,1;
+		}
 		set .@menu$, .@menu$ + ":";
 	}
-	set .@part,select(.@menu$);
-	if (!getequipisequiped(.@part)) {
+	if (.@equipped == 0) {
+		mes "[" + getarg(0) + "]";
+		mes "I don't think I can refine any items you have...";
+		close;
+	}
+	set .@part, select(.@menu$);
+	if(!getequipisequiped(.@part)) { //custom check
 		mes "[" + getarg(0) + "]";
 		mes "You're not wearing";
 		mes "anything there that";
@@ -1275,7 +1282,7 @@ ein_in01,38,29,0	script#dv	Paul Spanner	63,{
 		mes "- Currently you're carrying -";
 		mes "- too many items with you. -";
 		mes "- Please try again -";
-		mes "- after you loose some weight. -";
+		mes "- after you lose some weight. -";
 		close;
 	}
 	mes "[Paul Spanner]";

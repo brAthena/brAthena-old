@@ -29,10 +29,10 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 	setarray .@name$, 	"Lanceiro", 		"Espadachim", 		"Arqueiro";
 	setarray .@faith$, 	"SPEAR_MERC_GUILD",	"SWORD_MERC_GUILD",	"ARCH_MERC_GUILD";
 	setarray .@item, 	12182,				12172,				12162;
-	set .@faith_lancer, mercenary_get_faith(getd(.@faith$[.@type]));
 	set .@npc$, strnpcinfo(2);
 	for (set .@size, getarraysize(.@name$); .@i < .@size; set .@i, .@i + 1)
 		if (.@npc$ == .@name$[.@i]) set .@type, .@i;
+	set .@faith_merc, mercenary_get_faith(getd(.@faith$[.@type]));
 	mes "[Locador de Mercenários]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à";
 	mes "Guilda dos Mercenários "+.@npc$+"s.";
@@ -70,7 +70,7 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 				mes "a vontade para voltar quando";
 				mes "mudar de ideia. Obrigado~";
 			}
-			else if (.@FaithCost && .@faith_lancer < .@FaithCost) {
+			else if (.@FaithCost && .@faith_merc < .@FaithCost) {
 				mes "[Locador de Mercenários]";
 				mes "Oh... Seu nível de fidelidade";
 				mes "com a Guilda dos Mercenários";
@@ -186,7 +186,7 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 				mes "Nível 10. Já pensou em alugar";
 				mes "um Mercenário de nível mais baixo?";
 			}
-			else if (.@faith_lancer < 500) {
+			else if (.@faith_merc < 500) {
 				mes "[Locador de Mercenários]";
 				mes "Desculpe-me, mas seu";
 				mes "nível de Fidelidade ainda";

@@ -251,7 +251,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 //============================================================ 
 -	script#re	Catalogador Mágico#catal01	704,{
 	mes "[Catalogador Mágico]";
-	if (!checkweight(1201,2)) {
+	if (!checkweight(1301,3)) {
 		mes "- Você possui muitos itens. Por favor diminua seu peso. -";
 		close;
 	}
@@ -275,11 +275,11 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 	mes "pelas lojas montadas na cidade em que estiver.";
 	next;
 	mes "[Catalogador Mágico]";
-	mes "^007373Catálogo de Vendas Prata^000000";
+	mes "O ^007373Catálogo de Vendas Prata^000000";
 	mes "Custa apenas 200z cada!";
 	mes "Você pode comprar apenas 50 de cada vez!";
 	next;
-	switch(select("Comprar ^007373Catálogo de Vendas Prata^000000:Eu não preciso disso!:Você não é vendedor... É?")) {
+	switch(select("Comprar um ^007373Catálogo de Vendas Prata^000000:Eu não preciso disso!:Você não é vendedor... É?")) {
 	case 1:
 		mes "[Catalogador Mágico]";
 		mes "Você... Quer comprar os 50?";

@@ -33,115 +33,119 @@ payon,157,146,6	script	Suhnbi#cash	85,{
 	next;
 	setarray .@position$[1], "Cabeça","Corpo","Mão esquerda","Mão direita","Capa","Sapatos","Acessório 1","Acessório 2","Cabeça 2","Cabeça 3";
 	set .@menu$,"";
-	for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
-	{
-		if ( getequipisequiped(.@i) )
+	for(set .@i,1; .@i <= 10; set .@i,.@i+1) {
+		if (getequipisequiped(.@i)) {
 			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
-
+			set .@equipped,1;
+		}
 		set .@menu$, .@menu$ + ":";
 	}
-	set .@part,select(.@menu$);
-
-	if ( !getequipisequiped(.@part) )
-		close;
-
-	if ( !getequipisenableref(.@part) )
-	{
+	if (.@equipped == 0) {
 		mes "[Suhnbi]";
-		mes "Eu acho que não consigo refinar esse item.";
+		mes "I don't think I can refine any items you have...";
 		close;
 	}
-	if ( getequiprefinerycnt(.@part) >= 10 )
-	{
+	set .@part, select(.@menu$);
+	if (!getequipisequiped(.@part))
+		close;
+	if (!getequipisenableref(.@part)) {
 		mes "[Suhnbi]";
-		mes "Este item não pode ser refinado porque alcançou o nível máximo...";
+		mes "Vá procurar por outro Ferreiro. Eu não posso refinar isto.";
 		close;
 	}
-
-	switch( getequipweaponlv(.@part) )
-	{
+	if (getequiprefinerycnt(.@part) >= 10) {
+		mes "[Suhnbi]";
+		mes "Hmm... Alguém já aperfeiçoou isto. Eu não acho que eu possa trabalhar mais isso.";
+		close;
+	}
+	switch(getequipweaponlv(.@part)) {
 		case 1: callsub S_RefineValidate,1,7620,50,.@part; break;
 		case 2: callsub S_RefineValidate,2,7620,200,.@part; break;
 		case 3: callsub S_RefineValidate,3,7620,5000,.@part; break;
 		case 4: callsub S_RefineValidate,4,7620,20000,.@part; break;
 		default: callsub S_RefineValidate,0,7619,2000,.@part; break;
 	}
-
-	if ( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) )
-	{
-		mes "[Suhnbi]";
-		mes "Clink! Clank! Clunk!";
-		SuccessRefItem .@part;
+	mes "[Suhnbi]";
+	mes "Clang! Clang! Clang!";
+	if (getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100)) {
+		successrefitem .@part;
 		next;
 		emotion e_no1;
 		mes "[Suhnbi]";
 		mes "Aqui está! Terminei.";
-		mes "Já faz um tempo desde que eu não faço uma arma tão boa. Você deve estar feliz porque ela se tornou mais forte!";
+		mes "Já faz um tempo desde que eu não faço uma "+((getequipweaponlv(.@part))?"arma":"armadura")+" tão boa. Você deve estar feliz porque ela se tornou mais forte!";
 		close;
 	}
-	mes "[Suhnbi]";
-	mes "Clink! Clank! Clunk!";
-	FailedRefItem .@part;
+	failedrefitem .@part;
 	next;
-	if (rand(5) == 1){
-		emotion e_cash;
-	} else {
-		emotion e_omg;
-	}
+	emotion (!rand(5))?e_cash:e_omg;
 	mes "[Suhnbi]";
-	mes "Cough!!!!";
+	mes "Uuuuuuuuuummmmmph!!!";
 	next;
 	mes "[Suhnbi]";
-	mes "Cough...Cough..";
-	mes "Que vergonha...";
-	mes "Seu equipamento quebrou durante o processo de refinamento. Eu te avisei que isso podia acontecer!";
+	mes "...";
+	mes ".....";
+	mes ".......Huhuhuhuhu~";
+	mes "........A escolha foi sua, não me arrependo.";
 	close;
 
 S_RefineValidate:
 	mes "[Suhnbi]";
 	if (getarg(0))
-		mes "Uma arma de nível " + getarg(0) + "...";
-	mes "Para refinar isto, Eu preciso de um ^ff9999" + getitemname(getarg(1)) + "^000000 e de uma taxa de serviço de " + getarg(2) + " Zeny.";
-	mes "Quer continuar?";
+		mes "You want to refine a level " + getarg(0) + " weapon?";
+	mes "Para refinar isso, você precisa ter um ^ff9999" + getitemname(getarg(1)) + "^000000 e de " + getarg(2) + " Zeny.";
+	mes "Gostaria de continuar?";
 	next;
-	if ( select("Sim:Não") == 1 )
-	{
-		if ( getequippercentrefinery(getarg(3)) < 100 )
-		{
-			mes "[Suhnbi]";
-			mes "Wow!!";
-			mes "Esta arma, provavelmente, parece que já foi refinada... muitas vezes...";
-			mes "Pode quebrar se";
-			mes "você a refinar denovo.";
-			next;
-			mes "E se quebrar, você não pode a usar mais!";
-			mes "Todas as cartas e propriedades do item ^ff0000serão perdidas^000000!!";
-			mes "^ff0000 Além disso, o equipamento vai quebrar!^000000";
-			mes " ";
-			mes "Tem certeza que deseja continuar?";
-			next;
-			if ( select("Sim:Não") == 2 )
-			{
+	if (select("Sim:Não") == 1) {
+		if (getequippercentrefinery(getarg(3)) < 100) {
+			if (getarg(0)) {
 				mes "[Suhnbi]";
-				mes "Eu concordo...";
-				mes "Eu posso ser um grande refinador, mas às vezes até mesmo eu cometo erros.";
-				close;
+				mes "Wow!!";
+				mes "Esta arma, provavelmente, parece que já foi refinada... muitas vezes...";
+				mes "Pode quebrar se";
+				mes "você a refinar denovo.";
+				next;
+				mes "E se quebrar, você não pode a usar mais!";
+				mes "Todas as cartas e propriedades do item ^ff0000serão perdidas^000000!!";
+				mes "^ff0000 Além disso, o equipamento vai quebrar!^000000";
+				mes "Tem certeza que deseja continuar?";
+				next;
+				if ( select("Sim:Não") == 2 ) {
+					mes "[Suhnbi]";
+					mes "Bem.";
+					mes "Por que, e se a arma quebrar por causa de refinaento insensato, eu ficarei de mau humor.";
+					close;
+				}
+			} else {
+				mes "[Suhnbi]";
+				mes "Haha. Oh, você tem coragem, atrevendo-se a refinar isto.";
+				mes "Você sabe que é bem arriscado, não sabe?";
+				next;
+				mes "Se seu equipamento for quebrado, você não será capaz de usá-lo denovo.";
+				mes "Mesmo suas cartas e suas modificações vão ^ff0000desaparecer completamente^000000.";
+				//mes "Everything will disappear. As in... GONE!";
+				mes "Você realmente deseja continuar?";
+				next;
+				if(select("Yes:No") == 2) {
+					mes "[Suhnbi]";
+					mes "Que absurdo! Você gastou meu precioso tempo.";
+					mes "Desapareça.";
+					close;
+				}
 			}
 		}
-		if ( countitem(getarg(1)) > 0 && Zeny > getarg(2) )
-		{
+		if (countitem(getarg(1)) > 0 && Zeny > getarg(2) ) {
 			delitem getarg(1), 1;
 			set Zeny, Zeny - getarg(2);
 			return;
 		}
 		mes "[Suhnbi]";
-		mes "Você não parece ter Zeny e " + getitemname(getarg(1)) + " suficientes...";
-		mes "Já conseguir mais. Estarei o dia todo se precisar de mim.";
+		mes "Isso é tudo o que tem?";
+		mes "Eu sinto muito, mas eu não posso fazer nada sem os materiais necessários. Além disso, eu mereço algum pagamento pelo meu trabalho, não?";
 		close;
 	}
 	mes "[Suhnbi]";
-	mes "Yeah... Não tem pressa.";
-	mes "Leve seu tempo.";
+	mes "Eu não posso ajudá-l"+((Sex)?"o":"a")+", mesmo que você não esteja feliz com isso...";
 	close;
 }
 
