@@ -41,7 +41,7 @@ prontera,165,60,2	script	Aprendiz de Artesão	73,{
 		mes "[Aprendiz de Artesão]";
 		mes "Eu não sou responsável por aquilo que pode acontecer se você tiver mais de um equipamento do mesmo tipo em seu inventário.";
 		next;
-		switch(select("Armadura sem Slotada.:Armadura com Slot.:Armadura de Alto Nível.:Talvez na próxima.")) {
+		switch(select("Armadura sem Slot.:Armadura com Slot.:Armadura de Alto Nível.:Talvez na próxima.")) {
 			case 1:
 				setarray .@Items[0],2307,2309,2314,2316,2321,2325,2327,2328,2330,2332,2334,2335,2341,2344,2346,2348,2350,2337,2386,2394,2395,2396;
 				set .@j,50;
@@ -77,7 +77,7 @@ S_EnchantArmor:
 	set .@itemid,getarg(0);
 	set .@failrate,getarg(1);
 	mes "[Aprendiz de Artesão]";
-	if ((countitem(.@itemid) > 0) && (countitem(.@itemid) < 2)) {
+	if (countitem(.@itemid) == 1) {
 		mes "Adicionar um slot irá lhe custar 400,000 zeny. E haverá uma opção aleatória encantamento. Naturalmente, há uma chance de quebrar sua armadura.";
 		next;
 		mes "[Aprendiz de Artesão]";
