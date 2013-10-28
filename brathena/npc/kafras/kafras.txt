@@ -415,8 +415,6 @@ izlude_b,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_b	117
 izlude_c,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_c	117
 izlude_d,128,148,6	duplicatr(Funcionária Kafra#iz)	Funcionária Kafra#iz_d	117,{}
 
-izlude,134,87,3	duplicatp(Funcionária Kafra#iz)	Funcionária Kafra#iz_e	117,{}
-
 // Moscovia
 //============================================================
 moscovia,223,191,3	script	Funcionária Kafra::kaf_mosk	114,{
