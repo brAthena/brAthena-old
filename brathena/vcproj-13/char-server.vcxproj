@@ -140,6 +140,7 @@
     <ClInclude Include="..\3rdparty\libconfig\wincompat.h" />
     <ClInclude Include="..\3rdparty\mt19937ar\mt19937ar.h" />
     <ClInclude Include="..\src\common\cbasetypes.h" />
+	<ClInclude Include="..\src\common\conf.h" />
     <ClInclude Include="..\src\common\core.h" />
     <ClInclude Include="..\src\common\db.h" />
     <ClInclude Include="..\src\common\ers.h" />
