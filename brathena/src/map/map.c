@@ -2993,6 +2993,10 @@ void do_final_maps(void) {
 
 		if(map[i].channel)
 			clif_chsys_delete(map[i].channel);
+
+		if(map[i].qi_data)
+			aFree(map[i].qi_data);
+
 	}
 	
 	map_zone_db_clear();
@@ -3061,6 +3065,12 @@ void map_flags_init(void)
 		map[i].misc_damage_rate   = 100;
 		map[i].short_damage_rate  = 100;
 		map[i].long_damage_rate   = 100;
+
+		if(map[i].qi_data)
+			aFree(map[i].qi_data);
+
+		map[i].qi_data = NULL;
+		map[i].qi_count = 0;
 	}
 }
 
@@ -4526,7 +4536,17 @@ bool map_zone_mf_cache(int m, char *flag, char *params) {
 				map_zone_mf_cache_add(m,rflag);
 			}
 		}
+	} else if (!strcmpi(flag,"nocashshop")) {
+		if(state && map[m].flag.nocashshop)
+			;/* nothing to do */
+		else {
+			if(state)
+				map_zone_mf_cache_add(m,"nocashshop\toff");
+			else if( map[m].flag.nocashshop )
+				map_zone_mf_cache_add(m,"nocashshop");
+		}
 	}
+
 	return false;
 }
 void map_zone_apply(int m, struct map_zone_data *zone, const char* start, const char* buffer, const char* filepath) {
@@ -5089,6 +5109,38 @@ void read_map_zone_db(void) {
 		/* not supposed to go in here but in skill_final whatever */
 		config_destroy(&map_zone_db);
 	}
+}
+
+void map_add_questinfo(int m, struct questinfo *qi) {
+	unsigned short i;
+
+	/* duplicate, override */
+	for(i = 0; i < map[m].qi_count; i++) {
+		if( map[m].qi_data[i].nd == qi->nd )
+			break;
+	}
+
+	if(i == map[m].qi_count)
+		RECREATE(map[m].qi_data, struct questinfo, ++map[m].qi_count);
+
+	memcpy(&map[m].qi_data[i], qi, sizeof(struct questinfo));
+}
+
+bool map_remove_questinfo(int m, struct npc_data *nd) {
+	unsigned short i;
+
+	for(i = 0; i < map[m].qi_count; i++) {
+		struct questinfo *qi = &map[m].qi_data[i];
+		if(qi->nd == nd) {
+			memset(&map[m].qi_data[i], 0, sizeof(struct questinfo));
+			if( i != --map[m].qi_count ) {
+				memmove(&map[m].qi_data[i],&map[m].qi_data[i+1],sizeof(struct questinfo)*(map[m].qi_count-i));
+			}
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 /**

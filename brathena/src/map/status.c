@@ -964,6 +964,8 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_REBOUND] = SI_REBOUND;
 	StatusIconChangeTable[SC_ALL_RIDING] = SI_ALL_RIDING;
 	StatusIconChangeTable[SC_MONSTER_TRANSFORM] = SI_MONSTER_TRANSFORM;
+	StatusIconChangeTable[SC_MOONSTAR] = SI_MOONSTAR;
+	StatusIconChangeTable[SC_SUPER_STAR] = SI_SUPER_STAR;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ATTHASTE_POTION1] = SCB_ASPD;
@@ -1073,12 +1075,14 @@ void initChangeTables(void)
 	StatusDisplayType[SC_BANDING]			= true;
 	StatusDisplayType[SC_COLD]			= true;
 	StatusDisplayType[SC_DEEP_SLEEP]		= true;
-	StatusDisplayType[SC_CURSEDCIRCLE_ATKER]= true;
-	StatusDisplayType[SC_CURSEDCIRCLE_TARGET]= true;
+	StatusDisplayType[SC_CURSEDCIRCLE_ATKER]	= true;
+	StatusDisplayType[SC_CURSEDCIRCLE_TARGET]	= true;
 	StatusDisplayType[SC_BLOOD_SUCKER]		= true;
 	StatusDisplayType[SC__SHADOWFORM]		= true;
 	StatusDisplayType[SC__MANHOLE]			= true;
-	StatusDisplayType[SC_MONSTER_TRANSFORM] = true;
+	StatusDisplayType[SC_MONSTER_TRANSFORM] 	= true;
+	StatusDisplayType[SC_MOONSTAR]			= true;
+	StatusDisplayType[SC_SUPER_STAR]		= true;
 
 #ifdef RENEWAL_EDP
 	// renewal EDP increases your weapon atk
@@ -8029,7 +8033,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val2 = 11-val1; //Chance to consume: 11-skill_lv%
 				break;
 			case SC_RUN:
-				val4 = gettick(); //Store time at which you started running.
+			{
+				//Store time at which you started running.
+				int64 currenttick = gettick();
+				// Note: this int64 value is stored in two separate int32 variables (FIXME)
+				val3 = (int)(currenttick&0x00000000ffffffffLL);
+				val4 = (int)((currenttick&0xffffffff00000000LL)>>32);
+			}
 				tick = -1;
 				break;
 			case SC_KAAHI:
@@ -8413,7 +8423,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				tick_time = 1000; // [GodLesZ] tick time
 				break;
 			case SC_WUGDASH:
-				val4 = gettick(); //Store time at which you started running.
+			{
+				//Store time at which you started running.
+				int64 currenttick = gettick();
+				// Note: this int64 value is stored in two separate int32 variables (FIXME)
+				val3 = (int)(currenttick&0x00000000ffffffffLL);
+				val4 = (int)((currenttick&0xffffffff00000000LL)>>32);
+			}
 				tick = -1;
 				break;
 			case SC__SHADOWFORM: {

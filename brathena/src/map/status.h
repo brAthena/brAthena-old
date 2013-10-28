@@ -707,6 +707,9 @@ typedef enum sc_type {
     SC_MTF_MLEATKED,
     SC_MTF_CRIDAMAGE,
 
+    SC_MOONSTAR,
+    SC_SUPER_STAR,
+
     // Pergaminhos e itens[Megasantos]
     SC_MVPCARD_TAOGUNKA = 800,
     SC_MVPCARD_MISTRESS,

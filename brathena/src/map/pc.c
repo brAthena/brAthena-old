@@ -449,7 +449,20 @@ int pc_inventory_rental_clear(struct map_session_data *sd)
 
 	return 1;
 }
+/* assumes i is valid (from default areas where it is called, it is) */
+void pc_rental_expire(struct map_session_data *sd, int i) {
+	short nameid = sd->status.inventory[i].nameid;
 
+	/* Soon to be dropped, we got plans to integrate it with item db */
+	switch(nameid) {
+		case ITEMID_REINS_OF_MOUNT:
+			status_change_end(&sd->bl,SC_ALL_RIDING,INVALID_TIMER);
+			break;
+	}
+
+	clif_rental_expired(sd->fd, i, sd->status.inventory[i].nameid);
+	pc_delitem(sd, i, sd->status.inventory[i].amount, 0, 0, LOG_TYPE_OTHER);
+}
 void pc_inventory_rentals(struct map_session_data *sd)
 {
 	int i, c = 0;
@@ -463,12 +476,7 @@ void pc_inventory_rentals(struct map_session_data *sd)
 			continue;
 
 		if(sd->status.inventory[i].expire_time <= time(NULL)) {
-			if(sd->status.inventory[i].nameid == ITEMID_REINS_OF_MOUNT
-			   && sd->sc.data[SC_ALL_RIDING]) {
-				status_change_end(&sd->bl,SC_ALL_RIDING,INVALID_TIMER);
-			}
-			clif_rental_expired(sd->fd, i, sd->status.inventory[i].nameid);
-			pc_delitem(sd, i, sd->status.inventory[i].amount, 0, 0, LOG_TYPE_OTHER);
+			pc_rental_expire(sd,i);
 		} else {
 			expire_tick = (unsigned int)(sd->status.inventory[i].expire_time - time(NULL)) * 1000;
 			clif_rental_time(sd->fd, sd->status.inventory[i].nameid, (int)(expire_tick / 1000));
@@ -616,6 +624,8 @@ int pc_equippoint(struct map_session_data *sd,int n)
 		if(ep == EQP_HAND_R && (pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN ||
 		                        (sd->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO))//Kagerou and Oboro can dual wield daggers. [Rytech]
 			return EQP_ARMS;
+		if(ep == EQP_SHADOW_SHIELD)/* are there conditions for those? */
+			return EQP_SHADOW_WEAPON|EQP_SHADOW_SHIELD;
 	}
 	return ep;
 }
@@ -1278,8 +1288,6 @@ int pc_reg_received(struct map_session_data *sd)
 		sd->state.connect_new = 1;
 		clif->pLoadEndAck(sd->fd, sd);
 	}
-
-	pc_inventory_rentals(sd);
 
 	if(sd->sc.option & OPTION_INVISIBLE) {
 		sd->vd.class_ = INVISIBLE_CLASS;
@@ -3889,8 +3897,7 @@ int pc_additem(struct map_session_data *sd,struct item *item_data,int amount,e_l
 	/* rental item check */
 	if(item_data->expire_time) {
 		if(time(NULL) > item_data->expire_time) {
-			clif_rental_expired(sd->fd, i, sd->status.inventory[i].nameid);
-			pc_delitem(sd, i, sd->status.inventory[i].amount, 1, 0, LOG_TYPE_OTHER);
+			pc_rental_expire(sd,i);
 		} else {
 			int seconds = (int)(item_data->expire_time - time(NULL));
 			clif_rental_time(sd->fd, sd->status.inventory[i].nameid, seconds);
@@ -8556,12 +8563,12 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	nullpo_ret(sd);
 
 	if(n < 0 || n >= MAX_INVENTORY) {
-		clif_equipitemack(sd,0,0,0);
+		clif_equipitemack(sd,0,0,EIA_FAIL);
 		return 0;
 	}
 
 	if(DIFF_TICK(sd->canequip_tick,gettick()) > 0) {
-		clif_equipitemack(sd,n,0,0);
+		clif_equipitemack(sd,n,0,EIA_FAIL);
 		return 0;
 	}
 
@@ -8572,12 +8579,12 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 		ShowInfo("equip %d(%d) %x:%x\n",sd->status.inventory[n].nameid,n,id?id->equip:0,req_pos);
 	if(!pc_isequip(sd,n) || !(pos&req_pos) || sd->status.inventory[n].equip != 0 || sd->status.inventory[n].attribute==1) {  // [Valaris]
 		// FIXME: pc_isequip: equip level failure uses 2 instead of 0
-		clif_equipitemack(sd,n,0,0);    // fail
+		clif_equipitemack(sd,n,0,EIA_FAIL);    // fail
 		return 0;
 	}
 
 	if(sd->sc.data[SC_BERSERK] || sd->sc.data[SC_SATURDAY_NIGHT_FEVER]) {
-		clif_equipitemack(sd,n,0,0);    // fail
+		clif_equipitemack(sd,n,0,EIA_FAIL);    // fail
 		return 0;
 	}
 
@@ -8616,7 +8623,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 		clif_arrowequip(sd,n);
 		clif_arrow_fail(sd,3);
 	} else
-		clif_equipitemack(sd,n,pos,1);
+		clif_equipitemack(sd,n,pos,EIA_SUCCESS);
 
 	sd->status.inventory[n].equip=pos;
 
@@ -8762,18 +8769,18 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 	nullpo_ret(sd);
 
 	if(n < 0 || n >= MAX_INVENTORY) {
-		clif_unequipitemack(sd,0,0,0);
+		clif_unequipitemack(sd,0,0,UIA_FAIL);
 		return 0;
 	}
 
 	// if player is berserk then cannot unequip
 	if(!(flag & 2) && sd->sc.count && (sd->sc.data[SC_BERSERK] || sd->sc.data[SC_SATURDAY_NIGHT_FEVER])) {
-		clif_unequipitemack(sd,n,0,0);
+		clif_unequipitemack(sd,n,0,UIA_FAIL);
 		return 0;
 	}
 
 	if(!(flag&2) && sd->sc.count && sd->sc.data[SC_KYOUGAKU]) {
-		clif_unequipitemack(sd,n,0,0);
+		clif_unequipitemack(sd,n,0,UIA_FAIL);
 		return 0;
 	}
 
@@ -8781,7 +8788,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		ShowInfo("unequip %d %x:%x\n",n,pc_equippoint(sd,n),sd->status.inventory[n].equip);
 
 	if(!sd->status.inventory[n].equip) { //Nothing to unequip
-		clif_unequipitemack(sd,n,0,0);
+		clif_unequipitemack(sd,n,0,UIA_FAIL);
 		return 0;
 	}
 	for(i=0; i<EQI_MAX; i++) {
@@ -8846,7 +8853,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		clif_changelook(&sd->bl,LOOK_ROBE,sd->status.robe);
 	}
 
-	clif_unequipitemack(sd,n,sd->status.inventory[n].equip,1);
+	clif_unequipitemack(sd,n,sd->status.inventory[n].equip,UIA_SUCCESS);
 
 	if((sd->status.inventory[n].equip & EQP_ARMS) &&
 	   sd->weapontype1 == 0 && sd->weapontype2 == 0 && (!sd->sc.data[SC_TK_SEVENWIND] || sd->sc.data[SC_ASPERSIO])) //Check for seven wind (but not level seven!)
@@ -10244,6 +10251,10 @@ void pc_bank_withdraw(struct map_session_data *sd, int money) {
 			chrif_save(sd,0);
 		clif->bank_withdraw(sd,BWA_SUCCESS);
 	}
+}
+/* status change data arrived from char-server */
+void pc_scdata_received(struct map_session_data *sd) {
+	pc_inventory_rentals(sd);
 }
 
 /*==========================================

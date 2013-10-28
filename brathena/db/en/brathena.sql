@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `cart_inventory` (
   `char_id` int(11) NOT NULL default '0',
   `nameid` int(11) NOT NULL default '0',
   `amount` int(11) NOT NULL default '0',
-  `equip` mediumint(8) unsigned NOT NULL default '0',
+  `equip` int(11) unsigned NOT NULL default '0',
   `identify` smallint(6) NOT NULL default '0',
   `refine` tinyint(3) unsigned NOT NULL default '0',
   `attribute` tinyint(4) NOT NULL default '0',
@@ -345,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `guild_storage` (
   `guild_id` int(11) unsigned NOT NULL default '0',
   `nameid` int(11) unsigned NOT NULL default '0',
   `amount` int(11) unsigned NOT NULL default '0',
-  `equip` mediumint(8) unsigned NOT NULL default '0',
+  `equip` int(11) unsigned NOT NULL default '0',
   `identify` smallint(6) unsigned NOT NULL default '0',
   `refine` tinyint(3) unsigned NOT NULL default '0',
   `attribute` tinyint(4) unsigned NOT NULL default '0',
@@ -408,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `char_id` int(11) unsigned NOT NULL default '0',
   `nameid` int(11) unsigned NOT NULL default '0',
   `amount` int(11) unsigned NOT NULL default '0',
-  `equip` mediumint(8) unsigned NOT NULL default '0',
+  `equip` int(11) unsigned NOT NULL default '0',
   `identify` smallint(6) NOT NULL default '0',
   `refine` tinyint(3) unsigned NOT NULL default '0',
   `attribute` tinyint(4) unsigned NOT NULL default '0',
@@ -671,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `storage` (
   `account_id` int(11) unsigned NOT NULL default '0',
   `nameid` int(11) unsigned NOT NULL default '0',
   `amount` smallint(11) unsigned NOT NULL default '0',
-  `equip` mediumint(8) unsigned NOT NULL default '0',
+  `equip` int(11) unsigned NOT NULL default '0',
   `identify` smallint(6) unsigned NOT NULL default '0',
   `refine` tinyint(3) unsigned NOT NULL default '0',
   `attribute` tinyint(4) unsigned NOT NULL default '0',
@@ -684,6 +684,10 @@ CREATE TABLE IF NOT EXISTS `storage` (
   PRIMARY KEY  (`id`),
   KEY `account_id` (`account_id`)
 ) ENGINE=MyISAM;
+
+--
+-- Table structure for table `interreg`
+--
 
 CREATE TABLE IF NOT EXISTS `interreg` (
   `varname` varchar(11) NOT NULL,

@@ -7657,14 +7657,16 @@ ACMD_FUNC(fakename)
  *------------------------------------------*/
 ACMD_FUNC(mapflag)
 {
-#define checkflag( cmd ) if ( map[ sd->bl.m ].flag.cmd ) clif_displaymessage(sd->fd,#cmd)
-#define setflag( cmd ) \
-	if ( strcmp( flag_name , #cmd ) == 0 ){\
-		map[ sd->bl.m ].flag.cmd = flag;\
+#define checkflag( cmd ) do { if ( map[ sd->bl.m ].flag.cmd ) clif_displaymessage(sd->fd,#cmd); } while(0)
+#define setflag( cmd ) do { \
+	if ( strcmp( flag_name , #cmd ) == 0 ) { \
+		map[ sd->bl.m ].flag.cmd = flag; \
 		sprintf(atcmd_output,"[ @mapflag ] %s flag has been set to %s value = %hd",#cmd,flag?"On":"Off",flag);\
 		clif_displaymessage(sd->fd,atcmd_output);\
 		return 0;\
-	}
+	} \
+} while(0)
+
 	char flag_name[100];
 	short flag=0,i;
 	nullpo_retr(-1, sd);
@@ -7685,7 +7687,7 @@ ACMD_FUNC(mapflag)
 		checkflag(nojobexp);            checkflag(nomobloot);           checkflag(nomvploot);   checkflag(nightenabled);
 		checkflag(nodrop);              checkflag(novending);   	checkflag(loadevent);
 		checkflag(nochat);              checkflag(partylock);           checkflag(guildlock);   checkflag(src4instance);
-		checkflag(notomb);
+		checkflag(notomb);              checkflag(nocashshop);
 		clif_displaymessage(sd->fd," ");
 		clif_displaymessage(sd->fd,msg_txt(1312)); // Usage: "@mapflag monster_noteleport 1" (0=Off | 1=On)
 		clif_displaymessage(sd->fd,msg_txt(1313)); // Type "@mapflag available" to list the available mapflags.
@@ -7722,7 +7724,7 @@ ACMD_FUNC(mapflag)
 	setflag(nojobexp);          setflag(nomobloot);         setflag(nomvploot);         setflag(nightenabled);
 	setflag(nodrop);            setflag(novending);         setflag(loadevent);
 	setflag(nochat);            setflag(partylock);         setflag(guildlock);         setflag(src4instance);
-	setflag(notomb);
+	setflag(notomb);            setflag(nocashshop);
 
 	clif_displaymessage(sd->fd,msg_txt(1314)); // Invalid flag name or flag.
 	clif_displaymessage(sd->fd,msg_txt(1312)); // Usage: "@mapflag monster_noteleport 1" (0=Off | 1=On)
@@ -7734,7 +7736,7 @@ ACMD_FUNC(mapflag)
 	clif_displaymessage(sd->fd,"nozenypenalty, notrade, noskill, nowarp, nowarpto, noicewall, snow, clouds, clouds2,");
 	clif_displaymessage(sd->fd,"fog, fireworks, sakura, leaves, nobaseexp, nojobexp, nomobloot,");
 	clif_displaymessage(sd->fd,"nomvploot, nightenabled, nodrop, novending, loadevent, nochat, partylock,");
-	clif_displaymessage(sd->fd,"guildlock, src4instance, notomb");
+	clif_displaymessage(sd->fd,"guildlock, src4instance, notomb, nocashshop");
 
 #undef checkflag
 #undef setflag

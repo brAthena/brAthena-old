@@ -584,6 +584,16 @@ struct map_drop_list {
 };
 
 
+struct questinfo {
+	struct npc_data *nd;
+	unsigned short icon;
+	unsigned char color;
+	int quest_id;
+	bool hasJob;
+	unsigned short job;/* perhaps a mapid mask would be most flexible? */
+};
+
+
 struct map_data {
 	char name[MAP_NAME_LENGTH];
 	uint16 index; // The map index used by the mapindex* functions.
@@ -670,6 +680,7 @@ struct map_data {
 		unsigned nomineeffect : 1; //allow /mineeffect
 		unsigned nolockon : 1;
 		unsigned notomb : 1;
+		unsigned nocashshop : 1;
 	} flag;
 	struct point save;
 	struct npc_data *npc[MAX_NPC_PER_MAP];
@@ -727,6 +738,13 @@ struct map_data {
 	int (*getcellp)(struct map_data* m,int16 x,int16 y,cell_chk cellchk);
 	void (*setcell) (int16 m, int16 x, int16 y, cell_t cell, bool flag);
 	char *cellPos;
+
+	/* ShowEvent Data Cache */
+	struct questinfo *qi_data;
+	unsigned short qi_count;
+
+	/* speeds up clif_updatestatus processing by causing hpmeter to run only when someone with the permission can view it */
+	unsigned short hpmeter_visible;
 };
 
 /// Stores information about a remote map (for multi-mapserver setups).
@@ -845,6 +863,9 @@ void map_delblcell(struct block_list *bl);
 
 // reload config file looking only for npcs
 void map_reloadnpc(bool clear);
+
+void map_add_questinfo(int m, struct questinfo *qi);
+bool map_remove_questinfo(int m, struct npc_data *nd);
 
 /// Bitfield of flags for the iterator.
 enum e_mapitflags

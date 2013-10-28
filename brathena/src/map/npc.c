@@ -1805,6 +1805,9 @@ int npc_unload(struct npc_data *nd, bool single)
 		}
 	}
 
+	if(single && nd->bl.m != -1)
+		map_remove_questinfo(nd->bl.m,nd);
+
 	if((nd->subtype == SHOP || nd->subtype == CASHSHOP) && nd->src_id == 0)  //src check for duplicate shops [Orcao]
 		aFree(nd->u.shop.shop_item);
 	else if(nd->subtype == SCRIPT) {
@@ -3449,8 +3452,10 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		map[m].short_damage_rate = (state) ? atoi(w4) : 100;
 	} else if (!strcmpi(w3,"long_damage_rate")) {
 		map[m].long_damage_rate = (state) ? atoi(w4) : 100;
-	} else if ( !strcmpi(w3,"src4instance") ) {
+	} else if ( !strcmpi(w3,"src4instance")) {
 		map[m].flag.src4instance = (state) ? 1 : 0;
+	} else if (!strcmpi(w3,"nocashshop")) {
+		map[m].flag.nocashshop = (state) ? 1 : 0;
 	} else
 		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
 
