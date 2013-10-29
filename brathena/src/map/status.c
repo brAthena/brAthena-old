@@ -85,6 +85,8 @@ static sc_conf_type sc_conf[SC_MAX];
 static struct eri *sc_data_ers; //For sc_data entries
 static struct status_data dummy_status;
 
+static struct status_change_entry sc_script[SC_MAX]; // brAthena
+
 int current_equip_item_index; //Contains inventory index of an equipped item. To pass it into the EQUP_SCRIPT [Lupus]
 int current_equip_card_id; //To prevent card-stacking (from jA) [Skotlex]
 //we need it for new cards 15 Feb 2005, to check if the combo cards are insrerted into the CURRENT weapon only
@@ -988,9 +990,7 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_INCHITRATE] |= SCB_HIT;
 	StatusChangeFlagTable[SC_INCFLEE] |= SCB_FLEE;
 	StatusChangeFlagTable[SC_INCFLEERATE] |= SCB_FLEE;
-	StatusChangeFlagTable[SC_CRITICALPERCENT] |= SCB_CRI;
 	StatusChangeFlagTable[SC_INCASPDRATE] |= SCB_ASPD;
-	StatusChangeFlagTable[SC_PLUSAVOIDVALUE] |= SCB_FLEE2;
 	StatusChangeFlagTable[SC_INCMHPRATE] |= SCB_MAXHP;
 	StatusChangeFlagTable[SC_INCMSPRATE] |= SCB_MAXSP;
 	StatusChangeFlagTable[SC_INCMHP] |= SCB_MAXHP;
@@ -1011,13 +1011,8 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_MATKFOOD] |= SCB_MATK;
 	StatusChangeFlagTable[SC_ARMORPROPERTY] |= SCB_ALL;
 	StatusChangeFlagTable[SC_ARMOR_RESIST] |= SCB_ALL;
-	StatusChangeFlagTable[SC_ATKER_BLOOD] |= SCB_ALL;
 	StatusChangeFlagTable[SC_WALKSPEED] |= SCB_SPEED;
 	StatusChangeFlagTable[SC_ITEMSCRIPT] |= SCB_ALL;
-	StatusChangeFlagTable[SC_MVPCARD_TAOGUNKA] |= SCB_ALL;
-	StatusChangeFlagTable[SC_MVPCARD_MISTRESS] |= SCB_ALL;
-	StatusChangeFlagTable[SC_MVPCARD_ORCHERO] |= SCB_ALL;
-	StatusChangeFlagTable[SC_MVPCARD_ORCLORD] |= SCB_ALL;
 	StatusChangeFlagTable[SC_SLOWDOWN] |= SCB_SPEED;
 	// Cash Items
 	StatusChangeFlagTable[SC_FOOD_STR_CASH] = SCB_STR;
@@ -1055,7 +1050,6 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_REBOUND] |= SCB_SPEED|SCB_REGEN;
 	StatusChangeFlagTable[SC_ALL_RIDING] = SCB_SPEED;
 	StatusChangeFlagTable[SC_WEDDING] = SCB_SPEED;
-	StatusChangeFlagTable[SC_ACARAJE] |= SCB_ASPD|SCB_HIT;
 
 	/* StatusDisplayType Table [Ind/Hercules] */
 	StatusDisplayType[SC_ALL_RIDING]		= true;
@@ -2414,7 +2408,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	const struct status_change *sc = &sd->sc;
 	struct s_skill b_skill[MAX_SKILL]; // previous skill tree
 	int b_weight, b_max_weight, b_cart_weight_max, // previous weight
-	i, k, index, skill,refinedef=0,effectsc;
+	i, k, index, skill,refinedef=0;
 	int64 i64;
 
 	if(++calculating > 10)  //Too many recursive calls!
@@ -2750,14 +2744,17 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 			}
 		}
 	}
-	if(sc->count && (sc->data[effectsc = SC_ITEMSCRIPT] || sc->data[effectsc = SC_MVPCARD_TAOGUNKA] || sc->data[effectsc = SC_MVPCARD_MISTRESS] || sc->data[effectsc = SC_MVPCARD_ORCHERO] || sc->data[effectsc = SC_MVPCARD_ORCLORD])) {
-		struct item_data *data = itemdb_exists(sc->data[effectsc]->val1);
+	if(sc->count && sc->data[SC_ITEMSCRIPT]) {
+		struct item_data *data = itemdb_exists(sc->data[SC_ITEMSCRIPT]->val1);
 		if(data && data->script)
 			run_script(data->script,0,sd->bl.id,0);
 	}
 
-	if(sd->pd) {
-		// Pet Bonus
+	for(index=0; index < SC_MAX; ++index)
+		if(sd && (sc->count && sc->data[index]) && sc_script[index].script)
+			run_script(sc_script[index].script,0,sd->bl.id,fake_nd->bl.id);
+
+	if(sd->pd) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
 		if(pd && pd->petDB && pd->petDB->equip_script && pd->pet.intimate >= battle_config.pet_equip_min_friendly)
 			run_script(pd->petDB->equip_script,0,sd->bl.id,0);
@@ -3131,9 +3128,6 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 
 	if(sc->data[SC_SERVICEFORYOU])
 		sd->dsprate -= sc->data[SC_SERVICEFORYOU]->val3;
-
-	if(sc->data[SC_ATKER_BLOOD])
-		sd->dsprate -= sc->data[SC_ATKER_BLOOD]->val1;
 
 	//Underflow protections.
 	if(sd->dsprate < 0)
@@ -4801,8 +4795,6 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		return (short)cap_value(critical,10,SHRT_MAX);
 	}
 
-	if (sc->data[SC_CRITICALPERCENT])
-		critical += sc->data[SC_CRITICALPERCENT]->val2;
 	if (sc->data[SC_EXPLOSIONSPIRITS])
 		critical += sc->data[SC_EXPLOSIONSPIRITS]->val2;
 	if(sc->data[SC_FORTUNE])
@@ -4866,8 +4858,6 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * 20 / 100;
 	if(sc->data[SC_VOLCANIC_ASH])
 		hit -= (hit * sc->data[SC_VOLCANIC_ASH]->val2) / 100;
-	if(sc->data[SC_ACARAJE])
-		hit += 5;
 	if(sc->data[SC_ILLUSIONDOPING])
 		hit -= hit * (5 + sc->data[SC_ILLUSIONDOPING]->val1) / 100;
 
@@ -4970,8 +4960,6 @@ static signed short status_calc_flee2(struct block_list *bl, struct status_chang
 		return (short)cap_value(flee2,10,SHRT_MAX);
 	}
 
-	if(sc->data[SC_PLUSAVOIDVALUE])
-		flee2 += sc->data[SC_PLUSAVOIDVALUE]->val2;
 	if(sc->data[SC_WHISTLE])
 		flee2 += sc->data[SC_WHISTLE]->val3*10;
 	if(sc->data[SC__UNLUCKY])
@@ -5537,8 +5525,6 @@ static short status_calc_fix_aspd(struct block_list *bl, struct status_change *s
 		aspd -= 50; // +5 ASPD
 	if(sc && sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2)
 		aspd -= (bl->type==BL_PC?pc_checkskill((TBL_PC *)bl, RK_RUNEMASTERY):10) / 10 * 40;
-	if (sc->data[SC_ACARAJE])
-		aspd -= 10;
 
 	return cap_value(aspd, 0, 2000); // will be recap for proper bl anyway
 }
@@ -6545,8 +6531,6 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		if(sd && SC_COMMON_MIN <= type && type <= SC_COMMON_MAX) {
 			if(sd->reseff[type-SC_COMMON_MIN] > 0)
 				rate -= rate*sd->reseff[type-SC_COMMON_MIN]/10000;
-			if(sd->sc.data[SC_TARGET_BLOOD])
-				rate -= rate*sd->sc.data[SC_TARGET_BLOOD]->val1/100;
 		}
 	}
 
@@ -7359,8 +7343,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(sce->val2 > val2)
 					return 0;
 				break;
-			case SC_S_LIFEPOTION:
-			case SC_L_LIFEPOTION:
 			case SC_CASH_BOSS_ALARM:
 			case SC_STUN:
 			case SC_SLEEP:
@@ -7726,17 +7708,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val4 = tick/10000;
 				if(!val4) val4 = 1;
 				tick_time = 10000; // [GodLesZ] tick time
-				break;
-			case SC_S_LIFEPOTION:
-			case SC_L_LIFEPOTION:
-				if(val1 == 0) return 0;
-				// val1 = heal percent/amout
-				// val2 = seconds between heals
-				// val4 = total of heals
-				if(val2 < 1) val2 = 1;
-				if((val4 = tick/(val2 * 1000)) < 1)
-					val4 = 1;
-				tick_time = val2 * 1000; // [GodLesZ] tick time
 				break;
 			case SC_CASH_BOSS_ALARM:
 				if(sd != NULL) {
@@ -8243,10 +8214,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(val1 < 0)
 					val1 = 0;
 				break;
-			case SC_PLUSAVOIDVALUE:
-			case SC_CRITICALPERCENT:
-				val2 = val1*10; //Actual boost (since 100% = 1000)
-				break;
 			case SC_SUFFRAGIUM:
 				val2 = 15 * val1; //Speed cast decrease
 				break;
@@ -8284,17 +8251,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				break;
 			case SC_REBIRTH:
 				val2 = 20*val1; //% of life to be revived with
-				break;
-
-			case SC_MANU_DEF:
-			case SC_MANU_ATK:
-			case SC_MANU_MATK:
-				val2 = 1; // Manuk group
-				break;
-			case SC_SPL_DEF:
-			case SC_SPL_ATK:
-			case SC_SPL_MATK:
-				val2 = 2; // Splendide group
 				break;
 				/**
 				 * General
@@ -9321,6 +9277,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
+		
+	if(sd && sc_script[type].script)
+		status_calc_pc(sd,0);
 
 	if(sd && sd->pd)
 		pet_sc_check(sd, type); //Skotlex: Pet Status Effect Healing
@@ -10135,6 +10094,9 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
 
+	if(sd && sc_script[type].script)
+		status_calc_pc(sd,0);
+
 	if(opt_flag&4) //Out of hiding, invoke on place.
 		skill_unit_move(bl,gettick(),1);
 
@@ -10358,19 +10320,6 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 					sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
 				}
 				map_freeblock_unlock();
-				return 0;
-			}
-			break;
-
-		case SC_S_LIFEPOTION:
-		case SC_L_LIFEPOTION:
-			if(sd && --(sce->val4) >= 0) {
-				// val1 < 0 = per max% | val1 > 0 = exact amount
-				int hp = 0;
-				if(status->hp < status->max_hp)
-					hp = (sce->val1 < 0) ? (int)(sd->status.max_hp * -1 * sce->val1 / 100.) : sce->val1 ;
-				status_heal(bl, hp, 0, 2);
-				sc_timer_next((sce->val2 * 1000) + tick, status_change_timer, bl->id, data);
 				return 0;
 			}
 			break;
@@ -11726,6 +11675,33 @@ int status_readdb(void)
 	return 0;
 }
 
+void read_status_db(void) { //brAthena
+	int i = 0, c = 0;
+
+	if(Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(61)) == SQL_ERROR) {
+		Sql_ShowDebug(dbmysql_handle);
+		return;
+	}
+
+	while(Sql_NextRow(dbmysql_handle) == SQL_SUCCESS) {
+		char *res[2];
+		int type=0;
+
+		Sql_GetData(dbmysql_handle, 0, &res[0], NULL);
+		Sql_GetData(dbmysql_handle, 1, &res[1], NULL);
+
+		if(!script_get_constant(res[0], &type))
+			continue;
+
+		if(!(sc_script[type].script = parse_script(res[1], get_database_name(61), c, 0)))
+			continue;
+		c++;
+	}
+
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", c, get_database_name(61));
+	Sql_FreeResult(dbmysql_handle);
+}
+
 /*==========================================
  * Status db init and destroy.
  *------------------------------------------*/
@@ -11737,6 +11713,7 @@ int do_init_status(void)
 	initChangeTables();
 	initDummyData();
 	status_readdb();
+	read_status_db(); // brAthena
 	status_calc_sigma();
 	natural_heal_prev_tick = gettick();
 	sc_data_ers = ers_new(sizeof(struct status_change_entry),"status.c::sc_data_ers",ERS_OPT_NONE);

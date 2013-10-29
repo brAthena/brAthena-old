@@ -1780,6 +1780,7 @@ struct sc_display_entry {
 struct status_change_entry {
 	int timer;
 	int val1,val2,val3,val4;
+	struct script_code *script;
 };
 
 struct status_change {
@@ -1941,6 +1942,8 @@ int status_get_total_mdef(struct block_list *src);
 int status_get_total_def(struct block_list *src);
 
 int status_get_matk(struct block_list *src, int flag);
+
+void read_status_db(void);
 
 int status_readdb(void);
 int do_init_status(void);

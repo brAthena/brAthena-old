@@ -988,11 +988,7 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 				else
 					cardfix = cardfix * (100 - tsd->bonus.long_attack_def_rate) / 100;
 #endif
-
 				cardfix = cardfix * (100 - tsd->bonus.magic_def_rate) / 100;
-
-				if(tsd->sc.data[SC_PROTECT_MDEF])
-					cardfix = cardfix * (100 - tsd->sc.data[SC_PROTECT_MDEF]->val1) / 100;
 
 				if(cardfix != 1000)
 					damage = damage * cardfix / 1000;
@@ -1163,9 +1159,6 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 					cardfix = cardfix * (100 - tsd->bonus.near_attack_def_rate) / 100;
 				else    // BF_LONG (there's no other choice)
 					cardfix = cardfix * (100 - tsd->bonus.long_attack_def_rate) / 100;
-
-				if(tsd->sc.data[SC_PROTECT_DEF])
-					cardfix = cardfix * (100 - tsd->sc.data[SC_PROTECT_DEF]->val1) / 100;
 
 				if(cardfix != 1000)
 					damage = damage * cardfix / 1000;
@@ -2859,23 +2852,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 							damage >>= 2; //75% reduction
 				}
 
-		// Compressed code, fixed by map.h [Epoque]
-		if(src->type == BL_MOB) {
-			int i;
-			if(sc->data[SC_MANU_DEF])
-				for(i=0; ARRAYLENGTH(mob_manuk)>i; i++)
-					if(mob_manuk[i]==((TBL_MOB *)src)->class_) {
-						damage -= damage * sc->data[SC_MANU_DEF]->val1 / 100;
-						break;
-					}
-			if(sc->data[SC_SPL_DEF])
-				for(i=0; ARRAYLENGTH(mob_splendide)>i; i++)
-					if(mob_splendide[i]==((TBL_MOB *)src)->class_) {
-						damage -= damage * sc->data[SC_SPL_DEF]->val1 / 100;
-						break;
-					}
-		}
-
 		if((sce=sc->data[SC_ARMOR]) && //NPC_DEFENDER
 		   sce->val3&flag && sce->val4&flag)
 			damage -= damage * sc->data[SC_ARMOR]->val2 / 100;
@@ -2992,26 +2968,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if(sc->data[SC_INVINCIBLE] && !sc->data[SC_INVINCIBLEOFF])
 			damage += damage * 75 / 100;
 			// [Epoque]
-			if(bl->type == BL_MOB) {
-				int i;
-
-				if(((sce=sc->data[SC_MANU_ATK]) && (flag&BF_WEAPON)) ||
-				   ((sce=sc->data[SC_MANU_MATK]) && (flag&BF_MAGIC))
-				  )
-					for(i=0; ARRAYLENGTH(mob_manuk)>i; i++)
-						if(((TBL_MOB *)bl)->class_==mob_manuk[i]) {
-							damage += damage * sce->val1 / 100;
-							break;
-						}
-				if(((sce=sc->data[SC_SPL_ATK]) && (flag&BF_WEAPON)) ||
-				   ((sce=sc->data[SC_SPL_MATK]) && (flag&BF_MAGIC))
-				  )
-					for(i=0; ARRAYLENGTH(mob_splendide)>i; i++)
-						if(((TBL_MOB *)bl)->class_==mob_splendide[i]) {
-							damage += damage * sce->val1 / 100;
-							break;
-						}
-			}
 		if(sc->data[SC_POISONINGWEAPON] && skill_id != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rnd()%100 < sc->data[SC_POISONINGWEAPON]->val3)
 			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)

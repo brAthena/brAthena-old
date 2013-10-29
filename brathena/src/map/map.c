@@ -3719,6 +3719,7 @@ char *get_database_name(int database_id)
 		#endif
 		case 59: db_name = "const_db"; break;
 		case 60: db_name = "sc_config"; break;
+		case 61: db_name = "buffspecial_db"; break; // brAthena
 	}
 
 	return db_name;
