@@ -717,6 +717,33 @@ typedef enum sc_type {
     SC_MVPCARD_ORCLORD,
     SC_ACARAJE,
     SC_ATTHASTE_CASH,
+    SC_ATKER_ASPD,
+    SC_TARGET_ASPD,
+    SC_STEAMPACK,
+    SC_BUCHEDENOEL,
+    SC_POPECOOKIE,
+    SC_MAGIC_CANDY,
+    SC_MORA_BUFF,
+    SC_VITALIZE_POTION,
+    SC_G_LIFEPOTION,
+    SC_2011RWC,
+    SC_SKELSCROLL,
+    SC_DISTRUCTIONSCROLL,
+    SC_ROYALSCROLL,
+    SC_IMMUNITYSCROLL,
+    SC_MYSTICSCROLL,
+    SC_BATTLESCROLL,
+    SC_ARMORSCROLL,
+    SC_FREYJASCROLL,
+    SC_SOULSCROLL,
+    SC_PC_IZ_DUN05,
+    SC_OVERLAPEXPUP,
+    SC_SKF_CAST,
+    SC_SKF_ASPD,
+    SC_SKF_ATK,
+    SC_SKF_MATK,
+    SC_GM_BATTLE,
+    SC_GM_BATTLE2,
 
     SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
@@ -1943,7 +1970,7 @@ int status_get_total_def(struct block_list *src);
 
 int status_get_matk(struct block_list *src, int flag);
 
-void read_status_db(void);
+void read_buffspecial_db(void);
 
 int status_readdb(void);
 int do_init_status(void);

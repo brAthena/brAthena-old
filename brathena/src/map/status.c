@@ -11675,7 +11675,7 @@ int status_readdb(void)
 	return 0;
 }
 
-void read_status_db(void) { //brAthena
+void read_buffspecial_db(void) { //brAthena
 	int i = 0, c = 0;
 
 	if(Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(61)) == SQL_ERROR) {
@@ -11690,8 +11690,10 @@ void read_status_db(void) { //brAthena
 		Sql_GetData(dbmysql_handle, 0, &res[0], NULL);
 		Sql_GetData(dbmysql_handle, 1, &res[1], NULL);
 
-		if(!script_get_constant(res[0], &type))
+		if(!script_get_constant(res[0], &type)) {
+			ShowWarning(read_message("Source.map.status_buffspecial"), CL_WHITE, res[0], CL_RESET);
 			continue;
+		}
 
 		if(!(sc_script[type].script = parse_script(res[1], get_database_name(61), c, 0)))
 			continue;
@@ -11713,7 +11715,7 @@ int do_init_status(void)
 	initChangeTables();
 	initDummyData();
 	status_readdb();
-	read_status_db(); // brAthena
+	read_buffspecial_db(); // brAthena
 	status_calc_sigma();
 	natural_heal_prev_tick = gettick();
 	sc_data_ers = ers_new(sizeof(struct status_change_entry),"status.c::sc_data_ers",ERS_OPT_NONE);

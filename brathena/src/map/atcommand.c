@@ -3662,7 +3662,7 @@ ACMD_FUNC(reload)
 			mapit_free(sd_cash);
 			break;
 		}
-		case 11: read_status_db(); break;
+		case 11: read_buffspecial_db(); break;
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
