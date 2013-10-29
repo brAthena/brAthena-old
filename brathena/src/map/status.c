@@ -845,13 +845,16 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_SPL_MATK] = SI_SPL_MATK;
 	StatusIconChangeTable[SC_PLUSATTACKPOWER] = SI_PLUSATTACKPOWER;
 	StatusIconChangeTable[SC_PLUSMAGICPOWER] = SI_PLUSMAGICPOWER;
-	StatusIconChangeTable[SC_INCMHPRATE] = SI_ATKER_ASPD;
-	StatusIconChangeTable[SC_INCMSPRATE] = SI_ATKER_MOVESPEED;
+	StatusIconChangeTable[SC_ATKER_ASPD] = SI_ATKER_ASPD;
+	StatusIconChangeTable[SC_ATKER_MOVESPEED] = SI_ATKER_MOVESPEED;
 	StatusIconChangeTable[SC_ACARAJE] = SI_ACARAJE;
 	StatusIconChangeTable[SC_MVPCARD_TAOGUNKA] = SI_MVPCARD_TAOGUNKA;
 	StatusIconChangeTable[SC_MVPCARD_MISTRESS] = SI_MVPCARD_MISTRESS;
 	StatusIconChangeTable[SC_MVPCARD_ORCHERO] = SI_MVPCARD_ORCHERO;
 	StatusIconChangeTable[SC_MVPCARD_ORCLORD] = SI_MVPCARD_ORCLORD;
+	StatusIconChangeTable[SC_BUCHEDENOEL] = SI_BUCHEDENOEL;
+	StatusIconChangeTable[SC_TARGET_ASPD] = SI_TARGET_ASPD;
+
 	//Cash Items
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = SI_FOOD_STR_CASH;
 	StatusIconChangeTable[SC_FOOD_AGI_CASH] = SI_FOOD_AGI_CASH;
