@@ -852,8 +852,32 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_MVPCARD_MISTRESS] = SI_MVPCARD_MISTRESS;
 	StatusIconChangeTable[SC_MVPCARD_ORCHERO] = SI_MVPCARD_ORCHERO;
 	StatusIconChangeTable[SC_MVPCARD_ORCLORD] = SI_MVPCARD_ORCLORD;
-	StatusIconChangeTable[SC_BUCHEDENOEL] = SI_BUCHEDENOEL;
 	StatusIconChangeTable[SC_TARGET_ASPD] = SI_TARGET_ASPD;
+	StatusIconChangeTable[SC_ATKER_MOVESPEED] = SI_ATKER_MOVESPEED;
+	StatusIconChangeTable[SC_BUCHEDENOEL] = SI_BUCHEDENOEL;
+	StatusIconChangeTable[SC_POPECOOKIE] = SI_POPECOOKIE;
+	StatusIconChangeTable[SC_MAGIC_CANDY] = SI_MAGIC_CANDY;
+	StatusIconChangeTable[SC_MORA_BUFF] = SI_MORA_BUFF
+	StatusIconChangeTable[SC_VITALIZE_POTION] = SI_VITALIZE_POTION;
+	StatusIconChangeTable[SC_G_LIFEPOTION] = SI_G_LIFEPOTION;
+	StatusIconChangeTable[SC_2011RWC] = SI_2011RWC;
+	StatusIconChangeTable[SC_SKELSCROLL] = SI_SKELSCROLL;
+	StatusIconChangeTable[SC_DISTRUCTIONSCROLL] = SI_DISTRUCTIONSCROLL;
+	StatusIconChangeTable[SC_ROYALSCROLL] = SI_ROYALSCROLL;
+	StatusIconChangeTable[SC_IMMUNITYSCROLL] = SI_IMMUNITYSCROLL;
+	StatusIconChangeTable[SC_MYSTICSCROLL] = SI_MYSTICSCROLL;
+	StatusIconChangeTable[SC_BATTLESCROLL] = SI_BATTLESCROLL;
+	StatusIconChangeTable[SC_ARMORSCROLL] = SI_ARMORSCROLL;
+	StatusIconChangeTable[SC_FREYJASCROLL] = SI_FREYJASCROLL;
+	StatusIconChangeTable[SC_SOULSCROLL] = SI_SOULSCROLL;
+	StatusIconChangeTable[SC_PC_IZ_DUN05] = SI_PC_IZ_DUN05;
+	StatusIconChangeTable[SC_OVERLAPEXPUP] = SI_OVERLAPEXPUP;
+	StatusIconChangeTable[SC_SKF_CAST] = SI_SKF_CAST;
+	StatusIconChangeTable[SC_SKF_ASPD] = SI_SKF_ASPD;
+	StatusIconChangeTable[SC_SKF_ATK] = SI_SKF_ATK;
+	StatusIconChangeTable[SC_SKF_MATK] = SI_SKF_MATK;
+	StatusIconChangeTable[SC_GM_BATTLE] = SI_GM_BATTLE;
+	StatusIconChangeTable[SC_GM_BATTLE2] = SI_GM_BATTLE2;
 
 	//Cash Items
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = SI_FOOD_STR_CASH;
