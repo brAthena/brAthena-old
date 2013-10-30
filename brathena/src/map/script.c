@@ -18224,6 +18224,38 @@ BUILDIN_FUNC(instance_set_respawn) {
 	return 0;
 }
 
+/*======================================================
+ * Adiciona tempo vip. [Shiraz / brAthena]
+ * ex: add_time_vip(dias, horas, minutos, segundos);
+ *-----------------------------------------------------*/
+BUILDIN_FUNC(add_time_vip) {
+	int time_s[4], i;
+	TBL_PC *sd;
+	
+	if(!(sd = script_rid2sd(st)))
+		return -1;
+		
+	for(i = 0; i < 4; i++)
+		time_s[i] = script_getnum(st,2+i);
+		
+	add_time_vip(sd, time_s);
+	return 0;
+}
+
+/*======================================================
+ * Exibe tempo vip. [Shiraz / brAthena]
+ * ex: show_time_vip();
+ *-----------------------------------------------------*/
+BUILDIN_FUNC(show_time_vip) {
+	TBL_PC *sd;
+	
+	if(!(sd = script_rid2sd(st)))
+		return -1;
+
+	show_time_vip(sd);
+	return 0;
+}
+
 #include "../custom/scripts.inc"
 
 // declarations that were supposed to be exported from npc_chat.c
@@ -18723,6 +18755,8 @@ struct script_function buildin_func[] = {
   /* [brAthena] */
 	BUILDIN_DEF(unloadnpc,"s"),	// [Holy]
 	BUILDIN_DEF(recall,"s?"),	// [Holy]
+	BUILDIN_DEF(add_time_vip,"iiii"),	// [Shiraz]
+	BUILDIN_DEF(show_time_vip,"?"),		// [Shiraz]
 
 #include "../custom/scripts_def.inc"
 

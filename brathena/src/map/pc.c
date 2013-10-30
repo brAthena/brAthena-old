@@ -990,6 +990,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->npc_timer_id = INVALID_TIMER;
 	sd->pvp_timer = INVALID_TIMER;
 	sd->fontcolor_tid = INVALID_TIMER;
+	sd->vip_timer = INVALID_TIMER;
 	/**
 	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 	 **/
@@ -1147,6 +1148,9 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	/* [Ind] */
 	sd->sc_display = NULL;
 	sd->sc_display_count = 0;
+	
+	if(bra_config.enable_system_vip)
+		sd->vip_timer = add_timer(gettick()+DELAY_IN(1), check_time_vip, sd->bl.id, 0);
 
 	// Request all registries (auth is considered completed whence they arrive)
 	intif_request_registry(sd,7);
@@ -9063,6 +9067,80 @@ int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data)
 	if(pc_calc_pvprank(sd) > 0)
 		sd->pvp_timer = add_timer(gettick()+PVP_CALCRANK_INTERVAL,pc_calc_pvprank_timer,id,data);
 	return 0;
+}
+
+/*======================================================
+ * Verificação para remoção do vip. [Shiraz / brAthena]
+ *-----------------------------------------------------*/
+int check_time_vip(int tid, unsigned int tick, int id, intptr_t data)
+{
+	struct map_session_data *sd = (struct map_session_data *)map_id2sd(id);
+
+	if(!sd || sd->bl.type != BL_PC || !pc_isvip(sd))
+		return 1;
+	
+	sd->vip_timer = INVALID_TIMER;
+	
+	if(pc_readaccountreg(sd,"#official_time_vip") < (int)time(NULL)) {
+		clif_displaymessage(sd->fd, "Seu tempo vip expirou.");
+		save_vip(sd,0);
+	}
+	
+	sd->vip_timer = add_timer(gettick()+DELAY_IN(1),check_time_vip,sd->bl.id,0);	
+	return 0;
+}
+
+/*======================================================
+ * Adiciona tempo vip. [Shiraz / brAthena]
+ *-----------------------------------------------------*/
+int add_time_vip(struct map_session_data *sd, int type[4])
+{
+	int now = pc_readaccountreg(sd,"#official_time_vip");
+	int val = 0;
+	
+	val += type[0] * 86400;
+	val += type[1] * 3600;
+	val += type[2] * 60;
+	val += type[3];
+	
+	if((val > INT_MAX)) {
+		ShowInfo("add_time_vip: Overflow detectado. Conta ID: %d", sd->status.account_id);
+		return -1;
+	}
+	
+	if(now > (int)time(NULL))
+		pc_setaccountreg(sd, "#official_time_vip", now+val);
+	else
+		pc_setaccountreg(sd, "#official_time_vip", (int)time(NULL)+val);
+	
+	sd->vip_timer = add_timer(gettick()+DELAY_IN(1),check_time_vip,sd->bl.id,0);
+	save_vip(sd,bra_config.level_vip);
+	show_time_vip(sd);
+	
+	return 0;
+}
+
+/*======================================================
+ * Exibe tempo vip. [Shiraz / brAthena]
+ *-----------------------------------------------------*/
+void show_time_vip(struct map_session_data *sd)
+{
+	int time_s[4], val;
+	char buf[256];
+	
+	val = (unsigned int)(pc_readaccountreg(sd,"#official_time_vip") - (int)time(NULL));
+	
+	time_s[0] = val / 86400;
+	time_s[1] = val % 86400 / 3600;
+	time_s[2] = val % 3600 / 60;
+	time_s[3] = val % 60;
+	
+	if(time_s[0] >= 0 && time_s[1] >= 0 && time_s[2] >= 0 && time_s[3] >= 0)
+		snprintf(buf, sizeof(buf), "Restam: %d dia(s), %d hora(s), %d minuto(s) e %d segundo(s)", time_s[0], time_s[1], time_s[2], time_s[3]);
+	else
+		sprintf(buf, "Seu tempo vip expirou.");
+	
+	clif_displaymessage(sd->fd, buf);
 }
 
 /*==========================================

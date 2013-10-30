@@ -567,6 +567,7 @@ struct map_session_data {
 	const char *delunit_prevfile;
 	int delunit_prevline;
 
+	int vip_timer;
 };
 
 struct eri *pc_sc_display_ers;
@@ -1017,7 +1018,25 @@ void pc_baselevelchanged(struct map_session_data *sd);
 void pc_rental_expire(struct map_session_data *sd, int i);
 void pc_scdata_received(struct map_session_data *sd);
 
-#define pc_isvip(sd) ((sd->group_id==bra_config.level_vip?1:0)) // Verificação vip de forma rápida.
+//----------------------------------
+// Sistema Vip [Shiraz / brAthena]
+// Macros e Funções
+//----------------------------------
+// Verifica se o jogador é vip.
+#define pc_isvip(sd) ((sd->group_id==bra_config.level_vip))
+
+// Delay para verificação do vip em tempo real. Padrão a cada 1 minuto.
+#define DELAY_IN(x) (x * 60000)
+
+// Salva e atualiza as informações de um vip.
+#define save_vip(sd,x) \
+	sd->group_id = x; pc_group_pc_load(sd); \
+		if(SQL_ERROR == Sql_Query(mmysql_handle,"UPDATE `login` SET `group_id`=%d WHERE `account_id`='%d'", x, sd->status.account_id)) \
+			Sql_ShowDebug(mmysql_handle);
+
+int check_time_vip(int tid, unsigned int tick, int id, intptr_t data);
+int add_time_vip(struct map_session_data *sd, int type[4]);
+void show_time_vip(struct map_session_data *sd);
 
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
 int pc_level_penalty_mod(int diff, unsigned char race, unsigned short mode, int type);

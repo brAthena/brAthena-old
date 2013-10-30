@@ -489,12 +489,6 @@ static bool mmo_auth_fromsql(AccountDB_SQL *db, struct mmo_account *acc, int acc
 	Sql *sql_handle = db->accounts;
 	char *data;
 	int i = 0;
-	
-	// Sistema Vip - rotina de expiração do vip.
-	if(bra_config.enable_system_vip) {
-		if(SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `%s` SET `group_id`=0 WHERE `account_id`=%d AND `group_id`=%d AND (`date_vip` IS NULL OR `date_vip` < NOW())", db->account_db, account_id, bra_config.level_vip))
-			Sql_ShowDebug(sql_handle);
-	}
 
 	// retrieve login entry for the specified account
 	if(SQL_ERROR == Sql_Query(sql_handle,
