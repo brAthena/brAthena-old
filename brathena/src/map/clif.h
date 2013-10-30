@@ -417,8 +417,6 @@ void clif_arrowequip(struct map_session_data *sd,int val); //self
 void clif_arrow_fail(struct map_session_data *sd,int type); //self
 void clif_arrow_create_list(struct map_session_data *sd);   //self
 void clif_statusupack(struct map_session_data *sd,int type,int ok,int val); // self
-void clif_equipitemack(struct map_session_data *sd,int n,int pos,enum e_EQUIP_ITEM_ACK result);   // self
-void clif_unequipitemack(struct map_session_data *sd,int n,int pos,enum e_UNEQUIP_ITEM_ACK result); // self
 void clif_misceffect(struct block_list *bl,int type);   // area
 void clif_changeoption(struct block_list *bl);  // area
 void clif_changeoption2(struct block_list *bl); // area
@@ -930,6 +928,9 @@ enum e_UNEQUIP_ITEM_ACK {
 	UIA_FAIL    = 0x0,
 #endif
 };
+
+void clif_equipitemack(struct map_session_data *sd,int n,int pos,enum e_EQUIP_ITEM_ACK result);   // self
+void clif_unequipitemack(struct map_session_data *sd,int n,int pos,enum e_UNEQUIP_ITEM_ACK result); // self
 
 /**
  * Structures
