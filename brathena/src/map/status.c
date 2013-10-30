@@ -857,7 +857,7 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_BUCHEDENOEL] = SI_BUCHEDENOEL;
 	StatusIconChangeTable[SC_POPECOOKIE] = SI_POPECOOKIE;
 	StatusIconChangeTable[SC_MAGIC_CANDY] = SI_MAGIC_CANDY;
-	StatusIconChangeTable[SC_MORA_BUFF] = SI_MORA_BUFF
+	StatusIconChangeTable[SC_MORA_BUFF] = SI_MORA_BUFF;
 	StatusIconChangeTable[SC_VITALIZE_POTION] = SI_VITALIZE_POTION;
 	StatusIconChangeTable[SC_G_LIFEPOTION] = SI_G_LIFEPOTION;
 	StatusIconChangeTable[SC_2011RWC] = SI_2011RWC;
