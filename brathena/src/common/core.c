@@ -192,7 +192,7 @@ const char *get_svn_revision(void)
 	if((fp = fopen(".svn"PATHSEP_STR"wc.db", "rb")) != NULL || (fp = fopen(".."PATHSEP_STR".svn"PATHSEP_STR"wc.db", "rb")) != NULL) {
 #ifndef SVNNODEPATH
 		//not sure how to handle branches, so i'll leave this overridable define until a better solution comes up
-#define SVNNODEPATH testes
+#define SVNNODEPATH brathena
 #endif
 		const char *prefix = "!svn/ver/";
 		const char *postfix = "/"EXPAND_AND_QUOTE(SVNNODEPATH)")"; // there should exist only 1 entry like this
@@ -248,10 +248,10 @@ const char *get_svn_revision(void)
 			} else {
 				// Bin File format
 				if(fgets(line, sizeof(line), fp) == NULL) {
-					printf(read_message("Source.common.svn_version_mes"));    // Get the name
+					ShowInfo(read_message("Source.common.svn_version_mes"));    // Get the name
 				}
 				if(fgets(line, sizeof(line), fp) == NULL) {
-					printf(read_message("Source.common.svn_version_mes2"));    // Get the entries kind
+					ShowInfo(read_message("Source.common.svn_version_mes2"));    // Get the entries kind
 				}
 				if(fgets(line, sizeof(line), fp)) { // Get the rev numver
 					snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", atoi(line));
