@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `char` (
   `delete_date` INT(11) unsigned NOT NULL DEFAULT '0',
   `slotchange` SMALLINT(3) unsigned NOT NULL default '0',
   `char_opt` INT( 11 ) unsigned NOT NULL default '0',
+  `font` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT  '0',
   PRIMARY KEY  (`char_id`),
   UNIQUE KEY `name_key` (`name`),
   KEY `account_id` (`account_id`),

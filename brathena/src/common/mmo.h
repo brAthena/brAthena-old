@@ -440,6 +440,7 @@ struct mmo_charstatus {
 
 	time_t delete_date;
 
+	unsigned char font;
 };
 
 typedef enum mail_status {
