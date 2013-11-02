@@ -1808,7 +1808,6 @@ struct sc_display_entry {
 struct status_change_entry {
 	int timer;
 	int val1,val2,val3,val4;
-	struct script_code *script;
 };
 
 struct status_change {
@@ -1830,6 +1829,10 @@ struct status_change {
 	unsigned char bs_counter; // Blood Sucker counter
 	struct status_change_entry *data[SC_MAX];
 };
+
+typedef struct sc_script_def {
+	struct script_code *script;
+} sc_script_s;
 
 // for looking up associated data
 sc_type status_skill2sc(int skill);
