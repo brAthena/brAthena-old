@@ -9199,7 +9199,6 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 		}
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, 0, 1, skill_id, -2, 6);
 		break;
 
 		case GM_SANDMAN:
