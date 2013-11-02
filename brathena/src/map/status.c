@@ -1078,6 +1078,9 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_ALL_RIDING] = SCB_SPEED;
 	StatusChangeFlagTable[SC_WEDDING] = SCB_SPEED;
 
+	StatusChangeFlagTable[SC_MOONSTAR] |= SCB_NONE;
+	StatusChangeFlagTable[SC_SUPER_STAR] |= SCB_NONE;
+
 	/* StatusDisplayType Table [Ind/Hercules] */
 	StatusDisplayType[SC_ALL_RIDING]		= true;
 	StatusDisplayType[SC_PUSH_CART]			= true;
