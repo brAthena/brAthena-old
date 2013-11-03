@@ -1204,6 +1204,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->sc_display = NULL;
 	sd->sc_display_count = 0;
 	
+	/* [Shiraz] */
 	if(bra_config.enable_system_vip)
 		sd->vip_timer = add_timer(gettick()+DELAY_IN(1), check_time_vip, sd->bl.id, 0);
 
@@ -6940,6 +6941,10 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	   && !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg2(sd->bl.m)
 	   && !sd->sc.data[SC_BABY] && !sd->sc.data[SC_CASH_DEATHPENALTY]) {
 		unsigned int base_penalty =0;
+		if(battle_config.ip_exp_bonus) {
+			battle_config.death_penalty_base -= battle_config.ip_exp_penalty;
+			battle_config.death_penalty_job  -= battle_config.ip_exp_penalty;
+		}
 		if(bra_config.enable_system_vip && pc_isvip(sd)) {
 			battle_config.death_penalty_base -= bra_config.penalty_exp_vip;
 			battle_config.death_penalty_job  -= bra_config.penalty_exp_vip;

@@ -6480,6 +6480,9 @@ static const struct _battle_data {
 	{ "walk_speed_default",                 &battle_config.walk_speed_default,              150,    0, MAX_WALK_SPEED,      },
 	{ "official_rates",                     &battle_config.official_rates,                    0,    0,        1|2|4|8,      },
 	{ "ip_exp_bonus",                       &battle_config.ip_exp_bonus,                      0,    0,              1,      },
+	{ "ip_exp_extra",                       &battle_config.ip_exp_extra,                      0,    0,      INT_MAX,        },
+	{ "ip_exp_penalty",                     &battle_config.ip_exp_penalty,                    0,    0,      INT_MAX,        },
+	{ "ip_exp_drop",                        &battle_config.ip_exp_drop,                       0,    0,      INT_MAX,        },
 };
 #ifndef STATS_OPT_OUT
 /**

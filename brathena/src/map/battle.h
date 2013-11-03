@@ -454,7 +454,22 @@ extern struct Battle_Config {
 	int bg_flee_penalty;
 
 	// [brAthena]
-	int devotion_rdamage, warp_no_ress, mob_drop_identified, bRO_Renewal, alliance_in_woe, use_item_in_status, supports_castle_gvg, max_atk,hanbok_ignorepalette, edp_rate, walk_speed_default, official_rates, ip_exp_bonus;
+	int devotion_rdamage;
+	int warp_no_ress;
+	int mob_drop_identified;
+	int bRO_Renewal;
+	int alliance_in_woe;
+	int use_item_in_status;
+	int supports_castle_gvg;
+	int max_atk;
+	int hanbok_ignorepalette;
+	int edp_rate;
+	int walk_speed_default;
+	int official_rates;
+	int ip_exp_bonus;
+	int ip_exp_extra;
+	int ip_exp_penalty;
+	int ip_exp_drop;
 
 	// rAthena
 	int max_third_parameter;

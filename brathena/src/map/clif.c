@@ -18028,7 +18028,7 @@ unsigned short clif_parse_cmd_optional(int fd, struct map_session_data *sd) {
 }
 
 // brathena [Megasantos]
-/// 0x2bc <packet type>.W <ExpFactor>.W <TimeMinute>.W (PACKET_ZC_NOTIFY_PCBANG_PLAYING_TIME)
+/// 0x2bc <packet type>.W <TimeMinute>.W (PACKET_ZC_NOTIFY_PCBANG_PLAYING_TIME)
 void clif_pcbangplayingtime(struct map_session_data *sd, int time)
 {
 #if PACKETVER > 20060424
@@ -18050,9 +18050,9 @@ void clif_pcbangeffect(struct map_session_data *sd)
 	struct packet_pcbangeffect p;
 
 	p.PacketType = pcbangeffectType;
-	p.ExpFactor = 100;
-	p.ExpFactor2 = 100;
-	p.DropFactor = 100;
+	p.ExpFactor = battle_config.ip_exp_extra;
+	p.ExpFactor2 = battle_config.ip_exp_penalty;
+	p.DropFactor = battle_config.ip_exp_drop;
 
 	clif_send(&p,sizeof(p), &sd->bl, SELF);
 #else

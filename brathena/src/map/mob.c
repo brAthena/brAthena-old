@@ -2198,6 +2198,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 			
 			// Adição de rates VIP.
+			if(battle_config.ip_exp_bonus)
+				bonus += battle_config.ip_exp_extra;
 			if(bra_config.enable_system_vip && (sd && pc_isvip(sd)))
 				bonus += bra_config.extra_exp_vip;
 
@@ -2326,6 +2328,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			// Increase drop rate if user has SC_CASH_RECEIVEITEM
 			if(sd && sd->sc.data[SC_CASH_RECEIVEITEM])  // now rig the drop rate to never be over 90% unless it is originally >90%.
 				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_CASH_RECEIVEITEM]->val1)/100.),0,9000));
+				
+			if(battle_config.ip_exp_bonus)
+				drop_rate += (int)(0.5+drop_rate*battle_config.ip_exp_drop);
 #ifdef RENEWAL_DROP
 			if(drop_modifier != 100) {
 				drop_rate = drop_rate * drop_modifier / 100;
