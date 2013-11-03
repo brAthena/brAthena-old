@@ -6479,6 +6479,7 @@ static const struct _battle_data {
 	{ "edp_rate",                           &battle_config.edp_rate,                        100,    0,        INT_MAX,      },
 	{ "walk_speed_default",                 &battle_config.walk_speed_default,              150,    0, MAX_WALK_SPEED,      },
 	{ "official_rates",                     &battle_config.official_rates,                    0,    0,        1|2|4|8,      },
+	{ "ip_exp_bonus",                       &battle_config.ip_exp_bonus,                      0,    0,              1,      },
 };
 #ifndef STATS_OPT_OUT
 /**

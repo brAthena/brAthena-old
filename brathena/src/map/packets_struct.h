@@ -194,6 +194,14 @@ enum packet_headers {
 #endif
 	monsterhpType = 0x977,
 	maptypeproperty2Type = 0x99b,
+	
+/******************************************
+ *              brAthena                  *
+ ******************************************/
+#if PACKETVER > 20060424
+	pcbangplayingtimeType = 0x2bc,
+	pcbangeffectType = 0x27b,
+#endif
 };
 
 #pragma pack(push, 1)
@@ -813,7 +821,25 @@ struct packet_viewequip_ack {
 	struct EQUIPITEM_INFO list[MAX_INVENTORY];
 } __attribute__((packed));
 
+/******************************************
+ *               brAthena                 *
+ ******************************************/
+struct packet_pcbangplayingtime {
+#if PACKETVER > 20060424
+	short PacketType;
+	int TimeMinute;
+#endif
+ }__attribute__((packed));
 
+struct packet_pcbangeffect {
+#if PACKETVER > 20060424
+	short PacketType;
+	int ExpFactor;
+	int ExpFactor2;
+	int DropFactor;
+#endif
+}__attribute__((packed));
+ 
 #pragma pack(pop)
 
 #endif /* _PACKETS_STRUCT_H_ */

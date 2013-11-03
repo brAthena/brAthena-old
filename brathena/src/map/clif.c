@@ -18027,6 +18027,39 @@ unsigned short clif_parse_cmd_optional(int fd, struct map_session_data *sd) {
 	return cmd;
 }
 
+// brathena [Megasantos]
+/// 0x2bc <packet type>.W <ExpFactor>.W <TimeMinute>.W (PACKET_ZC_NOTIFY_PCBANG_PLAYING_TIME)
+void clif_pcbangplayingtime(struct map_session_data *sd, int time)
+{
+#if PACKETVER > 20060424
+	struct packet_pcbangplayingtime p;
+
+	p.PacketType = pcbangplayingtimeType;
+	p.TimeMinute = time;
+#else
+	return;
+#endif
+
+}
+
+// brathena [Megasantos]
+/// 0x27b <packet type>.W <ExpFactor>.W <ExpFactor2>.W <DropFactor>.W (PACKET_ZC_PCBANG_EFFECT)
+void clif_pcbangeffect(struct map_session_data *sd)
+{
+#if PACKETVER > 20060424
+	struct packet_pcbangeffect p;
+
+	p.PacketType = pcbangeffectType;
+	p.ExpFactor = 100;
+	p.ExpFactor2 = 100;
+	p.DropFactor = 100;
+
+	clif_send(&p,sizeof(p), &sd->bl, SELF);
+#else
+	return;
+#endif
+}
+
 /*==========================================
  * Main client packet processing function
  *------------------------------------------*/
