@@ -457,7 +457,6 @@ CREATE TABLE IF NOT EXISTS `login` (
   `character_slots` TINYINT( 3 ) unsigned NOT NULL default '0',
   `pincode` varchar(4) NOT NULL DEFAULT '',
   `pincode_change` int(11) unsigned NOT NULL DEFAULT '0',
-  `date_vip` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`account_id`),
   KEY `name` (`userid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2000000; 
