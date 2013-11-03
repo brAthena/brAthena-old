@@ -2527,8 +2527,16 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 		clif_status_change_end(&sd->bl,sd->bl.id,SELF,SI_CLAIRVOYANCE);
 
 	memset(&sd->special_state,0,sizeof(sd->special_state));
-	memset(&status->max_hp, 0, sizeof(struct status_data)-(sizeof(status->hp)+sizeof(status->sp)));
 
+	if(!sd->state.permanent_speed) {
+		memset(&status->max_hp, 0, sizeof(struct status_data)-(sizeof(status->hp)+sizeof(status->sp)));
+		status->speed = DEFAULT_WALK_SPEED;
+	} else {
+		int pSpeed = status->speed;
+		memset(&status->max_hp, 0, sizeof(struct status_data)-(sizeof(status->hp)+sizeof(status->sp)));
+		status->speed = pSpeed;
+	}
+	
 	//FIXME: Most of these stuff should be calculated once, but how do I fix the memset above to do that? [Skotlex]
 	if(!sd->state.permanent_speed)
 	status->speed = ( battle_config.walk_speed_default != DEFAULT_WALK_SPEED ) ? battle_config.walk_speed_default : DEFAULT_WALK_SPEED;
@@ -2641,12 +2649,12 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 			if((r = sd->status.inventory[index].refine))
 				wa->atk2 = refine_info[wlv].bonus[r-1] / 100;
 
-			#if VERSION == 1
+#if VERSION == 1
 			wa->matk += sd->inventory_data[index]->matk;
 			wa->wlv = wlv;
 			if(r && sd->weapontype1 != W_BOW)   // renewal magic attack refine bonus
 				wa->matk += refine_info[wlv].bonus[r-1] / 100;
-			#endif
+#endif
 
 			//Overrefine bonus.
 			if(r)
@@ -3878,7 +3886,7 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 		if(ud)
 			ud->state.change_walk_target = ud->state.speed_changed = 1;
 
-		if(bl->type&BL_PC && status->speed < battle_config.max_walk_speed)
+		if(bl->type&BL_PC && !(sd && sd->state.permanent_speed) && status->speed < battle_config.max_walk_speed)
 			status->speed = battle_config.max_walk_speed;
 
 		if(bl->type&BL_HOM && battle_config.hom_setting&0x8 && ((TBL_HOM *)bl)->master)
@@ -5247,11 +5255,9 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 	TBL_PC *sd = BL_CAST(BL_PC, bl);
 	int speed_rate;
 
-	if(sc == NULL)
-		return cap_value(speed,10,USHRT_MAX);
+	if(sc == NULL || ( sd && sd->state.permanent_speed ))
+		return (unsigned short)cap_value(speed,MIN_WALK_SPEED,MAX_WALK_SPEED);
 
-	if(sd && sd->state.permanent_speed)
-		return (short)cap_value(speed,10,USHRT_MAX);
 	if(sd && sd->ud.skilltimer != INVALID_TIMER && (pc_checkskill(sd,SA_FREECAST) > 0 || sd->ud.skill_id == LG_EXEEDBREAK)) {
 		if(sd->ud.skill_id == LG_EXEEDBREAK)
 			speed_rate = 100 + 60 - (sd->ud.skill_lv * 10);
@@ -5414,9 +5420,10 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			speed = max(speed, 200);
 		if(sc->data[SC_WALKSPEED] && sc->data[SC_WALKSPEED]->val1 > 0)   // ChangeSpeed
 			speed = speed * 100 / sc->data[SC_WALKSPEED]->val1;
+
 	}
 
-	return (short)cap_value(speed,10,USHRT_MAX);
+	return (unsigned short)cap_value(speed,MIN_WALK_SPEED,MAX_WALK_SPEED);
 }
 
 // flag&1 - fixed value [malufett]
@@ -10545,7 +10552,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 					if(sd && !pc_issit(sd)) {  //can't cast if sit
 						int mushroom_skill_id = 0, i;
 						unit_stop_attack(bl);
-						unit_skillcastcancel(bl,1);
+						unit_skillcastcancel(bl,0);
 						do {
 							i = rnd() % MAX_SKILL_MAGICMUSHROOM_DB;
 							mushroom_skill_id = skill_magicmushroom_db[i].skill_id;

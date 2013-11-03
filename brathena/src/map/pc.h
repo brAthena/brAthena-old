@@ -187,6 +187,7 @@ struct map_session_data {
 		short pmap; // Previous map on Map Change
 		unsigned short autoloot;
 		unsigned short autolootid[AUTOLOOTITEM_SIZE]; // [Zephyrus]
+		unsigned short autoloottype;
 		unsigned int autolooting : 1; //performance-saver, autolooting state for @alootid
 		unsigned short autobonus; //flag to indicate if an autobonus is activated. [Inkfish]
 		unsigned int gmaster_flag : 1;
@@ -942,6 +943,8 @@ void pc_bank_deposit(struct map_session_data *sd, int money);
 void pc_bank_withdraw(struct map_session_data *sd, int money);
 
 const char *job_name(int class_);
+
+unsigned int equip_pos[EQI_MAX];
 
 struct skill_tree_entry {
 	short id;

@@ -80,8 +80,6 @@ struct fame_list smith_fame_list[MAX_FAME_LIST];
 struct fame_list chemist_fame_list[MAX_FAME_LIST];
 struct fame_list taekwon_fame_list[MAX_FAME_LIST];
 
-static unsigned short equip_pos[EQI_MAX]= {EQP_ACC_L,EQP_ACC_R,EQP_SHOES,EQP_GARMENT,EQP_HEAD_LOW,EQP_HEAD_MID,EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_GARMENT,EQP_AMMO};
-
 #define MOTD_LINE_SIZE 128
 static char motd_text[MOTD_LINE_SIZE][CHAT_SIZE_MAX]; // Message of the day buffer [Valaris]
 
@@ -9505,20 +9503,20 @@ void pc_setstand(struct map_session_data *sd)
  **/
 void pc_overheat(struct map_session_data *sd, int val)
 {
-	int heat = val, skill,
+	int heat = val, skill_lv,
 	    limit[] = { 10, 20, 28, 46, 66 };
 
 	if(!pc_ismadogear(sd) || sd->sc.data[SC_OVERHEAT])
 		return; // already burning
 
-	skill = cap_value(pc_checkskill(sd,NC_MAINFRAME),0,4);
+	skill_lv = cap_value(pc_checkskill(sd,NC_MAINFRAME),0,4);
 	if(sd->sc.data[SC_OVERHEAT_LIMITPOINT]) {
 		heat += sd->sc.data[SC_OVERHEAT_LIMITPOINT]->val1;
 		status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,INVALID_TIMER);
 	}
 
 	heat = max(0,heat); // Avoid negative HEAT
-	if(heat >= limit[skill])
+	if(heat >= limit[skill_lv])
 		sc_start(&sd->bl,SC_OVERHEAT,100,0,1000);
 	else
 		sc_start(&sd->bl,SC_OVERHEAT_LIMITPOINT,100,heat,30000);
@@ -9531,10 +9529,16 @@ void pc_overheat(struct map_session_data *sd, int val)
  */
 bool pc_isautolooting(struct map_session_data *sd, int nameid)
 {
-	int i;
+	int i = 0;
+
+	if(sd->state.autoloottype && sd->state.autoloottype&(1<<itemdb_type(nameid)))
+		return true;
+
 	if(!sd->state.autolooting)
 		return false;
+
 	ARR_FIND(0, AUTOLOOTITEM_SIZE, i, sd->state.autolootid[i] == nameid);
+
 	return (i != AUTOLOOTITEM_SIZE);
 }
 
@@ -10392,6 +10396,7 @@ void pc_scdata_received(struct map_session_data *sd) {
 	pc_inventory_rentals(sd);
 }
 
+unsigned int equip_pos[EQI_MAX]={EQP_ACC_L,EQP_ACC_R,EQP_SHOES,EQP_GARMENT,EQP_HEAD_LOW,EQP_HEAD_MID,EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_GARMENT,EQP_AMMO, EQP_SHADOW_ARMOR, EQP_SHADOW_WEAPON, EQP_SHADOW_SHIELD, EQP_SHADOW_SHOES, EQP_SHADOW_ACC_R, EQP_SHADOW_ACC_L };
 /*==========================================
  * pc Init/Terminate
  *------------------------------------------*/

@@ -30,6 +30,8 @@ struct eri;
  **/
 #define NUM_WHISPER_VAR 10
 
+#define SCRIPT_EQUIP_TABLE_SIZE 20
+
 /**
  * Enumerations
  **/
@@ -259,6 +261,7 @@ struct script_label_entry {
 struct script_interface {
 	/* */
 	DBMap *st_db;
+	unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE];
 	unsigned int active_scripts;
 	unsigned int next_id;
 	struct eri *st_ers;

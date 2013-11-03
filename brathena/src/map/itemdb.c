@@ -1109,7 +1109,7 @@ void itemdb_read_packages(void) {
 				itemdb->packages[cnt].random_groups[gidx].random_list[r].id = data ? data->nameid : 0;
 				itemdb->packages[cnt].random_groups[gidx].random_list[r].qty = icnt;
 				if((itemdb->packages[cnt].random_groups[gidx].random_list[r].probability = probability) == 10000) {
-					ShowWarning("itemdb_read_packages: item '%s' em '%s' tem taxa de queda de 100%!!!! definir este item como 'Random: 0' ou outros itens não vão cair!!!\n",itname,config_setting_name(itg));
+					ShowWarning("itemdb_read_packages: item '%s' em '%s' tem taxa de queda de 100%%!!!! definir este item como 'Random: 0' ou outros itens não vão cair!!!\n",itname,config_setting_name(itg));
 				}
 				itemdb->packages[cnt].random_groups[gidx].random_list[r].hour = hour;
 				itemdb->packages[cnt].random_groups[gidx].random_list[r].onair = onair == true ? 1 : 0;
