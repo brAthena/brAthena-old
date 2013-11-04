@@ -7691,9 +7691,14 @@ BUILDIN_FUNC(bonus)
 		case SP_VARCASTRATE:
 		case SP_FIXCASTRATE:
 		case SP_SKILL_USE_SP:
-			// these bonuses support skill names
+			// estes bonus suportam nomes de habilidades
 			val1 = (script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
 			break;
+		case SP_ADD_DAMAGE_CLASS:
+  		case SP_ADD_MAGIC_DAMAGE_CLASS:
+   			// estes bonus suportam nome de monstros
+   			val1 = (script_isstring(st,3) ? mobdb_searchname(script_getstr(st,3)) : script_getnum(st,3));
+   			break;
 		default:
 			val1 = script_getnum(st,3);
 			break;
