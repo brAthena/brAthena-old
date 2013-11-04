@@ -818,6 +818,8 @@ void clif_scriptclear(struct map_session_data *sd, int npcid);
 int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int damage, int div_);
 
 /// brAthena
+void clif_pcbanglogin(struct map_session_data *sd);
+void clif_pcbangnotify(struct map_session_data *sd);
 void clif_pcbangplayingtime(struct map_session_data *sd, int time);
 void clif_pcbangeffect(struct map_session_data *sd);
 

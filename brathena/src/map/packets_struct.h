@@ -199,6 +199,8 @@ enum packet_headers {
  *              brAthena                  *
  ******************************************/
 #if PACKETVER > 20060424
+	pcbangloginType = 0x277,
+	pcbangnotifyType = 0x278,
 	pcbangplayingtimeType = 0x2bc,
 	pcbangeffectType = 0x27b,
 #endif
@@ -824,6 +826,24 @@ struct packet_viewequip_ack {
 /******************************************
  *               brAthena                 *
  ******************************************/
+struct packet_pcbanglogin {
+#if PACKETVER > 20060424
+  short PacketType;
+  unsigned long Version;
+  unsigned char ID;
+  unsigned char Passwd;
+  unsigned char ClientType;
+  char IP;
+  //unsigned char MacAdress[13]
+#endif
+} __attribute__((packed));
+ 
+struct packet_pcbangnotify {
+#if PACKETVER > 20060424
+  short PacketType;
+#endif
+} __attribute__((packed));
+
 struct packet_pcbangplayingtime {
 #if PACKETVER > 20060424
 	short PacketType;

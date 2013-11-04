@@ -18027,6 +18027,30 @@ unsigned short clif_parse_cmd_optional(int fd, struct map_session_data *sd) {
 	return cmd;
 }
 
+// brathena [Protimus]
+/// 0x277 <packet type>.W (PACKET_CA_LOGIN_PCBANG)
+/*void clif_pcbanglogin(struct map_session_data *sd, unsigned char id, unsigned char passwd, char ip)
+{
+	struct packet_pcbanglogin p;
+
+	p.PacketType = pcbangloginType;
+	p.Version = ???;
+	p.ClientType = ???;
+	p.ID = id;
+	p.Passwd = passwd;
+	p.IP = ip;
+}
+
+// brathena [Protimus]
+/// 0x278 <packet type>.W (PACKET_ZC_NOTIFY_PCBANG)
+void clif_pcbangnotify(struct map_session_data *sd)
+{
+	struct packet_pcbangnotify p;
+
+	p.PacketType = pcbangnotifyType;
+	clif_send(&p,sizeof(p), &sd->bl, SELF);
+}*/
+
 // brathena [Megasantos]
 /// 0x2bc <packet type>.W <TimeMinute>.W (PACKET_ZC_NOTIFY_PCBANG_PLAYING_TIME)
 void clif_pcbangplayingtime(struct map_session_data *sd, int time)
