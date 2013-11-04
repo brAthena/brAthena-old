@@ -78,14 +78,16 @@ static struct {
 	int randombonus_max[MAX_REFINE]; // cumulative maximum random bonus damage
 } refine_info[REFINE_TYPE_MAX];
 
+struct {
+	struct script_code *script;
+} sc_script[SC_MAX];
+
 static int atkmods[3][MAX_WEAPON_TYPE]; //ATK weapon modification for size (size_fix.txt)
 static char job_bonus[CLASS_COUNT][MAX_LEVEL];
 static sc_conf_type sc_conf[SC_MAX];
 
 static struct eri *sc_data_ers; //For sc_data entries
 static struct status_data dummy_status;
-
-sc_script_s *sc_script[SC_MAX]; // brAthena
 
 int current_equip_item_index; //Contains inventory index of an equipped item. To pass it into the EQUP_SCRIPT [Lupus]
 int current_equip_card_id; //To prevent card-stacking (from jA) [Skotlex]
@@ -2789,8 +2791,8 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	}
 
 	for(index=0; index < SC_MAX; ++index)
-		if(sd && (sc->count && sc->data[index]) && sc_script[index])
-			run_script(sc_script[index]->script,0,sd->bl.id,fake_nd->bl.id);
+		if(sd && (sc->count && sc->data[index]) && sc_script[index].script)
+			run_script(sc_script[index].script,0,sd->bl.id,fake_nd->bl.id);
 
 	if(sd->pd) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
@@ -9315,7 +9317,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
 	
-	if(sd && sc_script[type])
+	if(sd && sc_script[type].script)
 		status_calc_pc(sd,0);
 
 	if(sd && sd->pd)
@@ -10131,7 +10133,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
 
-	if(sd && sc_script[type])
+	if(sd && sc_script[type].script)
 		status_calc_pc(sd,0);
 
 	if(opt_flag&4) //Out of hiding, invoke on place.
@@ -11712,18 +11714,24 @@ int status_readdb(void)
 	return 0;
 }
 
+void sc_script_free(void)
+{
+	size_t i;
+	
+	for(i = 0; i < SC_MAX; ++i)
+		if(sc_script[i].script)
+			script_free_code(sc_script[i].script);
+}
+
 void read_buffspecial_db(void) { //brAthena
-	int sc = 0, i;
+	int sc = 0;
 
 	if(Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(61)) == SQL_ERROR) {
 		Sql_ShowDebug(dbmysql_handle);
 		return;
 	}
 	
-	for(i = 0; i < SC_MAX; i++) {
-		free(sc_script[i]);
-		sc_script[i] = NULL;
-	}
+	sc_script_free();
 
 	while(Sql_NextRow(dbmysql_handle) == SQL_SUCCESS) {
 		char *res[2];
@@ -11737,11 +11745,9 @@ void read_buffspecial_db(void) { //brAthena
 			continue;
 		}
 
-		if(sc_script[type] == NULL) {
-			sc_script[type] = (sc_script_s *)malloc(sizeof(sc_script_s));
-			sc_script[type]->script = parse_script((const char *)res[1], get_database_name(61), sc, 0);
-			sc++;
-		}
+		if(!(sc_script[type].script = parse_script((const char *)res[1], get_database_name(61), type, 0)))
+			continue;
+		sc++;
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", sc, get_database_name(61));
@@ -11768,5 +11774,6 @@ int do_init_status(void)
 }
 void do_final_status(void)
 {
+	sc_script_free();
 	ers_destroy(sc_data_ers);
 }

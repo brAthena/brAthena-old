@@ -29,7 +29,7 @@
 //
 #include "../common/cbasetypes.h"
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) && (_MSC_VER < 1800)
 #include "../common/winapi.h"
 
 #if !defined(_M_X64)

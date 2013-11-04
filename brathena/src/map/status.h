@@ -1830,10 +1830,6 @@ struct status_change {
 	struct status_change_entry *data[SC_MAX];
 };
 
-typedef struct sc_script_def {
-	struct script_code *script;
-} sc_script_s;
-
 // for looking up associated data
 sc_type status_skill2sc(int skill);
 int status_sc2skill(sc_type sc);
