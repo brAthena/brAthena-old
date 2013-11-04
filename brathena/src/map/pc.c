@@ -9142,7 +9142,7 @@ int check_time_vip(int tid, unsigned int tick, int id, intptr_t data)
 	sd->vip_timer = INVALID_TIMER;
 	
 	if(pc_readaccountreg(sd,"#official_time_vip") < (int)time(NULL)) {
-		clif_displaymessage(sd->fd, "Seu tempo vip expirou.");
+		clif_colormes(sd->fd, COLOR_WHITE, "Seu tempo vip expirou.");
 		save_vip(sd,0);
 	}
 	
@@ -9195,12 +9195,10 @@ void show_time_vip(struct map_session_data *sd)
 	time_s[2] = val % 3600 / 60;
 	time_s[3] = val % 60;
 	
-	if(time_s[0] >= 0 && time_s[1] >= 0 && time_s[2] >= 0 && time_s[3] >= 0)
+	if(time_s[0] >= 0 && time_s[1] >= 0 && time_s[2] >= 0 && time_s[3] >= 0) {
 		snprintf(buf, sizeof(buf), "Restam: %d dia(s), %d hora(s), %d minuto(s) e %d segundo(s)", time_s[0], time_s[1], time_s[2], time_s[3]);
-	else
-		sprintf(buf, "Seu tempo vip expirou.");
-	
-	clif_displaymessage(sd->fd, buf);
+		clif_colormes(sd->fd,COLOR_WHITE, buf);
+	}
 }
 
 /*==========================================
