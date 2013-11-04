@@ -2268,7 +2268,7 @@ void npc_convertlabel_db(struct npc_label_list* label_list, const char *filepath
 
 		// here we check if the label fit into the buffer
 		if(len > 23) {
-			ShowError("npc_parse_script: label name longer than 23 chars! '%s'\n (%s)", lname, filepath);
+			ShowError("npc_parse_script: label name longer than 23 chars! (%s) in file '%s'.\n", lname, filepath);
 			return;
 		}
 
@@ -2291,7 +2291,7 @@ static const char *npc_skip_script(const char *start, const char *buffer, const 
 	// initial bracket (assumes the previous part is ok)
 	p = strchr(start,'{');
 	if(p == NULL) {
-		ShowError("npc_skip_script: Missing left curly in file '%s', line'%d'.", filepath, strline(buffer,start-buffer));
+		ShowError("npc_skip_script: Missing left curly in file '%s', line '%d'.\n", filepath, strline(buffer,start-buffer));
 		return NULL;// can't continue
 	}
 
@@ -2319,7 +2319,7 @@ static const char *npc_skip_script(const char *start, const char *buffer, const 
 			}
 		} else if(*p == '\0') {
 			// end of buffer
-			ShowError("Missing %d right curlys at file '%s', line '%d'.\n", curly_count, filepath, strline(buffer,p-buffer));
+			ShowError("Missing %d right curlys in file '%s', line '%d'.\n", curly_count, filepath, strline(buffer,p-buffer));
 			return NULL;// can't continue
 		}
 	}
@@ -2430,7 +2430,7 @@ static const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, cons
 	// Loop through labels to export them as necessary
 	for(i = 0; i < nd->u.scr.label_list_num; i++) {
 		if(npc_event_export(nd, i)) {
-			ShowWarning("npc_parse_script : duplicate event %s::%s (%s)\n",
+			ShowWarning("npc_parse_script: duplicate event %s::%s in file '%s'.\n",
 			            nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
 		npc_timerevent_export(nd, i);
@@ -2591,7 +2591,7 @@ const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const ch
 	// Loop through labels to export them as necessary
 	for(i = 0; i < nd->u.scr.label_list_num; i++) {
 		if(npc_event_export(nd, i)) {
-			ShowWarning("npc_parse_duplicate : duplicate event %s::%s (%s)\n",
+			ShowWarning("npc_parse_duplicate : duplicate event %s::%s in file '%s'.\n",
 			            nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
 		npc_timerevent_export(nd, i);
@@ -2878,7 +2878,7 @@ static const char *npc_parse_function(char *w1, char *w2, char *w3, char *w4, co
 	func_db = script_get_userfunc_db();
 	if(func_db->put(func_db, db_str2key(w3), db_ptr2data(script), &old_data)) {
 		struct script_code *oldscript = (struct script_code *)db_data2ptr(&old_data);
-		ShowNpc("npc_parse_function: Overwriting user function [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
+		ShowNpc("npc_parse_function: Overwriting user function [%s] in file '%s', line '%d'.\n", w3, filepath, strline(buffer,start-buffer));
 		script_free_vars(oldscript->script_vars);
 		aFree(oldscript->script_buf);
 		aFree(oldscript);
@@ -2947,33 +2947,33 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 	mobspawn.m = (unsigned short)m;
 
 	if(x < 0 || x >= map[mobspawn.m].xs || y < 0 || y >= map[mobspawn.m].ys) {
-		ShowError("npc_parse_mob: Spawn coordinates out of range: %s (%d,%d), map size is (%d,%d) - %s %s (file '%s', line '%d').\n", map[mobspawn.m].name, x, y, (map[mobspawn.m].xs-1), (map[mobspawn.m].ys-1), w1, w3, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Spawn coordinates out of range: %s (%d,%d), map size is (%d,%d) - %s %s in file '%s', line '%d'.\n", map[mobspawn.m].name, x, y, (map[mobspawn.m].xs-1), (map[mobspawn.m].ys-1), w1, w3, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
 	// check monster ID if exists!
 	if(mobdb_checkid(class_) == 0) {
-		ShowError("npc_parse_mob: Unknown mob ID %d (file '%s', line '%d').\n", class_, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Unknown mob ID %d in file '%s', line '%d'.\n", class_, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
 	if(num < 1 || num > 1000) {
-		ShowError("npc_parse_mob: Invalid number of monsters %d, must be inside the range [1,1000] (file '%s', line '%d').\n", num, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Invalid number of monsters %d, must be inside the range [1,1000] in file '%s', line '%d'.\n", num, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
 	if((mobspawn.state.size < 0 || mobspawn.state.size > 2) && size != -1) {
-		ShowError("npc_parse_mob: Invalid size number %d for mob ID %d (file '%s', line '%d').\n", mobspawn.state.size, class_, filepath, strline(buffer, start - buffer));
+		ShowError("npc_parse_mob: Invalid size number %d for mob ID %d in file '%s', line '%d'.\n", mobspawn.state.size, class_, filepath, strline(buffer, start - buffer));
 		return strchr(start, '\n');
 	}
 
 	if((mobspawn.state.ai < 0 || mobspawn.state.ai > 4) && ai != -1) {
-		ShowError("npc_parse_mob: Invalid ai %d for mob ID %d (file '%s', line '%d').\n", mobspawn.state.ai, class_, filepath, strline(buffer, start - buffer));
+		ShowError("npc_parse_mob: Invalid ai %d for mob ID %d in file '%s', line '%d'.\n", mobspawn.state.ai, class_, filepath, strline(buffer, start - buffer));
 		return strchr(start, '\n');
 	}
 
 	if((mob_lv == 0 || mob_lv > MAX_LEVEL) && mob_lv != -1) {
-		ShowError("npc_parse_mob: Invalid level %d for mob ID %d (file '%s', line '%d').\n", mob_lv, class_, filepath, strline(buffer, start - buffer));
+		ShowError("npc_parse_mob: Invalid level %d for mob ID %d in file '%s', line '%d'.\n", mob_lv, class_, filepath, strline(buffer, start - buffer));
 		return strchr(start, '\n');
 	}
 
@@ -3003,7 +3003,7 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 	}
 
 	if(mobspawn.delay1>0xfffffff || mobspawn.delay2>0xfffffff) {
-		ShowError("npc_parse_mob: Invalid spawn delays %u %u (file '%s', line '%d').\n", mobspawn.delay1, mobspawn.delay2, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Invalid spawn delays %u %u in file '%s', line '%d'.\n", mobspawn.delay1, mobspawn.delay2, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
@@ -3017,7 +3017,7 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 
 	//Verify dataset.
 	if(!mob_parse_dataset(&mobspawn)) {
-		ShowError("npc_parse_mob: Invalid dataset for monster ID %d (file '%s', line '%d').\n", class_, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Invalid dataset for monster ID %d in file '%s', line '%d'.\n", class_, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
@@ -3112,7 +3112,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			map[m].save.x = savex;
 			map[m].save.y = savey;
 			if(!map[m].save.map) {
-				ShowWarning("npc_parse_mapflag: Specified save point map '%s' for mapflag 'nosave' not found (file '%s', line '%d'), using 'SavePoint'.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", savemap, filepath, strline(buffer,start-buffer), w1, w2, w3, w4);
+				ShowWarning("npc_parse_mapflag: Specified save point map '%s' for mapflag 'nosave' not found in file '%s', line '%d', using 'SavePoint'.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", savemap, filepath, strline(buffer,start-buffer), w1, w2, w3, w4);
 				map[m].save.x = -1;
 				map[m].save.y = -1;
 			}
@@ -3148,7 +3148,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 			map[m].flag.gvg = 0;
 			map[m].flag.gvg_dungeon = 0;
 			map[m].flag.gvg_castle = 0;
-			ShowWarning("npc_parse_mapflag: You can't set PvP and GvG flags for the same map! Removing GvG flags from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: You can't set PvP and GvG flags for the same map! Removing GvG flags from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
 		if(state && map[m].flag.battleground) {
 			map[m].flag.battleground = 0;
@@ -3195,11 +3195,11 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		map[m].flag.gvg = state;
 		if(state && map[m].flag.pvp) {
 			map[m].flag.pvp = 0;
-			ShowWarning("npc_parse_mapflag: You can't set PvP and GvG flags for the same map! Removing PvP flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: You can't set PvP and GvG flags for the same map! Removing PvP flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
 		if(state && map[m].flag.battleground) {
 			map[m].flag.battleground = 0;
-			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing BattleGround flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing BattleGround flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
 		if(state && (zone = strdb_get(zone_db, MAP_ZONE_GVG_NAME)) && map[m].zone != zone) {
 			map_zone_change(m,zone,start,buffer,filepath);
@@ -3224,13 +3224,13 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 
 		if(map[m].flag.battleground && map[m].flag.pvp) {
 			map[m].flag.pvp = 0;
-			ShowWarning("npc_parse_mapflag: You can't set PvP and BattleGround flags for the same map! Removing PvP flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: You can't set PvP and BattleGround flags for the same map! Removing PvP flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
 		if(map[m].flag.battleground && (map[m].flag.gvg || map[m].flag.gvg_dungeon || map[m].flag.gvg_castle)) {
 			map[m].flag.gvg = 0;
 			map[m].flag.gvg_dungeon = 0;
 			map[m].flag.gvg_castle = 0;
-			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing GvG flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: You can't set GvG and BattleGround flags for the same map! Removing GvG flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		}
 
 		if( state && (zone = strdb_get(zone_db, MAP_ZONE_BG_NAME)) && map[m].zone != zone ) {
@@ -3336,11 +3336,11 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		}
 		
 		if(modifier[0] == '\0') {
-			ShowWarning("npc_parse_mapflag: Missing 5th param for 'adjust_unit_duration' flag! removing flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Missing 5th param for 'adjust_unit_duration' flag! removing flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		} else if(!( skill_id = skill_name2id(skill_name) ) || !skill_get_unit_id( skill_name2id(skill_name), 0)) {
-			ShowWarning("npc_parse_mapflag: Unknown skill (%s) for 'adjust_unit_duration' flag! removing flag from %s (file '%s', line '%d').\n", skill_name, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Unknown skill (%s) for 'adjust_unit_duration' flag! removing flag from %s in file '%s', line '%d'.\n", skill_name, map[m].name, filepath, strline(buffer,start-buffer));
 		} else if (atoi(modifier) < 1 || atoi(modifier) > USHRT_MAX) {
-			ShowWarning("npc_parse_mapflag: Invalid modifier '%d' for skill '%s' for 'adjust_unit_duration' flag! removing flag from %s (file '%s', line '%d').\n", atoi(modifier), skill_name, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Invalid modifier '%d' for skill '%s' for 'adjust_unit_duration' flag! removing flag from %s in file '%s', line '%d'.\n", atoi(modifier), skill_name, map[m].name, filepath, strline(buffer,start-buffer));
 		} else {
 			int idx = map[m].unit_count;
 
@@ -3390,11 +3390,11 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		}
 				
 		if(modifier[0] == '\0') {
-			ShowWarning("npc_parse_mapflag: Missing 5th param for 'adjust_skill_damage' flag! removing flag from %s (file '%s', line '%d').\n", map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Missing 5th param for 'adjust_skill_damage' flag! removing flag from %s in file '%s', line '%d'.\n", map[m].name, filepath, strline(buffer,start-buffer));
 		} else if(!( skill_id = skill_name2id(skill_name) ) ) {
-			ShowWarning("npc_parse_mapflag: Unknown skill (%s) for 'adjust_skill_damage' flag! removing flag from %s (file '%s', line '%d').\n", skill_name, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Unknown skill (%s) for 'adjust_skill_damage' flag! removing flag from %s in file '%s', line '%d'.\n", skill_name, map[m].name, filepath, strline(buffer,start-buffer));
 		} else if (atoi(modifier) < 1 || atoi(modifier) > USHRT_MAX ) {
-			ShowWarning("npc_parse_mapflag: Invalid modifier '%d' for skill '%s' for 'adjust_skill_damage' flag! removing flag from %s (file '%s', line '%d').\n", atoi(modifier), skill_name, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Invalid modifier '%d' for skill '%s' for 'adjust_skill_damage' flag! removing flag from %s in file '%s', line '%d'.\n", atoi(modifier), skill_name, map[m].name, filepath, strline(buffer,start-buffer));
 		} else {
 			int idx = map[m].skill_count;
 
@@ -3432,7 +3432,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 		struct map_zone_data *zone;
 		
 		if(!(zone = strdb_get(zone_db, w4))) {
-			ShowWarning("npc_parse_mapflag: Zona inválida '%s'! removendo flag para %s (arquivo '%s', linha '%d').\n", w4, map[m].name, filepath, strline(buffer,start-buffer));
+			ShowWarning("npc_parse_mapflag: Zona inválida '%s'! removendo flag para %s arquivo '%s', linha '%d'.\n", w4, map[m].name, filepath, strline(buffer,start-buffer));
 		} else if(map[m].zone != zone) {
 			map_zone_change(m,zone,start,buffer,filepath);
 		}
@@ -3457,7 +3457,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 	} else if (!strcmpi(w3,"nocashshop")) {
 		map[m].flag.nocashshop = (state) ? 1 : 0;
 	} else
-		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mapflag: mapflag não reconhecida '%s' arquivo '%s', linha '%d'.\n", w3, filepath, strline(buffer,start-buffer));
 
 	return strchr(start,'\n');// continue
 }

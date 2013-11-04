@@ -43,7 +43,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 986,1; // Anvil
-			set Zeny,Zeny-30000;
+			set Zeny, Zeny-30000;
 			mes "[Christopher Guillenrow]";
 			mes "This is the cheapest one, but efficient enough to forge most items. Thank ye fer shopping at me workshop.  Feel free to come anytime, whenever ye need.";
 			close;
@@ -54,7 +54,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 987,1; // Oridecon_Anvil
-			set Zeny,Zeny-120000;
+			set Zeny, Zeny-120000;
 			mes "[Christopher Guillenrow]";
 			mes "Aye, friend ye have an eye for the anvil. This must be the proper anvil for a Blacksmith, eh? Thank ye fer shopping at me workshop.  Feel free to come anytime, whenever ye need.";
 			close;
@@ -65,7 +65,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 988,1; // Golden_Anvil
-			set Zeny,Zeny-300000;
+			set Zeny, Zeny-300000;
 			mes "[Christopher Guillenrow]";
 			mes "This one is the best among all me stuffs in me workshop! With this, ye can rule the Blacksmith world! Thank ye fer shopping at me workshop.  Feel free to come anytime, whenever ye need.";
 			close;
@@ -118,7 +118,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 612,.@input; // Portable_Furnace
-			set Zeny,Zeny-.@sell;
+			set Zeny, Zeny-.@sell;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need.";
 			close;
@@ -129,7 +129,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 613,1; // Iron_Hammer
-			set Zeny,Zeny-1000;
+			set Zeny, Zeny-1000;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need.";
 			close;
@@ -140,7 +140,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 614,1; // Golden_Hammer
-			set Zeny,Zeny-3000;
+			set Zeny, Zeny-3000;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need.";
 			close;
@@ -151,7 +151,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 615,1; // Oridecon_Hammer
-			set Zeny,Zeny-5000;
+			set Zeny, Zeny-5000;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need.";
 			close;
@@ -199,7 +199,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 1010,.@input; // Phracon
-			set Zeny,Zeny-.@sell;
+			set Zeny, Zeny-.@sell;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need.";
 			close;
@@ -237,7 +237,7 @@ geffen_in,110,172,0	script	Christopher#1	63,{
 				close;
 			}
 			getitem 1011,.@input; // Emveretarcon
-			set Zeny,Zeny-.@sell;
+			set Zeny, Zeny-.@sell;
 			mes "[Christopher Guillenrow]";
 			mes "Thank ye fer shopping at me workshop. Feel free to come anytime, whenever ye need, whenever ye want.";
 			close;
@@ -976,10 +976,10 @@ function	script	refinenew	{
 		set .@material,6224;
 		set .@price,100000;
 		switch(getequipweaponlv(.@part)) {
-			case 1: set .@safe,17; break;
-			case 2: set .@safe,16; break;
-			case 3: set .@safe,15; break;
-			case 4: set .@safe,14; break;
+			case 1: set .@safe,10; break;
+			case 2: set .@safe,10; break;
+			case 3: set .@safe,10; break;
+			case 4: set .@safe,10; break;
 		}
 		mes "["+ getarg(0) +"]";
 		mes "Hmm a weapon, is that ok?";
@@ -989,7 +989,7 @@ function	script	refinenew	{
 	} else {
 		set .@material,6223;
 		set .@price,100000;
-		set .@safe,14;
+		set .@safe,10;
 		mes "["+ getarg(0) +"]";
 		mes "Hmm an armor, is that ok?";
 		mes "If you want to refine this armor,";
@@ -1068,7 +1068,7 @@ function	script	refinenew	{
 			if (rand(100) < 80) {
 				mes "["+ getarg(0) +"]";
 				mes "Clang! Clang! Clang! Clang!";
-				downrefitem .@part;
+				downrefitem .@part,3;
 				next;
 				emotion (!rand(5))?e_cash:e_omg;
 				mes "["+ getarg(0) +"]";
@@ -1182,7 +1182,7 @@ function	script	refinenew	{
 			if (rand(100) < 80) {
 				mes "["+ getarg(0) +"]";
 				mes "Clang! Clang! Clang! Clang!";
-				downrefitem .@part;
+				downrefitem .@part,3;
 				next;
 				emotion (!rand(5))?e_cash:e_omg;
 				mes "["+ getarg(0) +"]";

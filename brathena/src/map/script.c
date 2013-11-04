@@ -2308,9 +2308,9 @@ void script_errorwarning_sub(StringBuf *buf, const char *src, const char *file, 
 	}
 
 	if(line >= 0)
-		StringBuf_Printf(buf, "script error on %s line %d\n", file, line);
+		StringBuf_Printf(buf, "script error in file '%s' line %d\n", file, line);
 	else
-		StringBuf_Printf(buf, "script error on %s item ID %d\n", file, -line);
+		StringBuf_Printf(buf, "script error in file '%s' item ID %d\n", file, -line);
 
 	StringBuf_Printf(buf, "    %s\n", error_msg);
 	for(j = 0; j < 5; j++) {
