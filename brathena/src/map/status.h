@@ -59,7 +59,6 @@ int status_get_refine_chance(enum refine_type wlv, int refine);
 // Status changes listing. These code are for use by the server.
 typedef enum sc_type {
     SC_NONE = -1,
-
 	//First we enumerate common status ailments which are often used around.
     SC_STONE = 0,
     SC_COMMON_MIN = 0, // begin
@@ -336,7 +335,6 @@ typedef enum sc_type {
     SC_PROTECT_DEF,
 	//SC_SPREGEN,
     SC_WALKSPEED = 278,
-
 	// Mercenary Only Bonus Effects
     SC_MER_FLEE,
     SC_MER_ATK, //280
@@ -344,7 +342,6 @@ typedef enum sc_type {
     SC_MER_SP,
     SC_MER_HIT,
     SC_MER_QUICKEN,
-
     SC_REBIRTH,
 	//SC_SKILLCASTRATE, //286
 	//SC_DEFRATIOATK,
@@ -657,7 +654,6 @@ typedef enum sc_type {
 
 	//homon S
     SC_STYLE_CHANGE,
-
     SC_GOLDENE_FERSE,
     SC_ANGRIFFS_MODUS,
     SC_ERASER_CUTTER,
@@ -695,12 +691,6 @@ typedef enum sc_type {
     SC_ANGEL_PROTECT,
     SC_ILLUSIONDOPING,
 
-    //homon S
-    SC_TINDER_BREAKER,
-    SC_TINDER_BREAKER2,
-    SC_CBC,
-    SC_EQC,
-
     SC_MTF_ASPD,
     SC_MTF_RANGEATK,
     SC_MTF_MATK,
@@ -709,6 +699,12 @@ typedef enum sc_type {
 
     SC_MOONSTAR,
     SC_SUPER_STAR,
+
+    //homon S
+    SC_TINDER_BREAKER,
+    SC_TINDER_BREAKER2,
+    SC_CBC,
+    SC_EQC,
 
     // Pergaminhos e itens[Megasantos]
     SC_MVPCARD_TAOGUNKA = 800,
