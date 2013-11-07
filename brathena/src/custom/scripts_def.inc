@@ -7,7 +7,7 @@
 *                                                                            *
 *                                                                            *
 * \file src/custom/scripts_def.inc                                           *
-* Arquivo de inclusão para funções de scripts custumizadas.                  *
+* Arquivo de inclusão para funções de scripts customizadas.                  *
 * \author brAthena                                                           *
 * \date 14/05/2013                                                           *
 *****************************************************************************/

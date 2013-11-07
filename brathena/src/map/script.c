@@ -6047,7 +6047,7 @@ int checkweight_sub(TBL_PC *sd,int nbargs,int32 *eitemid,int32 *eamount)
 {
 	struct item_data* id = NULL;
 	int nameid,amount;
-	uint16 amount2=0,slots,weight=0,i;
+	uint16 slots,weight=0,i;
 
 	slots = pc_inventoryblank(sd); //nb of empty slot
 
@@ -6505,7 +6505,7 @@ BUILDIN_FUNC(makeitem)
 	get_val(st,data);
 	if(data_isstring(data)) {
 		const char *name=conv_str(st,data);
-		if(item_data = itemdb_searchname(name))
+		if((item_data = itemdb_searchname(name)))
 			nameid=item_data->nameid;
 		else
 			nameid=UNKNOWN_ITEM_ID;
@@ -6536,16 +6536,15 @@ BUILDIN_FUNC(makeitem)
 	}
 
 
-		memset(&item_tmp,0,sizeof(item_tmp));
-		item_tmp.nameid=nameid;
-		if(!flag)
-			item_tmp.identify=1;
-		else
-			item_tmp.identify=itemdb_isidentified2(item_data);
+	memset(&item_tmp,0,sizeof(item_tmp));
+	item_tmp.nameid=nameid;
+	if(!flag)
+		item_tmp.identify=1;
+	else
+		item_tmp.identify=itemdb_isidentified2(item_data);
 
-		map_addflooritem(&item_tmp,amount,m,x,y,0,0,0,0);
-
-		return 0;
+	map_addflooritem(&item_tmp,amount,m,x,y,0,0,0,0);
+	return 0;
 }
 
 
@@ -9672,7 +9671,7 @@ BUILDIN_FUNC(sc_start)
 	}
 
 	//solving if script from npc or item
-	isitem = (nd && nd->bl.id == fake_nd->bl.id || flag != 2)?true:false;
+	isitem = (nd && (nd->bl.id == fake_nd->bl.id || flag != 2))?true:false;
 
 	switch(start_type) {
 		case 1:

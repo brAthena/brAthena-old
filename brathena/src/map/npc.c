@@ -1625,7 +1625,7 @@ static int npc_selllist_sub(struct map_session_data *sd, int n, unsigned short *
 int npc_selllist(struct map_session_data *sd, int n, unsigned short *item_list)
 {
 	double z;
-	int i,skill_t, idx = skill_get_index(MC_OVERCHARGE); 
+	int i,skill_t; 
 	struct npc_data *nd;
 
 	nullpo_retr(1, sd);

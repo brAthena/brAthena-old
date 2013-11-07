@@ -2538,7 +2538,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	status->mode = MD_MASK&~(MD_BOSS|MD_PLANT|MD_DETECTOR|MD_ANGRY|MD_TARGETWEAK);
 
 	status->size = (sd->class_&JOBL_BABY)?SZ_SMALL:SZ_MEDIUM;
-	if(battle_config.character_size && pc_isriding(sd) || pc_isridingwug(sd) || pc_ismadogear(sd) || pc_isridingdragon(sd)) {  //[Lupus]
+	if(battle_config.character_size && (pc_isriding(sd) || pc_isridingwug(sd) || pc_ismadogear(sd) || pc_isridingdragon(sd))) {  //[Lupus]
 		if(sd->class_&JOBL_BABY) {
 			if(battle_config.character_size&SZ_BIG)
 				status->size++;

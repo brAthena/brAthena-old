@@ -7,16 +7,23 @@
 *                                                                            *
 *                                                                            *
 * \file src/custom/commands.inc                                              *
-* Arquivo de inclusão para comandos custumizados.                            *
+* Arquivo de inclusão para comandos customizados.                            *
 * \author brAthena                                                           *
 * \date 14/05/2013                                                           *
 *****************************************************************************/
 
-// Adicione comandos custumizados apartir daqui. ex:
-// Lembre-se de defini-lo no arquivo commands_def.inc
+/**
+ *-------------------------------------------------------
+ * Adicione comandos customizados apartir daqui. ex:
+ *-------------------------------------------------------
+ *	ACMD_FUNC(meu_comando)
+ *	{
+ *		clif_displaymessage(fd, "Testando comando.");
+ *		return 0;
+ *	}
+ *-------------------------------------------------------
+ * Lembre-se de defini-lo no arquivo commands_def.inc
+ *-------------------------------------------------------
+ **/
 
-ACMD_FUNC(meu_comando)
-{
-	clif_displaymessage(fd, "Testando comando.");
-	return 0;
-}
+

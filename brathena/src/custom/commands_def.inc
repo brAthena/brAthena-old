@@ -7,7 +7,7 @@
 *                                                                            *
 *                                                                            *
 * \file src/custom/commands_def.inc                                          *
-* Arquivo de inclusão para comandos custumizados.                            *
+* Arquivo de inclusão para comandos customizados.                            *
 * \author brAthena                                                           *
 * \date 14/05/2013                                                           *
 *****************************************************************************/
