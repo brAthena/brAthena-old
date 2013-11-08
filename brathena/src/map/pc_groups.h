@@ -64,6 +64,7 @@ enum e_pc_permission {
 	PC_PERM_NO_CREATE_GUILD     = 0x4000000,   // [Holy]
 	PC_PERM_NOT_USE_SKILL       = 0x8000000,   // [Holy]
 	PC_PERM_CHANNEL_ADMIN       = 0x10000000,
+	PC_PERM_TRADE_BOUND         = 0x20000000,
 };
 
 static const struct {
@@ -99,6 +100,7 @@ static const struct {
 	{ "no_create_guild", PC_PERM_NO_CREATE_GUILD },// [Holy]
 	{ "not_use_skill", PC_PERM_NOT_USE_SKILL },   // [Holy]
 	{ "channel_admin", PC_PERM_CHANNEL_ADMIN },
+	{ "can_trade_bound", PC_PERM_TRADE_BOUND },
 };
 
 #endif // _PC_GROUPS_H_

@@ -18,11 +18,15 @@
 #define _GUILD_H_
 
 //#include "../common/mmo.h"
+#include "map.h" // NAME_LENGTH
+
+/**
+ * Declarations
+ **/
 struct guild;
 struct guild_member;
 struct guild_position;
 struct guild_castle;
-#include "map.h" // NAME_LENGTH
 struct map_session_data;
 struct mob_data;
 
@@ -113,6 +117,8 @@ void guild_agit_end(void);
 
 void guild_agit2_start(void);
 void guild_agit2_end(void);
+
+void guild_retrieveitembound(int char_id,int aid,int guild_id);
 /* guild flag cachin */
 void guild_flag_add(struct npc_data *nd);
 void guild_flag_remove(struct npc_data *nd);

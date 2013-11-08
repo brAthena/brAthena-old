@@ -59,9 +59,11 @@
 /// By enabling it, the system will create an unique id for each new non stackable item created
 //#define NSI_UNIQUE_ID
 
+/// Comente para desativar Sistema de Item Vinculado Clã/Grupo
+#define GP_BOUND_ITEMS
+
 /// Comente para não ver o uso de memória consumida em tempo real. [Ai4rei]
 #define SHOW_MEMORY
-
 #include "./configs.h"
 #include "./secure.h"
 #include "./classes/general.h"

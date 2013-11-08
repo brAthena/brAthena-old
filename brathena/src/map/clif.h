@@ -938,6 +938,14 @@ enum e_UNEQUIP_ITEM_ACK {
 void clif_equipitemack(struct map_session_data *sd,int n,int pos,enum e_EQUIP_ITEM_ACK result);   // self
 void clif_unequipitemack(struct map_session_data *sd,int n,int pos,enum e_UNEQUIP_ITEM_ACK result); // self
 
+enum e_trade_item_ok {
+	TIO_SUCCESS    = 0x0,
+	TIO_OVERWEIGHT = 0x1,
+	TIO_CANCEL     = 0x2,
+	/* feedback-friendly code that causes the client not to display a error message */
+	TIO_INDROCKS   = 0x9,
+};
+
 /**
  * Structures
  **/

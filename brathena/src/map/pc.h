@@ -1020,6 +1020,10 @@ void pc_baselevelchanged(struct map_session_data *sd);
 void pc_rental_expire(struct map_session_data *sd, int i);
 void pc_scdata_received(struct map_session_data *sd);
 
+// Sistema Item Vinculado
+void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type);
+bool pc_can_give_bound_items(struct map_session_data *sd);
+
 //----------------------------------
 // Sistema Vip [Shiraz / brAthena]
 // Macros e Funções

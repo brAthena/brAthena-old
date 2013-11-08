@@ -20,6 +20,8 @@
 #include "../common/cbasetypes.h"
 #include <time.h>
 
+#define CHRIF_PACKET_LEN_TABLE_SIZE 0x3d
+
 enum sd_state { ST_LOGIN, ST_LOGOUT, ST_MAPCHANGE };
 struct auth_node {
 	int account_id, char_id;

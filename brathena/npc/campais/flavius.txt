@@ -40,20 +40,86 @@ OnPlayerListReady:
 	queueopt($@Guill_QueueBG1,HQO_OnLogout,"start#bat_b01::OnGuillaumeQuit");
 	queueopt($@Croix_QueueBG1,HQO_OnLogout,"start#bat_b01::OnCroixQuit");
 	
-	set .@it,queueiterator($@bg_queue_id);
 	set .@i, 0;
 	
-	for( set .@member, qiget(.@it); qicheck(.@it); set .@member,qiget(.@it) ) {
-		if ( .@i % 2 == 0 ) {
-			bg_join_team($@FlaviusBG1_id1,.@member);
-			queueadd($@Guill_QueueBG1,.@member);
-		} else {
-			bg_join_team($@FlaviusBG1_id2,.@member);
-			queueadd($@Croix_QueueBG1,.@member);
+	copyarray .@bg_member[0],$@bg_member[0],$@bg_member_size;
+	copyarray .@bg_member_group[0],$@bg_member_group[0],$@bg_member_size;
+	copyarray .@bg_member_type[0],$@bg_member_type[0],$@bg_member_size;
+	
+	freeloop(1);
+	// Counting all participants and determining sizes, condensing .@bg_member_group
+	set .@nogroupcount, 0;
+	for (set .@i, 0; .@i < getarraysize(.@bg_member); set .@i, .@i + 1) {
+		if (.@bg_member_group[.@i] == 0) { // Just count them
+			set .@nogroupcount, .@nogroupcount + 1;
+			continue;
 		}
-		set .@i,.@i + 1;
+		// check if .@bg_member_group and .@bg_member_type already exists on these groups.
+		for (set .@j, 0; .@j < getarraysize(.@bg_groups); set .@j, .@j + 1) { // <= since it has to start working even if the array is still blank
+			if ( (.@bg_member_group[.@i] == .@bg_groups[.@j]) && (.@bg_member_type[.@i] == .@bg_types[.@j]) ) {
+				set .@bg_count[.@j], .@bg_count[.@j] + 1;
+				break;
+			}
+			// Else keep running the loop until we find there's a group already made or make a new one
+		}
+		if (.@j == (getarraysize(.@bg_groups)) ) { // It isn't there, insert a new entry at j
+			set .@bg_groups[.@j], .@bg_member_group[.@i];
+			set .@bg_types[.@j], .@bg_member_type[.@i];
+			set .@bg_count[.@j], 1;
+		}
 	}
-	qiclear(.@it);
+	
+	// Now, sorting the group arrays from amount of population descending! Bubble sort powers, I call upon thee!
+	// Type doesn't matter here for precedence checks, but also needs to be sorted the same way along with groups
+	for (set .@i, 0; .@i < getarraysize(.@bg_groups); set .@i, .@i + 1) {
+		for (set .@j, 0; .@j < (getarraysize(.@bg_groups) - .@i); set .@j, .@j + 1) {
+			if (.@bg_count[.@j] < .@bg_count[.@j+1]){
+				set .@temp1, .@bg_groups[.@j];
+				set .@temp2, .@bg_types[.@j];
+				set .@temp3, .@bg_count[.@j];
+				set .@bg_groups[.@j], .@bg_groups[.@j+1];
+				set .@bg_types[.@j], .@bg_types[.@j+1];
+				set .@bg_count[.@j], .@bg_count[.@j+1];
+				set .@bg_groups[.@j+1], .@temp1;
+				set .@bg_types[.@j+1], .@temp2;
+				set .@bg_count[.@j+1], .@temp3;
+			}
+		}
+	}
+	
+	// Add the groups to the queues! :D
+	for (set .@i, 0; .@i < getarraysize(.@bg_groups); set .@i, .@i + 1){ 
+		if (queuesize($@Croix_QueueBG1) <= queuesize($@Guill_QueueBG1)){ // Catch'em all and add to the queue!
+			for (set .@j, 0; .@j < getarraysize(.@bg_member); set .@j, .@j + 1) {
+				if ( (.@bg_groups[.@i] == .@bg_member_group[.@j]) && (.@bg_types[.@i] == .@bg_member_type[.@j]) ) {
+					bg_join_team($@FlaviusBG1_id1,.@bg_member[.@j]);
+					queueadd($@Croix_QueueBG1, .@bg_member[.@j]);
+				}
+			}
+		}
+		else {
+			for (set .@j, 0; .@j < getarraysize(.@bg_member); set .@j, .@j + 1) {
+				if ( (.@bg_groups[.@i] == .@bg_member_group[.@j]) && (.@bg_types[.@i] == .@bg_member_type[.@j]) ) {
+					bg_join_team($@FlaviusBG1_id2,.@bg_member[.@j]);
+					queueadd($@Guill_QueueBG1, .@bg_member[.@j]);
+				}
+			}
+		}
+	}
+	// Don't forget the people that go on their own!
+	for (set .@i, 0; .@i <= getarraysize(.@bg_member); set .@i, .@i+1) {
+		if (.@bg_member_group[.@i] == 0) { // Get alone people only
+			if (queuesize($@Croix_QueueBG1) <= queuesize($@Guill_QueueBG1)) {
+				bg_join_team($@FlaviusBG1_id1,.@bg_member[.@i]);
+				queueadd($@Croix_QueueBG1, .@bg_member[.@i]);
+			}
+			else {
+				bg_join_team($@FlaviusBG1_id2,.@bg_member[.@i]);
+				queueadd($@Guill_QueueBG1, .@bg_member[.@i]);
+			}
+		}
+	}
+	freeloop(0);
 
 	set $@FlaviusBG1, 1;
 	set $@FlaviusBG1_Victory, 0;
@@ -120,18 +186,18 @@ OnGuillaumeQuit:
 L_OnPlayerQuit:
 	bg_leave;
 	setd $@bg_delay_var$,gettimetick(2);
-	if ( queuesize($@Guill_QueueBG1) == 0 || queuesize($@Croix_QueueBG1) == 0 ) /* todo check score and decide a winner if anyone left */
+	if( queuesize($@Guill_QueueBG1) == 0 || queuesize($@Croix_QueueBG1) == 0 ) /* todo check score and decide a winner if anyone left */
 		callsub OnMatchOver;
 	end;
 	
 OnMatchOver:
-	if ( $@FlaviusBG1_id1 || $@FlaviusBG1_id2 ) {
+	if( $@FlaviusBG1_id1 || $@FlaviusBG1_id2 ) {
 		queuedel($@Croix_QueueBG1);
 		queuedel($@Guill_QueueBG1);
 		bg_match_over("Flavius");
 	}
-	if ( $@FlaviusBG1_id1 ) { bg_destroy $@FlaviusBG1_id1; set $@FlaviusBG1_id1, 0; }
-	if ( $@FlaviusBG1_id2 ) { bg_destroy $@FlaviusBG1_id2; set $@FlaviusBG1_id2, 0; }
+	if( $@FlaviusBG1_id1 ) { bg_destroy $@FlaviusBG1_id1; set $@FlaviusBG1_id1, 0; }
+	if( $@FlaviusBG1_id2 ) { bg_destroy $@FlaviusBG1_id2; set $@FlaviusBG1_id2, 0; }
 	end;
 }
 

@@ -28,6 +28,8 @@ struct s_elemental;
 struct mail_message;
 struct auction_data;
 
+#define INTIF_PACKET_LEN_TABLE_SIZE 161
+
 int intif_parse(int fd);
 
 int intif_broadcast(const char *mes, int len, int type);
@@ -116,6 +118,13 @@ int intif_elemental_create(struct s_elemental *ele);
 int intif_elemental_request(int ele_id, int char_id);
 int intif_elemental_delete(int ele_id);
 int intif_elemental_save(struct s_elemental *ele);
+
+void intif_parse_LoadGuildStorage(int fd);
+
+void intif_itembound_req(int char_id,int aid,int guild_id);
+void intif_parse_Itembound_ack(int fd);
+
+void intif_defaults(void);
 
 /* @accinfo */
 void intif_request_accinfo(int u_fd, int aid, int group_lv, char *query);

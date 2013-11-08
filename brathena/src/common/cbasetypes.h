@@ -113,9 +113,9 @@
 // (-20 >= USHRT_MAX) returns true
 #if defined(__FreeBSD__) && defined(__x86_64)
 #undef UCHAR_MAX
-#define UCHAR_MAX (unsigned char)0xff
+#define UCHAR_MAX ((unsigned char)0xff)
 #undef USHRT_MAX
-#define USHRT_MAX (unsigned short)0xffff
+#define USHRT_MAX ((unsigned short)0xffff)
 #endif
 
 // ILP64 isn't supported, so always 32 bits?
@@ -362,8 +362,8 @@ typedef char bool;
 #if defined(WIN32)
 #define PATHSEP '\\'
 #define PATHSEP_STR "\\"
-#elif defined(__APPLE__)
-// FIXME Mac OS X is unix based, is this still correct?
+#elif defined(__APPLE__) && !defined(__MACH__)
+// __MACH__ indicates OS X ( http://sourceforge.net/p/predef/wiki/OperatingSystems/ )
 #define PATHSEP ':'
 #define PATHSEP_STR ":"
 #else

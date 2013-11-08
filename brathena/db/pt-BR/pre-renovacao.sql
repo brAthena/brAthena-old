@@ -1516,6 +1516,8 @@ REPLACE INTO `const_db` VALUES('SC_KINGS_GRACE','557',0);
 REPLACE INTO `const_db` VALUES('SC_TELEKINESIS_INTENSE','558',0);
 REPLACE INTO `const_db` VALUES('SC_OFFERTORIUM','559',0);
 REPLACE INTO `const_db` VALUES('SC_FRIGG_SONG','560',0);
+REPLACE INTO `const_db` VALUES('SC_ALL_RIDING','561',0);
+REPLACE INTO `const_db` VALUES('SC_HANBOK','562',0);
 REPLACE INTO `const_db` VALUES('SC_MONSTER_TRANSFORM','563',0);
 REPLACE INTO `const_db` VALUES('SC_ANGEL_PROTECT','564',0);
 REPLACE INTO `const_db` VALUES('SC_MVPCARD_TAOGUNKA','800',0);
@@ -29517,6 +29519,7 @@ CREATE TABLE IF NOT EXISTS `sc_config` (
            16 - SC é considerado como buff e pode ser removido por Bastão de Hermod, etc
            32 - SC é considerado como debuff e pode ser removido por Canto de Batalha, etc.
            64 - SC não pode ser redefinida quando M.E.C.H.A. é retirado.
+		  128 - SC não pode ser redefinida por sc_end e change clear.
 		Exemplo:
 		SC_ENDURE, 21 //SC_ENDURE: não pode ser removido ao morrer por desencantar e é considerado como buff. (16 + 4 + 1 = 21)*/
 
@@ -29893,12 +29896,12 @@ REPLACE INTO `sc_config` VALUES('SC_LEADERSHIP',78);
 REPLACE INTO `sc_config` VALUES('SC_GLORYWOUNDS',78);
 REPLACE INTO `sc_config` VALUES('SC_SOULCOLD',78);
 REPLACE INTO `sc_config` VALUES('SC_HAWKEYES',78);
-REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER50',79);
-REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER90',79);
+REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER50',207);
+REPLACE INTO `sc_config` VALUES('SC_WEIGHTOVER90',207);
 REPLACE INTO `sc_config` VALUES('SC_WEDDING',77);
 REPLACE INTO `sc_config` VALUES('SC_XMAS',77);
 REPLACE INTO `sc_config` VALUES('SC_SUMMER',77);
-REPLACE INTO `sc_config` VALUES('SC_NOCHAT',77);
+REPLACE INTO `sc_config` VALUES('SC_NOCHAT',205);
 REPLACE INTO `sc_config` VALUES('SC_FUSION',77);
 REPLACE INTO `sc_config` VALUES('SC_EARTHSCROLL',77);
 REPLACE INTO `sc_config` VALUES('SC_STORMKICK_READY',77);
@@ -29906,7 +29909,7 @@ REPLACE INTO `sc_config` VALUES('SC_DOWNKICK_READY',77);
 REPLACE INTO `sc_config` VALUES('SC_COUNTERKICK_READY',77);
 REPLACE INTO `sc_config` VALUES('SC_TURNKICK_READY',77);
 REPLACE INTO `sc_config` VALUES('SC_DODGE_READY',77);
-REPLACE INTO `sc_config` VALUES('SC_JAILED',77);
+REPLACE INTO `sc_config` VALUES('SC_JAILED',205);
 REPLACE INTO `sc_config` VALUES('SC_AUTOTRADE',77);
 REPLACE INTO `sc_config` VALUES('SC_WHISTLE',79);
 REPLACE INTO `sc_config` VALUES('SC_ASSNCROS',79);
@@ -29917,7 +29920,10 @@ REPLACE INTO `sc_config` VALUES('SC_DONTFORGETME',79);
 REPLACE INTO `sc_config` VALUES('SC_FORTUNE',79);
 REPLACE INTO `sc_config` VALUES('SC_SERVICEFORYOU',79);
 REPLACE INTO `sc_config` VALUES('SC_INCHIT',77);
-REPLACE INTO `sc_config` VALUES('SC_PUSH_CART',77);
+REPLACE INTO `sc_config` VALUES('SC_PUSH_CART',205);
+REPLACE INTO `sc_config` VALUES('SC_MOONSTAR',205);
+REPLACE INTO `sc_config` VALUES('SC_SUPER_STAR',205);
+REPLACE INTO `sc_config` VALUES('SC_ALL_RIDING',128);
 
 --
 -- Estrutura da tabela `buffspecial_db`

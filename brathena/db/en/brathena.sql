@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `cart_inventory` (
   `card2` smallint(11) NOT NULL default '0',
   `card3` smallint(11) NOT NULL default '0',
   `expire_time` int(11) unsigned NOT NULL default '0',
+  `bound` tinyint(1) unsigned NOT NULL default '0',
   `unique_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `char_id` (`char_id`)
@@ -355,6 +356,7 @@ CREATE TABLE IF NOT EXISTS `guild_storage` (
   `card2` smallint(11) NOT NULL default '0',
   `card3` smallint(11) NOT NULL default '0',
   `expire_time` int(11) unsigned NOT NULL default '0',
+  `bound` tinyint(1) unsigned NOT NULL default '0',
   `unique_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `guild_id` (`guild_id`)
@@ -419,6 +421,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `card3` smallint(11) NOT NULL default '0',
   `expire_time` int(11) unsigned NOT NULL default '0',
   `favorite` tinyint(3) unsigned NOT NULL default '0',
+  `bound` tinyint(1) unsigned NOT NULL default '0',
   `unique_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `char_id` (`char_id`)
@@ -455,8 +458,8 @@ CREATE TABLE IF NOT EXISTS `login` (
   `last_ip` varchar(100) NOT NULL default '',
   `birthdate` DATE NOT NULL DEFAULT '0000-00-00',
   `character_slots` TINYINT( 3 ) unsigned NOT NULL default '0',
-  `pincode` varchar(4) NOT NULL DEFAULT '',
-  `pincode_change` int(11) unsigned NOT NULL DEFAULT '0',
+  `pincode` varchar(4) NOT NULL default '',
+  `pincode_change` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`account_id`),
   KEY `name` (`userid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2000000; 
@@ -680,6 +683,7 @@ CREATE TABLE IF NOT EXISTS `storage` (
   `card2` smallint(11) NOT NULL default '0',
   `card3` smallint(11) NOT NULL default '0',
   `expire_time` int(11) unsigned NOT NULL default '0',
+  `bound` tinyint(1) unsigned NOT NULL default '0',
   `unique_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `account_id` (`account_id`)

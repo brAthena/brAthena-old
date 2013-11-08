@@ -17,7 +17,11 @@
 #ifndef _SCRIPT_H_
 #define _SCRIPT_H_
 
+#include "../common/strlib.h" //StringBuf
 #include "map.h" //EVENT_NAME_LENGTH
+
+#include <setjmp.h>
+#include <errno.h>
 
 /**
  * Declarations
@@ -30,7 +34,126 @@ struct eri;
  **/
 #define NUM_WHISPER_VAR 10
 
+/// Maximum amount of elements in script arrays (soon getting ducked)
+#define SCRIPT_MAX_ARRAYSIZE 128+50
+
+#define SCRIPT_BLOCK_SIZE 512
+
+// Using a prime number for SCRIPT_HASH_SIZE should give better distributions
+#define SCRIPT_HASH_SIZE 1021
+
+// Specifies which string hashing method to use
+//#define SCRIPT_HASH_DJB2
+//#define SCRIPT_HASH_SDBM
+#define SCRIPT_HASH_ELF
+
 #define SCRIPT_EQUIP_TABLE_SIZE 20
+
+//#define SCRIPT_DEBUG_DISP
+//#define SCRIPT_DEBUG_DISASM
+//#define SCRIPT_DEBUG_HASH
+//#define SCRIPT_DEBUG_DUMP_STACK
+
+///////////////////////////////////////////////////////////////////////////////
+//## TODO possible enhancements: [FlavioJS]
+// - 'callfunc' supporting labels in the current npc "::LabelName"
+// - 'callfunc' supporting labels in other npcs "NpcName::LabelName"
+// - 'function FuncName;' function declarations reverting to global functions
+//   if local label isn't found
+// - join callfunc and callsub's functionality
+// - remove dynamic allocation in add_word()
+// - remove GETVALUE / SETVALUE
+// - clean up the set_reg / set_val / setd_sub mess
+// - detect invalid label references at parse-time
+
+//
+// struct script_state* st;
+//
+
+/// Returns the script_data at the target index
+#define script_getdata(st,i) ( &((st)->stack->stack_data[(st)->start + (i)]) )
+/// Returns if the stack contains data at the target index
+#define script_hasdata(st,i) ( (st)->end > (st)->start + (i) )
+/// Returns the index of the last data in the stack
+#define script_lastdata(st) ( (st)->end - (st)->start - 1 )
+/// Pushes an int into the stack
+#define script_pushint(st,val) push_val((st)->stack, C_INT, (val),NULL)
+/// Pushes a string into the stack (script engine frees it automatically)
+#define script_pushstr(st,val) push_str((st)->stack, C_STR, (val))
+/// Pushes a copy of a string into the stack
+#define script_pushstrcopy(st,val) push_str((st)->stack, C_STR, aStrdup(val))
+/// Pushes a constant string into the stack (must never change or be freed)
+#define script_pushconststr(st,val) push_str((st)->stack, C_CONSTSTR, (val))
+/// Pushes a nil into the stack
+#define script_pushnil(st) push_val((st)->stack, C_NOP, 0,NULL)
+/// Pushes a copy of the data in the target index
+#define script_pushcopy(st,i) push_copy((st)->stack, (st)->start + (i))
+
+#define script_isstring(st,i) data_isstring(script_getdata(st,i))
+#define script_isint(st,i) data_isint(script_getdata(st,i))
+
+#define script_getnum(st,val) conv_num(st, script_getdata(st,val))
+#define script_getstr(st,val) conv_str(st, script_getdata(st,val))
+#define script_getref(st,val) ( script_getdata(st,val)->ref )
+
+// Note: "top" functions/defines use indexes relative to the top of the stack
+//       -1 is the index of the data at the top
+
+/// Returns the script_data at the target index relative to the top of the stack
+#define script_getdatatop(st,i) ( &((st)->stack->stack_data[(st)->stack->sp + (i)]) )
+/// Pushes a copy of the data in the target index relative to the top of the stack
+#define script_pushcopytop(st,i) push_copy((st)->stack, (st)->stack->sp + (i))
+/// Removes the range of values [start,end[ relative to the top of the stack
+#define script_removetop(st,start,end) ( pop_stack((st), ((st)->stack->sp + (start)), (st)->stack->sp + (end)) )
+
+//
+// struct script_data* data;
+//
+
+/// Returns if the script data is a string
+#define data_isstring(data) ( (data)->type == C_STR || (data)->type == C_CONSTSTR )
+/// Returns if the script data is an int
+#define data_isint(data) ( (data)->type == C_INT )
+/// Returns if the script data is a reference
+#define data_isreference(data) ( (data)->type == C_NAME )
+/// Returns if the script data is a label
+#define data_islabel(data) ( (data)->type == C_POS )
+/// Returns if the script data is an internal script function label
+#define data_isfunclabel(data) ( (data)->type == C_USERFUNC_POS )
+
+/// Returns if this is a reference to a constant
+#define reference_toconstant(data) ( str_data[reference_getid(data)].type == C_INT )
+/// Returns if this a reference to a param
+#define reference_toparam(data) ( str_data[reference_getid(data)].type == C_PARAM )
+/// Returns if this a reference to a variable
+//##TODO confirm it's C_NAME [FlavioJS]
+#define reference_tovariable(data) ( str_data[reference_getid(data)].type == C_NAME )
+/// Returns the unique id of the reference (id and index)
+#define reference_getuid(data) ( (data)->u.num )
+/// Returns the id of the reference
+#define reference_getid(data) ( (int32)(reference_getuid(data) & 0x00ffffff) )
+/// Returns the array index of the reference
+#define reference_getindex(data) ( (int32)(((uint32)(reference_getuid(data) & 0xff000000)) >> 24) )
+/// Returns the name of the reference
+#define reference_getname(data) ( str_buf + str_data[reference_getid(data)].str )
+/// Returns the linked list of uid-value pairs of the reference (can be NULL)
+#define reference_getref(data) ( (data)->ref )
+/// Returns the value of the constant
+#define reference_getconstant(data) ( str_data[reference_getid(data)].val )
+/// Returns the type of param
+#define reference_getparamtype(data) ( str_data[reference_getid(data)].val )
+
+/// Composes the uid of a reference from the id and the index
+#define reference_uid(id,idx) ( (int32)((((uint32)(id)) & 0x00ffffff) | (((uint32)(idx)) << 24)) )
+
+#define not_server_variable(prefix) ( (prefix) != '$' && (prefix) != '.' && (prefix) != '\'')
+#define not_array_variable(prefix) ( (prefix) != '$' && (prefix) != '@' && (prefix) != '.' && (prefix) != '\'' )
+#define is_string_variable(name) ( (name)[strlen(name) - 1] == '$' )
+
+#define FETCH(n, t) \
+	if( script_hasdata(st,n) ) \
+		(t)=script_getnum(st,n);
+
 
 /**
  * Enumerations
@@ -94,11 +217,96 @@ enum script_parse_options {
     SCRIPT_RETURN_EMPTY_SCRIPT = 0x4// returns the script object instead of NULL for empty scripts
 };
 
+enum { LABEL_NEXTLINE=1,LABEL_START };
+
+// for advanced scripting support ( nested if, switch, while, for, do-while, function, etc )
+// [Eoe / jA 1080, 1081, 1094, 1164]
+enum curly_type {
+	TYPE_NULL = 0,
+	TYPE_IF,
+	TYPE_SWITCH,
+	TYPE_WHILE,
+	TYPE_FOR,
+	TYPE_DO,
+	TYPE_USERFUNC,
+	TYPE_ARGLIST // function argument list
+};
+
+enum e_arglist {
+	ARGLIST_UNDEFINED = 0,
+	ARGLIST_NO_PAREN  = 1,
+	ARGLIST_PAREN     = 2,
+};
+
+/*==========================================
+ * (Only those needed) local declaration prototype
+ * - those could be used server-wide so that the scans are done once during processing and never again,
+ * - doing so would also improve map zone processing and storage [Ind]
+ *------------------------------------------*/
+
+enum {
+    MF_NOMEMO,  //0
+    MF_NOTELEPORT,
+    MF_NOSAVE,
+    MF_NOBRANCH,
+    MF_NOPENALTY,
+    MF_NOZENYPENALTY,
+    MF_PVP,
+    MF_PVP_NOPARTY,
+    MF_PVP_NOGUILD,
+    MF_GVG,
+    MF_GVG_NOPARTY, //10
+    MF_NOTRADE,
+    MF_NOSKILL,
+    MF_NOWARP,
+    MF_PARTYLOCK,
+    MF_NOICEWALL,
+    MF_SNOW,
+    MF_FOG,
+    MF_SAKURA,
+    MF_LEAVES,
+    MF_RAIN,  //20
+    /* 21 - 22 free */
+    MF_CLOUDS = 23,
+    MF_CLOUDS2,
+    MF_FIREWORKS,
+    MF_GVG_CASTLE,
+    MF_GVG_DUNGEON,
+    MF_NIGHTENABLED,
+    MF_NOBASEEXP,
+    MF_NOJOBEXP,    //30
+    MF_NOMOBLOOT,
+    MF_NOMVPLOOT,
+    MF_NORETURN,
+    MF_NOWARPTO,
+    MF_NIGHTMAREDROP,
+    MF_ZONE,
+    MF_NOCOMMAND,
+    MF_NODROP,
+    MF_JEXP,
+    MF_BEXP,    //40
+    MF_NOVENDING,
+    MF_LOADEVENT,
+    MF_NOCHAT,
+    MF_NOEXPPENALTY,
+    MF_GUILDLOCK,
+    MF_TOWN,
+    MF_AUTOTRADE,
+    MF_ALLOWKS,
+    MF_MONSTER_NOTELEPORT,
+    MF_PVP_NOCALCRANK,  //50
+    MF_BATTLEGROUND,
+    MF_RESET,
+    MF_SET_CASTLE,
+    MF_NOTOMB,
+    MF_NOCASHSHOP,
+};
+
 /**
  * Structures
  **/
 
-extern struct Script_Config {
+struct Script_Config {
 	unsigned warn_func_mismatch_argtypes : 1;
 	unsigned warn_func_mismatch_paramnum : 1;
 	int check_cmdcount;
@@ -118,6 +326,7 @@ extern struct Script_Config {
 	const char *ontouch_name;
 	const char *ontouch2_name;
 } script_config;
+
 struct script_retinfo {
 	struct DBMap *var_function;// scope variables
 	struct script_code *script;// script code
@@ -202,6 +411,30 @@ struct script_regstr {
 	char *data;
 };
 
+// String buffer structures.
+// str_data stores string information
+struct str_data_struct {
+	enum c_op type;
+	int str;
+	int backpatch;
+	int label;
+	int (*func)(struct script_state *st);
+	int val;
+	int next;
+};
+
+
+struct str_data_struct *str_data;
+
+struct script_data* push_val(struct script_stack* stack, enum c_op type, int val, struct DBMap** ref);
+
+static int str_data_size = 0; // size of the data
+static int str_num = LABEL_START; // next id to be assigned
+
+// str_buf holds the strings themselves
+static char *str_buf;
+static int str_size = 0; // size of the buffer
+static int str_pos = 0; // next position to be assigned
 
 extern int potion_flag; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
 extern int potion_hp, potion_per_hp, potion_sp, potion_per_sp;
@@ -257,7 +490,21 @@ struct script_label_entry {
 	int key,pos;
 };
 
-/* script.c interface (incomplete) */
+struct script_syntax_data {
+	struct {
+		enum curly_type type;
+		int index;
+		int count;
+		int flag;
+		struct linkdb_node *case_label;
+	} curly[256];		// Information right parenthesis
+	int curly_count;	// The number of right brackets
+	int index;			// Number of the syntax used in the script
+} syntax;
+
+/**
+ * Interface
+ **/
 struct script_interface {
 	/* */
 	DBMap *st_db;
@@ -294,6 +541,7 @@ struct script_interface {
 	bool (*queue_remove) (int idx, int var);
 	int (*queue_create) (void);
 	void (*queue_clear) (int idx);
+	const char *(*getfuncname) (struct script_state *st);
 };
 
 struct script_interface *script;

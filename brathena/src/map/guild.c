@@ -914,6 +914,11 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 	if(online_member_sd == NULL)
 		return 0; // noone online to inform
 
+#ifdef GP_BOUND_ITEMS
+	//Guild bound item check
+	guild_retrieveitembound(char_id,account_id,guild_id);
+#endif
+
 	if(!flag)
 		clif_guild_leave(online_member_sd, name, mes);
 	else
@@ -944,6 +949,28 @@ int guild_member_withdraw(int guild_id, int account_id, int char_id, int flag, c
 		//TODO: send emblem update to self and people around
 	}
 	return 0;
+}
+
+void guild_retrieveitembound(int char_id,int aid,int guild_id) {
+#ifdef GP_BOUND_ITEMS
+	TBL_PC *sd = map_id2sd(aid);
+	if(sd){ //Character is online
+		pc_bound_clear(sd,IBT_GUILD);
+	} else { //Character is offline, ask char server to do the job
+		struct guild_storage *gstor = guild2storage2(guild_id);
+		if(gstor && gstor->storage_status == 1) { //Someone is in guild storage, close them
+			struct s_mapiterator* iter = mapit_getallusers();
+			for(sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) ) {
+				if(sd->status.guild_id == guild_id && sd->state.storage_flag == 2) {
+					storage_storageclose(sd);
+					break;
+				}
+			}
+			mapit_free(iter);
+		}
+		intif_itembound_req(char_id,aid,guild_id);
+	}
+#endif
 }
 
 int guild_send_memberinfoshort(struct map_session_data *sd,int online)
@@ -1910,7 +1937,11 @@ int guild_break(struct map_session_data *sd,char *name)
 			skill_delunitgroup(groups[i],ALC_MARK);
 		}
 	}
-	
+
+#ifdef GP_BOUND_ITEMS
+	pc_bound_clear(sd,IBT_GUILD);
+#endif	
+
 	intif_guild_break(g->guild_id);
 	return 1;
 }
