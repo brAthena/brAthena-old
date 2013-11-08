@@ -982,12 +982,48 @@ const char *parse_variable(const char *p)
 	return p;
 }
 
+/*
+ * Checks whether the gives string is a number literal
+ *
+ * Mainly necessary to differentiate between number literals and NPC name
+ * constants, since several of those start with a digit.
+ *
+ * All this does is to check if the string begins with an optional + or - sign,
+ * followed by a hexadecimal or decimal number literal literal and is NOT
+ * followed by a underscore or letter.
+ *
+ * @param p Pointer to the string to check
+ * @return Whether the string is a number literal
+ */
+bool is_number(const char *p) {
+	const char *np;
+	if(!p)
+		return false;
+	if(*p == '-' || *p == '+')
+		p++;
+	np = p;
+	if(*p == '0' && p[1] == 'x') {
+		p+=2;
+		np = p;
+		// Hexadecimal
+		while (ISXDIGIT(*np))
+			np++;
+	} else {
+		// Decimal
+		while (ISDIGIT(*np))
+			np++;
+	}
+	if(p != np && *np != '_' && !ISALPHA(*np)) // At least one digit, and next isn't a letter or _
+		return true;
+	return false;
+}
+
 /*==========================================
  * Analysis section
  *------------------------------------------*/
 const char *parse_simpleexpr(const char *p)
 {
-	long long i;
+	int i;
 	p=skip_space(p);
 
 	if(*p==';' || *p==',')
@@ -1003,24 +1039,26 @@ const char *parse_simpleexpr(const char *p)
 			if(*p == ',') {
 				syntax.curly[i].flag = ARGLIST_PAREN;
 				return p;
-			} else
+			} else {
 				syntax.curly[i].flag = ARGLIST_NO_PAREN;
+			}
 		}
 		if(*p != ')')
 			disp_error_message("parse_simpleexpr: ')' incompativel",p);
 		++p;
-	} else if(ISDIGIT(*p) || ((*p=='-' || *p=='+') && ISDIGIT(p[1]))) {
+	} else if(is_number(p)) {
 		char *np;
+		long long lli;
 		while(*p == '0' && ISDIGIT(p[1])) p++;
-		i=strtoll(p,&np,0);
-		if(i < INT_MIN) {
-			i = INT_MIN;
+		lli=strtoll(p,&np,0);
+		if(lli < INT_MIN) {
+			lli = INT_MIN;
 			disp_warning_message("parse_simpleexpr: underflow detected, capping value to INT_MIN",p);
-		} else if(i > INT_MAX) {
-			i = INT_MAX;
+		} else if(lli > INT_MAX) {
+			lli = INT_MAX;
 			disp_warning_message("parse_simpleexpr: overflow detected, capping value to INT_MAX",p);
 		}
-		add_scripti((int)i);
+		add_scripti((int)lli); // Cast is safe, as it's already been checked for overflows
 		p=np;
 	} else if(*p=='"') {
 		add_scriptc(C_STR);
@@ -1035,8 +1073,9 @@ const char *parse_simpleexpr(const char *p)
 				p += len;
 				add_scriptb(*buf);
 				continue;
-			} else if(*p == '\n')
+			} else if(*p == '\n') {
 				disp_error_message("parse_simpleexpr: quebra de linha inesperada",p);
+			}
 			add_scriptb(*p++);
 		}
 		if(!*p)
@@ -1052,16 +1091,16 @@ const char *parse_simpleexpr(const char *p)
 			disp_error_message("parse_simpleexpr: caractere inesperado",p);
 
 		l=add_word(p);
-		if(str_data[l].type == C_FUNC || str_data[l].type == C_USERFUNC || str_data[l].type == C_USERFUNC_POS)
+		if(str_data[l].type == C_FUNC || str_data[l].type == C_USERFUNC || str_data[l].type == C_USERFUNC_POS) {
 			return parse_callfunc(p,1,0);
 #ifdef SCRIPT_CALLFUNC_CHECK
-		else {
+		} else {
 			const char *name = get_str(l);
 			if(strdb_get(userfunc_db,name) != NULL) {
 				return parse_callfunc(p,1,1);
 			}
-		}
 #endif
+		}
 
 		if((pv = parse_variable(p))) {
 			// successfully processed a variable assignment
@@ -1081,8 +1120,9 @@ const char *parse_simpleexpr(const char *p)
 				disp_error_message("parse_simpleexpr: ']' incompativel",p);
 			++p;
 			add_scriptc(C_FUNC);
-		} else
+		} else {
 			add_scriptl(l);
+		}
 
 	}
 
@@ -1353,8 +1393,16 @@ const char *parse_syntax(const char *p)
 						disp_error_message("parse_syntax: espaco esperado ' '",p);
 					}
 					// check whether case label is integer or not
+					if(is_number(p)) {
+					//Numeric value
 					v = strtol(p,&np,0);
-					if(np == p) { //Check for constants
+						if((*p == '-' || *p == '+') && ISDIGIT(p[1]))   // pre-skip because '-' can not skip_word
+							p++;
+						p = skip_word(p);
+						if(np != p)
+							disp_error_message("parse_syntax: label 'case' nao numerico",np);
+					} else { 
+						//Check for constants
 						p2 = skip_word(p);
 						v = p2-p; // length of word at p2
 						memcpy(label,p,v);
@@ -1362,12 +1410,6 @@ const char *parse_syntax(const char *p)
 						if(!script_get_constant(label, &v))
 							disp_error_message("parse_syntax: label 'case' nao numerico",p);
 						p = skip_word(p);
-					} else { //Numeric value
-						if((*p == '-' || *p == '+') && ISDIGIT(p[1]))   // pre-skip because '-' can not skip_word
-							p++;
-						p = skip_word(p);
-						if(np != p)
-							disp_error_message("parse_syntax: label 'case' nao numerico",np);
 					}
 					p = skip_space(p);
 					if(*p != ':')

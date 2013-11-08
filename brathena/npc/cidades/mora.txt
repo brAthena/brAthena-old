@@ -556,7 +556,7 @@ mora,134,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#5	4_M_RAFLE_GR
 mora,134,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#6	4_M_RAFLE_GR
 mora,132,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#7	4_M_RAFLE_VI
 mora,133,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#8	4_F_RAFLE_PK
-mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	4_M_RAFLE_OR
+mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	G_RAFFLESIA
 
 mora,140,186,4	script	Vovô Rafflesia	4_M_RAFLE_OLD,{
 	if ($gloriasong == 1) {

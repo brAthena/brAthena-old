@@ -2836,17 +2836,17 @@ que_qaru01,275,299,0	duplicate(jin02SE)	#nmsomaru01_jin2	-1
 que_qaru01,2,9,0	duplicate(stone02SE)	#aru01_stone2	CLEAR_NPC
 que_qaru01,251,340,0	duplicate(jin03SE)	#nmsomaru01_jin3	-1
 que_qaru01,2,10,0	duplicate(stone03SE)	#aru01_stone3	CLEAR_NPC
-que_qaru01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_1	1752,4,4
-que_qaru01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_2	1752,4,4
-que_qaru01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_3	1752,4,4
-que_qaru01,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_4	1752,4,4
-que_qaru01,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac1	1753,4,4
-que_qaru01,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac2	1753,4,4
-que_qaru01,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac3	1753,4,4
-que_qaru01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac4	1753,4,4
-que_qaru01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru01_ac1	1933,4,4
-que_qaru01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru01_ac2	1933,4,4
-que_qaru01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru01_boss	1931
+que_qaru01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_1	SKOGUL,4,4
+que_qaru01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_2	SKOGUL,4,4
+que_qaru01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_3	SKOGUL,4,4
+que_qaru01,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_4	SKOGUL,4,4
+que_qaru01,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac1	FRUS,4,4
+que_qaru01,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac2	FRUS,4,4
+que_qaru01,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac3	FRUS,4,4
+que_qaru01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac4	FRUS,4,4
+que_qaru01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru01_ac1	GARDEN_WATCHER,4,4
+que_qaru01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru01_ac2	GARDEN_WATCHER,4,4
+que_qaru01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru01_boss	WISH_MAIDEN
 que_qaru01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru01_gift	4_F_VALKYRIE2
 que_qaru01,252,339,0	duplicate(agitgateSE)	#to_agit_aru01_gate	WARPNPC,1,1
 que_qaru01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru01_time1	CLEAR_NPC
@@ -2890,17 +2890,17 @@ que_qaru02,275,299,0	duplicate(jin02SE)	#nmsomaru02_jin2	-1
 que_qaru02,2,9,0	duplicate(stone02SE)	#aru02_stone2	CLEAR_NPC
 que_qaru02,251,340,0	duplicate(jin03SE)	#nmsomaru02_jin3	-1
 que_qaru02,2,10,0	duplicate(stone03SE)	#aru02_stone3	CLEAR_NPC
-que_qaru02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_1	1752,4,4
-que_qaru02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_2	1752,4,4
-que_qaru02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_3	1752,4,4
-que_qaru02,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_4	1752,4,4
-que_qaru02,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac1	1753,4,4
-que_qaru02,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac2	1753,4,4
-que_qaru02,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac3	1753,4,4
-que_qaru02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac4	1753,4,4
-que_qaru02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru02_ac1	1933,4,4
-que_qaru02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru02_ac2	1933,4,4
-que_qaru02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru02_boss	1931
+que_qaru02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_1	SKOGUL,4,4
+que_qaru02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_2	SKOGUL,4,4
+que_qaru02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_3	SKOGUL,4,4
+que_qaru02,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_4	SKOGUL,4,4
+que_qaru02,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac1	FRUS,4,4
+que_qaru02,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac2	FRUS,4,4
+que_qaru02,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac3	FRUS,4,4
+que_qaru02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac4	FRUS,4,4
+que_qaru02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru02_ac1	GARDEN_WATCHER,4,4
+que_qaru02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru02_ac2	GARDEN_WATCHER,4,4
+que_qaru02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru02_boss	WISH_MAIDEN
 que_qaru02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru02_gift	4_F_VALKYRIE2
 que_qaru02,252,339,0	duplicate(agitgateSE)	#to_agit_aru02_gate	WARPNPC,1,1
 que_qaru02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru02_time1	CLEAR_NPC
@@ -2944,17 +2944,17 @@ que_qaru03,275,299,0	duplicate(jin02SE)	#nmsomaru03_jin2	-1
 que_qaru03,2,9,0	duplicate(stone02SE)	#aru03_stone2	CLEAR_NPC
 que_qaru03,251,340,0	duplicate(jin03SE)	#nmsomaru03_jin3	-1
 que_qaru03,2,10,0	duplicate(stone03SE)	#aru03_stone3	CLEAR_NPC
-que_qaru03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_1	1752,4,4
-que_qaru03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_2	1752,4,4
-que_qaru03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_3	1752,4,4
-que_qaru03,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_4	1752,4,4
-que_qaru03,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac1	1753,4,4
-que_qaru03,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac2	1753,4,4
-que_qaru03,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac3	1753,4,4
-que_qaru03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac4	1753,4,4
-que_qaru03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru03_ac1	1933,4,4
-que_qaru03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru03_ac2	1933,4,4
-que_qaru03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru03_boss	1931
+que_qaru03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_1	SKOGUL,4,4
+que_qaru03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_2	SKOGUL,4,4
+que_qaru03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_3	SKOGUL,4,4
+que_qaru03,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_4	SKOGUL,4,4
+que_qaru03,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac1	FRUS,4,4
+que_qaru03,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac2	FRUS,4,4
+que_qaru03,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac3	FRUS,4,4
+que_qaru03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac4	FRUS,4,4
+que_qaru03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru03_ac1	GARDEN_WATCHER,4,4
+que_qaru03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru03_ac2	GARDEN_WATCHER,4,4
+que_qaru03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru03_boss	WISH_MAIDEN
 que_qaru03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru03_gift	4_F_VALKYRIE2
 que_qaru03,252,339,0	duplicate(agitgateSE)	#to_agit_aru03_gate	WARPNPC,1,1
 que_qaru03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru03_time1	CLEAR_NPC
@@ -2998,17 +2998,17 @@ que_qaru04,275,299,0	duplicate(jin02SE)	#nmsomaru04_jin2	-1
 que_qaru04,2,9,0	duplicate(stone02SE)	#aru04_stone2	CLEAR_NPC
 que_qaru04,251,340,0	duplicate(jin03SE)	#nmsomaru04_jin3	-1
 que_qaru04,2,10,0	duplicate(stone03SE)	#aru04_stone3	CLEAR_NPC
-que_qaru04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_1	1752,4,4
-que_qaru04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_2	1752,4,4
-que_qaru04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_3	1752,4,4
-que_qaru04,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_4	1752,4,4
-que_qaru04,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac1	1753,4,4
-que_qaru04,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac2	1753,4,4
-que_qaru04,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac3	1753,4,4
-que_qaru04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac4	1753,4,4
-que_qaru04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru04_ac1	1933,4,4
-que_qaru04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru04_ac2	1933,4,4
-que_qaru04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru04_boss	1931
+que_qaru04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_1	SKOGUL,4,4
+que_qaru04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_2	SKOGUL,4,4
+que_qaru04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_3	SKOGUL,4,4
+que_qaru04,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_4	SKOGUL,4,4
+que_qaru04,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac1	FRUS,4,4
+que_qaru04,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac2	FRUS,4,4
+que_qaru04,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac3	FRUS,4,4
+que_qaru04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac4	FRUS,4,4
+que_qaru04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru04_ac1	GARDEN_WATCHER,4,4
+que_qaru04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru04_ac2	GARDEN_WATCHER,4,4
+que_qaru04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru04_boss	WISH_MAIDEN
 que_qaru04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru04_gift	4_F_VALKYRIE2
 que_qaru04,252,339,0	duplicate(agitgateSE)	#to_agit_aru04_gate	WARPNPC,1,1
 que_qaru04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru04_time1	CLEAR_NPC
@@ -3052,17 +3052,17 @@ que_qaru05,275,299,0	duplicate(jin02SE)	#nmsomaru05_jin2	-1
 que_qaru05,2,9,0	duplicate(stone02SE)	#aru05_stone2	CLEAR_NPC
 que_qaru05,251,340,0	duplicate(jin03SE)	#nmsomaru05_jin3	-1
 que_qaru05,2,10,0	duplicate(stone03SE)	#aru05_stone3	CLEAR_NPC
-que_qaru05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_1	1752,4,4
-que_qaru05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_2	1752,4,4
-que_qaru05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_3	1752,4,4
-que_qaru05,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_4	1752,4,4
-que_qaru05,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac1	1753,4,4
-que_qaru05,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac2	1753,4,4
-que_qaru05,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac3	1753,4,4
-que_qaru05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac4	1753,4,4
-que_qaru05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru05_ac1	1933,4,4
-que_qaru05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru05_ac2	1933,4,4
-que_qaru05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru05_boss	1931
+que_qaru05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_1	SKOGUL,4,4
+que_qaru05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_2	SKOGUL,4,4
+que_qaru05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_3	SKOGUL,4,4
+que_qaru05,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_4	SKOGUL,4,4
+que_qaru05,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac1	FRUS,4,4
+que_qaru05,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac2	FRUS,4,4
+que_qaru05,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac3	FRUS,4,4
+que_qaru05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac4	FRUS,4,4
+que_qaru05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru05_ac1	GARDEN_WATCHER,4,4
+que_qaru05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru05_ac2	GARDEN_WATCHER,4,4
+que_qaru05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru05_boss	WISH_MAIDEN
 que_qaru05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru05_gift	4_F_VALKYRIE2
 que_qaru05,252,339,0	duplicate(agitgateSE)	#to_agit_aru05_gate	WARPNPC,1,1
 que_qaru05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru05_time1	CLEAR_NPC
@@ -3106,17 +3106,17 @@ que_qsch01,275,299,0	duplicate(jin02SE)	#nmsomsch01_jin2	-1
 que_qsch01,2,9,0	duplicate(stone02SE)	#sch01_stone2	CLEAR_NPC
 que_qsch01,251,340,0	duplicate(jin03SE)	#nmsomsch01_jin3	-1
 que_qsch01,2,10,0	duplicate(stone03SE)	#sch01_stone3	CLEAR_NPC
-que_qsch01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_1	1752,4,4
-que_qsch01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_2	1752,4,4
-que_qsch01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_3	1752,4,4
-que_qsch01,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_4	1752,4,4
-que_qsch01,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac1	1753,4,4
-que_qsch01,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac2	1753,4,4
-que_qsch01,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac3	1753,4,4
-que_qsch01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac4	1753,4,4
-que_qsch01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch01_ac1	1933,4,4
-que_qsch01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch01_ac2	1933,4,4
-que_qsch01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch01_boss	1931
+que_qsch01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_1	SKOGUL,4,4
+que_qsch01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_2	SKOGUL,4,4
+que_qsch01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_3	SKOGUL,4,4
+que_qsch01,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_4	SKOGUL,4,4
+que_qsch01,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac1	FRUS,4,4
+que_qsch01,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac2	FRUS,4,4
+que_qsch01,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac3	FRUS,4,4
+que_qsch01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac4	FRUS,4,4
+que_qsch01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch01_ac1	GARDEN_WATCHER,4,4
+que_qsch01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch01_ac2	GARDEN_WATCHER,4,4
+que_qsch01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch01_boss	WISH_MAIDEN
 que_qsch01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch01_gift	4_F_VALKYRIE2
 que_qsch01,252,339,0	duplicate(agitgateSE)	#to_agit_sch01_gate	WARPNPC,1,1
 que_qsch01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch01_time1	CLEAR_NPC
@@ -3160,17 +3160,17 @@ que_qsch02,275,299,0	duplicate(jin02SE)	#nmsomsch02_jin2	-1
 que_qsch02,2,9,0	duplicate(stone02SE)	#sch02_stone2	CLEAR_NPC
 que_qsch02,251,340,0	duplicate(jin03SE)	#nmsomsch02_jin3	-1
 que_qsch02,2,10,0	duplicate(stone03SE)	#sch02_stone3	CLEAR_NPC
-que_qsch02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_1	1752,4,4
-que_qsch02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_2	1752,4,4
-que_qsch02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_3	1752,4,4
-que_qsch02,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_4	1752,4,4
-que_qsch02,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac1	1753,4,4
-que_qsch02,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac2	1753,4,4
-que_qsch02,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac3	1753,4,4
-que_qsch02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac4	1753,4,4
-que_qsch02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch02_ac1	1933,4,4
-que_qsch02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch02_ac2	1933,4,4
-que_qsch02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch02_boss	1931
+que_qsch02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_1	SKOGUL,4,4
+que_qsch02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_2	SKOGUL,4,4
+que_qsch02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_3	SKOGUL,4,4
+que_qsch02,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_4	SKOGUL,4,4
+que_qsch02,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac1	FRUS,4,4
+que_qsch02,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac2	FRUS,4,4
+que_qsch02,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac3	FRUS,4,4
+que_qsch02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac4	FRUS,4,4
+que_qsch02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch02_ac1	GARDEN_WATCHER,4,4
+que_qsch02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch02_ac2	GARDEN_WATCHER,4,4
+que_qsch02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch02_boss	WISH_MAIDEN
 que_qsch02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch02_gift	4_F_VALKYRIE2
 que_qsch02,252,339,0	duplicate(agitgateSE)	#to_agit_sch02_gate	WARPNPC,1,1
 que_qsch02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch02_time1	CLEAR_NPC
@@ -3214,17 +3214,17 @@ que_qsch03,275,299,0	duplicate(jin02SE)	#nmsomsch03_jin2	-1
 que_qsch03,2,9,0	duplicate(stone02SE)	#sch03_stone2	CLEAR_NPC
 que_qsch03,251,340,0	duplicate(jin03SE)	#nmsomsch03_jin3	-1
 que_qsch03,2,10,0	duplicate(stone03SE)	#sch03_stone3	CLEAR_NPC
-que_qsch03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_1	1752,4,4
-que_qsch03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_2	1752,4,4
-que_qsch03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_3	1752,4,4
-que_qsch03,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_4	1752,4,4
-que_qsch03,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac1	1753,4,4
-que_qsch03,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac2	1753,4,4
-que_qsch03,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac3	1753,4,4
-que_qsch03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac4	1753,4,4
-que_qsch03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch03_ac1	1933,4,4
-que_qsch03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch03_ac2	1933,4,4
-que_qsch03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch03_boss	1931
+que_qsch03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_1	SKOGUL,4,4
+que_qsch03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_2	SKOGUL,4,4
+que_qsch03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_3	SKOGUL,4,4
+que_qsch03,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_4	SKOGUL,4,4
+que_qsch03,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac1	FRUS,4,4
+que_qsch03,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac2	FRUS,4,4
+que_qsch03,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac3	FRUS,4,4
+que_qsch03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac4	FRUS,4,4
+que_qsch03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch03_ac1	GARDEN_WATCHER,4,4
+que_qsch03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch03_ac2	GARDEN_WATCHER,4,4
+que_qsch03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch03_boss	WISH_MAIDEN
 que_qsch03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch03_gift	4_F_VALKYRIE2
 que_qsch03,252,339,0	duplicate(agitgateSE)	#to_agit_sch03_gate	WARPNPC,1,1
 que_qsch03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch03_time1	CLEAR_NPC
@@ -3268,17 +3268,17 @@ que_qsch04,275,299,0	duplicate(jin02SE)	#nmsomsch04_jin2	-1
 que_qsch04,2,9,0	duplicate(stone02SE)	#sch04_stone2	CLEAR_NPC
 que_qsch04,251,340,0	duplicate(jin03SE)	#nmsomsch04_jin3	-1
 que_qsch04,2,10,0	duplicate(stone03SE)	#sch04_stone3	CLEAR_NPC
-que_qsch04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_1	1752,4,4
-que_qsch04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_2	1752,4,4
-que_qsch04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_3	1752,4,4
-que_qsch04,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_4	1752,4,4
-que_qsch04,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac1	1753,4,4
-que_qsch04,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac2	1753,4,4
-que_qsch04,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac3	1753,4,4
-que_qsch04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac4	1753,4,4
-que_qsch04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch04_ac1	1933,4,4
-que_qsch04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch04_ac2	1933,4,4
-que_qsch04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch04_boss	1931
+que_qsch04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_1	SKOGUL,4,4
+que_qsch04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_2	SKOGUL,4,4
+que_qsch04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_3	SKOGUL,4,4
+que_qsch04,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_4	SKOGUL,4,4
+que_qsch04,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac1	FRUS,4,4
+que_qsch04,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac2	FRUS,4,4
+que_qsch04,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac3	FRUS,4,4
+que_qsch04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac4	FRUS,4,4
+que_qsch04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch04_ac1	GARDEN_WATCHER,4,4
+que_qsch04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch04_ac2	GARDEN_WATCHER,4,4
+que_qsch04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch04_boss	WISH_MAIDEN
 que_qsch04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch04_gift	4_F_VALKYRIE2
 que_qsch04,252,339,0	duplicate(agitgateSE)	#to_agit_sch04_gate	WARPNPC,1,1
 que_qsch04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch04_time1	CLEAR_NPC
@@ -3322,17 +3322,17 @@ que_qsch05,275,299,0	duplicate(jin02SE)	#nmsomsch05_jin2	-1
 que_qsch05,2,9,0	duplicate(stone02SE)	#sch05_stone2	CLEAR_NPC
 que_qsch05,251,340,0	duplicate(jin03SE)	#nmsomsch05_jin3	-1
 que_qsch05,2,10,0	duplicate(stone03SE)	#sch05_stone3	CLEAR_NPC
-que_qsch05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_1	1752,4,4
-que_qsch05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_2	1752,4,4
-que_qsch05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_3	1752,4,4
-que_qsch05,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_4	1752,4,4
-que_qsch05,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac1	1753,4,4
-que_qsch05,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac2	1753,4,4
-que_qsch05,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac3	1753,4,4
-que_qsch05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac4	1753,4,4
-que_qsch05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch05_ac1	1933,4,4
-que_qsch05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch05_ac2	1933,4,4
-que_qsch05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch05_boss	1931
+que_qsch05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_1	SKOGUL,4,4
+que_qsch05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_2	SKOGUL,4,4
+que_qsch05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_3	SKOGUL,4,4
+que_qsch05,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_4	SKOGUL,4,4
+que_qsch05,266,296,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac1	FRUS,4,4
+que_qsch05,271,283,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac2	FRUS,4,4
+que_qsch05,270,307,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac3	FRUS,4,4
+que_qsch05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac4	FRUS,4,4
+que_qsch05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch05_ac1	GARDEN_WATCHER,4,4
+que_qsch05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch05_ac2	GARDEN_WATCHER,4,4
+que_qsch05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch05_boss	WISH_MAIDEN
 que_qsch05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch05_gift	4_F_VALKYRIE2
 que_qsch05,252,339,0	duplicate(agitgateSE)	#to_agit_sch05_gate	WARPNPC,1,1
 que_qsch05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch05_time1	CLEAR_NPC

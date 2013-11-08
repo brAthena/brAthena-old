@@ -322,6 +322,8 @@ int mob_count_sub(struct block_list *bl, va_list ap);
 
 int mob_is_clone(int class_);
 
+void mob_name_constants(void);
+
 int mob_clone_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const char *event, int master_id, int mode, int flag, unsigned int duration);
 int mob_clone_delete(struct mob_data *md);
 

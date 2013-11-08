@@ -3930,7 +3930,16 @@ static int mob_read_sqldb(void)
 	// free the query result
 	Sql_FreeResult(dbmysql_handle);
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(56));
+	mob_name_constants();
 	return 0;
+}
+
+void mob_name_constants(void) {
+	int i;
+	for (i = 0; i < MAX_MOB_DB; i++) {
+		if (mob_db_data[i] && !mob_is_clone(i))
+			script->set_constant2(mob_db_data[i]->sprite, i, 0);
+	}
 }
 
 /*==========================================

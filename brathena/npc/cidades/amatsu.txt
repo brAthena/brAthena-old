@@ -330,7 +330,7 @@ amatsu,243,202,3	script	Professora de Drama#ama	4_F_JPNOBA2,{
 	close;
 }
 	
-amatsu,283,203,1	script	Bonubonu#ama1	1323,{ end; }
+amatsu,283,203,1	script	Bonubonu#ama1	SEE_OTTER,{ end; }
 
 amatsu,283,203,1	script	Bonubonu#ama2	HIDDEN_NPC,{
 	set jap_tree,3;

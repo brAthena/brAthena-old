@@ -1068,7 +1068,7 @@ OnInit:
 	end;
 }
 
-nameless_in,13,53,1	script	#Aru_Trigger2	1864,{
+nameless_in,13,53,1	script	#Aru_Trigger2	ZOMBIE_SLAUGHTER,{
 	end;
 
 OnInit:

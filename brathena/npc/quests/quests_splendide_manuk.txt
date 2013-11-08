@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/2.8/1.2                         |
+//   | Versões eA/rA/brA: ??/2.8/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Coleção de quests do episódio 13.2.         |
 //   |--------------------------------------------------------|
@@ -3213,7 +3213,7 @@ nyd_dun02,201,166,0	duplicate(Ovo de Dragão#ep13_dovo_2)	Ovo de Dragão#ep13_dovo
 nyd_dun02,203,167,0	duplicate(Ovo de Dragão#ep13_dovo_2)	Ovo de Dragão#ep13_dovo17	4_DRAGON_EGG
 nyd_dun02,201,164,0	duplicate(Ovo de Dragão#ep13_dovo_2)	Ovo de Dragão#ep13_dovo18	4_DRAGON_EGG
 
-nyd_dun02,201,157,5	script	Guardião do ovo do Dragão#13_1	2013,3,3,{
+nyd_dun02,201,157,5	script	Guardião do ovo do Dragão#13_1	DRACO,3,3,{
 
 OnEnable:
 	enablenpc "Guardião do ovo do Dragão#13_1";
@@ -3229,7 +3229,7 @@ OnTouch:
 	end;
 }
 
-nyd_dun02,206,157,3	script	Guardião do ovo do Dragão#13_2	2013,3,3,{
+nyd_dun02,206,157,3	script	Guardião do ovo do Dragão#13_2	DRACO,3,3,{
 	end;
 
 OnEnable:

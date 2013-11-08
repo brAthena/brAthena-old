@@ -5,10 +5,10 @@
 //   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 //   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 //   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-//   |                                                        |	
+//   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: quests_mora.txt                        |	
+//   | Nome do Script: quests_mora.txt                        |
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
@@ -479,6 +479,124 @@ mora,115,98,5	script	Hotcha	4_ELEPHANT,{
 		close;
 	}
 	end;
+}
+
+bif_fild01,132,338,3	script	Lope#pa	4_M_FAIRYSOLDIER2,2,2,{
+	if (ep14_1_rope < 8) {
+		mes "[Suspicious Man]";
+		mes "......";
+		close;
+	} else if (ep14_1_rope == 8) {
+		donpcevent "Lope#pa::OnEnable";
+		mes "[Suspicious Man]";
+		mes "Aaaarrrrrggggghhhh!!!!!!";
+		mes "I can't see anything.";
+		mes "Who's there?";
+		mes "Answer, or I'll take you as an enemy and kill you.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Euridi is looking for you.";
+		next;
+		mes "[Suspicious Man]";
+		mes "......";
+		next;
+		mes "[Lope]";
+		mes "Wraith, how can you be so harsh to me?";
+		mes "I asked you to wipe the name off my mind";
+		mes "in return for bearing the curse!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Will you please calm down and listen to...";
+		next;
+		mes "[Lope]";
+		mes "My desire to help";
+		mes "led me to my death,";
+		mes "And my desire to survive and take revenge";
+		mes "led me to my rebirth.";
+		mes "I will not side with life any more.";
+		next;
+		mes "[Lope]";
+		mes "As soon as my transformation is over,";
+		mes "I will punish you all with the bloody confusion of the Hazy Forest,";
+		mes "which saved my life!";
+		next;
+		mes "You put the letter Euridi pieced together in Lope's hands.";
+		next;
+		mes "[Lope]";
+		mes "...This is!";
+		mes "I feel Euridi's touch.";
+		mes "So the letter... was delivered to Euridi?";
+		mes "This is unbelievable...";
+		next;
+		mes "[Lope]";
+		mes "Deformed as I am now,";
+		mes "I'm not her love any more.";
+		mes "Go back, and tell her that Lope turned to dust";
+		mes "on the ground of the Hazy Forest long ago.";
+		next;
+		mes "[Lope]";
+		mes "Now go!";
+		mes "This is my last request as a Laphine called Lope...";
+		set ep14_1_rope,9;
+		changequest 1115,1116;
+		close;
+	} else {
+		mes "[Lope]";
+		mes "Deformed as I am now,";
+		mes "I'm not her love any more.";
+		mes "Go back, and tell her that Lope turned to dust";
+		mes "on the ground of the Hazy Forest long ago.";
+		next;
+		mes "[Lope]";
+		mes "Now go!";
+		mes "This is my last request as a Laphine called Lope...";
+		next;
+		mes "You see a ring glowing faintly on his left hand.";
+		close;
+	}
+	end;
+OnEnable:
+	setnpcdisplay "Lope#pa", 4_M_MUT1;
+	end;
+OnDisable:
+	disablenpc "Lope#pa";
+	initnpctimer;
+	end;
+OnReset:
+	setnpcdisplay "Lope#pa", 4_M_FAIRYSOLDIER2;
+	enablenpc "Lope#pa";
+	end;
+OnTimer2000:
+	donpcevent "Lope#pa::OnReset";
+	stopnpctimer;
+	end;
+OnTouch:
+	mes "I see a suspicious man. Should I try talking to him?";
+	next;
+	switch(select("Leave him alone.:Talk to him.")) {
+	case 1:
+		donpcevent "Lope#pa::OnDisable";
+		mes "[Suspicious Man]";
+		mes "......";
+		close;
+	case 2:
+		donpcevent "Lope#pa::OnDisable";
+		if (ep14_1_rope == 7) {
+			mes "[Suspicious Man]";
+			mes ".";
+			mes "...";
+			mes "........!!!";
+			next;
+			mes "[Suspicious Man]";
+			mes "Aaaaarrrrrggghh!!!!!";
+			set ep14_1_rope,8;
+			close;
+		} else {
+			mes "[Suspicious Man]";
+			mes "......";
+			close;
+		}
+	}
 }
 
 mora,31,138,6	script	Raffle Researcher#ep14	4_M_RAFLE_OR,{
@@ -2094,7 +2212,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,115,68,4	script	Sombra Escura	4_F_MORAFINE1,{
+mora,115,68,3	script	Sombra Escura	4_F_MORAFINE1,{
 	mes "[Sombra Escura]";
 	if (euridi == 10) {
 		mes "Euridi não está tão bem agora, então deixe-me agradecê-lo por seu trabalho.";

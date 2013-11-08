@@ -715,7 +715,7 @@ OnInit:
 	end;
 }
 
-prt_are_in,1,1,5	script	#arena_1039	1039,{
+prt_are_in,1,1,5	script	#arena_1039	BAPHOMET,{
 	end;
 
 OnInit:
