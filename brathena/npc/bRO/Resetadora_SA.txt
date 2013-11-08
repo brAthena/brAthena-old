@@ -23,7 +23,7 @@
    | 1.0 Script Criado [brAthena]                                               |
    \____________________________________________________________________________/ */
 
-prontera,182,211,4	script	Resetadora de S.A's	69,{
+prontera,182,211,4	script	Resetadora de S.A's	1_F_04,{
 
      mes "[Resetadora de S.A's]";
      if(Class != 23 && Class != 4045) {
