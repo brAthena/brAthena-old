@@ -14,12 +14,6 @@
 * \todo ?                                                                    *  
 *****************************************************************************/
 
-//#define DEBUG_DISP
-//#define DEBUG_DISASM
-//#define DEBUG_RUN
-//#define DEBUG_HASH
-//#define DEBUG_DUMP_STACK
-
 #include "../common/cbasetypes.h"
 #include "../common/malloc.h"
 #include "../common/md5calc.h"
@@ -82,113 +76,6 @@
 #include "../common/mutex.h"
 #endif
 
-
-///////////////////////////////////////////////////////////////////////////////
-//## TODO possible enhancements: [FlavioJS]
-// - 'callfunc' supporting labels in the current npc "::LabelName"
-// - 'callfunc' supporting labels in other npcs "NpcName::LabelName"
-// - 'function FuncName;' function declarations reverting to global functions
-//   if local label isn't found
-// - join callfunc and callsub's functionality
-// - remove dynamic allocation in add_word()
-// - remove GETVALUE / SETVALUE
-// - clean up the set_reg / set_val / setd_sub mess
-// - detect invalid label references at parse-time
-
-//
-// struct script_state* st;
-//
-
-/// Returns the script_data at the target index
-#define script_getdata(st,i) ( &((st)->stack->stack_data[(st)->start + (i)]) )
-/// Returns if the stack contains data at the target index
-#define script_hasdata(st,i) ( (st)->end > (st)->start + (i) )
-/// Returns the index of the last data in the stack
-#define script_lastdata(st) ( (st)->end - (st)->start - 1 )
-/// Pushes an int into the stack
-#define script_pushint(st,val) push_val((st)->stack, C_INT, (val))
-/// Pushes a string into the stack (script engine frees it automatically)
-#define script_pushstr(st,val) push_str((st)->stack, C_STR, (val))
-/// Pushes a copy of a string into the stack
-#define script_pushstrcopy(st,val) push_str((st)->stack, C_STR, aStrdup(val))
-/// Pushes a constant string into the stack (must never change or be freed)
-#define script_pushconststr(st,val) push_str((st)->stack, C_CONSTSTR, (val))
-/// Pushes a nil into the stack
-#define script_pushnil(st) push_val((st)->stack, C_NOP, 0)
-/// Pushes a copy of the data in the target index
-#define script_pushcopy(st,i) push_copy((st)->stack, (st)->start + (i))
-
-#define script_isstring(st,i) data_isstring(script_getdata(st,i))
-#define script_isint(st,i) data_isint(script_getdata(st,i))
-
-#define script_getnum(st,val) conv_num(st, script_getdata(st,val))
-#define script_getstr(st,val) conv_str(st, script_getdata(st,val))
-#define script_getref(st,val) ( script_getdata(st,val)->ref )
-
-// Note: "top" functions/defines use indexes relative to the top of the stack
-//       -1 is the index of the data at the top
-
-/// Returns the script_data at the target index relative to the top of the stack
-#define script_getdatatop(st,i) ( &((st)->stack->stack_data[(st)->stack->sp + (i)]) )
-/// Pushes a copy of the data in the target index relative to the top of the stack
-#define script_pushcopytop(st,i) push_copy((st)->stack, (st)->stack->sp + (i))
-/// Removes the range of values [start,end[ relative to the top of the stack
-#define script_removetop(st,start,end) ( pop_stack((st), ((st)->stack->sp + (start)), (st)->stack->sp + (end)) )
-
-//
-// struct script_data* data;
-//
-
-/// Returns if the script data is a string
-#define data_isstring(data) ( (data)->type == C_STR || (data)->type == C_CONSTSTR )
-/// Returns if the script data is an int
-#define data_isint(data) ( (data)->type == C_INT )
-/// Returns if the script data is a reference
-#define data_isreference(data) ( (data)->type == C_NAME )
-/// Returns if the script data is a label
-#define data_islabel(data) ( (data)->type == C_POS )
-/// Returns if the script data is an internal script function label
-#define data_isfunclabel(data) ( (data)->type == C_USERFUNC_POS )
-
-/// Returns if this is a reference to a constant
-#define reference_toconstant(data) ( str_data[reference_getid(data)].type == C_INT )
-/// Returns if this a reference to a param
-#define reference_toparam(data) ( str_data[reference_getid(data)].type == C_PARAM )
-/// Returns if this a reference to a variable
-//##TODO confirm it's C_NAME [FlavioJS]
-#define reference_tovariable(data) ( str_data[reference_getid(data)].type == C_NAME )
-/// Returns the unique id of the reference (id and index)
-#define reference_getuid(data) ( (data)->u.num )
-/// Returns the id of the reference
-#define reference_getid(data) ( (int32)(reference_getuid(data) & 0x00ffffff) )
-/// Returns the array index of the reference
-#define reference_getindex(data) ( (int32)(((uint32)(reference_getuid(data) & 0xff000000)) >> 24) )
-/// Returns the name of the reference
-#define reference_getname(data) ( str_buf + str_data[reference_getid(data)].str )
-/// Returns the linked list of uid-value pairs of the reference (can be NULL)
-#define reference_getref(data) ( (data)->ref )
-/// Returns the value of the constant
-#define reference_getconstant(data) ( str_data[reference_getid(data)].val )
-/// Returns the type of param
-#define reference_getparamtype(data) ( str_data[reference_getid(data)].val )
-
-/// Composes the uid of a reference from the id and the index
-#define reference_uid(id,idx) ( (int32)((((uint32)(id)) & 0x00ffffff) | (((uint32)(idx)) << 24)) )
-
-#define not_server_variable(prefix) ( (prefix) != '$' && (prefix) != '.' && (prefix) != '\'')
-#define not_array_variable(prefix) ( (prefix) != '$' && (prefix) != '@' && (prefix) != '.' && (prefix) != '\'' )
-#define is_string_variable(name) ( (name)[strlen(name) - 1] == '$' )
-
-#define FETCH(n, t) \
-	if( script_hasdata(st,n) ) \
-		(t)=script_getnum(st,n);
-
-/// Maximum amount of elements in script arrays
-#define SCRIPT_MAX_ARRAYSIZE 128+50
-
-#define SCRIPT_BLOCK_SIZE 512
-enum { LABEL_NEXTLINE=1,LABEL_START };
-
 /// temporary buffer for passing around compiled bytecode
 /// @see add_scriptb, set_label, parse_script
 static unsigned char *script_buf = NULL;
@@ -204,26 +91,6 @@ static inline void SETVALUE(unsigned char *buf, int i, int n)
 	buf[i+1] = GetByte(n, 1);
 	buf[i+2] = GetByte(n, 2);
 }
-
-// String buffer structures.
-// str_data stores string information
-static struct str_data_struct {
-	enum c_op type;
-	int str;
-	int backpatch;
-	int label;
-	int (*func)(struct script_state *st);
-	int val;
-	int next;
-} *str_data = NULL;
-static int str_data_size = 0; // size of the data
-static int str_num = LABEL_START; // next id to be assigned
-
-// str_buf holds the strings themselves
-static char *str_buf;
-static int str_size = 0; // size of the buffer
-static int str_pos = 0; // next position to be assigned
-
 
 // Using a prime number for SCRIPT_HASH_SIZE should give better distributions
 #define SCRIPT_HASH_SIZE 1021
@@ -275,37 +142,6 @@ static const char* parser_current_src;
 static const char* parser_current_file;
 static int         parser_current_line;
 
-// for advanced scripting support ( nested if, switch, while, for, do-while, function, etc )
-// [Eoe / jA 1080, 1081, 1094, 1164]
-enum curly_type {
-    TYPE_NULL = 0,
-    TYPE_IF,
-    TYPE_SWITCH,
-    TYPE_WHILE,
-    TYPE_FOR,
-    TYPE_DO,
-    TYPE_USERFUNC,
-    TYPE_ARGLIST // function argument list
-};
-
-enum e_arglist {
-    ARGLIST_UNDEFINED = 0,
-    ARGLIST_NO_PAREN  = 1,
-    ARGLIST_PAREN     = 2,
-};
-
-static struct {
-	struct {
-		enum curly_type type;
-		int index;
-		int count;
-		int flag;
-		struct linkdb_node *case_label;
-	} curly[256];       // Information right parenthesis
-	int curly_count;    // The number of right brackets
-	int index;          // Number of the syntax used in the script
-} syntax;
-
 const char *parse_curly_close(const char *p);
 const char *parse_syntax_close(const char *p);
 const char *parse_syntax_close_sub(const char *p,int *flag);
@@ -316,7 +152,6 @@ extern int current_equip_item_index; //for New CARDS Scripts. It contains Invent
 int potion_flag=0; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
 int potion_hp=0, potion_per_hp=0, potion_sp=0, potion_per_sp=0;
 int potion_target=0;
-
 
 struct script_interface script_s;
 
@@ -360,67 +195,6 @@ struct {
  *------------------------------------------*/
 const char *parse_subexpr(const char *p,int limit);
 int run_func(struct script_state *st);
-
-enum {
-    MF_NOMEMO,  //0
-    MF_NOTELEPORT,
-    MF_NOSAVE,
-    MF_NOBRANCH,
-    MF_NOPENALTY,
-    MF_NOZENYPENALTY,
-    MF_PVP,
-    MF_PVP_NOPARTY,
-    MF_PVP_NOGUILD,
-    MF_GVG,
-    MF_GVG_NOPARTY, //10
-    MF_NOTRADE,
-    MF_NOSKILL,
-    MF_NOWARP,
-    MF_PARTYLOCK,
-    MF_NOICEWALL,
-    MF_SNOW,
-    MF_FOG,
-    MF_SAKURA,
-    MF_LEAVES,
-    /**
-     * No longer available, keeping here just in case it's back someday. [Ind]
-     **/
-    MF_RAIN,  //20
-    // 21 free
-    MF_CLOUDS = 23,
-    MF_CLOUDS2,
-    MF_FIREWORKS,
-    MF_GVG_CASTLE,
-    MF_GVG_DUNGEON,
-    MF_NIGHTENABLED,
-    MF_NOBASEEXP,
-    MF_NOJOBEXP,    //30
-    MF_NOMOBLOOT,
-    MF_NOMVPLOOT,
-    MF_NORETURN,
-    MF_NOWARPTO,
-    MF_NIGHTMAREDROP,
-    MF_ZONE,
-    MF_NOCOMMAND,
-    MF_NODROP,
-    MF_JEXP,
-    MF_BEXP,    //40
-    MF_NOVENDING,
-    MF_LOADEVENT,
-    MF_NOCHAT,
-    MF_NOEXPPENALTY,
-    MF_GUILDLOCK,
-    MF_TOWN,
-    MF_AUTOTRADE,
-    MF_ALLOWKS,
-    MF_MONSTER_NOTELEPORT,
-    MF_PVP_NOCALCRANK,  //50
-    MF_BATTLEGROUND,
-    MF_RESET,
-    MF_SET_CASTLE,
-    MF_NOTOMB,
-    MF_NOCASHSHOP,
-};
 
 const char *script_op2name(int op)
 {
@@ -618,19 +392,6 @@ static void script_reportfunc(struct script_state *st)
 	} else {
 		ShowDebug("Funcao: %s (nao ha parametros)\n", get_str(id));
 	}
-}
-
-// Returns name of currently running function
-static char* script_getfuncname(struct script_state *st)
-{
-	int i;
-	char* name = "";
-	for(i = 0; i < st->stack->sp; ++i) {
-		struct script_data* data = &st->stack->stack_data[i];
-		if(data->type == C_NAME && str_data[data->u.num].type == C_FUNC)
-			name = reference_getname(data);
-	}
-	return name;
 }
 
 /*==========================================
@@ -2266,61 +2027,92 @@ static void read_constdb(void)
 	Sql_FreeResult(tmp_ptr);
 }
 
+// Standard UNIX tab size is 8
+#define TAB_SIZE 8
+#define update_tabstop(tabstop,chars) \
+	do { \
+		(tabstop) -= (chars); \
+		while ((tabstop) <= 0) (tabstop) += TAB_SIZE; \
+	} while (false)
+
 /*==========================================
  * Display emplacement line of script
  *------------------------------------------*/
 static const char *script_print_line(StringBuf *buf, const char *p, const char *mark, int line)
 {
-	int i;
+	int i, mark_pos = 0, tabstop = TAB_SIZE;
 	if(p == NULL || !p[0]) return NULL;
 	if(line < 0)
-		StringBuf_Printf(buf, "*% 5d : ", -line);
+		StringBuf_Printf(buf, "*% 5d : ", -line); // len = 8
 	else
-		StringBuf_Printf(buf, " % 5d : ", line);
+		StringBuf_Printf(buf, " % 5d : ", line); // len = 8
+	update_tabstop(tabstop,8);                      // len = 8
 	for(i=0; p[i] && p[i] != '\n'; i++) {
+		char c = p[i];
+		int w = 1;
+		// Like Clang does, let's print the code with tabs expanded to spaces to ensure that the marker will be under the right character
+		if( c == '\t' ) {
+			c = ' ';
+			w = tabstop;
+		}
+		update_tabstop(tabstop, w);
+		if( p + i < mark)
+			mark_pos += w;
 		if(p + i != mark)
-			StringBuf_Printf(buf, "%c", p[i]);
+			StringBuf_Printf(buf, "%*c",w, c);
 		else
-			StringBuf_Printf(buf, "\'%c\'", p[i]);
+			StringBuf_Printf(buf,  CL_BT_RED"%*c"CL_RESET, w, c);
 	}
 	StringBuf_AppendStr(buf, "\n");
+	if( mark ) {
+		StringBuf_AppendStr(buf, "        "CL_BT_CYAN); // len = 8
+		for( ; mark_pos > 0; mark_pos-- ) {
+			StringBuf_AppendStr(buf, "~");
+		}
+		StringBuf_AppendStr(buf, CL_RESET CL_BT_GREEN"^"CL_RESET"\n");
+	}
 	return p+i+(p[i] == '\n' ? 1 : 0);
 }
+#undef TAB_SIZE
+#undef update_tabstop
 
+#define CONTEXTLINES 3
 void script_errorwarning_sub(StringBuf *buf, const char *src, const char *file, int start_line, const char *error_msg, const char *error_pos)
 {
 	// Find the line where the error occurred
 	int j;
 	int line = start_line;
-	const char *p;
-	const char *linestart[5] = { NULL, NULL, NULL, NULL, NULL };
+	const char *p, *error_linepos;
+	const char *linestart[CONTEXTLINES] = { NULL };
 
 	for(p=src; p && *p; line++) {
 		const char *lineend=strchr(p,'\n');
 		if(lineend==NULL || error_pos<lineend) {
 			break;
 		}
-		for(j = 0; j < 4; j++) {
+		for(j = 0; j < CONTEXTLINES-1; j++) {
 			linestart[j] = linestart[j+1];
 		}
-		linestart[4] = p;
-		p=lineend+1;
+		linestart[CONTEXTLINES-1] = p;
+		p = lineend+1;
 	}
+	error_linepos = p;
 
 	if(line >= 0)
-		StringBuf_Printf(buf, "script error in file '%s' line %d\n", file, line);
+		StringBuf_Printf(buf, "script error in file '%s' line %d column %d\n", file, line, error_pos-error_linepos+1);
 	else
 		StringBuf_Printf(buf, "script error in file '%s' item ID %d\n", file, -line);
 
 	StringBuf_Printf(buf, "    %s\n", error_msg);
-	for(j = 0; j < 5; j++) {
-		script_print_line(buf, linestart[j], NULL, line + j - 5);
+	for(j = 0; j < CONTEXTLINES; j++) {
+		script_print_line(buf, linestart[j], NULL, line + j - CONTEXTLINES);
 	}
 	p = script_print_line(buf, p, error_pos, -line);
-	for(j = 0; j < 5; j++) {
+	for(j = 0; j < CONTEXTLINES; j++) {
 		p = script_print_line(buf, p, NULL, line + j + 1);
 	}
 }
+#undef CONTEXTLINES
 
 void script_error(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos) {
 	StringBuf buf;
@@ -2690,14 +2482,12 @@ void get_val(struct script_state *st, struct script_data *data)
 	return;
 }
 
-struct script_data *push_val2(struct script_stack *stack, enum c_op type, int val, struct DBMap **ref);
-
 /// Retrieves the value of a reference identified by uid (variable, constant, param)
 /// The value is left in the top of the stack and needs to be removed manually.
 void *get_val2(struct script_state *st, int uid, struct DBMap **ref)
 {
 	struct script_data *data;
-	push_val2(st->stack, C_NAME, uid, ref);
+	push_val(st->stack, C_NAME, uid, ref);
 	data = script_getdatatop(st, -1);
 	get_val(st, data);
 	return (data->type == C_INT ? (void *)__64BPRTSIZE(data->u.num) : (void *)__64BPRTSIZE(data->u.str));
@@ -2894,11 +2684,8 @@ void stack_expand(struct script_stack *stack)
 	       64 * sizeof(stack->stack_data[0]));
 }
 
-/// Pushes a value into the stack
-#define push_val(stack,type,val) push_val2(stack, type, val, NULL)
-
 /// Pushes a value into the stack (with reference)
-struct script_data *push_val2(struct script_stack *stack, enum c_op type, int val, struct DBMap **ref) {
+struct script_data* push_val(struct script_stack* stack, enum c_op type, int val, struct DBMap** ref) {
 	if(stack->sp >= stack->sp_max)
 		stack_expand(stack);
 	stack->stack_data[stack->sp].type  = type;
@@ -2944,11 +2731,11 @@ struct script_data *push_copy(struct script_stack *stack, int pos) {
 			exit(1);
 			break;
 		default:
-			return push_val2(
+			return push_val(
 			           stack,stack->stack_data[pos].type,
 			           stack->stack_data[pos].u.num,
 			           stack->stack_data[pos].ref
-			       );
+			);
 			break;
 	}
 }
@@ -3694,15 +3481,15 @@ void run_script_main(struct script_state *st)
 					pop_stack(st, stack->defsp, stack->sp);// pop unused stack data. (unused return value)
 				break;
 			case C_INT:
-				push_val(stack,C_INT,get_num(st->script->script_buf,&st->pos));
+				push_val(stack,C_INT,get_num(st->script->script_buf,&st->pos),NULL);
 				break;
 			case C_POS:
 			case C_NAME:
-				push_val(stack,c,GETVALUE(st->script->script_buf,st->pos));
+				push_val(stack,c,GETVALUE(st->script->script_buf,st->pos),NULL);
 				st->pos+=3;
 				break;
 			case C_ARG:
-				push_val(stack,c,0);
+				push_val(stack,c,0,NULL);
 				break;
 			case C_STR:
 				push_str(stack,C_CONSTSTR,(char *)(st->script->script_buf+st->pos));
@@ -4356,7 +4143,17 @@ int script_reload()
 
 	return 0;
 }
+/* returns name of current function being run */
+const char *script_getfuncname(struct script_state *st) {
+	struct script_data *data;
 
+	data = &st->stack->stack_data[st->start];
+
+	if(data->type == C_NAME && str_data[data->u.num].type == C_FUNC)
+		return get_str(data->u.num);
+
+	return NULL;
+}
 //-----------------------------------------------------------------------------
 // buildin functions
 //
@@ -5519,7 +5316,7 @@ BUILDIN_FUNC(set)
 			}
 
 			// push the maximum number of array values to the stack
-			push_val(st->stack, C_INT, SCRIPT_MAX_ARRAYSIZE);
+			push_val(st->stack, C_INT, SCRIPT_MAX_ARRAYSIZE,NULL);
 
 			// call the copy array method directly
 			return buildin_copyarray(st);
@@ -5895,7 +5692,7 @@ BUILDIN_FUNC(getelementofarray)
 		return 1;// out of range
 	}
 
-	push_val2(st->stack, C_NAME, reference_uid(id, i), reference_getref(data));
+	push_val(st->stack, C_NAME, reference_uid(id, i), reference_getref(data));
 	return 0;
 }
 
@@ -6043,37 +5840,6 @@ BUILDIN_FUNC(countitem)
 	return 0;
 }
 
-int checkweight_sub(TBL_PC *sd,int nbargs,int32 *eitemid,int32 *eamount)
-{
-	struct item_data* id = NULL;
-	int nameid,amount;
-	uint16 slots,weight=0,i;
-
-	slots = pc_inventoryblank(sd); //nb of empty slot
-
-	for(i=0; i<nbargs; i++) {
-		if(!eitemid[i])
-			continue;
-		id = itemdb_exists(eitemid[i]);
-		if( id == NULL ) {
-			ShowError("checkweight_sub: Invalid item '%d'.\n", eitemid[i]);
-			return 0;
-		}
-		nameid = id->nameid;
-
-		amount = eamount[i];
-		if( amount < 1 ) {
-			ShowError("checkweight_sub: Invalid amount '%d'.\n", eamount[i]);
-			return 0;
-		}
-
-		weight += (id->weight)*amount; //total weight for all chk
-		if( weight + sd->weight > sd->max_weight ) // too heavy
-			return 0;
-	}
-	return 1;
-}
-
 /*==========================================
  * Check if item with this amount can fit in inventory
  * Checking : weight, stack amount >32k, slots amount >(MAX_INVENTORY)
@@ -6083,21 +5849,22 @@ int checkweight_sub(TBL_PC *sd,int nbargs,int32 *eitemid,int32 *eamount)
  *------------------------------------------*/
 BUILDIN_FUNC(checkweight)
 {
+	int nameid, amount, slots, amount2=0;
+	unsigned int weight=0, i, nbargs;
+	struct item_data* id = NULL;
 	struct map_session_data* sd;
 	struct script_data *data;
-	struct item_data *id = NULL;
-	int32 nameid[SCRIPT_MAX_ARRAYSIZE], amount[SCRIPT_MAX_ARRAYSIZE];
-	uint16 nbargs,i,j=0;
 
-	if((sd = script_rid2sd(st) ) == NULL)
+	if((sd = script_rid2sd(st) ) == NULL){
 		return 0;
-
+	}
 	nbargs = script_lastdata(st)+1;
 	if(nbargs%2) {
 		ShowError("buildin_checkweight: Invalid nb of args should be a multiple of 2.\n");
 		script_pushint(st,0);
 		return 1;
 	}
+	slots = pc_inventoryblank(sd); //nb of empty slot
 
 	for(i=2; i<nbargs; i=i+2) {
 		data = script_getdata(st,i);
@@ -6111,20 +5878,58 @@ BUILDIN_FUNC(checkweight)
 			script_pushint(st,0);
 			return 1;
 		}
-		nameid[j] = id->nameid;
-		amount[j] = script_getnum(st,i+1);
-		j++;
+		nameid = id->nameid;
+
+		amount = script_getnum(st,i+1);
+		if(amount < 1) {
+		    ShowError("buildin_checkweight: Invalid amount '%d'.\n", amount);
+		    script_pushint(st,0);
+		    return 1;
+	    }
+
+	    weight += itemdb_weight(nameid)*amount; //total weight for all chk
+	    if(weight + sd->weight > sd->max_weight)
+	    {// too heavy
+		    script_pushint(st,0);
+		    return 0;
+	    }
+
+	    switch(pc_checkadditem(sd, nameid, amount))
+	    {
+		    case ADDITEM_EXIST:
+			    // item is already in inventory, but there is still space for the requested amount
+			    break;
+		    case ADDITEM_NEW:
+			    if(itemdb_isstackable(nameid)) {// stackable
+				    amount2++;
+				    if( slots < amount2 ) {
+					    script_pushint(st,0);
+					    return 0;
+				    }
+			    }
+			    else {// non-stackable
+				    amount2 += amount;
+				    if( slots < amount2){
+					    script_pushint(st,0);
+					    return 0;
+				    }
+			    }
+			    break;
+		    case ADDITEM_OVERAMOUNT:
+			    script_pushint(st,0);
+			    return 0;
+	    }
 	}
-
-	script_pushint(st,checkweight_sub(sd,(nbargs-2)/2,nameid,amount));
-	return 0;
+	script_pushint(st,1);
+	return true;
 }
-
 
 BUILDIN_FUNC(checkweight2)
 {
 	//variable sub checkweight
-	int32 nameid[SCRIPT_MAX_ARRAYSIZE], amount[SCRIPT_MAX_ARRAYSIZE], i;
+	int32 nameid=-1, amount=-1;
+	int i=0, amount2=0, slots=0, weight=0;
+	short fail=0;
 
 	//variable for array parsing
 	struct script_data *data_it;
@@ -6168,41 +5973,80 @@ BUILDIN_FUNC(checkweight2)
 	nb_nb = getarraysize(st, id_nb, idx_nb, 0, reference_getref(data_nb));
 	if(nb_it != nb_nb) {
 		ShowError("buildin_checkweight2: Size mistmatch: nb_it=%d, nb_nb=%d\n",nb_it,nb_nb);
-		script_pushint(st,0);
-		return 1;
+		fail = 1;
 	}
 
+	slots = pc_inventoryblank(sd);
 	for(i=0; i<nb_it; i++) {
-		nameid[i] = (int32)__64BPRTSIZE(get_val2(st,reference_uid(id_it,idx_it+i),reference_getref(data_it)));
+		nameid = (int32)__64BPRTSIZE(get_val2(st,reference_uid(id_it,idx_it+i),reference_getref(data_it)));
 		script_removetop(st, -1, 0);
-		amount[i] = (int32)__64BPRTSIZE(get_val2(st,reference_uid(id_nb,idx_nb+i),reference_getref(data_nb)));
+		amount = (int32)__64BPRTSIZE(get_val2(st,reference_uid(id_nb,idx_nb+i),reference_getref(data_nb)));
 		script_removetop(st, -1, 0);
+		if(fail) continue; //cpntonie to depop rest
+
+		if(itemdb_exists(nameid) == NULL ){
+			ShowError("buildin_checkweight2: Invalid item '%d'.\n", nameid);
+			fail=1;
+			continue;
+		}
+		if(amount < 0){
+			ShowError("buildin_checkweight2: Invalid amount '%d'.\n", amount);
+			fail = 1;
+			continue;
+		}
+	    weight += itemdb_weight(nameid)*amount;
+	    if(weight + sd->weight > sd->max_weight){
+			fail = 1;
+			continue;
+	    }
+	    switch(pc_checkadditem(sd, nameid, amount)) {
+		    case ADDITEM_EXIST:
+				// item is already in inventory, but there is still space for the requested amount
+			    break;
+		    case ADDITEM_NEW:
+			    if(itemdb_isstackable(nameid)){// stackable
+				    amount2++;
+				    if(slots < amount2)
+					    fail = 1;
+			    }
+			    else {// non-stackable
+				    amount2 += amount;
+				    if(slots < amount2){
+					    fail = 1;
+				    }
+			    }
+			    break;
+		    case ADDITEM_OVERAMOUNT:
+			    fail = 1;
+	    } //end switch
 	} //end loop DO NOT break it prematurly we need to depop all stack
 
-	script_pushint(st,checkweight_sub(sd,nb_it,nameid,amount)); //push result of sub to script
-
+	fail?script_pushint(st,0):script_pushint(st,1);
 	return 0;
 }
 
 /*==========================================
  * getitem <item id>,<amount>{,<account ID>};
  * getitem "<item name>",<amount>{,<account ID>};
+ *
+ * getitembound <item id>,<amount>,<type>{,<account ID>};
+ * getitembound "<item id>",<amount>,<type>{,<account ID>};
  *------------------------------------------*/
 BUILDIN_FUNC(getitem)
 {
-	int nameid,amount,get_count,i,flag = 0;
+	int nameid,amount,get_count,i,flag = 0, offset = 0;
 	struct item it;
 	TBL_PC *sd;
 	struct script_data *data;
+	struct item_data *item_data;
 
 	data=script_getdata(st,2);
 	get_val(st,data);
 	if(data_isstring(data)) {
 		// "<item name>"
 		const char *name=conv_str(st,data);
-		struct item_data *item_data = itemdb_searchname(name);
-		if(item_data == NULL) {
-			ShowError("buildin_getitem: Nonexistant item %s requested.\n", name);
+		if( (item_data = itemdb_searchname(name)) == NULL){
+			ShowError("buildin_%s: Nonexistant item %s requested.\n", script->getfuncname(st), name);
 			return 1; //No item created.
 		}
 		nameid=item_data->nameid;
@@ -6214,12 +6058,12 @@ BUILDIN_FUNC(getitem)
 			nameid = -nameid;
 			flag = 1;
 		}
-		if(nameid <= 0 || !itemdb_exists(nameid)) {
-			ShowError("buildin_getitem: Nonexistant item %d requested.\n", nameid);
+		if(nameid <= 0 || !(item_data = itemdb_exists(nameid))) {
+			ShowError("buildin_%s: Nonexistant item %d requested.\n", script->getfuncname(st), nameid);
 			return 1; //No item created.
 		}
 	} else {
-		ShowError("buildin_getitem: invalid data type for argument #1 (%d).", data->type);
+		ShowError("buildin_%s: invalid data type for argument #1 (%d).", script->getfuncname(st), data->type);
 		return 1;
 	}
 
@@ -6229,13 +6073,28 @@ BUILDIN_FUNC(getitem)
 
 	memset(&it,0,sizeof(it));
 	it.nameid=nameid;
+
 	if(!flag)
 		it.identify=1;
 	else
-		it.identify=itemdb_isidentified(nameid);
+		it.identify=itemdb_isidentified2(item_data);
 
-	if(script_hasdata(st,4))
-		sd=map_id2sd(script_getnum(st,4)); // <Account ID>
+	if(!strcmp(script->getfuncname(st),"getitembound")) {
+		int bound = script_getnum(st,4);
+		if(bound < IBT_MIN || bound > IBT_MAX) { //Not a correct bound type
+			ShowError("script_getitembound: Not a correct bound type! Type=%d\n",bound);
+			return -1;
+		}
+		if(item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR) {
+			ShowError("script_getitembound: can't bind a pet egg/armor!\n",bound);
+			return -1;
+		}
+		it.bound = (unsigned char)bound;
+		offset += 1;
+	}
+
+	if(script_hasdata(st,4+offset))
+		sd=map_id2sd(script_getnum(st,4+offset)); // <Account ID>
 	else
 		sd=script_rid2sd(st); // Attached player
 
@@ -6267,15 +6126,24 @@ BUILDIN_FUNC(getitem)
  *------------------------------------------*/
 BUILDIN_FUNC(getitem2)
 {
-	int nameid,amount,get_count,i,flag = 0;
-	int iden,ref,attr,c1,c2,c3,c4;
+	int nameid,amount,get_count,i,flag = 0, offset = 0;
+	int iden,ref,attr,c1,c2,c3,c4, bound = 0;
 	struct item_data *item_data;
 	struct item item_tmp;
 	TBL_PC *sd;
 	struct script_data *data;
 
-	if(script_hasdata(st,11))
-		sd=map_id2sd(script_getnum(st,11)); // <Account ID>
+	if(!strcmp(script->getfuncname(st),"getitembound2")) {
+		bound = script_getnum(st,11);
+		if(bound < IBT_MIN || bound > IBT_MAX) { //Not a correct bound type
+			ShowError("script_getitembound2: Not a correct bound type! Type=%d\n",bound);
+			return -1;
+		}
+		offset += 1;
+	}
+
+	if(script_hasdata(st,11+offset))
+		sd=map_id2sd(script_getnum(st,11+offset)); // <Account ID>
 	else
 		sd=script_rid2sd(st); // Attached player
 
@@ -6302,6 +6170,11 @@ BUILDIN_FUNC(getitem2)
 	c2=(short)script_getnum(st,8);
 	c3=(short)script_getnum(st,9);
 	c4=(short)script_getnum(st,10);
+
+	if(bound && (itemdb_type(nameid) == IT_PETEGG || itemdb_type(nameid) == IT_PETARMOR)) {
+		ShowError("script_getitembound2: can't bind a pet egg/armor!\n",bound);
+		return -1;
+	}
 
 	if(nameid<0) { // Invalide nameid
 		nameid = -nameid;
@@ -6330,6 +6203,7 @@ BUILDIN_FUNC(getitem2)
 			item_tmp.identify=0;
 		item_tmp.refine=ref;
 		item_tmp.attribute=attr;
+		item_tmp.bound=(unsigned char)bound;
 		item_tmp.card[0]=(short)c1;
 		item_tmp.card[1]=(short)c2;
 		item_tmp.card[2]=(short)c3;
@@ -9723,16 +9597,8 @@ BUILDIN_FUNC(sc_end)
 			return 0;
 
 
-		switch(type) {
-			case SC_WEIGHTOVER50:
-			case SC_WEIGHTOVER90:
-			case SC_NOCHAT:
-			case SC_PUSH_CART:
-				return 0;
-
-			default:
-				break;
-		}
+		if(status_get_sc_type(type)&SC_NO_CLEAR)
+			return 0;
 
 		//This should help status_change_end force disabling the SC in case it has no limit.
 		sce->val1 = sce->val2 = sce->val3 = sce->val4 = 0;
@@ -10427,7 +10293,7 @@ BUILDIN_FUNC(isloggedin)
 	if(script_hasdata(st,3) && sd &&
 	   sd->status.char_id != script_getnum(st,3))
 		sd = NULL;
-	push_val(st->stack,C_INT,sd!=NULL);
+	push_val(st->stack,C_INT,sd!=NULL,NULL);
 	return 0;
 }
 
@@ -13428,7 +13294,7 @@ BUILDIN_FUNC(equip)
 		ShowError("wrong item ID : equipitem(%i)\n",nameid);
 		return 1;
 	}
-	ARR_FIND(0, MAX_INVENTORY, i, sd->status.inventory[i].nameid == nameid);
+	ARR_FIND(0, MAX_INVENTORY, i, sd->status.inventory[i].nameid == nameid && sd->status.inventory[i].equip == 0);
 	if(i < MAX_INVENTORY)
 		pc_equipitem(sd,i,item_data->equip);
 
@@ -14578,7 +14444,7 @@ BUILDIN_FUNC(getd)
 		elem = 0;
 
 	// Push the 'pointer' so it's more flexible [Lance]
-	push_val(st->stack, C_NAME, reference_uid(add_str(varname), elem));
+	push_val(st->stack, C_NAME, reference_uid(add_str(varname), elem),NULL);
 
 	return 0;
 }
@@ -15615,7 +15481,7 @@ BUILDIN_FUNC(getvariableofnpc)
 		return 1;
 	}
 
-	push_val2(st->stack, C_NAME, reference_getuid(data), &nd->u.scr.script->script_vars);
+	push_val(st->stack, C_NAME, reference_getuid(data), &nd->u.scr.script->script_vars);
 	return 0;
 }
 
@@ -18146,6 +18012,41 @@ BUILDIN_FUNC(bg_join_team) {
 
 	return 0;
 }
+/*==============[Mhalicot]==================
+ * countbound {<type>}; 
+ * Creates an array of bounded item IDs
+ * Returns amount of items found
+ * Type:
+ *	1 - Account Bound
+ *	2 - Guild Bound
+ *	3 - Party Bound
+ *  4 - Character Bound
+ *------------------------------------------*/
+BUILDIN_FUNC(countbound)
+{
+	int i, type, j=0, k=0;
+	TBL_PC *sd;
+
+	if((sd = script_rid2sd(st)) == NULL)
+		return false;
+
+	type = script_hasdata(st,2)?script_getnum(st,2):0;
+
+	for(i=0;i<MAX_INVENTORY;i++){
+		if(sd->status.inventory[i].nameid > 0 && (
+			(!type && sd->status.inventory[i].bound > 0) ||
+			(type && sd->status.inventory[i].bound == type)
+		)) {
+			pc_setreg(sd,reference_uid(add_str("@bound_items"), k),sd->status.inventory[i].nameid);
+			k++;
+			j += sd->status.inventory[i].amount;
+		}
+	}
+
+	script_pushint(st,j);
+	return 0;
+}
+
 /* bg_match_over( arena_name {, optional canceled } ) */
 /* returns 0 when successful, 1 otherwise */
 BUILDIN_FUNC(bg_match_over) {
@@ -18726,6 +18627,13 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(unbindatcmd, "s"),
 	BUILDIN_DEF(useatcmd, "s"),
 
+	/**
+	* Item bound [Xantara] [Akinari]
+	**/
+	BUILDIN_DEF2(getitem,"getitembound","vii?"),
+	BUILDIN_DEF2(getitem2,"getitembound2","viiiiiiiii?"),
+	BUILDIN_DEF(countbound, "?"),
+
 	//Quest Log System [Inkfish]
 	BUILDIN_DEF(questinfo, "ii??"),
 	BUILDIN_DEF(setquest, "i"),
@@ -18818,5 +18726,5 @@ void script_defaults(void) {
 	script->queue_remove = script_hqueue_remove;
 	script->queue_create = script_hqueue_create;
 	script->queue_clear = script_hqueue_clear;
-
+	script->getfuncname = script_getfuncname;
 }
