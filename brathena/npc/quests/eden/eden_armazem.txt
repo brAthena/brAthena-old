@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_para01,173,120,0	script	Armazém de Bens#01	111,{
+moc_para01,173,120,0	script	Armazém de Bens#01	HIDDEN_NPC,{
 	mes "Esse é um Gabinete que armazena de bens.";
 	mes "A mensagem está escrita em um pedaço de papel.";
 	next;
@@ -70,4 +70,4 @@ moc_para01,173,120,0	script	Armazém de Bens#01	111,{
 	close;
 }
 
-moc_para01,170,120,0	duplicate(Armazém de Bens#01)	Armazém de Bens#02	111
+moc_para01,170,120,0	duplicate(Armazém de Bens#01)	Armazém de Bens#02	HIDDEN_NPC

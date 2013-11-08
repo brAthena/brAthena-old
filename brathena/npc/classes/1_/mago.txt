@@ -28,7 +28,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
+geffen_in,164,124,4	script	Maga Guardiã#maga	2_F_MAGICMASTER,{
 	mes "[Maga Guardiã]";
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {
@@ -264,7 +264,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
     }
 }
 
-geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
+geffen_in,164,112,4	script#vpo	Máquina de Mistura	HIDDEN_NPC,{
 	mes "[Máquina de Mistura]";
 	mes	"Esta máquina é propriedade da Guilda dos Magos de Geffen e só pode ser utilizada para soluções e propósitos mágicos.";
 	next;
@@ -509,7 +509,7 @@ geffen_in,164,112,4	script#vpo	Máquina de Mistura	111,{
 		close;
 }
 
-pay_arche,122,100,0	script#vpo	Dollshoi	88,{
+pay_arche,122,100,0	script#vpo	Dollshoi	4_M_ORIENT01,{
 	mes "[Dollshoi]";
 	mes "Você quer uma solução?";
 	mes "Hum, me dê 50z e um "+getitemname(1092)+".";
@@ -532,9 +532,9 @@ pay_arche,122,100,0	script#vpo	Dollshoi	88,{
 	close;
 }
 
-moc_ruins,91,150,0	duplicatv(Dollshoi)	Ponka-Hontas	93,{}
+moc_ruins,91,150,0	duplicatv(Dollshoi)	Ponka-Hontas	4_F_04,{}
 
-geffen_in,177,112,4	script#vpo	Estante de Livros	111,{
+geffen_in,177,112,4	script#vpo	Estante de Livros	HIDDEN_NPC,{
 	mes "[Livro Guia]";
 	mes "Este guia é propriedade da Guilda dos Magos de Geffen.";
 	next;

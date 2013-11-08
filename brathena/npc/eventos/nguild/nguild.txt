@@ -63,7 +63,7 @@ function	script	F_Flags	{
 //============================================================================//
 // 			1° Castelo
 //============================================================================//
-n_castle,110,96,1	script	NGuild Aldebaran#a1-1	722,{
+n_castle,110,96,1	script	NGuild Aldebaran#a1-1	GUILD_FLAG,{
 	callfunc "F_Flags","Al De Baran","nguild_alde",218,170,1,1;
 	close;
 
@@ -72,7 +72,7 @@ OnRecvCastleN01:
 	end;
 }
 
-nguild_alde,30,248,4	script	NGuild Aldebaran#a1-6::NGuildAlde	722,{
+nguild_alde,30,248,4	script	NGuild Aldebaran#a1-6::NGuildAlde	GUILD_FLAG,{
 	callfunc "F_Flags","Al De Baran","nguild_alde",218,170,0,1;
 	close;
 
@@ -82,25 +82,25 @@ OnRecvCastleN01:
 }
 // Dentro do Castelo
 //============================================================
-nguild_alde,30,246,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-7	722
-nguild_alde,37,248,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-8	722
-nguild_alde,37,246,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-9	722
-nguild_alde,95,80,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-10	722
-nguild_alde,95,59,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-11	722
-nguild_alde,62,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-12	722
-nguild_alde,70,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-13	722
-nguild_alde,74,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-14	722
-nguild_alde,62,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-15	722
-nguild_alde,66,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-16	722
-nguild_alde,70,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-17	722
-nguild_alde,74,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-18	722
-nguild_alde,203,150,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-19	722
-nguild_alde,210,150,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-20	722
+nguild_alde,30,246,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-7	GUILD_FLAG
+nguild_alde,37,248,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-8	GUILD_FLAG
+nguild_alde,37,246,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-9	GUILD_FLAG
+nguild_alde,95,80,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-10	GUILD_FLAG
+nguild_alde,95,59,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-11	GUILD_FLAG
+nguild_alde,62,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-12	GUILD_FLAG
+nguild_alde,70,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-13	GUILD_FLAG
+nguild_alde,74,75,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-14	GUILD_FLAG
+nguild_alde,62,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-15	GUILD_FLAG
+nguild_alde,66,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-16	GUILD_FLAG
+nguild_alde,70,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-17	GUILD_FLAG
+nguild_alde,74,64,2	duplicate(NGuildAlde)	NGuild Aldebaran#a1-18	GUILD_FLAG
+nguild_alde,203,150,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-19	GUILD_FLAG
+nguild_alde,210,150,4	duplicate(NGuildAlde)	NGuild Aldebaran#a1-20	GUILD_FLAG
 
 //============================================================================//
 // 			2° Castelo
 //============================================================================//
-n_castle,110,109,3	script	NGuild Geffen#g1-1	722,{
+n_castle,110,109,3	script	NGuild Geffen#g1-1	GUILD_FLAG,{
 	callfunc "F_Flags","Geffen","nguild_gef",83,47,1,1;
 	close;
 
@@ -109,7 +109,7 @@ OnRecvCastleN02:
 	end;
 }
 
-nguild_gef,28,157,4	script	NGuild Geffen#g1-6::NGuildGef	722,{
+nguild_gef,28,157,4	script	NGuild Geffen#g1-6::NGuildGef	GUILD_FLAG,{
 	callfunc "F_Flags","Geffen","nguild_gef",83,47,0,1;
 	close;
 
@@ -120,17 +120,17 @@ OnRecvCastleN02:
 
 // Dentro do Castelo
 //============================================================
-nguild_gef,32,157,4	duplicate(NGuildGef)	NGuild Geffen#g1-7	722
-nguild_gef,22,156,5	duplicate(NGuildGef)	NGuild Geffen#g1-8	722
-nguild_gef,68,185,3	duplicate(NGuildGef)	NGuild Geffen#g1-9	722
-nguild_gef,17,171,5	duplicate(NGuildGef)	NGuild Geffen#g1-10	722
-nguild_gef,59,16,4	duplicate(NGuildGef)	NGuild Geffen#g1-11	722
-nguild_gef,64,16,4	duplicate(NGuildGef)	NGuild Geffen#g1-12	722
+nguild_gef,32,157,4	duplicate(NGuildGef)	NGuild Geffen#g1-7	GUILD_FLAG
+nguild_gef,22,156,5	duplicate(NGuildGef)	NGuild Geffen#g1-8	GUILD_FLAG
+nguild_gef,68,185,3	duplicate(NGuildGef)	NGuild Geffen#g1-9	GUILD_FLAG
+nguild_gef,17,171,5	duplicate(NGuildGef)	NGuild Geffen#g1-10	GUILD_FLAG
+nguild_gef,59,16,4	duplicate(NGuildGef)	NGuild Geffen#g1-11	GUILD_FLAG
+nguild_gef,64,16,4	duplicate(NGuildGef)	NGuild Geffen#g1-12	GUILD_FLAG
 
 //============================================================================//
 // 			3° Castelo
 //============================================================================//
-n_castle,94,109,5	script	NGuild Payon#f1-1	722,{
+n_castle,94,109,5	script	NGuild Payon#f1-1	GUILD_FLAG,{
 	callfunc "F_Flags","Payon","nguild_pay",87,29,1,1;
 	close;
 
@@ -139,7 +139,7 @@ OnRecvCastleN03:
 	end;
 }
 
-nguild_pay,238,67,4	script	NGuild Payon#f1-6::NGuildPay	722,{
+nguild_pay,238,67,4	script	NGuild Payon#f1-6::NGuildPay	GUILD_FLAG,{
 	callfunc "F_Flags","Payon","nguild_pay",87,29,0,1;
 	close;
 
@@ -150,17 +150,17 @@ OnRecvCastleN03:
 
 // Dentro do Castelo
 //============================================================
-nguild_pay,238,67,4	duplicate(NGuildPay)	NGuild Payon#f1-6	722
-nguild_pay,233,67,4	duplicate(NGuildPay)	NGuild Payon#f1-7	722
-nguild_pay,221,123,4	duplicate(NGuildPay)	NGuild Payon#f1-8	722
-nguild_pay,221,116,4	duplicate(NGuildPay)	NGuild Payon#f1-9	722
-nguild_pay,206,108,4	duplicate(NGuildPay)	NGuild Payon#f1-10	722
-nguild_pay,212,108,4	duplicate(NGuildPay)	NGuild Payon#f1-11	722
+nguild_pay,238,67,4	duplicate(NGuildPay)	NGuild Payon#f1-6	GUILD_FLAG
+nguild_pay,233,67,4	duplicate(NGuildPay)	NGuild Payon#f1-7	GUILD_FLAG
+nguild_pay,221,123,4	duplicate(NGuildPay)	NGuild Payon#f1-8	GUILD_FLAG
+nguild_pay,221,116,4	duplicate(NGuildPay)	NGuild Payon#f1-9	GUILD_FLAG
+nguild_pay,206,108,4	duplicate(NGuildPay)	NGuild Payon#f1-10	GUILD_FLAG
+nguild_pay,212,108,4	duplicate(NGuildPay)	NGuild Payon#f1-11	GUILD_FLAG
 
 //=============================================================================//
 // 			4° Castelo
 //=============================================================================//
-n_castle,94,96,7	script	NGuild Prontera#p1-1	722,{
+n_castle,94,96,7	script	NGuild Prontera#p1-1	GUILD_FLAG,{
 	callfunc "F_Flags","Prontera","nguild_prt",97,174,1,1;
 	close;
 
@@ -169,7 +169,7 @@ OnRecvCastleN04:
 	end;
 }
 
-nguild_prt,58,56,4	script	NGuild Prontera#p1-7::NGuildPrt	722,{
+nguild_prt,58,56,4	script	NGuild Prontera#p1-7::NGuildPrt	GUILD_FLAG,{
 	callfunc "F_Flags","Prontera","nguild_prt",97,174,0,1;
 	close;
 
@@ -180,15 +180,15 @@ OnRecvCastleN04:
 
 // Dentro do Castelo
 //============================================================
-nguild_prt,64,56,4	duplicate(NGuildPrt)	NGuild Prontera#p1-8	722
-nguild_prt,76,32,4	duplicate(NGuildPrt)	NGuild Prontera#p1-9	722
-nguild_prt,84,32,4	duplicate(NGuildPrt)	NGuild Prontera#p1-10	722
-nguild_prt,94,39,4	duplicate(NGuildPrt)	NGuild Prontera#p1-11	722
-nguild_prt,94,24,4	duplicate(NGuildPrt)	NGuild Prontera#p1-12	722
-nguild_prt,73,14,4	duplicate(NGuildPrt)	NGuild Prontera#p1-13	722
-nguild_prt,73,6,4	duplicate(NGuildPrt)	NGuild Prontera#p1-14	722
-nguild_prt,55,46,4	duplicate(NGuildPrt)	NGuild Prontera#p1-15	722
-nguild_prt,45,46,4	duplicate(NGuildPrt)	NGuild Prontera#p1-16	722
+nguild_prt,64,56,4	duplicate(NGuildPrt)	NGuild Prontera#p1-8	GUILD_FLAG
+nguild_prt,76,32,4	duplicate(NGuildPrt)	NGuild Prontera#p1-9	GUILD_FLAG
+nguild_prt,84,32,4	duplicate(NGuildPrt)	NGuild Prontera#p1-10	GUILD_FLAG
+nguild_prt,94,39,4	duplicate(NGuildPrt)	NGuild Prontera#p1-11	GUILD_FLAG
+nguild_prt,94,24,4	duplicate(NGuildPrt)	NGuild Prontera#p1-12	GUILD_FLAG
+nguild_prt,73,14,4	duplicate(NGuildPrt)	NGuild Prontera#p1-13	GUILD_FLAG
+nguild_prt,73,6,4	duplicate(NGuildPrt)	NGuild Prontera#p1-14	GUILD_FLAG
+nguild_prt,55,46,4	duplicate(NGuildPrt)	NGuild Prontera#p1-15	GUILD_FLAG
+nguild_prt,45,46,4	duplicate(NGuildPrt)	NGuild Prontera#p1-16	GUILD_FLAG
 
 // Função das Cavernas
 //==================================================
@@ -222,28 +222,28 @@ function	script	F_GldDunSw	{
 
 // 1° Castelo
 //============================================================
-nguild_alde,212,181,0	script	Switch#DunN01	111,{
+nguild_alde,212,181,0	script	Switch#DunN01	HIDDEN_NPC,{
 	callfunc "F_GldDunSw","nguild_alde","02",32,122;
 	close;
 }
 
 // 2° Castelo
 //============================================================
-nguild_gef,78,84,0	script	Switch#DunN02	111,{
+nguild_gef,78,84,0	script	Switch#DunN02	HIDDEN_NPC,{
 	callfunc "F_GldDunSw","nguild_gef","04",39,258;
 	close;
 }
 
 // 3° Castelo
 //============================================================
-nguild_pay,101,25,0	script	Switch#DunN03	111,{
+nguild_pay,101,25,0	script	Switch#DunN03	HIDDEN_NPC,{
 	callfunc "F_GldDunSw","nguild_pay","01",186,165;
 	close;
 }
 
 // 4° Castelo
 //============================================================
-nguild_prt,94,200,0	script	Switch#DunN04	111,{
+nguild_prt,94,200,0	script	Switch#DunN04	HIDDEN_NPC,{
 	callfunc "F_GldDunSw","nguild_prt","03",28,251;
 	close;
 }
@@ -378,25 +378,25 @@ function	script	F_GldManager	{
 }
 
 // 1° Castelo ==================================================================================
-nguild_alde,218,175,0	script	Frolo	55,{
+nguild_alde,218,175,0	script	Frolo	1_M_JOBTESTER,{
 	callfunc "F_GldManager","Frolo","nguild_alde",119,223,"N01";
 	close;
 }
 
 // 2° Castelo ==================================================================================
-nguild_gef,40,48,5	script	Leiber	55,{
+nguild_gef,40,48,5	script	Leiber	1_M_JOBTESTER,{
 	callfunc "F_GldManager","Leiber","nguild_gef",155,112,"N02";
 	close;
 }
 
 // 3° Castelo ==================================================================================
-nguild_pay,120,58,4	script	Dundar	55,{
+nguild_pay,120,58,4	script	Dundar	1_M_JOBTESTER,{
 	callfunc "F_GldManager","Dundar","nguild_pay",290,7,"N03";
 	close;
 }
 
 // 4° Castelo ==================================================================================
-nguild_prt,112,181,0	script	Thefton	55,{
+nguild_prt,112,181,0	script	Thefton	1_M_JOBTESTER,{
 	callfunc "F_GldManager","Thefton","nguild_prt",15,209,"N04";
 	close;
 }
@@ -421,7 +421,7 @@ L_StartG:
 }
 
 // 1° Castelo ===============================================
-nguild_alde,218,170,0	script	Kafra#N01	117,{
+nguild_alde,218,170,0	script	Kafra#N01	4_F_KAFRA1,{
 	callfunc "F_GKafra", "nguild_alde", "Prontera";
 	end;
 OnRecvCastleN01:
@@ -430,8 +430,8 @@ OnRecvCastleN01:
 }
 
 // 2° Castelo ===============================================
-//nguild_gef,96,173,0	script	Kafra#N02	117,{
-nguild_gef,35,37,0	script	Kafra#N02	117,{
+//nguild_gef,96,173,0	script	Kafra#N02	4_F_KAFRA1,{
+nguild_gef,35,37,0	script	Kafra#N02	4_F_KAFRA1,{
 	callfunc "F_GKafra", "nguild_gef", "Prontera";
 	end;
 OnRecvCastleN02:
@@ -440,7 +440,7 @@ OnRecvCastleN02:
 }
 
 // 3° Castelo ===============================================
-nguild_pay,128,58,3	script	Kafra#N03	117,{
+nguild_pay,128,58,3	script	Kafra#N03	4_F_KAFRA1,{
 	callfunc "F_GKafra", "nguild_pay", "Prontera";
 	end;
 OnRecvCastleN03:
@@ -449,7 +449,7 @@ OnRecvCastleN03:
 }
 
 // 4° Castelo ===============================================
-nguild_prt,96,173,0	script	Kafra#N04	117,{
+nguild_prt,96,173,0	script	Kafra#N04	4_F_KAFRA1,{
 	callfunc "F_GKafra", "nguild_prt", "Prontera";
 	end;
 OnRecvCastleN04:
@@ -458,7 +458,7 @@ OnRecvCastleN04:
 }
 
 // Portais
-prontera,146,163,6	script	Castelos de Novatos	729,{
+prontera,146,163,6	script	Castelos de Novatos	4_F_NOVICE,{
 	mes "[Cita]";
 	if (getcharid(2)!=0){
 		if (getgdskilllv(getcharid(2),10013)){
@@ -524,7 +524,7 @@ M_WARP:
 	close;
 }
 
-n_castle,102,107,5	script	Cita	729,{
+n_castle,102,107,5	script	Cita	4_F_NOVICE,{
 	mes "[Cita]";
 	mes "Olá, "+ strcharinfo(0) +".";
 	mes "Como posso ajudar-lhe?";
@@ -605,7 +605,7 @@ OnDied:
 }
 
 // Mudança da Sala do Tesouro --------------------
-nguild_alde,123,223,0	script	Switch#TresN01	111,{
+nguild_alde,123,223,0	script	Switch#TresN01	HIDDEN_NPC,{
 	callfunc "F_GldTreasSw", "nguild_alde",218,176;
 	end;
 }
@@ -633,7 +633,7 @@ OnDied:
 
 // Mudança da Sala do Tesouro
 //================================================
-nguild_gef,152,117,0	script	Switch#TresN02	111,{
+nguild_gef,152,117,0	script	Switch#TresN02	HIDDEN_NPC,{
 	callfunc "F_GldTreasSw","nguild_gef",40,49;
 	end;
 }
@@ -659,7 +659,7 @@ OnDied:
 }
 
 // Mudança da Sala do Tesouro ---------------------------------------------------
-nguild_pay,295,8,0	script	Switch#TresN03	111,{
+nguild_pay,295,8,0	script	Switch#TresN03	HIDDEN_NPC,{
 	callfunc "F_GldTreasSw", "nguild_pay",120,59;
 	end;
 }
@@ -686,7 +686,7 @@ OnDied:
 
 // Mudança da Sala do Tesouro
 //================================================
-nguild_prt,15,209,0	script	Switch#TresN04	111,{
+nguild_prt,15,209,0	script	Switch#TresN04	HIDDEN_NPC,{
 	callfunc "F_GldTreasSw", "nguild_prt",109,179;
 	end;
 }

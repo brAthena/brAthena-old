@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-gonryun,180,118,4	script	Homem de Ferro#gnp	85,{
+gonryun,180,118,4	script	Homem de Ferro#gnp	4_M_03,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está muito pesado -";
@@ -123,7 +123,7 @@ L_Lifting:
 	return;
 }
 
-gon_test,50,14,4	script	Administrator#gnp	780,{
+gon_test,50,14,4	script	Administrator#gnp	8_M_TWSOLDIER,{
 	mes "[Administrator]";
 	if (BaseJob == Job_Novice) {
 		mes "Crianças não podem entrar aqui.";
@@ -159,7 +159,7 @@ gon_test,50,14,4	script	Administrator#gnp	780,{
 	end;
 }
 
-gon_test,42,89,4	script	Invocador#gnp	774,{
+gon_test,42,89,4	script	Invocador#gnp	4_M_TWBOY,{
 	mes "[SongYeunWoo]";
 	if (in_battle == 3) {
 		mes "Por favor, volte após o registro.";
@@ -236,7 +236,7 @@ OnTimer184000:
 	end;
 }
 
-gon_test,46,14,3	script	Guide of field of fight	770,{
+gon_test,46,14,3	script	Guide of field of fight	4_F_TWGIRL,{
 	mes "[SongHeeYeon]";
 	mes ".....";
 	mes "Ei, olá!";
@@ -285,7 +285,7 @@ gon_test,46,14,3	script	Guide of field of fight	770,{
 	close;
 }
 
-gon_test,70,103,3	script	ChowAnAn#gnp	773,{
+gon_test,70,103,3	script	ChowAnAn#gnp	4_F_TWMIDWOMAN,{
 	mes "[ChowAnAn]";
 	mes "Você deseja retornar?";
 	next;

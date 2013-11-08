@@ -27,7 +27,7 @@
 
 // Louyang - Trasportação
 //============================================================
-alberta,245,45,3	script	Garota#0lou	815,{
+alberta,245,45,3	script	Garota#0lou	4_F_CHNDRESS1,{
 	mes "[Garota]";
 	mes "La la la la~";
 	mes "Me sinto ótima hoje~";
@@ -90,7 +90,7 @@ alberta,245,45,3	script	Garota#0lou	815,{
 	}
 }
 
-lou_fild01,190,100,7	script	Garota#1lou	815,{
+lou_fild01,190,100,7	script	Garota#1lou	4_F_CHNDRESS1,{
 	mes "[Garota]";
 	mes "Você gostaria de voltar para Alberta?";
 	next;
@@ -122,7 +122,7 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 
 // NPCs Genéricos de Louyang
 //============================================================
-louyang,297,167,2	script	Mulher Musculosa#lou	815,{
+louyang,297,167,2	script	Mulher Musculosa#lou	4_F_CHNDRESS1,{
 		mes "[Zhi Ching Li]";
 	if (!Sex) {
 		mes "Todos os membros do Palácio da Donzela, incluindo eu e a mestra, são mulheres.";
@@ -143,7 +143,7 @@ louyang,297,167,2	script	Mulher Musculosa#lou	815,{
 	close;
 }
 
-louyang,274,136,4	script	Olhando Cara Poderoso#lou	819,{
+louyang,274,136,4	script	Olhando Cara Poderoso#lou	4_M_CHN8GUEK,{
 	mes "[Akiira]";
 	mes "Estou praticando a 'Garra do Dragão'. Não basta usar o poder dos meus punhos, também é preciso se condicionar espiritualmente.";
 	next;
@@ -159,7 +159,7 @@ louyang,274,136,4	script	Olhando Cara Poderoso#lou	819,{
 	close;
 }
 
-louyang,276,136,4	script	Primeiro Mestre#lou	819,{
+louyang,276,136,4	script	Primeiro Mestre#lou	4_M_CHN8GUEK,{
 	mes "[Zhiang Xiau Ji]";
 	mes "Finalmente...";
 	mes "Eu dominei a 'Garra do Dragão'!";
@@ -181,7 +181,7 @@ louyang,276,136,4	script	Primeiro Mestre#lou	819,{
 	close;
 }
 
-louyang,276,133,0	script	Aluno#1lou	819,{
+louyang,276,133,0	script	Aluno#1lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Yeeeyap~!";
 	mes "Taaaaaah~~!!";
@@ -189,7 +189,7 @@ louyang,276,133,0	script	Aluno#1lou	819,{
 	close;
 }
 
-louyang,276,131,0	script	Aluno#2lou	819,{
+louyang,276,131,0	script	Aluno#2lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Tah Tah Tah!";
 	mes "Taaaaaah~~!!";
@@ -197,14 +197,14 @@ louyang,276,131,0	script	Aluno#2lou	819,{
 	close;
 }
 
-louyang,276,129,0	script	Aluno#3lou	819,{
+louyang,276,129,0	script	Aluno#3lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Si!";
 	mes "Ayah!!";
 	close;
 }
 
-louyang,274,133,0	script	Aluno#4lou	819,{
+louyang,274,133,0	script	Aluno#4lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Dergh!";
 	mes "Dergh!";
@@ -212,7 +212,7 @@ louyang,274,133,0	script	Aluno#4lou	819,{
 	close;
 }
 
-louyang,274,131,0	script	Aluno#5lou	819,{
+louyang,274,131,0	script	Aluno#5lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Yah Yah Yah!";
 	mes "Taaaaaah~~!!";
@@ -220,7 +220,7 @@ louyang,274,131,0	script	Aluno#5lou	819,{
 	close;
 }
 
-louyang,274,129,0	script	Aluno#6lou	819,{
+louyang,274,129,0	script	Aluno#6lou	4_M_CHN8GUEK,{
 	mes "[Aluno]";
 	mes "Yeeeyap~!";
 	mes "Taaaaaah~~!!";
@@ -228,16 +228,16 @@ louyang,274,129,0	script	Aluno#6lou	819,{
 	close;
 }
 
-louyang,278,133,0	duplicate(Aluno#1lou)	Aluno#7lou	819
-louyang,278,131,0	duplicate(Aluno#1lou)	Aluno#8lou	819
-louyang,278,129,0	duplicate(Aluno#1lou)	Aluno#9lou	819
-louyang,272,133,0	duplicate(Aluno#1lou)	Aluno#10lou	819
-louyang,272,131,0	duplicate(Aluno#1lou)	Aluno#11lou	819
-louyang,272,129,0	duplicate(Aluno#1lou)	Aluno#12lou	819
+louyang,278,133,0	duplicate(Aluno#1lou)	Aluno#7lou	4_M_CHN8GUEK
+louyang,278,131,0	duplicate(Aluno#1lou)	Aluno#8lou	4_M_CHN8GUEK
+louyang,278,129,0	duplicate(Aluno#1lou)	Aluno#9lou	4_M_CHN8GUEK
+louyang,272,133,0	duplicate(Aluno#1lou)	Aluno#10lou	4_M_CHN8GUEK
+louyang,272,131,0	duplicate(Aluno#1lou)	Aluno#11lou	4_M_CHN8GUEK
+louyang,272,129,0	duplicate(Aluno#1lou)	Aluno#12lou	4_M_CHN8GUEK
 
 // Louyang - Torre
 //============================================================
-lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
+lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	4_F_CHNDRESS3,{
 	mes "[Hong Miao]";
 	mes "Bem-vindo.";
 	next;
@@ -278,7 +278,7 @@ lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
 	}
 }
 
-louyang,84,254,0	script	Saída#lou	111,{
+louyang,84,254,0	script	Saída#lou	HIDDEN_NPC,{
 	mes "^3355FFExiste uma espécie de dispositivo de queda.";
 	mes "Gostaria de usá-lo?^000000";
 	next;

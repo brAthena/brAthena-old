@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,23,238,4	script	Guia#01alberta	105,{
+alberta,23,238,4	script	Guia#01alberta	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Alberta]";
 	mes "Bem-vindo a^8B4513Alberta^000000, a Cidade Portuária.  Você deseja conhecer a cidade?";
@@ -281,5 +281,5 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 		end;
 	}
 }
-alberta,120,60,3	duplicate(Guia#01alberta)	Guia#02alberta	105
-alberta,184,143,4	duplicatr(Guia#01alberta)	Guia#03alberta	105,{}
+alberta,120,60,3	duplicate(Guia#01alberta)	Guia#02alberta	8W_SOLDIER
+alberta,184,143,4	duplicatr(Guia#01alberta)	Guia#03alberta	8W_SOLDIER,{}

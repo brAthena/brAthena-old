@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,113,294,3	script	Selos	837,{
+prontera,113,294,3	script	Selos	2_BULLETIN_BOARD,{
 	mes "======== Condição dos Selos ========";
 	setarray .@n$[1], "Sleipnir","Megingjard","Brisingamen","Mjolnir";
 	for(set .@i,1; .@i<5; set .@i,.@i+1) {

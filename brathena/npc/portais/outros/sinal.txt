@@ -32,7 +32,7 @@ himinn,49,72,0	warp	sinal04a	1,1,himinn,49,63
 um_in,33,18,0	warp	sinal05	1,1,um_in,89,11
 um_in,89,9,0	warp	sinal05a	1,1,um_in,33,16
 umbala,107,118,0	warp	sinal06	1,1,um_in,15,20
-um_in,11,18,0	script	sinal06a	45,1,1,{
+um_in,11,18,0	script	sinal06a	WARPNPC,1,1,{
 if ( checkversion(0) ) warp "umbala",111,121;
 else warp "um_dun01",129,90;
 end;

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-aldeba_in,223,167,3	script	Tzerero#sn	709,{
+aldeba_in,223,167,3	script	Tzerero#sn	4_M_SEAMAN,{
 	if (BaseJob == Job_SuperNovice) {
 		mes "[Tzerero]";
 		mes "Você é um membro do Clube do Aprendiz.";
@@ -249,7 +249,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	}
 }
 
-aldeba_in,216,169,5	script	Esere#sn	86,{
+aldeba_in,216,169,5	script	Esere#sn	4_M_04,{
 	if (Class == Job_Super_Novice_E || Class == Job_Super_Baby_E) {
 		mes "[Esere]";
 		mes "You! Stronger than before.";
@@ -292,7 +292,7 @@ aldeba_in,216,169,5	script	Esere#sn	86,{
 	}
 }
 
-aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
+aldebaran,54,238,5	script	Recepcionista Kafra#sn	4_F_KAFRA1,{
 	if (BaseJob == Job_SuperNovice) {
 		mes "[Recepcionista Kafra]";
 		if (Sex )

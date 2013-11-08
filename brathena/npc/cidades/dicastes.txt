@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dicastes01,194,159,5	script	Galten Animado#a	492,{
+dicastes01,194,159,5	script	Galten Animado#a	4_MAN_GALTUN1,{
 	mes "[Galten Animado]";
 	if (isequipped(2782)) {
 		mes "Não consigo tirar a bela imagem de Ahat da minha cabeça.";
@@ -39,7 +39,7 @@ dicastes01,194,159,5	script	Galten Animado#a	492,{
 	close;
 }
 
-dicastes01,202,86,3	script	Sentinela#a	492,{
+dicastes01,202,86,3	script	Sentinela#a	4_MAN_GALTUN1,{
 	mes "[Sentinela]";
 	if (isequipped(2782)) {
 		mes "El Dicastes, a capital de Sapha.";
@@ -64,7 +64,7 @@ dicastes01,202,86,3	script	Sentinela#a	492,{
 	close;	
 }
 
-dicastes01,194,95,5	script	Sentinela#b	450,{
+dicastes01,194,95,5	script	Sentinela#b	4_MAN_GALTUN,{
 	mes "[Sentinela]";
 	if (isequipped(2782)) {
 		mes "Eu permito sua entrada.";
@@ -78,7 +78,7 @@ dicastes01,194,95,5	script	Sentinela#b	450,{
 	close;
 }
 
-dicastes01,234,158,0	script	Galten em Treinamento#a	450,{
+dicastes01,234,158,0	script	Galten em Treinamento#a	4_MAN_GALTUN,{
 	mes "[Galten em Treinamento]";
 	if (isequipped(2782)) {
 		mes "Estarei pronto para qualquer coisa se eu continuar com meu treinamento todos os dias.";
@@ -91,7 +91,7 @@ dicastes01,234,158,0	script	Galten em Treinamento#a	450,{
 	close;
 }
 
-dicastes01,244,166,0	script	Galten em Treinamento#b	450,{
+dicastes01,244,166,0	script	Galten em Treinamento#b	4_MAN_GALTUN,{
 	mes "[Galten em Treinamento]";
 	if (isequipped(2782)) {
 		mes "Eu me pergunto se Ahat sabe o quão duro estou treinando.";
@@ -104,7 +104,7 @@ dicastes01,244,166,0	script	Galten em Treinamento#b	450,{
 	close;
 }
 
-dicastes01,272,166,0	script	Galten em Treinamento#c	450,{
+dicastes01,272,166,0	script	Galten em Treinamento#c	4_MAN_GALTUN,{
 	mes "[Galten em Treinamento]";
 	if (isequipped(2782)) {
 		mes "Sou um guerreiro Sapha.";
@@ -118,7 +118,7 @@ dicastes01,272,166,0	script	Galten em Treinamento#c	450,{
 	close;
 }
 
-dicastes01,248,129,0	script	Galten em Treinamento#d	450,{
+dicastes01,248,129,0	script	Galten em Treinamento#d	4_MAN_GALTUN,{
 	mes "[Galten em Treinamento]";
 	if (isequipped(2782)) {
 		mes "Ouvi dizer que isto não é um equipamento de treinamento, mas sim um massageador para estagiários como eu.";
@@ -131,7 +131,7 @@ dicastes01,248,129,0	script	Galten em Treinamento#d	450,{
 	close;
 }
 
-dic_in01,349,282,4	script	Guarda Galten#in_1	492,{
+dic_in01,349,282,4	script	Guarda Galten#in_1	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Guarda Galten]";
 		mes "Esta é a Estação de Batalha.";
@@ -144,7 +144,7 @@ dic_in01,349,282,4	script	Guarda Galten#in_1	492,{
 	close;
 }
 
-dic_in01,370,261,1	script	Guarda Galten#in_2	492,{
+dic_in01,370,261,1	script	Guarda Galten#in_2	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Guarda Galten]";
 		mes "Chato.";
@@ -155,7 +155,7 @@ dic_in01,370,261,1	script	Guarda Galten#in_2	492,{
 	close;
 }
 
-dic_in01,381,261,1	script	Guarda Galten#in_3	492,{
+dic_in01,381,261,1	script	Guarda Galten#in_3	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Guarda Galten]";
 		mes "Zzzzz...";
@@ -166,7 +166,7 @@ dic_in01,381,261,1	script	Guarda Galten#in_3	492,{
 	close;
 }
 
-dic_in01,370,282,4	script	Guarda Galten#in_4	492,{
+dic_in01,370,282,4	script	Guarda Galten#in_4	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Guarda Galten]";
 		mes "El Dicastes é o local mais pacífico neste mundo, enquanto eu estou aqui.";
@@ -177,7 +177,7 @@ dic_in01,370,282,4	script	Guarda Galten#in_4	492,{
 	close;
 }
 
-dic_in01,354,219,4	script	Galten Descansando#in_5	492,{
+dic_in01,354,219,4	script	Galten Descansando#in_5	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Galten Descansando]";
 		mes "Descansar é sempre tão doce.";
@@ -188,7 +188,7 @@ dic_in01,354,219,4	script	Galten Descansando#in_5	492,{
 	close;
 }
 
-dic_in01,365,197,1	script	Galten Descansando#in_6	492,{
+dic_in01,365,197,1	script	Galten Descansando#in_6	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Galten Descansando]";
 		mes "Galtens também podem descansar em pé assim.";
@@ -203,11 +203,11 @@ dic_in01,365,197,1	script	Galten Descansando#in_6	492,{
 	close;
 }
 
-dic_in01,87,102,5	script	Piom Descansando#01	454,{
+dic_in01,87,102,5	script	Piom Descansando#01	4_MAN_PIOM,{
 	end;
 }
 
-dic_in01,29,119,4	script	Piom Descansando#04	489,{
+dic_in01,29,119,4	script	Piom Descansando#04	4_MAN_PIOM6,{
 	if (isequipped(2782)) {
 		mes "[Piom Descansando]";
 		mes "Por que está tão barulhento quando estou tentando descansar?";
@@ -219,7 +219,7 @@ dic_in01,29,119,4	script	Piom Descansando#04	489,{
 }
 
 
-dic_in01,91,113,5	script	Piom Suspeito#a	489,{
+dic_in01,91,113,5	script	Piom Suspeito#a	4_MAN_PIOM6,{
 	mes "[Piom Suspeito]";
 	if (isequipped(2782)) {
 		mes "Você já ouviu falar sobre o Ahat?";
@@ -256,7 +256,7 @@ dic_in01,91,113,5	script	Piom Suspeito#a	489,{
 	close;
 }
 
-dic_in01,168,116,5	script	Piom Cansado#c	491,{
+dic_in01,168,116,5	script	Piom Cansado#c	4_MAN_PIOM5,{
 	mes "[Piom Cansado]";
 	if (isequipped(2782)) {
 		mes "Se você precisar de alguma informação, você deve tentar a sua sorte com o Gato Mercador ao invés de apenas passear por aqui.";
@@ -270,7 +270,7 @@ dic_in01,168,116,5	script	Piom Cansado#c	491,{
 	close;
 }
 
-dic_in01,149,104,5	script	Piom Cansado#b	455,{
+dic_in01,149,104,5	script	Piom Cansado#b	4_MAN_PIOM2,{
 	mes "[Piom Cansado]";
 	if (isequipped(2782)) {
 		mes "Eu me sinto tão duro...";
@@ -287,7 +287,7 @@ dic_in01,149,104,5	script	Piom Cansado#b	455,{
 	close;
 }
 
-dic_in01,341,113,3	script	Piom Cansado#a	491,{
+dic_in01,341,113,3	script	Piom Cansado#a	4_MAN_PIOM5,{
 	mes "[Piom Cansado]";
 	if (isequipped(2782)) {
 		mes "Ahat é o primeiro e único Sapha honroso.";
@@ -313,7 +313,7 @@ dic_in01,341,113,3	script	Piom Cansado#a	491,{
 	close;
 }
 
-dic_in01,252,103,3	script	Aventureiro Comilão#tre	711,{
+dic_in01,252,103,3	script	Aventureiro Comilão#tre	4_F_05,{
 	mes "[Aventureiro Comilão]";
 	mes "Ei, você tem algumas rações de emergência, aventureir"+((Sex) ? "o":"a")+"?";
 	next;
@@ -329,7 +329,7 @@ dic_in01,252,103,3	script	Aventureiro Comilão#tre	711,{
 	close;
 }
 
-dic_in01,32,54,5	script	Venknick#el_01	449,{
+dic_in01,32,54,5	script	Venknick#el_01	4_MAN_BENKUNI,{
 	if (isequipped(2782)) {
 		mes "[Venknick]";
 		mes "Me sinto tão revigorado.";
@@ -342,7 +342,7 @@ dic_in01,32,54,5	script	Venknick#el_01	449,{
 	close;
 }
 
-dic_in01,372,116,3	script	Piom Emocionado#a	490,{
+dic_in01,372,116,3	script	Piom Emocionado#a	4_MAN_PIOM4,{
 	mes "[Piom Emocionado]";
 	if (isequipped(2782)) {
 		mes "Ahat é o primeiro e único Sapha honroso.";
@@ -368,7 +368,7 @@ dic_in01,372,116,3	script	Piom Emocionado#a	490,{
 	close;
 }
 
-dic_in01,360,125,5	script	Venknicka Séria	449,{
+dic_in01,360,125,5	script	Venknicka Séria	4_MAN_BENKUNI,{
 	mes "[Venknicka Séria]";
 	if (isequipped(2782)) {
 		mes "Um aumento súbito na produção de Bradium.";
@@ -382,7 +382,7 @@ dic_in01,360,125,5	script	Venknicka Séria	449,{
 	close;
 }
 
-dic_in01,42,250,5	script	Guia#diel_1	489,{
+dic_in01,42,250,5	script	Guia#diel_1	4_MAN_PIOM6,{
 	if (isequipped(2782)) {
 		if (ep13_3_invite > 5) {		
 			mes "[Guia]";
@@ -429,7 +429,7 @@ dic_in01,42,250,5	script	Guia#diel_1	489,{
 	close;
 }
 
-dic_in01,335,34,0	script	Piom Conversador#a	490,{
+dic_in01,335,34,0	script	Piom Conversador#a	4_MAN_PIOM4,{
 	mes "[Piom Conversador]";
 	if (isequipped(2782)) {	
 		mes "Na minha fábrica nós não refinamos apenas Bradium, mas nós também produzimos vários tipos de utilidades diárias.";
@@ -445,7 +445,7 @@ dic_in01,335,34,0	script	Piom Conversador#a	490,{
 	close;
 }
 
-dic_in01,387,30,1	script	Piom de Manuk#a	454,{
+dic_in01,387,30,1	script	Piom de Manuk#a	4_MAN_PIOM,{
 	mes "[Piom de Manuk]";
 	if (isequipped(2782)) {
 		mes "Você! Nós nos conhecemos em Manuk, não foi?";
@@ -457,7 +457,7 @@ dic_in01,387,30,1	script	Piom de Manuk#a	454,{
 	close;
 }
 
-dicastes01,282,210,4	script	Costureiro#a	453,{
+dicastes01,282,210,4	script	Costureiro#a	4_MAN_NITT,{
 	mes "[Costureiro]";
 	if (isequipped(2782)) {
 		mes "Enquanto tivermos um suprimento imenso de Bradium, os Saphas podem viver para sempre.";
@@ -472,7 +472,7 @@ dicastes01,282,210,4	script	Costureiro#a	453,{
 	close;
 }
 
-dicastes01,246,210,4	script	Venknick#a	449,{
+dicastes01,246,210,4	script	Venknick#a	4_MAN_BENKUNI,{
 	mes "[Venknick]";
 	if (isequipped(2782)) {
 		mes "Pelo menos nós temos uma grande quantidade de Bradium.";
@@ -499,7 +499,7 @@ dicastes01,246,210,4	script	Venknick#a	449,{
 	close;
 }
 
-dicastes01,235,245,4	script	Piom Animado#a	490,{
+dicastes01,235,245,4	script	Piom Animado#a	4_MAN_PIOM4,{
 	if (isequipped(2782)) {
 		mes "[Piom Animado]";
 		mes "Você já viu Ahat?";
@@ -514,7 +514,7 @@ dicastes01,235,245,4	script	Piom Animado#a	490,{
 	close;
 }
 
-dicastes01,284,262,4	script	Knit Amigável#a	453,{
+dicastes01,284,262,4	script	Knit Amigável#a	4_MAN_NITT,{
 	mes "[Knit Amigável]";
 	if (isequipped(2782)) {
 		mes "Ao contrário dos Laphine, nós Saphas somos uma comunidade fechada.";
@@ -533,7 +533,7 @@ dicastes01,284,262,4	script	Knit Amigável#a	453,{
 	close;
 }
 
-dicastes01,164,180,4	script	Piom#a	489,{
+dicastes01,164,180,4	script	Piom#a	4_MAN_PIOM6,{
 	if (isequipped(2782)) {
 		mes "[Piom]";
 		mes "Eles dizem que há uma guerra acontecendo entre Splendide e Manuk.";
@@ -551,7 +551,7 @@ dicastes01,164,180,4	script	Piom#a	489,{
 	close;
 }
 
-dicastes01,191,202,4	script	Galten Insatisfeito#fihs	450,{
+dicastes01,191,202,4	script	Galten Insatisfeito#fihs	4_MAN_GALTUN,{
 	if (isequipped(2782)) {
 		mes "[Galten Insatisfeito]";
 		mes "Aquele Vanknick louco sempre está falando sobre a lenda da estátua.";
@@ -589,7 +589,7 @@ dicastes01,191,202,4	script	Galten Insatisfeito#fihs	450,{
 	close;
 }
 
-dicastes01,202,197,4	script	Venknick Maluco#fihsing1	449,{
+dicastes01,202,197,4	script	Venknick Maluco#fihsing1	4_MAN_BENKUNI,{
 	if (isequipped(2782)) {
 		mes "[Venknick Maluco]";
 		mes "Com apenas 5000 Zenys.";
@@ -632,7 +632,7 @@ dicastes01,202,197,4	script	Venknick Maluco#fihsing1	449,{
 	close;
 }
 
-dic_in01,98,110,5	script	Piom Preocupado#a	489,{
+dic_in01,98,110,5	script	Piom Preocupado#a	4_MAN_PIOM6,{
 	if (isequipped(2782)) {
 		mes "[Piom Preocupado]";
 		mes "Eu não vejo os meus amigos faz algumas horas.";
@@ -646,7 +646,7 @@ dic_in01,98,110,5	script	Piom Preocupado#a	489,{
 	close;
 }
 
-dic_in01,98,96,3	script	Galten Perdido#a	492,{
+dic_in01,98,96,3	script	Galten Perdido#a	4_MAN_GALTUN1,{
 	if (isequipped(2782)) {
 		mes "[Galten Perdido]";
 		mes "Eu tenho vivido com um Piom faz muito tempo, agora se tornou um mal hábito.";

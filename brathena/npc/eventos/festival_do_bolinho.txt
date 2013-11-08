@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
   
-payon,93,81,4	script	Mestre Exorcista Fahae	834,{
+payon,93,81,4	script	Mestre Exorcista Fahae	4_M_BUDDHIST,{
 	mes "[Mestre Exorcista Fahae]";
 	mes "Saudações jovem guerreiro, eu sou o Mestre Exorcista Fahae.";
 	mes "Eu estive procurando a Lady Branca por algum tempo.";

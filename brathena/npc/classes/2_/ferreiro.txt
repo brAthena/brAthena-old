@@ -898,7 +898,7 @@
 	}
 }
 
-geffen,46,164,1	script	Baisulist#BLS	69,{
+geffen,46,164,1	script	Baisulist#BLS	1_F_04,{
 	if (BSMITH_Q == 9 && countitem(1610) > 0) {
 		mes "[Baisulist]";
 		mes "Oh, olá!";
@@ -973,7 +973,7 @@ geffen,46,164,1	script	Baisulist#BLS	69,{
 	}
 }
 
-morocc,27,112,4	script	Wickebine#BLS	725,{
+morocc,27,112,4	script	Wickebine#BLS	4_F_JOB_ASSASSIN,{
 	if (BSMITH_Q == 10 && countitem(1219) > 0) {
 		cutin "Job_Black_hucke01",2;
 		mes "[Wickebine]";
@@ -1477,7 +1477,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 	}
 }
 
-payon,151,39,4	script	Talpiz#BLS	59,{
+payon,151,39,4	script	Talpiz#BLS	1_M_ORIENT01,{
 	if (BSMITH_Q == 12 && countitem(1713) > 0) {
 		mes "[Talpiz]";
 		mes "Oh~";
@@ -1551,7 +1551,7 @@ payon,151,39,4	script	Talpiz#BLS	59,{
 	}
 }
 
-geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	726,{
+geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	4_F_JOB_BLACKSMITH,{
 	mes "[Homem da Guilda dos Ferreiros]";
 	mes "Bom dia, está aqui para visitar a Guilda dos Ferreiros?";
 	next;
@@ -1600,11 +1600,11 @@ geffen_in,109,170,3	script#dv	Guilda dos Ferreiros#gef	726,{
 }
 
 // Duplicatas OldTimes
-izlude,69,181,4	duplicato(Krongast#BLS)	Krongast#2BLS	734
-geffen_in,110,169,4	duplicato(Mestre Ferreiro#BLS)	Mestre Ferreiro#2BLS	731
-alberta_in,174,22,4	duplicato(Líder da Guilda#alberta)	Líder da Guilda#albertaot	63
-morocc,95,133,4	duplicato(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#2moc	726
-comodo,158,342,4	duplicato(Bismarc#BLS)	Bismarc#2BLS	118,{}
+izlude,69,181,4	duplicato(Krongast#BLS)	Krongast#2BLS	4_M_JOB_KNIGHT2
+geffen_in,110,169,4	duplicato(Mestre Ferreiro#BLS)	Mestre Ferreiro#2BLS	4_M_JOB_BLACKSMITH
+alberta_in,174,22,4	duplicato(Líder da Guilda#alberta)	Líder da Guilda#albertaot	1_M_SMITH
+morocc,95,133,4	duplicato(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#2moc	4_F_JOB_BLACKSMITH
+comodo,158,342,4	duplicato(Bismarc#BLS)	Bismarc#2BLS	2_M_THIEFMASTER,{}
 
 // Duplicatas Pré-Renovação e Renovação
 ein_in01,201,27,3	duplicata(Líder da Guilda#alberta)	Líder da Guilda#albertare	63

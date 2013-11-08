@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-gonryun,163,60,4	script	Guia de Kunlun#01gonryun	780,{
+gonryun,163,60,4	script	Guia de Kunlun#01gonryun	8_M_TWSOLDIER,{
 	mes "[He Yuen Zhe]";
 	mes "Bem-vindo a Kunlun, uma cidade cheia de paixão e energia!";
 	mes "Você pode sentir a alegria só de passear pela cidade!";

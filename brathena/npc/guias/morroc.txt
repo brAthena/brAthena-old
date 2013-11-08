@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-morocc,153,286,6	script	Guia#01morocc	707,{
+morocc,153,286,6	script	Guia#01morocc	4_M_MOC_SOLDIER,{
 	cutin "moc_soldier",2;
 	mes "[Guia de Morroc]";
 	if (checkversion(0)) {
@@ -256,7 +256,7 @@ morocc,153,286,6	script	Guia#01morocc	707,{
 	}
 }
 
--	script#re	Guia#01ruins	707,{
+-	script#re	Guia#01ruins	4_M_MOC_SOLDIER,{
 	cutin "moc_soldier",2;
 	mes "[Guia de Morroc]";
 	mes "Bem-vindo a ^8B4513Morroc^000000, a Cidade do Deserto.";
@@ -381,10 +381,10 @@ L_Mark:
 	mes "Gostaria de verificar outras localizações?";
 	return;
 }
-moc_ruins,159,53,3	duplicatr(Guia#01ruins)	Guia#1ruins	707
-moc_ruins,70,164,3	duplicatr(Guia#01ruins)	Guia#02ruins	707
-moc_ruins,65,44,5	duplicatr(Guia#01ruins)	Guia#03ruins	707
-morocc,154,38,6	duplicatr(Guia#01morocc)	Guia#02morocc	707
-morocc,28,170,5	duplicatr(Guia#01morocc)	Guia#04morocc	707
-morocc,54,97,0	duplicatr(Guia#01morocc)	Guia#2moc	707
-morocc,296,213,4	duplicatr(Guia#01morocc)	Guia#03morocc	707,{}
+moc_ruins,159,53,3	duplicatr(Guia#01ruins)	Guia#1ruins	4_M_MOC_SOLDIER
+moc_ruins,70,164,3	duplicatr(Guia#01ruins)	Guia#02ruins	4_M_MOC_SOLDIER
+moc_ruins,65,44,5	duplicatr(Guia#01ruins)	Guia#03ruins	4_M_MOC_SOLDIER
+morocc,154,38,6	duplicatr(Guia#01morocc)	Guia#02morocc	4_M_MOC_SOLDIER
+morocc,28,170,5	duplicatr(Guia#01morocc)	Guia#04morocc	4_M_MOC_SOLDIER
+morocc,54,97,0	duplicatr(Guia#01morocc)	Guia#2moc	4_M_MOC_SOLDIER
+morocc,296,213,4	duplicatr(Guia#01morocc)	Guia#03morocc	4_M_MOC_SOLDIER,{}

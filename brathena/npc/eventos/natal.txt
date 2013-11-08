@@ -36,7 +36,7 @@
 //   | - Anotações                                                |
 //   \____________________________________________________________/
 
-xmas_in,100,96,4	script	Papai Noel::Santa2	718,{
+xmas_in,100,96,4	script	Papai Noel::Santa2	4_M_SANTA,{
 	mes "[Papai Noel]";
 	if (xmas_npc==0) set xmas_npc, 1;
 	if (#event_xmas > 0 && #event_xmas < 30 ) goto L_Start;
@@ -360,7 +360,7 @@ alde_dun02,0,0,0,0	monster	Orc Natalino	1588,5,0,0,0
 
 // Louise Gorro de Natal (Evento 1)
 //============================================================
-xmas_in,89,92,5	script	Louise Kim#estilista	714,{
+xmas_in,89,92,5	script	Louise Kim#estilista	4_F_06,{
 	mes "[Estilista Louise Kim]";
 	mes "Cone em forma de chapéu vermelho de Natal é muito comum.";
 	mes "É antiquado.";
@@ -524,7 +524,7 @@ xmas_in,89,92,5	script	Louise Kim#estilista	714,{
 }
 
 // Evento de Feliz Natal (Evento 2)
-prontera,155,285,3	script	Enjoy#enjoy	753,{
+prontera,155,285,3	script	Enjoy#enjoy	4_M_MONK,{
 	if (!christ_solo05){
 		mes "[Enjoy]";
 		mes "Ah~~~";
@@ -834,7 +834,7 @@ OnTimer180000:
 	end;
 }
 
-prontera,150,286,5	script	Happymerry#happymerry02	869,{
+prontera,150,286,5	script	Happymerry#happymerry02	4_M_LGTMAN,{
 	end;
 
 OnInit:
@@ -863,7 +863,7 @@ OnTimer60000:
 	end;
 }
 
-prontera,161,286,4	script	Christ#christ02	875,{
+prontera,161,286,4	script	Christ#christ02	4_M_PECOKNIGHT,{
 	end;
 OnInit:
 	disablenpc "Christ#christ02";
@@ -880,7 +880,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,161,281,1	script	Mas#mas02	748,{
+prontera,161,281,1	script	Mas#mas02	4_M_ALCHE_A,{
 	end;
 OnInit:
 	disablenpc "Mas#mas02";
@@ -897,7 +897,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,150,281,7	script	Event#event02	881,{
+prontera,150,281,7	script	Event#event02	4_M_SITDOWN,{
 	end;
 OnInit:
 	disablenpc "Event#event02";
@@ -914,7 +914,7 @@ OnCommandOff:
 	end;
 }
 
-prontera,188,177,4	script	Happymerry#happymerry	869,{
+prontera,188,177,4	script	Happymerry#happymerry	4_M_LGTMAN,{
 	if (christ_solo05==1) {
 		mes "[Happymerry]";
 		mes "Holgren~~!!";
@@ -991,7 +991,7 @@ prontera,188,177,4	script	Happymerry#happymerry	869,{
 	}
 }
 
-prontera,62,339,3	script	Christ#christ	875,{
+prontera,62,339,3	script	Christ#christ	4_M_PECOKNIGHT,{
 	if (christ_solo05 == 2) {
 		mes "[Christ]";
 		mes "~Agora finalmente!!!";
@@ -1075,7 +1075,7 @@ prontera,62,339,3	script	Christ#christ	875,{
 	}
 }
 
-prontera,163,66,7	script	Mas#mas	748,{
+prontera,163,66,7	script	Mas#mas	4_M_ALCHE_A,{
 	if (christ_solo05 == 3) {
 		mes "[Mas]";
 		mes "Ahhh!!!!!Mas que demora!";
@@ -1155,7 +1155,7 @@ prontera,163,66,7	script	Mas#mas	748,{
 	}
 }
 
-prontera,35,209,5	script	Event#event	881,{
+prontera,35,209,5	script	Event#event	4_M_SITDOWN,{
 	if (christ_solo05 == 4) {
 		mes "[Event]";
 		mes "........................";
@@ -1250,7 +1250,7 @@ prontera,35,209,5	script	Event#event	881,{
 }
 
 // Oholy (Event 3)
-prontera,156,242,0	script	Oholy#pron::OholyDup	79,{
+prontera,156,242,0	script	Oholy#pron::OholyDup	1_F_PRIEST,{
 	if (!christ_carol05) {
 		mes "[Oholy]";
 		mes "Alegria para o mundo!";
@@ -1851,7 +1851,7 @@ function	script	F_carol_devi2	{
 	end;
 }
 
-prontera,94,297,3	script	Deviruchi#pron_01	738,3,3,{
+prontera,94,297,3	script	Deviruchi#pron_01	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1860,7 +1860,7 @@ OnTouch:
 	end;
 }
 
-prontera,205,242,3	script	Deviruchi#pron_02	738,3,3,{
+prontera,205,242,3	script	Deviruchi#pron_02	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1869,7 +1869,7 @@ OnTouch:
 	end;
 }
 
-prontera,126,118,3	script	Deviruchi#pron_03	738,3,3,{
+prontera,126,118,3	script	Deviruchi#pron_03	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","prontera",155,230);
 	end;
 
@@ -1879,8 +1879,8 @@ OnTouch:
 }
 
 // Payon
-payon,165,153,3	duplicate(OholyDup)	Oholy#payon	79
-payon,142,203,3	script	Deviruchi#payon_01	738,3,3,{
+payon,165,153,3	duplicate(OholyDup)	Oholy#payon	1_F_PRIEST
+payon,142,203,3	script	Deviruchi#payon_01	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1889,7 +1889,7 @@ OnTouch:
 	end;
 }
 
-payon,248,239,3	script	Deviruchi#payon_02	738,3,3,{
+payon,248,239,3	script	Deviruchi#payon_02	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1898,7 +1898,7 @@ OnTouch:
 	end;
 }
 
-payon,140,56,3	script	Deviruchi#payon_03	738,3,3,{
+payon,140,56,3	script	Deviruchi#payon_03	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","payon",166,60);
 	end;
 
@@ -1907,8 +1907,8 @@ OnTouch:
 	end;
 }
 
-morocc,161,85,0	duplicate(OholyDup)	Oholy#morocc	79
-morocc,52,134,3	script	Deviruchi#morocc_01	738,3,3,{
+morocc,161,85,0	duplicate(OholyDup)	Oholy#morocc	1_F_PRIEST
+morocc,52,134,3	script	Deviruchi#morocc_01	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1917,7 +1917,7 @@ OnTouch:
 	end;
 }
 
-morocc,210,264,3	script	Deviruchi#morocc_02	738,3,3,{
+morocc,210,264,3	script	Deviruchi#morocc_02	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1926,7 +1926,7 @@ OnTouch:
 	end;
 }
 
-morocc,223,74,3	script	Deviruchi#morocc_03	738,3,3,{
+morocc,223,74,3	script	Deviruchi#morocc_03	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","morocc",160,51);
 	end;
 
@@ -1936,8 +1936,8 @@ OnTouch:
 }
 
 // Geffen
-geffen,120,188,0	duplicate(OholyDup)	Oholy#geffen	79
-geffen,173,163,3	script	Deviruchi#geffen_01	738,3,3,{
+geffen,120,188,0	duplicate(OholyDup)	Oholy#geffen	1_F_PRIEST
+geffen,173,163,3	script	Deviruchi#geffen_01	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1946,7 +1946,7 @@ OnTouch:
 	end;
 }
 
-geffen,49,95,3	script	Deviruchi#geffen_02	738,3,3,{
+geffen,49,95,3	script	Deviruchi#geffen_02	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1955,7 +1955,7 @@ OnTouch:
 	end;
 }
 
-geffen,111,101,3	script	Deviruchi#geffen_03	738,3,3,{
+geffen,111,101,3	script	Deviruchi#geffen_03	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","geffen",120,34);
 	end;
 
@@ -1965,8 +1965,8 @@ OnTouch:
 }
 
 // Alberta
-alberta,54,237,0	duplicate(OholyDup)	Oholy#alberta	79
-alberta,97,86,3	script	Deviruchi#alberta_01	738,3,3,{
+alberta,54,237,0	duplicate(OholyDup)	Oholy#alberta	1_F_PRIEST
+alberta,97,86,3	script	Deviruchi#alberta_01	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 
@@ -1975,7 +1975,7 @@ OnTouch:
 	end;
 }
 
-alberta,180,48,3	script	Deviruchi#alberta_02	738,3,3,{
+alberta,180,48,3	script	Deviruchi#alberta_02	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 
@@ -1984,7 +1984,7 @@ OnTouch:
 	end;
 }
 
-alberta,54,132,3	script	Deviruchi#alberta_03	738,3,3,{
+alberta,54,132,3	script	Deviruchi#alberta_03	4_DEVIRUCHI,3,3,{
 	callfunc("F_carol_devi2","alberta",28,235);
 	end;
 
@@ -1997,7 +1997,7 @@ OnTouch:
 
 // =========== Carolling - Caixa de Música =============
 // =====================================================
-prontera,226,306,4	script	Carolling#iROxmas08	79,{
+prontera,226,306,4	script	Carolling#iROxmas08	1_F_PRIEST,{
 	if (iROxmas08carol < 1 || iROxmas08carol == 3) {
 		if (iROxmas08carol == 3) {
 			mes "[Carolling]";
@@ -2504,7 +2504,7 @@ prontera,226,306,4	script	Carolling#iROxmas08	79,{
 
 // ============= Papai Noel - Card Game ================
 // =====================================================
--	script	Papai Noel#iROxmas08::08santa	718,{
+-	script	Papai Noel#iROxmas08::08santa	4_M_SANTA,{
 	mes "[Papai Noel]";
 	mes "Uau! Fora-lhe impertinentes ou agradável esse";
 	mes "ano?";
@@ -2807,16 +2807,16 @@ prontera,226,306,4	script	Carolling#iROxmas08	79,{
 	}
 }
 
-payon,171,109,4	duplicate(08santa)	Papai Noel#0801	718
-prontera,156,285,4	duplicate(08santa)	Papai Noel#0802	718
-alberta,117,66,4	duplicate(08santa)	Papai Noel#0803	718
-geffen,119,70,4	duplicate(08santa)	Papai Noel#0804	718
-morocc,158,104,4	duplicate(08santa)	Papai Noel#0805	718
+payon,171,109,4	duplicate(08santa)	Papai Noel#0801	4_M_SANTA
+prontera,156,285,4	duplicate(08santa)	Papai Noel#0802	4_M_SANTA
+alberta,117,66,4	duplicate(08santa)	Papai Noel#0803	4_M_SANTA
+geffen,119,70,4	duplicate(08santa)	Papai Noel#0804	4_M_SANTA
+morocc,158,104,4	duplicate(08santa)	Papai Noel#0805	4_M_SANTA
 
 
 // ========= Louise Kim - Roupa de Papai Noel ==========
 // =====================================================
-xmas_in,89,92,4	script	Louise Kim#iROxmas08	714,{
+xmas_in,89,92,4	script	Louise Kim#iROxmas08	4_F_06,{
 	mes "[Louise Kim]";
 	mes "Eu sempre pensei sobre como é chato";
 	mes "o Papai Noel estar usando um traje";

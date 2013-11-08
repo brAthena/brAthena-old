@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-amatsu,202,91,3	script	Guia de Amatsu#amatsu	758,{
+amatsu,202,91,3	script	Guia de Amatsu#amatsu	4_F_JPN,{
 	mes "[Amachang]";
 	mes "Bem-vindo a Amatsu, a cidade dos cidadãos gentis e das belas flores de cerejeiras.";
 	next;
@@ -129,7 +129,7 @@ amatsu,202,91,3	script	Guia de Amatsu#amatsu	758,{
 	}
 }
 	
-amatsu,251,283,4	script#vpo	Guia#2ama	767,{
+amatsu,251,283,4	script#vpo	Guia#2ama	8_M_JPNSOLDIER,{
 	mes "[Guia]";
 	mes "Bem-vindo, turista de outro continente.";
 	mes "Eu sou o Guia de Amatsu, a cidade das belas cerejeiras.";

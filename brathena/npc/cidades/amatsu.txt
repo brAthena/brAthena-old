@@ -27,7 +27,7 @@
 
 // Teleporte de Amatsu
 //=====================================================
-alberta,246,74,3	script	Capitão do Mar#ama1	709,{
+alberta,246,74,3	script	Capitão do Mar#ama1	4_M_SEAMAN,{
 	mes "[Walter Moers]";
 	mes "Ei, você.";
 	mes "Já ouviu falar que existem países completamente diferentes do reino de Rune-Midgard?";
@@ -108,7 +108,7 @@ alberta,246,74,3	script	Capitão do Mar#ama1	709,{
 	}
 }
 
-amatsu,194,79,5	script	Capitão do Mar#ama2	709,{
+amatsu,194,79,5	script	Capitão do Mar#ama2	4_M_SEAMAN,{
 	mes "[Walter Moers]";
 	mes "Olá! Gostou da sua visita a Amatsu?";
 	mes "Ok, levarei você de volta a Alberta.";
@@ -131,7 +131,7 @@ amatsu,194,79,5	script	Capitão do Mar#ama2	709,{
 
 // NPCs Genéricos de Amatsu
 //=====================================================
-amatsu,230,160,3	script	Yuuko#ama	757,{
+amatsu,230,160,3	script	Yuuko#ama	4_F_JPN2,{
 	mes "[Yuuko]";
 	mes "Costumo vir até esse poço para pegar água, mas nunca venho se o dia está chuvoso ou com neblina.";
 	mes "Não sei por que, quando o tempo está de um certo jeito, eu sinto...";
@@ -142,7 +142,7 @@ amatsu,230,160,3	script	Yuuko#ama	757,{
 	close;
 }
 
-amatsu,179,107,4	script	John#ama	86,{
+amatsu,179,107,4	script	John#ama	4_M_04,{
 	mes "[John]";
 	mes "Oi~";
 	mes "Você não é daqui.";
@@ -179,7 +179,7 @@ amatsu,179,107,4	script	John#ama	86,{
 	close;
 }
 
-amatsu,205,163,3	script	Mimi#ama	759,{
+amatsu,205,163,3	script	Mimi#ama	4_F_JPNCHIBI,{
 	mes "[Mimi]";
 	mes "Puhuhu~!";
 	mes "Você viu a Miss Amatsu perto do porto? Ela não é liiinda?";
@@ -193,7 +193,7 @@ amatsu,205,163,3	script	Mimi#ama	759,{
 	close;
 }
 
-amatsu,185,115,3	script	Homem Bêbado#ama	765,{
+amatsu,185,115,3	script	Homem Bêbado#ama	4_M_JPNOJI2,{
 	mes "[Kosake]";
 	mes "*Hiccup*...Minha esposa parece,";
 	mes "...parece um homem...*Hiccup*...";
@@ -228,7 +228,7 @@ amatsu,185,115,3	script	Homem Bêbado#ama	765,{
 	close;
 }
 
-amatsu,217,179,1	script	Vovó#ama	760,{
+amatsu,217,179,1	script	Vovó#ama	4_F_JPNOBA2,{
 	mes "[Hatsue]";
 	mes "Estou preocupada com meu marido.";
 	mes "Hoje ele perdeu muito dinheiro em uma cidade distante.";
@@ -238,7 +238,7 @@ amatsu,217,179,1	script	Vovó#ama	760,{
 	close;
 }
 
-amatsu,287,266,3	script	Jyaburo#ama	766,{
+amatsu,287,266,3	script	Jyaburo#ama	4_M_JPNOJI,{
 	mes "[Jyaburo]";
 	mes "Esse lugar é especial para mim.";
 	mes "Está cheio de memórias da minha esposa.";
@@ -270,7 +270,7 @@ amatsu,287,266,3	script	Jyaburo#ama	766,{
 	close;
 }
 
-amatsu,269,221,1	script	Hutari Shioko#ama1	758,{
+amatsu,269,221,1	script	Hutari Shioko#ama1	4_F_JPN,{
 	set jap_tree,1;
 	mes "[Hutari Shioko]";
 	mes "É um prazer conhecê-lo.";
@@ -300,7 +300,7 @@ amatsu,269,221,1	script	Hutari Shioko#ama1	758,{
 	close;
 }
 	
-amatsu,243,202,3	script	Professora de Drama#ama	760,{
+amatsu,243,202,3	script	Professora de Drama#ama	4_F_JPNOBA2,{
 	set jap_tree,2;
 	mes "[Garakame sensei]";
 	mes "Esse é um lugar lindo com flores de cerejeiras o ano todo.";
@@ -332,7 +332,7 @@ amatsu,243,202,3	script	Professora de Drama#ama	760,{
 	
 amatsu,283,203,1	script	Bonubonu#ama1	1323,{ end; }
 
-amatsu,283,203,1	script	Bonubonu#ama2	111,{
+amatsu,283,203,1	script	Bonubonu#ama2	HIDDEN_NPC,{
 	set jap_tree,3;
 	emotion e_swt2;
 	mes "[Bonubonu]";
@@ -356,7 +356,7 @@ amatsu,283,203,1	script	Bonubonu#ama2	111,{
 	close;
 }
 	
-amatsu,274,178,7	script	Veterinário#ama	735,{
+amatsu,274,178,7	script	Veterinário#ama	4_M_JOB_WIZARD,{
 	set jap_tree,4;
 	mes "[Sakura Seiichi]";
 	mes "Ah... Não sou anormal, então não tenha medo. Sou só um veterinário.";
@@ -402,7 +402,7 @@ amatsu,274,178,7	script	Veterinário#ama	735,{
 	close;
 }
 
-amatsu,262,197,1	script	Lendária Árvore	111,{
+amatsu,262,197,1	script	Lendária Árvore	HIDDEN_NPC,{
 	switch (jap_tree) {
 	case 1:
 		mes "^3355FFComo disseram, essa árvore parece ser um lugar famoso para pedidos de casamento.";

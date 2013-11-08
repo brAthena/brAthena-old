@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dicastes01,181,191,5	script	Viajante Ichack#info	481,2,2,{
+dicastes01,181,191,5	script	Viajante Ichack#info	4_M_SHADOWCHASER,2,2,{
 	mes "[Viajante Ichack]";
 	mes " Oh!! Você é um"+((Sex) ? " estrangeiro":"a estrangeira")+"!";
 	mes "Sou Ichack, o primeiro aventureiro que chegou aqui em El Dicastes!";

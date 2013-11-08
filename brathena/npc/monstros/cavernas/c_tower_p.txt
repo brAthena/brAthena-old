@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-c_tower1,232,222,5	script	Benjamin#ct	968,{
+c_tower1,232,222,5	script	Benjamin#ct	4_M_RUSMAN2,{
 
 	mes "[Benjamin]";
 	mes "^FF0000O que sabe^000000sobre a torre";
@@ -138,7 +138,7 @@ c_tower1,232,222,5	script	Benjamin#ct	968,{
 }
 
 
-c_tower2_,274,26,3	script	Benjamin#ct1	962,{
+c_tower2_,274,26,3	script	Benjamin#ct1	4_M_RUSCHILD,{
 
 	mes "[Benjamin]";
 	mes "Provavelmente nunca nos encontramos, não foi?";
@@ -190,7 +190,7 @@ c_tower2_,274,26,3	script	Benjamin#ct1	962,{
 	return;
 }
 
-c_tower3_,59,148,5	duplicate(Benjamin#ct1)	Benjamin#ct2	574
+c_tower3_,59,148,5	duplicate(Benjamin#ct1)	Benjamin#ct2	4_M_BARYO_OLD
 
 // c_tower2_
 c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,2,300000,0,0

@@ -275,7 +275,7 @@ OnTouch:
 	close;
 }
 
-payon,30,94,3	duplicato(Jason)	Jason#ot	88,3,3
-morocc,121,109,5	duplicato(Roberto)	Roberto#ot	88,{}
+payon,30,94,3	duplicato(Jason)	Jason#ot	4_M_ORIENT01,3,3
+morocc,121,109,5	duplicato(Roberto)	Roberto#ot	4_M_ORIENT01,{}
 payon,103,63,3	duplicata(Jason)	Jason#dv	88,3,3
 moc_ruins,118,99,5	duplicata(Roberto)	Roberto#dv	88,{}

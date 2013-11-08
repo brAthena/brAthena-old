@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-que_ng,72,29,3	script	Mercador de Kunais	83,{
+que_ng,72,29,3	script	Mercador de Kunais	4_M_01,{
 	if (BaseClass == Job_Ninja) {
 		mes "[Kashin]";
 		mes "Sou Kashin, distribuidor de Kunais para Ninjas.";

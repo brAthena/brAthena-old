@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,118,160,3	script	Negociador de Projéteis Tony#alb	86,{
+alberta,118,160,3	script	Negociador de Projéteis Tony#alb	4_M_04,{
 	mes "[Tony]";
 	if (BaseJob == Job_Gunslinger) {
 		mes "Eu sou Tony, o negociador de projéteis.";
@@ -91,7 +91,7 @@ Bullet_Trade:
 }
 
 // Caixa de Munições
-alberta,118,157,3	script	Vendedor de Caixas de Munição#alb	83,{
+alberta,118,157,3	script	Vendedor de Caixas de Munição#alb	4_M_01,{
 	set .n$,"[Kenny]";
 	mes .n$;
 	if (BaseJob == Job_Gunslinger) {
@@ -164,18 +164,18 @@ Func_Casing:
 		close;
 }
 // Renovação
-que_ng,187,156,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#ng	86
-izlude,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
-izlude_a,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#a	86
-izlude_b,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#b	86
-izlude_c,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#c	86
-izlude_d,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#d	86
-que_ng,187,149,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#ng	83
+que_ng,187,156,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#ng	4_M_04
+izlude,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	4_M_04
+izlude_a,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#a	4_M_04
+izlude_b,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#b	4_M_04
+izlude_c,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#c	4_M_04
+izlude_d,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#d	4_M_04
+que_ng,187,149,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#ng	4_M_01
 izlude,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz  83
-izlude_a,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#a	83
-izlude_b,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#b	83
-izlude_c,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#c	83
-izlude_d,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#d	83,{}
+izlude_a,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#a	4_M_01
+izlude_b,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#b	4_M_01
+izlude_c,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#c	4_M_01
+izlude_d,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#d	4_M_01,{}
 // Pré-renovação
-izlude,171,133,3	duplicatp(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	86
-izlude,171,127,3	duplicatp(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz	83,{}
+izlude,171,133,3	duplicatp(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#iz	4_M_04
+izlude,171,127,3	duplicatp(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz	4_M_01,{}

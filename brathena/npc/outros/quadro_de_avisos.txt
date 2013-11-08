@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,111,59,5	script	Quadro de Avisos#1	837,{
+alberta,111,59,5	script	Quadro de Avisos#1	2_BULLETIN_BOARD,{
 	mes "[Cidade Portuária, Alberta]";
 	mes "Bem-vindo à cidade portuária Alberta. Alberta tem um comércio náutico bem desenvolvido. Recentemente, as ligações comerciais de Alberta se expandiram para vários países estrangeiros";
 	next;
@@ -48,7 +48,7 @@ alberta,111,59,5	script	Quadro de Avisos#1	837,{
 	close;
 }
 
-geffen,124,65,5	script	Quadro de Avisos#2	837,{
+geffen,124,65,5	script	Quadro de Avisos#2	2_BULLETIN_BOARD,{
 	mes "[A Cidade da Magia, Geffen]";
 	mes "Bem-vindo a Geffen, a Cidade da Magia. Geffen é bem conhecida por suas várias lendas relacionadas à magia.";
 	next;
@@ -66,7 +66,7 @@ geffen,124,65,5	script	Quadro de Avisos#2	837,{
 	close;
 }
 
-gef_fild10,69,340,5	script	Quadro de Avisos#3	837,{
+gef_fild10,69,340,5	script	Quadro de Avisos#3	2_BULLETIN_BOARD,{
 	mes "[Caverna dos Orcs]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Caverna dos Orcs é composta por dois níveis. Apesar de não serem fortes individuamentes, os monstros atacam em grupos. Tome cuidado.";
@@ -82,7 +82,7 @@ gef_fild10,69,340,5	script	Quadro de Avisos#3	837,{
 	close;
 }
 
-izlu2dun,104,92,5	script	Quadro de Avisos#4	837,{
+izlu2dun,104,92,5	script	Quadro de Avisos#4	2_BULLETIN_BOARD,{
 	mes "[Ilha Byalan]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Caverna de Izlude é composta por cinco níveis. Os primeiros níveis são adequados para os aventureiros iniciantes.";
@@ -95,7 +95,7 @@ izlu2dun,104,92,5	script	Quadro de Avisos#4	837,{
 	close;
 }
 
-izlude,131,116,4	script#pre	Quadro de Avisos#5	837,{
+izlude,131,116,4	script#pre	Quadro de Avisos#5	2_BULLETIN_BOARD,{
 	mes "[A Cidade Satélite, Izlude]";
 	mes "Bem-vindo a Izlude, a cidade satélite de Prontera. Izlude foi construída para apoiar a defesa de Prontera e para acomodar sua crescente população.";
 	next;
@@ -112,7 +112,7 @@ izlude,131,116,4	script#pre	Quadro de Avisos#5	837,{
 }
 
 /*
-izlude,25,103,0	script#re	Quadro de Avisos#5	837,{
+izlude,25,103,0	script#re	Quadro de Avisos#5	2_BULLETIN_BOARD,{
 	mes "[Izlude: The Satellite City]";
 	mes "Welcome to Izlude, the satellite of Prontera. Izlude was built to support Prontera's defense and to accomodate its burgeoning population.";
 	next;
@@ -129,26 +129,26 @@ izlude,25,103,0	script#re	Quadro de Avisos#5	837,{
 	mes "From Izlude, ^3355FFProntera^000000 is located to the Northwest, and ^006600Payon^000000 is located to the South. Enjoy your travels in the Rune-Midgarts Kingdom.";
 	close;
 }
-izlude_a,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_a	837
-izlude_b,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_b	837
-izlude_c,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_c	837
-izlude_d,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_d	837,{}
+izlude_a,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_a	2_BULLETIN_BOARD
+izlude_b,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_b	2_BULLETIN_BOARD
+izlude_c,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_c	2_BULLETIN_BOARD
+izlude_d,25,103,0	duplicatr(Quadro de Avisos#5)	Quadro de Avisos#5_d	2_BULLETIN_BOARD,{}
 */
 
-izlude,54,139,1	script#pre	Sign#Iz1	111,{
+izlude,54,139,1	script#pre	Sign#Iz1	HIDDEN_NPC,{
 	mes "^993300- The Sign Reads -^000000";
 	mes "Welcome to the Swordsman Academy.";
 	close;
 }
 
-izlude,144,148,1	script#pre	Sign#Iz2	111,{
+izlude,144,148,1	script#pre	Sign#Iz2	HIDDEN_NPC,{
 	mes "^993300- The Sign Reads -^000000";
 	mes "Welcome.";
 	close;
 }
 
 
-payon,178,108,5	script	Quadro de Avisos#06	837,{
+payon,178,108,5	script	Quadro de Avisos#06	2_BULLETIN_BOARD,{
 	mes "[A Cidade da Montanha, Payon]";
 	mes "Bem-vindo a Payon, a cidade da montanha. Payon foi recentemente renovada, então nós esperamos que você aproveite as ruas limpas, bonitas e seus edifícios.";
 	next;
@@ -170,7 +170,7 @@ payon,178,108,5	script	Quadro de Avisos#06	837,{
 	close;
 }
 
-pay_arche,79,31,5	script	Quadro de Avisos#07	837,{
+pay_arche,79,31,5	script	Quadro de Avisos#07	2_BULLETIN_BOARD,{
 	mes "[Vilarejo dos Arqueiros]"; 
 	mes "Bem-vindo ao Vilarejo dos Arqueiros de Payon, aqui Aprendizes podem se tornar Arqueiros.";
 	next;
@@ -182,7 +182,7 @@ pay_arche,79,31,5	script	Quadro de Avisos#07	837,{
 	close;
 }
 
-pay_arche,39,134,5	script	Quadro de Avisos#08	837,{
+pay_arche,39,134,5	script	Quadro de Avisos#08	2_BULLETIN_BOARD,{
 	mes "[Caverna de Payon]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Caverna de Payon possui 5 níveis cheios de monstros Mortos-Vivos e Demônios. Cuidado com os enxames de Hidras nos terceiros e quartos níveis.";
@@ -192,7 +192,7 @@ pay_arche,39,134,5	script	Quadro de Avisos#08	837,{
 	close;
 }
 
-prontera,148,49,5	script	Quadro de Avisos#09	837,{
+prontera,148,49,5	script	Quadro de Avisos#09	2_BULLETIN_BOARD,{
 	mes "[Capital de Rune-Midgard, Prontera]";
 	mes "Bem-vindo a Prontera, a capital de Rune-Midgard.";
 	next;
@@ -217,7 +217,7 @@ prontera,148,49,5	script	Quadro de Avisos#09	837,{
 	close;
 }
 
-mjolnir_02,76,362,5	script	Quadro de Avisos#10	837,{
+mjolnir_02,76,362,5	script	Quadro de Avisos#10	2_BULLETIN_BOARD,{
 	mes "[Mina de Carvão]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Mina de Carvão possui um total de 3 Níveis. Esta caverna é adequada para novos e experientes aventureiros, dependendo do nível da caverna.";
@@ -227,7 +227,7 @@ mjolnir_02,76,362,5	script	Quadro de Avisos#10	837,{
 	close;
 }
 
-morocc,152,110,5	script	Quadro de Avisos#11	837,{
+morocc,152,110,5	script	Quadro de Avisos#11	2_BULLETIN_BOARD,{
 	mes "[A Cidade da Fronteira, Morroc]";
 	mes "Bem-vindo a Morroc, a Cidade do Deserto. Morroc foi construída em um oásis, para assim acomodar seus visitantes e viajantes.";
 	next;
@@ -242,7 +242,7 @@ morocc,152,110,5	script	Quadro de Avisos#11	837,{
 	close;
 }
 
-comodo,210,148,5	script	Quadro de Avisos#12	837,{
+comodo,210,148,5	script	Quadro de Avisos#12	2_BULLETIN_BOARD,{
 	mes "[A Cidade da Noite Eterna, Comodo]";
 	mes "Bem-vindo! Esta cidade de Comodo é";
 	mes "cercada de muitas relíquias antigas";
@@ -281,7 +281,7 @@ comodo,210,148,5	script	Quadro de Avisos#12	837,{
 	close;
 }
 
-umbala,137,94,5	script	Quadro de Avisos#13	837,{
+umbala,137,94,5	script	Quadro de Avisos#13	2_BULLETIN_BOARD,{
 	mes "[Aldeia da Tribo Wootan, Umbala]";
 	mes "Bem-vindo a Umbala,";
 	mes "o vilarejo da tribo Wootan.";
@@ -313,7 +313,7 @@ umbala,137,94,5	script	Quadro de Avisos#13	837,{
 	close;
 }
 
-gef_fild09,227,29,4	script	Quadro de Avisos::OrcsBoard	835,{
+gef_fild09,227,29,4	script	Quadro de Avisos::OrcsBoard	2_BOARD1,{
 	mes "[Vilarejo dos Orcs]";
 	mes "^6B1312Atenção!^000000";
 	mes "Próximo a este ponto";
@@ -328,9 +328,9 @@ gef_fild09,227,29,4	script	Quadro de Avisos::OrcsBoard	835,{
 	close;
 }
 
-gef_fild13,202,31,5	duplicate(OrcsBoard)	Quadro de Avisos#orc1	835
+gef_fild13,202,31,5	duplicate(OrcsBoard)	Quadro de Avisos#orc1	2_BOARD1
 
-gef_fild13,29,206,5	script	Quadro de Avisos::KoboldsBoard	836,{
+gef_fild13,29,206,5	script	Quadro de Avisos::KoboldsBoard	2_BOARD2,{
 
 	mes "[Vila dos Cobolds]";
 	mes "^6B1312Atenção!^000000";
@@ -339,9 +339,9 @@ gef_fild13,29,206,5	script	Quadro de Avisos::KoboldsBoard	836,{
 	close;
 }
 
-gef_fild08,211,24,5	duplicate(KoboldsBoard)	Quadro de Avisos#kb1	836
+gef_fild08,211,24,5	duplicate(KoboldsBoard)	Quadro de Avisos#kb1	2_BOARD2
 
-gef_fild10,109,23,5	script	Quadro de Avisos#15	836,{
+gef_fild10,109,23,5	script	Quadro de Avisos#15	2_BOARD2,{
 
 	mes "[Vila dos Goblins]";
 	mes "^6B1312Atenção!^000000";
@@ -350,7 +350,7 @@ gef_fild10,109,23,5	script	Quadro de Avisos#15	836,{
 	close;
 }
 
-prt_fild05,278,220,5	script	Quadro de Avisos#16	837,{
+prt_fild05,278,220,5	script	Quadro de Avisos#16	2_BULLETIN_BOARD,{
 	mes "[Esgotos]";
 	mes "Os Esgotos são compostos de um total de";
 	mes "4 níveis, e é um bom lugar";
@@ -371,7 +371,7 @@ prt_fild05,278,220,5	script	Quadro de Avisos#16	837,{
 	close;
 }
 
-yuno,154,112,5	script	Quadro de Avisos#17	837,{
+yuno,154,112,5	script	Quadro de Avisos#17	2_BULLETIN_BOARD,{
 	mes "[Capital da República de Schwartzwald]";
 	mes "Bem-vindo a Juno, a Cidade dos Sábios.";
 	mes "Juno é mantida flutuando através";
@@ -405,7 +405,7 @@ yuno,154,112,5	script	Quadro de Avisos#17	837,{
 	close;
 }
 
-aldebaran,145,105,5	script	Quadro de Avisos#18	837,{
+aldebaran,145,105,5	script	Quadro de Avisos#18	2_BULLETIN_BOARD,{
 	mes "[A Cidade das Kafras, Aldebaran]";
 	mes "Bem-vindo a Al De Baran, uma cidade frontuária";
 	mes "do Reino de Rune-Midgard.";
@@ -435,7 +435,7 @@ aldebaran,145,105,5	script	Quadro de Avisos#18	837,{
 	close;
 }
 
-aldebaran,136,133,5	script	Quadro de Avisos#19	837,{
+aldebaran,136,133,5	script	Quadro de Avisos#19	2_BULLETIN_BOARD,{
 	mes "[Torre do Relógio]";
 	mes "^6B1312Atenção!^000000";
 	mes "Somente aventureiros experientes";
@@ -455,7 +455,7 @@ aldebaran,136,133,5	script	Quadro de Avisos#19	837,{
 	close;
 }
 
-moc_fild19,107,101,5	script	Quadro de Avisos#20	837,{
+moc_fild19,107,101,5	script	Quadro de Avisos#20	2_BULLETIN_BOARD,{
 	mes "[Esfinge]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Esfinge possui 5 níveis.";
@@ -476,7 +476,7 @@ moc_fild19,107,101,5	script	Quadro de Avisos#20	837,{
 	close;
 }
 
-gef_tower,55,142,5	script	Quadro de Avisos#21	837,{
+gef_tower,55,142,5	script	Quadro de Avisos#21	2_BULLETIN_BOARD,{
 	mes "[Caverna de Geffen]";
 	mes "^6B1312Atenção!^000000"; 
 	mes "A Caverna de Geffen é constituída por 3 nívels";
@@ -493,7 +493,7 @@ gef_tower,55,142,5	script	Quadro de Avisos#21	837,{
 	close;
 }
 
-xmas_fild01,75,80,5	script	Quadro de Avisos#22	837,{
+xmas_fild01,75,80,5	script	Quadro de Avisos#22	2_BULLETIN_BOARD,{
 	mes "[A Cidade do Inverno, Lutie]";
 	mes "Bem-vindo a Lutie, a cidade da neve.";
 	mes "A Fabricação de brinquedos na Fábrica de Brinquedos é o principal";
@@ -508,7 +508,7 @@ xmas_fild01,75,80,5	script	Quadro de Avisos#22	837,{
 	close;
 }
 
-xmas,147,311,5	script	Quadro de Avisos#23	837,{
+xmas,147,311,5	script	Quadro de Avisos#23	2_BULLETIN_BOARD,{
 	mes "[Fábrica de Brinquedos]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Fábrica de Brinquedos é constituída por 2 níveis.";
@@ -523,7 +523,7 @@ xmas,147,311,5	script	Quadro de Avisos#23	837,{
 	close;
 }
 
-yuno_fild03,37,143,5	script	Quadro de Avisos#24	837,{
+yuno_fild03,37,143,5	script	Quadro de Avisos#24	2_BULLETIN_BOARD,{
 	mes "[Caverna de Magma]";
 	mes "^6B1312Atenção!^000000";
 	mes "A Caverna de Magma está repleta de criaturas muito perigosas.";
@@ -536,7 +536,7 @@ yuno_fild03,37,143,5	script	Quadro de Avisos#24	837,{
 	close;
 }
 
-niflheim,200,191,5	script	Quadro de Avisos#25	837,{
+niflheim,200,191,5	script	Quadro de Avisos#25	2_BULLETIN_BOARD,{
 	mes "[A Cidade dos Mortos, Nifflheim]";
 	mes "Bem-vindo a Nifflheim, a Cidade dos Mortos.";
 	mes "Nifflheim era conhecida como o outro mundo, onde";
@@ -560,7 +560,7 @@ niflheim,200,191,5	script	Quadro de Avisos#25	837,{
 }
 
 /*
-moc_fild15,267,264,5	script	Quadro de Avisos#26	837,{
+moc_fild15,267,264,5	script	Quadro de Avisos#26	2_BULLETIN_BOARD,{
 	mes "[Formigueiro Infernal]";
 	mes "^6B1312Atenção!^000000";
 	mes "O Formigueiro Infernal possui 2 níveis.";
@@ -576,7 +576,7 @@ moc_fild15,267,264,5	script	Quadro de Avisos#26	837,{
 }
 */
 
-moc_ruins,61,164,5	script	Quadro de Avisos#27	837,{
+moc_ruins,61,164,5	script	Quadro de Avisos#27	2_BULLETIN_BOARD,{
 	mes "[Pirâmides]";
 	mes "^6B1312Atenção!^000000";
 	mes "As Pirâmides são constituídas em 7 níveis, onde 4 níveis estão localizados na superficíe e o restante abaixo.";
@@ -589,7 +589,7 @@ moc_ruins,61,164,5	script	Quadro de Avisos#27	837,{
 	close;
 }
 
-glast_01,369,308,5	script	Quadro de Avisos#28	837,{
+glast_01,369,308,5	script	Quadro de Avisos#28	2_BULLETIN_BOARD,{
 	mes "[Glast Heim]";
 	mes "Glast Heim é um calabouço enorme, com inúmeros níveis.";
 	mes "Esse calabouço não é definitivamente recomendado para novos e experientes aventureiros";

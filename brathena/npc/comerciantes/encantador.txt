@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,165,60,2	script	Aprendiz de Artesão	73,{
+prontera,165,60,2	script	Aprendiz de Artesão	1_F_MERCHANT_01,{
 	disable_items;
 	mes "[Aprendiz de Artesão]";
 	if (Zeny > 400000) {
@@ -496,10 +496,10 @@ S_EnchantArmor:
 	}
 }
 
-payon,236,199,3	duplicate(SocketEnchant2)	Leablem#pay	86
-lighthalzen,96,137,3	duplicate(SocketEnchant2)	Leablem#lhz	86
-prt_in,22,60,6	duplicate(SocketEnchant2)	Leablem#prt	86
-moc_ruins,154,86,3	duplicate(SocketEnchant2)	Leablem#moc	86
+payon,236,199,3	duplicate(SocketEnchant2)	Leablem#pay	4_M_04
+lighthalzen,96,137,3	duplicate(SocketEnchant2)	Leablem#lhz	4_M_04
+prt_in,22,60,6	duplicate(SocketEnchant2)	Leablem#prt	4_M_04
+moc_ruins,154,86,3	duplicate(SocketEnchant2)	Leablem#moc	4_M_04
 
 function	script	Func_Socket2	{
 

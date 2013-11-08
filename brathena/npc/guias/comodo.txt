@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-comodo,322,178,4	script#re	Guia de Comodo#01comodo	700,{
+comodo,322,178,4	script#re	Guia de Comodo#01comodo	8_F_GIRL,{
 	mes "[Guia de Comodo]";
 	mes "Bem-vindo a ^8B4513Comodo^000000, a cidade litorânea do Reino de Rune-Midgards.";
 	mes "Você precisa de ajuda para navegar pela cidade?";
@@ -179,16 +179,16 @@ L_Mark:
 	return;
 }
 
-comodo,181,347,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#02comodo	700
-comodo,197,149,3	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#03comodo	700
-comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	700,{}
+comodo,181,347,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#02comodo	8_F_GIRL
+comodo,197,149,3	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#03comodo	8_F_GIRL
+comodo,37,219,4	duplicatr(Guia de Comodo#01comodo)	Guia de Comodo#04comodo	8_F_GIRL,{}
 
-comodo,322,178,4	script#vpo	Guia Turístico#cmd	700,{
+comodo,322,178,4	script#vpo	Guia Turístico#cmd	8_F_GIRL,{
 	callfunc "F_CmdGuide","Aborígene Nutcoco";
 }
 
-comodo,176,350,4	duplicatv(Guia Turístico#cmd)	Guia de Comodo#2cmd	700
-comodo,37,219,4	duplicatv(Guia Turístico#cmd)	Guia#2cmd	700
+comodo,176,350,4	duplicatv(Guia Turístico#cmd)	Guia de Comodo#2cmd	8_F_GIRL
+comodo,37,219,4	duplicatv(Guia Turístico#cmd)	Guia#2cmd	8_F_GIRL
 
 function	script	F_CmdGuide	{
 	mes "["+getarg(0)+"]";

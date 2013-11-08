@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
+tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	1_M_ORIENT01,{
 	mes "[Instrutor Sobrevivente]";
 	if (BaseJob == Job_Hunter) {
 		if (job_ranger01 < 1) {
@@ -302,7 +302,7 @@ tur_dun01,156,36,5	script	Instrutor Sobrevivente#jr01	59,{
 	close;
 }
 
-tur_dun01,91,169,3	script	Instrutor do Teste#jr02	732,{
+tur_dun01,91,169,3	script	Instrutor do Teste#jr02	4_M_JOB_HUNTER,{
 	mes "[Instrutor do Teste]";
 	if (BaseJob == Job_Hunter) {
 		if (job_ranger01 < 3) {
@@ -670,7 +670,7 @@ L_Start:
 	end;
 }
 
-job3_rang01,30,44,3	script	Sala de Espera#jr_03	88,{
+job3_rang01,30,44,3	script	Sala de Espera#jr_03	4_M_ORIENT01,{
 	mes "[Equipe DTS]";
 	mes "Por favor, aguarde na Sala de Espera o início do teste.";
 	next;
@@ -796,7 +796,7 @@ OnDisable:
 	end;
 }
 
-job3_rang02,100,95,0	script	Supervisor do Teste#jr_04	139,{
+job3_rang02,100,95,0	script	Supervisor do Teste#jr_04	HIDDEN_WARP_NPC,{
 OnInit:
 	set $@job_rang_point01,0;
 	disablenpc "Supervisor do Teste#jr_04";
@@ -839,7 +839,7 @@ OnTimer18000:
 	end;
 }
 
-job3_rang02,102,95,0	script	Cronômetro do 1° Teste#jr_05	139,{
+job3_rang02,102,95,0	script	Cronômetro do 1° Teste#jr_05	HIDDEN_WARP_NPC,{
 OnInit:
 	disablenpc "Cronômetro do 1° Teste#jr_05";
 	end;
@@ -940,7 +940,7 @@ OnTimer157000:
 	end;
 }
 
-job3_rang02,104,95,0	script	RespostaCorreta#jr	139,{
+job3_rang02,104,95,0	script	RespostaCorreta#jr	HIDDEN_WARP_NPC,{
 OnInit:
 OnDisable:
 	disablenpc "RespostaCorreta#jr";
@@ -967,7 +967,7 @@ OnMyMobDead:
 	end;
 }
 
-job3_rang02,106,95,0	script	RespostaErrada#jr	139,{
+job3_rang02,106,95,0	script	RespostaErrada#jr	HIDDEN_WARP_NPC,{
 OnInit:
 OnDisable:
 	disablenpc "RespostaErrada#jr";
@@ -1057,7 +1057,7 @@ OnMyMobDead:
 	end;
 }
 
-job3_rang02,100,93,0	script	Cronômetro do 2° Teste#jr_08	139,{
+job3_rang02,100,93,0	script	Cronômetro do 2° Teste#jr_08	HIDDEN_WARP_NPC,{
 OnInit:
 	disablenpc "Cronômetro do 2° Teste#jr_08";
 	end;
@@ -1164,7 +1164,7 @@ OnTimer223000:
 	end;
 }
 
-job3_rang02,111,56,3	script Rust#jr_09	89,{
+job3_rang02,111,56,3	script Rust#jr_09	4_M_ORIENT02,{
 	if (job_ranger01 == 6) {
 		if (countitem(12258) < 1) {
 			percentheal 100,0;
@@ -1209,7 +1209,7 @@ OnDisable:
 	end;
 }
 
-job3_rang02,136,21,0	script	Invocação de Monstros#jr_10	139,5,5,{
+job3_rang02,136,21,0	script	Invocação de Monstros#jr_10	HIDDEN_WARP_NPC,5,5,{
 OnInit:
 	disablenpc "Invocação de Monstros#jr_10";
 	end;
@@ -1258,7 +1258,7 @@ OnMyMobDead:
 	end;
 }
 
-job3_rang02,180,78,3	script	Supervisor do Teste#jr_11	882,1,1,{
+job3_rang02,180,78,3	script	Supervisor do Teste#jr_11	4_F_SITDOWN,1,1,{
 	mes "[Supervisor do Teste Kowsyun]";
 	mes "Venha, aproxime-se, mais perto, mais perto!!";
 	close;
@@ -1358,7 +1358,7 @@ OnTimer105000:
 	end;
 }
 
-job3_rang02,104,93,0	script	Cronômetro do 3° Teste#jr_12	139,{
+job3_rang02,104,93,0	script	Cronômetro do 3° Teste#jr_12	HIDDEN_WARP_NPC,{
 OnInit:
 	disablenpc "Cronômetro do 3° Teste#jr_12";
 	end;
@@ -1445,7 +1445,7 @@ OnTimer130000:
 	end;
 }
 
-job3_rang02,251,49,3	script	Supervisor do Teste#jr_13	732,{
+job3_rang02,251,49,3	script	Supervisor do Teste#jr_13	4_M_JOB_HUNTER,{
 	mes "[Supervisor do Teste]";
 	if (job_ranger01 == 6) {
 		if (checkquest(8261) == -1) {
@@ -1600,23 +1600,23 @@ OnTimer10000:
 	donpcevent strnpcinfo(0)+"::OnDisable";
 	end;
 }
-job3_rang02,246,42,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#14	139
-job3_rang02,249,46,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#15	139
-job3_rang02,256,43,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#16	139
-job3_rang02,243,54,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#17	139
-job3_rang02,246,58,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#18	139
-job3_rang02,255,56,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#19	139
-job3_rang02,260,48,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#20	139
-job3_rang02,244,53,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#21	139
-job3_rang02,254,50,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#22	139
-job3_rang02,241,41,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#23	139
-job3_rang02,259,41,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#24	139
-job3_rang02,256,52,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#25	139
-job3_rang02,259,58,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#26	139
-job3_rang02,254,52,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#27	139
-job3_rang02,247,42,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#28	139
+job3_rang02,246,42,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#14	HIDDEN_WARP_NPC
+job3_rang02,249,46,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#15	HIDDEN_WARP_NPC
+job3_rang02,256,43,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#16	HIDDEN_WARP_NPC
+job3_rang02,243,54,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#17	HIDDEN_WARP_NPC
+job3_rang02,246,58,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#18	HIDDEN_WARP_NPC
+job3_rang02,255,56,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#19	HIDDEN_WARP_NPC
+job3_rang02,260,48,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#20	HIDDEN_WARP_NPC
+job3_rang02,244,53,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#21	HIDDEN_WARP_NPC
+job3_rang02,254,50,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#22	HIDDEN_WARP_NPC
+job3_rang02,241,41,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#23	HIDDEN_WARP_NPC
+job3_rang02,259,41,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#24	HIDDEN_WARP_NPC
+job3_rang02,256,52,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#25	HIDDEN_WARP_NPC
+job3_rang02,259,58,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#26	HIDDEN_WARP_NPC
+job3_rang02,254,52,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#27	HIDDEN_WARP_NPC
+job3_rang02,247,42,0	duplicate(Bomba-Ovo#0)	Bomba-Ovo#28	HIDDEN_WARP_NPC
 
-job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	832,{
+job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	4_M_REIDIN_KURS,{
 	mes "[Mestre dos Sentinelas]";
 	if (job_ranger01 < 6) {
 		mes "... ...Hã?";
@@ -1754,7 +1754,7 @@ job3_rang01,90,43,3	script	Mestre dos Sentinelas#jr_29	832,{
 	}
 }
 
-job3_rang01,58,1,0	script	Worker#job_ranger	88,{
+job3_rang01,58,1,0	script	Worker#job_ranger	4_M_ORIENT01,{
 	callfunc "F_GM_NPC";
 	switch(select("Enable Waiting Room:Disable Waiting Room:Enable 1st Test:Disable 1st Test:Enable 2nd Test:Disable 2nd Test:Enable 3rd Test:Disable 3rd Test:Cancel")) {
 	case 1:

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,53,42,3	script	Mestre#Valquiria	52,{
+valkyrie,53,42,3	script	Mestre#Valquiria	1_M_HOF,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

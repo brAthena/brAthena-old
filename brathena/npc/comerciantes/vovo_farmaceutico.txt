@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
+alberta_in,16,28,4	script	Vovô Farmacêutico	1_M_PUBMASTER,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um momento! -";
 		mes "- Você está carregando -";

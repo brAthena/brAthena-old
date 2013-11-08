@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,53,50,3	script	Criador#Valquíria	122,{
+valkyrie,53,50,3	script	Criador#Valquíria	2_M_DYEINGER,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

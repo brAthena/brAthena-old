@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-yuno,129,156,3	script	Chainheart	923,{
+yuno,129,156,3	script	Chainheart	4_M_DOCTOR,{
 	mes "[Chainheart]";
 	if (BaseLevel > 99) {
 		mes "Living as a Mechanic is tough,";
@@ -302,7 +302,7 @@ yuno,129,156,3	script	Chainheart	923,{
 	close;
 }
 
-jupe_cave,37,55,5	script	Scholar#Mechanic	883,{
+jupe_cave,37,55,5	script	Scholar#Mechanic	4_M_ALCHE_D,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 300) {
 		mes "- Your pack is too heavy. -";
 		mes "- Lighten your body first -";
@@ -393,7 +393,7 @@ jupe_cave,37,55,5	script	Scholar#Mechanic	883,{
 	close;
 }
 
-jupe_core2,149,273,3	script	Ghostfire#1	802,{
+jupe_core2,149,273,3	script	Ghostfire#1	4_NFWISP,{
 	mes "[?]";
 	if (job__mechanic == 11) {
 		mes "I've lost my body and all that's left is my spirit in this place.";
@@ -479,7 +479,7 @@ jupe_core2,149,273,3	script	Ghostfire#1	802,{
 	end;
 }
 
-jupe_core2,53,75,3	script	Ghostfire#2	802,{
+jupe_core2,53,75,3	script	Ghostfire#2	4_NFWISP,{
 	mes "[?]";
 	if (job__mechanic > 5) {
 		mes "Juperos... I...";
@@ -541,7 +541,7 @@ jupe_core2,53,75,3	script	Ghostfire#2	802,{
 	end;
 }
 
-jupe_core2,242,62,3	script	Ghostfire#3	802,{
+jupe_core2,242,62,3	script	Ghostfire#3	4_NFWISP,{
 	mes "[?]";
 	if (job__mechanic > 6) {
 		mes "I want to know more about the knowledge...";
@@ -582,7 +582,7 @@ jupe_core2,242,62,3	script	Ghostfire#3	802,{
 	end;
 }
 
-jupe_core2,29,150,0	script	#Foothold	139,1,1,{
+jupe_core2,29,150,0	script	#Foothold	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
 	if (job__mechanic == 8) {
 		percentheal 0,-30;
@@ -621,7 +621,7 @@ OnTouch:
 	end;
 }
 
-jupe_core2,272,149,0	script	#Foothold2	139,1,1,{
+jupe_core2,272,149,0	script	#Foothold2	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
 	if (job__mechanic == 9) {
 		mes "-I had a feeling that power-";
@@ -656,7 +656,7 @@ OnTouch:
 	end;
 }
 
-jupe_core2,288,142,3	script	#Door	844,1,1,{
+jupe_core2,288,142,3	script	#Door	CLEAR_NPC,1,1,{
 	end;
 OnInit:
 OnDisable:
@@ -710,7 +710,7 @@ OnTouch:
 	end;
 }
 
-jupe_core2,149,34,0	script	#Acquiring Knowledge	139,1,0,{
+jupe_core2,149,34,0	script	#Acquiring Knowledge	HIDDEN_WARP_NPC,1,0,{
 OnTouch:
 	if (job__mechanic == 9) {
 		mes "-The moment I stepped on-";
@@ -735,6 +735,6 @@ OnTouch:
 	}
 	end;
 }
-jupe_core2,150,33,0	duplicate(#Acquiring Knowledge)	#Acquiring Knowledge2	139,1,0
+jupe_core2,150,33,0	duplicate(#Acquiring Knowledge)	#Acquiring Knowledge2	HIDDEN_WARP_NPC,1,0
 
 jupe_core2,0,0,0,0	monster	Dimik	1669,100,0,0,0

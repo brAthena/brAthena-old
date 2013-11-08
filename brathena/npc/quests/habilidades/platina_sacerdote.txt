@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_church,111,112,1	script	Irmã Lina	79,{
+prt_church,111,112,1	script	Irmã Lina	1_F_PRIEST,{
 	if (BaseJob == Job_Priest) {
 		if (SACERDOTE_HB == 100) {
 			if (getskilllv("PR_REDEMPTIO") == 0) {

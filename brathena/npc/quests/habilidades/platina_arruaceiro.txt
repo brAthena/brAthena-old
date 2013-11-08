@@ -53,7 +53,7 @@ OnTimer150000:
 	end;
 }
 
-in_rogue,357,174,2	script	Assassino#Rogueguild	705,1,1,{
+in_rogue,357,174,2	script	Assassino#Rogueguild	4_M_GEF_SOLDIER,1,1,{
 OnInit:
 	disablenpc "Assassino#Rogueguild";
 	end;
@@ -188,7 +188,7 @@ OnTouch:
 	end;
 }
 
-in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
+in_rogue,355,179,0	script	Haijara Greg#rogueguild	1_ETC_01,{
 	if (BaseJob == Job_Rogue) {
 		if (ROG_SK == 12 && Upper == 1) {
 			mes "[Haijara Greg]";
@@ -597,7 +597,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
 	}
 }
 
-in_rogue,152,29,0	script	Louis Greg#rogueguild	84,{
+in_rogue,152,29,0	script	Louis Greg#rogueguild	4_M_02,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
 			mes "[Louis Greg]";
@@ -752,7 +752,7 @@ in_rogue,152,29,0	script	Louis Greg#rogueguild	84,{
 	close;
 }
 
-in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
+in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
 			mes "[Thor Greg]";
@@ -944,7 +944,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
 	close;
 }
 
-in_rogue,181,114,3	script	Jay Greg#rogueguild	85,{
+in_rogue,181,114,3	script	Jay Greg#rogueguild	4_M_03,{
 	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
 		if (ROG_SK < 1) {
 			mes "[Jay Greg]";
@@ -1209,56 +1209,56 @@ OnDisable:
 	end;
 }
 
-prt_are01,149,162,0	script	Kienna#1st	700,1,1,{
+prt_are01,149,162,0	script	Kienna#1st	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","1st";
 	end;
 }
 
-prt_are01,136,150,0	script	Kienna#2nd	700,1,1,{
+prt_are01,136,150,0	script	Kienna#2nd	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","2nd";
 	end;
 }
 
-prt_are01,150,138,0	script	Kienna#3rd	700,1,1,{
+prt_are01,150,138,0	script	Kienna#3rd	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","3rd";
 	end;
 }
 
-prt_are01,163,147,0	script	Kienna#4th	700,1,1,{
+prt_are01,163,147,0	script	Kienna#4th	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","4th";
 	end;
 }
 
-prt_are01,134,140,0	script	Kienna#5th	700,1,1,{
+prt_are01,134,140,0	script	Kienna#5th	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","5th";
 	end;
 }
 
-prt_are01,161,140,0	script	Kienna#6th	700,1,1,{
+prt_are01,161,140,0	script	Kienna#6th	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","6th";
 	end;
 }
 
-prt_are01,161,160,0	script	Kienna#7th	700,1,1,{
+prt_are01,161,160,0	script	Kienna#7th	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","7th";
 	end;
 }
 
-prt_are01,138,159,0	script	Kienna#8th	700,1,1,{
+prt_are01,138,159,0	script	Kienna#8th	8_F_GIRL,1,1,{
 	end;
 OnTouch:
 	callfunc "F_Kienna","8th";
@@ -1479,7 +1479,7 @@ OnInit:
 	end;
 }
 
-in_rogue,88,119,3	script	Sala de Espera#rogue10	828,{
+in_rogue,88,119,3	script	Sala de Espera#rogue10	4_M_ROGUE,{
 OnEnable:
 	enablenpc "Sala de Espera#rogue10";
 	enablewaitingroomevent "Sala de Espera#rogue10";

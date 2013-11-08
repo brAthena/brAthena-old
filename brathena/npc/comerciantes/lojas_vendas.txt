@@ -26,7 +26,7 @@
 
 // Mercado Negro (Compra de Licenças - Classes que não sejam Mercador e Evoluções)
 //============================================================ 
-que_job01,68,84,1	script	Mercado Negro#Compras	881,{
+que_job01,68,84,1	script	Mercado Negro#Compras	4_M_SITDOWN,{
 	if (getskilllv("ALL_BUYING_STORE") == 1) {
 		mes "[Sr. Jass]";
 		mes "Ei, você já fez um contrato com Hugh.";
@@ -104,7 +104,7 @@ que_job01,68,84,1	script	Mercado Negro#Compras	881,{
 
 // Equipe de Compras (Aprender Habilidades - Classe Mercadpr)
 //============================================================ 
-alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
+alberta_in,58,52,4	script	Equipe de Compras#Compras	1_M_ORIENT01,{
 	mes "[Sr. Hugh]";
 	if (BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
 		if (getskilllv("ALL_BUYING_STORE") == 1) {
@@ -249,7 +249,7 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 
 // Catalogador Mágico
 //============================================================ 
--	script#re	Catalogador Mágico#catal01	704,{
+-	script#re	Catalogador Mágico#catal01	4_M_BIBI,{
 	mes "[Catalogador Mágico]";
 	if (!checkweight(1301,3)) {
 		mes "- Você possui muitos itens. Por favor diminua seu peso. -";
@@ -337,4 +337,4 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 		close;
 	}
 }
-moc_para01,22,16,5	duplicatr(Catalogador Mágico#catal01)	Catalogador Mágico#01	704,{}
+moc_para01,22,16,5	duplicatr(Catalogador Mágico#catal01)	Catalogador Mágico#01	4_M_BIBI,{}

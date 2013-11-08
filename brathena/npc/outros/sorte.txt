@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon_in03,117,128,5	script	Fortune Teller	704,{
+payon_in03,117,128,5	script	Fortune Teller	4_M_BIBI,{
 	mes "[Lhimetorra]";
 	mes "You're an adventurer of this world... " +strcharinfo(0)+ ", right? So, what can an old person like me do for you?";
 	next;
@@ -2743,7 +2743,7 @@ payon_in03,117,128,5	script	Fortune Teller	704,{
 	}
 }
 
-payon_in03,75,129,5	script	Poring Fortune Teller	704,{
+payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 	mes "[Chocarle]";
 	mes " Welcome, welcome~!! " +strcharinfo(0)+ "~!";
 	mes " What brings you here today!? ";
@@ -3536,7 +3536,7 @@ payon_in03,75,129,5	script	Poring Fortune Teller	704,{
 	close;
 }
 	
-payon_in03,118,119,1	script	Ascetic	101,2,2,{
+payon_in03,118,119,1	script	Ascetic	4W_F_01,2,2,{
 	mes "[Kissy-Kissy]";
 	mes "NyangNyangNyang~";
 	mes "NyaNyangNyaNyag~";

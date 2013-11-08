@@ -27,7 +27,7 @@
 // ==============================
 // Entradas Simples (Izlude)
 // ==============================
-izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
+izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	4_F_01,{
 	OnTouch:
 	set .@npc$, strnpcinfo(2);
 	
@@ -54,11 +54,11 @@ izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
 	end;
 }
 
-izlude_b,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_b	90
-izlude_c,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_c	90
-izlude_d,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_d	90,{}
+izlude_b,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_b	4_F_01
+izlude_c,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_c	4_F_01
+izlude_d,202,75,3	duplicatr(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#izlude_d	4_F_01,{}
 
-izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
+izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	4_F_01,{
 	OnTouch:
 	set .@npc$, strnpcinfo(2);
 	
@@ -86,14 +86,14 @@ izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 }
 
 // Rachel
-ra_fild12,295,208,0	duplicate(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#Rachel	45,1,1
+ra_fild12,295,208,0	duplicate(Equipe do Aeroporto#Izlude)	Equipe do Aeroporto#Rachel	WARPNPC,1,1
 
 // Hugel
-hugel,178,142,0	duplicate(Equipe do Aeroporto#Izlude)	paraoaeroplano#Hugel	45,1,1
+hugel,178,142,0	duplicate(Equipe do Aeroporto#Izlude)	paraoaeroplano#Hugel	WARPNPC,1,1
 
 // Aeroporto de Einbroch
 // =====================================
-airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
+airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	4_F_01,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Einbroch, onde oferecemos constantes voos para as cidades de Juno, Lighthalzen e Hugel.";
 	next;
@@ -121,10 +121,10 @@ airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 	end;
 }
 
-airport,158,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1b	90
-airport,126,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1c	90
+airport,158,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1b	4_F_01
+airport,126,43,5	duplicate(aeroporto1)	Equipe do Aeroporto#aeroporto1c	4_F_01
 
-airport,143,49,3	script	Equipe de Recepção#aeroportoa::aeroporto	90,{
+airport,143,49,3	script	Equipe de Recepção#aeroportoa::aeroporto	4_F_01,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Einbroch.";
 	mes "Se você acaba de chegar do seu voo, deixe-me guiá-lo até seu terminal principal.";
@@ -145,10 +145,10 @@ airport,143,49,3	script	Equipe de Recepção#aeroportoa::aeroporto	90,{
 	end;
 }
 
-airport,126,51,3	duplicate(aeroporto)	Equipe de Recepção#aeroportob	90
-airport,158,50,3	duplicate(aeroporto)	Equipe de Recepção#aeroportoc	90
+airport,126,51,3	duplicate(aeroporto)	Equipe de Recepção#aeroportob	4_F_01
+airport,158,50,3	duplicate(aeroporto)	Equipe de Recepção#aeroportoc	4_F_01
 
-einbroch,94,267,3	script	Equipe do Aeroporto#ein01	91,{
+einbroch,94,267,3	script	Equipe do Aeroporto#ein01	4_F_02,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Einbroch.";
 	mes "Por favor utilize esta porta para embarcar no dirigível que irá partir até Juno, Lighthalzen e Hugel na República de Schwarzwald.";
@@ -161,7 +161,7 @@ einbroch,94,267,3	script	Equipe do Aeroporto#ein01	91,{
 
 // Aeroporto de Juno
 // =====================================
-y_airport,143,43,5	script	Equipe do Aeroporto#juno	90,{
+y_airport,143,43,5	script	Equipe do Aeroporto#juno	4_F_01,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Juno onde oferecemos voos domésticos para Einbroch, Lighthalzen e Hugel, e internacionais para Izlude e Rachel.";
 	mes "Gostaria de usar algum serviço?";
@@ -191,10 +191,10 @@ y_airport,143,43,5	script	Equipe do Aeroporto#juno	90,{
 	end;
 }
 
-y_airport,158,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air1b	90
-y_airport,126,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air1c	90
+y_airport,158,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air1b	4_F_01
+y_airport,126,43,5	duplicate(Equipe do Aeroporto#juno)	Equipe do Aeroporto#y_air1c	4_F_01
 
-y_airport,143,49,3	script	Equipe de Recepção#y_ar2a::aeroportoy	90,{
+y_airport,143,49,3	script	Equipe de Recepção#y_ar2a::aeroportoy	4_F_01,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Juno.";
 	mes "Se você acabou de chegar de seu voo, deixe-me guiá-lo até o terminal.";
@@ -215,10 +215,10 @@ y_airport,143,49,3	script	Equipe de Recepção#y_ar2a::aeroportoy	90,{
 	end;
 }
 
-y_airport,126,51,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2b	90
-y_airport,158,50,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2c	90
+y_airport,126,51,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2b	4_F_01
+y_airport,158,50,3	duplicate(aeroportoy)	Equipe de Recepção#y_ar2c	4_F_01
 
-y_airport,145,63,5	script	Voos Domésticos	91,{
+y_airport,145,63,5	script	Voos Domésticos	4_F_02,{
 	mes "[Equipe de Bordo]";
 	mes "Você deseja embarcar no Dirigível que voa até Einbroch, Lighthalzen e Hugel?";
 	mes "Se sim, por favor deixe-me guiá-lo até a área de embarque do Dirigível.";
@@ -233,7 +233,7 @@ y_airport,145,63,5	script	Voos Domésticos	91,{
 	close;
 }
 
-y_airport,140,63,5	script	Voos Internacionais	91,{
+y_airport,140,63,5	script	Voos Internacionais	4_F_02,{
 	mes "[Equipe de Bordo]";
 	mes "Você deseja embarcar no Dirigível que voa até Juno, Izlude e Rachel?";
 	mes "Se sim, por favor deixe-me guiá-lo até a área de embarque do Dirigível.";
@@ -248,7 +248,7 @@ y_airport,140,63,5	script	Voos Internacionais	91,{
 	close;
 }
 
-yuno,14,262,5	script	Equipe do Aeroporto#yuno01	91,{
+yuno,14,262,5	script	Equipe do Aeroporto#yuno01	4_F_02,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Juno.";
 	mes "Utilize este porta para embarcar no Dirigível que voa até Izlude dentro do Reino de Rune-Midgard, e para Rachel na República de Arunafeltz.";
@@ -259,7 +259,7 @@ yuno,14,262,5	script	Equipe do Aeroporto#yuno01	91,{
 	close;
 }
 
-yuno,88,263,3	script	Equipe do Aeroporto#yuno02	91,{
+yuno,88,263,3	script	Equipe do Aeroporto#yuno02	4_F_02,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Juno.";
 	mes "Utilize este porta para embarcar no Dirigível que vai até Einbroch, Lighthalzen e Hugel na República de Schwartzwald.";
@@ -272,7 +272,7 @@ yuno,88,263,3	script	Equipe do Aeroporto#yuno02	91,{
 
 // Aeroporto de Lighthalzen
 // =====================================
-lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
+lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	4_F_01,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo ao Aeroporto de Lighthalzen, onde oferecemos constantes voos para as cidades de Einbroch, Juno e Hugel.";
 	next;
@@ -301,10 +301,10 @@ lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
 	end;
 }
 
-lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1b	90
-lhz_airport,126,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1c	90
+lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1b	4_F_01
+lhz_airport,126,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1c	4_F_01
 
-lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	90,{
+lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	4_F_01,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Lighthalzen.";
 	mes "Se você acaba de chegar do seu voo, deixe-me guiá-lo até seu terminal principal.";
@@ -325,5 +325,5 @@ lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	90,{
 	close;
 }
 
-lhz_airport,126,51,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2b	90
-lhz_airport,158,50,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2c	90
+lhz_airport,126,51,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2b	4_F_01
+lhz_airport,158,50,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2c	4_F_01

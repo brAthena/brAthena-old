@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-aldeba_in,152,166,4	script	Mercador#01	86,{
+aldeba_in,152,166,4	script	Mercador#01	4_M_04,{
 	mes "[Mercador]";
 	mes "Quem é este homem misterioso?";
 	mes "Eu, o enigmático e charmoso 'Mercador?'";

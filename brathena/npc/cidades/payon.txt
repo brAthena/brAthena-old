@@ -27,7 +27,7 @@
 
 // Payon
 //============================================================ 
-payon,246,154,0	script	Senhorita#payon	90,{
+payon,246,154,0	script	Senhorita#payon	4_F_01,{
 	mes "[Senhorita]";
 	mes "Há muito tempo atrás Payon, quando ainda estava em desenvolvimento, muitos dos aldeões viviam na pobreza.";
 	next;
@@ -48,7 +48,7 @@ payon,246,154,0	script	Senhorita#payon	90,{
 	close;
 }
 
-payon,134,211,4	script	Jovem Homem#payon	59,{
+payon,134,211,4	script	Jovem Homem#payon	1_M_ORIENT01,{
 	mes "[Jovem Homem]";
 	mes "Pelo seu rosto eu posso ver que você é um estranho aqui.";
 	mes "Bem-vindo a Payon.";
@@ -67,7 +67,7 @@ payon,134,211,4	script	Jovem Homem#payon	59,{
 	close;
 }
 
-payon,173,82,0	script	Jovem Homem#2payon	88,{
+payon,173,82,0	script	Jovem Homem#2payon	4_M_ORIENT01,{
 	mes "[Jovem Homem]";
 	mes "Lembro-me da história do meu saudoso avô me contou.";
 	next;
@@ -96,7 +96,7 @@ payon,173,82,0	script	Jovem Homem#2payon	88,{
 	close;
 }
 
-payon,158,246,3	script	Guarda#payon	708,3,3,{
+payon,158,246,3	script	Guarda#payon	4_M_PAY_SOLDIER,3,3,{
 	end;
 
 OnTouch:
@@ -110,7 +110,7 @@ OnTouch:
 	close;
 }
 
-payon,249,156,1	script	Mulher#payon	66,{
+payon,249,156,1	script	Mulher#payon	1_F_01,{
 	mes "[Mulher]";
 	mes "Bem vindo a Payon você deve ter tido uma certa dificuldade em conseguir andar através da floresta de payon como foi a viagem?";
 	next;
@@ -152,7 +152,7 @@ payon,249,156,1	script	Mulher#payon	66,{
 	}
 }
 
-payon,246,158,5	script	Mulher#2payon	66,0,0,{
+payon,246,158,5	script	Mulher#2payon	1_F_01,0,0,{
 	mes "[Mãe de Jim]";
 	mes "Oh Garoto~";
 	mes "Lá vai ela de novo. Está vendo aquela mulher?";
@@ -188,7 +188,7 @@ payon,246,158,5	script	Mulher#2payon	66,0,0,{
 	close;
 }
 
-payon,210,110,1	script	Bêbado#payon	120,{
+payon,210,110,1	script	Bêbado#payon	2_M_PHARMACIST,{
 	if (Class != Job_Archer) {
 		mes "[Bêbado]";
 		mes "Ei...";
@@ -249,7 +249,7 @@ payon,210,110,1	script	Bêbado#payon	120,{
 	}
 }
 
-payon,132,235,3	script	Estudante de Monstros#02	98,{
+payon,132,235,3	script	Estudante de Monstros#02	4W_M_02,{
 	mes "[Estudante de Monstros Vuicokk]";
 	mes "É um prazer te conhecer!";
 	mes "Eu sou chamado Vuicokk.";
@@ -309,7 +309,7 @@ payon,132,235,3	script	Estudante de Monstros#02	98,{
 
 // Inside Payon
 //============================================================
-payon_in01,180,7,2	script	Garçonete#payon	90,{
+payon_in01,180,7,2	script	Garçonete#payon	4_F_01,{
 	mes "[Garçonete]";
 	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
 	next;
@@ -387,7 +387,7 @@ payon_in01,180,7,2	script	Garçonete#payon	90,{
 	close;
 }
 
-payon_in03,96,116,3	script	Guarda Chefe#payon	708,3,3,{
+payon_in03,96,116,3	script	Guarda Chefe#payon	4_M_PAY_SOLDIER,3,3,{
 	end;
 
 OnTouch:
@@ -403,7 +403,7 @@ OnTouch:
 	close;
 }
 
-payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
+payon_in01,66,64,5	script	Arqueiro Zakk#payon	4_M_ORIENT01,{
 	mes "[Arqueiro Zakk]";
 	mes "Estou ocupado com um dos meus amigos.";
 	next;
@@ -446,7 +446,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 	}
 }
 
-payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
+payon_in01,47,59,2	script	Arqueiro Wolt#payon	4_M_ORIENT01,{
 	mes "[Arqueiro Wolt]";
 	mes "Arqueiros devem ter prática tanto quanto já possuem. Caso contrário, eles nunca chegarão a ser especialistas na arte de atirar.";
 	next;
@@ -686,7 +686,7 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 	}
 }
 
-payon_in03,99,190,4	script	Chefe#payon	107,2,2,{
+payon_in03,99,190,4	script	Chefe#payon	1_M_PAY_ELDER,2,2,{
 	end;
 
 OnTouch:
@@ -801,7 +801,7 @@ OnTouch:
 	end;
 }
 
-payon_in03,102,185,5	script	Guarda#payon2	708,{
+payon_in03,102,185,5	script	Guarda#payon2	4_M_PAY_SOLDIER,{
 	mes "[Guarda]";
 	if (BaseLevel < 30) {
 		mes "Ei...!";
@@ -816,7 +816,7 @@ payon_in03,102,185,5	script	Guarda#payon2	708,{
 
 // Vilarejo dos Arqueiros - Payon
 //============================================================
-pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
+pay_arche,77,131,2	script	Arqueiro Joe#payon	4_M_ORIENT01,{
 	mes "[Arqueiro Joe]";
 	mes "Payon!";
 	mes "Esse maravilhoso lugar! Com arqueiros Habilidosos!";

@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dewata,202,106,4	script	Guia de Dewata#dewata01	535,{
+dewata,202,106,4	script	Guia de Dewata#dewata01	4_M_DEWOLDWOMAN,{
 	mes "[Guia de Dewata]";
 	mes "Bem-vindo a ^8B4513Ilha de Dewata^000000, um lugar com ondas deslumbrantes e vistas encantadores, é um ótimo lugar para relaxar.";
 	mes "Se tiver alguma dúvida, por favor me pergunte.";
@@ -91,4 +91,4 @@ L_Mark:
 	return;
 }
 
-dewata,197,184,4	duplicate(Guia de Dewata#dewata01)	Guia de Dewata#dewata02	535
+dewata,197,184,4	duplicate(Guia de Dewata#dewata01)	Guia de Dewata#dewata02	4_M_DEWOLDWOMAN

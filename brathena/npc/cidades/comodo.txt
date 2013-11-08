@@ -26,7 +26,7 @@
 
 // Dentro de Comodo
 //============================================================
-cmd_in02,73,81,4	script	Martine#cmd	48,{
+cmd_in02,73,81,4	script	Martine#cmd	1_M_02,{
 	mes "[Martine]";
 	mes "Jogo de azar...? Os jogos realizados aqui no Cassino de Comodo são uma forma de entretenimento muito mais sofisticada do que jogos de azar.";
 	mes "Entende o que estou dizendo?";
@@ -43,7 +43,7 @@ cmd_in02,73,81,4	script	Martine#cmd	48,{
 	close;
 }
 
-cmd_in02,48,55,4	script	Scoursege#cmd	51,{
+cmd_in02,48,55,4	script	Scoursege#cmd	1_M_BARD,{
 	mes "[Scoursege]";
 	mes "Droga! Pra onde aquele cara foi?";
 	mes "Ele me prometeu que dobraria o meu dinheiro facilmente!";
@@ -55,7 +55,7 @@ cmd_in02,48,55,4	script	Scoursege#cmd	51,{
 	close;
 }
 
-cmd_in02,64,43,4	script	Roberto#cmd	709,{
+cmd_in02,64,43,4	script	Roberto#cmd	4_M_SEAMAN,{
 	mes "[Roberto]";
 	mes "Hehehe...";
 	mes "Que cara idiota!";
@@ -63,7 +63,7 @@ cmd_in02,64,43,4	script	Roberto#cmd	709,{
 	close;
 }
 
-cmd_in02,89,72,4	script	Deniroz#cmd	89,{
+cmd_in02,89,72,4	script	Deniroz#cmd	4_M_ORIENT02,{
 	mes "[Deniroz]";
 	mes "Tudo o que eu preciso é que essa bolinha de metal caia no buraco certo. Aí, eu ganharei o prêmio acumulado.";
 	mes "Aqui vai. A última tentativa...";
@@ -75,14 +75,14 @@ cmd_in02,89,72,4	script	Deniroz#cmd	89,{
 	close;
 }
 
-cmd_in02,178,92,4	script	Shalone#cmd	101,{
+cmd_in02,178,92,4	script	Shalone#cmd	4W_F_01,{
 	mes "[Shalone]";
 	mes "Ah, sinto muito, senhor, mas parece que você perdeu de novo. Talvez você devesse parar por hoje...";
 	mes "Você está tendo uma grande maré de azar...";
 	close;
 }
 
-cmd_in02,178,86,4	script	Stonae#cmd	98,{
+cmd_in02,178,86,4	script	Stonae#cmd	4W_M_02,{
 	mes "[Stonae]";
 	mes "Nã-não...";
 	mes "Eu perdi de novo?!";
@@ -90,7 +90,7 @@ cmd_in02,178,86,4	script	Stonae#cmd	98,{
 	close;
 }
 
-cmd_in02,172,105,4	script	G . J#cmd	86,{
+cmd_in02,172,105,4	script	G . J#cmd	4_M_04,{
 	mes "[G . J]";
 	mes "Quanto mais eu penso, mais me parece mais fácil ficar rico trabalhando, guardando e fazendo investimentos seguros, do que, sabe... Tentar ganhar um prêmio acumulado.";
 	next;
@@ -102,7 +102,7 @@ cmd_in02,172,105,4	script	G . J#cmd	86,{
 	close;
 }
 
-cmd_in02,174,126,4	script	Loyar#cmd	83,{
+cmd_in02,174,126,4	script	Loyar#cmd	4_M_01,{
 	mes "[Loyar]";
 	mes "O interior do Cassino de Comodo é tão agradável aos olhos, tão simples e limpo.";
 	mes "A atmosfera é perfeita, e me faz querer jogar ainda mais!";
@@ -134,7 +134,7 @@ cmd_in02,174,126,4	script	Loyar#cmd	83,{
 	}
 }
 
-cmd_in02,57,62,4	script	Moo#cmd	109,{
+cmd_in02,57,62,4	script	Moo#cmd	4_M_MANAGER,{
 	set mooz,rand(1,10);
 	if (mooz == 1) {
 		mes "[Moo]";
@@ -157,7 +157,7 @@ cmd_in02,57,62,4	script	Moo#cmd	109,{
 
 // Comodo Campos
 //============================================================
-cmd_fild04,188,74,4	script	Zyosegirl#cmd	93,{
+cmd_fild04,188,74,4	script	Zyosegirl#cmd	4_F_04,{
 	mes "[Zyosegirl]";
 	mes "As pessoas me chamam de Lady do Mar porque sempre estou trabalhando por aqui, juntando conchas e criaturas marítimas para vender. É uma boa forma de ganhar a vida.";
 	next;
@@ -166,7 +166,7 @@ cmd_fild04,188,74,4	script	Zyosegirl#cmd	93,{
 	close;
 }
 
-cmd_fild04,248,86,4	script	Ziyaol#cmd	709,{
+cmd_fild04,248,86,4	script	Ziyaol#cmd	4_M_SEAMAN,{
 	mes "[Ziyaol]";
 	mes "Ahhh é ótimo ser um pescador. Você apenas relaxa e deixa os peixes virem até você. Bom, precisa de habilidade para pegar tantos peixes quanto eu sem esforço.";
 	next;
@@ -179,14 +179,14 @@ cmd_fild04,248,86,4	script	Ziyaol#cmd	709,{
 	close;
 }
 
-cmd_fild04,267,137,4	script	Daeguro#cmd	703,{
+cmd_fild04,267,137,4	script	Daeguro#cmd	4_F_KID2,{
 	mes "[Daeguro]";
 	mes "Eu adoro brincar na areia -- é tão macia e limpa e bonita!";
 	mes "Mas quando eu crescer, quero ir para Alberta e ver tudo que eu puder!";
 	close;
 }
 
-cmd_fild07,192,58,4	script	Rahasu#cmd	100,{
+cmd_fild07,192,58,4	script	Rahasu#cmd	4W_SAILOR,{
 	mes "[Rahasu]";
 	mes "Olá, sou Rahasu.";
 	mes "Se você quiser saber mais sobre o Farol Paros, ficarei feliz em contar tudo que eu sei.";
@@ -207,14 +207,14 @@ cmd_fild07,192,58,4	script	Rahasu#cmd	100,{
 	close;
 }
 
-cmd_fild07,52,280,4	script	Hallosu#cmd	100,{
+cmd_fild07,52,280,4	script	Hallosu#cmd	4W_SAILOR,{
 	mes "[Hallosu]";
 	mes "Olá, esse é um dos faróis que compõem o Farol Paros.";
 	mes "Entretanto, no momento está em reforma, e portanto não está aberto ao público.";
 	close;
 }
 
-cmd_fild07,299,83,4	script	Zain#cmd	100,{
+cmd_fild07,299,83,4	script	Zain#cmd	4W_SAILOR,{
 	set .@n$,"["+strnpcinfo(1)+"]";
 	mes .@n$;
 	mes "Você gostaria de embarcar em um navio da rota Reudelus?";
@@ -244,9 +244,9 @@ cmd_fild07,299,83,4	script	Zain#cmd	100,{
 	mes "Sinto muito, mas você não tem dinheiro suficiente para o embarque.";
 	close;
 }
-cmd_fild07,94,134,4	duplicate(Zain#cmd)	Sarumane#cmd	100
+cmd_fild07,94,134,4	duplicate(Zain#cmd)	Sarumane#cmd	4W_SAILOR
 
-cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	721,{
+cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	4_F_KAFRA7,{
 	cutin "kafra_07",2;
 	mes "[Kafra Misty]";
 	mes "Bem vindo a Corporação Kafra.";
@@ -262,7 +262,7 @@ cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	721,{
 
 // Campos de Morroc
 //============================================================
-moc_fild12,35,303,4	script	Serutero#cmd	59,{
+moc_fild12,35,303,4	script	Serutero#cmd	1_M_ORIENT01,{
 	mes "[Serutero]";
 	mes "Olá, sou Serutero, guardião das estradas que levam ao Forte Sandaruman.";
 	mes "Se você quiser ir lá, eu permitirei que siga em frente, mas você precisa saber dos perigos que te esperam...";

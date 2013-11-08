@@ -25,7 +25,7 @@
 
 // Ayealo
 //============================================================
-comodo,226,123,5	script	Bardo Andarilho	741,{
+comodo,226,123,5	script	Bardo Andarilho	2_M_BARD_ORIENT,{
 	if (Upper == 1) {
 		mes "[Ayealo]";
 		mes "Escolhidos os que estão destinados a se tornarem deuses são tantos nesta época mas eles nunca percebem o seu destino enquanto vivos.";

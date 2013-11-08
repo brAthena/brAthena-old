@@ -48,7 +48,7 @@ OnMyMobDead:
 	end;
 }
 
-lighthalzen,267,200,3	script	Guarda#lhz01	868,{
+lighthalzen,267,200,3	script	Guarda#lhz01	4_M_LGTGUARD,{
 	if (countitem(7350) > 0) {
 		mes "[Guarda]";
 		mes "Pare aí mês...!";
@@ -115,7 +115,7 @@ lighthalzen,267,200,3	script	Guarda#lhz01	868,{
 	}
 }
 
-lighthalzen,294,223,7	script	Guarda#lhz02	868,{
+lighthalzen,294,223,7	script	Guarda#lhz02	4_M_LGTGUARD,{
 	if (countitem(7350) > 0) {
 		mes "[Guarda]";
 		mes "Pare aí mês...!";
@@ -184,7 +184,7 @@ lighthalzen,294,223,7	script	Guarda#lhz02	868,{
 
 // Cube Room Quest
 //============================================================
-lighthalzen,341,224,3	script	Espinha	868,{
+lighthalzen,341,224,3	script	Espinha	4_M_LGTGUARD,{
 	// Retain prior position in quest.
 	if (piciburn) {
 		set lhz_sincube,piciburn;
@@ -648,7 +648,7 @@ lighthalzen,341,224,3	script	Espinha	868,{
 	}
 }
 
-lhz_cube,237,198,0	script	Bundle of Files#cube	111,{
+lhz_cube,237,198,0	script	Bundle of Files#cube	HIDDEN_NPC,{
 	if (lhz_sincube < 7) {
 		mes "^3355FFHá um monte de";
 		mes "arquivos espalhados";
@@ -690,7 +690,7 @@ lhz_cube,237,198,0	script	Bundle of Files#cube	111,{
 	close;
 }
 
-lhz_cube,234,202,0	script	Quadro#cube	111,{
+lhz_cube,234,202,0	script	Quadro#cube	HIDDEN_NPC,{
 	if (lhz_secret01 < 2) {
 		mes "^3355FFEste quadro pendurado";
 		mes "na parede prende sua";
@@ -786,7 +786,7 @@ lhz_cube,234,202,0	script	Quadro#cube	111,{
 	close;
 }
 
-lhz_cube,242,201,0	script	Gaveteiro#cube	111,{
+lhz_cube,242,201,0	script	Gaveteiro#cube	HIDDEN_NPC,{
 	if (lhz_secret01 < 1) {
 		mes "^3355FFEste gaveteiro";
 		mes "parece interessante,";
@@ -826,7 +826,7 @@ lhz_cube,242,201,0	script	Gaveteiro#cube	111,{
 	close;
 }
 
-lhz_cube,248,179,0	script	Baú#cube	111,{
+lhz_cube,248,179,0	script	Baú#cube	HIDDEN_NPC,{
 	if (lhz_sincube < 7) {
 		mes "^3355FFVocê encontra um baú ";
 		mes "com um machado sobre";
@@ -857,7 +857,7 @@ lhz_cube,248,179,0	script	Baú#cube	111,{
 	close;
 }
 
-lhz_cube,237,183,0	script	Barril#cube	111,{
+lhz_cube,237,183,0	script	Barril#cube	HIDDEN_NPC,{
 	set number_line,0;
 	if (lhz_sincube < 8) {
 		mes "^3355FFVocê encontrou";
@@ -954,7 +954,7 @@ lhz_cube,237,183,0	script	Barril#cube	111,{
 	close;
 }
 
-lhz_cube,224,192,0	script	Gerador de Força#cube	111,{
+lhz_cube,224,192,0	script	Gerador de Força#cube	HIDDEN_NPC,{
 	if (lhz_secret01 < 6) {
 		mes "^3355FFIsso é uma máquina";
 		mes "imensa e barulhenta";
@@ -1003,7 +1003,7 @@ lhz_cube,224,192,0	script	Gerador de Força#cube	111,{
 	close;
 }
 
-lhz_cube,244,201,0	script	Luz de Status#cube	111,{
+lhz_cube,244,201,0	script	Luz de Status#cube	HIDDEN_NPC,{
 	if (lhz_secret01 < 7) {
 		mes "^3355FFA Luz de Status está ";
 		mes "acesa. E parece que há algo";
@@ -1038,7 +1038,7 @@ lhz_cube,244,201,0	script	Luz de Status#cube	111,{
 	close;
 }
 
-lhz_cube,234,200,0	script	Mesa#cube	111,{
+lhz_cube,234,200,0	script	Mesa#cube	HIDDEN_NPC,{
 	if (lhz_secret02 <= 1) {
 		mes "^3355FFVocê encontrou";
 		mes "uma mesa";
@@ -1176,7 +1176,7 @@ lhz_cube,234,200,0	script	Mesa#cube	111,{
 	}
 }
 
-lhz_cube,247,198,0	script	Cama#cube	111,{
+lhz_cube,247,198,0	script	Cama#cube	HIDDEN_NPC,{
 	if (lhz_secret02 == 0) {
 		mes "^3355FFVocê encontrou uma cama";
 		mes "com os lençóis";
@@ -1324,7 +1324,7 @@ lhz_cube,247,198,0	script	Cama#cube	111,{
 	close;
 }
 
-lhz_cube,229,184,0	script	Goblet#cube	111,{
+lhz_cube,229,184,0	script	Goblet#cube	HIDDEN_NPC,{
 	if (lhz_sincube < 10) {
 		if (lhz_secret03 == 0) {
 			mes "^3355FFVocê descobre uma garrafa";
@@ -1353,7 +1353,7 @@ lhz_cube,229,184,0	script	Goblet#cube	111,{
 	close;
 }
 
-lhz_cube,231,202,0	script	Produtos Químicos#cube	111,{
+lhz_cube,231,202,0	script	Produtos Químicos#cube	HIDDEN_NPC,{
 	if (lhz_secret03 < 1) {
 		mes "^3355FFNa prateleira";
 		mes "há uma garrafa";
@@ -1401,7 +1401,7 @@ lhz_cube,231,202,0	script	Produtos Químicos#cube	111,{
 	close;
 }
 
-lhz_cube,249,191,0	script	Gabinete#cube	111,{
+lhz_cube,249,191,0	script	Gabinete#cube	HIDDEN_NPC,{
 	if (lhz_secret03 < 2) {
 		mes "^3355FFVocê encontrou um";
 		mes "gabinete que contém";
@@ -1453,7 +1453,7 @@ lhz_cube,249,191,0	script	Gabinete#cube	111,{
 	close;
 }
 
-lhz_cube,224,197,0	script	Tubo de Ensaio#cube	111,{
+lhz_cube,224,197,0	script	Tubo de Ensaio#cube	HIDDEN_NPC,{
 	if (lhz_secret01 < 8) {
 		mes "^3355FFVocê encontrou um estranho";
 		mes "tubo que parece";
@@ -1552,7 +1552,7 @@ lhz_cube,224,197,0	script	Tubo de Ensaio#cube	111,{
 	}
 }
 
-lhz_cube,248,193,0	script	Caixa#cube1	111,{
+lhz_cube,248,193,0	script	Caixa#cube1	HIDDEN_NPC,{
 	if ((lhz_secret01 < 9) && (lhz_secret02 < 4) && (lhz_secret03 < 3)) {
 		mes "^3355FFVocê encontra uma caixa com";
 		mes "três buracos de";
@@ -1681,7 +1681,7 @@ lhz_cube,248,193,0	script	Caixa#cube1	111,{
 	close;
 }
 
-lhz_cube,250,184,0	script	Porta#cube	111,{
+lhz_cube,250,184,0	script	Porta#cube	HIDDEN_NPC,{
 	mes "^3355FFVocê chega a uma";
 	mes "porta de saída.^000000 ";
 	next;
@@ -1692,7 +1692,7 @@ lhz_cube,250,184,0	script	Porta#cube	111,{
 	close;
 }
 
-lhz_dun02,224,6,0	script	Saída1#lt	45,1,1,{
+lhz_dun02,224,6,0	script	Saída1#lt	WARPNPC,1,1,{
 OnTouch:
 	if (MISC_QUEST&512) {
 		warp "lhz_cube",231,90;
@@ -1707,7 +1707,7 @@ OnTouch:
 
 // Lighthalzen Pickpocket Mini-Quest
 //============================================================
-lighthalzen,240,216,4	script	Cara Suspeito#lhz_01	870,2,2,{
+lighthalzen,240,216,4	script	Cara Suspeito#lhz_01	4_M_LGTPOOR,2,2,{
 	end;
 
 OnTouch:
@@ -1776,7 +1776,7 @@ OnTouch:
 	}
 }
 
-lighthalzen,220,169,3	script	Cara Suspeito#lhz_02	870,2,2,{
+lighthalzen,220,169,3	script	Cara Suspeito#lhz_02	4_M_LGTPOOR,2,2,{
 	end;
 
 OnInit:
@@ -1848,7 +1848,7 @@ OnTouch:
 	}
 }
 
-lighthalzen,164,127,4	script	Cara Suspeito#lhz_03	870,2,2,{
+lighthalzen,164,127,4	script	Cara Suspeito#lhz_03	4_M_LGTPOOR,2,2,{
 	end;
 
 OnInit:
@@ -2031,7 +2031,7 @@ OnTouch:
 
 // Friendship Quest
 //============================================================
-lhz_in02,201,210,5	script	Digotz	869,{
+lhz_in02,201,210,5	script	Digotz	4_M_LGTMAN,{
 	if (BaseLevel < 50) {
 		mes "[Digotz]";
 		mes "Oh, um aventureiro!";
@@ -2506,7 +2506,7 @@ lhz_in02,201,210,5	script	Digotz	869,{
 	close;
 }
 
-lighthalzen,337,232,3	script	Maku	870,{
+lighthalzen,337,232,3	script	Maku	4_M_LGTPOOR,{
 	if (friendship > 14) {
 		cutin "lhz_macu07",2;
 		mes "[Maku]";
@@ -3068,7 +3068,7 @@ lighthalzen,337,232,3	script	Maku	870,{
 }
 
 
-yuno_in04,107,14,5	script	Estudante	754,{
+yuno_in04,107,14,5	script	Estudante	4_M_SAGE_A,{
 	if (friendship == 7 || friendship == 8) {
 		mes "[Joey Choryee]";
 		mes "Essa é uma área de estudos, então";
@@ -3097,7 +3097,7 @@ yuno_in04,107,14,5	script	Estudante	754,{
 	close;
 }
 
-yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
+yuno_in04,96,106,5	script	Estudante Entusiasmado	4_M_SAGE_A,{
 	if ((MaxWeight-Weight) < 300 || checkweight(1201,1) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -3338,7 +3338,7 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 	close;
 }
 
-yuno_in04,168,117,3	script	Livro#lhz	111,{
+yuno_in04,168,117,3	script	Livro#lhz	HIDDEN_NPC,{
 	if (friendship == 11) {
 		mes "^3355FFNão há nada";
 		mes "aqui que você ";
@@ -3875,7 +3875,7 @@ OnTouch_:
 	end;
 }
 
-lhz_que01,21,31,5	script	#li_Varmunt	755,{
+lhz_que01,21,31,5	script	#li_Varmunt	4_M_SAGE_C,{
 	if (countitem(7345) > 0) {
 		if (lhz_curse == 12) {
 			mes "[??]";
@@ -4011,7 +4011,7 @@ lhz_que01,21,31,5	script	#li_Varmunt	755,{
 	end;
 }
 
-lhz_que01,29,24,3	script	#li_researcher	754,{
+lhz_que01,29,24,3	script	#li_researcher	4_M_SAGE_A,{
 	if (countitem(7345) > 0) {
 		if (lhz_curse == 12) {
 			mes "Doutor Varmunt,";
@@ -4178,7 +4178,7 @@ OnTouch_:
 	end;
 }
 
-lhz_que01,99,74,5	script	#li_Man	48,{
+lhz_que01,99,74,5	script	#li_Man	1_M_02,{
 	if (lhz_curse == 16) {
 		mes "[???]";
 		mes "Já chega.";
@@ -4329,7 +4329,7 @@ OnTouch_:
 	close;
 }
 
-lighthalzen,346,263,3	script	Anciã#lhz	846,{
+lighthalzen,346,263,3	script	Anciã#lhz	4_F_EINOLD,{
 	if (countitem(7345) > 0) {
 		if ((lhz_curse == 1) && (lhz_spi01 == 1) && (lhz_spi02 == 1) && (lhz_spi03 == 1) && (lhz_spi04 == 1)) {
 			mes "[Anciã]";
@@ -4796,7 +4796,7 @@ lighthalzen,346,263,3	script	Anciã#lhz	846,{
 	}
 }
 
-lhz_in03,32,162,3	script	Garota Aleijada#li_tre	53,{
+lhz_in03,32,162,3	script	Garota Aleijada#li_tre	1_M_INNKEEPER,{
 	if (lhz_curse == 23) {
 		if (countitem(7341) > 0) {
 			mes "["+strcharinfo(0)+"]";
@@ -5161,7 +5161,7 @@ lhz_in03,32,162,3	script	Garota Aleijada#li_tre	53,{
 	}
 }
 
-lighthalzen,324,322,0	script	#li_door	45,2,2,{
+lighthalzen,324,322,0	script	#li_door	WARPNPC,2,2,{
 OnTouch_:
 	if ((lhz_curse > 19) && (lhz_curse < 23)) {
 		mes "^3355FFA porta está trancada.^000000";
@@ -5248,7 +5248,7 @@ OnTouch_:
 	end;
 }
 
-lhz_in01,114,181,5	script	Atendente#li_01	71,{
+lhz_in01,114,181,5	script	Atendente#li_01	1_F_LIBRARYGIRL,{
 	if (lhz_curse == 7) {
 		mes "[Atendente]";
     mes "Saudações e seja bem-vindo";
@@ -5407,7 +5407,7 @@ lhz_in01,114,181,5	script	Atendente#li_01	71,{
 	}
 }
 
-lhz_in01,27,247,5	script	Atendente#li_02	71,{
+lhz_in01,27,247,5	script	Atendente#li_02	1_F_LIBRARYGIRL,{
 	if (lhz_curse > 6) {
 		mes "[Atendente]";
 		mes "Saudações e seja bem-vindo";
@@ -5550,7 +5550,7 @@ lhz_in01,27,247,5	script	Atendente#li_02	71,{
 	}
 }
 
-lhz_in01,25,251,3	script	Guia da Rekenber#li	111,{
+lhz_in01,25,251,3	script	Guia da Rekenber#li	HIDDEN_NPC,{
 	mes "..............";
 	next;
 	mes "^3131FF#A Visão^000000";
@@ -5586,7 +5586,7 @@ lhz_in01,25,251,3	script	Guia da Rekenber#li	111,{
 	close;
 }
 
-lhz_in01,273,121,1	script	Cientista Louco#li	865,{
+lhz_in01,273,121,1	script	Cientista Louco#li	4_LGTSCIENCE,{
 	if (lhz_curse == 13) {
 		mes "[Wolfchev]";
 		mes "Ninguém pode";
@@ -5785,7 +5785,7 @@ lhz_in01,273,121,1	script	Cientista Louco#li	865,{
 	}
 }
 
-lhz_in01,286,226,3	script	Secretária Slierre#li	831,{
+lhz_in01,286,226,3	script	Secretária Slierre#li	4_F_ZONDAGIRL,{
 	if (lhz_curse == 26) {
 		mes "[Sueii Slierre]";
 		mes "Desculpe-me, mas você não";
@@ -6284,7 +6284,7 @@ OnTouch_:
 	end;
 }
 
-lhz_in01,43,114,0	script	#li_toend	45,1,1,{
+lhz_in01,43,114,0	script	#li_toend	WARPNPC,1,1,{
 OnTouch_:
 	if (lhz_curse > 30) {
 		warp "lhz_que01",97,30;
@@ -6298,7 +6298,7 @@ OnTouch_:
 lhz_que01,97,33,0	warp	#li_toin01	1,1,lhz_in01,43,120
 lhz_in01,278,132,0	warp	#li_toin02	1,1,lhz_in01,43,120
 
-lhz_que01,89,15,3	script	Arquivo#li	111,{
+lhz_que01,89,15,3	script	Arquivo#li	HIDDEN_NPC,{
 	mes "Nome: Engeod";
 	mes "Idade: XX";
 	mes "Altura: XXX";
@@ -6316,7 +6316,7 @@ lhz_que01,89,15,3	script	Arquivo#li	111,{
 	close;
 }
 
-lhz_in01,269,114,3	script	Um Arquivo#li-1	111,{
+lhz_in01,269,114,3	script	Um Arquivo#li-1	HIDDEN_NPC,{
 	mes "Nome: Engeod";
 	mes "Idade: XX";
 	mes "Altura: XXX";
@@ -6336,7 +6336,7 @@ lhz_in01,269,114,3	script	Um Arquivo#li-1	111,{
 
 // President Quest, a.k.a. Schwartzvalt Triology Quest
 //============================================================
-lighthalzen,179,170,4	script	Homem Comum	98,{
+lighthalzen,179,170,4	script	Homem Comum	4W_M_02,{
 
 	if (!lhz_boss)
 	{
@@ -7104,7 +7104,7 @@ OnTouch:
 	}
 }
 
-yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
+yuno_fild04,165,245,4	script	Rapaz Sinistro	4_M_ORIENT02,{
 
 	if (lhz_boss < 8)
 	{
@@ -7282,7 +7282,7 @@ yuno_fild04,165,245,4	script	Rapaz Sinistro	89,{
 	}
 }
 
-yuno_pre,69,20,4	script	Secretária#1	862,{
+yuno_pre,69,20,4	script	Secretária#1	4_F_LGTGIRL,{
 
 	if (lhz_boss < 11)
 	{
@@ -7528,7 +7528,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 	}
 }
 
-yuno_pre,95,71,5	script	Guarda	852,{
+yuno_pre,95,71,5	script	Guarda	4_M_EIN_SOLDIER,{
 
 	if (lhz_boss < 11)
 	{
@@ -7653,14 +7653,14 @@ yuno_pre,95,71,5	script	Guarda	852,{
 	}
 }
 
-yuno_pre,96,69,2	script	Cavalheiro Elegante	754,{
+yuno_pre,96,69,2	script	Cavalheiro Elegante	4_M_SAGE_A,{
 
 OnInit:
 	disablenpc "Cavalheiro Elegante";
 	end;
 }
 
-yuno_pre,69,79,4	script	Sr. President	872,{
+yuno_pre,69,79,4	script	Sr. President	4_M_PRESIDENT,{
 
 	if (checkweight(7342,1) != 1)
 	{
@@ -8578,14 +8578,14 @@ L_Mission:
 	}
 }
 
-yuno_pre,77,68,0	script	Secretária#2	862,{
+yuno_pre,77,68,0	script	Secretária#2	4_F_LGTGIRL,{
 
 OnInit:
 	disablenpc "Secretária#2";
 	end;
 }
 
-yuno_pre,75,73,0	script	A Neat Gentleman	109,{
+yuno_pre,75,73,0	script	A Neat Gentleman	4_M_MANAGER,{
 
 OnInit:
 	disablenpc "A Neat Gentleman";
@@ -8628,7 +8628,7 @@ OnTouch:
 	}
 }
 
-aldebaran,58,225,4	script	Funcionária Kafra#l1	116,{
+aldebaran,58,225,4	script	Funcionária Kafra#l1	4_F_KAFRA2,{
 
 	if (lhz_boss != 17)
 	{
@@ -8696,7 +8696,7 @@ aldebaran,58,225,4	script	Funcionária Kafra#l1	116,{
 	}
 }
 
-aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
+aldeba_in,155,240,5	script	Kafra Employee#l2	4_F_AGENTKAFRA,{
 
 	if (checkweight(7343,1) != 1)
 	{
@@ -8974,7 +8974,7 @@ aldeba_in,155,240,5	script	Kafra Employee#l2	859,{
 	}
 }
 
-lhz_fild02,228,214,0	script	Homem Ferido	849,{
+lhz_fild02,228,214,0	script	Homem Ferido	4_M_DIEMAN,{
 
 	if (checkweight(7343,1) != 1)
 	{
@@ -9104,7 +9104,7 @@ OnTouch:
 	}
 }
 
-lhz_fild01,66,219,4	script	Mulher Misteriosa	859,{
+lhz_fild01,66,219,4	script	Mulher Misteriosa	4_F_AGENTKAFRA,{
 
 	if (lhz_boss == 26)
 	{
@@ -9318,7 +9318,7 @@ OnInit:
 	end;
 }
 
-lhz_in01,93,45,4	script	Researcher#1	865,{
+lhz_in01,93,45,4	script	Researcher#1	4_LGTSCIENCE,{
 
 	if (lhz_boss < 28)
 	{
@@ -9417,7 +9417,7 @@ lhz_in01,93,45,4	script	Researcher#1	865,{
 	}
 }
 
-lhz_in01,285,169,3	script	Pesquisador#2	865,{
+lhz_in01,285,169,3	script	Pesquisador#2	4_LGTSCIENCE,{
 
 	if (checkweight(7349,1) != 1)
 	{
@@ -9569,7 +9569,7 @@ lhz_in01,285,169,3	script	Pesquisador#2	865,{
 	}
 }
 
-lhz_in01,187,31,0	script	#Sneak	111,4,3,{
+lhz_in01,187,31,0	script	#Sneak	HIDDEN_NPC,4,3,{
 
 	end;
 
@@ -9750,7 +9750,7 @@ OnTimer190000:
 
 
 
-lhz_in01,182,35,0	script	Fichário do Arquivo	111,{
+lhz_in01,182,35,0	script	Fichário do Arquivo	HIDDEN_NPC,{
 
 	if ((lhz_boss > 28) && (lhz_boss < 35))
 	{
@@ -9878,7 +9878,7 @@ L_Search:
 	close;
 }
 
-lhz_in01,177,31,0	script	Porta#sneak	111,{
+lhz_in01,177,31,0	script	Porta#sneak	HIDDEN_NPC,{
 
 	if (lhz_boss < 29)
 	{
@@ -9915,7 +9915,7 @@ lhz_in01,177,31,0	script	Porta#sneak	111,{
 	}
 }
 
-lhz_in01,184,40,0	script	Area 1-5	111,{
+lhz_in01,184,40,0	script	Area 1-5	HIDDEN_NPC,{
 
 	if (checkweight(7344,1) != 1)
 	{
@@ -9964,7 +9964,7 @@ lhz_in01,184,40,0	script	Area 1-5	111,{
 	}
 }
 
-lhz_in01,184,52,0	script	Area 1-7	111,{
+lhz_in01,184,52,0	script	Area 1-7	HIDDEN_NPC,{
 
 	if ((lhz_boss > 28) && (lhz_boss < 32))
 	{
@@ -10026,7 +10026,7 @@ lhz_in01,184,52,0	script	Area 1-7	111,{
 	}
 }
 
-lhz_in01,184,46,0	script	Area 3-2	111,{
+lhz_in01,184,46,0	script	Area 3-2	HIDDEN_NPC,{
 
 	if ((lhz_boss > 28) && (lhz_boss < 30))
 	{
@@ -10091,7 +10091,7 @@ lhz_in01,184,46,0	script	Area 3-2	111,{
 	}
 }
 
-lhz_in01,184,48,0	script	Area 3-3	111,{
+lhz_in01,184,48,0	script	Area 3-3	HIDDEN_NPC,{
 
 	if ((lhz_boss > 28) && (lhz_boss < 34))
 	{
@@ -10139,7 +10139,7 @@ lhz_in01,184,48,0	script	Area 3-3	111,{
 	}
 }
 
-lhz_in01,177,56,0	script	Area 6-1	111,{
+lhz_in01,177,56,0	script	Area 6-1	HIDDEN_NPC,{
 
 	if ((lhz_boss > 28) && (lhz_boss < 33))
 	{
@@ -10186,7 +10186,7 @@ lhz_in01,177,56,0	script	Area 6-1	111,{
 	}
 }
 
-lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
+lhz_dun02,282,278,0	script	Máquina Quebrada	HIDDEN_NPC,{
 
 	if (checkweight(7346,1) != 1)
 	{
@@ -10264,7 +10264,7 @@ lhz_dun02,282,278,0	script	Máquina Quebrada	111,{
 	}
 }
 
-sec_in02,17,170,4	script	boss::lght_boss_admin	809,{
+sec_in02,17,170,4	script	boss::lght_boss_admin	1_M_SIGNMONK,{
 	callfunc "F_GM_NPC";
 	mes "[Patch]";
 	mes "Tell me what you want.";
@@ -10285,7 +10285,7 @@ sec_in02,17,170,4	script	boss::lght_boss_admin	809,{
 	close;
 }
 
-lhz_in02,19,274,2	script	Rapaz da Manutenção	851,{
+lhz_in02,19,274,2	script	Rapaz da Manutenção	4_M_REPAIR,{
 
 	mes "[Kudiuu]";
 	mes "Caramba...!";
@@ -10299,7 +10299,7 @@ lhz_in02,19,274,2	script	Rapaz da Manutenção	851,{
 
 // Rekenber Job Quest
 //============================================================
-lhz_in01,174,258,3	script	Young Man#reken	868,{
+lhz_in01,174,258,3	script	Young Man#reken	4_M_LGTGUARD,{
 
 	if (lhz_rekenber > 21)
 	{
@@ -11033,7 +11033,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 	end;
 }
 
-lighthalzen,141,162,3	script	Velho#reken	85,{
+lighthalzen,141,162,3	script	Velho#reken	4_M_03,{
 
 	mes "[Velho]";
 	mes "Ultimamente Kazien parece";
@@ -11145,7 +11145,7 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 	close;
 }
 
-airplane_01,96,48,3	script	Man#Lyozien	868,{
+airplane_01,96,48,3	script	Man#Lyozien	4_M_LGTGUARD,{
 
 	if (lhz_rekenber > 21)
 	{
@@ -11584,7 +11584,7 @@ OnStop:
 	end;
 }
 
-izlude,171,73,6	script	Scamp#iz	853,{
+izlude,171,73,6	script	Scamp#iz	4_M_YURI,{
 
 	if (lhz_rekenber > 21)
 	{
@@ -11767,10 +11767,10 @@ izlude,171,73,6	script	Scamp#iz	853,{
 	close;
 }
 
-izlude_a,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_a	853
-izlude_b,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_b	853
-izlude_c,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_c	853
-izlude_d,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_d	853,{}
+izlude_a,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_a	4_M_YURI
+izlude_b,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_b	4_M_YURI
+izlude_c,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_c	4_M_YURI
+izlude_d,172,73,6	duplicatr(Scamp#iz)	Scamp#iz_d	4_M_YURI,{}
 
 airplane_01,1,1,1	script	#bully1	-1,{
 
@@ -11858,7 +11858,7 @@ OnTimer120000:
 	end;
 }
 
-airplane_01,99,47,3	script	#packidentity	139,2,2,{
+airplane_01,99,47,3	script	#packidentity	HIDDEN_WARP_NPC,2,2,{
 	end;
 	
 OnInit:
@@ -11898,7 +11898,7 @@ OnTimer120000:
 	end;
 }
 
-lhz_in01,187,247,3	script	#flashback1	139,2,2,{
+lhz_in01,187,247,3	script	#flashback1	HIDDEN_WARP_NPC,2,2,{
 
 OnTouch:
 	if (lhz_rekenber == 22)
@@ -11920,7 +11920,7 @@ OnTouch:
 	end;
 }
 
-lhz_in01,75,248,3	script	#flashback2	139,2,2,{
+lhz_in01,75,248,3	script	#flashback2	HIDDEN_WARP_NPC,2,2,{
 
 OnTouch:
 	if (lhz_rekenber == 22)
@@ -11960,7 +11960,7 @@ OnTouch:
 
 // Somatology Laboratory F4
 //============================================================
-lighthalzen,303,304,5	script#re	Jerome Jameson#start	904,{
+lighthalzen,303,304,5	script#re	Jerome Jameson#start	4_M_KHMAN,{
 	if (lhz_dun04 == 0) {
 		mes "[Jerome Jameson]";
 		mes "Wow, what a "+((Sex)?"strong man!":"beautiful dame!");
@@ -12044,7 +12044,7 @@ function	script	lhz4enter	{
 	close;
 }
 
-lhz_dun03,239,77,0	script	#warplhz3lhz4	45,1,1,{
+lhz_dun03,239,77,0	script	#warplhz3lhz4	WARPNPC,1,1,{
 OnTouch:
 	if (lhz_dun04 == 0) {
 		mes "It doesn't make sense to go down these flooded stairs.";
@@ -12079,7 +12079,7 @@ OnEnable:
 	end;
 }
 
-lhz_dun04,151,276,3	script#re	Researcher#lhz4	865,{
+lhz_dun04,151,276,3	script#re	Researcher#lhz4	4_LGTSCIENCE,{
 	if (lhz_dun04 == 0) {
 		mes "[Researcher]";
 		mes "................";
@@ -12155,7 +12155,7 @@ lhz_dun04,151,276,3	script#re	Researcher#lhz4	865,{
 	end;
 }
 
-que_lhz,207,75,3	script#re	Researcher#ins	865,3,3,{
+que_lhz,207,75,3	script#re	Researcher#ins	4_LGTSCIENCE,3,3,{
 OnTouch:
 	if (lhz_dun04 == 1) {
 		mes "[Researcher]";
@@ -12202,7 +12202,7 @@ OnTouch:
 	close;
 }
 
-que_lhz,94,119,3	script#re	Researcher#ins2	865,{
+que_lhz,94,119,3	script#re	Researcher#ins2	4_LGTSCIENCE,{
 	if (lhz_dun04 == 2) {
 		mes "[Wolfchev]";
 		mes "Hehehe. You are really persistent. What do you want from someone like me?";
@@ -12240,7 +12240,7 @@ que_lhz,94,119,3	script#re	Researcher#ins2	865,{
 	mes "..........";
 	close;
 }
-que_lhz,147,224,3	script#re	Researcher#ins3	865,{
+que_lhz,147,224,3	script#re	Researcher#ins3	4_LGTSCIENCE,{
 	if (lhz_dun04 == 4 || mobcount("que_lhz","#controllhz4::OnMyMobDead") > 0) {
 		mes "[Wolfchev]";
 		mes "Wolfchev is freaking out. He is out of his mind.";
@@ -12531,7 +12531,7 @@ OnEnable:
 	end;
 }
 
-airplane_01,10,10,3	script	#LyozienSwitch	111,{
+airplane_01,10,10,3	script	#LyozienSwitch	HIDDEN_NPC,{
 	callfunc "F_GM_NPC";
 	mes "[Lyozien Switch]";
 	mes "Input password.";

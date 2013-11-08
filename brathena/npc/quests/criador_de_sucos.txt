@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_in,49,172,3	script	Marianne#suco	53,{
+prt_in,49,172,3	script	Marianne#suco	1_M_INNKEEPER,{
 	if (MISC_QUEST&1 || morison_carne == 15) {
 		mes "[Dona Marianne]";
 		mes "Ufa...!";
@@ -84,7 +84,7 @@ prt_in,49,172,3	script	Marianne#suco	53,{
 	close;
 }
 
-prt_in,47,173,3	script	Morrison#suco	97,{
+prt_in,47,173,3	script	Morrison#suco	4W_M_01,{
 	if (MISC_QUEST&1 || morison_carne == 15) {
 		mes "[Pequeno Morrison]";
 		mes "Hum... Esqueça isso.";
@@ -174,7 +174,7 @@ prt_in,47,173,3	script	Morrison#suco	97,{
 	close;
 }
 
--	script	Marx Hansen#suco	86,{
+-	script	Marx Hansen#suco	4_M_04,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um momento! -";
 		mes "- Atualmente você está carregando -";
@@ -341,5 +341,5 @@ prt_in,47,173,3	script	Morrison#suco	97,{
 	}
 }
 
-payon_in01,174,113,2	duplicato(Marx Hansen#suco)	Marx Hansen#ot	86,{}
+payon_in01,174,113,2	duplicato(Marx Hansen#suco)	Marx Hansen#ot	4_M_04,{}
 payon_in03,188,146,5	duplicata(Marx Hansen#suco)	Marx Hansen#dv	86,{}

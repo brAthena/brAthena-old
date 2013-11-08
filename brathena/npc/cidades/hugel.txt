@@ -27,14 +27,14 @@
 
 // Hugel
 //============================================================
-hugel,189,143,5	script	Rapaz	898,{
+hugel,189,143,5	script	Rapaz	4_M_HUMAN_01,{
 	mes "[Rapaz]";
 	mes "Hum. Então aquele enorme saco cheio de ar faz as pessoas flutuarem?";
 	mes "Será que se assoprássemos juntos aquilo ia sair voando?";
 	close;
 }
 
-hugel,126,151,3	script	Emily	90,{
+hugel,126,151,3	script	Emily	4_F_01,{
 	mes "[Emily]";
 	mes "Sou muito grata por viver nessa pequena cidade.";
 	mes "É tão bonita, e as pessoas são tão simpáticas.";
@@ -44,14 +44,14 @@ hugel,126,151,3	script	Emily	90,{
 	close;
 }
 
-hugel,86,165,5	script	Kayplas	896,{
+hugel,86,165,5	script	Kayplas	4_M_HUBOY,{
 	mes "[Kayplas]";
 	mes "Ooh, eu realmente quero aquela garrafa vermelha!";
 	mes "Vou pedir para a minha mãe me comprar uma. Não deve ser muito cara, né?";
 	close;
 }
 
-hugel,71,197,3	script	Lisa	90,{
+hugel,71,197,3	script	Lisa	4_F_01,{
 	mes "[Lisa]";
 	mes "Hugel é uma vila pequena e aconchegante. Todos se conhecem, e todos sabem o que os outros estão fazendo. Na verdade, é meio sufocante!";
 	next;
@@ -61,7 +61,7 @@ hugel,71,197,3	script	Lisa	90,{
 	close;
 }
 
-hugel,169,112,5	script	Velho Nikki	892,{
+hugel,169,112,5	script	Velho Nikki	4_F_HUGRANMA,{
 	mes "[Velho Nikki]";
 	mes "Você deve ser um estrangeiro. Ah, você é um aventureiro, não?";
 	mes "Sabe como eu sei?";
@@ -71,7 +71,7 @@ hugel,169,112,5	script	Velho Nikki	892,{
 	close;
 }
 
-hugel,168,183,5	script	Bismarc	118,{
+hugel,168,183,5	script	Bismarc	2_M_THIEFMASTER,{
 	mes "[Bismarc]";
 	mes "^808080*Ghyklk*";
 	mes "*Huk Hukk*^000000";
@@ -85,7 +85,7 @@ hugel,168,183,5	script	Bismarc	118,{
 	close;
 }
 
-hugel,175,115,5	script	Marius	897,{
+hugel,175,115,5	script	Marius	4_M_HUGRANFA,{
 	mes "[Marius]";
 	mes "Posso ser um velho, mas eu poderia acabar com alguém como você qualquer hora!";
 	mes "Sabe, Hugel tem uma expectativa de vida muito maior que a das outras cidades. Sabe por que?";
@@ -99,7 +99,7 @@ hugel,175,115,5	script	Marius	897,{
 
 // Interior de Hugel
 //============================================================
-hu_in01,111,386,4	script	Chris	86,{
+hu_in01,111,386,4	script	Chris	4_M_04,{
 	mes "[Chris]";
 	mes "Sabe, as pessoas não lutam muito com os monstros, só compram armaduras para se proteger. É assim que somos aqui.";
 	next;
@@ -108,7 +108,7 @@ hu_in01,111,386,4	script	Chris	86,{
 	close;
 }
 
-hu_in01,23,311,4	script	Loja de Suprimentos	898,{
+hu_in01,23,311,4	script	Loja de Suprimentos	4_M_HUMAN_01,{
 	mes "[Vendedor]";
 	mes "Bem-vindo à Loja de Artigos Festivos!";
 	mes "Por que você não aprecia lindos fogos de artifício com seus amigos?";
@@ -133,7 +133,7 @@ hu_in01,23,311,4	script	Loja de Suprimentos	898,{
 	close;
 }
 
-hu_in01,18,94,0	script	Meio expediente#1	49,{
+hu_in01,18,94,0	script	Meio expediente#1	1_M_03,{
 	mes "[Luda]";
 	mes "Bem-vindo ao escritório da Organização dos Exploradores do Santuário.";
 	mes "Sou Luda, um assistente Meu trabalho é manter o escritório limpo e perfumado, mas dê uma olhada nesse lugar!";
@@ -148,7 +148,7 @@ hu_in01,18,94,0	script	Meio expediente#1	49,{
 	close;
 }
 
-hu_in01,26,77,4	script	Meio expediente#2	50,{
+hu_in01,26,77,4	script	Meio expediente#2	1_M_04,{
 	mes "^3355FFO assistente está completamente absorto, organizando arquivos e livros.^000000";
 	close;
 }

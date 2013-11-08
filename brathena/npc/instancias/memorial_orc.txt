@@ -30,7 +30,7 @@
 
 // Entrada
 //============================================================
-gef_fild10,242,202,0	script	Memorial Orc	406,{
+gef_fild10,242,202,0	script	Memorial Orc	2_MONEMUS,{
 
 	set .@party_id,getcharid(1);
 	set .@p_name$,getpartyname(.@party_id);
@@ -107,7 +107,7 @@ L_Enter:
 	}
 }
 
-gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
+gef_fild10,238,202,6	script	Cientista Maluco#orc	4_LGTSCIENCE,{
 	if (BaseLevel < 50) {
 		mes "O cientista parece não perceber a sua entrada e continua a resmungar para si mesmo.";
 		close;
@@ -167,7 +167,7 @@ gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
 
 // Memorial Orc Primeiro Piso
 //============================================================
-1@orcs,180,30,0	script	#Monstros Ressuscitados1	844,{
+1@orcs,180,30,0	script	#Monstros Ressuscitados1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -226,7 +226,7 @@ OnTimer4010:
 	end;
 }
 
-1@orcs,180,30,0	script	#Monstros Ressuscitados2	844,{
+1@orcs,180,30,0	script	#Monstros Ressuscitados2	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -257,7 +257,7 @@ OnMyMobDead:
 	end;
 }
 
-1@orcs,180,30,0	script	#Monstros Ressuscitados3	844,{
+1@orcs,180,30,0	script	#Monstros Ressuscitados3	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -296,7 +296,7 @@ OnMyMobDead:
 	end;
 }
 
-1@orcs,180,30,0	script	#Monstros Ressuscitados4	844,{
+1@orcs,180,30,0	script	#Monstros Ressuscitados4	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -317,12 +317,12 @@ OnDisable:
 	end;
 }
 
-1@orcs,180,29,4	script	Kurger#1-1	433,{
+1@orcs,180,29,4	script	Kurger#1-1	4_ORCWARRIOR,{
 	donpcevent instance_npcname("Kurger#1-2")+"::OnEnable";
 	end;
 }
 
-1@orcs,180,29,4	script	Kurger#1-2	433,{
+1@orcs,180,29,4	script	Kurger#1-2	4_ORCWARRIOR,{
 	end;
 
 OnInstanceInit:
@@ -382,7 +382,7 @@ OnTimer60000:
 
 }
 
-1@orcs,168,125,0	script	B1 Area 1	45,3,3,{
+1@orcs,168,125,0	script	B1 Area 1	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("B1 Area 1");
 	end;
@@ -411,7 +411,7 @@ OnTimer18700:
 	end;
 }
 
-1@orcs,89,94,0	script	B1 Area 2	45,3,3,{
+1@orcs,89,94,0	script	B1 Area 2	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("B1 Area 2");
 	end;
@@ -440,7 +440,7 @@ OnTimer37600:
 	end;
 }
 
-1@orcs,38,105,0	script	B1 Area 3	45,3,3,{
+1@orcs,38,105,0	script	B1 Area 3	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("B1 Area 3");
 	end;
@@ -469,7 +469,7 @@ OnTimer32700:
 	end;
 }
 
-1@orcs,21,189,0	script	B1 Area 4	45,3,3,{
+1@orcs,21,189,0	script	B1 Area 4	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("B1 Area 4");
 	end;
@@ -509,7 +509,7 @@ OnMyMobDead3:
 
 // Memorial Orc Segundo Piso
 //============================================================
-2@orcs,36,171,0	script	#2Monstros Ressuscitados1	844,{
+2@orcs,36,171,0	script	#2Monstros Ressuscitados1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -565,7 +565,7 @@ OnTimer4010:
 	end;
 }
 
-2@orcs,36,171,0	script	#2Monstros Ressuscitados3	844,{
+2@orcs,36,171,0	script	#2Monstros Ressuscitados3	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -604,7 +604,7 @@ OnDisable:
 	end;
 }
 
-2@orcs,180,30,0	script	#2Monstros Ressuscitados4	844,{
+2@orcs,180,30,0	script	#2Monstros Ressuscitados4	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -621,12 +621,12 @@ OnMyMobDead:
 	end;
 }
 
-2@orcs,35,169,4	script	Kruger#2-1	433,{
+2@orcs,35,169,4	script	Kruger#2-1	4_ORCWARRIOR,{
 	donpcevent instance_npcname("Kruger#2-2")+"::OnEnable";
 	end;
 }
 
-2@orcs,35,169,4	script	Kruger#2-2	433,{
+2@orcs,35,169,4	script	Kruger#2-2	4_ORCWARRIOR,{
 	end;
 
 OnInstanceInit:
@@ -668,7 +668,7 @@ OnTimer23910:
 	end;
 }
 
-2@orcs,26,164,0	script	Tocha#1-1	844,{
+2@orcs,26,164,0	script	Tocha#1-1	CLEAR_NPC,{
 	if (getpartyleader(getcharid(1),2) != getcharid(0)) end;
 	progressbar "ffff00",5;
 	setarray .@id[0], atoi(charat(strnpcinfo(2),0)), atoi(charat(strnpcinfo(2),2));
@@ -698,11 +698,11 @@ OnTimer2000:
 	stopnpctimer;
 	end;
 }
-2@orcs,55,155,0	duplicate(Tocha#1-1)	Tocha#1-2	844
-2@orcs,108,146,0	duplicate(Tocha#1-1)	Tocha#1-3	844
-2@orcs,98,171,0	duplicate(Tocha#1-1)	Tocha#1-4	844
+2@orcs,55,155,0	duplicate(Tocha#1-1)	Tocha#1-2	CLEAR_NPC
+2@orcs,108,146,0	duplicate(Tocha#1-1)	Tocha#1-3	CLEAR_NPC
+2@orcs,98,171,0	duplicate(Tocha#1-1)	Tocha#1-4	CLEAR_NPC
 
-2@orcs,48,100,0	script	#Warp2-1	45,3,3,{
+2@orcs,48,100,0	script	#Warp2-1	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("#Warp2-1");
 	end;
@@ -728,13 +728,13 @@ OnTouch:
 	end;
 }
 
-2@orcs,35,92,0	duplicate(Tocha#1-1)	Tocha#2-1	844
-2@orcs,32,70,0	duplicate(Tocha#1-1)	Tocha#2-2	844
-2@orcs,70,31,0	duplicate(Tocha#1-1)	Tocha#2-3	844
+2@orcs,35,92,0	duplicate(Tocha#1-1)	Tocha#2-1	CLEAR_NPC
+2@orcs,32,70,0	duplicate(Tocha#1-1)	Tocha#2-2	CLEAR_NPC
+2@orcs,70,31,0	duplicate(Tocha#1-1)	Tocha#2-3	CLEAR_NPC
 2@orcs,84,51,0	duplicate(Tocha#1-1)	To
 cha#2-4	844
 
-2@orcs,101,55,0	script	#Warp2-2	45,3,3,{
+2@orcs,101,55,0	script	#Warp2-2	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("#Warp2-2");
 	end;
@@ -760,12 +760,12 @@ OnTouch:
 	end;
 }
 
-2@orcs,142,145,0	duplicate(Tocha#1-1)	Tocha#3-1	844
-2@orcs,162,134,0	duplicate(Tocha#1-1)	Tocha#3-2	844
-2@orcs,144,117,0	duplicate(Tocha#1-1)	Tocha#3-3	844
-2@orcs,136,98,0	duplicate(Tocha#1-1)	Tocha#3-4	844
+2@orcs,142,145,0	duplicate(Tocha#1-1)	Tocha#3-1	CLEAR_NPC
+2@orcs,162,134,0	duplicate(Tocha#1-1)	Tocha#3-2	CLEAR_NPC
+2@orcs,144,117,0	duplicate(Tocha#1-1)	Tocha#3-3	CLEAR_NPC
+2@orcs,136,98,0	duplicate(Tocha#1-1)	Tocha#3-4	CLEAR_NPC
 
-2@orcs,167,104,0	script	#Warp2-3	45,3,3,{
+2@orcs,167,104,0	script	#Warp2-3	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("#Warp2-3");
 	end;
@@ -805,7 +805,7 @@ OnTouch:
 	end;
 }
 
-2@orcs,36,171,0	script	#Boss Control	844,{
+2@orcs,36,171,0	script	#Boss Control	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -841,7 +841,7 @@ OnMyMobDead:
 	end;
 }
 
-2@orcs,182,8,0	script	#Warp Outside Orc Dun	45,3,3,{
+2@orcs,182,8,0	script	#Warp Outside Orc Dun	WARPNPC,3,3,{
 OnInstanceInit:
 	disablenpc instance_npcname("#Warp Outside Orc Dun");
 	end;
@@ -855,7 +855,7 @@ OnTouch:
 	end;
 }
 
-2@orcs,172,13,0	script	Kruger#	434,{
+2@orcs,172,13,0	script	Kruger#	4_ORCWARRIOR2,{
 	if (yong_odun < 2) {
 		mes "[Kruger]";
 		mes "*Tossindo*";
@@ -895,7 +895,7 @@ OnEnable:
 	end;
 }
 
-2@orcs,36,171,0	script	#Mobs Control	844,{
+2@orcs,36,171,0	script	#Mobs Control	CLEAR_NPC,{
 	end;
 
 OnMyMobDead1:

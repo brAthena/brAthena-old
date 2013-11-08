@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta_in,53,43,6	script	Mercador#mer	86,{
+alberta_in,53,43,6	script	Mercador#mer	4_M_04,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Whitesmith || ADVJOB == Job_Creator)) {
 			mes "[Chefe Mansur]";
@@ -502,7 +502,7 @@ S_GiveSerial:
 	return;
 }
 
-alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
+alberta_in,28,29,2	script	Chefe da Guilda#mer	4_M_01,{
 	if (BaseJob == Job_Merchant) {
 		mes "[Guarda Kay]";
 		mes "Olá amigo. Como você está?";
@@ -754,7 +754,7 @@ alberta_in,28,29,2	script	Chefe da Guilda#mer	83,{
 	}
 }
 
-morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
+morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	4_M_04,{
 	if ((job_merchant_q == 4) || (job_merchant_q == 3)) {
 		mes "[Estudante de Tintas]";
 		mes "Você é da Guilda dos Mercadores?";
@@ -812,7 +812,7 @@ morocc_in,140,102,4	script#vpo	Estudante de Tintas#mer	86,{
 	close;
 }
 
-geffen_in,155,122,4	script#vpo	Funcionário#mer	47,{
+geffen_in,155,122,4	script#vpo	Funcionário#mer	1_M_01,{
 	if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Funcionário]";
 		mes "Ah, você deve estar com a Guilda dos Mercadores.";
@@ -869,7 +869,7 @@ geffen_in,155,122,4	script#vpo	Funcionário#mer	47,{
 	close;
 }
 
-prontera,248,42,0	script#vpo	Funcionária Kafra#mer	116,{
+prontera,248,42,0	script#vpo	Funcionária Kafra#mer	4_F_KAFRA2,{
 	cutin "kafra_02",2;
 	if (job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 2 || job_merchant_q2 == 1) {
 		mes "[Funcionária Kafra]";

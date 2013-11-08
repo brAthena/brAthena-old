@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,123,102,5	script	Mercador#pron	85,{
+prontera,123,102,5	script	Mercador#pron	4_M_03,{
 	if (strnpcinfo(0) == "Mercador#pron")
 	callsub TrocaPocao,935,5,914,10;
 	else if (strnpcinfo(0) == "Mercador#morroc")
@@ -146,8 +146,8 @@ TrocaPocao2:
 	
 }
 
-morocc,180,259,3	duplicate(Mercador#pron)	Mercador#morroc	85
-aldebaran,152,63,5	duplicate(Mercador#pron)	Mercador#alde	85
-geffen,173,88,5	duplicato(Mercador#pron)	Mercador#gef	85,{}
+morocc,180,259,3	duplicate(Mercador#pron)	Mercador#morroc	4_M_03
+aldebaran,152,63,5	duplicate(Mercador#pron)	Mercador#alde	4_M_03
+geffen,173,88,5	duplicato(Mercador#pron)	Mercador#gef	4_M_03,{}
 geffen,173,88,5	duplicata(Mercador#pron)	Mercador#gef	85
 payon,200,134,5	duplicata(Mercador#pron)	Mercador#pay	85,{}

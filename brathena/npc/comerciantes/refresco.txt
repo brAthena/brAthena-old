@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,218,218,3	script	Criadora de Pets	96,{
+prontera,218,218,3	script	Criadora de Pets	4W_KID,{
 	mes "[Criadora de Pets Jenny]";
 	mes "Ah, Olá!";
 	mes "Você também ama animais assim como eu?";
@@ -73,7 +73,7 @@ prontera,218,218,3	script	Criadora de Pets	96,{
 	close;
 }
 
-prontera,220,218,3	script	Burro	955,{
+prontera,220,218,3	script	Burro	4_DONKEY,{
 	specialeffect EF_CHANGEDARK;
 	end;
 }

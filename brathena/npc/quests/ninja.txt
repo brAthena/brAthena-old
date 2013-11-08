@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-que_ng,28,50,3	script	Boshuu	709,{
+que_ng,28,50,3	script	Boshuu	4_M_SEAMAN,{
 
 	if (BaseClass != Job_Ninja){
 		mes "[Boshuu]";
@@ -368,7 +368,7 @@ que_ng,28,50,3	script	Boshuu	709,{
 	}
 }
 
-que_ng,28,45,3	script	Basshu	86,{
+que_ng,28,45,3	script	Basshu	4_M_04,{
 
 	if (BaseClass != Job_Ninja){
 		mes "[Basshu]";
@@ -719,7 +719,7 @@ que_ng,28,45,3	script	Basshu	86,{
 	}
 }
 
-que_ng,27,18,3	script	Toshu	709,{
+que_ng,27,18,3	script	Toshu	4_M_SEAMAN,{
 	
 	if (BaseClass != Job_Ninja){
 		mes "[Toshu]";
@@ -851,7 +851,7 @@ que_ng,27,18,3	script	Toshu	709,{
 	}
 }
 
-que_ng,72,34,3	script	Craftsman Kaibara	847,{
+que_ng,72,34,3	script	Craftsman Kaibara	4_M_EINOLD,{
 
 	if (BaseClass != Job_Ninja){
 		mes "[Kaibara]";
@@ -1129,7 +1129,7 @@ que_ng,72,34,3	script	Craftsman Kaibara	847,{
 	}
 }
 
-que_ng,22,62,3	script	Tetsu	709,{
+que_ng,22,62,3	script	Tetsu	4_M_SEAMAN,{
 
 	mes "[Tetsu]";
 	if (BaseClass != Job_Ninja){

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,44,47,5	script	Arquimago#Valquíria	735,{
+valkyrie,44,47,5	script	Arquimago#Valquíria	4_M_JOB_WIZARD,{
 	if (ADVJOB == 0 ||  Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

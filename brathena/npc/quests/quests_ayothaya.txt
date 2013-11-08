@@ -26,7 +26,7 @@
 
 // Ayothaya Ring Quest
 //============================================================
-ayothaya,233,105,3	script	Powerful-Looking Woman	838,2,2,{
+ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 
 	if (thai_find == 14)
 	{
@@ -446,7 +446,7 @@ OnTouch:
 
 }
 
-ayo_dun02,91,263,0	script	#Annonblood	111,2,3,{
+ayo_dun02,91,263,0	script	#Annonblood	HIDDEN_NPC,2,3,{
 
 if (!$@annonactive)
 {
@@ -600,7 +600,7 @@ if (!$@annonactive)
 }
 }
 
-ayo_dun02,91,264,3	script	Haggard Man	841,{
+ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 	//completequest 12034; 
 	if (thai_find == 13)
 	{
@@ -872,7 +872,7 @@ OnInit:
 
 }
 		
-ayothaya,253,99,3	script	Fisherman	843,{
+ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 
 	if (thai_find == 1)
 	{
@@ -1027,7 +1027,7 @@ ayothaya,253,99,3	script	Fisherman	843,{
 
 }
 
-ayo_dun01,255,62,0	script	AyoFootprint1	139,2,0,{
+ayo_dun01,255,62,0	script	AyoFootprint1	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
 	if (thai_find == 4)
 	{
@@ -1043,7 +1043,7 @@ OnTouch:
 
 }
 
-ayo_dun01,74,142,0	script	AyoFootprint2	139,2,0,{
+ayo_dun01,74,142,0	script	AyoFootprint2	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
 	if (thai_find == 5)
 	{
@@ -1059,7 +1059,7 @@ OnTouch:
 
 }
 
-ayo_dun01,244,256,2	script	AyoFootprint3	139,2,0,{
+ayo_dun01,244,256,2	script	AyoFootprint3	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
 	if (thai_find == 6)
 	{
@@ -1075,7 +1075,7 @@ OnTouch:
 
 }
 
-ayo_dun01,17,257,0	script	AyoFootprint4	139,2,0,{
+ayo_dun01,17,257,0	script	AyoFootprint4	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
 	if (thai_find == 7)
 	{
@@ -1091,7 +1091,7 @@ OnTouch:
 
 }
 
-ayo_dun02,145,120,0	script	AyoFootprint5	139,2,0,{
+ayo_dun02,145,120,0	script	AyoFootprint5	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
 	if (thai_find == 8)
 	{
@@ -1111,7 +1111,7 @@ OnTouch:
 }
 
 
-ayo_dun02,135,168,0	script	AyoFootprint6	139,0,2,{
+ayo_dun02,135,168,0	script	AyoFootprint6	HIDDEN_WARP_NPC,0,2,{
 OnTouch:
 	if (thai_find == 9)
 	{
@@ -1193,7 +1193,7 @@ OnTouch:
 
 }
 
-ayo_dun02,77,213,0	script	AyoFootprint7	139,1,1,{
+ayo_dun02,77,213,0	script	AyoFootprint7	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
 	if (thai_find == 10)
 	{
@@ -1212,7 +1212,7 @@ OnTouch:
 
 }
 
-ayo_dun02,86,254,0	script	AyoFootprint8	139,1,1,{
+ayo_dun02,86,254,0	script	AyoFootprint8	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
 	if (thai_find == 11)
 	{
@@ -1228,7 +1228,7 @@ OnTouch:
 
 }
 
-ayothaya,193,171,3	script	Old Man#02	842,{
+ayothaya,193,171,3	script	Old Man#02	4_M_THAIOLD,{
 
 	if (thai_find == 3)
 	{
@@ -1324,7 +1324,7 @@ ayothaya,193,171,3	script	Old Man#02	842,{
 
 // Ayothaya Dungeon Quest
 //============================================================
-ayothaya,83,132,0	script	Dusit#thai	843,{
+ayothaya,83,132,0	script	Dusit#thai	4_M_THAIONGBAK,{
 	if (ayodunquest == 0) {
 		mes "[Dusit]";
 		mes "Oh...!";
@@ -1424,7 +1424,7 @@ ayothaya,83,132,0	script	Dusit#thai	843,{
 	}
 }
 
-ayo_in01,181,193,4	script	Shaman#thai	840,{
+ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 	if (ayodunquest == 1) {
 		mes "[Boonthom]";
 		mes "You...!";
@@ -1904,7 +1904,7 @@ ayo_in01,181,193,4	script	Shaman#thai	840,{
 	close;
 }
 
-ayo_fild01,129,197,0	script	Puraim#thai1	842,{
+ayo_fild01,129,197,0	script	Puraim#thai1	4_M_THAIOLD,{
 	if ((ayodunquest > 2 && countitem(7285) > 0) || (ayodunquest > 2 && countitem(7287) > 0)) {
 		mes "[Puraim]";
 		mes "Huh...?";
@@ -1980,7 +1980,7 @@ ayo_fild01,129,197,0	script	Puraim#thai1	842,{
 	close;
 }
 
-ayo_fild02,25,154,0	script	Aik#thai	843,{
+ayo_fild02,25,154,0	script	Aik#thai	4_M_THAIONGBAK,{
 	mes "[Aik]";
 	mes "So, how was your expedition?";
 	mes "I hope that the evil spirits will not follow you outside of the ruins, and haunt your dreams.";
@@ -2014,7 +2014,7 @@ ayo_fild02,25,154,0	script	Aik#thai	843,{
 }
 
 // Water Traps
-ayo_dun01,273,26,0	script	 #th_dun1_1_1::AyoTrap1	111,0,4,{
+ayo_dun01,273,26,0	script	 #th_dun1_1_1::AyoTrap1	HIDDEN_NPC,0,4,{
 	mes "^3355FFYou look down and see a pool";
 	mes "of water in the distance. It looks like a long drop to the bottom.^000000";
 	next;
@@ -2035,9 +2035,9 @@ OnTouch:
 	close;
 }
 
-ayo_dun01,273,27,0	duplicate(AyoTrap1)	 #th_dun1_1_2	111
-ayo_dun01,272,27,0	duplicate(AyoTrap1)	 #th_dun1_1_3	111,0,4
-ayo_dun01,272,26,0	duplicate(AyoTrap1)	 #th_dun1_1_4	111
+ayo_dun01,273,27,0	duplicate(AyoTrap1)	 #th_dun1_1_2	HIDDEN_NPC
+ayo_dun01,272,27,0	duplicate(AyoTrap1)	 #th_dun1_1_3	HIDDEN_NPC,0,4
+ayo_dun01,272,26,0	duplicate(AyoTrap1)	 #th_dun1_1_4	HIDDEN_NPC
 
 ayo_dun01,26,27,0	script	 #th_dun1_1::AyoTrap2	-1,1,1,{
 OnTouch:
@@ -2078,7 +2078,7 @@ ayo_dun01,259,44,0	duplicate(AyoHint)	 #hint02_2	-1,2,0
 ayo_dun01,259,46,0	duplicate(AyoHint)	 #hint02_3	-1,2,0
 
 // Puzzle pieces
-ayo_dun01,198,164,0	script	 #hun_thai_1	111,{
+ayo_dun01,198,164,0	script	 #hun_thai_1	HIDDEN_NPC,{
 	if (ayodunquest == 3) {
 		set ayodunquest,4;
 		mes "^3355FFYou find a piece of a stone slate with letters etched on it. It seems to be the 1st part of the slate.^000000";
@@ -2090,7 +2090,7 @@ ayo_dun01,198,164,0	script	 #hun_thai_1	111,{
 	close;
 }
 
-ayo_dun01,87,16,0	script	 #hun_thai_2	111,{
+ayo_dun01,87,16,0	script	 #hun_thai_2	HIDDEN_NPC,{
 	if (ayodunquest == 4) {
 		set ayodunquest,5;
 		mes "^3355FFYou find a piece of a stone slate with letters etched on it. It seems to be the 2nd part of the slate.^000000";
@@ -2102,7 +2102,7 @@ ayo_dun01,87,16,0	script	 #hun_thai_2	111,{
 	close;
 }
 
-ayo_dun01,268,214,0	script	 #hun_thai_3	111,{
+ayo_dun01,268,214,0	script	 #hun_thai_3	HIDDEN_NPC,{
 	if (ayodunquest == 5) {
 		set ayodunquest,6;
 		mes "^3355FFYou find a piece of a stone slate with letters etched on it. It seems to be the 3rd part of the slate.^000000";
@@ -2114,7 +2114,7 @@ ayo_dun01,268,214,0	script	 #hun_thai_3	111,{
 	close;
 }
 
-ayo_dun01,147,274,0	script	 #hun_thai_4	111,{
+ayo_dun01,147,274,0	script	 #hun_thai_4	HIDDEN_NPC,{
 	if (ayodunquest == 6) {
 		set ayodunquest,7;
 		mes "^3355FFYou find a piece of a stone slate with letters etched on it. It seems to be the 4th part of the slate.^000000";
@@ -2126,7 +2126,7 @@ ayo_dun01,147,274,0	script	 #hun_thai_4	111,{
 	close;
 }
 
-ayo_dun01,99,118,0	script	 #hun_thai_5	111,{
+ayo_dun01,99,118,0	script	 #hun_thai_5	HIDDEN_NPC,{
 	if (ayodunquest == 7) {
 		set ayodunquest,8;
 		mes "^3355FFYou find a piece of a stone slate with letters etched on it. It seems to be the 5th part of the slate.^000000";
@@ -2138,7 +2138,7 @@ ayo_dun01,99,118,0	script	 #hun_thai_5	111,{
 	close;
 }
 
-ayo_dun01,16,188,0	script	 #hun_thai_6	111,{
+ayo_dun01,16,188,0	script	 #hun_thai_6	HIDDEN_NPC,{
 	if (ayodunquest == 8) {
 		set ayodunquest,9;
 		setquest 12036;
@@ -2151,7 +2151,7 @@ ayo_dun01,16,188,0	script	 #hun_thai_6	111,{
 	close;
 }
 
-ayo_dun01,24,283,0	script	 #2_dun_in	111,{
+ayo_dun01,24,283,0	script	 #2_dun_in	HIDDEN_NPC,{
 	if (ayodunquest > 10) {
 		if (countitem(7287) > 0) {
 			mes "^3355FFThe holy threads";
@@ -2176,7 +2176,7 @@ ayo_dun01,24,283,0	script	 #2_dun_in	111,{
 	close;
 }
 
-ayo_dun02,268,108,0	script	 #reward_tiger	111,{
+ayo_dun02,268,108,0	script	 #reward_tiger	HIDDEN_NPC,{
 	if (ayodunquest == 11 && countitem(7287) > 0) {
 		mes "^3355FFYou find half of the skeletal remains of a person sticking out from the ground. It seems to be the remains of Boonthom's comrade.^000000";
 		next;
@@ -2199,7 +2199,7 @@ ayo_dun02,268,108,0	script	 #reward_tiger	111,{
 
 // Tom Tung Goong Quest
 //============================================================
-ayothaya,196,265,3	script	Einon#ayo	842,{
+ayothaya,196,265,3	script	Einon#ayo	4_M_THAIOLD,{
 	if (tomyumgoong == 0) {
 		mes "[Einon]";
 		mes "Do you know what the";
@@ -2275,7 +2275,7 @@ ayothaya,196,265,3	script	Einon#ayo	842,{
 	close;
 }
 
-ayo_in01,145,163,3	script	Cook#ayo	839,{
+ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 	if (tomyumgoong < 2) {
 		mes "[Mali the Spicy]";
 		mes "Hello, there!";
@@ -2625,7 +2625,7 @@ ayo_in01,145,163,3	script	Cook#ayo	839,{
 	close;
 }
 
-ayothaya,153,86,5	script	Thongpool#ayo	843,{
+ayothaya,153,86,5	script	Thongpool#ayo	4_M_THAIONGBAK,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
 		mes "- Currently you're carrying -";
@@ -2741,7 +2741,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	843,{
 	close;
 }
 
-ayothaya,121,240,7	script	Mr. Jun#ayo	842,1,1,{
+ayothaya,121,240,7	script	Mr. Jun#ayo	4_M_THAIOLD,1,1,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
 		mes "- Currently you're carrying -";
@@ -3043,7 +3043,7 @@ OnTouch:
 	close;
 }
 
-ayothaya,213,94,7	script	Merchant#ayo	841,{
+ayothaya,213,94,7	script	Merchant#ayo	4_M_THAIAYO,{
 	if (tomyumgoong == 6) {
 		mes "[Merchant Thongdum]";
 		mes "Hello, there~";

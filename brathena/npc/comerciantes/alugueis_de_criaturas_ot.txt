@@ -54,7 +54,7 @@ prontera,55,350,5	script	Criador de Pecopecos#cav 105,{
 }
 
 // -------------- Criador de Pecopecos (para Templários) --------------
-prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
+prontera,232,318,3	script	Criador de Pecopecos#tem	8W_SOLDIER,{
 	if (Upper >= 0 && Upper <= 2) set .@price,3500; // Pecopeco Normal - Avançado e Bebê
 
 		mes "[Criador de Pecopecos]";
@@ -84,7 +84,7 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	105,{
 }
 
 // -------------- Adestrador de Falcões --------------
-in_hunter,146,100,4	script	Adestrador de Falcões#hnt	105,{
+in_hunter,146,100,4	script	Adestrador de Falcões#hnt	8W_SOLDIER,{
 	if (Upper >= 0 && Upper <= 2) set .@price, 2500; // Falcão Normal - Avançado e Bebê
 
 			mes "[Adestrador de Falcões]";

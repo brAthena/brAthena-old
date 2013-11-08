@@ -26,7 +26,7 @@
 
 1@mist	mapflag	src4instance
 //============================================================
-bif_fild01,158,340,5	script	Soldado Esplêndido#inst	447,{
+bif_fild01,158,340,5	script	Soldado Esplêndido#inst	4_M_FAIRYSOLDIER,{
 	if (ins_bif == 0) {
 		mes "[Soldado Esplêndido]";
 		if (BaseLevel > 69) {
@@ -123,7 +123,7 @@ OnPCLoadMapEvent:
 		showevent 1,0;
 	end;
 }
-bif_fild01,161,355,0	script	Túnel	844,{
+bif_fild01,161,355,0	script	Túnel	CLEAR_NPC,{
 	if (ins_bif == 1) {
 		set .@party_id, getcharid(1);
 		set .@ins_mas, getpartyleader(.@party_id,2);
@@ -297,7 +297,7 @@ bif_fild01,161,355,0	script	Túnel	844,{
 }
 
 // Pétalas de Flores
-bif_fild01,38,374,4	script	Pétalas de Flores	844,{
+bif_fild01,38,374,4	script	Pétalas de Flores	CLEAR_NPC,{
 	if (countitem(12561) >= 1) {
 		mes "A sua ^0000FFSemente Misteriosa^000000 está reagindo com as pétalas de flores, deseja usá-la?";
 		next;
@@ -314,7 +314,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 }
 
 // Trepadeira não-cortável
-1@mist,247,123,0	script	Trepadeira#trepadeira	527,{
+1@mist,247,123,0	script	Trepadeira#trepadeira	4_CREEPER,{
 	if (strnpcinfo(0) == "Trepadeira#trepadeira13")
 		mapannounce instance_mapname("1@mist"), "Jardineiros: Nós ainda não fomos completamente derrotados!!!",bc_map,"0x008000";
 	else
@@ -323,7 +323,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 }
 
 // Trepadeira cortável
-1@mist,247,123,0	script	Trepadeira#trepadeira_cortavel	527,{
+1@mist,247,123,0	script	Trepadeira#trepadeira_cortavel	4_CREEPER,{
 	mes "Não há mais um Jardineiro protetor desta árvore. Você pode cortá-la.";
 	next;
 	if (select("Cortá-la e continuar","Cancelar" ) == 1) {
@@ -379,7 +379,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 }
 
 // Placa
-1@mist,251,123,3	script	Placa#mist	858,{
+1@mist,251,123,3	script	Placa#mist	4_BULLETIN_BOARD2,{
 	mes "[Aviso]";
 	mes "Esta floresta possui uma névoa misteriosa...";
 	mes "As vezes as pessoas podem se perder dentro dela.";
@@ -395,7 +395,7 @@ bif_fild01,38,374,4	script	Pétalas de Flores	844,{
 }
 
 // Semente Misteriosa
-1@mist,132,179,0	script	Semente Misteriosa#01	844,{
+1@mist,132,179,0	script	Semente Misteriosa#01	CLEAR_NPC,{
 	getitem 12561,1;
 	specialeffect EF_BASH;
 	disablenpc instance_npcname(strnpcinfo(0));
@@ -1451,35 +1451,35 @@ OnMyMobDead:
 }
 
 // Trepadeiras não-cortáveis
-1@mist,225,98,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira1	527
-1@mist,159,184,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira2	527
-1@mist,61,39,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira3	527
-1@mist,230,179,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira4	527
-1@mist,285,225,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira5	527
-1@mist,161,316,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira6	527
-1@mist,206,200,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira7	527
-1@mist,221,236,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira8	527
-1@mist,204,299,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira9	527
-1@mist,95,287,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira10	527
-1@mist,324,325,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira11	527
-1@mist,280,343,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira12	527
-1@mist,345,186,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira13	527
+1@mist,225,98,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira1	4_CREEPER
+1@mist,159,184,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira2	4_CREEPER
+1@mist,61,39,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira3	4_CREEPER
+1@mist,230,179,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira4	4_CREEPER
+1@mist,285,225,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira5	4_CREEPER
+1@mist,161,316,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira6	4_CREEPER
+1@mist,206,200,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira7	4_CREEPER
+1@mist,221,236,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira8	4_CREEPER
+1@mist,204,299,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira9	4_CREEPER
+1@mist,95,287,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira10	4_CREEPER
+1@mist,324,325,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira11	4_CREEPER
+1@mist,280,343,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira12	4_CREEPER
+1@mist,345,186,0	duplicate(Trepadeira#trepadeira)	Trepadeira#trepadeira13	4_CREEPER
 
 // Placas
-1@mist,226,94,3	duplicate(Placa#mist)	Placa#mist1	858
-1@mist,156,185,3	duplicate(Placa#mist)	Placa#mist2	858
-1@mist,57,39,3	duplicate(Placa#mist)	Placa#mist3	858
-1@mist,226,179,3	duplicate(Placa#mist)	Placa#mist4	858
-1@mist,288,226,3	duplicate(Placa#mist)	Placa#mist5	858
-1@mist,221,233,3	duplicate(Placa#mist)	Placa#mist6	858
-1@mist,209,201,3	duplicate(Placa#mist)	Placa#mist7	858
-1@mist,157,319,3	duplicate(Placa#mist)	Placa#mist8	858
-1@mist,207,298,3	duplicate(Placa#mist)	Placa#mist9	858
-1@mist,98,285,3	duplicate(Placa#mist)	Placa#mist10	858
-1@mist,323,324,3	duplicate(Placa#mist)	Placa#mist11	858
-1@mist,277,346,3	duplicate(Placa#mist)	Placa#mist12	858
-1@mist,343,185,3	duplicate(Placa#mist)	Placa#mist13	858
-1@mist,179,304,3	duplicate(Placa#mist)	Placa#mist14	858
+1@mist,226,94,3	duplicate(Placa#mist)	Placa#mist1	4_BULLETIN_BOARD2
+1@mist,156,185,3	duplicate(Placa#mist)	Placa#mist2	4_BULLETIN_BOARD2
+1@mist,57,39,3	duplicate(Placa#mist)	Placa#mist3	4_BULLETIN_BOARD2
+1@mist,226,179,3	duplicate(Placa#mist)	Placa#mist4	4_BULLETIN_BOARD2
+1@mist,288,226,3	duplicate(Placa#mist)	Placa#mist5	4_BULLETIN_BOARD2
+1@mist,221,233,3	duplicate(Placa#mist)	Placa#mist6	4_BULLETIN_BOARD2
+1@mist,209,201,3	duplicate(Placa#mist)	Placa#mist7	4_BULLETIN_BOARD2
+1@mist,157,319,3	duplicate(Placa#mist)	Placa#mist8	4_BULLETIN_BOARD2
+1@mist,207,298,3	duplicate(Placa#mist)	Placa#mist9	4_BULLETIN_BOARD2
+1@mist,98,285,3	duplicate(Placa#mist)	Placa#mist10	4_BULLETIN_BOARD2
+1@mist,323,324,3	duplicate(Placa#mist)	Placa#mist11	4_BULLETIN_BOARD2
+1@mist,277,346,3	duplicate(Placa#mist)	Placa#mist12	4_BULLETIN_BOARD2
+1@mist,343,185,3	duplicate(Placa#mist)	Placa#mist13	4_BULLETIN_BOARD2
+1@mist,179,304,3	duplicate(Placa#mist)	Placa#mist14	4_BULLETIN_BOARD2
 
 // Desativador de portais
 1@mist,0,0,0	script	mist#warp_jardim_c	-1,{
@@ -1507,81 +1507,81 @@ OnMyMobDead:
 1@mist,345,186,0	warp	mist#warp_jardim13	1,1,bif_fild02,249,46
 
 // Trepadeiras cortáveis
-1@mist,225,98,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel1	527
-1@mist,159,184,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel2	527
-1@mist,61,39,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel3	527
-1@mist,230,179,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel4	527
-1@mist,285,225,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel5	527
-1@mist,161,316,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel6	527
-1@mist,206,200,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel7	527
-1@mist,221,236,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel8	527
-1@mist,204,299,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel9	527
-1@mist,95,287,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel10	527
-1@mist,324,325,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel11	527
-1@mist,280,343,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel12	527
-1@mist,345,186,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel13	527
+1@mist,225,98,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel1	4_CREEPER
+1@mist,159,184,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel2	4_CREEPER
+1@mist,61,39,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel3	4_CREEPER
+1@mist,230,179,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel4	4_CREEPER
+1@mist,285,225,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel5	4_CREEPER
+1@mist,161,316,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel6	4_CREEPER
+1@mist,206,200,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel7	4_CREEPER
+1@mist,221,236,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel8	4_CREEPER
+1@mist,204,299,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel9	4_CREEPER
+1@mist,95,287,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel10	4_CREEPER
+1@mist,324,325,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel11	4_CREEPER
+1@mist,280,343,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel12	4_CREEPER
+1@mist,345,186,0	duplicate(Trepadeira#trepadeira_cortavel)	Trepadeira#trepadeira_cortavel13	4_CREEPER
 
 // Coleta de sementes
-1@mist,146,186,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#02	844
-1@mist,142,182,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#03	844
-1@mist,132,180,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#04	844
-1@mist,123,184,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#05	844
-1@mist,118,194,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#06	844
-1@mist,122,204,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#07	844
-1@mist,137,209,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#08	844
-1@mist,144,203,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#09	844
-1@mist,216,103,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#10	844
-1@mist,213,96,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#11	844
-1@mist,205,92,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#12	844
-1@mist,193,94,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#13	844
-1@mist,188,109,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#14	844
-1@mist,194,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#15	844
-1@mist,207,120,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#16	844
-1@mist,212,116,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#17	844
-1@mist,72,276,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#18	844
-1@mist,72,271,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#19	844
-1@mist,61,268,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#20	844
-1@mist,52,270,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#21	844
-1@mist,48,286,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#22	844
-1@mist,54,293,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#23	844
-1@mist,69,295,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#24	844
-1@mist,73,290,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#25	844
-1@mist,54,277,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#26	844
-1@mist,62,291,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#27	844
-1@mist,265,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#28	844
-1@mist,260,214,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#29	844
-1@mist,252,206,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#30	844
-1@mist,244,211,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#31	844
-1@mist,238,224,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#32	844
-1@mist,244,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#33	844
-1@mist,257,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#34	844
-1@mist,262,229,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#35	844
-1@mist,244,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#36	844
-1@mist,252,228,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#37	844
-1@mist,174,318,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#38	844
-1@mist,187,320,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#39	844
-1@mist,192,316,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#40	844
-1@mist,195,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#41	844
-1@mist,191,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#42	844
-1@mist,181,294,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#43	844
-1@mist,172,296,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#44	844
-1@mist,169,310,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#45	844
-1@mist,175,303,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#46	844
-1@mist,182,315,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#47	844
-1@mist,191,306,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#48	844
-1@mist,335,126,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#49	844
-1@mist,331,123,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#50	844
-1@mist,321,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#51	844
-1@mist,314,122,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#52	844
-1@mist,308,136,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#53	844
-1@mist,314,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#54	844
-1@mist,328,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#55	844
-1@mist,332,141,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#56	844
-1@mist,326,125,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#57	844
-1@mist,314,128,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#58	844
-1@mist,322,140,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#59	844
-1@mist,330,131,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#60	844
-1@mist,321,133,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#61	844
+1@mist,146,186,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#02	CLEAR_NPC
+1@mist,142,182,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#03	CLEAR_NPC
+1@mist,132,180,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#04	CLEAR_NPC
+1@mist,123,184,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#05	CLEAR_NPC
+1@mist,118,194,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#06	CLEAR_NPC
+1@mist,122,204,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#07	CLEAR_NPC
+1@mist,137,209,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#08	CLEAR_NPC
+1@mist,144,203,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#09	CLEAR_NPC
+1@mist,216,103,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#10	CLEAR_NPC
+1@mist,213,96,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#11	CLEAR_NPC
+1@mist,205,92,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#12	CLEAR_NPC
+1@mist,193,94,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#13	CLEAR_NPC
+1@mist,188,109,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#14	CLEAR_NPC
+1@mist,194,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#15	CLEAR_NPC
+1@mist,207,120,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#16	CLEAR_NPC
+1@mist,212,116,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#17	CLEAR_NPC
+1@mist,72,276,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#18	CLEAR_NPC
+1@mist,72,271,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#19	CLEAR_NPC
+1@mist,61,268,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#20	CLEAR_NPC
+1@mist,52,270,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#21	CLEAR_NPC
+1@mist,48,286,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#22	CLEAR_NPC
+1@mist,54,293,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#23	CLEAR_NPC
+1@mist,69,295,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#24	CLEAR_NPC
+1@mist,73,290,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#25	CLEAR_NPC
+1@mist,54,277,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#26	CLEAR_NPC
+1@mist,62,291,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#27	CLEAR_NPC
+1@mist,265,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#28	CLEAR_NPC
+1@mist,260,214,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#29	CLEAR_NPC
+1@mist,252,206,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#30	CLEAR_NPC
+1@mist,244,211,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#31	CLEAR_NPC
+1@mist,238,224,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#32	CLEAR_NPC
+1@mist,244,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#33	CLEAR_NPC
+1@mist,257,232,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#34	CLEAR_NPC
+1@mist,262,229,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#35	CLEAR_NPC
+1@mist,244,216,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#36	CLEAR_NPC
+1@mist,252,228,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#37	CLEAR_NPC
+1@mist,174,318,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#38	CLEAR_NPC
+1@mist,187,320,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#39	CLEAR_NPC
+1@mist,192,316,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#40	CLEAR_NPC
+1@mist,195,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#41	CLEAR_NPC
+1@mist,191,301,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#42	CLEAR_NPC
+1@mist,181,294,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#43	CLEAR_NPC
+1@mist,172,296,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#44	CLEAR_NPC
+1@mist,169,310,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#45	CLEAR_NPC
+1@mist,175,303,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#46	CLEAR_NPC
+1@mist,182,315,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#47	CLEAR_NPC
+1@mist,191,306,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#48	CLEAR_NPC
+1@mist,335,126,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#49	CLEAR_NPC
+1@mist,331,123,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#50	CLEAR_NPC
+1@mist,321,118,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#51	CLEAR_NPC
+1@mist,314,122,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#52	CLEAR_NPC
+1@mist,308,136,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#53	CLEAR_NPC
+1@mist,314,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#54	CLEAR_NPC
+1@mist,328,144,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#55	CLEAR_NPC
+1@mist,332,141,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#56	CLEAR_NPC
+1@mist,326,125,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#57	CLEAR_NPC
+1@mist,314,128,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#58	CLEAR_NPC
+1@mist,322,140,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#59	CLEAR_NPC
+1@mist,330,131,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#60	CLEAR_NPC
+1@mist,321,133,4	duplicate(Semente Misteriosa#01)	Semente Misteriosa#61	CLEAR_NPC
 
 // Portais comuns
 1@mist,109,69,0	warp	bif_inst_warp#1	1,1,1@mist,116,40

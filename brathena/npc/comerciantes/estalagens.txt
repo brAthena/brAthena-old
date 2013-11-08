@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_in,244,135,2	script	Funcionária#Sammy	53,{
+prt_in,244,135,2	script	Funcionária#Sammy	1_M_INNKEEPER,{
 
 	if ( strnpcinfo(0) == "Funcionária#Sammy" ) {
 	callsub InnMaid,"[Funcionária Sammy]","Nenkaras.","prt_in",238,130,5000;
@@ -99,14 +99,14 @@ InnMaid:
 	}
 }
 
-prt_in,61,141,2	duplicate(Funcionária#Sammy)	Funcionária#Ahlma	53
-alberta_in,32,142,3	duplicate(Funcionária#Sammy)	Funcionária#Jennie	53
-aldeba_in,92,58,5	duplicate(Funcionária#Sammy)	Funcionária#Rilim	53
-geffen_in,70,64,5	duplicate(Funcionária#Sammy)	Funcionária#Cena	53
-payon_in01,137,173,5	duplicato(Funcionária#Sammy)	Funcionária#Ahee	78,{}
+prt_in,61,141,2	duplicate(Funcionária#Sammy)	Funcionária#Ahlma	1_M_INNKEEPER
+alberta_in,32,142,3	duplicate(Funcionária#Sammy)	Funcionária#Jennie	1_M_INNKEEPER
+aldeba_in,92,58,5	duplicate(Funcionária#Sammy)	Funcionária#Rilim	1_M_INNKEEPER
+geffen_in,70,64,5	duplicate(Funcionária#Sammy)	Funcionária#Cena	1_M_INNKEEPER
+payon_in01,137,173,5	duplicato(Funcionária#Sammy)	Funcionária#Ahee	1_F_ORIENT_04,{}
 payon_in01,132,62,5	duplicata(Funcionária#Sammy)	Funcionária#Ahee	53
 ra_in01,376,69,4	duplicata(Funcionária#Sammy)	Funcionária#Annie	53
 lhz_in02,230,284,4	duplicata(Funcionária#Sammy)	Funcionário do Hotel#01	86
 hu_in01,246,107,3	duplicata(Funcionária#Sammy)	Recepcionista#Recepcionista	53
 ve_in,157,219,5	duplicata(Funcionária#Sammy)	Recepcionista#Re	709
-bra_in01,27,24,3	duplicatr(Funcionária#Sammy)	Recepcionista#bras1	478,{}
+bra_in01,27,24,3	duplicatr(Funcionária#Sammy)	Recepcionista#bras1	4_F_BRZ_WOMAN,{}

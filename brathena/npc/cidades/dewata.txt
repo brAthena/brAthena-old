@@ -27,7 +27,7 @@
 
 // Transporte para Dewata
 //============================================================
-alberta,212,202,4	script	Barqueiro de Dewata#alberta	536,{
+alberta,212,202,4	script	Barqueiro de Dewata#alberta	4_M_DEWMAN,{
 	mes "[Barqueiro de Dewata]";
 	mes "Você gostaria de visitar a ^8B4513Ilha de Dewata^000000?";
 	mes "Com ondas deslumbrantes e paisagens encantadoras é um ótimo lugar para relaxar.";
@@ -56,7 +56,7 @@ alberta,212,202,4	script	Barqueiro de Dewata#alberta	536,{
 	}
 }
 
-dewata,229,49,6	script	Barqueiro de Alberta#dewata	536,{
+dewata,229,49,6	script	Barqueiro de Alberta#dewata	4_M_DEWMAN,{
 	mes "[Barqueiro de Alberta]";
 	mes "Você deseja voltar para Alberta?";
 	next;
@@ -78,7 +78,7 @@ dewata,229,49,6	script	Barqueiro de Alberta#dewata	536,{
 
 // NPCs principais de Dewata
 //============================================================ 
-dewata,221,237,5	script	Jovem em Dewata#dew-1	536,{
+dewata,221,237,5	script	Jovem em Dewata#dew-1	4_M_DEWMAN,{
 	mes "[Jovem Amante de Frutas]";
 	mes "O que há de errado com você? Concerteza você deve estar perdido!";
 	next;
@@ -174,7 +174,7 @@ dewata,221,237,5	script	Jovem em Dewata#dew-1	536,{
 	}
 }
 
-dewata,114,243,6	script	Jovem em Dewata#dew	536,1,1,{
+dewata,114,243,6	script	Jovem em Dewata#dew	4_M_DEWMAN,1,1,{
 		mes "[Jovem em Dewata]";
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 500) {
 		mes "Por que você está carregando tantas coisas? Não está pesado?";
@@ -213,7 +213,7 @@ OnTouch:
 	end;
 }
 
-dewata,159,81,4	script	Tourist#dew-1	881,{
+dewata,159,81,4	script	Tourist#dew-1	4_M_SITDOWN,{
 	mes "[Nasolo]";
 	mes "Uau, oceano puro, praia limpa...";
 	mes "Seria bacana se minha namorada estivesse aqui...";
@@ -228,7 +228,7 @@ dewata,159,81,4	script	Tourist#dew-1	881,{
 	close;
 }
 
-dewata,146,109,5	script	Sr. Dwi Oblo#dew	886,{
+dewata,146,109,5	script	Sr. Dwi Oblo#dew	4_COOK,{
 		mes "[Sr. Dwi Oblo]";
 	if (checkweight(11532,1) == 0 || checkweight(11533,1) == 0 || MaxWeight - Weight < 500) {
 		mes "Você veio experimentar o meu prato? É sempre bom comer de estômago vazio.";
@@ -306,7 +306,7 @@ dewata,146,109,5	script	Sr. Dwi Oblo#dew	886,{
 	close;
 }
 
-dewata,147,107,6	script	Rustam#dew	85,{
+dewata,147,107,6	script	Rustam#dew	4_M_03,{
 	mes "[Rustam]";
 	mes "Ah... tem um gosto ótimo... é muito convidativo!";
 	emotion e_sob;
@@ -321,7 +321,7 @@ dewata,147,107,6	script	Rustam#dew	85,{
 	close;
 }
 
-dewata,154,107,4	script	Turista de passagem#dew	86,{
+dewata,154,107,4	script	Turista de passagem#dew	4_M_04,{
 	mes "[Turista de passagem]";
 	mes "Uau...";
 	mes "Quantos ele já comeu?";
@@ -335,7 +335,7 @@ dewata,154,107,4	script	Turista de passagem#dew	86,{
 	close;
 }
 
-dewata,95,203,6	script	Guia Turístico#dew	536,{
+dewata,95,203,6	script	Guia Turístico#dew	4_M_DEWMAN,{
 	mes "[Guia]";
 	mes "O templo de Borobudur venera O Buda da ilha Dewata do século IX.";
 	emotion e_swt2;
@@ -358,7 +358,7 @@ dewata,95,203,6	script	Guia Turístico#dew	536,{
 	close;
 }
 
-dewata,97,207,4	script	Waldo#dew1	803,{
+dewata,97,207,4	script	Waldo#dew1	1_F_SIGNZISK,{
 	mes "[Waldo]";
 	mes "Oh... Porcaria... Escolhi o guia turístico errado...";
 	next;
@@ -372,7 +372,7 @@ dewata,97,207,4	script	Waldo#dew1	803,{
 	close;
 }
 
-dewata,100,206,4	script	Turista#dew2	59,{
+dewata,100,206,4	script	Turista#dew2	1_M_ORIENT01,{
 	mes "[Turista]";
 	mes "Ei... Vamos para lá... Depressa, enquanto o guia está explicando.";
 	next;
@@ -381,7 +381,7 @@ dewata,100,206,4	script	Turista#dew2	59,{
 	close;
 }
 
-dewata,101,206,4	script	Turista#dew3	90,{
+dewata,101,206,4	script	Turista#dew3	4_F_01,{
 	mes "[Turista]";
 	mes "Não vamos nos perder sem o guia?";
 	next;
@@ -390,7 +390,7 @@ dewata,101,206,4	script	Turista#dew3	90,{
 	close;
 }
 
-dewata,99,203,4	script	Turista#dew4	755,{
+dewata,99,203,4	script	Turista#dew4	4_M_SAGE_C,{
 	mes "[Turista]";
 	mes "Oh, isso é muito interessante. Um templo venerando o Buda...";
 	emotion e_ok;
@@ -403,7 +403,7 @@ dewata,99,203,4	script	Turista#dew4	755,{
 	close;
 }
 
-dewata,67,186,8	script	Monge#dew1	834,{
+dewata,67,186,8	script	Monge#dew1	4_M_BUDDHIST,{
 	mes "[Monge]";
 	mes "Eu sou um Monge, dedico meus dias ao estudo religioso.";
 	next;
@@ -415,7 +415,7 @@ dewata,67,186,8	script	Monge#dew1	834,{
 	close;
 }
 
-dewata,65,188,8	script	Monge#dew2	834,{
+dewata,65,188,8	script	Monge#dew2	4_M_BUDDHIST,{
 	mes "[Monge]";
 	mes "Borobudur é um dos poucos templos que se dedicam inteiramente a venerar o Grande Buda.";
 	next;
@@ -424,7 +424,7 @@ dewata,65,188,8	script	Monge#dew2	834,{
 	close;
 }
 
-dewata,63,190,8	script	Monge#dew3	834,{
+dewata,63,190,8	script	Monge#dew3	4_M_BUDDHIST,{
 	mes "[Monge]";
 	mes "Você é um Turista? Se quiser você pode fazer uma doação em um dos templos.";
 	next;
@@ -433,7 +433,7 @@ dewata,63,190,8	script	Monge#dew3	834,{
 	close;
 }
 
-dewata,62,192,8	script	Monge#dew4	834,{
+dewata,62,192,8	script	Monge#dew4	4_M_BUDDHIST,{
 	mes "[Monge]";
 	mes "Nosso grande Buda é o rei entre as almas e o líder de todos os deuses.";
 	next;
@@ -445,7 +445,7 @@ dewata,62,192,8	script	Monge#dew4	834,{
 	close;
 }
 
-dewata,89,191,6	script	Pequeno Templo#dew1	844,{
+dewata,89,191,6	script	Pequeno Templo#dew1	CLEAR_NPC,{
 	mes "Este é um pequeno templo. Onde muitas pessoas fazem seus pedidos.";
 	next;
 	switch(select("Fazer uma doação.:Fazer um pedido.:Ignorar.")) {
@@ -543,11 +543,11 @@ L_Wish:
 	next;
 	return;
 }
-dewata,89,212,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew2	844
-dewata,68,212,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew3	844
-dewata,68,191,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew4	844
+dewata,89,212,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew2	CLEAR_NPC
+dewata,68,212,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew3	CLEAR_NPC
+dewata,68,191,6	duplicate(Pequeno Templo#dew1)	Pequeno Templo#dew4	CLEAR_NPC
 
-dewata,75,122,6	script	Monge Calmo#dewt1	834,{
+dewata,75,122,6	script	Monge Calmo#dewt1	4_M_BUDDHIST,{
 	mes "[Monge Calmo]";
 	mes "Você é um estrangeiro. O que o traz a esse local tranquilo?";
 	next;
@@ -563,7 +563,7 @@ dewata,75,122,6	script	Monge Calmo#dewt1	834,{
 	}
 }
 
-dewata,69,101,6	script	Monge budista#dewt2	834,{
+dewata,69,101,6	script	Monge budista#dewt2	4_M_BUDDHIST,{
 	mes "[Monge budista]";
 	mes "Temos uma torre de veneração ao Buda aqui. Cada templo tem uma dessas torres, poucas pessoas passam por aqui além de nós, monges.";
 	next;
@@ -598,7 +598,7 @@ dewata,69,101,6	script	Monge budista#dewt2	834,{
 	}
 }
 
-dewata,71,79,6	script	Monge#dewt3	834,{
+dewata,71,79,6	script	Monge#dewt3	4_M_BUDDHIST,{
 	mes "[Monge]";
 	mes "Essa torre foi construída à beira de um penhasco de praia, você pode rezar com a brisa fresca do oceano.";
 	next;
@@ -607,7 +607,7 @@ dewata,71,79,6	script	Monge#dewt3	834,{
 	close;
 }
 
-dewata,211,272,4	script	Sr. Jiawang#dew	534,2,3,{
+dewata,211,272,4	script	Sr. Jiawang#dew	4_M_DEWOLDMAN,2,3,{
 OnTouch:
 	mes "[Sr. Jiawang]";
 	mes "Ultimamente, temos muitos casais em lua-de-mel, aqui.";
@@ -624,7 +624,7 @@ OnTouch:
 	close;
 }
 
-dewata,245,244,4	script	Sr. Dingwan#dew	536,2,3,{
+dewata,245,244,4	script	Sr. Dingwan#dew	4_M_DEWMAN,2,3,{
 OnTouch:
 	mes "[Sr. Dingwan]";
 	mes "Argg~ Isso está me aborrecendo, de verdade!";
@@ -641,7 +641,7 @@ OnTouch:
 	close;
 }
 
-dewata,233,263,8	script	Doce Casal de Casados#dew1	828,2,3,{
+dewata,233,263,8	script	Doce Casal de Casados#dew1	4_M_ROGUE,2,3,{
 OnTouch:
 	mes "[Doce Marido]";
 	mes "Você é a coisa mais linda do mundo, Bebê~";
@@ -661,7 +661,7 @@ OnTouch:
 	close;
 }
 
-dewata,234,263,8	script	Doce Casal de Casados#dew2	727,2,3,{
+dewata,234,263,8	script	Doce Casal de Casados#dew2	4_F_JOB_HUNTER,2,3,{
 OnTouch:
 	mes "[Doce Esposa]";
 	mes "Bebê~ Você sabe que flor é essa~?";
@@ -692,7 +692,7 @@ OnTouch:
 	close;
 }
 
-dewata,279,213,4	script	Josho#dew-2	887,2,3,{
+dewata,279,213,4	script	Josho#dew-2	4_M_LIEMAN,2,3,{
 OnTouch:
 	mes "[Josho]";
 	mes "Uau~ Isso é muito confortável~";
@@ -710,7 +710,7 @@ OnTouch:
 	close;
 }
 
-dewata,269,208,4	script	Diwangi#dew	538,2,3,{
+dewata,269,208,4	script	Diwangi#dew	4_M_DEWBOY,2,3,{
 OnTouch:
 	mes "[Diwangi]";
 	mes "Ei "+((Sex)?"irmão":"irmã")+", olhe só aquele homem!";
@@ -727,7 +727,7 @@ OnTouch:
 	close;
 }
 
-dewata,227,129,4	script	Sarr#dew	538,2,3,{
+dewata,227,129,4	script	Sarr#dew	4_M_DEWBOY,2,3,{
 OnTouch:
 	mes "[Sarr]";
 	mes "Esconde-esconde! Vou encontrar.";
@@ -750,7 +750,7 @@ OnTouch:
 	close;
 }
 
-dewata,239,140,4	script	Siyak#dew	539,2,3,{
+dewata,239,140,4	script	Siyak#dew	4_M_DEWGIRL,2,3,{
 OnTouch:
 	mes "[Siyak]";
 	mes "Ei, venha, mexa-se. Ele vai me encontrar~~";
@@ -768,7 +768,7 @@ OnTouch:
 	close;
 }
 
-dewata,193,145,4	script	Sipo#dew	538,2,3,{
+dewata,193,145,4	script	Sipo#dew	4_M_DEWBOY,2,3,{
 OnTouch:
 	mes "[Sipo]";
 	mes "Sarr não vai me encontrar aqui certo?";
@@ -785,7 +785,7 @@ OnTouch:
 	close;
 }
 
-dewata,228,177,4	script	Majya#dew	538,2,3,{
+dewata,228,177,4	script	Majya#dew	4_M_DEWBOY,2,3,{
 OnTouch:
 	mes "[Majya]";
 	mes "Eu só estava brincando de esconde-esconde com meus amigos...";
@@ -799,7 +799,7 @@ OnTouch:
 	close;
 }
 
-dewata,278,100,4	script	Ukki#dew	703,2,3,{
+dewata,278,100,4	script	Ukki#dew	4_F_KID2,2,3,{
 OnTouch:
 	mes "[Ukki]";
 	mes "BuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuáBuá~";
@@ -824,7 +824,7 @@ OnTouch:
 	close;
 }
 
-dewata,249,87,4	script	Mãe#dew	101,2,3,{
+dewata,249,87,4	script	Mãe#dew	4W_F_01,2,3,{
 OnTouch:
 	mes "[Mãe]";
 	mes "Ukki~ Ukki~ Aonde ela foi?";
@@ -839,7 +839,7 @@ OnTouch:
 	close;
 }
 
-dewata,251,85,6	script	Pai#dew	97,2,3,{
+dewata,251,85,6	script	Pai#dew	4W_M_01,2,3,{
 OnTouch:
 	mes "[Pai]";
 	mes "Querida, Ukki sumiu de novo?";
@@ -860,7 +860,7 @@ OnTouch:
 	close;
 }
 
-dewata,278,281,4	script	Vovô Jwang	534,{
+dewata,278,281,4	script	Vovô Jwang	4_M_DEWOLDMAN,{
 	mes "[Vovô Jwang]";
 	mes "Hoje, vou pedir para a minha senhora fazer um ^006300Nasi Goreng^000000 para mim.";
 	next;
@@ -874,7 +874,7 @@ dewata,278,281,4	script	Vovô Jwang	534,{
 	close;
 }
 
-dewata,280,277,4	script	Vovó Karing	535,{
+dewata,280,277,4	script	Vovó Karing	4_M_DEWOLDWOMAN,{
 	mes "[Vovó Karing]";
 	mes "Você deveria saber, pela minha aparência que havia muitos rapazes interessados em sair comigo quando eu era jovem e bonita.";
 	emotion e_swt2;
@@ -892,7 +892,7 @@ dewata,280,277,4	script	Vovó Karing	535,{
 	close;
 }
 
-dewata,165,103,6	script	Aventureiro Semangatt#dew	534,{
+dewata,165,103,6	script	Aventureiro Semangatt#dew	4_M_DEWOLDMAN,{
 	mes "[Aventureiro Semangatt]";
 	mes "Também viajei pelo mundo quando eu era jovem como você.";
 	mes "^FF0000Macaco, Siba, Águia, Serpente^000000, todos que conheci são bons amigos durante a viagem.";
@@ -907,7 +907,7 @@ dewata,165,103,6	script	Aventureiro Semangatt#dew	534,{
 	close;
 }
 
-dewata,139,114,6	script	Esposa do Aventureiro#dew	535,{
+dewata,139,114,6	script	Esposa do Aventureiro#dew	4_M_DEWOLDWOMAN,{
 	mes "[Esposa do Aventureiro]";
 	mes "Onde está o meu velho marido de novo?";
 	mes "Você...";
@@ -933,7 +933,7 @@ dewata,139,114,6	script	Esposa do Aventureiro#dew	535,{
 	}
 }
 
-dewata,181,88,6	script	Jovem em Dewata#dew-2	536,{
+dewata,181,88,6	script	Jovem em Dewata#dew-2	4_M_DEWMAN,{
 	mes "[Jovem em Dewata]";
 	mes "A praia de ^8C4210Dewata^000000 não é muito bonita?";
 	mes "Aquelas crianças brincando pela praia, sempre me lembram da minha juventude.";
@@ -944,7 +944,7 @@ dewata,181,88,6	script	Jovem em Dewata#dew-2	536,{
 	close;
 }
 
-dewata,179,204,4	script	Jovenzinha#dew	537,{
+dewata,179,204,4	script	Jovenzinha#dew	4_M_DEWWOMAN,{
 	mes "[Jovenzinha]";
 	mes "Quando você estiver fora da cidade e encontrar um ^FF0000Tigre, Macaco ou Porco^000000, tente evitá-los.";
 	next;
@@ -959,7 +959,7 @@ dewata,179,204,4	script	Jovenzinha#dew	537,{
 	close;
 }
 
-dewata,280,236,4	script	Ex-viajante#dew	726,{
+dewata,280,236,4	script	Ex-viajante#dew	4_F_JOB_BLACKSMITH,{
 	mes "[Ex-viajante]";
 	mes "Eu não nasci em Dewata na verdade.";
 	mes "Mas, enquanto viajava encontrei este local...";
@@ -974,7 +974,7 @@ dewata,280,236,4	script	Ex-viajante#dew	726,{
 	close;
 }
 
-dewata,204,230,6	script	Mulher de dieta#dew	537,{
+dewata,204,230,6	script	Mulher de dieta#dew	4_M_DEWWOMAN,{
 	if (countitem(11533) == 0) {
 		mes "[Mulher de dieta]";
 		mes "Ah, que fome!";
@@ -1015,7 +1015,7 @@ dewata,204,230,6	script	Mulher de dieta#dew	537,{
 	}
 }
 
-dewata,117,156,6	script	Jovem sonhador#dew	538,{
+dewata,117,156,6	script	Jovem sonhador#dew	4_M_DEWBOY,{
 	mes "[Jovem sonhador]";
 	mes "Minha avó disse que, uma vez, um pássaro chamado ^FF0000Garuda^000000 voou por esta cidade.";
 	mes "E, depois, tivemos uma grande colheita e todos ficaram felizes.";
@@ -1027,7 +1027,7 @@ dewata,117,156,6	script	Jovem sonhador#dew	538,{
 	close;
 }
 
-dewata,144,216,4	script	Jovem decidido#dew	538,{
+dewata,144,216,4	script	Jovem decidido#dew	4_M_DEWBOY,{
 	mes "[Jovem decidido]";
 	mes "Meus pais costumavam dizer:";
 	next;
@@ -1046,7 +1046,7 @@ dewata,144,216,4	script	Jovem decidido#dew	538,{
 	close;
 }
 
-dewata,127,248,6	script	Criança Persistente#dew	539,{
+dewata,127,248,6	script	Criança Persistente#dew	4_M_DEWGIRL,{
 	mes "[Criança Persistente]";
 	mes "Minha família faz vinho tradicional em Dewata.";
 	mes "Também quero beber, meu pai diz que sou muito nova.";
@@ -1061,7 +1061,7 @@ dewata,127,248,6	script	Criança Persistente#dew	539,{
 	close;
 }
 
-dew_fild01,101,259,6	script	Guardião da Tribo Jaty	541,{
+dew_fild01,101,259,6	script	Guardião da Tribo Jaty	4_M_DEWZATIMAN,{
 	mes "[Guardião da Tribo Jaty]";
 	mes "Bem-vindo a tribo ^FF0000Jaty^000000.";
 	mes "Nossa tribo reverencia a força e a bravura.";
@@ -1069,7 +1069,7 @@ dew_fild01,101,259,6	script	Guardião da Tribo Jaty	541,{
 	close;
 }
 
-dew_fild01,106,306,4	script	Guerreiro da Tribo Jaty	541,{
+dew_fild01,106,306,4	script	Guerreiro da Tribo Jaty	4_M_DEWZATIMAN,{
 	mes "[Guerreiro da Tribo Jaty]";
 	mes "Eu quero me tornar o melhor assim como ninguém foi.";
 	next;

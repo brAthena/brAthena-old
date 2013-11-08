@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,157,146,6	script	Suhnbi#cash	85,{
+payon,157,146,6	script	Suhnbi#cash	4_M_03,{
 	disable_items;
 	mes "[Suhnbi]";
 	mes "Eu sou o Armeiro.";
@@ -149,7 +149,7 @@ S_RefineValidate:
 	close;
 }
 
-malangdo,221,174,6	script	Holink#mal_cash	559,{
+malangdo,221,174,6	script	Holink#mal_cash	4_CAT_ADV1,{
 	disable_items;
 	mes "[Holink]";
 	mes "Eu sou o meow~ Ferreiro Holink~";

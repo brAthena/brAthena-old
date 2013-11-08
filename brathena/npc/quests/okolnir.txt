@@ -2796,22 +2796,22 @@ que_qsch04,345,23,0	warp	Gate02#gq_sch04	1,1,schg_cas04,369,306
 que_qsch04,113,165,0	warp	windpath02_sch04	1,1,que_qsch04,139,172
 que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306
 que_qsch05,113,165,0	warp	windpath02_sch05	1,1,que_qsch05,139,172
-arug_cas01,161,371,3	duplicate(guiaSE)	Guia#arug_cas01	899
-que_qaru01,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas01	403
-que_qaru01,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas01	45,1,1
-que_qaru01,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru01	844
-que_qaru01,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru01	844
-que_qaru01,1,1,0	duplicate(okolnir_SE)	#okolnir_aru01	844
-que_qaru01,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru01	844
-que_qaru01,2,1,0	duplicate(MirobfSE)	#miro_bf_aru01	844
-que_qaru01,2,2,0	duplicate(MirorfSE)	#miro_rf_aru01	844
-que_qaru01,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru01	844
-que_qaru01,132,172,0	duplicate(wind01SE)	windpath01_aru01	45,1,1
+arug_cas01,161,371,3	duplicate(guiaSE)	Guia#arug_cas01	4_M_HUMAN_02
+que_qaru01,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas01	4_F_VALKYRIE2
+que_qaru01,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas01	WARPNPC,1,1
+que_qaru01,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru01	CLEAR_NPC
+que_qaru01,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru01	CLEAR_NPC
+que_qaru01,1,1,0	duplicate(okolnir_SE)	#okolnir_aru01	CLEAR_NPC
+que_qaru01,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru01	CLEAR_NPC
+que_qaru01,2,1,0	duplicate(MirobfSE)	#miro_bf_aru01	CLEAR_NPC
+que_qaru01,2,2,0	duplicate(MirorfSE)	#miro_rf_aru01	CLEAR_NPC
+que_qaru01,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru01	CLEAR_NPC
+que_qaru01,132,172,0	duplicate(wind01SE)	windpath01_aru01	WARPNPC,1,1
 que_qaru01,131,136,3	duplicate(PiametSE)	Piamette#arug_cas01	1930
 que_qaru01,114,158,0	duplicate(eventstartSE)	#event_start1_aru01	-1,1,1
-que_qaru01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru01	844
-que_qaru01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru01	844
-que_qaru01,1,4,0	duplicate(piametteSE)	#piamette_aru01	844
+que_qaru01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru01	CLEAR_NPC
+que_qaru01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru01	CLEAR_NPC
+que_qaru01,1,4,0	duplicate(piametteSE)	#piamette_aru01	CLEAR_NPC
 que_qaru01,113,135,0	duplicate(getspellSE)	#getspell1_aru01	-1,1,1
 que_qaru01,146,150,0	duplicate(getspellSE)	#getspell2_aru01	-1,1,1
 que_qaru01,131,117,0	duplicate(getspellSE)	#getspell3_aru01	-1,1,1
@@ -2826,16 +2826,16 @@ que_qaru01,113,111,0	duplicate(cageSE)	#aru01_cage3	-1,1,1
 que_qaru01,161,105,0	duplicate(cageSE)	#aru01_cage4	-1,1,1
 que_qaru01,168,135,0	duplicate(cageSE)	#aru01_cage5	-1,1,1
 que_qaru01,150,159,0	duplicate(cageSE)	#aru01_cage6	-1,1,1
-que_qaru01,1,8,0	duplicate(mobctrlSE)	#gd_aru01_mobctrl	844
-que_qaru01,149,105,0	duplicate(wind03SE)	windpath3_aru01	45,1,1
-que_qaru01,128,104,0	duplicate(wind04SE)	windpath4_aru01	45,1,1
+que_qaru01,1,8,0	duplicate(mobctrlSE)	#gd_aru01_mobctrl	CLEAR_NPC
+que_qaru01,149,105,0	duplicate(wind03SE)	windpath3_aru01	WARPNPC,1,1
+que_qaru01,128,104,0	duplicate(wind04SE)	windpath4_aru01	WARPNPC,1,1
 que_qaru01,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru01	-1,5,5
 que_qaru01,229,297,0	duplicate(jin01SE)	#nmsomaru01_jin1	-1
-que_qaru01,2,8,0	duplicate(stone01SE)	#aru01_stone1	844
+que_qaru01,2,8,0	duplicate(stone01SE)	#aru01_stone1	CLEAR_NPC
 que_qaru01,275,299,0	duplicate(jin02SE)	#nmsomaru01_jin2	-1
-que_qaru01,2,9,0	duplicate(stone02SE)	#aru01_stone2	844
+que_qaru01,2,9,0	duplicate(stone02SE)	#aru01_stone2	CLEAR_NPC
 que_qaru01,251,340,0	duplicate(jin03SE)	#nmsomaru01_jin3	-1
-que_qaru01,2,10,0	duplicate(stone03SE)	#aru01_stone3	844
+que_qaru01,2,10,0	duplicate(stone03SE)	#aru01_stone3	CLEAR_NPC
 que_qaru01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_1	1752,4,4
 que_qaru01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_2	1752,4,4
 que_qaru01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru01_3	1752,4,4
@@ -2847,25 +2847,25 @@ que_qaru01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru01_ac4	1753,
 que_qaru01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru01_ac1	1933,4,4
 que_qaru01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru01_ac2	1933,4,4
 que_qaru01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru01_boss	1931
-que_qaru01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru01_gift	403
-que_qaru01,252,339,0	duplicate(agitgateSE)	#to_agit_aru01_gate	45,1,1
-que_qaru01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru01_time1	844
-arug_cas02,349,347,3	duplicate(guiaSE)	Guia#arug_cas02	899
-que_qaru02,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas02	403
-que_qaru02,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas02	45,1,1
-que_qaru02,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru02	844
-que_qaru02,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru02	844
-que_qaru02,1,1,0	duplicate(okolnir_SE)	#okolnir_aru02	844
-que_qaru02,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru02	844
-que_qaru02,2,1,0	duplicate(MirobfSE)	#miro_bf_aru02	844
-que_qaru02,2,2,0	duplicate(MirorfSE)	#miro_rf_aru02	844
-que_qaru02,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru02	844
-que_qaru02,132,172,0	duplicate(wind01SE)	windpath01_aru02	45,1,1
+que_qaru01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru01_gift	4_F_VALKYRIE2
+que_qaru01,252,339,0	duplicate(agitgateSE)	#to_agit_aru01_gate	WARPNPC,1,1
+que_qaru01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru01_time1	CLEAR_NPC
+arug_cas02,349,347,3	duplicate(guiaSE)	Guia#arug_cas02	4_M_HUMAN_02
+que_qaru02,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas02	4_F_VALKYRIE2
+que_qaru02,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas02	WARPNPC,1,1
+que_qaru02,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru02	CLEAR_NPC
+que_qaru02,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru02	CLEAR_NPC
+que_qaru02,1,1,0	duplicate(okolnir_SE)	#okolnir_aru02	CLEAR_NPC
+que_qaru02,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru02	CLEAR_NPC
+que_qaru02,2,1,0	duplicate(MirobfSE)	#miro_bf_aru02	CLEAR_NPC
+que_qaru02,2,2,0	duplicate(MirorfSE)	#miro_rf_aru02	CLEAR_NPC
+que_qaru02,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru02	CLEAR_NPC
+que_qaru02,132,172,0	duplicate(wind01SE)	windpath01_aru02	WARPNPC,1,1
 que_qaru02,131,136,3	duplicate(PiametSE)	Piamette#arug_cas02	1930
 que_qaru02,114,158,0	duplicate(eventstartSE)	#event_start1_aru02	-1,1,1
-que_qaru02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru02	844
-que_qaru02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru02	844
-que_qaru02,1,4,0	duplicate(piametteSE)	#piamette_aru02	844
+que_qaru02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru02	CLEAR_NPC
+que_qaru02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru02	CLEAR_NPC
+que_qaru02,1,4,0	duplicate(piametteSE)	#piamette_aru02	CLEAR_NPC
 que_qaru02,113,135,0	duplicate(getspellSE)	#getspell1_aru02	-1,1,1
 que_qaru02,146,150,0	duplicate(getspellSE)	#getspell2_aru02	-1,1,1
 que_qaru02,131,117,0	duplicate(getspellSE)	#getspell3_aru02	-1,1,1
@@ -2880,16 +2880,16 @@ que_qaru02,113,111,0	duplicate(cageSE)	#aru02_cage3	-1,1,1
 que_qaru02,161,105,0	duplicate(cageSE)	#aru02_cage4	-1,1,1
 que_qaru02,168,135,0	duplicate(cageSE)	#aru02_cage5	-1,1,1
 que_qaru02,150,159,0	duplicate(cageSE)	#aru02_cage6	-1,1,1
-que_qaru02,1,8,0	duplicate(mobctrlSE)	#gd_aru02_mobctrl	844
-que_qaru02,149,105,0	duplicate(wind03SE)	windpath3_aru02	45,1,1
-que_qaru02,128,104,0	duplicate(wind04SE)	windpath4_aru02	45,1,1
+que_qaru02,1,8,0	duplicate(mobctrlSE)	#gd_aru02_mobctrl	CLEAR_NPC
+que_qaru02,149,105,0	duplicate(wind03SE)	windpath3_aru02	WARPNPC,1,1
+que_qaru02,128,104,0	duplicate(wind04SE)	windpath4_aru02	WARPNPC,1,1
 que_qaru02,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru02	-1,5,5
 que_qaru02,229,297,0	duplicate(jin01SE)	#nmsomaru02_jin1	-1
-que_qaru02,2,8,0	duplicate(stone01SE)	#aru02_stone1	844
+que_qaru02,2,8,0	duplicate(stone01SE)	#aru02_stone1	CLEAR_NPC
 que_qaru02,275,299,0	duplicate(jin02SE)	#nmsomaru02_jin2	-1
-que_qaru02,2,9,0	duplicate(stone02SE)	#aru02_stone2	844
+que_qaru02,2,9,0	duplicate(stone02SE)	#aru02_stone2	CLEAR_NPC
 que_qaru02,251,340,0	duplicate(jin03SE)	#nmsomaru02_jin3	-1
-que_qaru02,2,10,0	duplicate(stone03SE)	#aru02_stone3	844
+que_qaru02,2,10,0	duplicate(stone03SE)	#aru02_stone3	CLEAR_NPC
 que_qaru02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_1	1752,4,4
 que_qaru02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_2	1752,4,4
 que_qaru02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru02_3	1752,4,4
@@ -2901,25 +2901,25 @@ que_qaru02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru02_ac4	1753,
 que_qaru02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru02_ac1	1933,4,4
 que_qaru02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru02_ac2	1933,4,4
 que_qaru02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru02_boss	1931
-que_qaru02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru02_gift	403
-que_qaru02,252,339,0	duplicate(agitgateSE)	#to_agit_aru02_gate	45,1,1
-que_qaru02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru02_time1	844
-arug_cas03,324,161,3	duplicate(guiaSE)	Guia#arug_cas03	899
-que_qaru03,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas03	403
-que_qaru03,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas03	45,1,1
-que_qaru03,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru03	844
-que_qaru03,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru03	844
-que_qaru03,1,1,0	duplicate(okolnir_SE)	#okolnir_aru03	844
-que_qaru03,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru03	844
-que_qaru03,2,1,0	duplicate(MirobfSE)	#miro_bf_aru03	844
-que_qaru03,2,2,0	duplicate(MirorfSE)	#miro_rf_aru03	844
-que_qaru03,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru03	844
-que_qaru03,132,172,0	duplicate(wind01SE)	windpath01_aru03	45,1,1
+que_qaru02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru02_gift	4_F_VALKYRIE2
+que_qaru02,252,339,0	duplicate(agitgateSE)	#to_agit_aru02_gate	WARPNPC,1,1
+que_qaru02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru02_time1	CLEAR_NPC
+arug_cas03,324,161,3	duplicate(guiaSE)	Guia#arug_cas03	4_M_HUMAN_02
+que_qaru03,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas03	4_F_VALKYRIE2
+que_qaru03,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas03	WARPNPC,1,1
+que_qaru03,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru03	CLEAR_NPC
+que_qaru03,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru03	CLEAR_NPC
+que_qaru03,1,1,0	duplicate(okolnir_SE)	#okolnir_aru03	CLEAR_NPC
+que_qaru03,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru03	CLEAR_NPC
+que_qaru03,2,1,0	duplicate(MirobfSE)	#miro_bf_aru03	CLEAR_NPC
+que_qaru03,2,2,0	duplicate(MirorfSE)	#miro_rf_aru03	CLEAR_NPC
+que_qaru03,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru03	CLEAR_NPC
+que_qaru03,132,172,0	duplicate(wind01SE)	windpath01_aru03	WARPNPC,1,1
 que_qaru03,131,136,3	duplicate(PiametSE)	Piamette#arug_cas03	1930
 que_qaru03,114,158,0	duplicate(eventstartSE)	#event_start1_aru03	-1,1,1
-que_qaru03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru03	844
-que_qaru03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru03	844
-que_qaru03,1,4,0	duplicate(piametteSE)	#piamette_aru03	844
+que_qaru03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru03	CLEAR_NPC
+que_qaru03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru03	CLEAR_NPC
+que_qaru03,1,4,0	duplicate(piametteSE)	#piamette_aru03	CLEAR_NPC
 que_qaru03,113,135,0	duplicate(getspellSE)	#getspell1_aru03	-1,1,1
 que_qaru03,146,150,0	duplicate(getspellSE)	#getspell2_aru03	-1,1,1
 que_qaru03,131,117,0	duplicate(getspellSE)	#getspell3_aru03	-1,1,1
@@ -2934,16 +2934,16 @@ que_qaru03,113,111,0	duplicate(cageSE)	#aru03_cage3	-1,1,1
 que_qaru03,161,105,0	duplicate(cageSE)	#aru03_cage4	-1,1,1
 que_qaru03,168,135,0	duplicate(cageSE)	#aru03_cage5	-1,1,1
 que_qaru03,150,159,0	duplicate(cageSE)	#aru03_cage6	-1,1,1
-que_qaru03,1,8,0	duplicate(mobctrlSE)	#gd_aru03_mobctrl	844
-que_qaru03,149,105,0	duplicate(wind03SE)	windpath3_aru03	45,1,1
-que_qaru03,128,104,0	duplicate(wind04SE)	windpath4_aru03	45,1,1
+que_qaru03,1,8,0	duplicate(mobctrlSE)	#gd_aru03_mobctrl	CLEAR_NPC
+que_qaru03,149,105,0	duplicate(wind03SE)	windpath3_aru03	WARPNPC,1,1
+que_qaru03,128,104,0	duplicate(wind04SE)	windpath4_aru03	WARPNPC,1,1
 que_qaru03,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru03	-1,5,5
 que_qaru03,229,297,0	duplicate(jin01SE)	#nmsomaru03_jin1	-1
-que_qaru03,2,8,0	duplicate(stone01SE)	#aru03_stone1	844
+que_qaru03,2,8,0	duplicate(stone01SE)	#aru03_stone1	CLEAR_NPC
 que_qaru03,275,299,0	duplicate(jin02SE)	#nmsomaru03_jin2	-1
-que_qaru03,2,9,0	duplicate(stone02SE)	#aru03_stone2	844
+que_qaru03,2,9,0	duplicate(stone02SE)	#aru03_stone2	CLEAR_NPC
 que_qaru03,251,340,0	duplicate(jin03SE)	#nmsomaru03_jin3	-1
-que_qaru03,2,10,0	duplicate(stone03SE)	#aru03_stone3	844
+que_qaru03,2,10,0	duplicate(stone03SE)	#aru03_stone3	CLEAR_NPC
 que_qaru03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_1	1752,4,4
 que_qaru03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_2	1752,4,4
 que_qaru03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru03_3	1752,4,4
@@ -2955,25 +2955,25 @@ que_qaru03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru03_ac4	1753,
 que_qaru03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru03_ac1	1933,4,4
 que_qaru03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru03_ac2	1933,4,4
 que_qaru03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru03_boss	1931
-que_qaru03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru03_gift	403
-que_qaru03,252,339,0	duplicate(agitgateSE)	#to_agit_aru03_gate	45,1,1
-que_qaru03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru03_time1	844
-arug_cas04,324,161,3	duplicate(guiaSE)	Guia#arug_cas04	899
-que_qaru04,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas04	403
-que_qaru04,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas04	45,1,1
-que_qaru04,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru04	844
-que_qaru04,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru04	844
-que_qaru04,1,1,0	duplicate(okolnir_SE)	#okolnir_aru04	844
-que_qaru04,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru04	844
-que_qaru04,2,1,0	duplicate(MirobfSE)	#miro_bf_aru04	844
-que_qaru04,2,2,0	duplicate(MirorfSE)	#miro_rf_aru04	844
-que_qaru04,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru04	844
-que_qaru04,132,172,0	duplicate(wind01SE)	windpath01_aru04	45,1,1
+que_qaru03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru03_gift	4_F_VALKYRIE2
+que_qaru03,252,339,0	duplicate(agitgateSE)	#to_agit_aru03_gate	WARPNPC,1,1
+que_qaru03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru03_time1	CLEAR_NPC
+arug_cas04,324,161,3	duplicate(guiaSE)	Guia#arug_cas04	4_M_HUMAN_02
+que_qaru04,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas04	4_F_VALKYRIE2
+que_qaru04,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas04	WARPNPC,1,1
+que_qaru04,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru04	CLEAR_NPC
+que_qaru04,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru04	CLEAR_NPC
+que_qaru04,1,1,0	duplicate(okolnir_SE)	#okolnir_aru04	CLEAR_NPC
+que_qaru04,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru04	CLEAR_NPC
+que_qaru04,2,1,0	duplicate(MirobfSE)	#miro_bf_aru04	CLEAR_NPC
+que_qaru04,2,2,0	duplicate(MirorfSE)	#miro_rf_aru04	CLEAR_NPC
+que_qaru04,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru04	CLEAR_NPC
+que_qaru04,132,172,0	duplicate(wind01SE)	windpath01_aru04	WARPNPC,1,1
 que_qaru04,131,136,3	duplicate(PiametSE)	Piamette#arug_cas04	1930
 que_qaru04,114,158,0	duplicate(eventstartSE)	#event_start1_aru04	-1,1,1
-que_qaru04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru04	844
-que_qaru04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru04	844
-que_qaru04,1,4,0	duplicate(piametteSE)	#piamette_aru04	844
+que_qaru04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru04	CLEAR_NPC
+que_qaru04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru04	CLEAR_NPC
+que_qaru04,1,4,0	duplicate(piametteSE)	#piamette_aru04	CLEAR_NPC
 que_qaru04,113,135,0	duplicate(getspellSE)	#getspell1_aru04	-1,1,1
 que_qaru04,146,150,0	duplicate(getspellSE)	#getspell2_aru04	-1,1,1
 que_qaru04,131,117,0	duplicate(getspellSE)	#getspell3_aru04	-1,1,1
@@ -2988,16 +2988,16 @@ que_qaru04,113,111,0	duplicate(cageSE)	#aru04_cage3	-1,1,1
 que_qaru04,161,105,0	duplicate(cageSE)	#aru04_cage4	-1,1,1
 que_qaru04,168,135,0	duplicate(cageSE)	#aru04_cage5	-1,1,1
 que_qaru04,150,159,0	duplicate(cageSE)	#aru04_cage6	-1,1,1
-que_qaru04,1,8,0	duplicate(mobctrlSE)	#gd_aru04_mobctrl	844
-que_qaru04,149,105,0	duplicate(wind03SE)	windpath3_aru04	45,1,1
-que_qaru04,128,104,0	duplicate(wind04SE)	windpath4_aru04	45,1,1
+que_qaru04,1,8,0	duplicate(mobctrlSE)	#gd_aru04_mobctrl	CLEAR_NPC
+que_qaru04,149,105,0	duplicate(wind03SE)	windpath3_aru04	WARPNPC,1,1
+que_qaru04,128,104,0	duplicate(wind04SE)	windpath4_aru04	WARPNPC,1,1
 que_qaru04,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru04	-1,5,5
 que_qaru04,229,297,0	duplicate(jin01SE)	#nmsomaru04_jin1	-1
-que_qaru04,2,8,0	duplicate(stone01SE)	#aru04_stone1	844
+que_qaru04,2,8,0	duplicate(stone01SE)	#aru04_stone1	CLEAR_NPC
 que_qaru04,275,299,0	duplicate(jin02SE)	#nmsomaru04_jin2	-1
-que_qaru04,2,9,0	duplicate(stone02SE)	#aru04_stone2	844
+que_qaru04,2,9,0	duplicate(stone02SE)	#aru04_stone2	CLEAR_NPC
 que_qaru04,251,340,0	duplicate(jin03SE)	#nmsomaru04_jin3	-1
-que_qaru04,2,10,0	duplicate(stone03SE)	#aru04_stone3	844
+que_qaru04,2,10,0	duplicate(stone03SE)	#aru04_stone3	CLEAR_NPC
 que_qaru04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_1	1752,4,4
 que_qaru04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_2	1752,4,4
 que_qaru04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_3	1752,4,4
@@ -3009,25 +3009,25 @@ que_qaru04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru04_ac4	1753,
 que_qaru04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru04_ac1	1933,4,4
 que_qaru04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru04_ac2	1933,4,4
 que_qaru04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru04_boss	1931
-que_qaru04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru04_gift	403
-que_qaru04,252,339,0	duplicate(agitgateSE)	#to_agit_aru04_gate	45,1,1
-que_qaru04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru04_time1	844
-arug_cas05,324,161,3	duplicate(guiaSE)	Guia#arug_cas05	899
-que_qaru05,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas05	403
-que_qaru05,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas05	45,1,1
-que_qaru05,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru05	844
-que_qaru05,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru05	844
-que_qaru05,1,1,0	duplicate(okolnir_SE)	#okolnir_aru05	844
-que_qaru05,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru05	844
-que_qaru05,2,1,0	duplicate(MirobfSE)	#miro_bf_aru05	844
-que_qaru05,2,2,0	duplicate(MirorfSE)	#miro_rf_aru05	844
-que_qaru05,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru05	844
-que_qaru05,132,172,0	duplicate(wind01SE)	windpath01_aru05	45,1,1
+que_qaru04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru04_gift	4_F_VALKYRIE2
+que_qaru04,252,339,0	duplicate(agitgateSE)	#to_agit_aru04_gate	WARPNPC,1,1
+que_qaru04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru04_time1	CLEAR_NPC
+arug_cas05,324,161,3	duplicate(guiaSE)	Guia#arug_cas05	4_M_HUMAN_02
+que_qaru05,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas05	4_F_VALKYRIE2
+que_qaru05,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas05	WARPNPC,1,1
+que_qaru05,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru05	CLEAR_NPC
+que_qaru05,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru05	CLEAR_NPC
+que_qaru05,1,1,0	duplicate(okolnir_SE)	#okolnir_aru05	CLEAR_NPC
+que_qaru05,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru05	CLEAR_NPC
+que_qaru05,2,1,0	duplicate(MirobfSE)	#miro_bf_aru05	CLEAR_NPC
+que_qaru05,2,2,0	duplicate(MirorfSE)	#miro_rf_aru05	CLEAR_NPC
+que_qaru05,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru05	CLEAR_NPC
+que_qaru05,132,172,0	duplicate(wind01SE)	windpath01_aru05	WARPNPC,1,1
 que_qaru05,131,136,3	duplicate(PiametSE)	Piamette#arug_cas05	1930
 que_qaru05,114,158,0	duplicate(eventstartSE)	#event_start1_aru05	-1,1,1
-que_qaru05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru05	844
-que_qaru05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru05	844
-que_qaru05,1,4,0	duplicate(piametteSE)	#piamette_aru05	844
+que_qaru05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru05	CLEAR_NPC
+que_qaru05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru05	CLEAR_NPC
+que_qaru05,1,4,0	duplicate(piametteSE)	#piamette_aru05	CLEAR_NPC
 que_qaru05,113,135,0	duplicate(getspellSE)	#getspell1_aru05	-1,1,1
 que_qaru05,146,150,0	duplicate(getspellSE)	#getspell2_aru05	-1,1,1
 que_qaru05,131,117,0	duplicate(getspellSE)	#getspell3_aru05	-1,1,1
@@ -3042,16 +3042,16 @@ que_qaru05,113,111,0	duplicate(cageSE)	#aru05_cage3	-1,1,1
 que_qaru05,161,105,0	duplicate(cageSE)	#aru05_cage4	-1,1,1
 que_qaru05,168,135,0	duplicate(cageSE)	#aru05_cage5	-1,1,1
 que_qaru05,150,159,0	duplicate(cageSE)	#aru05_cage6	-1,1,1
-que_qaru05,1,8,0	duplicate(mobctrlSE)	#gd_aru05_mobctrl	844
-que_qaru05,149,105,0	duplicate(wind03SE)	windpath3_aru05	45,1,1
-que_qaru05,128,104,0	duplicate(wind04SE)	windpath4_aru05	45,1,1
+que_qaru05,1,8,0	duplicate(mobctrlSE)	#gd_aru05_mobctrl	CLEAR_NPC
+que_qaru05,149,105,0	duplicate(wind03SE)	windpath3_aru05	WARPNPC,1,1
+que_qaru05,128,104,0	duplicate(wind04SE)	windpath4_aru05	WARPNPC,1,1
 que_qaru05,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru05	-1,5,5
 que_qaru05,229,297,0	duplicate(jin01SE)	#nmsomaru05_jin1	-1
-que_qaru05,2,8,0	duplicate(stone01SE)	#aru05_stone1	844
+que_qaru05,2,8,0	duplicate(stone01SE)	#aru05_stone1	CLEAR_NPC
 que_qaru05,275,299,0	duplicate(jin02SE)	#nmsomaru05_jin2	-1
-que_qaru05,2,9,0	duplicate(stone02SE)	#aru05_stone2	844
+que_qaru05,2,9,0	duplicate(stone02SE)	#aru05_stone2	CLEAR_NPC
 que_qaru05,251,340,0	duplicate(jin03SE)	#nmsomaru05_jin3	-1
-que_qaru05,2,10,0	duplicate(stone03SE)	#aru05_stone3	844
+que_qaru05,2,10,0	duplicate(stone03SE)	#aru05_stone3	CLEAR_NPC
 que_qaru05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_1	1752,4,4
 que_qaru05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_2	1752,4,4
 que_qaru05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru05_3	1752,4,4
@@ -3063,25 +3063,25 @@ que_qaru05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#aru05_ac4	1753,
 que_qaru05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru05_ac1	1933,4,4
 que_qaru05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru05_ac2	1933,4,4
 que_qaru05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru05_boss	1931
-que_qaru05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru05_gift	403
-que_qaru05,252,339,0	duplicate(agitgateSE)	#to_agit_aru05_gate	45,1,1
-que_qaru05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru05_time1	844
-schg_cas01,376,307,3	duplicate(guiaSE)	Guia#schg_cas01	899
-que_qsch01,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas01	403
-que_qsch01,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas01	45,1,1
-que_qsch01,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch01	844
-que_qsch01,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch01	844
-que_qsch01,1,1,0	duplicate(okolnir_SE)	#okolnir_sch01	844
-que_qsch01,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch01	844
-que_qsch01,2,1,0	duplicate(MirobfSE)	#miro_bf_sch01	844
-que_qsch01,2,2,0	duplicate(MirorfSE)	#miro_rf_sch01	844
-que_qsch01,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch01	844
-que_qsch01,132,172,0	duplicate(wind01SE)	windpath01_sch01	45,1,1
+que_qaru05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru05_gift	4_F_VALKYRIE2
+que_qaru05,252,339,0	duplicate(agitgateSE)	#to_agit_aru05_gate	WARPNPC,1,1
+que_qaru05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru05_time1	CLEAR_NPC
+schg_cas01,376,307,3	duplicate(guiaSE)	Guia#schg_cas01	4_M_HUMAN_02
+que_qsch01,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas01	4_F_VALKYRIE2
+que_qsch01,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas01	WARPNPC,1,1
+que_qsch01,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch01	CLEAR_NPC
+que_qsch01,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch01	CLEAR_NPC
+que_qsch01,1,1,0	duplicate(okolnir_SE)	#okolnir_sch01	CLEAR_NPC
+que_qsch01,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch01	CLEAR_NPC
+que_qsch01,2,1,0	duplicate(MirobfSE)	#miro_bf_sch01	CLEAR_NPC
+que_qsch01,2,2,0	duplicate(MirorfSE)	#miro_rf_sch01	CLEAR_NPC
+que_qsch01,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch01	CLEAR_NPC
+que_qsch01,132,172,0	duplicate(wind01SE)	windpath01_sch01	WARPNPC,1,1
 que_qsch01,131,136,3	duplicate(PiametSE)	Piamette#schg_cas01	1930
 que_qsch01,114,158,0	duplicate(eventstartSE)	#event_start1_sch01	-1,1,1
-que_qsch01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch01	844
-que_qsch01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch01	844
-que_qsch01,1,4,0	duplicate(piametteSE)	#piamette_sch01	844
+que_qsch01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch01	CLEAR_NPC
+que_qsch01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch01	CLEAR_NPC
+que_qsch01,1,4,0	duplicate(piametteSE)	#piamette_sch01	CLEAR_NPC
 que_qsch01,113,135,0	duplicate(getspellSE)	#getspell1_sch01	-1,1,1
 que_qsch01,146,150,0	duplicate(getspellSE)	#getspell2_sch01	-1,1,1
 que_qsch01,131,117,0	duplicate(getspellSE)	#getspell3_sch01	-1,1,1
@@ -3096,16 +3096,16 @@ que_qsch01,113,111,0	duplicate(cageSE)	#sch01_cage3	-1,1,1
 que_qsch01,161,105,0	duplicate(cageSE)	#sch01_cage4	-1,1,1
 que_qsch01,168,135,0	duplicate(cageSE)	#sch01_cage5	-1,1,1
 que_qsch01,150,159,0	duplicate(cageSE)	#sch01_cage6	-1,1,1
-que_qsch01,1,8,0	duplicate(mobctrlSE)	#gd_sch01_mobctrl	844
-que_qsch01,149,105,0	duplicate(wind03SE)	windpath3_sch01	45,1,1
-que_qsch01,128,104,0	duplicate(wind04SE)	windpath4_sch01	45,1,1
+que_qsch01,1,8,0	duplicate(mobctrlSE)	#gd_sch01_mobctrl	CLEAR_NPC
+que_qsch01,149,105,0	duplicate(wind03SE)	windpath3_sch01	WARPNPC,1,1
+que_qsch01,128,104,0	duplicate(wind04SE)	windpath4_sch01	WARPNPC,1,1
 que_qsch01,253,273,0	duplicate(nmswitchSE)	#nm_switch_sch01	-1,5,5
 que_qsch01,229,297,0	duplicate(jin01SE)	#nmsomsch01_jin1	-1
-que_qsch01,2,8,0	duplicate(stone01SE)	#sch01_stone1	844
+que_qsch01,2,8,0	duplicate(stone01SE)	#sch01_stone1	CLEAR_NPC
 que_qsch01,275,299,0	duplicate(jin02SE)	#nmsomsch01_jin2	-1
-que_qsch01,2,9,0	duplicate(stone02SE)	#sch01_stone2	844
+que_qsch01,2,9,0	duplicate(stone02SE)	#sch01_stone2	CLEAR_NPC
 que_qsch01,251,340,0	duplicate(jin03SE)	#nmsomsch01_jin3	-1
-que_qsch01,2,10,0	duplicate(stone03SE)	#sch01_stone3	844
+que_qsch01,2,10,0	duplicate(stone03SE)	#sch01_stone3	CLEAR_NPC
 que_qsch01,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_1	1752,4,4
 que_qsch01,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_2	1752,4,4
 que_qsch01,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch01_3	1752,4,4
@@ -3117,25 +3117,25 @@ que_qsch01,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch01_ac4	1753,
 que_qsch01,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch01_ac1	1933,4,4
 que_qsch01,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch01_ac2	1933,4,4
 que_qsch01,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch01_boss	1931
-que_qsch01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch01_gift	403
-que_qsch01,252,339,0	duplicate(agitgateSE)	#to_agit_sch01_gate	45,1,1
-que_qsch01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch01_time1	844
-schg_cas02,181,335,3	duplicate(guiaSE)	Guia#schg_cas02	899
-que_qsch02,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas02	403
-que_qsch02,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas02	45,1,1
-que_qsch02,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch02	844
-que_qsch02,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch02	844
-que_qsch02,1,1,0	duplicate(okolnir_SE)	#okolnir_sch02	844
-que_qsch02,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch02	844
-que_qsch02,2,1,0	duplicate(MirobfSE)	#miro_bf_sch02	844
-que_qsch02,2,2,0	duplicate(MirorfSE)	#miro_rf_sch02	844
-que_qsch02,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch02	844
-que_qsch02,132,172,0	duplicate(wind01SE)	windpath01_sch02	45,1,1
+que_qsch01,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch01_gift	4_F_VALKYRIE2
+que_qsch01,252,339,0	duplicate(agitgateSE)	#to_agit_sch01_gate	WARPNPC,1,1
+que_qsch01,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch01_time1	CLEAR_NPC
+schg_cas02,181,335,3	duplicate(guiaSE)	Guia#schg_cas02	4_M_HUMAN_02
+que_qsch02,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas02	4_F_VALKYRIE2
+que_qsch02,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas02	WARPNPC,1,1
+que_qsch02,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch02	CLEAR_NPC
+que_qsch02,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch02	CLEAR_NPC
+que_qsch02,1,1,0	duplicate(okolnir_SE)	#okolnir_sch02	CLEAR_NPC
+que_qsch02,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch02	CLEAR_NPC
+que_qsch02,2,1,0	duplicate(MirobfSE)	#miro_bf_sch02	CLEAR_NPC
+que_qsch02,2,2,0	duplicate(MirorfSE)	#miro_rf_sch02	CLEAR_NPC
+que_qsch02,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch02	CLEAR_NPC
+que_qsch02,132,172,0	duplicate(wind01SE)	windpath01_sch02	WARPNPC,1,1
 que_qsch02,131,136,3	duplicate(PiametSE)	Piamette#schg_cas02	1930
 que_qsch02,114,158,0	duplicate(eventstartSE)	#event_start1_sch02	-1,1,1
-que_qsch02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch02	844
-que_qsch02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch02	844
-que_qsch02,1,4,0	duplicate(piametteSE)	#piamette_sch02	844
+que_qsch02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch02	CLEAR_NPC
+que_qsch02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch02	CLEAR_NPC
+que_qsch02,1,4,0	duplicate(piametteSE)	#piamette_sch02	CLEAR_NPC
 que_qsch02,113,135,0	duplicate(getspellSE)	#getspell1_sch02	-1,1,1
 que_qsch02,146,150,0	duplicate(getspellSE)	#getspell2_sch02	-1,1,1
 que_qsch02,131,117,0	duplicate(getspellSE)	#getspell3_sch02	-1,1,1
@@ -3150,16 +3150,16 @@ que_qsch02,113,111,0	duplicate(cageSE)	#sch02_cage3	-1,1,1
 que_qsch02,161,105,0	duplicate(cageSE)	#sch02_cage4	-1,1,1
 que_qsch02,168,135,0	duplicate(cageSE)	#sch02_cage5	-1,1,1
 que_qsch02,150,159,0	duplicate(cageSE)	#sch02_cage6	-1,1,1
-que_qsch02,1,8,0	duplicate(mobctrlSE)	#gd_sch02_mobctrl	844
-que_qsch02,149,105,0	duplicate(wind03SE)	windpath3_sch02	45,1,1
-que_qsch02,128,104,0	duplicate(wind04SE)	windpath4_sch02	45,1,1
+que_qsch02,1,8,0	duplicate(mobctrlSE)	#gd_sch02_mobctrl	CLEAR_NPC
+que_qsch02,149,105,0	duplicate(wind03SE)	windpath3_sch02	WARPNPC,1,1
+que_qsch02,128,104,0	duplicate(wind04SE)	windpath4_sch02	WARPNPC,1,1
 que_qsch02,253,273,0	duplicate(nmswitchSE)	#nm_switch_sch02	-1,5,5
 que_qsch02,229,297,0	duplicate(jin01SE)	#nmsomsch02_jin1	-1
-que_qsch02,2,8,0	duplicate(stone01SE)	#sch02_stone1	844
+que_qsch02,2,8,0	duplicate(stone01SE)	#sch02_stone1	CLEAR_NPC
 que_qsch02,275,299,0	duplicate(jin02SE)	#nmsomsch02_jin2	-1
-que_qsch02,2,9,0	duplicate(stone02SE)	#sch02_stone2	844
+que_qsch02,2,9,0	duplicate(stone02SE)	#sch02_stone2	CLEAR_NPC
 que_qsch02,251,340,0	duplicate(jin03SE)	#nmsomsch02_jin3	-1
-que_qsch02,2,10,0	duplicate(stone03SE)	#sch02_stone3	844
+que_qsch02,2,10,0	duplicate(stone03SE)	#sch02_stone3	CLEAR_NPC
 que_qsch02,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_1	1752,4,4
 que_qsch02,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_2	1752,4,4
 que_qsch02,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch02_3	1752,4,4
@@ -3171,25 +3171,25 @@ que_qsch02,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch02_ac4	1753,
 que_qsch02,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch02_ac1	1933,4,4
 que_qsch02,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch02_ac2	1933,4,4
 que_qsch02,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch02_boss	1931
-que_qsch02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch02_gift	403
-que_qsch02,252,339,0	duplicate(agitgateSE)	#to_agit_sch02_gate	45,1,1
-que_qsch02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch02_time1	844
-schg_cas03,84,101,3	duplicate(guiaSE)	Guia#schg_cas03	899
-que_qsch03,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas03	403
-que_qsch03,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas03	45,1,1
-que_qsch03,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch03	844
-que_qsch03,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch03	844
-que_qsch03,1,1,0	duplicate(okolnir_SE)	#okolnir_sch03	844
-que_qsch03,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch03	844
-que_qsch03,2,1,0	duplicate(MirobfSE)	#miro_bf_sch03	844
-que_qsch03,2,2,0	duplicate(MirorfSE)	#miro_rf_sch03	844
-que_qsch03,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch03	844
-que_qsch03,132,172,0	duplicate(wind01SE)	windpath01_sch03	45,1,1
+que_qsch02,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch02_gift	4_F_VALKYRIE2
+que_qsch02,252,339,0	duplicate(agitgateSE)	#to_agit_sch02_gate	WARPNPC,1,1
+que_qsch02,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch02_time1	CLEAR_NPC
+schg_cas03,84,101,3	duplicate(guiaSE)	Guia#schg_cas03	4_M_HUMAN_02
+que_qsch03,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas03	4_F_VALKYRIE2
+que_qsch03,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas03	WARPNPC,1,1
+que_qsch03,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch03	CLEAR_NPC
+que_qsch03,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch03	CLEAR_NPC
+que_qsch03,1,1,0	duplicate(okolnir_SE)	#okolnir_sch03	CLEAR_NPC
+que_qsch03,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch03	CLEAR_NPC
+que_qsch03,2,1,0	duplicate(MirobfSE)	#miro_bf_sch03	CLEAR_NPC
+que_qsch03,2,2,0	duplicate(MirorfSE)	#miro_rf_sch03	CLEAR_NPC
+que_qsch03,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch03	CLEAR_NPC
+que_qsch03,132,172,0	duplicate(wind01SE)	windpath01_sch03	WARPNPC,1,1
 que_qsch03,131,136,3	duplicate(PiametSE)	Piamette#schg_cas03	1930
 que_qsch03,114,158,0	duplicate(eventstartSE)	#event_start1_sch03	-1,1,1
-que_qsch03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch03	844
-que_qsch03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch03	844
-que_qsch03,1,4,0	duplicate(piametteSE)	#piamette_sch03	844
+que_qsch03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch03	CLEAR_NPC
+que_qsch03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch03	CLEAR_NPC
+que_qsch03,1,4,0	duplicate(piametteSE)	#piamette_sch03	CLEAR_NPC
 que_qsch03,113,135,0	duplicate(getspellSE)	#getspell1_sch03	-1,1,1
 que_qsch03,146,150,0	duplicate(getspellSE)	#getspell2_sch03	-1,1,1
 que_qsch03,131,117,0	duplicate(getspellSE)	#getspell3_sch03	-1,1,1
@@ -3204,16 +3204,16 @@ que_qsch03,113,111,0	duplicate(cageSE)	#sch03_cage3	-1,1,1
 que_qsch03,161,105,0	duplicate(cageSE)	#sch03_cage4	-1,1,1
 que_qsch03,168,135,0	duplicate(cageSE)	#sch03_cage5	-1,1,1
 que_qsch03,150,159,0	duplicate(cageSE)	#sch03_cage6	-1,1,1
-que_qsch03,1,8,0	duplicate(mobctrlSE)	#gd_sch03_mobctrl	844
-que_qsch03,149,105,0	duplicate(wind03SE)	windpath3_sch03	45,1,1
-que_qsch03,128,104,0	duplicate(wind04SE)	windpath4_sch03	45,1,1
+que_qsch03,1,8,0	duplicate(mobctrlSE)	#gd_sch03_mobctrl	CLEAR_NPC
+que_qsch03,149,105,0	duplicate(wind03SE)	windpath3_sch03	WARPNPC,1,1
+que_qsch03,128,104,0	duplicate(wind04SE)	windpath4_sch03	WARPNPC,1,1
 que_qsch03,253,273,0	duplicate(nmswitchSE)	#nm_switch_sch03	-1,5,5
 que_qsch03,229,297,0	duplicate(jin01SE)	#nmsomsch03_jin1	-1
-que_qsch03,2,8,0	duplicate(stone01SE)	#sch03_stone1	844
+que_qsch03,2,8,0	duplicate(stone01SE)	#sch03_stone1	CLEAR_NPC
 que_qsch03,275,299,0	duplicate(jin02SE)	#nmsomsch03_jin2	-1
-que_qsch03,2,9,0	duplicate(stone02SE)	#sch03_stone2	844
+que_qsch03,2,9,0	duplicate(stone02SE)	#sch03_stone2	CLEAR_NPC
 que_qsch03,251,340,0	duplicate(jin03SE)	#nmsomsch03_jin3	-1
-que_qsch03,2,10,0	duplicate(stone03SE)	#sch03_stone3	844
+que_qsch03,2,10,0	duplicate(stone03SE)	#sch03_stone3	CLEAR_NPC
 que_qsch03,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_1	1752,4,4
 que_qsch03,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_2	1752,4,4
 que_qsch03,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch03_3	1752,4,4
@@ -3225,25 +3225,25 @@ que_qsch03,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch03_ac4	1753,
 que_qsch03,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch03_ac1	1933,4,4
 que_qsch03,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch03_ac2	1933,4,4
 que_qsch03,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch03_boss	1931
-que_qsch03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch03_gift	403
-que_qsch03,252,339,0	duplicate(agitgateSE)	#to_agit_sch03_gate	45,1,1
-que_qsch03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch03_time1	844
-schg_cas04,376,307,3	duplicate(guiaSE)	Guia#schg_cas04	899
-que_qsch04,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas04	403
-que_qsch04,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas04	45,1,1
-que_qsch04,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch04	844
-que_qsch04,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch04	844
-que_qsch04,1,1,0	duplicate(okolnir_SE)	#okolnir_sch04	844
-que_qsch04,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch04	844
-que_qsch04,2,1,0	duplicate(MirobfSE)	#miro_bf_sch04	844
-que_qsch04,2,2,0	duplicate(MirorfSE)	#miro_rf_sch04	844
-que_qsch04,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch04	844
-que_qsch04,132,172,0	duplicate(wind01SE)	windpath01_sch04	45,1,1
+que_qsch03,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch03_gift	4_F_VALKYRIE2
+que_qsch03,252,339,0	duplicate(agitgateSE)	#to_agit_sch03_gate	WARPNPC,1,1
+que_qsch03,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch03_time1	CLEAR_NPC
+schg_cas04,376,307,3	duplicate(guiaSE)	Guia#schg_cas04	4_M_HUMAN_02
+que_qsch04,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas04	4_F_VALKYRIE2
+que_qsch04,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas04	WARPNPC,1,1
+que_qsch04,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch04	CLEAR_NPC
+que_qsch04,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch04	CLEAR_NPC
+que_qsch04,1,1,0	duplicate(okolnir_SE)	#okolnir_sch04	CLEAR_NPC
+que_qsch04,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch04	CLEAR_NPC
+que_qsch04,2,1,0	duplicate(MirobfSE)	#miro_bf_sch04	CLEAR_NPC
+que_qsch04,2,2,0	duplicate(MirorfSE)	#miro_rf_sch04	CLEAR_NPC
+que_qsch04,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch04	CLEAR_NPC
+que_qsch04,132,172,0	duplicate(wind01SE)	windpath01_sch04	WARPNPC,1,1
 que_qsch04,131,136,3	duplicate(PiametSE)	Piamette#schg_cas04	1930
 que_qsch04,114,158,0	duplicate(eventstartSE)	#event_start1_sch04	-1,1,1
-que_qsch04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch04	844
-que_qsch04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch04	844
-que_qsch04,1,4,0	duplicate(piametteSE)	#piamette_sch04	844
+que_qsch04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch04	CLEAR_NPC
+que_qsch04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch04	CLEAR_NPC
+que_qsch04,1,4,0	duplicate(piametteSE)	#piamette_sch04	CLEAR_NPC
 que_qsch04,113,135,0	duplicate(getspellSE)	#getspell1_sch04	-1,1,1
 que_qsch04,146,150,0	duplicate(getspellSE)	#getspell2_sch04	-1,1,1
 que_qsch04,131,117,0	duplicate(getspellSE)	#getspell3_sch04	-1,1,1
@@ -3258,16 +3258,16 @@ que_qsch04,113,111,0	duplicate(cageSE)	#sch04_cage3	-1,1,1
 que_qsch04,161,105,0	duplicate(cageSE)	#sch04_cage4	-1,1,1
 que_qsch04,168,135,0	duplicate(cageSE)	#sch04_cage5	-1,1,1
 que_qsch04,150,159,0	duplicate(cageSE)	#sch04_cage6	-1,1,1
-que_qsch04,1,8,0	duplicate(mobctrlSE)	#gd_sch04_mobctrl	844
-que_qsch04,149,105,0	duplicate(wind03SE)	windpath3_sch04	45,1,1
-que_qsch04,128,104,0	duplicate(wind04SE)	windpath4_sch04	45,1,1
+que_qsch04,1,8,0	duplicate(mobctrlSE)	#gd_sch04_mobctrl	CLEAR_NPC
+que_qsch04,149,105,0	duplicate(wind03SE)	windpath3_sch04	WARPNPC,1,1
+que_qsch04,128,104,0	duplicate(wind04SE)	windpath4_sch04	WARPNPC,1,1
 que_qsch04,253,273,0	duplicate(nmswitchSE)	#nm_switch_sch04	-1,5,5
 que_qsch04,229,297,0	duplicate(jin01SE)	#nmsomsch04_jin1	-1
-que_qsch04,2,8,0	duplicate(stone01SE)	#sch04_stone1	844
+que_qsch04,2,8,0	duplicate(stone01SE)	#sch04_stone1	CLEAR_NPC
 que_qsch04,275,299,0	duplicate(jin02SE)	#nmsomsch04_jin2	-1
-que_qsch04,2,9,0	duplicate(stone02SE)	#sch04_stone2	844
+que_qsch04,2,9,0	duplicate(stone02SE)	#sch04_stone2	CLEAR_NPC
 que_qsch04,251,340,0	duplicate(jin03SE)	#nmsomsch04_jin3	-1
-que_qsch04,2,10,0	duplicate(stone03SE)	#sch04_stone3	844
+que_qsch04,2,10,0	duplicate(stone03SE)	#sch04_stone3	CLEAR_NPC
 que_qsch04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_1	1752,4,4
 que_qsch04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_2	1752,4,4
 que_qsch04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch04_3	1752,4,4
@@ -3279,25 +3279,25 @@ que_qsch04,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch04_ac4	1753,
 que_qsch04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch04_ac1	1933,4,4
 que_qsch04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch04_ac2	1933,4,4
 que_qsch04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch04_boss	1931
-que_qsch04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch04_gift	403
-que_qsch04,252,339,0	duplicate(agitgateSE)	#to_agit_sch04_gate	45,1,1
-que_qsch04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch04_time1	844
-schg_cas05,376,307,3	duplicate(guiaSE)	Guia#schg_cas05	899
-que_qsch05,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas05	403
-que_qsch05,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas05	45,1,1
-que_qsch05,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch05	844
-que_qsch05,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch05	844
-que_qsch05,1,1,0	duplicate(okolnir_SE)	#okolnir_sch05	844
-que_qsch05,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch05	844
-que_qsch05,2,1,0	duplicate(MirobfSE)	#miro_bf_sch05	844
-que_qsch05,2,2,0	duplicate(MirorfSE)	#miro_rf_sch05	844
-que_qsch05,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch05	844
-que_qsch05,132,172,0	duplicate(wind01SE)	windpath01_sch05	45,1,1
+que_qsch04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch04_gift	4_F_VALKYRIE2
+que_qsch04,252,339,0	duplicate(agitgateSE)	#to_agit_sch04_gate	WARPNPC,1,1
+que_qsch04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch04_time1	CLEAR_NPC
+schg_cas05,376,307,3	duplicate(guiaSE)	Guia#schg_cas05	4_M_HUMAN_02
+que_qsch05,345,82,3	duplicate(WishSE)	Dama dos Desejos#schg_cas05	4_F_VALKYRIE2
+que_qsch05,346,81,0	duplicate(Gate01SE)	Gate01#schg_cas05	WARPNPC,1,1
+que_qsch05,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_sch05	CLEAR_NPC
+que_qsch05,1,4,0	duplicate(GateMob2)	#gq_miromob2_sch05	CLEAR_NPC
+que_qsch05,1,1,0	duplicate(okolnir_SE)	#okolnir_sch05	CLEAR_NPC
+que_qsch05,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_sch05	CLEAR_NPC
+que_qsch05,2,1,0	duplicate(MirobfSE)	#miro_bf_sch05	CLEAR_NPC
+que_qsch05,2,2,0	duplicate(MirorfSE)	#miro_rf_sch05	CLEAR_NPC
+que_qsch05,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch05	CLEAR_NPC
+que_qsch05,132,172,0	duplicate(wind01SE)	windpath01_sch05	WARPNPC,1,1
 que_qsch05,131,136,3	duplicate(PiametSE)	Piamette#schg_cas05	1930
 que_qsch05,114,158,0	duplicate(eventstartSE)	#event_start1_sch05	-1,1,1
-que_qsch05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch05	844
-que_qsch05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch05	844
-que_qsch05,1,4,0	duplicate(piametteSE)	#piamette_sch05	844
+que_qsch05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch05	CLEAR_NPC
+que_qsch05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch05	CLEAR_NPC
+que_qsch05,1,4,0	duplicate(piametteSE)	#piamette_sch05	CLEAR_NPC
 que_qsch05,113,135,0	duplicate(getspellSE)	#getspell1_sch05	-1,1,1
 que_qsch05,146,150,0	duplicate(getspellSE)	#getspell2_sch05	-1,1,1
 que_qsch05,131,117,0	duplicate(getspellSE)	#getspell3_sch05	-1,1,1
@@ -3312,16 +3312,16 @@ que_qsch05,113,111,0	duplicate(cageSE)	#sch05_cage3	-1,1,1
 que_qsch05,161,105,0	duplicate(cageSE)	#sch05_cage4	-1,1,1
 que_qsch05,168,135,0	duplicate(cageSE)	#sch05_cage5	-1,1,1
 que_qsch05,150,159,0	duplicate(cageSE)	#sch05_cage6	-1,1,1
-que_qsch05,1,8,0	duplicate(mobctrlSE)	#gd_sch05_mobctrl	844
-que_qsch05,149,105,0	duplicate(wind03SE)	windpath3_sch05	45,1,1
-que_qsch05,128,104,0	duplicate(wind04SE)	windpath4_sch05	45,1,1
+que_qsch05,1,8,0	duplicate(mobctrlSE)	#gd_sch05_mobctrl	CLEAR_NPC
+que_qsch05,149,105,0	duplicate(wind03SE)	windpath3_sch05	WARPNPC,1,1
+que_qsch05,128,104,0	duplicate(wind04SE)	windpath4_sch05	WARPNPC,1,1
 que_qsch05,253,273,0	duplicate(nmswitchSE)	#nm_switch_sch05	-1,5,5
 que_qsch05,229,297,0	duplicate(jin01SE)	#nmsomsch05_jin1	-1
-que_qsch05,2,8,0	duplicate(stone01SE)	#sch05_stone1	844
+que_qsch05,2,8,0	duplicate(stone01SE)	#sch05_stone1	CLEAR_NPC
 que_qsch05,275,299,0	duplicate(jin02SE)	#nmsomsch05_jin2	-1
-que_qsch05,2,9,0	duplicate(stone02SE)	#sch05_stone2	844
+que_qsch05,2,9,0	duplicate(stone02SE)	#sch05_stone2	CLEAR_NPC
 que_qsch05,251,340,0	duplicate(jin03SE)	#nmsomsch05_jin3	-1
-que_qsch05,2,10,0	duplicate(stone03SE)	#sch05_stone3	844
+que_qsch05,2,10,0	duplicate(stone03SE)	#sch05_stone3	CLEAR_NPC
 que_qsch05,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_1	1752,4,4
 que_qsch05,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_2	1752,4,4
 que_qsch05,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#sch05_3	1752,4,4
@@ -3333,9 +3333,9 @@ que_qsch05,279,300,3	duplicate(bloodyhuntSE)	Caçador Sanguinário#sch05_ac4	1753,
 que_qsch05,247,330,5	duplicate(templekeepSE)	Guardião do Templo#sch05_ac1	1933,4,4
 que_qsch05,255,330,3	duplicate(templekeepSE)	Guardião do Templo#sch05_ac2	1933,4,4
 que_qsch05,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#sch05_boss	1931
-que_qsch05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch05_gift	403
-que_qsch05,252,339,0	duplicate(agitgateSE)	#to_agit_sch05_gate	45,1,1
-que_qsch05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch05_time1	844
+que_qsch05,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#sch05_gift	4_F_VALKYRIE2
+que_qsch05,252,339,0	duplicate(agitgateSE)	#to_agit_sch05_gate	WARPNPC,1,1
+que_qsch05,1,6,0	duplicate(okolnirtimeSE)	#okolnir_sch05_time1	CLEAR_NPC
 
 // Spawn de Monstros
 que_qaru01,116,313,0,0	monster	Guarda do Jardim	1932,1,180000,0,0

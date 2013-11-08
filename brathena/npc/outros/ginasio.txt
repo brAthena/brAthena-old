@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,173,141,4	script	Ripped Cabus#GymPass	899,{
+payon,173,141,4	script	Ripped Cabus#GymPass	4_M_HUMAN_02,{
 	mes "[Ripped]";
 	mes "Opa! As pessoas não são";
 	mes "ativas fisicamente como";

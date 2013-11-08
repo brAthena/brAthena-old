@@ -29,7 +29,7 @@
 
 // Oficiais de Flavius
 //============================================================
-bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
+bat_room,133,178,5	script	Oficial de Flavius#01a	4_M_KY_KNT,{
   set .@npcbgf$, ((strnpcinfo(2) == "01a") || (strnpcinfo(2) == "02a") ? "Guillaume":"Croix");
   set .@npcbgf2$, ((strnpcinfo(2) == "01b") || (strnpcinfo(2) == "02b") ? "Guillaume":"Croix");
   set .@npcbgf3, ((strnpcinfo(2) == "01a") || (strnpcinfo(2) == "01b") ? 1:2);
@@ -90,12 +90,12 @@ bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
 }
 
 //============================================================
-bat_room,148,178,5	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#02a	418
-bat_room,133,121,1	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#01b	414
-bat_room,148,121,1	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#02b	414
+bat_room,148,178,5	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#02a	4_M_KY_KNT
+bat_room,133,121,1	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#01b	4_M_CRU_KNT
+bat_room,148,121,1	duplicate(Oficial de Flavius#01a)	Oficial de Flavius#02b	4_M_CRU_KNT
 //============================================================
 
-bat_room,135,178,5	script	Cavaleiro Guillaume#3	417,{
+bat_room,135,178,5	script	Cavaleiro Guillaume#3	4_M_KY_SOLD,{
 	mes "["+strnpcinfo(1)+"]";
 	mes "O objetivo principal da Arena Flavius é fazer 2 pontos antes que o seu inimigo através da destruição de seus cristais.";
 	next;
@@ -118,7 +118,7 @@ bat_room,135,178,5	script	Cavaleiro Guillaume#3	417,{
 }
 
 //============================================================
-bat_room,151,178,5	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Guillaume#4	417
-bat_room,135,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#3	413
-bat_room,151,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#4	413
+bat_room,151,178,5	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Guillaume#4	4_M_KY_SOLD
+bat_room,135,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#3	4_M_CRU_SOLD
+bat_room,151,121,1	duplicate(Cavaleiro Guillaume#3)	Cavaleiro Croix#4	4_M_CRU_SOLD
 //============================================================

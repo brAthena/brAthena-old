@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ama_in02,61,27,7	script	Alquimista#ama	749,{
+ama_in02,61,27,7	script	Alquimista#ama	4_M_ALCHE_B,{
 	mes "[Gregório Laspuchin]";
 	mes "Heeheeheeheheheh.";
 	mes "Isso é ótimo!";

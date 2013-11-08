@@ -25,7 +25,7 @@
 
 // Soup Quest
 //============================================================
-lou_in02,53,174,7	script	Employee#1	822,6,62,{
+lou_in02,53,174,7	script	Employee#1	4_M_CHNMAN,6,62,{
 	if (gettime(3) >= 10 && gettime(3) < 22) {
 		mes "[Chang Pai]";
 		mes "Welcome, welcome!";
@@ -100,7 +100,7 @@ OnTouch:
 	end;
 }
 
-lou_in02,76,181,3	script	Employee#2	822,2,2,{
+lou_in02,76,181,3	script	Employee#2	4_M_CHNMAN,2,2,{
 	if (gettime(3) >= 10 && gettime(3) < 22) {
 		mes "[Huang Jia Xian]";
 		mes "Welcome~";
@@ -190,7 +190,7 @@ OnTouch:
 	end;
 }
 
-lou_in02,61,175,3	script	Employee#3	818,2,2,{
+lou_in02,61,175,3	script	Employee#3	4_F_CHNWOMAN,2,2,{
 	if (gettime(3) >= 10 && gettime(3) < 22) {
 		if (ch_tre == 5) {
 			mes "[Ya Hua]";
@@ -287,7 +287,7 @@ OnTouch:
 	end;
 }
 
-lou_in02,62,183,3	script	Chef#1-2	820,2,2,{
+lou_in02,62,183,3	script	Chef#1-2	4_M_CHNCOOK,2,2,{
 	if (ch_tre > 0 && ch_tre < 4) {
 		mes "[Wang Shi Long]";
 		mes "Hm? Aren't you a customer? I am Wang Shi Long, the chef of this restaurant.";
@@ -423,7 +423,7 @@ OnTouch:
 	end;
 }
 
-lou_fild01,195,177,5	script	Jiu Lian Bu#1-1	819,{
+lou_fild01,195,177,5	script	Jiu Lian Bu#1-1	4_M_CHN8GUEK,{
 	//Remove outdated variables and attempt to preserve prior quest progress.
 	if (QL_ACCEPTSOUP) set ch_tre,1;
 	if (QL_GOTDRAGONSOUP) set ch_tre,2;
@@ -594,7 +594,7 @@ lou_fild01,195,177,5	script	Jiu Lian Bu#1-1	819,{
 	close;
 }
 
-lou_fild01,175,173,3	script	Jiu Lian Bu#1-2	819,{
+lou_fild01,175,173,3	script	Jiu Lian Bu#1-2	4_M_CHN8GUEK,{
 	emotion e_heh;
 	if (ch_tre == 4) {
 		mes "[Jiu Lian Bu]";
@@ -698,7 +698,7 @@ lou_fild01,175,173,3	script	Jiu Lian Bu#1-2	819,{
 	end;
 }
 
-lou_in02,50,185,5	script	Pot#1	111,{
+lou_in02,50,185,5	script	Pot#1	HIDDEN_NPC,{
 	if (ch_tre == 1) {
 		mes "^3131FFBeneath the shadows,";
 		mes "you find a large pot filled with dark, red liquid. What do you";
@@ -770,7 +770,7 @@ lou_in02,50,185,5	script	Pot#1	111,{
 	close;
 }
 
-lou_in02,49,185,5	script	Pot#2	111,{
+lou_in02,49,185,5	script	Pot#2	HIDDEN_NPC,{
 	if (ch_tre == 1) {
 		mes "^3131FFBeneath the shadows,";
 		mes "you find a large pot filled with dark, red liquid. What do you";
@@ -842,7 +842,7 @@ lou_in02,49,185,5	script	Pot#2	111,{
 	close;
 }
 
-lou_in02,58,183,5	script	Chef Assistant#lou1	823,5,5,{
+lou_in02,58,183,5	script	Chef Assistant#lou1	4_M_CHNMONK,5,5,{
 	mes "[Jin Wei Ling]";
 	mes "I used to be";
 	mes "an enthusiastic";
@@ -928,7 +928,7 @@ OnTouch:
 	end;
 }
 
-lou_in02,80,173,3	script	Li Min#lou	746,{
+lou_in02,80,173,3	script	Li Min#lou	4_F_MONK,{
 	if (ch_tre == 5) {
 		mes "[Li Min]";
 		mes "^666666*Sigh*^000000 I am so disappointed. I came all the way down here to taste the food! I can't believe they don't sell it anymore!";
@@ -965,7 +965,7 @@ lou_in02,80,173,3	script	Li Min#lou	746,{
 	close;
 }
 
-lou_in02,42,186,5	script	Liu Jia Lim#lou	816,{
+lou_in02,42,186,5	script	Liu Jia Lim#lou	4_F_CHNDRESS2,{
 	if (ch_tre == 5) {
 		mes "[Liu Jia Lim]";
 		mes "Do you know what was this restaurant's best dish throughout all of its history? Dragon Soup!";
@@ -993,7 +993,7 @@ lou_in02,42,186,5	script	Liu Jia Lim#lou	816,{
 	close;
 }
 
-lou_in02,43,169,1	script	Jiang Rong#lou	827,{
+lou_in02,43,169,1	script	Jiang Rong#lou	4_M_GRANDMONK,{
 	mes "[Jiang Rong]";
 	mes "Dragon Soup is known for its spicy, yet sweet and refreshing taste.";
 	next;
@@ -1010,7 +1010,7 @@ lou_in02,43,169,1	script	Jiang Rong#lou	827,{
 	close;
 }
 
-louyang,261,123,3	script	Chi Wu Ping#lou	824,{
+louyang,261,123,3	script	Chi Wu Ping#lou	4_M_CHNOLD,{
 	mes "[Chi Wu Ping]";
 	mes "I don't feel good...";
 	mes "So... Totally out of it...";
@@ -1044,7 +1044,7 @@ louyang,261,123,3	script	Chi Wu Ping#lou	824,{
 	close;
 }
 
-louyang,174,150,5	script	Jiu Chi Ling#lou	815,{
+louyang,174,150,5	script	Jiu Chi Ling#lou	4_F_CHNDRESS1,{
 	if (ch_tre == 5) {
 		mes "[Jiu Chi Ling]";
 		mes "There's a strange rumor going around that the restaurant is no longer selling Dragon Soup...";
@@ -1076,7 +1076,7 @@ louyang,174,150,5	script	Jiu Chi Ling#lou	815,{
 
 // Doctor Quest
 //============================================================
-lou_in02,265,69,5	script	Doctor#lyang	814,{
+lou_in02,265,69,5	script	Doctor#lyang	4_F_CHNDOCTOR,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a minute! Right now, you're over weight, so you cannot receive more items. Please store some of your things in Kafra Storage and try again.^000000";
 		close;
@@ -1487,7 +1487,7 @@ lou_in02,265,69,5	script	Doctor#lyang	814,{
 	close;
 }
 
-lou_in02,272,55,0	script	Familiar-Looking Patient	798,{
+lou_in02,272,55,0	script	Familiar-Looking Patient	4_M_NFMAN,{
 	if (ch_par == 0 ) {
 		mes "[??????]";
 		mes "Awwww.....";
@@ -1514,7 +1514,7 @@ lou_in02,272,55,0	script	Familiar-Looking Patient	798,{
 	}
 }
 
-lou_in02,248,166,2	script	Tool Shop Master#lou	824,{
+lou_in02,248,166,2	script	Tool Shop Master#lou	4_M_CHNOLD,{
 	if (ch_par < 2) {
 		mes "[Wang Chuiyi]";
 		mes "My business hasn't been doing";
@@ -1577,7 +1577,7 @@ lou_in02,248,166,2	script	Tool Shop Master#lou	824,{
 	}
 }
 
-lou_in02,201,166,4	script	Storage Keeper#lou	819,{
+lou_in02,201,166,4	script	Storage Keeper#lou	4_M_CHN8GUEK,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FF * Wait a moment!! *";
 		mes "Currently you're over weight, so you cannot receive more items into your inventory. Please store some of your items into Kafra Storage and try again.^000000";
@@ -1815,7 +1815,7 @@ lou_in02,201,166,4	script	Storage Keeper#lou	819,{
 	close;
 }
 
-lou_in02,210,47,0	script	City Hall Officer#lou	825,{
+lou_in02,210,47,0	script	City Hall Officer#lou	4_M_CHNSOLDIER,{
 	if (ch_par < 5) {
 		mes "[Jin Chiyuan]";
 		mes "^666666*Yawn~*^000000";
@@ -1970,7 +1970,7 @@ lou_in02,210,47,0	script	City Hall Officer#lou	825,{
 	close;
 }
 
-lou_in02,156,38,0	script	Studying Officer#lou	822,{
+lou_in02,156,38,0	script	Studying Officer#lou	4_M_CHNMAN,{
 	if (ch_par < 5) {
 		mes "[Huang Zhishu]";
 		mes ".....";
@@ -2141,7 +2141,7 @@ lou_in02,156,38,0	script	Studying Officer#lou	822,{
 	close;
 }
 
-lou_in02,204,169,0	script	Supply Stack#1lou	111,{
+lou_in02,204,169,0	script	Supply Stack#1lou	HIDDEN_NPC,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "^3355FF* Wait a minute! *";
@@ -2192,7 +2192,7 @@ lou_in02,204,169,0	script	Supply Stack#1lou	111,{
 	close;
 }
 
-lou_in02,207,168,0	script	Supply Stack#5lou	111,{
+lou_in02,207,168,0	script	Supply Stack#5lou	HIDDEN_NPC,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "^3355FF* Wait a minute !! *";
@@ -2245,7 +2245,7 @@ lou_in02,207,168,0	script	Supply Stack#5lou	111,{
 	close;
 }
 
-lou_in02,206,163,0	script	Supply Stack#4lou	111,{
+lou_in02,206,163,0	script	Supply Stack#4lou	HIDDEN_NPC,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "^3355FF* Wait a minute !! *";
@@ -2298,7 +2298,7 @@ lou_in02,206,163,0	script	Supply Stack#4lou	111,{
 	close;
 }
 
-lou_in02,198,170,0	script	Supply Stack#3lou	111,{
+lou_in02,198,170,0	script	Supply Stack#3lou	HIDDEN_NPC,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "^3355FF* Wait a minute !! *";
@@ -2351,7 +2351,7 @@ lou_in02,198,170,0	script	Supply Stack#3lou	111,{
 	close;
 }
 
-lou_in02,192,170,0	script	Supply Stack#2	111,{
+lou_in02,192,170,0	script	Supply Stack#2	HIDDEN_NPC,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "^3355FF* Wait a minute !! *";
@@ -2407,7 +2407,7 @@ lou_in02,203,159,0	warp	Storage Warp#4	1,1,louyang,129,118
 
 // Poison King Quest
 //============================================================
-lou_in02,123,39,4	script	Poison King#lou	824,{
+lou_in02,123,39,4	script	Poison King#lou	4_M_CHNOLD,{
 	// Attempt to preserve prior quest progress.
 	if (ch_poison == 0 && CL_POISONKING != 0) {
 		if (QL_POISONKING <= 12) set ch_poison,QL_POISONKING;
@@ -3399,7 +3399,7 @@ lou_in02,123,39,4	script	Poison King#lou	824,{
 	}
 }
 
-lou_in02,253,45,0	script	Employee#poison	822,{
+lou_in02,253,45,0	script	Employee#poison	4_M_CHNMAN,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF * Wait a minute! *";
 		mes "You're carrying too many items with you right now. Please put some of your things into Kafra Storage and try again.^000000";
@@ -4089,7 +4089,7 @@ lou_in02,253,45,0	script	Employee#poison	822,{
 	close;
 }
 
-lou_fild01,224,348,0	script	Lady#delivery	817,{
+lou_fild01,224,348,0	script	Lady#delivery	4_F_CHNDRESS3,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF * Wait a minute! *";
 		mes "Currently, you're carrying too many items. Please put some of your things into Kafra Storage and try again.^000000";
@@ -4240,7 +4240,7 @@ lou_fild01,224,348,0	script	Lady#delivery	817,{
 	}
 }
 
-lou_fild01,225,350,0	script	 #fire	139,{
+lou_fild01,225,350,0	script	 #fire	HIDDEN_WARP_NPC,{
 	end;
 }
 
@@ -4318,7 +4318,7 @@ OnTouch:
 	end;
 }
 
-louyang,217,278,0	script	 #lou_path	111,{
+louyang,217,278,0	script	 #lou_path	HIDDEN_NPC,{
 	if (ch_poison == 12 || ch_poison == 16) {
 		mes "["+strcharinfo(0)+"]";
 		mes "What's this?";
@@ -4334,7 +4334,7 @@ louyang,217,278,0	script	 #lou_path	111,{
 	end;
 }
 
-lou_in01,107,163,0	script	 #lou_drink1	111,{
+lou_in01,107,163,0	script	 #lou_drink1	HIDDEN_NPC,{
 	if (ch_poison == 12) {
 		mes "^3355FFYou found a drink bottle that's possibly owned by Bai Long, lord of Louyang.^00000";
 		next;
@@ -4366,7 +4366,7 @@ lou_in01,107,163,0	script	 #lou_drink1	111,{
 	close;
 }
 
-lou_in01,118,167,0	script	 #lou_drink2	111,{
+lou_in01,118,167,0	script	 #lou_drink2	HIDDEN_NPC,{
 	if (ch_poison == 12) {
 		mes "^3355FFYou squeeze through the crack as quickly as you can.^000000";
 		close2;
@@ -4382,7 +4382,7 @@ lou_in01,118,167,0	script	 #lou_drink2	111,{
 	end;
 }
 
-lou_in01,99,158,4	script	Lord#bailong	821,{
+lou_in01,99,158,4	script	Lord#bailong	4_M_CHNGENERL,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF * Wait a minute! *";
 		mes "Right now you're carrying too many items. Please put some of your things into Kafra Storage and try again.^000000";
@@ -4476,7 +4476,7 @@ lou_in01,99,158,4	script	Lord#bailong	821,{
 	}
 }
 
-lou_in01,111,151,4	script	Soldier#bailong1	825,{
+lou_in01,111,151,4	script	Soldier#bailong1	4_M_CHNSOLDIER,{
 	if (ch_poison == 12 || ch_poison == 16) {
 		mes "[Soldier]";
 		mes "Hey...";
@@ -4498,7 +4498,7 @@ lou_in01,111,151,4	script	Soldier#bailong1	825,{
 	close;
 }
 
-lou_in01,91,151,4	script	Soldier#bailong2	825,{
+lou_in01,91,151,4	script	Soldier#bailong2	4_M_CHNSOLDIER,{
 	if (ch_poison == 12 || ch_poison == 16) {
 		mes "[Soldier]";
 		mes "Huh...?";
@@ -4531,7 +4531,7 @@ lou_in01,91,151,4	script	Soldier#bailong2	825,{
 	close;
 }
 
-lou_in01,102,144,4	script	Soldier#bailong3	825,{
+lou_in01,102,144,4	script	Soldier#bailong3	4_M_CHNSOLDIER,{
 	if (ch_poison == 12 || ch_poison == 16) {
 		mes "[Soldier]";
 		mes "Huh...?";
@@ -4557,7 +4557,7 @@ lou_in01,102,144,4	script	Soldier#bailong3	825,{
 	close;
 }
 
-lou_in01,99,144,4	script	Soldier#bailong4	825,{
+lou_in01,99,144,4	script	Soldier#bailong4	4_M_CHNSOLDIER,{
 	if (ch_poison == 12 || ch_poison == 16) {
 		mes "[Soldier]";
 		mes "Who goes there?!";
@@ -4581,7 +4581,7 @@ lou_in01,99,144,4	script	Soldier#bailong4	825,{
 
 // Revolution Quest
 //===================================================================
-lou_in02,77,37,7	script	Hermit	824,{
+lou_in02,77,37,7	script	Hermit	4_M_CHNOLD,{
 
 	if (!QL_REVOL)
 	{
@@ -4899,7 +4899,7 @@ lou_in02,77,37,7	script	Hermit	824,{
 	}
 }
 
-lou_in01,43,147,3	script	Gunpowder Expert	750,{
+lou_in01,43,147,3	script	Gunpowder Expert	4_M_ALCHE_C,{
 
 	if (ch_make == 0)
 	{
@@ -5003,7 +5003,7 @@ lou_in01,43,147,3	script	Gunpowder Expert	750,{
 	}
 }
 
-lou_in01,45,138,3	script	Soldier#1	825,{
+lou_in01,45,138,3	script	Soldier#1	4_M_CHNSOLDIER,{
 
 	if (countitem(7204))
 	{
@@ -5023,7 +5023,7 @@ lou_in01,45,138,3	script	Soldier#1	825,{
 	end;
 }
 
-lou_in01,82,139,7	script	Soldier#2	825,{
+lou_in01,82,139,7	script	Soldier#2	4_M_CHNSOLDIER,{
 
 	if (countitem(7068) || countitem(7096) || countitem(7004))
 	{

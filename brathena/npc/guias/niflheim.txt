@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-niflheim,201,187,3	script#re	Guia de Nifflheim#01nif	849,{
+niflheim,201,187,3	script#re	Guia de Nifflheim#01nif	4_M_DIEMAN,{
 	mes "[Guia de Nifflheim]";
 	mes "Bem-vindo a... ^8B4513Niflheim^000000... O Reino dos Mortos...";
 	mes "Gostaria de conhecer o reino...?";
@@ -77,7 +77,7 @@ L_Mark:
 	return;
 }
 
-niflheim,107,156,6	script#pre	Homem Nervoso#nif	798,{
+niflheim,107,156,6	script#pre	Homem Nervoso#nif	4_M_NFMAN,{
 	mes "[Lee karl]";
 	mes "Por que você veio a um lugar tão horrível como este?";
 	mes "Acho que você acabou se perdendo, isso sim.";

@@ -25,7 +25,7 @@
 //   \________________________________________________________/
 
 // Agência Pata de Gato
-splendide,218,193,3	script	Fada#ep13_1	441,{
+splendide,218,193,3	script	Fada#ep13_1	4_F_FAIRYKID6,{
 		mes "[Fada Cansada]";
 	if (isequipped(2782) == 1) {
 		mes "Espere, não se aproxime. Não suporto o seu cheiro, ele me deixa tonto.";
@@ -35,7 +35,7 @@ splendide,218,193,3	script	Fada#ep13_1	441,{
 		close;
 }
 
-splendide,180,223,3	script	Fada#ep13_2	440,{
+splendide,180,223,3	script	Fada#ep13_2	4_F_FAIRYKID5,{
 		mes "[Kalua]";
 	if (isequipped(2782) == 1) {
 		mes "Você não se veste bem, mas acho que é melhor do que aqueles caras no campo de neve.";
@@ -46,7 +46,7 @@ splendide,180,223,3	script	Fada#ep13_2	440,{
 		close;
 }
 
-splendide,125,227,3	script	Fada#ep13_3	444,{
+splendide,125,227,3	script	Fada#ep13_3	4_M_FAIRYKID3,{
 		mes "[Flowa]";
 	if (isequipped(2782) == 1) {
 		mes "Sem ofensa, mas eu não estava te olhando porque simpatizei com você.";
@@ -58,7 +58,7 @@ splendide,125,227,3	script	Fada#ep13_3	444,{
 		close;
 }
 
-splendide,159,164,3	script	Fada#13_2_1	461,{
+splendide,159,164,3	script	Fada#13_2_1	4_M_FAIRYSOLDIER2,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "É uma vergonha que eu tenha que lutar contra esses monstros.";
@@ -71,7 +71,7 @@ splendide,159,164,3	script	Fada#13_2_1	461,{
 		close;
 }
 
-splendide,229,54,3	script	Fada#13_2_2	439,{
+splendide,229,54,3	script	Fada#13_2_2	4_F_FAIRYKID4,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Huh? Você é humano.";
@@ -93,7 +93,7 @@ splendide,229,54,3	script	Fada#13_2_2	439,{
 		close;
 }
 
-splendide,89,235,5	script	Fada#13_2_3	446,{
+splendide,89,235,5	script	Fada#13_2_3	4_M_FAIRYKID5,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Lalalalal~Lala~Lalala~";
@@ -113,7 +113,7 @@ splendide,89,235,5	script	Fada#13_2_3	446,{
 		close;
 }
 
-splendide,245,243,3	script	Fada#13_2_4	462,{
+splendide,245,243,3	script	Fada#13_2_4	4_F_FAIRYSOLDIER,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Essa terra era desperdiçada.";
@@ -138,7 +138,7 @@ splendide,245,243,3	script	Fada#13_2_4	462,{
 		close;
 }
 
-splendide,230,142,3	script	Fada#13_2_5	439,{
+splendide,230,142,3	script	Fada#13_2_5	4_F_FAIRYKID4,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Ah-Ha, eu sou tão linda.";
@@ -149,7 +149,7 @@ splendide,230,142,3	script	Fada#13_2_5	439,{
 		close;
 }
 
-splendide,274,203,3	script	Fada#13_2_6	444,{
+splendide,274,203,3	script	Fada#13_2_6	4_M_FAIRYKID3,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Ei, você~! Humano! Como você nos encontrou?";
@@ -163,7 +163,7 @@ splendide,274,203,3	script	Fada#13_2_6	444,{
 		close;
 }
 
-splendide,275,141,3	script	Fada#13_2_7	447,{
+splendide,275,141,3	script	Fada#13_2_7	4_M_FAIRYSOLDIER,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Não fale comigo. O que você quer?";
@@ -183,7 +183,7 @@ splendide,275,141,3	script	Fada#13_2_7	447,{
 		close;
 }
 
-splendide,224,230,3	script	Fada#13_2_8	440,{
+splendide,224,230,3	script	Fada#13_2_8	4_F_FAIRYKID5,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Ouça atentamente e aprenda!";
@@ -203,7 +203,7 @@ splendide,224,230,3	script	Fada#13_2_8	440,{
 		close;
 }
 
-splendide,223,36,3	script	Fada#13_2_9	462,{
+splendide,223,36,3	script	Fada#13_2_9	4_F_FAIRYSOLDIER,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Não quero tocar neles.";
@@ -229,7 +229,7 @@ splendide,223,36,3	script	Fada#13_2_9	462,{
 		close;
 }
 
-splendide,305,129,3	script	Fada#13_2_10	436,{
+splendide,305,129,3	script	Fada#13_2_10	4_F_FAIRYKID,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Hu... que sono.";
@@ -253,7 +253,7 @@ splendide,305,129,3	script	Fada#13_2_10	436,{
 		close;
 }
 
-splendide,142,315,3	script	Fada#13_2_11	462,{
+splendide,142,315,3	script	Fada#13_2_11	4_F_FAIRYSOLDIER,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Não é fácil voar pelo céu.";
@@ -278,7 +278,7 @@ splendide,142,315,3	script	Fada#13_2_11	462,{
 		close;
 }
 
-splendide,181,107,5	script	Fada#13_2_12	462,{
+splendide,181,107,5	script	Fada#13_2_12	4_F_FAIRYSOLDIER,{
 		mes "[Fada]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Limpeza, organização e arrumação!";
@@ -294,7 +294,7 @@ splendide,181,107,5	script	Fada#13_2_12	462,{
 		close;
 }
 
-splendide,188,76,5	script	Soldado de Splendide#tre1	461,{
+splendide,188,76,5	script	Soldado de Splendide#tre1	4_M_FAIRYSOLDIER2,{
 		mes "[Soldado de Splendide]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Essa é Splendide, a base dos Laphine.";
@@ -304,9 +304,9 @@ splendide,188,76,5	script	Soldado de Splendide#tre1	461,{
 		close;
 }
 
-splendide,201,76,3	duplicate(Soldado de Splendide#tre1)	Soldado de Splendide#tre2	461,{
+splendide,201,76,3	duplicate(Soldado de Splendide#tre1)	Soldado de Splendide#tre2	4_M_FAIRYSOLDIER2,{
 
-splendide,207,97,5	script	Aspirante Laphine#1	443,{
+splendide,207,97,5	script	Aspirante Laphine#1	4_M_FAIRYKID2,{
 		mes "[Laphine Aspirante]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Haap-!";
@@ -320,7 +320,7 @@ splendide,207,97,5	script	Aspirante Laphine#1	443,{
 		close;
 }
 
-splendide,210,95,3	script	Laphine Aspirante#2	442,{
+splendide,210,95,3	script	Laphine Aspirante#2	4_M_FAIRYKID,{
 	mes "[Laphine Aspirante]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Uau~ Ótimo!!";
@@ -332,7 +332,7 @@ splendide,210,95,3	script	Laphine Aspirante#2	442,{
 		close;
 }
 
-spl_in01,190,314,5	script	Security Officer#tre	461,{
+spl_in01,190,314,5	script	Security Officer#tre	4_M_FAIRYSOLDIER2,{
 		mes "[Oficial de Segurança]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Essa é a prisão subterrânea de Splendide.";
@@ -348,7 +348,7 @@ spl_in01,190,314,5	script	Security Officer#tre	461,{
 		close;
 }
 
-spl_in01,281,329,3	script	Splendide Guard#tre	447,{
+spl_in01,281,329,3	script	Splendide Guard#tre	4_M_FAIRYSOLDIER,{
 		mes "[Guarda de Splendide]";
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "Se você fizer muito barulho, os prisioneiros trarão problemas. Então permaneça em silêncio.";
@@ -358,7 +358,7 @@ spl_in01,281,329,3	script	Splendide Guard#tre	447,{
 		close;
 }
 
-spl_in01,287,306,3	script	#spl_prs	111,{
+spl_in01,287,306,3	script	#spl_prs	HIDDEN_NPC,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		mes "[Prisioneiro de Manuk]";
 		mes "Meu, meu corpo...!";
@@ -386,7 +386,7 @@ OnTouch:
 		close;
 }
 
-spl_in01,172,225,3	script	Poeta Andarilho#ep13	51,{
+spl_in01,172,225,3	script	Poeta Andarilho#ep13	1_M_BARD,{
 	cutin "god_nelluad02",2;
 	mes "[Poeta Nell]"	;
 	mes "Oi~~ você ouviu a bela música que está tocando ao longe~~?";
@@ -492,7 +492,7 @@ spl_in01,172,225,3	script	Poeta Andarilho#ep13	51,{
 	end;
 }
 
-spl_in01,182,213,1	script	Laphine Restante#ep13_1	438,{
+spl_in01,182,213,1	script	Laphine Restante#ep13_1	4_F_FAIRYKID3,{
 		mes "[Laphine Descansando]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Aquele poeta é muito misterioso.";
@@ -510,7 +510,7 @@ spl_in01,182,213,1	script	Laphine Restante#ep13_1	438,{
 		close;
 }
 
-spl_in01,181,218,5	script	Laphine Restante#ep13_2	446,{
+spl_in01,181,218,5	script	Laphine Restante#ep13_2	4_M_FAIRYKID5,{
 		mes "[Laphine Descansando]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "- Ele está balançando a cabeça no ritmo da música -";
@@ -529,7 +529,7 @@ spl_in01,181,218,5	script	Laphine Restante#ep13_2	446,{
 		close;
 }
 
-spl_in01,161,213,7	script	Laphine Comendo#ep13	447,{
+spl_in01,161,213,7	script	Laphine Comendo#ep13	4_M_FAIRYSOLDIER,{
 		mes "[Laphine Comendo]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Eu fico entediado quando janto comida caseira.";
@@ -547,7 +547,7 @@ spl_in01,161,213,7	script	Laphine Comendo#ep13	447,{
 		close;
 }
 
-spl_in01,162,202,5	script	Laphine Fazendo Anotações#1	436,{
+spl_in01,162,202,5	script	Laphine Fazendo Anotações#1	4_F_FAIRYKID,{
 		mes "[Laphine Fazendo Anotações]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Estamos muito impressionados com o poeta.";
@@ -569,12 +569,12 @@ spl_in01,162,202,5	script	Laphine Fazendo Anotações#1	436,{
 		close;
 }
 
-spl_in01,167,207,7	script	Laphine Silencioso#ep13	445,{
+spl_in01,167,207,7	script	Laphine Silencioso#ep13	4_M_FAIRYKID4,{
 	mes "- Ele está quase dormindo mas mesmo assim está segurando um copo cheio de bebida. Ele deve estar muito cansado -";
 	close;
 }
 
-spl_in01,180,201,3	script	Soldado de Laphine#ep13_1	461,{
+spl_in01,180,201,3	script	Soldado de Laphine#ep13_1	4_M_FAIRYSOLDIER2,{
 		mes "[Soldado Laphine]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Você é um forasteiro, não?";
@@ -599,7 +599,7 @@ spl_in01,180,201,3	script	Soldado de Laphine#ep13_1	461,{
 		close;
 }
 
-spl_in01,189,207,3	script	Laphine Staff#ep13_1	439,{
+spl_in01,189,207,3	script	Laphine Staff#ep13_1	4_F_FAIRYKID4,{
 		mes "[Funcionário Laphine]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Hm, e aí?";
@@ -621,7 +621,7 @@ spl_in01,189,207,3	script	Laphine Staff#ep13_1	439,{
 		close;
 }
 
-spl_in01,154,207,5	script	Laphine Staff#ep13_2	440,{
+spl_in01,154,207,5	script	Laphine Staff#ep13_2	4_F_FAIRYKID5,{
 		mes "[Funcionário Laphine]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Esse campo tem um propósito militar. Mas também precisamos de bares.";
@@ -639,7 +639,7 @@ spl_in01,154,207,5	script	Laphine Staff#ep13_2	440,{
 		close;
 }
 
-spl_in01,122,314,5	script	Soldado de Alta Patente#ep13	461,{
+spl_in01,122,314,5	script	Soldado de Alta Patente#ep13	4_M_FAIRYSOLDIER2,{
 		mes "[General Laphine]";
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "Chegaram novos suprimentos?";
@@ -665,7 +665,7 @@ spl_in01,122,314,5	script	Soldado de Alta Patente#ep13	461,{
 		close;
 }
 
-spl_in01,122,311,1	script	Soldado de Laphine#ep13_2	447,{
+spl_in01,122,311,1	script	Soldado de Laphine#ep13_2	4_M_FAIRYSOLDIER,{
 	if ((isequipped(2782) > 0) && (ep13_2_rhea > 99)) {
 		mes "[Soldado Laphine]";
 		mes "Você é um forasteiro?";
@@ -691,7 +691,7 @@ spl_in01,122,311,1	script	Soldado de Laphine#ep13_2	447,{
 		close;
 }
 
-splendide,121,259,3	script	Fada#ep13bs1	436,{
+splendide,121,259,3	script	Fada#ep13bs1	4_F_FAIRYKID,{
 	if (isequipped(2782) == 1) {
 		mes "[Fada]";
 		mes "Você já foi para o lado leste?";
@@ -706,7 +706,7 @@ splendide,121,259,3	script	Fada#ep13bs1	436,{
 		close;
 }
 
-splendide,163,264,3	script	Fairy#ep13bs2	438,{
+splendide,163,264,3	script	Fairy#ep13bs2	4_F_FAIRYKID3,{
 	if (isequipped(2782) == 1) {
 		mes "[Fada]";
 		mes "O que você está olhando!";

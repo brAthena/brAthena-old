@@ -31,7 +31,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-mjolnir_02,186,193,4	script	Homem de Meia-idade#magum1	57,{
+mjolnir_02,186,193,4	script	Homem de Meia-idade#magum1	1_M_LIBRARYMASTER,{
 	if (dmdswrd_Q > 30) {
 		if (dmdswrd_Q == 31) {
 			mes "[Homem de Meia-idade]";
@@ -339,7 +339,7 @@ mjolnir_02,186,193,4	script	Homem de Meia-idade#magum1	57,{
 	}
 }
 
-payon,248,159,1	script	Velho#magum1	120,{
+payon,248,159,1	script	Velho#magum1	2_M_PHARMACIST,{
 	if (dmdswrd_Q == 35) {
 		mes "[Velho]";
 		mes "O q-quê? Quem é ";
@@ -777,7 +777,7 @@ payon,248,159,1	script	Velho#magum1	120,{
 	}
 }
 
-morocc,248,159,4	script	Jovem#magum1	86,{
+morocc,248,159,4	script	Jovem#magum1	4_M_04,{
 	if (dmdswrd_Q == 39) {
 		mes "[Huey]";
 		mes "Me desculpe, mas...";
@@ -1070,7 +1070,7 @@ S_GetSword:
 	return;
 }
 
-prt_in,162,11,2	script	Ghatu#magum	86,{
+prt_in,162,11,2	script	Ghatu#magum	4_M_04,{
 	if (event_magum == 0) {
 		if (dmdswrd_Q2 & 1 || dmdswrd_Q2 & 2 || dmdswrd_Q2 & 4 || dmdswrd_Q2 & 8 || dmdswrd_Q2 & 16 || dmdswrd_Q2 & 32) {
 			mes "[Ghatu]";
@@ -1164,7 +1164,7 @@ prt_in,162,11,2	script	Ghatu#magum	86,{
 	close;
 }
 
-prontera,197,188,2	script	Veeyop#magum	50,{
+prontera,197,188,2	script	Veeyop#magum	1_M_04,{
 	if (dmdswrd_Q2 & 1) {
 		mes "[Veeyop]";
 		mes "Você sabe que conversando";
@@ -1204,7 +1204,7 @@ prontera,197,188,2	script	Veeyop#magum	50,{
 	close;
 }
 
-morocc,281,178,2	script	Cetsu#magum	97,{
+morocc,281,178,2	script	Cetsu#magum	4W_M_01,{
 	if (dmdswrd_Q2 & 2) {
 		mes "[Cetsu]";
 		mes "Eu ainda estou pensando sobre a";
@@ -1256,7 +1256,7 @@ morocc,281,178,2	script	Cetsu#magum	97,{
 	close;
 }
 
-izlude_in,173,88,2	script#pre	Nain#magum	102,{
+izlude_in,173,88,2	script#pre	Nain#magum	8_F,{
 	if (dmdswrd_Q2 == 4) {
 		mes "[Nain]";
 		mes "Não importa quão";
@@ -1300,7 +1300,7 @@ izlude_in,173,88,2	script#pre	Nain#magum	102,{
 	close;
 }
 
-pay_fild08,218,283,2	script	Homem Misterioso#magum	89,{
+pay_fild08,218,283,2	script	Homem Misterioso#magum	4_M_ORIENT02,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Homem Misterioso]";
 		mes "Espera aí.";

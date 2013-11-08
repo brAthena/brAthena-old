@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta_in,173,76,4	script	Domador de Monstros#alb	125,{
+alberta_in,173,76,4	script	Domador de Monstros#alb	4_M_TELEPORTER,{
 	mes "[Iwado]";
 	mes "Este é o auge da era de Domar Monstros. Você não sente uma necessidade de conseguir os itens para domesticar um belo monstro?";
 	next;
@@ -191,7 +191,7 @@ alberta_in,173,76,4	script	Domador de Monstros#alb	125,{
 }
 
 
-aldeba_in,168,175,4	script	Domador de Monstros#alde	125,{
+aldeba_in,168,175,4	script	Domador de Monstros#alde	4_M_TELEPORTER,{
 	mes "[YuU]";
 	mes "Você deve estar a procura de itens para monstros! Eu faço itens para monstros, não há nenhum domador de monstros em Rune-Midgard que seja melhor que eu.";
 	next;
@@ -469,7 +469,7 @@ aldeba_in,168,175,4	script	Domador de Monstros#alde	125,{
 	}
 }
 
-izlude_in,129,64,4	script	Domador de Monstros#izu	125,{
+izlude_in,129,64,4	script	Domador de Monstros#izu	4_M_TELEPORTER,{
 	mes "[Shogo]";
 	mes "Você está preocupado em";
 	mes "recolher itens para monstros";
@@ -626,7 +626,7 @@ izlude_in,129,64,4	script	Domador de Monstros#izu	125,{
 	}
 }
 
-comodo,112,182,0	script	Vovó da Munak	103,{
+comodo,112,182,0	script	Vovó da Munak	8_F_GRANDMOTHER,{
 	if (countitem(1558) > 0) {
 		mes "[Vovó da Munak]";
 		mes "Oh meu...";

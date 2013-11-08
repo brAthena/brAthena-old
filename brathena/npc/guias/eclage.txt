@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ecl_in01,48,60,4	script	Guarda de Eclage#obb	447,{
+ecl_in01,48,60,4	script	Guarda de Eclage#obb	4_M_FAIRYSOLDIER,{
 	mes "[Guarda de Eclage]";
 	mes "Bem-vindo, aventureiro.";
 	mes "Esta é a praça de Eclage, uma grande e ságrada árvore. Posso ajudá-lo?";

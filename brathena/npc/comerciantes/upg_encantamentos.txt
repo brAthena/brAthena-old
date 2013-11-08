@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_in,28,73,3	script	Devil Enchant Master#prq	63,{
+prt_in,28,73,3	script	Devil Enchant Master#prq	1_M_SMITH,{
 	set .@eq_loc, EQI_HAND_R;
 	set .@eq_id, getequipid(.@eq_loc);
 	set .@eq_refine, getequiprefinerycnt(.@eq_loc);

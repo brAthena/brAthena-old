@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-comodo,219,158,6	script	Kachua	91,{
+comodo,219,158,6	script	Kachua	4_F_02,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Kachua]";
 		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";
@@ -387,7 +387,7 @@ comodo,219,158,6	script	Kachua	91,{
 	end;
 }
 
-comodo,204,148,7	script	Devellin	90,{
+comodo,204,148,7	script	Devellin	4_F_01,{
 
 	mes "[Devellin]";
 	mes "Parece que há um tempo atrás algum viajante mostrou";
@@ -401,7 +401,7 @@ comodo,204,148,7	script	Devellin	90,{
 	close;
 }
 
-comodo,210,154,2	script	Homem Suspeito#cmd	118,{
+comodo,210,154,2	script	Homem Suspeito#cmd	2_M_THIEFMASTER,{
 
 	if (BaseClass == Job_Thief){
 		mes "[Cain]";
@@ -481,7 +481,7 @@ comodo,210,154,2	script	Homem Suspeito#cmd	118,{
 	}
 }
 
-mjolnir_02,85,362,3	script	Ferreiro Mineiro	726,{
+mjolnir_02,85,362,3	script	Ferreiro Mineiro	4_F_JOB_BLACKSMITH,{
 
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FFEspere um segundo! Por enquanto, você está carregando muitos itens com você. Por favor, volte após guardar alguns de seus itens no armazém Kafra.^000000";

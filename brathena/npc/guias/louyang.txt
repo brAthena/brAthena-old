@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-louyang,224,104,4	script	Soldado#01louyang	818,{
+louyang,224,104,4	script	Soldado#01louyang	4_F_CHNWOMAN,{
 	mes "[Soldado]";
 	mes "Bem-vindo à Castelo do Dragão, que tem uma história longa e vigorosa.";
 	next;
@@ -210,7 +210,7 @@ louyang,224,104,4	script	Soldado#01louyang	818,{
 	}
 }
 
-louyang,213,213,3	script#pre	Soldado#Lou	825,{
+louyang,213,213,3	script#pre	Soldado#Lou	4_M_CHNSOLDIER,{
 	mes "[Soldado]";
 	mes "Este é o castelo do Dragão.";
 	mes "Um lugar como esse possui uma longa história de orgulho e espírito de guerra.";
@@ -300,4 +300,4 @@ louyang,213,213,3	script#pre	Soldado#Lou	825,{
 	close;
 }
 
-louyang,160,175,3	duplicatp(Soldado#Lou)	Soldado#BB	825,{}
+louyang,160,175,3	duplicatp(Soldado#Lou)	Soldado#BB	4_M_CHNSOLDIER,{}

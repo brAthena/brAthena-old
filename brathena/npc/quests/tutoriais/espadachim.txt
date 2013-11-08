@@ -26,7 +26,7 @@
 
 // Shurank
 //============================================================
-izlude_in,82,163,3	script	Shurank	733,{
+izlude_in,82,163,3	script	Shurank	4_M_JOB_KNIGHT1,{
 	mes "[Shurank]";
 	if (Class == Job_Novice || Class == Job_Baby){
 		mes "Ainda querendo saber";
@@ -1011,7 +1011,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 
 // Dequee
 //============================================================
-geffen,154,143,3	script	Dequ'ee	734,{
+geffen,154,143,3	script	Dequ'ee	4_M_JOB_KNIGHT2,{
 	if (BaseJob == Job_Novice){
 		mes "[Dequ'ee]";
 		mes "Ei você!";
@@ -2329,7 +2329,7 @@ if (tu_swordman == 6){
 
 // Geil
 //============================================================
-morocc_in,51,101,3	script	Geil	89,{
+morocc_in,51,101,3	script	Geil	4_M_ORIENT02,{
 	mes "[Geil]";
 	if (tu_swordman == 15){
 		mes "Você foi enviado pelas autoridades? Me deixe, não estou bem! Eu não sou o assassino! Eu nem mesmo sei quem foi morto. Eu não sou aquele que você está procurando!";
@@ -2382,7 +2382,7 @@ morocc_in,51,101,3	script	Geil	89,{
 
 // Meutro
 //============================================================
-morocc,82,292,5	script	Muetro	84,{
+morocc,82,292,5	script	Muetro	4_M_02,{
 	mes "[Muetro]";
 	if (tu_swordman == 15){
 		mes "Você veio aqui apenas";
@@ -2423,7 +2423,7 @@ morocc,82,292,5	script	Muetro	84,{
 
 // Hans
 //============================================================
-morocc,240,72,3	script	Hans	86,{
+morocc,240,72,3	script	Hans	4_M_04,{
 	mes "[Hans]";
 	if (tu_swordman == 15){
 		mes "Ajude-me!";
@@ -2481,7 +2481,7 @@ morocc,240,72,3	script	Hans	86,{
 
 // Bankley
 //============================================================
-morocc_in,12,156,3	script	Bankley	97,{
+morocc_in,12,156,3	script	Bankley	4W_M_01,{
 	if (tu_swordman > 19){
 		mes "^3355FFBankley está com uma lamentável";
 		mes "expresão em seu rosto.^000000";

@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,173,238,5	script	Jade#pay	754,{
+payon,173,238,5	script	Jade#pay	4_M_SAGE_A,{
 	mes "[Jade]";
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FFEspere um pouco! Nesse momento, existem muitos itens com você. Por favor retorne após colocar alguns itens no Armazém da Kafra.^000000";

@@ -25,7 +25,7 @@
 
 // NPCs Caixas de Correio
 //============================================================
-prontera,146,86,0	script	Caixa de Correio	888,{
+prontera,146,86,0	script	Caixa de Correio	2_POSTBOX,{
 	mes "[Correio]";
 	mes "Se você deseja usar";
 	mes "o serviço de correio,";
@@ -63,12 +63,12 @@ prontera,146,86,0	script	Caixa de Correio	888,{
 
 // Prontera
 //============================================================
-prontera,275,213,0	duplicate(Caixa de Correio)	Caixa de Correio#2prt	888
-prontera,34,212,0	duplicate(Caixa de Correio)	Caixa de Correio#3prt	888
+prontera,275,213,0	duplicate(Caixa de Correio)	Caixa de Correio#2prt	2_POSTBOX
+prontera,34,212,0	duplicate(Caixa de Correio)	Caixa de Correio#3prt	2_POSTBOX
 
 // Izlude
 //============================================================
-izlude,136,94,0	duplicate(Caixa de Correio)	Caixa de Correio#iz	888,{}
+izlude,136,94,0	duplicate(Caixa de Correio)	Caixa de Correio#iz	2_POSTBOX,{}
 izlude_a,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_a  888
 izlude_b,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_b  888
 izlude_c,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_c  888
@@ -76,77 +76,77 @@ izlude_d,136,94,0	duplicatr(Caixa de Correio)	Caixa de Correio#iz_d  888,{}
 
 // Morroc
 //============================================================
-moc_ruins,72,166,0	duplicate(Caixa de Correio)	Caixa de Correio#1moc	888
-moc_ruins,156,52,0	duplicate(Caixa de Correio)	Caixa de Correio#2moc	888
+moc_ruins,72,166,0	duplicate(Caixa de Correio)	Caixa de Correio#1moc	2_POSTBOX
+moc_ruins,156,52,0	duplicate(Caixa de Correio)	Caixa de Correio#2moc	2_POSTBOX
 
 // Geffen
 //============================================================
-geffen,115,67,0	duplicate(Caixa de Correio)	Caixa de Correio#gef	888
-geffen,199,125,0	duplicate(Caixa de Correio)	Caixa de Correio#2gef	888
+geffen,115,67,0	duplicate(Caixa de Correio)	Caixa de Correio#gef	2_POSTBOX
+geffen,199,125,0	duplicate(Caixa de Correio)	Caixa de Correio#2gef	2_POSTBOX
 
 // Payon
 //============================================================
-payon,191,104,0	duplicate(Caixa de Correio)	Caixa de Correio#pay	888
-payon,171,226,0	duplicate(Caixa de Correio)	Caixa de Correio#2pay	888
-pay_arche,55,127,0	duplicate(Caixa de Correio)	Caixa de Correio#3pay	888
+payon,191,104,0	duplicate(Caixa de Correio)	Caixa de Correio#pay	2_POSTBOX
+payon,171,226,0	duplicate(Caixa de Correio)	Caixa de Correio#2pay	2_POSTBOX
+pay_arche,55,127,0	duplicate(Caixa de Correio)	Caixa de Correio#3pay	2_POSTBOX
 
 // Alberta
 //============================================================
-alberta,90,60,0	duplicate(Caixa de Correio)	Caixa de Correio#alb	888
-alberta,30,240,0	duplicate(Caixa de Correio)	Caixa de Correio#2alb	888
+alberta,90,60,0	duplicate(Caixa de Correio)	Caixa de Correio#alb	2_POSTBOX
+alberta,30,240,0	duplicate(Caixa de Correio)	Caixa de Correio#2alb	2_POSTBOX
 
 // Al De Baran
 //============================================================
-aldebaran,135,122,0	duplicate(Caixa de Correio)	Caixa de Correio#alde	888
+aldebaran,135,122,0	duplicate(Caixa de Correio)	Caixa de Correio#alde	2_POSTBOX
 
 // Juno
 //============================================================
-yuno,148,187,0	duplicate(Caixa de Correio)	Caixa de Correio#yuno	888
-yuno,332,108,0	duplicate(Caixa de Correio)	Caixa de Correio#2yuno	888
+yuno,148,187,0	duplicate(Caixa de Correio)	Caixa de Correio#yuno	2_POSTBOX
+yuno,332,108,0	duplicate(Caixa de Correio)	Caixa de Correio#2yuno	2_POSTBOX
 
 // Lightalzen
 //============================================================
-lighthalzen,164,85,0	duplicate(Caixa de Correio)	Caixa de Correio#lht	888
-lighthalzen,196,320,0	duplicate(Caixa de Correio)	Caixa de Correio#2lht	888
+lighthalzen,164,85,0	duplicate(Caixa de Correio)	Caixa de Correio#lht	2_POSTBOX
+lighthalzen,196,320,0	duplicate(Caixa de Correio)	Caixa de Correio#2lht	2_POSTBOX
 
 // Einbroch e Einbech
 //============================================================
-einbroch,231,215,0	duplicate(Caixa de Correio)	Caixa de Correio#ein	888
-einbroch,77,202,0	duplicate(Caixa de Correio)	Caixa de Correio#2ein	888
-einbech,182,124,0	duplicate(Caixa de Correio)	Caixa de Correio#3ein	888
+einbroch,231,215,0	duplicate(Caixa de Correio)	Caixa de Correio#ein	2_POSTBOX
+einbroch,77,202,0	duplicate(Caixa de Correio)	Caixa de Correio#2ein	2_POSTBOX
+einbech,182,124,0	duplicate(Caixa de Correio)	Caixa de Correio#3ein	2_POSTBOX
 
 // Comodo
 //============================================================
-comodo,200,150,0	duplicate(Caixa de Correio)	Caixa de Correio#cmd	888
+comodo,200,150,0	duplicate(Caixa de Correio)	Caixa de Correio#cmd	2_POSTBOX
 
 // Umbala
 //============================================================
-umbala,104,155,0	duplicate(Caixa de Correio)	Caixa de Correio#um	888
+umbala,104,155,0	duplicate(Caixa de Correio)	Caixa de Correio#um	2_POSTBOX
 
 // Amatsu
 //============================================================
-amatsu,102,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ama	888
+amatsu,102,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ama	2_POSTBOX
 
 // Gonryun
 //============================================================
-gonryun,152,117,0	duplicate(Caixa de Correio)	Caixa de Correio#gon	888
+gonryun,152,117,0	duplicate(Caixa de Correio)	Caixa de Correio#gon	2_POSTBOX
 
 // Ayothaya
 //============================================================
-ayothaya,205,169,0	duplicate(Caixa de Correio)	Caixa de Correio#ayo	888
+ayothaya,205,169,0	duplicate(Caixa de Correio)	Caixa de Correio#ayo	2_POSTBOX
 
 // Louyang
 //============================================================
-louyang,204,100,0	duplicate(Caixa de Correio)	Caixa de Correio#lou	888
+louyang,204,100,0	duplicate(Caixa de Correio)	Caixa de Correio#lou	2_POSTBOX
 
 // Hugel
 //============================================================
-hugel,86,168,0	duplicate(Caixa de Correio)	Caixa de Correio#hu	111
+hugel,86,168,0	duplicate(Caixa de Correio)	Caixa de Correio#hu	HIDDEN_NPC
 
 // Rachel
 //============================================================
-rachel,122,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ra	888
+rachel,122,146,0	duplicate(Caixa de Correio)	Caixa de Correio#ra	2_POSTBOX
 
 // Veins
 //============================================================
-veins,218,123,0	duplicate(Caixa de Correio)	Caixa de Correio#ve	888
+veins,218,123,0	duplicate(Caixa de Correio)	Caixa de Correio#ve	2_POSTBOX

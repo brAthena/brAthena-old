@@ -27,7 +27,7 @@
 //============================================================
 
 
-mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
+mal_dun01,151,235,5	script	Estrela-do-Mar	4_ASTER,{
 
 	set .@party_id,getcharid(1);
 	set .@md_name$,"Caverna do Polvo";
@@ -132,7 +132,7 @@ mal_dun01,151,235,5	script	Estrela-do-Mar	551,{
 	}
 }
 
-mal_dun01,153,237,5	script	Entrada Estranha	844,{
+mal_dun01,153,237,5	script	Entrada Estranha	CLEAR_NPC,{
 	mes "Há uma entrada estranha";
 	mes "bloqueada próxima a algumas placas.";
 	next;
@@ -170,7 +170,7 @@ mal_dun01,153,237,5	script	Entrada Estranha	844,{
 	}
 }
 
-1@cash,199,99,0	script	pol_entr	139,4,4,{
+1@cash,199,99,0	script	pol_entr	HIDDEN_WARP_NPC,4,4,{
 	end;
 OnTouch:
 	donpcevent instance_npcname("pol_entr_larg")+"::OnEnable";
@@ -239,7 +239,7 @@ OnMyMobDead:
 	end;
 }
 
-1@cash,20,114,0	script	pol_t1	139,6,6,{
+1@cash,20,114,0	script	pol_t1	HIDDEN_WARP_NPC,6,6,{
 	end;
 OnInstanceInit:
 	donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
@@ -359,11 +359,11 @@ OnMyMobDead:
 	}
 	end;
 }
-1@cash,88,190,0	duplicate(pol_t1)	pol_t2	139,6,6
-1@cash,307,215,0	duplicate(pol_t1)	pol_t3	139,6,6
-1@cash,372,131,0	duplicate(pol_t1)	pol_t4	139,6,6
+1@cash,88,190,0	duplicate(pol_t1)	pol_t2	HIDDEN_WARP_NPC,6,6
+1@cash,307,215,0	duplicate(pol_t1)	pol_t3	HIDDEN_WARP_NPC,6,6
+1@cash,372,131,0	duplicate(pol_t1)	pol_t4	HIDDEN_WARP_NPC,6,6
 
-1@cash,16,117,0	script	pol_t_s1	45,2,2,{
+1@cash,16,117,0	script	pol_t_s1	WARPNPC,2,2,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname(strnpcinfo(0));
@@ -375,9 +375,9 @@ OnTouch:
 	warp instance_mapname("1@cash"),198,99;
 	end;
 }
-1@cash,77,193,0	duplicate(pol_t_s1)	pol_t_s2	45,2,2
-1@cash,312,214,0	duplicate(pol_t_s1)	pol_t_s3	45,2,2
-1@cash,370,139,0	duplicate(pol_t_s1)	pol_t_s4	45,2,2
+1@cash,77,193,0	duplicate(pol_t_s1)	pol_t_s2	WARPNPC,2,2
+1@cash,312,214,0	duplicate(pol_t_s1)	pol_t_s3	WARPNPC,2,2
+1@cash,370,139,0	duplicate(pol_t_s1)	pol_t_s4	WARPNPC,2,2
 
 1@cash,15,15,0	script	pol_m_c	-1,{
 	end;
@@ -441,7 +441,7 @@ OnDisable:
 	end;
 }
 
-1@cash,45,53,0	script	pol_atv1	139,3,3,{
+1@cash,45,53,0	script	pol_atv1	HIDDEN_WARP_NPC,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("pol_atv1");
@@ -464,7 +464,7 @@ OnEnable:
 	end;
 }
 
-1@cash,78,99,0	script	pol_atv2	139,3,3,{
+1@cash,78,99,0	script	pol_atv2	HIDDEN_WARP_NPC,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("pol_atv2");
@@ -504,7 +504,7 @@ OnEnable:
 	end;
 }
 
-1@cash,299,144,0	script	pol_atv3	139,3,3,{
+1@cash,299,144,0	script	pol_atv3	HIDDEN_WARP_NPC,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("pol_atv2");
@@ -531,7 +531,7 @@ OnEnable:
 	end;
 }
 
-1@cash,336,36,0	script	pol_atv4	139,3,3,{
+1@cash,336,36,0	script	pol_atv4	HIDDEN_WARP_NPC,3,3,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("pol_atv2");
@@ -682,7 +682,7 @@ OnMyMobDead:
 	end;
 }
 
-1@cash,198,116,0	script	pol_c_p	45,2,2,{
+1@cash,198,116,0	script	pol_c_p	WARPNPC,2,2,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname("pol_c_p");
@@ -692,7 +692,7 @@ OnTouch:
 	end;
 }
 
-1@cash,190,208,0	script	pol_s_1	45,2,2,{
+1@cash,190,208,0	script	pol_s_1	WARPNPC,2,2,{
 	end;
 OnInstanceInit:
 	disablenpc instance_npcname(strnpcinfo(0));
@@ -704,9 +704,9 @@ OnTouch:
 		warp "mal_dun01",153,233;
 	close;
 }
-1@cash,198,82,0	duplicate(pol_s_1)	pol_s_2	45,2,2
+1@cash,198,82,0	duplicate(pol_s_1)	pol_s_2	WARPNPC,2,2
 // Desabilitado segundo script oficial.
-//1@cash,200,161,0	duplicate(pol_s_1)	pol_s_3	45,2,2
+//1@cash,200,161,0	duplicate(pol_s_1)	pol_s_3	WARPNPC,2,2
 
 1@cash,193,82,0	warp	p_p1	2,2,1@cash,151,48
 1@cash,154,53,0	warp	p_p2	2,2,1@cash,197,87

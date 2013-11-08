@@ -27,7 +27,7 @@
 
 // Juno
 //============================================================
-yuno,184,173,4	script	Freidrich#juno	729,{
+yuno,184,173,4	script	Freidrich#juno	4_F_NOVICE,{
 	if (rand(1,5) == 1) {
 		mes "[Freidrich]";
 		mes "^3355FFJuno^000000 é mantida no ar por uma força anciã misteriosa.";
@@ -57,7 +57,7 @@ yuno,184,173,4	script	Freidrich#juno	729,{
 	}
 }
 
-yuno,337,227,4	script	Avó de Juno#juno	103,{
+yuno,337,227,4	script	Avó de Juno#juno	8_F_GRANDMOTHER,{
 	mes "[Avó]";
 	if (rand(1,50) == 1) {
 		if (Zeny > 999) {
@@ -107,7 +107,7 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 		close;
 }
 
-yuno,328,239,4	script	Lutador de Juno#juno	732,{
+yuno,328,239,4	script	Lutador de Juno#juno	4_M_JOB_HUNTER,{
 	mes "[Sergiof]";
 	mes "Meu nome é Sergiof, o lutador que serve a Avó de Juno.";
 	next;
@@ -119,7 +119,7 @@ yuno,328,239,4	script	Lutador de Juno#juno	732,{
 	close;
 }
 
-yuno,343,68,4	script	Ninno#juno	730,{
+yuno,343,68,4	script	Ninno#juno	4_M_JOB_ASSASSIN,{
 	mes "[Ninno]";
 	if (rand(1,1000) == 1) {
 		mes "Você tem muita sorte de ouvir o que vou te dizer. A chance é de ^FF33551 a cada 1,000 ^000000.";
@@ -143,7 +143,7 @@ yuno,343,68,4	script	Ninno#juno	730,{
 	close;
 }
 
-yuno,165,111,4	script	Sábio de Juno#juno	123,,{
+yuno,165,111,4	script	Sábio de Juno#juno	2_F_MAGICMASTER,,{
 	mes "[Le Morpheus]";
 	if (rand(1,50) == 25) {
 		if (Zeny > 4999) {
@@ -186,7 +186,7 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 		close;
 }
 
-yuno,157,205,4	script	Artesão de Juno#juno	54,{
+yuno,157,205,4	script	Artesão de Juno#juno	1_M_JOBGUIDER,{
 	mes "[Artesão]";
 	mes "*Resmungos...*";
 	next;
@@ -272,23 +272,23 @@ yuno,157,205,4	script	Artesão de Juno#juno	54,{
 	close;
 }
 
-yuno,150,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#juno	852
-yuno,165,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#2juno	852
-yuno,227,292,4	duplicatr(SoldadoJuno1)	Soldado de Juno#3juno	852
-yuno,165,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#4juno	852
-yuno,150,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#5juno	852
-yuno,334,182,4	duplicatr(SoldadoJuno1)	Soldado de Juno#6juno	852
-yuno,263,320,4	duplicatr(SoldadoJuno1)	Soldado de Juno#7juno	852,{}
+yuno,150,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#juno	4_M_EIN_SOLDIER
+yuno,165,283,4	duplicatr(SoldadoJuno1)	Soldado de Juno#2juno	4_M_EIN_SOLDIER
+yuno,227,292,4	duplicatr(SoldadoJuno1)	Soldado de Juno#3juno	4_M_EIN_SOLDIER
+yuno,165,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#4juno	4_M_EIN_SOLDIER
+yuno,150,228,4	duplicatr(SoldadoJuno1)	Soldado de Juno#5juno	4_M_EIN_SOLDIER
+yuno,334,182,4	duplicatr(SoldadoJuno1)	Soldado de Juno#6juno	4_M_EIN_SOLDIER
+yuno,263,320,4	duplicatr(SoldadoJuno1)	Soldado de Juno#7juno	4_M_EIN_SOLDIER,{}
 
-yuno,150,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#juno	105
-yuno,165,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#2juno	105
-yuno,227,292,4	duplicatv(SoldadoJuno1)	Soldado de Juno#3juno	105
-yuno,165,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#4juno	105
-yuno,150,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#5juno	105
-yuno,334,182,4	duplicatv(SoldadoJuno1)	Soldado de Juno#6juno	105
-yuno,263,320,4	duplicatv(SoldadoJuno1)	Soldado de Juno#7juno	105,{}
+yuno,150,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#juno	8W_SOLDIER
+yuno,165,283,4	duplicatv(SoldadoJuno1)	Soldado de Juno#2juno	8W_SOLDIER
+yuno,227,292,4	duplicatv(SoldadoJuno1)	Soldado de Juno#3juno	8W_SOLDIER
+yuno,165,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#4juno	8W_SOLDIER
+yuno,150,228,4	duplicatv(SoldadoJuno1)	Soldado de Juno#5juno	8W_SOLDIER
+yuno,334,182,4	duplicatv(SoldadoJuno1)	Soldado de Juno#6juno	8W_SOLDIER
+yuno,263,320,4	duplicatv(SoldadoJuno1)	Soldado de Juno#7juno	8W_SOLDIER,{}
 
-yuno,142,183,5	script	Representante do Dirigível	100,{
+yuno,142,183,5	script	Representante do Dirigível	4W_SAILOR,{
 	mes "[Representante do Dirigível]";
 	mes "Olá, estou aqui para informá-lo sobre o Dirigível de Juno, o qual pretendemos operar em um futuro próximo.";
 	next;

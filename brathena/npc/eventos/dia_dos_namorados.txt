@@ -36,7 +36,7 @@
 
 // Stephen - Vendedor de Chocolates
 //============================================================
-alberta,26,243,4	script	Stephen	58,{
+alberta,26,243,4	script	Stephen	1_M_MERCHANT,{
 	mes "[Stephen]";
 	mes "Adivinhe o que eu consegui?";
 	mes "Um chocolate delicioso dificilmente encontrado em Rune-Midgard...";
@@ -81,7 +81,7 @@ alberta,26,243,4	script	Stephen	58,{
 
 // Jainie - Informações sobre o Evento
 //============================================================
-alberta,29,243,4	script	Jainie	53,{
+alberta,29,243,4	script	Jainie	1_M_INNKEEPER,{
 	mes "[Jainie]";
 	mes "Você sabia? Os chocolates que meu namorado vende são de minha autoria!";
 	mes "Eu mesma os faço.";
@@ -105,7 +105,7 @@ alberta,29,243,4	script	Jainie	53,{
 
 // Carl Orleans - Cozinheiro de Chocolate
 //============================================================
-prt_castle,54,34,4	script	Carl Orleans	47,{
+prt_castle,54,34,4	script	Carl Orleans	1_M_01,{
 	mes "[Carl Orleans]";
 	mes "Sim?";
 	next;
@@ -913,7 +913,7 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
 
 // ------------------------- Eventos Dia dos Namorados 2012 -------------------------
 
-mosk_in,21,246,5	script	Pinkamenia	71,{
+mosk_in,21,246,5	script	Pinkamenia	1_F_LIBRARYGIRL,{
 	set .@n$,"^0000FF[Pinkamenia]^000000";
 	if (#V_QUE12==3) {
 		set .@FlorAID,7864;
@@ -1005,7 +1005,7 @@ OnInit:
 	end;
 }
 
-mosk_in,21,244,3	script	Baker Extraordinaire	410,{
+mosk_in,21,244,3	script	Baker Extraordinaire	4_M_NOVELIST,{
 	set .@n$,"^0000FF[Baker Extraordinaire]^000000";
 	if (#V_QUE12==3) {
 		mes .@n$;

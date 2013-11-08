@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,97,51,0	script	Fabian	84,{
+alberta,97,51,0	script	Fabian	4_M_02,{
 	mes "[Fabian]";
 	mes "Hum... Quando você viajar ao redor do mundo, você vai ouvir algumas coisas malucas.";
 	next;
@@ -41,7 +41,7 @@ alberta,97,51,0	script	Fabian	84,{
 	close;
 }
 
-alberta,53,39,0	script	Steiner	100,{
+alberta,53,39,0	script	Steiner	4W_SAILOR,{
 	mes "[Steiner]";
 	mes "Ah...!";
 	mes "Bem-vindo à Alberta, jovem aventureiro!";
@@ -54,7 +54,7 @@ alberta,53,39,0	script	Steiner	100,{
 	close;
 }
 
-alberta,20,183,0	script	Chad	49,{
+alberta,20,183,0	script	Chad	1_M_03,{
 	mes "[Chad]";
 	mes "As pessoas dizem que a lendária arma Gungnir nunca erra o alvo. Pergunto-me se é possivelmente verdade...";
 	next;
@@ -67,7 +67,7 @@ alberta,20,183,0	script	Chad	49,{
 	close;
 }
 
-alberta,131,139,2	script	Velho Bêbado	54,{
+alberta,131,139,2	script	Velho Bêbado	1_M_JOBGUIDER,{
 	mes "[Deagle]";
 	mes "^666666*Hiccup*^000000";
 	mes "O que... O que está olhando? Desaparece!!";
@@ -108,7 +108,7 @@ alberta,131,139,2	script	Velho Bêbado	54,{
 	close;
 }
 
-alberta,58,80,2	script	Shakir	99,{
+alberta,58,80,2	script	Shakir	4W_M_03,{
 	mes "[Shakir]";
 	if (rand(2)) {
 		mes "Nós temos nosso próprio Comércio. Esta habilidade pode nos trazer mais dinheiro do que quando outras pessoas vendem mercadorias.";
@@ -133,7 +133,7 @@ alberta,58,80,2	script	Shakir	99,{
 	close;
 }
 
-alberta,62,156,2	script	Sonya	102,{
+alberta,62,156,2	script	Sonya	8_F,{
 	mes "[Sonya]";
 	switch(rand(3)){
 	case 0:
@@ -170,7 +170,7 @@ alberta,62,156,2	script	Sonya	102,{
 	}
 }
 
-alberta,93,174,2	script	Vovó Alma	103,{
+alberta,93,174,2	script	Vovó Alma	8_F_GRANDMOTHER,{
 	mes "[Vovó Alma]";
 	mes "A um tempo atrás, tinha um navio abandonado a caminho do Porto de Alberta.";
 	next;
@@ -188,7 +188,7 @@ alberta,93,174,2	script	Vovó Alma	103,{
 	close;
 }
 
-alberta,189,151,5	script	Fisk	100,{
+alberta,189,151,5	script	Fisk	4W_SAILOR,{
 	mes "[Fisk]";
 	mes "E aí colega!";
 	mes "Onde você quer ir?";
@@ -225,7 +225,7 @@ alberta,189,151,5	script	Fisk	100,{
 	
 }
 
-alb2trea,39,50,6	script	Fisk#a2t	100,{
+alb2trea,39,50,6	script	Fisk#a2t	4W_SAILOR,{
 	mes "[Fisk]";
 	mes "Então você quer voltar para o continente em Alberta, né?";
 	next;
@@ -234,7 +234,7 @@ alb2trea,39,50,6	script	Fisk#a2t	100,{
 	close;
 }
 
-alberta,195,151,4	script	Paul	86,{
+alberta,195,151,4	script	Paul	4_M_04,{
 	mes "[Paul]";
 	mes "Bom dia!";
 	mes "Você gostaria de participar da equipe de exploração do navio afundado?";
@@ -262,7 +262,7 @@ alberta,195,151,4	script	Paul	86,{
 	close;
 }
 
-alberta,190,173,4	script	Phelix	85,{
+alberta,190,173,4	script	Phelix	4_M_03,{
 	set .@weight,MaxWeight-Weight;
 	mes "[Phelix]";
 	if ((.@weight) < 10000) {

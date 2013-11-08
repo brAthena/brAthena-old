@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moscovia,161,76,4	script#re	Guia de Moscóvia#01mosc	959,{
+moscovia,161,76,4	script#re	Guia de Moscóvia#01mosc	4_F_RUSWOMAN1,{
 	mes "[Guia de Moscóvia]";
 	mes "Um paraíso em um belo mar, e com um sol caloroso. ^8B4513Moscovia^000000 está esperando por você.";
 	mes "Seja bem-vindo. Estou apoiando e oferendo informações para viajantes.";
@@ -108,7 +108,7 @@ moscovia,161,76,4	script#re	Guia de Moscóvia#01mosc	959,{
 	}
 }
 
-moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	959,{
+moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	4_F_RUSWOMAN1,{
 	mes "[Guia de Moscóvia]";
 	mes "Bem-vindo à Moscóvia.";
 	mes "Este é o paraíso em meio ao mar sem fim.";
@@ -169,4 +169,4 @@ moscovia,161,76,4	script#pre	Guia de Moscóvia#mosk	959,{
 	}
 }
 
-moscovia,226,191,4	duplicatr(Guia de Moscóvia#01mosc)	Guia de Moscóvia#02mosc	959,{}
+moscovia,226,191,4	duplicatr(Guia de Moscóvia#01mosc)	Guia de Moscóvia#02mosc	4_F_RUSWOMAN1,{}

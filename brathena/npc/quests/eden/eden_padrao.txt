@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_para01,27,35,5	script	Secretária Lime Evenor	952,{
+moc_para01,27,35,5	script	Secretária Lime Evenor	4_F_EDEN_OFFICER,{
 
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 2000) {
 		mes "- Espere um minuto !! -";
@@ -192,7 +192,7 @@ moc_para01,27,35,5	script	Secretária Lime Evenor	952,{
 	close;
 }
 
-prontera,124,76,3	script	Oficial do Éden#0	729,{
+prontera,124,76,3	script	Oficial do Éden#0	4_F_NOVICE,{
 	mes "[Oficial de Teleporte do Éden]";
 	mes "Aqueles que estão vagando por este mundo sem um objetivo vêm até mim para ouvir o que tenho a dizer!";
 	mes "O grupo Éden está aqui para ajudar você e lhe mostrar o futuro.";
@@ -218,43 +218,43 @@ prontera,124,76,3	script	Oficial do Éden#0	729,{
 	}
 }
 
-moc_ruins,68,164,3	duplicate(Oficial do Éden#0)	Oficial do Éden#2	729
-geffen,132,66,3	duplicate(Oficial do Éden#0)	Oficial do Éden#3	729
-alberta,124,67,3	duplicate(Oficial do Éden#0)	Oficial do Éden#4	729
-aldebaran,133,119,5	duplicate(Oficial do Éden#0)	Oficial do Éden#5	729
-izlude_in,68,162,1	duplicate(Oficial do Éden#0)	Oficial do Éden#6	729
-prt_church,103,78,3	duplicate(Oficial do Éden#0)	Oficial do Éden#7	729
-geffen_in,160,104,5	duplicate(Oficial do Éden#0)	Oficial do Éden#8	729
-moc_prydb1,53,126,3	duplicate(Oficial do Éden#0)	Oficial do Éden#9	729
-alberta_in,75,39,3	duplicate(Oficial do Éden#0)	Oficial do Éden#10	729
-payon_in02,58,58,1	duplicate(Oficial do Éden#0)	Oficial do Éden#11	729
-payon,177,111,3	duplicate(Oficial do Éden#0)	Oficial do Éden#12	729
-que_ng,33,73,3	duplicate(Oficial do Éden#0)	Oficial do Éden#13	729
-que_ng,144,161,5	duplicate(Oficial do Éden#0)	Oficial do Éden#14	729
-yuno,144,189,5	duplicate(Oficial do Éden#0)	Oficial do Éden#15	729
-rachel,125,144,3	duplicate(Oficial do Éden#0)	Oficial do Éden#16	729
-comodo,202,151,4	duplicate(Oficial do Éden#0)	Oficial do Éden#17	729
-hugel,93,153,4	duplicate(Oficial do Éden#0)	Oficial do Éden#18	729
-veins,220,109,4	duplicate(Oficial do Éden#0)	Oficial do Éden#19	729
-einbroch,250,211,4	duplicate(Oficial do Éden#0)	Oficial do Éden#20	729
-lighthalzen,164,86,4	duplicate(Oficial do Éden#0)	Oficial do Éden#21	729
-amatsu,100,145,5	duplicate(Oficial do Éden#0)	Oficial do Éden#22	729
-ayothaya,221,191,3	duplicate(Oficial do Éden#0)	Oficial do Éden#23	729
-louyang,224,107,3	duplicate(Oficial do Éden#0)	Oficial do Éden#24	729
-gonryun,162,122,5	duplicate(Oficial do Éden#0)	Oficial do Éden#25	729
-moscovia,209,197,5	duplicate(Oficial do Éden#0)	Oficial do Éden#26	729
-brasilis,191,224,3	duplicate(Oficial do Éden#0)	Oficial do Éden#27	729
-dewata,192,193,5	duplicate(Oficial do Éden#0)	Oficial do Éden#28	729
-morocc,161,97,5	duplicate(Oficial do Éden#0)	Oficial do Éden#29	729
-izlude,131,148,4	duplicate(Oficial do Éden#0)	Oficial do Éden#30	729,{}
-izlude_a,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_a	729
-izlude_b,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_b	729
-izlude_c,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_c	729
-izlude_d,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_d	729,{}
-umbala,105,158,3	duplicate(Oficial do Éden#0)	Oficial do Éden#31	729
-malaya,238,206,6	duplicate(Oficial do Éden#0)	Oficial do Éden#32	729
+moc_ruins,68,164,3	duplicate(Oficial do Éden#0)	Oficial do Éden#2	4_F_NOVICE
+geffen,132,66,3	duplicate(Oficial do Éden#0)	Oficial do Éden#3	4_F_NOVICE
+alberta,124,67,3	duplicate(Oficial do Éden#0)	Oficial do Éden#4	4_F_NOVICE
+aldebaran,133,119,5	duplicate(Oficial do Éden#0)	Oficial do Éden#5	4_F_NOVICE
+izlude_in,68,162,1	duplicate(Oficial do Éden#0)	Oficial do Éden#6	4_F_NOVICE
+prt_church,103,78,3	duplicate(Oficial do Éden#0)	Oficial do Éden#7	4_F_NOVICE
+geffen_in,160,104,5	duplicate(Oficial do Éden#0)	Oficial do Éden#8	4_F_NOVICE
+moc_prydb1,53,126,3	duplicate(Oficial do Éden#0)	Oficial do Éden#9	4_F_NOVICE
+alberta_in,75,39,3	duplicate(Oficial do Éden#0)	Oficial do Éden#10	4_F_NOVICE
+payon_in02,58,58,1	duplicate(Oficial do Éden#0)	Oficial do Éden#11	4_F_NOVICE
+payon,177,111,3	duplicate(Oficial do Éden#0)	Oficial do Éden#12	4_F_NOVICE
+que_ng,33,73,3	duplicate(Oficial do Éden#0)	Oficial do Éden#13	4_F_NOVICE
+que_ng,144,161,5	duplicate(Oficial do Éden#0)	Oficial do Éden#14	4_F_NOVICE
+yuno,144,189,5	duplicate(Oficial do Éden#0)	Oficial do Éden#15	4_F_NOVICE
+rachel,125,144,3	duplicate(Oficial do Éden#0)	Oficial do Éden#16	4_F_NOVICE
+comodo,202,151,4	duplicate(Oficial do Éden#0)	Oficial do Éden#17	4_F_NOVICE
+hugel,93,153,4	duplicate(Oficial do Éden#0)	Oficial do Éden#18	4_F_NOVICE
+veins,220,109,4	duplicate(Oficial do Éden#0)	Oficial do Éden#19	4_F_NOVICE
+einbroch,250,211,4	duplicate(Oficial do Éden#0)	Oficial do Éden#20	4_F_NOVICE
+lighthalzen,164,86,4	duplicate(Oficial do Éden#0)	Oficial do Éden#21	4_F_NOVICE
+amatsu,100,145,5	duplicate(Oficial do Éden#0)	Oficial do Éden#22	4_F_NOVICE
+ayothaya,221,191,3	duplicate(Oficial do Éden#0)	Oficial do Éden#23	4_F_NOVICE
+louyang,224,107,3	duplicate(Oficial do Éden#0)	Oficial do Éden#24	4_F_NOVICE
+gonryun,162,122,5	duplicate(Oficial do Éden#0)	Oficial do Éden#25	4_F_NOVICE
+moscovia,209,197,5	duplicate(Oficial do Éden#0)	Oficial do Éden#26	4_F_NOVICE
+brasilis,191,224,3	duplicate(Oficial do Éden#0)	Oficial do Éden#27	4_F_NOVICE
+dewata,192,193,5	duplicate(Oficial do Éden#0)	Oficial do Éden#28	4_F_NOVICE
+morocc,161,97,5	duplicate(Oficial do Éden#0)	Oficial do Éden#29	4_F_NOVICE
+izlude,131,148,4	duplicate(Oficial do Éden#0)	Oficial do Éden#30	4_F_NOVICE,{}
+izlude_a,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_a	4_F_NOVICE
+izlude_b,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_b	4_F_NOVICE
+izlude_c,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_c	4_F_NOVICE
+izlude_d,131,148,4	duplicatr(Oficial do Éden#0)	Oficial do Éden#30::Oficial do Éden#0_iz_d	4_F_NOVICE,{}
+umbala,105,158,3	duplicate(Oficial do Éden#0)	Oficial do Éden#31	4_F_NOVICE
+malaya,238,206,6	duplicate(Oficial do Éden#0)	Oficial do Éden#32	4_F_NOVICE
 
-moc_para01,30,10,0	script	#eden_out	45,1,1,{
+moc_para01,30,10,0	script	#eden_out	WARPNPC,1,1,{
 
 OnTouch:
 	switch (nak_warp) {
@@ -295,7 +295,7 @@ OnTouch:
 	end;
 }
 
-moc_para01,47,39,3	script	#warp_2_pass	111,{
+moc_para01,47,39,3	script	#warp_2_pass	HIDDEN_NPC,{
 	if (countitem(6219) > 0) {
 		mes "[Lime Evenor]";
 		mes "Oh, esse é um lugar exclusivo para membros do Grupo Éden.";
@@ -319,7 +319,7 @@ moc_para01,47,39,3	script	#warp_2_pass	111,{
 	close;
 }
 
-moc_para01,16,22,7	script	Velho Aventureiro#eden	900,{
+moc_para01,16,22,7	script	Velho Aventureiro#eden	4_M_HUMERCHANT,{
 	mes "[Velho Aventureiro]";
 	mes "Argh, sou forte o suficiente, embora pareça velho! Qual é o nome dela? Lime Evenor? Ela só me ignora como se eu fosse inútil.";
 	next;
@@ -329,7 +329,7 @@ moc_para01,16,22,7	script	Velho Aventureiro#eden	900,{
 	close;
 }
 
-moc_para01,182,48,3	script	Chefe do Éden#eden	886,{
+moc_para01,182,48,3	script	Chefe do Éden#eden	4_COOK,{
 	set .@eggf,rand(1,118);
 	set .@eggf_1,.@eggf + 1;
 	set .@eggf_2,.@eggf + 2;
@@ -352,7 +352,7 @@ moc_para01,182,48,3	script	Chefe do Éden#eden	886,{
 	close;
 }
 
-moc_para01,172,28,5	script	Estagiário do Éden#eden	883,{
+moc_para01,172,28,5	script	Estagiário do Éden#eden	4_M_ALCHE_D,{
 	mes "[Estagiário do Éden]";
 	mes "Na verdade, eu percebi isso.";
 	next;
@@ -367,7 +367,7 @@ moc_para01,172,28,5	script	Estagiário do Éden#eden	883,{
 	close;
 }
 
-moc_para01,20,35,5	script	Assistente de Escritório#Neede	814,{
+moc_para01,20,35,5	script	Assistente de Escritório#Neede	4_F_CHNDOCTOR,{
 	mes "[Neede]";
 	mes "Eu me tornei membro do Éden há muitos anos, mas parece que foi ontem.";
 	mes "Eu tenho feito muito trabalho, então nem notei quantos anos eu passei aqui.";

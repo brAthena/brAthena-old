@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,53,54,3	script	Menestrel#Valquiria	741,{
+valkyrie,53,54,3	script	Menestrel#Valquiria	2_M_BARD_ORIENT,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

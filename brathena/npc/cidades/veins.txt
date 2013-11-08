@@ -26,7 +26,7 @@
 
 // Veins
 //============================================================ 
-veins,162,34,5	script	Morador#ve1	943,{
+veins,162,34,5	script	Morador#ve1	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Eu adoro cactos.";
 	mes "São as plantas mais lindas do deserto.";
@@ -41,7 +41,7 @@ veins,162,34,5	script	Morador#ve1	943,{
 	close;
 }
 
-veins,148,41,3	script	Morador#ve2	940,{
+veins,148,41,3	script	Morador#ve2	4_F_DESERT,{
 	mes "[Morador]";
 	mes "Bem-vindo à Veins, a cidade próxima do templo de Cheshrumnir.";
 	mes "Você pode achar que essa é uma cidade monótona e deserta, mas você verá que ela é tão viva como qualquer outro lugar.";
@@ -55,7 +55,7 @@ veins,148,41,3	script	Morador#ve2	940,{
 	close;
 }
 
-veins,137,179,5	script	Morador#ve3	943,{
+veins,137,179,5	script	Morador#ve3	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Ahh, por que a nossa loja de armas é tão chata?";
 	mes "Não há anda aqui além do velho lixo.";
@@ -67,7 +67,7 @@ veins,137,179,5	script	Morador#ve3	943,{
 	close;
 }
 
-veins,166,91,5	script	Morador#ve4	946,{
+veins,166,91,5	script	Morador#ve4	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Estamos no meio do deserto";
 	mes "e mesmo assim nossos inimigos continuam sendo uma ameaça.";
@@ -79,7 +79,7 @@ veins,166,91,5	script	Morador#ve4	946,{
 	close;
 }
 
-veins,138,71,5	script	Criança#ve1	941,{
+veins,138,71,5	script	Criança#ve1	4_F_DST_CHILD,{
 	mes "[Criança]";
 	mes "EI! Saia daqui!";
 	mes "Você não vê que estou brincando de esconde-esconde?!";
@@ -87,7 +87,7 @@ veins,138,71,5	script	Criança#ve1	941,{
 	close;
 }
 
-veins,253,133,3	script	Criança#ve2	944,{
+veins,253,133,3	script	Criança#ve2	4_M_DST_CHILD,{
 	mes "[Criança]";
 	mes "Meu Deus, onde será que ela se escondeu?";
 	mes "Eu odeio ter que procurar...";
@@ -97,7 +97,7 @@ veins,253,133,3	script	Criança#ve2	944,{
 	close;
 }
 
-veins,270,164,5	script	Velho#ve1	945,{
+veins,270,164,5	script	Velho#ve1	4_M_DST_GRAND,{
 	mes "[Velho]";
 	mes "Bendita seja Freya que me abençoou com vida longa, mas me pergunto se vivi bem a vida.";
 	next;
@@ -107,7 +107,7 @@ veins,270,164,5	script	Velho#ve1	945,{
 	close;
 }
 
-veins,310,195,1	script	Morador#ve5	946,{
+veins,310,195,1	script	Morador#ve5	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Cactos são maravilhosos, eles são as plantas mais bonitas do Deserto.";
 	mes "Sim, devemos cuidar delas";
@@ -118,7 +118,7 @@ veins,310,195,1	script	Morador#ve5	946,{
 	close;
 }
 
-veins,320,254,5	script	Morador#ve6	943,{
+veins,320,254,5	script	Morador#ve6	4_M_DESERT,{
 	mes "[Morador]";
 	mes "................";
 	next;
@@ -137,7 +137,7 @@ veins,320,254,5	script	Morador#ve6	943,{
 	close;
 }
 
-veins,333,318,3	script	Morador#ve7	940,{
+veins,333,318,3	script	Morador#ve7	4_F_DESERT,{
 	mes "[Morador]";
 	mes "O que um aventureiro está fazendo numa cidade tão isolada e monótona?";
 	mes "Você não deveria estar procurando por aventuras?";
@@ -145,7 +145,7 @@ veins,333,318,3	script	Morador#ve7	940,{
 	close;
 }
 
-veins,218,323,1	script	Morador#ve8	945,{
+veins,218,323,1	script	Morador#ve8	4_M_DST_GRAND,{
 	mes "[Morador]";
 	mes "Uau, já faz muito tempo que não vejo turistas aqui";
 	mes "Você deve achar que não tem nada aqui, mas olhe atentamente.";
@@ -163,28 +163,28 @@ veins,218,323,1	script	Morador#ve8	945,{
 	close;
 }
 
-veins,206,275,3	script	Criança#ve3	941,{
+veins,206,275,3	script	Criança#ve3	4_F_DST_CHILD,{
 	mes "[Criança]";
 	mes "Eu queria olhar por dentro do templo, mas ele parece assustador por fora!";
 	mes "Eu me pergunto por que parece assim?";
 	close;
 }
 
-veins,171,256,3	script	Morador#ve9	943,{
+veins,171,256,3	script	Morador#ve9	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Não me interpretem mal, eu daria minha vida à Freya, mas este chamado templo, parece tão estranho e suspeito.";
 	mes "Como pode ser um lugar para cultuar?";
 	close;
 }
 
-veins,197,219,5	script	Morador#ve10	943,{
+veins,197,219,5	script	Morador#ve10	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Eu acho que você pode dizer por essa árvore morta que aqui tem pouca água.";
 	mes "Acho que é uma consequência natural da vida aqui no deserto...";
 	close;
 }
 
-veins,232,169,5	script	Velha#ve1	942,{
+veins,232,169,5	script	Velha#ve1	4_F_DST_GRAND,{
 	mes "[Velha]";
 	mes "...........";
 	mes "Quando eu olho a cidade daqui,";
@@ -198,7 +198,7 @@ veins,232,169,5	script	Velha#ve1	942,{
 	close;
 }
 
-veins,121,199,3	script	Velho#ve2	945,{
+veins,121,199,3	script	Velho#ve2	4_M_DST_GRAND,{
 	mes "[Velho]";
 	mes "Isto não é bom.";
 	mes "Os velhos sobrepõe os novos aqui em Veins.";
@@ -211,7 +211,7 @@ veins,121,199,3	script	Velho#ve2	945,{
 	close;
 }
 
-veins,111,50,3	script	Morador#ve11	943,{
+veins,111,50,3	script	Morador#ve11	4_M_DESERT,{
 	mes "[Morador]";
 	mes "As pessoas valorizam água por aqui, mas eu tenho algo mais precioso para mim.";
 	mes "Sim, até mais precioso que água... Você advinhou -- amor verdadeiro.";
@@ -223,7 +223,7 @@ veins,111,50,3	script	Morador#ve11	943,{
 	close;
 }
 
-veins,112,51,3	script	Moradora#ve12	940,{
+veins,112,51,3	script	Moradora#ve12	4_F_DESERT,{
 	mes "[Moradora]";
 	mes "Bem, eu realmente estou um pouco cansada de vir aqui o tempo todo.";
 	mes "Eu quero tentar ir em outro lugar, mas eu sei que ele adora vir aqui.";
@@ -235,7 +235,7 @@ veins,112,51,3	script	Moradora#ve12	940,{
 	close;
 }
 
-veins,191,134,3	script	Velho#ve3	945,{
+veins,191,134,3	script	Velho#ve3	4_M_DST_GRAND,{
 	mes "[Velho]";
 	mes "Por que você não da uma olhada nas minhas mercadorias?";
 	mes "Eu tenho muitas coisas que devem te interessar";
@@ -246,7 +246,7 @@ veins,191,134,3	script	Velho#ve3	945,{
 	close;
 }
 
-veins,177,147,3	script	Senhora#ve2	942,{
+veins,177,147,3	script	Senhora#ve2	4_F_DST_GRAND,{
 	mes "[Senhora]";
 	mes "Ter um monte de coisas pode paracer legal, mas muitas coisas não são assim tão importante quando você pensa em valor emocional.";
 	next;
@@ -259,7 +259,7 @@ veins,177,147,3	script	Senhora#ve2	942,{
 	close;
 }
 
-veins,223,165,5	script	Criança#ve4	944,{
+veins,223,165,5	script	Criança#ve4	4_M_DST_CHILD,{
 	mes "[Criança]";
 	mes "Ei, você acha que eu consigo alcançar a ponte se eu pular daqui?";
 	mes "Você acha que pode tentar isso?";
@@ -272,7 +272,7 @@ veins,223,165,5	script	Criança#ve4	944,{
 	close;
 }
 
-veins,263,153,5	script	Morador#ve13	943,{
+veins,263,153,5	script	Morador#ve13	4_M_DESERT,{
 	mes "[Morador]";
 	mes "As roupas que fazemos aqui são leves, arejadas, e com tecido de qualidade.";
 	mes "Evidentemente, precisamos de usar coisas assim desde que o tempo está insuportavelmente quente.";
@@ -284,7 +284,7 @@ veins,263,153,5	script	Morador#ve13	943,{
 	close;
 }
 
-veins,296,184,3	script	Moradora#ve14	940,{
+veins,296,184,3	script	Moradora#ve14	4_F_DESERT,{
 	mes "[Moradora]";
 	mes "Vou te contar um segredo.";
 	mes "Mas prometa que não vai contar para ninguem, ok?";
@@ -307,7 +307,7 @@ veins,296,184,3	script	Moradora#ve14	940,{
 	close;
 }
 
-veins,291,205,3	script	Criança#ve5	944,{
+veins,291,205,3	script	Criança#ve5	4_M_DST_CHILD,{
 	mes "[Criança]";
 	mes "Argh! Sou um deus da guerra protegendo Freya e Arunafeltz!";
 	mes "Ahhhhh! Morte para todos os seus inimigos!";
@@ -322,7 +322,7 @@ veins,291,205,3	script	Criança#ve5	944,{
 	close;
 }
 
-veins,291,259,3	script	Velho#ve4	945,{
+veins,291,259,3	script	Velho#ve4	4_M_DST_GRAND,{
 	mes "[Velho]";
 	mes "Fr... Fr...";
 	next;
@@ -342,7 +342,7 @@ veins,291,259,3	script	Velho#ve4	945,{
 	close;
 }
 
-veins,291,284,3	script	Senhora#ve3	942,{
+veins,291,284,3	script	Senhora#ve3	4_F_DST_GRAND,{
 	mes "[Senhora]";
 	mes "Eu pergunto como é meu caminhar como Freya.";
 	mes "Felizmente, , ela terá piedade de mim, quando eu deixar este mundo.";
@@ -350,7 +350,7 @@ veins,291,284,3	script	Senhora#ve3	942,{
 	close;
 }
 
-veins,248,301,3	script	Criança#ve6	944,{
+veins,248,301,3	script	Criança#ve6	4_M_DST_CHILD,{
 	mes "[Criança]";
 	mes "Hã? Você não mora aqui.";
 	mes "você é... Você é um viajante?";
@@ -366,7 +366,7 @@ veins,248,301,3	script	Criança#ve6	944,{
 	close;
 }
 
-veins,161,63,3	script	Velho#ve5	945,{
+veins,161,63,3	script	Velho#ve5	4_M_DST_GRAND,{
 	mes "[Velho]";
 	mes "Ah. Você deve estar de passagem.";
 	mes "Hmm, Veins é uma cidade pequena,";
@@ -384,7 +384,7 @@ veins,161,63,3	script	Velho#ve5	945,{
 	close;
 }
 
-veins,157,123,3	script	Morador#ve15	946,{
+veins,157,123,3	script	Morador#ve15	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Você sabe o que é bom sobre o deserto?";
 	mes "Não?";
@@ -396,7 +396,7 @@ veins,157,123,3	script	Morador#ve15	946,{
 	close;
 }
 
-ve_in,119,386,3	script	Prisoneiro#ve1	946,{
+ve_in,119,386,3	script	Prisoneiro#ve1	4_M_DST_MASTER,{
 	mes "[Prisoneiro]";
 	mes "Inacreditável!";
 	mes "Que tipo de país é este?!";
@@ -409,7 +409,7 @@ ve_in,119,386,3	script	Prisoneiro#ve1	946,{
 	close;
 }
 
-ve_in,111,379,8	script	Guarda#ve1	946,{
+ve_in,111,379,8	script	Guarda#ve1	4_M_DST_MASTER,{
 	mes "[Guarda]";
 	mes "Esse lugar assegura que os criminosos perigosos não estão ameaçando o públi..";
 	mes "Espere. Por que você está nesse lugar?!";
@@ -418,7 +418,7 @@ ve_in,111,379,8	script	Guarda#ve1	946,{
 	close;
 }
 
-ve_in,126,378,3	script	Guarda#ve2	946,{
+ve_in,126,378,3	script	Guarda#ve2	4_M_DST_MASTER,{
 	mes "[Guarda]";
 	mes "Sou grato por nossa cidade ser pacífica.";
 	mes "Se fosse qualquer outro lugar, essa pequena cela estaria cheia de criminosos.";
@@ -428,7 +428,7 @@ ve_in,126,378,3	script	Guarda#ve2	946,{
 	close;
 }
 
-ve_in,101,314,1	script	Morador#ve16	943,{
+ve_in,101,314,1	script	Morador#ve16	4_M_DESERT,{
 	mes "[Morador]";
 	mes "*ofegante*";
 	mes "Eu devo estar muito para o agrado de da deusa Freya.";
@@ -438,7 +438,7 @@ ve_in,101,314,1	script	Morador#ve16	943,{
 	close;
 }
 
-ve_in,90,298,3	script	Morador#ve17	849,{
+ve_in,90,298,3	script	Morador#ve17	4_M_DIEMAN,{
 	mes "[Morador]";
 	mes "Está tão quente...";
 	next;
@@ -447,7 +447,7 @@ ve_in,90,298,3	script	Morador#ve17	849,{
 	close;
 }
 
-ve_in,361,243,5	script	Morador#ve18	849,{
+ve_in,361,243,5	script	Morador#ve18	4_M_DIEMAN,{
 	mes "[Morador]";
 	mes "...............";
 	next;
@@ -461,7 +461,7 @@ ve_in,361,243,5	script	Morador#ve18	849,{
 	close;
 }
 
-ve_in,242,124,3	script	Morador#ve19	849,{
+ve_in,242,124,3	script	Morador#ve19	4_M_DIEMAN,{
 	mes "[Morador]";
 	mes "As bebidas na cidade são... Elas são...";
 	mes "Elas são extremamente forte!";
@@ -478,7 +478,7 @@ ve_in,242,124,3	script	Morador#ve19	849,{
 	close;
 }
 
-ve_in,180,232,5	script	Morador#ve20	946,{
+ve_in,180,232,5	script	Morador#ve20	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "É bom quando uma cidade é pacífica e tranquila.";
 	mes "Mas é horrivel quando um bar é tão quieto assim.";
@@ -489,7 +489,7 @@ ve_in,180,232,5	script	Morador#ve20	946,{
 	close;
 }
 
-ve_in,163,212,3	script	Moradora#ve21	940,{
+ve_in,163,212,3	script	Moradora#ve21	4_F_DESERT,{
 	mes "[Moradora]";
 	mes "Não há nada aqui além de velhos e crianças.";
 	mes "Onde tem um homem que vale a pena casar?";
@@ -502,7 +502,7 @@ ve_in,163,212,3	script	Moradora#ve21	940,{
 	close;
 }
 
-ve_in,190,215,3	script	Morador#ve22	946,{
+ve_in,190,215,3	script	Morador#ve22	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Bem, nossa cidade não tem outra alternativa sem ser se defender em tempos perigosos.";
 	mes "Os jovens aqui são fortes para nos proteger.";
@@ -516,7 +516,7 @@ ve_in,190,215,3	script	Morador#ve22	946,{
 	close;
 }
 
-ve_in,318,121,3	script	Morador#ve23	943,{
+ve_in,318,121,3	script	Morador#ve23	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Essa loja só existe para os bêbados.";
 	mes "Se fechar, todos na cidade vão ficar loucos.";
@@ -533,7 +533,7 @@ ve_in,318,121,3	script	Morador#ve23	943,{
 	close;
 }
 
-ve_in,222,125,5	script	Morador#ve24	943,{
+ve_in,222,125,5	script	Morador#ve24	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Eu quero perguntar á mulher que está na minha frente.";
 	mes "Acha que ela vai...?";
@@ -544,7 +544,7 @@ ve_in,222,125,5	script	Morador#ve24	943,{
 	close;
 }
 
-ve_in,222,122,1	script	Moradora#ve25	940,{
+ve_in,222,122,1	script	Moradora#ve25	4_F_DESERT,{
 	mes "[Moradora]";
 	mes "Eu ouvi tudo...";
 	mes "Meu Deus, ele é tão ingênuo.";
@@ -553,7 +553,7 @@ ve_in,222,122,1	script	Moradora#ve25	940,{
 	close;
 }
 
-ve_in,232,135,5	script	Morador#ve26	946,{
+ve_in,232,135,5	script	Morador#ve26	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Se você gosta de uma boa bebida,";
 	mes "então você tem que ir para o Bar de Veins.";
@@ -565,7 +565,7 @@ ve_in,232,135,5	script	Morador#ve26	946,{
 	close;
 }
 
-ve_in,239,135,5	script	Morador#ve27	946,{
+ve_in,239,135,5	script	Morador#ve27	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "O sol não está tão quente?";
 	mes "Ele não faz você se sentir sedento?";
@@ -577,7 +577,7 @@ ve_in,239,135,5	script	Morador#ve27	946,{
 	close;
 }
 
-ve_in,232,124,5	script	Morador#ve28	943,{
+ve_in,232,124,5	script	Morador#ve28	4_M_DESERT,{
 	mes "[Morador]";
 	mes "Um lobo solitário no deserto.";
 	mes "Este sou eu.";
@@ -589,7 +589,7 @@ ve_in,232,124,5	script	Morador#ve28	943,{
 	close;
 }
 
-ve_in,234,105,3	script	Morador#ve29	946,{
+ve_in,234,105,3	script	Morador#ve29	4_M_DST_MASTER,{
 	mes "[Morador]";
 	mes "Cara o mundo é justo...";
 	mes "É apenas um desejo...!";

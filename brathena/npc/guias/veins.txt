@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-veins,210,345,5	script	Guia de Veins#veins01	934,{
+veins,210,345,5	script	Guia de Veins#veins01	4_M_RASWORD,{
 	mes "[Guia de Veins]";
 	if (checkversion(0)) {
 		mes "Obrigado por surgir em meio a toda essa areia que existe aqui.";
@@ -206,4 +206,4 @@ veins,210,345,5	script	Guia de Veins#veins01	934,{
 		close;
 	}
 }
-veins,189,101,5	duplicate(Guia de Veins#veins01)	Guia#veins02	934
+veins,189,101,5	duplicate(Guia de Veins#veins01)	Guia#veins02	4_M_RASWORD

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,146,98,5	script	Kafra Especial	117,{
+prontera,146,98,5	script	Kafra Especial	4_F_KAFRA1,{
 
 	if(!getgroupid() ) {
 
@@ -125,7 +125,7 @@ prontera,146,98,5	script	Kafra Especial	117,{
 	}
 }
 
-prontera,146,93,5	script	Agente VIP	109,{
+prontera,146,93,5	script	Agente VIP	4_M_MANAGER,{
 
 	setarray .@itens[1], 14529,12274,12275,662;
 	setarray .@qnt[1], 10,1,1,1;
@@ -270,46 +270,46 @@ prontera,146,93,5	script	Agente VIP	109,{
 }
 
 // Duplicatas Kafra Especial
-yuno,147,187,3	duplicate(Kafra Especial)	Kafra Especial#jun	721
-izlude,124,88,3	duplicate(Kafra Especial)	Kafra Especial#iz	721
-alberta,114,64,3	duplicate(Kafra Especial)	Kafra Especial#alb	721
-comodo,185,153,3	duplicate(Kafra Especial)	Kafra Especial#com	721
-payon,190,104,3	duplicate(Kafra Especial)	Kafra Especial#pay	721
-geffen,135,53,3	duplicate(Kafra Especial)	Kafra Especial#gef	721
-morocc,160,97,3	duplicate(Kafra Especial)	Kafra Especial#mor	721
-aldebaran,137,119,3	duplicate(Kafra Especial)	Kafra Especial#ald	721
-einbroch,73,202,3	duplicate(Kafra Especial)	Kafra Especial#ein	721
-lighthalzen,167,100,3	duplicate(Kafra Especial)	Kafra Especial#lig	721
-xmas,139,311,3	duplicate(Kafra Especial)	Kafra Especial#lut	721
-gonryun,155,122,3	duplicate(Kafra Especial)	Kafra Especial#ku	721
-louyang,227,104,3	duplicate(Kafra Especial)	Kafra Especial#lou	721
-ayothaya,208,169,3	duplicate(Kafra Especial)	Kafra Especial#ayo	721
+yuno,147,187,3	duplicate(Kafra Especial)	Kafra Especial#jun	4_F_KAFRA7
+izlude,124,88,3	duplicate(Kafra Especial)	Kafra Especial#iz	4_F_KAFRA7
+alberta,114,64,3	duplicate(Kafra Especial)	Kafra Especial#alb	4_F_KAFRA7
+comodo,185,153,3	duplicate(Kafra Especial)	Kafra Especial#com	4_F_KAFRA7
+payon,190,104,3	duplicate(Kafra Especial)	Kafra Especial#pay	4_F_KAFRA7
+geffen,135,53,3	duplicate(Kafra Especial)	Kafra Especial#gef	4_F_KAFRA7
+morocc,160,97,3	duplicate(Kafra Especial)	Kafra Especial#mor	4_F_KAFRA7
+aldebaran,137,119,3	duplicate(Kafra Especial)	Kafra Especial#ald	4_F_KAFRA7
+einbroch,73,202,3	duplicate(Kafra Especial)	Kafra Especial#ein	4_F_KAFRA7
+lighthalzen,167,100,3	duplicate(Kafra Especial)	Kafra Especial#lig	4_F_KAFRA7
+xmas,139,311,3	duplicate(Kafra Especial)	Kafra Especial#lut	4_F_KAFRA7
+gonryun,155,122,3	duplicate(Kafra Especial)	Kafra Especial#ku	4_F_KAFRA7
+louyang,227,104,3	duplicate(Kafra Especial)	Kafra Especial#lou	4_F_KAFRA7
+ayothaya,208,169,3	duplicate(Kafra Especial)	Kafra Especial#ayo	4_F_KAFRA7
 
 // Duplicatas Agente VIP
-rachel,111,143,3	duplicate(Agente VIP)	Agente VIP#ra	109
-yuno,149,187,3	duplicate(Agente VIP)	Agente VIP#jun	109
-izlude,134,92,3	duplicate(Agente VIP)	Agente VIP#iz	109
-alberta,104,60,3	duplicate(Agente VIP)	Agente VIP#alb	109
-comodo,199,149,3	duplicate(Agente VIP)	Agente VIP#com	109
-umbala,93,160,3	duplicate(Agente VIP)	Agente VIP#um	109
-payon,184,102,3	duplicate(Agente VIP)	Agente VIP#pay	109
-geffen,126,64,3	duplicate(Agente VIP)	Agente VIP#gef	109
-morocc,164,255,3	duplicate(Agente VIP)	Agente VIP#mo	109
-aldebaran,146,116,3	duplicate(Agente VIP)	Agente VIP#ald	109
-hugel,80,152,3	duplicate(Agente VIP)	Agente VIP#hu	109
-einbroch,235,207,3	duplicate(Agente VIP)	Agente VIP#ein	109
-lighthalzen,167,97,3	duplicate(Agente VIP)	Agente VIP#lig	109
-veins,210,109,3	duplicate(Agente VIP)	Agente VIP#ve	109
-amatsu,102,152,3	duplicate(Agente VIP)	Agente VIP#am	109
-gonryun,156,122,3	duplicate(Agente VIP)	Agente VIP#ku	109
-louyang,210,107,3	duplicate(Agente VIP)	Agente VIP#lou	109
-ayothaya,212,173,3	duplicate(Agente VIP)	Agente VIP#ayo	109
-dewata,202,188,3	duplicate(Agente VIP)	Agente VIP#dew	109
-brasilis,200,224,3	duplicate(Agente VIP)	Agente VIP#bra	109
-moscovia,220,191,3	duplicate(Agente VIP)	Agente VIP#mos	109
-niflheim,206,179,3	duplicate(Agente VIP)	Agente VIP#nif	109
-dicastes01,193,191,3	duplicate(Agente VIP)	Agente VIP#dic	109
-manuk,296,147,3	duplicate(Agente VIP)	Agente VIP#man	109
-splendide,201,153,3	duplicate(Agente VIP)	Agente VIP#spl	109
-mora,113,112,3	duplicate(Agente VIP)	Agente VIP#mor	109
-mid_camp,201,237,3	duplicate(Agente VIP)	Agente VIP#mid	109
+rachel,111,143,3	duplicate(Agente VIP)	Agente VIP#ra	4_M_MANAGER
+yuno,149,187,3	duplicate(Agente VIP)	Agente VIP#jun	4_M_MANAGER
+izlude,134,92,3	duplicate(Agente VIP)	Agente VIP#iz	4_M_MANAGER
+alberta,104,60,3	duplicate(Agente VIP)	Agente VIP#alb	4_M_MANAGER
+comodo,199,149,3	duplicate(Agente VIP)	Agente VIP#com	4_M_MANAGER
+umbala,93,160,3	duplicate(Agente VIP)	Agente VIP#um	4_M_MANAGER
+payon,184,102,3	duplicate(Agente VIP)	Agente VIP#pay	4_M_MANAGER
+geffen,126,64,3	duplicate(Agente VIP)	Agente VIP#gef	4_M_MANAGER
+morocc,164,255,3	duplicate(Agente VIP)	Agente VIP#mo	4_M_MANAGER
+aldebaran,146,116,3	duplicate(Agente VIP)	Agente VIP#ald	4_M_MANAGER
+hugel,80,152,3	duplicate(Agente VIP)	Agente VIP#hu	4_M_MANAGER
+einbroch,235,207,3	duplicate(Agente VIP)	Agente VIP#ein	4_M_MANAGER
+lighthalzen,167,97,3	duplicate(Agente VIP)	Agente VIP#lig	4_M_MANAGER
+veins,210,109,3	duplicate(Agente VIP)	Agente VIP#ve	4_M_MANAGER
+amatsu,102,152,3	duplicate(Agente VIP)	Agente VIP#am	4_M_MANAGER
+gonryun,156,122,3	duplicate(Agente VIP)	Agente VIP#ku	4_M_MANAGER
+louyang,210,107,3	duplicate(Agente VIP)	Agente VIP#lou	4_M_MANAGER
+ayothaya,212,173,3	duplicate(Agente VIP)	Agente VIP#ayo	4_M_MANAGER
+dewata,202,188,3	duplicate(Agente VIP)	Agente VIP#dew	4_M_MANAGER
+brasilis,200,224,3	duplicate(Agente VIP)	Agente VIP#bra	4_M_MANAGER
+moscovia,220,191,3	duplicate(Agente VIP)	Agente VIP#mos	4_M_MANAGER
+niflheim,206,179,3	duplicate(Agente VIP)	Agente VIP#nif	4_M_MANAGER
+dicastes01,193,191,3	duplicate(Agente VIP)	Agente VIP#dic	4_M_MANAGER
+manuk,296,147,3	duplicate(Agente VIP)	Agente VIP#man	4_M_MANAGER
+splendide,201,153,3	duplicate(Agente VIP)	Agente VIP#spl	4_M_MANAGER
+mora,113,112,3	duplicate(Agente VIP)	Agente VIP#mor	4_M_MANAGER
+mid_camp,201,237,3	duplicate(Agente VIP)	Agente VIP#mid	4_M_MANAGER

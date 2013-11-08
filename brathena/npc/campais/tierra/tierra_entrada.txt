@@ -29,7 +29,7 @@
 
 // Oficiais do Desfiladeiro de Tierra- Lado Guillaume
 //============================================================
-bat_room,124,178,5	script	Oficial do Desfiladeiro#01a	418,{
+bat_room,124,178,5	script	Oficial do Desfiladeiro#01a	4_M_KY_KNT,{
 
 	set .@npcbgt$,((strnpcinfo(2) == "01a" || strnpcinfo(2) == "02a") ? "Guillaume":"Croix");
 	set .@npcbgt2$,((strnpcinfo(2) == "01b" || strnpcinfo(2) == "02b") ? "Guillaume":"Croix");
@@ -92,12 +92,12 @@ bat_room,124,178,5	script	Oficial do Desfiladeiro#01a	418,{
 }
 
 //============================================================
-bat_room,140,178,5	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#02a	418
-bat_room,125,121,1	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#01b	414
-bat_room,140,121,1	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#02b	414
+bat_room,140,178,5	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#02a	4_M_KY_KNT
+bat_room,125,121,1	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#01b	4_M_CRU_KNT
+bat_room,140,121,1	duplicate(Oficial do Desfiladeiro#01a)	Oficial do Desfiladeiro#02b	4_M_CRU_KNT
 //============================================================
 
-bat_room,127,178,5	script	Cavaleiro Guillaume#1	417,{
+bat_room,127,178,5	script	Cavaleiro Guillaume#1	4_M_KY_SOLD,{
 	mes "["+strnpcinfo(1)+"]";
 	mes "O Desfiladeiro de Tierra consiste em uma divisão de dois íngremes lados dispostos verticalmente e divididos horizontalmente e, em cada um dos lados há um depósito de suprimentos, tanto para os Guillaumes quanto para os Croixs nas direções Noroeste e Sudoeste respectivamente.";
 	next;
@@ -122,7 +122,7 @@ bat_room,127,178,5	script	Cavaleiro Guillaume#1	417,{
 }
 
 //============================================================
-bat_room,143,178,5	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Guillaume#2	417
-bat_room,127,121,1	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Croix#1	413
-bat_room,143,121,1	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Croix#2	413
+bat_room,143,178,5	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Guillaume#2	4_M_KY_SOLD
+bat_room,127,121,1	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Croix#1	4_M_CRU_SOLD
+bat_room,143,121,1	duplicate(Cavaleiro Guillaume#1)	Cavaleiro Croix#2	4_M_CRU_SOLD
 //============================================================

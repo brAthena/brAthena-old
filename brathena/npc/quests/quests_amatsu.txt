@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-amatsu,223,236,3	script	Editora#ama	763,{
+amatsu,223,236,3	script	Editora#ama	4_M_JPN,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um momento!! -";
 		mes "- Atualmente você está carregando -";
@@ -213,7 +213,7 @@ amatsu,223,236,3	script	Editora#ama	763,{
 	}
 }
 
-ama_test,52,44,3	script	Assistente#ama	109,{
+ama_test,52,44,3	script	Assistente#ama	4_M_MANAGER,{
 	if (event_momo == 0) {
 		mes "[Satoshi]";
 		mes "Bem-vindo a <Viagem ao reino de Momotaro>";
@@ -399,7 +399,7 @@ OnTouch:
 	close;
 }
 
-ama_test,49,93,4	script	Avô#ama	766,{
+ama_test,49,93,4	script	Avô#ama	4_M_JPNOJI,{
 	end;
 
 OnInit:
@@ -407,7 +407,7 @@ OnInit:
 	end;
 }
 
-ama_test,50,93,4	script	Avó#ama1	761,10,10,{
+ama_test,50,93,4	script	Avó#ama1	4_F_JPNOBA,10,10,{
 	end;
 
 OnInit:
@@ -560,7 +560,7 @@ OnMyMobDead:
 	end;
 }
 
-ama_test,50,100,3	script	Treinador#ama	762,15,15,{
+ama_test,50,100,3	script	Treinador#ama	4_M_JPN2,15,15,{
 	mes "[Treinador]";
 	mes "Haha~ Bom.";
 	mes "Eu estive te observando na sala VIP. Você realmente foi algo...";
@@ -702,7 +702,7 @@ OnMyMobDead:
 	end;
 }
 
-ama_test,50,100,3	script	Treinador#after	762,5,5,{
+ama_test,50,100,3	script	Treinador#after	4_M_JPN2,5,5,{
 	end;
 
 OnInit:
@@ -787,7 +787,7 @@ OnTouch:
 
 // Quest do Sushi
 //============================================================ 
-ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
+ama_in01,162,17,1	script	Mestre do Sushi#ama	4_M_JPNOJI2,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 5000) {
 		mes "[Magumagu]";
@@ -1269,7 +1269,7 @@ ama_in01,162,17,1	script	Mestre do Sushi#ama	765,{
 
 // Quest Labirinto de Amatsu
 //============================================================ 
-amatsu,112,164,4	script	Guarda do Portão#ama1	767,{
+amatsu,112,164,4	script	Guarda do Portão#ama1	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	mes "Este é o grande palácio Toukoujyo.";
 	mes "É um Local proibido de entrar...";
@@ -1282,7 +1282,7 @@ amatsu,112,164,4	script	Guarda do Portão#ama1	767,{
 	close;
 }
 
-amatsu,119,164,4	script	Guarda do Portão#ama2	767,{
+amatsu,119,164,4	script	Guarda do Portão#ama2	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	mes "Você é de Rune-Midgard?";
 	mes "Bem-Vindo a Amatsu.";
@@ -1295,7 +1295,7 @@ amatsu,119,164,4	script	Guarda do Portão#ama2	767,{
 	close;
 }
 
-ama_in02,207,40,6	script	Guarda do Portão#ama3	767,{
+ama_in02,207,40,6	script	Guarda do Portão#ama3	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	mes "Bem-vindo. O senhor do palácio permitiu a entrada especial de visitantes vindos de outros continentes.";
 	next;
@@ -1304,7 +1304,7 @@ ama_in02,207,40,6	script	Guarda do Portão#ama3	767,{
 	close;
 }
 
-ama_in02,207,49,6	script	Guarda do Portão#ama4	767,{
+ama_in02,207,49,6	script	Guarda do Portão#ama4	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	mes "O senhor é realmente uma ótima pessoa.";
 	mes "Quem iria saber que a nossa cidade já foi um pequeno vilarejo?";
@@ -1316,7 +1316,7 @@ ama_in02,207,49,6	script	Guarda do Portão#ama4	767,{
 	close;
 }
 
-amatsu,164,174,4	script	Guarda do Portão#ama5	767,{
+amatsu,164,174,4	script	Guarda do Portão#ama5	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	if (event_amatsu == 0) {
 		mes "Você não pode entrar aqui.";
@@ -1351,7 +1351,7 @@ amatsu,164,174,4	script	Guarda do Portão#ama5	767,{
 	close;
 }
 
-amatsu,171,174,4	script	Guarda do Portão#ama6	767,{
+amatsu,171,174,4	script	Guarda do Portão#ama6	8_M_JPNSOLDIER,{
 	mes "[Guarda do Portão]";
 	if (event_amatsu == 0) {
 		mes "Você não pode entrar aqui.";
@@ -1388,7 +1388,7 @@ amatsu,171,174,4	script	Guarda do Portão#ama6	767,{
 	close;
 }
 
-ama_in02,187,57,2	script	Soldado#ama1	767,{
+ama_in02,187,57,2	script	Soldado#ama1	8_M_JPNSOLDIER,{
 	mes "[Ichiro]";
 	mes "Bem-vindo.";
 	mes "Nossos senhor preparou uma sala de visitantes para viajantes como você.";
@@ -1400,7 +1400,7 @@ ama_in02,187,57,2	script	Soldado#ama1	767,{
 	close;
 }
 
-ama_in02,170,62,4	script	Soldado#ama2	767,{
+ama_in02,170,62,4	script	Soldado#ama2	8_M_JPNSOLDIER,{
 	mes "[Jiro]";
 	mes "Sou Jiro, o administrador deste Palácio.";
 	mes "O que posso fazer por você?";
@@ -1447,7 +1447,7 @@ ama_in02,170,62,4	script	Soldado#ama2	767,{
 	}
 }
 
-ama_in02,37,157,4	script	Soldado#ama3	767,{
+ama_in02,37,157,4	script	Soldado#ama3	8_M_JPNSOLDIER,{
 	mes "[Saburo]";
 	mes "Este é o campo de treinamento onde melhoramos nossas habilidades de batalha.";
 	mes "Por favor, olhe ao redor...";
@@ -1469,7 +1469,7 @@ ama_in02,37,157,4	script	Soldado#ama3	767,{
 	close;
 }
 
-ama_in02,32,51,6	script	Soldado#ama4	767,{
+ama_in02,32,51,6	script	Soldado#ama4	8_M_JPNSOLDIER,{
 	mes "[Shiro]";
 	mes "*Tosse, Tosse* O quê...";
 	mes "Não fale comigo...";
@@ -1487,7 +1487,7 @@ ama_in02,32,51,6	script	Soldado#ama4	767,{
 	close;
 }
 
-ama_in02,40,167,3	script	Soldado#ama5	767,{
+ama_in02,40,167,3	script	Soldado#ama5	8_M_JPNSOLDIER,{
 	mes "[Goro]";
 	mes "*Psst*... Por favor, fique quieto.";
 	mes "Vou lhe contar uma história, certo?";
@@ -1510,7 +1510,7 @@ ama_in02,40,167,3	script	Soldado#ama5	767,{
 	close;
 }
 
-ama_in02,32,167,5	script	Soldado#ama6	767,{
+ama_in02,32,167,5	script	Soldado#ama6	8_M_JPNSOLDIER,{
 	mes "[Rokuro]";
 	mes "Ele sempre fala bobagem.";
 	mes "Ele diz que o nosso senhor não é real, mas é mentira.";
@@ -1527,7 +1527,7 @@ ama_in02,32,167,5	script	Soldado#ama6	767,{
 	close;
 }
 
-ama_in02,42,34,2	script	Soldado#ama7	767,{
+ama_in02,42,34,2	script	Soldado#ama7	8_M_JPNSOLDIER,{
 	mes "[Shichiro]";
 	mes "Divirta-se.";
 	mes "Meu senhor preparou algumas salas para visitas.";
@@ -1541,7 +1541,7 @@ ama_in02,42,34,2	script	Soldado#ama7	767,{
 	close;
 }
 
-ama_in02,203,156,4	script	Soldado#ama8	767,{
+ama_in02,203,156,4	script	Soldado#ama8	8_M_JPNSOLDIER,{
 	mes "[Hachiro]";
 	mes "Meu senhor está lá dentro.";
 	mes "Se quiser cumprimentá-lo, fique a vontade para entrar.";
@@ -1554,7 +1554,7 @@ ama_in02,203,156,4	script	Soldado#ama8	767,{
 	close;
 }
 
-ama_in02,195,156,4	script	Soldado#ama9	767,{
+ama_in02,195,156,4	script	Soldado#ama9	8_M_JPNSOLDIER,{
 	mes "[Kyuro]";
 	mes "Isso não é bom.";
 	mes "Meu senhor é gentil, mas recentemente ele não está bem...";
@@ -1566,7 +1566,7 @@ ama_in02,195,156,4	script	Soldado#ama9	767,{
 	close;
 }
 
-ama_in02,115,177,7	script	Soldado#ama10	767,{
+ama_in02,115,177,7	script	Soldado#ama10	8_M_JPNSOLDIER,{
 	mes "[Jyuro]";
 	mes "O que você está fazendo aqui?";
 	mes "Não há nada de interessante aqui.";
@@ -1650,7 +1650,7 @@ ama_in02,115,177,7	script	Soldado#ama10	767,{
 	close;
 }
 
-ama_dun01,229,7,0	script	Soldado#ama11	767,{
+ama_dun01,229,7,0	script	Soldado#ama11	8_M_JPNSOLDIER,{
 	mes "[Jyuro]";
 	mes "Você quer voltar?";
 	next;
@@ -1666,7 +1666,7 @@ ama_dun01,229,7,0	script	Soldado#ama11	767,{
 	close;
 }
 
-ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
+ama_in02,200,176,4	script	Senhor Feudal#ama	8_M_JPNMASTER,{
 	if (event_amatsu == 0) {
 		mes "[Ishida Yoshinaga]";
 		mes "O quê! Um estrangeiro...? *Puxa*";
@@ -1792,7 +1792,7 @@ ama_in02,200,176,4	script	Senhor Feudal#ama	768,{
 	close;
 }
 
-ama_in01,22,111,0	script	Avó#ama2	761,{
+ama_in01,22,111,0	script	Avó#ama2	4_F_JPNOBA,{
 	if (event_amatsu == 4) {
 		mes "[....]";
 		mes "^FF6060Yelp, Yelp, um ser humano insensato denovo!";
@@ -1915,7 +1915,7 @@ ama_in01,22,111,0	script	Avó#ama2	761,{
 	end;
 }
 
-amatsu,189,166,5	script	Kouji#ama	764,{
+amatsu,189,166,5	script	Kouji#ama	4_M_JPNCHIBI,{
 	mes "[Kouji]";
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
@@ -1969,7 +1969,7 @@ amatsu,189,166,5	script	Kouji#ama	764,{
 	close;
 }
 
-ama_in01,169,173,1	script	Shaman#ama	769,{
+ama_in01,169,173,1	script	Shaman#ama	4_F_JPNMU,{
 	mes "[Tokako]";
 	mes "Er, eu não sou realmente um Guia Espiritual...";
 	mes "Meu amigo, Takehue-kun trouxe-me aqui e me convidou para experimentar essas roupas.";
@@ -1985,7 +1985,7 @@ ama_in01,169,173,1	script	Shaman#ama	769,{
 	close;
 }
 
-ama_in01,180,173,3	script	Guia Espiritual#ama	762,{
+ama_in01,180,173,3	script	Guia Espiritual#ama	4_M_JPN2,{
 	if (event_amatsu == 3) {
 		mes "[Takehue]";
 		mes "É, você é "+((Sex) ? "um forasteiro":"forasteira")+".";

@@ -25,7 +25,7 @@
 
 // Kunlun - Transportação
 //============================================================ 
-alberta,245,69,3	script	Barqueiro de Kunlun#gon	776,{
+alberta,245,69,3	script	Barqueiro de Kunlun#gon	4_M_TWMIDMAN,{
 	mes "[Wabakho]";
 	mes "Bom dia~";
 	mes "Deixem-me convidá-los para visitar a minha terra natal, Kunlun.";
@@ -97,7 +97,7 @@ alberta,245,69,3	script	Barqueiro de Kunlun#gon	776,{
 	}
 }
 
-gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	776,{
+gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	4_M_TWMIDMAN,{
 	mes "[Wabakho]";
 	mes "Gostou da viagem?";
 	mes "Acho que é hora de você voltar para casa. O navio para Rune-Midgard sairá em breve.";
@@ -119,13 +119,13 @@ gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	776,{
 	close;
 }
 
-gon_fild01,187,239,7	script	Anunciante de Kunlun#gon3	776,{
+gon_fild01,187,239,7	script	Anunciante de Kunlun#gon3	4_M_TWMIDMAN,{
 	mes "[Jangchungryong]";
 	mes "Por favor, siga ao norte para chegar a Kunlun. Espero que tenha uma boa estadia na cidade.";
 	close;
 }
 
-gonryun,153,64,7	script	Anunciante de Kunlun#gon4	776,{
+gonryun,153,64,7	script	Anunciante de Kunlun#gon4	4_M_TWMIDMAN,{
 	mes "[Jangchungryong]";
 	mes "Por favor sinta-se a vontade.";
 	mes "Se você quiser voltar, ficarei muito feliz de guiá-lo até o navio para Alberta.";
@@ -145,7 +145,7 @@ gonryun,153,64,7	script	Anunciante de Kunlun#gon4	776,{
 
 // NPCs de Kunlun
 //============================================================
-gonryun,200,82,3	script	Jian Chung Xun#gon	774,{
+gonryun,200,82,3	script	Jian Chung Xun#gon	4_M_TWBOY,{
 	mes "[Jian Chung Xun]";
 	mes "Eu simplesmente adoro festivais!";
 	mes "Por isso amo essa cidade!";
@@ -153,7 +153,7 @@ gonryun,200,82,3	script	Jian Chung Xun#gon	774,{
 	close;
 }
 
-gonryun,268,88,3	script	Liang Zhun Bu#gon	776,{
+gonryun,268,88,3	script	Liang Zhun Bu#gon	4_M_TWMIDMAN,{
 	mes "[Liang Zhun Bu]";
 	mes "Temos orgulho de ser uma nação independente, e lutamos contra os invasores que tentam conquistar essa terra abençoada.";
 	next;
@@ -163,7 +163,7 @@ gonryun,268,88,3	script	Liang Zhun Bu#gon	776,{
 	close;
 }
 
-gonryun,118,111,5	script	Qian Yuen Shuang#gon	89,{
+gonryun,118,111,5	script	Qian Yuen Shuang#gon	4_M_ORIENT02,{
 	mes "[Qian Yuen Shuang]";
 	mes "O prefeito da cidade é um homem de coração aberto a todos.";
 	mes "Entretanto, ouvi que algumas pessoas não gostam desse tipo de personalidade...";
@@ -173,7 +173,7 @@ gonryun,118,111,5	script	Qian Yuen Shuang#gon	89,{
 	close;
 }
 
-gonryun,181,161,3	script	Jing Wen Zhen#gon	773,{
+gonryun,181,161,3	script	Jing Wen Zhen#gon	4_F_TWMIDWOMAN,{
 	mes "[Jing Wen Zhen]";
 	mes "Os homens de nossa cidade são bravos e corajosos.";
 	mes "Mas quase nenhum arrumou uma esposa! É uma vergonha, na verdade!";
@@ -184,7 +184,7 @@ gonryun,181,161,3	script	Jing Wen Zhen#gon	773,{
 	close;
 }
 
-gonryun,113,135,6	script	Guardião#gon	780,{
+gonryun,113,135,6	script	Guardião#gon	8_M_TWSOLDIER,{
 	mes "[Guardião de Kunlun]";
 	mes "Bem-vindo.";
 	mes "Aqui é a residência de Shi Yan Wen, prefeito de Kunlun.";
@@ -198,9 +198,9 @@ gonryun,113,135,6	script	Guardião#gon	780,{
 	close;
 }
 
-gonryun,113,127,6	duplicate(Guardião#gon)	Guardião#gon2	780
+gonryun,113,127,6	duplicate(Guardião#gon)	Guardião#gon2	8_M_TWSOLDIER
 
-gon_in,73,82,5	script	Ji Chung Zhe#gon	778,{
+gon_in,73,82,5	script	Ji Chung Zhe#gon	4_M_TWTEAMAN,{
 	if (nakha >= 0 && nakha <= 2) {
 		mes "[Ji Chung Zhe]";
 		mes "............";
@@ -226,7 +226,7 @@ gon_in,73,82,5	script	Ji Chung Zhe#gon	778,{
 	}
 }
 
-gon_in,173,27,3	script	Yu Jiu Xia#gon	774,{
+gon_in,173,27,3	script	Yu Jiu Xia#gon	4_M_TWBOY,{
 	mes "[Yu Jiu Xia]";
 	mes "Droga, bem que achei.";
 	mes "Não venderam bebida alcoólica para mim...";
@@ -239,7 +239,7 @@ gon_in,173,27,3	script	Yu Jiu Xia#gon	774,{
 	close;
 }
 
-gonryun,166,196,3	script	Soldado#gon	780,{
+gonryun,166,196,3	script	Soldado#gon	8_M_TWSOLDIER,{
 	if (b_sword < 7) {
 		mes "[Wa Qiu Wu]";
 		mes "Deixe-me dizer algo interessante sobre esse lugar~";
@@ -275,7 +275,7 @@ gonryun,166,196,3	script	Soldado#gon	780,{
 	close;
 }
 
-gonryun,169,71,3	script	Guia#gon01	770,{
+gonryun,169,71,3	script	Guia#gon01	4_F_TWGIRL,{
 	mes "[Li Xi Jiao]";
 	mes "Bem-vindo a Kunlun!";
 	mes "Você gostou do lindo cenário no caminho para cá?";

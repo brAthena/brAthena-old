@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_para01,42,38,3	script	Mission [56 - 70]	857,{
+moc_para01,42,38,3	script	Mission [56 - 70]	4_BOARD3,{
 	if (checkquest(12217) > -1) erasequest 12217;
 	if (countitem(6219)) {
 		mes "Here is the list of various adventures for level 55~70 adventurers.";

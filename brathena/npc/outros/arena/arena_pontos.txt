@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_are_in,103,11,3	script	Gerente de Pontos	732,{
+prt_are_in,103,11,3	script	Gerente de Pontos	4_M_JOB_HUNTER,{
 	mes "[Gerente de Pontos da Arena]";
 	mes "Eu espero que você esteja se divertindo na Arena.";
 	mes "Se você ganhou Pontos Turbo Track";

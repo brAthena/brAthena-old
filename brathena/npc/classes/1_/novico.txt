@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
+prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 	mes "[Tomas Cerbantes]";
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Priest || ADVJOB == Job_Champion) {
@@ -251,7 +251,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 	}
 }
 
-prt_fild03,365,255,2	script	Irmão Simão#nov	89,{
+prt_fild03,365,255,2	script	Irmão Simão#nov	4_M_ORIENT02,{
 	mes "[Simão]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 6) {
@@ -331,7 +331,7 @@ prt_fild03,365,255,2	script	Irmão Simão#nov	89,{
 	}
 }
 
-moc_fild07,41,355,4	script	Irmã Matilda#2nov	95,{
+moc_fild07,41,355,4	script	Irmã Matilda#2nov	4_F_SISTER,{
 	mes "[Matilda]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 7) {
@@ -392,7 +392,7 @@ moc_fild07,41,355,4	script	Irmã Matilda#2nov	95,{
 	}
 }
 
-prt_fild00,208,218,6	script	Irmão Bartolomeu#3nov	98,{
+prt_fild00,208,218,6	script	Irmão Bartolomeu#3nov	4W_M_02,{
 	mes "[Bartolomeu]";
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 8) {

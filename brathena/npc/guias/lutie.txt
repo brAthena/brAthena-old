@@ -26,7 +26,7 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-xmas,140,137,3	script	Guia de Lutie#xmas	717,{
+xmas,140,137,3	script	Guia de Lutie#xmas	4_F_KID3,{
 	mes "[Guia de Lutie]";
 	mes "Bem-vindo à ^8B4513Lutie^000000, a Cidade da Neve.";
 	mes "Precisa de alguma ajuda para andar pela cidade?";

@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-hu_in01,386,306,3	script	Negociador de Flautas	51,{
+hu_in01,386,306,3	script	Negociador de Flautas	1_M_BARD,{
 	mes "[Negociador da Flauta do Falcão]";
 	if (BaseJob == Job_Hunter) {
 		mes "Você precisa de um Falcão?";
@@ -95,9 +95,9 @@ hu_in01,386,306,3	script	Negociador de Flautas	51,{
 	mes "Hoje não é um lindo dia?";
 	close;
 }
-pay_arche,91,134,3	duplicate(Negociador de Flautas)	Negociador da Flauta do Falcão#fft2	51
+pay_arche,91,134,3	duplicate(Negociador de Flautas)	Negociador da Flauta do Falcão#fft2	1_M_BARD
 
-tur_dun01,89,170,5	script	Criador de Flauta Avançada	59,{
+tur_dun01,89,170,5	script	Criador de Flauta Avançada	1_M_ORIENT01,{
 	if (Class == Job_Ranger || Class == Job_Ranger_T || Class == Job_Baby_Ranger) {
 		mes "[Criador de Flauta Avançada]";
 		if (countitem(6124)) {

@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_in,88,101,4	script	Chefe dos Cavaleiros#cav	56,{
+prt_in,88,101,4	script	Chefe dos Cavaleiros#cav	1_M_KNIGHTMASTER,{
 	mes "[Chefe dos Cavaleiros]";
 	if (Upper == 1) {
 		mes "Hm? É você ... O que há contigo? Tenho sido um cavaleiro honrado por um longo tempo, mas eu não consigo entender esse sentimento que estou recebendo de você...";
@@ -450,7 +450,7 @@ L_Mission:
 	}
 }
 
-prt_in,75,107,4	script	Cavaleiro Dedicado#cav	65,{
+prt_in,75,107,4	script	Cavaleiro Dedicado#cav	1_M_YOUNGKNIGHT,{
 	mes "[Cavaleiro Dedicado]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
@@ -654,7 +654,7 @@ prt_in,75,107,4	script	Cavaleiro Dedicado#cav	65,{
 	}
 }
 
-prt_in,71,91,0	script	Cavaleiro Honroso#cav	65,{
+prt_in,71,91,0	script	Cavaleiro Honroso#cav	1_M_YOUNGKNIGHT,{
 	mes "[Cavaleiro Honroso]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
@@ -1039,7 +1039,7 @@ prt_in,71,91,0	script	Cavaleiro Honroso#cav	65,{
 	}
 }
 
-prt_in,79,94,4	script	Cavaleiro das Lutas#cav	733,{
+prt_in,79,94,4	script	Cavaleiro das Lutas#cav	4_M_JOB_KNIGHT1,{
 	mes "[Cavaleiro das Lutas]";
 	mes "...";
 	next;
@@ -1133,7 +1133,7 @@ prt_in,79,94,4	script	Cavaleiro das Lutas#cav	733,{
 
 // Teste 2 parte 1
 //==========================================================
-job_knt,89,106,4	script	Windsor#cav	733,{
+job_knt,89,106,4	script	Windsor#cav	4_M_JOB_KNIGHT1,{
 	mes "[Cavaleiro das Lutas]";
 	mes "...";
 	next;
@@ -1206,7 +1206,7 @@ job_knt,89,106,4	script	Windsor#cav	733,{
 	}
 }
 
-job_knt,89,106,4	script	Windsor Bento#cav	733,{
+job_knt,89,106,4	script	Windsor Bento#cav	4_M_JOB_KNIGHT1,{
 	end;
 
 OnInit:
@@ -1428,7 +1428,7 @@ OnTimer182000:
 
 // Teste 3 (Maneiras)
 //==========================================================
-prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
+prt_in,69,107,6	script	Cavaleira Educada#cav	4_F_JOB_KNIGHT,{
 	mes "[Cavaleira Educada]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
@@ -1768,7 +1768,7 @@ prt_in,69,107,6	script	Cavaleira Educada#cav	728,{
 
 // Test Teste 4 (paciência)
 //==========================================================
-prt_in,70,99,6	script	Cavaleiro Devotado#cav	734,{
+prt_in,70,99,6	script	Cavaleiro Devotado#cav	4_M_JOB_KNIGHT2,{
 	mes "[Cavaleiro Devotado]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {
@@ -1921,7 +1921,7 @@ prt_in,70,99,6	script	Cavaleiro Devotado#cav	734,{
 	}
 }
 
-job_knt,1,1,1	script	Cronômetro#cav	107,{
+job_knt,1,1,1	script	Cronômetro#cav	1_M_PAY_ELDER,{
 OnTimer300000:
 	enablenpc "Teletransporte#cav";
 	end;
@@ -1970,7 +1970,7 @@ OnMyMobDead:
 	end;
 }
 
-job_knt,145,57,1	script	Teletransporte#cav	107,22,22,{
+job_knt,145,57,1	script	Teletransporte#cav	1_M_PAY_ELDER,22,22,{
 OnInit:
 	disablenpc "Teletransporte#cav";
 	end;
@@ -1983,7 +1983,7 @@ OnTouch:
 
 // Teste 5, Criação de Claymores para cavaleiros
 //==========================================================
-prt_in,87,92,4	script	Cavaleiro Modesto#cav	119,{
+prt_in,87,92,4	script	Cavaleiro Modesto#cav	2_M_SWORDMASTER,{
 	mes "[Cavaleiro Modesto]";
 	if (BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Knight) {

@@ -27,7 +27,7 @@
 
 // Ida para Ilha Malangdo
 //============================================================
-prontera,114,77,6	script	Dolangmal#1	553,{
+prontera,114,77,6	script	Dolangmal#1	4_CAT_DOWN,{
 	if (checkquest(5091) == -1) {
 		mes "[Dolangmal]";
 		mes "Eii~! Olá humano, eu sou o Sr. Dolangmal. kakaka~";
@@ -156,14 +156,14 @@ prontera,114,77,6	script	Dolangmal#1	553,{
 		close;
 	}
 }
-geffen,109,61,6	duplicate(Dolangmal#1)	Dolangmal#2	553
-payon,200,106,4	duplicate(Dolangmal#1)	Dolangmal#3	553
-aldebaran,170,104,4	duplicate(Dolangmal#1)	Dolangmal#4	553
-morocc,168,275,4	duplicate(Dolangmal#1)	Dolangmal#5	553
-yuno,165,122,4	duplicate(Dolangmal#1)	Dolangmal#6	553
-rachel,121,126,4	duplicate(Dolangmal#1)	Dolangmal#7	553
-lighthalzen,254,83,5	duplicate(Dolangmal#1)	Dolangmal#8	553
-mora,57,150,4	duplicate(Dolangmal#1)	Dolangmal#9	553
+geffen,109,61,6	duplicate(Dolangmal#1)	Dolangmal#2	4_CAT_DOWN
+payon,200,106,4	duplicate(Dolangmal#1)	Dolangmal#3	4_CAT_DOWN
+aldebaran,170,104,4	duplicate(Dolangmal#1)	Dolangmal#4	4_CAT_DOWN
+morocc,168,275,4	duplicate(Dolangmal#1)	Dolangmal#5	4_CAT_DOWN
+yuno,165,122,4	duplicate(Dolangmal#1)	Dolangmal#6	4_CAT_DOWN
+rachel,121,126,4	duplicate(Dolangmal#1)	Dolangmal#7	4_CAT_DOWN
+lighthalzen,254,83,5	duplicate(Dolangmal#1)	Dolangmal#8	4_CAT_DOWN
+mora,57,150,4	duplicate(Dolangmal#1)	Dolangmal#9	4_CAT_DOWN
 
 -	script	::Odgnalam	-1,{
 	mes "Recebendo o sol quente de "+((strnpcinfo(2) == "albe")?"Alberta":"Izlude")+".";
@@ -221,7 +221,7 @@ izlude_b,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_b  554
 izlude_c,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_c  554
 izlude_d,182,218,4	duplicatr(Odgnalam)	Odgnalam#iz_d  554,{}
 
-malangdo,219,86,4	script	Kong#malang	545,{
+malangdo,219,86,4	script	Kong#malang	4_CAT_SAILOR2,{
 	mes "[Kong]";
 	mes "Você está se divertindo em Malangdo?";
 	mes "A frota tem serviços em Izlude e Alberta.";
@@ -275,7 +275,7 @@ malangdo,219,86,4	script	Kong#malang	545,{
 
 // NPCs da Cidade
 //============================================================
-malangdo,147,117,3	script	Recepcionista#malang	554,{
+malangdo,147,117,3	script	Recepcionista#malang	4_CAT_REST,{
 	mes "Você vê um gato preguiçoso sentado em uma cadeira.";
 	mes "Embora seja um Recepcionista, não parece querer negócios.";
 	next;
@@ -318,7 +318,7 @@ malangdo,147,117,3	script	Recepcionista#malang	554,{
 	close;
 }
 
-malangdo,151,120,3	script	Menestrel Andarilho#mal	479,{
+malangdo,151,120,3	script	Menestrel Andarilho#mal	4_M_MINSTREL,{
 	mes "[Menestrel]";
 	mes "Eu sinto sono sempre que vejo o Recepcionista. Tão confortável.";
 	next;
@@ -327,7 +327,7 @@ malangdo,151,120,3	script	Menestrel Andarilho#mal	479,{
 	close;
 }
 
-malangdo,149,120,5	script	Musa Andarilha#mal	485,5,1,{
+malangdo,149,120,5	script	Musa Andarilha#mal	4_F_WANDERER,5,1,{
 	mes "[Musa Andarilha]";
 	mes "Os gatos que vivem aqui são tão energéticos.";
 	mes "Isso me faz dançar~";
@@ -349,7 +349,7 @@ OnTouch:
 	end;
 }
 
-malangdo,216,168,3	script	Treinadora de Gatos#mal1	558,0,8,{
+malangdo,216,168,3	script	Treinadora de Gatos#mal1	4_F_ALCHE_A,0,8,{
 	emotion e_awsm;
 	mes "[Treinadora de Gatos]";
 	mes "Pff~ Pelos lisos e macios, adoro gatinhos!";
@@ -380,7 +380,7 @@ OnTouch:
 	end;
 }
 
-malangdo,164,203,3	script	Treinador de Gatos#mal2	853,{
+malangdo,164,203,3	script	Treinador de Gatos#mal2	4_M_YURI,{
 	emotion e_awsm;
 	mes "[Treinador de Gatos]";
 	mes "Ooo~ sua longa cauda e sua pele macia~";

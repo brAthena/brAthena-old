@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude,103,106,3	script	Guildsman#1	48,3,3,{
+izlude,103,106,3	script	Guildsman#1	1_M_02,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -453,7 +453,7 @@ OnTouch:
 	}
 }
 
-prontera,237,313,3	script	Nun#moc	79,3,3,{
+prontera,237,313,3	script	Nun#moc	1_F_PRIEST,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -648,7 +648,7 @@ OnTouch:
 	}
 }
 
-alberta,129,59,3	script	Guildsman#2	49,3,3,{
+alberta,129,59,3	script	Guildsman#2	1_M_03,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -1183,7 +1183,7 @@ OnTouch:
 	}
 }
 
-geffen,123,109,3	script	Academy Staff	742,3,3,{
+geffen,123,109,3	script	Academy Staff	2_M_SAGE_B,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -1343,7 +1343,7 @@ OnTouch:
 	}
 }
 
-morocc,155,56,3	script	Miya	93,3,3,{
+morocc,155,56,3	script	Miya	4_F_04,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -1632,7 +1632,7 @@ OnTouch:
 	}
 }
 
-payon,231,323,3	script	Guildsman#3	59,3,3,{
+payon,231,323,3	script	Guildsman#3	1_M_ORIENT01,3,3,{
 
 	if (checkweight(7416,1) != 1)
 	{
@@ -2091,7 +2091,7 @@ OnTouch:
 	}
 }
 
-morocc,43,108,5	script	Sharp-Looking Kid	82,{
+morocc,43,108,5	script	Sharp-Looking Kid	4_KID01,{
 
 	if ((Class == Job_Assassin) || (Class == Job_Assassin_Cross))
 	{
@@ -2167,7 +2167,7 @@ morocc,43,108,5	script	Sharp-Looking Kid	82,{
 	}
 }
 
-morocc,45,110,1	script	#maobar1	45,2,2,{
+morocc,45,110,1	script	#maobar1	WARPNPC,2,2,{
 
 OnTouch:
 	if (mao_request || Class == Job_Assassin || Class == Job_Assassin_Cross) warp "que_job01",9,94;
@@ -2239,28 +2239,28 @@ OnTouch:
 	}
 }
 
-que_job01,6,94,1	script	#maobar2	45,2,2,{
+que_job01,6,94,1	script	#maobar2	WARPNPC,2,2,{
 
 OnTouch:
 	warp "morocc",45,103;
 	end;
 }
 
-que_job01,17,48,1	script	#maobar3	45,2,2,{
+que_job01,17,48,1	script	#maobar3	WARPNPC,2,2,{
 
 OnTouch:
 	warp "que_job01",68,92;
 	end;
 }
 
-que_job01,68,96,1	script	#maobar4	45,2,2,{
+que_job01,68,96,1	script	#maobar4	WARPNPC,2,2,{
 
 OnTouch:
 	warp "que_job01",17,53;
 	end;
 }
 
-que_job01,80,77,1	script	#maobar5	45,2,2,{
+que_job01,80,77,1	script	#maobar5	WARPNPC,2,2,{
 
 OnTouch:
 	if (mao_request > 1) warp "que_job01",61,50;
@@ -2371,14 +2371,14 @@ OnTouch:
 	}
 }
 
-que_job01,65,50,1	script	#maobar4-2	45,2,2,{
+que_job01,65,50,1	script	#maobar4-2	WARPNPC,2,2,{
 
 OnTouch:
 	warp "que_job01",84,77;
 	end;
 }
 
-que_job01,81,79,5	script	Idle Knight	733,{
+que_job01,81,79,5	script	Idle Knight	4_M_JOB_KNIGHT1,{
 
 	mes "[Litheron]";
 	mes "What's the matter?";
@@ -2398,7 +2398,7 @@ que_job01,81,79,5	script	Idle Knight	733,{
 	close;
 }
 
-que_job01,82,95,3	script	Bar Master	46,{
+que_job01,82,95,3	script	Bar Master	1_ETC_01,{
 
 	if (checkweight(12112,1) != 1)
 	{
@@ -2678,7 +2678,7 @@ que_job01,82,95,3	script	Bar Master	46,{
 	}
 }
 
-que_job01,49,49,5	script	Tao	877,{
+que_job01,49,49,5	script	Tao	4_F_YUNYANG,{
 
 	if (mao_request == 28 || mao_request == 29 || mao_request == 126 || mao_request == 127)
 	{
@@ -2733,7 +2733,7 @@ que_job01,49,49,5	script	Tao	877,{
 	}
 }
 
-que_job01,51,55,1	script	#roombar1	45,1,1,{
+que_job01,51,55,1	script	#roombar1	WARPNPC,1,1,{
 
 OnInit:
 	set $maobar_room,0;
@@ -2840,7 +2840,7 @@ OnTimer250000:
 	end;
 }
 
-que_job01,12,13,1	script	#maobar6	139,1,1,{
+que_job01,12,13,1	script	#maobar6	HIDDEN_WARP_NPC,1,1,{
 
 OnInit:
 	disablenpc "#maobar7";
@@ -2855,7 +2855,7 @@ OnTouch:
 	end;
 }
 
-que_job01,51,44,1	script	#roombar2	45,1,1,{
+que_job01,51,44,1	script	#roombar2	WARPNPC,1,1,{
 
 OnInit:
 	set $maobar_room2,0;
@@ -2973,7 +2973,7 @@ OnTimer250000:
 	end;
 }
 
-que_job01,80,17,1	script	#maobar7	45,1,1,{
+que_job01,80,17,1	script	#maobar7	WARPNPC,1,1,{
 
 OnInit:
 	disablenpc "#maobar7";
@@ -2988,7 +2988,7 @@ OnTouch:
 	end;
 }
 
-que_job01,144,51,1	script	#maobar8	45,1,1,{
+que_job01,144,51,1	script	#maobar8	WARPNPC,1,1,{
 
 OnInit:
 	disablenpc "#maobar8";
@@ -3003,7 +3003,7 @@ OnTouch:
 	end;
 }
 
-que_job01,11,4,1	script	#maoexit1	45,1,1,{
+que_job01,11,4,1	script	#maoexit1	WARPNPC,1,1,{
 
 OnTouch:
 	warp "que_job01",52,50;
@@ -3011,7 +3011,7 @@ OnTouch:
 	end;
 }
 
-que_job01,80,27,1	script	#maoexit2	45,1,1,{
+que_job01,80,27,1	script	#maoexit2	WARPNPC,1,1,{
 
 OnTouch:
 	warp "que_job01",52,50;
@@ -3019,7 +3019,7 @@ OnTouch:
 	end;
 }
 
-que_job01,144,61,1	script	#maoexit3	45,1,1,{
+que_job01,144,61,1	script	#maoexit3	WARPNPC,1,1,{
 
 OnTouch:
 	warp "que_job01",52,50;
@@ -3027,7 +3027,7 @@ OnTouch:
 	end;
 }
 
-que_job01,16,21,5	script	Valdes#1	55,{
+que_job01,16,21,5	script	Valdes#1	1_M_JOBTESTER,{
 
 	if (checkweight(7417,1) != 1)
 	{
@@ -3519,7 +3519,7 @@ OnEnter:
 	end;
 }
 
-que_job01,17,11,3	script	Valdes#2	55,{
+que_job01,17,11,3	script	Valdes#2	1_M_JOBTESTER,{
 
 OnInit:
 	disablenpc "Valdes#2";
@@ -3530,7 +3530,7 @@ OnEnter:
 	end;
 }
 
-que_job01,142,56,5	script	Valdes#3	55,{
+que_job01,142,56,5	script	Valdes#3	1_M_JOBTESTER,{
 
 OnInit:
 	disablenpc "Valdes#3";
@@ -3541,7 +3541,7 @@ OnEnter:
 	end;
 }
 
-que_job01,19,18,3	script	Lin#1	885,{
+que_job01,19,18,3	script	Lin#1	4_F_ACROSS,{
 
 	cutin "mocseal_rin01.bmp",2;
 	if (mao_request < 3)
@@ -3612,7 +3612,7 @@ OnEnter:
 	end;
 }
 
-que_job01,13,9,7	script	Lin#2	885,{
+que_job01,13,9,7	script	Lin#2	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#2";
@@ -3623,7 +3623,7 @@ OnEnter:
 	end;
 }
 
-que_job01,84,17,3	script	Lin#2-1	885,{
+que_job01,84,17,3	script	Lin#2-1	4_F_ACROSS,{
 
 	if (mao_request == 103)
 	{
@@ -4162,7 +4162,7 @@ que_job01,84,17,3	script	Lin#2-1	885,{
 	end;
 }
 
-que_job01,79,15,1	script	R	880,{
+que_job01,79,15,1	script	R	4_M_MASKMAN,{
 
 	if (mao_request == 103)
 	{
@@ -4607,7 +4607,7 @@ que_job01,79,15,1	script	R	880,{
 	end;
 }
 
-que_job01,147,54,3	script	Lin#3	885,{
+que_job01,147,54,3	script	Lin#3	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#3";
@@ -4618,7 +4618,7 @@ OnEnter:
 	end;
 }
 
-que_job01,13,17,5	script	Kidd#1	884,{
+que_job01,13,17,5	script	Kidd#1	4_M_ACROSS,{
 
 	cutin "mocseal_kid01.bmp",2;
 	if (mao_request < 3)
@@ -4688,7 +4688,7 @@ OnEnter:
 	end;
 }
 
-que_job01,12,8,7	script	Kidd#2	884,{
+que_job01,12,8,7	script	Kidd#2	4_M_ACROSS,{
 
 OnInit:
 	disablenpc "Kidd#2";
@@ -4699,7 +4699,7 @@ OnEnter:
 	end;
 }
 
-que_job01,148,54,3	script	Kidd#3	884,{
+que_job01,148,54,3	script	Kidd#3	4_M_ACROSS,{
 
 OnInit:
 	disablenpc "Kidd#3";
@@ -4710,7 +4710,7 @@ OnEnter:
 	end;
 }
 
-que_job01,91,83,3	script	Kidd#hall	884,{
+que_job01,91,83,3	script	Kidd#hall	4_M_ACROSS,{
 
 	if (mao_request == 124)
 	{
@@ -5559,7 +5559,7 @@ que_job01,91,83,3	script	Kidd#hall	884,{
 	end;
 }
 
-que_job01,89,85,5	script	Dandelion Member	880,{
+que_job01,89,85,5	script	Dandelion Member	4_M_MASKMAN,{
 
 	if (checkweight(12112,1) != 1)
 	{
@@ -6047,7 +6047,7 @@ que_job01,89,85,5	script	Dandelion Member	880,{
 	end;
 }
 
-yuno_in04,180,106,3	script	Reading Girl	73,{
+yuno_in04,180,106,3	script	Reading Girl	1_F_MERCHANT_01,{
 
 	if (mao_request == 5)
 	{
@@ -6335,7 +6335,7 @@ yuno_in04,180,106,3	script	Reading Girl	73,{
 	}
 }
 
-yuno_in04,175,129,0	script	Workbook#mao	111,{
+yuno_in04,175,129,0	script	Workbook#mao	HIDDEN_NPC,{
 
 	if (mao_request == 7)
 	{
@@ -6445,7 +6445,7 @@ OnInit:
 	end;
 }
 
-yuno_in04,174,130,5	script	Kidd#book	884,{
+yuno_in04,174,130,5	script	Kidd#book	4_M_ACROSS,{
 
 	mes "[Kidd]";
 	mes "......";
@@ -6476,7 +6476,7 @@ OnTimer180000:
 	stopnpctimer;
 }
 
-que_job01,6,79,5	script	Lin#stairs	885,{
+que_job01,6,79,5	script	Lin#stairs	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#stairs";
@@ -6487,7 +6487,7 @@ OnEnter:
 	end;
 }
 
-que_job01,8,77,1	script	#linstairs	139,3,3,{
+que_job01,8,77,1	script	#linstairs	HIDDEN_WARP_NPC,3,3,{
 
 	if (mao_request == 109)
 	{
@@ -6699,7 +6699,7 @@ que_job01,8,77,1	script	#linstairs	139,3,3,{
 	}
 }
 
-moc_fild10,281,148,1	script	Upturned Spot#water	111,{
+moc_fild10,281,148,1	script	Upturned Spot#water	HIDDEN_NPC,{
 
 	if (mao_request == 14)
 	{
@@ -6801,7 +6801,7 @@ moc_fild10,281,148,1	script	Upturned Spot#water	111,{
 	end;
 }
 
-moc_fild19,21,33,1	script	Unturned Spot#wind	111,{
+moc_fild19,21,33,1	script	Unturned Spot#wind	HIDDEN_NPC,{
 
 	if (mao_request == 10)
 	{
@@ -7010,7 +7010,7 @@ moc_fild19,21,33,1	script	Unturned Spot#wind	111,{
 	end;
 }
 
-moc_fild12,280,36,1	script	Unturned Spot#earth	111,{
+moc_fild12,280,36,1	script	Unturned Spot#earth	HIDDEN_NPC,{
 
 	if (mao_request == 13)
 	{
@@ -7125,7 +7125,7 @@ moc_fild12,280,36,1	script	Unturned Spot#earth	111,{
 	cutin "mocseal_earth02.bmp",255;
 }
 
-moc_fild07,192,166,1	script	Unturned Spot#fire	111,{
+moc_fild07,192,166,1	script	Unturned Spot#fire	HIDDEN_NPC,{
 
 	if (mao_request == 15)
 	{
@@ -7228,7 +7228,7 @@ moc_fild07,192,166,1	script	Unturned Spot#fire	111,{
 	cutin "mocseal_fire02.bmp",255;
 }
 
-morocc_in,46,125,5	script	Assistant	729,{
+morocc_in,46,125,5	script	Assistant	4_F_NOVICE,{
 
 	if (mao_request > 18 && mao_request < 100)
 	{
@@ -7512,7 +7512,7 @@ morocc_in,46,125,5	script	Assistant	729,{
 	}
 }
 
-que_job01,15,8,1	script	#mao_table	139,1,1,{
+que_job01,15,8,1	script	#mao_table	HIDDEN_WARP_NPC,1,1,{
 
 OnTouch:
 	if (mao_request == 24)
@@ -7659,7 +7659,7 @@ OnEnter:
 	end;
 }
 
-que_job01,147,55,1	script	#mao_empty	139,1,1,{
+que_job01,147,55,1	script	#mao_empty	HIDDEN_WARP_NPC,1,1,{
 
 OnTouch:
 	if (mao_request == 122)
@@ -7685,7 +7685,7 @@ OnEnter:
 	end;
 }
 
-que_job01,144,57,1	script	#Rabsent	139,1,1,{
+que_job01,144,57,1	script	#Rabsent	HIDDEN_WARP_NPC,1,1,{
 
 OnTouch:
 	if (mao_request == 25)
@@ -7758,7 +7758,7 @@ OnEnter:
 	end;
 }
 
-moc_castle,40,20,3	script	Man	849,{
+moc_castle,40,20,3	script	Man	4_M_DIEMAN,{
 
 	if ((mao_request > 27 && mao_request < 31) || (mao_request > 125 && mao_request < 129))
 	{
@@ -7815,7 +7815,7 @@ OnInit:
 	end;
 }
 
-que_job02,14,182,1	script	#maogate1	139,1,1,{
+que_job02,14,182,1	script	#maogate1	HIDDEN_WARP_NPC,1,1,{
 
 OnEnter:
 	enablenpc "#maogate1";
@@ -7887,7 +7887,7 @@ OnTimer597000:
 	end;
 }
 
-que_job02,14,181,1	script	#maogate1_talk1	139,2,2,{
+que_job02,14,181,1	script	#maogate1_talk1	HIDDEN_WARP_NPC,2,2,{
 
 OnInit:
 	disablenpc "#maogate1_talk1";
@@ -7928,7 +7928,7 @@ OnTouch:
 	end;
 }
 
-que_job02,17,150,1	script	#maogate1_talk2	139,2,2,{
+que_job02,17,150,1	script	#maogate1_talk2	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk2";
@@ -7974,7 +7974,7 @@ OnTouch:
 	end;
 }
 
-que_job02,16,97,1	script	#maogate1_talk3	139,2,2,{
+que_job02,16,97,1	script	#maogate1_talk3	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk3";
@@ -8031,7 +8031,7 @@ OnTouch:
 	end;
 }
 
-que_job02,44,33,1	script	#maogate1_talk4	139,2,2,{
+que_job02,44,33,1	script	#maogate1_talk4	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk4";
@@ -8083,7 +8083,7 @@ OnTouch:
 	end;
 }
 
-que_job02,93,21,1	script	#maogate1_talk5	139,2,2,{
+que_job02,93,21,1	script	#maogate1_talk5	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk5";
@@ -8120,7 +8120,7 @@ OnTouch:
 	end;
 }
 
-que_job02,93,21,1	script	#maogate1_talk6	139,3,3,{
+que_job02,93,21,1	script	#maogate1_talk6	HIDDEN_WARP_NPC,3,3,{
 
 OnStop:
 	disablenpc "#maogate1_talk6";
@@ -8193,7 +8193,7 @@ OnTouch:
 	end;
 }
 
-que_job02,180,144,1	script	#maogate1_talk7	139,2,2,{
+que_job02,180,144,1	script	#maogate1_talk7	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk7";
@@ -8247,7 +8247,7 @@ OnTouch:
 	end;
 }
 
-que_job02,77,179,1	script	#maogate1_talk8	139,2,2,{
+que_job02,77,179,1	script	#maogate1_talk8	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_talk8";
@@ -8295,7 +8295,7 @@ OnTimer20100:
 	end;
 }
 
-que_job02,73,82,1	script	#maogate1_battle	139,2,2,{
+que_job02,73,82,1	script	#maogate1_battle	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_battle";
@@ -8341,7 +8341,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job02,66,85,5	script	Dandelion Member#1_bt	880,{
+que_job02,66,85,5	script	Dandelion Member#1_bt	4_M_MASKMAN,{
 
 	if (mao_request == 26 || mao_request == 27)
 	{
@@ -8403,7 +8403,7 @@ OnEnter:
 	end;
 }
 
-que_job02,87,83,1	script	#maogate1_setting	139,2,2,{
+que_job02,87,83,1	script	#maogate1_setting	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate1_setting";
@@ -8426,7 +8426,7 @@ OnTouch:
 	}
 }
 
-que_job02,117,101,1	script	#maogate1_end	139,3,3,{
+que_job02,117,101,1	script	#maogate1_end	HIDDEN_WARP_NPC,3,3,{
 
 OnInit:
 	disablenpc "#maogate1_end";
@@ -8619,7 +8619,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job02,116,108,5	script	Kidd#maogate1_1	884,{
+que_job02,116,108,5	script	Kidd#maogate1_1	4_M_ACROSS,{
 
 OnInit:
 	disablenpc "Kidd#maogate1_1";
@@ -8630,7 +8630,7 @@ OnEnter:
 	end;
 }
 
-que_job02,126,103,5	script	Kidd#maogate1_2	884,{
+que_job02,126,103,5	script	Kidd#maogate1_2	4_M_ACROSS,{
 
 	end;
 
@@ -8648,7 +8648,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job02,121,106,1	script	Lin#maogate1_1	885,{
+que_job02,121,106,1	script	Lin#maogate1_1	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#maogate1_1";
@@ -8659,7 +8659,7 @@ OnEnter:
 	end;
 }
 
-que_job02,127,101,1	script	Lin#maogate1_2	885,{
+que_job02,127,101,1	script	Lin#maogate1_2	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#maogate1_2";
@@ -8670,7 +8670,7 @@ OnEnter:
 	end;
 }
 
-que_job02,124,109,3	script	R#maogate1	880,{
+que_job02,124,109,3	script	R#maogate1	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "R#maogate1";
@@ -8685,7 +8685,7 @@ OnSpell:
 	end;
 }
 
-que_job02,113,107,5	script	Dandelion#maogate1_1	880,{
+que_job02,113,107,5	script	Dandelion#maogate1_1	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate1_1";
@@ -8696,7 +8696,7 @@ OnEnter:
 	end;
 }
 
-que_job02,121,100,7	script	Dandelion#maogate1_2	880,{
+que_job02,121,100,7	script	Dandelion#maogate1_2	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate1_2";
@@ -8715,7 +8715,7 @@ OnSpell2:
 	end;
 }
 
-que_job02,122,98,1	script	Dandelion#maogate1_3	880,{
+que_job02,122,98,1	script	Dandelion#maogate1_3	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate1_3";
@@ -8730,7 +8730,7 @@ OnSpell:
 	end;
 }
 
-que_job02,122,111,5	script	Dandelion#maogate1_4	880,{
+que_job02,122,111,5	script	Dandelion#maogate1_4	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate1_4";
@@ -8745,7 +8745,7 @@ OnSpell:
 	end;
 }
 
-que_job02,122,106,1	script	#maogate1_end2	139,15,15,{
+que_job02,122,106,1	script	#maogate1_end2	HIDDEN_WARP_NPC,15,15,{
 
 OnInit:
 	disablenpc "#maogate1_end2";
@@ -8798,7 +8798,7 @@ OnTouch:
 	}
 }
 
-que_job03,14,182,1	script	#maogate2	139,1,1,{
+que_job03,14,182,1	script	#maogate2	HIDDEN_WARP_NPC,1,1,{
 
 OnEnter:
 	enablenpc "#maogate2";
@@ -8870,7 +8870,7 @@ OnTimer597000:
 	end;
 }
 
-que_job03,14,181,1	script	#maogate2_talk1	139,2,2,{
+que_job03,14,181,1	script	#maogate2_talk1	HIDDEN_WARP_NPC,2,2,{
 
 OnInit:
 	disablenpc "#maogate2_talk1";
@@ -8911,7 +8911,7 @@ OnTouch:
 	end;
 }
 
-que_job03,17,150,1	script	#maogate2_talk2	139,2,2,{
+que_job03,17,150,1	script	#maogate2_talk2	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk2";
@@ -8957,7 +8957,7 @@ OnTouch:
 	end;
 }
 
-que_job03,16,97,1	script	#maogate2_talk3	139,2,2,{
+que_job03,16,97,1	script	#maogate2_talk3	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk3";
@@ -9014,7 +9014,7 @@ OnTouch:
 	end;
 }
 
-que_job03,44,33,1	script	#maogate2_talk4	139,2,2,{
+que_job03,44,33,1	script	#maogate2_talk4	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk4";
@@ -9066,7 +9066,7 @@ OnTouch:
 	end;
 }
 
-que_job03,93,21,1	script	#maogate2_talk5	139,2,2,{
+que_job03,93,21,1	script	#maogate2_talk5	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk5";
@@ -9103,7 +9103,7 @@ OnTouch:
 	end;
 }
 
-que_job03,93,21,1	script	#maogate2_talk6	139,3,3,{
+que_job03,93,21,1	script	#maogate2_talk6	HIDDEN_WARP_NPC,3,3,{
 
 OnStop:
 	disablenpc "#maogate2_talk6";
@@ -9176,7 +9176,7 @@ OnTouch:
 	end;
 }
 
-que_job03,180,144,1	script	#maogate2_talk7	139,2,2,{
+que_job03,180,144,1	script	#maogate2_talk7	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk7";
@@ -9230,7 +9230,7 @@ OnTouch:
 	end;
 }
 
-que_job03,77,179,1	script	#maogate2_talk8	139,2,2,{
+que_job03,77,179,1	script	#maogate2_talk8	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_talk8";
@@ -9278,7 +9278,7 @@ OnTimer20100:
 	end;
 }
 
-que_job03,73,82,1	script	#maogate2_battle	139,2,2,{
+que_job03,73,82,1	script	#maogate2_battle	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_battle";
@@ -9324,7 +9324,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job03,66,85,5	script	Dandelion Member#2_bt	880,{
+que_job03,66,85,5	script	Dandelion Member#2_bt	4_M_MASKMAN,{
 
 	if (mao_request == 124 || mao_request == 125)
 	{
@@ -9396,7 +9396,7 @@ OnEnter:
 	end;
 }
 
-que_job03,87,83,1	script	#maogate2_setting	139,2,2,{
+que_job03,87,83,1	script	#maogate2_setting	HIDDEN_WARP_NPC,2,2,{
 
 OnStop:
 	disablenpc "#maogate2_setting";
@@ -9419,7 +9419,7 @@ OnTouch:
 	}
 }
 
-que_job03,117,101,1	script	#maogate2_end	139,3,3,{
+que_job03,117,101,1	script	#maogate2_end	HIDDEN_WARP_NPC,3,3,{
 
 OnInit:
 	disablenpc "#maogate2_end";
@@ -9613,7 +9613,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job03,116,108,5	script	Kidd#maogate2_1	884,{
+que_job03,116,108,5	script	Kidd#maogate2_1	4_M_ACROSS,{
 
 OnInit:
 	disablenpc "Kidd#maogate2_1";
@@ -9624,7 +9624,7 @@ OnEnter:
 	end;
 }
 
-que_job03,126,103,5	script	Kidd#maogate2_2	884,{
+que_job03,126,103,5	script	Kidd#maogate2_2	4_M_ACROSS,{
 
 	end;
 
@@ -9642,7 +9642,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job03,121,106,1	script	Lin#maogate2_1	885,{
+que_job03,121,106,1	script	Lin#maogate2_1	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#maogate2_1";
@@ -9653,7 +9653,7 @@ OnEnter:
 	end;
 }
 
-que_job03,127,101,1	script	Lin#maogate2_2	885,{
+que_job03,127,101,1	script	Lin#maogate2_2	4_F_ACROSS,{
 
 OnInit:
 	disablenpc "Lin#maogate2_2";
@@ -9664,7 +9664,7 @@ OnEnter:
 	end;
 }
 
-que_job03,124,109,3	script	R#maogate2	880,{
+que_job03,124,109,3	script	R#maogate2	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "R#maogate2";
@@ -9679,7 +9679,7 @@ OnSpell:
 	end;
 }
 
-que_job03,113,107,5	script	Dandelion#maogate2_1	880,{
+que_job03,113,107,5	script	Dandelion#maogate2_1	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate2_1";
@@ -9690,7 +9690,7 @@ OnEnter:
 	end;
 }
 
-que_job03,121,100,7	script	Dandelion#maogate2_2	880,{
+que_job03,121,100,7	script	Dandelion#maogate2_2	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate2_2";
@@ -9709,7 +9709,7 @@ OnSpell2:
 	end;
 }
 
-que_job03,122,98,1	script	Dandelion#maogate2_3	880,{
+que_job03,122,98,1	script	Dandelion#maogate2_3	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate2_3";
@@ -9724,7 +9724,7 @@ OnSpell:
 	end;
 }
 
-que_job03,122,111,5	script	Dandelion#maogate2_4	880,{
+que_job03,122,111,5	script	Dandelion#maogate2_4	4_M_MASKMAN,{
 
 OnInit:
 	disablenpc "Dandelion#maogate2_4";
@@ -9739,7 +9739,7 @@ OnSpell:
 	end;
 }
 
-que_job03,122,106,1	script	#maogate2_end2	139,15,15,{
+que_job03,122,106,1	script	#maogate2_end2	HIDDEN_WARP_NPC,15,15,{
 
 OnInit:
 	disablenpc "#maogate2_end2";
@@ -9791,7 +9791,7 @@ OnTouch:
 	}
 }
 
-morocc,30,29,5	script	Member#mao1	880,10,15,{
+morocc,30,29,5	script	Member#mao1	4_M_MASKMAN,10,15,{
 
 	mes "[Chairman]";
 	mes "So it's agreed.";
@@ -9874,7 +9874,7 @@ OnTouch:
 	}
 }
 
-morocc,29,26,0	script	Member#mao2	880,{
+morocc,29,26,0	script	Member#mao2	4_M_MASKMAN,{
 
 	mes "[Chairman]";
 	mes "So it's agreed.";
@@ -9911,7 +9911,7 @@ OnEnter:
 	end;
 }
 
-morocc,33,27,1	script	Member#mao3	880,{
+morocc,33,27,1	script	Member#mao3	4_M_MASKMAN,{
 
 	mes "[Chairman]";
 	mes "So it's agreed.";
@@ -9948,7 +9948,7 @@ OnEnter:
 	end;
 }
 
-morocc,34,30,3	script	Member#mao4	880,{
+morocc,34,30,3	script	Member#mao4	4_M_MASKMAN,{
 
 	mes "[Chairman]";
 	mes "So it's agreed.";
@@ -10185,7 +10185,7 @@ OnMyMobDead:
 	end;
 }
 
-que_job01,68,88,5	script	Simon#mao	881,{
+que_job01,68,88,5	script	Simon#mao	4_M_SITDOWN,{
 
 	mes "[Simon]";
 	mes "...No. How many";
@@ -10236,9 +10236,9 @@ que_job01,68,88,5	script	Simon#mao	881,{
 	close;
 }
 
-que_job01,70,84,1	duplicate(Simon#mao)	Kimmie	882,0,0
+que_job01,70,84,1	duplicate(Simon#mao)	Kimmie	4_F_SITDOWN,0,0
 
-sec_in02,38,162,0	script	Morroc Invasion Manager	882,{
+sec_in02,38,162,0	script	Morroc Invasion Manager	4_F_SITDOWN,{
 	callfunc "F_GM_NPC";
 	mes "A total of " + $maoattack + " users completed";
 	mes "the Satan Morroc: Lin Quest.";

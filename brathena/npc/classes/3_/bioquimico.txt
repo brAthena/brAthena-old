@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alde_alche,35,186,5	script	Membro da União de Alquimistas	805,{
+alde_alche,35,186,5	script	Membro da União de Alquimistas	1_M_SIGNALCHE,{
 	mes "[Membro da União Alquimista]";
 	if (BaseLevel > 98 && JobLevel > 49){
 		if (BaseJob == Job_Alchemist) {
@@ -90,7 +90,7 @@ alde_alche,35,186,5	script	Membro da União de Alquimistas	805,{
 	close;
 }
 
-job3_gen01,25,58,3	script	Devries#gen	865,{
+job3_gen01,25,58,3	script	Devries#gen	4_LGTSCIENCE,{
 	if (SkillPoint != 0) {
 		mes "- You still have some unused skill points. -";
 		close;
@@ -572,7 +572,7 @@ job3_gen01,25,58,3	script	Devries#gen	865,{
 	close;
 }
 
-job3_gen01,83,72,3	script	Caixa de Entrega#generic	111,{
+job3_gen01,83,72,3	script	Caixa de Entrega#generic	HIDDEN_NPC,{
 	mes "- É uma grande caixa. -";
 	if (job_gen == 2) {
 		next;
@@ -601,7 +601,7 @@ job3_gen01,83,72,3	script	Caixa de Entrega#generic	111,{
 	close;
 }
 
-job3_gen01,12,56,3	script	Planta Guia#generic	111,{
+job3_gen01,12,56,3	script	Planta Guia#generic	HIDDEN_NPC,{
 	mes "<A mais fácil alquimia no mundo>";
 	mes "Escrito por Bob Ross.";
 	next;
@@ -664,32 +664,32 @@ function	script	Genetic_Job_Plant	{
 	close;
 }
 
-job3_gen01,36,55,3	script	Planta Bigibibi#gen	844,{
+job3_gen01,36,55,3	script	Planta Bigibibi#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2209,"Planta Bigibibi","The size is quite big to be normal grass so it's called Planta Bigibibi.";
 	end;
 }
-job3_gen01,36,45,3	script	Árvore Muka#gen	844,{
+job3_gen01,36,45,3	script	Árvore Muka#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2210,"Árvore Muka","Esta é a árvore de Muka, ela protege seu interior delicado com espinhos afiados.",1;
 	end;
 }
-job3_gen01,42,55,3	script	Vinha Bogi#gen	844,{
+job3_gen01,42,55,3	script	Vinha Bogi#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2211,"Vinha Bogi","Essa é uma Vinha Bogi, ela cresce muito rápido.",1;
 	end;
 }
-job3_gen01,30,58,3	script	Aolatura#gen	844,{
+job3_gen01,30,58,3	script	Aolatura#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2212,"Aolatura","Essa é conhecida por flor Aolatura.";
 	end;
 }
-job3_gen01,30,63,3	script	Congra#gen	844,{
+job3_gen01,30,63,3	script	Congra#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2213,"Congra","É uma planta que tem um tronco grande e sólido e com folhas enormes.";
 	end;
 }
-job3_gen01,32,38,3	script	Grama Grudenta#gen	844,{
+job3_gen01,32,38,3	script	Grama Grudenta#gen	CLEAR_NPC,{
 	callfunc "Genetic_Job_Plant",2214,"Grama Grudenta","Não sei o nome mas é pegajosa e pode furar a qualquer coisa.";
 	end;
 }
 
-job3_gen01,7,50,3	script	Mesa de Testes#gen	844,{
+job3_gen01,7,50,3	script	Mesa de Testes#gen	CLEAR_NPC,{
 	if (job_gen == 7) {
 		mes "- Esta é uma tabela de teste com uma grande quantidade de equipementos. Com ela podemos estudar as combinações de plantas. -";
 		next;
@@ -769,11 +769,11 @@ job3_gen01,7,50,3	script	Mesa de Testes#gen	844,{
 	close;
 }
 
-job3_gen01,21,67,3	script	Super Cultivator#gen	844,{
+job3_gen01,21,67,3	script	Super Cultivator#gen	CLEAR_NPC,{
 	end;
 }
 
-job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
+job3_gen01,91,48,3	script	Demi Calberine#gen	4_F_SCIENCE,{
 	mes "[Demi Calberine]";
 	if (job_gen < 62) {
 		mes "Hmm ~ onde vai esse parafuso?";
@@ -963,15 +963,15 @@ OnTimer7000:
 	stopnpctimer;
 	end;
 }
-job3_gen01,84,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen1	111
-job3_gen01,77,41,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen2	111
-job3_gen01,78,57,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen3	111
-job3_gen01,89,59,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen4	111
-job3_gen01,90,51,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen5	111
-job3_gen01,83,27,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen6	111
-job3_gen01,74,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen7	111
+job3_gen01,84,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen1	HIDDEN_NPC
+job3_gen01,77,41,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen2	HIDDEN_NPC
+job3_gen01,78,57,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen3	HIDDEN_NPC
+job3_gen01,89,59,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen4	HIDDEN_NPC
+job3_gen01,90,51,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen5	HIDDEN_NPC
+job3_gen01,83,27,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen6	HIDDEN_NPC
+job3_gen01,74,45,3	duplicate(Materiais Espalhados#gen)	Materiais Espalhados#gen7	HIDDEN_NPC
 
-job3_gen01,18,39,3	script	Perigo#gen	837,{
+job3_gen01,18,39,3	script	Perigo#gen	2_BULLETIN_BOARD,{
 	mes "= Perigo =";
 	mes "Se você mexer nos meus esporos, eu vou gritar!!!";
 	if (job_gen < 75) close;
@@ -988,30 +988,30 @@ job3_gen01,18,39,3	script	Perigo#gen	837,{
 	}
 }
 
-job3_gen01,80,12,1	script	Estoque de Revistas#gen	111,{
+job3_gen01,80,12,1	script	Estoque de Revistas#gen	HIDDEN_NPC,{
 	mes "- 'Bomba mensal!' As revistas estão desorganizadas. -";
 	close;
 }
 
-job3_gen01,83,20,1	script	Cama#gen	111,{
+job3_gen01,83,20,1	script	Cama#gen	HIDDEN_NPC,{
 	mes "- Um conjunto de cobertores escolhido com cuidado deve ser muito bom para esta cama suja. -";
 	close;
 }
 
-job3_gen01,85,25,1	script	Livro Aberto#gen	111,{
+job3_gen01,85,25,1	script	Livro Aberto#gen	HIDDEN_NPC,{
 	mes "< Você quer usar o meu quarto? Você tem bastante zenys? Há bastante quartos? Vá para a loja de departamentos de Lighthalzen imediatamente para conseguir os melhores quartos! >";
 	next;
 	mes "< Velas de luxo irão iluminar seu quarto, um espelho dourado enorme, você não pode perder tudo isso! >";
 	close;
 }
 
-job3_gen01,81,81,0	script	#dbroom	139,2,2,{
+job3_gen01,81,81,0	script	#dbroom	HIDDEN_WARP_NPC,2,2,{
 OnTouch:
 	mes "- É uma sala que parece um armazém, existem tantas coisas aqui. -";
 	close;
 }
 
-job3_gen01,24,32,0	script	Visão de Devries	139,2,2,{
+job3_gen01,24,32,0	script	Visão de Devries	HIDDEN_WARP_NPC,2,2,{
 OnTouch:
 	if (checkquest(2223,HUNTING) == 2) {
 		mapannounce "job3_gen01","Devries: O que? Tinha um gatinho perdido no meio dos esporos?",bc_map,"0x99CC00"; //FW_NORMAL 12 0 0

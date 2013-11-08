@@ -24,7 +24,7 @@
 
 // Túnel submarino 
 
-iz_dun04,130,234,5	script#re	Gatekeeper#iz_dun	413,{
+iz_dun04,130,234,5	script#re	Gatekeeper#iz_dun	4_M_CRU_SOLD,{
 	mes "[Gatekeeper]";
 	mes "Halt!";
 	mes "What brings you here, Adventurer?";

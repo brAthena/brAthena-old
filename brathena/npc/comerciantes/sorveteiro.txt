@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,120,45,2	script	Sorveteiro#alb	85,{
+alberta,120,45,2	script	Sorveteiro#alb	4_M_03,{
 	mes "[Sorveteiro]";
 	mes "Um sorvete fresco feito com a neve de Lutie!";
 	mes "Aproveite, ele não esterá à venda por muito tempo!";
@@ -72,7 +72,7 @@ alberta,120,45,2	script	Sorveteiro#alb	85,{
 }
 
 // Campo de Morroc
-moc_fild16,88,304,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc1	85
+moc_fild16,88,304,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc1	4_M_03
 
 // Morroc
-//morocc,160,144,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc2	85
+//morocc,160,144,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc2	4_M_03

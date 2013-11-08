@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-geffen_in,151,119,4	script	Grande Mago	64,{
+geffen_in,151,119,4	script	Grande Mago	1_M_WIZARD,{
 	mes "[BLIZZARDRISS]";
 	mes "Olá ! Meu Amigo !";
 	mes "Vejo que você é um Mago.";

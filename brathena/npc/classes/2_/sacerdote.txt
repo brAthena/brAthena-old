@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_church,16,41,4	script	Bispo#prst	60,{
+prt_church,16,41,4	script	Bispo#prst	1_M_PASTOR,{
 	//if (Class == Job_High_Priest) set .@AllowHPAssist,1;
 	if (Upper == 1 && .@AllowHPAssist != 1) {
 			mes "[Bispo Tomas]";
@@ -500,7 +500,7 @@ prt_church,16,41,4	script	Bispo#prst	60,{
 	}
 }
 
-prt_church,27,24,1	script	Irmã Cecília	79,{
+prt_church,27,24,1	script	Irmã Cecília	1_F_PRIEST,{
 	mes "[Irmã Cecília]";
 	if (BaseJob != Job_Acolyte) {
 		if (BaseJob == Job_Priest) {
@@ -796,7 +796,7 @@ prt_church,27,24,1	script	Irmã Cecília	79,{
 
 // Segundo Teste
 //==========================================================
-job_prist,24,187,4	script	Irmão Pedro	110,{
+job_prist,24,187,4	script	Irmão Pedro	4_M_MINISTER,{
 	mes "[Irmão Pedro]";
 	if (BaseJob == Job_Priest) {
 		mes "Bem-vindo!";
@@ -981,7 +981,7 @@ OnDisable:
 	end;
 }
 
-job_prist,23,187,1	script	Irmão Pedro#2	110,{
+job_prist,23,187,1	script	Irmão Pedro#2	4_M_MINISTER,{
 	mes "[Irmão Pedro]";
 	if (BaseJob == Job_Priest) {
 		mes "Bem-vindo!";
@@ -1033,7 +1033,7 @@ OnDisable:
 	end;
 }
 
--	script	Gerador_de_Zumbis#prst	110,{
+-	script	Gerador_de_Zumbis#prst	4_M_MINISTER,{
 OnInit:
 	disablenpc "Gerador_de_Zumbis#prst";
 	end;
@@ -1239,7 +1239,7 @@ OnDisable:
 	disablenpc "Zumbi5_1";
 }
 
-job_prist,24,109,4	script	prst1_1	45,3,3,{
+job_prist,24,109,4	script	prst1_1	WARPNPC,3,3,{
 OnTouch:
 	set .@mobs,getvariableofnpc(.MyMobs,"Gerador_de_Zumbis#prst");
 	if (BaseJob == Job_Priest) warp "job_prist",168,17;
@@ -1480,7 +1480,7 @@ OnTouch:
 	}
 }
 
-job_prist,168,150,4	script	Bafomé#prst	736,8,1,{
+job_prist,168,150,4	script	Bafomé#prst	4_BAPHOMET,8,1,{
 OnTouch:
 	if (BaseJob == Job_Priest) {
 		mes "[Bafomé]";
@@ -1541,7 +1541,7 @@ OnTouch:
 	}
 }
 
-job_prist,168,180,4	script	prst2_1	45,3,3,{
+job_prist,168,180,4	script	prst2_1	WARPNPC,3,3,{
 OnTouch:
 	if (BaseJob == Job_Priest) warp "job_prist",98,40;
 	else if (BaseClass == Job_Acolyte) {
@@ -1553,7 +1553,7 @@ OnTouch:
 
 // 4th Test
 //==========================================================
-job_prist,1,2,1	script	Gerador_Múmia	110,1,1,{
+job_prist,1,2,1	script	Gerador_Múmia	4_M_MINISTER,1,1,{
 OnInit:
 	disablenpc "Gerador_Múmia";
 	end;
@@ -1648,7 +1648,7 @@ OnDisable:
 	end;
 }
 
-job_prist,98,105,4	script	prst3_1	45,3,3,{
+job_prist,98,105,4	script	prst3_1	WARPNPC,3,3,{
 OnTouch:
 	if (BaseJob == Job_Priest) {
 		warp "prt_church",15,36;

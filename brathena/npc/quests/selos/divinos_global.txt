@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-sec_in02,15,170,0	script	Variável Global	817,{
+sec_in02,15,170,0	script	Variável Global	4_F_CHNDRESS3,{
 	callfunc "F_GM_NPC";
 	mes "[Verificador]";
 	mes "Digite a senha.";

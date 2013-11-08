@@ -27,7 +27,7 @@
 
 // Jawaii
 //============================================================
-jawaii,239,112,7	script	Marinheiro#toizu	100,{
+jawaii,239,112,7	script	Marinheiro#toizu	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Este navio está indo para  ^666699Izlude^000000.";
 	mes "Você aproveitou seu tempo em Jawaii? Você deve verficar se não esqueceu alguma coisa antes de partirmos.";
@@ -51,7 +51,7 @@ jawaii,239,112,7	script	Marinheiro#toizu	100,{
 	close;
 }
 
-jawaii,122,263,5	script	Marinheiro#toalbe	100,{
+jawaii,122,263,5	script	Marinheiro#toalbe	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Esse navio está voltando para ^003399Alberta^000000.";
 	mes "Você aproveitou seu tempo em Jawaii? Você deve verificar se não esqueceu alguma coisa antes de partirmos.";
@@ -72,7 +72,7 @@ jawaii,122,263,5	script	Marinheiro#toalbe	100,{
 	close;
 }
 
-jawaii,188,218,7	script	Senhorita da Taverna#Jawaii	80,{
+jawaii,188,218,7	script	Senhorita da Taverna#Jawaii	1_F_PUBGIRL,{
 	mes "[Senhorita]";
 	mes "Oh, querida pessoa!";
 	mes "Você não está indo para a taverna, certo?";
@@ -100,7 +100,7 @@ jawaii,188,218,7	script	Senhorita da Taverna#Jawaii	80,{
 	close;
 }
 
-jawaii,220,235,3	script	Moradora de Jawaii#heart	724,{
+jawaii,220,235,3	script	Moradora de Jawaii#heart	4_F_07,{
 	mes "[Jawa Jawa]";
 	mes "Você sabe qual é o lugar mais bonito de Jawaii?";
 	next;
@@ -116,7 +116,7 @@ jawaii,220,235,3	script	Moradora de Jawaii#heart	724,{
 	close;
 }
 
-jawaii,240,146,5	script	Moradora de Jawaii#desc1	724,{
+jawaii,240,146,5	script	Moradora de Jawaii#desc1	4_F_07,{
 	mes "[Waii Waii]";
 	mes "Bem vindo a Jawaii!";
 	next;
@@ -128,7 +128,7 @@ jawaii,240,146,5	script	Moradora de Jawaii#desc1	724,{
 	close;
 }
 
-jawaii,168,247,5	script	Moradora de Jawaii#desc2	724,{
+jawaii,168,247,5	script	Moradora de Jawaii#desc2	4_F_07,{
 	mes "[Waja Waja]";
 	mes "Ah, você deve ser um turista.";
 	mes "Se você está perdido, dirija-se ao Oeste, onde estão as acomodações dos recém casados.";
@@ -142,7 +142,7 @@ jawaii,168,247,5	script	Moradora de Jawaii#desc2	724,{
 	close;
 }
 
-jawaii,165,121,1	script	Moradora de Jawaii#desc3	724,{
+jawaii,165,121,1	script	Moradora de Jawaii#desc3	4_F_07,{
 	mes "[Iwa Iwa]";
 	mes "Jawaii~";
 	mes "Jawa~ii~";
@@ -161,7 +161,7 @@ jawaii,165,121,1	script	Moradora de Jawaii#desc3	724,{
 	close;
 }
 
-jawaii,141,200,3	script	Funcionário#sroom	798,{
+jawaii,141,200,3	script	Funcionário#sroom	4_M_NFMAN,{
 	mes "[Alowa]";
 	mes "B-Bem vindo...?";
 	mes "Essa é n-no-nossa sa-sala de doces.";
@@ -200,7 +200,7 @@ jawaii,141,200,3	script	Funcionário#sroom	798,{
 	close;
 }
 
-jawaii,108,199,5	script	Funcionária#antroom	74,{
+jawaii,108,199,5	script	Funcionária#antroom	1_F_MERCHANT_02,{
 	mes "[Oran Pinheiro]";
 	mes "Bem vindo ao antigo aposento.";
 	next;
@@ -239,7 +239,7 @@ jawaii,108,199,5	script	Funcionária#antroom	74,{
 	close;
 }
 
-jawaii,107,189,5	script	Funcionária#horoom	93,{
+jawaii,107,189,5	script	Funcionária#horoom	4_F_04,{
 	mes "[Sharkie Rania]";
 	mes "Eu vou levar você para o Quarto de Mel.";
 	mes "E vai custar 1.000 zenys.";
@@ -267,7 +267,7 @@ jawaii,107,189,5	script	Funcionária#horoom	93,{
 	close;
 }
 
-jawaii,112,173,7	script	Funcionária#villroom	93,{
+jawaii,112,173,7	script	Funcionária#villroom	4_F_04,{
 	mes "[Larks Rania]";
 	mes "Olá querido como você está?";
 	mes "Você está procurando por quarto para ficar?";
@@ -304,7 +304,7 @@ jawaii,112,173,7	script	Funcionária#villroom	93,{
 	close;
 }
 
-jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	71,{
+jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	1_F_LIBRARYGIRL,{
 	mes "[Auxiliar]";
 	mes "Não existe lugar";
 	mes "melhor para você passar a sua";
@@ -347,7 +347,7 @@ jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	71,{
 
 // Interior de Jawaii
 //============================================================
-jawaii_in,25,94,0	script	Funcionaria#jaw1	724,{
+jawaii_in,25,94,0	script	Funcionaria#jaw1	4_F_07,{
 	mes "[Funcionária Tryteh]";
 	mes "Bem vindo a Taberna de Jawaii~";
 	if (getpartnerid()) {
@@ -373,7 +373,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,25,96,0	script	Funcionaria#jaw2	724,{
+jawaii_in,25,96,0	script	Funcionaria#jaw2	4_F_07,{
 	mes "[Funcionária Fey]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -399,7 +399,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,25,98,0	script	Funcionaria#jaw3	724,{
+jawaii_in,25,98,0	script	Funcionaria#jaw3	4_F_07,{
 	mes "[Funcionária Buffy]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -436,7 +436,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,25,100,0	script	Funcionaria#jaw4	724,{
+jawaii_in,25,100,0	script	Funcionaria#jaw4	4_F_07,{
 	mes "[Funcionária Itere]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -468,7 +468,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,30,94,4	script	Funcionaria#jaw5	724,{
+jawaii_in,30,94,4	script	Funcionaria#jaw5	4_F_07,{
 	mes "[Funcionária Tonia]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -499,7 +499,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,30,96,4	script	Funcionaria#jaw6	724,{
+jawaii_in,30,96,4	script	Funcionaria#jaw6	4_F_07,{
 	mes "[Funcionária Kay]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -523,7 +523,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,30,98,4	script	Funcionaria#jaw7	724,{
+jawaii_in,30,98,4	script	Funcionaria#jaw7	4_F_07,{
 	mes "[Funcionária Amy]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -553,7 +553,7 @@ OnSolo:
 	end;
 }
 
-jawaii_in,30,100,4	script	Funcionaria#jaw8	724,{
+jawaii_in,30,100,4	script	Funcionaria#jaw8	4_F_07,{
 	mes "[Funcionária Yasmine]";
 	mes "Bem vindo à taverna de Jawaii~";
 	if (getpartnerid()) {
@@ -600,7 +600,7 @@ OnTouch:
 	end;
 }
 
-jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
+jawaii_in,15,104,0	script	Garçonete#jawaii	1_F_PUBGIRL,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF * Espere um momento! *";
 		mes "Você está carregando itens demais. Guarde alguns e tente novamente. ^000000";
@@ -692,7 +692,7 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 	close;
 }
 
-jawaii_in,28,124,0	script	Garçom#jaw	46,{
+jawaii_in,28,124,0	script	Garçom#jaw	1_ETC_01,{
 	mes "[Garçom]";
 	mes "Bem vindo à Taverna de Jawaii.";
 	mes "O que você gostaria de beber?";
@@ -942,7 +942,7 @@ S_KillChar:
 	return;
 }
 
-jawaii_in,43,115,0	script	Cliente#jaw_1	97,{
+jawaii_in,43,115,0	script	Cliente#jaw_1	4W_M_01,{
 	if (!getpartnerid()) {
 		if (Zeny > 99) {
 			mes "[Buchi]";
@@ -989,7 +989,7 @@ jawaii_in,43,115,0	script	Cliente#jaw_1	97,{
 	close;
 }
 
-jawaii_in,41,106,3	script	Cliente#Cage	98,{
+jawaii_in,41,106,3	script	Cliente#Cage	4W_M_02,{
 	mes "[Cage]";
 	if (getpartnerid()) {
 		mes "....Bah!";
@@ -1029,7 +1029,7 @@ jawaii_in,41,106,3	script	Cliente#Cage	98,{
 
 // Inside Prontera
 //============================================================
-prt_in,173,13,4	script	Cliente#SoloHan	86,{
+prt_in,173,13,4	script	Cliente#SoloHan	4_M_04,{
 	mes "[SoloHan]";
 	if (!getpartnerid()) {
 		mes "Nossa...";
@@ -1193,7 +1193,7 @@ prt_in,173,13,4	script	Cliente#SoloHan	86,{
 	close;
 }
 
-prt_in,170,14,0	script	Cliente#Bachewcca	89,{
+prt_in,170,14,0	script	Cliente#Bachewcca	4_M_ORIENT02,{
 	mes "[Bachewcca]";
 	mes "..............";
 	mes "^666666*Gulp....gulp...*^000000";
@@ -1204,7 +1204,7 @@ prt_in,170,14,0	script	Cliente#Bachewcca	89,{
 
 // Izlude
 //============================================================
-izlude,180,224,3	script	Auxiliar Lua de Mel	92,{
+izlude,180,224,3	script	Auxiliar Lua de Mel	4_F_03,{
 	mes "[Auxiliar]";
 	mes "Recém casados e casais antigos...";
 	mes "Nós os convidamos vocês para passar sua lua de mel aqui!";
@@ -1249,7 +1249,7 @@ izlude,180,224,3	script	Auxiliar Lua de Mel	92,{
 	}
 }
 
-izlude_a,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_a	71
-izlude_b,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_b	71
-izlude_c,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_c	71
-izlude_d,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_d	71,{}
+izlude_a,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_a	1_F_LIBRARYGIRL
+izlude_b,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_b	1_F_LIBRARYGIRL
+izlude_c,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_c	1_F_LIBRARYGIRL
+izlude_d,180,224,3	duplicate(Auxiliar Lua de Mel)	Auxiliar Lua de Mel#Iz_d	1_F_LIBRARYGIRL,{}

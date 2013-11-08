@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
+moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	1_F_04,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
 			if (Class == Job_Novice_High) {
@@ -334,7 +334,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	close;
 }
 
-moc_prydb1,42,133,2	script	Brad#gatuno	118,{
+moc_prydb1,42,133,2	script	Brad#gatuno	2_M_THIEFMASTER,{
 	mes "[Brad]";
   if ( checkversion(0) ) {
 	if (q_job_thief == 1) {
@@ -438,7 +438,7 @@ moc_prydb1,42,133,2	script	Brad#gatuno	118,{
 	}
 }
 
--	script#vpo	Bogus	83,{
+-	script#vpo	Bogus	4_M_01,{
 	mes "[Bogus]";
 	if (BaseJob == Job_Thief) {
 		mes "Oh! Veja só que ótimo Gatuno você se tornou! Como você já é um Gatuno, não pode entrar aqui...";

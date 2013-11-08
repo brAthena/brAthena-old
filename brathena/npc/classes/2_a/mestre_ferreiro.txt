@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,44,50,5	script	Mestre-Ferreiro#Valquíria	731,{
+valkyrie,44,50,5	script	Mestre-Ferreiro#Valquíria	4_M_JOB_BLACKSMITH,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

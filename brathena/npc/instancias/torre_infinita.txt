@@ -31,7 +31,7 @@
 6@tower	mapflag	src4instance
 //============================================================
 
-alberta,214,77,6	script	Capitão Jassen	709,{
+alberta,214,77,6	script	Capitão Jassen	4_M_SEAMAN,{
 	if (checkweight(1201,1) == 0) {
 		mes "^008800Espere aí!";
 		mes "Você está carregando muitos equipamentos. Porque não joga alguns fora e depois retorna.^000000";
@@ -192,7 +192,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 	}
 }
 
-e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
+e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 
 	set .@party_id,getcharid(1);
 	set .@p_name$,getpartyname(.@party_id);
@@ -313,7 +313,7 @@ L_Enter:
 	}
 }
 
-e_tower,30,30,2	script	Grande Vortex	844,2,2,{
+e_tower,30,30,2	script	Grande Vortex	CLEAR_NPC,2,2,{
 	end;
 OnTouch:
 	mapannounce "e_tower","[ " + strcharinfo(0) + " ], parece ter sido engolido por um enorme vortex",bc_map,"0x00ff99",FW_NORMAL,12;
@@ -322,7 +322,7 @@ OnTouch:
 }
 
 // Original name: "#102Administrator Mode104"
-e_tower,1,1,2	script	#102Administrador Modo	844,{
+e_tower,1,1,2	script	#102Administrador Modo	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -348,7 +348,7 @@ e_tower,1,1,2	script	#102Administrador Modo	844,{
 	}
 }
 
-e_tower,69,117,4	script	Pedra da Purificação#et1	406,{
+e_tower,69,117,4	script	Pedra da Purificação#et1	2_MONEMUS,{
 	set etower_timer,0;
 	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim novamente.^000000";
 	close;
@@ -379,7 +379,7 @@ OnTimer1800000:
 	end;
 }
 
-e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
+e_tower,151,185,4	script	Pedra da Purificação#et2	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	set etower_timer,0;
 	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim.^000000";
@@ -1183,7 +1183,7 @@ function	script	F_Tower_Warp	{
 
 // Andares 1-25
 //============================================================
-1@tower,50,360,0	script	Braseiro Imortal#	844,{
+1@tower,50,360,0	script	Braseiro Imortal#	CLEAR_NPC,{
 	mes "-A mensagem é gravada no Braseiro Imortal -";
 	mes "Aquele que espalha as cinzas da escuridão neste lugar estará um passo mais perto de Naght Sieger, a Sombra dos Reis das Trevas...";
 	next;
@@ -1211,7 +1211,7 @@ OnTimer10000:
 	end;
 }
 
-1@tower,29,365,1	script	#1F Controlador	844,{
+1@tower,29,365,1	script	#1F Controlador	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1238,7 +1238,7 @@ OnTimer5000:
 	end;
 }
 
-1@tower,12,393,0	script	1FGate102tower	45,2,2,{
+1@tower,12,393,0	script	1FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1285,31 +1285,31 @@ L_Display:
 	else if (.@mod == 3 && getarg(0) != 13) return getarg(0)+"°";
 	else return getarg(0)+"°";
 }
-1@tower,96,393,0	duplicate(1FGate102tower)	2FGate102tower	45,2,2
-1@tower,184,393,0	duplicate(1FGate102tower)	3FGate102tower	45,2,2
-1@tower,270,393,0	duplicate(1FGate102tower)	4FGate102tower	45,2,2
-1@tower,355,393,0	duplicate(1FGate102tower)	5FGate102tower	45,2,2
-1@tower,12,309,0	duplicate(1FGate102tower)	6FGate102tower	45,2,2
-1@tower,96,309,0	duplicate(1FGate102tower)	7FGate102tower	45,2,2
-1@tower,184,309,0	duplicate(1FGate102tower)	8FGate102tower	45,2,2
-1@tower,270,309,0	duplicate(1FGate102tower)	9FGate102tower	45,2,2
-1@tower,355,309,0	duplicate(1FGate102tower)	10FGate102tower	45,2,2
-1@tower,12,222,0	duplicate(1FGate102tower)	11FGate102tower	45,2,2
-1@tower,96,222,0	duplicate(1FGate102tower)	12FGate102tower	45,2,2
-1@tower,184,222,0	duplicate(1FGate102tower)	13FGate102tower	45,2,2
-1@tower,270,222,0	duplicate(1FGate102tower)	14FGate102tower	45,2,2
-1@tower,355,222,0	duplicate(1FGate102tower)	15FGate102tower	45,2,2
-1@tower,12,138,0	duplicate(1FGate102tower)	16FGate102tower	45,2,2
-1@tower,96,138,0	duplicate(1FGate102tower)	17FGate102tower	45,2,2
-1@tower,184,138,0	duplicate(1FGate102tower)	18FGate102tower	45,2,2
-1@tower,270,138,0	duplicate(1FGate102tower)	19FGate102tower	45,2,2
-1@tower,355,138,0	duplicate(1FGate102tower)	20FGate102tower	45,2,2
-1@tower,12,51,0	duplicate(1FGate102tower)	21FGate102tower	45,2,2
-1@tower,96,51,0	duplicate(1FGate102tower)	22FGate102tower	45,2,2
-1@tower,184,51,0	duplicate(1FGate102tower)	23FGate102tower	45,2,2
-1@tower,270,51,0	duplicate(1FGate102tower)	24FGate102tower	45,2,2
+1@tower,96,393,0	duplicate(1FGate102tower)	2FGate102tower	WARPNPC,2,2
+1@tower,184,393,0	duplicate(1FGate102tower)	3FGate102tower	WARPNPC,2,2
+1@tower,270,393,0	duplicate(1FGate102tower)	4FGate102tower	WARPNPC,2,2
+1@tower,355,393,0	duplicate(1FGate102tower)	5FGate102tower	WARPNPC,2,2
+1@tower,12,309,0	duplicate(1FGate102tower)	6FGate102tower	WARPNPC,2,2
+1@tower,96,309,0	duplicate(1FGate102tower)	7FGate102tower	WARPNPC,2,2
+1@tower,184,309,0	duplicate(1FGate102tower)	8FGate102tower	WARPNPC,2,2
+1@tower,270,309,0	duplicate(1FGate102tower)	9FGate102tower	WARPNPC,2,2
+1@tower,355,309,0	duplicate(1FGate102tower)	10FGate102tower	WARPNPC,2,2
+1@tower,12,222,0	duplicate(1FGate102tower)	11FGate102tower	WARPNPC,2,2
+1@tower,96,222,0	duplicate(1FGate102tower)	12FGate102tower	WARPNPC,2,2
+1@tower,184,222,0	duplicate(1FGate102tower)	13FGate102tower	WARPNPC,2,2
+1@tower,270,222,0	duplicate(1FGate102tower)	14FGate102tower	WARPNPC,2,2
+1@tower,355,222,0	duplicate(1FGate102tower)	15FGate102tower	WARPNPC,2,2
+1@tower,12,138,0	duplicate(1FGate102tower)	16FGate102tower	WARPNPC,2,2
+1@tower,96,138,0	duplicate(1FGate102tower)	17FGate102tower	WARPNPC,2,2
+1@tower,184,138,0	duplicate(1FGate102tower)	18FGate102tower	WARPNPC,2,2
+1@tower,270,138,0	duplicate(1FGate102tower)	19FGate102tower	WARPNPC,2,2
+1@tower,355,138,0	duplicate(1FGate102tower)	20FGate102tower	WARPNPC,2,2
+1@tower,12,51,0	duplicate(1FGate102tower)	21FGate102tower	WARPNPC,2,2
+1@tower,96,51,0	duplicate(1FGate102tower)	22FGate102tower	WARPNPC,2,2
+1@tower,184,51,0	duplicate(1FGate102tower)	23FGate102tower	WARPNPC,2,2
+1@tower,270,51,0	duplicate(1FGate102tower)	24FGate102tower	WARPNPC,2,2
 
-1@tower,355,51,0	script	25FGate102tower	45,2,2,{
+1@tower,355,51,0	script	25FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1333,7 +1333,7 @@ OnTimer120000:
 	end;
 }
 
-1@tower,355,51,0	script	25FGate102tower-2	45,2,2,{
+1@tower,355,51,0	script	25FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1349,7 +1349,7 @@ OnTouch_:
 	end;
 }
 
-1@tower,71,4,0	script	#Broadcast Mode1	844,{
+1@tower,71,4,0	script	#Broadcast Mode1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1366,7 +1366,7 @@ OnTimer120000:
 	end;
 }
 
-1@tower,71,1,0	script	#Gerente1	844,{
+1@tower,71,1,0	script	#Gerente1	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -1389,7 +1389,7 @@ OnTimer120000:
 
 // Andares 26-50
 //============================================================
-2@tower,29,365,2	script	Fornalha Imortal#1	844,{
+2@tower,29,365,2	script	Fornalha Imortal#1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1417,32 +1417,32 @@ OnTimer5000:
 	end;
 }
 
-2@tower,12,393,0	duplicate(1FGate102tower)	26FGate102tower	45,2,2
-2@tower,96,393,0	duplicate(1FGate102tower)	27FGate102tower	45,2,2
-2@tower,184,393,0	duplicate(1FGate102tower)	28FGate102tower	45,2,2
-2@tower,270,393,0	duplicate(1FGate102tower)	29FGate102tower	45,2,2
-2@tower,355,393,0	duplicate(1FGate102tower)	30FGate102tower	45,2,2
-2@tower,12,309,0	duplicate(1FGate102tower)	31FGate102tower	45,2,2
-2@tower,96,309,0	duplicate(1FGate102tower)	32FGate102tower	45,2,2
-2@tower,184,309,0	duplicate(1FGate102tower)	33FGate102tower	45,2,2
-2@tower,270,309,0	duplicate(1FGate102tower)	34FGate102tower	45,2,2
-2@tower,355,309,0	duplicate(1FGate102tower)	35FGate102tower	45,2,2
-2@tower,12,222,0	duplicate(1FGate102tower)	36FGate102tower	45,2,2
-2@tower,96,222,0	duplicate(1FGate102tower)	37FGate102tower	45,2,2
-2@tower,184,222,0	duplicate(1FGate102tower)	38FGate102tower	45,2,2
-2@tower,270,222,0	duplicate(1FGate102tower)	39FGate102tower	45,2,2
-2@tower,355,222,0	duplicate(1FGate102tower)	40FGate102tower	45,2,2
-2@tower,12,138,0	duplicate(1FGate102tower)	41FGate102tower	45,2,2
-2@tower,96,138,0	duplicate(1FGate102tower)	42FGate102tower	45,2,2
-2@tower,184,138,0	duplicate(1FGate102tower)	43FGate102tower	45,2,2
-2@tower,270,138,0	duplicate(1FGate102tower)	44FGate102tower	45,2,2
-2@tower,355,138,0	duplicate(1FGate102tower)	45FGate102tower	45,2,2
-2@tower,12,51,0	duplicate(1FGate102tower)	46FGate102tower	45,2,2
-2@tower,96,51,0	duplicate(1FGate102tower)	47FGate102tower	45,2,2
-2@tower,184,51,0	duplicate(1FGate102tower)	48FGate102tower	45,2,2
-2@tower,270,51,0	duplicate(1FGate102tower)	49FGate102tower	45,2,2
+2@tower,12,393,0	duplicate(1FGate102tower)	26FGate102tower	WARPNPC,2,2
+2@tower,96,393,0	duplicate(1FGate102tower)	27FGate102tower	WARPNPC,2,2
+2@tower,184,393,0	duplicate(1FGate102tower)	28FGate102tower	WARPNPC,2,2
+2@tower,270,393,0	duplicate(1FGate102tower)	29FGate102tower	WARPNPC,2,2
+2@tower,355,393,0	duplicate(1FGate102tower)	30FGate102tower	WARPNPC,2,2
+2@tower,12,309,0	duplicate(1FGate102tower)	31FGate102tower	WARPNPC,2,2
+2@tower,96,309,0	duplicate(1FGate102tower)	32FGate102tower	WARPNPC,2,2
+2@tower,184,309,0	duplicate(1FGate102tower)	33FGate102tower	WARPNPC,2,2
+2@tower,270,309,0	duplicate(1FGate102tower)	34FGate102tower	WARPNPC,2,2
+2@tower,355,309,0	duplicate(1FGate102tower)	35FGate102tower	WARPNPC,2,2
+2@tower,12,222,0	duplicate(1FGate102tower)	36FGate102tower	WARPNPC,2,2
+2@tower,96,222,0	duplicate(1FGate102tower)	37FGate102tower	WARPNPC,2,2
+2@tower,184,222,0	duplicate(1FGate102tower)	38FGate102tower	WARPNPC,2,2
+2@tower,270,222,0	duplicate(1FGate102tower)	39FGate102tower	WARPNPC,2,2
+2@tower,355,222,0	duplicate(1FGate102tower)	40FGate102tower	WARPNPC,2,2
+2@tower,12,138,0	duplicate(1FGate102tower)	41FGate102tower	WARPNPC,2,2
+2@tower,96,138,0	duplicate(1FGate102tower)	42FGate102tower	WARPNPC,2,2
+2@tower,184,138,0	duplicate(1FGate102tower)	43FGate102tower	WARPNPC,2,2
+2@tower,270,138,0	duplicate(1FGate102tower)	44FGate102tower	WARPNPC,2,2
+2@tower,355,138,0	duplicate(1FGate102tower)	WARPNPCFGate102tower	WARPNPC,2,2
+2@tower,12,51,0	duplicate(1FGate102tower)	46FGate102tower	WARPNPC,2,2
+2@tower,96,51,0	duplicate(1FGate102tower)	47FGate102tower	WARPNPC,2,2
+2@tower,184,51,0	duplicate(1FGate102tower)	48FGate102tower	WARPNPC,2,2
+2@tower,270,51,0	duplicate(1FGate102tower)	49FGate102tower	WARPNPC,2,2
 
-2@tower,355,51,0	script	50FGate102tower	45,2,2,{
+2@tower,355,51,0	script	1_M_04FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1466,7 +1466,7 @@ OnTimer120000:
 	end;
 }
 
-2@tower,355,51,0	script	50FGate102tower-2	45,2,2,{
+2@tower,355,51,0	script	1_M_04FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1482,7 +1482,7 @@ OnTouch_:
 	end;
 }
 
-2@tower,71,1,0	script	#Manager Mode2	844,{
+2@tower,71,1,0	script	#Manager Mode2	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Please enter the password.";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -1505,7 +1505,7 @@ OnTouch_:
 
 // Andares 51-75
 //============================================================
-3@tower,29,365,2	script	Fornalha Imortal#2	844,{
+3@tower,29,365,2	script	Fornalha Imortal#2	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1533,32 +1533,32 @@ OnTimer5000:
 	end;
 }
 
-3@tower,12,393,0	duplicate(1FGate102tower)	51FGate102tower	45,2,2
-3@tower,96,393,0	duplicate(1FGate102tower)	52FGate102tower	45,2,2
-3@tower,184,393,0	duplicate(1FGate102tower)	53FGate102tower	45,2,2
-3@tower,270,393,0	duplicate(1FGate102tower)	54FGate102tower	45,2,2
-3@tower,355,393,0	duplicate(1FGate102tower)	55FGate102tower	45,2,2
-3@tower,12,309,0	duplicate(1FGate102tower)	56FGate102tower	45,2,2
-3@tower,96,309,0	duplicate(1FGate102tower)	57FGate102tower	45,2,2
-3@tower,184,309,0	duplicate(1FGate102tower)	58FGate102tower	45,2,2
-3@tower,270,309,0	duplicate(1FGate102tower)	59FGate102tower	45,2,2
-3@tower,355,309,0	duplicate(1FGate102tower)	60FGate102tower	45,2,2
-3@tower,12,222,0	duplicate(1FGate102tower)	61FGate102tower	45,2,2
-3@tower,96,222,0	duplicate(1FGate102tower)	62FGate102tower	45,2,2
-3@tower,184,222,0	duplicate(1FGate102tower)	63FGate102tower	45,2,2
-3@tower,270,222,0	duplicate(1FGate102tower)	64FGate102tower	45,2,2
-3@tower,355,222,0	duplicate(1FGate102tower)	65FGate102tower	45,2,2
-3@tower,12,138,0	duplicate(1FGate102tower)	66FGate102tower	45,2,2
-3@tower,96,138,0	duplicate(1FGate102tower)	67FGate102tower	45,2,2
-3@tower,184,138,0	duplicate(1FGate102tower)	68FGate102tower	45,2,2
-3@tower,270,138,0	duplicate(1FGate102tower)	69FGate102tower	45,2,2
-3@tower,355,138,0	duplicate(1FGate102tower)	70FGate102tower	45,2,2
-3@tower,12,51,0	duplicate(1FGate102tower)	71FGate102tower	45,2,2
-3@tower,96,51,0	duplicate(1FGate102tower)	72FGate102tower	45,2,2
-3@tower,184,51,0	duplicate(1FGate102tower)	73FGate102tower	45,2,2
-3@tower,270,51,0	duplicate(1FGate102tower)	74FGate102tower	45,2,2
+3@tower,12,393,0	duplicate(1FGate102tower)	51FGate102tower	WARPNPC,2,2
+3@tower,96,393,0	duplicate(1FGate102tower)	52FGate102tower	WARPNPC,2,2
+3@tower,184,393,0	duplicate(1FGate102tower)	53FGate102tower	WARPNPC,2,2
+3@tower,270,393,0	duplicate(1FGate102tower)	54FGate102tower	WARPNPC,2,2
+3@tower,355,393,0	duplicate(1FGate102tower)	55FGate102tower	WARPNPC,2,2
+3@tower,12,309,0	duplicate(1FGate102tower)	56FGate102tower	WARPNPC,2,2
+3@tower,96,309,0	duplicate(1FGate102tower)	57FGate102tower	WARPNPC,2,2
+3@tower,184,309,0	duplicate(1FGate102tower)	58FGate102tower	WARPNPC,2,2
+3@tower,270,309,0	duplicate(1FGate102tower)	59FGate102tower	WARPNPC,2,2
+3@tower,355,309,0	duplicate(1FGate102tower)	60FGate102tower	WARPNPC,2,2
+3@tower,12,222,0	duplicate(1FGate102tower)	61FGate102tower	WARPNPC,2,2
+3@tower,96,222,0	duplicate(1FGate102tower)	62FGate102tower	WARPNPC,2,2
+3@tower,184,222,0	duplicate(1FGate102tower)	63FGate102tower	WARPNPC,2,2
+3@tower,270,222,0	duplicate(1FGate102tower)	64FGate102tower	WARPNPC,2,2
+3@tower,355,222,0	duplicate(1FGate102tower)	65FGate102tower	WARPNPC,2,2
+3@tower,12,138,0	duplicate(1FGate102tower)	66FGate102tower	WARPNPC,2,2
+3@tower,96,138,0	duplicate(1FGate102tower)	67FGate102tower	WARPNPC,2,2
+3@tower,184,138,0	duplicate(1FGate102tower)	68FGate102tower	WARPNPC,2,2
+3@tower,270,138,0	duplicate(1FGate102tower)	69FGate102tower	WARPNPC,2,2
+3@tower,355,138,0	duplicate(1FGate102tower)	70FGate102tower	WARPNPC,2,2
+3@tower,12,51,0	duplicate(1FGate102tower)	71FGate102tower	WARPNPC,2,2
+3@tower,96,51,0	duplicate(1FGate102tower)	72FGate102tower	WARPNPC,2,2
+3@tower,184,51,0	duplicate(1FGate102tower)	73FGate102tower	WARPNPC,2,2
+3@tower,270,51,0	duplicate(1FGate102tower)	74FGate102tower	WARPNPC,2,2
 
-3@tower,355,51,0	script	75FGate102tower	45,1,1,{
+3@tower,355,51,0	script	1_F_ORIENT_01FGate102tower	45,1,1,{
 	end;
 
 OnInstanceInit:
@@ -1582,7 +1582,7 @@ OnTimer120000:
 	end;
 }
 
-3@tower,355,51,0	script	75FGate102tower-2	45,2,2,{
+3@tower,355,51,0	script	1_F_ORIENT_01FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1598,7 +1598,7 @@ OnTouch_:
 	end;
 }
 
-3@tower,71,1,0	script	#Modo Gerente3	844,{
+3@tower,71,1,0	script	#Modo Gerente3	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -1621,7 +1621,7 @@ OnTouch_:
 
 // Andares 76-99
 //============================================================
-4@tower,29,365,2	script	Fornalha Imortal#3	844,{
+4@tower,29,365,2	script	Fornalha Imortal#3	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1649,31 +1649,31 @@ OnTimer5000:
 	end;
 }
 
-4@tower,12,393,0	duplicate(1FGate102tower)	76FGate102tower	45,2,2
-4@tower,96,393,0	duplicate(1FGate102tower)	77FGate102tower	45,2,2
-4@tower,184,393,0	duplicate(1FGate102tower)	78FGate102tower	45,2,2
-4@tower,270,393,0	duplicate(1FGate102tower)	79FGate102tower	45,2,2
-4@tower,355,393,0	duplicate(1FGate102tower)	80FGate102tower	45,2,2
-4@tower,12,309,0	duplicate(1FGate102tower)	81FGate102tower	45,2,2
-4@tower,96,309,0	duplicate(1FGate102tower)	82FGate102tower	45,2,2
-4@tower,184,309,0	duplicate(1FGate102tower)	83FGate102tower	45,2,2
-4@tower,270,309,0	duplicate(1FGate102tower)	84FGate102tower	45,2,2
-4@tower,355,309,0	duplicate(1FGate102tower)	85FGate102tower	45,2,2
-4@tower,12,222,0	duplicate(1FGate102tower)	86FGate102tower	45,2,2
-4@tower,96,222,0	duplicate(1FGate102tower)	87FGate102tower	45,2,2
-4@tower,184,222,0	duplicate(1FGate102tower)	88FGate102tower	45,2,2
-4@tower,270,222,0	duplicate(1FGate102tower)	89FGate102tower	45,2,2
-4@tower,355,222,0	duplicate(1FGate102tower)	90FGate102tower	45,2,2
-4@tower,12,138,0	duplicate(1FGate102tower)	91FGate102tower	45,2,2
-4@tower,96,138,0	duplicate(1FGate102tower)	92FGate102tower	45,2,2
-4@tower,184,138,0	duplicate(1FGate102tower)	93FGate102tower	45,2,2
-4@tower,270,138,0	duplicate(1FGate102tower)	94FGate102tower	45,2,2
-4@tower,355,138,0	duplicate(1FGate102tower)	95FGate102tower	45,2,2
-4@tower,12,51,0	duplicate(1FGate102tower)	96FGate102tower	45,2,2
-4@tower,96,51,0	duplicate(1FGate102tower)	97FGate102tower	45,2,2
-4@tower,184,51,0	duplicate(1FGate102tower)	98FGate102tower	45,2,2
+4@tower,12,393,0	duplicate(1FGate102tower)	76FGate102tower	WARPNPC,2,2
+4@tower,96,393,0	duplicate(1FGate102tower)	77FGate102tower	WARPNPC,2,2
+4@tower,184,393,0	duplicate(1FGate102tower)	78FGate102tower	WARPNPC,2,2
+4@tower,270,393,0	duplicate(1FGate102tower)	79FGate102tower	WARPNPC,2,2
+4@tower,355,393,0	duplicate(1FGate102tower)	80FGate102tower	WARPNPC,2,2
+4@tower,12,309,0	duplicate(1FGate102tower)	81FGate102tower	WARPNPC,2,2
+4@tower,96,309,0	duplicate(1FGate102tower)	82FGate102tower	WARPNPC,2,2
+4@tower,184,309,0	duplicate(1FGate102tower)	83FGate102tower	WARPNPC,2,2
+4@tower,270,309,0	duplicate(1FGate102tower)	84FGate102tower	WARPNPC,2,2
+4@tower,355,309,0	duplicate(1FGate102tower)	85FGate102tower	WARPNPC,2,2
+4@tower,12,222,0	duplicate(1FGate102tower)	86FGate102tower	WARPNPC,2,2
+4@tower,96,222,0	duplicate(1FGate102tower)	87FGate102tower	WARPNPC,2,2
+4@tower,184,222,0	duplicate(1FGate102tower)	88FGate102tower	WARPNPC,2,2
+4@tower,270,222,0	duplicate(1FGate102tower)	89FGate102tower	WARPNPC,2,2
+4@tower,355,222,0	duplicate(1FGate102tower)	90FGate102tower	WARPNPC,2,2
+4@tower,12,138,0	duplicate(1FGate102tower)	91FGate102tower	WARPNPC,2,2
+4@tower,96,138,0	duplicate(1FGate102tower)	92FGate102tower	WARPNPC,2,2
+4@tower,184,138,0	duplicate(1FGate102tower)	93FGate102tower	WARPNPC,2,2
+4@tower,270,138,0	duplicate(1FGate102tower)	94FGate102tower	WARPNPC,2,2
+4@tower,355,138,0	duplicate(1FGate102tower)	95FGate102tower	WARPNPC,2,2
+4@tower,12,51,0	duplicate(1FGate102tower)	96FGate102tower	WARPNPC,2,2
+4@tower,96,51,0	duplicate(1FGate102tower)	97FGate102tower	WARPNPC,2,2
+4@tower,184,51,0	duplicate(1FGate102tower)	98FGate102tower	WARPNPC,2,2
 
-4@tower,271,51,0	script	99FGate102tower	45,2,2,{
+4@tower,271,51,0	script	4W_M_03FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1697,7 +1697,7 @@ OnTimer120000:
 	end;
 }
 
-4@tower,271,51,0	script	99FGate102tower-2	45,2,2,{
+4@tower,271,51,0	script	4W_M_03FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1713,7 +1713,7 @@ OnTouch_:
 	end;
 }
 
-4@tower,71,1,0	script	#Modo Gerente	844,{
+4@tower,71,1,0	script	#Modo Gerente	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Por favor, digite a senha";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -1736,7 +1736,7 @@ OnTouch_:
 
 // Andar 100
 //============================================================
-5@tower,106,109,2	script	Cristal Translúcido#102	844,{
+5@tower,106,109,2	script	Cristal Translúcido#102	CLEAR_NPC,{
 	if (in_102tower < 10) {
 		mes "^0000ff*Uma misteriosa voz ecoa pela sala dizendo para você tocar o cristal translúcido que está irradiando uma luz forte.*^000000";
 		next;
@@ -1788,7 +1788,7 @@ OnEnable:
 	end;
 }
 
-5@tower,106,109,2	script	#102Effect1	844,{
+5@tower,106,109,2	script	#102Effect1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1811,7 +1811,7 @@ OnTimer500:
 	end;
 }
 
-5@tower,106,109,2	script	#102Effect2	844,{
+5@tower,106,109,2	script	#102Effect2	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1834,7 +1834,7 @@ OnTimer500:
 	end;
 }
 
-5@tower,82,112,2	script	#102FShadowDust1	844,{
+5@tower,82,112,2	script	#102FShadowDust1	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1854,7 +1854,7 @@ OnMyMobDead:
 	end;
 }
 
-5@tower,82,113,2	script	#102FShadowDust	844,{
+5@tower,82,113,2	script	#102FShadowDust	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1905,7 +1905,7 @@ OnEnable:
 	end;
 }
 
-5@tower,71,1,0	script	#Modo Gerente5	844,{
+5@tower,71,1,0	script	#Modo Gerente5	CLEAR_NPC,{
 	callfunc "F_GM_NPC";
 	mes "Este NPC controla o cristal no 100° andar. Por favor, digite a senha.";
 	set .@i, callfunc("F_GM_NPC","dmc2008",1);
@@ -1920,7 +1920,7 @@ OnEnable:
 
 // Andar 101
 //============================================================
-6@tower,45,89,2	script	Fonte da Vida#1	844,{
+6@tower,45,89,2	script	Fonte da Vida#1	CLEAR_NPC,{
 	mes "^0066ffVocê tomou um gole de água límpida e sentiu-se revigorado.^000000";
 	heal (MaxHp-Hp),(MaxSp-Sp);
 	close;
@@ -1930,7 +1930,7 @@ OnInstanceInit:
 	end;
 }
 
-6@tower,45,89,2	script	Fonte da Vida#2	844,{
+6@tower,45,89,2	script	Fonte da Vida#2	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -1944,7 +1944,7 @@ OnTimer2000:
 	end;
 }
 
-6@tower,45,89,2	script	Fonte da Vida#3	844,{
+6@tower,45,89,2	script	Fonte da Vida#3	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -1960,7 +1960,7 @@ OnTimer2000:
 
 6@tower,32,100,0	warp	102FGate102tower	2,2,6@tower,155,64
 
-6@tower,156,151,2	script	Trono do Tirano#	844,{
+6@tower,156,151,2	script	Trono do Tirano#	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -1976,7 +1976,7 @@ OnMyMobDead:
 	end;
 }
 
-6@tower,156,151,2	script	#1° Beep	844,{
+6@tower,156,151,2	script	#1° Beep	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -2019,7 +2019,7 @@ OnMyMobDead:
 	end;
 }
 
-6@tower,156,151,2	script	#2° Beep	844,{
+6@tower,156,151,2	script	#2° Beep	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -2054,7 +2054,7 @@ OnMyMobDead:
 	end;
 }
 
-6@tower,156,151,2	script	#3° andar Beep	844,{
+6@tower,156,151,2	script	#3° andar Beep	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -2089,7 +2089,7 @@ OnMyMobDead:
 	end;
 }
 
-6@tower,156,151,2	script	#4° Beep	844,{
+6@tower,156,151,2	script	#4° Beep	CLEAR_NPC,{
 	end;
 
 OnEnable:
@@ -2116,7 +2116,7 @@ OnMyMobDead:
 	end;
 }
 
-6@tower,169,127,2	script	Alma Perdida#102	796,{
+6@tower,169,127,2	script	Alma Perdida#102	4_M_NFDEADSWDMAN,{
 	if (checkweight(1201,1) == 0) {
 		mes "Você está carregando muito equipamento. Porque não joga alguns fora e depois retorna?";
 		close;
@@ -2196,7 +2196,7 @@ OnTimer10500:
 	end;
 }
 
-6@tower,169,127,2	script	#Efeito30	844,{
+6@tower,169,127,2	script	#Efeito30	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:
@@ -2214,7 +2214,7 @@ OnTimer1000:
 	end;
 }
 
-6@tower,169,127,2	script	#Efeito31	844,{
+6@tower,169,127,2	script	#Efeito31	CLEAR_NPC,{
 	end;
 
 OnInstanceInit:

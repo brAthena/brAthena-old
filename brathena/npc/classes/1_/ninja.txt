@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,30,65,3	script	Akagi	730,{
+alberta,30,65,3	script	Akagi	4_M_JOB_ASSASSIN,{
 	if (Class != Job_Novice) {
 		mes "[Akagi]";
 		mes "Hmm... Você e eu...";
@@ -61,7 +61,7 @@ alberta,30,65,3	script	Akagi	730,{
 	}
 }
 
-que_ng,30,65,3	script	Cougar#nq	730,{
+que_ng,30,65,3	script	Cougar#nq	4_M_JOB_ASSASSIN,{
 	if (Upper == 2) {
 		mes "[Cougar]";
 		mes "Eu... Eu nunca vi uma criancinha tão poderosa quanto você!";
@@ -256,7 +256,7 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 	close;
 }
 
-einbroch,184,194,3	script	Homem Suspeito#nq	 	881,{
+einbroch,184,194,3	script	Homem Suspeito#nq	4_M_SITDOWN,{
 	if (NINJ_Q == 1) {
 		mes "[Homem Suspeito]";
 		mes "Eu viajei para muitos países, mas nunca estive em um prédio tão alto como a Torre de Einbroch.";

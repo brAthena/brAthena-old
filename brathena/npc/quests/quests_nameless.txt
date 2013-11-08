@@ -49,7 +49,7 @@ OnTouch:
 	end;
 }
 
-airplane_01,95,61,3	script	Agente#pc1	899,{
+airplane_01,95,61,3	script	Agente#pc1	4_M_HUMAN_02,{
 	end;
 
 OnInit:
@@ -57,7 +57,7 @@ OnInit:
 	end;
 }
 
-cmd_in02,174,89,7	script	Larjes#pc1	97,{
+cmd_in02,174,89,7	script	Larjes#pc1	4W_M_01,{
 	if (aru_monas < 2) {
 		mes "[Larjes]";
 		mes "Droga, perdi de novo!";
@@ -105,7 +105,7 @@ cmd_in02,174,89,7	script	Larjes#pc1	97,{
 	}
 }
 
-cmd_in02,111,52,3	script	Larjes#pc2	97,{
+cmd_in02,111,52,3	script	Larjes#pc2	4W_M_01,{
 	if (aru_monas < 3) {
 		mes "[Larjes]";
 		mes "^666666*Ai, ai...*^00000";
@@ -166,7 +166,7 @@ cmd_in02,111,52,3	script	Larjes#pc2	97,{
 	}
 }
 
-ra_in01,308,59,1	script	Garçom#pc	930,{
+ra_in01,308,59,1	script	Garçom#pc	4_M_RACHMAN2,{
 	if (aru_monas < 7) {
 		mes "[Garçom]";
 		mes "Bem-vindo ao";
@@ -217,7 +217,7 @@ ra_in01,308,59,1	script	Garçom#pc	930,{
 	close;
 }
 
-ra_in01,301,50,3	script	Homem Faminto	927,{
+ra_in01,301,50,3	script	Homem Faminto	4_M_MASK,{
 	mes "[Homem Faminto]";
 	mes "Nham-nham!";
 	mes "Adoro a comida";
@@ -228,7 +228,7 @@ ra_in01,301,50,3	script	Homem Faminto	927,{
 	close;
 }
 
-ra_in01,301,52,3	script	Homem Comum#nameless	927,{
+ra_in01,301,52,3	script	Homem Comum#nameless	4_M_MASK,{
 	mes "[Homem Comum]";
 	mes "A comida aqui não é ruim,";
 	mes "mas meus restaurantes favoritos";
@@ -237,7 +237,7 @@ ra_in01,301,52,3	script	Homem Comum#nameless	927,{
 	close;
 }
 
-ra_in01,297,50,7	script	Suspeito	926,{
+ra_in01,297,50,7	script	Suspeito	4_M_MASK1,{
 	mes "[Suspeito]";
 	mes "Cada prato tem seu";
 	mes "gosto único, que você deve";
@@ -404,7 +404,7 @@ OnTouch:
 	end;
 }
 
-ve_in,78,314,5	script	Magistrado#Aru	945,{
+ve_in,78,314,5	script	Magistrado#Aru	4_M_DST_GRAND,{
 	if (aru_monas < 8) {
 		mes "[Al Hamad]";
 		mes "Argh! Como isso foi";
@@ -599,7 +599,7 @@ ve_in,78,314,5	script	Magistrado#Aru	945,{
 	}
 }
 
-ve_in,81,296,3	script	Soldier#Aru	946,{
+ve_in,81,296,3	script	Soldier#Aru	4_M_DST_MASTER,{
 	if (aru_monas < 9) {
 		mes "[Himus]";
 		mes "Hum. O magistrado";
@@ -661,7 +661,7 @@ ve_in,81,296,3	script	Soldier#Aru	946,{
 	}
 }
 
-ve_in,239,115,0	script	Bêbado#Aru	943,{
+ve_in,239,115,0	script	Bêbado#Aru	4_M_DESERT,{
 	if (aru_monas < 14) {
 		mes "[Bêbado]";
 		mes "Cara, que legal! Ha ha!";
@@ -710,7 +710,7 @@ ve_in,239,115,0	script	Bêbado#Aru	943,{
 	}
 }
 
-ve_in,238,120,4	script	Bêbada#Aru1	940,{
+ve_in,238,120,4	script	Bêbada#Aru1	4_F_DESERT,{
 	mes "[Bêbada]";
 	mes "Hohohoho~";
 	mes "Oh~ Hohohoho~";
@@ -720,7 +720,7 @@ ve_in,238,120,4	script	Bêbada#Aru1	940,{
 	close;
 }
 
-ve_fild07,125,128,0	script	Barco#Aru	111,{
+ve_fild07,125,128,0	script	Barco#Aru	HIDDEN_NPC,{
 	if (aru_monas < 16) {
 		mes "^3355FFEste barco parece ";
 		mes "estar em boas condições.";
@@ -844,7 +844,7 @@ ve_fild07,125,128,0	script	Barco#Aru	111,{
 	}
 }
 
-ve_fild07,128,130,1	script	Agente Secreto#Aru	97,{
+ve_fild07,128,130,1	script	Agente Secreto#Aru	4W_M_01,{
 	if (aru_monas == 16) {
 		mes "[Larjes]";
 		mes "Está pronto para";
@@ -931,7 +931,7 @@ OnTouch:
 	end;
 }
 
-nameless_i,127,207,0	script	Corvo Morto#Aru	111,{
+nameless_i,127,207,0	script	Corvo Morto#Aru	HIDDEN_NPC,{
 	if (aru_monas < 17) { 
 		mes "^3355FFÉ apenas um corvo morto.^000000";
 		close;
@@ -1057,7 +1057,7 @@ OnTouch:
 	}
 }
 
-nameless_in,13,58,6	script	Larjes#Aru2	97,{
+nameless_in,13,58,6	script	Larjes#Aru2	4W_M_01,{
 	mes "[Larjes]";
 	mes "Tenha cuidado. Esse cara";
 	mes "parece bem perigoso.";
@@ -1093,7 +1093,7 @@ OnMyMobDead:
 	end;
 }
 
-nameless_in,12,37,0	script	aru_warp	45,1,1,{
+nameless_in,12,37,0	script	aru_warp	WARPNPC,1,1,{
 	end;
 
 OnTouch:
@@ -1108,7 +1108,7 @@ OnInit:
 	end;
 }
 
-nameless_i,168,257,0	script	Aru_LockedDoor	45,1,1,{
+nameless_i,168,257,0	script	Aru_LockedDoor	WARPNPC,1,1,{
 	end;
 
 OnTouch:
@@ -1148,7 +1148,7 @@ OnTouch:
 	end;
 }
 
-nameless_n,166,254,0	script	Larjes#Aru3	97,{
+nameless_n,166,254,0	script	Larjes#Aru3	4W_M_01,{
 	end;
 
 OnInit:
@@ -1156,7 +1156,7 @@ OnInit:
 	end;
 }
 
-nameless_i,259,218,3	script	Larjes#Aru	97,{
+nameless_i,259,218,3	script	Larjes#Aru	4W_M_01,{
 	if (aru_monas < 18) {
 		mes "[Larjes]";
 		mes "Não gosto deste lugar...";
@@ -1207,7 +1207,7 @@ nameless_i,259,218,3	script	Larjes#Aru	97,{
 	}
 }
 
-nameless_n,259,218,3	script	Larjes#Boat1	97,{
+nameless_n,259,218,3	script	Larjes#Boat1	4W_M_01,{
 	if (aru_monas == 24) {
 		if (countitem(7726) < 1) {
 			mes "[Larjes]";
@@ -1277,7 +1277,7 @@ nameless_n,259,218,3	script	Larjes#Boat1	97,{
 	close;
 }
 
-abbey02,224,70,0	script	Book#Aru	111,{
+abbey02,224,70,0	script	Book#Aru	HIDDEN_NPC,{
 	if (checkweight(7766,1) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -1315,7 +1315,7 @@ abbey02,224,70,0	script	Book#Aru	111,{
 	}
 }
 
-abbey03,232,233,4	script	Homem#Aru	956,{
+abbey03,232,233,4	script	Homem#Aru	4_M_TRISTAN,{
 	if (aru_monas < 22) {
 		mes "^3355FFVocê encontra um homem deitado";
 		mes "no chão, vestindo roupas";
@@ -1375,7 +1375,7 @@ OnTimer300000:
 	end;
 }
 
-abbey03,232,232,4	script	Homem Morto#Aru	956,{
+abbey03,232,232,4	script	Homem Morto#Aru	4_M_TRISTAN,{
 	if (checkweight(7766,1) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -1422,7 +1422,7 @@ OnTimer150000:
 	end;
 }
 
-nameless_n,145,162,0	script	AideAmi#Aru	139,2,2,{
+nameless_n,145,162,0	script	AideAmi#Aru	HIDDEN_WARP_NPC,2,2,{
 	end;
 OnTouch:
 	if (aru_monas == 26) {
@@ -1444,7 +1444,7 @@ OnTouch:
 	}
 }
 
-sec_in02,15,15,4	script	boss::boss_aru_monas	809,{
+sec_in02,15,15,4	script	boss::boss_aru_monas	1_M_SIGNMONK,{
 	callfunc "F_GM_NPC";
 	mes "[Patch]";
 	mes "Input.";
@@ -1475,7 +1475,7 @@ sec_in02,15,15,4	script	boss::boss_aru_monas	809,{
 	}
 }
 
-ra_temple,165,57,5	script	Niren#ss	915,{
+ra_temple,165,57,5	script	Niren#ss	4_F_MADAME,{
 	if (checkweight(907,200) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -2163,7 +2163,7 @@ ra_temple,165,57,5	script	Niren#ss	915,{
 	end;
 }
 
-ra_temple,168,54,3	script	Sippie#ss	917,{
+ra_temple,168,54,3	script	Sippie#ss	4_F_MASK,{
 	mes "[Sippie]";
 	mes "Agora finalmente tenho um";
 	mes "tempo para descansar.";
@@ -2212,7 +2212,7 @@ ra_temple,168,54,3	script	Sippie#ss	917,{
 
 // Peace to the Arunafeltz
 //============================================================
-moc_ruins,77,167,4	script	Mercador Estrangeiro#aru1	880,5,5,{
+moc_ruins,77,167,4	script	Mercador Estrangeiro#aru1	4_M_MASKMAN,5,5,{
 	if (aru_vol == 27) {
 		if (aru_em == 0) {
 			emotion e_dots;
@@ -2442,7 +2442,7 @@ OnTouch:
 	end;
 }
 
-moc_ruins,101,133,7	script	Mercador Estrangeiro#aru2	929,{
+moc_ruins,101,133,7	script	Mercador Estrangeiro#aru2	4_M_MIDDLE,{
 	if ((aru_em > 1) && (aru_em < 7)) {
 		mes "["+ strcharinfo(0) +"]";
 		mes "Com licença, mas me disseram";
@@ -2526,7 +2526,7 @@ OnInit:
 	end;
 }
 
-ra_temin,103,151,7	script	Female Follower#em	917,{
+ra_temin,103,151,7	script	Female Follower#em	4_F_MASK,{
 	if (aru_em < 9) {
 		mes "[Sappie]";
 		mes "Trabalho duro para deixar";
@@ -2621,7 +2621,7 @@ ra_temin,103,151,7	script	Female Follower#em	917,{
 	}
 }
 
-ra_fild03,139,355,5	script	Ishmael#em	914,{
+ra_fild03,139,355,5	script	Ishmael#em	4_F_CHILD,{
 	if (checkweight(907,200) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -2813,13 +2813,13 @@ ra_fild03,139,355,5	script	Ishmael#em	914,{
 	}
 }
 
-que_temsky,101,93,1	script	Niren#em_sky	915,{
+que_temsky,101,93,1	script	Niren#em_sky	4_F_MADAME,{
 	end;
 }
-que_temsky,98,93,7	script	Zhed#em_sky	932,{
+que_temsky,98,93,7	script	Zhed#em_sky	4_M_RACHOLD1,{
 	end;
 }
-que_temsky,99,100,6	script	Pope#rachel2	936,{
+que_temsky,99,100,6	script	Pope#rachel2	4_F_ARUNA_POP,{
 	end;
 }
 
@@ -3168,7 +3168,7 @@ que_temsky,99,7,0	warp	quetemskyout	1,1,ra_temin,276,231
 
 // Muff's Loan
 //============================================================ 
-comodo,224,187,3	script	Muff	86,{
+comodo,224,187,3	script	Muff	4_M_04,{
 	if (checkweight(907,200) == 0) {
 		mes "[Muff]";
 		mes "Você está carregando";
@@ -3549,7 +3549,7 @@ comodo,224,187,3	script	Muff	86,{
 	close;
 }
 
-alberta,127,143,3	script	Belder	85,{
+alberta,127,143,3	script	Belder	4_M_03,{
 	if (diamond_edq == 0) {
 		mes "[Belder]";
 		mes "Preciso contratar";
@@ -3659,7 +3659,7 @@ OnTouch:
 	end;
 }
 
-cmd_fild01,55,160,0	script	Heap of Earth	844,{
+cmd_fild01,55,160,0	script	Heap of Earth	CLEAR_NPC,{
 	if (diamond_edq == 1) {
 		mes "^3355FFParece que alguém";
 		mes "cavou um buraco no chão";
@@ -3731,7 +3731,7 @@ cmd_fild01,55,160,0	script	Heap of Earth	844,{
 	close;
 }
 
-izlude_in,110,64,3	script	Dorian	878,2,2,{
+izlude_in,110,64,3	script	Dorian	4_M_OILMAN,2,2,{
 	if (checkweight(907,200) == 0) {
 		mes "[Dorian]";
 		mes "Ugh, tinha que ser";
@@ -4237,7 +4237,7 @@ OnTouch:
 	end;
 }
 
-izlude_in,113,66,0	script	Máquina	111,{
+izlude_in,113,66,0	script	Máquina	HIDDEN_NPC,{
 	if (checkweight(907,200) == 0) {
 		mes "[Dorian]";
 		mes "Ugh, tinha que ser";
@@ -4615,7 +4615,7 @@ izlude_in,113,66,0	script	Máquina	111,{
 
 // Broken Diamond
 //============================================================ 
-moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
+moc_ruins,152,147,5	script	Ibrahim	4_M_JOB_HUNTER,3,3,{
 	if (checkweight(907,200) == 0) {
 		mes "[Ibrahim]";
 		mes "Você está carregando coisas";
@@ -5141,7 +5141,7 @@ if ((diamond_edq == 14) && (BaseLevel > 65)) {
 	end;
 }
 
-alberta,102,80,3	script	Jhonnita	86,{
+alberta,102,80,3	script	Jhonnita	4_M_04,{
 	if ((diamond_edq == 15) || (diamond_edq == 16)) {
 		mes "[Jhonnita]";
 		mes "Ah, é sempre bom";
@@ -5302,7 +5302,7 @@ alberta,102,80,3	script	Jhonnita	86,{
 	}
 }
 
-payon,69,65,5	script	Kimeunbang	89,{
+payon,69,65,5	script	Kimeunbang	4_M_ORIENT02,{
 	if (diamond_edq == 15) {
 		mes "[Kimeunbang]";
 		mes "Zzzz... Hein?";
@@ -5435,7 +5435,7 @@ payon,69,65,5	script	Kimeunbang	89,{
 	}
 }
 
-geffen,128,153,3	script	Leblo	883,{
+geffen,128,153,3	script	Leblo	4_M_ALCHE_D,{
 	if ((diamond_edq == 15) || (diamond_edq == 16)) {
 		mes "[Leblo]";
 		mes "Ah, já ouvi falar de";
@@ -5647,7 +5647,7 @@ geffen,128,153,3	script	Leblo	883,{
 	close;
 }
 
-payon_in03,167,149,3	script	Wola	75,2,2,{
+payon_in03,167,149,3	script	Wola	1_F_ORIENT_01,2,2,{
 	if (checkweight(907,1) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -5989,7 +5989,7 @@ OnTouch:
 	end;
 }
 
-in_rogue,366,46,3	script	Rogue Investigador	828,{
+in_rogue,366,46,3	script	Rogue Investigador	4_M_ROGUE,{
 	if ((diamond_edq == 22) && (BaseJob == Job_Rogue)) {
 		mes "[Investigador]";
 		mes "Ah, lembra-se de mim?";
@@ -6188,7 +6188,7 @@ in_rogue,366,46,3	script	Rogue Investigador	828,{
 	close;
 }
 
-cmd_in02,94,208,5	script	Investigador	828,{
+cmd_in02,94,208,5	script	Investigador	4_M_ROGUE,{
 	if ((diamond_edq == 22) || (diamond_edq == 23)) {
 		if (BaseJob == Job_Rogue) {
 			mes "[Investigador]";
@@ -6227,7 +6227,7 @@ cmd_in02,94,208,5	script	Investigador	828,{
 	}
 }
 
-cmd_in02,69,188,1	script	Small Safe	844,{
+cmd_in02,69,188,1	script	Small Safe	CLEAR_NPC,{
 	if ((diamond_edq == 22) || (diamond_edq == 23)) {
 		mes "^3355FFHá um pequeno";
 		mes "cofre escondido sob as";
@@ -6285,7 +6285,7 @@ cmd_in02,69,188,1	script	Small Safe	844,{
 	close;
 }
 
-cmd_in02,69,196,0	script	Interruptor#Switch1	844,{
+cmd_in02,69,196,0	script	Interruptor#Switch1	CLEAR_NPC,{
 	if ((diamond_edq == 22) || (diamond_edq == 23)) {
 		mes "^3355FFHá um pequeno";
 		mes "botão no chão,";
@@ -6313,7 +6313,7 @@ OnInit:
 	end;
 }
 
-cmd_in02,80,189,0	script	Interruptor#Switch2	844,{
+cmd_in02,80,189,0	script	Interruptor#Switch2	CLEAR_NPC,{
 	if ((diamond_edq == 22) || (diamond_edq == 23)) {
 		mes "^3355FFHá um pequeno";
 		mes "botão no chão,";
@@ -6345,7 +6345,7 @@ OnInit:
 
 // Z-Gang Quest
 //============================================================ 
-prontera,150,326,0	script	Aviso de Procura#edq	111,{
+prontera,150,326,0	script	Aviso de Procura#edq	HIDDEN_NPC,{
 	if (zdan_edq == 0) {
 		mes "==========Procurados==========";
 		mes "Por favor, relate quaisquer";
@@ -6433,7 +6433,7 @@ OnDisable:
 	end;
 }
 
-prontera,148,326,3	script	Chefe da Polícia#edq	734,{
+prontera,148,326,3	script	Chefe da Polícia#edq	4_M_JOB_KNIGHT2,{
 	if (checkweight(907,200) == 0) {
 		mes "[Chefe da Polícia]";
 		mes "Você está carregando coisas";
@@ -6651,7 +6651,7 @@ prontera,148,326,3	script	Chefe da Polícia#edq	734,{
 	close;
 }
 
-prt_in,168,18,1	script	Valdes	65,2,2,{
+prt_in,168,18,1	script	Valdes	1_M_YOUNGKNIGHT,2,2,{
 	if (checkweight(907,100) == 0) {
 		mes "^3355FFEspere um pouco!";
 		mes "No momento, você está carregando";
@@ -6838,7 +6838,7 @@ OnTouch:
 	end;
 }
 
-in_rogue,359,116,3	script	Marybell	747,{
+in_rogue,359,116,3	script	Marybell	4_F_ROGUE,{
 	if (zdan_edq == 4) {
 		mes "[Marybell]";
 		mes "Ei. O que você quer?";
@@ -7238,7 +7238,7 @@ in_rogue,359,116,3	script	Marybell	747,{
 	}
 }
 
-payon,244,62,3	script	Moonho Ahn	897,{
+payon,244,62,3	script	Moonho Ahn	4_M_HUGRANFA,{
 	if (zdan_edq == 5) {
 		mes "[Moonho Ahn]";
 		mes "Hahaha, o que traz";
@@ -7786,7 +7786,7 @@ payon,244,62,3	script	Moonho Ahn	897,{
 	close;
 }
 
-payon,192,176,3	script	Gooho Ahn	903,{
+payon,192,176,3	script	Gooho Ahn	4_M_KHKYEL,{
 	if (zdan_edq == 12) {
 		mes "[Gooho Ahn]";
 		mes "Oh, olá,";
@@ -7994,7 +7994,7 @@ payon,192,176,3	script	Gooho Ahn	903,{
 	close;
 }
 
-moc_ruins,90,67,3	script	Homem Suspeito#1	99,2,2,{
+moc_ruins,90,67,3	script	Homem Suspeito#1	4W_M_03,2,2,{
 	if ((zdan_edq == 9) && ($@zdan == 0)) {
 		set $@zdan,1;
 		initnpctimer;
@@ -8241,7 +8241,7 @@ OnTouch:
 }
 
 //Incorrect position.
-moc_ruins,78,167,3	script	Homem Suspeito#2	99,2,2,{
+moc_ruins,78,167,3	script	Homem Suspeito#2	4W_M_03,2,2,{
 	if ((zdan_edq == 9) && ($@zdan == 0)) {
 		set $@zdan,1;
 		initnpctimer;
@@ -8489,7 +8489,7 @@ OnTouch:
 	end;
 }
 
-moc_fild17,209,235,0	script	Tábua Estranha	111,4,4,{
+moc_fild17,209,235,0	script	Tábua Estranha	HIDDEN_NPC,4,4,{
 	if (((zdan_edq == 15) || (zdan_edq == 16) || (zdan_edq == 17)) && ($@door2 == 0)) {
 		mes "[Tábua Estranha]";
 		mes "^FF0000*range range*";
@@ -8735,7 +8735,7 @@ OnTouch:
 	end;
 }
 
-z_agit,1,1,0	script	#zdan_broad	111,{
+z_agit,1,1,0	script	#zdan_broad	HIDDEN_NPC,{
 OnInit:
 	disablenpc "#zdan_broad";
 	stopnpctimer;
@@ -8880,7 +8880,7 @@ OnTimer300000:
 	end;
 }
 
-z_agit,97,101,3	script	Louis	931,{
+z_agit,97,101,3	script	Louis	4_M_RACHMAN1,{
 	if (checkweight(907,200) == 0) {
 		mes "[Louis]";
 		mes "Se mexer com a";
@@ -9000,7 +9000,7 @@ OnInit:
 	end;
 }
 
-z_agit,99,101,3	script	Martha	101,{
+z_agit,99,101,3	script	Martha	4W_F_01,{
 	if (checkweight(907,200) == 0) {
 		mes "[Martha]";
 		mes "Ei, você está carregando";
@@ -9124,7 +9124,7 @@ OnInit:
 	end;
 }
 
-z_agit,95,101,3	script	Catfoii	876,{
+z_agit,95,101,3	script	Catfoii	4_CAT,{
 	if (checkweight(907,200) == 0) {
 		mes "[Catfoii]";
 		mes "Você está carregando";
@@ -9246,7 +9246,7 @@ OnInit:
 
 // Unlucky Emerald
 //============================================================ 
-morocc,143,63,3	script	Maltrapilho#nd	929,{
+morocc,143,63,3	script	Maltrapilho#nd	4_M_MIDDLE,{
 	if (treasure_nd == 0) {
 		mes "[Maltrapilho]";
 		mes "O-olá? Pode me ajudar?";
@@ -9487,7 +9487,7 @@ morocc,143,63,3	script	Maltrapilho#nd	929,{
 	}
 }
 
-morocc,102,298,3	script	Homem#zgang	98,{
+morocc,102,298,3	script	Homem#zgang	4W_M_02,{
 	if (treasure_nd < 2) {
 		mes "[Homem]";
 		mes "O que você quer?";
@@ -9883,7 +9883,7 @@ morocc,102,298,3	script	Homem#zgang	98,{
 	}
 }
 
-comodo,339,224,3	script	Homem Escondido#nd	881,{
+comodo,339,224,3	script	Homem Escondido#nd	4_M_SITDOWN,{
 	if (treasure_nd < 7) {
 		mes "[Homem Escondido]";
 		mes "Ei, não chegue tão perto!";
@@ -10085,7 +10085,7 @@ comodo,339,224,3	script	Homem Escondido#nd	881,{
 	}
 }
 
-moc_fild18,108,116,0	script	#treasure	844,{
+moc_fild18,108,116,0	script	#treasure	CLEAR_NPC,{
 	if (checkweight(907,300) == 0) {
 		mes "^3355FFVocê está carregando muitos";
 		mes "itens: não há como você ";
@@ -10197,7 +10197,7 @@ moc_fild18,108,116,0	script	#treasure	844,{
 	}
 }
 
-comodo,139,184,3	script	Sábio#zgang	742,{
+comodo,139,184,3	script	Sábio#zgang	2_M_SAGE_B,{
 	if (jewel_nd < 9) {
 		mes "[Sábio]";
 		mes "Sou um avaliador de antiguidades.";
@@ -10358,7 +10358,7 @@ comodo,139,184,3	script	Sábio#zgang	742,{
 	}
 }
 
-alberta_in,70,109,5	script	Xamã	788,{
+alberta_in,70,109,5	script	Xamã	4_M_UMOLDMAN,{
 	if (jewel_nd == 0) {
 		mes "[Xamã]";
 		mes "O reino espiritual é ";
@@ -10776,7 +10776,7 @@ alberta_in,70,109,5	script	Xamã	788,{
 	}
 }
 
-yuno_in04,38,48,3	script	Arqueólogo	55,{
+yuno_in04,38,48,3	script	Arqueólogo	1_M_JOBTESTER,{
 	if (jewel_nd < 18) {
 		mes "[Arqueólogo]";
 		mes "Há tanta coisa a fazer!";
@@ -10975,7 +10975,7 @@ yuno_in04,38,48,3	script	Arqueólogo	55,{
 	}
 }
 
-prontera,140,304,5	script	Velho Soldado	901,{
+prontera,140,304,5	script	Velho Soldado	4_M_HUOLDARMY,{
 	if (checkweight(907,200) == 0) {
 		mes "[Soldado Aposentado]";
 		mes "Por que está carregando";
@@ -11332,7 +11332,7 @@ prontera,140,304,5	script	Velho Soldado	901,{
 	}
 }
 
-gef_fild08,182,185,0	script	Andarilho	739,{
+gef_fild08,182,185,0	script	Andarilho	8_DOPPEL,{
 	if (jewel_nd < 21) {
 		mes "[Andarilho]";
 		mes "Sou apenas um errante";
@@ -11696,7 +11696,7 @@ OnTouch:
 
 // Rogue Guild Investigation
 //============================================================ 
-prontera,163,204,3	script	Viajante de Morroc	99,{
+prontera,163,204,3	script	Viajante de Morroc	4W_M_03,{
 	if (rumour_nd == 0) {
 		mes "[Viajante de Morroc]";
 		mes "Ah, é tão bom e";
@@ -11762,7 +11762,7 @@ prontera,163,204,3	script	Viajante de Morroc	99,{
 	}
 }
 
-in_rogue,355,28,5	script	Agente Arruaceiro	118,{
+in_rogue,355,28,5	script	Agente Arruaceiro	2_M_THIEFMASTER,{
 	if (checkweight(907,200) == 0) {
 		mes "[Membro da Guilda]";
 		mes "Você está carregando";
@@ -11965,7 +11965,7 @@ in_rogue,355,28,5	script	Agente Arruaceiro	118,{
 	}
 }
 
-aldebaran,114,56,5	script	Agente Arruaceiro#nd0	828,{
+aldebaran,114,56,5	script	Agente Arruaceiro#nd0	4_M_ROGUE,{
 	if (rumour_nd < 3) {
 		mes "[Agente]";
 		mes "Escute, estou trabalhando em";
@@ -12097,7 +12097,7 @@ aldebaran,114,56,5	script	Agente Arruaceiro#nd0	828,{
 	}
 }
 
-geffen,91,36,5	script	Agente da Guilda#nd1	828,{
+geffen,91,36,5	script	Agente da Guilda#nd1	4_M_ROGUE,{
 	if (rumour_nd < 4) {
 		if (zdan_edq > 12) {
 			mes "[Agente da Guilda]";
@@ -12474,7 +12474,7 @@ geffen,91,36,5	script	Agente da Guilda#nd1	828,{
 	}
 }
 
-payon,209,44,5	script	Agente da Guilda#nd2	828,{
+payon,209,44,5	script	Agente da Guilda#nd2	4_M_ROGUE,{
 	if (rumour_nd < 3) {
 		mes "[Agente]";
 		mes "Quê? Quer alguma coisa?";
@@ -12957,7 +12957,7 @@ payon,209,44,5	script	Agente da Guilda#nd2	828,{
 	}
 }
 
-comodo,233,199,5	script	Agente da Guilda#nd3	810,{
+comodo,233,199,5	script	Agente da Guilda#nd3	1_M_SIGNROGUE,{
 	if (checkweight(907,200) == 0) {
 		mes "[Agente]";
 		mes "Você está com muitos";
@@ -13239,7 +13239,7 @@ comodo,233,199,5	script	Agente da Guilda#nd3	810,{
 	}
 }
 
-morocc,116,39,3	script	Agente da Guilda#nd4	779,{
+morocc,116,39,3	script	Agente da Guilda#nd4	4_M_YOYOROGUE,{
 	if (rumour_nd == 1) {
 		mes "[Agente]";
 		mes "Um caso? O que você está...?";

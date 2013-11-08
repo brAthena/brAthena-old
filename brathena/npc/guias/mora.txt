@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-mora,25,158,6	script	Guia de Mora#oeste	516,{
+mora,25,158,6	script	Guia de Mora#oeste	4_M_RAFLE_GR,{
 	mes "[Raffoh]";
 	mes "Olá~! Bem-vindo ao vilarejo de Mora.";
 	mes "Eu posso te dizer o que você quiser sobre o vilarejo~!";
@@ -76,7 +76,7 @@ mora,25,158,6	script	Guia de Mora#oeste	516,{
 	}
 }
 
-mora,167,76,4	script	Guia de Mora#leste	522,{
+mora,167,76,4	script	Guia de Mora#leste	4_M_RAFLE_OR,{
 	mes "[Raffuh]";
 	mes "Uh...";
 	mes "Este, este é o Vilarejo de Mora.";
@@ -129,7 +129,7 @@ mora,167,76,4	script	Guia de Mora#leste	522,{
 	}
 }
 
-mora,115,138,4	script	Guia de Mora#centro	524,{
+mora,115,138,4	script	Guia de Mora#centro	4_M_RAFLE_VI,{
 	mes "[Raffla]";
 	mes "Lala!";
 	mes "Bem-vindo ao Vilarejo de Mora!";
@@ -180,7 +180,7 @@ mora,115,138,4	script	Guia de Mora#centro	524,{
 	}
 }
 
-mora,72,51,4	script	Guia de Mora#sul	518,{
+mora,72,51,4	script	Guia de Mora#sul	4_F_RAFLE_PK,{
 	mes "[Raffli]";
 	mes "Lali?";
 	mes "Bem-vindo ao vilarejo de Mora.";

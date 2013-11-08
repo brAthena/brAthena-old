@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_para01,48,177,3	script	Missão [91 - 99]	857,{
+moc_para01,48,177,3	script	Missão [91 - 99]	4_BOARD3,{
 	if (countitem(6219) < 1) {
 		mes "Espere um minuto!";
 		mes "-É necessário que você possua um-";

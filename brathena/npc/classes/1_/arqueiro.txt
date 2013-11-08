@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
+payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	4_M_03,{
 	mes "[Guia dos Arqueiros]";
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {

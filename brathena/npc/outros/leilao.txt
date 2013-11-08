@@ -26,7 +26,7 @@
 
 // Leilão - Portais
 //============================================================
-moc_ruins,78,173,6	script	Guia do Leilão#moc	98,{
+moc_ruins,78,173,6	script	Guia do Leilão#moc	4W_M_02,{
 	if (strnpcinfo(0) == "Guia do Leilão#moc")
 	callsub LeiTeleporte,1;
 	else if (strnpcinfo(0) == "Guia do Leilão#prt")
@@ -74,19 +74,19 @@ moc_ruins,78,173,6	script	Guia do Leilão#moc	98,{
 	
 	
 }
-prontera,218,120,4	duplicate(Guia do Leilão#moc)	Guia do Leilão#prt	117
-yuno,129,116,0	duplicate(Guia do Leilão#moc)	Guia do Leilão#yuno	90
-lighthalzen,205,169,6	duplicate(Guia do Leilão#moc)	Guia do Leilão#lhz	833
+prontera,218,120,4	duplicate(Guia do Leilão#moc)	Guia do Leilão#prt	4_F_KAFRA1
+yuno,129,116,0	duplicate(Guia do Leilão#moc)	Guia do Leilão#yuno	4_F_01
+lighthalzen,205,169,6	duplicate(Guia do Leilão#moc)	Guia do Leilão#lhz	4_M_ZONDAOYAJI
 
 //============================================================
-moc_ruins,76,176,6	script	Mural de Informações#Leilão	837,{
+moc_ruins,76,176,6	script	Mural de Informações#Leilão	2_BULLETIN_BOARD,{
 	mes "[Informação]";
 	mes "Guia de Teleporte do Leilão.";
 	close;
 }
-prontera,216,120,4	duplicate(Mural de Informações#Leilão)	Mural de Informações#prt	837
-yuno,131,116,0	duplicate(Mural de Informações#Leilão)	Mural de Informações#yuno	837
-lighthalzen,207,169,6	duplicate(Mural de Informações#Leilão)	Mural de Informações#lhz	837
+prontera,216,120,4	duplicate(Mural de Informações#Leilão)	Mural de Informações#prt	2_BULLETIN_BOARD
+yuno,131,116,0	duplicate(Mural de Informações#Leilão)	Mural de Informações#yuno	2_BULLETIN_BOARD
+lighthalzen,207,169,6	duplicate(Mural de Informações#Leilão)	Mural de Informações#lhz	2_BULLETIN_BOARD
 
 // Portais
 //============================================================
@@ -97,7 +97,7 @@ auction_02,43,17,0	warp	entrada_lhz	1,1,lighthalzen,209,169
 
 // NPCs Casas de Leilão
 //============================================================
-auction_01,182,68,6	script	Corretor#dum::CorretorLeilão	98,{
+auction_01,182,68,6	script	Corretor#dum::CorretorLeilão	4W_M_02,{
 	mes "[Corretor]";
 	mes "Bem vindo a sala de leilão.";
 	mes "Você gostaria de ver as ofertas?";
@@ -119,16 +119,16 @@ auction_01,182,68,6	script	Corretor#dum::CorretorLeilão	98,{
 	close;
 }
 
-auction_01,182,75,0	duplicate(CorretorLeilão)	Corretor#moc2	99
-auction_01,177,75,2	duplicate(CorretorLeilão)	Corretor#moc3	98
-auction_01,177,68,4	duplicate(CorretorLeilão)	Corretor#moc4	99
-auction_01,21,74,4	duplicate(CorretorLeilão)	Corretor#prt1	117
-auction_01,27,78,4	duplicate(CorretorLeilão)	Corretor#prt2	116
-auction_01,16,78,4	duplicate(CorretorLeilão)	Corretor#prt3	115
-auction_02,158,47,6	duplicate(CorretorLeilão)	Corretor#yuno1	90
-auction_02,145,47,2	duplicate(CorretorLeilão)	Corretor#yuno2	90
-auction_02,151,54,0	duplicate(CorretorLeilão)	Corretor#yuno3	90
-auction_02,152,41,4	duplicate(CorretorLeilão)	Corretor#yuno4	90
-auction_02,57,46,2	duplicate(CorretorLeilão)	Corretor#lhz1	874
-auction_02,31,46,6	duplicate(CorretorLeilão)	Corretor#lhz2	874
-auction_02,43,65,4	duplicate(CorretorLeilão)	Corretor#lhz3	833
+auction_01,182,75,0	duplicate(CorretorLeilão)	Corretor#moc2	4W_M_03
+auction_01,177,75,2	duplicate(CorretorLeilão)	Corretor#moc3	4W_M_02
+auction_01,177,68,4	duplicate(CorretorLeilão)	Corretor#moc4	4W_M_03
+auction_01,21,74,4	duplicate(CorretorLeilão)	Corretor#prt1	4_F_KAFRA1
+auction_01,27,78,4	duplicate(CorretorLeilão)	Corretor#prt2	4_F_KAFRA2
+auction_01,16,78,4	duplicate(CorretorLeilão)	Corretor#prt3	4_F_KAFRA3
+auction_02,158,47,6	duplicate(CorretorLeilão)	Corretor#yuno1	4_F_01
+auction_02,145,47,2	duplicate(CorretorLeilão)	Corretor#yuno2	4_F_01
+auction_02,151,54,0	duplicate(CorretorLeilão)	Corretor#yuno3	4_F_01
+auction_02,152,41,4	duplicate(CorretorLeilão)	Corretor#yuno4	4_F_01
+auction_02,57,46,2	duplicate(CorretorLeilão)	Corretor#lhz1	4_M_ZONDAMAN
+auction_02,31,46,6	duplicate(CorretorLeilão)	Corretor#lhz2	4_M_ZONDAMAN
+auction_02,43,65,4	duplicate(CorretorLeilão)	Corretor#lhz3	4_M_ZONDAOYAJI

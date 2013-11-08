@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-geffen,178,72,3	script	Akkie#qsk_bs	726,{
+geffen,178,72,3	script	Akkie#qsk_bs	4_F_JOB_BLACKSMITH,{
 	if (BaseJob == Job_Blacksmith) {
 		if (BLACK_SK == 7 && getskilllv("BS_UNFAIRLYTRICK") == 0) {
 			mes "[Akkie]";
@@ -483,7 +483,7 @@ geffen,178,72,3	script	Akkie#qsk_bs	726,{
 	}
 }
 
-geffen,172,52,1	script	Goodman#qsk_bs	826,{
+geffen,172,52,1	script	Goodman#qsk_bs	4_M_DWARF,{
 	if (BaseJob == Job_Blacksmith) {
 		if (BLACK_SK2 == 2 && Upper == 1 && getskilllv("BS_GREED") == 0) {
 			mes "[Goodman]";

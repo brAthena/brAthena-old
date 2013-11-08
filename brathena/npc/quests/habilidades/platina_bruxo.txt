@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-gef_tower,115,36,4	script	Miau#q_wiz	876,{
+gef_tower,115,36,4	script	Miau#q_wiz	4_CAT,{
 	if (BaseJob == Job_Wizard) {
 		if (WIZ_SK == 100) {
 			if (getskilllv("WZ_SIGHTBLASTER") == 0) {
@@ -358,7 +358,7 @@ gef_tower,115,36,4	script	Miau#q_wiz	876,{
 	}
 }
 
-prt_in,82,98,3	script	Simon Mayace#q_wiz	46,{
+prt_in,82,98,3	script	Simon Mayace#q_wiz	1_ETC_01,{
 	if (WIZ_SK == 1) {
 		mes "[Simon]";
 		mes "Você deve ser "+(Sex?"um habilidoso":"uma habilidosa");

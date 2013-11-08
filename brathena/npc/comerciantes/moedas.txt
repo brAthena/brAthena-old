@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-man_in01,286,16,1	script	Mercador de Manuk	439,{
+man_in01,286,16,1	script	Mercador de Manuk	4_F_FAIRYKID4,{
 	set .@n$, "["+strnpcinfo(1)+"]";
 	mes .@n$;
 	if (isequipped(2782) && ep13_2_rhea == 100) {
@@ -73,4 +73,4 @@ man_in01,286,16,1	script	Mercador de Manuk	439,{
 			mes "tasnarAndu Ie Ru";
 		close;
 }
-spl_in01,110,326,5	duplicate(Mercador de Manuk)	Mercador de Esplendido	439
+spl_in01,110,326,5	duplicate(Mercador de Manuk)	Mercador de Esplendido	4_F_FAIRYKID4

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,67,212,5	script	Treinador de Pets Fofos#1	750,{
+prontera,67,212,5	script	Treinador de Pets Fofos#1	4_M_ALCHE_C,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -44,7 +44,7 @@ prontera,67,212,5	script	Treinador de Pets Fofos#1	750,{
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_um,.@domar,.@caca_id2,.@caca_quant2;
 }
 
-prontera,242,92,3	script	Treinador de Pets Fofos#2	750,{
+prontera,242,92,3	script	Treinador de Pets Fofos#2	4_M_ALCHE_C,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -66,7 +66,7 @@ prontera,242,92,3	script	Treinador de Pets Fofos#2	750,{
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_dois,.@domar,.@caca_id2,.@caca_quant2;
 }
 
-prontera,179,92,3	script	Treinador de Pets Fofos#3	750,{
+prontera,179,92,3	script	Treinador de Pets Fofos#3	4_M_ALCHE_C,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -188,12 +188,12 @@ function	script	treinador_pet_fofos	{
 }
 
 // Duplicatas
-geffen,180,125,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#4	750
-geffen,152,66,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#5	750
-geffen,197,95,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#6	750
-morocc,115,83,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#7	750
-morocc,218,130,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#8	750
-morocc,236,225,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#9	750
-payon,109,278,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#10	750
-payon,157,124,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#11	750
-payon,85,237,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#12	750
+geffen,180,125,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#4	4_M_ALCHE_C
+geffen,152,66,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#5	4_M_ALCHE_C
+geffen,197,95,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#6	4_M_ALCHE_C
+morocc,115,83,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#7	4_M_ALCHE_C
+morocc,218,130,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#8	4_M_ALCHE_C
+morocc,236,225,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#9	4_M_ALCHE_C
+payon,109,278,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#10	4_M_ALCHE_C
+payon,157,124,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#11	4_M_ALCHE_C
+payon,85,237,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#12	4_M_ALCHE_C

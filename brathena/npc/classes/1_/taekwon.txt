@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,157,141,5	script	Fênix#TKJobChange	753,{
+payon,157,141,5	script	Fênix#TKJobChange	4_M_MONK,{
 	if (Upper == 2) {
 		mes "[Fênix]";
 		mes "Olá, criança.";

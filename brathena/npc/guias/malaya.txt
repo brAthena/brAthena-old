@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	579,{
+malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	4_F_BARYO_WOMAN,{
 	mes "[Guia do Porto de Malaya]";
 	mes "Onde as culturas e lendas ganham vida!";
 	mes "A Respiração do Vilarejo, o Porto Malaya te deseja as boas-vindas.";
@@ -92,5 +92,5 @@ malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	579,{
 	}
 	end;
 }
-malaya,250,83,6	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	579
-malaya,224,204,6	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	579
+malaya,250,83,6	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	4_F_BARYO_WOMAN
+malaya,224,204,6	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	4_F_BARYO_WOMAN

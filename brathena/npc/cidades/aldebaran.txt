@@ -27,7 +27,7 @@
 
 // Al De Baran
 //============================================================
-aldebaran,113,70,4	script	Refinador#alde	48,{
+aldebaran,113,70,4	script	Refinador#alde	1_M_02,{
 	mes "[Munster]";
 	mes "Minha família morava em Geffen. Então eu achei que era natural aprender a forjar e eventualmente nos tornamos ferreiros. Então nós finalmente nos mudamos para esta cidade,";
 	mes "Aldebaran.";
@@ -52,7 +52,7 @@ aldebaran,113,70,4	script	Refinador#alde	48,{
 	close;
 }
 
-aldebaran,64,104,4	script	Ferreiro#alde	55,{
+aldebaran,64,104,4	script	Ferreiro#alde	1_M_JOBTESTER,{
 	mes "[Quatro]";
 	mes "Você já ouviu falar naqueles ferreiros talentosos que se mudaram de Geffen?";
 	next;
@@ -75,7 +75,7 @@ aldebaran,64,104,4	script	Ferreiro#alde	55,{
 	close;
 }
 
-aldebaran,49,93,4	script	Jovem#alde	83,{
+aldebaran,49,93,4	script	Jovem#alde	4_M_01,{
 	mes "[Miguel]";
 	mes "Armas nível 4 são legais!";
 	mes "Nem posso acreditar que essas armas tão poderosas existem!";
@@ -85,7 +85,7 @@ aldebaran,49,93,4	script	Jovem#alde	83,{
 	close;
 }
 
-aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
+aldebaran,81,61,4	script	Catadora de Mariscos#ald	4W_F_01,{
 	mes "[Joanne]";
 	mes "Gosto de recolher conchas no mar. É realmente divertido e relaxante.";
 	next;
@@ -108,7 +108,7 @@ aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
 	close;
 }
 
-aldebaran,46,129,4	script	Panama#alde	97,{
+aldebaran,46,129,4	script	Panama#alde	4W_M_01,{
 	mes "[Panama]";
 	mes "Aldebaran é conhecida no mundo inteiro como a cidade dos canais. As vias são realmente sofisticadas, toque romântico à nossa cidade justa.";
 	next;
@@ -125,7 +125,7 @@ aldebaran,46,129,4	script	Panama#alde	97,{
 	close;
 }
 
-aldebaran,67,154,4	script	Isenberg#alde	98,{
+aldebaran,67,154,4	script	Isenberg#alde	4W_M_02,{
 	mes "[Isenberg]";
 	mes "Monte Mjolnir e Floresta de Payon.";
 	mes "Ambos locais são dificeis de viajar.";
@@ -159,7 +159,7 @@ aldebaran,67,154,4	script	Isenberg#alde	98,{
 	}
 }
 
-aldebaran,90,170,4	script	Epthiel#alde	47,{
+aldebaran,90,170,4	script	Epthiel#alde	1_M_01,{
 	mes "[Epthiel]";
 	mes "Algumas armas ou armaduras tem Slots, onde você pode inserir algumas cartas que caem de monstros.";
 	next;
@@ -191,7 +191,7 @@ aldebaran,90,170,4	script	Epthiel#alde	47,{
 	}
 }
 
-aldebaran,117,181,4	script	Joy#alde	48,{
+aldebaran,117,181,4	script	Joy#alde	1_M_02,{
 	mes "[Joy]";
 	mes "Armas nível 1, que é o menor nível, precisa de um metal chamado ^3355FFFracon^000000 para ser refinado.";
 	next;
@@ -220,7 +220,7 @@ aldebaran,117,181,4	script	Joy#alde	48,{
 	}
 }
 
-aldebaran,121,231,4	script	Estudante#alde	49,{
+aldebaran,121,231,4	script	Estudante#alde	1_M_03,{
 	mes "[Chemirre]";
 	mes "Alquimistas, uma das duas classes capazes de criar itens diversos através de materiais, utilizando o conhecimento antigo de Aldebaran.";
 	next;
@@ -282,7 +282,7 @@ aldebaran,121,231,4	script	Estudante#alde	49,{
 	}
 }
 
-aldebaran,86,228,4	script	Criança#alde	62,{
+aldebaran,86,228,4	script	Criança#alde	1_M_SIZ,{
 	mes "[Bebe]";
 	mes "Um tempo atrás eu saí para um passeio a pé em direção ao Monte Mjolnir, com meu animal de estimação Bebê Selvagem, seu nome é NukNuk!";
 	mes "Nós fomos atacados, mas por sorte não nos machucamos.";
@@ -316,7 +316,7 @@ aldebaran,86,228,4	script	Criança#alde	62,{
 	}
 }
 
-aldebaran,159,242,4	script	Tio Inseto#alde	119,{
+aldebaran,159,242,4	script	Tio Inseto#alde	2_M_SWORDMASTER,{
 	mes "[Stromme]";
 	mes "Mesmo com os fortes espadachins, os insetos do Monte de Mjolnir representam uma ameaça considerável. Você tem que conhecer o inimigo antes de batalhar com ele!";
 	next;
@@ -345,7 +345,7 @@ aldebaran,159,242,4	script	Tio Inseto#alde	119,{
 	close;
 }
 
-aldebaran,60,70,4	script	Sylvia#alde	69,{
+aldebaran,60,70,4	script	Sylvia#alde	1_F_04,{
 	mes "[Sylvia]";
 	mes "Vim de Prontera até aqui em Al De Baran, porque eu ouvi dizer que a Central das Kafras fica em algum lugar por aqui.";
 	next;
@@ -374,7 +374,7 @@ aldebaran,60,70,4	script	Sylvia#alde	69,{
 	close;
 }
 
-aldebaran,93,80,4	script	Issei#alde	48,{
+aldebaran,93,80,4	script	Issei#alde	1_M_02,{
 	mes "[Issei]";
 	mes "Al De Baran é um lugar maravilhoso com os seus românticos canais e arquitetura clássica. Eu amo passear por esta cidade com a minha linda namorada.";
 	next;
@@ -398,7 +398,7 @@ aldebaran,93,80,4	script	Issei#alde	48,{
 	close;
 }
 
-aldebaran,180,46,4	script	Joo Jahk#alde	88,{
+aldebaran,180,46,4	script	Joo Jahk#alde	4_M_ORIENT01,{
 	mes "[Joo Jahk]";
 	mes "Eu sou um turista";
 	mes "vindo de Payon,";
@@ -423,7 +423,7 @@ aldebaran,180,46,4	script	Joo Jahk#alde	88,{
 	close;
 }
 
-aldebaran,212,122,4	script	Citizen#alde	97,{
+aldebaran,212,122,4	script	Citizen#alde	4W_M_01,{
 	mes "[Gavin]";
 	mes "Bem-vindo!";
 	mes "Esta é a Torre de Al De Baran. Estamos feliz com a sua visita!";
@@ -452,7 +452,7 @@ aldebaran,212,122,4	script	Citizen#alde	97,{
 	close;
 }
 
-aldebaran,146,124,4	script	Menina#alde	101,{
+aldebaran,146,124,4	script	Menina#alde	4W_F_01,{
 	mes "[Nastasia]";
 	mes "Em algum lugar do mundo tem uma ^3355FFGuilda dos Assassinos^000000, onde eles ensinam as pessoas a arte do assassinato.";
 	next;
@@ -475,7 +475,7 @@ aldebaran,146,124,4	script	Menina#alde	101,{
 	close;
 }
 
-aldebaran,143,136,4	script	Guardião do Relógio#A	89,{
+aldebaran,143,136,4	script	Guardião do Relógio#A	4_M_ORIENT02,{
 	mes "[Bell Keeper]";
 	mes "Fui escolhido pelo comitê do 'Paraíso na Terra' para ser o guarda da entrada da Torre do Relógio.";
 	next;
@@ -500,7 +500,7 @@ aldebaran,143,136,4	script	Guardião do Relógio#A	89,{
 
 // Dentro de Al De Baran
 //============================================================
-aldeba_in,232,241,4	script	RS125#alde	48,{
+aldeba_in,232,241,4	script	RS125#alde	1_M_02,{
 	mes "[RS125]";
 	mes "Eu posso parecer um robô.";
 	mes "Mas, espero que você não tenha medo de mim. Eu sou tão humano quanto você.";
@@ -538,7 +538,7 @@ aldeba_in,232,241,4	script	RS125#alde	48,{
 	close;
 }
 
-aldeba_in,223,121,4	script	Homem Louco	63,{
+aldeba_in,223,121,4	script	Homem Louco	1_M_SMITH,{
 	mes "[Homem Louco]";
 	mes "Ei, você não pode entrar na casa de alguém sem permissão.";
 	mes "Isso é ridículo!";
@@ -581,7 +581,7 @@ aldeba_in,223,121,4	script	Homem Louco	63,{
 	close;
 }
 
-aldeba_in,219,61,4	script	Homem Gentil#ald	109,{
+aldeba_in,219,61,4	script	Homem Gentil#ald	4_M_MANAGER,{
 	mes "[Friendly-Looking Man]";
 	mes "Não dê ouvidos ao rapaz que fica perto do meu quarto.";
 	mes "Dois anos atrás, ele estava se formando como mercenário e caiu de uma árvore enquanto tentava recolher nóz.";
@@ -592,7 +592,7 @@ aldeba_in,219,61,4	script	Homem Gentil#ald	109,{
 	close;
 }
 
-aldeba_in,152,47,4	script	Homem Agitado#alde	97,{
+aldeba_in,152,47,4	script	Homem Agitado#alde	4W_M_01,{
 	mes "[Homem Agitado]";
 	mes "Aaaaarrrggghhh...ESTOU COM PROBLEMAS!";
 	mes "Minha linda galinha me abandonou!";
@@ -623,7 +623,7 @@ aldeba_in,152,47,4	script	Homem Agitado#alde	97,{
 	close;
 }
 
-aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
+aldeba_in,156,179,4	script	Gerente do Bar#alde	1_M_PUBMASTER,{
 	mes "[Gerente do Bar]";
 	mes "A Sede da Corporação Kafra está localizada aqui em Al De Baran.";
 	mes "Sabe o que isso significa?";
@@ -710,7 +710,7 @@ aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
 	close;
 }
 
-aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
+aldeba_in,84,166,4	script	Kafra Denise#alde	4_F_KAFRA1,{
 	cutin "kafra_01",2;
 	mes "[Kafra Denise]";
 	mes "Bem vindo! Eu sou a Denise,";
@@ -764,7 +764,7 @@ aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
 	end;
 }
 
-aldeba_in,83,245,4	script	Kafra Tatiana#2alde	116,{
+aldeba_in,83,245,4	script	Kafra Tatiana#2alde	4_F_KAFRA2,{
 	cutin "kafra_02",2;
 	mes "[Kafra Tatiana]";
 	mes "Bem vindo à Corporação kafra.";
@@ -828,7 +828,7 @@ aldeba_in,83,245,4	script	Kafra Tatiana#2alde	116,{
 	end;
 }
 
-aldeba_in,24,245,4	script	Kafra Marianne#alde	115,{
+aldeba_in,24,245,4	script	Kafra Marianne#alde	4_F_KAFRA3,{
 	cutin "kafra_03",2;
 	mes "[Kafra Marianne]";
 	mes "Bem-vindo!";
@@ -887,7 +887,7 @@ aldeba_in,24,245,4	script	Kafra Marianne#alde	115,{
 	end;
 }
 
-aldeba_in,142,238,4	script	Kafra Bianca#3alde	114,{
+aldeba_in,142,238,4	script	Kafra Bianca#3alde	4_F_KAFRA4,{
 	cutin "kafra_04",2;
 	mes "[Kafra Bianca]";
 	mes "Bem vindo~!";
@@ -959,7 +959,7 @@ aldeba_in,142,238,4	script	Kafra Bianca#3alde	114,{
 	end;
 }
 
-aldeba_in,91,244,4	script	Kafra Deborah#4alde	112,{
+aldeba_in,91,244,4	script	Kafra Deborah#4alde	4_F_KAFRA6,{
 	cutin "kafra_06",2;
 	mes "[Kafra Deborah]";
 	mes "Olá, olá!";
@@ -986,7 +986,7 @@ aldeba_in,91,244,4	script	Kafra Deborah#4alde	112,{
 // NPCs dos Pontos de Reserva Especial Kafra
 //============================================================
 //------------------- Reserva Especial -------------------
-aldeba_in,79,161,6	script	Kafra#04	115,{
+aldeba_in,79,161,6	script	Kafra#04	4_F_KAFRA3,{
 	cutin "kafra_03",2;
 	mes "[Kafra]";
 	mes "Bem vindo, ^6666FF" + strcharinfo(0) + "^000000. Aqui é onde você pode trocar seus pontos especiais por alguns itens usáveis, por ótimos preços.";
@@ -1139,7 +1139,7 @@ aldeba_in,79,161,6	script	Kafra#04	115,{
 }
 
 // Reserva Especial 2 ----------------------------------------------
-aldeba_in,88,161,3	script	Kafra#05	115,{
+aldeba_in,88,161,3	script	Kafra#05	4_F_KAFRA3,{
 	cutin "kafra_03",2;
 	mes "[Kafra]";
 	mes "Bem vindo ^5577FF"+strcharinfo(0)+"^000000. Atualmente estamos com um evento especial para os nossos clientes.";
@@ -1281,12 +1281,12 @@ function	script	F_Lottery	{
 
 // Dentro da Torre do Relógio
 //============================================================
-c_tower3,10,249,4	script	Guardião do Portal#ct	84,{
+c_tower3,10,249,4	script	Guardião do Portal#ct	4_M_02,{
 	//Chave da Torre do Relógio
 	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44; 
 }
 
-alde_dun03,264,16,4	script	Gatekeeper#ct1	101,{
+alde_dun03,264,16,4	script	Gatekeeper#ct1	4W_F_01,{
 	//Chave do Subterrâneo
 	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267; 
 }

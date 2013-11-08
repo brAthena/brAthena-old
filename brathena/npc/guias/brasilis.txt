@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-brasilis,219,97,3	script	Guia de Brasilis	478,{
+brasilis,219,97,3	script	Guia de Brasilis	4_F_BRZ_WOMAN,{
 	mes "[Guia de Brasilis]";
 	mes "Bem-vindo à ^8B4513Brasilis^000000, um país apaixonado pelo sol.";
 	mes "Se tiver qualquer dúvida, por favor pergunte-me.";

@@ -27,7 +27,7 @@
 
 // Moscovia Transportação
 //============================================================ 
-alberta,246,51,4	script	Oficial de Moscovia#1	960,{
+alberta,246,51,4	script	Oficial de Moscovia#1	4_F_RUSWOMAN2,{
 	mes "[Oficial de Moscovia]";
 	mes "Moscovia! Você conhece Moscovia?";
 	mes "O paraíso se espalhando nos mares sem fim...";
@@ -85,7 +85,7 @@ alberta,246,51,4	script	Oficial de Moscovia#1	960,{
 	}
 }
 
-moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
+moscovia,166,53,4	script	Oficial de Moscovia#2	4_F_RUSWOMAN2,{
 	mes "[Oficial de Moscovia]";
 	mes "Como foi sua viagem?";
 	mes "Tem boas lembranças de Moscovia?";
@@ -109,7 +109,7 @@ moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
 
 // NPCs Genéricos de Moscovia
 //============================================================
-moscovia,253,166,4	script	Soldado#mosc1	966,{
+moscovia,253,166,4	script	Soldado#mosc1	4_M_RUSKNIGHT,{
 	mes "[Soldado]";
 	mes "Nosso querido Czar Alexsay III ainda está no palácio.";
 	mes "Ele governa Moscovia.";
@@ -119,12 +119,12 @@ moscovia,253,166,4	script	Soldado#mosc1	966,{
 
 // Palácio de Moscovia
 //============================================================
-mosk_in,118,66,5	script	Soldado#mosc	966,{
+mosk_in,118,66,5	script	Soldado#mosc	4_M_RUSKNIGHT,{
 	mes "[Soldado]";
 	mes "Não faça barulho ou o Czar ficará bravo.";
 	close;
 }
 
-mosk_in,133,110,3	duplicate(Soldado#mosc)	Soldado#mosc02	966
-mosk_in,133,73,3	duplicate(Soldado#mosc)	Soldado#mosc03	966
-mosk_in,113,124,5	duplicate(Soldado#mosc)	Soldado#mosc04	966
+mosk_in,133,110,3	duplicate(Soldado#mosc)	Soldado#mosc02	4_M_RUSKNIGHT
+mosk_in,133,73,3	duplicate(Soldado#mosc)	Soldado#mosc03	4_M_RUSKNIGHT
+mosk_in,113,124,5	duplicate(Soldado#mosc)	Soldado#mosc04	4_M_RUSKNIGHT

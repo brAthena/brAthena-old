@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,141,226,3	script	Mercadora de Promoções	714,{
+prontera,141,226,3	script	Mercadora de Promoções	4_F_06,{
 
 	mes "[Mercadora de Promoções]";
 	mes "Olá aproveitando sua passagem pela cidade?!";

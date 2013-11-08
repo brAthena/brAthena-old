@@ -92,7 +92,7 @@ OnTimer15000:
         end;
 }
 
-jupe_ele_r,50,98,0	script	Elevador de Juperos	111,{
+jupe_ele_r,50,98,0	script	Elevador de Juperos	HIDDEN_NPC,{
         mes "Você tem certeza que deseja subir?";
         next;
         if (select("Sim:Não") == 1){
@@ -105,7 +105,7 @@ jupe_ele_r,50,98,0	script	Elevador de Juperos	111,{
         close;
 }
 
-jupe_gate,49,168,0	script	Guarda de Juperos	111,{
+jupe_gate,49,168,0	script	Guarda de Juperos	HIDDEN_NPC,{
         mes "Você tem certeza de que deseja entrar no Interior de Juperos?";
         next;
         if (select("Sim:Não") == 1){
@@ -118,7 +118,7 @@ jupe_gate,49,168,0	script	Guarda de Juperos	111,{
         close;
 }
 
-jupe_core,150,17,0	script	Guarda de Juperos#2	111,{
+jupe_core,150,17,0	script	Guarda de Juperos#2	HIDDEN_NPC,{
         mes "Deseja sair do Interior de Juperos?";
         next;
         if (select("Sim:Não") == 1){

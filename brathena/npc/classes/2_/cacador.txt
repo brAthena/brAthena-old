@@ -557,7 +557,7 @@
 	}
 }
 
-payon_in02,21,31,1	script	Caçador#htnGM2	59,{
+payon_in02,21,31,1	script	Caçador#htnGM2	1_M_ORIENT01,{
 	cutin "job_huntermaster",2;
 	if (CACA_Q == 11) {
 		mes "[Líder da Guilda de Caçadores]";
@@ -759,7 +759,7 @@ payon_in02,21,31,1	script	Caçador#htnGM2	59,{
 	}
 }
 
-job_hunte,178,32,1	script	Guia#cac	107,5,2,{
+job_hunte,178,32,1	script	Guia#cac	1_M_PAY_ELDER,5,2,{
 OnTouch:
 	if (CACA_Q == 12) {
 		mes "[Guia]";
@@ -813,7 +813,7 @@ OnTouch:
 	end;
 }
 
-job_hunte,178,38,1	script	Sala de Espera#cac	66,{
+job_hunte,178,38,1	script	Sala de Espera#cac	1_F_01,{
 	end;
 
 OnInit:
@@ -832,7 +832,7 @@ OnStart:
 	end;
 }
 
-job_hunte,1,1,1	script	Gerente#cac	66,{
+job_hunte,1,1,1	script	Gerente#cac	1_F_01,{
 OnInit:
 	disablenpc "Gerente#cac";
 	end;
@@ -991,7 +991,7 @@ OnTimer197000:
 	end;
 }
 
-job_hunte,93,101,1	script	Interruptor#cac	723,1,1,{
+job_hunte,93,101,1	script	Interruptor#cac	1_SHADOW_NPC,1,1,{
 OnTouch:
 	mes "^3355FFExistem 3 botões";
 	mes "no interruptor de escape.^000000";
@@ -1034,7 +1034,7 @@ OnEnable:
 	end;
 }
 
-job_hunte,89,139,0	script	Saída#cactest	45,2,2,{
+job_hunte,89,139,0	script	Saída#cactest	WARPNPC,2,2,{
 OnInit:
 	disablenpc "Saída#cactest";
 	end;
@@ -1422,7 +1422,7 @@ job_hunte,64,92,0	duplicate(ArmadilhaCaçador)	57-1	-1,0,0
 job_hunte,64,93,0	duplicate(ArmadilhaCaçador)	57-2	-1,0,0
 job_hunte,65,92,0	duplicate(ArmadilhaCaçador)	57-3	-1,0,0
 
-job_hunte,65,93,0	script	57-4::ArmadilhaCaçador2	-1,{
+job_hunte,65,93,0	script	1_M_LIBRARYMASTER-4::ArmadilhaCaçador2	-1,{
 OnTouch:
 	mapannounce "job_hunte",strcharinfo(0)+", falhou comigo! Volte para onde você começou!",bc_map;
 	set CACA_Q,13;
@@ -1592,17 +1592,17 @@ job_hunte,127,70,0	duplicate(ArmadilhaCaçador2)	97-3	-1,0,0
 job_hunte,127,71,0	duplicate(ArmadilhaCaçador2)	97-4	-1,0,0
 
 //<================================ Guildsman: Warps you to guild =======================================>\\
-pay_fild10,148,251,4	script#ot	Caçador da Guilda	98,{
+pay_fild10,148,251,4	script#ot	Caçador da Guilda	4W_M_02,{
 	warp "in_hunter",100,18;
 	end;
 }
 
-in_hunter,99,99,4	duplicato(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	727
-in_hunter,55,99,7	duplicato(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacot	732,{}
+in_hunter,99,99,4	duplicato(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	4_F_JOB_HUNTER
+in_hunter,55,99,7	duplicato(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacot	4_M_JOB_HUNTER,{}
 
 // Notícias da antiga Guilda de Caçadores
 //============================================================ 
-in_hunter,99,99,4	script#dv	Informações de Caçador#cac::CaçadorNotícia	727,{
+in_hunter,99,99,4	script#dv	Informações de Caçador#cac::CaçadorNotícia	4_F_JOB_HUNTER,{
 	mes "============ Notícia ============";
 	mes "Gostaríamos de informar que o local do teste de Caçador";
 	mes "foi transferido para ^ff0000Hugel^000000 na República Schwartzwald.";
@@ -1619,7 +1619,7 @@ in_hunter,99,99,4	script#dv	Informações de Caçador#cac::CaçadorNotícia	727,{
 	close;
 }
 
-payon_in03,131,7,3	script	Caçador#htnGM	59,{
+payon_in03,131,7,3	script	Caçador#htnGM	1_M_ORIENT01,{
 	if (CACA_Q == 10) {
 		mes "[Líder da Guilda de Caçadores]";
 		mes "Você deve estar aqui para o teste de Caçador. Posso dar informações sobre o processo do teste. O que você deseja saber?";

@@ -25,7 +25,7 @@
 
 // Guarnien
 //============================================================
-alberta_in,70,51,5	script	Guarnien	98,{
+alberta_in,70,51,5	script	Guarnien	4W_M_02,{
 	mes "[Guarnien]";
 	if (Class != Job_Merchant && Class != Job_Baby_Merchant){
 		mes "Olá estranho.";
@@ -655,7 +655,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 
 // Sagle
 //============================================================
-prontera,66,111,3	script	Sagle	82,{
+prontera,66,111,3	script	Sagle	4_KID01,{
 	mes "[Sagle]";
 	if (tu_merchant == 8){
 		mes "Olá, Olá ~";
@@ -814,7 +814,7 @@ prontera,66,111,3	script	Sagle	82,{
 
 // Kellion
 //============================================================
-prontera,93,330,3	script	Kellion	97,{
+prontera,93,330,3	script	Kellion	4W_M_01,{
 	mes "[Kellion]";
 	if (tu_merchant == 8){
 		mes "Estou vendendo conjuntos de";
@@ -946,7 +946,7 @@ prontera,93,330,3	script	Kellion	97,{
 
 // Aigie
 //============================================================
-prt_in,169,11,3	script	Aigie	92,{
+prt_in,169,11,3	script	Aigie	4_F_03,{
 	if (tu_merchant == 8){
 		mes "[Aigie]";
 		mes "Bem vindo ao meu shop.";
@@ -1097,7 +1097,7 @@ prt_in,169,11,3	script	Aigie	92,{
 
 // Jayon
 //============================================================
-prontera,247,129,3	script	Jayon	85,{
+prontera,247,129,3	script	Jayon	4_M_03,{
 	if (tu_merchant == 8){
 		mes "[Jayon]";
 		mes "Se você verificou as lojas de Poções Vermelhas, você deve saber que meu preço é o melhor oferecido, 10 Poções Vermelhas por apenas 410 Zeny.";
@@ -1231,7 +1231,7 @@ prontera,247,129,3	script	Jayon	85,{
 
 // Maos
 //============================================================
-prt_in,251,129,3	script	Maos	709,{
+prt_in,251,129,3	script	Maos	4_M_SEAMAN,{
 	if (tu_merchant == 8){
 		mes "[Maos]";
 		mes "Não diga nada.";

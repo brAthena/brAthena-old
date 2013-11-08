@@ -25,7 +25,7 @@
 
 // Traços de Batalha 1
 //============================================================
-moc_fild12,166,369,0	script	Traços de Batalha#1	844,{
+moc_fild12,166,369,0	script	Traços de Batalha#1	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 5){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Você pode sentir a fragrância e decide que é mais seguro não chegar muito perto.^000000";
@@ -75,7 +75,7 @@ moc_fild12,166,369,0	script	Traços de Batalha#1	844,{
 
 // Traços de Batalha 2
 //============================================================
-moc_fild12,173,215,0	script	Traços de Batalha#2	844,{
+moc_fild12,173,215,0	script	Traços de Batalha#2	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 9){
 			mes "Parece que muitas pessoas já passaram por aqui.";
@@ -107,7 +107,7 @@ moc_fild12,173,215,0	script	Traços de Batalha#2	844,{
 
 // Traços de Batalha 3
 //============================================================
-moc_fild12,276,165,0	script	Traço de Batalha#3	844,{
+moc_fild12,276,165,0	script	Traço de Batalha#3	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 10){
 			mes "Parece que poucas pessoas passaram por aqui.";
@@ -139,7 +139,7 @@ moc_fild12,276,165,0	script	Traço de Batalha#3	844,{
 
 // Traços de Batalha 4
 //============================================================
-moc_fild11,39,163,0	script	Traços de Batalha#4	844,{
+moc_fild11,39,163,0	script	Traços de Batalha#4	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 11){
 			mes "Parece que muitas pessoas já passaram por aqui.";
@@ -173,7 +173,7 @@ moc_fild11,39,163,0	script	Traços de Batalha#4	844,{
 
 // Traços de Batalha 5
 //============================================================
-moc_fild11,205,52,0	script	Traços de Batalha#5	844,{
+moc_fild11,205,52,0	script	Traços de Batalha#5	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 12){
 			mes "Parece que muitas pessoas já passaram por aqui.";
@@ -271,7 +271,7 @@ moc_fild11,205,52,0	script	Traços de Batalha#5	844,{
 
 // Traços de Batalha 6
 //============================================================
-moc_fild11,226,235,0	script	Traços de Batalha#6	844,{
+moc_fild11,226,235,0	script	Traços de Batalha#6	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 13){
 			mes "Parece que muitas pessoas já passaram por aqui.";
@@ -295,7 +295,7 @@ moc_fild11,226,235,0	script	Traços de Batalha#6	844,{
 
 // Traços de Batalha 7
 //============================================================
-moc_fild11,184,342,0	script	Traço de Batalha#7	844,{
+moc_fild11,184,342,0	script	Traço de Batalha#7	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 13){
 			mes "Há vestígios de que muitos já pararam aqui.";
@@ -319,7 +319,7 @@ moc_fild11,184,342,0	script	Traço de Batalha#7	844,{
 
 // Traços de Batalha 8
 //============================================================
-moc_fild17,213,358,0	script	Traços de Batalha#8	844,{
+moc_fild17,213,358,0	script	Traços de Batalha#8	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 13){
 			mes "Há vestígios de que cerca de duas pessoas pararam aqui.";
@@ -351,7 +351,7 @@ moc_fild17,213,358,0	script	Traços de Batalha#8	844,{
 
 // Traços de Batalha 9
 //============================================================
-moc_fild17,228,274,0	script	Traços de Batalha#9	844,{
+moc_fild17,228,274,0	script	Traços de Batalha#9	CLEAR_NPC,{
 	if (BaseClass == Job_Thief) {
 		if (tu_thief01 < 14){
 			mes "Há vestígios de uma pequena batalha.";
@@ -411,7 +411,7 @@ moc_fild17,228,274,0	script	Traços de Batalha#9	844,{
 
 // Traços de Batalha 10
 //============================================================
-moc_fild17,34,292,0	script	Traços de Batalha#10	844,{
+moc_fild17,34,292,0	script	Traços de Batalha#10	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 16){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -443,7 +443,7 @@ moc_fild17,34,292,0	script	Traços de Batalha#10	844,{
 
 // Traços de Batalha 11
 //============================================================
-moc_fild18,346,296,0	script	Traços de Batalha#11	844,{
+moc_fild18,346,296,0	script	Traços de Batalha#11	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 17){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -475,7 +475,7 @@ moc_fild18,346,296,0	script	Traços de Batalha#11	844,{
 
 // Traços de Batalha 12
 //============================================================
-moc_fild18,309,257,0	script	Traços de Batalha#12	844,{
+moc_fild18,309,257,0	script	Traços de Batalha#12	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 18){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -507,7 +507,7 @@ moc_fild18,309,257,0	script	Traços de Batalha#12	844,{
 
 // Traços de Batalha 13
 //============================================================
-moc_fild18,177,333,0	script	Traços de Batalha#13	844,{
+moc_fild18,177,333,0	script	Traços de Batalha#13	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 19){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -539,7 +539,7 @@ moc_fild18,177,333,0	script	Traços de Batalha#13	844,{
 
 // Traços de Batalha 14
 //============================================================
-moc_fild18,111,303,0	script	Traços de Batalha#14	844,{
+moc_fild18,111,303,0	script	Traços de Batalha#14	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 20){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -571,7 +571,7 @@ moc_fild18,111,303,0	script	Traços de Batalha#14	844,{
 
 // Traços de Batalha 15
 //============================================================
-moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
+moc_fild18,109,197,0	script	Traços de Batalha#15	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 21){
 			mes "Um grande grupo de pessoas esteve aqui.";
@@ -734,7 +734,7 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	844,{
 
 // Traços de Batalha 16
 //============================================================
-moc_fild18,156,96,0	script	Traços de Batalha#16	844,{
+moc_fild18,156,96,0	script	Traços de Batalha#16	CLEAR_NPC,{
 	if (BaseClass == Job_Thief){
 		if (tu_thief01 < 25){
 			mes "Um grande grupo de pessoas esteve aqui.";

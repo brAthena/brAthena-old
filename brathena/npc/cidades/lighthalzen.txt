@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-lighthalzen,198,285,5	script	Jiwon#zen5	862,{
+lighthalzen,198,285,5	script	Jiwon#zen5	4_F_LGTGIRL,{
 	mes "[Jiwon]";
 	mes "Acho que temos muita sorte por poder viver em uma cidade tão bonita e pacífica como essa.";
 	next;
@@ -35,7 +35,7 @@ lighthalzen,198,285,5	script	Jiwon#zen5	862,{
 	close;
 }
 
-lighthalzen,220,244,3	script	Samnang#zen2	863,{
+lighthalzen,220,244,3	script	Samnang#zen2	4_F_LGTGRAND,{
 	mes "[Samnang]";
 	mes "^333333*Sigh...*^000000";
 	mes "Fica cada vez mais díficil me locomover enquanto envelheço. Mas acho que isso é compreensível, não?";
@@ -51,7 +51,7 @@ lighthalzen,220,244,3	script	Samnang#zen2	863,{
 	close;
 }
 
-lighthalzen,261,112,3	script	Ruth#zen4	862,{
+lighthalzen,261,112,3	script	Ruth#zen4	4_F_LGTGIRL,{
 	mes "[Ruth]";
 	mes "Amor, não é bom estarmos juntos aqui? É o lugar perfeito para o nosso encontro. Ahhhh~";
 	next;
@@ -65,7 +65,7 @@ lighthalzen,261,112,3	script	Ruth#zen4	862,{
 	close;
 }
 
-lighthalzen,259,108,7	script	Oyoung#zen14	869,{
+lighthalzen,259,108,7	script	Oyoung#zen14	4_M_LGTMAN,{
 	mes "[Oyoung]";
 	mes "Garota, parece que você foi picada pela mosquinha do amor. Mas há um remédio para esse mal! Ahhh sim, eu garanto que há!";
 	next;
@@ -80,7 +80,7 @@ lighthalzen,259,108,7	script	Oyoung#zen14	869,{
 	close;
 }
 
-lighthalzen,233,121,3	script	Kariya#li_01	72,{
+lighthalzen,233,121,3	script	Kariya#li_01	1_F_MARIA,{
 	mes "[Kariya]";
 	mes "Acho que 'Lighthalzen' significa algo como 'Pico de Luz', apesar de ter ouvido que essa cidade foi nomeada para homenagear alguém. Mas quem pode saber?";
 	next;
@@ -90,7 +90,7 @@ lighthalzen,233,121,3	script	Kariya#li_01	72,{
 	close;
 }
 
-lighthalzen,233,82,5	script	Sung#A	716,{
+lighthalzen,233,82,5	script	Sung#A	4_M_KID2,{
 	mes "[Sung]";
 	mes "Quando eu crescer, quero me tornar uma pessoa tão grande que até irão fazer uma estátua de mim, assim como outras estátuas que foram feitas.";
 	next;
@@ -105,7 +105,7 @@ lighthalzen,233,82,5	script	Sung#A	716,{
 	close;
 }
 
-lighthalzen,89,73,3	script	Sameer#zen15	854,{
+lighthalzen,89,73,3	script	Sameer#zen15	4_M_EINMAN2,{
 	mes "[Sameer]";
 	mes "Existem muitos casais apaixonados nessa cidade.";
 	mes "Abraços e beijos e amassos.";
@@ -125,14 +125,14 @@ lighthalzen,89,73,3	script	Sameer#zen15	854,{
 	close;
 }
 
-lighthalzen,45,59,7	script	Janice#zen03	863,{
+lighthalzen,45,59,7	script	Janice#zen03	4_F_LGTGRAND,{
 	mes "[Janice]";
 	mes "Ah não, acho que me perdi de novo. As ruas daqui são muito confusas.";
 	mes "Moro aqui faz tempo, e ainda assim não consigo me achar...";
 	close;
 }
 
-lighthalzen,66,94,3	script	Elmer Keays#li_03	866,{
+lighthalzen,66,94,3	script	Elmer Keays#li_03	4_M_LGTGRAND,{
 	mes "[Elmer Keays]";
 	mes "Andar ao seu lado assim me lembra dos velhos tempos. Quando todos morriam de inveja por eu ter uma mulher tão linda ao meu lado. Heh heh~";
 	next;
@@ -143,13 +143,13 @@ lighthalzen,66,94,3	script	Elmer Keays#li_03	866,{
 	close;
 }
 
-lighthalzen,65,94,5	script	Margie Keays#li_02	863,{
+lighthalzen,65,94,5	script	Margie Keays#li_02	4_F_LGTGRAND,{
 	mes "[Margie Keays]";
 	mes "Ah querido, o tempo está tão bom e agradável hoje. Estou muito feliz que nós resolvemos dar um passeio juntos~";
 	close;
 }
 
-lighthalzen,78,120,3	script	Maivi#zen1	862,{
+lighthalzen,78,120,3	script	Maivi#zen1	4_F_LGTGIRL,{
 	mes "[Maivi]";
 	mes "...";
 	next;
@@ -170,7 +170,7 @@ lighthalzen,78,120,3	script	Maivi#zen1	862,{
 }
 
 /*
-lighthalzen,226,210,3	script	Nannan	86,{
+lighthalzen,226,210,3	script	Nannan	4_M_04,{
 	mes "[Nannan]";
 	mes "Sabe, sempre pensei que os alquimistas fossem estudiosos, vivessem com a cara enterrada nos livros para estudar. Mas acabei conhecendo um que não se adequa ao estereótipo do nerd.";
 	next;
@@ -185,7 +185,7 @@ lighthalzen,226,210,3	script	Nannan	86,{
 }
 */
 
-lighthalzen,230,182,4	script	Klaubis#zen3	866,{
+lighthalzen,230,182,4	script	Klaubis#zen3	4_M_LGTGRAND,{
 	mes "[Klaubis]";
 	mes "Com licença, mas você é um turista? Seja bem-vindo a Lighthalzen! Essa cidade tem tudo que precisamos, mas as vezes pode ser muito quieta, parada demais.";
 	next;
@@ -208,7 +208,7 @@ lighthalzen,230,182,4	script	Klaubis#zen3	866,{
 	}
 }
 
-lighthalzen,232,156,3	script	Sigmund#zen3	869,{
+lighthalzen,232,156,3	script	Sigmund#zen3	4_M_LGTMAN,{
 	mes "[Sigmund Ting]";
 	mes "Sabe o que percebi?";
 	mes "Os guardas na porta da favela muitas vezes ficam distraídos. Já me aproveitei de um desses momentos de pouca atenção e literalmente pulei o muro!";
@@ -221,20 +221,20 @@ lighthalzen,232,156,3	script	Sigmund#zen3	869,{
 	close;
 }
 
-lighthalzen,190,134,5	script	Joyce#zen	862,{
+lighthalzen,190,134,5	script	Joyce#zen	4_F_LGTGIRL,{
 	mes "[Joyce]";
 	mes "Posso sentir você olhando dentro do meu coração e fazendo-o bater cada vez mais rápido, com uma paixão arrebatadora~";
 	close;
 }
 
-lighthalzen,191,134,3	script	Dan Song#zen2	869,{
+lighthalzen,191,134,3	script	Dan Song#zen2	4_M_LGTMAN,{
 	mes "[Dan Song]";
 	mes "Esses seus olhos...";
 	mes "Tão puros e profundos, como piscinas de luz cintilante. Tão bonitos...";
 	close;
 }
 
-lighthalzen,115,159,3	script	Collins#zen1	866,{
+lighthalzen,115,159,3	script	Collins#zen1	4_M_LGTGRAND,{
 	mes "[Collins]";
 	mes "Realmente espero que o meu filho vá trabalhar na Corporação Rekenber.";
 	mes "Eles certamente oferecem os melhores empregos de Lighthalzen.";
@@ -245,13 +245,13 @@ lighthalzen,115,159,3	script	Collins#zen1	866,{
 	close;
 }
 
-lighthalzen,77,157,5	script	Villagomez#li_01	866,{
+lighthalzen,77,157,5	script	Villagomez#li_01	4_M_LGTGRAND,{
 	mes "[Villagomez]";
 	mes "Só dei uma saidinha para cortar o cabelo e me perdi. Ahh meu Deus, espero não deixar minha família preocupada. ^333333*Suspiro...*^000000";
 	close;
 }
 
-lighthalzen,125,68,5	script	Kemp#zen13	97,{
+lighthalzen,125,68,5	script	Kemp#zen13	4W_M_01,{
 	mes "[Kemp]";
 	mes "Você já viu as pessoas que trabalham na grande empresa aqui perto? Acho que os empregados de lá estão meio esquisitos por algum motivo.";
 	next;
@@ -260,7 +260,7 @@ lighthalzen,125,68,5	script	Kemp#zen13	97,{
 	close;
 }
 
-lighthalzen,138,50,7	script	Mauro#zen3	847,{
+lighthalzen,138,50,7	script	Mauro#zen3	4_M_EINOLD,{
 	mes "[Mauro]";
 	mes "Os jovens dessa cidade não tem respeito pelos mais velhos. Eu trabalhei duro por anos para ajudar a construir essa cidade, e é isso que recebo?";
 	next;
@@ -270,7 +270,7 @@ lighthalzen,138,50,7	script	Mauro#zen3	847,{
 	close;
 }
 
-lighthalzen,132,103,5	script	Sefith#li_01	734,{
+lighthalzen,132,103,5	script	Sefith#li_01	4_M_JOB_KNIGHT2,{
 	mes "[Sefith]";
 	mes "Bonito. Inteligente.";
 	mes "Educado. Forte.";
@@ -284,7 +284,7 @@ lighthalzen,132,103,5	script	Sefith#li_01	734,{
 	close;
 }
 
-lighthalzen,239,64,5	script	Jade#zen2	862,{
+lighthalzen,239,64,5	script	Jade#zen2	4_F_LGTGIRL,{
 	mes "[Jade]";
 	mes "Ouvi dizer que tem um reinado estranho que é basicamente regido por magia e espadas, onde aventureiros se juntam para o bem maior.";
 	next;
@@ -297,14 +297,14 @@ lighthalzen,239,64,5	script	Jade#zen2	862,{
 	close;
 }
 
-lighthalzen,205,208,4	script	Ambicioso Olhando#li_01	853,{
+lighthalzen,205,208,4	script	Ambicioso Olhando#li_01	4_M_YURI,{
 	mes "[Khramptd]";
 	mes "Comprar uma propriedade aqui custa muito dinheiro.";
 	mes "Mas essa terra é perfeita para a construção do meu palácio! Ainda não tenho dinheiro, mas o grande dia chegará~";
 	close;
 }
 
-lhz_in02,34,212,4	script	Maggie#05	91,{
+lhz_in02,34,212,4	script	Maggie#05	4_F_02,{
 	mes "[Maggie]";
 	mes "Eu vendo muitas flores aqui, mas os impostos que essa cidade cobra acabam com meus lucros.";
 	mes "Quase não compensa alugar essa propriedade.";
@@ -314,7 +314,7 @@ lhz_in02,34,212,4	script	Maggie#05	91,{
 	close;
 }
 
-lighthalzen,202,94,5	script	Wallace#zen2	847,{
+lighthalzen,202,94,5	script	Wallace#zen2	4_M_EINOLD,{
 	mes "[Wallace]";
 	mes "......";
 	mes "Aquela menina, que trabalha para a corporação Kafra, que acho que chama Mafra.";
@@ -327,7 +327,7 @@ lighthalzen,202,94,5	script	Wallace#zen2	847,{
 	close;
 }
 
-lighthalzen,182,102,3	script	Lucius#zen5	866,{
+lighthalzen,182,102,3	script	Lucius#zen5	4_M_LGTGRAND,{
 		mes "[Lucius]";
 	if (Zeny < 90000) {
 		mes "Olá jovem~";
@@ -383,7 +383,7 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 	close;
 }
 
-lighthalzen,147,105,3	script	Laqumet#li_02	869,{
+lighthalzen,147,105,3	script	Laqumet#li_02	4_M_LGTMAN,{
 	mes "[Laqumet]";
 	mes "Claro que a masculinidade é muito atraente para as mulheres, mas acho que elas também apreciam alguém que seja simpático e converse com elas. Não acha?";
 	next;
@@ -393,7 +393,7 @@ lighthalzen,147,105,3	script	Laqumet#li_02	869,{
 	close;
 }
 
-lhz_in02,242,172,1	script	Funcionário do Hotel#zen3	868,{
+lhz_in02,242,172,1	script	Funcionário do Hotel#zen3	4_M_LGTGUARD,{
 	mes "[Funcionário do Hotel]";
 	mes "Se você sofrer algum inconveniente, não hesite e fale conosco assim que possível.";
 	next;
@@ -403,7 +403,7 @@ lhz_in02,242,172,1	script	Funcionário do Hotel#zen3	868,{
 	close;
 }
 
-lhz_in02,210,189,3	script	Christopher Michael#zen	849,{
+lhz_in02,210,189,3	script	Christopher Michael#zen	4_M_DIEMAN,{
 	mes "[Christopher Michael]";
 	mes "OoooOoh~";
 	mes "Tããão confortável.";
@@ -413,7 +413,7 @@ lhz_in02,210,189,3	script	Christopher Michael#zen	849,{
 	close;
 }
 
-lhz_in02,201,181,7	script	Safwat Fahmy	853,{
+lhz_in02,201,181,7	script	Safwat Fahmy	4_M_YURI,{
 	mes "[Safwat Fahmy]";
 	mes "Esse hotel é bom e confortável, mas para ser franco, os drinques daqui são horríveis. Eles não servem para homens como eu.";
 	next;
@@ -426,14 +426,14 @@ lhz_in02,201,181,7	script	Safwat Fahmy	853,{
 	close;
 }
 
-lhz_in02,251,212,3	script	Funcionário do Hotel#zen2	868,{
+lhz_in02,251,212,3	script	Funcionário do Hotel#zen2	4_M_LGTGUARD,{
 	mes "[Funcionário do Hotel]";
 	mes "Essa é a Suíte de Casal.";
 	mes "Você também pode alugá-la sozinho, mas nosso hotel prioriza casais que se candidatam a esse quarto.";
 	close;
 }
 
-lhz_in02,229,217,3	script	Tanoue#zen04	863,{
+lhz_in02,229,217,3	script	Tanoue#zen04	4_F_LGTGRAND,{
 	mes "[Tanoue]";
 	mes "Essa cadeira parece ótima, mas na verdade acaba com meu traseiro.";
 	mes "É tão desconfortável!";
@@ -444,7 +444,7 @@ lhz_in02,229,217,3	script	Tanoue#zen04	863,{
 	close;
 }
 
-lhz_in02,209,277,5	script	Ben Allen#zen11	84,{
+lhz_in02,209,277,5	script	Ben Allen#zen11	4_M_02,{
 	mes "[Ben Allen]";
 	mes "Aaahhh Oooooh~";
 	mes "Está tão confortável~";
@@ -457,7 +457,7 @@ lhz_in02,209,277,5	script	Ben Allen#zen11	84,{
 	close;
 }
 
-lhz_in02,221,276,1	script	Harp#zen8	869,{
+lhz_in02,221,276,1	script	Harp#zen8	4_M_LGTMAN,{
 	mes "[Harp]";
 	mes "Ah meu Deus...";
 	mes "A menina Kafra é tão linda.";
@@ -472,14 +472,14 @@ lhz_in02,221,276,1	script	Harp#zen8	869,{
 	close;
 }
 
-lhz_in02,238,275,5	script	Funcionário do Hotel#zen1	869,{
+lhz_in02,238,275,5	script	Funcionário do Hotel#zen1	4_M_LGTMAN,{
 	mes "[Funcionário do Hotel]";
 	mes "'Hospitalidade com um sorriso e comprometimento total com seu conforto.' Esse é nosso lema, no hotel Dragão Real.";
 	mes "Vá até a mesa central se quiser se hospedar aqui.";
 	close;
 }
 
-lhz_in02,247,275,1	script	Funcionário do Hotel#zen4	868,{
+lhz_in02,247,275,1	script	Funcionário do Hotel#zen4	4_M_LGTGUARD,{
 	mes "[Funcionário do Hotel]";
 	mes "Bem-vindo ao Bar do Hotel Dragão Real.";
 	mes "Que tal um drinque antes de ir dormir?";
@@ -489,7 +489,7 @@ lhz_in02,247,275,1	script	Funcionário do Hotel#zen4	868,{
 	close;
 }
 
-lhz_in02,271,281,2	script	Cidadão#amano09	47,{
+lhz_in02,271,281,2	script	Cidadão#amano09	1_M_01,{
 	mes "[Hachi]";
 	mes "Ah sim! Eu amo-amo-amo bares. Não venho pelos drinques, venho pelas lindas garotas daqui.";
 	next;
@@ -499,14 +499,14 @@ lhz_in02,271,281,2	script	Cidadão#amano09	47,{
 	close;
 }
 
-lhz_in02,277,285,4	script	Garçom#amano07	61,{
+lhz_in02,277,285,4	script	Garçom#amano07	1_M_PUBMASTER,{
 	mes "[Duff]";
 	mes "Ei, você é de Rune-Midgards, não?";
 	mes "Por favor, sinta-se em casa enquanto está em Lighthalzen e tenha uma boa estadia aqui.";
 	close;
 }
 
-lhz_in02,281,280,6	script	Cliente#amano13	816,{
+lhz_in02,281,280,6	script	Cliente#amano13	4_F_CHNDRESS2,{
 	mes "[Rona]";
 	mes "Eu odeio quando os caras simplesmente pulam os Passos Um e Dois.";
 	mes "Antes que você fique perdido, o Passo Três é 'Peça o número do meu telefone.'";
@@ -516,7 +516,7 @@ lhz_in02,281,280,6	script	Cliente#amano13	816,{
 	close;
 }
 
-lhz_in02,287,282,4	script	Cliente#amano10	853,{
+lhz_in02,287,282,4	script	Cliente#amano10	4_M_YURI,{
 	mes "[Greenfield]";
 	mes "Não acredito...";
 	mes "Essa maré de azar não vai acabar nunca, vai?";
@@ -530,7 +530,7 @@ lhz_in02,287,282,4	script	Cliente#amano10	853,{
 	close;
 }
 
-lhz_in02,287,273,3	script	Cliente#amano11	50,{
+lhz_in02,287,273,3	script	Cliente#amano11	1_M_04,{
 	mes "[Terry]";
 	mes "Não costumo beber muito, mas a atmosfera desse lugar é muito boa.";
 	mes "É relaxante, assim como a música que colocam para tocar...";
@@ -540,7 +540,7 @@ lhz_in02,287,273,3	script	Cliente#amano11	50,{
 	close;
 }
 
-lhz_in02,283,276,4	script	Sei#amano12	815,{
+lhz_in02,283,276,4	script	Sei#amano12	4_F_CHNDRESS1,{
 	mes "[Sei]";
 	mes "Está vendo aquele cara?";
 	mes "Aquele ali está sempre olhando para mim. Fico me perguntando... Será que ele quer me chamar para sair ou algo assim?";
@@ -550,7 +550,7 @@ lhz_in02,283,276,4	script	Sei#amano12	815,{
 	close;
 }
 
-lighthalzen,123,212,4	script	Merpi#zen2	700,{
+lighthalzen,123,212,4	script	Merpi#zen2	8_F_GIRL,{
 	mes "[Merpi]";
 	mes "O tempo não está ótimo hoje? Esse sol vai secar as roupas rápido e deixá-las com um cheiro fresco.";
 	next;
@@ -578,7 +578,7 @@ lighthalzen,123,212,4	script	Merpi#zen2	700,{
 	}
 }
 
-lighthalzen,296,239,3	script	Berru#lhz_01	706,{
+lighthalzen,296,239,3	script	Berru#lhz_01	4_M_KID1,{
 	switch(rand(1,3)) {
 	case 1:
 		mes "[Berru]";
@@ -630,9 +630,9 @@ lighthalzen,296,239,3	script	Berru#lhz_01	706,{
 	}
 }
 
-lighthalzen,297,239,3	duplicate(Berru#lhz_01)	Pilia#lhz_01	818
+lighthalzen,297,239,3	duplicate(Berru#lhz_01)	Pilia#lhz_01	4_F_CHNWOMAN
 
-lighthalzen,312,233,3	script	Beggar#lhz_02	777,3,1,{
+lighthalzen,312,233,3	script	Beggar#lhz_02	4_M_TWOLDMAN,3,1,{
 	end;
 
 OnTouch:
@@ -778,7 +778,7 @@ OnTouch:
 	close;
 }
 
-lighthalzen,311,194,3	script	Reuben#lhz_02	870,{
+lighthalzen,311,194,3	script	Reuben#lhz_02	4_M_LGTPOOR,{
 	mes "[Reuben]";
 	if (rand(1,2)) {
 		mes "Algum dia...";
@@ -800,7 +800,7 @@ lighthalzen,311,194,3	script	Reuben#lhz_02	870,{
 	close;
 }
 
-lighthalzen,306,324,3	script	Shengwen#zen7	870,{
+lighthalzen,306,324,3	script	Shengwen#zen7	4_M_LGTPOOR,{
 	mes "[Shengwen]";
 	mes "Estou ficando paranóico? Eu realmente acho que algumas pessoas que eu conheço estão desaparecendo sem nenhum motivo!";
 	next;
@@ -809,14 +809,14 @@ lighthalzen,306,324,3	script	Shengwen#zen7	870,{
 	close;
 }
 
-lhz_in03,26,167,5	script	Shayna#li	850,{
+lhz_in03,26,167,5	script	Shayna#li	4_F_EINWOMAN,{
 	mes "[Shayna]";
 	mes "^333333*Suspiro...*^000000";
 	mes "Ah, minha pobre e querida menina...";
 	close;
 }
 
-lhz_in01,134,45,3	script	Cenku Dekdam#delic	869,{
+lhz_in01,134,45,3	script	Cenku Dekdam#delic	4_M_LGTMAN,{
 	mes "[Cenku Dekdam]";
 	mes "Cara, se você fosse pegar essa cidade inteira e colocá-la a venda, quanto você acha que seria o preço de Lighthalzen, hein?";
 	next;
@@ -825,7 +825,7 @@ lhz_in01,134,45,3	script	Cenku Dekdam#delic	869,{
 	close;
 }
 
-lighthalzen,330,276,3	script	Nun#light	79,{
+lighthalzen,330,276,3	script	Nun#light	1_F_PRIEST,{
 	mes "[Angela]";
 	mes "Saudações, aventureiro.";
 	mes "Sou Angela, uma assistente social da Organização de Ajuda aos Pobres.";
@@ -839,7 +839,7 @@ lighthalzen,330,276,3	script	Nun#light	79,{
 	close;
 }
 
-lighthalzen,337,296,3	script	Funcionário Rekenber	867,{
+lighthalzen,337,296,3	script	Funcionário Rekenber	4_M_LGTGUARD2,{
 	if (hg_tre > 54) {
 		mes "[Funcionário Rekenber]";
 		mes "Saudações. Como parte de nossos esforços para auxiliar os pobres, a Corporação Rekenber está oferecendo postos de trabalho para os moradores das áreas carentes.";
@@ -853,7 +853,7 @@ lighthalzen,337,296,3	script	Funcionário Rekenber	867,{
 	end;
 }
 
-lhz_in01,134,38,3	script	Bankri Kun#kagun	798,{
+lhz_in01,134,38,3	script	Bankri Kun#kagun	4_M_NFMAN,{
 	mes "[Bankri Kun]";
 	mes "Preciso trabalhar...";
 	mes "Preciso me concentrar...";
@@ -870,7 +870,7 @@ lhz_in01,134,38,3	script	Bankri Kun#kagun	798,{
 	close;
 }
 
-lhz_in01,139,40,7	script	Enoz#oz	53,{
+lhz_in01,139,40,7	script	Enoz#oz	1_M_INNKEEPER,{
 	mes "[Enoz]";
 	mes "Então o livro que eu encomendei do Reino de Rune-Midgards acabou de chegar. É muito bom, é do cara que escreveu 'A Aventura do Sapo de Roda' anos atrás. Lembra-se?";
 	next;
@@ -879,7 +879,7 @@ lhz_in01,139,40,7	script	Enoz#oz	53,{
 	close;
 }
 
-lhz_in01,124,28,3	script	Ellette#tre	66,{
+lhz_in01,124,28,3	script	Ellette#tre	1_F_01,{
 	mes "[Ellette]";
 	mes "...";
 	next;
@@ -911,7 +911,7 @@ lhz_in01,124,28,3	script	Ellette#tre	66,{
 	close;
 }
 
-lhz_in01,125,40,3	script	Dowbow Ryuei#ryusei	843,{
+lhz_in01,125,40,3	script	Dowbow Ryuei#ryusei	4_M_THAIONGBAK,{
 	mes "[Dowbow Ryuei]";
 	mes "Só de, bem, curiosidade, qual palavra você prefere? 'Sonho' ou 'Realidade'? Escolha uma~";
 	next;
@@ -928,7 +928,7 @@ lhz_in01,125,40,3	script	Dowbow Ryuei#ryusei	843,{
 	close;
 }
 
-lhz_in01,125,46,3	script	Leekal#lackee	849,{
+lhz_in01,125,46,3	script	Leekal#lackee	4_M_DIEMAN,{
 	mes "[Leekal]";
 	mes "Então... Estou falido.";
 	mes "Por que gastei tanto dinheiro com vinho, mulheres e música?";
@@ -940,25 +940,25 @@ lhz_in01,125,46,3	script	Leekal#lackee	849,{
 	close;
 }
 
-lhz_in01,116,53,7	script	Ninjose#nina	841,{
+lhz_in01,116,53,7	script	Ninjose#nina	4_M_THAIAYO,{
 	mes "[Ninjose]";
 	mes "Depois de muito tempo, finalmente comprei minha casa. Você também deveria guardar dinheiro para o futuro. E leia 'Qualquer Um Pode Ser Rico', é ótimo!";
 	close;
 }
 
-lhz_in01,116,39,7	script	Kejulle Rekenber#reken	822,{
+lhz_in01,116,39,7	script	Kejulle Rekenber#reken	4_M_CHNMAN,{
 	mes "[Kejulle Rekenber]";
 	mes "Hum? É, meu sobrenome é Rekenber, assim como o do nosso gerente, mas é só uma coincidência. Sou um funcionário normal.";
 	mes "Sem tratamento especial...";
 	close;
 }
 
-lhz_in01,110,40,3	script	Jorjerro#fhero	89,{
+lhz_in01,110,40,3	script	Jorjerro#fhero	4_M_ORIENT02,{
 	mes "^3355FFEsse homem está imóvel, e para todos os propósitos, parece adormecido.^000000";
 	close;
 }
 
-lhz_in01,116,45,7	script	Joshua#aya	704,{
+lhz_in01,116,45,7	script	Joshua#aya	4_M_BIBI,{
 	mes "[Joshua]";
 	mes "O que estou fazendo aqui?";
 	mes "Estou esperando meu sonho, que mulheres caiam no meu colo, o que mais parece?";
@@ -970,7 +970,7 @@ lhz_in01,116,45,7	script	Joshua#aya	704,{
 	close;
 }
 
-lighthalzen,326,249,5	script	Grinnel#zen6	870,{
+lighthalzen,326,249,5	script	Grinnel#zen6	4_M_LGTPOOR,{
 	mes "[Grinnel]";
 	mes "Vê aqueles homens de terno preto? Cara, me deram um susto! Vieram até mim para fazer várias perguntas estranhas!";
 	next;
@@ -984,7 +984,7 @@ lighthalzen,326,249,5	script	Grinnel#zen6	870,{
 	close;
 }
 
-lhz_in03,192,19,3	script	Haggar#zen1	855,{
+lhz_in03,192,19,3	script	Haggar#zen1	4_M_EINMAN,{
 	mes "[Haggar]";
 	mes "Wisk!";
 	mes "Eu preciso de uma bebida forte agora!";
@@ -996,7 +996,7 @@ lhz_in03,192,19,3	script	Haggar#zen1	855,{
 	close;
 }
 
-lhz_in03,193,25,2	script	Bartender#12	61,{
+lhz_in03,193,25,2	script	Bartender#12	1_M_PUBMASTER,{
 	mes "[Tony]";
 	mes "Ei  "+(Sex ? "cara":"moça")+", eu sei que esse lugar é ruim, praticamente um gueto, mas nos orgulhamos de ter o melhor rum de toda Rune-Midgard.";
 	next;
@@ -1010,7 +1010,7 @@ lhz_in03,193,25,2	script	Bartender#12	61,{
 	close;
 }
 
-lhz_in03,185,20,6	script	Bad Drunk#amano06	869,2,2,{
+lhz_in03,185,20,6	script	Bad Drunk#amano06	4_M_LGTMAN,2,2,{
 	mes "[Garry]";
 	mes "Ei! Ei você...!";
 	mes "Você quer, quer que eu conte uma piada?";
@@ -1025,7 +1025,7 @@ lhz_in03,185,20,6	script	Bad Drunk#amano06	869,2,2,{
 	close;
 }
 
-lhz_in03,186,29,7	script	Bêbado#12	869,{
+lhz_in03,186,29,7	script	Bêbado#12	4_M_LGTMAN,{
 	mes "[Bonse]";
 	mes "*Soluço* Adooooro esse rum! Fiquei gripado uma vez e um copo me curou! Claro, eu dormi uma semana depois, mas isso não importa! Bah! Ciência...";
 	next;
@@ -1037,7 +1037,7 @@ lhz_in03,186,29,7	script	Bêbado#12	869,{
 	close;
 }
 
-lhz_in02,265,273,6	script	Equipe Lab#amano08	865,{
+lhz_in02,265,273,6	script	Equipe Lab#amano08	4_LGTSCIENCE,{
 	mes "[Assam]";
 	mes "Esse lugar é muito bom e também muito tranquilo.";
 	mes "Eu gosto de vir aqui após o trabalho, tomar uma bebida e simplesmente conversar com o barman.";
@@ -1049,7 +1049,7 @@ lhz_in02,265,273,6	script	Equipe Lab#amano08	865,{
 	close;
 }
 
-lhz_in03,192,93,3	script	Garota da Cidade#amano05	862,{
+lhz_in03,192,93,3	script	Garota da Cidade#amano05	4_F_LGTGIRL,{
 	mes "[Lanko]";
 	mes "Ah, estou sozinha aqui, trabalhando como garçonete para ajudar o meu pai.";
 	mes "Esse trabalho é cansativo, mas é bom ver as pessoas relaxadas e se divertindo.";
@@ -1060,7 +1060,7 @@ lhz_in03,192,93,3	script	Garota da Cidade#amano05	862,{
 	close;
 }
 
-lhz_in03,189,87,5	script	Homem Bêbado#amano01	869,{
+lhz_in03,189,87,5	script	Homem Bêbado#amano01	4_M_LGTMAN,{
 	mes "[Enku]";
 	mes "*Suspiro* Acabei de levar um fora. É, achei que íamos nos casar, mas parece que eu estava errado! Que droga, Sheryline, eu amava você!";
 	next;
@@ -1069,7 +1069,7 @@ lhz_in03,189,87,5	script	Homem Bêbado#amano01	869,{
 	close;
 }
 
-lhz_in03,183,82,7	script	Homem Bêbado#amano02	870,{
+lhz_in03,183,82,7	script	Homem Bêbado#amano02	4_M_LGTPOOR,{
 	mes "[Linus]";
 	mes "Depois de dez anos de casamento, minha esposa pediu o divórcio...";
 	next;
@@ -1078,7 +1078,7 @@ lhz_in03,183,82,7	script	Homem Bêbado#amano02	870,{
 	close;
 }
 
-lhz_in03,180,83,6	script	Cidadão#amano03	86,{
+lhz_in03,180,83,6	script	Cidadão#amano03	4_M_04,{
 	mes "[Mitchell]";
 	mes "Sabe, somos todos diferentes, mas acho que nós humanos somos parecidos o suficiente para podermos nos comunicar de algum jeito.";
 	next;
@@ -1091,7 +1091,7 @@ lhz_in03,180,83,6	script	Cidadão#amano03	86,{
 	close;
 }
 
-lhz_in03,176,85,5	script	Cidadão#amano04	869,{
+lhz_in03,176,85,5	script	Cidadão#amano04	4_M_LGTMAN,{
 	mes "[Dique]";
 	mes "Uma das coisas que espero o dia inteiro é a bebida que tomo logo depois do trabalho. É a coisa mais relaxante no munso.";
 	next;
@@ -1101,7 +1101,7 @@ lhz_in03,176,85,5	script	Cidadão#amano04	869,{
 	close;
 }
 
-lhz_in03,184,38,3	script	Loudmouth	55,{
+lhz_in03,184,38,3	script	Loudmouth	1_M_JOBTESTER,{
 	mes "[Loudmouth]";
 	mes "Sabe quem eu sou?!";
 	mes "Olhe para a minha perna.";
@@ -1114,16 +1114,16 @@ lhz_in03,184,38,3	script	Loudmouth	55,{
 	close;
 }
 
-lhz_in01,173,28,4	script	Guarda#01::LhzRekGuard	868,{
+lhz_in01,173,28,4	script	Guarda#01::LhzRekGuard	4_M_LGTGUARD,{
 	mes "[Guarda]";
 	mes "Essa é uma área restrita. Por favor saia se não tiver autorização especial.";
 	mes "Agradecemos por sua cooperação.";
 	close;
 }
 
-lhz_in01,180,28,4	duplicate(LhzRekGuard)	Guard#03	868
+lhz_in01,180,28,4	duplicate(LhzRekGuard)	Guard#03	4_M_LGTGUARD
 
-lhz_in01,72,209,5	script	Guia#lt0	862,{
+lhz_in01,72,209,5	script	Guia#lt0	4_F_LGTGIRL,{
 	mes "[Lasoei]";
 	mes "Ahh.";
 	mes "Os mesmos clientes sempre vêm todo dia. Dá para ser mais chato que isso?";
@@ -1135,20 +1135,20 @@ lhz_in01,72,209,5	script	Guia#lt0	862,{
 	close;
 }
 
-lhz_in01,72,195,0	script	Guia#lt1	90,{
+lhz_in01,72,195,0	script	Guia#lt1	4_F_01,{
 	mes "[Geonuii]";
 	mes "Saudações. Esse caminho leva à Livraria e ao Laboratório. Esteja ciente que esses locais têm acesso restrito ao público em geral.";
 	close;
 }
 
-lhz_in01,73,188,0	script	Guia#lt2	862,{
+lhz_in01,73,188,0	script	Guia#lt2	4_F_LGTGIRL,{
 	mes "[Bonnie]";
 	mes "Ah não...";
 	mes "Onde eu coloquei?";
 	close;
 }
 
-lhz_in01,35,226,5	script	Guarda Rekenber#li01	867,{
+lhz_in01,35,226,5	script	Guarda Rekenber#li01	4_M_LGTGUARD2,{
 		mes "[Guarda Rekenber]";
 	if (isequipped(2241) && isequipped(2243)) {
 		mes "^3355FF(Uau, é um membro da diretoria!)^000000 Bom-dia!";
@@ -1169,7 +1169,7 @@ lhz_in01,35,226,5	script	Guarda Rekenber#li01	867,{
 	close;
 }
 
-lhz_in01,23,132,3	script	Guarda Rekenber#li02	867,5,5,{
+lhz_in01,23,132,3	script	Guarda Rekenber#li02	4_M_LGTGUARD2,5,5,{
 OnTouch:
 		mes "[Guarda Rekenber]";
 	if (isequipped(2241) && isequipped(2243)) {
@@ -1183,7 +1183,7 @@ OnTouch:
 		end;
 }
 
-lhz_in01,217,121,3	script	Mecânico#li_01	851,{
+lhz_in01,217,121,3	script	Mecânico#li_01	4_M_REPAIR,{
 		mes "[Mecânico]";
 	if (isequipped(2241) && isequipped(2243)) {
 		mes "Não é surpresa que esses aparelhos quembrem o tempo todo!";
@@ -1202,7 +1202,7 @@ lhz_in01,217,121,3	script	Mecânico#li_01	851,{
 		end;
 }
 
-lhz_in01,203,123,3	script	Cientista#li_02	750,{
+lhz_in01,203,123,3	script	Cientista#li_02	4_M_ALCHE_C,{
 		mes "[Cientista]";
 		mes "Certo. Tirar um tubo de teste da máquina, repor";
 	if (isequipped(2241) && isequipped(2243)) {
@@ -1220,7 +1220,7 @@ lhz_in01,203,123,3	script	Cientista#li_02	750,{
 	end;
 }
 
-lhz_in01,199,137,3	script	Cientista#li_03	865,{
+lhz_in01,199,137,3	script	Cientista#li_03	4_LGTSCIENCE,{
 		mes "[Cientista]";
 	if (isequipped(2241) && isequipped(2243)) {
 		mes "Whoa whoa~!";
@@ -1236,7 +1236,7 @@ lhz_in01,199,137,3	script	Cientista#li_03	865,{
 	end;
 }
 
-lhz_in01,46,125,3	script	Guarda Rekenber#li03	867,5,5,{
+lhz_in01,46,125,3	script	Guarda Rekenber#li03	4_M_LGTGUARD2,5,5,{
 OnTouch:
 		mes "[Guarda Rekenber]";
 	if (isequipped(2241) && isequipped(2243)) {
@@ -1259,7 +1259,7 @@ OnTouch:
 	end;
 }
 
-lhz_in01,25,141,4	script	Guarda Regenschirm	868,{
+lhz_in01,25,141,4	script	Guarda Regenschirm	4_M_LGTGUARD,{
 
 	mes "[Guarda Regenschirm]";
 	if (isequipped(2241) && isequipped(2243)){
@@ -1290,27 +1290,27 @@ lhz_in01,25,141,4	script	Guarda Regenschirm	868,{
 
 // Lighthalzen Área de Cadeiras/Bancos ------------------------------------------------------
 
-lhz_in02,34,41,1	script	Arthur#zen16	849,{
+lhz_in02,34,41,1	script	Arthur#zen16	4_M_DIEMAN,{
 	mes "[Arthur]";
 	mes "As cadeiras daqui não são anatômicas. E na verdade são muito desconfortáveis!";
 	mes "Mas está tão fresco aqui dentro do banco e eu só queria fugir desse calor...";
 	close;
 }
 
-lhz_in02,28,39,3	script	Helen#zen6	703,{
+lhz_in02,28,39,3	script	Helen#zen6	4_F_KID2,{
 	mes "[Helen]";
 	mes "Sabe, quando eu crescer, talvez eu trabalhe em um banco. Parece um emprego muito legal, você não acha?";
 	close;
 }
 
-lhz_in02,31,34,3	script	Tadem#zen6	847,{
+lhz_in02,31,34,3	script	Tadem#zen6	4_M_EINOLD,{
 	mes "[Tadem]";
 	mes "Eu gosto muito da arquitetura desse banco.";
 	mes "É bem artística e junta elementos modernos e clássicos. Você não concorda? É fascinante...";
 	close;
 }
 
-lhz_in02,31,33,3	script	Gracie#5	863,{
+lhz_in02,31,33,3	script	Gracie#5	4_F_LGTGRAND,{
 	mes "[Gracie]";
 	mes "Ah, está tão confortável aqui~ Mas por que estamos dentro do banco quando os serviços bancários nem estão funcionando? Estamos esperando, mas esperando confortavelmente.";
 	next;
@@ -1319,19 +1319,19 @@ lhz_in02,31,33,3	script	Gracie#5	863,{
 	close;
 }
 
-lhz_in02,21,38,7	script	Banco Clerk#1	86,{
+lhz_in02,21,38,7	script	Banco Clerk#1	4_M_04,{
 	mes "[Funcionário do Banco]";
 	mes "Devido a alguns erros críticos do sistema, os serviços bancários estão temporariamente suspensos.";
 	mes "Pedimos desculpas pela inconveniência e agradecemos a compreensão.";
 	close;
 }
 
-lhz_in02,21,25,7	duplicate(Banco Clerk#1)	Banco Clerk#2	86
-lhz_in02,34,22,1	duplicate(Banco Clerk#1)	Banco Clerk#3	755
+lhz_in02,21,25,7	duplicate(Banco Clerk#1)	Banco Clerk#2	4_M_04
+lhz_in02,34,22,1	duplicate(Banco Clerk#1)	Banco Clerk#3	4_M_SAGE_C
 
 // Lightalzen Área da Prisão -------------------------------------------------------------
 
-lhz_in02,145,177,0	script	Togii#07	849,{
+lhz_in02,145,177,0	script	Togii#07	4_M_DIEMAN,{
 	mes "[Togii]";
 	mes "Aah sim...";
 	mes "Já me sinto diferente.";
@@ -1340,14 +1340,14 @@ lhz_in02,145,177,0	script	Togii#07	849,{
 	close;
 }
 
-lhz_in02,159,198,7	script	Cara Saudável#hol	85,{
+lhz_in02,159,198,7	script	Cara Saudável#hol	4_M_03,{
 	mes "[Cara Saudável]";
 	mes "Grrrrrr! Me deixe em paz!";
 	mes "Quantas vezes eu preciso falar para você? Eu nunca roubei materiais para aprimoramento de itens! Juro que sou inocente!";
 	close;
 }
 
-lhz_in02,157,201,6	script	Hinkley#06	870,{
+lhz_in02,157,201,6	script	Hinkley#06	4_M_LGTPOOR,{
 	mes "[Hinkley]";
 	mes "Meh heh heh...";
 	mes "^333333*Soluço*^000000 Acredite ou não, eu estou... andando... no Ar...";
@@ -1357,7 +1357,7 @@ lhz_in02,157,201,6	script	Hinkley#06	870,{
 	close;
 }
 
-lhz_in02,153,206,4	script	Millette#05	853,{
+lhz_in02,153,206,4	script	Millette#05	4_M_YURI,{
 	mes "[Millette]";
 	mes "Deixa eu ir!!";
 	mes "Deixa eu IR!!";
@@ -1372,7 +1372,7 @@ lhz_in02,153,206,4	script	Millette#05	853,{
 	close;
 }
 
-lhz_in02,147,222,3	script	Oficial Guo#06	85,{
+lhz_in02,147,222,3	script	Oficial Guo#06	4_M_03,{
 	mes "[Oficial]";
 	mes "Fale...!";
 	mes "FALE...!";
@@ -1430,9 +1430,9 @@ lhz_in02,147,222,3	script	Oficial Guo#06	85,{
 	close;
 }
 
-lhz_in02,142,222,6	duplicate(Oficial Guo#06)	Suspeito#6	870
+lhz_in02,142,222,6	duplicate(Oficial Guo#06)	Suspeito#6	4_M_LGTPOOR
 
-lhz_in01,14,28,3	script	Funcionário do Banquete	109,{
+lhz_in01,14,28,3	script	Funcionário do Banquete	4_M_MANAGER,{
 	mes "[Funcionário]";
 	mes "Esse muro de Banquetes é utilizado para realizar eventos como festas para parceiros, clientes e outros associados, além de conferências de imprensa.";
 	mes "Claro, não há nada aqui agora.";
@@ -1442,14 +1442,14 @@ lhz_in01,14,28,3	script	Funcionário do Banquete	109,{
 	close;
 }
 
-lhz_in01,43,52,3	script	Luccet#li_party	703,{
+lhz_in01,43,52,3	script	Luccet#li_party	4_F_KID2,{
 	mes "[Luccet]";
 	mes "Shhhh! Ei, meu irmão tem 'aquilo', então preciso de um lugar para me esconder!";
 	mes "Espere, você pode ficar parado? Posso me esconder atrás de você? Ah, droga!";
 	close;
 }
 
-lhz_in01,28,33,7	script	Hanccet#li_party	706,{
+lhz_in01,28,33,7	script	Hanccet#li_party	4_M_KID1,{
 	mes "[Hanccet]";
 	mes "Cara... Odeio ter 'isso'!";
 	mes "Sou péssimo nesse jogo!";
@@ -1458,7 +1458,7 @@ lhz_in01,28,33,7	script	Hanccet#li_party	706,{
 	close;
 }
 
-lhz_in01,21,50,7	script	Annette#li_party	91,{
+lhz_in01,21,50,7	script	Annette#li_party	4_F_02,{
 	mes "[Annette]";
 	mes "Ouvi dizer que o Hall de Banquetes Rekenber também é usado para casamentos.";
 	mes "Deve ser tão maravilhoso~";
@@ -1469,7 +1469,7 @@ lhz_in01,21,50,7	script	Annette#li_party	91,{
 	close;
 }
 
-lhz_in01,129,54,1	script	Mereth#erem	869,{
+lhz_in01,129,54,1	script	Mereth#erem	4_M_LGTMAN,{
 	mes "^3355FF*Shhhhhhzzzz*";
 	mes "*Shhhhhhzzzz*^000000";
 	next;
@@ -1481,17 +1481,17 @@ lhz_in01,129,54,1	script	Mereth#erem	869,{
 	close;
 }
 
-lhz_in01,108,53,3	script	#horri	111,{
+lhz_in01,108,53,3	script	#horri	HIDDEN_NPC,{
 	mes "^3355FFIsso é apenas uma pilha de arquivos, um amontoado de livros e um retrato de família.^000000";
 	close;
 }
 
-lhz_in01,108,47,3	script	#never	111,{
+lhz_in01,108,47,3	script	#never	HIDDEN_NPC,{
 	mes "^3355FFEssa mesa está muito limpa e organizada em comparação com as outras mesas que você já viu. Você pára por um momento para olhar maravilhado para a limpeza da mesa.^000000";
 	close;
 }
 
-lhz_in01,166,55,3	script	#crazy4u	111,{
+lhz_in01,166,55,3	script	#crazy4u	HIDDEN_NPC,{
 	mes "^3355FFEssa mesa tem uma prateleira lotada de vários tipos de livros. Por curiosidade, você decide pegar um.^000000";
 	next;
 	mes "^3355FFEntretanto, o livro que você pegou contém grande quantidade de magia negra, o que faz você largá-lo.^000000";
@@ -1499,7 +1499,7 @@ lhz_in01,166,55,3	script	#crazy4u	111,{
 	close;
 }
 
-lhz_in01,148,45,3	script	Noama#amano	97,{
+lhz_in01,148,45,3	script	Noama#amano	4W_M_01,{
 	mes "[Noama]";
 	mes "Hee hee~!";
 	mes "Quer ouvir uma coisa engraçada? Soube que tem um bar em Prontera onde um cara manda solteiros para Jawa--";
@@ -1515,7 +1515,7 @@ lhz_in01,148,45,3	script	Noama#amano	97,{
 	close;
 }
 
-lhz_in01,147,40,1	script	Mazwon#minus1	828,{
+lhz_in01,147,40,1	script	Mazwon#minus1	4_M_ROGUE,{
 	mes "[Mazwon]";
 	mes "Droga. Droga! Droga droga droga droga droga!";
 	mes "Essas máquinas não deviam funcionar assim!";
@@ -1531,7 +1531,7 @@ lhz_in01,147,40,1	script	Mazwon#minus1	828,{
 	close;
 }
 
-lhz_in01,157,47,1	script	Mareth#seram	797,{
+lhz_in01,157,47,1	script	Mareth#seram	4_M_NFLOSTMAN,{
 	mes "[Mareth]";
 	mes "Yoo hoo hoo~";
 	mes "Ah, como eu amo amo amo chocolate!";
@@ -1545,7 +1545,7 @@ lhz_in01,157,47,1	script	Mareth#seram	797,{
 	close;
 }
 
-lhz_in01,164,45,3	script	Eiya#iaiai	91,{
+lhz_in01,164,45,3	script	Eiya#iaiai	4_F_02,{
 	mes "[Eiya]";
 	mes "Jorje parece tão rabugento recentemente. Ele normalmente é mais legal do que isso.";
 	mes "Ah, espero que ele se sinta melhor.";
@@ -1555,7 +1555,7 @@ lhz_in01,164,45,3	script	Eiya#iaiai	91,{
 	close;
 }
 
-lhz_in01,135,57,3	script	Placa Negra#li	111,{
+lhz_in01,135,57,3	script	Placa Negra#li	HIDDEN_NPC,{
 	mes "^3355FFVocê encontrou uma lousa cheia de rabiscos. Você pode ler algumas mensagens queforam rapidamente deixadas ali.^000000";
 	next;
 	mes "'Faça com que tudo esteja pronto as XX 00.''";
@@ -1580,7 +1580,7 @@ lhz_in01,135,57,3	script	Placa Negra#li	111,{
 	close;
 }
 
-lhz_in03,100,18,3	script	Rocky#li_house	81,{
+lhz_in03,100,18,3	script	Rocky#li_house	4_DOG01,{
 	mes "[Rocky]";
 	if (rand(2)) {
 		mes "Woof woof!";
@@ -1590,7 +1590,7 @@ lhz_in03,100,18,3	script	Rocky#li_house	81,{
 	close;
 }
 
-lhz_in03,130,41,5	script	Jay#li_house	706,{
+lhz_in03,130,41,5	script	Jay#li_house	4_M_KID1,{
 	mes "[Jay]";
 	mes "Minha mãe e meu pai sempre chegam tarde.";
 	mes "Então eu janto sozinho.";
@@ -1602,7 +1602,7 @@ lhz_in03,130,41,5	script	Jay#li_house	706,{
 	close;
 }
 
-lhz_in03,129,22,7	script	Empregada Jane#li_house1	850,{
+lhz_in03,129,22,7	script	Empregada Jane#li_house1	4_F_EINWOMAN,{
 	mes "[Empregada Jane]";
 	mes "Essa casa é enorme...";
 	mes "É obviamente grande demais para uma família de tamanho normal. E gasto muito tempo para garantir que esteja limpa!";
@@ -1612,7 +1612,7 @@ lhz_in03,129,22,7	script	Empregada Jane#li_house1	850,{
 	close;
 }
 
-lhz_in03,124,117,1	script	Empregada Brenda#li	74,{
+lhz_in03,124,117,1	script	Empregada Brenda#li	1_F_MERCHANT_02,{
 	mes "[Empregada Brenda]";
 	mes "É melhor eu tomar muito cuidado com esse vaso.";
 	mes "Vale dez milhões de zenys e se eu fosse-- Não. Não!";
@@ -1620,7 +1620,7 @@ lhz_in03,124,117,1	script	Empregada Brenda#li	74,{
 	close;
 }
 
-lighthalzen,159,222,1	script	Equipe Rekenber#li	109,{
+lighthalzen,159,222,1	script	Equipe Rekenber#li	4_M_MANAGER,{
 	mes "[Benatuth]";
 	mes "O mecânico está acabando a manutenção do avião particular do nosso gerente.";
 	mes "Você pode imaginar ter um desses só para você poder voar para onde quiser?";
@@ -1630,7 +1630,7 @@ lighthalzen,159,222,1	script	Equipe Rekenber#li	109,{
 	close;
 }
 
-lighthalzen,162,304,7	script	Guarda Drew#li	868,{
+lighthalzen,162,304,7	script	Guarda Drew#li	4_M_LGTGUARD,{
 	mes "[Guarda Drew]";
 	mes "Cara, olha isso~";
 	mes "Fotos oficiais das meninas da Corporação Kafra. Olha...";
@@ -1653,7 +1653,7 @@ lighthalzen,162,304,7	script	Guarda Drew#li	868,{
 	close;
 }
 
-lighthalzen,163,306,3	script	Guarda Tan#li	867,{
+lighthalzen,163,306,3	script	Guarda Tan#li	4_M_LGTGUARD2,{
 	mes "[Guarda Tan]";
 	mes "Uau. Isso aqui...";
 	mes "Isso aqui é arte. A luz, o ângulo, o... o...";
@@ -1669,7 +1669,7 @@ lighthalzen,163,306,3	script	Guarda Tan#li	867,{
 	close;
 }
 
-lighthalzen,70,227,4	script	Delna#li_reken	102,{
+lighthalzen,70,227,4	script	Delna#li_reken	8_F,{
 	mes "[Delna]";
 	mes "As vezes os prazeres mais simples podem te dar a maior felicidade. Para mim, a melhor coisa é sair e";
 	mes "ficar no sol.";
@@ -1679,7 +1679,7 @@ lighthalzen,70,227,4	script	Delna#li_reken	102,{
 	close;
 }
 
-lhz_in02,289,277,3	script	Lutador Marcial#1	753,{
+lhz_in02,289,277,3	script	Lutador Marcial#1	4_M_MONK,{
 	mes "[Lutador de Artes Marciais]";
 	mes "Droga...";
 	mes "Vim ao lugar errado para procurar um desafio. Ninguém aqui é competitivo o bastante, nem bom o suficiente!";
@@ -1689,7 +1689,7 @@ lhz_in02,289,277,3	script	Lutador Marcial#1	753,{
 	close;
 }
 
-lighthalzen,107,107,3	script	Kosit#zen1	869,{
+lighthalzen,107,107,3	script	Kosit#zen1	4_M_LGTMAN,{
 	mes "[Kosit]";
 	mes "Essa cidade pode ter mais guardas e regras do que as outras, mas ainda não sei se é seguro morar aqui.";
 	next;
@@ -1701,7 +1701,7 @@ lighthalzen,107,107,3	script	Kosit#zen1	869,{
 	close;
 }
 
-lhz_in03,32,99,3	script	Sopheap#zen1	863,{
+lhz_in03,32,99,3	script	Sopheap#zen1	4_F_LGTGRAND,{
 	mes "[Sopheap]";
 	mes "Ah, vocês, jovens.";
 	mes "Sempre viajando, entrando em aventuras e lutando contra monstros. Eu também tive minha cota de diversão quando tinha a sua idade.";
@@ -1712,7 +1712,7 @@ lhz_in03,32,99,3	script	Sopheap#zen1	863,{
 	close;
 }
 
-lhz_in03,25,105,5	script	Gopal#zen4	869,{
+lhz_in03,25,105,5	script	Gopal#zen4	4_M_LGTMAN,{
 	mes "[Gopal]";
 	mes "O vovô pode ficar feliz sentado e aproveitando a vida, mas eu não! Sou jovem demais para me deitar e ver os dias passarem!";
 	next;
@@ -1721,7 +1721,7 @@ lhz_in03,25,105,5	script	Gopal#zen4	869,{
 	close;
 }
 
-lighthalzen,176,65,5	script	Kimmy#zen3	862,{
+lighthalzen,176,65,5	script	Kimmy#zen3	4_F_LGTGIRL,{
 	mes "[Kimmy]";
 	mes "Diferente dos outros lugares, Lighthalzen tem muitas lojas de roupas e acessórios.";
 	mes "Isso é como o céu para alguém como eu~!";
@@ -1731,7 +1731,7 @@ lighthalzen,176,65,5	script	Kimmy#zen3	862,{
 	close;
 }
 
-lighthalzen,364,282,3	script	Bodger#zen5	870,{
+lighthalzen,364,282,3	script	Bodger#zen5	4_M_LGTPOOR,{
 	mes "[Bodger]";
 	mes "Outro dia faminto...";
 	mes "Não tenho dinheiro, e mesmo se tivesse não tem nenhum lugar que venda comida que eu";
@@ -1742,7 +1742,7 @@ lighthalzen,364,282,3	script	Bodger#zen5	870,{
 	close;
 }
 
-lhz_in03,239,38,3	script	Avetis#zen10	849,{
+lhz_in03,239,38,3	script	Avetis#zen10	4_M_DIEMAN,{
 	mes "[Avetis]";
 	mes "A-argh...";
 	mes "^333333*Cof cof*^000000";
@@ -1756,7 +1756,7 @@ lhz_in03,239,38,3	script	Avetis#zen10	849,{
 	close;
 }
 
-lhz_in02,267,25,4	script	Diana#npc	747,{
+lhz_in02,267,25,4	script	Diana#npc	4_F_ROGUE,{
 	mes "[Diana]";
 	mes "Nossa, aquela arma é fantástica! Mas com certeza também é cara. Hum...";
 	next;
@@ -1798,7 +1798,7 @@ lhz_in02,267,25,4	script	Diana#npc	747,{
 	close;
 }
 
-lhz_in02,267,22,1	script	Assistente da Loja#cobo	91,{
+lhz_in02,267,22,1	script	Assistente da Loja#cobo	4_F_02,{
 	mes "[Assistente da Loja]";
 	mes "Seja bem vindo a nossa loja, onde oferecemos produtos únicos que você não encontrará em outro lugar.";
 	next;
@@ -1811,7 +1811,7 @@ lhz_in02,267,22,1	script	Assistente da Loja#cobo	91,{
 	close;
 }
 
-lighthalzen,192,63,4	script	Sergei#zen1	92,{
+lighthalzen,192,63,4	script	Sergei#zen1	4_F_03,{
 	mes "[Sergei]";
 	mes "Sabe, tem uma história interessante sobre aquele martelo que está pendurado ali. Você gostaria de escutá-la?";
 	mes " ";
@@ -1835,7 +1835,7 @@ lighthalzen,192,63,4	script	Sergei#zen1	92,{
 	close;
 }
 
-lighthalzen,258,223,3	script	Srinivas#zen4	866,{
+lighthalzen,258,223,3	script	Srinivas#zen4	4_M_LGTGRAND,{
 	mes "[Srinivas]";
 	mes "Esses prédios decadentes na favela são uma visão que ofende todo o resto da cidade!";
 	mes "Gostaria que fossem demolidos.";
@@ -1843,7 +1843,7 @@ lighthalzen,258,223,3	script	Srinivas#zen4	866,{
 	close;
 }
 
-lighthalzen,77,203,3	script	Victor Perfecto#zen9	869,{
+lighthalzen,77,203,3	script	Victor Perfecto#zen9	4_M_LGTMAN,{
 	mes "[Victor Perfecto]";
 	mes "Já ouvi falar que a Corporação Rekenber realmente criou o ambiente de Lighthalzen por meios artificiais.";
 	next;
@@ -1856,7 +1856,7 @@ lighthalzen,77,203,3	script	Victor Perfecto#zen9	869,{
 	close;
 }
 
-lighthalzen,40,107,4	script	Vergil#zen4	869,{
+lighthalzen,40,107,4	script	Vergil#zen4	4_M_LGTMAN,{
 	mes "[Vergil]";
 	mes "O tempo está tão bom hoje, como sempre.";
 	mes "Queria sair do trabalho e ir fazer exercícios físicos.";
@@ -1899,7 +1899,7 @@ lighthalzen,40,107,4	script	Vergil#zen4	869,{
 	}
 }
 
-lhz_in01,144,53,3	script	Jorje#zero	98,1,1,{
+lhz_in01,144,53,3	script	Jorje#zero	4W_M_02,1,1,{
 OnTouch:
 		mes "[Jorje]";
 	switch(rand(1,3)) {
@@ -1920,7 +1920,7 @@ OnTouch:
 	}
 }
 
-lhz_in01,139,48,7	script	Leimi#mimir	73,{
+lhz_in01,139,48,7	script	Leimi#mimir	1_F_MERCHANT_01,{
 	mes "[Leimi]";
 	mes "...";
 	mes "......";
@@ -1962,7 +1962,7 @@ OnTouch:
 	end;
 }
 
-lhz_in02,36,274,4	script	Escritório de eventos#Saera	831,{
+lhz_in02,36,274,4	script	Escritório de eventos#Saera	4_F_ZONDAGIRL,{
 	mes "[Saera]";
 	mes "Bem vindo ao escritório temporário do Grupo de";
 	mes "Eventos Incríveis. Posso ajudá-lo?";
@@ -2004,7 +2004,7 @@ lhz_in02,36,274,4	script	Escritório de eventos#Saera	831,{
 	}
 }
 
-lhz_in02,40,280,6	script	Event Planner	833,{
+lhz_in02,40,280,6	script	Event Planner	4_M_ZONDAOYAJI,{
 	mes "[Jellarin]";
 	mes "Não gosto disso.";
 	mes "Mas não gosto da outra ideia também. Que evento novo eu devia fazer?";
@@ -2014,7 +2014,7 @@ lhz_in02,40,280,6	script	Event Planner	833,{
 	close;
 }
 
-lhz_in02,110,286,5	script	Baoto	853,{
+lhz_in02,110,286,5	script	Baoto	4_M_YURI,{
 	mes "[Baoto]";
 	mes "Hmmm...";
 	mes "Os funcionários parecem estar se divertindo muito nesses últimos tempos.";
@@ -2025,7 +2025,7 @@ lhz_in02,110,286,5	script	Baoto	853,{
 	close;
 }
 
-lhz_in02,36,284,0	script	Equipe Eventos Legais#Cesuna	874,{
+lhz_in02,36,284,0	script	Equipe Eventos Legais#Cesuna	4_M_ZONDAMAN,{
 	mes "[Cesuna]";
 	mes "Arre! Estou atolado de tanto trabalho! Mas eu não quero fazer nada disso. Isso aí! Eu preciso de uma pausa.";
 	next;
@@ -2036,7 +2036,7 @@ lhz_in02,36,284,0	script	Equipe Eventos Legais#Cesuna	874,{
 }
 
 /*
-lhz_in02,19,274,2	script	Kudiuu#lhz	851,{
+lhz_in02,19,274,2	script	Kudiuu#lhz	4_M_REPAIR,{
 	mes "[Kudiuu]";
 	mes "Caramba...!";
 	mes "Esse lugar nunca será totalmente limpo?!";
@@ -2045,7 +2045,7 @@ lhz_in02,19,274,2	script	Kudiuu#lhz	851,{
 }
 */
 
-lighthalzen,337,296,3	script	Empregado Rekenber#li_2	868,{
+lighthalzen,337,296,3	script	Empregado Rekenber#li_2	4_M_LGTGUARD,{
 	if (hg_tre > 54) {
 		mes "[Empregado Rekenber]";
 		mes "Saudações. Como parte de nosso esforço para aliviar os pobres,";
@@ -2058,7 +2058,7 @@ lighthalzen,337,296,3	script	Empregado Rekenber#li_2	868,{
 	}
 }
 
-lhz_in01,221,131,7	script	Cientista#li_01	865,{
+lhz_in01,221,131,7	script	Cientista#li_01	4_LGTSCIENCE,{
 			mes "[Cientista]";
 	if (isequipped(2241) && isequipped(2243)) {
 		if (hg_tre > 54) {

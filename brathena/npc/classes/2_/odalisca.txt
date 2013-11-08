@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-comodo,180,153,4	script	Sonotora#1	90,{
+comodo,180,153,4	script	Sonotora#1	4_F_01,{
 	mes "[Athena Sonotora]";
 	mes "They say the";
 	mes "famous dance school";
@@ -42,7 +42,7 @@ comodo,180,153,4	script	Sonotora#1	90,{
 	close;
 }
 
-comodo,193,151,4	script	Bor Robin#1	86,{
+comodo,193,151,4	script	Bor Robin#1	4_M_04,{
 	mes "[Bor Robin]";
 	mes "Aah....";
 	mes "A prima donna";
@@ -75,7 +75,7 @@ comodo,193,151,4	script	Bor Robin#1	86,{
 	close;
 }
 
-job_duncer,43,93,4	script	Aile#da	724,{
+job_duncer,43,93,4	script	Aile#da	4_F_07,{
 	if (Upper == 1) {
 		mes "[Aile]";
 		mes "One two three four,";
@@ -409,7 +409,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 	}
 }
 
-job_duncer,95,93,4	script	Bijou#da	101,{
+job_duncer,95,93,4	script	Bijou#da	4W_F_01,{
 	if (SkillPoint) {
 		mes "[Bijou]";
 		mes "You can't change jobs";
@@ -894,7 +894,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 
 // Waiting Room
 //============================================================ 
-job_duncer,32,154,1	script	Waiting Room#dance	66,{
+job_duncer,32,154,1	script	Waiting Room#dance	1_F_01,{
 	end;
 
 OnInit:
@@ -919,7 +919,7 @@ OnEnable:
 	end;
 }
 
-job_duncer,32,154,1	script	Waiting Room#click	66,{
+job_duncer,32,154,1	script	Waiting Room#click	1_F_01,{
 	mes "[Pyorgin]";
 	mes "Please wait in";
 	mes "the waiting room.";
@@ -1323,7 +1323,7 @@ OnDisable:
 
 // Backup Dancers
 //============================================================ 
-job_duncer,63,110,4	script	Backdancer#1	724,{
+job_duncer,63,110,4	script	Backdancer#1	4_F_07,{
 	end;
 
 OnSmile:
@@ -1341,7 +1341,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,66,113,4	script	Backdancer#2	724,{
+job_duncer,66,113,4	script	Backdancer#2	4_F_07,{
 	end;
 
 OnSmile:
@@ -1353,7 +1353,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,72,113,4	script	Backdancer#3	724,{
+job_duncer,72,113,4	script	Backdancer#3	4_F_07,{
 	end;
 
 OnSmile:
@@ -1365,7 +1365,7 @@ OnOmg:
 	end;
 }
 
-job_duncer,75,110,4	script	Backdancer#4	724,{
+job_duncer,75,110,4	script	Backdancer#4	4_F_07,{
 	end;
 
 OnSmile:

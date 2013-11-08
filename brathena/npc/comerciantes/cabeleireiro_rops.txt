@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-itemmall,19,74,5	script	Cabeleireiro#cash	91,{
+itemmall,19,74,5	script	Cabeleireiro#cash	4_F_02,{
 	mes "[Cabeleireiro]";
 	mes "Oi, eu sou Kaniki.";
 	mes "Estou aqui para iniciar uma nova moda, utilizando os meus penteados especiais!";

@@ -26,7 +26,7 @@
 //   | - Anotações                                               |
 //   \___________________________________________________________/
 
-yuno,138,187,4	script	Hipnotizadora	124,{
+yuno,138,187,4	script	Hipnotizadora	4_F_TELEPORTER,{
 	mes "[^D5A500Hipnotizadora^000000]";
 	if (MISC_QUEST & 1024){
 		mes "Desculpe mas você só pode completar este evento uma vez.";

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,146,91,5	script	Pandit Chacha#crianca07	61,{
+prontera,146,91,5	script	Pandit Chacha#crianca07	1_M_PUBMASTER,{
 	if (BaseLevel > 50) {
 		mes "[Pandit Chacha]";
 		mes "Hahaha~";

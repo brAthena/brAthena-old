@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,44,55,5	script	Atirador de Elite#Valquíria	727,{
+valkyrie,44,55,5	script	Atirador de Elite#Valquíria	4_F_JOB_HUNTER,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

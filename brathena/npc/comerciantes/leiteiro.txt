@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,73,140,0	script	Vendedor de Leite	86,{
+prontera,73,140,0	script	Vendedor de Leite	4_M_04,{
 	mes "[Vendedor de Leite]";
 	mes "Ei, ei...";
 	mes "Se você me trouxer 1 Garrafa Vazia e 15 Zenys, poderei trocá-los por 1 Leite.";

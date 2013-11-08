@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,146,92,4	script	Torres Gêmeas#tg1::Torres-Gêmeas	812,{
+prontera,146,92,4	script	Torres Gêmeas#tg1::Torres-Gêmeas	TW_TOWER,{
 	mes "[Torres Gêmeas]";
 	mes "Quem é você? Nós somos as Torres Gêmeas.";
 	mes "É um prazer poder encontrá-lo aqui.";
@@ -94,10 +94,10 @@ prontera,146,92,4	script	Torres Gêmeas#tg1::Torres-Gêmeas	812,{
 	close;
 }
 
-morocc,160,97,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg2	812
-payon,176,226,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg3	812
-izlude,134,92,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg4	812
-alberta,25,238,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg5	812
-geffen,120,60,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg6	812
-aldebaran,143,116,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg7	812
-comodo,194,158,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg8	812
+morocc,160,97,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg2	TW_TOWER
+payon,176,226,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg3	TW_TOWER
+izlude,134,92,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg4	TW_TOWER
+alberta,25,238,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg5	TW_TOWER
+geffen,120,60,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg6	TW_TOWER
+aldebaran,143,116,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg7	TW_TOWER
+comodo,194,158,4	duplicate(Torres-Gêmeas)	Torres Gêmeas#tg8	TW_TOWER

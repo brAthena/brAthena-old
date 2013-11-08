@@ -27,17 +27,17 @@
 
 // Prontera
 //============================================================
-prontera,160,330,0	script	Guarda#pront::prtguarda	105,{
+prontera,160,330,0	script	Guarda#pront::prtguarda	8W_SOLDIER,{
 	mes "[Guarda de Prontera]";
 	mes "Bem vindo a Prontera.";
 	close;
 }
 
-prontera,223,99,1	duplicate(prtguarda)	Guarda#2pront	105
-prontera,229,104,5	duplicate(prtguarda)	Guarda#3pront	105
-prontera,47,339,5	duplicate(prtguarda)	Guarda#4pront	105
+prontera,223,99,1	duplicate(prtguarda)	Guarda#2pront	8W_SOLDIER
+prontera,229,104,5	duplicate(prtguarda)	Guarda#3pront	8W_SOLDIER
+prontera,47,339,5	duplicate(prtguarda)	Guarda#4pront	8W_SOLDIER
 
-prontera,101,288,3	script	Shuger#pront	98,{
+prontera,101,288,3	script	Shuger#pront	4W_M_02,{
 	mes "[Shuger]";
 	mes "Fora da segurança da cidade,tem um monstro rosa  conhecido como ^000077Poring^000000";
 	next;
@@ -52,7 +52,7 @@ prontera,101,288,3	script	Shuger#pront	98,{
 	close;
 }
 
-prontera,54,240,6	script	Tono#pront	97,{
+prontera,54,240,6	script	Tono#pront	4W_M_01,{
 	mes "[Tono]";
 	mes "Você sabia?";
 	next;
@@ -70,7 +70,7 @@ prontera,54,240,6	script	Tono#pront	97,{
 	close;
 }
 
-prontera,106,116,6	script	Merideth#pront	91,{
+prontera,106,116,6	script	Merideth#pront	4_F_02,{
 	mes "[Merideth]";
 	mes "O tempo estava agradável no meu dia de folga. A minha família e eu fomos para um piquenique. Optamos por ir para uma área um pouco isolada onde eu vi algo muito interessante ...";
 	next;
@@ -82,7 +82,7 @@ prontera,106,116,6	script	Merideth#pront	91,{
 	close;
 }
 
-prontera,160,133,2	script	YuPi#pront	102,{
+prontera,160,133,2	script	YuPi#pront	8_F,{
 	mes "[YuPi]";
 	mes "Embora muitos monstros possam ter a mesma aparência, cuidado! Há variações entre os monstros que têm a mesma forma básica.";
 	next;
@@ -94,7 +94,7 @@ prontera,160,133,2	script	YuPi#pront	102,{
 	close;
 }
 
-prontera,149,202,2	script	YuNa#pront	700,{
+prontera,149,202,2	script	YuNa#pront	8_F_GIRL,{
 	mes "[YuNa]";
 	mes "Behold...";
 	mes "Poderoso Odin!";
@@ -118,7 +118,7 @@ prontera,149,202,2	script	YuNa#pront	700,{
 	close;
 }
 
-prontera,216,70,2	script	Strife#pront	48,{
+prontera,216,70,2	script	Strife#pront	1_M_02,{
 			mes "[Strife]";
 	if (Class == Job_Novice) {
 		if (event_prt_nov_dreamtalk == 0) {
@@ -199,7 +199,7 @@ prontera,216,70,2	script	Strife#pront	48,{
 	}
 }
 
-prontera,78,150,3	script	Dairenne#pront	90,{
+prontera,78,150,3	script	Dairenne#pront	4_F_01,{
 	mes "[Moradora Dairenne]";
 	mes "Ahh...";
 	mes "As ruas estão muito lotados nestes dias. * Cough Cough * Olhe para toda a poeira presente, nem tudo sobre a vida na capital é bom. De qualquer forma, posso ajudá-lo?";
@@ -220,14 +220,14 @@ prontera,78,150,3	script	Dairenne#pront	90,{
 	close;
 }
 
-prt_in,175,50,0	script	Garota da Biblioteca#pront	71,{
+prt_in,175,50,0	script	Garota da Biblioteca#pront	1_F_LIBRARYGIRL,{
 	mes "[Garota da Biblioteca Ellen]";
 	mes "Aqui no ramo oriental da Biblioteca de Prontera, nós fornecemos Enciclopedias de  monstros, no qual as criaturas são organizados por suas propriedades. Temos também livros sobre Mercante e habilidades do ferreiro.";
 	mes "Ooh ~! O outro ramo da nossa biblioteca também tem muitas coisas interessantes para ler! Portanto, se você receber uma chance, você tem que  visitar.";
 	close;
 }
 
-prt_in,47,141,0	script	Um Velho Homem#pront	56,{
+prt_in,47,141,0	script	Um Velho Homem#pront	1_M_KNIGHTMASTER,{
 	mes "[Velho Homem]";
 	mes "Os esgotos de Prontera Culvert foram abandonados por muito tempo. Agora aquele lugar é infestado de insetos  ^000077Besouro Ladrão^000000!";
 	next;
@@ -236,7 +236,7 @@ prt_in,47,141,0	script	Um Velho Homem#pront	56,{
 	close;
 }
 
-prt_in,26,31,0	script	Um Velho Homem#2pront	54,{
+prt_in,26,31,0	script	Um Velho Homem#2pront	1_M_JOBGUIDER,{
 	mes "[Velho Homem]";
 	mes "Não sei se você vai acreditar em mim, mas eu vi a coisa mais estranha no ^000077Esgotos de Culvert^000000 ...";
 	next;
@@ -254,7 +254,7 @@ prt_in,26,31,0	script	Um Velho Homem#2pront	54,{
 	close;
 }
 
-prt_in,180,20,2	script	Garçon#pront	61,{
+prt_in,180,20,2	script	Garçon#pront	1_M_PUBMASTER,{
 	mes "[Garçon]";
 	mes "Suspiro ... as pessoas que moram  próximos de Prontera";
 	mes "tornou-se  o meu melhor  negócio atualmente...Mas...";
@@ -303,7 +303,7 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 
 }
 
-prt_in,173,24,2	script	Shevild#pront	85,{
+prt_in,173,24,2	script	Shevild#pront	4_M_03,{
 	mes "[Shevild]";
 	mes "Ei, venham aqui vamos beber! Tenho muitas histórias interessantes para contar!";
 	mes "Sei muitas coisas sobre Prontera. Tenho visto muitas belas vistas e também tenho explorado alguns esconderijo de monstros em torno desta cidade.";
@@ -374,7 +374,7 @@ prt_in,173,24,2	script	Shevild#pront	85,{
 	close;
 }
 
-prt_in,177,20,2	script	TenSue#pront	97,{
+prt_in,177,20,2	script	TenSue#pront	4W_M_01,{
 		mes "[TenSue]";
 	switch(rand(3)) {
 	case 1:
@@ -428,7 +428,7 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 	}
 }
 
-prt_in,177,18,2	script	Marvin#pront	80,{
+prt_in,177,18,2	script	Marvin#pront	1_F_PUBGIRL,{
 	mes "[Marvin]";
 	mes "Seja  um membro do sexo oposto, ou lutador contra monstros, o que  eu tenho que dizer, é tudo sobre ^333399habilidades^000000.";
 	next;
@@ -449,7 +449,7 @@ prt_in,177,18,2	script	Marvin#pront	80,{
 	close;
 }
 
-prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
+prt_in,284,168,3	script	Ginedin Rephere#pront	1_M_JOBTESTER,{
 	mes "[Alfaiate Ginedin Rephere]";
 	mes "11...";
 	mes "12...";
@@ -497,7 +497,7 @@ prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
 
 // Igreja de Prontera
 //============================================================
-prt_church,103,76,0	script	Garnet#pront	67,{
+prt_church,103,76,0	script	Garnet#pront	1_F_02,{
 	mes "[Garnet]";
 	mes "Olá  olá ~";
 	mes "Você está interessado em aprender mais sobre como ajudar e apoiar outras pessoas?";
@@ -595,7 +595,7 @@ prt_church,103,76,0	script	Garnet#pront	67,{
 	end;
 }
 
-prt_church,103,71,0	script	Henson#pront	120,{
+prt_church,103,71,0	script	Henson#pront	2_M_PHARMACIST,{
 	mes "[Henson]";
 	mes "Nós, Sacerdotes e Noviços não somos limitados apenas para aliviar o sofrimento de nossos semelhantes ... ";
 	next;
@@ -692,7 +692,7 @@ prt_church,103,71,0	script	Henson#pront	120,{
 
 // Labirinto Perdido
 //============================================================
-prt_maze02,100,69,0	script	Soldado#pront	105,{
+prt_maze02,100,69,0	script	Soldado#pront	8W_SOLDIER,{
 	mes "[Soldado]";
 	mes "Ei..";
 	mes "O que você está fazendo aqui?! ";
@@ -704,7 +704,7 @@ prt_maze02,100,69,0	script	Soldado#pront	105,{
 	close;
 }
 
-prt_maze02,110,69,0	script	Soldado#2pront	105,{
+prt_maze02,110,69,0	script	Soldado#2pront	8W_SOLDIER,{
 	mes "[Soldado]";
 	mes "* Sigh ...* O último cara que entrou neste lugar não voltou mais. Ele não me deu ouvidos e foi pegar ervas ou algo burro do tipo...";
 	next;

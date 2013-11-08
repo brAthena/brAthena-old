@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,163,64,3	script#re	Guia#01payon	708,{
+payon,163,64,3	script#re	Guia#01payon	4_M_PAY_SOLDIER,{
 	cutin "pay_soldier",2;
 	mes "[Guia de Payon]";
 	mes "Bem-vindo a ^8B4513Payon^000000, o Vilarejo da Montanha.";
@@ -189,11 +189,11 @@ L_Mark:
 	return;
 }
 
-payon,151,182,6	duplicatr(Guia#01payon)	Guia#02payon	708
-payon,221,85,6	duplicatr(Guia#01payon)	Guia#03payon	708
-payon,233,324,4	duplicatr(Guia#01payon)	Guia#04payon	708
+payon,151,182,6	duplicatr(Guia#01payon)	Guia#02payon	4_M_PAY_SOLDIER
+payon,221,85,6	duplicatr(Guia#01payon)	Guia#03payon	4_M_PAY_SOLDIER
+payon,233,324,4	duplicatr(Guia#01payon)	Guia#04payon	4_M_PAY_SOLDIER
 
-pay_arche,86,33,4	script#re	Guia#05payon	708,{
+pay_arche,86,33,4	script#re	Guia#05payon	4_M_PAY_SOLDIER,{
 	cutin "pay_soldier",2;
 	mes "[Guia de Payon]";
 	mes "Bem-Vindo ao  ^8B4513Vilarejo dos Arqueiros^000000, um vilarejo de Payon.";
@@ -275,7 +275,7 @@ pay_arche,86,33,4	script#re	Guia#05payon	708,{
 	}
 }
 
-payon,162,67,4	script#pre	Guia#pay	708,{
+payon,162,67,4	script#pre	Guia#pay	4_M_PAY_SOLDIER,{
 	cutin "pay_soldier",2;
 	mes "[Guia de Payon]";
 	mes "Bem-vindo à Payon, a cidade das montanhas.";
@@ -400,7 +400,7 @@ payon,162,67,4	script#pre	Guia#pay	708,{
 	end;
 }
 
-pay_arche,85,30,2	script#pre	Guia#2pay	708,{
+pay_arche,85,30,2	script#pre	Guia#2pay	4_M_PAY_SOLDIER,{
 	cutin "pay_soldier",2;
 	mes "[Guia de Payon]";
 	mes "Bem-vindo à Payon, a cidade das montanhas.";

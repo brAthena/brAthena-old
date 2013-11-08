@@ -26,7 +26,7 @@
 
 // Quest Teclas do Piano
 //============================================================
-niflheim,224,243,3	script	Alreg#nif	795,{
+niflheim,224,243,3	script	Alreg#nif	4_M_NFDEADMAN,{
 	if (nif_piano) set nif_piano,0;
 	mes "[Alreg]";
 	mes "Eu gosto de carne, haha.";
@@ -65,7 +65,7 @@ niflheim,224,243,3	script	Alreg#nif	795,{
 	close;
 }
 
-nif_in,105,81,3	script	Crayu#nif	794,{
+nif_in,105,81,3	script	Crayu#nif	4_M_NFDEADMAN2,{
 	mes "[Crayu]";
 	mes "Viva...";
 	mes "Escute esse som...";
@@ -140,7 +140,7 @@ nif_in,105,81,3	script	Crayu#nif	794,{
 	close;
 }
 
-nif_in,31,20,3	script	Kuzkahina#nif	794,{
+nif_in,31,20,3	script	Kuzkahina#nif	4_M_NFDEADMAN2,{
 	if (nif_esc == 2 || nif_esc == 3) {
 		mes "[Kuzkahina]";
 		mes "Eu não entendo";
@@ -173,7 +173,7 @@ nif_in,31,20,3	script	Kuzkahina#nif	794,{
 	close;
 }
 
-niflheim,208,103,1	script	#Graveyard1	111,1,1,{
+niflheim,208,103,1	script	#Graveyard1	HIDDEN_NPC,1,1,{
 	end;
 
 OnTouch:
@@ -197,7 +197,7 @@ OnTouch:
 	end;
 }
 
-niflheim,169,71,1	script	#Graveyard2	111,1,1,{
+niflheim,169,71,1	script	#Graveyard2	HIDDEN_NPC,1,1,{
 	end;
 
 OnTouch:
@@ -216,7 +216,7 @@ OnTouch:
 	end;
 }
 
-nif_in,115,181,0	script	#Piano	111,1,1,{
+nif_in,115,181,0	script	#Piano	HIDDEN_NPC,1,1,{
 	end;
 
 OnTouch:
@@ -249,7 +249,7 @@ OnTouch:
 	end;
 }
 
-nif_in,114,181,0	script	#Piano3	111,1,1,{
+nif_in,114,181,0	script	#Piano3	HIDDEN_NPC,1,1,{
 	end;
 
 OnTouch:
@@ -275,7 +275,7 @@ OnTouch:
 	end;
 }
 
-nif_in,188,168,3	script	Witch#nif	792,{
+nif_in,188,168,3	script	Witch#nif	4_F_NFDEADMGCIAN,{
 	mes "[Kirkena]";
 	mes "Huh? ...Você está vivo, não está?";
 	mes "Não sei como você foi";
@@ -297,7 +297,7 @@ nif_in,188,168,3	script	Witch#nif	792,{
 
 // Quest Entrega de Mensagem
 //=============================================================
-prt_in,161,20,3	script	Erious#nif	92,{
+prt_in,161,20,3	script	Erious#nif	4_F_03,{
 	if (MISC_QUEST & 16384) {
 		mes "[Erious]";
 		mes "Desejo-lhe muita segurança";
@@ -503,7 +503,7 @@ prt_in,161,20,3	script	Erious#nif	92,{
 	end;
 }
 
-umbala,215,181,3	script	Billik	733,{
+umbala,215,181,3	script	Billik	4_M_JOB_KNIGHT1,{
 	if (nif_revive > 1 || MISC_QUEST & 16384) {
 		mes "[Billik]";
 		mes "Bem, faz muito tempo que não te vejo.";
@@ -567,7 +567,7 @@ umbala,215,181,3	script	Billik	733,{
 	}
 }
 
-niflheim,153,215,3	script	Feylin	794,{
+niflheim,153,215,3	script	Feylin	4_M_NFDEADMAN2,{
 	if (nif_revive == 2) {
 		mes "[Feylin]";
 		if (Sex == 1) {

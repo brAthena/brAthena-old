@@ -24,12 +24,12 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-einbroch,218,198,5	script	Mark#ein	855,{
+einbroch,218,198,5	script	Mark#ein	4_M_EINMAN,{
 	callfunc "EinTower","Mark";
 	end;
 }
 
-einbroch,175,196,5	script	Morei#ein	854,{
+einbroch,175,196,5	script	Morei#ein	4_M_EINMAN2,{
 	mes "[Morei]";
 	mes "Saudações.";
 	mes "Sou Morei, guia da Torre de Einbroch.";
@@ -62,11 +62,11 @@ einbroch,175,196,5	script	Morei#ein	854,{
 	close;
 }
 
-einbroch,173,229,5	script	Oberu#ein	855,{
+einbroch,173,229,5	script	Oberu#ein	4_M_EINMAN,{
 	callfunc "EinTower","Oberu";
 	end;
 }
-einbroch,176,172,5	script	Khemko#ein	855,{
+einbroch,176,172,5	script	Khemko#ein	4_M_EINMAN,{
 	callfunc "EinTower","Khemko";
 	end;
 }
@@ -129,7 +129,7 @@ function	script	EinTower	{
 	}
 }
 
-einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	852,{
+einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	4_M_EIN_SOLDIER,{
 	mes "[Funcionário]";
 	mes "Bem-vindo à Estação de Trem de Einbroch.";
 	mes "Os trens para Einbech funcionam sem interrupções, portanto não há problema se você perder um.";
@@ -171,9 +171,9 @@ einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	852,{
 	}
 }
 
-einbroch,252,301,3	duplicate(EinbrochTrain)	Funcionário Ferroviário#ein2	852
+einbroch,252,301,3	duplicate(EinbrochTrain)	Funcionário Ferroviário#ein2	4_M_EIN_SOLDIER
 
-einbroch,259,326,3	script	Leslie#ein_1	846,{
+einbroch,259,326,3	script	Leslie#ein_1	4_F_EINOLD,{
 	mes "[Leslie]";
 	mes "^666666*Cof cof!*^000000";
 	mes "PELO AMOR DE DEUS!";
@@ -188,7 +188,7 @@ einbroch,259,326,3	script	Leslie#ein_1	846,{
 	close;
 }
 
-einbroch,236,191,3	script	Tan#ein	855,{
+einbroch,236,191,3	script	Tan#ein	4_M_EINMAN,{
 	mes "[Tan]";
 	mes "As fábricas de Einbroch estão causando um sério problema de poluição do ar.";
 	next;
@@ -201,7 +201,7 @@ einbroch,236,191,3	script	Tan#ein	855,{
 	close;
 }
 
-einbroch,228,121,5	script	Pequeno Toby#ein-1	855,{
+einbroch,228,121,5	script	Pequeno Toby#ein-1	4_M_EINMAN,{
 	mes "[Toby]";
 	mes "Com licença...";
 	mes "Mas estou perdido!";
@@ -217,7 +217,7 @@ einbroch,228,121,5	script	Pequeno Toby#ein-1	855,{
 	close;
 }
 
-einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	855,{
+einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	4_M_EINMAN,{
 	mes "[Engenheiro]";
 	mes "E-ei! Não toque na minha preciosa Burielle!";
 	mes "Acabei de fazer a manutenção e agora ela está dormindo!";
@@ -257,7 +257,7 @@ einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	855,{
 	close;
 }
 
-einbroch,294,312,3	script	Centzu#ein	854,{
+einbroch,294,312,3	script	Centzu#ein	4_M_EINMAN2,{
 	mes "[Centzu]";
 	mes "Eu vivi aqui por muito tempo e vejo que essa cidade enorme está ficando cada dia maior.";
 	next;
@@ -270,7 +270,7 @@ einbroch,294,312,3	script	Centzu#ein	854,{
 	close;
 }
 
-einbroch,232,255,5	script	Khowropher#ein	847,{
+einbroch,232,255,5	script	Khowropher#ein	4_M_EINOLD,{
 	mes "[Khowropher]";
 	mes "^666666*Cof cof*^000000";
 	mes "Jiminy! O ar daqui é tao nojento!";
@@ -285,7 +285,7 @@ einbroch,232,255,5	script	Khowropher#ein	847,{
 	close;
 }
 
-einbroch,143,109,5	script	Khetine#ein	855,{
+einbroch,143,109,5	script	Khetine#ein	4_M_EINMAN,{
 	mes "[Khetine]";
 	mes "Ultimamente, existem boatos sobre esse prédio abandonado na cidade que virou algum tipo de instalação misteriosa.";
 	next;
@@ -295,7 +295,7 @@ einbroch,143,109,5	script	Khetine#ein	855,{
 	close;
 }
 
-einbroch,229,149,3	script	Sleik#ein	854,{
+einbroch,229,149,3	script	Sleik#ein	4_M_EINMAN2,{
 	mes "[Sleik]";
 	mes "Surpreendentemente, nós temos uma estação de trem que dizem ser uma vitória da ciência. Mas nós não deveríamos dizer isso do Avião?";
 	next;
@@ -305,7 +305,7 @@ einbroch,229,149,3	script	Sleik#ein	854,{
 	close;
 }
 
-airport,174,41,6	script	Jovem#air	99,{
+airport,174,41,6	script	Jovem#air	4W_M_03,{
 	mes "[Runnan]";
 	mes "...E é por isso que eu viajo pelo mundo.";
 	mes "Meus chefes têm olho apurado para itens exóticos, então eu obtenho-os e faço entregas.";
@@ -315,7 +315,7 @@ airport,174,41,6	script	Jovem#air	99,{
 	close;
 }
 
-airport,176,41,4	script	Velho#air	88,{
+airport,176,41,4	script	Velho#air	4_M_ORIENT01,{
 	mes "[Zhen Lan]";
 	mes "Ouvi dizer que os monstros daqui carregam algum minério que brilha com uma luz linda. Pura.";
 	next;
@@ -332,7 +332,7 @@ airport,176,41,4	script	Velho#air	88,{
 	close;
 }
 
-ein_in01,113,211,3	script	Teinz#ein	851,{
+ein_in01,113,211,3	script	Teinz#ein	4_M_REPAIR,{
 	mes "[Teinz]";
 	mes "Se você me der algum dinheiro, serei seu escravo! Não há nada que eu não faça! Vale tudo.";
 	mes "Eu faço o que você quiser se ganhar dinheiro suficiente.";
@@ -342,7 +342,7 @@ ein_in01,113,211,3	script	Teinz#ein	851,{
 	close;
 }
 
-ein_in01,48,220,5	script	Lowe#ein	851,{
+ein_in01,48,220,5	script	Lowe#ein	4_M_REPAIR,{
 	mes "[Lowe]";
 	mes "...";
 	mes "......";
@@ -363,7 +363,7 @@ ein_in01,48,220,5	script	Lowe#ein	851,{
 	close;
 }
 
-ein_in01,87,237,5	script	Dinje#ein	850,{
+ein_in01,87,237,5	script	Dinje#ein	4_F_EINWOMAN,{
 	mes "[Dinje]";
 	mes "Você sabe por que uma mulher como eu tem que trabalhar nessa fábrica? Vou te dizer a razão...";
 	next;
@@ -380,7 +380,7 @@ ein_in01,87,237,5	script	Dinje#ein	850,{
 	close;
 }
 
-ein_in01,84,218,3	script	Tsuen#ein	851,{
+ein_in01,84,218,3	script	Tsuen#ein	4_M_REPAIR,{
 	mes "[Tsuen]";
 	mes "Houve uma época quando sonhei em ser um aventureiro, como você. Mas isso já faz muito tempo...";
 	next;
@@ -397,7 +397,7 @@ ein_in01,84,218,3	script	Tsuen#ein	851,{
 	close;
 }
 
-ein_in01,103,239,1	script	Gesin#ein	849,{
+ein_in01,103,239,1	script	Gesin#ein	4_M_DIEMAN,{
 	mes "[Gesin]";
 	mes "Arrrgh!";
 	mes "Isso está me matando!";
@@ -418,7 +418,7 @@ ein_in01,103,239,1	script	Gesin#ein	849,{
 	close;
 }
 
-ein_in01,33,275,1	script	Pevtatin#ein	848,{
+ein_in01,33,275,1	script	Pevtatin#ein	4_M_EINMINER,{
 	mes "[Pevtatin]";
 	mes "Meu Deus!";
 	mes "Estou tão estressado!";
@@ -436,7 +436,7 @@ ein_in01,33,275,1	script	Pevtatin#ein	848,{
 	close;
 }
 
-ein_in01,36,204,3	script	Rombell#ein	851,{
+ein_in01,36,204,3	script	Rombell#ein	4_M_REPAIR,{
 	mes "[Rombell]";
 	mes "É ótimo que a fábrica esteja indo bem e tendo bons lucros, mas eu ainda tenho uma grande preocupação.";
 	next;
@@ -449,7 +449,7 @@ ein_in01,36,204,3	script	Rombell#ein	851,{
 	close;
 }
 
-ein_in01,64,271,3	script	Vonstein#ein	855,{
+ein_in01,64,271,3	script	Vonstein#ein	4_M_EINMAN,{
 	mes "[Vonstein]";
 	mes "Olhar todo esse metal líquido borbulhante me traz uma sensação boa.";
 	mes "Parece que isso poderia derreter qualquer coisa!";
@@ -461,7 +461,7 @@ ein_in01,64,271,3	script	Vonstein#ein	855,{
 	close;
 }
 
-ein_in01,49,202,3	script	Dorf#ein	851,{
+ein_in01,49,202,3	script	Dorf#ein	4_M_REPAIR,{
 	mes "[Dorf]";
 	mes "Máquinas são tããão convenientes. Elas realizam tarefas que eu teria dificuldades para fazer sozinho.";
 	next;
@@ -474,7 +474,7 @@ ein_in01,49,202,3	script	Dorf#ein	851,{
 	close;
 }
 
-ein_in01,68,209,5	script	Khashurantze#ein	852,{
+ein_in01,68,209,5	script	Khashurantze#ein	4_M_EIN_SOLDIER,{
 	mes "[Khashurantze]";
 	mes "Sinto muito, mas você precisa de autorização para entrar aqui. Devo pedir que você se retire agora.";
 	close2;
@@ -482,7 +482,7 @@ ein_in01,68,209,5	script	Khashurantze#ein	852,{
 	end;
 }
 
-ein_in01,85,261,3	script	Zherin#ein	851,{
+ein_in01,85,261,3	script	Zherin#ein	4_M_REPAIR,{
 	mes "[Zherin]";
 	mes "Sou o encarregado dessa fornalha que contém magma borbulhante.";
 	next;
@@ -496,7 +496,7 @@ ein_in01,85,261,3	script	Zherin#ein	851,{
 	close;
 }
 
-ein_in01,43,252,3	script	Canphotii#ein	852,{
+ein_in01,43,252,3	script	Canphotii#ein	4_M_EIN_SOLDIER,{
 	mes "[Canphotii]";
 	mes "Corram, corram!";
 	mes "Apertem o passo!";
@@ -513,7 +513,7 @@ ein_in01,43,252,3	script	Canphotii#ein	852,{
 	close;
 }
 
-ein_in01,206,224,3	script	Funcionário do Hotel#ein	855,{
+ein_in01,206,224,3	script	Funcionário do Hotel#ein	4_M_EINMAN,{
 	mes "[Funcionário do Hotel]";
 	mes "Bom-dia, bem vindo ao Hotel de Einbroch. Nos orgulhamos de acomodar nossos hóspedes seguindo os melhores padrões de qualidade em limpeza, serviço e conveniência~";
 	next;
@@ -562,56 +562,56 @@ ein_in01,206,224,3	script	Funcionário do Hotel#ein	855,{
 	close;
 }
 
-einbroch,244,255,5	script	Quadro de Avisos#ein1	858,{
+einbroch,244,255,5	script	Quadro de Avisos#ein1	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Estação de Trem";
 	mes " ";
 	close;
 }
 
-einbroch,253,203,5	script	Quadro de Avisos#ein2	858,{
+einbroch,253,203,5	script	Quadro de Avisos#ein2	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes " Hotel ";
 	mes " ";
 	close;
 }
 
-einbroch,68,206,5	script	Quadro de Avisos#ein3	858,{
+einbroch,68,206,5	script	Quadro de Avisos#ein3	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Aeroporto";
 	mes " ";
 	close;
 }
 
-einbroch,90,84,5	script	Quadro de Avisos#ein4	858,{
+einbroch,90,84,5	script	Quadro de Avisos#ein4	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Laboratório";
 	mes " ";
 	close;
 }
 
-einbroch,101,106,5	script	Quadro de Avisos#ein5	858,{
+einbroch,101,106,5	script	Quadro de Avisos#ein5	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Loja de Reparos do Avião";
 	mes " ";
 	close;
 }
 
-einbroch,220,208,5	script	Quadro de Avisos#ein6	858,{
+einbroch,220,208,5	script	Quadro de Avisos#ein6	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Loja de Armas";
 	mes " ";
 	close;
 }
 
-einbroch,132,76,5	script	Quadro de Avisos#ein7	858,{
+einbroch,132,76,5	script	Quadro de Avisos#ein7	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Fábrica";
 	mes " ";
 	close;
 }
 
-einbroch,152,46,5	script	Quadro de Avisos#ein11	858,{
+einbroch,152,46,5	script	Quadro de Avisos#ein11	4_BULLETIN_BOARD2,{
 	mes "Oeste - Laboratório, Loja de Reparos do Avião.";
 	mes "Sul - Portão Frontal de Einbroch.";
 	mes "Norte - Aeroporto";
@@ -619,14 +619,14 @@ einbroch,152,46,5	script	Quadro de Avisos#ein11	858,{
 	close;
 }
 
-einbroch,235,141,5	script	Quadro de Avisos#ein22	858,{
+einbroch,235,141,5	script	Quadro de Avisos#ein22	4_BULLETIN_BOARD2,{
 	mes "Sudoeste - Loja de Reparos do Avião, Laboratório";
 	mes "Noroeste - Aeroporto";
 	mes "Norte - Loja de Armas, Hotel, Estação de Trem";
 	close;
 }
 
-einbroch,162,256,5	script	Quadro de Avisos#ein33	858,{
+einbroch,162,256,5	script	Quadro de Avisos#ein33	4_BULLETIN_BOARD2,{
 	mes "Leste - Estação de Trem";
 	mes "Sudeste - Hotel";
 	mes "Sul - Loja de Armas, Fábrica";
@@ -634,7 +634,7 @@ einbroch,162,256,5	script	Quadro de Avisos#ein33	858,{
 	close;
 }
 
-einbroch,183,174,5	script	Quadro de Avisos#ein44	858,{
+einbroch,183,174,5	script	Quadro de Avisos#ein44	4_BULLETIN_BOARD2,{
 	mes "Leste - Loja de Armas, Hotel";
 	mes "Sul - Fábrica";
 	mes "Sudoeste - Loja de Reparos do Avião, Laboratório";
@@ -642,14 +642,14 @@ einbroch,183,174,5	script	Quadro de Avisos#ein44	858,{
 	close;
 }
 
-einbroch,104,202,5	script	Quadro de Avisos#ein55	858,{
+einbroch,104,202,5	script	Quadro de Avisos#ein55	4_BULLETIN_BOARD2,{
 	mes "Nordeste - Estação de Trem";
 	mes "Leste - Loja de Armas, Hotel";
 	mes "Sul - Loja de Reparos do Avião, Laboratório.";
 	close;
 }
 
-ein_in01,31,217,3	script	Cendadt#ein	851,{
+ein_in01,31,217,3	script	Cendadt#ein	4_M_REPAIR,{
 	mes "[Cendadt]";
 	mes "Essa fábrica está cheia de coisas que precisam de conserto urgente! Me surpreende que a fábrica ainda consiga funcionar!";
 	next;

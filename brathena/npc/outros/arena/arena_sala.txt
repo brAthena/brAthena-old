@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-arena_room,94,93,5	script	Vendigos	97,{
+arena_room,94,93,5	script	Vendigos	4W_M_01,{
 	mes "[Vendigos]";
 	mes "Bem-vindo ao mundo da Arena, a batalha contra um limite de tempo.";
 	mes "Meu nome é Vendigos, estou aqui para ajudá-lo.";
@@ -109,7 +109,7 @@ OnLineRec_pt:
 
 }
 
-arena_room,105,82,5	script	Equipe de Registro	57,{
+arena_room,105,82,5	script	Equipe de Registro	1_M_LIBRARYMASTER,{
 	mes "[Owen Kheuv]";
 	mes "Olá, meu nome é Owen Kheuv";
 	mes "responsável por cada registro de jogadores na arena.";
@@ -142,7 +142,7 @@ arena_room,105,82,5	script	Equipe de Registro	57,{
 	}
 }
 
-arena_room,68,135,3	script	Ajudante Pat	726,{
+arena_room,68,135,3	script	Ajudante Pat	4_F_JOB_BLACKSMITH,{
 	mes "[Pat]";
 	mes "Bem vindo, Bem vindo.";
 	mes "Eu sou um ajudante do Estágio da Arena Lv 50.";
@@ -181,7 +181,7 @@ arena_room,68,135,3	script	Ajudante Pat	726,{
 	close;
 }
 
-arena_room,41,93,5	script	Ajudante Ben	750,{
+arena_room,41,93,5	script	Ajudante Ben	4_M_ALCHE_C,{
 	mes "[Ben]";
 	mes "Bem vindo, Bem vindo.";
 	mes "Eu sou um ajudante do Estágio da Arena Nível 60.";
@@ -220,7 +220,7 @@ arena_room,41,93,5	script	Ajudante Ben	750,{
 	close;
 }
 
-arena_room,53,49,5	script	Ajudante Vicious	730,{
+arena_room,53,49,5	script	Ajudante Vicious	4_M_JOB_ASSASSIN,{
 	mes "[Vicious]";
 	mes "Bem vindo, Bem vindo.";
 	mes "Eu sou um ajudante do Estágio da Arena Nível 70.";
@@ -260,7 +260,7 @@ arena_room,53,49,5	script	Ajudante Vicious	730,{
 	close;
 }
 
-arena_room,147,49,3	script	Ajudante Epin	727,{
+arena_room,147,49,3	script	Ajudante Epin	4_F_JOB_HUNTER,{
 	mes "[Epin]";
 	mes "Bom dia,";
 	mes "Eu sou um ajudante da arena Lv 80 e meu nome é EPIN.";
@@ -304,7 +304,7 @@ arena_room,147,49,3	script	Ajudante Epin	727,{
 	close;
 }
 
-arena_room,158,93,5	script	Ajudante Lunic	828,{
+arena_room,158,93,5	script	Ajudante Lunic	4_M_ROGUE,{
 	mes "[Lunic]";
 	mes "Bem-vindo ao estágio de arena do modo de grupo";
 	mes "Espero que você ouça atentamente à minha introdução";
@@ -373,7 +373,7 @@ arena_room,158,93,5	script	Ajudante Lunic	828,{
 	close;
 }
 
-arena_room,158,82,1	script	Ajudante Lonik	828,{
+arena_room,158,82,1	script	Ajudante Lonik	4_M_ROGUE,{
 	emotion e_no1,0;
 	mes "[Lonik]";
 	mes "Tah dah! Aqui estou eu!";
@@ -399,7 +399,7 @@ arena_room,158,82,1	script	Ajudante Lonik	828,{
 	close;
 }
 
-sec_in02,72,180,3	script	Administrador da Arena	802,{
+sec_in02,72,180,3	script	Administrador da Arena	4_NFWISP,{
 	set .@i, callfunc("F_GM_NPC",1357,0);
 	if (.@i == -1) {
 		mes "[Administrador da Arena]";
@@ -517,7 +517,7 @@ sec_in02,72,180,3	script	Administrador da Arena	802,{
 	}
 }
 
-sec_in02,79,171,3	script	Adm. de Recompensas	802,{
+sec_in02,79,171,3	script	Adm. de Recompensas	4_NFWISP,{
 	set .@i, callfunc("F_GM_NPC",1357,0);
 	if (.@i == -1) {
 		mes "[Administrador de Recompensas]";
@@ -550,7 +550,7 @@ sec_in02,79,171,3	script	Adm. de Recompensas	802,{
 	}
 }
 
-arena_room,105,93,5	script	Teleportador#arena	55,{
+arena_room,105,93,5	script	Teleportador#arena	1_M_JOBTESTER,{
 	mes "[Teleportador]";
 	mes "Posso movê-lo para a arena!";
 	mes "Você gostaria de ir para lá?";
@@ -569,7 +569,7 @@ arena_room,105,93,5	script	Teleportador#arena	55,{
 	}
 }
 
-prt_are_in,98,14,3	script	Givu#arena	728,{
+prt_are_in,98,14,3	script	Givu#arena	4_F_JOB_KNIGHT,{
 	if (checkweight(526,5) == 0) {
 		mes "- Aguarde um momento! -";
 		mes "- Atualmente você está carregando -";
@@ -753,10 +753,10 @@ OnKis:
 	emotion e_kis,0;
 	end;
 }
-prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_6969	714
-prt_are_in,94,26,5	duplicate(#arena_1039)	#arena_ss_2	714
-prt_are_in,100,28,3	duplicate(#arena_1039)	#arena_ss_3	714
-prt_are_in,102,26,3	duplicate(#arena_1039)	#arena_ss_4	714
+prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_6969	4_F_06
+prt_are_in,94,26,5	duplicate(#arena_1039)	#arena_ss_2	4_F_06
+prt_are_in,100,28,3	duplicate(#arena_1039)	#arena_ss_3	4_F_06
+prt_are_in,102,26,3	duplicate(#arena_1039)	#arena_ss_4	4_F_06
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1272	1272
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1046	1046
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1115	1115
@@ -764,9 +764,9 @@ prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1389	1389
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1492	1492
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1251	1251
 prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_1159	1159
-prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_7777	811
+prt_are_in,1,1,5	duplicate(#arena_1039)	#arena_7777	4_F_VALKYRIE
 
-prt_are_in,130,30,3	script	npctime#arena	139,{
+prt_are_in,130,30,3	script	npctime#arena	HIDDEN_WARP_NPC,{
 OnStop:
 	stopnpctimer;
 	end;
@@ -944,7 +944,7 @@ OnTimer62000:
 	end;
 }
 
-sec_in02,72,171,3	script	Administrador de Fotos	802,{
+sec_in02,72,171,3	script	Administrador de Fotos	4_NFWISP,{
 	set .@i, callfunc("F_GM_NPC",1357,0);
 	if (.@i == -1) {
 		mes "[Administrador de Fotos]";
@@ -972,7 +972,7 @@ sec_in02,72,171,3	script	Administrador de Fotos	802,{
 	}
 }
 
-sec_in02,76,176,5	script	Anunciador#arena	802,{
+sec_in02,76,176,5	script	Anunciador#arena	4_NFWISP,{
 	callfunc "F_GM_NPC";
 	mes "[Anunciador]";
 	mes "Atualmente, existem "+getmapusers("force_1-1")+" pessoas level 50 no mapa.";

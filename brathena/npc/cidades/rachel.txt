@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ice_dun04,33,166,3	script	Garoto Congelado	925,{
+ice_dun04,33,166,3	script	Garoto Congelado	4_M_FROZEN,{
 	cutin "ra_sboy.bmp",2;
 	mes "["+strcharinfo(0)+"]";
 	mes "Esse garoto deve ser o que Ktullanux tenta proteger.";
@@ -45,7 +45,7 @@ ice_dun04,33,166,3	script	Garoto Congelado	925,{
 	end;
 }
 
-ra_san04,137,48,3	script	Loomin-1ª Classe Secreta	111,{
+ra_san04,137,48,3	script	Loomin-1ª Classe Secreta	HIDDEN_NPC,{
 	mes "^3131FFLoomin, o garoto preso em uma Caverna de Gelo.^000000";
 	mes "Classe: 1ª";
 	mes " ";
@@ -71,7 +71,7 @@ ra_san04,137,48,3	script	Loomin-1ª Classe Secreta	111,{
 	close;
 }
 
-rachel,124,132,1	script	Morador#1 	921,{
+rachel,124,132,1	script	Morador#1 	4_M_CHILD1,{
 	mes "[Morador]";
 	mes "Freya te abençoe e te dê muita saúde, riqueza, alegria e felicidade!";
 	next;
@@ -81,7 +81,7 @@ rachel,124,132,1	script	Morador#1 	921,{
 	close;
 }
 
-rachel,74,150,7	script	Garota#1	914,{
+rachel,74,150,7	script	Garota#1	4_F_CHILD,{
 	mes "[Garota]";
 	mes "Eu nunca vi nossa papisa antes, eu ouvi que ela tem cabelo louro prateado e pele muito branca.";
 	mes "Papai diz que apenas uma garota é como aquela em toda geração.";
@@ -98,16 +98,16 @@ rachel,74,150,7	script	Garota#1	914,{
 	close;
 }
 
-rachel,144,243,5	script	Guarda de Cheshrumnir	934,{
+rachel,144,243,5	script	Guarda de Cheshrumnir	4_M_RASWORD,{
 	mes "[Guarda de Cheshrumnir]";
 	mes "Você está no Cheshrumnir, os terrenos santificador ocupados por nossa papisa, a incarnação mortal de Freya.";
 	mes "Em respeito pela excelência dela, eu espero que você entre com um coração devoto.";
 	close;
 }
 
-rachel,155,243,3	duplicate(Guarda de Cheshrumnir)	Guarda de Cheshrumnir#2	934
+rachel,155,243,3	duplicate(Guarda de Cheshrumnir)	Guarda de Cheshrumnir#2	4_M_RASWORD
 
-rachel,209,198,3	script	Kinos#aru	921,{
+rachel,209,198,3	script	Kinos#aru	4_M_CHILD1,{
 	mes "[Criança]";
 	mes "Se você abrir esta porta, você pode entrar nesta casa e morar em um dos quartos!";
 	mes "Então, você pode colocar seus sofás e uma cama e todas as suas coisas!";
@@ -119,7 +119,7 @@ rachel,209,198,3	script	Kinos#aru	921,{
 	close;
 }
 
-rachel,260,175,3	script	Anku#aru	914,{
+rachel,260,175,3	script	Anku#aru	4_F_CHILD,{
 	mes "[Anku]";
 	mes "Faz tanto tempo já!";
 	mes "Eu não consigo encontrar";
@@ -132,7 +132,7 @@ rachel,260,175,3	script	Anku#aru	914,{
 	close;
 }
 
-rachel,272,141,3	script	Himuhimu#aru	921,{
+rachel,272,141,3	script	Himuhimu#aru	4_M_CHILD1,{
 	mes "[Himuhimu]";
 	mes "Zzzz...Zzz...";
 	mes "Anku, você nunca vai me encontrr... nunca encontrar eu aqui... Zzzzzz...";
@@ -140,30 +140,30 @@ rachel,272,141,3	script	Himuhimu#aru	921,{
 	close;
 }
 
-rachel,268,120,1	script	Guarda de Rachel#1aru	934,{
+rachel,268,120,1	script	Guarda de Rachel#1aru	4_M_RASWORD,{
 	mes "[Guarda de Rachel]";
 	mes "Bem-Vindo à Rachel a capital de Arunafeltz.";
 	mes "Por favor peça ao nosso guia no centro da cidade informações e serviços para visitantes.";
 	close;
 }
 
-rachel,125,33,5	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#2aru	934
-rachel,31,130,3	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#3aru	934
+rachel,125,33,5	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#2aru	4_M_RASWORD
+rachel,31,130,3	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#3aru	4_M_RASWORD
 
-rachel,76,77,3	script	Sacerdote de Rachel	927,{
+rachel,76,77,3	script	Sacerdote de Rachel	4_M_MASK,{
 	mes "[Sacerdote de Rachel]";
 	mes "Bwahahaha! De alguma forma, a bebida tem um gosto muito melhor na hora do serviço!";
 	close;
 }
 
-ra_fild12,45,230,3	script	Guia do Dirigível#Fild	934,{
+ra_fild12,45,230,3	script	Guia do Dirigível#Fild	4_M_RASWORD,{
 	mes "[Guia do Dirigível]";
 	mes "O serviço de Dirigível internacional da República de Schwartzwald para Arunafeltz só pode ser acessado em Rachel. Por favor siga a indicação do seu Mini-Mapa para encontrar o Aeroporto.";
 	viewpoint 1,293,208,1,0xFF0000;
 	close;
 }
 
-rachel,201,174,3	script	Discípulo de Freya	926,{
+rachel,201,174,3	script	Discípulo de Freya	4_M_MASK1,{
 	mes "[Discípulo de Freya]";
 	mes "Todos nós de Arunafeltz acreditamos na Deusa Freya, mas há alguns de nós que estão mais seriamente envolvidos em adoração e veneração.";
 	next;
@@ -182,7 +182,7 @@ rachel,201,174,3	script	Discípulo de Freya	926,{
 	close;
 }
 
-rachel,206,30,3	script	Sacerdote de Freya#play	920,{
+rachel,206,30,3	script	Sacerdote de Freya#play	4_F_TRAINEE,{
 	mes "[Sacerdote de Freya]";
 	mes "Isto...";
 	mes "Me aborrece...";
@@ -228,7 +228,7 @@ rachel,206,30,3	script	Sacerdote de Freya#play	920,{
 	}
 }
 
-rachel,197,137,3	script	Bardo#aru	51,{
+rachel,197,137,3	script	Bardo#aru	1_M_BARD,{
 	mes "[Bardo]";
 	mes "Eu vaguei por esta terra, cantando minha canção~ procurando por alguém para acalmar meu coração~";
 	next;
@@ -248,14 +248,14 @@ rachel,197,137,3	script	Bardo#aru	51,{
 	close;
 }
 
-ra_temple,148,91,3	script	Discípulo Akarna	916,{
+ra_temple,148,91,3	script	Discípulo Akarna	4_F_MASK1,{
 	mes "[Discípulo Akarna]";
 	mes "Cheshrumnir...";
 	mes "Dizem que um dia, nossa deusa Freya vai descer a este lugar no auge de sua glória. Eu espero que eu viva pra ver isto.";
 	close;
 }
 
-ra_temple,115,148,7	script	Discípulo Yakum	916,{
+ra_temple,115,148,7	script	Discípulo Yakum	4_F_MASK1,{
 	mes "[Discípulo Yakum]";
 	mes "......";
 	mes ".........";
@@ -266,7 +266,7 @@ ra_temple,115,148,7	script	Discípulo Yakum	916,{
 	close;
 }
 
-ra_temin,287,88,7	script	Discípulo Lekua	926,{
+ra_temin,287,88,7	script	Discípulo Lekua	4_M_MASK1,{
 	mes "[Discípulo Lekua]";
 	mes "Veja estas flores.";
 	mes "Elas não são tão lindas?";
@@ -277,19 +277,19 @@ ra_temin,287,88,7	script	Discípulo Lekua	926,{
 	close;
 }
 
-ra_temin,228,303,5	script	Discípulo de Freya#in1	926,{
+ra_temin,228,303,5	script	Discípulo de Freya#in1	4_M_MASK1,{
 	mes "[Discípulo de Freya]";
 	mes "De novo, eu não tirei nenhuma soneca ontem... Eu estou orando tão intensamente para a segunda visita de Freya. Estou exausto, mas me sinto muito bem sobre fazer este pequeno sacrifício.";
 	close;
 }
 
-ra_temin,230,303,3	script	Discípulo de Freya#in2	926,{
+ra_temin,230,303,3	script	Discípulo de Freya#in2	4_M_MASK1,{
 	mes "[Discípulo de Freya]";
 	mes "Você fez bem, meu irmão. Estou certo que Freya ficaria orgulhosa de todos os seus esforços.";
 	close;
 }
 
-ra_temin,138,64,5	script	Criança Seguidora#in1	921,{
+ra_temin,138,64,5	script	Criança Seguidora#in1	4_M_CHILD1,{
 	mes "[Criança Seguidora]";
 	mes "Não! Meu Mingming está morto!";
 	next;
@@ -306,7 +306,7 @@ ra_temin,138,64,5	script	Criança Seguidora#in1	921,{
 	close;
 }
 
-ra_fild12,283,208,3	script	Aprendiz de Monge	914,{
+ra_fild12,283,208,3	script	Aprendiz de Monge	4_F_CHILD,{
 	if ($rachel_donate < 10000) {
 		mes "[Papaii]";
 		mes "Bem-Vindo a Arunafeltz, aventureiro! Aproveite sua estadia~";
@@ -357,7 +357,7 @@ ra_fild12,283,208,3	script	Aprendiz de Monge	914,{
 	close;
 }
 
-rachel,127,117,4	script	Criança Seguidora#2	914,{
+rachel,127,117,4	script	Criança Seguidora#2	4_F_CHILD,{
 	mes "[Deno]";
 	mes "Apesar de que nós rezamos para a deusa Freya e peçamos para ela todo tipo de coisas, não podemos esperar que ela faça tudo para nós.";
 	next;
@@ -370,7 +370,7 @@ rachel,127,117,4	script	Criança Seguidora#2	914,{
 	close;
 }
 
-ra_temple,167,155,4	script	Criança Seguidora#3	914,{
+ra_temple,167,155,4	script	Criança Seguidora#3	4_F_CHILD,{
 	mes "[Lewei]";
 	mes "Shhh!";
 	mes "Fique quieto.";
@@ -396,7 +396,7 @@ ra_temple,167,155,4	script	Criança Seguidora#3	914,{
 	close;
 }
 
-ra_temple,179,161,7	script	Criança Seguidora#4	921,{
+ra_temple,179,161,7	script	Criança Seguidora#4	4_M_CHILD1,{
 	mes "[Zhikka]";
 	mes "Shh! Estou brincando de esconde-esconde.";
 	mes "Você me deixaria sozinho, por favor?";
@@ -405,7 +405,7 @@ ra_temple,179,161,7	script	Criança Seguidora#4	921,{
 	close;
 }
 
-ra_temple,77,114,7	script	Criança Seguidora#5	921,{
+ra_temple,77,114,7	script	Criança Seguidora#5	4_M_CHILD1,{
 	mes "[Emmet]";
 	mes "Ah minha Freya! Você me assustou!";
 	mes "Pensei que você fosse uma das crianças bricando de esconde-esconde!";
@@ -414,7 +414,7 @@ ra_temple,77,114,7	script	Criança Seguidora#5	921,{
 	close;
 }
 
-ra_temple,172,113,5	script	Criança Seguidora#6	921,{
+ra_temple,172,113,5	script	Criança Seguidora#6	4_M_CHILD1,{
 	mes "[Harse]";
 	mes "Onde está vocêeee~";
 	mes "Saia, saia onde quer que esteja~";
@@ -426,7 +426,7 @@ ra_temple,172,113,5	script	Criança Seguidora#6	921,{
 	close;
 }
 
-airplane,238,54,7	script	Aventureiro	59,{
+airplane,238,54,7	script	Aventureiro	1_M_ORIENT01,{
 	if ($rachel_donate < 10000) {
 		mes "[Aventureiro]";
 		mes "Você sabia que o templo em Rachel está aceitando doações? Eles estão pedindo um monte de zeny, mas meus amigos e eu doamos de qualquer forma. Droga, nós queriamos ver o que nós podiamos ganhar~";

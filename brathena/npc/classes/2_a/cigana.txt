@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,53,56,3	script	Cigana#Valquiria	101,{
+valkyrie,53,56,3	script	Cigana#Valquiria	4W_F_01,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

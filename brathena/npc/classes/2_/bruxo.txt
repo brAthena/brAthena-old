@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-gef_tower,111,37,4	script	Wizard Guildsman	70,{
+gef_tower,111,37,4	script	Wizard Guildsman	1_F_GYPSY,{
 	if (Upper == 1) {
 		mes "[Catherine]";
 		mes "? Excuse me, I am wondering if we have met before...?";
@@ -441,7 +441,7 @@ gef_tower,111,37,4	script	Wizard Guildsman	70,{
 	}
 }
 
-gef_tower,102,24,2	script	Gloomy Wizard	735,{
+gef_tower,102,24,2	script	Gloomy Wizard	4_M_JOB_WIZARD,{
 	if (BaseJob != Job_Mage) {
 		if (BaseJob == Job_Wizard) {
 			mes "[Raulel]";
@@ -1048,7 +1048,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	735,{
 	}
 }
 
-job_wiz,50,165,4	script	Arena Assistant	700,{
+job_wiz,50,165,4	script	Arena Assistant	8_F_GIRL,{
 	mes "[Arena Assistant]";
 	mes "Welcome to the Wizard Job Change Arena.";
 	mes "If you would like to take the final test, then please enter the waiting room.";
@@ -1081,7 +1081,7 @@ OnStart:
 
 // Water Room (Test 2 part 1)
 //==========================================================
-job_wiz,1,1,1	script	Room of Water	66,{
+job_wiz,1,1,1	script	Room of Water	1_F_01,{
 OnInit:
 	disablenpc "Room of Water";
 	end;
@@ -1175,7 +1175,7 @@ OnTimer186000:
 	end;
 }
 
-job_wiz,1,2,1	script	Room of Water#Door	66,{
+job_wiz,1,2,1	script	Room of Water#Door	1_F_01,{
 OnInit:
 	disablenpc "Room of Water#Door";
 	end;
@@ -1254,7 +1254,7 @@ OnTouch:
 
 // Earth Room (Test 2 part 2)
 //==========================================================
-job_wiz,1,3,1	script	Room of Earth	66,{
+job_wiz,1,3,1	script	Room of Earth	1_F_01,{
 OnInit:
 	disablenpc "Room of Earth";
 	end;
@@ -1349,7 +1349,7 @@ OnTimer186000:
 	end;
 }
 
-job_wiz,1,4,1	script	Room of Earth#Door	66,{
+job_wiz,1,4,1	script	Room of Earth#Door	1_F_01,{
 OnInit:
 	disablenpc "Room of Earth#Door";
 	end;
@@ -1434,7 +1434,7 @@ OnTouch:
 
 // Fire Room (Test 2 part 3)
 //==========================================================
-job_wiz,1,5,1	script	Room of Fire	66,{
+job_wiz,1,5,1	script	Room of Fire	1_F_01,{
 OnInit:
 	disablenpc "Room of Fire";
 	end;
@@ -1527,7 +1527,7 @@ OnTimer186000:
 	end;
 }
 
-job_wiz,1,6,1	script	Room of Fire#Door	66,{
+job_wiz,1,6,1	script	Room of Fire#Door	1_F_01,{
 OnInit:
 	disablenpc "Room of Fire#Door";
 	end;
@@ -1614,7 +1614,7 @@ OnTouch:
 	end;
 }
 
-job_wiz,1,7,1	script	Test Helper#wiz	66,{
+job_wiz,1,7,1	script	Test Helper#wiz	1_F_01,{
 	end;
 
 OnInit:
@@ -1652,7 +1652,7 @@ OnTimer9000:
 	end;
 }
 
-gef_tower,107,36,4	script	White Dog#wiz	81,{
+gef_tower,107,36,4	script	White Dog#wiz	4_DOG01,{
 	if (BaseJob != Job_Mage) {
 		if (BaseJob == Job_Wizard) {
 			mes "[Maria]";

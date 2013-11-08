@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-einbech,172,113,4	script	Nemuk#ein	855,{
+einbech,172,113,4	script	Nemuk#ein	4_M_EINMAN,{
 	mes "[Nemuk]";
 	mes "Você parece ser um estrangeiro, então deixe-me perguntar algo.";
 	mes "O que voê acha de Einbech?";
@@ -57,7 +57,7 @@ einbech,172,113,4	script	Nemuk#ein	855,{
 	close;
 }
 
-einbech,197,139,4	script	Jovem#air2	855,{
+einbech,197,139,4	script	Jovem#air2	4_M_EINMAN,{
 	mes "[Heinz]";
 	mes "Uau...";
 	mes "Um aventureiro de Rune-Midgarts, é?";
@@ -80,7 +80,7 @@ einbech,197,139,4	script	Jovem#air2	855,{
 	close;
 }
 
-einbech,128,238,5	script	Mogan#ein	848,{
+einbech,128,238,5	script	Mogan#ein	4_M_EINMINER,{
 	mes "[Mogan]";
 	mes "Recentemente, tiveram algumas escavações em que muitos mineradores saíram machucados.";
 	mes "Discutimos no Conselho da Cidade, e na minha opinião, acho que os mineradores cavaram muito fundo e perturbaram... ^FF0000isso^000000.";
@@ -95,7 +95,7 @@ einbech,128,238,5	script	Mogan#ein	848,{
 	close;
 }
 
-einbech,129,234,5	script	Hander#ein	848,{
+einbech,129,234,5	script	Hander#ein	4_M_EINMINER,{
 	mes "[Hander]";
 	mes "Esses bastardos de Einbech!";
 	mes "Vivendo dos recursos que nós escavamos para eles enquanto nós trabalhamos como camelos!";
@@ -108,7 +108,7 @@ einbech,129,234,5	script	Hander#ein	848,{
 	close;
 }
 
-einbech,105,218,5	script	Gushenmu#ein	848,{
+einbech,105,218,5	script	Gushenmu#ein	4_M_EINMINER,{
 	mes "[Gushenmu]";
 	mes "Eu vivi aqui durante muito tempo e, acredite ou não, as coisas não eram assim no passado.";
 	next;
@@ -123,7 +123,7 @@ einbech,105,218,5	script	Gushenmu#ein	848,{
 	close;
 }
 
-einbech,39,215,5	script	Funcionário Ferroviário#e1	852,{
+einbech,39,215,5	script	Funcionário Ferroviário#e1	4_M_EIN_SOLDIER,{
 	mes "[Funcionário]";
 	mes "Bem vindo à Estação de Trem.";
 	mes "A tarifa para embarque no trem para Einbroch é de 200 zenys. Você gostaria de embarcar?";
@@ -151,14 +151,14 @@ einbech,39,215,5	script	Funcionário Ferroviário#e1	852,{
 	}
 }
 
-einbech,157,215,3	script	Funcionário Ferroviário#e2	852,{
+einbech,157,215,3	script	Funcionário Ferroviário#e2	4_M_EIN_SOLDIER,{
 	mes "[Gerente da Estação de Trem]";
 	mes "Essa estação de trem funciona somente de Einbech para Einbroch.";
 	mes "Fale com o funcionário da estação se quiser embarcar.";
 	close;
 }
 
-einbech,151,168,3	script	Tollaf#ein	855,{
+einbech,151,168,3	script	Tollaf#ein	4_M_EINMAN,{
 	mes "[Tollaf]";
 	mes "Ah...!";
 	mes "Isso está me matando!";
@@ -169,7 +169,7 @@ einbech,151,168,3	script	Tollaf#ein	855,{
 	close;
 }
 
-einbech,93,139,5	script	Raust#ein	847,{
+einbech,93,139,5	script	Raust#ein	4_M_EINOLD,{
 	mes "[Raust]";
 	mes "Não entendo!";
 	mes "Einbroch cresce e tudo que acontece é que fica cada vez mais suja e insuportável! Que inferno!";
@@ -189,7 +189,7 @@ einbech,93,139,5	script	Raust#ein	847,{
 	close;
 }
 
-einbech,149,154,3	script	Mjunia#ein	850,{
+einbech,149,154,3	script	Mjunia#ein	4_F_EINWOMAN,{
 	mes "[Mjunia]";
 	mes "É difícil ser mulher nessa cidade.";
 	mes "Parece que o destino foi especialmente cruel comigo, me fazendo nascer aqui.";
@@ -210,7 +210,7 @@ einbech,149,154,3	script	Mjunia#ein	850,{
 	close;
 }
 
-einbech,130,253,1	script	Ekuri#ein	848,{
+einbech,130,253,1	script	Ekuri#ein	4_M_EINMINER,{
 	mes "[Ekuri]";
 	mes "Yo-heave-ho!";
 	mes "Yo-heave-ho~!";
@@ -226,42 +226,42 @@ einbech,130,253,1	script	Ekuri#ein	848,{
 	close;
 }
 
-einbech,135,250,5	script	Quadro de Aviso#e11	858,{
+einbech,135,250,5	script	Quadro de Aviso#e11	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Entrada da Mina";
 	mes " ";
 	close;
 }
 
-einbech,90,214,5	script	Quadro de Aviso#e22	858,{
+einbech,90,214,5	script	Quadro de Aviso#e22	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Estação de Trem";
 	mes " ";
 	close;
 }
 
-einbech,158,189,4	script	Quadro de Aviso#e33	858,{
+einbech,158,189,4	script	Quadro de Aviso#e33	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Estação dos Trens Cargueiros";
 	mes " ";
 	close;
 }
 
-einbech,180,136,5	script	Quadro de Aviso#e44	858,{
+einbech,180,136,5	script	Quadro de Aviso#e44	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Loja de Utilidades";
 	mes " ";
 	close;
 }
 
-einbech,133,114,5	script	Quadro de Aviso#e55	858,{
+einbech,133,114,5	script	Quadro de Aviso#e55	4_BULLETIN_BOARD2,{
 	mes " ";
 	mes "Taverna";
 	mes " ";
 	close;
 }
 
-einbech,77,105,5	script	Quadro de Aviso#e01	858,{
+einbech,77,105,5	script	Quadro de Aviso#e01	4_BULLETIN_BOARD2,{
 	mes "Bem-vindo a Einbech.";
 	next;
 	mes "Leste - Taverna, Loja de Utilidades";
@@ -269,14 +269,14 @@ einbech,77,105,5	script	Quadro de Aviso#e01	858,{
 	close;
 }
 
-einbech,181,127,5	script	Quadro de Aviso#e03	858,{
+einbech,181,127,5	script	Quadro de Aviso#e03	4_BULLETIN_BOARD2,{
 	mes "Noroeste - Estação de Trem";
 	mes "Sul - Taverna";
 	mes "Norte - Loja de Utilidades, Mina";
 	close;
 }
 
-ein_in01,279,92,3	script	Moça da Taverna#ein	854,{
+ein_in01,279,92,3	script	Moça da Taverna#ein	4_M_EINMAN2,{
 	mes "[Moça da Taverna]";
 	mes "A maioria dos homens de Einbech são rudes e primitivos!";
 	mes "Eles me dão nojo!";
@@ -290,7 +290,7 @@ ein_in01,279,92,3	script	Moça da Taverna#ein	854,{
 	close;
 }
 
-ein_in01,277,95,7	script	Ryan Perigoso#air#einbech	855,{
+ein_in01,277,95,7	script	Ryan Perigoso#air#einbech	4_M_EINMAN,{
 	mes "[R.D. Kim]";
 	mes "Oooh...";
 	next;
@@ -335,7 +335,7 @@ ein_in01,277,95,7	script	Ryan Perigoso#air#einbech	855,{
 	close;
 }
 
-ein_in01,281,85,3	script	Bêbado#einbech	849,{
+ein_in01,281,85,3	script	Bêbado#einbech	4_M_DIEMAN,{
 	mes "[Bêbado]";
 	mes "...^333333*Ich!*^000000...";
 	mes "^333333*Ich!*^000000...";
@@ -346,7 +346,7 @@ ein_in01,281,85,3	script	Bêbado#einbech	849,{
 	close;
 }
 
-einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
+einbech,46,107,6	script	Shena#ein::EinMonsters	4_F_EINOLD,{
 	mes "[Shena]";
 	mes "Acho estranho!";
 	mes "Como vocês, jovens, não aprendem isso?";
@@ -489,9 +489,9 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 	close;
 }
 
-einbech,48,107,4	duplicate(EinMonsters)	Luda#ein	850
+einbech,48,107,4	duplicate(EinMonsters)	Luda#ein	4_F_EINWOMAN
 
-einbech,148,242,5	script	Jung#ein	855,{
+einbech,148,242,5	script	Jung#ein	4_M_EINMAN,{
 	mes "[Jung]";
 	mes "Sou uma das poucas pessoas que viveram tanto em Einbech quanto em Einbroch por um bom tempo.";
 	mes "Então acho que sou um dos melhores guias daqui.";
@@ -566,7 +566,7 @@ einbech,148,242,5	script	Jung#ein	855,{
 	close;
 }
 
-einbech,148,246,5	script	Franz#ein	851,{
+einbech,148,246,5	script	Franz#ein	4_M_REPAIR,{
 	mes "[Franz]";
 	mes "Estou entediado...";
 	mes "Quero...";

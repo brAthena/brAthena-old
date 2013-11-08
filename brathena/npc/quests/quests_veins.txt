@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
+ve_fild05,257,130,4	script	Wincing Old Man#ve	4_M_DST_GRAND,{
 	if ((MaxWeight - Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a moment! -";
 		mes "- Currently you are carrying -";
@@ -280,7 +280,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 	}
 }
 
-ve_in,169,310,6	script	Strange Old Man#ve	121,{
+ve_in,169,310,6	script	Strange Old Man#ve	2_M_MOLGENSTEIN,{
 	if (veins_stone == 0) {
 		mes "[Absar]";
 		mes "Bwahahaha!";
@@ -443,7 +443,7 @@ ve_in,169,310,6	script	Strange Old Man#ve	121,{
 	close;
 }
 
-ve_in02,37,28,4	script	Factory Manager	898,{
+ve_in02,37,28,4	script	Factory Manager	4_M_HUMAN_01,{
 	if (veins_stone && veins_stone < 5) {
 		mes "[Mirhen]";
 		mes "Hey, employees only beyond this point!";
@@ -506,7 +506,7 @@ ve_in02,37,28,4	script	Factory Manager	898,{
 	close;
 }
 
-ve_in02,54,49,2	script	Factory Worker#ve1	943,{
+ve_in02,54,49,2	script	Factory Worker#ve1	4_M_DESERT,{
 	if (veins_stone < 6) {
 		mes "[Bahed]";
 		mes "lately, I've been feeling so weak...";
@@ -607,7 +607,7 @@ ve_in02,54,49,2	script	Factory Worker#ve1	943,{
 	close;
 }
 
-ve_in02,68,39,7	script	Factory Worker#ve2	943,{
+ve_in02,68,39,7	script	Factory Worker#ve2	4_M_DESERT,{
 	mes "[Worker]";
 	mes "What the heck are these rocks?";
 	mes "They're ordinary stones, aren't they?";
@@ -617,7 +617,7 @@ ve_in02,68,39,7	script	Factory Worker#ve2	943,{
 
 // Spy Quest
 //============================================================ 
-prontera,202,122,0	script	Kid#sch	703,{
+prontera,202,122,0	script	Kid#sch	4_F_KID2,{
 	if (que_sch == 0) {
 		mes "[Rooney]";
 		mes "Where the heck";
@@ -705,7 +705,7 @@ prontera,202,122,0	script	Kid#sch	703,{
 	close;
 }
 
-prt_church,89,108,6	script	Bard#sch	741,{
+prt_church,89,108,6	script	Bard#sch	2_M_BARD_ORIENT,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -964,7 +964,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 	}
 }
 
-morocc,53,87,7	script	Prison Ward#sch	707,{
+morocc,53,87,7	script	Prison Ward#sch	4_M_MOC_SOLDIER,{
 	if (que_sch < 4) {
 		mes "[Jesse]";
 		mes "Only authorized";
@@ -1084,7 +1084,7 @@ morocc,53,87,7	script	Prison Ward#sch	707,{
 	close;
 }
 
-morocc_in,79,163,0	script	Public Security Officer	748,{
+morocc_in,79,163,0	script	Public Security Officer	4_M_ALCHE_A,{
 	if (que_sch < 7) {
 		mes "[Krieg]";
 		mes "I'm in charge of public";
@@ -1168,7 +1168,7 @@ morocc_in,79,163,0	script	Public Security Officer	748,{
 
 ra_in01,48,352,0	warp	que_sch_jail	1,1,morocc,56,89
 
-ra_in01,50,387,4	script	Upset Looking Bard#sch	51,{
+ra_in01,50,387,4	script	Upset Looking Bard#sch	1_M_BARD,{
 	if (que_sch < 10) {
 		mes "[Vitre]";
 		mes ".............";
@@ -1342,7 +1342,7 @@ ra_in01,50,387,4	script	Upset Looking Bard#sch	51,{
 	}
 }
 
-ra_in01,58,389,0	script	Jesse#sch	707,{
+ra_in01,58,389,0	script	Jesse#sch	4_M_MOC_SOLDIER,{
 	end;
 
 OnInit:
@@ -1350,7 +1350,7 @@ OnInit:
 	end;
 }
 
-ra_in01,58,389,0	script	Guant Prisoner#sch	929,{
+ra_in01,58,389,0	script	Guant Prisoner#sch	4_M_MIDDLE,{
 	if (que_sch < 11) {
 		mes "[Ruan]";
 		mes "This stinks. Why am";
@@ -1416,7 +1416,7 @@ ra_in01,58,389,0	script	Guant Prisoner#sch	929,{
 }
 
 // Escort Dancers to Schwaltzvalt Republic
-job_duncer,93,106,6	script	Dance Instructor#sch	892,{
+job_duncer,93,106,6	script	Dance Instructor#sch	4_F_HUGRANMA,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -1626,7 +1626,7 @@ job_duncer,93,106,6	script	Dance Instructor#sch	892,{
 	close;
 }
 
-job_duncer,85,49,0	script	Young Dancer#sch1	724,{
+job_duncer,85,49,0	script	Young Dancer#sch1	4_F_07,{
 	if (que_sch < 12) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1664,7 +1664,7 @@ job_duncer,85,49,0	script	Young Dancer#sch1	724,{
 	close;
 }
 
-job_duncer,83,52,6	script	Cheerful Dancer#sch1	724,{
+job_duncer,83,52,6	script	Cheerful Dancer#sch1	4_F_07,{
 	if (que_sch < 12) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1701,7 +1701,7 @@ job_duncer,83,52,6	script	Cheerful Dancer#sch1	724,{
 	close;
 }
 
-job_duncer,87,50,2	script	Mature Looking Dancer#s1	724,{
+job_duncer,87,50,2	script	Mature Looking Dancer#s1	4_F_07,{
 	if (que_sch < 12) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1738,7 +1738,7 @@ job_duncer,87,50,2	script	Mature Looking Dancer#s1	724,{
 	close;
 }
 
-airplane,76,56,4	script	Young Dancer#sch2	724,{
+airplane,76,56,4	script	Young Dancer#sch2	4_F_07,{
 	if (que_sch < 13) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1762,7 +1762,7 @@ airplane,76,56,4	script	Young Dancer#sch2	724,{
 	close;
 }
 
-airplane,75,53,0	script	Cheerful Dancer#sch2	724,{
+airplane,75,53,0	script	Cheerful Dancer#sch2	4_F_07,{
 	if (que_sch < 13) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1787,7 +1787,7 @@ airplane,75,53,0	script	Cheerful Dancer#sch2	724,{
 	close;
 }
 
-airplane,79,55,2	script	Mature Looking Dancer#s2	724,{
+airplane,79,55,2	script	Mature Looking Dancer#s2	4_F_07,{
 	if (que_sch < 13) {
 		mes "[Dancer]";
 		mes "Hi there~";
@@ -1828,7 +1828,7 @@ airplane,79,55,2	script	Mature Looking Dancer#s2	724,{
 	close;
 }
 
-ein_in01,174,266,0	script	Young Dancer#sch3	724,{
+ein_in01,174,266,0	script	Young Dancer#sch3	4_F_07,{
 	if (que_sch < 17) {
 		mes "[Dancer]";
 		mes "Oh, the dinner";
@@ -1854,7 +1854,7 @@ ein_in01,174,266,0	script	Young Dancer#sch3	724,{
 	close;
 }
 
-ein_in01,172,266,0	script	Cheerful Dancer#sch3	724,{
+ein_in01,172,266,0	script	Cheerful Dancer#sch3	4_F_07,{
 	if (que_sch < 17) {
 		mes "[Dancer]";
 		mes "The dinner party isn't";
@@ -1879,7 +1879,7 @@ ein_in01,172,266,0	script	Cheerful Dancer#sch3	724,{
 	close;
 }
 
-ein_in01,170,266,0	script	Mature Looking Dancer#s3	724,{
+ein_in01,170,266,0	script	Mature Looking Dancer#s3	4_F_07,{
 	if (que_sch < 17) {
 		mes "[Dancer]";
 		mes "Oh, the dinner";
@@ -1907,7 +1907,7 @@ ein_in01,170,266,0	script	Mature Looking Dancer#s3	724,{
 	close;
 }
 
-ein_in01,279,221,0	script	Hotel Manager#sch	903,5,5,{
+ein_in01,279,221,0	script	Hotel Manager#sch	4_M_KHKYEL,5,5,{
 	if (que_sch < 15) {
 		mes "[Manager]";
 		mes "It'd be a really great";
@@ -1954,7 +1954,7 @@ OnTouch:
 	end;
 }
 
-ein_in01,166,282,4	script	Employee#sch	904,{
+ein_in01,166,282,4	script	Employee#sch	4_M_KHMAN,{
 	if (que_sch < 15) {
 		mes "[Employee]";
 		mes "We've been so busy lately!";
@@ -2073,7 +2073,7 @@ OnTouch:
 	end;
 }
 
-ein_in01,181,284,0	script	Corporate Figure	109,{
+ein_in01,181,284,0	script	Corporate Figure	4_M_MANAGER,{
 	end;
 
 OnInit:
@@ -2081,7 +2081,7 @@ OnInit:
 	end;
 }
 
-ein_in01,181,285,0	script	Arunafeltz Figure	920,{
+ein_in01,181,285,0	script	Arunafeltz Figure	4_F_TRAINEE,{
 	end;
 
 OnInit:
@@ -2089,7 +2089,7 @@ OnInit:
 	end;
 }
 
-ein_in01,168,274,0	script	Corporate Figure#sch	109,{
+ein_in01,168,274,0	script	Corporate Figure#sch	4_M_MANAGER,{
 	mes "[????]";
 	mes "Hmm... Good.";
 	mes "Everything looks";
@@ -2097,7 +2097,7 @@ ein_in01,168,274,0	script	Corporate Figure#sch	109,{
 	close;
 }
 
-ein_in01,170,284,4	script	Arunafeltz Figure#sch	920,{
+ein_in01,170,284,4	script	Arunafeltz Figure#sch	4_F_TRAINEE,{
 	mes "[??????]";
 	mes "I've got to say, only";
 	mes "Rekenber can host such";
@@ -2107,7 +2107,7 @@ ein_in01,170,284,4	script	Arunafeltz Figure#sch	920,{
 	close;
 }
 
-morocc,297,154,0	script	Thin-Faced Bard#sch	51,{
+morocc,297,154,0	script	Thin-Faced Bard#sch	1_M_BARD,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -2374,7 +2374,7 @@ morocc,297,154,0	script	Thin-Faced Bard#sch	51,{
 	close;
 }
 
-morocc,294,152,0	script	????#sch1	899,{
+morocc,294,152,0	script	????#sch1	4_M_HUMAN_02,{
 	end;
 
 OnInit:
@@ -2382,7 +2382,7 @@ OnInit:
 	end;
 }
 
-morocc,293,155,6	script	????#sch2	899,{
+morocc,293,155,6	script	????#sch2	4_M_HUMAN_02,{
 	end;
 
 OnInit:
@@ -2390,7 +2390,7 @@ OnInit:
 	end;
 }
 
-morocc,298,150,1	script	????#sch3	899,{
+morocc,298,150,1	script	????#sch3	4_M_HUMAN_02,{
 	end;
 
 OnInit:
@@ -2398,7 +2398,7 @@ OnInit:
 	end;
 }
 
-prontera,109,161,6	script	Young Man#sch	83,{
+prontera,109,161,6	script	Young Man#sch	4_M_01,{
 	if (que_sch < 20) {
 		mes "[Chada]";
 		mes "What a boring day...";
@@ -2459,7 +2459,7 @@ prontera,109,161,6	script	Young Man#sch	83,{
 	}
 }
 
-geffen,196,167,4	script	Young Woman#sch	101,{
+geffen,196,167,4	script	Young Woman#sch	4W_F_01,{
 	if (que_sch < 21) {
 		mes "[Ghez]";
 		mes "When is he going";
@@ -2533,7 +2533,7 @@ geffen,196,167,4	script	Young Woman#sch	101,{
 	}
 }
 
-comodo,135,299,0	script	Young Man#sch2	809,{
+comodo,135,299,0	script	Young Man#sch2	1_M_SIGNMONK,{
 	if (que_sch < 22) {
 		mes "[Nosdan]";
 		mes "Have you come to hear";
@@ -2622,7 +2622,7 @@ comodo,135,299,0	script	Young Man#sch2	809,{
 	}
 }
 
-sec_in02,10,43,4	script	Extra Story Patch	809,{
+sec_in02,10,43,4	script	Extra Story Patch	1_M_SIGNMONK,{
 	callfunc "F_GM_NPC";
 	mes "[Patch]";
 	mes "Yeah, you can try.";
@@ -2638,7 +2638,7 @@ sec_in02,10,43,4	script	Extra Story Patch	809,{
 
 // Siblings Quest
 //============================================================ 
-veins,327,185,3	script	Kid#camelcamel	944,{
+veins,327,185,3	script	Kid#camelcamel	4_M_DST_CHILD,{
 	if (MISC_QUEST & 8192) {
 		if (rachel_camel == 0) {
 			mes "[Kid Karyn]";
@@ -3148,7 +3148,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 	}
 }
 
-que_thor,36,66,5	script	Little Curdie	941,{
+que_thor,36,66,5	script	Little Curdie	4_F_DST_CHILD,{
 	if (rachel_camel == 1) {
 		mes "^3355FFYou come across";
 		mes "a little girl lying on the";
@@ -3489,7 +3489,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 	}
 }
 
-veins,181,166,3	script	Lockenlock	900,{
+veins,181,166,3	script	Lockenlock	4_M_HUMERCHANT,{
 	if (rachel_camel && rachel_camel < 4) {
 		mes "^3355FFIt's a drunkard...";
 		mes "The scent of pure";
@@ -4046,7 +4046,7 @@ veins,181,166,3	script	Lockenlock	900,{
 	}
 }
 
-veins,227,127,5	script	Ivory	940,{
+veins,227,127,5	script	Ivory	4_F_DESERT,{
 	if (rachel_camel && rachel_camel < 5) {
 		mes "[Organic Soap Maker Ivory]";
 		mes "I need to make more of";
@@ -4369,7 +4369,7 @@ veins,227,127,5	script	Ivory	940,{
 	}
 }
 
-veins,115,59,5	script	Saraman	847,{
+veins,115,59,5	script	Saraman	4_M_EINOLD,{
 	if (rachel_camel && rachel_camel < 7) {
 		mes "[Saraman]";
 		mes "Zzzzz...";
@@ -4717,7 +4717,7 @@ veins,115,59,5	script	Saraman	847,{
 	}
 }
 
-veins,78,226,5	script	Camel#camelcc1::VeinsCamel	938,{
+veins,78,226,5	script	Camel#camelcc1::VeinsCamel	4_DST_CAMEL,{
 	if (rachel_camel == 9) {
 		mes "^3355FFThe camel sniffed the";
 		mes "appetite stimulant, but";
@@ -4744,13 +4744,13 @@ veins,78,226,5	script	Camel#camelcc1::VeinsCamel	938,{
 	}
 }
 
-veins,72,227,3	duplicate(VeinsCamel)	Camel#camelcc3	938
-veins,81,222,1	duplicate(VeinsCamel)	Camel#camelcc4	938
-veins,77,219,5	duplicate(VeinsCamel)	Camel#camelcc5	938
-veins,73,215,8	duplicate(VeinsCamel)	Camel#camelcc6	938
-veins,68,215,5	duplicate(VeinsCamel)	Camel#camelcc7	938
+veins,72,227,3	duplicate(VeinsCamel)	Camel#camelcc3	4_DST_CAMEL
+veins,81,222,1	duplicate(VeinsCamel)	Camel#camelcc4	4_DST_CAMEL
+veins,77,219,5	duplicate(VeinsCamel)	Camel#camelcc5	4_DST_CAMEL
+veins,73,215,8	duplicate(VeinsCamel)	Camel#camelcc6	4_DST_CAMEL
+veins,68,215,5	duplicate(VeinsCamel)	Camel#camelcc7	4_DST_CAMEL
 
-ve_fild07,235,42,3	script	Silk Sand Camel	938,{
+ve_fild07,235,42,3	script	Silk Sand Camel	4_DST_CAMEL,{
 	if (rachel_camel == 11) {
 		mes "^3355FFThis camel's leg is";
 		mes "wounded. Although it";
@@ -4952,7 +4952,7 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 	}
 }
 
-veins,221,120,5	script	Young Town Native	943,{
+veins,221,120,5	script	Young Town Native	4_M_DESERT,{
 	if (rachel_camel == 3) {
 		mes "[Native Young Man]";
 		mes "My name is Toby.";
@@ -5048,7 +5048,7 @@ veins,221,120,5	script	Young Town Native	943,{
 // Thor Volcano Base Quest
 //============================================================ 
 
-ra_temin,87,133,1	script	Rachel Guard#vol1	934,5,2,{
+ra_temin,87,133,1	script	Rachel Guard#vol1	4_M_RASWORD,5,2,{
 	if (aru_vol == 2) {
 		mes "[Guard Karlum]";
 		mes "High Priest Vildt isn't";
@@ -5189,7 +5189,7 @@ OnTouch:
 	end;
 }
 
-ra_temin,82,133,7	script	Rachel Guard#vol2	934,5,2,{
+ra_temin,82,133,7	script	Rachel Guard#vol2	4_M_RASWORD,5,2,{
 	mes "[Guard Krodger]";
 	mes "High Priest Vildt isn't";
 	mes "here right now. Please";
@@ -5206,7 +5206,7 @@ OnTouch:
 	close;
 }
 
-ra_temin,115,140,1	script	Flower Vase#vol	111,{
+ra_temin,115,140,1	script	Flower Vase#vol	HIDDEN_NPC,{
 	if ((aru_vol > 2) && (aru_vol < 5)) {
 		mes "^3355FFYou find a giant";
 		mes "vase full of beautiful";
@@ -5272,7 +5272,7 @@ OnTouch:
 	end;
 }
 
-ra_temin,40,124,3	script	Female Follower#vol	920,{
+ra_temin,40,124,3	script	Female Follower#vol	4_F_TRAINEE,{
 	mes "[Lamir]";
 	mes "^333333*Sigh*^000000 High Priest Vildt";
 	mes "left over so much food after";
@@ -5309,7 +5309,7 @@ ra_temin,40,124,3	script	Female Follower#vol	920,{
 	close;
 }
 
-ra_temin,42,124,3	script	Rachel Guard#vol1_1	934,{
+ra_temin,42,124,3	script	Rachel Guard#vol1_1	4_M_RASWORD,{
 	end;
 
 OnInit:
@@ -5317,7 +5317,7 @@ OnInit:
 	end;
 }
 
-ra_temin,5,5,3	script	vol_time	844,{
+ra_temin,5,5,3	script	vol_time	CLEAR_NPC,{
 OnInit:
 	stopnpctimer;
 	end;
@@ -5367,7 +5367,7 @@ OnTimer55000:
 	end;
 }
 
-ra_temin,113,140,1	script	Rachel Guard#vol2_1	934,{
+ra_temin,113,140,1	script	Rachel Guard#vol2_1	4_M_RASWORD,{
 	mes "[Guard Krodger]";
 	mes "What's with this vase?";
 	mes "They always send me out";
@@ -5382,7 +5382,7 @@ OnInit:
 	end;
 }
 
-ra_temin,5,5,1	script	vol_time2	844,{
+ra_temin,5,5,1	script	vol_time2	CLEAR_NPC,{
 OnInit:
 	stopnpctimer;
 	end;
@@ -5400,7 +5400,7 @@ OnTimer30000:
 	end;
 }
 
-ra_temin,87,118,3	script	Drawer#vol1::VeinsDrawer	111,{
+ra_temin,87,118,3	script	Drawer#vol1::VeinsDrawer	HIDDEN_NPC,{
 	mes "^3355FFThere are some neatly";
 	mes "printed and organized";
 	mes "documents inside";
@@ -5408,9 +5408,9 @@ ra_temin,87,118,3	script	Drawer#vol1::VeinsDrawer	111,{
 	close;
 }
 
-ra_temin,83,118,3	duplicate(VeinsDrawer)	Drawer#vol2	111
+ra_temin,83,118,3	duplicate(VeinsDrawer)	Drawer#vol2	HIDDEN_NPC
 
-ra_temin,85,118,3	script	Drawer#vol3	111,{
+ra_temin,85,118,3	script	Drawer#vol3	HIDDEN_NPC,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -5482,14 +5482,14 @@ ra_temin,85,118,3	script	Drawer#vol3	111,{
 	close;
 }
 
-ra_temin,88,117,3	script	Goddess Statue#vol1	111,{
+ra_temin,88,117,3	script	Goddess Statue#vol1	HIDDEN_NPC,{
 	mes "^3355FFIt's a statue of Freya,";
 	mes "a goddess revered for her";
 	mes "clemency and wisdom.^000000";
 	close;
 }
 
-ra_temin,73,126,1	script	Ladder#vol1	111,{
+ra_temin,73,126,1	script	Ladder#vol1	HIDDEN_NPC,{
 	if (aru_vol == 5) {
 		mes "["+strcharinfo(0)+"]";
 		mes "Wait, I can use this";
@@ -5554,7 +5554,7 @@ OnTouch:
 	end;
 }
 
-veins,159,171,3	script	Towner#vol	945,{
+veins,159,171,3	script	Towner#vol	4_M_DST_GRAND,{
 	mes "[Towner]";
 	mes "The small office on the";
 	mes "2nd floor of this weapon";
@@ -5572,7 +5572,7 @@ veins,159,171,3	script	Towner#vol	945,{
 	close;
 }
 
-ve_in,233,116,3	script	Drunken Man#vol	901,{
+ve_in,233,116,3	script	Drunken Man#vol	4_M_HUOLDARMY,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -5969,7 +5969,7 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 	close;
 }
 
-ve_in,232,117,5	script	Drunken Lady#1	940,{
+ve_in,232,117,5	script	Drunken Lady#1	4_F_DESERT,{
 	mes "[Drunken Lady]";
 	mes "This guys' actually";
 	mes "pretty boring, but...";
@@ -5978,7 +5978,7 @@ ve_in,232,117,5	script	Drunken Lady#1	940,{
 	close;
 }
 
-ve_in,234,115,3	script	Drunken Lady#2	940,{
+ve_in,234,115,3	script	Drunken Lady#2	4_F_DESERT,{
 	mes "[Drunken Lady]";
 	mes "This tavern might look";
 	mes "luxurious and gorgeous,";
@@ -5988,7 +5988,7 @@ ve_in,234,115,3	script	Drunken Lady#2	940,{
 	close;
 }
 
-ve_in,277,229,3	script	Wall Closet#vol	111,{
+ve_in,277,229,3	script	Wall Closet#vol	HIDDEN_NPC,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -6015,7 +6015,7 @@ ve_in,277,229,3	script	Wall Closet#vol	111,{
 	close;
 }
 
-ve_in,281,214,3	script	Bookshelf#vol	111,{
+ve_in,281,214,3	script	Bookshelf#vol	HIDDEN_NPC,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -6089,7 +6089,7 @@ ve_in,281,214,3	script	Bookshelf#vol	111,{
 	close;
 }
 
-thor_v01,37,234,3	script	Hot Land Surface#1	111,{
+thor_v01,37,234,3	script	Hot Land Surface#1	HIDDEN_NPC,{
 	if (aru_vol == 8) {
 		if ((countitem(7704) > 0) && (countitem(7342) > 0)) {
 			mes "^3355FFYou use the pyrometer";
@@ -6127,7 +6127,7 @@ thor_v01,37,234,3	script	Hot Land Surface#1	111,{
 	close;
 }
 
-thor_v02,165,37,3	script	Hot Land Surface#2	111,{
+thor_v02,165,37,3	script	Hot Land Surface#2	HIDDEN_NPC,{
 	if (aru_vol == 9) {
 		if ((countitem(7704) > 0) && (countitem(7342) > 0)) {
 			mes "^3355FFYou use the pyrometer";
@@ -6159,7 +6159,7 @@ thor_v02,165,37,3	script	Hot Land Surface#2	111,{
 	close;
 }
 
-thor_v02,170,100,3	script	Hot Land Surface#3	111,{
+thor_v02,170,100,3	script	Hot Land Surface#3	HIDDEN_NPC,{
 	if (aru_vol == 10) {
 		if ((countitem(7704) > 0) && (countitem(7342) > 0)) {
 			mes "^3355FFYou use the pyrometer";
@@ -6205,7 +6205,7 @@ thor_v02,170,100,3	script	Hot Land Surface#3	111,{
 	close;
 }
 
-que_thor,145,66,3	script	Guard#vol::VeinsGuard	939,{
+que_thor,145,66,3	script	Guard#vol::VeinsGuard	4_DST_SOLDIER,{
 	if (aru_vol == 11) {
 		mes "[Guard]";
 		mes "Only authorized";
@@ -6260,10 +6260,10 @@ que_thor,145,66,3	script	Guard#vol::VeinsGuard	939,{
 	close;
 }
 
-que_thor,136,66,3	duplicate(VeinsGuard)	Guard#vol2	939
-que_thor,127,60,5	duplicate(VeinsGuard)	Guard#vol3	939
+que_thor,136,66,3	duplicate(VeinsGuard)	Guard#vol2	4_DST_SOLDIER
+que_thor,127,60,5	duplicate(VeinsGuard)	Guard#vol3	4_DST_SOLDIER
 
-thor_camp,250,104,3	script	Sahedi#vol	934,{
+thor_camp,250,104,3	script	Sahedi#vol	4_M_RASWORD,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -6576,7 +6576,7 @@ OnTouch:
 	end;
 }
 
-thor_camp,187,228,5	script	Colonel Vito#1	946,{
+thor_camp,187,228,5	script	Colonel Vito#1	4_M_DST_MASTER,{
 	end;
 
 OnInit:
@@ -6584,7 +6584,7 @@ OnInit:
 	end;
 }
 
-thor_camp,155,175,7	script	Colonel Vito#2	946,{
+thor_camp,155,175,7	script	Colonel Vito#2	4_M_DST_MASTER,{
 	end;
 
 OnInit:
@@ -6592,7 +6592,7 @@ OnInit:
 	end;
 }
 
-thor_camp,159,74,3	script	Colonel Vito#3	946,{
+thor_camp,159,74,3	script	Colonel Vito#3	4_M_DST_MASTER,{
 	if (aru_vol == 14) {
 		mes "[Colonel Vito]";
 		mes "I am Colonel Vito,";
@@ -6960,7 +6960,7 @@ OnTouch:
 	end;
 }
 
-thor_camp,124,314,1	script	Soldier#vol1	939,{
+thor_camp,124,314,1	script	Soldier#vol1	4_DST_SOLDIER,{
 	mes "[Thor Volcano Camp Soldier]";
 	mes "Freya, I'm so exhausted!";
 	mes "I'm starving to death too!";
@@ -6968,7 +6968,7 @@ thor_camp,124,314,1	script	Soldier#vol1	939,{
 	close;
 }
 
-thor_camp,134,309,5	script	Soldier#vol2	939,{
+thor_camp,134,309,5	script	Soldier#vol2	4_DST_SOLDIER,{
 	mes "[Thor Volcano Camp Soldier]";
 	mes "I hear we'll be eating";
 	mes "chicken salad, fried chicken,";
@@ -6983,7 +6983,7 @@ thor_camp,134,309,5	script	Soldier#vol2	939,{
 	close;
 }
 
-thor_camp,109,167,3	script	Control Panel#vol	111,{
+thor_camp,109,167,3	script	Control Panel#vol	HIDDEN_NPC,{
 	if (aru_vol == 17) {
 		mes "^3355FFThis control panel";
 		mes "controls the main power";
@@ -7016,7 +7016,7 @@ thor_camp,109,167,3	script	Control Panel#vol	111,{
 	end;
 }
 
-thor_camp,150,65,3	script	Dummy#1::VeinsDummy	111,{
+thor_camp,150,65,3	script	Dummy#1::VeinsDummy	HIDDEN_NPC,{
 	if (aru_vol == 19) {
 		mes "^3355FFIt's a training dummy";
 		mes "that looks like it can";
@@ -7115,20 +7115,20 @@ thor_camp,150,65,3	script	Dummy#1::VeinsDummy	111,{
 	}
 }
 
-thor_camp,156,65,3	duplicate(VeinsDummy)	Dummy#2	111
-thor_camp,162,65,3	duplicate(VeinsDummy)	Dummy#3	111
-thor_camp,150,57,3	duplicate(VeinsDummy)	Dummy#4	111
-thor_camp,156,57,3	duplicate(VeinsDummy)	Dummy#5	111
-thor_camp,162,57,3	duplicate(VeinsDummy)	Dummy#6	111
+thor_camp,156,65,3	duplicate(VeinsDummy)	Dummy#2	HIDDEN_NPC
+thor_camp,162,65,3	duplicate(VeinsDummy)	Dummy#3	HIDDEN_NPC
+thor_camp,150,57,3	duplicate(VeinsDummy)	Dummy#4	HIDDEN_NPC
+thor_camp,156,57,3	duplicate(VeinsDummy)	Dummy#5	HIDDEN_NPC
+thor_camp,162,57,3	duplicate(VeinsDummy)	Dummy#6	HIDDEN_NPC
 
-thor_camp,248,104,5	script	Aitra#vol	939,{
+thor_camp,248,104,5	script	Aitra#vol	4_DST_SOLDIER,{
 	end;
 OnInit:
 	disablenpc "Aitra#vol";
 	end;
 }
 
-thor_camp,49,97,3	script	High Priest#vol	933,{
+thor_camp,49,97,3	script	High Priest#vol	4_M_RACHOLD,{
 	mes "^3355FFYou'd better not";
 	mes "do anything too";
 	mes "conspicuous in";
@@ -7136,7 +7136,7 @@ thor_camp,49,97,3	script	High Priest#vol	933,{
 	close;
 }
 
-thor_camp,49,122,1	script	Thor Volcano Soldier#vo1	939,{
+thor_camp,49,122,1	script	Thor Volcano Soldier#vo1	4_DST_SOLDIER,{
 	mes "^3355FFYou'd better not";
 	mes "do anything too";
 	mes "conspicuous in";
@@ -7144,7 +7144,7 @@ thor_camp,49,122,1	script	Thor Volcano Soldier#vo1	939,{
 	close;
 }
 
-thor_camp,31,93,1	script	Thor Volcano Soldier#vo2	939,{
+thor_camp,31,93,1	script	Thor Volcano Soldier#vo2	4_DST_SOLDIER,{
 	mes "^3355FFYou'd better not";
 	mes "do anything too";
 	mes "conspicuous in";
@@ -7152,7 +7152,7 @@ thor_camp,31,93,1	script	Thor Volcano Soldier#vo2	939,{
 	close;
 }
 
-thor_camp,59,79,1	script	Thor Volcano Soldier#vo3	939,{
+thor_camp,59,79,1	script	Thor Volcano Soldier#vo3	4_DST_SOLDIER,{
 	mes "^3355FFYou'd better not";
 	mes "do anything too";
 	mes "conspicuous in";
@@ -7160,7 +7160,7 @@ thor_camp,59,79,1	script	Thor Volcano Soldier#vo3	939,{
 	close;
 }
 
-thor_camp,143,114,1	script	Thor Volcano Soldier#vo4	939,{
+thor_camp,143,114,1	script	Thor Volcano Soldier#vo4	4_DST_SOLDIER,{
 	emotion e_sob;
 	mes "[Soldier]";
 	mes "Oh Freya...";
@@ -7171,7 +7171,7 @@ thor_camp,143,114,1	script	Thor Volcano Soldier#vo4	939,{
 	close;
 }
 
-thor_camp,206,92,3	script	Thor Volcano Soldier#vo5	939,{
+thor_camp,206,92,3	script	Thor Volcano Soldier#vo5	4_DST_SOLDIER,{
 	mes "[Soldier]";
 	mes "Ah, time to";
 	mes "go to work.";
@@ -7184,13 +7184,13 @@ thor_camp,206,92,3	script	Thor Volcano Soldier#vo5	939,{
 	close;
 }
 
-thor_camp,201,321,1	script	Thor Volcano Soldier#vo6	939,{
+thor_camp,201,321,1	script	Thor Volcano Soldier#vo6	4_DST_SOLDIER,{
 	mes "[Soldier]";
 	mes "Yo-ho! Yo-ho!";
 	close;
 }
 
-thor_camp,196,315,7	script	Thor Volcano Soldier#vo7	939,{
+thor_camp,196,315,7	script	Thor Volcano Soldier#vo7	4_DST_SOLDIER,{
 	mes "[Soldier]";
 	mes "I guess I need to go";
 	mes "on Guardian polishing";
@@ -7200,7 +7200,7 @@ thor_camp,196,315,7	script	Thor Volcano Soldier#vo7	939,{
 	close;
 }
 
-thor_camp,181,231,0	script	Guardian#vol_7	111,{
+thor_camp,181,231,0	script	Guardian#vol_7	HIDDEN_NPC,{
 	mes "^3355FFThere are many guardians";
 	mes "here in different stages";
 	mes "of disassembly. It looks";
@@ -7209,7 +7209,7 @@ thor_camp,181,231,0	script	Guardian#vol_7	111,{
 	close;
 }
 
-thor_camp,98,213,5	script	Thor Volcano Soldier#vo8	939,{
+thor_camp,98,213,5	script	Thor Volcano Soldier#vo8	4_DST_SOLDIER,{
 	mes "[Soldier]";
 	mes "Aren't you the one from";
 	mes "the geological research";
@@ -7220,7 +7220,7 @@ thor_camp,98,213,5	script	Thor Volcano Soldier#vo8	939,{
 	close;
 }
 
-thor_camp,98,209,5	script	Thor Volcano Soldier#vo9	939,{
+thor_camp,98,209,5	script	Thor Volcano Soldier#vo9	4_DST_SOLDIER,{
 	mes "[Soldier]";
 	mes "Why am I always";
 	mes "stationed here?!";
@@ -7229,7 +7229,7 @@ thor_camp,98,209,5	script	Thor Volcano Soldier#vo9	939,{
 	close;
 }
 
-thor_v02,143,78,0	script	#totcamp	45,2,2,{
+thor_v02,143,78,0	script	#totcamp	WARPNPC,2,2,{
 OnTouch_:
 	if (rachel_camel < 24) {
 		warp "que_thor",65,55;
@@ -7239,13 +7239,13 @@ OnTouch_:
 	end;
 }
 
-que_thor,69,56,0	script	#tov_1	45,2,2,{
+que_thor,69,56,0	script	#tov_1	WARPNPC,2,2,{
 OnTouch_:
 	warp "thor_v02",146,84;
 	end;
 }
 
-que_thor,187,56,0	script	#tov_2	45,2,2,{
+que_thor,187,56,0	script	#tov_2	WARPNPC,2,2,{
 OnTouch_:
 	warp "thor_v02",146,84;
 	end;
@@ -7264,7 +7264,7 @@ OnTouch:
 	close;
 }
 
-thor_camp,246,191,3	script	Guard#goto	939,{
+thor_camp,246,191,3	script	Guard#goto	4_DST_SOLDIER,{
 	mes "[Guard]";
 	mes "What now?";
 	mes "Can't you see I'm busy?";
@@ -7296,7 +7296,7 @@ OnTouch_:
 	close;
 }
 
-ve_in,235,135,5	script	Bartender#ve	947,{
+ve_in,235,135,5	script	Bartender#ve	4_M_DST_TOUGH,{
 	mes "[Bartender]";
 	mes "Welcome to our tavern.";
 	mes "Please, have a seat.";
@@ -7305,7 +7305,7 @@ ve_in,235,135,5	script	Bartender#ve	947,{
 	close;
 }
 
-ve_in,237,131,1	script	Female Customer#ve1	940,{
+ve_in,237,131,1	script	Female Customer#ve1	4_F_DESERT,{
 	mes "[Female Customer]";
 	mes "Bartender, aren't any of";
 	mes "your regulars nice young";
@@ -7346,7 +7346,7 @@ ve_in,237,131,1	script	Female Customer#ve1	940,{
 	close;
 }
 
-ve_in,239,107,1	script	Male Customer#ve2	943,{
+ve_in,239,107,1	script	Male Customer#ve2	4_M_DESERT,{
 	mes "[Male Customer]";
 	mes "How can that ugly old";
 	mes "man have girls hanging";
@@ -7364,4 +7364,4 @@ ve_in,239,107,1	script	Male Customer#ve2	943,{
 	close;
 }
 
-ve_fild02,337,314,4	duplicatr(Wincing Old Man#ve)	Wincing Old Man#ve1	945,{}
+ve_fild02,337,314,4	duplicatr(Wincing Old Man#ve)	Wincing Old Man#ve1	4_M_DST_GRAND,{}

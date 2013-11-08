@@ -25,7 +25,7 @@
 //   |   se adequar ao novo idioma após a tradução. [Hold]    |
 //   \________________________________________________________/
 
-izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
+izlude,47,170,4	script	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2,{
 	setarray .@name$, 	"Lanceiro", 		"Espadachim", 		"Arqueiro";
 	setarray .@faith$, 	"SPEAR_MERC_GUILD",	"SWORD_MERC_GUILD",	"ARCH_MERC_GUILD";
 	setarray .@item, 	12182,				12172,				12162;
@@ -216,16 +216,16 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	734,{
 			close;
 	}
 }
-prontera,41,337,5	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Lanceiro	105
-pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Arqueiro	732,{}
-izlude_a,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_a	734
-izlude_b,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_b	734
-izlude_c,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_c	734
-izlude_d,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_d	734,{}
+prontera,41,337,5	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Lanceiro	8W_SOLDIER
+pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachim)	Locador de Mercenários#Arqueiro	4_M_JOB_HUNTER,{}
+izlude_a,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_a	4_M_JOB_KNIGHT2
+izlude_b,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_b	4_M_JOB_KNIGHT2
+izlude_c,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_c	4_M_JOB_KNIGHT2
+izlude_d,47,170,4	duplicatr(Locador de Mercenários#Espadachim)	Locador de Mercenários#Espadachim_d	4_M_JOB_KNIGHT2,{}
 
 // NPCs de Utilidades para Mercenários
 //============================================================
-izlude,55,170,4	script	Artigos para Mercenários#Espadachim	892,{
+izlude,55,170,4	script	Artigos para Mercenários#Espadachim	4_F_HUGRANMA,{
 	mes "[Vendedora de Artigos]";
 	mes "Olá, Eu vendo utilidades";
 	mes "que podem ser úteis";
@@ -297,9 +297,9 @@ izlude,55,170,4	script	Artigos para Mercenários#Espadachim	892,{
 	getitem .@item[.@m], .@input;
 	close;
 }
-prontera,30,337,4	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Lanceiro	700
-pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Arqueiro	879,{}
-izlude_a,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_a	892
-izlude_b,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_b	892
-izlude_c,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_c	892
-izlude_d,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_d	892,{}
+prontera,30,337,4	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Lanceiro	8_F_GIRL
+pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Arqueiro	4_F_CAPEGIRL,{}
+izlude_a,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_a	4_F_HUGRANMA
+izlude_b,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_b	4_F_HUGRANMA
+izlude_c,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_c	4_F_HUGRANMA
+izlude_d,55,170,4  duplicatr(Artigos para Mercenários#Espadachim)	Artigos para Mercenários#Espadachim_d	4_F_HUGRANMA,{}

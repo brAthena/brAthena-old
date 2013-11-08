@@ -35,7 +35,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_fild05,170,286,4	script	Duende Ancioso#8pday	954,{
+prt_fild05,170,286,4	script	Duende Ancioso#8pday	4_M_PATRICK,{
 	if (StPatrick2008 < 1) {
 		mes "[Duende O'Riley]";
 		mes "Hmm...";

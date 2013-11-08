@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,44,39,5	script	Lorde#Valquíria	56,{
+valkyrie,44,39,5	script	Lorde#Valquíria	1_M_KNIGHTMASTER,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

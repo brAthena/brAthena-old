@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-valkyrie,44,42,5	script	Sumo-Sacerdote#Valquíria	60,{
+valkyrie,44,42,5	script	Sumo-Sacerdote#Valquíria	1_M_PASTOR,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {

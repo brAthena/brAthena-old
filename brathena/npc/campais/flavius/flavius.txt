@@ -31,7 +31,7 @@
 
 // NPC's da Sala de Espera - Flavius 1
 //============================================================
-bat_room,86,227,4	script	Tenente Ator	418,{
+bat_room,86,227,4	script	Tenente Ator	4_M_KY_KNT,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b01::OnReadyCheck",1,0,80;
@@ -41,7 +41,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,85,204,0	script	Tenente Thelokus	414,{
+bat_room,85,204,0	script	Tenente Thelokus	4_M_CRU_KNT,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b01::OnReadyCheck",1,0,80;
@@ -54,7 +54,7 @@ OnEnterBG:
 bat_room,85,220,0	warp	back_bgroomb01a	1,1,bat_room,154,150
 bat_room,85,211,0	warp	back_bgroomb01b	1,1,bat_room,154,150
 
-bat_room,2,151,3	script	#bat_b01_timer	844,{
+bat_room,2,151,3	script	#bat_b01_timer	CLEAR_NPC,{
 	end;
 
 OnInit:
@@ -82,7 +82,7 @@ OnTimer1000:
 
 // Engine do Campo de Batalha - Flavius 1
 //============================================================
-bat_b01,15,15,3	script	start#bat_b01	844,{
+bat_b01,15,15,3	script	start#bat_b01	CLEAR_NPC,{
 
 OnInit:
 	mapwarp "bat_b01","bat_room",154,150;
@@ -137,7 +137,7 @@ OnTimer10000:
 	end;
 }
 
-bat_b01,1,1,3	script	OBJ#bat_b01_a	844,{
+bat_b01,1,1,3	script	OBJ#bat_b01_a	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG1_id1,"bat_b01",61,150,"Cristal Vermelho",1915,"OBJ#bat_b01_a::OnMyMobDead";
 	end;
@@ -170,7 +170,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b01,1,2,3	script	OBJ#bat_b01_b	844,{
+bat_b01,1,2,3	script	OBJ#bat_b01_b	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG1_id2,"bat_b01",328,150,"Cristal Azul",1914,"OBJ#bat_b01_b::OnMyMobDead";
 	end;
@@ -203,7 +203,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b01,1,3,3	script	guardian#bat_b01_a	844,{
+bat_b01,1,3,3	script	guardian#bat_b01_a	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG1_id1,"bat_b01",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
 	bg_monster $@FlaviusBG1_id1,"bat_b01",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b01_a::OnMyMobDead";
@@ -221,7 +221,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b01,1,3,3	script	guardian#bat_b01_b	844,{
+bat_b01,1,3,3	script	guardian#bat_b01_b	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG1_id2,"bat_b01",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
 	bg_monster $@FlaviusBG1_id2,"bat_b01",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b01_b::OnMyMobDead";
@@ -239,7 +239,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b01,1,4,3	script	cell#bat_b01_a	844,{
+bat_b01,1,4,3	script	cell#bat_b01_a	CLEAR_NPC,{
 OnRed:
 	setcell "bat_b01",62,149,60,151,cell_basilica,1;
 	setcell "bat_b01",62,149,60,151,cell_walkable,0;
@@ -251,7 +251,7 @@ OnGreen:
 	end;
 }
 
-bat_b01,1,5,3	script	cell#bat_b01_b	844,{
+bat_b01,1,5,3	script	cell#bat_b01_b	CLEAR_NPC,{
 OnRed:
 	setcell "bat_b01",327,151,329,149,cell_basilica,1;
 	setcell "bat_b01",327,151,329,149,cell_walkable,0;
@@ -263,7 +263,7 @@ OnGreen:
 	end;
 }
 
-bat_b01,1,6,1	script	time#bat_b01	844,{
+bat_b01,1,6,1	script	time#bat_b01	CLEAR_NPC,{
 OnEnable:
 	donpcevent "Terapeuta de Batalha#b01_a::OnEnable";
 	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
@@ -275,7 +275,7 @@ OnStop:
 	end;
 }
 
-bat_b01,10,294,3	script	Terapeuta de Batalha#b01_a	95,{
+bat_b01,10,294,3	script	Terapeuta de Batalha#b01_a	4_F_SISTER,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos";
@@ -309,7 +309,7 @@ OnStop:
 	end;
 }
 
-bat_b01,10,290,0	script	bat_b01_rp1_a_warp	45,10,10,{
+bat_b01,10,290,0	script	bat_b01_rp1_a_warp	WARPNPC,10,10,{
 OnInit:
 	disablenpc "bat_b01_rp1_a_warp";
 	end;
@@ -320,7 +320,7 @@ OnTouch:
 	end;
 }
 
-bat_b01,389,14,3	script	Terapeuta de Batalha#b01_b	95,{
+bat_b01,389,14,3	script	Terapeuta de Batalha#b01_b	4_F_SISTER,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos e respire bem fundo.";
@@ -353,7 +353,7 @@ OnStop:
 	end;
 }
 
-bat_b01,389,10,0	script	bat_b01_rp1_b_warp	45,9,9,{
+bat_b01,389,10,0	script	bat_b01_rp1_b_warp	WARPNPC,9,9,{
 OnInit:
 	disablenpc "bat_b01_rp1_a_warp";
 	end;
@@ -378,7 +378,7 @@ OnTouch:
 	end;
 }
 
-bat_b01,10,294,3	script	Vintenar Guillaume#b01_a	934,{
+bat_b01,10,294,3	script	Vintenar Guillaume#b01_a	4_M_RASWORD,{
 	if ($@FlaviusBG1_id1 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
 		set .@medal_gap,500 - .@your_medal;
@@ -413,7 +413,7 @@ OnInit:
 	end;
 }
 
-bat_b01,389,14,3	script	Vintenar Croix#b01_b	934,{
+bat_b01,389,14,3	script	Vintenar Croix#b01_b	4_M_RASWORD,{
 	if ($@FlaviusBG1_id2 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
 		set .@medal_gap,500 - .@your_medal;
@@ -448,7 +448,7 @@ OnInit:
 	end;
 }
 
-bat_b01,1,5,3	script	countdown#bat_b01	844,{
+bat_b01,1,5,3	script	countdown#bat_b01	CLEAR_NPC,{
 OnInit:
 	stopnpctimer;
 	end;
@@ -504,31 +504,31 @@ OnTimer1900000:
 	end;
 }
 
-bat_b01,81,83,3	script	Acampamento Guillaume#flag21	973,{ end; }
-bat_b01,94,83,3	script	Acampamento Guillaume#flag22	973,{ end; }
-bat_b01,81,66,3	script	Acampamento Guillaume#flag23	973,{ end; }
-bat_b01,94,66,3	script	Acampamento Guillaume#flag24	973,{ end; }
-bat_b01,139,142,3	script	Acampamento Guillaume#flag25	973,{ end; }
-bat_b01,139,158,3	script	Acampamento Guillaume#flag26	973,{ end; }
-bat_b01,110,161,3	script	Acampamento Guillaume#flag27	973,{ end; }
-bat_b01,110,137,3	script	Acampamento Guillaume#flag28	973,{ end; }
-bat_b01,63,135,3	script	Acampamento Guillaume#flag29	973,{ end; }
-bat_b01,63,165,3	script	Acampamento Guillaume#flag30	973,{ end; }
-bat_b01,10,296,3	script	Acampamento Guillaume#flag31	973,{ end; }
+bat_b01,81,83,3	script	Acampamento Guillaume#flag21	1_FLAG_LION,{ end; }
+bat_b01,94,83,3	script	Acampamento Guillaume#flag22	1_FLAG_LION,{ end; }
+bat_b01,81,66,3	script	Acampamento Guillaume#flag23	1_FLAG_LION,{ end; }
+bat_b01,94,66,3	script	Acampamento Guillaume#flag24	1_FLAG_LION,{ end; }
+bat_b01,139,142,3	script	Acampamento Guillaume#flag25	1_FLAG_LION,{ end; }
+bat_b01,139,158,3	script	Acampamento Guillaume#flag26	1_FLAG_LION,{ end; }
+bat_b01,110,161,3	script	Acampamento Guillaume#flag27	1_FLAG_LION,{ end; }
+bat_b01,110,137,3	script	Acampamento Guillaume#flag28	1_FLAG_LION,{ end; }
+bat_b01,63,135,3	script	Acampamento Guillaume#flag29	1_FLAG_LION,{ end; }
+bat_b01,63,165,3	script	Acampamento Guillaume#flag30	1_FLAG_LION,{ end; }
+bat_b01,10,296,3	script	Acampamento Guillaume#flag31	1_FLAG_LION,{ end; }
 
-bat_b01,306,233,3	script	Acampamento Croix#flag21	974,{ end; }
-bat_b01,317,233,3	script	Acampamento Croix#flag22	974,{ end; }
-bat_b01,306,216,3	script	Acampamento Croix#flag23	974,{ end; }
-bat_b01,317,216,3	script	Acampamento Croix#flag24	974,{ end; }
-bat_b01,257,158,3	script	Acampamento Croix#flag25	974,{ end; }
-bat_b01,257,141,3	script	Acampamento Croix#flag26	974,{ end; }
-bat_b01,297,164,3	script	Acampamento Croix#flag27	974,{ end; }
-bat_b01,297,136,3	script	Acampamento Croix#flag28	974,{ end; }
-bat_b01,336,161,3	script	Acampamento Croix#flag29	974,{ end; }
-bat_b01,336,139,3	script	Acampamento Croix#flag30	974,{ end; }
-bat_b01,389,16,3	script	Acampamento Croix#flag31	974,{ end; }
+bat_b01,306,233,3	script	Acampamento Croix#flag21	1_FLAG_EAGLE,{ end; }
+bat_b01,317,233,3	script	Acampamento Croix#flag22	1_FLAG_EAGLE,{ end; }
+bat_b01,306,216,3	script	Acampamento Croix#flag23	1_FLAG_EAGLE,{ end; }
+bat_b01,317,216,3	script	Acampamento Croix#flag24	1_FLAG_EAGLE,{ end; }
+bat_b01,257,158,3	script	Acampamento Croix#flag25	1_FLAG_EAGLE,{ end; }
+bat_b01,257,141,3	script	Acampamento Croix#flag26	1_FLAG_EAGLE,{ end; }
+bat_b01,297,164,3	script	Acampamento Croix#flag27	1_FLAG_EAGLE,{ end; }
+bat_b01,297,136,3	script	Acampamento Croix#flag28	1_FLAG_EAGLE,{ end; }
+bat_b01,336,161,3	script	Acampamento Croix#flag29	1_FLAG_EAGLE,{ end; }
+bat_b01,336,139,3	script	Acampamento Croix#flag30	1_FLAG_EAGLE,{ end; }
+bat_b01,389,16,3	script	Acampamento Croix#flag31	1_FLAG_EAGLE,{ end; }
 
-bat_b01,10,294,3	script	Vintenar#bat_b01_aover	419,{
+bat_b01,10,294,3	script	Vintenar#bat_b01_aover	4_M_KY_HEAD,{
 	set .@A_B_gap,$@Guill_ScoreBG1 - $@Croix_ScoreBG1;
 	if ($@FlaviusBG1_id1 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
@@ -569,7 +569,7 @@ OnInit:
 	end;
 }
 
-bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
+bat_b01,389,14,3	script	Vintenar#bat_b01_bover	4_M_CRU_HEAD,{
 	set .@A_B_gap,$@Guill_ScoreBG1 - $@Croix_ScoreBG1;
 	if ($@FlaviusBG1_id2 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
@@ -613,7 +613,7 @@ OnInit:
 
 // NPC de Administração
 //============================================================
-bat_b01,1,10,3	script	Liberar tudo#b01	81,{
+bat_b01,1,10,3	script	Liberar tudo#b01	4_DOG01,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
 		mes "Cancelado.";
@@ -635,10 +635,10 @@ bat_b01,1,10,3	script	Liberar tudo#b01	81,{
 		}
 	}
 }
-bat_b02,1,10,3	duplicate(Liberar tudo#b01)	Liberar tudo#b02	81
+bat_b02,1,10,3	duplicate(Liberar tudo#b01)	Liberar tudo#b02	4_DOG01
 
 // NPC's da Sala de Espera - Flavius 2
-bat_room,142,227,4	script	Tenente Huvas	418,{
+bat_room,142,227,4	script	Tenente Huvas	4_M_KY_KNT,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b02::OnReadyCheck",1,0,80;
@@ -648,7 +648,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,142,204,0	script	Tenente Yukon	414,{
+bat_room,142,204,0	script	Tenente Yukon	4_M_CRU_KNT,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",11,"start#bat_b02::OnReadyCheck",1,0,80;
@@ -661,7 +661,7 @@ OnEnterBG:
 bat_room,141,220,0	warp	back_bgroomb02a	1,1,bat_room,154,150
 bat_room,141,211,0	warp	back_bgroomb02b	1,1,bat_room,154,150
 
-bat_room,2,151,3	script	#bat_b02_timer	844,{
+bat_room,2,151,3	script	#bat_b02_timer	CLEAR_NPC,{
 	end;
 
 OnInit:
@@ -689,7 +689,7 @@ OnTimer1000:
 
 // Engine do Campo de Batalha - Flavius 2
 //============================================================
-bat_b02,15,15,3	script	start#bat_b02	844,{
+bat_b02,15,15,3	script	start#bat_b02	CLEAR_NPC,{
 OnInit:
 	mapwarp "bat_b02","bat_room",154,150;
 	setarray .npcsevent2$[0], "Tenente Huvas::OnEnterBG", "Tenente Yukon::OnEnterBG", "OBJ#bat_b02_a::OnKill", "OBJ#bat_b02_a::OnEnable", "OBJ#bat_b02_b::OnKill", "OBJ#bat_b02_b::OnEnable", "guardian#bat_b02_a::OnKill", "guardian#bat_b02_b::OnKill", "guardian#bat_b02_a::OnEnable", "guardian#bat_b02_b::OnEnable", "cell#bat_b02_a::OnRed", "cell#bat_b02_b::OnRed", "time#bat_b02::OnEnable";
@@ -744,7 +744,7 @@ OnTimer10000:
 	end;
 }
 
-bat_b02,1,1,3	script	OBJ#bat_b02_a	844,{
+bat_b02,1,1,3	script	OBJ#bat_b02_a	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG2_id1,"bat_b02",61,150,"Cristal Vermelho",1915,"OBJ#bat_b02_a::OnMyMobDead";
 	end;
@@ -777,7 +777,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b02,1,2,3	script	OBJ#bat_b02_b	844,{
+bat_b02,1,2,3	script	OBJ#bat_b02_b	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG2_id2,"bat_b02",328,150,"Cristal Azul",1914,"OBJ#bat_b02_b::OnMyMobDead";
 	end;
@@ -810,7 +810,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b02,1,3,3	script	guardian#bat_b02_a	844,{
+bat_b02,1,3,3	script	guardian#bat_b02_a	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG2_id1,"bat_b02",108,159,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
 	bg_monster $@FlaviusBG2_id1,"bat_b02",108,141,"Guardião do Exército Guillaume",1949,"guardian#bat_b02_a::OnMyMobDead";
@@ -828,7 +828,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b02,1,3,3	script	guardian#bat_b02_b	844,{
+bat_b02,1,3,3	script	guardian#bat_b02_b	CLEAR_NPC,{
 OnEnable:
 	bg_monster $@FlaviusBG2_id2,"bat_b02",307,160,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
 	bg_monster $@FlaviusBG2_id2,"bat_b02",307,138,"Guardião do Exército Croix",1949,"guardian#bat_b02_b::OnMyMobDead";
@@ -846,7 +846,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_b02,1,4,3	script	cell#bat_b02_a	844,{
+bat_b02,1,4,3	script	cell#bat_b02_a	CLEAR_NPC,{
 OnRed:
 	setcell "bat_b02",62,149,60,151,cell_basilica,1;
 	setcell "bat_b02",62,149,60,151,cell_walkable,0;
@@ -858,7 +858,7 @@ OnGreen:
 	end;
 }
 
-bat_b02,1,5,3	script	cell#bat_b02_b	844,{
+bat_b02,1,5,3	script	cell#bat_b02_b	CLEAR_NPC,{
 OnRed:
 	setcell "bat_b02",327,151,329,149,cell_basilica,1;
 	setcell "bat_b02",327,151,329,149,cell_walkable,0;
@@ -870,7 +870,7 @@ OnGreen:
 	end;
 }
 
-bat_b02,1,6,1	script	time#bat_b02	844,{
+bat_b02,1,6,1	script	time#bat_b02	CLEAR_NPC,{
 OnEnable:
 	donpcevent "Terapeuta de Batalha#b02_a::OnEnable";
 	donpcevent "Terapeuta de Batalha#b02_b::OnEnable";
@@ -882,7 +882,7 @@ OnStop:
 	end;
 }
 
-bat_b02,10,294,3	script	Terapeuta de Batalha#b02_a	95,{
+bat_b02,10,294,3	script	Terapeuta de Batalha#b02_a	4_F_SISTER,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos e respire bem fundo.";
@@ -915,7 +915,7 @@ OnStop:
 	end;
 }
 
-bat_b02,10,290,0	script	bat_b02_rp1_a_warp	45,10,10,{
+bat_b02,10,290,0	script	bat_b02_rp1_a_warp	WARPNPC,10,10,{
 OnInit:
 	disablenpc "bat_b02_rp1_a_warp";
 	end;
@@ -926,7 +926,7 @@ OnTouch:
 	end;
 }
 
-bat_b02,389,14,3	script	Terapeuta de Batalha#b02_b	95,{
+bat_b02,389,14,3	script	Terapeuta de Batalha#b02_b	4_F_SISTER,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos e respire bem fundo.";
@@ -959,7 +959,7 @@ OnStop:
 	end;
 }
 
-bat_b02,389,10,0	script	bat_b02_rp1_b_warp	45,9,9,{
+bat_b02,389,10,0	script	bat_b02_rp1_b_warp	WARPNPC,9,9,{
 OnInit:
 	disablenpc "bat_b02_rp1_a_warp";
 	end;
@@ -979,7 +979,7 @@ OnTouch:
 
 bat_b02,312,224,0	duplicate(A_CODE#bat_b02)	B_CODE#bat_b02	-1,5,5
 
-bat_b02,10,294,3	script	Vintenar Guillaume#b02_a	934,{
+bat_b02,10,294,3	script	Vintenar Guillaume#b02_a	4_M_RASWORD,{
 	if ($@FlaviusBG2_id1 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
 		set .@medal_gap,500 - .@your_medal;
@@ -1014,7 +1014,7 @@ OnInit:
 	end;
 }
 
-bat_b02,389,14,3	script	Vintenar Croix#b02_b	934,{
+bat_b02,389,14,3	script	Vintenar Croix#b02_b	4_M_RASWORD,{
 	if ($@FlaviusBG2_id2 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
 		set .@medal_gap,500 - .@your_medal;
@@ -1049,7 +1049,7 @@ OnInit:
 	end;
 }
 
-bat_b02,1,5,3	script	countdown#bat_b02	844,{
+bat_b02,1,5,3	script	countdown#bat_b02	CLEAR_NPC,{
 OnInit:
 	stopnpctimer;
 	end;
@@ -1105,30 +1105,30 @@ OnTimer1900000:
 	end;
 }
 
-bat_b02,81,83,3	script	Acampamento Guillaume#flag32	973,{ end; }
-bat_b02,94,83,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag33	973
-bat_b02,81,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag34	973
-bat_b02,94,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag35	973
-bat_b02,139,142,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag36	973
-bat_b02,139,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag37	973
-bat_b02,110,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag38	973
-bat_b02,110,137,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag39	973
-bat_b02,63,135,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag40	973
-bat_b02,63,165,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag41	973
-bat_b02,10,296,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag42	973
-bat_b02,306,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag32	974
-bat_b02,317,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag33	974
-bat_b02,306,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag34	974
-bat_b02,317,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag35	974
-bat_b02,257,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag36	974
-bat_b02,257,141,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag37	974
-bat_b02,297,164,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag38	974
-bat_b02,297,136,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag39	974
-bat_b02,336,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag40	974
-bat_b02,336,139,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag41	974
-bat_b02,389,16,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag42	974
+bat_b02,81,83,3	script	Acampamento Guillaume#flag32	1_FLAG_LION,{ end; }
+bat_b02,94,83,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag33	1_FLAG_LION
+bat_b02,81,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag34	1_FLAG_LION
+bat_b02,94,66,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag35	1_FLAG_LION
+bat_b02,139,142,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag36	1_FLAG_LION
+bat_b02,139,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag37	1_FLAG_LION
+bat_b02,110,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag38	1_FLAG_LION
+bat_b02,110,137,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag39	1_FLAG_LION
+bat_b02,63,135,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag40	1_FLAG_LION
+bat_b02,63,165,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag41	1_FLAG_LION
+bat_b02,10,296,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Guillaume#flag42	1_FLAG_LION
+bat_b02,306,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag32	1_FLAG_EAGLE
+bat_b02,317,233,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag33	1_FLAG_EAGLE
+bat_b02,306,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag34	1_FLAG_EAGLE
+bat_b02,317,216,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag35	1_FLAG_EAGLE
+bat_b02,257,158,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag36	1_FLAG_EAGLE
+bat_b02,257,141,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag37	1_FLAG_EAGLE
+bat_b02,297,164,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag38	1_FLAG_EAGLE
+bat_b02,297,136,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag39	1_FLAG_EAGLE
+bat_b02,336,161,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag40	1_FLAG_EAGLE
+bat_b02,336,139,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag41	1_FLAG_EAGLE
+bat_b02,389,16,3	duplicate(Acampamento Guillaume#flag32)	Acampamento Croix#flag42	1_FLAG_EAGLE
 
-bat_b02,10,294,3	script	Vintenar#bat_b02_aover	419,{
+bat_b02,10,294,3	script	Vintenar#bat_b02_aover	4_M_KY_HEAD,{
 	set .@A_B_gap,$@Guill_ScoreBG2 - $@Croix_ScoreBG2;
 	if ($@FlaviusBG2_id1 == getcharid(4)) {
 		set .@your_medal,countitem(7829);
@@ -1170,7 +1170,7 @@ OnInit:
 	end;
 }
 
-bat_b02,389,14,3	script	Vintenar#bat_b02_bover	415,{
+bat_b02,389,14,3	script	Vintenar#bat_b02_bover	4_M_CRU_HEAD,{
 	set .@A_B_gap,$@Guill_ScoreBG2 - $@Croix_ScoreBG2;
 	if ($@FlaviusBG2_id2 == getcharid(4)) {
 		set .@your_medal,countitem(7829);

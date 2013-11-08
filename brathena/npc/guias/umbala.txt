@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-umbala,128,94,3	script	Exploradora#01umbala	702,{
+umbala,128,94,3	script	Exploradora#01umbala	4_F_GON,{
 	if (checkversion(0)) {
 		mes "[Exploradora]";
 		mes "Bem-vindo a ^8B4513Umbala^000000, o Vilarejo da Tribo Wotan.";
@@ -176,4 +176,4 @@ umbala,128,94,3	script	Exploradora#01umbala	702,{
 		close;
 	}
 }
-umbala,99,158,3	duplicatr(Exploradora#01umbala)	Exploradora#02umbala	702,{}
+umbala,99,158,3	duplicatr(Exploradora#01umbala)	Exploradora#02umbala	4_F_GON,{}

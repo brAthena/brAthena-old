@@ -25,7 +25,7 @@
 
 // Broken Sword
 //============================================================ 
-gon_in,17,93,5	script	Chefe#gon	775,{
+gon_in,17,93,5	script	Chefe#gon	4_M_TWMASKMAN,{
 	if (BaseLevel > 50) {
 		if (b_sword == 0) {
 			set b_sword,1;
@@ -421,7 +421,7 @@ gon_in,17,93,5	script	Chefe#gon	775,{
 	close;
 }
 
-gon_in,152,35,4	script	Anfitriã#gon	702,{
+gon_in,152,35,4	script	Anfitriã#gon	4_F_GON,{
 	if (b_sword < 1) {
 		mes "[Mei Yen Fang]";
 		mes "Ah...Você é novo por aqui, certo?";
@@ -519,7 +519,7 @@ gon_in,152,35,4	script	Anfitriã#gon	702,{
 	close;
 }
 
-gon_in,165,16,4	script	Homem Bêbado#gon	748,{
+gon_in,165,16,4	script	Homem Bêbado#gon	4_M_ALCHE_A,{
 	if (b_sword < 4) {
 		mes "[Xue Bong]";
 		mes "Ahhh... Meu estômago... Minha cabeça..";
@@ -801,7 +801,7 @@ gon_dun01,148,156,0	script	start01#gnbs	-1,{
 		end;
 }
 
-gon_dun01,201,25,0	script	trace1-1#gnbs	139,1,1,{
+gon_dun01,201,25,0	script	trace1-1#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 7) donpcevent "timer1-1::OnCommandOn";
 	end;
 
@@ -847,7 +847,7 @@ gon_dun01,2,1,0	script	timer1-1	-1,{
 		end;
 }
 
-gon_dun01,202,25,0	script	#getitem1-1	111,2,1,{
+gon_dun01,202,25,0	script	#getitem1-1	HIDDEN_NPC,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -869,7 +869,7 @@ gon_dun01,202,25,0	script	#getitem1-1	111,2,1,{
 		end;
 }
 
-gon_dun01,190,160,0	script	trace1-2#gnbs	139,1,1,{
+gon_dun01,190,160,0	script	trace1-2#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 7) donpcevent "timer1-2::OnCommandOn";
 	end;
 
@@ -915,7 +915,7 @@ gon_dun01,3,1,0	script	timer1-2	-1,{
 		end;
 }
 
-gon_dun01,190,159,0	script	#getitem1-2	111,2,1,{
+gon_dun01,190,159,0	script	#getitem1-2	HIDDEN_NPC,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -937,7 +937,7 @@ gon_dun01,190,159,0	script	#getitem1-2	111,2,1,{
 		end;
 }
 
-gon_dun01,163,53,0	script	trace1-3#gnbs	139,1,1,{
+gon_dun01,163,53,0	script	trace1-3#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 7) donpcevent "timer1-3::OnCommandOn";
 	end;
 
@@ -983,7 +983,7 @@ gon_dun01,4,1,0	script	timer1-3	-1,{
 		end;
 }
 
-gon_dun01,164,53,0	script	#getitem1-3	111,2,1,{
+gon_dun01,164,53,0	script	#getitem1-3	HIDDEN_NPC,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1005,7 +1005,7 @@ gon_dun01,164,53,0	script	#getitem1-3	111,2,1,{
 		end;
 }
 
-gon_dun01,133,183,0	script	trace1-4#gnbs	139,1,1,{
+gon_dun01,133,183,0	script	trace1-4#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 7) donpcevent "timer1-4::OnCommandOn";
 	end;
 
@@ -1051,7 +1051,7 @@ gon_dun01,5,1,0	script	timer1-4	-1,{
 		end;
 }
 
-gon_dun01,134,183,0	script	#getitem1-4	111,2,1,{
+gon_dun01,134,183,0	script	#getitem1-4	HIDDEN_NPC,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1073,7 +1073,7 @@ gon_dun01,134,183,0	script	#getitem1-4	111,2,1,{
 		end;
 }
 
-gon_dun01,139,257,0	script	trace1-5#gnbs	139,1,1,{
+gon_dun01,139,257,0	script	trace1-5#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 7) donpcevent "timer1-5::OnCommandOn";
 	end;
 
@@ -1119,7 +1119,7 @@ gon_dun01,6,1,0	script	timer1-5	-1,{
 		end;
 }
 
-gon_dun01,140,257,0	script	#getitem1-5	111,2,1,{
+gon_dun01,140,257,0	script	#getitem1-5	HIDDEN_NPC,2,1,{
 	if (b_sword != 7) end;
 	set b_sword,8;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1149,7 +1149,7 @@ gon_dun02,1,1,0	script	start02#gnbs	-1,{
 		end;
 }
 
-gon_dun02,65,168,0	script	trace2-1#gnbs	139,1,1,{
+gon_dun02,65,168,0	script	trace2-1#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-1::OnCommandOn";
 	end;
 
@@ -1195,7 +1195,7 @@ gon_dun02,2,1,0	script	timer2-1	-1,{
 		end;
 }
 
-gon_dun02,202,25,0	script	#getitem2-1	111,2,1,{
+gon_dun02,202,25,0	script	#getitem2-1	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1217,7 +1217,7 @@ gon_dun02,202,25,0	script	#getitem2-1	111,2,1,{
 		end;
 }
 
-gon_dun02,265,200,0	script	trace2-2#gnbs	139,1,1,{
+gon_dun02,265,200,0	script	trace2-2#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-2::OnCommandOn";
 	end;
 
@@ -1263,7 +1263,7 @@ gon_dun02,3,1,0	script	timer2-2	-1,{
 		end;
 }
 
-gon_dun02,265,201,0	script	#getitem2-2	111,2,1,{
+gon_dun02,265,201,0	script	#getitem2-2	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1285,7 +1285,7 @@ gon_dun02,265,201,0	script	#getitem2-2	111,2,1,{
 		end;
 }
 
-gon_dun02,247,129,0	script	trace2-3#gnbs	139,1,1,{
+gon_dun02,247,129,0	script	trace2-3#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-3::OnCommandOn";
 	end;
 
@@ -1331,7 +1331,7 @@ gon_dun02,4,1,0	script	timer2-3	-1,{
 		end;
 }
 
-gon_dun02,247,128,0	script	#getitem2-3	111,2,1,{
+gon_dun02,247,128,0	script	#getitem2-3	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1353,7 +1353,7 @@ gon_dun02,247,128,0	script	#getitem2-3	111,2,1,{
 		end;
 }
 
-gon_dun02,149,74,0	script	trace2-4#gnbs	139,1,1,{
+gon_dun02,149,74,0	script	trace2-4#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-4::OnCommandOn";
 	end;
 
@@ -1399,7 +1399,7 @@ gon_dun02,5,1,0	script	timer2-4	-1,{
 		end;
 }
 
-gon_dun02,149,75,0	script	#getitem2-4	111,2,1,{
+gon_dun02,149,75,0	script	#getitem2-4	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1421,7 +1421,7 @@ gon_dun02,149,75,0	script	#getitem2-4	111,2,1,{
 		end;
 }
 
-gon_dun02,23,105,0	script	trace2-5#gnbs	139,1,1,{
+gon_dun02,23,105,0	script	trace2-5#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-5::OnCommandOn";
 	end;
 
@@ -1467,7 +1467,7 @@ gon_dun02,6,1,0	script	timer2-5	-1,{
 		end;
 }
 
-gon_dun02,23,106,0	script	#getitem2-5	111,2,1,{
+gon_dun02,23,106,0	script	#getitem2-5	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1489,7 +1489,7 @@ gon_dun02,23,106,0	script	#getitem2-5	111,2,1,{
 		end;
 }
 
-gon_dun02,249,39,0	script	trace2-6#gnbs	139,1,1,{
+gon_dun02,249,39,0	script	trace2-6#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 8) donpcevent "timer2-6::OnCommandOn";
 	end;
 
@@ -1535,7 +1535,7 @@ gon_dun02,7,1,0	script	timer2-6	-1,{
 		end;
 }
 
-gon_dun02,249,40,0	script	#getitem2-6	111,2,1,{
+gon_dun02,249,40,0	script	#getitem2-6	HIDDEN_NPC,2,1,{
 	if (b_sword != 8) end;
 	set b_sword,9;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1565,7 +1565,7 @@ gon_dun03,1,1,0	script	start03#gnbs	-1,{
 		end;
 }
 
-gon_dun03,11,75,0	script	trace3-1#gnbs	139,1,1,{
+gon_dun03,11,75,0	script	trace3-1#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-1::OnCommandOn";
 	end;
 
@@ -1611,7 +1611,7 @@ gon_dun03,2,1,0	script	timer3-1	-1,{
 		end;
 }
 
-gon_dun03,10,74,0	script	#getitem3-1	111,2,1,{
+gon_dun03,10,74,0	script	#getitem3-1	HIDDEN_NPC,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1637,7 +1637,7 @@ gon_dun03,10,74,0	script	#getitem3-1	111,2,1,{
 		end;
 }
 
-gon_dun03,199,103,0	script	trace3-2#gnbs	139,1,1,{
+gon_dun03,199,103,0	script	trace3-2#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-2::OnCommandOn";
 	end;
 
@@ -1683,7 +1683,7 @@ gon_dun03,3,1,0	script	timer3-2	-1,{
 		end;
 }
 
-gon_dun03,199,102,0	script	#getitem3-2	111,2,1,{
+gon_dun03,199,102,0	script	#getitem3-2	HIDDEN_NPC,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1709,7 +1709,7 @@ gon_dun03,199,102,0	script	#getitem3-2	111,2,1,{
 		end;
 }
 
-gon_dun03,14,162,0	script	trace3-3#gnbs	139,1,1,{
+gon_dun03,14,162,0	script	trace3-3#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-3::OnCommandOn";
 	end;
 
@@ -1755,7 +1755,7 @@ gon_dun03,4,1,0	script	timer3-3	-1,{
 		end;
 }
 
-gon_dun03,14,163,0	script	#getitem3-3	111,2,1,{
+gon_dun03,14,163,0	script	#getitem3-3	HIDDEN_NPC,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1781,7 +1781,7 @@ gon_dun03,14,163,0	script	#getitem3-3	111,2,1,{
 		end;
 }
 
-gon_dun03,155,263,0	script	trace3-4#gnbs	139,1,1,{
+gon_dun03,155,263,0	script	trace3-4#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-4::OnCommandOn";
 	end;
 
@@ -1827,7 +1827,7 @@ gon_dun03,5,1,0	script	timer3-4	-1,{
 		end;
 }
 
-gon_dun03,156,263,0	script	#getitem3-4	111,2,1,{
+gon_dun03,156,263,0	script	#getitem3-4	HIDDEN_NPC,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1853,7 +1853,7 @@ gon_dun03,156,263,0	script	#getitem3-4	111,2,1,{
 		end;
 }
 
-gon_dun03,169,90,0	script	trace3-5#gnbs	139,1,1,{
+gon_dun03,169,90,0	script	trace3-5#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-5::OnCommandOn";
 	end;
 
@@ -1899,7 +1899,7 @@ gon_dun03,6,1,0	script	timer3-5	-1,{
 		end;
 }
 
-gon_dun03,170,90,0	script	#getitem3-5	111,2,1,{
+gon_dun03,170,90,0	script	#getitem3-5	HIDDEN_NPC,2,1,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1925,7 +1925,7 @@ gon_dun03,170,90,0	script	#getitem3-5	111,2,1,{
 		end;
 }
 
-gon_dun03,162,40,0	script	trace3-6#gnbs	139,1,1,{
+gon_dun03,162,40,0	script	trace3-6#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-6::OnCommandOn";
 	end;
 
@@ -1971,7 +1971,7 @@ gon_dun03,7,1,0	script	timer3-6	-1,{
 		end;
 }
 
-gon_dun03,68,39,0	script	#getitem3-6	111,1,2,{
+gon_dun03,68,39,0	script	#getitem3-6	HIDDEN_NPC,1,2,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -1997,7 +1997,7 @@ gon_dun03,68,39,0	script	#getitem3-6	111,1,2,{
 		end;
 }
 
-gon_dun03,68,212,0	script	trace3-7#gnbs	139,1,1,{
+gon_dun03,68,212,0	script	trace3-7#gnbs	HIDDEN_WARP_NPC,1,1,{
 	if (b_sword == 9) donpcevent "timer3-7::OnCommandOn";
 	end;
 
@@ -2043,7 +2043,7 @@ gon_dun03,6,1,0	script	timer3-7	-1,{
 		end;
 }
 
-gon_dun03,68,213,0	script	#getitem3-7	111,1,2,{
+gon_dun03,68,213,0	script	#getitem3-7	HIDDEN_NPC,1,2,{
 	if (b_sword != 9) end;
 	set b_sword,10;
 	mes "Você encontrou um ^FF0000Pedaço de Lâmina^000000.";
@@ -2069,7 +2069,7 @@ gon_dun03,68,213,0	script	#getitem3-7	111,1,2,{
 		end;
 }
 
-gon_in,18,27,5	script	Senhora#gnbs	771,{
+gon_in,18,27,5	script	Senhora#gnbs	4_F_TWGRANDMOM,{
 	mes "[Shang Hua Yen]";
 	mes "Ho, ho, ho~";
 	mes "Quem pode ser?";
@@ -2098,7 +2098,7 @@ gon_in,18,27,5	script	Senhora#gnbs	771,{
 	close;
 }
 
-gon_dun03,62,222,0	script	Corpo Estranho#gnbs	111,{
+gon_dun03,62,222,0	script	Corpo Estranho#gnbs	HIDDEN_NPC,{
 	if (b_sword < 7) {
 		mes "Aqui estava um cadáver em decomposição.";
 		mes "Parece que os monstros o comeram.";
@@ -2148,7 +2148,7 @@ gon_dun03,62,222,0	script	Corpo Estranho#gnbs	111,{
 	close;
 }
 
-gonryun,139,142,7	script	Garota##gnbs1	772,{
+gonryun,139,142,7	script	Garota##gnbs1	4_F_TWMASKGIRL,{
 	if (b_sword < 12) {
 		mes "[Shi Ying Xiao]";
 		mes "..........";
@@ -2184,7 +2184,7 @@ gonryun,139,142,7	script	Garota##gnbs1	772,{
 	close;
 }
 
-gonryun,100,241,0	script	Estranho#gnbs	733,{
+gonryun,100,241,0	script	Estranho#gnbs	4_M_JOB_KNIGHT1,{
 	if (b_sword < 14) {
 		mes "[Zuo Hei]";
 		mes "Hmm...";
@@ -2419,7 +2419,7 @@ gonryun,100,241,0	script	Estranho#gnbs	733,{
 	mes "Você está fazendo a coisa certa.";
 	close;
 }
-geffen_in,71,112,2	script	Ferreiro#SaYumMoon	731,{
+geffen_in,71,112,2	script	Ferreiro#SaYumMoon	4_M_JOB_BLACKSMITH,{
 	if (b_sword < 17) {
 		mes "[Aumgarl]";
 		mes "*Sob*..*sob*....";
@@ -3007,7 +3007,7 @@ geffen_in,71,112,2	script	Ferreiro#SaYumMoon	731,{
 	close;
 }
 
-geffen_in,106,106,7	script	Garota#gnbs2	716,{
+geffen_in,106,106,7	script	Garota#gnbs2	4_M_KID2,{
 	if (b_sword < 20) {
 		mes "[Lyroo]";
 		mes "Ah...Ah....";
@@ -3121,7 +3121,7 @@ geffen_in,106,106,7	script	Garota#gnbs2	716,{
 	close;
 }
 
-prontera,275,86,2	script	Jovem#SaYumMoon	97,{
+prontera,275,86,2	script	Jovem#SaYumMoon	4W_M_01,{
 	if (b_sword < 20) {
 		mes "[Neil]";
 		mes "Oh cara, é tão bom estar";
@@ -3163,7 +3163,7 @@ prontera,275,86,2	script	Jovem#SaYumMoon	97,{
 	close;
 }
 
-yuno,208,164,4	script	Garota Agitada#gnbs	101,{
+yuno,208,164,4	script	Garota Agitada#gnbs	4W_F_01,{
 	if (b_sword < 21) {
 		mes "[Hisa]";
 		mes ".....";
@@ -3205,7 +3205,7 @@ yuno,208,164,4	script	Garota Agitada#gnbs	101,{
 	close;
 }
 
-yuno_in01,99,101,4	script	Doutor#gnbs	744,{
+yuno_in01,99,101,4	script	Doutor#gnbs	4_F_ALCHE,{
 	if (b_sword < 23) {
 		mes "[??????]";
 		mes "Eu não acredito que nós já nos conhecemos";
@@ -3681,7 +3681,7 @@ yuno_in01,99,101,4	script	Doutor#gnbs	744,{
 	close;
 }
 
-yuno_in01,104,94,0	script	saia fora#gnbs	139,2,1,{
+yuno_in01,104,94,0	script	saia fora#gnbs	HIDDEN_WARP_NPC,2,1,{
 OnTouch:
 	if (b_sword < 22) {
 		mes "[??????]";
@@ -3710,7 +3710,7 @@ OnTouch:
 
 // Faca Perdida
 //============================================================ 
-gonryun,237,226,3	script	Han Ran Jiao#gon	776,{
+gonryun,237,226,3	script	Han Ran Jiao#gon	4_M_TWMIDMAN,{
 	if (nakha == 0) {
 		mes "[Han Ran Jiao]";
 		mes "Oh não! O que devo fazer?!";
@@ -3805,7 +3805,7 @@ gonryun,237,226,3	script	Han Ran Jiao#gon	776,{
 	}
 }
 
-gon_fild01,245,257,0	script	#gonknife	111,3,3,{
+gon_fild01,245,257,0	script	#gonknife	HIDDEN_NPC,3,3,{
 OnTouch:
 	if (nakha == 1) {
 		set nakha,2;

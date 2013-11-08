@@ -84,10 +84,10 @@
 	close;
 }
 job3_guil01,79,96,3	duplicate(phs)	Vendedora de Ervas Tóxicas  877
-morocc,191,94,4	duplicate(phs)	Vendedora de Ervas Tóxicas#moc	877
-lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	877,{}
+morocc,191,94,4	duplicate(phs)	Vendedora de Ervas Tóxicas#moc	4_F_YUNYANG
+lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	4_F_YUNYANG,{}
 
--	script	::runesale	853,{
+-	script	::runesale	4_M_YURI,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está carregando -";
@@ -145,10 +145,10 @@ lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	877,{}
 	mes "Por favor, volte logo~!";
 	close;
 }
-prontera,168,228,3	duplicate(runesale)	Vendedor de Runas#prt	853
-prontera,168,228,3	duplicate(runesale)	Rune Merchant#prt	853,{}
+prontera,168,228,3	duplicate(runesale)	Vendedor de Runas#prt	4_M_YURI
+prontera,168,228,3	duplicate(runesale)	Rune Merchant#prt	4_M_YURI,{}
 
-job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
+job3_guil01,91,93,3	script	Coletor de Ervas Raras	1_M_03,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está carregando -";
@@ -250,29 +250,29 @@ job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
 	close;
 }
 
-gef_tower,105,172,5	duplicate(pss)	Vendedora de Fragmentos#Sorcerer	700
-prt_in,131,66,0	duplicate(pss)	Vendedora de Fragmentos#Prontera	700
-alberta,105,52,7	duplicate(pss)	Vendedora de Fragmentos#Alberta	700
-aldebaran,133,114,5	duplicate(pss)	Vendedora de Fragmentos#Aldebaran	700
-comodo,193,159,5	duplicate(pss)	Vendedora de Fragmentos#Comodo	700
-geffen,129,49,5	duplicate(pss)	Vendedora de Fragmentos#Geffen	700
-izlude,138,163,5	duplicate(pss)	Vendedora de Fragmentos#Izlude	700
-malangdo,214,163,5	duplicate(pss)	Vendedora de Fragmentos#Malangdo	700
-mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#Mora	700
-ra_in01,256,273,3	duplicate(pss)	Vendedora de Fragmentos#Rachel	700
-veins,202,128,5	duplicate(pss)	Vendedora de Fragmentos#Veins	700
-dicastes01,207,200,5	duplicate(pss)	Vendedora de Fragmentos#Dicastes	700
-manuk,261,206,3	duplicate(pss)	Vendedora de Fragmentos#Manuk	700
-splendide,207,160,5	duplicate(pss)	Vendedora de Fragmentos#Splendide	700
-mid_camp,224,237,3	duplicate(pss)	Vendedora de Fragmentos#Midgard	700 
+gef_tower,105,172,5	duplicate(pss)	Vendedora de Fragmentos#Sorcerer	8_F_GIRL
+prt_in,131,66,0	duplicate(pss)	Vendedora de Fragmentos#Prontera	8_F_GIRL
+alberta,105,52,7	duplicate(pss)	Vendedora de Fragmentos#Alberta	8_F_GIRL
+aldebaran,133,114,5	duplicate(pss)	Vendedora de Fragmentos#Aldebaran	8_F_GIRL
+comodo,193,159,5	duplicate(pss)	Vendedora de Fragmentos#Comodo	8_F_GIRL
+geffen,129,49,5	duplicate(pss)	Vendedora de Fragmentos#Geffen	8_F_GIRL
+izlude,138,163,5	duplicate(pss)	Vendedora de Fragmentos#Izlude	8_F_GIRL
+malangdo,214,163,5	duplicate(pss)	Vendedora de Fragmentos#Malangdo	8_F_GIRL
+mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#Mora	8_F_GIRL
+ra_in01,256,273,3	duplicate(pss)	Vendedora de Fragmentos#Rachel	8_F_GIRL
+veins,202,128,5	duplicate(pss)	Vendedora de Fragmentos#Veins	8_F_GIRL
+dicastes01,207,200,5	duplicate(pss)	Vendedora de Fragmentos#Dicastes	8_F_GIRL
+manuk,261,206,3	duplicate(pss)	Vendedora de Fragmentos#Manuk	8_F_GIRL
+splendide,207,160,5	duplicate(pss)	Vendedora de Fragmentos#Splendide	8_F_GIRL
+mid_camp,224,237,3	duplicate(pss)	Vendedora de Fragmentos#Midgard	8_F_GIRL 
 
-einbroch,122,250,4	shop	Mercado Negro#ein	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
-lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	49
-mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	49
-prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	49
-ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	49
-malangdo,215,163,6	duplicate(pss)	Vendedora de Fragmentos#4	700
-mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#5	700,{}
+einbroch,122,250,4	shop	Mercado Negro#ein	1_M_03,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
+lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	1_M_03
+mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	1_M_03
+prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	1_M_03
+ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	1_M_03
+malangdo,215,163,6	duplicate(pss)	Vendedora de Fragmentos#4	8_F_GIRL
+mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#5	8_F_GIRL,{}
 izlude_a,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_a  700
 izlude_b,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_b  700
 izlude_c,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_c  700

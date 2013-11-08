@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-yuno_in03,176,24,3	script	Mischna	755,{
+yuno_in03,176,24,3	script	Mischna	4_M_SAGE_C,{
 	if (BaseJob == Job_Sage) {
 		if (SAG_SK == 100) {
 			if (getskilllv("SA_ELEMENTFIRE") == 0 && getskilllv("SA_ELEMENTGROUND") == 0 && getskilllv("SA_ELEMENTWIND") == 0 && getskilllv("SA_ELEMENTWATER") == 0 && getskilllv("SA_CREATECON") == 0) {

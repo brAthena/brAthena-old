@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_prydb1,103,54,3	script	Gato Suspeito#nightmare	547,{
+moc_prydb1,103,54,3	script	Gato Suspeito#nightmare	4_CAT_SAILOR4,{
 	mes "[Gato Suspeito]";
 	mes "Nenhuma Múmia. Ou resíduos. Não conte a ninguém sobre isso...";
 	next;
@@ -92,7 +92,7 @@ moc_prydb1,103,54,3	script	Gato Suspeito#nightmare	547,{
 		close;
 	}
 }
-moc_prydn1,94,98,3	script	Gato Suspeito#nightmareb	547,{
+moc_prydn1,94,98,3	script	Gato Suspeito#nightmareb	4_CAT_SAILOR4,{
 	mes "[Gato Suspeito]";
 	mes "Uma múmia me feriu. Se puder volte o quanto antes!";
 	next;

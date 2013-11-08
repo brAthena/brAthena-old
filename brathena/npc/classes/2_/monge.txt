@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_monk,59,247,1	script	Monge Guardião#mon	120,6,2,{
+prt_monk,59,247,1	script	Monge Guardião#mon	2_M_PHARMACIST,6,2,{
 	if (Upper == 1) {
 		mes "[Monge Guardião]";
 		mes "Hum? O que veio fazer aqui?";
@@ -329,7 +329,7 @@ OnTouch:
 	end;
 }
 
-monk_in,99,58,1	script	Sensei Muhae#mon	60,{
+monk_in,99,58,1	script	Sensei Muhae#mon	1_M_PASTOR,{
 	mes "[Sensei Muhae]";
 	mes "Saudações, você parece estar em um caminho puro.";
 	mes "Entre, entre, o que posso fazer por você hoje?";
@@ -909,7 +909,7 @@ monk_in,99,58,1	script	Sensei Muhae#mon	60,{
 	}
 }
 
-prt_monk,251,255,1	script	Douha#mon	79,{
+prt_monk,251,255,1	script	Douha#mon	1_F_PRIEST,{
 	if (MONGE_Q >= 10 && MONGE_Q < 14) {
 		if (MONGE_Q == 10) {
 			mes "[Douha]";
@@ -1687,7 +1687,7 @@ prt_monk,251,255,1	script	Douha#mon	79,{
 	}
 }
 
-prt_monk,57,179,1	script	Puhae#mon	110,{
+prt_monk,57,179,1	script	Puhae#mon	4_M_MINISTER,{
 	if (MONGE_Q == 14 && BaseJob == Job_Acolyte) {
 		mes "[Puhae]";
 		mes "...";
@@ -1853,7 +1853,7 @@ prt_monk,57,179,1	script	Puhae#mon	110,{
 	}
 }
 
-prt_monk,199,169,3	script	Guarda Chefe#mon	746,{
+prt_monk,199,169,3	script	Guarda Chefe#mon	4_F_MONK,{
 	mes "[Guarda Chefe Chori]";
 	mes "....Este lugar é para aqueles";
 	mes "que estão no teste para se tornar um monge.";
@@ -1886,7 +1886,7 @@ prt_monk,199,169,3	script	Guarda Chefe#mon	746,{
 	}
 }
 
-monk_test,329,61,3	script	Assistente#mon	753,{
+monk_test,329,61,3	script	Assistente#mon	4_M_MONK,{
 	if (MONGE_Q > 14 && MONGE_Q < 25) {
 		if (MONGE_Q == 15) {
 			mes "[Assistente]";
@@ -1937,7 +1937,7 @@ monk_test,329,61,3	script	Assistente#mon	753,{
 	}
 }
 
-monk_test,386,388,4	script	Monge Aprendiz#mon	110,{
+monk_test,386,388,4	script	Monge Aprendiz#mon	4_M_MINISTER,{
 	mes "[Monge Aprendiz]";
 	mes "B... Bem-Vindo!";
 	mes "Es... Este lugar testa a tolerância de candidatos a monge!";
@@ -1972,7 +1972,7 @@ monk_test,386,388,4	script	Monge Aprendiz#mon	110,{
 	close;
 }
 
-monk_test,387,350,0	script	Supervisor#1	45,2,2,{
+monk_test,387,350,0	script	Supervisor#1	WARPNPC,2,2,{
 OnTouch:
 	if (MONGE_Q >= 15 && MONGE_Q <= 23) {
 		set MONGE_Q,MONGE_Q+1;
@@ -2030,7 +2030,7 @@ monk_test,387,42,0	duplicate(ArmadilhaMonge)	Armadilha#t_monge7_2	-1,1,0
 monk_test,389,43,0	duplicate(ArmadilhaMonge)	Armadilha#t_monge7_3	-1
 monk_test,389,42,0	duplicate(ArmadilhaMonge)	Armadilha#t_monge7_4	-1
 
-job_monk,225,180,1	script	Hyumo#mon	89,{
+job_monk,225,180,1	script	Hyumo#mon	4_M_ORIENT02,{
 	if ((countitem(1069) > 0 || countitem(1070) > 0) && (countitem(1069) < 30 || countitem(1070) < 30)) {
 		mes "[Hyumo]";
 		mes "Você não trouxe os cogumelos suficientes ... Vá e junte um pouco mais.";
@@ -2122,7 +2122,7 @@ job_monk,225,180,1	script	Hyumo#mon	89,{
 	}
 }
 
-prt_monk,225,180,1	script	Hyumo#mon2	89,{
+prt_monk,225,180,1	script	Hyumo#mon2	4_M_ORIENT02,{
 	if (MONGE_Q < 25) {
 		mes "[Hyumo]";
 		mes "Quando vejo vegetais crescendo, eu me sinto crescendo junto com eles.";
@@ -2163,7 +2163,7 @@ prt_monk,225,180,1	script	Hyumo#mon2	89,{
 	}
 }
 
-monk_test,319,139,1	script	Taomoon#mon	52,{
+monk_test,319,139,1	script	Taomoon#mon	1_M_HOF,{
 	if (MONGE_Q == 25) {
 		mes "[Taomoon]";
 		mes "Bem-vindo, jovem.";
@@ -2234,7 +2234,7 @@ monk_test,319,139,1	script	Taomoon#mon	52,{
 	}
 }
 
-monk_test,82,85,1	script	Procurador#mon	95,{
+monk_test,82,85,1	script	Procurador#mon	4_F_SISTER,{
 	mes "[Procurador]";
 	mes "Então, você está pronto a se submeter ao treinamento espiritual?";
 	next;
@@ -2326,7 +2326,7 @@ OnDisable:
 	end;
 }
 
-monk_test,166,278,0	script	saída_monge#1	45,1,1,{
+monk_test,166,278,0	script	saída_monge#1	WARPNPC,1,1,{
 OnTouch:
 	mes "[Procurador]";
 	mes "Você fez bem. Por favor retorne até Taomoon, ele está esperando por você.";
@@ -2341,7 +2341,7 @@ OnTouch:
 	end;
 }
 
-monk_test,88,91,1	script	Procurador#mon2	52,{
+monk_test,88,91,1	script	Procurador#mon2	1_M_HOF,{
 	mes "[Procurador]";
 	mes "Então, você está pronto para passar por este treinamento espiritual?";
 	next;
@@ -2433,7 +2433,7 @@ OnDisable:
 	end;
 }
 
-monk_test,166,178,0	script	saída_monge#2	45,1,1,{
+monk_test,166,178,0	script	saída_monge#2	WARPNPC,1,1,{
 OnTouch:
 	mes "[Procurador]";
 	mes "Você fez bem. Por favor retorne até Taomoon, ele está esperando por você.";
@@ -2448,7 +2448,7 @@ OnTouch:
 	end;
 }
 
-monk_test,95,85,1	script	Procuradora#btl#3	79,{
+monk_test,95,85,1	script	Procuradora#btl#3	1_F_PRIEST,{
 	mes "[Procurador]";
 	mes "Então, você está pronto para passar por este treinamento espiritual?";
 	next;
@@ -2540,7 +2540,7 @@ OnDisable:
 	end;
 }
 
-monk_test,270,278,0	script	saída_monge#3	45,1,1,{
+monk_test,270,278,0	script	saída_monge#3	WARPNPC,1,1,{
 OnTouch:
 	mes "[Procurador]";
 	mes "Você fez bem. Por favor retorne até Taomoon, ele está esperando por você.";
@@ -2582,7 +2582,7 @@ OnEnable:
 	end;
 }
 
-monk_test,137,338,1	script	Reinício#monge	79,{
+monk_test,137,338,1	script	Reinício#monge	1_F_PRIEST,{
 	mes "Grrrr...";
 	mes "Todos os monstros no local do teste de monge foram repostos.";
 	mes "Contagem de tempo ativada.";

@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_monk,270,198,3	script	Monge Aprendiz#qsk_mo	753,{
+prt_monk,270,198,3	script	Monge Aprendiz#qsk_mo	4_M_MONK,{
 	if (BaseJob == Job_Monk) {
 		if (MONK_SK == 7) {
 			mes "[Monge]";
@@ -216,7 +216,7 @@ prt_monk,270,198,3	script	Monge Aprendiz#qsk_mo	753,{
 	close;
 }
 
-monk_test,316,69,5	script	Monge#qsk_mo	823,{
+monk_test,316,69,5	script	Monge#qsk_mo	4_M_CHNMONK,{
 	if (BaseJob == Job_Monk) {
 		if (MONK_SK == 6) {
 			mes "[Monge]";			

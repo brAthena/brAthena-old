@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-morocc_in,142,100,4	script	Alquimista	89,{
+morocc_in,142,100,4	script	Alquimista	4_M_ORIENT02,{
 	mes "[Stair]";
 	mes "Bem-vindo a mais famosa loja de ^3355FF'Placa de PARE'^000000... a casa Stair.";
 	mes "Já ouviu falar de nossa família?..";
@@ -69,7 +69,7 @@ morocc_in,142,100,4	script	Alquimista	89,{
 
 // Quest Binóculo
 // ============================================================
-morocc_in,76,163,4	script	Alquímista	64,{
+morocc_in,76,163,4	script	Alquímista	1_M_WIZARD,{
 	mes "[Marius]";
 	mes "Ha! Ha! Ha! Outro cliente!";
 	mes "Eu sei o que vai dizer.";

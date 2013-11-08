@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude,125,175,4	script	Dona Risadinha#iz	92,{
+izlude,125,175,4	script	Dona Risadinha#iz	4_F_03,{
 	mes "[Dona Risadinha]";
 	mes "Olá ~ Olá ~";
 	mes "Eu sou a Dona Risadinha";
@@ -97,14 +97,14 @@ izlude,125,175,4	script	Dona Risadinha#iz	92,{
 }
 
 // Duplicatas: Dona Risadinha
-izlude_a,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_a	92
-izlude_b,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_b	92
-izlude_c,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_c	92
-izlude_d,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_d	92,{}
-alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	92
-aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	92
-geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	92
+izlude_a,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_a	4_F_03
+izlude_b,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_b	4_F_03
+izlude_c,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_c	4_F_03
+izlude_d,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_d	4_F_03,{}
+alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	4_F_03
+aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	4_F_03
+geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	4_F_03
 moc_ruins,59,154,3	duplicata(Dona Risadinha#iz)	Dona Risadinha#moc	92
 payon,186,104,5	duplicata(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
-payon,84,158,4	duplicato(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
-prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	92
+payon,84,158,4	duplicato(Dona Risadinha#iz)	Dona Risadinha#pay	4_F_03,{}
+prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	4_F_03

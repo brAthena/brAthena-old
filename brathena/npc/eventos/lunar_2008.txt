@@ -26,7 +26,7 @@
 //   | - Anotações                                                |
 //   \____________________________________________________________/
 
-payon_in01,193,30,4	script	Vovó Moedora de Arroz#rat	78,{
+payon_in01,193,30,4	script	Vovó Moedora de Arroz#rat	1_F_ORIENT_04,{
 	mes "[Vovó Moedora de Arroz]";
 	if (!lunar_rat) {
 		mes "Essas criaturas";
@@ -174,7 +174,7 @@ payon_in01,193,30,4	script	Vovó Moedora de Arroz#rat	78,{
 	}
 }
 
-payon,215,127,4	script	Homem Moedor de Arroz#rat	54,{
+payon,215,127,4	script	Homem Moedor de Arroz#rat	1_M_JOBGUIDER,{
 	mes "[Homem Moedor de Arroz]";
 	if (!lunar_rat) {
 		mes "Quebrou meu coração...";
@@ -227,7 +227,7 @@ payon,215,127,4	script	Homem Moedor de Arroz#rat	54,{
 	}
 }
 
-payon,126,113,4	script	Senhorita Lunar#rat	719,{
+payon,126,113,4	script	Senhorita Lunar#rat	4_F_NACORURI,{
 	mes "[Lunar]";
 	if ((MaxWeight-Weight) < 3000 || checkweight(1201,1) == 0) {
 		mes "Ah, me desculpe, mas";

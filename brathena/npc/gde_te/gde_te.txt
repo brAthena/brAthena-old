@@ -25,7 +25,7 @@
 //==========================================
 // 共通(バレンタインイベント)
 //------------------------------------------
-te_alde_gld,232,193,6	script	サミュエル#01_TE	542,{
+te_alde_gld,232,193,6	script	サミュエル#01_TE	4_M_ALCHE_E,{
 	mes "[サミュエル]";
 	mes "こんにちは。";
 	mes "攻城戦と攻城戦TEについて";
@@ -34,9 +34,9 @@ te_alde_gld,232,193,6	script	サミュエル#01_TE	542,{
 	mes "お話を聞くといいですよ。";
 	close;
 }
-te_prt_gld,129,153,6	duplicate(サミュエル#01_TE)	サミュエル#02_TE	542
+te_prt_gld,129,153,6	duplicate(サミュエル#01_TE)	サミュエル#02_TE	4_M_ALCHE_E
 
-te_alde_gld,234,192,4	script	攻城戦マスター#01_TE	107,{
+te_alde_gld,234,192,4	script	攻城戦マスター#01_TE	1_M_PAY_ELDER,{
 	mes "[攻城戦マスター]";
 	mes "ここに来たということは";
 	mes "攻城戦に興味が・るのだろう？";
@@ -298,12 +298,12 @@ te_alde_gld,234,192,4	script	攻城戦マスター#01_TE	107,{
 		}
 	}
 }
-te_prt_gld,132,153,4	duplicate(攻城戦マスター#01_TE)	攻城戦マスター#02_TE	107
+te_prt_gld,132,153,4	duplicate(攻城戦マスター#01_TE)	攻城戦マスター#02_TE	1_M_PAY_ELDER
 
 //==========================================
 // TEポーション
 //------------------------------------------
-te_alde_gld,215,184,5	script	TEポーション商人#alde	125,{
+te_alde_gld,215,184,5	script	TEポーション商人#alde	4_M_TELEPORTER,{
 	mes "[TEポーション商人]";
 	mes "ここでは、攻城戦TEのエリアでのみ";
 	mes "使用可能なポーションを売っているよ。";
@@ -408,9 +408,9 @@ OnInit:
 	waitingroom "TEポーション販売",0;
 	end;
 }
-te_prt_gld,112,153,5	duplicate(TEポーション商人#alde)	TEポーション商人#prt	107
+te_prt_gld,112,153,5	duplicate(TEポーション商人#alde)	TEポーション商人#prt	1_M_PAY_ELDER
 
-te_alde_gld,211,184,5	script	TEポーション・作成商人::TE_alde	125,{
+te_alde_gld,211,184,5	script	TEポーション・作成商人::TE_alde	4_M_TELEPORTER,{
 	mes "[TEポーション・作成商人]";
 	mes "いらっしゃい！";
 	mes "ここでは、";
@@ -506,12 +506,12 @@ OnInit:
 	waitingroom "TEポーション・作成",0;
 	end;
 }
-te_prt_gld,116,153,5	duplicate(TE_alde)	TEポーション・作成商人::TE_prt	125
+te_prt_gld,116,153,5	duplicate(TE_alde)	TEポーション・作成商人::TE_prt	4_M_TELEPORTER
 
 //==========================================
 // レンタル装備
 //------------------------------------------
-te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	893,{
+te_alde_gld,209,182,5	script	レンタル装備管理者::TE_rnt_alde	4_F_HUWOMAN,{
 	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[レンタル装備管理者]";
 		mes "攻城戦TEルールが適用されている";
@@ -865,22 +865,22 @@ OnInit:
 	waitingroom "レンタル装備",0;
 	end;
 }
-te_prt_gld,125,153,3	duplicate(TE_rnt_alde)	レンタル装備管理者::TE_rnt_prt	893
+te_prt_gld,125,153,3	duplicate(TE_rnt_alde)	レンタル装備管理者::TE_rnt_prt	4_F_HUWOMAN
 
 //==========================================
 // 商人
 //------------------------------------------
 -	shop	TE_gld_callshop	-1,1750:1,1770:2,1751:3,717:600,13200:1,13201:15,13202:30,13250:4,13251:10,13252:20,13253:40,13254:100,7521:150,7522:150,7523:150,7524:300
-te_alde_gld,198,180,5	script	矢弾系販売人#alde	893,{
+te_alde_gld,198,180,5	script	矢弾系販売人#alde	4_F_HUWOMAN,{
 	callshop "TE_gld_callshop";
 	end;
 OnInit:
 	waitingroom "矢・弾丸・手・剣等 販売中",0;
 	end;
 }
-te_prt_gld,125,160,3	duplicate(矢弾系販売人#alde)	矢弾系販売人#prt	893
+te_prt_gld,125,160,3	duplicate(矢弾系販売人#alde)	矢弾系販売人#prt	4_F_HUWOMAN
 
-te_alde_gld,202,180,5	script	貿易商人#alde	893,{
+te_alde_gld,202,180,5	script	貿易商人#alde	4_F_HUWOMAN,{
 	mes "[貿易商人]";
 	mes "いらっしゃいませ。";
 	mes "ここでは、忍者・ガンスリンガーの方に";
@@ -967,12 +967,12 @@ OnInit:
 	waitingroom "苦無・グレネード弾 交換中",0;
 	end;
 }
-te_prt_gld,129,160,3	duplicate(貿易商人#alde)	貿易商人#prt	893
+te_prt_gld,129,160,3	duplicate(貿易商人#alde)	貿易商人#prt	4_F_HUWOMAN
 
 //==========================================
 // TEミッション
 //------------------------------------------
-te_alde_gld,218,182,5	script	訓練教官#kafra	899,{
+te_alde_gld,218,182,5	script	訓練教官#kafra	4_M_HUMAN_02,{
 	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[訓練教官]";
 		mes "おや、・なたは……";
@@ -1477,7 +1477,7 @@ OnInit:
 	end;
 }
 
-te_prt_gld,114,149,5	script	訓練教官#gloria	899,{
+te_prt_gld,114,149,5	script	訓練教官#gloria	4_M_HUMAN_02,{
 	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[訓練教官]";
 		mes "おや、・なたは……";
@@ -1987,7 +1987,7 @@ OnInit:
 	end;
 }
 
-te_alde_gld,206,180,5	script	修練教官#kafra	899,{
+te_alde_gld,206,180,5	script	修練教官#kafra	4_M_HUMAN_02,{
 	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[修練教官]";
 		mes "攻城戦TEエリアのすべての";
@@ -2081,7 +2081,7 @@ OnInit:
 	end;
 }
 
-te_prt_gld,125,149,3	script	修練教官#gloria	899,{
+te_prt_gld,125,149,3	script	修練教官#gloria	4_M_HUMAN_02,{
 	if (Job >= Job_RuneKnight && Job <= Job_ExpandedSuperNovice) {
 		mes "[修練教官]";
 		mes "攻城戦TEエリアのすべての";
@@ -2297,7 +2297,7 @@ OnInit:
 // 04 執事アルポルス
 // 05 執事アンペール
 //------------------------------------------
-alde_gld,228,189,3	script	カプラサービス#tes01	115,{
+alde_gld,228,189,3	script	カプラサービス#tes01	4_F_KAFRA3,{
 	mes "[カプラソリン]";
 	mes "いつもお客様のために奉仕する";
 	mes "カプラサービスです～";
@@ -2369,7 +2369,7 @@ alde_gld,228,189,3	script	カプラサービス#tes01	115,{
 	}
 }
 
-alde_gld,224,185,5	script	カプラサービス#tes02	117,{
+alde_gld,224,185,5	script	カプラサービス#tes02	4_F_KAFRA1,{
 	mes "[カプラディフォルテー]";
 	mes "カプラガーデンはルイーナを";
 	mes "元にして作られたので";
@@ -2381,7 +2381,7 @@ alde_gld,224,185,5	script	カプラサービス#tes02	117,{
 	close;
 }
 
-te_alde_gld,228,189,3	script	カプラサービス#tes03	112,{
+te_alde_gld,228,189,3	script	カプラサービス#tes03	4_F_KAFRA6,{
 	mes "[カプラＷ]";
 	mes "このワープゲートで";
 	mes "ルイーナに移動できます！";
@@ -2395,7 +2395,7 @@ te_alde_gld,228,189,3	script	カプラサービス#tes03	112,{
 	close;
 }
 
-te_alde_gld,224,185,5	script	カプラサービス#tes04	116,{
+te_alde_gld,224,185,5	script	カプラサービス#tes04	4_F_KAFRA2,{
 	mes "[カプラテーリング]";
 	mes "ここはカプラガーデンです。";
 	mes "カプラガーデンおよび";
@@ -2437,38 +2437,38 @@ te_alde_gld,224,185,5	script	カプラサービス#tes04	116,{
 //==========================================
 // 入場
 //------------------------------------------
-alde_gld,222,186,4	script	ギルドフラッグ	722,{}
-alde_gld,220,184,4	script	ギルドフラッグ	722,{}
-alde_gld,218,182,4	script	ギルドフラッグ	722,{}
-alde_gld,216,180,4	script	ギルドフラッグ	722,{}
-alde_gld,214,178,4	script	ギルドフラッグ	722,{}
+alde_gld,222,186,4	script	ギルドフラッグ	GUILD_FLAG,{}
+alde_gld,220,184,4	script	ギルドフラッグ	GUILD_FLAG,{}
+alde_gld,218,182,4	script	ギルドフラッグ	GUILD_FLAG,{}
+alde_gld,216,180,4	script	ギルドフラッグ	GUILD_FLAG,{}
+alde_gld,214,178,4	script	ギルドフラッグ	GUILD_FLAG,{}
 alde_gld,225,188,0	warp	to_kafragarten	1,1,te_alde_gld,228,185
 
 //==========================================
 // ギルドフラッグ
 //------------------------------------------
-te_alde_gld,61,87,6		script	ギルドフラッグ	722,{}
-te_alde_gld,61,79,6		script	ギルドフラッグ	722,{}
-te_alde_gld,45,87,8		script	ギルドフラッグ	722,{}
-te_alde_gld,51,87,8		script	ギルドフラッグ	722,{}
+te_alde_gld,61,87,6		script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,61,79,6		script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,45,87,8		script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,51,87,8		script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_alde_gld,99,251,4	script	ギルドフラッグ	722,{}
-te_alde_gld,99,244,4	script	ギルドフラッグ	722,{}
+te_alde_gld,99,251,4	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,99,244,4	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_alde_gld,146,82,0	script	ギルドフラッグ	722,{}
-te_alde_gld,138,83,0	script	ギルドフラッグ	722,{}
+te_alde_gld,146,82,0	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,138,83,0	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_alde_gld,239,246,2	script	ギルドフラッグ	722,{}
-te_alde_gld,239,239,2	script	ギルドフラッグ	722,{}
+te_alde_gld,239,246,2	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,239,239,2	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_alde_gld,265,93,6	script	ギルドフラッグ	722,{}
-te_alde_gld,265,87,6	script	ギルドフラッグ	722,{}
+te_alde_gld,265,93,6	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,265,87,6	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_alde_gld,257,153,7	script	ギルドフラッグ	722,{}
-te_alde_gld,257,166,5	script	ギルドフラッグ	722,{}
-te_alde_gld,262,153,7	script	ギルドフラッグ	722,{}
-te_alde_gld,262,166,5	script	ギルドフラッグ	722,{}
-te_alde_gld,267,153,7	script	ギルドフラッグ	722,{}
+te_alde_gld,257,153,7	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,257,166,5	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,262,153,7	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,262,166,5	script	ギルドフラッグ	GUILD_FLAG,{}
+te_alde_gld,267,153,7	script	ギルドフラッグ	GUILD_FLAG,{}
 
 //==========================================
 // warp
@@ -2535,31 +2535,31 @@ te_alde_gld,225,188,0	warp	to_luina	1,1,alde_gld,228,185
 //==========================================
 // 案内人
 //------------------------------------------
-te_alde_gld,45,84,3	script	案内人#ag01	893,{
+te_alde_gld,45,84,3	script	案内人#ag01	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「グラリス」砦です。";
 	close;
 }
 
-te_alde_gld,103,250,3	script	案内人#ag02	893,{
+te_alde_gld,103,250,3	script	案内人#ag02	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ディフォルテー」砦です。";
 	close;
 }
 
-te_alde_gld,138,87,7	script	案内人#ag03	893,{
+te_alde_gld,138,87,7	script	案内人#ag03	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ソリン」砦です。";
 	close;
 }
 
-te_alde_gld,239,249,3	script	案内人#ag04	893,{
+te_alde_gld,239,249,3	script	案内人#ag04	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ビニット」砦です。";
 	close;
 }
 
-te_alde_gld,264,96,5	script	案内人#ag05	893,{
+te_alde_gld,264,96,5	script	案内人#ag05	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「Ｗ」砦です。";
 	close;
@@ -2574,7 +2574,7 @@ te_alde_gld,264,96,5	script	案内人#ag05	893,{
 // 04 執事カサト
 // 05 執事フィサーロ
 //------------------------------------------
-prt_gld,118,151,4	script	グロリア案内兵士#tes01	105,{
+prt_gld,118,151,4	script	グロリア案内兵士#tes01	8W_SOLDIER,{
 	mes "[案内兵士]";
 	mes "ルーンミッドガッツ王国と";
 	mes "七つの王家に栄光・れ！";
@@ -2654,14 +2654,14 @@ prt_gld,118,151,4	script	グロリア案内兵士#tes01	105,{
 	}
 }
 
-prt_gld,122,151,4	script	グロリア案内兵士#tes02	105,{
+prt_gld,122,151,4	script	グロリア案内兵士#tes02	8W_SOLDIER,{
 	mes "[案内兵士]";
 	mes "グロリアへの入場はこちらの";
 	mes "ワープゲートです。";
 	close;
 }
 
-te_prt_gld,118,159,4	script	グロリア案内兵士#tes03	105,{
+te_prt_gld,118,159,4	script	グロリア案内兵士#tes03	8W_SOLDIER,{
 	mes "[案内兵士]";
 	mes "ここはグロリアです。";
 	mes "ヴァルキリーレルムに";
@@ -2670,7 +2670,7 @@ te_prt_gld,118,159,4	script	グロリア案内兵士#tes03	105,{
 	close;
 }
 
-te_prt_gld,122,159,4	script	グロリア案内兵士#tes04	105,{
+te_prt_gld,122,159,4	script	グロリア案内兵士#tes04	8W_SOLDIER,{
 	mes "[案内兵士]";
 	mes "ここはグロリアです。";
 	mes "カプラガーデンおよびグロリアの";
@@ -2699,46 +2699,46 @@ te_prt_gld,122,159,4	script	グロリア案内兵士#tes04	105,{
 //==========================================
 // 入場
 //------------------------------------------
-prt_gld,112,155,4	script	ギルドフラッグ	722,{}
-prt_gld,116,155,4	script	ギルドフラッグ	722,{}
-prt_gld,120,155,4	script	ギルドフラッグ	722,{}
-prt_gld,124,155,4	script	ギルドフラッグ	722,{}
-prt_gld,128,155,4	script	ギルドフラッグ	722,{}
+prt_gld,112,155,4	script	ギルドフラッグ	GUILD_FLAG,{}
+prt_gld,116,155,4	script	ギルドフラッグ	GUILD_FLAG,{}
+prt_gld,120,155,4	script	ギルドフラッグ	GUILD_FLAG,{}
+prt_gld,124,155,4	script	ギルドフラッグ	GUILD_FLAG,{}
+prt_gld,128,155,4	script	ギルドフラッグ	GUILD_FLAG,{}
 prt_gld,120,153,0	warp	to_gloria	1,1,te_prt_gld,120,149
 
 //==========================================
 // ギルドフラッグ
 //------------------------------------------
-te_prt_gld,131,60,6		script	ギルドフラッグ	722,{}
-te_prt_gld,138,68,6		script	ギルドフラッグ	722,{}
-te_prt_gld,138,60,6		script	ギルドフラッグ	722,{}
-te_prt_gld,135,60,6		script	ギルドフラッグ	722,{}
+te_prt_gld,131,60,6		script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,138,68,6		script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,138,60,6		script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,135,60,6		script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_prt_gld,244,126,8	script	ギルドフラッグ	722,{}
-te_prt_gld,244,128,8	script	ギルドフラッグ	722,{}
-te_prt_gld,236,126,8	script	ギルドフラッグ	722,{}
-te_prt_gld,236,128,8	script	ギルドフラッグ	722,{}
+te_prt_gld,244,126,8	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,244,128,8	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,236,126,8	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,236,128,8	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_prt_gld,147,140,4	script	ギルドフラッグ	722,{}
-te_prt_gld,147,136,4	script	ギルドフラッグ	722,{}
-te_prt_gld,158,140,4	script	ギルドフラッグ	722,{}
-te_prt_gld,158,136,4	script	ギルドフラッグ	722,{}
+te_prt_gld,147,140,4	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,147,136,4	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,158,140,4	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,158,136,4	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_prt_gld,120,243,6	script	ギルドフラッグ	722,{}
-te_prt_gld,120,236,6	script	ギルドフラッグ	722,{}
-te_prt_gld,122,243,6	script	ギルドフラッグ	722,{}
-te_prt_gld,122,236,6	script	ギルドフラッグ	722,{}
+te_prt_gld,120,243,6	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,120,236,6	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,122,243,6	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,122,236,6	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_prt_gld,199,243,2	script	ギルドフラッグ	722,{}
-te_prt_gld,199,236,2	script	ギルドフラッグ	722,{}
-te_prt_gld,197,243,2	script	ギルドフラッグ	722,{}
-te_prt_gld,197,236,2	script	ギルドフラッグ	722,{}
+te_prt_gld,199,243,2	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,199,236,2	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,197,243,2	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,197,236,2	script	ギルドフラッグ	GUILD_FLAG,{}
 
-te_prt_gld,160,210,4	script	ギルドフラッグ	722,{}
-te_prt_gld,153,213,3	script	ギルドフラッグ	722,{}
-te_prt_gld,150,220,2	script	ギルドフラッグ	722,{}
-te_prt_gld,169,220,6	script	ギルドフラッグ	722,{}
-te_prt_gld,167,213,5	script	ギルドフラッグ	722,{}
+te_prt_gld,160,210,4	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,153,213,3	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,150,220,2	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,169,220,6	script	ギルドフラッグ	GUILD_FLAG,{}
+te_prt_gld,167,213,5	script	ギルドフラッグ	GUILD_FLAG,{}
 
 //==========================================
 // warp
@@ -2804,31 +2804,31 @@ te_prt_gld,120,160,0	warp	to_valkyrie			1,1,prt_gld,120,149
 //==========================================
 // 案内人
 //------------------------------------------
-te_prt_gld,142,74,3	script	案内人#pg01	893,{
+te_prt_gld,142,74,3	script	案内人#pg01	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ゲオルグ」砦です。";
 	close;
 }
 
-te_prt_gld,246,134,3	script	案内人#pg02	893,{
+te_prt_gld,246,134,3	script	案内人#pg02	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「リハルト」砦です。";
 	close;
 }
 
-te_prt_gld,162,141,3	script	案内人#pg03	893,{
+te_prt_gld,162,141,3	script	案内人#pg03	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ウィグナー」砦です。";
 	close;
 }
 
-te_prt_gld,117,243,3	script	案内人#pg04	893,{
+te_prt_gld,117,243,3	script	案内人#pg04	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ハイネン」砦です。";
 	close;
 }
 
-te_prt_gld,203,243,3	script	案内人#pg05	893,{
+te_prt_gld,203,243,3	script	案内人#pg05	4_F_HUWOMAN,{
 	mes "[案内人]";
 	mes "ここは「ネリウス」砦です。";
 	close;

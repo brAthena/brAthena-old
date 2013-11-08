@@ -26,7 +26,7 @@
 
 // Bonecos & Doces
 //=======================================================================================================
-alberta,117,135,0	script	Elin	96,{
+alberta,117,135,0	script	Elin	4W_KID,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Elin]";
 		mes "^3355FFEspere um segundo! Certo, você está carregando muitos itens com você. Por favor, guarde alguns de seus itens no Armazém Kafra e volte a falar comigo.^000000";
@@ -379,7 +379,7 @@ alberta,117,135,0	script	Elin	96,{
 
 // Quest Quepe                                         
 // =======================================================================================================
-alberta_in,28,145,4	script	Grampa	120,{
+alberta_in,28,145,4	script	Grampa	2_M_PHARMACIST,{
 	mes "[Grampa]";
 	mes "*Suspiro*...";
 	mes "....*Suspiro!*";
@@ -457,7 +457,7 @@ alberta_in,28,145,4	script	Grampa	120,{
 
 // Chifre de Alce
 //=======================================================================================================//
-alberta_in,122,53,4	script	Cherokee	47,{
+alberta_in,122,53,4	script	Cherokee	1_M_01,{
 	mes "[Cherokee]";
 	mes "Ei~!";
 	next;
@@ -503,7 +503,7 @@ alberta_in,122,53,4	script	Cherokee	47,{
 
 //	Bao Bao, Fivela de Lua, Óculos Fashion e Fivela de Coração
 //=======================================================================================================//
-alberta,120,53,1	script	Zic#new30	51,{
+alberta,120,53,1	script	Zic#new30	1_M_BARD,{
 	if ((countitem(10007) > 0) && (countitem(968) > 49)) {
 		mes "[Zic]";
 		mes "Eu sei eu sei, você está querendo ganhar logo o seu Bao-Bao. Mas não consigo me concentrar no meu trabalho se você continuar me pertubando assim.";
@@ -636,7 +636,7 @@ alberta,120,53,1	script	Zic#new30	51,{
 
 // Chapéu de Verão, Chapéu de Mestre Arcano, Cartola, Coroa do Deus do Sol.
 //=======================================================================================================//
-alberta,136,79,1	script	Tempestra#new30	71,{
+alberta,136,79,1	script	Tempestra#new30	1_F_LIBRARYGIRL,{
 	mes "[Tempestra]";
 	mes "Ah, uma brisa fresca. É bom visitar a praia. Acho que foi a escolha certa vir aqui para fazer uma pausa da minha empresa.";
 	next;
@@ -939,7 +939,7 @@ alberta,136,79,1	script	Tempestra#new30	71,{
 //=======================================================================================================//
 // Quest Ilha da Tartaruga
 //=======================================================================================================//
-alberta,91,70,4	script	Kinsey#tur	89,{
+alberta,91,70,4	script	Kinsey#tur	4_M_ORIENT02,{
 	mes "[Kinsey]";
 	mes "O que um homem tem que fazer para conseguir uma bebida forte por aqui? Quero dizer, não há absolutamente nenhuma bar bom em Alberta!";
 	next;
@@ -984,7 +984,7 @@ alberta,91,70,4	script	Kinsey#tur	89,{
 	close;
 }
 
-alberta_in,23,104,4	script	Grandpa Turtle#tur	120,{
+alberta_in,23,104,4	script	Grandpa Turtle#tur	2_M_PHARMACIST,{
 	mes "[Vovô Tartaruga]";
 	mes "Oooh...";
 	mes "Estou tonto...";
@@ -1096,7 +1096,7 @@ alberta_in,23,104,4	script	Grandpa Turtle#tur	120,{
 	}
 }
 
-alberta,247,122,4	script	Barqueiro#tur	709,{
+alberta,247,122,4	script	Barqueiro#tur	4_M_SEAMAN,{
 	if (TURTLE || (MISC_QUEST & 65536)) {
 		mes "[Barqueiro]";
 		mes "Hehe...";
@@ -1218,7 +1218,7 @@ alberta,247,122,4	script	Barqueiro#tur	709,{
 	close;
 }
 
-tur_dun01,165,29,4	script	Barqueiro#tur2	709,{
+tur_dun01,165,29,4	script	Barqueiro#tur2	4_M_SEAMAN,{
 	mes "[Barqueiro]";
 	mes "Você deseja retornar a Alberta?";
 	next;
@@ -1236,7 +1236,7 @@ tur_dun01,165,29,4	script	Barqueiro#tur2	709,{
 	close;
 }
 
-alberta,248,89,4	script	Estudante da Ilha	121,{
+alberta,248,89,4	script	Estudante da Ilha	2_M_MOLGENSTEIN,{
 	mes "[Jonadan Nilria]";
 	mes "Cada lugar";
 	mes "tem o seu próprio e único";
@@ -1311,7 +1311,7 @@ alberta,248,89,4	script	Estudante da Ilha	121,{
 	}
 }
 
-alberta_in,18,102,4	script	Carta#tur	111,{
+alberta_in,18,102,4	script	Carta#tur	HIDDEN_NPC,{
 	mes "[Lendo a Carta]";
 	mes "- O / X / XOVX -";
 	mes "Se você encontrar esta carta, por favor, não ignore o que leu.";
@@ -1331,7 +1331,7 @@ alberta_in,18,102,4	script	Carta#tur	111,{
 	close;
 }
 
-alberta,248,93,4	script	Diário de bordo#tur	111,{
+alberta,248,93,4	script	Diário de bordo#tur	HIDDEN_NPC,{
 	if (rand(2)) {
 		mes "[Diário de bordo]";
 		mes "03:20 am";
@@ -1515,7 +1515,7 @@ alberta,248,93,4	script	Diário de bordo#tur	111,{
 	}
 }
 
-tur_dun01,160,81,4	script	Lápide da Caveira#tarr	111,{
+tur_dun01,160,81,4	script	Lápide da Caveira#tarr	HIDDEN_NPC,{
 	if (TURTLE == 2) {
 		mes "^3355FFDebaixo da pedra^000000";
 		mes "^3355FFhá uma pequena chave^000000";
@@ -1557,7 +1557,7 @@ tur_dun01,160,81,4	script	Lápide da Caveira#tarr	111,{
 	close;
 }
 
-tur_dun02,132,251,4	script	Raíz da Árvore Tartaruga#tur	111,{
+tur_dun02,132,251,4	script	Raíz da Árvore Tartaruga#tur	HIDDEN_NPC,{
 	if (TURTLE == 3) {
 		mes "^3355FFDebaixo das raízes da árvore^000000";
 		mes "^3355FFhá uma pequena e fina chave^000000";
@@ -1616,7 +1616,7 @@ tur_dun02,132,251,4	script	Raíz da Árvore Tartaruga#tur	111,{
 	close;
 }
 
-tur_dun02,46,125,4	script	Pilar Tartaruga	111,{
+tur_dun02,46,125,4	script	Pilar Tartaruga	HIDDEN_NPC,{
 	if (TURTLE == 7) {
 		mes "^3355FFDebaixo do Pilar da Tartaruga,^000000";
 		mes "^3355FFvocê encontra uma estranha chave.^000000";
@@ -1672,7 +1672,7 @@ tur_dun02,46,125,4	script	Pilar Tartaruga	111,{
 	close;
 }
 
-tur_dun02,49,158,4	script	Pilar Tartaruga#tur	111,{
+tur_dun02,49,158,4	script	Pilar Tartaruga#tur	HIDDEN_NPC,{
 	if (TURTLE == 8) {
 		mes "^3355FFNa base do pilar^000000";
 		mes "^3355FFestá uma pequena chave com^000000";
@@ -1766,7 +1766,7 @@ tur_dun02,49,158,4	script	Pilar Tartaruga#tur	111,{
 	close;
 }
 
-tur_dun01,203,155,4	script	Pilar Tartaruga#tur0	111,{
+tur_dun01,203,155,4	script	Pilar Tartaruga#tur0	HIDDEN_NPC,{
 	if (TURTLE == 4) {
 		mes "^3355FFNa base do pilar";
 		mes "está uma pequena chave com";
@@ -1813,7 +1813,7 @@ tur_dun01,203,155,4	script	Pilar Tartaruga#tur0	111,{
 	close;
 }
 
-tur_dun02,75,249,4	script	Pilar Tartaruga#tur2	111,{
+tur_dun02,75,249,4	script	Pilar Tartaruga#tur2	HIDDEN_NPC,{
 	if (TURTLE == 10) {
 		mes "^3355FFNa base do pilar";
 		mes "está uma pequena chave com";
@@ -1860,7 +1860,7 @@ tur_dun02,75,249,4	script	Pilar Tartaruga#tur2	111,{
 	close;
 }
 
-tur_dun03,118,233,4	script	Pilar Tartaruga#tur3	111,{
+tur_dun03,118,233,4	script	Pilar Tartaruga#tur3	HIDDEN_NPC,{
 	if (TURTLE == 11) {
 		mes "^3355FFNa base do pilar";
 		mes "está uma pequena chave com";
@@ -1907,7 +1907,7 @@ tur_dun03,118,233,4	script	Pilar Tartaruga#tur3	111,{
 	close;
 }
 
-tur_dun04,113,178,4	script	Estátua Tartaruga#tur	111,{
+tur_dun04,113,178,4	script	Estátua Tartaruga#tur	HIDDEN_NPC,{
 	if (TURTLE == 12) {
 		mes "^3355FFNo topo da estátua";
 		mes "existe uma pequena chave com uma";
@@ -1974,7 +1974,7 @@ tur_dun04,113,178,4	script	Estátua Tartaruga#tur	111,{
 	close;
 }
 
-tur_dun03,105,76,4	script	Cavaleiro Líder#tur	110,5,5,{
+tur_dun03,105,76,4	script	Cavaleiro Líder#tur	4_M_MINISTER,5,5,{
 	mes "[Takuyaka]";
 	mes "Onde é que todos os meus homens vão?!";
 	mes "É horrível~!";
@@ -2051,7 +2051,7 @@ OnTouch:
 	close;
 }
 
-tur_dun03,105,74,4	script	Mudasamu#tur	119,{
+tur_dun03,105,74,4	script	Mudasamu#tur	2_M_SWORDMASTER,{
 	mes "[Mudasamu]";
 	mes "Meu nome é Mudasamu...";
 	mes "O Segundo no comando da";
@@ -2081,7 +2081,7 @@ tur_dun03,105,74,4	script	Mudasamu#tur	119,{
 	close;
 }
 
-tur_dun01,190,115,4	script	Cavaleiro#tur	105,{
+tur_dun01,190,115,4	script	Cavaleiro#tur	8W_SOLDIER,{
 	mes "[?]";
 	mes "Onde eles estão?";
 	mes "Ei! Você é um aventureiro, não é? Você sabe onde estão meus companheiros?";
@@ -2143,7 +2143,7 @@ tur_dun01,190,115,4	script	Cavaleiro#tur	105,{
 	}
 }
 
-tur_dun03,189,126,4	script	Cavaleiro#tur2	105,{
+tur_dun03,189,126,4	script	Cavaleiro#tur2	8W_SOLDIER,{
 	mes "[Jayprocat]";
 	mes "Hã? Prazer em conhecer. Sou um poderoso Cavaleiro da Segurança de Alberta, Jayprocat.";
 	next;
@@ -2191,7 +2191,7 @@ tur_dun03,189,126,4	script	Cavaleiro#tur2	105,{
 	close;
 }
 
-tur_dun03,104,171,4	script	Cavaleiro#tur3	105,{
+tur_dun03,104,171,4	script	Cavaleiro#tur3	8W_SOLDIER,{
 	mes "[Squall]";
 	mes "Eu sou o único que sobrou? Onde estão todos os meus camaradas?! Eu... Estou prestes a ficar louco!";
 	next;
@@ -2241,7 +2241,7 @@ tur_dun03,104,171,4	script	Cavaleiro#tur3	105,{
 	close;
 }
 
-tur_dun03,67,130,4	script	Cavaleiro#tur4	105,{
+tur_dun03,67,130,4	script	Cavaleiro#tur4	8W_SOLDIER,{
 	mes "[Nysurea]";
 	mes "Hum? Estou surpreso que alguém por aqui ainda está vivo.";
 	next;
@@ -2293,7 +2293,7 @@ tur_dun03,67,130,4	script	Cavaleiro#tur4	105,{
 
 // Garoto de Alberta
 //============================================================
-alberta_in,131,95,5	script#dv	Iromo#ep3_2	706,{
+alberta_in,131,95,5	script#dv	Iromo#ep3_2	4_M_KID1,{
 	if (ep13_2_hiki == 13) {
 		mes "[Iromo]";
 		mes "Mas... este mundo é...";
@@ -2702,7 +2702,7 @@ alberta_in,131,95,5	script#dv	Iromo#ep3_2	706,{
 	close;
 }
 
-alberta_in,120,93,3	script#dv	Mãe de Iromo#ep3_2	53,{
+alberta_in,120,93,3	script#dv	Mãe de Iromo#ep3_2	1_M_INNKEEPER,{
 	if (ep13_2_hiki == 8) {
 		mes "[Mãe]";
 		mes "Obrigado por ajudar o meu filho.";
@@ -2798,7 +2798,7 @@ alberta_in,120,93,3	script#dv	Mãe de Iromo#ep3_2	53,{
 	close;
 }
 
-alberta,45,106,5	script#dv	Garoto#ep3_2	706,{
+alberta,45,106,5	script#dv	Garoto#ep3_2	4_M_KID1,{
 	if (ep13_2_hiki == 6) {
 		mes "[Garoto]";
 		mes "Iromo? Costumava gostar da ^FF0000Ração de Monstros^000000 e ^FF0000Poção Vermelha^000000.";

@@ -27,7 +27,7 @@
 
 // Izlude
 //============================================================
-izlude,197,205,1	script#re	Marinheiro#izlude	100,{
+izlude,197,205,1	script#re	Marinheiro#izlude	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -60,12 +60,12 @@ izlude,197,205,1	script#re	Marinheiro#izlude	100,{
 	}
 }
 
-izlude_a,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_a	100
-izlude_b,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_b	100
-izlude_c,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_c	100
-izlude_d,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_d	100,{}
+izlude_a,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_a	4W_SAILOR
+izlude_b,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_b	4W_SAILOR
+izlude_c,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_c	4W_SAILOR
+izlude_d,197,205,1	duplicatr(Marinheiro#izlude)	Marinheiro#izlude_d	4W_SAILOR,{}
 
-izlude,201,181,2	script#vpo	Marinheiro#izlude	100,{
+izlude,201,181,2	script#vpo	Marinheiro#izlude	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -99,7 +99,7 @@ izlude,201,181,2	script#vpo	Marinheiro#izlude	100,{
 }
 
 
-izlude,71,92,2	script#re	Bonne#izlude	90,{
+izlude,71,92,2	script#re	Bonne#izlude	4_F_01,{
 	mes "[Bonne]";
 	mes "Saudações!";
 	mes "Os habitantes de Izlude lhe dão boas vindas.";
@@ -121,12 +121,12 @@ izlude,71,92,2	script#re	Bonne#izlude	90,{
 	close;
 }
 
-izlude_a,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_a	90
-izlude_b,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_b	90
-izlude_c,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_c	90
-izlude_d,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_d	90,{}
+izlude_a,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_a	4_F_01
+izlude_b,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_b	4_F_01
+izlude_c,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_c	4_F_01
+izlude_d,71,92,2	duplicatr(Bonne#izlude)	Bonne#izlude_d	4_F_01,{}
 
-izlude,55,74,2	script#vpo	Bonne#izlude	90,{
+izlude,55,74,2	script#vpo	Bonne#izlude	4_F_01,{
 	mes "[Bonne]";
 	mes "Saudações!";
 	mes "Os habitantes de Izlude lhe dão boas vindas.";
@@ -148,7 +148,7 @@ izlude,55,74,2	script#vpo	Bonne#izlude	90,{
 	close;
 }
 
-izlude,172,215,4	script#re	Charfri#izlude	91,{
+izlude,172,215,4	script#re	Charfri#izlude	4_F_02,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -177,12 +177,12 @@ izlude,172,215,4	script#re	Charfri#izlude	91,{
 	close;
 }
 
-izlude_a,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_a	91
-izlude_b,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_b	91
-izlude_c,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_c	91
-izlude_d,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_d	91,{}
+izlude_a,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_a	4_F_02
+izlude_b,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_b	4_F_02
+izlude_c,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_c	4_F_02
+izlude_d,172,215,4	duplicatr(Charfri#izlude)	Charfri#izlude_d	4_F_02,{}
 
-izlude,135,78,2	script#vpo	Charfri#izlude	91,{
+izlude,135,78,2	script#vpo	Charfri#izlude	4_F_02,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -211,7 +211,7 @@ izlude,135,78,2	script#vpo	Charfri#izlude	91,{
 	close;
 }
 
-izlude,174,164,4	script#re	Cuskoal#izlude	124,{
+izlude,174,164,4	script#re	Cuskoal#izlude	4_F_TELEPORTER,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -233,12 +233,12 @@ izlude,174,164,4	script#re	Cuskoal#izlude	124,{
 	close;
 }
 
-izlude_a,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_a	124
-izlude_b,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_b	124
-izlude_c,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_c	124
-izlude_d,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_d	124,{} 
+izlude_a,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_a	4_F_TELEPORTER
+izlude_b,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_b	4_F_TELEPORTER
+izlude_c,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_c	4_F_TELEPORTER
+izlude_d,174,164,4	duplicatr(Cuskoal#izlude)	Cuskoal#izlude_d	4_F_TELEPORTER,{} 
 
-izlude,119,121,2	script#vpo	Cuskoal#izlude	124,{
+izlude,119,121,2	script#vpo	Cuskoal#izlude	4_F_TELEPORTER,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -260,7 +260,7 @@ izlude,119,121,2	script#vpo	Cuskoal#izlude	124,{
 	close;
 }
 
-izlude,85,103,4	script	Dega#izlude	84,{
+izlude,85,103,4	script	Dega#izlude	4_M_02,{
 	mes "[Dega]";
 	switch(rand(3)) {
 	case 1:
@@ -336,12 +336,12 @@ izlude,85,103,4	script	Dega#izlude	84,{
 	}
 }
 
-izlude_a,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_a	84
-izlude_b,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_b	84
-izlude_c,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_c	84
-izlude_d,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_d	84,{}
+izlude_a,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_a	4_M_02
+izlude_b,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_b	4_M_02
+izlude_c,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_c	4_M_02
+izlude_d,85,103,4	duplicatr(Dega#izlude)	Dega#izlude_d	4_M_02,{}
 
-izlude,140,186,4	script	Kylick#izlude	97,{
+izlude,140,186,4	script	Kylick#izlude	4W_M_01,{
 	mes "[Kylick]";
 	if (!checkversion(0) && rand(2)) {
 		mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
@@ -367,12 +367,12 @@ izlude,140,186,4	script	Kylick#izlude	97,{
 	close;
 }
 
-izlude_a,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_a	97
-izlude_b,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_b	97
-izlude_c,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_c	97
-izlude_d,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_d	97 ,{}
+izlude_a,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_a	4W_M_01
+izlude_b,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_b	4W_M_01
+izlude_c,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_c	4W_M_01
+izlude_d,140,186,4	duplicatr(Kylick#izlude)	Kylick#izlude_d	4W_M_01 ,{}
 
-izlude,57,159,2	script	Red#izlude	85,{
+izlude,57,159,2	script	Red#izlude	4_M_03,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -438,12 +438,12 @@ izlude,57,159,2	script	Red#izlude	85,{
 	close;
 }
 
-izlude_a,57,159,2	duplicatr(Red#izlude)	Red#izlude_a	85
-izlude_b,57,159,2	duplicatr(Red#izlude)	Red#izlude_b	85
-izlude_c,57,159,2	duplicatr(Red#izlude)	Red#izlude_c	85
-izlude_d,57,159,2	duplicatr(Red#izlude)	Red#izlude_d	85,{}
+izlude_a,57,159,2	duplicatr(Red#izlude)	Red#izlude_a	4_M_03
+izlude_b,57,159,2	duplicatr(Red#izlude)	Red#izlude_b	4_M_03
+izlude_c,57,159,2	duplicatr(Red#izlude)	Red#izlude_c	4_M_03
+izlude_d,57,159,2	duplicatr(Red#izlude)	Red#izlude_d	4_M_03,{}
 
-izlude,55,159,2	script	Cebalis#izlude	98,{
+izlude,55,159,2	script	Cebalis#izlude	4W_M_02,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -517,12 +517,12 @@ izlude,55,159,2	script	Cebalis#izlude	98,{
 	close;
 }
 
-izlude_a,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_a	98
-izlude_b,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_b	98
-izlude_c,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_c	98
-izlude_d,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_d	98,{}
+izlude_a,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_a	4W_M_02
+izlude_b,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_b	4W_M_02
+izlude_c,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_c	4W_M_02
+izlude_d,55,159,2	duplicatr(Cebalis#izlude)	Cebalis#izlude_d	4W_M_02,{}
 
-izlude,165,156,2	script	Soldado#izlude	105,{
+izlude,165,156,2	script	Soldado#izlude	8W_SOLDIER,{
 	mes "[Soldado]";
 	mes "HeHeHeHe.. HaHaHaHa";
 	mes "Como? Por que estou tão feliz?";
@@ -579,14 +579,14 @@ izlude,165,156,2	script	Soldado#izlude	105,{
 	close;
 }
 
-izlude_a,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_a	105
-izlude_b,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_b	105
-izlude_c,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_c	105
-izlude_d,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_d	105,{}
+izlude_a,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_a	8W_SOLDIER
+izlude_b,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_b	8W_SOLDIER
+izlude_c,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_c	8W_SOLDIER
+izlude_d,165,156,2	duplicatr(Soldado#izlude)	Soldado#izlude_d	8W_SOLDIER,{}
 
 // Dentro de Izlude
 //============================================================
-izlude_in,125,164,2	script	Aaron#izlude	65,{
+izlude_in,125,164,2	script	Aaron#izlude	1_M_YOUNGKNIGHT,{
 	mes "[Aaron]";
 	mes "Hum? Um espadachim? Você não acha que VIT alta e um método de respiração bem treinado que permite uma recuperação de HP rápida, são as maiores vantagens de um espadachim?";
 	next;
@@ -625,7 +625,7 @@ izlude_in,125,164,2	script	Aaron#izlude	65,{
 
 // Ilha Byalan
 //============================================================
-izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
+izlu2dun,108,27,0	script	Marinheiro#2izlude	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Quer voltar?";
 	next;
@@ -637,16 +637,16 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
 		end;
 }
 
-prt_fild08,350,219,4	script#re	Guarda#izlude	105,{
+prt_fild08,350,219,4	script#re	Guarda#izlude	8W_SOLDIER,{
 	mes "[Guarda de Izlude]";
 	mes "Bem-vindo a Izlude.";
 	close;
 }
 
-prt_fild08a,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_a	105
-prt_fild08b,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_b	105
-prt_fild08c,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_c	105
-prt_fild08d,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_d	105,{}
+prt_fild08a,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_a	8W_SOLDIER
+prt_fild08b,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_b	8W_SOLDIER
+prt_fild08c,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_c	8W_SOLDIER
+prt_fild08d,350,219,4	duplicatr(Guarda#izlude)	Guarda#izlude_d	8W_SOLDIER,{}
 
 function	script	F_IzludeChannel	{
 	mes "[Izlude Copy Warper]";
@@ -664,8 +664,8 @@ function	script	F_IzludeChannel	{
 	}
 	close;
 }
-izlude,122,105,5	script#re	Izlude Copy Warper	64,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_a,122,105,5	script#re	Izlude Copy Warper#_a	64,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
-izlude_b,122,105,5	script#re	Izlude Copy Warper#_b	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
-izlude_c,122,105,5	script#re	Izlude Copy Warper#_c	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
-izlude_d,122,105,5	script#re	Izlude Copy Warper#_d	64,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; } 
+izlude,122,105,5	script#re	Izlude Copy Warper	1_M_WIZARD,{ callfunc "F_IzludeChannel",":Go to copy 2:Go to copy 3:Go to copy 4:Go to copy 5"; }
+izlude_a,122,105,5	script#re	Izlude Copy Warper#_a	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1::Go to copy 3:Go to copy 4:Go to copy 5"; }
+izlude_b,122,105,5	script#re	Izlude Copy Warper#_b	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2::Go to copy 4:Go to copy 5"; }
+izlude_c,122,105,5	script#re	Izlude Copy Warper#_c	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3::Go to copy 5"; }
+izlude_d,122,105,5	script#re	Izlude Copy Warper#_d	1_M_WIZARD,{ callfunc "F_IzludeChannel","Go to copy 1:Go to copy 2:Go to copy 3:Go to copy 4:"; } 

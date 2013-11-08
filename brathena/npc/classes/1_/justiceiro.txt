@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-que_ng,152,167,3	script	Mestre Miller	901,{
+que_ng,152,167,3	script	Mestre Miller	4_M_HUOLDARMY,{
 	if (Upper == 2) {
 		mes "[Mestre Miller]";
 		mes "Bem, você não é uma adorável criancinha?";
@@ -147,7 +147,7 @@ que_ng,152,167,3	script	Mestre Miller	901,{
 	close;
 }
 	
-payon,184,65,3	script	Sábio Chifre de Touro	866,{
+payon,184,65,3	script	Sábio Chifre de Touro	4_M_LGTGRAND,{
 	if (GUNS_Q == 1) {
 		mes "[Sábio Chifre de Touro]";
 		mes "Olá, jovem lobo. Que assuntos te trazem à minha presença?";

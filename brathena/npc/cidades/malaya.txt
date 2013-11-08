@@ -24,7 +24,7 @@
 //   \________________________________________________________/
 
 Antiga coordenada: alberta (237,71)
-alberta,196,202,3	script	Tripulante#alberta	100,{
+alberta,196,202,3	script	Tripulante#alberta	4W_SAILOR,{
 	mes "[Tripulante]";
 	mes "Ei!";
 	mes "São 10,000 Zeny para ir até o Porto de Malaya. Está interessad"+((Sex) ? "o":"a")+" ?";
@@ -62,7 +62,7 @@ alberta,196,202,3	script	Tripulante#alberta	100,{
 	}
 }
 
-malaya,276,55,4	script	Tripulante#malaya	100,{
+malaya,276,55,4	script	Tripulante#malaya	4W_SAILOR,{
 	mes "[Tripulante]";
 	mes "Eu acho que o vilarejo está cheio. Gostou da sua visita? Existem sempre barcos que vão até Alberta, o que quer fazer?";
 	next;
@@ -81,7 +81,7 @@ malaya,276,55,4	script	Tripulante#malaya	100,{
 	}
 }
 	
-malaya,270,59,4	script	Guarda do Porto#ma03	570,{
+malaya,270,59,4	script	Guarda do Porto#ma03	4_MAL_SOLDIER,{
 
 	if (MALAYA_1QUE < 2) {
 		emotion 19;
@@ -151,7 +151,7 @@ malaya,270,59,4	script	Guarda do Porto#ma03	570,{
 	}
 }
 
-malaya,257,58,6	script	Motorista do Jipe#09	582,{
+malaya,257,58,6	script	Motorista do Jipe#09	4_M_MALAYA,{
 	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
 		mes "...Você é "+((Sex) ? "um":"uma")+" turista... Não saia andando para qualquer canto...";
@@ -171,7 +171,7 @@ malaya,257,58,6	script	Motorista do Jipe#09	582,{
 	end;
 }
 
-malaya,304,100,4	script	Neta do Homem Velho	576,{
+malaya,304,100,4	script	Neta do Homem Velho	4_F_BARYO_GIRL,{
 	if (MALAYA_1QUE < 6) {
 	mes "- Ele parece receioso com você. -";
 	close;
@@ -511,7 +511,7 @@ ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
 		end;
 		}
 }
-malaya,282,129,4	script	Motorista do Jipe#03	582,{
+malaya,282,129,4	script	Motorista do Jipe#03	4_M_MALAYA,{
 	
 	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
@@ -536,13 +536,13 @@ malaya,282,129,4	script	Motorista do Jipe#03	582,{
 	end;
 }
 
-malaya,341,153,3	script	Motorista do Jipe#05	582,{
+malaya,341,153,3	script	Motorista do Jipe#05	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	mes "F... Fantasmas na cidade... Ei... Você tem um fantasma em você?";
 	close;
 }
 
-malaya,295,171,4	script	Vendedor de Antiguidades	582,{
+malaya,295,171,4	script	Vendedor de Antiguidades	4_M_MALAYA,{
 	mes "[Woeon]";
 	if (checkquest(7350) == 2) {
 	mes "Suspiro... A vida está tão difícil nos dias de hoje.";
@@ -564,18 +564,18 @@ malaya,295,171,4	script	Vendedor de Antiguidades	582,{
 	close;
 }
 
-malaya,293,290,4	script	Motorista do Jipe#06	582,{
+malaya,293,290,4	script	Motorista do Jipe#06	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	mes "Gu... Guardas... O que os guardas estão fazendo...";
 	close;
 }
 
-malaya,276,262,4	script	Garoto Irritado#bako2	577,{
+malaya,276,262,4	script	Garoto Irritado#bako2	4_M_BARYO_BOY,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,283,265,4	script	Chefe do Vilarejo#bako2	580,{
+malaya,283,265,4	script	Chefe do Vilarejo#bako2	4_BARYO_CHIEF,{
 	mes "[Chefe do Vilarejo]";
 	mes "Estou desesperado por uma ajuda";
 	mes "mas você parece";
@@ -588,57 +588,57 @@ malaya,283,265,4	script	Chefe do Vilarejo#bako2	580,{
 	close;
 }
 
-malaya,276,269,4	script	Mulher Calma#bako2	579,{
+malaya,276,269,4	script	Mulher Calma#bako2	4_F_BARYO_WOMAN,{
 	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,269,267,4	script	Pai Perdido	582,{
+malaya,269,267,4	script	Pai Perdido	4_M_MALAYA,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,286,269,4	script	Homem Irritado#bako2	578,{
+malaya,286,269,4	script	Homem Irritado#bako2	4_M_BARYO_MAN,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,278,288,4	script	Habitante do Porto#Malaya	583,{
+malaya,278,288,4	script	Habitante do Porto#Malaya	4_F_MALAYA,{
 	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,276,288,4	script	Habitante do Porto#01	582,{
+malaya,276,288,4	script	Habitante do Porto#01	4_M_MALAYA,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,276,286,4	script	Habitante do Porto#02	582,{
+malaya,276,286,4	script	Habitante do Porto#02	4_M_MALAYA,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,265,274,4	script	Amigo Perdido	577,{
+malaya,265,274,4	script	Amigo Perdido	4_M_BARYO_BOY,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,270,278,4	script	Filho Perdido#ba	578,{
+malaya,270,278,4	script	Filho Perdido#ba	4_M_BARYO_MAN,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,265,284,4	script	Mãe Perdida	579,{
+malaya,265,284,4	script	Mãe Perdida	4_F_BARYO_WOMAN,{
 	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,290,329,3	script	Menino Assustado#bako1	578,{
+malaya,290,329,3	script	Menino Assustado#bako1	4_M_BARYO_MAN,{
 	mes "- Ele parece receioso com você. -";
 	close;
 }
 
-malaya,285,332,4	script	Bancário Lendário#bako1	574,{
+malaya,285,332,4	script	Bancário Lendário#bako1	4_M_BARYO_OLD,{
 	mes "[Bancário Lendário]";
 	mes "Há algo que precisa ser feito";
 	mes "mas você parece muito frágil";
@@ -651,7 +651,7 @@ malaya,285,332,4	script	Bancário Lendário#bako1	574,{
 	close;
 }
 
-malaya,280,331,4	script	Homem Cantante#bako1	578,{
+malaya,280,331,4	script	Homem Cantante#bako1	4_M_BARYO_MAN,{
 	mes "[Homem Cantante]";
 	mes "História do dragão que vive em um lago~";
 	mes "História de uma velha senhora";
@@ -691,7 +691,7 @@ malaya,280,331,4	script	Homem Cantante#bako1	578,{
 	close;
 }
 
-malaya,275,333,4	script	Mulher Cantante#bako1	579,{
+malaya,275,333,4	script	Mulher Cantante#bako1	4_F_BARYO_WOMAN,{
 	mes "[Mulher Cantante]";
 	mes "Bakonawa vive em um lago,";
 	mes "a história da velha senhora que se tornou um dragão.";
@@ -720,17 +720,17 @@ malaya,275,333,4	script	Mulher Cantante#bako1	579,{
 	close;
 }
 
-malaya,275,333,4	script	Banqueira Antiga#bako	579,{
+malaya,275,333,4	script	Banqueira Antiga#bako	4_F_BARYO_WOMAN,{
 	mes "- Ela parece receioso com você. -";
 	close;
 }
 
-malaya,264,338,4	script	Donzela Assustada#bako1	576,{
+malaya,264,338,4	script	Donzela Assustada#bako1	4_F_BARYO_GIRL,{
 	mes "- Ela parece receiosa com você. -";
 	close;
 }
 
-malaya,276,367,4	script	Xamã#ma	782,{
+malaya,276,367,4	script	Xamã#ma	4_F_UMOLDWOMAN,{
 
 	if (MALAYA_1QUE < 6) {
 		mes "[Xamã]";
@@ -784,7 +784,7 @@ malaya,276,367,4	script	Xamã#ma	782,{
 	close;
 }
 
-malaya,289,364,4	script	Jovem Banqueiro#ba	583,{
+malaya,289,364,4	script	Jovem Banqueiro#ba	4_F_MALAYA,{
 		if (MALAYA_1QUE < 6) {
 		mes "- Ele parece receioso com você. -";
 		close;
@@ -797,7 +797,7 @@ malaya,289,364,4	script	Jovem Banqueiro#ba	583,{
 	close;
 }
 
-malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
+malaya,290,340,4	script	Líder dos Guardas#buwaya	4_MAL_CAPTAIN,{
 		if (MALAYA_1QUE < 6) {
 		mes "- Olha para você com receio enquanto sussura com outros guardas. -";
 		close;
@@ -937,7 +937,7 @@ malaya,290,340,4	script	Líder dos Guardas#buwaya	571,{
 	}
 }
 
-malaya,227,311,4	script	Avó#ma01	575,{
+malaya,227,311,4	script	Avó#ma01	4_F_BARYO_OLD,{
 
 		if (MALAYA_1QUE < 2) {
 		mes "[Avó]";
@@ -1016,7 +1016,7 @@ malaya,227,311,4	script	Avó#ma01	575,{
 	}
 }
 
-malaya,169,350,4	script	Imelda#pm03	475,{
+malaya,169,350,4	script	Imelda#pm03	4_M_BRZ_JACI,{
 	if (MALAYA_1QUE < 2) {
 		mes "..........";
 		mes "Nada mal.";
@@ -1677,7 +1677,7 @@ OnInit:
 	close;
 }
 
-malaya,291,152,3	script	#buwaya_soil	557,{
+malaya,291,152,3	script	#buwaya_soil	4_SOIL,{
 	if (MALAYA_4QUE!=9) {
 		mes "- Você cheira a algo ruim -";
 		close;
@@ -1750,7 +1750,7 @@ OnInit:
 	end;
 }
 
-malaya,290,152,5	script	Mestre de Caça#buway	578,{
+malaya,290,152,5	script	Mestre de Caça#buway	4_M_BARYO_MAN,{
 	switch(MALAYA_4QUE) {
 	case 5:
 		mes "[狩りの達人]";
@@ -1916,7 +1916,7 @@ malaya,290,152,5	script	Mestre de Caça#buway	578,{
 	}
 }
 
-malaya,363,283,4	script	Local#ma06	582,{
+malaya,363,283,4	script	Local#ma06	4_M_MALAYA,{
 	if (MALAYA_1QUE < 2) {
 		mes "[Local]";
 		mes "Hum... é hora de tomar cuidado com a maldição das bruxas?";
@@ -2020,14 +2020,14 @@ malaya,363,283,4	script	Local#ma06	582,{
 	}
 }
 
-malaya,305,281,4	script	Guarda#buwaya	570,{
+malaya,305,281,4	script	Guarda#buwaya	4_MAL_SOLDIER,{
 	mes "- Os guardas olham desconfiados, é óbvio que estão prestando atenção em você. Eles não irão te intimidar, mas parece que eles não confiam em você. -";
 	next;
 	mes "- Há alguém para conversar no vilarejo? -";
 	close;
 }
 
-malaya,242,221,4	script	Motorista do Jipe#07	582,{
+malaya,242,221,4	script	Motorista do Jipe#07	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	if (checkquest(7350) == 2){
 	mes "Fantasma... Tenho certeza de que o líder Mumbaki sabe como se livrar desses fantasmas...";
@@ -2037,7 +2037,7 @@ malaya,242,221,4	script	Motorista do Jipe#07	582,{
 	close;
 }
 
-malaya,237,240,4	script	Motorista do Jipe#01	582,{
+malaya,237,240,4	script	Motorista do Jipe#01	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	if (checkquest(7350) == 2){
 	mes "O lugar está uma bagunça... Me pergunto como posso operar um jipe aqui...";
@@ -2047,7 +2047,7 @@ malaya,237,240,4	script	Motorista do Jipe#01	582,{
 	close;
 }
 
-malaya,219,92,4	script	Pequena Criança#ma05	577,{
+malaya,219,92,4	script	Pequena Criança#ma05	4_M_BARYO_BOY,{
 	mes "[Pequena Criança]";
 	if (checkquest(7350) == 2){
 	mes "Minha mãe me disse que eu posso brincar, mas só no Porto de Malaya.";
@@ -2060,7 +2060,7 @@ malaya,219,92,4	script	Pequena Criança#ma05	577,{
 	close;
 }
 
-malaya,64,78,4	script	Mulher do Vilarejo#mab	583,{
+malaya,64,78,4	script	Mulher do Vilarejo#mab	4_F_MALAYA,{
 	mes "[Mulher do Vilarejo]";
 	mes "......";
 	next;
@@ -2068,24 +2068,24 @@ malaya,64,78,4	script	Mulher do Vilarejo#mab	583,{
 	close;
 }
 
-malaya,59,84,4	script	Vara de Madeira Suspeita::VS	858,{
+malaya,59,84,4	script	Vara de Madeira Suspeita::VS	4_BULLETIN_BOARD2,{
 	mes "Está procurando por um bastão estranho.";
 	close;
 }
 
-malaya,50,85,4	duplicate(VS)	Vara de Madeira Suspeita::VS01	858
-malaya,48,79,4	duplicate(VS)	Vara de Madeira Suspeita::VS02	858
-malaya,46,93,4	duplicate(VS)	Vara de Madeira Suspeita::VS03	858
-malaya,50,46,4	duplicate(VS)	Vara de Madeira Suspeita::VS04	858
-malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS05	858
-malaya,40,32,4	duplicate(VS)	Vara de Madeira Suspeita::VS06	858
-malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS07	858
-malaya,31,42,4	duplicate(VS)	Vara de Madeira Suspeita::VS08	858
-malaya,40,52,4	duplicate(VS)	Vara de Madeira Suspeita::VS09	858
-malaya,59,84,4	duplicate(VS)	Vara de Madeira Suspeita::VS10	858
-malaya,36,98,4	duplicate(VS)	Vara de Madeira Suspeita::VS11	858
+malaya,50,85,4	duplicate(VS)	Vara de Madeira Suspeita::VS01	4_BULLETIN_BOARD2
+malaya,48,79,4	duplicate(VS)	Vara de Madeira Suspeita::VS02	4_BULLETIN_BOARD2
+malaya,46,93,4	duplicate(VS)	Vara de Madeira Suspeita::VS03	4_BULLETIN_BOARD2
+malaya,50,46,4	duplicate(VS)	Vara de Madeira Suspeita::VS04	4_BULLETIN_BOARD2
+malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS05	4_BULLETIN_BOARD2
+malaya,40,32,4	duplicate(VS)	Vara de Madeira Suspeita::VS06	4_BULLETIN_BOARD2
+malaya,34,36,4	duplicate(VS)	Vara de Madeira Suspeita::VS07	4_BULLETIN_BOARD2
+malaya,31,42,4	duplicate(VS)	Vara de Madeira Suspeita::VS08	4_BULLETIN_BOARD2
+malaya,40,52,4	duplicate(VS)	Vara de Madeira Suspeita::VS09	4_BULLETIN_BOARD2
+malaya,59,84,4	duplicate(VS)	Vara de Madeira Suspeita::VS10	4_BULLETIN_BOARD2
+malaya,36,98,4	duplicate(VS)	Vara de Madeira Suspeita::VS11	4_BULLETIN_BOARD2
 
-malaya,67,44,4	script	Motorista do Jipe#02	582,{
+malaya,67,44,4	script	Motorista do Jipe#02	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	if (checkquest(7350) == 2){
 	mes "Acho que o gemido que vinha do hospital diminuiu...";
@@ -2095,7 +2095,7 @@ malaya,67,44,4	script	Motorista do Jipe#02	582,{
 	close;
 }
 
-malaya,62,37,4	script	Homem do Vilarejo#mab	582,{
+malaya,62,37,4	script	Homem do Vilarejo#mab	4_M_MALAYA,{
 	mes "[Homem do Vilarejo]";
 	mes "Humm! Te conheço?";
 	mes "O que te traz a nossa cidade?";
@@ -2104,7 +2104,7 @@ malaya,62,37,4	script	Homem do Vilarejo#mab	582,{
 	close;
 }
 
-malaya,55,72,4	script	Enfermeira#ma_n1	569,{
+malaya,55,72,4	script	Enfermeira#ma_n1	4_F_NURSE,{
 	mes "[Enfermeira]";
 	mes "As pessoas dessa cidade são muito receiosas com pessoas estranhas.";
 	emotion 7;
@@ -2114,12 +2114,12 @@ malaya,55,72,4	script	Enfermeira#ma_n1	569,{
 	close;
 }
 
-malaya,48,76,4	script	Porta de Hospital#ma_n1	139,{
+malaya,48,76,4	script	Porta de Hospital#ma_n1	HIDDEN_WARP_NPC,{
 	mes "A porta do hospital parece estar fechada.";
 	close;
 }
 
-malaya,41,127,4	script	Homem Velho#ma07	574,{
+malaya,41,127,4	script	Homem Velho#ma07	4_M_BARYO_OLD,{
 	mes "[Homem Velho]";
 	if (checkquest(7350) == 2){
 	mes "Você está sem sorte por estar visitando o vilarejo em um momento como esse.";
@@ -2130,7 +2130,7 @@ malaya,41,127,4	script	Homem Velho#ma07	574,{
 	close;
 }
 
-malaya,63,185,4	script	Mulher#ma08	583,{
+malaya,63,185,4	script	Mulher#ma08	4_F_MALAYA,{
 	mes "[Mulher]";
 	if (checkquest(7350) == 2){
 	mes "Estou preocupada com as crianças. Espero que elas não fiquem com medo do que está acontecendo no vilarejo.";
@@ -2140,7 +2140,7 @@ malaya,63,185,4	script	Mulher#ma08	583,{
 	close;
 }
 
-malaya,62,245,4	script	Motorista do Jipe#08	582,{
+malaya,62,245,4	script	Motorista do Jipe#08	4_M_MALAYA,{
 	mes "[Motorista do Jipe]";
 	if (checkquest(7350) == 2){
 	mes "Ei... Você... É um humano certo? Certo? Hã? Diga quem é você... Por favor...";
@@ -2150,14 +2150,14 @@ malaya,62,245,4	script	Motorista do Jipe#08	582,{
 	close;
 }
 
-malaya,62,274,4	script	Armadilha de Areia#mal01::ArmaAre	557,{
+malaya,62,274,4	script	Armadilha de Areia#mal01::ArmaAre	4_SOIL,{
 	mes "Um dispositivo para evaporar a água do mar está enterrado na areia...";
 	close;
 }
-malaya,66,277,4	duplicate(ArmaAre)	Armadilha de Areia#mal02	557
-malaya,70,282,4	duplicate(ArmaAre)	Armadilha de Areia#mal03	557
+malaya,66,277,4	duplicate(ArmaAre)	Armadilha de Areia#mal02	4_SOIL
+malaya,70,282,4	duplicate(ArmaAre)	Armadilha de Areia#mal03	4_SOIL
 
-malaya,88,252,4	script	Pequena Garota#ma04	576,{
+malaya,88,252,4	script	Pequena Garota#ma04	4_F_BARYO_GIRL,{
 
 		if (MALAYA_1QUE < 2) {
 		mes "[Pequena Garota]";
@@ -2206,7 +2206,7 @@ malaya,88,252,4	script	Pequena Garota#ma04	576,{
 	}
 }
 
-malaya,134,250,6	script	Motorista do Jipe#04	582,{
+malaya,134,250,6	script	Motorista do Jipe#04	4_M_MALAYA,{
 
 	if (MALAYA_1QUE < 2) {
 		mes "[Motorista do Jipe]";
@@ -2229,7 +2229,7 @@ malaya,134,250,6	script	Motorista do Jipe#04	582,{
 	end;
 }
 
-malaya,114,183,3	script	Senhora Encurvada#ma	575,{
+malaya,114,183,3	script	Senhora Encurvada#ma	4_F_BARYO_OLD,{
 	switch(MALAYA_3QUE) {
 	case 17:
 		mes "[Senhora Encurvada]";
@@ -2411,7 +2411,7 @@ malaya,114,183,3	script	Senhora Encurvada#ma	575,{
 	close;
 }
 
-malaya,189,263,4	script	Jovem Tocando#ma0	578,{
+malaya,189,263,4	script	Jovem Tocando#ma0	4_M_BARYO_MAN,{
 	mes "[Jovem Tocando]";
 	if (checkquest(7350) == 2){
 	mes "Acho que a aldeia foi salva por um aventureir"+((Sex) ? "o":"a")+" sem nome.";
@@ -2430,7 +2430,7 @@ malaya,189,263,4	script	Jovem Tocando#ma0	578,{
 	close;
 }
 
-malaya,71,79,3	script	Funcionária Kafra#01	581,{
+malaya,71,79,3	script	Funcionária Kafra#01	4_MAL_KAFRA,{
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";
 	mes "Bem-vindo. Os Serviços Kafra estarão sempre a sua disposição.";
@@ -2440,9 +2440,9 @@ malaya,71,79,3	script	Funcionária Kafra#01	581,{
 	callfunc "F_KafEnd",0,1,"na cidade do Porto de Malaya";
 }
 
-malaya,234,204,3	duplicate(Funcionária Kafra#01)	Funcionária Kafra#02	581
+malaya,234,204,3	duplicate(Funcionária Kafra#01)	Funcionária Kafra#02	4_MAL_KAFRA
 
-malaya,238,206,4	script	Oficial do Éden#Ma	729,{
+malaya,238,206,4	script	Oficial do Éden#Ma	4_F_NOVICE,{
 mes "[Oficial de Teleporte Éden]";
 mes "Estamos muito longe de casa aventureir"+((Sex) ? "o":"a")+".";
 	next;
@@ -2463,7 +2463,7 @@ mes "Estamos muito longe de casa aventureir"+((Sex) ? "o":"a")+".";
 }
 }
 
-malaya,210,200,4	script	Dr. Boon#ma	865,{
+malaya,210,200,4	script	Dr. Boon#ma	4_LGTSCIENCE,{
 	mes "[Dr. Boon]";
 	mes "......";
 	next;

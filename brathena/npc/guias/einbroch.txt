@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-einbroch,72,202,4	script	Guia de Einbroch#ein01	852,{
+einbroch,72,202,4	script	Guia de Einbroch#ein01	4_M_EIN_SOLDIER,{
 	cutin "ein_soldier",2;
 	mes "[Guia de Einbroch]";
 	mes "Bem-vindo a ^8B4513Einbroch^000000, a Cidade do Aço.";
@@ -301,11 +301,11 @@ einbroch,72,202,4	script	Guia de Einbroch#ein01	852,{
 	}
 
 }
-einbroch,155,43,4	duplicate(Guia de Einbroch#ein01)	Guia de Einbroch#ein02	852
-einbroch,162,317,4	duplicate(Guia de Einbroch#ein01)	Guia de Einbroch#ein03	852
-einbroch,252,320,3	duplicatr(Guia de Einbroch#ein01)	Guia de Einbroch#ein04	852,{}
+einbroch,155,43,4	duplicate(Guia de Einbroch#ein01)	Guia de Einbroch#ein02	4_M_EIN_SOLDIER
+einbroch,162,317,4	duplicate(Guia de Einbroch#ein01)	Guia de Einbroch#ein03	4_M_EIN_SOLDIER
+einbroch,252,320,3	duplicatr(Guia de Einbroch#ein01)	Guia de Einbroch#ein04	4_M_EIN_SOLDIER,{}
 
-einbech,67,37,4	script	Guia de Einbech#einbech01	852,{
+einbech,67,37,4	script	Guia de Einbech#einbech01	4_M_EIN_SOLDIER,{
 	cutin "ein_soldier",2;
 	mes "[Guia de Einbech]";
 	mes "Bem-vindo a Einbech, nós estamos aqui para ajudar os turistas, então por favor sinta-se a vontade para fazer as perguntas que quiser.";
@@ -461,4 +461,4 @@ einbech,67,37,4	script	Guia de Einbech#einbech01	852,{
 		end;
 	}
 }
-einbech,48,214,4	duplicate(Guia de Einbech#einbech01)	Guia de Einbech#einbech02	852
+einbech,48,214,4	duplicate(Guia de Einbech#einbech01)	Guia de Einbech#einbech02	4_M_EIN_SOLDIER

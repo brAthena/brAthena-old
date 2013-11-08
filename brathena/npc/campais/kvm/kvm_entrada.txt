@@ -30,7 +30,7 @@
 
 // Oficial do KvM - Lado Guillaume
 //============================================================
-bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
+bat_room,164,178,5	script	Mercenário Oficial KVM#1	4_M_KY_KNT,{
 	set .@permit,checkquest(6025,PLAYTIME);
 	if ((.@permit == 0) || (.@permit == 1)) {
 		mes "["+strnpcinfo(1)+"]";
@@ -62,7 +62,7 @@ bat_room,164,178,5	script	Mercenário Oficial KVM#1	418,{
 
 // Cavaleiro Guillaume - KvM
 //============================================================
-bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
+bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	4_M_KY_SOLD,{
 	mes "["+strnpcinfo(1)+"]";
 	mes "Olá.";
 	mes "O que você deseja saber?";
@@ -121,8 +121,8 @@ bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
 
 // Oficial do KvM - Lado Croix
 //============================================================
-bat_room,164,121,1	duplicate(Mercenário Oficial KVM#1)	Mercenário Oficial KVM#2	414
+bat_room,164,121,1	duplicate(Mercenário Oficial KVM#1)	Mercenário Oficial KVM#2	4_M_CRU_KNT
 
 // Cavaleiro Croix - KvM
 //============================================================
-bat_room,167,121,1	duplicate(Cavaleiro Guillaume#kvm)	Cavaleiro Croix#kvm	413
+bat_room,167,121,1	duplicate(Cavaleiro Guillaume#kvm)	Cavaleiro Croix#kvm	4_M_CRU_SOLD

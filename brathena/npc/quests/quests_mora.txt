@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-1@mist,97,31,3	script	Jovem Misterioso#npc_mist3	512,{
+1@mist,97,31,3	script	Jovem Misterioso#npc_mist3	4_M_ROKI2,{
 	if (loki == 0) {
 		mes "[Jovem Misterioso]";
 		mes "Você ... Você veio do acampamento que fica ao leste da cidade?";
@@ -87,7 +87,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-1@mist,184,304,3	script	Loki#npc_mist2	512,{
+1@mist,184,304,3	script	Loki#npc_mist2	4_M_ROKI2,{
 	if (loki == 1) {
 		mes "[Loki]";
 		mes "...........?";
@@ -132,12 +132,12 @@ OnPCLoadMapEvent:
 	end;
 }
 
-1@mist,182,303,3	script	Garota Desmaiada#npc_mist1	511,{
+1@mist,182,303,3	script	Garota Desmaiada#npc_mist1	4_F_NYDHOG2,{
 	mes "Uma garota desmaiada no chão...";
 	close;
 }
 
-mora,60,148,4	script	Loki#mora	512,{
+mora,60,148,4	script	Loki#mora	4_M_ROKI2,{
 	if (wanderingsguardians > 4) {
 		mes "[Loki]";
 		mes "Você trouxe de volta paz para nosos vilarejo. Nosso povo agora reconhece você como sendo um aventureiro experiente.";
@@ -168,7 +168,7 @@ OnPCLoadMapEvent:
 	end;	
 }
 
-mora,56,149,4	script	Garota Coberta de Flores#mora	510,{
+mora,56,149,4	script	Garota Coberta de Flores#mora	4_F_NYDHOG,{
 	if (wanderingsguardians > 3) {
 		mes "[Garota Coberta de Flores]";
 		mes "O povo de Mora está aliviado agora que o Dragão não está mais na floresta. Você é reconhecido como herói pelo vilarejo...";
@@ -194,7 +194,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,119,103,5	script	Bow-wow	513,{
+mora,119,103,5	script	Bow-wow	4_M_DOGTRAVELER,{
 	if (wanderingsguardians < 5) {
 		mes "[Bow-wow]";
 		mes "Ei... Eu tenho algumas missões em Mora. Mas você não parece ter experiência o suficiente para que eu as te repasse.";
@@ -284,7 +284,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,127,112,4	script	Negociador de Mercadorias#mora_1	518,{
+mora,127,112,4	script	Negociador de Mercadorias#mora_1	4_F_RAFLE_PK,{
 	mes "[Negociador de Mercadorias]";
 	if (woofgrr == 5) {
 		if ((countitem(934) >= 2) && (countitem(935) >= 3) && (countitem(936) >= 3) && (countitem(937) >= 2) && (countitem(938) >= 5)) {
@@ -323,7 +323,7 @@ OnPCLoadMapEvent:
 	end;	
 }
 
-mora,133,80,3	script	Elephantine	509,{
+mora,133,80,3	script	Elephantine	4_ELEPHANT,{
 	mes "[Elephantine]";
 	if (wanderingsguardians < 5) {
 		mes "Ahhhhhhhh você! Desculpe. Eu pensei que você soubesse...";
@@ -433,7 +433,7 @@ OnPCLoadMapEvent:
 	end;	
 }
 
-mora,119,118,4	script	Negociador de Mercadorias#mora_2	516,{
+mora,119,118,4	script	Negociador de Mercadorias#mora_2	4_M_RAFLE_GR,{
 	mes "[Negociador de Mercadorias]";
 	if (bowwow == 5) {
 		if ((countitem(928) >= 4) && (countitem(929) >= 5) && (countitem(930) >= 1) && (countitem(931) >= 3) && (countitem(932) >= 3)) {
@@ -472,7 +472,7 @@ OnPCLoadMapEvent:
 	end;	
 }
 
-mora,115,98,5	script	Hotcha	509,{
+mora,115,98,5	script	Hotcha	4_ELEPHANT,{
 	if (BaseLevel < 135) {
 		mes "[Hotcha]";
 		mes "Hmm, you don't look reliable enough for Elephantine's tasks.";
@@ -481,7 +481,7 @@ mora,115,98,5	script	Hotcha	509,{
 	end;
 }
 
-mora,31,138,6	script	Raffle Researcher#ep14	522,{
+mora,31,138,6	script	Raffle Researcher#ep14	4_M_RAFLE_OR,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 500) {
 		mes "^FF0000- Warning message -";
 		mes "- Hang on there!! -";
@@ -1419,7 +1419,7 @@ L_CheckWeight:
 	return;
 }
 
-mora,124,108,7	script	Woof-grr	514,{
+mora,124,108,7	script	Woof-grr	4_M_DOGTRAVELER2,{
 	mes "[Woof-grr]";
 	if (wanderingsguardians < 5) {
 		mes "Olá, eu sou Woof Grr. Eu realizo entregas de materiais para os fabricantes de equipamentos aqui em Mora. Os equipamentos que as pessoas criam aqui são incríveis. Se você tiver bastante experiência, poderei te oferecer alguns trabalhos.";
@@ -1477,12 +1477,12 @@ OnPCLoadMapEvent:
 	end;	
 }
 
-mora,48,152,4	script	Jovem de Olhar Apurado	496,{
+mora,48,152,4	script	Jovem de Olhar Apurado	4_M_MERCAT2,{
 	mes "He won't look at you. It's like he's not interested at all.";
 	close;
 }
 
-mora,170,101,4	script	Espírito Guia	515,{
+mora,170,101,4	script	Espírito Guia	4_F_DOGTRAVELER,{
 	mes "[Espírito Guia]";
 	if (wanderingsguardians < 5)
 		mes "Oi, eu sou a Detetive de Mora. Muitas pessoas do nosso vilarejo sumiram na floresta... Espero encontrá-los sãos e salvos.";
@@ -1658,7 +1658,7 @@ OnPCLoadMapEvent:
 	end;		
 }
 
-1@mist,116,40,4	script	Taul#mora	534,{
+1@mist,116,40,4	script	Taul#mora	4_M_DEWOLDMAN,{
 	if (saverescuez > 1) {
 		mes "[Taul]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1681,7 +1681,7 @@ OnPCLoadMapEvent:
 		close;
 }
 
-1@mist,170,50,4	script	Chaihokin#mora	535,{ // Veille Femme
+1@mist,170,50,4	script	Chaihokin#mora	4_M_DEWOLDWOMAN,{ // Veille Femme
 	if (saverescuez > 4) {
 		mes "[Chaihokin]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou sã e salva. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1703,7 +1703,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-1@mist,130,100,4	script	Tazar#mora	536,{ // Man
+1@mist,130,100,4	script	Tazar#mora	4_M_DEWMAN,{ // Man
 	if (saverescuez > 7) {
 		mes "[Tazar]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1725,7 +1725,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-1@mist,100,240,4	script	Nigel#mora	538,{ // Jeune man
+1@mist,100,240,4	script	Nigel#mora	4_M_DEWBOY,{ // Jeune man
 	if (saverescuez > 10) {
 		mes "[Nigel]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1747,7 +1747,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-1@mist,140,240,4	script	Messil#mora	537,{ // Meuf
+1@mist,140,240,4	script	Messil#mora	4_M_DEWWOMAN,{ // Meuf
 	if (saverescuez > 13) {
 		mes "[Messil]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1769,7 +1769,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-1@mist,190,270,4	script	Norit#mora	538,{ // Jeune Boy
+1@mist,190,270,4	script	Norit#mora	4_M_DEWBOY,{ // Jeune Boy
 	if (saverescuez > 16) {
 		mes "[Norit]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1793,7 +1793,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-1@mist,297,86,4	script	Kunmoon#mora	539,{ // petite fille
+1@mist,297,86,4	script	Kunmoon#mora	4_M_DEWGIRL,{ // petite fille
 	if (saverescuez > 19) {
 		mes "[Kunmoon]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1816,7 +1816,7 @@ OnPCLoadMapEvent:
 		mes "^666666*...*^000000";
 	close;
 }
-1@mist,303,332,4	script	Pajama Sin#mora	558,{ // Femme Rose
+1@mist,303,332,4	script	Pajama Sin#mora	4_F_ALCHE_A,{ // Femme Rose
 	if (saverescuez > 22) {
 		mes "[Pajama Sin]";
 		mes "Disse que a Espírito Guia te enviou? Pode dizer-lhe que estou são e salvo. Acho que ela ficará feliz em saber que pelo menos um dos moradores não está morto.";
@@ -1837,7 +1837,7 @@ OnPCLoadMapEvent:
 		mes "^666666*...*^000000";
 	close;
 }
-1@mist,315,285,4	script	Mendel#mora	559,{
+1@mist,315,285,4	script	Mendel#mora	4_CAT_ADV1,{
 	if (saverescuez > 25) {
 		mes "[Mendel]";
 		mes "Miau, obrigado Miauuuuu";
@@ -1855,7 +1855,7 @@ OnPCLoadMapEvent:
 		mes "^666666*miiaauuu...*^000000";
 	close;
 }
-1@mist,346,117,4	script	Milebit#mora	552,{
+1@mist,346,117,4	script	Milebit#mora	4_F_STARFISHGIRL,{
 	if (saverescuez > 28) {
 		mes "[Milebit]";
 		mes "Obrigado...";
@@ -1874,7 +1874,7 @@ OnPCLoadMapEvent:
 	close;
 }
 
-mora,117,66,4	script	Euridi	521,{
+mora,117,66,4	script	Euridi	4_F_MORAFINE2,{
 	if (euridi == 10 || euridi == 11) {
 		mes "[Euridi]";
 		mes "Eu recebi as notícias de Lope. Você me deu uma grande ajuda e me fez abrir os olhos. Eu nunca poderei agradecer o suficiente.";
@@ -2061,7 +2061,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-bif_fild01,131,338,0	script	Homem Suspeito#euridi	599,3,3,{
+bif_fild01,131,338,0	script	Homem Suspeito#euridi	4_SEYREN,3,3,{
 	end;
 OnTouch:
 	if (select("Conversar com este homem.:Cancelar") == 1) {
@@ -2094,7 +2094,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,115,68,4	script	Sombra Escura	520,{
+mora,115,68,4	script	Sombra Escura	4_F_MORAFINE1,{
 	mes "[Sombra Escura]";
 	if (euridi == 10) {
 		mes "Euridi não está tão bem agora, então deixe-me agradecê-lo por seu trabalho.";
@@ -2148,7 +2148,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,65,145,4	script	Pitt	519,{
+mora,65,145,4	script	Pitt	4_M_LYINGDOG,{
 	if (euridi == 6) {
 		mes "[Pitt]";
 		mes "Esta carta realmente me tocou. Você deve contar tudo para Euridi.";
@@ -2356,7 +2356,7 @@ OnPCLoadMapEvent:
 	end;
 }
 
-mora,116,165,5	script	Cavaleiro de Elite	524,{
+mora,116,165,5	script	Cavaleiro de Elite	4_M_RAFLE_VI,{
 	if (BaseLevel < 99) {
 		mes "[Cavaleiro de Elite]";
 		mes "A Ordem dos Cavaleiros de Elite mudou-se para Mora a fim de realizar missões. Vejo que não é forte o suficiente para lidar com a minha tarefa. Quando tornar-se mais forte, por favor volte e assuma uma tarefa.";
@@ -2404,7 +2404,7 @@ OnPCLoadMapEvent:
 	end;		
 }
 
-mora,114,163,5	script	Cavaleira de Elite	522,{
+mora,114,163,5	script	Cavaleira de Elite	4_M_RAFLE_OR,{
 	if (euridi < 11 || BaseLevel < 100) {
 		mes "[Cavaleira de Elite]";
 		mes "A Ordem dos Cavaleiros de Elite mudou-se para Mora a fim de realizar missões. Uma moradora chamada ^FF0000Euridi^000000 está necessitando de ajuda. Volte quando quiser ajudá-la.";
@@ -2455,14 +2455,14 @@ OnPCLoadMapEvent:
 
 // Theore's Request
 //============================================================
-mora,55,124,2	script	Jones#ep14_1_bs	495,{
+mora,55,124,2	script	Jones#ep14_1_bs	4_M_MERCAT1,{
 	mes "[Jones]";
 	mes "Oh.... Darn.......";
 	mes "I can't go down, and I can't go back. My credibility that I've worked so hard on is just crumbling into dust.";
 	close;
 }
 
-mora,98,66,4	script	Lilitia#ep14_1_bs	518,{
+mora,98,66,4	script	Lilitia#ep14_1_bs	4_F_RAFLE_PK,{
 	mes "[Lilitia]";
 	mes "I really hate the cold.";
 	mes "That's why Mora is a lovely place to live.";
@@ -2472,7 +2472,7 @@ mora,98,66,4	script	Lilitia#ep14_1_bs	518,{
 	close;
 }
 
-mora,139,102,2	script	Humming#ep14_1_bs	515,{
+mora,139,102,2	script	Humming#ep14_1_bs	4_F_DOGTRAVELER,{
 	mes "[Humming]";
 	mes "I heard that a crevice crept in between Jotunheim and Midgard, so I wanted to check it out. But I got stuck here.";
 	mes "I was looking forward to seeing a new place.";
@@ -2484,7 +2484,7 @@ mora,139,102,2	script	Humming#ep14_1_bs	515,{
 	close;
 }
 
-mora,35,119,4	script	Rondo#ep14_1_bs	513,{
+mora,35,119,4	script	Rondo#ep14_1_bs	4_M_DOGTRAVELER,{
 	mes "[Rondo]";
 	mes "Mora is such a mysterious place.";
 	mes "You can understand any language.";
@@ -2495,7 +2495,7 @@ mora,35,119,4	script	Rondo#ep14_1_bs	513,{
 	close;
 }
 
-mora,185,163,2	script	Warehouse Manager#mora	516,{
+mora,185,163,2	script	Warehouse Manager#mora	4_M_RAFLE_GR,{
 	mes "[Warehouse Manager]";
 	mes "No, sir!";
 	mes "You cannot enter at will.";
@@ -2505,7 +2505,7 @@ mora,185,163,2	script	Warehouse Manager#mora	516,{
 
 // Wandering Guardian Quest
 //============================================================
-mora,46,152,6	script	Flower Smelling Lady	510,{
+mora,46,152,6	script	Flower Smelling Lady	4_F_NYDHOG,{
 	mes "[Flower Smelling Lady]";
 	mes "I need rest.";
 	mes "I'm too tired to talk to you.";
@@ -2515,7 +2515,7 @@ mora,46,152,6	script	Flower Smelling Lady	510,{
 
 // Knights of the Neighborhood
 //============================================================
-mora,118,166,6	script	Knights Chief#mo	525,{
+mora,118,166,6	script	Knights Chief#mo	4_F_RAFLE_VI,{
 	mes "[Order of the Knights Chief]";
 	mes "We are the legendary order of the Neighborhood Knights, founded just five minutes ago!";
 	next;
@@ -2531,7 +2531,7 @@ mora,118,166,6	script	Knights Chief#mo	525,{
 	close;
 }
 
-mora,112,161,4	script	Knights Leader#mo	523,{
+mora,112,161,4	script	Knights Leader#mo	4_F_RAFLE_YE,{
 	mes "[Order of the Knights Leader]";
 	mes "I'm the Leader of the Order -";
 	mes "you can tell me.";
@@ -2547,7 +2547,7 @@ mora,112,161,4	script	Knights Leader#mo	523,{
 
 // Mora Enchants
 //============================================================
-mora,119,75,2	script	Artifact Panhandler	515,{
+mora,119,75,2	script	Artifact Panhandler	4_F_DOGTRAVELER,{
 	mes "[Artifact Panhandler]";
 	mes "Psst, if you have any of those Mora artifacts just lying around I'll trade ya 2 Mora coins for them!";
 	mes "Of course I only want ones that are battle tested, so you must be wearing it.";
@@ -2560,13 +2560,13 @@ mora,119,75,2	script	Artifact Panhandler	515,{
 	close;
 }
 
-spl_fild02,187,1,0	script	Field Bush Switch	440,{
+spl_fild02,187,1,0	script	Field Bush Switch	4_F_FAIRYKID5,{
 	callfunc "F_GM_NPC";
 	donpcevent "Bush#ep14_1_bs1::OnEnable";
 	end;
 }
 
-sec_in02,35,175,0	script	Theore Set Guid	436,{
+sec_in02,35,175,0	script	Theore Set Guid	4_F_FAIRYKID,{
 	callfunc "F_GM_NPC";
 	switch(select("Set0:Set33:Set2_0")) {
 	case 1:
@@ -2582,7 +2582,7 @@ sec_in02,35,175,0	script	Theore Set Guid	436,{
 	}
 }
 
-sec_in02,29,34,5	script	Initializing Mora Sanjo	453,{
+sec_in02,29,34,5	script	Initializing Mora Sanjo	4_MAN_NITT,{
 	callfunc "F_GM_NPC";
 	mes "Enter your password";
 	if (callfunc("F_GM_NPC","1854",1) == 0) {

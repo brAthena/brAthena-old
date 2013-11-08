@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_castle,43,30,3	script	Charles Orleans#b	878,{
+prt_castle,43,30,3	script	Charles Orleans#b	4_M_OILMAN,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "[Charles Orleans]";
@@ -1520,7 +1520,7 @@ L_End:
 	end;
 }
 
-prt_castle,45,35,5	script	Madeleine Chu#b	886,{
+prt_castle,45,35,5	script	Madeleine Chu#b	4_COOK,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 2000) {
 		mes "[Madeleine Chu]";
@@ -2153,7 +2153,7 @@ S_SellSets:
 	return;
 }
 
-prt_castle,45,28,3	script	Menina com gato#b	877,{
+prt_castle,45,28,3	script	Menina com gato#b	4_F_YUNYANG,{
 	set .@nyu,rand(1,2);
 	if (.@nyu == 1) {
 		cutin "nyuang_1",2;
@@ -2176,7 +2176,7 @@ prt_castle,45,28,3	script	Menina com gato#b	877,{
 	end;
 }
 
-prt_castle,44,30,5	script	Wickebine#b	725,{
+prt_castle,44,30,5	script	Wickebine#b	4_F_JOB_ASSASSIN,{
 	disablenpc "Wickebine#b";
 	end;
 
@@ -2193,7 +2193,7 @@ OnDisable:
 	end;
 }
 
-payon,209,127,3	script	Servo	88,{
+payon,209,127,3	script	Servo	4_M_ORIENT01,{
 	if (!checkweight(555,1)) {
 		mes "[Chulsoo]";
 		mes "Espere, você está carregando";

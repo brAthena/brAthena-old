@@ -27,7 +27,7 @@
 
 // Quest Máscara de Solda
 //============================================================
-geffen_in,144,166,4	script	Ferreiro	63,{
+geffen_in,144,166,4	script	Ferreiro	1_M_SMITH,{
 	mes "[Ferreiro]";
 	mes "Você nunca ouviu falar de mim? Ora, eu sou o veterano Ferreiro desta terra. Eu passei 30 anos neste inferno quente e sangrento, dobrando ferro para o criar meu próprio aço!";
 	next;
@@ -93,7 +93,7 @@ geffen_in,144,166,4	script	Ferreiro	63,{
 
 // Quest Fone de Ouvido
 //============================================================
-geffen_in,30,71,4	script	Eric	83,{
+geffen_in,30,71,4	script	Eric	4_M_01,{
 	mes "[Eric]";
 	mes "Por favor, ouça";
 	mes "a história do";
@@ -174,7 +174,7 @@ geffen_in,30,71,4	script	Eric	83,{
 
 // Number Match Game :: gef_yagu
 //============================================================
-geffen,122,77,4	script	Nia#yagu	700,{
+geffen,122,77,4	script	Nia#yagu	8_F_GIRL,{
 	mes "[Nia]";
 	mes "Hello, I'm Nia, the fifth";
 	mes "disciple of Mawong, the";

@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-aldebaran,139,63,4	script	Guia#01aldebaran	105,{
+aldebaran,139,63,4	script	Guia#01aldebaran	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	if (checkversion(0)) { // Renewal
 		mes "[Guia de Al De Baran]";
@@ -179,11 +179,11 @@ L_Mark:
 	return; 
 }
 
-aldebaran,243,143,2	duplicatr(Guia#01aldebaran)	Guia#02aldebaran	105
-aldebaran,135,243,4	duplicatr(Guia#01aldebaran)	Guia#03aldebaran	105
-aldebaran,36,135,6	duplicatr(Guia#01aldebaran)	Guia#04aldebaran	105,{}
+aldebaran,243,143,2	duplicatr(Guia#01aldebaran)	Guia#02aldebaran	8W_SOLDIER
+aldebaran,135,243,4	duplicatr(Guia#01aldebaran)	Guia#03aldebaran	8W_SOLDIER
+aldebaran,36,135,6	duplicatr(Guia#01aldebaran)	Guia#04aldebaran	8W_SOLDIER,{}
 
-aldebaran,133,108,4	script#vpo	Soldado#alde	105,{
+aldebaran,133,108,4	script#vpo	Soldado#alde	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	mes "[Guarda de Al De Baran]";
 	mes "Eu sou só um simples guarda, que você pode até encontrar em qualquer cidade.";

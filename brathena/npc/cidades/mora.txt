@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-mora,185,163,5	script	Cidadão de Mora#1	516,{
+mora,185,163,5	script	Cidadão de Mora#1	4_M_RAFLE_GR,{
 	mes "[Professor Gary]";
 	mes "Olá, aventureiro!";
 	mes "Eu sou Gary, um expert na área de encantamentos.";
@@ -66,7 +66,7 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 		close;
 }
 
-mora,52,138,8	script	Cidadão de Mora#2	516,{
+mora,52,138,8	script	Cidadão de Mora#2	4_M_RAFLE_GR,{
 	mes "[Valere]";
 	mes "Olá, aventureiro!";
 	mes "Você parece que está perdido, não é!?";
@@ -117,7 +117,7 @@ mora,52,138,8	script	Cidadão de Mora#2	516,{
 	}
 }
 
-mora,160,123,5	script	Cidadão de Mora#3	517,{
+mora,160,123,5	script	Cidadão de Mora#3	4_M_RAFLE_OLD,{
 	mes "[Boudril]";
 	mes "Ei, você parece estar tão longe de sua casa!";
 	mes "Mora é uma cidade remota.";
@@ -129,7 +129,7 @@ mora,160,123,5	script	Cidadão de Mora#3	517,{
 	close;
 }
 
-mora,105,100,3	script	Cidadão de Mora#4	518,{
+mora,105,100,3	script	Cidadão de Mora#4	4_F_RAFLE_PK,{
 	mes "[Buisso]";
 	mes "Olá, meu amigo.";
 	mes "O que o traz a este lugar, tão longe?";
@@ -143,7 +143,7 @@ mora,105,100,3	script	Cidadão de Mora#4	518,{
 	close;
 }
 
-mora,98,104,4	script	Cidadão de Mora#5	516,{
+mora,98,104,4	script	Cidadão de Mora#5	4_M_RAFLE_GR,{
 	mes "[Malavida]";
 	mes "...";
 	mes "O quê!? Eu pareço deprimida!?";
@@ -156,7 +156,7 @@ mora,98,104,4	script	Cidadão de Mora#5	516,{
 	close;
 }
 
-mora,102,107,6	script	Cidadão de Mora#6	517,{
+mora,102,107,6	script	Cidadão de Mora#6	4_M_RAFLE_OLD,{
 	mes "[Skape]";
 	mes "Você provou nosso prato?";
 	mes "A carne torrada!?";
@@ -168,7 +168,7 @@ mora,102,107,6	script	Cidadão de Mora#6	517,{
 	close;
 }
 
-mora,101,107,4	script	Cidadão de Mora#7	518,{
+mora,101,107,4	script	Cidadão de Mora#7	4_F_RAFLE_PK,{
 	mes "[Wouadel Kami]";
 	mes "*Danãs*";
 	mes "Eu sou um coreógrafo, mas ninguém me entende.";
@@ -178,7 +178,7 @@ mora,101,107,4	script	Cidadão de Mora#7	518,{
 	close;
 }
 
-mora,103,100,6	script	Cidadão de Mora#8	518,{
+mora,103,100,6	script	Cidadão de Mora#8	4_F_RAFLE_PK,{
 	mes "[Didier Lans]";
 	mes "Yooo gaba gaba!";
 	mes "Olá, meu caro. Você ouviu falar sobre minhas técnicas, não foi?";
@@ -194,7 +194,7 @@ mora,103,100,6	script	Cidadão de Mora#8	518,{
 	close;
 }
 
-mora,184,169,3	script	Cidadão de Mora#9	516,{
+mora,184,169,3	script	Cidadão de Mora#9	4_M_RAFLE_GR,{
 	mes "[Moussa Wi]";
 	mes "Ah, já estive aqui por muito tempo.";
 	mes "Viver com estes cães...";
@@ -203,7 +203,7 @@ mora,184,169,3	script	Cidadão de Mora#9	516,{
 	close;
 }
 
-mora,108,182,3	script	Cidadão de Mora#10	516,{
+mora,108,182,3	script	Cidadão de Mora#10	4_M_RAFLE_GR,{
 	mes "[Yosou Keh]";
 	mes "Olá!";
 	mes "Eu sou Yosou Keh, um cidadão de Mora.";
@@ -211,7 +211,7 @@ mora,108,182,3	script	Cidadão de Mora#10	516,{
 	close;
 }
 
-mora,113,185,5	script	Cidadão de Mora#11	516,{
+mora,113,185,5	script	Cidadão de Mora#11	4_M_RAFLE_GR,{
 	mes "[Ninkasi]";
 	mes "Ei, cara.";
 	mes "Como você está, cara?";
@@ -230,20 +230,20 @@ mora,113,185,5	script	Cidadão de Mora#11	516,{
 		close;
 }
 
-mora,43,127,4	script	Cidadão de Mora#12	522,{
+mora,43,127,4	script	Cidadão de Mora#12	4_M_RAFLE_OR,{
 	mes "[Glouti Vori]";
 	mes "Hum, eu amo este bife de carne!";
 	mes "Ele é a única razão para eu ainda estar aqui! Não há nada melhor que o bife assado de Mora!";
 	close;
 }
 
-mora,35,119,7	script	Negociador do Mundo Sul	513,{
+mora,35,119,7	script	Negociador do Mundo Sul	4_M_DOGTRAVELER,{
 	mes "[Negociador do Mundo Sul]";
 	mes "...";
 	close;
 }
 
-mora,139,102,4	script	Milvida	515,{
+mora,139,102,4	script	Milvida	4_F_DOGTRAVELER,{
 	mes "[Milvida]";
 	mes "Bem-vindo a Mora~";
 	mes "No centro da cidade você pode encontrar todas as lojas e alguns encantadores.";
@@ -253,13 +253,13 @@ mora,139,102,4	script	Milvida	515,{
 	close;
 }
 
-mora,55,124,2	script	Gato Viajante	495,{
+mora,55,124,2	script	Gato Viajante	4_M_MERCAT1,{
 	mes "[Gato Viajante]";
 	mes "Esta cidade é parecida com Malangdo em vários aspectos, você não acha?";
 	close;
 }
 
-mora,131,165,4	script	Habitante de Bifrost#1	520,{
+mora,131,165,4	script	Habitante de Bifrost#1	4_F_MORAFINE1,{
 	mes "[Habitante de Bifrost]";
 	mes "Bem-vindo à oficina do clã oeste. Se você procura pela Capa de Loki encantada, por favor fale com meu chefe. Ele realiza milagres!";
 	next;
@@ -268,7 +268,7 @@ mora,131,165,4	script	Habitante de Bifrost#1	520,{
 	close;
 }
 
-mora,125,174,5	script	Habitante de Bifrost#2	520,{
+mora,125,174,5	script	Habitante de Bifrost#2	4_F_MORAFINE1,{
 	mes "[Habitante de Bifrost]";
 	mes "Bem-vindo à Oficina de Artefatos. Se você tiver um Pendante do Guardião, meu chefe e eu poderemos encantar seus equipamentos.";
 	next;
@@ -277,7 +277,7 @@ mora,125,174,5	script	Habitante de Bifrost#2	520,{
 	close;
 }
 
-mora,104,172,6	script	Habitante de Bifrost#3	520,{
+mora,104,172,6	script	Habitante de Bifrost#3	4_F_MORAFINE1,{
 	mes "[Habitante de Bifrost]";
 	mes "Olá, bem-vindo à Alfaiataria de Mora.";
 	next;
@@ -286,19 +286,19 @@ mora,104,172,6	script	Habitante de Bifrost#3	520,{
 	close;
 }
 
-mora,112,161,6	script	Guarda Novato	523,{
+mora,112,161,6	script	Guarda Novato	4_F_RAFLE_YE,{
 	mes "[Guarda Novato]";
 	mes "...";
 	close;
 }
 
-mora,118,166,5	script	Guarda Veterano	517,{
+mora,118,166,5	script	Guarda Veterano	4_M_RAFLE_OLD,{
 	mes "[Guarda Veterano]";
 	mes "...";
 	close;
 }
 
-mora,105,104,4	script	Lobo Aventureiro	514,{
+mora,105,104,4	script	Lobo Aventureiro	4_M_DOGTRAVELER2,{
 	mes "[Lobo Aventureiro]";
 	mes "Eu cruzei o continente negro antes de chegar neste vilarejo escondido.";
 	next;
@@ -310,13 +310,13 @@ mora,105,104,4	script	Lobo Aventureiro	514,{
 	close;
 }
 
-mora,99,100,7	script	Mulher Fugitiva	515,{
+mora,99,100,7	script	Mulher Fugitiva	4_F_DOGTRAVELER,{
 	mes "[Mulher Fugitiva]";
 	mes "Meu marido e eu nos mudamos recentemente para o vilarejo. Gostamos muito daqui ~";
 	close;
 }
 
-mora,123,94,8	script	Garota Viajante	515,{
+mora,123,94,8	script	Garota Viajante	4_F_DOGTRAVELER,{
 	mes "[Garota Viajante]";
 	mes "Achei esta cidade bastante agradável. O cheiro das frutas é muito bom ~";
 	next;
@@ -378,7 +378,7 @@ mora,123,94,8	script	Garota Viajante	515,{
 	close;
 }
 
-mora,155,72,6	script	Viajante Paikan	513,{
+mora,155,72,6	script	Viajante Paikan	4_M_DOGTRAVELER,{
 	mes "[Paikan]";
 	mes "Olá, o que está fazendo aqui? Eu vim trazer meus três primos em uma missão de comércio para Mora.";
 	mes "Eles finalmente decidiram voltar para Esplendor...";
@@ -389,23 +389,23 @@ mora,155,72,6	script	Viajante Paikan	513,{
 	close;	
 }
 
-mora,179,155,6	script	Gerente do Armazém	516,{}
+mora,179,155,6	script	Gerente do Armazém	4_M_RAFLE_GR,{}
 
-mora,122,97,3	script	Velho	517,{}
+mora,122,97,3	script	Velho	4_M_RAFLE_OLD,{}
 
-mora,174,171,3	script	Guardião do Armazém	518,{
+mora,174,171,3	script	Guardião do Armazém	4_F_RAFLE_PK,{
 	mes "[Guardião do Armazém]";
 	mes "...";
 	close;
 }
 
-mora,99,65,6	script	Assistente de Relíquias	516,{
+mora,99,65,6	script	Assistente de Relíquias	4_M_RAFLE_GR,{
 	mes "[Assistente de Relíquias]";
 	mes "Meu chefe é o melhor encantador de Mora. Se precisar de algo basta vir aqui e não sairá desapontado!";
 	close;
 }
 
-mora,30,128,6	script	Negociante de Morroc	514,{
+mora,30,128,6	script	Negociante de Morroc	4_M_DOGTRAVELER2,{
 	mes "[Negociante de Morroc]";
 	mes "Esta cidade é mais quente que Morroc? Eu achava que Morroc era a cidade mais quente do mundo. Cometi um erro.";
 	next;
@@ -420,7 +420,7 @@ mora,30,128,6	script	Negociante de Morroc	514,{
 	close;
 }
 
-mora,130,96,4	script	Jovem Negociante	513,{
+mora,130,96,4	script	Jovem Negociante	4_M_DOGTRAVELER,{
 	mes "[Jovem Negociante]";
 	mes "Bem vindo à Mora. Você é um aventureiro, não é? Percebi pelo seu jeito de se vestir.";
 	next;
@@ -446,56 +446,56 @@ mora,130,96,4	script	Jovem Negociante	513,{
 	close;	
 }
 
-mora,43,113,8	script	Velho habitante de Mora	517,{
+mora,43,113,8	script	Velho habitante de Mora	4_M_RAFLE_OLD,{
 	mes "[Velho habitante de Mora]";
 	mes "ZzzZzzzZZ....";
 	close;
 }
 
-mora,168,161,6	script	Negociante	513,{
+mora,168,161,6	script	Negociante	4_M_DOGTRAVELER,{
 	mes "[Negociante]";
 	mes "As bananas de Mora são muito baratas, por isso todo dia eu guardo muitas para as pessoas de Esplendor.";
 	close;
 }
 
-mora,175,161,5	script	Funcionário do Armazém	518,{
+mora,175,161,5	script	Funcionário do Armazém	4_F_RAFLE_PK,{
 	mes "[Funcionário do Armazém]";
 	mes "Bem-vindo à Mora. Eu realmente não tenho tempo para falar com você.";
 	mes "Recebemos uma grande quantidade de comida e eu tenho que guardá-la rapidamente.";
 	close;
 }
 
-mora,140,72,5	script	Viajante Baizan	513,{
+mora,140,72,5	script	Viajante Baizan	4_M_DOGTRAVELER,{
 	mes "[Baizan]";
 	mes "Nós simplesmente seguimos o primo Paikan e demoramos apenas duas horas de Esplendor para cá. Ele vem à Mora todo dia!";
 	close;
 }
-mora,138,72,4	script	Viajante Saiman	513,{
+mora,138,72,4	script	Viajante Saiman	4_M_DOGTRAVELER,{
 	mes "[Saiman]";
 	mes "Faça o que quiser. Eu vou para o Sul. Lá é a saída mais próxima para Esplendor.";
 	close;
 }
 
-mora,139,73,2	script	Viajante Naipan	513,{
+mora,139,73,2	script	Viajante Naipan	4_M_DOGTRAVELER,{
 	mes "[Naipan]";
 	mes "Você deve ter vindo do Norte. Os monstros não são fortes por lá.";
 	close;
 }
 
-mora,106,117,5	script	Assistente de Utilidades	516,{
+mora,106,117,5	script	Assistente de Utilidades	4_M_RAFLE_GR,{
 	mes "[Assistente de Utilidades]";
 	mes "Ei, bem-vindo à melhor loja de Mora. A Loja de Utilidades.";
 	mes "Nós vendemos os melhores produtos da região, dê uma olhada! Veja nosso estoque.";
 	close;
 }
 
-mora,95,71,1	script	Galbuta	495,{
+mora,95,71,1	script	Galbuta	4_M_MERCAT1,{
 	mes "[Galbuta]";
 	mes "Sinto muita saudade de Malangdo. Só estou aqui por causa do meu trabalho. Mas ei, a vida é assim então tenho que me conformar...";
 	close;
 }
 
-mora,115,118,3	script	Zina	700,{
+mora,115,118,3	script	Zina	8_F_GIRL,{
 	mes "[Zina]";
 	mes "Olá, Eu vim de Prontera a Captial de Rune-Midgard.";
 	next;
@@ -510,7 +510,7 @@ mora,115,118,3	script	Zina	700,{
 	close;
 }
 
-mora,115,138,4	script	Purplesia	524,{
+mora,115,138,4	script	Purplesia	4_M_RAFLE_VI,{
 	mes "[Purplesia]";
 	mes "Bem-vindo à Mora... Você é?";
 	next;
@@ -528,7 +528,7 @@ mora,115,138,4	script	Purplesia	524,{
 }
 
 // Guardas
-mora,73,50,5	script	Guardião do Portal Sul#s	518,{
+mora,73,50,5	script	Guardião do Portal Sul#s	4_F_RAFLE_PK,{
 	mes "[Guardião do Portal]";
 	if (strnpcinfo(2) == "s")
 		mes "Atrás desse portal fica o campo sul de Bifrost.";
@@ -539,26 +539,26 @@ mora,73,50,5	script	Guardião do Portal Sul#s	518,{
 	mes "Tome cuidado~";
 	close;
 }
-mora,25,158,5	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Norte#n	516
-mora,167,76,3	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Leste#l	522
+mora,25,158,5	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Norte#n	4_M_RAFLE_GR
+mora,167,76,3	duplicate(Guardião do Portal Sul#s)	Guardião do Portal Leste#l	4_M_RAFLE_OR
 
 // Coral de Rafflesias
-mora,132,185,4	script	Pequeno Rafflesia#1	518,{
+mora,132,185,4	script	Pequeno Rafflesia#1	4_F_RAFLE_PK,{
 	if (strnpcinfo(2) == "9")
 		npctalk "Você quer nos ouvir cantar? Fale com nosso Avô!";
 	else
 		npctalk "Gloria !!";
 }
-mora,133,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#2	524
-mora,134,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#3	525
-mora,132,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#4	522
-mora,134,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#5	516
-mora,134,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#6	516
-mora,132,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#7	524
-mora,133,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#8	518
-mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	522
+mora,133,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#2	4_M_RAFLE_VI
+mora,134,185,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#3	4_F_RAFLE_VI
+mora,132,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#4	4_M_RAFLE_OR
+mora,134,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#5	4_M_RAFLE_GR
+mora,134,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#6	4_M_RAFLE_GR
+mora,132,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#7	4_M_RAFLE_VI
+mora,133,183,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#8	4_F_RAFLE_PK
+mora,133,184,4	duplicate(Pequeno Rafflesia#1)	Pequeno Rafflesia#9	4_M_RAFLE_OR
 
-mora,140,186,4	script	Vovô Rafflesia	517,{
+mora,140,186,4	script	Vovô Rafflesia	4_M_RAFLE_OLD,{
 	if ($gloriasong == 1) {
 		mes "[Vovô Rafflesia]";
 		mes "Escute minhas crianças cantando... Não são lindas?";

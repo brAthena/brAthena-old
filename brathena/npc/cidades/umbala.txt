@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-comodo,170,137,7	script	La Ed#um	84,{
+comodo,170,137,7	script	La Ed#um	4_M_02,{
 	end;
 
 OnEmoteHmm:
@@ -37,7 +37,7 @@ OnEmoteGG:
 	end;
 }
 
-comodo,171,137,1	script	Haith#um	92,{
+comodo,171,137,1	script	Haith#um	4_F_03,{
 	mes "[La Ed]";
 	mes "DEVE ter um tesouro escondido naquele lugar!";
 	next;
@@ -129,7 +129,7 @@ comodo,171,137,1	script	Haith#um	92,{
 	close;
 }
 
-cmd_in01,175,120,3	script	Iriya#um	69,{
+cmd_in01,175,120,3	script	Iriya#um	1_F_04,{
 	mes "[Iriya]";
 	mes "O senhor Niels está na mesa do canto. Ele tem muitas histórias interessantes sobre suas viagens.";
 	next;
@@ -142,7 +142,7 @@ cmd_in01,175,120,3	script	Iriya#um	69,{
 	close;
 }
 
-cmd_in01,164,115,1	script	Niels#um	731,{
+cmd_in01,164,115,1	script	Niels#um	4_M_JOB_BLACKSMITH,{
 	mes "[Niels]";
 	mes "Hmm? Por que está me olhando assim?";
 	mes "Ah~ Você deve ter ouvido os rumores de eu ter achado um tesouro.";
@@ -192,7 +192,7 @@ cmd_in01,164,115,1	script	Niels#um	731,{
 	close;
 }
 
-umbala,70,106,3	script	Pequeno Utan#um	781,{
+umbala,70,106,3	script	Pequeno Utan#um	4_F_UMGIRL,{
 	if (event_umbala >= 3) {
 		mes "[???]";
 		mes "Huh?";
@@ -308,7 +308,7 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 		close;
 }
 
-umbala,59,243,5	script	Pequeno Utan#1	787,{
+umbala,59,243,5	script	Pequeno Utan#1	4_M_UMKID,{
 		mes "[Kotan]";
 	if (event_umbala >= 3) {
 		mes "............";
@@ -377,7 +377,7 @@ umbala,59,243,5	script	Pequeno Utan#1	787,{
 		close;
 }
 
-umbala,177,153,3	script	Pasto#um	97,{
+umbala,177,153,3	script	Pasto#um	4W_M_01,{
 	mes "[Pasto]";
 	emotion e_gasp;
 	mes "Meu Deus~! Finalmente, alguém mais de Rune-Midgard!";
@@ -408,7 +408,7 @@ umbala,177,153,3	script	Pasto#um	97,{
 	close;
 }
 
-umbala,80,146,4	script	Yuwooki#um	753,{
+umbala,80,146,4	script	Yuwooki#um	4_M_MONK,{
 	mes "[Yuwooki]";
 	mes "Umbah umbah woogawoo...";
 	mes "oops, desculpe! Estou muito acostumado a falar em Utan agora.";
@@ -439,7 +439,7 @@ umbala,80,146,4	script	Yuwooki#um	753,{
 	close;
 }
 
-umbala,140,157,6	script	Homem Utan#1	785,{
+umbala,140,157,6	script	Homem Utan#1	4_M_UMDANCEKID2,{
 		mes "[Jertan]";
 	if (event_umbala >= 3) {
 		mes "Bungee jumping é um esporte que pode ser perigoso, e você pode arriscar sua vida praticando-o. Nós, Utans, consideramos o bunguee jumping uma parte importante da cerimônia de passagem para tornar-nos adultos.";
@@ -452,7 +452,7 @@ umbala,140,157,6	script	Homem Utan#1	785,{
 		close;
 }
 
-umbala,146,157,4	script	Homem de Utan#2	786,{
+umbala,146,157,4	script	Homem de Utan#2	4_M_UMDANCEKID,{
 		mes "[Arotan]";
 	if (event_umbala >= 3) {
 		mes "Praticar o bungee jump é um desafio e tanto.";
@@ -465,7 +465,7 @@ umbala,146,157,4	script	Homem de Utan#2	786,{
 		close;
 }
 
-umbala,149,165,4	script	Criança de Utan#3	781,{
+umbala,149,165,4	script	Criança de Utan#3	4_F_UMGIRL,{
 	if (event_umbala >= 3) {
 		mes "[Klumatan]";
 		mes "É assustador cair de um lugar tão alto...";
@@ -482,7 +482,7 @@ umbala,149,165,4	script	Criança de Utan#3	781,{
 		close;
 }
 
-umbala,92,159,4	script	Bertan#um	785,{
+umbala,92,159,4	script	Bertan#um	4_M_UMDANCEKID2,{
 	if (event_umbala >= 3) {
 		mes "[Bertan]";
 		mes "E aí, seu perdedor!";
@@ -634,7 +634,7 @@ umbala,92,159,4	script	Bertan#um	785,{
 	close;
 }
 
-umbala,194,104,4	script	Criança de Utan#2	787,{
+umbala,194,104,4	script	Criança de Utan#2	4_M_UMKID,{
 	if (event_umbala >= 3) {
 		mes "Hum? Você é de Rune-Midgard, não é? Já praticou o bungee jumping?";
 		next;
@@ -665,7 +665,7 @@ umbala,194,104,4	script	Criança de Utan#2	787,{
 		close;
 }
 
-umbala,193,208,6	script	Homem de Utan#3	789,{
+umbala,193,208,6	script	Homem de Utan#3	4_M_UMSOLDIER,{
 	if (event_umbala >= 3) {
     mes "[Weitan]";
     mes "Eu também pratiquei o bungee jump quando era mais novo.";
@@ -684,7 +684,7 @@ umbala,193,208,6	script	Homem de Utan#3	789,{
 		close;
 }
 
-umbala,139,205,4	script	Homem de Utan#5	785,{
+umbala,139,205,4	script	Homem de Utan#5	4_M_UMDANCEKID2,{
 	if (event_umbala >= 3) {
 		mes "[Jooltan]";
 		mes "Fazia muito tempo que eu não via alguém de Rune-Midgard.";
@@ -723,7 +723,7 @@ umbala,139,205,4	script	Homem de Utan#5	785,{
 		close;
 }
 
-um_in,158,71,3	script	Morador de Utan#um	787,{
+um_in,158,71,3	script	Morador de Utan#um	4_M_UMKID,{
 	if (event_umbala >= 3) {
 		mes "[Mutakutan]";
 		mes "Umbala tem muitas árvores!";

@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,26,229,0	script	Funcionária Kafra#coe	83,{
+alberta,26,229,0	script	Funcionária Kafra#coe	4_M_01,{
 	if (BUNYBND == 1) {
 		mes "[Funcionária Kafra]";
 		mes "Olá você aí!~!";
@@ -169,4 +169,4 @@ alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 	}
 }
 
-payon,104,117,4	duplicato(Funcionária Kafra#coe)	Funcionária Kafra#coe2	83,{}
+payon,104,117,4	duplicato(Funcionária Kafra#coe)	Funcionária Kafra#coe2	4_M_01,{}

@@ -28,7 +28,7 @@
 
 // Morroc
 //============================================================
-morocc,150,120,5	script#dv	Soldado - Morroc#01::MocSoldier	707,3,3,{
+morocc,150,120,5	script#dv	Soldado - Morroc#01::MocSoldier	4_M_MOC_SOLDIER,3,3,{
 OnTouch:
 	mes "[Soldado de Morroc]";
 	mes "Ei, você! Pare aí.";
@@ -38,7 +38,7 @@ OnTouch:
 	close;
 }
 
-morocc,202,244,0	script#dv	Voluntário - Morroc#01	745,{
+morocc,202,244,0	script#dv	Voluntário - Morroc#01	4_F_CRU,{
 	mes "[Voluntário]";
 	mes "Depois que aquele terrível incidente destruíu Morroc, o Reino de Rune-Midgard convocou voluntários para ajudar-nos a reconstruir a cidade.";
 	next;
@@ -47,7 +47,7 @@ morocc,202,244,0	script#dv	Voluntário - Morroc#01	745,{
 	close;
 }
 
-morocc,88,133,3	script#dv	Voluntário - Morroc#02	748,{
+morocc,88,133,3	script#dv	Voluntário - Morroc#02	4_M_ALCHE_A,{
 	mes "[Voluntário]";
 	mes "Nossa... Estamos atolados de trabalho...";
 	next;
@@ -60,7 +60,7 @@ morocc,88,133,3	script#dv	Voluntário - Morroc#02	748,{
 	close;
 }
 
-morocc,202,110,0	script#dv	Voluntário - Morroc#03	730,{
+morocc,202,110,0	script#dv	Voluntário - Morroc#03	4_M_JOB_ASSASSIN,{
 	mes "[Voluntário]";
 	mes "Ainda não estimamos o dano causado.";
 	next;
@@ -72,7 +72,7 @@ morocc,202,110,0	script#dv	Voluntário - Morroc#03	730,{
 	close;
 }
 
-morocc,268,287,3	script#dv	Voluntário - Morroc#04	727,{
+morocc,268,287,3	script#dv	Voluntário - Morroc#04	4_F_JOB_HUNTER,{
 	mes "[Voluntário]";
 	mes "Por pior que esteja, não podemos pedir mais apoio.";
 	mes "Isso foi a pior coisa que aconteceu na história de Rune-Midgard.";
@@ -82,7 +82,7 @@ morocc,268,287,3	script#dv	Voluntário - Morroc#04	727,{
 	close;
 }
 
-morocc,37,287,0	script#dv	Voluntário - Morroc#05	79,{
+morocc,37,287,0	script#dv	Voluntário - Morroc#05	1_F_PRIEST,{
 	mes "[Voluntário]";
 	mes "A cidade está destruída, mas o principal problema são os cidadãos.";
 	next;
@@ -94,7 +94,7 @@ morocc,37,287,0	script#dv	Voluntário - Morroc#05	79,{
 	close;
 }
 
-morocc,223,102,0	script#dv	Voluntário - Morroc#06	741,{
+morocc,223,102,0	script#dv	Voluntário - Morroc#06	2_M_BARD_ORIENT,{
 	mes "[Voluntário]";
 	mes "Ugh... Isso aqui é meio assustador... Mesmo esse vento seco do deserto parece ter uma natureza negra.";
 	next;
@@ -157,7 +157,7 @@ morocc,226,102,4	duplicata(Voluntário - Morroc#06)	Voluntário - Morroc#07	726,{}
 	close;
 }
 
-moc_ruins,132,144,0	script#dv	Jovem Homem Lobo#moc	85,{
+moc_ruins,132,144,0	script#dv	Jovem Homem Lobo#moc	4_M_03,{
 	mes "[Jovem]";
 	mes "Eu me lembro de dizer que o maior perigo do deserto são os lobos... Eles sempre andam em grupo e ficam bravíssimos se um deles é atacado.";
 	next;
@@ -245,7 +245,7 @@ moc_ruins,132,144,0	script#dv	Jovem Homem Lobo#moc	85,{
 	close;
 }
 
-moc_ruins,94,117,0	script#dv	Jovem Pálido	48,{
+moc_ruins,94,117,0	script#dv	Jovem Pálido	1_M_02,{
 	mes "[Jovem Pálido]";
 	mes "... Aquele dia... Eu vi uma lua sangrenta no céu. Tudo estava silencioso e assustador.";
 	next;
@@ -266,7 +266,7 @@ moc_ruins,94,117,0	script#dv	Jovem Pálido	48,{
 	close;
 }
 
-moc_ruins,115,82,0	script#dv	Menininha#moc	703,{
+moc_ruins,115,82,0	script#dv	Menininha#moc	4_F_KID2,{
 	mes "[Menininha]";
 	mes "*chorando*";
 	next;
@@ -281,7 +281,7 @@ moc_ruins,115,82,0	script#dv	Menininha#moc	703,{
 	close;
 }
 
-moc_ruins,118,82,1	script#dv	Menino#moc	706,{
+moc_ruins,118,82,1	script#dv	Menino#moc	4_M_KID1,{
 	mes "[Menino]";
 	mes "............... Pare de chorar, Eliese...";
 	next;
@@ -602,7 +602,7 @@ moc_ruins,118,82,1	script#dv	Menino#moc	706,{
 	close;
 }
 
-moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
+moc_fild16,199,212,4	script	 Tio Assassino#moc	1_M_JOBTESTER,{
 	mes "[Hashisid]";
 	mes "...Assassinos são treinados para se aproximar dos inimigos furtivamente e esconder seus propósitos.";
 	mes "Por isso, nunca olhamos nossos alvos nos olhos.";
@@ -634,7 +634,7 @@ moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
 	close;
 }
 
-moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
+moc_fild16,211,254,4	script	Assassino#07rhea_30	2_M_THIEFMASTER,{
 	mes "[La Conte]";
 	mes "Quando gatunos são promovidos a assassinos, que são muito mais avançados, poderão variar seu estilo de batalha.";
 	mes "Existem dois tipos principais de estilos de batalha para um assassino.";
@@ -686,7 +686,7 @@ moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
 	}
 }
 
-morocc,281,178,4	script#ot	Cetsu	97,{
+morocc,281,178,4	script#ot	Cetsu	4W_M_01,{
 	if (countitem(1237) > 0){
 		mes "[Cetsu]";
 		mes "Eu gostaria de saber o segredo para forjar um Adaga Sinistra... ahh... Que seja, eu não sou um Ferreiro mesmo.";
@@ -718,23 +718,23 @@ morocc,54,251,153,4	duplicata(Jovem#moc02)	Jovem#2moc02	89
 moc_ruins,128,153,4	duplicata(Vovô#moc)	Vovô#2moc	61
 moc_ruins,123,154,4	duplicata(Jovem#moc01)	Jovem#2moc01	99,{}
 //ot
-morocc,277,213,4	duplicato(Tio Morroc#moc)	Tio Morroc#mocot	48
-morocc,234,273,3	duplicato(Homem Mosca#moc)	Homem Mosca#mocot	54
-morocc,208,85,4	duplicato(Jovem Homem Muka#moc)	Jovem Homem Muka#mocot	83
-morocc,180,155,4	duplicato(Dimitri#moc)	Dimitri#mocot	49
-morocc,150,50,4	duplicato(Jovem Homem Diamante#moc)	Jovem Homem Diamante#mocot	99
-morocc,123,58,4	duplicato(Criança Estranha#moc)	Criança Estranha#mocot	118
-morocc,76,75,4	duplicato(Homem Formiga#moc)	Homem Formiga#mocot	47
-morocc,79,111,2	duplicato(Senhora Picky#moc)	Senhora Picky#mocot	700
-morocc,44,180,4	duplicato(Jovem#moc02)	Jovem#moc02ot	89
-morocc,68,260,4	duplicato(Jovem#moc01)	Jovem#moc01ot	99
-morocc_in,112,122,2	duplicato(Vovô#moc)	Vovô#mocot	61,{}
+morocc,277,213,4	duplicato(Tio Morroc#moc)	Tio Morroc#mocot	1_M_02
+morocc,234,273,3	duplicato(Homem Mosca#moc)	Homem Mosca#mocot	1_M_JOBGUIDER
+morocc,208,85,4	duplicato(Jovem Homem Muka#moc)	Jovem Homem Muka#mocot	4_M_01
+morocc,180,155,4	duplicato(Dimitri#moc)	Dimitri#mocot	1_M_03
+morocc,150,50,4	duplicato(Jovem Homem Diamante#moc)	Jovem Homem Diamante#mocot	4W_M_03
+morocc,123,58,4	duplicato(Criança Estranha#moc)	Criança Estranha#mocot	2_M_THIEFMASTER
+morocc,76,75,4	duplicato(Homem Formiga#moc)	Homem Formiga#mocot	1_M_01
+morocc,79,111,2	duplicato(Senhora Picky#moc)	Senhora Picky#mocot	8_F_GIRL
+morocc,44,180,4	duplicato(Jovem#moc02)	Jovem#moc02ot	4_M_ORIENT02
+morocc,68,260,4	duplicato(Jovem#moc01)	Jovem#moc01ot	4W_M_03
+morocc_in,112,122,2	duplicato(Vovô#moc)	Vovô#mocot	1_M_PUBMASTER,{}
 
 // Outros NPCs
 //============================================================
 //Garçom
 /*
-morocc_in,166,76,3	script#dv	Garçom#02	46,{
+morocc_in,166,76,3	script#dv	Garçom#02	1_ETC_01,{
 	mes "[Garçom]";
 	mes "O que você gostaria de pedir?";
 	next;
@@ -773,7 +773,7 @@ morocc_in,166,76,3	script#dv	Garçom#02	46,{
 
 // Guardas da Guilda dos Assassinos
 //===================================================
-moc_fild16,195,281,4	script	Guardião Assassino#1	707,{
+moc_fild16,195,281,4	script	Guardião Assassino#1	4_M_MOC_SOLDIER,{
 	mes "[Guardião Assassino]";
 	if (BaseJob == Job_Assassin) {
 		mes "Bem-vindo.";
@@ -787,10 +787,10 @@ moc_fild16,195,281,4	script	Guardião Assassino#1	707,{
 	}
 }
 
-moc_fild16,204,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#2	707
-moc_fild16,207,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#3	707
-moc_fild16,216,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#4	707
-moc_fild16,200,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#5	707
-moc_fild16,211,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#6	707
-moc_fild16,200,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#7	707
-moc_fild16,211,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#8	707
+moc_fild16,204,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#2	4_M_MOC_SOLDIER
+moc_fild16,207,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#3	4_M_MOC_SOLDIER
+moc_fild16,216,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#4	4_M_MOC_SOLDIER
+moc_fild16,200,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#5	4_M_MOC_SOLDIER
+moc_fild16,211,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#6	4_M_MOC_SOLDIER
+moc_fild16,200,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#7	4_M_MOC_SOLDIER
+moc_fild16,211,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#8	4_M_MOC_SOLDIER

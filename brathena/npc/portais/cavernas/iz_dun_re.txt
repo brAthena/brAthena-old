@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-iz_dun05,142,190,5	script	Guarda#iz_dun	413,{
+iz_dun05,142,190,5	script	Guarda#iz_dun	4_M_CRU_SOLD,{
 	mes "[Guarda]";
 	mes "Então você deseja sair do quinto andar?";
 	next;

@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
+izlude_in,74,172,4	script	Chefe Espadachim#swd	2_M_SWORDMASTER,{
 	mes "[Chefe Espadachim]";
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {
@@ -217,7 +217,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 	}
 }
 
-job_sword1,223,167,2	script	Mae#swd_1_success	92,{
+job_sword1,223,167,2	script	Mae#swd_1_success	4_F_03,{
 	mapannounce "job_sword1"," O aspirante " + strcharinfo(0) + ". passou por todas as fases, concluíndo o teste com sucesso!",bc_map;
 	set job_sword_q,4;
 	mes "[Mae]";
@@ -228,7 +228,7 @@ job_sword1,223,167,2	script	Mae#swd_1_success	92,{
 }
 
 
-izlude_in,62,170,6	script#vpo	Espadachim#swd_2	85,{
+izlude_in,62,170,6	script#vpo	Espadachim#swd_2	4_M_03,{
 	mes "[Espadachim]";
 	if (BaseJob == Job_Swordman) {
 		mes "Pare! Este é o Salão de Testes para Aprendizes. Outros Espadachins não são permitidos aqui dentro! Volte!";
@@ -254,7 +254,7 @@ izlude_in,62,170,6	script#vpo	Espadachim#swd_2	85,{
 	end;
 }
 
-izlude_in,30,175,4	script#vpo	Espadachim#swd_3	92,{
+izlude_in,30,175,4	script#vpo	Espadachim#swd_3	4_F_03,{
 	mes "[Espadachim]";
 	mes "Falarei sobre o teste, escute bem, pois não repetirei novamente.";
 	next;
@@ -272,7 +272,7 @@ izlude_in,30,175,4	script#vpo	Espadachim#swd_3	92,{
 	close;
 }
 
-izlude_in,30,163,0	script#vpo	Equipe de Testes do Salão#swd_1	105,{
+izlude_in,30,163,0	script#vpo	Equipe de Testes do Salão#swd_1	8W_SOLDIER,{
 	mes "[Equipe de Testes do Salão]";
 	if (BaseJob == Job_Swordman || BaseJob != Job_Novice) {
 		mes ""+((BaseJob == Job_Swordman) ? "Meu Deus! Como você entrou? Outros Espadachins não devem entrar aqui." : "Quem é você?! Este é o local do Teste de Espadachim, você não devia estar aqui!")+" Saia agora!";
@@ -299,7 +299,7 @@ izlude_in,30,163,0	script#vpo	Equipe de Testes do Salão#swd_1	105,{
 
 // NPCs Chefes de Examinação do Teste 1-1.
 //============================================================
-job_sword1,230,245,2	script#vpo	Médico#swd_1	105,{
+job_sword1,230,245,2	script#vpo	Médico#swd_1	8W_SOLDIER,{
 	callsub (strnpcinfo(0) == "Médico#swd_1") ? JobSwdMedic:JobSwdMedic,1;
 
 	JobSwdMedic:
@@ -308,7 +308,7 @@ job_sword1,230,245,2	script#vpo	Médico#swd_1	105,{
 		mes "Aqui é o "+getarg(0)+"º ponto de parada! Anime-se!";
 		close;
 }
-job_sword1,230,242,2	script#vpo	Equipe de Testes do Salão#swd_2	105,{
+job_sword1,230,242,2	script#vpo	Equipe de Testes do Salão#swd_2	8W_SOLDIER,{
 
 	mes "[Equipe de Testes do Salão]";
 	mes "Você desiste?";
@@ -323,10 +323,10 @@ job_sword1,230,242,2	script#vpo	Equipe de Testes do Salão#swd_2	105,{
 	end;
 }
 
-job_sword1,230,207,2	duplicatv(Médico#swd_1)	Médico#2swd_2	105
-job_sword1,230,204,2	duplicatv(Equipe de Testes do Salão#swd_2)	Equipe de Testes do Salão#2swd_3	105
+job_sword1,230,207,2	duplicatv(Médico#swd_1)	Médico#2swd_2	8W_SOLDIER
+job_sword1,230,204,2	duplicatv(Equipe de Testes do Salão#swd_2)	Equipe de Testes do Salão#2swd_3	8W_SOLDIER
 
-job_sword1,7,245,0	script#vpo	Equipe de Testes do Salão#swd_4	45,1,3,{
+job_sword1,7,245,0	script#vpo	Equipe de Testes do Salão#swd_4	WARPNPC,1,3,{
 
 OnTouch:
 	mes "[Equipe de Testes do Salão]";
@@ -346,8 +346,8 @@ OnTouch:
 job_sword1,223,243,0	warp#vpo	checkp1-2#swd_1	1,1,job_sword1,11,206
 job_sword1,223,205,0	warp#vpo	checkp2-3#swd_1	1,1,job_sword1,11,168
 
-job_sword1,8,207,0	duplicatv(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_5	45,1,6
-job_sword1,8,169,0	duplicatv(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_6	45,1,6
+job_sword1,8,207,0	duplicatv(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_5	WARPNPC,1,6
+job_sword1,8,169,0	duplicatv(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_6	WARPNPC,1,6
 
 job_sword1,192,244,0	script#vpo	Equipe de Testes do Salão#swd_7	-1,1,3,{
 
@@ -357,8 +357,8 @@ OnTouch:
 	end;
 }
 
-job_sword1,193,207,0	duplicatv(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_8	45,1,3
-job_sword1,193,168,0	duplicatv(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_9	45,1,3
+job_sword1,193,207,0	duplicatv(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_8	WARPNPC,1,3
+job_sword1,193,168,0	duplicatv(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_9	WARPNPC,1,3
 
 // Armadilhas (1º Etapa)
 //============================================================ 

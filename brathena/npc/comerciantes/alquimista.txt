@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alde_alche,31,186,3	script	Vendedor de Livros de Alquímia#alde	883,{
+alde_alche,31,186,3	script	Vendedor de Livros de Alquímia#alde	4_M_ALCHE_D,{
 
 	mes "[Vendedor de Livros de Alquímia]";
 	mes "Bem-vindo.";
@@ -132,7 +132,7 @@ Venda_Manual:
 	close;
 }
 
-alde_alche,24,188,3	script	Comerciante da Guilda	740,{
+alde_alche,24,188,3	script	Comerciante da Guilda	2_M_ALCHE,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um pouco! -";
 		mes "- Você está carregando -";

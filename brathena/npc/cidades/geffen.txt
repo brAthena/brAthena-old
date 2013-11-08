@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-geffen,59,143,0	script	Meera	91,{
+geffen,59,143,0	script	Meera	4_F_02,{
 	mes "[Meera]";
 	mes "Bem-vindo a Geffen, a Cidade da Magia!";
 	next;
@@ -46,7 +46,7 @@ geffen,59,143,0	script	Meera	91,{
 	close;
 }
 
-geffen,156,190,0	script	Orwalk	82,{
+geffen,156,190,0	script	Orwalk	4_KID01,{
 	mes "[Orwalk]";
 	mes "...Interessante.";
 	mes "Muito intrigante.";
@@ -63,7 +63,7 @@ geffen,156,190,0	script	Orwalk	82,{
 	close;
 }
 
-geffen_in,164,109,0	script	Mago Stanza	64,{
+geffen_in,164,109,0	script	Mago Stanza	1_M_WIZARD,{
 	mes "[Stanza]";
 	mes "Sinto a presença de um espírito poderoso. Será você...?";
 	next;
@@ -91,7 +91,7 @@ geffen_in,164,109,0	script	Mago Stanza	64,{
 	close;
 }
 
-geffen,147,26,0	script	Ralphie	97,{
+geffen,147,26,0	script	Ralphie	4W_M_01,{
 	mes "[Ralphie]";
 	mes "Em algum lugar existe um cajado que pode transformar energia psíquica em força física, dando ao seu dono ^990000poder destrutivo^000000...";
 	next;
@@ -116,7 +116,7 @@ geffen,147,26,0	script	Ralphie	97,{
 	close;
 }
 
-geffen,111,48,0	script	Senhora	101,{
+geffen,111,48,0	script	Senhora	4W_F_01,{
 	if (getequipid(1) == 2299) {
 		mes "[Senhora]";
 		mes "Oh...!";
@@ -170,7 +170,7 @@ geffen,111,48,0	script	Senhora	101,{
 	}
 }
 
-geffen_in,34,170,0	script	Theodoro	47,{
+geffen_in,34,170,0	script	Theodoro	1_M_01,{
 	mes "[Theodoro]";
 	mes "Olá!";
 	mes "Hoje não é um dia maravilhoso?";
@@ -197,7 +197,7 @@ geffen_in,34,170,0	script	Theodoro	47,{
 	close;
 }
 
-geffen,146,148,4	script	Cara Suspeito	99,6,6,{
+geffen,146,148,4	script	Cara Suspeito	4W_M_03,6,6,{
 	end;
 
 OnTouch:
@@ -388,7 +388,7 @@ OnTouch:
 	close;
 }
 
-geffen_in,22,125,1	script	Crumpler	52,{
+geffen_in,22,125,1	script	Crumpler	1_M_HOF,{
 	mes "[Crumpler]";
 	mes "Ooooh~!";
 	mes "Você está bem vestido, maguinho, vai tirar um coelho da cartola?";
@@ -482,7 +482,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 	}
 }
 
-geffen_in,59,61,1	script	Skyler	61,{
+geffen_in,59,61,1	script	Skyler	1_M_PUBMASTER,{
 	mes "[Skyler]";
 	mes "Olá, olá.";
 	mes "Você não está procurando pelo Eric, está?";
@@ -506,7 +506,7 @@ geffen_in,59,61,1	script	Skyler	61,{
 	close;
 }
 
-geffen_in,27,134,5	script	Garçonete#elen	91,{
+geffen_in,27,134,5	script	Garçonete#elen	4_F_02,{
 	mes "[Elenore]";
 	mes "Esse lugar...";
 	mes "Tem uma atmosfera diferente.";
@@ -629,7 +629,7 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 	close;
 }
 
-geffen_in,70,67,3	script	Garçonete#elise	90,{
+geffen_in,70,67,3	script	Garçonete#elise	4_F_01,{
 	mes "[Elisa]";
 	mes "Olá~";
 	mes "Posso ajudá-lo";
@@ -738,7 +738,7 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 	}
 }
 
-geffen_in,79,76,2	script	Mercador Daven	120,{
+geffen_in,79,76,2	script	Mercador Daven	2_M_PHARMACIST,{
 	mes "[Mercador Daven]";
 	mes "Eu me lembro de Geffen no tempo em que era chato.";
 	next;
@@ -800,7 +800,7 @@ geffen_in,79,76,2	script	Mercador Daven	120,{
 	close;
 }
 
-geffen_in,114,73,5	script	Hadenheim	709,{
+geffen_in,114,73,5	script	Hadenheim	4_M_SEAMAN,{
 	mes "[Hans Hadenheim]";
 	mes "Nossa, o continente de Rune-Midgard é enorme! Ah, olá, jovem. Como vai?";
 	next;
@@ -845,7 +845,7 @@ geffen_in,114,73,5	script	Hadenheim	709,{
 	close;
 }
 
-geffen_in,39,127,2	script	Vidente	704,{
+geffen_in,39,127,2	script	Vidente	4_M_BIBI,{
 	mes "[Vidente]";
 	mes "Ah...";
 	mes "Não diga! Você veio saber seu futuro, não? Eu sei...";
@@ -1255,7 +1255,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 	}
 }
 
-geffen_in,109,72,2	script	Professor de Monstros	90,{
+geffen_in,109,72,2	script	Professor de Monstros	4_F_01,{
 	mes "[Estheres]";
 	mes "Olá, sou o especialista em Monstros daqui de Geffen. Você gostaria de saber alguma coisa?";
 	next;
@@ -1320,7 +1320,7 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 
 // ------ NPCs Relacionados a Quest das Armas Nível 4 ------
 
-geffen,203,146,5	script	Cidadão	97,{
+geffen,203,146,5	script	Cidadão	4W_M_01,{
 	mes "[Cidadão]";
 	mes "Havia um hábil criador de armas em Al De Baran, e ele tinha 4 filhos.";
 	mes "Infelizmente, ele perdeu todos enquanto desenvolvia uma arma poderosa.";

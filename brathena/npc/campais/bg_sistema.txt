@@ -33,10 +33,10 @@
 
 // Generais
 //============================================================
-bat_room,161,158,3	script	Assistente do General#01	419,{ end; }
-bat_room,161,160,3	script	Assistente do General#03	419,{ end; }
+bat_room,161,158,3	script	Assistente do General#01	4_M_KY_HEAD,{ end; }
+bat_room,161,160,3	script	Assistente do General#03	4_M_KY_HEAD,{ end; }
 
-bat_room,160,141,3	script	Príncipe Croix	416,{
+bat_room,160,141,3	script	Príncipe Croix	4_M_CRU_CRUA,{
 	cutin "bat_crua1",2;
 	mes "[Príncipe Croix]";
 	mes "Sábio aventureiro, por que você não nos empresta seu poder e juntos vamos rumo à vitória?";
@@ -79,10 +79,10 @@ bat_room,160,141,3	script	Príncipe Croix	416,{
 	end;
 }
 
-bat_room,161,140,3	script	Assistente do Principe#01	415,{ end; }
-bat_room,161,142,3	script	Assistente do Principe#02	415,{ end; }
+bat_room,161,140,3	script	Assistente do Principe#01	4_M_CRU_HEAD,{ end; }
+bat_room,161,142,3	script	Assistente do Principe#02	4_M_CRU_HEAD,{ end; }
 
-bat_room,160,159,3	script	General Guillaume	420,{
+bat_room,160,159,3	script	General Guillaume	4_M_KY_KIYOM,{
 	cutin "bat_kiyom2",2;
 	mes "[General Guillaume]";
 	mes "Audacioso aventureiro, nós precisamos de suas habilidades para vencer esta batalha.";
@@ -137,14 +137,14 @@ bat_room,160,159,3	script	General Guillaume	420,{
 
 // Bandeiras
 //============================================================
-//bat_room,140,160,3	script	Base Guillaume#roomflag1	973,{ end; }
-//bat_room,167,160,3	script	Base Guillaume#roomflag2	973,{ end; }
-//bat_room,140,139,3	script	Base Croix#roomflag1	974,{ end; }
-//bat_room,167,139,3	script	Base Croix#roomflag2	974,{ end; }
+//bat_room,140,160,3	script	Base Guillaume#roomflag1	1_FLAG_LION,{ end; }
+//bat_room,167,160,3	script	Base Guillaume#roomflag2	1_FLAG_LION,{ end; }
+//bat_room,140,139,3	script	Base Croix#roomflag1	1_FLAG_EAGLE,{ end; }
+//bat_room,167,139,3	script	Base Croix#roomflag2	1_FLAG_EAGLE,{ end; }
 
 // Teleportador da Batalha Campal
 //============================================================
-bat_room,148,150,5	script	Teleportador#Battlefield	124,{
+bat_room,148,150,5	script	Teleportador#Battlefield	4_F_TELEPORTER,{
 	mes "[Teleportador]";
 	mes "Você deseja sair do campo de batalha? Utilize meus serviçoes para retornar a uma cidade.";
 	next;
@@ -191,7 +191,7 @@ bat_room,148,150,5	script	Teleportador#Battlefield	124,{
 	end;
 }
 
-prontera,123,83,3	script	Emissária de Maroll::BatRecruit	728,{
+prontera,123,83,3	script	Emissária de Maroll::BatRecruit	4_F_JOB_KNIGHT,{
 	mes "[Emissária de Maroll]";
 	mes "Olá caro aventureiro!";
 	mes "Eu sou uma cavaleira vinda de um lugar distante chamado Reino de Maroll.";
@@ -221,12 +221,12 @@ prontera,123,83,3	script	Emissária de Maroll::BatRecruit	728,{
 	end;
 }
 
-moc_ruins,75,162,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit2	728
-aldebaran,146,109,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit3	728
-geffen,109,66,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit4	728
-payon,189,105,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit5	728
-lighthalzen,153,86,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit6	728
-rachel,149,138,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit7	728
+moc_ruins,75,162,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit2	4_F_JOB_KNIGHT
+aldebaran,146,109,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit3	4_F_JOB_KNIGHT
+geffen,109,66,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit4	4_F_JOB_KNIGHT
+payon,189,105,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit5	4_F_JOB_KNIGHT
+lighthalzen,153,86,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit6	4_F_JOB_KNIGHT
+rachel,149,138,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit7	4_F_JOB_KNIGHT
 
 // Pontos de teleporte adicionais
 bat_room,57,81,0	warp	bat1	1,1,bat_room,154,149
@@ -258,21 +258,21 @@ bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
 
 // Kafra
 //============================================================
-bat_room,148,147,4	script	Kafra Staff::kaf_bat	861,{
+bat_room,148,147,4	script	Kafra Staff::kaf_bat	4_F_KAFRA9,{
 	cutin "kafra_09",2;
 	callfunc "F_Kafra",0,2,1,150,0;
 }
 
 // Reparador
 //============================================================
-bat_room,138,144,4	script	Reparador#bg	86,{
+bat_room,138,144,4	script	Reparador#bg	4_M_04,{
 	callfunc "repairmain","Reparador";
 	end;
 }
 
 // NPC de Administração
 //============================================================
-bat_room,1,151,3	script	Dispositivo#batgnd	81,{
+bat_room,1,151,3	script	Dispositivo#batgnd	4_DOG01,{
 	set .@i, callfunc("F_GM_NPC",1854,0);
 	if (.@i == -1) {
 		mes "O comando foi cancelado.";
@@ -313,7 +313,7 @@ bat_room,1,151,3	script	Dispositivo#batgnd	81,{
 
 // Troca de Emblemas
 //============================================================
-bat_room,160,150,3	script	Erundek	109,{
+bat_room,160,150,3	script	Erundek	4_M_MANAGER,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";

@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
+hugel,98,56,3	script	Vovó Guia de Hugel#hugel	4_F_LGTGRAND,{
 	mes "[Vovó Guia de Hugel]";
 	if (checkversion(0)) {
 		mes "Oh, olá~ Você é um aventureiro energético.";
@@ -318,7 +318,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#hugel	863,{
 	}
 }
 
-hugel,187,172,6	script#re	Guia Rei Rico#hugel	414,{
+hugel,187,172,6	script#re	Guia Rei Rico#hugel	4_M_CRU_KNT,{
 	mes "[Rei Rico]";
 	mes "Quais negócios você tem nesta vila rural?";
 	next;

@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-malangdo,213,167,4	script	Mayomayo#mal	555,{
+malangdo,213,167,4	script	Mayomayo#mal	4_CAT_3COLOR,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";
@@ -648,7 +648,7 @@ L_Socket:
 	}
 }
 
-malangdo,215,166,4	script	Jeremy#mal	553,{
+malangdo,215,166,4	script	Jeremy#mal	4_CAT_DOWN,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";

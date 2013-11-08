@@ -660,20 +660,20 @@ function	script	F_VoteKafra	{
 	end;
 }
 
-yuno,162,191,4	script	Funcionária de Votação#yuno	861,{
+yuno,162,191,4	script	Funcionária de Votação#yuno	4_F_KAFRA9,{
 	callfunc "F_VoteKafra",9;
 }
-prontera,164,125,4	script	Funcionária de Votação#prt	116,{
+prontera,164,125,4	script	Funcionária de Votação#prt	4_F_KAFRA2,{
 	callfunc "F_VoteKafra",2;
 }
-moc_ruins,97,133,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#moc	116
-geffen,122,37,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#gef	116
-payon,158,182,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#pay	116
-alberta,119,70,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alb	116
-aldebaran,145,102,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alde	116
-lighthalzen,163,60,4	duplicate(Funcionária de Votação#yuno)	Funcionária#lght	861
+moc_ruins,97,133,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#moc	4_F_KAFRA2
+geffen,122,37,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#gef	4_F_KAFRA2
+payon,158,182,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#pay	4_F_KAFRA2
+alberta,119,70,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alb	4_F_KAFRA2
+aldebaran,145,102,4	duplicate(Funcionária de Votação#prt)	Funcionária de Votação#alde	4_F_KAFRA2
+lighthalzen,163,60,4	duplicate(Funcionária de Votação#yuno)	Funcionária#lght	4_F_KAFRA9
 
-yuno,153,191,6	script	Funcionário de Votação::VotingStaffCCE	874,{
+yuno,153,191,6	script	Funcionário de Votação::VotingStaffCCE	4_M_ZONDAMAN,{
 	callfunc "F_ClearGarbage";
 	cutin "zonda_01",2;
 	mes "[Equipe Eventos legais de votação]";
@@ -1053,13 +1053,13 @@ yuno,153,191,6	script	Funcionário de Votação::VotingStaffCCE	874,{
 	end;
 }
 
-prontera,147,125,6	duplicate(VotingStaffCCE)	Funcionário#prt	874
-moc_ruins,104,133,6	duplicate(VotingStaffCCE)	Funcionário#moc	874
-geffen,117,37,6	duplicate(VotingStaffCCE)	Funcionário#gef	874
-payon,153,182,6	duplicate(VotingStaffCCE)	Funcionário#pay	874
-alberta,114,70,6	duplicate(VotingStaffCCE)	Funcionário#alb	874
-aldebaran,138,102,6	duplicate(VotingStaffCCE)	Funcionário#alde	874
-lighthalzen,154,60,6	duplicate(VotingStaffCCE)	Funcionário#lhz	874
+prontera,147,125,6	duplicate(VotingStaffCCE)	Funcionário#prt	4_M_ZONDAMAN
+moc_ruins,104,133,6	duplicate(VotingStaffCCE)	Funcionário#moc	4_M_ZONDAMAN
+geffen,117,37,6	duplicate(VotingStaffCCE)	Funcionário#gef	4_M_ZONDAMAN
+payon,153,182,6	duplicate(VotingStaffCCE)	Funcionário#pay	4_M_ZONDAMAN
+alberta,114,70,6	duplicate(VotingStaffCCE)	Funcionário#alb	4_M_ZONDAMAN
+aldebaran,138,102,6	duplicate(VotingStaffCCE)	Funcionário#alde	4_M_ZONDAMAN
+lighthalzen,154,60,6	duplicate(VotingStaffCCE)	Funcionário#lhz	4_M_ZONDAMAN
 
 yuno,103,225,0	script	Associação Scrutiny#5	-1,{
 OnInit:
@@ -1125,7 +1125,7 @@ OnTimer15000:
 	end;
 }
 /*
-sec_in02,17,160,4	script	Garota das Votações Globais#yuno	864,{
+sec_in02,17,160,4	script	Garota das Votações Globais#yuno	4_F_OPERATION,{
 	callfunc "F_GM_NPC";
 	mes "[Empregada de Christy]";
 	mes "Senhora Christy!";

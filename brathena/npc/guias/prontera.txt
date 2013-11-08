@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,154,187,4	script	Guia#01prontera	105,{
+prontera,154,187,4	script	Guia#01prontera	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Prontera]";
 	if (checkversion(0)) {
@@ -418,7 +418,7 @@ L_Mark:
 	mes "Deixe-me marcar a localização para "+getarg(0)+" no seu mini-mapa";
 	return; 
 }
-prontera,282,208,2	duplicate(Guia#01prontera)	Guia Leste#02prontera	105
-prontera,29,200,6	duplicate(Guia#01prontera)	Guia Oeste#03prontera	105
-prontera,160,29,0	duplicate(Guia#01prontera)	Guia Sul#04prontera	105
-prontera,151,330,4	duplicate(Guia#01prontera)	Guia Norte#05prontera	105
+prontera,282,208,2	duplicate(Guia#01prontera)	Guia Leste#02prontera	8W_SOLDIER
+prontera,29,200,6	duplicate(Guia#01prontera)	Guia Oeste#03prontera	8W_SOLDIER
+prontera,160,29,0	duplicate(Guia#01prontera)	Guia Sul#04prontera	8W_SOLDIER
+prontera,151,330,4	duplicate(Guia#01prontera)	Guia Norte#05prontera	8W_SOLDIER

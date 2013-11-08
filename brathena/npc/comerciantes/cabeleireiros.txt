@@ -26,7 +26,7 @@
 
 // Cabeleireiro Veronica
 // ============================================================
-alberta_in,55,142,7	script	Cabeleireira	91,{
+alberta_in,55,142,7	script	Cabeleireira	4_F_02,{
 	mes "[Veronica]";
 	mes "Bem-Vindo ao Veronicas Salão de Beleza.";
 	mes "Como posso lhe ajudar?";
@@ -269,7 +269,7 @@ L_cutin:
 
 // Cabeleireiro Roving
 // ============================================================
-alberta,33,141,7	script	Cabeleireiro Roving	87,{
+alberta,33,141,7	script	Cabeleireiro Roving	4_M_BARBER,{
 	mes "[Rui Vishop]";
 	mes "Essa Veronica...";
 	mes "Hah! Melhor cabeleireira, nada.";
@@ -381,7 +381,7 @@ alberta,33,141,7	script	Cabeleireiro Roving	87,{
 
 
 // Lighthalzen
-lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
+lhz_in02,100,143,3	script	Cabeleireiro#li	2_M_DYEINGER,{
 	mes "[Príncipe Shammi]";
 	mes "Bem-vindo ao Príncipe Shammi's Cabeleireiro";
 	mes "o lugar para ir para cabelos fabulosos.";
@@ -700,7 +700,7 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 	}
 }
 
-lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
+lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	4_F_LGTGIRL,{
 	mes "[Assistente de Cabeleireiro]";
 	mes "Quê?! Querido Jiminy, você me assustou!";
 	mes "O que está fazendo?!";

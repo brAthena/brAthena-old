@@ -25,7 +25,7 @@
 
 // Teleporte de Ayothaya
 //============================================================ 
-alberta,246,29,3	script	Aibakthing#ayo	843,{
+alberta,246,29,3	script	Aibakthing#ayo	4_M_THAIONGBAK,{
 	mes "[Aibakthing]";
 	mes "Hoo! Hah! Hoo! Hah!";
 	mes "Deixe-me levar-te para um lugar espiritual distante, uma terra de mistério exótico, minha cidade natal Ayothaya!";
@@ -73,7 +73,7 @@ alberta,246,29,3	script	Aibakthing#ayo	843,{
 	}
 }
 
-ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
+ayothaya,152,68,1	script	Aibakthing#ayo2	4_M_THAIONGBAK,{
 	mes "[Aibakthing]";
 	mes "Hoo! Hah! Hmm! Hah!";
 	mes "Então, você gostou de Ayothaya? Você teve a chance de provar Tom Yum Goong? Quando você tiver pronto, irei levá-lo para casa.";
@@ -96,7 +96,7 @@ ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
 
 // NPCs Genéricos de Ayothaya
 //============================================================
-ayothaya,189,120,3	script	Jovem#Thang	843,{
+ayothaya,189,120,3	script	Jovem#Thang	4_M_THAIONGBAK,{
 	mes "[Thang]";
 	mes "Há uma antiga, terrível construção em Ayothaya que ninguém se atreve a chegar perto...";
 	next;
@@ -109,7 +109,7 @@ ayothaya,189,120,3	script	Jovem#Thang	843,{
 	close;
 }
 
-ayothaya,171,152,5	script	Menina#Lalitha	838,{
+ayothaya,171,152,5	script	Menina#Lalitha	4_F_THAIAYO,{
 	set .@sit,rand(1,5);
 	if (.@sit > 0 && .@sit < 3) {
 		mes "[Lalitha]";
@@ -169,7 +169,7 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 	close;
 }
 
-ayothaya,143,102,5	script	Velho#ayothaya	842,{
+ayothaya,143,102,5	script	Velho#ayothaya	4_M_THAIOLD,{
 	mes "[Habitante]";
 	mes "Hmmm.";
 	mes "Hmmmmm...";
@@ -203,7 +203,7 @@ ayothaya,143,102,5	script	Velho#ayothaya	842,{
 	close;
 }
 
-ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
+ayothaya,197,189,5	script	Jovem#1ayothaya	4_M_THAIAYO,{
 	mes "[Kwan]";
 	mes "Uff~ Não está tãããão quente hoje?";
 	next;
@@ -222,7 +222,7 @@ ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
 	close;
 }
 
-ayothaya,214,142,5	script	Jovem#5ayothaya	843,{
+ayothaya,214,142,5	script	Jovem#5ayothaya	4_M_THAIONGBAK,{
 	mes "[Detzi]";
 	mes "Em Ayothaya, temos nossas próprias artes marciais tradicionais. Nós, os homens jovens da aldeia, praticamos essa arte marcial afim de nos tornarmos fortes.";
 	next;
@@ -231,7 +231,7 @@ ayothaya,214,142,5	script	Jovem#5ayothaya	843,{
 	close;
 }
 
-ayothaya,241,264,5	script	Jovem#5ayothaya2	843,{
+ayothaya,241,264,5	script	Jovem#5ayothaya2	4_M_THAIONGBAK,{
 	mes "[Eik]";
 	mes "Ei...";
 	mes "Você parece bastante forte.";

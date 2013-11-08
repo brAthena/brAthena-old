@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/ 
 
-airplane,243,73,0	script	#AeroplanoPortal-1	45,1,1,{
+airplane,243,73,0	script	#AeroplanoPortal-1	WARPNPC,1,1,{
 	end;
 
 OnInit:
@@ -48,7 +48,7 @@ OnTouch:
 	}
 }
 
-airplane,243,29,0	duplicate(#AeroplanoPortal-1)	#AeroplanoPortal-2	45,1,1
+airplane,243,29,0	duplicate(#AeroplanoPortal-1)	#AeroplanoPortal-2	WARPNPC,1,1
 
 airplane,1,1,0	script	Aeroplano_Domestico	-1,{
 
@@ -75,14 +75,14 @@ airplane,1,1,0	script	Aeroplano_Domestico	-1,{
 	}
 }
 
-airplane,240,64,5	script	Saída#aeroplano1a	857,{
+airplane,240,64,5	script	Saída#aeroplano1a	4_BOARD3,{
 	end;
 }
-airplane,247,64,5	duplicate(Saída#aeroplano1a)	Exit#aeroplano1b	857
-airplane,240,40,1	duplicate(Saída#aeroplano1a)	Exit#aeroplano2a	857
-airplane,247,40,1	duplicate(Saída#aeroplano1a)	Exit#aeroplano2b	857
+airplane,247,64,5	duplicate(Saída#aeroplano1a)	Exit#aeroplano1b	4_BOARD3
+airplane,240,40,1	duplicate(Saída#aeroplano1a)	Exit#aeroplano2a	4_BOARD3
+airplane,247,40,1	duplicate(Saída#aeroplano1a)	Exit#aeroplano2b	4_BOARD3
 
-airplane,100,69,3	script	Tripulação do Dirigível#ein-1	852,{
+airplane,100,69,3	script	Tripulação do Dirigível#ein-1	4_M_EIN_SOLDIER,{
 	mes "[Tripulação do Dirigível]";
 	mes "Se já pousamos no";
 	mes "seu destino e você";
@@ -93,7 +93,7 @@ airplane,100,69,3	script	Tripulação do Dirigível#ein-1	852,{
 	close;
 }
 
-airplane,64,94,1	script	Criança de Umbala#ein_p	787,{
+airplane,64,94,1	script	Criança de Umbala#ein_p	4_M_UMKID,{
 	emotion e_swt2;
 	mes "[Criança]";
 	if (event_umbala >= 3) {
@@ -110,7 +110,7 @@ airplane,64,94,1	script	Criança de Umbala#ein_p	787,{
 	close;
 }
 
-airplane,66,93,3	script	Senhora de Umbala#ein_p	783,{
+airplane,66,93,3	script	Senhora de Umbala#ein_p	4_F_UMWOMAN,{
 	emotion e_dots;
 	mes "[Senhora]";
 	if (event_umbala >= 3) {
@@ -128,7 +128,7 @@ airplane,66,93,3	script	Senhora de Umbala#ein_p	783,{
 	close;
 }
 
-airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
+airplane,71,91,7	script	Homem de Umbala#ein_p	4_M_UMSOLDIER,{
 		mes "[Chrmlim]";
 	if (event_umbala >= 3) {
 		mes "Ei você~";
@@ -162,7 +162,7 @@ airplane,71,91,7	script	Homem de Umbala#ein_p	789,{
 	close;
 }
 
-airplane,250,58,2	script	Equipe do Dirigível#aeroplano	67,{
+airplane,250,58,2	script	Equipe do Dirigível#aeroplano	1_F_02,{
 	if (hg_ma1 == 3) {
 		mes "[Equipe do Dirigível]";
 		mes "Bem-vind"+(Sex?"o":"a")+" ao Dirigível.";
@@ -208,28 +208,28 @@ function	script	airplane_staff	{
 	}
 }
 
-airplane,80,71,2	script	Zerta#01aeroplano	834,{
+airplane,80,71,2	script	Zerta#01aeroplano	4_M_BUDDHIST,{
 	mes "[Zerta]";
 	mes "Ah, olá aventureiro.";
 	mes "Eu estou atualmente em uma jornada sacrada, oferecendo sacrifícios por todo o continente de Rune-Midgard.";
 	close;
 }
 
-airplane,65,63,4	script	Maelin#01aeroplano	714,{
+airplane,65,63,4	script	Maelin#01aeroplano	4_F_06,{
 	mes "[Maelin]";
 	mes "Hum, o Dirigível vai até Lutie, não é?";
 	mes "Eu tenho esperado durante um longo tempo, mas até agora não tenho tido notícias de Lutie.";
 	close;
 }
 
-airplane,72,34,6	script	Aanos#01aeroplano	702,{
+airplane,72,34,6	script	Aanos#01aeroplano	4_F_GON,{
 	mes "[Aanos]";
 	mes "Ah uau~";
 	mes "O céu parece estar tão diferente e lindo hoje.";
 	close;
 }
 
-airplane,221,158,2	script	Piloto#aeroplano	852,{
+airplane,221,158,2	script	Piloto#aeroplano	4_M_EIN_SOLDIER,{
 	if (hg_ma1 == 3) {
 		mes "[Piloto]";
 		mes "Espero que o drink esteja fresco e saboroso.";
@@ -300,7 +300,7 @@ airplane,221,158,2	script	Piloto#aeroplano	852,{
 	}
 }
 
-airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
+airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	4_M_04,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está carregando -";
@@ -443,7 +443,7 @@ airplane,50,66,5	script	Vendedor de Maçãs#aeroplano	86,{
 //= ... -> Izlude -> Juno -> Rachel -> ...
 //============================================================ 
 
-airplane_01,243,73,0	script	#AeroplanoPortal-3	45,1,1,{
+airplane_01,243,73,0	script	#AeroplanoPortal-3	WARPNPC,1,1,{
 	end;
 	
 OnTouch:
@@ -470,7 +470,7 @@ OnUnhide:
 	end;
 }
 
-airplane_01,243,29,0	duplicate(#AeroplanoPortal-3)	#AeroplanoPortal-4	45,1,1
+airplane_01,243,29,0	duplicate(#AeroplanoPortal-3)	#AeroplanoPortal-4	WARPNPC,1,1
 
 airplane_01,1,1,0	script	Aeroplano_Internacional	-1,{
 	OnInit:
@@ -506,17 +506,17 @@ airplane_01,1,1,0	script	Aeroplano_Internacional	-1,{
 	}
 }
 
-airplane_01,240,64,5	script	Saída#Aeroplano01	857,{
+airplane_01,240,64,5	script	Saída#Aeroplano01	4_BOARD3,{
 	end;
 }
-airplane_01,247,64,5	duplicate(Saída#Aeroplano01)	Saída#aeroplano_011b	857
-airplane_01,240,40,1	duplicate(Saída#Aeroplano01)	Saída#aeroplano_012a	857
-airplane_01,247,40,1	duplicate(Saída#Aeroplano01)	Saída#aeroplano_012b	857
+airplane_01,247,64,5	duplicate(Saída#Aeroplano01)	Saída#aeroplano_011b	4_BOARD3
+airplane_01,240,40,1	duplicate(Saída#Aeroplano01)	Saída#aeroplano_012a	4_BOARD3
+airplane_01,247,40,1	duplicate(Saída#Aeroplano01)	Saída#aeroplano_012b	4_BOARD3
 
-airplane_01,250,58,2	script	Assistente do Aeroplano#aeroplano01	67,{ callfunc("airplane_staff"); }
-airplane_01,50,66,5	duplicate(Vendedor de Maçãs#aeroplano)	Vendedor de Maçãs#ar01	86
+airplane_01,250,58,2	script	Assistente do Aeroplano#aeroplano01	1_F_02,{ callfunc("airplane_staff"); }
+airplane_01,50,66,5	duplicate(Vendedor de Maçãs#aeroplano)	Vendedor de Maçãs#ar01	4_M_04
 
-airplane_01,221,158,2	script	Piloto#aeroplano_01	852,{
+airplane_01,221,158,2	script	Piloto#aeroplano_01	4_M_EIN_SOLDIER,{
 	switch (rand(1,4)) {
 	case 1:
 		mes "[Piloto]";
@@ -563,7 +563,7 @@ airplane_01,221,158,2	script	Piloto#aeroplano_01	852,{
 	}
 }
 
-airplane_01,83,61,2	script	Dianne#01aeroplano_01	72,2,2,{
+airplane_01,83,61,2	script	Dianne#01aeroplano_01	1_F_MARIA,2,2,{
 	mes "[Dianne]";
 	mes "É tão estranho!";
 	mes "Eu venho visitar o Capitão do Aeroplano e tudo que vejo é esse alce estúpido.";
@@ -575,7 +575,7 @@ OnTouch:
 	end;
 }
 
-airplane_01,69,63,2	script	Mendel#01aeroplano_01	55,{
+airplane_01,69,63,2	script	Mendel#01aeroplano_01	1_M_JOBTESTER,{
 	mes "[Mendel]";
 	mes "Como eu esperava, as comidas do vôo são no máximo 3 estrelas.";
 	mes "*Harrrumph*";
@@ -583,7 +583,7 @@ airplane_01,69,63,2	script	Mendel#01aeroplano_01	55,{
 	close;
 }
 
-airplane_01,71,31,2	script	Espadachim Shimizu#air_01	106,{
+airplane_01,71,31,2	script	Espadachim Shimizu#air_01	1_M_MOC_LORD,{
 	mes "[Espadachim Shimizu]";
 	mes "Finalmente, depois de cinco anos esperando...";
 	mes "Eu terei minha vingança!";
@@ -598,7 +598,7 @@ airplane_01,71,31,2	script	Espadachim Shimizu#air_01	106,{
 //============================================================ 
 //= Desafio de Digitação
 //============================================================ 
-airplane_01,32,61,4	script	Nils#ein	49,1,1,{
+airplane_01,32,61,4	script	Nils#ein	1_M_03,1,1,{
 	mes "[Nils]";
 	mes "Bem-vind"+(Sex?"o":"a")+" ao ^ff0000Desafio de Escrita de RO^000000.";
 	mes "Você gostaria de jogar um rápido jogo de escrita?";
@@ -740,7 +740,7 @@ airplane_01,32,61,4	script	Nils#ein	49,1,1,{
 //============================================================ 
 //= Jogo da Maçã
 //============================================================ 
-airplane_01,33,68,4	script	Clarice	74,{
+airplane_01,33,68,4	script	Clarice	1_F_MERCHANT_02,{
 	mes "[Clarice]";
 	mes "Oi, eu sou Clarice~";
 	mes "Você gostaria de apostar algumas maçãs no amigável Jogo dos Dados?";

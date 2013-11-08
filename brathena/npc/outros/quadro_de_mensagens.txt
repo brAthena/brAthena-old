@@ -26,7 +26,7 @@
 
 // Prontera
 //============================================================
-prontera,158,213,1	script	Quadro#Prt1	111,{
+prontera,158,213,1	script	Quadro#Prt1	HIDDEN_NPC,{
 	mes "^993300- Quadro de direções -^000000";
 	mes "Castelo de Prontera para o Norte";
 	mes "Aldebaran para o Norte";
@@ -40,7 +40,7 @@ prontera,158,213,1	script	Quadro#Prt1	111,{
 	close;
 }
 
-prontera,156,197,1	script	Avisos de Prontera#Prt2	111,{
+prontera,156,197,1	script	Avisos de Prontera#Prt2	HIDDEN_NPC,{
 	mes "^993300- Avisos de Prontera -^000000";
 	mes "Procura-se: Duas Presilhas";
 	mes "Por favor, entre em contato...";
@@ -53,19 +53,19 @@ prontera,156,197,1	script	Avisos de Prontera#Prt2	111,{
 	close;
 }
 
-prontera,278,212,1	script	Quadro#Prt3	111,{
+prontera,278,212,1	script	Quadro#Prt3	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "Por favor, manter Prontera limpa.";
 	close;
 }
 /*
-prontera,150,326,1	script	Quadro#Prt4	111,{
+prontera,150,326,1	script	Quadro#Prt4	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "Cidadões de Prontera são bem vindos ao castelo de Prontera.";
 	close;
 }
 */
-prontera,31,212,1	script	Comunicado#Prt5	111,{
+prontera,31,212,1	script	Comunicado#Prt5	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "~PROCURADO~";
 	mes "iROGM01";
@@ -77,13 +77,13 @@ prontera,31,212,1	script	Comunicado#Prt5	111,{
 	close;
 }
 
-prontera,165,305,1	script	Comunicado#Prt6	111,{
+prontera,165,305,1	script	Comunicado#Prt6	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "Nós esperamos que você tenha uma ótima estadia em Prontera.";
 	close;
 }
 
-prontera,145,304,1	script	Quadro#Prt7	111,{
+prontera,145,304,1	script	Quadro#Prt7	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Nota:";
 	mes "Eu perdi meu carrinho de mão no Mt. Mjolnir, se alguem encontrar, por favor, me diga. Toda minha vida está nesse carrinho!";
@@ -92,21 +92,21 @@ prontera,145,304,1	script	Quadro#Prt7	111,{
 
 // Morroc
 //============================================================
-morocc,144,84,1	script	Quadro#Moc1	111,{
+morocc,144,84,1	script	Quadro#Moc1	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Procura-se: Guarda costas para proteger minha loga contra assaltantes.";
 	mes "Por favor, entre em contato com Bucher";
 	close;
 }
 
-morocc,145,83,1	script	Quadro#Moc2	111,{
+morocc,145,83,1	script	Quadro#Moc2	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Vendo, Peco Peco bem preparado!";
 	mes "Esse é um belo exemplar que foi montado somente por mim, ele vem com uma sela, um arreio, e...";
 	close;
 }
 
-morocc,32,174,1	script	Comunicado#Moc3	111,{
+morocc,32,174,1	script	Comunicado#Moc3	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "^0099FFMulheres de Morroc revoltadas!^000000";
 	mes "Um rescente estudo demonstrou que a maioria dos homens em";
@@ -124,13 +124,13 @@ morocc,32,174,1	script	Comunicado#Moc3	111,{
 	close;
 }
 
-morocc,168,266,1	script	Quadro#Moc5	111,{
+morocc,168,266,1	script	Quadro#Moc5	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo a Morroc.";
 	close;
 }
 
-morocc,168,264,1	script	Quadro#Moc6	111,{
+morocc,168,264,1	script	Quadro#Moc6	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "^CC0033Guerreiro Leal!^000000";
 	mes "Se você é alguem que gosta de uma batalha e sente que não pode ser parado, jogador contra jogador até a morte!";
@@ -138,23 +138,23 @@ morocc,168,264,1	script	Quadro#Moc6	111,{
 	close;
 }
 
-morocc,298,211,1	duplicate(Quadro#Moc5)	Quadro#Moc7	111
+morocc,298,211,1	duplicate(Quadro#Moc5)	Quadro#Moc7	HIDDEN_NPC
 
 // Geffen
 //============================================================
-geffen,116,58,1	script	Avisos de Geffen#Gef1	111,{
+geffen,116,58,1	script	Avisos de Geffen#Gef1	HIDDEN_NPC,{
 	mes "^993300- Avisos de Geffen -^000000";
 	mes "Lembrem-se Bruxos... O que importa não são todas suas habilidades, mas é o mago que as usa que conta!";
 	close;
 }
 /*
-geffen,61,174,1	script	Quadro#Gef2	111,{
+geffen,61,174,1	script	Quadro#Gef2	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "- Parece estar escrito em uma lingua desconhecida -";
 	close;
 }
 */
-geffen,113,104,1	script	Aviso#Gef3	111,{
+geffen,113,104,1	script	Aviso#Gef3	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Vende-se: Novo boneco de Chon Chon!";
 	mes "Um ótimo presente para dar a pessoa amada, entre em contado comigo!";
@@ -166,7 +166,7 @@ geffen,113,104,1	script	Aviso#Gef3	111,{
 	close;
 }
 
-geffen,119,190,1	script	Quadro#Gef4	111,{
+geffen,119,190,1	script	Quadro#Gef4	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Campos de Geffen ao Norte";
 	mes "Aldebaram ao Nordeste";
@@ -180,13 +180,13 @@ geffen,119,190,1	script	Quadro#Gef4	111,{
 	close;
 }
 
-geffen,168,175,1	script	Quadro#Gef5	111,{
+geffen,168,175,1	script	Quadro#Gef5	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "''Você sempre será bem vindo em Geffen''";
 	close;
 }
 
-geffen,183,61,1	script	Quadro#Gef6	111,{
+geffen,183,61,1	script	Quadro#Gef6	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo.";
 	close;
@@ -194,7 +194,7 @@ geffen,183,61,1	script	Quadro#Gef6	111,{
 
 // Aldebaran
 //============================================================
-aldebaran,181,172,1	script	Aviso#Alde1	111,{
+aldebaran,181,172,1	script	Aviso#Alde1	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Procura-se:";
 	mes "Eu perdi meu Bongun de estimação, não tive culpa, ele simplesmente fugiu...";
@@ -202,13 +202,13 @@ aldebaran,181,172,1	script	Aviso#Alde1	111,{
 	close;
 }
 
-aldebaran,133,104,1	script	Comunicado de Alebaran#Al2	111,{
+aldebaran,133,104,1	script	Comunicado de Alebaran#Al2	HIDDEN_NPC,{
 	mes "^993300- Comunidado de Aldebaran -^000000";
 	mes "''Aproveite sua estadia em Aldebaran''";
 	close;
 }
 
-aldebaran,54,223,1	script	Comunicado#Alde3	111,{
+aldebaran,54,223,1	script	Comunicado#Alde3	HIDDEN_NPC,{
 	mes "^993300- Comunicado -^000000";
 	mes "Preciso de ajuda:";
 	mes "´Nós observamos os jovens, são fortes e atléticos que";
@@ -224,7 +224,7 @@ OnTouch:
 	close;
 }
 
-aldebaran,217,222,1	script	Quadro#Alde5	111,{
+aldebaran,217,222,1	script	Quadro#Alde5	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "E aí Papai Nel de Lutie!";
 	mes "- Isso parece um rebisco -";
@@ -233,13 +233,13 @@ aldebaran,217,222,1	script	Quadro#Alde5	111,{
 
 // Izlude
 //============================================================
-izlude,54,139,1	script	Quadro#Iz1	111,{
+izlude,54,139,1	script	Quadro#Iz1	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo para academia dos Espadachim.";
 	close;
 }
 
-izlude,144,148,1	script	Quadro#Iz2	111,{
+izlude,144,148,1	script	Quadro#Iz2	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo.";
 	close;
@@ -247,19 +247,19 @@ izlude,144,148,1	script	Quadro#Iz2	111,{
 
 // Alberta
 //============================================================
-alberta,35,241,1	script	Avisos#Alb1	111,{
+alberta,35,241,1	script	Avisos#Alb1	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo para Alberta, paraiso dos Mercadores.";
 	close;
 }
 
-alberta,37,39,1	script	Avisos#Alb2	111,{
+alberta,37,39,1	script	Avisos#Alb2	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Bem vindo.";
 	close;
 }
 
-alberta,99,151,1	script	Quadro#Alb3	111,{
+alberta,99,151,1	script	Quadro#Alb3	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Ferramentas completas para carrinho de mão!";
 	mes "Você precisa de ferramentas? Nós temos!";
@@ -267,7 +267,7 @@ alberta,99,151,1	script	Quadro#Alb3	111,{
 	close;
 }
 
-alberta,196,152,1	script	Quadro#Alb4	111,{
+alberta,196,152,1	script	Quadro#Alb4	HIDDEN_NPC,{
 	mes "^993300- Quadro de avisos -^000000";
 	mes "Atracabem e envio de cargas. Para informações relativas";
 	mes "ao envio e recebimento, por favor...";
@@ -275,4 +275,4 @@ alberta,196,152,1	script	Quadro#Alb4	111,{
 	close;
 }
 
-alberta,149,54,1	duplicate(Avisos#Alb2)	Quadro#Alb5	111
+alberta,149,54,1	duplicate(Avisos#Alb2)	Quadro#Alb5	HIDDEN_NPC

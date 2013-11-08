@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
+yuno,1,1,0	script	Gerente do Festival#gq_fes00	4_F_HUGIRL,{
 	callfunc "F_GM_NPC";
 	mes "[Gerente do Festival]";
 	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
@@ -56,7 +56,7 @@ yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
 	}
 }
 
-yuno,118,192,5	script	Rmimi Ravies#gq_fes01	891,{
+yuno,118,192,5	script	Rmimi Ravies#gq_fes01	4_F_HUGIRL,{
 	set .@GID, getcharid(2);
 	if (countitem(7840)) {
 		mes "[Rmimi Ravies]";
@@ -406,7 +406,7 @@ OnTimer3900000:
 //===============================================================================================
 
 //------------------------------------- Gerente do Festival em Rachel -----------------------------------
-rachel,1,1,0	script	Festival Manager#gq_fes02	891,{
+rachel,1,1,0	script	Festival Manager#gq_fes02	4_F_HUGIRL,{
 	callfunc "F_GM_NPC";
 	mes "[Gerente do Festival]";
 	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
@@ -437,7 +437,7 @@ rachel,1,1,0	script	Festival Manager#gq_fes02	891,{
 }
 //----------------------------------------Rhehe Ravies----------------------------------------
 
-rachel,132,117,3	script	Rhehe Ravies#gq_fes03	891,{
+rachel,132,117,3	script	Rhehe Ravies#gq_fes03	4_F_HUGIRL,{
 	set .@GID, getcharid(2);
 	if (countitem(7840)) {
 		mes "[Rhehe Ravies]";

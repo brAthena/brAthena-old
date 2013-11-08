@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-hu_fild05,168,304,0	script	Coluna#abismo1	111,{
+hu_fild05,168,304,0	script	Coluna#abismo1	HIDDEN_NPC,{
 
 	mes "^3355FFExistem 3 estranhas";
 	mes "rachaduras na";
@@ -90,7 +90,7 @@ hu_fild05,168,304,0	script	Coluna#abismo1	111,{
 	close;
 }
 
-hu_fild05,171,211,0	script	Coluna#abismo2	111,1,1,{
+hu_fild05,171,211,0	script	Coluna#abismo2	HIDDEN_NPC,1,1,{
 
 	mes "^3355FFEssas colunas são";
 	mes "muito semelhantes com";
@@ -149,7 +149,7 @@ hu_fild05,171,211,0	script	Coluna#abismo2	111,1,1,{
 	}
 }
 
-hu_fild05,196,210,1	script	Portal do Abismo	45,2,2,{
+hu_fild05,196,210,1	script	Portal do Abismo	WARPNPC,2,2,{
 
 OnInit:
 	disablenpc "Portal do Abismo";

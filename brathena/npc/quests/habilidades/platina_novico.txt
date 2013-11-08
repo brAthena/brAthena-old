@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_church,173,23,4	script	Sacerdote#qsk_al	79,{
+prt_church,173,23,4	script	Sacerdote#qsk_al	1_F_PRIEST,{
 	mes "[Klift]";
 	mes "Ahh. Irmãos! Será que";
 	mes "a tarefa de cuidar das ovelhas";

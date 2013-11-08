@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prt_in,168,56,4	script	Monster Encyclopedia#prt	111,{
+prt_in,168,56,4	script	Monster Encyclopedia#prt	HIDDEN_NPC,{
 	mes "^FF0000[Monster Encyclopedia]^000000";
 	mes "This is a Monster Encyclopedia";
 	mes "containing information on Water,";
@@ -403,7 +403,7 @@ prt_in,168,56,4	script	Monster Encyclopedia#prt	111,{
 	}
 }
 				
-prt_in,159,56,4	script	Monster Encyclopedia#2pr	111,{
+prt_in,159,56,4	script	Monster Encyclopedia#2pr	HIDDEN_NPC,{
 	mes "^FF0000[Monster Encyclopedia]^000000";
 	mes "This is a Monster Encyclopedia";
 	mes "containing information on Earth,";
@@ -1250,7 +1250,7 @@ prt_in,161,50,4	script	Monster Encyclopedia#3pr	 111,{
 	}
 }
 
-prt_in,172,96,4	script	Monster Encyclopedia#4pr	111,{
+prt_in,172,96,4	script	Monster Encyclopedia#4pr	HIDDEN_NPC,{
 	mes "^FF0000[Dungeon Monster Encyclopedia]^000000";
 	mes "This is an Encyclopedia describing";
 	mes "monsters living in Dungeons.";
@@ -1732,7 +1732,7 @@ prt_in,172,96,4	script	Monster Encyclopedia#4pr	111,{
 }
 
 
-prt_in,164,96,4	script	Monster Encyclopedia#5pr	111,{
+prt_in,164,96,4	script	Monster Encyclopedia#5pr	HIDDEN_NPC,{
 	mes "^FF0000[Dungeon Monster Encyclopedia]^000000";
 	mes "This is an Encyclopedia describing";
 	mes "Monsters living in Dungeons.";
@@ -2310,7 +2310,7 @@ prt_in,164,96,4	script	Monster Encyclopedia#5pr	111,{
 	}
 }
 
-prt_in,172,102,4	script	Monster Encyclopedia#6pr	111,{
+prt_in,172,102,4	script	Monster Encyclopedia#6pr	HIDDEN_NPC,{
 	mes "^FF0000[Dungeon Monster Encyclopedia]^000000";
 	mes "This is an Encyclopedia describing";
 	mes "Monsters living in Dungeons.";
@@ -2818,7 +2818,7 @@ prt_in,172,102,4	script	Monster Encyclopedia#6pr	111,{
 	}
 }
 
-prt_in,164,102,4	script	Monster Encyclopedia#7pr	111,{
+prt_in,164,102,4	script	Monster Encyclopedia#7pr	HIDDEN_NPC,{
 	mes "^FF0000[Dungeon Monster Encyclopedia]^000000";
 	mes "This is an Encyclopedia describing";
 	mes "Monsters living in Dungeons.";
@@ -3463,7 +3463,7 @@ prt_in,164,102,4	script	Monster Encyclopedia#7pr	111,{
 	}
 }
 
-prt_in,162,68,4	script	Vending Guide#pront	111,{
+prt_in,162,68,4	script	Vending Guide#pront	HIDDEN_NPC,{
 	mes "^FF0000[Vending Guide for Dummies]^000000";
 	mes "So you want to open your own shop";
 	mes "so that you can sell items to other";
@@ -3560,7 +3560,7 @@ prt_in,162,68,4	script	Vending Guide#pront	111,{
 	close;
 }
 
-prt_in,168,68,4	script	Blacksmith Guide#pront	111,{
+prt_in,168,68,4	script	Blacksmith Guide#pront	HIDDEN_NPC,{
 	mes "^FF0000[Blacksmith Guide for Dummies]^000000";
 	mes "This is a useful guide detailing";
 	mes "the process of Ore Refining and";

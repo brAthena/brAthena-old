@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-geffen,203,116,4	script	Guia#01geffen	705,{
+geffen,203,116,4	script	Guia#01geffen	4_M_GEF_SOLDIER,{
 	cutin "gef_soldier",2;
 	if (checkversion(0)) {
 		mes "[Guia de Geffen]";
@@ -271,6 +271,6 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 	}
 }
 
-geffen,118,62,0	duplicate(Guia#01geffen)	Guia#02geffen	705
-geffen,36,123,6	duplicatr(Guia#01geffen)	Guia#03geffen	705
-geffen,123,203,4	duplicatr(Guia#01geffen)	Guia#04geffen	705,{}
+geffen,118,62,0	duplicate(Guia#01geffen)	Guia#02geffen	4_M_GEF_SOLDIER
+geffen,36,123,6	duplicatr(Guia#01geffen)	Guia#03geffen	4_M_GEF_SOLDIER
+geffen,123,203,4	duplicatr(Guia#01geffen)	Guia#04geffen	4_M_GEF_SOLDIER,{}

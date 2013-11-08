@@ -26,7 +26,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-xmas,117,295,4	script	Homem da Máquina de Vender	704,{
+xmas,117,295,4	script	Homem da Máquina de Vender	4_M_BIBI,{
 	mes "[Titicupe]";
 	mes "Hmm...?";
 	mes "Eu, Titicupe, estimado gerente da Fábrica de Brinquedos e genial inventor, fiz isso de novo!! Acabei de criar a mais sofisticada máquina de vendas do mundo!";
@@ -148,7 +148,7 @@ xmas,117,295,4	script	Homem da Máquina de Vender	704,{
 	}
 }
 
-xmas,115,297,4	script	Máquina de Vender	111,{
+xmas,115,297,4	script	Máquina de Vender	HIDDEN_NPC,{
 	mes "[Audi]";
 	mes "^555555Excitante item Máquina de Vendas. Inventado pelo grande Titicupe. Selecione os itens desejados e coloque os itens exigidos na boca do Boneco de Neve.^000000";
 	next;

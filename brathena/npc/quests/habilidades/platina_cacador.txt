@@ -25,7 +25,7 @@
 //============================================================
 // HUNTER SKILL - PHANTASMIC ARROW
 //============================================================
-pay_arche,109,169,3	script	Arpesto	712,{
+pay_arche,109,169,3	script	Arpesto	4_M_05,{
 	if (BaseJob == Job_Hunter) {
 		if (qskill_hunter == 100) {
 			if (getskilllv("HT_PHANTASMIC")) {

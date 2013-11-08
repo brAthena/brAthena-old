@@ -184,7 +184,7 @@ OnInit:
 	end;
 }
 
-p_track01,73,22,1	script	Ajudante de Bilheteria#single	899,{
+p_track01,73,22,1	script	Ajudante de Bilheteria#single	4_M_HUMAN_02,{
 	mes "[Ajudante de Bilheteria]";
 	mes "Bem-vindos à ";
 	mes "Arena da Corrida de Monstros.";
@@ -312,7 +312,7 @@ p_track01,30,30,0	duplicate(Corredor#main)	Corredor No. 5	-1,1,0
 p_track01,30,28,0	duplicate(Corredor#main)	Corredor No. 6	-1,1,0
 
 
-p_track01,67,45,5	script	Distribuidor de Medalhas#single	845,{
+p_track01,67,45,5	script	Distribuidor de Medalhas#single	4_F_RACING,{
 	if (!checkweight(908,200)) {
 		mes "[Distribuidor de Medalhas]";
 		mes "Lamento, mas não posso";
@@ -527,7 +527,7 @@ OnInit:
 	end;
 }
 
-p_track01,76,36,1	script	Guia de Saída#single	798,{
+p_track01,76,36,1	script	Guia de Saída#single	4_M_NFMAN,{
 	mes "[Guia de Saída]";
 	mes "Se você tem um ";
 	mes "bilhete premiado da";
@@ -576,7 +576,7 @@ p_track01,76,36,1	script	Guia de Saída#single	798,{
 	end;
 }
 
-hugel,58,72,6	script	Eckar Ellebird#single	798,{
+hugel,58,72,6	script	Eckar Ellebird#single	4_M_NFMAN,{
 	mes "[Eckar Ellebird]";
 	mes "Bem-vindo a maior atração de Hugel, a Arena da Corrida de Monstros.";
 	mes "Como posso ajudá-la hoje?";
@@ -769,7 +769,7 @@ OnDisable:
 	end; 
 }
 
-p_track01,39,49,3	script	Game Guide#single	845,{
+p_track01,39,49,3	script	Game Guide#single	4_F_RACING,{
 	mes "[Game Guide]";
 	mes "Bem vindo a Arena";
 	mes "da Corrida de Monstros.";
@@ -1213,7 +1213,7 @@ OnTimer300000:
 	stopnpctimer;
 	end;
 }
-hugel,62,69,1	script	Eckar Erenes#double	798,{
+hugel,62,69,1	script	Eckar Erenes#double	4_M_NFMAN,{
 	mes "[Eckar Erenes]";
 	mes "Bem-vindo a Arena da Corrida de Monstros";
 	mes "o orgulho e alegria da aldeia de Hugel!";
@@ -1419,7 +1419,7 @@ OnDisable:
 	end;
 }
 
-p_track02,73,22,1	script	Ajudante de Bilheteria#2	899,{
+p_track02,73,22,1	script	Ajudante de Bilheteria#2	4_M_HUMAN_02,{
 	if (!checkweight(908,200)) {
 		mes "[Ajudante de Bilheteria]";
 		mes "Bemvindo a Arena";
@@ -1606,7 +1606,7 @@ OnInit:
 	end;
 }
 
-p_track02,39,49,3	script	Game Guide#double	845,{
+p_track02,39,49,3	script	Game Guide#double	4_F_RACING,{
 	mes "[Game Guide]";
 	mes "Bem-vindos a Arena";
 	mes "da Corrida de Monstros";
@@ -1713,7 +1713,7 @@ p_track02,39,49,3	script	Game Guide#double	845,{
 	close;
 }
 
-p_track02,67,45,5	script	Distribuidor de Medalhas#medal	845,{
+p_track02,67,45,5	script	Distribuidor de Medalhas#medal	4_F_RACING,{
 	if (!checkweight(909,20)) {
 		mes "[Distribuidor de Medalhas]";
 		mes "Desculpe, mas não posso";
@@ -1805,7 +1805,7 @@ OnInit:
 	disablenpc "Distribuidor de Medalhas#medal";
 	end;
 }
-p_track02,76,38,1	script	Guia de Saída#double	798,{
+p_track02,76,38,1	script	Guia de Saída#double	4_M_NFMAN,{
 	mes "[Guia de Saída]";
 	mes "Se você tem um bilhete da";
 	mes "Corrida vencedora, por favor,";
@@ -1904,12 +1904,12 @@ OnInit:
 	disablenpc strnpcinfo(0);
 	end;
 }
-p_track02,30,38,0	duplicate(mob1#main)	#poring1	139,0,0
-p_track02,30,36,0	duplicate(mob1#main)	#lunatic1	139,0,0
-p_track02,30,34,0	duplicate(mob1#main)	#savagebebe1	139,0,0
-p_track02,30,32,0	duplicate(mob1#main)	#desertwolf1	139,0,0
-p_track02,30,30,0	duplicate(mob1#main)	#deviruchi1	139,0,0
-p_track02,30,28,0	duplicate(mob1#main)	#baphomet1	139,0,0
+p_track02,30,38,0	duplicate(mob1#main)	#poring1	HIDDEN_WARP_NPC,0,0
+p_track02,30,36,0	duplicate(mob1#main)	#lunatic1	HIDDEN_WARP_NPC,0,0
+p_track02,30,34,0	duplicate(mob1#main)	#savagebebe1	HIDDEN_WARP_NPC,0,0
+p_track02,30,32,0	duplicate(mob1#main)	#desertwolf1	HIDDEN_WARP_NPC,0,0
+p_track02,30,30,0	duplicate(mob1#main)	#deviruchi1	HIDDEN_WARP_NPC,0,0
+p_track02,30,28,0	duplicate(mob1#main)	#baphomet1	HIDDEN_WARP_NPC,0,0
 
 p_track02,19,48,0	script	ArmadilhaGlobal#race02	-1,{
 OnEnable:
@@ -2098,7 +2098,7 @@ p_track02,47,28,0	duplicate(Tire_1)	Tire#race02_6_6	-1,0,0
 
 // NPCs Premiação em Medalha para o Redentor (Einbroch e Hugel)
 //============================================================
-ein_in01,85,208,5	script	Ei'felle#repay01	854,{
+ein_in01,85,208,5	script	Ei'felle#repay01	4_M_EINMAN2,{
 	if (!ein_medal01) {
 		mes "[Ei'felle]";
 		mes "Maldições! Precisamos entregar o ";
@@ -2758,7 +2758,7 @@ S_BonusReward:
 	getitem getarg(1),1;
 	close;
 }
-hugel,71,83,4	script	Wayne	900,{
+hugel,71,83,4	script	Wayne	4_M_HUMERCHANT,{
 	if (!checkweight(1201,1)) {
 		mes "[Wayne]";
 		mes "Espere um segundo ...";
@@ -2879,7 +2879,7 @@ hugel,71,83,4	script	Wayne	900,{
 
 // NPCs Relacionados a Corrida de Monstros
 //============================================================
-airplane,246,47,1	script	Eocatt#decoy01	878,{
+airplane,246,47,1	script	Eocatt#decoy01	4_M_OILMAN,{
 	mes "[Eocatt]";
 	mes "Há um velho humilde";
 	mes "nos arredores da aldeia de ";
@@ -2908,7 +2908,7 @@ airplane,246,47,1	script	Eocatt#decoy01	878,{
 }
 
 
-hugel,85,93,5	script	Mudie#dummy01	866,{
+hugel,85,93,5	script	Mudie#dummy01	4_M_LGTGRAND,{
 	mes "[Mudie]";
 	mes "As corridas de Monstros";
 	mes "são provavelmente a maior";
@@ -2932,7 +2932,7 @@ hugel,85,93,5	script	Mudie#dummy01	866,{
 	mes "Espero que você goste de nossa pequena cidade";
 	close;
 }
-p_track02,32,45,5	script	Estudante Excêntrico#double	755,{
+p_track02,32,45,5	script	Estudante Excêntrico#double	4_M_SAGE_C,{
 	mes "[Estudante Excêntrico]";
 	mes "Vamos ver  ...";
 	mes "Velocidade média do monstro e";
@@ -2962,7 +2962,7 @@ p_track02,32,45,5	script	Estudante Excêntrico#double	755,{
 	close;
 }
 
-p_track02,69,31,1	script	Ferreiro da Guilda#dou	726,{
+p_track02,69,31,1	script	Ferreiro da Guilda#dou	4_F_JOB_BLACKSMITH,{
 	if (!$@mon_time_2_2) {
 		mes "[Ferreiro da Guilda]";
 		mes "Quantas vezes devo";
@@ -2992,7 +2992,7 @@ p_track02,69,31,1	script	Ferreiro da Guilda#dou	726,{
 	close;
 }
 
-p_track02,53,45,3	script	Cavaleiro Valente#double	733,{
+p_track02,53,45,3	script	Cavaleiro Valente#double	4_M_JOB_KNIGHT1,{
 	mes "[Cavaleiro Valente]";
 	mes "Ei, você tem apostado nas corridas?";
 	mes "Se você tem uma dica quente,";
@@ -3015,7 +3015,7 @@ p_track02,53,45,3	script	Cavaleiro Valente#double	733,{
 	emotion e_no1;
 	close;
 }
-p_track01,27,47,5	script	Drunkard#single	853,{
+p_track01,27,47,5	script	Drunkard#single	4_M_YURI,{
 	mes "[Drunkard]";
 	mes "Grrr...! ^333333*Hiccup*^000000";
 	mes "Eu só tenho que ganhar";
@@ -3034,7 +3034,7 @@ p_track01,27,47,5	script	Drunkard#single	853,{
 	mes "Diga-me, diga";
 	close;
 }
-p_track01,69,31,1	script	Ferreiro da Guilda#sin	107,{
+p_track01,69,31,1	script	Ferreiro da Guilda#sin	1_M_PAY_ELDER,{
 	mes "[Ferreiro da Guilda]";
 	mes "Como isso pode ser tão difícil?";
 	mes "Por que não posso ganhar pelo";
@@ -3058,7 +3058,7 @@ p_track01,69,31,1	script	Ferreiro da Guilda#sin	107,{
 	mes "você puder a Fábrica de Einbroch, ok?";
 	close;
 }
-p_track01,45,42,3	script	Homem Viciado#single	881,{
+p_track01,45,42,3	script	Homem Viciado#single	4_M_SITDOWN,{
 	mes "[Homem Viciado]";
 	mes "Diga, você está aqui para apostar";
 	mes "nas corridas de monstro?";
@@ -3078,7 +3078,7 @@ p_track01,45,42,3	script	Homem Viciado#single	881,{
 	close;
 }
 
-hugel,5,5,3	script	Adm. Corrida de Monstros	868,{
+hugel,5,5,3	script	Adm. Corrida de Monstros	4_M_LGTGUARD,{
 	callfunc "F_GM_NPC";
 	mes "[Adm. Corrida de Monstros]";
 	mes "Eu posso ativar e";

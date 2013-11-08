@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,246,82,3	script	Marinheiro#bra2	100,{
+alberta,246,82,3	script	Marinheiro#bra2	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Ei, você já ouvi falar sobre um lugar chamado Brasilis?";
 	mes "É uma cidade tropical, que é quente como o deserto, mas também chove. É um lugar muito misterioso.";
@@ -49,7 +49,7 @@ alberta,246,82,3	script	Marinheiro#bra2	100,{
 		close;
 }
 
-brasilis,316,57,3	script	Marinheiro#bra1	100,{
+brasilis,316,57,3	script	Marinheiro#bra1	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Meu barco está indo para Alberta, quer se juntar a nós?";
 	next;
@@ -65,36 +65,36 @@ brasilis,316,57,3	script	Marinheiro#bra1	100,{
 		close;
 }
 
-brasilis,155,165,3	script	Orientação#bra1	858,{
+brasilis,155,165,3	script	Orientação#bra1	4_BULLETIN_BOARD2,{
 	mes ":: Museu de Arte ::";
 	close;
 }
 
-brasilis,195,231,3	script	Orientação#bra2	858,{
+brasilis,195,231,3	script	Orientação#bra2	4_BULLETIN_BOARD2,{
 	mes ":: Monumento ::";
 	close;
 }
 
-brasilis,240,247,3	script	Orientação#bra3	858,{
+brasilis,240,247,3	script	Orientação#bra3	4_BULLETIN_BOARD2,{
 	mes ":: Mercado ::";
 	mes " ";
 	mes "- Para procurar Poções e Armamento -";
 	close;
 }
 
-brasilis,303,309,3	script	Orientação#bra4	858,{
+brasilis,303,309,3	script	Orientação#bra4	4_BULLETIN_BOARD2,{
 	mes ":: Floresta ::";
 	mes "";
 	mes "- Não é para os fracos de coração -";
 	close;
 }
 
-brasilis,278,137,3	script	Orientação#bra5	858,{
+brasilis,278,137,3	script	Orientação#bra5	4_BULLETIN_BOARD2,{
 	mes ":: Hotel de Brasilis ::";
 	close;
 }
 
-brasilis,137,77,5	script	Sorveteiro	85,{
+brasilis,137,77,5	script	Sorveteiro	4_M_03,{
 	mes "[Sorveteiro]";
 	mes "Venham~venham~";
 	mes "Sorvetes são perfeitos para um dia quente como hoje~";

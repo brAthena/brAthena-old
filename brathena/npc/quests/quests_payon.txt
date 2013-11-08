@@ -27,7 +27,7 @@
 
 // Quest Faca Falsa
 //=============================================
-payon_in01,99,72,4	script	Vovó#pay	103,{
+payon_in01,99,72,4	script	Vovó#pay	8_F_GRANDMOTHER,{
 	if (checkweight(908,1) == 0) {
 		mes "^3355FFEspere um segundo! Agora, você está carregando muitos itens com você. Por favor, volte depois de colocar algumas de suas coisas no Armazém da Kafra.^000000";
 		close;
@@ -78,7 +78,7 @@ payon_in01,99,72,4	script	Vovó#pay	103,{
 
 // Quest Aquecedor de Orelha
 //=============================================
-payon_in01,18,10,4	script	Senhora Mística	76,{
+payon_in01,18,10,4	script	Senhora Mística	1_F_ORIENT_02,{
 	mes "[Senhora Mística]";
 	mes "Minha família tem produzido e vendido um produto especial de inverno chamado ^3355FFAquecedor de Orelha^000000 por muitos anos. Nós nos mudamos para cá, mas o clima é sempre quente, então não poderemos ganhar a vida.";
 	next;
@@ -125,7 +125,7 @@ payon_in01,18,10,4	script	Senhora Mística	76,{
 
 // Quest Máscara de Oxigênio
 //=============================================
-payon_in02,25,71,4	script	Garoto#payon	86,{
+payon_in02,25,71,4	script	Garoto#payon	4_M_04,{
 	if (countitem(701) > 4) {
 		mes "[Jovem]";
 		mes "Arrrgggghh!";
@@ -221,7 +221,7 @@ payon_in02,25,71,4	script	Garoto#payon	86,{
 
 // Quests Chapéu de Deviruchi / Elmo Angelical
 //=============================================
-payon_in01,56,12,7	script	Jovem#12	89,{
+payon_in01,56,12,7	script	Jovem#12	4_M_ORIENT02,{
 	mes "[Jovem]";
 	mes "...O que é isso?";
 	next;

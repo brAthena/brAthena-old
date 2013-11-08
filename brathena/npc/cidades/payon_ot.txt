@@ -26,7 +26,7 @@
 
 // Guardas do Palacio (Exterior)
 //============================================================ 
-payon,92,164,3	script	Guarda do Palácio#payon	708,3,3,{
+payon,92,164,3	script	Guarda do Palácio#payon	4_M_PAY_SOLDIER,3,3,{
 	end;
 
 OnTouch:
@@ -41,7 +41,7 @@ OnTouch:
 	close;
 }
 
-payon,87,164,3	script	Guarda do Palácio#1payon	708,{
+payon,87,164,3	script	Guarda do Palácio#1payon	4_M_PAY_SOLDIER,{
 	mes "[Guarda do Palácio]";
 	mes ".............";
 	close;
@@ -49,7 +49,7 @@ payon,87,164,3	script	Guarda do Palácio#1payon	708,{
 
 // Guardas do Palacio (Interior)
 //============================================================ 
-payon_in01,69,90,4	script	Guarda Chefe do Palácio#payon	708,3,3,{
+payon_in01,69,90,4	script	Guarda Chefe do Palácio#payon	4_M_PAY_SOLDIER,3,3,{
 	end;
 
 OnTouch:
@@ -67,7 +67,7 @@ OnTouch:
 	close;
 }
 
-payon_in01,79,147,2	script	Guarda Chefe#payon2	708,{
+payon_in01,79,147,2	script	Guarda Chefe#payon2	4_M_PAY_SOLDIER,{
 	mes "[Guarda Chefe]";
 	if (BaseLevel < 30) {
 		mes "Ei...!";
@@ -83,17 +83,17 @@ payon_in01,79,147,2	script	Guarda Chefe#payon2	708,{
     close;
 }
 
-payon_in01,70,154,4	script	Guarda do Palácio#2payon	708,{
+payon_in01,70,154,4	script	Guarda do Palácio#2payon	4_M_PAY_SOLDIER,{
 	end;
 }
 
-payon_in01,73,154,4	script	Guarda do Palácio#3payon	708,{
+payon_in01,73,154,4	script	Guarda do Palácio#3payon	4_M_PAY_SOLDIER,{
 	end;
 }
 
 // Guia
 //============================================================
-payon,82,116,4	script	Guia#pay	708,{
+payon,82,116,4	script	Guia#pay	4_M_PAY_SOLDIER,{
 	cutin "pay_soldier",2;
 	mes "[Guia de Payon]";
 	mes "Bem-vindo à Payon, a cidade das montanhas.";
@@ -207,7 +207,7 @@ payon,82,116,4	script	Guia#pay	708,{
 
 // Payon
 //============================================================ 
-payon,163,139,8	script	Senhorita#payon	77,{
+payon,163,139,8	script	Senhorita#payon	1_F_ORIENT_03,{
 	mes "[Senhorita]";
 	mes "Há muito tempo atrás Payon, quando ainda estava em desenvolvimento, muitos dos aldeões viviam na pobreza.";
 	next;
@@ -228,7 +228,7 @@ payon,163,139,8	script	Senhorita#payon	77,{
 	close;
 }
 
-payon,29,116,8	script	Jovem Homem#2payon	88,{
+payon,29,116,8	script	Jovem Homem#2payon	4_M_ORIENT01,{
 	mes "[Jovem Homem]";
 	mes "Lembro-me da história do meu saudoso avô me contou.";
 	next;
@@ -261,7 +261,7 @@ payon,29,116,8	script	Jovem Homem#2payon	88,{
 	close;
 }
 
-payon,166,140,3	script	Mulher#payon	71,{
+payon,166,140,3	script	Mulher#payon	1_F_LIBRARYGIRL,{
 	mes "[Mulher]";
 	mes "Bem vindo a Payon";
 	mes "você deve ter tido";
@@ -309,7 +309,7 @@ payon,166,140,3	script	Mulher#payon	71,{
 	}
 }
 
-payon,163,142,5	script	Mãe de Jim#payon	78,{
+payon,163,142,5	script	Mãe de Jim#payon	1_F_ORIENT_04,{
 	mes "[Mãe de Jim]";
 	mes "Oh Garoto~";
 	mes "Lá vai ela de novo.";
@@ -357,7 +357,7 @@ payon,163,142,5	script	Mãe de Jim#payon	78,{
 
 // Interior de Payon
 //============================================================
-payon_in01,95,181,3	script	Bêbado#payon	49,{
+payon_in01,95,181,3	script	Bêbado#payon	1_M_03,{
 	if (Class != Job_Archer) {
 		mes "[Bêbado]";
 		mes "Hey...";
@@ -428,7 +428,7 @@ payon_in01,95,181,3	script	Bêbado#payon	49,{
 	}
 }
 
-payon_in01,164,165,2	script	Estudante de Monstros#02	55,{
+payon_in01,164,165,2	script	Estudante de Monstros#02	1_M_JOBTESTER,{
 	mes "[Estudante de Monstros Vuicokk]";
 	mes "É um prazer te conhecer!";
 	mes "Eu sou chamado Vuicokk.";
@@ -500,7 +500,7 @@ payon_in01,164,165,2	script	Estudante de Monstros#02	55,{
 	}
 }
 
-payon_in01,101,174,5	script	Arqueiro Joe#payon	59,{
+payon_in01,101,174,5	script	Arqueiro Joe#payon	1_M_ORIENT01,{
 	mes "[Arqueiro Joe]";
 	mes "Payon!";
 	mes "Esse maravilhoso";
@@ -582,7 +582,7 @@ payon_in01,101,174,5	script	Arqueiro Joe#payon	59,{
 	}
 }
 
-payon_in01,104,182,2	script	Garçonete#payon	80,{
+payon_in01,104,182,2	script	Garçonete#payon	1_F_PUBGIRL,{
 	mes "[Garçonete]";
 	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
 	next;
@@ -674,7 +674,7 @@ payon_in01,104,182,2	script	Garçonete#payon	80,{
 	close;
 }
 
-payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
+payon_in01,66,64,5	script	Arqueiro Zakk#payon	4_M_ORIENT01,{
 	mes "[Arqueiro Zakk]";
 	mes "Estou ocupado";
 	mes "com um dos meus amigos.";
@@ -728,7 +728,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 	}
 }
 
-payon_in01,176,176,2	script	Arqueiro Wolt#payon	88,{
+payon_in01,176,176,2	script	Arqueiro Wolt#payon	4_M_ORIENT01,{
 	mes "[Arqueiro Wolt]";
 	mes "Arqueiros devem ter";
 	mes "prática tanto";
@@ -1013,7 +1013,7 @@ payon_in01,176,176,2	script	Arqueiro Wolt#payon	88,{
 }
 
 // Chefe de Payon
-payon_in01,137,143,2	script	Chefe#payon	120,2,2,{
+payon_in01,137,143,2	script	Chefe#payon	2_M_PHARMACIST,2,2,{
 
 	if (BaseLevel < 30) {
 		mes "[Guarda]";
@@ -1145,7 +1145,7 @@ payon_in01,137,143,2	script	Chefe#payon	120,2,2,{
 // === Quests
 // Quest Faca Falsa
 //=============================================
-payon_in01,103,107,4	script	Vovó#payonot	78,{
+payon_in01,103,107,4	script	Vovó#payonot	1_F_ORIENT_04,{
 	if (checkweight(908,1) == 0) {
 		mes "^3355FFEspere um segundo! Agora, você está carregando muitos itens com você. Por favor, volte depois de colocar algumas de suas coisas no Armazém da Kafra.^000000";
 		close;
@@ -1196,7 +1196,7 @@ payon_in01,103,107,4	script	Vovó#payonot	78,{
 
 // Quest Aquecedor de Orelha
 //=============================================
-payon_in01,103,78,4	script	Senhora Mística#payonot	75,{
+payon_in01,103,78,4	script	Senhora Mística#payonot	1_F_ORIENT_01,{
 	mes "[Senhora Mística]";
 	mes "Minha família tem produzido e vendido um produto especial de inverno chamado ^3355FFAquecedor de Orelha^000000 por muitos anos. Nós nos mudamos para cá, mas o clima é sempre quente, então não poderemos ganhar a vida.";
 	next;
@@ -1243,7 +1243,7 @@ payon_in01,103,78,4	script	Senhora Mística#payonot	75,{
 
 // Quest Máscara de Oxigênio
 //=============================================
-payon_in02,25,71,4	script	Garoto#payonot	86,{
+payon_in02,25,71,4	script	Garoto#payonot	4_M_04,{
 	if (countitem(701) > 4) {
 		mes "[Jovem]";
 		mes "Arrrgggghh!";
@@ -1339,7 +1339,7 @@ payon_in02,25,71,4	script	Garoto#payonot	86,{
 
 // Quests Chapéu de Deviruchi / Elmo Angelical
 //=============================================
-payon_in01,123,40,7	script	Jovem#2payonot	89,{
+payon_in01,123,40,7	script	Jovem#2payonot	4_M_ORIENT02,{
 	mes "[Jovem]";
 	mes "...O que é isso?";
 	next;

@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
+prontera,165,89,6	script	Vendedor de Diamantes Raros	1_M_MERCHANT,{
 
 	mes "[Vendedor de Diamantes Raros]";
 	mes "Senhoras e senhores! ! !";
@@ -209,9 +209,9 @@ prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
 	}
 }
 
-geffen,106,63,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#1	58
-morocc,146,100,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#2	58
-alberta,129,60,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#3	58
-lighthalzen,163,65,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#4	58
-rachel,106,142,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#5	58
-payon,180,130,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#6	58
+geffen,106,63,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#1	1_M_MERCHANT
+morocc,146,100,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#2	1_M_MERCHANT
+alberta,129,60,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#3	1_M_MERCHANT
+lighthalzen,163,65,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#4	1_M_MERCHANT
+rachel,106,142,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#5	1_M_MERCHANT
+payon,180,130,6	duplicate(Vendedor de Diamantes Raros)	Vendedor de Diamantes Raros#6	1_M_MERCHANT
