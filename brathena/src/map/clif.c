@@ -1315,6 +1315,8 @@ static void clif_weather_check(struct map_session_data *sd)
 	int16 m = sd->bl.m;
 	int fd = sd->fd;
 
+		if (map[m].flag.rain)
+			clif_specialeffect_single(&sd->bl, 161, fd);
 		if(map[m].flag.snow)
 			clif_specialeffect_single(&sd->bl, 162, fd);
 		if(map[m].flag.clouds)
@@ -1332,11 +1334,6 @@ static void clif_weather_check(struct map_session_data *sd)
 			clif_specialeffect_single(&sd->bl, 163, fd);
 		if(map[m].flag.leaves)
 			clif_specialeffect_single(&sd->bl, 333, fd);
-		/**
-		 * No longer available, keeping here just in case it's back someday. [Ind]
-		 **/
-		//if (map[m].flag.rain)
-		//  clif_specialeffect_single(&sd->bl, 161, fd);
 	}
 /**
  * Run when the weather on a map changes, throws all players in map id 'm' to clif_weather_check function
