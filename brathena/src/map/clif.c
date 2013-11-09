@@ -9404,6 +9404,17 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	if(map[sd->bl.m].users++ == 0 && battle_config.dynamic_mobs)
 		map_spawnmobs(sd->bl.m);
+
+	if(map[sd->bl.m].instance_id >= 0 ) {
+		instances[map[sd->bl.m].instance_id].users++;
+		instance->check_idle(map[sd->bl.m].instance_id);
+	}
+	
+	if(pc_has_permission(sd,PC_PERM_VIEW_HPMETER) ) {
+		map[sd->bl.m].hpmeter_visible++;
+		sd->state.hpmeter_visible = 1;
+	}
+
 	if(!(sd->sc.option&OPTION_INVISIBLE)) {
 		// increment the number of pvp players on the map
 		map[sd->bl.m].users_pvp++;
@@ -9632,16 +9643,6 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 			if(warp_sd || map[sd->bl.m].set_castle == 0)
 				pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_OUTSIGHT);
-		}
-
-		if( map[sd->bl.m].instance_id >= 0 ) {
-			instances[map[sd->bl.m].instance_id].users++;
-			instance->check_idle(map[sd->bl.m].instance_id);
-		}
-
-		if( pc_has_permission(sd,PC_PERM_VIEW_HPMETER) ) {
-			map[sd->bl.m].hpmeter_visible++;
-			sd->state.hpmeter_visible = 1;
 		}
 
 		map_iwall_get(sd); // Updates Walls Info on this Map to Client

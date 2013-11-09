@@ -6555,7 +6555,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 			pc_setoption(sd, i);
 
 		if(merc_is_hom_active(sd->hd) && pc_checkskill(sd, AM_CALLHOMUN))
-			merc_hom_vaporize(sd, HOM_ST_ACTIVE);
+			merc_hom_vaporize(sd, HOM_ST_REST);
 	}
 
 	for(i = 1; i < MAX_SKILL; i++) {

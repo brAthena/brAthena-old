@@ -67,13 +67,15 @@ struct homun_data {
 	struct status_data base_status, battle_status;
 	struct status_change sc;
 	struct regen_data regen;
-	struct s_homunculus_db *homunculusDB;   //[orn]
-	struct s_homunculus homunculus; //[orn]
+	struct s_homunculus_db *homunculusDB; //[orn]
+	struct s_homunculus homunculus;       //[orn]
 
-	struct map_session_data *master; //pointer back to its master
-	int hungry_timer;   //[orn]
+	struct map_session_data *master;      //pointer back to its master
+	int hungry_timer;                     //[orn]
 	unsigned int exp_next;
-	char blockskill[MAX_SKILL]; // [orn]
+	char blockskill[MAX_SKILL];           // [orn]
+
+	int64 masterteleport_timer;
 };
 
 #define MAX_HOM_SKILL_REQUIRE 5
