@@ -6828,7 +6828,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 
 	if(sd->status.hom_id > 0) {
 		if(battle_config.homunculus_auto_vapor && sd->hd && !sd->hd->sc.data[SC_LIGHT_OF_REGENE])
-			merc_hom_vaporize(sd, HOM_ST_ACTIVE);
+			merc_hom_vaporize(sd, HOM_ST_REST);
 	}
 
 	if(sd->md)
@@ -7774,7 +7774,7 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		pc_setoption(sd, i);
 
 	if(merc_is_hom_active(sd->hd) && !pc_checkskill(sd, AM_CALLHOMUN))
-		merc_hom_vaporize(sd, HOM_ST_ACTIVE);
+		merc_hom_vaporize(sd, HOM_ST_REST);
 
 	if(sd->status.manner < 0)
 		clif_changestatus(sd,SP_MANNER,sd->status.manner);

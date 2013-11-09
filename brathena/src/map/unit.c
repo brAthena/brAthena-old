@@ -2258,7 +2258,6 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, 
 			}
 		case BL_HOM: {
 				struct homun_data *hd = (struct homun_data *)bl;
-				ud->canact_tick = ud->canmove_tick; //It appears HOM do reset the can-act tick.
 				if(!hd->homunculus.intimacy && !(hd->master && !hd->master->state.active)) {
 					//If logging out, this is deleted on unit_free
 					clif_emotion(bl, E_SOB);

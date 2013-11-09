@@ -846,13 +846,14 @@ ACMD_FUNC(speed)
 	else
 		sd->base_status.speed = cap_value(speed, MIN_WALK_SPEED, MAX_WALK_SPEED);
 
-	status_calc_bl(&sd->bl, SCB_SPEED);
-
 	if(sd->base_status.speed != DEFAULT_WALK_SPEED) {
 		sd->state.permanent_speed = 1; // Set lock when set to non-default speed.
 		clif_displaymessage(fd, msg_txt(8)); // Speed changed.
 	} else
-	clif_displaymessage(fd, msg_txt(8)); // Speed changed.
+	clif_displaymessage(fd, msg_txt(172)); // Speed returned to normal.
+
+	status_calc_bl(&sd->bl, SCB_SPEED);
+
 	return 0;
 }
 
