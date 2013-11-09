@@ -15577,8 +15577,9 @@ bool skill_check_shadowform(struct block_list *bl, int64 damage, int hit){
 		}
 
 		status_damage(bl, src, damage, 0, clif_damage(src, src, gettick(), 500, 500, damage, hit, (hit > 1 ? 8 : 0), 0), 0);
-		if((--sc->data[SC__SHADOWFORM]->val3) <= 0) {
-			status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
+		if(sc->data[SC__SHADOWFORM]) {
+			if((--sc->data[SC__SHADOWFORM]->val3) <= 0)
+				status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 			if(src->type == BL_PC)
 				((TBL_PC*)src)->shadowform_id = 0;
 		}
