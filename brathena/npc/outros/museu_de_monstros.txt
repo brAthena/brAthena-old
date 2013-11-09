@@ -515,10 +515,10 @@ yuno_in03,46,108,1	script	#GEOGRAPHER	HIDDEN_NPC,{
 	close;
 }
 	
-yuno_in03,48,112,3	script	Rafflesia#yuno	RAFFLESIA,{
+yuno_in03,48,112,3	script#dv	Rafflesia#yuno	RAFFLESIA,{
 	end;
 }
-yuno_in03,46,112,1	script	#RAFFLESIA	HIDDEN_NPC,{
+yuno_in03,46,112,1	script#dv	#RAFFLESIA	HIDDEN_NPC,{
 	mes " ";
 	mes " Nome Científico : Rafflesia";
 	mes " Tamanho : Pequeno";
