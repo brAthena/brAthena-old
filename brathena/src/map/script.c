@@ -5963,7 +5963,7 @@ BUILDIN_FUNC(checkweight)
 	    }
 	}
 	script_pushint(st,1);
-	return true;
+	return 0;
 }
 
 BUILDIN_FUNC(checkweight2)
@@ -15847,7 +15847,7 @@ BUILDIN_FUNC(questinfo)
 	struct questinfo qi;
 
 	if(nd == NULL || nd->bl.m == -1)
-		return true;
+		return 0;
 
 	quest = script_getnum(st, 2);
 	icon = script_getnum(st, 3);
@@ -18070,7 +18070,7 @@ BUILDIN_FUNC(countbound)
 	TBL_PC *sd;
 
 	if((sd = script_rid2sd(st)) == NULL)
-		return false;
+		return -1;
 
 	type = script_hasdata(st,2)?script_getnum(st,2):0;
 
