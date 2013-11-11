@@ -104,7 +104,7 @@ izlude_d,125,175,4	duplicatr(Dona Risadinha#iz)	Dona Risadinha#iz_d	4_F_03,{}
 alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	4_F_03
 aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	4_F_03
 geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	4_F_03
-moc_ruins,59,154,3	duplicata(Dona Risadinha#iz)	Dona Risadinha#moc	92
-payon,186,104,5	duplicata(Dona Risadinha#iz)	Dona Risadinha#pay	92,{}
+moc_ruins,59,154,3	duplicata(Dona Risadinha#iz)	Dona Risadinha#moc	4_F_03
+payon,186,104,5	duplicata(Dona Risadinha#iz)	Dona Risadinha#pay	4_F_03,{}
 payon,84,158,4	duplicato(Dona Risadinha#iz)	Dona Risadinha#pay	4_F_03,{}
 prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	4_F_03

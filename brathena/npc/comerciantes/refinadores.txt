@@ -299,9 +299,9 @@ prt_in,63,60,0	script	Hollgrehenn	4_M_03,{
 morocc_in,73,38,6	duplicate(Hollgrehenn)	Aragham	4W_M_03
 alberta_in,28,58,0	duplicate(Hollgrehenn)	Fredrik	4_M_03
 yuno_in01,171,21,4	duplicate(Hollgrehenn)	Lambert	4_M_ORIENT01
-ein_in01,24,87,5	duplicata(Hollgrehenn)	Manthasman	826
-lhz_in02,282,20,7	duplicata(Hollgrehenn)	Fulerr	869
-payon,144,173,5	duplicata(Hollgrehenn)	Antonio	88,{}
+ein_in01,24,87,5	duplicata(Hollgrehenn)	Manthasman	4_M_DWARF
+lhz_in02,282,20,7	duplicata(Hollgrehenn)	Fulerr	4_M_LGTMAN
+payon,144,173,5	duplicata(Hollgrehenn)	Antonio	4_M_ORIENT01,{}
 payon_in01,90,31,4	duplicato(Hollgrehenn)	Antonio#ot	4_M_ORIENT01,{}
 
 //============================================================
@@ -604,9 +604,9 @@ prt_in,56,68,5	script	Vurewell	4_M_04,{
 morocc_in,63,32,6	duplicate(Vurewell)	Sade	4W_M_03
 alberta_in,13,71,3	duplicate(Vurewell)	Kahlamanlith	4_M_04
 yuno_in01,171,27,4	duplicate(Vurewell)	Dilemma	4_M_ORIENT01
-payon,145,178,3	duplicata(Vurewell)	Begnahd	88
-ein_in01,15,87,3	duplicata(Vurewell)	Tirehaus	86
-lhz_in02,278,24,3	duplicata(Vurewell)	Krugg	86,{}
+payon,145,178,3	duplicata(Vurewell)	Begnahd	4_M_ORIENT01
+ein_in01,15,87,3	duplicata(Vurewell)	Tirehaus	4_M_04
+lhz_in02,278,24,3	duplicata(Vurewell)	Krugg	4_M_04,{}
 payon_in01,84,26,4	duplicato(Vurewell)	Begnahd	4_M_ORIENT01,{}
 
 // Material Salesmen Functions
@@ -701,9 +701,9 @@ prt_in,63,69,3	script	Dietrich	4_M_02,{
 morocc_in,72,32,6	duplicate(Dietrich)	Abdula	4W_M_03
 alberta_in,21,63,5	duplicate(Dietrich)	Xenophon	4_M_02
 yuno_in01,164,27,4	duplicate(Dietrich)	Delight	4_M_ORIENT01
-payon,137,178,5	duplicata(Dietrich)	Hakhim	88
-ein_in01,18,82,6	duplicata(Dietrich)	Matestein	84
-lhz_in02,281,24,5	duplicata(Dietrich)	Fruel	84,{}
+payon,137,178,5	duplicata(Dietrich)	Hakhim	4_M_ORIENT01
+ein_in01,18,82,6	duplicata(Dietrich)	Matestein	4_M_02
+lhz_in02,281,24,5	duplicata(Dietrich)	Fruel	4_M_02,{}
 payon_in01,81,31,4	duplicato(Dietrich)	Hakhim#ot	4_M_ORIENT01,{}
 
 // Ori/Elu Functions
@@ -786,14 +786,14 @@ prt_in,63,54,2	duplicate(Repairman#alb)	Repairman#prt	4_M_04
 yuno_in01,175,28,3	duplicate(Repairman#alb)	Repairman#juno	4_M_04
 geffen_in,34,166,3	duplicate(Repairman#alb)	Repairman#gef	4W_M_03,
 aldeba_in,38,60,3	duplicate(Repairman#alb)	Repairman#alde	4_M_04
-prt_gld,139,117,4	duplicata(Repairman#alb)	Repairman#prt_gld	86
-gef_fild13,263,117,4	duplicata(Repairman#alb)	Repairman#gef_fild	86
-pay_gld,295,183,4	duplicata(Repairman#alb)	Repairman#pay_gld	86
-alde_gld,220,152,4	duplicata(Repairman#alb)	Repairman#alde_gld	86
-moc_ruins,107,94,4	duplicata(Repairman#alb)	Repairman#moc	99
-lhz_in02,284,14,3	duplicata(Repairman#alb)	Repairman#lhz	86
-aru_gld,189,336,4	duplicata(Repairman#alb)	Repairman#aru_gld	86
-sch_gld,340,80,7	duplicata(Repairman#alb)	Repairman#sch_gld	86,{}
+prt_gld,139,117,4	duplicata(Repairman#alb)	Repairman#prt_gld	4_M_04
+gef_fild13,263,117,4	duplicata(Repairman#alb)	Repairman#gef_fild	4_M_04
+pay_gld,295,183,4	duplicata(Repairman#alb)	Repairman#pay_gld	4_M_04
+alde_gld,220,152,4	duplicata(Repairman#alb)	Repairman#alde_gld	4_M_04
+moc_ruins,107,94,4	duplicata(Repairman#alb)	Repairman#moc	4W_M_03
+lhz_in02,284,14,3	duplicata(Repairman#alb)	Repairman#lhz	4_M_04
+aru_gld,189,336,4	duplicata(Repairman#alb)	Repairman#aru_gld	4_M_04
+sch_gld,340,80,7	duplicata(Repairman#alb)	Repairman#sch_gld	4_M_04,{}
 
 // Equipment Repair Function
 //============================================================
@@ -1272,7 +1272,7 @@ prt_in,85,71,5	script#re	Austry#ref	4_M_DWARF,{
 	close;
 }
 payon_in01,14,125,5	duplicatr(Austry#ref)	Austry#pay	4_M_DWARF,{}
-payon,143,165,4	duplicata(Repairman#alb)	Repairman#pay	88
+payon,143,165,4	duplicata(Repairman#alb)	Repairman#pay	4_M_ORIENT01
 
 // Paul Spanner: Einbroch Blacksmith Supplier
 //============================================================

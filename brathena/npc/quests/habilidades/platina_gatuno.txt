@@ -512,5 +512,5 @@ moc_prydb1,154,128,4	script	Alcouskou#qsk_tf	2_M_THIEFMASTER,{
 	}
 }
 
-payon,91,77,3	duplicata(Bag Seller#qsk_tf)	Bag Seller#2qsk_tf	99,{}
+payon,91,77,3	duplicata(Bag Seller#qsk_tf)	Bag Seller#2qsk_tf	4W_M_03,{}
 payon,112,65,3	duplicato(Bag Seller#qsk_tf)	Bag Seller#qsk_tfot	4W_M_03,{}

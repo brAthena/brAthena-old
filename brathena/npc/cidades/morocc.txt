@@ -126,7 +126,7 @@ morocc,223,102,0	script#dv	Voluntário - Morroc#06	2_M_BARD_ORIENT,{
 	close;
 }
 
-morocc,226,102,4	duplicata(Voluntário - Morroc#06)	Voluntário - Morroc#07	726,{}
+morocc,226,102,4	duplicata(Voluntário - Morroc#06)	Voluntário - Morroc#07	4_F_JOB_BLACKSMITH,{}
 
 -	script	Jovem#moc01	-1,{
 	if (checkversion(0) != -1){
@@ -706,17 +706,17 @@ morocc,281,178,4	script#ot	Cetsu	4W_M_01,{
 
 // Duplicatas Morroc
 //dv
-moc_ruins,173,70,4	duplicata(Tio Morroc#moc)	Tio Morroc#2moc	48
-moc_ruins,174,120,4	duplicata(Homem Mosca#moc)	Homem Mosca#2moc	54
-moc_ruins,115,144,3	duplicata(Jovem Homem Muka#moc)	Jovem Homem Muka#2moc	83
-moc_ruins,173,141,4	duplicata(Dimitri#moc)	Dimitri#2moc	49
-moc_ruins,109,138,4	duplicata(Jovem Homem Diamante#moc)	Jovem Homem Diamante#2moc	99
-moc_ruins,143,43,4	duplicata(Criança Estranha#moc)	Criança Estranha#2moc	118
-moc_ruins,155,107,4	duplicata(Homem Formiga#moc)	Homem Formiga#2moc	47
-moc_ruins,121,116,4	duplicata(Senhora Picky#moc)	Senhora Picky#2moc	66
-morocc,54,251,153,4	duplicata(Jovem#moc02)	Jovem#2moc02	89
-moc_ruins,128,153,4	duplicata(Vovô#moc)	Vovô#2moc	61
-moc_ruins,123,154,4	duplicata(Jovem#moc01)	Jovem#2moc01	99,{}
+moc_ruins,173,70,4	duplicata(Tio Morroc#moc)	Tio Morroc#2moc	1_M_02
+moc_ruins,174,120,4	duplicata(Homem Mosca#moc)	Homem Mosca#2moc	1_M_JOBGUIDER
+moc_ruins,115,144,3	duplicata(Jovem Homem Muka#moc)	Jovem Homem Muka#2moc	4_M_01
+moc_ruins,173,141,4	duplicata(Dimitri#moc)	Dimitri#2moc	1_M_03
+moc_ruins,109,138,4	duplicata(Jovem Homem Diamante#moc)	Jovem Homem Diamante#2moc	4W_M_03
+moc_ruins,143,43,4	duplicata(Criança Estranha#moc)	Criança Estranha#2moc	2_M_THIEFMASTER
+moc_ruins,155,107,4	duplicata(Homem Formiga#moc)	Homem Formiga#2moc	1_M_01
+moc_ruins,121,116,4	duplicata(Senhora Picky#moc)	Senhora Picky#2moc	1_F_01
+morocc,54,251,153,4	duplicata(Jovem#moc02)	Jovem#2moc02	4_M_ORIENT02
+moc_ruins,128,153,4	duplicata(Vovô#moc)	Vovô#2moc	1_M_PUBMASTER
+moc_ruins,123,154,4	duplicata(Jovem#moc01)	Jovem#2moc01	4W_M_03,{}
 //ot
 morocc,277,213,4	duplicato(Tio Morroc#moc)	Tio Morroc#mocot	1_M_02
 morocc,234,273,3	duplicato(Homem Mosca#moc)	Homem Mosca#mocot	1_M_JOBGUIDER

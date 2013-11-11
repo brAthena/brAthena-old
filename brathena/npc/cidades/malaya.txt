@@ -184,7 +184,7 @@ malaya,304,100,4	script	Neta do Homem Velho	4_F_BARYO_GIRL,{
 	close;
 }
 
-ma_in01,125,107,3	script	Fantasma Diwata#mal	1752,4,4,{
+ma_in01,125,107,3	script	Fantasma Diwata#mal	SKOGUL,4,4,{
 	end;
 	OnTouch:
 	switch(MALAYA_2QUE) {

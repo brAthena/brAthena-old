@@ -2807,7 +2807,7 @@ que_qaru01,2,1,0	duplicate(MirobfSE)	#miro_bf_aru01	CLEAR_NPC
 que_qaru01,2,2,0	duplicate(MirorfSE)	#miro_rf_aru01	CLEAR_NPC
 que_qaru01,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru01	CLEAR_NPC
 que_qaru01,132,172,0	duplicate(wind01SE)	windpath01_aru01	WARPNPC,1,1
-que_qaru01,131,136,3	duplicate(PiametSE)	Piamette#arug_cas01	1930
+que_qaru01,131,136,3	duplicate(PiametSE)	Piamette#arug_cas01	PIAMETTE
 que_qaru01,114,158,0	duplicate(eventstartSE)	#event_start1_aru01	-1,1,1
 que_qaru01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru01	CLEAR_NPC
 que_qaru01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru01	CLEAR_NPC
@@ -2861,7 +2861,7 @@ que_qaru02,2,1,0	duplicate(MirobfSE)	#miro_bf_aru02	CLEAR_NPC
 que_qaru02,2,2,0	duplicate(MirorfSE)	#miro_rf_aru02	CLEAR_NPC
 que_qaru02,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru02	CLEAR_NPC
 que_qaru02,132,172,0	duplicate(wind01SE)	windpath01_aru02	WARPNPC,1,1
-que_qaru02,131,136,3	duplicate(PiametSE)	Piamette#arug_cas02	1930
+que_qaru02,131,136,3	duplicate(PiametSE)	Piamette#arug_cas02	PIAMETTE
 que_qaru02,114,158,0	duplicate(eventstartSE)	#event_start1_aru02	-1,1,1
 que_qaru02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru02	CLEAR_NPC
 que_qaru02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru02	CLEAR_NPC
@@ -2915,7 +2915,7 @@ que_qaru03,2,1,0	duplicate(MirobfSE)	#miro_bf_aru03	CLEAR_NPC
 que_qaru03,2,2,0	duplicate(MirorfSE)	#miro_rf_aru03	CLEAR_NPC
 que_qaru03,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru03	CLEAR_NPC
 que_qaru03,132,172,0	duplicate(wind01SE)	windpath01_aru03	WARPNPC,1,1
-que_qaru03,131,136,3	duplicate(PiametSE)	Piamette#arug_cas03	1930
+que_qaru03,131,136,3	duplicate(PiametSE)	Piamette#arug_cas03	PIAMETTE
 que_qaru03,114,158,0	duplicate(eventstartSE)	#event_start1_aru03	-1,1,1
 que_qaru03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru03	CLEAR_NPC
 que_qaru03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru03	CLEAR_NPC
@@ -2969,7 +2969,7 @@ que_qaru04,2,1,0	duplicate(MirobfSE)	#miro_bf_aru04	CLEAR_NPC
 que_qaru04,2,2,0	duplicate(MirorfSE)	#miro_rf_aru04	CLEAR_NPC
 que_qaru04,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru04	CLEAR_NPC
 que_qaru04,132,172,0	duplicate(wind01SE)	windpath01_aru04	WARPNPC,1,1
-que_qaru04,131,136,3	duplicate(PiametSE)	Piamette#arug_cas04	1930
+que_qaru04,131,136,3	duplicate(PiametSE)	Piamette#arug_cas04	PIAMETTE
 que_qaru04,114,158,0	duplicate(eventstartSE)	#event_start1_aru04	-1,1,1
 que_qaru04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru04	CLEAR_NPC
 que_qaru04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru04	CLEAR_NPC
@@ -3023,7 +3023,7 @@ que_qaru05,2,1,0	duplicate(MirobfSE)	#miro_bf_aru05	CLEAR_NPC
 que_qaru05,2,2,0	duplicate(MirorfSE)	#miro_rf_aru05	CLEAR_NPC
 que_qaru05,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru05	CLEAR_NPC
 que_qaru05,132,172,0	duplicate(wind01SE)	windpath01_aru05	WARPNPC,1,1
-que_qaru05,131,136,3	duplicate(PiametSE)	Piamette#arug_cas05	1930
+que_qaru05,131,136,3	duplicate(PiametSE)	Piamette#arug_cas05	PIAMETTE
 que_qaru05,114,158,0	duplicate(eventstartSE)	#event_start1_aru05	-1,1,1
 que_qaru05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru05	CLEAR_NPC
 que_qaru05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru05	CLEAR_NPC
@@ -3077,7 +3077,7 @@ que_qsch01,2,1,0	duplicate(MirobfSE)	#miro_bf_sch01	CLEAR_NPC
 que_qsch01,2,2,0	duplicate(MirorfSE)	#miro_rf_sch01	CLEAR_NPC
 que_qsch01,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch01	CLEAR_NPC
 que_qsch01,132,172,0	duplicate(wind01SE)	windpath01_sch01	WARPNPC,1,1
-que_qsch01,131,136,3	duplicate(PiametSE)	Piamette#schg_cas01	1930
+que_qsch01,131,136,3	duplicate(PiametSE)	Piamette#schg_cas01	PIAMETTE
 que_qsch01,114,158,0	duplicate(eventstartSE)	#event_start1_sch01	-1,1,1
 que_qsch01,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch01	CLEAR_NPC
 que_qsch01,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch01	CLEAR_NPC
@@ -3131,7 +3131,7 @@ que_qsch02,2,1,0	duplicate(MirobfSE)	#miro_bf_sch02	CLEAR_NPC
 que_qsch02,2,2,0	duplicate(MirorfSE)	#miro_rf_sch02	CLEAR_NPC
 que_qsch02,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch02	CLEAR_NPC
 que_qsch02,132,172,0	duplicate(wind01SE)	windpath01_sch02	WARPNPC,1,1
-que_qsch02,131,136,3	duplicate(PiametSE)	Piamette#schg_cas02	1930
+que_qsch02,131,136,3	duplicate(PiametSE)	Piamette#schg_cas02	PIAMETTE
 que_qsch02,114,158,0	duplicate(eventstartSE)	#event_start1_sch02	-1,1,1
 que_qsch02,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch02	CLEAR_NPC
 que_qsch02,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch02	CLEAR_NPC
@@ -3185,7 +3185,7 @@ que_qsch03,2,1,0	duplicate(MirobfSE)	#miro_bf_sch03	CLEAR_NPC
 que_qsch03,2,2,0	duplicate(MirorfSE)	#miro_rf_sch03	CLEAR_NPC
 que_qsch03,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch03	CLEAR_NPC
 que_qsch03,132,172,0	duplicate(wind01SE)	windpath01_sch03	WARPNPC,1,1
-que_qsch03,131,136,3	duplicate(PiametSE)	Piamette#schg_cas03	1930
+que_qsch03,131,136,3	duplicate(PiametSE)	Piamette#schg_cas03	PIAMETTE
 que_qsch03,114,158,0	duplicate(eventstartSE)	#event_start1_sch03	-1,1,1
 que_qsch03,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch03	CLEAR_NPC
 que_qsch03,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch03	CLEAR_NPC
@@ -3239,7 +3239,7 @@ que_qsch04,2,1,0	duplicate(MirobfSE)	#miro_bf_sch04	CLEAR_NPC
 que_qsch04,2,2,0	duplicate(MirorfSE)	#miro_rf_sch04	CLEAR_NPC
 que_qsch04,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch04	CLEAR_NPC
 que_qsch04,132,172,0	duplicate(wind01SE)	windpath01_sch04	WARPNPC,1,1
-que_qsch04,131,136,3	duplicate(PiametSE)	Piamette#schg_cas04	1930
+que_qsch04,131,136,3	duplicate(PiametSE)	Piamette#schg_cas04	PIAMETTE
 que_qsch04,114,158,0	duplicate(eventstartSE)	#event_start1_sch04	-1,1,1
 que_qsch04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch04	CLEAR_NPC
 que_qsch04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch04	CLEAR_NPC
@@ -3293,7 +3293,7 @@ que_qsch05,2,1,0	duplicate(MirobfSE)	#miro_bf_sch05	CLEAR_NPC
 que_qsch05,2,2,0	duplicate(MirorfSE)	#miro_rf_sch05	CLEAR_NPC
 que_qsch05,2,3,0	duplicate(MiroyfSE)	#miro_yf_sch05	CLEAR_NPC
 que_qsch05,132,172,0	duplicate(wind01SE)	windpath01_sch05	WARPNPC,1,1
-que_qsch05,131,136,3	duplicate(PiametSE)	Piamette#schg_cas05	1930
+que_qsch05,131,136,3	duplicate(PiametSE)	Piamette#schg_cas05	PIAMETTE
 que_qsch05,114,158,0	duplicate(eventstartSE)	#event_start1_sch05	-1,1,1
 que_qsch05,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_sch05	CLEAR_NPC
 que_qsch05,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_sch05	CLEAR_NPC

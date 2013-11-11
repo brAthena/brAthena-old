@@ -187,7 +187,7 @@ morocc_in,144,138,4	script	Guia do PVP	4_M_02,{
 alberta_in,22,146,4	duplicate(Guia do PVP)	Guia do PVP#pe2	4_M_02
 prt_in,56,140,4	duplicate(Guia do PVP)	Guia do PVP#pe3	4_M_02
 geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe4	4_M_02
-payon_in01,142,50,4	duplicata(Guia do PVP)	Guia do PVP#pe5	84,{}
+payon_in01,142,50,4	duplicata(Guia do PVP)	Guia do PVP#pe5	4_M_02,{}
 payon_in01,136,182,4	duplicato(Guia do PVP)	Guia do PVP#pe5	4_M_02,{}
 
 // Porteiro
@@ -291,7 +291,7 @@ L_Warp:
 alberta_in,26,146,4	duplicate(Porteiro#PvP)	Porteiro#gke2	4_M_01
 prt_in,52,140,4	duplicate(Porteiro#PvP)	Porteiro#gke3	4_M_01
 geffen_in,63,63,4	duplicate(Porteiro#PvP)	Porteiro#gke4	4_M_01
-payon_in01,140,53,4	duplicata(Porteiro#PvP)	Porteiro#gke5	83,{}
+payon_in01,140,53,4	duplicata(Porteiro#PvP)	Porteiro#gke5	4_M_01,{}
 payon_in01,133,182,4	duplicato(Porteiro#PvP)	Porteiro#gke6	4_M_01,{}
 
 //callfunc "F_PVP_FSRS"{,<min_lvl>,<max_lvl>};

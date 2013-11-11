@@ -1607,8 +1607,8 @@ morocc,95,133,4	duplicato(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos
 comodo,158,342,4	duplicato(Bismarc#BLS)	Bismarc#2BLS	2_M_THIEFMASTER,{}
 
 // Duplicatas Pré-Renovação e Renovação
-ein_in01,201,27,3	duplicata(Líder da Guilda#alberta)	Líder da Guilda#albertare	63
-ein_in01,24,41,5	duplicata(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#3moc	726
-ein_in01,18,28,4	duplicata(Mestre Ferreiro#BLS)	Mestre Ferreiro#3BLS	731
-hugel,168,183,1	duplicata(Bismarc#BLS)	Bismarc#3BLS	118
-lighthalzen,209,80,4	duplicata(Krongast#BLS)	Krongast#3BLS	734,{}
+ein_in01,201,27,3	duplicata(Líder da Guilda#alberta)	Líder da Guilda#albertare	1_M_SMITH
+ein_in01,24,41,5	duplicata(Homem da Guilda dos Ferreiros#moc)	Homem da Guilda dos Ferreiros#3moc	4_F_JOB_BLACKSMITH
+ein_in01,18,28,4	duplicata(Mestre Ferreiro#BLS)	Mestre Ferreiro#3BLS	4_M_JOB_BLACKSMITH
+hugel,168,183,1	duplicata(Bismarc#BLS)	Bismarc#3BLS	2_M_THIEFMASTER
+lighthalzen,209,80,4	duplicata(Krongast#BLS)	Krongast#3BLS	4_M_JOB_KNIGHT2,{}

@@ -934,9 +934,9 @@ comodo,216,310,4	script#dv	BBQ Papa#cmd::CmdFamily	1_M_04,{
 	close;
 }
 
-comodo,215,307,4	duplicata(CmdFamily)	BBQ Mama#cmd	74
+comodo,215,307,4	duplicata(CmdFamily)	BBQ Mama#cmd	1_F_MERCHANT_02
 
-comodo,213,310,4	duplicata(CmdFamily)	BBQ Boy#cmd2	706,{}
+comodo,213,310,4	duplicata(CmdFamily)	BBQ Boy#cmd2	4_M_KID1,{}
 
 cmd_in02,32,140,4	script#dv	Chief#cmd	1_M_03,{
 	if (dmdswrd_Q > 4) {

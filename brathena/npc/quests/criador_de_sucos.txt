@@ -342,4 +342,4 @@ prt_in,47,173,3	script	Morrison#suco	4W_M_01,{
 }
 
 payon_in01,174,113,2	duplicato(Marx Hansen#suco)	Marx Hansen#ot	4_M_04,{}
-payon_in03,188,146,5	duplicata(Marx Hansen#suco)	Marx Hansen#dv	86,{}
+payon_in03,188,146,5	duplicata(Marx Hansen#suco)	Marx Hansen#dv	4_M_04,{}

@@ -670,7 +670,7 @@ geffen,112,129,1	duplicate(InsideFlagsG2)	Trapesac#12	GUILD_FLAG
 geffen,120,132,8	duplicate(InsideFlagsG3)	Ruaden#15	GUILD_FLAG
 geffen,127,130,7	duplicate(InsideFlagsG4)	Saffran#11	GUILD_FLAG
 geffen,131,123,6	duplicato(InsideFlagsG5)	Arima#11	GUILD_FLAG
-geffen,131,123,6	duplicata(InsideFlagsG5)	Arima#11	722
+geffen,131,123,6	duplicata(InsideFlagsG5)	Arima#11	GUILD_FLAG
 //============================================================
 
 // Payon

@@ -1772,6 +1772,6 @@ payon_in03,131,7,3	script	Caçador#htnGM	1_M_ORIENT01,{
 	}
 }
 
-pay_fild10,148,252,3	duplicata(CaçadorNotícia)	Local da Mudança de Classe#hu	857
-hu_in01,386,373,4	duplicata(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	727
-hu_in01,382,382,4	duplicata(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacre	732,{}
+pay_fild10,148,252,3	duplicata(CaçadorNotícia)	Local da Mudança de Classe#hu	4_BOARD3
+hu_in01,386,373,4	duplicata(Caçadora da Guilda#cac)	Caçadora da Guilda#cac2	4_F_JOB_HUNTER
+hu_in01,382,382,4	duplicata(Recepcionista da Guilda#cac)	Recepcionista da Guilda#cacre	4_M_JOB_HUNTER,{}
