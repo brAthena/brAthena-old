@@ -1430,7 +1430,7 @@ void clif_hominfo(struct map_session_data *sd, struct homun_data *hd, int flag)
 	nullpo_retv(hd);
 
 	status  = &hd->battle_status;
-	htype = hom_class2type(hd->homunculus.class_);
+	htype = homun->class2type(hd->homunculus.class_);
 
 	memset(buf,0,packet_len(0x22e));
 	WBUFW(buf,0)=0x22e;
@@ -1501,7 +1501,7 @@ void clif_send_homdata(struct map_session_data *sd, int state, int param)
 	int fd = sd->fd;
 
 	if((state == SP_INTIMATE) && (param >= 910) && (sd->hd->homunculus.class_ == sd->hd->homunculusDB->evo_class))
-		merc_hom_calc_skilltree(sd->hd, 0);
+		homun->calc_skilltree(sd->hd, 0);
 
 	WFIFOHEAD(fd, packet_len(0x230));
 	WFIFOW(fd,0)=0x230;
@@ -1537,7 +1537,7 @@ int clif_homskillinfoblock(struct map_session_data *sd)
 			WFIFOW(fd,len+8) = skill_get_sp(id,hd->homunculus.hskill[j].lv);
 			WFIFOW(fd,len+10)= skill_get_range2(&sd->hd->bl, id,hd->homunculus.hskill[j].lv);
 			safestrncpy((char *)WFIFOP(fd,len+12), skill_get_name(id), NAME_LENGTH);
-			WFIFOB(fd,len+36) = (hd->homunculus.hskill[j].lv < merc_skill_tree_get_max(id, hd->homunculus.class_))?1:0;
+			WFIFOB(fd,len+36) = (hd->homunculus.hskill[j].lv < homun->skill_tree_get_max(id, hd->homunculus.class_))?1:0;
 			len+=37;
 		}
 	}
@@ -8643,7 +8643,7 @@ void clif_refresh(struct map_session_data *sd)
 	}
 	if(sd->vd.cloth_color)
 		clif_refreshlook(&sd->bl,sd->bl.id,LOOK_CLOTHES_COLOR,sd->vd.cloth_color,SELF);
-	if(merc_is_hom_active(sd->hd))
+	if(homun_alive(sd->hd))
 		clif_send_homdata(sd,SP_ACK,0);
 	if(sd->md) {
 		clif_mercenary_info(sd);
@@ -9475,7 +9475,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	}
 
 	//homunculus [blackhole89]
-	if(merc_is_hom_active(sd->hd)) {
+	if(homun_alive(sd->hd)) {
 		if(!battle_config.supports_castle_gvg && map_flag_gvg2(sd->bl.m)) {
 			clif_hominfo(sd, sd->hd, 0);
 		} else {
@@ -9552,8 +9552,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		if(sd->pd && sd->pd->pet.intimate > 900)
 			clif_pet_emotion(sd->pd,(sd->pd->pet.class_ - 100)*100 + 50 + pet_hungry_val(sd->pd));
 
-		if(merc_is_hom_active(sd->hd))
-			merc_hom_init_timers(sd->hd);
+		if(homun_alive(sd->hd))
+			homun->init_timers(sd->hd);
 
 		if(night_flag && map[sd->bl.m].flag.nightenabled) {
 			sd->state.night = 1;
@@ -11159,7 +11159,7 @@ static void clif_parse_UseSkillToId_homun(struct homun_data *hd, struct map_sess
 	} else if(DIFF_TICK(tick, hd->ud.canact_tick) < 0)
 		return;
 
-	lv = merc_hom_checkskill(hd, skill_id);
+	lv = homun->checkskill(hd, skill_id);
 	if(skill_lv > lv)
 		skill_lv = lv;
 	if(skill_lv)
@@ -11180,7 +11180,7 @@ static void clif_parse_UseSkillToPos_homun(struct homun_data *hd, struct map_ses
 
 	if(hd->sc.data[SC_BASILICA])
 		return;
-	lv = merc_hom_checkskill(hd, skill_id);
+	lv = homun->checkskill(hd, skill_id);
 	if(skill_lv > lv)
 		skill_lv = lv;
 	if(skill_lv)
@@ -14356,7 +14356,7 @@ void clif_feel_req(int fd, struct map_session_data *sd, uint16 skill_lv)
 /// Request to change homunculus' name (CZ_RENAME_MER).
 /// 0231 <name>.24B
 void clif_parse_ChangeHomunculusName(int fd, struct map_session_data *sd) {
-	merc_hom_change_name(sd,(char *)RFIFOP(fd,2));
+	 homun->change_name(sd,(char *)RFIFOP(fd,2));
 }
 
 
@@ -14370,7 +14370,7 @@ void clif_parse_HomMoveToMaster(int fd, struct map_session_data *sd)
 
 	if(sd->md && sd->md->bl.id == id)
 		bl = &sd->md->bl;
-	else if(merc_is_hom_active(sd->hd) && sd->hd->bl.id == id)
+	else if(homun_alive(sd->hd) && sd->hd->bl.id == id)
 		bl = &sd->hd->bl; // Moving Homunculus
 	else
 		return;
@@ -14393,7 +14393,7 @@ void clif_parse_HomMoveTo(int fd, struct map_session_data *sd)
 
 	if(sd->md && sd->md->bl.id == id)
 		bl = &sd->md->bl; // Moving Mercenary
-	else if(merc_is_hom_active(sd->hd) && sd->hd->bl.id == id)
+	else if(homun_alive(sd->hd) && sd->hd->bl.id == id)
 		bl = &sd->hd->bl; // Moving Homunculus
 	else
 		return;
@@ -14413,7 +14413,7 @@ void clif_parse_HomAttack(int fd,struct map_session_data *sd)
 	    target_id = RFIFOL(fd,6),
 	    action_type = RFIFOB(fd,10);
 
-	if(merc_is_hom_active(sd->hd) && sd->hd->bl.id == id)
+	if(homun_alive(sd->hd) && sd->hd->bl.id == id)
 		bl = &sd->hd->bl;
 	else if(sd->md && sd->md->bl.id == id)
 		bl = &sd->md->bl;
@@ -14439,10 +14439,10 @@ void clif_parse_HomMenu(int fd, struct map_session_data *sd)
 
 	cmd = RFIFOW(fd,0);
 
-	if(!merc_is_hom_active(sd->hd))
+	if(!homun_alive(sd->hd))
 		return;
 
-	merc_menu(sd,RFIFOB(fd,packet_db[cmd].pos[1]));
+	homun->menu(sd,RFIFOB(fd,packet_db[cmd].pos[1]));
 }
 
 

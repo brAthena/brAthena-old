@@ -897,7 +897,7 @@ int mob_spawn(struct mob_data *md)
 
 	md->last_thinktime = tick;
 	if(md->bl.prev != NULL)
-		unit_remove_map(&md->bl,CLR_RESPAWN);
+		unit_remove_map(&md->bl,CLR_RESPAWN, ALC_MARK);
 	else if(md->spawn && md->class_ != md->spawn->class_) {
 		md->class_ = md->spawn->class_;
 		status_set_viewdata(&md->bl, md->class_);
@@ -2096,7 +2096,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		count++; //Only logged into same map chars are counted for the total.
 		if(pc_isdead(tsd))
 			continue; // skip dead players
-		if(md->dmglog[i].flag == MDLF_HOMUN && !merc_is_hom_active(tsd->hd))
+		if(md->dmglog[i].flag == MDLF_HOMUN && !homun_alive(tsd->hd))
 			continue; // skip homunc's share if inactive
 		if(md->dmglog[i].flag == MDLF_PET && (!tsd->status.pet_id || !tsd->pd))
 			continue; // skip pet's share if inactive
@@ -2243,7 +2243,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 				if(base_exp && md->dmglog[i].flag == MDLF_HOMUN) //tmpsd[i] is null if it has no homunc.
-					merc_hom_gainexp(tmpsd[i]->hd, base_exp);
+					homun->gainexp(tmpsd[i]->hd, base_exp);
 			if(flag) {
 				if(base_exp || job_exp) {
 					if(md->dmglog[i].flag != MDLF_PET || battle_config.pet_attack_exp_to_master) {

@@ -1316,7 +1316,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 	switch(target->type) {
 		case BL_PC:  pc_damage((TBL_PC *)target,src,hp,sp); break;
 		case BL_MOB: mob_damage((TBL_MOB *)target, src, hp); break;
-		case BL_HOM: merc_damage((TBL_HOM *)target); break;
+		case BL_HOM: homun->damaged((TBL_HOM *)target); break;
 		case BL_MER: mercenary_heal((TBL_MER *)target,hp,sp); break;
 		case BL_ELEM: elemental_heal((TBL_ELEM *)target,hp,sp); break;
 	}
@@ -1341,7 +1341,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 	switch(target->type) {
 		case BL_PC:  flag = pc_dead((TBL_PC *)target,src); break;
 		case BL_MOB: flag = mob_dead((TBL_MOB *)target, src, flag&4?3:0); break;
-		case BL_HOM: flag = merc_hom_dead((TBL_HOM *)target); break;
+		case BL_HOM: flag = homun->dead((TBL_HOM *)target); break;
 		case BL_MER: flag = mercenary_dead((TBL_MER *)target); break;
 		case BL_ELEM: flag = elemental_dead((TBL_ELEM *)target); break;
 		default:    //Unhandled case, do nothing to object.
@@ -1411,7 +1411,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 	if(flag&4) //Delete from memory. (also invokes map removal code)
 		unit_free(target,CLR_DEAD);
 	else if(flag&2) //remove from map
-		unit_remove_map(target,CLR_DEAD);
+		unit_remove_map(target,CLR_DEAD, ALC_MARK);
 	else {
 		//Some death states that would normally be handled by unit_remove_map
 		unit_stop_attack(target);
@@ -1492,7 +1492,7 @@ int status_heal(struct block_list *bl,int64 in_hp,int64 in_sp, int flag)
 	switch(bl->type) {
 		case BL_PC:  pc_heal((TBL_PC *)bl,hp,sp,flag&2?1:0); break;
 		case BL_MOB: mob_heal((TBL_MOB *)bl,hp); break;
-		case BL_HOM: merc_hom_heal((TBL_HOM *)bl); break;
+		case BL_HOM: homun->healed((TBL_HOM *)bl); break;
 		case BL_MER: mercenary_heal((TBL_MER *)bl,hp,sp); break;
 		case BL_ELEM: elemental_heal((TBL_ELEM *)bl,hp,sp); break;
 	}
@@ -1595,7 +1595,7 @@ int status_revive(struct block_list *bl, unsigned char per_hp, unsigned char per
 	switch(bl->type) {
 		case BL_PC:  pc_revive((TBL_PC *)bl, hp, sp); break;
 		case BL_MOB: mob_revive((TBL_MOB *)bl, hp); break;
-		case BL_HOM: merc_hom_revive((TBL_HOM *)bl, hp, sp); break;
+		case BL_HOM: homun->revive((TBL_HOM *)bl, hp, sp); break;
 	}
 
 	return 1;
@@ -3363,20 +3363,20 @@ int status_calc_homunculus_(struct homun_data *hd, enum e_status_calc_opt opt)
 	status->max_hp = hom->max_hp ;
 	status->max_sp = hom->max_sp ;
 
-	merc_hom_calc_skilltree(hd, 0);
+	homun->calc_skilltree(hd, 0);
 
-	if((skill=merc_hom_checkskill(hd,HAMI_SKIN)) > 0)
+	if((skill=homun->checkskill(hd,HAMI_SKIN)) > 0)
 		status->def +=  skill * 4;
 
-	if((skill = merc_hom_checkskill(hd,HVAN_INSTRUCT)) > 0) {
+	if((skill = homun->checkskill(hd,HVAN_INSTRUCT)) > 0) {
 		status->int_ += 1 +skill/2 +skill/4 +skill/5;
 		status->str  += 1 +skill/3 +skill/3 +skill/4;
 	}
 
-	if((skill=merc_hom_checkskill(hd,HAMI_SKIN)) > 0)
+	if((skill=homun->checkskill(hd,HAMI_SKIN)) > 0)
 		status->max_hp += skill * 2 * status->max_hp / 100;
 
-	if((skill = merc_hom_checkskill(hd,HLIF_BRAIN)) > 0)
+	if((skill = homun->checkskill(hd,HLIF_BRAIN)) > 0)
 		status->max_sp += (1 +skill/2 -skill/4 +skill/5) * status->max_sp / 100 ;
 
 	if(opt&SCO_FIRST) {
@@ -3578,11 +3578,11 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 
 	if(bl->type == BL_HOM) {
 		struct homun_data *hd = (TBL_HOM *)bl;
-		if((skill = merc_hom_checkskill(hd,HAMI_SKIN)) > 0) {
+		if((skill = homun->checkskill(hd,HAMI_SKIN)) > 0) {
 			val = regen->hp*(100+5*skill)/100;
 			regen->hp = cap_value(val, 1, SHRT_MAX);
 		}
-		if((skill = merc_hom_checkskill(hd,HLIF_BRAIN)) > 0) {
+		if((skill = homun->checkskill(hd,HLIF_BRAIN)) > 0) {
 			val = regen->sp*(100+3*skill)/100;
 			regen->sp = cap_value(val, 1, SHRT_MAX);
 		}
@@ -6194,7 +6194,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 	else if(npcdb_checkid(class_) || (bl->type == BL_NPC && class_ == WARP_CLASS))
 		vd = npc_get_viewdata(class_);
 	else if(homdb_checkid(class_))
-		vd = merc_get_hom_viewdata(class_);
+		vd = homun->get_viewdata(class_);
 	else if(merc_class(class_))
 		vd = merc_get_viewdata(class_);
 	else if(elemental_class(class_))
@@ -8455,7 +8455,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					if(pc_isridingwug(sd)) pc_setoption(sd, sd->sc.option&~OPTION_WUGRIDER);
 					if(pc_isfalcon(sd)) pc_setoption(sd, sd->sc.option&~OPTION_FALCON);
 					if(sd->status.pet_id > 0) pet_menu(sd, 3);
-					if(merc_is_hom_active(sd->hd)) merc_hom_vaporize(sd,HOM_ST_REST);
+					if(homun_alive(sd->hd)) homun->vaporize(sd,HOM_ST_REST);
 					if(sd->md) merc_delete(sd->md,3);
 				}
 				break;

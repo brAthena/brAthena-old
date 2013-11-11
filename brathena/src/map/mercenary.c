@@ -270,7 +270,7 @@ int merc_delete(struct mercenary_data *md, int reply)
 	}
 
 	clif_mercenary_message(sd, reply);
-	return unit_remove_map(&md->bl, CLR_OUTSIGHT);
+	return unit_remove_map(&md->bl, CLR_OUTSIGHT, ALC_MARK);
 }
 
 void merc_contract_stop(struct mercenary_data *md)

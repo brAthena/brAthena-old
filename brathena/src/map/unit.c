@@ -230,7 +230,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 
 		}
 		if(sd->hd) {
-			if(merc_is_hom_active(sd->hd) && !check_distance_bl(&sd->bl, &sd->hd->bl, MAX_MER_DISTANCE) ) {
+			if(homun_alive(sd->hd) && !check_distance_bl(&sd->bl, &sd->hd->bl, MAX_MER_DISTANCE) ) {
 				if(sd->hd->masterteleport_timer == 0)
 					sd->hd->masterteleport_timer = gettick();
 				else if (DIFF_TICK(gettick(), sd->hd->masterteleport_timer) > 3000) {
@@ -847,7 +847,7 @@ int unit_warp(struct block_list *bl,short m,short x,short y,clr_type type)
 	if(bl->type == BL_PC)  //Use pc_setpos
 		return pc_setpos((TBL_PC *)bl, map_id2index(m), x, y, type);
 
-	if(!unit_remove_map(bl, type))
+	if(!unit_remove_map(bl, type, ALC_MARK))
 		return 3;
 
 	if(bl->m != m && battle_config.clear_unit_onwarp &&
@@ -2076,7 +2076,7 @@ int unit_changeviewsize(struct block_list *bl,short size)
  * Otherwise it is assumed bl is being warped.
  * On-Kill specific stuff is not performed here, look at status_damage for that.
  *------------------------------------------*/
-int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func)
+int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func)
 {
 	struct unit_data *ud = unit_bl2ud(bl);
 	struct status_change *sc = status_get_sc(bl);
@@ -2307,18 +2307,18 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, 
 
 void unit_remove_map_pc(struct map_session_data *sd, clr_type clrtype)
 {
-	unit_remove_map(&sd->bl,clrtype);
+	unit_remove_map(&sd->bl,clrtype,ALC_MARK);
 
 	if(clrtype == CLR_TELEPORT) clrtype = CLR_OUTSIGHT;  //CLR_TELEPORT is the warp from logging out, but pets/homunc need to just 'vanish' instead of showing the warping out animation.
 
 	if(sd->pd)
-		unit_remove_map(&sd->pd->bl, clrtype);
-	if(merc_is_hom_active(sd->hd))
-		unit_remove_map(&sd->hd->bl, clrtype);
+		unit_remove_map(&sd->pd->bl, clrtype, ALC_MARK);
+	if(homun_alive(sd->hd))
+		unit_remove_map(&sd->hd->bl, clrtype, ALC_MARK);
 	if(sd->md)
-		unit_remove_map(&sd->md->bl, clrtype);
+		unit_remove_map(&sd->md->bl, clrtype, ALC_MARK);
 	if(sd->ed)
-		unit_remove_map(&sd->ed->bl, clrtype);
+		unit_remove_map(&sd->ed->bl, clrtype, ALC_MARK);
 }
 
 void unit_free_pc(struct map_session_data *sd)
@@ -2341,7 +2341,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 
 	map_freeblock_lock();
 	if(bl->prev)     //Players are supposed to logout with a "warp" effect.
-		unit_remove_map(bl, clrtype);
+		unit_remove_map(bl, clrtype, ALC_MARK);
 
 	switch(bl->type) {
 		case BL_PC: {
@@ -2516,9 +2516,9 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 		case BL_HOM: {
 				struct homun_data *hd = (TBL_HOM *)bl;
 				struct map_session_data *sd = hd->master;
-				merc_hom_hungry_timer_delete(hd);
+				homun->hunger_timer_delete(hd);
 				if(hd->homunculus.intimacy > 0)
-					merc_save(hd);
+					homun->save(hd);
 				else {
 					intif_homunculus_requestdelete(hd->homunculus.hom_id);
 					if(sd)

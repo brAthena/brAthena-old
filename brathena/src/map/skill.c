@@ -576,7 +576,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 				hp *= (17 + 3 * skill_lv) / 10;
 			if(sd && ((skill = pc_checkskill(sd, HP_MEDITATIO)) > 0))
 				hp += hp * skill * 2 / 100;
-			else if(src->type == BL_HOM && (skill = merc_hom_checkskill(((TBL_HOM *)src), HLIF_BRAIN)) > 0)
+			else if(src->type == BL_HOM && (skill = homun->checkskill(((TBL_HOM *)src), HLIF_BRAIN)) > 0)
 				hp += hp * skill * 2 / 100;
 			if( sd && tsd && sd->status.partner_id == tsd->status.char_id && (sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE && sd->status.sex == 0 )
 				hp *= 2;
@@ -4881,7 +4881,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case MH_MIDNIGHT_FRENZY:
 		case MH_SILVERVEIN_RUSH:{
 			TBL_HOM *hd = BL_CAST(BL_HOM,src);
-			hom_delspiritball(hd,skill_id==MH_SILVERVEIN_RUSH?1:2,0);
+			homun->delspiritball(hd,skill_id==MH_SILVERVEIN_RUSH?1:2,0);
 			skill_attack(skill_get_type(skill_id),src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 		}
@@ -4891,7 +4891,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			int duration=0;
 			TBL_HOM *hd = BL_CAST(BL_HOM,src);
 			duration = max(skill_lv,(status_get_str(src)/7 - status_get_str(bl)/10))*1000; //Yommy formula
-			hom_delspiritball(hd,skill_id==MH_EQC?2:1,0); //only EQC consume 2 in grp 2
+			homun->delspiritball(hd,skill_id==MH_EQC?2:1,0); //only EQC consume 2 in grp 2
 			skill_attack(skill_get_type(skill_id),src,src,bl,skill_id,skill_lv,tick,flag);
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,
 				sc_start4(bl,status_skill2sc(skill_id),100,skill_lv,src->id,0,0,duration));
@@ -7919,7 +7919,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case AM_CALLHOMUN:  //[orn]
 			if(sd) {
-				if(merc_call_homunculus(sd))
+				if(homun->call(sd))
 					clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 				else
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
@@ -7928,7 +7928,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case AM_REST:
 			if(sd) {
-				if(merc_hom_vaporize(sd,HOM_ST_REST))
+				if(homun->vaporize(sd,HOM_ST_REST))
 					clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 				else
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
@@ -10494,7 +10494,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 
 		case AM_RESURRECTHOMUN: //[orn]
 			if(sd) {
-				if(!merc_resurrect_homunculus(sd, 20*skill_lv, x, y)) {
+				if(!homun->ressurect(sd, 20*skill_lv, x, y)) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
 				}
@@ -13189,7 +13189,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			}
 			break;
 		case AM_REST: //Can't vapo homun if you don't have an active homunc or it's hp is < 80%
-			if(!merc_is_hom_active(sd->hd) || sd->hd->battle_status.hp < (sd->hd->battle_status.max_hp*80/100)) {
+			if(!homun_alive(sd->hd) || sd->hd->battle_status.hp < (sd->hd->battle_status.max_hp*80/100)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
@@ -16672,9 +16672,9 @@ int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, 
 				make_per = pc_checkskill(sd,AM_LEARNINGPOTION)*50
 				           + pc_checkskill(sd,AM_PHARMACY)*300 + sd->status.job_level*20
 				           + (status->int_/2)*10 + status->dex*10+status->luk*10;
-				if(merc_is_hom_active(sd->hd)) {//Player got a homun
+				if(homun_alive(sd->hd)) {//Player got a homun
 					int skill;
-					if((skill=merc_hom_checkskill(sd->hd,HVAN_INSTRUCT)) > 0) //His homun is a vanil with instruction change
+					if((skill=homun->checkskill(sd->hd,HVAN_INSTRUCT)) > 0) //His homun is a vanil with instruction change
 						make_per += skill*100; //+1% bonus per level
 				}
 				switch(nameid) {

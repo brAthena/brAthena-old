@@ -136,8 +136,7 @@ struct unit_data *unit_bl2ud(struct block_list *bl);
 struct unit_data *unit_bl2ud2(struct block_list *bl);
 void unit_remove_map_pc(struct map_session_data *sd, clr_type clrtype);
 void unit_free_pc(struct map_session_data *sd);
-#define unit_remove_map(bl,clrtype) unit_remove_map_(bl,clrtype,__FILE__,__LINE__,__func__)
-int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func);
+int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func);
 int unit_free(struct block_list *bl, clr_type clrtype);
 int unit_changeviewsize(struct block_list *bl,short size);
 

@@ -558,8 +558,8 @@ bool script_local_casecheck_add_str(const char *p, int h) {
 	script->local_casecheck_str_pos += len+1;
 
 	script->local_casecheck_str_num++;
-	return false;
 #endif
+	return false;
 }
 
 /// Stores a copy of the string and returns its id.
@@ -9906,9 +9906,9 @@ BUILDIN_FUNC(homunculus_evolution)
 	if(sd == NULL)
 		return 0;
 
-	if(merc_is_hom_active(sd->hd)) {
+	if(homun_alive(sd->hd)) {
 		if(sd->hd->homunculus.intimacy > 91000)
-			merc_hom_evolution(sd->hd);
+			homun->evolve(sd->hd);
 		else
 			clif_emotion(&sd->hd->bl, E_SWT);
 	}
@@ -9930,29 +9930,27 @@ BUILDIN_FUNC(homunculus_mutate)
 	if(sd == NULL || sd->hd == NULL)
 		return 0;
 
-	if(sd->hd->homunculus.vaporize == HOM_ST_MORPH) {
+	if(sd->hd->homunculus.vaporize == HOM_ST_MORPH ) {
 		int i = pc_search_inventory(sd, ITEMID_STRANGE_EMBRYO);
+		if(script_hasdata(st,2))
+			homun_id = script_getnum(st,2);
+		else
+			homun_id = 6048 + (rnd() % 4);
 
-	if(script_hasdata(st,2))
-		homun_id = script_getnum(st,2);
-	else
-		homun_id = 6048 + (rnd() % 4);
+		m_class = homun->class2type(sd->hd->homunculus.class_);
+		m_id    = homun->class2type(homun_id);
 
-		m_class = hom_class2mapid(sd->hd->homunculus.class_);
-		m_id    = hom_class2mapid(homun_id);
-
-
-		if(m_class == HT_EVO && m_id == HT_S &&
+		if( m_class == HT_EVO && m_id == HT_S &&
 			sd->hd->homunculus.level >= 99 && i >= 0 &&
-			!pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_SCRIPT)) {
+			!pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_SCRIPT) ) {
 			sd->hd->homunculus.vaporize = HOM_ST_REST; // Remove morph state.
-			merc_call_homunculus(sd); // Respawn homunculus.
-			hom_mutate(sd->hd, homun_id);
+			homun->call(sd); // Respawn homunculus.
+			homun->mutate(sd->hd, homun_id);
 			success = true;
 		} else
-			clif_emotion(&sd->bl, E_SWT);
+			clif_emotion(&sd->hd->bl, E_SWT);
 	} else
-		clif_emotion(&sd->bl, E_SWT);
+		clif_emotion(&sd->hd->bl, E_SWT);
 
 	script_pushint(st,success?1:0);
 
@@ -9963,7 +9961,7 @@ BUILDIN_FUNC(homunculus_mutate)
  * Puts homunculus into morph state
  * and gives ITEMID_STRANGE_EMBRYO.
  *------------------------------------------*/
-BUILDIN_FUNC(morphembryo)
+BUILDIN_FUNC(homunculus_morphembryo)
 {
 	enum homun_type m_class;
 	int i = 0;
@@ -9974,8 +9972,8 @@ BUILDIN_FUNC(morphembryo)
 	if(sd == NULL || sd->hd == NULL)
 		return 0;
 
-	if(merc_is_hom_active(sd->hd)) {
-		m_class = hom_class2mapid(sd->hd->homunculus.class_);
+	if(homun_alive(sd->hd)) {
+		m_class = homun->class2type(sd->hd->homunculus.class_);
 
 		if(m_class == HT_EVO && sd->hd->homunculus.level >= 99) {
 			struct item item_tmp;
@@ -9986,15 +9984,15 @@ BUILDIN_FUNC(morphembryo)
 
 			if((i = pc_additem(sd, &item_tmp, 1, LOG_TYPE_SCRIPT))) {
 				clif_additem(sd, 0, 0, i);
-				clif_emotion(&sd->hd->bl, E_SWT); // Fail to avoid item drop exploit.
+				clif_emotion(&sd->hd->bl, E_SWT);
 			} else {
-				merc_hom_vaporize(sd, HOM_ST_MORPH);
+				homun->vaporize(sd, HOM_ST_MORPH);
 				success = true;
 			}
 		} else
 			clif_emotion(&sd->hd->bl, E_SWT);
 	} else
-		clif_emotion(&sd->bl, E_SWT);
+		clif_emotion(&sd->hd->bl, E_SWT);
 
 	script_pushint(st, success?1:0);
 
@@ -10008,7 +10006,7 @@ BUILDIN_FUNC(morphembryo)
  *          1 = Homunculus is vaporized (rest)
  *          2 = Homunculus is in morph state
  *------------------------------------------*/
-BUILDIN_FUNC(checkhomcall)
+BUILDIN_FUNC(homunculus_checkcall)
 {
 	TBL_PC *sd = script_rid2sd(st);
 
@@ -10031,8 +10029,8 @@ BUILDIN_FUNC(homunculus_shuffle)
 	if(sd == NULL)
 		return 0;
 
-	if(merc_is_hom_active(sd->hd))
-		merc_hom_shuffle(sd->hd);
+	if(homun_alive(sd->hd))
+		homun->shuffle(sd->hd);
 
 	return 0;
 }
@@ -18718,9 +18716,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(warpportal,"iisii"),
 	BUILDIN_DEF2(homunculus_evolution,"homevolution",""),   //[orn]
 	BUILDIN_DEF2(homunculus_mutate,"hommutate","?"),
-	BUILDIN_DEF(morphembryo,""),
+	BUILDIN_DEF2(homunculus_morphembryo,"morphembryo",""),
+	BUILDIN_DEF2(homunculus_checkcall,"checkhomcall",""),
 	BUILDIN_DEF2(homunculus_shuffle,"homshuffle",""),   //[Zephyrus]
-	BUILDIN_DEF(checkhomcall,""),
 	BUILDIN_DEF(eaclass,"?"),   //[Skotlex]
 	BUILDIN_DEF(roclass,"i?"),  //[Skotlex]
 	BUILDIN_DEF(checkvending,"?"),

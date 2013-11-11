@@ -1639,7 +1639,7 @@ int map_quit(struct map_session_data *sd)
 
 	if(sd->ed) {
 		elemental_clean_effect(sd->ed);
-		unit_remove_map(&sd->ed->bl,CLR_TELEPORT);
+		unit_remove_map(&sd->ed->bl,CLR_TELEPORT, ALC_MARK);
 	}
 
 	if(raChSys.local && map[sd->bl.m].channel && idb_exists(map[sd->bl.m].channel->users, sd->status.char_id)) {
@@ -5480,8 +5480,10 @@ int do_init(int argc, char *argv[])
 	battleground_defaults();
 	clif_defaults();
 	instance_defaults();
+	homunculus_defaults();
 	itemdb_defaults();
 	script_defaults();
+
 
 	map_config_read(MAP_CONF_NAME);
 	CREATE(map,struct map_data,map_num);
@@ -5569,7 +5571,7 @@ int do_init(int argc, char *argv[])
 	do_init_guild();
 	do_init_storage();
 	do_init_pet();
-	do_init_merc();
+	homun->init();
 	do_init_mercenary();
 	do_init_elemental();
 	do_init_quest();

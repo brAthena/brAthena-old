@@ -233,7 +233,7 @@ int elemental_delete(struct elemental_data *ed, int reply)
 	sd->ed = NULL;
 	sd->status.ele_id = 0;
 
-	return unit_remove_map(&ed->bl, 0);
+	return unit_remove_map(&ed->bl, 0, ALC_MARK);
 }
 
 void elemental_summon_init(struct elemental_data *ed)
