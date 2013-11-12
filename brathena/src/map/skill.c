@@ -13929,8 +13929,8 @@ struct skill_condition skill_get_requirement(struct map_session_data *sd, uint16
 	if(!sd)
 		return req;
 
-	if(sd->skillitem == skill_id || sd->state.abra_flag)
-		return req; // Hocus-Pocus don't have requirements.
+	if(sd->skillitem == skill_id)
+		return req; // Item skills don't have requirements.
 
 	sc = &sd->sc;
 	if(!sc->count)
