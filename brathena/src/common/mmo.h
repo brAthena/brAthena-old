@@ -103,7 +103,7 @@
 #define MAX_AMOUNT 30000
 #define MAX_ZENY 2147483647
 
-// Limite oficial: 2.1b
+// Limite oficial: 2.147.483.647b
 #define MAX_BANK_ZENY 2147483647
 
 #define MAX_FAME 2147483647
