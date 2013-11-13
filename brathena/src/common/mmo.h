@@ -101,12 +101,12 @@
 #define MAX_SLOTS 4
 //Max amount of a single stacked item
 #define MAX_AMOUNT 30000
-#define MAX_ZENY 1000000000
+#define MAX_ZENY 2147483647
 
 // Limite oficial: 2.1b
-#define MAX_BANK_ZENY 2100000000
+#define MAX_BANK_ZENY 2147483647
 
-#define MAX_FAME 1000000000
+#define MAX_FAME 2147483647
 #define MAX_CART 100
 #define MAX_SKILL 1700
 #define MAX_SKILL_ID 10015 //[Ind/Hercules] max used skill id 
@@ -173,7 +173,7 @@
 
 //Limits to avoid ID collision with other game objects
 #define START_ACCOUNT_NUM 2000000
-#define END_ACCOUNT_NUM 100000000
+#define END_ACCOUNT_NUM 2147483647
 #define START_CHAR_NUM 150000
 
 //Guilds
