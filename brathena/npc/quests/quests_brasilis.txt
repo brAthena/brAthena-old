@@ -78,10 +78,10 @@ OnInit:
 
 OnTimer10000:
 	stopnpctimer;
-	donpcevent "Angelo#br::Ongo";
+	donpcevent "Angelo#br::OnGo";
 	end;
 
-Ongo:
+OnGo:
 	emotion e_gasp;
 	initnpctimer;
 	end;

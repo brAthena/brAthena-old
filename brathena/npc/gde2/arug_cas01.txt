@@ -59,7 +59,7 @@ arug_cas01,92,126,4	script	Mardol#LF_ar01_3::LF_ar01_2	HIDDEN_NPC,{
 	callfunc "LinkFlag","Emperium Center",67,193;
 	end;
 OnAgitInit2:
-OnRecvCastlear01:
+OnRecvCastleAr01:
 	flagemblem getcastledata("arug_cas01",1);
 	end;
 }
@@ -80,7 +80,7 @@ aru_gld,164,270,4	script	Mardol#flag_Ar01_1::Ar01_Flag	GUILD_FLAG,{
 	callfunc "ReturnFlag","arug_cas01",1;
 	end;
 OnAgitInit2:
-OnRecvCastlear01:
+OnRecvCastleAr01:
 	flagemblem getcastledata("arug_cas01",1);
 	end;
 }

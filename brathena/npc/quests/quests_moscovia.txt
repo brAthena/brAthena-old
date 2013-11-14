@@ -10905,7 +10905,7 @@ treasure01,165,58,0	script	Old Treasure Box#rus37	HIDDEN_NPC,{
 			next;
 		} else {
 			sc_start SC_BLIND,60000,0;
-			donpcevent "Old Treasure Box#rus37::Oncall";
+			donpcevent "Old Treasure Box#rus37::OnCall";
 			close2;
 			donpcevent "Old Treasure Box#rus37::OnDisable";
 			end;
@@ -10929,7 +10929,7 @@ OnInit:
 	enablenpc "Old Treasure Box#rus37";
 	end;
 
-Oncall:
+OnCall:
 	initnpctimer;
 	monster "treasure01",164,58,"Medusa",1148,1,"Old Treasure Box#rus37::OnMyMobDead";
 	monster "treasure01",157,59,"Obeaune",1044,1,"Old Treasure Box#rus37::OnMyMobDead";

@@ -67,7 +67,7 @@ arug_cas03,148,103,4	script	Horn#LF_ar03_10::LF_ar03_02	GUILD_FLAG,{
 	callfunc "LinkFlag","Emperium Center",121,318;
 	end;
 OnAgitInit2:
-OnRecvCastlear03:
+OnRecvCastleAr03:
 	flagemblem getcastledata("arug_cas03",1);
 	end;
 }
@@ -79,7 +79,7 @@ aru_gld,60,174,0	script	Horn#flag_Ar03_1::Ar03_Flag	GUILD_FLAG,{
 	callfunc "ReturnFlag","arug_cas03",1;
 	end;
 OnAgitInit2:
-OnRecvCastlear03:
+OnRecvCastleAr03:
 	flagemblem getcastledata("arug_cas03",1);
 	end;
 }

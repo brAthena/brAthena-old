@@ -5220,7 +5220,7 @@ OnTouch:
 			mes "scream as well, and rushed out of";
 			mes "the room. -";
 			set ep13_1_rhea,20;
-			donpcevent "Research Official#ep131::Oncall";
+			donpcevent "Research Official#ep131::OnCall";
 			close2;
 			warp "mid_camp",165,236;
 			end;
@@ -5454,7 +5454,7 @@ OnMeet:
 	donpcevent "Hansenne#ep131_rhea07::OnEnable";
 	end;
 
-Oncall:
+OnCall:
 	initnpctimer;
 	monster "mid_campin",376,134,"Thief Bug",1051,1,"Research Official#ep131::OnMyMobDead";
 	monster "mid_campin",376,134,"Thief Bug",1051,1,"Research Official#ep131::OnMyMobDead";
@@ -13607,7 +13607,7 @@ OnTouch:
 	donpcevent "Dandelion Member#moc2_4::OnDisable";
 	donpcevent "Dandelion Member#moc2_5::OnDisable";
 	donpcevent "Corpse#moc2_dead01::OnEnable";
-	donpcevent "Corpse#moc2_dead01::Oncall";
+	donpcevent "Corpse#moc2_dead01::OnCall";
 	end;
 }
 
@@ -13673,7 +13673,7 @@ OnEnable:
 	enablenpc "Corpse#moc2_dead01";
 	end;
 
-Oncall:
+OnCall:
 	monster "que_dan01",26,40,"Dandelion Member",1985,1,"Corpse#moc2_dead01::OnMyMobDead";
 	monster "que_dan01",21,35,"Dandelion Member",1985,1,"Corpse#moc2_dead01::OnMyMobDead";
 	monster "que_dan01",25,32,"Dandelion Member",1985,1,"Corpse#moc2_dead01::OnMyMobDead";

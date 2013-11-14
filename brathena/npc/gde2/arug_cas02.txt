@@ -67,7 +67,7 @@ arug_cas02,129,178,4	script	Cyr#LF_ar02_13::LF_ar02_2	GUILD_FLAG,{
 	callfunc "LinkFlag","Emperium Center",43,256;
 	end;
 OnAgitInit2:
-OnRecvCastlear02:
+OnRecvCastleAr02:
 	flagemblem getcastledata("arug_cas02",1);
 	end;
 }
@@ -79,7 +79,7 @@ aru_gld,80,41,6	script	Cyr#flag_Ar02_1::Ar02_Flag	GUILD_FLAG,{
 	callfunc "ReturnFlag","arug_cas02",1;
 	end;
 OnAgitInit2:
-OnRecvCastlear02:
+OnRecvCastleAr02:
 	flagemblem getcastledata("arug_cas02",1);
 	end;
 }
@@ -88,7 +88,7 @@ aru_gld,120,83,5	script	Cyr#flag_Ar02_3	GUILD_FLAG,{
 	callfunc "ReturnFlag","arug_cas02",0;
 	end;
 OnAgitInit2:
-OnRecvCastlear02:
+OnRecvCastleAr02:
 	flagemblem getcastledata("arug_cas02",1);
 	end;
 }
