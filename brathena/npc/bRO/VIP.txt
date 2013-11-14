@@ -192,6 +192,13 @@ prontera,146,93,5	script	Agente VIP	4_M_MANAGER,{
 			mes "serviços.";
 			close;
 		}
+		if(Zeny < .@zeny[.@i] ){
+			mes "[Agente VIP]";
+			mes "Você não possui zenys";
+			mes "suficientes para comprar";
+			mes "este item.";
+			close;
+		}
 		if(countitem(.@itens[.@i]) > 0) {
 			mes "[Agente VIP]";
 			mes "Você já possui ^EE0000"+getitemname(.@itens[.@i])+"^000000.";
