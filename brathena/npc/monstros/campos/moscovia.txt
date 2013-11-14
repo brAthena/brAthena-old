@@ -26,19 +26,19 @@
 //==================================================
 // [Pré-Renovação] mosk_fild02 - Campo de Moscovia
 //==================================================
-mosk_fild02,0,0,0,0	monster#pre	Pé Grande	1060,40,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Caramelo	1103,20,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Louva-a-Deus	1139,30,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,5,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Planta Branca	1082,5,10000,0,0,{}
+mosk_fild02,0,0,0,0	monster#pre	Pé Grande	BIGFOOT,40,0,0,0
+mosk_fild02,0,0,0,0	monster#pre	Caramelo	CARAMEL,20,0,0,0
+mosk_fild02,0,0,0,0	monster#pre	Louva-a-Deus	MANTIS,30,0,0,0
+mosk_fild02,0,0,0,0	monster#pre	Poring	PORING,10,0,0,0
+mosk_fild02,0,0,0,0	monster#pre	Planta Amarela	YELLOW_PLANT,5,0,0,0
+mosk_fild02,0,0,0,0	monster#pre	Planta Branca	WHITE_PLANT,5,10000,0,0,{}
 
 //==================================================
 // [Renovação] mosk_fild02 - Campo de Moscóvia
 //==================================================
-mosk_fild02,0,0,0,0	monster#re	Sorrateiro	1037,40,5000,0,0
-mosk_fild02,0,0,0,0	monster#re	Argiope	1099,30,5000,0,0
-mosk_fild02,0,0,0,0	monster#re	Louva-a-Deus	1139,10,5000,0,0
-mosk_fild02,0,0,0,0	monster#re	Planta Carnívora	1368,5,5000,0,0
-mosk_fild02,0,0,0,0	monster#re	Planta Amarela	1081,5,10000,0,1
-mosk_fild02,0,0,0,0	monster#re	Planta Branca	1082,5,10000,0,1,{}
+mosk_fild02,0,0,0,0	monster#re	Sorrateiro	SIDE_WINDER,40,5000,0,0
+mosk_fild02,0,0,0,0	monster#re	Argiope	ARGIOPE,30,5000,0,0
+mosk_fild02,0,0,0,0	monster#re	Louva-a-Deus	MANTIS,10,5000,0,0
+mosk_fild02,0,0,0,0	monster#re	Planta Carnívora	GEOGRAPHER,5,5000,0,0
+mosk_fild02,0,0,0,0	monster#re	Planta Amarela	YELLOW_PLANT,5,10000,0,1
+mosk_fild02,0,0,0,0	monster#re	Planta Branca	WHITE_PLANT,5,10000,0,1,{}

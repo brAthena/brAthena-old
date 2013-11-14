@@ -27,78 +27,78 @@
 //=================================================================
 // [Old Times] orcsdun01 - Caverna dos Orcs (Primeiro Andar)
 //=================================================================
-orcsdun01,0,0,0,0	monster#ot	Familiar	1005,15,0,0,0
-orcsdun01,0,0,0,0	monster#ot	ChonChon	1011,5,0,0,0
-orcsdun01,0,0,0,0	monster#ot	ChonChon de Aço	1042,10,0,0,0
-orcsdun01,0,0,0,0	monster#ot	Drainliar	1111,5,0,0,0
-orcsdun01,0,0,0,0	monster#ot	Martin	1145,5,0,0,0
-orcsdun01,0,0,0,0	monster#ot	Orc Esqueleto	1152,10,30000,0,0
-orcsdun01,0,0,0,0	monster#ot	Orc Zumbi	1153,50,3000,0,0
-orcsdun01,167,133,5,5	monster#ot	Cogumelo Negro	1084,5,900000,0,1
-orcsdun01,67,34,5,5	monster#ot	Cogumelo Negro	1084,5,900000,0,1,{}
+orcsdun01,0,0,0,0	monster#ot	Familiar	FARMILIAR,15,0,0,0
+orcsdun01,0,0,0,0	monster#ot	ChonChon	CHONCHON,5,0,0,0
+orcsdun01,0,0,0,0	monster#ot	ChonChon de Aço	STEEL_CHONCHON,10,0,0,0
+orcsdun01,0,0,0,0	monster#ot	Drainliar	DRAINLIAR,5,0,0,0
+orcsdun01,0,0,0,0	monster#ot	Martin	MARTIN,5,0,0,0
+orcsdun01,0,0,0,0	monster#ot	Orc Esqueleto	ORC_SKELETON,10,30000,0,0
+orcsdun01,0,0,0,0	monster#ot	Orc Zumbi	ORC_ZOMBIE,50,3000,0,0
+orcsdun01,167,133,5,5	monster#ot	Cogumelo Negro	BLACK_MUSHROOM,5,900000,0,1
+orcsdun01,67,34,5,5	monster#ot	Cogumelo Negro	BLACK_MUSHROOM,5,900000,0,1,{}
 
 //=================================================================
 // [Pré-Renovação] orcsdun01 - Caverna dos Orcs (Primeiro Andar)
 //=================================================================
-orcsdun01,0,0,0,0	monster#pre	Chonchon de Aço	1042,10,0,0,0
-orcsdun01,0,0,0,0	monster#pre	Familiar	1005,15,0,0,0
-orcsdun01,0,0,0,0	monster#pre	Drainliar	1111,5,0,0,0
-orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	1153,10,3000,5000,0
-orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	1153,30,60000,30000,0
-orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	1153,40,120000,60000,0
-orcsdun01,0,0,0,0	monster#pre	Orc Esqueleto	1152,10,180000,60000,0
-orcsdun01,167,133,5,5	monster#pre	Cogumelo Negro	1084,5,900000,450000,1
-orcsdun01,67,34,5,5	monster#pre	Cogumelo Negro	1084,5,900000,450000,1
-orcsdun01,83,50,5,5	monster#pre	Planta Branca	1082,2,180000,90000,1
-orcsdun01,58,67,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1,{}
+orcsdun01,0,0,0,0	monster#pre	Chonchon de Aço	STEEL_CHONCHON,10,0,0,0
+orcsdun01,0,0,0,0	monster#pre	Familiar	FARMILIAR,15,0,0,0
+orcsdun01,0,0,0,0	monster#pre	Drainliar	DRAINLIAR,5,0,0,0
+orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	ORC_ZOMBIE,10,3000,5000,0
+orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	ORC_ZOMBIE,30,60000,30000,0
+orcsdun01,0,0,0,0	monster#pre	Orc Zumbi	ORC_ZOMBIE,40,120000,60000,0
+orcsdun01,0,0,0,0	monster#pre	Orc Esqueleto	ORC_SKELETON,10,180000,60000,0
+orcsdun01,167,133,5,5	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,5,900000,450000,1
+orcsdun01,67,34,5,5	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,5,900000,450000,1
+orcsdun01,83,50,5,5	monster#pre	Planta Branca	WHITE_PLANT,2,180000,90000,1
+orcsdun01,58,67,10,10	monster#pre	Planta Branca	WHITE_PLANT,3,180000,90000,1,{}
 
 //=================================================================
 // [Renovação] orcsdun01 - Calabouço dos Orcs (Primeiro Andar)
 //=================================================================
-orcsdun01,0,0,0,0	monster#re	Orc Zumbi	1153,80,5000,0,0
-orcsdun01,0,0,0,0	monster#re	Familiar	1005,15,5000,0,0
-orcsdun01,0,0,0,0	monster#re	Chonchon de Aço	1042,10,5000,0,0
-orcsdun01,0,0,0,0	monster#re	Orc Esqueleto	1152,10,5000,0,0
-orcsdun01,0,0,0,0	monster#re	Drainliar	1111,5,5000,0,0
-orcsdun01,167,133,5,5	monster#re	Cogumelo Negro	1084,5,900000,450000,1
-orcsdun01,67,34,5,5	monster#re	Cogumelo Negro	1084,5,900000,450000,1
-orcsdun01,83,50,5,5	monster#re	Planta Branca	1082,2,180000,90000,1
-orcsdun01,58,67,10,10	monster#re	Planta Branca	1082,3,180000,90000,1,{}
+orcsdun01,0,0,0,0	monster#re	Orc Zumbi	ORC_ZOMBIE,80,5000,0,0
+orcsdun01,0,0,0,0	monster#re	Familiar	FARMILIAR,15,5000,0,0
+orcsdun01,0,0,0,0	monster#re	Chonchon de Aço	STEEL_CHONCHON,10,5000,0,0
+orcsdun01,0,0,0,0	monster#re	Orc Esqueleto	ORC_SKELETON,10,5000,0,0
+orcsdun01,0,0,0,0	monster#re	Drainliar	DRAINLIAR,5,5000,0,0
+orcsdun01,167,133,5,5	monster#re	Cogumelo Negro	BLACK_MUSHROOM,5,900000,450000,1
+orcsdun01,67,34,5,5	monster#re	Cogumelo Negro	BLACK_MUSHROOM,5,900000,450000,1
+orcsdun01,83,50,5,5	monster#re	Planta Branca	WHITE_PLANT,2,180000,90000,1
+orcsdun01,58,67,10,10	monster#re	Planta Branca	WHITE_PLANT,3,180000,90000,1,{}
 
 //=================================================================
 // [Old Times] orcsdun02 - Caverna dos Orcs (Segundo Andar)
 //=================================================================
-orcsdun02,0,0,0,0	monster#ot	Familiar	1005,15,0,0,0
-orcsdun02,0,0,0,0	monster#ot	ChonChon	1011,10,0,0,0
-orcsdun02,0,0,0,0	monster#ot	ChonChon de Aço	1042,10,0,0,0
-orcsdun02,0,0,0,0	monster#ot	Orc Esqueleto	1152,30,3000,0,0
-orcsdun02,0,0,0,0	monster#ot	Zenorc	1177,35,3000,0,0
-orcsdun02,0,0,0,0	monster#ot	Orc Arqueiro	1189,3,1800000,0,1
-orcsdun02,0,0,0,0	boss_monster#ot	Senhor dos Orcs	1190,1,3600000,0,1,{}
+orcsdun02,0,0,0,0	monster#ot	Familiar	FARMILIAR,15,0,0,0
+orcsdun02,0,0,0,0	monster#ot	ChonChon	CHONCHON,10,0,0,0
+orcsdun02,0,0,0,0	monster#ot	ChonChon de Aço	STEEL_CHONCHON,10,0,0,0
+orcsdun02,0,0,0,0	monster#ot	Orc Esqueleto	ORC_SKELETON,30,3000,0,0
+orcsdun02,0,0,0,0	monster#ot	Zenorc	ZENORC,35,3000,0,0
+orcsdun02,0,0,0,0	monster#ot	Orc Arqueiro	ORC_ARCHER,3,1800000,0,1
+orcsdun02,0,0,0,0	boss_monster#ot	Senhor dos Orcs	ORC_LORD,1,3600000,0,1,{}
 
 //=================================================================
 // [Pré-Renovação] orcsdun02 - Caverna dos Orcs (Segundo Andar)
 //=================================================================
-orcsdun02,0,0,0,0	monster#pre	Chonchon de Aço	1042,20,0,0,0
-orcsdun02,0,0,0,0	monster#pre	Drainliar	1111,20,0,0,0
-orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	1152,10,3000,5000,0
-orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	1152,20,60000,30000,0
-orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	1152,20,120000,60000,0
-orcsdun02,0,0,0,0	monster#pre	Zenorc	1177,30,3000,5000,0
-orcsdun02,0,0,0,0	monster#pre	Zenorc	1177,20,60000,30000,0
-orcsdun02,0,0,0,0	monster#pre	Orc Arqueiro	1189,5,1800000,900000,1
-orcsdun02,0,0,0,0	monster#pre	Cogumelo Negro	1084,5,180000,90000,1
-orcsdun02,105,37,10,10	monster#pre	Planta Branca	1082,2,180000,90000,1
-orcsdun02,37,44,10,10	monster#pre	Planta Branca	1082,3,180000,90000,1,{}
+orcsdun02,0,0,0,0	monster#pre	Chonchon de Aço	STEEL_CHONCHON,20,0,0,0
+orcsdun02,0,0,0,0	monster#pre	Drainliar	DRAINLIAR,20,0,0,0
+orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	ORC_SKELETON,10,3000,5000,0
+orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	ORC_SKELETON,20,60000,30000,0
+orcsdun02,0,0,0,0	monster#pre	Orc Esqueleto	ORC_SKELETON,20,120000,60000,0
+orcsdun02,0,0,0,0	monster#pre	Zenorc	ZENORC,30,3000,5000,0
+orcsdun02,0,0,0,0	monster#pre	Zenorc	ZENORC,20,60000,30000,0
+orcsdun02,0,0,0,0	monster#pre	Orc Arqueiro	ORC_ARCHER,5,1800000,900000,1
+orcsdun02,0,0,0,0	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,5,180000,90000,1
+orcsdun02,105,37,10,10	monster#pre	Planta Branca	WHITE_PLANT,2,180000,90000,1
+orcsdun02,37,44,10,10	monster#pre	Planta Branca	WHITE_PLANT,3,180000,90000,1,{}
 
 //=================================================================
 // [Renovação] orcsdun02 - Calabouço dos Orcs (Segundo Andar)
 //=================================================================
-orcsdun02,0,0,0,0	monster#re	Orc Esqueleto	1152,50,5000,0,0
-orcsdun02,0,0,0,0	monster#re	Zenorc	1177,50,5000,0,0
-orcsdun02,0,0,0,0	monster#re	Drainliar	1111,20,5000,0,0
-orcsdun02,0,0,0,0	monster#re	Chonchon de Aço	1042,20,5000,0,0
-orcsdun02,0,0,0,0	monster#re	Orc Arqueiro	1189,5,5000,0,0
-orcsdun02,0,0,0,0	monster#re	Cogumelo Negro	1084,5,180000,90000,1
-orcsdun02,105,37,10,10	monster#re	Planta Branca	1082,2,180000,90000,1
-orcsdun02,37,44,10,10	monster#re	Planta Branca	1082,3,180000,90000,1,{}
+orcsdun02,0,0,0,0	monster#re	Orc Esqueleto	ORC_SKELETON,50,5000,0,0
+orcsdun02,0,0,0,0	monster#re	Zenorc	ZENORC,50,5000,0,0
+orcsdun02,0,0,0,0	monster#re	Drainliar	DRAINLIAR,20,5000,0,0
+orcsdun02,0,0,0,0	monster#re	Chonchon de Aço	STEEL_CHONCHON,20,5000,0,0
+orcsdun02,0,0,0,0	monster#re	Orc Arqueiro	ORC_ARCHER,5,5000,0,0
+orcsdun02,0,0,0,0	monster#re	Cogumelo Negro	BLACK_MUSHROOM,5,180000,90000,1
+orcsdun02,105,37,10,10	monster#re	Planta Branca	WHITE_PLANT,2,180000,90000,1
+orcsdun02,37,44,10,10	monster#re	Planta Branca	WHITE_PLANT,3,180000,90000,1,{}

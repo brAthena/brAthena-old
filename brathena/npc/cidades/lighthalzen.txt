@@ -2077,4 +2077,4 @@ lhz_in01,221,131,7	script	Cientista#li_01	4_LGTSCIENCE,{
 }
 
 // Cogumelo de Lighthalzen
-lhz_in01,157,54,0,0	monster	Cogumelo Vermelho	1085,1,120000,100000,0
+lhz_in01,157,54,0,0	monster	Cogumelo Vermelho	RED_MUSHROOM,1,120000,100000,0

@@ -79,26 +79,26 @@ payon,93,81,4	script	Mestre Exorcista Fahae	4_M_BUDDHIST,{
 //=============================================
 // Spawn de Monstros do Evento
 //=============================================
-gef_fild00,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-gef_fild07,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-gef_fild04,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-gef_fild00,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-prt_fild06,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-prt_fild01,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-prt_fild05,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-prt_fild08,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild04,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-moc_fild02,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild01,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild07,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-moc_fild03,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild06,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild05,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild02,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-pay_fild09,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+gef_fild00,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+gef_fild07,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+gef_fild04,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+gef_fild00,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+prt_fild06,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+prt_fild01,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+prt_fild05,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+prt_fild08,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild04,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+moc_fild02,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild01,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild07,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+moc_fild03,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild06,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild05,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild02,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
+pay_fild09,0,0,0,0	monster	Bolinho de Massa	BOILED_RICE,20,60000,66000
 
-moc_fild03,0,0,0,0	monster	Lady Branca	1518,1,60000,66000
+moc_fild03,0,0,0,0	monster	Lady Branca	BACSOJIN,1,60000,66000
 
-moc_fild03,0,0,0,0	monster	Chung E	1519,1,60000,66000
-moc_fild13,0,0,0,0	monster	Chung E	1519,1,60000,66000
-pay_fild01,0,0,0,0	monster	Chung E	1519,1,60000,66000
+moc_fild03,0,0,0,0	monster	Chung E	CHUNG_E,1,60000,66000
+moc_fild13,0,0,0,0	monster	Chung E	CHUNG_E,1,60000,66000
+pay_fild01,0,0,0,0	monster	Chung E	CHUNG_E,1,60000,66000

@@ -28,311 +28,311 @@
 //==================================================
 // [Old Times] iz_dun00 - Túnel Submarino (Primeiro Andar)
 //==================================================
-iz_dun00,0,0,0,0	monster#ot	Vadon	1066,45,0,0,0
-iz_dun00,0,0,0,0	monster#ot	Hidra	1068,45,0,0,0
-iz_dun00,0,0,0,0	monster#ot	Kukre	1070,55,0,0,0
-iz_dun00,0,0,0,0	monster#ot	Marina	1141,10,0,0,0
-iz_dun00,0,0,0,0	monster#ot	Plankton	1161,65,0,0,0,{}
+iz_dun00,0,0,0,0	monster#ot	Vadon	VADON,45,0,0,0
+iz_dun00,0,0,0,0	monster#ot	Hidra	HYDRA,45,0,0,0
+iz_dun00,0,0,0,0	monster#ot	Kukre	KUKRE,55,0,0,0
+iz_dun00,0,0,0,0	monster#ot	Marina	MARINA,10,0,0,0
+iz_dun00,0,0,0,0	monster#ot	Plankton	PLANKTON,65,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] iz_dun00 - Túnel Submarino (Primeiro Andar)
 //==================================================
-iz_dun00,0,0,0,0	monster#pre	Plankton	1161,65,0,0,0
-iz_dun00,0,0,0,0	monster#pre	Marina	1141,45,0,0,0
-iz_dun00,0,0,0,0	monster#pre	Kukre	1070,15,0,0,0
-iz_dun00,0,0,0,0	monster#pre	Hidra	1068,15,0,0,0
-iz_dun00,0,0,0,0	monster#pre	Vadon	1066,15,0,0,0,{}
-iz_dun00,0,0,0,0	monster	Cogumelo Negro	1084,5,180000,90000,1
+iz_dun00,0,0,0,0	monster#pre	Plankton	PLANKTON,65,0,0,0
+iz_dun00,0,0,0,0	monster#pre	Marina	MARINA,45,0,0,0
+iz_dun00,0,0,0,0	monster#pre	Kukre	KUKRE,15,0,0,0
+iz_dun00,0,0,0,0	monster#pre	Hidra	HYDRA,15,0,0,0
+iz_dun00,0,0,0,0	monster#pre	Vadon	VADON,15,0,0,0,{}
+iz_dun00,0,0,0,0	monster	Cogumelo Negro	BLACK_MUSHROOM,5,180000,90000,1
 
 //==================================================
 // [Renovação] iz_dun00 - Túnel Submarino (Primeiro Andar)
 //==================================================
-iz_dun00,0,0,0,0	monster#re	Plankton	1161,65,5000,0,0
-iz_dun00,0,0,0,0	monster#re	Marina	1141,45,5000,0,0
-iz_dun00,0,0,0,0	monster#re	Vadon	1066,15,5000,0,0
-iz_dun00,0,0,0,0	monster#re	Kukre	1070,15,5000,0,0
-iz_dun00,0,0,0,0	monster#re	Hidra	1068,15,5000,0,0,{}
+iz_dun00,0,0,0,0	monster#re	Plankton	PLANKTON,65,5000,0,0
+iz_dun00,0,0,0,0	monster#re	Marina	MARINA,45,5000,0,0
+iz_dun00,0,0,0,0	monster#re	Vadon	VADON,15,5000,0,0
+iz_dun00,0,0,0,0	monster#re	Kukre	KUKRE,15,5000,0,0
+iz_dun00,0,0,0,0	monster#re	Hidra	HYDRA,15,5000,0,0,{}
 
 //==================================================
 // [Old Times] iz_dun01 - Túnel Submarino (Segundo Andar)
 //==================================================
-iz_dun01,0,0,0,0	monster#ot	Sapo Thara	1034,55,0,0,0
-iz_dun01,0,0,0,0	monster#ot	Vadon	1066,60,0,0,0
-iz_dun01,0,0,0,0	monster#ot	Cornutus	1067,15,300000,0,1
-iz_dun01,0,0,0,0	monster#ot	Hidra	1068,30,0,0,0
-iz_dun01,0,0,0,0	monster#ot	Kukre	1070,35,0,0,0
-iz_dun01,0,0,0,0	monster#ot	Marina	1141,45,0,0,0
-iz_dun01,0,0,0,0	monster#ot	Plankton	1161,10,0,0,0,{}
+iz_dun01,0,0,0,0	monster#ot	Sapo Thara	THARA_FROG,55,0,0,0
+iz_dun01,0,0,0,0	monster#ot	Vadon	VADON,60,0,0,0
+iz_dun01,0,0,0,0	monster#ot	Cornutus	CORNUTUS,15,300000,0,1
+iz_dun01,0,0,0,0	monster#ot	Hidra	HYDRA,30,0,0,0
+iz_dun01,0,0,0,0	monster#ot	Kukre	KUKRE,35,0,0,0
+iz_dun01,0,0,0,0	monster#ot	Marina	MARINA,45,0,0,0
+iz_dun01,0,0,0,0	monster#ot	Plankton	PLANKTON,10,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] iz_dun01 - Túnel Submarino (Segundo Andar)
 //==================================================
-iz_dun01,0,0,0,0	monster#pre	Plankton	1161,10,0,0,0
-iz_dun01,0,0,0,0	monster#pre	Marina	1141,15,0,0,0
-iz_dun01,0,0,0,0	monster#pre	Kukre	1070,50,0,0,0
-iz_dun01,0,0,0,0	monster#pre	Hidra	1068,30,0,0,0
-iz_dun01,0,0,0,0	monster#pre	Vadon	1066,60,0,0,0
-iz_dun01,0,0,0,0	monster#pre	Cornutus	1067,15,300000,150000,1
-iz_dun01,0,0,0,0	monster#pre	Cogumelo Negro	1084,10,180000,90000,1,{}
+iz_dun01,0,0,0,0	monster#pre	Plankton	PLANKTON,10,0,0,0
+iz_dun01,0,0,0,0	monster#pre	Marina	MARINA,15,0,0,0
+iz_dun01,0,0,0,0	monster#pre	Kukre	KUKRE,50,0,0,0
+iz_dun01,0,0,0,0	monster#pre	Hidra	HYDRA,30,0,0,0
+iz_dun01,0,0,0,0	monster#pre	Vadon	VADON,60,0,0,0
+iz_dun01,0,0,0,0	monster#pre	Cornutus	CORNUTUS,15,300000,150000,1
+iz_dun01,0,0,0,0	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,10,180000,90000,1,{}
 
 //==================================================
 // [Renovação] iz_dun01 - Túnel Submarino (Segundo Andar)
 //==================================================
-iz_dun01,0,0,0,0	monster#re	Vadon	1066,60,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Kukre	1070,50,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Hidra	1068,30,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Marina	1141,15,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Cornutus	1067,15,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Plankton	1161,10,5000,0,0
-iz_dun01,0,0,0,0	monster#re	Cogumelo Negro	1084,10,180000,90000,1,{}
+iz_dun01,0,0,0,0	monster#re	Vadon	VADON,60,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Kukre	KUKRE,50,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Hidra	HYDRA,30,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Marina	MARINA,15,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Cornutus	CORNUTUS,15,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Plankton	PLANKTON,10,5000,0,0
+iz_dun01,0,0,0,0	monster#re	Cogumelo Negro	BLACK_MUSHROOM,10,180000,90000,1,{}
 
 //==================================================
 // [Old Times] iz_dun02 - Túnel Submarino (Terceiro Andar)
 //==================================================
-iz_dun02,0,0,0,0	monster#ot	Sapo Thara	1034,40,0,0,0
-iz_dun02,0,0,0,0	monster#ot	Obeaune	1044,40,0,0,0
-iz_dun02,0,0,0,0	monster#ot	Cornutus	1067,60,0,0,0
-iz_dun02,0,0,0,0	monster#ot	Hidra	1068,40,0,0,0
-iz_dun02,0,0,0,0	monster#ot	Marte	1144,40,0,0,0,{}
+iz_dun02,0,0,0,0	monster#ot	Sapo Thara	THARA_FROG,40,0,0,0
+iz_dun02,0,0,0,0	monster#ot	Obeaune	OBEAUNE,40,0,0,0
+iz_dun02,0,0,0,0	monster#ot	Cornutus	CORNUTUS,60,0,0,0
+iz_dun02,0,0,0,0	monster#ot	Hidra	HYDRA,40,0,0,0
+iz_dun02,0,0,0,0	monster#ot	Marte	MARSE,40,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] iz_dun02 - Túnel Submarino (Terceiro Andar)
 //==================================================
-iz_dun02,0,0,0,0	monster#pre	Hidra	1068,40,0,0,0
-iz_dun02,0,0,0,0	monster#pre	Cornutus	1067,60,0,0,0
-iz_dun02,0,0,0,0	monster#pre	Marse	1144,40,0,0,0
-iz_dun02,0,0,0,0	monster#pre	Obeaune	1044,40,0,0,0
-iz_dun02,0,0,0,0	monster#pre	Tritão	1264,1,1800000,1200000,0
-iz_dun02,0,0,0,0	monster#pre	Cogumelo Negro	1084,15,180000,90000,1,{}
+iz_dun02,0,0,0,0	monster#pre	Hidra	HYDRA,40,0,0,0
+iz_dun02,0,0,0,0	monster#pre	Cornutus	CORNUTUS,60,0,0,0
+iz_dun02,0,0,0,0	monster#pre	Marse	MARSE,40,0,0,0
+iz_dun02,0,0,0,0	monster#pre	Obeaune	OBEAUNE,40,0,0,0
+iz_dun02,0,0,0,0	monster#pre	Tritão	MERMAN,1,1800000,1200000,0
+iz_dun02,0,0,0,0	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,15,180000,90000,1,{}
 
 //==================================================
 // [Renovação] iz_dun02 - Túnel Submarino (Terceiro Andar)
 //==================================================
-iz_dun02,0,0,0,0	monster#re	Cornutus	1067,60,5000,0,0
-iz_dun02,0,0,0,0	monster#re	Marte	1144,40,5000,0,0
-iz_dun02,0,0,0,0	monster#re	Obeaune	1044,40,5000,0,0
-iz_dun02,0,0,0,0	monster#re	Hidra	1068,40,5000,0,0
-iz_dun02,0,0,0,0	monster#re	Tritão	1264,1,5000,0,0
-iz_dun02,0,0,0,0	monster#re	Cogumelo Negro	1084,15,180000,90000,1,{}
+iz_dun02,0,0,0,0	monster#re	Cornutus	CORNUTUS,60,5000,0,0
+iz_dun02,0,0,0,0	monster#re	Marte	MARSE,40,5000,0,0
+iz_dun02,0,0,0,0	monster#re	Obeaune	OBEAUNE,40,5000,0,0
+iz_dun02,0,0,0,0	monster#re	Hidra	HYDRA,40,5000,0,0
+iz_dun02,0,0,0,0	monster#re	Tritão	MERMAN,1,5000,0,0
+iz_dun02,0,0,0,0	monster#re	Cogumelo Negro	BLACK_MUSHROOM,15,180000,90000,1,{}
 
 //==================================================
 // [Old Times] iz_dun03 - Túnel Submarino (Quarto Andar)
 //==================================================
-iz_dun03,0,0,0,0	monster#ot	Obeaune	1044,30,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Cavalo-Marinho	1045,10,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Hidra	1068,10,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Peixe-Espada	1069,40,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Esfera Marinha	1142,20,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Marte	1144,15,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Fen	1158,45,0,0,0
-iz_dun03,0,0,0,0	monster#ot	Tritão	1264,3,0,0,0
-iz_dun03,108,249,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,176,260,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,178,253,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,180,251,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,191,144,0,0	monster#ot	Hidra	1068,1,321000,0,0
-iz_dun03,193,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,194,144,0,0	monster#ot	Hidra	1068,1,316000,0,0
-iz_dun03,196,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,197,144,0,0	monster#ot	Hidra	1068,1,2960000,0,0
-iz_dun03,199,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,200,144,0,0	monster#ot	Hidra	1068,1,282000,0,0
-iz_dun03,202,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,203,144,0,0	monster#ot	Hidra	1068,1,310000,0,0
-iz_dun03,203,47,0,0	monster#ot	Hidra	1068,1,305000,0,0
-iz_dun03,203,50,0,0	monster#ot	Hidra	1068,1,323000,0,0
-iz_dun03,203,53,0,0	monster#ot	Hidra	1068,1,317000,0,0
-iz_dun03,203,56,0,0	monster#ot	Hidra	1068,1,323000,0,0
-iz_dun03,203,59,0,0	monster#ot	Hidra	1068,1,312000,0,0
-iz_dun03,204,48,0,0	monster#ot	Hidra	1068,1,313000,0,0
-iz_dun03,204,51,0,0	monster#ot	Hidra	1068,1,309000,0,0
-iz_dun03,204,54,0,0	monster#ot	Hidra	1068,1,310000,0,0
-iz_dun03,204,57,0,0	monster#ot	Hidra	1068,1,302000,0,0
-iz_dun03,204,60,0,0	monster#ot	Hidra	1068,1,304000,0,0
-iz_dun03,205,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,206,144,0,0	monster#ot	Hidra	1068,1,305000,0,0
-iz_dun03,208,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,209,144,0,0	monster#ot	Hidra	1068,1,308000,0,0
-iz_dun03,211,143,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun03,212,144,0,0	monster#ot	Hidra	1068,1,321000,0,0
-iz_dun03,80,163,0,0	monster#ot	Hidra	1068,1,300000,0,0,{}
+iz_dun03,0,0,0,0	monster#ot	Obeaune	OBEAUNE,30,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Cavalo-Marinho	MARC,10,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Hidra	HYDRA,10,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Peixe-Espada	SWORD_FISH,40,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Esfera Marinha	MARINE_SPHERE,20,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Marte	MARSE,15,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Fen	PHEN,45,0,0,0
+iz_dun03,0,0,0,0	monster#ot	Tritão	MERMAN,3,0,0,0
+iz_dun03,108,249,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,176,260,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,178,253,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,180,251,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,191,144,0,0	monster#ot	Hidra	HYDRA,1,321000,0,0
+iz_dun03,193,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,194,144,0,0	monster#ot	Hidra	HYDRA,1,316000,0,0
+iz_dun03,196,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,197,144,0,0	monster#ot	Hidra	HYDRA,1,2960000,0,0
+iz_dun03,199,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,200,144,0,0	monster#ot	Hidra	HYDRA,1,282000,0,0
+iz_dun03,202,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,203,144,0,0	monster#ot	Hidra	HYDRA,1,310000,0,0
+iz_dun03,203,47,0,0	monster#ot	Hidra	HYDRA,1,305000,0,0
+iz_dun03,203,50,0,0	monster#ot	Hidra	HYDRA,1,323000,0,0
+iz_dun03,203,53,0,0	monster#ot	Hidra	HYDRA,1,317000,0,0
+iz_dun03,203,56,0,0	monster#ot	Hidra	HYDRA,1,323000,0,0
+iz_dun03,203,59,0,0	monster#ot	Hidra	HYDRA,1,312000,0,0
+iz_dun03,204,48,0,0	monster#ot	Hidra	HYDRA,1,313000,0,0
+iz_dun03,204,51,0,0	monster#ot	Hidra	HYDRA,1,309000,0,0
+iz_dun03,204,54,0,0	monster#ot	Hidra	HYDRA,1,310000,0,0
+iz_dun03,204,57,0,0	monster#ot	Hidra	HYDRA,1,302000,0,0
+iz_dun03,204,60,0,0	monster#ot	Hidra	HYDRA,1,304000,0,0
+iz_dun03,205,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,206,144,0,0	monster#ot	Hidra	HYDRA,1,305000,0,0
+iz_dun03,208,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,209,144,0,0	monster#ot	Hidra	HYDRA,1,308000,0,0
+iz_dun03,211,143,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun03,212,144,0,0	monster#ot	Hidra	HYDRA,1,321000,0,0
+iz_dun03,80,163,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] iz_dun03 - Túnel Submarino (Quarto Andar)
 //==================================================
-iz_dun03,0,0,0,0	monster#pre	Hidra	1068,10,0,0,0
-iz_dun03,0,0,0,0	monster#pre	Fen	1158,45,0,0,0
-iz_dun03,0,0,0,0	monster#pre	Esfera Marinha	1142,20,0,0,0
-iz_dun03,0,0,0,0	monster#pre	Peixe-Espada	1069,40,0,0,0
-iz_dun03,0,0,0,0	monster#pre	Cavalo-Marinho	1045,40,0,0,0
-iz_dun03,203,59,0,0	monster#pre	Hidra	1068,1,312000,150000,0
-iz_dun03,203,56,0,0	monster#pre	Hidra	1068,1,323000,150000,0
-iz_dun03,203,53,0,0	monster#pre	Hidra	1068,1,317000,150000,0
-iz_dun03,203,50,0,0	monster#pre	Hidra	1068,1,323000,150000,0
-iz_dun03,203,47,0,0	monster#pre	Hidra	1068,1,305000,150000,0
-iz_dun03,204,60,0,0	monster#pre	Hidra	1068,1,304000,150000,0
-iz_dun03,204,57,0,0	monster#pre	Hidra	1068,1,302000,150000,0
-iz_dun03,204,54,0,0	monster#pre	Hidra	1068,1,310000,150000,0
-iz_dun03,204,51,0,0	monster#pre	Hidra	1068,1,309000,150000,0
-iz_dun03,204,48,0,0	monster#pre	Hidra	1068,1,313000,150000,0
-iz_dun03,191,144,0,0	monster#pre	Hidra	1068,1,321000,150000,0
-iz_dun03,194,144,0,0	monster#pre	Hidra	1068,1,316000,150000,0
-iz_dun03,197,144,0,0	monster#pre	Hidra	1068,1,296000,150000,0
-iz_dun03,200,144,0,0	monster#pre	Hidra	1068,1,282000,150000,0
-iz_dun03,203,144,0,0	monster#pre	Hidra	1068,1,310000,150000,0
-iz_dun03,206,144,0,0	monster#pre	Hidra	1068,1,305000,150000,0
-iz_dun03,209,144,0,0	monster#pre	Hidra	1068,1,308000,150000,0
-iz_dun03,212,144,0,0	monster#pre	Hidra	1068,1,321000,150000,0
-iz_dun03,193,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,196,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,199,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,202,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,205,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,208,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,211,143,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,176,260,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,180,251,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,178,253,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,108,249,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,80,163,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun03,0,0,0,0	monster#pre	Tritão	1264,3,1800000,1200000,0,{}
+iz_dun03,0,0,0,0	monster#pre	Hidra	HYDRA,10,0,0,0
+iz_dun03,0,0,0,0	monster#pre	Fen	PHEN,45,0,0,0
+iz_dun03,0,0,0,0	monster#pre	Esfera Marinha	MARINE_SPHERE,20,0,0,0
+iz_dun03,0,0,0,0	monster#pre	Peixe-Espada	SWORD_FISH,40,0,0,0
+iz_dun03,0,0,0,0	monster#pre	Cavalo-Marinho	MARC,40,0,0,0
+iz_dun03,203,59,0,0	monster#pre	Hidra	HYDRA,1,312000,150000,0
+iz_dun03,203,56,0,0	monster#pre	Hidra	HYDRA,1,323000,150000,0
+iz_dun03,203,53,0,0	monster#pre	Hidra	HYDRA,1,317000,150000,0
+iz_dun03,203,50,0,0	monster#pre	Hidra	HYDRA,1,323000,150000,0
+iz_dun03,203,47,0,0	monster#pre	Hidra	HYDRA,1,305000,150000,0
+iz_dun03,204,60,0,0	monster#pre	Hidra	HYDRA,1,304000,150000,0
+iz_dun03,204,57,0,0	monster#pre	Hidra	HYDRA,1,302000,150000,0
+iz_dun03,204,54,0,0	monster#pre	Hidra	HYDRA,1,310000,150000,0
+iz_dun03,204,51,0,0	monster#pre	Hidra	HYDRA,1,309000,150000,0
+iz_dun03,204,48,0,0	monster#pre	Hidra	HYDRA,1,313000,150000,0
+iz_dun03,191,144,0,0	monster#pre	Hidra	HYDRA,1,321000,150000,0
+iz_dun03,194,144,0,0	monster#pre	Hidra	HYDRA,1,316000,150000,0
+iz_dun03,197,144,0,0	monster#pre	Hidra	HYDRA,1,296000,150000,0
+iz_dun03,200,144,0,0	monster#pre	Hidra	HYDRA,1,282000,150000,0
+iz_dun03,203,144,0,0	monster#pre	Hidra	HYDRA,1,310000,150000,0
+iz_dun03,206,144,0,0	monster#pre	Hidra	HYDRA,1,305000,150000,0
+iz_dun03,209,144,0,0	monster#pre	Hidra	HYDRA,1,308000,150000,0
+iz_dun03,212,144,0,0	monster#pre	Hidra	HYDRA,1,321000,150000,0
+iz_dun03,193,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,196,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,199,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,202,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,205,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,208,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,211,143,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,176,260,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,180,251,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,178,253,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,108,249,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,80,163,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,0,0,0,0	monster#pre	Tritão	MERMAN,3,1800000,1200000,0,{}
 
 //==================================================
 // [Renovação] iz_dun03 - Túnel Submarino (Quarto Andar)
 //==================================================
-iz_dun03,0,0,0,0	monster#re	Fen	1158,45,5000,0,0 
-iz_dun03,0,0,0,0	monster#re	Cavalo-Marinho	1045,40,5000,0,0
-iz_dun03,0,0,0,0	monster#re	Peixe-Espada	1069,40,5000,0,0
-iz_dun03,0,0,0,0	monster#re	Esfera Marinha	1142,20,5000,0,0
-iz_dun03,0,0,0,0	monster#re	Tritão	1264,3,5000,0,0
-iz_dun03,200,144,0,0	monster#re	Hidra	1068,1,282000,150000,0
-iz_dun03,178,253,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,193,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,196,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,199,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,202,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,205,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,208,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,211,143,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,108,249,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,180,251,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,176,260,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,80,163,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun03,204,57,0,0	monster#re	Hidra	1068,1,302000,150000,0
-iz_dun03,204,60,0,0	monster#re	Hidra	1068,1,304000,150000,0
-iz_dun03,203,47,0,0	monster#re	Hidra	1068,1,305000,150000,0
-iz_dun03,206,144,0,0	monster#re	Hidra	1068,1,305000,150000,0
-iz_dun03,209,144,0,0	monster#re	Hidra	1068,1,308000,150000,0
-iz_dun03,204,51,0,0	monster#re	Hidra	1068,1,309000,150000,0
-iz_dun03,203,144,0,0	monster#re	Hidra	1068,1,310000,150000,0
-iz_dun03,204,54,0,0	monster#re	Hidra	1068,1,310000,150000,0
-iz_dun03,203,59,0,0	monster#re	Hidra	1068,1,312000,150000,0
-iz_dun03,204,48,0,0	monster#re	Hidra	1068,1,313000,150000,0
-iz_dun03,194,144,0,0	monster#re	Hidra	1068,1,316000,150000,0
-iz_dun03,203,53,0,0	monster#re	Hidra	1068,1,317000,150000,0
-iz_dun03,191,144,0,0	monster#re	Hidra	1068,1,321000,150000,0
-iz_dun03,212,144,0,0	monster#re	Hidra	1068,1,321000,150000,0
-iz_dun03,203,50,0,0	monster#re	Hidra	1068,1,323000,150000,0
-iz_dun03,203,56,0,0	monster#re	Hidra	1068,1,323000,150000,0
-iz_dun03,197,144,0,0	monster#re	Hidra	1068,1,2960000,150000,0,{}
+iz_dun03,0,0,0,0	monster#re	Fen	PHEN,45,5000,0,0 
+iz_dun03,0,0,0,0	monster#re	Cavalo-Marinho	MARC,40,5000,0,0
+iz_dun03,0,0,0,0	monster#re	Peixe-Espada	SWORD_FISH,40,5000,0,0
+iz_dun03,0,0,0,0	monster#re	Esfera Marinha	MARINE_SPHERE,20,5000,0,0
+iz_dun03,0,0,0,0	monster#re	Tritão	MERMAN,3,5000,0,0
+iz_dun03,200,144,0,0	monster#re	Hidra	HYDRA,1,282000,150000,0
+iz_dun03,178,253,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,193,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,196,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,199,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,202,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,205,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,208,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,211,143,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,108,249,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,180,251,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,176,260,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,80,163,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun03,204,57,0,0	monster#re	Hidra	HYDRA,1,302000,150000,0
+iz_dun03,204,60,0,0	monster#re	Hidra	HYDRA,1,304000,150000,0
+iz_dun03,203,47,0,0	monster#re	Hidra	HYDRA,1,305000,150000,0
+iz_dun03,206,144,0,0	monster#re	Hidra	HYDRA,1,305000,150000,0
+iz_dun03,209,144,0,0	monster#re	Hidra	HYDRA,1,308000,150000,0
+iz_dun03,204,51,0,0	monster#re	Hidra	HYDRA,1,309000,150000,0
+iz_dun03,203,144,0,0	monster#re	Hidra	HYDRA,1,310000,150000,0
+iz_dun03,204,54,0,0	monster#re	Hidra	HYDRA,1,310000,150000,0
+iz_dun03,203,59,0,0	monster#re	Hidra	HYDRA,1,312000,150000,0
+iz_dun03,204,48,0,0	monster#re	Hidra	HYDRA,1,313000,150000,0
+iz_dun03,194,144,0,0	monster#re	Hidra	HYDRA,1,316000,150000,0
+iz_dun03,203,53,0,0	monster#re	Hidra	HYDRA,1,317000,150000,0
+iz_dun03,191,144,0,0	monster#re	Hidra	HYDRA,1,321000,150000,0
+iz_dun03,212,144,0,0	monster#re	Hidra	HYDRA,1,321000,150000,0
+iz_dun03,203,50,0,0	monster#re	Hidra	HYDRA,1,323000,150000,0
+iz_dun03,203,56,0,0	monster#re	Hidra	HYDRA,1,323000,150000,0
+iz_dun03,197,144,0,0	monster#re	Hidra	HYDRA,1,2960000,150000,0,{}
 
 //==================================================
 // [Old Times] iz_dun04 - Túnel Submarino (Quinto Andar)
 //==================================================
-iz_dun04,0,0,0,0	monster#ot	Obeaune	1044,20,0,0,0
-iz_dun04,0,0,0,0	monster#ot	Cavalo-Marinho	1045,45,0,0,0
-iz_dun04,0,0,0,0	monster#ot	Peixe-Espada	1069,10,0,0,0
-iz_dun04,0,0,0,0	monster#ot	Esfera Marinha	1142,10,0,0,0
-iz_dun04,0,0,0,0	monster#ot	Marte	1144,15,0,0,0
-iz_dun04,0,0,0,0	monster#ot	Penomena	1216,10,300000,0,1
-iz_dun04,0,0,0,0	monster#ot	Tritão	1264,3,0,0,0
-iz_dun04,103,231,10,10	monster#ot	Tritão	1264,1,150000,0,0
-iz_dun04,111,35,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,111,38,0,0	monster#ot	Hidra	1068,1,303000,0,0
-iz_dun04,111,41,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,124,233,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,130,216,15,15	monster#ot	Tritão	1264,1,160000,0,0
-iz_dun04,134,233,0,0	monster#ot	Hidra	1068,1,305000,0,0
-iz_dun04,160,231,10,10	monster#ot	Tritão	1264,1,170000,0,0
-iz_dun04,33,115,0,0	monster#ot	Hidra	1068,1,321000,0,0
-iz_dun04,33,129,0,0	monster#ot	Hidra	1068,1,308000,0,0
-iz_dun04,38,115,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,38,129,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,42,116,0,0	monster#ot	Hidra	1068,1,306000,0,0
-iz_dun04,42,129,0,0	monster#ot	Hidra	1068,1,312000,0,0
-iz_dun04,58,135,0,0	monster#ot	Hidra	1068,1,305000,0,0
-iz_dun04,61,135,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,69,243,0,0	monster#ot	Hidra	1068,1,321000,0,0
-iz_dun04,79,234,0,0	monster#ot	Hidra	1068,1,302000,0,0
-iz_dun04,79,246,0,0	monster#ot	Hidra	1068,1,300000,0,0
-iz_dun04,80,233,0,0	monster#ot	Hidra	1068,1,318000,0,0
-iz_dun04,80,246,0,0	monster#ot	Hidra	1068,1,294000,0,0
-iz_dun04,95,147,0,0	monster#ot	Deviace	1108,1,600000,0,0
-iz_dun04,95,147,10,10	monster#ot	Tritão	1264,1,150000,0,0,{}
+iz_dun04,0,0,0,0	monster#ot	Obeaune	OBEAUNE,20,0,0,0
+iz_dun04,0,0,0,0	monster#ot	Cavalo-Marinho	MARC,45,0,0,0
+iz_dun04,0,0,0,0	monster#ot	Peixe-Espada	SWORD_FISH,10,0,0,0
+iz_dun04,0,0,0,0	monster#ot	Esfera Marinha	MARINE_SPHERE,10,0,0,0
+iz_dun04,0,0,0,0	monster#ot	Marte	MARSE,15,0,0,0
+iz_dun04,0,0,0,0	monster#ot	Penomena	PENOMENA,10,300000,0,1
+iz_dun04,0,0,0,0	monster#ot	Tritão	MERMAN,3,0,0,0
+iz_dun04,103,231,10,10	monster#ot	Tritão	MERMAN,1,150000,0,0
+iz_dun04,111,35,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,111,38,0,0	monster#ot	Hidra	HYDRA,1,303000,0,0
+iz_dun04,111,41,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,124,233,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,130,216,15,15	monster#ot	Tritão	MERMAN,1,160000,0,0
+iz_dun04,134,233,0,0	monster#ot	Hidra	HYDRA,1,305000,0,0
+iz_dun04,160,231,10,10	monster#ot	Tritão	MERMAN,1,170000,0,0
+iz_dun04,33,115,0,0	monster#ot	Hidra	HYDRA,1,321000,0,0
+iz_dun04,33,129,0,0	monster#ot	Hidra	HYDRA,1,308000,0,0
+iz_dun04,38,115,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,38,129,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,42,116,0,0	monster#ot	Hidra	HYDRA,1,306000,0,0
+iz_dun04,42,129,0,0	monster#ot	Hidra	HYDRA,1,312000,0,0
+iz_dun04,58,135,0,0	monster#ot	Hidra	HYDRA,1,305000,0,0
+iz_dun04,61,135,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,69,243,0,0	monster#ot	Hidra	HYDRA,1,321000,0,0
+iz_dun04,79,234,0,0	monster#ot	Hidra	HYDRA,1,302000,0,0
+iz_dun04,79,246,0,0	monster#ot	Hidra	HYDRA,1,300000,0,0
+iz_dun04,80,233,0,0	monster#ot	Hidra	HYDRA,1,318000,0,0
+iz_dun04,80,246,0,0	monster#ot	Hidra	HYDRA,1,294000,0,0
+iz_dun04,95,147,0,0	monster#ot	Deviace	DEVIACE,1,600000,0,0
+iz_dun04,95,147,10,10	monster#ot	Tritão	MERMAN,1,150000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] iz_dun04 - Túnel Submarino (Quinto Andar)
 //==================================================
-iz_dun04,0,0,0,0	monster#pre	Esfera Marinha	1142,10,0,0,0
-iz_dun04,0,0,0,0	monster#pre	Peixe-Espada	1069,10,0,0,0
-iz_dun04,0,0,0,0	monster#pre	Tritão	1264,40,0,0,0
-iz_dun04,0,0,0,0	monster#pre	Strouf	1065,50,600000,300000,1
-iz_dun04,58,135,0,0	monster#pre	Hidra	1068,1,305000,150000,0
-iz_dun04,61,135,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,42,129,0,0	monster#pre	Hidra	1068,1,312000,150000,0
-iz_dun04,42,116,0,0	monster#pre	Hidra	1068,1,306000,150000,0
-iz_dun04,38,129,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,33,129,0,0	monster#pre	Hidra	1068,1,308000,150000,0
-iz_dun04,38,115,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,33,115,0,0	monster#pre	Hidra	1068,1,321000,150000,0
-iz_dun04,79,246,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,80,246,0,0	monster#pre	Hidra	1068,1,294000,150000,0
-iz_dun04,79,234,0,0	monster#pre	Hidra	1068,1,302000,150000,0
-iz_dun04,80,233,0,0	monster#pre	Hidra	1068,1,318000,150000,0
-iz_dun04,111,41,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,111,38,0,0	monster#pre	Hidra	1068,1,303000,150000,0
-iz_dun04,111,35,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,69,243,0,0	monster#pre	Hidra	1068,1,321000,150000,0
-iz_dun04,124,233,0,0	monster#pre	Hidra	1068,1,300000,150000,0
-iz_dun04,134,233,0,0	monster#pre	Hidra	1068,1,305000,150000,0
-iz_dun04,0,0,0,0	monster#pre	Deviace	1108,3,0,0,0
-iz_dun04,103,231,10,10	monster#pre	Tritão	1264,3,150000,0,0
-iz_dun04,160,231,10,10	monster#pre	Tritão	1264,3,170000,0,0
-iz_dun04,95,147,10,10	monster#pre	Tritão	1264,3,150000,0,0
-iz_dun04,130,216,15,15	monster#pre	Tritão	1264,3,160000,0,0,{}
+iz_dun04,0,0,0,0	monster#pre	Esfera Marinha	MARINE_SPHERE,10,0,0,0
+iz_dun04,0,0,0,0	monster#pre	Peixe-Espada	SWORD_FISH,10,0,0,0
+iz_dun04,0,0,0,0	monster#pre	Tritão	MERMAN,40,0,0,0
+iz_dun04,0,0,0,0	monster#pre	Strouf	STROUF,50,600000,300000,1
+iz_dun04,58,135,0,0	monster#pre	Hidra	HYDRA,1,305000,150000,0
+iz_dun04,61,135,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,42,129,0,0	monster#pre	Hidra	HYDRA,1,312000,150000,0
+iz_dun04,42,116,0,0	monster#pre	Hidra	HYDRA,1,306000,150000,0
+iz_dun04,38,129,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,33,129,0,0	monster#pre	Hidra	HYDRA,1,308000,150000,0
+iz_dun04,38,115,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,33,115,0,0	monster#pre	Hidra	HYDRA,1,321000,150000,0
+iz_dun04,79,246,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,80,246,0,0	monster#pre	Hidra	HYDRA,1,294000,150000,0
+iz_dun04,79,234,0,0	monster#pre	Hidra	HYDRA,1,302000,150000,0
+iz_dun04,80,233,0,0	monster#pre	Hidra	HYDRA,1,318000,150000,0
+iz_dun04,111,41,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,111,38,0,0	monster#pre	Hidra	HYDRA,1,303000,150000,0
+iz_dun04,111,35,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,69,243,0,0	monster#pre	Hidra	HYDRA,1,321000,150000,0
+iz_dun04,124,233,0,0	monster#pre	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,134,233,0,0	monster#pre	Hidra	HYDRA,1,305000,150000,0
+iz_dun04,0,0,0,0	monster#pre	Deviace	DEVIACE,3,0,0,0
+iz_dun04,103,231,10,10	monster#pre	Tritão	MERMAN,3,150000,0,0
+iz_dun04,160,231,10,10	monster#pre	Tritão	MERMAN,3,170000,0,0
+iz_dun04,95,147,10,10	monster#pre	Tritão	MERMAN,3,150000,0,0
+iz_dun04,130,216,15,15	monster#pre	Tritão	MERMAN,3,160000,0,0,{}
 
 //==================================================
 // [Renovação] iz_dun04 - Túnel Submarino (Quinto Andar)
 //==================================================
-iz_dun04,0,0,0,0	monster#re	Tritão	1264,52,5000,0,0
-iz_dun04,0,0,0,0	monster#re	Strouf	1065,50,5000,0,0
-iz_dun04,0,0,0,0	monster#re	Esfera Marinha	1142,10,5000,0,0
-iz_dun04,0,0,0,0	monster#re	Peixe-Espada	1069,10,5000,0,0
-iz_dun04,0,0,0,0	monster#re	Deviace	1108,3,5000,0,0
-iz_dun04,80,246,0,0	monster#re	Hidra	1068,1,294000,150000,0
-iz_dun04,79,246,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,111,41,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,111,35,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,124,233,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,38,115,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,38,129,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,61,135,0,0	monster#re	Hidra	1068,1,300000,150000,0
-iz_dun04,79,234,0,0	monster#re	Hidra	1068,1,302000,150000,0
-iz_dun04,111,38,0,0	monster#re	Hidra	1068,1,303000,150000,0
-iz_dun04,134,233,0,0	monster#re	Hidra	1068,1,305000,150000,0
-iz_dun04,58,135,0,0	monster#re	Hidra	1068,1,305000,150000,0
-iz_dun04,42,116,0,0	monster#re	Hidra	1068,1,306000,150000,0
-iz_dun04,33,129,0,0	monster#re	Hidra	1068,1,308000,150000,0
-iz_dun04,42,129,0,0	monster#re	Hidra	1068,1,312000,150000,0
-iz_dun04,80,233,0,0	monster#re	Hidra	1068,1,318000,150000,0
-iz_dun04,69,243,0,0	monster#re	Hidra	1068,1,321000,150000,0
-iz_dun04,33,115,0,0	monster#re	Hidra	1068,1,321000,150000,0,{}
+iz_dun04,0,0,0,0	monster#re	Tritão	MERMAN,52,5000,0,0
+iz_dun04,0,0,0,0	monster#re	Strouf	STROUF,50,5000,0,0
+iz_dun04,0,0,0,0	monster#re	Esfera Marinha	MARINE_SPHERE,10,5000,0,0
+iz_dun04,0,0,0,0	monster#re	Peixe-Espada	SWORD_FISH,10,5000,0,0
+iz_dun04,0,0,0,0	monster#re	Deviace	DEVIACE,3,5000,0,0
+iz_dun04,80,246,0,0	monster#re	Hidra	HYDRA,1,294000,150000,0
+iz_dun04,79,246,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,111,41,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,111,35,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,124,233,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,38,115,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,38,129,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,61,135,0,0	monster#re	Hidra	HYDRA,1,300000,150000,0
+iz_dun04,79,234,0,0	monster#re	Hidra	HYDRA,1,302000,150000,0
+iz_dun04,111,38,0,0	monster#re	Hidra	HYDRA,1,303000,150000,0
+iz_dun04,134,233,0,0	monster#re	Hidra	HYDRA,1,305000,150000,0
+iz_dun04,58,135,0,0	monster#re	Hidra	HYDRA,1,305000,150000,0
+iz_dun04,42,116,0,0	monster#re	Hidra	HYDRA,1,306000,150000,0
+iz_dun04,33,129,0,0	monster#re	Hidra	HYDRA,1,308000,150000,0
+iz_dun04,42,129,0,0	monster#re	Hidra	HYDRA,1,312000,150000,0
+iz_dun04,80,233,0,0	monster#re	Hidra	HYDRA,1,318000,150000,0
+iz_dun04,69,243,0,0	monster#re	Hidra	HYDRA,1,321000,150000,0
+iz_dun04,33,115,0,0	monster#re	Hidra	HYDRA,1,321000,150000,0,{}
 
 //==================================================
 // [Renovação] iz_dun05 - Túnel Submarino (Sexto Andar)
 //==================================================
-iz_dun05,0,0,0,0	monster#re	Rei Dramoh	2198,25,5000,0,0
-iz_dun05,0,0,0,0	monster#re	Sropho	2201,50,5000,0,0
-iz_dun05,0,0,0,0	monster#re	Dofle	2203,30,5000,0,0
-iz_dun05,0,0,0,0	monster#re	Sedora	2204,60,5000,0,0
-iz_dun05,0,0,0,0	boss_monster#re	Kraken	2202,1,7200000,1800000,0,{}
+iz_dun05,0,0,0,0	monster#re	Rei Dramoh	KING_DRAMOH,25,5000,0,0
+iz_dun05,0,0,0,0	monster#re	Sropho	SROPHO,50,5000,0,0
+iz_dun05,0,0,0,0	monster#re	Dofle	POT_DOFLE,30,5000,0,0
+iz_dun05,0,0,0,0	monster#re	Sedora	SEDORA,60,5000,0,0
+iz_dun05,0,0,0,0	boss_monster#re	Kraken	KRAKEN,1,7200000,1800000,0,{}

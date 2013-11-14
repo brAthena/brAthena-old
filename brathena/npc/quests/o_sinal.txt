@@ -12389,15 +12389,15 @@ OnReset:
 	end;
 }
 
-que_sign02,0,0,0,0	monster	Múmia Anciã	1522,8,0,0,0
-que_sign02,0,0,0,0	monster	Druida Maligno	1435,8,0,0,0
-que_sign02,0,0,0,0	monster	Carniçal	1423,20,0,0,0
-que_sign02,0,0,0,0	monster	Incubus	1580,8,0,0,0
-que_sign02,0,0,0,0	monster	Injustiçado	1446,8,0,0,0
-que_sign02,0,0,0,0	monster	Esqueleto Prisioneiro	1479,15,0,0,0
-que_sign02,0,0,0,0	monster	Zumbi Prisioneiro	1480,15,0,0,0
-que_sign02,0,0,0,0	monster	Alma Penada	1475,15,0,0,0
-que_sign02,0,0,0,0	monster	Aparição	1566,8,0,0,0
+que_sign02,0,0,0,0	monster	Múmia Anciã	G_ANCIENT_MUMMY,8,0,0,0
+que_sign02,0,0,0,0	monster	Druida Maligno	G_EVIL_DRUID,8,0,0,0
+que_sign02,0,0,0,0	monster	Carniçal	G_GHOUL,20,0,0,0
+que_sign02,0,0,0,0	monster	Incubus	G_INCUBUS,8,0,0,0
+que_sign02,0,0,0,0	monster	Injustiçado	G_INJUSTICE,8,0,0,0
+que_sign02,0,0,0,0	monster	Esqueleto Prisioneiro	G_SKEL_PRISONER,15,0,0,0
+que_sign02,0,0,0,0	monster	Zumbi Prisioneiro	G_ZOMBIE_PRISONER,15,0,0,0
+que_sign02,0,0,0,0	monster	Alma Penada	G_WRAITH,15,0,0,0
+que_sign02,0,0,0,0	monster	Aparição	G_WRAITH_DEAD,8,0,0,0
 
 que_sign02,378,235,0	script	sign_w6	WARPNPC,1,1,{
 OnTouch:

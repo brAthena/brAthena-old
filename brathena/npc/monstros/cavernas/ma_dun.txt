@@ -25,6 +25,6 @@
 //==================================================
 // ma_dun01 - Bangungot Hospital F1
 //==================================================
-ma_dun01,0,0,0,0	monster	Manananggal	2311,70,0,0,0
-ma_dun01,0,0,0,0	monster	Wakwak	2315,50,0,0,0
-ma_dun01,0,0,0,0	monster	Tiyanak	2314,30,0,0,0
+ma_dun01,0,0,0,0	monster	Manananggal	MANANANGGAL,70,0,0,0
+ma_dun01,0,0,0,0	monster	Wakwak	WAKWAK,50,0,0,0
+ma_dun01,0,0,0,0	monster	Tiyanak	TIYANAK,30,0,0,0

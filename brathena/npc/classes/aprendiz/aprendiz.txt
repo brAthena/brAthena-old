@@ -6590,28 +6590,28 @@ new_1-2,118,108,3	script#vpo	Funcionária Kafra#nv1	4_F_KAFRA1,{
 //============================================================
 // Mobs do Campo de Treinamento
 //============================================================
-new_1-3,0,0,0,0	monster	Chonchon	1011,10,0,0,0
-new_1-3,0,0,0,0	monster	Drops	1113,10,0,0,0
-new_1-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
-new_1-3,0,0,0,0	monster	Lunático	1063,10,0,0,0
-new_1-3,0,0,0,0	monster	Poring	1002,10,0,0,0
-new_2-3,0,0,0,0	monster	Condor	1009,10,0,0,0
-new_2-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
-new_2-3,0,0,0,0	monster	Picky	1050,10,0,0,0
-new_2-3,0,0,0,0	monster	Sapo de Roda	1012,10,0,0,0
-new_2-3,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
-new_3-3,0,0,0,0	monster	Condor	1009,10,0,0,0
-new_3-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
-new_3-3,0,0,0,0	monster	Picky	1050,10,0,0,0
-new_3-3,0,0,0,0	monster	Sapo de Roda	1012,10,0,0,0
-new_3-3,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
-new_4-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
-new_4-3,0,0,0,0	monster	Rocker	1052,10,0,0,0
-new_4-3,0,0,0,0	monster	Esporo	1014,10,0,0,0
-new_4-3,0,0,0,0	monster	Besouro-Ladrão	1051,10,0,0,0
-new_4-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	1053,10,0,0,0
-new_5-3,0,0,0,0	monster	Fabre	1184,5,0,0,0
-new_5-3,0,0,0,0	monster	Rocker	1052,10,0,0,0
-new_5-3,0,0,0,0	monster	Esporo	1014,1,0,0,0
-new_5-3,0,0,0,0	monster	Besouro-Ladrão	1051,1,0,0,0
-new_5-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	1053,1,0,0,0
+new_1-3,0,0,0,0	monster	Chonchon	CHONCHON,10,0,0,0
+new_1-3,0,0,0,0	monster	Drops	DROPS,10,0,0,0
+new_1-3,0,0,0,0	monster	Fabre	FABRE_,5,0,0,0
+new_1-3,0,0,0,0	monster	Lunático	LUNATIC,10,0,0,0
+new_1-3,0,0,0,0	monster	Poring	PORING,10,0,0,0
+new_2-3,0,0,0,0	monster	Condor	CONDOR,10,0,0,0
+new_2-3,0,0,0,0	monster	Fabre	FABRE_,5,0,0,0
+new_2-3,0,0,0,0	monster	Picky	PICKY_,10,0,0,0
+new_2-3,0,0,0,0	monster	Sapo de Roda	RODA_FROG,10,0,0,0
+new_2-3,0,0,0,0	monster	Salgueiro	WILOW,10,0,0,0
+new_3-3,0,0,0,0	monster	Condor	CONDOR,10,0,0,0
+new_3-3,0,0,0,0	monster	Fabre	FABRE_,5,0,0,0
+new_3-3,0,0,0,0	monster	Picky	PICKY_,10,0,0,0
+new_3-3,0,0,0,0	monster	Sapo de Roda	RODA_FROG,10,0,0,0
+new_3-3,0,0,0,0	monster	Salgueiro	WILOW,10,0,0,0
+new_4-3,0,0,0,0	monster	Fabre	FABRE_,5,0,0,0
+new_4-3,0,0,0,0	monster	Rocker	ROCKER,10,0,0,0
+new_4-3,0,0,0,0	monster	Esporo	SPORE,10,0,0,0
+new_4-3,0,0,0,0	monster	Besouro-Ladrão	THIEF_BUG,10,0,0,0
+new_4-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	THIEF_BUG_,10,0,0,0
+new_5-3,0,0,0,0	monster	Fabre	FABRE_,5,0,0,0
+new_5-3,0,0,0,0	monster	Rocker	ROCKER,10,0,0,0
+new_5-3,0,0,0,0	monster	Esporo	SPORE,1,0,0,0
+new_5-3,0,0,0,0	monster	Besouro-Ladrão	THIEF_BUG,1,0,0,0
+new_5-3,0,0,0,0	monster	Besouro-Ladrão Fêmea	THIEF_BUG_,1,0,0,0

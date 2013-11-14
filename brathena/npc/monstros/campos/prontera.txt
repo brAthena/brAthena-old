@@ -27,405 +27,405 @@
 //==================================================
 // [Old Times] prt_fild00 - Arredores de Prontera 
 //==================================================
-prt_fild00,0,0,0,0	monster#ot	Poring	1002,55,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Zangão	1004,20,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Fabre	1007,50,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Pupa	1008,10,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Sapo de Rodda	1012,15,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Creamy	1018,20,0,0,0
-prt_fild00,0,0,0,0	monster#ot	Lunático	1063,40,0,0,0
-prt_fild00,227,212,0,0	monster#ot	Planta Brilhante	1083,1,1800000,0,1
-prt_fild00,285,138,10,10	monster#ot	Planta Verde	1080,5,360000,0,1,{}
+prt_fild00,0,0,0,0	monster#ot	Poring	PORING,55,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Zangão	HORNET,20,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Fabre	FABRE,50,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Pupa	PUPA,10,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,15,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Creamy	CREAMY,20,0,0,0
+prt_fild00,0,0,0,0	monster#ot	Lunático	LUNATIC,40,0,0,0
+prt_fild00,227,212,0,0	monster#ot	Planta Brilhante	SHINING_PLANT,1,1800000,0,1
+prt_fild00,285,138,10,10	monster#ot	Planta Verde	GREEN_PLANT,5,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild00 - Arredores de Prontera
 //==================================================
-prt_fild00,0,0,0,0	monster#pre	Creamy	1018,10,0,0,0
-prt_fild00,0,0,0,0	monster#pre	Fabre	1007,20,0,0,0
-prt_fild00,0,0,0,0	monster#pre	Pupa	1008,30,0,0,0
-prt_fild00,0,0,0,0	monster#pre	Lunático	1063,30,0,0,0
-prt_fild00,0,0,0,0	monster#pre	Poring	1002,40,0,0,0
-prt_fild00,0,0,0,0	monster#pre	Zangão	1004,70,0,0,0
-prt_fild00,227,212,0,0	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
-prt_fild00,285,138,10,10	monster#pre	Planta Verde	1080,5,360000,180000,1,{}
+prt_fild00,0,0,0,0	monster#pre	Creamy	CREAMY,10,0,0,0
+prt_fild00,0,0,0,0	monster#pre	Fabre	FABRE,20,0,0,0
+prt_fild00,0,0,0,0	monster#pre	Pupa	PUPA,30,0,0,0
+prt_fild00,0,0,0,0	monster#pre	Lunático	LUNATIC,30,0,0,0
+prt_fild00,0,0,0,0	monster#pre	Poring	PORING,40,0,0,0
+prt_fild00,0,0,0,0	monster#pre	Zangão	HORNET,70,0,0,0
+prt_fild00,227,212,0,0	monster#pre	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1
+prt_fild00,285,138,10,10	monster#pre	Planta Verde	GREEN_PLANT,5,360000,180000,1,{}
 
 //==================================================
 // [Renovação] prt_fild00 - Arredores de Prontera 
 //==================================================
-prt_fild00,0,0,0,0	monster#re	Sapo de Roda	1012,130,5000,0,0
-prt_fild00,0,0,0,0	monster#re	Ambernite	1094,50,5000,0,0
-prt_fild00,0,0,0,0	monster#re	Bebe Selvagem	1167,20,5000,0,0
-prt_fild00,227,212,0,0	monster#re	Planta Brilhante	1083,1,1800000,900000,1
-prt_fild00,285,138,10,10	monster#re	Planta Verde	1080,5,360000,180000,1,{}
+prt_fild00,0,0,0,0	monster#re	Sapo de Roda	RODA_FROG,130,5000,0,0
+prt_fild00,0,0,0,0	monster#re	Ambernite	AMBERNITE,50,5000,0,0
+prt_fild00,0,0,0,0	monster#re	Bebe Selvagem	SAVAGE_BABE,20,5000,0,0
+prt_fild00,227,212,0,0	monster#re	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1
+prt_fild00,285,138,10,10	monster#re	Planta Verde	GREEN_PLANT,5,360000,180000,1,{}
 
  //==================================================
 // [Old Times] prt_fild01 - Arredores de Prontera 
 //==================================================
-prt_fild01,0,0,0,0	monster#ot	Poring	1002,50,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Fabre	1007,25,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Pupa	1008,5,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Sapo de Rodda	1012,20,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	1048,10,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	1051,30,0,0,0
-prt_fild01,0,0,0,0	monster#ot	Lunático	1063,70,0,0,0
-prt_fild01,199,266,3,3	monster#ot	Planta Azul	1079,1,900000,0,1
-prt_fild01,199,266,3,3	monster#ot	Planta Verde	1080,3,360000,0,1,{}
+prt_fild01,0,0,0,0	monster#ot	Poring	PORING,50,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Fabre	FABRE,25,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Pupa	PUPA,5,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,20,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,10,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	THIEF_BUG,30,0,0,0
+prt_fild01,0,0,0,0	monster#ot	Lunático	LUNATIC,70,0,0,0
+prt_fild01,199,266,3,3	monster#ot	Planta Azul	BLUE_PLANT,1,900000,0,1
+prt_fild01,199,266,3,3	monster#ot	Planta Verde	GREEN_PLANT,3,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild01 - Arredores de Prontera
 //==================================================
-prt_fild01,0,0,0,0	monster#pre	Besouro-Ladrão	1051,30,0,0,0
-prt_fild01,0,0,0,0	monster#pre	Fabre	1007,20,0,0,0
-prt_fild01,0,0,0,0	monster#pre	Pupa	1008,10,0,0,0
-prt_fild01,0,0,0,0	monster#pre	Lunático	1063,80,0,0,0
-prt_fild01,0,0,0,0	monster#pre	Poring	1002,30,0,0,0
-prt_fild01,199,266,3,3	monster#pre	Planta Verde	1080,3,360000,180000,1
-prt_fild01,199,266,3,3	monster#pre	Planta Azul	1079,1,900000,450000,1,{}
+prt_fild01,0,0,0,0	monster#pre	Besouro-Ladrão	THIEF_BUG,30,0,0,0
+prt_fild01,0,0,0,0	monster#pre	Fabre	FABRE,20,0,0,0
+prt_fild01,0,0,0,0	monster#pre	Pupa	PUPA,10,0,0,0
+prt_fild01,0,0,0,0	monster#pre	Lunático	LUNATIC,80,0,0,0
+prt_fild01,0,0,0,0	monster#pre	Poring	PORING,30,0,0,0
+prt_fild01,199,266,3,3	monster#pre	Planta Verde	GREEN_PLANT,3,360000,180000,1
+prt_fild01,199,266,3,3	monster#pre	Planta Azul	BLUE_PLANT,1,900000,450000,1,{}
 
 //==================================================
 // [Renovação] prt_fild01 - Arredores de Prontera 
 //==================================================
-prt_fild01,0,0,0,0	monster#re	Lunático	1063,140,5000,0,0
-prt_fild01,0,0,0,0	monster#re	Poring	1002,30,5000,0,0
-prt_fild01,0,0,0,0	monster#re	Fabre	1007,30,5000,0,0
-prt_fild01,199,266,3,3	monster#re	Planta Verde	1080,3,360000,180000,1
-prt_fild01,199,266,3,3	monster#re	Planta Azul	1079,1,900000,450000,1,{}
+prt_fild01,0,0,0,0	monster#re	Lunático	LUNATIC,140,5000,0,0
+prt_fild01,0,0,0,0	monster#re	Poring	PORING,30,5000,0,0
+prt_fild01,0,0,0,0	monster#re	Fabre	FABRE,30,5000,0,0
+prt_fild01,199,266,3,3	monster#re	Planta Verde	GREEN_PLANT,3,360000,180000,1
+prt_fild01,199,266,3,3	monster#re	Planta Azul	BLUE_PLANT,1,900000,450000,1,{}
 
 //==================================================
 // [Old Times] prt_fild02 - Arredores de Prontera 
 //==================================================
-prt_fild02,0,0,0,0	monster#ot	Poring	1002,50,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Fabre	1007,40,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Pupa	1008,15,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Mandrágora	1020,75,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	1051,20,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Besouro-Ladrão Fêmea	1053,15,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Lunático	1063,30,0,0,0
-prt_fild02,0,0,0,0	monster#ot	Eclipse	1093,1,1800000,0,1
-prt_fild02,339,309,3,3	monster#ot	Planta Brilhante	1083,1,1800000,0,1,{}
+prt_fild02,0,0,0,0	monster#ot	Poring	PORING,50,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Fabre	FABRE,40,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Pupa	PUPA,15,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Mandrágora	MANDRAGORA,75,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	THIEF_BUG,20,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Besouro-Ladrão Fêmea	THIEF_BUG_,15,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Lunático	LUNATIC,30,0,0,0
+prt_fild02,0,0,0,0	monster#ot	Eclipse	ECLIPSE,1,1800000,0,1
+prt_fild02,339,309,3,3	monster#ot	Planta Brilhante	SHINING_PLANT,1,1800000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild02 - Arredores de Prontera
 //==================================================
-prt_fild02,0,0,0,0	monster#pre	Mandrágora	1020,70,0,0,0
-prt_fild02,0,0,0,0	monster#pre	Fabre	1007,50,0,0,0
-prt_fild02,0,0,0,0	monster#pre	Pupa	1008,20,0,0,0
-prt_fild02,0,0,0,0	monster#pre	Lunático	1063,10,0,0,0
-prt_fild02,0,0,0,0	monster#pre	Poring	1002,30,0,0,0
-prt_fild02,0,0,0,0	monster#pre	Eclipse	1093,1,1800000,1200000,0
-prt_fild02,339,309,3,3	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
-prt_fild02,0,0,0,0	monster#pre	Planta Brilhante	1083,2,1800000,900000,1,{}
+prt_fild02,0,0,0,0	monster#pre	Mandrágora	MANDRAGORA,70,0,0,0
+prt_fild02,0,0,0,0	monster#pre	Fabre	FABRE,50,0,0,0
+prt_fild02,0,0,0,0	monster#pre	Pupa	PUPA,20,0,0,0
+prt_fild02,0,0,0,0	monster#pre	Lunático	LUNATIC,10,0,0,0
+prt_fild02,0,0,0,0	monster#pre	Poring	PORING,30,0,0,0
+prt_fild02,0,0,0,0	monster#pre	Eclipse	ECLIPSE,1,1800000,1200000,0
+prt_fild02,339,309,3,3	monster#pre	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1
+prt_fild02,0,0,0,0	monster#pre	Planta Brilhante	SHINING_PLANT,2,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] prt_fild02 - Arredores de Prontera 
 //==================================================
-prt_fild02,0,0,0,0	monster#re	Percevejo	1174,140,5000,0,0
-prt_fild02,0,0,0,0	monster#re	Creamy	1018,30,5000,0,0
-prt_fild02,0,0,0,0	monster#re	Poporing	1031,30,5000,0,0
-prt_fild02,0,0,0,0	monster#re	Eclipse	1093,1,1800000,1200000,0
-prt_fild02,339,309,3,3	monster#re	Planta Brilhante	1083,1,1800000,900000,1
-prt_fild02,0,0,0,0	monster#re	Planta Brilhante	1083,2,1800000,900000,1,{}
+prt_fild02,0,0,0,0	monster#re	Percevejo	STAINER,140,5000,0,0
+prt_fild02,0,0,0,0	monster#re	Creamy	CREAMY,30,5000,0,0
+prt_fild02,0,0,0,0	monster#re	Poporing	POPORING,30,5000,0,0
+prt_fild02,0,0,0,0	monster#re	Eclipse	ECLIPSE,1,1800000,1200000,0
+prt_fild02,339,309,3,3	monster#re	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1
+prt_fild02,0,0,0,0	monster#re	Planta Brilhante	SHINING_PLANT,2,1800000,900000,1,{}
 
 //==================================================
 // [Old Times] prt_fild03 - Arredores de Prontera 
 //==================================================
-prt_fild03,0,0,0,0	monster#ot	Fabre	1007,40,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Pupa	1008,15,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Creamy	1018,30,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Poporing	1031,35,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	1048,10,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Yoyo	1057,65,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Lunático	1063,30,0,0,0
-prt_fild03,0,0,0,0	monster#ot	Choco	1214,3,1800000,0,1
-prt_fild03,296,58,15,15	monster#ot	Planta Azul	1079,2,900000,0,1
-prt_fild03,296,58,15,15	monster#ot	Planta Verde	1080,5,180000,0,1,{}
+prt_fild03,0,0,0,0	monster#ot	Fabre	FABRE,40,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Pupa	PUPA,15,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Creamy	CREAMY,30,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Poporing	POPORING,35,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,10,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Yoyo	YOYO,65,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Lunático	LUNATIC,30,0,0,0
+prt_fild03,0,0,0,0	monster#ot	Choco	CHOCO,3,1800000,0,1
+prt_fild03,296,58,15,15	monster#ot	Planta Azul	BLUE_PLANT,2,900000,0,1
+prt_fild03,296,58,15,15	monster#ot	Planta Verde	GREEN_PLANT,5,180000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild03 - Arredores de Prontera
 //==================================================
-prt_fild03,0,0,0,0	monster#pre	Yoyo	1057,80,0,0,0
-prt_fild03,0,0,0,0	monster#pre	Fumacento	1056,40,0,0,0
-prt_fild03,0,0,0,0	monster#pre	Choco	1214,1,0,0,0
-prt_fild03,0,0,0,0	monster#pre	Poporing	1031,10,0,0,0
-prt_fild03,296,58,15,15	monster#pre	Planta Verde	1080,5,180000,90000,1
-prt_fild03,296,58,15,15	monster#pre	Planta Azul	1079,2,900000,450000,1
-prt_fild03,307,75,5,5	monster#pre	Planta Verde	1080,5,360000,180000,1
-prt_fild03,0,0,0,0	monster#pre	Planta Verde	1080,5,360000,180000,1
-prt_fild03,148,107,5,5	monster#pre	Planta Verde	1080,5,360000,180000,1,{}
+prt_fild03,0,0,0,0	monster#pre	Yoyo	YOYO,80,0,0,0
+prt_fild03,0,0,0,0	monster#pre	Fumacento	SMOKIE,40,0,0,0
+prt_fild03,0,0,0,0	monster#pre	Choco	CHOCO,1,0,0,0
+prt_fild03,0,0,0,0	monster#pre	Poporing	POPORING,10,0,0,0
+prt_fild03,296,58,15,15	monster#pre	Planta Verde	GREEN_PLANT,5,180000,90000,1
+prt_fild03,296,58,15,15	monster#pre	Planta Azul	BLUE_PLANT,2,900000,450000,1
+prt_fild03,307,75,5,5	monster#pre	Planta Verde	GREEN_PLANT,5,360000,180000,1
+prt_fild03,0,0,0,0	monster#pre	Planta Verde	GREEN_PLANT,5,360000,180000,1
+prt_fild03,148,107,5,5	monster#pre	Planta Verde	GREEN_PLANT,5,360000,180000,1,{}
 
 //==================================================
 // [Renovação] prt_fild03 - Arredores de Prontera
 //==================================================
-prt_fild03,0,0,0,0	monster#re	Yoyo	1057,100,5000,0,0
-prt_fild03,0,0,0,0	monster#re	Poporing	1031,30,5000,0,0
-prt_fild03,0,0,0,0	monster#re	Besouro-Chifre	1128,30,5000,0,0
-prt_fild03,0,0,0,0	monster#re	Choco	1214,1,5000,0,0
-prt_fild03,296,58,15,15	monster#re	Planta Verde	1080,5,180000,90000,1
-prt_fild03,296,58,15,15	monster#re	Planta Azul	1079,2,900000,450000,1
-prt_fild03,307,75,5,5	monster#re	Planta Verde	1080,5,360000,180000,1
-prt_fild03,147,219,5,5	monster#re	Planta Verde	1080,5,360000,180000,1
-prt_fild03,148,107,5,5	monster#re	Planta Verde	1080,5,360000,180000,1,{}
+prt_fild03,0,0,0,0	monster#re	Yoyo	YOYO,100,5000,0,0
+prt_fild03,0,0,0,0	monster#re	Poporing	POPORING,30,5000,0,0
+prt_fild03,0,0,0,0	monster#re	Besouro-Chifre	HORN,30,5000,0,0
+prt_fild03,0,0,0,0	monster#re	Choco	CHOCO,1,5000,0,0
+prt_fild03,296,58,15,15	monster#re	Planta Verde	GREEN_PLANT,5,180000,90000,1
+prt_fild03,296,58,15,15	monster#re	Planta Azul	BLUE_PLANT,2,900000,450000,1
+prt_fild03,307,75,5,5	monster#re	Planta Verde	GREEN_PLANT,5,360000,180000,1
+prt_fild03,147,219,5,5	monster#re	Planta Verde	GREEN_PLANT,5,360000,180000,1
+prt_fild03,148,107,5,5	monster#re	Planta Verde	GREEN_PLANT,5,360000,180000,1,{}
 
 //==================================================
 // [Old Times] prt_fild04 - Arredores de Prontera 
 //==================================================
-prt_fild04,0,0,0,0	monster#ot	Poring	1002,35,0,0,0
-prt_fild04,0,0,0,0	monster#ot	Zangão	1004,15,0,0,0
-prt_fild04,0,0,0,0	monster#ot	Sapo de Rodda	1012,10,0,0,0
-prt_fild04,0,0,0,0	monster#ot	Rocker	1052,45,0,0,0
-prt_fild04,0,0,0,0	monster#ot	Lunático	1063,25,0,0,0
-prt_fild04,147,319,5,5	monster#ot	Planta Verde	1080,5,360000,0,1
-prt_fild04,148,107,5,5	monster#ot	Planta Verde	1080,5,360000,0,1
-prt_fild04,307,75,5,5	monster#ot	Planta Verde	1080,5,360000,0,1,{}
+prt_fild04,0,0,0,0	monster#ot	Poring	PORING,35,0,0,0
+prt_fild04,0,0,0,0	monster#ot	Zangão	HORNET,15,0,0,0
+prt_fild04,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,10,0,0,0
+prt_fild04,0,0,0,0	monster#ot	Rocker	ROCKER,45,0,0,0
+prt_fild04,0,0,0,0	monster#ot	Lunático	LUNATIC,25,0,0,0
+prt_fild04,147,319,5,5	monster#ot	Planta Verde	GREEN_PLANT,5,360000,0,1
+prt_fild04,148,107,5,5	monster#ot	Planta Verde	GREEN_PLANT,5,360000,0,1
+prt_fild04,307,75,5,5	monster#ot	Planta Verde	GREEN_PLANT,5,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild04 - Arredores de Prontera
 //==================================================
-prt_fild04,0,0,0,0	monster#pre	Rocker	1052,70,0,0,0
-prt_fild04,0,0,0,0	monster#pre	Creamy	1018,40,0,0,0
-prt_fild04,0,0,0,0	monster#pre	Pupa	1008,10,0,0,0
-prt_fild04,0,0,0,0	monster#pre	Poring	1002,30,0,0,0
-prt_fild04,0,0,0,0	monster#pre	Vocal	1088,1,1800000,1200000,0
-prt_fild04,350,114,10,10	monster#pre	Planta Verde	1080,5,900000,450000,1,{}
+prt_fild04,0,0,0,0	monster#pre	Rocker	ROCKER,70,0,0,0
+prt_fild04,0,0,0,0	monster#pre	Creamy	CREAMY,40,0,0,0
+prt_fild04,0,0,0,0	monster#pre	Pupa	PUPA,10,0,0,0
+prt_fild04,0,0,0,0	monster#pre	Poring	PORING,30,0,0,0
+prt_fild04,0,0,0,0	monster#pre	Vocal	VOCAL,1,1800000,1200000,0
+prt_fild04,350,114,10,10	monster#pre	Planta Verde	GREEN_PLANT,5,900000,450000,1,{}
 
 //==================================================
 // [Renovação] prt_fild04 - Arredores de Prontera 
 //==================================================
-prt_fild04,0,0,0,0	monster#re	Ambernite	1094,80,5000,0,0
-prt_fild04,0,0,0,0	monster#re	Sapo de Roda	1012,20,5000,0,0
-prt_fild04,0,0,0,0	monster#re	Vocal	1088,1,1800000,1200000,0
-prt_fild04,350,114,10,10	monster#re	Planta Verde	1080,5,900000,450000,1,{}
+prt_fild04,0,0,0,0	monster#re	Ambernite	AMBERNITE,80,5000,0,0
+prt_fild04,0,0,0,0	monster#re	Sapo de Roda	RODA_FROG,20,5000,0,0
+prt_fild04,0,0,0,0	monster#re	Vocal	VOCAL,1,1800000,1200000,0
+prt_fild04,350,114,10,10	monster#re	Planta Verde	GREEN_PLANT,5,900000,450000,1,{}
 
 //==================================================
 // [Old Times] prt_fild05 - Arredores de Prontera 
 //==================================================
-prt_fild05,0,0,0,0	monster#ot	Poring	1002,55,0,0,0
-prt_fild05,0,0,0,0	monster#ot	Fabre	1007,65,0,0,0
-prt_fild05,0,0,0,0	monster#ot	Pupa	1008,20,0,0,0
-prt_fild05,0,0,0,0	monster#ot	Sapo de Rodda	1012,15,0,0,0
-prt_fild05,0,0,0,0	monster#ot	Lunático	1063,35,0,0,0
-prt_fild05,208,37,10,10	monster#ot	Planta Azul	1079,1,900000,0,1
-prt_fild05,208,37,10,10	monster#ot	Planta Verde	1080,6,900000,0,1,{}
+prt_fild05,0,0,0,0	monster#ot	Poring	PORING,55,0,0,0
+prt_fild05,0,0,0,0	monster#ot	Fabre	FABRE,65,0,0,0
+prt_fild05,0,0,0,0	monster#ot	Pupa	PUPA,20,0,0,0
+prt_fild05,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,15,0,0,0
+prt_fild05,0,0,0,0	monster#ot	Lunático	LUNATIC,35,0,0,0
+prt_fild05,208,37,10,10	monster#ot	Planta Azul	BLUE_PLANT,1,900000,0,1
+prt_fild05,208,37,10,10	monster#ot	Planta Verde	GREEN_PLANT,6,900000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild05 - Arredores de Prontera
 //==================================================
-prt_fild05,0,0,0,0	monster#pre	Poring	1002,70,0,0,0
-prt_fild05,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,20,0,0,0
-prt_fild05,0,0,0,0	monster#pre	Lunático	1063,30,0,0,0
-prt_fild05,0,0,0,0	monster#pre	Pupa	1008,30,0,0,0
-prt_fild05,0,0,0,0	monster#pre	Besouro-Ladrão	1051,10,0,0,0
-prt_fild05,208,37,10,10	monster#pre	Planta Verde	1080,6,900000,450000,1
-prt_fild05,208,37,10,10	monster#pre	Planta Azul	1079,1,900000,450000,1,{}
+prt_fild05,0,0,0,0	monster#pre	Poring	PORING,70,0,0,0
+prt_fild05,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,20,0,0,0
+prt_fild05,0,0,0,0	monster#pre	Lunático	LUNATIC,30,0,0,0
+prt_fild05,0,0,0,0	monster#pre	Pupa	PUPA,30,0,0,0
+prt_fild05,0,0,0,0	monster#pre	Besouro-Ladrão	THIEF_BUG,10,0,0,0
+prt_fild05,208,37,10,10	monster#pre	Planta Verde	GREEN_PLANT,6,900000,450000,1
+prt_fild05,208,37,10,10	monster#pre	Planta Azul	BLUE_PLANT,1,900000,450000,1,{}
 
 //==================================================
 // [Renovação] prt_fild05 - Arredores de Prontera 
 //==================================================
-prt_fild05,0,0,0,0	monster#re	Zangão	1004,140,5000,0,0
-prt_fild05,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,30,5000,0,0
-prt_fild05,0,0,0,0	monster#re	Besouro-Ladrão	1051,30,5000,0,0
-prt_fild05,208,37,10,10	monster#re	Planta Verde	1080,6,900000,450000,1
-prt_fild05,208,37,10,10	monster#re	Planta Azul	1079,1,900000,450000,1,{}
+prt_fild05,0,0,0,0	monster#re	Zangão	HORNET,140,5000,0,0
+prt_fild05,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,30,5000,0,0
+prt_fild05,0,0,0,0	monster#re	Besouro-Ladrão	THIEF_BUG,30,5000,0,0
+prt_fild05,208,37,10,10	monster#re	Planta Verde	GREEN_PLANT,6,900000,450000,1
+prt_fild05,208,37,10,10	monster#re	Planta Azul	BLUE_PLANT,1,900000,450000,1,{}
 
 //==================================================
 // [Old Times] prt_fild06 - Arredores de Prontera 
 //==================================================
-prt_fild06,0,0,0,0	monster#ot	Poring	1002,60,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Fabre	1007,60,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Pupa	1008,10,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Sapo de Rodda	1012,20,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	1048,10,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	1051,20,0,0,0
-prt_fild06,0,0,0,0	monster#ot	Lunático	1063,40,0,0,0
-prt_fild06,222,30,40,10	monster#ot	Planta Verde	1080,15,900000,0,1,{}
+prt_fild06,0,0,0,0	monster#ot	Poring	PORING,60,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Fabre	FABRE,60,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Pupa	PUPA,10,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,20,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,10,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Larva de Besouro-Ladrão	THIEF_BUG,20,0,0,0
+prt_fild06,0,0,0,0	monster#ot	Lunático	LUNATIC,40,0,0,0
+prt_fild06,222,30,40,10	monster#ot	Planta Verde	GREEN_PLANT,15,900000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild06 - Arredores de Prontera
 //==================================================
-prt_fild06,0,0,0,0	monster#pre	Lunático	1063,60,0,0,0
-prt_fild06,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	1048,20,0,0,0
-prt_fild06,0,0,0,0	monster#pre	Besouro-Ladrão	1051,10,0,0,0
-prt_fild06,0,0,0,0	monster#pre	Pupa	1008,20,0,0,0
-prt_fild06,0,0,0,0	monster#pre	Poring	1002,60,0,0,0
-prt_fild06,222,30,40,10	monster#pre	Planta Verde	1080,15,900000,450000,1,{}
+prt_fild06,0,0,0,0	monster#pre	Lunático	LUNATIC,60,0,0,0
+prt_fild06,0,0,0,0	monster#pre	Ovo de Besouro-Ladrão	THIEF_BUG_EGG,20,0,0,0
+prt_fild06,0,0,0,0	monster#pre	Besouro-Ladrão	THIEF_BUG,10,0,0,0
+prt_fild06,0,0,0,0	monster#pre	Pupa	PUPA,20,0,0,0
+prt_fild06,0,0,0,0	monster#pre	Poring	PORING,60,0,0,0
+prt_fild06,222,30,40,10	monster#pre	Planta Verde	GREEN_PLANT,15,900000,450000,1,{}
 
 //==================================================
 // [Renovação] prt_fild06 - Arredores de Prontera 
 //==================================================
-prt_fild06,0,0,0,0	monster#re	Fabre	1007,140,5000,0,0
-prt_fild06,0,0,0,0	monster#re	Poring	1002,30,5000,0,0
-prt_fild06,0,0,0,0	monster#re	Lunático	1063,30,5000,0,0
-prt_fild06,222,30,40,10	monster#re	Planta Verde	1080,15,900000,450000,1,{}
+prt_fild06,0,0,0,0	monster#re	Fabre	FABRE,140,5000,0,0
+prt_fild06,0,0,0,0	monster#re	Poring	PORING,30,5000,0,0
+prt_fild06,0,0,0,0	monster#re	Lunático	LUNATIC,30,5000,0,0
+prt_fild06,222,30,40,10	monster#re	Planta Verde	GREEN_PLANT,15,900000,450000,1,{}
 
 //==================================================
 // [Old Times] prt_fild07 - Arredores de Prontera 
 //==================================================
-prt_fild07,0,0,0,0	monster#ot	Poring	1002,45,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Fabre	1007,45,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Sapo de Rodda	1012,30,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Creamy	1018,35,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Rocker	1052,67,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Lunático	1063,40,0,0,0
-prt_fild07,0,0,0,0	monster#ot	Vocal	1088,1,1800000,0,1
-prt_fild07,225,110,5,5	monster#ot	Cogumelo Negro	1084,3,360000,0,1,{}
+prt_fild07,0,0,0,0	monster#ot	Poring	PORING,45,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Fabre	FABRE,45,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,30,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Creamy	CREAMY,35,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Rocker	ROCKER,67,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Lunático	LUNATIC,40,0,0,0
+prt_fild07,0,0,0,0	monster#ot	Vocal	VOCAL,1,1800000,0,1
+prt_fild07,225,110,5,5	monster#ot	Cogumelo Negro	BLACK_MUSHROOM,3,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild07 - Arredores de Prontera
 //==================================================
-prt_fild07,0,0,0,0	monster#pre	Rocker	1052,80,0,0,0
-prt_fild07,0,0,0,0	monster#pre	Poporing	1031,30,0,0,0
-prt_fild07,0,0,0,0	monster#pre	Vocal	1088,1,1800000,1200000,0
-prt_fild07,225,110,5,5	monster#pre	Cogumelo Negro	1084,3,360000,180000,1,{}
+prt_fild07,0,0,0,0	monster#pre	Rocker	ROCKER,80,0,0,0
+prt_fild07,0,0,0,0	monster#pre	Poporing	POPORING,30,0,0,0
+prt_fild07,0,0,0,0	monster#pre	Vocal	VOCAL,1,1800000,1200000,0
+prt_fild07,225,110,5,5	monster#pre	Cogumelo Negro	BLACK_MUSHROOM,3,360000,180000,1,{}
 
 //==================================================
 // [Renovação] prt_fild07 - Arredores de Prontera 
 //==================================================
-prt_fild07,0,0,0,0	monster#re	Rocker	1052,150,5000,0,0
-prt_fild07,0,0,0,0	monster#re	Bebê Selvagem	1167,50,5000,0,0
-prt_fild07,0,0,0,0	monster#re	Vocal	1088,1,1800000,1200000,0
-prt_fild07,225,110,5,5	monster#re	Cogumelo Negro	1084,3,360000,180000,1,{}
+prt_fild07,0,0,0,0	monster#re	Rocker	ROCKER,150,5000,0,0
+prt_fild07,0,0,0,0	monster#re	Bebê Selvagem	SAVAGE_BABE,50,5000,0,0
+prt_fild07,0,0,0,0	monster#re	Vocal	VOCAL,1,1800000,1200000,0
+prt_fild07,225,110,5,5	monster#re	Cogumelo Negro	BLACK_MUSHROOM,3,360000,180000,1,{}
 
 //==================================================
 // [Old Times] prt_fild08 - Arredores de Prontera 
 //==================================================
-prt_fild08,0,0,0,0	monster#ot	Poring	1002,80,0,0,0
-prt_fild08,0,0,0,0	monster#ot	Fabre	1007,40,0,0,0
-prt_fild08,0,0,0,0	monster#ot	Pupa	1008,10,0,0,0
-prt_fild08,0,0,0,0	monster#ot	ChonChon	1011,20,0,0,0
-prt_fild08,0,0,0,0	monster#ot	Sapo de Rodda	1012,15,0,0,0
-prt_fild08,0,0,0,0	monster#ot	Lunático	1063,15,0,0,0
-prt_fild08,350,114,10,10	monster#ot	Planta Verde	1080,5,900000,00,1,{}
+prt_fild08,0,0,0,0	monster#ot	Poring	PORING,80,0,0,0
+prt_fild08,0,0,0,0	monster#ot	Fabre	FABRE,40,0,0,0
+prt_fild08,0,0,0,0	monster#ot	Pupa	PUPA,10,0,0,0
+prt_fild08,0,0,0,0	monster#ot	ChonChon	CHONCHON,20,0,0,0
+prt_fild08,0,0,0,0	monster#ot	Sapo de Rodda	RODA_FROG,15,0,0,0
+prt_fild08,0,0,0,0	monster#ot	Lunático	LUNATIC,15,0,0,0
+prt_fild08,350,114,10,10	monster#ot	Planta Verde	GREEN_PLANT,5,900000,00,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild08 - Arredores de Prontera
 //==================================================
-prt_fild08,0,0,0,0	monster#pre	Lunático	1063,40,0,0,0
-prt_fild08,0,0,0,0	monster#pre	Pupa	1008,20,0,0,0
-prt_fild08,0,0,0,0	monster#pre	Poring	1002,70,0,0,0
-prt_fild08,0,0,0,0	monster#pre	Drops	1113,10,0,0,0,{}
+prt_fild08,0,0,0,0	monster#pre	Lunático	LUNATIC,40,0,0,0
+prt_fild08,0,0,0,0	monster#pre	Pupa	PUPA,20,0,0,0
+prt_fild08,0,0,0,0	monster#pre	Poring	PORING,70,0,0,0
+prt_fild08,0,0,0,0	monster#pre	Drops	DROPS,10,0,0,0,{}
 
 //==================================================
 // [Renovação] prt_fild08 - Arredores de Prontera 
 //==================================================
-prt_fild08,0,0,0,0	monster#re	Poring	1002,140,5000,0,0
-prt_fild08,0,0,0,0	monster#re	Lunático	1063,40,5000,0,0
-prt_fild08,0,0,0,0	monster#re	Fabre	1007,40,5000,0,0,{}
+prt_fild08,0,0,0,0	monster#re	Poring	PORING,140,5000,0,0
+prt_fild08,0,0,0,0	monster#re	Lunático	LUNATIC,40,5000,0,0
+prt_fild08,0,0,0,0	monster#re	Fabre	FABRE,40,5000,0,0,{}
 
 //==================================================
 // [Renovação] prt_fild08 - Duplicatas 
 //==================================================
-prt_fild08a,0,0,0,0	monster#re	Poring	1002,140,5000,0,0
-prt_fild08b,0,0,0,0	monster#re	Poring	1002,140,5000,0,0
-prt_fild08c,0,0,0,0	monster#re	Poring	1002,140,5000,0,0
-prt_fild08d,0,0,0,0	monster#re	Poring	1002,140,5000,0,0
-prt_fild08a,0,0,0,0	monster#re	Lunatico	1063,40,5000,0,0
-prt_fild08b,0,0,0,0	monster#re	Lunatico	1063,40,5000,0,0
-prt_fild08c,0,0,0,0	monster#re	Lunatico	1063,40,5000,0,0
-prt_fild08d,0,0,0,0	monster#re	Lunatico	1063,40,5000,0,0
-prt_fild08a,0,0,0,0	monster#re	Fabre	1007,40,5000,0,0
-prt_fild08b,0,0,0,0	monster#re	Fabre	1007,40,5000,0,0
-prt_fild08c,0,0,0,0	monster#re	Fabre	1007,40,5000,0,0
-prt_fild08d,0,0,0,0	monster#re	Fabre	1007,40,5000,0,0,{}
+prt_fild08a,0,0,0,0	monster#re	Poring	PORING,140,5000,0,0
+prt_fild08b,0,0,0,0	monster#re	Poring	PORING,140,5000,0,0
+prt_fild08c,0,0,0,0	monster#re	Poring	PORING,140,5000,0,0
+prt_fild08d,0,0,0,0	monster#re	Poring	PORING,140,5000,0,0
+prt_fild08a,0,0,0,0	monster#re	Lunatico	LUNATIC,40,5000,0,0
+prt_fild08b,0,0,0,0	monster#re	Lunatico	LUNATIC,40,5000,0,0
+prt_fild08c,0,0,0,0	monster#re	Lunatico	LUNATIC,40,5000,0,0
+prt_fild08d,0,0,0,0	monster#re	Lunatico	LUNATIC,40,5000,0,0
+prt_fild08a,0,0,0,0	monster#re	Fabre	FABRE,40,5000,0,0
+prt_fild08b,0,0,0,0	monster#re	Fabre	FABRE,40,5000,0,0
+prt_fild08c,0,0,0,0	monster#re	Fabre	FABRE,40,5000,0,0
+prt_fild08d,0,0,0,0	monster#re	Fabre	FABRE,40,5000,0,0,{}
 
 //==================================================
 // [Old Times] prt_fild09 - Arredores de Prontera 
 //==================================================
-prt_fild09,0,0,0,0	monster#ot	Condor	1009,25,0,0,0
-prt_fild09,0,0,0,0	monster#ot	ChonChon	1011,45,0,0,0
-prt_fild09,0,0,0,0	monster#ot	ChonChon de Aço	1042,5,300000,0,1
-prt_fild09,0,0,0,0	monster#ot	Ovo de PecoPeco	1047,20,0,0,0
-prt_fild09,0,0,0,0	monster#ot	Picky	1049,40,0,0,0
-prt_fild09,0,0,0,0	monster#ot	Picky com casca	1050,40,0,0,0
-prt_fild09,0,0,0,0	monster#ot	Muka	1055,5,300000,0,1
-prt_fild09,0,0,0,0	monster#ot	Filhote de Lobo do Deserto	1107,20,0,0,0
-prt_fild09,0,0,0,0	monster#ot	Drops	1113,65,0,0,0
-prt_fild09,237,115,5,5	monster#ot	Planta Amarela	1081,3,360000,0,1,{}
+prt_fild09,0,0,0,0	monster#ot	Condor	CONDOR,25,0,0,0
+prt_fild09,0,0,0,0	monster#ot	ChonChon	CHONCHON,45,0,0,0
+prt_fild09,0,0,0,0	monster#ot	ChonChon de Aço	STEEL_CHONCHON,5,300000,0,1
+prt_fild09,0,0,0,0	monster#ot	Ovo de PecoPeco	PECOPECO_EGG,20,0,0,0
+prt_fild09,0,0,0,0	monster#ot	Picky	PICKY,40,0,0,0
+prt_fild09,0,0,0,0	monster#ot	Picky com casca	PICKY_,40,0,0,0
+prt_fild09,0,0,0,0	monster#ot	Muka	MUKA,5,300000,0,1
+prt_fild09,0,0,0,0	monster#ot	Filhote de Lobo do Deserto	DESERT_WOLF_B,20,0,0,0
+prt_fild09,0,0,0,0	monster#ot	Drops	DROPS,65,0,0,0
+prt_fild09,237,115,5,5	monster#ot	Planta Amarela	YELLOW_PLANT,3,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild09 - Arredores de Prontera
 //==================================================
-prt_fild09,0,0,0,0	monster#pre	Bebê Selvagem	1167,70,0,0,0
-prt_fild09,0,0,0,0	monster#pre	Filhote de Lobo do Deserto	1107,20,0,0,0
-prt_fild09,0,0,0,0	monster#pre	Ovo de Peco Peco	1047,20,0,0,0
-prt_fild09,0,0,0,0	monster#pre	Picky	1049,20,0,0,0
-prt_fild09,0,0,0,0	monster#pre	Condor	1009,10,0,0,0
-prt_fild09,237,115,5,5	monster#pre	Planta Amarela	1081,3,360000,180000,1,{}
+prt_fild09,0,0,0,0	monster#pre	Bebê Selvagem	SAVAGE_BABE,70,0,0,0
+prt_fild09,0,0,0,0	monster#pre	Filhote de Lobo do Deserto	DESERT_WOLF_B,20,0,0,0
+prt_fild09,0,0,0,0	monster#pre	Ovo de Peco Peco	PECOPECO_EGG,20,0,0,0
+prt_fild09,0,0,0,0	monster#pre	Picky	PICKY,20,0,0,0
+prt_fild09,0,0,0,0	monster#pre	Condor	CONDOR,10,0,0,0
+prt_fild09,237,115,5,5	monster#pre	Planta Amarela	YELLOW_PLANT,3,360000,180000,1,{}
 
 //==================================================
 // [Renovação] prt_fild09 - Arredores de Prontera 
 //==================================================
-prt_fild09,0,0,0,0	monster#re	Magnólia	1138,140,5000,0,0
-prt_fild09,0,0,0,0	monster#re	Metaller	1058,60,5000,0,0
-prt_fild09,237,115,5,5	monster#re	Planta Amarela	1081,3,360000,180000,1,{}
+prt_fild09,0,0,0,0	monster#re	Magnólia	MAGNOLIA,140,5000,0,0
+prt_fild09,0,0,0,0	monster#re	Metaller	METALLER,60,5000,0,0
+prt_fild09,237,115,5,5	monster#re	Planta Amarela	YELLOW_PLANT,3,360000,180000,1,{}
 
 //==================================================
 // [Old Times] prt_fild10 - Arredores de Prontera 
 //==================================================
-prt_fild10,0,0,0,0	monster#ot	Salgueiro	1010,5,0,0,0
-prt_fild10,0,0,0,0	monster#ot	Creamy	1018,10,0,0,0
-prt_fild10,0,0,0,0	monster#ot	Poporing	1031,15,0,0,0
-prt_fild10,0,0,0,0	monster#ot	Salgueiro Ancião	1033,65,0,0,0
-prt_fild10,0,0,0,0	monster#ot	Lunático	1063,10,0,0,0
-prt_fild10,0,0,0,0	monster#ot	Bebe Selvagem	1167,45,0,0,0
-prt_fild10,155,179,10,10	monster#ot	Planta Brilhante	1083,1,1800000,0,1
-prt_fild10,99,114,20,5	monster#ot	Cogumelo Vermelo	1085,15,360000,0,1,{}
+prt_fild10,0,0,0,0	monster#ot	Salgueiro	WILOW,5,0,0,0
+prt_fild10,0,0,0,0	monster#ot	Creamy	CREAMY,10,0,0,0
+prt_fild10,0,0,0,0	monster#ot	Poporing	POPORING,15,0,0,0
+prt_fild10,0,0,0,0	monster#ot	Salgueiro Ancião	ELDER_WILOW,65,0,0,0
+prt_fild10,0,0,0,0	monster#ot	Lunático	LUNATIC,10,0,0,0
+prt_fild10,0,0,0,0	monster#ot	Bebe Selvagem	SAVAGE_BABE,45,0,0,0
+prt_fild10,155,179,10,10	monster#ot	Planta Brilhante	SHINING_PLANT,1,1800000,0,1
+prt_fild10,99,114,20,5	monster#ot	Cogumelo Vermelo	RED_MUSHROOM,15,360000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild10 - Arredores de Prontera
 //==================================================
-prt_fild10,0,0,0,0	monster#pre	Selvagem	1166,70,0,0,0
-prt_fild10,0,0,0,0	monster#pre	Bebê Selvagem	1167,40,0,0,0
-prt_fild10,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
-prt_fild10,0,0,0,0	monster#pre	Besouro-Ladrão	1051,10,0,0,0
-prt_fild10,99,114,20,5	monster#pre	Cogumelo Vermelho	1085,15,360000,180000,1
-prt_fild10,155,179,10,10	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
+prt_fild10,0,0,0,0	monster#pre	Selvagem	SAVAGE,70,0,0,0
+prt_fild10,0,0,0,0	monster#pre	Bebê Selvagem	SAVAGE_BABE,40,0,0,0
+prt_fild10,0,0,0,0	monster#pre	Poporing	POPORING,20,0,0,0
+prt_fild10,0,0,0,0	monster#pre	Besouro-Ladrão	THIEF_BUG,10,0,0,0
+prt_fild10,99,114,20,5	monster#pre	Cogumelo Vermelho	RED_MUSHROOM,15,360000,180000,1
+prt_fild10,155,179,10,10	monster#pre	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] prt_fild10 - Arredores de Prontera 
 //==================================================
-prt_fild10,0,0,0,0	monster#re	Salgueiro Ancião	1033,140,0,0,0
-prt_fild10,0,0,0,0	monster#re	Poporing	1031,20,0,0,0
-prt_fild10,0,0,0,0	monster#re	Koko	1104,20,0,0,0
-prt_fild10,0,0,0,0	monster#re	Percevejo	1128,20,0,0,0
-prt_fild10,99,114,20,5	monster#re	Cogumelo Vermelho	1085,15,360000,180000,1
-prt_fild10,155,179,10,10	monster#re	Planta Brilhante	1083,1,1800000,900000,1,{}
+prt_fild10,0,0,0,0	monster#re	Salgueiro Ancião	ELDER_WILOW,140,0,0,0
+prt_fild10,0,0,0,0	monster#re	Poporing	POPORING,20,0,0,0
+prt_fild10,0,0,0,0	monster#re	Koko	COCO,20,0,0,0
+prt_fild10,0,0,0,0	monster#re	Percevejo	HORN,20,0,0,0
+prt_fild10,99,114,20,5	monster#re	Cogumelo Vermelho	RED_MUSHROOM,15,360000,180000,1
+prt_fild10,155,179,10,10	monster#re	Planta Brilhante	SHINING_PLANT,1,1800000,900000,1,{}
 
 //==================================================
 // [Old Times] prt_fild11 - Arredores de Prontera 
 //==================================================
-prt_fild11,0,0,0,0	monster#ot	Poporing	1031,10,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Salgueiro Ancião	1033,10,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Yoyo	1057,5,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Lunático	1063,10,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Cogumelo Vermelo	1085,10,180000,0,1
-prt_fild11,0,0,0,0	monster#ot	Koko	1104,15,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Koko	1104,20,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Selvagem	1166,45,0,0,0
-prt_fild11,0,0,0,0	monster#ot	Bebe Selvagem	1167,65,0,0,0,{}
+prt_fild11,0,0,0,0	monster#ot	Poporing	POPORING,10,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Salgueiro Ancião	ELDER_WILOW,10,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Yoyo	YOYO,5,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Lunático	LUNATIC,10,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Cogumelo Vermelo	RED_MUSHROOM,10,180000,0,1
+prt_fild11,0,0,0,0	monster#ot	Koko	COCO,15,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Koko	COCO,20,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Selvagem	SAVAGE,45,0,0,0
+prt_fild11,0,0,0,0	monster#ot	Bebe Selvagem	SAVAGE_BABE,65,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild11 - Arredores de Prontera
 //==================================================
-prt_fild11,0,0,0,0	monster#pre	Goblin	1122,10,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Goblin	1123,20,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Goblin	1124,20,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Goblin	1125,30,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Goblin	1126,30,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Goblin Arqueiro	1258,10,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Panzer Goblin	1308,1,1800000,1200000,0
-prt_fild11,0,0,0,0	monster#pre	Goblin a Vapor	1280,30,0,0,0
-prt_fild11,0,0,0,0	monster#pre	Cogumelo Vermelho	1085,10,180000,90000,1,{}
+prt_fild11,0,0,0,0	monster#pre	Goblin	GOBLIN_1,10,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Goblin	GOBLIN_2,20,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Goblin	GOBLIN_3,20,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Goblin	GOBLIN_4,30,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Goblin	GOBLIN_5,30,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Goblin Arqueiro	GOBLIN_ARCHER,10,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Panzer Goblin	PANZER_GOBLIN,1,1800000,1200000,0
+prt_fild11,0,0,0,0	monster#pre	Goblin a Vapor	STEAM_GOBLIN,30,0,0,0
+prt_fild11,0,0,0,0	monster#pre	Cogumelo Vermelho	RED_MUSHROOM,10,180000,90000,1,{}
 
 //==================================================
 // [Renovação] prt_fild11 - Arredores de Prontera
 //==================================================
-prt_fild11,0,0,0,0	monster#re	Goblin	1126,60,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Giro-Goblin	1392,50,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin Arqueiro	1258,50,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin a Vapor	1280,30,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin	1124,10,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin	1125,10,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin	1123,10,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Goblin	1122,10,5000,0,0
-prt_fild11,0,0,0,0	monster#re	Panzer Goblin	1308,1,1800000,1200000,0
-prt_fild11,0,0,0,0	monster#re	Cogumelo Vermelho	1085,10,180000,90000,1,{}
+prt_fild11,0,0,0,0	monster#re	Goblin	GOBLIN_5,60,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Giro-Goblin	ROTAR_ZAIRO,50,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin Arqueiro	GOBLIN_ARCHER,50,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin a Vapor	STEAM_GOBLIN,30,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin	GOBLIN_3,10,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin	GOBLIN_4,10,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin	GOBLIN_2,10,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Goblin	GOBLIN_1,10,5000,0,0
+prt_fild11,0,0,0,0	monster#re	Panzer Goblin	PANZER_GOBLIN,1,1800000,1200000,0
+prt_fild11,0,0,0,0	monster#re	Cogumelo Vermelho	RED_MUSHROOM,10,180000,90000,1,{}

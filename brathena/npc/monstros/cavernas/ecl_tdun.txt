@@ -25,25 +25,25 @@
 //==================================================
 // ecl_tdun01 - Eclage Dungeon
 //==================================================
-ecl_tdun01.gat,0,0,0,0	monster	Cenere	2365,5,5000,0,0
-ecl_tdun01.gat,0,0,0,0	monster	Antique Book	2366,5,5000,0,0
-ecl_tdun01.gat,0,0,0,0	monster	Blue Lichtern	2367,5,5000,0,0
+ecl_tdun01.gat,0,0,0,0	monster	Cenere	CENERE,5,5000,0,0
+ecl_tdun01.gat,0,0,0,0	monster	Antique Book	ANTIQUE_BOOK,5,5000,0,0
+ecl_tdun01.gat,0,0,0,0	monster	Blue Lichtern	LICHTERN_B,5,5000,0,0
 
 //==================================================
 // ecl_tdun02 - Eclage Dungeon
 //==================================================
-ecl_tdun02.gat,0,0,0,0	monster	Cenere	2365,10,5000,0,0
-ecl_tdun02.gat,0,0,0,0	monster	Antique Book	2366,10,5000,0,0
-ecl_tdun02.gat,0,0,0,0	monster	Blue Lichtern	2367,15,5000,0,0
-ecl_tdun02.gat,0,0,0,0	monster	Yellow Lichtern	2368,5,5000,0,0
+ecl_tdun02.gat,0,0,0,0	monster	Cenere	CENERE,10,5000,0,0
+ecl_tdun02.gat,0,0,0,0	monster	Antique Book	ANTIQUE_BOOK,10,5000,0,0
+ecl_tdun02.gat,0,0,0,0	monster	Blue Lichtern	LICHTERN_B,15,5000,0,0
+ecl_tdun02.gat,0,0,0,0	monster	Yellow Lichtern	LICHTERN_Y,5,5000,0,0
 
 //==================================================
 // ecl_tdun03 - Eclage Dungeon
 //==================================================
-ecl_tdun03.gat,0,0,0,0	monster	Cenere	2365,15,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Antique Book	2366,15,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Blue Lichtern	2367,5,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Yellow Lichtern	2368,15,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Red Lichtern	2369,10,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Green Lichtern	2370,15,5000,0,0
-ecl_tdun03.gat,0,0,0,0	monster	Faithful Manager	2371,5,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Cenere	CENERE,15,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Antique Book	ANTIQUE_BOOK,15,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Blue Lichtern	LICHTERN_B,5,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Yellow Lichtern	LICHTERN_Y,15,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Red Lichtern	LICHTERN_R,10,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Green Lichtern	LICHTERN_G,15,5000,0,0
+ecl_tdun03.gat,0,0,0,0	monster	Faithful Manager	FAITHFUL_MANAGER,5,5000,0,0

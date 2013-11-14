@@ -2608,5 +2608,5 @@ monk_test,137,338,1	script	Reinício#monge	1_F_PRIEST,{
 //============================================================
 // Monstros da coleta de cogumelos
 //============================================================
-job_monk,0,0,0,0	monster	Cogumelo	1182,70,0,0,0
-job_monk,0,0,0,0	monster	Besouro-Ladrão	1051,20,0,0,0
+job_monk,0,0,0,0	monster	Cogumelo	THIEF_MUSHROOM,70,0,0,0
+job_monk,0,0,0,0	monster	Besouro-Ladrão	THIEF_BUG,20,0,0,0

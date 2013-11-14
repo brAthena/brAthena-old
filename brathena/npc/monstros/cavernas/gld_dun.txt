@@ -28,167 +28,167 @@
 //====================================================
 // [Old Times] gld_dun01 - Calabouço do Feudo do Bosque Celestial
 //====================================================
-gld_dun01,0,0,0,0	monster#ot	Lobo Errante	1092,1,14400000,7200000,1
-gld_dun01,0,0,0,0	boss_monster#ot	Eddga	1115,1,28800000,7200000,1
-gld_dun01,0,0,0,0	monster#ot	Esqueleto General	1290,10,0,0,0
-gld_dun01,0,0,0,0	monster#ot	Am Mut	1301,10,0,0,0
-gld_dun01,0,0,0,0	monster#ot	Gato de Nove Caudas	1307,3,1200000,0,0
-gld_dun01,0,0,0,0	monster#ot	Gajomart	1309,10,0,0,0,{}
+gld_dun01,0,0,0,0	monster#ot	Lobo Errante	VAGABOND_WOLF,1,14400000,7200000,1
+gld_dun01,0,0,0,0	boss_monster#ot	Eddga	EDDGA,1,28800000,7200000,1
+gld_dun01,0,0,0,0	monster#ot	Esqueleto General	SKELETON_GENERAL,10,0,0,0
+gld_dun01,0,0,0,0	monster#ot	Am Mut	AM_MUT,10,0,0,0
+gld_dun01,0,0,0,0	monster#ot	Gato de Nove Caudas	CAT_O_NINE_TAIL,3,1200000,0,0
+gld_dun01,0,0,0,0	monster#ot	Gajomart	GAJOMART,10,0,0,0,{}
 
 //====================================================
 // [Pré-Renovação] gld_dun01 - Calabouço do Feudo do Bosque Celestial
 //====================================================
-gld_dun01,0,0,0,0	monster#pre	Esqueleto General	1290,10,0,0,0
-gld_dun01,0,0,0,0	monster#pre	Am Mut	1301,20,0,0,0
-gld_dun01,0,0,0,0	monster#pre	Gato de Nove Caudas	1307,3,1200000,0,0
-gld_dun01,0,0,0,0	monster#pre	Gajomart	1309,10,0,0,0
-gld_dun01,0,0,0,0	boss_monster#pre	Eddga	1115,1,28800000,600000,1
-gld_dun01,0,0,0,0	monster#pre	Lobo Errante	1092,1,14400000,7200000,1,{}
+gld_dun01,0,0,0,0	monster#pre	Esqueleto General	SKELETON_GENERAL,10,0,0,0
+gld_dun01,0,0,0,0	monster#pre	Am Mut	AM_MUT,20,0,0,0
+gld_dun01,0,0,0,0	monster#pre	Gato de Nove Caudas	CAT_O_NINE_TAIL,3,1200000,0,0
+gld_dun01,0,0,0,0	monster#pre	Gajomart	GAJOMART,10,0,0,0
+gld_dun01,0,0,0,0	boss_monster#pre	Eddga	EDDGA,1,28800000,600000,1
+gld_dun01,0,0,0,0	monster#pre	Lobo Errante	VAGABOND_WOLF,1,14400000,7200000,1,{}
 
 //==================================================
 // [Renovação] gld_dun01, gld_dun01_2, gld2_pay
 //==================================================
-gld_dun01,0,0,0,0	monster#re	Gullinbursti	1311,30,5000,0,0
-gld_dun01,0,0,0,0	monster#re	Leib Olmai	1306,55,5000,0,0
-gld_dun01,0,0,0,0	monster#re	Gato de Nove Caudas	1307,3,1200000,0,0
-gld_dun01,0,0,0,0	boss_monster#re	Flor do Luar	1150,1,28800000,600000,1
+gld_dun01,0,0,0,0	monster#re	Gullinbursti	GULLINBURSTI,30,5000,0,0
+gld_dun01,0,0,0,0	monster#re	Leib Olmai	LEIB_OLMAI,55,5000,0,0
+gld_dun01,0,0,0,0	monster#re	Gato de Nove Caudas	CAT_O_NINE_TAIL,3,1200000,0,0
+gld_dun01,0,0,0,0	boss_monster#re	Flor do Luar	MOONLIGHT,1,28800000,600000,1
 //====================================================
-gld_dun01_2,0,0,0,0	monster#re	Esqueleto General	1290,50,5000,0,0
-gld_dun01_2,0,0,0,0	monster#re	Am Mut	1301,15,5000,0,0
-gld_dun01_2,0,0,0,0	monster#re	Gajomart	1309,20,5000,0,0
-gld_dun01_2,0,0,0,0	boss_monster#re	Eddga	1115,1,28800000,600000,1
+gld_dun01_2,0,0,0,0	monster#re	Esqueleto General	SKELETON_GENERAL,50,5000,0,0
+gld_dun01_2,0,0,0,0	monster#re	Am Mut	AM_MUT,15,5000,0,0
+gld_dun01_2,0,0,0,0	monster#re	Gajomart	GAJOMART,20,5000,0,0
+gld_dun01_2,0,0,0,0	boss_monster#re	Eddga	EDDGA,1,28800000,600000,1
 //====================================================
-gld2_pay,0,0,0,0	monster#re	Esqueleto General	1290,60,5000,0,0
-gld2_pay,0,0,0,0	monster#re	Am Mut	1301,25,5000,0,0
-gld2_pay,0,0,0,0	monster#re	Gajomart	1309,30,5000,0,0
-gld2_pay,0,0,0,0	boss_monster#re	General Daehyun	2253,1,28800000,600000,1
-gld2_pay,0,0,0,0	monster#re	Samurai Soheon	2254,1,1800000,600000,1,{}
+gld2_pay,0,0,0,0	monster#re	Esqueleto General	SKELETON_GENERAL,60,5000,0,0
+gld2_pay,0,0,0,0	monster#re	Am Mut	AM_MUT,25,5000,0,0
+gld2_pay,0,0,0,0	monster#re	Gajomart	GAJOMART,30,5000,0,0
+gld2_pay,0,0,0,0	boss_monster#re	General Daehyun	DAEHYON,1,28800000,600000,1
+gld2_pay,0,0,0,0	monster#re	Samurai Soheon	SOHEON,1,1800000,600000,1,{}
 
 //==================================================
 // [Old Times] gld_dun02 - Calabouço do Feudo de Luina
 //==================================================
-gld_dun02,0,0,0,0	boss_monster#ot	Doppelganger	1046,1,28800000,0,1
-gld_dun02,0,0,0,0	monster#ot	Mantis Assassino	1294,10,0,0,0
-gld_dun02,0,0,0,0	monster#ot	Barão Coruja	1295,3,0,0,0
-gld_dun02,0,0,0,0	monster#ot	Zangão Gigante	1303,10,0,0,0
-gld_dun02,0,0,0,0	monster#ot	Aranha Gigante	1304,10,0,0,0
-gld_dun02,0,0,0,0	monster#ot	Verme Ancião	1305,10,0,0,0,{}
+gld_dun02,0,0,0,0	boss_monster#ot	Doppelganger	DOPPELGANGER,1,28800000,0,1
+gld_dun02,0,0,0,0	monster#ot	Mantis Assassino	KILLER_MANTIS,10,0,0,0
+gld_dun02,0,0,0,0	monster#ot	Barão Coruja	OWL_BARON,3,0,0,0
+gld_dun02,0,0,0,0	monster#ot	Zangão Gigante	GIANT_HONET,10,0,0,0
+gld_dun02,0,0,0,0	monster#ot	Aranha Gigante	GIANT_SPIDER,10,0,0,0
+gld_dun02,0,0,0,0	monster#ot	Verme Ancião	ANCIENT_WORM,10,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] gld_dun02 - Calabouço do Feudo de Luina
 //==================================================
-gld_dun02,0,0,0,0	monster#pre	Barão Coruja	1295,3,0,0,0
-gld_dun02,0,0,0,0	monster#pre	Aranha Gigante	1304,10,240000,120000,0
-gld_dun02,0,0,0,0	monster#pre	Verme Ancião	1305,5,120000,60000,0
-gld_dun02,0,0,0,0	monster#pre	Mantis Assassino	1294,5,120000,60000,0
-gld_dun02,0,0,0,0	monster#pre	Zangão Gigante	1303,10,120000,60000,0
-gld_dun02,0,0,0,0	boss_monster#pre	Doppelganger	1046,1,28800000,600000,1,{}
+gld_dun02,0,0,0,0	monster#pre	Barão Coruja	OWL_BARON,3,0,0,0
+gld_dun02,0,0,0,0	monster#pre	Aranha Gigante	GIANT_SPIDER,10,240000,120000,0
+gld_dun02,0,0,0,0	monster#pre	Verme Ancião	ANCIENT_WORM,5,120000,60000,0
+gld_dun02,0,0,0,0	monster#pre	Mantis Assassino	KILLER_MANTIS,5,120000,60000,0
+gld_dun02,0,0,0,0	monster#pre	Zangão Gigante	GIANT_HONET,10,120000,60000,0
+gld_dun02,0,0,0,0	boss_monster#pre	Doppelganger	DOPPELGANGER,1,28800000,600000,1,{}
 
 //==================================================
 // [Renovação] gld_dun02, gld_dun02_2, gld2_ald
 //==================================================
-gld_dun02,0,0,0,0	monster#re	Zangão Gigante	1303,30,5000,0,0
-gld_dun02,0,0,0,0	monster#re	Verme Ancião	1305,25,5000,0,0
-gld_dun02,0,0,0,0	monster#re	Aranha Gigante	1304,15,5000,0,0
-gld_dun02,0,0,0,0	boss_monster#re	Abelha-Rainha	1059,1,28800000,600000,1
+gld_dun02,0,0,0,0	monster#re	Zangão Gigante	GIANT_HONET,30,5000,0,0
+gld_dun02,0,0,0,0	monster#re	Verme Ancião	ANCIENT_WORM,25,5000,0,0
+gld_dun02,0,0,0,0	monster#re	Aranha Gigante	GIANT_SPIDER,15,5000,0,0
+gld_dun02,0,0,0,0	boss_monster#re	Abelha-Rainha	MISTRESS,1,28800000,600000,1
 //==================================================
-gld_dun02_2,0,0,0,0	monster#re	Mantis Assassino	1294,30,5000,0,0
-gld_dun02_2,0,0,0,0	monster#re	Louva-a-Deus Angra	2133,40,5000,0,0
-gld_dun02_2,0,0,0,0	monster#re	Maya Macho	1289,3,1200000,600000,0
-gld_dun02_2,0,0,0,0	boss_monster#re	Maya	1147,1,28800000,600000,1
+gld_dun02_2,0,0,0,0	monster#re	Mantis Assassino	KILLER_MANTIS,30,5000,0,0
+gld_dun02_2,0,0,0,0	monster#re	Louva-a-Deus Angra	ANGRA_MANTIS,40,5000,0,0
+gld_dun02_2,0,0,0,0	monster#re	Maya Macho	MAYA_PUPLE,3,1200000,600000,0
+gld_dun02_2,0,0,0,0	boss_monster#re	Maya	MAYA,1,28800000,600000,1
 //==================================================
-gld2_ald,0,0,0,0	monster#re	Mantis Assassino	1294,60,5000,0,0
-gld2_ald,0,0,0,0	monster#re	Louva-a-Deus Angra	2133,70,5000,0,0
-gld2_ald,0,0,0,0	monster#re	Maya Macho	1289,3,1200000,0,0
-gld2_ald,0,0,0,0	boss_monster#re	Gioia	2251,1,28800000,600000,1
-gld2_ald,0,0,0,0	monster#re	Elvira	2252,1,1800000,600000,1,{}
+gld2_ald,0,0,0,0	monster#re	Mantis Assassino	KILLER_MANTIS,60,5000,0,0
+gld2_ald,0,0,0,0	monster#re	Louva-a-Deus Angra	ANGRA_MANTIS,70,5000,0,0
+gld2_ald,0,0,0,0	monster#re	Maya Macho	MAYA_PUPLE,3,1200000,0,0
+gld2_ald,0,0,0,0	boss_monster#re	Gioia	GIOIA,1,28800000,600000,1
+gld2_ald,0,0,0,0	monster#re	Elvira	ELVIRA,1,1800000,600000,1,{}
 
 //==================================================
 // [Old Times] gld_dun03 - Calabouço do Feudo das Valquírias
 //==================================================
-gld_dun03,0,0,0,0	boss_monster#ot	Maya	1147,1,28800000,0,1
-gld_dun03,0,0,0,0	monster#ot	Maya Macho	1289,3,1200000,0,0
-gld_dun03,0,0,0,0	monster#ot	Creamy Ameaçador	1293,10,0,0,0
-gld_dun03,0,0,0,0	monster#ot	Lagarta	1300,10,0,0,0
-gld_dun03,0,0,0,0	monster#ot	Leib Olmai	1306,10,0,0,0
-gld_dun03,0,0,0,0	monster#ot	Gullinbursti	1311,10,0,0,0,{}
+gld_dun03,0,0,0,0	boss_monster#ot	Maya	MAYA,1,28800000,0,1
+gld_dun03,0,0,0,0	monster#ot	Maya Macho	MAYA_PUPLE,3,1200000,0,0
+gld_dun03,0,0,0,0	monster#ot	Creamy Ameaçador	CREMY_FEAR,10,0,0,0
+gld_dun03,0,0,0,0	monster#ot	Lagarta	CATERPILLAR,10,0,0,0
+gld_dun03,0,0,0,0	monster#ot	Leib Olmai	LEIB_OLMAI,10,0,0,0
+gld_dun03,0,0,0,0	monster#ot	Gullinbursti	GULLINBURSTI,10,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] gld_dun03 - Calabouço do Feudo das Valquírias
 //==================================================
-gld_dun03,0,0,0,0	monster#pre	Maya Macho	1289,3,1200000,600000,0
-gld_dun03,0,0,0,0	monster#pre	Lagarta	1300,20,0,0,0
-gld_dun03,0,0,0,0	monster#pre	Gullinbursti	1311,10,0,0,0
-gld_dun03,0,0,0,0	monster#pre	Creamy Ameaçador	1293,20,0,0,0
-gld_dun03,0,0,0,0	monster#pre	Leib Olmai	1306,20,0,0,0
-gld_dun03,0,0,0,0	boss_monster#pre	Maya	1147,1,28800000,600000,1,{}
+gld_dun03,0,0,0,0	monster#pre	Maya Macho	MAYA_PUPLE,3,1200000,600000,0
+gld_dun03,0,0,0,0	monster#pre	Lagarta	CATERPILLAR,20,0,0,0
+gld_dun03,0,0,0,0	monster#pre	Gullinbursti	GULLINBURSTI,10,0,0,0
+gld_dun03,0,0,0,0	monster#pre	Creamy Ameaçador	CREMY_FEAR,20,0,0,0
+gld_dun03,0,0,0,0	monster#pre	Leib Olmai	LEIB_OLMAI,20,0,0,0
+gld_dun03,0,0,0,0	boss_monster#pre	Maya	MAYA,1,28800000,600000,1,{}
 
 //==================================================
 // [Renovação] gld_dun03, gld_dun03_02, gld2_prt
 //==================================================
-gld_dun03,0,0,0,0	monster#re	Lagarta	1300,35,5000,0,0
-gld_dun03,0,0,0,0	monster#re	Creamy Ameaçador	1293,35,5000,0,0
-gld_dun03,0,0,0,0	boss_monster#re	Bafomé	1039,1,28800000,600000,1
+gld_dun03,0,0,0,0	monster#re	Lagarta	CATERPILLAR,35,5000,0,0
+gld_dun03,0,0,0,0	monster#re	Creamy Ameaçador	CREMY_FEAR,35,5000,0,0
+gld_dun03,0,0,0,0	boss_monster#re	Bafomé	BAPHOMET,1,28800000,600000,1
 //==================================================
-gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Machado	2284,13,5000,0,0
-gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Martelo	2285,23,5000,0,0
-gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Maça	2286,23,5000,0,0
-gld_dun03_2,0,0,0,0	monster#re	Cobold Arqueiro Abissal	2287,23,5000,0,0
-gld_dun03_2,0,0,0,0	monster#re	Cobold Leader	1296,1,14400000,7200000,1
-gld_dun03_2,0,0,0,0	boss_monster#re	Atroce	1785,1,28800000,600000,1
+gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Machado	GLD_KOBOLD_1,13,5000,0,0
+gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Martelo	GLD_KOBOLD_2,23,5000,0,0
+gld_dun03_2,0,0,0,0	monster#re	Cobold Abissal de Maça	GLD_KOBOLD_3,23,5000,0,0
+gld_dun03_2,0,0,0,0	monster#re	Cobold Arqueiro Abissal	GLD_KOBOLD_ARCHER,23,5000,0,0
+gld_dun03_2,0,0,0,0	monster#re	Cobold Leader	KOBOLD_LEADER,1,14400000,7200000,1
+gld_dun03_2,0,0,0,0	boss_monster#re	Atroce	ATROCE,1,28800000,600000,1
 //==================================================
-gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Machado	2284,25,5000,0,0
-gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Martelo	2285,35,5000,0,0
-gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Maça	2286,35,5000,0,0
-gld2_prt,0,0,0,0	monster#re	Cobold Arqueiro Abissal	2287,35,5000,0,0
-gld2_prt,0,0,0,0	boss_monster#re	Pyuriel Furiosa	2249,1,28800000,600000,1
-gld2_prt,0,0,0,0	monster#re	Guerreira Laura	2250,1,1800000,600000,1,{}
+gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Machado	GLD_KOBOLD_1,25,5000,0,0
+gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Martelo	GLD_KOBOLD_2,35,5000,0,0
+gld2_prt,0,0,0,0	monster#re	Cobold Abissal de Maça	GLD_KOBOLD_3,35,5000,0,0
+gld2_prt,0,0,0,0	monster#re	Cobold Arqueiro Abissal	GLD_KOBOLD_ARCHER,35,5000,0,0
+gld2_prt,0,0,0,0	boss_monster#re	Pyuriel Furiosa	PYURIEL,1,28800000,600000,1
+gld2_prt,0,0,0,0	monster#re	Guerreira Laura	LORA,1,1800000,600000,1,{}
 
 //==================================================
 // [Old Times] gld_dun04 - Calabouço do Feudo de Britoniah
 //==================================================
-gld_dun04,0,0,0,0	monster#ot	Ghostring	1120,1,14400000,0,1
-gld_dun04,0,0,0,0	boss_monster#ot	Senhor das Trevas	1272,1,28800000,0,1
-gld_dun04,0,0,0,0	monster#ot	Aparição	1291,10,0,0,0
-gld_dun04,0,0,0,0	monster#ot	Diabinho	1292,10,0,0,0
-gld_dun04,0,0,0,0	monster#ot	Zumbi Mestre	1298,10,0,0,0
-gld_dun04,0,0,0,0	monster#ot	Ilusão das Trevas	1302,1,1200000,0,0,{}
+gld_dun04,0,0,0,0	monster#ot	Ghostring	GHOSTRING,1,14400000,0,1
+gld_dun04,0,0,0,0	boss_monster#ot	Senhor das Trevas	DARK_LORD,1,28800000,0,1
+gld_dun04,0,0,0,0	monster#ot	Aparição	WRAITH_DEAD,10,0,0,0
+gld_dun04,0,0,0,0	monster#ot	Diabinho	MINI_DEMON,10,0,0,0
+gld_dun04,0,0,0,0	monster#ot	Zumbi Mestre	ZOMBIE_MASTER,10,0,0,0
+gld_dun04,0,0,0,0	monster#ot	Ilusão das Trevas	DARK_ILLUSION,1,1200000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] gld_dun04 - Calabouço do Feudo de Britoniah
 //==================================================
-gld_dun04,0,0,0,0	monster#pre	Alma Penada	1291,20,0,0,0
-gld_dun04,0,0,0,0	monster#pre	Diabinho	1292,20,0,0,0
-gld_dun04,0,0,0,0	monster#pre	Zumbi Mestre	1298,20,0,0,0
-gld_dun04,0,0,0,0	monster#pre	Ilusão das Trevas	1302,1,1200000,0,0
-gld_dun04,0,0,0,0	boss_monster#pre	Senhor das Trevas	1272,1,28800000,600000,1
-gld_dun04,0,0,0,0	monster#pre	Ghostring	1120,1,14400000,7200000,1,{}
+gld_dun04,0,0,0,0	monster#pre	Alma Penada	WRAITH_DEAD,20,0,0,0
+gld_dun04,0,0,0,0	monster#pre	Diabinho	MINI_DEMON,20,0,0,0
+gld_dun04,0,0,0,0	monster#pre	Zumbi Mestre	ZOMBIE_MASTER,20,0,0,0
+gld_dun04,0,0,0,0	monster#pre	Ilusão das Trevas	DARK_ILLUSION,1,1200000,0,0
+gld_dun04,0,0,0,0	boss_monster#pre	Senhor das Trevas	DARK_LORD,1,28800000,600000,1
+gld_dun04,0,0,0,0	monster#pre	Ghostring	GHOSTRING,1,14400000,7200000,1,{}
 
 //==================================================
 // [Renovação] gld_dun04, gld_dun04_02, gld2_gef
 //==================================================
-gld_dun04,0,0,0,0	monster#re	Diabinho	1292,10,5000,0,0
-gld_dun04,0,0,0,0	monster#re	Zumbi Mestre	1298,55,5000,0,0
-gld_dun04,0,0,0,0	monster#re	Aparição	1291,25,5000,0,0
-gld_dun04,0,0,0,0	monster#re	Ghostring	1120,1,14400000,7200000,1
-gld_dun04,0,0,0,0	boss_monster#re	Doppelganger	1046,1,28800000,600000,1
+gld_dun04,0,0,0,0	monster#re	Diabinho	MINI_DEMON,10,5000,0,0
+gld_dun04,0,0,0,0	monster#re	Zumbi Mestre	ZOMBIE_MASTER,55,5000,0,0
+gld_dun04,0,0,0,0	monster#re	Aparição	WRAITH_DEAD,25,5000,0,0
+gld_dun04,0,0,0,0	monster#re	Ghostring	GHOSTRING,1,14400000,7200000,1
+gld_dun04,0,0,0,0	boss_monster#re	Doppelganger	DOPPELGANGER,1,28800000,600000,1
 //==================================================
-gld_dun04_2,0,0,0,0	monster#re	Moldura Abissal	2282,15,5000,0,0
-gld_dun04_2,0,0,0,0	monster#re	Sacerdote Abissal	2283,15,5000,0,0
-gld_dun04_2,0,0,0,0	monster#re	Sombra Abissal	2281,45,5000,0,0
-gld_dun04_2,0,0,0,0	monster#re	Ilusão das Trevas	1302,1,1200000,0,0
-gld_dun04_2,0,0,0,0	boss_monster#re	Senhor das Trevas	1272,1,28800000,600000,1
+gld_dun04_2,0,0,0,0	monster#re	Moldura Abissal	GLD_DARK_FRAME,15,5000,0,0
+gld_dun04_2,0,0,0,0	monster#re	Sacerdote Abissal	GLD_DARK_PRIEST,15,5000,0,0
+gld_dun04_2,0,0,0,0	monster#re	Sombra Abissal	GLD_DARK_SHADOW,45,5000,0,0
+gld_dun04_2,0,0,0,0	monster#re	Ilusão das Trevas	DARK_ILLUSION,1,1200000,0,0
+gld_dun04_2,0,0,0,0	boss_monster#re	Senhor das Trevas	DARK_LORD,1,28800000,600000,1
 //==================================================
-gld2_gef,0,0,0,0	monster#re	Moldura Abissal	2282,20,5000,0,0
-gld2_gef,0,0,0,0	monster#re	Sacerdote Abissal	2283,20,5000,0,0
-gld2_gef,0,0,0,0	monster#re	Sombra Abissal	2281,80,5000,0,0
-gld2_gef,0,0,0,0	monster#re	Ilusão das Trevas	1302,1,1200000,0,0
-gld2_gef,0,0,0,0	boss_monster#re	Guardião Morto Kades	2255,1,28800000,600000,1
-gld2_gef,0,0,0,0	monster#re	Rudo	2256,1,1800000,600000,1
+gld2_gef,0,0,0,0	monster#re	Moldura Abissal	GLD_DARK_FRAME,20,5000,0,0
+gld2_gef,0,0,0,0	monster#re	Sacerdote Abissal	GLD_DARK_PRIEST,20,5000,0,0
+gld2_gef,0,0,0,0	monster#re	Sombra Abissal	GLD_DARK_SHADOW,80,5000,0,0
+gld2_gef,0,0,0,0	monster#re	Ilusão das Trevas	DARK_ILLUSION,1,1200000,0,0
+gld2_gef,0,0,0,0	boss_monster#re	Guardião Morto Kades	KADES,1,28800000,600000,1
+gld2_gef,0,0,0,0	monster#re	Rudo	RUDO,1,1800000,600000,1
 //==================================================
 // Baús do Tesouro
 //==================================================
-gld2_pay,0,0,0,0	monster#re	Baú de Tesouro	2288,5,5000,0,0
-gld2_ald,0,0,0,0	monster#re	Baú de Tesouro	2288,5,5000,0,0
-gld2_prt,0,0,0,0	monster#re	Baú de Tesouro	2288,5,5000,0,0
-gld2_gef,0,0,0,0	monster#re	Baú de Tesouro	2288,5,5000,0,0,{}
+gld2_pay,0,0,0,0	monster#re	Baú de Tesouro	GLD_TREASURE,5,5000,0,0
+gld2_ald,0,0,0,0	monster#re	Baú de Tesouro	GLD_TREASURE,5,5000,0,0
+gld2_prt,0,0,0,0	monster#re	Baú de Tesouro	GLD_TREASURE,5,5000,0,0
+gld2_gef,0,0,0,0	monster#re	Baú de Tesouro	GLD_TREASURE,5,5000,0,0,{}

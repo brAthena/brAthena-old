@@ -211,51 +211,51 @@ OnPCDieEvent:
 //==================================================
 // moc_fild15 - Sala Sombria
 //==================================================
-moc_fild15,0,0,0,0	monster	Marionete	1143,150,0,0,0
-moc_fild15,0,0,0,0	monster	Zumbi Prisioneiro	1197,150,0,0,0
-moc_fild15,0,0,0,0	monster	Soldado Atirador	1403,150,0,0,0
-moc_fild15,0,0,0,0	monster	Sacerdote Maldito	1198,300,0,0,0
+moc_fild15,0,0,0,0	monster	Marionete	MARIONETTE,150,0,0,0
+moc_fild15,0,0,0,0	monster	Zumbi Prisioneiro	ZOMBIE_PRISONER,150,0,0,0
+moc_fild15,0,0,0,0	monster	Soldado Atirador	ANTIQUE_FIRELOCK,150,0,0,0
+moc_fild15,0,0,0,0	monster	Sacerdote Maldito	DARK_PRIEST,300,0,0,0
 //==================================================
 // moc_fild08 - Sala Selvagem
 //==================================================
-moc_fild08,0,0,0,0	monster	Lobo do Deserto	1220,300,0,0,0
-moc_fild08,0,0,0,0	monster	Vento da Colina	1680,150,0,0,0
-moc_fild08,0,0,0,0	monster	Cobold	1134,300,0,0,0
+moc_fild08,0,0,0,0	monster	Lobo do Deserto	M_DESERT_WOLF,300,0,0,0
+moc_fild08,0,0,0,0	monster	Vento da Colina	HILL_WIND_1,150,0,0,0
+moc_fild08,0,0,0,0	monster	Cobold	KOBOLD_2,300,0,0,0
 //==================================================
 // ra_fild02 - Sala do Terror
 //==================================================
-ra_fild02,0,0,0,0	monster	Pesadelo Sombrio	1379,300,0,0,0
-ra_fild02,0,0,0,0	monster	Cobold	1133,150,0,0,0
-ra_fild02,0,0,0,0	monster	Serial Killer	1507,300,0,0,0
+ra_fild02,0,0,0,0	monster	Pesadelo Sombrio	NIGHTMARE_TERROR,300,0,0,0
+ra_fild02,0,0,0,0	monster	Cobold	KOBOLD_1,150,0,0,0
+ra_fild02,0,0,0,0	monster	Serial Killer	BLOODY_MURDERER,300,0,0,0
 //==================================================
 // moc_fild14 - Sala Temporal
 //==================================================
-moc_fild14,0,0,0,0	monster	Venatu	1677,150,0,0,0
-moc_fild14,0,0,0,0	monster	Dimik	1670,150,0,0,0
-moc_fild14,0,0,0,0	monster	Palavra Morta	1698,300,0,0,0
-moc_fild14,0,0,0,0	monster	Mímico Antigo	1699,150,0,0,0
+moc_fild14,0,0,0,0	monster	Venatu	VENATU_2,150,0,0,0
+moc_fild14,0,0,0,0	monster	Dimik	DIMIK_1,150,0,0,0
+moc_fild14,0,0,0,0	monster	Palavra Morta	DEATHWORD,300,0,0,0
+moc_fild14,0,0,0,0	monster	Mímico Antigo	ANCIENT_MIMIC,150,0,0,0
 //==================================================
 // moc_fild10 - Sala Sinistra
 //==================================================
-moc_fild10,0,0,0,0	monster	Andarilho	1208,150,0,0,0
-moc_fild10,0,0,0,0	monster	Gremlin	1632,150,0,0,0
-moc_fild10,0,0,0,0	monster	Barão Coruja	1295,150,0,0,0
-moc_fild10,0,0,0,0	monster	Zumbi Dilacerado	1865,300,0,0,0
+moc_fild10,0,0,0,0	monster	Andarilho	WANDER_MAN,150,0,0,0
+moc_fild10,0,0,0,0	monster	Gremlin	GREMLIN,150,0,0,0
+moc_fild10,0,0,0,0	monster	Barão Coruja	OWL_BARON,150,0,0,0
+moc_fild10,0,0,0,0	monster	Zumbi Dilacerado	RAGGED_ZOMBIE,300,0,0,0
 //==================================================
 // moc_fild05 - Sala Draconiana
 //==================================================
-moc_fild05,0,0,0,0	monster	Acidus	1713,300,0,0,0
-moc_fild05,0,0,0,0	monster	Acidus	1716,150,0,0,0
-moc_fild05,0,0,0,0	monster	Ferus	1295,150,0,0,0
+moc_fild05,0,0,0,0	monster	Acidus	ACIDUS,300,0,0,0
+moc_fild05,0,0,0,0	monster	Acidus	ACIDUS_,150,0,0,0
+moc_fild05,0,0,0,0	monster	Ferus	OWL_BARON,150,0,0,0
 //==================================================
 // moc_fild06 - Sala Infernal
 //==================================================
-moc_fild06,0,0,0,0	monster	Salamandra	1831,300,0,0,0
-moc_fild06,0,0,0,0	monster	Kasa	1833,300,0,0,0
+moc_fild06,0,0,0,0	monster	Salamandra	SALAMANDER,300,0,0,0
+moc_fild06,0,0,0,0	monster	Kasa	KASA,300,0,0,0
 //==================================================
 // moc_fild04 - Sala Laboratorial
 //==================================================
-moc_fild04,0,0,0,0	monster	Egnigem Cenia	1652,300,0,0,0
-moc_fild04,0,0,0,0	monster	Wickebine Tres	1653,150,0,0,0
-moc_fild04,0,0,0,0	monster	Armeyer Dinze	1654,150,0,0,0
-moc_fild04,0,0,0,0	monster	Errende Ebecee	1655,150,0,0,0
+moc_fild04,0,0,0,0	monster	Egnigem Cenia	YGNIZEM,300,0,0,0
+moc_fild04,0,0,0,0	monster	Wickebine Tres	WHIKEBAIN,150,0,0,0
+moc_fild04,0,0,0,0	monster	Armeyer Dinze	ARMAIA,150,0,0,0
+moc_fild04,0,0,0,0	monster	Errende Ebecee	EREND,150,0,0,0

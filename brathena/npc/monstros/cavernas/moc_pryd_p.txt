@@ -299,15 +299,15 @@ moc_prydn1,223,9,0	warp	mocp_p01	1,1,moc_prydn2,192,8
 moc_prydn2,195,8,0	warp	mocp_p02	1,1,moc_prydn1,220,9
 
 // Monstros
-moc_prydn1,0,0,0,0	monster	Minorous	2353,60,0,0,0
-moc_prydn1,0,0,0,0	monster	Múmia	2354,10,0,0,0
-moc_prydn1,0,0,0,0	monster	Verit	2355,50,0,0,0
+moc_prydn1,0,0,0,0	monster	Minorous	N_MINOROUS,60,0,0,0
+moc_prydn1,0,0,0,0	monster	Múmia	N_MUMMY,10,0,0,0
+moc_prydn1,0,0,0,0	monster	Verit	N_VERIT,50,0,0,0
 
-moc_prydn2,0,0,0,0	monster	Verit	2355,10,0,0,0
-moc_prydn2,0,0,0,0	monster	Mímico	2356,20,0,0,0
-moc_prydn2,0,0,0,0	monster	Arclouse	2358,20,0,0,0
-moc_prydn2,0,0,0,0	monster	Múmia Anciã	2360,20,0,0,0
-moc_prydn2,0,0,0,0	boss_monster	Amon Ra	2362,1,3600000,600000,0
+moc_prydn2,0,0,0,0	monster	Verit	N_VERIT,10,0,0,0
+moc_prydn2,0,0,0,0	monster	Mímico	N_MIMIC,20,0,0,0
+moc_prydn2,0,0,0,0	monster	Arclouse	N_ARCLOUSE,20,0,0,0
+moc_prydn2,0,0,0,0	monster	Múmia Anciã	N_ANCIENT_MUMMY,20,0,0,0
+moc_prydn2,0,0,0,0	boss_monster	Amon Ra	N_AMON_RA,1,3600000,600000,0
 
 // Mapflags
 moc_prydn1	mapflag	nomemo

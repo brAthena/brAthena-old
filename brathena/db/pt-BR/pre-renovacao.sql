@@ -4029,7 +4029,7 @@ CREATE TABLE IF NOT EXISTS `homunculus_db` (
   `bHp` smallint unsigned NOT NULL,
   `bSp` smallint NOT NULL,
   `bSTR` tinyint NOT NULL,
-  `bAgi` tinyint NOT NULL,
+  `bAGI` tinyint NOT NULL,
   `bVIT` tinyint NOT NULL,
   `bINT` tinyint NOT NULL,
   `bDEX` tinyint NOT NULL,

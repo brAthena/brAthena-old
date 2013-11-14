@@ -26,29 +26,29 @@
 //==================================================
 // [Pré-Renovação] ayo_fild01 - Campo de Ayothaya
 //==================================================
-ayo_fild01,0,0,0,0	monster#pre	Koko	1104,30,0,0,0
-ayo_fild01,0,0,0,0	monster#pre	Yoyo	1057,30,0,0,0
-ayo_fild01,0,0,0,0	monster#pre	Fumacento	1056,30,0,0,0
-ayo_fild01,0,0,0,0	monster#pre	Gato de Folha	1586,3,3600000,1800000,0
-ayo_fild01,0,0,0,0	monster#pre	Planta Verde	1080,10,0,0,0
+ayo_fild01,0,0,0,0	monster#pre	Koko	COCO,30,0,0,0
+ayo_fild01,0,0,0,0	monster#pre	Yoyo	YOYO,30,0,0,0
+ayo_fild01,0,0,0,0	monster#pre	Fumacento	SMOKIE,30,0,0,0
+ayo_fild01,0,0,0,0	monster#pre	Gato de Folha	LEAF_CAT,3,3600000,1800000,0
+ayo_fild01,0,0,0,0	monster#pre	Planta Verde	GREEN_PLANT,10,0,0,0
 //==================================================
 // [Pré-Renovação] ayo_fild02 - Campo de Ayothaya
 //==================================================
-ayo_fild02,0,0,0,0	monster#pre	Gato de Folha	1586,50,0,0,0
-ayo_fild02,0,0,0,0	monster#pre	Guerreiro Wotan	1499,20,0,0,0
-ayo_fild02,0,0,0,0	monster#pre	Besouro-Rei	1494,30,0,0,0
-ayo_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0,{}
+ayo_fild02,0,0,0,0	monster#pre	Gato de Folha	LEAF_CAT,50,0,0,0
+ayo_fild02,0,0,0,0	monster#pre	Guerreiro Wotan	WOOTAN_FIGHTER,20,0,0,0
+ayo_fild02,0,0,0,0	monster#pre	Besouro-Rei	KIND_OF_BEETLE,30,0,0,0
+ayo_fild02,0,0,0,0	monster#pre	Planta Amarela	YELLOW_PLANT,10,0,0,0,{}
 //==================================================
 // [Renovação] ayo_fild01 - Campo de Ayothaya
 //==================================================
-ayo_fild01,0,0,0,0	monster#re	Fumacento	1056,30,5000,0,0
-ayo_fild01,0,0,0,0	monster#re	Koko	1104,30,5000,0,0
-ayo_fild01,0,0,0,0	monster#re	Yoyo	1057,30,5000,0,0
-ayo_fild01,0,0,0,0	monster#re	Planta Verde	1080,10,10000,0,1
+ayo_fild01,0,0,0,0	monster#re	Fumacento	SMOKIE,30,5000,0,0
+ayo_fild01,0,0,0,0	monster#re	Koko	COCO,30,5000,0,0
+ayo_fild01,0,0,0,0	monster#re	Yoyo	YOYO,30,5000,0,0
+ayo_fild01,0,0,0,0	monster#re	Planta Verde	GREEN_PLANT,10,10000,0,1
 //==================================================
 // [Renovação] ayo_fild02 - Campo de Ayothaya
 //==================================================
-ayo_fild02,0,0,0,0	monster#re	Yoyo	1057,45,5000,0,0
-ayo_fild02,0,0,0,0	monster#re	Gato de Folha	1586,35,5000,0,0
-ayo_fild02,0,0,0,0	monster#re	Kraben	1587,5,5000,0,0
-ayo_fild02,0,0,0,0	monster#re	Planta Amarela	1081,10,10000,0,1,{}
+ayo_fild02,0,0,0,0	monster#re	Yoyo	YOYO,45,5000,0,0
+ayo_fild02,0,0,0,0	monster#re	Gato de Folha	LEAF_CAT,35,5000,0,0
+ayo_fild02,0,0,0,0	monster#re	Kraben	KRABEN,5,5000,0,0
+ayo_fild02,0,0,0,0	monster#re	Planta Amarela	YELLOW_PLANT,10,10000,0,1,{}

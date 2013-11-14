@@ -26,43 +26,43 @@
 //==================================================
 // [Pré-Renovação] spl_fild01 - Campo Esplendor
 //==================================================
-spl_fild01,0,0,0,0	monster#pre	Pinguicula	1995,50,0,0,0
-spl_fild01,0,0,0,0	monster#pre	Naga	1993,35,0,0,0
-spl_fild01,0,0,0,0	monster#pre	Cornus	1992,25,0,0,0,{}
+spl_fild01,0,0,0,0	monster#pre	Pinguicula	PINGUICULA,50,0,0,0
+spl_fild01,0,0,0,0	monster#pre	Naga	NAGA,35,0,0,0
+spl_fild01,0,0,0,0	monster#pre	Cornus	CORNUS,25,0,0,0,{}
 
 //==================================================
 // [Renovação] spl_fild01 - Campo Esplendor
 //==================================================
-spl_fild01,0,0,0,0	monster#re	Pinguicula Sombria	2015,50,5000,0,0
-spl_fild01,0,0,0,0	monster#re	Naga	1993,35,5000,0,0
-spl_fild01,0,0,0,0	monster#re	Cornus	1992,25,5000,0,0,{}
+spl_fild01,0,0,0,0	monster#re	Pinguicula Sombria	PINGUICULA_D,50,5000,0,0
+spl_fild01,0,0,0,0	monster#re	Naga	NAGA,35,5000,0,0
+spl_fild01,0,0,0,0	monster#re	Cornus	CORNUS,25,5000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] spl_fild02 - Campo Esplendor
 //==================================================
-spl_fild02,0,0,0,0	monster#pre	Pinguicula	1995,95,0,0,0
-spl_fild02,0,0,0,0	monster#pre	Vespa Luciola	1994,15,0,0,0,{}
+spl_fild02,0,0,0,0	monster#pre	Pinguicula	PINGUICULA,95,0,0,0
+spl_fild02,0,0,0,0	monster#pre	Vespa Luciola	LUCIOLA_VESPA,15,0,0,0,{}
 
 //==================================================
 // [Renovação] spl_fild02 - Campo Esplendor
 //==================================================
-spl_fild02,0,0,0,0	monster#re	Pinguicula	1995,75,5000,0,0
-spl_fild02,0,0,0,0	monster#re	Golem de Bradium	2024,20,5000,0,0
-spl_fild02,0,0,0,0	monster#re	Naga	1993,20,5000,0,0
-spl_fild02,0,0,0,0	monster#re	Vespa Vagalume	1994,15,5000,0,0,{}
+spl_fild02,0,0,0,0	monster#re	Pinguicula	PINGUICULA,75,5000,0,0
+spl_fild02,0,0,0,0	monster#re	Golem de Bradium	BRADIUM_GOLEM,20,5000,0,0
+spl_fild02,0,0,0,0	monster#re	Naga	NAGA,20,5000,0,0
+spl_fild02,0,0,0,0	monster#re	Vespa Vagalume	LUCIOLA_VESPA,15,5000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] spl_fild03 - Campo Esplendor
 //==================================================
-spl_fild03,0,0,0,0	monster#pre	Vespa Luciola	1994,35,0,0,0
-spl_fild03,0,0,0,0	monster#pre	Cornus	1992,25,0,0,0
-spl_fild03,0,0,0,0	monster#pre	Naga	1993,20,0,0,0
-spl_fild03,0,0,0,0	boss_monster#pre	Leão de Vinhas	1991,1,3600000,0,0,{}
+spl_fild03,0,0,0,0	monster#pre	Vespa Luciola	LUCIOLA_VESPA,35,0,0,0
+spl_fild03,0,0,0,0	monster#pre	Cornus	CORNUS,25,0,0,0
+spl_fild03,0,0,0,0	monster#pre	Naga	NAGA,20,0,0,0
+spl_fild03,0,0,0,0	boss_monster#pre	Leão de Vinhas	TENDRILRION,1,3600000,0,0,{}
 
 //==================================================
 // [Renovação] spl_fild03 - Campo Esplendor
 //==================================================
-spl_fild03,0,0,0,0	monster#re	Vespa Vagalume	1994,35,5000,0,0
-spl_fild03,0,0,0,0	monster#re	Cornus	1992,25,5000,0,0
-spl_fild03,0,0,0,0	monster#re	Naga	1993,20,5000,0,0
-spl_fild03,0,0,0,0	boss_monster#re	Leão de Vinhas	1991,1,3600000,0,0,{}
+spl_fild03,0,0,0,0	monster#re	Vespa Vagalume	LUCIOLA_VESPA,35,5000,0,0
+spl_fild03,0,0,0,0	monster#re	Cornus	CORNUS,25,5000,0,0
+spl_fild03,0,0,0,0	monster#re	Naga	NAGA,20,5000,0,0
+spl_fild03,0,0,0,0	boss_monster#re	Leão de Vinhas	TENDRILRION,1,3600000,0,0,{}

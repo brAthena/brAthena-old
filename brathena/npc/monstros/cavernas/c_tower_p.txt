@@ -193,20 +193,20 @@ c_tower2_,274,26,3	script	Benjamin#ct1	4_M_RUSCHILD,{
 c_tower3_,59,148,5	duplicate(Benjamin#ct1)	Benjamin#ct2	4_M_BARYO_OLD
 
 // c_tower2_
-c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,2,300000,0,0
-c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,2,120000,0,0
-c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	2478,1,60000,0,0
-c_tower2_,0,0,0,0	monster	Mímico - Pesadelo	2479,3,5000,0,0
-c_tower2_,0,0,0,0	monster	Grande Ben	2916,40,5000,0,0
-c_tower2_,0,0,0,0	monster	Neo Punk	2919,40,5000,0,0
-c_tower2_,0,0,0,0	monster	Cronômetro	2918,1,5000 0,0
-c_tower2_,0,0,0,0	monster	Ancião Arcaico	2920,2,3600000,0,0
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	NG_RIDEWORD,2,300000,0,0
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	NG_RIDEWORD,2,120000,0,0
+c_tower2_,0,0,0,0	monster	Rideword - Pesadelo	NG_RIDEWORD,1,60000,0,0
+c_tower2_,0,0,0,0	monster	Mímico - Pesadelo	NG_MIMIC,3,5000,0,0
+c_tower2_,0,0,0,0	monster	Grande Ben	BIG_BEN,40,5000,0,0
+c_tower2_,0,0,0,0	monster	Neo Punk	NEO_PUNK,40,5000,0,0
+c_tower2_,0,0,0,0	monster	Cronômetro	TIME_KEEPER,1,5000 0,0
+c_tower2_,0,0,0,0	monster	Ancião Arcaico	ARC_ELDER,2,3600000,0,0
 
 // c_tower3_
-c_tower3_,0,0,0,0	monster	Mímico - Pesadelo	2479,8,5000,0,0
-c_tower3_,0,0,0,0	monster	Rideword - Pesadelo	2478,8,5000,0,0
-c_tower3_,0,0,0,0	monster	Grande Sino	2917,110,5000,0,0
-c_tower3_,0,0,0,0	monster	Cronômetro	2918,3,5000,0,0
-c_tower3_,0,0,0,0	monster	Visconde Coruja	2921,1,5000,0,0
+c_tower3_,0,0,0,0	monster	Mímico - Pesadelo	NG_MIMIC,8,5000,0,0
+c_tower3_,0,0,0,0	monster	Rideword - Pesadelo	NG_RIDEWORD,8,5000,0,0
+c_tower3_,0,0,0,0	monster	Grande Sino	BIG_BELL,110,5000,0,0
+c_tower3_,0,0,0,0	monster	Cronômetro	TIME_KEEPER,3,5000,0,0
+c_tower3_,0,0,0,0	monster	Visconde Coruja	OWL_VISCOUNT,1,5000,0,0
 c_tower3_,0,0,0,0	monster	Mestre do Tempo	3074,1,5000,0,0
-c_tower3_,0,0,0,0	monster	Marquês Coruja	2923,1,5000,0,0
+c_tower3_,0,0,0,0	monster	Marquês Coruja	OWL_MARQUEES,1,5000,0,0

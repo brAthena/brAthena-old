@@ -26,170 +26,170 @@
 //==================================================
 // [Pré-Renovação] ra_fild01 - Campo de Rachel
 //==================================================
-ra_fild01,0,0,0,0	monster#pre	Muscipular	1780,60,0,0,1
-ra_fild01,173,170,106,80	monster#pre	Planta Carnívora	1368,30,300000,120000,1
-ra_fild01,0,0,0,0	monster#pre	Drosera	1781,20,0,0,1
-ra_fild01,0,0,0,0	monster#pre	Galion	1783,5,0,0,0
-ra_fild01,0,0,0,0	monster#pre	Grifo	1259,3,3600000,0,1,{}
+ra_fild01,0,0,0,0	monster#pre	Muscipular	MUSCIPULAR,60,0,0,1
+ra_fild01,173,170,106,80	monster#pre	Planta Carnívora	GEOGRAPHER,30,300000,120000,1
+ra_fild01,0,0,0,0	monster#pre	Drosera	DROSERA,20,0,0,1
+ra_fild01,0,0,0,0	monster#pre	Galion	GALION,5,0,0,0
+ra_fild01,0,0,0,0	monster#pre	Grifo	GRYPHON,3,3600000,0,1,{}
 
 //==================================================
 // [Renovação] ra_fild01 - Pradaria Audhumbla
 //==================================================
-ra_fild01,0,0,0,0	monster#re	Lobo do Deserto	1106,130,5000,0,0
-ra_fild01,0,0,0,0	monster#re	Roween	1782,30,5000,0,0
-ra_fild01,0,0,0,0	monster#re	Filhote de Lobo	1107,20,5000,0,0
-ra_fild01,0,0,0,0	monster#re	Anopheles	1627,10,5000,0,0,{}
+ra_fild01,0,0,0,0	monster#re	Lobo do Deserto	DESERT_WOLF,130,5000,0,0
+ra_fild01,0,0,0,0	monster#re	Roween	ROWEEN,30,5000,0,0
+ra_fild01,0,0,0,0	monster#re	Filhote de Lobo	DESERT_WOLF_B,20,5000,0,0
+ra_fild01,0,0,0,0	monster#re	Anopheles	ANOPHELES,10,5000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild02 - Campo de Rachel
 //==================================================
-ra_fild02,0,0,0,0	monster#pre	Muscipular	1780,60,0,0,0
-ra_fild02,0,0,0,0	monster#pre	Drosera	1781,20,0,0,0
-ra_fild02,0,0,0,0	monster#pre	Galion	1783,15,0,0,0
-ra_fild02,0,0,0,0	boss_monster#pre	Atroce	1785,1,14400000,600000,1
+ra_fild02,0,0,0,0	monster#pre	Muscipular	MUSCIPULAR,60,0,0,0
+ra_fild02,0,0,0,0	monster#pre	Drosera	DROSERA,20,0,0,0
+ra_fild02,0,0,0,0	monster#pre	Galion	GALION,15,0,0,0
+ra_fild02,0,0,0,0	boss_monster#pre	Atroce	ATROCE,1,14400000,600000,1
 
 //==================================================
 // [Pré-Renovação] ra_fild03 - Campo de Rachel
 //==================================================
-ra_fild03,0,0,0,0	monster#pre	Galion	1783,35,0,0,0
-ra_fild03,0,0,0,0	monster#pre	Drosera	1781,10,0,0,1
-ra_fild03,0,0,0,0	monster#pre	Roween	1782,10,0,0,0
-ra_fild03,0,0,0,0	monster#pre	Stapo	1784,10,0,0,0
-ra_fild03,0,0,0,0	boss_monster#pre	Atroce	1785,1,10800000,600000,1,{}
+ra_fild03,0,0,0,0	monster#pre	Galion	GALION,35,0,0,0
+ra_fild03,0,0,0,0	monster#pre	Drosera	DROSERA,10,0,0,1
+ra_fild03,0,0,0,0	monster#pre	Roween	ROWEEN,10,0,0,0
+ra_fild03,0,0,0,0	monster#pre	Stapo	STAPO,10,0,0,0
+ra_fild03,0,0,0,0	boss_monster#pre	Atroce	ATROCE,1,10800000,600000,1,{}
 
 //==================================================
 // [Renovação] ra_fild03 - Planície de Ida
 //==================================================
-ra_fild03,0,0,0,0	monster#re	Vento da Colina	1680,130,5000,0,0
-ra_fild03,0,0,0,0	monster#re	Roween	1782,30,5000,0,0
-ra_fild03,0,0,0,0	monster#re	Anaconda	1030,20,5000,0,0
-ra_fild03,0,0,0,0	monster#re	Anopheles	1627,20,5000,0,0
-ra_fild03,0,0,0,0	boss_monster#re	Atroce	1785,1,10800000,600000,1,{}
+ra_fild03,0,0,0,0	monster#re	Vento da Colina	HILL_WIND_1,130,5000,0,0
+ra_fild03,0,0,0,0	monster#re	Roween	ROWEEN,30,5000,0,0
+ra_fild03,0,0,0,0	monster#re	Anaconda	ANACONDAQ,20,5000,0,0
+ra_fild03,0,0,0,0	monster#re	Anopheles	ANOPHELES,20,5000,0,0
+ra_fild03,0,0,0,0	boss_monster#re	Atroce	ATROCE,1,10800000,600000,1,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild04 - Campo de Rachel
 //==================================================
-ra_fild04,0,0,0,0	monster#pre	Roween	1782,60,0,0,0
-ra_fild04,0,0,0,0	monster#pre	Stapo	1784,20,0,0,0
-ra_fild04,0,0,0,0	monster#pre	Wild Rose	1261,10,0,0,0
-ra_fild04,0,0,0,0	monster#pre	Galion	1783,3,0,0,0
-ra_fild04,0,0,0,0	boss_monster#pre	Atroce	1785,1,18000000,600000,1,{}
+ra_fild04,0,0,0,0	monster#pre	Roween	ROWEEN,60,0,0,0
+ra_fild04,0,0,0,0	monster#pre	Stapo	STAPO,20,0,0,0
+ra_fild04,0,0,0,0	monster#pre	Wild Rose	WILD_ROSE,10,0,0,0
+ra_fild04,0,0,0,0	monster#pre	Galion	GALION,3,0,0,0
+ra_fild04,0,0,0,0	boss_monster#pre	Atroce	ATROCE,1,18000000,600000,1,{}
 
 //==================================================
 // [Renovação] ra_fild04 - Pradaria Audhumbla
 //==================================================
-ra_fild04,0,0,0,0	monster#re	Vento da Colina	1680,130,5000,0,0
-ra_fild04,0,0,0,0	monster#re	Roween	1782,30,5000,0,0
-ra_fild04,0,0,0,0	monster#re	Lobo do Deserto	1106,20,5000,0,0
-ra_fild04,0,0,0,0	monster#re	Anopheles	1627,20,5000,0,0
-ra_fild04,0,0,0,0	boss_monster#re	Atroce	1785,1,18000000,600000,1,{}
+ra_fild04,0,0,0,0	monster#re	Vento da Colina	HILL_WIND_1,130,5000,0,0
+ra_fild04,0,0,0,0	monster#re	Roween	ROWEEN,30,5000,0,0
+ra_fild04,0,0,0,0	monster#re	Lobo do Deserto	DESERT_WOLF,20,5000,0,0
+ra_fild04,0,0,0,0	monster#re	Anopheles	ANOPHELES,20,5000,0,0
+ra_fild04,0,0,0,0	boss_monster#re	Atroce	ATROCE,1,18000000,600000,1,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild05 - Campo de Rachel
 //==================================================
-ra_fild05,0,0,0,0	monster#pre	Vento da Colina	1680,70,0,0,0
-ra_fild05,0,0,0,0	monster#pre	Drosera	1781,20,0,0,0
-ra_fild05,170,200,106,115	monster#pre	Planta Carnívora	1368,10,0,0,1,{}
+ra_fild05,0,0,0,0	monster#pre	Vento da Colina	HILL_WIND_1,70,0,0,0
+ra_fild05,0,0,0,0	monster#pre	Drosera	DROSERA,20,0,0,0
+ra_fild05,170,200,106,115	monster#pre	Planta Carnívora	GEOGRAPHER,10,0,0,1,{}
 
 //==================================================
 // [Renovação] ra_fild05 - Pradaria Audhumbla
 //==================================================
-ra_fild05,0,0,0,0	monster#re	Kobold	1133,70,5000,0,0
-ra_fild05,0,0,0,0	monster#re	Kobold	1134,70,5000,0,0
-ra_fild05,0,0,0,0	monster#re	Kobold	1135,70,5000,0,0
-ra_fild05,0,0,0,0	monster#re	Anopheles	1627,10,5000,0,0,{}
+ra_fild05,0,0,0,0	monster#re	Kobold	KOBOLD_1,70,5000,0,0
+ra_fild05,0,0,0,0	monster#re	Kobold	KOBOLD_2,70,5000,0,0
+ra_fild05,0,0,0,0	monster#re	Kobold	KOBOLD_3,70,5000,0,0
+ra_fild05,0,0,0,0	monster#re	Anopheles	ANOPHELES,10,5000,0,0,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild06 - Campo de Rachel
 //==================================================
-ra_fild06,0,0,0,0	monster#pre	Vento da Colina	1680,50,0,0,0
-ra_fild06,0,0,0,0	monster#pre	Anopheles	1627,20,0,0,0
-ra_fild06,0,0,0,0	monster#pre	Drosera	1781,10,0,0,1,{}
+ra_fild06,0,0,0,0	monster#pre	Vento da Colina	HILL_WIND_1,50,0,0,0
+ra_fild06,0,0,0,0	monster#pre	Anopheles	ANOPHELES,20,0,0,0
+ra_fild06,0,0,0,0	monster#pre	Drosera	DROSERA,10,0,0,1,{}
 
 //==================================================
 // [Renovação] ra_fild06 - Portus Luna
 //==================================================
-ra_fild06,0,0,0,0	monster#re	Kobold Arqueiro	1282,70,5000,0,0
-ra_fild06,0,0,0,0	monster#re	Kobold	1133,40,5000,0,0
-ra_fild06,0,0,0,0	monster#re	Kobold	1134,40,5000,0,0
-ra_fild06,0,0,0,0	monster#re	Kobold	1135,40,5000,0,0
-ra_fild06,0,0,0,0	monster#re	Anopheles	1627,10,5000,0,0
-ra_fild06,0,0,0,0	monster#re	Líder Cobold	1296,1,1800000,1200000,0,{}
+ra_fild06,0,0,0,0	monster#re	Kobold Arqueiro	KOBOLD_ARCHER,70,5000,0,0
+ra_fild06,0,0,0,0	monster#re	Kobold	KOBOLD_1,40,5000,0,0
+ra_fild06,0,0,0,0	monster#re	Kobold	KOBOLD_2,40,5000,0,0
+ra_fild06,0,0,0,0	monster#re	Kobold	KOBOLD_3,40,5000,0,0
+ra_fild06,0,0,0,0	monster#re	Anopheles	ANOPHELES,10,5000,0,0
+ra_fild06,0,0,0,0	monster#re	Líder Cobold	KOBOLD_LEADER,1,1800000,1200000,0,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild07 - Campo de Rachel
 //==================================================
-ra_fild07,0,0,0,0	monster#pre	Roween	1782,50,0,0,0
-ra_fild07,0,0,0,0	monster#pre	Galion	1783,20,0,0,0
-ra_fild07,0,0,0,0	monster#pre	Stapo	1784,10,0,0,1,{}
+ra_fild07,0,0,0,0	monster#pre	Roween	ROWEEN,50,0,0,0
+ra_fild07,0,0,0,0	monster#pre	Galion	GALION,20,0,0,0
+ra_fild07,0,0,0,0	monster#pre	Stapo	STAPO,10,0,0,1,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild08 - Planície de Ida
 //==================================================
-ra_fild08,0,0,0,0	monster#pre	Stapo	1784,100,0,0,1
-ra_fild08,0,0,0,0	monster#pre	Drops	1113,40,0,0,0
-ra_fild08,0,0,0,0	monster#pre	Drosera	1781,20,0,0,1,{}
+ra_fild08,0,0,0,0	monster#pre	Stapo	STAPO,100,0,0,1
+ra_fild08,0,0,0,0	monster#pre	Drops	DROPS,40,0,0,0
+ra_fild08,0,0,0,0	monster#pre	Drosera	DROSERA,20,0,0,1,{}
 
 //==================================================
 // [Renovação] ra_fild08 - Planície de Ida
 //==================================================
-ra_fild08,0,0,0,0	monster#re	Anaconda	1030,100,5000,0,0
-ra_fild08,0,0,0,0	monster#re	Roween	1782,50,5000,0,0
-ra_fild08,0,0,0,0	monster#re	Vento da Colina	1680,20,5000,0,0
-ra_fild08,0,0,0,0	monster#re	Filhote de Lobo	1107,10,5000,0,0
-ra_fild08,0,0,0,0	monster#re	Anopheles	1627,10,5000,0,0
+ra_fild08,0,0,0,0	monster#re	Anaconda	ANACONDAQ,100,5000,0,0
+ra_fild08,0,0,0,0	monster#re	Roween	ROWEEN,50,5000,0,0
+ra_fild08,0,0,0,0	monster#re	Vento da Colina	HILL_WIND_1,20,5000,0,0
+ra_fild08,0,0,0,0	monster#re	Filhote de Lobo	DESERT_WOLF_B,10,5000,0,0
+ra_fild08,0,0,0,0	monster#re	Anopheles	ANOPHELES,10,5000,0,0
 
 //==================================================
 // [Renovação] ra_fild09 - Campo de Rachel
 //==================================================
-ra_fild09,0,0,0,0	monster#pre	Drosera	1781,60,0,0,1
-ra_fild09,0,0,0,0	monster#pre	Metaling	1613,20,0,0,0
-ra_fild09,0,0,0,0	monster#pre	Vento da Colina	1680,10,0,0,0
-ra_fild09,0,0,0,0	monster#pre	Harpia	1376,1,3600000,0,0
+ra_fild09,0,0,0,0	monster#pre	Drosera	DROSERA,60,0,0,1
+ra_fild09,0,0,0,0	monster#pre	Metaling	METALING,20,0,0,0
+ra_fild09,0,0,0,0	monster#pre	Vento da Colina	HILL_WIND_1,10,0,0,0
+ra_fild09,0,0,0,0	monster#pre	Harpia	HARPY,1,3600000,0,0
 
 //==================================================
 // [Renovação] ra_fild10 - Campo de Rachel
 //==================================================
-ra_fild10,0,0,0,0	monster#pre	Stapo	1784,30,0,0,1
-ra_fild10,0,0,0,0	monster#pre	Galion	1783,20,0,0,0
-ra_fild10,0,0,0,0	monster#pre	Roween	1782,10,0,0,0,{}
+ra_fild10,0,0,0,0	monster#pre	Stapo	STAPO,30,0,0,1
+ra_fild10,0,0,0,0	monster#pre	Galion	GALION,20,0,0,0
+ra_fild10,0,0,0,0	monster#pre	Roween	ROWEEN,10,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild11 - Campo de Rachel
 //==================================================
-ra_fild11,0,0,0,0	monster#pre	Drops	1113,100,0,0,1
-ra_fild11,0,0,0,0	monster#pre	Stapo	1784,40,0,0,0
-ra_fild11,0,0,0,0	monster#pre	Roween	1782,2,0,0,0
-ra_fild11,0,0,0,0	monster#pre	Planta Amarela	1081,15,0,0,1
-ra_fild11,0,0,0,0	monster#pre	Planta Vermelha	1078,5,0,0,1,{}
+ra_fild11,0,0,0,0	monster#pre	Drops	DROPS,100,0,0,1
+ra_fild11,0,0,0,0	monster#pre	Stapo	STAPO,40,0,0,0
+ra_fild11,0,0,0,0	monster#pre	Roween	ROWEEN,2,0,0,0
+ra_fild11,0,0,0,0	monster#pre	Planta Amarela	YELLOW_PLANT,15,0,0,1
+ra_fild11,0,0,0,0	monster#pre	Planta Vermelha	RED_PLANT,5,0,0,1,{}
 
 //==================================================
 // [Renovação] ra_fild11 - Desativado na Renovação
 //==================================================
-//ra_fild11,0,0,0,0	monster#re	Planta Amarela	1081,15,10000,0,1
-//ra_fild11,0,0,0,0	monster#re	Planta Azul	1078,5,10000,0,1,{}
+//ra_fild11,0,0,0,0	monster#re	Planta Amarela	YELLOW_PLANT,15,10000,0,1
+//ra_fild11,0,0,0,0	monster#re	Planta Azul	RED_PLANT,5,10000,0,1,{}
 
 //==================================================
 // [Pré-Renovação] ra_fild12 - Campo de Rachel
 //==================================================
-ra_fild12,0,0,0,0	monster#pre	Drops	1113,100,0,0,0
-ra_fild12,0,0,0,0	monster#pre	Stapo	1784,40,0,0,1
-ra_fild12,0,0,0,0	monster#pre	Poporing	1031,5,0,0,0
-ra_fild12,0,0,0,0	monster#pre	Planta Amarela	1081,15,0,0,1
-ra_fild12,0,0,0,0	monster#pre	Planta Vermelha	1078,5,0,0,1
+ra_fild12,0,0,0,0	monster#pre	Drops	DROPS,100,0,0,0
+ra_fild12,0,0,0,0	monster#pre	Stapo	STAPO,40,0,0,1
+ra_fild12,0,0,0,0	monster#pre	Poporing	POPORING,5,0,0,0
+ra_fild12,0,0,0,0	monster#pre	Planta Amarela	YELLOW_PLANT,15,0,0,1
+ra_fild12,0,0,0,0	monster#pre	Planta Vermelha	RED_PLANT,5,0,0,1
 
 //==================================================
 // [Pré-Renovação] ra_fild13 - Campo de Rachel
 //==================================================
-ra_fild13,0,0,0,0	monster#pre	Stapo	1784,60,0,0,1
-ra_fild13,0,0,0,0	monster#pre	Drops	1113,40,0,0,0
-ra_fild13,0,0,0,0	monster#pre	Roween	1782,5,0,0,0,{}
+ra_fild13,0,0,0,0	monster#pre	Stapo	STAPO,60,0,0,1
+ra_fild13,0,0,0,0	monster#pre	Drops	DROPS,40,0,0,0
+ra_fild13,0,0,0,0	monster#pre	Roween	ROWEEN,5,0,0,0,{}
 
 //==================================================
 // [Renovação] ra_fild12 - Campo de Rachel
 //==================================================
-ra_fild12,0,0,0,0	monster#re	Roween	1782,130,5000,0,0
-ra_fild12,0,0,0,0	monster#re	Anopheles	1627,30,5000,0,0
-ra_fild12,0,0,0,0	monster#re	Filhote de Lobo	1107,15,5000,0,0
-ra_fild12,0,0,0,0	monster#re	Planta Amarela	1081,15,10000,0,1
-ra_fild12,0,0,0,0	monster#re	Planta Vermelha	1078,5,10000,0,1,{}
+ra_fild12,0,0,0,0	monster#re	Roween	ROWEEN,130,5000,0,0
+ra_fild12,0,0,0,0	monster#re	Anopheles	ANOPHELES,30,5000,0,0
+ra_fild12,0,0,0,0	monster#re	Filhote de Lobo	DESERT_WOLF_B,15,5000,0,0
+ra_fild12,0,0,0,0	monster#re	Planta Amarela	YELLOW_PLANT,15,10000,0,1
+ra_fild12,0,0,0,0	monster#re	Planta Vermelha	RED_PLANT,5,10000,0,1,{}

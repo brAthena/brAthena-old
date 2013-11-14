@@ -2029,7 +2029,7 @@ static void npc_parsename(struct npc_data *nd, const char *name, const char *sta
 // Support for using Constants in place of NPC View IDs.
 int npc_parseview(const char* w4, const char* start, const char* buffer, const char* filepath) {
 	int val = -1, i = 0;
-	char viewid[1024];	// Max size of name from const.txt, see script->read_constdb.
+	char viewid[1024];	// Max size of name from const.txt, see read_constdb.
 
 	// Extract view ID / constant
 	while (w4[i] != '\0') {
@@ -2956,11 +2956,12 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 {
 	int num, class_, m,x,y,xs,ys, i,j;
 	int mob_lv = -1, ai = -1, size = -1;
-	char mapname[32], mobname[NAME_LENGTH];
+	char mapname[32], mobname[NAME_LENGTH], mobname2[NAME_LENGTH];
 	struct spawn_data mobspawn, *data;
 	struct mob_db *db;
 
 	memset(&mobspawn, 0, sizeof(struct spawn_data));
+	memset(mobname2, '\0', sizeof(mobname2));
 
 	if(!strcmpi(w2,"boss_monster") ||
 #if VERSION == 1
@@ -2976,10 +2977,10 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 
 	// w1=<map name>,<x>,<y>,<xs>,<ys>
 	// w3=<mob name>{,<mob level>}
-	// w4=<mob id>,<amount>,<delay1>,<delay2>,<event>{,<mob size>,<mob ai>}
+	// w4=<mob id/mob name>,<amount>,<delay1>,<delay2>,<event>{,<mob size>,<mob ai>}
 	if( sscanf(w1, "%31[^,],%d,%d,%d,%d", mapname, &x, &y, &xs, &ys) < 3
 	 || sscanf(w3, "%23[^,],%d", mobname, &mob_lv) < 1
-	 || sscanf(w4, "%d,%d,%u,%u,%127[^,],%d,%d[^\t\r\n]", &class_, &num, &mobspawn.delay1, &mobspawn.delay2, mobspawn.eventname, &size, &ai) < 2
+	 || sscanf(w4, "%23[^,],%d,%u,%u,%127[^,],%d,%d[^\t\r\n]", mobname2, &num, &mobspawn.delay1, &mobspawn.delay2, mobspawn.eventname, &size, &ai) < 2
 	 ) {
 		ShowError("npc_parse_mob: Invalid mob definition in file '%s', line '%d'.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,start-buffer), w1, w2, w3, w4);
 		return strchr(start,'\n');// skip and continue
@@ -2999,8 +3000,8 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 	}
 
 	// check monster ID if exists!
-	if(mobdb_checkid(class_) == 0) {
-		ShowError("npc_parse_mob: Unknown mob ID %d in file '%s', line '%d'.\n", class_, filepath, strline(buffer,start-buffer));
+	if((class_ = mobdb_searchname(mobname2)) == 0 && (class_ = mobdb_checkid(atoi(mobname2))) == 0) {
+		ShowError("npc_parse_mob: Unknown mob %s in file '%s', line '%d'.\n", mobname2, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 

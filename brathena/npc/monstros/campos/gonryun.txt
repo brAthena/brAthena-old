@@ -27,27 +27,27 @@
 //==================================================
 // [Old Times] gon_fild01 - Campo de Kunlun
 //==================================================
-gon_fild01,0,0,0,0	monster#ot	Zipper	1417,15,0,0,0
-gon_fild01,0,0,0,0	monster#ot	Filhote de Leopardo	1415,10,0,0,0
-gon_fild01,0,0,0,0	monster#ot	Planta Verde	1080,5,0,0,0
-gon_fild01,0,0,0,0	monster#ot	Pirralho	1409,10,0,0,0,{}
+gon_fild01,0,0,0,0	monster#ot	Zipper	ZIPPER_BEAR,15,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Filhote de Leopardo	BABY_LEOPARD,10,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Planta Verde	GREEN_PLANT,5,0,0,0
+gon_fild01,0,0,0,0	monster#ot	Pirralho	RICE_CAKE_BOY,10,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] gon_fild01 - Campo de Kunlun
 //==================================================
-gon_fild01,0,0,0,0	monster#vpo	Filhote de Leopardo	1415,40,600000,300000,0
-gon_fild01,0,0,0,0	monster#vpo	Zipper	1417,20,0,0,0
-gon_fild01,0,0,0,0	monster#vpo	Poporing	1031,20,0,0,0
-gon_fild01,0,0,0,0	monster#vpo	Pirralho	1409,30,0,0,0
-gon_fild01,0,0,0,0	monster#vpo	Ermitão Selvagem	1413,2,630000,330000,0
-gon_fild01,0,0,0,0	monster#vpo	Planta Verde	1080,5,0,0,0
-gon_fild01,0,0,0,0	monster#vpo	Planta Brilhante	1083,1,0,0,0,{}
+gon_fild01,0,0,0,0	monster#vpo	Filhote de Leopardo	BABY_LEOPARD,40,600000,300000,0
+gon_fild01,0,0,0,0	monster#vpo	Zipper	ZIPPER_BEAR,20,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Poporing	POPORING,20,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Pirralho	RICE_CAKE_BOY,30,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Ermitão Selvagem	WILD_GINSENG,2,630000,330000,0
+gon_fild01,0,0,0,0	monster#vpo	Planta Verde	GREEN_PLANT,5,0,0,0
+gon_fild01,0,0,0,0	monster#vpo	Planta Brilhante	SHINING_PLANT,1,0,0,0,{}
 
 //==================================================
 // [Renovação] gon_fild01 - Campo de Kunlun
 //==================================================
-gon_fild01,0,0,0,0	monster#re	Pirralho	1409,55,5000,0,0
-gon_fild01,0,0,0,0	monster#re	Filhote de Leopardo	1415,40,5000,0,0
-gon_fild01,0,0,0,0	monster#re	Sorrateiro	1037,10,5000,0,0
-gon_fild01,0,0,0,0	monster#re	Planta Verde	1080,5,10000,0,1
-gon_fild01,0,0,0,0	monster#re	Planta Brilhante	1083,1,10000,0,1,{}
+gon_fild01,0,0,0,0	monster#re	Pirralho	RICE_CAKE_BOY,55,5000,0,0
+gon_fild01,0,0,0,0	monster#re	Filhote de Leopardo	BABY_LEOPARD,40,5000,0,0
+gon_fild01,0,0,0,0	monster#re	Sorrateiro	SIDE_WINDER,10,5000,0,0
+gon_fild01,0,0,0,0	monster#re	Planta Verde	GREEN_PLANT,5,10000,0,1
+gon_fild01,0,0,0,0	monster#re	Planta Brilhante	SHINING_PLANT,1,10000,0,1,{}

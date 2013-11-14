@@ -496,7 +496,7 @@ moc_prydb1,42,133,2	script	Brad#gatuno	2_M_THIEFMASTER,{
 //============================================================ 
 // [Pré-Renovação & Old-Times] Teste para se tornar Gatuno.
 //============================================================ 
-job_thief1,0,0,0,0	monster#vpo	Cogumelo	1182,180,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Fabre	1184,50,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Chonchon	1183,50,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Esporo	1014,30,0,0,0,{}
+job_thief1,0,0,0,0	monster#vpo	Cogumelo	THIEF_MUSHROOM,180,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Fabre	FABRE_,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Chonchon	CHONCHON_,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Esporo	SPORE,30,0,0,0,{}
