@@ -340,7 +340,7 @@ Oninvoc:
 	end;
 
 OnMyMvPDead:
-	killmonster "lhz_dun03","invocar_chefe_lt::Onmvp";
+	killmonster "lhz_dun03","invocar_chefe_lt::OnMvp";
 	initnpctimer;
 	end;
 
