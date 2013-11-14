@@ -231,7 +231,7 @@ bif_fild01,161,355,0	script	Túnel	CLEAR_NPC,{
 						else {
 							mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
 							setquest 7211;
-							warp instance_mapname("1@mist"),86,27;
+							warp "1@mist",89,29;
 						}
 					case 3:
 						close;
@@ -248,7 +248,7 @@ bif_fild01,161,355,0	script	Túnel	CLEAR_NPC,{
 						else {
 							mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
 							setquest 7211;
-							warp instance_mapname("1@mist"),86,27;
+							warp "1@mist",89,29;
 						}
 					}
 					close;
@@ -267,7 +267,7 @@ bif_fild01,161,355,0	script	Túnel	CLEAR_NPC,{
 					else {
 						mapannounce "bif_fild01", .@p_reader$ + " membro do grupo " + .@p_name$ + " entrou no " + .@md_name$ + ".",bc_map,"0x00ff99";
 						setquest 7211;
-						warp instance_mapname("1@mist"),86,27;
+						warp "1@mist",89,29;
 					}
 				}
 				close;
