@@ -208,5 +208,5 @@ c_tower3_,0,0,0,0	monster	Rideword - Pesadelo	NG_RIDEWORD,8,5000,0,0
 c_tower3_,0,0,0,0	monster	Grande Sino	BIG_BELL,110,5000,0,0
 c_tower3_,0,0,0,0	monster	Cronômetro	TIME_KEEPER,3,5000,0,0
 c_tower3_,0,0,0,0	monster	Visconde Coruja	OWL_VISCOUNT,1,5000,0,0
-c_tower3_,0,0,0,0	monster	Mestre do Tempo	3074,1,5000,0,0
+c_tower3_,0,0,0,0	monster	Mestre do Tempo	TIMEHOLDER,1,5000,0,0
 c_tower3_,0,0,0,0	monster	Marquês Coruja	OWL_MARQUEES,1,5000,0,0
