@@ -4061,7 +4061,7 @@ int pc_dropitem(struct map_session_data *sd,int n,int amount)
 	  )
 		return 0;
 
-	if(map[sd->bl.m].flag.nodrop || pc_has_permission(sd,PC_PERM_CAN_DROPS)) {
+	if(map[sd->bl.m].flag.nodrop || pc_has_permission(sd,PC_PERM_DISABLE_DROPS)) {
 		clif_displaymessage(sd->fd, msg_txt(271));
 		return 0; //Can't drop items in nodrop mapflag maps.
 	}

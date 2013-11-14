@@ -52,13 +52,13 @@ enum e_pc_permission {
 	PC_PERM_USE_CHANGEMAPTYPE   = 0x004000,
 	PC_PERM_USE_ALL_COMMANDS    = 0x008000,
 	PC_PERM_RECEIVE_REQUESTS    = 0x010000,
-	PC_PERM_SHOW_BOSS	    = 0x020000,
-	PC_PERM_DISABLE_PVM	    = 0x040000,
-	PC_PERM_DISABLE_PVP	    = 0x080000,
+	PC_PERM_SHOW_BOSS           = 0x020000,
+	PC_PERM_DISABLE_PVM         = 0x040000,
+	PC_PERM_DISABLE_PVP         = 0x080000,
 	PC_PERM_DISABLE_CMD_DEAD    = 0x100000,
 	PC_PERM_NO_TAKE_ITEM        = 0x200000,    // [Holy]
-	PC_PERM_CAN_SHOP            = 0x400000,    // [Megasantos]
-	PC_PERM_CAN_DROPS    	    = 0x800000,    // [Megasantos]
+	PC_PERM_DISABLE_SHOP        = 0x400000,    // [Megasantos]
+	PC_PERM_DISABLE_DROPS    	= 0x800000,    // [Megasantos]
 	PC_PERM_DISABLE_EXP    	    = 0x1000000,   // [Megasantos]
 	PC_PERM_NOT_ATTACK    	    = 0x2000000,   // [Holy]
 	PC_PERM_NO_CREATE_GUILD     = 0x4000000,   // [Holy]
@@ -92,13 +92,13 @@ static const struct {
 	{ "disable_pvm", PC_PERM_DISABLE_PVM },
 	{ "disable_pvp", PC_PERM_DISABLE_PVP },
 	{ "disable_commands_when_dead", PC_PERM_DISABLE_CMD_DEAD },
-	{ "no_take_item", PC_PERM_NO_TAKE_ITEM },     // [Holy]
-	{ "can_shop", PC_PERM_CAN_SHOP },       // [Megasantos]
-	{ "can_drops", PC_PERM_CAN_DROPS },     // [Megasantos]
-	{ "disable_exp", PC_PERM_DISABLE_EXP }, // [Megasantos]
-	{ "not_attack", PC_PERM_NOT_ATTACK },   // [Holy]
-	{ "no_create_guild", PC_PERM_NO_CREATE_GUILD },// [Holy]
-	{ "not_use_skill", PC_PERM_NOT_USE_SKILL },   // [Holy]
+	{ "no_take_item", PC_PERM_NO_TAKE_ITEM },       // [Holy]
+	{ "disable_shop", PC_PERM_DISABLE_SHOP },       // [Megasantos]
+	{ "disable_drops", PC_PERM_DISABLE_DROPS },     // [Megasantos]
+	{ "disable_exp", PC_PERM_DISABLE_EXP },         // [Megasantos]
+	{ "not_attack", PC_PERM_NOT_ATTACK },           // [Holy]
+	{ "no_create_guild", PC_PERM_NO_CREATE_GUILD }, // [Holy]
+	{ "not_use_skill", PC_PERM_NOT_USE_SKILL },     // [Holy]
 	{ "channel_admin", PC_PERM_CHANNEL_ADMIN },
 	{ "can_trade_bound", PC_PERM_TRADE_BOUND },
 };
