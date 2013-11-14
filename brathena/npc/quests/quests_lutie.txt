@@ -179,7 +179,7 @@ xmas,115,297,4	script	Máquina de Vender	HIDDEN_NPC,{
 			delitem 1036,20;   // Escama de Dragão
 			delitem 7012,200;  // Pedaço de Escama Dura
 			delitem 7065,300;  // Pele de Lontra
-			emotion e_Oh;
+			emotion e_oh;
 			mes "^3355FF*Vroooooom~~*";
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
@@ -354,7 +354,7 @@ xmas,115,297,4	script	Máquina de Vender	HIDDEN_NPC,{
 		mes "Itens.^000000";
 		close;
 	}
-	emotion e_x;
+	emotion e_X;
 	mes "[Audi]";
 	mes "^555555Erro Erro!";
 	mes "Itens incorretos!^000000";

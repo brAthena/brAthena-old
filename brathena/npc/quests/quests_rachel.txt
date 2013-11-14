@@ -3784,7 +3784,7 @@ OnStart:
 	end;
 
 OnStartTimer:
-	Initnpctimer;
+	initnpctimer;
 	end;
 
 OnStopTimer:
@@ -6225,7 +6225,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	4_M_RACHOLD1,{
 					mes "I already have someone in";
 					mes "mind that might help us.";
 					next;
-					Emotion 52,1;
+					emotion 52,1;
 					mes "["+strcharinfo(0)+"]";
 					mes "That sounds good.";
 					mes "Who is he?";
@@ -7583,7 +7583,7 @@ OnTouch:
 		mes "with Bekento, I'm letting";
 		mes "you off easy. Remember that.";
 		next;
-		sc_start SC_Blind,600000,0;
+		sc_start SC_BLIND,600000,0;
 		mes "^3355FFNiren began to chant";
 		mes "in a low voice, and your";
 		mes "eyelids grow heavier as you";
@@ -7625,7 +7625,7 @@ OnTouch:
 		mes "back to Rachel Town. How long";
 		mes "have you been unconscious?^000000";
 		next;
-		sc_end SC_Blind;
+		sc_end SC_BLIND;
 		mes "^3355FFIt would be best to";
 		mes "ask High Priest Zhed";
 		mes "about what had happened.^000000";

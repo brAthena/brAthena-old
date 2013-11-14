@@ -1758,7 +1758,7 @@ prt_castle,45,35,5	script	Madeleine Chu#b	4_COOK,{
 			mes "Kit de culinária";
 			mes "você precisa?";
 			next;
-			switch(Select("Kit de Culinária Portátil - 500z:Kit de Culinária Caseiro - 1,000z:Cancelar")) {
+			switch(select("Kit de Culinária Portátil - 500z:Kit de Culinária Caseiro - 1,000z:Cancelar")) {
 			case 1:
 				callsub S_SellSets,12125;
 				close;

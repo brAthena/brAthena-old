@@ -108,7 +108,7 @@ auction_01,182,68,6	script	Corretor#dum::CorretorLeilão	4W_M_02,{
 		mes "Por favor";
 		mes "dê uma olhada, e veja";
 		mes "o que está sendo oferecido~";
-		OpenAuction;
+		openauction;
 		close;
 	}
 	mes "[Corretor]";

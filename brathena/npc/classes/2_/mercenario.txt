@@ -1856,7 +1856,7 @@ OnTouch:
 				mes "Haha, the needs of the body are sometimes hard to ignore. It's best to accept that part of human nature.";
 				next;
 				mes "[Guildmaster]";
-				if (sex )
+				if (Sex)
 					mes "But you must never reveal to her the Assassin side of your life. No matter what it takes.";
 				else
 					mes "But you must never reveal to him the Assassin side of your life, no matter what it takes.";

@@ -41,13 +41,13 @@ prontera,73,140,0	script	Vendedor de Leite	4_M_04,{
 		set .@bottles,countitem(713);
 		set .@total_weight,.@bottles * 50;
 		set .@total_cost,.@bottles * 15;
-		if (Zeny < .@Total_cost) {
+		if (Zeny < .@total_cost) {
 			mes "Oh, whoa~!";
 			mes "Você não tem os zenys necessários para esse número de Garrafas Vazias.";
 			mes "Você precisa me trazer um total de " + .@total_cost + " zenys.";
 			close;
 		}
-		if ((maxweight-weight < .@total_weight) || (checkweight(1201,1) == 0)) {
+		if ((MaxWeight-Weight < .@total_weight) || (checkweight(1201,1) == 0)) {
 			mes "Hmm...";
 			mes "Acho que você deveria abrir mais espaço em seu inventário antes que eu lhe dê todo esse leite...";
 			close;

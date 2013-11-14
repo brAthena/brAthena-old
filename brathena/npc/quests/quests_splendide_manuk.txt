@@ -3283,7 +3283,7 @@ OnDisable:
 	disablenpc "Estranho#ep13_2_dan01";
 	end;
 
-OnCall:
+Oncall:
 	monster "nyd_dun02",144,103,"Membro Fugitivo Dandelion",2026,1,"Estranho#ep13_2_dan03::OnMonstroDerrotado";
 	end;
 
@@ -3295,7 +3295,7 @@ OnTouch:
 	emotion e_gasp,1;
 	emotion e_omg;
 	disablenpc "Estranho#ep13_2_dan01";
-	donpcevent "Estranho#ep13_2_dan02::OnCall";
+	donpcevent "Estranho#ep13_2_dan02::Oncall";
 	end;
 }
 
@@ -3311,7 +3311,7 @@ OnEnable:
 	enablenpc "Estranho#ep13_2_dan02";
 	end;
 
-OnCall:
+Oncall:
 	monster "nyd_dun02",206,114,"Membro Fugitivo Dandelion",2026,1,"Estranho#ep13_2_dan04::OnMonstroDerrotado";
 	end;
 
@@ -3323,7 +3323,7 @@ OnTouch:
 	emotion e_gasp,1;
 	emotion e_omg;
 	disablenpc "Estranho#ep13_2_dan02";
-	donpcevent "Estranho#ep13_2_dan01::OnCall";
+	donpcevent "Estranho#ep13_2_dan01::Oncall";
 	end;
 }
 

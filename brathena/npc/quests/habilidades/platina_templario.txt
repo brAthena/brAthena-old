@@ -437,7 +437,7 @@ gef_fild13,297,242,3	script	Soldado#277	4_M_CRU,{
 		}
 		else if (CRUS_SK == 5) {
 			mes "[Sloutii]";
-			if (upper == 1) {
+			if (Upper == 1) {
 				mes "Eeearrrgh--!";
 				mes "Minhas p-pernas! Tudo";
 				mes "está começando a doer-r!";

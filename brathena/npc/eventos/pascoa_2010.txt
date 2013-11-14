@@ -50,7 +50,7 @@ prontera,202,297,3	script	Rina#Easter	4_F_JOB_HUNTER,{
 	}
 	set .@quest1, checkquest(9117);
 	if (.@quest1 == -1) {
-		playbgm "30.mp3"; // One Step Closer
+		playBGM "30.mp3"; // One Step Closer
 		mes "[Rina]";
 		mes "Hi~!";
 		mes "You are an adventurer like me.";
@@ -79,7 +79,7 @@ prontera,202,297,3	script	Rina#Easter	4_F_JOB_HUNTER,{
 		mes "Thank you.";
 		mes "You are so brave.";
 		next;
-		playbgm "01.mp3"; // Title
+		playBGM "01.mp3"; // Title
 		mes "[Rina]";
 		mes "Then I'll start ^800080Oath-taking ceremony^000000.";
 		mes " ";
@@ -191,16 +191,16 @@ prontera,202,297,3	script	Rina#Easter	4_F_JOB_HUNTER,{
 		mes "but you can hear the sound.";
 		next;
 		if (oversea_event2 < 520 || oversea_event3 < 270 || oversea_event6 < 245 || oversea_event9 < 197) {
-			     if (oversea_event2 == 520) playbgm "13.mp3"; // Theme of Geffen
-			else if (oversea_event3 == 270) playbgm "59.mp3"; // Theme of Lutie
-			else if (oversea_event6 == 245) playbgm "70.mp3"; // Theme of Juno
-			else if (oversea_event9 == 197) playbgm "94.mp3"; // Theme of Rachel
+			     if (oversea_event2 == 520) playBGM "13.mp3"; // Theme of Geffen
+			else if (oversea_event3 == 270) playBGM "59.mp3"; // Theme of Lutie
+			else if (oversea_event6 == 245) playBGM "70.mp3"; // Theme of Juno
+			else if (oversea_event9 == 197) playBGM "94.mp3"; // Theme of Rachel
 			else {
 				switch(rand(1,4)) {
-					case 1: playbgm "13.mp3"; set oversea_event2,520; break;
-					case 2: playbgm "59.mp3"; set oversea_event3,270; break;
-					case 3: playbgm "70.mp3"; set oversea_event6,245; break;
-					case 4: playbgm "94.mp3"; set oversea_event9,197; break;
+					case 1: playBGM "13.mp3"; set oversea_event2,520; break;
+					case 2: playBGM "59.mp3"; set oversea_event3,270; break;
+					case 3: playBGM "70.mp3"; set oversea_event6,245; break;
+					case 4: playBGM "94.mp3"; set oversea_event9,197; break;
 				}
 			}
 		}
@@ -462,7 +462,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 			emotion e_gg;
 			end;
 		case 3:
-			playbgm "23.mp3"; // Travel
+			playBGM "23.mp3"; // Travel
 			mes "[Rina's Little Friend]";
 			mes "Huh?!";
 			mes "I never told you before?";
@@ -490,7 +490,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 				mes "Well... I don't really care.";
 				mes "Good bye.";
 				close2;
-				playbgm "08.mp3"; // Theme of Prontera
+				playBGM "08.mp3"; // Theme of Prontera
 				end;
 			}
 			mes "[Rina's Little Friend]";
@@ -513,7 +513,7 @@ prontera,204,297,3	script	Rina's Little Friend	4_DRAGON_EGG,{
 			mes "Haha...";
 			mes "I'll be waiting for you.";
 			close2;
-			playbgm "08.mp3"; // Theme of Prontera
+			playBGM "08.mp3"; // Theme of Prontera
 			emotion e_gg;
 			end;
 		}

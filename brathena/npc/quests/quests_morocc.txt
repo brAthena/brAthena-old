@@ -3567,7 +3567,7 @@ OnTouch:
 		warp "ama_dun03",119,110;
 	}
 	else {
-		sc_end SC_Blind;
+		sc_end SC_BLIND;
 		mes "[???]";
 		mes "Uaaaaah!";
 		next;
@@ -3682,7 +3682,7 @@ OnTouch:
 		if (barmunt_crow == 4) {
 			set barmunt_crow,5;
 		}
-		sc_start SC_Blind,600000,0,10000;
+		sc_start SC_BLIND,600000,0,10000;
 		close2;
 		warp "que_ba",53,232;
 		end;

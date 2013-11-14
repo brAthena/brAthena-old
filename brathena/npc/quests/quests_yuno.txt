@@ -217,7 +217,7 @@ yuno_in01,17,30,5	script#dv	Wagan#juno	4_M_03,{
 		next;
 		mes "[Wagan]";
 		if (Class == Job_Sage) {
-			set .@now_weight,maxweight - weight;
+			set .@now_weight,MaxWeight - Weight;
 			if (.@now_weight < 300) {
 				mes "Ah, não, parece que você está carregando muita coisa! Você poderia arrumar algum espaço?";
 				close;
@@ -227,7 +227,7 @@ yuno_in01,17,30,5	script#dv	Wagan#juno	4_M_03,{
 			getitem 715,10; // Gema Amarela
 			close;
 		}
-		set .@now_weight,maxweight - weight;
+		set .@now_weight,MaxWeight - Weight;
 		if (.@now_weight < 150) {
 			mes "Ah, não, parece que você está carregando muita coisa! Você poderia arrumar algum espaço?";
 			close;

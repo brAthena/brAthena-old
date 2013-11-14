@@ -619,7 +619,7 @@ dicastes01,202,197,4	script	Venknick Maluco#fihsing1	4_MAN_BENKUNI,{
 		next;
 		emotion e_dots,1;
 		select("Eu estou enganado?");
-		sc_start SC_Blind,20000,0;
+		sc_start SC_BLIND,20000,0;
 		next;
 		mes "Você se sente indignado por ter sido enganado.";
 		close; 

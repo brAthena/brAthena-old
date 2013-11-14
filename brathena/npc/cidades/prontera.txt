@@ -606,7 +606,7 @@ prt_church,103,71,0	script	Henson#pront	2_M_PHARMACIST,{
 	mes "Você tem alguma dúvida sobre Noviço e habilidades Sacerdote?";
 	next;
 	set .@habilidadeChat,1;
-	while(.@habilidadechat) {
+	while(.@habilidadeChat) {
 		switch(select("Sobre Divina Proteção:Sobre Flagelo do Mal:Sobre Diminuir AGI:Sobre Signum Crusis :Sobre Escudo Sagrado:Sobre Revelação:Sobre Teleportar:Fim da conversa.")) {
 		case 1:
 			mes "[Henson]";

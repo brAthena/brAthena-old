@@ -2790,7 +2790,7 @@ OnTouch:
 		case 3: warp strnpcinfo(4),223,361; break;
 		case 4: warp strnpcinfo(4),243,342; break;
 		case 5: warp strnpcinfo(4),247,364; break;
-		Default: break;
+		default: break;
 	}
 	end;
 }
@@ -3583,7 +3583,7 @@ OnTouch:
 		case 4: warp strnpcinfo(4),219,202; break;
 		case 5: warp strnpcinfo(4),218,228; break;
 		case 6: warp strnpcinfo(4),220,195; break;
-		Default: break;
+		default: break;
 	}
 	end;
 	

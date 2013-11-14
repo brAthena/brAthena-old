@@ -49,7 +49,7 @@ payon_in03,117,128,5	script	Fortune Teller	4_M_BIBI,{
 				mes "You have angered the monster spirits!";
 				close;
 			}
-			else if (.@input > zeny) {
+			else if (.@input > Zeny) {
 				mes "[Lhimetorra]";
 				mes "There's no need to overdo it. Just give with all your heart... *Tsk tsk*";
 				close;
@@ -2760,7 +2760,7 @@ payon_in03,75,129,5	script	Poring Fortune Teller	4_M_BIBI,{
 		case 1:
 			if (Zeny < 1000) {
 				mes "[Chocarle]";
-				mes "You don't even have 1000 zeny!";
+				mes "You don't even have 1000 Zeny!";
 				mes "Nope, I can read cards for you!";
 				mes "Nope!";
 				close;

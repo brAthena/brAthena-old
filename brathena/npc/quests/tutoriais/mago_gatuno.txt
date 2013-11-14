@@ -33,12 +33,12 @@ moc_fild12,166,369,0	script	Traços de Batalha#1	CLEAR_NPC,{
 		} else if (tu_thief01 == 5){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Depois de examinar cuidadosamente, me sinto um pouco tonto.";
 			set tu_thief01, 6;
-			sc_start SC_Poison,60000,0;
+			sc_start SC_POISON,60000,0;
 			specialeffect EF_VENOMDUST2;
 			close;
 		} else if (tu_thief01 == 6){
 			mes "^3355FFExistem vestígios de veneno usados em uma batalha. Depois de examinar cuidadosamente, me sinto um pouco tonto.";
-			sc_start SC_Poison,60000,0;
+			sc_start SC_POISON,60000,0;
 			specialeffect EF_VENOMDUST2;
 			close;
 		} else if (tu_thief01 == 7){
@@ -615,7 +615,7 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	CLEAR_NPC,{
 				}
 			} else {
 				mes "Você foi atingido acidentalmente por uma armadilha.";
-				sc_start SC_Poison,60000,0;
+				sc_start SC_POISON,60000,0;
 				specialeffect EF_VENOMDUST2;
 				percentheal -30,0;
 				close;
@@ -692,7 +692,7 @@ moc_fild18,109,197,0	script	Traços de Batalha#15	CLEAR_NPC,{
 			}
 		} else {
 				mes "Você foi atingido acidentalmente por uma armadilha.";
-				sc_start SC_Poison,60000,0;
+				sc_start SC_POISON,60000,0;
 				specialeffect EF_VENOMDUST2;
 				percentheal -30,0;
 				close;

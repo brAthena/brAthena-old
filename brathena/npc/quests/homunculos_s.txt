@@ -320,14 +320,14 @@ job3_gen01,12,44,3	script	Viorel#job3_gen01	4_M_ALCHE_E,{
 				mes "Just as I thought.";
 				mes "Let's have a look at the notes my dear friend Jeyna left.";
 				next;
-				playbgm "30.mp3"; // One Step Closer
+				playBGM "30.mp3"; // One Step Closer
 				callfunc "F_HomMutateInfo","[Memo Pad Notes]";
 				mes "[Viorel]";
 				mes "Hmm.";
 				mes "Well, that's all there is to it.";
 				mes "It's up to you to find out more.";
 				close2;
-				playbgm "08.mp3"; // Theme of Prontera
+				playBGM "08.mp3"; // Theme of Prontera
 				end;
 			case 4:
 				emotion e_swt;
@@ -415,7 +415,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 		mes "Good.";
 		mes "I see that you mean business.";
 		next;
-		playbgm "33.mp3"; // Yuna Song
+		playBGM "33.mp3"; // Yuna Song
 		mes "[Viorel]";
 		mes "Maybe you'll agree.";
 		mes "Currently, your ^FF4800Homunculus^000000 is not in its perfect state.";
@@ -540,7 +540,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 			}
 		}
 	} else if (checkquest(4160) > -1) {
-		playbgm "33.mp3"; // Yuna Song
+		playBGM "33.mp3"; // Yuna Song
 		mes "[Viorel]";
 		mes "The ^FF4800Homunculus^000000 I saw before has returned to its ^0000FFembryo^000000 state.";
 		mes "A little strange, but...";
@@ -595,7 +595,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 				}
 			}
 			emotion e_no1;
-			playbgm "19.mp3"; // Under the Ground
+			playBGM "19.mp3"; // Under the Ground
 			mes "[Viorel]";
 			mes "Good choice.";
 			mes "Choose from the different types of ^0000FFHomunculus^000000.";
@@ -627,7 +627,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 			next;
 			if (select("Yes.:No.") == 2) {
 				cutin "",255;
-				playbgm "33.mp3"; // Yuna Song
+				playBGM "33.mp3"; // Yuna Song
 				mes "[Viorel]";
 				mes "I see.";
 				mes "Give it more time to think.";
@@ -662,7 +662,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 			mes "with the process of random outcome?";
 			next;
 			if (select("Go ahead. (Random Mutation):Cancel.") == 2) {
-				playbgm "33.mp3"; // Yuna Song
+				playBGM "33.mp3"; // Yuna Song
 				mes "[Viorel]";
 				mes "I see.";
 				mes "Give it more time to think.";
@@ -702,7 +702,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 		erasequest 4160;
 		erasequest 4154;
 		emotion e_ho;
-		playbgm "64.mp3"; // One Fine Day
+		playBGM "64.mp3"; // One Fine Day
 		mes "[Viorel]";
 		mes "Okay, Mutation Complete.";
 		mes "Phew... Didn't skip a heartbeat, did you?";
@@ -745,7 +745,7 @@ que_house_s,24,47,3	script	Viorel#homun_s	4_M_ALCHE_E,{
 
 que_house_s,80,42,3	script	Jeyna#homun_s	4_F_ALCHE_A,{
 	if (checkquest(4156) > -1) {
-		playbgm "28.mp3"; // You're in Ruins
+		playBGM "28.mp3"; // You're in Ruins
 		emotion e_gasp;
 		mes "[Jeyna]";
 		mes "Welcome.";
@@ -808,7 +808,7 @@ que_house_s,80,42,3	script	Jeyna#homun_s	4_F_ALCHE_A,{
 		emotion e_gasp,0,"Magic Board#homun_s";
 		end;
 	} else if (checkquest(4158) > -1) {
-		playbgm "28.mp3"; // You're in Ruins
+		playBGM "28.mp3"; // You're in Ruins
 		disable_items;
 		mes "[Jeyna]";
 		mes "Okay, I'm ready too.";
@@ -862,7 +862,7 @@ que_house_s,80,42,3	script	Jeyna#homun_s	4_F_ALCHE_A,{
 			mes "Good thinking.";
 			mes "It is unacceptable for Alchemists like us to fear challenge.";
 			next;
-			playbgm "01.mp3"; // Title
+			playBGM "01.mp3"; // Title
 			mes "[Jeyna]";
 			mes "Now I need you to focus.";
 			next;
@@ -905,14 +905,14 @@ que_house_s,80,42,3	script	Jeyna#homun_s	4_F_ALCHE_A,{
 			mes "I'll just take a glass of water.";
 			close;
 		case 2:
-			playbgm "28.mp3"; // You're in Ruins
+			playBGM "28.mp3"; // You're in Ruins
 			emotion e_sigh;
 			mes "[Jeyna]";
 			mes "Maybe I shouldn't have asked in the first place.";
 			close;
 		}
 	} else if (checkquest(4159) > -1 || checkquest(4160) > -1) {
-		playbgm "28.mp3"; // You're in Ruins
+		playBGM "28.mp3"; // You're in Ruins
 		mes "[Jeyna]";
 		mes "^005DFFViorel^000000 will finish the mutation process.";
 		mes "Now it's my time to say good bye.";
@@ -967,7 +967,7 @@ L_CheckHomunculus:
 // Magic Board
 //============================================================
 que_house_s,83,47,3	script	Magic Board#homun_s	4_BOARD3,{
-	playbgm "26.mp3"; // Everlasting Wanderers
+	playBGM "26.mp3"; // Everlasting Wanderers
 	callfunc "F_HomMutateInfo","[Magic Board Posts]";
 	mes "[Magic Board Posts]";
 	mes ":: ^0000FFHomunculus^000000 research is";

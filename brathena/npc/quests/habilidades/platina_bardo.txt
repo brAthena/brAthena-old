@@ -1172,7 +1172,7 @@ morocc_in,166,76,7	script	Bartender#bard_qskill	1_ETC_01,{
 	next;
 	switch(select("Tropical Sograt:Vermilion on the Beach:Nothing, thanks.")) {
 	case 1:
-		set .@now_weight,maxWeight-Weight;
+		set .@now_weight,MaxWeight-Weight;
 		if (.@now_weight < 2000) {
 			mes "[Bartender]";
 			mes "You sure you can carry";
@@ -1205,7 +1205,7 @@ morocc_in,166,76,7	script	Bartender#bard_qskill	1_ETC_01,{
 		close;
 
 	case 2:
-		set .@now_weight,maxWeight-Weight;
+		set .@now_weight,MaxWeight-Weight;
 		if (.@now_weight < 2000) {
 			mes "[Bartender]";
 			mes "You sure you can carry";

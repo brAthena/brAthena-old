@@ -768,7 +768,7 @@ OnTouch:
 				mes "^3355FFSomething inside";
 				mes "the coffin bit your";
 				mes "hand really hard!^000000";
-				sc_start SC_Poison,30000,0;
+				sc_start SC_POISON,30000,0;
 				sc_start SC_BLOODING,10000,0;
 				emotion e_omg,1;
 				close;
@@ -785,7 +785,7 @@ OnTouch:
 				mes "is squirming inside the";
 				mes "coffin, but it's far too dark";
 				mes "to see anything else.^000000";
-				sc_start SC_Blind,30000,0;
+				sc_start SC_BLIND,30000,0;
 				next;
 				break;
 			case 3:
@@ -793,7 +793,7 @@ OnTouch:
 				mes "strength to move";
 				mes "something as heavy";
 				mes "as this coffin's lid...^000000";
-				sc_start SC_Curse,30000,0;
+				sc_start SC_CURSE,30000,0;
 				next;
 				break;
 			case 4:
@@ -840,7 +840,7 @@ OnTouch:
 					mes "^3355FFSomething inside";
 					mes "the coffin bit your";
 					mes "hand really hard!^000000";
-					sc_start SC_Poison,30000,0;
+					sc_start SC_POISON,30000,0;
 					sc_start SC_BLOODING,10000,0;
 					emotion e_omg,1;
 					close;
@@ -868,7 +868,7 @@ OnTouch:
 				mes "is squirming inside the";
 				mes "coffin, but it's far too dark";
 				mes "to see anything else.^000000";
-				sc_start SC_Blind,30000,0;
+				sc_start SC_BLIND,30000,0;
 				next;
 				break;
 			case 3:
@@ -876,7 +876,7 @@ OnTouch:
 				mes "strength to move";
 				mes "something as heavy";
 				mes "as this coffin's lid...^000000";
-				sc_start SC_Curse,30000,0;
+				sc_start SC_CURSE,30000,0;
 				next;
 				break;
 			case 4:
@@ -912,7 +912,7 @@ OnTouch:
 				mes "^3355FFa yellow gas that clouds";
 				mes "your senses and briefly";
 				mes "knocks you unconscious.^000000";
-				sc_start SC_Sleep,30000,0;
+				sc_start SC_SLEEP,30000,0;
 				close;
 			}
 			mes "^3355FFa yellow gas. However, you";
@@ -947,7 +947,7 @@ OnTouch:
 				mes "^3355FFa yellow gas that clouds";
 				mes "your senses and briefly";
 				mes "knocks you unconscious.^000000";
-				sc_start SC_Sleep,30000,0;
+				sc_start SC_SLEEP,30000,0;
 				close;
 			}
 			mes "^3355FFa yellow gas. However, you";
@@ -980,7 +980,7 @@ OnTouch:
 				mes "^3355FFIt's too late!";
 				mes "Your body has just";
 				mes "been frozen solid.^000000";
-				sc_start SC_Freeze,10000,0;
+				sc_start SC_FREEZE,10000,0;
 				close;
 			}
 			mes "^3355FFYou quickly pick up";

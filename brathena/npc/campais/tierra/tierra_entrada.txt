@@ -50,7 +50,7 @@ bat_room,124,178,5	script	Oficial do Desfiladeiro#01a	4_M_KY_KNT,{
 		mes "Hoje nós sairemos vencedores!";
 		close;
 	}
-	if ((Class == Job_Novice) || (BaseClass == Job_Supernovice) || BaseLevel < 80) {
+	if ((Class == Job_Novice) || (BaseClass == Job_SuperNovice) || BaseLevel < 80) {
 		mes "[Oficial do Exército "+.@npcbgt$+"]";
 		mes "Eu estou muito honrado que você queira se juntar para lutar contra o exército "+.@npcbgt2$+" mas, eu sinto muito!: Eu não posso mandar um novato como você para morrer cruelmente no campo de batalha.";
 	}

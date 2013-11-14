@@ -2485,7 +2485,7 @@ OnMyMobDead:
 		end;
 	}
 
-Onreset:
+OnReset:
 	killmonster instance_mapname("2@nyd"),instance_npcname("nyd_2f_yellow_c")+"::OnMyMobDead";
 	donpcevent instance_npcname("nyd_2f_yellow_c")+"::OnDisable";
 	end;
@@ -2650,7 +2650,7 @@ OnMyMobDead:
 		end;
 	}
 
-Onreset:
+OnReset:
 	killmonster instance_mapname("2@nyd"),instance_npcname("nyd_2f_green_c")+"::OnMyMobDead";
 	donpcevent instance_npcname("nyd_2f_green_c")+"::OnDisable";
 	end;

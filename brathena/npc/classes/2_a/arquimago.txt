@@ -69,7 +69,7 @@ valkyrie,44,47,5	script	Arquimago#Valquíria	4_M_JOB_WIZARD,{
 			mes "todos os seus Pontos de Habilidades antes de voltar a falar comigo.";
 			close;
 		}
-		jobchange Job_high_Wizard;
+		jobchange Job_High_Wizard;
 		set ADVJOB,0;
 		mes "[Arquimago]";
 		mes "Parabéns.";

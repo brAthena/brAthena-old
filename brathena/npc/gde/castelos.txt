@@ -31,7 +31,7 @@
 
 function	script	Bandeiras#1	{
 
-	set .@GID, GetCastleData(getarg(0),1);
+	set .@GID, getcastledata(getarg(0),1);
 
 	if (.@GID == 0) {
 		mes " [ Decreto do Reino de Midgard ]";
@@ -53,10 +53,10 @@ function	script	Bandeiras#1	{
   mes "[ Decreto do Reino de Midgard ]";
   mes " ";
   mes "1. Seguindo o decreto do Reino de Midgard.";
-  mes "Nós declaramos que esse castelo pertence ao clã ^ff0000"+GetGuildName(.@GID)+"^000000.";
+  mes "Nós declaramos que esse castelo pertence ao clã ^ff0000"+getguildname(.@GID)+"^000000.";
 	mes " ";
-	mes "2. O líder do clã ^ff0000"+GetGuildName(.@GID)+"^000000 se chama";
-	mes "^ff0000"+GetGuildMaster(.@GID)+"^000000";
+	mes "2. O líder do clã ^ff0000"+getguildname(.@GID)+"^000000 se chama";
+	mes "^ff0000"+getguildmaster(.@GID)+"^000000";
   mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
 	close;
 }
@@ -71,7 +71,7 @@ alde_gld,61,87,6	script	Sirius#1::BandeirasA1	GUILD_FLAG,{
 	callfunc "Bandeiras#1","aldeg_cas01",218,170;
 
 OnRecvCastleA01:
-	FlagEmblem GetCastleData("aldeg_cas01",1);
+	flagemblem getcastledata("aldeg_cas01",1);
 	end;
 }
 
@@ -80,7 +80,7 @@ alde_gld,99,251,4	script	Astrum#1::BandeirasA2	GUILD_FLAG,{
   callfunc "Bandeiras#1","aldeg_cas02",220,190;
 
 OnRecvCastleA02:
-	FlagEmblem GetCastleData("aldeg_cas02",1);
+	flagemblem getcastledata("aldeg_cas02",1);
 	end;
 }
 
@@ -89,7 +89,7 @@ alde_gld,146,82,8	script	Canopus#1::BandeirasA3	GUILD_FLAG,{
   callfunc "Bandeiras#1","aldeg_cas03",205,186;
 
 OnRecvCastleA03:
-	FlagEmblem GetCastleData("aldeg_cas03",1);
+	flagemblem getcastledata("aldeg_cas03",1);
 	end;
 }
 
@@ -98,7 +98,7 @@ alde_gld,239,246,2	script	Rigel#1::BandeirasA4	GUILD_FLAG,{
   callfunc "Bandeiras#1","aldeg_cas04",116,217;
 
 OnRecvCastleA04:
-	FlagEmblem GetCastleData("aldeg_cas04",1);
+	flagemblem getcastledata("aldeg_cas04",1);
 	end;
 }
 
@@ -107,7 +107,7 @@ alde_gld,265,93,6	script	Acrux#1::BandeirasA5	GUILD_FLAG,{
   callfunc "Bandeiras#1","aldeg_cas05",167,225;
 
 OnRecvCastleA05:
-	FlagEmblem GetCastleData("aldeg_cas05",1);
+	flagemblem getcastledata("aldeg_cas05",1);
 	end;
 }
 
@@ -118,7 +118,7 @@ gef_fild13,148,51,5	script	Arsulf#1::BandeirasG1	GUILD_FLAG,{
   callfunc "Bandeiras#1","gefg_cas01",197,36;
 
 OnRecvCastleG01:
-	FlagEmblem GetCastleData("gefg_cas01",1);
+	flagemblem getcastledata("gefg_cas01",1);
 	end;
 }
 
@@ -127,7 +127,7 @@ gef_fild13,303,243,4	script	Trapesac#1::BandeirasG2	GUILD_FLAG,{
   callfunc "Bandeiras#1","gefg_cas02",178,43;
 
 OnRecvCastleG02:
-	FlagEmblem GetCastleData("gefg_cas02",1);
+	flagemblem getcastledata("gefg_cas02",1);
 	end;
 }
 
@@ -136,7 +136,7 @@ gef_fild13,78,182,4	script	Ruaden#1::BandeirasG3	GUILD_FLAG,{
   callfunc "Bandeiras#1","gefg_cas03",221,30;
 
 OnRecvCastleG03:
-	FlagEmblem GetCastleData("gefg_cas03",1);
+	flagemblem getcastledata("gefg_cas03",1);
 	end;
 }
 
@@ -145,7 +145,7 @@ gef_fild13,190,283,3	script	Saffran#1::BandeirasG4	GUILD_FLAG,{
   callfunc "Bandeiras#1","gefg_cas04",168,43;
 
 OnRecvCastleG04:
-	FlagEmblem GetCastleData("gefg_cas04",1);
+	flagemblem getcastledata("gefg_cas04",1);
 	end;
 }
 
@@ -154,7 +154,7 @@ gef_fild13,302,87,7	script	Arima#1::BandeirasG5	GUILD_FLAG,{
   callfunc "Bandeiras#1","gefg_cas05",168,31;
 		
 OnRecvCastleG05:
-	FlagEmblem GetCastleData("gefg_cas05",1);
+	flagemblem getcastledata("gefg_cas05",1);
 	end;
 }
 
@@ -165,7 +165,7 @@ pay_gld,125,236,4	script	Palácio do Sol#1::BandeirasPA1	GUILD_FLAG,{
   callfunc "Bandeiras#1","payg_cas01",54,144;
 
 OnRecvCastlePy01:
-	FlagEmblem GetCastleData("payg_cas01",1);
+	flagemblem getcastledata("payg_cas01",1);
 	end;
 }
 
@@ -174,7 +174,7 @@ pay_gld,292,112,6	script	Palácio do Lago Sagrado#1::BandeirasPA2	GUILD_FLAG,{
   callfunc "Bandeiras#1","payg_cas02",278,251;
 
 OnRecvCastlePy02:
-	FlagEmblem GetCastleData("payg_cas02",1);
+	flagemblem getcastledata("payg_cas02",1);
 	end;
 }
 
@@ -183,7 +183,7 @@ pay_gld,321,298,2	script	Palácio da Sombra#1::BandeirasPA3	GUILD_FLAG,{
   callfunc "Bandeiras#1","payg_cas03",9,263;
 
 OnRecvCastlePy03:
-	FlagEmblem GetCastleData("payg_cas03",1);
+	flagemblem getcastledata("payg_cas03",1);
 	end;
 }
 
@@ -192,7 +192,7 @@ pay_gld,137,160,0	script	Palácio Escarlate#1::BandeirasPA4	GUILD_FLAG,{
   callfunc "Bandeiras#1","payg_cas04",40,235;
 
 OnRecvCastlePy04:
-	FlagEmblem GetCastleData("payg_cas04",1);
+	flagemblem getcastledata("payg_cas04",1);
 	end;
 }
 
@@ -201,7 +201,7 @@ pay_gld,208,268,4	script	Palácio da Colina#1::BandeirasPA5	GUILD_FLAG,{
   callfunc "Bandeiras#1","payg_cas05",243,27;
 
 OnRecvCastlePy05:
-	FlagEmblem GetCastleData("payg_cas05",1);
+	flagemblem getcastledata("payg_cas05",1);
 	end;
 }
 
@@ -212,7 +212,7 @@ prt_gld,131,60,6	script	Kriemhild#1::BandeirasPR1	GUILD_FLAG,{
   callfunc "Bandeiras#1","prtg_cas01",96,173;
 
 OnRecvCastlePt01:
-	FlagEmblem GetCastleData("prtg_cas01",1);
+	flagemblem getcastledata("prtg_cas01",1);
 	end;
 }
 
@@ -221,7 +221,7 @@ prt_gld,244,126,8	script	Hrist#1::BandeirasPR2	GUILD_FLAG,{
   callfunc "Bandeiras#1","prtg_cas02",169,55;
 
 OnRecvCastlePt02:
-	FlagEmblem GetCastleData("prtg_cas02",1);
+	flagemblem getcastledata("prtg_cas02",1);
 	end;
 }
 
@@ -230,7 +230,7 @@ prt_gld,147,140,4	script	Brynhildr#1::BandeirasPR3	GUILD_FLAG,{
   callfunc "Bandeiras#1","prtg_cas03",181,215;
 
 OnRecvCastlePt03:
-	FlagEmblem GetCastleData("prtg_cas03",1);
+	flagemblem getcastledata("prtg_cas03",1);
 	end;
 }
 prt_gld,120,243,6	script	Skoegul#1::BandeirasPR4	GUILD_FLAG,{
@@ -238,7 +238,7 @@ prt_gld,120,243,6	script	Skoegul#1::BandeirasPR4	GUILD_FLAG,{
   callfunc "Bandeiras#1","prtg_cas04",258,247;
 
 OnRecvCastlePt04:
-	FlagEmblem GetCastleData("prtg_cas04",1);
+	flagemblem getcastledata("prtg_cas04",1);
 	end;
 }
 
@@ -247,7 +247,7 @@ prt_gld,199,243,2	script	Gondul#1::BandeirasPR5	GUILD_FLAG,{
   callfunc "Bandeiras#1","prtg_cas01",52,41;
 
 OnRecvCastlePt05:
-	FlagEmblem GetCastleData("prtg_cas05",1);
+	flagemblem getcastledata("prtg_cas05",1);
 	end;
 }
 
@@ -313,7 +313,7 @@ aldeg_cas01,30,248,4	script	Sirius#3::InsideFlagsA1	GUILD_FLAG,{
 	end;
 
 OnRecvCastleA01:
-	FlagEmblem GetCastleData("aldeg_cas01",1);
+	flagemblem getcastledata("aldeg_cas01",1);
 	end;
 }
 
@@ -321,7 +321,7 @@ aldeg_cas02,82,71,2	script	Astrum#3::InsideFlagsA2	GUILD_FLAG,{
 	end;
 
 OnRecvCastleA02:
-	FlagEmblem GetCastleData("aldeg_cas02",1);
+	flagemblem getcastledata("aldeg_cas02",1);
 	end;
 }
 
@@ -329,7 +329,7 @@ aldeg_cas03,176,175,2	script	Canopus#3::InsideFlagsA3	GUILD_FLAG,{
 	end;
 
 OnRecvCastleA03:
-	FlagEmblem GetCastleData("aldeg_cas03",1);
+	flagemblem getcastledata("aldeg_cas03",1);
 	end;
 }
 
@@ -337,7 +337,7 @@ aldeg_cas04,167,61,2	script	Rigel#3::InsideFlagsA4	GUILD_FLAG,{
 	end;
 
 OnRecvCastleA04:
-	FlagEmblem GetCastleData("aldeg_cas04",1);
+	flagemblem getcastledata("aldeg_cas04",1);
 	end;
 }
 
@@ -345,7 +345,7 @@ aldeg_cas05,170,85,2	script	Acrux#3::InsideFlagsA5	GUILD_FLAG,{
 	end;
 
 OnRecvCastleA05:
-	FlagEmblem GetCastleData("aldeg_cas05",1);
+	flagemblem getcastledata("aldeg_cas05",1);
 	end;
 }
 
@@ -355,7 +355,7 @@ gefg_cas01,28,157,4	script	Arsulf#5::InsideFlagsG1	GUILD_FLAG,{
 	end;
 
 OnRecvCastleG01:
-	FlagEmblem GetCastleData("gefg_cas01",1);
+	flagemblem getcastledata("gefg_cas01",1);
 	end;
 }
 
@@ -363,7 +363,7 @@ gefg_cas02,65,130,5	script	Trapesac#5::InsideFlagsG2	GUILD_FLAG,{
 	end;
 
 OnRecvCastleG02:
-	FlagEmblem GetCastleData("gefg_cas02",1);
+	flagemblem getcastledata("gefg_cas02",1);
 	end;
 }
 
@@ -371,7 +371,7 @@ gefg_cas03,122,220,6	script	Ruaden#5::InsideFlagsG3	GUILD_FLAG,{
 	end;
 
 OnRecvCastleG03:
-	FlagEmblem GetCastleData("gefg_cas03",1);
+	flagemblem getcastledata("gefg_cas03",1);
 	end;
 }
 
@@ -379,7 +379,7 @@ gefg_cas04,24,157,4	script	Saffran#5::InsideFlagsG4	GUILD_FLAG,{
 	end;
 
 OnRecvCastleG04:
-	FlagEmblem GetCastleData("gefg_cas04",1);
+	flagemblem getcastledata("gefg_cas04",1);
 	end;
 }
 
@@ -387,7 +387,7 @@ gefg_cas05,77,185,7	script	Arima#5::InsideFlagsG5	GUILD_FLAG,{
 	end;
 
 OnRecvCastleG05:
-	FlagEmblem GetCastleData("gefg_cas05",1);
+	flagemblem getcastledata("gefg_cas05",1);
 	end;
 }
 
@@ -397,7 +397,7 @@ payg_cas01,238,67,4	script	Palácio do Sol#7::InsideFlagsPA1	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePy01:
-	FlagEmblem GetCastleData("payg_cas01",1);
+	flagemblem getcastledata("payg_cas01",1);
 	end;
 }
 
@@ -405,7 +405,7 @@ payg_cas02,254,40,6	script	Palácio do Lago Sagrado#7::InsideFlagsPA2	GUILD_FLAG,
 	end;
 
 OnRecvCastlePy02:
-	FlagEmblem GetCastleData("payg_cas02",1);
+	flagemblem getcastledata("payg_cas02",1);
 	end;
 }
 
@@ -413,7 +413,7 @@ payg_cas03,236,54,2	script	Palácio da Sombra#7::InsideFlagsPA3	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePy03:
-	FlagEmblem GetCastleData("payg_cas03",1);
+	flagemblem getcastledata("payg_cas03",1);
 	end;
 }
 
@@ -421,7 +421,7 @@ payg_cas04,255,259,0	script	Palácio Escarlate#7::InsideFlagsPA4	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePy04:
-	FlagEmblem GetCastleData("payg_cas04",1);
+	flagemblem getcastledata("payg_cas04",1);
 	end;
 }
 
@@ -429,7 +429,7 @@ payg_cas05,32,249,4	script	Palácio da Colina#7::InsideFlagsPA5	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePy05:
-	FlagEmblem GetCastleData("payg_cas05",1);
+	flagemblem getcastledata("payg_cas05",1);
 	end;
 }
 
@@ -439,7 +439,7 @@ prtg_cas01,58,56,4	script	Kriemhild#9::InsideFlagsPR1	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePt01:
-	FlagEmblem GetCastleData("prtg_cas01",1);
+	flagemblem getcastledata("prtg_cas01",1);
 	end;
 }
 
@@ -447,7 +447,7 @@ prtg_cas02,40,227,4	script	Hrist#9::InsideFlagsPR2	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePt02:
-	FlagEmblem GetCastleData("prtg_cas02",1);
+	flagemblem getcastledata("prtg_cas02",1);
 	end;
 }
 
@@ -455,7 +455,7 @@ prtg_cas03,168,28,4	script	Brynhildr#9::InsideFlagsPR3	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePt03:
-	FlagEmblem GetCastleData("prtg_cas03",1);
+	flagemblem getcastledata("prtg_cas03",1);
 	end;
 }
 
@@ -463,7 +463,7 @@ prtg_cas04,82,29,4	script	Skoegul#9::InsideFlagsPR4	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePt04:
-	FlagEmblem GetCastleData("prtg_cas04",1);
+	flagemblem getcastledata("prtg_cas04",1);
 	end;
 }
 
@@ -471,7 +471,7 @@ prtg_cas05,19,247,4	script	Gondul#9::InsideFlagsPR5	GUILD_FLAG,{
 	end;
 
 OnRecvCastlePt05:
-	FlagEmblem GetCastleData("prtg_cas05",1);
+	flagemblem getcastledata("prtg_cas05",1);
 	end;
 }
 
@@ -966,7 +966,7 @@ yuno,109,167,5	script#dv	Himinn	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlesc01:
-	FlagEmblem GetCastleData("schg_cas01",1);
+	flagemblem getcastledata("schg_cas01",1);
 	end;
 }
 
@@ -975,7 +975,7 @@ yuno,110,171,5	script#dv	Andlangr	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlesc02:
-	FlagEmblem GetCastleData("schg_cas02",1);
+	flagemblem getcastledata("schg_cas02",1);
 	end;
 }
 
@@ -984,7 +984,7 @@ yuno,111,175,5	script#dv	Viblainn	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlesc03:
-	FlagEmblem GetCastleData("schg_cas03",1);
+	flagemblem getcastledata("schg_cas03",1);
 	end;
 }
 
@@ -993,7 +993,7 @@ yuno,112,179,5	script#dv	Hljod	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlesc04:
-	FlagEmblem GetCastleData("schg_cas04",1);
+	flagemblem getcastledata("schg_cas04",1);
 	end;
 }
 
@@ -1002,7 +1002,7 @@ yuno,114,183,5	script#dv	Skidbladnir	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlesc05:
-	FlagEmblem GetCastleData("schg_cas05",1);
+	flagemblem getcastledata("schg_cas05",1);
 	end;
 }
 
@@ -1012,7 +1012,7 @@ rachel,124,120,3	script	Mardol	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlear01:
-	FlagEmblem GetCastleData("arug_cas01",1);
+	flagemblem getcastledata("arug_cas01",1);
 	end;
 }
 
@@ -1021,7 +1021,7 @@ rachel,136,120,5	script	Cyr	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlear02:
-	FlagEmblem GetCastleData("arug_cas02",1);
+	flagemblem getcastledata("arug_cas02",1);
 	end;
 }
 
@@ -1030,7 +1030,7 @@ rachel,138,126,6	script	Horn	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlear03:
-	FlagEmblem GetCastleData("arug_cas03",1);
+	flagemblem getcastledata("arug_cas03",1);
 	end;
 }
 
@@ -1039,7 +1039,7 @@ rachel,135,131,7	script	Gefn	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlear04:
-	FlagEmblem GetCastleData("arug_cas04",1);
+	flagemblem getcastledata("arug_cas04",1);
 	end;
 }
 
@@ -1048,6 +1048,6 @@ rachel,124,130,1	script	Banadis	GUILD_FLAG,{
 
 OnAgitInit2:
 OnRecvCastlear05:
-	FlagEmblem GetCastleData("arug_cas05",1);
+	flagemblem getcastledata("arug_cas05",1);
 	end;
 }

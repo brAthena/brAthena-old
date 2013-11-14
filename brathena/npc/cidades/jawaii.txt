@@ -670,7 +670,7 @@ jawaii_in,15,104,0	script	Garçonete#jawaii	1_F_PUBGIRL,{
 	mes "Mas não toleramos solteiros atrapalhando os recém-casados daqui.";
 	mes "Beba o que pediu e vá embora!";
 	next;
-	if (Select("Sou um membro da Armada dos Solteiros!!:...Eu só queria parabenizá-los...") == 1) {
+	if (select("Sou um membro da Armada dos Solteiros!!:...Eu só queria parabenizá-los...") == 1) {
 		mes "[Funcionaria]";
 		mes "Ah, sim.";
 		mes "Tinha que ser.";
@@ -811,7 +811,7 @@ jawaii_in,28,124,0	script	Garçom#jaw	1_ETC_01,{
 				percentheal -20,0;
 				next;
 				break;
-			Default:
+			default:
 				mes "[Garçom]";
 				mes "Entendo...";
 				mes "Vou pensar em algo que acho que você gostaria.";

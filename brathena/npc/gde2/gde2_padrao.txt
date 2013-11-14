@@ -845,7 +845,7 @@ OnInit:
 	if (getcharid(2) == .@GID && getgdskilllv(.@GID,10001)) {
 		mes "[Funcionária Kafra]";
 		mes "Bem-vindo, orgulhoso membro";
-		mes "da Guilda ^FF0000"+GetGuildName(.@GID)+"^000000!";
+		mes "da Guilda ^FF0000"+getguildname(.@GID)+"^000000!";
 		mes "A Corporação Kafra estará pronta";
 		mes "para ajudá-lo onde quer que esteja!";
 		next;
@@ -941,7 +941,7 @@ OnInit:
 		mes "Me desculpe, mas eu fui";
 		mes "contratado exclusivamente";
 		mes "pelos membros da guilda";
-		mes "^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "^FF0000" + getguildname(.@GID) + "^000000.";
 		mes "Você vai ter que contratar outra";
 		mes "Empregada Kafra para ajudá-lo...";
 		close2;
@@ -1766,7 +1766,7 @@ function	script	ReturnFlag	{
 	mes "O Reino Sagrado de";
 	mes .@str$+" decreta que";
 	mes "este castelo pertence";
-	mes "a Guilda ^FF0000" + GetGuildName(.@GID) + "^000000.";
+	mes "a Guilda ^FF0000" + getguildname(.@GID) + "^000000.";
 	next;
 	mes "[ "+.@str$+" Decreto Real ]";
 	mes "^FF0000"+getguildmaster(.@GID)+"^000000 pertence";

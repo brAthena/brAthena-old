@@ -30,13 +30,13 @@ prontera,55,350,5	script	Criador de Pecopecos#cav 105,{
 	mes "[Criador de Pecopecos]";
 	if (BaseJob == Job_Knight && Class < Job_Rune_Knight) {
 		mes "Bom-dia honorável Cavaleiro gostaria de comprar um Pecopeco?";
-		mes "Você precisa ter a Habilidade Montaria e apenas "+.@price+" zeny sobrando.";
+		mes "Você precisa ter a Habilidade Montaria e apenas "+.@price+" Zeny sobrando.";
 		next;
 		if (select("Alugar um Pecopeco:Cancelar"))
 		if (@menu == 1) {
 			if (Zeny < .@price || !getskilllv("KN_RIDING") || checkriding() || ismounting()) {
 				mes "[Criador de Pecopecos]";
-				mes ""+((zeny < .@price) ? "Você não possui zeny suficiente. Você está... pobre?" : (!getskilllv("KN_RIDING")) ? "Me desculpe, mas você não pode utilizar esse serviço. Por favor aprenda a habilidade Montaria primeiro." : "Você já está montado em uma montaria.")+"";
+				mes ""+((Zeny < .@price) ? "Você não possui Zeny suficiente. Você está... pobre?" : (!getskilllv("KN_RIDING")) ? "Me desculpe, mas você não pode utilizar esse serviço. Por favor aprenda a habilidade Montaria primeiro." : "Você já está montado em uma montaria.")+"";
 			} else {
 			set Zeny, Zeny-.@price;
 			setriding;
@@ -61,13 +61,13 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	8W_SOLDIER,{
 		if (BaseJob == Job_Crusader && Class < Job_Rune_Knight) {
 		mes "Bem-vindo, "+((Upper != 1) ? "Templário":"Paladino")+".";
 		mes "Nós possuímos um Pecopeco especial preparado para você.";
-		mes "Para adquirir um Pecopeco são necessários "+.@price+" zeny.";
+		mes "Para adquirir um Pecopeco são necessários "+.@price+" Zeny.";
 		next;
 		if (select("Alugar um Pecopeco:Sair"))
 			if (@menu == 1) {
-				if (zeny < .@price || !getskilllv("KN_RIDING") || (checkriding() || ismounting())) {
+				if (Zeny < .@price || !getskilllv("KN_RIDING") || (checkriding() || ismounting())) {
 				mes "[Criador de Pecopecos]";
-				mes ""+((zeny < .@price) ? "Você não possui a quantidade de zenys suficientes. Se você quiser um Pecopeco por favor me traga "+.@price+" zenys..." : (!getskilllv("KN_RIDING")) ? "Você deve primeiro aprender a como montar um Pecopeco após isso eu poderei alugar um para você." : "Você já está montado em uma montaria")+"";
+				mes ""+((Zeny < .@price) ? "Você não possui a quantidade de zenys suficientes. Se você quiser um Pecopeco por favor me traga "+.@price+" zenys..." : (!getskilllv("KN_RIDING")) ? "Você deve primeiro aprender a como montar um Pecopeco após isso eu poderei alugar um para você." : "Você já está montado em uma montaria")+"";
 				} else {
 				set Zeny, Zeny-.@price;
 				setriding;
@@ -101,7 +101,7 @@ in_hunter,146,100,4	script	Adestrador de Falcões#hnt	8W_SOLDIER,{
 		 if (@menu == 1) {
 			if (Zeny < .@price || !getskilllv("HT_FALCON") || checkfalcon()) {
 				mes "[Adestrador de Falcões]";
-				mes ""+((zeny < .@price) ? "O quê? Você não possui a quantidade de zenys suficiente?! Primeiro você deve juntar dinheiro em vez de caçar monstros~" : (!getskilllv("HT_FALCON")) ? "Puxa~ Primeiro vá e aprenda a domesticar um Falcão! Eu não posso te entregar um falcão sendo que você não saberá cuidar dele." : "Hum... Você já possui um Falcão. Você não consegue vê-lo?")+"";
+				mes ""+((Zeny < .@price) ? "O quê? Você não possui a quantidade de zenys suficiente?! Primeiro você deve juntar dinheiro em vez de caçar monstros~" : (!getskilllv("HT_FALCON")) ? "Puxa~ Primeiro vá e aprenda a domesticar um Falcão! Eu não posso te entregar um falcão sendo que você não saberá cuidar dele." : "Hum... Você já possui um Falcão. Você não consegue vê-lo?")+"";
 				} else {
 				set Zeny, Zeny-.@price;
 				setfalcon;

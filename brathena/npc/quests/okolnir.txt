@@ -34,7 +34,7 @@
 	else if (compare(strnpcinfo(2),"03")) set .casn$,"03";
 	else if (compare(strnpcinfo(2),"04")) set .casn$,"04";
 	else if (compare(strnpcinfo(2),"05")) set .casn$,"05";
-	set .@GID, GetCastleData(strnpcinfo(2),1);
+	set .@GID, getcastledata(strnpcinfo(2),1);
 	if (getcharid(2) == .@GID) {
 		if (getd("$siz_"+.cas$+.casn$+"_on") == 0) {
 			mes "[Guia]";
@@ -71,8 +71,8 @@
 				mes "Você gostaria de tentar entrar aqui?";
 				close;
 			case 2:
-				set .@Defence,GetCastleData(strnpcinfo(2),3);
-				set .@Economy,GetCastleData(strnpcinfo(2),2);
+				set .@Defence,getcastledata(strnpcinfo(2),3);
+				set .@Economy,getcastledata(strnpcinfo(2),2);
 				if ((.@Economy > 64) && (.@Defence > 29)) {
 					mes "[Guia]";
 					mes "Ótimo! A Economia e a Defesa estão OK.";
@@ -171,7 +171,7 @@ OnInit:
 }
 
 -	script	Dama dos Desejos SE::WishSE	-1,{
-	set .@GID, GetCastleData(strnpcinfo(2),1);
+	set .@GID, getcastledata(strnpcinfo(2),1);
 	if (getcharid(2) == .@GID) {
 		cutin "wish_maiden31",1;
 		if (strcharinfo(0) == getguildmaster(.@GID)) {
@@ -234,7 +234,7 @@ OnInit:
 							donpcevent "#okolnir_"+.cas$+.casn$+"::OnEnable";
 							disablenpc "Dama dos Desejos#"+strnpcinfo(2);
 							cutin "wish_maiden11",255;
-							announce "["+ strcharinfo(0) +"], do clã ["+ GetGuildName(.@GID) +"] abriu os portões do mundo virtual de Okolnir.",bc_all,"0x70dbdb";
+							announce "["+ strcharinfo(0) +"], do clã ["+ getguildname(.@GID) +"] abriu os portões do mundo virtual de Okolnir.",bc_all,"0x70dbdb";
 							end;
 						}
 						else {
@@ -1662,7 +1662,7 @@ OnTouch:
 	else if (compare(strnpcinfo(2),"spell6")) set .spell$,"spell6";
 	else if (compare(strnpcinfo(2),"spell7")) set .spell$,"spell7";
 	else if (compare(strnpcinfo(2),"spell8")) set .spell$,"spell8";
-	sc_start SC_Stone,300000,0,10000;
+	sc_start SC_STONE,300000,0,10000;
 	if (getd("$gqse_"+.cas$+.casn$+"_gd") == 0) {
 		warp "que_q"+.cas$+.casn$,103,153;
 		disablenpc "#getspell1_"+.cas$+.casn$;
@@ -1738,7 +1738,7 @@ OnTouch:
 	else if (compare(strnpcinfo(2),"cage4")){ set .cage$,"cage4"; setarray .cage[0],158,106;}
 	else if (compare(strnpcinfo(2),"cage5")){ set .cage$,"cage5"; setarray .cage[0],163,133;}
 	else if (compare(strnpcinfo(2),"cage6")){ set .cage$,"cage6"; setarray .cage[0],150,154;}
-	sc_end SC_Stone;
+	sc_end SC_STONE;
 	warp "que_q"+.cas$+.casn$,.cage[0],.cage[1];
 	disablenpc "#"+.cas$+.casn$+"_"+.cage$;
 	end;
@@ -2541,7 +2541,7 @@ OnMyMobDead:
 }
 
 -	script	Dama dos Desejos#giftSE::wishgiftSE	-1,{
-	set .@GID, GetCastleData(.cas$+"g_cas"+.casn$,1);
+	set .@GID, getcastledata(.cas$+"g_cas"+.casn$,1);
 	if (getcharid(2) == .@GID) {
 		if (strcharinfo(0) == getguildmaster(.@GID)) {
 			if (compare(strnpcinfo(2),"aru")) {
@@ -2596,7 +2596,7 @@ OnMyMobDead:
 					getitem 2383,1; //Brynhild
 					getitem 7840,1; //Valkyrie_Gift
 				}
-				announce "["+ strcharinfo(0) +"], do clã ["+ GetGuildName(.@GID) +"] trouxe a "+(compare(strnpcinfo(2),"aru") ? "Asprika":"Brynhild")+" para este mundo.",bc_all,"0x70dbdb";
+				announce "["+ strcharinfo(0) +"], do clã ["+ getguildname(.@GID) +"] trouxe a "+(compare(strnpcinfo(2),"aru") ? "Asprika":"Brynhild")+" para este mundo.",bc_all,"0x70dbdb";
 				close2;
 				cutin "wish_maiden11",255;
 				disablenpc "Dama dos Desejos#"+.cas$+.casn$+"_gift";

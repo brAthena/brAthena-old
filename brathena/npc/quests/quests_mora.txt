@@ -172,7 +172,7 @@ mora,56,149,4	script	Garota Coberta de Flores#mora	4_F_NYDHOG,{
 	if (wanderingsguardians > 3) {
 		mes "[Garota Coberta de Flores]";
 		mes "O povo de Mora está aliviado agora que o Dragão não está mais na floresta. Você é reconhecido como herói pelo vilarejo...";
-	} else if (Loki == 2) {
+	} else if (loki == 2) {
 		mes "[Garota Coberta de Flores]";
 		mes "Olá, Eu faço parte da guarda real de Mora. Nosso vilarejo está passando por várias dificuldades por causa do Dragão Púrpura...";
 		next;
@@ -189,7 +189,7 @@ mora,56,149,4	script	Garota Coberta de Flores#mora	4_F_NYDHOG,{
 	close;
 
 OnPCLoadMapEvent:
-	if (strcharinfo(3) == "mora" && Loki == 2 && wanderingsguardians < 4)
+	if (strcharinfo(3) == "mora" && loki == 2 && wanderingsguardians < 4)
 		showevent 1,0;
 	end;
 }

@@ -336,15 +336,15 @@ Oninvoc:
 	case 6: set .@x2,139;	set .@y2,259;	break;
 	}
 	set .@mob2,rand(1640,1645);
-	monster "lhz_dun03",.@x2,.@y2,strmobinfo(1,.@mob2),.@mob2,1,"invocar_chefe_lt::OnMVP";
+	monster "lhz_dun03",.@x2,.@y2,strmobinfo(1,.@mob2),.@mob2,1,"invocar_chefe_lt::Onmvp";
 	end;
 
 OnMvPMorto:
-	killmonster "lhz_dun03","invocar_chefe_lt::OnMVP";
+	killmonster "lhz_dun03","invocar_chefe_lt::Onmvp";
 	initnpctimer;
 	end;
 
-OnMVP:
+Onmvp:
 	end;
 }
 

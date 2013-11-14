@@ -829,7 +829,7 @@ prt_are_in,77,187,3	script	Staff#80-2	1_F_02,{
 			close2;
 		}
 		specialeffect2 EF_EXIT;
- 		donpcevent "cast#80::OnNomal1";
+ 		donpcevent "cast#80::Onnomal1";
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_80::OnStop";
 		donpcevent "alloff#80::OnEnable";
@@ -876,7 +876,7 @@ prt_are_in,77,187,3	script	Staff#80-2	1_F_02,{
 			close2;
 		}
 		specialeffect2 EF_HIT5;
- 		donpcevent "cast#80::OnNomal2";
+ 		donpcevent "cast#80::Onnomal2";
 		warp "arena_room",100,75;
 		donpcevent "#arn_timer_80::OnStop";
 		donpcevent "alloff#80::OnEnable";
@@ -929,10 +929,10 @@ OnTimeOver1:
 OnTimeOver2:
 	mapannounce "force_4-1","Arena will be activated due to an error occurred in the waiting room.",0,0xFFCE00;
 	end;
-OnNomal1:
+Onnomal1:
 	mapannounce "force_4-1","Arena will be reactivated.",0,0xFFCE00;
 	end;
-OnNomal2:
+Onnomal2:
 	mapannounce "force_4-1","Arena will be reactivated.",0,0xFFCE00;
 	end;
 }

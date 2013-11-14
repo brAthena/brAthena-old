@@ -47,7 +47,7 @@ valkyrie,44,50,5	script	Mestre-Ferreiro#Valquíria	4_M_JOB_BLACKSMITH,{
 		mes "novas e melhores formas de";
 		mes "forja...";
 		close;
-	} else if (ADVJOB == Job_WhiteSmith && Class == Job_Merchant_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Whitesmith && Class == Job_Merchant_High && JobLevel > 39) {
 		mes "[Mestre-Ferreiro]";
 		mes "Chegou a hora!";
 		mes "Nosso mundo precisa de coragem,";

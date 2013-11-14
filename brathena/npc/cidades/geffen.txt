@@ -458,7 +458,7 @@ geffen_in,22,125,1	script	Crumpler	1_M_HOF,{
 		mes "[Crumpler]";
 		mes "Um...";
 		mes "Sage?";
-		emotion e_What;
+		emotion e_what;
 		next;
 		mes "[Crumpler]";
 		mes "Não sei o que é isso. Mas suponho que não pode ser tão ruim quanto um Mage.";

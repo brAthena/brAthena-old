@@ -25,7 +25,7 @@
 //   \________________________________________________________/
 
 geffen,132,38,3	script	Bardo#2	1_M_BARD,{
-	if (bard_q > 5) set gef_bard_q,bard_q;
+	if (BARD_Q > 5) set gef_bard_q,BARD_Q;
 	set @name$,strcharinfo(0);
 	if (gef_bard_q > 29) {
 		cutin "bard_eland02",2;
@@ -2871,7 +2871,7 @@ yuno_in04,33,119,3	script	Aventureiro#1	4_M_ROGUE,{
 	mes "Err...?";
 	mes "O que é isto?";
 	next;
-	if (!sex) {
+	if (!Sex) {
 		emotion e_heh;
 		mes "[Jovem Dinâmico]";
 		mes "Oh...!";

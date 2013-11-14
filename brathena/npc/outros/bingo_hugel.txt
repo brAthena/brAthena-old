@@ -619,7 +619,7 @@ OnTouch:
 					set $hu_bingoa,6;
 					donpcevent "start2#bingo::OnStop";
 					set $@bingowinner$,strcharinfo(0);
-					donpcevent "win1a#bingo::OnWin";
+					donpcevent "win1a#bingo::Onwin";
 					close;
 
 				}
@@ -776,7 +776,7 @@ que_bingo,45,121,0	duplicate(1a#bingo)	25e#bingo	HIDDEN_WARP_NPC,1,1
 que_bingo,79,19,0	script	win1a#bingo	HIDDEN_WARP_NPC,4,4,{
 	end;
 
-OnWin:
+Onwin:
 	initnpctimer;
 	end;
 	

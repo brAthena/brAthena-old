@@ -653,7 +653,7 @@ OnEnable:
 	enablenpc instance_npcname("pol_c_t");
 	initnpctimer;
 	end;
-OnCall:
+Oncall:
 	set .@map$, instance_mapname("1@cash");
 	if (mobcount(.@map$,instance_npcname("pol_c_t")+"::OnMyMobDead") < 100) {
 		switch(rand(2)) {
@@ -671,7 +671,7 @@ OnCall:
 	end;
 OnTimer10000:
 	stopnpctimer;
-	donpcevent instance_npcname("pol_c_t")+"::OnCall";
+	donpcevent instance_npcname("pol_c_t")+"::Oncall";
 	end;
 OnDisable:
 	stopnpctimer;

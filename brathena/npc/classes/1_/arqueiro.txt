@@ -48,7 +48,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	4_M_03,{
 			mes "Eu sei que você pode se tornar um grande Arqueiro...";
 			next;
 			skill 143,0,0;
-			jobchange Job_Archer_high;
+			jobchange Job_Archer_High;
 			skill 147,1,0;
 			skill 148,1,0;
 			mes "[Guia dos Arqueiros]";

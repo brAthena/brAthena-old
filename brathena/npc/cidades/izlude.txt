@@ -282,7 +282,7 @@ izlude,85,103,4	script	Dega#izlude	4_M_02,{
 		mes "[Dega]";
 		mes "Se você tentar lançar uma magia perto, ele vai notar e passear ao longo e esmagá-lo. Então é melhor você tomar cuidado com ele.";
 		close;
-	Default:
+	default:
 		mes "Há um lugar muito aprazível, onde pode encontrar todos os";
 		mes "tipos de Porings.";
 		next;

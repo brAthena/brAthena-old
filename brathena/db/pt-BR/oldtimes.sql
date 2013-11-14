@@ -5019,12 +5019,12 @@ REPLACE INTO `item_db` VALUES(502,'Orange_Potion','Poção Laranja','0',200,NULL
 REPLACE INTO `item_db` VALUES(503,'Yellow_Potion','Poção Amarela','0',550,NULL,'130',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(175,235),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(504,'White_Potion','Poção Branca','0',1200,NULL,'150',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(325,405),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(505,'Blue_Potion','Poção Azul','0',5000,NULL,'150',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 0,rand(40,60);',NULL,NULL);
-REPLACE INTO `item_db` VALUES(506,'Green_Potion','Poção Verde','0',40,NULL,'70',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_Poison; sc_end SC_Silence; sc_end SC_Blind; sc_end SC_Confusion;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(506,'Green_Potion','Poção Verde','0',40,NULL,'70',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_POISON; sc_end SC_SILENCE; sc_end SC_BLIND; sc_end SC_CONFUSION;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(507,'Red_Herb','Erva Vermelha','0',18,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(18,28),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(508,'Yellow_Herb','Erva Amarela','0',40,NULL,'50',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(38,58),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(509,'White_Herb','Erva Branca','0',120,NULL,'70',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(75,115),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(510,'Blue_Herb','Erva Azul','0',60,NULL,'70',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 0,rand(15,30);',NULL,NULL);
-REPLACE INTO `item_db` VALUES(511,'Green_Herb','Erva Verde','0',10,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_Poison;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(511,'Green_Herb','Erva Verde','0',10,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_POISON;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(512,'Apple','Maçã','0',15,NULL,'20',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(16,22),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(513,'Banana','Banana','0',15,NULL,'20',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(17,21),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(514,'Grape','Uvas','0',200,NULL,'20',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 0,rand(10,15);',NULL,NULL);
@@ -5036,9 +5036,9 @@ REPLACE INTO `item_db` VALUES(519,'Milk','Leite','0',25,NULL,'30',NULL,NULL,NULL
 REPLACE INTO `item_db` VALUES(520,'Leaflet_Of_Hinal','Folha de Hinalle','0',150,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(175,235),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(521,'Leaflet_Of_Aloe','Folha de Aloe','0',360,NULL,'20',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(325,405),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(522,'Fruit_Of_Mastela','Mastela','0',840,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(400,600),0;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(523,'Holy_Water','Água Benta','0',20,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_Curse;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(525,'Panacea','Panacéia','0',500,NULL,'100',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_Poison; sc_end SC_Silence; sc_end SC_Blind; sc_end SC_Confusion; sc_end SC_Curse; sc_end SC_ILLUSION;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(526,'Royal_Jelly','Geléia Real','0',7000,NULL,'150',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(325,405),rand(40,60); sc_end SC_Poison; sc_end SC_Silence; sc_end SC_Blind; sc_end SC_Confusion; sc_end SC_Curse; sc_end SC_ILLUSION;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(523,'Holy_Water','Água Benta','0',20,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_CURSE;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(525,'Panacea','Panacéia','0',500,NULL,'100',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_end SC_POISON; sc_end SC_SILENCE; sc_end SC_BLIND; sc_end SC_CONFUSION; sc_end SC_CURSE; sc_end SC_ILLUSION;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(526,'Royal_Jelly','Geléia Real','0',7000,NULL,'150',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(325,405),rand(40,60); sc_end SC_POISON; sc_end SC_SILENCE; sc_end SC_BLIND; sc_end SC_CONFUSION; sc_end SC_CURSE; sc_end SC_ILLUSION;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(528,'Monsters_Feed','Ração para Monstros','0',60,NULL,'150',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(72,108),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(529,'Candy','Bala','0',10,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(45,65),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(530,'Candy_Striper','Bengala Doce','0',20,NULL,'40',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(105,145),0;',NULL,NULL);
@@ -5047,7 +5047,7 @@ REPLACE INTO `item_db` VALUES(532,'Banana_Juice','Suco de Banana','0',20,NULL,'4
 REPLACE INTO `item_db` VALUES(533,'Grape_Juice','Suco de Uva','0',250,NULL,'40',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 0,rand(15,25);',NULL,NULL);
 REPLACE INTO `item_db` VALUES(534,'Carrot_Juice','Suco de Cenoura','0',20,NULL,'40',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(27,33),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(535,'Pumpkin','Abóbora','0',15,NULL,'20',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 19,0;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(536,'Ice_Cream','Sorvete','0',150,NULL,'80',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(105,145),0; sc_start SC_Freeze,10000,0,2500,0;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(536,'Ice_Cream','Sorvete','0',150,NULL,'80',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(105,145),0; sc_start SC_FREEZE,10000,0,2500,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(537,'Pet_Food','Ração para Bichinho','0',1000,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(50,90),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(538,'Well_Baked_Cookie','Biscoito de Gengibre','0',1000,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(160,200),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(539,'Piece_Of_Cake','Pedaço de Bolo','0',3000,NULL,'100',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(270,330),0;',NULL,NULL);
@@ -5056,7 +5056,7 @@ REPLACE INTO `item_db` VALUES(545,'Red_Slim_Potion','Poção Vermelha Compacta',
 REPLACE INTO `item_db` VALUES(546,'Yellow_Slim_Potion','Poção Amarela Compacta','0',600,NULL,'30',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(175,235),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(547,'White_Slim_Potion','Poção Branca Compacta','0',1650,NULL,'50',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(325,405),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(548,'Cheese','Queijo','0',2800,NULL,'50',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal 0,rand(10,15);',NULL,NULL);
-REPLACE INTO `item_db` VALUES(549,'Nice_Sweet_Potato','Batata Doce Assada','0',180,NULL,'80',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(50,100),0; sc_start SC_Stun,3000,0,1500,0;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(549,'Nice_Sweet_Potato','Batata Doce Assada','0',180,NULL,'80',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(50,100),0; sc_start SC_STUN,3000,0,1500,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(550,'Popped_Rice','Bolinhos de Arroz','0',10,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(10,15),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(551,'Shusi','Sushi','0',1,NULL,'50',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(50,60),0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(552,'KETUPAT','Ketupat','0',1,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(70,90),rand(20,30);',NULL,NULL);
@@ -5548,7 +5548,7 @@ REPLACE INTO `item_db` VALUES(1555,'Book_Of_Blazing_Sun','Livro do Sol Ardente',
 REPLACE INTO `item_db` VALUES(1556,'Book_Of_Gust_Of_Wind','Livro do Golpe de Vento','4',35000,NULL,'750',90,NULL,1,0,0x00410100,7,2,2,3,27,1,15,'bonus bAtkEle,Ele_Wind;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1557,'Book_Of_The_Apocalypse','Livro do Apocalipse','4',60000,NULL,'800',120,NULL,1,0,0x00410100,7,2,2,4,40,1,15,'bonus bAtkEle,Ele_Dark; bonus2 bAddEle,Ele_Holy,5; bonus2 bAddEle,Ele_Water,7; bonus2 bAddEle,Ele_Earth,7; bonus2 bAddEle,Ele_Fire,7; bonus2 bAddEle,Ele_Wind,7;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1558,'Girls_Diary','Diário de Menina','4',1500,NULL,'300',60,NULL,1,1,0x00410100,7,2,2,4,40,1,15,'bonus2 bAddDamageClass,1188,150;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(1599,'Angra_Manyu','Angra Mainyu','4',1,NULL,'10',200,NULL,2,0,0xFFFFFFFF,7,2,2,1,1,1,8,'bonus bAllStats,50; bonus bBaseAtk,3800; bonus bMatkRate,200; bonus2 bHPDrainRate,1000,100; bonus2 bSPDrainRate,1000,20; bonus bHealPower,200; bonus2 bAddRace,RC_NonBoss,100; bonus2 bAddRace,RC_Boss,100; skill "WZ_STORMGUST",10; Skill "WZ_METEOR",10; Skill "WZ_VERMILION",10; skill "GM_SANDMAN",1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(1599,'Angra_Manyu','Angra Mainyu','4',1,NULL,'10',200,NULL,2,0,0xFFFFFFFF,7,2,2,1,1,1,8,'bonus bAllStats,50; bonus bBaseAtk,3800; bonus bMatkRate,200; bonus2 bHPDrainRate,1000,100; bonus2 bSPDrainRate,1000,20; bonus bHealPower,200; bonus2 bAddRace,RC_NonBoss,100; bonus2 bAddRace,RC_Boss,100; skill "WZ_STORMGUST",10; skill "WZ_METEOR",10; skill "WZ_VERMILION",10; skill "GM_SANDMAN",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1601,'Rod','Bastão','4',50,NULL,'400',15,NULL,1,3,0x00818315,7,2,2,1,1,1,10,'bonus bMatkRate,15;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1602,'Rod_','Bastão','4',50,NULL,'400',15,NULL,1,4,0x00818315,7,2,2,1,1,1,10,'bonus bMatkRate,15;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1603,'Rod__','Bastão','4',50,NULL,'400',15,NULL,1,0,0x00818315,7,2,2,1,1,1,10,'bonus bMatkRate,15;',NULL,NULL);
@@ -5650,7 +5650,7 @@ REPLACE INTO `item_db` VALUES(2107,'Mirror_Shield','Escudo Espelhado','5',60000,
 REPLACE INTO `item_db` VALUES(2108,'Mirror_Shield_','Escudo Espelhado','5',60000,NULL,'1000',NULL,4,NULL,1,0x00404082,7,2,32,NULL,0,1,4,'bonus bMdef,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2109,'Memorize_Book','Grimório','5',20,NULL,'1000',NULL,3,NULL,0,0x00810204,7,2,32,NULL,0,1,5,'bonus bInt,1; bonus bMdef,2;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2112,'Novice_Guard','Vembrassa do Aprendiz','5',1,NULL,'1',NULL,3,NULL,0,0x00000001,7,2,32,NULL,0,0,1,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES(2199,'Ahura_Mazda','Ahura Mazda','5',1,NULL,'10',NULL,100,NULL,0,0xFFFFFFFF,7,2,32,NULL,1,1,0,'bonus bAllStats,50; bonus bMdef,99; bonus bShortWeaponDamageReturn,100; bonus2 bSubRace,RC_DemiHuman,95; skill "CR_FULLPROTECTION",5; Skill "WZ_ESTIMATION",1; Skill "ST_FULLSTRIP",5; Skill "HW_MAGICPOWER", 10; bonus bMaxHPRate,200; bonus bNoGemStone,0;  bonus bSpeedRate,25;','sc_start4 SC_ENDURE,60000,10,0,0,1;','sc_end SC_ENDURE;');
+REPLACE INTO `item_db` VALUES(2199,'Ahura_Mazda','Ahura Mazda','5',1,NULL,'10',NULL,100,NULL,0,0xFFFFFFFF,7,2,32,NULL,1,1,0,'bonus bAllStats,50; bonus bMdef,99; bonus bShortWeaponDamageReturn,100; bonus2 bSubRace,RC_DemiHuman,95; skill "CR_FULLPROTECTION",5; skill "WZ_ESTIMATION",1; skill "ST_FULLSTRIP",5; skill "HW_MAGICPOWER", 10; bonus bMaxHPrate,200; bonus bNoGemStone,0;  bonus bSpeedRate,25;','sc_start4 SC_ENDURE,60000,10,0,0,1;','sc_end SC_ENDURE;');
 REPLACE INTO `item_db` VALUES(2201,'Sunglasses','Óculos Escuros','5',5000,NULL,'100',NULL,0,NULL,0,0xFFFFFFFF,7,2,512,NULL,0,0,12,'bonus2 bResEff,Eff_Blind,500;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2202,'Sunglasses_','Óculos Escuros','5',5000,NULL,'100',NULL,0,NULL,1,0xFFFFFFFF,7,2,512,NULL,0,0,12,'bonus2 bResEff,Eff_Blind,500;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2203,'Glasses','Óculos','5',4000,NULL,'100',NULL,0,NULL,0,0xFFFFFFFF,7,2,512,NULL,0,0,3,NULL,NULL,NULL);
@@ -5956,7 +5956,7 @@ REPLACE INTO `item_db` VALUES(4111,'Strouf_Card','Carta Strouf','6',20,NULL,'10'
 REPLACE INTO `item_db` VALUES(4112,'Marduk_Card','Carta Marduk','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,769,NULL,NULL,NULL,NULL,'bonus2 bResEff,Eff_Silence,10000;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(4113,'Marionette_Card','Carta Marionete','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,NULL,NULL,'bonus2 bSubEle,Ele_Ghost,30; bonus bFlee,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(4114,'Argiope_Card','Carta Argiope','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bDefEle,Ele_Poison; bonus bDef,1;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(4115,'Hunter_Fly_Card','Carta Mosca Caçadora','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus2 bHpDrainRate,30,15;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(4115,'Hunter_Fly_Card','Carta Mosca Caçadora','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus2 bHPDrainRate,30,15;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(4116,'Isis_Card','Carta Ísis','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,NULL,NULL,'bonus2 bSubEle,Ele_Dark,30; bonus bFlee,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(4117,'Side_Winder_Card','Carta Sorrateiro','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'skill "TF_DOUBLE",1; if(getskilllv(48) > 1) bonus bDoubleRate,getskilllv(48)*5; else bonus bDouble_Attack,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(4118,'Petit_Card','Carta Petite','6',20,NULL,'10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus2 bAddRace,RC_Dragon,20;',NULL,NULL);
@@ -6227,7 +6227,7 @@ REPLACE INTO `item_db` VALUES(10017,'Bark_Shorts','Saia Havaiana','8',20,NULL,'0
 REPLACE INTO `item_db` VALUES(10018,'Monkey_Circlet','Coroa de Macaco','8',20,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(10019,'Red_Muffler','Pano Vermelho','8',20,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(10020,'Sword_Of_Grave_Keeper','Espada chinesa','8',20,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES(12132,'Red_Bag','Bolsa de Papai Noel','2',0,NULL,'200',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_start SC_Xmas,600000,0;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(12132,'Red_Bag','Bolsa de Papai Noel','2',0,NULL,'200',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_start SC_XMAS,600000,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12323,'N_Fly_Wing','Asa de Mosca de Iniciante','11',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemskill "AL_TELEPORT",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12324,'N_Butterfly_Wing','Asa de Borboleta de Iniciante','11',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemskill "AL_TELEPORT",3;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12325,'N_Magnifier','Lupa de Iniciante','11',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemskill "MC_IDENTIFY",1;',NULL,NULL);
@@ -11569,7 +11569,7 @@ REPLACE INTO `pet_db` VALUES(1035,'HUNTER_FLY','Mosca Caçadora',626,9008,10002,
 REPLACE INTO `pet_db` VALUES(1167,'SAVAGE_BABE','Bebê Selvagem',627,9009,10015,537,80,60,40,100,250,20,1500,150,0,0,500,500,200,'{ petskillbonus bVit,4,10,50; }','{ }');
 REPLACE INTO `pet_db` VALUES(1107,'DESERT_WOLF_B','Filhote de Lobo do Deserto',628,9010,10003,537,80,60,40,100,250,20,1000,150,0,0,400,400,400,'{ petskillattack "SM_PROVOKE",1,0,5;}','{ }');
 REPLACE INTO `pet_db` VALUES(1052,'ROCKER','Rocker',629,9011,10014,537,80,60,30,100,250,20,1500,150,0,0,350,350,600,'{ petskillbonus bAllStats,1,10,50; }','{ }');
-REPLACE INTO `pet_db` VALUES(1014,'SPORE','Esporo',630,9012,10017,537,80,60,30,100,250,20,1500,150,0,0,350,500,500,'{ petrecovery SC_Poison,60; }','{ }');
+REPLACE INTO `pet_db` VALUES(1014,'SPORE','Esporo',630,9012,10017,537,80,60,30,100,250,20,1500,150,0,0,350,500,500,'{ petrecovery SC_POISON,60; }','{ }');
 REPLACE INTO `pet_db` VALUES(1077,'POISON_SPORE','Esporo Venenoso',631,9013,10017,537,80,60,20,100,250,20,1000,150,0,0,600,200,400,'{ petskillattack "NPC_POISON",20,0,10; }','{ }');
 REPLACE INTO `pet_db` VALUES(1019,'PECOPECO','Peco Peco',632,9014,10010,537,80,60,30,100,250,20,1000,150,1,0,400,500,800,'{ petskillbonus bSpeedRate,25,20,20; }','{ }');
 REPLACE INTO `pet_db` VALUES(1056,'SMOKIE','Fumacento',633,9015,10019,537,80,60,30,100,250,20,1000,150,1,0,600,600,100,'{ petskillbonus bPerfectHide,1,3600,0; }','{ }');
@@ -13794,7 +13794,7 @@ CREATE TABLE IF NOT EXISTS `buffspecial_db` (
 
 REPLACE INTO `buffspecial_db` VALUES('SC_PROTECT_DEF','{ bonus3 bSubEle,Ele_Neutral,3,BF_SHORT; bonus3 bSubEle,Ele_Water,3,BF_SHORT; bonus3 bSubEle,Ele_Earth,3,BF_SHORT; bonus3 bSubEle,Ele_Fire,3,BF_SHORT; bonus3 bSubEle,Ele_Wind,3,BF_SHORT; bonus3 bSubEle,Ele_Poison,3,BF_SHORT; bonus3 bSubEle,Ele_Holy,3,BF_SHORT; bonus3 bSubEle,Ele_Dark,3,BF_SHORT; bonus3 bSubEle,Ele_Ghost,3,BF_SHORT; bonus3 bSubEle,Ele_Undead,3,BF_SHORT; }');
 REPLACE INTO `buffspecial_db` VALUES('SC_PROTECT_MDEF','{ bonus3 bSubEle,Ele_Neutral,3,BF_MAGIC; bonus3 bSubEle,Ele_Water,3,BF_MAGIC; bonus3 bSubEle,Ele_Earth,3,BF_MAGIC; bonus3 bSubEle,Ele_Fire,3,BF_MAGIC; bonus3 bSubEle,Ele_Wind,3,BF_MAGIC; bonus3 bSubEle,Ele_Poison,3,BF_MAGIC; bonus3 bSubEle,Ele_Holy,3,BF_MAGIC; bonus3 bSubEle,Ele_Dark,3,BF_MAGIC; bonus3 bSubEle,Ele_Ghost,3,BF_MAGIC; bonus3 bSubEle,Ele_Undead,3,BF_MAGIC; }');
-REPLACE INTO `buffspecial_db` VALUES('SC_HEALPLUS','{ bonus bHealpower2,20; }');
+REPLACE INTO `buffspecial_db` VALUES('SC_HEALPLUS','{ bonus bHealPower2,20; }');
 REPLACE INTO `buffspecial_db` VALUES('SC_S_LIFEPOTION','{ bonus2 bHPRegenRate,5,5000; }');
 REPLACE INTO `buffspecial_db` VALUES('SC_L_LIFEPOTION','{ bonus2 bHPRegenRate,7,4000; }');
 REPLACE INTO `buffspecial_db` VALUES('SC_CRITICALPERCENT','{ bonus bCritical,30; }');

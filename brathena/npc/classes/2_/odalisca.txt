@@ -132,7 +132,7 @@ job_duncer,43,93,4	script	Aile#da	4_F_07,{
 		cutin "",255;
 		end;
 	}
-	if (DANC_Q == 0 && sex == 0 && BaseJob == Job_Archer) {
+	if (DANC_Q == 0 && Sex == 0 && BaseJob == Job_Archer) {
 		cutin "job_dancer_eir01",2;
 		mes "[Aile]";
 		mes "Welcome~!";
@@ -217,7 +217,7 @@ job_duncer,43,93,4	script	Aile#da	4_F_07,{
 		mes "[Aile]";
 		mes "Not all Archers";
 		mes "can become Dancers.";
-		mes "At least, not without some sort of sex change~";
+		mes "At least, not without some sort of Sex change~";
 		close2;
 		cutin "",255;
 		end;

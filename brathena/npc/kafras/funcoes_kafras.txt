@@ -51,7 +51,7 @@ function	script	F_Kafra	{
 		case 2:
 			set @GID,getcharid(2);
 			mes "[Funcionária Kafra]";
-	 		mes "Bem vindo membro da guilda ^ff0000" + GetGuildName(@GID) + "^000000 .";
+	 		mes "Bem vindo membro da guilda ^ff0000" + getguildname(@GID) + "^000000 .";
 			mes "A Corporação Kafra, está aqui para atender você.";
 			break;
 		case 3:
