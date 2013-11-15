@@ -985,10 +985,10 @@ int pc_isequip(struct map_session_data *sd,int n)
 		return 0;
 	//Not usable by upper class. [Inkfish]
 	while(1) {
-		if(item->class_upper&1 && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY))) break;
-		if(item->class_upper&2 && sd->class_&(JOBL_UPPER|JOBL_THIRD)) break;
-		if(item->class_upper&4 && sd->class_&JOBL_BABY) break;
-		if(item->class_upper&8 && sd->class_&JOBL_THIRD) break;
+		if(item->class_upper&ITEMUPPER_NORMAL && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY))) break;
+		if(item->class_upper&ITEMUPPER_UPPER  && sd->class_&(JOBL_UPPER|JOBL_THIRD)) break;
+		if(item->class_upper&ITEMUPPER_BABY   && sd->class_&JOBL_BABY) break;
+		if(item->class_upper&ITEMUPPER_THIRD  && sd->class_&JOBL_THIRD) break;
 		return 0;
 	}
 
@@ -4297,22 +4297,22 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	//Not usable by upper class. [Inkfish]
 	while(1) {
 		// Normal classes (no upper, no baby, no third classes)
-		if( item->class_upper&0x01 && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY)) ) break;
+		if( item->class_upper&ITEMUPPER_NORMAL && !(sd->class_&(JOBL_UPPER|JOBL_THIRD|JOBL_BABY)) ) break;
 #if VERSION == 1
 		// Upper classes (no third classes)
-		if( item->class_upper&0x02 && sd->class_&JOBL_UPPER && !(sd->class_&JOBL_THIRD) ) break;
+		if( item->class_upper&ITEMUPPER_UPPER && sd->class_&JOBL_UPPER && !(sd->class_&JOBL_THIRD) ) break;
 #else
 		//pre-re has no use for the extra, so we maintain the previous for backwards compatibility
-		if( item->class_upper&0x02 && sd->class_&(JOBL_UPPER|JOBL_THIRD) ) break;
+		if( item->class_upper&ITEMUPPER_UPPER && sd->class_&(JOBL_UPPER|JOBL_THIRD) ) break;
 #endif
 		// Baby classes (no third classes)
-		if( item->class_upper&0x04 && sd->class_&JOBL_BABY && !(sd->class_&JOBL_THIRD) ) break;
+		if( item->class_upper&ITEMUPPER_BABY && sd->class_&JOBL_BABY && !(sd->class_&JOBL_THIRD) ) break;
 		// Third classes (no upper, no baby classes)
-		if( item->class_upper&0x08 && sd->class_&JOBL_THIRD && !(sd->class_&(JOBL_UPPER|JOBL_BABY)) ) break;
+		if( item->class_upper&ITEMUPPER_THIRD && sd->class_&JOBL_THIRD && !(sd->class_&(JOBL_UPPER|JOBL_BABY)) ) break;
 		// Upper third classes
-		if( item->class_upper&0x10 && sd->class_&JOBL_THIRD && sd->class_&JOBL_UPPER ) break;
+		if( item->class_upper&ITEMUPPER_THURDUPPER && sd->class_&JOBL_THIRD && sd->class_&JOBL_UPPER ) break;
 		// Baby third classes
-		if( item->class_upper&0x20 && sd->class_&JOBL_THIRD && sd->class_&JOBL_BABY ) break;
+		if( item->class_upper&ITEMUPPER_THIRDBABY && sd->class_&JOBL_THIRD && sd->class_&JOBL_BABY ) break;
 		return 0;
 	}
 
@@ -8718,10 +8718,22 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 		return 0;
 	}
 
+	/* won't fail from this point onwards */
+	if(id->flag.bindonequip && !sd->status.inventory[n].bound) {
+		sd->status.inventory[n].bound = (unsigned char)IBT_CHARACTER;
+		clif->notify_bounditem(sd,n);
+	}
+
 	if(pos == EQP_ACC) { //Accesories should only go in one of the two,
 		pos = req_pos&EQP_ACC;
 		if(pos == EQP_ACC)  //User specified both slots..
 			pos = sd->equip_index[EQI_ACC_R] >= 0 ? EQP_ACC_L : EQP_ACC_R;
+	}
+
+	if(pos == EQP_SHADOW_ACC) { // Shadow System
+		pos = req_pos&EQP_SHADOW_ACC;
+		if (pos == EQP_SHADOW_ACC)
+			pos = sd->equip_index[EQI_SHADOW_ACC_L] >= 0 ? EQP_SHADOW_ACC_R : EQP_SHADOW_ACC_L;
 	}
 
 	if(pos == EQP_ARMS && id->equip == EQP_HAND_R) {

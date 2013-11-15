@@ -115,6 +115,17 @@ enum {
 } item_nouse_list;
 
 //
+enum item_class_upper {
+	ITEMUPPER_NONE       = 0x00,
+	ITEMUPPER_NORMAL     = 0x01,
+	ITEMUPPER_UPPER      = 0x02,
+	ITEMUPPER_BABY       = 0x04,
+	ITEMUPPER_THIRD      = 0x08,
+	ITEMUPPER_THURDUPPER = 0x10,
+	ITEMUPPER_THIRDBABY  = 0x20,
+	ITEMUPPER_ALL        = 0x3f, // Sum of all the above
+};
+
 struct item_data {
 	uint16 nameid;
 	char name[ITEM_NAME_LENGTH],jname[ITEM_NAME_LENGTH];
@@ -159,6 +170,7 @@ struct item_data {
 		unsigned trade_restriction : 9; //Item restrictions mask [Skotlex]
 		unsigned autoequip: 1;
 		unsigned buyingstore : 1;
+		unsigned bindonequip : 1;
 	} flag;
 	struct {// item stacking limitation
 		unsigned short amount;

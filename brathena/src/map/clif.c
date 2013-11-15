@@ -2260,7 +2260,7 @@ void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 		/* why restrict the flag to non-stackable? because this is the only packet allows stackable to,
 		 * show the color, and therefore it'd be inconsistent with the rest (aka it'd show yellow, you relog/refresh and boom its gone)
 		 */
-		p.bindOnEquipType = sd->status.inventory[n].bound && !itemdb_isstackable2(sd->inventory_data[n]) ? 2 : 0;
+		p.bindOnEquipType = sd->status.inventory[n].bound && !itemdb_isstackable2(sd->inventory_data[n]) ? 2 : sd->inventory_data[n]->flag.bindonequip ? 1 : 0;
 #endif
 	}
 	p.result = (unsigned char)fail;
@@ -2373,7 +2373,7 @@ void clif_item_equip(short idx, struct EQUIPITEM_INFO *p, struct item *i, struct
 #endif
 	
 #if PACKETVER >= 20080102
-	p->bindOnEquipType = i->bound ? 2 : 0;
+	p->bindOnEquipType = i->bound ? 2 : id->flag.bindonequip ? 1 : 0;
 #endif
 
 #if PACKETVER >= 20100629
@@ -2492,40 +2492,46 @@ void clif_equiplist(struct map_session_data *sd) {
 }
 
 void clif_storagelist(struct map_session_data *sd, struct item *items, int items_length) {
-	int i, normal = 0, equip = 0;
+	int i = 0;
 	struct item_data *id;
 
-	for(i = 0; i < items_length; i++) {
+	do {
+		int normal = 0, equip = 0, k = 0;
 
-		if(items[i].nameid <= 0)
-			continue;
+		for(; i < items_length && k < 500; i++, k++ ) {
 
-		id = itemdb_search(items[i].nameid);
-		if(!itemdb_isstackable2(id)) //Non-stackable (Equippable)
-			clif_item_equip(i+1,&storelist_equip.list[equip++],&items[i],id,id->equip);
-		else //Stackable (Normal)
-			clif_item_normal(i+1,&storelist_normal.list[normal++],&items[i],id);
-	}
+			if(items[i].nameid <= 0)
+				continue;
 
-	if(normal) {
-		storelist_normal.PacketType   = storagelistnormalType;
-		storelist_normal.PacketLength =  (sizeof( storelist_normal) - sizeof(storelist_normal.list)) + (sizeof(struct NORMALITEM_INFO) * normal);
+			id = itemdb_search(items[i].nameid);
+			if(!itemdb_isstackable2(id)) //Non-stackable (Equippable)
+				clif_item_equip(i+1,&storelist_equip.list[equip++],&items[i],id,id->equip);
+			else //Stackable (Normal)
+				clif_item_normal(i+1,&storelist_normal.list[normal++],&items[i],id);
+		}
+
+		if(normal) {
+			storelist_normal.PacketType   = storagelistnormalType;
+			storelist_normal.PacketLength =  (sizeof( storelist_normal) - sizeof(storelist_normal.list)) + (sizeof(struct NORMALITEM_INFO) * normal);
 #if PACKETVER >= 20120925
-		safestrncpy(storelist_normal.name, "Storage", NAME_LENGTH);
+			safestrncpy(storelist_normal.name, "Storage", NAME_LENGTH);
 #endif
-		clif_send(&storelist_normal, storelist_normal.PacketLength, &sd->bl, SELF);
-	}
+			clif_send(&storelist_normal, storelist_normal.PacketLength, &sd->bl, SELF);
+		}
 
-	if(equip) {
-		storelist_equip.PacketType   = storagelistequipType;
-		storelist_equip.PacketLength = (sizeof(storelist_equip) - sizeof(storelist_equip.list)) + (sizeof(struct EQUIPITEM_INFO) * equip);
+		if(equip) {
+			storelist_equip.PacketType   = storagelistequipType;
+			storelist_equip.PacketLength = (sizeof(storelist_equip) - sizeof(storelist_equip.list)) + (sizeof(struct EQUIPITEM_INFO) * equip);
 
 #if PACKETVER >= 20120925
-		safestrncpy(storelist_equip.name, "Storage", NAME_LENGTH);
+			safestrncpy(storelist_equip.name, "Storage", NAME_LENGTH);
 #endif
 
-		clif_send(&storelist_equip, storelist_equip.PacketLength, &sd->bl, SELF);
-	}
+			clif_send(&storelist_equip, storelist_equip.PacketLength, &sd->bl, SELF);
+		}
+
+	} while ( i < items_length );
+
 }
 
 void clif_cartlist(struct map_session_data *sd) {
@@ -12938,17 +12944,30 @@ void clif_parse_GuildRequestEmblem(int fd,struct map_session_data *sd)
 /// Validates data of a guild emblem (compressed bitmap)
 static bool clif_validate_emblem(const uint8 *emblem, unsigned long emblem_len)
 {
-	bool success;
+
 	uint8 buf[1800];  // no well-formed emblem bitmap is larger than 1782 (24 bit) / 1654 (8 bit) bytes
 	unsigned long buf_len = sizeof(buf);
+	int i,j, transcount=1, offset=0, tmp[3];
 
-	success = (decode_zip(buf, &buf_len, emblem, emblem_len) == 0 && buf_len >= 18)    // sizeof(BITMAPFILEHEADER) + sizeof(biSize) of the following info header struct
+	if(!((decode_zip(buf, &buf_len, emblem, emblem_len) == 0 && buf_len >= 18)    // sizeof(BITMAPFILEHEADER) + sizeof(biSize) of the following info header struct
 	          && RBUFW(buf,0) == 0x4d42   // BITMAPFILEHEADER.bfType (signature)
 	          && RBUFL(buf,2) == buf_len  // BITMAPFILEHEADER.bfSize (file size)
-	          && RBUFL(buf,10) < buf_len  // BITMAPFILEHEADER.bfOffBits (offset to bitmap bits)
-	          ;
+	          && (offset = RBUFL(buf,10)) < buf_len  // BITMAPFILEHEADER.bfOffBits (offset to bitmap bits)
+		))
+		return -1;
 
-	return success;
+	if(battle_config.emblem_transparency_limit != 100){
+		for(i=offset; i<buf_len-1; i++){
+			j = i%3;
+			tmp[j] = RBUFL(buf,i);
+			if(j==2 && (tmp[0] == 0xFFFF00FF) && (tmp[1] == 0xFFFF00) && (tmp[2] == 0xFF00FFFF)) //if pixel is transparent
+				transcount++;
+		}
+		if(((transcount*300)/(buf_len-offset)) > battle_config.emblem_transparency_limit) //convert in % to chk
+			return -2;
+	}
+
+	return 0;
 }
 
 
@@ -12958,12 +12977,24 @@ void clif_parse_GuildChangeEmblem(int fd,struct map_session_data *sd)
 {
 	unsigned long emblem_len = RFIFOW(fd,2)-4;
 	const uint8 *emblem = RFIFOP(fd,4);
+	int emb_val=0;
 
 	if(!emblem_len || !sd->state.gmaster_flag)
 		return;
 
-	if(!clif_validate_emblem(emblem, emblem_len)) {
+	if(!(battle_config.emblem_woe_change) && (agit_flag || agit2_flag) ){
+		clif_colormes(fd,COLOR_RED,msg_txt(1500)); //"You not allowed to change emblem during woe"
+		return;
+	}
+	emb_val = clif_validate_emblem(emblem, emblem_len);
+	if(emb_val ==-1){
 		ShowWarning("clif_parse_GuildChangeEmblem: Rejected malformed guild emblem (size=%lu, accound_id=%d, char_id=%d, guild_id=%d).\n", emblem_len, sd->status.account_id, sd->status.char_id, sd->status.guild_id);
+		clif_colormes(fd,COLOR_RED,msg_txt(1501)); //"The chosen emblem was detected invalid\n"
+		return;
+	} else if(emb_val == -2){
+		char output[128];
+		safesnprintf(output,sizeof(output),msg_txt(1502),battle_config.emblem_transparency_limit);
+		clif_colormes(fd,COLOR_RED,output); //"The chosen emblem was detected invalid as it contain too much transparency (limit=%d)\n"
 		return;
 	}
 
@@ -15099,7 +15130,7 @@ void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if((item = itemdb_exists(sd->status.inventory[idx].nameid)) != NULL && !(item->type == IT_ARMOR || item->type == IT_PETARMOR || item->type == IT_WEAPON || item->type == IT_CARD || item->type == IT_ETC)) {
+	if((item = itemdb_exists(sd->status.inventory[idx].nameid)) != NULL && !(item->type == IT_ARMOR || item->type == IT_PETARMOR || item->type == IT_WEAPON || item->type == IT_CARD || item->type == IT_ETC || item->type == IT_SHADOWGEAR)) {
 		// Consumable or pets are not allowed
 		clif_Auction_setitem(sd->fd, idx, true);
 		return;
@@ -17801,7 +17832,7 @@ void clif_bgqueue_pcleft(struct map_session_data *sd) {
 void clif_bgqueue_battlebegins(struct map_session_data *sd, unsigned char arena_id, enum send_target target) {
 	struct packet_bgqueue_battlebegins p;
 
-	p.PacketType = bgqueue_battlebegins;
+	p.PacketType = bgqueue_battlebeginsType;
 	safestrncpy(p.bg_name, bg->arena[arena_id]->name, sizeof(p.bg_name));
 	safestrncpy(p.game_name, bg->arena[arena_id]->name, sizeof(p.game_name));
 
@@ -18000,6 +18031,15 @@ void clif_bank_withdraw(struct map_session_data *sd,enum e_BANKING_WITHDRAW_ACK 
 	p.Balance = sd->status.zeny;/* Quanto zeny char tem depois da operação */
 	p.Money = (int64)sd->status.bank_vault;/* dinheiro no banco */
 	p.Reason = (short)reason;
+
+	clif_send(&p,sizeof(p), &sd->bl, SELF);
+}
+
+void clif_notify_bounditem(struct map_session_data *sd, unsigned short index) {
+	struct packet_notify_bounditem p;
+
+	p.PacketType = notify_bounditemType;
+	p.index = index+2;
 
 	clif_send(&p,sizeof(p), &sd->bl, SELF);
 }
@@ -18360,6 +18400,8 @@ void clif_defaults(void) {
 	/* Sistema de Banco */
 	clif->bank_deposit = clif_bank_deposit;
 	clif->bank_withdraw = clif_bank_withdraw;
+	/* */
+	clif->notify_bounditem = clif_notify_bounditem;
 	/* Pacotes de Entrada */
 	clif->pWantToConnection = clif_parse_WantToConnection;
 	clif->pLoadEndAck = clif_parse_LoadEndAck;

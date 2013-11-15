@@ -1069,6 +1069,8 @@ struct clif_interface {
 	/* Sistema de Banco */
 	void (*bank_deposit) (struct map_session_data *sd, enum e_BANKING_DEPOSIT_ACK reason);
 	void (*bank_withdraw) (struct map_session_data *sd,enum e_BANKING_WITHDRAW_ACK reason);
+	/* */
+	void (*notify_bounditem) (struct map_session_data *sd, unsigned short index);
 	/* Pacote de Entrada */
 	void (*pWantToConnection) (int fd, struct map_session_data *sd);
 	void (*pLoadEndAck) (int fd,struct map_session_data *sd);
