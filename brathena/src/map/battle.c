@@ -4705,7 +4705,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			if(skill_id && (i = pc_skillatk_bonus(sd, skill_id)))
 				ATK_ADDRATE(i);
 #if VERSION == 1
-			if(wflag&BF_LONG)
+			if(wd.flag&BF_LONG)
 				ATK_ADDRATE(sd->bonus.long_attack_atk_rate);
 #endif
 			if((i=pc_checkskill(sd,AB_EUCHARISTICA)) > 0 &&
