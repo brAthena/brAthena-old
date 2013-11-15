@@ -29583,7 +29583,7 @@ REPLACE INTO `statpoint_db` VALUES(7185);
 
 CREATE TABLE IF NOT EXISTS `sc_config` (
   `SC_NAME` varchar(70) NOT NULL,
-  `flag` tinyint NOT NULL,
+  `flag` smallint unsigned NOT NULL,
   PRIMARY KEY (`SC_NAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

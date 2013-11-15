@@ -6532,7 +6532,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 		if(pc_checkskill(sd, SG_DEVIL) &&  !pc_nextjobexp(sd))
 			clif_status_change_end(&sd->bl, sd->bl.id, SELF, SI_DEVIL1);
 		i = sd->sc.option;
-		if(i&OPTION_RIDING && pc_checkskill(sd, KN_RIDING))
+		if(i&OPTION_RIDING && (!pc_checkskill(sd, KN_RIDING)|| (sd->class_&MAPID_THIRDMASK) == MAPID_RUNE_KNIGHT))
 			i &= ~OPTION_RIDING;
 		if(i&OPTION_FALCON && pc_checkskill(sd, HT_FALCON))
 			i &= ~OPTION_FALCON;
