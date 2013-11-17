@@ -600,7 +600,7 @@ int pet_menu(struct map_session_data *sd,int menunum)
 
 	egg_id = itemdb_exists(sd->pd->petDB->EggID);
 	if (egg_id) {
-		if ((egg_id->flag.trade_restriction&0x01) && !pc_inventoryblank(sd)) {
+		if ((egg_id->item_bound.drop) && !pc_inventoryblank(sd)) {
 			clif_displaymessage(sd->fd, msg_txt(451)); // You can't return your pet because your inventory is full.
 			return 1;
 		}

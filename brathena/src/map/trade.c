@@ -364,7 +364,7 @@ void trade_tradeadditem(struct map_session_data *sd, short index, short amount)
 	src_lv = pc_get_group_level(sd);
 	dst_lv = pc_get_group_level(target_sd);
 	if(!itemdb_cantrade(item, src_lv, dst_lv) &&  //Can't trade
-	   (pc_get_partner(sd) != target_sd || !itemdb_canpartnertrade(item, src_lv, dst_lv))) { //Can't partner-trade
+	   (pc_get_partner(sd) != target_sd)) { //Can't partner-trade
 		clif_displaymessage(sd->fd, msg_txt(260));
 		clif_tradeitemok(sd, index+2, TIO_INDROCKS);
 		return;

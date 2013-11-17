@@ -4045,6 +4045,8 @@ int pc_delitem(struct map_session_data *sd,int n,int amount,int type, short reas
  *------------------------------------------*/
 int pc_dropitem(struct map_session_data *sd,int n,int amount)
 {
+	int flag = (pc_candrop(sd,&sd->status.inventory[n]) ? 4 : 2);
+
 	nullpo_retr(1, sd);
 
 	if(n < 0 || n >= MAX_INVENTORY)
@@ -4071,7 +4073,7 @@ int pc_dropitem(struct map_session_data *sd,int n,int amount)
 		return 0;
 	}
 
-	if(!map_addflooritem(&sd->status.inventory[n], amount, sd->bl.m, sd->bl.x, sd->bl.y, 0, 0, 0, 2))
+	if(!map_addflooritem(&sd->status.inventory[n], amount, sd->bl.m, sd->bl.x, sd->bl.y, 0, 0, 0, flag))
 		return 0;
 
 	pc_delitem(sd, n, amount, 1, 0, LOG_TYPE_PICKDROP_PLAYER);
@@ -4494,7 +4496,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 		return 1;
 	}
 
-	if(!itemdb_cancartstore(item_data, pc_get_group_level(sd)) || (item_data->bound > IBT_ACCOUNT && !pc_can_give_bound_items(sd))) {
+	if(!itemdb_cancart(item_data, pc_get_group_level(sd)) || (item_data->bound > IBT_ACCOUNT && !pc_can_give_bound_items(sd))) {
 		// Check item trade restrictions  [Skotlex]
 		clif_displaymessage(sd->fd, msg_txt(264));
 		return 1; /* TODO: there is no official response to this? */

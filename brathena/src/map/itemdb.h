@@ -167,7 +167,6 @@ struct item_data {
 		unsigned available : 1;
 		unsigned no_refine : 1; // [celest]
 		unsigned delay_consume : 1; // Signifies items that are not consumed immediately upon double-click [Skotlex]
-		unsigned trade_restriction : 9; //Item restrictions mask [Skotlex]
 		unsigned autoequip: 1;
 		unsigned buyingstore : 1;
 		unsigned bindonequip : 1;
@@ -179,11 +178,20 @@ struct item_data {
 		unsigned int storage:1;
 		unsigned int guildstorage:1;
 	} stack;
+	struct {// used by ItemMoveInfo_db.sql [Megasantos/brAthena]
+		unsigned int drop : 1;
+		unsigned int trade : 1;
+		unsigned int storage : 1;
+		unsigned int cart : 1;
+		unsigned int vending : 1;
+		unsigned int mail : 1;
+		unsigned int auction : 1;
+		unsigned short override;
+	} item_bound;
 	struct {// used by item_nouse.txt
 		unsigned int flag;
 		unsigned short override;
 	} item_usage;
-	short gm_lv_trade_override; //GM-level to override trade_restriction
 	/* bugreport:309 */
 	struct item_combo **combos;
 	unsigned char combos_count;
@@ -256,7 +264,7 @@ struct item_data *itemdb_exists(int nameid);
 #define itemdb_range(n) itemdb_search(n)->range
 #define itemdb_slot(n) itemdb_search(n)->slot
 #define itemdb_available(n) (itemdb_search(n)->flag.available)
-#define itemdb_traderight(n) (itemdb_search(n)->flag.trade_restriction)
+#define itemdb_traderight(n) (itemdb_search(n)->item_bound.drop)
 #define itemdb_viewid(n) (itemdb_search(n)->view_id)
 #define itemdb_autoequip(n) (itemdb_search(n)->flag.autoequip)
 #define itemdb_is_rune(n) ((n >= ITEMID_NAUTHIZ && n <= ITEMID_HAGALAZ) || n == ITEMID_LUX_ANIMA)
@@ -278,21 +286,17 @@ int itemdb_searchrandomid(int flags);
 //Item trade restrictions [Skotlex]
 int itemdb_isdropable_sub(struct item_data *, int, int);
 int itemdb_cantrade_sub(struct item_data *, int, int);
-int itemdb_canpartnertrade_sub(struct item_data *, int, int);
+int itemdb_cancart_sub(struct item_data *, int, int);
 int itemdb_cansell_sub(struct item_data *,int, int);
-int itemdb_cancartstore_sub(struct item_data *, int, int);
 int itemdb_canstore_sub(struct item_data *, int, int);
-int itemdb_canguildstore_sub(struct item_data *, int, int);
 int itemdb_canmail_sub(struct item_data *, int, int);
 int itemdb_canauction_sub(struct item_data *, int, int);
 int itemdb_isrestricted(struct item *item, int gmlv, int gmlv2, int (*func)(struct item_data *, int, int));
 #define itemdb_isdropable(item, gmlv) itemdb_isrestricted(item, gmlv, 0, itemdb_isdropable_sub)
 #define itemdb_cantrade(item, gmlv, gmlv2) itemdb_isrestricted(item, gmlv, gmlv2, itemdb_cantrade_sub)
-#define itemdb_canpartnertrade(item, gmlv, gmlv2) itemdb_isrestricted(item, gmlv, gmlv2, itemdb_canpartnertrade_sub)
 #define itemdb_cansell(item, gmlv) itemdb_isrestricted(item, gmlv, 0, itemdb_cansell_sub)
-#define itemdb_cancartstore(item, gmlv)  itemdb_isrestricted(item, gmlv, 0, itemdb_cancartstore_sub)
+#define itemdb_cancart(item, gmlv)  itemdb_isrestricted(item, gmlv, 0, itemdb_cancart_sub)
 #define itemdb_canstore(item, gmlv) itemdb_isrestricted(item, gmlv, 0, itemdb_canstore_sub)
-#define itemdb_canguildstore(item, gmlv) itemdb_isrestricted(item , gmlv, 0, itemdb_canguildstore_sub)
 #define itemdb_canmail(item, gmlv) itemdb_isrestricted(item , gmlv, 0, itemdb_canmail_sub)
 #define itemdb_canauction(item, gmlv) itemdb_isrestricted(item , gmlv, 0, itemdb_canauction_sub)
 

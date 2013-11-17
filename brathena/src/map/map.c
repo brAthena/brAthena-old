@@ -1390,7 +1390,7 @@ int map_addflooritem(struct item *item_data,int amount,int16 m,int16 x,int16 y,i
 
 	nullpo_ret(item_data);
 
-	if(!(flags&4) && battle_config.item_onfloor && (itemdb_traderight(item_data->nameid)&1))
+	if(!(flags&4) && battle_config.item_onfloor && (itemdb_traderight(item_data->nameid)))
 		return 0; //can't be dropped
 
 	if(!map_searchrandfreecell(m,&x,&y,flags&2?1:0))
@@ -3668,7 +3668,7 @@ char *get_database_name(int database_id)
 		case 19: db_name = "guild_skill_tree_db"; break;
 		case 20: db_name = "item_avail_db"; break;
 		case 21: db_name = "item_noequip_db"; break;
-		case 22: db_name = "item_trade_db"; break;
+		case 22: db_name = "item_move_info_db"; break;
 		case 23: db_name = "item_delay_db"; break;
 		#if VERSION == 1
 		case 24: db_name = "item_stack_db"; break;

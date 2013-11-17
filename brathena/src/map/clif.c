@@ -1837,7 +1837,6 @@ void clif_selllist(struct map_session_data *sd)
 		if(sd->status.inventory[i].nameid > 0 && sd->inventory_data[i]) {
 			if(!itemdb_cansell(&sd->status.inventory[i], pc_get_group_level(sd)))
 				continue;
-
 			if(sd->status.inventory[i].expire_time)
 				continue; // Cannot Sell Rental Items
 
