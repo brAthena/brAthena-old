@@ -2934,7 +2934,7 @@ ACMD_FUNC(char_ban)
 		return -1;
 	}
 
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, 2, year, month, day, hour, minute, second); // type: 2 - ban
+	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(command+1,"charban") ? 6 : 2, year, month, day, hour, minute, second); // type: 2 - ban 6 - charban
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return 0;
@@ -2976,7 +2976,7 @@ ACMD_FUNC(char_unban)
 	}
 
 	// send answer to login server via char-server
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, 4, 0, 0, 0, 0, 0, 0); // type: 4 - unban
+	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(command+1,"charunban") ? 7 : 4, 0, 0, 0, 0, 0, 0); // type: 4 - unban account; type 7 - unban character
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return 0;
@@ -3290,7 +3290,7 @@ ACMD_FUNC(spiritball)
 
 	if(!message || !*message || (number = atoi(message)) < 0 || number > max_spiritballs) {
 		char msg[CHAT_SIZE_MAX];
-		safesnprintf(msg, sizeof(msg), msg_txt(1028), max_spiritballs); // Please enter a party name (usage: @party <party_name>).
+		safesnprintf(msg, sizeof(msg), msg_txt(1028), max_spiritballs); // Please enter an amount (usage: @spiritball <number: 0-%d>).
 		clif_displaymessage(fd, msg);
 		return -1;
 	}
@@ -9784,7 +9784,9 @@ void atcommand_basecommands(void)
 		ACMD_DEF2("allstats", stat_all),
 		ACMD_DEF2("block", char_block),
 		ACMD_DEF2("ban", char_ban),
+		ACMD_DEF2("charban", char_ban),/* char-specific ban time */
 		ACMD_DEF2("unblock", char_unblock),
+		ACMD_DEF2("charunban", char_unban),/* char-specific ban time */
 		ACMD_DEF2("unban", char_unban),
 		ACMD_DEF2("mount", mount_peco),
 		ACMD_DEF(guildspy),

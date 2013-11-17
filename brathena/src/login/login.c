@@ -23,6 +23,7 @@
 #include "../common/socket.h"
 #include "../common/strlib.h"
 #include "../common/timer.h"
+#include "../common/utils.h"
 #include "account.h"
 #include "ipban.h"
 #include "login.h"
@@ -93,6 +94,7 @@ struct auth_node {
 	char sex;
 	uint32 version;
 	uint8 clienttype;
+	int group_id;
 };
 
 static DBMap *auth_db; // int account_id -> struct auth_node*
@@ -289,18 +291,6 @@ bool check_password(const char *md5key, int passwdenc, const char *passwd, const
 	}
 }
 
-
-//-----------------------------------------------------
-// custom timestamp formatting (from eApp)
-//-----------------------------------------------------
-const char *timestamp2string(char *str, size_t size, time_t timestamp, const char *format)
-{
-	size_t len = strftime(str, size, format, localtime(&timestamp));
-	memset(str + len, '\0', size - len);
-	return str;
-}
-
-
 //--------------------------------------------
 // Test to know if an IP come from LAN or WAN.
 //--------------------------------------------
@@ -460,7 +450,7 @@ int parse_fromchar(int fd)
 					   //ShowStatus("Char-server '%s': authentication of the account %d accepted (ip: %s).\n", server[id].name, account_id, ip);
 
 						// send ack
-						WFIFOHEAD(fd,25);
+						WFIFOHEAD(fd,29);
 						WFIFOW(fd,0) = 0x2713;
 						WFIFOL(fd,2) = account_id;
 						WFIFOL(fd,6) = login_id1;
@@ -470,14 +460,15 @@ int parse_fromchar(int fd)
 						WFIFOL(fd,16) = request_id;
 						WFIFOL(fd,20) = node->version;
 						WFIFOB(fd,24) = node->clienttype;
-						WFIFOSET(fd,25);
+						WFIFOL(fd,25) = node->group_id;
+						WFIFOSET(fd,29);
 
 						// each auth entry can only be used once
 						idb_remove(auth_db, account_id);
 					} else {
 						// authentication not found
 						ShowStatus(read_message("Source.login.login_auth_notfound"), server[id].name, account_id, ip);
-						WFIFOHEAD(fd,25);
+						WFIFOHEAD(fd,29);
 						WFIFOW(fd,0) = 0x2713;
 						WFIFOL(fd,2) = account_id;
 						WFIFOL(fd,6) = login_id1;
@@ -487,7 +478,8 @@ int parse_fromchar(int fd)
 						WFIFOL(fd,16) = request_id;
 						WFIFOL(fd,20) = 0;
 						WFIFOB(fd,24) = 0;
-						WFIFOSET(fd,25);
+						WFIFOL(fd,25) = 0;
+						WFIFOSET(fd,29);
 					}
 				}
 				break;
@@ -1235,6 +1227,7 @@ void login_auth_ok(struct login_session_data *sd)
 	node->ip = ip;
 	node->version = sd->version;
 	node->clienttype = sd->clienttype;
+	node->group_id = sd->group_id;
 	idb_put(auth_db, sd->account_id, node);
 
 	{

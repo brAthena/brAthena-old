@@ -559,6 +559,10 @@ struct map_session_data {
 
 	unsigned char delayed_damage;//ref. counter bugreport:7307 [Ind]
 
+	/* expiration_time timer id */
+	int expiration_tid;
+	unsigned int expiration_time;
+
 	/* */
 	struct {
 		unsigned int second,third;
@@ -571,56 +575,6 @@ struct map_session_data {
 };
 
 struct eri *pc_sc_display_ers;
-
-//Total number of classes (for data storage)
-#define CLASS_COUNT (JOB_MAX - JOB_NOVICE_HIGH + JOB_MAX_BASIC)
-
-enum weapon_type {
-    W_FIST, //Bare hands
-    W_DAGGER,   //1
-    W_1HSWORD,  //2
-    W_2HSWORD,  //3
-    W_1HSPEAR,  //4
-    W_2HSPEAR,  //5
-    W_1HAXE,    //6
-    W_2HAXE,    //7
-    W_MACE, //8
-    W_2HMACE,   //9 (unused)
-    W_STAFF,    //10
-    W_BOW,  //11
-    W_KNUCKLE,  //12
-    W_MUSICAL,  //13
-    W_WHIP, //14
-    W_BOOK, //15
-    W_KATAR,    //16
-    W_REVOLVER, //17
-    W_RIFLE,    //18
-    W_GATLING,  //19
-    W_SHOTGUN,  //20
-    W_GRENADE,  //21
-    W_HUUMA,    //22
-    W_2HSTAFF,  //23
-    MAX_WEAPON_TYPE,
-    // dual-wield constants
-    W_DOUBLE_DD, // 2 daggers
-    W_DOUBLE_SS, // 2 swords
-    W_DOUBLE_AA, // 2 axes
-    W_DOUBLE_DS, // dagger + sword
-    W_DOUBLE_DA, // dagger + axe
-    W_DOUBLE_SA, // sword + axe
-};
-
-enum ammo_type {
-    A_ARROW = 1,
-    A_DAGGER,   //2
-    A_BULLET,   //3
-    A_SHELL,    //4
-    A_GRENADE,  //5
-    A_SHURIKEN, //6
-    A_KUNAI,     //7
-    A_CANNONBALL,   //8
-    A_THROWWEAPON   //9
-};
 
 //Equip position constants
 enum equip_pos {
@@ -768,7 +722,7 @@ int pc_setrestartvalue(struct map_session_data *sd,int type);
 int pc_makesavestatus(struct map_session_data *);
 void pc_respawn(struct map_session_data *sd, clr_type clrtype);
 int pc_setnewpc(struct map_session_data *,int,int,int,unsigned int,int,int);
-bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
+bool pc_authok(struct map_session_data *sd, int login_id2, unsigned int expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
 void pc_authfail(struct map_session_data *);
 int pc_reg_received(struct map_session_data *sd);
 void pc_close_npc(struct map_session_data *sd,int flag);
@@ -1020,6 +974,13 @@ void pc_baselevelchanged(struct map_session_data *sd);
 
 void pc_rental_expire(struct map_session_data *sd, int i);
 void pc_scdata_received(struct map_session_data *sd);
+
+// Servidor pago
+int pc_expiration_tid;
+int pc_expiration_timer(int tid, unsigned int tick, int id, intptr_t data);
+int pc_global_expiration_timer(int tid, unsigned int tick, int id, intptr_t data);
+void pc_expire_check(struct map_session_data *sd);
+
 
 // Sistema Item Vinculado
 void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type);

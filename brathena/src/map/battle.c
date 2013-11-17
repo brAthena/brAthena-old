@@ -440,7 +440,10 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 		if(t < 5 && atk_elem == t)
 			damage -= damage * ( tsd->charm[t] * 3 ) / 100;// -3% custom value
 		}
-	return damage*ratio/100;
+	if(ratio < 100)
+		return damage - (damage * (100 - ratio) / 100);
+	else
+		return damage + (damage * (ratio - 100) / 100);
 }
 int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, struct weapon_atk *watk, int nk, bool n_ele, short s_ele, short s_ele_, int size, int type, int flag, int flag2){ // [malufett]
 #if VERSION == 1

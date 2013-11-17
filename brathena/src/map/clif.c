@@ -678,7 +678,7 @@ void clif_authrefuse(int fd, uint8 error_code)
 /// Notifies the client of a ban or forced disconnect (SC_NOTIFY_BAN).
 /// 0081 <error code>.B
 /// error code:
-///     0 = BAN_UNFAIR
+///     0 = BAN_UNFAIR -> "disconnected from server" -> MsgStringTable[3]
 ///     1 = server closed -> MsgStringTable[4]
 ///     2 = ID already logged in -> MsgStringTable[5]
 ///     3 = timeout/too much lag -> MsgStringTable[241]
@@ -5408,7 +5408,29 @@ void clif_displaymessage(const int fd, const char *mes)
 		aFree(message);
 	}
 }
+/* oh noo! another version of 0x8e! */
+void clif_displaymessage_sprintf(const int fd, const char* mes, ...) {
+	va_list ap = NULL;
 
+	int len = 1;
+	char *ptr;
+
+	WFIFOHEAD(fd, 5 + 255);/* ensure the maximum */
+
+	/* process */
+	len += vsnprintf((char *)WFIFOP(fd,4), 255, mes, ap);
+	va_end(ap);
+
+	/* adjusting */
+	ptr = (char *)WFIFOP(fd,4);
+	ptr[len - 1] = '\0';
+
+	/* */
+	WFIFOW(fd,0) = 0x8e;
+	WFIFOW(fd,2) = 5 + len; // 4 + len + NULL teminate
+
+	WFIFOSET(fd, 5 + len);
+}
 /// Send broadcast message in yellow or blue without font formatting (ZC_BROADCAST).
 /// 009a <packet len>.W <message>.?B
 void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, enum send_target target)
@@ -18396,6 +18418,7 @@ void clif_defaults(void) {
 	clif->pRanklist = clif_parse_ranklist;
 	clif->update_rankingpoint = clif_update_rankingpoint;
 	clif->ShowScript = clif_ShowScript;
+	clif->messages = clif_displaymessage_sprintf;
 	/* Sistema de Banco */
 	clif->bank_deposit = clif_bank_deposit;
 	clif->bank_withdraw = clif_bank_withdraw;

@@ -128,6 +128,8 @@ extern void ShowError(const char *, ...);
 extern void ShowFatalError(const char *, ...);
 extern void ShowConfigWarning(config_setting_t *config, const char *string, ...);
 
+extern int _vShowMessage(enum msg_type flag, const char *string, va_list ap);
+
 extern void read_brathena_config(void);
 
 #endif /* _SHOWMSG_H_ */

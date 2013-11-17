@@ -999,7 +999,7 @@ int pc_isequip(struct map_session_data *sd,int n)
  * No problem with the session id
  * set the status that has been sent from char server
  *------------------------------------------*/
-bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers)
+bool pc_authok(struct map_session_data *sd, int login_id2, unsigned int expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers)
 {
 	int i;
 	unsigned long tick = gettick();
@@ -1050,6 +1050,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->pvp_timer = INVALID_TIMER;
 	sd->fontcolor_tid = INVALID_TIMER;
 	sd->vip_timer = INVALID_TIMER;
+	sd->expiration_tid = INVALID_TIMER;
 	/**
 	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 	 **/
@@ -1178,11 +1179,8 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 				clif_displaymessage(sd->fd, motd_text[i]);
 		}
 
-		// message of the limited time of the account
-		if(expiration_time != 0) {  // don't display if it's unlimited or unknow value
-			char tmpstr[1024];
-			strftime(tmpstr, sizeof(tmpstr) - 1, msg_txt(501), localtime(&expiration_time)); // "Your account time limit is: %d-%m-%Y %H:%M:%S."
-			clif_wis_message(sd->fd, wisp_server_name, tmpstr, strlen(tmpstr)+1);
+		if(expiration_time != 0) {			
+			sd->expiration_time = expiration_time;
 		}
 
 		/**
@@ -10296,8 +10294,10 @@ int pc_readdb(void)
 				while(*p==32 && *p>0)
 					p++;
 				attr_fix_table[lv-1][i][j]=atoi(p);
+#if VERSION != 1
 				if(battle_config.attr_recover == 0 && attr_fix_table[lv-1][i][j] < 0)
 					attr_fix_table[lv-1][i][j] = 0;
+#endif
 				p=strchr(p,',');
 				if(p) *p++=0;
 			}
@@ -10477,6 +10477,64 @@ void pc_bank_withdraw(struct map_session_data *sd, int money) {
 /* status change data arrived from char-server */
 void pc_scdata_received(struct map_session_data *sd) {
 	pc_inventory_rentals(sd);
+	if(sd->expiration_time != 0) { // don't display if it's unlimited or unknow value
+		time_t exp_time = sd->expiration_time;
+		char tmpstr[1024];
+		strftime(tmpstr, sizeof(tmpstr) - 1, msg_txt(501), localtime(&exp_time)); // "Your account time limit is: %d-%m-%Y %H:%M:%S."
+		clif_wis_message(sd->fd, wisp_server_name, tmpstr, strlen(tmpstr)+1);
+
+		pc_expire_check(sd);
+	}
+}
+int pc_expiration_timer(int tid, unsigned int tick, int id, intptr_t data) {
+	struct map_session_data *sd = map_id2sd(id);
+
+	if(!sd) return 0;
+
+	sd->expiration_tid = INVALID_TIMER;
+
+	if(sd->fd)
+		clif_authfail_fd(sd->fd,10);
+
+	map_quit(sd);
+
+	return 0;
+}
+/* this timer exists only when a character with a expire timer > 24h is online */
+/* it loops thru online players once an hour to check whether a new < 24h is available */
+int pc_global_expiration_timer(int tid, unsigned int tick, int id, intptr_t data) {
+	struct s_mapiterator* iter;
+	struct map_session_data* sd;
+
+	iter = mapit_getallusers();
+
+	for(sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter)) {
+		if(sd->expiration_time)
+			pc_expire_check(sd);
+	}
+
+	mapit_free(iter);
+
+	return 0;
+}
+void pc_expire_check(struct map_session_data *sd) {	
+	/* ongoing timer */
+	if(sd->expiration_tid != INVALID_TIMER)
+		return;
+
+	/* not within the next 24h, enable the global check */
+	if(sd->expiration_time > (time(NULL) + ((60 * 60) * 24))) {
+
+		/* global check not running, enable */
+		if(pc_expiration_tid == INVALID_TIMER ) {
+			/* starts in 1h, repeats every hour */
+			pc_expiration_tid = add_timer_interval(gettick() + ((1000*60)*60), pc_global_expiration_timer, 0, 0, ((1000*60)*60));
+		}
+
+		return;
+	}
+
+	sd->expiration_tid = add_timer(gettick() + (int)(sd->expiration_time - time(NULL))*1000, pc_expiration_timer, sd->bl.id, 0);
 }
 
 unsigned int equip_pos[EQI_MAX]={EQP_ACC_L,EQP_ACC_R,EQP_SHOES,EQP_GARMENT,EQP_HEAD_LOW,EQP_HEAD_MID,EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_GARMENT,EQP_AMMO, EQP_SHADOW_ARMOR, EQP_SHADOW_WEAPON, EQP_SHADOW_SHIELD, EQP_SHADOW_SHOES, EQP_SHADOW_ACC_R, EQP_SHADOW_ACC_L };
@@ -10511,6 +10569,8 @@ int do_init_pc(void)
 	add_timer_func_list(pc_follow_timer, "pc_follow_timer");
 	add_timer_func_list(pc_endautobonus, "pc_endautobonus");
 	add_timer_func_list(pc_charm_timer, "pc_charm_timer");
+	add_timer_func_list(pc_global_expiration_timer,"pc_global_expiration_timer");
+	add_timer_func_list(pc_expiration_timer,"pc_expiration_timer");
 
 	add_timer(gettick() + autosave_interval, pc_autosave, 0, 0);
 
