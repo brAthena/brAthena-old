@@ -6469,8 +6469,7 @@ static const struct _battle_data {
 
 	{ "mon_trans_disable_in_gvg",           &battle_config.mon_trans_disable_in_gvg,        0,      0,      1,              },
 
-	{ "emblem_woe_change",                  &battle_config.emblem_woe_change,                0,     0,      1,              },
-	{ "emblem_transparency_limit",          &battle_config.emblem_transparency_limit,       80,     0,    100,              },
+	{ "emblem_transparency_limit",          &battle_config.emblem_transparency_limit,       100,     0,    100,              },
 
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },

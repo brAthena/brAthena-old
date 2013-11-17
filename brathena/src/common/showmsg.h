@@ -19,6 +19,7 @@
 
 #include "libconfig.h"
 #include "lang.h"
+#include <stdarg.h>
 
 // for help with the console colors look here:
 // http://www.edoceo.com/liberum/?doc=printf-with-color
