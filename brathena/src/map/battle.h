@@ -18,6 +18,7 @@
 #define _BATTLE_H_
 
 #include "../common/cbasetypes.h"
+#include "map.h" //ELE_MAX
 
 /**
  * Declarations
@@ -522,6 +523,21 @@ enum e_battle_config_idletime {
 	BCIDLE_ATCOMMAND     = 0x200,
 };
 
+// Dammage delayed info
+struct delay_damage {
+	int src_id;
+	int target_id;
+	int64 damage;
+	int delay;
+	unsigned short distance;
+	uint16 skill_lv;
+	uint16 skill_id;
+	enum damage_lv dmg_lv;
+	unsigned short attack_type;
+	bool additional_effects;
+	enum bl_type src_type;
+};
+
 /**
  * Vars
  **/
@@ -550,7 +566,7 @@ int battle_calc_drain(int64 damage, int rate, int per);
 int battle_range_type(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv);
 int battle_adjust_skill_damage(int m, unsigned short skill_id);
 int battle_blewcount_bonus(struct map_session_data *sd, uint16 skill_id);
-int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data);
+int battle_delay_damage_sub(int tid, int64 tick, int id, intptr_t data);
 int battle_getenemyarea_sub(struct block_list *bl, va_list ap);
 int battle_getenemy_sub(struct block_list *bl, va_list ap);
 int battle_gettargeted_sub(struct block_list *bl, va_list ap);
@@ -561,10 +577,10 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
 int64 battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int64 damage, int div_, uint16 skill_id, uint16 skill_lv, int flag);
 
-int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects);
+int battle_delay_damage(int64 tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects);
 
 // Summary normal attack treatment (basic attack)
-enum damage_lv battle_weapon_attack(struct block_list *bl,struct block_list *target,unsigned int tick,int flag);
+enum damage_lv battle_weapon_attack(struct block_list *bl,struct block_list *target,int64 tick,int flag);
 
 // Accessors
 struct block_list *battle_get_master(struct block_list *src);

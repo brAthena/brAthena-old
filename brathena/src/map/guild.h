@@ -124,6 +124,9 @@ void guild_flag_add(struct npc_data *nd);
 void guild_flag_remove(struct npc_data *nd);
 void guild_flags_clear(void);
 
+int guild_payexp_timer(int tid, int64 tick, int id, intptr_t data);
+int guild_send_xy_timer(int tid, int64 tick, int id, intptr_t data);
+
 void guild_guildaura_refresh(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 
 void do_final_guild(void);

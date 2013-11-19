@@ -46,7 +46,7 @@
 #include <sys/types.h>
 #include <time.h>
 
-static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_t data);
+static int check_connect_char_server(int tid, int64 tick, int id, intptr_t data);
 
 static struct eri *auth_db_ers; //For reutilizing player login structures.
 static DBMap *auth_db; // int id -> struct auth_node*
@@ -89,7 +89,7 @@ static const int packet_len_table[CHRIF_PACKET_LEN_TABLE_SIZE] = { // U - used, 
 //2b11: Outgoing, chrif_divorce -> 'tell the charserver to do divorce'
 //2b12: Incoming, chrif_divorceack -> 'divorce chars
 //2b13: FREE
-//2b14: Incoming, chrif_accountban -> 'not sure: kick the player with message XY'
+//2b14: Incoming, chrif_idbanned -> 'not sure: kick the player with message XY'
 //2b15: FREE
 //2b16: Outgoing, chrif_ragsrvinfo -> 'sends base / job / drop rates ....'
 //2b17: Outgoing, chrif_char_offline -> 'tell the charserver that the char is now offline'
@@ -750,7 +750,7 @@ int auth_db_cleanup_sub(DBKey key, DBData *data, va_list ap)
 	return 0;
 }
 
-int auth_db_cleanup(int tid, unsigned int tick, int id, intptr_t data)
+int auth_db_cleanup(int tid, int64 tick, int id, intptr_t data)
 {
 	chrif_check(0);
 	auth_db->foreach(auth_db, auth_db_cleanup_sub);
@@ -1045,22 +1045,21 @@ int chrif_deadopt(int father_id, int mother_id, int child_id)
 }
 
 /*==========================================
- * Disconnection of a player (account has been banned of has a status, from login-server) by [Yor]
+ * Disconnection of a player (account or char has been banned of has a status, from login or char server) by [Yor]
  *------------------------------------------*/
-int chrif_accountban(int fd)
-{
-	int acc;
+int chrif_idbanned(int fd) {
+	int id;
 	struct map_session_data *sd;
 
-	acc = RFIFOL(fd,2);
+	id = RFIFOL(fd,2);
 
 	if(battle_config.etc_log)
-		ShowNotice(read_message("Source.map.map_chrif_s23"), acc);
+		ShowNotice(read_message("Source.map.map_chrif_s23"), id);
 
-	sd = map_id2sd(acc);
+	sd = ( RFIFOB(fd,6) == 2 ) ? map_charid2sd(id) : map_id2sd(id);
 
-	if(acc < 0 || sd == NULL) {
-		ShowError(read_message("Source.map.map_chrif_s24"));
+	if (id < 0 || sd == NULL) {
+		/* player not online or unknown id, either way no error is necessary (since if you try to ban a offline char it still works) */
 		return 0;
 	}
 
@@ -1237,7 +1236,7 @@ int chrif_save_scdata(struct map_session_data *sd)   //parses the sc_data of the
 
 #ifdef ENABLE_SC_SAVING
 	int i, count=0;
-	unsigned int tick;
+	int64 tick;
 	struct status_change_data data;
 	struct status_change *sc = &sd->sc;
 	const struct TimerData *timer;
@@ -1257,7 +1256,7 @@ int chrif_save_scdata(struct map_session_data *sd)   //parses the sc_data of the
 			timer = get_timer(sc->data[i]->timer);
 			if(timer == NULL || timer->func != status_change_timer || DIFF_TICK(timer->tick,tick) < 0)
 				continue;
-			data.tick = DIFF_TICK(timer->tick,tick); //Duration that is left before ending.
+			data.tick = DIFF_TICK32(timer->tick,tick); //Duration that is left before ending.
 		} else
 			data.tick = -1; //Infinite duration
 		data.type = i;
@@ -1545,7 +1544,7 @@ int chrif_parse(int fd)
 			case 0x2b0d: chrif_changedsex(fd); break;
 			case 0x2b0f: chrif_char_ask_name_answer(RFIFOL(fd,2), (char *)RFIFOP(fd,6), RFIFOW(fd,30), RFIFOW(fd,32)); break;
 			case 0x2b12: chrif_divorceack(RFIFOL(fd,2), RFIFOL(fd,6)); break;
-			case 0x2b14: chrif_accountban(fd); break;
+			case 0x2b14: chrif_idbanned(fd); break;
 			case 0x2b1b: chrif_recvfamelist(fd); break;
 			case 0x2b1d: chrif_load_scdata(fd); break;
 			case 0x2b1e: chrif_update_ip(fd); break;
@@ -1569,7 +1568,7 @@ int chrif_parse(int fd)
 }
 
 // unused
-int send_usercount_tochar(int tid, unsigned int tick, int id, intptr_t data)
+int send_usercount_tochar(int tid, int64 tick, int id, intptr_t data)
 {
 	chrif_check(-1);
 
@@ -1618,7 +1617,7 @@ int send_users_tochar(void)
  * timerFunction
   * Chk the connection to char server, (if it down)
  *------------------------------------------*/
-static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_t data)
+static int check_connect_char_server(int tid, int64 tick, int id, intptr_t data)
 {
 	static int displayed = 0;
 	if(char_fd <= 0 || session[char_fd] == NULL) {

@@ -19,7 +19,8 @@
 
 #include "../common/cbasetypes.h"
 
-#define DIFF_TICK(a,b) ((int)((a)-(b)))
+#define DIFF_TICK(a,b) ((a)-(b))
+#define DIFF_TICK32(a,b) ((int32)((a)-(b)))
 
 #define INVALID_TIMER -1
 #define CLIF_WALK_TIMER -2
@@ -33,12 +34,12 @@ enum {
 
 // Struct declaration
 
-typedef int (*TimerFunc)(int tid, unsigned int tick, int id, intptr_t data);
+typedef int (*TimerFunc)(int tid, int64 tick, int id, intptr_t data);
 
 struct TimerData {
-	unsigned int tick;
+	int64 tick;
 	TimerFunc func;
-	int type;
+	unsigned char type;
 	int interval;
 	int heap_pos;
 
@@ -49,22 +50,22 @@ struct TimerData {
 
 // Function prototype declaration
 
-unsigned int gettick(void);
-unsigned int gettick_nocache(void);
+int64 gettick(void);
+int64 gettick_nocache(void);
 
-int add_timer(unsigned int tick, TimerFunc func, int id, intptr_t data);
-int add_timer_interval(unsigned int tick, TimerFunc func, int id, intptr_t data, int interval);
+int add_timer(int64 tick, TimerFunc func, int id, intptr_t data);
+int add_timer_interval(int64 tick, TimerFunc func, int id, intptr_t data, int interval);
 const struct TimerData *get_timer(int tid);
 int delete_timer(int tid, TimerFunc func);
 
-int addtick_timer(int tid, unsigned int tick);
-int settick_timer(int tid, unsigned int tick);
+int64 addtick_timer(int tid, int64 tick);
+int64 settick_timer(int tid, int64 tick);
 
 int add_timer_func_list(TimerFunc func, char *name);
 
 unsigned long get_uptime(void);
 
-int do_timer(unsigned int tick);
+int do_timer(int64 tick);
 void timer_init(void);
 void timer_final(void);
 

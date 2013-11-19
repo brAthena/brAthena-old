@@ -215,22 +215,7 @@ struct block_list *battle_getenemyarea(struct block_list *src, int x, int y, int
 	return bl_list[rnd()%c];
 }
 
-// Dammage delayed info
-struct delay_damage {
-	int src_id;
-	int target_id;
-	int64 damage;
-	int delay;
-	unsigned short distance;
-	uint16 skill_lv;
-	uint16 skill_id;
-	enum damage_lv dmg_lv;
-	unsigned short attack_type;
-	bool additional_effects;
-	enum bl_type src_type;
-};
-
-int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
+int battle_delay_damage_sub(int tid, int64 tick, int id, intptr_t data)
 {
 	struct delay_damage *dat = (struct delay_damage *)data;
 
@@ -249,9 +234,10 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 
 		src = map_id2bl(dat->src_id);
 
-		if(src && target->m == src->m &&
-		   (target->type != BL_PC || ((TBL_PC *)target)->invincible_timer == INVALID_TIMER) &&
-		   check_distance_bl(src, target, dat->distance)) { //Check to see if you haven't teleported. [Skotlex]
+		//Check to see if you haven't teleported. [Skotlex]
+		if(src && target->m == src->m 
+		&& (target->type != BL_PC || ((TBL_PC *)target)->invincible_timer == INVALID_TIMER)
+		&& check_distance_bl(src, target, dat->distance)) {
 			map_freeblock_lock();
 			status_fix_damage(src, target, dat->damage, dat->delay);
 			if(dat->attack_type && !status_isdead(target) && dat->additional_effects)
@@ -277,7 +263,7 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 	return 0;
 }
 
-int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects)
+int battle_delay_damage(int64 tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int64 damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects)
 {
 	struct delay_damage *dat;
 	struct status_change *sc;
@@ -381,7 +367,7 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 				y = sg->val3 & 0xffff;
 				skill_unitsetting(src,su->group->skill_id,su->group->skill_lv,x,y,1);
 				sg->val3 = -1;
-				sg->limit = DIFF_TICK(gettick(),sg->tick)+300;
+				sg->limit = DIFF_TICK32(gettick(),sg->tick)+300;
 			}
 		}
 	}
@@ -803,18 +789,18 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 		if(sc->data[SC_IMPOSITIO])
 			damage += sc->data[SC_IMPOSITIO]->val2;
 		if(sc->data[SC_DRUMBATTLE]){
-			if(tstatus->size == SZ_SMALL)
+			if(tstatus->size == SZ_MEDIUM)
 				damage += sc->data[SC_DRUMBATTLE]->val2;
-			else if(tstatus->size == SZ_MEDIUM)
+			else if(tstatus->size == SZ_SMALL)
 				damage += 10 * sc->data[SC_DRUMBATTLE]->val1;
 			//else no bonus for large target
 		}
 		if(sc->data[SC_GS_MADNESSCANCEL])
 			damage += 100;
 		if(sc->data[SC_GS_GATLINGFEVER]){
-			if(tstatus->size == SZ_SMALL)
+			if(tstatus->size == SZ_MEDIUM)
 				damage += 10 * sc->data[SC_GS_GATLINGFEVER]->val1;
-			else if(tstatus->size == SZ_MEDIUM)
+			else if(tstatus->size == SZ_SMALL)
 				damage += -5 * sc->data[SC_GS_GATLINGFEVER]->val1;
 			else
 				damage += sc->data[SC_GS_GATLINGFEVER]->val1;
@@ -2244,8 +2230,8 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 				case NC_ARMSCANNON:
 					switch( tstatus->size ) {
-						case SZ_SMALL: skillratio += 100 + 500 * skill_lv; break;// Small
-						case SZ_MEDIUM: skillratio += 100 + 400 * skill_lv; break;// Medium
+						case SZ_MEDIUM: skillratio += 100 + 500 * skill_lv; break;// Medium
+						case SZ_SMALL: skillratio += 100 + 400 * skill_lv; break;// Small
 						case SZ_BIG: skillratio += 100 + 300 * skill_lv; break;// Large
 					}
 					RE_LVL_DMOD(100);
@@ -4444,10 +4430,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				i*=i;
 				ATK_ADD(i); //Add str bonus.
 				switch(tstatus->size) {  //Size-fix. Is this modified by weapon perfection?
-					case SZ_SMALL: //Small: 125%
+					case SZ_MEDIUM: //Medium: 125%
 						ATK_RATE(125);
 						break;
-						//case SZ_MEDIUM: //Medium: 100%
+					//case SZ_SMALL: //Medium: 100%
 					case SZ_BIG: //Large: 75%
 						ATK_RATE(75);
 						break;
@@ -4569,7 +4555,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 							ATK_ADD(sd->inventory_data[index]->weight * 7 / 100);
 
 						switch (tstatus->size) {
-							case SZ_SMALL: //Small: 115%
+							case SZ_MEDIUM: //Medium: 115%
 								ATK_RATE(115);
 								break;
 							case SZ_BIG: //Large: 85%
@@ -4699,11 +4685,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 
 		if( (i = battle_adjust_skill_damage(src->m,skill_id)) )
 			ATK_RATE(i);
-#if VERSION == 1
-		if(skill_id && (wd.damage+wd.damage2)) {
-			RE_SKILL_REDUCTION();
-		}
-#endif
+
 		if(sd) {
 			if(skill_id && (i = pc_skillatk_bonus(sd, skill_id)))
 				ATK_ADDRATE(i);
@@ -5277,13 +5259,13 @@ void battle_drain(TBL_PC *sd, struct block_list *tbl, int64 rdamage, int64 ldama
 // Deals the same damage to targets in area. [pakpil]
 int battle_damage_area(struct block_list *bl, va_list ap)
 {
-	unsigned int tick;
+	int64 tick;
 	int amotion, dmotion, damage;
 	struct block_list *src;
 
 	nullpo_ret(bl);
 
-	tick=va_arg(ap, unsigned int);
+	tick = va_arg(ap, int64);
 	src=va_arg(ap,struct block_list *);
 	amotion=va_arg(ap,int);
 	dmotion=va_arg(ap,int);
@@ -5309,7 +5291,7 @@ int battle_damage_area(struct block_list *bl, va_list ap)
 /*==========================================
  * Do a basic physical attack (call trough unit_attack_timer)
  *------------------------------------------*/
-enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *target, unsigned int tick, int flag)
+enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *target, int64 tick, int flag)
 {
 	struct map_session_data *sd = NULL, *tsd = NULL;
 	struct status_data *sstatus, *tstatus;
@@ -6631,7 +6613,7 @@ void brAthena_report(char *date, char *time_c)
 
 #undef BFLAG_LENGTH
 }
-static int brAthena_report_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int brAthena_report_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	if(chrif_isconnected()) {  /* char server relays it, so it must be online. */
 		brAthena_report(__DATE__,__TIME__);

@@ -355,7 +355,7 @@ struct flooritem_data {
 	unsigned char subx,suby;
 	int cleartimer;
 	int first_get_charid,second_get_charid,third_get_charid;
-	unsigned int first_get_tick,second_get_tick,third_get_tick;
+	int64 first_get_tick,second_get_tick,third_get_tick;
 	struct item item_data;
 };
 
@@ -794,7 +794,7 @@ int map_freeblock_unlock(void);
 // blocklist manipulation
 int map_addblock(struct block_list* bl);
 int map_delblock(struct block_list* bl);
-int map_moveblock(struct block_list *, int, int, unsigned int);
+int map_moveblock(struct block_list *bl, int x1, int y1, int64 tick);
 int map_foreachinrange(int (*func)(struct block_list*,va_list), struct block_list* center, int16 range, int type, ...);
 int map_foreachinshootrange(int (*func)(struct block_list*,va_list), struct block_list* center, int16 range, int type, ...);
 int map_foreachinarea(int (*func)(struct block_list*,va_list), int16 m, int16 x0, int16 y0, int16 x1, int16 y1, int type, ...);
@@ -817,8 +817,8 @@ int map_quit(struct map_session_data *);
 bool map_addnpc(int16 m,struct npc_data *);
 
 // map item
-int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data);
-int map_removemobs_timer(int tid, unsigned int tick, int id, intptr_t data);
+int map_clearflooritem_timer(int tid, int64 tick, int id, intptr_t data);
+int map_removemobs_timer(int tid, int64 tick, int id, intptr_t data);
 void map_clearflooritem(struct block_list* bl);
 int map_addflooritem(struct item *item_data,int amount,int16 m,int16 x,int16 y,int first_charid,int second_charid,int third_charid,int flags);
 

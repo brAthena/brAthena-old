@@ -164,7 +164,7 @@ int elemental_get_lifetime(struct elemental_data *ed)
 		return 0;
 
 	td = get_timer(ed->summon_timer);
-	return (td != NULL) ? DIFF_TICK(td->tick, gettick()) : 0;
+	return (td != NULL) ? DIFF_TICK32(td->tick, gettick()) : 0;
 }
 
 int elemental_save(struct elemental_data *ed)
@@ -186,7 +186,7 @@ int elemental_save(struct elemental_data *ed)
 	return 1;
 }
 
-static int elemental_summon_end(int tid, unsigned int tick, int id, intptr_t data)
+static int elemental_summon_end(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 	struct elemental_data *ed;
@@ -413,7 +413,7 @@ int elemental_clean_effect(struct elemental_data *ed)
 	return 1;
 }
 
-int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned int tick)
+int elemental_action(struct elemental_data *ed, struct block_list *bl, int64 tick)
 {
 	struct skill_condition req;
 	uint16 skill_id, skill_lv;
@@ -789,7 +789,7 @@ static int elemental_ai_sub_foreachclient(struct map_session_data *sd, va_list a
 	return 0;
 }
 
-static int elemental_ai_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int elemental_ai_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	map_foreachpc(elemental_ai_sub_foreachclient,tick);
 	return 0;

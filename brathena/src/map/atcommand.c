@@ -2064,11 +2064,11 @@ ACMD_FUNC(monster)
 		number = battle_config.atc_spawn_quantity_limit;
 
 	if(strcmp(command+1, "monstersmall") == 0)
-		size = SZ_MEDIUM; // This is just gorgeous [mkbu95]
+		size = SZ_SMALL; // This is just gorgeous [mkbu95]
 	else if(strcmp(command+1, "monsterbig") == 0)
 		size = SZ_BIG;
 	else
-		size = SZ_SMALL;
+		size = SZ_MEDIUM;
 
 	if(battle_config.etc_log)
 		ShowInfo(read_message("Source.map.map_atcommand_s1"), command, monster, name, mob_id, number, sd->bl.x, sd->bl.y);
@@ -4495,7 +4495,9 @@ ACMD_FUNC(servertime)
 	} else if(battle_config.night_duration == 0)
 		if(night_flag == 1) {  // we start with night
 			timer_data = get_timer(day_timer_tid);
-			sprintf(temp, msg_txt(233), txt_time(DIFF_TICK(timer_data->tick,gettick())/1000)); // Game time: The game is actualy in night for %s.
+			sprintf(temp, msg_txt(233), // Game time: The game is actualy in night for %s.
+				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
+
 			clif_displaymessage(fd, temp);
 			clif_displaymessage(fd, msg_txt(234)); // Game time: After, the game will be in permanent daylight.
 		} else
@@ -4503,7 +4505,8 @@ ACMD_FUNC(servertime)
 	else if(battle_config.day_duration == 0)
 		if(night_flag == 0) {  // we start with day
 			timer_data = get_timer(night_timer_tid);
-			sprintf(temp, msg_txt(235), txt_time(DIFF_TICK(timer_data->tick,gettick())/1000)); // Game time: The game is actualy in daylight for %s.
+			sprintf(temp, msg_txt(235), // Game time: The game is actualy in daylight for %s.
+				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
 			clif_displaymessage(fd, temp);
 			clif_displaymessage(fd, msg_txt(236)); // Game time: After, the game will be in permanent night.
 		} else
@@ -4512,28 +4515,32 @@ ACMD_FUNC(servertime)
 		if(night_flag == 0) {
 			timer_data = get_timer(night_timer_tid);
 			timer_data2 = get_timer(day_timer_tid);
-			sprintf(temp, msg_txt(235), txt_time(DIFF_TICK(timer_data->tick,gettick())/1000)); // Game time: The game is actualy in daylight for %s.
+			sprintf(temp, msg_txt(235), // Game time: The game is actualy in daylight for %s.
+				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
 			clif_displaymessage(fd, temp);
 			if(DIFF_TICK(timer_data->tick, timer_data2->tick) > 0)
-				sprintf(temp, msg_txt(237), txt_time(DIFF_TICK(timer_data->interval,DIFF_TICK(timer_data->tick,timer_data2->tick)) / 1000)); // Game time: After, the game will be in night for %s.
+				sprintf(temp, msg_txt(237), // Game time: After, the game will be in night for %s.
+					txt_time((unsigned int)(DIFF_TICK(timer_data->interval,DIFF_TICK(timer_data->tick,timer_data2->tick)) / 1000)));
 			else
-				sprintf(temp, msg_txt(237), txt_time(DIFF_TICK(timer_data2->tick,timer_data->tick)/1000)); // Game time: After, the game will be in night for %s.
-			clif_displaymessage(fd, temp);
-			sprintf(temp, msg_txt(238), txt_time(timer_data->interval / 1000)); // Game time: A day cycle has a normal duration of %s.
+				sprintf(temp, msg_txt(237), // Game time: After, the game will be in night for %s.
+					txt_time((unsigned int)(DIFF_TICK(timer_data2->tick,timer_data->tick)/1000)));
 			clif_displaymessage(fd, temp);
 		} else {
 			timer_data = get_timer(day_timer_tid);
 			timer_data2 = get_timer(night_timer_tid);
-			sprintf(temp, msg_txt(233), txt_time(DIFF_TICK(timer_data->tick,gettick()) / 1000)); // Game time: The game is actualy in night for %s.
+			sprintf(temp, msg_txt(233), // Game time: The game is actualy in night for %s.
+				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick()) / 1000)));
 			clif_displaymessage(fd, temp);
 			if(DIFF_TICK(timer_data->tick,timer_data2->tick) > 0)
-				sprintf(temp, msg_txt(239), txt_time((timer_data->interval - DIFF_TICK(timer_data->tick, timer_data2->tick)) / 1000)); // Game time: After, the game will be in daylight for %s.
+				sprintf(temp, msg_txt(239), // Game time: After, the game will be in daylight for %s.
+					txt_time((unsigned int)((timer_data->interval - DIFF_TICK(timer_data->tick, timer_data2->tick)) / 1000)));
 			else
-				sprintf(temp, msg_txt(239), txt_time(DIFF_TICK(timer_data2->tick, timer_data->tick) / 1000)); // Game time: After, the game will be in daylight for %s.
-			clif_displaymessage(fd, temp);
-			sprintf(temp, msg_txt(238), txt_time(timer_data->interval / 1000)); // Game time: A day cycle has a normal duration of %s.
+				sprintf(temp, msg_txt(239), // Game time: After, the game will be in daylight for %s.
+					txt_time((unsigned int)(DIFF_TICK(timer_data2->tick, timer_data->tick) / 1000)));
 			clif_displaymessage(fd, temp);
 		}
+		sprintf(temp, msg_txt(238), txt_time(timer_data->interval / 1000)); // Game time: A day cycle has a normal duration of %s.
+			clif_displaymessage(fd, temp);
 	}
 
 	return 0;
@@ -5515,7 +5522,7 @@ ACMD_FUNC(useskill)
 ACMD_FUNC(displayskill)
 {
 	struct status_data *status;
-	unsigned int tick;
+	int64 tick;
 	uint16 skill_id;
 	uint16 skill_lv = 1;
 	nullpo_retr(-1, sd);
@@ -6491,7 +6498,7 @@ ACMD_FUNC(summon)
 	int mob_id = 0;
 	int duration = 0;
 	struct mob_data *md;
-	unsigned int tick=gettick();
+	int64 tick=gettick();
 
 	nullpo_retr(-1, sd);
 
@@ -6512,7 +6519,7 @@ ACMD_FUNC(summon)
 		return -1;
 	}
 
-	md = mob_once_spawn_sub(&sd->bl, sd->bl.m, -1, -1, "--ja--", mob_id, "", SZ_SMALL, AI_NONE);
+	md = mob_once_spawn_sub(&sd->bl, sd->bl.m, -1, -1, "--ja--", mob_id, "", SZ_MEDIUM, AI_NONE);
 
 	if(!md)
 		return -1;
@@ -7658,15 +7665,15 @@ ACMD_FUNC(size)
 	int size = 0;
 	nullpo_retr(-1, sd);
 
-	size = cap_value(atoi(message),SZ_SMALL,SZ_BIG);
+	size = cap_value(atoi(message),SZ_MEDIUM,SZ_BIG);
 
 	if(sd->state.size) {
-		sd->state.size = SZ_SMALL;
+		sd->state.size = SZ_MEDIUM;
 		pc_setpos(sd, sd->mapindex, sd->bl.x, sd->bl.y, CLR_TELEPORT);
 	}
 
 	sd->state.size = size;
-	if(size == SZ_MEDIUM)
+	if(size == SZ_SMALL)
 		clif_specialeffect(&sd->bl,420,AREA);
 	else if(size == SZ_BIG)
 		clif_specialeffect(&sd->bl,422,AREA);
@@ -7688,12 +7695,12 @@ ACMD_FUNC(sizeall)
 	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter)) {
 		if(pl_sd->state.size != size) {
 			if(pl_sd->state.size) {
-				pl_sd->state.size = SZ_SMALL;
+				pl_sd->state.size = SZ_MEDIUM;
 				pc_setpos(pl_sd, pl_sd->mapindex, pl_sd->bl.x, pl_sd->bl.y, CLR_TELEPORT);
 			}
 
 			pl_sd->state.size = size;
-			if(size == SZ_MEDIUM)
+			if(size == SZ_SMALL)
 				clif_specialeffect(&pl_sd->bl,420,AREA);
 			else if(size == SZ_BIG)
 				clif_specialeffect(&pl_sd->bl,422,AREA);
@@ -7725,17 +7732,17 @@ ACMD_FUNC(sizeguild)
 		return -1;
 	}
 
-	size = cap_value(size,SZ_SMALL,SZ_BIG);
+	size = cap_value(size,SZ_MEDIUM,SZ_BIG);
 
 	for(i = 0; i < g->max_member; i++) {
 		if((pl_sd = g->member[i].sd) && pl_sd->state.size != size) {
 			if(pl_sd->state.size) {
-				pl_sd->state.size = SZ_SMALL;
+				pl_sd->state.size = SZ_MEDIUM;
 				pc_setpos(pl_sd, pl_sd->mapindex, pl_sd->bl.x, pl_sd->bl.y, CLR_TELEPORT);
 			}
 
 			pl_sd->state.size = size;
-			if(size == SZ_MEDIUM)
+			if(size == SZ_SMALL)
 				clif_specialeffect(&pl_sd->bl,420,AREA);
 			else if(size == SZ_BIG)
 				clif_specialeffect(&pl_sd->bl,422,AREA);

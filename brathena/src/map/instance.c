@@ -497,7 +497,7 @@ void instance_del_map(int16 m)
 /*--------------------------------------
  * Timer to destroy instance by process or idle
  *--------------------------------------*/
-int instance_destroy_timer(int tid, unsigned int tick, int id, intptr_t data){
+int instance_destroy_timer(int tid, int64 tick, int id, intptr_t data){
 	instance->destroy(id);
 	return 0;
 }
@@ -570,9 +570,9 @@ void instance_destroy(int instance_id) {
 		db_destroy(instances[instance_id].vars);
 
 	if(instances[instance_id].progress_timer != INVALID_TIMER)
-		delete_timer(instances[instance_id].progress_timer, instance_destroy_timer);
+		delete_timer(instances[instance_id].progress_timer, instance->destroy_timer);
 	if(instances[instance_id].idle_timer != INVALID_TIMER)
-		delete_timer(instances[instance_id].idle_timer, instance_destroy_timer);
+		delete_timer(instances[instance_id].idle_timer, instance->destroy_timer);
 
 	instances[instance_id].vars = NULL;
 
@@ -599,13 +599,13 @@ void instance_check_idle(int instance_id)
 		idle = false;
 
 	if(instances[instance_id].idle_timer != INVALID_TIMER && !idle) {
-		delete_timer(instances[instance_id].idle_timer, instance_destroy_timer);
+		delete_timer(instances[instance_id].idle_timer, instance->destroy_timer);
 		instances[instance_id].idle_timer = INVALID_TIMER;
 		instances[instance_id].idle_timeout = 0;
 		clif_instance(instance_id, 3, 0); // Notify instance users normal instance expiration
 	} else if(instances[instance_id].idle_timer == INVALID_TIMER && idle) {
 		instances[instance_id].idle_timeout = now + instances[instance_id].idle_timeoutval;
-		instances[instance_id].idle_timer = add_timer( gettick() + instances[instance_id].idle_timeoutval * 1000, instance_destroy_timer, instance_id, 0);
+		instances[instance_id].idle_timer = add_timer( gettick() + instances[instance_id].idle_timeoutval * 1000, instance->destroy_timer, instance_id, 0);
 		clif_instance(instance_id, 4, 0); // Notify instance users it will be destroyed of no user join it again in "X" time
 	}
 }
@@ -621,13 +621,13 @@ void instance_set_timeout(int instance_id, unsigned int progress_timeout, unsign
 		return;
 
 	if(instances[instance_id].progress_timer != INVALID_TIMER)
-		delete_timer(instances[instance_id].progress_timer, instance_destroy_timer);
+		delete_timer(instances[instance_id].progress_timer, instance->destroy_timer);
 	if(instances[instance_id].idle_timer != INVALID_TIMER)
-		delete_timer(instances[instance_id].idle_timer, instance_destroy_timer);
+		delete_timer(instances[instance_id].idle_timer, instance->destroy_timer);
 
 	if(progress_timeout) {
 		instances[instance_id].progress_timeout = now + progress_timeout;
-		instances[instance_id].progress_timer = add_timer(gettick() + progress_timeout * 1000, instance_destroy_timer, instance_id, 0);
+		instances[instance_id].progress_timer = add_timer(gettick() + progress_timeout * 1000, instance->destroy_timer, instance_id, 0);
 		instances[instance_id].original_progress_timeout = progress_timeout;
 	} else {
 		instances[instance_id].progress_timeout = 0;
@@ -711,7 +711,7 @@ void do_final_instance(void)
 }
 
 void do_init_instance(void) {
-	add_timer_func_list(instance_destroy_timer, "instance_destroy_timer");
+	add_timer_func_list(instance->destroy_timer, "instance_destroy_timer");
 }
 
 void instance_defaults(void) {
@@ -740,4 +740,5 @@ void instance_defaults(void) {
 	instance->check_kick = instance_check_kick;
 	instance->set_timeout = instance_set_timeout;
 	instance->valid = instance_is_valid;
+	instance->destroy_timer = instance_destroy_timer;
 }

@@ -98,7 +98,7 @@ const struct sg_data sg_info[MAX_PC_FEELHATE] = {
  **/
 DBMap *itemcd_db = NULL; // char_id -> struct skill_cd
 struct item_cd {
-	unsigned int tick[MAX_ITEMDELAYS];//tick
+	int64 tick[MAX_ITEMDELAYS];//tick
 	short nameid[MAX_ITEMDELAYS];//skill id
 };
 
@@ -122,7 +122,7 @@ inline int pc_get_group_level(struct map_session_data *sd)
 	return sd->group_level;
 }
 
-static int pc_invincible_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_invincible_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 
@@ -161,7 +161,7 @@ void pc_delinvincibletimer(struct map_session_data *sd)
 	}
 }
 
-static int pc_spiritball_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_spiritball_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 	int i;
@@ -424,7 +424,7 @@ int pc_setrestartvalue(struct map_session_data *sd,int type)
 /*==========================================
     Rental System
  *------------------------------------------*/
-static int pc_inventory_rental_end(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_inventory_rental_end(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd = map_id2sd(id);
 	if(sd == NULL)
@@ -940,12 +940,10 @@ int pc_isequip(struct map_session_data *sd,int n)
 		clif_msg(sd, 0x6ED);
 		return 0;
 	}
-#if VERSION == 1
 	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax) {
 		clif_msg(sd, 0x6ED);
 		return 0;
 	}
-#endif
 	if(item->sex != 2 && sd->status.sex != item->sex)
 		return 0;
 
@@ -999,10 +997,10 @@ int pc_isequip(struct map_session_data *sd,int n)
  * No problem with the session id
  * set the status that has been sent from char server
  *------------------------------------------*/
-bool pc_authok(struct map_session_data *sd, int login_id2, unsigned int expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers)
+bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers)
 {
 	int i;
-	unsigned long tick = gettick();
+	int64 tick = gettick();
 	uint32 ip = session[sd->fd]->client_addr;
 
 	sd->login_id2 = login_id2;
@@ -2043,7 +2041,7 @@ int pc_exeautobonus(struct map_session_data *sd,struct s_autobonus *autobonus)
 	return 0;
 }
 
-int pc_endautobonus(int tid, unsigned int tick, int id, intptr_t data)
+int pc_endautobonus(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd = map_id2sd(id);
 	struct s_autobonus *autobonus = (struct s_autobonus *)data;
@@ -4088,7 +4086,7 @@ int pc_dropitem(struct map_session_data *sd,int n,int amount)
 int pc_takeitem(struct map_session_data *sd,struct flooritem_data *fitem)
 {
 	int flag=0;
-	unsigned int tick = gettick();
+	int64 tick = gettick();
 	struct map_session_data *first_sd = NULL,*second_sd = NULL,*third_sd = NULL;
 	struct party_data *p=NULL;
 
@@ -4281,12 +4279,10 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		return 0;
 	}
 
-#if VERSION == 1
 	if(item->elvmax && sd->status.base_level > (unsigned int)item->elvmax) {
 		clif_msg(sd, 0x6EE);
 		return 0;
 	}
-#endif
 
 	//Not equipable by class. [Skotlex]
 	if(!(
@@ -4332,7 +4328,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
  *------------------------------------------*/
 int pc_useitem(struct map_session_data *sd,int n)
 {
-	unsigned int tick = gettick();
+	int64 tick = gettick();
 	int amount, nameid, i;
 	struct script_code *item_script;
 
@@ -4399,7 +4395,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 		if(i < MAX_ITEMDELAYS) {
 			if(sd->item_delay[i].nameid) {  // found
 				if(DIFF_TICK(sd->item_delay[i].tick, tick) > 0) {
-					int e_tick = DIFF_TICK(sd->item_delay[i].tick, tick)/1000;
+					int e_tick = (int)(DIFF_TICK(sd->item_delay[i].tick, tick)/1000);
 					clif_msgtable_num(sd->fd, 0x746, e_tick + 1); // [%d] seconds left until you can use
 					return 0; // Delay has not expired yet
 				}
@@ -5744,7 +5740,7 @@ const char *job_name(int class_)
 	}
 }
 
-int pc_follow_timer(int tid, unsigned int tick, int id, intptr_t data)
+int pc_follow_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 	struct block_list *tbl;
@@ -5863,19 +5859,17 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 	return 1;
 }
 
-void pc_baselevelchanged(struct map_session_data *sd)
-{
-#if VERSION == 1
+void pc_baselevelchanged(struct map_session_data *sd) {
 	int i;
 	for(i = 0; i < EQI_MAX; i++) {
 		if(sd->equip_index[i] >= 0) {
 			if(sd->inventory_data[ sd->equip_index[i] ]->elvmax && sd->status.base_level > (unsigned int)sd->inventory_data[ sd->equip_index[i] ]->elvmax)
 				pc_unequipitem(sd, sd->equip_index[i], 3);
+
 		}
 	}
-#endif
-
 }
+
 int pc_checkjoblevelup(struct map_session_data *sd)
 {
 	unsigned int next = pc_nextjobexp(sd);
@@ -6710,7 +6704,7 @@ void pc_respawn(struct map_session_data *sd, clr_type clrtype)
 		clif_resurrection(&sd->bl, 1); //If warping fails, send a normal stand up packet.
 }
 
-static int pc_respawn_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_respawn_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd = map_id2sd(id);
 	if(sd != NULL) {
@@ -6752,7 +6746,7 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 	sd->canlog_tick = gettick();
 }
 
-int pc_close_npc_timer(int tid, unsigned int tick, int id, intptr_t data) {
+int pc_close_npc_timer(int tid, int64 tick, int id, intptr_t data) {
 	TBL_PC *sd = map_id2sd(id);
 	if(sd) pc_close_npc(sd,data);
 	return 0;
@@ -6800,7 +6794,7 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
 int pc_dead(struct map_session_data *sd,struct block_list *src)
 {
 	int i=0,j=0,k=0,l=0;
-	unsigned int tick = gettick();
+	int64 tick = gettick();
 
 	for(k = 0; k < 5; k++)
 		if(sd->devotion[k]) {
@@ -8415,7 +8409,7 @@ int pc_setregistry_str(struct map_session_data *sd,const char *reg,const char *v
 /*==========================================
  * Exec eventtimer for player sd (retrieved from map_session (id))
  *------------------------------------------*/
-static int pc_eventtimer(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_eventtimer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd=map_id2sd(id);
 	char *p = (char *)data;
@@ -9188,7 +9182,7 @@ int pc_calc_pvprank(struct map_session_data *sd)
 /*==========================================
  * Calculate next sd ranking calculation from config
  *------------------------------------------*/
-int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data)
+int pc_calc_pvprank_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 
@@ -9210,7 +9204,7 @@ int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data)
 /*======================================================
  * Verificação para remoção do vip. [Shiraz / brAthena]
  *-----------------------------------------------------*/
-int check_time_vip(int tid, unsigned int tick, int id, intptr_t data)
+int check_time_vip(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd = (struct map_session_data *)map_id2sd(id);
 
@@ -9476,7 +9470,7 @@ int pc_setsavepoint(struct map_session_data *sd, short mapindex,int x,int y)
 /*==========================================
  * Save 1 player data  at autosave intervalle
  *------------------------------------------*/
-int pc_autosave(int tid, unsigned int tick, int id, intptr_t data)
+int pc_autosave(int tid, int64 tick, int id, intptr_t data)
 {
 	int interval;
 	struct s_mapiterator *iter;
@@ -9529,7 +9523,7 @@ static int pc_daynight_timer_sub(struct map_session_data *sd,va_list ap)
  * timer to do the day [Yor]
  * data: 0 = called by timer, 1 = gmcommand/script
  *------------------------------------------------*/
-int map_day_timer(int tid, unsigned int tick, int id, intptr_t data)
+int map_day_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	char tmp_soutput[1024];
 
@@ -9550,7 +9544,7 @@ int map_day_timer(int tid, unsigned int tick, int id, intptr_t data)
  * timer to do the night [Yor]
  * data: 0 = called by timer, 1 = gmcommand/script
  *------------------------------------------------*/
-int map_night_timer(int tid, unsigned int tick, int id, intptr_t data)
+int map_night_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	char tmp_soutput[1024];
 
@@ -9644,7 +9638,7 @@ bool pc_should_log_commands(struct map_session_data *sd)
 	return pc_group_should_log_commands(pc_get_group_id(sd));
 }
 
-static int pc_charm_timer(int tid, unsigned int tick, int id, intptr_t data)
+static int pc_charm_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 	int i, type;
@@ -10486,7 +10480,7 @@ void pc_scdata_received(struct map_session_data *sd) {
 		pc_expire_check(sd);
 	}
 }
-int pc_expiration_timer(int tid, unsigned int tick, int id, intptr_t data) {
+int pc_expiration_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct map_session_data *sd = map_id2sd(id);
 
 	if(!sd) return 0;
@@ -10502,7 +10496,7 @@ int pc_expiration_timer(int tid, unsigned int tick, int id, intptr_t data) {
 }
 /* this timer exists only when a character with a expire timer > 24h is online */
 /* it loops thru online players once an hour to check whether a new < 24h is available */
-int pc_global_expiration_timer(int tid, unsigned int tick, int id, intptr_t data) {
+int pc_global_expiration_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct s_mapiterator* iter;
 	struct map_session_data* sd;
 

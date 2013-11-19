@@ -59,7 +59,7 @@ struct mercenary_data {
 	int contract_timer;
 
 	unsigned devotion_flag : 1;
-	unsigned int masterteleport_timer;
+	int64 masterteleport_timer;
 };
 
 bool merc_class(int class_);
@@ -82,6 +82,8 @@ int mercenary_set_faith(struct mercenary_data *md, int value);
 int mercenary_get_calls(struct mercenary_data *md);
 int mercenary_set_calls(struct mercenary_data *md, int value);
 int mercenary_kills(struct mercenary_data *md);
+
+int merc_contract_end(int tid, int64 tick, int id, intptr_t data);
 
 int mercenary_checkskill(struct mercenary_data *md, uint16 skill_id);
 

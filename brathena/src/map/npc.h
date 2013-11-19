@@ -68,7 +68,7 @@ struct npc_data {
 			short xs,ys; // OnTouch area radius
 			int guild_id;
 			int timer,timerid,timeramount,rid;
-			unsigned int timertick;
+			int64 timertick;
 			struct npc_timerevent_list *timer_event;
 			int label_list_num;
 			struct npc_label_list *label_list;
@@ -196,7 +196,7 @@ int npc_event_doall_id(const char* name, int rid);
 int npc_timerevent_start(struct npc_data* nd, int rid);
 int npc_timerevent_stop(struct npc_data* nd);
 void npc_timerevent_quit(struct map_session_data* sd);
-int npc_gettimerevent_tick(struct npc_data* nd);
+int64 npc_gettimerevent_tick(struct npc_data* nd);
 int npc_settimerevent_tick(struct npc_data* nd, int newtimer);
 int npc_remove_map(struct npc_data* nd);
 void npc_unload_duplicates (struct npc_data* nd);
@@ -220,8 +220,10 @@ int npc_cashshop_buylist(struct map_session_data *sd, int points, int count, uns
  * For the Secure NPC Timeout option (check config/Secure.h) [RR]
  **/
 
-int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t data);
+int npc_rr_secure_timeout_timer(int tid, int64 tick, int id, intptr_t data);
 
+int npc_event_do_clock(int tid, int64 tick, int id, intptr_t data);
+int npc_timerevent(int tid, int64 tick, int id, intptr_t data);
 
 // @commands (script-based)
 int npc_do_atcmd_event(struct map_session_data* sd, const char* command, const char* message, const char* eventname);

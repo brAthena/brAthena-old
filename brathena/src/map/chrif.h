@@ -19,6 +19,7 @@
 
 #include "../common/cbasetypes.h"
 #include <time.h>
+#include "map.h" //TBL_stuff
 
 #define CHRIF_PACKET_LEN_TABLE_SIZE 0x3d
 
@@ -29,7 +30,7 @@ struct auth_node {
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
 	struct map_session_data *sd;    //Data from logged on char.
 	struct mmo_charstatus *char_dat;    //Data from char server.
-	unsigned int node_created; //timestamp for node timeouts
+	int64 node_created; //timestamp for node timeouts
 	enum sd_state state; //To track whether player was login in/out or changing maps.
 };
 
@@ -57,6 +58,9 @@ int chrif_save(struct map_session_data *sd, int flag);
 int chrif_charselectreq(struct map_session_data *sd, uint32 s_ip);
 int chrif_changemapserver(struct map_session_data *sd, uint32 ip, uint16 port);
 
+int send_usercount_tochar(int tid, int64 tick, int id, intptr_t data);
+int auth_db_cleanup(int tid, int64 tick, int id, intptr_t data);
+
 int chrif_searchcharid(int char_id);
 int chrif_changeemail(int id, const char *actual_email, const char *new_email);
 int chrif_char_ask_name(int acc, const char *character_name, unsigned short operation_type, int year, int month, int day, int hour, int minute, int second);
@@ -74,6 +78,9 @@ int chrif_changesex(struct map_session_data *sd);
 int chrif_divorce(int partner_id1, int partner_id2);
 
 int chrif_removefriend(int char_id, int friend_id);
+
+int chrif_idbanned(int fd);
+
 void chrif_send_report(char *buf, int len);
 
 int do_final_chrif(void);

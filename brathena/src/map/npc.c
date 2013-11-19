@@ -238,7 +238,7 @@ struct npc_data *npc_name2id(const char *name) {
 /**
  * Timer to check for idle time and timeout the dialog if necessary
  **/
-int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t data) {
+int npc_rr_secure_timeout_timer(int tid, int64 tick, int id, intptr_t data) {
 #ifdef SECURE_NPCTIMEOUT
 	struct map_session_data *sd = NULL;
 	unsigned int timeout = NPC_SECURE_TIMEOUT_NEXT;
@@ -416,7 +416,7 @@ int npc_event_doall(const char *name)
  * Clock event execution
  * OnMinute/OnClock/OnHour/OnDay/OnDDHHMM
  *------------------------------------------*/
-int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
+int npc_event_do_clock(int tid, int64 tick, int id, intptr_t data)
 {
 	static struct tm ev_tm_b; // tracks previous execution time
 	time_t timer;
@@ -515,10 +515,10 @@ struct timer_event_data {
 /*==========================================
  * triger 'OnTimerXXXX' events
  *------------------------------------------*/
-int npc_timerevent(int tid, unsigned int tick, int id, intptr_t data)
+int npc_timerevent(int tid, int64 tick, int id, intptr_t data)
 {
 	int old_rid, old_timer;
-	unsigned int old_tick;
+	int64 old_tick;
 	struct npc_data *nd=(struct npc_data *)map_id2bl(id);
 	struct npc_timerevent_list *te;
 	struct timer_event_data *ted = (struct timer_event_data *)data;
@@ -585,7 +585,7 @@ int npc_timerevent(int tid, unsigned int tick, int id, intptr_t data)
 int npc_timerevent_start(struct npc_data *nd, int rid)
 {
 	int j;
-	unsigned int tick = gettick();
+	int64 tick = gettick();
 	struct map_session_data *sd = NULL; //Player to whom script is attached.
 
 	nullpo_ret(nd);
@@ -658,7 +658,7 @@ int npc_timerevent_stop(struct npc_data *nd)
 	}
 
 	if(!sd && nd->u.scr.timertick) {
-		nd->u.scr.timer += DIFF_TICK(gettick(),nd->u.scr.timertick); // Set 'timer' to the time that has passed since the beginning of the timers
+		nd->u.scr.timer += DIFF_TICK32(gettick(),nd->u.scr.timertick); // Set 'timer' to the time that has passed since the beginning of the timers
 		nd->u.scr.timertick = 0; // Set 'tick' to zero so that we know it's off.
 	}
 
@@ -700,7 +700,7 @@ void npc_timerevent_quit(struct map_session_data *sd)
 		}
 		if(ev) {
 			int old_rid,old_timer;
-			unsigned int old_tick;
+			int64 old_tick;
 
 			//Set timer related info.
 			old_rid = (nd->u.scr.rid == sd->bl.id ? 0 : nd->u.scr.rid); // Detach rid if the last attached player logged off.
@@ -727,9 +727,9 @@ void npc_timerevent_quit(struct map_session_data *sd)
  * Get the tick value of an NPC timer
  * If it's stopped, return stopped time
  *------------------------------------------*/
-int npc_gettimerevent_tick(struct npc_data *nd)
+int64 npc_gettimerevent_tick(struct npc_data *nd)
 {
-	int tick;
+	int64 tick;
 	nullpo_ret(nd);
 
 	// TODO: Get player attached timer's tick. Now we can just get it by using 'getnpctimer' inside OnTimer event.

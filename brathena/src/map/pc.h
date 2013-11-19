@@ -238,11 +238,10 @@ struct map_session_data {
 	char npc_str[CHATBOX_SIZE]; // for passing npc input box text to script engine
 	int npc_timer_id; //For player attached npc timers. [Skotlex]
 	unsigned int chatID;
-	time_t idletime;
-
+	int64 idletime;
 	struct {
 		int npc_id;
-		unsigned int timeout;
+		int64 timeout;
 	} progressbar; //Progress Bar [Inkfish]
 
 	struct {
@@ -263,18 +262,17 @@ struct map_session_data {
 	int menuskill_id, menuskill_val, menuskill_val2;
 
 	int invincible_timer;
-	unsigned int canlog_tick;
-	unsigned int canuseitem_tick;   // [Skotlex]
-	unsigned int canusecashfood_tick;
-	unsigned int canequip_tick; // [Inkfish]
-	unsigned int cantalk_tick;
-	unsigned int canskill_tick; // used to prevent abuse from no-delay ACT files
-	unsigned int cansendmail_tick; // [Mail System Flood Protection]
-	unsigned int ks_floodprotect_tick; // [Kill Steal Protection]
-
+	int64 canlog_tick;
+	int64 canuseitem_tick; // [Skotlex]
+	int64 canusecashfood_tick;
+	int64 canequip_tick; // [Inkfish]
+	int64 cantalk_tick;
+	int64 canskill_tick;        /// used to prevent abuse from no-delay ACT files
+	int64 cansendmail_tick;     /// Mail System Flood Protection
+	int64 ks_floodprotect_tick; /// [Kill Steal Protection]
 	struct {
 		short nameid;
-		unsigned int tick;
+		int64 tick;
 	} item_delay[MAX_ITEMDELAYS]; // [Paradox924X]
 
 	short weapontype1,weapontype2;
@@ -509,7 +507,7 @@ struct map_session_data {
 	 * @info
 	 * - It is updated on every NPC iteration as mentioned above
 	 **/
-	unsigned int npc_idle_tick;
+	int64 npc_idle_tick;
 	/* */
 	enum npc_timeout_type npc_idle_type;
 #endif
@@ -534,7 +532,7 @@ struct map_session_data {
 	bool stealth;
 	unsigned char fontcolor;
 	unsigned int fontcolor_tid;
-	unsigned int rachsysch_tick;
+	int64 rachsysch_tick;
 
 	/* [Ind] */
 	struct sc_display_entry **sc_display;
@@ -561,7 +559,7 @@ struct map_session_data {
 
 	/* expiration_time timer id */
 	int expiration_tid;
-	unsigned int expiration_time;
+	time_t expiration_time;
 
 	/* */
 	struct {
@@ -722,11 +720,11 @@ int pc_setrestartvalue(struct map_session_data *sd,int type);
 int pc_makesavestatus(struct map_session_data *);
 void pc_respawn(struct map_session_data *sd, clr_type clrtype);
 int pc_setnewpc(struct map_session_data *,int,int,int,unsigned int,int,int);
-bool pc_authok(struct map_session_data *sd, int login_id2, unsigned int expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
+bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
 void pc_authfail(struct map_session_data *);
 int pc_reg_received(struct map_session_data *sd);
 void pc_close_npc(struct map_session_data *sd,int flag);
-int pc_close_npc_timer(int tid, unsigned int tick, int id, intptr_t data);
+int pc_close_npc_timer(int tid, int64 tick, int id, intptr_t data);
 
 int pc_isequip(struct map_session_data *sd,int n);
 int pc_equippoint(struct map_session_data *sd,int n);
@@ -778,7 +776,7 @@ int pc_updateweightstatus(struct map_session_data *sd);
 
 int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short rate,unsigned int dur,short atk_type,const char *o_script,unsigned short pos,bool onskill);
 int pc_exeautobonus(struct map_session_data *sd,struct s_autobonus *bonus);
-int pc_endautobonus(int tid, unsigned int tick, int id, intptr_t data);
+int pc_endautobonus(int tid, int64 tick, int id, intptr_t data);
 int pc_delautobonus(struct map_session_data *sd,struct s_autobonus *bonus,char max,bool restore);
 
 int pc_bonus(struct map_session_data *,int,int);
@@ -874,7 +872,7 @@ int pc_cleareventtimer(struct map_session_data *sd);
 int pc_addeventtimercount(struct map_session_data *sd,const char *name,int tick);
 
 int pc_calc_pvprank(struct map_session_data *sd);
-int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data);
+int pc_calc_pvprank_timer(int tid, int64 tick, int id, intptr_t data);
 
 int pc_ismarried(struct map_session_data *sd);
 int pc_marriage(struct map_session_data *sd,struct map_session_data *dstsd);
@@ -947,8 +945,8 @@ enum {ADDITEM_EXIST,ADDITEM_NEW,ADDITEM_OVERAMOUNT};
 // timer for night.day
 extern int day_timer_tid;
 extern int night_timer_tid;
-int map_day_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
-int map_night_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
+int map_day_timer(int tid, int64 tick, int id, intptr_t data); // by [yor]
+int map_night_timer(int tid, int64 tick, int id, intptr_t data); // by [yor]
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);
@@ -977,8 +975,8 @@ void pc_scdata_received(struct map_session_data *sd);
 
 // Servidor pago
 int pc_expiration_tid;
-int pc_expiration_timer(int tid, unsigned int tick, int id, intptr_t data);
-int pc_global_expiration_timer(int tid, unsigned int tick, int id, intptr_t data);
+int pc_expiration_timer(int tid, int64 tick, int id, intptr_t data);
+int pc_global_expiration_timer(int tid, int64 tick, int id, intptr_t data);
 void pc_expire_check(struct map_session_data *sd);
 
 
@@ -1002,7 +1000,7 @@ bool pc_can_give_bound_items(struct map_session_data *sd);
 		if(SQL_ERROR == Sql_Query(mmysql_handle,"UPDATE `login` SET `group_id`=%d WHERE `account_id`='%d'", x, sd->status.account_id)) \
 			Sql_ShowDebug(mmysql_handle);
 
-int check_time_vip(int tid, unsigned int tick, int id, intptr_t data);
+int check_time_vip(int tid, int64 tick, int id, intptr_t data);
 int add_time_vip(struct map_session_data *sd, int type[4]);
 void show_time_vip(struct map_session_data *sd);
 

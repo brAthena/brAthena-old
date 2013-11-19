@@ -43,10 +43,10 @@ struct unit_data {
 	int   target_to;
 	int   attacktimer;
 	int   walktimer;
-	int chaserange;
-	unsigned int attackabletime;
-	unsigned int canact_tick;
-	unsigned int canmove_tick;
+	int   chaserange;
+	int64 attackabletime;
+	int64 canact_tick;
+	int64 canmove_tick;
 	uint8 dir;
 	unsigned char walk_count;
 	unsigned char target_count;
@@ -81,6 +81,9 @@ struct view_data {
 	unsigned dead_sit : 2;
 };
 
+int unit_attack_timer(int tid, int64 tick, int id, intptr_t data);
+int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data);
+
 // PC, MOB, PET
 
 // Does walk action for unit
@@ -88,14 +91,14 @@ int unit_walktoxy(struct block_list *bl, short x, short y, int easy);
 int unit_walktobl(struct block_list *bl, struct block_list *target, int range, int easy);
 int unit_run(struct block_list *bl);
 int unit_calc_pos(struct block_list *bl, int tx, int ty, uint8 dir);
-int unit_delay_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data);
-int unit_delay_walktobl_timer(int tid, unsigned int tick, int id, intptr_t data);
+int unit_delay_walktoxy_timer(int tid, int64 tick, int id, intptr_t data);
+int unit_delay_walktobl_timer(int tid, int64 tick, int id, intptr_t data);
 
 // Causes the target object to stop moving.
 int unit_stop_walking(struct block_list *bl,int type);
 int unit_can_move(struct block_list *bl);
 int unit_is_walking(struct block_list *bl);
-int unit_set_walkdelay(struct block_list *bl, unsigned int tick, int delay, int type);
+int unit_set_walkdelay(struct block_list *bl, int64 tick, int delay, int type);
 
 int unit_escape(struct block_list *bl, struct block_list *target, short dist);
 
@@ -130,7 +133,7 @@ int unit_set_target(struct unit_data *ud, int target_id);
 // unit_data
 void unit_dataset(struct block_list *bl);
 
-int unit_fixdamage(struct block_list *src,struct block_list *target,unsigned int tick,int sdelay,int ddelay,int64 damage,int div,int type,int64 damage2);
+int unit_fixdamage(struct block_list *src,struct block_list *target,int64 tick,int sdelay,int ddelay,int64 damage,int div,int type,int64 damage2);
 // Remove unit
 struct unit_data *unit_bl2ud(struct block_list *bl);
 struct unit_data *unit_bl2ud2(struct block_list *bl);
@@ -139,6 +142,8 @@ void unit_free_pc(struct map_session_data *sd);
 int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func);
 int unit_free(struct block_list *bl, clr_type clrtype);
 int unit_changeviewsize(struct block_list *bl,short size);
+
+int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick);
 
 int do_init_unit(void);
 int do_final_unit(void);

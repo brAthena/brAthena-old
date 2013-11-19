@@ -76,9 +76,6 @@ struct {
 	} need[MAX_GUILD_SKILL_REQUIRE];
 } guild_skill_tree[MAX_GUILDSKILL];
 
-int guild_payexp_timer(int tid, unsigned int tick, int id, intptr_t data);
-static int guild_send_xy_timer(int tid, unsigned int tick, int id, intptr_t data);
-
 /* guild flags cache */
 struct npc_data **guild_flags;
 unsigned short guild_flags_count;
@@ -326,7 +323,7 @@ int guild_payexp_timer_sub(DBKey key, DBData *data, va_list ap)
 	return 0;
 }
 
-int guild_payexp_timer(int tid, unsigned int tick, int id, intptr_t data)
+int guild_payexp_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	guild_expcache_db->clear(guild_expcache_db,guild_payexp_timer_sub);
 	return 0;
@@ -360,7 +357,7 @@ int guild_send_xy_timer_sub(DBKey key, DBData *data, va_list ap)
 }
 
 //Code from party_send_xy_timer [Skotlex]
-static int guild_send_xy_timer(int tid, unsigned int tick, int id, intptr_t data)
+int guild_send_xy_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	guild_db->foreach(guild_db,guild_send_xy_timer_sub,tick);
 	return 0;

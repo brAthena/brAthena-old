@@ -105,7 +105,7 @@ int mercenary_get_lifetime(struct mercenary_data *md)
 		return 0;
 
 	td = get_timer(md->contract_timer);
-	return (td != NULL) ? DIFF_TICK(td->tick, gettick()) : 0;
+	return (td != NULL) ? DIFF_TICK32(td->tick, gettick()) : 0;
 }
 
 int mercenary_get_guild(struct mercenary_data *md)
@@ -228,7 +228,7 @@ int mercenary_save(struct mercenary_data *md)
 	return 1;
 }
 
-static int merc_contract_end(int tid, unsigned int tick, int id, intptr_t data)
+int merc_contract_end(int tid, int64 tick, int id, intptr_t data)
 {
 	struct map_session_data *sd;
 	struct mercenary_data *md;

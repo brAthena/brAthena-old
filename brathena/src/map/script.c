@@ -3545,7 +3545,7 @@ void script_stop_instances(struct script_code *code) {
 /*==========================================
  * Timer function for sleep
  *------------------------------------------*/
-int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
+int run_script_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct script_state *st = idb_get(script->st_db,(int)data);
 	if(st) {
@@ -3920,7 +3920,7 @@ void script_setarray_pc(struct map_session_data *sd, const char *varname, uint8 
 int buildin_query_sql_sub(struct script_state *st, Sql *handle);
 
 /* used to receive items the queryThread has already processed */
-int queryThread_timer(int tid, unsigned int tick, int id, intptr_t data)
+int queryThread_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	int i, cursor = 0;
 	bool allOk = true;
@@ -8438,7 +8438,7 @@ BUILDIN_FUNC(gettimetick)   /* Asgard Version */
 		case 0:
 		default:
 			//type 0:(System Ticks)
-			script_pushint(st,gettick());
+			script_pushint(st,(int)gettick());
 			break;
 	}
 	return 0;
@@ -8718,7 +8718,7 @@ BUILDIN_FUNC(monster)
 	int class_          = script_getnum(st,6);
 	int amount          = script_getnum(st,7);
 	const char *event   = "";
-	unsigned int size   = SZ_SMALL;
+	unsigned int size   = SZ_MEDIUM;
 	unsigned int ai     = AI_NONE;
 	int mob_id;
 
@@ -8821,7 +8821,7 @@ BUILDIN_FUNC(areamonster)
 	int class_          = script_getnum(st,8);
 	int amount          = script_getnum(st,9);
 	const char *event   = "";
-	unsigned int size   = SZ_SMALL;
+	unsigned int size   = SZ_MEDIUM;
 	unsigned int ai     = AI_NONE;
 	int mob_id;
 
@@ -9261,7 +9261,7 @@ BUILDIN_FUNC(getnpctimer)
 	}
 
 	switch(type) {
-		case 0: val = npc_gettimerevent_tick(nd); break;
+		case 0: val = (int)npc_gettimerevent_tick(nd); break;
 		case 1:
 			if(nd->u.scr.rid) {
 				sd = map_id2sd(nd->u.scr.rid);
@@ -9863,7 +9863,7 @@ BUILDIN_FUNC(getstatus)
 
 				if(timer) {
 					// return the amount of time remaining
-					script_pushint(st, timer->tick - gettick());
+					script_pushint(st, (int)(timer->tick - gettick()));
 				}
 			}
 			break;
@@ -13204,7 +13204,7 @@ BUILDIN_FUNC(summon)
 	const char *str,*event="";
 	TBL_PC *sd;
 	struct mob_data *md;
-	int tick = gettick();
+	int64 tick = gettick();
 
 	sd=script_rid2sd(st);
 	if(!sd) return 0;
@@ -13220,7 +13220,7 @@ BUILDIN_FUNC(summon)
 
 	clif_skill_poseffect(&sd->bl,AM_CALLHOMUN,1,sd->bl.x,sd->bl.y,tick);
 
-	md = mob_once_spawn_sub(&sd->bl, sd->bl.m, sd->bl.x, sd->bl.y, str, _class, event, SZ_SMALL, AI_NONE);
+	md = mob_once_spawn_sub(&sd->bl, sd->bl.m, sd->bl.x, sd->bl.y, str, _class, event, SZ_MEDIUM, AI_NONE);
 	if(md) {
 		md->master_id=sd->bl.id;
 		md->special_state.ai = AI_ATTACK;
@@ -15064,7 +15064,7 @@ BUILDIN_FUNC(checkidle)
 		sd = script_rid2sd(st);
 
 	if (sd)
-		script_pushint(st, DIFF_TICK(last_tick, sd->idletime));
+		script_pushint(st, DIFF_TICK32(last_tick, sd->idletime));
 	else
 		script_pushint(st, 0);
 

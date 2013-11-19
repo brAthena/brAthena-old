@@ -379,9 +379,12 @@ void clif_charselectok(int id, uint8 ok);
 void clif_dropflooritem(struct flooritem_data *fitem);
 void clif_clearflooritem(struct flooritem_data *fitem, int fd);
 
+void clif_notify_time(struct map_session_data *sd, int64 time);
+void clif_parse_TickSend(int fd, struct map_session_data *sd);
+
 void clif_clearunit_single(int id, clr_type type, int fd);
 void clif_clearunit_area(struct block_list *bl, clr_type type);
-void clif_clearunit_delayed(struct block_list *bl, clr_type type, unsigned int tick);
+void clif_clearunit_delayed(struct block_list *bl, clr_type type, int64 tick);
 int clif_spawn(struct block_list *bl);  //area
 void clif_walkok(struct map_session_data *sd);  // self
 void clif_move(struct unit_data *ud); //area
@@ -406,7 +409,7 @@ void clif_dropitem(struct map_session_data *sd,int n,int amount);   //self
 void clif_delitem(struct map_session_data *sd,int n,int amount, short reason); //self
 void clif_updatestatus(struct map_session_data *sd,int type);   //self
 void clif_changestatus(struct map_session_data *sd,int type,int val);   //area
-int clif_damage(struct block_list *src, struct block_list *dst, unsigned int tick, int sdelay, int ddelay, int64 in_damage, int div, int type, int64 in_damage2);
+int clif_damage(struct block_list *src, struct block_list *dst, int64 tick, int sdelay, int ddelay, int64 in_damage, int div, int type, int64 in_damage2);
 void clif_takeitem(struct block_list *src, struct block_list *dst);
 void clif_sitting(struct block_list *bl);
 void clif_standing(struct block_list *bl);
@@ -485,11 +488,11 @@ void clif_initialstatus(struct map_session_data *sd);
 void clif_skillcasting(struct block_list *bl, int src_id, int dst_id, int dst_x, int dst_y, uint16 skill_id, int property, int casttime);
 void clif_skillcastcancel(struct block_list *bl);
 void clif_skill_fail(struct map_session_data *sd,uint16 skill_id,enum useskill_fail_cause cause,int btype);
-void clif_skill_cooldown(struct map_session_data *sd, uint16 skill_id, unsigned int tick);
-int clif_skill_damage(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int64 in_damage,int div,uint16 skill_id,uint16 skill_lv,int type);
-//int clif_skill_damage2(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int damage,int div,uint16 skill_id,uint16 skill_lv,int type);
+void clif_skill_cooldown(struct map_session_data *sd, uint16 skill_id, unsigned int duration);
+int clif_skill_damage(struct block_list *src,struct block_list *dst,int64 tick,int sdelay,int ddelay,int64 in_damage,int div,uint16 skill_id,uint16 skill_lv,int type);
+//int clif_skill_damage2(struct block_list *src,struct block_list *dst,int64 tick,int sdelay,int ddelay,int damage,int div,uint16 skill_id,uint16 skill_lv,int type);
 int clif_skill_nodamage(struct block_list *src,struct block_list *dst,uint16 skill_id,int heal,int fail);
-void clif_skill_poseffect(struct block_list *src,uint16 skill_id,int val,int x,int y,int tick);
+void clif_skill_poseffect(struct block_list *src,uint16 skill_id,int val,int x,int y,int64 tick);
 void clif_skill_estimation(struct map_session_data *sd,struct block_list *dst);
 void clif_skill_warppoint(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv, unsigned short map1, unsigned short map2, unsigned short map3, unsigned short map4);
 void clif_skill_memomessage(struct map_session_data *sd, int type);
@@ -1013,7 +1016,7 @@ void clif_chsys_quitg(struct map_session_data *sd);
 void clif_chsys_quit(struct map_session_data *sd);
 void clif_chsys_gjoin(struct guild *g1,struct guild *g2);
 void clif_chsys_gleave(struct guild *g1,struct guild *g2);
-int clif_undisguise_timer(int tid, unsigned int tick, int id, intptr_t data);
+int clif_undisguise_timer(int tid, int64 tick, int id, intptr_t data);
 
 /**
  * Vars
@@ -1087,7 +1090,7 @@ struct clif_interface {
 	void (*pEmotion) (int fd, struct map_session_data *sd);
 	void (*pHowManyConnections) (int fd, struct map_session_data *sd);
 	void (*pActionRequest) (int fd, struct map_session_data *sd);
-	void (*pActionRequest_sub) (struct map_session_data *sd, int action_type, int target_id, unsigned int tick);
+	void (*pActionRequest_sub) (struct map_session_data *sd, int action_type, int target_id, int64 tick);
 	void (*pRestart) (int fd, struct map_session_data *sd);
 	void (*pWisMessage) (int fd, struct map_session_data* sd);
 	void (*pBroadcast) (int fd, struct map_session_data* sd);
@@ -1121,12 +1124,12 @@ struct clif_interface {
 	void (*pStatusUp) (int fd,struct map_session_data *sd);
 	void (*pSkillUp) (int fd,struct map_session_data *sd);
 	void (*pUseSkillToId) (int fd, struct map_session_data *sd);
-	void (*pUseSkillToId_homun) (struct homun_data *hd, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, int target_id);
-	void (*pUseSkillToId_mercenary) (struct mercenary_data *md, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, int target_id);
+	void (*pUseSkillToId_homun) (struct homun_data *hd, struct map_session_data *sd, int64 tick, uint16 skill_id, uint16 skill_lv, int target_id);
+	void (*pUseSkillToId_mercenary) (struct mercenary_data *md, struct map_session_data *sd, int64 tick, uint16 skill_id, uint16 skill_lv, int target_id);
 	void (*pUseSkillToPos) (int fd, struct map_session_data *sd);
 	void (*pUseSkillToPosSub) (int fd, struct map_session_data *sd, uint16 skill_lv, uint16 skill_id, short x, short y, int skillmoreinfo);
-	void (*pUseSkillToPos_homun) (struct homun_data *hd, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
-	void (*pUseSkillToPos_mercenary) (struct mercenary_data *md, struct map_session_data *sd, unsigned int tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
+	void (*pUseSkillToPos_homun) (struct homun_data *hd, struct map_session_data *sd, int64 tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
+	void (*pUseSkillToPos_mercenary) (struct mercenary_data *md, struct map_session_data *sd, int64 tick, uint16 skill_id, uint16 skill_lv, short x, short y, int skillmoreinfo);
 	void (*pUseSkillToPosMoreInfo) (int fd, struct map_session_data *sd);
 	void (*pUseSkillMap) (int fd, struct map_session_data* sd);
 	void (*pRequestMemo) (int fd,struct map_session_data *sd);
@@ -1208,6 +1211,7 @@ struct clif_interface {
 	void (*pGMRc) (int fd, struct map_session_data* sd);
 	void (*pGMReqAccountName) (int fd, struct map_session_data *sd);
 	void (*pGMChangeMapType) (int fd, struct map_session_data *sd);
+	void (*pGMFullStrip) (int fd, struct map_session_data *sd);
 	void (*pPMIgnore) (int fd, struct map_session_data* sd);
 	void (*pPMIgnoreAll) (int fd, struct map_session_data *sd);
 	void (*pPMIgnoreList) (int fd,struct map_session_data *sd);
