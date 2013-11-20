@@ -70,57 +70,7 @@
 #if GD_SKILLRANGEMAX > 999
 #error GD_SKILLRANGEMAX is greater than 999
 #endif
-static DBMap* bowling_db = NULL; // int mob_id -> struct mob_data*
 
-DBMap *skillunit_db = NULL; // int id -> struct skill_unit*
-
-/**
- * Skill Unit Persistency during endack routes (mostly for songs see bugreport:4574)
- **/
-DBMap *skillusave_db = NULL; // char_id -> struct skill_usave
-struct skill_usave {
-	uint16 skill_id, skill_lv;
-};
-
-struct s_skill_db skill_db[MAX_SKILL_DB];
-struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
-struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
-struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
-struct s_skill_improvise_db {
-	uint16 skill_id;
-	short per;//1-10000
-};
-struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
-bool skill_reproduce_db[MAX_SKILL_DB];
-struct s_skill_changematerial_db {
-	int itemid;
-	short rate;
-	int qty[5];
-	short qty_rate[5];
-};
-struct s_skill_changematerial_db skill_changematerial_db[MAX_SKILL_PRODUCE_DB];
-
-//Warlock
-struct s_skill_spellbook_db {
-	int nameid;
-	uint16 skill_id;
-	int point;
-};
-
-struct s_skill_spellbook_db skill_spellbook_db[MAX_SKILL_SPELLBOOK_DB];
-//Guillotine Cross
-struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
-
-struct s_skill_unit_layout skill_unit_layout[MAX_SKILL_UNIT_LAYOUT];
-int firewall_unit_pos;
-int icewall_unit_pos;
-int earthstrain_unit_pos;
-//early declaration
-int skill_block_check(struct block_list *bl, enum sc_type type, uint16 skill_id);
-static int skill_check_unit_range(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv);
-static int skill_check_unit_range2(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv);
-static int skill_destroy_trap(struct block_list *bl, va_list ap);
-static int skill_check_condition_mob_master_sub (struct block_list *bl, va_list ap);
 //Since only mob-casted splash skills can hit ice-walls
 static inline int splash_target(struct block_list *bl)
 {
@@ -377,12 +327,14 @@ int skill_get_cooldown(uint16 skill_id, uint16 skill_lv)
 {
 	skill_get2 (skill_db[skill_id].cooldown[skill_glv(skill_lv-1)], skill_id, skill_lv);
 }
-#ifdef RENEWAL_CAST
 int skill_get_fixed_cast( uint16 skill_id ,uint16 skill_lv ) 
 {
+#ifdef RENEWAL_CAST
 	skill_get2 (skill_db[skill_id].fixed_cast[skill_glv(skill_lv-1)], skill_id, skill_lv);
-}
+#else
+	return 0;
 #endif
+}
 int skill_tree_get_max(uint16 skill_id, int b_class)
 {
 	int i;
@@ -394,19 +346,6 @@ int skill_tree_get_max(uint16 skill_id, int b_class)
 	else
 		return skill_get_max(skill_id);
 }
-
-int skill_frostjoke_scream(struct block_list *bl,va_list ap);
-int skill_attack_area(struct block_list *bl,va_list ap);
-struct skill_unit_group *skill_locate_element_field(struct block_list *bl); // [Skotlex]
-int skill_graffitiremover(struct block_list *bl, va_list ap); // [Valaris]
-int skill_greed(struct block_list *bl, va_list ap);
-static void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id);
-static int skill_cell_overlap(struct block_list *bl, va_list ap);
-static int skill_trap_splash(struct block_list *bl, va_list ap);
-struct skill_unit_group_tickset *skill_unitgrouptickset_search(struct block_list *bl,struct skill_unit_group *sg,int64 tick);
-static int skill_unit_onplace(struct skill_unit *src,struct block_list *bl,int64 tick);
-int skill_unit_onleft(uint16 skill_id, struct block_list *bl,int64 tick);
-static int skill_unit_effect(struct block_list *bl,va_list ap);
 
 int enchant_eff[5] = { 10, 14, 17, 19, 20 };
 int deluge_eff[5] = { 5, 9, 12, 14, 15 };
@@ -3105,7 +3044,6 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
  * Checking bl battle flag and display dammage
  * then call func with source,target,skill_id,skill_lv,tick,flag
  *------------------------------------------*/
-typedef int (*SkillFunc)(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 tick, int flag);
 int skill_area_sub(struct block_list *bl, va_list ap)
 {
 	struct block_list *src;
@@ -3136,7 +3074,7 @@ int skill_area_sub(struct block_list *bl, va_list ap)
 	return 0;
 }
 
-static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
+int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 {
 	struct skill_unit *unit;
 	uint16 skill_id,g_skill_id;
@@ -3199,7 +3137,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 	return 1;
 }
 
-static int skill_check_unit_range(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv)
+int skill_check_unit_range(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv)
 {
 	//Non players do not check for the skill's splash-trigger area.
 	int range = bl->type==BL_PC?skill_get_unit_range(skill_id, skill_lv):0;
@@ -3213,7 +3151,7 @@ static int skill_check_unit_range(struct block_list *bl, int x, int y, uint16 sk
 	return map_foreachinarea(skill_check_unit_range_sub,bl->m,x-range,y-range,x+range,y+range,BL_SKILL,skill_id);
 }
 
-static int skill_check_unit_range2_sub(struct block_list *bl, va_list ap)
+int skill_check_unit_range2_sub(struct block_list *bl, va_list ap)
 {
 	uint16 skill_id;
 
@@ -3233,7 +3171,7 @@ static int skill_check_unit_range2_sub(struct block_list *bl, va_list ap)
 	return 1;
 }
 
-static int skill_check_unit_range2(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv)
+int skill_check_unit_range2(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv)
 {
 	int range, type;
 
@@ -11356,11 +11294,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 /*==========================================
  *
  *------------------------------------------*/
-void ext_skill_unit_onplace(struct skill_unit *src, struct block_list *bl, int64 tick)
-{
-	skill_unit_onplace(src, bl, tick);
-}
-static int skill_unit_onplace(struct skill_unit *src, struct block_list *bl, int64 tick)
+int skill_unit_onplace(struct skill_unit *src, struct block_list *bl, int64 tick)
 {
 	struct skill_unit_group *sg;
 	struct block_list *ss;
@@ -12491,7 +12425,7 @@ int skill_unit_onleft (uint16 skill_id, struct block_list *bl, int64 tick)
  * flag&4: Invoke a onleft call (the unit might be scheduled for deletion)
  * flag&8: Recursive
  *------------------------------------------*/
-static int skill_unit_effect(struct block_list *bl, va_list ap)
+int skill_unit_effect(struct block_list *bl, va_list ap)
 {
 	struct skill_unit *unit = va_arg(ap,struct skill_unit *);
 	struct skill_unit_group *group = unit->group;
@@ -12717,7 +12651,7 @@ int skill_check_pc_partner(struct map_session_data *sd, uint16 skill_id, uint16 
  * return :
  *  x : numbers of mob of class with special ai
  *------------------------------------------*/
-static int skill_check_condition_mob_master_sub(struct block_list *bl, va_list ap)
+int skill_check_condition_mob_master_sub(struct block_list *bl, va_list ap)
 {
 	int *c,src_id,mob_class,skill;
 	uint16 ai;
@@ -15227,7 +15161,7 @@ int skill_detonator(struct block_list *bl, va_list ap)
 /*==========================================
  *
  *------------------------------------------*/
-static int skill_cell_overlap(struct block_list *bl, va_list ap)
+int skill_cell_overlap(struct block_list *bl, va_list ap)
 {
 	uint16 skill_id;
 	int *alive;
@@ -15352,7 +15286,7 @@ int skill_chastle_mob_changetarget(struct block_list *bl,va_list ap)
 /*==========================================
  *
  *------------------------------------------*/
-static int skill_trap_splash(struct block_list *bl, va_list ap)
+int skill_trap_splash(struct block_list *bl, va_list ap)
 {
 	struct block_list *src;
 	int64 tick;
@@ -17212,7 +17146,7 @@ int skill_poisoningweapon(struct map_session_data *sd, int nameid)
 	return 0;
 }
 
-static void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id)
+void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id)
 {
 	struct status_change *sc = status_get_sc(bl);
 
@@ -17465,7 +17399,7 @@ int skill_changematerial(struct map_session_data *sd, int n, unsigned short *ite
 /**
  * for Royal Guard's LG_TRAMPLE
  **/
-static int skill_destroy_trap(struct block_list *bl, va_list ap)
+int skill_destroy_trap(struct block_list *bl, va_list ap)
 {
 	struct skill_unit *su = (struct skill_unit *)bl;
 	struct skill_unit_group *sg;

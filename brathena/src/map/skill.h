@@ -240,8 +240,8 @@ extern struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
 /**
  * Vars
  **/
-extern int enchant_eff[5];
-extern int deluge_eff[5];
+int enchant_eff[5];
+int deluge_eff[5];
 DBMap* skilldb_name2id;
 DBMap* skillcd_db; // char_id -> struct skill_cd
 
@@ -318,7 +318,6 @@ struct skill_unit_group *skill_initunitgroup(struct block_list *src, int count, 
 int skill_delunitgroup(struct skill_unit_group *group, const char *file, int line, const char *func);
 int skill_clear_unitgroup(struct block_list *src);
 int skill_clear_group(struct block_list *bl, int flag);
-void ext_skill_unit_onplace(struct skill_unit *src, struct block_list *bl, int64 tick);
 
 int skill_unit_ondamaged (struct skill_unit *src, struct block_list *bl, int64 damage, int64 tick);
 
@@ -1952,6 +1951,46 @@ struct eri *skill_cd_ers; // ERS Storage for skill cool down managers [Ind]
 struct eri *skill_cd_entry_ers; // ERS Storage for skill cool down entries [Ind]
 
 /**
+ * Skill Unit Persistency during endack routes
+ **/
+struct skill_usave {
+	uint16 skill_id, skill_lv;
+};
+DBMap *skillusave_db; // char_id -> struct skill_usave
+
+
+struct s_skill_db skill_db[MAX_SKILL_DB];
+struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
+struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
+struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
+struct s_skill_improvise_db {
+	uint16 skill_id;
+	short per;//1-10000
+};
+struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
+bool skill_reproduce_db[MAX_SKILL_DB];
+struct s_skill_changematerial_db {
+	int itemid;
+	short rate;
+	int qty[5];
+	short qty_rate[5];
+};
+struct s_skill_changematerial_db skill_changematerial_db[MAX_SKILL_PRODUCE_DB];
+
+//Warlock
+struct s_skill_spellbook_db {
+	int nameid;
+	uint16 skill_id;
+	int point;
+};
+
+struct s_skill_spellbook_db skill_spellbook_db[MAX_SKILL_SPELLBOOK_DB];
+//Guillotine Cross
+struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
+
+struct s_skill_unit_layout skill_unit_layout[MAX_SKILL_UNIT_LAYOUT];
+
+/**
  * Ranger
  **/
 int skill_detonator(struct block_list *bl, va_list ap);
@@ -1974,5 +2013,37 @@ bool skill_check_shadowform(struct block_list *bl, int64 damage, int hit);
 int skill_elementalanalysis(struct map_session_data *sd, int n, uint16 skill_lv, unsigned short *item_list); // Sorcerer Four Elemental Analisys.
 int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);    // Genetic Change Material.
 int skill_get_elemental_type(uint16 skill_id, uint16 skill_lv);
+
+typedef int (*SkillFunc)(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 tick, int flag);
+
+int skill_frostjoke_scream(struct block_list *bl,va_list ap);
+int skill_attack_area(struct block_list *bl,va_list ap);
+struct skill_unit_group *skill_locate_element_field(struct block_list *bl); // [Skotlex]
+int skill_graffitiremover(struct block_list *bl, va_list ap); // [Valaris]
+int skill_greed(struct block_list *bl, va_list ap);
+void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id);
+int skill_cell_overlap(struct block_list *bl, va_list ap);
+int skill_trap_splash(struct block_list *bl, va_list ap);
+struct skill_unit_group_tickset *skill_unitgrouptickset_search(struct block_list *bl,struct skill_unit_group *sg,int64 tick);
+int skill_unit_onplace(struct skill_unit *src,struct block_list *bl,int64 tick);
+int skill_unit_onleft(uint16 skill_id, struct block_list *bl,int64 tick);
+int skill_unit_effect(struct block_list *bl,va_list ap);
+
+static DBMap* bowling_db; // int mob_id -> struct mob_data*
+
+DBMap *skillunit_db; // int id -> struct skill_unit*
+
+
+int firewall_unit_pos;
+int icewall_unit_pos;
+int earthstrain_unit_pos;
+//early declaration
+int skill_block_check(struct block_list *bl, enum sc_type type, uint16 skill_id);
+int skill_check_unit_range(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv);
+int skill_check_unit_range2(struct block_list *bl, int x, int y, uint16 skill_id, uint16 skill_lv);
+int skill_check_unit_range_sub(struct block_list *bl, va_list ap);
+int skill_check_unit_range2_sub(struct block_list *bl, va_list ap);
+int skill_destroy_trap(struct block_list *bl, va_list ap);
+int skill_check_condition_mob_master_sub (struct block_list *bl, va_list ap);
 
 #endif /* _SKILL_H_ */
