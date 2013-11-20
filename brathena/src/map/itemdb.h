@@ -363,10 +363,8 @@ struct item_data {
 	int elv;
 	int wlv;
 	int view_id;
-#if VERSION == 1
 	int matk;
 	int elvmax;/* maximum level for this item */
-#endif
 
 	int delay;
 //Lupus: I rearranged order of these fields due to compatibility with ITEMINFO script command
