@@ -147,10 +147,6 @@ int status_type2relevant_bl_types(int type)
 	return StatusRelevantBLTypes[type];
 }
 
-#define add_sc(skill,sc) set_sc(skill,sc,SI_BLANK,SCB_NONE)
-// indicates that the status displays a visual effect for the affected unit, and should be sent to the client for all supported units
-#define set_sc_with_vfx(skill, sc, icon, flag) set_sc((skill), (sc), (icon), (flag)); if((icon) < SI_MAX) StatusRelevantBLTypes[(icon)] |= BL_SCEFFECT
-
 static void set_sc(uint16 skill_id, sc_type sc, int icon, unsigned int flag)
 {
 	uint16 idx = skill_get_index(skill_id);
@@ -173,8 +169,11 @@ static void set_sc(uint16 skill_id, sc_type sc, int icon, unsigned int flag)
 		SkillStatusChangeTable[idx] = sc;
 }
 
-void initChangeTables(void)
-{
+void initChangeTables(void) {
+#define add_sc(skill,sc) set_sc((skill),(sc),SI_BLANK,SCB_NONE)
+// indicates that the status displays a visual effect for the affected unit, and should be sent to the client for all supported units
+#define set_sc_with_vfx(skill, sc, icon, flag) do { set_sc((skill), (sc), (icon), (flag)); if((icon) < SI_MAX) StatusRelevantBLTypes[(icon)] |= BL_SCEFFECT; } while(0)
+
 	int i;
 
 	for(i = 0; i < SC_MAX; i++)
@@ -1109,6 +1108,8 @@ void initChangeTables(void)
 
 	if(!battle_config.display_hallucination)   //Disable Hallucination.
 		StatusIconChangeTable[SC_ILLUSION] = SI_BLANK;
+#undef add_sc
+#undef set_sc_with_vfx
 }
 
 static void initDummyData(void)
@@ -8766,12 +8767,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				break;
 			case SC_GENSOU:
 
-	#define PER( a ) do { \
-		if( a <= 15 ) lv = 1; \
-		else if( a <= 30 ) lv = 2; \
-		else if( a <= 50 ) lv = 3; \
-		else if( a <= 75 ) lv = 4; \
-	} while(0)
+#define PER( a, lvl ) do { \
+	int temp__ = (a); \
+	if( temp__ <= 15 ) (lvl) = 1; \
+	else if( temp__ <= 30 ) (lvl) = 2; \
+	else if( temp__ <= 50 ) (lvl) = 3; \
+	else if( temp__ <= 75 ) (lvl) = 4; \
+	else (lvl) = 5; \
+} while(0)
 
 			{
 				int hp = status_get_hp(bl), sp = status_get_sp(bl), lv = 5;
@@ -8779,13 +8782,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					if(rand()%100 > (25 + 10 * val1) - status_get_int(bl) / 2)
 						return 0;
 
-					PER(100 / (status_get_max_hp(bl) / hp));
-					status_heal(bl,	(!(hp%2) ? (6-lv) *4 / 100 : -(lv*4) / 100), 0, 1);
+				PER( 100 / (status_get_max_hp(bl) / hp), lv );
+				status_heal(bl, (!(hp%2) ? (6-lv) *4 / 100 : -(lv*4) / 100), 0, 1);
 
-					PER(100 / (status_get_max_sp(bl) / sp) );
-					status_heal(bl,	0,(!(sp%2) ? (6-lv) *3 / 100 : -(lv*3) / 100), 1);
+				PER( 100 / (status_get_max_sp(bl) / sp), lv );
+				status_heal(bl, 0,(!(sp%2) ? (6-lv) *3 / 100 : -(lv*3) / 100), 1);
 				}
-	#undef PER
+#undef PER
 				break;
 			case SC_ANGRIFFS_MODUS:
 				val2 = 50 + 20 * val1; //atk bonus
@@ -10207,7 +10210,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 // set the next timer of the sce (don't assume the status still exists)
 #define sc_timer_next(t,f,i,d) do { \
 	if( (sce=sc->data[type]) ) \
-		sce->timer = add_timer(t,f,i,d); \
+		sce->timer = add_timer((t),(f),(i),(d)); \
 	else \
 		ShowError("status_change_timer: Unexpected NULL status change id: %d data: %d\n", id, data); \
 } while(0)

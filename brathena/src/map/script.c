@@ -404,7 +404,7 @@ static void disp_error_message2(const char *mes,const char *pos,int report)
 	error_report = report;
 	longjmp(error_jump, 1);
 }
-#define disp_error_message(mes,pos) disp_error_message2(mes,pos,1)
+#define disp_error_message(mes,pos) (disp_error_message2((mes),(pos),1))
 
 static void disp_warning_message(const char *mes, const char *pos) {
 	script->warning(parser_current_src,parser_current_file,parser_current_line,mes,pos);
@@ -4352,8 +4352,6 @@ const char *script_getfuncname(struct script_state *st) {
 // buildin functions
 //
 
-#define BUILDIN_DEF(x,args) { buildin_ ## x , #x , args }
-#define BUILDIN_DEF2(x,x2,args) { buildin_ ## x , x2 , args }
 #define BUILDIN_FUNC(x) int buildin_ ## x (struct script_state* st)
 
 /////////////////////////////////////////////////////////////////////
@@ -9791,8 +9789,16 @@ BUILDIN_FUNC(sc_end)
 			return 0;
 
 
-		if(status_get_sc_type(type)&SC_NO_CLEAR)
-			return 0;
+		/* status that can't be individually removed (TODO sc_config option?) */
+		switch (type) {
+			case SC_WEIGHTOVER50:
+			case SC_WEIGHTOVER90:
+			case SC_NOCHAT:
+			case SC_PUSH_CART:
+				return true;
+			default:
+				break;
+		}
 
 		//This should help status_change_end force disabling the SC in case it has no limit.
 		sce->val1 = sce->val2 = sce->val3 = sce->val4 = 0;
@@ -13266,7 +13272,7 @@ BUILDIN_FUNC(isequippedcnt)
 	}
 
 	for(i=0; id!=0; i++) {
-		FETCH(i+2, id) else id = 0;
+		script_fetch(st,i+2, id);
 		if(id <= 0)
 			continue;
 
@@ -13324,7 +13330,7 @@ BUILDIN_FUNC(isequipped)
 	setitem_hash = sd->bonus.setitem_hash;
 	setitem_hash2 = sd->bonus.setitem_hash2;
 	for(i=0; id!=0; i++) {
-		FETCH(i+2, id) else id = 0;
+		script_fetch(st,i+2, id);
 		if(id <= 0)
 			continue;
 		flag = 0;
@@ -13399,7 +13405,7 @@ BUILDIN_FUNC(cardscnt)
 	sd = script_rid2sd(st);
 
 	for(i=0; id!=0; i++) {
-		FETCH(i+2, id) else id = 0;
+		script_fetch(st,i+2, id);
 		if(id <= 0)
 			continue;
 
@@ -18363,6 +18369,9 @@ BUILDIN_FUNC(deactivatepset);
 BUILDIN_FUNC(deletepset);
 #endif
 
+#define BUILDIN_DEF(x,args) { buildin_ ## x , #x , args }
+#define BUILDIN_DEF2(x,x2,args) { buildin_ ## x , x2 , args }
+
 /// script command definitions
 /// for an explanation on args, see add_buildin_func
 struct script_function buildin_func[] = {
@@ -18867,6 +18876,8 @@ struct script_function buildin_func[] = {
 	{NULL,NULL,NULL},
 	
 };
+#undef BUILDIN_DEF
+#undef BUILDIN_DEF2
 
 void script_label_add(int key, int pos) {
 	int idx = script->label_count;

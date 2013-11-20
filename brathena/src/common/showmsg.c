@@ -29,32 +29,16 @@
 
 #ifdef WIN32
 #include "../common/winapi.h"
-
-#ifdef DEBUGLOGMAP
-#define DEBUGLOGPATH "log\\map-server.log"
-#else
-#ifdef DEBUGLOGCHAR
-#define DEBUGLOGPATH "log\\char-server.log"
-#else
-#ifdef DEBUGLOGLOGIN
-#define DEBUGLOGPATH "log\\login-server.log"
-#endif
-#endif
-#endif
-#else
+#else // not WIN32
 #include <unistd.h>
+#endif // WIN32
 
-#ifdef DEBUGLOGMAP
-#define DEBUGLOGPATH "log/map-server.log"
-#else
-#ifdef DEBUGLOGCHAR
-#define DEBUGLOGPATH "log/char-server.log"
-#else
-#ifdef DEBUGLOGLOGIN
-#define DEBUGLOGPATH "log/login-server.log"
-#endif
-#endif
-#endif
+#if defined(DEBUGLOGMAP)
+#define DEBUGLOGPATH "log"PATHSEP_STR"map-server.log"
+#elif defined(DEBUGLOGCHAR)
+#define DEBUGLOGPATH "log"PATHSEP_STR"char-server.log"
+#elif defined(DEBUGLOGLOGIN)
+#define DEBUGLOGPATH "log"PATHSEP_STR"login-server.log"
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,32 +66,31 @@ int console_msg_log = 0;//[Ind] msg error logging
 	} buf ={"",NULL,NULL,0};    \
 	//define NEWBUF
 
-#define BUFVPRINTF(buf,fmt,args)                        \
-	buf.l_ = vsnprintf(buf.s_, SBUF_SIZE, fmt, args);   \
-	if( buf.l_ >= 0 && buf.l_ < SBUF_SIZE )             \
-	{/* static buffer */                                \
-		buf.v_ = buf.s_;                                \
-	}                                                   \
-	else                                                \
-	{/* dynamic buffer */                               \
-		buf.d_ = StringBuf_Malloc();                    \
-		buf.l_ = StringBuf_Vprintf(buf.d_, fmt, args);  \
-		buf.v_ = StringBuf_Value(buf.d_);               \
-		ShowDebug(read_message("Source.common.showmsg"), buf.l_+1);\
-	}                                                   \
-	//define BUFVPRINTF
+#define BUFVPRINTF(buf,fmt,args) do { \
+	(buf).l_ = vsnprintf((buf).s_, SBUF_SIZE, (fmt), args); \
+	if( (buf).l_ >= 0 && (buf).l_ < SBUF_SIZE ) \
+	{/* static buffer */ \
+		(buf).v_ = (buf).s_; \
+	} \
+	else \
+	{/* dynamic buffer */ \
+		(buf).d_ = StringBuf_Malloc(); \
+		(buf).l_ = StringBuf_Vprintf((buf).d_, (fmt), args); \
+		(buf).v_ = StringBuf_Value((buf).d_); \
+		ShowDebug("showmsg: dynamic buffer used, increase the static buffer size to %d or more.\n", (buf).l_+1); \
+	} \
+} while(0) //define BUFVPRINTF
 
-#define BUFVAL(buf) buf.v_
-#define BUFLEN(buf) buf.l_
+#define BUFVAL(buf) ((buf).v_)
+#define BUFLEN(buf) ((buf).l_)
 
-#define FREEBUF(buf)            \
-	if( buf.d_ )                \
-	{                           \
-		StringBuf_Free(buf.d_); \
-		buf.d_ = NULL;          \
-	}                           \
-	buf.v_ = NULL;              \
-	//define FREEBUF
+#define FREEBUF(buf) do {\
+	if( (buf).d_ ) { \
+		StringBuf_Free((buf).d_); \
+		(buf).d_ = NULL; \
+	} \
+	(buf).v_ = NULL; \
+} while(0) //define FREEBUF
 
 ///////////////////////////////////////////////////////////////////////////////
 #ifdef _WIN32
@@ -620,14 +603,6 @@ int FPRINTF(FILE *file, const char *fmt, ...)
 #define STDERR stderr
 
 #endif// not _WIN32
-
-
-
-
-
-
-
-
 
 
 char timestamp_format[20] = ""; //For displaying Timestamps

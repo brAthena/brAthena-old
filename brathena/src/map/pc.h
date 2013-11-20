@@ -655,8 +655,8 @@ enum equip_pos {
 // Rune Knight Dragon
 #define pc_isridingdragon(sd) ( (sd)->sc.option&OPTION_DRAGON )
 
-#define pc_stop_walking(sd, type) unit_stop_walking(&(sd)->bl, type)
-#define pc_stop_attack(sd) unit_stop_attack(&(sd)->bl)
+#define pc_stop_walking(sd, type) (unit_stop_walking(&(sd)->bl, (type)))
+#define pc_stop_attack(sd)        (unit_stop_attack(&(sd)->bl))
 
 //Weapon check considering dual wielding.
 #define pc_check_weapontype(sd, type) ((type)&((sd)->status.weapon < MAX_WEAPON_TYPE? \
@@ -673,7 +673,7 @@ enum equip_pos {
 	  ||  ( (class_) >= JOB_KAGEROU        && (class_) <= JOB_OBORO          ) \
 	  ||  ( (class_) >= JOB_REBELLION      && (class_) <  JOB_MAX            ) \
 	)
-#define pcdb_checkid(class_) pcdb_checkid_sub((unsigned int)class_)
+#define pcdb_checkid(class_) pcdb_checkid_sub((unsigned int)(class_))
 
 // clientside display macros (values to the left/right of the "+")
 #if VERSION == 1
@@ -706,6 +706,22 @@ enum equip_pos {
 	)
 #endif
 
+#define pc_checkoverhp(sd) ((sd)->battle_status.hp == (sd)->battle_status.max_hp)
+#define pc_checkoversp(sd) ((sd)->battle_status.sp == (sd)->battle_status.max_sp)
+
+#define pc_readglobalreg(sd,reg)         (pc_readregistry((sd),(reg),3))
+#define pc_setglobalreg(sd,reg,val)      (pc_setregistry((sd),(reg),(val),3))
+#define pc_readglobalreg_str(sd,reg)     (pc_readregistry_str((sd),(reg),3))
+#define pc_setglobalreg_str(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val),3))
+#define pc_readaccountreg(sd,reg)        (pc_readregistry((sd),(reg),2))
+#define pc_setaccountreg(sd,reg,val)     (pc_setregistry((sd),(reg),(val),2))
+#define pc_readaccountregstr(sd,reg)     (pc_readregistry_str((sd),(reg),2))
+#define pc_setaccountregstr(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val),2))
+#define pc_readaccountreg2(sd,reg)       (pc_readregistry((sd),(reg),1))
+#define pc_setaccountreg2(sd,reg,val)    (pc_setregistry((sd),(reg),(val),1))
+#define pc_readaccountreg2str(sd,reg)    (pc_readregistry_str((sd),(reg),1))
+#define pc_setaccountreg2str(sd,reg,val) (pc_setregistry_str((sd),(reg),(val),1))
+
 int pc_class2idx(int class_);
 int pc_get_group_level(struct map_session_data *sd);
 int pc_get_group_id(struct map_session_data *sd);
@@ -715,6 +731,8 @@ bool pc_can_give_items(struct map_session_data *sd);
 bool pc_can_use_command(struct map_session_data *sd, const char *command, AtCommandType type);
 #define pc_has_permission(sd, permission) ( ((sd)->permissions&permission) != 0 )
 bool pc_should_log_commands(struct map_session_data *sd);
+
+
 
 int pc_setrestartvalue(struct map_session_data *sd,int type);
 int pc_makesavestatus(struct map_session_data *);
@@ -738,9 +756,6 @@ int pc_checkequip(struct map_session_data *sd,int pos);
 int pc_calc_skilltree(struct map_session_data *sd);
 int pc_calc_skilltree_normalize_job(struct map_session_data *sd);
 int pc_clean_skilltree(struct map_session_data *sd);
-
-#define pc_checkoverhp(sd) ((sd)->battle_status.hp == (sd)->battle_status.max_hp)
-#define pc_checkoversp(sd) ((sd)->battle_status.sp == (sd)->battle_status.max_sp)
 
 int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y, clr_type clrtype);
 int pc_setsavepoint(struct map_session_data *,short,int,int);
@@ -849,18 +864,6 @@ int pc_setreg(struct map_session_data *,int,int);
 char *pc_readregstr(struct map_session_data *sd,int reg);
 int pc_setregstr(struct map_session_data *sd,int reg,const char *str);
 
-#define pc_readglobalreg(sd,reg) pc_readregistry(sd,reg,3)
-#define pc_setglobalreg(sd,reg,val) pc_setregistry(sd,reg,val,3)
-#define pc_readglobalreg_str(sd,reg) pc_readregistry_str(sd,reg,3)
-#define pc_setglobalreg_str(sd,reg,val) pc_setregistry_str(sd,reg,val,3)
-#define pc_readaccountreg(sd,reg) pc_readregistry(sd,reg,2)
-#define pc_setaccountreg(sd,reg,val) pc_setregistry(sd,reg,val,2)
-#define pc_readaccountregstr(sd,reg) pc_readregistry_str(sd,reg,2)
-#define pc_setaccountregstr(sd,reg,val) pc_setregistry_str(sd,reg,val,2)
-#define pc_readaccountreg2(sd,reg) pc_readregistry(sd,reg,1)
-#define pc_setaccountreg2(sd,reg,val) pc_setregistry(sd,reg,val,1)
-#define pc_readaccountreg2str(sd,reg) pc_readregistry_str(sd,reg,1)
-#define pc_setaccountreg2str(sd,reg,val) pc_setregistry_str(sd,reg,val,1)
 int pc_readregistry(struct map_session_data *,const char *,int);
 int pc_setregistry(struct map_session_data *,const char *,int,int);
 char *pc_readregistry_str(struct map_session_data *,const char *,int);

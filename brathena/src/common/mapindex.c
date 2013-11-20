@@ -34,7 +34,11 @@ int max_index = 0;
 
 char mapindex_cfgfile[80] = "db/map_index.txt";
 
-#define mapindex_exists(id) (indexes[id].name[0] != '\0')
+#define mapindex_exists_sub(id) (indexes[id].name[0] != '\0')
+
+bool mapindex_exists(int id) {
+	return mapindex_exists_sub(id);
+}
 
 /// Retrieves the map name from 'string' (removing .gat extension if present).
 /// Result gets placed either into 'buf' or in a static local buffer.
@@ -119,7 +123,7 @@ int mapindex_addmap(int index, const char *name)
 		return 0;
 	}
 
-	if(mapindex_exists(index)) {
+	if(mapindex_exists_sub(index)) {
 		ShowWarning(read_message("Source.common.mapindex_add4"), index, indexes[index].name, map_name);
 		strdb_remove(mapindex_db, indexes[index].name);
 	}
@@ -149,18 +153,19 @@ unsigned short mapindex_name2id(const char *name)
 }
 
 const char* mapindex_id2name_sub(unsigned short id,const char *file, int line, const char *func) {
-	if(id > MAX_MAPINDEX || !mapindex_exists(id)) {
+	if(id > MAX_MAPINDEX || !mapindex_exists_sub(id)) {
 		ShowDebug(read_message("Source.common.mapindex_id2name"), id,file,func,line);
 		return indexes[0].name; // dummy empty string so that the callee doesn't crash
 	}
 	return indexes[id].name;
 }
 
-void mapindex_init(void)
+int mapindex_init(void)
 {
 	FILE *fp;
 	char line[1024];
-	int last_index = -1, index, lines = 0;
+	int last_index = -1;
+	int index, total = 0;
 	char map_name[12];
 
 	if((fp = fopen(mapindex_cfgfile,"r")) == NULL) {
@@ -170,12 +175,10 @@ void mapindex_init(void)
 	memset (&indexes, 0, sizeof (indexes));
 	mapindex_db = strdb_alloc(DB_OPT_DUP_KEY, MAP_NAME_LENGTH);
 	while(fgets(line, sizeof(line), fp)) {
-
-	lines++;
 	
 	#if VERSION == -1
-	if(lines >= 970)
-		lines = 0;
+	if(total >= 970)
+		total = 0;
 	#endif
 
 		if(line[0] == '/' && line[1] == '/')
@@ -185,10 +188,11 @@ void mapindex_init(void)
 			case 1: //Map with no ID given, auto-assign
 				index = last_index+1;
 			case 2: //Map with ID given
-      #if VERSION == -1
-				if(lines < 446)
-			#endif
+	#if VERSION == -1
+				if(total < 446)
+	#endif
 				mapindex_addmap(index,map_name);
+				total++;
 				break;
 			default:
 				continue;
@@ -200,6 +204,7 @@ void mapindex_init(void)
 	if(!strdb_iget(mapindex_db, MAP_DEFAULT)) {
 		ShowError("mapindex_init: MAP_DEFAULT '%s' not found in cache! update mapindex.h MAP_DEFAULT var!!!\n",MAP_DEFAULT);
 	}
+	return total;
 }
 
 int mapindex_removemap(int index)

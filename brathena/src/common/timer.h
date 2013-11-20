@@ -22,8 +22,8 @@
 #define DIFF_TICK(a,b) ((a)-(b))
 #define DIFF_TICK32(a,b) ((int32)((a)-(b)))
 
-#define INVALID_TIMER -1
-#define CLIF_WALK_TIMER -2
+#define INVALID_TIMER (-1)
+#define CLIF_WALK_TIMER (-2)
 
 // timer flags
 enum {

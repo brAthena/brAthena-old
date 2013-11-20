@@ -111,6 +111,8 @@ struct pet_data {
 	struct map_session_data *msd;
 };
 
+#define pet_stop_walking(pd, type) (unit_stop_walking(&(pd)->bl, (type)))
+#define pet_stop_attack(pd)        (unit_stop_attack(&(pd)->bl))
 
 
 int pet_create_egg(struct map_session_data *sd, int item_id);
@@ -138,9 +140,6 @@ int pet_skill_support_timer(int tid, int64 tick, int id, intptr_t data); // [Sko
 int pet_skill_bonus_timer(int tid, int64 tick, int id, intptr_t data); // [Valaris]
 int pet_recovery_timer(int tid, int64 tick, int id, intptr_t data); // [Valaris]
 int pet_heal_timer(int tid, int64 tick, int id, intptr_t data); // [Valaris]
-
-#define pet_stop_walking(pd, type) unit_stop_walking(&(pd)->bl, type)
-#define pet_stop_attack(pd) unit_stop_attack(&(pd)->bl)
 
 int read_petdb(void);
 int do_init_pet(void);

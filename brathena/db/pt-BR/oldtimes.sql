@@ -13380,6 +13380,7 @@ CREATE TABLE IF NOT EXISTS `sc_config` (
            16 - SC é considerado como buff e pode ser removido por Bastão de Hermod, etc
            32 - SC é considerado como debuff e pode ser removido por Canto de Batalha, etc.
            64 - SC não pode ser redefinida quando M.E.C.H.A. é retirado.
+		  128 - SC não pode ser redefinida por 'sc_end SC_ALL' e status change clear.
 		Exemplo:
 		SC_ENDURE, 21 //SC_ENDURE: não pode ser removido ao morrer por desencantar e é considerado como buff. (16 + 4 + 1 = 21)*/
 

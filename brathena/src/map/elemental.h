@@ -32,6 +32,9 @@
 #define EL_SKILLMODE_ASSIST 0x2
 #define EL_SKILLMODE_AGGRESSIVE 0x4
 
+#define elemental_stop_walking(ed, type) (unit_stop_walking(&(ed)->bl, (type)))
+#define elemental_stop_attack(ed)        (unit_stop_attack(&(ed)->bl))
+
 struct elemental_skill {
 	unsigned short id, lv;
 	short mode;
@@ -95,8 +98,6 @@ int elemental_clean_effect(struct elemental_data *ed);
 int elemental_action(struct elemental_data *ed, struct block_list *bl, int64 tick);
 struct skill_condition elemental_skill_get_requirements(uint16 skill_id, uint16 skill_lv);
 
-#define elemental_stop_walking(ed, type) unit_stop_walking(&(ed)->bl, type)
-#define elemental_stop_attack(ed) unit_stop_attack(&(ed)->bl)
 
 int read_elemental_skilldb(void);
 void reload_elementaldb(void);

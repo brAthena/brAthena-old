@@ -28,6 +28,12 @@ struct s_elemental;
 struct mail_message;
 struct auction_data;
 
+/**
+ * Defines
+ **/
+#define intif_rename_pc(sd, name)  (intif_rename((sd), 0, (name)))
+#define intif_rename_pet(sd, name) (intif_rename((sd), 1, (name)))
+#define intif_rename_hom(sd, name) (intif_rename((sd), 2, (name)))
 #define INTIF_PACKET_LEN_TABLE_SIZE 161
 
 int intif_parse(int fd);
@@ -82,9 +88,6 @@ int intif_request_petdata(int account_id, int char_id, int pet_id);
 int intif_save_petdata(int account_id, struct s_pet *p);
 int intif_delete_petdata(int pet_id);
 int intif_rename(struct map_session_data *sd, int type, char *name);
-#define intif_rename_pc(sd, name) intif_rename(sd, 0, name)
-#define intif_rename_pet(sd, name) intif_rename(sd, 1, name)
-#define intif_rename_hom(sd, name) intif_rename(sd, 2, name)
 int intif_homunculus_create(int account_id, struct s_homunculus *sh);
 int intif_homunculus_requestload(int account_id, int homun_id);
 int intif_homunculus_requestsave(int account_id, struct s_homunculus *sh);

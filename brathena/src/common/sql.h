@@ -23,7 +23,7 @@
 
 
 // Return codes
-#define SQL_ERROR -1
+#define SQL_ERROR (-1)
 #define SQL_SUCCESS 0
 #define SQL_NO_DATA 100
 
@@ -342,7 +342,7 @@ void SqlStmt_FreeResult(SqlStmt* self);
 #if defined(SQL_REMOVE_SHOWDEBUG)
 #define SqlStmt_ShowDebug(self) (void)0
 #else
-#define SqlStmt_ShowDebug(self) SqlStmt_ShowDebug_(self, __FILE__, __LINE__)
+#define SqlStmt_ShowDebug(self) (SqlStmt_ShowDebug_((self), __FILE__, __LINE__))
 #endif
 /// Shows debug information (with statement).
 void SqlStmt_ShowDebug_(SqlStmt* self, const char* debug_file, const unsigned long debug_line);

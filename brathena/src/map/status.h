@@ -1856,15 +1856,15 @@ int status_get_sc_type(sc_type idx);
 
 int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, int64 in_sp, int walkdelay, int flag);
 //Define for standard HP damage attacks.
-#define status_fix_damage(src, target, hp, walkdelay) status_damage(src, target, hp, 0, walkdelay, 0)
+#define status_fix_damage(src, target, hp, walkdelay) (status_damage((src), (target), (hp), 0, (walkdelay), 0))
 //Define for standard HP/SP damage triggers.
-#define status_zap(bl, hp, sp) status_damage(NULL, bl, hp, sp, 0, 1)
+#define status_zap(bl, hp, sp) (status_damage(NULL, (bl), (hp), (sp), 0, 1))
 //Define for standard HP/SP skill-related cost triggers (mobs require no HP/SP to use skills)
 int status_charge(struct block_list* bl, int64 hp, int64 sp);
 int status_percent_change(struct block_list *src,struct block_list *target,signed char hp_rate, signed char sp_rate, int flag);
 //Easier handling of status_percent_change
-#define status_percent_heal(bl, hp_rate, sp_rate) status_percent_change(NULL, bl, -(hp_rate), -(sp_rate), 0)
-#define status_percent_damage(src, target, hp_rate, sp_rate, kill) status_percent_change(src, target, hp_rate, sp_rate, (kill)?1:2)
+#define status_percent_heal(bl, hp_rate, sp_rate) (status_percent_change(NULL, (bl), -(hp_rate), -(sp_rate), 0))
+#define status_percent_damage(src, target, hp_rate, sp_rate, kill) (status_percent_change((src), (target), (hp_rate), (sp_rate), (kill)?1:2))
 //Instant kill with no drops/exp/etc
 #define status_kill(bl) status_percent_damage(NULL, bl, 100, 0, true)
 //Used to set the hp/sp of an object to an absolute value (can't kill)
@@ -1879,45 +1879,46 @@ struct status_data *status_get_base_status(struct block_list *bl);
 const char *status_get_name(struct block_list *bl);
 int status_get_class(struct block_list *bl);
 int status_get_lv(struct block_list *bl);
-#define status_get_range(bl) status_get_status_data(bl)->rhw.range
-#define status_get_hp(bl) status_get_status_data(bl)->hp
-#define status_get_max_hp(bl) status_get_status_data(bl)->max_hp
-#define status_get_sp(bl) status_get_status_data(bl)->sp
-#define status_get_max_sp(bl) status_get_status_data(bl)->max_sp
-#define status_get_str(bl) status_get_status_data(bl)->str
-#define status_get_agi(bl) status_get_status_data(bl)->agi
-#define status_get_vit(bl) status_get_status_data(bl)->vit
-#define status_get_int(bl) status_get_status_data(bl)->int_
-#define status_get_dex(bl) status_get_status_data(bl)->dex
-#define status_get_luk(bl) status_get_status_data(bl)->luk
-#define status_get_hit(bl) status_get_status_data(bl)->hit
-#define status_get_flee(bl) status_get_status_data(bl)->flee
 defType status_get_def(struct block_list *bl);
-#define status_get_mdef(bl) status_get_status_data(bl)->mdef
-#define status_get_flee2(bl) status_get_status_data(bl)->flee2
-#define status_get_def2(bl) status_get_status_data(bl)->def2
-#define status_get_mdef2(bl) status_get_status_data(bl)->mdef2
-#define status_get_critical(bl)  status_get_status_data(bl)->cri
-#define status_get_batk(bl) status_get_status_data(bl)->batk
-#define status_get_watk(bl) status_get_status_data(bl)->rhw.atk
-#define status_get_watk2(bl) status_get_status_data(bl)->rhw.atk2
-#define status_get_matk_max(bl) status_get_status_data(bl)->matk_max
-#define status_get_matk_min(bl) status_get_status_data(bl)->matk_min
-#define status_get_lwatk(bl) status_get_status_data(bl)->lhw.atk
-#define status_get_lwatk2(bl) status_get_status_data(bl)->lhw.atk2
 unsigned short status_get_speed(struct block_list *bl);
-#define status_get_adelay(bl) status_get_status_data(bl)->adelay
-#define status_get_amotion(bl) status_get_status_data(bl)->amotion
-#define status_get_dmotion(bl) status_get_status_data(bl)->dmotion
-#define status_get_element(bl) status_get_status_data(bl)->def_ele
-#define status_get_element_level(bl) status_get_status_data(bl)->ele_lv
 unsigned char status_calc_attack_element(struct block_list *bl, struct status_change *sc, int element);
-#define status_get_attack_sc_element(bl, sc) status_calc_attack_element(bl, sc, 0)
-#define status_get_attack_element(bl) status_get_status_data(bl)->rhw.ele
-#define status_get_attack_lelement(bl) status_get_status_data(bl)->lhw.ele
-#define status_get_race(bl) status_get_status_data(bl)->race
-#define status_get_size(bl) status_get_status_data(bl)->size
-#define status_get_mode(bl) status_get_status_data(bl)->mode
+#define status_get_range(bl) (status_get_status_data(bl)->rhw.range)
+#define status_get_hp(bl) (status_get_status_data(bl)->hp)
+#define status_get_max_hp(bl) (status_get_status_data(bl)->max_hp)
+#define status_get_sp(bl) (status_get_status_data(bl)->sp)
+#define status_get_max_sp(bl) (status_get_status_data(bl)->max_sp)
+#define status_get_str(bl) (status_get_status_data(bl)->str)
+#define status_get_agi(bl) (status_get_status_data(bl)->agi)
+#define status_get_vit(bl) (status_get_status_data(bl)->vit)
+#define status_get_int(bl) (status_get_status_data(bl)->int_)
+#define status_get_dex(bl) (status_get_status_data(bl)->dex)
+#define status_get_luk(bl) (status_get_status_data(bl)->luk)
+#define status_get_hit(bl) (status_get_status_data(bl)->hit)
+#define status_get_flee(bl) (status_get_status_data(bl)->flee)
+#define status_get_mdef(bl) (status_get_status_data(bl)->mdef)
+#define status_get_flee2(bl) (status_get_status_data(bl)->flee2)
+#define status_get_def2(bl) (status_get_status_data(bl)->def2)
+#define status_get_mdef2(bl) (status_get_status_data(bl)->mdef2)
+#define status_get_critical(bl)  (status_get_status_data(bl)->cri)
+#define status_get_batk(bl) (status_get_status_data(bl)->batk)
+#define status_get_watk(bl) (status_get_status_data(bl)->rhw.atk)
+#define status_get_watk2(bl) (status_get_status_data(bl)->rhw.atk2)
+#define status_get_matk_max(bl) (status_get_status_data(bl)->matk_max)
+#define status_get_matk_min(bl) (status_get_status_data(bl)->matk_min)
+#define status_get_lwatk(bl) (status_get_status_data(bl)->lhw.atk)
+#define status_get_lwatk2(bl) (status_get_status_data(bl)->lhw.atk2)
+#define status_get_adelay(bl) (status_get_status_data(bl)->adelay)
+#define status_get_amotion(bl) (status_get_status_data(bl)->amotion)
+#define status_get_dmotion(bl) (status_get_status_data(bl)->dmotion)
+#define status_get_element(bl) (status_get_status_data(bl)->def_ele)
+#define status_get_element_level(bl) (status_get_status_data(bl)->ele_lv)
+#define status_get_attack_sc_element(bl, sc) (status_calc_attack_element((bl), (sc), 0))
+#define status_get_attack_element(bl) (status_get_status_data(bl)->rhw.ele)
+#define status_get_attack_lelement(bl) (status_get_status_data(bl)->lhw.ele)
+#define status_get_race(bl) (status_get_status_data(bl)->race)
+#define status_get_size(bl) (status_get_status_data(bl)->size)
+#define status_get_mode(bl) (status_get_status_data(bl)->mode)
+
 int status_get_party_id(struct block_list *bl);
 int status_get_guild_id(struct block_list *bl);
 int status_get_emblem_id(struct block_list *bl);
@@ -1934,27 +1935,27 @@ int status_isimmune(struct block_list *bl);
 
 int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int tick, int flag);
 //Short version, receives rate in 1->100 range, and does not uses a flag setting.
-#define sc_start(bl, type, rate, val1, tick) status_change_start(bl,type,100*(rate),val1,0,0,0,tick,0)
-#define sc_start2(bl, type, rate, val1, val2, tick) status_change_start(bl,type,100*(rate),val1,val2,0,0,tick,0)
-#define sc_start4(bl, type, rate, val1, val2, val3, val4, tick) status_change_start(bl,type,100*(rate),val1,val2,val3,val4,tick,0)
+#define sc_start(bl, type, rate, val1, tick)                    (status_change_start((bl),(type),100*(rate),(val1),0,0,0,(tick),0))
+#define sc_start2(bl, type, rate, val1, val2, tick)             (status_change_start((bl),(type),100*(rate),(val1),(val2),0,0,(tick),0))
+#define sc_start4(bl, type, rate, val1, val2, val3, val4, tick) (status_change_start((bl),(type),100*(rate),(val1),(val2),(val3),(val4),(tick),0))
 
 int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val1,int val2,int val3,int val4,int tick,int flag);
 int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const char *file, int line);
-#define status_change_end(bl,type,tid) status_change_end_(bl,type,tid,__FILE__,__LINE__)
+#define status_change_end(bl,type,tid) (status_change_end_((bl),(type),(tid),__FILE__,__LINE__))
 int kaahi_heal_timer(int tid, int64 tick, int id, intptr_t data);
 int status_change_timer(int tid, int64 tick, int id, intptr_t data);
 int status_change_timer_sub(struct block_list *bl, va_list ap);
 int status_change_clear(struct block_list *bl, int type);
 int status_change_clear_buffs(struct block_list *bl, int type);
 
-#define status_calc_bl(bl, flag) status_calc_bl_(bl, (enum scb_flag)(flag), SCO_NONE)
-#define status_calc_mob(md, opt) status_calc_bl_(&(md)->bl, SCB_ALL, opt)
-#define status_calc_pet(pd, opt) status_calc_bl_(&(pd)->bl, SCB_ALL, opt)
-#define status_calc_pc(sd, opt) status_calc_bl_(&(sd)->bl, SCB_ALL, opt)
-#define status_calc_homunculus(hd, opt) status_calc_bl_(&(hd)->bl, SCB_ALL, opt)
-#define status_calc_mercenary(md, opt) status_calc_bl_(&(md)->bl, SCB_ALL, opt)
-#define status_calc_elemental(ed, opt) status_calc_bl_(&(ed)->bl, SCB_ALL, opt)
-#define status_calc_npc(nd, opt) status_calc_bl_(&(nd)->bl, SCB_ALL, opt)
+#define status_calc_bl(bl, flag)        (status_calc_bl_((bl), (enum scb_flag)(flag), SCO_NONE))
+#define status_calc_mob(md, opt)        (status_calc_bl_(&(md)->bl, SCB_ALL, (opt)))
+#define status_calc_pet(pd, opt)        (status_calc_bl_(&(pd)->bl, SCB_ALL, (opt)))
+#define status_calc_pc(sd, opt)         (status_calc_bl_(&(sd)->bl, SCB_ALL, (opt)))
+#define status_calc_homunculus(hd, opt) (status_calc_bl_(&(hd)->bl, SCB_ALL, (opt)))
+#define status_calc_mercenary(md, opt)  (status_calc_bl_(&(md)->bl, SCB_ALL, (opt)))
+#define status_calc_elemental(ed, opt)  (status_calc_bl_(&(ed)->bl, SCB_ALL, (opt)))
+#define status_calc_npc(nd, opt)        (status_calc_bl_(&(nd)->bl, SCB_ALL, (opt)))
 
 void status_calc_bl_(struct block_list *bl, enum scb_flag flag, enum e_status_calc_opt opt);
 int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt);

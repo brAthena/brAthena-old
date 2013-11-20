@@ -23,7 +23,7 @@
 
 #define HOM_MAX_LEVEL 150 // Nível máximo ( Homunculos )
 #define MAX_HOM_SKILL_REQUIRE 5
-#define homdb_checkid(id) (id >=  HM_CLASS_BASE && id <= HM_CLASS_MAX)
+#define homdb_checkid(id) ((id) >=  HM_CLASS_BASE && (id) <= HM_CLASS_MAX)
 #define homun_alive(x) ((x) && (x)->homunculus.vaporize == HOM_ST_ACTIVE && (x)->battle_status.hp > 0)
 
 struct h_stats {

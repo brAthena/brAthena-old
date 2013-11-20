@@ -18,7 +18,7 @@
 
 #include "../common/db.h"
 
-/* when a map index search fails, return results from what map? default:prontera */
+// When a map index search fails, return results from what map? default:prontera
 #define MAP_DEFAULT "prontera"
 #define MAP_DEFAULT_X 150
 #define MAP_DEFAULT_Y 150
@@ -67,12 +67,13 @@ extern char mapindex_cfgfile[80];
 #define MAP_MALAYA "malaya"
 #define MAP_ECLAGE "eclage"
 
+bool mapindex_exists(int id);
 const char *mapindex_getmapname(const char *string, char *output);
 const char *mapindex_getmapname_ext(const char *string, char *output);
 unsigned short mapindex_name2id(const char *);
-#define mapindex_id2name(n) mapindex_id2name_sub(n,__FILE__, __LINE__, __func__)
+#define mapindex_id2name(n) mapindex_id2name_sub((n),__FILE__, __LINE__, __func__)
 const char *mapindex_id2name_sub(unsigned short,const char *file, int line, const char *func);
-void mapindex_init(void);
+int mapindex_init(void);
 void mapindex_final(void);
 
 int mapindex_addmap(int index, const char *name);

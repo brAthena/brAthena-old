@@ -130,9 +130,9 @@
 #define MAX_GUILD_STORAGE 600
 #define MAX_PARTY 12
 #if VERSION == -1
-	#define MAX_GUILD 16+10*2   // increased max guild members +2 per 1 extension levels on OT [Neko]
+	#define MAX_GUILD (16+10*2)   // increased max guild members +2 per 1 extension levels on OT [Neko]
 #else	
-	#define MAX_GUILD 16+10*6   // increased max guild members +6 per 1 extension levels [Lupus]
+	#define MAX_GUILD (16+10*6)  // increased max guild members +6 per 1 extension levels [Lupus]
 #endif
 #define MAX_GUILDPOSITION 20    // increased max guild positions to accomodate for all members [Valaris] (removed) [PoW]
 #define MAX_GUILDEXPULSION 32

@@ -125,8 +125,7 @@ int other_mapserver_count=0; //Holds count of how many other map servers are onl
 //Interval at which map server sends number of connected users. [Skotlex]
 #define UPDATE_INTERVAL 10000
 //This define should spare writing the check in every function. [Skotlex]
-#define chrif_check(a) { if(!chrif_isconnected()) return a; }
-
+#define chrif_check(a) do { if(!chrif_isconnected()) return a; } while(0)
 
 /// Resets all the data.
 void chrif_reset(void)

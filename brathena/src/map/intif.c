@@ -59,7 +59,7 @@ static const int packet_len_table[INTIF_PACKET_LEN_TABLE_SIZE]= {
 };
 
 extern int char_fd; // inter server Fd used for char_fd
-#define inter_fd char_fd    // alias
+#define inter_fd (char_fd)    // alias
 
 //-----------------------------------------------------------------
 // Send to inter server

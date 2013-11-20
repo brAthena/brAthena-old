@@ -983,7 +983,7 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	struct mmo_charstatus p;
 	int j = 0, i;
 	char last_map[MAP_NAME_LENGTH_EXT];
-	time_t unban_time;
+	time_t unban_time = 0;
 
 	stmt = SqlStmt_Malloc(sql_handle);
 	if(stmt == NULL) {
@@ -3855,7 +3855,7 @@ int parse_char(int fd)
 
 	while(RFIFOREST(fd) >= 2) {
 		//For use in packets that depend on an sd being present [Skotlex]
-#define FIFOSD_CHECK(rest) { if(RFIFOREST(fd) < rest) return 0; if (sd==NULL || !sd->auth) { RFIFOSKIP(fd,rest); return 0; } }
+#define FIFOSD_CHECK(rest) do { if(RFIFOREST(fd) < (rest)) return 0; if (sd==NULL || !sd->auth) { RFIFOSKIP(fd,(rest)); return 0; } } while (0)
 
 		cmd = RFIFOW(fd,0);
 		switch(cmd) {

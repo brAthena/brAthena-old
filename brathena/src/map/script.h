@@ -34,9 +34,9 @@ struct eri;
  **/
 // TODO: Remove temporary code
 //#define ENABLE_CASE_CHECK
-#define DeprecationWarning(func, bad, good, file, line) ShowWarning("%s: use of deprecated keyword '%s' (use '%s' instead) in file '%s', line '%d'. This will be a critical error in a near future.\n", func, bad, good, file, line);
-#define DeprecationWarning2(func, bad, good, where) ShowWarning("%s: detected possible use of wrong case in a script. Found '%s', probably meant to be '%s' (in '%s'). If it is a local (.@) variable, and you're absolutely sure you used the correct case, please disragard this message, otherwise please correct your scripts, as this will become fatal in a near future.\n", func, bad, good, where);
-#define disp_deprecation_message(func, good, p) disp_warning_message(func": use of deprecated keyword (use '"good"' instead). This will be a critical error in a near future.", p);
+#define DeprecationWarning(func, bad, good, file, line) ShowWarning("%s: use of deprecated keyword '%s' (use '%s' instead) in file '%s', line '%d'. This will be a critical error in a near future.\n", (func), (bad), (good), (file), (line));
+#define DeprecationWarning2(func, bad, good, where) ShowWarning("%s: detected possible use of wrong case in a script. Found '%s', probably meant to be '%s' (in '%s'). This will become fatal in a near future.\n", (func), (bad), (good), (where));
+#define disp_deprecation_message(func, good, p) disp_warning_message(func": use of deprecated keyword (use '"good"' instead). This will be a critical error in a near future.", (p));
 
 #define NUM_WHISPER_VAR 10
 
@@ -83,24 +83,24 @@ struct eri;
 /// Returns the index of the last data in the stack
 #define script_lastdata(st) ( (st)->end - (st)->start - 1 )
 /// Pushes an int into the stack
-#define script_pushint(st,val) push_val((st)->stack, C_INT, (val),NULL)
+#define script_pushint(st,val) (push_val((st)->stack, C_INT, (val),NULL))
 /// Pushes a string into the stack (script engine frees it automatically)
-#define script_pushstr(st,val) push_str((st)->stack, C_STR, (val))
+#define script_pushstr(st,val) (push_str((st)->stack, C_STR, (val)))
 /// Pushes a copy of a string into the stack
-#define script_pushstrcopy(st,val) push_str((st)->stack, C_STR, aStrdup(val))
+#define script_pushstrcopy(st,val) (push_str((st)->stack, C_STR, aStrdup(val)))
 /// Pushes a constant string into the stack (must never change or be freed)
-#define script_pushconststr(st,val) push_str((st)->stack, C_CONSTSTR, (val))
+#define script_pushconststr(st,val) (push_str((st)->stack, C_CONSTSTR, (val)))
 /// Pushes a nil into the stack
-#define script_pushnil(st) push_val((st)->stack, C_NOP, 0,NULL)
+#define script_pushnil(st) (push_val((st)->stack, C_NOP, 0,NULL))
 /// Pushes a copy of the data in the target index
-#define script_pushcopy(st,i) push_copy((st)->stack, (st)->start + (i))
+#define script_pushcopy(st,i) (push_copy((st)->stack, (st)->start + (i)))
 
-#define script_isstring(st,i) data_isstring(script_getdata(st,i))
-#define script_isint(st,i) data_isint(script_getdata(st,i))
+#define script_isstring(st,i) data_isstring(script_getdata((st),(i)))
+#define script_isint(st,i) data_isint(script_getdata((st),(i)))
 
-#define script_getnum(st,val) conv_num(st, script_getdata(st,val))
-#define script_getstr(st,val) conv_str(st, script_getdata(st,val))
-#define script_getref(st,val) ( script_getdata(st,val)->ref )
+#define script_getnum(st,val) (conv_num((st), script_getdata((st),(val))))
+#define script_getstr(st,val) (conv_str((st), script_getdata((st),(val))))
+#define script_getref(st,val) ( script_getdata((st),(val))->ref )
 
 // Note: "top" functions/defines use indexes relative to the top of the stack
 //       -1 is the index of the data at the top
@@ -156,9 +156,12 @@ struct eri;
 #define not_array_variable(prefix) ( (prefix) != '$' && (prefix) != '@' && (prefix) != '.' && (prefix) != '\'' )
 #define is_string_variable(name) ( (name)[strlen(name) - 1] == '$' )
 
-#define FETCH(n, t) \
-	if( script_hasdata(st,n) ) \
-		(t)=script_getnum(st,n);
+#define script_fetch(st, n, t) do { \
+	if( script_hasdata((st),(n)) ) \
+		(t)=script_getnum((st),(n)); \
+	else \
+		(t) = 0; \
+} while(0)
 
 
 /**
