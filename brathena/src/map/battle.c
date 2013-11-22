@@ -613,34 +613,34 @@ int64 battle_calc_sizefix(struct map_session_data *sd, int64 damage, int type, i
  *------------------------------------------*/
 int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,int64 dmg,int type)
 {
-	int64 damage,skill;
+	int64 damage;
 	struct status_data *status = status_get_status_data(target);
-	int weapon;
+	int weapon, skill_lv;
 	damage = dmg;
 
 	nullpo_ret(sd);
 
-	if((skill = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
+	if((skill_lv = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
 		target->type == BL_MOB && //This bonus doesnt work against players.
 		(battle_check_undead(status->race,status->def_ele) || status->race==RC_DEMON))
 	#if VERSION == -1
-		damage += (skill * 3);
+		damage += (skill_lv * 3);
 	#else
-		damage += (int)(skill*(3+sd->status.base_level/20.0));
+		damage += (int)(skill_lv*(3+sd->status.base_level/20.0));
 	#endif
 
-	if((skill = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLANT || status->race == RC_FISH))
-		damage += (skill * 5);
-	if((skill = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH))
-		damage += (skill * 10);
+	if((skill_lv = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLANT || status->race == RC_FISH))
+		damage += (skill_lv * 5);
+	if((skill_lv = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH))
+		damage += (skill_lv * 10);
 	if(pc_ismadogear(sd))
 		damage += 20 + 20 * pc_checkskill(sd, NC_MADOLICENCE);
 	#if VERSION == 1
-	if((skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
-		damage += (skill * 2);
+	if((skill_lv = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
+		damage += (skill_lv * 2);
 	#endif
-	if((skill = pc_checkskill(sd,HT_BEASTBANE)) > 0 && (status->race==RC_BRUTE || status->race==RC_INSECT)) {
-		damage += (skill * 4);
+	if((skill_lv = pc_checkskill(sd,HT_BEASTBANE)) > 0 && (status->race==RC_BRUTE || status->race==RC_INSECT)) {
+		damage += (skill_lv * 4);
 		if (sd->sc.data[SC_SOULLINK] && sd->sc.data[SC_SOULLINK]->val2 == SL_HUNTER)
 			damage += sd->status.str;
 	}
@@ -653,71 +653,71 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 	{
 		case W_1HSWORD:
 			#if VERSION == 1
-				if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
-					damage += (skill * 3);
+				if((skill_lv = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
+					damage += (skill_lv * 3);
 			#endif
 		case W_DAGGER:
-			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
-				damage += (skill * 4);
-			if((skill = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
-				damage += skill * 10;
+			if((skill_lv = pc_checkskill(sd,SM_SWORD)) > 0)
+				damage += (skill_lv * 4);
+			if((skill_lv = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
+				damage += skill_lv * 10;
 			break;
 		case W_2HSWORD:
 			#if VERSION == 1
-				if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
-					damage += (skill * 3);
+				if((skill_lv = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
+					damage += (skill_lv * 3);
 			#endif
-			if((skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
-				damage += (skill * 4);
+			if((skill_lv = pc_checkskill(sd,SM_TWOHAND)) > 0)
+				damage += (skill_lv * 4);
 			break;
 		case W_1HSPEAR:
 		case W_2HSPEAR:
-			if((skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0) {
+			if((skill_lv = pc_checkskill(sd,KN_SPEARMASTERY)) > 0) {
 				if(pc_isridingdragon(sd))
-					damage += (skill * 10);
+					damage += (skill_lv * 10);
 				else if(pc_isriding(sd))
-					damage += (skill * 5);
+					damage += (skill_lv * 5);
 				else 
-					damage += (skill * 4);
+					damage += (skill_lv * 4);
 			}
 			break;
 		case W_1HAXE:
 		case W_2HAXE:
-			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
-				damage += (skill * 3);
-			if((skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
-				damage += (skill * 5);
+			if((skill_lv = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
+				damage += (skill_lv * 3);
+			if((skill_lv = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
+				damage += (skill_lv * 5);
 			break;
 		case W_MACE:
 		case W_2HMACE:
-			if((skill = pc_checkskill(sd,PR_MACEMASTERY)) > 0)
-				damage += (skill * 3);
-			if((skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
-				damage += (skill * 5);
+			if((skill_lv = pc_checkskill(sd,PR_MACEMASTERY)) > 0)
+				damage += (skill_lv * 3);
+			if((skill_lv = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
+				damage += (skill_lv * 5);
 			break;
 		case W_FIST:
-			if((skill = pc_checkskill(sd,TK_RUN)) > 0)
-				damage += (skill * 10);
+			if((skill_lv = pc_checkskill(sd,TK_RUN)) > 0)
+				damage += (skill_lv * 10);
 			// No break, fallthrough to Knuckles
 		case W_KNUCKLE:
-			if((skill = pc_checkskill(sd,MO_IRONHAND)) > 0)
-				damage += (skill * 3);
+			if((skill_lv = pc_checkskill(sd,MO_IRONHAND)) > 0)
+				damage += (skill_lv * 3);
 			break;
 		case W_MUSICAL:
-			if((skill = pc_checkskill(sd,BA_MUSICALLESSON)) > 0)
-				damage += (skill * 3);
+			if((skill_lv = pc_checkskill(sd,BA_MUSICALLESSON)) > 0)
+				damage += (skill_lv * 3);
 			break;
 		case W_WHIP:
-			if((skill = pc_checkskill(sd,DC_DANCINGLESSON)) > 0)
-				damage += (skill * 3);
+			if((skill_lv = pc_checkskill(sd,DC_DANCINGLESSON)) > 0)
+				damage += (skill_lv * 3);
 			break;
 		case W_BOOK:
-			if((skill = pc_checkskill(sd,SA_ADVANCEDBOOK)) > 0)
-				damage += (skill * 3);
+			if((skill_lv = pc_checkskill(sd,SA_ADVANCEDBOOK)) > 0)
+				damage += (skill_lv * 3);
 			break;
 		case W_KATAR:
-			if((skill = pc_checkskill(sd,AS_KATAR)) > 0)
-				damage += (skill * 3);
+			if((skill_lv = pc_checkskill(sd,AS_KATAR)) > 0)
+				damage += (skill_lv * 3);
 			break;
 	}
 
@@ -728,7 +728,7 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
  * Calculates ATK masteries.
  *------------------------------------------*/
 int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv, int64 damage, int div, bool left, bool weapon){
-	int skill, i;
+	int skill2_lv, i;
 	struct status_change *sc;
 	struct map_session_data *sd;
 	struct status_data *tstatus;
@@ -753,12 +753,12 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 		case CR_ACIDDEMONSTRATION:
 			return damage;
 		case NJ_SYURIKEN:
-			if((skill = pc_checkskill(sd,NJ_TOBIDOUGU)) > 0 
+			if((skill2_lv = pc_checkskill(sd,NJ_TOBIDOUGU)) > 0 
 #if VERSION != 1
 				&& weapon
 #endif
 				)
-				damage += 3 * skill;
+				damage += 3 * skill2_lv;
 			break;	
 #if VERSION != 1
 		case NJ_KUNAI:
@@ -818,17 +818,17 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 		damage += div * sd->spiritball * 3;
 	if(skill_id != CR_SHIELDBOOMERANG) // Only Shield boomerang doesn't takes the Star Crumbs bonus.
 		damage += div * (left ? sd->left_weapon.star : sd->right_weapon.star);
-	if(skill_id != MC_CARTREVOLUTION && (skill=pc_checkskill(sd,BS_HILTBINDING)) > 0)
+	if(skill_id != MC_CARTREVOLUTION && (skill2_lv=pc_checkskill(sd,BS_HILTBINDING)) > 0)
 		damage += 4;
 
-	if(sd->status.party_id && (skill=pc_checkskill(sd,TK_POWER)) > 0) {
+	if(sd->status.party_id && (skill_lv=pc_checkskill(sd,TK_POWER)) > 0) {
 		if((i = party_foreachsamemap(party_sub_count, sd, 0)) > 1)
-			damage += 2 * skill * i * (damage /*+ unknown value*/)  / 100 /*+ unknown value*/;
+			damage += 2 * skill_lv * i * (damage /*+ unknown value*/)  / 100 /*+ unknown value*/;
 	}
 #else
 	if(skill_id != ASC_BREAKER && weapon) // Adv Katar Mastery is does not applies to ASC_BREAKER, but other masteries DO apply >_>
-		if(sd->status.weapon == W_KATAR && (skill=pc_checkskill(sd,ASC_KATAR)) > 0)
-			damage += damage * (10 + 2 * skill) / 100;
+		if(sd->status.weapon == W_KATAR && (skill2_lv=pc_checkskill(sd,ASC_KATAR)) > 0)
+			damage += damage * (10 + 2 * skill2_lv) / 100;
 #endif
 
 	// percentage factor masteries
@@ -836,18 +836,18 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 		i = 2; //Star anger
 	else
 		ARR_FIND(0, MAX_PC_FEELHATE, i, status_get_class(target) == sd->hate_mob[i]);
-	if(i < MAX_PC_FEELHATE && (skill=pc_checkskill(sd,sg_info[i].anger_id)) && weapon) {
+	if(i < MAX_PC_FEELHATE && (skill2_lv=pc_checkskill(sd,sg_info[i].anger_id)) && weapon) {
 		int ratio = sd->status.base_level + status_get_dex(src) + status_get_luk(src);
 		if( i == 2) ratio += status_get_str(src); //Star Anger
-		if(skill < 4)
-			ratio /= (12 - 3 * skill);
+		if(skill2_lv < 4)
+			ratio /= (12 - 3 * skill2_lv);
 		damage += damage * ratio / 100;
 	}
 
 	if(sd->status.class_ == JOB_ARCH_BISHOP_T || sd->status.class_ == JOB_ARCH_BISHOP) {
-		if((skill = pc_checkskill(sd,AB_EUCHARISTICA)) > 0 &&
+		if((skill2_lv = pc_checkskill(sd,AB_EUCHARISTICA)) > 0 &&
 			(tstatus->race == RC_DEMON || tstatus->def_ele == ELE_DARK))
-			damage += damage * skill / 100;
+			damage += damage * skill2_lv / 100;
 	}
 
 	return damage;

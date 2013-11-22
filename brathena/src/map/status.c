@@ -7931,8 +7931,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					stat = (psce->val4 >>16)&0xFF; stat = min(stat, max_stat - status->int_); val4 |= cap_value(stat,0,0xFF)<<16;
 					stat = (psce->val4 >> 8)&0xFF; stat = min(stat, max_stat - status->dex); val4 |= cap_value(stat,0,0xFF)<<8;
 					stat = (psce->val4 >> 0)&0xFF; stat = min(stat, max_stat - status->luk); val4 |= cap_value(stat,0,0xFF);
-					break;
-				}
+			}
+				break;
 			case SC_SWORDREJECT:
 				val2 = 15*val1; //Reflect chance
 				val3 = 3; //Reflections
@@ -11666,20 +11666,20 @@ int status_readdb(void)
 
 	// initialize databases to default
 	//
-
+	if(runflag == MAPSERVER_ST_RUNNING ) {
 	// reset job_db1 data
-	memset(max_weight_base, 0, sizeof(max_weight_base));
-	memset(hp_coefficient, 0, sizeof(hp_coefficient));
-	memset(hp_coefficient2, 0, sizeof(hp_coefficient2));
-	memset(sp_coefficient, 0, sizeof(sp_coefficient));
+		memset(max_weight_base, 0, sizeof(max_weight_base));
+		memset(hp_coefficient, 0, sizeof(hp_coefficient));
+		memset(hp_coefficient2, 0, sizeof(hp_coefficient2));
+		memset(sp_coefficient, 0, sizeof(sp_coefficient));
 	memset(aspd_base, 0, sizeof(aspd_base));
-	// reset job_db2 data
-	memset(job_bonus,0,sizeof(job_bonus)); // Job-specific stats bonus
-
+		// reset job_db2 data
+		memset(job_bonus,0,sizeof(job_bonus)); // Job-specific stats bonus
+	}
 	// size_fix.txt
-	for(i=0; i<ARRAYLENGTH(atkmods); i++)
-		for(j=0; j<MAX_WEAPON_TYPE; j++)
-			atkmods[i][j]=100;
+	for(i = 0; i < ARRAYLENGTH(atkmods); i++)
+		for(j = 0; j < MAX_WEAPON_TYPE; j++)
+			atkmods[i][j] = 100;
 
 	// refine_db.txt
 	for(i=0; i<ARRAYLENGTH(refine_info); i++) {
