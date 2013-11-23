@@ -687,7 +687,6 @@ static void itemdb_read_itemgroup(void)
 	return;
 }
 
-#if VERSION != -1
 /* [Ind] - HCache for Packages */
 void itemdb_write_cached_packages(const char *config_filename) {
 	FILE *file;
@@ -891,6 +890,8 @@ void itemdb_read_packages(void) {
 	const char *config_filename = "db/PackageItem_re.conf"; // FIXME hardcoded name
 #elif VERSION == 0
 	const char *config_filename = "db/PackageItem_pre-re.conf"; // FIXME hardcoded name
+#else
+	const char *config_filename = "db/PackageItem_ot.conf"; // FIXME hardcoded name
 #endif
 	const char *itname;
 	int i = 0, cnt = 0, c = 0, highest_gcnt = 0;
@@ -1148,7 +1149,6 @@ void itemdb_read_packages(void) {
 
 	ShowConf("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", cnt, config_filename);
 }
-#endif
 /*==========================================
  * Reads bound restrictions [Megasantos/brAthena]
  *------------------------------------------*/
@@ -1696,9 +1696,7 @@ static void itemdb_read(void)
 
 	itemdb_read_combos();
 	itemdb_read_itemgroup();
-#if VERSION != -1
 	itemdb->read_packages();
-#endif
 
 	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail);
 	sv_readsqldb(get_database_name(22), NULL, 10, -1, &ItemMoveInfo);
@@ -1909,12 +1907,10 @@ void itemdb_defaults(void) {
 	/* */
 	itemdb->names = NULL;
 	/* */
-#if VERSION != -1
 	itemdb->read_packages = itemdb_read_packages;
 	/* */
 	itemdb->write_cached_packages = itemdb_write_cached_packages;
 	itemdb->read_cached_packages = itemdb_read_cached_packages;
-#endif
 	/* */
 	itemdb->name2id = itemdb_name2id;
 	itemdb->package_item = itemdb_package_item;
