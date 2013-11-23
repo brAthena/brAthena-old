@@ -471,7 +471,7 @@ moc_fild15,57,39,0,0	monster#ot	Planta Amarela	YELLOW_PLANT,1,180000,0,1,{}
 moc_fild16,0,0,0,0	monster#ot	Muka	MUKA,25,0,0,0
 moc_fild16,0,0,0,0	monster#ot	Metaller	METALLER,15,0,0,0
 moc_fild16,0,0,0,0	monster#ot	Hode	HODE,40,0,0,0
-moc_fild16,0,0,0,0	monster#ot			SAND_MAN,40,0,0,0,{}
+moc_fild16,0,0,0,0	monster#ot	Arenoso	SAND_MAN,40,0,0,0,{}
 
 //==================================================
 // [Pré-Renovação] moc_fild16 - Deserto de Sograt
