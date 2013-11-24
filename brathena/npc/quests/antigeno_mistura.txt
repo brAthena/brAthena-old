@@ -401,7 +401,7 @@ geffen,181,114,3	script	Aure Dupon#cm	4_KID01,{
 	close;
 }
 
-geffen_in,141,140,3	script	Molgenstein#cm	121,{
+geffen_in,141,140,3	script	Molgenstein#cm	2_M_MOLGENSTEIN,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere um minuto !! -";
 		mes "- você está carregando -";

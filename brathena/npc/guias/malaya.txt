@@ -27,53 +27,46 @@
 
 malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	4_F_BARYO_WOMAN,{
 	mes "[Guia do Porto de Malaya]";
+	mes "Bem-vindo ao ^8B4513Porto de Malaya^000000, o Vilareijo da Respiração.";
 	mes "Onde as culturas e lendas ganham vida!";
-	mes "A Respiração do Vilarejo, o Porto Malaya te deseja as boas-vindas.";
 	mes "Eu irei te mostrar o vilarejo.";
-	mes "Por favor, diga-me o que deseja saber.";
 	F_Navi("[Guia de Porto Malaya]");
 	while(1) {
 		next;
 		switch(select("[ Funcionária Kafra ]:[ Hospedaria & Taverna ]:[ Loja de Armas ]:[ Loja de Utilidades ]:[ Hospital ]:[ Parque ]:[ Porto ]:Limpar o mini-mapa.:Cancelar")) {
 		case 1:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização da ^A82FF0Funcionária Kafra^000000 será marcada em seu mini-mapa.";
+			callsub L_Mark, "^0000FFFuncionária Kafra^000000",1;
 			viewpoint 1,71,79,0,0x0A82FF;
 			viewpoint 1,234,204,1,0x0A82FF;
 			break;
 		case 2:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização da "+F_Navi("Hospedaria & Taverna","malaya,193,215","^006400")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Hospedaria & Taverna","malaya,193,215","^006400");
 			viewpoint 1,193,215,2,0xAAFF00;
 			break;
 		case 3:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização da "+F_Navi("Loja de Armas","malaya,114,212","^008080")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Loja de Armas","malaya,114,212","^008080");
 			viewpoint 1,114,212,3,0x4F543C;
 			break;
 		case 4:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização da "+F_Navi("Loja de Utilidades","malaya,297,167","^FF1493")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Loja de Utilidades","malaya,297,167","^FF1493");
 			viewpoint 1,297,167,4,0xFF1493;
 			break;
 		case 5:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização do "+F_Navi("Hospital","malaya,50,75","^8B4513")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Hospital","malaya,50,75","^8B4513");
 			viewpoint 1,50,75,5,0x8B4513;
 			break;
 		case 6:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização do "+F_Navi("Parque","malaya,280,371","^8B4513")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Parque","malaya,280,371","^8B4513");
 			viewpoint 1,280,371,6,0x8B4513;
 			break;
 		case 7:
-			mes "[Guia do Porto de Malaya]";
-			mes "A localização do "+F_Navi("Porto","malaya,276,55","^8A2BE2")+" será marcada em seu mini-mapa.";
+			callsub L_Mark, F_Navi("Porto","malaya,276,55","^8A2BE2");
 			viewpoint 1,276,55,7,0x8A2BE2;
 			break;
 		case 8:
 			mes "[Guia do Porto de Malaya]";
-			mes "Indicações removidas.";
+			mes "Eu vou remover todas as marcações do seu mini-mapa.";
+			mes "Há mais alguma coisa que posso fazer por você?";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -86,11 +79,17 @@ malaya,71,72,4	script	Guia do Porto de Malaya#02::Malaya	4_F_BARYO_WOMAN,{
 		case 9:
 			mes "[Guia do Porto de Malaya]";
 			mes "Espero que aproveite sua estadia.";
-			close;	
+			close;
 		}
-		mes "Com o que mais posso te ajudar?";
 	}
 	end;
+L_Mark:
+	mes "[Guia do Porto de Malaya]";
+	mes "A "+getarg(0)+" "+((getarg(1,0))?"serão":"será");
+	mes "marcado no seu mini-mapa.";
+	mes "Cheque seu mini-map.";
+	mes "Há mais alguma coisa que posso fazer por você?";
+	return;
 }
 malaya,250,83,6	duplicate(Malaya)	Guia do Porto de Malaya#02Mal	4_F_BARYO_WOMAN
 malaya,224,204,6	duplicate(Malaya)	Guia do Porto de Malaya#03Mal	4_F_BARYO_WOMAN
