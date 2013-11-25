@@ -10907,7 +10907,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 		case RA_ICEBOUNDTRAP: {
 				struct skill_condition req = skill_get_requirement(sd,skill_id,skill_lv);
 				ARR_FIND(0, MAX_SKILL_ITEM_REQUIRE, i, req.itemid[i] && (req.itemid[i] == ITEMID_TRAP || req.itemid[i] == ITEMID_TRAP_ALLOY));
-				if(req.itemid[i])
+				if(i != MAX_SKILL_ITEM_REQUIRE && req.itemid[i])
 					req_item = req.itemid[i];
 				if(map_flag_gvg2(src->m) || map[src->m].flag.battleground)
 					limit *= 4; // longer trap times in WOE [celest]

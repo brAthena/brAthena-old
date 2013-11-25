@@ -2827,7 +2827,7 @@ ACMD_FUNC(char_block)
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
 	if(!message || !*message || sscanf(message, "%23[^\n]", atcmd_player_name) < 1) {
-		clif_displaymessage(fd, msg_txt(1021)); // Please enter a player name (usage: @charblock/@block <char name>).
+		clif_displaymessage(fd, msg_txt(1021)); // Please enter a player name (usage: @block <char name>).
 		return -1;
 	}
 
@@ -2864,7 +2864,7 @@ ACMD_FUNC(char_ban)
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
 	if(!message || !*message || sscanf(message, "%255s %23[^\n]", atcmd_output, atcmd_player_name) < 2) {
-		clif_displaymessage(fd, msg_txt(1022)); // Please enter ban time and a player name (usage: @charban/@ban/@banish/@charbanish <time> <char name>).
+		clif_displaymessage(fd, msg_txt(1022)); // Please enter ban time and a player name (usage: @ban <time> <char name>).
 		return -1;
 	}
 
@@ -2944,7 +2944,7 @@ ACMD_FUNC(char_unblock)
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
 	if(!message || !*message || sscanf(message, "%23[^\n]", atcmd_player_name) < 1) {
-		clif_displaymessage(fd, msg_txt(1024)); // Please enter a player name (usage: @charunblock <char name>).
+		clif_displaymessage(fd, msg_txt(1024)); // Please enter a player name (usage: @unblock <char name>).
 		return -1;
 	}
 
@@ -2965,7 +2965,7 @@ ACMD_FUNC(char_unban)
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
 
 	if(!message || !*message || sscanf(message, "%23[^\n]", atcmd_player_name) < 1) {
-		clif_displaymessage(fd, msg_txt(1025)); // Please enter a player name (usage: @charunban <char name>).
+		clif_displaymessage(fd, msg_txt(1025)); // Please enter a player name (usage: @unban <char name>).
 		return -1;
 	}
 
@@ -4427,10 +4427,9 @@ ACMD_FUNC(unloadnpc)
 char *txt_time(unsigned int duration)
 {
 	int days, hours, minutes, seconds;
-	char temp[CHAT_SIZE_MAX];
 	static char temp1[CHAT_SIZE_MAX];
+	int tlen = 0;
 
-	memset(temp, '\0', sizeof(temp));
 	memset(temp1, '\0', sizeof(temp1));
 
 	days = duration / (60 * 60 * 24);
@@ -4441,21 +4440,21 @@ char *txt_time(unsigned int duration)
 	seconds = duration - (60 * minutes);
 
 	if(days == 1)
-		sprintf(temp, msg_txt(219), days); // %d day
+		tlen += sprintf(tlen + temp1, msg_txt(219), days); // %d day
 	else if(days > 1)
-		sprintf(temp, msg_txt(220), days); // %d days
+		tlen += sprintf(tlen + temp1, msg_txt(220), days); // %d days
 	if(hours == 1)
-		sprintf(temp1, msg_txt(221), temp, hours); // %s %d hour
+		tlen += sprintf(tlen + temp1, msg_txt(221), hours); // %d hour
 	else if(hours > 1)
-		sprintf(temp1, msg_txt(222), temp, hours); // %s %d hours
+		tlen += sprintf(tlen + temp1, msg_txt(222), hours); // %d hours
 	if(minutes < 2)
-		sprintf(temp, msg_txt(223), temp1, minutes); // %s %d minute
+		tlen += sprintf(tlen + temp1, msg_txt(223), minutes); // %d minute
 	else
-		sprintf(temp, msg_txt(224), temp1, minutes); // %s %d minutes
+		tlen += sprintf(tlen + temp1, msg_txt(224), minutes); // %d minutes
 	if(seconds == 1)
-		sprintf(temp1, msg_txt(225), temp, seconds); // %s and %d second
+		tlen += sprintf(tlen + temp1, msg_txt(225), seconds); // and %d second
 	else if(seconds > 1)
-		sprintf(temp1, msg_txt(226), temp, seconds); // %s and %d seconds
+		tlen += sprintf(tlen + temp1, msg_txt(226), seconds); // and %d seconds
 
 	return temp1;
 }
@@ -4466,8 +4465,7 @@ char *txt_time(unsigned int duration)
  *------------------------------------------*/
 ACMD_FUNC(servertime)
 {
-	const struct TimerData *timer_data;
-	const struct TimerData *timer_data2;
+
 	time_t time_server;  // variable for number of seconds (used with time() function)
 	struct tm *datetime; // variable for time in structure ->tm_mday, ->tm_sec, ...
 	char temp[CHAT_SIZE_MAX];
@@ -4481,34 +4479,11 @@ ACMD_FUNC(servertime)
 	strftime(temp, sizeof(temp)-1, msg_txt(230), datetime); // Server time (normal time): %A, %B %d %Y %X.
 	clif_displaymessage(fd, temp);
 
-	if(battle_config.night_duration == 0 && battle_config.day_duration == 0) {
-		if(night_flag == 0)
-			clif_displaymessage(fd, msg_txt(231)); // Game time: The game is in permanent daylight.
-		else
-			clif_displaymessage(fd, msg_txt(232)); // Game time: The game is in permanent night.
-	} else if(battle_config.night_duration == 0)
-		if(night_flag == 1) {  // we start with night
-			timer_data = get_timer(day_timer_tid);
-			sprintf(temp, msg_txt(233), // Game time: The game is actualy in night for %s.
-				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
+	if (day_timer_tid != INVALID_TIMER && night_timer_tid != INVALID_TIMER) {
+		const struct TimerData * timer_data = get_timer(night_timer_tid);
+		const struct TimerData * timer_data2 = get_timer(day_timer_tid);
 
-			clif_displaymessage(fd, temp);
-			clif_displaymessage(fd, msg_txt(234)); // Game time: After, the game will be in permanent daylight.
-		} else
-			clif_displaymessage(fd, msg_txt(231)); // Game time: The game is in permanent daylight.
-	else if(battle_config.day_duration == 0)
-		if(night_flag == 0) {  // we start with day
-			timer_data = get_timer(night_timer_tid);
-			sprintf(temp, msg_txt(235), // Game time: The game is actualy in daylight for %s.
-				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
-			clif_displaymessage(fd, temp);
-			clif_displaymessage(fd, msg_txt(236)); // Game time: After, the game will be in permanent night.
-		} else
-			clif_displaymessage(fd, msg_txt(232)); // Game time: The game is in permanent night.
-	else {
 		if(night_flag == 0) {
-			timer_data = get_timer(night_timer_tid);
-			timer_data2 = get_timer(day_timer_tid);
 			sprintf(temp, msg_txt(235), // Game time: The game is actualy in daylight for %s.
 				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick())/1000)));
 			clif_displaymessage(fd, temp);
@@ -4520,21 +4495,24 @@ ACMD_FUNC(servertime)
 					txt_time((unsigned int)(DIFF_TICK(timer_data2->tick,timer_data->tick)/1000)));
 			clif_displaymessage(fd, temp);
 		} else {
-			timer_data = get_timer(day_timer_tid);
-			timer_data2 = get_timer(night_timer_tid);
 			sprintf(temp, msg_txt(233), // Game time: The game is actualy in night for %s.
-				txt_time((unsigned int)(DIFF_TICK(timer_data->tick,gettick()) / 1000)));
+				txt_time((unsigned int)(DIFF_TICK(timer_data2->tick,gettick()) / 1000)));
 			clif_displaymessage(fd, temp);
-			if(DIFF_TICK(timer_data->tick,timer_data2->tick) > 0)
+			if(DIFF_TICK(timer_data2->tick,timer_data->tick) > 0)
 				sprintf(temp, msg_txt(239), // Game time: After, the game will be in daylight for %s.
-					txt_time((unsigned int)((timer_data->interval - DIFF_TICK(timer_data->tick, timer_data2->tick)) / 1000)));
+					txt_time((unsigned int)((timer_data2->interval - DIFF_TICK(timer_data2->tick, timer_data->tick)) / 1000)));
 			else
 				sprintf(temp, msg_txt(239), // Game time: After, the game will be in daylight for %s.
-					txt_time((unsigned int)(DIFF_TICK(timer_data2->tick, timer_data->tick) / 1000)));
+					txt_time((unsigned int)(DIFF_TICK(timer_data->tick, timer_data2->tick) / 1000)));
 			clif_displaymessage(fd, temp);
 		}
-		sprintf(temp, msg_txt(238), txt_time(timer_data->interval / 1000)); // Game time: A day cycle has a normal duration of %s.
-			clif_displaymessage(fd, temp);
+		sprintf(temp, msg_txt(238), txt_time(timer_data2->interval / 1000)); // Game time: A day cycle has a normal duration of %s.
+		clif_displaymessage(fd, temp);
+	} else {
+		if(night_flag == 0)
+			clif_displaymessage(fd, msg_txt(231)); // Game time: The game is in permanent daylight.
+		else
+			clif_displaymessage(fd, msg_txt(232)); // Game time: The game is in permanent night.
 	}
 
 	return 0;
