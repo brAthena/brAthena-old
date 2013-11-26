@@ -185,7 +185,7 @@ struct skill_unit {
 
 	int limit;
 	int val1,val2;
-	short alive,range;
+	char alive,range;
 };
 
 #define MAX_SKILLUNITGROUPTICKSET 25

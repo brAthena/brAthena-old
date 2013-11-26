@@ -4817,7 +4817,7 @@ ACMD_FUNC(disguise)
 
 	if(sd->sc.data[SC_MONSTER_TRANSFORM])
 	{
-		clif_displaymessage(fd, msg_txt(1490)); // Character cannot be disguised while in monster form.
+		clif_displaymessage(fd, msg_txt(1489)); // Character cannot be disguised while in monster form.
 		return -1;
 	}
 

@@ -481,7 +481,7 @@ void clif_deleteskill(struct map_session_data *sd, int id);
 
 int clif_guild_skillup(struct map_session_data *sd,uint16 skill_id,int lv);
 
-void clif_getareachar_skillunit(struct map_session_data *sd, struct skill_unit *unit);
+void clif_getareachar_skillunit(struct block_list *bl, struct skill_unit *su, enum send_target target);
 
 void clif_initialstatus(struct map_session_data *sd);
 
@@ -502,7 +502,6 @@ void clif_cooking_list(struct map_session_data *sd, int trigger, uint16 skill_id
 
 void clif_produceeffect(struct map_session_data *sd,int flag,int nameid);
 
-void clif_skill_setunit(struct skill_unit *unit);
 void clif_skill_delunit(struct skill_unit *unit);
 
 void clif_skillunit_update(struct block_list *bl);
@@ -1042,6 +1041,7 @@ struct clif_interface {
 	void (*cart_additem_ack) (struct map_session_data *sd, int flag);
 	void (*spawn_unit2) (struct block_list* bl, enum send_target target);
 	void (*set_unit_idle2) (struct block_list* bl, struct map_session_data *tsd, enum send_target target);
+	void (*graffiti_entry) (struct block_list *bl, struct skill_unit *su, enum send_target target);
 	void (*ranklist) (struct map_session_data *sd, enum fame_list_type type);
 	void (*update_rankingpoint) (struct map_session_data *sd, enum fame_list_type type, int points);
 	void (*pRanklist) (int fd, struct map_session_data *sd);

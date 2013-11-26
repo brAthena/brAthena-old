@@ -552,7 +552,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int mflag);
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,uint16 skill_id,uint16 skill_lv,int mflag);
 
-int64 battle_calc_return_damage(struct block_list *bl, struct block_list *src, int64 *dmg, int flag, uint16 skill_id, int *delay);
+int64 battle_calc_return_damage(struct block_list *target, struct block_list *src, int64 damage, int flag, uint16 skill_id);
 
 void battle_drain(struct map_session_data *sd, struct block_list *tbl, int64 rdamage, int64 ldamage, int race, int boss);
 
