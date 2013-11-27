@@ -4388,13 +4388,13 @@ void clif_getareachar_skillunit(struct block_list *bl, struct skill_unit *su, en
 		p.job = su->group->unit_id;
 
 #if PACKETVER >= 20110718
-	p.RadiusRange = su->range;
+	p.RadiusRange = (unsigned char)su->range;
 #endif
 
 	p.isVisible = 1;
 
 #if PACKETVER >= 20130731
-	p.level = (unsigned char)unit->group->skill_lv;
+	p.level = (unsigned char)su->group->skill_lv;
 #endif
 
 	clif_send(&p,sizeof(p),bl,target);
@@ -9650,7 +9650,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	if(sd->sc.opt2)  //Client loses these on warp.
 		clif_changeoption(&sd->bl);
 
-	if(battle_config.mon_trans_disable_in_gvg && map_flag_gvg2(sd->bl.m)) {
+	if(sd->sc.data[SC_MONSTER_TRANSFORM] && battle_config.mon_trans_disable_in_gvg && map_flag_gvg2(sd->bl.m)) {
 		status_change_end(&sd->bl, SC_MONSTER_TRANSFORM, INVALID_TIMER);
 		clif_displaymessage(sd->fd, msg_txt(1490)); // Transforming into monster is not allowed in Guild Wars.
 	}

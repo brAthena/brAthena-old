@@ -5478,6 +5478,8 @@ ACMD_FUNC(useskill)
 	else
 		bl = &sd->bl;
 
+	pc_delinvincibletimer(sd);
+
 	if(skill_get_inf(skill_id)&INF_GROUND_SKILL)
 		unit_skilluse_pos(bl, pl_sd->bl.x, pl_sd->bl.y, skill_id, skill_lv);
 	else
