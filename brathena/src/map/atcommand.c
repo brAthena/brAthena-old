@@ -1213,9 +1213,28 @@ ACMD_FUNC(item)
 		return -1;
 	}
 
-		if(!strcmpi(command+1,"itembound") && !(bound >= IBT_MIN && bound <= IBT_MAX)) {
-		clif_displaymessage(fd, msg_txt(298)); // Invalid bound type
-		return -1;
+		if(!strcmpi(command+1,"itembound")) {
+			if(!(bound >= IBT_MIN && bound <= IBT_MAX)) {
+			clif_displaymessage(fd, msg_txt(298)); // Invalid bound type
+			return -1;
+		}
+		switch((enum e_item_bound_type)bound) {
+			case IBT_CHARACTER:
+			case IBT_ACCOUNT:
+				break; /* no restrictions */
+			case IBT_PARTY:
+				if(!sd->status.party_id) {
+					clif_displaymessage(fd, msg_txt(1500)); //You can't add a party bound item to a character without party!
+					return -1;
+				}
+				break;
+			case IBT_GUILD:
+				if(!sd->status.guild_id) {
+					clif_displaymessage(fd, msg_txt(1501)); //You can't add a guild bound item to a character without guild!
+					return -1;
+				}
+				break;
+		}
 	}
 
 	item_id = item_data->nameid;

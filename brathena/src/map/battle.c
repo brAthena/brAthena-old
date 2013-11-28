@@ -2639,19 +2639,17 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				/**
 				 * in RE, SW possesses a lifetime equal to 3 times the caster's health
 				 **/
-	#if VERSION == 1
 				d->dmg_lv = ATK_BLOCK;
+	#if VERSION == 1
 				if((group->val2 - damage) > 0) {
 					group->val2 -= (int)cap_value(damage,INT_MIN,INT_MAX);
 				} else
 				skill_delunitgroup(group,ALC_MARK);
-				return 0;
 	#else
 				if(--group->val2<=0)
 					skill_delunitgroup(group,ALC_MARK);
-				d->dmg_lv = ATK_BLOCK;
-				return 0;
 	#endif
+				return 0;
 			}
 			status_change_end(bl, SC_SAFETYWALL, INVALID_TIMER);
 		}
@@ -2680,6 +2678,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 			if(sc->data[SC_CR_SHRINK] && rnd()%100<5*sce->val1)
 				skill_blown(bl,src,skill_get_blewcount(CR_SHRINK,1),-1,0);
+				d->dmg_lv = ATK_MISS;
 			return 0;
 		}
 
@@ -4981,54 +4980,23 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 	}
 
 	if(wd.damage + wd.damage2) { //There is a total damage value
+		int64 rdamage = 0;
+
 		if(src != target) { // Don't reflect your own damage (Grand Cross)
-			int64 rdamage = 0;
-
 			rdamage = battle_calc_return_damage(target, src, wd.damage + wd.damage2, wd.flag, skill_id);
-
-					if(tsc && tsc->data[SC_DEATHBOUND]) {
-						wd.damage = wd.damage + wd.damage2;
-						wd.damage2 = 0;
-						status_change_end(target,SC_DEATHBOUND,INVALID_TIMER);
-					}
-
-				if(rdamage > 0) {
-
-					if( tsc && tsc->data[SC_LG_REFLECTDAMAGE] ) {
-							bool change = false;
-							if( sd && !sd->state.autocast )
-								change = true;
-							if( change )
-								sd->state.autocast = 1;
-							map_foreachinshootrange(battle_damage_area,target,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,gettick(),target,wd.amotion,sstatus->dmotion,rdamage,tstatus->race);
-							if( change )
-								sd->state.autocast = 0;
-					} else {
-						int rdelay;
-
-						rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
-
-						//Use Reflect Shield to signal this kind of skill trigger. [Skotlex]
-						if(tsd)
-							battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
-						battle_delay_damage(gettick(), wd.amotion,target,src,0,CR_REFLECTSHIELD,0,rdamage,ATK_DEF,rdelay,true);
-						skill_additional_effect(target, src, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,gettick());
-					}
-
-				}
 		}
 
 		if(!wd.damage2) {
 			wd.damage = battle_calc_damage(src,target,&wd,wd.damage,skill_id,skill_lv);
 			if(map_flag_gvg2(target->m))
 				wd.damage=battle_calc_gvg_damage(src,target,wd.damage,wd.div_,skill_id,skill_lv,wd.flag);
-			else if(map[target->m].flag.battleground)
+			else if(map[target->m].flag.battleground )
 				wd.damage=battle_calc_bg_damage(src,target,wd.damage,wd.div_,skill_id,skill_lv,wd.flag);
 		} else if(!wd.damage) {
 			wd.damage2 = battle_calc_damage(src,target,&wd,wd.damage2,skill_id,skill_lv);
 			if(map_flag_gvg2(target->m))
 				wd.damage2 = battle_calc_gvg_damage(src,target,wd.damage2,wd.div_,skill_id,skill_lv,wd.flag);
-			else if(map[target->m].flag.battleground)
+			else if( map[target->m].flag.battleground )
 				wd.damage = battle_calc_bg_damage(src,target,wd.damage2,wd.div_,skill_id,skill_lv,wd.flag);
 		} else {
 #if VERSION == 1
@@ -5038,7 +5006,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			int64 d1 = wd.damage + wd.damage2,d2 = wd.damage2;
 			wd.damage = battle_calc_damage(src,target,&wd,d1,skill_id,skill_lv);
 #endif
-			if(map_flag_gvg2(target->m))
+			if( map_flag_gvg2(target->m) )
 				wd.damage = battle_calc_gvg_damage(src,target,wd.damage,wd.div_,skill_id,skill_lv,wd.flag);
 			else if(map[target->m].flag.battleground)
 				wd.damage = battle_calc_bg_damage(src,target,wd.damage,wd.div_,skill_id,skill_lv,wd.flag);
@@ -5048,6 +5016,38 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			wd.damage-=wd.damage2;
 #endif
 		}
+
+		if(rdamage && wd.dmg_lv >= ATK_BLOCK) {/* yes block still applies, somehow gravity thinks it makes sense. */
+
+			if(tsc && tsc->data[SC_DEATHBOUND]) {
+				wd.damage = wd.damage + wd.damage2;
+				wd.damage2 = 0;
+				status_change_end(target,SC_DEATHBOUND,INVALID_TIMER);
+			}
+
+			if( tsc && tsc->data[SC_LG_REFLECTDAMAGE] ) {
+				bool change = false;
+				if( sd && !sd->state.autocast )
+					change = true;
+				if( change )
+					sd->state.autocast = 1;
+					map_foreachinshootrange(battle_damage_area,target,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,gettick(),target,wd.amotion,sstatus->dmotion,rdamage,tstatus->race);
+				if( change )
+					sd->state.autocast = 0;
+			} else {
+				int rdelay;
+
+				rdelay = clif_damage(src, src, gettick(), status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4, 0);
+
+				//Use Reflect Shield to signal this kind of skill trigger. [Skotlex]
+				if(tsd)
+					battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
+					battle_delay_damage(gettick(), wd.amotion,target,src,0,CR_REFLECTSHIELD,0,rdamage,ATK_DEF,rdelay,true);
+					skill_additional_effect(target, src, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,gettick());
+					}
+
+				}
+
 	}
 	//Reject Sword bugreport:4493 by Daegaladh
 	if(wd.damage && tsc && tsc->data[SC_SWORDREJECT] &&

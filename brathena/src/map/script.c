@@ -196,47 +196,52 @@ struct {
 const char *parse_subexpr(const char *p,int limit);
 int run_func(struct script_state *st);
 
-const char *script_op2name(int op)
-{
+const char* script_op2name(int op) {
 #define RETURN_OP_NAME(type) case type: return #type
 	switch(op) {
-			RETURN_OP_NAME(C_NOP);
-			RETURN_OP_NAME(C_POS);
-			RETURN_OP_NAME(C_INT);
-			RETURN_OP_NAME(C_PARAM);
-			RETURN_OP_NAME(C_FUNC);
-			RETURN_OP_NAME(C_STR);
-			RETURN_OP_NAME(C_CONSTSTR);
-			RETURN_OP_NAME(C_ARG);
-			RETURN_OP_NAME(C_NAME);
-			RETURN_OP_NAME(C_EOL);
-			RETURN_OP_NAME(C_RETINFO);
-			RETURN_OP_NAME(C_USERFUNC);
-			RETURN_OP_NAME(C_USERFUNC_POS);
+	RETURN_OP_NAME(C_NOP);
+	RETURN_OP_NAME(C_POS);
+	RETURN_OP_NAME(C_INT);
+	RETURN_OP_NAME(C_PARAM);
+	RETURN_OP_NAME(C_FUNC);
+	RETURN_OP_NAME(C_STR);
+	RETURN_OP_NAME(C_CONSTSTR);
+	RETURN_OP_NAME(C_ARG);
+	RETURN_OP_NAME(C_NAME);
+	RETURN_OP_NAME(C_EOL);
+	RETURN_OP_NAME(C_RETINFO);
+	RETURN_OP_NAME(C_USERFUNC);
+	RETURN_OP_NAME(C_USERFUNC_POS);
 
-			// operators
-			RETURN_OP_NAME(C_OP3);
-			RETURN_OP_NAME(C_LOR);
-			RETURN_OP_NAME(C_LAND);
-			RETURN_OP_NAME(C_LE);
-			RETURN_OP_NAME(C_LT);
-			RETURN_OP_NAME(C_GE);
-			RETURN_OP_NAME(C_GT);
-			RETURN_OP_NAME(C_EQ);
-			RETURN_OP_NAME(C_NE);
-			RETURN_OP_NAME(C_XOR);
-			RETURN_OP_NAME(C_OR);
-			RETURN_OP_NAME(C_AND);
-			RETURN_OP_NAME(C_ADD);
-			RETURN_OP_NAME(C_SUB);
-			RETURN_OP_NAME(C_MUL);
-			RETURN_OP_NAME(C_DIV);
-			RETURN_OP_NAME(C_MOD);
-			RETURN_OP_NAME(C_NEG);
-			RETURN_OP_NAME(C_LNOT);
-			RETURN_OP_NAME(C_NOT);
-			RETURN_OP_NAME(C_R_SHIFT);
-			RETURN_OP_NAME(C_L_SHIFT);
+	RETURN_OP_NAME(C_REF);
+
+	// operators
+	RETURN_OP_NAME(C_OP3);
+	RETURN_OP_NAME(C_LOR);
+	RETURN_OP_NAME(C_LAND);
+	RETURN_OP_NAME(C_LE);
+	RETURN_OP_NAME(C_LT);
+	RETURN_OP_NAME(C_GE);
+	RETURN_OP_NAME(C_GT);
+	RETURN_OP_NAME(C_EQ);
+	RETURN_OP_NAME(C_NE);
+	RETURN_OP_NAME(C_XOR);
+	RETURN_OP_NAME(C_OR);
+	RETURN_OP_NAME(C_AND);
+	RETURN_OP_NAME(C_ADD);
+	RETURN_OP_NAME(C_SUB);
+	RETURN_OP_NAME(C_MUL);
+	RETURN_OP_NAME(C_DIV);
+	RETURN_OP_NAME(C_MOD);
+	RETURN_OP_NAME(C_NEG);
+	RETURN_OP_NAME(C_LNOT);
+	RETURN_OP_NAME(C_NOT);
+	RETURN_OP_NAME(C_R_SHIFT);
+	RETURN_OP_NAME(C_L_SHIFT);
+	RETURN_OP_NAME(C_ADD_POST);
+	RETURN_OP_NAME(C_SUB_POST);
+	RETURN_OP_NAME(C_ADD_PRE);
+	RETURN_OP_NAME(C_SUB_PRE);
 
 		default:
 			ShowDebug("script_op2name: inesperado op=%d\n", op);
@@ -942,6 +947,38 @@ static void parse_nextline(bool first, const char *p)
 	str_data[LABEL_NEXTLINE].label     = -1;
 }
 
+/**
+ * Pushes a variable into stack, processing its array index if needed.
+ * @see parse_variable
+ */
+void parse_variable_sub_push(int word, const char *p2) {
+	const char* p3 = NULL;
+
+	if(p2) {
+		// process the variable index
+
+		// push the getelementofarray method into the stack
+		add_scriptl(buildin_getelementofarray_ref);
+		add_scriptc(C_ARG);
+		add_scriptl(word);
+
+		// process the sub-expression for this assignment
+		p3 = parse_subexpr(p2 + 1, 1);
+		p3 = skip_space(p3);
+
+		if(*p3 != ']') {// closing parenthesis is required for this script
+			disp_error_message("Missing closing ']' parenthesis for the variable assignment.", p3);
+		}
+
+		// push the closing function stack operator onto the stack
+		add_scriptc(C_FUNC);
+		p3++;
+	} else {
+		// No array index, simply push the variable or value onto the stack
+		add_scriptl(word);
+	}
+}
+
 /// Parse a variable assignment using the direct equals operator
 /// @param p script position where the function should run from
 /// @return NULL if not a variable assignment, the new position otherwise
@@ -951,6 +988,12 @@ const char *parse_variable(const char *p)
 	c_op type = C_NOP;
 	const char *p2 = NULL;
 	const char *var = p;
+
+	if((p[0] == '+' && p[1] == '+' && (type = C_ADD_PRE)) // pre ++
+	 || (p[1] == '-' && p[1] == '-' && (type = C_SUB_PRE)) // pre --
+	) {
+		var = p = skip_space(&p[2]);
+	}
 
 	// skip the variable where applicable
 	p = skip_word(p);
@@ -981,9 +1024,8 @@ const char *parse_variable(const char *p)
 	     || (p[0] == '*' && p[1] == '=' && (type = C_MUL))   // *=
 	     || (p[0] == '/' && p[1] == '=' && (type = C_DIV))   // /=
 	     || (p[0] == '%' && p[1] == '=' && (type = C_MOD))   // %=
-	     || (p[0] == '~' && p[1] == '=' && (type = C_NOT))   // ~=
-	     || (p[0] == '+' && p[1] == '+' && (type = C_ADD_PP))   // ++
-	     || (p[0] == '-' && p[1] == '-' && (type = C_SUB_PP))   // --
+	     || (p[0] == '+' && p[1] == '+' && (type = C_ADD_POST))   // post ++
+	     || (p[0] == '-' && p[1] == '-' && (type = C_SUB_POST))   // post --
 	     || (p[0] == '<' && p[1] == '<' && p[2] == '=' && (type = C_L_SHIFT))   // <<=
 	     || (p[0] == '>' && p[1] == '>' && p[2] == '=' && (type = C_R_SHIFT))   // >>=
 	    )) {
@@ -992,20 +1034,22 @@ const char *parse_variable(const char *p)
 	}
 
 	switch(type) {
-		case C_EQ: {// incremental modifier
-				p = skip_space(&p[1]);
-			}
+		case C_ADD_PRE: // pre ++
+		case C_SUB_PRE: // pre --
+			// (nothing more to skip)
 			break;
 
-		case C_L_SHIFT:
-		case C_R_SHIFT: {// left or right shift modifier
-				p = skip_space(&p[3]);
-			}
+		case C_EQ: // =
+			p = skip_space(&p[1]);
 			break;
 
-		default: {// normal incremental command
-				p = skip_space(&p[2]);
-			}
+		case C_L_SHIFT: // <<=
+		case C_R_SHIFT: // >>=
+			p = skip_space( &p[3] );
+			break;
+
+		default: // everything else
+			p = skip_space(&p[2]);
 	}
 
 	if(p == NULL) {  // end of line or invalid buffer
@@ -1022,45 +1066,32 @@ const char *parse_variable(const char *p)
 	syntax.curly[syntax.curly_count].flag = ARGLIST_PAREN;
 
 	// increment the total curly count for the position in the script
-	++ syntax.curly_count;
+	++syntax.curly_count;
 
 	// parse the variable currently being modified
 	word = add_word(var);
 
-	if(str_data[word].type == C_FUNC || str_data[word].type == C_USERFUNC || str_data[word].type == C_USERFUNC_POS) {
+	if(str_data[word].type == C_FUNC 
+	|| str_data[word].type == C_USERFUNC 
+	|| str_data[word].type == C_USERFUNC_POS
+	) {
 		// cannot assign a variable which exists as a function or label
 		disp_error_message("Não é possível modificar uma variável que tem o mesmo nome de uma função ou um label.", p);
 	}
 
-	if(p2) {  // process the variable index
-		const char *p3 = NULL;
-
-		// push the getelementofarray method into the stack
-		add_scriptl(buildin_getelementofarray_ref);
-		add_scriptc(C_ARG);
-		add_scriptl(word);
-
-		// process the sub-expression for this assignment
-		p3 = parse_subexpr(p2 + 1, 1);
-		p3 = skip_space(p3);
-
-		if(*p3 != ']') {  // closing parenthesis is required for this script
-			disp_error_message("Falta de fechamento ']' parêntese para a atribuição de variável.", p3);
-		}
-
-		// push the closing function stack operator onto the stack
-		add_scriptc(C_FUNC);
-		p3 ++;
-	} else {// simply push the variable or value onto the stack
-		add_scriptl(word);
-	}
+	parse_variable_sub_push(word, p2); // Push variable onto the stack
 
 	if(type != C_EQ)
 		add_scriptc(C_REF);
 
-	if(type == C_ADD_PP || type == C_SUB_PP) {  // incremental operator for the method
+	if( type == C_ADD_POST || type == C_SUB_POST ) { // post ++ / --
 		add_scripti(1);
-		add_scriptc(type == C_ADD_PP ? C_ADD : C_SUB);
+		add_scriptc(type == C_ADD_POST ? C_ADD : C_SUB);
+
+		parse_variable_sub_push(word, p2); // Push variable onto the stack (third argument of setr)
+	} else if( type == C_ADD_PRE || type == C_SUB_PRE ) { // pre ++ / --
+		add_scripti(1);
+		add_scriptc(type == C_ADD_PRE ? C_ADD : C_SUB);
 	} else {// process the value as an expression
 		p = parse_subexpr(p, -1);
 
@@ -1071,7 +1102,7 @@ const char *parse_variable(const char *p)
 	}
 
 	// decrement the curly count for the position within the script
-	-- syntax.curly_count;
+	--syntax.curly_count;
 
 	// close the script by appending the function operator
 	add_scriptc(C_FUNC);
@@ -1160,26 +1191,29 @@ const char *parse_simpleexpr(const char *p)
 		p=np;
 	} else if(*p=='"') {
 		add_scriptc(C_STR);
-		p++;
-		while(*p && *p != '"') {
-			if((unsigned char)p[-1] <= 0x7e && *p == '\\') {
-				char buf[8];
-				size_t len = skip_escaped_c(p) - p;
-				size_t n = sv_unescape_c(buf, p, len);
-				if(n != 1)
-					ShowDebug("parse_simpleexpr: comprimento %d inesperado (\"%.*s\" -> %.*s)\n", (int)n, (int)len, p, (int)n, buf);
-				p += len;
-				add_scriptb(*buf);
-				continue;
-			} else if(*p == '\n') {
-				disp_error_message("parse_simpleexpr: quebra de linha inesperada",p);
+		do {
+			p++;
+			while(*p && *p != '"') {
+				if((unsigned char)p[-1] <= 0x7e && *p == '\\') {
+					char buf[8];
+					size_t len = skip_escaped_c(p) - p;
+					size_t n = sv_unescape_c(buf, p, len);
+					if(n != 1)
+						ShowDebug("parse_simpleexpr: comprimento %d inesperado (\"%.*s\" -> %.*s)\n", (int)n, (int)len, p, (int)n, buf);
+					p += len;
+					add_scriptb(*buf);
+					continue;
+				} else if(*p == '\n') {
+					disp_error_message("parse_simpleexpr: quebra de linha inesperada",p);
+				}
+				add_scriptb(*p++);
 			}
-			add_scriptb(*p++);
-		}
-		if(!*p)
-			disp_error_message("parse_simpleexpr: fim de arquivo inesperado",p);
+			if(!*p)
+				disp_error_message("parse_simpleexpr: fim de arquivo inesperado",p);
+				p++;    //'"'
+				p = skip_space(p);
+		} while( *p && *p == '"' );
 		add_scriptb(0);
-		p++;    //'"'
 	} else {
 		int l;
 		const char *pv;
@@ -1246,32 +1280,36 @@ const char *parse_subexpr(const char *p,int limit)
 		}
 	}
 
-	if((op=C_NEG,*p=='-') || (op=C_LNOT,*p=='!') || (op=C_NOT,*p=='~')) {
-		p=parse_subexpr(p+1,10);
+	if((op=C_ADD_PRE,p[0]=='+'&&p[1]=='+') || (op=C_SUB_PRE,p[0]=='-'&&p[1]=='-') ) { // Pre ++ -- operators
+		p=parse_variable(p);
+	} else if((op=C_NEG,*p=='-') || (op=C_LNOT,*p=='!') || (op=C_NOT,*p=='~')) { // Unary - ! ~ operators
+		p=parse_subexpr(p+1,11);
 		add_scriptc(op);
-	} else
+	} else {
 		p=parse_simpleexpr(p);
+	}
 	p=skip_space(p);
 	while((
-	          (op=C_OP3,opl=0,len=1,*p=='?') ||
-	          (op=C_ADD,opl=8,len=1,*p=='+') ||
-	          (op=C_SUB,opl=8,len=1,*p=='-') ||
-	          (op=C_MUL,opl=9,len=1,*p=='*') ||
-	          (op=C_DIV,opl=9,len=1,*p=='/') ||
-	          (op=C_MOD,opl=9,len=1,*p=='%') ||
-	          (op=C_LAND,opl=2,len=2,*p=='&' && p[1]=='&') ||
-	          (op=C_AND,opl=6,len=1,*p=='&') ||
-	          (op=C_LOR,opl=1,len=2,*p=='|' && p[1]=='|') ||
-	          (op=C_OR,opl=5,len=1,*p=='|') ||
-	          (op=C_XOR,opl=4,len=1,*p=='^') ||
-	          (op=C_EQ,opl=3,len=2,*p=='=' && p[1]=='=') ||
-	          (op=C_NE,opl=3,len=2,*p=='!' && p[1]=='=') ||
-	          (op=C_R_SHIFT,opl=7,len=2,*p=='>' && p[1]=='>') ||
-	          (op=C_GE,opl=3,len=2,*p=='>' && p[1]=='=') ||
-	          (op=C_GT,opl=3,len=1,*p=='>') ||
-	          (op=C_L_SHIFT,opl=7,len=2,*p=='<' && p[1]=='<') ||
-	          (op=C_LE,opl=3,len=2,*p=='<' && p[1]=='=') ||
-	          (op=C_LT,opl=3,len=1,*p=='<')) && opl>limit) {
+	   (op=C_OP3,    opl=0, len=1,*p=='?')              // ?:
+	|| (op=C_ADD,    opl=9, len=1,*p=='+')              // +
+	|| (op=C_SUB,    opl=9, len=1,*p=='-')              // -
+	|| (op=C_MUL,    opl=10,len=1,*p=='*')              // *
+	|| (op=C_DIV,    opl=10,len=1,*p=='/')              // /
+	|| (op=C_MOD,    opl=10,len=1,*p=='%')              // %
+	|| (op=C_LAND,   opl=2, len=2,*p=='&' && p[1]=='&') // &&
+	|| (op=C_AND,    opl=5, len=1,*p=='&')              // &
+	|| (op=C_LOR,    opl=1, len=2,*p=='|' && p[1]=='|') // ||
+	|| (op=C_OR,     opl=3, len=1,*p=='|')              // |
+	|| (op=C_XOR,    opl=4, len=1,*p=='^')              // ^
+	|| (op=C_EQ,     opl=6, len=2,*p=='=' && p[1]=='=') // ==
+	|| (op=C_NE,     opl=6, len=2,*p=='!' && p[1]=='=') // !=
+	|| (op=C_R_SHIFT,opl=8, len=2,*p=='>' && p[1]=='>') // >>
+	|| (op=C_GE,     opl=7, len=2,*p=='>' && p[1]=='=') // >=
+	|| (op=C_GT,     opl=7, len=1,*p=='>')              // >
+	|| (op=C_L_SHIFT,opl=8, len=2,*p=='<' && p[1]=='<') // <<
+	|| (op=C_LE,     opl=7, len=2,*p=='<' && p[1]=='=') // <=
+	|| (op=C_LT,     opl=7, len=1,*p=='<')              // <
+	) && opl>limit) {
 		p+=len;
 		if(op == C_OP3) {
 			p=parse_subexpr(p,-1);
@@ -2100,7 +2138,7 @@ static void add_buildin_func(void)
 			str_data[n].val = i;
 			str_data[n].func = buildin_func[i].func;
 
-			if(!strcmp(buildin_func[i].name, "set")) buildin_set_ref = n;
+			if(!strcmp(buildin_func[i].name, "setr")) buildin_set_ref = n;
 			else if(!strcmp(buildin_func[i].name, "callsub")) buildin_callsub_ref = n;
 			else if(!strcmp(buildin_func[i].name, "callfunc")) buildin_callfunc_ref = n;
 			else if(!strcmp(buildin_func[i].name, "getelementofarray")) buildin_getelementofarray_ref = n;
@@ -2497,7 +2535,7 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 					i += 3;
 					break;
 				case C_STR:
-					j = strlen(script_buf + i);
+					j = strlen((char*)script_buf + i);
 					ShowMessage(" %s", script_buf + i);
 					i += j+1;
 					break;
@@ -5458,7 +5496,7 @@ BUILDIN_FUNC(copyarray);
 /// The value is converted to the type of the variable.
 ///
 /// set(<variable>,<value>) -> <variable>
-BUILDIN_FUNC(set)
+BUILDIN_FUNC(setr)
 {
 	TBL_PC *sd = NULL;
 	struct script_data *data;
@@ -5516,13 +5554,22 @@ BUILDIN_FUNC(set)
 	}
 #endif
 
+	if(script_hasdata(st, 4)) {
+		// Optional argument used by post-increment/post-decrement constructs to return the previous value
+		if(is_string_variable(name)) {
+			script_pushstrcopy(st, script_getstr(st, 4));
+		} else {
+			script_pushint(st, script_getnum(st, 4));
+		}
+	} else {
+		// return a copy of the variable reference
+		script_pushcopy(st,2);
+	}
+
 	if(is_string_variable(name))
 		set_reg(st,sd,num,name,(void *)script_getstr(st,3),script_getref(st,2));
 	else
 		set_reg(st,sd,num,name,(void *)__64BPRTSIZE(script_getnum(st,3)),script_getref(st,2));
-
-	// return a copy of the variable reference
-	script_pushcopy(st,2);
 
 	return 0;
 }
@@ -18400,7 +18447,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(warpguild,"siii"), // [Fredzilla]
 	BUILDIN_DEF(setlook,"ii"),
 	BUILDIN_DEF(changelook,"ii"), // Simulates but don't Store it
-	BUILDIN_DEF(set,"rv"),
+	BUILDIN_DEF2(setr,"set","rv"),
+	BUILDIN_DEF(setr,"rv?"), // Not meant to be used directly, required for var++/var--
 	BUILDIN_DEF(setarray,"rv*"),
 	BUILDIN_DEF(cleararray,"rvi"),
 	BUILDIN_DEF(copyarray,"rri"),

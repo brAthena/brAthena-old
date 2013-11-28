@@ -2720,7 +2720,7 @@ int mob_class_change(struct mob_data *md, int class_)
 	mob_stop_walking(md, 0);
 	unit_skillcastcancel(&md->bl, 0);
 	status_set_viewdata(&md->bl, class_);
-	clif_mob_class_change(md,md->vd->class_);
+	clif_class_change(&md->bl,md->vd->class_,1);
 	status_calc_mob(md, SCO_FIRST);
 	md->ud.state.speed_changed = 1; //Speed change update.
 
@@ -2754,6 +2754,19 @@ void mob_heal(struct mob_data *md,unsigned int heal)
 {
 	if(battle_config.show_mob_info&3)
 		clif_charnameack(0, &md->bl);
+
+#if PACKETVER >= 20120404
+	if(!(md->status.mode&MD_BOSS)){
+		int i;
+		for(i = 0; i < DAMAGELOG_SIZE; i++){ // must show hp bar to all char who already hit the mob.
+			if(md->dmglog[i].id) {
+				struct map_session_data *sd = map_charid2sd(md->dmglog[i].id);
+				if(sd && check_distance_bl(&md->bl, &sd->bl, AREA_SIZE)) // check if in range
+					clif_monster_hp_bar(md,sd);
+			}
+		}
+	}
+#endif
 }
 
 /*==========================================

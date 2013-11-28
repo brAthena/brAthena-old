@@ -4780,7 +4780,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
  *------------------------------------------*/
 int pc_steal_coin(struct map_session_data *sd,struct block_list *target)
 {
-	int rate,skill;
+	int rate,skill_lv;
 	struct mob_data *md;
 	if(!sd || !target || target->type != BL_MOB)
 		return 0;
@@ -4793,8 +4793,8 @@ int pc_steal_coin(struct map_session_data *sd,struct block_list *target)
 		return 0;
 
 	// FIXME: This formula is either custom or outdated.
-	skill = pc_checkskill(sd,RG_STEALCOIN)*10;
-	rate = skill + (sd->status.base_level - md->level)*3 + sd->battle_status.dex*2 + sd->battle_status.luk*2;
+	skill_lv = pc_checkskill(sd,RG_STEALCOIN)*10;
+	rate = skill_lv + (sd->status.base_level - md->level)*3 + sd->battle_status.dex*2 + sd->battle_status.luk*2;
 	if(rnd()%1000 < rate) {
 		int amount = md->level*10 + rnd()%100;
 
@@ -5025,6 +5025,10 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		sd->md->bl.y = sd->md->ud.to_y = y;
 		sd->md->ud.dir = sd->ud.dir;
 	}
+
+	/* given autotrades have no clients you have to trigger this manually otherwise they get stuck in memory limbo bugreport:7495 */
+	if(sd->state.autotrade)
+		clif->pLoadEndAck(0,sd);
 
 	return 0;
 }
