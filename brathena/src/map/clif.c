@@ -56,7 +56,6 @@
 #include "clif.h"
 #include "mail.h"
 #include "quest.h"
-#include "packets_struct.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -4145,85 +4144,74 @@ int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int damage, i
 ///     10 = critical hit
 ///     11 = lucky dodge
 ///     12 = (touch skill?)
-int clif_damage(struct block_list *src, struct block_list *dst, int64 tick, int sdelay, int ddelay, int64 in_damage, int div, int type, int64 in_damage2)
-{
-	unsigned char buf[33];
+int clif_damage(struct block_list *src, struct block_list *dst, int sdelay, int ddelay, int64 in_damage, short div, unsigned char type, int64 in_damage2) {
+	struct packet_damage p;
 	struct status_change *sc;
-	int damage,damage2;
 #if PACKETVER < 20071113
-	const int cmd = 0x8a;
+	short damage,damage2;
 #else
-	const int cmd = 0x2e1;
+	int damage,damage2;
 #endif
 
 	nullpo_ret(src);
 	nullpo_ret(dst);
 
-	damage = (int)cap_value(in_damage,INT_MIN,INT_MAX);
-	damage2 = (int)cap_value(in_damage2,INT_MIN,INT_MAX);
+	sc = status_get_sc(dst);
+
+	if(sc && sc->count && sc->data[SC_ILLUSION]) {
+		if(in_damage) in_damage = in_damage*(sc->data[SC_ILLUSION]->val2) + rnd()%100;
+		if(in_damage2) in_damage2 = in_damage2*(sc->data[SC_ILLUSION]->val2) + rnd()%100;
+	}
+
+#if PACKETVER < 20071113
+	damage = (short)min(in_damage,INT16_MAX);
+	damage2 = (short)min(in_damage2,INT16_MAX);
+#else
+	damage = (int)min(in_damage,INT_MAX);
+	damage2 = (int)min(in_damage2,INT_MAX);
+#endif
 
 	type = clif_calc_delay(type,div,damage+damage2,ddelay);
-	sc = status_get_sc(dst);
-	if(sc && sc->count) {
-		if(sc->data[SC_ILLUSION]) {
-			if(damage) damage = damage*(sc->data[SC_ILLUSION]->val2) + rnd()%100;
-			if(damage2) damage2 = damage2*(sc->data[SC_ILLUSION]->val2) + rnd()%100;
-		}
-	}
 
-	WBUFW(buf,0)=cmd;
-	WBUFL(buf,2)=src->id;
-	WBUFL(buf,6)=dst->id;
-	WBUFL(buf,10)=(uint32)tick;
-	WBUFL(buf,14)=sdelay;
-	WBUFL(buf,18)=ddelay;
-#if PACKETVER < 20071113
-	if(battle_config.hide_woe_damage && map_flag_gvg2(src->m)) {
-		WBUFW(buf,22)=damage?div:0;
-		WBUFW(buf,27)=damage2?div:0;
-	} else {
-		WBUFW(buf,22)=min(damage, INT16_MAX);
-		WBUFW(buf,27)=damage2;
-	}
-	WBUFW(buf,24)=div;
-	WBUFB(buf,26)=type;
-#else
-	if(battle_config.hide_woe_damage && map_flag_gvg2(src->m)) {
-		WBUFL(buf,22)=damage?div:0;
-		WBUFL(buf,29)=damage2?div:0;
-	} else {
-		WBUFL(buf,22)=damage;
-		WBUFL(buf,29)=damage2;
-	}
-	WBUFW(buf,26)=div;
-	WBUFB(buf,28)=type;
-#endif
+	p.PacketType = damageType;
+	p.GID = src->id;
+	p.targetGID = dst->id;
+	p.startTime = (uint32)gettick();
+	p.attackMT = sdelay;
+	p.attackedMT = ddelay;
+	p.count = div;
+	p.action = type;
 
+	if(battle_config.hide_woe_damage && map_flag_gvg2(src->m)) {
+		p.damage = damage?div:0;
+		p.leftDamage = damage2?div:0;
+	} else {
+		p.damage = damage;
+		p.leftDamage = damage2;
+	}
 
 	if(disguised(dst)) {
-		clif_send(buf,packet_len(cmd),dst,AREA_WOS);
-		WBUFL(buf,6) = -dst->id;
-		clif_send(buf,packet_len(cmd),dst,SELF);
+		clif_send(&p,sizeof(p),dst,AREA_WOS);
+		p.targetGID = -dst->id;
+		clif_send(&p,sizeof(p),dst,SELF);
 	} else
-		clif_send(buf,packet_len(cmd),dst,AREA);
+		clif_send(&p,sizeof(p),dst,AREA);
 
 	if(disguised(src)) {
-		WBUFL(buf,2) = -src->id;
-		if(disguised(dst))
-			WBUFL(buf,6) = dst->id;
-#if PACKETVER < 20071113
-		if(damage > 0) WBUFW(buf,22) = -1;
-		if(damage2 > 0) WBUFW(buf,27) = -1;
-#else
-		if(damage > 0) WBUFL(buf,22) = -1;
-		if(damage2 > 0) WBUFL(buf,29) = -1;
-#endif
-		clif_send(buf,packet_len(cmd),src,SELF);
+		p.GID = -src->id;
+		if (disguised(dst))
+			p.targetGID = dst->id;
+
+		if(damage > 0) p.damage = -1;
+		if(damage2 > 0) p.leftDamage = -1;
+
+		clif_send(&p,sizeof(p),src,SELF);
 	}
 
 	if(src == dst) {
 		unit_setdir(src,unit_getdir(src));
 	}
+
 	//Return adjusted can't walk delay for further processing.
 	return clif_calc_walkdelay(dst,ddelay,type,damage+damage2,div);
 }
@@ -17910,6 +17898,20 @@ void clif_package_item_announce(struct map_session_data *sd, unsigned short name
 
 	clif_send(&p,sizeof(p), &sd->bl, ALL_CLIENT);
 }
+void clif_item_drop_announce(struct map_session_data *sd, unsigned short nameid, char *monsterName) {
+	struct packet_item_drop_announce p;
+
+	p.PacketType = item_drop_announceType;
+	p.PacketLength = sizeof(p);
+	p.type = 0x1;
+	p.ItemID = nameid;
+	p.len = NAME_LENGTH;
+	safestrncpy(p.Name, sd->status.name, sizeof(p.Name));
+	p.monsterNameLen = NAME_LENGTH;
+	safestrncpy(p.monsterName, monsterName, sizeof(p.monsterName));
+
+	clif_send(&p,sizeof(p), &sd->bl, ALL_CLIENT);
+}
 
 /* [Ind] */
 void clif_skill_cooldown_list(int fd, struct skill_cd* cd) {
@@ -18105,6 +18107,90 @@ void clif_parse_GMFullStrip(int fd, struct map_session_data *sd) {
 		if(tsd->equip_index[ i ] >= 0)
 			pc_unequipitem( tsd , tsd->equip_index[ i ] , 2);
 	}
+}
+/**
+ * clif_delay_damage timer, sends the stored data and clears the memory afterwards
+ **/
+int clif_delay_damage_sub(int tid, int64 tick, int id, intptr_t data) {
+	struct cdelayed_damage *dd = (struct cdelayed_damage *)data;
+
+	clif_send(&dd->p,sizeof(struct packet_damage),&dd->bl,AREA_WOS);
+
+	ers_free(clif->delayed_damage_ers,dd);
+
+	return 0;
+}
+/**
+ * Delays sending a damage packet in order to avoid the visual display to overlap
+ *
+ * @param tick when to trigger the timer (e.g. gettick() + 500)
+ * @param src block_list pointer of the src
+ * @param dst block_list pointer of the damage source
+ * @param sdelay attack motion usually status_get_amotion()
+ * @param ddelay damage motion usually status_get_dmotion()
+ * @param in_damage total damage to be sent
+ * @param div amount of hits
+ * @param type action type
+ *
+ * @return clif_calc_walkdelay used in further processing
+ **/
+int clif_delay_damage(int64 tick, struct block_list *src, struct block_list *dst, int sdelay, int ddelay, int64 in_damage, short div, unsigned char type) {
+	struct cdelayed_damage *dd;
+	struct status_change *sc;
+#if PACKETVER < 20071113
+	short damage;
+#else
+	int damage;
+#endif
+
+	nullpo_ret(src);
+	nullpo_ret(dst);
+
+	sc = status_get_sc(dst);
+
+	if(sc && sc->count && sc->data[SC_ILLUSION]) {
+		if(in_damage) in_damage = in_damage*(sc->data[SC_ILLUSION]->val2) + rnd()%100;
+	}
+
+#if PACKETVER < 20071113
+	damage = (short)min(in_damage,INT16_MAX);
+#else
+	damage = (int)min(in_damage,INT_MAX);
+#endif
+
+	type = clif_calc_delay(type,div,damage,ddelay);
+
+	dd = ers_alloc(clif->delayed_damage_ers, struct cdelayed_damage);
+
+	dd->p.PacketType = damageType;
+	dd->p.GID = src->id;
+	dd->p.targetGID = dst->id;
+	dd->p.startTime = (uint32)gettick();
+	dd->p.attackMT = sdelay;
+	dd->p.attackedMT = ddelay;
+	dd->p.count = div;
+	dd->p.action = type;
+	dd->p.leftDamage = 0;
+
+	if(battle_config.hide_woe_damage && map_flag_gvg2(src->m))
+		dd->p.damage = damage?div:0;
+	else
+		dd->p.damage = damage;
+
+	dd->bl.m = dst->m;
+	dd->bl.x = dst->x;
+	dd->bl.y = dst->y;
+	dd->bl.type = BL_NUL;
+
+	if(tick > gettick())
+		add_timer(tick,clif->delay_damage_sub,0,(intptr_t)dd);
+	else {
+		clif_send(&dd->p,sizeof(struct packet_damage),&dd->bl,AREA_WOS);
+
+		ers_free(clif->delayed_damage_ers,dd);
+	}
+
+	return clif_calc_walkdelay(dst,ddelay,type,damage,div);
 }
 
 /* */
@@ -18399,6 +18485,7 @@ int do_init_clif(void)
 	add_timer_func_list(clif_delayquit, "clif_delayquit");
 
 	delay_clearunit_ers = ers_new(sizeof(struct block_list),"clif.c::delay_clearunit_ers",ERS_OPT_CLEAR);
+	clif->delayed_damage_ers = ers_new(sizeof(struct cdelayed_damage),"clif.c::delayed_damage_ers",ERS_OPT_CLEAR);
 
 	channel_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, RACHSYS_NAME_LENGTH);
 	raChSys.ally = raChSys.local = raChSys.ally_autojoin = raChSys.local_autojoin = false;
@@ -18430,6 +18517,7 @@ void do_final_clif(void)
 
 	db_destroy(channel_db);
 	ers_destroy(delay_clearunit_ers);
+	ers_destroy(clif->delayed_damage_ers);
 
 	for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
 		int k;
@@ -18443,16 +18531,19 @@ void clif_defaults(void) {
 	clif = &clif_s;
 	/*  */
 	clif->ally_only = false;
+	clif->delayed_damage_ers = NULL;
 	clif->parse_cmd = clif_parse_cmd_optional;
 	clif->decrypt_cmd = clif_decrypt_cmd;
 	clif->cooldown_list = clif_skill_cooldown_list;
 	clif->scriptclear = clif_scriptclear;
 	clif->package_announce = clif_package_item_announce;
+	clif->item_drop_announce = clif_item_drop_announce;
 	/* Outros */
 	clif->bc_ready = clif_bc_ready;
 	clif->status_change = clif_status_change;
 	clif->addcards2 = clif_addcards2;
 	clif->cart_additem_ack = clif_cart_additem_ack;
+
 	clif->spawn_unit2 = clif_spawn_unit2;
 	clif->set_unit_idle2 = clif_set_unit_idle2;
 	clif->graffiti_entry = clif_graffiti_entry;
@@ -18466,6 +18557,9 @@ void clif_defaults(void) {
 	clif->bank_withdraw = clif_bank_withdraw;
 	/* */
 	clif->notify_bounditem = clif_notify_bounditem;
+	/* */
+	clif->delay_damage = clif_delay_damage;
+	clif->delay_damage_sub = clif_delay_damage_sub;
 	/* Pacotes de Entrada */
 	clif->pWantToConnection = clif_parse_WantToConnection;
 	clif->pLoadEndAck = clif_parse_LoadEndAck;

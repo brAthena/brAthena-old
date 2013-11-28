@@ -65,6 +65,11 @@ enum packet_headers {
 	spawn_unit2Type = 0x7c,
 	idle_unit2Type = 0x78,
 #endif
+#if PACKETVER < 20071113
+	damageType = 0x8a,
+#else
+	damageType = 0x2e1,
+#endif
 #if PACKETVER < 4
 	spawn_unitType = 0x79,
 #elif PACKETVER < 7
@@ -87,6 +92,7 @@ enum packet_headers {
 #endif
 	script_clearType = 0x8d6,
 	package_item_announceType = 0x7fd,
+	item_drop_announceType = 0x7fd,
 #if PACKETVER < 4
 	unit_walkingType = 0x7b,
 #elif PACKETVER < 7
@@ -704,6 +710,7 @@ struct packet_script_clear {
 	short PacketType;
 	unsigned int NpcID;
 } __attribute__((packed));
+
 struct packet_package_item_announce {
 	short PacketType;
 	short PacketLength;
@@ -713,6 +720,17 @@ struct packet_package_item_announce {
 	char Name[NAME_LENGTH];
 	char unknown;
 	unsigned short BoxItemID;
+} __attribute__((packed));
+
+struct packet_item_drop_announce {
+	short PacketType;
+	short PacketLength;
+	unsigned char type;
+	unsigned short ItemID;
+	char len;
+	char Name[NAME_LENGTH];
+	char monsterNameLen;
+	char monsterName[NAME_LENGTH];
 } __attribute__((packed));
 
 struct packet_cart_additem_ack {
@@ -873,6 +891,27 @@ struct packet_graffiti_entry {
 	unsigned char isVisible;
 	unsigned char isContens;
 	char msg[80];
+} __attribute__((packed));
+
+struct packet_damage {
+	short PacketType;
+	unsigned int GID;
+	unsigned int targetGID;
+	unsigned int startTime;
+	int attackMT;
+	int attackedMT;
+#if PACKETVER < 20071113
+	short damage;
+#else
+	int damage;
+#endif
+	short count;
+	unsigned char action;
+#if PACKETVER < 20071113
+	short leftDamage;
+#else
+	int leftDamage;
+#endif
 } __attribute__((packed));
 
 /******************************************

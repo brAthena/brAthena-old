@@ -17678,11 +17678,6 @@ BUILDIN_FUNC(montransform) {
 		return 1;
 	}
 
-	if(mob_id == MOBID_EMPERIUM) {
-		ShowWarning("buildin_montransform: Monster 'Emperium' cannot be used.\n");
-		return 1;
-	}
-
 	if(!(type > SC_NONE && type < SC_MAX)) {
 		ShowWarning("buildin_montransform: Unsupported status change id %d\n", type);
 		return 1;

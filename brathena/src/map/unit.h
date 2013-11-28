@@ -133,7 +133,7 @@ int unit_set_target(struct unit_data *ud, int target_id);
 // unit_data
 void unit_dataset(struct block_list *bl);
 
-int unit_fixdamage(struct block_list *src,struct block_list *target,int64 tick,int sdelay,int ddelay,int64 damage,int div,int type,int64 damage2);
+int unit_fixdamage(struct block_list *src,struct block_list *target, int sdelay,int ddelay,int64 damage, short div, unsigned char type, int64 damage2);
 // Remove unit
 struct unit_data *unit_bl2ud(struct block_list *bl);
 struct unit_data *unit_bl2ud2(struct block_list *bl);

@@ -472,6 +472,12 @@ struct mob_data *mob_once_spawn_sub(struct block_list *bl, int16 m, int16 x, int
 int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const char *mobname, int class_, int amount, const char *event, unsigned int size, unsigned int ai) {
 	struct mob_data *md = NULL;
 	int count, lv;
+	bool no_guardian_data = false;
+
+	if(ai && ai&0x200) {
+		no_guardian_data = true;
+		ai &=~ 0x200;
+	}
 
 	if(m < 0 || amount <= 0)
 		return 0; // invalid input
@@ -485,7 +491,7 @@ int mob_once_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const
 		if(!md)
 			continue;
 
-		if(class_ == MOBID_EMPERIUM) {
+		if(class_ == MOBID_EMPERIUM && !no_guardian_data) {
 			struct guild_castle *gc = guild_mapindex2gc(map_id2index(m));
 			struct guild *g = (gc) ? guild_search(gc->guild_id) : NULL;
 			if(gc) {
@@ -592,7 +598,7 @@ int mob_spawn_guardian_sub(int tid, int64 tick, int id, intptr_t data)
 	if(g == NULL) {
 		//Liberate castle, if the guild is not found this is an error! [Skotlex]
 		ShowError("mob_spawn_guardian_sub: Couldn't load guild %d!\n", (int)data);
-		if(md->class_ == MOBID_EMPERIUM) {
+		if(md->class_ == MOBID_EMPERIUM  && md->guardian_data) {
 			//Not sure this is the best way, but otherwise we'd be invoking this for ALL guardians spawned later on.
 			md->guardian_data->guild_id = 0;
 			if(md->guardian_data->castle->guild_id) { //Free castle up.
@@ -2350,6 +2356,14 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				//MSG: "'%s' won %s's %s (chance: %0.02f%%)"
 				intif_broadcast(message,strlen(message)+1, BC_DEFAULT);
 			}
+
+			/* heres the thing we got the feature set up however we're still discussing how to best define the ids,
+			 * so while we discuss, for a small period of time, the list is hardcoded (yes officially only those 2 use it,
+			 * thus why we're unsure on how to best place the setting) */
+			/* temp, will not be hardcoded for long thudu. */
+			if(it->nameid == 7782 || it->nameid == 7783) /* for when not hardcoded: add a check on mvp bonus drop as well */
+				clif->item_drop_announce(mvp_sd, it->nameid, md->name);
+
 			// Announce first, or else ditem will be freed. [Lance]
 			// By popular demand, use base drop rate for autoloot code. [Skotlex]
 			mob_item_drop(md, dlist, ditem, 0, md->db->dropitem[i].p, homkillonly);
@@ -2502,7 +2516,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		log_mvpdrop(mvp_sd, md->class_, log_mvp);
 	}
 
-	if(type&2 && !sd && md->class_ == MOBID_EMPERIUM)
+	if(type&2 && !sd && md->class_ == MOBID_EMPERIUM && md->guardian_data)
 		//Emperium destroyed by script. Discard mvp character. [Skotlex]
 		mvp_sd = NULL;
 

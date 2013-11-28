@@ -1149,7 +1149,7 @@ ACMD_FUNC(heal)
 
 	if(hp < 0 && sp <= 0) {
 		status_damage(NULL, &sd->bl, -hp, -sp, 0, 0);
-		clif_damage(&sd->bl,&sd->bl, gettick(), 0, 0, -hp, 0, 4, 0);
+		clif_damage(&sd->bl,&sd->bl, 0, 0, -hp, 0, 4, 0);
 		clif_displaymessage(fd, msg_txt(156)); // HP or/and SP modified.
 		return 0;
 	}
@@ -1160,7 +1160,7 @@ ACMD_FUNC(heal)
 			status_heal(&sd->bl, hp, 0, 0);
 		else {
 			status_damage(NULL, &sd->bl, -hp, 0, 0, 0);
-			clif_damage(&sd->bl,&sd->bl, gettick(), 0, 0, -hp, 0, 4, 0);
+			clif_damage(&sd->bl,&sd->bl, 0, 0, -hp, 0, 4, 0);
 		}
 	}
 
@@ -2061,11 +2061,6 @@ ACMD_FUNC(monster)
 		return -1;
 	}
 
-	if(mob_id == MOBID_EMPERIUM) {
-		clif_displaymessage(fd, msg_txt(83)); // Monster 'Emperium' cannot be spawned.
-		return -1;
-	}
-
 	if(number <= 0)
 		number = 1;
 
@@ -2090,7 +2085,7 @@ ACMD_FUNC(monster)
 	range = (int)sqrt((float)number) +2; // calculation of an odd number (+ 4 area around)
 	for(i = 0; i < number; i++) {
 		map_search_freecell(&sd->bl, 0, &mx,  &my, range, range, 0);
-		k = mob_once_spawn(sd, sd->bl.m, mx, my, name, mob_id, 1, eventname, size, AI_NONE);
+		k = mob_once_spawn(sd, sd->bl.m, mx, my, name, mob_id, 1, eventname, size, AI_NONE|(mob_id == MOBID_EMPERIUM?0x200:0x0));
 		count += (k != 0) ? 1 : 0;
 	}
 

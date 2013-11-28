@@ -1251,7 +1251,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 
 				if(d_bl &&((d_bl->type == BL_MER && ((TBL_MER *)d_bl)->master && ((TBL_MER *)d_bl)->master->bl.id == target->id)
 				           || (d_bl->type == BL_PC && ((TBL_PC *)d_bl)->devotion[sce->val2] == target->id)) && check_distance_bl(target, d_bl, sce->val3)) {
-					clif_damage(d_bl, d_bl, gettick(), 0, 0, hp, 0, 0, 0);
+					clif_damage(d_bl, d_bl, 0, 0, hp, 0, 0, 0);
 					status_fix_damage(NULL, d_bl, hp, 0);
 					return 0;
 				}
@@ -2139,8 +2139,6 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 		flag|=2;
 
 	if(md->guardian_data && md->guardian_data->guardup_lv)
-		flag|=4;
-	if(md->class_ == MOBID_EMPERIUM)
 		flag|=4;
 
 	if(battle_config.slaves_inherit_speed && md->master_id)
@@ -9842,7 +9840,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				struct block_list *src = map_id2bl(sce->val2);
 				if(tid == -1 || !src)
 					break; // Terminated by Damage
-				status_fix_damage(src,bl,400*sce->val1,clif_damage(bl,bl,gettick(),0,0,400*sce->val1,0,0,0));
+				status_fix_damage(src,bl,400*sce->val1,clif_damage(bl,bl,0,0,400*sce->val1,0,0,0));
 			}
 			break;
 		case SC_WUGDASH: {
@@ -10505,7 +10503,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 		case SC_PYREXIA:
 			if(--(sce->val4) > 0) {
 				map_freeblock_lock();
-				clif_damage(bl,bl,tick,status_get_amotion(bl),status_get_dmotion(bl)+500,100,0,0,0);
+				clif_damage(bl,bl,status_get_amotion(bl),status_get_dmotion(bl)+500,100,0,0,0);
 				status_fix_damage(NULL,bl,100,0);
 				if(sc->data[type]) {
 					sc_timer_next(3000+tick,status_change_timer,bl->id,data);
@@ -10521,7 +10519,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 				damage += status->vit * (sce->val1 - 3);
 				unit_skillcastcancel(bl,2);
 				map_freeblock_lock();
-				status_damage(bl, bl, damage, 0, clif_damage(bl,bl,tick,status_get_amotion(bl),status_get_dmotion(bl)+500,damage,1,0,0), 1);
+				status_damage(bl, bl, damage, 0, clif_damage(bl,bl,status_get_amotion(bl),status_get_dmotion(bl)+500,damage,1,0,0), 1);
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 				}
@@ -10578,7 +10576,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 			if(--(sce->val4) > 0) {
 				//Damage is every 10 seconds including 3%sp drain.
 				map_freeblock_lock();
-				clif_damage(bl,bl,tick,status_get_amotion(bl),1,1,0,0,0);
+				clif_damage(bl,bl,status_get_amotion(bl),1,1,0,0,0);
 				status_damage(NULL, bl, 1, status->max_sp * 3 / 100, 0, 0); //cancel dmg only if cancelable
 				if(sc->data[type]) {
 					sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
@@ -10628,7 +10626,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 				int damage = 1000 + 3 * status_get_max_hp(bl) / 100; // Deals fixed (1000 + 3%*MaxHP)
 
 				map_freeblock_lock();
-				clif_damage(bl,bl,tick,0,0,damage,1,9,0); //damage is like endure effect with no walk delay
+				clif_damage(bl,bl,0,0,damage,1,9,0); //damage is like endure effect with no walk delay
 				status_damage(src, bl, damage, 0, 0, 1);
 
 				if(sc->data[type]) { // Target still lives. [LimitLine]
@@ -10733,7 +10731,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 					break;
 				map_freeblock_lock();
 				damage =  sce->val3;
-				status_damage(src, bl, damage, 0, clif_damage(bl,bl,tick,status->amotion,status->dmotion+200,damage,1,0,0), 0);
+				status_damage(src, bl, damage, 0, clif_damage(bl,bl,status->amotion,status->dmotion+200,damage,1,0,0), 0);
 				unit_skillcastcancel(bl,1);
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
@@ -10835,7 +10833,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data)
 				int damage = status->max_hp / 100; // Suggestion 1% each second
 				if(damage >= status->hp) damage = status->hp - 1;   // Do not kill, just keep you with 1 hp minimum
 				map_freeblock_lock();
-				status_fix_damage(NULL,bl,damage,clif_damage(bl,bl,tick,0,0,damage,0,0,0));
+				status_fix_damage(NULL,bl,damage,clif_damage(bl,bl,0,0,damage,0,0,0));
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 				}

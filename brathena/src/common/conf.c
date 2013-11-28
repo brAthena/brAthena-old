@@ -47,9 +47,12 @@ void config_setting_copy_simple(config_setting_t *parent, const config_setting_t
 	if(config_setting_is_aggregate(src)) {
 		config_setting_copy_aggregate(parent, src);
 	} else {
-		config_setting_t *set = config_setting_add(parent, config_setting_name(src), config_setting_type(src));
+		config_setting_t *set;
 
-		if(set == NULL)
+		if( config_setting_get_member(parent, config_setting_name(src)) != NULL )
+			return;
+
+		if ((set = config_setting_add(parent, config_setting_name(src), config_setting_type(src))) == NULL)
 			return;
 
 		if(CONFIG_TYPE_INT == config_setting_type(src)) {
