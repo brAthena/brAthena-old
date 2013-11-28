@@ -17730,13 +17730,13 @@ void clif_personal_information(struct map_session_data *sd)
 #if PACKETVER < 20130320
 	WFIFOHEAD(sd->fd,17);
 #else
-	WFIFOHEAD(sd->fd,34);
+	WFIFOHEAD(sd->fd,29);
 #endif
 	WFIFOW(sd->fd,0)  = packet;
 #if PACKETVER < 20130320
 	WFIFOW(sd->fd,2)  = 17;
 #else
-	WFIFOW(sd->fd,2)  = 34;
+	WFIFOW(sd->fd,2)  = 29;
 #endif
 	WFIFOW(sd->fd,4)  = battle_config.base_exp_rate;
 #if PACKETVER < 20130320
@@ -17749,16 +17749,16 @@ void clif_personal_information(struct map_session_data *sd)
 #else
 	WFIFOW(sd->fd,8)  = battle_config.death_penalty_base;
 	WFIFOW(sd->fd,12) = 100;
-	WFIFOB(sd->fd,22) = 0;
-	WFIFOW(sd->fd,23) = 0;
-	WFIFOW(sd->fd,24) = bra_config.extra_exp_vip;;
-	WFIFOW(sd->fd,28) = bra_config.penalty_exp_vip;
-	WFIFOW(sd->fd,32) = 100;
+	WFIFOB(sd->fd,13) = 0;
+	WFIFOW(sd->fd,17) = bra_config.extra_exp_vip;
+	WFIFOW(sd->fd,21) = bra_config.penalty_exp_vip;
+	WFIFOW(sd->fd,25) = 100;
+
 #endif
 #if PACKETVER < 20130320
 	WFIFOSET(sd->fd,17);
 #else
-	WFIFOSET(sd->fd,34);
+	WFIFOSET(sd->fd,29);
 #endif
 #endif
 }
