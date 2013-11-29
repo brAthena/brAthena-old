@@ -1252,6 +1252,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 		StringBuf_Printf(&buf, ", `card%d`", j);
 	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id`=? LIMIT %d", cart_db, MAX_CART);
 
+	memset(&tmp_item, 0, sizeof(tmp_item));
 	if(SQL_ERROR == SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
 	   ||  SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt)
