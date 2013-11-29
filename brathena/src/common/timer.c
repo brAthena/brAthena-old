@@ -371,7 +371,7 @@ int64 settick_timer(int tid, int64 tick)
 	// search timer position
 	ARR_FIND(0, BHEAP_LENGTH(timer_heap), i, BHEAP_DATA(timer_heap)[i] == tid);
 	if(i == BHEAP_LENGTH(timer_heap)) {
-		ShowError(read_message("Source.common.settic_timer"), tid, timer_data[tid].func, search_timer_func_list(timer_data[tid].func));
+		ShowError(read_message("Source.common.settick_timer"), tid, timer_data[tid].func, search_timer_func_list(timer_data[tid].func));
 		return -1;
 	}
 
