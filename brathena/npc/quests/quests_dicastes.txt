@@ -7370,15 +7370,15 @@ dic_fild01,228,159,4	script	Jahbong#pa0829	4_M_MERCAT2,{
 		close; 
 	}
 	switch (rand(1,9)) {
-		case 1: mes "Don't touch my back! I might bite you unconsciously.";
-		case 2: mes "Pub owner Shay carried something away to make something strange! Be careful!";
-		case 3: mes "We cats can jump 5 times our size. Isn't it cool? But then, don't ask me to jump from here now.";
-		case 4: mes "I have to be diligent with my grooming to maintain beautiful fur.";
-		case 5: mes "I have to groom myself everyday to maintain shiny fluffy fur. But I don't have very nice fur in the first place. Very sad.";
-		case 6: mes "You should receive a Sapha Certification with both paws as a sign of respect. No cat deserves a certification if they don't!";
-		case 7: mes "I don't really talk that much! Ahat looks like... meow meow meooow... sorry.";
-		case 8: mes "Meow~~~~~~~~~~";
-		case 9: mes "Yarn is a great way to calm a cat.";
+		case 1: mes "Don't touch my back! I might bite you unconsciously."; break;
+		case 2: mes "Pub owner Shay carried something away to make something strange! Be careful!"; break;
+		case 3: mes "We cats can jump 5 times our size. Isn't it cool? But then, don't ask me to jump from here now."; break;
+		case 4: mes "I have to be diligent with my grooming to maintain beautiful fur."; break;
+		case 5: mes "I have to groom myself everyday to maintain shiny fluffy fur. But I don't have very nice fur in the first place. Very sad."; break;
+		case 6: mes "You should receive a Sapha Certification with both paws as a sign of respect. No cat deserves a certification if they don't!"; break;
+		case 7: mes "I don't really talk that much! Ahat looks like... meow meow meooow... sorry."; break;
+		case 8: mes "Meow~~~~~~~~~~"; break;
+		case 9: mes "Yarn is a great way to calm a cat."; break;
 	}
 	next;
 	mes "[Jahbong]";
