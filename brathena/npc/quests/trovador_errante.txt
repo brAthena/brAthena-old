@@ -974,12 +974,11 @@ S_StorySong:
 		mes "[Errante]";
 		mes "Você gosta de histórias, hein? Que tipo de história que você gostaria que eu contasse? Vou te contar o que eu sei ... Só para você, é claro.";
 		next;
-
 		if (select("Notícias e boatos.:Cancelar.")==1) {
 			cutin "bard_eland01",2;
 			mes "[Errante]";
-			set @random,rand(1,3);
-			if (@random == 1) {
+			switch(rand(1,3)) {
+			case 1:
 				mes "Hmmm. Então vamos falar sobre Geffen? Alguma vez já foste para o bar ou o Estaleiro aqui?";
 				next;
 				mes "[Errante]";
@@ -1025,8 +1024,7 @@ S_StorySong:
 				next;
 				mes "[Errante]";
 				mes "É trágico que ele deixou sua família pra trás dessa forma. Mas, talvez, seja mais trágico que o seu espírito assuste qualquer pessoa interessada nessas meninas.";
-
-			} else if (@random == 2) {
+			case 2:
 				mes "Ok, deixe-me contar uma história sobre Morroc, cidade do deserto. Aventureiros para valer os seus sais são esperados para ter explorado a cidade e seu envolvente deserto.";
 				next;
 				mes "[Errante]";
@@ -1045,8 +1043,7 @@ S_StorySong:
 				mes "[Errante]";
 				mes "Pergunto-me se esse amigo do homem, Pandger Mayer, alguma vez";
 				mes "encontrou o caminho de volta para casa...";
-
-			} else if (@random == 3) {
+			case 3:
 				mes "Por que não falamos de Alberta? Há um navio afundado para eventos. É um lugar onde os aventureiros podem ir em expedições. Parece que eles estão fazendo um monte de dinheiro.";
 				next;
 				mes "[Errante]";
@@ -1074,7 +1071,6 @@ S_StorySong:
 				mes "[Errante]";
 				mes "Nas revistas existem detalhes sobre um derradeiro espadachim, e da exploração da Ilha Tartaruga. Tenho certeza de que ninguém à procura do tesouro naquele lugar vai achar a aventura emocionante.";
 			}
-
 		} else {
 			cutin "bard_eland01",2;
 			mes "[Errante]";
@@ -1089,9 +1085,7 @@ S_StorySong:
 		else
 			mes "Até que enfim, conheci alguém que reconhece o meu talento! Você merece a ouvir minhas músicas! Agora, o que você gostaria de ouvir? Eu posso tocar tudo o que você quiser, você sabe.";
 		next;
-
 		switch(select("Hmm, vai fazer alguma canção.:Toque uma canção otimista!:Esquece...")) {
-
 		case 1:
 			mes "[Errante]";
 			if (Zeny > 499) {
@@ -2664,8 +2658,8 @@ payon,181,172,3	script	Bardo#4	1_M_BARD,{
 				}
 
 			case 2:
-				set @story,rand(1,3);
-				if (story == 1) {
+				switch(rand(1,3)) {
+				case 1:
 					mes "[Gunther]";
 					mes "Hm, você já";
 					mes "provou o queijo de Comodo?";
@@ -2679,8 +2673,7 @@ payon,181,172,3	script	Bardo#4	1_M_BARD,{
 					mes "[Gunther]";
 					mes "Por que você não vai experimentá-lo? Eu tentei experimentá-lo uma vez. Era gostoso, mas ai eu desmaiei. Hahahaha!";
 					close;
-
-				} else if (story == 2) {
+				case 2:
 					mes "[Gunther]";
 					mes "Eu estava passando por Prontera no outro dia no lugar onde costumava ser o terreno de formação de Espadachins.";
 					next;
@@ -2693,15 +2686,14 @@ payon,181,172,3	script	Bardo#4	1_M_BARD,{
 					mes "[Gunther]";
 					mes "Fiquei entediado assistindo-lhe fazer a mesma coisa uma e outra e outra vez, mas acho que a Organização de Estudo do Monstro gostaria que ele se apresentasse.";
 					close;
-
-				} else {
+				case 3:
 					mes "[Gunther]";
 					mes "Alguma vez já estiveste em Lutie,";
 					mes "terra onde cai neve o ano inteiro?";
 					next;
 					mes "[Gunther]";
-					mes "Existe um boneco de neve chamado";
-					mes "SnowySnow e se você conhecê-lo, você sabe todos os tipos de coisas sobre ele como se ele conseguisse falar! É tão estranho e misterioso !";
+					mes "Existe um boneco de neve";
+					mes "e se você conhecê-lo, você sabe todos os tipos de coisas sobre ele como se ele conseguisse falar! É tão estranho e misterioso !";
 					next;
 					mes "[Gunther]";
 					mes "Ele tem uma misteriosa sacola onde saem infinitas prendas e ele tem um passado misterioso que envolve algumas cidades mais frias e alguma coisa sobre uma bruxa desagradável.";

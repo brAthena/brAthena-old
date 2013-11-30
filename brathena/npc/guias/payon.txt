@@ -447,7 +447,7 @@ pay_arche,85,30,2	script#pre	Guia#2pay	4_M_PAY_SOLDIER,{
 				case 4:
 					mes "[Guia de Payon]";
 					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
-					set @loop2,0;
+					set .@loop2,0;
 					break;
 				}
 			}

@@ -174,16 +174,16 @@ gon_test,42,89,4	script	Invocador#gnp	4_M_TWBOY,{
 	mes "Bem vindo.";
 	mes "Qual monstro você gostaria de chamar?";
 	next;
-	set @gnpGrupo,select("Grupo 1:Grupo 2:Grupo 3:Grupo 4:Grupo 5:Grupo 6:Grupo 7:Grupo 8:Grupo 9:Grupo 10:Grupo 11");
-	set @gnpGrupoMob$,.gnpMobsName$[(@gnpGrupo-1)*6];
+	set .@gnpGrupo,select("Grupo 1:Grupo 2:Grupo 3:Grupo 4:Grupo 5:Grupo 6:Grupo 7:Grupo 8:Grupo 9:Grupo 10:Grupo 11");
+	set .@gnpGrupoMob$,.gnpMobsName$[(.@gnpGrupo-1)*6];
 	for (set @i,1; @i < 6; set @i, @i+1)
-		set @gnpGrupoMob$, @gnpGrupoMob$ + ":" + .gnpMobsName$[(@gnpGrupo-1)*6 + @i];
-	set @gnpMob,select(@gnpGrupoMob$);
+		set .@gnpGrupoMob$, .@gnpGrupoMob$ + ":" + .gnpMobsName$[(.@gnpGrupo-1)*6 + @i];
+	set @gnpMob,select(.@gnpGrupoMob$);
 	mes "[SongYeunWoo]";
 	mes "Comecem as batalhas!";
 	close2;
 	set in_battle,2;
-	if (getnpctimer(0) < 180000) monster "gon_test",56,86,.gnpMobsName$[(@gnpGrupo-1)*6 + @gnpMob - 1],.gnpMobsId[(@gnpGrupo-1)*6 + @gnpMob - 1],1,"Invocador#gnp::OnGnpMobDead";
+	if (getnpctimer(0) < 180000) monster "gon_test",56,86,.gnpMobsName$[(.@gnpGrupo-1)*6 + @gnpMob - 1],.gnpMobsId[(.@gnpGrupo-1)*6 + @gnpMob - 1],1,"Invocador#gnp::OnGnpMobDead";
 	end;
 OnInit:
 	initnpctimer;

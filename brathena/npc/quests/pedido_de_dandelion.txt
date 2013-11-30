@@ -24,9 +24,7 @@
 //   \________________________________________________________/
 
 izlude,103,106,3	script	Guildsman#1	1_M_02,3,3,{
-
-	if (checkweight(7416,1) != 1)
-	{
+	if (checkweight(7416,1) != 1) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
 		mes "too many things with you.";
@@ -2735,16 +2733,10 @@ que_job01,49,49,5	script	Tao	4_F_YUNYANG,{
 
 que_job01,51,55,1	script	#roombar1	WARPNPC,1,1,{
 
-OnInit:
-	set $maobar_room,0;
-	end;
-	
 OnTouch:
-	if (mao_request == 2 || mao_request == 24 || mao_request == 28 || mao_request == 29 || mao_request == 123 || mao_request == 126 || mao_request == 127 || prt_curse == 24)
-	{
-		if (!$maobar_room)
-		{
-			set $maobar_room,1;
+	if (mao_request == 2 || mao_request == 24 || mao_request == 28 || mao_request == 29 || mao_request == 123 || mao_request == 126 || mao_request == 127 || prt_curse == 24) {
+		if (!$@maobar_room) {
+			set $@maobar_room,1;
 			donpcevent "#maobartimer1::OnEnter";
 			if (mao_request == 2 || mao_request == 28 || mao_request == 29 || mao_request == 126 || mao_request == 127)
 			{
@@ -2857,15 +2849,9 @@ OnTouch:
 
 que_job01,51,44,1	script	#roombar2	WARPNPC,1,1,{
 
-OnInit:
-	set $maobar_room2,0;
-	end;
-	
 OnTouch:
-	if (mao_request == 25 || (mao_request > 102 && mao_request < 123))
-	{
-		if (mao_request == 121)
-		{
+	if (mao_request == 25 || (mao_request > 102 && mao_request < 123)) {
+		if (mao_request == 121) {
 			mes "[" + strcharinfo(0) + "]";
 			mes "I can't go back to";
 			mes "Lin yet... I still need";
@@ -2875,18 +2861,14 @@ OnTouch:
 			warp "que_job01",52,50;
 			end;
 		}
-		if (!$maobar_room2)
-		{
-			set $maobar_room2,1;
+		if (!$@maobar_room2) {
+			set $@maobar_room2,1;
 			donpcevent "#maobartimer2::OnEnter";
-			if (mao_request == 25)
-			{
+			if (mao_request == 25) {
 				donpcevent "Valdes#3::OnEnter";
 				donpcevent "Kidd#3::OnEnter";
 				donpcevent "#Rabsent::OnEnter";
-			}
-			else if (mao_request == 122)
-			{
+			} else if (mao_request == 122) {
 				donpcevent "#mao_empty::OnEnter";
 			}
 			mes "[Tao]";

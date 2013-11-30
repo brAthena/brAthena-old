@@ -3580,7 +3580,7 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	4_NFWISP,{
 	mes "you can put this fire out";
 	mes "with conventional means.^000000";
 	if (ice_necklace_q > 4) {
-		if ($ktullanux_summon < 4) {
+		if ($@ktullanux_summon < 4) {
 			if (countitem(7574) > 0) {
 				next;
 				select("Use Freezing Snow Powder.");
@@ -3589,8 +3589,8 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	4_NFWISP,{
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Ice_Particle
 				hideonnpc "Blazing Fire#ice1";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
 			else if (countitem(7562) > 0) {
 				next;
@@ -3600,18 +3600,13 @@ ice_dun03,126,126,3	script	Blazing Fire#ice1	4_NFWISP,{
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
 				hideonnpc "Blazing Fire#ice1";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
 		}
 	}
 	close;
-
-OnInit:
-	set $ktullanux_summon,0;
-	end;
-
 }
 
 
@@ -3622,7 +3617,7 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	4_NFWISP,{
 	mes "you can put this fire out";
 	mes "with conventional means.^000000";
 	if (ice_necklace_q > 4) {
-		if ($ktullanux_summon < 4) {
+		if ($@ktullanux_summon < 4) {
 			if (countitem(7574) > 0) {
 				next;
 				select("Use Freezing Snow Powder.");
@@ -3631,8 +3626,8 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	4_NFWISP,{
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Ice_Particle
 				hideonnpc "Blazing Fire#ice2";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
 			else if (countitem(7562) > 0) {
 				next;
@@ -3642,18 +3637,13 @@ ice_dun03,172,126,0	script	Blazing Fire#ice2	4_NFWISP,{
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
 				hideonnpc "Blazing Fire#ice2";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
 		}
 	}
 	close;
-
-OnInit:
-	set $ktullanux_summon,0;
-	end;
-
 }
 
 ice_dun03,172,172,0	script	Blazing Fire#ice3	4_NFWISP,{
@@ -3663,7 +3653,7 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	4_NFWISP,{
 	mes "you can put this fire out";
 	mes "with conventional means.^000000";
 	if (ice_necklace_q > 4) {
-		if ($ktullanux_summon < 4) {
+		if ($@ktullanux_summon < 4) {
 			if (countitem(7574) > 0) {
 				next;
 				select("Use Freezing Snow Powder.");
@@ -3672,8 +3662,8 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	4_NFWISP,{
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Ice_Particle
 				hideonnpc "Blazing Fire#ice3";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
 			else if (countitem(7562) > 0) {
 				next;
@@ -3683,18 +3673,13 @@ ice_dun03,172,172,0	script	Blazing Fire#ice3	4_NFWISP,{
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
 				hideonnpc "Blazing Fire#ice3";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
 		}
 	}
 	close;
-
-OnInit:
-	set $ktullanux_summon,0;
-	end;
-
 }
 
 ice_dun03,127,172,0	script	Blazing Fire#ice4	4_NFWISP,{
@@ -3704,7 +3689,7 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	4_NFWISP,{
 	mes "you can put this fire out";
 	mes "with conventional means.^000000";
 	if (ice_necklace_q > 4) {
-		if ($ktullanux_summon < 4) {
+		if ($@ktullanux_summon < 4) {
 			if (countitem(7574) > 0) {
 				next;
 				select("Use Freezing Snow Powder.");
@@ -3713,8 +3698,8 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	4_NFWISP,{
 				mes "flickers before extinguising.^000000";
 				delitem 7574,1; //Ice_Particle
 				hideonnpc "Blazing Fire#ice4";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 			}
 			else if (countitem(7562) > 0) {
 				next;
@@ -3724,18 +3709,13 @@ ice_dun03,127,172,0	script	Blazing Fire#ice4	4_NFWISP,{
 				mes "extinguising.^000000";
 				delitem 7562,1; //Ice Scale
 				hideonnpc "Blazing Fire#ice4";
-				set $ktullanux_summon,$ktullanux_summon+1;
-				if ($ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
+				set $@ktullanux_summon,$@ktullanux_summon+1;
+				if ($@ktullanux_summon == 4) donpcevent "ice_boss#broad::OnStart";
 				close;
 			}
 		}
 	}
 	close;
-
-OnInit:
-	set $ktullanux_summon,0;
-	end;
-
 }
 
 ice_dun03,1,173,5	script	ice_boss#broad	-1,{
@@ -3800,7 +3780,7 @@ OnMyMobDead:
 
 OnTimer7200000:
 	stopnpctimer;
-	set $ktullanux_summon,0;
+	set $@ktullanux_summon,0;
 	hideoffnpc "Blazing Fire#ice1";
 	hideoffnpc "Blazing Fire#ice2";
 	hideoffnpc "Blazing Fire#ice3";

@@ -91,112 +91,99 @@ yuno_in01,101,85,0	warp	yun66	1,1,yuno,245,144
 
 // Yuno In05 (Entrando em Portais Aleatórios)
 yuno_in05,153,141,0	script	#yun63	WARPNPC,1,1,{
-	if (rand(2)){
+	if (rand(2))
 		warp "yuno_in05",192,102;
-	} else {
+	else
 		warp "yuno_in05",145,82;
-	}
 	end;
 }
 // Yuno In05 (Portais Aleatórios - Forma de Cruz)
 yuno_in05,196,102,0	script	#yun64	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",169,102; end;
-w2:	warp "yuno_in05",128,82;  end;
-w3:	warp "yuno_in05",156,141; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",169,102; end;
+		case 1:	warp "yuno_in05",128,82;  end;
+		case 2:	warp "yuno_in05",156,141; end;
+	}
 }
 yuno_in05,181,116,0	script	#yun65	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,94; end;
-w2:	warp "yuno_in05",176,13; end;
-w3:	warp "yuno_in05",136,75; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,94; end;
+		case 1:	warp "yuno_in05",176,13; end;
+		case 2:	warp "yuno_in05",136,75; end;
+	}
 }
 yuno_in05,165,102,0	script	#yun66	WARPNPC,1,1,{
-	if (rand(2)){
+	if (rand(2))
 		warp "yuno_in05",192,102;
-	} else {
+	else
 		warp "yuno_in05",145,82;
-	}
 	end;
 }
 yuno_in05,181,91,0	script	#yun67	WARPNPC,1,1,{
-	if (rand(2)){
+	if (rand(2))
 		warp "yuno_in05",181,112;
-	} else {
+	else
 		warp "yuno_in05",176,48;
-	}
 	end;
 }
 // Yuno In05 (Portais Aleatórios - Forma de T)
 yuno_in05,148,82,0	script	#yun68	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",169,102; end;
-w2:	warp "yuno_in05",128,82;  end;
-w3:	warp "yuno_in05",156,141; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",169,102; end;
+		case 1:	warp "yuno_in05",128,82;  end;
+		case 2:	warp "yuno_in05",156,141; end;
+	}
 }
 yuno_in05,125,82,0	script	#yun69	WARPNPC,1,1,{
-	if (rand(2)){
+	if (rand(2))
 		warp "yuno_in05",192,102;
-	} else {
+	else
 		warp "yuno_in05",145,82;
-	}
 	end;
 }
 yuno_in05,136,71,0	script	#yun70	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,112; end;
-w2:	warp "yuno_in05",16,185;  end;
-w3:	warp "yuno_in05",176,48;  end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,112; end;
+		case 1:	warp "yuno_in05",16,185;  end;
+		case 2:	warp "yuno_in05",176,48;  end;
+	}
 }
 // Yuno In05 (Portais Aleatórios - Outro)
 yuno_in05,16,188,0	script	#yun71	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,94; end;
-w2:	warp "yuno_in05",176,13; end;
-w3:	warp "yuno_in05",136,75; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,94; end;
+		case 1:	warp "yuno_in05",176,13; end;
+		case 2:	warp "yuno_in05",136,75; end;
+	}
 }
 yuno_in05,176,9,0	script	#yun72	WARPNPC,1,1,{
-	if (rand(2)){
+	if (rand(2))
 		warp "yuno_in05",181,112;
-	} else {
+	else
 		warp "yuno_in05",176,48;
-	}
 	end;
 }
 yuno_in05,176,52,0	script	#yun73	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,94; end;
-w2:	warp "yuno_in05",176,13; end;
-w3:	warp "yuno_in05",136,75; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,94; end;
+		case 1:	warp "yuno_in05",176,13; end;
+		case 2:	warp "yuno_in05",136,75; end;
+	}
 }
 // Yuno In05 (Destino - Sala)
 yuno_in05,40,178,0	script	#yun74	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,94; end;
-w2:	warp "yuno_in05",176,13; end;
-w3:	warp "yuno_in05",136,75; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,94; end;
+		case 1:	warp "yuno_in05",176,13; end;
+		case 2:	warp "yuno_in05",136,75; end;
+	}
 }
 yuno_in05,47,186,0	script	#yun75	WARPNPC,1,1,{
-	set @warp0,rand(3);
-	if (@warp0==1) goto w2;
-	if (@warp0==2) goto w3;
-	warp "yuno_in05",181,94; end;
-w2:	warp "yuno_in05",176,13; end;
-w3:	warp "yuno_in05",136,75; end;
+	switch(rand(3)) {
+		case 0: warp "yuno_in05",181,94; end;
+		case 1:	warp "yuno_in05",176,13; end;
+		case 2:	warp "yuno_in05",136,75; end;
+	}
 }
 // Yuno In05 (Destino - Escapar Portais Aleatórios)
 yuno_in05,31,167,0	warp	yun76	1,1,yuno_in05,50,85

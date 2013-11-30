@@ -631,18 +631,15 @@ que_job01,49,49,5	script	Tao#dan_09	4_F_YUNYANG,{
 }
 
 que_job01,51,55,0	script	que_job01#room_1	WARPNPC,1,1,{
-OnInit:
-	set $maobar_room,0;
-	end;
 
 OnReset:
-	set $maobar_room,0;
+	set $@maobar_room,0;
 	end;
 
 OnTouch:
 	if (prt_curse == 24) {
-		if ($maobar_room == 0) {
-			set $maobar_room,1;
+		if ($@maobar_room == 0) {
+			set $@maobar_room,1;
 			donpcevent " #room1timer::OnEnable";
 			donpcevent "Marjana#poison::OnEnable";
 			mes "[Tao]";
@@ -666,8 +663,8 @@ OnTouch:
 		}
 	}
 	else if (mao_request > 0) {
-		if ($maobar_room == 0) {
-			set $maobar_room,1;
+		if ($@maobar_room == 0) {
+			set $@maobar_room,1;
 			donpcevent " #room1timer::OnEnable";
 			donpcevent "Valdes#moc_Chefe_1::OnEnable";
 			mes "[Tao]";

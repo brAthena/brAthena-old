@@ -1444,9 +1444,8 @@ prt_church,113,103,1	script	Praying Man	4_M_NFMAN,{
 		mes "to Lowen.";
 		close;
 	} else if (god_brising == 5) {
-		set @brising_try,rand(1,4);
 		mes "[Hermite Charles]";
-		if (@brising_try == 1) {
+		if (rand(1,4) == 1) {
 			mes "You're still here.";
 			mes "Does that mean you";
 			mes "want to hear my";

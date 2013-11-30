@@ -6398,9 +6398,7 @@ lighthalzen,179,170,4	script	Homem Comum	4W_M_02,{
 	}
 	else if (lhz_boss == 1)
 	{
-		set @weather,rand(1,5);
-		if (@weather == 4)
-		{
+		if(rand(1,5) == 4) {
 			mes "[Ghalstein]";
 			mes "Hm? Está um pouco";
 			mes "nublado hoje, não?";
@@ -7917,9 +7915,7 @@ L_Mission:
 	}
 	else if (lhz_boss == 22)
 	{
-		set @read_pre,rand(1,5);
-		if (@read_pre == 3)
-		{
+		if(rand(1,5) == 3) {
 			mes "[Karl]";
 			mes "Hm. Depois de examinar";
 			mes "a fundo esses arquivos,";
@@ -8140,9 +8136,7 @@ L_Mission:
 	}
 	else if (lhz_boss == 25)
 	{
-		set @talk_pre,rand(1,10);
-		if (@talk_pre == 8)
-		{
+		if(rand(1,10) == 8) {
 			mes "[Karl]";
 			mes "Certo, Eu acabei";
 			mes "de ler todos esses";
