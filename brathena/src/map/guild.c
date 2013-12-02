@@ -1808,7 +1808,9 @@ int guild_broken(int guild_id,int flag)
 		if(g->channel != NULL) {
 			clif_chsys_delete(( struct raChSysCh * )g->channel);
 		}
-	} 
+	}
+	if(g->instance)
+		aFree(g->instance);
 	idb_remove(guild_db,guild_id);
 	return 0;
 }

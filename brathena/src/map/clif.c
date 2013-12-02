@@ -5518,6 +5518,8 @@ void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char
 
 void clif_chsys_mjoin(struct map_session_data *sd) {
 	if(!map[sd->bl.m].channel) {
+		if(map[sd->bl.m].flag.chsysnolocalaj || (map[sd->bl.m].instance_id >= 0 && instance->list[map[sd->bl.m].instance_id].owner_type != IOT_NONE) )
+			return;
 		CREATE(map[sd->bl.m].channel, struct raChSysCh , 1);
 		safestrncpy(map[sd->bl.m].channel->name, raChSys.local_name, RACHSYS_NAME_LENGTH);
 		map[sd->bl.m].channel->type = raChSys_MAP;
@@ -9365,7 +9367,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		map_spawnmobs(sd->bl.m);
 
 	if(map[sd->bl.m].instance_id >= 0 ) {
-		instances[map[sd->bl.m].instance_id].users++;
+		instance->list[map[sd->bl.m].instance_id].users++;
 		instance->check_idle(map[sd->bl.m].instance_id);
 	}
 	
@@ -16240,20 +16242,20 @@ int clif_instance(int instance_id, int type, int flag) {
 	unsigned char buf[255];
 	enum send_target target = PARTY;
 
-	switch(instances[instance_id].owner_type) {
+	switch(instance->list[instance_id].owner_type) {
 		case IOT_NONE:
 			return 0;
 		case IOT_GUILD:
 			target = GUILD;
-			sd = guild_getavailablesd(guild_search(instances[instance_id].owner_id));
+			sd = guild_getavailablesd(guild_search(instance->list[instance_id].owner_id));
 			break;
 		case IOT_PARTY:
 			/* default is already PARTY */
-			sd = party_getavailablesd(party_search(instances[instance_id].owner_id));
+			sd = party_getavailablesd(party_search(instance->list[instance_id].owner_id));
 			break;
 		case IOT_CHAR:
 			target = SELF;
-			sd = map_id2sd(instances[instance_id].owner_id);
+			sd = map_id2sd(instance->list[instance_id].owner_id);
 			break;
 	}
 
@@ -16266,7 +16268,7 @@ int clif_instance(int instance_id, int type, int flag) {
 			// Required to start the instancing information window on Client
 			// This window re-appear each "refresh" of client automatically until type 4 is send to client.
 			WBUFW(buf,0) = 0x02CB;
-			memcpy(WBUFP(buf,2),instances[instance_id].name,INSTANCE_NAME_LENGTH);
+			memcpy(WBUFP(buf,2),instance->list[instance_id].name,INSTANCE_NAME_LENGTH);
 			WBUFW(buf,63) = flag;
 			clif_send(buf,packet_len(0x02CB),&sd->bl,target);
 			break;
@@ -16281,13 +16283,13 @@ int clif_instance(int instance_id, int type, int flag) {
 		case 4:
 			// S 0x2cd <Instance Name>.61B <Instance Remaining Time>.L <Instance Noplayers close time>.L
 			WBUFW(buf,0) = 0x02CD;
-			memcpy(WBUFP(buf,2),instances[instance_id].name,61);
+			memcpy(WBUFP(buf,2),instance->list[instance_id].name,61);
 			if(type == 3) {
-				WBUFL(buf,63) = instances[instance_id].progress_timeout;
+				WBUFL(buf,63) = instance->list[instance_id].progress_timeout;
 				WBUFL(buf,67) = 0;
 			} else {
 				WBUFL(buf,63) = 0;
-				WBUFL(buf,67) = instances[instance_id].idle_timeout;
+				WBUFL(buf,67) = instance->list[instance_id].idle_timeout;
 			}
 			clif_send(buf,packet_len(0x02CD),&sd->bl,target);
 			break;
@@ -16309,24 +16311,24 @@ int clif_instance(int instance_id, int type, int flag) {
 
 void clif_instance_join(int fd, int instance_id)
 {
-	if(instances[instance_id].idle_timer != INVALID_TIMER) {
+	if(instance->list[instance_id].idle_timer != INVALID_TIMER) {
 		WFIFOHEAD(fd,packet_len(0x02CD));
 		WFIFOW(fd,0) = 0x02CD;
-		memcpy(WFIFOP(fd,2),instances[instance_id].name,61);
+		memcpy(WFIFOP(fd,2),instance->list[instance_id].name,61);
 		WFIFOL(fd,63) = 0;
-		WFIFOL(fd,67) = instances[instance_id].idle_timeout;
+		WFIFOL(fd,67) = instance->list[instance_id].idle_timeout;
 		WFIFOSET(fd,packet_len(0x02CD));
-	} else if(instances[instance_id].progress_timer != INVALID_TIMER) {
+	} else if(instance->list[instance_id].progress_timer != INVALID_TIMER) {
 		WFIFOHEAD(fd,packet_len(0x02CD));
 		WFIFOW(fd,0) = 0x02CD;
-		memcpy(WFIFOP(fd,2),instances[instance_id].name,61);
-		WFIFOL(fd,63) = instances[instance_id].progress_timeout;
+		memcpy(WFIFOP(fd,2),instance->list[instance_id].name,61);
+		WFIFOL(fd,63) = instance->list[instance_id].progress_timeout;
 		WFIFOL(fd,67) = 0;
 		WFIFOSET(fd,packet_len(0x02CD));
 	} else {
 		WFIFOHEAD(fd,packet_len(0x02CB));
 		WFIFOW(fd,0) = 0x02CB;
-		memcpy(WFIFOP(fd,2),instances[instance_id].name,61);
+		memcpy(WFIFOP(fd,2),instance->list[instance_id].name,61);
 		WFIFOW(fd,63) = 0;
 		WFIFOSET(fd,packet_len(0x02CB));
 	}

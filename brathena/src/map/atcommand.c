@@ -7136,8 +7136,10 @@ ACMD_FUNC(makehomun)
 
 	homunid = atoi(message);
 
-	if(homunid == -1 && sd->status.hom_id && !homun_alive(sd->hd)) {
-		if(sd->hd->homunculus.vaporize )
+	if(homunid == -1 && sd->status.hom_id && !(sd->hd &&homun_alive(sd->hd))) {
+		if(!sd->hd)
+			homun->call(sd);
+		else if(sd->hd->homunculus.vaporize )
 			homun->ressurect(sd, 100, sd->bl.x, sd->bl.y);
 		else
 			homun->call(sd);
@@ -8970,7 +8972,7 @@ ACMD_FUNC(cart)
 
 /* Channel System [Ind] */
 ACMD_FUNC(join) {
-	struct raChSysCh *channel;
+	struct raChSysCh *channel = NULL;
 	char name[RACHSYS_NAME_LENGTH], pass[RACHSYS_NAME_LENGTH];
 	DBMap* channel_db = clif_get_channel_db();
 	
@@ -8982,6 +8984,7 @@ ACMD_FUNC(join) {
 	if( raChSys.local && strcmpi(name + 1, raChSys.local_name) == 0 ) {
 		if( !map[sd->bl.m].channel ) {
 			clif_chsys_mjoin(sd);
+			if(map[sd->bl.m].channel) /* mjoin might have refused, map has chatting capabilities disabled */
 			return 0;
 		} else
 			channel = map[sd->bl.m].channel;
@@ -8994,6 +8997,13 @@ ACMD_FUNC(join) {
 		clif_displaymessage(fd, atcmd_output);
 		return -1;
 	}
+
+	if(!channel) {
+		sprintf(atcmd_output, msg_txt(1403),name,command); // Unknown Channel '%s' (usage: %s <#channel_name>)
+		clif_displaymessage(fd, atcmd_output);
+		return -1;
+	}
+
 
 	if( idb_exists(channel->users, sd->status.char_id) ) {
 		sprintf(atcmd_output, msg_txt(1437),name); // You're already in the '%s' channel.
@@ -9032,9 +9042,8 @@ ACMD_FUNC(join) {
 			}
 		}
 	}
-
-
 	clif_chsys_join(channel,sd);
+
 	return 0;
 }
 

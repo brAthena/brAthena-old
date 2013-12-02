@@ -1125,6 +1125,9 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 	sd->delayed_damage = 0;
 
+	if(battle_config.item_check)
+		sd->state.itemcheck = 1;
+
 	// Event Timers
 	for(i = 0; i < MAX_EVENTTIMER; i++)
 		sd->eventtimer[i] = INVALID_TIMER;
@@ -4839,13 +4842,13 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		if(sd->instances) {
 			for(i = 0; i < sd->instances; i++) {
 				if(sd->instance[i] >= 0) {
-					ARR_FIND(0, instances[sd->instance[i]].num_map, j, map[instances[sd->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->instance[i]].map[j]].custom_name);
-					if(j != instances[sd->instance[i]].num_map)
+					ARR_FIND(0, instance->list[sd->instance[i]].num_map, j, map[instance->list[sd->instance[i]].map[j]].instance_src_map == m && !map[instance->list[sd->instance[i]].map[j]].custom_name);
+					if(j != instance->list[sd->instance[i]].num_map)
 						break;
 				}
 			}
 			if(i != sd->instances) {
-				m = instances[sd->instance[i]].map[j];
+				m = instance->list[sd->instance[i]].map[j];
 				mapindex = map_id2index(m);
 				stop = true;
 			}
@@ -4853,13 +4856,13 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		if (!stop && sd->status.party_id && (p = party_search(sd->status.party_id)) && p->instances) {
 			for(i = 0; i < p->instances; i++) {
 				if(p->instance[i] >= 0) {
-					ARR_FIND(0, instances[p->instance[i]].num_map, j, map[instances[p->instance[i]].map[j]].instance_src_map == m && !map[instances[p->instance[i]].map[j]].custom_name);
-					if(j != instances[p->instance[i]].num_map)
+					ARR_FIND(0, instance->list[p->instance[i]].num_map, j, map[instance->list[p->instance[i]].map[j]].instance_src_map == m && !map[instance->list[p->instance[i]].map[j]].custom_name);
+					if(j != instance->list[p->instance[i]].num_map)
 						break;
 				}
 			}
 			if(i != p->instances) {
-				m = instances[p->instance[i]].map[j];
+				m = instance->list[p->instance[i]].map[j];
 				mapindex = map_id2index(m);
 				stop = true;
 			}
@@ -4867,24 +4870,24 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		if (!stop && sd->status.guild_id && sd->guild && sd->guild->instances) {
 			for(i = 0; i < sd->guild->instances; i++) {
 				if(sd->guild->instance[i] >= 0) {
-					ARR_FIND(0, instances[sd->guild->instance[i]].num_map, j, map[instances[sd->guild->instance[i]].map[j]].instance_src_map == m && !map[instances[sd->guild->instance[i]].map[j]].custom_name);
-					if(j != instances[sd->guild->instance[i]].num_map)
+					ARR_FIND(0, instance->list[sd->guild->instance[i]].num_map, j, map[instance->list[sd->guild->instance[i]].map[j]].instance_src_map == m && !map[instance->list[sd->guild->instance[i]].map[j]].custom_name);
+					if(j != instance->list[sd->guild->instance[i]].num_map)
 						break;
 				}
 			}
 			if(i != sd->guild->instances) {
-				m = instances[sd->guild->instance[i]].map[j];
+				m = instance->list[sd->guild->instance[i]].map[j];
 				mapindex = map_id2index(m);
 				stop = true;
 			}
 		}
 		/* we hit a instance, if empty we populate the spawn data */
-		if(map[m].instance_id >= 0 && instances[map[m].instance_id].respawn.map == 0 &&
-		    instances[map[m].instance_id].respawn.x == 0 &&
-		    instances[map[m].instance_id].respawn.y == 0) {
-			instances[map[m].instance_id].respawn.map = mapindex;
-			instances[map[m].instance_id].respawn.x = x;
-			instances[map[m].instance_id].respawn.y = y;
+		if(map[m].instance_id >= 0 && instance->list[map[m].instance_id].respawn.map == 0 &&
+		    instance->list[map[m].instance_id].respawn.x == 0 &&
+		    instance->list[map[m].instance_id].respawn.y == 0) {
+			instance->list[map[m].instance_id].respawn.map = mapindex;
+			instance->list[map[m].instance_id].respawn.x = x;
+			instance->list[map[m].instance_id].respawn.y = y;
 		}
 	}
 
@@ -9077,11 +9080,10 @@ int pc_checkitem(struct map_session_data *sd)
 
 	nullpo_ret(sd);
 
-	if(sd->state.vending)   //Avoid reorganizing items when we are vending, as that leads to exploits (pointed out by End of Exam)
+	if(sd->state.vending) //Avoid reorganizing items when we are vending, as that leads to exploits (pointed out by End of Exam)
 		return 0;
 
-	if(battle_config.item_check) {
-		// check for invalid(ated) items
+	if(sd->state.itemcheck) { // check for invalid(ated) items
 		for(i = 0; i < MAX_INVENTORY; i++) {
 			id = sd->status.inventory[i].nameid;
 
@@ -9109,7 +9111,7 @@ int pc_checkitem(struct map_session_data *sd)
 			}
 		}
 
-		if(sd->state.gmaster_flag) {
+		if(sd->guild) {
 			struct guild_storage *guild_storage = guild2storage2(sd->guild->guild_id);
 			if(guild_storage) {
 				for(i = 0; i < MAX_GUILD_STORAGE; i++) {
@@ -9122,6 +9124,7 @@ int pc_checkitem(struct map_session_data *sd)
 				}
 			}
 		}
+		sd->state.itemcheck = 0;
 	}
 
 	for(i = 0; i < MAX_INVENTORY; i++) {

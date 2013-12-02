@@ -58,15 +58,15 @@ struct instance_data {
 	struct point respawn;/* reload spawn */
 };
 
-struct instance_data *instances;
-
 struct instance_interface {
 	void (*init) (void);
 	void (*final) (void);
 	void (*reload) (void);
 	/* start point */
 	unsigned short start_id;
-	unsigned short instances;
+	unsigned short instances;/* count */
+	/* */
+	struct instance_data *list;/* pointer to a chunk of consecutive memory, access via instance->list[0]..etc */
 	/* */
 	int (*create) (int party_id, const char *name, enum instance_owner_type type);
 	int (*add_map) (const char *name, int instance_id, bool usebasename, const char *map_name);

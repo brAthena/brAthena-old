@@ -1081,8 +1081,9 @@ const char *parse_variable(const char *p)
 
 	parse_variable_sub_push(word, p2); // Push variable onto the stack
 
-	if(type != C_EQ)
-		add_scriptc(C_REF);
+	if(type != C_EQ) {
+		parse_variable_sub_push(word, p2); // Push variable onto the stack once again (first argument of setr)
+	}
 
 	if( type == C_ADD_POST || type == C_SUB_POST ) { // post ++ / --
 		add_scripti(1);
@@ -2636,7 +2637,7 @@ void get_val(struct script_state *st, struct script_data *data)
 				break;
 			case '\'':
 				if(st->instance_id >= 0) {
-					data->u.str = (char *)idb_get(instances[st->instance_id].vars,reference_getuid(data));
+					data->u.str = (char *)idb_get(instance->list[st->instance_id].vars,reference_getuid(data));
 				} else {
 					ShowWarning("script__get_val: cannot access instance variable '%s', defaulting to \"\"\n", name);
 					data->u.str = NULL;
@@ -2693,7 +2694,7 @@ void get_val(struct script_state *st, struct script_data *data)
 					break;
 				case '\'':
 					if(st->instance_id >= 0)
-						data->u.num = (int)idb_iget(instances[st->instance_id].vars,reference_getuid(data));
+						data->u.num = (int)idb_iget(instance->list[st->instance_id].vars,reference_getuid(data));
 					else {
 						ShowWarning("script_get_val: cannot access instance variable '%s', defaulting to 0\n", name);
 						data->u.num = 0;
@@ -2751,8 +2752,8 @@ static int set_reg(struct script_state *st, TBL_PC *sd, int num, const char *nam
 				return 1;
 			case '\'':
 				if(st->instance_id >= 0) {
-					idb_remove(instances[st->instance_id].vars, num);
-					if(str[0]) idb_put(instances[st->instance_id].vars, num, aStrdup(str));
+					idb_remove(instance->list[st->instance_id].vars, num);
+					if(str[0]) idb_put(instance->list[st->instance_id].vars, num, aStrdup(str));
 				}
 				return 1;
 			default:
@@ -2794,9 +2795,9 @@ static int set_reg(struct script_state *st, TBL_PC *sd, int num, const char *nam
 				return 1;
 			case '\'':
 				if(st->instance_id >= 0) {
-					idb_remove(instances[st->instance_id].vars, num);
+					idb_remove(instance->list[st->instance_id].vars, num);
 					if(val != 0)
-						idb_iput(instances[st->instance_id].vars, num, val);
+						idb_iput(instance->list[st->instance_id].vars, num, val);
 				}
 				return 1;
 			default:
@@ -16593,7 +16594,7 @@ BUILDIN_FUNC(instance_init)
 		return 0;
 	}
 
-	if(instances[instance_id].state != INSTANCE_IDLE) {
+	if(instance->list[instance_id].state != INSTANCE_IDLE) {
 		ShowError("instance_init: instance already initialized.\n");
 		return 0;
 	}
@@ -16625,8 +16626,8 @@ BUILDIN_FUNC(instance_announce)
 	if(!instance->valid(instance_id))
 		return 0;
 
-	for(i = 0; i < instances[instance_id].num_map; i++)
-		map_foreachinmap(buildin_announce_sub, instances[instance_id].map[i], BL_PC,
+	for(i = 0; i < instance->list[instance_id].num_map; i++)
+		map_foreachinmap(buildin_announce_sub, instance->list[instance_id].map[i], BL_PC,
 						 mes, strlen(mes)+1, flag&BC_COLOR_MASK, fontColor, fontType, fontSize, fontAlign, fontY);
 
 	return 0;
@@ -16681,8 +16682,8 @@ BUILDIN_FUNC(has_instance)
 		if( sd->instances ) {
 			for(i = 0; i < sd->instances; i++) {
 				if(sd->instance[i] >= 0) {
-					ARR_FIND(0, instances[sd->instance[i]].num_map, j, map[instances[sd->instance[i]].map[j]].instance_src_map == m);
-					if(j != instances[sd->instance[i]].num_map)
+					ARR_FIND(0, instance->list[sd->instance[i]].num_map, j, map[instance->list[sd->instance[i]].map[j]].instance_src_map == m);
+					if(j != instance->list[sd->instance[i]].num_map)
 						break;
 				}
 			}
@@ -16692,8 +16693,8 @@ BUILDIN_FUNC(has_instance)
 		if(instance_id == -1 && sd->status.party_id && (p = party_search(sd->status.party_id)) && p->instances) {
 			for(i = 0; i < p->instances; i++) {
 				if(p->instance[i] >= 0) {
-					ARR_FIND(0, instances[p->instance[i]].num_map, j, map[instances[p->instance[i]].map[j]].instance_src_map == m);
-					if(j != instances[p->instance[i]].num_map)
+					ARR_FIND(0, instance->list[p->instance[i]].num_map, j, map[instance->list[p->instance[i]].map[j]].instance_src_map == m);
+					if(j != instance->list[p->instance[i]].num_map)
 						break;
 				}
 			}
@@ -16703,8 +16704,8 @@ BUILDIN_FUNC(has_instance)
 		if(instance_id == -1 && sd->guild && sd->guild->instances) {
 			for(i = 0; i < sd->guild->instances; i++) {
 				if(sd->guild->instance[i] >= 0) {
-					ARR_FIND(0, instances[sd->guild->instance[i]].num_map, j, map[instances[sd->guild->instance[i]].map[j]].instance_src_map == m);
-					if(j != instances[sd->guild->instance[i]].num_map)
+					ARR_FIND(0, instance->list[sd->guild->instance[i]].num_map, j, map[instance->list[sd->guild->instance[i]].map[j]].instance_src_map == m);
+					if(j != instance->list[sd->guild->instance[i]].num_map)
 						break;
 				}
 			}
@@ -18348,19 +18349,19 @@ BUILDIN_FUNC(instance_set_respawn) {
 	} else {
 		int i;
 		
-		for(i = 0; i < instances[instance_id].num_map; i++) {
-			if(map[instances[instance_id].map[i]].m == mid ) {
-				instances[instance_id].respawn.map = map_id2index(mid);
-				instances[instance_id].respawn.x = x;
-				instances[instance_id].respawn.y = y;
+		for(i = 0; i < instance->list[instance_id].num_map; i++) {
+			if(map[instance->list[instance_id].map[i]].m == mid ) {
+				instance->list[instance_id].respawn.map = map_id2index(mid);
+				instance->list[instance_id].respawn.x = x;
+				instance->list[instance_id].respawn.y = y;
 				break;
 			}
 		}
 		
-		if(i != instances[instance_id].num_map)
+		if(i != instance->list[instance_id].num_map)
 			script_pushint(st, 1);
 		else {
-			ShowError("buildin_instance_set_respawn: map '%s' not part of instance '%s'\n",map_name,instances[instance_id].name);
+			ShowError("buildin_instance_set_respawn: map '%s' not part of instance '%s'\n",map_name,instance->list[instance_id].name);
 			script_pushint(st, 0);
 		}
 	}

@@ -1422,7 +1422,7 @@ job_hunte,64,92,0	duplicate(ArmadilhaCaçador)	57-1	-1,0,0
 job_hunte,64,93,0	duplicate(ArmadilhaCaçador)	57-2	-1,0,0
 job_hunte,65,92,0	duplicate(ArmadilhaCaçador)	57-3	-1,0,0
 
-job_hunte,65,93,0	script	1_M_LIBRARYMASTER-4::ArmadilhaCaçador2	-1,{
+job_hunte,65,93,0	script	57-4::ArmadilhaCaçador2	-1,{
 OnTouch:
 	mapannounce "job_hunte",strcharinfo(0)+", falhou comigo! Volte para onde você começou!",bc_map;
 	set CACA_Q,13;

@@ -2215,7 +2215,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 					--map[bl->m].users_pvp;
 				}
 				if(map[bl->m].instance_id >= 0) {
-					instances[map[bl->m].instance_id].users--;
+					instance->list[map[bl->m].instance_id].users--;
 					instance->check_idle(map[bl->m].instance_id);
 				}
 				if(sd->state.hpmeter_visible) {
