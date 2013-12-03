@@ -106,35 +106,35 @@ static struct {
 int mobdb_searchname(const char *str)
 {
 	int i;
-	struct mob_db *mob;
+	struct mob_db *monster;
 	for(i=0; i<=MAX_MOB_DB; i++) {
-		mob = mob_db(i);
-		if(mob == mob_dummy) //Skip dummy mobs.
+		monster = mob_db(i);
+		if(monster == mob_dummy) //Skip dummy mobs.
 			continue;
-		if(strcmpi(mob->name,str)==0 || strcmpi(mob->jname,str)==0 || strcmpi(mob->sprite,str)==0)
+		if(strcmpi(monster->name,str)==0 || strcmpi(monster->jname,str)==0 || strcmp(monster->sprite,str)==0) // Sprite name case sensitive
 			return i;
 	}
 
 	return 0;
 }
-static int mobdb_searchname_array_sub(struct mob_db *mob, const char *str, int flag)
+static int mobdb_searchname_array_sub(struct mob_db *monster, const char *str, int flag)
 {
-	if(mob == mob_dummy)
+	if(monster == mob_dummy)
 		return 1;
-	if(!mob->base_exp && !mob->job_exp && mob->spawn[0].qty < 1)
+	if(!monster->base_exp && !monster->job_exp && monster->spawn[0].qty < 1)
 		return 1; // Monsters with no base/job exp and no spawn point are, by this criteria, considered "slave mobs" and excluded from search results
 	if(!flag) {
-		if(stristr(mob->jname,str))
+		if(stristr(monster->jname,str))
 			return 0;
-		if(stristr(mob->name,str))
+		if(stristr(monster->name,str))
 			return 0;
-		return strcmpi(mob->jname,str);
+		return strcmpi(monster->jname,str);
 	}
-	if(strcmp(mob->jname,str) == 0)
+	if(strcmpi(monster->jname,str) == 0)
 		return 0;
-	if(strcmp(mob->name,str) == 0)
+	if(strcmpi(monster->name,str) == 0)
 		return 0;
-	return strcmp(mob->sprite,str);
+	return strcmp(monster->sprite,str);
 }
 
 /*==========================================
@@ -212,14 +212,14 @@ void mvptomb_destroy(struct mob_data *md)
 int mobdb_searchname_array(struct mob_db **data, int size, const char *str, int flag)
 {
 	int count = 0, i;
-	struct mob_db *mob;
+	struct mob_db *monster;
 	for(i=0; i<=MAX_MOB_DB; i++) {
-		mob = mob_db(i);
-		if(mob == mob_dummy || mob_is_clone(i))   //keep clones out (or you leak player stats)
+		monster = mob_db(i);
+		if(monster == mob_dummy || mob_is_clone(i))   //keep clones out (or you leak player stats)
 			continue;
-		if(!mobdb_searchname_array_sub(mob, str, flag)) {
+		if(!mobdb_searchname_array_sub(monster, str, flag)) {
 			if(count < size)
-				data[count] = mob;
+				data[count] = monster;
 			count++;
 		}
 	}

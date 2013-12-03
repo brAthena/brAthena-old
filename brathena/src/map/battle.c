@@ -6038,7 +6038,12 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 		}
 		if(flag&(BCT_PARTY|BCT_ENEMY)) {
 			int s_party = status_get_party_id(s_bl);
-			if(s_party && s_party == status_get_party_id(t_bl) && !(map[m].flag.pvp && map[m].flag.pvp_noparty) && !(map_flag_gvg(m) && map[m].flag.gvg_noparty) && (!map[m].flag.battleground || sbg_id == tbg_id))
+			int s_guild = status_get_guild_id(s_bl);
+
+			if(s_party && s_party == status_get_party_id(t_bl)
+			 && !(map[m].flag.pvp && map[m].flag.pvp_noparty)
+			 && !(map_flag_gvg(m) && map[m].flag.gvg_noparty && !(s_guild && s_guild == status_get_guild_id(t_bl)))
+			 && (!map[m].flag.battleground || sbg_id == tbg_id))
 				state |= BCT_PARTY;
 			else
 				state |= BCT_ENEMY;
