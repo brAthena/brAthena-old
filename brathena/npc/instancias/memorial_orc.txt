@@ -44,7 +44,7 @@ gef_fild10,242,202,0	script	Memorial Orc	2_MONEMUS,{
 	set .@orctime,checkquest(12059,PLAYTIME);
 	if (.@orctime == -1) {
 		if (getcharid(0) == getpartyleader(.@party_id,2)) {
-				mes "Criação de grupo confirmada. Gostaria de agendar a entrada de " + .@md_name$ + "?";
+			mes "Criação de grupo confirmada. Gostaria de agendar a entrada de " + .@md_name$ + "?";
 			next;
 			switch(select("Reservar o " + .@md_name$ + ".:Entrar no calabouço.:Cancelar.")) {
 			case 1:
@@ -55,20 +55,20 @@ gef_fild10,242,202,0	script	Memorial Orc	2_MONEMUS,{
 					mes "^0000ff"+.@md_name$+" ^000000 - Falha ao reservar.";
 					close;
 				}
-					mes "^0000ff"+.@md_name$+"^000000- Aguardando a reserva.";
-					for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
-						if ( instance_attachmap(.@i + "@orcs", .@instance) == "" )
-							break;
-					}
-					if ( .@i < 2 ) {
-						instance_destroy(.@instance);
-						close;
-					}
-					instance_set_timeout 7200,300,.@instance;
-					instance_init(.@instance);
-
-					mes "Após fazer a reserva, você deve selecionar no menu a opção 'Entrar no Calabouço' caso deseje entrar no "+.@md_name$+".";
+				mes "^0000ff"+.@md_name$+"^000000- Aguardando a reserva.";
+				for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
+					if ( instance_attachmap(.@i + "@orcs", .@instance) == "" )
+						break;
+				}
+				if ( .@i < 2 ) {
+					instance_destroy(.@instance);
 					close;
+				}
+				instance_set_timeout 7200,300,.@instance;
+				instance_init(.@instance);
+
+				mes "Após fazer a reserva, você deve selecionar no menu a opção 'Entrar no Calabouço' caso deseje entrar no "+.@md_name$+".";
+				close;
 			case 2:
 				callsub L_Enter,0;
 			case 3:
@@ -100,7 +100,7 @@ L_Enter:
 		mes "Caso o seu calabouço tenha sido destruído deverá esperar 7 dias para entrar novamente.";
 		close;
 	} else {
-		mapannounce "gef_fild10", .@p_leader$ + " of the party, " + .@p_name$ + " is entering the "+.@md_name$+".",bc_map,"0x00ff99";
+		mapannounce "gef_fild10", .@p_leader$ + " do grupo, " + .@p_name$ + " está entrando no "+.@md_name$+".",bc_map,"0x00ff99";
 		if (checkquest(12059)== -1) setquest 12059;
 		warp "1@orcs",179,15;
 		end;
@@ -131,20 +131,20 @@ gef_fild10,238,202,6	script	Cientista Maluco#orc	4_LGTSCIENCE,{
 			next;
 			break;
 		}
-			select("Nossa! Como... viagens para outras dimensões!?");
-			mes "[Cientista Maluco]";
-			mes "Muito esperto! Na verdade eu só fiz isso! Consegue ver aquela estátua ali? Não é seu monolito natural!";
-			next;
-			mes "[Cientista Maluco]";
-			mes "Eu a criei a partir de uma junção da nossa tecnologia com a energia ilimitada que encontrei! Gostaria de tentar?";
-			next;
-		  select("... Hm, isso não seria ilegal?");
-			mes "[Cientista Maluco]";
-			mes "Como que algo tão interessante assim pode ser ilegal!? Você pode falar com os orcs!! Vamos lá!";
-			next;
-			mes "[Cientista Maluco]";
-			mes "Provavelmente eles irão lhe dar milhões de instruções, e uma vez que eles o verem vão sempre repetir a mesma coisa!";
-			next;
+		select("Nossa! Como... viagens para outras dimensões!?");
+		mes "[Cientista Maluco]";
+		mes "Muito esperto! Na verdade eu só fiz isso! Consegue ver aquela estátua ali? Não é seu monolito natural!";
+		next;
+		mes "[Cientista Maluco]";
+		mes "Eu a criei a partir de uma junção da nossa tecnologia com a energia ilimitada que encontrei! Gostaria de tentar?";
+		next;
+		select("... Hm, isso não seria ilegal?");
+		mes "[Cientista Maluco]";
+		mes "Como que algo tão interessante assim pode ser ilegal!? Você pode falar com os orcs!! Vamos lá!";
+		next;
+		mes "[Cientista Maluco]";
+		mes "Provavelmente eles irão lhe dar milhões de instruções, e uma vez que eles o verem vão sempre repetir a mesma coisa!";
+		next;
 		if (select("Ok... O quê eu faço?:Hmm, acho que não.") == 1) {
 			mes "[Cientista Maluco]";
 			mes "Muito bom! Apenas coloque suas mãos na estátua e tente agir naturalmente enquanto estiver lá!";
@@ -518,8 +518,7 @@ OnInstanceInit:
 
 OnEnable:
 	enablenpc instance_npcname("#2Monstros Ressuscitados1");
-
-	monster instance_mapname("2@orcs"),0,0,"Orc Vingativo",1152,30,instance_npcname("#2Resurrect Monsters1")+"::OnMyMobDead";
+	monster instance_mapname("2@orcs"),0,0,"Orc Vingativo",1152,30,instance_npcname("#2Monstros Ressuscitados1")+"::OnMyMobDead";
 	end;
 
 OnDisable:
