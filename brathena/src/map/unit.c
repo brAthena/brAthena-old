@@ -2375,7 +2375,6 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 					sd->reg_num = 0;
 				}
 				if(sd->regstr) {
-					int i;
 					for(i = 0; i < sd->regstr_num; ++i)
 						if(sd->regstr[i].data)
 							aFree(sd->regstr[i].data);
@@ -2411,6 +2410,11 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 			if(sd->queues != NULL) {
 				aFree(sd->queues);
 				sd->queues = NULL;
+			}
+			if( sd->quest_log != NULL ) {
+				aFree(sd->quest_log);
+				sd->quest_log = NULL;
+				sd->num_quests = sd->avail_quests = 0;
 			}
 			break;
 			}

@@ -5248,6 +5248,7 @@ void do_final(void)
 	do_final_chrif();
 	do_final_clif();
 	do_final_npc();
+	quest->final();
 	do_final_script();
 	do_final_itemdb();
 	instance->final();
@@ -5484,6 +5485,7 @@ int do_init(int argc, char *argv[])
 	homunculus_defaults();
 	itemdb_defaults();
 	script_defaults();
+	quest_defaults();
 
 
 	map_config_read(MAP_CONF_NAME);
@@ -5575,7 +5577,7 @@ int do_init(int argc, char *argv[])
 	homun->init();
 	do_init_mercenary();
 	do_init_elemental();
-	do_init_quest();
+	quest->init();
 	do_init_npc();
 	do_init_unit();
 	do_init_battleground();

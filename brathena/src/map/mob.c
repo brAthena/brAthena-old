@@ -2546,9 +2546,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			if(sd->status.party_id)
-				map_foreachinrange(quest_update_objective_sub,&md->bl,AREA_SIZE,BL_PC,sd->status.party_id,md->class_);
+				map_foreachinrange(quest->update_objective_sub,&md->bl,AREA_SIZE,BL_PC,sd->status.party_id,md->class_);
 			else if(sd->avail_quests)
-				quest_update_objective(sd, md->class_);
+				quest->update_objective(sd, md->class_);
 
 			if(sd->md && src && src->type != BL_HOM && mob_db(md->class_)->lv > sd->status.base_level/2)
 				mercenary_kills(sd->md);

@@ -179,7 +179,7 @@ OnTimer2000:
 	end;
 OnTouch:
 	percentheal -10,-10;
-	sc_start SC_BLEEDING,60000,0;
+	sc_start SC_BLOODING,60000,0;
 	sc_start SC_POISON,60000,0;
 	end;
 }

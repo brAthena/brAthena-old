@@ -109,7 +109,7 @@ ma_scene01,174,179,4	script	Taho	4_M_DEWZATIMAN,{
 	} else if (.@baku_time == 2) {
 		mes "[Taho]";
 		mes "It's all cleaned up around here. Now you can go down again after getting a rope.";
-		erasequest 5;
+		erasequest 12278;
 		close;
 	}
 }

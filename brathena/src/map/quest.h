@@ -17,7 +17,9 @@
 #ifndef _QUEST_H_
 #define _QUEST_H_
 
-struct s_quest_db {
+#define MAX_QUEST_DB (60355+1) // Highest quest ID + 1
+
+struct quest_db {
 	int id;
 	unsigned int time;
 	int mob[MAX_QUEST_OBJECTIVES];
@@ -25,23 +27,39 @@ struct s_quest_db {
 	int num_objectives;
 	//char name[NAME_LENGTH];
 };
-extern struct s_quest_db quest_db[MAX_QUEST_DB];
 
-typedef enum quest_check_type { HAVEQUEST, PLAYTIME, HUNTING } quest_check_type;
+// Questlog check types
+enum quest_check_type {
+	HAVEQUEST, ///< Query the state of the given quest
+	PLAYTIME,  ///< Check if the given quest has been completed or has yet to expire
+	HUNTING,   ///< Check if the given hunting quest's requirements have been met
+};
 
-int quest_pc_login(TBL_PC *sd);
+struct quest_db quest_db2[MAX_QUEST_DB];
 
-int quest_add(TBL_PC *sd, int quest_id);
-int quest_delete(TBL_PC *sd, int quest_id);
-int quest_change(TBL_PC *sd, int qid1, int qid2);
-int quest_update_objective_sub(struct block_list *bl, va_list ap);
-void quest_update_objective(TBL_PC *sd, int mob);
-int quest_update_status(TBL_PC *sd, int quest_id, quest_state status);
-int quest_check(TBL_PC *sd, int quest_id, quest_check_type type);
+struct quest_interface {
+	struct quest_db *db_data[MAX_QUEST_DB]; ///< Quest database
+	struct quest_db dummy;                  ///< Dummy entry for invalid quest lookups
+	/* */
+	void (*init) (void);
+	void (*final) (void);
+	void (*reload) (void);
+	/* */
+	struct quest_db *(*db) (int quest_id);
+	int (*pc_login) (TBL_PC *sd);
+	int (*add) (TBL_PC *sd, int quest_id);
+	int (*change) (TBL_PC *sd, int qid1, int qid2);
+	int (*delete) (TBL_PC *sd, int quest_id);
+	int (*update_objective_sub) (struct block_list *bl, va_list ap);
+	void (*update_objective) (TBL_PC *sd, int mob_id);
+	int (*update_status) (TBL_PC *sd, int quest_id, enum quest_state qs);
+	int (*check) (TBL_PC *sd, int quest_id, enum quest_check_type type);
+	void (*clear) (void);
+	int (*read_db) (void);
+};
 
-int quest_search_db(int quest_id);
+struct quest_interface *quest;
 
-void do_init_quest();
-void do_reload_quest(void);
+void quest_defaults(void);
 
 #endif

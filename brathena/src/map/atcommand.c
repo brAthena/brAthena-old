@@ -3699,7 +3699,7 @@ ACMD_FUNC(reload)
 		case 3: status_readdb(); break;
 		case 4: pc_readdb(); break;
 		case 5: pc_groups_reload(); break;
-		case 6: do_reload_quest(); break;
+		case 6: quest->reload(); break;
 		case 7: homun->reload(); break;
 		case 8: read_petdb(); break;
 		case 9: pc_read_motd(); break;

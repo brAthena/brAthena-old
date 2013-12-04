@@ -16161,16 +16161,17 @@ BUILDIN_FUNC(setquest)
 {
 	struct map_session_data *sd = script_rid2sd(st);
 	unsigned short i;
+	int quest_id;
+	nullpo_retr(false,sd);
 
-	if (!sd)
-		return 1;
+	quest_id = script_getnum(st, 2);
 
-	quest_add(sd, script_getnum(st, 2));
+	quest->add(sd, quest_id);
 
 	// If questinfo is set, remove quest bubble once quest is set.
 	for(i = 0; i < map[sd->bl.m].qi_count; i++) {
 		struct questinfo *qi = &map[sd->bl.m].qi_data[i];
-		if(qi->quest_id == script_getnum(st, 2)) {
+		if(qi->quest_id == quest_id) {
 #if PACKETVER >= 20120410
 			clif_quest_show_event(sd, &qi->nd->bl, 9999, 0);
 #else
@@ -16187,7 +16188,7 @@ BUILDIN_FUNC(erasequest)
 	struct map_session_data *sd = script_rid2sd(st);
 	nullpo_ret(sd);
 
-	quest_delete(sd, script_getnum(st, 2));
+	quest->delete(sd, script_getnum(st, 2));
 	return 0;
 }
 
@@ -16196,7 +16197,7 @@ BUILDIN_FUNC(completequest)
 	struct map_session_data *sd = script_rid2sd(st);
 	nullpo_ret(sd);
 
-	quest_update_status(sd, script_getnum(st, 2), Q_COMPLETE);
+	quest->update_status(sd, script_getnum(st, 2), Q_COMPLETE);
 	return 0;
 }
 
@@ -16205,21 +16206,21 @@ BUILDIN_FUNC(changequest)
 	struct map_session_data *sd = script_rid2sd(st);
 	nullpo_ret(sd);
 
-	quest_change(sd, script_getnum(st, 2),script_getnum(st, 3));
+	quest->change(sd, script_getnum(st, 2),script_getnum(st, 3));
 	return 0;
 }
 
 BUILDIN_FUNC(checkquest)
 {
 	struct map_session_data *sd = script_rid2sd(st);
-	quest_check_type type = HAVEQUEST;
+	enum quest_check_type type = HAVEQUEST;
 
-	nullpo_ret(sd);
+	nullpo_retr(false,sd);
 
 	if(script_hasdata(st, 3))
-		type = (quest_check_type)script_getnum(st, 3);
+		type = (enum quest_check_type)script_getnum(st, 3);
 
-	script_pushint(st, quest_check(sd, script_getnum(st, 2), type));
+	script_pushint(st, quest->check(sd, script_getnum(st, 2), type));
 
 	return 0;
 }
