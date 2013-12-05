@@ -672,7 +672,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 					mes "Que o jogo .. Comece!";
 					mapannounce "schg_que01", "Pierrot Pierre: Que o jogo .. Comece!",bc_map,"0x99CC00";
 					set $@gdeventv_s2,1;
-					donpcevent "Controlador#gdevent_s::Ongame_start";
+					donpcevent "Controlador#gdevent_s::OnGame_start";
 					erasequest 2143;
 					close;
 				}
@@ -689,7 +689,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 			if (countitem(6031) > 0) {
 				donpcevent "Controlador#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
-				donpcevent "eff_mvp#sch_gd::Onmvp";
+				donpcevent "eff_mvp#sch_gd::OnMVP";
 				mes "[Pierrot Pierre]";
 				mes "Uau~~!!";
 				mes "Vitória~!!";
@@ -774,7 +774,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 				mes "Let the game.. Begin!";
 				mapannounce "schg_que01", "Pierrot Pierre: Que o jogo... Comece!",bc_map,"0x99CC00";
 				set $@gdeventv_s2,10;
-				donpcevent "Controlador#gdevent_s::Ongame_start";
+				donpcevent "Controlador#gdevent_s::OnGame_start";
 				close;
 			}
 		}
@@ -797,7 +797,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 			mes "Aqui, pegue a Caixa do Tesouro de Pierre.";
 			mapannounce "schg_que01", "Pierrot Pierre: Você completou uma tarefa inacreditável, eu lhe darei o presente maravilhoso que o mestre preparou! Ha!",bc_map,"0x99CC00";
 			mapannounce "schg_que01", "Pierrot Pierre: Aqui, pegue a Caixa do Tesouro de Pierre.",bc_map,"0x99CC00";
-			donpcevent "eff_mvp#sch_gd::Onmvp";
+			donpcevent "eff_mvp#sch_gd::OnMVP";
 			set $@gdeventv_s2,5;
 			getitem 14596,10; //Pierre_Treasurebox
 			close;
@@ -832,7 +832,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 			if (countitem(6031) > 0) {
 				donpcevent "Controlador#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
-				donpcevent "eff_mvp#sch_gd::Onmvp";
+				donpcevent "eff_mvp#sch_gd::OnMVP";
 				mes "[Pierrot Pierre]";
 				mes "Uau~~!!";
 				mes "Vitória~!!";
@@ -942,7 +942,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 			if (countitem(6031) > 0) {
 				donpcevent "Controlador#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
-				donpcevent "eff_mvp#sch_gd::Onmvp";
+				donpcevent "eff_mvp#sch_gd::OnMVP";
 				mes "[Pierrot Pierre]";
 				mes "Uau~~!!";
 				mes "Vitória~!!";
@@ -1006,7 +1006,7 @@ schg_que01,100,81,3	script	Pierrot Pierre#sch_gd	4_M_PIERROT,{
 			if (countitem(6031) > 0) {
 				donpcevent "Controlador#gdevent_s::OnStop";
 				set $@gdeventv_s2,3;
-				donpcevent "eff_mvp#sch_gd::Onmvp";
+				donpcevent "eff_mvp#sch_gd::OnMVP";
 				mes "[Pierrot Pierre]";
 				mes "Uau~~!!";
 				mes "Vitória~!!";
@@ -1037,11 +1037,11 @@ OnInit:
 	set $@gdeventv_s2,0;
 	end;
 
-Onwin:
+OnWin:
 	donpcevent "treg#sch_gd::OnEnable";
 	end;
 
-Ongame_start:
+OnGame_start:
 	initnpctimer;
 	donpcevent "paper_sp_1_s::OnEnable";
 	donpcevent "paper_sp_2_s::OnEnable";
@@ -1347,7 +1347,7 @@ OnTouch2:
 schg_que01,6,6,1	script	eff_mvp#sch_gd	CLEAR_NPC,{
 	end;
 
-Onmvp:
+OnMVP:
 	initnpctimer;
 	end;
 

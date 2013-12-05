@@ -1047,30 +1047,30 @@ OnEnable:
 	initnpctimer;
 	end;
 
-Onm1:
+OnM1:
 	set .MyMobs,13;
 	monster "job_prist",24,52,"Furto",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",18,52,"Desejo de Virtude",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",30,52,"Ciúme",1015,1,"Z_C#prst::OnMyMobDead";
 	end;
 
-Onm2:
+OnM2:
 	monster "job_prist",21,62,"Fúria",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",27,62,"Inveja",1015,1,"Z_C#prst::OnMyMobDead";
 	end;
 
-Onm3:
+OnM3:
 	monster "job_prist",24,72,"Arrogância",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",18,72,"Luxúria",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",30,72,"Preguiça",1015,1,"Z_C#prst::OnMyMobDead";
 	end;
 
-Onm4:
+OnM4:
 	monster "job_prist",21,82,"Gula",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",27,82,"Ganância",1015,1,"Z_C#prst::OnMyMobDead";
 	end;
 
-Onm5:
+OnM5:
 	monster "job_prist",24,92,"Desespero",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",18,92,"Desconfiança",1015,1,"Z_C#prst::OnMyMobDead";
 	monster "job_prist",30,92,"Medo",1015,1,"Z_C#prst::OnMyMobDead";
@@ -1143,7 +1143,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_de_Zumbis#prst::Onm1";
+		donpcevent "Gerador_de_Zumbis#prst::OnM1";
 		donpcevent "Zumbi1_1::OnDisable";
 	}
 	end;
@@ -1164,7 +1164,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_de_Zumbis#prst::Onm2";
+		donpcevent "Gerador_de_Zumbis#prst::OnM2";
 		donpcevent "Zumbi2_1::OnDisable";
 	}
 	end;
@@ -1185,7 +1185,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_de_Zumbis#prst::Onm3";
+		donpcevent "Gerador_de_Zumbis#prst::OnM3";
 		donpcevent "Zumbi3_1::OnDisable";
 	}
 	end;
@@ -1206,7 +1206,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_de_Zumbis#prst::Onm4";
+		donpcevent "Gerador_de_Zumbis#prst::OnM4";
 		donpcevent "Zumbi4_1::OnDisable";
 	}
 	end;
@@ -1226,7 +1226,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_de_Zumbis#prst::Onm5";
+		donpcevent "Gerador_de_Zumbis#prst::OnM5";
 		donpcevent "Zumbi5_1::OnDisable";
 	}
 	end;
@@ -1564,17 +1564,17 @@ OnEnable:
 	donpcevent "Múmia3_1::OnEnable";
 	end;
 
-Onm1:
+OnM1:
 	monster "job_prist",90,55,"Khamoz",1041,1;
 	monster "job_prist",105,55,"Amocsis",1041,1;
 	end;
 
-Onm2:
+OnM2:
 	monster "job_prist",90,70,"Mentuhoteph",1041,1;
 	monster "job_prist",105,70,"Akenaten",1041,1;
 	end;
 
-Onm3:
+OnM3:
 	monster "job_prist",90,85,"Mehnes",1041,1;
 	monster "job_prist",105,85,"Snepheru",1041,1;
 	end;
@@ -1592,7 +1592,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_Múmia::Onm1";
+		donpcevent "Gerador_Múmia::OnM1";
 		donpcevent "Múmia1_1::OnDisable";
 	}
 	end;
@@ -1613,7 +1613,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_Múmia::Onm2";
+		donpcevent "Gerador_Múmia::OnM2";
 		donpcevent "Múmia2_1::OnDisable";
 	}
 	end;
@@ -1634,7 +1634,7 @@ OnInit:
 
 OnTouch:
 	if (BaseJob == Job_Acolyte) {
-		donpcevent "Gerador_Múmia::Onm3";
+		donpcevent "Gerador_Múmia::OnM3";
 		donpcevent "Múmia3_1::OnDisable";
 	}
 	end;

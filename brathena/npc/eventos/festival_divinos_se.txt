@@ -44,13 +44,13 @@ yuno,1,1,0	script	Gerente do Festival#gq_fes00	4_F_HUGIRL,{
 	case 1:
 		mes "[Gerente do Festival]";
 		mes "Encerrando o festival e desativando os NPCs.";
-		donpcevent "Rmimi Ravies#gq_fes01::Onover";
-		donpcevent "Rmimi Ravies#gq_fes01::Onover";
+		donpcevent "Rmimi Ravies#gq_fes01::OnOver";
+		donpcevent "Rmimi Ravies#gq_fes01::OnOver";
 		close;
 	case 2:
 		mes "[Gerente do Festival]";
 		mes "Redefinindo o festival e ativando os NPCs.";
-		donpcevent "Rmimi Ravies#gq_fes01::Onover";
+		donpcevent "Rmimi Ravies#gq_fes01::OnOver";
 		donpcevent "Rmimi Ravies#gq_fes01::OnEnable";
 		close;
 	}
@@ -180,7 +180,7 @@ OnStart:
 	set $@gqse_festival,1;
 	end;
 
-Oncall:
+OnCall:
 	if (mobcount("yuno","Rmimi Ravies#gq_fes01::OnMyMobDead") < 31) {
 		monster "yuno",0,0,"Benção da Valquíria",1083,100,"Rmimi Ravies#gq_fes01::OnMyMobDead";
 		monster "yuno",0,0,"Presente da Valquíria",1951,25,"Rmimi Ravies#gq_fes01::OnMyMobDead";
@@ -206,7 +206,7 @@ Oncall:
 	}
 	end;
 
-Onover:
+OnOver:
 	killmonster "yuno","Rmimi Ravies#gq_fes01::OnMyMobDead";
 	set $@gqse_festival,0;
 	stopnpctimer;
@@ -241,7 +241,7 @@ OnTimer243000:
 
 OnTimer300000:
 	announce "O primeiro 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer303000:
@@ -254,7 +254,7 @@ OnTimer308000:
 
 OnTimer600000:
 	announce "O segundo 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer603000:
@@ -267,7 +267,7 @@ OnTimer608000:
 
 OnTimer900000:
 	announce "O terceiro 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer903000:
@@ -280,7 +280,7 @@ OnTimer908000:
 
 OnTimer1200000:
 	announce "O quarto 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer1203000:
@@ -293,7 +293,7 @@ OnTimer1208000:
 
 OnTimer1500000:
 	announce "O quinto 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer1503000:
@@ -306,7 +306,7 @@ OnTimer1508000:
 
 OnTimer1800000:
 	announce "O sexto 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer1803000:
@@ -319,7 +319,7 @@ OnTimer1808000:
 
 OnTimer2100000:
 	announce "O sétimo 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer2103000:
@@ -332,7 +332,7 @@ OnTimer2108000:
 
 OnTimer2400000:
 	announce "O oitavo 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer2403000:
@@ -345,7 +345,7 @@ OnTimer2408000:
 
 OnTimer2700000:
 	announce "O nono 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer2703000:
@@ -358,7 +358,7 @@ OnTimer2708000:
 
 OnTimer3000000:
 	announce "O décimo 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer3003000:
@@ -371,7 +371,7 @@ OnTimer3008000:
 
 OnTimer3300000:
 	announce "O décimo primeiro 'Presente da Valquíria' foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer3303000:
@@ -384,7 +384,7 @@ OnTimer3308000:
 
 OnTimer3600000:
 	announce "O décimo segundo 'Presente da Valquíria'  foi invocado agora em Juno pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Oncall";
+	donpcevent "Rmimi Ravies#gq_fes01::OnCall";
 	end;
 
 OnTimer3603000:
@@ -397,7 +397,7 @@ OnTimer3608000:
 
 OnTimer3900000:
 	announce "A cerimônia acabou, tenho certeza que todos vocês se divertiram.",bc_all,"0x70dbdb";
-	donpcevent "Rmimi Ravies#gq_fes01::Onover";
+	donpcevent "Rmimi Ravies#gq_fes01::OnOver";
 	end;
 }
 
@@ -424,13 +424,13 @@ rachel,1,1,0	script	Festival Manager#gq_fes02	4_F_HUGIRL,{
 	case 1:
 		mes "[Gerente do Festival]";
 		mes "Encerrando o festival e desativando os NPCs.";
-		donpcevent "Rhehe Ravies#gq_fes03::Onover";
+		donpcevent "Rhehe Ravies#gq_fes03::OnOver";
 		donpcevent "Rhehe Ravies#gq_fes03::Ondisable";
 		close;
 	case 2:
 		mes "[Gerente do Festival]";
 		mes "Redefinindo o festival e ativando os NPCs.";
-		donpcevent "Rhehe Ravies#gq_fes03::Onover";
+		donpcevent "Rhehe Ravies#gq_fes03::OnOver";
 		donpcevent "Rhehe Ravies#gq_fes03::OnEnable";
 		close;
 	}
@@ -566,7 +566,7 @@ OnStart:
 	set $@gqse_festival,1;
 	end;
 
-Oncall:
+OnCall:
 	if (mobcount("rachel","Rhehe Ravies#gq_fes03::OnMyMobDead") < 31) {
 		monster "rachel",0,0,"Benção da Valquíria",1083,100,"Rhehe Ravies#gq_fes03::OnMyMobDead";
 		monster "rachel",0,0,"Presente da Valquíria",1951,25,"Rhehe Ravies#gq_fes03::OnMyMobDead";
@@ -592,7 +592,7 @@ Oncall:
 	}
 	end;
 
-Onover:
+OnOver:
 	killmonster "rachel","Rhehe Ravies#gq_fes03::OnMyMobDead";
 	set $@gqse_festival,0;
 	stopnpctimer;
@@ -627,7 +627,7 @@ OnTimer243000:
 
 OnTimer300000:
 	announce "O primeiro 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer303000:
@@ -640,7 +640,7 @@ OnTimer308000:
 
 OnTimer600000:
 	announce "O segundo 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer603000:
@@ -653,7 +653,7 @@ OnTimer608000:
 
 OnTimer900000:
 	announce "O terceiro 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer903000:
@@ -666,7 +666,7 @@ OnTimer908000:
 
 OnTimer1200000:
 	announce "O quarto 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer1203000:
@@ -679,7 +679,7 @@ OnTimer1208000:
 
 OnTimer1500000:
 	announce "O quinto 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer1503000:
@@ -692,7 +692,7 @@ OnTimer1508000:
 
 OnTimer1800000:
 	announce "O sexto 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer1803000:
@@ -705,7 +705,7 @@ OnTimer1808000:
 
 OnTimer2100000:
 	announce "O sétimo 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer2103000:
@@ -718,7 +718,7 @@ OnTimer2108000:
 
 OnTimer2400000:
 	announce "O oitavo 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer2403000:
@@ -731,7 +731,7 @@ OnTimer2408000:
 
 OnTimer2700000:
 	announce "O nono 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer2703000:
@@ -744,7 +744,7 @@ OnTimer2708000:
 
 OnTimer3000000:
 	announce "O décimo 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer3003000:
@@ -757,7 +757,7 @@ OnTimer3008000:
 
 OnTimer3300000:
 	announce "O décimo primeiro 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer3303000:
@@ -770,7 +770,7 @@ OnTimer3308000:
 
 OnTimer3600000:
 	announce "O décimo segundo 'Presente da Valquíria' foi invocado agora em Rachel pelo Wish no festival.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Oncall";
+	donpcevent "Rhehe Ravies#gq_fes03::OnCall";
 	end;
 
 OnTimer3603000:
@@ -783,6 +783,6 @@ OnTimer3608000:
 
 OnTimer3900000:
 	announce "A cerimônia acabou, tenho certeza que todos vocês se divertiram.",bc_all,"0x70dbdb";
-	donpcevent "Rhehe Ravies#gq_fes03::Onover";
+	donpcevent "Rhehe Ravies#gq_fes03::OnOver";
 	end;
 }

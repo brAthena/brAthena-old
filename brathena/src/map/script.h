@@ -33,7 +33,7 @@ struct eri;
  * Defines
  **/
 // TODO: Remove temporary code
-//#define ENABLE_CASE_CHECK
+#define ENABLE_CASE_CHECK
 #define DeprecationWarning(func, bad, good, file, line) ShowError("%s: use of deprecated keyword '%s' (use '%s' instead) in file '%s', line '%d'.\n", (func), (bad), (good), (file), (line));
 #define DeprecationWarning2(func, bad, good, where) ShowError("%s: detected possible use of wrong case in a script. Found '%s', probably meant to be '%s' (in '%s').\n", (func), (bad), (good), (where));
 #define disp_deprecation_message(func, good, p) disp_warning_message(func": use of deprecated keyword (use '"good"' instead).", (p));
