@@ -8,7 +8,7 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: hospital_bangongo.txt                  |
+//   | Nome do Script: hospital_abandonado.txt                |
 //   |--------------------------------------------------------|
 //   | Criado por: rA/brA Dev. Team                           |
 //   |--------------------------------------------------------|

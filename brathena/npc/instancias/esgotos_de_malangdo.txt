@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: bueiro_de_malangdo.txt                 |
+//   | Nome do Script: esgotos_de_malangdo.txt                |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
