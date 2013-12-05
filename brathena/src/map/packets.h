@@ -2821,4 +2821,8 @@ packet(0x020d,-1);
 	packetKeys(0x3d807d80,0x5e805580,0x7e241de0);
 #endif
 
+#if defined(OBFUSCATIONKEY1) && defined(OBFUSCATIONKEY2) && defined(OBFUSCATIONKEY3)
+	packetKeys(OBFUSCATIONKEY1,OBFUSCATIONKEY2,OBFUSCATIONKEY3);
+#endif
+
 #endif /* _PACKETS_H_ */

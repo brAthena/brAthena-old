@@ -687,12 +687,17 @@ ac_user_opts='
 enable_option_checking
 enable_manager
 enable_packetver
+enable_packetver_re
+with_key1
+with_key2
+with_key3
 enable_debug
 enable_buildbot
 enable_rdtsc
 enable_profiler
 enable_64bit
 enable_lto
+enable_renewal
 with_maxconn
 with_mysql
 with_MYSQL_CFLAGS
@@ -1318,8 +1323,9 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --enable-manager=ARG    memory managers: no, builtin, memwatch, dmalloc,
                           gcollect, bcheck (defaults to builtin)
-  --enable-packetver=ARG  Sets the PACKETVER define of the map-server. (see
-                          src/map/clif.h)
+  --enable-packetver=ARG  Sets the PACKETVER define. (see src/common/mmo.h)
+  --disable-packetver-re  Sets or unsets the PACKETVER_RE define - see
+                          src/common/mmo.h (currently enabled by default)
   --enable-debug[=ARG]    Compiles extra debug code. (disabled by default)
                           (available options: yes, no, gdb)
   --enable-buildbot[=ARG] (available options: yes, no)
@@ -1328,17 +1334,31 @@ Optional Features:
                           in conjunction with XEN or Other Virtualization
                           mechanisms) Note: Please ensure that you've disabled
                           dynamic CPU-Frequencys, such as power saving
-                          options. (On the most modern Dedicated Servers
-                          cpufreq is preconfigured, see your distribution's
-                          manual how to disable it)
+                          options. (On most modern Dedicated Servers cpufreq
+                          is preconfigured, see your distribution's manual how
+                          to disable it). Furthermore, If your CPU has
+                          built-in CPU-Frequency scaling features (such as
+                          Intel's SpeedStep(R)), do not enable this option.
+                          Recent CPUs (Intel Core or newer) guarantee a fixed
+                          increment rate for their TSC, so it should be safe
+                          to use, but please doublecheck the documentation of
+                          both your CPU and OS before enabling this option.
   --enable-profiler=ARG   Profilers: no, gprof (disabled by default)
   --disable-64bit         Enforce 32bit output on x86_64 systems.
   --enable-lto            Enables or Disables Linktime Code Optimization (LTO
                           is enabled by default)
+  --disable-renewal       Disable Ragnarok Renewal support (override settings
+                          in src/config/renewal.h)
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-key1[=ARG]       Set the first obfuscation key (ignored unless the
+                          other two are also specified)
+  --with-key2[=ARG]       Set the second obfuscation key (ignored unless the
+                          other two are also specified)
+  --with-key3[=ARG]       Set the third obfuscation key (ignored unless the
+                          other two are also specified)
   --with-maxconn[=ARG]    optionally set the maximum connections the core can
                           handle (default: 16384) NOT USED YET - EXPERIMENTAL
   --with-mysql[=ARG]      optionally specify the path to the mysql_config
@@ -3444,6 +3464,79 @@ fi
 
 
 #
+# packetver-RE
+#
+# Check whether --enable-packetver-re was given.
+if test "${enable_packetver_re+set}" = set; then :
+  enableval=$enable_packetver_re;
+		enable_packetver_re="$enableval"
+		case $enableval in
+			"no");;
+			"yes");;
+			*) as_fn_error $? "invalid argument --enable-packetver-re=$enableval... stopping" "$LINENO" 5;;
+		esac
+
+else
+  enable_packetver_re="yes"
+
+fi
+
+
+
+#
+# Obfuscation keys
+#
+
+# Check whether --with-key1 was given.
+if test "${with_key1+set}" = set; then :
+  withval=$with_key1;
+		obfuscationkey1="$( expr "0x$withval" : '0*x*\(0x[A-Fa-f0-9]\{8\}\)' )"
+		if ! expr "x$obfuscationkey1" : 'x0x[A-Fa-f0-9]\{8\}' >/dev/null 2>&1; then
+			obfuscationkey1=""
+		fi
+
+else
+
+		obfuscationkey1=""
+
+
+fi
+
+
+# Check whether --with-key2 was given.
+if test "${with_key2+set}" = set; then :
+  withval=$with_key2;
+		obfuscationkey2="$( expr "0x$withval" : '0*x*\(0x[A-Fa-f0-9]\{8\}\)' )"
+		if ! expr "x$obfuscationkey2" : 'x0x[A-Fa-f0-9]\{8\}' >/dev/null 2>&1; then
+			obfuscationkey2=""
+		fi
+
+else
+
+		obfuscationkey2=""
+
+
+fi
+
+
+# Check whether --with-key3 was given.
+if test "${with_key3+set}" = set; then :
+  withval=$with_key3;
+		obfuscationkey3="$( expr "0x$withval" : '0*x*\(0x[A-Fa-f0-9]\{8\}\)' )"
+		if ! expr "x$obfuscationkey3" : 'x0x[A-Fa-f0-9]\{8\}' >/dev/null 2>&1; then
+			obfuscationkey3=""
+		fi
+
+else
+
+		obfuscationkey3=""
+
+
+fi
+
+
+
+#
 # debug
 #
 # Check whether --enable-debug was given.
@@ -3551,6 +3644,26 @@ if test "${enable_lto+set}" = set; then :
 
 else
   enable_lto="yes"
+
+fi
+
+
+
+#
+# Renewal
+#
+# Check whether --enable-renewal was given.
+if test "${enable_renewal+set}" = set; then :
+  enableval=$enable_renewal;
+		enable_renewal="$enableval"
+		case $enableval in
+			"no");;
+			"yes");;
+			*) as_fn_error $? "invalid argument --enable-renewal=$enableval... stopping" "$LINENO" 5;;
+		esac
+
+else
+  enable_renewal="yes"
 
 fi
 
@@ -5124,6 +5237,24 @@ if test -n "$enable_packetver" ; then
 	CFLAGS="$CFLAGS -DPACKETVER=$enable_packetver"
 fi
 
+#
+# Packetver-RE
+#
+case $enable_packetver_re in
+	"yes")
+		# default value
+		CFLAGS="$CFLAGS -DDISABLE_PACKETVER_RE"
+		;;
+	"no")
+		;;
+esac
+
+#
+# Obfuscation keys
+#
+if test -n "$obfuscationkey1" -a -n "$obfuscationkey2" -a -n "$obfuscationkey3"; then
+	CFLAGS="$CFLAGS -DOBFUSCATIONKEY1=$obfuscationkey1 -DOBFUSCATIONKEY2=$obfuscationkey2 -DOBFUSCATIONKEY3=$obfuscationkey3"
+fi
 
 #
 # Debug
@@ -5179,6 +5310,17 @@ case $enable_profiler in
 		;;
 esac
 
+#
+# Renewal
+#
+case $enable_renewal in
+	"no")
+		CFLAGS="$CFLAGS -DDISABLE_RENEWAL"
+		;;
+	"yes")
+		# default value
+		;;
+esac
 
 #
 # zlib library (required)
@@ -6047,7 +6189,7 @@ esac
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for MinGW" >&5
 $as_echo_n "checking for MinGW... " >&6; }
-if test -n "`$CC --version | grep -i mingw`" ; then
+if test -n "`$CC --version 2>/dev/null | grep -i mingw`" ; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	CPPFLAGS="$CPPFLAGS -DMINGW"

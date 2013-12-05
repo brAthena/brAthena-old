@@ -230,8 +230,8 @@ OnEnable:
 		next;
 		mes "[Kidnapped Residents]";
 		mes "...behind us on the walls.";
-		sc_start SC_ATKPOTION,60000,45;
-		sc_start SC_MATKPOTION,60000,45;
+		sc_start SC_PLUSATTACKPOWER,60000,45;
+		sc_start SC_PLUSMAGICPOWER,60000,45;
 		disablenpc instance_npcname("Kidnapped People#2");
 		close;
 	case 2:

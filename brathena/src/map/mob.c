@@ -111,7 +111,11 @@ int mobdb_searchname(const char *str)
 		monster = mob_db(i);
 		if(monster == mob_dummy) //Skip dummy mobs.
 			continue;
-		if(strcmpi(monster->name,str)==0 || strcmpi(monster->jname,str)==0 || strcmp(monster->sprite,str)==0) // Sprite name case sensitive
+		if(strcmpi(monster->name,str)==0 || strcmpi(monster->jname,str)==0)
+			return i;
+		if(battle_config.case_sensitive_aegisnames && strcmp(monster->sprite,str)==0)
+			return i;
+		if(!battle_config.case_sensitive_aegisnames && strcasecmp(monster->sprite,str)==0)
 			return i;
 	}
 
@@ -128,13 +132,15 @@ static int mobdb_searchname_array_sub(struct mob_db *monster, const char *str, i
 			return 0;
 		if(stristr(monster->name,str))
 			return 0;
-		return strcmpi(monster->jname,str);
+	} else {
+		if(strcmpi(monster->jname,str) == 0)
+			return 0;
+		if(strcmpi(monster->name,str) == 0)
+			return 0;
 	}
-	if(strcmpi(monster->jname,str) == 0)
-		return 0;
-	if(strcmpi(monster->name,str) == 0)
-		return 0;
-	return strcmp(monster->sprite,str);
+	if (battle_config.case_sensitive_aegisnames)
+		return strcmp(monster->sprite,str);
+	return strcasecmp(monster->sprite,str);
 }
 
 /*==========================================

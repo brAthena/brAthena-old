@@ -54,7 +54,9 @@ static int itemdb_searchname_sub(DBKey key, DBData *data, va_list ap)
 
 	//Absolute priority to Aegis code name.
 	if(*dst != NULL) return 0;
-	if(strcmp(item->name,str)==0) // Case sensitive
+	if(battle_config.case_sensitive_aegisnames && strcmp(item->name,str) == 0)
+		*dst=item;
+	else if(!battle_config.case_sensitive_aegisnames && strcasecmp(item->name,str) == 0)
 		*dst=item;
 
 	//Second priority to Client displayed name.
@@ -78,7 +80,9 @@ struct item_data *itemdb_searchname(const char *str) {
 			continue;
 
 		// Absolute priority to Aegis code name.
-		if(strcmp(item->name,str) == 0) // Case sensitive
+		if(battle_config.case_sensitive_aegisnames && strcmp(item->name,str) == 0)
+			return item;
+		else if(!battle_config.case_sensitive_aegisnames && strcasecmp(item->name,str) == 0)
 			return item;
 
 		//Second priority to Client displayed name.
@@ -107,7 +111,9 @@ static int itemdb_searchname_array_sub(DBKey key, DBData data, va_list ap)
 		return 1; //Invalid item.
 	if(stristr(item->jname,str))
 		return 0;
-	if(stristr(item->name,str))
+	if(battle_config.case_sensitive_aegisnames && strstr(item->name,str))
+		return 0;
+	if(!battle_config.case_sensitive_aegisnames && stristr(item->name,str))
 		return 0;
 	return strcmpi(item->jname,str);
 }
@@ -130,9 +136,18 @@ int itemdb_searchname_array(struct item_data **data, int size, const char *str, 
 		if(item == NULL)
 			continue;
 
-		if((!flag && (stristr(item->jname,str) || stristr(item->name,str))) ||
-			(flag && (strcmp(item->jname,str) == 0 || strcmp(item->name,str) == 0)))
-		{
+		if(
+		    (!flag
+		    && (stristr(item->jname,str)
+		       || (battle_config.case_sensitive_aegisnames && strstr(item->name,str))
+		       || (!battle_config.case_sensitive_aegisnames && stristr(item->name,str))
+		    ))
+		 || (flag
+		    && (strcmp(item->jname,str) == 0
+		       || (battle_config.case_sensitive_aegisnames && strcmp(item->name,str) == 0)
+		       || (!battle_config.case_sensitive_aegisnames && strcasecmp(item->name,str) == 0)
+		    ))
+		) {
 			if(count < size)
 				data[count] = item;
 			++count;
@@ -1826,9 +1841,9 @@ void itemdb_reload(void)
 	iter = mapit_geteachpc();
 	for(sd = (struct map_session_data *)mapit_first(iter); mapit_exists(iter); sd = (struct map_session_data *)mapit_next(iter)) {
 		memset(sd->item_delay, 0, sizeof(sd->item_delay));  // reset item delays
+		pc_setinventorydata(sd);
 		if(battle_config.item_check)
 			sd->state.itemcheck = 1;
-		pc_setinventorydata(sd);
 		pc_checkitem(sd);
 		/* clear combo bonuses */
 		if(sd->combos.count) {

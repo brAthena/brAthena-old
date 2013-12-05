@@ -4273,9 +4273,13 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	else if(itemdb_is_poison(nameid) && (sd->class_&MAPID_THIRDMASK) != MAPID_GUILLOTINE_CROSS)
 		return 0;
 
-	if((item->package) && pc_is90overweight(sd)) {
-		clif_msgtable(sd->fd, PACKAGE_ITEM);
-		return 0;
+	if(item->package) {
+		if(pc_is90overweight(sd)) {
+			clif_msgtable(sd->fd,ITEM_CANT_OBTAIN_WEIGHT);
+			return 0;
+	}
+		if(!pc_inventoryblank(sd))
+			return 0;
 	}
 
 	//Gender check
@@ -4298,6 +4302,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	       (item->class_base[sd->class_&JOBL_2_1?1:(sd->class_&JOBL_2_2?2:0)])
 	   ))
 		return 0;
+
 	//Not usable by upper class. [Inkfish]
 	while(1) {
 		// Normal classes (no upper, no baby, no third classes)

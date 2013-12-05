@@ -233,7 +233,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 					instance_init(.@instance);
 					close;
 			case 2:
-				callsub L_Enter,0,1;
+				callsub L_Enter,0,1,.@md_name$,.@p_name$;
 			case 3:
 				mes "Eu irei te levar de volta para Alberta.";
 				close2;
@@ -245,7 +245,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 		}
 		switch(select("Entrar no calabouço da " + .@md_name$ + ".:Voltar para Alberta.:Cancelar.")) {
 		case 1:
-			callsub L_Enter,1,1;
+			callsub L_Enter,1,1,.@md_name$,.@p_name$;
 			case 2:
 				mes "Eu irei te levar de volta para Alberta.";
 				close2;
@@ -259,7 +259,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 		next;
 		switch(select("Entrar no calabouço da " + .@md_name$ + ".:Voltar para Alberta.:Cancelar.")) {
 		case 1:
-			callsub L_Enter,0,0;
+			callsub L_Enter,0,0,.@md_name$,.@p_name$;
 		case 2:
 			mes "Eu irei te levar de volta para Alberta.";
 			close2;
@@ -295,11 +295,11 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 
 L_Enter:
 	if (has_instance("1@tower") == "") {
-		mes "O calabouço da " + .@md_name$ + " não existe.";
+		mes "O calabouço da " +getarg(2)+ " não existe.";
 		mes "O líder do grupo não gerou o calabouço ainda.";
 		close;
 	} else {
-		mapannounce "e_tower", .@p_name2$ + " do grupo, "+.@p_name$+", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+		mapannounce "e_tower", strcharinfo(0)+ " do grupo, "+getarg(3)+", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
 		if (getarg(1)) {
 			set etower_timer,gettimetick(2);
 			setquest 60200;
