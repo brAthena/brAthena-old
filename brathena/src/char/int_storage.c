@@ -260,7 +260,7 @@ int mapif_itembound_ack(int fd, int aid, int guild_id)
 //Guild bound items pull for offline characters [Akinari]
 //Revised by [Mhalicot]
 //------------------------------------------------
-int mapif_parse_ItemBoundRetrieve(int fd)
+int mapif_parse_ItemBoundRetrieve_sub(int fd)
 {
 #ifdef GP_BOUND_ITEMS
 	StringBuf buf;
@@ -364,11 +364,14 @@ int mapif_parse_ItemBoundRetrieve(int fd)
 
 	//Finally reload storage and tell map we're done
 	mapif_load_guild_storage(fd,aid,guild_id,0);
-	mapif_itembound_ack(fd,aid,guild_id);
 #endif
 	return 0;
 }
-
+void mapif_parse_ItemBoundRetrieve(int fd) {
+	mapif_parse_ItemBoundRetrieve_sub(fd);
+	/* tell map server the operation is over and it can unlock the storage */
+	mapif_itembound_ack(fd,RFIFOL(fd,6),RFIFOW(fd,10));
+}
 int inter_storage_parse_frommap(int fd)
 {
 	RFIFOHEAD(fd);

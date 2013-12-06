@@ -50,7 +50,7 @@ struct quest *mapif_quests_fromsql(int char_id, int *count) {
 	stmt = SqlStmt_Malloc(sql_handle);
 	if(stmt == NULL) {
 		SqlStmt_ShowDebug(stmt);
-		return 0;
+		return NULL;
 	}
 
 	memset(&tmp_quest, 0, sizeof(struct quest));
@@ -82,7 +82,7 @@ struct quest *mapif_quests_fromsql(int char_id, int *count) {
 			memcpy(&questlog[i++], &tmp_quest, sizeof(tmp_quest));
 		}
 		if (i < *count) {
-			// Should never. Compact array
+			// Should never happen. Compact array
 			*count = i;
 			questlog = aRealloc(questlog, sizeof(struct quest)*i);
 		}
@@ -225,6 +225,9 @@ int mapif_parse_quest_load(int fd)
 		memcpy(WFIFOP(fd,8), tmp_questlog, sizeof(struct quest)*num_quests);
 
 	WFIFOSET(fd,num_quests*sizeof(struct quest)+8);
+
+	if(tmp_questlog)
+		aFree(tmp_questlog);
 
 	return 0;
 }
