@@ -390,9 +390,17 @@ int quest_read_db(void) {
 		for(QueryLoop = 0; QueryLoop < 9; ++QueryLoop)
 			Sql_GetData(dbmysql_handle, QueryLoop, &row[QueryLoop], NULL);
 
+		if (row[0] == NULL)
+			continue;
+
 		memset(&entry, 0, sizeof(entry));
 
 		entry.id = atoi(row[0]);
+
+		if (entry.id < 0 || entry.id >= MAX_QUEST_DB) {
+			ShowError("quest_read_db: Invalid quest ID '%d' (min: 0, max: %d.)\n", entry.id, MAX_QUEST_DB);
+			continue;
+		}
 
 		entry.time = atoi(row[1]);
 
