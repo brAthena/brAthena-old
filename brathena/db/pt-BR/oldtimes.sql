@@ -7131,7 +7131,7 @@ REPLACE INTO `item_misc_db` VALUES(39,644,1);	-- Caixa de Presente -> 0,01%
 REPLACE INTO `item_misc_db` VALUES(39,519,1);	-- Leite -> 0,01%
 REPLACE INTO `item_misc_db` VALUES(39,538,1);	-- Biscoito de Gengibre -> 0,01%
 
---
+/*--
 -- Estrutura da tabela `item_trade_db`
 --
 
@@ -7142,7 +7142,25 @@ CREATE TABLE IF NOT EXISTS `item_trade_db` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO `item_trade_db` VALUES(2634,507,100);
-REPLACE INTO `item_trade_db` VALUES(2635,507,100);
+REPLACE INTO `item_trade_db` VALUES(2635,507,100);*/
+
+--
+-- Estrutura da tabela `item_move_info_db`
+--
+
+CREATE TABLE IF NOT EXISTS `item_move_info_db` (
+  `ItemID` smallint unsigned NOT NULL,
+  `Drop` tinyint NOT NULL,
+  `Trade` tinyint NOT NULL,
+  `Storage` tinyint NOT NULL,
+  `Cart` tinyint NOT NULL,
+  `Vending` tinyint NOT NULL,
+  `Mail` tinyint NOT NULL,
+  `Auction` tinyint NOT NULL,
+  `BindOnEquip` tinyint NOT NULL,
+  `GMLvl` tinyint NOT NULL,
+	PRIMARY KEY (`ItemID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Estrutura da tabela `item_violetbox_db`
