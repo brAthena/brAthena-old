@@ -991,10 +991,10 @@ L_Services:
 	return;
 }
 
-new_2-2,30,176,4	duplicate(Kafra#nv)	Kafra#nv2	117
-new_3-2,30,176,4	duplicate(Kafra#nv)	Kafra#nv3	117
-new_4-2,30,176,4	duplicate(Kafra#nv)	Kafra#nv4	117
-new_5-2,30,176,4	duplicate(Kafra#nv)	Kafra#nv5	117
+new_2-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv2	117
+new_3-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv3	117
+new_4-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv4	117
+new_5-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv5	117
 
 new_1-2,32,176,4	script#re	Corp. Eventos Incríveis#nv	874,{
 	if (job_novice_q < 9) {
@@ -1082,10 +1082,10 @@ new_1-2,35,176,4	script#re	Guia#nv	105,{
 	close;
 }
 
-new_2-2,36,176,4	duplicate(Guia#nv)	Guia#nv2	105
-new_3-2,36,176,4	duplicate(Guia#nv)	Guia#nv3	105
-new_4-2,36,176,4	duplicate(Guia#nv)	Guia#nv4	105
-new_5-2,36,176,4	duplicate(Guia#nv)	Guia#nv5	105
+new_2-2,36,176,4	duplicatr(Guia#nv)	Guia#nv2	105
+new_3-2,36,176,4	duplicatr(Guia#nv)	Guia#nv3	105
+new_4-2,36,176,4	duplicatr(Guia#nv)	Guia#nv4	105
+new_5-2,36,176,4	duplicatr(Guia#nv)	Guia#nv5	105,{}
 
 new_1-2,121,101,2	script#vpo	Soldado Guia#nv1	105,{
 	mes "[Soldado Guia]";
@@ -2142,7 +2142,7 @@ new_1-3,121,41,4	script#re	Bruce#nvs	1_M_LIBRARYMASTER,{
 new_2-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv2	1_M_LIBRARYMASTER
 new_3-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv3	1_M_LIBRARYMASTER
 new_4-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv4	1_M_LIBRARYMASTER
-new_5-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv5	1_M_LIBRARYMASTER
+new_5-3,121,41,4	duplicatr(Bruce#nvs)	Bruce#nv5	1_M_LIBRARYMASTER,{}
 
 new_1-4,91,22,4	script#vpo	Instrutor de Aprendizes#nv	1_M_LIBRARYMASTER,{
 	if (Class == Job_Novice) {
@@ -3173,7 +3173,7 @@ new_1-3,103,50,4	script#re	Treinador Nível 1#nv	4_M_02,{
 new_2-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 2#nv2	4_M_02
 new_3-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 3#nv3	4_M_02
 new_4-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 4#nv4	4_M_02
-new_5-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 5#nv5	4_M_02
+new_5-3,103,50,4	duplicatr(Treinador Nível 1#nv)	Treinador Nível 5#nv5	4_M_02,{}
 
 new_1-4,100,29,1	script#vpo	Instrutor Final#nv	1_ETC_01,{
 	if (checkweight(909,400) == 0) {
@@ -4539,7 +4539,7 @@ new_1-3,95,30,4	script#vpo	Funcionário do Campo#nv1	4_M_02,{
 new_2-3,95,30,4	duplicatv(Funcionário do Campo#nv1)	Funcionário do Campo#nv2	4_M_02
 new_3-3,95,30,4	duplicatv(Funcionário do Campo#nv1)	Funcionário do Campo#nv3	4_M_02
 new_4-3,95,30,4	duplicatv(Funcionário do Campo#nv1)	Funcionário do Campo#nv4	4_M_02
-new_5-3,95,30,4	duplicatv(Funcionário do Campo#nv1)	Funcionário do Campo#nv5	4_M_02
+new_5-3,95,30,4	duplicatv(Funcionário do Campo#nv1)	Funcionário do Campo#nv5	4_M_02,{}
 
 new_1-3,96,174,3	script#vpo	Funcionário de Checagem#nv1	4_M_03,{
 	mes "[Funcionário de Checagem]";
