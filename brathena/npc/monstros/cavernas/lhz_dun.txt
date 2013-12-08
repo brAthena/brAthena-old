@@ -324,7 +324,7 @@ Oninvoc:
 	case 6: set .@x,175;	set .@y,137;	break;
 	}
 	set .@mob,rand(1646,1651);
-	monster "lhz_dun03",.@x,.@y,strmobinfo(1,.@mob),.@mob,1,"invocar_chefe_lt::OnMyMvPDead";
+	monster "lhz_dun03",.@x,.@y,strmobinfo(1,.@mob),.@mob,1,"invocar_chefe_lt::OnMyMVPDead";
 
 	// Invocar monstros em cordenadas aleatórias.
 	switch(rand(1,6)) {
@@ -339,7 +339,7 @@ Oninvoc:
 	monster "lhz_dun03",.@x2,.@y2,strmobinfo(1,.@mob2),.@mob2,1,"invocar_chefe_lt::OnMVP";
 	end;
 
-OnMyMvPDead:
+OnMyMVPDead:
 	killmonster "lhz_dun03","invocar_chefe_lt::OnMvp";
 	initnpctimer;
 	end;

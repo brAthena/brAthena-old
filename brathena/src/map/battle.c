@@ -5793,6 +5793,10 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 
 	m = target->m;
 
+	if(flag&BCT_ENEMY && (map_getcell(m,src->x,src->y,CELL_CHKBASILICA) || map_getcell(m,target->x,target->y,CELL_CHKBASILICA))) {
+		return -1;
+	}
+
 	//t_bl/s_bl hold the 'master' of the attack, while src/target are the actual
 	//objects involved.
 	if((t_bl = battle_get_master(target)) == NULL)

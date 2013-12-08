@@ -1230,7 +1230,7 @@ OnReset:
 	donpcevent "Standby Room#ASNTEST::OnStart";
 	end;
 
-OnResetmob:
+OnResetMob:
 	killmonster "in_moc_16","Beholder#ASNTEST::OnMyMobDead";
 	killmonster "in_moc_16","Beholder#ASNTEST::OnMyMobDead2";
 	stopnpctimer;
@@ -1244,7 +1244,7 @@ OnMyMobDead:
 		changequest 8003,8004;
 		donpcevent "timestopper#1::OnEnable";
 		donpcevent "Keeper of the Door#ASN::OnEnable";
-		donpcevent "Beholder#ASNTEST::OnResetmob";
+		donpcevent "Beholder#ASNTEST::OnResetMob";
 		set .DisableTraps,1;
 		stopnpctimer;
 	}
@@ -1329,7 +1329,7 @@ OnTouch:
 		mapannounce "in_moc_16",strcharinfo(0) + ", you're trapped. You will be sent back.",bc_map;
 		set ASSIN_Q,2;
 		warp "in_moc_16",19,161;
-		donpcevent "Beholder#ASNTEST::OnResetmob";
+		donpcevent "Beholder#ASNTEST::OnResetMob";
 		donpcevent "Standby Room#ASNTEST::OnStart";
 	}
 	end;

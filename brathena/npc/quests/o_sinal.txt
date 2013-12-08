@@ -3522,7 +3522,7 @@ geffen_in,59,74,4	script	Jesqurienne#sign	1_F_SIGNZISK,{
 				mes "Mas quem fará ";
 				mes "as perguntas?";
 				next;
-				donpcevent "Aaron#sign::onSmile";
+				donpcevent "Aaron#sign::OnSmile";
 				emotion e_gasp;
 				emotion e_gasp,1;
 				mes "[Aaron]";
