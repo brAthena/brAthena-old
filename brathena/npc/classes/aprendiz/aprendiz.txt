@@ -27,7 +27,7 @@
 // Sprakki (Início - Campo de Treinamento, Fora do Castelo).
 //============================================================
 new_1-1,53,114,4	script#re	Sprakki#nv1	4_F_01,{
-	if (job_novice_q < 1) {
+	if (job_novice_q == 0) {
 		mes "[Sprakki]";
 		mes "Olá! Bem-vindo ao mundo de Ragnarök Online. Meu nome é Sprakki e eu estou encarregada de dar a você o guia básico do jogo.";
 		mes "Clique no botão [Próximo] ou pressione [Enter] para continuar com a conversa.";
@@ -91,7 +91,7 @@ new_5-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv5a	90
 // Sprakki (Inside Castle)
 //============================================================
 new_1-2,100,29,4	script#re	Sprakki#nv2	4_F_01,{
-	if (job_novice_q < 1) {
+	if (job_novice_q == 0) {
 		mes "[Sprakki]";
 		mes "Olá! Bem-vindo ao mundo de Ragnarök Online. Meu nome é Sprakki e eu estou encarregada de dar a você o guia básico do jogo.";
 		mes "Clique no botão [Próximo] ou pressione [Enter] para continuar com a conversa.";
@@ -147,7 +147,7 @@ new_1-2,100,29,4	script#re	Sprakki#nv2	4_F_01,{
 			mes "[Sprakki]";
 			mes "Depois disso, o instrutor 'Brade' ajudará você.";
 			mes "Por favor, vá encontrá-lo.";
-			setquest 7118;		
+			setquest 7118;
 			next;
 			mes "^4A4AFF- Você recebeu uma missão 'Campo de Treinamento de Aprendiz - 1' dada por Sprakki.^000000";
 			mes "^4A4AFFVerifique na Janela de Informação de Missões.-^000000";
@@ -544,14 +544,14 @@ new_1-2,115,120,4	script#re	Jinha#nv	1_M_ORIENT01,{
 			mes "Por que você não experimenta a habilidade?";
 			skill "NV_FIRSTAID",1,0;	// NV_FIRSTAID
 			set skill_nov,3;
-			set job_novice_q,8;
+			set job_novice_q,6;
 			next;
 			mes "[Jinha]";
 			mes "Bom, agora que você sabe como usar a Habilidade de [Primeiros Socorros], é hora de ir para o próximo passo.";
 			mes "Volte até o instrutor Brade e mostre para ele o que você aprendeu aqui.";
 			close;
 		}
-	} else if (job_novice_q == 8) {
+	} else if (job_novice_q == 6) {
 		mes "[Jinha]";
 		mes "Você já não aprendeu a Habilidade de [Primeiros Socorros]?";
 		mes "Confira com o Instrutor Brade.";
@@ -1022,7 +1022,7 @@ new_1-2,32,176,4	script#re	Corp. Eventos Incríveis#nv	874,{
 		next;
 		mes "[Corp. Eventos Incríveis]";
 		mes "A maior parte de nós trabalha com um casaco vermelho em locais em que as Kafras não trabalham.";
-		set job_novice_q,12;
+		set job_novice_q,10;
 		close;
 	} else {
 		mes "[Corp. Eventos Incríveis]";
@@ -1173,7 +1173,7 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 		mes "^4A4AFF- Você recebeu uma missão do Instrutor Brade.^000000";
 		mes "^4A4AFFVerifique-a na Janela de Informação de Missões. -^000000";
 		close;
-	} else if (job_novice_q == 15) {
+	} else if (job_novice_q < 15) {
 		if (job_novice_q == 13) {
 			if (checkquest(7122,HUNTING) == 2) {
 				mes "[Brade]";
@@ -1219,6 +1219,7 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 		mes "[Brade]";
 		mes "Equipe o manual da classe que você quer experimentar, e você poderá usar algumas habilidades básicas daquela classe.";
 		mes "Teste essas habilidades e decida qual classe escolher.";
+		set job_novice_q,15;
 		close;
 	}
 	mes "[Brade]";
@@ -1333,7 +1334,7 @@ function	script	F_NvErase	{
 //============================================================================
 // ---------------------------- Instrutor Espadachim -------------------------------
 new_1-3,97,41,4	script#re	Espadachim#nv	728,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Espadachim]";
 		mes "Eu não posso ajudá-lo até terminar a aula do Brade.";
 		close;
@@ -1481,7 +1482,7 @@ new_5-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv5	728
 
 // ---------------------------- Instrutor Mago ----------------------------------
 new_1-3,101,41,4	script#re	Mago#nv	2_F_MAGICMASTER,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Mago]";
 		mes "Você ainda está no processo de treinamento com o senhor Brade.";
 		close;
@@ -1622,7 +1623,7 @@ new_5-3,101,41,4	duplicatr(Mago#nv)	Mago#nv5	2_F_MAGICMASTER
 
 // ---------------------------- Instrutor Gatuno ---------------------------------
 new_1-3,105,41,4	script#re	Gatuno#nv	2_M_THIEFMASTER,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Gatuno]";
 		mes "Você ainda está fazendo o curso do Instrutor Brade.";
 		close;
@@ -1756,7 +1757,7 @@ new_5-3,105,41,4	duplicatr(Gatuno#nv)	Gatuno#nv5	2_M_THIEFMASTER
 
 // ---------------------------- Instrutor Mercador ------------------------------
 new_1-3,109,41,4	script#re	Mercador#nvs	4W_M_01,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Mercador]";
 		mes "Você ainda está no treinamento com o senhor Brade.";
 		close;
@@ -1908,7 +1909,7 @@ new_5-3,109,41,4	duplicatr(Mercador#nvs)	Mercador#nv5	4W_M_01
 
 // ---------------------------- Instrutor Arqueiro --------------------------------
 new_1-3,113,41,4	script#re	Arqueiro#nv	4_F_JOB_HUNTER,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Arqueiro]";
 		mes "Você ainda está no processo de treinamento com o senhor Brade.";
 		close;
@@ -1998,7 +1999,7 @@ new_5-3,113,41,4	duplicatr(Arqueiro#nv)	Arqueiro#nv5	4_F_JOB_HUNTER
 
 // ---------------------------- Instrutor Noviço -------------------------------
 new_1-3,117,41,4	script#re	Noviço#nv	4_F_SISTER,{
-	if (job_novice_q < 16) {
+	if (job_novice_q < 15) {
 		mes "[Noviço]";
 		mes "Parece que você ainda não terminou as lições do Instrutor Brade.";
 		close;
@@ -3143,24 +3144,24 @@ new_1-3,103,50,4	script#re	Treinador Nível 1#nv	4_M_02,{
 		mes "Os níveis de monstro aumentam com cada nível do campo de treinamento.";
 		next;
 		mes "[Treinador]";
-		mes "Nível 1 tem os monstros mais fracoss.";
-		mes "Lá você encontrará Poring, Drops, Lunáticos, Fabres, e Chonchons.";
+		mes "Nível 1 tem os monstros mais fracos.";
+		mes "Lá você encontrará Porings, Drops e Lunáticos.";
 		next;
 		mes "[Treinador]";
 		mes "Nível 2 é mais desafiador.";
-		mes "Lá você encontrará Condors, Pickys, Salgueiros, Fabres, Sapos de Roda.";
+		mes "Lá você encontrará Chonchons, Lunáticos, Salgueiros e Porings.";
 		next;
 		mes "[Treinador]";
-		mes "Nível 3 é praticamente o mesmo que o Nível 2.";
-		mes "Lá você encontrará Condors, Pickys, Salgueiros, Fabres, Sapos de Roda.";
+		mes "Nível 3 é o mesmo que o Nível 2.";
+		mes "Lá você encontrará Chonchons, Lunáticos, Salgueiros e Porings.";
 		next;
 		mes "[Treinador]";
 		mes "Nível 4 possui alguns monstros mais fortes.";
-		mes "Lá você encontrará Rockers, Esporos e Fabres.";
+		mes "Lá você encontrará Zangões, Salgueiros, Fabres e Pickys.";
 		next;
 		mes "[Treinador]";
 		mes "Nível 5 é o mesmo que o nível 4.";
-		mes "Lá você encontrará Rockers, Esporos e Fabres.";
+		mes "Lá você encontrará Zangões, Salgueiros, Fabres e Pickys.";
 		close;
 	case 3:
 		mes "[Treinador]";
@@ -6953,8 +6954,8 @@ new_3-3,0,0,0,0	monster#re	Poring	PORING,5,0,0,0
 new_4-3,0,0,0,0	monster#re	Zangão	HORNET,5,0,0,0
 new_4-3,0,0,0,0	monster#re	Salgueiro	WILOW,15,0,0,0
 new_4-3,0,0,0,0	monster#re	Fabre	FABRE_,5,0,0,0
-new_4-3,0,0,0,0	monster#re	Picky	PICKY_,15,0,0,0
+new_4-3,0,0,0,0	monster#re	Picky	PICKY,15,0,0,0
 new_5-3,0,0,0,0	monster#re	Zangão	HORNET,5,0,0,0
 new_5-3,0,0,0,0	monster#re	Salgueiro	WILOW,15,0,0,0
 new_5-3,0,0,0,0	monster#re	Fabre	FABRE_,5,0,0,0
-new_5-3,0,0,0,0	monster#re	Picky	PICKY_,15,0,0,0,{}
+new_5-3,0,0,0,0	monster#re	Picky	PICKY,15,0,0,0,{}
