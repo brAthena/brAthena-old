@@ -987,13 +987,13 @@ ACMD_FUNC(jobchange)
 {
 	int job = 0, upper = 0;
 	const char *text;
-	nullpo_retr(-1, sd);
 
 	if(!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1) {
-		int i = 0;
-		bool found = false;
-
 		upper = 0;
+
+	if(message) {
+		int i;
+		bool found = false;
 
 		// Classes Normais
 		for(i = JOB_NOVICE; i < JOB_MAX_BASIC && !found; i++) {
@@ -1020,6 +1020,9 @@ ACMD_FUNC(jobchange)
 			return -1;
 		}
 	}
+}
+	/* WHY DO WE LIST THEM THEN? */
+	// Deny direct transformation into dummy jobs
 
 	if(job == JOB_KNIGHT2 || job == JOB_CRUSADER2 || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER 
 	#if VERSION != -1
@@ -1045,9 +1048,9 @@ ACMD_FUNC(jobchange)
 	}
 
 	if(pc_jobchange(sd, job, upper) == 0 && (!pc_isriding(sd) 
-	#if VERSION != -1
+#if VERSION != -1
 	|| !pc_isridingdragon(sd)
-	#endif
+#endif
 	) && (job != 7 && job != 14 && job != 4008 && job != 4015))
 		clif->status_change(&sd->bl,SI_RIDING,0, 0, 0, 0, 0);
 	return 0;

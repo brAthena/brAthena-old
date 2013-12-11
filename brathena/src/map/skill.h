@@ -295,7 +295,7 @@ int skill_check_condition_char_sub(struct block_list *bl, va_list ap);
 
 int skill_name2id(const char *name);
 
-int skill_isammotype(struct map_session_data *sd, int skill);
+int skill_isammotype(struct map_session_data *sd, int skill_id);
 int skill_castend_id(int tid, int64 tick, int id, intptr_t data);
 int skill_castend_pos(int tid, int64 tick, int id, intptr_t data);
 int skill_castend_map(struct map_session_data *sd,uint16 skill_id, const char *map);

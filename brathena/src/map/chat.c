@@ -65,7 +65,7 @@ static struct chat_data *chat_createchat(struct block_list *bl, const char *titl
 
 	if(cd->bl.id == 0) {
 		aFree(cd);
-		cd = NULL;
+		return NULL;
 	}
 
 	map_addiddb(&cd->bl);

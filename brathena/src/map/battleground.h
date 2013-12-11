@@ -64,11 +64,11 @@ int bg_send_dot_remove(struct map_session_data *sd);
 int bg_team_get_id(struct block_list *bl);
 struct map_session_data *bg_getavailablesd(struct battleground_data *bg);
 
-int bg_create(unsigned short mapindex, short rx, short ry, const char *ev, const char *dev);
+int bg_create(unsigned short map_index, short rx, short ry, const char *ev, const char *dev);
 int bg_team_join(int bg_id, struct map_session_data *sd);
 int bg_team_delete(int bg_id);
 int bg_team_leave(struct map_session_data *sd, int flag);
-int bg_team_warp(int bg_id, unsigned short mapindex, short x, short y);
+int bg_team_warp(int bg_id, unsigned short map_index, short x, short y);
 int bg_member_respawn(struct map_session_data *sd);
 int bg_send_message(struct map_session_data *sd, const char *mes, int len);
 

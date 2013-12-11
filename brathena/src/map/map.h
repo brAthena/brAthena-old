@@ -842,11 +842,11 @@ bool map_blid_exists( int id );
 
 struct eri *flooritem_ers;
 
-int16 map_mapindex2mapid(unsigned short mapindex);
+int16 map_mapindex2mapid(unsigned short map_index);
 int16 map_mapname2mapid(const char* name);
 int map_mapname2ipport(unsigned short name, uint32* ip, uint16* port);
-int map_setipport(unsigned short map, uint32 ip, uint16 port);
-int map_eraseipport(unsigned short map, uint32 ip, uint16 port);
+int map_setipport(unsigned short map_index, uint32 ip, uint16 port);
+int map_eraseipport(unsigned short map_index, uint32 ip, uint16 port);
 int map_eraseallipport(void);
 void map_addiddb(struct block_list *);
 void map_deliddb(struct block_list *bl);

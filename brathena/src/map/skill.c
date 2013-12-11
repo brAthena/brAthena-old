@@ -3478,7 +3478,7 @@ static int skill_timerskill(int tid, int64 tick, int id, intptr_t data)
 					break;
 				case GN_SPORE_EXPLOSION:
 					map_foreachinrange(skill_area_sub, target, skill_get_splash(skl->skill_id, skl->skill_lv), BL_CHAR,
-					                   src, skl->skill_id, skl->skill_lv, 0, skl->flag|1|BCT_ENEMY, skill_castend_damage_id);
+					                   src, skl->skill_id, skl->skill_lv, (int64)0, skl->flag|1|BCT_ENEMY, skill_castend_damage_id);
 					break;
 				case SR_FLASHCOMBO_ATK_STEP1:
 				case SR_FLASHCOMBO_ATK_STEP2:
@@ -9078,35 +9078,35 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case ALL_GUARDIAN_RECALL:
 		case ECLAGE_RECALL:
 			if(sd) {
-				short x=0, y=0; // Destiny position.
-				unsigned short mapindex=0;
+				short x, y; // Destiny position.
+				unsigned short map_index;
 
 				switch(skill_id){
 				default:
 				case RETURN_TO_ELDICASTES:
 					x = 198;
 					y = 187;
-					mapindex  = mapindex_name2id(MAP_DICASTES);
+					map_index  = mapindex_name2id(MAP_DICASTES);
 					break;
 				case ALL_GUARDIAN_RECALL:
 					x = 44;
 					y = 151;
-					mapindex  = mapindex_name2id(MAP_MORA);
+					map_index  = mapindex_name2id(MAP_MORA);
 					break;
 				case ECLAGE_RECALL:
 					x = 47;
 					y = 31;
-					mapindex  = mapindex_name2id("ecl_in01");
+					map_index  = mapindex_name2id("ecl_in01");
 					break;
 				}
 
-				if(!mapindex) {
+				if(!map_index) {
 					//Given map not found?
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					map_freeblock_unlock();
 					return 0;
 				}
-				pc_setpos(sd, mapindex, x, y, CLR_TELEPORT);
+				pc_setpos(sd, map_index, x, y, CLR_TELEPORT);
 			}
 			break;
 
@@ -9590,11 +9590,12 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			}
 			break;
 		case MH_GRANITIC_ARMOR:
-		case MH_PYROCLASTIC: {
+		case MH_PYROCLASTIC:
+			if(hd){
 				struct block_list *s_bl = battle_get_master(src);
 				if(s_bl) sc_start2(s_bl, type, 100, skill_lv, hd->homunculus.level, skill_get_time(skill_id, skill_lv)); //start on master
 				sc_start2(bl, type, 100, skill_lv, hd->homunculus.level, skill_get_time(skill_id, skill_lv));
-				if(hd) skill_blockhomun_start(hd, skill_id, skill_get_cooldown(skill_id, skill_lv));
+				skill_blockhomun_start(hd, skill_id, skill_get_cooldown(skill_id, skill_lv));
 			}
 			break;
 
@@ -12653,18 +12654,15 @@ int skill_check_pc_partner(struct map_session_data *sd, uint16 skill_id, uint16 
  *------------------------------------------*/
 int skill_check_condition_mob_master_sub(struct block_list *bl, va_list ap)
 {
-	int *c,src_id,mob_class,skill;
-	uint16 ai;
+	int *c,src_id,mob_class,skill_id;
 	struct mob_data *md;
 
 	md=(struct mob_data *)bl;
 	src_id=va_arg(ap,int);
 	mob_class=va_arg(ap,int);
-	skill=va_arg(ap,int);
+	skill_id=va_arg(ap,int);
 	c=va_arg(ap,int *);
-
-	ai = (unsigned)(skill == AM_SPHEREMINE?2:skill == KO_ZANZOU?4:skill == MH_SUMMON_LEGION?5:3);
-	if( md->master_id != src_id || md->special_state.ai != ai)
+	if(md->master_id != src_id || md->special_state.ai != (unsigned)(skill_id == AM_SPHEREMINE?2:skill_id == KO_ZANZOU?4:skill_id == MH_SUMMON_LEGION?1:3))
 		return 0; //Non alchemist summoned mobs have nothing to do here.
 
 	if(md->class_==mob_class)
@@ -12677,19 +12675,19 @@ int skill_check_condition_mob_master_sub(struct block_list *bl, va_list ap)
  * Determines if a given skill should be made to consume ammo
  * when used by the player. [Skotlex]
  *------------------------------------------*/
-int skill_isammotype(struct map_session_data *sd, int skill)
+int skill_isammotype(struct map_session_data *sd, int skill_id)
 {
 	return (
 	#if VERSION == -1
-		   battle_config.arrow_decrement_ot==2 &&
+			battle_config.arrow_decrement_ot==2 &&
 	#else
-	           battle_config.arrow_decrement==2 &&
+			battle_config.arrow_decrement==2 &&
 	#endif
 	           (sd->status.weapon == W_BOW || (sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE)) &&
-	           skill != HT_PHANTASMIC &&
-	           skill_get_type(skill) == BF_WEAPON &&
-	           !(skill_get_nk(skill)&NK_NO_DAMAGE) &&
-	           !skill_get_spiritball(skill,1) //Assume spirit spheres are used as ammo instead.
+	           skill_id != HT_PHANTASMIC &&
+	           skill_get_type(skill_id) == BF_WEAPON &&
+	           !(skill_get_nk(skill_id)&NK_NO_DAMAGE) &&
+	           !skill_get_spiritball(skill_id,1) //Assume spirit spheres are used as ammo instead.
 	       );
 }
 

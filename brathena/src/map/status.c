@@ -1848,14 +1848,16 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 				bool is_detect = ((status->mode&MD_DETECTOR)?true:false);//god-knows-why gcc doesn't shut up until this happens
 				if(pc_isinvisible(sd))
 					return 0;
-				if(tsc->option&hide_flag && !is_boss &&
-				   ((sd->special_state.perfect_hiding || !is_detect) ||
-				    (tsc->data[SC_CLOAKINGEXCEED] && is_detect)))
-					return 0;
-				if(tsc->data[SC_CAMOUFLAGE] && !(is_boss || is_detect) && !skill_id)
-					return 0;
-				if(tsc->data[SC_STEALTHFIELD] && !is_boss)
-					return 0;
+				if(tsc) {
+					if(tsc->option&hide_flag && !is_boss &&
+				   	((sd->special_state.perfect_hiding || !is_detect) ||
+				    	(tsc->data[SC_CLOAKINGEXCEED] && is_detect)))
+						return 0;
+					if(tsc->data[SC_CAMOUFLAGE] && !(is_boss || is_detect) && !skill_id)
+						return 0;
+					if(tsc->data[SC_STEALTHFIELD] && !is_boss)
+						return 0;
+				}
 			}
 			break;
 		case BL_ITEM:   //Allow targetting of items to pick'em up (or in the case of mobs, to loot them).
@@ -1888,9 +1890,9 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 int status_check_visibility(struct block_list *src, struct block_list *target)
 {
 	int view_range;
-	struct status_data *status = status_get_status_data(src);
-	struct status_change *tsc = status_get_sc(target);
-	switch(src->type) {
+	struct status_change *tsc = NULL;
+
+	switch (src->type) {
 		case BL_MOB:
 			view_range = ((TBL_MOB *)src)->min_chase;
 			break;
@@ -1904,11 +1906,13 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 	if(src->m != target->m || !check_distance_bl(src, target, view_range))
 		return 0;
 
-	if(tsc && tsc->data[SC_STEALTHFIELD])
-		return 0;
+	if((tsc = status_get_sc(target))) {
+		struct status_data *status = status_get_status_data(src);
 
-	switch(target->type) {
-			//Check for chase-walk/hiding/cloaking opponents.
+		if(tsc->data[SC_STEALTHFIELD])
+			return 0;
+
+		switch(target->type) { //Check for chase-walk/hiding/cloaking opponents.
 		case BL_PC:
 			if(tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS))
 				return 0;
@@ -1917,9 +1921,10 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 				return 0;
 			break;
 		default:
-			if(tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY] || tsc->data[SC_CAMOUFLAGE]) && !(status->mode&(MD_BOSS|MD_DETECTOR)))
+			if((tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY] || tsc->data[SC_CAMOUFLAGE]) && !(status->mode&(MD_BOSS|MD_DETECTOR)))
 				return 0;
 
+		}
 	}
 
 	return 1;
@@ -2171,12 +2176,13 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 		mbl = map_id2bl(md->master_id);
 
 	if(flag&8 && mbl) {
-		struct status_data *mstatus = status_get_base_status(mbl);
-		if(mstatus &&
-		   battle_config.slaves_inherit_speed&(mstatus->mode&MD_CANMOVE?1:2))
-			status->speed = mstatus->speed;
-		if(status->speed < 2)   /* minimum for the unit to function properly */
-			status->speed = 2;
+		struct status_data *mstatus;
+		if((mstatus = status_get_base_status(mbl))) {
+			if(battle_config.slaves_inherit_speed&(mstatus->mode&MD_CANMOVE?1:2))
+				status->speed = mstatus->speed;
+			if(status->speed < 2)   /* minimum for the unit to function properly */
+				status->speed = 2;
+		}
 	}
 
 	if(flag&16 && mbl) {
@@ -8182,11 +8188,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(sd) {
 					if(sd->mapindex != val2) {
 						int pos = (bl->x&0xFFFF)|(bl->y<<16);  //Current Coordinates
-						int mapindex =  sd->mapindex; //Current Map
+						int map_index =  sd->mapindex; //Current Map
 						//1. Place in Jail (val2 -> Jail Map, val3 -> x, val4 -> y
 						pc_setpos(sd,(unsigned short)val2,val3,val4, CLR_TELEPORT);
 						//2. Set restore point (val3 -> return map, val4 return coords
-						val3 = mapindex;
+						val3 = map_index;
 						val4 = pos;
 					} else if(!val3 || val3 == sd->mapindex) {  //Use save point.
 						val3 = sd->status.save_point.map;
@@ -10120,7 +10126,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	else if(opt_flag) {
 		clif_changeoption(bl);
 		if(sd && opt_flag&0x4) {
-			clif_changelook(bl,LOOK_BASE,vd->class_);
+			clif_changelook(bl,LOOK_BASE,sd->vd.class_);
 			clif_get_weapon_view(sd, &sd->vd.weapon, &sd->vd.shield);
 			clif_changelook(bl,LOOK_WEAPON,sd->vd.weapon);
 			clif_changelook(bl,LOOK_SHIELD,sd->vd.shield);

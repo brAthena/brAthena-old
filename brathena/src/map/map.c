@@ -2208,12 +2208,12 @@ int16 map_mapname2mapid(const char *name)
 /*==========================================
  * Returns the map of the given mapindex. [Skotlex]
  *------------------------------------------*/
-int16 map_mapindex2mapid(unsigned short mapindex) {
+int16 map_mapindex2mapid(unsigned short map_index) {
 
-	if (!mapindex || mapindex > MAX_MAPINDEX)
+	if (!map_index || map_index > MAX_MAPINDEX)
 		return -1;
 
-	return index2mapid[mapindex];
+	return index2mapid[map_index];
 }
 
 /*==========================================
@@ -2653,17 +2653,17 @@ static DBData create_map_data_other_server(DBKey key, va_list args)
 /*==========================================
  * Add mapindex to db of another map server
  *------------------------------------------*/
-int map_setipport(unsigned short mapindex, uint32 ip, uint16 port)
+int map_setipport(unsigned short map_index, uint32 ip, uint16 port)
 {
 	struct map_data_other_server *mdos;
 
-	mdos= uidb_ensure(map_db,(unsigned int)mapindex, create_map_data_other_server);
+	mdos= uidb_ensure(map_db,(unsigned int)map_index, create_map_data_other_server);
 
 	if(mdos->cell) //Local map,Do nothing. Give priority to our own local maps over ones from another server. [Skotlex]
 		return 0;
 	if(ip == clif_getip() && port == clif_getport()) {
 		//That's odd, we received info that we are the ones with this map, but... we don't have it.
-		ShowFatalError("map_setipport : received info that this map-server SHOULD have map '%s', but it is not loaded.\n",mapindex_id2name(mapindex));
+		ShowFatalError("map_setipport : received info that this map-server SHOULD have map '%s', but it is not loaded.\n",mapindex_id2name(map_index));
 		exit(EXIT_FAILURE);
 	}
 	mdos->ip   = ip;
@@ -2694,16 +2694,16 @@ int map_eraseallipport(void)
 /*==========================================
  * Delete mapindex from db of another map server
  *------------------------------------------*/
-int map_eraseipport(unsigned short mapindex, uint32 ip, uint16 port)
+int map_eraseipport(unsigned short map_index, uint32 ip, uint16 port)
 {
 	struct map_data_other_server *mdos;
 
-	mdos = (struct map_data_other_server *)uidb_get(map_db,(unsigned int)mapindex);
+	mdos = (struct map_data_other_server *)uidb_get(map_db,(unsigned int)map_index);
 	if(!mdos || mdos->cell) //Map either does not exists or is a local map.
 		return 0;
 
 	if(mdos->ip==ip && mdos->port == port) {
-		uidb_remove(map_db,(unsigned int)mapindex);
+		uidb_remove(map_db,(unsigned int)map_index);
 		aFree(mdos);
 		return 1;
 	}

@@ -10609,7 +10609,7 @@ BUILDIN_FUNC(isloggedin)
 BUILDIN_FUNC(setmapflagnosave)
 {
 	int16 m,x,y;
-	unsigned short mapindex;
+	unsigned short map_index;
 	const char *str,*str2;
 
 	str=script_getstr(st,2);
@@ -10617,11 +10617,11 @@ BUILDIN_FUNC(setmapflagnosave)
 	x=script_getnum(st,4);
 	y=script_getnum(st,5);
 	m = map_mapname2mapid(str);
-	mapindex = mapindex_name2id(str2);
+	map_index = mapindex_name2id(str2);
 
-	if(m >= 0 && mapindex) {
+	if(m >= 0 && map_index) {
 		map[m].flag.nosave=1;
-		map[m].save.map=mapindex;
+		map[m].save.map=map_index;
 		map[m].save.x=x;
 		map[m].save.y=y;
 	}
@@ -10791,12 +10791,13 @@ BUILDIN_FUNC(setmapflag)
 			case MF_NORETURN:           map[m].flag.noreturn = 1; break;
 			case MF_NOWARPTO:           map[m].flag.nowarpto = 1; break;
 			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 1; break;
-			case MF_ZONE: {
-				char zone[6] = "zone\0";
-				char empty[1] = "\0";
-				char params[MAP_ZONE_MAPFLAG_LENGTH];
-				memcpy(params, val2, MAP_ZONE_MAPFLAG_LENGTH);
-				npc_parse_mapflag(map[m].name, empty, zone, params, empty, empty, empty);
+			case MF_ZONE:
+				if(val2) {
+					char zone[6] = "zone\0";
+					char empty[1] = "\0";
+					char params[MAP_ZONE_MAPFLAG_LENGTH];
+					memcpy(params, val2, MAP_ZONE_MAPFLAG_LENGTH);
+					npc_parse_mapflag(map[m].name, empty, zone, params, empty, empty, empty);
 				}
 				break;
 			case MF_NOCOMMAND:          map[m].nocommand = (val <= 0) ? 100 : val; break;
@@ -16106,13 +16107,13 @@ Questlog script commands
 BUILDIN_FUNC(questinfo)
 {
 	struct npc_data *nd = map_id2nd(st->oid);
-	int quest, icon, job, color = 0;
+	int quest_id, icon, job, color = 0;
 	struct questinfo qi;
 
 	if(nd == NULL || nd->bl.m == -1)
 		return 0;
 
-	quest = script_getnum(st, 2);
+	quest_id = script_getnum(st, 2);
 	icon = script_getnum(st, 3);
 
 	#if PACKETVER >= 20120410
@@ -16125,7 +16126,7 @@ BUILDIN_FUNC(questinfo)
 			icon = icon + 1;
 	#endif
 
-	qi.quest_id = quest;
+	qi.quest_id = quest_id;
 	qi.icon = (unsigned char)icon;
 	qi.nd = nd;
 
@@ -16784,11 +16785,11 @@ BUILDIN_FUNC(has_instance)
 }
 static int buildin_instance_warpall_sub(struct block_list *bl,va_list ap) {
 	struct map_session_data *sd = ((TBL_PC*)bl);
-	int mapindex = va_arg(ap,int);
+	int map_index = va_arg(ap,int);
 	int x = va_arg(ap,int);
 	int y = va_arg(ap,int);
 
-	pc_setpos(sd,mapindex,x,y,CLR_TELEPORT);
+	pc_setpos(sd,map_index,x,y,CLR_TELEPORT);
 
 	return 0;
 }
@@ -16799,7 +16800,7 @@ BUILDIN_FUNC(instance_warpall)
 	int instance_id = -1;
 	const char *mapn;
 	int x, y;
-	int mapindex;
+	int map_index;
 
 	mapn = script_getstr(st,2);
 	x    = script_getnum(st,3);
@@ -16815,9 +16816,9 @@ BUILDIN_FUNC(instance_warpall)
 	if((m = map_mapname2mapid(mapn)) < 0 || (map[m].flag.src4instance && (m = instance->mapid2imapid(m, instance_id)) < 0))
 		return 0;
 
-	mapindex = map_id2index(m);
+	map_index = map_id2index(m);
 
-	map_foreachininstance(buildin_instance_warpall_sub, instance_id, BL_PC,mapindex,x,y);
+	map_foreachininstance(buildin_instance_warpall_sub, instance_id, BL_PC,map_index,x,y);
 
 	return 0;
 }

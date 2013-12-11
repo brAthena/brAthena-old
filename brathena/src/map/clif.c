@@ -11057,7 +11057,9 @@ void clif_parse_ChangeCart(int fd,struct map_session_data *sd)
 	// TODO: State tracking?
 	int type;
 
-	if(sd && pc_checkskill(sd, MC_CHANGECART) < 1)
+	nullpo_retv(sd);
+
+	if(pc_checkskill(sd, MC_CHANGECART) < 1)
 		return;
 
 #if VERSION == 1
@@ -18443,6 +18445,7 @@ static void __attribute__ ((unused)) packetdb_addpacket(short cmd, int len, ...)
 
 		packet_db[cmd].pos[i] = pos;
 	}
+	va_end(va);
 }
 void packetdb_loaddb(void) {
 
