@@ -2963,14 +2963,17 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 	memset(&mobspawn, 0, sizeof(struct spawn_data));
 	memset(mobname2, '\0', sizeof(mobname2));
 
-	mobspawn.state.boss = (strcmp(w2,"boss_monster") == 0 ? 1 : 0);
+		if(!strcmp(w2,"boss_monster") ||
 #if VERSION == 1
-		mobspawn.state.boss = (strcmp(w2,"boss_monster#re") == 0 ? 1 : 0) || (strcmp(w2,"boss_monster#dv") == 0 ? 1 : 0);
+		!strcmp(w2,"boss_monster#re") || !strcmp(w2,"boss_monster#dv"))
 #elif VERSION == 0
-		mobspawn.state.boss = (strcmp(w2,"boss_monster#pre") == 0 ? 1 : 0) || (strcmp(w2,"boss_monster#dv") == 0 ? 1 : 0) || (strcmp(w2,"boss_monster#vpo") == 0 ? 1 : 0);
+		!strcmp(w2,"boss_monster#pre") || !strcmp(w2,"boss_monster#dv") || !strcmp(w2,"boss_monster#vpo"))
 #else
-		mobspawn.state.boss = (strcmp(w2,"boss_monster#ot") == 0 ? 1 : 0) || (strcmp(w2,"boss_monster#vpo") == 0 ? 1 : 0);
+		!strcmp(w2,"boss_monster#ot") || !strcmp(w2,"boss_monster#vpo"))
 #endif
+		mobspawn.state.boss = 1;
+	else
+		mobspawn.state.boss = 0;
 
 	// w1=<map name>,<x>,<y>,<xs>,<ys>
 	// w3=<mob name>{,<mob level>}
