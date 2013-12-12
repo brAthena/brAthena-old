@@ -967,6 +967,18 @@ ver_eju
 ver_tunn
 verus04
 verus03
+job_gun
+1@glast
+1@air1
+1@air2
+lhz_dun_n
+verus01
+verus02
+un_bk_q
+un_bunker
+un_myst
+1@uns
+1@lab
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
