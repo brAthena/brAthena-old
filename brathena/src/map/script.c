@@ -158,14 +158,6 @@ struct script_interface script_s;
 c_op get_com(unsigned char *script,int *pos);
 int get_num(unsigned char *script,int *pos);
 
-typedef struct script_function {
-	int (*func)(struct script_state *st);
-	const char *name;
-	const char *arg;
-} script_function;
-
-extern script_function buildin_func[];
-
 #ifdef BETA_THREAD_TEST
 /**
  * MySQL Query Slave
@@ -889,14 +881,14 @@ const char *parse_callfunc(const char *p, int require_paren, int is_custom)
 		// buildin function
 		add_scriptl(func);
 		add_scriptc(C_ARG);
-		arg = buildin_func[str_data[func].val].arg;
+		arg = script->buildin[str_data[func].val];
 		if(!arg) arg = &null_arg; // Use a dummy, null string
 	} else if(str_data[func].type == C_USERFUNC || str_data[func].type == C_USERFUNC_POS) {
 		// script defined function
 		add_scriptl(buildin_callsub_ref);
 		add_scriptc(C_ARG);
 		add_scriptl(func);
-		arg = buildin_func[str_data[buildin_callsub_ref].val].arg;
+		arg = script->buildin[str_data[buildin_callsub_ref].val];
 		if(*arg == 0)
 			disp_error_message("parse_callfunc: callsub sem argumento, favor rever sua definicao",p);
 		if(*arg != '*')
@@ -915,7 +907,7 @@ const char *parse_callfunc(const char *p, int require_paren, int is_custom)
 			add_scriptc(C_STR);
 			while(*name) add_scriptb(*name ++);
 			add_scriptb(0);
-			arg = buildin_func[str_data[buildin_callfunc_ref].val].arg;
+			arg = script->buildin[str_data[buildin_callfunc_ref].val];
 			if(*arg != '*') ++ arg;
 		}
 #endif
@@ -2164,45 +2156,6 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		return p;
 	}
 }
-
-/*==========================================
- * ?g???????????
- *------------------------------------------*/
-static void add_buildin_func(void)
-{
-	int i,n;
-	const char *p;
-	for(i = 0; buildin_func[i].func; i++) {
-		// arg must follow the pattern: (v|s|i|r|l)*\?*\*?
-		// 'v' - value (either string or int or reference)
-		// 's' - string
-		// 'i' - int
-		// 'r' - reference (of a variable)
-		// 'l' - label
-		// '?' - one optional parameter
-		// '*' - unknown number of optional parameters
-		p = buildin_func[i].arg;
-		while(*p == 'v' || *p == 's' || *p == 'i' || *p == 'r' || *p == 'l') ++p;
-		while(*p == '?') ++p;
-		if(*p == '*') ++p;
-		if(*p != 0) {
-			ShowWarning("add_buildin_func: ignorando funcao \"%s\" com argumento invalido \"%s\".\n", buildin_func[i].name, buildin_func[i].arg);
-		} else if(*skip_word(buildin_func[i].name) != 0) {
-			ShowWarning("add_buildin_func: ignorando funcao com nome invalido \"%s\" (deve ser uma palavra).\n", buildin_func[i].name);
-		} else {
-			n = add_str(buildin_func[i].name);
-			str_data[n].type = C_FUNC;
-			str_data[n].val = i;
-			str_data[n].func = buildin_func[i].func;
-
-			if(!strcmp(buildin_func[i].name, "setr")) buildin_set_ref = n;
-			else if(!strcmp(buildin_func[i].name, "callsub")) buildin_callsub_ref = n;
-			else if(!strcmp(buildin_func[i].name, "callfunc")) buildin_callfunc_ref = n;
-			else if(!strcmp(buildin_func[i].name, "getelementofarray")) buildin_getelementofarray_ref = n;
-		}
-	}
-}
-
 /// Retrieves the value of a constant.
 bool script_get_constant(const char *name, int *value)
 {
@@ -2416,7 +2369,6 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 	const char *p,*tmpp;
 	int i;
 	struct script_code *code = NULL;
-	static int first=1;
 	char end;
 	bool unresolved_names = false;
 	parser_current_src = src;
@@ -2427,11 +2379,6 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 		return NULL;// empty script
 
 	memset(&syntax,0,sizeof(syntax));
-	if(first) {
-		add_buildin_func();
-		read_constdb();
-		first=0;
-	}
 
 	script_buf=(unsigned char *)aMalloc(SCRIPT_BLOCK_SIZE *sizeof(unsigned char));
 	script_pos=0;
@@ -3446,12 +3393,12 @@ static void script_check_buildin_argtype(struct script_state *st, int func)
 {
 	char type;
 	int idx, invalid = 0;
-	script_function *sf = &buildin_func[str_data[func].val];
+	char* sf = script->buildin[str_data[func].val];
 
 	for(idx = 2; script_hasdata(st, idx); idx++) {
 		struct script_data *data = script_getdata(st, idx);
 
-		type = sf->arg[idx-2];
+		type = sf[idx-2];
 
 		if(type == '?' || type == '*') {
 			// optional argument or unknown number of optional parameters ( no types are after this )
@@ -4351,6 +4298,10 @@ void do_init_script(void) {
 	ers_chunk_size(script->st_ers, 10);
 	ers_chunk_size(script->stack_ers, 10);
 
+	script->parse_builtin();
+	read_constdb();
+
+
 	mapreg_init();
 #ifdef BETA_THREAD_TEST
 	CREATE(queryThreadData.entry, struct queryThreadEntry *, 1);
@@ -4446,11 +4397,6 @@ const char *script_getfuncname(struct script_state *st) {
 
 	return NULL;
 }
-//-----------------------------------------------------------------------------
-// buildin functions
-//
-
-#define BUILDIN_FUNC(x) int buildin_ ## x (struct script_state* st)
 
 /////////////////////////////////////////////////////////////////////
 // NPC interaction
@@ -7346,10 +7292,6 @@ BUILDIN_FUNC(strnpcinfo)
 	return 0;
 }
 
-
-// aegis->athena slot position conversion table
- unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE] = {EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_GARMENT,EQP_SHOES,EQP_ACC_L,EQP_ACC_R,EQP_HEAD_MID,EQP_HEAD_LOW,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_GARMENT,EQP_SHADOW_ARMOR, EQP_SHADOW_WEAPON, EQP_SHADOW_SHIELD, EQP_SHADOW_SHOES, EQP_SHADOW_ACC_R, EQP_SHADOW_ACC_L};
- 
 /*==========================================
  * GetEquipID(Pos);     Pos: 1-SCRIPT_EQUIP_TABLE_SIZE
  *------------------------------------------*/
@@ -7364,13 +7306,13 @@ BUILDIN_FUNC(getequipid)
 		return 0;
 
 	num = script_getnum(st,2) - 1;
-	if(num < 0 || num >= ARRAYLENGTH(equip)) {
+	if(num < 0 || num >= ARRAYLENGTH(script->equip)) {
 		script_pushint(st,-1);
 		return 0;
 	}
 
 	// get inventory position of item
-	i = pc_checkequip(sd,equip[num]);
+	i = pc_checkequip(sd,script->equip[num]);
 	if(i < 0) {
 		script_pushint(st,-1);
 		return 0;
@@ -7400,13 +7342,13 @@ BUILDIN_FUNC(getequipname)
 		return 0;
 
 	num = script_getnum(st,2) - 1;
-	if(num < 0 || num >= ARRAYLENGTH(equip)) {
+	if(num < 0 || num >= ARRAYLENGTH(script->equip)) {
 		script_pushconststr(st,"");
 		return 0;
 	}
 
 	// get inventory position of item
-	i = pc_checkequip(sd,equip[num]);
+	i = pc_checkequip(sd,script->equip[num]);
 	if(i < 0) {
 		script_pushconststr(st,"");
 		return 0;
@@ -7520,8 +7462,8 @@ BUILDIN_FUNC(getequipisequiped)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 
 	if(i >= 0)
 		script_pushint(st,1);
@@ -7547,8 +7489,8 @@ BUILDIN_FUNC(getequipisenableref)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i = pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i = pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0 && sd->inventory_data[i] && !sd->inventory_data[i]->flag.no_refine && !sd->status.inventory[i].expire_time)
 		script_pushint(st,1);
 	else
@@ -7573,8 +7515,8 @@ BUILDIN_FUNC(getequipisidentify)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0)
 		script_pushint(st,sd->status.inventory[i].identify);
 	else
@@ -7599,8 +7541,8 @@ BUILDIN_FUNC(getequiprefinerycnt)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0)
 		script_pushint(st,sd->status.inventory[i].refine);
 	else
@@ -7626,8 +7568,8 @@ BUILDIN_FUNC(getequipweaponlv)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0 && sd->inventory_data[i])
 		script_pushint(st,sd->inventory_data[i]->wlv);
 	else
@@ -7652,8 +7594,8 @@ BUILDIN_FUNC(getequippercentrefinery)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0 && sd->status.inventory[i].nameid && sd->status.inventory[i].refine < MAX_REFINE)
 		script_pushint(st,status_get_refine_chance(itemdb_wlv(sd->status.inventory[i].nameid), (int)sd->status.inventory[i].refine));
 	else
@@ -7675,8 +7617,8 @@ BUILDIN_FUNC(successrefitem)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0) {
 		ep=sd->status.inventory[i].equip;
 
@@ -7732,8 +7674,8 @@ BUILDIN_FUNC(failedrefitem)
 	if(sd == NULL)
 		return 0;
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0) {
 		sd->status.inventory[i].refine = 0;
 		pc_unequipitem(sd,i,3); //recalculate bonus
@@ -7762,8 +7704,8 @@ BUILDIN_FUNC(downrefitem)
 	if(script_hasdata(st, 3))
 		down = script_getnum(st, 3);
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i = pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i = pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0) {
 		ep = sd->status.inventory[i].equip;
 
@@ -11286,8 +11228,8 @@ BUILDIN_FUNC(getequipcardcnt)
 
 	num=script_getnum(st,2);
 	sd=script_rid2sd(st);
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 
 	if(i < 0 || !sd->inventory_data[i]) {
 		script_pushint(st,0);
@@ -11318,8 +11260,8 @@ BUILDIN_FUNC(successremovecards)
 	TBL_PC *sd = script_rid2sd(st);
 	int num = script_getnum(st,2);
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 
 	if(i < 0 || !sd->inventory_data[i]) {
 		return 0;
@@ -11383,8 +11325,8 @@ BUILDIN_FUNC(failedremovecards)
 	int num = script_getnum(st,2);
 	int typefail = script_getnum(st,3);
 
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 
 	if(i < 0 || !sd->inventory_data[i])
 		return 0;
@@ -11971,8 +11913,8 @@ BUILDIN_FUNC(getequipcardid)
 	num=script_getnum(st,2);
 	slot=script_getnum(st,3);
 	sd=script_rid2sd(st);
-	if(num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if(num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0 && slot>=0 && slot<4)
 		script_pushint(st,sd->status.inventory[i].card[slot]);
 	else
@@ -13579,8 +13521,8 @@ BUILDIN_FUNC(unequip)
 
 	num = script_getnum(st,2);
 	sd = script_rid2sd(st);
-	if(sd != NULL && num >= 1 && num <= ARRAYLENGTH(equip)) {
-		i = pc_checkequip(sd,equip[num-1]);
+	if(sd != NULL && num >= 1 && num <= ARRAYLENGTH(script->equip)) {
+		i = pc_checkequip(sd,script->equip[num-1]);
 		if(i >= 0)
 			pc_unequipitem(sd,i,1|2);
 	}
@@ -14951,17 +14893,17 @@ BUILDIN_FUNC(npcshopattach)
 BUILDIN_FUNC(setitemscript)
 {
 	int item_id,n=0;
-	const char *script;
+	const char *new_bonus_script;
 	struct item_data *i_data;
 	struct script_code **dstscript;
 
 	item_id = script_getnum(st,2);
-	script = script_getstr(st,3);
+	new_bonus_script = script_getstr(st,3);
 	if(script_hasdata(st,4))
 		n=script_getnum(st,4);
 	i_data = itemdb_exists(item_id);
 
-	if(!i_data || script==NULL || (script[0] && script[0]!='{')) {
+	if(!i_data || new_bonus_script==NULL || (new_bonus_script[0] && new_bonus_script[0]!='{')) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -14979,7 +14921,7 @@ BUILDIN_FUNC(setitemscript)
 	if(*dstscript)
 		script_free_code(*dstscript);
 
-	*dstscript = script[0] ? parse_script(script, "script_setitemscript", 0, 0) : NULL;
+	*dstscript = new_bonus_script[0] ? parse_script(new_bonus_script, "script_setitemscript", 0, 0) : NULL;
 	script_pushint(st,1);
 	return 0;
 }
@@ -17700,8 +17642,8 @@ BUILDIN_FUNC(delequip)
 	if(sd == NULL)
 		return 0;
 
-	if (num > 0 && num <= ARRAYLENGTH(equip))
-		i=pc_checkequip(sd,equip[num-1]);
+	if (num > 0 && num <= ARRAYLENGTH(script->equip))
+		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0) {
 		pc_unequipitem(sd,i,3); //recalculate bonus
 		pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
@@ -18473,12 +18415,93 @@ BUILDIN_FUNC(deactivatepset);
 BUILDIN_FUNC(deletepset);
 #endif
 
+/**
+ * Adds a built-in script function.
+ *
+ * @param buildin Script function data
+ * @param force   Whether to override an existing function with the same name
+ *                (i.e. a plugin overriding a built-in function)
+ * @return Whether the function was successfully added.
+ */
+bool script_add_builtin(const struct script_function *buildin, bool override) {
+	int slen = 0, n = 0, offset = 0;
+	if( !buildin ) {
+		return false;
+	}
+	if( buildin->arg ) {
+		// arg must follow the pattern: (v|s|i|r|l)*\?*\*?
+		// 'v' - value (either string or int or reference)
+		// 's' - string
+		// 'i' - int
+		// 'r' - reference (of a variable)
+		// 'l' - label
+		// '?' - one optional parameter
+		// '*' - unknown number of optional parameters
+		char *p = buildin->arg;
+		while( *p == 'v' || *p == 's' || *p == 'i' || *p == 'r' || *p == 'l' ) ++p;
+		while( *p == '?' ) ++p;
+		if( *p == '*' ) ++p;
+		if( *p != 0 ) {
+			ShowWarning("add_builtin: ignoring function \"%s\" with invalid arg \"%s\".\n", buildin->name, buildin->arg);
+			return false;
+		}
+	}
+	if( !buildin->name || *skip_word(buildin->name) != 0 ) {
+		ShowWarning("add_builtin: ignoring function with invalid name \"%s\" (must be a word).\n", buildin->name);
+		return false;
+	}
+	if ( !buildin->func ) {
+		ShowWarning("add_builtin: ignoring function \"%s\" with invalid source function.\n", buildin->name);
+		return false;
+	}
+	slen = buildin->arg ? strlen(buildin->arg) : 0;
+	n = add_str(buildin->name);
+
+	if( !override && str_data[n].func && str_data[n].func != buildin->func ) {
+		return false; /* something replaced it, skip. */
+	}
+
+	if( override && str_data[n].type == C_FUNC ) {
+		// Overriding
+		offset = str_data[n].val;
+		if( script->buildin[offset] )
+			aFree(script->buildin[offset]);
+		script->buildin[offset] = NULL;
+	} else {
+		// Adding new function
+		if( strcmp(buildin->name, "setr") == 0 ) buildin_set_ref = n;
+		else if( strcmp(buildin->name, "callsub") == 0 ) buildin_callsub_ref = n;
+		else if( strcmp(buildin->name, "callfunc") == 0 ) buildin_callfunc_ref = n;
+		else if( strcmp(buildin->name, "getelementofarray") == 0 ) buildin_getelementofarray_ref = n;
+
+		offset = script->buildin_count;
+
+		str_data[n].type = C_FUNC;
+		str_data[n].val = offset;
+
+		// Note: This is a no-op if script->buildin is already large enough
+		//   (it'll only have effect when a plugin adds a new command)
+		RECREATE(script->buildin, char *, ++script->buildin_count);
+	}
+
+	str_data[n].func = buildin->func;
+
+	/* we only store the arguments, its the only thing used out of this */
+	if(slen) {
+		CREATE(script->buildin[offset], char, slen + 1);
+		safestrncpy(script->buildin[offset], buildin->arg, slen + 1);
+	} else {
+		script->buildin[offset] = NULL;
+	}
+
+	return true;
+}
+
 #define BUILDIN_DEF(x,args) { buildin_ ## x , #x , args }
 #define BUILDIN_DEF2(x,x2,args) { buildin_ ## x , x2 , args }
 
-/// script command definitions
-/// for an explanation on args, see add_buildin_func
-struct script_function buildin_func[] = {
+void script_parse_builtin(void) {
+	struct script_function BUILDIN[] = {
 
 	// NPC interaction
 	BUILDIN_DEF(mes,"s*"),
@@ -18978,9 +19001,14 @@ struct script_function buildin_func[] = {
 
 #include "../custom/scripts_def.inc"
 
-	{NULL,NULL,NULL},
-	
-};
+	};
+	int i, len = ARRAYLENGTH(BUILDIN);
+	RECREATE(script->buildin, char *, script->buildin_count + len); // Pre-alloc to speed up
+	memset(script->buildin + script->buildin_count, '\0', sizeof(char *) * len);
+	for(i = 0; i < len; i++) {
+		script->add_builtin(&BUILDIN[i], false);
+	}
+}
 #undef BUILDIN_DEF
 #undef BUILDIN_DEF2
 
@@ -18998,6 +19026,9 @@ void script_label_add(int key, int pos) {
 }
 
 void script_defaults(void) {
+	// aegis->athena slot position conversion table
+	unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE] = {EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_GARMENT,EQP_SHOES,EQP_ACC_L,EQP_ACC_R,EQP_HEAD_MID,EQP_HEAD_LOW,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_GARMENT,EQP_SHADOW_ARMOR, EQP_SHADOW_WEAPON, EQP_SHADOW_SHIELD, EQP_SHADOW_SHOES, EQP_SHADOW_ACC_R, EQP_SHADOW_ACC_L};
+
 	script = &script_s;
 
 	script->st_db = NULL;
@@ -19011,8 +19042,8 @@ void script_defaults(void) {
 	script->hqs = script->hqis = 0;
 	memset(&script->hqe, 0, sizeof(script->hqe));
 
-	script->buildin_count = 0;
 	script->buildin = NULL;
+	script->buildin_count = 0;
 
 	script->word_buf = NULL;
 	script->word_size = 0;
@@ -19023,10 +19054,13 @@ void script_defaults(void) {
 	script->label_count = 0;
 	script->labels_size = 0;
 
+	script->add_builtin = script_add_builtin;
+	script->parse_builtin = script_parse_builtin;
+	script->warning = script_warning;
+
 	script->set_constant2 = script_set_constant2;
 	script->set_constant_force = script_set_constant_force;
 	script->label_add = script_label_add;
-	script->warning = script_warning;
 
 	script->queue = script_hqueue_get;
 	script->queue_add = script_hqueue_add;

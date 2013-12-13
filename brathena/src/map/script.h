@@ -156,6 +156,8 @@ struct eri;
 #define not_array_variable(prefix) ( (prefix) != '$' && (prefix) != '@' && (prefix) != '.' && (prefix) != '\'' )
 #define is_string_variable(name) ( (name)[strlen(name) - 1] == '$' )
 
+#define BUILDIN_FUNC(x) int buildin_ ## x (struct script_state* st)
+
 #define script_fetch(st, n, t) do { \
 	if( script_hasdata((st),(n)) ) \
 		(t)=script_getnum((st),(n)); \
@@ -422,6 +424,12 @@ struct script_regstr {
 	char *data;
 };
 
+struct script_function {
+	int (*func)(struct script_state *st);
+	char *name;
+	char *arg;
+};
+
 // String buffer structures.
 // str_data stores string information
 struct str_data_struct {
@@ -532,7 +540,6 @@ struct casecheck_data {
 struct script_interface {
 	/* */
 	DBMap *st_db;
-	unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE];
 	unsigned int active_scripts;
 	unsigned int next_id;
 	struct eri *st_ers;
@@ -554,6 +561,9 @@ struct script_interface {
 	int label_count;
 	int labels_size;
 	/*  */
+	unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE];
+	bool (*add_builtin) (const struct script_function *buildin, bool override);
+	void (*parse_builtin) (void);
 	void (*set_constant2) (const char *name, int value, bool isparameter);
 	void (*set_constant_force) (const char *name, int value, bool isparameter);
 	void (*label_add)(int key, int pos);
