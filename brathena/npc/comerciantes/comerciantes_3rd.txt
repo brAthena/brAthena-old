@@ -83,9 +83,10 @@
 	mes "Obrigada. Volte logo~!";
 	close;
 }
-job3_guil01,79,96,3	duplicate(phs)	Vendedora de Ervas Tóxicas  877
+job3_guil01,79,96,3	duplicate(phs)	Vendedora de Ervas Tóxicas	4_F_YUNYANG
 morocc,191,94,4	duplicate(phs)	Vendedora de Ervas Tóxicas#moc	4_F_YUNYANG
-lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	4_F_YUNYANG,{}
+lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	4_F_YUNYANG
+
 
 -	script	::runesale	4_M_YURI,{
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
