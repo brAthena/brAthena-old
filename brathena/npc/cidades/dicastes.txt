@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dicastes01,194,159,5	script	Galten Animado#a	492,{
+dicastes01,194,159,5	script	Galten Animado#a	4_MAN_GALTUN1,{
 	mes "[Galten Animado]";
 	if (isequipped(2782)) {
 		mes "Não consigo tirar a bela imagem de Ahat da minha cabeça.";
@@ -131,7 +131,7 @@ dicastes01,248,129,0	script	Galten em Treinamento#d	4_MAN_GALTUN,{
 	close;
 }
 
-dicastes01,271,152,0	script	Training Galten#e	450,{
+dicastes01,271,152,0	script	Training Galten#e	4_MAN_GALTUN,{
 	if (isequipped(2782)){
 		mes "[Training Galten]";
 		mes "I will get great results";

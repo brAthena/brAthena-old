@@ -83,10 +83,10 @@ new_1-1,53,114,4	script#re	Sprakki#nv1	4_F_01,{
 	}
 }
 
-new_2-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv2a	90
-new_3-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv3a	90
-new_4-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv4a	90
-new_5-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv5a	90
+new_2-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv2a	4_F_01
+new_3-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv3a	4_F_01
+new_4-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv4a	4_F_01
+new_5-1,53,114,3	duplicatr(Sprakki#nv1)	Sprakki#nv5a	4_F_01
 
 // Sprakki (Inside Castle)
 //============================================================
@@ -213,12 +213,12 @@ new_1-2,100,29,4	script#re	Sprakki#nv2	4_F_01,{
 	}
 }
 
-new_2-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv2b	90
-new_3-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv3b	90
-new_4-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv4b	90
-new_5-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv5b	90
+new_2-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv2b	4_F_01
+new_3-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv3b	4_F_01
+new_4-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv4b	4_F_01
+new_5-2,100,29,4	duplicatr(Sprakki#nv2)	Sprakki#nv5b	4_F_01
 
-new_1-2,100,105,4	script#re	Brade#nv	733,{
+new_1-2,100,105,4	script#re	Brade#nv	4_M_JOB_KNIGHT1,{
 	if (job_novice_q < 2) {
 		mes "[Instrutor Brade]";
 		mes "Olá! Bem-vindo ao mundo de Ragnarök Online.";
@@ -483,10 +483,10 @@ new_1-2,100,105,4	script#re	Brade#nv	733,{
 	}
 }
 
-new_2-2,100,105,3	duplicatr(Brade#nv)	Brade#nv2a	733
-new_3-2,100,105,3	duplicatr(Brade#nv)	Brade#nv3a	733
-new_4-2,100,105,3	duplicatr(Brade#nv)	Brade#nv4a	733
-new_5-2,100,105,3	duplicatr(Brade#nv)	Brade#nv5a	733
+new_2-2,100,105,3	duplicatr(Brade#nv)	Brade#nv2a	4_M_JOB_KNIGHT1
+new_3-2,100,105,3	duplicatr(Brade#nv)	Brade#nv3a	4_M_JOB_KNIGHT1
+new_4-2,100,105,3	duplicatr(Brade#nv)	Brade#nv4a	4_M_JOB_KNIGHT1
+new_5-2,100,105,3	duplicatr(Brade#nv)	Brade#nv5a	4_M_JOB_KNIGHT1
 
 // Instrutor Jinha
 //============================================================
@@ -578,10 +578,10 @@ new_1-2,115,120,4	script#re	Jinha#nv	1_M_ORIENT01,{
 	}
 }
 
-new_2-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv2	59
-new_3-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv3	59
-new_4-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv4	59
-new_5-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv5	59
+new_2-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv2	1_M_ORIENT01
+new_3-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv3	1_M_ORIENT01
+new_4-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv4	1_M_ORIENT01
+new_5-2,115,120,3	duplicatr(Jinha#nv)	Jinha#nv5	1_M_ORIENT01
 
 //============================================================================
 // Pessoas/Serviços de Ragnarök
@@ -762,13 +762,13 @@ new_1-2,32,172,4	script#re	Chocolati#nv	4W_KID,{
 	}
 }
 
-new_2-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv2	96
-new_3-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv3	96
-new_4-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv4	96
-new_5-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv5	96
+new_2-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv2	4W_KID
+new_3-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv3	4W_KID
+new_4-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv4	4W_KID
+new_5-2,33,172,4	duplicatr(Chocolati#nv)	Chocolati#nv5	4W_KID
 
 // ---------- Kafra ----------
-new_1-2,29,176,4	script#re	Kafra#nv	117,{
+new_1-2,29,176,4	script#re	Kafra#nv	4_F_KAFRA1,{
 	if (job_novice_q < 8) {
 		mes "[Funcionária Kafra]";
 		mes "Olá.";
@@ -991,12 +991,12 @@ L_Services:
 	return;
 }
 
-new_2-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv2	117
-new_3-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv3	117
-new_4-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv4	117
-new_5-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv5	117
+new_2-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv2	4_F_KAFRA1
+new_3-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv3	4_F_KAFRA1
+new_4-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv4	4_F_KAFRA1
+new_5-2,30,176,4	duplicatr(Kafra#nv)	Kafra#nv5	4_F_KAFRA1
 
-new_1-2,32,176,4	script#re	Corp. Eventos Incríveis#nv	874,{
+new_1-2,32,176,4	script#re	Corp. Eventos Incríveis#nv	4_M_ZONDAMAN,{
 	if (job_novice_q < 9) {
 		mes "[Corp. Eventos Incríveis]";
 		mes "Não é meu turno.";
@@ -1031,12 +1031,12 @@ new_1-2,32,176,4	script#re	Corp. Eventos Incríveis#nv	874,{
 	}
 }
 
-new_2-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv2	874
-new_3-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv3	874
-new_4-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv4	874
-new_5-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv5	874
+new_2-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv2	4_M_ZONDAMAN
+new_3-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv3	4_M_ZONDAMAN
+new_4-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv4	4_M_ZONDAMAN
+new_5-2,33,176,4	duplicatr(Corp. Eventos Incríveis#nv)	Corp. Eventos Incríveis#nv5	4_M_ZONDAMAN
 
-new_1-2,35,176,4	script#re	Guia#nv	105,{
+new_1-2,35,176,4	script#re	Guia#nv	8W_SOLDIER,{
 	if (job_novice_q < 10) {
 		mes "[Guia]";
 		mes "Ainda não é o meu turno.";
@@ -1082,12 +1082,12 @@ new_1-2,35,176,4	script#re	Guia#nv	105,{
 	close;
 }
 
-new_2-2,36,176,4	duplicatr(Guia#nv)	Guia#nv2	105
-new_3-2,36,176,4	duplicatr(Guia#nv)	Guia#nv3	105
-new_4-2,36,176,4	duplicatr(Guia#nv)	Guia#nv4	105
-new_5-2,36,176,4	duplicatr(Guia#nv)	Guia#nv5	105,{}
+new_2-2,36,176,4	duplicatr(Guia#nv)	Guia#nv2	8W_SOLDIER
+new_3-2,36,176,4	duplicatr(Guia#nv)	Guia#nv3	8W_SOLDIER
+new_4-2,36,176,4	duplicatr(Guia#nv)	Guia#nv4	8W_SOLDIER
+new_5-2,36,176,4	duplicatr(Guia#nv)	Guia#nv5	8W_SOLDIER,{}
 
-new_1-2,121,101,2	script#vpo	Soldado Guia#nv1	105,{
+new_1-2,121,101,2	script#vpo	Soldado Guia#nv1	8W_SOLDIER,{
 	mes "[Soldado Guia]";
 	mes "Nós fornecemos informações na entrada de cada cidade. Você pode encontrar localidades facilmente através de nossa ajuda.";
 	next;
@@ -1102,7 +1102,7 @@ new_1-2,121,101,2	script#vpo	Soldado Guia#nv1	105,{
 //============================================================================
 // Instrutor Brade (Treinamento de Combate Real)
 //============================================================================
-new_1-3,96,30,4	script#re	Brade#nvs	733,{
+new_1-3,96,30,4	script#re	Brade#nvs	4_M_JOB_KNIGHT1,{
 	if (job_novice_q < 12) {
 		if (job_novice_q < 2) {
 			mes "[Brade]";
@@ -1306,10 +1306,10 @@ new_1-3,96,30,4	script#re	Brade#nvs	733,{
 	}
 }
 
-new_2-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv2	733
-new_3-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv3	733
-new_4-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv4	733
-new_5-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv5	733
+new_2-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv2	4_M_JOB_KNIGHT1
+new_3-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv3	4_M_JOB_KNIGHT1
+new_4-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv4	4_M_JOB_KNIGHT1
+new_5-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv5	4_M_JOB_KNIGHT1
 
 // --------------------------- Deletion Function ------------------------------
 function	script	F_NvErase	{
@@ -1333,7 +1333,7 @@ function	script	F_NvErase	{
 // Guias de Classe (Treinamento de Combate Real)
 //============================================================================
 // ---------------------------- Instrutor Espadachim -------------------------------
-new_1-3,97,41,4	script#re	Espadachim#nv	728,{
+new_1-3,97,41,4	script#re	Espadachim#nv	4_F_JOB_KNIGHT,{
 	if (job_novice_q < 15) {
 		mes "[Espadachim]";
 		mes "Eu não posso ajudá-lo até terminar a aula do Brade.";
@@ -1475,10 +1475,10 @@ new_1-3,97,41,4	script#re	Espadachim#nv	728,{
 	}
 }
 
-new_2-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv2	728
-new_3-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv3	728
-new_4-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv4	728
-new_5-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv5	728
+new_2-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv2	4_F_JOB_KNIGHT
+new_3-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv3	4_F_JOB_KNIGHT
+new_4-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv4	4_F_JOB_KNIGHT
+new_5-3,97,41,4	duplicatr(Espadachim#nv)	Espadachim#nv5	4_F_JOB_KNIGHT
 
 // ---------------------------- Instrutor Mago ----------------------------------
 new_1-3,101,41,4	script#re	Mago#nv	2_F_MAGICMASTER,{
@@ -4578,14 +4578,14 @@ new_1-1,66,114,4	script	Quadro de avisos#nv	HIDDEN_NPC,{
 	close;
 }
 
-new_1-1,144,116,2	script	Guarda#nv1	105,{
+new_1-1,144,116,2	script	Guarda#nv1	8W_SOLDIER,{
 	mes "[Guarda do Campo de Treinamento]";
 	mes "É meu dever desejar-lhe as boas vindas ao Campo de Treinamento de Aprendizes!";
 	mes "Dirija-se até a entrada do castelo para começar sua instrução.";
 	close;
 }
 
-new_1-1,144,107,2	script	Guarda#nv2	105,{
+new_1-1,144,107,2	script	Guarda#nv2	8W_SOLDIER,{
 	mes "[Guarda do Campo de Treinamento]";
 	if (rand(2)) {
 		mes "Entre, todos são bem-vindos para o treinamento!";
@@ -6593,7 +6593,7 @@ new_1-2,115,111,3	script#vpo	Instrutora de Itens#nv	4_F_JOB_BLACKSMITH,{
 	}
 }
 
-new_1-2,118,108,3	script#vpo	Funcionária Kafra#nv1	117,{
+new_1-2,118,108,3	script#vpo	Funcionária Kafra#nv1	4_F_KAFRA1,{
 	mes "[Funcionária Kafra]";
 	mes "Prazer em conhecê-lo.";
 	mes "Eu sou uma das Funcionárias Kafra,";

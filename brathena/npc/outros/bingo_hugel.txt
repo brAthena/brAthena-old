@@ -873,7 +873,7 @@ function	script	Func_BingoResult	{
 	end;
 }
 
-que_bingo,49,31,4	script	Ajudante#1	47,{
+que_bingo,49,31,4	script	Ajudante#1	1_M_01,{
 	mes "[Ajudante]";
 	mes "Se você quiser participar";
 	mes "de um jogo de bingo, siga";
@@ -881,7 +881,7 @@ que_bingo,49,31,4	script	Ajudante#1	47,{
 	close;
 }
 
-que_bingo,42,31,4	duplicate(Ajudante#1)	Ajudante#2	66
+que_bingo,42,31,4	duplicate(Ajudante#1)	Ajudante#2	1_F_01
 
 que_bingo,54,17,5	script	Chefe de Mesa	4_M_05,{
 	mes "[Chefe de Mesa]";
