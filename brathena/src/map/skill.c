@@ -661,7 +661,7 @@ int skillnotok(uint16 skill_id, struct map_session_data *sd)
 			break;
 		case MC_VENDING:
 		case ALL_BUYING_STORE:
-			if(npc_isnear(&sd->bl)) {
+			if(npc->isnear(&sd->bl)) {
 				// uncomment for more verbose message.
 				//char output[150];
 				//sprintf(output, msg_txt(662), battle_config.min_npc_vendchat_distance);
@@ -6790,29 +6790,29 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 							return 1;
 						}
 					}
-					potion_flag = 1;
-					potion_hp = potion_sp = potion_per_hp = potion_per_sp = 0;
-					potion_target = bl->id;
-					run_script(sd->inventory_data[i]->script,0,sd->bl.id,0);
-					potion_flag = potion_target = 0;
+					script->potion_flag = 1;
+					script->potion_hp = script->potion_sp = script->potion_per_hp = script->potion_per_sp = 0;
+					script->potion_target = bl->id;
+					script->run(sd->inventory_data[i]->script,0,sd->bl.id,0);
+					script->potion_flag = script->potion_target = 0;
 					if(sd->sc.data[SC_SOULLINK] && sd->sc.data[SC_SOULLINK]->val2 == SL_ALCHEMIST)
 						bonus += sd->status.base_level;
-					if(potion_per_hp > 0 || potion_per_sp > 0) {
-						hp = tstatus->max_hp * potion_per_hp / 100;
+					if(script->potion_per_hp > 0 || script->potion_per_sp > 0) {
+						hp = tstatus->max_hp * script->potion_per_hp / 100;
 						hp = hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 						if(dstsd) {
-							sp = dstsd->status.max_sp * potion_per_sp / 100;
+							sp = dstsd->status.max_sp * script->potion_per_sp / 100;
 							sp = sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 						}
 					} else {
-						if(potion_hp > 0) {
-							hp = potion_hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+						if(script->potion_hp > 0) {
+							hp = script->potion_hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 							hp = hp * (100 + (tstatus->vit<<1)) / 100;
 							if(dstsd)
 								hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10) / 100;
 						}
-						if(potion_sp > 0) {
-							sp = potion_sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+						if(script->potion_sp > 0) {
+							sp = script->potion_sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
 							sp = sp * (100 + (tstatus->int_<<1)) / 100;
 							if(dstsd)
 								sp = sp * (100 + pc_checkskill(dstsd,MG_SRECOVERY)*10) / 100;
@@ -7515,8 +7515,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			// Updated to block Slim Pitcher from working on barricades and guardian stones.
 			if(dstmd && (dstmd->class_ == MOBID_EMPERIUM || (dstmd->class_ >= MOBID_BARRICADE1 && dstmd->class_ <= MOBID_GUARIDAN_STONE2)))
 				break;
-			if(potion_hp || potion_sp) {
-				int hp = potion_hp, sp = potion_sp;
+			if(script->potion_hp || script->potion_sp) {
+				int hp = script->potion_hp, sp = script->potion_sp;
 				hp = hp * (100 + (tstatus->vit<<1))/100;
 				sp = sp * (100 + (tstatus->int_<<1))/100;
 				if(dstsd) {
@@ -9328,13 +9328,13 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					} else //Otherwise, it fails, shows animation and removes items.
 						clif_skill_fail(sd,GN_SLINGITEM_RANGEMELEEATK,0xa,0);
 				} else if(itemdb_is_GNthrowable(ammo_id)) {
-					struct script_code *script = sd->inventory_data[i]->script;
-					if(!script)
+					struct script_code *scriptroot = sd->inventory_data[i]->script;
+					if(!scriptroot)
 						break;
 					if(dstsd)
-						run_script(script,0,dstsd->bl.id,fake_nd->bl.id);
+						script->run(scriptroot,0,dstsd->bl.id,npc->fake_nd->bl.id);
 					else
-						run_script(script,0,src->id,0);
+						script->run(scriptroot,0,src->id,0);
 				}
 			}
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
@@ -10315,21 +10315,21 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					return 1;
 				}
-				potion_flag = 1;
-				potion_hp = 0;
-				potion_sp = 0;
-				run_script(sd->inventory_data[j]->script,0,sd->bl.id,0);
-				potion_flag = 0;
+				script->potion_flag = 1;
+				script->potion_hp = 0;
+				script->potion_sp = 0;
+				script->run(sd->inventory_data[j]->script,0,sd->bl.id,0);
+				script->potion_flag = 0;
 				//Apply skill bonuses
 				i = pc_checkskill(sd,CR_SLIMPITCHER)*10
 				    + pc_checkskill(sd,AM_POTIONPITCHER)*10
 				    + pc_checkskill(sd,AM_LEARNINGPOTION)*5
 				    + pc_skillheal_bonus(sd, skill_id);
 
-				potion_hp = potion_hp * (100+i)/100;
-				potion_sp = potion_sp * (100+i)/100;
+				script->potion_hp = script->potion_hp * (100+i)/100;
+				script->potion_sp = script->potion_sp * (100+i)/100;
 
-				if(potion_hp > 0 || potion_sp > 0) {
+				if(script->potion_hp > 0 || script->potion_sp > 0) {
 					i = skill_get_splash(skill_id, skill_lv);
 					map_foreachinarea(skill_area_sub,
 					                  src->m,x-i,y-i,x+i,y+i,BL_CHAR,
@@ -10341,17 +10341,17 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 				struct item_data *item;
 				i = skill_db[skill_id].itemid[i];
 				item = itemdb_search(i);
-				potion_flag = 1;
-				potion_hp = 0;
-				potion_sp = 0;
-				run_script(item->script,0,src->id,0);
-				potion_flag = 0;
+				script->potion_flag = 1;
+				script->potion_hp = 0;
+				script->potion_sp = 0;
+				script->run(item->script,0,src->id,0);
+				script->potion_flag = 0;
 				i = skill_get_max(CR_SLIMPITCHER)*10;
 
-				potion_hp = potion_hp * (100+i)/100;
-				potion_sp = potion_sp * (100+i)/100;
+				script->potion_hp = script->potion_hp * (100+i)/100;
+				script->potion_sp = script->potion_sp * (100+i)/100;
 
-				if(potion_hp > 0 || potion_sp > 0) {
+				if(script->potion_hp > 0 || script->potion_sp > 0) {
 					i = skill_get_splash(skill_id, skill_lv);
 					map_foreachinarea(skill_area_sub,
 					                  src->m,x-i,y-i,x+i,y+i,BL_CHAR,
@@ -12996,7 +12996,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			break;
 
 		case CG_HERMODE:
-			if(!npc_check_areanpc(1,sd->bl.m,sd->bl.x,sd->bl.y,skill_get_splash(skill_id, skill_lv))) {
+			if(!npc->check_areanpc(1,sd->bl.m,sd->bl.x,sd->bl.y,skill_get_splash(skill_id, skill_lv))) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}

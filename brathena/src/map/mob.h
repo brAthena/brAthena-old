@@ -24,6 +24,8 @@
 #include "unit.h" // unit_stop_walking(), unit_stop_attack()
 #include "npc.h"
 
+  //Dummy mob to be returned when a non-existant one is requested.
+
 #define MAX_RANDOMMONSTER 5
 
 // Change this to increase the table size in your mob_db to accomodate a larger mob database.
@@ -113,6 +115,10 @@ struct spawn_info {
 	unsigned short mapindex;
 	unsigned short qty;
 };
+
+//Dynamic mob database, allows saving of memory when there's big gaps in the mob_db [Skotlex]
+struct mob_db *mob_db_data[MAX_MOB_DB+1];
+struct mob_db *mob_dummy;  
 
 struct mob_db {
 	char sprite[NAME_LENGTH],name[NAME_LENGTH],jname[NAME_LENGTH];

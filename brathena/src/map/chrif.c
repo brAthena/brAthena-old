@@ -494,10 +494,10 @@ int chrif_connectack(int fd)
 
 	chrif_sendmap(fd);
 
-	ShowNpc(read_message("Source.map.map_chrif_s14"), CL_WHITE, CL_RESET, CL_WHITE, npc_event_doall("OnInterIfInit"), CL_RESET);
+	ShowNpc(read_message("Source.map.map_chrif_s14"), CL_WHITE, CL_RESET, CL_WHITE, npc->event_doall("OnInterIfInit"), CL_RESET);
 	if(!char_init_done) {
 		char_init_done = true;
-		ShowNpc(read_message("Source.map.map_chrif_s15"), CL_WHITE, CL_RESET, CL_WHITE, npc_event_doall("OnInterIfInitOnce"), CL_RESET);
+		ShowNpc(read_message("Source.map.map_chrif_s15"), CL_WHITE, CL_RESET, CL_WHITE, npc->event_doall("OnInterIfInitOnce"), CL_RESET);
 		guild_castle_map_init();
 	}
 

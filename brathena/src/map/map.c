@@ -421,7 +421,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, int64 tick)
 		   sc->data[SC_PROPERTYWALK]->val3 >= skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2))
 			status_change_end(bl,SC_PROPERTYWALK,INVALID_TIMER);
 	} else if(bl->type == BL_NPC)
-		npc_unsetcells((TBL_NPC *)bl);
+		npc->unsetcells((TBL_NPC *)bl);
 
 	if(moveblock) map_delblock(bl);
 #ifdef CELL_NOSTACK
@@ -492,7 +492,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, int64 tick)
 			}
 		}
 	} else if(bl->type == BL_NPC)
-		npc_setcells((TBL_NPC *)bl);
+		npc->setcells((TBL_NPC *)bl);
 
 	return 0;
 }
@@ -1583,10 +1583,10 @@ int map_quit(struct map_session_data *sd)
 		delete_timer(sd->expiration_tid,pc_expiration_timer);
 
 	if(sd->npc_timer_id != INVALID_TIMER)  //Cancel the event timer.
-		npc_timerevent_quit(sd);
+		npc->timerevent_quit(sd);
 
 	if(sd->npc_id)
-		npc_event_dequeue(sd);
+		npc->event_dequeue(sd);
 
 	if(sd->bg_id && !sd->bg_queue.arena) /* TODO: dump this chunk after bg_queue is fully enabled */
 		bg_team_leave(sd,1);
@@ -1597,7 +1597,7 @@ int map_quit(struct map_session_data *sd)
 	for(i = 0; i < sd->queues_count; i++) {
 		struct hQueue *queue;
 		if((queue = script->queue(sd->queues[i])) && queue->onLogOut[0] != '\0') {
-			npc_event(sd, queue->onLogOut, 0);
+			npc->event(sd, queue->onLogOut, 0);
 		}
 	}
 	/* two times, the npc event above may assign a new one or delete others */
@@ -1606,7 +1606,7 @@ int map_quit(struct map_session_data *sd)
 			script->queue_remove(sd->queues[i],sd->status.account_id);
 	}
 	
-	npc_script_event(sd, NPCE_LOGOUT);
+	npc->script_event(sd, NPCE_LOGOUT);
 
 	//Unit_free handles clearing the player related data,
 	//map_quit handles extra specific data which is related to quitting normally
@@ -2124,7 +2124,7 @@ void map_spawnmobs(int16 m)
 	for(i=0; i<MAX_MOB_LIST_PER_MAP; i++)
 		if(map[m].moblist[i]!=NULL) {
 			k+=map[m].moblist[i]->num;
-			npc_parse_mob2(map[m].moblist[i]);
+			npc->parse_mob2(map[m].moblist[i]);
 		}
 
 	if(battle_config.etc_log && k > 0) {
@@ -2380,7 +2380,7 @@ void map_cellfromcache(struct map_data *m) {
 		m->setcell  = map_setcell;
 
 		for(i = 0; i < m->npc_num; i++) {
-			npc_setcells(m->npc[i]);
+			npc->setcells(m->npc[i]);
 		}
 	}
 }
@@ -3389,9 +3389,9 @@ int map_config_read(char *cfgName)
 		else if(strcmpi(w1, "delmap") == 0)
 			map_num--;
 		else if(strcmpi(w1, "npc") == 0)
-			npc_addsrcfile(w2);
+			npc->addsrcfile(w2);
 		else if(strcmpi(w1, "delnpc") == 0)
-			npc_delsrcfile(w2);
+			npc->delsrcfile(w2);
 		else if(strcmpi(w1, "autosave_time") == 0) {
 			autosave_interval = atoi(w2);
 			if(autosave_interval < 1)  //Revert to default saving.
@@ -3498,9 +3498,9 @@ void map_reloadnpc_sub(char *cfgName)
 		*ptr = '\0';
 
 		if(strcmpi(w1, "npc") == 0)
-			npc_addsrcfile(w2);
+			npc->addsrcfile(w2);
 		else if(strcmpi(w1, "delnpc") == 0)
-			npc_delsrcfile(w2);
+			npc->delsrcfile(w2);
 		else if(strcmpi(w1, "import") == 0)
 			map_reloadnpc_sub(w2);
 		else
@@ -3513,7 +3513,7 @@ void map_reloadnpc_sub(char *cfgName)
 void map_reloadnpc(bool clear)
 {
 	if(clear)
-		npc_addsrcfile("clear"); // this will clear the current script list
+		npc->addsrcfile("clear"); // this will clear the current script list
 
 #if VERSION == 1
 	map_reloadnpc_sub("npc/scripts_renovacao.conf");
@@ -3827,7 +3827,7 @@ void map_zone_remove(int m) {
 			}
 		}
 
-		npc_parse_mapflag(map[m].name,empty,flag,params,empty,empty,empty);
+		npc->parse_mapflag(map[m].name,empty,flag,params,empty,empty,empty);
 		aFree(map[m].zone_mf[k]);
 		map[m].zone_mf[k] = NULL;
 	}
@@ -4570,7 +4570,7 @@ void map_zone_apply(int m, struct map_zone_data *zone, const char* start, const 
 		if(map_zone_mf_cache(m,flag,params))
 			continue;
 
-		npc_parse_mapflag(map[m].name,empty,flag,params,start,buffer,filepath);
+		npc->parse_mapflag(map[m].name,empty,flag,params,start,buffer,filepath);
 	}
 }
 /* used on npc load and reload to apply all "Normal" and "PK Mode" zones */
@@ -4598,7 +4598,7 @@ void map_zone_init(void) {
 			if( map[j].zone == zone ) {
 				if(map_zone_mf_cache(j,flag,params))
 					break;
-				npc_parse_mapflag(map[j].name,empty,flag,params,empty,empty,empty);
+				npc->parse_mapflag(map[j].name,empty,flag,params,empty,empty,empty);
 			}
 		}
 	}
@@ -4620,7 +4620,7 @@ void map_zone_init(void) {
 				if( map[j].zone == zone ) {
 					if(map_zone_mf_cache(j,flag,params))
 						break;
-					npc_parse_mapflag(map[j].name,empty,flag,params,empty,empty,empty);
+					npc->parse_mapflag(map[j].name,empty,flag,params,empty,empty,empty);
 				}
 			}
 		}
@@ -5183,7 +5183,7 @@ int cleanup_sub(struct block_list *bl, va_list ap)
 			map_quit((struct map_session_data *) bl);
 			break;
 		case BL_NPC:
-			npc_unload((struct npc_data *)bl,false);
+			npc->unload((struct npc_data *)bl,false);
 			break;
 		case BL_MOB:
 			unit_free(bl,CLR_OUTSIGHT);
@@ -5229,7 +5229,7 @@ void do_final(void)
 	mapit_free(iter);
 
 	/* prepares npcs for a faster shutdown process */
-	do_clear_npc();
+	npc->do_clear_npc();
 
 	// remove all objects on maps
 	for(i = 0; i < map_num; i++) {
@@ -5247,9 +5247,9 @@ void do_final(void)
 	do_final_battle();
 	do_final_chrif();
 	do_final_clif();
-	do_final_npc();
+	npc->final();
 	quest->final();
-	do_final_script();
+	script->final();
 	do_final_itemdb();
 	instance->final();
 	do_final_storage();
@@ -5486,6 +5486,10 @@ int do_init(int argc, char *argv[])
 	itemdb_defaults();
 	script_defaults();
 	quest_defaults();
+	npc_defaults();
+#ifdef PCRE_SUPPORT
+	npc_chat_defaults();
+#endif
 
 
 	map_config_read(MAP_CONF_NAME);
@@ -5520,7 +5524,7 @@ int do_init(int argc, char *argv[])
 	battle_config_read(BATTLE_CONF_FILENAME);
 	msg_config_read(MSG_CONF_NAME);
 	//lang_config_read(LANG_FILENAME);
-	script_config_read(SCRIPT_CONF_NAME);
+	script->config_read(SCRIPT_CONF_NAME);
 	inter_config_read(INTER_CONF_NAME);
 	log_config_read(LOG_CONF_NAME);
 
@@ -5563,7 +5567,7 @@ int do_init(int argc, char *argv[])
 	instance->init();
 	do_init_chrif();
 	do_init_clif();
-	do_init_script();
+	script->init();
 	do_init_itemdb();
 	do_init_skill();
 	read_map_zone_db();/* read after item and skill initalization */
@@ -5578,13 +5582,13 @@ int do_init(int argc, char *argv[])
 	do_init_mercenary();
 	do_init_elemental();
 	quest->init();
-	do_init_npc();
+	npc->init();
 	do_init_unit();
 	do_init_battleground();
 	do_init_duel();
 	do_init_vending();
 
-	npc_event_do_oninit();  // Init npcs (OnInit)
+	npc->event_do_oninit();  // Init npcs (OnInit)
 
 	if(console) {
 		//##TODO invoke a CONSOLE_START plugin event

@@ -746,6 +746,7 @@ int pc_close_npc_timer(int tid, int64 tick, int id, intptr_t data);
 
 int pc_isequip(struct map_session_data *sd,int n);
 int pc_equippoint(struct map_session_data *sd,int n);
+
 int pc_setinventorydata(struct map_session_data *sd);
 
 int pc_checkskill(struct map_session_data *sd,uint16 skill_id);
@@ -986,6 +987,7 @@ void pc_expire_check(struct map_session_data *sd);
 // Sistema Item Vinculado
 void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type);
 bool pc_can_give_bound_items(struct map_session_data *sd);
+
 
 //----------------------------------
 // Sistema Vip [Shiraz / brAthena]

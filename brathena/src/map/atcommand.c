@@ -3823,8 +3823,8 @@ ACMD_FUNC(reloadscript)
 
 	flush_fifos();
 	map_reloadnpc(true); // reload config files seeking for npcs
-	script_reload();
-	npc_reload();
+	script->reload();
+	npc->reload();
 
 	clif_displaymessage(fd, msg_txt(100)); // Scripts have been reloaded.
 
@@ -4324,7 +4324,7 @@ ACMD_FUNC(tonpc)
 		return -1;
 	}
 
-	if((nd = npc_name2id(npcname)) != NULL) {
+	if((nd = npc->name2id(npcname)) != NULL) {
 		if(nd->bl.m != -1 && pc_setpos(sd, map_id2index(nd->bl.m), nd->bl.x, nd->bl.y, CLR_TELEPORT) == 0)
 			clif_displaymessage(fd, msg_txt(0)); // Warped.
 		else
@@ -4352,8 +4352,8 @@ ACMD_FUNC(shownpc)
 		return -1;
 	}
 
-	if(npc_name2id(NPCname) != NULL) {
-		npc_enable(NPCname, 1);
+	if(npc->name2id(NPCname) != NULL) {
+		npc->enable(NPCname, 1);
 		clif_displaymessage(fd, msg_txt(110)); // Npc Enabled.
 	} else {
 		clif_displaymessage(fd, msg_txt(111)); // This NPC doesn't exist.
@@ -4378,12 +4378,12 @@ ACMD_FUNC(hidenpc)
 		return -1;
 	}
 
-	if(npc_name2id(NPCname) == NULL) {
+	if(npc->name2id(NPCname) == NULL) {
 		clif_displaymessage(fd, msg_txt(111)); // This NPC doesn't exist.
 		return -1;
 	}
 
-	npc_enable(NPCname, 0);
+	npc->enable(NPCname, 0);
 	clif_displaymessage(fd, msg_txt(112)); // Npc Disabled.
 	return 0;
 }
@@ -4405,9 +4405,9 @@ ACMD_FUNC(loadnpc)
 	fclose(fp);
 
 	// add to list of script sources and run it
-	npc_addsrcfile(message);
-	npc_parsesrcfile(message,true);
-	npc_read_event_script();
+	npc->addsrcfile(message);
+	npc->parsesrcfile(message,true);
+	npc->read_event_script();
 
 	clif_displaymessage(fd, msg_txt(262));
 
@@ -4427,14 +4427,14 @@ ACMD_FUNC(unloadnpc)
 		return -1;
 	}
 
-	if((nd = npc_name2id(NPCname)) == NULL) {
+	if((nd = npc->name2id(NPCname)) == NULL) {
 		clif_displaymessage(fd, msg_txt(111)); // This NPC doesn't exist.
 		return -1;
 	}
 
-	npc_unload_duplicates(nd);
-	npc_unload(nd,true);
-	npc_read_event_script();
+	npc->unload_duplicates(nd);
+	npc->unload(nd,true);
+	npc->read_event_script();
 	clif_displaymessage(fd, msg_txt(112)); // Npc Disabled.
 	return 0;
 }
@@ -4817,7 +4817,7 @@ ACMD_FUNC(disguise)
 			id = 0; //Invalid id for either mobs or npcs.
 	}   else    { //Acquired a Name
 		if((id = mobdb_searchname(message)) == 0) {
-			struct npc_data *nd = npc_name2id(message);
+			struct npc_data *nd = npc->name2id(message);
 			if(nd != NULL)
 				id = nd->class_;
 		}
@@ -4900,7 +4900,7 @@ ACMD_FUNC(disguiseguild)
 			id = 0;
 	} else {
 		if((id = mobdb_searchname(monster)) == 0) {
-			struct npc_data *nd = npc_name2id(monster);
+			struct npc_data *nd = npc->name2id(monster);
 			if(nd != NULL)
 				id = nd->class_;
 		}
@@ -5189,7 +5189,7 @@ ACMD_FUNC(npcmove)
 		return -1;
 	}
 
-	if((nd = npc_name2id(atcmd_player_name)) == NULL) {
+	if((nd = npc->name2id(atcmd_player_name)) == NULL) {
 		clif_displaymessage(fd, msg_txt(111)); // This NPC doesn't exist.
 		return -1;
 	}
@@ -5235,7 +5235,7 @@ ACMD_FUNC(addwarp)
 		return -1;
 	}
 
-	nd = npc_add_warp(warpname, sd->bl.m, sd->bl.x, sd->bl.y, 2, 2, m, x, y);
+	nd = npc->add_warp(warpname, sd->bl.m, sd->bl.x, sd->bl.y, 2, 2, m, x, y);
 	if(nd == NULL)
 		return -1;
 
@@ -6349,7 +6349,7 @@ ACMD_FUNC(npctalk)
 		}
 	}
 
-	if(!(nd = npc_name2id(name))) {
+	if(!(nd = npc->name2id(name))) {
 		clif_displaymessage(fd, msg_txt(111)); // This NPC doesn't exist
 		return -1;
 	}
@@ -8772,9 +8772,9 @@ ACMD_FUNC(set)
 
 	if(toset >= 2) {  /* we only set the var if there is an val, otherwise we only output the value */
 		if(is_str)
-			set_var(sd, reg, (void *) val);
+			script->set_var(sd, reg, (void *) val);
 		else
-			set_var(sd, reg, (void *)__64BPRTSIZE((atoi(val))));
+			script->set_var(sd, reg, (void *)__64BPRTSIZE((atoi(val))));
 
 	}
 
@@ -8785,10 +8785,10 @@ ACMD_FUNC(set)
 
 		switch(reg[0]) {
 			case '@':
-				data->u.str = pc_readregstr(sd, add_str(reg));
+				data->u.str = pc_readregstr(sd, script->add_str(reg));
 				break;
 			case '$':
-				data->u.str = mapreg_readregstr(add_str(reg));
+				data->u.str = mapreg_readregstr(script->add_str(reg));
 				break;
 			case '#':
 				if(reg[1] == '#')
@@ -8814,10 +8814,10 @@ ACMD_FUNC(set)
 		data->type = C_INT;
 		switch(reg[0]) {
 			case '@':
-				data->u.num = pc_readreg(sd, add_str(reg));
+				data->u.num = pc_readreg(sd, script->add_str(reg));
 				break;
 			case '$':
-				data->u.num = mapreg_readreg(add_str(reg));
+				data->u.num = mapreg_readreg(script->add_str(reg));
 				break;
 			case '#':
 				if(reg[1] == '#')
@@ -8922,7 +8922,7 @@ ACMD_FUNC(unloadnpcfile)
 		return -1;
 	}
 
-	if(npc_unloadfile(message))
+	if(npc->unloadfile(message))
 		clif_displaymessage(fd, msg_txt(1386)); // File unloaded. Be aware that mapflags and monsters spawned directly are not removed.
 	else {
 		clif_displaymessage(fd, msg_txt(1387)); // File not found.
@@ -10185,7 +10185,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		    (*atcmd_msg == charcommand_symbol && pc_get_group_level(sd) >= binding->level2))) {
 			// Check if self or character invoking; if self == character invoked, then self invoke.
 			bool invokeFlag = ((*atcmd_msg == atcommand_symbol) ? 1 : 0);
-			npc_do_atcmd_event((invokeFlag ? sd : ssd), command, params, binding->npc_event);
+			npc->do_atcmd_event((invokeFlag ? sd : ssd), command, params, binding->npc_event);
 			return true;
 		}
 	}

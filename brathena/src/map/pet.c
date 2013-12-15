@@ -357,7 +357,7 @@ int pet_data_init(struct map_session_data *sd, struct s_pet *pet)
 	}
 	sd->pd = pd = (struct pet_data *)aCalloc(1,sizeof(struct pet_data));
 	pd->bl.type = BL_PET;
-	pd->bl.id = npc_get_new_npc_id();
+	pd->bl.id = npc->get_new_npc_id();
 
 	pd->msd = sd;
 	pd->petDB = &pet_db[i];
@@ -380,7 +380,7 @@ int pet_data_init(struct map_session_data *sd, struct s_pet *pet)
 	pd->last_thinktime = gettick();
 	pd->state.skillbonus = 0;
 	if(battle_config.pet_status_support)
-		run_script(pet_db[i].pet_script,0,sd->bl.id,0);
+		script->run(pet_db[i].pet_script,0,sd->bl.id,0);
 
 	if(pd->petDB) {
 		if(pd->petDB->equip_script)
@@ -1212,11 +1212,11 @@ int read_petdb()
 	// Remove any previous scripts in case reloaddb was invoked.
 	for(j = 0; j < MAX_PET_DB; j++) {
 		if(pet_db[j].pet_script) {
-			script_free_code(pet_db[j].pet_script);
+			script->free_code(pet_db[j].pet_script);
 			pet_db[j].pet_script = NULL;
 		}
 		if(pet_db[j].equip_script) {
-			script_free_code(pet_db[j].equip_script);
+			script->free_code(pet_db[j].equip_script);
 			pet_db[j].pet_script = NULL;
 		}
 	}
@@ -1273,9 +1273,9 @@ int read_petdb()
 		pet_db[j].equip_script = NULL;
 
 		if(*str[20])
-			pet_db[j].pet_script = parse_script(str[20], get_database_name(48), rows, 0);
+			pet_db[j].pet_script = script->parse(str[20], get_database_name(48), rows, 0);
 		if(*str[21])
-			pet_db[j].equip_script = parse_script(str[21], get_database_name(48), rows, 0);
+			pet_db[j].equip_script = script->parse(str[21], get_database_name(48), rows, 0);
 		j++;
 	}
 
@@ -1314,11 +1314,11 @@ int do_final_pet(void)
 	int i;
 	for(i = 0; i < MAX_PET_DB; i++) {
 		if(pet_db[i].pet_script) {
-			script_free_code(pet_db[i].pet_script);
+			script->free_code(pet_db[i].pet_script);
 			pet_db[i].pet_script = NULL;
 		}
 		if(pet_db[i].equip_script) {
-			script_free_code(pet_db[i].equip_script);
+			script->free_code(pet_db[i].equip_script);
 			pet_db[i].equip_script = NULL;
 		}
 	}

@@ -232,7 +232,7 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 		//cant be nearly of a npc
 		if( map_getcell(nosd->bl.m, nosd->bl.x, nosd->bl.y, CELL_CHKNOCHAT) ||
 			(battle_config.basic_skill_check && pc_checkskill(nosd,NV_BASIC) < 4) ||
-			npc_isnear(&nosd->bl) ) {
+			npc->isnear(&nosd->bl) ) {
 			clif_skill_fail(sd,1,USESKILL_FAIL_THERE_ARE_NPC_AROUND,0);
 			chat_leavechat(nosd, 0);
 			return 1;
@@ -404,7 +404,7 @@ int chat_triggerevent(struct chat_data *cd)
 	nullpo_ret(cd);
 
 	if(cd->users >= cd->trigger && cd->npc_event[0])
-		npc_event_do(cd->npc_event);
+		npc->event_do(cd->npc_event);
 	return 0;
 }
 

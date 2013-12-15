@@ -337,7 +337,7 @@ int instance_map_npcsub(struct block_list *bl, va_list args)
 	struct npc_data *nd = (struct npc_data *)bl;
 	int16 m = va_arg(args, int); // Destination Map
 
-	if (npc_duplicate4instance(nd, m))
+	if (npc->duplicate4instance(nd, m))
 		ShowDebug("instance_map_npcsub:npc_duplicate4instance failed (%s/%d)\n",nd->name,m);
 
 	return 1;
@@ -350,8 +350,8 @@ int instance_init_npc(struct block_list* bl, va_list args) {
 
 	snprintf(evname, EVENT_NAME_LENGTH, "%s::OnInstanceInit", nd->exname);
 
-	if((ev = strdb_get(ev_db, evname)))
-		run_script(ev->nd->u.scr.script, ev->pos, 0, ev->nd->bl.id);
+	if((ev = strdb_get(npc->ev_db, evname)))
+		script->run(ev->nd->u.scr.script, ev->pos, 0, ev->nd->bl.id);
 
 	return 1;
 }
@@ -399,7 +399,7 @@ int instance_cleanup_sub(struct block_list *bl, va_list ap)
 			map_quit((struct map_session_data *) bl);
 			break;
 		case BL_NPC:
-			npc_unload((struct npc_data *)bl,true);
+			npc->unload((struct npc_data *)bl,true);
 			break;
 		case BL_MOB:
 			unit_free(bl,CLR_OUTSIGHT);

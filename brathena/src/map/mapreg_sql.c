@@ -51,7 +51,7 @@ bool mapreg_setreg(int uid, int val)
 {
 	int num = (uid & 0x00ffffff);
 	int i   = (uid & 0xff000000) >> 24;
-	const char *name = get_str(num);
+	const char *name = script->get_str(num);
 
 	if(val != 0) {
 		if(idb_iput(mapreg_db,uid,val))
@@ -81,7 +81,7 @@ bool mapreg_setregstr(int uid, const char *str)
 {
 	int num = (uid & 0x00ffffff);
 	int i   = (uid & 0xff000000) >> 24;
-	const char *name = get_str(num);
+	const char *name = script->get_str(num);
 
 	if(str == NULL || *str == 0) {
 		if(name[1] != '@') {
@@ -134,7 +134,7 @@ static void script_load_mapreg(void)
 	SqlStmt_BindColumn(stmt, 2, SQLDT_STRING, &value[0], sizeof(value), NULL, NULL);
 
 	while(SQL_SUCCESS == SqlStmt_NextRow(stmt)) {
-		int s = add_str(varname);
+		int s = script->add_str(varname);
 		int i = index;
 
 		if(varname[length-1] == '$')
@@ -159,7 +159,7 @@ static void script_save_mapreg(void)
 	for(data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key)) {
 		int num = (key.i & 0x00ffffff);
 		int i   = (key.i & 0xff000000) >> 24;
-		const char *name = get_str(num);
+		const char *name = script->get_str(num);
 
 		if(name[1] == '@')
 			continue;
@@ -173,7 +173,7 @@ static void script_save_mapreg(void)
 	for(data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key)) {
 		int num = (key.i & 0x00ffffff);
 		int i   = (key.i & 0xff000000) >> 24;
-		const char *name = get_str(num);
+		const char *name = script->get_str(num);
 		char tmp_str2[2*255+1];
 
 		if(name[1] == '@')

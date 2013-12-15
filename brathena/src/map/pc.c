@@ -116,6 +116,12 @@ inline int pc_get_group_id(struct map_session_data *sd)
 {
 	return sd->group_id;
 }
+/**
+ * Creates a new dummy map session data.
+ * Used when there is no real player attached, but it is
+ * required to provide a session.
+ * Caller must release dummy on its own when it's no longer needed.
+ */
 
 inline int pc_get_group_level(struct map_session_data *sd)
 {
@@ -2009,7 +2015,7 @@ int pc_delautobonus(struct map_session_data *sd, struct s_autobonus *autobonus,c
 					int j;
 					ARR_FIND(0, EQI_MAX, j, sd->equip_index[j] >= 0 && sd->status.inventory[sd->equip_index[j]].equip == autobonus[i].pos);
 					if(j < EQI_MAX)
-						script_run_autobonus(autobonus[i].bonus_script,sd->bl.id,sd->equip_index[j]);
+						script->run_autobonus(autobonus[i].bonus_script,sd->bl.id,sd->equip_index[j]);
 				}
 				continue;
 			} else {
@@ -2038,7 +2044,7 @@ int pc_exeautobonus(struct map_session_data *sd,struct s_autobonus *autobonus)
 		int j;
 		ARR_FIND(0, EQI_MAX, j, sd->equip_index[j] >= 0 && sd->status.inventory[sd->equip_index[j]].equip == autobonus->pos);
 		if(j < EQI_MAX)
-			script_run_autobonus(autobonus->other_script,sd->bl.id,sd->equip_index[j]);
+			script->run_autobonus(autobonus->other_script,sd->bl.id,sd->equip_index[j]);
 	}
 
 	autobonus->active = add_timer(gettick()+autobonus->duration, pc_endautobonus, sd->bl.id, (intptr_t)autobonus);
@@ -4459,9 +4465,9 @@ int pc_useitem(struct map_session_data *sd,int n)
 	}
 	if(sd->status.inventory[n].card[0]==CARD0_CREATE &&
 	   pc_famerank(MakeDWord(sd->status.inventory[n].card[2],sd->status.inventory[n].card[3]), MAPID_ALCHEMIST)) {
-		potion_flag = 2; // Famous player's potions have 50% more efficiency
+		script->potion_flag = 2; // Famous player's potions have 50% more efficiency
 		if(sd->sc.data[SC_SOULLINK] && sd->sc.data[SC_SOULLINK]->val2 == SL_ROGUE)
-			potion_flag = 3; //Even more effective potions.
+			script->potion_flag = 3; //Even more effective potions.
 	}
 
 	//Update item use time.
@@ -4471,10 +4477,10 @@ int pc_useitem(struct map_session_data *sd,int n)
 
 	script->current_item_id = nameid;
 
-	run_script(item_script,0,sd->bl.id,fake_nd->bl.id);
+	script->run(item_script,0,sd->bl.id,npc->fake_nd->bl.id);
 
 	script->current_item_id = 0;
-	potion_flag = 0;
+	script->potion_flag = 0;
 
 	return 1;
 }
@@ -4910,8 +4916,8 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 		for(i = 0; i < sd->queues_count; i++) {
 			struct hQueue *queue;
 			if((queue = script->queue(sd->queues[i])) && queue->onMapChange[0] != '\0') {
-				pc_setregstr(sd, add_str("QMapChangeTo"), map[m].name);
-				npc_event(sd, queue->onMapChange, 0);
+				pc_setregstr(sd, script->add_str("QMapChangeTo"), map[m].name);
+				npc->event(sd, queue->onMapChange, 0);
 			}
 		}
 		
@@ -4966,8 +4972,8 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			return 2;
 
 		if(sd->npc_id)
-			npc_event_dequeue(sd);
-		npc_script_event(sd, NPCE_LOGOUT);
+			npc->event_dequeue(sd);
+		npc->script_event(sd, NPCE_LOGOUT);
 		//remove from map, THEN change x/y coordinates
 		unit_remove_map_pc(sd,clrtype);
 		sd->mapindex = mapindex;
@@ -5866,7 +5872,7 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 		sc_start(&sd->bl,status_skill2sc(AL_BLESSING),100,10,600000);
 	}
 	clif_misceffect(&sd->bl,0);
-	npc_script_event(sd, NPCE_BASELVUP); //LORDALFA - LVLUPEVENT
+	npc->script_event(sd, NPCE_BASELVUP); //LORDALFA - LVLUPEVENT
 
 	if(sd->status.party_id)
 		party_send_levelup(sd);
@@ -5914,7 +5920,7 @@ int pc_checkjoblevelup(struct map_session_data *sd)
 	if(pc_checkskill(sd, SG_DEVIL) && !pc_nextjobexp(sd))
 		clif->status_change(&sd->bl,SI_DEVIL1, 1, 0, 0, 0, 1); //Permanent blind effect from SG_DEVIL.
 
-	npc_script_event(sd, NPCE_JOBLVUP);
+	npc->script_event(sd, NPCE_JOBLVUP);
 	return 1;
 }
 
@@ -6797,7 +6803,7 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
 #endif
 		clif_scriptclose(sd,sd->npc_id);
 		if(sd->st && sd->st->state == END) {// free attached scripts that are waiting
-			script_free_state(sd->st);
+			script->free_state(sd->st);
 			sd->st = NULL;
 			sd->npc_id = 0;
 		}
@@ -6856,7 +6862,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	}
 
 	if (sd->npc_id && sd->st && sd->st->state != RUN)
-	npc_event_dequeue(sd);
+	npc->event_dequeue(sd);
 
 	pc_close_npc(sd,2); //close npc if we were using one
 
@@ -6873,7 +6879,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	if(sd->bg_id) {/* TODO: purge when bgqueue is deemed ok */
 		struct battleground_data *bg;
 		if((bg = bg_team_search(sd->bg_id)) != NULL && bg->die_event[0])
-			npc_event(sd, bg->die_event, 0);
+			npc->event(sd, bg->die_event, 0);
 	}
 	
 #if VERSION == 1
@@ -6892,9 +6898,9 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	for(i = 0; i < sd->queues_count; i++) {
 		struct hQueue *queue;
 		if((queue = script->queue(sd->queues[i])) && queue->onDeath[0] != '\0')
-			npc_event(sd, queue->onDeath, 0);
+			npc->event(sd, queue->onDeath, 0);
 	}
-	npc_script_event(sd,NPCE_DIE);
+	npc->script_event(sd,NPCE_DIE);
 
 	//Reset menu skills/item skills
 	if(sd->skillitem)
@@ -6948,7 +6954,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	if(src && src->type == BL_PC) {
 		struct map_session_data *ssd = (struct map_session_data *)src;
 		pc_setparam(ssd, SP_KILLEDRID, sd->bl.id);
-		npc_script_event(ssd, NPCE_KILLPC);
+		npc->script_event(ssd, NPCE_KILLPC);
 
 		if(battle_config.pk_mode&2) {
 			ssd->status.manner -= 5;
@@ -7496,8 +7502,8 @@ int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 		        + pc_checkskill(sd,SM_RECOVERY)*10
 		        + pc_checkskill(sd,AM_LEARNINGPOTION)*5;
 		// A potion produced by an Alchemist in the Fame Top 10 gets +50% effect [DracoRPG]
-		if(potion_flag > 1)
-			bonus += bonus*(potion_flag-1)*50/100;
+		if(script->potion_flag > 1)
+			bonus += bonus*(script->potion_flag-1)*50/100;
 		//All item bonuses.
 		bonus += sd->bonus.itemhealrate2;
 		//Item Group bonuses
@@ -7520,8 +7526,8 @@ int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 		bonus = 100 + (sd->battle_status.int_<<1)
 		        + pc_checkskill(sd,MG_SRECOVERY)*10
 		        + pc_checkskill(sd,AM_LEARNINGPOTION)*5;
-		if(potion_flag > 1)
-			bonus += bonus*(potion_flag-1)*50/100;
+		if(script->potion_flag > 1)
+			bonus += bonus*(script->potion_flag-1)*50/100;
 		if(bonus != 100)
 			sp = sp * bonus / 100;
 	}
@@ -8437,7 +8443,7 @@ static int pc_eventtimer(int tid, int64 tick, int id, intptr_t data)
 	if(i < MAX_EVENTTIMER) {
 		sd->eventtimer[i] = INVALID_TIMER;
 		sd->eventcount--;
-		npc_event(sd,p,0);
+		npc->event(sd,p,0);
 	} else
 		ShowError("pc_eventtimer: no such event timer\n");
 
@@ -8887,7 +8893,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	//OnEquip script [Skotlex]
 	if(id) {
 		if(id->equip_script)
-			run_script(id->equip_script,0,sd->bl.id,fake_nd->bl.id);
+			script->run(id->equip_script,0,sd->bl.id,npc->fake_nd->bl.id);
 		if(itemdb_isspecial(sd->status.inventory[n].card[0]))
 			; //No cards
 		else {
@@ -8897,7 +8903,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 					continue;
 				if((data = itemdb_exists(sd->status.inventory[n].card[i])) != NULL) {
 					if(data->equip_script)
-						run_script(data->equip_script,0,sd->bl.id,fake_nd->bl.id);
+						script->run(data->equip_script,0,sd->bl.id,npc->fake_nd->bl.id);
 				}
 			}
 		}
@@ -9057,7 +9063,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 	//OnUnEquip script [Skotlex]
 	if(sd->inventory_data[n]) {
 		if(sd->inventory_data[n]->unequip_script)
-			run_script(sd->inventory_data[n]->unequip_script,0,sd->bl.id,fake_nd->bl.id);
+			script->run(sd->inventory_data[n]->unequip_script,0,sd->bl.id,npc->fake_nd->bl.id);
 		if(itemdb_isspecial(sd->status.inventory[n].card[0]))
 			; //No cards
 		else {
@@ -9068,7 +9074,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 
 				if((data = itemdb_exists(sd->status.inventory[n].card[i])) != NULL) {
 					if(data->unequip_script)
-						run_script(data->unequip_script,0,sd->bl.id,fake_nd->bl.id);
+						script->run(data->unequip_script,0,sd->bl.id,npc->fake_nd->bl.id);
 				}
 
 			}

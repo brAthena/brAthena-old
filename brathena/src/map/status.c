@@ -2627,7 +2627,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 
 		if(opt&SCO_FIRST && sd->inventory_data[index]->equip_script) {
 			//Execute equip-script on login
-			run_script(sd->inventory_data[index]->equip_script,0,sd->bl.id,0);
+			script->run(sd->inventory_data[index]->equip_script,0,sd->bl.id,0);
 			if(!calculating)
 				return 1;
 		}
@@ -2668,10 +2668,10 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 			if(sd->inventory_data[index]->script) {
 				if(wd == &sd->left_weapon) {
 					sd->state.lr_flag = 1;
-					run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+					script->run(sd->inventory_data[index]->script,0,sd->bl.id,0);
 					sd->state.lr_flag = 0;
 				} else
-					run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+					script->run(sd->inventory_data[index]->script,0,sd->bl.id,0);
 				if(!calculating)  //Abort, run_script retriggered this. [Skotlex]
 					return 1;
 			}
@@ -2693,7 +2693,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 			if(sd->inventory_data[index]->script) {
 				if(i == EQI_HAND_L)   //Shield
 					sd->state.lr_flag = 3;
-				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+				script->run(sd->inventory_data[index]->script,0,sd->bl.id,0);
 				if(i == EQI_HAND_L)   //Shield
 					sd->state.lr_flag = 0;
 				if(!calculating)  //Abort, run_script retriggered this. [Skotlex]
@@ -2701,7 +2701,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 			}
 		}
 		else if(sd->inventory_data[index]->type == IT_SHADOWGEAR) { // Shadow System
-			run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+			script->run(sd->inventory_data[index]->script,0,sd->bl.id,0);
 			if(!calculating)
 				return 1;
 		}
@@ -2713,7 +2713,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 			sd->bonus.arrow_atk += sd->inventory_data[index]->atk;
 			sd->state.lr_flag = 2;
 			if(!itemdb_is_GNthrowable(sd->inventory_data[index]->nameid))   //don't run scripts on throwable items
-				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+				script->run(sd->inventory_data[index]->script,0,sd->bl.id,0);
 			sd->state.lr_flag = 0;
 			if(!calculating)  //Abort, run_script retriggered status_calc_pc. [Skotlex]
 				return 1;
@@ -2723,7 +2723,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	/* we've got combos to process */
 	if(sd->combos.count) {
 		for(i = 0; i < sd->combos.count; i++) {
-			run_script(sd->combos.bonus[i],0,sd->bl.id,0);
+			script->run(sd->combos.bonus[i],0,sd->bl.id,0);
 			if(!calculating)  //Abort, run_script retriggered this.
 				return 1;
 		}
@@ -2773,7 +2773,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 					continue;
 
 				if(opt&SCO_FIRST && data->equip_script) {//Execute equip-script on login
-					run_script(data->equip_script,0,sd->bl.id,0);
+					script->run(data->equip_script,0,sd->bl.id,0);
 					if(!calculating)
 						return 1;
 				}
@@ -2783,10 +2783,10 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 
 				if(i == EQI_HAND_L && sd->status.inventory[index].equip == EQP_HAND_L) { //Left hand status.
 					sd->state.lr_flag = 1;
-					run_script(data->script,0,sd->bl.id,0);
+					script->run(data->script,0,sd->bl.id,0);
 					sd->state.lr_flag = 0;
 				} else
-					run_script(data->script,0,sd->bl.id,0);
+					script->run(data->script,0,sd->bl.id,0);
 				if(!calculating)  //Abort, run_script his function. [Skotlex]
 					return 1;
 			}
@@ -2795,17 +2795,17 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	if(sc->count && sc->data[SC_ITEMSCRIPT]) {
 		struct item_data *data = itemdb_exists(sc->data[SC_ITEMSCRIPT]->val1);
 		if(data && data->script)
-			run_script(data->script,0,sd->bl.id,0);
+			script->run(data->script,0,sd->bl.id,0);
 	}
 
 	for(index=0; index < SC_MAX; ++index)
 		if(sd && (sc->count && sc->data[index]) && sc_script[index].script)
-			run_script(sc_script[index].script,0,sd->bl.id,fake_nd->bl.id);
+			script->run(sc_script[index].script,0,sd->bl.id,npc->fake_nd->bl.id);
 
 	if(sd->pd) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
 		if(pd && pd->petDB && pd->petDB->equip_script && pd->pet.intimate >= battle_config.pet_equip_min_friendly)
-			run_script(pd->petDB->equip_script,0,sd->bl.id,0);
+			script->run(pd->petDB->equip_script,0,sd->bl.id,0);
 		if(pd && pd->pet.intimate > 0 && (!battle_config.pet_equip_required || pd->pet.equip > 0) && pd->state.skillbonus == 1 && pd->bonus)
 			pc_bonus(sd,pd->bonus->type, pd->bonus->val);
 	}
@@ -6204,7 +6204,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 	if(mobdb_checkid(class_) || mob_is_clone(class_))
 		vd = mob_get_viewdata(class_);
 	else if(npcdb_checkid(class_) || (bl->type == BL_NPC && class_ == WARP_CLASS))
-		vd = npc_get_viewdata(class_);
+		vd = npc->get_viewdata(class_);
 	else if(homdb_checkid(class_))
 		vd = homun->get_viewdata(class_);
 	else if(merc_class(class_))
@@ -9414,7 +9414,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	}
 
 	if(opt_flag&2 && sd && sd->touching_id)
-		npc_touchnext_areanpc(sd,false); // run OnTouch_ on next char in range
+		npc->touchnext_areanpc(sd,false); // run OnTouch_ on next char in range
 
 	return 1;
 }
@@ -10144,7 +10144,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 		skill_unit_move(bl,gettick(),1);
 
 	if(opt_flag&2 && sd && map_getcell(bl->m,bl->x,bl->y,CELL_CHKNPC))
-		npc_touch_areanpc(sd,bl->m,bl->x,bl->y); //Trigger on-touch event.
+		npc->touch_areanpc(sd,bl->m,bl->x,bl->y); //Trigger on-touch event.
 
 	ers_free(sc_data_ers, sce);
 	return 1;
@@ -11654,7 +11654,7 @@ static bool status_readdb_scconfig(char* fields[], int columns, int current)
 	int val = 0;
 	char* type = fields[0];
 
-	if(!script_get_constant(type, &val)) {
+	if(!script->get_constant(type, &val)) {
 		ShowWarning("status_readdb_sc_conf: Invalid status type %s specified.\n", type);
 		return false;
 	}
@@ -11722,7 +11722,7 @@ void sc_script_free(void)
 	
 	for(i = 0; i < SC_MAX; ++i)
 		if(sc_script[i].script)
-			script_free_code(sc_script[i].script);
+			script->free_code(sc_script[i].script);
 }
 
 void read_buffspecial_db(void) { //brAthena
@@ -11742,12 +11742,12 @@ void read_buffspecial_db(void) { //brAthena
 		Sql_GetData(dbmysql_handle, 0, &res[0], NULL);
 		Sql_GetData(dbmysql_handle, 1, &res[1], NULL);
 
-		if(!script_get_constant(res[0], &type)) {
+		if(!script->get_constant(res[0], &type)) {
 			ShowWarning(read_message("Source.map.status_buffspecial"), CL_WHITE, res[0], CL_RESET);
 			continue;
 		}
 
-		if(!(sc_script[type].script = parse_script((const char *)res[1], get_database_name(61), type, 0)))
+		if(!(sc_script[type].script = script->parse((const char *)res[1], get_database_name(61), type, 0)))
 			continue;
 		sc++;
 	}
