@@ -1888,7 +1888,7 @@ morocc,134,111,3	script	Bardo#3	2_M_BARD_ORIENT,{
 				mes "Não há nenhuma razão para ter medo deste mundo dos mortos, seu tio Kino está aqui, ok?";
 			} else if (BaseClass == Job_Assassin) {
 				mes "Não há nenhuma razão para ter medo. Sei que esta pessoa parece assustadora, mas você é uma boa menina, então você vai ficar bem.";
-			} else if (BaeClass == Job_Blacksmith) {
+			} else if (BaseClass == Job_Blacksmith) {
 				mes "Não há nenhuma razão para ter medo, querida. É apenas um ferreiro.";
 			} else {
 				mes "Não há nenhuma razão para ter medo. Vê.? Essa pessoa não vai te machucar.";
