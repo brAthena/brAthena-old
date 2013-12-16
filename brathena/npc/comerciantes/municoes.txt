@@ -171,7 +171,7 @@ izlude_b,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Proj
 izlude_c,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#c	4_M_04
 izlude_d,77,104,3	duplicatr(Negociador de Projéteis Tony#alb)	Negociador de Projéteis Tony#d	4_M_04
 que_ng,187,149,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#ng	4_M_01
-izlude,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz  83
+izlude,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#iz	4_M_01
 izlude_a,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#a	4_M_01
 izlude_b,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#b	4_M_01
 izlude_c,74,104,3	duplicatr(Vendedor de Caixas de Munição#alb)	Vendedor de Caixas de Munição#c	4_M_01

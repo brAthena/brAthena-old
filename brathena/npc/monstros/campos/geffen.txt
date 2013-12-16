@@ -633,7 +633,7 @@ gef_fild13,0,0,0,0	monster#pre	Ambernite	AMBERNITE,30,0,0,0
 // [Old Times] gef_fild14 - Vilarejo dos Orcs
 //==================================================
 gef_fild14,0,0,0,0	monster#ot	Guerreiro Orc	ORK_WARRIOR,20,0,0,0
-gef_fild14,0,0,0,0	boss_monster#ot	Orc Herói		ORK_HERO,1,3600000,0,1
+gef_fild14,0,0,0,0	boss_monster#ot	Orc Herói	ORK_HERO,1,3600000,0,1
 gef_fild14,0,0,0,0	monster#ot	Orc Arquiero	ORC_ARCHER,20,0,0,0
 gef_fild14,0,0,0,0	monster#ot	Grande Orc	HIGH_ORC,20,0,0,0
 gef_fild14,0,0,0,0	monster#ot	Senhora Orc	ORC_LADY,40,0,0,0,{}
