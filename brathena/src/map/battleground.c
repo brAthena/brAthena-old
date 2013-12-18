@@ -545,8 +545,8 @@ void bg_begin(struct bg_arena *arena) {
 	} else {
 		arena->ongoing = true;
 		/* TODO: make this a arena-independant var? or just .@? */
-		mapreg_setreg(script->add_str("$@bg_queue_id"),arena->queue_id);
-		mapreg_setregstr(script->add_str("$@bg_delay_var$"),bg->gdelay_var);
+		mapreg->setreg(script->add_str("$@bg_queue_id"), arena->queue_id);
+		mapreg->setregstr(script->add_str("$@bg_delay_var$"), bg->gdelay_var);
 
 		count = 0;
 		for(i = 0; i < queue->size; i++) {
@@ -555,14 +555,14 @@ void bg_begin(struct bg_arena *arena) {
 			if(queue->item[i] > 0 && (sd = map_id2sd(queue->item[i]))) {
 				if(sd->bg_queue.ready == 1) {
 
-					mapreg_setreg(reference_uid(script->add_str("$@bg_member"), count), sd->status.account_id);
+					mapreg->setreg(reference_uid(script->add_str("$@bg_member"), count), sd->status.account_id);
 
-					mapreg_setreg(reference_uid(script->add_str("$@bg_member_group"), count),
+					mapreg->setreg(reference_uid(script->add_str("$@bg_member_group"), count),
 								   sd->bg_queue.type == BGQT_GUILD ? sd->status.guild_id :
 								   sd->bg_queue.type == BGQT_PARTY ? sd->status.party_id :
 								   0
 								   );
-					mapreg_setreg(reference_uid(script->add_str("$@bg_member_type"), count),
+					mapreg->setreg(reference_uid(script->add_str("$@bg_member_type"), count),
 								   sd->bg_queue.type == BGQT_GUILD ? 1 :
 								   sd->bg_queue.type == BGQT_PARTY ? 2 :
 								   0
@@ -571,7 +571,7 @@ void bg_begin(struct bg_arena *arena) {
 				}
 			}
 		}
-		mapreg_setreg(script->add_str("$@bg_member_size"),count);
+		mapreg->setreg(script->add_str("$@bg_member_size"), count);
 
 		npc->event_do(arena->npc_event);
 		/* we split evenly? */

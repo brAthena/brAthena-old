@@ -8790,7 +8790,7 @@ ACMD_FUNC(set)
 				data->u.str = pc_readregstr(sd, script->add_str(reg));
 				break;
 			case '$':
-				data->u.str = mapreg_readregstr(script->add_str(reg));
+				data->u.str = mapreg->readregstr(script->add_str(reg));
 				break;
 			case '#':
 				if(reg[1] == '#')
@@ -8819,7 +8819,7 @@ ACMD_FUNC(set)
 				data->u.num = pc_readreg(sd, script->add_str(reg));
 				break;
 			case '$':
-				data->u.num = mapreg_readreg(script->add_str(reg));
+				data->u.num = mapreg->readreg(script->add_str(reg));
 				break;
 			case '#':
 				if(reg[1] == '#')

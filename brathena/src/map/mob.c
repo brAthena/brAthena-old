@@ -1761,7 +1761,6 @@ static int mob_ai_hard(int tid, int64 tick, int id, intptr_t data)
  *------------------------------------------*/
 static struct item_drop *mob_setdropitem(int nameid, int qty) {
 	struct item_drop *drop = ers_alloc(item_drop_ers, struct item_drop);
-	memset(&drop->item_data, 0, sizeof(struct item));
 	drop->item_data.nameid = nameid;
 	drop->item_data.amount = qty;
 	drop->item_data.identify = itemdb_isidentified(nameid);
@@ -4534,7 +4533,7 @@ int do_init_mob(void)
 	memset(mob_db_data,0,sizeof(mob_db_data)); //Clear the array
 	mob_db_data[0] = (struct mob_db *)aCalloc(1, sizeof(struct mob_db));    //This mob is used for random spawns
 	mob_makedummymobdb(0); //The first time this is invoked, it creates the dummy mob
-	item_drop_ers = ers_new(sizeof(struct item_drop),"mob.c::item_drop_ers",ERS_OPT_NONE);
+	item_drop_ers = ers_new(sizeof(struct item_drop),"mob.c::item_drop_ers",ERS_OPT_CLEAN);
 	item_drop_list_ers = ers_new(sizeof(struct item_drop_list),"mob.c::item_drop_list_ers",ERS_OPT_NONE);
 
 	mob_load();

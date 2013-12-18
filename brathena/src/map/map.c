@@ -3574,7 +3574,7 @@ int inter_config_read(char *cfgName)
 			db_port = atoi(w2);
 		else if(!strcmpi(w1,"db_name"))
 			strncpy(db_db2name, w2, sizeof(db_db2name));
-		else if(mapreg_config_read(w1,w2))
+		else if (mapreg->config_read(w1, w2))
 			continue;
 		//support the import command, just like any other config
 		else if(strcmpi(w1,"import")==0)
@@ -5486,6 +5486,7 @@ int do_init(int argc, char *argv[])
 	itemdb_defaults();
 	script_defaults();
 	quest_defaults();
+	mapreg_defaults();
 	npc_defaults();
 #ifdef PCRE_SUPPORT
 	npc_chat_defaults();
@@ -5528,6 +5529,9 @@ int do_init(int argc, char *argv[])
 	inter_config_read(INTER_CONF_NAME);
 	log_config_read(LOG_CONF_NAME);
 
+
+	script->config_read(SCRIPT_CONF_NAME);
+
 	id_db = idb_alloc(DB_OPT_BASE);
 	pc_db = idb_alloc(DB_OPT_BASE); //Added for reliable map_id2sd() use. [Skotlex]
 	mobid_db = idb_alloc(DB_OPT_BASE);  //Added to lower the load of the lazy mob ai. [Skotlex]
@@ -5540,9 +5544,9 @@ int do_init(int argc, char *argv[])
 	iwall_db = strdb_alloc(DB_OPT_RELEASE_DATA,2*NAME_LENGTH+2+1); // [Zephyrus] Invisible Walls
 	zone_db = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, MAP_ZONE_NAME_LENGTH);
 
-	map_iterator_ers = ers_new(sizeof(struct s_mapiterator),"map.c::map_iterator_ers",ERS_OPT_NONE);
+	map_iterator_ers = ers_new(sizeof(struct s_mapiterator),"map.c::map_iterator_ers",ERS_OPT_CLEAN);
 
-	flooritem_ers = ers_new(sizeof(struct flooritem_data),"map.c::map_flooritem_ers",ERS_OPT_NONE);
+	flooritem_ers = ers_new(sizeof(struct flooritem_data),"map.c::map_flooritem_ers",ERS_OPT_CLEAN);
 	ers_chunk_size(flooritem_ers, 100);
 
 	map_sql_init();

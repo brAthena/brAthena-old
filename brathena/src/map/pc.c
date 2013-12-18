@@ -4186,6 +4186,12 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		clif_msgtable(sd->fd,ITEM_NOUSE_SITTING);
 		return 0; // You cannot use this item while sitting.
 	}
+
+	if (sd->state.storage_flag && item->type != IT_CASH) {
+		clif_colormes(sd->fd, COLOR_RED, msg_txt(1502));
+		return 0; // You cannot use this item while storage is open.
+	}
+
 	switch(nameid) { //@TODO, lot oh harcoded nameid here
 		case ITEMID_ANODYNE:
 			if(map_flag_gvg2(sd->bl.m))
