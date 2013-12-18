@@ -4406,7 +4406,6 @@ int pc_useitem(struct map_session_data *sd,int n)
 		return 0;
 
 	if(sd->inventory_data[n]->delay > 0) {
-		int i;
 		ARR_FIND(0, MAX_ITEMDELAYS, i, sd->item_delay[i].nameid == nameid);
 		if(i == MAX_ITEMDELAYS)   /* item not found. try first empty now */
 			ARR_FIND(0, MAX_ITEMDELAYS, i, !sd->item_delay[i].nameid);
@@ -4893,7 +4892,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y
 			if(i != sd->guild->instances) {
 				m = instance->list[sd->guild->instance[i]].map[j];
 				mapindex = map_id2index(m);
-				stop = true;
+				//stop = true; Uncomment if adding new checks
 			}
 		}
 		/* we hit a instance, if empty we populate the spawn data */
@@ -6815,15 +6814,15 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
  *------------------------------------------*/
 int pc_dead(struct map_session_data *sd,struct block_list *src)
 {
-	int i=0,j=0,k=0,l=0;
+	int i=0,j=0,l=0;
 	int64 tick = gettick();
 
-	for(k = 0; k < 5; k++)
-		if(sd->devotion[k]) {
-			struct map_session_data *devsd = map_id2sd(sd->devotion[k]);
+	for(j = 0; j < 5; j++)
+		if(sd->devotion[j]) {
+			struct map_session_data *devsd = map_id2sd(sd->devotion[j]);
 			if(devsd)
 				status_change_end(&devsd->bl, SC_DEVOTION, INVALID_TIMER);
-			sd->devotion[k] = 0;
+			sd->devotion[j] = 0;
 		}
 	if(sd->shadowform_id) { //if we were target of shadowform
 		status_change_end(map_id2bl(sd->shadowform_id), SC__SHADOWFORM, INVALID_TIMER);
@@ -6877,9 +6876,9 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	pc_setparam(sd, SP_KILLERRID, src?src->id:0);
 
 	if(sd->bg_id) {/* TODO: purge when bgqueue is deemed ok */
-		struct battleground_data *bg;
-		if((bg = bg_team_search(sd->bg_id)) != NULL && bg->die_event[0])
-			npc->event(sd, bg->die_event, 0);
+		struct battleground_data *bgd;
+		if((bgd = bg_team_search(sd->bg_id)) != NULL && bgd->die_event[0])
+			npc->event(sd, bgd->die_event, 0);
 	}
 	
 #if VERSION == 1
@@ -7080,13 +7079,12 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			if(id == 0)
 				continue;
 			if(id == -1) {
-				int eq_num=0,eq_n[MAX_INVENTORY];
+				int eq_num=0,eq_n[MAX_INVENTORY],k;
 				memset(eq_n,0,sizeof(eq_n));
 				for(i=0; i<MAX_INVENTORY; i++) {
 					if((type == 1 && !sd->status.inventory[i].equip)
 					   || (type == 2 && sd->status.inventory[i].equip)
 					   ||  type == 3) {
-						int k;
 						ARR_FIND(0, MAX_INVENTORY, k, eq_n[k] <= 0);
 						if(k < MAX_INVENTORY)
 							eq_n[k] = i;

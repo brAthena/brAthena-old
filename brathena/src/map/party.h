@@ -61,9 +61,9 @@ struct party_booking_detail {
 };
 
 struct party_booking_ad_info {
-	unsigned long index;
+	unsigned int index;
 	char charname[NAME_LENGTH];
-	long expiretime;
+	int expiretime;
 	struct party_booking_detail p_detail;
 };
 #else /* PARTY_RECRUIT */
@@ -73,8 +73,8 @@ struct party_booking_detail {
 };
 
 struct party_booking_ad_info {
-	unsigned long index;
-	long expiretime;
+	unsigned int index;
+	int expiretime;
 	char charname[NAME_LENGTH];
 	struct party_booking_detail p_detail;
 };

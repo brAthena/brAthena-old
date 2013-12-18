@@ -688,14 +688,14 @@ int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool
 		if(sd->status.pet_id > 0 && sd->pd && sd->pd->pet.intimate > 0) {
 			// Check if pet needs to be teleported. [Skotlex]
 			int flag = 0;
-			struct block_list *bl = &sd->pd->bl;
-			if(!checkpath && !path_search(NULL,bl->m,bl->x,bl->y,dst_x,dst_y,0,CELL_CHKNOPASS))
+			struct block_list *pbl = &sd->pd->bl;
+			if(!checkpath && !path_search(NULL,pbl->m,pbl->x,pbl->y,dst_x,dst_y,0,CELL_CHKNOPASS))
 				flag = 1;
-			else if(!check_distance_bl(&sd->bl, bl, AREA_SIZE))  //Too far, teleport.
+			else if(!check_distance_bl(&sd->bl, pbl, AREA_SIZE))  //Too far, teleport.
 				flag = 2;
 			if(flag) {
-				unit_movepos(bl,sd->bl.x,sd->bl.y, 0, 0);
-				clif_slide(bl,bl->x,bl->y);
+				unit_movepos(pbl,sd->bl.x,sd->bl.y, 0, 0);
+				clif_slide(pbl,pbl->x,pbl->y);
 			}
 		}
 	}
@@ -737,6 +737,8 @@ int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag)
 		struct map_session_data *sd;
 		struct skill_unit *su = NULL;
 		int nx, ny, result;
+
+		nullpo_ret(bl);
 
 		sd = BL_CAST(BL_PC, bl);
 		su = BL_CAST(BL_SKILL, bl);

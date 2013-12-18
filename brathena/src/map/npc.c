@@ -472,10 +472,10 @@ void npc_event_do_oninit(void)
  *------------------------------------------*/
 int npc_timerevent_export(struct npc_data *nd, int i)
 {
-	int t = 0, k = 0;
+	int t = 0, len = 0;
 	char *lname = nd->u.scr.label_list[i].name;
 	int pos = nd->u.scr.label_list[i].pos;
-	if(sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
+	if(sscanf(lname, "OnTimer%d%n", &t, &len) == 1 && lname[len] == '\0') {
 		// Timer event
 		struct npc_timerevent_list *te = nd->u.scr.timer_event;
 		int j, k = nd->u.scr.timeramount;
@@ -1615,7 +1615,7 @@ int npc_selllist_sub(struct map_session_data *sd, int n, unsigned short *item_li
 int npc_selllist(struct map_session_data *sd, int n, unsigned short *item_list)
 {
 	double z;
-	int i,skill_t, idx = skill_get_index(MC_OVERCHARGE); 
+	int i,skill_t, skill_idx = skill_get_index(MC_OVERCHARGE);
 	struct npc_data *nd;
 
 	nullpo_retr(1, sd);
@@ -1681,9 +1681,9 @@ int npc_selllist(struct map_session_data *sd, int n, unsigned short *item_list)
 	pc_getzeny(sd, (int)z, LOG_TYPE_NPC, NULL);
 
 	// custom merchant shop exp bonus
-	if(battle_config.shop_exp > 0 && z > 0 && (skill_t = pc_checkskill2(sd,idx)) > 0) {
-		if(sd->status.skill[idx].flag >= SKILL_FLAG_REPLACED_LV_0)
-			skill_t = sd->status.skill[idx].flag - SKILL_FLAG_REPLACED_LV_0;
+	if(battle_config.shop_exp > 0 && z > 0 && (skill_t = pc_checkskill2(sd,skill_idx)) > 0) {
+		if(sd->status.skill[skill_idx].flag >= SKILL_FLAG_REPLACED_LV_0)
+			skill_t = sd->status.skill[skill_idx].flag - SKILL_FLAG_REPLACED_LV_0;
 
 		if(skill_t > 0) {
 			z = z * (double)skill_t * (double)battle_config.shop_exp/10000.;
@@ -2295,7 +2295,7 @@ void npc_convertlabel_db(struct npc_label_list* label_list, const char *filepath
 		int lpos = script->labels[i].pos;
 		struct npc_label_list* label;
 		const char *p;
-		int len;
+		size_t len;
 				
 		// In case of labels not terminated with ':', for user defined function support
 		p = lname;
@@ -2500,7 +2500,7 @@ const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, const char 
 /// npc: <map name>,<x>,<y>,<facing>%TAB%duplicate(<name of target>)%TAB%<NPC Name>%TAB%<sprite id>,<triggerX>,<triggerY>
 const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const char *start, const char *buffer, const char *filepath)
 {
-	int x, y, dir, m, xs = -1, ys = -1, class_ = 0;
+	int x, y, dir, m, xs = -1, ys = -1;
 	char mapname[32];
 	char srcname[128];
 	int i;
@@ -2841,7 +2841,6 @@ int npc_do_atcmd_event(struct map_session_data *sd, const char *command, const c
 	}
 
 	if(sd->npc_id != 0) {   // Enqueue the event trigger.
-		int i;
 		ARR_FIND(0, MAX_EVENTQUEUE, i, sd->eventqueue[i][0] == '\0');
 		if(i < MAX_EVENTQUEUE) {
 			safestrncpy(sd->eventqueue[i],eventname,50); //Event enqueued.
@@ -2861,7 +2860,6 @@ int npc_do_atcmd_event(struct map_session_data *sd, const char *command, const c
 	script->setd_sub(st, NULL, ".@atcmd_command$", 0, (void *)command, NULL);
 
 	// split atcmd parameters based on spaces
-
 	temp = (char *)aMalloc(strlen(message) + 1);
 
 	for(i = 0; i < (strlen(message) + 1 ) && k < 127; i ++) {
@@ -3361,7 +3359,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 	else if (!strcmpi(w3,"adjust_unit_duration")) {
 		int skill_id, k;
 		char skill_name[MAP_ZONE_MAPFLAG_LENGTH], modifier[MAP_ZONE_MAPFLAG_LENGTH];
-		int len = w4 ? strlen(w4) : 0;
+		size_t len = w4 ? strlen(w4) : 0;
 		
 		modifier[0] = '\0';
 		if(w4)
@@ -3416,7 +3414,7 @@ const char *npc_parse_mapflag(char *w1, char *w2, char *w3, char *w4, const char
 	} else if (!strcmpi(w3,"adjust_skill_damage")) {
 		int skill_id, k;
 		char skill_name[MAP_ZONE_MAPFLAG_LENGTH], modifier[MAP_ZONE_MAPFLAG_LENGTH];
-		int len = w4 ? strlen(w4) : 0;
+		size_t len = w4 ? strlen(w4) : 0;
 		
 		modifier[0] = '\0';
 
@@ -3543,7 +3541,7 @@ int npc_parsesrcfile(const char *filepath, bool runOnInit)
 		lines++;
 
 		// w1<TAB>w2<TAB>w3<TAB>w4
-		count = sv_parse(p, len+buffer-p, 0, '\t', pos, ARRAYLENGTH(pos), (e_svopt)(SV_TERMINATE_LF|SV_TERMINATE_CRLF));
+		count = sv_parse(p, (int)(len+buffer-p), 0, '\t', pos, ARRAYLENGTH(pos), (e_svopt)(SV_TERMINATE_LF|SV_TERMINATE_CRLF));
 		if(count < 0) {
 			ShowError("npc_parsesrcfile: Parse error in file '%s', line '%d'. Stopping...\n", filepath, strline(buffer,p-buffer));
 			break;

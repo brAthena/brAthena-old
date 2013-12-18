@@ -19,12 +19,12 @@
 #include "../common/malloc.h"
 #include "../common/strlib.h"
 #include "core.h"
+#include "../common/random.h"
 #ifndef MINICORE
 #include "../common/db.h"
 #include "../common/socket.h"
 #include "../common/timer.h"
 #include "../common/thread.h"
-#include "../common/mempool.h"
 #include "../common/sql.h"
 #include "../config/core.h"
 #include "../common/utils.h"
@@ -343,7 +343,6 @@ int main(int argc, char **argv)
 
 	Sql_Init();
 	rathread_init();
-	mempool_init();
 	db_init();
 	signals_init();
 
@@ -371,7 +370,6 @@ int main(int argc, char **argv)
 	timer_final();
 	socket_final();
 	db_final();
-	mempool_final();
 	rathread_final();
 #endif
 

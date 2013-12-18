@@ -517,7 +517,7 @@ void clif_changemapcell(int fd, int16 m, int x, int y, int type, enum send_targe
 
 #define clif_status_load(bl, type, flag) clif_status_change((bl), (type), (flag), 0, 0, 0, 0)
 
-void clif_wis_message(int fd, const char *nick, const char *mes, int mes_len);
+void clif_wis_message(int fd, const char *nick, const char *mes, size_t mes_len);
 void clif_wis_end(int fd, int flag);
 
 void clif_solved_charname(int fd, int charid, const char *name);
@@ -608,7 +608,7 @@ void clif_guild_xy_remove(struct map_session_data *sd);
 void clif_bg_hp(struct map_session_data *sd);
 void clif_bg_xy(struct map_session_data *sd);
 void clif_bg_xy_remove(struct map_session_data *sd);
-void clif_bg_message(struct battleground_data *bg, int src_id, const char *name, const char *mes, int len);
+void clif_bg_message(struct battleground_data *bgd, int src_id, const char *name, const char *mes, size_t len);
 void clif_bg_updatescore(int16 m);
 void clif_bg_updatescore_single(struct map_session_data *sd);
 void clif_sendbgemblem_area(struct map_session_data *sd);
@@ -624,10 +624,10 @@ void clif_font(struct map_session_data *sd);
 
 // atcommand
 void clif_displaymessage(const int fd, const char *mes);
-void clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len);
-void clif_disp_message(struct block_list *src, const char *mes, int len, enum send_target target);
-void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, enum send_target target);
-void clif_broadcast2(struct block_list *bl, const char *mes, int len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target);
+void clif_disp_onlyself(struct map_session_data *sd, const char *mes, size_t len);
+void clif_disp_message(struct block_list *src, const char *mes, size_t len, enum send_target target);
+void clif_broadcast(struct block_list *bl, const char *mes, size_t len, int type, enum send_target target);
+void clif_broadcast2(struct block_list *bl, const char *mes, size_t len, unsigned int fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target);
 void clif_heal(int fd,int type,int val);
 void clif_resurrection(struct block_list *bl,int type);
 void clif_map_property(struct map_session_data *sd, enum map_property property);
@@ -657,7 +657,7 @@ void clif_friendslist_reqack(struct map_session_data *sd, struct map_session_dat
 void clif_weather(int16 m); // [Valaris]
 void clif_specialeffect(struct block_list *bl, int type, enum send_target target); // special effects [Valaris]
 void clif_specialeffect_single(struct block_list *bl, int type, int fd);
-void clif_messagecolor(struct block_list *bl, unsigned long color, const char *msg); // Mob/Npc color talk [SnakeDrak]
+void clif_messagecolor(struct block_list *bl, unsigned int color, const char *msg); // Mob/Npc color talk [SnakeDrak]
 void clif_message(struct block_list* bl, const char* msg);
 void clif_specialeffect_value(struct block_list *bl, int effect_id, int num, send_target target);
 
@@ -749,7 +749,7 @@ void clif_readbook(int fd, int book_id, int page);
 void clif_party_show_picker(struct map_session_data *sd, struct item *item_data);
 
 // Progress Bar [Inkfish]
-void clif_progressbar(struct map_session_data *sd, unsigned long color, unsigned int second);
+void clif_progressbar(struct map_session_data *sd, unsigned int color, unsigned int second);
 void clif_progressbar_abort(struct map_session_data *sd);
 
 void clif_PartyBookingRegisterAck(struct map_session_data *sd, int flag);
@@ -821,6 +821,7 @@ void clif_scriptclear(struct map_session_data *sd, int npcid);
 
 int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int damage, int div_);
 
+bool clif_process_message(struct map_session_data *sd, int format, char **name_, size_t *namelen_, char **message_, size_t *messagelen_);
 /// brAthena
 void clif_pcbanglogin(struct map_session_data *sd);
 void clif_pcbangnotify(struct map_session_data *sd);
@@ -836,7 +837,7 @@ enum clif_colors {
     COLOR_WHITE,
     COLOR_MAX
 };
-unsigned long color_table[COLOR_MAX];
+unsigned int color_table[COLOR_MAX];
 int clif_colormes(int fd, enum clif_colors color, const char *msg);
 
 /**
@@ -961,7 +962,7 @@ struct s_packet_db {
 };
 
 struct {
-	unsigned long *colors;
+	unsigned int *colors;
 	char **colors_name;
 	unsigned char colors_count;
 	bool local, ally;
@@ -1060,7 +1061,7 @@ struct clif_interface {
 	void (*PartyRecruitRegisterAck) (struct map_session_data *sd, int flag);
 	void (*PartyRecruitSearchAck) (int fd, struct party_booking_ad_info** results, int count, bool more_result);
 	void (*PartyBookingVolunteerInfo) (int index, struct map_session_data *sd);
-	void (*PartyBookingRefuseVolunteer) (unsigned long aid, struct map_session_data *sd);
+	void (*PartyBookingRefuseVolunteer) (unsigned int aid, struct map_session_data *sd);
 	void (*PartyBookingCancelVolunteer) (int index, struct map_session_data *sd);
 	void (*PartyBookingAddFilteringList) (int index, struct map_session_data *sd);
 	void (*PartyBookingSubFilteringList) (int gid, struct map_session_data *sd);

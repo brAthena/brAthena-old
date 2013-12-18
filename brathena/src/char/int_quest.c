@@ -50,6 +50,7 @@ struct quest *mapif_quests_fromsql(int char_id, int *count) {
 	stmt = SqlStmt_Malloc(sql_handle);
 	if(stmt == NULL) {
 		SqlStmt_ShowDebug(stmt);
+		*count = 0;
 		return NULL;
 	}
 

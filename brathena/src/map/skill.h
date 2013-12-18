@@ -2029,7 +2029,7 @@ int skill_unit_onplace(struct skill_unit *src,struct block_list *bl,int64 tick);
 int skill_unit_onleft(uint16 skill_id, struct block_list *bl,int64 tick);
 int skill_unit_effect(struct block_list *bl,va_list ap);
 
-static DBMap* bowling_db; // int mob_id -> struct mob_data*
+DBMap* bowling_db; // int mob_id -> struct mob_data*
 
 DBMap *skillunit_db; // int id -> struct skill_unit*
 

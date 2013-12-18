@@ -20,6 +20,7 @@
 #include "../common/showmsg.h"
 #include "../common/strlib.h"
 #include "../common/utils.h"
+#include "../common/nullpo.h"
 #include "grfio.h"
 
 #include <stdio.h>
@@ -307,15 +308,20 @@ static FILELIST *filelist_find(const char *fname)
 // returns the original file name
 char *grfio_find_file(const char *fname)
 {
-	FILELIST *filelist = filelist_find(fname);
-	if(!filelist) return NULL;
-	return (!filelist->fnd ? filelist->fn : filelist->fnd);
+	FILELIST *flist = filelist_find(fname);
+	if (!flist) return NULL;
+	return (!flist->fnd ? flist->fn : flist->fnd);
 }
 
 // adds a FILELIST entry into the list of loaded files
 static FILELIST *filelist_add(FILELIST *entry)
 {
 	int hash;
+	nullpo_ret(entry);
+#ifdef __clang_analyzer__
+	// Make clang's static analyzer shut up about a possible NULL pointer in &filelist[filelist_entrys]
+	nullpo_ret(&filelist[filelist_entrys]);
+#endif // __clang_analyzer__
 
 #define FILELIST_ADDS   1024    // number increment of file lists `
 
@@ -324,6 +330,8 @@ static FILELIST *filelist_add(FILELIST *entry)
 		memset(filelist + filelist_maxentry, '\0', FILELIST_ADDS * sizeof(FILELIST));
 		filelist_maxentry += FILELIST_ADDS;
 	}
+
+#undef FILELIST_ADDS
 
 	memcpy(&filelist[filelist_entrys], entry, sizeof(FILELIST));
 
@@ -404,7 +412,7 @@ void *grfio_reads(const char *fname, int *size)
 		if(in != NULL) {
 			int declen;
 			fseek(in,0,SEEK_END);
-			declen = ftell(in);
+			declen = (int)ftell(in);
 			fseek(in,0,SEEK_SET);
 			buf2 = (unsigned char *)aMalloc(declen+1);  // +1 for resnametable zero-termination
 			if(fread(buf2, 1, declen, in) != (size_t)declen) ShowError(read_message("Source.common.grfio_read"),fname);

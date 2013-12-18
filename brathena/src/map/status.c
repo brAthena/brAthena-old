@@ -1509,39 +1509,34 @@ int status_heal(struct block_list *bl,int64 in_hp,int64 in_sp, int flag)
 //Furthermore, if flag==2, then the target must not die from the substraction.
 int status_percent_change(struct block_list *src,struct block_list *target,signed char hp_rate, signed char sp_rate, int flag)
 {
-	struct status_data *status;
-	unsigned int hp  =0, sp = 0;
+	struct status_data *st;
+	unsigned int hp  = 0, sp = 0;
 
-	status = status_get_status_data(target);
+	st = status_get_status_data(target);
 
-	//It's safe now [MarkZD]
-	if(hp_rate > 99)
-		hp = status->hp;
-	else if(hp_rate > 0)
-		hp = status->hp>10000?
-		     hp_rate*(status->hp/100):
-		     ((int64)hp_rate*status->hp)/100;
-	else if(hp_rate < -99)
-		hp = status->max_hp;
-	else if(hp_rate < 0)
-		hp = status->max_hp>10000?
-		     (-hp_rate)*(status->max_hp/100):
-		     ((int64)-hp_rate*status->max_hp)/100;
-	if(hp_rate && !hp)
+	if (hp_rate > 100)
+		hp_rate = 100;
+	else if (hp_rate < -100)
+		hp_rate = -100;
+	if (hp_rate > 0)
+		hp = APPLY_RATE(st->hp, hp_rate);
+	else
+		hp = APPLY_RATE(st->max_hp, -hp_rate);
+	if (hp_rate && !hp)
 		hp = 1;
 
-	if(flag == 2 && hp >= status->hp)
-		hp = status->hp-1; //Must not kill target.
+	if (flag == 2 && hp >= st->hp)
+		hp = st->hp-1; //Must not kill target.
 
-	if(sp_rate > 99)
-		sp = status->sp;
-	else if(sp_rate > 0)
-		sp = ((int64)sp_rate*status->sp)/100;
-	else if(sp_rate < -99)
-		sp = status->max_sp;
-	else if(sp_rate < 0)
-		sp = ((int64)-sp_rate)*status->max_sp/100;
-	if(sp_rate && !sp)
+	if (sp_rate > 100)
+		sp_rate = 100;
+	else if (sp_rate < -100)
+		sp_rate = -100;
+	if (sp_rate > 0)
+		sp = APPLY_RATE(st->sp, sp_rate);
+	else
+		sp = APPLY_RATE(st->max_sp, -sp_rate);
+	if (sp_rate && !sp)
 		sp = 1;
 
 	//Ugly check in case damage dealt is too much for the received args of
@@ -1567,29 +1562,29 @@ int status_percent_change(struct block_list *src,struct block_list *target,signe
 
 int status_revive(struct block_list *bl, unsigned char per_hp, unsigned char per_sp)
 {
-	struct status_data *status;
+	struct status_data *st;
 	unsigned int hp, sp;
 	if(!status_isdead(bl)) return 0;
 
-	status = status_get_status_data(bl);
-	if(status == &dummy_status)
+	st = status_get_status_data(bl);
+	if(st == &dummy_status)
 		return 0; //Invalid target.
 
-	hp = (int64)status->max_hp * per_hp/100;
-	sp = (int64)status->max_sp * per_sp/100;
+	hp = APPLY_RATE(st->max_hp, per_hp);
+	sp = APPLY_RATE(st->max_sp, per_sp);
 
-	if(hp > status->max_hp - status->hp)
-		hp = status->max_hp - status->hp;
-	else if(per_hp && !hp)
+	if(hp > st->max_hp - st->hp)
+		hp = st->max_hp - st->hp;
+	else if (per_hp && !hp)
 		hp = 1;
 
-	if(sp > status->max_sp - status->sp)
-		sp = status->max_sp - status->sp;
-	else if(per_sp && !sp)
+	if(sp > st->max_sp - st->sp)
+		sp = st->max_sp - st->sp;
+	else if (per_sp && !sp)
 		sp = 1;
 
-	status->hp += hp;
-	status->sp += sp;
+	st->hp += hp;
+	st->sp += sp;
 
 	if(bl->prev)  //Animation only if character is already on a map.
 		clif_resurrection(bl, 1);
@@ -2176,12 +2171,12 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 		mbl = map_id2bl(md->master_id);
 
 	if(flag&8 && mbl) {
-		struct status_data *mstatus;
-		if((mstatus = status_get_base_status(mbl))) {
-			if(battle_config.slaves_inherit_speed&(mstatus->mode&MD_CANMOVE?1:2))
-				status->speed = mstatus->speed;
-			if(status->speed < 2)   /* minimum for the unit to function properly */
-				status->speed = 2;
+		struct status_data *masterstatus = status_get_base_status(mbl);
+		if (masterstatus) {
+			if(battle_config.slaves_inherit_speed&(masterstatus->mode&MD_CANMOVE?1:2))
+				masterstatus->speed = masterstatus->speed;
+			if(masterstatus->speed < 2) /* minimum for the unit to function properly */
+				masterstatus->speed = 2;
 		}
 	}
 
@@ -2441,7 +2436,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	const struct status_change *sc = &sd->sc;
 	struct s_skill b_skill[MAX_SKILL]; // previous skill tree
 	int b_weight, b_max_weight, b_cart_weight_max, // previous weight
-	i, k, index, skill,refinedef=0;
+		i, k, index, skill_lv, refinedef = 0;
 	int64 i64;
 
 	if(++calculating > 10)  //Too many recursive calls!
@@ -2865,15 +2860,15 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 
 	// Absolute modifiers from passive skills
 	#if VERSION != -1
-	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
+	if((skill_lv=pc_checkskill(sd,BS_HILTBINDING))>0)
 		status->str++;
 	#endif
-	if((skill=pc_checkskill(sd,SA_DRAGONOLOGY))>0)
-		status->int_ += (skill+1)/2; // +1 INT / 2 lv
-	if((skill=pc_checkskill(sd,AC_OWL))>0)
-		status->dex += skill;
-	if((skill = pc_checkskill(sd,RA_RESEARCHTRAP))>0)
-		status->int_ += skill;
+	if((skill_lv=pc_checkskill(sd,SA_DRAGONOLOGY))>0)
+		status->int_ += (skill_lv+1)/2; // +1 INT / 2 lv
+	if((skill_lv=pc_checkskill(sd,AC_OWL))>0)
+		status->dex += skill_lv;
+	if((skill_lv = pc_checkskill(sd,RA_RESEARCHTRAP))>0)
+		status->int_ += skill_lv;
 
 	// Bonuses from cards and equipment as well as base stat, remember to avoid overflows.
 	i = status->str + sd->status.str + sd->param_bonus[0] + sd->param_equip[0];
@@ -2896,10 +2891,10 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	if(sd->status.weapon < MAX_WEAPON_TYPE && sd->weapon_atk[sd->status.weapon])
 		status->batk += sd->weapon_atk[sd->status.weapon];
 	// Absolute modifiers from passive skills
-	#if VERSION == 0
-	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0) // it doesn't work in RE, neither on OT
+#if VERSION == 0
+	if((skill_lv=pc_checkskill(sd,BS_HILTBINDING))>0) // it doesn't work in RE, neither on OT
 		status->batk += 4;
-	#endif
+#endif
 
 // ----- HP MAX CALCULATION -----
 
@@ -2911,16 +2906,16 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	status->max_hp = (unsigned int)cap_value(i64, 0, INT_MAX);
 
 	// Absolute modifiers from passive skills
-	if((skill=pc_checkskill(sd,CR_TRUST))>0)
-		status->max_hp += skill*200;
+	if((skill_lv=pc_checkskill(sd,CR_TRUST))>0)
+		status->max_hp += skill_lv*200;
 
 	// Apply relative modifiers from equipment
 	if(sd->hprate < 0)
 		sd->hprate = 0;
 	if(sd->hprate!=100)
-		status->max_hp = (int64)status->max_hp * sd->hprate/100;
+		status->max_hp = APPLY_RATE(status->max_hp, sd->hprate);
 	if(battle_config.hp_rate != 100)
-		status->max_hp = (int64)status->max_hp * battle_config.hp_rate/100;
+		status->max_hp = APPLY_RATE(status->max_hp,battle_config.hp_rate);
 
 	if(status->max_hp > (unsigned int)battle_config.max_hp)
 		status->max_hp = battle_config.max_hp;
@@ -2936,25 +2931,25 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	status->max_sp = (unsigned int)cap_value(i64, 0, INT_MAX);
 
 	// Absolute modifiers from passive skills
-	if((skill=pc_checkskill(sd,SL_KAINA))>0)
-		status->max_sp += 30*skill;
-	if((skill=pc_checkskill(sd,HP_MEDITATIO))>0)
-		status->max_sp += (int64)status->max_sp * skill/100;
-	if((skill=pc_checkskill(sd,HW_SOULDRAIN))>0)
-		status->max_sp += (int64)status->max_sp * 2*skill/100;
-	if((skill = pc_checkskill(sd,RA_RESEARCHTRAP)) > 0)
-		status->max_sp += 200 + 20 * skill;
-	if((skill = pc_checkskill(sd,WM_LESSON)) > 0)
-		status->max_sp += 30 * skill;
+	if ((skill_lv = pc_checkskill(sd, SL_KAINA))>0)
+		status->max_sp += 30*skill_lv;
+	if ((skill_lv = pc_checkskill(sd, HP_MEDITATIO))>0)
+		status->max_sp += (int64)status->max_sp * skill_lv/100;
+	if ((skill_lv = pc_checkskill(sd, HW_SOULDRAIN))>0)
+		status->max_sp += (int64)status->max_sp * 2*skill_lv/100;
+	if ((skill_lv = pc_checkskill(sd, RA_RESEARCHTRAP)) > 0)
+		status->max_sp += 200 + 20 * skill_lv;
+	if((skill_lv = pc_checkskill(sd,WM_LESSON)) > 0)
+		status->max_sp += 30 * skill_lv;
 
 
 	// Apply relative modifiers from equipment
 	if(sd->sprate < 0)
 		sd->sprate = 0;
 	if(sd->sprate!=100)
-		status->max_sp = (int64)status->max_sp * sd->sprate/100;
+		status->max_sp = APPLY_RATE(status->max_sp, sd->sprate);
 	if(battle_config.sp_rate != 100)
-		status->max_sp = (int64)status->max_sp * battle_config.sp_rate/100;
+		status->max_sp = APPLY_RATE(status->max_sp, battle_config.sp_rate);
 
 	if(status->max_sp > (unsigned int)battle_config.max_sp)
 		status->max_sp = battle_config.max_sp;
@@ -2972,11 +2967,11 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 		   && battle_config.restart_hp_rate < 50)
 			status->hp = status->max_hp>>1;
 		else
-			status->hp = (int64)status->max_hp * battle_config.restart_hp_rate/100;
+			status->hp = APPLY_RATE(status->max_hp, battle_config.restart_hp_rate);
 		if(!status->hp)
 			status->hp = 1;
 
-		status->sp = (int64)status->max_sp * battle_config.restart_sp_rate /100;
+		status->sp = APPLY_RATE(status->max_sp, battle_config.restart_sp_rate);
 
 		if(!status->sp)   /* the minimum for the respawn setting is SP:1 */
 			status->sp = 1;
@@ -3028,36 +3023,36 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 
 	// Absolute modifiers from passive skills
 #if VERSION != 1
-	if((skill=pc_checkskill(sd,BS_WEAPONRESEARCH))>0) // is this correct in pre? there is already hitrate bonus in battle.c
-		status->hit += skill*2;
+	if((skill_lv=pc_checkskill(sd,BS_WEAPONRESEARCH))>0) // is this correct in pre? there is already hitrate bonus in battle.c
+		status->hit += skill_lv*2;
 #endif
-	if((skill=pc_checkskill(sd,AC_VULTURE))>0) {
+	if((skill_lv=pc_checkskill(sd,AC_VULTURE))>0) {
 #if VERSION != 1
-		status->hit += skill;
+		status->hit += skill_lv;
 #endif
 		if(sd->status.weapon == W_BOW)
-			status->rhw.range += skill;
+			status->rhw.range += skill_lv;
 	}
 	if(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE) {
-		if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0)
-			status->hit += 2*skill;
-		if((skill=pc_checkskill(sd,GS_SNAKEEYE))>0) {
-			status->hit += skill;
-			status->rhw.range += skill;
+		if((skill_lv=pc_checkskill(sd,GS_SINGLEACTION))>0)
+			status->hit += 2*skill_lv;
+		if((skill_lv=pc_checkskill(sd,GS_SNAKEEYE))>0) {
+			status->hit += skill_lv;
+			status->rhw.range += skill_lv;
 		}
 	}
 
 // ----- FLEE CALCULATION -----
 
 	// Absolute modifiers from passive skills
-	if((skill=pc_checkskill(sd,TF_MISS))>0)
+	if((skill_lv=pc_checkskill(sd,TF_MISS))>0)
 #if VERSION == -1
 		status->flee += skill*3;
 #else
-		status->flee += skill*(sd->class_&JOBL_2 && (sd->class_&MAPID_BASEMASK) == MAPID_THIEF? 4 : 3);
+		status->flee += skill_lv*(sd->class_&JOBL_2 && (sd->class_&MAPID_BASEMASK) == MAPID_THIEF? 4 : 3);
 #endif	
-	if((skill=pc_checkskill(sd,MO_DODGE))>0)
-		status->flee += (skill*3)>>1;
+	if((skill_lv=pc_checkskill(sd,MO_DODGE))>0)
+		status->flee += (skill_lv*3)>>1;
 // ----- EQUIPMENT-DEF CALCULATION -----
 
 	// Apply relative modifiers from equipment
@@ -3075,8 +3070,8 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	}
 #endif
 
-	if(sc->option&OPTION_MADOGEAR && (skill = pc_checkskill(sd,NC_MAINFRAME)) > 0)
-		status->def2 += skill * 4 - ((skill>=2)? 1:0);
+	if (sc->option&OPTION_MADOGEAR && (skill_lv = pc_checkskill(sd, NC_MAINFRAME)) > 0)
+		status->def2 += skill_lv * 4 - ((skill_lv >= 2) ? 1 : 0);
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
 
@@ -3104,25 +3099,25 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 
 	// Relative modifiers from passive skills
 	#ifndef RENEWAL_ASPD
-	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
-		status->aspd_rate -= 5*skill;
-	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0 && !pc_nextjobexp(sd))
-		status->aspd_rate -= 30*skill;
-	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
+	if((skill_lv=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
+		status->aspd_rate -= 5*skill_lv;
+	if((skill_lv = pc_checkskill(sd,SG_DEVIL)) > 0 && !pc_nextjobexp(sd))
+		status->aspd_rate -= 30*skill_lv;
+	if((skill_lv=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 	   (sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
-		status->aspd_rate -= ((skill+1)/2) * 10;
+		status->aspd_rate -= ((skill_lv+1)/2) * 10;
 	if(pc_isriding(sd))
 		status->aspd_rate += 500-100*pc_checkskill(sd,KN_CAVALIERMASTERY);
 	else if(pc_isridingdragon(sd))
 		status->aspd_rate += 250-50*pc_checkskill(sd,RK_DRAGONTRAINING);
 	#else // needs more info
-	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
-		status->aspd_rate += 5*skill;
-	if((skill = pc_checkskill(sd,SG_DEVIL)) > 0 && !pc_nextjobexp(sd))
-		status->aspd_rate += 30*skill;
-	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
+	if((skill_lv=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
+		status->aspd_rate += 5*skill_lv;
+	if((skill_lv = pc_checkskill(sd,SG_DEVIL)) > 0 && !pc_nextjobexp(sd))
+		status->aspd_rate += 30*skill_lv;
+	if((skill_lv=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 	   (sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
-		status->aspd_rate += ((skill+1)/2) * 10;
+		status->aspd_rate += ((skill_lv+1)/2) * 10;
 	if(pc_isriding(sd))
 		status->aspd_rate -= 500-100*pc_checkskill(sd,KN_CAVALIERMASTERY);
 	else if(pc_isridingdragon(sd))
@@ -3141,11 +3136,11 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 // ----- MISC CALCULATIONS -----
 
 	// Weight
-	if((skill=pc_checkskill(sd,MC_INCCARRY))>0)
+	if((skill_lv=pc_checkskill(sd,MC_INCCARRY))>0)
 #if VERSION == -1
-		sd->max_weight += 1000*skill;
+		sd->max_weight += 1000*skill_lv;
 #else
-		sd->max_weight += 2000*skill;
+		sd->max_weight += 2000*skill_lv;
 #endif
 #if VERSION != -1
 	if(pc_isriding(sd) && pc_checkskill(sd,KN_RIDING)>0)
@@ -3155,12 +3150,12 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 #endif
 	if(sc->data[SC_KNOWLEDGE])
 		sd->max_weight += sd->max_weight*sc->data[SC_KNOWLEDGE]->val1/10;
-	if((skill=pc_checkskill(sd,ALL_INCCARRY))>0)
+	if((skill_lv=pc_checkskill(sd,ALL_INCCARRY))>0)
 
 #if VERSION == -1
-		sd->max_weight += 1000*skill;
+		sd->max_weight += 1000*skill_lv;
 #else
-		sd->max_weight += 2000*skill;
+		sd->max_weight += 2000*skill_lv;
 #endif
 
 	sd->cart_weight_max = battle_config.max_cart_weight + (pc_checkskill(sd, GN_REMODELING_CART)*5000);
@@ -3171,8 +3166,8 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 		sd->regen.state.walk = 0;
 
 	// Skill SP cost
-	if((skill=pc_checkskill(sd,HP_MANARECHARGE))>0)
-		sd->dsprate -= 4*skill;
+	if((skill_lv=pc_checkskill(sd,HP_MANARECHARGE))>0)
+		sd->dsprate -= 4*skill_lv;
 
 	if(sc->data[SC_SERVICEFORYOU])
 		sd->dsprate -= sc->data[SC_SERVICEFORYOU]->val3;
@@ -3190,43 +3185,43 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 		sd->sprecov_rate = 0;
 
 	// Anti-element and anti-race
-	if((skill=pc_checkskill(sd,CR_TRUST))>0)
-		sd->subele[ELE_HOLY] += skill*5;
-	if((skill=pc_checkskill(sd,BS_SKINTEMPER))>0) {
+	if((skill_lv=pc_checkskill(sd,CR_TRUST))>0)
+		sd->subele[ELE_HOLY] += skill_lv*5;
+	if((skill_lv=pc_checkskill(sd,BS_SKINTEMPER))>0) {
 
 #if VERSION == -1
-		sd->subele[ELE_FIRE] += skill*5;
+		sd->subele[ELE_FIRE] += skill_lv*5;
 #else
-		sd->subele[ELE_NEUTRAL] += skill;
-		sd->subele[ELE_FIRE] += skill*4;
+		sd->subele[ELE_NEUTRAL] += skill_lv;
+		sd->subele[ELE_FIRE] += skill_lv*4;
 #endif
 	}
-	if((skill=pc_checkskill(sd,NC_RESEARCHFE))>0) {
-		sd->subele[ELE_EARTH] += skill*10;
-		sd->subele[ELE_FIRE] += skill*10;
+	if((skill_lv=pc_checkskill(sd,NC_RESEARCHFE))>0) {
+		sd->subele[ELE_EARTH] += skill_lv*10;
+		sd->subele[ELE_FIRE] += skill_lv*10;
 	}
-	if((skill=pc_checkskill(sd,SA_DRAGONOLOGY))>0) {
+	if((skill_lv=pc_checkskill(sd,SA_DRAGONOLOGY))>0) {
 #if VERSION == 1
-		skill = skill*2;
+		skill_lv = skill_lv*2;
 	#else
-		skill = skill*4;
+		skill_lv = skill_lv*4;
 	#endif
-		sd->right_weapon.addrace[RC_DRAGON]+=skill;
-		sd->left_weapon.addrace[RC_DRAGON]+=skill;
+		sd->right_weapon.addrace[RC_DRAGON]+=skill_lv;
+		sd->left_weapon.addrace[RC_DRAGON]+=skill_lv;
 #if VERSION != -1
-		sd->magic_addrace[RC_DRAGON]+=skill;
+		sd->magic_addrace[RC_DRAGON]+=skill_lv;
 #endif
-		sd->subrace[RC_DRAGON]+=skill;
+		sd->subrace[RC_DRAGON]+=skill_lv;
 	}
-	if((skill = pc_checkskill(sd, AB_EUCHARISTICA)) > 0) {
-		sd->right_weapon.addrace[RC_DEMON] += skill;
-		sd->right_weapon.addele[ELE_DARK] += skill;
-		sd->left_weapon.addrace[RC_DEMON] += skill;
-		sd->left_weapon.addele[ELE_DARK] += skill;
-		sd->magic_addrace[RC_DEMON] += skill;
-		sd->magic_addele[ELE_DARK] += skill;
-		sd->subrace[RC_DEMON] += skill;
-		sd->subele[ELE_DARK] += skill;
+	if ((skill_lv = pc_checkskill(sd, AB_EUCHARISTICA)) > 0) {
+		sd->right_weapon.addrace[RC_DEMON] += skill_lv;
+		sd->right_weapon.addele[ELE_DARK] += skill_lv;
+		sd->left_weapon.addrace[RC_DEMON] += skill_lv;
+		sd->left_weapon.addele[ELE_DARK] += skill_lv;
+		sd->magic_addrace[RC_DEMON] += skill_lv;
+		sd->magic_addele[ELE_DARK] += skill_lv;
+		sd->subrace[RC_DEMON] += skill_lv;
+		sd->subele[ELE_DARK] += skill_lv;
 	}
 
 	if(sc->count) {
@@ -6786,10 +6781,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_NIBELUNGEN:
 		case SC_INTOABYSS:
 		case SC_SIEGFRIED:
-			if(bl->type == BL_PC) { 
-				struct map_session_data *sd = BL_CAST(BL_PC,bl);
-				if (!sd->status.party_id) return 0;
-			}
+			if(sd && !sd->status.party_id)
+				return 0;
 			break;
 		case SC_ANGRIFFS_MODUS:
 		case SC_GOLDENE_FERSE:
@@ -7539,7 +7532,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_KYRIE:
 			if(sd)
 				val1 = min(val1,pc_checkskill(sd,PR_KYRIE)); // use skill level to determine barrier health.
-				val2 = (int64)status->max_hp * (val1 * 2 + 10) / 100; //%Max HP to absorb
+				val2 = APPLY_RATE(status->max_hp, (val1 * 2 + 10)); //%Max HP to absorb
 				// val4 holds current amount of party members when casting Praefatio
 				// as Praefatio's barrier has more health and blocks more hits than Kyrie Elesion.
 				if( val4 < 1 ) //== PR_KYRIE
@@ -9621,15 +9614,15 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 
 		case SC_BLADESTOP:
 			if(sce->val4) {
-				int tid = sce->val4;
-				struct block_list *tbl = map_id2bl(tid);
+				int target_id = sce->val4;
+				struct block_list *tbl = map_id2bl(target_id);
 				struct status_change *tsc = status_get_sc(tbl);
 				sce->val4 = 0;
 				if(tbl && tsc && tsc->data[SC_BLADESTOP]) {
 					tsc->data[SC_BLADESTOP]->val4 = 0;
 					status_change_end(tbl, SC_BLADESTOP, INVALID_TIMER);
 				}
-				clif_bladestop(bl, tid, 0);
+				clif_bladestop(bl, target_id, 0);
 			}
 			break;
 		case SC_DANCING: {
@@ -9915,8 +9908,8 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC_CURSEDCIRCLE_TARGET: {
 				struct block_list *src = map_id2bl(sce->val2);
-				struct status_change *sc = status_get_sc(src);
-				if(sc && sc->data[SC_CURSEDCIRCLE_ATKER] && --(sc->data[SC_CURSEDCIRCLE_ATKER]->val2) == 0) {
+				struct status_change *ssc = status_get_sc(src);
+				if(ssc && ssc->data[SC_CURSEDCIRCLE_ATKER] && --(ssc->data[SC_CURSEDCIRCLE_ATKER]->val2) == 0) {
 					status_change_end(src, SC_CURSEDCIRCLE_ATKER, INVALID_TIMER);
 					clif_bladestop(bl, sce->val2, 0);
 				}
@@ -9926,8 +9919,8 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			if(sce->val2) {
 				struct block_list *src = map_id2bl(sce->val2);
 				if(src) {
-					struct status_change *sc = status_get_sc(src);
-					sc->bs_counter--;
+					struct status_change *ssc = status_get_sc(src);
+					ssc->bs_counter--;
 				}
 			}
 			break;
@@ -11163,7 +11156,7 @@ int status_get_matk(struct block_list *bl, int flag){
 	status->matk_min = status_base_matk_min(status) + (sd?sd->bonus.ematk:0);
 	status->matk_max = status_base_matk_max(status) + (sd?sd->bonus.ematk:0);
 #endif
-	if (bl->type&BL_PC && sd->matk_rate != 100) {
+	if(sd && sd->matk_rate != 100) {
 		status->matk_max = status->matk_max * sd->matk_rate/100;
 		status->matk_min = status->matk_min * sd->matk_rate/100;
 	}

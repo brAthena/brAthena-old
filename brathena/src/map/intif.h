@@ -38,11 +38,11 @@ struct auction_data;
 
 int intif_parse(int fd);
 
-int intif_broadcast(const char *mes, int len, int type);
-int intif_broadcast2(const char *mes, int len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY);
+int intif_broadcast(const char *mes, size_t len, int type);
+int intif_broadcast2(const char *mes, size_t len, unsigned int fontColor, short fontType, short fontSize, short fontAlign, short fontY);
 int intif_main_message(struct map_session_data *sd, const char *message);
 
-int intif_wis_message(struct map_session_data *sd,char *nick,char *mes,int mes_len);
+int intif_wis_message(struct map_session_data *sd,char *nick,char *mes, size_t mes_len);
 int intif_wis_message_to_gm(char *Wisp_name, int permission, char *mes);
 
 int intif_saveregistry(struct map_session_data *sd, int type);
@@ -71,7 +71,7 @@ int intif_guild_leave(int guild_id, int account_id, int char_id, int flag, const
 int intif_guild_memberinfoshort(int guild_id, int account_id, int char_id, int online, int lv, int class_);
 int intif_guild_break(int guild_id);
 int intif_guild_message(int guild_id, int account_id, const char *mes, int len);
-int intif_guild_change_gm(int guild_id, const char *name, int len);
+int intif_guild_change_gm(int guild_id, const char *name, size_t len);
 int intif_guild_change_basicinfo(int guild_id, int type, const void *data, int len);
 int intif_guild_change_memberinfo(int guild_id, int account_id, int char_id, int type, const void *data, int len);
 int intif_guild_position(int guild_id, int idx, struct guild_position *p);

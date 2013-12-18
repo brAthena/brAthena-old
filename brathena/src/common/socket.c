@@ -361,7 +361,7 @@ void set_eof(int fd)
 
 int recv_to_fifo(int fd)
 {
-	int len;
+	ssize_t len;
 
 	if(!session_isActive(fd))
 		return -1;
@@ -398,7 +398,7 @@ int recv_to_fifo(int fd)
 
 int send_from_fifo(int fd)
 {
-	int len;
+	ssize_t len;
 
 	if(!session_isValid(fd))
 		return -1;
@@ -857,6 +857,10 @@ int do_sockets(int next)
 			}
 		}
 
+#ifdef __clang_analyzer__
+		// Let Clang's static analyzer know this never happens (it thinks it might because of a NULL check in session_isValid)
+		if (!session[i]) continue;
+#endif // __clang_analyzer__
 		session[i]->func_parse(i);
 
 		if(!session[i])
@@ -1321,7 +1325,7 @@ int socket_getips(uint32 *ips, int max)
 void socket_init(void)
 {
 	char *SOCKET_CONF_FILENAME = "conf/packet.conf";
-	unsigned int rlim_cur = FD_SETSIZE;
+	uint64 rlim_cur = FD_SETSIZE;
 
 #ifdef WIN32
 	{
@@ -1340,8 +1344,7 @@ void socket_init(void)
 #elif defined(HAVE_SETRLIMIT) && !defined(CYGWIN)
 	// NOTE: getrlimit and setrlimit have bogus behaviour in cygwin.
 	//       "Number of fds is virtually unlimited in cygwin" (sys/param.h)
-	{
-		// set socket limit to FD_SETSIZE
+	{// set socket limit to FD_SETSIZE
 		struct rlimit rlp;
 		if(0 == getrlimit(RLIMIT_NOFILE, &rlp)) {
 			rlp.rlim_cur = FD_SETSIZE;

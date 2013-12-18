@@ -391,7 +391,7 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 	struct map_session_data *sd, *tsd;
 	struct party_data *p = NULL;
 	struct guild *g = NULL;
-	struct battleground_data *bg = NULL;
+	struct battleground_data *bgd = NULL;
 	int x0 = 0, x1 = 0, y0 = 0, y1 = 0, fd;
 	struct s_mapiterator *iter;
 
@@ -596,9 +596,9 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 		case BG_SAMEMAP_WOS:
 		case BG:
 		case BG_WOS:
-			if(sd && sd->bg_id && (bg = bg_team_search(sd->bg_id)) != NULL) {
+			if(sd && sd->bg_id && (bgd = bg_team_search(sd->bg_id)) != NULL) {
 				for(i = 0; i < MAX_BG_MEMBERS; i++) {
-					if((sd = bg->members[i].sd) == NULL || !(fd = sd->fd))
+					if((sd = bgd->members[i].sd) == NULL || !(fd = sd->fd))
 						continue;
 					if(sd->bl.id == bl->id && (type == BG_WOS || type == BG_SAMEMAP_WOS || type == BG_AREA_WOS))
 						continue;
@@ -618,12 +618,12 @@ int clif_send(const void *buf, int len, struct block_list *bl, enum send_target 
 				struct hQueue *queue = &script->hq[sd->bg_queue.arena->queue_id];
 
 				for(i = 0; i < queue->size; i++) {
-					struct map_session_data * sd = NULL;
+					struct map_session_data *qsd = NULL;
 
 					if(queue->item[i] > 0 && (sd = map_id2sd(queue->item[i]))) {
-						WFIFOHEAD(sd->fd,len);
-						memcpy(WFIFOP(sd->fd,0), buf, len);
-						WFIFOSET(sd->fd,len);
+						WFIFOHEAD(qsd->fd,len);
+						memcpy(WFIFOP(qsd->fd,0), buf, len);
+						WFIFOSET(qsd->fd,len);
 					}
 				}
 			}
@@ -975,6 +975,8 @@ void clif_set_unit_idle(struct block_list* bl, struct map_session_data *tsd, enu
 	struct packet_idle_unit p;
 	int g_id = status_get_guild_id(bl);
 
+	nullpo_retv(bl);
+
 #if PACKETVER < 20091103
 	if(!pcdb_checkid(vd->class_)) {
 		clif->set_unit_idle2(bl,tsd,target);
@@ -1105,6 +1107,8 @@ void clif_spawn_unit(struct block_list* bl, enum send_target target) {
 	struct packet_spawn_unit p;
 	int g_id = status_get_guild_id(bl);
 
+	nullpo_retv(bl);
+
 #if PACKETVER < 20091103
 	if(!pcdb_checkid(vd->class_)) {
 		clif->spawn_unit2(bl,target);
@@ -1168,6 +1172,7 @@ void clif_spawn_unit(struct block_list* bl, enum send_target target) {
 	}
 #endif
 	if( disguised(bl) ) {
+		nullpo_retv(sd);
 		if( sd->status.class_ != sd->disguise )
 			clif_send(&p,sizeof(p),bl,target);
 #if PACKETVER >= 20091103
@@ -1191,6 +1196,8 @@ void clif_set_unit_walking(struct block_list* bl, struct map_session_data *tsd, 
 	struct view_data* vd = status_get_viewdata(bl);
 	struct packet_unit_walking p;
 	int g_id = status_get_guild_id(bl);
+
+	nullpo_retv(bl);
 
 	sd = BL_CAST(BL_PC, bl);
 
@@ -1866,7 +1873,7 @@ void clif_selllist(struct map_session_data *sd)
 void clif_scriptmes(struct map_session_data *sd, int npcid, const char *mes)
 {
 	int fd = sd->fd;
-	int slen = strlen(mes) + 9;
+	size_t slen = strlen(mes) + 9;
 
 	sd->state.dialog = 1;
 
@@ -1980,7 +1987,7 @@ void clif_sendfakenpc(struct map_session_data *sd, int npcid)
 void clif_scriptmenu(struct map_session_data *sd, int npcid, const char *mes)
 {
 	int fd = sd->fd;
-	int slen = strlen(mes) + 9;
+	size_t slen = strlen(mes) + 9;
 	struct block_list *bl = NULL;
 
 	if(!sd->state.using_fake_npc && (npcid == npc->fake_nd->bl.id || ((bl = map_id2bl(npcid)) && (bl->m!=sd->bl.m ||
@@ -2946,7 +2953,7 @@ void clif_changelook(struct block_list *bl,int type,int val)
 	sd = BL_CAST(BL_PC, bl);
 	sc = status_get_sc(bl);
 	vd = status_get_viewdata(bl);
-	//nullpo_ret(vd);
+
 	if(vd)   //temp hack to let Warp Portal change appearance
 		switch(type) {
 			case LOOK_WEAPON:
@@ -3050,6 +3057,7 @@ void clif_changelook(struct block_list *bl,int type,int val)
 	WBUFW(buf,0)=0x1d7;
 	WBUFL(buf,2)=bl->id;
 	if(type == LOOK_WEAPON || type == LOOK_SHIELD) {
+		nullpo_retv(vd);
 		WBUFB(buf,6)=LOOK_WEAPON;
 		WBUFW(buf,7)=vd->weapon;
 		WBUFW(buf,9)=vd->shield;
@@ -3058,7 +3066,7 @@ void clif_changelook(struct block_list *bl,int type,int val)
 		WBUFL(buf,7)=val;
 	}
 	clif_send(buf,packet_len(0x1d7),bl,target);
-	if(disguised(bl) && ((TBL_PC*)sd)->fontcolor) {
+	if(disguised(bl) && sd && sd->fontcolor) {
 		WBUFL(buf,2)=-bl->id;
 		clif_send(buf,packet_len(0x1d7),bl,SELF);
 	}
@@ -4482,6 +4490,7 @@ int clif_outsight(struct block_list *bl,va_list ap)
 	tsd = BL_CAST(BL_PC, tbl);
 
 	if(tsd && tsd->fd) { //tsd has lost sight of the bl object.
+		nullpo_ret(bl);
 		switch(bl->type) {
 			case BL_PC:
 				if(sd->vd.class_ != INVISIBLE_CLASS)
@@ -4515,6 +4524,7 @@ int clif_outsight(struct block_list *bl,va_list ap)
 	}
 	if(sd && sd->fd) {
 		//sd is watching tbl go out of view.
+		nullpo_ret(tbl);
 		if(((vd=status_get_viewdata(tbl)) && vd->class_ != INVISIBLE_CLASS) &&
 		   !(tbl->type == BL_NPC && (((TBL_NPC *)tbl)->option&OPTION_INVISIBLE)))
 			clif_clearunit_single(tbl->id,CLR_OUTSIGHT,sd->fd);
@@ -4536,8 +4546,8 @@ int clif_insight(struct block_list *bl,va_list ap)
 	sd = BL_CAST(BL_PC, bl);
 	tsd = BL_CAST(BL_PC, tbl);
 
-	if(tsd && tsd->fd) {
-		//Tell tsd that bl entered into his view
+	if(tsd && tsd->fd) { //Tell tsd that bl entered into his view
+		nullpo_ret(bl);
 		switch(bl->type) {
 			case BL_ITEM:
 				clif_getareachar_item(tsd,(struct flooritem_data *)bl);
@@ -5330,7 +5340,7 @@ void clif_displaymessage(const int fd, const char *mes)
 		line = strtok(message, "\n");
 		while(line != NULL) {
 			// Limit message to 255+1 characters (otherwise it causes a buffer overflow in the client)
-			int len = strnlen(line, 255);
+			size_t len = strnlen(line, 255);
 
 			if(len > 0) {  // don't send a void message (it's not displaying on the client chat). @help can send void line.
 				WFIFOHEAD(fd, 5 + len);
@@ -5368,7 +5378,7 @@ void clif_displaymessage_sprintf(const int fd, const char* mes, ...) {
 }
 /// Send broadcast message in yellow or blue without font formatting (ZC_BROADCAST).
 /// 009a <packet len>.W <message>.?B
-void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, enum send_target target)
+void clif_broadcast(struct block_list *bl, const char *mes, size_t len, int type, enum send_target target)
 {
 	int lp = (type&BC_COLOR_MASK) ? 4 : 0;
 	unsigned char *buf = (unsigned char *)aMalloc((4 + lp + len)*sizeof(unsigned char));
@@ -5392,8 +5402,8 @@ void clif_broadcast(struct block_list *bl, const char *mes, int len, int type, e
  *------------------------------------------*/
 void clif_GlobalMessage(struct block_list *bl, const char *message)
 {
-	char buf[150];
-	int len;
+	char buf[256];
+	size_t len;
 	nullpo_retv(bl);
 
 	if(!message)
@@ -5416,7 +5426,7 @@ void clif_GlobalMessage(struct block_list *bl, const char *message)
 
 /// Send broadcast message with font formatting (ZC_BROADCAST2).
 /// 01c3 <packet len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <message>.?B
-void clif_broadcast2(struct block_list *bl, const char *mes, int len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target)
+void clif_broadcast2(struct block_list *bl, const char *mes, size_t len, unsigned int fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target)
 {
 	unsigned char *buf = (unsigned char *)aMalloc((16 + len)*sizeof(unsigned char));
 
@@ -5795,7 +5805,7 @@ void clif_read_channels_config(void) {
 
 		if((colors = config_setting_get_member(settings, "colors")) != NULL) {
 			int color_count = config_setting_length(colors);
-			CREATE(raChSys.colors, unsigned long, color_count);
+			CREATE(raChSys.colors, unsigned int, color_count);
 			CREATE(raChSys.colors_name, char *, color_count);
 			for(i = 0; i < color_count; i++) {
 				config_setting_t *color = config_setting_get_elem(colors, i);
@@ -5804,7 +5814,7 @@ void clif_read_channels_config(void) {
 
 				safestrncpy(raChSys.colors_name[i], config_setting_name(color), RACHSYS_NAME_LENGTH);
 
-				raChSys.colors[i] = strtoul(config_setting_get_string_elem(colors,i),NULL,0);
+				raChSys.colors[i] = (unsigned int)strtoul(config_setting_get_string_elem(colors,i),NULL,0);
 				raChSys.colors[i] = (raChSys.colors[i] & 0x0000FF) << 16 | (raChSys.colors[i] & 0x00FF00) | (raChSys.colors[i] & 0xFF0000) >> 16;//RGB to BGR
 			}
 			raChSys.colors_count = color_count;
@@ -6032,7 +6042,7 @@ void clif_upgrademessage(int fd, int result, int item_id)
 /// Whisper is transmitted to the destination player (ZC_WHISPER).
 /// 0097 <packet len>.W <nick>.24B <message>.?B
 /// 0097 <packet len>.W <nick>.24B <isAdmin>.L <message>.?B (PACKETVER >= 20091104)
-void clif_wis_message(int fd, const char *nick, const char *mes, int mes_len)
+void clif_wis_message(int fd, const char *nick, const char *mes, size_t mes_len)
 {
 #if PACKETVER < 20091104
 	WFIFOHEAD(fd, mes_len + NAME_LENGTH + 4);
@@ -8253,7 +8263,7 @@ void clif_marriage_proposal(int fd, struct map_session_data *sd, struct map_sess
 /*==========================================
  *
  *------------------------------------------*/
-void clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len)
+void clif_disp_onlyself(struct map_session_data *sd, const char *mes, size_t len)
 {
 	clif_disp_message(&sd->bl, mes, len, SELF);
 }
@@ -8261,7 +8271,7 @@ void clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len)
 /*==========================================
  * Displays a message using the guild-chat colors to the specified targets. [Skotlex]
  *------------------------------------------*/
-void clif_disp_message(struct block_list *src, const char *mes, int len, enum send_target target)
+void clif_disp_message(struct block_list *src, const char *mes, size_t len, enum send_target target)
 {
 	unsigned char buf[256];
 
@@ -8522,7 +8532,7 @@ void clif_specialeffect_value(struct block_list *bl, int effect_id, int num, sen
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
 int clif_colormes(int fd, enum clif_colors color, const char *msg)
 {
-	unsigned short msg_len = strlen(msg) + 1;
+	size_t msg_len = strlen(msg) + 1;
 
 	WFIFOHEAD(fd,msg_len + 12);
 	WFIFOW(fd,0) = 0x2C1;
@@ -8537,9 +8547,9 @@ int clif_colormes(int fd, enum clif_colors color, const char *msg)
 
 /// Monster/NPC color chat [SnakeDrak] (ZC_NPC_CHAT).
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
-void clif_messagecolor(struct block_list *bl, unsigned long color, const char *msg)
+void clif_messagecolor(struct block_list *bl, unsigned int color, const char *msg)
 {
-	unsigned short msg_len = strlen(msg) + 1;
+	size_t msg_len = strlen(msg) + 1;
 	uint8 buf[256];
 	color = (color & 0x0000FF) << 16 | (color & 0x00FF00) | (color & 0xFF0000) >> 16; // RGB to BGR
 
@@ -8852,7 +8862,7 @@ void clif_slide(struct block_list *bl, int x, int y)
 void clif_disp_overhead(struct block_list *bl, const char* mes)
 {
 	unsigned char buf[256]; //This should be more than sufficient, the theorical max is CHAT_SIZE + 8 (pads and extra inserted crap)
-	int len_mes = strlen(mes)+1; //Account for \0
+	size_t len_mes = strlen(mes)+1; //Account for \0
 
 	if(len_mes > sizeof(buf)-8) {
 		ShowError("clif_disp_overhead: Message too long (length %d)\n", len_mes);
@@ -9131,10 +9141,11 @@ void clif_msg_skill(struct map_session_data *sd, uint16 skill_id, int msg_id)
 /// Returns true if the packet was parsed successfully.
 /// Formats: 0 - <packet id>.w <packet len>.w (<name> : <message>).?B 00
 ///          1 - <packet id>.w <packet len>.w <name>.24B <message>.?B 00
-static bool clif_process_message(struct map_session_data *sd, int format, char **name_, int *namelen_, char **message_, int *messagelen_)
+bool clif_process_message(struct map_session_data *sd, int format, char **name_, size_t *namelen_, char **message_, size_t *messagelen_)
 {
 	char *text, *name, *message;
-	unsigned int packetlen, textlen, namelen, messagelen;
+	unsigned int packetlen, textlen;
+	size_t namelen, messagelen;
 	int fd = sd->fd;
 
 	*name_ = NULL;
@@ -9758,7 +9769,7 @@ void clif_parse_Hotkey(int fd, struct map_session_data *sd)
 
 /// Displays cast-like progress bar (ZC_PROGRESS).
 /// 02f0 <color>.L <time>.L
-void clif_progressbar(struct map_session_data *sd, unsigned long color, unsigned int second)
+void clif_progressbar(struct map_session_data *sd, unsigned int color, unsigned int second)
 {
 	int fd = sd->fd;
 
@@ -9886,7 +9897,7 @@ void clif_parse_GetCharNameRequest(int fd, struct map_session_data *sd)
 		return; // Block namerequests past view range
 
 	// 'see people in GM hide' cheat detection
-	/* disabled due to false positives (network lag + request name of char that's about to hide = race condition)
+#if 0	/* disabled due to false positives (network lag + request name of char that's about to hide = race condition) */
 	sc = status_get_sc(bl);
 	if (sc && sc->option&OPTION_INVISIBLE && !disguised(bl) &&
 	    bl->type != BL_NPC && //Skip hidden NPCs which can be seen using Maya Purple
@@ -9899,7 +9910,7 @@ void clif_parse_GetCharNameRequest(int fd, struct map_session_data *sd)
 	    intif_wis_message_to_gm(wisp_server_name, battle_config.hack_info_GM_level, gm_msg);
 	    return;
 	}
-	*/
+#endif
 
 	clif_charnameack(fd, bl);
 }
@@ -9920,10 +9931,10 @@ int clif_undisguise_timer(int tid, int64 tick, int id, intptr_t data) {
 void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 {
 	const char *text = (char *)RFIFOP(fd,4);
-	int textlen = RFIFOW(fd,2) - 4;
+	size_t textlen = RFIFOW(fd,2) - 4;
 
 	char *name, *message, *fakename = NULL;
-	int namelen, messagelen;
+	size_t namelen, messagelen;
 
 	bool is_fake;
 
@@ -10326,7 +10337,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 	int i;
 
 	char *target, *message;
-	int namelen, messagelen;
+	size_t namelen, messagelen;
 
 	// validate packet and retrieve name and message
 	if(!clif_process_message(sd, 1, &target, &namelen, &message, &messagelen))
@@ -10407,7 +10418,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 			channel = (struct raChSysCh *)g->channel;
 		}
 		if( channel || (channel = strdb_get(channel_db,chname)) ) {
-			unsigned char k;
+			int k;
 			for( k = 0; k < sd->channel_count; k++ ) {
 				if( sd->channels[k] == channel )
 					break;
@@ -10417,7 +10428,6 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 			} else if( channel->pass[0] == '\0' && !(channel->banned && idb_exists(channel->banned, sd->status.account_id))) {
 				if( channel->type == raChSys_ALLY ) {
 					struct guild *g = sd->guild, *sg = NULL;
-					int k;
 					for (k = 0; k < MAX_GUILDALLIANCE; k++) {
 						if(g->alliance[k].opposition == 0 && g->alliance[k].guild_id && (sg = guild_search(g->alliance[k].guild_id))) {
 							if(!(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
@@ -12084,7 +12094,7 @@ void clif_parse_PartyMessage(int fd, struct map_session_data *sd)
 	int textlen = RFIFOW(fd,2) - 4;
 
 	char *name, *message;
-	int namelen, messagelen;
+	size_t namelen, messagelen;
 
 	// validate packet and retrieve name and message
 	if(!clif_process_message(sd, 0, &name, &namelen, &message, &messagelen))
@@ -12614,7 +12624,7 @@ void clif_PartyBookingFailedRecall(int fd, struct map_session_data *sd)
 void clif_parse_PartyBookingRefuseVolunteer(int fd, struct map_session_data *sd)
 {
 #ifdef PARTY_RECRUIT
-	unsigned long aid = RFIFOL(fd, 2);
+	unsigned int aid = RFIFOL(fd, 2);
 
 	clif->PartyBookingRefuseVolunteer(aid, sd);
 #else
@@ -12623,7 +12633,7 @@ void clif_parse_PartyBookingRefuseVolunteer(int fd, struct map_session_data *sd)
 }
 
 /// 08fa <index>.L
-void clif_PartyBookingRefuseVolunteer(unsigned long aid, struct map_session_data *sd)
+void clif_PartyBookingRefuseVolunteer(unsigned int aid, struct map_session_data *sd)
 {
 #ifdef PARTY_RECRUIT
 	unsigned char buf[2+6];
@@ -13026,7 +13036,7 @@ enum e_bitmapconst {
 /// 0153 <packet len>.W <emblem data>.?B
 void clif_parse_GuildChangeEmblem(int fd,struct map_session_data *sd)
 {
-	unsigned long emblem_len = RFIFOW(fd,2)-4;
+	unsigned int emblem_len = RFIFOW(fd,2)-4;
 	const uint8 *emblem = RFIFOP(fd,4);
 
 
@@ -13151,7 +13161,7 @@ void clif_parse_GuildMessage(int fd, struct map_session_data *sd)
 	int textlen = RFIFOW(fd,2) - 4;
 
 	char *name, *message;
-	int namelen, messagelen;
+	size_t namelen, messagelen;
 
 	// validate packet and retrieve name and message
 	if(!clif_process_message(sd, 0, &name, &namelen, &message, &messagelen))
@@ -14789,7 +14799,7 @@ void clif_Mail_read(struct map_session_data *sd, int mail_id)
 		struct mail_message *msg = &sd->mail.inbox.msg[i];
 		struct item *item = &msg->item;
 		struct item_data *data;
-		int msg_len = strlen(msg->body), len;
+		size_t msg_len = strlen(msg->body), len;
 
 		if(msg_len == 0) {
 			strcpy(msg->body, "(no message)");
@@ -16124,11 +16134,11 @@ void clif_bg_xy_remove(struct map_session_data *sd)
 
 /// Notifies clients of a battleground message (ZC_BATTLEFIELD_CHAT).
 /// 02dc <packet len>.W <account id>.L <name>.24B <message>.?B
-void clif_bg_message(struct battleground_data *bg, int src_id, const char *name, const char *mes, int len)
+void clif_bg_message(struct battleground_data *bgd, int src_id, const char *name, const char *mes, size_t len)
 {
 	struct map_session_data *sd;
 	unsigned char *buf;
-	if(!bg->count || (sd = bg_getavailablesd(bg)) == NULL)
+	if(!bgd->count || (sd = bg_getavailablesd(bgd)) == NULL)
 		return;
 
 	buf = (unsigned char *)aMalloc((len + NAME_LENGTH + 8)*sizeof(unsigned char));
@@ -16153,7 +16163,7 @@ void clif_parse_BattleChat(int fd, struct map_session_data *sd)
 	int textlen = RFIFOW(fd,2) - 4;
 
 	char *name, *message;
-	int namelen, messagelen;
+	size_t namelen, messagelen;
 
 	if(!clif_process_message(sd, 0, &name, &namelen, &message, &messagelen))
 		return;
@@ -17037,7 +17047,7 @@ void clif_parse_debug(int fd,struct map_session_data *sd)
 		}
 		ShowDebug("Packet debug of 0x%04X (length %d), %s session #%d, %d/%d (AID/CID)\n", cmd, packet_len, sd->state.active ? "authed" : "unauthed", fd, sd->status.account_id, sd->status.char_id);
 	} else {
-		packet_len = RFIFOREST(fd);
+		packet_len = (int)RFIFOREST(fd);
 		ShowDebug("Packet debug of 0x%04X (length %d), session #%d\n", cmd, packet_len, fd);
 	}
 
@@ -17658,7 +17668,7 @@ void clif_partytickack(struct map_session_data* sd, bool flag) {
 
 void clif_ShowScript(struct block_list* bl, const char* message) {
 	char buf[256];
-	int len;
+	size_t len;
 	nullpo_retv(bl);
 
 	if(!message)
@@ -18487,7 +18497,7 @@ int do_init_clif(void)
 	 * Setup Color Table (saves unnecessary load of strtoul on every call)
 	 **/
 	for(i = 0; i < COLOR_MAX; i++) {
-		color_table[i] = strtoul(colors[i],NULL,0);
+		color_table[i] = (unsigned int)strtoul(colors[i],NULL,0);
 		color_table[i] = (color_table[i] & 0x0000FF) << 16 | (color_table[i] & 0x00FF00) | (color_table[i] & 0xFF0000) >> 16;//RGB to BGR
 	}
 

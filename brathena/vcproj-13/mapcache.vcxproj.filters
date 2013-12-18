@@ -28,6 +28,9 @@
     <ClCompile Include="..\src\common\utils.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\nullpo.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\common\strlib.c">
       <Filter>common</Filter>
     </ClCompile>
@@ -84,6 +87,9 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\winapi.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\nullpo.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\config\configs.h" />

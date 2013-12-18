@@ -801,7 +801,7 @@ int mob_linksearch(struct block_list *bl,va_list ap)
 	md=(struct mob_data *)bl;
 	class_ = va_arg(ap, int);
 	target = va_arg(ap, struct block_list *);
-	tick=va_arg(ap, unsigned int);
+	tick = va_arg(ap, int64);
 
 	if(md->class_ == class_ && DIFF_TICK(md->last_linktime, tick) < MIN_MOBLINKTIME
 	   && !md->target_id) {
@@ -878,10 +878,11 @@ int mob_setdelayspawn(struct mob_data *md)
 
 int mob_count_sub(struct block_list *bl, va_list ap)
 {
-	int mobid[10], i;
+	int mobid[10] = { 0 }, i;
 	ARR_FIND(0, 10, i, (mobid[i] = va_arg(ap, int)) == 0); //fetch till 0
 	if(mobid[0]) {  //if there one let's check it otherwise go backward
 		TBL_MOB *md = BL_CAST(BL_MOB, bl);
+		nullpo_ret(md);
 		ARR_FIND(0, 10, i, md->class_ == mobid[i]);
 		return (i < 10) ? 1 : 0;
 	}
@@ -4088,7 +4089,7 @@ static bool mob_parse_row_chatdb(char *str[], int columns, int current)
 	//MSG ID
 	ms->msg_id=msg_id;
 	//Color
-	ms->color=strtoul(str[1],NULL,0);
+	ms->color=(unsigned int)strtoul(str[1],NULL,0);
 	//Message
 	msg = str[2];
 	len = strlen(msg);

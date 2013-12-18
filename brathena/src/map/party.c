@@ -44,7 +44,7 @@
 
 static DBMap *party_db; // int party_id -> struct party_data* (releases data)
 static DBMap *party_booking_db; // int char_id -> struct party_booking_ad_info* (releases data) // Party Booking [Spiria]
-static unsigned long party_booking_nextid = 1;
+static unsigned int party_booking_nextid = 1;
 
 /*==========================================
  * Fills the given party_member structure according to the sd provided.

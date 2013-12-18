@@ -432,16 +432,16 @@ struct guild *inter_guild_fromsql(int guild_id) {
 	}
 	while(SQL_SUCCESS == Sql_NextRow(sql_handle)) {
 		int position;
-		struct guild_position *p;
+		struct guild_position *pos;
 
 		Sql_GetData(sql_handle, 0, &data, NULL); position = atoi(data);
 		if(position < 0 || position >= MAX_GUILDPOSITION)
 			continue;// invalid position
-		p = &g->position[position];
-		Sql_GetData(sql_handle, 1, &data, &len); memcpy(p->name, data, min(len, NAME_LENGTH));
-		Sql_GetData(sql_handle, 2, &data, NULL); p->mode = atoi(data);
-		Sql_GetData(sql_handle, 3, &data, NULL); p->exp_mode = atoi(data);
-		p->modified = GS_POSITION_UNMODIFIED;
+		pos = &g->position[position];
+		Sql_GetData(sql_handle, 1, &data, &len); memcpy(pos->name, data, min(len, NAME_LENGTH));
+		Sql_GetData(sql_handle, 2, &data, NULL); pos->mode = atoi(data);
+		Sql_GetData(sql_handle, 3, &data, NULL); pos->exp_mode = atoi(data);
+		pos->modified = GS_POSITION_UNMODIFIED;
 	}
 
 	//printf("- Read guild_alliance %d from sql \n",guild_id);
@@ -1606,7 +1606,7 @@ static int mapif_parse_GuildDeleteAlliance(struct guild *g, int guild_id, int ac
 int mapif_parse_GuildAlliance(int fd,int guild_id1,int guild_id2,int account_id1,int account_id2,int flag)
 {
 	// Could speed up
-	struct guild *g[2];
+	struct guild *g[2] = { NULL };
 	int j,i;
 	g[0] = inter_guild_fromsql(guild_id1);
 	g[1] = inter_guild_fromsql(guild_id2);
@@ -1619,14 +1619,14 @@ int mapif_parse_GuildAlliance(int fd,int guild_id1,int guild_id2,int account_id1
 
 	if(flag&GUILD_ALLIANCE_REMOVE) {
 		// Remove alliance/opposition, in case of alliance, remove on both side
-		for(i=0; i<2-(flag&GUILD_ALLIANCE_TYPE_MASK); i++) {
+		for(i = 0; i < ((flag&GUILD_ALLIANCE_TYPE_MASK) ? 1 : 2); i++) {
 			ARR_FIND(0, MAX_GUILDALLIANCE, j, g[i]->alliance[j].guild_id == g[1-i]->guild_id && g[i]->alliance[j].opposition == (flag&GUILD_ALLIANCE_TYPE_MASK));
 			if(j < MAX_GUILDALLIANCE)
 				g[i]->alliance[j].guild_id = 0;
 		}
 	} else {
 		// Add alliance, in case of alliance, add on both side
-		for(i=0; i<2-(flag&GUILD_ALLIANCE_TYPE_MASK); i++) {
+		for(i = 0; i < ((flag&GUILD_ALLIANCE_TYPE_MASK) ? 1 : 2); i++) {
 			// Search an empty slot
 			ARR_FIND(0, MAX_GUILDALLIANCE, j, g[i]->alliance[j].guild_id == 0);
 			if(j < MAX_GUILDALLIANCE) {
