@@ -8192,7 +8192,7 @@ REPLACE INTO `item_db` VALUES(2434,'Black_Leather_Boots_','Botas de Couro Preto'
 REPLACE INTO `item_db` VALUES(2435,'Battle_Greave','Grevas de Batalha','5',10,NULL,'0',NULL,4,NULL,1,0x026654E2,7,2,64,NULL,80,1,0,'bonus bMaxHP,100; bonus bMdef,1; bonus2 bSubRace,RC_DemiHuman,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2436,'Combat_Boots','Botas de Combate','5',10,NULL,'0',NULL,3,NULL,1,0x00898B1C,7,2,64,NULL,80,1,0,'bonus bMaxHP,100; bonus bMdef,1; bonus2 bSubRace,RC_DemiHuman,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2437,'Battle_Boots','Botas de Batalha','5',10,NULL,'0',NULL,3,NULL,1,0x01000000,7,2,64,NULL,80,1,0,'bonus bMaxHP,100; bonus bMdef,1; bonus2 bSubRace,RC_DemiHuman,1;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(2438,'Paw_Of_Cat','Cat Paw','5',10,NULL,'300',NULL,0,NULL,0,0xFFFFFFFF,7,2,64,NULL,80,1,0,'bonus bFlee,5; bonus bAgi,1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(2438,'Paw_Of_Cat','Cat Paw','5',10,NULL,'300',NULL,0,NULL,0,0xFFFFFFFF,7,2,64,NULL,80,1,0,'bonus bFlee,5; bonus bAgi,1; skill "ALL_CATCRY",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2439,'Refresh_Shoes','Sapatos Refrescantes [A]','5',20,NULL,'0',NULL,9,NULL,0,0xFFFFFFFF,7,2,64,NULL,0,0,0,'bonus bMaxHPrate,17; bonus bMaxSPrate,8; bonus2 bHPRegenRate,20,10000; bonus2 bSPRegenRate,3,10000;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2440,'Sprint_Shoes','Sapatos de Corrida','5',20,NULL,'300',NULL,2,NULL,1,0x00CFFF80,2,2,64,NULL,70,1,0,'bonus bAgi,1; bonus bSPrecovRate,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2441,'Beach_Sandal','Sandália de Praia','5',20,NULL,'200',NULL,0,NULL,0,0xFFFFFFFF,7,2,64,NULL,0,1,0,'bonus bStr,1; bonus bInt,1; bonus bAgi,1; bonus2 bSubEle,Ele_Fire,10;',NULL,NULL);
@@ -8403,6 +8403,7 @@ REPLACE INTO `item_db` VALUES(2746,'Cold_Heart','Coração Frio','5',20,NULL,'100'
 REPLACE INTO `item_db` VALUES(2747,'Black_Cat','Gato Preto','5',20,NULL,'100',NULL,1,NULL,0,0x00020000,2,2,136,NULL,80,0,0,'bonus bDex,3;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2748,'Cursed_Star','Estrela Maldita','5',20,NULL,'200',NULL,0,NULL,0,0x00080808,2,2,136,NULL,84,0,0,'bonus bMdef,3; bonus bDex,2; bonus bLuk,-1; bonus2 bHPLossRate,50,10000; bonus3 bAddEff,Eff_Curse,200,ATF_WEAPON|ATF_LONG|ATF_TARGET;',NULL,'heal -300,0;');
 REPLACE INTO `item_db` VALUES(2749,'Linen_Glove','Luva de Linho','5',20,NULL,'120',NULL,1,NULL,1,0x00CFFF80,2,2,136,NULL,90,0,0,'bonus bMdef,2; bonus bAgi,2; bonus bDex,1;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(2750,'Summer_Night_Dream','Summer Night Dream',5,20,NULL,0,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,136,NULL,NULL,NULL,0,'skill "ALL_DREAM_SUMMERNIGHT",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2751,'Academy_Badge','Broche de Formatura Mágico','5',0,NULL,'100',NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,0,0,0,'if(BaseLevel<80) { bonus bMaxHP,400; bonus bMaxSP,200; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2752,'Praxinus_C','Praccsinos','5',2,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,1,0,0,'bonus2 bAddRace,RC_NonBoss,5; bonus2 bAddRace,RC_Boss,5; bonus bMatkRate,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(2753,'Beholder_Ring','Anel do Caçador Veterano [A]','5',0,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,1,0,0,'bonus2 bExpAddRace,RC_Formless,15;',NULL,NULL);
@@ -11463,7 +11464,7 @@ REPLACE INTO `item_db` VALUES(12309,'Bulging_Head','JJangu Magic Powder','11',0,
 REPLACE INTO `item_db` VALUES(12310,'Spray_Of_Flowers','Ramo de Cerejeira','2',0,NULL,'50',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_start SC_INCFLEE,600000,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12311,'Large_Spray_Of_Flowers','Enorme Galho de Cerejeira','11',0,NULL,'100',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemskill "ALL_PARTYFLEE",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12312,'Thick_Manual50','Manual de Combate 60','2',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'sc_start SC_CASH_PLUSEXP,3600000,50;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(12313,'Protection_Of_Angel','Guardian Angel','2',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES(12313,'Protection_Of_Angel','Guardian Angel','2',0,NULL,'0',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemskill "ALL_ANGEL_PROTECT",1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(12314,'Noive_Box','Noive Box','2',0,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(12315,'Goddess_Bless','Goddess Of Blessing','2',0,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(12316,'Angel_Bless','Angel Of Blessing','2',0,NULL,'10',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
