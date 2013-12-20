@@ -979,6 +979,7 @@ un_bunker
 un_myst
 1@uns
 1@lab
+paramk
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
