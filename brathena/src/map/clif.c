@@ -361,7 +361,7 @@ int clif_send_sub(struct block_list *bl, va_list ap)
 	}
 
 	/* unless visible, hold it here */
-	if(clif->ally_only && !sd->special_state.intravision && battle_check_target( src_bl, &sd->bl, BCT_ENEMY) > 0)
+	if(clif->ally_only && !sd->special_state.intravision && !sd->sc.data[SC_CLAIRVOYANCE] && battle_check_target( src_bl, &sd->bl, BCT_ENEMY) > 0)
 		return 0;
 
 	WFIFOHEAD(fd, len);
@@ -3737,20 +3737,22 @@ void clif_traderequest(struct map_session_data *sd, const char *name)
 void clif_tradestart(struct map_session_data *sd, uint8 type)
 {
 	int fd = sd->fd;
+#if PACKETVER >= 6
 	struct map_session_data *tsd = map_id2sd(sd->trade_partner);
-	if(PACKETVER < 6 || !tsd) {
-		WFIFOHEAD(fd,packet_len(0xe7));
-		WFIFOW(fd,0) = 0xe7;
-		WFIFOB(fd,2) = type;
-		WFIFOSET(fd,packet_len(0xe7));
-	} else {
+	if(tsd) {
 		WFIFOHEAD(fd,packet_len(0x1f5));
 		WFIFOW(fd,0) = 0x1f5;
 		WFIFOB(fd,2) = type;
 		WFIFOL(fd,3) = tsd->status.char_id;
 		WFIFOW(fd,7) = tsd->status.base_level;
 		WFIFOSET(fd,packet_len(0x1f5));
+		return;
 	}
+#endif
+		WFIFOHEAD(fd,packet_len(0xe7));
+		WFIFOW(fd,0) = 0xe7;
+		WFIFOB(fd,2) = type;
+		WFIFOSET(fd,packet_len(0xe7));
 }
 
 
