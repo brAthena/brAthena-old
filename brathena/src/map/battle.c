@@ -4521,11 +4521,12 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 
 		if(sc && skill_id != PA_SACRIFICE) {
 			if(sc->data[SC_UNLIMIT] && wd.flag&BF_LONG)
-				ATK_ADD(50 * sc->data[SC_UNLIMIT]->val1);
+				ATK_ADDRATE(50 * sc->data[SC_UNLIMIT]->val1);
 		}
+
 		if(tsc && skill_id != PA_SACRIFICE) {
 			if(tsc->data[SC_DARKCROW] && wd.flag&BF_SHORT)
-				ATK_ADD(30 * tsc->data[SC_DARKCROW]->val1);
+				ATK_ADDRATE(30 * tsc->data[SC_DARKCROW]->val1);
 		}
 
 	#if VERSION == 1
