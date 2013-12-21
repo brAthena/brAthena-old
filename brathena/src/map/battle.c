@@ -3354,8 +3354,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				}
 
 				if (sc){
-					if( sc->data[SC_TELEKINESIS_INTENSE] && s_ele == ELE_GHOST )
-						skillratio += sc->data[SC_TELEKINESIS_INTENSE]->val3; 
+					if(sc->data[SC_TELEKINESIS_INTENSE] && s_ele == ELE_GHOST)
+						MATK_ADDRATE(40 * sc->data[SC_TELEKINESIS_INTENSE]->val1); // 40% de dano a cada nível da habilidade
 				}
 				switch(skill_id){
 					case MG_FIREBOLT:
@@ -4525,8 +4525,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		}
 
 		if(tsc && skill_id != PA_SACRIFICE) {
+			if (tsc->data[SC_DARKCROW])
+				ATK_ADDRATE(100 * tsc->data[SC_DARKCROW]->val1); // 100% de dano a cada nível da Habilidade
 			if(tsc->data[SC_DARKCROW] && wd.flag&BF_SHORT)
-				ATK_ADDRATE(30 * tsc->data[SC_DARKCROW]->val1);
+				ATK_ADDRATE(30 * tsc->data[SC_DARKCROW]->val1); // 30% de dano corpo a corpo a cada nível da habilidade
 		}
 
 	#if VERSION == 1

@@ -615,7 +615,7 @@ void initChangeTables(void) {
 	set_sc(WL_MARSHOFABYSS      , SC_MARSHOFABYSS    , SI_MARSHOFABYSS    , SCB_SPEED|SCB_FLEE|SCB_AGI|SCB_DEX );
 	set_sc(WL_RECOGNIZEDSPELL   , SC_RECOGNIZEDSPELL , SI_RECOGNIZEDSPELL , SCB_MATK);
 	set_sc(WL_STASIS            , SC_STASIS          , SI_STASIS          , SCB_NONE);
-	set_sc( WL_TELEKINESIS_INTENSE, SC_TELEKINESIS_INTENSE     , SI_TELEKINESIS_INTENSE , SCB_MATK );
+	set_sc(WL_TELEKINESIS_INTENSE, SC_TELEKINESIS_INTENSE     , SI_TELEKINESIS_INTENSE , SCB_MATK );
 	/**
 	 * Ranger
 	 **/
@@ -8870,7 +8870,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				break;
 			case SC_TELEKINESIS_INTENSE:
 				val2 = 10 * val1;
-				val3 = 40 * val1;
 				break;
 			case SC_OFFERTORIUM:
 				val2 = 30 * val1;
