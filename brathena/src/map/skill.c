@@ -10546,7 +10546,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 						case 2: sx = x - i; break;
 						case 6: sx = x + i; break;
 					}
-					skill_addtimerskill(src,gettick() + (50 * i),0,sx,sy,skill_id,skill_lv,dir,flag&2);
+					skill_addtimerskill(src,gettick() + (150 * i),0,sx,sy,skill_id,skill_lv,dir,flag&2);
 				}
 			}
 			break;
