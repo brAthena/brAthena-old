@@ -987,7 +987,7 @@ void initChangeTables(void) {
 	StatusIconChangeTable[SC_ALL_RIDING] = SI_ALL_RIDING;
 	StatusIconChangeTable[SC_MONSTER_TRANSFORM] = SI_MONSTER_TRANSFORM;
 	StatusIconChangeTable[SC_MOONSTAR] = SI_MOONSTAR;
-	StatusIconChangeTable[SC_SUPER_STAR] = SI_SUPER_STAR;
+	StatusIconChangeTable[SC_DECORATION_OF_MUSIC] = SI_DECORATION_OF_MUSIC;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ATTHASTE_POTION1] = SCB_ASPD;
@@ -1073,6 +1073,7 @@ void initChangeTables(void) {
 
 	StatusChangeFlagTable[SC_MOONSTAR] |= SCB_NONE;
 	StatusChangeFlagTable[SC_SUPER_STAR] |= SCB_NONE;
+	StatusChangeFlagTable[SC_DECORATION_OF_MUSIC] |= SCB_NONE;
 
 	/* StatusDisplayType Table [Ind/Hercules] */
 	StatusDisplayType[SC_ALL_RIDING]		= true;
@@ -1100,6 +1101,7 @@ void initChangeTables(void) {
 	StatusDisplayType[SC_MONSTER_TRANSFORM] 	= true;
 	StatusDisplayType[SC_MOONSTAR]			= true;
 	StatusDisplayType[SC_SUPER_STAR]		= true;
+	StatusDisplayType[SC_DECORATION_OF_MUSIC]		= true;
 
 #ifdef RENEWAL_EDP
 	// renewal EDP increases your weapon atk

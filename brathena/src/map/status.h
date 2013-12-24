@@ -718,6 +718,8 @@ typedef enum sc_type {
     SC_MOONSTAR,
     SC_SUPER_STAR,
 
+    SC_DECORATION_OF_MUSIC,
+
     //homon S
     SC_TINDER_BREAKER,
     SC_TINDER_BREAKER2,
