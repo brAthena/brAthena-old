@@ -105,16 +105,6 @@ char *MSG_CONF_NAME;
 char *LANG_FILENAME;
 char *GRF_PATH_FILENAME;
 
-// DBMap declaration
-static DBMap *id_db=NULL; // int id -> struct block_list*
-static DBMap *pc_db=NULL; // int id -> struct map_session_data*
-static DBMap *mobid_db=NULL; // int id -> struct mob_data*
-static DBMap *bossid_db=NULL; // int id -> struct mob_data* (MVP db)
-static DBMap *map_db=NULL; // unsigned int mapindex -> struct map_data_other_server*
-static DBMap *nick_db=NULL; // int char_id -> struct charid2nick* (requested names of offline characters)
-static DBMap *charid_db=NULL; // int char_id -> struct map_session_data*
-static DBMap *regen_db=NULL; // int id -> struct block_list* (status_natural_heal processing)
-
 static int map_users=0;
 
 // brAthena
@@ -5593,6 +5583,7 @@ int do_init(int argc, char *argv[])
 	do_init_vending();
 
 	npc->event_do_oninit();  // Init npcs (OnInit)
+	npc->market_fromsql(); /* after OnInit */
 
 	if(console) {
 		//##TODO invoke a CONSOLE_START plugin event

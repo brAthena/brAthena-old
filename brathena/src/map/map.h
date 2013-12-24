@@ -24,7 +24,7 @@
 #include "../common/db.h"
 
 #include "../config/core.h"
-
+#include "../common/sql.h"
 #include "atcommand.h"
 
 #include <stdarg.h>
@@ -32,6 +32,16 @@
 struct npc_data;
 struct item_data;
 struct raChSysCh;
+
+DBMap *id_db; // int id -> struct block_list*
+DBMap *pc_db; // int id -> struct map_session_data*
+DBMap *mobid_db; // int id -> struct mob_data*
+DBMap *bossid_db; // int id -> struct mob_data* (MVP db)
+DBMap *map_db; // unsigned int mapindex -> struct map_data_other_server*
+DBMap *nick_db; // int char_id -> struct charid2nick* (requested names of offline characters)
+DBMap *charid_db; // int char_id -> struct map_session_data*
+DBMap *regen_db; // int id -> struct block_list* (status_natural_heal processing)
+
 
 enum E_MAPSERVER_ST
 {
@@ -874,6 +884,7 @@ enum e_mapitflags
 	MAPIT_NORMAL = 0,
 //	MAPIT_PCISPLAYING = 1,// Unneeded as pc_db/id_db will only hold auth'ed, active players.
 };
+
 struct s_mapiterator;
 struct s_mapiterator*   mapit_alloc(enum e_mapitflags flags, enum bl_type types);
 void                    mapit_free(struct s_mapiterator* mapit);

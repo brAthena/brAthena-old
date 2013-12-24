@@ -6548,6 +6548,7 @@ static const struct _battle_data {
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
 	{ "max_atk",                            &battle_config.max_atk,                     INT_MAX,    0,        INT_MAX,      },
 	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,              1,      },
+	{ "oktoberfest_ignorepalette",          &battle_config.oktoberfest_ignorepalette,         0,    0,              1,      },
 	{ "edp_rate",                           &battle_config.edp_rate,                        100,    0,        INT_MAX,      },
 	{ "walk_speed_default",                 &battle_config.walk_speed_default,              150,    0, MAX_WALK_SPEED,      },
 	{ "official_rates",                     &battle_config.official_rates,                    0,    0,        1|2|4|8,      },

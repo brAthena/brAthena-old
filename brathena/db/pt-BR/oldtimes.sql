@@ -3589,6 +3589,13 @@ REPLACE INTO `const_db` VALUES('IOT_NONE','0',0);
 REPLACE INTO `const_db` VALUES('IOT_CHAR','1',0);
 REPLACE INTO `const_db` VALUES('IOT_PARTY','2',0);
 REPLACE INTO `const_db` VALUES('IOT_GUILD','3',0);
+REPLACE INTO `const_db` VALUES('false','0',0);
+REPLACE INTO `const_db` VALUES('true','1',0);
+REPLACE INTO `const_db` VALUES('NST_ZENY','0',0);
+REPLACE INTO `const_db` VALUES('NST_CASH','1',0);
+REPLACE INTO `const_db` VALUES('NST_MARKET','2',0);
+REPLACE INTO `const_db` VALUES('NST_CUSTOM','3',0);
+
 
 --
 -- Estrutura da tabela `castle_db`

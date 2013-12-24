@@ -465,6 +465,7 @@ extern struct Battle_Config {
 	int supports_castle_gvg;
 	int max_atk;
 	int hanbok_ignorepalette;
+	int oktoberfest_ignorepalette;
 	int edp_rate;
 	int walk_speed_default;
 	int official_rates;

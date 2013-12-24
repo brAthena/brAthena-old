@@ -1101,7 +1101,7 @@ void initChangeTables(void) {
 	StatusDisplayType[SC_MONSTER_TRANSFORM] 	= true;
 	StatusDisplayType[SC_MOONSTAR]			= true;
 	StatusDisplayType[SC_SUPER_STAR]		= true;
-	StatusDisplayType[SC_DECORATION_OF_MUSIC]		= true;
+	StatusDisplayType[SC_DECORATION_OF_MUSIC]	= true;
 
 #ifdef RENEWAL_EDP
 	// renewal EDP increases your weapon atk
@@ -6257,6 +6257,8 @@ void status_set_viewdata(struct block_list *bl, int class_)
 							sd->vd.cloth_color = 0;
 						if(sd->sc.option&OPTION_HANBOK && battle_config.hanbok_ignorepalette)
 							sd->vd.cloth_color = 0;
+						if(sd->sc.option&OPTION_OKTOBERFEST && battle_config.oktoberfest_ignorepalette)
+							sd->vd.cloth_color = 0;
 					}
 				} else if(vd)
 					memcpy(&sd->vd, vd, sizeof(struct view_data));
@@ -7696,6 +7698,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_XMAS:
 			case SC_SUMMER:
 			case SC_HANBOK:
+			case SC_OKTOBERFEST:
 				if(!vd) return 0;
 				//Store previous values as they could be removed.
 				unit_stop_attack(bl);
@@ -8899,6 +8902,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_XMAS:
 			case SC_SUMMER:
 			case SC_HANBOK:
+			case SC_OKTOBERFEST:
 				if( !vd ) break;
 				clif_changelook(bl,LOOK_BASE,vd->class_);
 				clif_changelook(bl,LOOK_WEAPON,0);
@@ -9268,6 +9272,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_FUSION:
 			sc->option |= OPTION_FLYING;
+			break;
+		case SC_OKTOBERFEST:
+			sc->option |= OPTION_OKTOBERFEST;
+			opt_flag |= 0x4;
 			break;
 		default:
 			opt_flag = 0;
@@ -10001,6 +10009,10 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			sc->option &= ~OPTION_HANBOK;
 			opt_flag |= 0x4;
 			break;
+		case SC_OKTOBERFEST:
+			sc->option &= ~OPTION_OKTOBERFEST;
+			opt_flag |= 0x4;
+			break;
 		case SC_ORCISH:
 			sc->option &= ~OPTION_ORCISH;
 			break;
@@ -10105,8 +10117,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			opt_flag = 0;
 	}
 
-	if(calc_flag&SCB_DYE) {
-		//Restore DYE color
+	if(calc_flag&SCB_DYE) { //Restore DYE color
 		if(vd && !vd->cloth_color && sce->val4)
 			clif_changelook(bl,LOOK_CLOTHES_COLOR,sce->val4);
 		calc_flag&=~SCB_DYE;
