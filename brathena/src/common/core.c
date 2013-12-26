@@ -289,6 +289,13 @@ static void display_title(void)
 	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"               www.brathena.org                "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
+	if(VERSION == -1)
+		ShowInfo(read_message("Source.common.emulator_mode_ot"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
+	else if(VERSION == 0)
+		ShowInfo(read_message("Source.common.emulator_mode_pre"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
+	else if (VERSION == 1)
+		ShowInfo(read_message("Source.common.emulator_mode_re"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
+	
 	ShowInfo(read_message("Source.common.core_revision"), CL_WHITE, get_svn_revision(), CL_RESET);
 	ShowInfo(read_message("Source.common.client_version1"), CL_RED, CL_RESET, CL_GREEN, PACKETVER, CL_RESET);
 	ShowInfo(read_message("Source.common.client_version2"), CL_RED, CL_RESET);
