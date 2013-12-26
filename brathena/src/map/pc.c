@@ -6820,7 +6820,10 @@ void pc_close_npc(struct map_session_data *sd,int flag) {
  *------------------------------------------*/
 int pc_dead(struct map_session_data *sd,struct block_list *src)
 {
-	int i=0,j=0,l=0;
+	int i=0,j=0;
+#if VERSION == 1
+	int l=0;
+#endif
 	int64 tick = gettick();
 
 	for(j = 0; j < 5; j++)

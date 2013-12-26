@@ -2017,6 +2017,9 @@ int status_get_weapon_atk(struct block_list *src, struct weapon_atk *watk, int f
 int status_get_total_mdef(struct block_list *src);
 int status_get_total_def(struct block_list *src);
 
+unsigned short status_calc_ematk(struct block_list *bl, struct status_change *sc, int matk);
+unsigned short status_calc_matk(struct block_list *bl, struct status_change *sc, int matk, bool viewable);
+
 int status_get_matk(struct block_list *src, int flag);
 
 void read_buffspecial_db(void);

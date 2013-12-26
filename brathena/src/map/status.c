@@ -3049,7 +3049,7 @@ int status_calc_pc_(struct map_session_data *sd, enum e_status_calc_opt opt)
 	// Absolute modifiers from passive skills
 	if((skill_lv=pc_checkskill(sd,TF_MISS))>0)
 #if VERSION == -1
-		status->flee += skill*3;
+		status->flee += skill_lv*3;
 #else
 		status->flee += skill_lv*(sd->class_&JOBL_2 && (sd->class_&MAPID_BASEMASK) == MAPID_THIEF? 4 : 3);
 #endif	
@@ -3500,7 +3500,6 @@ static unsigned short status_calc_int(struct block_list *,struct status_change *
 static unsigned short status_calc_dex(struct block_list *,struct status_change *,int);
 static unsigned short status_calc_luk(struct block_list *,struct status_change *,int);
 static unsigned short status_calc_watk(struct block_list *,struct status_change *,int,bool);
-static unsigned short status_calc_matk(struct block_list *,struct status_change *,int,bool);
 static signed short status_calc_hit(struct block_list *,struct status_change *,int,bool);
 static signed short status_calc_critical(struct block_list *,struct status_change *,int,bool);
 static signed short status_calc_flee(struct block_list *,struct status_change *,int,bool);
@@ -4752,7 +4751,7 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
 
-static unsigned short status_calc_ematk(struct block_list *bl, struct status_change *sc, int matk) {
+unsigned short status_calc_ematk(struct block_list *bl, struct status_change *sc, int matk) {
 #if VERSION == 1
 
 	if(!sc || !sc->count)
@@ -4780,7 +4779,7 @@ static unsigned short status_calc_ematk(struct block_list *bl, struct status_cha
 	return 0;
 #endif
 }
-static unsigned short status_calc_matk(struct block_list *bl, struct status_change *sc, int matk, bool viewable)
+unsigned short status_calc_matk(struct block_list *bl, struct status_change *sc, int matk, bool viewable)
 {
 	if(!sc || !sc->count)
 		return cap_value(matk,0,USHRT_MAX);
