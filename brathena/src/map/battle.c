@@ -2280,10 +2280,10 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					RE_LVL_DMOD(100);
 					break;
 				case LG_RAGEBURST:
-					if( sd && sd->spiritball_old )
-						skillratio += -100 + (sd->spiritball_old * 200);
-					else
-						skillratio += -100 + 15 * 200;
+					if(sc){
+						skillratio += -100 + (status_get_max_hp(src) - status_get_hp(src)) / 100 + sc->fv_counter * 200;
+						clif_millenniumshield(sd, (sc->fv_counter = 0));
+					}
 					RE_LVL_DMOD(100);
 					break;
 				case LG_SHIELDSPELL:// [(Casters Base Level x 4) + (Shield DEF x 10) + (Casters VIT x 2)] %
@@ -2938,8 +2938,10 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		   rnd()%100 < sce->val3)
 			status_heal(src, damage*sce->val4/100, 0, 3);
 
-		if(sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rnd()%100 < sce->val2)
-			pc_addspiritball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
+		if(sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON
+			&& rnd()%100 < sce->val2) && sc->fv_counter <= sce->val3)
+				clif_millenniumshield(sd, sc->fv_counter++);
+
 		if (sc->data[SC_STYLE_CHANGE]) {
                     TBL_HOM *hd = BL_CAST(BL_HOM,bl); //when being hit
                     if (hd && (rnd()%100<(status_get_lv(bl)/2))) homun->addspiritball(hd, 10); //add a sphere

@@ -1169,7 +1169,6 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			//Chance to cause blind status vs demon and undead element, but not against players
 			if(!dstsd && (battle_check_undead(tstatus->race,tstatus->def_ele) || tstatus->race == RC_DEMON))
 				sc_start(bl,SC_BLIND,100,skill_lv,skill_get_time2(skill_id,skill_lv));
-			attack_type |= BF_WEAPON;
 			break;
 
 		case AM_ACIDTERROR:
@@ -6392,6 +6391,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_nodamage(src,bl,skill_id,(skill_id == LG_FORCEOFVANGUARD) ? skill_lv : -1,failure);
 				else if(sd)
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				if(skill_id == LG_FORCEOFVANGUARD)
+					break;
 				map_freeblock_unlock();
 				return 0;
 			}
@@ -13342,13 +13343,6 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
-			break;
-		case LG_RAGEBURST:
-			if(sd->spiritball == 0) {
-				clif_skill_fail(sd,skill_id,USESKILL_FAIL_SKILLINTERVAL,0);
-				return 0;
-			}
-			sd->spiritball_old = require.spiritball = sd->spiritball;
 			break;
 		case LG_RAYOFGENESIS:
 			if(sc && sc->data[SC_INSPIRATION])
