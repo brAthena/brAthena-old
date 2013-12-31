@@ -285,7 +285,7 @@ static void display_title(void)
 	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |_) | |  | | | | |_| | | |  __/ | | | (_| | "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           ("CL_BT_WHITE"                                               "CL_PASS""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2013        "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2014        "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"               www.brathena.org                "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
