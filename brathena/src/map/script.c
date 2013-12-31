@@ -2490,19 +2490,21 @@ TBL_PC *script_rid2sd(struct script_state *st)
 	return sd;
 }
 
-/// Dereferences a variable/constant, replacing it with a copy of the value.
-///
-/// @param st Script state
-/// @param data Variable/constant
-void get_val(struct script_state *st, struct script_data *data)
-{
+/**
+ * Dereferences a variable/constant, replacing it with a copy of the value.
+ *
+ * @param st Script state
+ * @param data Variable/constant
+ * @return pointer to data, for convenience
+ */
+struct script_data *get_val(struct script_state* st, struct script_data* data) {
 	const char *name;
 	char prefix;
 	char postfix;
 	TBL_PC *sd = NULL;
 
 	if(!data_isreference(data))
-		return;// not a variable/constant
+		return data;// not a variable/constant
 
 	name = reference_getname(data);
 	prefix = name[0];
@@ -2524,7 +2526,7 @@ void get_val(struct script_state *st, struct script_data *data)
 				data->type = C_INT;
 				data->u.num = 0;
 			}
-			return;
+			return data;
 		}
 	}
 
@@ -2545,12 +2547,12 @@ void get_val(struct script_state *st, struct script_data *data)
 					data->u.str = pc_readaccountregstr(sd, name);// local
 				break;
 			case '.': {
-					struct DBMap *n =
-							    data->ref      ? *data->ref:
-							    name[1] == '@' ?  st->stack->var_function:// instance/scope variable
-							    st->script->script_vars;// npc variable
+					struct DBMap* n = data->ref ?
+							*data->ref : name[1] == '@' ?
+							st->stack->var_function : // instance/scope variable
+							st->script->script_vars;  // npc variable
 					if(n)
-						data->u.str = (char *)idb_get(n,reference_getuid(data));
+						data->u.str = (char*)idb_get(n,reference_getuid(data));
 					else
 						data->u.str = NULL;
 				}
@@ -2602,10 +2604,10 @@ void get_val(struct script_state *st, struct script_data *data)
 						data->u.num = pc_readaccountreg(sd, name);// local
 					break;
 				case '.': {
-						struct DBMap *n =
-								    data->ref      ? *data->ref:
-								    name[1] == '@' ?  st->stack->var_function:// instance/scope variable
-								    st->script->script_vars;// npc variable
+						struct DBMap* n = data->ref ?
+								*data->ref : name[1] == '@' ?
+								st->stack->var_function : // instance/scope variable
+								st->script->script_vars;  // npc variable
 						if(n)
 							data->u.num = (int)idb_iget(n,reference_getuid(data));
 						else
@@ -2627,7 +2629,7 @@ void get_val(struct script_state *st, struct script_data *data)
 
 	}
 
-	return;
+	return data;
 }
 
 /// Retrieves the value of a reference identified by uid (variable, constant, param)
@@ -5953,7 +5955,6 @@ BUILDIN_FUNC(countitem)
 {
 	int i, count = 0;
 	struct item_data *id = NULL;
-	struct script_data *data;
 
 	TBL_PC *sd = script->rid2sd(st);
 	if(!sd) {
@@ -5961,13 +5962,13 @@ BUILDIN_FUNC(countitem)
 		return 0;
 	}
 
-	data = script_getdata(st,2);
-	script->get_val(st, data);  // convert into value in case of a variable
-
-	if(data_isstring(data)) // item name
-		id = itemdb_searchname(script->conv_str(st, data));
-	else // item id
-		id = itemdb_exists(script->conv_num(st, data));
+	if(script_isstringtype(st, 2)) {
+		// item name
+		id = itemdb_searchname(script_getstr(st, 2));
+	} else {
+		// item id
+		id = itemdb_exists(script_getnum(st, 2));
+	}
 
 	if(id == NULL) {
 		ShowError("buildin_countitem: Invalid item '%s'.\n", script_getstr(st,2));  // returns string, regardless of what it was
@@ -6019,7 +6020,6 @@ BUILDIN_FUNC(checkweight)
 	unsigned int weight=0, i, nbargs;
 	struct item_data* id = NULL;
 	struct map_session_data* sd;
-	struct script_data *data;
 
 	if((sd = script->rid2sd(st) ) == NULL){
 		return 0;
@@ -6032,13 +6032,18 @@ BUILDIN_FUNC(checkweight)
 	}
 	slots = pc_inventoryblank(sd); //nb of empty slot
 
-	for(i=2; i<nbargs; i=i+2) {
-		data = script_getdata(st,i);
-		script->get_val(st, data);  // convert into value in case of a variable
-		if(data_isstring(data)) // item name
-			id = itemdb_searchname(script->conv_str(st, data));
-		else // item id
-			id = itemdb_exists(script->conv_num(st, data));
+	for(i = 2; i < nbargs; i += 2) {
+		if( script_isstringtype(st, i)) {
+			// item name
+			id = itemdb_searchname(script_getstr(st, i));
+		} else if (script_isinttype(st, i)) {
+			// item id
+			id = itemdb_exists(script_getnum(st, i));
+		} else {
+			ShowError("buildin_checkweight: invalid type for argument '%d'.\n", i);
+			script_pushint(st,0);
+			return 1;
+		}
 		if(id == NULL) {
 			ShowError("buildin_checkweight: Invalid item '%s'.\n", script_getstr(st,i));  // returns string, regardless of what it was
 			script_pushint(st,0);
@@ -6203,22 +6208,19 @@ BUILDIN_FUNC(getitem)
 	int nameid,amount,get_count,i,flag = 0, offset = 0;
 	struct item it;
 	TBL_PC *sd;
-	struct script_data *data;
 	struct item_data *item_data;
 
-	data=script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
+	if(script_isstringtype(st, 2)) {
 		// "<item name>"
-		const char *name=script->conv_str(st,data);
+		const char *name = script_getstr(st, 2);
 		if( (item_data = itemdb_searchname(name)) == NULL){
 			ShowError("buildin_%s: Nonexistant item %s requested.\n", script->getfuncname(st), name);
 			return 1; //No item created.
 		}
 		nameid=item_data->nameid;
-	} else if(data_isint(data)) {
+	} else {
 		// <item id>
-		nameid=script->conv_num(st,data);
+		nameid = script_getnum(st, 2);
 		//Violet Box, Blue Box, etc - random item pick
 		if(nameid < 0) {
 			nameid = -nameid;
@@ -6228,9 +6230,6 @@ BUILDIN_FUNC(getitem)
 			ShowError("buildin_%s: Nonexistant item %d requested.\n", script->getfuncname(st), nameid);
 			return 1; //No item created.
 		}
-	} else {
-		ShowError("buildin_%s: invalid data type for argument #1 (%d).", script->getfuncname(st), data->type);
-		return 1;
 	}
 
 	// <amount>
@@ -6295,7 +6294,6 @@ BUILDIN_FUNC(getitem2)
 	int nameid,amount,i,flag = 0, offset = 0;
 	int iden,ref,attr,c1,c2,c3,c4, bound = 0;
 	TBL_PC *sd;
-	struct script_data *data;
 
 	if(!strcmp(script->getfuncname(st),"getitembound2")) {
 		bound = script_getnum(st,11);
@@ -6314,17 +6312,16 @@ BUILDIN_FUNC(getitem2)
 	if(sd == NULL)   // no target
 		return 0;
 
-	data=script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *name=script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 		struct item_data *item_data = itemdb_searchname(name);
 		if(item_data)
 			nameid=item_data->nameid;
 		else
 			nameid=UNKNOWN_ITEM_ID;
-	} else
-		nameid=script->conv_num(st,data);
+	} else {
+		nameid = script_getnum(st, 2);
+	}
 
 	amount=script_getnum(st,3);
 	iden=script_getnum(st,4);
@@ -6403,34 +6400,27 @@ BUILDIN_FUNC(getitem2)
 BUILDIN_FUNC(rentitem)
 {
 	struct map_session_data *sd;
-	struct script_data *data;
 	struct item it;
 	int seconds;
 	int nameid = 0, flag;
 
-	data = script_getdata(st,2);
-	script->get_val(st,data);
-
 	if((sd = script->rid2sd(st)) == NULL)
 		return 0;
 
-	if(data_isstring(data)) {
-		const char *name = script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 		struct item_data *itd = itemdb_searchname(name);
 		if(itd == NULL) {
 			ShowError("buildin_rentitem: Nonexistant item %s requested.\n", name);
 			return 1;
 		}
 		nameid = itd->nameid;
-	} else if(data_isint(data)) {
-		nameid = script->conv_num(st,data);
+	} else {
+		nameid = script_getnum(st, 2);
 		if(nameid <= 0 || !itemdb_exists(nameid)) {
 			ShowError("buildin_rentitem: Nonexistant item %d requested.\n", nameid);
 			return 1;
 		}
-	} else {
-		ShowError("buildin_rentitem: invalid data type for argument #1 (%d).\n", data->type);
-		return 1;
 	}
 
 	seconds = script_getnum(st,3);
@@ -6458,7 +6448,6 @@ BUILDIN_FUNC(getnameditem)
 	int nameid;
 	struct item item_tmp;
 	TBL_PC *sd, *tsd;
-	struct script_data *data;
 
 	sd = script->rid2sd(st);
 	if(sd == NULL) {
@@ -6467,10 +6456,8 @@ BUILDIN_FUNC(getnameditem)
 		return 0;
 	}
 
-	data=script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *name=script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 		struct item_data *item_data = itemdb_searchname(name);
 		if(item_data == NULL) {
 			//Failed
@@ -6478,8 +6465,9 @@ BUILDIN_FUNC(getnameditem)
 			return 0;
 		}
 		nameid = item_data->nameid;
-	} else
-		nameid = script->conv_num(st,data);
+	} else {
+		nameid = script_getnum(st, 2);
+	}
 
 	if(!itemdb_exists(nameid)/* || itemdb_isstackable(nameid)*/) {
 		//Even though named stackable items "could" be risky, they are required for certain quests.
@@ -6487,12 +6475,10 @@ BUILDIN_FUNC(getnameditem)
 		return 0;
 	}
 
-	data=script_getdata(st,3);
-	script->get_val(st,data);
-	if(data_isstring(data))      //Char Name
-		tsd=map_nick2sd(script->conv_str(st,data));
-	else    //Char Id was given
-		tsd=map_charid2sd(script->conv_num(st,data));
+	if( script_isstringtype(st, 3) ) //Char Name
+		tsd=map_nick2sd(script_getstr(st, 3));
+	else //Char Id was given
+		tsd=map_charid2sd(script_getnum(st, 3));
 
 	if(tsd == NULL) {
 		//Failed
@@ -6538,29 +6524,25 @@ BUILDIN_FUNC(makeitem)
 	int x,y,m;
 	const char *mapname;
 	struct item item_tmp;
-	struct script_data *data;
 	struct item_data *item_data;
 
-	data=script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *name=script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 		if((item_data = itemdb_searchname(name)))
 			nameid=item_data->nameid;
 		else
 			nameid=UNKNOWN_ITEM_ID;
 	} else {
-		nameid=script->conv_num(st,data);
+		nameid = script_getnum(st, 2);
 		if(nameid <= 0 || !(item_data = itemdb_exists(nameid))) {
 			ShowError("makeitem: Nonexistant item %d requested.\n", nameid);
 			return 1; //No item created.
 		}
 	}
-
-	amount=script_getnum(st,3);
-	mapname =script_getstr(st,4);
-	x   =script_getnum(st,5);
-	y   =script_getnum(st,6);
+	amount  = script_getnum(st,3);
+	mapname = script_getstr(st,4);
+	x       = script_getnum(st,5);
+	y       = script_getnum(st,6);
 
 	if(strcmp(mapname,"this")==0) {
 		TBL_PC *sd;
@@ -6724,7 +6706,6 @@ BUILDIN_FUNC(delitem)
 {
 	TBL_PC *sd;
 	struct item it;
-	struct script_data *data;
 
 	if(script_hasdata(st,4)) {
 		int account_id = script_getnum(st,4);
@@ -6740,10 +6721,8 @@ BUILDIN_FUNC(delitem)
 			return 0;
 	}
 
-	data = script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *item_name = script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char* item_name = script_getstr(st, 2);
 		struct item_data *id = itemdb_searchname(item_name);
 		if(id == NULL) {
 			ShowError("script:delitem: unknown item \"%s\".\n", item_name);
@@ -6752,7 +6731,7 @@ BUILDIN_FUNC(delitem)
 		}
 		it.nameid = id->nameid;// "<item name>"
 	} else {
-		it.nameid = script->conv_num(st,data);// <item id>
+		it.nameid = script_getnum(st, 2);// <item id>
 		if(!itemdb_exists(it.nameid)) {
 			ShowError("script:delitem: unknown item \"%d\".\n", it.nameid);
 			st->state = END;
@@ -6785,7 +6764,6 @@ BUILDIN_FUNC(delitem2)
 {
 	TBL_PC *sd;
 	struct item it;
-	struct script_data *data;
 
 	if(script_hasdata(st,11)) {
 		int account_id = script_getnum(st,11);
@@ -6801,10 +6779,8 @@ BUILDIN_FUNC(delitem2)
 			return 0;
 	}
 
-	data = script_getdata(st,2);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *item_name = script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char* item_name = script_getstr(st, 2);
 		struct item_data *id = itemdb_searchname(item_name);
 		if(id == NULL) {
 			ShowError("script:delitem2: unknown item \"%s\".\n", item_name);
@@ -6813,7 +6789,7 @@ BUILDIN_FUNC(delitem2)
 		}
 		it.nameid = id->nameid;// "<item name>"
 	} else {
-		it.nameid = script->conv_num(st,data);// <item id>
+		it.nameid = script_getnum(st, 2);// <item id>
 		if(!itemdb_exists(it.nameid)) {
 			ShowError("script:delitem: unknown item \"%d\".\n", it.nameid);
 			st->state = END;
@@ -7727,13 +7703,17 @@ BUILDIN_FUNC(bonus)
 		case SP_FIXCASTRATE:
 		case SP_SKILL_USE_SP:
 			// estes bonus suportam nomes de habilidades
-			val1 = (script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
-			break;
+			if (script_isstringtype(st, 3)) {
+				val1 = skill_name2id(script_getstr(st, 3));
+				break;
+			}
 		case SP_ADD_DAMAGE_CLASS:
   		case SP_ADD_MAGIC_DAMAGE_CLASS:
    			// estes bonus suportam nome de monstros
-   			val1 = (script_isstring(st,3) ? mobdb_searchname(script_getstr(st,3)) : script_getnum(st,3));
-   			break;
+			if (script_isstringtype(st, 3)) {
+				val1 = mobdb_searchname(script_getstr(st, 3));
+				break;
+			}
 		default:
 			val1 = script_getnum(st,3);
 			break;
@@ -7753,7 +7733,7 @@ BUILDIN_FUNC(bonus)
 			pc_bonus3(sd, type, val1, val2, val3);
 			break;
 		case 4:
-			if(type == SP_AUTOSPELL_ONSKILL && script_isstring(st,4))
+			if(type == SP_AUTOSPELL_ONSKILL && script_isstringtype(st,4))
 				val2 = skill_name2id(script_getstr(st,4)); // 2nd value can be skill name
 			else
 				val2 = script_getnum(st,4);
@@ -7763,7 +7743,7 @@ BUILDIN_FUNC(bonus)
 			pc_bonus4(sd, type, val1, val2, val3, val4);
 			break;
 		case 5:
-			if(type == SP_AUTOSPELL_ONSKILL && script_isstring(st,4))
+			if(type == SP_AUTOSPELL_ONSKILL && script_isstringtype(st,4))
 				val2 = skill_name2id(script_getstr(st,4)); // 2nd value can be skill name
 			else
 				val2 = script_getnum(st,4);
@@ -7869,7 +7849,7 @@ BUILDIN_FUNC(autobonus3)
 
 	rate = script_getnum(st,3);
 	dur = script_getnum(st,4);
-	atk_type = (script_isstring(st,5) ? skill_name2id(script_getstr(st,5)) : script_getnum(st,5));
+	atk_type = (script_isstringtype(st,5) ? skill_name2id(script_getstr(st,5)) : script_getnum(st,5));
 	bonus_script = script_getstr(st,2);
 	if(!rate || !dur || !atk_type || !bonus_script)
 		return 0;
@@ -7908,7 +7888,7 @@ BUILDIN_FUNC(skill)
 	if(sd == NULL)
 		return 0;// no player attached, report source
 
-	id = (script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	level = script_getnum(st,3);
 	if(script_hasdata(st,4))
 		flag = script_getnum(st,4);
@@ -7937,7 +7917,7 @@ BUILDIN_FUNC(addtoskill)
 	if(sd == NULL)
 		return 0;// no player attached, report source
 
-	id = (script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	level = script_getnum(st,3);
 	if(script_hasdata(st,4))
 		flag = script_getnum(st,4);
@@ -7961,7 +7941,7 @@ BUILDIN_FUNC(guildskill)
 	if(sd == NULL)
 		return 0;// no player attached, report source
 
-	id = (script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	level = script_getnum(st,3);
 	for(i=0; i < level; i++)
 		guild_skillup(sd, id);
@@ -7982,7 +7962,7 @@ BUILDIN_FUNC(getskilllv)
 	if(sd == NULL)
 		return 0;// no player attached, report source
 
-	id = (script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	script_pushint(st, pc_checkskill(sd,id));
 
 	return 0;
@@ -7999,7 +7979,7 @@ BUILDIN_FUNC(getgdskilllv)
 	struct guild *g;
 
 	guild_id = script_getnum(st,2);
-	skill_id = (script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
+	skill_id = (script_isstringtype(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
 	g = guild_search(guild_id);
 	if(g == NULL)
 		script_pushint(st, -1);
@@ -8526,7 +8506,7 @@ BUILDIN_FUNC(itemskill)
 	if(sd == NULL || sd->ud.skilltimer != INVALID_TIMER)
 		return 0;
 
-	id = (script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	lv = script_getnum(st,3);
 
 #if 0
@@ -9106,7 +9086,7 @@ BUILDIN_FUNC(initnpctimer)
 		//Check if argument is numeric (flag) or string (npc name)
 		struct script_data *data;
 		data = script_getdata(st,2);
-		script->get_val(st,data);
+		script->get_val(st,data); // dereference if it's a variable
 		if(data_isstring(data))   //NPC name
 			nd = npc->name2id(script->conv_str(st, data));
 		else if(data_isint(data)) { //Flag
@@ -9591,7 +9571,6 @@ BUILDIN_FUNC(getareadropitem)
 	const char *str;
 	int16 m,x0,y0,x1,y1;
 	int item,amount=0;
-	struct script_data *data;
 
 	str=script_getstr(st,2);
 	x0=script_getnum(st,3);
@@ -9599,16 +9578,15 @@ BUILDIN_FUNC(getareadropitem)
 	x1=script_getnum(st,5);
 	y1=script_getnum(st,6);
 
-	data=script_getdata(st,7);
-	script->get_val(st,data);
-	if(data_isstring(data)) {
-		const char *name=script->conv_str(st,data);
+	if(script_isstringtype(st, 7)) {
+		const char *name = script_getstr(st, 7);
 		struct item_data *item_data = itemdb_searchname(name);
 		item=UNKNOWN_ITEM_ID;
 		if(item_data)
 			item=item_data->nameid;
-	} else
-		item=script->conv_num(st,data);
+	} else {
+		item=script_getnum(st, 7);
+	}
 
 	if((m=map_mapname2mapid(str))< 0) {
 		script_pushint(st,-1);
@@ -10585,21 +10563,21 @@ BUILDIN_FUNC(setmapflag)
 {
 	int16 m,i;
 	const char *str, *val2 = NULL;
-	struct script_data* data;
 	int val=0;
 
 	str=script_getstr(st,2);
-	i=script_getnum(st,3);
-	if(script_hasdata(st,4)) {
-		data = script_getdata(st,4);
-		script->get_val(st, data);
-		
-		
-		if( data_isstring(data) )
-			val2 = script_getstr(st, 4);
-		else
-			val = script_getnum(st, 4);
 
+	i = script_getnum(st,3);
+
+	if (script_hasdata(st,4)) {
+		if (script_isstringtype(st, 4)) {
+			val2 = script_getstr(st, 4);
+		} else if (script_isinttype(st, 4)) {
+			val = script_getnum(st, 4);
+		} else {
+			ShowError("buildin_setmapflag: invalid data type for argument 3.\n");
+			return 1;
+		}
 	}
 	m = map_mapname2mapid(str);
 
@@ -11584,16 +11562,15 @@ BUILDIN_FUNC(strmobinfo)
  *------------------------------------------*/
 BUILDIN_FUNC(guardian)
 {
-	int class_=0,x=0,y=0,guardian=0;
-	const char *str,*map,*evt="";
-	struct script_data *data;
+	int class_ = 0, x = 0, y = 0, guardian = 0;
+	const char *str, *mapname, *evt="";
 	bool has_index = false;
 
-	map   =script_getstr(st,2);
-	x     =script_getnum(st,3);
-	y     =script_getnum(st,4);
-	str   =script_getstr(st,5);
-	class_=script_getnum(st,6);
+	mapname = script_getstr(st,2);
+	x       = script_getnum(st,3);
+	y       = script_getnum(st,4);
+	str     = script_getstr(st,5);
+	class_  = script_getnum(st,6);
 
 	if(script_hasdata(st,8)) {
 		// "<event label>",<guardian index>
@@ -11601,8 +11578,8 @@ BUILDIN_FUNC(guardian)
 		guardian=script_getnum(st,8);
 		has_index = true;
 	} else if(script_hasdata(st,7)) {
-		data=script_getdata(st,7);
-		script->get_val(st,data);
+		struct script_data *data = script_getdata(st,7);
+		script->get_val(st,data); // Dereference if it's a variable
 		if(data_isstring(data)) {
 			// "<event label>"
 			evt=script_getstr(st,7);
@@ -11618,7 +11595,7 @@ BUILDIN_FUNC(guardian)
 	}
 
 	script->check_event(st, evt);
-	script_pushint(st, mob_spawn_guardian(map,x,y,str,class_,evt,guardian,has_index));
+	script_pushint(st, mob_spawn_guardian(mapname, x, y, str, class_, evt, guardian, has_index));
 
 	return 0;
 }
@@ -11698,18 +11675,15 @@ BUILDIN_FUNC(getitemname)
 	int item_id=0;
 	struct item_data *i_data;
 	char *item_name;
-	struct script_data *data;
 
-	data=script_getdata(st,2);
-	script->get_val(st,data);
-
-	if(data_isstring(data)) {
-		const char *name=script->conv_str(st,data);
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 		struct item_data *item_data = itemdb_searchname(name);
 		if(item_data)
 			item_id=item_data->nameid;
-	} else
-		item_id=script->conv_num(st,data);
+	} else {
+		item_id = script_getnum(st, 2);
+	}
 
 	i_data = itemdb_exists(item_id);
 	if(i_data == NULL) {
@@ -12302,7 +12276,7 @@ BUILDIN_FUNC(petskillattack)
 	if(pd->a_skill == NULL)
 		pd->a_skill = (struct pet_skill_attack *)aMalloc(sizeof(struct pet_skill_attack));
 
-	pd->a_skill->id=(script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	pd->a_skill->id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	pd->a_skill->lv=script_getnum(st,3);
 	pd->a_skill->div_ = 0;
 	pd->a_skill->rate=script_getnum(st,4);
@@ -12328,7 +12302,7 @@ BUILDIN_FUNC(petskillattack2)
 	if(pd->a_skill == NULL)
 		pd->a_skill = (struct pet_skill_attack *)aMalloc(sizeof(struct pet_skill_attack));
 
-	pd->a_skill->id=(script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	pd->a_skill->id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	pd->a_skill->lv=script_getnum(st,3);
 	pd->a_skill->div_ = script_getnum(st,4);
 	pd->a_skill->rate=script_getnum(st,5);
@@ -12362,7 +12336,7 @@ BUILDIN_FUNC(petskillsupport)
 	} else //init memory
 		pd->s_skill = (struct pet_skill_support *) aMalloc(sizeof(struct pet_skill_support));
 
-	pd->s_skill->id=(script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	pd->s_skill->id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	pd->s_skill->lv=script_getnum(st,3);
 	pd->s_skill->delay=script_getnum(st,4);
 	pd->s_skill->hp=script_getnum(st,5);
@@ -12386,7 +12360,7 @@ BUILDIN_FUNC(skilleffect)
 {
 	TBL_PC *sd;
 
-	uint16 skill_id=(script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	uint16 skill_id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	uint16 skill_lv=script_getnum(st,3);
 	sd=script->rid2sd(st);
 
@@ -12404,7 +12378,7 @@ BUILDIN_FUNC(npcskilleffect)
 {
 	struct block_list *bl= map_id2bl(st->oid);
 
-	uint16 skill_id=(script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
+	uint16 skill_id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	uint16 skill_lv=script_getnum(st,3);
 	int x=script_getnum(st,4);
 	int y=script_getnum(st,5);
@@ -12963,18 +12937,18 @@ BUILDIN_FUNC(getlook)
 	sd=script->rid2sd(st);
 
 	type=script_getnum(st,2);
-	val=-1;
+	val = -1;
 	switch(type) {
-		case LOOK_HAIR: 	 val=sd->status.hair; break; //1
-		case LOOK_WEAPON: 	 val=sd->status.weapon; break; //2
-		case LOOK_HEAD_BOTTOM: 	 val=sd->status.head_bottom; break; //3
-		case LOOK_HEAD_TOP: 	 val=sd->status.head_top; break; //4
-		case LOOK_HEAD_MID: 	 val=sd->status.head_mid; break; //5
-		case LOOK_HAIR_COLOR: 	 val=sd->status.hair_color; break; //6
-		case LOOK_CLOTHES_COLOR: val=sd->status.clothes_color; break; //7
-		case LOOK_SHIELD: 	 val=sd->status.shield; break; //8
-		case LOOK_SHOES: break; //9
-		case LOOK_ROBE:		 val=sd->status.robe; break; //12
+		case LOOK_HAIR:          val = sd->status.hair;          break; //1
+		case LOOK_WEAPON:        val = sd->status.weapon;        break; //2
+		case LOOK_HEAD_BOTTOM:   val = sd->status.head_bottom;   break; //3
+		case LOOK_HEAD_TOP:      val = sd->status.head_top;      break; //4
+		case LOOK_HEAD_MID:      val = sd->status.head_mid;      break; //5
+		case LOOK_HAIR_COLOR:    val = sd->status.hair_color;    break; //6
+		case LOOK_CLOTHES_COLOR: val = sd->status.clothes_color; break; //7
+		case LOOK_SHIELD:        val = sd->status.shield;        break; //8
+		case LOOK_SHOES:                                         break; //9
+		case LOOK_ROBE:          val = sd->status.robe;          break; //12
 	}
 
 	script_pushint(st,val);
@@ -14203,9 +14177,9 @@ BUILDIN_FUNC(replacestr)
 	}
 
 	if(script_hasdata(st, 5)) {
-		if(!script_isstring(st,5))
+		if(script_isinttype(st,5)) {
 			usecase = script_getnum(st, 5) != 0;
-		else {
+		} else {
 			ShowError("script:replacestr: Invalid usecase value. Expected int got string\n");
 			st->state = END;
 			return 1;
@@ -14213,9 +14187,8 @@ BUILDIN_FUNC(replacestr)
 	}
 
 	if(script_hasdata(st, 6)) {
-		count = script_getnum(st, 6);
-		if(count == 0) {
-			ShowError("script:replacestr: Invalid count value. Expected int got string\n");
+		if (!script_isinttype(st, 5) || (count = script_getnum(st, 6) == 0)) {
+			ShowError("script:replacestr: Invalid count value. Expected int.\n");
 			st->state = END;
 			return 1;
 		}
@@ -14284,10 +14257,10 @@ BUILDIN_FUNC(countstr)
 	}
 
 	if(script_hasdata(st, 4)) {
-		if(!script_isstring(st,4))
+		if(script_isinttype(st,4))
 			usecase = script_getnum(st, 4) != 0;
 		else {
-			ShowError("script:countstr: Invalid usecase value. Expected int got string\n");
+			ShowError("script:countstr: Invalid usecase value. Expected int.\n");
 			st->state = END;
 			return 1;
 		}
@@ -14329,27 +14302,19 @@ BUILDIN_FUNC(setnpcdisplay)
 	const char *name;
 	const char *newname = NULL;
 	int class_ = -1, size = -1;
-	struct script_data *data;
 	struct npc_data *nd;
 
 	name = script_getstr(st,2);
-	data = script_getdata(st,3);
 
 	if(script_hasdata(st,4))
 		class_ = script_getnum(st,4);
 	if(script_hasdata(st,5))
 		size = script_getnum(st,5);
 
-	script->get_val(st, data);
-	if(data_isstring(data))
-		newname = script->conv_str(st,data);
-	else if(data_isint(data))
-		class_ = script->conv_num(st,data);
-	else {
-		ShowError("script:setnpcdisplay: expected string or number\n");
-		script->reportdata(data);
-		return 1;
-	}
+	if(script_isstringtype(st, 3))
+		newname = script_getstr(st, 3);
+	else
+		class_ = script_getnum(st, 3);
 
 	nd = npc->name2id(name);
 	if(nd == NULL) {
@@ -14882,7 +14847,7 @@ BUILDIN_FUNC(addmonsterdrop)
 		monster = mob_db(script_getnum(st,2));
 
 	if( monster == mob_dummy) {
-		if( script_isstring(st,2) ) {
+		if(script_isstringtype(st,2)) {
 			ShowError("buildin_addmonsterdrop: invalid mob name: '%s'.\n", script_getstr(st,2));
 		} else {
 			ShowError("buildin_addmonsterdrop: invalid mob id: '%d'.\n", script_getnum(st,2));
@@ -14937,13 +14902,13 @@ BUILDIN_FUNC(delmonsterdrop)
 	struct mob_db *monster;
 	int item_id, i;
 
-	if( script_isstring(st,2) )
+	if( script_isstringtype(st,2) )
 		monster = mob_db(mobdb_searchname(script_getstr(st,2)));
 	else
 		monster = mob_db(script_getnum(st,2));
 
 	if(monster == mob_dummy ) {
-		if( script_isstring(st,2) ) {
+		if( script_isstringtype(st,2) ) {
 			ShowError("buildin_delmonsterdrop: invalid mob name: '%s'.\n", script_getstr(st,2));
 		} else {
 			ShowError("buildin_delmonsterdrop: invalid mob id: '%d'.\n", script_getnum(st,2));
@@ -15354,7 +15319,6 @@ BUILDIN_FUNC(unitattack)
 {
 	struct block_list *unit_bl;
 	struct block_list *target_bl = NULL;
-	struct script_data *data;
 	int actiontype = 0;
 
 	// get unit
@@ -15364,14 +15328,12 @@ BUILDIN_FUNC(unitattack)
 		return 0;
 	}
 
-	data = script_getdata(st, 3);
-	script->get_val(st, data);
-	if(data_isstring(data)) {
-		TBL_PC *sd = map_nick2sd(script->conv_str(st, data));
+	if(script_isstringtype(st, 3)) {
+		TBL_PC* sd = map_nick2sd(script_getstr(st, 3));
 		if(sd != NULL)
 			target_bl = &sd->bl;
 	} else
-		target_bl = map_id2bl(script->conv_num(st, data));
+		target_bl = map_id2bl(script_getnum(st, 3));
 	// request the attack
 	if(target_bl == NULL) {
 		script_pushint(st, 0);
@@ -15483,7 +15445,7 @@ BUILDIN_FUNC(unitskilluseid)
 	struct block_list *bl;
 
 	unit_id  = script_getnum(st,2);
-	skill_id = (script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
+	skill_id = ( script_isstringtype(st, 3) ? skill_name2id(script_getstr(st, 3)) : script_getnum(st, 3) );
 	skill_lv = script_getnum(st,4);
 	target_id = (script_hasdata(st,5) ? script_getnum(st,5) : unit_id);
 
@@ -15517,7 +15479,7 @@ BUILDIN_FUNC(unitskillusepos)
 	struct block_list *bl;
 
 	unit_id  = script_getnum(st,2);
-	skill_id = (script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
+	skill_id = ( script_isstringtype(st, 3) ? skill_name2id(script_getstr(st, 3)) : script_getnum(st, 3) );
 	skill_lv = script_getnum(st,4);
 	skill_x  = script_getnum(st,5);
 	skill_y  = script_getnum(st,6);
@@ -16846,7 +16808,7 @@ BUILDIN_FUNC(areamobuseskill)
 	center.y = script_getnum(st,4);
 	range = script_getnum(st,5);
 	mobid = script_getnum(st,6);
-	skill_id = (script_isstring(st,7) ? skill_name2id(script_getstr(st,7)) : script_getnum(st,7));
+	skill_id = (script_isstringtype(st,7) ? skill_name2id(script_getstr(st,7)) : script_getnum(st, 7));
 	skill_lv = script_getnum(st,8);
 	casttime = script_getnum(st,9);
 	cancel = script_getnum(st,10);
@@ -17119,15 +17081,15 @@ BUILDIN_FUNC(getcharip)
 
 	/* check if a character name is specified */
 	if(script_hasdata(st, 2)) {
-		if(script_isstring(st, 2))
+		if(script_isstringtype(st, 2)) {
 			sd = map_nick2sd(script_getstr(st, 2));
-		else if(script_isint(st, 2) || script_getnum(st, 2)) {
-			int id;
-			id = script_getnum(st, 2);
+		} else {
+			int id = script_getnum(st, 2);
 			sd = (map_id2sd(id) ? map_id2sd(id) : map_charid2sd(id));
 		}
-	} else
+	} else {
 		sd = script->rid2sd(st);
+	}
 
 	/* check for sd and IP */
 	if(!sd || !session[sd->fd]->client_addr) {
@@ -17555,7 +17517,7 @@ BUILDIN_FUNC(npcskill)
 	struct npc_data *nd;
 	struct map_session_data *sd;
 
-	skill_id    = script_isstring(st, 2) ? skill_name2id(script_getstr(st, 2)) : script_getnum(st, 2);
+	skill_id    = script_isstringtype(st, 2) ? skill_name2id(script_getstr(st, 2)) : script_getnum(st, 2);
 	skill_level = script_getnum(st, 3);
 	stat_point  = script_getnum(st, 4);
 	npc_level   = script_getnum(st, 5);
@@ -17600,32 +17562,25 @@ BUILDIN_FUNC(consumeitem)
 {
 	TBL_NPC *nd;
 	TBL_PC *sd;
-	struct script_data *data;
 	struct item_data *item_data;
 
 	nullpo_retr(1, (sd = script->rid2sd(st)));
 	nullpo_retr(1, (nd = (TBL_NPC *)map_id2bl(sd->npc_id)));
 
-	data = script_getdata(st, 2);
-	script->get_val(st, data);
-
-	if(data_isstring(data)){
-		const char *name = script->conv_str( st, data );
+	if(script_isstringtype(st, 2)) {
+		const char *name = script_getstr(st, 2);
 
 		if((item_data = itemdb_searchname(name)) == NULL){
 			ShowError( "buildin_consumeitem: Nonexistant item %s requested.\n", name );
 			return 1;
 		}
-	}else if(data_isint(data)){
-		int nameid = script->conv_num(st, data);
+	} else {
+		int nameid = script_getnum(st, 2);
 
 		if((item_data = itemdb_exists(nameid)) == NULL){
 			ShowError("buildin_consumeitem: Nonexistant item %d requested.\n", nameid );
 			return 1;
 		}
-	}else{
-		ShowError("buildin_consumeitem: invalid data type for argument #1 (%d).", data->type );
-		return 1;
 	}
 
 	script->run(item_data->script, 0, sd->bl.id, nd->bl.id);
@@ -17668,23 +17623,23 @@ BUILDIN_FUNC(montransform) {
 	if((bl = map_id2bl(st->rid)) == NULL)
 		return 0;
 
-	if(script_isstring(st, 2))
+	if(script_isstringtype(st, 2))
 		mob_id = mobdb_searchname(script_getstr(st, 2));
 	else{
 		mob_id = mobdb_checkid(script_getnum(st, 2));
 	}
 
-	tick = script_getnum(st, 3);
-	type = (sc_type)script_getnum(st, 4);
-	val1 = val2 = val3 = val4 = 0;
-
 	if(mob_id == 0) {
-		if(script_isstring(st,2))
+		if(script_isstringtype(st, 2))
 			ShowWarning("buildin_montransform: Attempted to use non-existing monster '%s'.\n", script_getstr(st, 2));
 		 else
 			ShowWarning("buildin_montransform: Attempted to use non-existing monster of ID '%d'.\n", script_getnum(st, 2));
 		return 1;
 	}
+
+	tick = script_getnum(st, 3);
+	type = (sc_type)script_getnum(st, 4);
+	val1 = val2 = val3 = val4 = 0;
 
 	if(!(type > SC_NONE && type < SC_MAX)) {
 		ShowWarning("buildin_montransform: Unsupported status change id %d\n", type);
@@ -18871,7 +18826,7 @@ void script_parse_builtin(void) {
 	BUILDIN_DEF(sc_end,"i?"),
 	BUILDIN_DEF(getstatus, "i?"),
 	BUILDIN_DEF(getscrate,"ii?"),
-	BUILDIN_DEF(debugmes,"s"),
+	BUILDIN_DEF(debugmes,"v"),
 	BUILDIN_DEF2(catchpet,"pet","i"),
 	BUILDIN_DEF2(birthpet,"bpet",""),
 	BUILDIN_DEF(resetlvl,"i"),

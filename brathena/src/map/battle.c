@@ -2939,7 +2939,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			status_heal(src, damage*sce->val4/100, 0, 3);
 
 		if(sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON
-			&& rnd()%100 < sce->val2) && sc->fv_counter <= sce->val3)
+			&& rnd()%100 < sce->val2 && sc->fv_counter <= sce->val3)
 				clif_millenniumshield(sd, sc->fv_counter++);
 
 		if (sc->data[SC_STYLE_CHANGE]) {
