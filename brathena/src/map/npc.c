@@ -1423,9 +1423,11 @@ void npc_market_fromsql(void) {
 
 		if(!(nd = npc->name2id(name))) {
 			ShowError("npc_market_fromsql: NPC '%s' not found! skipping...\n",name);
+			npc->market_delfromsql_sub(name, USHRT_MAX);
 			continue;
 		} else if (nd->subtype != SCRIPT || !nd->u.scr.shop || !nd->u.scr.shop->items || nd->u.scr.shop->type != NST_MARKET) {
 			ShowError("npc_market_fromsql: NPC '%s' is not proper for market, skipping...\n",name);
+			npc->market_delfromsql_sub(name, USHRT_MAX);
 			continue;
 		}
 
@@ -1438,9 +1440,7 @@ void npc_market_fromsql(void) {
 
 		if( i == nd->u.scr.shop->items ) {
 			ShowError("npc_market_fromsql: NPC '%s' does not sell item %d (qty %d), deleting...\n",name,itemid,amount);
-			/* TODO inter-server.conf npc_market_data */
-			if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s' AND `itemid`='%d' LIMIT 1", name,itemid))
-				Sql_ShowDebug(mmysql_handle);
+			npc->market_delfromsql_sub(name, itemid);
 			continue;
 		}
 		
@@ -1458,16 +1458,22 @@ void npc_market_tosql(struct npc_data *nd, unsigned short index) {
 }
 /**
  * Removes persistent NPC Market Data from SQL
- **/
-void npc_market_delfromsql(struct npc_data *nd, unsigned short index) {
+ */
+void npc_market_delfromsql_sub(const char *npcname, unsigned short index) {
 	/* TODO inter-server.conf npc_market_data */
 	if(index == USHRT_MAX) {
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s'", nd->exname) )
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s'", npcname) )
 			Sql_ShowDebug(mmysql_handle);
 	} else {
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s' AND `itemid`='%d' LIMIT 1", nd->exname, nd->u.scr.shop->item[index].nameid))
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s' AND `itemid`='%d' LIMIT 1", npcname, index))
 			Sql_ShowDebug(mmysql_handle);
 	}
+}
+/**
+ * Removes persistent NPC Market Data from SQL
+ **/
+void npc_market_delfromsql(struct npc_data *nd, unsigned short index) {
+	npc->market_delfromsql_sub(nd->exname, index == USHRT_MAX ? index : nd->u.scr.shop->item[index].nameid);
 }
 /**
  * Judges whether to allow and spawn a trader's window.
@@ -4587,4 +4593,5 @@ void npc_defaults(void) {
 	npc->market_fromsql = npc_market_fromsql;
 	npc->market_tosql = npc_market_tosql;
 	npc->market_delfromsql = npc_market_delfromsql;
+	npc->market_delfromsql_sub = npc_market_delfromsql_sub;
 }

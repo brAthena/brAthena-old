@@ -2686,7 +2686,11 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,1,WL_CHAINLIGHTNING,-2,6);
 			break;
 		case LG_OVERBRAND_BRANDISH:
+		case LG_OVERBRAND:
+			dmg.amotion = status_get_amotion(src) * 2;
 		case LG_OVERBRAND_PLUSATK:
+			dmg.dmotion = clif_skill_damage(dsrc,bl,tick,status_get_amotion(src),dmg.dmotion,damage,dmg.div_,skill_id,-1,5);
+			break;
 		case EL_FIRE_BOMB:
 		case EL_FIRE_BOMB_ATK:
 		case EL_FIRE_WAVE:
@@ -2882,7 +2886,6 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 			case MG_FIREWALL:
 			case PR_SANCTUARY:
 			case SC_TRIANGLESHOT:
-			case LG_OVERBRAND:
 			case SR_KNUCKLEARROW:
 			case GN_WALLOFTHORN:
 			case EL_FIRE_MANTLE:
@@ -2904,15 +2907,9 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 
 		//blown-specific handling
 		switch(skill_id) {
-			case LG_OVERBRAND:
-				if(skill_blown(dsrc,bl,dmg.blewcount,dir,0)) {
-					short dir_x, dir_y;
-					dir_x = dirx[(dir+4)%8];
-					dir_y = diry[(dir+4)%8];
-					if(map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS) != 0)
-						skill_addtimerskill(src, tick + status_get_amotion(src), bl->id, 0, 0, LG_OVERBRAND_PLUSATK, skill_lv, BF_WEAPON, flag);
-				} else
-					skill_addtimerskill(src, tick + status_get_amotion(src), bl->id, 0, 0, LG_OVERBRAND_PLUSATK, skill_lv, BF_WEAPON, flag);
+			case LG_OVERBRAND_BRANDISH:
+				if(skill_blown(dsrc,bl,dmg.blewcount,dir,0) < dmg.blewcount ) 
+					skill_addtimerskill(src, tick + status_get_amotion(src), bl->id, 0, 0, LG_OVERBRAND_PLUSATK, skill_lv, BF_WEAPON, flag|SD_ANIMATION);
 				break;
 			case SR_KNUCKLEARROW:
 				if(skill_blown(dsrc,bl,dmg.blewcount,dir,0) && !(flag&4)) {
@@ -3467,13 +3464,6 @@ static int skill_timerskill(int tid, int64 tick, int id, intptr_t data)
 						}
 					}
 					break;
-				case LG_OVERBRAND_BRANDISH:
-				case LG_OVERBRAND_PLUSATK:
-					if(status_check_skilluse(src, target, skl->skill_id, 1) )
-						skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
-					else
-						clif_skill_damage(src, target, tick, status_get_amotion(src), status_get_dmotion(target), 0, 1, skl->skill_id, skl->skill_lv, skill_get_hit(skl->skill_id));
-					break;
 				case SR_KNUCKLEARROW:
 					skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
 					break;
@@ -3532,10 +3522,22 @@ static int skill_timerskill(int tid, int64 tick, int id, intptr_t data)
 						int dummy = 1, i = skill_get_unit_range(skl->skill_id,skl->skill_lv);
 						map_foreachinarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
 					}
+				// fall through ...
 				case WL_EARTHSTRAIN:
 					skill_unitsetting(src,skl->skill_id,skl->skill_lv,skl->x,skl->y,(skl->type<<16)|skl->flag);
 					break;
-
+				case LG_OVERBRAND_BRANDISH:
+					{
+						short x2 = src->x, y2 = src->y, x = x2, y = y2;
+						switch(skl->type){								
+							case 0: case 1: case 7: x2 += 4; x -= 4; y2 += 4; break;
+							case 3: case 4: case 5: x2 += 4; x -= 4; y -= 4; break;
+							case 2: y2 += 4; y -= 4; x -= 4; break;
+							case 6: y2 += 4; y -= 4; x2 += 4; break;
+						}
+						map_foreachinarea(skill_area_sub, src->m, x, y, x2, y2, BL_CHAR, src, skl->skill_id, skl->skill_lv, tick, skl->flag|BCT_ENEMY|SD_ANIMATION|1,skill_castend_damage_id);
+					}
+					break;
 			}
 		}
 	} while(0);
@@ -3791,6 +3793,8 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case KO_JYUMONJIKIRI:
 		case KO_SETSUDAN:
 		case GC_DARKCROW:
+		case LG_OVERBRAND_BRANDISH:
+		case LG_OVERBRAND:
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 
@@ -4651,16 +4655,6 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			skill_attack((flag&1)?BF_WEAPON:BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 
-		case LG_OVERBRAND:
-				if(status_check_skilluse(src, bl, skill_id, 1) )
-					skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag|SD_LEVEL);
-				else
-					clif_skill_damage(src, bl, tick, status_get_amotion(src), status_get_dmotion(bl), 0, 1, skill_id, skill_lv, skill_get_hit(skill_id));
-			break;
-
-		case LG_OVERBRAND_BRANDISH:
-			skill_addtimerskill(src, tick + status_get_amotion(src)*8/10, bl->id, 0, 0, skill_id, skill_lv, BF_WEAPON, flag|SD_LEVEL);
-			break;
 		case SR_DRAGONCOMBO:
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
@@ -10605,7 +10599,18 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 			break;
 
 		case LG_OVERBRAND:
-			skill_overbrand(src, skill_id, skill_lv, x, y, tick, flag);
+			{
+				uint8 dir = map_calc_dir(src, x, y);
+				uint8 x2 = x = src->x, y2 = y = src->y;
+				switch(dir){
+					case 0: case 1: case 7: x2++; x--; y2 += 7; break;
+					case 3: case 4: case 5: x2++; x--; y -= 7; break;
+					case 2: y2++; y--; x -= 7;break;
+					case 6: y2++; y--; x2 += 7;break;
+				}
+				map_foreachinarea(skill_area_sub, src->m, x, y, x2, y2, BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|SD_ANIMATION|1,skill_castend_damage_id);
+				skill_addtimerskill(src,gettick() + status_get_amotion(src), 0, 0, 0, LG_OVERBRAND_BRANDISH, skill_lv, dir, flag);
+			}
 			break;
 
 		case LG_BANDING:
@@ -11034,16 +11039,16 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			}
 			break;
 		case DC_DONTFORGETME:
-			#if VERSION == 1
+#if VERSION == 1
 			val1 = status->dex/10 + 3*skill_lv; // ASPD decrease
 			val2 = status->agi/10 + 2*skill_lv; // Movement speed adjustment.			
-			#elif VERSION == -1
+#elif VERSION == -1
 			val1 = status->str/10 + 3*skill_lv; // ASPD decrease
 			val2 = status->agi/10 + 2*skill_lv; // Movement speed adjustment.
-			#else
+#else
 			val1 = status->dex/10 + 3*skill_lv + 5; // ASPD decrease
 			val2 = status->agi/10 + 3*skill_lv + 5; // Movement speed adjustment.
-			#endif
+#endif
 			if(sd) {
 				val1 += pc_checkskill(sd,DC_DANCINGLESSON);
 				val2 += pc_checkskill(sd,DC_DANCINGLESSON);
@@ -14499,45 +14504,6 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 /*=========================================
  *
  *-----------------------------------------*/
-void skill_overbrand(struct block_list* src, uint16 skill_id, uint16 skill_lv, uint16 x, uint16 y, int64 tick, int flag)
-{
-	struct s_skill_unit_layout *layout;
-	int i, ux[53], uy[53]; //Number of cells we are attacking
-	short dir = map_calc_dir(src,x,y);
-	layout = skill_get_unit_layout(skill_id,skill_lv,src,x,y);
-	if(dir > 0 && dir < 4) { //Need to invert the cell locations for directions
-		for(i = 0; i < 53; i++) {
-			ux[i] = layout->dy[i];
-			uy[i] = layout->dx[i] * -1;
-		}
-	} else if(dir == 4) {
-		for(i = 0; i < 53; i++) {
-			ux[i] = layout->dx[i];
-			uy[i] = layout->dy[i];
-		}
-	} else if(dir > 4) {
-		for(i = 0; i < 53; i++) {
-			ux[i] = layout->dy[i] * -1;
-			uy[i] = layout->dx[i];
-		}
-	} else {
-		for(i = 0; i < 53; i++) {
-			ux[i] = layout->dx[i];
-			uy[i] = layout->dy[i] * -1;
-		}
-	}
-	for(i = 0; i < 53; i++) {
-		if(i < 12) { //Close range hits twice
-			map_foreachincell(skill_area_sub, src->m, x+ux[i], y+uy[i], splash_target(src), src, LG_OVERBRAND_BRANDISH, skill_lv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
-			map_foreachincell(skill_area_sub, src->m, x+ux[i], y+uy[i], splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
-		} else if(i > 11 && i < 45) //Far sides do knockback damage
-			map_foreachincell(skill_area_sub, src->m, x+ux[i], y+uy[i], splash_target(src), src, skill_id, skill_lv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
-		else //Far middle does piercing damage
-			map_foreachincell(skill_area_sub, src->m, x+ux[i], y+uy[i], splash_target(src), src, LG_OVERBRAND_BRANDISH, skill_lv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
-	}
-
-}
-
 struct square {
 	int val1[5];
 	int val2[5];
@@ -17943,18 +17909,6 @@ void skill_init_unit_layout(void)
 				skill_unit_layout[pos].count = 8;
 				memcpy(skill_unit_layout[pos].dx,dx,sizeof(dx));
 				memcpy(skill_unit_layout[pos].dy,dy,sizeof(dy));
-				}
-				break;
-			case LG_OVERBRAND: {
-				static const int dx[] = {-1,-1,-1,-1, 0, 0, 0, 0, 1, 1, 1, 1,
-							-5,-5,-5,-5,-4,-4,-4,-4,-3,-3,-3,-3,-2,-2,-2,-2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5,
-							-1,-1,-1, 0, 0, 0, 1, 1, 1};
-				static const int dy[] = { 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 
-							  0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3, 0,-1,-2,-3,
-							 -4,-5,-6,-4,-5,-6,-4,-5,-6};
-					skill_unit_layout[pos].count = 53;
-					memcpy(skill_unit_layout[pos].dx,dx,sizeof(dx));
-					memcpy(skill_unit_layout[pos].dy,dy,sizeof(dy));
 				}
 				break;
 			default:
