@@ -30017,8 +30017,8 @@ REPLACE INTO `quest_db` VALUES(60310,0,1716,200,0,0,0,0,'Dragon Hunting');
 CREATE TABLE IF NOT EXISTS `refine_db` (
   `Type` tinyint NOT NULL,
   `StatsPerLevel` smallint unsigned NOT NULL,
-  `RandomBonusStartLevel` tinyint NOT NULL DEFAULT '0',
-  `RandomBonusValue` smallint unsigned NOT NULL DEFAULT '0',
+  `RandombonusStartLevel` tinyint NOT NULL DEFAULT '0',
+  `RandombonusValue` smallint unsigned NOT NULL DEFAULT '0',
   `Chance1` tinytext NOT NULL,
   `Chance2` tinytext NOT NULL,
   `Chance3` tinytext NOT NULL,
