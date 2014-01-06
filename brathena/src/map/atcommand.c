@@ -3817,8 +3817,23 @@ ACMD_FUNC(reloadscript)
 	//atcommand_broadcast( fd, sd, "@broadcast", "You will feel a bit of lag at this point !" );
 
 	iter = mapit_getallusers();
-	for(pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter))
-		pc_close_npc(pl_sd,2);
+	for(pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter)) {
+		if (pl_sd->npc_id || pl_sd->npc_shopid) {
+			if (pl_sd->state.using_fake_npc) {
+				clif_clearunit_single(pl_sd->npc_id, CLR_OUTSIGHT, pl_sd->fd);
+				pl_sd->state.using_fake_npc = 0;
+			}
+			if (pl_sd->state.menu_or_input)
+				pl_sd->state.menu_or_input = 0;
+			if (pl_sd->npc_menu)
+				pl_sd->npc_menu = 0;
+
+			pl_sd->npc_id = 0;
+			pl_sd->npc_shopid = 0;
+			if (pl_sd->st && pl_sd->st->state != END)
+				pl_sd->st->state = END;
+		}
+	}
 	mapit_free(iter);
 
 	flush_fifos();
