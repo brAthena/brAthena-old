@@ -2189,7 +2189,7 @@ void map_removemobs(int16 m)
 int16 map_mapname2mapid(const char *name)
 {
 	unsigned short map_index;
-	map_index = mapindex_name2id(name);
+	map_index = mapindex->name2id(name);
 	if(!map_index)
 		return -1;
 	return map_mapindex2mapid(map_index);
@@ -2633,10 +2633,10 @@ void map_iwall_remove(const char *wall_name)
 static DBData create_map_data_other_server(DBKey key, va_list args)
 {
 	struct map_data_other_server *mdos;
-	unsigned short mapindex = (unsigned short)key.ui;
+	unsigned short map_index = (unsigned short)key.ui;
 	mdos=(struct map_data_other_server *)aCalloc(1,sizeof(struct map_data_other_server));
-	mdos->index = mapindex;
-	memcpy(mdos->name, mapindex_id2name(mapindex), MAP_NAME_LENGTH);
+	mdos->index = map_index;
+	memcpy(mdos->name, mapindex_id2name(map_index), MAP_NAME_LENGTH);
 	return db_ptr2data(mdos);
 }
 
@@ -2778,7 +2778,7 @@ int map_readfromcache(struct map_data *m, char *buffer) {
 
 int map_addmap(char* mapname) {
 	map[map_num].instance_id = -1;
-	mapindex_getmapname(mapname, map[map_num++].name);
+	mapindex->getmapname(mapname, map[map_num++].name);
 	return 0;
 }
 
@@ -2800,7 +2800,7 @@ int map_delmap(char *mapname)
 		return 0;
 	}
 
-	mapindex_getmapname(mapname, map_name);
+	mapindex->getmapname(mapname, map_name);
 	for(i = 0; i < map_num; i++) {
 		if(strcmp(map[i].name, map_name) == 0) {
 			map_delmapid(i);
@@ -3201,7 +3201,7 @@ int map_readallmaps(void)
 			continue;
 		}
 
-		map[i].index = mapindex_name2id(map[i].name);
+		map[i].index = mapindex->name2id(map[i].name);
 
 		if(index2mapid[map_id2index(i)] != -1) {
 			ShowWarning("Mapa %s já está carregado!"CL_CLL"\n", map[i].name);
@@ -5260,7 +5260,7 @@ void do_final(void)
 
 	map_db->destroy(map_db, map_db_final);
 
-	mapindex_final();
+	mapindex->final();
 	if(enable_grf)
 		grfio_final();
 
@@ -5476,6 +5476,7 @@ int do_init(int argc, char *argv[])
 	itemdb_defaults();
 	script_defaults();
 	quest_defaults();
+	mapindex_defaults();
 	mapreg_defaults();
 	npc_defaults();
 #ifdef PCRE_SUPPORT
@@ -5545,7 +5546,8 @@ int do_init(int argc, char *argv[])
 
 	db_sql_init();
 
-	mapindex_init();
+	mapindex->init();
+
 	if(enable_grf)
 		grfio_init(GRF_PATH_FILENAME);
 

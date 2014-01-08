@@ -756,7 +756,7 @@ int pc_calc_skilltree(struct map_session_data *sd);
 int pc_calc_skilltree_normalize_job(struct map_session_data *sd);
 int pc_clean_skilltree(struct map_session_data *sd);
 
-int pc_setpos(struct map_session_data *sd, unsigned short mapindex, int x, int y, clr_type clrtype);
+int pc_setpos(struct map_session_data *sd, unsigned short map_index, int x, int y, clr_type clrtype);
 int pc_setsavepoint(struct map_session_data *sd, short map_index, int x, int y);
 int pc_randomwarp(struct map_session_data *sd,clr_type type);
 int pc_memo(struct map_session_data *sd, int pos);

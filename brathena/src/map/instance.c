@@ -169,7 +169,7 @@ int instance_add_map(const char *name, int instance_id, bool usebasename, const 
 		return -1;
 	}
 
-	if(map_name != NULL && strdb_iget(mapindex_db, map_name)) {
+	if (map_name != NULL && strdb_iget(mapindex->db, map_name)) {
 		ShowError("instance_add_map: trying to create instanced map with existent name '%s'\n", map_name);
 		return -2;
 	}
@@ -197,7 +197,7 @@ int instance_add_map(const char *name, int instance_id, bool usebasename, const 
 		map[im].custom_name = true;
 	} else
 		snprintf(map[im].name, MAP_NAME_LENGTH, (usebasename ? "%.3d#%s" : "%.3d%s"), instance_id, name); // Generate Name for Instance Map
-	map[im].index = mapindex_addmap(-1, map[im].name); // Add map index
+	map[im].index = mapindex->addmap(-1, map[im].name); // Add map index
 
 	map[im].channel = NULL;
 
@@ -436,7 +436,7 @@ void instance_del_map(int16 m)
 	if(map[m].mob_delete_timer != INVALID_TIMER)
 		delete_timer(map[m].mob_delete_timer, map_removemobs_timer);
 
-	mapindex_removemap(map_id2index(m));
+	mapindex->removemap(map_id2index(m));
 
 	// Free memory
 	aFree(map[m].cell);

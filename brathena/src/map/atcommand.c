@@ -432,7 +432,7 @@ ACMD_FUNC(send)
 ACMD_FUNC(mapmove)
 {
 	char map_name[MAP_NAME_LENGTH_EXT];
-	unsigned short mapindex;
+	unsigned short map_index;
 	short x = 0, y = 0;
 	int16 m = -1;
 
@@ -448,11 +448,11 @@ ACMD_FUNC(mapmove)
 		return -1;
 	}
 
-	mapindex = mapindex_name2id(map_name);
-	if(mapindex)
-		m = map_mapindex2mapid(mapindex);
+	map_index = mapindex->name2id(map_name);
+	if(map_index)
+		m = map_mapindex2mapid(map_index);
 
-	if(!mapindex  || m < 0) {  // m < 0 means on different server! [Kevin]
+	if(!map_index  || m < 0) {  // m < 0 means on different server! [Kevin]
 		clif_displaymessage(fd, msg_txt(1)); // Map not found.
 		return -1;
 	}
@@ -471,7 +471,7 @@ ACMD_FUNC(mapmove)
 		clif_displaymessage(fd, msg_txt(248));
 		return -1;
 	}
-	if(pc_setpos(sd, mapindex, x, y, CLR_TELEPORT) != 0) {
+	if(pc_setpos(sd, map_index, x, y, CLR_TELEPORT) != 0) {
 		clif_displaymessage(fd, msg_txt(1)); // Map not found.
 		return -1;
 	}
@@ -2001,7 +2001,7 @@ ACMD_FUNC(go)
 			clif_displaymessage(fd, msg_txt(248));
 			return -1;
 		}
-		if(pc_setpos(sd, mapindex_name2id(data[town].map), data[town].x, data[town].y, CLR_TELEPORT) == 0) {
+		if (pc_setpos(sd, mapindex->name2id(data[town].map), data[town].x, data[town].y, CLR_TELEPORT) == 0) {
 			clif_displaymessage(fd, msg_txt(0)); // Warped.
 		} else {
 			clif_displaymessage(fd, msg_txt(1)); // Map not found.
@@ -3889,7 +3889,7 @@ ACMD_FUNC(mapinfo)
 		clif_displaymessage(fd, msg_txt(1)); // Map not found.
 		return -1;
 	}
-	m_index = mapindex_name2id(mapname); //This one shouldn't fail since the previous seek did not.
+	m_index = mapindex->name2id(mapname); //This one shouldn't fail since the previous seek did not.
 
 	clif_displaymessage(fd, msg_txt(1039)); // ------ Map Info ------
 
@@ -4615,12 +4615,12 @@ ACMD_FUNC(jail)
 
 	switch(rnd() % 2) { //Jail Locations
 		case 0:
-			m_index = mapindex_name2id(MAP_JAIL);
+			m_index = mapindex->name2id(MAP_JAIL);
 			x = 24;
 			y = 75;
 			break;
 		default:
-			m_index = mapindex_name2id(MAP_JAIL);
+			m_index = mapindex->name2id(MAP_JAIL);
 			x = 49;
 			y = 75;
 			break;
@@ -4768,11 +4768,11 @@ ACMD_FUNC(jailfor)
 	//Jail locations, add more as you wish.
 	switch(rnd()%2) {
 		case 1: //Jail #1
-			m_index = mapindex_name2id(MAP_JAIL);
+			m_index = mapindex->name2id(MAP_JAIL);
 			x = 49; y = 75;
 			break;
 		default: //Default Jail
-			m_index = mapindex_name2id(MAP_JAIL);
+			m_index = mapindex->name2id(MAP_JAIL);
 			x = 24; y = 75;
 			break;
 	}
@@ -5243,7 +5243,7 @@ ACMD_FUNC(addwarp)
 		return -1;
 	}
 
-	m = mapindex_name2id(mapname);
+	m = mapindex->name2id(mapname);
 	if(m == 0) {
 		sprintf(atcmd_output, msg_txt(1157), mapname); // Unknown map '%s'.
 		clif_displaymessage(fd, atcmd_output);

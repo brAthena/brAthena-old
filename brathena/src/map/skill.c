@@ -9135,17 +9135,17 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				case RETURN_TO_ELDICASTES:
 					x = 198;
 					y = 187;
-					map_index  = mapindex_name2id(MAP_DICASTES);
+					map_index = mapindex->name2id(MAP_DICASTES);
 					break;
 				case ALL_GUARDIAN_RECALL:
 					x = 44;
 					y = 151;
-					map_index  = mapindex_name2id(MAP_MORA);
+					map_index = mapindex->name2id(MAP_MORA);
 					break;
 				case ECLAGE_RECALL:
 					x = 47;
 					y = 31;
-					map_index  = mapindex_name2id("ecl_in01");
+					map_index = mapindex->name2id("ecl_in01");
 					break;
 				}
 
@@ -9962,10 +9962,10 @@ int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char 
 				int i, lv, wx, wy;
 				int maxcount=0;
 				int x,y;
-				unsigned short mapindex;
+				unsigned short map_index;
 
-				mapindex  = mapindex_name2id(map);
-				if(!mapindex) { //Given map not found?
+				map_index = mapindex->name2id(map);
+				if(!map_index) { //Given map not found?
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					skill_failed(sd);
 					return 0;
@@ -9995,7 +9995,7 @@ int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char 
 				if( lv > 4 ) lv = 4; // crash prevention
 
 				// check if the chosen map exists in the memo list
-				ARR_FIND( 0, lv, i, mapindex == p[i]->map );
+				ARR_FIND(0, lv, i, map_index == p[i]->map);
 				if( i < lv ) {
 					x=p[i]->x;
 					y=p[i]->y;
@@ -10020,7 +10020,7 @@ int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char 
 				group->val1 = (group->val1<<16)|(short)0;
 				// record the destination coordinates
 				group->val2 = (x<<16)|y;
-				group->val3 = mapindex;
+				group->val3 = map_index;
 			}
 			break;
 	}
