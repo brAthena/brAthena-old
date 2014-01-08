@@ -2226,7 +2226,12 @@ izlude,72,98,4	shop#re	Loja de Bichinhos#iz	4_F_TELEPORTER,537:-1,643:-1,10013:-
 izlude_a,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_a	1_M_INNKEEPER
 izlude_b,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_b	1_M_INNKEEPER
 izlude_c,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_c	1_M_INNKEEPER
-izlude_d,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_d	1_M_INNKEEPER,{}
+izlude_d,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_d	1_M_INNKEEPER
+izlude_a,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_a	1_M_JOBGUIDER	
+izlude_b,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_b	1_M_JOBGUIDER		
+izlude_c,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_c	1_M_JOBGUIDER	
+izlude_d,160,186,0	duplicatr(Açougueiro#iz)	Açougueiro#iz_d	1_M_JOBGUIDER,{}
+
 
 izlude,105,99,0	shop#pre	Açougueiro#iz	1_M_JOBGUIDER,517:-1
 izlude,94,98,4	shop#pre	Vendedora de Frutas#iz	1_M_INNKEEPER,512:-1,513:-1,515:-1,516:-1
