@@ -48,10 +48,6 @@
 		movenpc("Red#izlude",56,126);
 		movenpc("Cebalis#izlude",58,126);
 		movenpc("Soldado#izlude",124,178,4);
-		movenpc("Açougueiro#iz",105,99);
-		movenpc("Vendedora de Frutas#iz",94,98);
-		movenpc("Vendedora de Leite#i",105,92,7);
-		movenpc("Loja de Bichinhos#iz",164,138);
 		movenpc("Dona Risadinha#iz",129,118);
 		movenpc("Sr. Noel",168,168);
 	}
