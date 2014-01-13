@@ -1674,7 +1674,7 @@ int itemdb_uid_load()
 {
 
 	char *uid;
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT `value` FROM `interreg` WHERE `varname`='unique_id'"))
+	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT `value` FROM `%s` WHERE `varname`='unique_id'", interreg_db))
 		Sql_ShowDebug(mmysql_handle);
 
 	if(SQL_SUCCESS != Sql_NextRow(mmysql_handle)) {
