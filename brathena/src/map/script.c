@@ -2106,8 +2106,18 @@ void script_set_constant(const char *name, int value, bool isparameter)
 void script_set_constant2(const char *name, int value, bool isparameter) {
 	int n = script->add_str(name);
 
-	if((script->str_data[n].type == C_NAME || script->str_data[n].type == C_PARAM ) && ( script->str_data[n].val != 0 || script->str_data[n].backpatch != -1)) { // existing parameter or constant
-		ShowNotice("Conflicting var name '%s', prioritising the script var\n",name);
+	if(script->str_data[n].type == C_PARAM) {
+		ShowError("script_set_constant2: Attempted to overwrite existing parameter '%s' with a constant (value=%d).\n", name, value);
+		return;
+	}
+
+	if(script->str_data[n].type == C_NAME && script->str_data[n].val) {
+		ShowWarning("script_set_constant2: Attempted to overwrite existing variable '%s' with a constant (value=%d).\n", name, value);
+		return;
+	}
+
+	if(script->str_data[n].type == C_INT && value && value != script->str_data[n].val ) { // existing constant
+		ShowWarning("script_set_constant2: Attempted to overwrite existing constant '%s' (old value=%d, new value=%d).\n", name, script->str_data[n].val, value);
 		return;
 	}
 
@@ -2121,22 +2131,6 @@ void script_set_constant2(const char *name, int value, bool isparameter) {
 	script->str_data[n].val  = value;
 
 }
-/* same as constant2 except it will override if necessary, used to clear conflicts during reload  */
-void script_set_constant_force(const char *name, int value, bool isparameter) {
-	int n = script->add_str(name);
-
-	if(script->str_data[n].type == C_PARAM)
-		return;/* the one type we don't mess with, reload doesn't affect it. */
-		
-	if(script->str_data[n].type != C_NOP) {
-		script->str_data[n].type = C_NOP;
-		script->str_data[n].val = 0;
-		script->str_data[n].func = NULL;
-		script->str_data[n].backpatch = -1;
-		script->str_data[n].label = -1;
-	}
-}
-
 /*==========================================
  * Leitura estruturada const_db.
  *------------------------------------------*/
@@ -2649,7 +2643,7 @@ void script_array_ensure_zero(struct script_state *st, struct map_session_data *
 	struct script_array *sa = NULL;
 	bool insert = false;
 
-	if(sd) /* when sd comes, st isn't available */
+	if(sd && !st) /* when sd comes, st isn't available */
 		insert = true;
 	else {
 		if(is_string_variable(name)) {
@@ -3622,7 +3616,7 @@ void script_check_buildin_argtype(struct script_state *st, int func)
 					}
 					break;
 				case 'r':
-					if(!data_isreference(data)) {
+					if(!data_isreference(data) || reference_toconstant(data)) {
 						// variables
 						ShowWarning("Unexpected type for argument %d. Expected variable, got %s.\n", idx-1, script->op2name(data->type));
 						script->reportdata(data);
@@ -4609,7 +4603,7 @@ int script_reload(void) {
 
 	mapreg->reload();
 
-	itemdb->force_name_constants();
+	itemdb->name_constants();
 
 	return 0;
 }
@@ -5745,7 +5739,7 @@ BUILDIN_FUNC(setr)
 
 	data = script_getdata(st,2);
 	//datavalue = script_getdata(st,3);
-	if(!data_isreference(data)) {
+	if(!data_isreference(data) || reference_toconstant(data)) {
 		ShowError("script:set: not a variable\n");
 		script->reportdata(script_getdata(st,2));
 		st->state = END;
@@ -5831,7 +5825,7 @@ BUILDIN_FUNC(setarray)
 	TBL_PC *sd = NULL;
 
 	data = script_getdata(st, 2);
-	if(!data_isreference(data)) {
+	if(!data_isreference(data) || reference_toconstant(data)) {
 		ShowError("script:setarray: not a variable\n");
 		script->reportdata(data);
 		st->state = END;
@@ -19574,7 +19568,6 @@ void script_defaults(void) {
 	script->pop_stack = pop_stack;
 	script->set_constant = script_set_constant;
 	script->set_constant2 = script_set_constant2;
-	script->set_constant_force = script_set_constant_force;
 	script->get_constant = 	script_get_constant;
 	script->label_add = script_label_add;
 	script->run = run_script;

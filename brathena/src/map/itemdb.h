@@ -533,7 +533,6 @@ void do_init_itemdb(void);
 /* incomplete */
 struct itemdb_interface {
 	void (*name_constants) (void);
-	void (*force_name_constants) (void);
 	/* */
 	struct item_package *packages;
 	unsigned short package_count;
