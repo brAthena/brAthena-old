@@ -15574,7 +15574,7 @@ void clif_parse_cashshop_buy(int fd, struct map_session_data *sd)
 		short amount = RFIFOW(fd,4);
 		int points = RFIFOL(fd,6);
 
-		fail = npc_cashshop_buy(sd, nameid, amount, points);
+		fail = npc->cashshop_buy(sd, nameid, amount, points);
 #else
 		int len = RFIFOW(fd,2);
 		int points = RFIFOL(fd,4);

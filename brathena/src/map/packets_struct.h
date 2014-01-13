@@ -962,7 +962,6 @@ struct packet_npc_market_open {
  *               brAthena                 *
  ******************************************/
 struct packet_pcbanglogin {
-#if PACKETVER > 20060424
   short PacketType;
   unsigned long Version;
   unsigned char ID;
@@ -970,30 +969,24 @@ struct packet_pcbanglogin {
   unsigned char ClientType;
   char IP;
   //unsigned char MacAdress[13]
-#endif
 } __attribute__((packed));
  
 struct packet_pcbangnotify {
-#if PACKETVER > 20060424
   short PacketType;
-#endif
 } __attribute__((packed));
 
 struct packet_pcbangplayingtime {
-#if PACKETVER > 20060424
+
 	short PacketType;
 	int TimeMinute;
-#endif
+
 }__attribute__((packed));
 
 struct packet_pcbangeffect {
-#if PACKETVER > 20060424
 	short PacketType;
 	int ExpFactor;
 	int ExpFactor2;
 	int DropFactor;
-#endif
-
 }__attribute__((packed));
  
 #pragma pack(pop)
