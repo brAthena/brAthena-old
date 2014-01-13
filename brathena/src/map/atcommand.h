@@ -17,13 +17,23 @@
 #ifndef _ATCOMMAND_H_
 #define _ATCOMMAND_H_
 
+#include "../common/conf.h"
+#include "../common/db.h"
+#include "pc_groups.h"
+
+/**
+ * Declarations
+ **/
 struct map_session_data;
+struct AtCommandInfo;
+struct block_list;
 
 //This is the distance at which @autoloot works,
 //if the item drops farther from the player than this,
 //it will not be autolooted. [Skotlex]
 //Note: The range is unlimited unless this define is set.
 //#define AUTOLOOT_DISTANCE AREA_SIZE
+
 
 extern char atcommand_symbol;
 extern char charcommand_symbol;
@@ -44,15 +54,21 @@ struct AtCommandInfo {
 	AtCommandFunc func;
 	char *at_groups;/* quick @commands "can-use" lookup */
 	char *char_groups;/* quick @charcommands "can-use" lookup */
+	char *help;/* quick access to this @command's help string */
+	bool log;/* whether to log this command or not, regardless of group settings */
 };
 
 AtCommandInfo *get_atcommandinfo_byname(const char *name);
 
 bool is_atcommand(const int fd, struct map_session_data *sd, const char *message, int type);
+bool atcommand_can_use(struct map_session_data *sd, const char *command);
+bool atcommand_can_use2(struct map_session_data *sd, const char *command, AtCommandType type);
 
 void do_init_atcommand(void);
 void do_final_atcommand(void);
-void atcommand_db_load_groups(int *group_ids);
+void atcommand_db_load_groups(GroupSettings **groups, config_setting_t **commands_, size_t sz);
+bool atcommand_can_use(struct map_session_data *sd, const char *command);
+
 
 bool atcommand_exists(const char *name);
 

@@ -313,7 +313,7 @@ DBData npc_event_export_create(DBKey key, va_list args)
 	struct linkdb_node** head_ptr;
 	CREATE(head_ptr, struct linkdb_node*, 1);
 	*head_ptr = NULL;
-	return db_ptr2data(head_ptr);
+	return DB->ptr2data(head_ptr);
 }
 
 /*==========================================
@@ -1417,7 +1417,7 @@ void npc_market_fromsql(void) {
 	SqlStmt_BindColumn(stmt, 1, SQLDT_INT, &itemid, 0, NULL, NULL);
 	SqlStmt_BindColumn(stmt, 2, SQLDT_INT, &amount, 0, NULL, NULL);
 
-	while (SQL_SUCCESS == SqlStmt_NextRow(stmt)) {
+	while(SQL_SUCCESS == SqlStmt_NextRow(stmt)) {
 		struct npc_data *nd = NULL;
 		unsigned short i;
 
@@ -1462,7 +1462,7 @@ void npc_market_tosql(struct npc_data *nd, unsigned short index) {
 void npc_market_delfromsql_sub(const char *npcname, unsigned short index) {
 	/* TODO inter-server.conf npc_market_data */
 	if(index == USHRT_MAX) {
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s'", npcname) )
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s'", npcname))
 			Sql_ShowDebug(mmysql_handle);
 	} else {
 		if(SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `npc_market_data` WHERE `name`='%s' AND `itemid`='%d' LIMIT 1", npcname, index))
@@ -2115,7 +2115,7 @@ int npc_remove_map(struct npc_data *nd)
  */
 int npc_unload_ev(DBKey key, DBData *data, va_list ap)
 {
-	struct event_data *ev = db_data2ptr(data);
+	struct event_data *ev = DB->data2ptr(data);
 	char *npcname = va_arg(ap, char *);
 
 	if(strcmp(ev->nd->exname,npcname)==0) {
@@ -2130,7 +2130,7 @@ int npc_unload_ev(DBKey key, DBData *data, va_list ap)
  */
 int npc_unload_ev_label(DBKey key, DBData *data, va_list ap)
 {
-	struct linkdb_node **label_linkdb = db_data2ptr(data);
+	struct linkdb_node **label_linkdb = DB->data2ptr(data);
 	struct npc_data* nd = va_arg(ap, struct npc_data *);
 
 	linkdb_erase(label_linkdb, nd);
@@ -2190,7 +2190,7 @@ int npc_unload(struct npc_data *nd, bool single)
 	if(single && nd->bl.m != -1)
 		map_remove_questinfo(nd->bl.m,nd);
 
-	if((nd->subtype == SHOP || nd->subtype == CASHSHOP) && nd->src_id == 0)  //src check for duplicate shops [Orcao]
+	if(nd->src_id == 0 && (nd->subtype == SHOP || nd->subtype == CASHSHOP))  //src check for duplicate shops [Orcao]
 		aFree(nd->u.shop.shop_item);
 	else if(nd->subtype == SCRIPT) {
 		struct s_mapiterator *iter;
@@ -3313,8 +3313,8 @@ const char *npc_parse_function(char *w1, char *w2, char *w3, char *w4, const cha
 		return end;
 
 	func_db = script->userfunc_db;
-	if(func_db->put(func_db, db_str2key(w3), db_ptr2data(scriptroot), &old_data)) {
-		struct script_code *oldscript = (struct script_code *)db_data2ptr(&old_data);
+	if (func_db->put(func_db, DB->str2key(w3), DB->ptr2data(scriptroot), &old_data)) {
+		struct script_code *oldscript = (struct script_code *)DB->data2ptr(&old_data);
 		ShowNpc("npc_parse_function: Overwriting user function [%s] in file '%s', line '%d'.\n", w3, filepath, strline(buffer,start-buffer));
 		script->free_vars(oldscript->script_vars);
 		aFree(oldscript->script_buf);
@@ -3942,7 +3942,7 @@ int npc_parsesrcfile(const char *filepath, bool runOnInit)
 		lines++;
 
 		// w1<TAB>w2<TAB>w3<TAB>w4
-		count = sv_parse(p, (int)(len+buffer-p), 0, '\t', pos, ARRAYLENGTH(pos), (e_svopt)(SV_TERMINATE_LF|SV_TERMINATE_CRLF));
+		count = sv->parse(p, (int)(len+buffer-p), 0, '\t', pos, ARRAYLENGTH(pos), (e_svopt)(SV_TERMINATE_LF|SV_TERMINATE_CRLF));
 		if(count < 0) {
 			ShowError("npc_parsesrcfile: Parse error in file '%s', line '%d'. Stopping...\n", filepath, strline(buffer,p-buffer));
 			break;
@@ -4162,7 +4162,7 @@ void npc_read_event_script(void)
 		iter = db_iterator(npc->ev_db);
 		for(data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key)) {
 			const char *p = key.str;
-			struct event_data *ed = db_data2ptr(data);
+			struct event_data *ed = DB->data2ptr(data);
 			unsigned char count = script_event[i].event_count;
 
 			if(count >= ARRAYLENGTH(script_event[i].event)) {
@@ -4196,7 +4196,7 @@ void npc_read_event_script(void)
  */
 int npc_path_db_clear_sub(DBKey key, DBData *data, va_list args)
 {
-	struct npc_path_data *npd = db_data2ptr(data);
+	struct npc_path_data *npd = DB->data2ptr(data);
 	if (npd->path)
 		aFree(npd->path);
 	return 0;
@@ -4207,7 +4207,7 @@ int npc_path_db_clear_sub(DBKey key, DBData *data, va_list args)
  */
 int npc_ev_label_db_clear_sub(DBKey key, DBData *data, va_list args)
 {
-	struct linkdb_node **label_linkdb = db_data2ptr(data);
+	struct linkdb_node **label_linkdb = DB->data2ptr(data);
 	linkdb_final(label_linkdb); // linked data (struct event_data*) is freed when clearing npc->ev_db
 	return 0;
 }

@@ -56,7 +56,7 @@ typedef bool (*searchstore_searchall_t)(struct map_session_data *sd, const struc
 static searchstore_search_t searchstore_getsearchfunc(unsigned char type)
 {
 	switch(type) {
-		case SEARCHTYPE_VENDING:      return &vending_search;
+		case SEARCHTYPE_VENDING:      return vending->search;
 		case SEARCHTYPE_BUYING_STORE: return &buyingstore_search;
 	}
 	return NULL;
@@ -67,7 +67,7 @@ static searchstore_search_t searchstore_getsearchfunc(unsigned char type)
 static searchstore_searchall_t searchstore_getsearchallfunc(unsigned char type)
 {
 	switch(type) {
-		case SEARCHTYPE_VENDING:      return &vending_searchall;
+		case SEARCHTYPE_VENDING:      return vending->searchall;
 		case SEARCHTYPE_BUYING_STORE: return &buyingstore_searchall;
 	}
 	return NULL;
@@ -125,7 +125,6 @@ void searchstore_query(struct map_session_data *sd, unsigned char type, unsigned
 	struct s_search_store_search s;
 	searchstore_searchall_t store_searchall;
 	time_t querytime;
-	DBMap *vending_db = vending_getdb();
 
 	if(!battle_config.feature_search_stores) {
 		return;
@@ -190,7 +189,7 @@ void searchstore_query(struct map_session_data *sd, unsigned char type, unsigned
 	s.card_count = card_count;
 	s.min_price  = min_price;
 	s.max_price  = max_price;
-	iter         = db_iterator(vending_db);
+	iter         = db_iterator(vending->db);
 
 	for(pl_sd = dbi_first(iter); dbi_exists(iter);  pl_sd = dbi_next(iter)) {
 		if(sd == pl_sd) {// skip own shop, if any
@@ -339,7 +338,7 @@ void searchstore_click(struct map_session_data *sd, int account_id, int store_id
 			sd->searchstore.remote_id = account_id;
 
 			switch(sd->searchstore.type) {
-				case SEARCHTYPE_VENDING:      vending_vendinglistreq(sd, account_id); break;
+				case SEARCHTYPE_VENDING:      vending->list(sd, account_id); break;
 				case SEARCHTYPE_BUYING_STORE: buyingstore_open(sd, account_id);       break;
 			}
 

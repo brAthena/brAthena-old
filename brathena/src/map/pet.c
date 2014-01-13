@@ -1226,7 +1226,7 @@ int read_petdb()
 
 	j = 0; // entry counter
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(48))) {
+	if (SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(48))) {
 		Sql_ShowDebug(dbmysql_handle);
 		return -1;
 	}

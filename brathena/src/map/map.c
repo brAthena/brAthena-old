@@ -1426,7 +1426,7 @@ static DBData create_charid2nick(DBKey key, va_list args)
 {
 	struct charid2nick *p;
 	CREATE(p, struct charid2nick, 1);
-	return db_ptr2data(p);
+	return DB->ptr2data(p);
 }
 
 /// Adds(or replaces) the nick of charid to nick_db and fullfils pending requests.
@@ -1462,7 +1462,7 @@ void map_delnickdb(int charid, const char *name)
 	struct map_session_data *sd;
 	DBData data;
 
-	if(!nick_db->remove(nick_db, db_i2key(charid), &data) || (p = db_data2ptr(&data)) == NULL)
+	if(!nick_db->remove(nick_db, DB->i2key(charid), &data) || (p = DB->data2ptr(&data)) == NULL)
 		return;
 
 	while(p->requests) {
@@ -1581,6 +1581,9 @@ int map_quit(struct map_session_data *sd)
 	if(sd->bg_id && !sd->bg_queue.arena) /* TODO: dump this chunk after bg_queue is fully enabled */
 		bg_team_leave(sd,1);
 
+	if(sd->state.autotrade && runflag != MAPSERVER_ST_SHUTDOWN && !raChSys.closing)
+		pc_autotrade_update(sd,PAUC_REMOVE);
+
 	skill_cooldown_save(sd);
 	pc_itemcd_do(sd,false);
 
@@ -1660,7 +1663,7 @@ int map_quit(struct map_session_data *sd)
 	}
 
 	if(sd->state.vending) {
-		idb_remove(vending_getdb(), sd->status.char_id);
+		idb_remove(vending->db, sd->status.char_id);
 	}
 
 	party_booking_delete(sd); // Party Booking [Spiria]
@@ -2637,7 +2640,7 @@ static DBData create_map_data_other_server(DBKey key, va_list args)
 	mdos=(struct map_data_other_server *)aCalloc(1,sizeof(struct map_data_other_server));
 	mdos->index = map_index;
 	memcpy(mdos->name, mapindex_id2name(map_index), MAP_NAME_LENGTH);
-	return db_ptr2data(mdos);
+	return DB->ptr2data(mdos);
 }
 
 /*==========================================
@@ -2667,7 +2670,7 @@ int map_setipport(unsigned short map_index, uint32 ip, uint16 port)
  */
 int map_eraseallipport_sub(DBKey key, DBData *data, va_list va)
 {
-	struct map_data_other_server *mdos = db_data2ptr(data);
+	struct map_data_other_server *mdos = DB->data2ptr(data);
 	if(mdos->cell == NULL) {
 		db_remove(map_db,key);
 		aFree(mdos);
@@ -3520,8 +3523,7 @@ int inter_config_read(char *cfgName)
 	char line[1024],w1[1024],w2[1024];
 	FILE *fp;
 
-	fp=fopen(cfgName,"r");
-	if(fp==NULL) {
+	if(!(fp = fopen(cfgName,"r"))){
 		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
@@ -3532,7 +3534,9 @@ int inter_config_read(char *cfgName)
 			continue;
 
 		//Map Server SQL DB
-		if(strcmpi(w1,"map_server_ip")==0)
+		if(strcmpi(w1,"interreg_db")==0)
+			strcpy(interreg_db,w2);
+		else if(strcmpi(w1,"map_server_ip")==0)
 			strcpy(map_server_ip, w2);
 		else if(strcmpi(w1,"map_server_port")==0)
 			map_server_port=atoi(w2);
@@ -3544,6 +3548,10 @@ int inter_config_read(char *cfgName)
 			strcpy(map_server_db, w2);
 		else if(strcmpi(w1,"default_codepage")==0)
 			strcpy(default_codepage, w2);
+		else if(strcmpi(w1,"autotrade_merchants_db")==0)
+			strcpy(autotrade_merchants_db, w2);
+		else if(strcmpi(w1,"autotrade_data_db")==0)
+			strcpy(autotrade_data_db, w2);
 		else if(strcmpi(w1,"log_db_ip")==0)
 			strcpy(log_db_ip, w2);
 		else if(strcmpi(w1,"log_db_id")==0)
@@ -3728,7 +3736,7 @@ int map_sql_init(void)
 	ShowStatus("Conex%co efetuada com sucesso! (map-server)\n", 198);
 
 	if(strlen(default_codepage) > 0)
-		if(SQL_ERROR == Sql_SetEncoding(mmysql_handle, default_codepage))
+	if(SQL_ERROR == Sql_SetEncoding(mmysql_handle, default_codepage))
 			Sql_ShowDebug(mmysql_handle);
 
 	return 0;
@@ -3763,7 +3771,7 @@ int log_sql_init(void)
 	ShowStatus("Conex%co efetuada com sucesso no banco de dados '"CL_WHITE"%s"CL_RESET"'.\n", 198, log_db_db);
 
 	if(strlen(default_codepage) > 0)
-		if(SQL_ERROR == Sql_SetEncoding(logmysql_handle, default_codepage))
+	if(SQL_ERROR == Sql_SetEncoding(logmysql_handle, default_codepage))
 			Sql_ShowDebug(logmysql_handle);
 #endif
 	return 0;
@@ -5138,7 +5146,7 @@ bool map_remove_questinfo(int m, struct npc_data *nd) {
  */
 int map_db_final(DBKey key, DBData *data, va_list ap)
 {
-	struct map_data_other_server *mdos = db_data2ptr(data);
+	struct map_data_other_server *mdos = DB->data2ptr(data);
 	if(mdos && iMalloc->verify_ptr(mdos) && mdos->cell == NULL)
 		aFree(mdos);
 
@@ -5150,7 +5158,7 @@ int map_db_final(DBKey key, DBData *data, va_list ap)
  */
 int nick_db_final(DBKey key, DBData *data, va_list args)
 {
-	struct charid2nick *p = db_data2ptr(data);
+	struct charid2nick *p = DB->data2ptr(data);
 	struct charid_request *req;
 
 	if(p == NULL)
@@ -5197,7 +5205,7 @@ int cleanup_sub(struct block_list *bl, va_list ap)
  */
 static int cleanup_db_sub(DBKey key, DBData *data, va_list va)
 {
-	return cleanup_sub(db_data2ptr(data), va);
+	return cleanup_sub(DB->data2ptr(data), va);
 }
 
 /*==========================================
@@ -5211,6 +5219,8 @@ void do_final(void)
 
 	ShowStatus("Terminating...\n");
 	raChSys.closing = true;
+
+	if (map_cpsd) aFree(map_cpsd);
 
 	//Ladies and babies first.
 	iter = mapit_getallusers();
@@ -5256,7 +5266,7 @@ void do_final(void)
 	do_final_duel();
 	do_final_elemental();
 	do_final_maps();
-	do_final_vending();
+	vending->final();
 
 	map_db->destroy(map_db, map_db_final);
 
@@ -5474,11 +5484,13 @@ int do_init(int argc, char *argv[])
 	instance_defaults();
 	homunculus_defaults();
 	itemdb_defaults();
+	pc_groups_defaults();
 	script_defaults();
 	quest_defaults();
 	mapindex_defaults();
 	mapreg_defaults();
 	npc_defaults();
+	vending_defaults();
 #ifdef PCRE_SUPPORT
 	npc_chat_defaults();
 #endif
@@ -5535,9 +5547,10 @@ int do_init(int argc, char *argv[])
 	iwall_db = strdb_alloc(DB_OPT_RELEASE_DATA,2*NAME_LENGTH+2+1); // [Zephyrus] Invisible Walls
 	zone_db = strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, MAP_ZONE_NAME_LENGTH);
 
-	map_iterator_ers = ers_new(sizeof(struct s_mapiterator),"map.c::map_iterator_ers",ERS_OPT_CLEAN);
+	map_iterator_ers = ers_new(sizeof(struct s_mapiterator),"map.c::map_iterator_ers",ERS_OPT_CLEAN|ERS_OPT_FLEX_CHUNK);
+	ers_chunk_size(map_iterator_ers, 25);
 
-	flooritem_ers = ers_new(sizeof(struct flooritem_data),"map.c::map_flooritem_ers",ERS_OPT_CLEAN);
+	flooritem_ers = ers_new(sizeof(struct flooritem_data),"map.c::map_flooritem_ers",ERS_OPT_CLEAN|ERS_OPT_FLEX_CHUNK);
 	ers_chunk_size(flooritem_ers, 100);
 
 	map_sql_init();
@@ -5581,8 +5594,7 @@ int do_init(int argc, char *argv[])
 	npc->init();
 	do_init_unit();
 	do_init_battleground();
-	do_init_duel();
-	do_init_vending();
+	vending->init();
 
 	npc->event_do_oninit();  // Init npcs (OnInit)
 	npc->market_fromsql(); /* after OnInit */

@@ -17,6 +17,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
+#define STRLIB_C
 #include "strlib.h"
 
 #include <stdio.h>
@@ -442,7 +443,7 @@ bool bin2hex(char *output, unsigned char *input, size_t count)
 ///
 /// @param sv Parse state
 /// @return 1 if a field was parsed, 0 if already done, -1 on error.
-int sv_parse_next(struct s_svstate *sv)
+int sv_parse_next(struct s_svstate *svstate)
 {
 	enum {
 	    START_OF_FIELD,
@@ -458,13 +459,13 @@ int sv_parse_next(struct s_svstate *sv)
 	char delim;
 	int i;
 
-	if(sv == NULL)
+	if(svstate == NULL)
 		return -1;// error
 
-	str = sv->str;
-	len = sv->len;
-	opt = sv->opt;
-	delim = sv->delim;
+	str = svstate->str;
+	len = svstate->len;
+	opt = svstate->opt;
+	delim = svstate->delim;
 
 	// check opt
 	if(delim == '\n' && (opt&(SV_TERMINATE_CRLF|SV_TERMINATE_LF))) {
@@ -476,8 +477,8 @@ int sv_parse_next(struct s_svstate *sv)
 		return -1;// error
 	}
 
-	if(sv->done || str == NULL) {
-		sv->done = true;
+	if(svstate->done || str == NULL) {
+		svstate->done = true;
 		return 0;// nothing to parse
 	}
 
@@ -488,10 +489,10 @@ int sv_parse_next(struct s_svstate *sv)
                           ((opt&SV_TERMINATE_CR) && str[i] == '\r') || \
                           ((opt&SV_TERMINATE_CRLF) && i+1 < len && str[i] == '\r' && str[i+1] == '\n') )
 #define IS_C_ESCAPE() ( (opt&SV_ESCAPE_C) && str[i] == '\\' )
-#define SET_FIELD_START() sv->start = i
-#define SET_FIELD_END() sv->end = i
+#define SET_FIELD_START() svstate->start = i
+#define SET_FIELD_END() svstate->end = i
 
-	i = sv->off;
+	i = svstate->off;
 	state = START_OF_FIELD;
 	while(state != END) {
 		switch(state) {
@@ -562,14 +563,14 @@ int sv_parse_next(struct s_svstate *sv)
 				else
 					++i;// CR or LF
 #endif
-				sv->done = true;
+				svstate->done = true;
 				state = END;
 				break;
 		}
 	}
 	if(IS_END())
-		sv->done = true;
-	sv->off = i;
+		svstate->done = true;
+	svstate->off = i;
 
 #undef IS_END
 #undef IS_DELIM
@@ -604,31 +605,31 @@ int sv_parse_next(struct s_svstate *sv)
 /// @return Number of fields found in the string or -1 if an error occured
 int sv_parse(const char *str, int len, int startoff, char delim, int *out_pos, int npos, enum e_svopt opt)
 {
-	struct s_svstate sv;
+	struct s_svstate svstate;
 	int count;
 
 	// initialize
 	if(out_pos == NULL) npos = 0;
 	for(count = 0; count < npos; ++count)
 		out_pos[count] = -1;
-	sv.str = str;
-	sv.len = len;
-	sv.off = startoff;
-	sv.opt = opt;
-	sv.delim = delim;
-	sv.done = false;
+	svstate.str = str;
+	svstate.len = len;
+	svstate.off = startoff;
+	svstate.opt = opt;
+	svstate.delim = delim;
+	svstate.done = false;
 
 	// parse
 	count = 0;
 	if(npos > 0) out_pos[0] = startoff;
-	while(!sv.done) {
+	while(!svstate.done) {
 		++count;
-		if(sv_parse_next(&sv) <= 0)
+		if(sv_parse_next(&svstate) <= 0)
 			return -1;// error
-		if(npos > count*2) out_pos[count*2] = sv.start;
-		if(npos > count*2+1) out_pos[count*2+1] = sv.end;
+		if(npos > count*2) out_pos[count*2] = svstate.start;
+		if(npos > count*2+1) out_pos[count*2+1] = svstate.end;
 	}
-	if(npos > 1) out_pos[1] = sv.off;
+	if(npos > 1) out_pos[1] = svstate.off;
 	return count;
 }
 
@@ -989,11 +990,11 @@ bool sv_readdb(const char *directory, const char *filename, char delim, int minc
 // @author MouseJstr (original)
 
 /// Allocates a StringBuf
-StringBuf *StringBuf_Malloc()
+StringBuf *StringBuf_Malloc(void)
 {
 	StringBuf *self;
 	CREATE(self, StringBuf, 1);
-	StringBuf_Init(self);
+	StrBuf->Init(self);
 	return self;
 }
 
@@ -1011,7 +1012,7 @@ int StringBuf_Printf(StringBuf *self, const char *fmt, ...)
 	va_list ap;
 
 	va_start(ap, fmt);
-	len = StringBuf_Vprintf(self, fmt, ap);
+	len = StrBuf->Vprintf(self, fmt, ap);
 	va_end(ap);
 
 	return len;
@@ -1110,6 +1111,54 @@ void StringBuf_Destroy(StringBuf *self)
 // Frees a StringBuf returned by StringBuf_Malloc
 void StringBuf_Free(StringBuf *self)
 {
-	StringBuf_Destroy(self);
+	StrBuf->Destroy(self);
 	aFree(self);
+}
+void strlib_defaults(void) {
+	/* connect */
+	strlib = &strlib_s;
+	StrBuf = &stringbuf_s;
+	sv = &sv_s;
+	/* link~u! */
+	strlib->jstrescape = jstrescape;
+	strlib->jmemescapecpy = jmemescapecpy;
+	strlib->remove_control_chars = remove_control_chars;
+	strlib->trim = trim;
+	strlib->normalize_name = normalize_name;
+	strlib->stristr = stristr;
+
+#if !(defined(WIN32) && defined(_MSC_VER) && _MSC_VER >= 1400) && !defined(HAVE_STRNLEN)
+	strlib->strnlen = strnlen;
+#endif
+	
+#if defined(WIN32) && defined(_MSC_VER) && _MSC_VER <= 1200
+	strlib->strtoull = strtoull;
+#endif
+	strlib->e_mail_check = e_mail_check;
+	strlib->config_switch = config_switch;
+	strlib->safestrncpy = safestrncpy;
+	strlib->safestrnlen = safestrnlen;
+	strlib->safesnprintf = safesnprintf;
+	strlib->strline = strline;
+	strlib->bin2hex = bin2hex;
+
+	StrBuf->Malloc = StringBuf_Malloc;
+	StrBuf->Init = StringBuf_Init;
+	StrBuf->Printf = StringBuf_Printf;
+	StrBuf->Vprintf = StringBuf_Vprintf;
+	StrBuf->Append = StringBuf_Append;
+	StrBuf->AppendStr = StringBuf_AppendStr;
+	StrBuf->Length = StringBuf_Length;
+	StrBuf->Value = StringBuf_Value;
+	StrBuf->Clear = StringBuf_Clear;
+	StrBuf->Destroy = StringBuf_Destroy;
+	StrBuf->Free = StringBuf_Free;
+
+	sv->parse_next = sv_parse_next;
+	sv->parse = sv_parse;
+	sv->split = sv_split;
+	sv->escape_c = sv_escape_c;
+	sv->unescape_c = sv_unescape_c;
+	sv->skip_escaped_c = skip_escaped_c;
+	sv->readdb = sv_readdb;
 }

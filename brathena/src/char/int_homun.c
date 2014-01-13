@@ -123,7 +123,7 @@ bool mapif_homunculus_save(struct s_homunculus *hd)
 			int i;
 
 			stmt = SqlStmt_Malloc(sql_handle);
-			if(SQL_ERROR == SqlStmt_Prepare(stmt, "REPLACE INTO `%s` (`homun_id`, `id`, `lv`) VALUES (%d, ?, ?)", skill_homunculus_db, hd->hom_id))
+			if (SQL_ERROR == SqlStmt_Prepare(stmt, "REPLACE INTO `%s` (`homun_id`, `id`, `lv`) VALUES (%d, ?, ?)", skill_homunculus_db, hd->hom_id))
 				SqlStmt_ShowDebug(stmt);
 			for(i = 0; i < MAX_HOMUNSKILL; ++i) {
 				if(hd->hskill[i].id > 0 && hd->hskill[i].lv != 0) {
@@ -172,15 +172,15 @@ bool mapif_homunculus_load(int homun_id, struct s_homunculus *hd)
 	}
 
 	hd->hom_id = homun_id;
-	Sql_GetData(sql_handle,  1, &data, NULL); hd->char_id = atoi(data);
-	Sql_GetData(sql_handle,  2, &data, NULL); hd->class_ = atoi(data);
-	Sql_GetData(sql_handle,  3, &data, NULL); hd->prev_class = atoi(data);
-	Sql_GetData(sql_handle,  4, &data, &len); safestrncpy(hd->name, data, sizeof(hd->name));
-	Sql_GetData(sql_handle,  5, &data, NULL); hd->level = atoi(data);
-	Sql_GetData(sql_handle,  6, &data, NULL); hd->exp = atoi(data);
-	Sql_GetData(sql_handle,  7, &data, NULL); hd->intimacy = (unsigned int)strtoul(data, NULL, 10);
-	Sql_GetData(sql_handle,  8, &data, NULL); hd->hunger = atoi(data);
-	Sql_GetData(sql_handle,  9, &data, NULL); hd->str = atoi(data);
+	Sql_GetData(sql_handle, 1, &data, NULL); hd->char_id = atoi(data);
+	Sql_GetData(sql_handle, 2, &data, NULL); hd->class_ = atoi(data);
+	Sql_GetData(sql_handle, 3, &data, NULL); hd->prev_class = atoi(data);
+	Sql_GetData(sql_handle, 4, &data, &len); safestrncpy(hd->name, data, sizeof(hd->name));
+	Sql_GetData(sql_handle, 5, &data, NULL); hd->level = atoi(data);
+	Sql_GetData(sql_handle, 6, &data, NULL); hd->exp = atoi(data);
+	Sql_GetData(sql_handle, 7, &data, NULL); hd->intimacy = (unsigned int)strtoul(data, NULL, 10);
+	Sql_GetData(sql_handle, 8, &data, NULL); hd->hunger = atoi(data);
+	Sql_GetData(sql_handle, 9, &data, NULL); hd->str = atoi(data);
 	Sql_GetData(sql_handle, 10, &data, NULL); hd->agi = atoi(data);
 	Sql_GetData(sql_handle, 11, &data, NULL); hd->vit = atoi(data);
 	Sql_GetData(sql_handle, 12, &data, NULL); hd->int_ = atoi(data);
@@ -227,7 +227,7 @@ bool mapif_homunculus_load(int homun_id, struct s_homunculus *hd)
 bool mapif_homunculus_delete(int homun_id)
 {
 	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `homun_id` = '%u'", homunculus_db, homun_id)
-	   ||  SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `homun_id` = '%u'", skill_homunculus_db, homun_id)
+	|| SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `homun_id` = '%u'", skill_homunculus_db, homun_id)
 	  ) {
 		Sql_ShowDebug(sql_handle);
 		return false;

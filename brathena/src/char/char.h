@@ -83,7 +83,6 @@ int char_child(int parent_id, int child_id);
 int char_family(int pl1,int pl2,int pl3);
 
 int request_accreg2(int account_id, int char_id);
-int save_accreg2(unsigned char *buf, int len);
 int login_fd;
 extern int char_name_option;
 extern char char_name_letters[];
@@ -98,7 +97,6 @@ extern char inventory_db[256];
 extern char charlog_db[256];
 extern char storage_db[256];
 extern char interlog_db[256];
-extern char reg_db[256];
 extern char skill_db[256];
 extern char memo_db[256];
 extern char guild_db[256];
@@ -120,10 +118,19 @@ extern char mercenary_db[256];
 extern char mercenary_owner_db[256];
 extern char ragsrvinfo_db[256];
 extern char elemental_db[256];
+extern char interreg_db[32];
+extern char acc_reg_num_db[32];
+extern char acc_reg_str_db[32];
+extern char char_reg_str_db[32];
+extern char char_reg_num_db[32];
 
 extern int db_use_sqldbs; // added for sql item_db read for char server [Valaris]
 
 extern int guild_exp_rate;
 extern int log_inter;
+
+void global_accreg_to_login_start (int account_id, int char_id);
+void global_accreg_to_login_send (void);
+void global_accreg_to_login_add (const char *key, unsigned int index, intptr_t val, bool is_string);
 
 #endif /* _CHAR_SQL_H_ */

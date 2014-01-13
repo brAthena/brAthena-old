@@ -202,20 +202,6 @@ CREATE TABLE IF NOT EXISTS `hotkey` (
 ) ENGINE=MyISAM;
 
 --
--- Estrutura da tabela `global_reg_value`
---
-
-CREATE TABLE IF NOT EXISTS `global_reg_value` (
-  `char_id` int(11) unsigned NOT NULL default '0',
-  `str` varchar(255) NOT NULL default '',
-  `value` varchar(255) NOT NULL default '0',
-  `type` tinyint(1) NOT NULL default '3',
-  `account_id` int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`char_id`,`str`,`account_id`),
-  KEY `account_id` (`account_id`)
-) ENGINE=MyISAM;
-
---
 -- Estrutura da tabela `guild`
 --
 
@@ -474,11 +460,10 @@ INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `mapreg` (
-  `varname` varchar(32) NOT NULL,
+  `varname` varchar(32) BINARY NOT NULL,
   `index` int(11) unsigned NOT NULL default '0',
   `value` varchar(255) NOT NULL,
-  KEY `varname` (`varname`),
-  KEY `index` (`index`)
+  PRIMARY KEY  (`varname`,`index`)
 ) ENGINE=MyISAM;
 
 --
@@ -721,4 +706,107 @@ CREATE TABLE IF NOT EXISTS `npc_market_data` (
   `amount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`name`,`itemid`)
 ) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela `acc_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `acc_reg_num_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela table `acc_reg_str_db`
+--
+
+CREATE TABLE IF NOT EXISTS `acc_reg_str_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela `char_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `char_reg_num_db` (
+  `char_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`key`,`index`),
+  KEY `char_id` (`char_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela table `char_reg_str_db`
+--
+
+CREATE TABLE IF NOT EXISTS `char_reg_str_db` (
+  `char_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`key`,`index`),
+  KEY `char_id` (`char_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela `global_acc_reg_num_db`
+--
+
+CREATE TABLE IF NOT EXISTS `global_acc_reg_num_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela `global_acc_reg_str_db`
+--
+
+
+CREATE TABLE IF NOT EXISTS `global_acc_reg_str_db` (
+  `account_id` int(11) unsigned NOT NULL default '0',
+  `key` varchar(32) BINARY NOT NULL default '',
+  `index` int(11) unsigned NOT NULL default '0',
+  `value` varchar(254) NOT NULL default '0',
+  PRIMARY KEY  (`account_id`,`key`,`index`),
+  KEY `account_id` (`account_id`)
+) ENGINE=MyISAM;
+
+--
+-- Estrutura da tabela `autotrade_merchants`
+--
+
+CREATE TABLE IF NOT EXISTS `autotrade_merchants` (
+  `account_id` int(11) NOT NULL default '0',
+  `char_id` int(11) NOT NULL default '0',
+  `sex` tinyint(2) NOT NULL default '0',
+  `title` varchar(80) NOT NULL default 'Buy From Me!',
+  PRIMARY KEY  (`account_id`,`char_id`)
+) ENGINE=MyISAM; 
+
+--
+-- Estrutura da tabela `autotrade_data`
+--
+
+CREATE TABLE IF NOT EXISTS `autotrade_data` (
+  `char_id` int(11) NOT NULL default '0',
+  `itemkey` int(11) NOT NULL default '0',
+  `amount` int(11) NOT NULL default '0',
+  `price` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`char_id`,`itemkey`)
+) ENGINE=MyISAM; 
 

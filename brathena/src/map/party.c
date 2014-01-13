@@ -114,7 +114,7 @@ static TBL_PC *party_sd_check(int party_id, int account_id, int char_id)
 int party_db_final(DBKey key, DBData *data, va_list ap) {
 	struct party_data *p;
 	
-	if( ( p = db_data2ptr(data) ) && p->instance )
+	if((p = DB->data2ptr(data)) && p->instance)
 		aFree(p->instance);
 	
 	return 0;

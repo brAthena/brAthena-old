@@ -39,6 +39,7 @@
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
 #define MAX_PC_FEELHATE 3
+#define PVP_CALCRANK_INTERVAL 1000	// PVP calculation interval
 
 //Equip indexes constants. (eg: sd->equip_index[EQI_AMMO] returns the index
 //where the arrows are equipped)
@@ -160,7 +161,6 @@ struct map_session_data {
 		unsigned int abra_flag : 2; // Abracadabra bugfix by Aru
 		unsigned int autocast : 1; // Autospell flag [Inkfish]
 		unsigned int autotrade : 1; //By Fantik
-		unsigned int reg_dirty : 4; //By Skotlex (marks whether registry variables have been saved or not yet)
 		unsigned int showdelay :1;
 		unsigned int showexp :1;
 		unsigned int showzeny :1;
@@ -201,6 +201,7 @@ struct map_session_data {
 		unsigned int snovice_call_flag : 3; //Summon Angel (stage 1~3)
 		unsigned int hpmeter_visible : 1;
 		unsigned int itemcheck : 1;
+		unsigned int standalone : 1;/* [Ind] */
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -217,11 +218,13 @@ struct map_session_data {
 	} special_state;
 	int login_id1, login_id2;
 	unsigned short class_;  //This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]
-	int group_id, group_pos, group_level;
-	unsigned int permissions;/* group permissions */
+
+	/// Groups & permissions
+	int group_id;
+	GroupSettings *group;
+	unsigned int extra_temp_permissions; /* permissions from @addperm */
 
 	struct mmo_charstatus status;
-	struct registry save_reg;
 
 	struct item_data *inventory_data[MAX_INVENTORY]; // direct pointers to itemdb entries (faster than doing item_id lookups)
 	short equip_index[EQI_MAX];
@@ -398,11 +401,6 @@ struct map_session_data {
 	short mission_mobid; //Stores the target mob_id for TK_MISSION
 	int die_counter; //Total number of times you've died
 	int devotion[5]; //Stores the account IDs of chars devoted to.
-	int reg_num; //Number of registries (type numeric)
-	int regstr_num; //Number of registries (type string)
-
-	struct script_reg *reg;
-	struct script_regstr *regstr;
 
 	int trade_partner;
 	struct {
@@ -565,6 +563,16 @@ struct map_session_data {
 	struct {
 		unsigned int second,third;
 	} sktree;
+
+	/**
+	 * Account/Char variables & array control of those variables
+	 **/
+	DBMap *var_db;
+	DBMap *array_db;
+	unsigned char vars_received;/* char loading is only complete when you get it all. */
+	bool vars_ok;
+	bool vars_dirty;
+
 	// temporary debugging of bug #3504
 	const char *delunit_prevfile;
 	int delunit_prevline;
@@ -706,31 +714,51 @@ enum equip_pos {
 	)
 #endif
 
+#define pc_get_group_id(sd) ( (sd)->group_id )
+
 #define pc_checkoverhp(sd) ((sd)->battle_status.hp == (sd)->battle_status.max_hp)
 #define pc_checkoversp(sd) ((sd)->battle_status.sp == (sd)->battle_status.max_sp)
 
-#define pc_readglobalreg(sd,reg)         (pc_readregistry((sd),(reg),3))
-#define pc_setglobalreg(sd,reg,val)      (pc_setregistry((sd),(reg),(val),3))
-#define pc_readglobalreg_str(sd,reg)     (pc_readregistry_str((sd),(reg),3))
-#define pc_setglobalreg_str(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val),3))
-#define pc_readaccountreg(sd,reg)        (pc_readregistry((sd),(reg),2))
-#define pc_setaccountreg(sd,reg,val)     (pc_setregistry((sd),(reg),(val),2))
-#define pc_readaccountregstr(sd,reg)     (pc_readregistry_str((sd),(reg),2))
-#define pc_setaccountregstr(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val),2))
-#define pc_readaccountreg2(sd,reg)       (pc_readregistry((sd),(reg),1))
-#define pc_setaccountreg2(sd,reg,val)    (pc_setregistry((sd),(reg),(val),1))
-#define pc_readaccountreg2str(sd,reg)    (pc_readregistry_str((sd),(reg),1))
-#define pc_setaccountreg2str(sd,reg,val) (pc_setregistry_str((sd),(reg),(val),1))
+#define pc_readglobalreg(sd,reg)         (pc_readregistry((sd),(reg)))
+#define pc_setglobalreg(sd,reg,val)      (pc_setregistry((sd),(reg),(val)))
+#define pc_readglobalreg_str(sd,reg)     (pc_readregistry_str((sd),(reg)))
+#define pc_setglobalreg_str(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val)))
+#define pc_readaccountreg(sd,reg)        (pc_readregistry((sd),(reg)))
+#define pc_setaccountreg(sd,reg,val)     (pc_setregistry((sd),(reg),(val)))
+#define pc_readaccountregstr(sd,reg)     (pc_readregistry_str((sd),(reg)))
+#define pc_setaccountregstr(sd,reg,val)  (pc_setregistry_str((sd),(reg),(val)))
+#define pc_readaccountreg2(sd,reg)       (pc_readregistry((sd),(reg)))
+#define pc_setaccountreg2(sd,reg,val)    (pc_setregistry((sd),(reg),(val)))
+#define pc_readaccountreg2str(sd,reg)    (pc_readregistry_str((sd),(reg)))
+#define pc_setaccountreg2str(sd,reg,val) (pc_setregistry_str((sd),(reg),(val)))
+/* pc_groups easy access */
+#define pc_get_group_level(sd) ( (sd)->group->level )
+#define pc_has_permission(sd,permission) ( ((sd)->extra_temp_permissions&(permission)) != 0 || ((sd)->group->e_permissions&(permission)) != 0 )
+#define pc_can_give_items(sd) ( pc_has_permission((sd),PC_PERM_TRADE) )
+#define pc_can_give_bound_items(sd) ( pc_has_permission((sd),PC_PERM_TRADE_BOUND) )
+
+enum e_pc_autotrade_update_action {
+	PAUC_START,
+	PAUC_REFRESH,
+	PAUC_REMOVE,
+};
+
+/**
+ * Used to temporarily remember vending data
+ **/
+struct autotrade_vending {
+	struct item list[MAX_VENDING];
+	struct s_vending vending[MAX_VENDING];
+	unsigned char vend_num;
+};
 
 int pc_class2idx(int class_);
-int pc_get_group_level(struct map_session_data *sd);
-int pc_get_group_id(struct map_session_data *sd);
-//int pc_getrefinebonus(int lv,int type);
-bool pc_can_give_items(struct map_session_data *sd);
-
-bool pc_can_use_command(struct map_session_data *sd, const char *command, AtCommandType type);
-#define pc_has_permission(sd, permission) ( ((sd)->permissions&permission) != 0 )
+int pc_set_group(struct map_session_data *sd, int group_id);
 bool pc_should_log_commands(struct map_session_data *sd);
+struct map_session_data* pc_get_dummy_sd(void);
+//int pc_getrefinebonus(int lv,int type);
+
+bool pc_can_use_command(struct map_session_data *sd, const char *command);
 
 
 
@@ -858,15 +886,15 @@ int pc_equiplookall(struct map_session_data *sd);
 
 int pc_readparam(struct map_session_data *,int);
 int pc_setparam(struct map_session_data *,int,int);
-int pc_readreg(struct map_session_data *,int);
-int pc_setreg(struct map_session_data *,int,int);
-char *pc_readregstr(struct map_session_data *sd,int reg);
-int pc_setregstr(struct map_session_data *sd,int reg,const char *str);
+int pc_readreg(struct map_session_data *sd, int64 reg);
+void pc_setreg(struct map_session_data *sd, int64 reg,int val);
+char *pc_readregstr(struct map_session_data *sd, int64 reg);
+void pc_setregstr(struct map_session_data *sd, int64 reg, const char *str);
 
-int pc_readregistry(struct map_session_data *,const char *,int);
-int pc_setregistry(struct map_session_data *,const char *,int,int);
-char *pc_readregistry_str(struct map_session_data *,const char *,int);
-int pc_setregistry_str(struct map_session_data *,const char *,const char *,int);
+int pc_readregistry(struct map_session_data *sd, int64 reg);
+int pc_setregistry(struct map_session_data *sd, int64 reg, int val);
+char *pc_readregistry_str(struct map_session_data *sd, int64 reg);
+int pc_setregistry_str(struct map_session_data *sd, int64 reg, const char *val);
 
 int pc_addeventtimer(struct map_session_data *sd,int tick,const char *name);
 int pc_deleventtimer(struct map_session_data *sd,const char *name);
@@ -975,6 +1003,20 @@ void pc_baselevelchanged(struct map_session_data *sd);
 void pc_rental_expire(struct map_session_data *sd, int i);
 void pc_scdata_received(struct map_session_data *sd);
 
+/**
+ * ERS for the bulk of pc vars
+**/
+struct eri *pc_num_reg_ers;
+struct eri *pc_str_reg_ers;
+bool pc_reg_load;
+
+// Persistência do autrotrade
+void pc_autotrade_load(void);
+void pc_autotrade_update(struct map_session_data *sd, enum e_pc_autotrade_update_action action);
+void pc_autotrade_start(struct map_session_data *sd);
+void pc_autotrade_prepare(struct map_session_data *sd);
+void pc_autotrade_populate(struct map_session_data *sd);
+
 // Servidor pago
 int pc_expiration_tid;
 int pc_expiration_timer(int tid, int64 tick, int id, intptr_t data);
@@ -984,7 +1026,6 @@ void pc_expire_check(struct map_session_data *sd);
 
 // Sistema Item Vinculado
 void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type);
-bool pc_can_give_bound_items(struct map_session_data *sd);
 
 
 //----------------------------------
@@ -999,7 +1040,7 @@ bool pc_can_give_bound_items(struct map_session_data *sd);
 
 // Salva e atualiza as informações de um vip.
 #define save_vip(sd,x) \
-	sd->group_id = x; pc_group_pc_load(sd); \
+	sd->group_id = x; pc_set_group(sd, sd->group_id); \
 		if(SQL_ERROR == Sql_Query(mmysql_handle,"UPDATE `login` SET `group_id`=%d WHERE `account_id`='%d'", x, sd->status.account_id)) \
 			Sql_ShowDebug(mmysql_handle);
 

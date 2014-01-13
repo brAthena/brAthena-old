@@ -808,7 +808,7 @@ int read_elementaldb(void)
 		return -1;
 	}
 
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && count < MAX_ELEMENTAL_CLASS) {
+	while (SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && count < MAX_ELEMENTAL_CLASS) {
 		char *row[26];
 		int i;
 

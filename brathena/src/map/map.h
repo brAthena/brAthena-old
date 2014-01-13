@@ -41,6 +41,7 @@ DBMap *map_db; // unsigned int mapindex -> struct map_data_other_server*
 DBMap *nick_db; // int char_id -> struct charid2nick* (requested names of offline characters)
 DBMap *charid_db; // int char_id -> struct map_session_data*
 DBMap *regen_db; // int id -> struct block_list* (status_natural_heal processing)
+DBMap *at_db;/* char id -> struct autotrade_vending */
 
 
 enum E_MAPSERVER_ST
@@ -772,6 +773,8 @@ struct map_data_other_server {
 int map_getcell(int16 m,int16 x,int16 y,cell_chk cellchk);
 void map_setgatcell(int16 m, int16 x, int16 y, int gat);
 
+struct map_session_data *map_cpsd;
+
 struct map_data *map;
 extern int map_num;
 
@@ -962,7 +965,13 @@ extern char log_db_id[32];
 extern char log_db_pw[32];
 extern char log_db_db[32];
 
+
+
 #endif
+
+char interreg_db[32];
+char autotrade_merchants_db[32];
+char autotrade_data_db[32];
 
 extern char db_ip[32];
 extern int db_port;

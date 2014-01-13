@@ -33,37 +33,30 @@
 #include <stdio.h>
 #include <string.h>
 
-static int vending_nextid = 0;
-static DBMap *vending_db;
+struct vending_interface vending_s;
 
-DBMap * vending_getdb(){
-	return vending_db;
-}
 /// Returns an unique vending shop id.
-static int vending_getuid(void)
-{
-	return ++vending_nextid;
+static inline unsigned int getid(void) {
+	return vending->next_id++;
 }
 
 /*==========================================
  * Close shop
  *------------------------------------------*/
-void vending_closevending(struct map_session_data *sd)
-{
+void vending_closevending(struct map_session_data *sd) {
 	nullpo_retv(sd);
 
 	if(sd->state.vending) {
 		sd->state.vending = false;
 		clif_closevendingboard(&sd->bl, 0);
-		idb_remove(vending_db, sd->status.char_id);
+		idb_remove(vending->db, sd->status.char_id);
 	}
 }
 
 /*==========================================
  * Request a shop's item list
  *------------------------------------------*/
-void vending_vendinglistreq(struct map_session_data *sd, int id)
-{
+void vending_vendinglistreq(struct map_session_data *sd, unsigned int id) {
 	struct map_session_data *vsd;
 	nullpo_retv(sd);
 
@@ -86,11 +79,10 @@ void vending_vendinglistreq(struct map_session_data *sd, int id)
 /*==========================================
  * Purchase item(s) from a shop
  *------------------------------------------*/
-void vending_purchasereq(struct map_session_data *sd, int aid, int uid, const uint8 *data, int count)
-{
+void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid, const uint8* data, int count) {
 	int i, j, cursor, w, new_ = 0, blank, vend_list[MAX_VENDING];
 	double z;
-	struct s_vending vending[MAX_VENDING]; // against duplicate packets
+	struct s_vending vend[MAX_VENDING]; // against duplicate packets
 	struct map_session_data *vsd = map_id2sd(aid);
 
 	nullpo_retv(sd);
@@ -114,7 +106,7 @@ void vending_purchasereq(struct map_session_data *sd, int aid, int uid, const ui
 	blank = pc_inventoryblank(sd); //number of free cells in the buyer's inventory
 
 	// duplicate item in vending to check hacker with multiple packets
-	memcpy(&vending, &vsd->vending, sizeof(vsd->vending)); // copy vending list
+	memcpy(&vend, &vsd->vending, sizeof(vsd->vending)); // copy vending list
 
 	// some checks
 	z = 0.; // zeny counter
@@ -154,18 +146,18 @@ void vending_purchasereq(struct map_session_data *sd, int aid, int uid, const ui
 		}
 
 		//Check to see if cart/vend info is in sync.
-		if(vending[j].amount > vsd->status.cart[idx].amount)
-			vending[j].amount = vsd->status.cart[idx].amount;
+		if(vend[j].amount > vsd->status.cart[idx].amount)
+			vend[j].amount = vsd->status.cart[idx].amount;
 
 		// if they try to add packets (example: get twice or more 2 apples if marchand has only 3 apples).
 		// here, we check cumulative amounts
-		if(vending[j].amount < amount) {
+		if(vend[j].amount < amount) {
 			// send more quantity is not a hack (an other player can have buy items just before)
 			clif_buyvending(sd, idx, vsd->vending[j].amount, 4); // not enough quantity
 			return;
 		}
 
-		vending[j].amount -= amount;
+		vend[j].amount -= amount;
 
 		switch(pc_checkadditem(sd, vsd->status.cart[idx].nameid, amount)) {
 			case ADDITEM_EXIST:
@@ -231,9 +223,10 @@ void vending_purchasereq(struct map_session_data *sd, int aid, int uid, const ui
 		ARR_FIND(0, vsd->vend_num, i, vsd->vending[i].amount > 0);
 		if(i == vsd->vend_num) {
 			//Close Vending (this was automatically done by the client, we have to do it manually for autovenders) [Skotlex]
-			vending_closevending(vsd);
+			vending->close(vsd);
 			map_quit(vsd);  //They have no reason to stay around anymore, do they?
-		}
+		} else
+			pc_autotrade_update(vsd,PAUC_REFRESH);
 	}
 }
 
@@ -304,14 +297,14 @@ void vending_openvending(struct map_session_data *sd, const char *message, const
 	}
 	sd->state.prevend = sd->state.workinprogress = 0;
 	sd->state.vending = true;
-	sd->vender_id = vending_getuid();
+	sd->vender_id = getid();
 	sd->vend_num = i;
 	safestrncpy(sd->message, message, MESSAGE_SIZE);
 
 	clif_openvending(sd,sd->bl.id,sd->vending);
 	clif_showvendingboard(&sd->bl,message,0);
 
-	idb_put(vending_db, sd->status.char_id, sd);
+	idb_put(vending->db, sd->status.char_id, sd);
 }
 
 
@@ -396,11 +389,25 @@ bool vending_searchall(struct map_session_data *sd, const struct s_search_store_
 
 	return true;
 }
-void do_final_vending(void) {
-	db_destroy(vending_db);
+void final(void) {
+	db_destroy(vending->db);
 }
 
-void do_init_vending(void) {
-	vending_db = idb_alloc(DB_OPT_BASE);
-	vending_nextid = 0;
+void init(void) {
+	vending->db = idb_alloc(DB_OPT_BASE);
+	vending->next_id = 0;
+}
+
+void vending_defaults(void) {
+	vending = &vending_s;
+	
+	vending->init = init;
+	vending->final = final;
+	
+	vending->close = vending_closevending;
+	vending->open = vending_openvending;
+	vending->list = vending_vendinglistreq;
+	vending->purchase = vending_purchasereq;
+	vending->search = vending_search;
+	vending->searchall = vending_searchall;
 }

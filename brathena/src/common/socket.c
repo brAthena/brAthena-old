@@ -1447,8 +1447,6 @@ void socket_datasync(int fd, bool send) {
 		{ sizeof(struct item) },
 		{ sizeof(struct point) },
 		{ sizeof(struct s_skill) },
-		{ sizeof(struct global_reg) },
-		{ sizeof(struct accreg) },
 		{ sizeof(struct status_change_data) },
 		{ sizeof(struct storage_data) },
 		{ sizeof(struct guild_storage) },
@@ -1459,7 +1457,6 @@ void socket_datasync(int fd, bool send) {
 		{ sizeof(struct s_friend) },
 		{ sizeof(struct mail_message) },
 		{ sizeof(struct mail_data) },
-		{ sizeof(struct registry) },
 		{ sizeof(struct party_member) },
 		{ sizeof(struct party) },
 		{ sizeof(struct guild_member) },
@@ -1470,6 +1467,7 @@ void socket_datasync(int fd, bool send) {
 		{ sizeof(struct guild) },
 		{ sizeof(struct guild_castle) },
 		{ sizeof(struct fame_list) },
+		{ PACKETVER },
 	};
 	unsigned short i;
 	unsigned int alen = ARRAYLENGTH(data_list);

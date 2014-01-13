@@ -55,7 +55,6 @@ static bool guild_check_empty(struct guild *g);
 int guild_calcinfo(struct guild *g);
 int mapif_guild_basicinfochanged(int guild_id,int type,const void *data,int len);
 int mapif_guild_info(int fd,struct guild *g);
-int guild_break_sub(int key,void *data,va_list ap);
 int inter_guild_tosql(struct guild *g,int flag);
 
 static int guild_save_timer(int tid, int64 tick, int id, intptr_t data)
@@ -69,7 +68,7 @@ static int guild_save_timer(int tid, int64 tick, int id, intptr_t data)
 	if(last_id == 0)   //Save the first guild in the list.
 		state = 1;
 
-	for(g = db_data2ptr(iter->first(iter, &key)); dbi_exists(iter); g = db_data2ptr(iter->next(iter, &key))) {
+	for(g = DB->data2ptr(iter->first(iter, &key)); dbi_exists(iter); g = DB->data2ptr(iter->next(iter, &key))) {
 		if(state == 0 && g->guild_id == last_id)
 			state++; //Save next guild in the list.
 		else if(state == 1 && g->save_flag&GS_MASK) {
@@ -165,8 +164,8 @@ int inter_guild_tosql(struct guild *g,int flag)
 		StringBuf buf;
 		bool add_comma = false;
 
-		StringBuf_Init(&buf);
-		StringBuf_Printf(&buf, "UPDATE `%s` SET ", guild_db);
+		StrBuf->Init(&buf);
+		StrBuf->Printf(&buf, "UPDATE `%s` SET ", guild_db);
 
 		if(flag & GS_EMBLEM) {
 			char emblem_data[sizeof(g->emblem_data)*2+1];
@@ -180,24 +179,24 @@ int inter_guild_tosql(struct guild *g,int flag)
 				*pData++ = dataToHex[g->emblem_data[i] & 0x0F];
 			}
 			*pData = 0;
-			StringBuf_Printf(&buf, "`emblem_len`=%d, `emblem_id`=%d, `emblem_data`='%s'", g->emblem_len, g->emblem_id, emblem_data);
+			StrBuf->Printf(&buf, "`emblem_len`=%d, `emblem_id`=%d, `emblem_data`='%s'", g->emblem_len, g->emblem_id, emblem_data);
 			add_comma = true;
 		}
 		if(flag & GS_BASIC) {
 			strcat(t_info, " basic");
 			if(add_comma)
-				StringBuf_AppendStr(&buf, ", ");
+				StrBuf->AppendStr(&buf, ", ");
 			else
 				add_comma = true;
-			StringBuf_Printf(&buf, "`name`='%s', `master`='%s', `char_id`=%d", esc_name, esc_master, g->member[0].char_id);
+			StrBuf->Printf(&buf, "`name`='%s', `master`='%s', `char_id`=%d", esc_name, esc_master, g->member[0].char_id);
 		}
 		if(flag & GS_CONNECT) {
 			strcat(t_info, " connect");
 			if(add_comma)
-				StringBuf_AppendStr(&buf, ", ");
+				StrBuf->AppendStr(&buf, ", ");
 			else
 				add_comma = true;
-			StringBuf_Printf(&buf, "`connect_member`=%d, `average_lv`=%d", g->connect_member, g->average_lv);
+			StrBuf->Printf(&buf, "`connect_member`=%d, `average_lv`=%d", g->connect_member, g->average_lv);
 		}
 		if(flag & GS_MES) {
 			char esc_mes1[sizeof(g->mes1)*2+1];
@@ -205,25 +204,25 @@ int inter_guild_tosql(struct guild *g,int flag)
 
 			strcat(t_info, " mes");
 			if(add_comma)
-				StringBuf_AppendStr(&buf, ", ");
+				StrBuf->AppendStr(&buf, ", ");
 			else
 				add_comma = true;
 			Sql_EscapeStringLen(sql_handle, esc_mes1, g->mes1, strnlen(g->mes1, sizeof(g->mes1)));
 			Sql_EscapeStringLen(sql_handle, esc_mes2, g->mes2, strnlen(g->mes2, sizeof(g->mes2)));
-			StringBuf_Printf(&buf, "`mes1`='%s', `mes2`='%s'", esc_mes1, esc_mes2);
+			StrBuf->Printf(&buf, "`mes1`='%s', `mes2`='%s'", esc_mes1, esc_mes2);
 		}
 		if(flag & GS_LEVEL) {
 			strcat(t_info, " level");
 			if(add_comma)
-				StringBuf_AppendStr(&buf, ", ");
+				StrBuf->AppendStr(&buf, ", ");
 			//else	//last condition using add_coma setting
 			//	add_comma = true;
-			StringBuf_Printf(&buf, "`guild_lv`=%d, `skill_point`=%d, `exp`=%"PRIu64", `next_exp`=%u, `max_member`=%d", g->guild_lv, g->skill_point, g->exp, g->next_exp, g->max_member);
+			StrBuf->Printf(&buf, "`guild_lv`=%d, `skill_point`=%d, `exp`=%"PRIu64", `next_exp`=%u, `max_member`=%d", g->guild_lv, g->skill_point, g->exp, g->next_exp, g->max_member);
 		}
-		StringBuf_Printf(&buf, " WHERE `guild_id`=%d", g->guild_id);
-		if(SQL_ERROR == Sql_Query(sql_handle, "%s", StringBuf_Value(&buf)))
+		StrBuf->Printf(&buf, " WHERE `guild_id`=%d", g->guild_id);
+		if(SQL_ERROR == Sql_Query(sql_handle, "%s", StrBuf->Value(&buf)))
 			Sql_ShowDebug(sql_handle);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 	}
 
 	if(flag&GS_MEMBER) {
@@ -357,21 +356,21 @@ struct guild *inter_guild_fromsql(int guild_id) {
 	CREATE(g, struct guild, 1);
 
 	g->guild_id = guild_id;
-	Sql_GetData(sql_handle,  0, &data, &len); memcpy(g->name, data, min(len, NAME_LENGTH));
-	Sql_GetData(sql_handle,  1, &data, &len); memcpy(g->master, data, min(len, NAME_LENGTH));
-	Sql_GetData(sql_handle,  2, &data, NULL); g->guild_lv = atoi(data);
-	Sql_GetData(sql_handle,  3, &data, NULL); g->connect_member = atoi(data);
-	Sql_GetData(sql_handle,  4, &data, NULL); g->max_member = atoi(data);
+	Sql_GetData(sql_handle, 0, &data, &len); memcpy(g->name, data, min(len, NAME_LENGTH));
+	Sql_GetData(sql_handle, 1, &data, &len); memcpy(g->master, data, min(len, NAME_LENGTH));
+	Sql_GetData(sql_handle, 2, &data, NULL); g->guild_lv = atoi(data);
+	Sql_GetData(sql_handle, 3, &data, NULL); g->connect_member = atoi(data);
+	Sql_GetData(sql_handle, 4, &data, NULL); g->max_member = atoi(data);
 	if(g->max_member > MAX_GUILD) {
 		// Fix reduction of MAX_GUILD [PoW]
 		ShowWarning(read_message("Source.char.guild_inter_guild_fromsql_s2"), guild_id, g->name, g->max_member, MAX_GUILD);
 		g->max_member = MAX_GUILD;
 	}
-	Sql_GetData(sql_handle,  5, &data, NULL); g->average_lv = atoi(data);
-	Sql_GetData(sql_handle,  6, &data, NULL); g->exp = strtoull(data, NULL, 10);
-	Sql_GetData(sql_handle,  7, &data, NULL); g->next_exp = (unsigned int)strtoul(data, NULL, 10);
-	Sql_GetData(sql_handle,  8, &data, NULL); g->skill_point = atoi(data);
-	Sql_GetData(sql_handle,  9, &data, &len); memcpy(g->mes1, data, min(len, sizeof(g->mes1)));
+	Sql_GetData(sql_handle, 5, &data, NULL); g->average_lv = atoi(data);
+	Sql_GetData(sql_handle, 6, &data, NULL); g->exp = strtoull(data, NULL, 10);
+	Sql_GetData(sql_handle, 7, &data, NULL); g->next_exp = (unsigned int)strtoul(data, NULL, 10);
+	Sql_GetData(sql_handle, 8, &data, NULL); g->skill_point = atoi(data);
+	Sql_GetData(sql_handle, 9, &data, &len); memcpy(g->mes1, data, min(len, sizeof(g->mes1)));
 	Sql_GetData(sql_handle, 10, &data, &len); memcpy(g->mes2, data, min(len, sizeof(g->mes2)));
 	Sql_GetData(sql_handle, 11, &data, &len); g->emblem_len = atoi(data);
 	Sql_GetData(sql_handle, 12, &data, &len); g->emblem_id = atoi(data);
@@ -407,16 +406,16 @@ struct guild *inter_guild_fromsql(int guild_id) {
 	for(i = 0; i < g->max_member && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
 		struct guild_member *m = &g->member[i];
 
-		Sql_GetData(sql_handle,  0, &data, NULL); m->account_id = atoi(data);
-		Sql_GetData(sql_handle,  1, &data, NULL); m->char_id = atoi(data);
-		Sql_GetData(sql_handle,  2, &data, NULL); m->hair = atoi(data);
-		Sql_GetData(sql_handle,  3, &data, NULL); m->hair_color = atoi(data);
-		Sql_GetData(sql_handle,  4, &data, NULL); m->gender = atoi(data);
-		Sql_GetData(sql_handle,  5, &data, NULL); m->class_ = atoi(data);
-		Sql_GetData(sql_handle,  6, &data, NULL); m->lv = atoi(data);
-		Sql_GetData(sql_handle,  7, &data, NULL); m->exp = strtoull(data, NULL, 10);
-		Sql_GetData(sql_handle,  8, &data, NULL); m->exp_payper = (unsigned int)atoi(data);
-		Sql_GetData(sql_handle,  9, &data, NULL); m->online = atoi(data);
+		Sql_GetData(sql_handle, 0, &data, NULL); m->account_id = atoi(data);
+		Sql_GetData(sql_handle, 1, &data, NULL); m->char_id = atoi(data);
+		Sql_GetData(sql_handle, 2, &data, NULL); m->hair = atoi(data);
+		Sql_GetData(sql_handle, 3, &data, NULL); m->hair_color = atoi(data);
+		Sql_GetData(sql_handle, 4, &data, NULL); m->gender = atoi(data);
+		Sql_GetData(sql_handle, 5, &data, NULL); m->class_ = atoi(data);
+		Sql_GetData(sql_handle, 6, &data, NULL); m->lv = atoi(data);
+		Sql_GetData(sql_handle, 7, &data, NULL); m->exp = strtoull(data, NULL, 10);
+		Sql_GetData(sql_handle, 8, &data, NULL); m->exp_payper = (unsigned int)atoi(data);
+		Sql_GetData(sql_handle, 9, &data, NULL); m->online = atoi(data);
 		Sql_GetData(sql_handle, 10, &data, NULL); m->position = atoi(data);
 		if(m->position >= MAX_GUILDPOSITION)   // Fix reduction of MAX_GUILDPOSITION [PoW]
 			m->position = MAX_GUILDPOSITION - 1;
@@ -508,20 +507,20 @@ int inter_guildcastle_tosql(struct guild_castle *gc)
 	StringBuf buf;
 	int i;
 
-	StringBuf_Init(&buf);
-	StringBuf_Printf(&buf, "REPLACE INTO `%s` SET `castle_id`='%d', `guild_id`='%d', `economy`='%d', `defense`='%d', "
+	StrBuf->Init(&buf);
+	StrBuf->Printf(&buf, "REPLACE INTO `%s` SET `castle_id`='%d', `guild_id`='%d', `economy`='%d', `defense`='%d', "
 	                 "`triggerE`='%d', `triggerD`='%d', `nextTime`='%d', `payTime`='%d', `createTime`='%d', `visibleC`='%d'",
 	                 guild_castle_db, gc->castle_id, gc->guild_id, gc->economy, gc->defense,
 	                 gc->triggerE, gc->triggerD, gc->nextTime, gc->payTime, gc->createTime, gc->visibleC);
 	for(i = 0; i < MAX_GUARDIANS; ++i)
-		StringBuf_Printf(&buf, ", `visibleG%d`='%d'", i, gc->guardian[i].visible);
+		StrBuf->Printf(&buf, ", `visibleG%d`='%d'", i, gc->guardian[i].visible);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf)))
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf)))
 		Sql_ShowDebug(sql_handle);
 	else if(save_log)
 		ShowInfo(read_message("Source.char.guild_guildcastle_tosql"), gc->castle_id);
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 	return 0;
 }
 
@@ -535,18 +534,18 @@ static struct guild_castle *inter_guildcastle_fromsql(int castle_id) {
 	if(gc != NULL)
 		return gc;
 
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `castle_id`, `guild_id`, `economy`, `defense`, `triggerE`, "
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `castle_id`, `guild_id`, `economy`, `defense`, `triggerE`, "
 	                    "`triggerD`, `nextTime`, `payTime`, `createTime`, `visibleC`");
 	for(i = 0; i < MAX_GUARDIANS; ++i)
-		StringBuf_Printf(&buf, ", `visibleG%d`", i);
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `castle_id`='%d'", guild_castle_db, castle_id);
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf))) {
+		StrBuf->Printf(&buf, ", `visibleG%d`", i);
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `castle_id`='%d'", guild_castle_db, castle_id);
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf))) {
 		Sql_ShowDebug(sql_handle);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		return NULL;
 	}
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	CREATE(gc, struct guild_castle, 1);
 	gc->castle_id = castle_id;
@@ -714,7 +713,7 @@ int inter_guild_sql_init(void)
  */
 static int guild_db_final(DBKey key, DBData *data, va_list ap)
 {
-	struct guild *g = db_data2ptr(data);
+	struct guild *g = DB->data2ptr(data);
 	if(g->save_flag&GS_MASK) {
 		inter_guild_tosql(g, g->save_flag&GS_MASK);
 		return 1;

@@ -75,16 +75,16 @@ bool mapif_elemental_load(int ele_id, int char_id, struct s_elemental *ele)
 		return false;
 	}
 
-	Sql_GetData(sql_handle,  0, &data, NULL); ele->class_ = atoi(data);
-	Sql_GetData(sql_handle,  1, &data, NULL); ele->mode = atoi(data);
-	Sql_GetData(sql_handle,  2, &data, NULL); ele->hp = atoi(data);
-	Sql_GetData(sql_handle,  3, &data, NULL); ele->sp = atoi(data);
-	Sql_GetData(sql_handle,  4, &data, NULL); ele->max_hp = atoi(data);
-	Sql_GetData(sql_handle,  5, &data, NULL); ele->max_sp = atoi(data);
-	Sql_GetData(sql_handle,  6, &data, NULL); ele->atk = atoi(data);
-	Sql_GetData(sql_handle,  7, &data, NULL); ele->atk2 = atoi(data);
-	Sql_GetData(sql_handle,  8, &data, NULL); ele->matk = atoi(data);
-	Sql_GetData(sql_handle,  9, &data, NULL); ele->amotion = atoi(data);
+	Sql_GetData(sql_handle, 0, &data, NULL); ele->class_ = atoi(data);
+	Sql_GetData(sql_handle, 1, &data, NULL); ele->mode = atoi(data);
+	Sql_GetData(sql_handle, 2, &data, NULL); ele->hp = atoi(data);
+	Sql_GetData(sql_handle, 3, &data, NULL); ele->sp = atoi(data);
+	Sql_GetData(sql_handle, 4, &data, NULL); ele->max_hp = atoi(data);
+	Sql_GetData(sql_handle, 5, &data, NULL); ele->max_sp = atoi(data);
+	Sql_GetData(sql_handle, 6, &data, NULL); ele->atk = atoi(data);
+	Sql_GetData(sql_handle, 7, &data, NULL); ele->atk2 = atoi(data);
+	Sql_GetData(sql_handle, 8, &data, NULL); ele->matk = atoi(data);
+	Sql_GetData(sql_handle, 9, &data, NULL); ele->amotion = atoi(data);
 	Sql_GetData(sql_handle, 10, &data, NULL); ele->def = atoi(data);
 	Sql_GetData(sql_handle, 11, &data, NULL); ele->mdef = atoi(data);
 	Sql_GetData(sql_handle, 12, &data, NULL); ele->flee = atoi(data);
@@ -99,7 +99,7 @@ bool mapif_elemental_load(int ele_id, int char_id, struct s_elemental *ele)
 
 bool mapif_elemental_delete(int ele_id)
 {
-	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `ele_id` = '%d'", elemental_db, ele_id)) {
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `ele_id` = '%d'", elemental_db, ele_id)) {
 		Sql_ShowDebug(sql_handle);
 		return false;
 	}

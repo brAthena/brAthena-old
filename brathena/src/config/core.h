@@ -64,6 +64,10 @@
 
 /// Comente para não ver o uso de memória consumida em tempo real. [Ai4rei]
 #define SHOW_MEMORY
+
+/// Comente para desativar persistência do autotrade  (onde comerciantes com autotrade sobrevivem a reinicialização do servidor)
+#define AUTOTRADE_PERSISTENCY
+
 #include "./configs.h"
 #include "./secure.h"
 #include "./classes/general.h"

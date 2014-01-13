@@ -5734,19 +5734,19 @@ void clif_chsys_gjoin(struct guild *g1,struct guild *g2) {
 	struct raChSysCh *channel;
 	int j;
 	
-	if((channel = (struct raChSysCh*)g1->channel)) {
+	if((channel = g1->channel)) {
 		for(j = 0; j < g2->max_member; j++) {
 			if((sd = g2->member[j].sd) != NULL) {
-				if(!(((struct raChSysCh*)g1->channel)->banned && idb_exists(((struct raChSysCh*)g1->channel)->banned, sd->status.account_id)))
+				if(!(g1->channel->banned && idb_exists(g1->channel->banned, sd->status.account_id)))
 					clif_chsys_join(channel,sd);
 			}
 		}
 	}
 	
-	if((channel = (struct raChSysCh*)g2->channel)) {
+	if((channel = g2->channel)) {
 		for(j = 0; j < g1->max_member; j++) {
 			if((sd = g1->member[j].sd) != NULL) {
-				if(!(((struct raChSysCh*)g2->channel)->banned && idb_exists(((struct raChSysCh*)g2->channel)->banned, sd->status.account_id)))
+				if(!(g2->channel->banned && idb_exists(g2->channel->banned, sd->status.account_id)))
 				clif_chsys_join(channel,sd);
 			}
 		}
@@ -5758,7 +5758,7 @@ void clif_chsys_gleave(struct guild *g1,struct guild *g2) {
 	struct raChSysCh *channel;
 	int j;
 	
-	if( (channel = (struct raChSysCh*)g1->channel) ) {
+	if( (channel = g1->channel) ) {
 		for(j = 0; j < g2->max_member; j++) {
 			if( (sd = g2->member[j].sd) != NULL ) {
 				clif_chsys_left(channel,sd);
@@ -5766,7 +5766,7 @@ void clif_chsys_gleave(struct guild *g1,struct guild *g2) {
 		}
 	}
 	
-	if((channel = (struct raChSysCh*)g2->channel)) {
+	if((channel = g2->channel)) {
 		for(j = 0; j < g1->max_member; j++) {
 			if((sd = g1->member[j].sd) != NULL) {
 				clif_chsys_left(channel,sd);
@@ -9336,7 +9336,7 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 	WFIFOSET(fd,packet_len(0x283));
 #endif
 
-	chrif_authreq(sd);
+	chrif_authreq(sd,false);
 }
 
 
@@ -10444,7 +10444,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 		} else if( raChSys.ally && sd->status.guild_id && strcmpi(chname, raChSys.ally_name) == 0 ) {
 			struct guild *g = sd->guild;
 			if( !g ) return;
-			channel = (struct raChSysCh *)g->channel;
+			channel = g->channel;
 		}
 		if( channel || (channel = strdb_get(channel_db,chname)) ) {
 			int k;
@@ -10459,8 +10459,8 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 					struct guild *g = sd->guild, *sg = NULL;
 					for (k = 0; k < MAX_GUILDALLIANCE; k++) {
 						if(g->alliance[k].opposition == 0 && g->alliance[k].guild_id && (sg = guild_search(g->alliance[k].guild_id))) {
-							if(!(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id)))
-								clif_chsys_join((struct raChSysCh *)sg->channel,sd);
+							if(!(sg->channel->banned && idb_exists(sg->channel->banned, sd->status.account_id)))
+								clif_chsys_join(sg->channel,sd);
 						}
 					}
 				} 
@@ -12751,7 +12751,7 @@ void clif_PartyBookingRefuseVolunteerToPM(struct map_session_data *sd)
 /// 012e
 void clif_parse_CloseVending(int fd, struct map_session_data *sd)
 {
-	vending_closevending(sd);
+	vending->close(sd);
 }
 
 
@@ -12763,7 +12763,7 @@ void clif_parse_VendingListReq(int fd, struct map_session_data *sd)
 		// using an NPC
 		return;
 	}
-	vending_vendinglistreq(sd,RFIFOL(fd,2));
+	vending->list(sd, RFIFOL(fd, 2));
 }
 
 
@@ -12775,7 +12775,7 @@ void clif_parse_PurchaseReq(int fd, struct map_session_data *sd)
 	int id = (int)RFIFOL(fd,4);
 	const uint8 *data = (uint8 *)RFIFOP(fd,8);
 
-	vending_purchasereq(sd, id, sd->vended_id, data, len/4);
+	vending->purchase(sd, id, sd->vended_id, data, len / 4);
 
 	// whether it fails or not, the buy window is closed
 	sd->vended_id = 0;
@@ -12791,7 +12791,7 @@ void clif_parse_PurchaseReq2(int fd, struct map_session_data *sd)
 	int uid = (int)RFIFOL(fd,8);
 	const uint8 *data = (uint8 *)RFIFOP(fd,12);
 
-	vending_purchasereq(sd, aid, uid, data, len/4);
+	vending->purchase(sd, aid, uid, data, len / 4);
 
 	// whether it fails or not, the buy window is closed
 	sd->vended_id = 0;
@@ -12828,7 +12828,7 @@ void clif_parse_OpenVending(int fd, struct map_session_data *sd)
 	if(message[0] == '\0')   // invalid input
 		return;
 
-	vending_openvending(sd, message, data, len/8);
+	vending->open(sd, message, data, len / 8);
 }
 
 
@@ -13427,7 +13427,7 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 			 */
 		case BL_MOB: {
 				char command[100];
-				if(!pc_can_use_command(sd, "killmonster", COMMAND_ATCOMMAND)) {
+				if(!pc_can_use_command(sd, "@killmonster")) {
 					clif_GM_kickack(sd, 0);
 					return;
 				}
@@ -13440,7 +13440,7 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 		case BL_NPC:
 		{
 			struct npc_data* nd = (struct npc_data *)target;
-			if(!pc_can_use_command(sd, "unloadnpc", COMMAND_ATCOMMAND)) {
+			if(!pc_can_use_command(sd, "@unloadnpc")) {
 				clif_GM_kickack(sd, 0);
 				return;
 			}
@@ -13660,7 +13660,7 @@ void clif_parse_GMReqNoChat(int fd,struct map_session_data *sd)
 			return;
 	}
 
-	if(type == 2 || ((pc_get_group_level(sd)) > pc_get_group_level(dstsd) && !pc_can_use_command(sd, "mute", COMMAND_ATCOMMAND))) {
+	if(type == 2 || ((pc_get_group_level(sd)) > pc_get_group_level(dstsd) && !pc_can_use_command(sd, "@mute"))) {
 		clif_manner_message(sd, 0);
 		clif_manner_message(dstsd, 5);
 
@@ -13729,7 +13729,7 @@ void clif_parse_GMChangeMapType(int fd, struct map_session_data *sd)
 {
 	int x,y,type;
 
-	if(pc_has_permission(sd, PC_PERM_USE_CHANGEMAPTYPE))
+	if(!pc_has_permission(sd, PC_PERM_USE_CHANGEMAPTYPE))
 		return;
 
 	x = RFIFOW(fd,2);
@@ -14447,7 +14447,7 @@ void clif_parse_FeelSaveOk(int fd,struct map_session_data *sd)
 
 	sd->feel_map[i].index = map_id2index(sd->bl.m);
 	sd->feel_map[i].m = sd->bl.m;
-	pc_setglobalreg(sd,sg_info[i].feel_var,sd->feel_map[i].index);
+	pc_setglobalreg(sd,script->add_str(sg_info[i].feel_var),sd->feel_map[i].index);
 
 //Are these really needed? Shouldn't they show up automatically from the feel save packet?
 //	clif_misceffect2(&sd->bl, 0x1b0);

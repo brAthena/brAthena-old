@@ -25,7 +25,7 @@
 #include <time.h>
 #include <stdlib.h> // atexit
 
-#include "libconfig.h"
+#include "../../3rdparty/libconfig/libconfig.h"
 
 #ifdef WIN32
 #include "../common/winapi.h"
@@ -74,9 +74,9 @@ int console_msg_log = 0;//[Ind] msg error logging
 	} \
 	else \
 	{/* dynamic buffer */ \
-		(buf).d_ = StringBuf_Malloc(); \
-		(buf).l_ = StringBuf_Vprintf((buf).d_, (fmt), args); \
-		(buf).v_ = StringBuf_Value((buf).d_); \
+		(buf).d_ = StrBuf->Malloc(); \
+		(buf).l_ = StrBuf->Vprintf((buf).d_, (fmt), args); \
+		(buf).v_ = StrBuf->Value((buf).d_); \
 		ShowDebug("showmsg: dynamic buffer used, increase the static buffer size to %d or more.\n", (buf).l_+1); \
 	} \
 } while(0) //define BUFVPRINTF
@@ -86,7 +86,7 @@ int console_msg_log = 0;//[Ind] msg error logging
 
 #define FREEBUF(buf) do {\
 	if( (buf).d_ ) { \
-		StringBuf_Free((buf).d_); \
+		StrBuf->Free((buf).d_); \
 		(buf).d_ = NULL; \
 	} \
 	(buf).v_ = NULL; \
@@ -824,13 +824,13 @@ void ShowConfigWarning(config_setting_t *config, const char *string, ...)
 {
 	StringBuf buf;
 	va_list ap;
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, string);
-	StringBuf_Printf(&buf, " (%s:%d)\n", config_setting_source_file(config), config_setting_source_line(config));
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, string);
+	StrBuf->Printf(&buf, " (%s:%d)\n", config_setting_source_file(config), config_setting_source_line(config));
 	va_start(ap, string);
-	_vShowMessage(MSG_WARNING, StringBuf_Value(&buf), ap);
+	_vShowMessage(MSG_WARNING, StrBuf->Value(&buf), ap);
 	va_end(ap);
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 }
 void ShowDebug(const char *string, ...)
 {

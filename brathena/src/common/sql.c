@@ -83,7 +83,7 @@ Sql *Sql_Malloc(void)
 
 	CREATE(self, Sql, 1);
 	mysql_init(&self->handle);
-	StringBuf_Init(&self->buf);
+	StrBuf->Init(&self->buf);
 	self->lengths = NULL;
 	self->result = NULL;
 	self->keepalive = INVALID_TIMER;
@@ -101,7 +101,7 @@ int Sql_Connect(Sql *self, const char *user, const char *passwd, const char *hos
 	if(self == NULL)
 		return SQL_ERROR;
 
-	StringBuf_Clear(&self->buf);
+	StrBuf->Clear(&self->buf);
 	if(!mysql_real_connect(&self->handle, host, user, passwd, db, (unsigned int)port, NULL/*unix_socket*/, 0/*clientflag*/)) {
 		ShowSQL("%s\n", mysql_error(&self->handle));
 		return SQL_ERROR;
@@ -268,9 +268,9 @@ int Sql_QueryV(Sql *self, const char *query, va_list args)
 		return SQL_ERROR;
 
 	Sql_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_Vprintf(&self->buf, query, args);
-	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
+	StrBuf->Clear(&self->buf);
+	StrBuf->Vprintf(&self->buf, query, args);
+	if(mysql_real_query(&self->handle, StrBuf->Value(&self->buf), (unsigned long)StrBuf->Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
@@ -293,9 +293,9 @@ int Sql_QueryStr(Sql *self, const char *query)
 		return SQL_ERROR;
 
 	Sql_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_AppendStr(&self->buf, query);
-	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
+	StrBuf->Clear(&self->buf);
+	StrBuf->AppendStr(&self->buf, query);
+	if(mysql_real_query(&self->handle, StrBuf->Value(&self->buf), (unsigned long)StrBuf->Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
@@ -397,8 +397,8 @@ void Sql_ShowDebug_(Sql *self, const char *debug_file, const unsigned long debug
 {
 	if(self == NULL)
 		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug"), debug_file, debug_line);
-	else if(StringBuf_Length(&self->buf) > 0)
-		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StringBuf_Value(&self->buf));
+	else if(StrBuf->Length(&self->buf) > 0)
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StrBuf->Value(&self->buf));
 	else
 		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug3"), debug_file, debug_line);
 }
@@ -410,7 +410,7 @@ void Sql_Free(Sql *self)
 {
 	if(self) {
 		Sql_FreeResult(self);
-		StringBuf_Destroy(&self->buf);
+		StrBuf->Destroy(&self->buf);
 		if(self->keepalive != INVALID_TIMER) delete_timer(self->keepalive, Sql_P_KeepaliveTimer);
 		aFree(self);
 	}
@@ -593,7 +593,7 @@ SqlStmt *SqlStmt_Malloc(Sql *sql)
 		return NULL;
 	}
 	CREATE(self, SqlStmt, 1);
-	StringBuf_Init(&self->buf);
+	StrBuf->Init(&self->buf);
 	self->stmt = stmt;
 	self->params = NULL;
 	self->columns = NULL;
@@ -630,9 +630,9 @@ int SqlStmt_PrepareV(SqlStmt *self, const char *query, va_list args)
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_Vprintf(&self->buf, query, args);
-	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
+	StrBuf->Clear(&self->buf);
+	StrBuf->Vprintf(&self->buf, query, args);
+	if(mysql_stmt_prepare(self->stmt, StrBuf->Value(&self->buf), (unsigned long)StrBuf->Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
@@ -651,9 +651,9 @@ int SqlStmt_PrepareStr(SqlStmt *self, const char *query)
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_AppendStr(&self->buf, query);
-	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
+	StrBuf->Clear(&self->buf);
+	StrBuf->AppendStr(&self->buf, query);
+	if (mysql_stmt_prepare(self->stmt, StrBuf->Value(&self->buf), (unsigned long)StrBuf->Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
@@ -904,8 +904,8 @@ void SqlStmt_ShowDebug_(SqlStmt *self, const char *debug_file, const unsigned lo
 {
 	if(self == NULL)
 		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug"), debug_file, debug_line);
-	else if(StringBuf_Length(&self->buf) > 0)
-		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StringBuf_Value(&self->buf));
+	else if(StrBuf->Length(&self->buf) > 0)
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StrBuf->Value(&self->buf));
 	else
 		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug3"), debug_file, debug_line);
 }
@@ -917,7 +917,7 @@ void SqlStmt_Free(SqlStmt *self)
 {
 	if(self) {
 		SqlStmt_FreeResult(self);
-		StringBuf_Destroy(&self->buf);
+		StrBuf->Destroy(&self->buf);
 		mysql_stmt_close(self->stmt);
 		if(self->params)
 			aFree(self->params);

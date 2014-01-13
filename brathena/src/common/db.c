@@ -184,10 +184,14 @@ static struct db_stats {
 	uint32 db_uint_alloc;
 	uint32 db_string_alloc;
 	uint32 db_istring_alloc;
+	uint32 db_int64_alloc;
+	uint32 db_uint64_alloc;
 	uint32 db_int_destroy;
 	uint32 db_uint_destroy;
 	uint32 db_string_destroy;
 	uint32 db_istring_destroy;
+	uint32 db_int64_destroy;
+	uint32 db_uint64_destroy;
 	// Function usage counters
 	uint32 db_rotate_left;
 	uint32 db_rotate_right;
@@ -204,10 +208,14 @@ static struct db_stats {
 	uint32 db_uint_cmp;
 	uint32 db_string_cmp;
 	uint32 db_istring_cmp;
+	uint32 db_int64_cmp;
+	uint32 db_uint64_cmp;
 	uint32 db_int_hash;
 	uint32 db_uint_hash;
 	uint32 db_string_hash;
 	uint32 db_istring_hash;
+	uint32 db_int64_hash;
+	uint32 db_uint64_hash;
 	uint32 db_release_nothing;
 	uint32 db_release_key;
 	uint32 db_release_data;
@@ -246,6 +254,8 @@ static struct db_stats {
 	uint32 db_i2key;
 	uint32 db_ui2key;
 	uint32 db_str2key;
+	uint32 db_i642key;
+	uint32 db_ui642key;
 	uint32 db_i2data;
 	uint32 db_ui2data;
 	uint32 db_ptr2data;
@@ -773,10 +783,14 @@ static void db_free_unlock(DBMap_impl *db)
  *  db_uint_cmp        - Default comparator for DB_UINT databases.           *
  *  db_string_cmp      - Default comparator for DB_STRING databases.         *
  *  db_istring_cmp     - Default comparator for DB_ISTRING databases.        *
+ *  db_int64_cmp       - Default comparator for DB_INT64 databases.          *
+ *  db_uint64_cmp      - Default comparator for DB_UINT64 databases.         *
  *  db_int_hash        - Default hasher for DB_INT databases.                *
  *  db_uint_hash       - Default hasher for DB_UINT databases.               *
  *  db_string_hash     - Default hasher for DB_STRING databases.             *
  *  db_istring_hash    - Default hasher for DB_ISTRING databases.            *
+ *  db_int64_hash      - Default hasher for DB_INT64 databases.              *
+ *  db_uint64_hash     - Default hasher for DB_UINT64 databases.             *
  *  db_release_nothing - Releaser that releases nothing.                     *
  *  db_release_key     - Releaser that only releases the key.                *
  *  db_release_data    - Releaser that only releases the data.               *
@@ -864,6 +878,51 @@ static int db_istring_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
 }
 
 /**
+ * Default comparator for DB_INT64 databases.
+ * Compares key1 to key2.
+ * Return 0 if equal, negative if lower and positive if higher.
+ * <code>maxlen</code> is ignored.
+ * @param key1 Key to be compared
+ * @param key2 Key being compared to
+ * @param maxlen Maximum length of the key to hash
+ * @return 0 if equal, negative if lower and positive if higher
+ * @see DBType#DB_INT64
+ * @see #DBComparator
+ * @see #db_default_cmp(DBType)
+ */
+static int db_int64_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
+{
+	(void)maxlen;//not used
+	DB_COUNTSTAT(db_int64_cmp);
+	if (key1.i64 < key2.i64) return -1;
+	if (key1.i64 > key2.i64) return 1;
+	return 0;
+}
+
+/**
+ * Default comparator for DB_UINT64 databases.
+ * Compares key1 to key2.
+ * Return 0 if equal, negative if lower and positive if higher.
+ * <code>maxlen</code> is ignored.
+ * @param key1 Key to be compared
+ * @param key2 Key being compared to
+ * @param maxlen Maximum length of the key to hash
+ * @return 0 if equal, negative if lower and positive if higher
+ * @see DBType#DB_UINT64
+ * @see #DBComparator
+ * @see #db_default_cmp(DBType)
+ */
+static int db_uint64_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
+{
+	(void)maxlen;//not used
+	DB_COUNTSTAT(db_uint64_cmp);
+	if (key1.ui64 < key2.ui64) return -1;
+	if (key1.ui64 > key2.ui64) return 1;
+	return 0;
+}
+
+
+/**
  * Default hasher for DB_INT databases.
  * Returns the value of the key as an unsigned int.
  * <code>maxlen</code> is ignored.
@@ -874,11 +933,11 @@ static int db_istring_cmp(DBKey key1, DBKey key2, unsigned short maxlen)
  * @see #DBHasher
  * @see #db_default_hash(DBType)
  */
-static unsigned int db_int_hash(DBKey key, unsigned short maxlen)
+static uint64 db_int_hash(DBKey key, unsigned short maxlen)
 {
 	(void)maxlen;//not used
 	DB_COUNTSTAT(db_int_hash);
-	return (unsigned int)key.i;
+	return (uint64)key.i;
 }
 
 /**
@@ -892,11 +951,11 @@ static unsigned int db_int_hash(DBKey key, unsigned short maxlen)
  * @see #DBHasher
  * @see #db_default_hash(DBType)
  */
-static unsigned int db_uint_hash(DBKey key, unsigned short maxlen)
+static uint64 db_uint_hash(DBKey key, unsigned short maxlen)
 {
 	(void)maxlen;//not used
 	DB_COUNTSTAT(db_uint_hash);
-	return key.ui;
+	return (uint64)key.ui;
 }
 
 /**
@@ -908,7 +967,7 @@ static unsigned int db_uint_hash(DBKey key, unsigned short maxlen)
  * @see #DBHasher
  * @see #db_default_hash(DBType)
  */
-static unsigned int db_string_hash(DBKey key, unsigned short maxlen)
+static uint64 db_string_hash(DBKey key, unsigned short maxlen)
 {
 	const char *k = key.str;
 	unsigned int hash = 0;
@@ -923,7 +982,7 @@ static unsigned int db_string_hash(DBKey key, unsigned short maxlen)
 			break;
 	}
 
-	return hash;
+	return (uint64)hash;
 }
 
 /**
@@ -934,7 +993,7 @@ static unsigned int db_string_hash(DBKey key, unsigned short maxlen)
  * @see DBType#DB_ISTRING
  * @see #db_default_hash(DBType)
  */
-static unsigned int db_istring_hash(DBKey key, unsigned short maxlen)
+static uint64 db_istring_hash(DBKey key, unsigned short maxlen)
 {
 	const char *k = key.str;
 	unsigned int hash = 0;
@@ -949,7 +1008,43 @@ static unsigned int db_istring_hash(DBKey key, unsigned short maxlen)
 			break;
 	}
 
-	return hash;
+	return (uint64)hash;
+}
+
+/**
+ * Default hasher for DB_INT64 databases.
+ * Returns the value of the key as an unsigned int.
+ * <code>maxlen</code> is ignored.
+ * @param key Key to be hashed
+ * @param maxlen Maximum length of the key to hash
+ * @return hash of the key
+ * @see DBType#DB_INT64
+ * @see #DBHasher
+ * @see #db_default_hash(DBType)
+ */
+static uint64 db_int64_hash(DBKey key, unsigned short maxlen)
+{
+	(void)maxlen;//not used
+	DB_COUNTSTAT(db_int64_hash);
+	return (uint64)key.i64;
+}
+
+/**
+ * Default hasher for DB_UINT64 databases.
+ * Just returns the value of the key.
+ * <code>maxlen</code> is ignored.
+ * @param key Key to be hashed
+ * @param maxlen Maximum length of the key to hash
+ * @return hash of the key
+ * @see DBType#DB_UINT64
+ * @see #DBHasher
+ * @see #db_default_hash(DBType)
+ */
+static uint64 db_uint64_hash(DBKey key, unsigned short maxlen)
+{
+	(void)maxlen;//not used
+	DB_COUNTSTAT(db_uint64_hash);
+	return key.ui64;
 }
 
 /**
@@ -2048,6 +2143,8 @@ static int db_obj_vdestroy(DBMap *self, DBApply func, va_list args)
 		case DB_UINT: DB_COUNTSTAT(db_uint_destroy); break;
 		case DB_STRING: DB_COUNTSTAT(db_string_destroy); break;
 		case DB_ISTRING: DB_COUNTSTAT(db_istring_destroy); break;
+		case DB_INT64: DB_COUNTSTAT(db_int64_destroy); break;
+		case DB_UINT64: DB_COUNTSTAT(db_uint64_destroy); break;
 	}
 #endif /* DB_ENABLE_STATS */
 	db_free_lock(db);
@@ -2172,6 +2269,8 @@ static DBOptions db_obj_options(DBMap *self)
  *  db_i2key           - Manual cast from 'int' to 'DBKey'.
  *  db_ui2key          - Manual cast from 'unsigned int' to 'DBKey'.
  *  db_str2key         - Manual cast from 'unsigned char *' to 'DBKey'.
+ *  db_i642key         - Manual cast from 'int64' to 'DBKey'.
+ *  db_ui642key        - Manual cast from 'uin64' to 'DBKey'.
  *  db_i2data          - Manual cast from 'int' to 'DBData'.
  *  db_ui2data         - Manual cast from 'unsigned int' to 'DBData'.
  *  db_ptr2data        - Manual cast from 'void*' to 'DBData'.
@@ -2198,7 +2297,9 @@ DBOptions db_fix_options(DBType type, DBOptions options)
 	DB_COUNTSTAT(db_fix_options);
 	switch(type) {
 		case DB_INT:
-		case DB_UINT: // Numeric database, do nothing with the keys
+		case DB_UINT:
+		case DB_INT64:
+		case DB_UINT64: // Numeric database, do nothing with the keys
 			return (DBOptions)(options&~(DB_OPT_DUP_KEY|DB_OPT_RELEASE_KEY));
 
 		default:
@@ -2218,6 +2319,8 @@ DBOptions db_fix_options(DBType type, DBOptions options)
  * @see #db_uint_cmp(DBKey,DBKey,unsigned short)
  * @see #db_string_cmp(DBKey,DBKey,unsigned short)
  * @see #db_istring_cmp(DBKey,DBKey,unsigned short)
+ * @see #db_int64_cmp(DBKey,DBKey,unsigned short)
+ * @see #db_uint64_cmp(DBKey,DBKey,unsigned short)
  */
 DBComparator db_default_cmp(DBType type)
 {
@@ -2227,6 +2330,8 @@ DBComparator db_default_cmp(DBType type)
 		case DB_UINT:    return &db_uint_cmp;
 		case DB_STRING:  return &db_string_cmp;
 		case DB_ISTRING: return &db_istring_cmp;
+		case DB_INT64:   return &db_int64_cmp;
+		case DB_UINT64:  return &db_uint64_cmp;
 		default:
 			ShowError(read_message("Source.common.db_fix_options"), type);
 			return NULL;
@@ -2242,6 +2347,8 @@ DBComparator db_default_cmp(DBType type)
  * @see #db_uint_hash(DBKey,unsigned short)
  * @see #db_string_hash(DBKey,unsigned short)
  * @see #db_istring_hash(DBKey,unsigned short)
+ * @see #db_int64_hash(DBKey,unsigned short)
+ * @see #db_uint64_hash(DBKey,unsigned short)
  */
 DBHasher db_default_hash(DBType type)
 {
@@ -2251,6 +2358,8 @@ DBHasher db_default_hash(DBType type)
 		case DB_UINT:    return &db_uint_hash;
 		case DB_STRING:  return &db_string_hash;
 		case DB_ISTRING: return &db_istring_hash;
+		case DB_INT64:   return &db_int64_hash;
+		case DB_UINT64:  return &db_uint64_hash;
 		default:
 			ShowError(read_message("Source.common.db_fix_options"), type);
 			return NULL;
@@ -2339,6 +2448,8 @@ DBMap *db_alloc(const char *file, const char *func, int line, DBType type, DBOpt
 		case DB_UINT: DB_COUNTSTAT(db_uint_alloc); break;
 		case DB_STRING: DB_COUNTSTAT(db_string_alloc); break;
 		case DB_ISTRING: DB_COUNTSTAT(db_istring_alloc); break;
+		case DB_INT64: DB_COUNTSTAT(db_int64_alloc); break;
+		case DB_UINT64: DB_COUNTSTAT(db_uint64_alloc); break;
 	}
 #endif /* DB_ENABLE_STATS */
 	db = ers_alloc(db_alloc_ers, struct DBMap_impl);
@@ -2434,6 +2545,36 @@ DBKey db_str2key(const char *key)
 
 	DB_COUNTSTAT(db_str2key);
 	ret.str = key;
+	return ret;
+}
+
+/**
+ * Manual cast from 'int64' to the union DBKey.
+ * @param key Key to be casted
+ * @return The key as a DBKey union
+ * @public
+ */
+DBKey db_i642key(int64 key)
+{
+	DBKey ret;
+	
+	DB_COUNTSTAT(db_i642key);
+	ret.i64 = key;
+	return ret;
+}
+
+/**
+ * Manual cast from 'uin64' to the union DBKey.
+ * @param key Key to be casted
+ * @return The key as a DBKey union
+ * @public
+ */
+DBKey db_ui642key(uint64 key)
+{
+	DBKey ret;
+	
+	DB_COUNTSTAT(db_ui642key);
+	ret.ui64 = key;
 	return ret;
 }
 
@@ -2535,11 +2676,11 @@ void *db_data2ptr(DBData *data)
  * @public
  * @see #db_final(void)
  */
-void db_init(void)
-{
-	db_iterator_ers = ers_new(sizeof(struct DBIterator_impl),"db.c::db_iterator_ers",ERS_OPT_CLEAN);
-	db_alloc_ers = ers_new(sizeof(struct DBMap_impl),"db.c::db_alloc_ers",ERS_OPT_CLEAN);
+void db_init(void) {
+	db_iterator_ers = ers_new(sizeof(struct DBIterator_impl),"db.c::db_iterator_ers",ERS_OPT_CLEAN|ERS_OPT_FLEX_CHUNK);
+	db_alloc_ers = ers_new(sizeof(struct DBMap_impl),"db.c::db_alloc_ers",ERS_OPT_CLEAN|ERS_OPT_FLEX_CHUNK);
 	ers_chunk_size(db_alloc_ers, 50);
+	ers_chunk_size(db_iterator_ers, 10);
 	DB_COUNTSTAT(db_init);
 }
 
@@ -2556,81 +2697,91 @@ void db_final(void)
 	         "allocated %u, freed %u\n",
 	         stats.db_node_alloc, stats.db_node_free);
 	ShowInfo(CL_WHITE"Database types"CL_RESET":\n"
-	         "DB_INT     : allocated %10u, destroyed %10u\n"
-	         "DB_UINT    : allocated %10u, destroyed %10u\n"
-	         "DB_STRING  : allocated %10u, destroyed %10u\n"
-	         "DB_ISTRING : allocated %10u, destroyed %10u\n",
-	         stats.db_int_alloc,     stats.db_int_destroy,
-	         stats.db_uint_alloc,    stats.db_uint_destroy,
-	         stats.db_string_alloc,  stats.db_string_destroy,
-	         stats.db_istring_alloc, stats.db_istring_destroy);
+			"DB_INT     : allocated %10u, destroyed %10u\n"
+			"DB_UINT    : allocated %10u, destroyed %10u\n"
+			"DB_STRING  : allocated %10u, destroyed %10u\n"
+			"DB_ISTRING : allocated %10u, destroyed %10u\n",
+			"DB_INT64   : allocated %10u, destroyed %10u\n"
+			"DB_UINT64  : allocated %10u, destroyed %10u\n"
+			stats.db_int_alloc,     stats.db_int_destroy,
+			stats.db_uint_alloc,    stats.db_uint_destroy,
+			stats.db_string_alloc,  stats.db_string_destroy,
+			stats.db_istring_alloc, stats.db_istring_destroy,
+			stats.db_int64_alloc,   stats.db_int64_destroy,
+			stats.db_uint64_alloc,  stats.db_uint64_destroy,);
 	ShowInfo(CL_WHITE"Database function counters"CL_RESET":\n"
-	         "db_rotate_left     %10u, db_rotate_right    %10u,\n"
-	         "db_rebalance       %10u, db_rebalance_erase %10u,\n"
-	         "db_is_key_null     %10u,\n"
-	         "db_dup_key         %10u, db_dup_key_free    %10u,\n"
-	         "db_free_add        %10u, db_free_remove     %10u,\n"
-	         "db_free_lock       %10u, db_free_unlock     %10u,\n"
-	         "db_int_cmp         %10u, db_uint_cmp        %10u,\n"
-	         "db_string_cmp      %10u, db_istring_cmp     %10u,\n"
-	         "db_int_hash        %10u, db_uint_hash       %10u,\n"
-	         "db_string_hash     %10u, db_istring_hash    %10u,\n"
-	         "db_release_nothing %10u, db_release_key     %10u,\n"
-	         "db_release_data    %10u, db_release_both    %10u,\n"
-	         "dbit_first         %10u, dbit_last          %10u,\n"
-	         "dbit_next          %10u, dbit_prev          %10u,\n"
-	         "dbit_exists        %10u, dbit_remove        %10u,\n"
-	         "dbit_destroy       %10u, db_iterator        %10u,\n"
-	         "db_exits           %10u, db_get             %10u,\n"
-	         "db_getall          %10u, db_vgetall         %10u,\n"
-	         "db_ensure          %10u, db_vensure         %10u,\n"
-	         "db_put             %10u, db_remove          %10u,\n"
-	         "db_foreach         %10u, db_vforeach        %10u,\n"
-	         "db_clear           %10u, db_vclear          %10u,\n"
-	         "db_destroy         %10u, db_vdestroy        %10u,\n"
-	         "db_size            %10u, db_type            %10u,\n"
-	         "db_options         %10u, db_fix_options     %10u,\n"
-	         "db_default_cmp     %10u, db_default_hash    %10u,\n"
-	         "db_default_release %10u, db_custom_release  %10u,\n"
-	         "db_alloc           %10u, db_i2key           %10u,\n"
-	         "db_ui2key          %10u, db_str2key         %10u,\n"
-	         "db_i2data          %10u, db_ui2data         %10u,\n"
-	         "db_ptr2data        %10u, db_data2i          %10u,\n"
-	         "db_data2ui         %10u, db_data2ptr        %10u,\n"
-	         "db_init            %10u, db_final           %10u\n",
-	         stats.db_rotate_left,     stats.db_rotate_right,
-	         stats.db_rebalance,       stats.db_rebalance_erase,
-	         stats.db_is_key_null,
-	         stats.db_dup_key,         stats.db_dup_key_free,
-	         stats.db_free_add,        stats.db_free_remove,
-	         stats.db_free_lock,       stats.db_free_unlock,
-	         stats.db_int_cmp,         stats.db_uint_cmp,
-	         stats.db_string_cmp,      stats.db_istring_cmp,
-	         stats.db_int_hash,        stats.db_uint_hash,
-	         stats.db_string_hash,     stats.db_istring_hash,
-	         stats.db_release_nothing, stats.db_release_key,
-	         stats.db_release_data,    stats.db_release_both,
-	         stats.dbit_first,         stats.dbit_last,
-	         stats.dbit_next,          stats.dbit_prev,
-	         stats.dbit_exists,        stats.dbit_remove,
-	         stats.dbit_destroy,       stats.db_iterator,
-	         stats.db_exists,          stats.db_get,
-	         stats.db_getall,          stats.db_vgetall,
-	         stats.db_ensure,          stats.db_vensure,
-	         stats.db_put,             stats.db_remove,
-	         stats.db_foreach,         stats.db_vforeach,
-	         stats.db_clear,           stats.db_vclear,
-	         stats.db_destroy,         stats.db_vdestroy,
-	         stats.db_size,            stats.db_type,
-	         stats.db_options,         stats.db_fix_options,
-	         stats.db_default_cmp,     stats.db_default_hash,
-	         stats.db_default_release, stats.db_custom_release,
-	         stats.db_alloc,           stats.db_i2key,
-	         stats.db_ui2key,          stats.db_str2key,
-	         stats.db_i2data,          stats.db_ui2data,
-	         stats.db_ptr2data,        stats.db_data2i,
-	         stats.db_data2ui,         stats.db_data2ptr,
-	         stats.db_init,            stats.db_final);
+			"db_rotate_left     %10u, db_rotate_right    %10u,\n"
+			"db_rebalance       %10u, db_rebalance_erase %10u,\n"
+			"db_is_key_null     %10u,\n"
+			"db_dup_key         %10u, db_dup_key_free    %10u,\n"
+			"db_free_add        %10u, db_free_remove     %10u,\n"
+			"db_free_lock       %10u, db_free_unlock     %10u,\n"
+			"db_int_cmp         %10u, db_uint_cmp        %10u,\n"
+			"db_string_cmp      %10u, db_istring_cmp     %10u,\n"
+			"db_int64_cmp       %10u, db_uint64_cmp      %10u,\n"
+			"db_int_hash        %10u, db_uint_hash       %10u,\n"
+			"db_string_hash     %10u, db_istring_hash    %10u,\n"
+			"db_int64_hash      %10u, db_uint64_hash     %10u,\n"
+			"db_release_nothing %10u, db_release_key     %10u,\n"
+			"db_release_data    %10u, db_release_both    %10u,\n"
+			"dbit_first         %10u, dbit_last          %10u,\n"
+			"dbit_next          %10u, dbit_prev          %10u,\n"
+			"dbit_exists        %10u, dbit_remove        %10u,\n"
+			"dbit_destroy       %10u, db_iterator        %10u,\n"
+			"db_exits           %10u, db_get             %10u,\n"
+			"db_getall          %10u, db_vgetall         %10u,\n"
+			"db_ensure          %10u, db_vensure         %10u,\n"
+			"db_put             %10u, db_remove          %10u,\n"
+			"db_foreach         %10u, db_vforeach        %10u,\n"
+			"db_clear           %10u, db_vclear          %10u,\n"
+			"db_destroy         %10u, db_vdestroy        %10u,\n"
+			"db_size            %10u, db_type            %10u,\n"
+			"db_options         %10u, db_fix_options     %10u,\n"
+			"db_default_cmp     %10u, db_default_hash    %10u,\n"
+			"db_default_release %10u, db_custom_release  %10u,\n"
+			"db_alloc           %10u, db_i2key           %10u,\n"
+			"db_ui2key          %10u, db_str2key         %10u,\n"
+			"db_i642key         %10u, db_ui642key        %10u,\n"
+			"db_i2data          %10u, db_ui2data         %10u,\n"
+			"db_ptr2data        %10u, db_data2i          %10u,\n"
+			"db_data2ui         %10u, db_data2ptr        %10u,\n"
+			"db_init            %10u, db_final           %10u\n",
+			stats.db_rotate_left,     stats.db_rotate_right,
+			stats.db_rebalance,       stats.db_rebalance_erase,
+			stats.db_is_key_null,
+			stats.db_dup_key,         stats.db_dup_key_free,
+			stats.db_free_add,        stats.db_free_remove,
+			stats.db_free_lock,       stats.db_free_unlock,
+			stats.db_int_cmp,         stats.db_uint_cmp,
+			stats.db_string_cmp,      stats.db_istring_cmp,
+			stats.db_int64_cmp,       stats.db_uint64_cmp,
+			stats.db_int_hash,        stats.db_uint_hash,
+			stats.db_string_hash,     stats.db_istring_hash,
+			stats.db_int64_hash,      stats.db_uint64_hash,
+			stats.db_release_nothing, stats.db_release_key,
+			stats.db_release_data,    stats.db_release_both,
+			stats.dbit_first,         stats.dbit_last,
+			stats.dbit_next,          stats.dbit_prev,
+			stats.dbit_exists,        stats.dbit_remove,
+			stats.dbit_destroy,       stats.db_iterator,
+			stats.db_exists,          stats.db_get,
+			stats.db_getall,          stats.db_vgetall,
+			stats.db_ensure,          stats.db_vensure,
+			stats.db_put,             stats.db_remove,
+			stats.db_foreach,         stats.db_vforeach,
+			stats.db_clear,           stats.db_vclear,
+			stats.db_destroy,         stats.db_vdestroy,
+			stats.db_size,            stats.db_type,
+			stats.db_options,         stats.db_fix_options,
+			stats.db_default_cmp,     stats.db_default_hash,
+			stats.db_default_release, stats.db_custom_release,
+			stats.db_alloc,           stats.db_i2key,
+			stats.db_ui2key,          stats.db_str2key,
+			stats.db_i642key,         stats.db_ui642key,
+			stats.db_i2data,          stats.db_ui2data,
+			stats.db_ptr2data,        stats.db_data2i,
+			stats.db_data2ui,         stats.db_data2ptr,
+			stats.db_init,            stats.db_final);
 #endif /* DB_ENABLE_STATS */
 	ers_destroy(db_iterator_ers);
 	ers_destroy(db_alloc_ers);
@@ -2658,18 +2809,24 @@ void linkdb_insert(struct linkdb_node **head, void *key, void *data)
 	node->data = data;
 }
 
-void linkdb_foreach(struct linkdb_node **head, LinkDBFunc func, ...)
-{
+void linkdb_vforeach( struct linkdb_node **head, LinkDBFunc func, va_list ap) {
 	struct linkdb_node *node;
 	if(head == NULL) return;
 	node = *head;
-	while(node) {
-		va_list args;
-		va_start(args, func);
-		func(node->key, node->data, args);
-		va_end(args);
+	while ( node ) {
+		va_list argscopy;
+		va_copy(argscopy, ap);
+		func(node->key, node->data, argscopy);
+		va_end(argscopy);
 		node = node->next;
 	}
+}
+
+void linkdb_foreach( struct linkdb_node **head, LinkDBFunc func, ...) {
+	va_list ap;
+	va_start(ap, func);
+	linkdb_vforeach(head, func, ap);
+	va_end(ap);
 }
 
 void *linkdb_search(struct linkdb_node **head, void *key)
@@ -2757,4 +2914,27 @@ void linkdb_final(struct linkdb_node **head)
 		node = node2;
 	}
 	*head = NULL;
+}
+void db_defaults(void) {
+	DB = &DB_s;
+	DB->alloc = db_alloc;
+	DB->custom_release = db_custom_release;
+	DB->data2i = db_data2i;
+	DB->data2ptr = db_data2ptr;
+	DB->data2ui = db_data2ui;
+	DB->default_cmp = db_default_cmp;
+	DB->default_hash = db_default_hash;
+	DB->default_release = db_default_release;
+	DB->final = db_final;
+	DB->fix_options = db_fix_options;
+	DB->i2data = db_i2data;
+	DB->i2key = db_i2key;
+	DB->init = db_init;
+	DB->ptr2data = db_ptr2data;
+	DB->str2key = db_str2key;
+	DB->ui2data = db_ui2data;
+	DB->ui2key = db_ui2key;
+	DB->i642key = db_i642key;
+	DB->ui642key = db_ui642key;
+
 }

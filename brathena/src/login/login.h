@@ -8,7 +8,7 @@
 *                                                                            *
 * \file src/login/login.h                                                    *
 * Declarações do Servidor de Entrada (Login).                                *
-* Códigos de declaração para login.c                                         *
+* Códigos de declaração para login.h                                         *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -54,6 +54,8 @@ struct login_session_data {
 	int has_client_hash;
 
 	int fd;
+
+	time_t expiration_time;
 };
 
 struct mmo_char_server {

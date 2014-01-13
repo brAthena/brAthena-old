@@ -17,7 +17,7 @@
 #ifndef _SHOWMSG_H_
 #define _SHOWMSG_H_
 
-#include "libconfig.h"
+#include "../../3rdparty/libconfig/libconfig.h"
 #include "lang.h"
 #include <stdarg.h>
 

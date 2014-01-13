@@ -78,22 +78,22 @@ int inter_pet_fromsql(int pet_id, struct s_pet *p)
 
 	//`pet` (`pet_id`, `class`,`name`,`account_id`,`char_id`,`level`,`egg_id`,`equip`,`intimate`,`hungry`,`rename_flag`,`incuvate`)
 
-	if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `pet_id`, `class`,`name`,`account_id`,`char_id`,`level`,`egg_id`,`equip`,`intimate`,`hungry`,`rename_flag`,`incuvate` FROM `%s` WHERE `pet_id`='%d'", pet_db, pet_id)) {
+	if (SQL_ERROR == Sql_Query(sql_handle, "SELECT `pet_id`, `class`,`name`,`account_id`,`char_id`,`level`,`egg_id`,`equip`,`intimate`,`hungry`,`rename_flag`,`incuvate` FROM `%s` WHERE `pet_id`='%d'", pet_db, pet_id)) {
 		Sql_ShowDebug(sql_handle);
 		return 0;
 	}
 
 	if(SQL_SUCCESS == Sql_NextRow(sql_handle)) {
 		p->pet_id = pet_id;
-		Sql_GetData(sql_handle,  1, &data, NULL); p->class_ = atoi(data);
-		Sql_GetData(sql_handle,  2, &data, &len); memcpy(p->name, data, min(len, NAME_LENGTH));
-		Sql_GetData(sql_handle,  3, &data, NULL); p->account_id = atoi(data);
-		Sql_GetData(sql_handle,  4, &data, NULL); p->char_id = atoi(data);
-		Sql_GetData(sql_handle,  5, &data, NULL); p->level = atoi(data);
-		Sql_GetData(sql_handle,  6, &data, NULL); p->egg_id = atoi(data);
-		Sql_GetData(sql_handle,  7, &data, NULL); p->equip = atoi(data);
-		Sql_GetData(sql_handle,  8, &data, NULL); p->intimate = atoi(data);
-		Sql_GetData(sql_handle,  9, &data, NULL); p->hungry = atoi(data);
+		Sql_GetData(sql_handle, 1, &data, NULL); p->class_ = atoi(data);
+		Sql_GetData(sql_handle, 2, &data, &len); memcpy(p->name, data, min(len, NAME_LENGTH));
+		Sql_GetData(sql_handle, 3, &data, NULL); p->account_id = atoi(data);
+		Sql_GetData(sql_handle, 4, &data, NULL); p->char_id = atoi(data);
+		Sql_GetData(sql_handle, 5, &data, NULL); p->level = atoi(data);
+		Sql_GetData(sql_handle, 6, &data, NULL); p->egg_id = atoi(data);
+		Sql_GetData(sql_handle, 7, &data, NULL); p->equip = atoi(data);
+		Sql_GetData(sql_handle, 8, &data, NULL); p->intimate = atoi(data);
+		Sql_GetData(sql_handle, 9, &data, NULL); p->hungry = atoi(data);
 		Sql_GetData(sql_handle, 10, &data, NULL); p->rename_flag = atoi(data);
 		Sql_GetData(sql_handle, 11, &data, NULL); p->incuvate = atoi(data);
 
@@ -125,7 +125,7 @@ int inter_pet_delete(int pet_id)
 {
 	ShowInfo(read_message("Source.char.pet_delete"),pet_id);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `pet_id`='%d'", pet_db, pet_id))
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `pet_id`='%d'", pet_db, pet_id))
 		Sql_ShowDebug(sql_handle);
 	return 0;
 }

@@ -40,20 +40,20 @@ static int mail_fromsql(int char_id, struct mail_data *md)
 	md->amount = 0;
 	md->full = false;
 
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`,`send_name`,`send_id`,`dest_name`,`dest_id`,`title`,`message`,`time`,`status`,"
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `id`,`send_name`,`send_id`,`dest_name`,`dest_id`,`title`,`message`,`time`,`status`,"
 	                    "`zeny`,`amount`,`nameid`,`refine`,`attribute`,`identify`,`unique_id`");
 	for(i = 0; i < MAX_SLOTS; i++)
-		StringBuf_Printf(&buf, ",`card%d`", i);
+		StrBuf->Printf(&buf, ",`card%d`", i);
 
 	// I keep the `status` < 3 just in case someone forget to apply the sqlfix
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `dest_id`='%d' AND `status` < 3 ORDER BY `id` LIMIT %d",
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `dest_id`='%d' AND `status` < 3 ORDER BY `id` LIMIT %d",
 	                 mail_db, char_id, MAIL_MAX_INBOX + 1);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf)))
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf)))
 		Sql_ShowDebug(sql_handle);
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	for(i = 0; i < MAIL_MAX_INBOX && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
 		msg = &md->msg[i];
@@ -115,15 +115,15 @@ int mail_savemessage(struct mail_message *msg)
 	int j;
 
 	// build message save query
-	StringBuf_Init(&buf);
-	StringBuf_Printf(&buf, "INSERT INTO `%s` (`send_name`, `send_id`, `dest_name`, `dest_id`, `title`, `message`, `time`, `status`, `zeny`, `amount`, `nameid`, `refine`, `attribute`, `identify`, `unique_id`", mail_db);
+	StrBuf->Init(&buf);
+	StrBuf->Printf(&buf, "INSERT INTO `%s` (`send_name`, `send_id`, `dest_name`, `dest_id`, `title`, `message`, `time`, `status`, `zeny`, `amount`, `nameid`, `refine`, `attribute`, `identify`, `unique_id`", mail_db);
 	for(j = 0; j < MAX_SLOTS; j++)
-		StringBuf_Printf(&buf, ", `card%d`", j);
-	StringBuf_Printf(&buf, ") VALUES (?, '%d', ?, '%d', ?, ?, '%lu', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%"PRIu64"'",
+		StrBuf->Printf(&buf, ", `card%d`", j);
+	StrBuf->Printf(&buf, ") VALUES (?, '%d', ?, '%d', ?, ?, '%lu', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%"PRIu64"'",
 	                 msg->send_id, msg->dest_id, (unsigned long)msg->timestamp, msg->status, msg->zeny, msg->item.amount, msg->item.nameid, msg->item.refine, msg->item.attribute, msg->item.identify, msg->item.unique_id);
 	for(j = 0; j < MAX_SLOTS; j++)
-		StringBuf_Printf(&buf, ", '%d'", msg->item.card[j]);
-	StringBuf_AppendStr(&buf, ")");
+		StrBuf->Printf(&buf, ", '%d'", msg->item.card[j]);
+	StrBuf->AppendStr(&buf, ")");
 
 	//Unique Non Stackable Item ID
 	updateLastUid(msg->item.unique_id);
@@ -131,7 +131,7 @@ int mail_savemessage(struct mail_message *msg)
 
 	// prepare and execute query
 	stmt = SqlStmt_Malloc(sql_handle);
-	if(SQL_SUCCESS != SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
+	if (SQL_SUCCESS != SqlStmt_PrepareStr(stmt, StrBuf->Value(&buf))
 	   ||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, msg->send_name, strnlen(msg->send_name, NAME_LENGTH))
 	   ||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, msg->dest_name, strnlen(msg->dest_name, NAME_LENGTH))
 	   ||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_STRING, msg->title, strnlen(msg->title, MAIL_TITLE_LENGTH))
@@ -143,7 +143,7 @@ int mail_savemessage(struct mail_message *msg)
 		msg->id = (int)SqlStmt_LastInsertId(stmt);
 
 	SqlStmt_Free(stmt);
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	return msg->id;
 }
@@ -155,18 +155,18 @@ static bool mail_loadmessage(int mail_id, struct mail_message *msg)
 	int j;
 	StringBuf buf;
 
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`,`send_name`,`send_id`,`dest_name`,`dest_id`,`title`,`message`,`time`,`status`,"
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `id`,`send_name`,`send_id`,`dest_name`,`dest_id`,`title`,`message`,`time`,`status`,"
 	                    "`zeny`,`amount`,`nameid`,`refine`,`attribute`,`identify`,`unique_id`");
 	for(j = 0; j < MAX_SLOTS; j++)
-		StringBuf_Printf(&buf, ",`card%d`", j);
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `id` = '%d'", mail_db, mail_id);
+		StrBuf->Printf(&buf, ",`card%d`", j);
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `id` = '%d'", mail_db, mail_id);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf))
-	   ||  SQL_SUCCESS != Sql_NextRow(sql_handle)) {
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf))
+		|| SQL_SUCCESS != Sql_NextRow(sql_handle)) {
 		Sql_ShowDebug(sql_handle);
 		Sql_FreeResult(sql_handle);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		return false;
 	} else {
 		char *data;
@@ -196,7 +196,7 @@ static bool mail_loadmessage(int mail_id, struct mail_message *msg)
 		}
 	}
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 	Sql_FreeResult(sql_handle);
 
 	return true;
@@ -243,20 +243,20 @@ static bool mail_DeleteAttach(int mail_id)
 	StringBuf buf;
 	int i;
 
-	StringBuf_Init(&buf);
-	StringBuf_Printf(&buf, "UPDATE `%s` SET `zeny` = '0', `nameid` = '0', `amount` = '0', `refine` = '0', `attribute` = '0', `identify` = '0'", mail_db);
+	StrBuf->Init(&buf);
+	StrBuf->Printf(&buf, "UPDATE `%s` SET `zeny` = '0', `nameid` = '0', `amount` = '0', `refine` = '0', `attribute` = '0', `identify` = '0'", mail_db);
 	for(i = 0; i < MAX_SLOTS; i++)
-		StringBuf_Printf(&buf, ", `card%d` = '0'", i);
-	StringBuf_Printf(&buf, " WHERE `id` = '%d'", mail_id);
+		StrBuf->Printf(&buf, ", `card%d` = '0'", i);
+	StrBuf->Printf(&buf, " WHERE `id` = '%d'", mail_id);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf))) {
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf))) {
 		Sql_ShowDebug(sql_handle);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 
 		return false;
 	}
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 	return true;
 }
 

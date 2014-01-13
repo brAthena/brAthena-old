@@ -315,7 +315,11 @@ void core_defaults(void) {
 #ifndef MINICORE
 	HCache_defaults();
 #endif
+	strlib_defaults();
 	malloc_defaults();
+#ifndef MINICORE
+	db_defaults();
+#endif
 }
 /*======================================
  *  CORE : MAINROUTINE
@@ -350,7 +354,7 @@ int main(int argc, char **argv)
 
 	Sql_Init();
 	rathread_init();
-	db_init();
+	DB->init();
 	signals_init();
 
 #ifdef _WIN32
@@ -376,7 +380,7 @@ int main(int argc, char **argv)
 
 	timer_final();
 	socket_final();
-	db_final();
+	DB->final();
 	rathread_final();
 #endif
 

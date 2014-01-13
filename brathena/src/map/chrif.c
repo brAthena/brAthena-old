@@ -167,9 +167,6 @@ bool chrif_auth_delete(int account_id, int char_id, enum sd_state state)
 		if(session[fd] && session[fd]->session_data == node->sd)
 			session[fd]->session_data = NULL;
 
-		if(node->char_dat)
-			aFree(node->char_dat);
-
 		if(node->sd)
 			aFree(node->sd);
 
@@ -316,12 +313,8 @@ int chrif_save(struct map_session_data *sd, int flag)
 		sd->state.storage_flag = 0; //Force close it.
 
 	//Saving of registry values.
-	if(sd->state.reg_dirty&4)
-		intif_saveregistry(sd, 3); //Save char regs
-	if(sd->state.reg_dirty&2)
-		intif_saveregistry(sd, 2); //Save account regs
-	if(sd->state.reg_dirty&1)
-		intif_saveregistry(sd, 1); //Save account2 regs
+	if(sd->vars_dirty)
+		intif_saveregistry(sd);
 
 	WFIFOHEAD(char_fd, sizeof(sd->status) + 13);
 	WFIFOW(char_fd,0) = 0x2b01;
@@ -512,11 +505,11 @@ int chrif_connectack(int fd)
  */
 static int chrif_reconnect(DBKey key, DBData *data, va_list ap)
 {
-	struct auth_node *node = db_data2ptr(data);
+	struct auth_node *node = DB->data2ptr(data);
 
 	switch(node->state) {
 		case ST_LOGIN:
-			if(node->sd && node->char_dat == NULL) {   //Since there is no way to request the char auth, make it fail.
+			if(node->sd) {//Since there is no way to request the char auth, make it fail.
 				pc_authfail(node->sd);
 				chrif_char_offline(node->sd);
 				chrif_auth_delete(node->account_id, node->char_id, ST_LOGIN);
@@ -547,6 +540,7 @@ static int chrif_reconnect(DBKey key, DBData *data, va_list ap)
 /// Called when all the connection steps are completed.
 void chrif_on_ready(void)
 {
+	static bool once = false;
 	ShowStatus(read_message("Source.map.map_chrif_s16"));
 
 	chrif_state = 2;
@@ -564,6 +558,13 @@ void chrif_on_ready(void)
 
 	//Re-save any guild castles that were modified in the disconnection time.
 	guild_castle_reconnect(-1, 0, 0);
+
+	if(!once) {
+#ifdef AUTOTRADE_PERSISTENCY
+		pc_autotrade_load();
+#endif
+		once = true;
+	}
 }
 
 
@@ -607,7 +608,7 @@ int chrif_scdata_request(int account_id, int char_id)
 /*==========================================
  * Request auth confirmation
  *------------------------------------------*/
-void chrif_authreq(struct map_session_data *sd)
+void chrif_authreq(struct map_session_data *sd, bool hstandalone)
 {
 	struct auth_node *node= chrif_search(sd->bl.id);
 
@@ -616,14 +617,15 @@ void chrif_authreq(struct map_session_data *sd)
 		return;
 	}
 
-	WFIFOHEAD(char_fd,19);
+	WFIFOHEAD(char_fd,20);
 	WFIFOW(char_fd,0) = 0x2b26;
 	WFIFOL(char_fd,2) = sd->status.account_id;
 	WFIFOL(char_fd,6) = sd->status.char_id;
 	WFIFOL(char_fd,10) = sd->login_id1;
 	WFIFOB(char_fd,14) = sd->status.sex;
 	WFIFOL(char_fd,15) = htonl(session[sd->fd]->client_addr);
-	WFIFOSET(char_fd,19);
+	WFIFOB(char_fd,19) = hstandalone ? 1 : 0;
+	WFIFOSET(char_fd,20);
 	chrif_sd_to_auth(sd, ST_LOGIN);
 }
 
@@ -634,8 +636,8 @@ void chrif_authok(int fd)
 {
 	int account_id, group_id, char_id;
 	uint32 login_id1,login_id2;
-	unsigned int expiration_time;
-	struct mmo_charstatus *status;
+	time_t expiration_time;
+	struct mmo_charstatus *charstatus;
 	struct auth_node *node;
 	bool changing_mapservers;
 	TBL_PC *sd;
@@ -652,8 +654,8 @@ void chrif_authok(int fd)
 	expiration_time = (time_t)(int32)RFIFOL(fd,16);
 	group_id = RFIFOL(fd,20);
 	changing_mapservers = (RFIFOB(fd,24));
-	status = (struct mmo_charstatus *)RFIFOP(fd,25);
-	char_id = status->char_id;
+	charstatus = (struct mmo_charstatus *)RFIFOP(fd,25);
+	char_id = charstatus->char_id;
 
 	//Check if we don't already have player data in our server
 	//Causes problems if the currently connected player tries to quit or this data belongs to an already connected player which is trying to re-auth.
@@ -678,12 +680,11 @@ void chrif_authok(int fd)
 	sd = node->sd;
 
 	if(runflag == MAPSERVER_ST_RUNNING &&
-	   node->char_dat == NULL &&
 	   node->account_id == account_id &&
 	   node->char_id == char_id &&
 	   node->login_id1 == login_id1) {
 		//Auth Ok
-		if(pc_authok(sd, login_id2, expiration_time, group_id, status, changing_mapservers))
+		if(pc_authok(sd, login_id2, expiration_time, group_id, charstatus, changing_mapservers))
 			return;
 	} else { //Auth Failed
 		pc_authfail(sd);
@@ -727,7 +728,7 @@ void chrif_authfail(int fd)  /* HELLO WORLD. ip in RFIFOL 15 is not being used (
  */
 int auth_db_cleanup_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct auth_node *node = db_data2ptr(data);
+	struct auth_node *node = DB->data2ptr(data);
 	const char *states[] = { "Login", "Logout", "Map change" };
 
 	if(DIFF_TICK(gettick(),node->node_created)>60000) {
@@ -1687,10 +1688,7 @@ void chrif_send_report(char* buf, int len) {
  */
 int auth_db_final(DBKey key, DBData *data, va_list ap)
 {
-	struct auth_node *node = db_data2ptr(data);
-
-	if(node->char_dat)
-		aFree(node->char_dat);
+	struct auth_node *node = DB->data2ptr(data);
 
 	if(node->sd)
 		aFree(node->sd);

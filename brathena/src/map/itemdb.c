@@ -45,7 +45,7 @@ struct itemdb_interface itemdb_s;
  */
 static int itemdb_searchname_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct item_data *item = db_data2ptr(data), **dst, **dst2;
+	struct item_data *item = DB->data2ptr(data), **dst, **dst2;
 	char *str;
 	str=va_arg(ap,char *);
 	dst=va_arg(ap,struct item_data **);
@@ -104,7 +104,7 @@ struct item_data* itemdb_name2id(const char *str) {
  */
 static int itemdb_searchname_array_sub(DBKey key, DBData data, va_list ap)
 {
-	struct item_data *item = db_data2ptr(&data);
+	struct item_data *item = DB->data2ptr(&data);
 	char *str;
 	str=va_arg(ap,char *);
 	if(item == &dummy_item)
@@ -161,7 +161,7 @@ int itemdb_searchname_array(struct item_data **data, int size, const char *str, 
 		size -= count;
 		db_count = itemdb_other->getall(itemdb_other, (DBData **)&db_data, size, itemdb_searchname_array_sub, str);
 		for(i = 0; i < db_count; i++)
-			data[count++] = db_data2ptr(db_data[i]);
+			data[count++] = DB->data2ptr(db_data[i]);
 		count += db_count;
 	}
 	return count;
@@ -1701,8 +1701,8 @@ static void itemdb_read(void)
 	itemdb_read_sqldb();
 	for(i = 0; i < ARRAYLENGTH(itemdb_array); ++i) {
 		if(itemdb_array[i]) {
-			if(itemdb->names->put(itemdb->names,db_str2key(itemdb_array[i]->name),db_ptr2data(itemdb_array[i]),&prev)) {
-				struct item_data *data = db_data2ptr(&prev);
+			if(itemdb->names->put(itemdb->names, DB->str2key(itemdb_array[i]->name), DB->ptr2data(itemdb_array[i]), &prev)) {
+				struct item_data *data = DB->data2ptr(&prev);
 				ShowError("itemdb_read: duplicate AegisName '%s' in item ID %d and %d\n",itemdb_array[i]->name,itemdb_array[i]->nameid,data->nameid);
 			}
 		}
@@ -1713,7 +1713,7 @@ static void itemdb_read(void)
 	itemdb->read_packages();
 
 	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail);
-	sv_readsqldb(get_database_name(22), NULL, 10, -1, &ItemMoveInfo);
+	sv_readsqldb(get_database_name(22), NULL, 10, -1,&ItemMoveInfo);
 	sv_readsqldb(get_database_name(23), NULL, 2, -1, &itemdb_read_itemdelay);
 	sv_readsqldb(get_database_name(24), NULL, 3, -1, &itemdb_read_stack);
 	sv_readsqldb(get_database_name(25), NULL, 1, -1, &itemdb_read_buyingstore);
@@ -1763,7 +1763,7 @@ static void destroy_item_data(struct item_data *self, int free_self)
  */
 static int itemdb_final_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct item_data *id = db_data2ptr(data);
+	struct item_data *id = DB->data2ptr(data);
 
 	if(id != &dummy_item)
 		destroy_item_data(id, 1);

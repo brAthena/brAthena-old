@@ -258,9 +258,6 @@ void script_reportdata(struct script_data *data)
 			if(reference_tovariable(data)) {
 				// variable
 				const char *name = reference_getname(data);
-				if(not_array_variable(*name))
-					ShowDebug("Dado: variable nome='%s'\n", name);
-				else
 					ShowDebug("Dado: variable nome='%s' indice=%d\n", name, reference_getindex(data));
 			} else if(reference_toconstant(data)) {
 				// constant
@@ -951,7 +948,7 @@ const char *parse_variable(const char *p)
 	const char *var = p;
 
 	if((p[0] == '+' && p[1] == '+' && (type = C_ADD_PRE)) // pre ++
-	 || (p[1] == '-' && p[1] == '-' && (type = C_SUB_PRE)) // pre --
+	 || (p[0] == '-' && p[1] == '-' && (type = C_SUB_PRE)) // pre --
 	) {
 		var = p = script->skip_space(&p[2]);
 	}
@@ -1158,8 +1155,8 @@ const char *parse_simpleexpr(const char *p)
 			while(*p && *p != '"') {
 				if((unsigned char)p[-1] <= 0x7e && *p == '\\') {
 					char buf[8];
-					size_t len = skip_escaped_c(p) - p;
-					size_t n = sv_unescape_c(buf, p, len);
+					size_t len = sv->skip_escaped_c(p) - p;
+					size_t n = sv->unescape_c(buf, p, len);
 					if(n != 1)
 						ShowDebug("parse_simpleexpr: comprimento %d inesperado (\"%.*s\" -> %.*s)\n", (int)n, (int)len, p, (int)n, buf);
 					p += len;
@@ -2185,9 +2182,9 @@ const char *script_print_line(StringBuf *buf, const char *p, const char *mark, i
 	int i, mark_pos = 0, tabstop = TAB_SIZE;
 	if(p == NULL || !p[0]) return NULL;
 	if(line < 0)
-		StringBuf_Printf(buf, "*%5d: ", -line); // len = 8
+		StrBuf->Printf(buf, "*%5d: ", -line); // len = 8
 	else
-		StringBuf_Printf(buf, " %5d: ", line); // len = 8
+		StrBuf->Printf(buf, " %5d: ", line); // len = 8
 	update_tabstop(tabstop,8);                      // len = 8
 	for(i=0; p[i] && p[i] != '\n'; i++) {
 		char c = p[i];
@@ -2201,17 +2198,17 @@ const char *script_print_line(StringBuf *buf, const char *p, const char *mark, i
 		if( p + i < mark)
 			mark_pos += w;
 		if(p + i != mark)
-			StringBuf_Printf(buf, "%*c",w, c);
+			StrBuf->Printf(buf, "%*c",w, c);
 		else
-			StringBuf_Printf(buf,  CL_BT_RED"%*c"CL_RESET, w, c);
+			StrBuf->Printf(buf,  CL_BT_RED"%*c"CL_RESET, w, c);
 	}
-	StringBuf_AppendStr(buf, "\n");
+	StrBuf->AppendStr(buf, "\n");
 	if( mark ) {
-		StringBuf_AppendStr(buf, "        "CL_BT_CYAN); // len = 8
+		StrBuf->AppendStr(buf, "        "CL_BT_CYAN); // len = 8
 		for( ; mark_pos > 0; mark_pos-- ) {
-			StringBuf_AppendStr(buf, "~");
+			StrBuf->AppendStr(buf, "~");
 		}
-		StringBuf_AppendStr(buf, CL_RESET CL_BT_GREEN"^"CL_RESET"\n");
+		StrBuf->AppendStr(buf, CL_RESET CL_BT_GREEN"^"CL_RESET"\n");
 	}
 	return p+i+(p[i] == '\n' ? 1 : 0);
 }
@@ -2241,11 +2238,11 @@ void script_errorwarning_sub(StringBuf *buf, const char *src, const char *file, 
 	error_linepos = p;
 
 	if(line >= 0)
-		StringBuf_Printf(buf, "script error in file '%s' line %d column %d\n", file, line, error_pos-error_linepos+1);
+		StrBuf->Printf(buf, "script error in file '%s' line %d column %d\n", file, line, error_pos-error_linepos+1);
 	else
-		StringBuf_Printf(buf, "script error in file '%s' item ID %d\n", file, -line);
+		StrBuf->Printf(buf, "script error in file '%s' item ID %d\n", file, -line);
 
-	StringBuf_Printf(buf, "    %s\n", error_msg);
+	StrBuf->Printf(buf, "    %s\n", error_msg);
 	for(j = 0; j < CONTEXTLINES; j++) {
 		script->print_line(buf, linestart[j], NULL, line + j - CONTEXTLINES);
 	}
@@ -2259,24 +2256,24 @@ void script_errorwarning_sub(StringBuf *buf, const char *src, const char *file, 
 void script_error(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos) {
 	StringBuf buf;
 
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "\a");
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "\a");
 
 	script->errorwarning_sub(&buf, src, file, start_line, error_msg, error_pos);
 
-	ShowError("%s", StringBuf_Value(&buf));
-	StringBuf_Destroy(&buf);
+	ShowError("%s", StrBuf->Value(&buf));
+	StrBuf->Destroy(&buf);
 }
 
 void script_warning(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos) {
 	StringBuf buf;
 
-	StringBuf_Init(&buf);
+	StrBuf->Init(&buf);
 
 	script->errorwarning_sub(&buf, src, file, start_line, error_msg, error_pos);
 
-	ShowWarning("%s", StringBuf_Value(&buf));
-	StringBuf_Destroy(&buf);
+	ShowWarning("%s", StrBuf->Value(&buf));
+	StrBuf->Destroy(&buf);
 }
 
 /*==========================================
@@ -2542,9 +2539,9 @@ struct script_data *get_val(struct script_state* st, struct script_data* data) {
 				break;
 			case '#':
 				if(name[1] == '#')
-					data->u.str = pc_readaccountreg2str(sd, name);// global
+					data->u.str = pc_readaccountreg2str(sd, data->u.num);// global
 				else
-					data->u.str = pc_readaccountregstr(sd, name);// local
+					data->u.str = pc_readaccountregstr(sd, data->u.num);// local
 				break;
 			case '.': {
 					struct DBMap* n = data->ref ?
@@ -2552,21 +2549,21 @@ struct script_data *get_val(struct script_state* st, struct script_data* data) {
 							st->stack->var_function : // instance/scope variable
 							st->script->script_vars;  // npc variable
 					if(n)
-						data->u.str = (char*)idb_get(n,reference_getuid(data));
+						data->u.str = (char*)i64db_get(n,reference_getuid(data));
 					else
 						data->u.str = NULL;
 				}
 				break;
 			case '\'':
 				if(st->instance_id >= 0) {
-					data->u.str = (char *)idb_get(instance->list[st->instance_id].vars,reference_getuid(data));
+					data->u.str = (char *)i64db_get(instance->list[st->instance_id].vars,reference_getuid(data));
 				} else {
 					ShowWarning("script_get_val: cannot access instance variable '%s', defaulting to \"\"\n", name);
 					data->u.str = NULL;
 				}
 				break;
 			default:
-				data->u.str = pc_readglobalreg_str(sd, name);
+				data->u.str = pc_readglobalreg_str(sd, data->u.num);
 				break;
 		}
 
@@ -2599,9 +2596,9 @@ struct script_data *get_val(struct script_state* st, struct script_data* data) {
 					break;
 				case '#':
 					if(name[1] == '#')
-						data->u.num = pc_readaccountreg2(sd, name);// global
+						data->u.num = pc_readaccountreg2(sd, data->u.num);// global
 					else
-						data->u.num = pc_readaccountreg(sd, name);// local
+						data->u.num = pc_readaccountreg(sd, data->u.num);// local
 					break;
 				case '.': {
 						struct DBMap* n = data->ref ?
@@ -2609,21 +2606,21 @@ struct script_data *get_val(struct script_state* st, struct script_data* data) {
 								st->stack->var_function : // instance/scope variable
 								st->script->script_vars;  // npc variable
 						if(n)
-							data->u.num = (int)idb_iget(n,reference_getuid(data));
+							data->u.num = (int)i64db_iget(n,reference_getuid(data));
 						else
 							data->u.num = 0;
 					}
 					break;
 				case '\'':
 					if(st->instance_id >= 0)
-						data->u.num = (int)idb_iget(instance->list[st->instance_id].vars,reference_getuid(data));
+						data->u.num = (int)i64db_iget(instance->list[st->instance_id].vars,reference_getuid(data));
 					else {
 						ShowWarning("script_get_val: cannot access instance variable '%s', defaulting to 0\n", name);
 						data->u.num = 0;
 					}
 					break;
 				default:
-					data->u.num = pc_readglobalreg(sd, name);
+					data->u.num = pc_readglobalreg(sd, data->u.num);
 					break;
 			}
 
@@ -2634,20 +2631,231 @@ struct script_data *get_val(struct script_state* st, struct script_data* data) {
 
 /// Retrieves the value of a reference identified by uid (variable, constant, param)
 /// The value is left in the top of the stack and needs to be removed manually.
-void *get_val2(struct script_state *st, int uid, struct DBMap **ref)
+void *get_val2(struct script_state *st, int64 uid, struct DBMap **ref)
 {
 	struct script_data *data;
 	script->push_val(st->stack, C_NAME, uid, ref);
 	data = script_getdatatop(st, -1);
 	script->get_val(st, data);
-	return (data->type == C_INT ? (void *)__64BPRTSIZE(data->u.num) : (void *)__64BPRTSIZE(data->u.str));
+	return (data->type == C_INT ? (void *)__64BPRTSIZE((int32)data->u.num) : (void *)__64BPRTSIZE(data->u.str)); // u.num is int32 because it comes from script->get_val
 }
+/**
+ * Because, currently, array members with key 0 are indifferenciable from normal variables, we should ensure its actually in
+ * Will be gone as soon as undefined var feature is implemented
+ **/
+void script_array_ensure_zero(struct script_state *st, struct map_session_data *sd, int64 uid, struct DBMap** ref) {
+	const char *name = script->get_str(script_getvarid(uid));
+	struct DBMap *src = script->array_src(st, sd ? sd : st->rid ? map_id2sd(st->rid) : NULL, name);\
+	struct script_array *sa = NULL;
+	bool insert = false;
 
+	if(sd) /* when sd comes, st isn't available */
+		insert = true;
+	else {
+		if(is_string_variable(name)) {
+			char* str = (char*)script->get_val2(st, uid, ref);
+			if(str && *str)
+				insert = true;
+			script_removetop(st, -1, 0);
+		} else {
+			int32 num = (int32)__64BPRTSIZE(script->get_val2(st, uid, ref));
+			if(num)
+				insert = true;
+			script_removetop(st, -1, 0);
+		}
+	}
+
+	if(src) {
+		if((sa = idb_get(src, script_getvarid(uid)))) {
+			unsigned int i;
+
+			ARR_FIND(0, sa->size, i, sa->members[i] == 0);
+			if(i != sa->size) {
+				if(!insert)
+					script->array_remove_member(src,sa,i);
+				return;
+			}
+
+			script->array_add_member(sa,0);
+		} else if(insert) {
+			script->array_update(&src,reference_uid(script_getvarid(uid), 0),false);
+		}
+	}
+}
+/**
+ * Returns array size by ID
+ **/
+unsigned int script_array_size(struct script_state *st, struct map_session_data *sd, const char *name) {
+	struct script_array *sa = NULL;
+	struct DBMap *src = script->array_src(st, sd, name);
+
+	if(src)
+		sa = idb_get(src, script->search_str(name));
+
+	return sa ? sa->size : 0;
+}
+/**
+ * Returns array's highest key (for that awful getarraysize implementation that doesn't really gets the array size)
+ **/
+unsigned int script_array_highest_key(struct script_state *st, struct map_session_data *sd, const char *name) {
+	struct script_array *sa = NULL;
+	struct DBMap *src = script->array_src(st, sd, name);
+
+
+	if(src) {
+		int key = script->add_word(name);
+
+		script->array_ensure_zero(st,sd,reference_uid(key, 0),NULL);
+
+		if((sa = idb_get(src, key))) {
+			unsigned int i, highest_key = 0;
+
+			for(i = 0; i < sa->size; i++) {
+				if(sa->members[i] > highest_key)
+					highest_key = sa->members[i];
+			}
+
+			return sa->size ? highest_key + 1 : 0;
+		}
+	}
+	
+	return 0;
+}
+int script_free_array_db(DBKey key, DBData *data, va_list ap) {
+	struct script_array *sa = DB->data2ptr(data);
+	aFree(sa->members);
+	ers_free(script->array_ers, sa);
+	return 0;
+}
+/**
+ * Clears script_array and removes it from script->array_db
+ **/
+void script_array_delete(struct DBMap *src, struct script_array *sa) {
+	aFree(sa->members);
+	idb_remove(src, sa->id);
+	ers_free(script->array_ers, sa);
+}
+/**
+ * Removes a member from a script_array list
+ *
+ * @param idx the index of the member in script_array struct list, not of the actual array member
+ **/
+void script_array_remove_member(struct DBMap *src,struct script_array *sa, unsigned int idx) {
+	unsigned int i, cursor;
+
+	/* its the only member left, no need to do anything other than delete the array data */
+	if(sa->size == 1) {
+		script->array_delete(src,sa);
+		return;
+	}
+
+	sa->members[idx] = UINT_MAX;
+
+	for(i = 0, cursor = 0; i < sa->size; i++) {
+		if(sa->members[i] == UINT_MAX)
+			continue;
+		if(i != cursor)
+			sa->members[cursor] = sa->members[i];
+		cursor++;
+	}
+
+	sa->size = cursor;
+}
+/**
+ * Appends a new array index to the list in script_array
+ *
+ * @param idx the index of the array member being inserted
+ **/
+void script_array_add_member(struct script_array *sa, unsigned int idx) {
+
+	RECREATE(sa->members, unsigned int, ++sa->size);
+
+	sa->members[sa->size - 1] = idx;
+
+}
+/**
+ * Obtains the source of the array database for this type and scenario
+ * Initializes such database when not yet initialised.
+ **/
+struct DBMap *script_array_src(struct script_state *st, struct map_session_data *sd, const char *name) {
+	struct DBMap **src = NULL;
+
+	switch(name[0]) {
+		/* from player */
+		default: /* char reg */
+		case '@':/* temp char reg */
+		case '#':/* account reg */
+			src = &sd->array_db;
+			break;
+		case '$':/* map reg */
+			src = &mapreg->array_db;
+			break;
+		case '.':/* npc/script */
+			src = (name[1] == '@') ? &st->stack->array_function_db : &st->script->script_arrays_db;
+			break;
+		case '\'':/* instance */
+			if(st->instance_id >= 0) {
+				src = &instance->list[st->instance_id].array_db;
+			}
+			break;
+	}
+
+	if(src) {
+		if(!*src)
+			*src = idb_alloc(DB_OPT_BASE);
+		return *src;
+	}
+
+	return NULL;
+}
+/**
+ * Processes a array member modification, and update data accordingly
+ **/
+void script_array_update(struct DBMap **src, int64 num, bool empty) {
+	struct script_array *sa = NULL;
+	int id = script_getvarid(num);
+	unsigned int index = script_getvaridx(num);
+
+	if(!*src) {
+		*src = idb_alloc(DB_OPT_BASE);
+	} else {
+		sa = idb_get(*src, id);
+	}
+
+	if(sa) {
+		unsigned int i;
+
+		/* search */
+		for(i = 0; i < sa->size; i++) {
+			if( sa->members[i] == index )
+				break;
+		}
+
+		/* if existent */
+		if(i != sa->size) {
+			/* if empty, we gotta remove it */
+			if(empty) {
+				script->array_remove_member(*src,sa,i);
+			}
+		} else if(!empty) { /* new entry */
+			script->array_add_member(sa,index);
+			/* we do nothing if its empty, no point in modifying array data for a new empty member */
+		}
+	} else if (!empty) {/* we only move to create if not empty */
+		sa = ers_alloc(script->array_ers, struct script_array);
+		sa->id = id;
+		sa->members = NULL;
+		sa->size = 0;
+		script->array_add_member(sa,index);
+		idb_put(*src, id, sa);
+	}
+}
 /*==========================================
  * Stores the value of a script variable
  * Return value is 0 on fail, 1 on success.
+ * TODO: return values are screwed up, have been for some time (reaad: years), e.g. some functions return 1 failure and success. 
  *------------------------------------------*/
-int set_reg(struct script_state *st, TBL_PC *sd, int num, const char *name, const void *value, struct DBMap **ref)
+int set_reg(struct script_state *st, TBL_PC *sd, int64 num, const char *name, const void *value, struct DBMap **ref)
 {
 	char prefix = name[0];
 
@@ -2656,36 +2864,65 @@ int set_reg(struct script_state *st, TBL_PC *sd, int num, const char *name, cons
 		const char *str = (const char *)value;
 		switch(prefix) {
 			case '@':
-				return pc_setregstr(sd, num, str);
+				pc_setregstr(sd, num, str);
+				return 1;
 			case '$':
 				return mapreg->setregstr(num, str);
 			case '#':
 				return (name[1] == '#') ?
-				       pc_setaccountreg2str(sd, name, str) :
-				       pc_setaccountregstr(sd, name, str);
-			case '.': {
-					struct DBMap *n;
+				      pc_setaccountreg2str(sd, num, str) :
+					pc_setaccountregstr(sd, num, str);
+			case '.':
+				{
+					struct DBMap* n;
 					n = (ref) ? *ref : (name[1] == '@') ? st->stack->var_function : st->script->script_vars;
 					if(n) {
-						idb_remove(n, num);
-						if(str[0]) idb_put(n, num, aStrdup(str));
+						if(str[0])  {
+							i64db_put(n, num, aStrdup(str));
+							if(script_getvaridx(num))
+								script->array_update(
+								                     (name[1] == '@') ?
+								                        &st->stack->array_function_db :
+								                        &st->script->script_arrays_db,
+								                     num,
+								                     false);
+						} else {
+							i64db_remove(n, num);
+							if(script_getvaridx(num))
+								script->array_update(
+								                     (name[1] == '@') ?
+								                         &st->stack->array_function_db :
+								                         &st->script->script_arrays_db,
+								                     num,
+								                     true);
+						}
 					}
 				}
 				return 1;
 			case '\'':
 				if(st->instance_id >= 0) {
-					idb_remove(instance->list[st->instance_id].vars, num);
-					if(str[0]) idb_put(instance->list[st->instance_id].vars, num, aStrdup(str));
+					if(str[0]) {
+						i64db_put(instance->list[st->instance_id].vars, num, aStrdup(str));
+						if(script_getvaridx(num))
+							script->array_update(&instance->list[st->instance_id].array_db,num,false);
+					} else {
+						i64db_remove(instance->list[st->instance_id].vars, num);
+						if(script_getvaridx(num))
+							script->array_update(&instance->list[st->instance_id].array_db,num,true);
+					}
+				} else {
+					ShowError("script_set_reg: cannot write instance variable '%s', NPC not in a instance!\n", name);
+					script_reportsrc(st);
 				}
 				return 1;
 			default:
-				return pc_setglobalreg_str(sd, name, str);
+				return pc_setglobalreg_str(sd, num, str);
 		}
 	} else {
 		// integer variable
 		int val = (int)__64BPRTSIZE(value);
-		if(script->str_data[num&0x00ffffff].type == C_PARAM) {
-			if(pc_setparam(sd, script->str_data[num&0x00ffffff].val, val) == 0) {
+		if(script->str_data[script_getvarid(num)].type == C_PARAM) {
+			if(pc_setparam(sd, script->str_data[script_getvarid(num)].val, val) == 0) {
 				if(st != NULL) {
 					ShowError("script:set_reg: falha ao definir parametro '%s' para %d.\n", name, val);
 					script->reportsrc(st);
@@ -2698,32 +2935,59 @@ int set_reg(struct script_state *st, TBL_PC *sd, int num, const char *name, cons
 
 		switch(prefix) {
 			case '@':
-				return pc_setreg(sd, num, val);
+				pc_setreg(sd, num, val);
+				return 1;
 			case '$':
 				return mapreg->setreg(num, val);
 			case '#':
 				return (name[1] == '#') ?
-				       pc_setaccountreg2(sd, name, val) :
-				       pc_setaccountreg(sd, name, val);
-			case '.': {
-					struct DBMap *n;
+					pc_setaccountreg2(sd, num, val) :
+					pc_setaccountreg(sd, num, val);
+			case '.':
+				{
+					struct DBMap* n;
 					n = (ref) ? *ref : (name[1] == '@') ? st->stack->var_function : st->script->script_vars;
 					if(n) {
-						idb_remove(n, num);
-						if(val != 0)
-							idb_iput(n, num, val);
+						if(val != 0) {
+							i64db_iput(n, num, val);
+							if(script_getvaridx(num))
+								script->array_update(
+								                     (name[1] == '@') ?
+								                         &st->stack->array_function_db :
+								                         &st->script->script_arrays_db,
+								                     num,
+								                     false);
+						} else {
+							i64db_remove(n, num);
+							if(script_getvaridx(num))
+								script->array_update(
+								                     (name[1] == '@') ?
+								                         &st->stack->array_function_db :
+								                         &st->script->script_arrays_db,
+								                     num,
+								                     true);
+						}
 					}
 				}
 				return 1;
 			case '\'':
 				if(st->instance_id >= 0) {
-					idb_remove(instance->list[st->instance_id].vars, num);
-					if(val != 0)
-						idb_iput(instance->list[st->instance_id].vars, num, val);
+					if(val != 0) {
+						i64db_iput(instance->list[st->instance_id].vars, num, val);
+						if(script_getvaridx(num))
+							script->array_update(&instance->list[st->instance_id].array_db,num,false);
+					} else {
+						i64db_remove(instance->list[st->instance_id].vars, num);
+						if(script_getvaridx(num))
+							script->array_update(&instance->list[st->instance_id].array_db,num,true);
+					}
+				} else {
+					ShowError("script_set_reg: cannot write instance variable '%s', NPC not in a instance!\n", name);
+					script_reportsrc(st);
 				}
 				return 1;
 			default:
-				return pc_setglobalreg(sd, name, val);
+				return pc_setglobalreg(sd, num, val);
 		}
 	}
 }
@@ -2749,7 +3013,7 @@ const char *conv_str(struct script_state *st, struct script_data *data)
 	} else if(data_isint(data)) {
 		// int -> string
 		CREATE(p, char, ITEM_NAME_LENGTH);
-		snprintf(p, ITEM_NAME_LENGTH, "%d", data->u.num);
+		snprintf(p, ITEM_NAME_LENGTH, "%"PRId64"", data->u.num);
 		p[ITEM_NAME_LENGTH-1] = '\0';
 		data->type = C_STR;
 		data->u.str = p;
@@ -2817,7 +3081,7 @@ int conv_num(struct script_state *st, struct script_data *data)
 		data->u.num = 0;
 	}
 #endif
-	return data->u.num;
+	return (int)data->u.num;
 }
 
 //
@@ -2835,7 +3099,7 @@ void stack_expand(struct script_stack *stack)
 }
 
 /// Pushes a value into the stack (with reference)
-struct script_data* push_val(struct script_stack* stack, enum c_op type, int val, struct DBMap** ref) {
+struct script_data* push_val(struct script_stack* stack, enum c_op type, int64 val, struct DBMap** ref) {
 	if(stack->sp >= stack->sp_max)
 		script->stack_expand(stack);
 	stack->stack_data[stack->sp].type  = type;
@@ -2954,6 +3218,8 @@ void script_free_vars(struct DBMap *var_storage)
 void script_free_code(struct script_code *code)
 {
 	script->free_vars(code->script_vars);
+	if(code->script_arrays_db)
+		code->script_arrays_db->destroy(code->script_arrays_db,script->array_free_db);
 	aFree(code->script_buf);
 	aFree(code);
 }
@@ -2973,7 +3239,8 @@ struct script_state *script_alloc_state(struct script_code *rootscript, int pos,
 	st->stack->sp_max = 64;
 	CREATE(st->stack->stack_data, struct script_data, st->stack->sp_max);
 	st->stack->defsp = st->stack->sp;
-	st->stack->var_function = idb_alloc(DB_OPT_RELEASE_DATA);
+	st->stack->var_function = i64db_alloc(DB_OPT_RELEASE_DATA);
+	st->stack->array_function_db = NULL;
 	st->state = RUN;
 	st->script = rootscript;
 	st->pos = pos;
@@ -2983,7 +3250,7 @@ struct script_state *script_alloc_state(struct script_code *rootscript, int pos,
 	st->npc_item_flag = battle_config.item_enabled_npc;
 
 	if(!st->script->script_vars)
-		st->script->script_vars = idb_alloc(DB_OPT_RELEASE_DATA);
+		st->script->script_vars = i64db_alloc(DB_OPT_RELEASE_DATA);
 
 	st->id = script->next_id++;
 	script->active_scripts++;
@@ -3007,14 +3274,22 @@ void script_free_state(struct script_state *st)
 			delete_timer(st->sleep.timer, script->run_timer);
 		if(st->stack) {
 			script->free_vars(st->stack->var_function);
+			if( st->stack->array_function_db )
+				st->stack->array_function_db->destroy(st->stack->array_function_db,script->array_free_db);
 			script->pop_stack(st, 0, st->stack->sp);
 			aFree(st->stack->stack_data);
 			ers_free(script->stack_ers, st->stack);
 			st->stack = NULL;
 		}
-		if(st->script && st->script->script_vars && !db_size(st->script->script_vars)) {
-			script->free_vars(st->script->script_vars);
-			st->script->script_vars = NULL;
+		if(st->script) {
+			if(st->script->script_vars && !db_size(st->script->script_vars)) {
+				script->free_vars(st->script->script_vars);
+				st->script->script_vars = NULL;
+			}
+			if(st->script->script_arrays_db && !db_size(st->script->script_arrays_db)) {
+				script->free_vars(st->script->script_arrays_db);
+				st->script->script_arrays_db = NULL;
+			}
 		}
 		st->pos = -1;
 		idb_remove(script->st_db, st->id);
@@ -3059,20 +3334,6 @@ int get_num(unsigned char *scriptbuf,int *pos)
 	return i+((scriptbuf[(*pos)++]&0x7f)<<j);
 }
 
-/*==========================================
- * Remove the value from the stack
- *------------------------------------------*/
-int pop_val(struct script_state *st)
-{
-	if(st->stack->sp<=0)
-		return 0;
-	st->stack->sp--;
-	script->get_val(st,&(st->stack->stack_data[st->stack->sp]));
-	if(st->stack->stack_data[st->stack->sp].type==C_INT)
-		return st->stack->stack_data[st->stack->sp].u.num;
-	return 0;
-}
-
 /// Ternary operators
 /// test ? if_true : if_false
 void op_3(struct script_state *st, int op)
@@ -3086,7 +3347,7 @@ void op_3(struct script_state *st, int op)
 	if(data_isstring(data))
 		flag = data->u.str[0];// "" -> false
 	else if(data_isint(data))
-		flag = data->u.num;// 0 -> false
+		flag = data->u.num == 0 ? 0 : 1;// 0 -> false
 	else {
 		ShowError("script:op_3: invalid data for the ternary operator test\n");
 		script->reportdata(data);
@@ -3245,8 +3506,8 @@ void op_2(struct script_state *st, int op)
 		}
 	} else if(data_isint(left) && data_isint(right)) {
 		// ii => op_2num
-		int i1 = left->u.num;
-		int i2 = right->u.num;
+		int i1 = (int)left->u.num;
+		int i2 = (int)right->u.num;
 
 		script_removetop(st, leftref.type == C_NOP ? -2 : -1, 0);
 		script->op_2num(st, op, i1, i2);
@@ -3287,7 +3548,7 @@ void op_1(struct script_state *st, int op)
 		return;
 	}
 
-	i1 = data->u.num;
+	i1 = (int)data->u.num;
 	script_removetop(st, -1, 0);
 	switch(op) {
 		case C_NEG: i1 = -i1; break;
@@ -3410,7 +3671,7 @@ int run_func(struct script_state *st)
 
 	data = &st->stack->stack_data[st->start];
 	if(data->type == C_NAME && script->str_data[data->u.num].type == C_FUNC)
-		func = data->u.num;
+		func = (int)data->u.num;
 	else {
 		ShowError("script:run_func: not a buildin command.\n");
 		script->reportdata(data);
@@ -3427,7 +3688,7 @@ int run_func(struct script_state *st)
 		if(script->str_data[func].func(st))  //Report error
 			script->reportsrc(st);
 	} else {
-		ShowError("script:run_func: '%s' (id=%d type=%s) has no C function. please report this!!!\n", script->get_str(func), func,  script->op2name(script->str_data[func].type));
+		ShowError("script:run_func: '%s' (id=%"PRId64" type=%s) has no C function. please report this!!!\n", script->get_str(func), func,  script->op2name(script->str_data[func].type));
 		script->reportsrc(st);
 		st->state = END;
 	}
@@ -3740,10 +4001,8 @@ void run_script_main(struct script_state *st)
 			}
 			//Restore previous script if any.
 			script->detach_state(st, true);
-			if(sd->state.reg_dirty&2)
-				intif_saveregistry(sd,2);
-			if(sd->state.reg_dirty&1)
-				intif_saveregistry(sd,1);
+			if(sd->vars_dirty)
+				intif_saveregistry(sd);
 		}
 		script->free_state(st);
 		st = NULL;
@@ -3796,7 +4055,7 @@ int script_config_read(char *cfgName)
  */
 int db_script_free_code_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct script_code *code = db_data2ptr(data);
+	struct script_code *code = DB->data2ptr(data);
 	if(code)
 		script->free_code(code);
 	return 0;
@@ -3824,59 +4083,103 @@ void script_add_autobonus(const char *autobonus)
 
 
 /// resets a temporary character array variable to given value
-void script_cleararray_pc(struct map_session_data *sd, const char *varname, void *value)
-{
+void script_cleararray_pc(struct map_session_data *sd, const char *varname, void *value) {
+	struct script_array *sa = NULL;
+	struct DBMap *src = NULL;
+	unsigned int i, *list = NULL, size = 0;
 	int key;
-	uint8 idx;
-
-	if(not_array_variable(varname[0]) || !not_server_variable(varname[0])) {
-		ShowError("script_cleararray_pc: Variable '%s' has invalid scope (char_id=%d).\n", varname, sd->status.char_id);
-		return;
-	}
 
 	key = script->add_str(varname);
 
-	if(is_string_variable(varname)) {
-		for(idx = 0; idx < SCRIPT_MAX_ARRAYSIZE; idx++) {
-			pc_setregstr(sd, reference_uid(key, idx), (const char *)value);
-		}
-	} else {
-		for(idx = 0; idx < SCRIPT_MAX_ARRAYSIZE; idx++) {
-			pc_setreg(sd, reference_uid(key, idx), (int)__64BPRTSIZE(value));
-		}
+	if(!(src = script->array_src(NULL,sd,varname)))
+		return;
+
+	if(value)
+		script->array_ensure_zero(NULL,sd,reference_uid(key,0),NULL);
+
+	if(!(sa = idb_get(src, key))) /* non-existent array, nothing to empty */
+		return;
+
+	size = sa->size;
+	list = script->array_cpy_list(sa);
+
+	for(i = 0; i < size; i++) {
+		script->set_reg(NULL,sd,reference_uid(key, list[i]),varname,value,NULL);
 	}
 }
 
 
 /// sets a temporary character array variable element idx to given value
 /// @param refcache Pointer to an int variable, which keeps a copy of the reference to varname and must be initialized to 0. Can be NULL if only one element is set.
-void script_setarray_pc(struct map_session_data *sd, const char *varname, uint8 idx, void *value, int *refcache)
-{
+void script_setarray_pc(struct map_session_data *sd, const char *varname, uint32 idx, void *value, int *refcache) {
 	int key;
 
-	if(not_array_variable(varname[0]) || !not_server_variable(varname[0])) {
-		ShowError("script_setarray_pc: Variable '%s' has invalid scope (char_id=%d).\n", varname, sd->status.char_id);
-		return;
-	}
-
 	if(idx >= SCRIPT_MAX_ARRAYSIZE) {
-		ShowError("script_setarray_pc: Variable '%s' has invalid index '%d' (char_id=%d).\n", varname, (int)idx, sd->status.char_id);
+		ShowError("script_setarray_pc: Variable '%s' has invalid index '%u' (char_id=%d).\n", varname, idx, sd->status.char_id);
 		return;
 	}
 
 	key = (refcache && refcache[0]) ? refcache[0] : script->add_str(varname);
 
-	if(is_string_variable(varname)) {
-		pc_setregstr(sd, reference_uid(key, idx), (const char *)value);
-	} else {
-		pc_setreg(sd, reference_uid(key, idx), (int)__64BPRTSIZE(value));
-	}
+	script->set_reg(NULL,sd,reference_uid(key, idx),varname,value,NULL);
 
 	if(refcache) {
 		// save to avoid repeated script->add_str calls
 		refcache[0] = key;
 	}
 }
+/**
+ * Clears persistent variables from memory
+ **/
+int script_reg_destroy(DBKey key, DBData *data, va_list ap) {
+	struct script_reg_state *src;
+
+	if(data->type != DB_DATA_PTR)/* got no need for those! */
+		return 0;
+
+	src = DB->data2ptr(data);
+
+	if(src->type) {
+		struct script_reg_str *p = (struct script_reg_str *)src;
+
+		if(p->value)
+			aFree(p->value);
+
+		ers_free(pc_str_reg_ers,p);
+	} else {
+		ers_free(pc_num_reg_ers,(struct script_reg_num*)src);
+	}
+
+	return 0;
+}
+/**
+ * Clears a single persistent variable
+ **/
+void script_reg_destroy_single(struct map_session_data *sd, int64 reg, struct script_reg_state *data) {
+	i64db_remove(sd->var_db, reg);
+
+	if(data->type) {
+		struct script_reg_str *p = (struct script_reg_str*)data;
+
+		if(p->value)
+			aFree(p->value);
+
+		ers_free(pc_str_reg_ers,p);
+	} else {
+		ers_free(pc_num_reg_ers,(struct script_reg_num*)data);
+	}
+}
+unsigned int *script_array_cpy_list(struct script_array *sa) {
+	if(sa->size > script->generic_ui_array_size)
+		script->generic_ui_array_expand(sa->size);
+	memcpy(script->generic_ui_array, sa->members, sizeof(unsigned int)*sa->size);
+	return script->generic_ui_array;
+}
+void script_generic_ui_array_expand (unsigned int plus) {
+	script->generic_ui_array_size += plus + 100;
+	RECREATE(script->generic_ui_array, unsigned int, script->generic_ui_array_size);
+}
+
 #ifdef BETA_THREAD_TEST
 int buildin_query_sql_sub(struct script_state *st, Sql *handle);
 
@@ -4177,6 +4480,11 @@ void do_final_script(void) {
 	if(script->labels != NULL)
 		aFree(script->labels);
 
+	ers_destroy(script->array_ers);
+
+	if(script->generic_ui_array)
+		aFree(script->generic_ui_array);
+
 #ifdef BETA_THREAD_TEST
 	/* QueryThread */
 	InterlockedIncrement(&queryThreadTerminate);
@@ -4211,8 +4519,9 @@ void do_init_script(void) {
 	script->userfunc_db = strdb_alloc(DB_OPT_DUP_KEY,0);
 	script->autobonus_db = strdb_alloc(DB_OPT_DUP_KEY,0);
 
-	script->st_ers = ers_new(sizeof(struct script_state), "script.c::st_ers", ERS_OPT_CLEAN);
-	script->stack_ers = ers_new(sizeof(struct script_stack), "script.c::script_stack", ERS_OPT_NONE);
+	script->st_ers = ers_new(sizeof(struct script_state), "script.c::st_ers", ERS_OPT_CLEAN|ERS_OPT_FLEX_CHUNK);
+	script->stack_ers = ers_new(sizeof(struct script_stack), "script.c::script_stack", ERS_OPT_NONE|ERS_OPT_FLEX_CHUNK);
+	script->array_ers = ers_new(sizeof(struct script_array), "script.c::array_ers", ERS_OPT_CLEAN|ERS_OPT_CLEAR);
 
 	ers_chunk_size(script->st_ers, 10);
 	ers_chunk_size(script->stack_ers, 10);
@@ -4311,7 +4620,7 @@ const char *script_getfuncname(struct script_state *st) {
 	data = &st->stack->stack_data[st->start];
 
 	if(data->type == C_NAME && script->str_data[data->u.num].type == C_FUNC)
-		return script->get_str(data->u.num);
+		return script->get_str(script_getvarid(data->u.num));
 
 	return NULL;
 }
@@ -4484,7 +4793,7 @@ BUILDIN_FUNC(menu)
 			return 1;
 		}
 
-		StringBuf_Init(&buf);
+		StrBuf->Init(&buf);
 		sd->npc_menu = 0;
 		for(i = 2; i < script_lastdata(st); i += 2) {
 			// menu options
@@ -4494,7 +4803,7 @@ BUILDIN_FUNC(menu)
 			data = script_getdata(st, i+1);
 			if(!data_islabel(data)) {
 				// not a label
-				StringBuf_Destroy(&buf);
+				StrBuf->Destroy(&buf);
 				ShowError("script:menu: argument #%d (from 1) is not a label or label not found.\n", i);
 				script->reportdata(data);
 				st->state = END;
@@ -4505,8 +4814,8 @@ BUILDIN_FUNC(menu)
 			if(text[0] == '\0')
 				continue;// empty string, ignore
 			if(sd->npc_menu > 0)
-				StringBuf_AppendStr(&buf, ":");
-			StringBuf_AppendStr(&buf, text);
+				StrBuf->AppendStr(&buf, ":");
+			StrBuf->AppendStr(&buf, text);
 			sd->npc_menu += script->menu_countoptions(text, 0, NULL);
 		}
 		st->state = RERUNLINE;
@@ -4515,18 +4824,18 @@ BUILDIN_FUNC(menu)
 		/**
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
-		if(StringBuf_Length(&buf) >= 2047) {
+		if(StrBuf->Length(&buf) >= 2047) {
 			struct npc_data *nd = map_id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
-			safestrncpy(menu, StringBuf_Value(&buf), 2047);
-			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n",nd?nd->name:"Unknown",StringBuf_Length(&buf));
+			safestrncpy(menu, StrBuf->Value(&buf), 2047);
+			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n", nd ? nd->name : "Unknown", StrBuf->Length(&buf));
 			clif_scriptmenu(sd, st->oid, menu);
 			aFree(menu);
 		} else
-			clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
+			clif_scriptmenu(sd, st->oid, StrBuf->Value(&buf));
 
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 
 		if(sd->npc_menu >= 0xff) {
 			// client supports only up to 254 entries; 0 is not used and 255 is reserved for cancel; excess entries are displayed but cause 'uint8' overflow
@@ -4598,15 +4907,15 @@ BUILDIN_FUNC(select)
 	if(sd->state.menu_or_input == 0) {
 		struct StringBuf buf;
 
-		StringBuf_Init(&buf);
+		StrBuf->Init(&buf);
 		sd->npc_menu = 0;
 		for(i = 2; i <= script_lastdata(st); ++i) {
 			text = script_getstr(st, i);
 
 			if(sd->npc_menu > 0)
-				StringBuf_AppendStr(&buf, ":");
+				StrBuf->AppendStr(&buf, ":");
 
-			StringBuf_AppendStr(&buf, text);
+			StrBuf->AppendStr(&buf, text);
 			sd->npc_menu += script->menu_countoptions(text, 0, NULL);
 		}
 
@@ -4616,17 +4925,17 @@ BUILDIN_FUNC(select)
 		/**
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
-		if(StringBuf_Length(&buf) >= 2047) {
+		if(StrBuf->Length(&buf) >= 2047) {
 			struct npc_data *nd = map_id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
-			safestrncpy(menu, StringBuf_Value(&buf), 2047);
-			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n",nd?nd->name:"Unknown",StringBuf_Length(&buf));
+			safestrncpy(menu, StrBuf->Value(&buf), 2047);
+			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n",nd?nd->name:"Unknown",StrBuf->Length(&buf));
 			clif_scriptmenu(sd, st->oid, menu);
 			aFree(menu);
 		} else
-			clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
-		StringBuf_Destroy(&buf);
+			clif_scriptmenu(sd, st->oid, StrBuf->Value(&buf));
+		StrBuf->Destroy(&buf);
 
 		if(sd->npc_menu >= 0xff) {
 			ShowWarning("buildin_select: Too many options specified (current=%d, max=254).\n", sd->npc_menu);
@@ -4677,13 +4986,13 @@ BUILDIN_FUNC(prompt)
 	if(sd->state.menu_or_input == 0) {
 		struct StringBuf buf;
 
-		StringBuf_Init(&buf);
+		StrBuf->Init(&buf);
 		sd->npc_menu = 0;
 		for(i = 2; i <= script_lastdata(st); ++i) {
 			text = script_getstr(st, i);
 			if(sd->npc_menu > 0)
-				StringBuf_AppendStr(&buf, ":");
-			StringBuf_AppendStr(&buf, text);
+				StrBuf->AppendStr(&buf, ":");
+			StrBuf->AppendStr(&buf, text);
 			sd->npc_menu += script->menu_countoptions(text, 0, NULL);
 		}
 
@@ -4693,17 +5002,17 @@ BUILDIN_FUNC(prompt)
 		/**
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
-		if(StringBuf_Length(&buf) >= 2047) {
+		if(StrBuf->Length(&buf) >= 2047) {
 			struct npc_data *nd = map_id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
-			safestrncpy(menu, StringBuf_Value(&buf), 2047);
-			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n",nd?nd->name:"Unknown",StringBuf_Length(&buf));
+			safestrncpy(menu, StrBuf->Value(&buf), 2047);
+			ShowWarning("NPC Menu too long! (source:%s / length:%d)\n",nd?nd->name:"Unknown",StrBuf->Length(&buf));
 			clif_scriptmenu(sd, st->oid, menu);
 			aFree(menu);
 		} else
-			clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
-		StringBuf_Destroy(&buf);
+			clif_scriptmenu(sd, st->oid, StrBuf->Value(&buf));
+		StrBuf->Destroy(&buf);
 
 		if(sd->npc_menu >= 0xff) {
 			ShowWarning("buildin_prompt: Too many options specified (current=%d, max=254).\n", sd->npc_menu);
@@ -4798,7 +5107,7 @@ BUILDIN_FUNC(callfunc)
 	st->script = scr;
 	st->stack->defsp = st->stack->sp;
 	st->state = GOTO;
-	st->stack->var_function = idb_alloc(DB_OPT_RELEASE_DATA);
+	st->stack->var_function = i64db_alloc(DB_OPT_RELEASE_DATA);
 
 	return 0;
 }
@@ -4844,7 +5153,7 @@ BUILDIN_FUNC(callsub)
 	st->pos = pos;
 	st->stack->defsp = st->stack->sp;
 	st->state = GOTO;
-	st->stack->var_function = idb_alloc(DB_OPT_RELEASE_DATA);
+	st->stack->var_function = i64db_alloc(DB_OPT_RELEASE_DATA);
 
 	return 0;
 }
@@ -5368,7 +5677,7 @@ BUILDIN_FUNC(input)
 {
 	TBL_PC *sd;
 	struct script_data *data;
-	int uid;
+	int64 uid;
 	const char *name;
 	int min;
 	int max;
@@ -5430,7 +5739,7 @@ BUILDIN_FUNC(setr)
 	TBL_PC *sd = NULL;
 	struct script_data *data;
 	//struct script_data* datavalue;
-	int num;
+	int64 num;
 	const char *name;
 	char prefix;
 
@@ -5507,29 +5816,6 @@ BUILDIN_FUNC(setr)
 /// Array variables
 ///
 
-/// Returns the size of the specified array
-int32 getarraysize(struct script_state *st, int32 id, int32 idx, int isstring, struct DBMap **ref)
-{
-	int32 ret = idx;
-
-	if(isstring) {
-		for(; idx < SCRIPT_MAX_ARRAYSIZE; ++idx) {
-			char *str = (char *)script->get_val2(st, reference_uid(id, idx), ref);
-			if(str && *str)
-				ret = idx + 1;
-			script_removetop(st, -1, 0);
-		}
-	} else {
-		for(; idx < SCRIPT_MAX_ARRAYSIZE; ++idx) {
-			int32 num = (int32)__64BPRTSIZE(script->get_val2(st, reference_uid(id, idx), ref));
-			if(num)
-				ret = idx + 1;
-			script_removetop(st, -1, 0);
-		}
-	}
-	return ret;
-}
-
 /// Sets values of an array, from the starting index.
 /// ex: setarray arr[1],1,2,3;
 ///
@@ -5538,8 +5824,8 @@ BUILDIN_FUNC(setarray)
 {
 	struct script_data *data;
 	const char *name;
-	int32 start;
-	int32 end;
+	uint32 start;
+	uint32 end;
 	int32 id;
 	int32 i;
 	TBL_PC *sd = NULL;
@@ -5555,12 +5841,6 @@ BUILDIN_FUNC(setarray)
 	id = reference_getid(data);
 	start = reference_getindex(data);
 	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:setarray: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	if(not_server_variable(*name)) {
 		sd = script->rid2sd(st);
@@ -5592,8 +5872,8 @@ BUILDIN_FUNC(cleararray)
 {
 	struct script_data *data;
 	const char *name;
-	int32 start;
-	int32 end;
+	uint32 start;
+	uint32 end;
 	int32 id;
 	void *v;
 	TBL_PC *sd = NULL;
@@ -5609,12 +5889,6 @@ BUILDIN_FUNC(cleararray)
 	id = reference_getid(data);
 	start = reference_getindex(data);
 	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:cleararray: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	if(not_server_variable(*name)) {
 		sd = script->rid2sd(st);
@@ -5652,7 +5926,7 @@ BUILDIN_FUNC(copyarray)
 	int32 id2;
 	void *v;
 	int32 i;
-	int32 count;
+	uint32 count;
 	TBL_PC *sd = NULL;
 
 	data1 = script_getdata(st, 2);
@@ -5671,13 +5945,6 @@ BUILDIN_FUNC(copyarray)
 	idx2 = reference_getindex(data2);
 	name1 = reference_getname(data1);
 	name2 = reference_getname(data2);
-	if(not_array_variable(*name1) || not_array_variable(*name2)) {
-		ShowError("script:copyarray: illegal scope\n");
-		script->reportdata(data1);
-		script->reportdata(data2);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	if(is_string_variable(name1) != is_string_variable(name2)) {
 		ShowError("script:copyarray: type mismatch\n");
@@ -5728,7 +5995,6 @@ BUILDIN_FUNC(copyarray)
 BUILDIN_FUNC(getarraysize)
 {
 	struct script_data *data;
-	const char *name;
 
 	data = script_getdata(st, 2);
 	if(!data_isreference(data)) {
@@ -5739,17 +6005,11 @@ BUILDIN_FUNC(getarraysize)
 		return 1;// not a variable
 	}
 
-	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:getarraysize: illegal scope\n");
-		script->reportdata(data);
-		script_pushnil(st);
-		st->state = END;
-		return 1;// not supported
-	}
-
-	script_pushint(st, script->getarraysize(st, reference_getid(data), reference_getindex(data), is_string_variable(name), reference_getref(data)));
+	script_pushint(st, script->array_highest_key(st,st->rid ? script->rid2sd(st) : NULL,reference_getname(data)));
 	return 0;
+}
+int script_array_index_cmp(const void *a, const void *b) {
+	return (*(unsigned int*)a - *(unsigned int*)b);
 }
 
 /// Deletes count or all the elements in an array, from the starting index.
@@ -5761,10 +6021,12 @@ BUILDIN_FUNC(deletearray)
 {
 	struct script_data *data;
 	const char *name;
-	int start;
-	int end;
+	unsigned int start, end, i;
 	int id;
 	TBL_PC *sd = NULL;
+	struct script_array *sa = NULL;
+	struct DBMap *src = NULL;
+	void *value;
 
 	data = script_getdata(st, 2);
 	if(!data_isreference(data)) {
@@ -5777,12 +6039,6 @@ BUILDIN_FUNC(deletearray)
 	id = reference_getid(data);
 	start = reference_getindex(data);
 	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:deletearray: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	if(not_server_variable(*name)) {
 		sd = script->rid2sd(st);
@@ -5790,34 +6046,81 @@ BUILDIN_FUNC(deletearray)
 			return 0;// no player attached
 	}
 
-	end = SCRIPT_MAX_ARRAYSIZE;
+	if(!(src = script->array_src(st,sd,name))) {
+		ShowError("script:deletearray: not a array\n");
+		script->reportdata(data);
+		st->state = END;
+		return 1;// not a variable
+	}
+
+	script->array_ensure_zero(st,NULL,data->u.num,reference_getref(data));
+
+	if(!(sa = idb_get(src, id))) { /* non-existent array, nothing to empty */
+		return 1;// not a variable
+	}
+
+	end = script->array_highest_key(st,sd,name);
 
 	if(start >= end)
 		return 0;// nothing to free
 
+	if(is_string_variable(name))
+		value = (void *)"";
+	else
+		value = (void *)0;
+
 	if(script_hasdata(st,3)) {
-		int count = script_getnum(st, 3);
+		unsigned int count = script_getnum(st, 3);
 		if(count > end - start)
 			count = end - start;
 		if(count <= 0)
 			return 0;// nothing to free
 
-		// move rest of the elements backward
-		for(; start + count < end; ++start) {
-			void *v = script->get_val2(st, reference_uid(id, start + count), reference_getref(data));
-			script->set_reg(st, sd, reference_uid(id, start), name, v, reference_getref(data));
-			script_removetop(st, -1, 0);
+		if(end - start < sa->size) {
+		// Better to iterate directly on the array, no speed-up from using sa
+			for(; start + count < end; ++start) { // Compact and overwrite
+				void *v = script->get_val2(st, reference_uid(id, start + count), reference_getref(data));
+				script->set_reg(st, sd, reference_uid(id, start), name, v, reference_getref(data));
+				script_removetop(st, -1, 0);
+			}
+			for(; start < end; start++) {
+				// Clean up any leftovers that weren't overwritten
+				script->set_reg(st, sd, reference_uid(id, start), name, value, reference_getref(data));
+			}
+		} else {
+			// using sa to speed up
+			unsigned int *list = NULL, size = 0;
+			list = script->array_cpy_list(sa);
+			size = sa->size;
+			qsort(list, size, sizeof(unsigned int), script_array_index_cmp);
+
+			ARR_FIND(0, size, i, list[i] >= start);
+
+			for(; i < size && list[i] < start + count; i++) {
+				// Clear any entries between start and start+count, if they exist
+				script->set_reg(st, sd, reference_uid(id, list[i]), name, value, reference_getref(data));
+			}
+
+			for(; i < size && list[i] < end; i++) {
+				// Move back count positions any entries between start+count to fill the gaps
+				void* v = script->get_val2(st, reference_uid(id, list[i]), reference_getref(data));
+				script->set_reg(st, sd, reference_uid(id, list[i]-count), name, v, reference_getref(data));
+				script_removetop(st, -1, 0);
+				// Clear their originals
+				script->set_reg(st, sd, reference_uid(id, list[i]), name, value, reference_getref(data));
+			}
+		}
+	} else {
+		unsigned int *list = NULL, size = 0;
+		list = script->array_cpy_list(sa);
+		size = sa->size;
+
+		for(i = 0; i < size; i++) {
+			if(list[i] >= start) // Less expensive than sorting it, most likely
+				script->set_reg(st, sd, reference_uid(id, list[i]), name, value, reference_getref(data));
 		}
 	}
 
-	// clear the rest of the array
-	if(is_string_variable(name)) {
-		for(; start < end; ++start)
-			script->set_reg(st, sd, reference_uid(id, start), name, (void *)"", reference_getref(data));
-	} else {
-		for(; start < end; ++start)
-			script->set_reg(st, sd, reference_uid(id, start), name, (void *)0, reference_getref(data));
-	}
 	return 0;
 }
 
@@ -5828,9 +6131,8 @@ BUILDIN_FUNC(deletearray)
 BUILDIN_FUNC(getelementofarray)
 {
 	struct script_data *data;
-	const char *name;
 	int32 id;
-	int i;
+	int64 i;
 
 	data = script_getdata(st, 2);
 	if(!data_isreference(data)) {
@@ -5842,25 +6144,17 @@ BUILDIN_FUNC(getelementofarray)
 	}
 
 	id = reference_getid(data);
-	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:getelementofarray: illegal scope\n");
-		script->reportdata(data);
-		script_pushnil(st);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	i = script_getnum(st, 3);
 	if(i < 0 || i >= SCRIPT_MAX_ARRAYSIZE) {
-		ShowWarning("script:getelementofarray: index out of range (%d)\n", i);
+		ShowWarning("script:getelementofarray: index out of range (%lld)\n", i);
 		script->reportdata(data);
 		script_pushnil(st);
 		st->state = END;
 		return 1;// out of range
 	}
 
-	script->push_val(st->stack, C_NAME, reference_uid(id, i), reference_getref(data));
+	script->push_val(st->stack, C_NAME, reference_uid(id, (unsigned int)i), reference_getref(data));
 	return 0;
 }
 
@@ -6130,18 +6424,13 @@ BUILDIN_FUNC(checkweight2)
 	name_it = reference_getname(data_it);
 	name_nb = reference_getname(data_nb);
 
-	if(not_array_variable(*name_it) || not_array_variable(*name_nb)) {
-		ShowError("script:checkweight2: illegal scope\n");
-		script_pushint(st,0);
-		return 1;// not supported
-	}
 	if(is_string_variable(name_it) || is_string_variable(name_nb)) {
 		ShowError("script:checkweight2: illegal type, need int\n");
 		script_pushint(st,0);
 		return 1;// not supported
 	}
-	nb_it = script->getarraysize(st, id_it, idx_it, 0, reference_getref(data_it));
-	nb_nb = script->getarraysize(st, id_nb, idx_nb, 0, reference_getref(data_nb));
+	nb_it = script->array_highest_key(st,sd,reference_getname(data_it));
+	nb_nb = script->array_highest_key(st,sd,reference_getname(data_nb));
 	if(nb_it != nb_nb) {
 		ShowError("Size mistmatch: nb_it=%d, nb_nb=%d\n",nb_it,nb_nb);
 		fail = 1;
@@ -12463,10 +12752,10 @@ BUILDIN_FUNC(nude)
  *------------------------------------------*/
 BUILDIN_FUNC(atcommand)
 {
-	TBL_PC dummy_sd;
-	TBL_PC *sd;
+	TBL_PC *sd, *dummy_sd = NULL;
 	int fd;
 	const char *cmd;
+	bool ret = true;
 
 	cmd = script_getstr(st,2);
 
@@ -12474,25 +12763,24 @@ BUILDIN_FUNC(atcommand)
 		sd = script->rid2sd(st);
 		fd = sd->fd;
 	} else { //Use a dummy character.
-		sd = &dummy_sd;
+		sd = dummy_sd = pc_get_dummy_sd();
 		fd = 0;
 
-		memset(&dummy_sd, 0, sizeof(TBL_PC));
 		if(st->oid) {
 			struct block_list *bl = map_id2bl(st->oid);
-			memcpy(&dummy_sd.bl, bl, sizeof(struct block_list));
+			memcpy(&sd->bl, bl, sizeof(struct block_list));
 			if(bl->type == BL_NPC)
-				safestrncpy(dummy_sd.status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
+				safestrncpy(sd->status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
 		}
 	}
 
 	if(!is_atcommand(fd, sd, cmd, 0)) {
 		ShowWarning("script: buildin_atcommand: failed to execute command '%s'\n", cmd);
 		script->reportsrc(st);
-		return 1;
+		ret = false;
 	}
-
-	return 0;
+	if (dummy_sd) aFree(dummy_sd);
+	return ret;
 }
 
 /*==========================================
@@ -13009,7 +13297,7 @@ BUILDIN_FUNC(getmapxy)
 	struct block_list *bl = NULL;
 	TBL_PC *sd=NULL;
 
-	int num;
+	int64 num;
 	const char *name;
 	char prefix;
 
@@ -13108,7 +13396,7 @@ BUILDIN_FUNC(getmapxy)
 
 	//Set MapName$
 	num=st->stack->stack_data[st->start+2].u.num;
-	name=script->get_str(num&0x00ffffff);
+	name=script->get_str(script_getvarid(num));
 	prefix=*name;
 
 	if(not_server_variable(prefix))
@@ -13119,7 +13407,7 @@ BUILDIN_FUNC(getmapxy)
 
 	//Set MapX
 	num=st->stack->stack_data[st->start+3].u.num;
-	name=script->get_str(num&0x00ffffff);
+	name=script->get_str(script_getvarid(num));
 	prefix=*name;
 
 	if(not_server_variable(prefix))
@@ -13130,7 +13418,7 @@ BUILDIN_FUNC(getmapxy)
 
 	//Set MapY
 	num=st->stack->stack_data[st->start+4].u.num;
-	name=script->get_str(num&0x00ffffff);
+	name=script->get_str(script_getvarid(num));
 	prefix=*name;
 
 	if(not_server_variable(prefix))
@@ -13737,13 +14025,6 @@ BUILDIN_FUNC(explode)
 	start = reference_getindex(data);
 	name = reference_getname(data);
 
-	if(not_array_variable(*name)) {
-		ShowError("script:explode: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
-
 	if(!is_string_variable(name)) {
 		ShowError("script:explode: not string array\n");
 		script->reportdata(data);
@@ -13801,13 +14082,6 @@ BUILDIN_FUNC(implode)
 	id = reference_getid(data);
 	name = reference_getname(data);
 
-	if(not_array_variable(*name)) {
-		ShowError("script:implode: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
-
 	if(!is_string_variable(name)) {
 		ShowError("script:implode: not string array\n");
 		script->reportdata(data);
@@ -13822,7 +14096,7 @@ BUILDIN_FUNC(implode)
 	}
 
 	//count chars
-	array_size = script->getarraysize(st, id, reference_getindex(data), is_string_variable(name), reference_getref(data)) - 1;
+	array_size = script->array_highest_key(st,sd,name) - 1;
 
 	if(array_size == -1) { //empty array check (AmsTaff)
 		ShowWarning("script:implode: array length = 0\n");
@@ -13910,7 +14184,7 @@ BUILDIN_FUNC(sprintf)
 	safestrncpy(buf, format, len+1);
 
 	// Issue sprintf for each parameter
-	StringBuf_Init(&final_buf);
+	StrBuf->Init(&final_buf);
 	q = buf;
 	while((p = strchr(q, '%'))!=NULL) {
 		if(p!=q) {
@@ -13920,12 +14194,12 @@ BUILDIN_FUNC(sprintf)
 				buf2_len = len;
 			}
 			safestrncpy(buf2, q, len);
-			StringBuf_AppendStr(&final_buf, buf2);
+			StrBuf->AppendStr(&final_buf, buf2);
 			q = p;
 		}
 		p = q+1;
 		if(*p=='%') { // %%
-			StringBuf_AppendStr(&final_buf, "%");
+			StrBuf->AppendStr(&final_buf, "%");
 			q+=2;
 			continue;
 		}
@@ -13939,7 +14213,7 @@ BUILDIN_FUNC(sprintf)
 			ShowError("buildin_sprintf: Not enough arguments passed!\n");
 			if(buf) aFree(buf);
 			if(buf2) aFree(buf2);
-			StringBuf_Destroy(&final_buf);
+			StrBuf->Destroy(&final_buf);
 			script_pushconststr(st,"");
 			return 1;
 		}
@@ -13961,21 +14235,21 @@ BUILDIN_FUNC(sprintf)
 		// the scripter's responsibility.
 		data = script_getdata(st, arg+3);
 		if(data_isstring(data)) { // String
-			StringBuf_Printf(&final_buf, buf2, script_getstr(st, arg+3));
+			StrBuf->Printf(&final_buf, buf2, script_getstr(st, arg+3));
 		} else if(data_isint(data)) { // Number
-			StringBuf_Printf(&final_buf, buf2, script_getnum(st, arg+3));
+			StrBuf->Printf(&final_buf, buf2, script_getnum(st, arg+3));
 		} else if(data_isreference(data)) { // Variable
 			char *name = reference_getname(data);
 			if(name[strlen(name)-1]=='$') { // var Str
-				StringBuf_Printf(&final_buf, buf2, script_getstr(st, arg+3));
+				StrBuf->Printf(&final_buf, buf2, script_getstr(st, arg+3));
 			} else { // var Int
-				StringBuf_Printf(&final_buf, buf2, script_getnum(st, arg+3));
+				StrBuf->Printf(&final_buf, buf2, script_getnum(st, arg+3));
 			}
 		} else { // Unsupported type
 			ShowError("buildin_sprintf: Unknown argument type!\n");
 			if(buf) aFree(buf);
 			if(buf2) aFree(buf2);
-			StringBuf_Destroy(&final_buf);
+			StrBuf->Destroy(&final_buf);
 			script_pushconststr(st,"");
 			return 1;
 		}
@@ -13984,7 +14258,7 @@ BUILDIN_FUNC(sprintf)
 
 	// Append anything left
 	if(*q) {
-		StringBuf_AppendStr(&final_buf, q);
+		StrBuf->AppendStr(&final_buf, q);
 	}
 
 	// Passed more, than needed
@@ -13993,11 +14267,11 @@ BUILDIN_FUNC(sprintf)
 		script->reportsrc(st);
 	}
 
-	script_pushstrcopy(st, StringBuf_Value(&final_buf));
+	script_pushstrcopy(st, StrBuf->Value(&final_buf));
 
 	if(buf) aFree(buf);
 	if(buf2) aFree(buf2);
-	StringBuf_Destroy(&final_buf);
+	StrBuf->Destroy(&final_buf);
 
 	return 0;
 }
@@ -14194,7 +14468,7 @@ BUILDIN_FUNC(replacestr)
 		}
 	}
 
-	StringBuf_Init(&output);
+	StrBuf->Init(&output);
 
 	for(; i < inputlen; i++) {
 		if(count && count == numFinds) {    //found enough, stop looking
@@ -14204,19 +14478,19 @@ BUILDIN_FUNC(replacestr)
 		for(f = 0; f <= findlen; f++) {
 			if(f == findlen) { //complete match
 				numFinds++;
-				StringBuf_AppendStr(&output, replace);
+				StrBuf->AppendStr(&output, replace);
 
 				i += findlen - 1;
 				break;
 			} else {
 				if(usecase) {
 					if((i + f) > inputlen || input[i + f] != find[f]) {
-						StringBuf_Printf(&output, "%c", input[i]);
+						StrBuf->Printf(&output, "%c", input[i]);
 						break;
 					}
 				} else {
 					if(((i + f) > inputlen || input[i + f] != find[f]) && TOUPPER(input[i+f]) != TOUPPER(find[f])) {
-						StringBuf_Printf(&output, "%c", input[i]);
+						StrBuf->Printf(&output, "%c", input[i]);
 						break;
 					}
 				}
@@ -14226,10 +14500,10 @@ BUILDIN_FUNC(replacestr)
 
 	//append excess after enough found
 	if(i < inputlen)
-		StringBuf_AppendStr(&output, &(input[i]));
+		StrBuf->AppendStr(&output, &(input[i]));
 
-	script_pushstrcopy(st, StringBuf_Value(&output));
-	StringBuf_Destroy(&output);
+	script_pushstrcopy(st, StrBuf->Value(&output));
+	StrBuf->Destroy(&output);
 	return 0;
 }
 
@@ -14447,7 +14721,7 @@ int buildin_query_sql_sub(struct script_state *st, Sql *handle)
 	const char *query;
 	struct script_data *data;
 	const char *name;
-	int max_rows = SCRIPT_MAX_ARRAYSIZE; // maximum number of rows
+	unsigned int max_rows = SCRIPT_MAX_ARRAYSIZE; // maximum number of rows
 	int num_vars;
 	int num_cols;
 
@@ -14464,8 +14738,6 @@ int buildin_query_sql_sub(struct script_state *st, Sql *handle)
 					return 1;
 				}
 			}
-			if(not_array_variable(*name))
-				max_rows = 1;// not an array, limit to one row
 		} else {
 			ShowError("script:query_sql: not a variable\n");
 			script->reportdata(data);
@@ -15071,12 +15343,6 @@ BUILDIN_FUNC(searchitem)
 	id = reference_getid(data);
 	start = reference_getindex(data);
 	name = reference_getname(data);
-	if(not_array_variable(*name)) {
-		ShowError("script:searchitem: illegal scope\n");
-		script->reportdata(data);
-		st->state = END;
-		return 1;// not supported
-	}
 
 	if(not_server_variable(*name)) {
 		sd = script->rid2sd(st);
@@ -15401,12 +15667,12 @@ BUILDIN_FUNC(unittalk)
 	bl = map_id2bl(unit_id);
 	if(bl != NULL) {
 		struct StringBuf sbuf;
-		StringBuf_Init(&sbuf);
-		StringBuf_Printf(&sbuf, "%s : %s", status_get_name(bl), message);
-		clif_disp_overhead(bl, StringBuf_Value(&sbuf));
+		StrBuf->Init(&sbuf);
+		StrBuf->Printf(&sbuf, "%s : %s", status_get_name(bl), message);
+		clif_disp_overhead(bl, StrBuf->Value(&sbuf));
 		if(bl->type == BL_PC)
-			clif_displaymessage(((TBL_PC *)bl)->fd, StringBuf_Value(&sbuf));
-		StringBuf_Destroy(&sbuf);
+			clif_displaymessage(((TBL_PC *)bl)->fd, StrBuf->Value(&sbuf));
+		StrBuf->Destroy(&sbuf);
 	}
 
 	return 0;
@@ -16573,11 +16839,15 @@ BUILDIN_FUNC(has_instance)
 	const char *str;
 	int16 m;
 	int instance_id = -1;
+	bool type = strcmp(script->getfuncname(st),"has_instance2") == 0 ? true : false;
 
  	str = script_getstr(st, 2);
 
 	if((m = map_mapname2mapid(str)) < 0) {
-		script_pushconststr(st, "");
+		if(type)
+			script_pushint(st, -1);
+		else
+			script_pushconststr(st, "");
 		return 0;
 	}
 
@@ -16624,11 +16894,17 @@ BUILDIN_FUNC(has_instance)
 	}
 	
 	if(!instance->valid(instance_id) || (m = instance->map2imap(m, instance_id)) < 0) {
-		script_pushconststr(st, "");
+		if(type)
+			script_pushint(st, -1);
+		else
+			script_pushconststr(st, "");
 		return 0;
 	}
 
-	script_pushconststr(st, map[m].name);
+	if(type)
+		script_pushint(st, instance_id);
+	else
+		script_pushconststr(st, map[m].name);
 	return 0;
 }
 int buildin_instance_warpall_sub(struct block_list *bl,va_list ap) {
@@ -17310,8 +17586,7 @@ BUILDIN_FUNC(unbindatcmd)
 
 BUILDIN_FUNC(useatcmd)
 {
-		TBL_PC dummy_sd;
-	TBL_PC *sd;
+	TBL_PC *sd, *dummy_sd = NULL;
 	int fd;
 	const char *cmd;
 
@@ -17322,15 +17597,14 @@ BUILDIN_FUNC(useatcmd)
 		fd = sd->fd;
 	} else {
 		// Use a dummy character.
-		sd = &dummy_sd;
+		sd = dummy_sd = pc_get_dummy_sd();
 		fd = 0;
 
-		memset(&dummy_sd, 0, sizeof(TBL_PC));
 		if(st->oid) {
 			struct block_list *bl = map_id2bl(st->oid);
-			memcpy(&dummy_sd.bl, bl, sizeof(struct block_list));
+			memcpy(&sd->bl, bl, sizeof(struct block_list));
 			if(bl->type == BL_NPC)
-				safestrncpy(dummy_sd.status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
+				safestrncpy(sd->status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
 		}
 	}
 
@@ -17342,6 +17616,7 @@ BUILDIN_FUNC(useatcmd)
 	}
 
 	is_atcommand(fd, sd, cmd, 1);
+	if (dummy_sd) aFree(dummy_sd);
 	return 0;
 }
 
@@ -19090,6 +19365,7 @@ void script_parse_builtin(void) {
 	BUILDIN_DEF(instance_check_party,"i???"),
 	BUILDIN_DEF(instance_mapname,"s?"),
 	BUILDIN_DEF(instance_set_respawn,"sii?"),
+	BUILDIN_DEF2(has_instance,"has_instance2","s"),
 
 	/**
 	 * 3rd-related
@@ -19213,11 +19489,11 @@ void script_defaults(void) {
 	script->next_id = 0;
 	script->st_ers = NULL;
 	script->stack_ers = NULL;
+	script->array_ers = NULL;
 
 	script->hq = NULL;
 	script->hqi = NULL;
 	script->hqs = script->hqis = 0;
-	memset(&script->hqe, 0, sizeof(script->hqe));
 
 	script->buildin = NULL;
 	script->buildin_count = 0;
@@ -19270,6 +19546,9 @@ void script_defaults(void) {
 	script->potion_flag = script->potion_hp = script->potion_per_hp =
 	script->potion_sp = script->potion_per_sp = script->potion_target = 0;
 
+	script->generic_ui_array = NULL;
+	script->generic_ui_array_size = 0;
+	/* */
 	script->init = do_init_script;
 	script->final = do_final_script;
 	script->reload = script_reload;
@@ -19356,7 +19635,6 @@ void script_defaults(void) {
 	script->set_reg = set_reg;
 	script->stack_expand = stack_expand;
 	script->push_retinfo = push_retinfo;
-	script->pop_val = pop_val;
 	script->op_3 = op_3;
 	script->op_2str = op_2str;
 	script->op_2num = op_2num;
@@ -19369,7 +19647,6 @@ void script_defaults(void) {
 	script->menu_countoptions = menu_countoptions;
 	script->buildin_areawarp_sub = buildin_areawarp_sub;
 	script->buildin_areapercentheal_sub = buildin_areapercentheal_sub;
-	script->getarraysize = getarraysize;
 	script->buildin_delitem_delete = buildin_delitem_delete;
 	script->buildin_delitem_search = buildin_delitem_search;
 	script->buildin_killmonster_sub_strip = buildin_killmonster_sub_strip;
@@ -19434,4 +19711,24 @@ void script_defaults(void) {
 	script->global_casecheck.str_pos = 0;
 	memset(script->global_casecheck.str_hash, 0, sizeof(script->global_casecheck.str_hash));
 	// end ENABLE_CASE_CHECK
+
+	/**
+	 * Array Handling
+	 **/
+	script->array_src = script_array_src;
+	script->array_update = script_array_update;
+	script->array_add_member = script_array_add_member;
+	script->array_remove_member = script_array_remove_member;
+	script->array_delete = script_array_delete;
+	script->array_size = script_array_size;
+	script->array_free_db = script_free_array_db;
+	script->array_highest_key = script_array_highest_key;
+	script->array_ensure_zero = script_array_ensure_zero;
+	/* */
+	script->reg_destroy_single = script_reg_destroy_single;
+	script->reg_destroy = script_reg_destroy;
+	/* */
+	script->generic_ui_array_expand = script_generic_ui_array_expand;
+	script->array_cpy_list = script_array_cpy_list;
+
 }

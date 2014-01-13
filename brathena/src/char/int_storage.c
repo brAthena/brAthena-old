@@ -50,16 +50,16 @@ int storage_fromsql(int account_id, struct storage_data *p)
 	p->storage_amount = 0;
 
 	// storage {`account_id`/`id`/`nameid`/`amount`/`equip`/`identify`/`refine`/`attribute`/`card0`/`card1`/`card2`/`card3`}
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`,`nameid`,`amount`,`equip`,`identify`,`refine`,`attribute`,`expire_time`,`bound`,`unique_id`");
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `id`,`nameid`,`amount`,`equip`,`identify`,`refine`,`attribute`,`expire_time`,`bound`,`unique_id`");
 	for(j = 0; j < MAX_SLOTS; ++j)
-		StringBuf_Printf(&buf, ",`card%d`", j);
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `account_id`='%d' ORDER BY `nameid`", storage_db, account_id);
+		StrBuf->Printf(&buf, ",`card%d`", j);
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `account_id`='%d' ORDER BY `nameid`", storage_db, account_id);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf)))
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf)))
 		Sql_ShowDebug(sql_handle);
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	for(i = 0; i < MAX_STORAGE && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
 		item = &p->items[i];
@@ -74,7 +74,7 @@ int storage_fromsql(int account_id, struct storage_data *p)
 		Sql_GetData(sql_handle, 8, &data, NULL); item->bound = atoi(data);
 		Sql_GetData(sql_handle, 9, &data, NULL); item->unique_id = strtoull(data, NULL, 10);
 		for(j = 0; j < MAX_SLOTS; ++j) {
-			Sql_GetData(sql_handle, 10+j, &data, NULL); item->card[j] = atoi(data);
+			Sql_GetData(sql_handle, 10 + j, &data, NULL); item->card[j] = atoi(data);
 		}
 	}
 	p->storage_amount = i;
@@ -106,16 +106,16 @@ int guild_storage_fromsql(int guild_id, struct guild_storage *p)
 	p->guild_id = guild_id;
 
 	// storage {`guild_id`/`id`/`nameid`/`amount`/`equip`/`identify`/`refine`/`attribute`/`card0`/`card1`/`card2`/`card3`}
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`,`nameid`,`amount`,`equip`,`identify`,`refine`,`attribute`,`bound`,`unique_id`");
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `id`,`nameid`,`amount`,`equip`,`identify`,`refine`,`attribute`,`bound`,`unique_id`");
 	for(j = 0; j < MAX_SLOTS; ++j)
-		StringBuf_Printf(&buf, ",`card%d`", j);
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `guild_id`='%d' ORDER BY `nameid`", guild_storage_db, guild_id);
+		StrBuf->Printf(&buf, ",`card%d`", j);
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `guild_id`='%d' ORDER BY `nameid`", guild_storage_db, guild_id);
 
-	if(SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf)))
+	if(SQL_ERROR == Sql_Query(sql_handle, StrBuf->Value(&buf)))
 		Sql_ShowDebug(sql_handle);
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	for(i = 0; i < MAX_GUILD_STORAGE && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
 		item = &p->items[i];
@@ -272,94 +272,94 @@ int mapif_parse_ItemBoundRetrieve_sub(int fd)
 	int aid = RFIFOL(fd,6);
 	int guild_id = RFIFOW(fd,10);
 
-	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `bound`, `unique_id`");
+	StrBuf->Init(&buf);
+	StrBuf->AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `bound`, `unique_id`");
 	for( j = 0; j < MAX_SLOTS; ++j )
-		StringBuf_Printf(&buf, ", `card%d`", j);
-	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id`='%d' AND `bound` = '%d'",inventory_db,char_id,IBT_GUILD);
+		StrBuf->Printf(&buf, ", `card%d`", j);
+	StrBuf->Printf(&buf, " FROM `%s` WHERE `char_id`='%d' AND `bound` = '%d'",inventory_db,char_id,IBT_GUILD);
 
 	stmt = SqlStmt_Malloc(sql_handle);
-	if( SQL_ERROR == SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
-	||  SQL_ERROR == SqlStmt_Execute(stmt) )
+	if(SQL_ERROR == SqlStmt_PrepareStr(stmt, StrBuf->Value(&buf))
+	|| SQL_ERROR == SqlStmt_Execute(stmt))
 	{
 		Sql_ShowDebug(sql_handle);
 		SqlStmt_Free(stmt);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		return 1;
 	}
 
-	SqlStmt_BindColumn(stmt, 0, SQLDT_INT,       &item.id,          0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 1, SQLDT_SHORT,     &item.nameid,      0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 2, SQLDT_SHORT,     &item.amount,      0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 3, SQLDT_USHORT,    &item.equip,       0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 4, SQLDT_CHAR,      &item.identify,    0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 5, SQLDT_CHAR,      &item.refine,      0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 6, SQLDT_CHAR,      &item.attribute,   0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 7, SQLDT_UINT,      &item.expire_time, 0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 8, SQLDT_UCHAR,     &item.bound,       0, NULL, NULL);
-	SqlStmt_BindColumn(stmt, 9, SQLDT_UINT64,    &item.unique_id,   0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 0, SQLDT_INT, &item.id, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 1, SQLDT_SHORT, &item.nameid, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 2, SQLDT_SHORT, &item.amount, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 3, SQLDT_USHORT, &item.equip, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 4, SQLDT_CHAR, &item.identify, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 5, SQLDT_CHAR, &item.refine, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 6, SQLDT_CHAR, &item.attribute, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 7, SQLDT_UINT, &item.expire_time, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 8, SQLDT_UCHAR, &item.bound, 0, NULL, NULL);
+	SqlStmt_BindColumn(stmt, 9, SQLDT_UINT64, &item.unique_id, 0, NULL, NULL);
 	for( j = 0; j < MAX_SLOTS; ++j )
-		SqlStmt_BindColumn(stmt, 10+j, SQLDT_SHORT, &item.card[j], 0, NULL, NULL);
+		SqlStmt_BindColumn(stmt, 10 + j, SQLDT_SHORT, &item.card[j], 0, NULL, NULL);
 
-	while(SQL_SUCCESS == SqlStmt_NextRow(stmt)) {
+	while (SQL_SUCCESS == SqlStmt_NextRow(stmt)) {
 		memcpy(&items[i],&item,sizeof(struct item));
 		i++;
 	}
 	Sql_FreeResult(sql_handle);
 
 	if(!i) { //No items found - No need to continue
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		SqlStmt_Free(stmt);
 		return 0;
 	}
 
 	//First we delete the character's items
-	StringBuf_Clear(&buf);
-	StringBuf_Printf(&buf, "DELETE FROM `%s` WHERE",inventory_db);
+	StrBuf->Clear(&buf);
+	StrBuf->Printf(&buf, "DELETE FROM `%s` WHERE",inventory_db);
 	for(j=0; j<i; j++) {
 		if(j)
-			StringBuf_AppendStr(&buf, " OR");
+			StrBuf->AppendStr(&buf, " OR");
 
-		StringBuf_Printf(&buf, " `id`=%d",items[j].id);
+		StrBuf->Printf(&buf, " `id`=%d",items[j].id);
 	}
 
-	if(SQL_ERROR == SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
-	||  SQL_ERROR == SqlStmt_Execute(stmt))
+	if (SQL_ERROR == SqlStmt_PrepareStr(stmt, StrBuf->Value(&buf))
+		|| SQL_ERROR == SqlStmt_Execute(stmt))
 	{
 		Sql_ShowDebug(sql_handle);
 		SqlStmt_Free(stmt);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		return 1;
 	}
 
 	//Now let's update the guild storage with those deleted items
-	StringBuf_Clear(&buf);
-	StringBuf_Printf(&buf, "INSERT INTO `%s` (`guild_id`, `nameid`, `amount`, `identify`, `refine`, `attribute`, `expire_time`, `bound`, `unique_id`", guild_storage_db);
+	StrBuf->Clear(&buf);
+	StrBuf->Printf(&buf, "INSERT INTO `%s` (`guild_id`, `nameid`, `amount`, `identify`, `refine`, `attribute`, `expire_time`, `bound`, `unique_id`", guild_storage_db);
 	for( j = 0; j < MAX_SLOTS; ++j )
-		StringBuf_Printf(&buf, ", `card%d`", j);
-	StringBuf_AppendStr(&buf, ") VALUES ");
+		StrBuf->Printf(&buf, ", `card%d`", j);
+	StrBuf->AppendStr(&buf, ") VALUES ");
 
 	for(j = 0; j < i; ++j) {
 		if(j)
-			StringBuf_AppendStr(&buf, ",");
+			StrBuf->AppendStr(&buf, ",");
 
-		StringBuf_Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d'",
+		StrBuf->Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d'",
 			guild_id, items[j].nameid, items[j].amount, items[j].identify, items[j].refine, items[j].attribute, items[j].expire_time, items[j].bound, items[j].unique_id);
 		for(s = 0; s < MAX_SLOTS; ++s)
-			StringBuf_Printf(&buf, ", '%d'", items[j].card[s]);
-		StringBuf_AppendStr(&buf, ")");
+			StrBuf->Printf(&buf, ", '%d'", items[j].card[s]);
+		StrBuf->AppendStr(&buf, ")");
 	}
 
-	if( SQL_ERROR == SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
-	||  SQL_ERROR == SqlStmt_Execute(stmt) )
+	if (SQL_ERROR == SqlStmt_PrepareStr(stmt, StrBuf->Value(&buf))
+		|| SQL_ERROR == SqlStmt_Execute(stmt))
 	{
 		Sql_ShowDebug(sql_handle);
 		SqlStmt_Free(stmt);
-		StringBuf_Destroy(&buf);
+		StrBuf->Destroy(&buf);
 		return 1;
 	}
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 	SqlStmt_Free(stmt);
 
 	//Finally reload storage and tell map we're done

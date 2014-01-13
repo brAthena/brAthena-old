@@ -623,7 +623,7 @@ ACMD_FUNC(who)
 		display_type = 3;
 
 	level = pc_get_group_level(sd);
-	StringBuf_Init(&buf);
+	StrBuf->Init(&buf);
 
 	iter = mapit_getallusers();
 	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter)) {
@@ -633,38 +633,38 @@ ACMD_FUNC(who)
 				continue;
 			switch(display_type) {
 				case 2: {
-						StringBuf_Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
+						StrBuf->Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
 						if(pc_get_group_id(pl_sd) > 0)  // Player title, if exists
-							StringBuf_Printf(&buf, msg_txt(344), pc_group_id2name(pc_get_group_id(pl_sd))); // "(%s) "
-						StringBuf_Printf(&buf, msg_txt(347), pl_sd->status.base_level, pl_sd->status.job_level,
+							StrBuf->Printf(&buf, msg_txt(344),pcg->get_name(pl_sd->group)); // "(%s) "
+						StrBuf->Printf(&buf, msg_txt(347), pl_sd->status.base_level, pl_sd->status.job_level,
 						                 job_name(pl_sd->status.class_)); // "| Lv:%d/%d | Job: %s"
 						break;
 					}
 				case 3: {
 						if(pc_has_permission(sd, PC_PERM_WHO_DISPLAY_AID))
-							StringBuf_Printf(&buf, msg_txt(912), pl_sd->status.char_id, pl_sd->status.account_id);  // "(CID:%d/AID:%d) "
-						StringBuf_Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
+							StrBuf->Printf(&buf, msg_txt(912), pl_sd->status.char_id, pl_sd->status.account_id);  // "(CID:%d/AID:%d) "
+						StrBuf->Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
 						if(pc_get_group_id(pl_sd) > 0)  // Player title, if exists
-							StringBuf_Printf(&buf, msg_txt(344), pc_group_id2name(pc_get_group_id(pl_sd))); // "(%s) "
-						StringBuf_Printf(&buf, msg_txt(348), mapindex_id2name(pl_sd->mapindex), pl_sd->bl.x, pl_sd->bl.y); // "| Location: %s %d %d"
+							StrBuf->Printf(&buf, msg_txt(344), pcg->get_name(pl_sd->group)); // "(%s) "
+						StrBuf->Printf(&buf, msg_txt(348), mapindex_id2name(pl_sd->mapindex), pl_sd->bl.x, pl_sd->bl.y); // "| Location: %s %d %d"
 						break;
 					}
 				default: {
 						struct party_data *p = party_search(pl_sd->status.party_id);
 						struct guild *g = pl_sd->guild;
 
-						StringBuf_Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
+						StrBuf->Printf(&buf, msg_txt(343), pl_sd->status.name); // "Name: %s "
 						if(pc_get_group_id(pl_sd) > 0)  // Player title, if exists
-							StringBuf_Printf(&buf, msg_txt(344), pc_group_id2name(pc_get_group_id(pl_sd))); // "(%s) "
+							StrBuf->Printf(&buf, msg_txt(344), pcg->get_name(pl_sd->group)); // "(%s) "
 						if(p != NULL)
-							StringBuf_Printf(&buf, msg_txt(345), p->party.name); // " | Party: '%s'"
+							StrBuf->Printf(&buf, msg_txt(345), p->party.name); // " | Party: '%s'"
 						if(g != NULL)
-							StringBuf_Printf(&buf, msg_txt(346), g->name); // " | Guild: '%s'"
+							StrBuf->Printf(&buf, msg_txt(346), g->name); // " | Guild: '%s'"
 						break;
 					}
 			}
-			clif_displaymessage(fd, StringBuf_Value(&buf));
-			StringBuf_Clear(&buf);
+			clif_displaymessage(fd, StrBuf->Value(&buf));
+			StrBuf->Clear(&buf);
 			count++;
 		}
 	}
@@ -672,21 +672,21 @@ ACMD_FUNC(who)
 
 	if(map_id < 0) {
 		if(count == 0)
-			StringBuf_Printf(&buf, msg_txt(28)); // No player found.
+			StrBuf->Printf(&buf, msg_txt(28)); // No player found.
 		else if(count == 1)
-			StringBuf_Printf(&buf, msg_txt(29)); // 1 player found.
+			StrBuf->Printf(&buf, msg_txt(29)); // 1 player found.
 		else
-			StringBuf_Printf(&buf, msg_txt(30), count); // %d players found.
+			StrBuf->Printf(&buf, msg_txt(30), count); // %d players found.
 	} else {
 		if(count == 0)
-			StringBuf_Printf(&buf, msg_txt(54), map[map_id].name); // No player found in map '%s'.
+			StrBuf->Printf(&buf, msg_txt(54), map[map_id].name); // No player found in map '%s'.
 		else if(count == 1)
-			StringBuf_Printf(&buf, msg_txt(55), map[map_id].name); // 1 player found in map '%s'.
+			StrBuf->Printf(&buf, msg_txt(55), map[map_id].name); // 1 player found in map '%s'.
 		else
-			StringBuf_Printf(&buf, msg_txt(56), count, map[map_id].name); // %d players found in map '%s'.
+			StrBuf->Printf(&buf, msg_txt(56), count, map[map_id].name); // %d players found in map '%s'.
 	}
-	clif_displaymessage(fd, StringBuf_Value(&buf));
-	StringBuf_Destroy(&buf);
+	clif_displaymessage(fd, StrBuf->Value(&buf));
+	StrBuf->Destroy(&buf);
 	return 0;
 }
 
@@ -1521,7 +1521,7 @@ ACMD_FUNC(help)
 		command_name = atcommand_checkalias(message);
 	}
 
-	if(!pc_can_use_command(sd, command_name, COMMAND_ATCOMMAND)) {
+	if(!atcommand_can_use2(sd, command_name, COMMAND_ATCOMMAND)) {
 		sprintf(atcmd_output, msg_txt(153), message); // "%s is Unknown Command"
 		clif_displaymessage(fd, atcmd_output);
 		atcommand_get_suggestions(sd, command_name, true);
@@ -1546,20 +1546,20 @@ ACMD_FUNC(help)
 		StringBuf buf;
 		bool has_aliases = false;
 
-		StringBuf_Init(&buf);
-		StringBuf_AppendStr(&buf, msg_txt(990)); // Available aliases:
+		StrBuf->Init(&buf);
+		StrBuf->AppendStr(&buf, msg_txt(990)); // Available aliases:
 		command_info = get_atcommandinfo_byname(command_name);
 		iter = db_iterator(atcommand_alias_db);
 		for(alias_info = dbi_first(iter); dbi_exists(iter); alias_info = dbi_next(iter)) {
 			if(alias_info->command == command_info) {
-				StringBuf_Printf(&buf, " %s", alias_info->alias);
+				StrBuf->Printf(&buf, " %s", alias_info->alias);
 				has_aliases = true;
 			}
 		}
 		dbi_destroy(iter);
 		if(has_aliases)
-			clif_displaymessage(fd, StringBuf_Value(&buf));
-		StringBuf_Destroy(&buf);
+			clif_displaymessage(fd, StrBuf->Value(&buf));
+		StrBuf->Destroy(&buf);
 	}
 
 	// Display help contents
@@ -2941,7 +2941,7 @@ ACMD_FUNC(char_ban)
 	tmtime->tm_min  = tmtime->tm_min + minute;
 	tmtime->tm_sec  = tmtime->tm_sec + second;
 	timestamp = mktime(tmtime);
-	if(timestamp <= time(NULL) && !pc_can_use_command(sd, "unban", COMMAND_ATCOMMAND)) {
+	if(timestamp <= time(NULL) && !pc_can_use_command(sd, "@unban")) {
 		clif_displaymessage(fd,msg_txt(1023)); // You are not allowed to reduce the length of a ban.
 		return -1;
 	}
@@ -3701,7 +3701,7 @@ ACMD_FUNC(reload)
 		read_mercenary_skilldb(); break;
 		case 3: status_readdb(); break;
 		case 4: pc_readdb(); break;
-		case 5: pc_groups_reload(); break;
+		case 5: pcg->reload(); break;
 		case 6: quest->reload(); break;
 		case 7: homun->reload(); break;
 		case 8: read_petdb(); break;
@@ -3749,7 +3749,7 @@ ACMD_FUNC(reloadatcommand)
 	config_destroy(&run_test);
 
 	atcommand_doload();
-	pc_groups_reload();
+	pcg->reload();
 	clif_displaymessage(fd, msg_txt(254));
 	return 0;
 }
@@ -5454,12 +5454,12 @@ ACMD_FUNC(skillid) {
 	iter = db_iterator(skilldb_name2id);
 	
 	for(data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key)) {
-		idx = skill_get_index(db_data2i(data));
+		idx = skill_get_index(DB->data2i(data));
 		if (strnicmp(key.str, message, skillen) == 0 || strnicmp(skill_db[idx].desc, message, skillen) == 0) {
-			sprintf(atcmd_output, msg_txt(1164), db_data2i(data), skill_db[idx].desc, key.str); // skill %d: %s (%s)
+			sprintf(atcmd_output, msg_txt(1164), DB->data2i(data), skill_db[idx].desc, key.str); // skill %d: %s (%s)
 			clif_displaymessage(fd, atcmd_output);
 		} else if (found < MAX_SKILLID_PARTIAL_RESULTS && ( stristr(key.str,message) || stristr(skill_db[idx].desc,message))) {
-			snprintf(partials[found++], MAX_SKILLID_PARTIAL_RESULTS_LEN, msg_txt(1164), db_data2i(data), skill_db[idx].desc, key.str);
+			snprintf(partials[found++], MAX_SKILLID_PARTIAL_RESULTS_LEN, msg_txt(1164), DB->data2i(data), skill_db[idx].desc, key.str);
 		}
 	}
 	
@@ -5730,7 +5730,13 @@ ACMD_FUNC(autotrade)
 
 	clif_authfail_fd(sd->fd, 15);
 
+#ifdef AUTOTRADE_PERSISTENCY
+	pc_autotrade_prepare(sd);
+
+	return -1; /* we fail to not cause it to proceed on is_atcommand */
+#else
 	return 0;
+#endif
 }
 
 /*==========================================
@@ -6559,13 +6565,11 @@ ACMD_FUNC(adjgroup)
 		return -1;
 	}
 
-	if(!pc_group_exists(new_group)) {
+	if(pc_set_group(sd, new_group) != 0) {
 		clif_displaymessage(fd, msg_txt(1227)); // Specified group does not exist.
 		return -1;
 	}
 
-	sd->group_id = new_group;
-	pc_group_pc_load(sd);/* update cache */
 	clif_displaymessage(fd, msg_txt(1228)); // Group changed successfully.
 	clif_displaymessage(sd->fd, msg_txt(1229)); // Your group has changed.
 	return 0;
@@ -8376,7 +8380,7 @@ ACMD_FUNC(itemlist)
 	} else
 		return 1;
 
-	StringBuf_Init(&buf);
+	StrBuf->Init(&buf);
 
 	count = 0; // total slots occupied
 	counter = 0; // total items found
@@ -8391,15 +8395,15 @@ ACMD_FUNC(itemlist)
 		count++;
 
 		if(count == 1) {
-			StringBuf_Printf(&buf, msg_txt(1332), location, sd->status.name); // ------ %s items list of '%s' ------
-			clif_displaymessage(fd, StringBuf_Value(&buf));
-			StringBuf_Clear(&buf);
+			StrBuf->Printf(&buf, msg_txt(1332), location, sd->status.name); // ------ %s items list of '%s' ------
+			clif_displaymessage(fd, StrBuf->Value(&buf));
+			StrBuf->Clear(&buf);
 		}
 
 		if(it->refine)
-			StringBuf_Printf(&buf, "%d %s %+d (%s, id: %d)", it->amount, itd->jname, it->refine, itd->name, it->nameid);
+			StrBuf->Printf(&buf, "%d %s %+d (%s, id: %d)", it->amount, itd->jname, it->refine, itd->name, it->nameid);
 		else
-			StringBuf_Printf(&buf, "%d %s (%s, id: %d)", it->amount, itd->jname, itd->name, it->nameid);
+			StrBuf->Printf(&buf, "%d %s (%s, id: %d)", it->amount, itd->jname, itd->name, it->nameid);
 
 		if(it->equip) {
 			char equipstr[CHAT_SIZE_MAX];
@@ -8434,24 +8438,24 @@ ACMD_FUNC(itemlist)
 				strcat(equipstr, msg_txt(1347)); // lower/mid/top head,
 			// remove final ', '
 			equipstr[strlen(equipstr) - 2] = '\0';
-			StringBuf_AppendStr(&buf, equipstr);
+			StrBuf->AppendStr(&buf, equipstr);
 		}
 
-		clif_displaymessage(fd, StringBuf_Value(&buf));
-		StringBuf_Clear(&buf);
+		clif_displaymessage(fd, StrBuf->Value(&buf));
+		StrBuf->Clear(&buf);
 
 		if(it->card[0] == CARD0_PET) {
 			// pet egg
 			if(it->card[3])
-				StringBuf_Printf(&buf, msg_txt(1348), (unsigned int)MakeDWord(it->card[1], it->card[2])); //  -> (pet egg, pet id: %u, named)
+				StrBuf->Printf(&buf, msg_txt(1348), (unsigned int)MakeDWord(it->card[1], it->card[2])); //  -> (pet egg, pet id: %u, named)
 			else
-				StringBuf_Printf(&buf, msg_txt(1349), (unsigned int)MakeDWord(it->card[1], it->card[2])); //  -> (pet egg, pet id: %u, unnamed)
+				StrBuf->Printf(&buf, msg_txt(1349), (unsigned int)MakeDWord(it->card[1], it->card[2])); //  -> (pet egg, pet id: %u, unnamed)
 		} else if(it->card[0] == CARD0_FORGE) {
 			// forged item
-			StringBuf_Printf(&buf, msg_txt(1350), (unsigned int)MakeDWord(it->card[2], it->card[3]), it->card[1]>>8, it->card[1]&0x0f); //  -> (crafted item, creator id: %u, star crumbs %d, element %d)
+			StrBuf->Printf(&buf, msg_txt(1350), (unsigned int)MakeDWord(it->card[2], it->card[3]), it->card[1]>>8, it->card[1]&0x0f); //  -> (crafted item, creator id: %u, star crumbs %d, element %d)
 		} else if(it->card[0] == CARD0_CREATE) {
 			// created item
-			StringBuf_Printf(&buf, msg_txt(1351), (unsigned int)MakeDWord(it->card[2], it->card[3])); //  -> (produced item, creator id: %u)
+			StrBuf->Printf(&buf, msg_txt(1351), (unsigned int)MakeDWord(it->card[2], it->card[3])); //  -> (produced item, creator id: %u)
 		} else {
 			// normal item
 			int counter2 = 0;
@@ -8465,32 +8469,32 @@ ACMD_FUNC(itemlist)
 				counter2++;
 
 				if(counter2 == 1)
-					StringBuf_AppendStr(&buf, msg_txt(1352)); //  -> (card(s):
+					StrBuf->AppendStr(&buf, msg_txt(1352)); //  -> (card(s):
 
 				if(counter2 != 1)
-					StringBuf_AppendStr(&buf, ", ");
+					StrBuf->AppendStr(&buf, ", ");
 
-				StringBuf_Printf(&buf, "#%d %s (id: %d)", counter2, card->jname, card->nameid);
+				StrBuf->Printf(&buf, "#%d %s (id: %d)", counter2, card->jname, card->nameid);
 			}
 
 			if(counter2 > 0)
-				StringBuf_AppendStr(&buf, ")");
+				StrBuf->AppendStr(&buf, ")");
 		}
 
-		if(StringBuf_Length(&buf) > 0)
-			clif_displaymessage(fd, StringBuf_Value(&buf));
+		if(StrBuf->Length(&buf) > 0)
+			clif_displaymessage(fd, StrBuf->Value(&buf));
 
-		StringBuf_Clear(&buf);
+		StrBuf->Clear(&buf);
 	}
 
 	if(count == 0)
-		StringBuf_Printf(&buf, msg_txt(1353), location); // No item found in this player's %s.
+		StrBuf->Printf(&buf, msg_txt(1353), location); // No item found in this player's %s.
 	else
-		StringBuf_Printf(&buf, msg_txt(1354), counter, count, location); // %d item(s) found in %d %s slots.
+		StrBuf->Printf(&buf, msg_txt(1354), counter, count, location); // %d item(s) found in %d %s slots.
 
-	clif_displaymessage(fd, StringBuf_Value(&buf));
+	clif_displaymessage(fd, StrBuf->Value(&buf));
 
-	StringBuf_Destroy(&buf);
+	StrBuf->Destroy(&buf);
 
 	return 0;
 }
@@ -8662,11 +8666,11 @@ static void atcommand_commands_sub(struct map_session_data *sd, const int fd, At
 
 		switch(type) {
 			case COMMAND_CHARCOMMAND:
-				if(cmd->char_groups[sd->group_pos] == 0)
+				if(cmd->char_groups[pcg->get_idx(sd->group)] == 0)
 					continue;
 				break;
 			case COMMAND_ATCOMMAND:
-				if(cmd->at_groups[sd->group_pos] == 0)
+				if(cmd->at_groups[pcg->get_idx(sd->group)] == 0)
 					continue;
 				break;
 			default:
@@ -8809,12 +8813,12 @@ ACMD_FUNC(set)
 				break;
 			case '#':
 				if(reg[1] == '#')
-					data->u.str = pc_readaccountreg2str(sd, reg);// global
+					data->u.str = pc_readaccountreg2str(sd, script->add_str(reg));// global
 				else
-					data->u.str = pc_readaccountregstr(sd, reg);// local
+					data->u.str = pc_readaccountregstr(sd, script->add_str(reg));// local
 				break;
 			default:
-				data->u.str = pc_readglobalreg_str(sd, reg);
+				data->u.str = pc_readglobalreg_str(sd, script->add_str(reg));
 				break;
 		}
 
@@ -8838,12 +8842,12 @@ ACMD_FUNC(set)
 				break;
 			case '#':
 				if(reg[1] == '#')
-					data->u.num = pc_readaccountreg2(sd, reg);// global
+					data->u.num = pc_readaccountreg2(sd, script->add_str(reg));// global
 				else
-					data->u.num = pc_readaccountreg(sd, reg);// local
+					data->u.num = pc_readaccountreg(sd, script->add_str(reg));// local
 				break;
 			default:
-				data->u.num = pc_readglobalreg(sd, reg);
+				data->u.num = pc_readglobalreg(sd, script->add_str(reg));
 				break;
 		}
 
@@ -8873,7 +8877,7 @@ ACMD_FUNC(set)
 }
 ACMD_FUNC(addperm)
 {
-	int perm_size = ARRAYLENGTH(pc_g_permission_name);
+	int perm_size = pcg->permission_count;
 	bool add = (strcmpi(command+1, "addperm") == 0) ? true : false;
 	int i;
 
@@ -8882,37 +8886,37 @@ ACMD_FUNC(addperm)
 		clif_displaymessage(fd, atcmd_output);
 		clif_displaymessage(fd, msg_txt(1379)); // -- Permission List
 		for(i = 0; i < perm_size; i++) {
-			sprintf(atcmd_output,"- %s",pc_g_permission_name[i].name);
+			sprintf(atcmd_output,"- %s",pcg->permissions[i].name);
 			clif_displaymessage(fd, atcmd_output);
 		}
 		return -1;
 	}
 
-	ARR_FIND(0, perm_size, i, strcmpi(pc_g_permission_name[i].name, message) == 0);
+	ARR_FIND(0, perm_size, i, strcmpi(pcg->permissions[i].name, message) == 0);
 
 	if(i == perm_size) {
 		sprintf(atcmd_output,msg_txt(1380),message); // '%s' is not a known permission.
 		clif_displaymessage(fd, atcmd_output);
 		clif_displaymessage(fd, msg_txt(1379)); // -- Permission List
 		for(i = 0; i < perm_size; i++) {
-			sprintf(atcmd_output,"- %s",pc_g_permission_name[i].name);
+			sprintf(atcmd_output,"- %s",pcg->permissions[i].name);
 			clif_displaymessage(fd, atcmd_output);
 		}
 		return -1;
 	}
 
-	if(add && (sd->permissions&pc_g_permission_name[i].permission)) {
-		sprintf(atcmd_output,  msg_txt(1381),sd->status.name,pc_g_permission_name[i].name); // User '%s' already possesses the '%s' permission.
+	if(add && (sd->extra_temp_permissions&pcg->permissions[i].permission)) {
+		sprintf(atcmd_output,  msg_txt(1381),sd->status.name,pcg->permissions[i].name); // User '%s' already possesses the '%s' permission.
 		clif_displaymessage(fd, atcmd_output);
 		return -1;
-	} else if(!add && !(sd->permissions&pc_g_permission_name[i].permission)) {
-		sprintf(atcmd_output,  msg_txt(1382),sd->status.name,pc_g_permission_name[i].name); // User '%s' doesn't possess the '%s' permission.
+	} else if(!add && !(sd->extra_temp_permissions&pcg->permissions[i].permission)) {
+		sprintf(atcmd_output,  msg_txt(1382),sd->status.name,pcg->permissions[i].name); // User '%s' doesn't possess the '%s' permission.
 		clif_displaymessage(fd, atcmd_output);
 		sprintf(atcmd_output,msg_txt(1383),sd->status.name); // -- User '%s' Permissions
 		clif_displaymessage(fd, atcmd_output);
 		for(i = 0; i < perm_size; i++) {
-			if(sd->permissions&pc_g_permission_name[i].permission) {
-				sprintf(atcmd_output,"- %s",pc_g_permission_name[i].name);
+			if(sd->extra_temp_permissions&pcg->permissions[i].permission) {
+				sprintf(atcmd_output,"- %s",pcg->permissions[i].name);
 				clif_displaymessage(fd, atcmd_output);
 			}
 		}
@@ -8921,9 +8925,9 @@ ACMD_FUNC(addperm)
 	}
 
 	if(add)
-		sd->permissions |= pc_g_permission_name[i].permission;
+		sd->extra_temp_permissions |= pcg->permissions[i].permission;
 	else
-		sd->permissions &=~ pc_g_permission_name[i].permission;
+		sd->extra_temp_permissions &=~ pcg->permissions[i].permission;
 
 
 	sprintf(atcmd_output, msg_txt(1384),sd->status.name); // User '%s' permissions updated successfully. The changes are temporary.
@@ -9012,7 +9016,7 @@ ACMD_FUNC(join) {
 	} else if( raChSys.ally && sd->status.guild_id && strcmpi(name + 1, raChSys.ally_name) == 0 ) {
 		struct guild *g = sd->guild;
 		if( !g ) return -1;/* unlikely, but we wont let it crash anyway. */
-		channel = (struct raChSysCh *)g->channel;
+		channel = g->channel;
 	} else if( !( channel = strdb_get(channel_db, name + 1) ) ) {
 		sprintf(atcmd_output, msg_txt(1403),name,command); // Unknown Channel '%s' (usage: %s <#channel_name>)
 		clif_displaymessage(fd, atcmd_output);
@@ -9057,8 +9061,8 @@ ACMD_FUNC(join) {
 		int i;
 		for (i = 0; i < MAX_GUILDALLIANCE; i++) {
 			if(g->alliance[i].opposition == 0 && g->alliance[i].guild_id && (sg = guild_search(g->alliance[i].guild_id))) {
-				if(!(((struct raChSysCh*)sg->channel)->banned && idb_exists(((struct raChSysCh*)sg->channel)->banned, sd->status.account_id))) {
-					clif_chsys_join((struct raChSysCh *)sg->channel,sd);
+				if(!(sg->channel->banned && idb_exists(sg->channel->banned, sd->status.account_id))) {
+					clif_chsys_join(sg->channel,sd);
 				}
 			}
 		}
@@ -9188,7 +9192,7 @@ ACMD_FUNC(channel) {
 			if( raChSys.ally && sd->status.guild_id ) {
 				struct guild *g = sd->guild;
 				if(!g)  { dbi_destroy(iter); return -1; }
-				sprintf(atcmd_output, msg_txt(1412), raChSys.ally_name, db_size(((struct raChSysCh *)g->channel)->users));// - #%s ( %d users )
+				sprintf(atcmd_output, msg_txt(1412), raChSys.ally_name, db_size(g->channel->users));// - #%s ( %d users )
 				clif_displaymessage(fd, atcmd_output);
 			}
 			for(channel = dbi_first(iter); dbi_exists(iter); channel = dbi_next(iter)) {
@@ -9456,7 +9460,7 @@ ACMD_FUNC(channel) {
 		iter = db_iterator(channel->banned);
 		
 		for( data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key) ) {
-			struct raChSysBanEntry * entry = db_data2ptr(data);
+			struct raChSysBanEntry * entry = DB->data2ptr(data);
 			
 			if( !isA )
 				sprintf(atcmd_output, msg_txt(1447), entry->name);// - %s %s
@@ -10041,7 +10045,7 @@ static void atcommand_get_suggestions(struct map_session_data *sd, const char *n
 	// Build the matches
 	for(command_info = dbi_first(atcommand_iter); dbi_exists(atcommand_iter); command_info = dbi_next(atcommand_iter))     {
 		match = strstr(command_info->command, name);
-		can_use = pc_can_use_command(sd, command_info->command, type);
+		can_use = atcommand_can_use2(sd, command_info->command, type);
 		if(prefix_count < MAX_SUGGESTIONS && match == command_info->command && can_use) {
 			suggestions[prefix_count] = command_info->command;
 			++prefix_count;
@@ -10054,7 +10058,7 @@ static void atcommand_get_suggestions(struct map_session_data *sd, const char *n
 
 	for(alias_info = dbi_first(alias_iter); dbi_exists(alias_iter); alias_info = dbi_next(alias_iter)) {
 		match = strstr(alias_info->alias, name);
-		can_use = pc_can_use_command(sd, alias_info->command->command, type);
+		can_use = atcommand_can_use2(sd, alias_info->command->command, type);
 		if(prefix_count < MAX_SUGGESTIONS && match == alias_info->alias && can_use) {
 			suggestions[prefix_count] = alias_info->alias;
 			++prefix_count;
@@ -10164,7 +10168,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 			if(!pc_get_group_level(sd)) {
 				if(x >= 1 || y >= 1) {   /* we have command */
 					info = get_atcommandinfo_byname(atcommand_checkalias(command + 1));
-					if(!info || info->char_groups[sd->group_pos] == 0)   /* if we can't use or doesn't exist: don't even display the command failed message */
+					if(!info || info->char_groups[pcg->get_idx(sd->group)] == 0 )   /* if we can't use or doesn't exist: don't even display the command failed message */
 						return false;
 				} else
 					return false;/* display as normal message */
@@ -10233,8 +10237,8 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 	// type == 1 : player invoked
 	if(type == 1) {
 		int i;
-		if((*command == atcommand_symbol && info->at_groups[sd->group_pos] == 0) ||
-		   (*command == charcommand_symbol && info->char_groups[sd->group_pos] == 0)) {
+		if((*command == atcommand_symbol && info->at_groups[pcg->get_idx(sd->group)] == 0) ||
+		   (*command == charcommand_symbol && info->char_groups[pcg->get_idx(sd->group)] == 0)) {
 			return false;
 		}
 		if(pc_isdead(sd) && pc_has_permission(sd,PC_PERM_DISABLE_CMD_DEAD)) {
@@ -10243,7 +10247,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		}
 		for(i = 0; i < map[sd->bl.m].zone->disabled_commands_count; i++) {
 			if(info->func == map[sd->bl.m].zone->disabled_commands[i]->cmd) {
-				if(sd->group_level < map[sd->bl.m].zone->disabled_commands[i]->group_lv) {
+				if(pc_get_group_level(sd) < map[sd->bl.m].zone->disabled_commands[i]->group_lv) {
 					clif_colormes(sd->fd,COLOR_RED,"Este comando está desativado nesta área");
 					return true;
 				} else
@@ -10368,58 +10372,131 @@ static void atcommand_config_read(const char *config_filename)
 	ShowConf(read_message("Source.map.map_atcommand_s2"), CL_WHITE, num_aliases, CL_RESET, CL_WHITE, config_filename, CL_RESET);
 	return;
 }
-void atcommand_db_load_groups(int *group_ids)
+
+/**
+ * In group configuration file, setting for each command is either
+ * <commandname> : <bool> (only atcommand), or
+ * <commandname> : [ <bool>, <bool> ] ([ atcommand, charcommand ])
+ * Maps AtCommandType enums to indexes of <commandname> value array,
+ * COMMAND_ATCOMMAND (1) being index 0, COMMAND_CHARCOMMAND (2) being index 1.
+ * @private
+ */
+static inline int AtCommandType2idx(AtCommandType type) { return (type-1); }
+
+/**
+ * Loads permissions for groups to use commands.
+ * 
+ */
+void atcommand_db_load_groups(GroupSettings **groups, config_setting_t **commands_, size_t sz)
 {
 	DBIterator *iter = db_iterator(atcommand_db);
-	AtCommandInfo *cmd;
-	int i;
+	AtCommandInfo *atcmd;
 
-	for(cmd = dbi_first(iter); dbi_exists(iter); cmd = dbi_next(iter)) {
-		cmd->at_groups = aMalloc(pc_group_max * sizeof(char));
-		cmd->char_groups = aMalloc(pc_group_max * sizeof(char));
-		for(i = 0; i < pc_group_max; i++) {
-			if(pc_group_can_use_command(group_ids[i], cmd->command, COMMAND_ATCOMMAND))
-				cmd->at_groups[i] = 1;
-			else
-				cmd->at_groups[i] = 0;
-			if(pc_group_can_use_command(group_ids[i], cmd->command, COMMAND_CHARCOMMAND))
-				cmd->char_groups[i] = 1;
-			else
-				cmd->char_groups[i] = 0;
+	for (atcmd = dbi_first(iter); dbi_exists(iter); atcmd = dbi_next(iter)) {
+		int i;
+		CREATE(atcmd->at_groups, char, sz);
+		CREATE(atcmd->char_groups, char, sz);
+		for (i = 0; i < sz; i++) {
+			GroupSettings *group = groups[i];
+			config_setting_t *commands = commands_[i];
+			int result = 0;
+			int idx = -1;
+			
+			if (group == NULL) {
+				ShowError("atcommand_db_load_groups: group is NULL\n");
+				continue;
+			}
+
+			idx = pcg->get_idx(group);
+			if (idx < 0 || idx >= sz) {
+				ShowError("atcommand_db_load_groups: index (%d) out of bounds [0,%d]\n", idx, sz - 1);
+				continue;
+			}
+			
+			if (pcg->has_permission(group, PC_PERM_USE_ALL_COMMANDS)) {
+				atcmd->at_groups[idx] = atcmd->char_groups[idx] = 1;
+				continue;
+			}
+			
+			if (commands != NULL) {
+				config_setting_t *cmd = NULL;
+
+				// <commandname> : <bool> (only atcommand)
+				if (config_setting_lookup_bool(commands, atcmd->command, &result) && result) {
+					atcmd->at_groups[idx] = 1;
+				}
+				else
+				// <commandname> : [ <bool>, <bool> ] ([ atcommand, charcommand ])
+				if ((cmd = config_setting_get_member(commands, atcmd->command)) != NULL &&
+				    config_setting_is_aggregate(cmd) &&
+				    config_setting_length(cmd) == 2
+				) {
+					if (config_setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_ATCOMMAND))) {
+						atcmd->at_groups[idx] = 1;
+					}
+					if (config_setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_CHARCOMMAND))) {
+						atcmd->char_groups[idx] = 1;
+					}
+				}
+			}
 		}
 	}
-
 	dbi_destroy(iter);
-
 	return;
 }
-void atcommand_db_clear(void)
-{
 
-	if(atcommand_db != NULL) {
-		DBIterator *iter = db_iterator(atcommand_db);
-		AtCommandInfo *cmd;
+bool atcommand_can_use(struct map_session_data *sd, const char *command) {
+	AtCommandInfo *info = get_atcommandinfo_byname(atcommand_checkalias(command + 1));
 
-		for(cmd = dbi_first(iter); dbi_exists(iter); cmd = dbi_next(iter)) {
-			aFree(cmd->at_groups);
-			aFree(cmd->char_groups);
-		}
+	if (info == NULL)
+		return false;
 
-		dbi_destroy(iter);
-
-		db_destroy(atcommand_db);
+	if ((*command == atcommand_symbol && info->at_groups[pcg->get_idx(sd->group)] != 0) ||
+		(*command == charcommand_symbol && info->char_groups[pcg->get_idx(sd->group)] != 0)) {
+		return true;
 	}
-	if(atcommand_alias_db != NULL)
-		db_destroy(atcommand_alias_db);
 
-	config_destroy(&atcommand_config);
+	return false;
+}
+bool atcommand_can_use2(struct map_session_data *sd, const char *command, AtCommandType type) {
+	AtCommandInfo *info = get_atcommandinfo_byname(atcommand_checkalias(command));
+
+	if (info == NULL)
+		return false;
+
+	if ((type == COMMAND_ATCOMMAND && info->at_groups[pcg->get_idx(sd->group)] != 0) ||
+		(type == COMMAND_CHARCOMMAND && info->char_groups[pcg->get_idx(sd->group)] != 0) ) {
+		return true;
+	}
+
+	return false;
+}
+int atcommand_db_clear_sub(DBKey key, DBData *data, va_list args) {
+	AtCommandInfo *cmd = DB->data2ptr(data);
+	aFree(cmd->at_groups);
+	aFree(cmd->char_groups);
+	if (cmd->help != NULL)
+		aFree(cmd->help);
+	return 0;
 }
 
-void atcommand_doload(void)
-{
-	atcommand_db_clear();
-	atcommand_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, ATCOMMAND_LENGTH);
-	atcommand_alias_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, ATCOMMAND_LENGTH);
+void atcommand_db_clear(void) {
+	if(atcommand_db != NULL) {
+		atcommand_db->destroy(atcommand_db, atcommand_db_clear_sub);
+		atcommand_db = NULL;
+	}
+	if(atcommand_alias_db != NULL) {
+		db_destroy(atcommand_alias_db);
+		atcommand_alias_db = NULL;
+	}
+}
+void atcommand_doload(void) {
+	if(runflag >= MAPSERVER_ST_RUNNING)
+		atcommand_db_clear();
+	if(atcommand_db == NULL)
+		atcommand_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, ATCOMMAND_LENGTH);
+	if(atcommand_alias_db == NULL)
+		atcommand_alias_db = stridb_alloc(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA, ATCOMMAND_LENGTH);
 	atcommand_basecommands(); //fills initial atcommand_db with known commands
 	atcommand_config_read(ATCOMMAND_CONF_FILENAME);
 }

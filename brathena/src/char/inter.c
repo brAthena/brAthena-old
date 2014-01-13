@@ -54,7 +54,6 @@ char char_server_pw[32] = "ragnarok";
 char char_server_db[32] = "ragnarok";
 char default_codepage[32] = ""; //Feature by irmin.
 
-static struct accreg *accreg_pt;
 unsigned int party_share_level = 10;
 unsigned int party_family_share_level = 150;
 
@@ -360,6 +359,9 @@ const char *job_name(int class_)
 		case JOB_OBORO:
 			return msg_txt(653 - JOB_KAGEROU+class_);
 
+		case JOB_REBELLION:
+			return msg_txt(694);
+
 		default:
 			return msg_txt(655);
 	}
@@ -438,17 +440,19 @@ const char *geoip_getcountry(uint32 ipnum)
 	}
 	return geoip_countryname[0];
 }
-/* sends a mesasge to map server (fd) to a user (u_fd) although we use fd we keep aid for safe-check */
-/* extremely handy I believe it will serve other uses in the near future */
-void inter_to_fd(int fd, int u_fd, int aid, char *msg, ...)
-{
+
+/**
+ * Argument-list version of inter_msg_to_fd
+ * @see inter_msg_to_fd
+ */
+void inter_vmsg_to_fd(int fd, int u_fd, int aid, char* msg, va_list ap) {
 	char msg_out[512];
-	va_list ap;
+	va_list apcopy;
 	int len = 1;/* yes we start at 1 */
 
-	va_start(ap,msg);
-	len += vsnprintf(msg_out, 512, msg, ap);
-	va_end(ap);
+	va_copy(apcopy, ap);
+	len += vsnprintf(msg_out, 512, msg, apcopy);
+	va_end(apcopy);
 
 	WFIFOHEAD(fd,12 + len);
 
@@ -462,6 +466,23 @@ void inter_to_fd(int fd, int u_fd, int aid, char *msg, ...)
 
 	return;
 }
+
+/**
+ * Sends a message to map server (fd) to a user (u_fd) although we use fd we
+ * keep aid for safe-check.
+ * @param fd   Mapserver's fd
+ * @param u_fd Recipient's fd
+ * @param aid  Recipient's expected for sanity checks on the mapserver
+ * @param msg  Message format string
+ * @param ...  Additional parameters for (v)sprinf
+ */
+void inter_msg_to_fd(int fd, int u_fd, int aid, char* msg, ...) {
+	va_list ap;
+	va_start(ap,msg);
+	inter_vmsg_to_fd(fd, u_fd, aid, msg, ap);
+	va_end(ap);
+}
+
 /* [Dekamaster/Nightroad] */
 void mapif_parse_accinfo(int fd)
 {
@@ -478,12 +499,12 @@ void mapif_parse_accinfo(int fd)
 
 	if(account_id < START_ACCOUNT_NUM) {    // is string
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `account_id`,`name`,`class`,`base_level`,`job_level`,`online` FROM `%s` WHERE `name` LIKE '%s' LIMIT 10", char_db, query_esq)
-		   || Sql_NumRows(sql_handle) == 0) {
+			|| Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s1"), query);
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s1"), query);
 			} else {
 				Sql_ShowDebug(sql_handle);
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s2"));
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s2"));
 			}
 			Sql_FreeResult(sql_handle);
 			return;
@@ -493,8 +514,8 @@ void mapif_parse_accinfo(int fd)
 				Sql_GetData(sql_handle, 0, &data, NULL); account_id = atoi(data);
 				Sql_FreeResult(sql_handle);
 			} else {// more than one, listing... [Dekamaster/Nightroad]
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s3"),(int)Sql_NumRows(sql_handle));
-				while(SQL_SUCCESS == Sql_NextRow(sql_handle)) {
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s3"), (int)Sql_NumRows(sql_handle));
+				while (SQL_SUCCESS == Sql_NextRow(sql_handle)) {
 					int class_;
 					short base_level, job_level, online;
 					char name[NAME_LENGTH];
@@ -506,7 +527,7 @@ void mapif_parse_accinfo(int fd)
 					Sql_GetData(sql_handle, 4, &data, NULL); job_level = atoi(data);
 					Sql_GetData(sql_handle, 5, &data, NULL); online = atoi(data);
 
-					inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s4"), account_id, name, job_name(class_), base_level, job_level, online?"Online":"Offline");
+					inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s4"), account_id, name, job_name(class_), base_level, job_level, online?"Online":"Offline");
 				}
 				Sql_FreeResult(sql_handle);
 				return;
@@ -521,11 +542,11 @@ void mapif_parse_accinfo(int fd)
 		int logincount = 0,state = 0;
 		// FIXME: No, this doesn't really look right.  We can't, and shouldn't, access the login table from the char server.
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `userid`, `user_pass`, `email`, `last_ip`, `group_id`, `lastlogin`, `logincount`, `state`,`pincode`,`birthdate` FROM `login` WHERE `account_id` = '%d' LIMIT 1", account_id)
-		   || Sql_NumRows(sql_handle) == 0) {
+			|| Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
-				inter_to_fd(fd, u_fd, aid,  read_message("Source.char.inter_parse_accinfo_s5"), account_id);
+				inter_msg_to_fd(fd, u_fd, aid,  read_message("Source.char.inter_parse_accinfo_s5"), account_id);
 			} else {
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s6"));
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s6"));
 				Sql_ShowDebug(sql_handle);
 			}
 		} else {
@@ -547,30 +568,29 @@ void mapif_parse_accinfo(int fd)
 		if(level == -1)
 			return;
 
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s7"), account_id);
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s8"), userid, level, state);
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s7"), account_id);
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s8"), userid, level, state);
 
 		if(level < castergroup) {  /* only show pass if your gm level is greater than the one you're searching for */
 			if(strlen(pincode))
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s17"), user_pass, pincode);
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s17"), user_pass, pincode);
 			else
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s9"), user_pass);
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s9"), user_pass);
 			}
 
-
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s10"), email, birthdate);
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s11"), last_ip, geoip_getcountry(str2ip(last_ip)));
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s12"), logincount, lastlogin);
-		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s13"));
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s10"), email, birthdate);
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s11"), last_ip, geoip_getcountry(str2ip(last_ip)));
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s12"), logincount, lastlogin);
+		inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s13"));
 
 
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`, `name`, `char_num`, `class`, `base_level`, `job_level`, `online` FROM `%s` WHERE `account_id` = '%d' ORDER BY `char_num` LIMIT %d", char_db, account_id, MAX_CHARS)
-				|| Sql_NumRows(sql_handle) == 0) {
+			|| Sql_NumRows(sql_handle) == 0) {
 
 			if(Sql_NumRows(sql_handle) == 0)
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s14"));
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s14"));
 			else {
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s15"));
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s15"));
 				Sql_ShowDebug(sql_handle);
 			}
 
@@ -588,7 +608,7 @@ void mapif_parse_accinfo(int fd)
 				Sql_GetData(sql_handle, 5, &data, NULL); job_level = atoi(data);
 				Sql_GetData(sql_handle, 6, &data, NULL); online = atoi(data);
 
-				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s16"), char_num, char_id, name, job_name(class_), base_level, job_level, online?"On":"Off");
+				inter_msg_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s16"), char_num, char_id, name, job_name(class_), base_level, job_level, online?"On":"Off");
 			}
 		}
 		Sql_FreeResult(sql_handle);
@@ -596,30 +616,71 @@ void mapif_parse_accinfo(int fd)
 
 	return;
 }
-//--------------------------------------------------------
-// Save registry to sql
-int inter_accreg_tosql(int account_id, int char_id, struct accreg *reg, int type)
+/**
+ * Handles save reg data from map server and distributes accordingly.
+ *
+ * @param val either str or int, depending on type
+ * @param type false when int, true otherwise
+ **/
+void inter_savereg(int account_id, int char_id, const char *key, unsigned int index, intptr_t val, bool is_string) {
+	/* to login server we go! */
+	if( key[0] == '#' && key[1] == '#' ) {/* global account reg */
+		global_accreg_to_login_add(key,index,val,is_string);
+	} else if ( key[0] == '#' ) {/* local account reg */
+		if( is_string ) {
+			if( val ) {
+				if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`account_id`,`key`,`index`,`value`) VALUES ('%d','%s','%u','%s')", acc_reg_str_db, account_id, key, index, (char*)val) )
+					Sql_ShowDebug(sql_handle);
+			} else {
+				if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = '%d' AND `key` = '%s' AND `index` = '%u' LIMIT 1", acc_reg_str_db, account_id, key, index) )
+					Sql_ShowDebug(sql_handle);
+			}
+		} else {
+			if( val ) {
+				if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`account_id`,`key`,`index`,`value`) VALUES ('%d','%s','%u','%d')", acc_reg_num_db, account_id, key, index, (int)val) )
+					Sql_ShowDebug(sql_handle);
+			} else {
+				if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = '%d' AND `key` = '%s' AND `index` = '%u' LIMIT 1", acc_reg_num_db, account_id, key, index) )
+					Sql_ShowDebug(sql_handle);
+			}
+		}
+	} else { /* char reg */
+		if( is_string ) {
+			if( val ) {
+				if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`char_id`,`key`,`index`,`value`) VALUES ('%d','%s','%u','%s')", char_reg_str_db, char_id, key, index, (char*)val) )
+					Sql_ShowDebug(sql_handle);
+			} else {
+				if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d' AND `key` = '%s' AND `index` = '%u' LIMIT 1", char_reg_str_db, char_id, key, index) )
+					Sql_ShowDebug(sql_handle);
+			}
+		} else {
+			if( val ) {
+				if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`char_id`,`key`,`index`,`value`) VALUES ('%d','%s','%u','%d')", char_reg_num_db, char_id, key, index, (int)val) )
+					Sql_ShowDebug(sql_handle);
+			} else {
+				if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d' AND `key` = '%s' AND `index` = '%u' LIMIT 1", char_reg_num_db, char_id, key, index) )
+					Sql_ShowDebug(sql_handle);
+			}
+		}
+	}
+		
+}
+
+// Load account_reg from sql (type=2)
+int inter_accreg_fromsql(int account_id,int char_id, int fd, int type)
 {
-	struct global_reg *r;
-	StringBuf buf;
-	int i;
+	char* data;
+	size_t len;
+	unsigned int plen = 0;
 
-	if(account_id <= 0)
-		return 0;
-	reg->account_id = account_id;
-	reg->char_id = char_id;
-
-	//`global_reg_value` (`type`, `account_id`, `char_id`, `str`, `value`)
 	switch(type) {
 		case 3: //Char Reg
-			if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `type`=3 AND `char_id`='%d'", reg_db, char_id))
+			if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `key`, `index`, `value` FROM `%s` WHERE `char_id`='%d'", char_reg_str_db, char_id) )
 				Sql_ShowDebug(sql_handle);
-			account_id = 0;
 			break;
-		case 2: //Account Reg
-			if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `type`=2 AND `account_id`='%d'", reg_db, account_id))
+		case 2: //account reg
+			if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `key`, `index`, `value` FROM `%s` WHERE `account_id`='%d'", acc_reg_str_db, account_id) )
 				Sql_ShowDebug(sql_handle);
-			char_id = 0;
 			break;
 		case 1: //Account2 Reg
 			ShowError(read_message("Source.char.inter_accreg_tosql_s1"));
@@ -628,90 +689,150 @@ int inter_accreg_tosql(int account_id, int char_id, struct accreg *reg, int type
 			ShowError(read_message("Source.char.inter_accreg_tosql_s2"), type);
 			return 0;
 	}
+	
+	WFIFOHEAD(fd, 60000 + 300);
+	WFIFOW(fd, 0) = 0x3804;
+	/* 0x2 = length, set prior to being sent */
+	WFIFOL(fd, 4) = account_id;
+	WFIFOL(fd, 8) = char_id;
+	WFIFOB(fd, 12) = 0;/* var type (only set when all vars have been sent, regardless of type) */
+	WFIFOB(fd, 13) = 1;/* is string type */
+	WFIFOW(fd, 14) = 0;/* count */
+	plen = 16;
+	
+	/**
+	 * Vessel!
+	 *
+	 * str type
+	 * { keyLength(B), key(<keyLength>), index(L), valLength(B), val(<valLength>) }
+	 **/
+	while ( SQL_SUCCESS == Sql_NextRow(sql_handle) ) {
+					
+		Sql_GetData(sql_handle, 0, &data, NULL);
+		len = strlen(data)+1;
+		
+		WFIFOB(fd, plen) = (unsigned char)len;/* won't be higher; the column size is 32 */
+		plen += 1;
+		
+		safestrncpy((char*)WFIFOP(fd,plen), data, len);
+		plen += len;
+		
+		Sql_GetData(sql_handle, 1, &data, NULL);
 
-	if(reg->reg_num <= 0)
-		return 0;
+		WFIFOL(fd, plen) = (unsigned int)atol(data);
+		plen += 4;
 
-	StringBuf_Init(&buf);
-	StringBuf_Printf(&buf, "INSERT INTO `%s` (`type`,`account_id`,`char_id`,`str`,`value`) VALUES ", reg_db);
+		Sql_GetData(sql_handle, 2, &data, NULL);
+		len = strlen(data)+1;
 
-	for(i = 0; i < reg->reg_num; ++i) {
-		r = &reg->reg[i];
-		if(r->str[0] != '\0' && r->value[0] != '\0') {
-			char str[32];
-			char val[256];
+		WFIFOB(fd, plen) = (unsigned char)len;/* won't be higher; the column size is 254 */
+		plen += 1;
+		
+		safestrncpy((char*)WFIFOP(fd,plen), data, len);
+		plen += len;
 
-			if(i > 0)
-				StringBuf_AppendStr(&buf, ",");
-
-			Sql_EscapeString(sql_handle, str, r->str);
-			Sql_EscapeString(sql_handle, val, r->value);
-
-			StringBuf_Printf(&buf, "('%d','%d','%d','%s','%s')", type, account_id, char_id, str, val);
+		WFIFOW(fd, 14) += 1;
+		
+		if( plen > 60000 ) {
+			WFIFOW(fd, 2) = plen;
+			WFIFOSET(fd, plen);
+			
+			/* prepare follow up */
+			WFIFOHEAD(fd, 60000 + 300);
+			WFIFOW(fd, 0) = 0x3804;
+			/* 0x2 = length, set prior to being sent */
+			WFIFOL(fd, 4) = account_id;
+			WFIFOL(fd, 8) = char_id;
+			WFIFOB(fd, 12) = 0;/* var type (only set when all vars have been sent, regardless of type) */
+			WFIFOB(fd, 13) = 1;/* is string type */
+			WFIFOW(fd, 14) = 0;/* count */
+			plen = 16;
 		}
 	}
+	
+	/* mark & go. */
+	WFIFOW(fd, 2) = plen;
+	WFIFOSET(fd, plen);
 
-	if(SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf))) {
-		Sql_ShowDebug(sql_handle);
-	}
-
-	StringBuf_Destroy(&buf);
-
-	return 1;
-}
-
-// Load account_reg from sql (type=2)
-int inter_accreg_fromsql(int account_id,int char_id, struct accreg *reg, int type)
-{
-	struct global_reg *r;
-	char *data;
-	size_t len;
-	int i;
-
-	if(reg == NULL)
-		return 0;
-
-	memset(reg, 0, sizeof(struct accreg));
-	reg->account_id = account_id;
-	reg->char_id = char_id;
-
-	//`global_reg_value` (`type`, `account_id`, `char_id`, `str`, `value`)
-	switch(type) {
+	Sql_FreeResult(sql_handle);
+	
+	switch( type ) {
 		case 3: //char reg
-			if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `str`, `value` FROM `%s` WHERE `type`=3 AND `char_id`='%d'", reg_db, char_id))
+			if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `key`, `index`, `value` FROM `%s` WHERE `char_id`='%d'", char_reg_num_db, char_id) )
 				Sql_ShowDebug(sql_handle);
 			break;
 		case 2: //account reg
-			if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `str`, `value` FROM `%s` WHERE `type`=2 AND `account_id`='%d'", reg_db, account_id))
+			if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `key`, `index`, `value` FROM `%s` WHERE `account_id`='%d'", acc_reg_num_db, account_id) )
 				Sql_ShowDebug(sql_handle);
 			break;
 		case 1: //account2 reg
 			ShowError(read_message("Source.char.inter_accreg_fromsql_s1"));
 			return 0;
-		default:
-			ShowError(read_message("Source.char.inter_accreg_fromsql_s2"), type);
-			return 0;
 	}
-	for(i = 0; i < MAX_REG_NUM && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
-		r = &reg->reg[i];
-		// str
-		Sql_GetData(sql_handle, 0, &data, &len);
-		memcpy(r->str, data, min(len, sizeof(r->str)));
-		// value
-		Sql_GetData(sql_handle, 1, &data, &len);
-		memcpy(r->value, data, min(len, sizeof(r->value)));
+
+	WFIFOHEAD(fd, 60000 + 300);
+	WFIFOW(fd, 0) = 0x3804;
+	/* 0x2 = length, set prior to being sent */
+	WFIFOL(fd, 4) = account_id;
+	WFIFOL(fd, 8) = char_id;
+	WFIFOB(fd, 12) = 0;/* var type (only set when all vars have been sent, regardless of type) */
+	WFIFOB(fd, 13) = 0;/* is int type */
+	WFIFOW(fd, 14) = 0;/* count */
+	plen = 16;
+	
+	/**
+	 * Vessel!
+	 *
+	 * int type
+	 * { keyLength(B), key(<keyLength>), index(L), value(L) }
+	 **/
+	while ( SQL_SUCCESS == Sql_NextRow(sql_handle) ) {
+		
+		Sql_GetData(sql_handle, 0, &data, NULL);
+		len = strlen(data)+1;
+		
+		WFIFOB(fd, plen) = (unsigned char)len;/* won't be higher; the column size is 32 */
+		plen += 1;
+
+		safestrncpy((char*)WFIFOP(fd,plen), data, len);
+		plen += len;
+
+		Sql_GetData(sql_handle, 1, &data, NULL);
+
+		WFIFOL(fd, plen) = (unsigned int)atol(data);
+		plen += 4;
+
+		Sql_GetData(sql_handle, 2, &data, NULL);
+
+		WFIFOL(fd, plen) = atoi(data);
+		plen += 4;
+		
+		WFIFOW(fd, 14) += 1;
+
+		if( plen > 60000 ) {
+			WFIFOW(fd, 2) = plen;
+			WFIFOSET(fd, plen);
+
+			/* prepare follow up */
+			WFIFOHEAD(fd, 60000 + 300);
+			WFIFOW(fd, 0) = 0x3804;
+			/* 0x2 = length, set prior to being sent */
+			WFIFOL(fd, 4) = account_id;
+			WFIFOL(fd, 8) = char_id;
+			WFIFOB(fd, 12) = 0;/* var type (only set when all vars have been sent, regardless of type) */
+			WFIFOB(fd, 13) = 0;/* is int type */
+			WFIFOW(fd, 14) = 0;/* count */
+			plen = 16;
+		}
 	}
-	reg->reg_num = i;
+	
+	/* mark as complete & go. */
+	WFIFOB(fd, 12) = type;
+	WFIFOW(fd, 2) = plen;
+	WFIFOSET(fd, plen);
+
 	Sql_FreeResult(sql_handle);
 	return 1;
-}
-
-// Initialize
-int inter_accreg_sql_init(void)
-{
-	CREATE(accreg_pt, struct accreg, 1);
-	return 0;
-
 }
 
 /*==========================================
@@ -764,22 +885,41 @@ static int inter_config_read(const char *cfgName)
 	return 0;
 }
 
-// Save interlog into sql
-int inter_log(char *fmt, ...)
-{
+/**
+ * Save interlog into sql (arglist version)
+ * @see inter_log
+ */
+int inter_vlog(char* fmt, va_list ap) {
 	char str[255];
 	char esc_str[sizeof(str)*2+1];// escaped str
-	va_list ap;
+	va_list apcopy;
 
-	va_start(ap,fmt);
-	vsnprintf(str, sizeof(str), fmt, ap);
-	va_end(ap);
+	va_copy(apcopy, ap);
+	vsnprintf(str, sizeof(str), fmt, apcopy);
+	va_end(apcopy);
 
 	Sql_EscapeStringLen(sql_handle, esc_str, str, strnlen(str, sizeof(str)));
 	if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `log`) VALUES (NOW(),  '%s')", interlog_db, esc_str))
 		Sql_ShowDebug(sql_handle);
 
 	return 0;
+}
+
+/**
+ * Save interlog into sql
+ * @param fmt Message's format string
+ * @param ... Additional (printf-like) arguments
+ * @return Always 0 // FIXME
+ */
+int inter_log(char* fmt, ...) {
+	va_list ap;
+	int ret;
+
+	va_start(ap,fmt);
+	ret = inter_vlog(fmt, ap);
+	va_end(ap);
+
+	return ret;
 }
 
 // initialize
@@ -811,7 +951,6 @@ int inter_init_sql(const char *file)
 	inter_homunculus_sql_init();
 	inter_mercenary_sql_init();
 	inter_elemental_sql_init();
-	inter_accreg_sql_init();
 	inter_mail_sql_init();
 	inter_auction_sql_init();
 
@@ -834,8 +973,6 @@ void inter_final(void)
 	inter_elemental_sql_final();
 	inter_mail_sql_final();
 	inter_auction_sql_final();
-
-	if(accreg_pt) aFree(accreg_pt);
 
 	do_final_msg();
 	return;
@@ -899,36 +1036,15 @@ int mapif_wis_end(struct WisData *wd, int flag)
 }
 
 // Account registry transfer to map-server
-static void mapif_account_reg(int fd, unsigned char *src)
-{
-	WBUFW(src,0)=0x3804; //NOTE: writing to RFIFO
-	mapif_sendallwos(fd, src, WBUFW(src,2));
-}
+//static void mapif_account_reg(int fd, unsigned char *src)
+//{
+//	WBUFW(src,0)=0x3804; //NOTE: writing to RFIFO
+//	mapif_sendallwos(fd, src, WBUFW(src,2));
+//}
 
 // Send the requested account_reg
-int mapif_account_reg_reply(int fd,int account_id,int char_id, int type)
-{
-	struct accreg *reg=accreg_pt;
-	WFIFOHEAD(fd, 13 + 5000);
-	inter_accreg_fromsql(account_id,char_id,reg,type);
-
-	WFIFOW(fd,0)=0x3804;
-	WFIFOL(fd,4)=account_id;
-	WFIFOL(fd,8)=char_id;
-	WFIFOB(fd,12)=type;
-	if(reg->reg_num==0) {
-		WFIFOW(fd,2)=13;
-	} else {
-		int i,p;
-		for(p=13,i = 0; i < reg->reg_num && p < 5000; i++) {
-			p+= sprintf((char *)WFIFOP(fd,p), "%s", reg->reg[i].str)+1; //We add 1 to consider the '\0' in place.
-			p+= sprintf((char *)WFIFOP(fd,p), "%s", reg->reg[i].value)+1;
-		}
-		WFIFOW(fd,2)=p;
-		if(p>= 5000)
-			ShowWarning(read_message("Source.char.inter_account_reg"), account_id, char_id);
-	}
-	WFIFOSET(fd,WFIFOW(fd,2));
+int mapif_account_reg_reply(int fd,int account_id,int char_id, int type) {
+	inter_accreg_fromsql(account_id,char_id,fd,type);
 	return 0;
 }
 
@@ -955,7 +1071,7 @@ int mapif_disconnectplayer(int fd, int account_id, int char_id, int reason)
 int check_ttl_wisdata_sub(DBKey key, DBData *data, va_list ap)
 {
 	int64 tick;
-	struct WisData *wd = db_data2ptr(data);
+	struct WisData *wd = DB->data2ptr(data);
 	tick = va_arg(ap, int64);
 
 	if(DIFF_TICK(tick, wd->tick) > WISDATA_TTL && wis_delnum < WISDELLIST_MAX)
@@ -1102,34 +1218,50 @@ int mapif_parse_WisToGM(int fd)
 // Save account_reg into sql (type=2)
 int mapif_parse_Registry(int fd)
 {
-	int j,p,len, max;
-	struct accreg *reg=accreg_pt;
+	int account_id = RFIFOL(fd, 4), char_id = RFIFOL(fd, 8), count = RFIFOW(fd, 12);
 
-	memset(accreg_pt,0,sizeof(struct accreg));
-	switch(RFIFOB(fd, 12)) {
-		case 3: //Character registry
-			max = GLOBAL_REG_NUM;
-			break;
-		case 2: //Account Registry
-			max = ACCOUNT_REG_NUM;
-			break;
-		case 1: //Account2 registry, must be sent over to login server.
-			return save_accreg2(RFIFOP(fd,4), RFIFOW(fd,2)-4);
-		default:
-			return 1;
-	}
-	for(j=0,p=13; j<max && p<RFIFOW(fd,2); j++) {
-		sscanf((char *)RFIFOP(fd,p), "%31c%n",reg->reg[j].str,&len);
-		reg->reg[j].str[len]='\0';
-		p +=len+1; //+1 to skip the '\0' between strings.
-		sscanf((char *)RFIFOP(fd,p), "%255c%n",reg->reg[j].value,&len);
-		reg->reg[j].value[len]='\0';
-		p +=len+1;
-	}
-	reg->reg_num=j;
+	if(count) {
+		int cursor = 14, i;
+		char key[32], sval[254];
+		unsigned int index;
 
-	inter_accreg_tosql(RFIFOL(fd,4),RFIFOL(fd,8),reg, RFIFOB(fd,12));
-	mapif_account_reg(fd,RFIFOP(fd,0)); // Send updated accounts to other map servers.
+		global_accreg_to_login_start(account_id,char_id);
+
+		for(i = 0; i < count; i++) {
+			safestrncpy(key, (char*)RFIFOP(fd, cursor + 1), RFIFOB(fd, cursor));
+			cursor += RFIFOB(fd, cursor) + 1;
+
+			index = RFIFOL(fd, cursor);
+			cursor += 4;
+
+			switch (RFIFOB(fd, cursor++)) {
+				/* int */
+				case 0:
+					inter_savereg(account_id,char_id,key,index,RFIFOL(fd, cursor),false);
+					cursor += 4;
+					break;
+				case 1:
+					inter_savereg(account_id,char_id,key,index,0,false);
+					break;
+				/* str */
+				case 2:
+					safestrncpy(sval, (char*)RFIFOP(fd, cursor + 1), RFIFOB(fd, cursor));
+					cursor += RFIFOB(fd, cursor) + 1;
+					inter_savereg(account_id,char_id,key,index,(intptr_t)sval,true);
+					break;
+				case 3:
+					inter_savereg(account_id,char_id,key,index,0,true);
+					break;
+					
+				default:
+					ShowError("mapif_parse_Registry: unknown type %d\n",RFIFOB(fd, cursor - 1));
+					return 1;
+			}
+
+		}
+
+		global_accreg_to_login_send();
+	}
 	return 0;
 }
 

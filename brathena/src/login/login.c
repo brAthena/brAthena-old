@@ -95,6 +95,7 @@ struct auth_node {
 	uint32 version;
 	uint8 clienttype;
 	int group_id;
+	time_t expiration_time;
 };
 
 static DBMap *auth_db; // int account_id -> struct auth_node*
@@ -123,7 +124,7 @@ static DBData create_online_user(DBKey key, va_list args)
 	p->account_id = key.i;
 	p->char_server = -1;
 	p->waiting_disconnect = INVALID_TIMER;
-	return db_ptr2data(p);
+	return DB->ptr2data(p);
 }
 
 struct online_login_data *add_online_user(int char_server, int account_id) {
@@ -165,7 +166,7 @@ static int waiting_disconnect_timer(int tid, int64 tick, int id, intptr_t data)
  */
 static int online_db_setoffline(DBKey key, DBData *data, va_list ap)
 {
-	struct online_login_data *p = db_data2ptr(data);
+	struct online_login_data *p = DB->data2ptr(data);
 	int server_id = va_arg(ap, int);
 	if(server_id == -1) {
 		p->char_server = -1;
@@ -183,7 +184,7 @@ static int online_db_setoffline(DBKey key, DBData *data, va_list ap)
  */
 static int online_data_cleanup_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct online_login_data *character= db_data2ptr(data);
+	struct online_login_data *character= DB->data2ptr(data);
 	if(character->char_server == -2)  //Unknown server.. set them offline
 		remove_online_user(character->account_id);
 	return 0;
@@ -397,7 +398,7 @@ int parse_console(const char *command)
 //--------------------------------
 int parse_fromchar(int fd)
 {
-	int j, id;
+	int id;
 	uint32 ipl;
 	char ip[16];
 
@@ -450,7 +451,7 @@ int parse_fromchar(int fd)
 					   //ShowStatus("Char-server '%s': authentication of the account %d accepted (ip: %s).\n", server[id].name, account_id, ip);
 
 						// send ack
-						WFIFOHEAD(fd,29);
+						WFIFOHEAD(fd,33);
 						WFIFOW(fd,0) = 0x2713;
 						WFIFOL(fd,2) = account_id;
 						WFIFOL(fd,6) = login_id1;
@@ -461,14 +462,15 @@ int parse_fromchar(int fd)
 						WFIFOL(fd,20) = node->version;
 						WFIFOB(fd,24) = node->clienttype;
 						WFIFOL(fd,25) = node->group_id;
-						WFIFOSET(fd,29);
+						WFIFOL(fd,29) = (unsigned int)node->expiration_time;
+						WFIFOSET(fd,33);
 
 						// each auth entry can only be used once
 						idb_remove(auth_db, account_id);
 					} else {
 						// authentication not found
 						ShowStatus(read_message("Source.login.login_auth_notfound"), server[id].name, account_id, ip);
-						WFIFOHEAD(fd,29);
+						WFIFOHEAD(fd,33);
 						WFIFOW(fd,0) = 0x2713;
 						WFIFOL(fd,2) = account_id;
 						WFIFOL(fd,6) = login_id1;
@@ -479,7 +481,8 @@ int parse_fromchar(int fd)
 						WFIFOL(fd,20) = 0;
 						WFIFOB(fd,24) = 0;
 						WFIFOL(fd,25) = 0;
-						WFIFOSET(fd,29);
+						WFIFOL(fd,29) = 0;
+						WFIFOSET(fd,33);
 					}
 				}
 				break;
@@ -741,27 +744,7 @@ int parse_fromchar(int fd)
 					if(!accounts->load_num(accounts, &acc, account_id))
 						ShowStatus(read_message("Source.login.login_account_reg2_nook1"), server[id].name, account_id, ip);
 					else {
-						int len;
-						int p;
-						ShowNotice(read_message("Source.login.login_account_reg2_ok"), server[id].name, account_id, ip);
-						for(j = 0, p = 13; j < ACCOUNT_REG2_NUM && p < RFIFOW(fd,2); ++j) {
-							sscanf((char *)RFIFOP(fd,p), "%31c%n", acc.account_reg2[j].str, &len);
-							acc.account_reg2[j].str[len]='\0';
-							p +=len+1; //+1 to skip the '\0' between strings.
-							sscanf((char *)RFIFOP(fd,p), "%255c%n", acc.account_reg2[j].value, &len);
-							acc.account_reg2[j].value[len]='\0';
-							p +=len+1;
-							remove_control_chars(acc.account_reg2[j].str);
-							remove_control_chars(acc.account_reg2[j].value);
-						}
-						acc.account_reg2_num = j;
-
-						// Save
-						accounts->save(accounts, &acc);
-
-						// Sending information towards the other char-servers.
-						RFIFOW(fd,0) = 0x2729;// reusing read buffer
-						charif_sendallwos(fd, RFIFOP(fd,0), RFIFOW(fd,2));
+						mmo_save_accreg2(accounts,fd,account_id,RFIFOL(fd, 8));
 					}
 					RFIFOSKIP(fd,RFIFOW(fd,2));
 				}
@@ -828,31 +811,11 @@ int parse_fromchar(int fd)
 				if(RFIFOREST(fd) < 10)
 					return 0;
 				{
-					struct mmo_account acc;
-					size_t off;
-
 					int account_id = RFIFOL(fd,2);
 					int char_id = RFIFOL(fd,6);
 					RFIFOSKIP(fd,10);
 
-					WFIFOHEAD(fd,ACCOUNT_REG2_NUM*sizeof(struct global_reg));
-					WFIFOW(fd,0) = 0x2729;
-					WFIFOL(fd,4) = account_id;
-					WFIFOL(fd,8) = char_id;
-					WFIFOB(fd,12) = 1; //Type 1 for Account2 registry
-
-					off = 13;
-					if(accounts->load_num(accounts, &acc, account_id)) {
-						for(j = 0; j < acc.account_reg2_num; j++) {
-							if(acc.account_reg2[j].str[0] != '\0') {
-								off += sprintf((char *)WFIFOP(fd,off), "%s", acc.account_reg2[j].str)+1; //We add 1 to consider the '\0' in place.
-								off += sprintf((char *)WFIFOP(fd,off), "%s", acc.account_reg2[j].value)+1;
-							}
-						}
-					}
-
-					WFIFOW(fd,2) = (uint16)off;
-					WFIFOSET(fd,WFIFOW(fd,2));
+					mmo_send_accreg2(accounts,fd,account_id,char_id);
 				}
 				break;
 
@@ -1039,11 +1002,6 @@ int mmo_auth(struct login_session_data *sd, bool isServer)
 		return 1; // 1 = Senha incorreta
 	}
 
-	if(acc.expiration_time != 0 && acc.expiration_time < time(NULL)) {
-		ShowNotice(read_message("Source.login.login_mmo_auth_s4"), sd->userid, sd->passwd, ip);
-		return 2; // 2 = This ID is expired
-	}
-
 	if(acc.unban_time != 0 && acc.unban_time > time(NULL)) {
 		char tmpstr[24];
 		timestamp2string(tmpstr, sizeof(tmpstr), acc.unban_time, login_config.date_format);
@@ -1095,6 +1053,7 @@ int mmo_auth(struct login_session_data *sd, bool isServer)
 	safestrncpy(sd->lastlogin, acc.lastlogin, sizeof(sd->lastlogin));
 	sd->sex = acc.sex;
 	sd->group_id = (uint8)acc.group_id;
+	sd->expiration_time = acc.expiration_time;
 
 	// update account data
 	timestamp2string(acc.lastlogin, sizeof(acc.lastlogin), time(NULL), "%Y-%m-%d %H:%M:%S");
@@ -1212,7 +1171,12 @@ void login_auth_ok(struct login_session_data *sd)
 		WFIFOW(fd,47+n*32+4) = ntows(htons(server[i].port)); // [!] LE byte order here [!]
 		memcpy(WFIFOP(fd,47+n*32+6), server[i].name, 20);
 		WFIFOW(fd,47+n*32+26) = server[i].users;
-		WFIFOW(fd,47+n*32+28) = server[i].type;
+
+		if(server[i].type == CST_PAYING && sd->expiration_time > time(NULL))
+			WFIFOW(fd,47+n*32+28) = CST_NORMAL;
+		else
+			WFIFOW(fd,47+n*32+28) = server[i].type;
+
 		WFIFOW(fd,47+n*32+30) = server[i].new_;
 		n++;
 	}
@@ -1228,6 +1192,7 @@ void login_auth_ok(struct login_session_data *sd)
 	node->version = sd->version;
 	node->clienttype = sd->clienttype;
 	node->group_id = sd->group_id;
+	node->expiration_time = sd->expiration_time;
 	idb_put(auth_db, sd->account_id, node);
 
 	{

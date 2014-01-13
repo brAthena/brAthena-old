@@ -86,7 +86,7 @@ void ipban_init(void)
 
 	// establish connections
 	sql_handle = Sql_Malloc();
-	if(SQL_ERROR == Sql_Connect(sql_handle, username, password, hostname, port, database)) {
+	if (SQL_ERROR == Sql_Connect(sql_handle, username, password, hostname, port, database)) {
 		Sql_ShowDebug(sql_handle);
 		Sql_Free(sql_handle);
 		exit(EXIT_FAILURE);
@@ -242,7 +242,7 @@ int ipban_cleanup(int tid, int64 tick, int id, intptr_t data)
 	if(!login_config.ipban)
 		return 0;// ipban disabled
 
-	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `rtime` <= NOW()", ipban_table) )
+	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `rtime` <= NOW()", ipban_table))
 		Sql_ShowDebug(sql_handle);
 
 	return 0;

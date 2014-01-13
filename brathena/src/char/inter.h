@@ -19,6 +19,7 @@
 
 struct accreg;
 #include "../common/sql.h"
+#include "char.h"
 
 int inter_init_sql(const char* file);
 void inter_final(void);
@@ -27,7 +28,8 @@ int inter_mapif_init(int fd);
 int mapif_send_gmaccounts(void);
 int mapif_disconnectplayer(int fd, int account_id, int char_id, int reason);
 
-int inter_log(char* fmt,...);
+int inter_log(char *fmt,...);
+int inter_vlog(char *fmt, va_list ap);
 
 #define inter_cfgName "conf/inter-server.conf"
 
@@ -46,7 +48,7 @@ uint64 inter_chk_lastuid(int8 flag, uint64 value);
 	#define updateLastUid(val_) inter_chk_lastuid(1, (val_))
 	#define dbUpdateUid(handler_) do { \
 		uint64 unique_id_ = inter_chk_lastuid(0, 0); \
-		if(unique_id_ && SQL_ERROR == Sql_Query(handler_, "UPDATE `interreg` SET `value`='%"PRIu64"' WHERE `varname`='unique_id'", unique_id_)) \
+		if(unique_id_ && SQL_ERROR == Sql_Query((handler_), "UPDATE `%s` SET `value`='%"PRIu64"' WHERE `varname`='unique_id'", interreg_db, unique_id_)) \
 				Sql_ShowDebug(handler_);\
 	} while(0)
 #else

@@ -2123,7 +2123,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 //first will only be false when the mob leveled up or got a GuardUp level.
 int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 {
-	struct status_data *status;
+	struct status_data *mstatus;
 	struct block_list *mbl = NULL;
 	int flag=0;
 
@@ -2164,8 +2164,8 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 	if(!md->base_status)
 		md->base_status = (struct status_data *)aCalloc(1, sizeof(struct status_data));
 
-	status = md->base_status;
-	memcpy(status, &md->db->status, sizeof(struct status_data));
+	mstatus = md->base_status;
+	memcpy(mstatus, &md->db->status, sizeof(struct status_data));
 
 	if(flag&(8|16))
 		mbl = map_id2bl(md->master_id);
@@ -2174,9 +2174,9 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 		struct status_data *masterstatus = status_get_base_status(mbl);
 		if (masterstatus) {
 			if(battle_config.slaves_inherit_speed&(masterstatus->mode&MD_CANMOVE?1:2))
-				masterstatus->speed = masterstatus->speed;
-			if(masterstatus->speed < 2) /* minimum for the unit to function properly */
-				masterstatus->speed = 2;
+				mstatus->speed = masterstatus->speed;
+			if(mstatus->speed < 2) /* minimum for the unit to function properly */
+				mstatus->speed = 2;
 		}
 	}
 
@@ -2190,82 +2190,82 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 			// different levels of HP according to skill level
 			switch(ud->skill_id) {
 				case AM_SPHEREMINE:
-				    status->max_hp = 2000 + 400*ud->skill_lv;
+					mstatus->max_hp = 2000 + 400 * ud->skill_lv;
 				    break;
 				case KO_ZANZOU:
-				    status->max_hp = 3000 + 3000 * ud->skill_lv+ status_get_max_sp(battle_get_master(mbl));
+					mstatus->max_hp = 3000 + 3000 * ud->skill_lv + status_get_max_sp(battle_get_master(mbl));
 				    break;
 				case AM_CANNIBALIZE:
-				    status->max_hp = 1500 + 200*ud->skill_lv + 10*status_get_lv(mbl);
-				    status->mode|= MD_CANATTACK|MD_AGGRESSIVE;
+					mstatus->max_hp = 1500 + 200 * ud->skill_lv + 10 * status_get_lv(mbl);
+					mstatus->mode |= MD_CANATTACK | MD_AGGRESSIVE;
 				    break;
 				case MH_SUMMON_LEGION:{
 				    int homblvl = status_get_lv(mbl);
-				    status->max_hp = 10 * (100 * (ud->skill_lv + 2) + homblvl);
-				    status->batk = 100 * (ud->skill_lv+5) / 2;
-				    status->def = 10 * (100 * (ud->skill_lv+2) + homblvl);
+					mstatus->max_hp = 10 * (100 * (ud->skill_lv + 2) + homblvl);
+					mstatus->batk = 100 * (ud->skill_lv + 5) / 2;
+					mstatus->def = 10 * (100 * (ud->skill_lv + 2) + homblvl);
 				//    status->aspd_rate = 10 * (2 * (20 - ud->skill_lv) - homblvl/10);
 				//    status->aspd_rate = max(100,status->aspd_rate);
 				    break;
 				}
 			}
-			status->hp = status->max_hp;
+			mstatus->hp = mstatus->max_hp;
 		}
 	}
 
 	if(flag&1) {
 		// increase from mobs leveling up [Valaris]
 		int diff = md->level - md->db->lv;
-		status->str+= diff;
-		status->agi+= diff;
-		status->vit+= diff;
-		status->int_+= diff;
-		status->dex+= diff;
-		status->luk+= diff;
-		status->max_hp += diff*status->vit;
-		status->max_sp += diff*status->int_;
-		status->hp = status->max_hp;
-		status->sp = status->max_sp;
-		status->speed -= cap_value(diff, 0, status->speed - 10);
+		mstatus->str += diff;
+		mstatus->agi += diff;
+		mstatus->vit += diff;
+		mstatus->int_ += diff;
+		mstatus->dex += diff;
+		mstatus->luk += diff;
+		mstatus->max_hp += diff*mstatus->vit;
+		mstatus->max_sp += diff*mstatus->int_;
+		mstatus->hp = mstatus->max_hp;
+		mstatus->sp = mstatus->max_sp;
+		mstatus->speed -= cap_value(diff, 0, mstatus->speed - 10);
 	}
 
 
 	if(flag&2 && battle_config.mob_size_influence) {
 		// change for sized monsters [Valaris]
 		if(md->special_state.size==SZ_SMALL) {
-			status->max_hp>>=1;
-			status->max_sp>>=1;
-			if(!status->max_hp) status->max_hp = 1;
-			if(!status->max_sp) status->max_sp = 1;
-			status->hp=status->max_hp;
-			status->sp=status->max_sp;
-			status->str>>=1;
-			status->agi>>=1;
-			status->vit>>=1;
-			status->int_>>=1;
-			status->dex>>=1;
-			status->luk>>=1;
-			if(!status->str) status->str = 1;
-			if(!status->agi) status->agi = 1;
-			if(!status->vit) status->vit = 1;
-			if(!status->int_) status->int_ = 1;
-			if(!status->dex) status->dex = 1;
-			if(!status->luk) status->luk = 1;
+			mstatus->max_hp >>= 1;
+			mstatus->max_sp >>= 1;
+			if (!mstatus->max_hp) mstatus->max_hp = 1;
+			if (!mstatus->max_sp) mstatus->max_sp = 1;
+			mstatus->hp = mstatus->max_hp;
+			mstatus->sp = mstatus->max_sp;
+			mstatus->str >>= 1;
+			mstatus->agi >>= 1;
+			mstatus->vit >>= 1;
+			mstatus->int_ >>= 1;
+			mstatus->dex >>= 1;
+			mstatus->luk >>= 1;
+			if (!mstatus->str) mstatus->str = 1;
+			if (!mstatus->agi) mstatus->agi = 1;
+			if (!mstatus->vit) mstatus->vit = 1;
+			if (!mstatus->int_) mstatus->int_ = 1;
+			if (!mstatus->dex) mstatus->dex = 1;
+			if (!mstatus->luk) mstatus->luk = 1;
 		} else if(md->special_state.size==SZ_BIG) {
-			status->max_hp<<=1;
-			status->max_sp<<=1;
-			status->hp=status->max_hp;
-			status->sp=status->max_sp;
-			status->str<<=1;
-			status->agi<<=1;
-			status->vit<<=1;
-			status->int_<<=1;
-			status->dex<<=1;
-			status->luk<<=1;
+			mstatus->max_hp <<= 1;
+			mstatus->max_sp <<= 1;
+			mstatus->hp = mstatus->max_hp;
+			mstatus->sp = mstatus->max_sp;
+			mstatus->str <<= 1;
+			mstatus->agi <<= 1;
+			mstatus->vit <<= 1;
+			mstatus->int_ <<= 1;
+			mstatus->dex <<= 1;
+			mstatus->luk <<= 1;
 		}
 	}
 
-	status_calc_misc(&md->bl, status, md->level);
+	status_calc_misc(&md->bl, mstatus, md->level);
 
 	if(flag&4) {
 		// Strengthen Guardians - custom value +10% / lv
@@ -2275,27 +2275,27 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 			ShowError("status_calc_mob: No castle set at map %s\n", map[md->bl.m].name);
 		else if(gc->castle_id < 24 || md->class_ == MOBID_EMPERIUM) {
 #if VERSION == 1
-			status->max_hp += 50 * gc->defense;
-			status->max_sp += 70 * gc->defense;
+			mstatus->max_hp += 50 * gc->defense;
+			mstatus->max_sp += 70 * gc->defense;
 #else
-			status->max_hp += 1000 * gc->defense;
-			status->max_sp += 200 * gc->defense;
+			mstatus->max_hp += 1000 * gc->defense;
+			mstatus->max_sp += 200 * gc->defense;
 #endif
-			status->hp = status->max_hp;
-			status->sp = status->max_sp;
-			status->def += (gc->defense+2)/3;
-			status->mdef += (gc->defense+2)/3;
+			mstatus->hp = mstatus->max_hp;
+			mstatus->sp = mstatus->max_sp;
+			mstatus->def += (gc->defense + 2) / 3;
+			mstatus->mdef += (gc->defense + 2) / 3;
 		}
 		if(md->class_ != MOBID_EMPERIUM) {
-			status->batk += status->batk * 10*md->guardian_data->guardup_lv/100;
-			status->rhw.atk += status->rhw.atk * 10*md->guardian_data->guardup_lv/100;
-			status->rhw.atk2 += status->rhw.atk2 * 10*md->guardian_data->guardup_lv/100;
-			status->aspd_rate -= 100*md->guardian_data->guardup_lv;
+			mstatus->batk += mstatus->batk * 10 * md->guardian_data->guardup_lv / 100;
+			mstatus->rhw.atk += mstatus->rhw.atk * 10 * md->guardian_data->guardup_lv / 100;
+			mstatus->rhw.atk2 += mstatus->rhw.atk2 * 10 * md->guardian_data->guardup_lv / 100;
+			mstatus->aspd_rate -= 100 * md->guardian_data->guardup_lv;
 		}
 	}
 
 	if(opt&SCO_FIRST)   //Initial battle status
-		memcpy(&md->status, status, sizeof(struct status_data));
+		memcpy(&md->status, mstatus, sizeof(struct status_data));
 
 	return 1;
 }
