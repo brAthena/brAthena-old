@@ -68,7 +68,7 @@ alberta_in,53,43,6	script	Mercador#mer	4_M_04,{
 			close;
 
 	}
-	if ( !checkversion(0) ) {
+	if ( !checkversion(0) || checkversion(0) == -1 ){
 		if (BaseJob == Job_Merchant) {
 		mes "[Chefe Mansur]";
 		mes "Olá! Como se sente sendo um Mercador?";

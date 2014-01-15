@@ -71,7 +71,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	4_M_03,{
 		if (BaseJob != Job_Novice) {
 			mes ""+((BaseJob == Job_Archer) ? "Haha, você está brincando comigo.." : "Eu sinto muito, mas apenas Aprendizes podem mudar de classe. Você já tem a sua própria classe, não é?")+"";
 			close;
-		} if ( !checkversion(0) ){
+		} if ( !checkversion(0) || checkversion(0) == -1 ){
 			if (job_archer_q == 0) {
 			mes "Você quer ser um arqueiro?";
 			mes "Se você quer, preencha este formulário.";

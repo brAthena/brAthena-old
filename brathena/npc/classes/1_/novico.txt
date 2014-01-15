@@ -69,7 +69,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 	}
 	mes "O que é que você procura?";
 	next;
-	if ( !checkversion(0) ) {
+	if ( !checkversion(0) || checkversion(0) == -1 ){
 	switch(select("Eu desejo me tornar um Noviço:Como me torno um noviço?:Eu vim olhar os vitrais")) {
 	case 1:
 		mes "[Tomas Cerbantes]";

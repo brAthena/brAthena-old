@@ -62,7 +62,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	2_M_SWORDMASTER,{
 		mes "Me desculpe, mas não há nada que possa fazer por você.";
 		close;
 	}
-  if ( !checkversion(0) ) {
+  if( !checkversion(0) || checkversion(0) == -1) {
 	mes "Bem-vindo à Associação dos Espadachins! Em que posso ajudá-lo?";
 	next;
 	switch(select("Mudança de Classe:Sobre os Espadachins:Sobre os requisitos da Classe:Cancelar")) {

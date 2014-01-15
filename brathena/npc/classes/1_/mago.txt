@@ -230,7 +230,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	2_F_MAGICMASTER,{
 		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. "+((!checkversion(0)) ? "E então passar pelo teste de mago":"")+"";
 		next;
 		mes "[Maga Guardiã]";
-	  if (!checkversion(0)) {
+	  if ( !checkversion(0) || checkversion(0) == -1 ){
 		if (job_magician_q != 0) {
 			mes "O seu teste é fazer uma";
 			switch(job_magician_q) {
