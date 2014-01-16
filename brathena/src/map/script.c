@@ -12774,7 +12774,7 @@ BUILDIN_FUNC(atcommand)
 		ret = false;
 	}
 	if (dummy_sd) aFree(dummy_sd);
-	return ret;
+	return 0;
 }
 
 /*==========================================
