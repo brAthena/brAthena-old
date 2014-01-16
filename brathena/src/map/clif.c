@@ -1841,7 +1841,24 @@ void clif_buylist(struct map_session_data *sd, struct npc_data *nd)
 	WFIFOW(fd,2) = 4 + c*11;
 	WFIFOSET(fd,WFIFOW(fd,2));
 }
+void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color) {
+	channel->users = idb_alloc(DB_OPT_BASE);
+	if(name)
+		safestrncpy(channel->name, name, RACHSYS_NAME_LENGTH);
+	channel->color = color;
+	if(!pass)
+		channel->pass[0] = '\0';
+	else
+		safestrncpy(channel->pass, pass, RACHSYS_NAME_LENGTH);
 
+	channel->opt = raChSys_OPT_BASE;
+	channel->banned = NULL;
+
+	channel->msg_delay = 0;
+
+	if(channel->type != raChSys_MAP && channel->type != raChSys_ALLY)
+		strdb_put(channel_db, channel->name, channel);
+}
 
 /// Presents list of items, that can be sold to an NPC shop (ZC_PC_SELL_ITEMLIST).
 /// 00c7 <packet len>.W { <index>.W <price>.L <overcharge price>.L }*
@@ -2109,8 +2126,28 @@ void clif_viewpoint(struct map_session_data *sd, int npc_id, int type, int x, in
 	WFIFOL(fd,19)=color;
 	WFIFOSET(fd,packet_len(0x144));
 }
+void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd) {
 
+	if(idb_put(channel->users, sd->status.char_id, sd))
+		return;
 
+	RECREATE(sd->channels, struct raChSysCh *, ++sd->channel_count);
+	sd->channels[ sd->channel_count - 1 ] = channel;
+
+	if( sd->stealth ) {
+		sd->stealth = false;
+	} else if( channel->opt & raChSys_OPT_ANNOUNCE_JOIN ) {
+		char message[60];
+		sprintf(message, "#%s '%s' juntou-se",channel->name,sd->status.name);
+		clif_chsys_msg(channel,sd,message);
+	}
+
+	/* someone is cheating, we kindly disconnect the bastard */
+	if(sd->channel_count > 200) {
+		set_eof(sd->fd);
+	}
+
+}
 /// Displays an illustration image.
 /// 0145 <image name>.16B <type>.B (ZC_SHOW_IMAGE)
 /// 01b3 <image name>.64B <type>.B (ZC_SHOW_IMAGE2)
@@ -2645,6 +2682,137 @@ void clif_guild_xy_remove(struct map_session_data *sd)
 	WBUFW(buf,8)=-1;
 	clif_send(buf,packet_len(0x1eb),&sd->bl,GUILD_SAMEMAP_WOS);
 }
+void clif_read_channels_config(void) {
+	config_t channels_conf;
+	config_setting_t *chsys = NULL;
+	const char *config_filename = "conf/channels.conf"; // FIXME hardcoded name
+
+	if (conf_read_file(&channels_conf, config_filename))
+		return;
+
+	chsys = config_lookup(&channels_conf, "chsys");
+
+	if (chsys != NULL) {
+		config_setting_t *settings = config_setting_get_elem(chsys, 0);
+		config_setting_t *channels;
+		config_setting_t *colors;
+		int i,k;
+		const char *local_name, *ally_name,
+					*local_color, *ally_color;
+		int ally_enabled = 0, local_enabled = 0,
+			local_autojoin = 0, ally_autojoin = 0,
+			allow_user_channel_creation = 0;
+
+		if(!config_setting_lookup_string(settings, "map_local_channel_name", &local_name))
+			local_name = "map";
+		safestrncpy(raChSys.local_name, local_name, RACHSYS_NAME_LENGTH);
+
+		if(!config_setting_lookup_string(settings, "ally_channel_name", &ally_name))
+			ally_name = "ally";
+		safestrncpy(raChSys.ally_name, ally_name, RACHSYS_NAME_LENGTH);
+
+		config_setting_lookup_bool(settings, "map_local_channel", &local_enabled);
+		config_setting_lookup_bool(settings, "ally_channel_enabled", &ally_enabled);
+
+		if( local_enabled )
+			raChSys.local = true;
+		if( ally_enabled )
+			raChSys.ally = true;
+
+		config_setting_lookup_bool(settings, "map_local_channel_autojoin", &local_autojoin);
+		config_setting_lookup_bool(settings, "ally_channel_autojoin", &ally_autojoin);
+
+		if(local_autojoin)
+			raChSys.local_autojoin = true;
+		if(ally_autojoin)
+			raChSys.ally_autojoin = true;
+
+		config_setting_lookup_bool(settings, "allow_user_channel_creation", &allow_user_channel_creation);
+
+		if(allow_user_channel_creation)
+			raChSys.allow_user_channel_creation = true;
+
+		if((colors = config_setting_get_member(settings, "colors")) != NULL) {
+			int color_count = config_setting_length(colors);
+			CREATE(raChSys.colors, unsigned int, color_count);
+			CREATE(raChSys.colors_name, char *, color_count);
+			for(i = 0; i < color_count; i++) {
+				config_setting_t *color = config_setting_get_elem(colors, i);
+
+				CREATE(raChSys.colors_name[i], char, RACHSYS_NAME_LENGTH);
+
+				safestrncpy(raChSys.colors_name[i], config_setting_name(color), RACHSYS_NAME_LENGTH);
+
+				raChSys.colors[i] = (unsigned int)strtoul(config_setting_get_string_elem(colors,i),NULL,0);
+				raChSys.colors[i] = (raChSys.colors[i] & 0x0000FF) << 16 | (raChSys.colors[i] & 0x00FF00) | (raChSys.colors[i] & 0xFF0000) >> 16;//RGB to BGR
+			}
+			raChSys.colors_count = color_count;
+		}
+
+		config_setting_lookup_string(settings, "map_local_channel_color", &local_color);
+
+		for (k = 0; k < raChSys.colors_count; k++) {
+			if(strcmpi(raChSys.colors_name[k],local_color) == 0)
+				break;
+		}
+
+		if( k < raChSys.colors_count ) {
+			raChSys.local_color = k;
+		} else {
+			ShowError("channels.conf: cor desconhecida '%s' para canal 'map_local_channel_color', desativando '#%s'...\n",local_color,local_name);
+			raChSys.local = false;
+		}
+
+		config_setting_lookup_string(settings, "ally_channel_color", &ally_color);
+
+		for (k = 0; k < raChSys.colors_count; k++) {
+			if(strcmpi(raChSys.colors_name[k],ally_color) == 0)
+				break;
+		}
+
+		if( k < raChSys.colors_count ) {
+			raChSys.ally_color = k;
+		} else {
+			ShowError("channels.conf: cor desconhecida '%s' para canal 'ally_channel_color', desativando '#%s'...\n",local_color,ally_name);
+			raChSys.ally = false;
+		}
+
+		if((channels = config_setting_get_member(settings, "default_channels")) != NULL) {
+			int channel_count = config_setting_length(channels);
+
+			for(i = 0; i < channel_count; i++) {
+				config_setting_t *channel = config_setting_get_elem(channels, i);
+				const char *name = config_setting_name(channel);
+				const char *color = config_setting_get_string_elem(channels,i);
+				struct raChSysCh *chd;
+
+				for (k = 0; k < raChSys.colors_count; k++) {
+					if(strcmpi(raChSys.colors_name[k],color) == 0)
+						break;
+				}
+				if(k == raChSys.colors_count ) {
+					ShowError("channels.conf: cor desconhecida '%s' para canal '%s', saltando de canal...\n",color,name);
+					continue;
+				}
+				if(strcmpi(name,raChSys.local_name) == 0 || strcmpi(name,raChSys.ally_name) == 0 || strdb_exists(channel_db, name)) {
+					ShowError("channels.conf: canal duplicado '%s', saltando de canal...\n",name);
+					continue;
+
+				}
+				CREATE(chd, struct raChSysCh, 1);
+
+				safestrncpy(chd->name, name, RACHSYS_NAME_LENGTH);
+				chd->type = raChSys_PUBLIC;
+
+				clif_chsys_create(chd,NULL,NULL,k);
+			}
+		}
+
+		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' canais em '"CL_WHITE"%s"CL_RESET"'.\n", db_size(channel_db), config_filename);
+		config_destroy(&channels_conf);
+	}
+}
+
 
 /*==========================================
  *
@@ -3481,6 +3649,18 @@ void clif_useitemack(struct map_session_data *sd,int index,int amount,bool ok)
 	}
 }
 
+void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
+	if(channel->msg_delay != 0 && DIFF_TICK(sd->rachsysch_tick + (channel->msg_delay * 1000 ), gettick()) > 0 && !pc_has_permission(sd, PC_PERM_CHANNEL_ADMIN)) {
+		clif_colormes(sd->fd,COLOR_RED,msg_txt(1455));
+		return;
+	} else {
+		char message[150];
+		snprintf(message, 150, "[ #%s ] %s : %s",channel->name,sd->status.name, msg);
+		clif_chsys_msg(channel,sd,message);
+		if(channel->msg_delay != 0)
+			sd->rachsysch_tick = gettick();
+	}
+}
 
 /// Inform client whether chatroom creation was successful or not (ZC_ACK_CREATE_CHATROOM).
 /// 00d6 <flag>.B
@@ -5469,442 +5649,10 @@ void clif_broadcast2(struct block_list *bl, const char *mes, size_t len, unsigne
 /*==========================================
  * Channel System
  *------------------------------------------*/
-void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color) {
-	channel->users = idb_alloc(DB_OPT_BASE);
-	if( name )
-		safestrncpy(channel->name, name, RACHSYS_NAME_LENGTH);
-	channel->color = color;
-	if( !pass )
-		channel->pass[0] = '\0';
-	else
-		safestrncpy(channel->pass, pass, RACHSYS_NAME_LENGTH);
 
-	channel->opt = raChSys_OPT_BASE;
-	channel->banned = NULL;
-	
-	channel->msg_delay = 0;
 
-	if(channel->type != raChSys_MAP && channel->type != raChSys_ALLY)
-		strdb_put(channel_db, channel->name, channel);
-}
 
-void clif_chsys_join(struct raChSysCh *channel, struct map_session_data *sd) {
 
-	if(idb_put(channel->users, sd->status.char_id, sd))
-		return;
-
-	RECREATE(sd->channels, struct raChSysCh *, ++sd->channel_count);
-	sd->channels[ sd->channel_count - 1 ] = channel;
-
-	if( sd->stealth ) {
-		sd->stealth = false;
-	} else if( channel->opt & raChSys_OPT_ANNOUNCE_JOIN ) {
-		char message[60];
-		sprintf(message, "#%s '%s' juntou-se",channel->name,sd->status.name);
-		clif_chsys_msg(channel,sd,message);
-	}
-
-	/* someone is cheating, we kindly disconnect the bastard */
-	if(sd->channel_count > 200) {
-		set_eof(sd->fd);
-	}
-}
-
-void clif_chsys_send(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
-	if( channel->msg_delay != 0 && DIFF_TICK(sd->rachsysch_tick + ( channel->msg_delay * 1000 ), gettick()) > 0 && !pc_has_permission(sd, PC_PERM_CHANNEL_ADMIN) ) {
-		clif_colormes(sd->fd,COLOR_RED,msg_txt(1455));
-		return;
-	} else {
-		char message[150];
-		snprintf(message, 150, "[ #%s ] %s : %s",channel->name,sd->status.name, msg);
-		clif_chsys_msg(channel,sd,message);
-		if( channel->msg_delay != 0 )
-			sd->rachsysch_tick = gettick();
-	}
-}
-
-void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
-	DBIterator *iter = db_iterator(channel->users);
-	struct map_session_data *user;
-	unsigned short msg_len = strlen(msg) + 1;
-
-	WFIFOHEAD(sd->fd,msg_len + 12);
-	WFIFOW(sd->fd,0) = 0x2C1;
-	WFIFOW(sd->fd,2) = msg_len + 12;
-	WFIFOL(sd->fd,4) = 0;
-	WFIFOL(sd->fd,8) = raChSys.colors[channel->color];
-	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
-
-	for(user = dbi_first(iter); dbi_exists(iter); user = dbi_next(iter)) {
-		if( user->fd == sd->fd )
-			continue;
-		WFIFOHEAD(user->fd,msg_len + 12);
-		memcpy(WFIFOP(user->fd,0), WFIFOP(sd->fd,0), msg_len + 12);
-		WFIFOSET(user->fd, msg_len + 12);
-	}
-
-	WFIFOSET(sd->fd, msg_len + 12);
-
-	dbi_destroy(iter);
-}
-
-void clif_chsys_mjoin(struct map_session_data *sd) {
-	if(!map[sd->bl.m].channel) {
-		if(map[sd->bl.m].flag.chsysnolocalaj || (map[sd->bl.m].instance_id >= 0 && instance->list[map[sd->bl.m].instance_id].owner_type != IOT_NONE) )
-			return;
-		CREATE(map[sd->bl.m].channel, struct raChSysCh , 1);
-		safestrncpy(map[sd->bl.m].channel->name, raChSys.local_name, RACHSYS_NAME_LENGTH);
-		map[sd->bl.m].channel->type = raChSys_MAP;
-		map[sd->bl.m].channel->m = sd->bl.m;
-
-		clif_chsys_create(map[sd->bl.m].channel,NULL,NULL,raChSys.local_color);
-	}
-
-	if( map[sd->bl.m].channel->banned && idb_exists(map[sd->bl.m].channel->banned, sd->status.account_id) ) {
-		return;
-	}
-
-	clif_chsys_join(map[sd->bl.m].channel,sd);
-
-	if(!(map[sd->bl.m].channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
-		char mout[60];
-		sprintf(mout, msg_txt(1435),raChSys.local_name,map[sd->bl.m].name); // You're now in the '#%s' channel for '%s'.
-		clif_disp_onlyself(sd, mout, strlen(mout));
-	}
-}
-
-void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd) {
-	unsigned char i;
-
-	if(!idb_remove(channel->users,sd->status.char_id))
-		return;
-
-	if( channel == sd->gcbind )
-		sd->gcbind = NULL;
-
-	if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
-		clif_chsys_delete(channel);
-	} else if(!raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
-		char message[60];
-		sprintf(message, "#%s '%s' esquerda",channel->name,sd->status.name);
-		clif_chsys_msg(channel,sd,message);
-	}
-
-	for(i = 0; i < sd->channel_count; i++) {
-		if( sd->channels[i] == channel ) {
-			sd->channels[i] = NULL;
-			break;
-		}
-	}
-
-	if(i < sd->channel_count) {
-		unsigned char cursor = 0;
-		for(i = 0; i < sd->channel_count; i++) {
-			if( sd->channels[i] == NULL )
-				continue;
-			if(cursor != i) {
-				sd->channels[cursor] = sd->channels[i];
-			}
-			cursor++;
-		}
-		if (!(sd->channel_count = cursor)) {
-			aFree(sd->channels);
-			sd->channels = NULL;
-		}
-	}
-
-}
-
-void clif_chsys_quitg(struct map_session_data *sd) {
-	unsigned char i;
-	struct raChSysCh *channel = NULL;
-	
-	for( i = 0; i < sd->channel_count; i++ ) {
-		if( (channel = sd->channels[i] ) != NULL && channel->type == raChSys_ALLY ) {
-
-			if(!idb_remove(channel->users,sd->status.char_id))
-				continue; 
-			
-			if( channel == sd->gcbind )
-				sd->gcbind = NULL;
-			
-			if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
-				clif_chsys_delete(channel);
-			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN) ) {
-				char message[60];
-				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
-				clif_chsys_msg(channel,sd,message);
-			}
-			sd->channels[i] = NULL;
-		}
-	}
-		
-	if(i < sd->channel_count) {
-		unsigned char cursor = 0;
-		for(i = 0; i < sd->channel_count; i++) {
-			if(sd->channels[i] == NULL)
-				continue;
-			if(cursor != i) {
-				sd->channels[cursor] = sd->channels[i];
-			}
-			cursor++;
-		}
-		if (!(sd->channel_count = cursor)) {
-			aFree(sd->channels);
-			sd->channels = NULL;
-		}
-	}
-	
-}
-
-void clif_chsys_quit(struct map_session_data *sd) {
-	unsigned char i;
-	struct raChSysCh *channel = NULL;
-	
-	for( i = 0; i < sd->channel_count; i++ ) {
-		if( (channel = sd->channels[i] ) != NULL ) {
-			idb_remove(channel->users,sd->status.char_id);
-			
-			if( channel == sd->gcbind )
-				sd->gcbind = NULL;
-			
-			if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
-				clif_chsys_delete(channel);
-			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN) ) {
-				char message[60];
-				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
-				clif_chsys_msg(channel,sd,message);
-			}
-			
-		}
-	}
-
-	sd->channel_count = 0;
-	aFree(sd->channels);
-	sd->channels = NULL;	
-}
-
-void clif_chsys_delete(struct raChSysCh *channel) {
-	if(db_size(channel->users) && !raChSys.closing) {
-		DBIterator *iter;
-		struct map_session_data *sd;
-		unsigned char i;
-		iter = db_iterator(channel->users);
-		for(sd = dbi_first(iter); dbi_exists(iter); sd = dbi_next(iter)) {
-			for(i = 0; i < sd->channel_count; i++) {
-				if(sd->channels[i] == channel) {
-					sd->channels[i] = NULL;
-					break;
-				}
-			}
-			if(i < sd->channel_count) {
-				unsigned char cursor = 0;
-				for(i = 0; i < sd->channel_count; i++) {
-					if( sd->channels[i] == NULL )
-						continue;
-					if(cursor != i) {
-						sd->channels[cursor] = sd->channels[i];
-					}
-					cursor++;
-				}
-				if (!(sd->channel_count = cursor)) {
-					aFree(sd->channels);
-					sd->channels = NULL;
-				}
-			}
-		}
-		dbi_destroy(iter);
-	}
-	if( channel->banned ) {
-		db_destroy(channel->banned);
-		channel->banned = NULL;
-	}
-	db_destroy(channel->users);
-	if(channel->m) {
-		map[channel->m].channel = NULL;
-		aFree(channel);
-	} else if (channel->type == raChSys_ALLY)
-		aFree(channel);
-	else if(!raChSys.closing)
-		strdb_remove(channel_db, channel->name);
-}
-
-void clif_chsys_gjoin(struct guild *g1,struct guild *g2) {
-	struct map_session_data *sd;
-	struct raChSysCh *channel;
-	int j;
-	
-	if((channel = g1->channel)) {
-		for(j = 0; j < g2->max_member; j++) {
-			if((sd = g2->member[j].sd) != NULL) {
-				if(!(g1->channel->banned && idb_exists(g1->channel->banned, sd->status.account_id)))
-					clif_chsys_join(channel,sd);
-			}
-		}
-	}
-	
-	if((channel = g2->channel)) {
-		for(j = 0; j < g1->max_member; j++) {
-			if((sd = g1->member[j].sd) != NULL) {
-				if(!(g2->channel->banned && idb_exists(g2->channel->banned, sd->status.account_id)))
-				clif_chsys_join(channel,sd);
-			}
-		}
-	}
-}
-
-void clif_chsys_gleave(struct guild *g1,struct guild *g2) {
-	struct map_session_data *sd;
-	struct raChSysCh *channel;
-	int j;
-	
-	if( (channel = g1->channel) ) {
-		for(j = 0; j < g2->max_member; j++) {
-			if( (sd = g2->member[j].sd) != NULL ) {
-				clif_chsys_left(channel,sd);
-			}
-		}
-	}
-	
-	if((channel = g2->channel)) {
-		for(j = 0; j < g1->max_member; j++) {
-			if((sd = g1->member[j].sd) != NULL) {
-				clif_chsys_left(channel,sd);
-			}
-		}
-	}
-}
-
-void clif_read_channels_config(void) {
-	config_t channels_conf;
-	config_setting_t *chsys = NULL;
-	const char *config_filename = "conf/channels.conf"; // FIXME hardcoded name
-
-	if (conf_read_file(&channels_conf, config_filename))
-		return;
-
-	chsys = config_lookup(&channels_conf, "chsys");
-
-	if (chsys != NULL) {
-		config_setting_t *settings = config_setting_get_elem(chsys, 0);
-		config_setting_t *channels;
-		config_setting_t *colors;
-		int i,k;
-		const char *local_name, *ally_name,
-					*local_color, *ally_color;
-		int ally_enabled = 0, local_enabled = 0,
-			local_autojoin = 0, ally_autojoin = 0,
-			allow_user_channel_creation = 0;
-
-		if(!config_setting_lookup_string(settings, "map_local_channel_name", &local_name))
-			local_name = "map";
-		safestrncpy(raChSys.local_name, local_name, RACHSYS_NAME_LENGTH);
-
-		if(!config_setting_lookup_string(settings, "ally_channel_name", &ally_name))
-			ally_name = "ally";
-		safestrncpy(raChSys.ally_name, ally_name, RACHSYS_NAME_LENGTH);
-
-		config_setting_lookup_bool(settings, "map_local_channel", &local_enabled);
-		config_setting_lookup_bool(settings, "ally_channel_enabled", &ally_enabled);
-
-		if( local_enabled )
-			raChSys.local = true;
-		if( ally_enabled )
-			raChSys.ally = true;
-
-		config_setting_lookup_bool(settings, "map_local_channel_autojoin", &local_autojoin);
-		config_setting_lookup_bool(settings, "ally_channel_autojoin", &ally_autojoin);
-
-		if(local_autojoin)
-			raChSys.local_autojoin = true;
-		if(ally_autojoin)
-			raChSys.ally_autojoin = true;
-
-		config_setting_lookup_bool(settings, "allow_user_channel_creation", &allow_user_channel_creation);
-
-		if(allow_user_channel_creation)
-			raChSys.allow_user_channel_creation = true;
-
-		if((colors = config_setting_get_member(settings, "colors")) != NULL) {
-			int color_count = config_setting_length(colors);
-			CREATE(raChSys.colors, unsigned int, color_count);
-			CREATE(raChSys.colors_name, char *, color_count);
-			for(i = 0; i < color_count; i++) {
-				config_setting_t *color = config_setting_get_elem(colors, i);
-
-				CREATE(raChSys.colors_name[i], char, RACHSYS_NAME_LENGTH);
-
-				safestrncpy(raChSys.colors_name[i], config_setting_name(color), RACHSYS_NAME_LENGTH);
-
-				raChSys.colors[i] = (unsigned int)strtoul(config_setting_get_string_elem(colors,i),NULL,0);
-				raChSys.colors[i] = (raChSys.colors[i] & 0x0000FF) << 16 | (raChSys.colors[i] & 0x00FF00) | (raChSys.colors[i] & 0xFF0000) >> 16;//RGB to BGR
-			}
-			raChSys.colors_count = color_count;
-		}
-
-		config_setting_lookup_string(settings, "map_local_channel_color", &local_color);
-
-		for (k = 0; k < raChSys.colors_count; k++) {
-			if(strcmpi(raChSys.colors_name[k],local_color) == 0)
-				break;
-		}
-
-		if( k < raChSys.colors_count ) {
-			raChSys.local_color = k;
-		} else {
-			ShowError("channels.conf: cor desconhecida '%s' para canal 'map_local_channel_color', desativando '#%s'...\n",local_color,local_name);
-			raChSys.local = false;
-		}
-
-		config_setting_lookup_string(settings, "ally_channel_color", &ally_color);
-
-		for (k = 0; k < raChSys.colors_count; k++) {
-			if(strcmpi(raChSys.colors_name[k],ally_color) == 0)
-				break;
-		}
-
-		if( k < raChSys.colors_count ) {
-			raChSys.ally_color = k;
-		} else {
-			ShowError("channels.conf: cor desconhecida '%s' para canal 'ally_channel_color', desativando '#%s'...\n",local_color,ally_name);
-			raChSys.ally = false;
-		}
-
-		if((channels = config_setting_get_member(settings, "default_channels")) != NULL) {
-			int channel_count = config_setting_length(channels);
-
-			for(i = 0; i < channel_count; i++) {
-				config_setting_t *channel = config_setting_get_elem(channels, i);
-				const char *name = config_setting_name(channel);
-				const char *color = config_setting_get_string_elem(channels,i);
-				struct raChSysCh *chd;
-
-				for (k = 0; k < raChSys.colors_count; k++) {
-					if(strcmpi(raChSys.colors_name[k],color) == 0)
-						break;
-				}
-				if(k == raChSys.colors_count ) {
-					ShowError("channels.conf: cor desconhecida '%s' para canal '%s', saltando de canal...\n",color,name);
-					continue;
-				}
-				if(strcmpi(name,raChSys.local_name) == 0 || strcmpi(name,raChSys.ally_name) == 0 || strdb_exists(channel_db, name)) {
-					ShowError("channels.conf: canal duplicado '%s', saltando de canal...\n",name);
-					continue;
-
-				}
-				CREATE(chd, struct raChSysCh, 1);
-
-				safestrncpy(chd->name, name, RACHSYS_NAME_LENGTH);
-				chd->type = raChSys_PUBLIC;
-
-				clif_chsys_create(chd,NULL,NULL,k);
-			}
-		}
-
-		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' canais em '"CL_WHITE"%s"CL_RESET"'.\n", db_size(channel_db), config_filename);
-		config_destroy(&channels_conf);
-	}
-}
 
 /// Displays heal effect (ZC_RECOVERY).
 /// 013d <var id>.W <amount>.W
@@ -9258,6 +9006,30 @@ bool clif_process_message(struct map_session_data *sd, int format, char **name_,
 	return true;
 }
 
+void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg) {
+	DBIterator *iter = db_iterator(channel->users);
+	struct map_session_data *user;
+	unsigned short msg_len = strlen(msg) + 1;
+
+	WFIFOHEAD(sd->fd,msg_len + 12);
+	WFIFOW(sd->fd,0) = 0x2C1;
+	WFIFOW(sd->fd,2) = msg_len + 12;
+	WFIFOL(sd->fd,4) = 0;
+	WFIFOL(sd->fd,8) = raChSys.colors[channel->color];
+	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
+
+	for(user = dbi_first(iter); dbi_exists(iter); user = dbi_next(iter)) {
+		if( user->fd == sd->fd )
+			continue;
+		WFIFOHEAD(user->fd,msg_len + 12);
+		memcpy(WFIFOP(user->fd,0), WFIFOP(sd->fd,0), msg_len + 12);
+		WFIFOSET(user->fd, msg_len + 12);
+	}
+
+	WFIFOSET(sd->fd, msg_len + 12);
+
+	dbi_destroy(iter);
+}
 // ------------
 // clif_parse_*
 // ------------
@@ -9337,6 +9109,33 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 #endif
 
 	chrif_authreq(sd,false);
+}
+void clif_chsys_mjoin(struct map_session_data *sd) {
+	if( sd->state.autotrade || sd->state.standalone )
+		return;
+	if(!map[sd->bl.m].channel) {
+		if(map[sd->bl.m].flag.chsysnolocalaj || (map[sd->bl.m].instance_id >= 0 && instance->list[map[sd->bl.m].instance_id].owner_type != IOT_NONE) )
+			return;
+
+		CREATE(map[sd->bl.m].channel, struct raChSysCh , 1);
+		safestrncpy(map[sd->bl.m].channel->name, raChSys.local_name, RACHSYS_NAME_LENGTH);
+		map[sd->bl.m].channel->type = raChSys_MAP;
+		map[sd->bl.m].channel->m = sd->bl.m;
+
+		clif_chsys_create(map[sd->bl.m].channel,NULL,NULL,raChSys.local_color);
+	}
+
+	if( map[sd->bl.m].channel->banned && idb_exists(map[sd->bl.m].channel->banned, sd->status.account_id) ) {
+		return;
+	}
+
+	clif_chsys_join(map[sd->bl.m].channel,sd);
+
+	if(!(map[sd->bl.m].channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
+		char mout[60];
+		sprintf(mout, msg_txt(1435),raChSys.local_name,map[sd->bl.m].name); // You're now in the '#%s' channel for '%s'.
+		clif_colormes(sd->fd, COLOR_DEFAULT, mout);
+	}
 }
 
 
@@ -10311,6 +10110,117 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 	}
 }
 
+void clif_chsys_left(struct raChSysCh *channel, struct map_session_data *sd) {
+	unsigned char i;
+
+	if(!idb_remove(channel->users,sd->status.char_id))
+		return;
+
+	if( channel == sd->gcbind )
+		sd->gcbind = NULL;
+
+	if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
+		clif_chsys_delete(channel);
+	} else if(!raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
+		char message[60];
+		sprintf(message, "#%s '%s' esquerda",channel->name,sd->status.name);
+		clif_chsys_msg(channel,sd,message);
+	}
+
+	for(i = 0; i < sd->channel_count; i++) {
+		if( sd->channels[i] == channel ) {
+			sd->channels[i] = NULL;
+			break;
+		}
+	}
+
+	if(i < sd->channel_count) {
+		unsigned char cursor = 0;
+		for(i = 0; i < sd->channel_count; i++) {
+			if( sd->channels[i] == NULL )
+				continue;
+			if(cursor != i) {
+				sd->channels[cursor] = sd->channels[i];
+			}
+			cursor++;
+		}
+		if (!(sd->channel_count = cursor)) {
+			aFree(sd->channels);
+			sd->channels = NULL;
+		}
+	}
+
+}
+
+void clif_chsys_quitg(struct map_session_data *sd) {
+	unsigned char i;
+	struct raChSysCh *channel = NULL;
+
+	for(i = 0; i < sd->channel_count; i++) {
+		if( (channel = sd->channels[i] ) != NULL && channel->type == raChSys_ALLY ) {
+
+			if(!idb_remove(channel->users,sd->status.char_id))
+				continue; 
+
+			if( channel == sd->gcbind )
+				sd->gcbind = NULL;
+
+			if( !db_size(channel->users) && channel->type == raChSys_PRIVATE ) {
+				clif_chsys_delete(channel);
+			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN) ) {
+				char message[60];
+				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
+				clif_chsys_msg(channel,sd,message);
+			}
+			sd->channels[i] = NULL;
+		}
+	}
+
+	if(i < sd->channel_count) {
+		unsigned char cursor = 0;
+		for(i = 0; i < sd->channel_count; i++) {
+			if(sd->channels[i] == NULL)
+				continue;
+			if(cursor != i) {
+				sd->channels[cursor] = sd->channels[i];
+			}
+			cursor++;
+		}
+		if (!(sd->channel_count = cursor)) {
+			aFree(sd->channels);
+			sd->channels = NULL;
+		}
+	}
+	
+}
+
+
+void clif_chsys_quit(struct map_session_data *sd) {
+	unsigned char i;
+	struct raChSysCh *channel = NULL;
+
+	for(i = 0; i < sd->channel_count; i++) {
+		if((channel = sd->channels[i] ) != NULL) {
+			idb_remove(channel->users,sd->status.char_id);
+
+			if(channel == sd->gcbind)
+				sd->gcbind = NULL;
+
+			if(!db_size(channel->users) && channel->type == raChSys_PRIVATE) {
+				clif_chsys_delete(channel);
+			} else if( !raChSys.closing && (channel->opt & raChSys_OPT_ANNOUNCE_JOIN)) {
+				char message[60];
+				sprintf(message, "#%s '%s' Saiu.",channel->name,sd->status.name);
+				clif_chsys_msg(channel,sd,message);
+			}
+			
+		}
+	}
+
+	sd->channel_count = 0;
+	aFree(sd->channels);
+	sd->channels = NULL;	
+}
 
 /// Request for an action.
 /// 0089 <target id>.L <action>.B (CZ_REQUEST_ACT)
@@ -10692,6 +10602,97 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd) {
 	else
 		pc_equipitem(sd,p->index,p->wearLocation);
 }
+
+void clif_chsys_delete(struct raChSysCh *channel) {
+	if(db_size(channel->users) && !raChSys.closing) {
+		DBIterator *iter;
+		struct map_session_data *sd;
+		unsigned char i;
+		iter = db_iterator(channel->users);
+		for(sd = dbi_first(iter); dbi_exists(iter); sd = dbi_next(iter)) {
+			for(i = 0; i < sd->channel_count; i++) {
+				if(sd->channels[i] == channel) {
+					sd->channels[i] = NULL;
+					break;
+				}
+			}
+			if(i < sd->channel_count) {
+				unsigned char cursor = 0;
+				for(i = 0; i < sd->channel_count; i++) {
+					if( sd->channels[i] == NULL )
+						continue;
+					if(cursor != i) {
+						sd->channels[cursor] = sd->channels[i];
+					}
+					cursor++;
+				}
+				if (!(sd->channel_count = cursor)) {
+					aFree(sd->channels);
+					sd->channels = NULL;
+				}
+			}
+		}
+		dbi_destroy(iter);
+	}
+	if( channel->banned ) {
+		db_destroy(channel->banned);
+		channel->banned = NULL;
+	}
+	db_destroy(channel->users);
+	if(channel->m) {
+		map[channel->m].channel = NULL;
+		aFree(channel);
+	} else if (channel->type == raChSys_ALLY)
+		aFree(channel);
+	else if(!raChSys.closing)
+		strdb_remove(channel_db, channel->name);
+}
+
+void clif_chsys_gjoin(struct guild *g1,struct guild *g2) {
+	struct map_session_data *sd;
+	struct raChSysCh *channel;
+	int j;
+
+	if((channel = g1->channel)) {
+		for(j = 0; j < g2->max_member; j++) {
+			if((sd = g2->member[j].sd) != NULL) {
+				if(!(g1->channel->banned && idb_exists(g1->channel->banned, sd->status.account_id)))
+					clif_chsys_join(channel,sd);
+			}
+		}
+	}
+
+	if((channel = g2->channel)) {
+		for(j = 0; j < g1->max_member; j++) {
+			if((sd = g1->member[j].sd) != NULL) {
+				if(!(g2->channel->banned && idb_exists(g2->channel->banned, sd->status.account_id)))
+				clif_chsys_join(channel,sd);
+			}
+		}
+	}
+}
+void clif_chsys_gleave(struct guild *g1,struct guild *g2) {
+	struct map_session_data *sd;
+	struct raChSysCh *channel;
+	int j;
+
+	if((channel = g1->channel)) {
+		for(j = 0; j < g2->max_member; j++) {
+			if( (sd = g2->member[j].sd) != NULL ) {
+				clif_chsys_left(channel,sd);
+			}
+		}
+	}
+
+	if((channel = g2->channel)) {
+		for(j = 0; j < g1->max_member; j++) {
+			if((sd = g1->member[j].sd) != NULL) {
+				clif_chsys_left(channel,sd);
+			}
+		}
+	}
+}
+
 /// Request to take off an equip (CZ_REQ_TAKEOFF_EQUIP).
 /// 00ab <index>.W
 void clif_parse_UnequipItem(int fd,struct map_session_data *sd)
@@ -13349,11 +13350,9 @@ void clif_parse_CatchPet(int fd, struct map_session_data *sd)
 /// 01a7 <index>.W
 void clif_parse_SelectEgg(int fd, struct map_session_data *sd)
 {
-	if(sd->menuskill_id != SA_TAMINGMONSTER || sd->menuskill_val != -1) {
-		//Forged packet, disconnect them [Kevin]
-		clif_authfail_fd(fd, 0);
+	if(sd->menuskill_id != SA_TAMINGMONSTER || sd->menuskill_val != -1)
 		return;
-	}
+
 	pet_select_egg(sd,RFIFOW(fd,2)-2);
 	clif_menuskill_clear(sd);
 }

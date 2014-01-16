@@ -1463,12 +1463,15 @@ void chrif_skillid2idx(int fd)
 {
 	int i, count = 0;
 	
-	if( fd == 0 ) fd = char_fd;
+	if(fd == 0) fd = char_fd;
+
+	if(!session_isValid(fd))
+		return;
 	
 	WFIFOHEAD(fd,4 + (MAX_SKILL * 4));
 	WFIFOW(fd,0) = 0x2b0b;
 	for(i = 0; i < MAX_SKILL; i++) {
-		if( skill_db[i].nameid ) {
+		if(skill_db[i].nameid) {
 			WFIFOW(fd, 4 + (count*4)) = skill_db[i].nameid;
 			WFIFOW(fd, 6 + (count*4)) = i;
 			count++;
