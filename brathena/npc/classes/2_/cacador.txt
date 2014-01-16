@@ -371,7 +371,7 @@
 				mes "[Caçadora Sherin]";
 				mes "Quarto...";
 				mes "Você tem que passar no teste administrado pela corporação. Se você já teve bastante treinamento como um Arqueiro, você deve ser capaz de passar no teste~";
-				break;
+				close;
 			case 3:
 				mes "[Caçadora Sherin]";
 				mes "Ok, então,";
@@ -766,7 +766,7 @@ OnTouch:
 		mes "Bom dia. Bem-vindo ao local do teste de Caçador. O teste começa quando você entra na sala ao lado.";
 		next;
 		mes "[Guia]";
-		mes "Como explicado anteriormente, cace 4 ou mais dos monstros nomeados ^3355FFMonstro de mudança de classe^000000. Ao fazê-lo, um interruptor no centro do mapa aparecerá.";
+		mes "Como explicado anteriormente, cace 4 ou mais dos monstros nomeados ^3355FFMonstro Alvo^000000. Ao fazê-lo, um interruptor no centro do mapa aparecerá.";
 		next;
 		mes "[Guia]";
 		mes "Quando destruir o interruptor, a saída irá aparecer na direção das 12 horas do mapa. Complete tudo dentro do tempo determinado e escape.";
@@ -843,32 +843,32 @@ OnEnable:
 	set .MeusMonstros,6;
 	initnpctimer;
 	// Monstros Alvo
-	monster "job_hunte",67,80,"Monstro de mudança de classe",1015,1,"Gerente#cac::OnMyMobDead";
-	monster "job_hunte",114,78,"Monstro de mudança de classe",1015,1,"Gerente#cac::OnMyMobDead";
-	monster "job_hunte",89,127,"Monstro de mudança de classe",1002,1,"Gerente#cac::OnMyMobDead";
-	monster "job_hunte",53,73,"Monstro de mudança de classe",1041,1,"Gerente#cac::OnMyMobDead";
-	monster "job_hunte",125,70,"Monstro de mudança de classe",1016,1,"Gerente#cac::OnMyMobDead";
-	monster "job_hunte",90,92,"Monstro de mudança de classe",1015,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",67,80,"Monstro Alvo",1015,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",114,78,"Monstro Alvo",1015,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",89,127,"Monstro Alvo",1002,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",53,73,"Monstro Alvo",1041,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",125,70,"Monstro Alvo",1016,1,"Gerente#cac::OnMyMobDead";
+	monster "job_hunte",90,92,"Monstro Alvo",1015,1,"Gerente#cac::OnMyMobDead";
 	// Monstros Falsos
-	monster "job_hunte",85,100,"Monstro do teste de classe",1016,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",72,102,"Monstro do teste de classe",1041,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",108,103,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",88,127,"Monstro do teste de classe",1002,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",125,69,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",77,112,"Monstro do teste de classe",1016,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",53,106,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",53,73,"Monstro do teste de classe",1002,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",125,70,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",90,91,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",67,80,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",77,112,"Monstro do teste de classe",1016,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",53,106,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",53,73,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",125,70,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",90,91,"Monstro do teste de classe",1041,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",85,100,"Monstro do teste de classe",1002,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",72,102,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
-	monster "job_hunte",108,103,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",85,100,"Monstro Albo",1016,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",72,102,"Monstro Albo",1041,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",108,103,"Monstro Albo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",88,127,"Monstro Alboe",1002,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",125,69,"Monstro Albo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",77,112,"Monstro Albo",1016,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",53,106,"Me mate!",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",53,73,"Me mate!",1002,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",125,70,"Me mate!",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",90,91,"Xuxa",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",67,80,"Carta Ghostring",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",77,112,"Montro Alvo",1016,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",53,106,"Montro Alvo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",53,73,"Montro Alvo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",125,70,"Montro Alvo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",90,91,"Montro Alvo",1041,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",85,100,"Megasantos",1002,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",72,102,"Alvo",1015,1,"Gerente#cac::OnMyMobDead2";
+	monster "job_hunte",108,103,"Alvo",1015,1,"Gerente#cac::OnMyMobDead2";
 	monster "job_hunte",77,112,"Monstro do teste de classe",1015,1,"Gerente#cac::OnMyMobDead2";
 	monster "job_hunte",112,139,"Binnie",1015,1,"Gerente#cac::OnMyMobDead2";
 	monster "job_hunte",112,139,"Darrel",1015,1,"Gerente#cac::OnMyMobDead2";
@@ -914,7 +914,7 @@ OnTimer1000:
 	end;
 
 OnTimer3000:
-	mapannounce "job_hunte","Como mencionado antes, você só deve caçar os monstros marcados com 'Monstro de mudança de classe'.",bc_map;
+	mapannounce "job_hunte","Como mencionado antes, você só deve caçar os monstros marcados com 'Monstro Alvo'.",bc_map;
 	end;
 
 OnTimer5000:
@@ -922,7 +922,7 @@ OnTimer5000:
 	end;
 
 OnTimer7000:
-	mapannounce "job_hunte","Depois de caçar 4 'Monstros de mudança de classe' o interruptor no centro começará a operar.",bc_map;
+	mapannounce "job_hunte","Depois de caçar 4 'Monstro Alvo' o interruptor no centro começará a operar.",bc_map;
 	end;
 
 OnTimer9000:
@@ -1045,9 +1045,14 @@ OnTouch:
 	set CACA_Q,16;
 	changequest 4011,4012;
 	savepoint "payon",104,99;
-	if (rand(1)) warp "payon_in02",21,27;
-	else
-	warp "payon_in03",128,7;
+	if (checkversion(0) == -1)
+		warp "payon_in02",21,27;
+	else {
+		if (rand(1)) warp "payon_in02",21,27;
+		else
+		warp "payon_in03",128,7;
+	}
+	end;
 }
 
 // Armadilhas do teste de Caçador
