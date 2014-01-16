@@ -70,7 +70,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 	mes "O que é que você procura?";
 	next;
 	if ( !checkversion(0) || checkversion(0) == -1 ){
-	switch(select("Eu desejo me tornar um Noviço:Como me torno um noviço?:Eu vim olhar os vitrais")) {
+	switch(select("Eu desejo me tornar um Noviço.:Como me torno um noviço?:Eu vim olhar os vitrais.")) {
 	case 1:
 		mes "[Tomas Cerbantes]";
 		if (BaseJob == Job_Acolyte) {
@@ -83,9 +83,12 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 		if (job_acolyte_q == 0) {
 			mes "Você deseja mesmo, de todo o seu coração, se tornar um servo do Senhor?";
 			next;
-			if (select("Sim.:Não, eu menti.") == 1) {
+			if (select("Sim.:Não, eu menti.") == 2) {
 				mes "[Tomas Cerbantes]";
-				mes "Que a vontade do Senhor seja a sua segurança.";
+				mes "Você mentiu?";
+				mes "É bom que você tenha";
+				mes "confessado seu pecado.";
+				mes "Siga em paz, meu filho.";
 				close;
 			}
 			mes "[Tomas Cerbantes]";
@@ -94,6 +97,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 			mes "[Tomas Cerbantes]";
 			mes "Espero que você entenda que para se tornar um servo do Senhor, deverás realizar uma penitência.";
 			next;
+			mes "[Tomas Cerbantes]";
 			switch(rand(3)) {
 			mes "A sua penitência é uma forma de peregrinação.";
 			default:
@@ -168,12 +172,11 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 		mes "[Tomas Cerbantes]";
 		mes "Antes de tudo, você deve alcançar Nível 9 de Classe como Aprendiz.";
 		mes "Com esse nível, será possível que você realize uma peregrinação em nome do Senhor.";
+		mes "Depois você receberá um teste de penitência.";
 		next;
 		mes "[Tomas Cerbantes]";
-		mes "O seu objetivo será o seguinte:";
 		if (job_acolyte_q) {
 			switch(job_acolyte_q) {
-			mes "[Tomas Cerbantes]";
 			case 2:
 				mes "Você deve visitar o ^000077 Irmão Simão ^000000, ele se isolou com o animais perto da ^000077Abadia ao Nordeste de Prontera^000000.";
 				break;
@@ -187,9 +190,9 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	1_M_PASTOR,{
 			next;
 			mes "[Tomas Cerbantes]";
 			mes "Que a graça do Senhor o acompanhe em sua jornada!";
+			close;
 		} else {
-			mes "[Tomas Cerbantes]";
-			mes "Que a vontade do Senhor seja a sua segurança.";
+			mes "O destino da sua peregrinação será decidido quando você tiver preenchido o formulário.";
 		}
 		next;
 		mes "[Tomas Cerbantes]";

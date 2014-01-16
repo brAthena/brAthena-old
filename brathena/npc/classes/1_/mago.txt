@@ -93,7 +93,7 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	2_F_MAGICMASTER,{
 		mes "Quer ser um Mago? É...";
 		next;
 		mes "[Maga Guardiã]";
-	  if ( !checkversion(0) ) {
+	  if ( !checkversion(0) || checkversion(0) == -1 ){
 		if (job_magician_q == 0) {
 			mes "Você, "+((Sex)?"é mesmo uma gracinha. Definitivamente, meu tipo...":"até que você é bonitinha, deve fazer um grande sucesso...");
 			next;
