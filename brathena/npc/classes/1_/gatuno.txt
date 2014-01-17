@@ -25,7 +25,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
+moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	1_F_04,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
 			if (Class == Job_Novice_High) {
@@ -332,7 +332,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	close;
 }
 
-moc_prydb1,42,133,2	script	Brad#gatuno	118,{
+moc_prydb1,42,133,2	script	Brad#gatuno	2_M_THIEFMASTER,{
 	mes "[Brad]";
   if( checkversion(0) ) {
 	if(q_job_thief == 1) {
@@ -494,7 +494,7 @@ moc_ruins,141,125,4	script#vpo	Bogus	83,{
 //============================================================ 
 // [Pré-Renovação & Old-Times] Teste para se tornar Gatuno.
 //============================================================ 
-job_thief1,0,0,0,0	monster#vpo	Cogumelo	1182,180,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Fabre	1184,50,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Chonchon	1183,50,0,0,0
-job_thief1,0,0,0,0	monster#vpo	Esporo	1014,30,0,0,0,{}
+job_thief1,0,0,0,0	monster#vpo	Cogumelo	THIEF_MUSHROOM,180,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Fabre	FABRE_,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Chonchon	CHONCHON_,50,0,0,0
+job_thief1,0,0,0,0	monster#vpo	Esporo	SPORE,30,0,0,0,{}
