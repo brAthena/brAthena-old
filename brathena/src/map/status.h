@@ -719,7 +719,7 @@ typedef enum sc_type {
     SC_SUPER_STAR,
 
     SC_OKTOBERFEST,
-
+    SC_STRANGELIGHTS,
     SC_DECORATION_OF_MUSIC,
 
     //homon S
