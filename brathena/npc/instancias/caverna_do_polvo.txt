@@ -152,7 +152,7 @@ mal_dun01,153,237,5	script	Entrada Estranha	CLEAR_NPC,{
 				mes "Um grande problema está te aguardando ao entrar.";
 				close;
 			}
-			mapannounce "mal_dun01", "o membro "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" inicio sua caçada ao Polvo!",bc_map,"0x00ff99";
+			mapannounce "mal_dun01", "O membro "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" inicio sua caçada ao Polvo!",bc_map,"0x00ff99";
 			if (checkquest(4197) == -1) setquest 4197;
 			warp "1@cash",199,99;
 			end;

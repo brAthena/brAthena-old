@@ -196,7 +196,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 
 	set .@party_id,getcharid(1);
 	set .@p_name$,getpartyname(.@party_id);
-	set .@md_name$,"Endless Tower";
+	set .@md_name$,"Torre Infinita";
 
 	set .@etower_timer,checkquest(60200,PLAYTIME); // 1 semana
 	set .@etower_timer2,checkquest(60201,PLAYTIME); // 4 horas
@@ -210,7 +210,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	2_MONEMUS,{
 		if (getcharid(0) == getpartyleader(.@party_id,2)) {
 			mes "Confirmado, o grupo foi feito. Você gostaria de reservar a entrada para a Torre Sem Fim?";
 			next;
-			switch(select("Gerar Calabouço da "+ @md_name$+":Entrar no Calabouço.:Retornar para Alberta.:Cancelar.")) {
+			switch(select("Gerar Calabouço da "+.@md_name$+":Entrar no Calabouço.:Retornar para Alberta.:Cancelar.")) {
 			case 1:
 				set .@instance, instance_create(.@md_name$, .@party_id);
 				if (.@instance < 0) {
@@ -299,7 +299,7 @@ L_Enter:
 		mes "O líder do grupo não gerou o calabouço ainda.";
 		close;
 	} else {
-		mapannounce "e_tower", strcharinfo(0)+ " do grupo, "+getarg(3)+", está entrando no calabouço da, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+		mapannounce "e_tower", strcharinfo(0)+ " do grupo, "+getarg(3)+", está entrando no calabouço da, Torre Infinita.",bc_map,"0x00ff99",FW_NORMAL,12;
 		if (getarg(1)) {
 			set etower_timer,gettimetick(2);
 			setquest 60200;
@@ -1442,7 +1442,7 @@ OnTimer5000:
 2@tower,184,51,0	duplicate(1FGate102tower)	48FGate102tower	WARPNPC,2,2
 2@tower,270,51,0	duplicate(1FGate102tower)	49FGate102tower	WARPNPC,2,2
 
-2@tower,355,51,0	script	1_M_04FGate102tower	WARPNPC,2,2,{
+2@tower,355,51,0	script	50FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1558,7 +1558,7 @@ OnTimer5000:
 3@tower,184,51,0	duplicate(1FGate102tower)	73FGate102tower	WARPNPC,2,2
 3@tower,270,51,0	duplicate(1FGate102tower)	74FGate102tower	WARPNPC,2,2
 
-3@tower,355,51,0	script	1_F_ORIENT_01FGate102tower	45,1,1,{
+3@tower,355,51,0	script	75FGate102tower	45,1,1,{
 	end;
 
 OnInstanceInit:
@@ -1582,7 +1582,7 @@ OnTimer120000:
 	end;
 }
 
-3@tower,355,51,0	script	1_F_ORIENT_01FGate102tower-2	WARPNPC,2,2,{
+3@tower,355,51,0	script	75FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1673,7 +1673,7 @@ OnTimer5000:
 4@tower,96,51,0	duplicate(1FGate102tower)	97FGate102tower	WARPNPC,2,2
 4@tower,184,51,0	duplicate(1FGate102tower)	98FGate102tower	WARPNPC,2,2
 
-4@tower,271,51,0	script	4W_M_03FGate102tower	WARPNPC,2,2,{
+4@tower,271,51,0	script	99FGate102tower	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
@@ -1697,7 +1697,7 @@ OnTimer120000:
 	end;
 }
 
-4@tower,271,51,0	script	4W_M_03FGate102tower-2	WARPNPC,2,2,{
+4@tower,271,51,0	script	99FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:

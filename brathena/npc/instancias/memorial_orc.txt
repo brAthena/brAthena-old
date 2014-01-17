@@ -79,7 +79,7 @@ gef_fild10,242,202,0	script	Memorial Orc	2_MONEMUS,{
 			end;
 		callsub L_Enter,1;
 	} else if (.@orctime == 0 || .@orctime == 1) {
-		mes "You can enter the Dungeon if it has been generated.";
+		mes "Você pode entrar no calabouço se ele foi gerado.";
 		next;
 		if(select("Entrar no calabouço "+.@md_name$+":Cancelar") == 2)
 			close;
@@ -100,7 +100,7 @@ L_Enter:
 		mes "Caso o seu calabouço tenha sido destruído deverá esperar 7 dias para entrar novamente.";
 		close;
 	} else {
-		mapannounce "gef_fild10", .@p_leader$ + " do grupo, " + .@p_name$ + " está entrando no "+.@md_name$+".",bc_map,"0x00ff99";
+		mapannounce "gef_fild10",strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" está entrando no Memorial Orc.",bc_map,"0x00ff99";
 		if (checkquest(12059)== -1) setquest 12059;
 		warp "1@orcs",179,15;
 		end;

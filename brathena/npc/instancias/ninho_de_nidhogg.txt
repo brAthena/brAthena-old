@@ -217,7 +217,7 @@ L_Enter:
 		mes "Você não tem permissão para entrar. Por favor, peça ao líder do seu grupo para solicitar a entrada.";
 		close;
 	} else {
-		mapannounce "nyd_dun02", "O jogador "+strcharinfo(0)+" do grupo getpartyname(getcharid(1))+ entrou no Ninho de Nidhogg.",bc_map,"0x00ff99";
+		mapannounce "nyd_dun02", "O jogador "+strcharinfo(0)+" do grupo "+getpartyname(getcharid(1))+" entrou no Ninho de Nidhogg.",bc_map,"0x00ff99";
 		if (checkquest(3135) == -1) setquest 3135;
 		if (checkquest(3136) == -1) setquest 3136;
 		warp "1@nyd",32,37;
