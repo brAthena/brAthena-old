@@ -36,8 +36,13 @@ struct auth_node {
 void chrif_setuserid(char *id);
 void chrif_setpasswd(char *pwd);
 void chrif_checkdefaultlogin(void);
-int chrif_setip(const char *ip);
+bool chrif_setip(const char *ip);
 void chrif_setport(uint16 port);
+void chrif_sendmap(int fd);
+void chrif_recvmap(int fd);
+void chrif_removemap(int fd);
+void chrif_connectack(int fd);
+void chrif_sendmapack(int fd);
 
 int chrif_isconnected(void);
 void chrif_check_shutdown(void);
@@ -52,40 +57,49 @@ bool chrif_auth_finished(struct map_session_data *sd);
 
 void chrif_authreq(struct map_session_data *sd, bool hstandalone);
 void chrif_authok(int fd);
-int chrif_scdata_request(int account_id, int char_id);
-int chrif_save(struct map_session_data *sd, int flag);
-int chrif_charselectreq(struct map_session_data *sd, uint32 s_ip);
-int chrif_changemapserver(struct map_session_data *sd, uint32 ip, uint16 port);
+bool chrif_scdata_request(int account_id, int char_id);
+bool chrif_save(struct map_session_data *sd, int flag);
+bool chrif_charselectreq(struct map_session_data *sd, uint32 s_ip);
+bool chrif_changemapserver(struct map_session_data *sd, uint32 ip, uint16 port);
+bool chrif_changemapserverack(int account_id, int login_id1, int login_id2, int char_id, short map_index, short x, short y, uint32 ip, uint16 port);
 
 int send_usercount_tochar(int tid, int64 tick, int id, intptr_t data);
 int auth_db_cleanup(int tid, int64 tick, int id, intptr_t data);
 
-int chrif_searchcharid(int char_id);
-int chrif_changeemail(int id, const char *actual_email, const char *new_email);
-int chrif_char_ask_name(int acc, const char *character_name, unsigned short operation_type, int year, int month, int day, int hour, int minute, int second);
+bool chrif_searchcharid(int char_id);
+bool chrif_changeemail(int id, const char *actual_email, const char *new_email);
+bool chrif_char_ask_name(int acc, const char *character_name, unsigned short operation_type, int year, int month, int day, int hour, int minute, int second);
 int chrif_updatefamelist(struct map_session_data *sd);
-int chrif_buildfamelist(void);
-int chrif_save_scdata(struct map_session_data *sd);
-int chrif_ragsrvinfo(int base_rate,int job_rate, int drop_rate);
-int chrif_char_offline(struct map_session_data *sd);
-int chrif_char_offline_nsd(int account_id, int char_id);
-int chrif_char_reset_offline(void);
-int send_users_tochar(void);
-int chrif_char_online(struct map_session_data *sd);
-int chrif_changesex(struct map_session_data *sd);
+bool chrif_buildfamelist(void);
+bool chrif_save_scdata(struct map_session_data *sd);
+bool chrif_ragsrvinfo(int base_rate,int job_rate, int drop_rate);
+bool chrif_char_offline_nsd(int account_id, int char_id);
+bool chrif_char_reset_offline(void);
+bool send_users_tochar(void);
+bool chrif_char_online(struct map_session_data *sd);
+bool chrif_changesex(struct map_session_data *sd);
+bool chrif_char_ask_name_answer(int acc, const char *player_name, uint16 type, uint16 answer);
 //int chrif_chardisconnect(struct map_session_data *sd);
-int chrif_divorce(int partner_id1, int partner_id2);
+bool chrif_divorce(int partner_id1, int partner_id2);
 
-int chrif_removefriend(int char_id, int friend_id);
+bool chrif_removefriend(int char_id, int friend_id);
+void chrif_changedsex(int fd);
+void chrif_deadopt(int father_id, int mother_id, int child_id);
+bool chrif_load_scdata(int fd);
+void chrif_recvfamelist(int fd);
+bool chrif_divorceack(int char_id, int partner_id);
 
-int chrif_idbanned(int fd);
+void chrif_idbanned(int fd);
 
 void chrif_send_report(char *buf, int len);
 
-int do_final_chrif(void);
-int do_init_chrif(void);
+void do_final_chrif(void);
+void do_init_chrif(void);
 
-int chrif_flush_fifo(void);
+bool chrif_flush_fifo(void);
 void chrif_skillid2idx(int fd);
+// There's no need for another function when a simple macro can do exactly the same effect
+#define chrif_char_offline(x) chrif_char_offline_nsd((x)->status.account_id,(x)->status.char_id)
+
 
 #endif /* _CHRIF_H_ */

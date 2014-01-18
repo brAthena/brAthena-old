@@ -73,7 +73,7 @@ bool atcommand_can_use(struct map_session_data *sd, const char *command);
 bool atcommand_exists(const char *name);
 
 const char *msg_txt(int msg_number);
-int msg_config_read(const char *cfgName);
+bool msg_config_read(const char *cfgName);
 void do_final_msg(void);
 
 extern int atcmd_binding_count;

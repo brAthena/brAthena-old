@@ -118,7 +118,7 @@ const char *msg_txt(int msg_number)
 /*==========================================
  * Read Message Data
  *------------------------------------------*/
-int msg_config_read(const char *cfgName)
+bool msg_config_read(const char *cfgName)
 {
 	int msg_number;
 	char line[1024], w1[1024], w2[1024];
@@ -127,7 +127,7 @@ int msg_config_read(const char *cfgName)
 
 	if((fp = fopen(cfgName, "r")) == NULL) {
 		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
-		return 1;
+		return false;
 	}
 
 	if((--called) == 0)
@@ -154,7 +154,7 @@ int msg_config_read(const char *cfgName)
 
 	fclose(fp);
 
-	return 0;
+	return true;
 }
 
 /*==========================================
@@ -4111,7 +4111,6 @@ ACMD_FUNC(mapinfo)
 		default: // normally impossible to arrive here
 			clif_displaymessage(fd, msg_txt(1118)); // Please enter at least one valid list number (usage: @mapinfo <0-3> <map>).
 			return -1;
-			break;
 	}
 
 	return 0;
@@ -5579,7 +5578,7 @@ ACMD_FUNC(skilltree)
 	ARR_FIND(0, MAX_SKILL_TREE, j, skill_tree[c][j].id == 0 || skill_tree[c][j].id == skill_id);
 	if(j == MAX_SKILL_TREE || skill_tree[c][j].id == 0) {
 		clif_displaymessage(fd, msg_txt(1169)); // The player cannot use that skill.
-		return 0;
+		return -1;
 	}
 
 	ent = &skill_tree[c][j];
@@ -7575,7 +7574,7 @@ static int atcommand_mutearea_sub(struct block_list *bl,va_list ap)
 		else
 			status_change_end(&pl_sd->bl, SC_NOCHAT, INVALID_TIMER);
 	}
-	return 0;
+	return 1;
 }
 
 ACMD_FUNC(mutearea)
@@ -7968,7 +7967,7 @@ ACMD_FUNC(invite)
 	if(did == 0)    {
 		// "Duel: @invite without @duel."
 		clif_displaymessage(fd, msg_txt(350));
-		return 0;
+		return -1;
 	}
 
 	if(duel_list[did].max_players_limit > 0 &&
@@ -7976,25 +7975,25 @@ ACMD_FUNC(invite)
 
 		// "Duel: Limit of players is reached."
 		clif_displaymessage(fd, msg_txt(351));
-		return 0;
+		return -1;
 	}
 
 	if(target_sd == NULL) {
 		// "Duel: Player not found."
 		clif_displaymessage(fd, msg_txt(352));
-		return 0;
+		return -1;
 	}
 
 	if(target_sd->duel_group > 0 || target_sd->duel_invite > 0) {
 		// "Duel: Player already in duel."
 		clif_displaymessage(fd, msg_txt(353));
-		return 0;
+		return -1;
 	}
 
 	if(battle_config.duel_only_on_same_map && target_sd->bl.m != sd->bl.m) {
 		sprintf(atcmd_output, msg_txt(364), message);
 		clif_displaymessage(fd, atcmd_output);
-		return 0;
+		return -1;
 	}
 
 	duel_invite(did, sd, target_sd);
@@ -8015,7 +8014,7 @@ ACMD_FUNC(duel)
 	if(sd->duel_invite > 0) {
 		// "Duel: @duel without @reject."
 		clif_displaymessage(fd, msg_txt(355));
-		return 0;
+		return -1;
 	}
 
 	if(!duel_checktime(sd)) {
@@ -8023,14 +8022,14 @@ ACMD_FUNC(duel)
 		// "Duel: You can take part in duel only one time per %d minutes."
 		sprintf(output, msg_txt(356), battle_config.duel_time_interval);
 		clif_displaymessage(fd, output);
-		return 0;
+		return -1;
 	}
 
 	if(message[0]) {
 		if(sscanf(message, "%d", &maxpl) >= 1) {
 			if(maxpl < 2 || maxpl > 65535) {
 				clif_displaymessage(fd, msg_txt(357)); // "Duel: Invalid value."
-				return 0;
+				return -1;
 			}
 			duel_create(sd, maxpl);
 		} else {
@@ -8041,7 +8040,7 @@ ACMD_FUNC(duel)
 				if((newduel = duel_create(sd, 2)) != -1) {
 					if(target_sd->duel_group > 0 || target_sd->duel_invite > 0) {
 						clif_displaymessage(fd, msg_txt(353)); // "Duel: Player already in duel."
-						return 0;
+						return -1;
 					}
 					duel_invite(newduel, sd, target_sd);
 					clif_displaymessage(fd, msg_txt(354)); // "Duel: Invitation has been sent."
@@ -8049,7 +8048,7 @@ ACMD_FUNC(duel)
 			} else {
 				// "Duel: Player not found."
 				clif_displaymessage(fd, msg_txt(352));
-				return 0;
+				return -1;
 			}
 		}
 	} else
@@ -8064,7 +8063,7 @@ ACMD_FUNC(leave)
 	if(sd->duel_group <= 0) {
 		// "Duel: @leave without @duel."
 		clif_displaymessage(fd, msg_txt(358));
-		return 0;
+		return -1;
 	}
 
 	duel_leave(sd->duel_group, sd);
@@ -8079,19 +8078,19 @@ ACMD_FUNC(accept)
 		// "Duel: You can take part in duel only one time per %d minutes."
 		sprintf(output, msg_txt(356), battle_config.duel_time_interval);
 		clif_displaymessage(fd, output);
-		return 0;
+		return -1;
 	}
 
 	if(sd->duel_invite <= 0) {
 		// "Duel: @accept without invititation."
 		clif_displaymessage(fd, msg_txt(360));
-		return 0;
+		return -1;
 	}
 
 	if(duel_list[sd->duel_invite].max_players_limit > 0 && duel_list[sd->duel_invite].members_count >= duel_list[sd->duel_invite].max_players_limit) {
 		// "Duel: Limit of players is reached."
 		clif_displaymessage(fd, msg_txt(351));
-		return 0;
+		return -1;
 	}
 
 	duel_accept(sd->duel_invite, sd);
@@ -8105,7 +8104,7 @@ ACMD_FUNC(reject)
 	if(sd->duel_invite <= 0) {
 		// "Duel: @reject without invititation."
 		clif_displaymessage(fd, msg_txt(362));
-		return 0;
+		return -1;
 	}
 
 	duel_reject(sd->duel_invite, sd);
@@ -8175,17 +8174,17 @@ ACMD_FUNC(clone)
 
 	if(!message || !*message) {
 		clif_displaymessage(sd->fd,msg_txt(1323)); // You must enter a player name or ID.
-		return 0;
+		return -1;
 	}
 
 	if((pl_sd=map_nick2sd((char *)message)) == NULL && (pl_sd=map_charid2sd(atoi(message))) == NULL) {
 		clif_displaymessage(fd, msg_txt(3));    // Character not found.
-		return 0;
+		return -1;
 	}
 
 	if(pc_get_group_level(pl_sd) > pc_get_group_level(sd)) {
 		clif_displaymessage(fd, msg_txt(126));  // Cannot clone a player of higher GM level than yourself.
-		return 0;
+		return -1;
 	}
 
 	if(strcmpi(command+1, "clone") == 0)
@@ -8194,15 +8193,16 @@ ACMD_FUNC(clone)
 		flag = 2;
 
 		if(pc_isdead(sd)) {
+			//"Unable to spawn slave clone."
 			clif_displaymessage(fd, msg_txt(129+flag*2));
-			return 0;
+			return -1;
 		}
 
 		master = sd->bl.id;
 		if(battle_config.atc_slave_clone_limit
 		   && mob_countslave(&sd->bl) >= battle_config.atc_slave_clone_limit) {
 			clif_displaymessage(fd, msg_txt(127));  // You've reached your slave clones limit.
-			return 0;
+			return -1;
 		}
 	}
 
@@ -8221,7 +8221,7 @@ ACMD_FUNC(clone)
 		return 0;
 	}
 	clif_displaymessage(fd, msg_txt(129+flag*2));   // Unable to spawn evil clone. Unable to spawn clone. Unable to spawn slave clone.
-	return 0;
+	return -1;
 }
 
 /*=====================================
