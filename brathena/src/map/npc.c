@@ -2245,7 +2245,7 @@ int npc_unload(struct npc_data *nd, bool single)
 			}
 		}
 		if(nd->u.scr.guild_id)
-			guild_flag_remove(nd);
+			guild->flag_remove(nd);
 	}
 
 	if(nd->ud != &npc->base_ud) {
@@ -4222,7 +4222,7 @@ int npc_reload(void)
 	struct block_list *bl;
 
 	/* clear guild flag cache */
-	guild_flags_clear();
+	guild->flags_clear();
 
 	npc->path_db->clear(npc->path_db, npc->path_db_clear_sub);
 

@@ -2273,7 +2273,7 @@ int status_calc_mob_(struct mob_data *md, enum e_status_calc_opt opt)
 	if(flag&4) {
 		// Strengthen Guardians - custom value +10% / lv
 		struct guild_castle *gc;
-		gc=guild_mapname2gc(map[md->bl.m].name);
+		gc = guild->mapname2gc(map[md->bl.m].name);
 		if(!gc)
 			ShowError("status_calc_mob: No castle set at map %s\n", map[md->bl.m].name);
 		else if(gc->castle_id < 24 || md->class_ == MOBID_EMPERIUM) {
@@ -6130,7 +6130,7 @@ int status_get_emblem_id(struct block_list *bl)
 			break;
 		case BL_NPC:
 			if(((TBL_NPC *)bl)->subtype == SCRIPT && ((TBL_NPC *)bl)->u.scr.guild_id > 0) {
-				struct guild *g = guild_search(((TBL_NPC *)bl)->u.scr.guild_id);
+				struct guild *g = guild->search(((TBL_NPC *)bl)->u.scr.guild_id);
 				if(g)
 					return g->emblem_id;
 			}
@@ -6687,13 +6687,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	struct map_session_data *sd = NULL;
 	struct status_change *sc;
 	struct status_change_entry *sce;
-	struct status_data *status;
+	struct status_data *st;
 	struct view_data *vd;
 	int opt_flag, calc_flag, undead_flag, val_flag = 0, tick_time = 0;
 
 	nullpo_ret(bl);
 	sc = status_get_sc(bl);
-	status = status_get_status_data(bl);
+	st = status_get_status_data(bl);
 
 	if(type <= SC_NONE || type >= SC_MAX) {
 		ShowError("status_change_start: invalid status change (%d)!\n", type);
@@ -6778,7 +6778,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if(!tick) return 0;
 	}
 
-	undead_flag = battle_check_undead(status->race,status->def_ele);
+	undead_flag = battle_check_undead(st->race,st->def_ele);
 	//Check for inmunities / sc fails
 	switch(type) {
 		case SC_DRUMBATTLE:
@@ -6825,7 +6825,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 		case SC_CRUCIS:
 			//Only affects demons and undead element (but not players)
-			if((!undead_flag && status->race!=RC_DEMON) || bl->type == BL_PC)
+			if((!undead_flag && st->race!=RC_DEMON) || bl->type == BL_PC)
 				return 0;
 			break;
 		case SC_LEXAETERNA:
@@ -7073,7 +7073,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	}
 
 	//Check for BOSS resistances
-	if(status->mode&MD_BOSS && !(flag&1)) {
+	if(st->mode&MD_BOSS && !(flag&1)) {
 		if(type>=SC_COMMON_MIN && type <= SC_COMMON_MAX)
 			return 0;
 		switch(type) {
@@ -7121,7 +7121,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		}
 	}
 	//Check for mvp resistance //atm only those who OS
-	if(status->mode&MD_MVP && !(flag&1)) {
+	if(st->mode&MD_MVP && !(flag&1)) {
 		 switch (type) {
 		 case SC_COMA:
 		//continue list...
@@ -7134,7 +7134,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_BLESSING:
 			//TO-DO Blessing and Agi up should do 1 damage against players on Undead Status, even on PvM
 			//but cannot be plagiarized (this requires aegis investigation on packets and official behavior) [Brainstorm]
-			if((!undead_flag && status->race!=RC_DEMON) || bl->type == BL_PC) {
+			if((!undead_flag && st->race!=RC_DEMON) || bl->type == BL_PC) {
 				status_change_end(bl, SC_CURSE, INVALID_TIMER);
 				if(sc->data[SC_STONE] && sc->opt1 == OPT1_STONE)
 					status_change_end(bl, SC_STONE, INVALID_TIMER);
@@ -7503,7 +7503,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					tick = -1;
 				break;
 			case SC_AUTOBERSERK:
-				if(status->hp < status->max_hp>>2 &&
+				if(st->hp < st->max_hp>>2 &&
 				   (!sc->data[SC_PROVOKE] || sc->data[SC_PROVOKE]->val2==0))
 					sc_start4(bl,SC_PROVOKE,100,10,1,0,0,60000);
 				tick = -1;
@@ -7536,7 +7536,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_KYRIE:
 			if(sd)
 				val1 = min(val1,pc_checkskill(sd,PR_KYRIE)); // use skill level to determine barrier health.
-				val2 = APPLY_RATE(status->max_hp, (val1 * 2 + 10)); //%Max HP to absorb
+				val2 = APPLY_RATE(st->max_hp, (val1 * 2 + 10)); //%Max HP to absorb
 				// val4 holds current amount of party members when casting Praefatio
 				// as Praefatio's barrier has more health and blocks more hits than Kyrie Elesion.
 				if( val4 < 1 ) //== PR_KYRIE
@@ -7724,10 +7724,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 			case SC_DPOISON:
 				//Lose 10/15% of your life as long as it doesn't brings life below 25%
-				if (status->hp > status->max_hp>>2) {
-				int diff = status->max_hp*(bl->type==BL_PC?10:15)/100;
-				if (status->hp - diff < status->max_hp>>2)
-				diff = status->hp - (status->max_hp>>2);
+				if (st->hp > st->max_hp>>2) {
+				int diff = st->max_hp*(bl->type==BL_PC?10:15)/100;
+				if (st->hp - diff < st->max_hp>>2)
+				diff = st->hp - (st->max_hp>>2);
 				if( val2 && bl->type == BL_MOB ) {
 				struct block_list* src = map_id2bl(val2);
 				if( src )
@@ -7742,9 +7742,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				tick_time = 1000; // [GodLesZ] tick time
 				//val4: HP damage
 				if (bl->type == BL_PC)
-				val4 = (type == SC_DPOISON) ? 3 + status->max_hp/50 : 3 + status->max_hp*3/200;
+				val4 = (type == SC_DPOISON) ? 3 + st->max_hp/50 : 3 + st->max_hp*3/200;
 				else
-				val4 = (type == SC_DPOISON) ? 3 + status->max_hp/100 : 3 + status->max_hp/200;
+				val4 = (type == SC_DPOISON) ? 3 + st->max_hp/100 : 3 + st->max_hp/200;
 				break;
 			case SC_CONFUSION:
 				clif_emotion(bl,E_WHAT);
@@ -7925,7 +7925,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					struct status_change *psc = pbl?status_get_sc(pbl):NULL;
 					struct status_change_entry *psce = psc?psc->data[SC_MARIONETTE_MASTER]:NULL;
 					// fetch target's stats
-					struct status_data *status = status_get_status_data(bl); // battle status
+					struct status_data *tst = status_get_status_data(bl); // battle status
 
 					if(!psce)
 						return 0;
@@ -7933,12 +7933,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					val3 = 0;
 					val4 = 0;
 					max_stat = battle_config.max_parameter; //Cap to 99 (default)
-					stat = (psce->val3 >>16)&0xFF; stat = min(stat, max_stat - status->str); val3 |= cap_value(stat,0,0xFF)<<16;
-					stat = (psce->val3 >> 8)&0xFF; stat = min(stat, max_stat - status->agi); val3 |= cap_value(stat,0,0xFF)<<8;
-					stat = (psce->val3 >> 0)&0xFF; stat = min(stat, max_stat - status->vit); val3 |= cap_value(stat,0,0xFF);
-					stat = (psce->val4 >>16)&0xFF; stat = min(stat, max_stat - status->int_); val4 |= cap_value(stat,0,0xFF)<<16;
-					stat = (psce->val4 >> 8)&0xFF; stat = min(stat, max_stat - status->dex); val4 |= cap_value(stat,0,0xFF)<<8;
-					stat = (psce->val4 >> 0)&0xFF; stat = min(stat, max_stat - status->luk); val4 |= cap_value(stat,0,0xFF);
+					stat = (psce->val3 >>16)&0xFF; stat = min(stat, max_stat - tst->str); val3 |= cap_value(stat,0,0xFF)<<16;
+					stat = (psce->val3 >> 8)&0xFF; stat = min(stat, max_stat - tst->agi); val3 |= cap_value(stat,0,0xFF)<<8;
+					stat = (psce->val3 >> 0)&0xFF; stat = min(stat, max_stat - tst->vit); val3 |= cap_value(stat,0,0xFF);
+					stat = (psce->val4 >>16)&0xFF; stat = min(stat, max_stat - tst->int_); val4 |= cap_value(stat,0,0xFF)<<16;
+					stat = (psce->val4 >> 8)&0xFF; stat = min(stat, max_stat - tst->dex); val4 |= cap_value(stat,0,0xFF)<<8;
+					stat = (psce->val4 >> 0)&0xFF; stat = min(stat, max_stat - tst->luk); val4 |= cap_value(stat,0,0xFF);
 			}
 				break;
 			case SC_SWORDREJECT:
@@ -7988,9 +7988,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(val3 && bl->type == BL_MOB) {
 					struct block_list *src = map_id2bl(val3);
 					if(src)
-						mob_log_damage((TBL_MOB *)bl,src,status->hp - 1);
+						mob_log_damage((TBL_MOB *)bl,src,st->hp - 1);
 				}
-				status_zap(bl, status->hp-1, val2 ? 0 : status->sp);
+				status_zap(bl, st->hp-1, val2 ? 0 : st->sp);
 				return 1;
 				break;
 			case SC_RG_CCONFINE_S:
@@ -8064,7 +8064,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val4 = INVALID_TIMER;   //Kaahi Timer.
 				break;
 			case SC_BLESSING:
-				if((!undead_flag && status->race!=RC_DEMON) || bl->type == BL_PC)
+				if((!undead_flag && st->race!=RC_DEMON) || bl->type == BL_PC)
 					val2 = val1;
 				else
 					val2 = 0; //0 -> Half stat.
@@ -8123,13 +8123,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val3 = 3*val1; //Hit increase
 				break;
 			case SC_SUN_COMFORT:
-				val2 = (status_get_lv(bl) + status->dex + status->luk)/2; //def increase
+				val2 = (status_get_lv(bl) + st->dex + st->luk)/2; //def increase
 				break;
 			case SC_MOON_COMFORT:
-				val2 = (status_get_lv(bl) + status->dex + status->luk)/10; //flee increase
+				val2 = (status_get_lv(bl) + st->dex + st->luk)/10; //flee increase
 				break;
 			case SC_STAR_COMFORT:
-				val2 = (status_get_lv(bl) + status->dex + status->luk); //Aspd increase
+				val2 = (status_get_lv(bl) + st->dex + st->luk); //Aspd increase
 				break;
 			case SC_QUAGMIRE:
 				val2 = (sd?5:10)*val1; //Agi/Dex decrease.
@@ -8211,7 +8211,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val3= 20*val1; //Int increase
 				break;
 			case SC_SWOO:
-				if(status->mode&MD_BOSS)
+				if(st->mode&MD_BOSS)
 					tick /= 5; //TODO: Reduce skill's duration. But for how long?
 				break;
 			case SC_SPIDERWEB:
@@ -8514,7 +8514,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				}
 				break;
 			case SC_VACUUM_EXTREME:
-				tick -= (status->str / 20) * 1000;
+				tick -= (st->str / 20) * 1000;
 				val4 = val3 = tick / 100;
 				tick_time = 100; // [GodLesZ] tick time
 				break;
@@ -8619,7 +8619,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					val1 += (400 * status_get_lv(bl) / 100) + (15 * (status_get_lv(bl) / 2));   // About 1138% at mob_lvl 99. Is an aproximation to a standard weapon. [pakpil]
 				break;
 			case SC_PRESTIGE:   // Bassed on suggested formula in iRO Wiki and some test, still need more test. [pakpil]
-				val2 = ((status->int_ + status->luk) / 6) + 5;  // Chance to evade magic damage.
+				val2 = ((st->int_ + st->luk) / 6) + 5;  // Chance to evade magic damage.
 				val1 *= 15; // Defence added
 				if(sd)
 					val1 += 10 * pc_checkskill(sd,CR_DEFENDER);
@@ -8654,7 +8654,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_GENTLETOUCH_CHANGE: {
 					// take note there is no def increase as skill desc says. [malufett]
 					struct block_list *src;
-					val3 = status->agi * val1 / 60; // ASPD increase: [(Target's AGI x Skill Level) / 60] %
+					val3 = st->agi * val1 / 60; // ASPD increase: [(Target's AGI x Skill Level) / 60] %
 					if((src = map_id2bl(val2))) {
 						val4 = (200/status_get_int(src)) * val1;  // MDEF decrease: MDEF [(200 / Caster's INT) x Skill Level]
 						val2 = ( status_get_dex(src)/4 + status_get_str(src)/2 ) * val1 / 5; // ATK increase: ATK [{(Caster DEX / 4) + (Caster STR / 2)} x Skill Level / 5]
@@ -9337,10 +9337,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	switch(type) {
 		case SC_BERSERK:
 			if(!(sce->val2)) {  //don't heal if already set
-				status_heal(bl, status->max_hp, 0, 1); //Do not use percent_heal as this healing must override BERSERK's block.
+				status_heal(bl, st->max_hp, 0, 1); //Do not use percent_heal as this healing must override BERSERK's block.
 				status_set_sp(bl, 0, 0); //Damage all SP
 			}
-			sce->val2 = 5 * status->max_hp / 100;
+			sce->val2 = 5 * st->max_hp / 100;
 			break;
 		case SC_HLIF_CHANGE:
 			status_percent_heal(bl, 100, 100);
@@ -9406,7 +9406,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			}
 			break;
 		case SC_RAISINGDRAGON:
-			sce->val2 = status->max_hp / 100;// Officially tested its 1%hp drain. [Jobbie]
+			sce->val2 = st->max_hp / 100;// Officially tested its 1%hp drain. [Jobbie]
 			break;
 		case SC_EQC:
 			sc_start2(bl,SC_STUN,100,val1,bl->id,(1000*status_get_lv(bl))/50+500*val1);

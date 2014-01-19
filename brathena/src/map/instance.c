@@ -87,7 +87,7 @@ int instance_create(int owner_id, const char *name, enum instance_owner_type typ
 			icptr = &p->instances;
 			break;
 		case IOT_GUILD:
-			if((g = guild_search(owner_id) ) == NULL) {
+			if((g = guild->search(owner_id) ) == NULL) {
 				ShowError("instance_create: guild %d not found for instance '%s'.\n", owner_id, name);
 				return -2;
 			}
@@ -545,7 +545,7 @@ void instance_destroy(int instance_id) {
 			icptr = &p->instances;
 			break;
 		case IOT_GUILD:
-			if((g = guild_search(instance->list[instance_id].owner_id)) == NULL) {
+			if((g = guild->search(instance->list[instance_id].owner_id)) == NULL) {
 				break;
 			}
 			iptr = g->instance;

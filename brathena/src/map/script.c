@@ -5518,7 +5518,7 @@ BUILDIN_FUNC(warpguild)
 	int y           = script_getnum(st,4);
 	int gid         = script_getnum(st,5);
 
-	g = guild_search(gid);
+	g = guild->search(gid);
 	if(g == NULL)
 		return 0;
 
@@ -7325,7 +7325,7 @@ BUILDIN_FUNC(getguildname)
 
 	guild_id = script_getnum(st,2);
 
-	if((g = guild_search(guild_id)) != NULL) {
+	if ((g = guild->search(guild_id)) != NULL) {
 		script_pushstrcopy(st,g->name);
 	} else {
 		script_pushconststr(st,"null");
@@ -7344,7 +7344,7 @@ BUILDIN_FUNC(getguildmaster)
 
 	guild_id = script_getnum(st,2);
 
-	if((g = guild_search(guild_id)) != NULL) {
+	if((g = guild->search(guild_id)) != NULL) {
 		script_pushstrcopy(st,g->member[0].name);
 	} else {
 		script_pushconststr(st,"null");
@@ -7359,7 +7359,7 @@ BUILDIN_FUNC(getguildmasterid)
 
 	guild_id = script_getnum(st,2);
 
-	if((g = guild_search(guild_id)) != NULL) {
+	if((g = guild->search(guild_id)) != NULL) {
 		script_pushint(st,g->member[0].char_id);
 	} else {
 		script_pushint(st,0);
@@ -8227,7 +8227,7 @@ BUILDIN_FUNC(guildskill)
 	id = (script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	level = script_getnum(st,3);
 	for(i=0; i < level; i++)
-		guild_skillup(sd, id);
+		guild->skillup(sd, id);
 
 	return 0;
 }
@@ -8263,11 +8263,11 @@ BUILDIN_FUNC(getgdskilllv)
 
 	guild_id = script_getnum(st,2);
 	skill_id = (script_isstringtype(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3));
-	g = guild_search(guild_id);
+	g = guild->search(guild_id);
 	if(g == NULL)
 		script_pushint(st, -1);
 	else
-		script_pushint(st, guild_checkskill(g,skill_id));
+		script_pushint(st, guild->checkskill(g, skill_id));
 
 	return 0;
 }
@@ -8625,7 +8625,7 @@ BUILDIN_FUNC(savepoint)
 {
 	int x;
 	int y;
-	short map;
+	short mapid;
 	const char *str;
 	TBL_PC *sd;
 
@@ -8636,9 +8636,9 @@ BUILDIN_FUNC(savepoint)
 	str = script_getstr(st, 2);
 	x   = script_getnum(st,3);
 	y   = script_getnum(st,4);
-	map = mapindex->name2id(str);
-	if(map)
-		pc_setsavepoint(sd, map, x, y);
+	mapid = mapindex->name2id(str);
+	if(mapid)
+		pc_setsavepoint(sd, mapid, x, y);
 
 	return 0;
 }
@@ -8756,7 +8756,7 @@ BUILDIN_FUNC(openstorage)
 	if(sd == NULL)
 		return 0;
 
-	storage_storageopen(sd);
+	storage->open(sd);
 	return 0;
 }
 
@@ -8769,7 +8769,7 @@ BUILDIN_FUNC(guildopenstorage)
 	if(sd == NULL)
 		return 0;
 
-	ret = storage_guild_storageopen(sd);
+	ret = gstorage->open(sd);
 	script_pushint(st,ret);
 	return 0;
 }
@@ -8907,7 +8907,7 @@ BUILDIN_FUNC(guildgetexp)
 	if(exp < 0)
 		return 0;
 	if(sd && sd->status.guild_id > 0)
-		guild_getexp(sd, exp);
+		guild->getexp(sd, exp);
 
 	return 0;
 }
@@ -8928,7 +8928,7 @@ BUILDIN_FUNC(guildchangegm)
 	if(!sd)
 		script_pushint(st,0);
 	else
-		script_pushint(st,guild_gm_change(guild_id, sd));
+		script_pushint(st, guild->gm_change(guild_id, sd));
 
 	return 0;
 }
@@ -9219,9 +9219,9 @@ BUILDIN_FUNC(clone)
 	TBL_PC *sd, *msd=NULL;
 	int char_id,master_id=0,x,y, mode = 0, flag = 0, m;
 	unsigned int duration = 0;
-	const char *map,*event="";
+	const char *mapname,*event="";
 
-	map=script_getstr(st,2);
+	mapname=script_getstr(st,2);
 	x=script_getnum(st,3);
 	y=script_getnum(st,4);
 	event=script_getstr(st,5);
@@ -9241,7 +9241,7 @@ BUILDIN_FUNC(clone)
 
 	script->check_event(st, event);
 
-	m = map_mapname2mapid(map);
+	m = map_mapname2mapid(mapname);
 	if(m < 0) return 0;
 
 	sd = map_charid2sd(char_id);
@@ -9783,7 +9783,7 @@ BUILDIN_FUNC(getmapguildusers)
 		script_pushint(st,-1);
 		return 0;
 	}
-	g = guild_search(gid);
+	g = guild->search(gid);
 
 	if(g) {
 		for(i = 0; i < g->max_member; i++) {
@@ -11247,7 +11247,7 @@ BUILDIN_FUNC(agitstart)
 {
 	if(agit_flag==1) return 0;      // Agit already Start.
 	agit_flag=1;
-	guild_agit_start();
+	guild->agit_start();
 	return 0;
 }
 
@@ -11255,7 +11255,7 @@ BUILDIN_FUNC(agitend)
 {
 	if(agit_flag==0) return 0;      // Agit already End.
 	agit_flag=0;
-	guild_agit_end();
+	guild->agit_end();
 	return 0;
 }
 
@@ -11263,7 +11263,7 @@ BUILDIN_FUNC(agitstart2)
 {
 	if(agit2_flag==1) return 0;      // Agit2 already Start.
 	agit2_flag=1;
-	guild_agit2_start();
+	guild->agit2_start();
 	return 0;
 }
 
@@ -11271,7 +11271,7 @@ BUILDIN_FUNC(agitend2)
 {
 	if(agit2_flag==0) return 0;      // Agit2 already End.
 	agit2_flag=0;
-	guild_agit2_end();
+	guild->agit2_end();
 	return 0;
 }
 
@@ -11314,9 +11314,9 @@ BUILDIN_FUNC(flagemblem)
 		clif_guild_emblem_area(&nd->bl);
 		/* guild flag caching */
 		if(g_id)   /* adding a id */
-			guild_flag_add(nd);
+			guild->flag_add(nd);
 		else if(changed)   /* removing a flag */
-			guild_flag_remove(nd);
+			guild->flag_remove(nd);
 	}
 	return 0;
 }
@@ -11324,7 +11324,7 @@ BUILDIN_FUNC(flagemblem)
 BUILDIN_FUNC(getcastlename)
 {
 	const char *mapname = mapindex->getmapname(script_getstr(st, 2), NULL);
-	struct guild_castle *gc = guild_mapname2gc(mapname);
+	struct guild_castle *gc = guild->mapname2gc(mapname);
 	const char *name = (gc) ? gc->castle_name : "";
 	script_pushstrcopy(st,name);
 	return 0;
@@ -11334,7 +11334,7 @@ BUILDIN_FUNC(getcastledata)
 {
 	const char *mapname = mapindex->getmapname(script_getstr(st, 2), NULL);
 	int index = script_getnum(st,3);
-	struct guild_castle *gc = guild_mapname2gc(mapname);
+	struct guild_castle *gc = guild->mapname2gc(mapname);
 
 	if(gc == NULL) {
 		script_pushint(st,0);
@@ -11378,7 +11378,7 @@ BUILDIN_FUNC(setcastledata)
 	const char *mapname = mapindex->getmapname(script_getstr(st, 2), NULL);
 	int index = script_getnum(st,3);
 	int value = script_getnum(st,4);
-	struct guild_castle *gc = guild_mapname2gc(mapname);
+	struct guild_castle *gc = guild->mapname2gc(mapname);
 
 	if(gc == NULL) {
 		ShowWarning("buildin_setcastledata: guild castle for map '%s' not found\n", mapname);
@@ -11390,7 +11390,7 @@ BUILDIN_FUNC(setcastledata)
 		return 1;
 	}
 
-	guild_castledatasave(gc->castle_id, index, value);
+	guild->castledatasave(gc->castle_id, index, value);
 	return 0;
 }
 
@@ -11407,7 +11407,7 @@ BUILDIN_FUNC(requestguildinfo)
 	}
 
 	if(guild_id>0)
-		guild_npc_request_info(guild_id,event);
+		guild->npc_request_info(guild_id, event);
 	return 0;
 }
 
@@ -11610,7 +11610,7 @@ BUILDIN_FUNC(mapwarp)   // Added by RoVeRT
 
 	switch(check_val) {
 		case 1:
-			g = guild_search(check_ID);
+			g = guild->search(check_ID);
 			if(g) {
 				for(i=0; i < g->max_member; i++) {
 					if(g->member[i].sd && g->member[i].sd->bl.m==m) {
@@ -11887,11 +11887,11 @@ BUILDIN_FUNC(guardian)
  *------------------------------------------*/
 BUILDIN_FUNC(setwall)
 {
-	const char *map, *name;
+	const char *mapname, *name;
 	int x, y, m, size, dir;
 	bool shootable;
 
-	map = script_getstr(st,2);
+	mapname = script_getstr(st,2);
 	x = script_getnum(st,3);
 	y = script_getnum(st,4);
 	size = script_getnum(st,5);
@@ -11899,7 +11899,7 @@ BUILDIN_FUNC(setwall)
 	shootable = script_getnum(st,7);
 	name = script_getstr(st,8);
 
-	if((m = map_mapname2mapid(map)) < 0)
+	if((m = map_mapname2mapid(mapname)) < 0)
 		return 0; // Invalid Map
 
 	map_iwall_set(m, x, y, size, dir, shootable, name);
@@ -11926,7 +11926,7 @@ BUILDIN_FUNC(guardianinfo)
 	int id = script_getnum(st,3);
 	int type = script_getnum(st,4);
 
-	struct guild_castle *gc = guild_mapname2gc(mapname);
+	struct guild_castle *gc = guild->mapname2gc(mapname);
 	struct mob_data *gd;
 
 	if(gc == NULL || id < 0 || id >= MAX_GUARDIANS) {
@@ -12367,26 +12367,26 @@ BUILDIN_FUNC(playBGMall)
 
 	if(script_hasdata(st,7)) {
 		// specified part of map
-		const char *map = script_getstr(st,3);
+		const char *mapname = script_getstr(st,3);
 		int x0 = script_getnum(st,4);
 		int y0 = script_getnum(st,5);
 		int x1 = script_getnum(st,6);
 		int y1 = script_getnum(st,7);
 		int m;
 
-		if((m = map_mapname2mapid(map)) == -1) {
-			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, map);
+		if((m = map_mapname2mapid(mapname)) == -1) {
+			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, mapname);
 			return 0;
 		}
 
 		map_foreachinarea(script->playbgm_sub, m, x0, y0, x1, y1, BL_PC, name);
 	}
 	else if( script_hasdata(st,3)) {// entire map
-		const char* map = script_getstr(st,3);
+		const char* mapname = script_getstr(st,3);
 		int m;
 
-		if ((m = map_mapname2mapid(map)) == -1) {
-			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, map);
+		if ((m = map_mapname2mapid(mapname)) == -1) {
+			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, mapname);
 			return 0;
 		}
 
@@ -12446,25 +12446,25 @@ BUILDIN_FUNC(soundeffectall)
 		clif_soundeffectall(bl, name, type, AREA);
 	} else {
 		 if(!script_hasdata(st,5)) { // entire map
-			const char *map = script_getstr(st,4);
+			const char *mapname = script_getstr(st,4);
 			int m;
 
-			if((m = map_mapname2mapid(map)) == -1) {
-				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, map);
+			if((m = map_mapname2mapid(mapname)) == -1) {
+				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, mapname);
 				return 0;
 			}
 
 		map_foreachinmap(script->soundeffect_sub, m, BL_PC, name, type);
 	} else if(script_hasdata(st,8)) { // specified part of map
-		const char *map = script_getstr(st,4);
+		const char *mapname = script_getstr(st,4);
 		int x0 = script_getnum(st,5);
 		int y0 = script_getnum(st,6);
 		int x1 = script_getnum(st,7);
 		int y1 = script_getnum(st,8);
 		int m;
 
-			if ((m = map_mapname2mapid(map)) == -1) {
-				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, map);
+			if ((m = map_mapname2mapid(mapname)) == -1) {
+				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, mapname);
 				return 0;
 			}
 
@@ -12830,7 +12830,7 @@ BUILDIN_FUNC(recovery)
 {
 	TBL_PC *sd = script->rid2sd(st);
 
-	int map = 0, type = 0, revive = 1;
+	int mapid = 0, type = 0, revive = 1;
 
 	type = script_getnum(st,2);
 
@@ -12852,8 +12852,8 @@ BUILDIN_FUNC(recovery)
 			//When no party given, we use invoker party
 			int p_id, i;
 			if(script_hasdata(st,5)) {//Bad maps shouldn't cause issues
-				map = map_mapname2mapid(script_getstr(st,5));
-				if(map < 1) { //But we'll check anyways
+				mapid = map_mapname2mapid(script_getstr(st,5));
+				if(mapid < 1) { //But we'll check anyways
 					ShowDebug("recovery: bad map name given (%s)\n", script_getstr(st,5));
 					return 1;
 				}
@@ -12867,7 +12867,7 @@ BUILDIN_FUNC(recovery)
 				return 0;
 			for (i = 0; i < MAX_PARTY; i++) {
 				if((!(pl_sd = p->data[i].sd) || pl_sd->status.party_id != p_id)
-					|| (map && pl_sd->bl.m != map))
+					|| (mapid && pl_sd->bl.m != mapid))
 					continue;
 				recovery_sub(pl_sd, revive);
 			}
@@ -12880,8 +12880,8 @@ BUILDIN_FUNC(recovery)
 			//When no guild given, we use invoker guild
 			int g_id, i;
 			if(script_hasdata(st,5)) {//Bad maps shouldn't cause issues
-				map = map_mapname2mapid(script_getstr(st,5));
-				if(map < 1) { //But we'll check anyways
+				mapid = map_mapname2mapid(script_getstr(st,5));
+				if(mapid < 1) { //But we'll check anyways
 					ShowDebug("recovery: bad map name given (%s)\n", script_getstr(st,5));
 					return 1;
 				}
@@ -12890,12 +12890,12 @@ BUILDIN_FUNC(recovery)
 				g_id = script_getnum(st,3);
 			else
 				g_id = (sd)?sd->status.guild_id:0;
-			g = guild_search(g_id);
+			g = guild->search(g_id);
 			if(g == NULL)
 				return 0;
 			for (i = 0; i < MAX_GUILD; i++) {
 				if((!(pl_sd = g->member[i].sd) || pl_sd->status.guild_id != g_id)
-					|| (map && pl_sd->bl.m != map))
+					|| (mapid && pl_sd->bl.m != mapid))
 					continue;
 				recovery_sub(pl_sd, revive);
 			}
@@ -12903,10 +12903,10 @@ BUILDIN_FUNC(recovery)
 		}
 		case 3:
 			if(script_hasdata(st,3))
-				map = map_mapname2mapid(script_getstr(st,3));
+				mapid = map_mapname2mapid(script_getstr(st,3));
 			else
-				map = (sd)?sd->bl.m:0; //No sd and no map given - return
-			if(map < 1)
+				mapid = (sd)?sd->bl.m:0; //No sd and no map given - return
+			if(mapid < 1)
 				return 1;
 		case 4:
 		{
@@ -12915,7 +12915,7 @@ BUILDIN_FUNC(recovery)
 				revive = script_getnum(st,3);
 			iter = mapit_getallusers();
 			for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter)) {
-				if(type == 3 && sd->bl.m != map)
+				if(type == 3 && sd->bl.m != mapid)
 					continue;
 				recovery_sub(sd, revive);
 			}
@@ -15537,7 +15537,7 @@ BUILDIN_FUNC(unitkill)
 BUILDIN_FUNC(unitwarp)
 {
 	int unit_id;
-	int map;
+	int mapid;
 	short x;
 	short y;
 	struct block_list *bl;
@@ -15554,13 +15554,13 @@ BUILDIN_FUNC(unitwarp)
 		bl = map_id2bl(unit_id);
 
 	if(strcmp(mapname,"this") == 0)
-		map = bl?bl->m:-1;
+		mapid = bl?bl->m:-1;
 	else
-		map = map_mapname2mapid(mapname);
+		mapid = map_mapname2mapid(mapname);
 
-	if(map >= 0 && bl != NULL) {
+	if(mapid >= 0 && bl != NULL) {
 		unit_bl2ud2(bl); // ensure ((TBL_NPC*)bl)->ud is safe to edit
-		script_pushint(st, unit_warp(bl,map,x,y,CLR_OUTSIGHT));
+		script_pushint(st, unit_warp(bl,mapid,x,y,CLR_OUTSIGHT));
 	} else {
 		script_pushint(st, 0);
 	}
@@ -16075,13 +16075,13 @@ BUILDIN_FUNC(mercenary_sc_start)
 BUILDIN_FUNC(mercenary_get_calls)
 {
 	struct map_session_data *sd = script->rid2sd(st);
-	int guild;
+	int guild_id;
 
 	if(sd == NULL)
 		return 0;
 
-	guild = script_getnum(st,2);
-	switch(guild) {
+	guild_id = script_getnum(st,2);
+	switch(guild_id) {
 		case ARCH_MERC_GUILD:
 			script_pushint(st,sd->status.arch_calls);
 			break;
@@ -16102,15 +16102,15 @@ BUILDIN_FUNC(mercenary_get_calls)
 BUILDIN_FUNC(mercenary_set_calls)
 {
 	struct map_session_data *sd = script->rid2sd(st);
-	int guild, value, *calls;
+	int guild_id, value, *calls;
 
 	if(sd == NULL)
 		return 0;
 
-	guild = script_getnum(st,2);
+	guild_id = script_getnum(st,2);
 	value = script_getnum(st,3);
 
-	switch(guild) {
+	switch(guild_id) {
 		case ARCH_MERC_GUILD:
 			calls = &sd->status.arch_calls;
 			break;
@@ -16133,13 +16133,13 @@ BUILDIN_FUNC(mercenary_set_calls)
 BUILDIN_FUNC(mercenary_get_faith)
 {
 	struct map_session_data *sd = script->rid2sd(st);
-	int guild;
+	int guild_id;
 
 	if(sd == NULL)
 		return 0;
 
-	guild = script_getnum(st,2);
-	switch(guild) {
+	guild_id = script_getnum(st,2);
+	switch(guild_id) {
 		case ARCH_MERC_GUILD:
 			script_pushint(st,sd->status.arch_faith);
 			break;
@@ -16160,15 +16160,15 @@ BUILDIN_FUNC(mercenary_get_faith)
 BUILDIN_FUNC(mercenary_set_faith)
 {
 	struct map_session_data *sd = script->rid2sd(st);
-	int guild, value, *calls;
+	int guild_id, value, *calls;
 
 	if(sd == NULL)
 		return 0;
 
-	guild = script_getnum(st,2);
+	guild_id = script_getnum(st,2);
 	value = script_getnum(st,3);
 
-	switch(guild) {
+	switch(guild_id) {
 		case ARCH_MERC_GUILD:
 			calls = &sd->status.arch_faith;
 			break;
@@ -16184,7 +16184,7 @@ BUILDIN_FUNC(mercenary_set_faith)
 
 	*calls += value;
 	*calls = cap_value(*calls, 0, INT_MAX);
-	if(mercenary_get_guild(sd->md) == guild)
+	if(mercenary_get_guild(sd->md) == guild_id)
 		clif_mercenary_updatestatus(sd,SP_MERCFAITH);
 
 	return 0;
@@ -16457,15 +16457,15 @@ BUILDIN_FUNC(waitingroom2bg_single)
 
 BUILDIN_FUNC(bg_team_setxy)
 {
-	struct battleground_data *bg;
+	struct battleground_data *bgd;
 	int bg_id;
 
 	bg_id = script_getnum(st,2);
-	if((bg = bg_team_search(bg_id)) == NULL)
+	if((bgd = bg_team_search(bg_id)) == NULL)
 		return 0;
 
-	bg->x = script_getnum(st,3);
-	bg->y = script_getnum(st,4);
+	bgd->x = script_getnum(st,3);
+	bgd->y = script_getnum(st,4);
 	return 0;
 }
 
@@ -16487,17 +16487,17 @@ BUILDIN_FUNC(bg_warp)
 BUILDIN_FUNC(bg_monster)
 {
 	int class_ = 0, x = 0, y = 0, bg_id = 0;
-	const char *str,*map, *evt="";
+	const char *str,*mapname, *evt="";
 
-	bg_id  = script_getnum(st,2);
-	map    = script_getstr(st,3);
-	x      = script_getnum(st,4);
-	y      = script_getnum(st,5);
-	str    = script_getstr(st,6);
-	class_ = script_getnum(st,7);
+	bg_id   = script_getnum(st,2);
+	mapname = script_getstr(st,3);
+	x       = script_getnum(st,4);
+	y       = script_getnum(st,5);
+	str     = script_getstr(st,6);
+	class_  = script_getnum(st,7);
 	if(script_hasdata(st,8)) evt = script_getstr(st,8);
 	script->check_event(st, evt);
-	script_pushint(st, mob_spawn_bg(map,x,y,str,class_,evt,bg_id));
+	script_pushint(st, mob_spawn_bg(mapname,x,y,str,class_,evt,bg_id));
 	return 0;
 }
 
@@ -16544,13 +16544,13 @@ BUILDIN_FUNC(bg_getareausers)
 	int16 m, x0, y0, x1, y1;
 	int bg_id;
 	int i = 0, c = 0;
-	struct battleground_data *bg = NULL;
+	struct battleground_data *bgd = NULL;
 	struct map_session_data *sd;
 
 	bg_id = script_getnum(st,2);
 	str = script_getstr(st,3);
 
-	if((bg = bg_team_search(bg_id)) == NULL || (m = map_mapname2mapid(str)) < 0) {
+	if((bgd = bg_team_search(bg_id)) == NULL || (m = map_mapname2mapid(str)) < 0) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -16561,7 +16561,7 @@ BUILDIN_FUNC(bg_getareausers)
 	y1 = script_getnum(st,7);
 
 	for(i = 0; i < MAX_BG_MEMBERS; i++) {
-		if((sd = bg->members[i].sd) == NULL)
+		if((sd = bgd->members[i].sd) == NULL)
 			continue;
 		if(sd->bl.m != m || sd->bl.x < x0 || sd->bl.y < y0 || sd->bl.x > x1 || sd->bl.y > y1)
 			continue;
@@ -16590,17 +16590,17 @@ BUILDIN_FUNC(bg_updatescore)
 
 BUILDIN_FUNC(bg_get_data)
 {
-	struct battleground_data *bg;
+	struct battleground_data *bgd;
 	int bg_id = script_getnum(st,2),
 	    type = script_getnum(st,3);
 
-	if((bg = bg_team_search(bg_id)) == NULL) {
+	if((bgd = bg_team_search(bg_id)) == NULL) {
 		script_pushint(st,0);
 		return 0;
 	}
 
 	switch(type) {
-		case 0: script_pushint(st, bg->count); break;
+		case 0: script_pushint(st, bgd->count); break;
 		default:
 			ShowError("script:bg_get_data: unknown data identifier %d\n", type);
 			break;
@@ -17747,12 +17747,12 @@ int script_cleanfloor_sub(struct block_list *bl, va_list ap)
 
 BUILDIN_FUNC(cleanmap)
 {
-	const char *map;
+	const char *mapname;
 	int16 m = -1;
 	int16 x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 
-	map = script_getstr(st, 2);
-	m = map_mapname2mapid(map);
+	mapname = script_getstr(st, 2);
+	m = map_mapname2mapid(mapname);
 	if (m == -1)
 		return 1;
 
@@ -17975,7 +17975,7 @@ BUILDIN_FUNC(recall)
 	struct map_session_data *sd_,*sd = script->rid2sd(st);
 	struct s_mapiterator *iter;
 	struct party_data *p = party_search(sd->status.party_id);
-	struct guild *g = guild_search(sd->status.guild_id);
+	struct guild *g = guild->search(sd->status.guild_id);
 	const char *type = script_getstr(st,2);
 	int c = 0, quant = 0;
 

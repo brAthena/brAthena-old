@@ -7770,7 +7770,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				                   src,skill_id,skill_lv,tick, flag|BCT_GUILD|1,
 				                   skill_castend_nodamage_id);
 				if(sd)
-					guild_block_skill(sd,skill_get_time2(skill_id,skill_lv));
+					guild->block_skill(sd, skill_get_time2(skill_id, skill_lv));
 			}
 			break;
 		case GD_REGENERATION:
@@ -7784,7 +7784,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				                   src,skill_id,skill_lv,tick, flag|BCT_GUILD|1,
 				                   skill_castend_nodamage_id);
 				if(sd)
-					guild_block_skill(sd,skill_get_time2(skill_id,skill_lv));
+					guild->block_skill(sd, skill_get_time2(skill_id, skill_lv));
 			}
 			break;
 		case GD_RESTORE:
@@ -7798,7 +7798,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				                   src,skill_id,skill_lv,tick, flag|BCT_GUILD|1,
 				                   skill_castend_nodamage_id);
 				if(sd)
-					guild_block_skill(sd,skill_get_time2(skill_id,skill_lv));
+					guild->block_skill(sd, skill_get_time2(skill_id, skill_lv));
 			}
 			break;
 		case GD_EMERGENCYCALL:
@@ -7808,7 +7808,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				int i, j = 0, calls = 0, called = 0;
 				struct guild *g;
 				// i don't know if it actually summons in a circle, but oh well. ;P
-				g = sd ? sd->guild : guild_search(status_get_guild_id(src));
+				g = sd ? sd->guild : guild->search(status_get_guild_id(src));
 				if(!g)
 					break;
 
@@ -7834,7 +7834,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					}
 				}
 				if(sd)
-					guild_block_skill(sd,skill_get_time2(skill_id,skill_lv));
+					guild->block_skill(sd, skill_get_time2(skill_id, skill_lv));
 			}
 			break;
 
@@ -9898,7 +9898,7 @@ static int skill_count_wos(struct block_list *bl,va_list ap) {
 /*==========================================
  *
  *------------------------------------------*/
-int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char *map)
+int skill_castend_map(struct map_session_data *sd, uint16 skill_id, const char *mapname)
 {
 	nullpo_ret(sd);
 
@@ -9940,19 +9940,19 @@ int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char 
 	pc_stop_walking(sd,0);
 
 	if(battle_config.skill_log && battle_config.skill_log&BL_PC)
-		ShowInfo("PC %d skill castend skill =%d map=%s\n",sd->bl.id,skill_id,map);
+		ShowInfo("PC %d skill castend skill =%d map=%s\n",sd->bl.id,skill_id,mapname);
 
-	if(strcmp(map,"cancel")==0) {
+	if(strcmp(mapname,"cancel")==0) {
 		skill_failed(sd);
 		return 0;
 	}
 
 	switch(skill_id) {
 		case AL_TELEPORT:
-			if(strcmp(map,"Random")==0)
+			if(strcmp(mapname,"Random")==0)
 				pc_randomwarp(sd,CLR_TELEPORT);
 			else if (sd->menuskill_val > 1) //Need lv2 to be able to warp here.
-				pc_setpos(sd,sd->status.save_point.map,sd->status.save_point.x,sd->status.save_point.y,CLR_TELEPORT);
+				pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_TELEPORT);
 			break;
 
 		case AL_WARP:
@@ -9964,7 +9964,7 @@ int skill_castend_map (struct map_session_data *sd, uint16 skill_id, const char 
 				int x,y;
 				unsigned short map_index;
 
-				map_index = mapindex->name2id(map);
+				map_index = mapindex->name2id(mapname);
 				if(!map_index) { //Given map not found?
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					skill_failed(sd);

@@ -307,7 +307,7 @@ bool chrif_save(struct map_session_data *sd, int flag)
 
 	//For data sync
 	if(sd->state.storage_flag == 2)
-		storage_guild_storagesave(sd->status.account_id, sd->status.guild_id, flag);
+		gstorage->save(sd->status.account_id, sd->status.guild_id, flag);
 
 	if(flag)
 		sd->state.storage_flag = 0; //Force close it.
@@ -484,7 +484,7 @@ void chrif_connectack(int fd)
 	if(!char_init_done) {
 		char_init_done = true;
 		ShowNpc(read_message("Source.map.map_chrif_s15"), CL_WHITE, CL_RESET, CL_WHITE, npc->event_doall("OnInterIfInitOnce"), CL_RESET);
-		guild_castle_map_init();
+		guild->castle_map_init();
 	}
 
 	socket_datasync(fd, true);
@@ -545,10 +545,10 @@ void chrif_on_ready(void)
 	auth_db->foreach(auth_db,chrif_reconnect);
 
 	//Re-save any storages that were modified in the disconnection time. [Skotlex]
-	do_reconnect_storage();
+	storage->reconnect();
 
 	//Re-save any guild castles that were modified in the disconnection time.
-	guild_castle_reconnect(-1, 0, 0);
+	guild->castle_reconnect(-1, 0, 0);
 
 	if(!once) {
 #ifdef AUTOTRADE_PERSISTENCY

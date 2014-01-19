@@ -2154,16 +2154,16 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				buyingstore_close(sd);
 				searchstore_close(sd);
 				if(sd->state.storage_flag == 1)
-					storage_storage_quit(sd,0);
+					storage->pc_quit(sd, 0);
 				else if(sd->state.storage_flag == 2)
-					storage_guild_storage_quit(sd,0);
+					gstorage->pc_quit(sd, 0);
 				sd->state.storage_flag = 0; //Force close it when being warped.
 				if(sd->party_invite>0)
 					party_reply_invite(sd,sd->party_invite,0);
 				if(sd->guild_invite>0)
-					guild_reply_invite(sd,sd->guild_invite,0);
+					guild->reply_invite(sd, sd->guild_invite, 0);
 				if(sd->guild_alliance>0)
-					guild_reply_reqalliance(sd,sd->guild_alliance_account,0);
+					guild->reply_reqalliance(sd, sd->guild_alliance_account, 0);
 				if(sd->menuskill_id)
 					sd->menuskill_id = sd->menuskill_val = 0;
 				if(sd->touching_id)
@@ -2191,7 +2191,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 					skill_sit(sd,0);
 				}
 				party_send_dot_remove(sd);//minimap dot fix [Kevin]
-				guild_send_dot_remove(sd);
+				guild->send_dot_remove(sd);
 				bg_send_dot_remove(sd);
 
 				if(map[bl->m].users <= 0 || sd->state.debug_remove_map) {
@@ -2364,7 +2364,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				// Notify friends that this char logged out. [Skotlex]
 				map_foreachpc(clif_friendslist_toggle_sub, sd->status.account_id, sd->status.char_id, 0);
 				party_send_logout(sd);
-				guild_send_memberinfoshort(sd,0);
+				guild->send_memberinfoshort(sd, 0);
 				pc_cleareventtimer(sd);
 				pc_inventory_rental_clear(sd);
 				pc_delspiritball(sd,sd->spiritball,1);

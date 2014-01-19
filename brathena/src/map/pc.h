@@ -816,7 +816,7 @@ bool pc_adoption(struct map_session_data *p1_sd, struct map_session_data *p2_sd,
 
 int pc_updateweightstatus(struct map_session_data *sd);
 
-int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short rate,unsigned int dur,short atk_type,const char *o_script,unsigned short pos,bool onskill);
+int pc_addautobonus(struct s_autobonus *bonus,char max,const char *bonus_script,short rate,unsigned int dur,short atk_type,const char *o_script,unsigned short pos,bool onskill);
 int pc_exeautobonus(struct map_session_data *sd,struct s_autobonus *bonus);
 int pc_endautobonus(int tid, int64 tick, int id, intptr_t data);
 int pc_delautobonus(struct map_session_data *sd,struct s_autobonus *bonus,char max,bool restore);
@@ -843,7 +843,7 @@ unsigned int pc_maxbaselv(struct map_session_data *sd);
 unsigned int pc_maxjoblv(struct map_session_data *sd);
 int pc_checkbaselevelup(struct map_session_data *sd);
 int pc_checkjoblevelup(struct map_session_data *sd);
-int pc_gainexp(struct map_session_data *,struct block_list *,unsigned int,unsigned int, bool);
+int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int base_exp,unsigned int job_exp,bool is_quest);
 unsigned int pc_nextbaseexp(struct map_session_data *);
 unsigned int pc_thisbaseexp(struct map_session_data *);
 unsigned int pc_nextjobexp(struct map_session_data *);

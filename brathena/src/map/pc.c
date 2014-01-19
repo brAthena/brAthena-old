@@ -1352,7 +1352,7 @@ int pc_reg_received(struct map_session_data *sd)
 	if(sd->status.party_id)
 		party_member_joined(sd);
 	if(sd->status.guild_id)
-		guild_member_joined(sd);
+		guild->member_joined(sd);
 
 	// pet
 	if(sd->status.pet_id > 0)
@@ -1988,7 +1988,7 @@ static int pc_bonus_item_drop(struct s_add_drop *drop, const short max, short id
 	return 1;
 }
 
-int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short rate,unsigned int dur,short flag,const char *other_script,unsigned short pos,bool onskill)
+int pc_addautobonus(struct s_autobonus *bonus,char max,const char *bonus_script,short rate,unsigned int dur,short flag,const char *other_script,unsigned short pos,bool onskill)
 {
 	int i;
 
@@ -2016,7 +2016,7 @@ int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short 
 	bonus[i].active = INVALID_TIMER;
 	bonus[i].atk_type = flag;
 	bonus[i].pos = pos;
-	bonus[i].bonus_script = aStrdup(script);
+	bonus[i].bonus_script = aStrdup(bonus_script);
 	bonus[i].other_script = other_script?aStrdup(other_script):NULL;
 	return 1;
 }
@@ -4693,17 +4693,17 @@ void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type) {
 			ShowError("Helllo! You reached pc_bound_clear for IBT_ACCOUNT, unfortunately no scenario was expected for this!\n");
 			break;
 		case IBT_GUILD: {
-				struct guild_storage *gstor = guild2storage2(sd->status.guild_id);
+				struct guild_storage *gstor = gstorage->id2storage2(sd->status.guild_id);
 
 				for(i = 0; i < MAX_INVENTORY; i++){
 					if(sd->status.inventory[i].bound == type) {
 						if(gstor)
-							guild_storage_additem(sd,gstor,&sd->status.inventory[i],sd->status.inventory[i].amount);
+							gstorage->additem(sd, gstor, &sd->status.inventory[i], sd->status.inventory[i].amount);
 						pc_delitem(sd,i,sd->status.inventory[i].amount,0,1,gstor?LOG_TYPE_GSTORAGE:LOG_TYPE_OTHER);
 					}
 				}
 				if(gstor)
-					storage_storageclose(sd);
+					storage->close(sd);
 			}
 			break;
 	}
@@ -4972,7 +4972,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short map_index, int x, int 
 		if(battle_config.clear_unit_onwarp&BL_PC)
 			skill_clear_unitgroup(&sd->bl);
 		party_send_dot_remove(sd); //minimap dot fix [Kevin]
-		guild_send_dot_remove(sd);
+		guild->send_dot_remove(sd);
 		bg_send_dot_remove(sd);
 		if(sd->regen.state.gc)
 			sd->regen.state.gc = 0;
@@ -5042,7 +5042,7 @@ int pc_setpos(struct map_session_data *sd, unsigned short map_index, int x, int 
 	sd->bl.y = sd->ud.to_y = y;
 
 	if(sd->status.guild_id > 0 && map[m].flag.gvg_castle) { // Increased guild castle regen [Valaris]
-		struct guild_castle *gc = guild_mapindex2gc(sd->mapindex);
+		struct guild_castle *gc = guild->mapindex2gc(sd->mapindex);
 		if(gc && gc->guild_id == sd->status.guild_id)
 			sd->regen.state.gc = 1;
 	}
@@ -5166,7 +5166,7 @@ int pc_checkskill(struct map_session_data *sd,uint16 skill_id)
 		struct guild *g;
 
 		if(sd->status.guild_id>0 && (g=sd->guild)!=NULL)
-			return guild_checkskill(g,skill_id);
+			return guild->checkskill(g, skill_id);
 		return 0;
 	} else if(!(index = skill_get_index(skill_id)) || index >= ARRAYLENGTH(sd->status.skill) ) {
 		ShowError("pc_checkskill: Invalid skill id %d (char_id=%d).\n", skill_id, sd->status.char_id);
@@ -5192,7 +5192,7 @@ int pc_checkskill2(struct map_session_data *sd,uint16 index)
 		struct guild *g;
 		
 		if( sd->status.guild_id>0 && (g=sd->guild)!=NULL)
-			return guild_checkskill(g,skill_db[index].nameid);
+			return guild->checkskill(g, skill_db[index].nameid);
 		
 		return 0;
 	}
@@ -5982,7 +5982,7 @@ static void pc_calcexp(struct map_session_data *sd, unsigned int *base_exp, unsi
 /*==========================================
  * Give x exp at sd player and calculate remaining exp for next lvl
  *------------------------------------------*/
-int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int base_exp,unsigned int job_exp,bool quest)
+int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int base_exp,unsigned int job_exp,bool is_quest)
 {
 	float nextbp=0, nextjp=0;
 	unsigned int nextb=0, nextj=0;
@@ -5998,7 +5998,7 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 		return 0;
 
 	if(sd->status.guild_id>0)
-		base_exp-=guild_payexp(sd,base_exp);
+		base_exp -= guild->payexp(sd, base_exp);
 
 	if(src) pc_calcexp(sd, &base_exp, &job_exp, src);
 
@@ -6050,9 +6050,9 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 
 #if PACKETVER >= 20091027
 	if(base_exp)
-		clif_displayexp(sd, base_exp, SP_BASEEXP, quest);
+		clif_displayexp(sd, base_exp, SP_BASEEXP, is_quest);
 	if(job_exp)
-		clif_displayexp(sd, job_exp,  SP_JOBEXP, quest);
+		clif_displayexp(sd, job_exp,  SP_JOBEXP, is_quest);
 #endif
 
 	if(sd->state.showexp) {
@@ -6296,7 +6296,7 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 	nullpo_ret(sd);
 
 	if(skill_id >= GD_SKILLBASE && skill_id < GD_SKILLBASE+MAX_GUILDSKILL) {
-		guild_skillup(sd, skill_id);
+		guild->skillup(sd, skill_id);
 		return 0;
 	}
 
@@ -7135,8 +7135,8 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		add_timer(tick+1, pc_respawn_timer, sd->bl.id, 0);
 		return 1|8;
 	} else if(sd->bg_id) {
-		struct battleground_data *bg = bg_team_search(sd->bg_id);
-		if(bg && bg->mapindex > 0) {
+		struct battleground_data *bgd = bg_team_search(sd->bg_id);
+		if(bgd && bgd->mapindex > 0) {
 			// Respawn by BG
 			add_timer(tick+1000, pc_respawn_timer, sd->bl.id, 0);
 			return 1|8;
@@ -7160,10 +7160,10 @@ void pc_revive(struct map_session_data *sd,unsigned int hp, unsigned int sp)
 		pc_setinvincibletimer(sd, battle_config.pc_invincible_time);
 
 	if(sd->state.gmaster_flag) {
-		guild_guildaura_refresh(sd,GD_LEADERSHIP,guild_checkskill(sd->guild,GD_LEADERSHIP));
-		guild_guildaura_refresh(sd,GD_GLORYWOUNDS,guild_checkskill(sd->guild,GD_GLORYWOUNDS));
-		guild_guildaura_refresh(sd,GD_SOULCOLD,guild_checkskill(sd->guild,GD_SOULCOLD));
-		guild_guildaura_refresh(sd,GD_HAWKEYES,guild_checkskill(sd->guild,GD_HAWKEYES));
+		guild->aura_refresh(sd, GD_LEADERSHIP, guild->checkskill(sd->guild, GD_LEADERSHIP));
+		guild->aura_refresh(sd, GD_GLORYWOUNDS, guild->checkskill(sd->guild, GD_GLORYWOUNDS));
+		guild->aura_refresh(sd, GD_SOULCOLD, guild->checkskill(sd->guild, GD_SOULCOLD));
+		guild->aura_refresh(sd, GD_HAWKEYES, guild->checkskill(sd->guild, GD_HAWKEYES));
 	}
 }
 // script? ?A
@@ -9025,20 +9025,20 @@ int pc_checkitem(struct map_session_data *sd)
 			id = sd->status.storage.items[i].nameid;
 			if(id && !itemdb_available(id)) {
 				ShowWarning("Removed invalid/disabled item id %d from storage (amount=%d, char_id=%d).\n", id, sd->status.storage.items[i].amount, sd->status.char_id);
-				storage_delitem(sd, i, sd->status.storage.items[i].amount);
-				storage_storageclose(sd); // force closing
+				storage->delitem(sd, i, sd->status.storage.items[i].amount);
+				storage->close(sd); // force closing
 			}
 		}
 
 		if(sd->guild) {
-			struct guild_storage *guild_storage = guild2storage2(sd->guild->guild_id);
+			struct guild_storage *guild_storage = gstorage->id2storage2(sd->guild->guild_id);
 			if(guild_storage) {
 				for(i = 0; i < MAX_GUILD_STORAGE; i++) {
 					id = guild_storage->items[i].nameid;
 					if(id && !itemdb_available(id)) {
 						ShowWarning("Removed invalid/disabled item id %d from guild storage (amount=%d, char_id=%d, guild_id=%d).\n", id, guild_storage->items[i].amount, sd->status.char_id, sd->guild->guild_id);
-						guild_storage_delitem(sd, guild_storage, i, guild_storage->items[i].amount);
-						storage_guild_storageclose(sd); // force closing
+						gstorage->delitem(sd, guild_storage, i, guild_storage->items[i].amount);
+						gstorage->close(sd); // force closing
 					}
 				}
 			}

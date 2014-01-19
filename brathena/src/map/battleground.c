@@ -113,7 +113,7 @@ bool bg_team_join(int bg_id, struct map_session_data *sd) {
 		memcpy(&bgd->members[i].source,&sd->status.last_point,sizeof(struct point));
 	bgd->count++;
 
-	guild_send_dot_remove(sd);
+	guild->send_dot_remove(sd);
 
 	for(i = 0; i < MAX_BG_MEMBERS; i++) {
 		if((pl_sd = bgd->members[i].sd) != NULL && pl_sd != sd)

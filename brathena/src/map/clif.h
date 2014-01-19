@@ -554,9 +554,9 @@ void clif_changed_dir(struct block_list *bl, enum send_target target);
 void clif_openvendingreq(struct map_session_data *sd, int num);
 void clif_showvendingboard(struct block_list *bl, const char *message, int fd);
 void clif_closevendingboard(struct block_list *bl, int fd);
-void clif_vendinglist(struct map_session_data *sd, unsigned int id, struct s_vending *vending);
+void clif_vendinglist(struct map_session_data *sd, unsigned int id, struct s_vending *vending_items);
 void clif_buyvending(struct map_session_data *sd, int index, int amount, int fail);
-void clif_openvending(struct map_session_data *sd, int id, struct s_vending *vending);
+void clif_openvending(struct map_session_data *sd, int id, struct s_vending *vending_items);
 void clif_vendingreport(struct map_session_data *sd, int index, int amount);
 
 void clif_movetoattack(struct map_session_data *sd,struct block_list *bl);
@@ -633,7 +633,7 @@ void clif_resurrection(struct block_list *bl,int type);
 void clif_map_property(struct map_session_data *sd, enum map_property property);
 void clif_maptypeproperty2(struct block_list *bl,enum send_target t);
 void clif_pvpset(struct map_session_data *sd, int pvprank, int pvpnum,int type);
-void clif_map_property_mapall(int map, enum map_property property);
+void clif_map_property_mapall(int mapid, enum map_property property);
 void clif_refine(int fd, int fail, int index, int val);
 void clif_upgrademessage(int fd, int result, int item_id);
 
@@ -702,7 +702,7 @@ void clif_quest_delete(struct map_session_data *sd, int quest_id);
 void clif_quest_update_status(struct map_session_data *sd, int quest_id, bool active);
 void clif_quest_update_objective(struct map_session_data *sd, struct quest *qd);
 void clif_quest_show_event(struct map_session_data *sd, struct block_list *bl, short state, short color);
-void clif_displayexp(struct map_session_data *sd, unsigned int exp, char type, bool quest);
+void clif_displayexp(struct map_session_data *sd, unsigned int exp, char type, bool is_quest);
 
 int clif_send(const void *buf, int len, struct block_list *bl, enum send_target type);
 int do_init_clif(void);

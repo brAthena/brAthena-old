@@ -71,7 +71,7 @@ void log_pick_mob(struct mob_data *md, e_log_pick_type type, int amount, struct 
 void log_zeny(struct map_session_data *sd, e_log_pick_type type, struct map_session_data *src_sd, int amount);
 
 void log_npc(struct map_session_data *sd, const char *message);
-void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, const char *map, int x, int y, const char *dst_charname, const char *message);
+void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, const char *mapname, int x, int y, const char *dst_charname, const char *message);
 void log_atcommand(struct map_session_data *sd, const char *message);
 
 /// old, but useful logs
