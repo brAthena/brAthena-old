@@ -7621,21 +7621,21 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_VOLCANO:
 				val2 = val1*10; //Watk increase
 	#if VERSION != 1
-				if(status->def_ele != ELE_FIRE)
+				if(st->def_ele != ELE_FIRE)
 					val2 = 0;
 	#endif
 				break;
 			case SC_VIOLENTGALE:
 				val2 = val1*3; //Flee increase
 	#if VERSION != 1
-				if(status->def_ele != ELE_WIND)
+				if(st->def_ele != ELE_WIND)
 					val2 = 0;
 	#endif
 				break;
 			case SC_DELUGE:
 				val2 = deluge_eff[val1-1]; //HP increase
 	#if VERSION != 1
-				if(status->def_ele != ELE_WATER)
+				if(st->def_ele != ELE_WATER)
 					val2 = 0;
 	#endif
 				break;
