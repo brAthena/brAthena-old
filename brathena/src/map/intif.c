@@ -1132,15 +1132,14 @@ void intif_parse_LoadGuildStorage(int fd)
 		return;
 	}
 	if(RFIFOW(fd,2)-13 != sizeof(struct guild_storage)) {
-		ShowError("intif_parse_LoadGuildStorage: data size error %d %d\n",RFIFOW(fd,2)-12 , sizeof(struct guild_storage));
+		ShowError("intif_parse_LoadGuildStorage: data size error %d %d\n",RFIFOW(fd,2)-13 , sizeof(struct guild_storage));
 		gstor->storage_status = 0;
 		return;
 	}
 
-	memcpy(gstor,RFIFOP(fd,12),sizeof(struct guild_storage));
+	memcpy(gstor,RFIFOP(fd,13),sizeof(struct guild_storage));
 	if(flag)
 		storage_guild_storageopen(sd);
-		return;
 }
 
 // ACK guild_storage saved
