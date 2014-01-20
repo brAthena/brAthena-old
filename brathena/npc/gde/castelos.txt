@@ -1007,7 +1007,7 @@ OnRecvCastleSc05:
 }
 
 // Arunafeltz
-rachel,124,120,3	script	Mardol	GUILD_FLAG,{
+rachel,124,120,3	script#dv	Mardol	GUILD_FLAG,{
 	end;
 
 OnAgitInit2:
@@ -1016,7 +1016,7 @@ OnRecvCastleAr01:
 	end;
 }
 
-rachel,136,120,5	script	Cyr	GUILD_FLAG,{
+rachel,136,120,5	script#dv	Cyr	GUILD_FLAG,{
 	end;
 
 OnAgitInit2:
@@ -1025,7 +1025,7 @@ OnRecvCastleAr02:
 	end;
 }
 
-rachel,138,126,6	script	Horn	GUILD_FLAG,{
+rachel,138,126,6	script#dv	Horn	GUILD_FLAG,{
 	end;
 
 OnAgitInit2:
@@ -1034,7 +1034,7 @@ OnRecvCastleAr03:
 	end;
 }
 
-rachel,135,131,7	script	Gefn	GUILD_FLAG,{
+rachel,135,131,7	script#dv	Gefn	GUILD_FLAG,{
 	end;
 
 OnAgitInit2:
@@ -1043,7 +1043,7 @@ OnRecvCastleAr04:
 	end;
 }
 
-rachel,124,130,1	script	Banadis	GUILD_FLAG,{
+rachel,124,130,1	script#dv	Banadis	GUILD_FLAG,{
 	end;
 
 OnAgitInit2:
