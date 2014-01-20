@@ -4849,6 +4849,15 @@ REPLACE INTO `item_bluebox_db` VALUES(1,2622,10);	-- Brinco Slot -> 0,10%
 REPLACE INTO `item_bluebox_db` VALUES(1,2625,10);	-- Broche Slot -> 0,10%
 
 --
+-- Estrutura da tabela `item_buyingstore_db`
+--
+
+CREATE TABLE IF NOT EXISTS `item_buyingstore_db` (
+  `ItemID` smallint unsigned NOT NULL,
+  PRIMARY KEY (`ItemID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
 -- Estrutura da tabela `item_cardalbum_db`
 --
 
