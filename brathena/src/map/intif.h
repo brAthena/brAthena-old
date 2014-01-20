@@ -128,6 +128,7 @@ void intif_parse_LoadGuildStorage(int fd);
 
 void intif_itembound_req(int char_id,int aid,int guild_id);
 void intif_parse_Itembound_ack(int fd);
+void intif_parse_MailInboxReceived(int fd);
 
 void intif_defaults(void);
 

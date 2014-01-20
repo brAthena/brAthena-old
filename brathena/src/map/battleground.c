@@ -273,7 +273,7 @@ void bg_config_read(void) {
 	config_setting_t *data = NULL;
 	const char *config_filename = "conf/battlegrounds.conf"; // FIXME hardcoded name
 
-	if (conf_read_file(&bg_conf, config_filename))
+	if (libconfig->read_file(&bg_conf, config_filename))
 		return;
 
 	data = config_lookup(&bg_conf, "battlegrounds");

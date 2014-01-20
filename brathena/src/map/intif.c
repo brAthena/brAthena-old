@@ -1627,7 +1627,7 @@ int intif_Mail_requestinbox(int char_id, unsigned char flag)
 	return 0;
 }
 
-int intif_parse_Mail_inboxreceived(int fd)
+void intif_parse_MailInboxReceived(int fd)
 {
 	struct map_session_data *sd;
 	unsigned char flag = RFIFOB(fd,8);
@@ -1635,13 +1635,13 @@ int intif_parse_Mail_inboxreceived(int fd)
 	sd = map_charid2sd(RFIFOL(fd,4));
 
 	if(sd == NULL) {
-		ShowError("intif_parse_Mail_inboxreceived: char not found %d\n",RFIFOL(fd,4));
-		return 1;
+		ShowError("intif_parse_MailInboxReceived: char not found %d\n",RFIFOL(fd,4));
+		return;
 	}
 
 	if(RFIFOW(fd,2) - 9 != sizeof(struct mail_data)) {
-		ShowError("intif_parse_Mail_inboxreceived: data size error %d %d\n", RFIFOW(fd,2) - 9, sizeof(struct mail_data));
-		return 1;
+		ShowError("intif_parse_MailInboxReceived: data size error %d %d\n", RFIFOW(fd,2) - 9, sizeof(struct mail_data));
+		return;
 	}
 
 	//FIXME: this operation is not safe [ultramage]
@@ -1655,7 +1655,6 @@ int intif_parse_Mail_inboxreceived(int fd)
 		sprintf(output, msg_txt(510), sd->mail.inbox.unchecked, sd->mail.inbox.unread + sd->mail.inbox.unchecked);
 		clif_disp_onlyself(sd, output, strlen(output));
 	}
-	return 0;
 }
 /*------------------------------------------
  * Mail Read
@@ -2356,7 +2355,7 @@ int intif_parse(int fd)
 		case 0x3861:    intif_parse_questsave(fd); break;
 
 // Mail System
-		case 0x3848:    intif_parse_Mail_inboxreceived(fd); break;
+		case 0x3848:    intif_parse_MailInboxReceived(fd); break;
 		case 0x3849:    intif_parse_Mail_new(fd); break;
 		case 0x384a:    intif_parse_Mail_getattach(fd); break;
 		case 0x384b:    intif_parse_Mail_delete(fd); break;

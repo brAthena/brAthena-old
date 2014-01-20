@@ -2078,8 +2078,8 @@ void disconnect_player(int account_id)
 	struct char_session_data *sd;
 
 	// disconnect player if online on char-server
-	ARR_FIND(0, fd_max, i, session[i] && (sd = (struct char_session_data *)session[i]->session_data) && sd->account_id == account_id);
-	if(i < fd_max)
+	ARR_FIND(0, sockt->fd_max, i, session[i] && (sd = (struct char_session_data *)session[i]->session_data) && sd->account_id == account_id);
+	if (i < sockt->fd_max)
 		set_eof(i);
 }
 
@@ -2198,7 +2198,7 @@ int parse_fromlogin(int fd)
 		loginif_on_disconnect();
 		return 0;
 	} else if(session[fd]->flag.ping) {   /* we've reached stall time */
-		if(DIFF_TICK(last_tick, session[fd]->rdata_tick) > (stall_time * 2)) {  /* we can't wait any longer */
+		if (DIFF_TICK(sockt->last_tick, session[fd]->rdata_tick) > (sockt->stall_time * 2)) {  /* we can't wait any longer */
 			set_eof(fd);
 			return 0;
 		} else if(session[fd]->flag.ping != 2) {   /* we haven't sent ping out yet */
@@ -2297,8 +2297,8 @@ int parse_fromlogin(int fd)
 					return 0;
 
 				// find the authenticated session with this account id
-				ARR_FIND(0, fd_max, i, session[i] && (sd = (struct char_session_data *)session[i]->session_data) && sd->auth && sd->account_id == RFIFOL(fd,2));
-				if(i < fd_max) {
+				ARR_FIND(0, sockt->fd_max, i, session[i] && (sd = (struct char_session_data *)session[i]->session_data) && sd->auth && sd->account_id == RFIFOL(fd, 2));
+				if (i < sockt->fd_max) {
 					memcpy(sd->email, RFIFOP(fd,6), 40);
 					sd->expiration_time = (time_t)RFIFOL(fd,46);
 					sd->group_id = RFIFOB(fd,50);
@@ -2474,8 +2474,8 @@ int parse_fromlogin(int fd)
 							// Manual kick from char server.
 							struct char_session_data *tsd;
 							int i;
-							ARR_FIND(0, fd_max, i, session[i] && (tsd = (struct char_session_data *)session[i]->session_data) && tsd->account_id == aid);
-							if(i < fd_max) {
+							ARR_FIND(0, sockt->fd_max, i, session[i] && (tsd = (struct char_session_data *)session[i]->session_data) && tsd->account_id == aid);
+							if (i < sockt->fd_max) {
 								WFIFOHEAD(i,3);
 								WFIFOW(i,0) = 0x81;
 								WFIFOB(i,2) = 2; // "Someone has already logged in with this id"
@@ -2831,7 +2831,7 @@ int parse_frommap(int fd)
 			case 0x2b0a:
 				if( RFIFOREST(fd) < RFIFOW(fd, 2) )
 					return 0;
-				socket_datasync(fd, false);
+				sockt->datasync(fd, false);
 				RFIFOSKIP(fd,RFIFOW(fd,2));
 				break;
 
@@ -4521,7 +4521,7 @@ int parse_char(int fd)
 						realloc_fifo(fd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
 						char_mapif_init(fd);
 					}
-					socket_datasync(fd, true);
+					sockt->datasync(fd, true);
 
 					RFIFOSKIP(fd,60);
 				}
@@ -5230,11 +5230,11 @@ int do_init(int argc, char **argv)
 	mmo_char_sql_init();
 	char_read_fame_list(); //Read fame lists.
 
-	if((naddr_ != 0) && (!login_ip || !char_ip)) {
+	if ((sockt->naddr_ != 0) && (!login_ip || !char_ip)) {
 		char ip_str[16];
-		ip2str(addr_[0], ip_str);
+		ip2str(sockt->addr_[0], ip_str);
 
-		if(naddr_ > 1)
+		if (sockt->naddr_ > 1)
 			ShowStatus(read_message("Source.char.char_doinit_s1"), ip_str);
 		else
 			ShowStatus(read_message("Source.char.char_doinit_s2"), ip_str);

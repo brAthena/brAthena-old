@@ -135,7 +135,7 @@ void load_message_file_source(void)
 	config_t group_ext;
 	int index=0;
 	
-	if(conf_read_file(&group_ext, bra_config.lang_file))
+	if (libconfig->read_file(&group_ext, bra_config.lang_file))
 		return;
 	
 	memset(lang_s, 0, sizeof(LANG));

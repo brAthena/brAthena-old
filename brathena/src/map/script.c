@@ -15295,7 +15295,7 @@ BUILDIN_FUNC(checkidle)
 		sd = script->rid2sd(st);
 
 	if (sd)
-		script_pushint(st, DIFF_TICK32(last_tick, sd->idletime));
+		script_pushint(st, DIFF_TICK32(sockt->last_tick, sd->idletime));
 	else
 		script_pushint(st, 0);
 

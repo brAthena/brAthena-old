@@ -1085,7 +1085,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->cansendmail_tick = tick;
 	sd->rachsysch_tick = tick;
 
-	sd->idletime = last_tick;
+	sd->idletime = sockt->last_tick;
 
 	for(i = 0; i < MAX_SPIRITBALL; i++)
 		sd->spirit_timer[i] = INVALID_TIMER;
@@ -9871,7 +9871,7 @@ void pc_read_skill_tree(void) {
 
 	memset(skill_tree,0,sizeof(skill_tree));
 
-	if (conf_read_file(&skill_tree_conf, config_filename)) {
+	if (libconfig->read_file(&skill_tree_conf, config_filename)) {
 		ShowError("can't read %s\n", config_filename);
 		return;
 	}

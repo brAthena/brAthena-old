@@ -3734,19 +3734,19 @@ ACMD_FUNC(reloadatcommand)
 {
 	config_t run_test;
 
-	if(conf_read_file(&run_test, "conf/groups.conf")) {
+	if(libconfig->read_file(&run_test, "conf/groups.conf")) {
 		clif_displaymessage(fd, msg_txt(1036)); // Error reading groups.conf, reload failed.
 		return -1;
 	}
 
 	config_destroy(&run_test);
 
-	if(conf_read_file(&run_test, ATCOMMAND_CONF_FILENAME)) {
+	if (libconfig->read_file(&run_test, ATCOMMAND_CONF_FILENAME)) {
 		clif_displaymessage(fd, msg_txt(1037)); // Error reading atcommand_athena.conf, reload failed.
 		return -1;
 	}
 
-	config_destroy(&run_test);
+	libconfig->destroy(&run_test);
 
 	atcommand_doload();
 	pcg->reload();
@@ -10186,7 +10186,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 	}
 
 	if(battle_config.idletime_criteria & BCIDLE_ATCOMMAND)
-		sd->idletime = last_tick;
+		sd->idletime = sockt->last_tick;
 
 	//Clearing these to be used once more.
 	memset(command, '\0', sizeof(command));
@@ -10289,7 +10289,7 @@ static void atcommand_config_read(const char *config_filename)
 	const char *symbol = NULL;
 	int num_aliases = 0;
 
-	if(conf_read_file(&atcommand_config, config_filename))
+	if(libconfig->read_file(&atcommand_config, config_filename))
 		return;
 
 	// Command symbols

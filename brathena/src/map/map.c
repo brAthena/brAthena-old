@@ -4711,7 +4711,7 @@ void read_map_zone_db(void) {
 #else
 	const char *config_filename = "db/map_zone_ot.conf"; // FIXME hardcoded name
 #endif
-	if (conf_read_file(&map_zone_db, config_filename))
+	if (libconfig->read_file(&map_zone_db, config_filename))
 		return;
 
 	zones = config_lookup(&map_zone_db, "zones");
@@ -5511,13 +5511,13 @@ int do_init(int argc, char *argv[])
 
 	if(!map_ip_set || !char_ip_set) {
 		char ip_str[16];
-		ip2str(addr_[0], ip_str);
+		ip2str(sockt->addr_[0], ip_str);
 
 		ShowWarning("IPs em map_athena.conf n%co est%co configurados, autodetectando...\n", 198, 198);
 
-		if(naddr_ == 0)
+		if (sockt->naddr_ == 0)
 			ShowError("N%co foi poss%cvel determinar o endere%co de IP...\n", 198, 161, 135);
-		else if(naddr_ > 1)
+		else if (sockt->naddr_ > 1)
 			ShowNotice("M%cltiplas interfaces detectadas...\n", 163);
 
 		ShowInfo("Definindo "CL_WHITE"%s"CL_RESET" como o endere%co IP padr%co.\n", ip_str, 135, 198);

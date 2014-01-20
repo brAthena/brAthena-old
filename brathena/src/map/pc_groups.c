@@ -61,7 +61,7 @@ static void read_config(void) {
 	const char *config_filename = "conf/groups.conf"; // FIXME hardcoded name
 	int group_count = 0;
 
-	if(conf_read_file(&pc_group_config, config_filename))
+	if(libconfig->read_file(&pc_group_config, config_filename))
 		return;
 
 	groups = config_lookup(&pc_group_config, "groups");
@@ -223,13 +223,13 @@ static void read_config(void) {
 					if(inherited_group->commands != NULL) {
 						int k = 0, commands_count = config_setting_length(inherited_group->commands);
 						for(k = 0; k < commands_count; ++k)
-							config_setting_copy(commands, config_setting_get_elem(inherited_group->commands, k));
+							libconfig->setting_copy(commands, config_setting_get_elem(inherited_group->commands, k));
 					}
 
 					if(inherited_group->permissions != NULL) {
 						int k = 0, permissions_count = config_setting_length(inherited_group->permissions);
 						for(k = 0; k < permissions_count; ++k)
-							config_setting_copy(permissions, config_setting_get_elem(inherited_group->permissions, k));
+							libconfig->setting_copy(permissions, config_setting_get_elem(inherited_group->permissions, k));
 					}
 
 					++done; // copied commands and permissions from one of inherited groups

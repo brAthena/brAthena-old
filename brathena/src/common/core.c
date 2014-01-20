@@ -28,6 +28,7 @@
 #include "../common/sql.h"
 #include "../config/core.h"
 #include "../common/utils.h"
+#include "../common/conf.h"
 #endif
 
 #include <stdio.h>
@@ -318,7 +319,9 @@ void core_defaults(void) {
 	strlib_defaults();
 	malloc_defaults();
 #ifndef MINICORE
+	libconfig_defaults();
 	db_defaults();
+	socket_defaults();
 #endif
 }
 /*======================================
@@ -363,7 +366,7 @@ int main(int argc, char **argv)
 
 	timer_init();
 	HCache->init();
-	socket_init();
+	sockt->init();
 
 	do_init(argc,argv);
 
@@ -372,14 +375,14 @@ int main(int argc, char **argv)
 		int next;
 		while(runflag != CORE_ST_STOP) {
 			next = do_timer(gettick_nocache());
-			do_sockets(next);
+			sockt->perform(next);
 		}
 	}
 
 	do_final();
 
 	timer_final();
-	socket_final();
+	sockt->final();
 	DB->final();
 	rathread_final();
 #endif

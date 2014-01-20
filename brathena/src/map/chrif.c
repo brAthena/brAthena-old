@@ -487,7 +487,7 @@ void chrif_connectack(int fd)
 		guild->castle_map_init();
 	}
 
-	socket_datasync(fd, true);
+	sockt->datasync(fd, true);
 	chrif_skillid2idx(fd);
 }
 
@@ -1472,7 +1472,7 @@ int chrif_parse(int fd)
 		chrif_on_disconnect();
 		return 0;
 	} else if(session[fd]->flag.ping) {   /* we've reached stall time */
-		if(DIFF_TICK(last_tick, session[fd]->rdata_tick) > (stall_time * 2)) {  /* we can't wait any longer */
+		if (DIFF_TICK(sockt->last_tick, session[fd]->rdata_tick) > (sockt->stall_time * 2)) {  /* we can't wait any longer */
 			set_eof(fd);
 			return 0;
 		} else if(session[fd]->flag.ping != 2) {   /* we haven't sent ping out yet */
@@ -1514,7 +1514,7 @@ int chrif_parse(int fd)
 			case 0x2b04: chrif_recvmap(fd); break;
 			case 0x2b06: chrif_changemapserverack(RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10), RFIFOL(fd,14), RFIFOW(fd,18), RFIFOW(fd,20), RFIFOW(fd,22), RFIFOL(fd,24), RFIFOW(fd,28)); break;
 			case 0x2b09: map_addnickdb(RFIFOL(fd,2), (char *)RFIFOP(fd,6)); break;
-			case 0x2b0a: socket_datasync(fd, false); break;
+			case 0x2b0a: sockt->datasync(fd, false); break;
 			case 0x2b0d: chrif_changedsex(fd); break;
 			case 0x2b0f: chrif_char_ask_name_answer(RFIFOL(fd,2), (char *)RFIFOP(fd,6), RFIFOW(fd,30), RFIFOW(fd,32)); break;
 			case 0x2b12: chrif_divorceack(RFIFOL(fd,2), RFIFOL(fd,6)); break;

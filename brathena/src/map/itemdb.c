@@ -918,7 +918,7 @@ void itemdb_read_packages(void) {
 			return;
 	}
 
-	if(conf_read_file(&item_packages_conf, config_filename)) {
+	if (libconfig->read_file(&item_packages_conf, config_filename)) {
 		ShowError("Não é possível ler %s\n", config_filename);
 		return;
 	}
