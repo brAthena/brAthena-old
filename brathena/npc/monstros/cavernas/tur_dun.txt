@@ -75,33 +75,47 @@ tur_dun03,0,0,0,0	monster#re	Batedor	PERMETER,15,5000,0,0
 tur_dun03,0,0,0,0	monster#re	Aquecedor	HEATER,10,5000,0,0,{}
 
 //==================================================
-// [Pré-Renovação & Old-Times] tur_dun04 - Palácio das Tartarugas
+// [Old-Times] tur_dun04 - Palácio das Tartarugas
 //==================================================
-tur_dun04,99,92,10,10	monster#vpo	Andarilho	WANDER_MAN,1,60000,30000,0
-tur_dun04,99,93,20,20	boss_monster#vpo	General Tartaruga	TURTLE_GENERAL,1,3600000,600000,0
-tur_dun04,100,93,20,20	monster#vpo	Aquecedor	HEATER,3,120000,60000,0
-tur_dun04,100,93,20,20	monster#vpo	Agressor	ASSULTER,10,120000,60000,0
-tur_dun04,100,93,20,20	monster#vpo	Congelador	FREEZER,5,120000,60000,0
-tur_dun04,171,159,3,3	monster#vpo	Andarilho	WANDER_MAN,1,300000,150000,0
-tur_dun04,171,155,3,3	monster#vpo	Agressor	ASSULTER,1,310000,160000,0
-tur_dun04,171,149,3,3	monster#vpo	Agressor	ASSULTER,1,320000,170000,0
-tur_dun04,28,159,3,3	monster#vpo	Andarilho	WANDER_MAN,1,300000,150000,0
-tur_dun04,28,155,3,3	monster#vpo	Agressor	ASSULTER,1,310000,160000,0
-tur_dun04,28,149,3,3	monster#vpo	Agressor	ASSULTER,1,320000,170000,0
-tur_dun04,174,26,3,3	monster#vpo	Andarilho	WANDER_MAN,1,300000,150000,0
-tur_dun04,174,29,3,3	monster#vpo	Agressor	ASSULTER,1,310000,160000,0
-tur_dun04,174,32,3,3	monster#vpo	Agressor	ASSULTER,1,320000,170000,0
-tur_dun04,26,26,3,3	monster#vpo	Andarilho	WANDER_MAN,1,300000,150000,0
-tur_dun04,26,29,3,3	monster#vpo	Agressor	ASSULTER,1,310000,160000,0
-tur_dun04,26,32,3,3	monster#vpo	Agressor	ASSULTER,1,320000,170000,0
-tur_dun04,0,0,0,0	monster#vpo	Andarilho	WANDER_MAN,2,0,0,0
-tur_dun04,0,0,0,0	monster#vpo	Aquecedor	HEATER,10,300000,150000,0
-tur_dun04,0,0,0,0	monster#vpo	Aquecedor	HEATER,20,620000,310000,0
-tur_dun04,0,0,0,0	monster#vpo	Agressor	ASSULTER,23,0,0,0
-tur_dun04,0,0,0,0	monster#vpo	Congelador	FREEZER,5,300000,150000,0
-tur_dun04,0,0,0,0	monster#vpo	Congelador	FREEZER,5,600000,300000,0
-tur_dun04,0,0,0,0	monster#vpo	Batedor	PERMETER,2,300000,150000,0
-tur_dun04,0,0,0,0	monster#vpo	Batedor	PERMETER,2,640000,320000,0,{}
+tur_dun04,0,0,0,0	monster#ot	Andarilho	WANDER_MAN,2,0,0,0
+tur_dun04,0,0,0,0	monster#ot	Batedor	PERMETER,10,0,0,0
+tur_dun04,0,0,0,0	monster#ot	Agressor	ASSULTER,25,0,0,0
+tur_dun04,0,0,0,0	monster#ot	Aquecedor	HEATER,40,0,0,0
+tur_dun04,0,0,0,0	monster#ot	Congelador	FREEZER,20,0,0,0
+tur_dun04,100,93,20,20	monster#ot	Agressor	ASSULTER,10,120000,60000,0
+tur_dun04,100,93,20,20	monster#ot	Aquecedor	HEATER,3,120000,60000,0
+tur_dun04,100,93,20,20	monster#ot	Congelador	FREEZER,5,120000,60000,0
+tur_dun04,99,92,10,10	monster#ot	Andarilho	WANDER_MAN,1,60000,30000,0
+tur_dun04,99,93,20,20	boss_monster#ot	General Tartaruga	TURTLE_GENERAL,1,3600000,0,0,{}
+
+//==================================================
+// [Pré-Renovação] tur_dun04 - Palácio das Tartarugas
+//==================================================
+tur_dun04,99,92,10,10	monster#pre	Andarilho	WANDER_MAN,1,60000,30000,0
+tur_dun04,99,93,20,20	boss_monster#pre	General Tartaruga	TURTLE_GENERAL,1,3600000,600000,0
+tur_dun04,100,93,20,20	monster#pre	Aquecedor	HEATER,3,120000,60000,0
+tur_dun04,100,93,20,20	monster#pre	Agressor	ASSULTER,10,120000,60000,0
+tur_dun04,100,93,20,20	monster#pre	Congelador	FREEZER,5,120000,60000,0
+tur_dun04,171,159,3,3	monster#pre	Andarilho	WANDER_MAN,1,300000,150000,0
+tur_dun04,171,155,3,3	monster#pre	Agressor	ASSULTER,1,310000,160000,0
+tur_dun04,171,149,3,3	monster#pre	Agressor	ASSULTER,1,320000,170000,0
+tur_dun04,28,159,3,3	monster#pre	Andarilho	WANDER_MAN,1,300000,150000,0
+tur_dun04,28,155,3,3	monster#pre	Agressor	ASSULTER,1,310000,160000,0
+tur_dun04,28,149,3,3	monster#pre	Agressor	ASSULTER,1,320000,170000,0
+tur_dun04,174,26,3,3	monster#pre	Andarilho	WANDER_MAN,1,300000,150000,0
+tur_dun04,174,29,3,3	monster#pre	Agressor	ASSULTER,1,310000,160000,0
+tur_dun04,174,32,3,3	monster#pre	Agressor	ASSULTER,1,320000,170000,0
+tur_dun04,26,26,3,3	monster#pre	Andarilho	WANDER_MAN,1,300000,150000,0
+tur_dun04,26,29,3,3	monster#pre	Agressor	ASSULTER,1,310000,160000,0
+tur_dun04,26,32,3,3	monster#pre	Agressor	ASSULTER,1,320000,170000,0
+tur_dun04,0,0,0,0	monster#pre	Andarilho	WANDER_MAN,2,0,0,0
+tur_dun04,0,0,0,0	monster#pre	Aquecedor	HEATER,10,300000,150000,0
+tur_dun04,0,0,0,0	monster#pre	Aquecedor	HEATER,20,620000,310000,0
+tur_dun04,0,0,0,0	monster#pre	Agressor	ASSULTER,23,0,0,0
+tur_dun04,0,0,0,0	monster#pre	Congelador	FREEZER,5,300000,150000,0
+tur_dun04,0,0,0,0	monster#pre	Congelador	FREEZER,5,600000,300000,0
+tur_dun04,0,0,0,0	monster#pre	Batedor	PERMETER,2,300000,150000,0
+tur_dun04,0,0,0,0	monster#pre	Batedor	PERMETER,2,640000,320000,0,{}
 
 //==================================================
 // [Renovação] tur_dun04 - Palácio da Ilha da Tartaruga
