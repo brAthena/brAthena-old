@@ -28,8 +28,7 @@
 //============================================================
 ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 
-	if (thai_find == 14)
-	{
+	if(thai_find == 14) {
 		mes "[Shuda]";
 		mes "Have you";
 		mes "found Annon?";
@@ -53,9 +52,7 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 		mes "He will be ^660000punished^000000...";
 		mes "^666666*grinds teeth*^000000";
 		close;
-	}
-	else if (thai_find > 2 && thai_find < 14)
-	{
+	} else if (thai_find > 2 && thai_find < 14) {
 		mes "[Shuda]";
 		mes "^666666*Sigh...*^000000";
 		mes "You haven't";
@@ -67,11 +64,8 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 		mes "And by 'us,' I mean '^660000you^000000.' I don't care about your plans or whatever else you may have scheduled, because you're going to make";
 		mes "time for me! Oho ho ho ho ho!";
 		close;
-	}
-	else if (thai_find == 2)
-	{
-		if (countitem(7288))
-		{
+	} else if (thai_find == 2) {
+		if (countitem(7288)) {
 			mes "[Shuda]";
 			mes "Ah... Is it...?!!";
 			mes "Yes, that's it!";
@@ -103,8 +97,7 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 			mes "^3355FFShuda gazes directly";
 			mes "at you with a puppy eyed look.^000000";
 			next;
-			switch(select("D-Don't look at me that way!:Alright, alright." ) )
-			{
+			switch(select("D-Don't look at me that way!:Alright, alright.")) {
 			case 1:
 				mes "[Shuda]";
 				mes "Oh come on, you know everything that happened, and I know you're gonna continue adventuring";
@@ -144,9 +137,7 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 			changequest 12030,12031;
 			set thai_find,3;
 			close;
-		}
-		else
-		{
+		} else {
 			mes "[Shuda]";
 			mes "Huh...?";
 			mes "Did you find my ring?";
@@ -164,12 +155,10 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 			mes "here for the good news.";
 			mes "Oho ho ho ho ho~!";
 			if (checkquest(12029) == -1)
-				setquest 12029; 
+				setquest 12029;
 			close;
 		}
-	}
-	else if (thai_find == 1)
-	{
+	} else if (thai_find == 1) {
 		mes "[Shuda]";
 		mes "I feel a little bad asking you this, especially since you're";
 		mes "an outsider.";
@@ -182,15 +171,12 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 		mes "Please bring my ring back to me.";
 		mes "I want to live with Annon as a happy couple forever. Can't you understand that?!";
 		close;
-	}
-	else
-	{
+	} else {
 		mes "[Powerful-Looking Woman]";
 		mes "Umm...?";
 		mes "Ah, you must be one of the tourists. I'd guide you around and listen to your stories about the outside world, but...";
 		next;
-		if (rand(0,1))
-		{
+		if (rand(0,1)) {
 			mes "[Powerful-Looking Woman]";
 			mes "I'm reeeally";
 			mes "busy right now.";
@@ -206,8 +192,7 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 			mes "my fiancee hadn't";
 			mes "thrown it...";
 			next;
-			switch(select("What...?:Lies~!" ) )
-			{
+			switch(select("What...?:Lies~!")) {
 			case 1:
 				mes "[Powerful-Looking Woman]";
 				mes "What 'what?'";
@@ -264,18 +249,15 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 				mes "Why are you staring at me?";
 				mes "Don't you have anything to do?";
 				next;
-				switch(select("No.:No~ and you are an interesting girl." ) )
-				{
+				switch(select("No.:No~ and you are an interesting girl.")) {
 				case 1:
 					mes "[Powerful-Looking Woman]";
 					mes "I see. Hmmm...";
 					mes "You're kind of my type.";
-					if (Sex)
-					{
+					if (Sex) {
 						mes "No no, that doesn't mean I'm interested in you. Plus I'm";
 						mes "already engaged.";
-					}
-					else
+					} else
 						mes "Before you think of anything weird, I meant that I think you and me are a lot alike.";
 					next;
 					mes "[Powerful-Looking Woman]";
@@ -399,15 +381,13 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 					mes "[Shuda]";
 					mes "So go and look under the water! There's no water current, so I'm sure it's still there! What are you waiting for, it's should be an easy swim for you! Oho ho ho ho ho!";
 					if (checkquest(12029) == -1)
-						setquest 12029; 
+						setquest 12029;
 					set thai_find,1;
 					close;
 				}
 			break;
 			}
-		}
-		else
-		{
+		} else {
 			mes "[Powerful-Looking Woman]";
 			mes "^666666*Sigh...*^000000";
 			mes "Why isn't it coming up from the water? Maybe if I stirred around with a wooden stick...?";
@@ -430,8 +410,7 @@ ayothaya,233,105,3	script	Powerful-Looking Woman	4_F_THAIAYO,2,2,{
 	}
 
 OnTouch:
-	if (thai_find == 0)
-	{
+	if (thai_find == 0) {
 		mes "[Powerful-Looking Woman]";
 		mes "^666666*Sigh...*^000000";
 		mes "Where the";
@@ -448,10 +427,8 @@ OnTouch:
 
 ayo_dun02,91,263,0	script	#Annonblood	HIDDEN_NPC,2,3,{
 
-if (!$@annonactive)
-{
-	if (thai_find == 13)
-	{
+if (!$@annonactive) {
+	if (thai_find == 13) {
 		mes "["+strcharinfo(0)+"]";
 		mes "A blood stain?";
 		mes "What's going on?";
@@ -469,11 +446,9 @@ if (!$@annonactive)
 		mes "[" +strcharinfo(0)+ "]";
 		mes "Hmmm....";
 		next;
-		switch(select("Scatter the bushes.:Dig up the bushes." ) )
-		{
+		switch(select("Scatter the bushes.:Dig up the bushes.")) {
 		case 1:
-			if (!rand(0,2))
-			{
+			if (!rand(0,2)) {
 				mes "[" +strcharinfo(0)+ "]";
 				mes "^666666*Cough cough*^000000";
 				mes "It's so dusty!";
@@ -503,8 +478,7 @@ if (!$@annonactive)
 				mes "stay back, or I'll kill myself!";
 				emotion e_omg,1;
 				next;
-				switch(select("What are you doing here?:I'm not Shuda!" ) )
-				{
+				switch(select("What are you doing here?:I'm not Shuda!")) {
 				case 1:
 					mes "["+strcharinfo(0)+"]";
 					mes "Hey...";
@@ -523,9 +497,7 @@ if (!$@annonactive)
 					mes "You are unfamiliar to me, outsider. I'm unsure of how you found my hiding place, but if you have something to say, make it short!";
 					close;
 				}
-			}
-			else
-			{
+			} else {
 				mes "^3355FFYou dig up the bushes, stirring";
 				mes "up a large, choking cloud of dust.^000000";
 				next;
@@ -540,17 +512,14 @@ if (!$@annonactive)
 			mes "^3355FFAs you dig up the bushes, the ground beneath one of the bushes crumbles and you hear a scream";
 			mes "from beneath.^000000";
 			next;
-			if (!rand(0,2))
-			{
+			if (!rand(0,2)) {
 				set $@annonactive,1;
 				enablenpc "Haggard Man";
 				mes "[?]";
 				mes "^666666*Cough cough*^000000";
 				mes "...M-my legs!";
 				close;
-			}
-			else
-			{
+			} else {
 				mes "[" +strcharinfo(0)+ "]";
 				mes "Hmmm...?";
 				mes "What was that noise?";
@@ -560,19 +529,15 @@ if (!$@annonactive)
 				close;
 			}
 		}
-	}
-	else if (thai_find == 14)
-	{
+	} else if (thai_find == 14) {
 		mes "^3355FFYou find that the burrow is empty. It seems Annon has found a new hiding place.^000000";
 		close;
-	}
-	else
-	{
+	} else {
 		mes "^3355FFYou find a pile of dead bushes under a large tree. The area around the bushes seems awfully dusty.^000000";
 		close;
 	}
 
-	OnTouch:
+OnTouch:
 	if (thai_find == 12) {
 		if (!rand(0,2)) {
 			emotion e_gasp,1;
@@ -598,12 +563,12 @@ if (!$@annonactive)
 		}
 	}
 }
+
 }
 
 ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 	//completequest 12034; 
-	if (thai_find == 13)
-	{
+	if (thai_find == 13) {
 		mes "[Haggard Man]";
 		mes "^666666*...Cough cough*^000000";
 		mes "No...! My hiding place!";
@@ -614,19 +579,17 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 		mes "Oh, how did this happen?";
 		mes "My spiritual training wasn't supposed to go like this...!";
 		next;
-		switch(select("Treat his wound first.:Is that you, Annon?" ) )
-		{
+		switch(select("Treat his wound first.:Is that you, Annon?")) {
 		case 1:
 			mes "[" +strcharinfo(0)+ "]";
 			mes "Anyway, I think you need to be treated. Let me check if I have some potions.";
 			next;
-			if (countitem(504)) //White potion
-			{
+			if (countitem(504)) {
 				mes "["+strcharinfo(0)+"]";
 				mes "Ah...";
 				mes "Here we are,";
 				mes "a White Potion.";
-				delitem 504,1; //White potion
+				delitem 504,1; //White_Potion
 				next;
 				mes "[Haggard Man]";
 				mes "You mean the White Potion,";
@@ -674,8 +637,7 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 				mes "It looks like you wish to know more. If you promise me that you will not mention my whereabouts";
 				mes "to Shuda, then I'll explain.";
 				next;
-				switch(select("You think the world revolves around you?:What do you want me to do?" ) )
-				{
+				switch(select("You think the world revolves around you?:What do you want me to do?")) {
 				case 1:
 					mes "[" +strcharinfo(0)+ "]";
 					mes "You think the world";
@@ -717,7 +679,6 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 					mes "[Annon]";
 					mes "Now, you must be wondering";
 					mes "how I would repay you for your silence. Well, let me show you one of the skills I've learned in my spiritual training.";
-					next;
 					break;
 				}
 				next;
@@ -766,7 +727,7 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 					else if (BaseLevel > 75 && BaseLevel < 81) getexp 130246,0;
 					else if (BaseLevel > 80 && BaseLevel < 86) getexp 150340,0;
 					else if (BaseLevel > 85 && BaseLevel < 91) getexp 182052,0;
-					else getexp 406786,0; 
+					else getexp 406786,0;
 				}
 				next;
 				mes "[" +strcharinfo(0)+ "]";
@@ -788,10 +749,8 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 				close2;
 				set $@annonactive,0;
 				disablenpc "Haggard Man";
-				end; 
-			}
-			else
-			{
+				end;
+			} else {
 				mes "[" +strcharinfo(0)+ "]";
 				mes "No way, no way.";
 				mes "He's too seriously";
@@ -853,9 +812,7 @@ ayo_dun02,91,264,3	script	Haggard Man	4_M_THAIAYO,{
 			disablenpc "Haggard Man";
 			end;
 		}
-	}
-	else
-	{
+	} else {
 		mes "[Haggard Man]";
 		mes "Huh? Who are you?";
 		mes "This isn't a safe place for a tourists! You should leave right away!";
@@ -874,8 +831,7 @@ OnInit:
 		
 ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 
-	if (thai_find == 1)
-	{
+	if (thai_find == 1) {
 		mes "[Dannai]";
 		mes "This place is known to be";
 		mes "teeming with fish. The fish here tend to eat anything they find,";
@@ -889,11 +845,9 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 		mes "Would you";
 		mes "like to try?";
 		next;
-		switch(select("Yes.:No, thanks." ) )
-		{
+		switch(select("Yes.:No, thanks.")) {
 		case 1:
-			if (countitem(528) && Zeny > 49) //Monster food
-			{
+			if (countitem(528) && Zeny > 49) {
 				mes "^3355FFYou cast your";
 				mes "fishing line";
 				mes "into the water.^000000";
@@ -905,61 +859,48 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 				next;
 				mes "^3355FFYou've hooked a Phen!^000000";
 				next;
-				delitem 528,1; //Monster food
-				set Zeny,Zeny-50;
+				delitem 528,1; //Monster's_Feed
+				set Zeny, Zeny-50;
 				set .@randfish,rand(1,100);
-				if (.@randfish > 0 && .@randfish < 40)
-				{
+				if (.@randfish > 0 && .@randfish < 40) {
 					mes "^3355FFWhile cooking the Phen, you";
 					mes "find that it's swallowed a Stone.^000000";
 					close2;
 					getitem 7049,1; //Stone
 					end;
-				}
-				else if (.@randfish > 39 && .@randfish < 60)
-				{
+				} else if (.@randfish > 39 && .@randfish < 60) {
 					mes "^3355FFInside of the Phen,";
 					mes "you find a Red Potion.^000000";
 					close2;
-					getitem 501,1; //Red potion
+					getitem 501,1; //Red_Potion
 					end;
-				}
-				else if (.@randfish > 59 && .@randfish < 70)
-				{
+				} else if (.@randfish > 59 && .@randfish < 70) {
 					mes "^3355FFInside of the Phen,";
 					mes "you find a Yellow Potion.^000000";
 					close2;
-					getitem 503,1; //Yellow potion
+					getitem 503,1; //Yellow_Potion
 					end;
-				}
-				else if (.@randfish > 69 && .@randfish < 80)
-				{
+				} else if (.@randfish > 69 && .@randfish < 80) {
 					mes "^3355FFThere's nothing inside...";
 					mes "But now you can eat Sushi!^000000";
 					close2;
-					getitem 551,1; //Sushi
+					getitem 551,1; //Shusi
 					end;
-				}
-				else if (.@randfish > 79 && .@randfish < 90)
-				{
+				} else if (.@randfish > 79 && .@randfish < 90) {
 					mes "^3355FFYou find";
 					mes "a Flower Ring";
 					mes "inside the Phen.^000000";
 					close2;
-					getitem 2612,1; //Flower ring
+					getitem 2612,1; //Flower_Ring
 					end;
-				}
-				else if (.@randfish == 90)
-				{
+				} else if (.@randfish == 90) {
 					mes "^3355FFYou find";
 					mes "a Diamond Ring";
 					mes "inside the Phen.^000000";
 					close2;
-					getitem 2613,1; //Diamond ring
+					getitem 2613,1; //Diamond_Ring
 					end;
-				}
-				else if (.@randfish > 90 && .@randfish < 101)
-				{
+				} else if (.@randfish > 90 && .@randfish < 101) {
 					mes "^3355FFYou find a ring";
 					mes "with a name engraved";
 					mes "inside the band.^000000";
@@ -968,13 +909,11 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 					mes "engagement ring.^000000";
 					close2;
 					set thai_find,2;
-					changequest 12029,12030; 
+					changequest 12029,12030;
 					getitem 7288,1; //Thai_Ring
 					end;
 				}
-			}
-			else
-			{
+			} else {
 				mes "[Dannai]";
 				mes "Remember, you need ^3355FF1 Monster's Feed^000000 to use as bait and ^3355FF50 zeny^000000 to rend a rod.";
 				close;
@@ -989,9 +928,7 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 			close;
 		}
 		close;
-	}
-	else if (thai_find < 1)
-	{
+	} else if (thai_find < 1) {
 		mes "[Dannai]";
 		mes "The fish here tend";
 		mes "to eat anything they find.";
@@ -1003,9 +940,7 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 		mes "why don't you sit down, relax";
 		mes "and enjoy some quiet fishing?";
 		close;
-	}
-	else
-	{
+	} else {
 		mes "[Dannai]";
 		mes "Welcome, long time no see!";
 		mes "It seems people learned that you found some kind of fortune from fishing here. After word got around, I've been getting lots";
@@ -1024,15 +959,12 @@ ayothaya,253,99,3	script	Fisherman	4_M_THAIONGBAK,{
 		mes "own fortunes.";
 		close;
 	}
-
 }
 
 ayo_dun01,255,62,0	script	AyoFootprint1	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
-	if (thai_find == 4)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 4) {
+		if (rand(1,3) < 2) {
 			emotion e_gasp,1;
 			mes "^3355FFYou find footprints heading to the ^5C3317North^3355FF. It looks like somebody was in quite a hurry, just like the villager said!^000000";
 			set thai_find,5;
@@ -1040,15 +972,13 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun01,74,142,0	script	AyoFootprint2	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
-	if (thai_find == 5)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 5) {
+		if (rand(1,3) < 2) {
 			emotion e_dots,1;
 			mes "^3355FFYou find another set of footprints. It seems that somebody was running away from something. These prints are heading to the ^5C3317East^3355FF. You'd better follow them to see what";
 			mes "you can find.^000000";
@@ -1056,15 +986,13 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun01,244,256,2	script	AyoFootprint3	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
-	if (thai_find == 6)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 6) {
+		if (rand(1,3) < 2) {
 			emotion e_no,1;
 			mes "^3355FFThe footprints end around this area. Whoever was running must";
 			mes "have been exhausted and stumbled on something. Perhaps the owner of the footprints is nearby...^000000";
@@ -1072,15 +1000,13 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun01,17,257,0	script	AyoFootprint4	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
-	if (thai_find == 7)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 7) {
+		if (rand(1,3) < 2) {
 			emotion e_ic,1;
 			mes "^3355FFAs you follow the footprints,";
 			mes "you arrive at the '^5C3317Entrance of the Shrine^3355FF.' Whoever this person was, he just ran into the second level.^000000";
@@ -1088,15 +1014,13 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun02,145,120,0	script	AyoFootprint5	HIDDEN_WARP_NPC,2,0,{
 OnTouch:
-	if (thai_find == 8)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 8) {
+		if (rand(1,3) < 2) {
 			mes "^3355FFYou find the same footprints";
 			mes "in this place. It seems pretty";
 			mes "dangerous, and you wonder why";
@@ -1107,16 +1031,14 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 
 ayo_dun02,135,168,0	script	AyoFootprint6	HIDDEN_WARP_NPC,0,2,{
 OnTouch:
-	if (thai_find == 9)
-	{
-		if (rand(1,3) == 1)
-		{
+	if (thai_find == 9) {
+		if (rand(1,3) == 1) {
 			emotion e_gasp,1;
 			mes "^3355FFThe trail of footprints";
 			mes "continue here, and seem";
@@ -1125,17 +1047,15 @@ OnTouch:
 			mes "^3355FFHmm...?";
 			mes "There's something here...^000000";
 			next;
-			switch(select("Ignore.:^5C3317Investigate.^000000" ) )
-			{
+			switch(select("Ignore.:^5C3317Investigate.^000000")) {
 			case 1:
 				mes "["+strcharinfo(0)+"]";
 				mes "Well, it's probably nothing. But which way should I go now?";
 				set thai_find,10;
 				close;
 			case 2:
-				set @randayo,rand(1,10);
-				if (@randayo < 2)
-				{
+				set .@randayo,rand(1,10);
+				if (.@randayo < 2) {
 					mes "["+strcharinfo(0)+"]";
 					mes "Why, this is a pack of White Potions. Whoever owned these must have dropped these by accident. Hmm, I could use these for later...";
 					next;
@@ -1147,11 +1067,9 @@ OnTouch:
 					mes "I better look";
 					mes "into this.";
 					set thai_find,10;
-					getitem 504,10; //White potion
+					getitem 504,10; //White_Potion
 					close;
-				}
-				else if (@randayo > 2 && @randayo < 5)
-				{
+				} else if (.@randayo > 2 && .@randayo < 5) {
 					mes "["+strcharinfo(0)+"]";
 					mes "Why, this is a pack of Yellow Potions. Whoever owned these must have dropped these by accident. Hmm, I could use these for later...";
 					next;
@@ -1165,9 +1083,7 @@ OnTouch:
 					set thai_find,10;
 					getitem 503,10; //Yellow potion
 					close;
-				}
-				else
-				{
+				} else {
 					mes "[Rat]";
 					mes "^FF0000Squeak!";
 					mes "^FF0000Squeak Squeak!^000000";
@@ -1190,15 +1106,13 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun02,77,213,0	script	AyoFootprint7	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
-	if (thai_find == 10)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 10) {
+		if (rand(1,3) < 2) {
 			emotion e_gasp,1;
 			mes "^3355FFWhere is he...?";
 			mes "He seems to have gone";
@@ -1209,29 +1123,26 @@ OnTouch:
 			close;
 		}
 	}
-
+	end;
 }
 
 ayo_dun02,86,254,0	script	AyoFootprint8	HIDDEN_WARP_NPC,1,1,{
 OnTouch:
-	if (thai_find == 11)
-	{
-		if (rand(1,3) < 2)
-		{
+	if (thai_find == 11) {
+		if (rand(1,3) < 2) {
 			emotion e_gasp,1;
 			mes "^3355FFYou find traces of blood. Whoever was running in this direction may have been wounded. The trail of blood leads to the ^5C3317North^3355FF.^000000";
-			set thai_find,12;
 			changequest 12032,12033;
+			set thai_find,12;
 			close;
 		}
 	}
-
+	end;
 }
 
 ayothaya,193,171,3	script	Old Man#02	4_M_THAIOLD,{
 
-	if (thai_find == 3)
-	{
+	if (thai_find == 3) {
 		mes "[Tham]";
 		mes "Weird...";
 		mes "Why was that guy";
@@ -1262,12 +1173,9 @@ ayothaya,193,171,3	script	Old Man#02	4_M_THAIOLD,{
 		set thai_find,4;
 		changequest 12031,12032;
 		close;
-	}
-	else
-	{
-		set @randayo,rand(1,7);
-		if (@randayo < 5)
-		{
+	} else {
+		set .@randayo,rand(1,7);
+		if (.@randayo < 5) {
 			mes "[Tham]";
 			mes "Oh hello~";
 			mes "I can tell from your clothes that you must be from Rune-Midgard.";
@@ -1295,9 +1203,7 @@ ayothaya,193,171,3	script	Old Man#02	4_M_THAIOLD,{
 			mes "[Tham]";
 			mes "Anyway, I'm sure that you'll like it. I hope that you come visit Ayotaya as often as you can~";
 			close;
-		}
-		else if (@randayo > 4 && @randayo < 7)
-		{
+		} else if (.@randayo > 4 && .@randayo < 7) {
 			mes "[Tham]";
 			mes "Ah~";
 			mes "I've got this craving for Ms. Mali the Spicy's food, especially her 'Tom Yum Goong.'";
@@ -1307,9 +1213,7 @@ ayothaya,193,171,3	script	Old Man#02	4_M_THAIOLD,{
 			mes "most delicious dish";
 			mes "in the entire world!";
 			close;
-		}
-		else
-		{
+		} else {
 			mes "[Tham]";
 			mes "Oh hello~";
 			mes "I can tell from your clothes that you must be from Rune-Midgard.";
@@ -1408,8 +1312,7 @@ ayothaya,83,132,0	script	Dusit#thai	4_M_THAIONGBAK,{
 		mes "Then be careful!";
 		mes "It'll eat you alive!";
 		close;
-	}
-	else if (ayodunquest > 0) {
+	} else if (ayodunquest > 0) {
 		mes "[Dusit]";
 		mes "How are you?";
 		mes "If you're interested";
@@ -1425,6 +1328,15 @@ ayothaya,83,132,0	script	Dusit#thai	4_M_THAIONGBAK,{
 }
 
 ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
+
+	// For both parts of the quest:
+	// - Pre-Renewal requires Needle Packet and Spool.
+	// - Renewal requires Fabric and Nine Tails.
+	if (checkversion(0))
+		setarray .@items[0],7213,7217; //Needle_Pouch, Spool
+	else
+		setarray .@items[0],1059,1022; //Transparent_Cloth, Fox_Tail
+
 	if (ayodunquest == 1) {
 		mes "[Boonthom]";
 		mes "You...!";
@@ -1528,8 +1440,7 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 				mes "Even if you can";
 				mes "wield the power of";
 				mes "holiness, you will still need the spiritual security of our land.";
-			}
-			else {
+			} else {
 				mes "[Boonthom]";
 				mes "There are many ghosts and";
 				mes "demons within the cave, and they will attack people who do not possess holy power... Like you.";
@@ -1540,8 +1451,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "containing this holy power if you wish. In order to make it, I will need some materials.";
 			next;
 			mes "[Boonthom]";
-			mes "^3366991 Needle Packet^000000,";
-			mes "^3366991 Spool^000000,";
+			mes "^3366991 "+getitemname(.@items[0])+"^000000,";
+			mes "^3366991 "+getitemname(.@items[1])+"^000000,";
 			mes "^3366991 Solid Husk^000000 and";
 			mes "^3366991 Holy Water^000000...";
 			mes "That's all I need.";
@@ -1563,9 +1474,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "............";
 		mes "............";
 		close;
-	}
-	else if (ayodunquest == 2) {
-		if (countitem(7213) > 0 && countitem(7217) > 0 && countitem(7190) > 0 && countitem(523) > 0) {
+	} else if (ayodunquest == 2) {
+		if (countitem(.@items[0]) > 0 && countitem(.@items[1]) > 0 && countitem(7190) > 0 && countitem(523) > 0) {
 			mes "[Boonthom]";
 			mes "Excellent!";
 			mes "Now you have brought";
@@ -1586,8 +1496,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "Here you go.";
 			mes "Please take these holy threads.";
 			mes "With this, you will be able to enter the ruins with less worry.";
-			delitem 7213,1; //Needle_Pouch
-			delitem 7217,1; //Spool
+			delitem .@items[0],1;
+			delitem .@items[1],1;
 			delitem 7190,1; //Solid_Peeling
 			delitem 523,1; //Holy_Water
 			set ayodunquest,3;
@@ -1608,17 +1518,16 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "carefully this time.";
 		next;
 		mes "[Boonthom]";
-		mes "^3366991 Needle Packet^000000,";
-		mes "^3366991 Spool^000000,";
+		mes "^3366991 "+getitemname(.@items[0])+"^000000,";
+		mes "^3366991 "+getitemname(.@items[1])+"^000000,";
 		mes "^3366991 Solid Husk^000000 and";
 		mes "^3366991 Holy Water^000000.";
 		next;
 		mes "[Boonthom]";
 		mes "See you later.";
 		close;
-	}
-	else if (ayodunquest == 3) {
-		if (countitem(7213) > 0 && countitem(7217) > 0 && countitem(7190) > 0 && countitem(523) > 0) {
+	} else if (ayodunquest == 3) {
+		if (countitem(.@items[0]) > 0 && countitem(.@items[1]) > 0 && countitem(7190) > 0 && countitem(523) > 0) {
 			mes "[Boonthom]";
 			mes "Excellent! Now you have brought everything I need, let me make the thing for you as I promised...";
 			next;
@@ -1636,8 +1545,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "Here you go.";
 			mes "Please take these holy threads.";
 			mes "With this, you will be able to enter the ruins with less worry.";
-			delitem 7213,1; //Needle_Pouch
-			delitem 7217,1; //Spool
+			delitem .@items[0],1;
+			delitem .@items[1],1;
 			delitem 7190,1; //Solid_Peeling
 			delitem 523,1; //Holy_Water
 			getitem 7285,1; //Thread_Skein
@@ -1650,16 +1559,15 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "If you lose the holy threads, don't worry. I can make some more for you. Just gather the following items.";
 		next;
 		mes "[Boonthom]";
-		mes "^3366991 Needle Packet^000000,";
-		mes "^3366991 Spool^000000,";
+		mes "^3366991 "+getitemname(.@items[0])+"^000000,";
+		mes "^3366991 "+getitemname(.@items[1])+"^000000,";
 		mes "^3366991 Solid Husk^000000 and";
 		mes "^3366991 Holy Water^000000.";
 		next;
 		mes "[Boonthom]";
 		mes "See you later.";
 		close;
-	}
-	else if (ayodunquest > 3 && ayodunquest < 9) {
+	} else if (ayodunquest > 3 && ayodunquest < 9) {
 		mes "[Boonthom]";
 		mes "You finally started seeking the tiger. I hope that you will be safe from harm.";
 		next;
@@ -1667,8 +1575,7 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "Feel free to ask";
 		mes "me for help at anytime.";
 		close;
-	}
-	else if (ayodunquest == 9) {
+	} else if (ayodunquest == 9) {
 		mes "["+strcharinfo(0)+"]";
 		mes "I copied down this";
 		mes "message while exploring";
@@ -1702,8 +1609,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "[Boonthom]";
 		mes "^3366992 Holy Water^000000,";
 		mes "^3366991 Yggdrasil Leaf^000000,";
-		mes "^3366992 Needle Packet^000000 and";
-		mes "^3366992 Spool^000000.";
+		mes "^3366992 "+getitemname(.@items[0])+"^000000 and";
+		mes "^3366992 "+getitemname(.@items[0])+"^000000.";
 		set ayodunquest,10;
 		changequest 12037,12038;
 		next;
@@ -1712,9 +1619,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "once you have";
 		mes "gathered everything.";
 		close;
-	}
-	else if (ayodunquest == 10) {
-		if (countitem(523) > 1 && countitem(610) > 0 && countitem(7213) > 1 && countitem(7217) > 1) {
+	} else if (ayodunquest == 10) {
+		if (countitem(523) > 1 && countitem(610) > 0 && countitem(.@items[0]) > 1 && countitem(.@items[1]) > 1) {
 			mes "[Boonthom]";
 			mes "Hmm~";
 			mes "You've brought";
@@ -1736,8 +1642,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "Here you go.";
 			mes "Please take these holy threads.";
 			mes "With this, you will be able to enter the ruins with less worry.";
-			delitem 7213,2; //Needle_Pouch
-			delitem 7217,2; //Spool
+			delitem .@items[0],2;
+			delitem .@items[1],2;
 			delitem 610,1; //Leaf_Of_Yggdrasil
 			delitem 523,2; //Holy_Water
 			set ayodunquest,11;
@@ -1759,8 +1665,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "[Boonthom]";
 		mes "^3366992 Holy Water^000000,";
 		mes "^3366991 Yggdrasil Leaf^000000,";
-		mes "^3366992 Needle Packet^000000 and";
-		mes "^3366992 Spool^000000.";
+		mes "^3366992 "+getitemname(.@items[0])+"^000000 and";
+		mes "^3366992 "+getitemname(.@items[1])+"^000000.";
 		next;
 		mes "[Boonthom]";
 		mes "Return to me";
@@ -1769,8 +1675,7 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "more powerful holy";
 		mes "threads for you.";
 		close;
-	}
-	else if (ayodunquest == 11) {
+	} else if (ayodunquest == 11) {
 		if (countitem(7287) > 0) {
 			mes "[Boonthom]";
 			mes "Those threads";
@@ -1780,8 +1685,7 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "to you to defend yourself";
 			mes "from monster attacks, okay?";
 			close;
-		}
-		else if (countitem(523) > 1 && countitem(610) > 0 && countitem(7213) > 1 && countitem(7217) > 1 && countitem(7287) == 0) {
+		} else if (countitem(523) > 1 && countitem(610) > 0 && countitem(.@items[0]) > 1 && countitem(.@items[1]) > 1 && countitem(7287) == 0) {
 			mes "[Boonthom]";
 			mes "Ooooohmmmmm...";
 			next;
@@ -1796,8 +1700,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "Here you go.";
 			mes "Please take these holy threads.";
 			mes "With this, you will be able to enter the ruins with less worry.";
-			delitem 7213,2; //Needle_Pouch
-			delitem 7217,2; //Spool
+			delitem .@items[0],2;
+			delitem .@items[1],2;
 			delitem 610,1; //Leaf_Of_Yggdrasil
 			delitem 523,2; //Holy_Water
 			getitem 7287,1; //Thread_Skein_
@@ -1813,11 +1717,10 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "[Boonthom]";
 		mes "^3366992 Holy Water^000000,";
 		mes "^3366991 Yggdrasil Leaf^000000,";
-		mes "^3366992 Needle Packet^000000 and";
-		mes "^3366992 Spool^000000.";
+		mes "^3366992 "+getitemname(.@items[0])+"^000000 and";
+		mes "^3366992 "+getitemname(.@items[1])+"^000000.";
 		close;
-	}
-	else if (ayodunquest == 12) {
+	} else if (ayodunquest == 12) {
 		mes "[Boonthom]";
 		mes "Huh...!";
 		mes "You must have seen something.";
@@ -1846,16 +1749,14 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		set ayodunquest,13;
 		completequest 12039;
 		close;
-	}
-	else if (ayodunquest > 12) {
+	} else if (ayodunquest > 12) {
 		if (countitem(7287) > 0) {
 			mes "[Boonthom]";
 			mes "Best of luck on your";
 			mes "expeditions, brave";
 			mes "adventurer~";
 			close;
-		}
-		else if (countitem(523) > 1 && countitem(610) > 0 && countitem(7213) > 1 && countitem(7217) > 1 && countitem(7287) == 0) {
+		} else if (countitem(523) > 1 && countitem(610) > 0 && countitem(.@items[0]) > 1 && countitem(.@items[1]) > 1 && countitem(7287) == 0) {
 			mes "[Boonthom]";
 			mes "Lost the";
 			mes "holy threads";
@@ -1878,8 +1779,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 			mes "Here you go.";
 			mes "Please take these holy threads.";
 			mes "With this, you will be able to enter the ruins with less worry.";
-			delitem 7213,2; //Needle_Pouch
-			delitem 7217,2; //Spool
+			delitem .@items[0],2;
+			delitem .@items[1],2;
 			delitem 610,1; //Leaf_Of_Yggdrasil
 			delitem 523,2; //Holy_Water
 			getitem 7287,1; //Thread_Skein_
@@ -1895,8 +1796,8 @@ ayo_in01,181,193,4	script	Shaman#thai	4_F_THAISHAMAN,{
 		mes "[Boonthom]";
 		mes "^3366992 Holy Water^000000,";
 		mes "^3366991 Yggdrasil Leaf^000000,";
-		mes "^3366992 Needle Packet^000000 and";
-		mes "^3366992 Spool^000000.";
+		mes "^3366992 "+getitemname(.@items[0])+"^000000 and";
+		mes "^3366992 "+getitemname(.@items[1])+"^000000.";
 		close;
 	}
 	mes "[Boonthom]";
@@ -2163,8 +2064,7 @@ ayo_dun01,24,283,0	script	 #2_dun_in	HIDDEN_NPC,{
 			close2;
 			if (rand(1,10) > 5) {
 				warp "ayo_dun02",23,26;
-			}
-			else {
+			} else {
 				warp "ayo_dun02",275,26;
 			}
 			end;
@@ -2252,8 +2152,7 @@ ayothaya,196,265,3	script	Einon#ayo	4_M_THAIOLD,{
 		mes "change your mind,";
 		mes "please come back.";
 		close;
-	}
-	else if (tomyumgoong == 1) {
+	} else if (tomyumgoong == 1) {
 		mes "[Einon]";
 		mes "Ah, you wanna know";
 		mes "where ^3131FFMali the Spicy^000000 is?";
@@ -2290,8 +2189,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 		mes "it's my fate to cook the greatest Tom Yum Goong ever.";
 		if (tomyumgoong == 0) {
 			close;
-		}
-		else {
+		} else {
 			next;
 			mes "[Mali the Spicy]";
 			mes "Oh I see...";
@@ -2343,8 +2241,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 			mes "a try if you really want to taste the best Tom Yum Goong.";
 			close;
 		}
-	}
-	else if (tomyumgoong > 1 && tomyumgoong < 4) {
+	} else if (tomyumgoong > 1 && tomyumgoong < 4) {
 		if (tomyumgoong == 2 && countitem(567) > 19) {
 			mes "[Mali the Spicy]";
 			mes "Errr...";
@@ -2363,8 +2260,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 			mes "and ask him to give you the freshest Shrimp to cook the best";
 			mes "Tom Yum Goong?";
 			close;
-		}
-		else if (tomyumgoong == 3) {
+		} else if (tomyumgoong == 3) {
 			if (countitem(567) > 19) {
 				mes "[Mali the Spicy]";
 				mes "Ah, you came back!";
@@ -2429,8 +2325,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 		mes "you 20 Shrimps.";
 		mes "Now hurry~";
 		close;
-	}
-	else if (tomyumgoong > 3 && tomyumgoong < 6) {
+	} else if (tomyumgoong > 3 && tomyumgoong < 6) {
 		if (tomyumgoong == 4 && countitem(568) > 9) {
 			mes "[Mali the Spicy]";
 			mes "You think these are";
@@ -2444,8 +2339,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 			mes "fresh! They're just";
 			mes "common Lemons!";
 			close;
-		}
-		else if (tomyumgoong == 5) {
+		} else if (tomyumgoong == 5) {
 			if (countitem(568) > 9) {
 				emotion e_gasp;
 				mes "[Mali the Spicy]";
@@ -2506,8 +2400,7 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 		mes "Lemons so that I can make";
 		mes "some Tom Yum Goong!";
 		close;
-	}
-	else if (tomyumgoong == 6) {
+	} else if (tomyumgoong == 6) {
 		if (countitem(7286) > 29) {
 			mes "[Mali the Spicy]";
 			mes "I don't understand...";
@@ -2524,10 +2417,8 @@ ayo_in01,145,163,3	script	Cook#ayo	4_F_THAIGIRL,{
 		mes "[Malli the Spicy]";
 		mes "Please go take a look in the Market. I don't doubt that it will be a good experience. After all, my fantastic Tom Yum Goong is waiting for you!";
 		close;
-	}
-	else if (tomyumgoong == 7) {
-		set .@now_weight,MaxWeight-Weight;
-		if (.@now_weight > 1499) {
+	} else if (tomyumgoong == 7) {
+		if (MaxWeight - Weight > 1499) {
 			if (countitem(7286) > 29) {
 				delitem 7286,30; //Chilli
 				emotion e_gasp;
@@ -2664,8 +2555,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	4_M_THAIONGBAK,{
 			next;
 			if (select("I will take them.:I could get 100 Jellopies for that much!") == 1) {
 				if (Zeny > 10999) {
-					set .@now_weight,MaxWeight-Weight;
-					if (.@now_weight > 3999) {
+					if (MaxWeight - Weight > 3999) {
 						set Zeny, Zeny-11000;
 						set tomyumgoong,3;
 						getitem 567,20; //Prawn
@@ -2699,8 +2589,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	4_M_THAIONGBAK,{
 		mes "of Tom Yum Goong";
 		mes "is priceless!";
 		close;
-	}
-	else if (tomyumgoong == 3) {
+	} else if (tomyumgoong == 3) {
 		mes "[Thongpool]";
 		mes "Mmm...?";
 		mes "Did you need";
@@ -2710,8 +2599,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	4_M_THAIONGBAK,{
 		next;
 		if (select("Yes!:No, thanks.") == 1) {
 			if (Zeny > 10999) {
-				set .@now_weight,MaxWeight-Weight;
-				if (.@now_weight > 3999) {
+				if (MaxWeight - Weight > 3999) {
 					set Zeny, Zeny-11000;
 					getitem 567,20; //Prawn
 					mes "[Thongpool]";
@@ -2742,7 +2630,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	4_M_THAIONGBAK,{
 }
 
 ayothaya,121,240,7	script	Mr. Jun#ayo	4_M_THAIOLD,1,1,{
-	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
+	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
 		mes "- Currently you're carrying -";
 		mes "- too many items with you. -";
@@ -2790,7 +2678,7 @@ ayothaya,121,240,7	script	Mr. Jun#ayo	4_M_THAIOLD,1,1,{
 	close;
 
 OnTouch:
-	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
+	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
 		mes "- Currently you're carrying -";
 		mes "- too many items with you. -";
@@ -3062,8 +2950,7 @@ ayothaya,213,94,7	script	Merchant#ayo	4_M_THAIAYO,{
 		if (select("Thanks, I'll take it.:It's a rip-off, man!") == 1) {
 			emotion e_thx;
 			if (Zeny > 1999) {
-				set .@now_weight,MaxWeight-Weight;
-				if (.@now_weight > 1199) {
+				if (MaxWeight - Weight > 1199) {
 					set Zeny, Zeny-2000;
 					set tomyumgoong,7;
 					getitem 7286,30; //Chilli
@@ -3101,8 +2988,7 @@ ayothaya,213,94,7	script	Merchant#ayo	4_M_THAIAYO,{
 		mes "reasonable. I want you to know";
 		mes "that I'm a respectable Merchant.";
 		close;
-	}
-	else if (tomyumgoong == 7) {
+	} else if (tomyumgoong == 7) {
 		mes "[Merchant Thongdum]";
 		mes "I thought I provided you";
 		mes "with enough ingredients, but";
@@ -3120,8 +3006,7 @@ ayothaya,213,94,7	script	Merchant#ayo	4_M_THAIAYO,{
 			close;
 		}
 		if (Zeny > 1999) {
-			set .@now_weight,MaxWeight-Weight;
-			if (.@now_weight > 1199) {
+			if (MaxWeight - Weight > 1199) {
 				set Zeny, Zeny-2000;
 				getitem 7286,30; //Chilli
 				mes "[Merchant Thongdum]";

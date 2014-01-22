@@ -55,19 +55,27 @@
 	mes "em nossas forjas. Nossa habilidade de derreter metal em novas armas";
 	mes "e ferramentas é realmente uma forma de arte!";
 	next;
+
+	// Third class check - precedes other BaseClass dialogue.
+	if (Class >= Job_Rune_Knight && Class <= Job_Baby_Mechanic2) {
+		mes "[Altiregen]";
+		mes "Você ... parecer um estranho. Mas de alguma forma, parece que você está relacionado com a nosso clã. Haha ~";
+		mes "Estou certo?";
+		close;
+	}
+
 	if (BaseClass == Job_Novice) {
+		mes "[Altiregen]";
 		if (Sex == 0) {
-			mes "[Altiregen]";
 			mes "Oh~";
 			mes "mas que";
 			mes "bela moça!";
-			mes "Você está interessada em";
-			mes "se tornar uma Ferreira";
-			next;
-			mes "[Altiregen]";
-			mes "Primeiro, você deve se tornar uma Mercadora antes de se tornar uma Ferreira. Vá até a cidade de Alberta para aprender sobre o comércio dos Mercadores.";
-			close;
 		}
+		mes "Você está interessada em";
+		mes "se tornar uma Ferreira";
+		next;
+		mes "[Altiregen]";
+		mes "Primeiro, você deve se tornar uma Mercadora antes de se tornar uma Ferreira. Vá até a cidade de Alberta para aprender sobre o comércio dos Mercadores.";
 		close;
 	}
 	else if (BaseClass == Job_Swordman) {
@@ -231,6 +239,11 @@
 		}
 		else if (BSMITH_Q == 17 && countitem(1005) > 0 && JobLevel > 39) {
 			mes "[Altiregen]";
+			if (ismounting()) {
+				mes "Você está em uma montaria de aluguel, então você não pode mudar seu trabalho.";
+				mes "Por favor desequipe a montaria de aluguel e tente novamente!";
+				close;
+			}
 			mes "Excelente, Eu posso falar pelo brilho em seus olhos que você teve sucesso. Eu posso agora colocar em prática o dom da forja, a arte dos Ferreiros.";
 			if (checkquest(2015) != -1) {
 				changequest 2015,2016;

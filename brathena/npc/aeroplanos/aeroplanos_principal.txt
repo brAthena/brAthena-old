@@ -249,7 +249,7 @@ airplane,221,158,2	script	Piloto#aeroplano	4_M_EIN_SOLDIER,{
 		mes "...";
 		mes "......";
 		mes "Ninguém nunca realmente entrou neste quarto.";
-		mes "E como sou o capitão.^FFFFFF ^000000 Eu poderia simplesmente ficar de cuecas.";
+		mes "E como sou o capitão. Eu poderia simplesmente ficar de cuecas.";
 		next;
 		emotion e_omg;
 		mes "[Piloto]";

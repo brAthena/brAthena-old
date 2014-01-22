@@ -394,7 +394,9 @@ einbroch,184,194,3	script	Homem Suspeito#nq	4_M_SITDOWN,{
 		mes "Sempre se lembre de misturar-se com as sombras.";
 		close;
 	}
-	mes "[Turista]";
-	mes "Eu viajei para muitos países, mas nunca estive em um prédio tão alto como a Torre de Einbroch.";
-	mes "Todos os prédios na minha cidade natal são minúsculos em comparação...";
+	else {
+		mes "[Turista]";
+		mes "Eu viajei para muitos países, mas nunca estive em um prédio tão alto como a Torre de Einbroch.";
+		mes "Todos os prédios na minha cidade natal são minúsculos em comparação...";
+	}
 }

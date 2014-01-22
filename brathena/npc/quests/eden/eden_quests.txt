@@ -3081,7 +3081,7 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 					mes "I hope they're useful to you.";
 					close;
 				}
-				if (Class == Job_Novice || Class == Job_Novice_High || Class == Job_SuperNovice || Class == Job_Soul_Linker || Class == Job_Ninja) {
+				if (Class == Job_Novice || Class == Job_Novice_High || Class == Job_SuperNovice || Class == Job_Soul_Linker || BaseClass == Job_Ninja) {
 					mes "[Michael]";
 					mes "We only have 1 weapon for you.";
 					next;
@@ -3967,7 +3967,7 @@ moc_para01,23,35,4	script	Instructor Ur	4_M_KNIGHT_BLACK,{
 L_GiveQuest:
 	mes "You are just in time! I have a new quest for you, would you like to start it now?";
 	next;
-	if (select("Yes!:No, thanks.") == 2) {
+	if(select("Yes!:No, thanks.") == 2) {
 		mes "[Instructor Ur]";
 		mes "Thats too bad. I had some nice rewards I could have given to you for helping me.";
 		close;
@@ -4540,7 +4540,7 @@ moc_para01,111,83,3	script	Toren	2_M_OLDBLSMITH,{
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
 			}
-			else if (Class == Job_Ninja) {
+			else if (BaseClass == Job_Ninja) {
 				mes "Ninja Class gets a choice of weapons, would you like to have a huuma suriken or a dagger?";
 				callsub L_Select,
 					13310,"Huuma Suriken","Two-handed, 170 Atk, 50 Matk", //P.Huuma Suriken I
@@ -4574,7 +4574,7 @@ moc_para01,111,83,3	script	Toren	2_M_OLDBLSMITH,{
 					mes "[Toren]";
 					mes "...Fine, I will sell you another one for ^FF0000250,000 Zeny^000000. Don't lose it this time.";
 					next;
-					if (select("Ok.:No, thanks.") == 2) {
+					if(select("Ok.:No, thanks.") == 2) {
 						mes "[Toren]";
 						mes "Come back if you change your mind.";
 						close;
@@ -4856,7 +4856,7 @@ moc_para01,112,79,3	script	Weapons Expert	4_M_REPAIR,{
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
 				}
-				else if (Class == Job_Ninja) {
+				else if (BaseClass == Job_Ninja) {
 					mes "Ninja Class gets a choice of weapons, would you like to have a huuma suriken or a dagger?";
 					callsub L_Select,
 						13310,"Huuma Suriken","Two-handed, 170 Atk, 50 Matk", //P.Huuma Suriken I
@@ -4905,7 +4905,7 @@ moc_para01,112,79,3	script	Weapons Expert	4_M_REPAIR,{
 			mes "[Weapons Expert]";
 			mes "There are only 2 to choose from, which one would you like?";
 			next;
-			if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+			if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 			else set paraweaponenchant,4806;
 			callsub L_GetWeapon;
 			mes "[Weapons Expert]";
@@ -4931,7 +4931,7 @@ moc_para01,112,79,3	script	Weapons Expert	4_M_REPAIR,{
 				mes "[Weapons Expert]";
 				mes "There are only 2 to choose from, which one would you like?";
 				next;
-				if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+				if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 				else set paraweaponenchant,4806;
 				callsub L_GetWeapon;
 				mes "[Weapons Expert]";
@@ -4992,7 +4992,7 @@ moc_para01,112,79,3	script	Weapons Expert	4_M_REPAIR,{
 				mes "[Weapons Expert]";
 				mes "There are only 2 to choose from, which one would you like?";
 				next;
-				if (select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
+				if(select("Atk + 3%:Matk + 3%") == 1) set paraweaponenchant,4767;
 				else set paraweaponenchant,4806;
 				callsub L_GetWeapon;
 				mes "[Weapons Expert]";
@@ -5138,7 +5138,8 @@ sec_in02,25,33,4	script	Assistant	4_M_BABYCAT,{
 		mes "Value of para_suv0"+.@var+" has been changed to "+.@input+".";
 		setd "para_suv0"+.@var,.@input;
 		close;
+	} else {
+		mes "......meow wee.";
+		close;
 	}
-	mes "......meow wee.";
-	close;
 }

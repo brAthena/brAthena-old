@@ -110,6 +110,8 @@ Lista dos NPCs de Administração GM (incompleta)
 - sorcereryal
 - Button Girl#wl
 - Button Girl#sura
+- Battle Test Control#ko
+- Guide#ko_helper
 --------------------------
 - Soul Linker Var
 - 1st Job Quest Reset

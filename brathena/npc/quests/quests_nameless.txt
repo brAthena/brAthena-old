@@ -3731,7 +3731,7 @@ cmd_fild01,55,160,0	script	Heap of Earth	CLEAR_NPC,{
 	close;
 }
 
-izlude_in,110,64,3	script	Dorian	4_M_OILMAN,2,2,{
+-	script	Dorian#iz	-1,{
 	if (checkweight(907,200) == 0) {
 		mes "[Dorian]";
 		mes "Ugh, tinha que ser";
@@ -4237,7 +4237,7 @@ OnTouch:
 	end;
 }
 
-izlude_in,113,66,0	script	Máquina	HIDDEN_NPC,{
+-	script	Máquina#iz	-1,{
 	if (checkweight(907,200) == 0) {
 		mes "[Dorian]";
 		mes "Ugh, tinha que ser";
@@ -13337,3 +13337,8 @@ morocc,116,39,3	script	Agente da Guilda#nd4	4_M_YOYOROGUE,{
 		close;
 	}
 }
+
+izlude_in,57,92,3	duplicatr(Dorian#iz)	Dorian	4_M_OILMAN,2,2
+izlude_in,58,90,1	duplicatr(Máquina#iz)	Máquina	HIDDEN_NPC,{}
+izlude_in,110,64,3	duplicatp(Dorian#iz)	Dorian	4_M_OILMAN,2,2
+izlude_in,113,66,0	duplicatp(Máquina#iz)	Máquina	HIDDEN_NPC,{}

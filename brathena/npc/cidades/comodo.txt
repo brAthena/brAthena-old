@@ -98,7 +98,7 @@ cmd_in02,172,105,4	script	G . J#cmd	4_M_04,{
 	mes "Jogos de azar são divertidos, mas é mais inteligente ganhar dinheiro de outros jeitos. Trabalhar não é divertido, mas existem jeitos de fazer seu dinheiro render, certo?";
 	next;
 	mes "[G . J]";
-	mes "Também tem a questão de ser esperto e responsável sobre seu dinheiro--Quero dizer, é provável que você perca tudo de novo se ganhar algum dinheiro, não? É, você precisa ser inteligente nessas questões...";
+	mes "Também tem a questão de ser esperto e responsável sobre seu dinheiro --Quero dizer, é provável que você perca tudo de novo se ganhar algum dinheiro, não? É, você precisa ser inteligente nessas questões...";
 	close;
 }
 
