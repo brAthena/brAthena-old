@@ -1152,7 +1152,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 
 		case TF_THROWSTONE:
 	#if VERSION == -1
-			if(!sc_start(bl,SC_STUN,5,skill_lv,skill_get_time(skill_id,skill_lv)))
+			sc_start(bl,SC_STUN,5,skill_lv,skill_get_time(skill_id,skill_lv));
 	#else
 			if(!sc_start(bl,SC_STUN,3,skill_lv,skill_get_time(skill_id,skill_lv)))
 			sc_start(bl,SC_BLIND,3,skill_lv,skill_get_time2(skill_id,skill_lv));
