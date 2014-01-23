@@ -3302,7 +3302,7 @@ int parse_console(const char *buf)
 	ShowNotice("Type of command: '%s' || Command: '%s' || Map: '%s' Coords: %d %d\n", type, command, map_name, x, y);
 
 	if(n == 5 && strcmpi("admin",type) == 0) {
-		if(!is_atcommand(sd.fd, &sd, command, 0))
+		if (!atcommand_exec(sd.fd, &sd, command, false))
 			ShowInfo("Console: not atcommand\n");
 	} else if(n == 2 && strcmpi("server", type) == 0) {
 		if(strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0) {

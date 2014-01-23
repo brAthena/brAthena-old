@@ -2606,9 +2606,8 @@ ACMD_FUNC(stat_all)
 ACMD_FUNC(guildlevelup)
 {
 	int level = 0;
-	short added_level;
+	int16 added_level;
 	struct guild *guild_info;
-	nullpo_retr(-1, sd);
 
 	if(!message || !*message || sscanf(message, "%d", &level) < 1 || level == 0) {
 		clif_displaymessage(fd, msg_txt(1014)); // Please enter a valid level (usage: @guildlvup/@guildlvlup <# of levels>).
@@ -2619,16 +2618,18 @@ ACMD_FUNC(guildlevelup)
 		clif_displaymessage(fd, msg_txt(43)); // You're not in a guild.
 		return -1;
 	}
-	//if (strcmp(sd->status.name, guild_info->master) != 0) {
-	//  clif_displaymessage(fd, msg_txt(44)); // You're not the master of your guild.
-	//  return -1;
-	//}
+#if 0 // By enabling this, only the guild leader can use this command
+	if (strcmp(sd->status.name, guild_info->master) != 0) {
+	  clif_displaymessage(fd, msg_txt(44)); // You're not the master of your guild.
+	  return -1;
+	}
+#endif // 0
 
-	added_level = (short)level;
-	if(level > 0 && (level > MAX_GUILDLEVEL || added_level > ((short)MAX_GUILDLEVEL - guild_info->guild_lv)))  // fix positiv overflow
-		added_level = (short)MAX_GUILDLEVEL - guild_info->guild_lv;
-	else if(level < 0 && (level < -MAX_GUILDLEVEL || added_level < (1 - guild_info->guild_lv)))  // fix negativ overflow
-		added_level = 1 - guild_info->guild_lv;
+	if(level > INT16_MAX || (level > 0 && level > MAX_GUILDLEVEL - guild_info->guild_lv)) // fix positive overflow
+		level = MAX_GUILDLEVEL - guild_info->guild_lv;
+	else if(level < INT16_MIN || (level < 0 && level < 1 - guild_info->guild_lv)) // fix negative overflow
+		level = 1 - guild_info->guild_lv;
+	added_level = (int16)level;
 
 	if(added_level != 0) {
 		intif_guild_change_basicinfo(guild_info->guild_id, GBI_GUILDLV, &added_level, sizeof(added_level));
@@ -10095,9 +10096,14 @@ static void atcommand_get_suggestions(struct map_session_data *sd, const char *n
 	dbi_destroy(alias_iter);
 }
 
-/// Executes an at-command.
-bool is_atcommand(const int fd, struct map_session_data *sd, const char *message, int type)
-{
+/**
+ * Executes an at-command
+ * @param fd             fd associated to the invoking character
+ * @param sd             sd associated to the invoking character
+ * @param message        atcommand arguments
+ * @param player_invoked true if the command was invoked by a player, false if invoked by the server (bypassing any restrictions)
+ */
+bool atcommand_exec(const int fd, struct map_session_data *sd, const char *message, bool player_invoked) {
 	char charname[NAME_LENGTH], params[100];
 	char charname2[NAME_LENGTH], params2[100];
 	char command[100];
@@ -10127,9 +10133,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 	if(*message != atcommand_symbol && *message != charcommand_symbol)
 		return false;
 
-	// type value 0 = server invoked: bypass restrictions
-	// 1 = player invoked
-	if(type == 1) {
+	if (player_invoked) {
 		//Commands are disabled on maps flagged as 'nocommand'
 		if(map[sd->bl.m].nocommand && pc_get_group_level(sd) < map[sd->bl.m].nocommand) {
 			clif_displaymessage(fd, msg_txt(143));
@@ -10197,26 +10201,33 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		params[0] = '\0';
 
 	// @commands (script based)
-	if(type == 1 && atcmd_binding_count > 0) {
-		struct atcmd_binding_data *binding;
+	if (player_invoked && atcmd_binding_count > 0) {
+		struct atcmd_binding_data * binding;
+
+	// Get atcommand binding
+		binding = get_atcommandbind_byname(command);
+
+		// Check if the binding isn't NULL and there is a NPC event, level of usage met, et cetera
+		if(binding != NULL
+		&& binding->npc_event[0]
+		&&(
+		    (*atcmd_msg == atcommand_symbol && pc_get_group_level(sd) >= binding->level)
+			|| (*atcmd_msg == charcommand_symbol && pc_get_group_level(sd) >= binding->level2))) {
+			// Check if self or character invoking; if self == character invoked, then self invoke.
+			bool invokeFlag = ((*atcmd_msg == atcommand_symbol) ? 1 : 0);
 
 		// Check if the command initiated is a character command
-		if(*message == charcommand_symbol &&
-		   (ssd = map_nick2sd(charname)) == NULL && (ssd = map_nick2sd(charname2)) == NULL) {
+		if(*message == charcommand_symbol
+		  && (ssd = map_nick2sd(charname)) == NULL
+		  && (ssd = map_nick2sd(charname2)) == NULL) {
 			sprintf(output, msg_txt(1389), command); // %s failed. Player not found.
 			clif_displaymessage(fd, output);
 			return true;
 		}
 
-		// Get atcommand binding
-		binding = get_atcommandbind_byname(command);
+		if(binding->log) /* log only if this command should be logged */
+				log_atcommand(sd, atcmd_msg);
 
-		// Check if the binding isn't NULL and there is a NPC event, level of usage met, et cetera
-		if(binding != NULL && binding->npc_event[0] &&
-		   ((*atcmd_msg == atcommand_symbol && pc_get_group_level(sd) >= binding->level) ||
-		    (*atcmd_msg == charcommand_symbol && pc_get_group_level(sd) >= binding->level2))) {
-			// Check if self or character invoking; if self == character invoked, then self invoke.
-			bool invokeFlag = ((*atcmd_msg == atcommand_symbol) ? 1 : 0);
 			npc->do_atcmd_event((invokeFlag ? sd : ssd), command, params, binding->npc_event);
 			return true;
 		}
@@ -10234,8 +10245,7 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 			return false;
 	}
 
-	// type == 1 : player invoked
-	if(type == 1) {
+	if (player_invoked) {
 		int i;
 		if((*command == atcommand_symbol && info->at_groups[pcg->get_idx(sd->group)] == 0) ||
 		   (*command == charcommand_symbol && info->char_groups[pcg->get_idx(sd->group)] == 0)) {
@@ -10271,11 +10281,8 @@ bool is_atcommand(const int fd, struct map_session_data *sd, const char *message
 		return true;
 	}
 
-	//Log only if successful.
-	if(*atcmd_msg == atcommand_symbol)
-		log_atcommand(sd, atcmd_msg);
-	else if(*atcmd_msg == charcommand_symbol)
-		log_atcommand(sd, message);
+	if(info->log) /* log only if this command should be logged */
+		log_atcommand(sd, *atcmd_msg == atcommand_symbol ? atcmd_msg : message);
 
 	return true;
 }

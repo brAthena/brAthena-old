@@ -64,9 +64,10 @@
 	#define PACKETVER 20120410
 #endif
 
-#ifndef DISABLE_PACKETVER_RE
 /// Comentar a linha a seguir se seu cliente não é ragexeRE (necessário por causa de pacotes conflitantes em ragexe vs ragexeRE)
-#define PACKETVER_RE
+#ifdef ENABLE_PACKETVER_RE
+	#define PACKETVER_RE
+	#undef ENABLE_PACKETVER_RE
 #endif
 
 // Client support for experimental RagexeRE UI present in 2012-04-10 and 2012-04-18

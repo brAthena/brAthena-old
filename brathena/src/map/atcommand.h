@@ -60,7 +60,7 @@ struct AtCommandInfo {
 
 AtCommandInfo *get_atcommandinfo_byname(const char *name);
 
-bool is_atcommand(const int fd, struct map_session_data *sd, const char *message, int type);
+bool atcommand_exec(const int fd, struct map_session_data *sd, const char *message, bool player_invoked);
 bool atcommand_can_use(struct map_session_data *sd, const char *command);
 bool atcommand_can_use2(struct map_session_data *sd, const char *command, AtCommandType type);
 
@@ -84,6 +84,7 @@ struct atcmd_binding_data {
 	char npc_event[50];
 	int level;
 	int level2;
+	bool log;
 };
 
 struct atcmd_binding_data **atcmd_binding;

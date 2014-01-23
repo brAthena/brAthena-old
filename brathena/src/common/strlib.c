@@ -246,6 +246,9 @@ char *_strtok_r(char *s1, const char *s2, char **lasts)
 }
 #endif
 
+// TODO: The _MSC_VER check can probably be removed (we no longer support VS
+// versions <= 2003, do we?), but this implementation might be still necessary
+// for NetBSD 5.x and possibly some Solaris versions.
 #if !(defined(WIN32) && defined(_MSC_VER) && _MSC_VER >= 1400) && !defined(HAVE_STRNLEN)
 /* Find the length of STRING, but scan at most MAXLEN characters.
    If no '\0' terminator is found in that many characters, return MAXLEN.  */
@@ -256,6 +259,7 @@ size_t strnlen(const char *string, size_t maxlen)
 }
 #endif
 
+// TODO: This should probably be removed, I don't think we support MSVC++ 6.0 anymore.
 #if defined(WIN32) && defined(_MSC_VER) && _MSC_VER <= 1200
 uint64 strtoull(const char *str, char **endptr, int base)
 {
@@ -332,13 +336,23 @@ int e_mail_check(char *email)
 
 //--------------------------------------------------
 // Return numerical value of a switch configuration
-// on/off, english, fran?ais, deutsch, espa?ol
+// on/off, yes/no, true/false, number
 //--------------------------------------------------
 int config_switch(const char *str)
 {
-	if(strcmpi(str, "on") == 0 || strcmpi(str, "yes") == 0 || strcmpi(str, "oui") == 0 || strcmpi(str, "ja") == 0 || strcmpi(str, "si") == 0)
+	size_t len = strlen(str);
+	if ((len == 2 && strcmpi(str, "on") == 0)
+	 || (len == 3 && strcmpi(str, "yes") == 0)
+	 || (len == 4 && strcmpi(str, "true") == 0)
+	// || (len == 3 && strcmpi(str, "oui") == 0) // Uncomment and edit to add your own localized versions
+	)
 		return 1;
-	if(strcmpi(str, "off") == 0 || strcmpi(str, "no") == 0 || strcmpi(str, "non") == 0 || strcmpi(str, "nein") == 0)
+
+	if ((len == 3 && strcmpi(str, "off") == 0)
+	 || (len == 2 && strcmpi(str, "no") == 0)
+	 || (len == 5 && strcmpi(str, "false") == 0)
+	// || (len == 3 && strcmpi(str, "non") == 0) // Uncomment and edit to add your own localized versions
+	)
 		return 0;
 
 	return (int)strtol(str, NULL, 0);
@@ -1129,10 +1143,14 @@ void strlib_defaults(void) {
 
 #if !(defined(WIN32) && defined(_MSC_VER) && _MSC_VER >= 1400) && !defined(HAVE_STRNLEN)
 	strlib->strnlen = strnlen;
+#else
+	strlib->strnlen = NULL;
 #endif
 	
 #if defined(WIN32) && defined(_MSC_VER) && _MSC_VER <= 1200
 	strlib->strtoull = strtoull;
+#else
+	strlib->strtoull = NULL;
 #endif
 	strlib->e_mail_check = e_mail_check;
 	strlib->config_switch = config_switch;
