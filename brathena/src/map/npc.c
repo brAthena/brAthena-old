@@ -2498,7 +2498,7 @@ struct npc_data *npc_add_warp(char *name, short from_mapid, short from_x, short 
 	nd->subtype = WARP;
 	npc->setcells(nd);
 	map_addblock(&nd->bl);
-	status_set_viewdata(&nd->bl, nd->class_);
+	status->set_viewdata(&nd->bl, nd->class_);
 	nd->ud = &npc->base_ud;
 	if(map[nd->bl.m].users)
 		clif_spawn(&nd->bl);
@@ -2561,7 +2561,7 @@ const char *npc_parse_warp(char *w1, char *w2, char *w3, char *w4, const char *s
 	nd->subtype = WARP;
 	npc->setcells(nd);
 	map_addblock(&nd->bl);
-	status_set_viewdata(&nd->bl, nd->class_);
+	status->set_viewdata(&nd->bl, nd->class_);
 	nd->ud = &npc->base_ud;
 	if(map[nd->bl.m].users)
 		clif_spawn(&nd->bl);
@@ -2669,7 +2669,7 @@ const char *npc_parse_shop(char *w1, char *w2, char *w3, char *w4, const char *s
 		// normal shop npc
 		map_addnpc(m,nd);
 		map_addblock(&nd->bl);
-		status_set_viewdata(&nd->bl, nd->class_);
+		status->set_viewdata(&nd->bl, nd->class_);
 		nd->ud = &npc->base_ud;
 		nd->dir = dir;
 		if(map[nd->bl.m].users)
@@ -2852,7 +2852,7 @@ const char *npc_parse_script(char *w1, char *w2, char *w3, char *w4, const char 
 		npc->setcells(nd);
 		map_addblock(&nd->bl);
 		if(nd->class_ >= 0) {
-			status_set_viewdata(&nd->bl, nd->class_);
+			status->set_viewdata(&nd->bl, nd->class_);
 			if(map[nd->bl.m].users)
 				clif_spawn(&nd->bl);
 		}
@@ -3013,7 +3013,7 @@ const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const ch
 		npc->setcells(nd);
 		map_addblock(&nd->bl);
 		if(nd->class_ >= 0) {
-			status_set_viewdata(&nd->bl, nd->class_);
+			status->set_viewdata(&nd->bl, nd->class_);
 			if(map[nd->bl.m].users)
 				clif_spawn(&nd->bl);
 		}
@@ -3084,7 +3084,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m)
 		wnd->subtype = WARP;
 		npc->setcells(wnd);
 		map_addblock(&wnd->bl);
-		status_set_viewdata(&wnd->bl, wnd->class_);
+		status->set_viewdata(&wnd->bl, wnd->class_);
 		wnd->ud = &npc->base_ud;
 		if(map[wnd->bl.m].users)
 			clif_spawn(&wnd->bl);
@@ -3220,7 +3220,7 @@ void npc_setclass(struct npc_data *nd, short class_)
 	if(map[nd->bl.m].users)
 		clif_clearunit_area(&nd->bl, CLR_OUTSIGHT);// fade out
 	nd->class_ = class_;
-	status_set_viewdata(&nd->bl, class_);
+	status->set_viewdata(&nd->bl, class_);
 	if(map[nd->bl.m].users)
 		clif_spawn(&nd->bl);// fade in
 }

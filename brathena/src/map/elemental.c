@@ -267,9 +267,9 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 		ed->master = sd;
 		ed->db = db;
 		memcpy(&ed->elemental, ele, sizeof(struct s_elemental));
-		status_set_viewdata(&ed->bl, ed->elemental.class_);
+		status->set_viewdata(&ed->bl, ed->elemental.class_);
 		ed->vd->head_mid = 10; // Why?
-		status_change_init(&ed->bl);
+		status->change_init(&ed->bl);
 		unit_dataset(&ed->bl);
 		ed->ud.dir = sd->ud.dir;
 
@@ -307,7 +307,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 int elemental_clean_single_effect(struct elemental_data *ed, uint16 skill_id)
 {
 	struct block_list *bl;
-	sc_type type = status_skill2sc(skill_id);
+	sc_type type = status->skill2sc(skill_id);
 
 	nullpo_ret(ed);
 
@@ -458,9 +458,9 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, int64 tic
 			ed->ud.skill_lv = skill_lv;
 
 			if(skill_get_inf(skill_id) & INF_GROUND_SKILL)
-				ed->ud.skilltimer = add_timer(tick+status_get_speed(&ed->bl)*walk_dist, skill_castend_pos, ed->bl.id, 0);
+				ed->ud.skilltimer = add_timer(tick + status->get_speed(&ed->bl)*walk_dist, skill_castend_pos, ed->bl.id, 0);
 			else
-				ed->ud.skilltimer = add_timer(tick+status_get_speed(&ed->bl)*walk_dist, skill_castend_id, ed->bl.id, 0);
+				ed->ud.skilltimer = add_timer(tick + status->get_speed(&ed->bl)*walk_dist, skill_castend_id, ed->bl.id, 0);
 		}
 		return 1;
 
@@ -624,7 +624,7 @@ int elemental_set_target(struct map_session_data *sd, struct block_list *bl)
 	if(ed->bl.m != bl->m || !check_distance_bl(&ed->bl, bl, ed->db->range2))
 		return 0;
 
-	if(!status_check_skilluse(&ed->bl, bl, 0, 0))
+	if(!status->check_skilluse(&ed->bl, bl, 0, 0))
 		return 0;
 
 	if(ed->target_id == 0)
@@ -645,7 +645,7 @@ static int elemental_ai_sub_timer_activesearch(struct block_list *bl, va_list ap
 	target = va_arg(ap,struct block_list **);
 
 	//If can't seek yet, not an enemy, or you can't attack it, skip.
-	if((*target) == bl || !status_check_skilluse(&ed->bl, bl, 0, 0))
+	if((*target) == bl || !status->check_skilluse(&ed->bl, bl, 0, 0))
 		return 0;
 
 	if(battle_check_target(&ed->bl,bl,BCT_ENEMY) <= 0)
@@ -798,7 +798,7 @@ static int elemental_ai_timer(int tid, int64 tick, int id, intptr_t data)
 int read_elementaldb(void)
 {
 	struct s_elemental_db *db;
-	struct status_data *status;
+	struct status_data *estatus;
 	int count = 0, ele;
 
 	memset(elemental_db,0,sizeof(elemental_db));
@@ -821,46 +821,46 @@ int read_elementaldb(void)
 		safestrncpy(db->name, row[2], NAME_LENGTH);
 		db->lv = atoi(row[3]);
 
-		status = &db->status;
+		estatus = &db->status;
 		db->vd.class_ = db->class_;
 
-		status->max_hp = atoi(row[4]);
-		status->max_sp = atoi(row[5]);
-		status->rhw.range = atoi(row[6]);
-		status->rhw.atk = atoi(row[7]);
-		status->rhw.atk2 = atoi(row[8]);
-		status->def = atoi(row[9]);
-		status->mdef = atoi(row[10]);
-		status->str = atoi(row[11]);
-		status->agi = atoi(row[12]);
-		status->vit = atoi(row[13]);
-		status->int_ = atoi(row[14]);
-		status->dex = atoi(row[15]);
-		status->luk = atoi(row[16]);
+		estatus->max_hp = atoi(row[4]);
+		estatus->max_sp = atoi(row[5]);
+		estatus->rhw.range = atoi(row[6]);
+		estatus->rhw.atk = atoi(row[7]);
+		estatus->rhw.atk2 = atoi(row[8]);
+		estatus->def = atoi(row[9]);
+		estatus->mdef = atoi(row[10]);
+		estatus->str = atoi(row[11]);
+		estatus->agi = atoi(row[12]);
+		estatus->vit = atoi(row[13]);
+		estatus->int_ = atoi(row[14]);
+		estatus->dex = atoi(row[15]);
+		estatus->luk = atoi(row[16]);
 		db->range2 = atoi(row[17]);
 		db->range3 = atoi(row[18]);
-		status->size = atoi(row[19]);
-		status->race = atoi(row[20]);
+		estatus->size = atoi(row[19]);
+		estatus->race = atoi(row[20]);
 
 		ele = atoi(row[21]);
-		status->def_ele = ele%10;
-		status->ele_lv = ele/20;
+		estatus->def_ele = ele%10;
+		estatus->ele_lv = ele/20;
 
-		if(status->def_ele >= ELE_MAX) {
-			ShowWarning(read_message("Source.map.map_elemental_s3"), db->class_, status->def_ele, ELE_MAX - 1);
-			status->def_ele = ELE_NEUTRAL;
+		if(estatus->def_ele >= ELE_MAX) {
+			ShowWarning(read_message("Source.map.map_elemental_s3"), db->class_, estatus->def_ele, ELE_MAX - 1);
+			estatus->def_ele = ELE_NEUTRAL;
 		}
 
-		if(status->ele_lv < 1 || status->ele_lv > 4) {
-			ShowWarning(read_message("Source.map.map_elemental_s4"), db->class_, status->ele_lv);
-			status->ele_lv = 1;
+		if(estatus->ele_lv < 1 || estatus->ele_lv > 4) {
+			ShowWarning(read_message("Source.map.map_elemental_s4"), db->class_, estatus->ele_lv);
+			estatus->ele_lv = 1;
 		}
 
-		status->aspd_rate = 1000;
-		status->speed = atoi(row[22]);
-		status->adelay = atoi(row[23]);
-		status->amotion = atoi(row[24]);
-		status->dmotion = atoi(row[25]);
+		estatus->aspd_rate = 1000;
+		estatus->speed = atoi(row[22]);
+		estatus->adelay = atoi(row[23]);
+		estatus->amotion = atoi(row[24]);
+		estatus->dmotion = atoi(row[25]);
 
 		++count;
 	}

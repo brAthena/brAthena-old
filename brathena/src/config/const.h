@@ -85,17 +85,17 @@
 /* Modo de renovação para modificações de dano conforme o nível */
 #ifdef RENEWAL_LVDMG
 	#define RE_LVL_DMOD(val) do { \
-		if( status_get_lv(src) > 100 && (val) > 0 ) \
-			skillratio = skillratio * status_get_lv(src) / (val); \
+		if(status->get_lv(src) > 100 && (val) > 0 ) \
+			skillratio = skillratio * status->get_lv(src) / (val); \
 	} while(0)
 	#define RE_LVL_MDMOD(val) do { \
-		if( status_get_lv(src) > 100 && (val) > 0) \
-			md.damage = md.damage * status_get_lv(src) / (val); \
+		if(status->get_lv(src) > 100 && (val) > 0) \
+			md.damage = md.damage * status->get_lv(src) / (val); \
 	} while(0)
 	/* ranger traps special */
 	#define RE_LVL_TMDMOD() do { \
-		if( status_get_lv(src) > 100 ) \
-			md.damage = md.damage * 150 / 100 + md.damage * status_get_lv(src) / 100; \
+		if(status->get_lv(src) > 100 ) \
+			md.damage = md.damage * 150 / 100 + md.damage * status->get_lv(src) / 100; \
 	} while(0)
 #else
 	#define RE_LVL_DMOD(val) 

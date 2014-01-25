@@ -397,7 +397,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, int64 tick)
 
 	//TODO: Perhaps some outs of bounds checking should be placed here?
 	if(bl->type&BL_CHAR) {
-		sc = status_get_sc(bl);
+		sc = status->get_sc(bl);
 
 		skill_unit_move(bl,tick,2);
 		status_change_end(bl, SC_RG_CCONFINE_M, INVALID_TIMER);
@@ -1607,7 +1607,7 @@ int map_quit(struct map_session_data *sd)
 	if(sd->sc.count) {
 		//Status that are not saved...
 		for(i=0; i < SC_MAX; i++){
-			if (status_get_sc_type(i)&SC_NO_SAVE) {
+			if (status->get_sc_type(i)&SC_NO_SAVE) {
 				if (!sd->sc.data[i])
 					continue;
 				switch(i) {
@@ -5260,7 +5260,7 @@ void do_final(void)
 	do_final_mob();
 	do_final_msg();
 	do_final_skill();
-	do_final_status();
+	status->final();
 	do_final_unit();
 	do_final_battleground();
 	do_final_duel();
@@ -5489,6 +5489,7 @@ int do_init(int argc, char *argv[])
 	pc_groups_defaults();
 	script_defaults();
 	quest_defaults();
+	status_defaults();
 	storage_defaults();
 	mapindex_defaults();
 	mapreg_defaults();
@@ -5585,7 +5586,7 @@ int do_init(int argc, char *argv[])
 	read_map_zone_db();/* read after item and skill initalization */
 	do_init_mob();
 	do_init_pc();
-	do_init_status();
+	status->init();
 	do_init_party();
 	guild->init();
 	gstorage->init();

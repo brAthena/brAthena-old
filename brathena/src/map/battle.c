@@ -145,7 +145,7 @@ int battle_getenemy_sub(struct block_list *bl, va_list ap)
 	if(*c >= 24)
 		return 0;
 
-	if(status_isdead(bl))
+	if(status->isdead(bl))
 		return 0;
 
 	if(battle_check_target(target, bl, BCT_ENEMY) > 0) {
@@ -188,7 +188,7 @@ int battle_getenemyarea_sub(struct block_list *bl, va_list ap)
 	if(*c >= 23)
 		return 0;
 
-	if(status_isdead(bl))
+	if (status->isdead(bl))
 		return 0;
 
 	if(battle_check_target(src, bl, BCT_ENEMY) > 0) {  // Is Enemy!...
@@ -223,7 +223,7 @@ int battle_delay_damage_sub(int tid, int64 tick, int id, intptr_t data)
 		struct block_list *src = NULL;
 		struct block_list *target = map_id2bl(dat->target_id);
 
-		if(!target || status_isdead(target)) {/* nothing we can do */
+		if(!target || status->isdead(target)) {/* nothing we can do */
 			if(dat->src_type == BL_PC && (src = map_id2bl(dat->src_id) ) && --((TBL_PC*)src)->delayed_damage == 0 && ((TBL_PC*)src)->state.hold_recalc) {
 				((TBL_PC*)src)->state.hold_recalc = 0;
 				status_calc_pc(((TBL_PC*)src),SCO_FORCE);
@@ -240,7 +240,7 @@ int battle_delay_damage_sub(int tid, int64 tick, int id, intptr_t data)
 		&& check_distance_bl(src, target, dat->distance)) {
 			map_freeblock_lock();
 			status_fix_damage(src, target, dat->damage, dat->delay);
-			if(dat->attack_type && !status_isdead(target) && dat->additional_effects)
+			if(dat->attack_type && !status->isdead(target) && dat->additional_effects)
 				skill_additional_effect(src,target,dat->skill_id,dat->skill_lv,dat->attack_type,dat->dmg_lv,tick);
 			if(dat->dmg_lv > ATK_BLOCK && dat->attack_type)
 				skill_counter_additional_effect(src,target,dat->skill_id,dat->skill_lv,dat->attack_type,tick);
@@ -270,7 +270,7 @@ int battle_delay_damage(int64 tick, int amotion, struct block_list *src, struct 
 	nullpo_ret(src);
 	nullpo_ret(target);
 
-	sc = status_get_sc(target);
+	sc = status->get_sc(target);
 
 	if(sc && sc->data[SC_DEVOTION] && damage > 0 && skill_id != PA_PRESSURE && skill_id != CR_REFLECTSHIELD)
 		damage = 0;
@@ -278,7 +278,7 @@ int battle_delay_damage(int64 tick, int amotion, struct block_list *src, struct 
 	if(!battle_config.delay_battle_damage || amotion <= 1) {
 		map_freeblock_lock();
 		status_fix_damage(src, target, damage, ddelay); // We have to seperate here between reflect damage and others [icescope]
-		if(attack_type && !status_isdead(target) && additional_effects)
+		if(attack_type && !status->isdead(target) && additional_effects)
 			skill_additional_effect(src, target, skill_id, skill_lv, attack_type, dmg_lv, gettick());
 		if(dmg_lv > ATK_BLOCK && attack_type)
 			skill_counter_additional_effect(src, target, skill_id, skill_lv, attack_type, gettick());
@@ -330,8 +330,8 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 	struct status_change *sc=NULL, *tsc=NULL;
 	int ratio;
 
-	if(src) sc = status_get_sc(src);
-	if(target) tsc = status_get_sc(target);
+	if(src) sc = status->get_sc(src);
+	if(target) tsc = status->get_sc(target);
 
 	if(atk_elem < 0 || atk_elem >= ELE_MAX)
 		atk_elem = rnd()%ELE_MAX;
@@ -358,7 +358,7 @@ int64 battle_attr_fix(struct block_list *src, struct block_list *target, int64 d
 			struct block_list *sgsrc;
 
 			if(!su || !su->alive || (sg = su->group) == NULL || sg->val3 == -1 ||
-			   (sgsrc = map_id2bl(sg->src_id)) == NULL || status_isdead(sgsrc))
+				(sgsrc = map_id2bl(sg->src_id)) == NULL || status->isdead(sgsrc))
 				return 0;
 
 			if(sg->unit_id != UNT_FIREWALL) {
@@ -440,10 +440,10 @@ int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, u
 	if(!src || !bl)
 		return 0;
 
-	sc = status_get_sc(src);
+	sc = status->get_sc(src);
 	sd = BL_CAST(BL_PC, src);
 
-	damage =  status_get_weapon_atk(src, watk, flag);
+	damage = status->get_weapon_atk(src, watk, flag);
 
 	if(sd) {
 		if(type == EQI_HAND_R)
@@ -511,14 +511,14 @@ int64 battle_calc_weapon_damage(struct block_list *src, struct block_list *bl, u
 int64 battle_calc_base_damage(struct block_list *src, struct block_list *bl, uint16 skill_id, uint16 skill_lv, int nk, bool n_ele, short s_ele, short s_ele_, int type, int flag, int flag2)
 {
 	int64 damage, batk;
-	struct status_data *status = status_get_status_data(src);
+	struct status_data *st = status->get_status_data(src);
 
-	batk = battle_calc_elefix(src, bl, skill_id, skill_lv, status_calc_batk(bl, status_get_sc(src), status->batk, false), nk, n_ele, ELE_NEUTRAL, ELE_NEUTRAL, false, flag);
+	batk = battle_calc_elefix(src, bl, skill_id, skill_lv, status->calc_batk(bl, status->get_sc(src), st->batk, false), nk, n_ele, ELE_NEUTRAL, ELE_NEUTRAL, false, flag);
 
 	if(type == EQI_HAND_L)
-		damage = batk + 3 * battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &status->lhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2) / 4;
+		damage = batk + 3 * battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &st->lhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2) / 4;
 	else
-		damage = (batk << 1) + battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &status->rhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2);
+		damage = (batk << 1) + battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &st->rhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2);
 	return damage;
 }
 int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
@@ -614,7 +614,7 @@ int64 battle_calc_sizefix(struct map_session_data *sd, int64 damage, int type, i
 int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,int64 dmg,int type)
 {
 	int64 damage;
-	struct status_data *status = status_get_status_data(target);
+	struct status_data *st = status->get_status_data(target);
 	int weapon, skill_lv;
 	damage = dmg;
 
@@ -622,16 +622,16 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 
 	if((skill_lv = pc_checkskill(sd,AL_DEMONBANE)) > 0 &&
 		target->type == BL_MOB && //This bonus doesnt work against players.
-		(battle_check_undead(status->race,status->def_ele) || status->race==RC_DEMON))
+		(battle_check_undead(st->race,st->def_ele) || st->race==RC_DEMON))
 	#if VERSION == -1
 		damage += (skill_lv * 3);
 	#else
 		damage += (int)(skill_lv*(3+sd->status.base_level/20.0));
 	#endif
 
-	if((skill_lv = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLANT || status->race == RC_FISH))
+	if((skill_lv = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (st->race == RC_BRUTE || st->race == RC_PLANT || st->race == RC_FISH))
 		damage += (skill_lv * 5);
-	if((skill_lv = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH))
+	if((skill_lv = pc_checkskill(sd,NC_RESEARCHFE)) > 0 && (st->def_ele == ELE_FIRE || st->def_ele == ELE_EARTH))
 		damage += (skill_lv * 10);
 	if(pc_ismadogear(sd))
 		damage += 20 + 20 * pc_checkskill(sd, NC_MADOLICENCE);
@@ -639,7 +639,7 @@ int64 battle_addmastery(struct map_session_data *sd,struct block_list *target,in
 	if((skill_lv = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
 		damage += (skill_lv * 2);
 	#endif
-	if((skill_lv = pc_checkskill(sd,HT_BEASTBANE)) > 0 && (status->race==RC_BRUTE || status->race==RC_INSECT)) {
+	if((skill_lv = pc_checkskill(sd,HT_BEASTBANE)) > 0 && (st->race==RC_BRUTE || st->race==RC_INSECT)) {
 		damage += (skill_lv * 4);
 		if (sd->sc.data[SC_SOULLINK] && sd->sc.data[SC_SOULLINK]->val2 == SL_HUNTER)
 			damage += sd->status.str;
@@ -736,9 +736,9 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 	nullpo_ret(src);
 	nullpo_ret(target);
 
-	sc = status_get_sc(src);
+	sc = status->get_sc(src);
 	sd = BL_CAST(BL_PC, src);
-	tstatus = status_get_status_data(target);
+	tstatus = status->get_status_data(target);
 
 	if ( !sd )
 		return damage;
@@ -835,7 +835,7 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 	if(sc && sc->data[SC_MIRACLE])
 		i = 2; //Star anger
 	else
-		ARR_FIND(0, MAX_PC_FEELHATE, i, status_get_class(target) == sd->hate_mob[i]);
+		ARR_FIND(0, MAX_PC_FEELHATE, i, status->get_class(target) == sd->hate_mob[i]);
 	if(i < MAX_PC_FEELHATE && (skill2_lv=pc_checkskill(sd,sg_info[i].anger_id)) && weapon) {
 		int ratio = sd->status.base_level + status_get_dex(src) + status_get_luk(src);
 		if( i == 2) ratio += status_get_str(src); //Star Anger
@@ -861,7 +861,7 @@ int64 battle_calc_elefix(struct block_list *src, struct block_list *target, uint
 	nullpo_ret(src);
 	nullpo_ret(target);
 
-	tstatus = status_get_status_data(target);
+	tstatus = status->get_status_data(target);
 
 	if((nk&NK_NO_ELEFIX) || n_ele)
 		return damage;
@@ -884,8 +884,8 @@ int64 battle_calc_elefix(struct block_list *src, struct block_list *target, uint
 		struct status_data *sstatus;
 		struct status_change *sc;
 
-		sstatus = status_get_status_data(src);
-		sc = status_get_sc(src);
+		sstatus = status->get_status_data(src);
+		sc = status->get_sc(src);
 
 		if(sc && sc->data[SC_SUB_WEAPONPROPERTY]) { // Descriptions indicate this means adding a percent of a normal attack in another element. [Skotlex]
 			int64 temp = battle_calc_base_damage2(sstatus, &sstatus->rhw, sc, tstatus->size, BL_CAST(BL_PC, src), (flag?2:0)) * sc->data[SC_SUB_WEAPONPROPERTY]->val2 / 100;
@@ -919,11 +919,11 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 
 	sd = BL_CAST(BL_PC, src);
 	tsd = BL_CAST(BL_PC, target);
-	t_class = status_get_class(target);
-	s_class = status_get_class(src);
-	sstatus = status_get_status_data(src);
-	tstatus = status_get_status_data(target);
-	s_race2 = status_get_race2(src);
+	t_class = status->get_class(target);
+	s_class = status->get_class(src);
+	sstatus = status->get_status_data(src);
+	tstatus = status->get_status_data(target);
+	s_race2 = status->get_race2(src);
 
 	switch(attack_type) {
 		case BF_MAGIC:
@@ -984,7 +984,7 @@ int64 battle_calc_cardfix(int attack_type, struct block_list *src, struct block_
 				}
 			break;
 		case BF_WEAPON:
-			t_race2 = status_get_race2(target);
+			t_race2 = status->get_race2(target);
 			if(cflag&2) {
 				if(sd && !(nk&NK_NO_CARDFIX_ATK)) {
 					short cardfix_ = 1000;
@@ -1212,10 +1212,10 @@ int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_
 
 	sd = BL_CAST(BL_PC, src);
 	tsd = BL_CAST(BL_PC, target);
-	sstatus = status_get_status_data(src);
-	tstatus = status_get_status_data(target);
-	sc = status_get_sc(src);
-	tsc = status_get_sc(target);
+	sstatus = status->get_status_data(src);
+	tstatus = status->get_status_data(target);
+	sc = status->get_sc(src);
+	tsc = status->get_sc(target);
 
 	switch(attack_type){
 		case BF_WEAPON:
@@ -1224,14 +1224,14 @@ int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_
 			  *	def1 = equip def
 			  *	def2 = status def
 			 **/
-			defType def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
+			defType def1 = status->get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
 			short def2 = tstatus->def2, vit_def;
 #if VERSION == 1
-			def1 = status_calc_def2(target, tsc, def1, false); // equip def(RE)
-			def2 = status_calc_def(target, tsc, def2, false); // status def(RE)
+			def1 = status->calc_def2(target, tsc, def1, false); // equip def(RE)
+			def2 = status->calc_def(target, tsc, def2, false); // status def(RE)
 #else
-			def1 = status_calc_def(target, tsc, def1, false); // equip def(RE)
-			def2 = status_calc_def2(target, tsc, def2, false); // status def(RE)
+			def1 = status->calc_def(target, tsc, def1, false); // equip def(RE)
+			def2 = status->calc_def2(target, tsc, def2, false); // status def(RE)
 #endif
 
 			if(sd) {
@@ -1341,11 +1341,11 @@ int64 battle_calc_defense(int attack_type, struct block_list *src, struct block_
 			defType mdef = tstatus->mdef;
 			short mdef2= tstatus->mdef2;
 #if VERSION == 1
-			mdef2 = status_calc_mdef(target, tsc, mdef2, false); // status mdef(RE)
-			mdef = status_calc_mdef2(target, tsc, mdef, false); // equip mde(RE)
+			mdef2 = status->calc_mdef(target, tsc, mdef2, false); // status mdef(RE)
+			mdef = status->calc_mdef2(target, tsc, mdef, false); // equip mde(RE)
 #else
-			mdef2 = status_calc_mdef2(target, tsc, mdef2, false); // status mdef(RE)
-			mdef = status_calc_mdef(target, tsc, mdef, false); // equip mde(RE)
+			mdef2 = status->calc_mdef2(target, tsc, mdef2, false); // status mdef(RE)
+			mdef = status->calc_mdef(target, tsc, mdef, false); // equip mde(RE)
 #endif
 			if( flag&1 )
 				mdef = 0;
@@ -1385,17 +1385,17 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 	int i;
 	struct status_change *sc, *tsc;
 	struct map_session_data *sd, *tsd;
-	struct status_data *status, *tstatus;
+	struct status_data *st, *tst;
 
 	nullpo_ret(src);
 	nullpo_ret(target);
 
 	sd = BL_CAST(BL_PC, src);
 	tsd = BL_CAST(BL_PC, target);
-	sc = status_get_sc(src);
-	tsc = status_get_sc(target);
-	status = status_get_status_data(src);
-	tstatus = status_get_status_data(target);
+	sc = status->get_sc(src);
+	tsc = status->get_sc(target);
+	st = status->get_status_data(src);
+	tst = status->get_status_data(target);
 
 
 	switch(attack_type){
@@ -1413,7 +1413,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 			#if VERSION != -1
 				case MG_SOULSTRIKE:
-					if (battle_check_undead(tstatus->race,tstatus->def_ele))
+					if (battle_check_undead(tst->race,tst->def_ele))
 						skillratio += 5*skill_lv;
 					break;
 			#endif
@@ -1461,13 +1461,13 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += 10 * skill_lv - 30;
 					break;
 				case SL_STIN:
-					skillratio += (tstatus->size!=SZ_SMALL?-99:10*skill_lv); //target size must be small (0) for full damage.
+					skillratio += (tst->size!=SZ_SMALL?-99:10*skill_lv); //target size must be small (0) for full damage.
 					break;
 				case SL_STUN:
-					skillratio += (tstatus->size!=SZ_BIG?5*skill_lv:-99); //Full damage is dealt on small/medium targets
+					skillratio += (tst->size!=SZ_BIG?5*skill_lv:-99); //Full damage is dealt on small/medium targets
 					break;
 				case SL_SMA:
-					skillratio += -60 + status_get_lv(src); //Base damage is 40% + lv%
+					skillratio += -60 + status->get_lv(src); //Base damage is 40% + lv%
 					break;
 				case NJ_KOUENKA:
 					skillratio -= 10;
@@ -1616,7 +1616,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 				case WL_SUMMON_ATK_WATER:
 				case WL_SUMMON_ATK_WIND:
 				case WL_SUMMON_ATK_GROUND:
-					skillratio = skill_lv * (status_get_lv(src) + ( sd ? sd->status.job_level : 50 ));// This is close to official, but lacking a little info to finalize. [Rytech]
+					skillratio = skill_lv * (status->get_lv(src) + ( sd ? sd->status.job_level : 50 ));// This is close to official, but lacking a little info to finalize. [Rytech]
 					RE_LVL_DMOD(100);
 					break;
 				case LG_RAYOFGENESIS:
@@ -1630,7 +1630,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 				break;
 				case LG_SHIELDSPELL:// [(Casters Base Level x 4) + (Shield MDEF x 100) + (Casters INT x 2)] %
 					if( sd ) {
-						skillratio = status_get_lv(src) * 4 + sd->bonus.shieldmdef * 100 + status_get_int(src) * 2;
+						skillratio = status->get_lv(src) * 4 + sd->bonus.shieldmdef * 100 + status_get_int(src) * 2;
 					} else
 						skillratio += 1900;	//2000%
 					break;
@@ -1923,7 +1923,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 	#if VERSION != 1
 				case MO_EXTREMITYFIST:
 					{	//Overflow check. [Skotlex]
-						unsigned int ratio = skillratio + 100*(8 + status->sp/10);
+						unsigned int ratio = skillratio + 100*(8 + st->sp/10);
 						//You'd need something like 6K SP to reach this max, so should be fine for most purposes.
 						if (ratio > 60000) ratio = 60000; //We leave some room here in case skillratio gets further increased.
 						skillratio = (unsigned short)ratio;
@@ -2015,10 +2015,10 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 				case TK_JUMPKICK:
 					skillratio += -70 + 10*skill_lv;
 					if (sc && sc->data[SC_COMBOATTACK] && sc->data[SC_COMBOATTACK]->val1 == skill_id)
-						skillratio += 10 * status_get_lv(src) / 3; //Tumble bonus
+						skillratio += 10 * status->get_lv(src) / 3; //Tumble bonus
 					if (flag)
 					{
-						skillratio += 10 * status_get_lv(src) / 3; //Running bonus (TODO: What is the real bonus?)
+						skillratio += 10 * status->get_lv(src) / 3; //Running bonus (TODO: What is the real bonus?)
 						if( sc && sc->data[SC_STRUP] )  // Spurt bonus
 							skillratio *= 2;
 					}
@@ -2028,8 +2028,8 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 				case GS_BULLSEYE:
 					//Only works well against brute/demihumans non bosses.
-					if((tstatus->race == RC_BRUTE || tstatus->race == RC_DEMIHUMAN)
-						&& !(tstatus->mode&MD_BOSS))
+					if((tst->race == RC_BRUTE || tst->race == RC_DEMIHUMAN)
+						&& !(tst->mode&MD_BOSS))
 						skillratio += 400;
 					break;
 				case GS_TRACKING:
@@ -2103,7 +2103,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 				case RK_SONICWAVE:
 					skillratio += -100 + 100 * (skill_lv + 5);
-					skillratio = skillratio * (100 + (status_get_lv(src)-100) / 2) / 100;
+					skillratio = skillratio * (100 + (status->get_lv(src)-100) / 2) / 100;
 					break;
 				case RK_HUNDREDSPEAR:
 						skillratio += 500 + (80 * skill_lv);
@@ -2112,7 +2112,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 							if( index >= 0 && sd->inventory_data[index]
 								&& sd->inventory_data[index]->type == IT_WEAPON )
 								skillratio += (10000 - min(10000, sd->inventory_data[index]->weight)) / 10;
-							skillratio = skillratio * (100 + (status_get_lv(src)-100) / 2) / 100 + 50 * pc_checkskill(sd,LK_SPIRALPIERCE);
+							skillratio = skillratio * (100 + (status->get_lv(src)-100) / 2) / 100 + 50 * pc_checkskill(sd,LK_SPIRALPIERCE);
 						}
 					break;
 				case RK_WINDCUTTER:
@@ -2127,8 +2127,8 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 							skillratio += 250 * skill_lv;
 						else
 							skillratio += 200 * skill_lv;
-						skillratio = (skillratio - 100) * (100 + (status_get_lv(src)-100)) / 100;
-						if( status->rhw.ele == ELE_FIRE )
+						skillratio = (skillratio - 100) * (100 + (status->get_lv(src)-100)) / 100;
+						if( st->rhw.ele == ELE_FIRE )
 							skillratio +=  100 * skill_lv;
 					break;
 				case RK_CRUSHSTRIKE:
@@ -2136,7 +2136,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					{//ATK [{Weapon Level * (Weapon Upgrade Level + 6) * 100} + (Weapon ATK) + (Weapon Weight)]%
 						short index = sd->equip_index[EQI_HAND_R];
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
-							skillratio += -100 + sd->inventory_data[index]->weight/10 + status->rhw.atk +
+							skillratio += -100 + sd->inventory_data[index]->weight/10 + st->rhw.atk +
 								100 * sd->inventory_data[index]->wlv * (sd->status.inventory[index].refine + 6);
 					}
 					break;
@@ -2229,7 +2229,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					RE_LVL_DMOD(100);
 					break;
 				case NC_ARMSCANNON:
-					switch( tstatus->size ) {
+					switch( tst->size ) {
 						case SZ_MEDIUM: skillratio += 100 + 500 * skill_lv; break;// Medium
 						case SZ_SMALL: skillratio += 100 + 400 * skill_lv; break;// Small
 						case SZ_BIG: skillratio += 100 + 300 * skill_lv; break;// Large
@@ -2289,7 +2289,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 				case LG_SHIELDSPELL:// [(Casters Base Level x 4) + (Shield DEF x 10) + (Casters VIT x 2)] %
 					if( sd ) {
 						struct item_data *shield_data = sd->inventory_data[sd->equip_index[EQI_HAND_L]];
-						skillratio += -100 + status_get_lv(src) * 4 + status_get_vit(src) * 2;
+						skillratio += -100 + status->get_lv(src) * 4 + status_get_vit(src) * 2;
 						if( shield_data )
 							skillratio += shield_data->def * 10;
 					} else
@@ -2371,7 +2371,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					break;
 				case SR_KNUCKLEARROW:
 					if( flag&4 ){  // ATK [(Skill Level x 150) + (1000 x Target current weight / Maximum weight) + (Target Base Level x 5) x (Caster Base Level / 150)] %
-						skillratio += -100 + 150 * skill_lv + status_get_lv(target) * 5 * (status_get_lv(src) / 100) ;
+						skillratio += -100 + 150 * skill_lv + status->get_lv(target) * 5 * (status->get_lv(src) / 100) ;
 						if( tsd && tsd->weight )
 							skillratio += 100 * (tsd->weight / tsd->max_weight);
 					}else // ATK [(Skill Level x 100 + 500) x Caster Base Level / 100] %
@@ -2379,7 +2379,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					RE_LVL_DMOD(100);
 					break;
 				case SR_WINDMILL: // ATK [(Caster Base Level + Caster DEX) x Caster Base Level / 100] %
-					skillratio += -100 + status_get_lv(src) + status_get_dex(src);
+					skillratio += -100 + status->get_lv(src) + status_get_dex(src);
 					RE_LVL_DMOD(100);
 					break;
 				case SR_GATEOFHELL:
@@ -2399,7 +2399,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					RE_LVL_DMOD(150);
 					break;
 				case SR_RIDEINLIGHTNING: // ATK [{(Skill Level x 200) + Additional Damage} x Caster Base Level / 100] %
-					if( (status->rhw.ele) == ELE_WIND || (status->lhw.ele) == ELE_WIND )
+					if( (st->rhw.ele) == ELE_WIND || (st->lhw.ele) == ELE_WIND )
 						skillratio += skill_lv * 50;
 					skillratio += -100 + 200 * skill_lv;
 					RE_LVL_DMOD(100);
@@ -2498,7 +2498,7 @@ int battle_calc_skillratio(int attack_type, struct block_list *src, struct block
 					skillratio += -100 + 150 * skill_lv;
 					RE_LVL_DMOD(120);
 					if( tsc && tsc->data[SC_KO_JYUMONJIKIRI] )
-						skillratio += status_get_lv(src) * skill_lv;
+						skillratio += status->get_lv(src) * skill_lv;
 				case KO_HUUMARANKA:
 					skillratio += -100 + 150 * skill_lv + status_get_agi(src) + status_get_dex(src) + 100 * (sd ? pc_checkskill(sd, NJ_HUUMA) : 0);
 					break;
@@ -2591,7 +2591,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 					if(!damage) return 0;
 	}
 
-	sc = status_get_sc(bl);
+	sc = status->get_sc(bl);
 
 	if(sc && sc->data[SC_INVINCIBLE] && !sc->data[SC_INVINCIBLEOFF])
 		return 1;
@@ -2610,7 +2610,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			   skill_id == MG_SOULSTRIKE ||
 			   skill_id == WL_SOULEXPANSION ||
 			   (skill_id && skill_get_ele(skill_id, skill_lv) == ELE_GHOST) ||
-			   (!skill_id && (status_get_status_data(src))->rhw.ele == ELE_GHOST)
+			   (!skill_id && (status->get_status_data(src))->rhw.ele == ELE_GHOST)
 			  ) {
 				if(skill_id == WL_SOULEXPANSION)
 					damage <<= 1; // If used against a player in White Imprison, the skill deals double damage.
@@ -2746,7 +2746,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		   && flag&BF_WEAPON && !(skill_get_nk(skill_id)&NK_NO_CARDFIX_ATK)) {
 
 			skill_additional_effect(src, bl, skill_id, skill_lv, flag, ATK_BLOCK, gettick());
-			if(!status_isdead(src))
+			if(!status->isdead(src))
 				skill_counter_additional_effect(src, bl, skill_id, skill_lv, flag, gettick());
 			if(sce) {
 				clif_specialeffect(bl, 462, AREA);
@@ -2850,11 +2850,11 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if(sc->data[SC_ENERGYCOAT] && (flag&BF_WEAPON && skill_id != WS_CARTTERMINATION))
 #endif
 			{
-				struct status_data *status = status_get_status_data(bl);
-				int per = 100*status->sp / status->max_sp -1; //100% should be counted as the 80~99% interval
+				struct status_data *sstatus = status->get_status_data(bl);
+				int per = 100*sstatus->sp / sstatus->max_sp -1; //100% should be counted as the 80~99% interval
 				per /=20; //Uses 20% SP intervals.
 				//SP Cost: 1% + 0.5% per every 20% SP
-				if(!status_charge(bl, 0, (10+5*per)*status->max_sp/1000))
+				if(!status->charge(bl, 0, (10+5*per)*sstatus->max_sp/1000))
 					status_change_end(bl, SC_ENERGYCOAT, INVALID_TIMER);
 				//Reduction: 6% + 6% every 20%
 				damage -= damage * (6 * (1+per)) / 100;
@@ -2936,7 +2936,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		//(since battle_drain is strictly for players currently)
 		if((sce=sc->data[SC_HAMI_BLOODLUST]) && flag&BF_WEAPON && damage > 0 &&
 		   rnd()%100 < sce->val3)
-			status_heal(src, damage*sce->val4/100, 0, 3);
+		   status->heal(src, damage*sce->val4 / 100, 0, 3);
 
 		if(sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON
 			&& rnd()%100 < sce->val2 && sc->fv_counter <= sce->val3)
@@ -2944,15 +2944,15 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 		if (sc->data[SC_STYLE_CHANGE]) {
                     TBL_HOM *hd = BL_CAST(BL_HOM,bl); //when being hit
-                    if (hd && (rnd()%100<(status_get_lv(bl)/2))) homun->addspiritball(hd, 10); //add a sphere
+                    if (hd && (rnd()%100<(status->get_lv(bl)/2))) homun->addspiritball(hd, 10); //add a sphere
                 }
 
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
-			status_change_spread(bl, src); // Deadly infect attacked side
+			status->change_spread(bl, src); // Deadly infect attacked side
 	}
 
 	//SC effects from caster side.
-	sc = status_get_sc(src);
+	sc = status->get_sc(src);
 
 	if(sc && sc->count) {
 		if(sc->data[SC_INVINCIBLE] && !sc->data[SC_INVINCIBLEOFF])
@@ -2961,10 +2961,10 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if(sc->data[SC_POISONINGWEAPON] && skill_id != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rnd()%100 < sc->data[SC_POISONINGWEAPON]->val3)
 			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
-			status_change_spread(src, bl);
+			status->change_spread(src, bl);
                 if(sc->data[SC_STYLE_CHANGE]) {
                     TBL_HOM *hd = BL_CAST(BL_HOM,src); //when attacking
-                    if(hd && (rnd()%100<(20+status_get_lv(bl)/5))) homun->addspiritball(hd, 10);
+					if (hd && (rnd() % 100<(20 + status->get_lv(bl) / 5))) homun->addspiritball(hd, 10);
                 }
 	}
 	/* no data claims these settings affect anything other than players */
@@ -3002,7 +3002,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			damage = div_;
 	}
 
-	if(bl->type == BL_MOB && !status_isdead(bl) && src != bl) {
+	if(bl->type == BL_MOB && !status->isdead(bl) && src != bl) {
 		if(damage > 0)
 			mobskill_event((TBL_MOB *)bl,src,gettick(),flag);
 		if(skill_id)
@@ -3015,11 +3015,11 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				struct status_data *sstatus = NULL;
 				if(src->type == BL_PC && ((TBL_PC *)src)->bonus.arrow_ele)
 					element = ((TBL_PC *)src)->bonus.arrow_ele;
-				else if((sstatus = status_get_status_data(src))) {
+				else if((sstatus = status->get_status_data(src))) {
 					element = sstatus->rhw.ele;
 				}
 			} else if(element == -2) //Use enchantment's element
-				element = status_get_attack_sc_element(src,status_get_sc(src));
+				element = status_get_attack_sc_element(src, status->get_sc(src));
 			else if(element == -3)   //Use random element
 				element = rnd()%ELE_MAX;
 			if(element == ELE_FIRE || element == ELE_WATER)
@@ -3054,7 +3054,7 @@ int64 battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int64
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,int div_,uint16 skill_id,uint16 skill_lv,int flag)
 {
 	struct mob_data *md = BL_CAST(BL_MOB, bl);
-	int class_ = status_get_class(bl);
+	int class_ = status->get_class(bl);
 
 	if(!damage)  //No reductions to make.
 		return 0;
@@ -3073,7 +3073,7 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 			}
 		}
 		if(src->type != BL_MOB) {
-			struct guild *g = src->type == BL_PC ? ((TBL_PC *)src)->guild : guild->search(status_get_guild_id(src));
+			struct guild *g = src->type == BL_PC ? ((TBL_PC *)src)->guild : guild->search(status->get_guild_id(src));
 
 			if(class_ == MOBID_EMPERIUM && (!g || guild->checkskill(g, GD_APPROVAL) <= 0))
 				return 0;
@@ -3197,8 +3197,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
      	TBL_PC *sd;
 	struct status_change *sc;
 	struct Damage ad;
-	struct status_data *sstatus = status_get_status_data(src);
-	struct status_data *tstatus = status_get_status_data(target);
+	struct status_data *sstatus = status->get_status_data(src);
+	struct status_data *tstatus = status->get_status_data(target);
 	struct {
 		unsigned imdef : 1;
 		unsigned infdef : 1;
@@ -3223,7 +3223,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	sd = BL_CAST(BL_PC, src);
 
-	sc = status_get_sc(src);
+	sc = status->get_sc(src);
 
 	//Initialize variables that will be used afterwards
 	s_ele = skill_get_ele(skill_id, skill_lv);
@@ -3235,7 +3235,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			if( i < 5 ) s_ele = i;
 		}
 	}else if (s_ele == -2) //Use status element
-		s_ele = status_get_attack_sc_element(src,status_get_sc(src));
+		s_ele = status_get_attack_sc_element(src, status->get_sc(src));
 	else if( s_ele == -3 ) //Use random element
 		s_ele = rnd()%ELE_MAX;
 
@@ -3322,16 +3322,16 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			case ALL_RESURRECTION:
 			case PR_TURNUNDEAD:
 				//Undead check is on skill_castend_damageid code.
-				i = 20*skill_lv + sstatus->luk + sstatus->int_ + status_get_lv(src)
+				i = 20 * skill_lv + sstatus->luk + sstatus->int_ + status->get_lv(src)
 				  	+ 200 - 200*tstatus->hp/tstatus->max_hp; // there is no changed in success chance in renewal. [malufett]
 				if(i > 700) i = 700;
 				if(rnd()%1000 < i && !(tstatus->mode&MD_BOSS))
 					ad.damage = tstatus->hp;
 				else {
 #if VERSION == 1
-                    		MATK_ADD(status_get_matk(src, 2));
+					MATK_ADD(status->get_matk(src, 2));
 #else
-				ad.damage = status_get_lv(src) + sstatus->int_ + skill_lv * 10;
+				ad.damage = status->get_lv(src) + sstatus->int_ + skill_lv * 10;
 #endif
 				}
 				break;
@@ -3343,10 +3343,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			 **/
 			case AB_RENOVATIO:
 				//Damage calculation from iRO wiki. [Jobbie]
-				ad.damage = (int)((15 * status_get_lv(src)) + (1.5 * sstatus->int_));
+				ad.damage = (int)((15 * status->get_lv(src)) + (1.5 * sstatus->int_));
 				break;
             default: {
-				MATK_ADD( status_get_matk(src, 2) );
+				MATK_ADD(status->get_matk(src, 2) );
 				
 				if (nk&NK_SPLASHSPLIT) { // Divide MATK in case of multiple targets skill
 					if(mflag>0)
@@ -3508,11 +3508,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 
 	struct map_session_data *sd, *tsd;
 	struct Damage md; //DO NOT CONFUSE with md of mob_data!
-	struct status_data *sstatus = status_get_status_data(src);
-	struct status_data *tstatus = status_get_status_data(target);
-	struct status_change *tsc = status_get_sc(target);
+	struct status_data *sstatus = status->get_status_data(src);
+	struct status_data *tstatus = status->get_status_data(target);
+	struct status_change *tsc = status->get_sc(target);
 #if VERSION == 1
-	struct status_change *sc = status_get_sc(src);
+	struct status_change *sc = status->get_sc(src);
 #endif
 
 	memset(&md,0,sizeof(md));
@@ -3554,7 +3554,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case MA_LANDMINE:
 	case HT_BLASTMINE:
 	case HT_CLAYMORETRAP:
-		md.damage = skill_lv * sstatus->dex * (3+status_get_lv(src)/100) * (1+sstatus->int_/35);
+		md.damage = skill_lv * sstatus->dex * (3 + status->get_lv(src) / 100) * (1 + sstatus->int_ / 35);
 		md.damage += md.damage * (rnd()%20-10) / 100;
 		md.damage += 40 * (sd?pc_checkskill(sd,RA_RESEARCHTRAP):0);
 		break;
@@ -3616,8 +3616,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #if VERSION == 1
 		{// [malufett]
 			int64 matk=0, atk;
-			short tdef = status_get_total_def(target);
-			short tmdef =  status_get_total_mdef(target);
+			short tdef = status->get_total_def(target);
+			short tmdef = status->get_total_mdef(target);
 			int targetVit = min(120, status_get_vit(target));
 			short totaldef = (tmdef + tdef - ((uint64)(tmdef + tdef) >> 32)) >> 1;
 
@@ -3675,7 +3675,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			md.damage=md.damage / 2;
 		break;
 	case GS_FLING:
-		md.damage = sd?sd->status.job_level:status_get_lv(src);
+		md.damage = sd ? sd->status.job_level : status->get_lv(src);
 		break;
 	case HVAN_EXPLOSION:	//[orn]
 		md.damage = sstatus->max_hp * (50 + 50 * skill_lv) / 100;
@@ -3688,7 +3688,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #else
 		int ratio = 300 + 50 * skill_lv;
 		int64 matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, mflag).damage;
-		short totaldef = status_get_total_def(target) + status_get_total_mdef(target);
+		short totaldef = status->get_total_def(target) + status->get_total_mdef(target);
 		int64 atk = battle_calc_base_damage(src, target, skill_id, skill_lv, nk, false, s_ele, ELE_NEUTRAL, EQI_HAND_R, (sc && sc->data[SC_MAXIMIZEPOWER]?1:0)|(sc && sc->data[SC_WEAPONPERFECT]?8:0), md.flag);
 				
 		if( sc && sc->data[SC_EDP] )
@@ -3737,9 +3737,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case NC_SELFDESTRUCTION:
 		{
 #if VERSION == 1
-			short totaldef = status_get_total_def(target);
+			short totaldef = status->get_total_def(target);
 #else
-			short totaldef = tstatus->def2 + (short)status_get_def(target);
+			short totaldef = tstatus->def2 + (short)status->get_def(target);
 #endif
 			md.damage = ((sd?pc_checkskill(sd,NC_MAINFRAME):10) + 8 ) * ( skill_lv + 1 ) * ( status_get_sp(src) + sstatus->vit);
 			RE_LVL_MDMOD(100);
@@ -3754,15 +3754,15 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case GN_HELLS_PLANT_ATK:
 		//[{( Hell Plant Skill Level x Casters Base Level ) x 10 } + {( Casters INT x 7 ) / 2 } x { 18 + ( Casters Job Level / 4 )] x ( 5 / ( 10 - Summon Flora Skill Level ))
-		md.damage = ( skill_lv * status_get_lv(src) * 10 ) + ( sstatus->int_ * 7 / 2 ) * ( 18 + (sd?sd->status.job_level:0) / 4 ) * ( 5 / (10 - (sd?pc_checkskill(sd,AM_CANNIBALIZE):0)) );
+		md.damage = ( skill_lv * status->get_lv(src) * 10 ) + ( sstatus->int_ * 7 / 2 ) * ( 18 + (sd?sd->status.job_level:0) / 4 ) * ( 5 / (10 - (sd?pc_checkskill(sd,AM_CANNIBALIZE):0)) );
 		break;
 	case KO_HAPPOKUNAI:
 		{
 			struct Damage wd = battle_calc_weapon_attack(src,target,skill_id,skill_lv,mflag);
 #if VERSION == 1
-			short totaldef = status_get_total_def(target);
+			short totaldef = status->get_total_def(target);
 #else
-			short totaldef = tstatus->def2 + (short)status_get_def(target);
+			short totaldef = tstatus->def2 + (short)status->get_def(target);
 #endif
 			md.damage = 3 * wd.damage * (5 + skill_lv) / 5;
 			md.damage -= totaldef;
@@ -3916,10 +3916,10 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 
 	struct map_session_data *sd, *tsd;
 	struct Damage wd;
-	struct status_change *sc = status_get_sc(src);
-	struct status_change *tsc = status_get_sc(target);
-	struct status_data *sstatus = status_get_status_data(src);
-	struct status_data *tstatus = status_get_status_data(target);
+	struct status_change *sc = status->get_sc(src);
+	struct status_change *tsc = status->get_sc(target);
+	struct status_data *sstatus = status->get_status_data(src);
+	struct status_data *tstatus = status->get_status_data(target);
 	struct {
 		unsigned hit : 1; //the attack Hit? (not a miss)
 		unsigned cri : 1;       //Critical hit
@@ -4187,7 +4187,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		//Therefore, we use the old value 3 on cases when an sd gets attacked by a mob
 		cri -= tstatus->luk*(!sd&&tsd?3:2);
 #else
-		cri -= status_get_lv(target) / 15 + 2 * status_get_luk(target);
+		cri -= status->get_lv(target) / 15 + 2 * status_get_luk(target);
 #endif
 
 		if(tsc && tsc->data[SC_SLEEP]) {
@@ -4379,7 +4379,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				wd.damage2 = 0;
 #else
 				{
-					short totaldef = status_get_total_def(target);
+					short totaldef = status->get_total_def(target);
 					i = 0;
 					GET_NORMAL_ATTACK((sc && sc->data[SC_MAXIMIZEPOWER]?1:0)|(sc && sc->data[SC_WEAPONPERFECT]?8:0));
 					if( sc && sc->data[SC_NJ_BUNSINJYUTSU] && (i=sc->data[SC_NJ_BUNSINJYUTSU]->val2) > 0)
@@ -4396,12 +4396,12 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 				break;	
 			case NJ_SYURIKEN: // [malufett]
 				GET_NORMAL_ATTACK((sc && sc->data[SC_MAXIMIZEPOWER]?1:0)|(sc && sc->data[SC_WEAPONPERFECT]?8:0));
-				wd.damage += battle_calc_masteryfix(src, target, skill_id, skill_lv, 4 * skill_lv + (sd ? sd->bonus.arrow_atk : 0), wd.div_, 0, flag.weapon) - status_get_total_def(target);
+				wd.damage += battle_calc_masteryfix(src, target, skill_id, skill_lv, 4 * skill_lv + (sd ? sd->bonus.arrow_atk : 0), wd.div_, 0, flag.weapon) - status->get_total_def(target);
 				RE_SKILL_REDUCTION();
 				break;
 			case MO_EXTREMITYFIST:	// [malufett]
 				{
-					short totaldef = status_get_total_def(target);
+					short totaldef = status->get_total_def(target);
 					GET_NORMAL_ATTACK((sc && sc->data[SC_MAXIMIZEPOWER]?1:0)|8);
 					if(wd.damage) {
 						wd.damage = (250 + 150 * skill_lv) + (10 * (status_get_sp(src)+1) * wd.damage / 100) + (8 * wd.damage);
@@ -4592,7 +4592,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					break;
 				case GS_MAGICALBULLET:
 #if VERSION != 1
-					ATK_ADD(status_get_matk(src, 2));
+					ATK_ADD(status->get_matk(src, 2));
 #else
 					ATK_ADD(battle_calc_magic_attack(src, target, skill_id, skill_lv, wflag).damage);
 					flag.tdef = 1;
@@ -4606,17 +4606,17 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 					ATK_ADD(status_get_agi(src) * 2 + (sd?sd->status.job_level:0) * 4);
 					break;
 				case SR_TIGERCANNON: // (Tiger Cannon skill level x 240) + (Target Base Level x 40)
-					ATK_ADD(skill_lv * 240 + status_get_lv(target) * 40);
+					ATK_ADD(skill_lv * 240 + status->get_lv(target) * 40);
 					if(sc && sc->data[SC_COMBOATTACK]
 					   && sc->data[SC_COMBOATTACK]->val1 == SR_FALLENEMPIRE)  // (Tiger Cannon skill level x 500) + (Target Base Level x 40)
-						ATK_ADD(skill_lv * 500 + status_get_lv(target) * 40);
+						ATK_ADD(skill_lv * 500 + status->get_lv(target) * 40);
 					break;
 				case SR_FALLENEMPIRE:// [(Target Size value + Skill Level - 1) x Caster STR] + [(Target current weight x Caster DEX / 120)]
 					ATK_ADD(((tstatus->size+1)*2 + skill_lv - 1) * sstatus->str);
 					if(tsd && tsd->weight) {
 						ATK_ADD((tsd->weight/10) * sstatus->dex / 120);
 					} else {
-						ATK_ADD(status_get_lv(target) * 50);   //mobs
+						ATK_ADD(status->get_lv(target) * 50);   //mobs
 					}
 					break;
 				case KO_SETSUDAN:
@@ -4779,8 +4779,8 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			if(!skill_id) {
 				if(sc->data[SC_ENCHANTBLADE]) {
 					//[( ( Skill Lv x 20 ) + 100 ) x ( casterBaseLevel / 150 )] + casterInt
-					i = (sc->data[SC_ENCHANTBLADE]->val1 * 20 + 100) * status_get_lv(src) / 150 + status_get_int(src);
-					i = i - status_get_total_mdef(target) + status_get_matk(src, 2);
+					i = (sc->data[SC_ENCHANTBLADE]->val1 * 20 + 100) * status->get_lv(src) / 150 + status_get_int(src);
+					i = i - status->get_total_mdef(target) + status->get_matk(src, 2);
 					if(i)
 						ATK_ADD(i);
 				}
@@ -4881,7 +4881,7 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 	}
 #endif
 	if(flag.infdef) { //Plants receive 1 damage when hit
-		short class_ = status_get_class(target);
+		short class_ = status->get_class(target);
 		if(flag.hit || wd.damage > 0)
 			wd.damage = wd.div_; // In some cases, right hand no need to have a weapon to increase damage
 		if(flag.lh && (flag.hit || wd.damage2 > 0))
@@ -4972,9 +4972,9 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		case SR_GATEOFHELL:
 			ATK_ADD (sstatus->max_hp - status_get_hp(src));
 			if(sc && sc->data[SC_COMBOATTACK] && sc->data[SC_COMBOATTACK]->val1 == SR_FALLENEMPIRE){
-				ATK_ADD ( (sstatus->max_sp * (1 + skill_lv * 2 / 10)) + 40 * status_get_lv(src) );
+				ATK_ADD ( (sstatus->max_sp * (1 + skill_lv * 2 / 10)) + 40 * status->get_lv(src) );
 			}else{
-				ATK_ADD ( (sstatus->sp * (1 + skill_lv * 2 / 10)) + 10 * status_get_lv(src) );
+				ATK_ADD ( (sstatus->sp * (1 + skill_lv * 2 / 10)) + 10 * status->get_lv(src) );
 			}
 			break;
 	}
@@ -5112,13 +5112,13 @@ void battle_reflect_damage(struct block_list *target, struct block_list *src, st
 #if VERSION == 1
 	int max_reflect_damage;
 
-	max_reflect_damage = max(status_get_max_hp(target), status_get_max_hp(target) * status_get_lv(target) / 100);
+	max_reflect_damage = max(status_get_max_hp(target), status_get_max_hp(target) * status->get_lv(target) / 100);
 #endif
 
 	sd = BL_CAST(BL_PC, src);
 
 	tsd = BL_CAST(BL_PC, target);
-	sc = status_get_sc(target);
+	sc = status->get_sc(target);
 #if VERSION == 1
 #define NORMALIZE_RDAMAGE(d) ( trdamage += rdamage = max(1, min(max_reflect_damage, (d))) )
 #else
@@ -5132,14 +5132,14 @@ void battle_reflect_damage(struct block_list *target, struct block_list *src, st
 
 		 if(sc->data[SC_CRESCENTELBOW] && !is_boss(src) && rnd()%100 < sc->data[SC_CRESCENTELBOW]->val2 ){
 			//ATK [{(Target HP / 100) x Skill Level} x Caster Base Level / 125] % + [Received damage x {1 + (Skill Level x 0.2)}]
-			int ratio = (status_get_hp(src) / 100) * sc->data[SC_CRESCENTELBOW]->val1 * status_get_lv(target) / 125;
+			int ratio = (status_get_hp(src) / 100) * sc->data[SC_CRESCENTELBOW]->val1 * status->get_lv(target) / 125;
 			if (ratio > 5000) ratio = 5000; // Maximum of 5000% ATK
 			rdamage = rdamage * ratio / 100 + (damage) * (10 + sc->data[SC_CRESCENTELBOW]->val1 * 20 / 10) / 10;
 			skill_blown(target, src, skill_get_blewcount(SR_CRESCENTELBOW_AUTOSPELL, sc->data[SC_CRESCENTELBOW]->val1), unit_getdir(src), 0);
 			clif_skill_damage(target, src,tick, status_get_amotion(src), 0, rdamage,
 				1, SR_CRESCENTELBOW_AUTOSPELL, sc->data[SC_CRESCENTELBOW]->val1, 6); // This is how official does
 			clif->delay_damage(tick + delay,src, target,status_get_amotion(src)+1000, 0, rdamage/10, 1, 0);
-			status_damage(src, target, status_damage(target, src, rdamage, 0, 0, 1)/10, 0, 0, 1);
+			status->damage(src, target, status->damage(target, src, rdamage, 0, 0, 1) / 10, 0, 0, 1);
 			status_change_end(target, SC_CRESCENTELBOW, INVALID_TIMER);
 			return; // Just put here to minimize redundancy
 	 }
@@ -5317,7 +5317,7 @@ void battle_drain(TBL_PC *sd, struct block_list *tbl, int64 rdamage, int64 ldama
 
 	if(!thp && !tsp) return;
 
-	status_heal(&sd->bl, thp, tsp, battle_config.show_hp_sp_drain?3:1);
+	status->heal(&sd->bl, thp, tsp, battle_config.show_hp_sp_drain ? 3 : 1);
 
 	if(rhp || rsp)
 		status_zap(tbl, rhp, rsp);
@@ -5375,11 +5375,11 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	sd = BL_CAST(BL_PC, src);
 	tsd = BL_CAST(BL_PC, target);
 
-	sstatus = status_get_status_data(src);
-	tstatus = status_get_status_data(target);
+	sstatus = status->get_status_data(src);
+	tstatus = status->get_status_data(target);
 
-	sc = status_get_sc(src);
-	tsc = status_get_sc(target);
+	sc = status->get_sc(src);
+	tsc = status->get_sc(target);
 
 	if(sc && !sc->count)  //Avoid sc checks when there's none to check for. [Skotlex]
 		sc = NULL;
@@ -5429,7 +5429,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 		if(sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&2))
 			status_change_end(src,SC_CAMOUFLAGE, INVALID_TIMER);
 	}
-	if(tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, 1)) {
+	if(tsc && tsc->data[SC_AUTOCOUNTER] && status->check_skilluse(target, src, KN_AUTOCOUNTER, 1)) {
 		uint8 dir = map_calc_dir(target,src->x,src->y);
 		int t_dir = unit_getdir(target);
 		int dist = distance_bl(src, target);
@@ -5515,7 +5515,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	}
 
 	if(tsc && tsc->data[SC_KAAHI] && tsc->data[SC_KAAHI]->val4 == INVALID_TIMER && tstatus->hp < tstatus->max_hp)
-		tsc->data[SC_KAAHI]->val4 = add_timer(tick + skill_get_time2(SL_KAAHI,tsc->data[SC_KAAHI]->val1), kaahi_heal_timer, target->id, SC_KAAHI); //Activate heal.
+		tsc->data[SC_KAAHI]->val4 = add_timer(tick + skill_get_time2(SL_KAAHI,tsc->data[SC_KAAHI]->val1), status->kaahi_heal_timer, target->id, SC_KAAHI); //Activate heal.
 
 	wd = battle_calc_attack(BF_WEAPON, src, target, 0, 0, flag);
 
@@ -5565,7 +5565,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	map_freeblock_lock();
 
 	if(skill_check_shadowform(target, damage, wd.div_)){
-		if(!status_isdead(target))
+		if(!status->isdead(target))
 			skill_additional_effect(src, target, 0, 0, wd.flag, wd.dmg_lv, tick);
 		if(wd.dmg_lv > ATK_BLOCK)
 			skill_counter_additional_effect(src, target, 0, 0, wd.flag,tick);
@@ -5592,9 +5592,9 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 			}
 		} else if(tsc->data[SC_WATER_SCREEN_OPTION] && tsc->data[SC_WATER_SCREEN_OPTION]->val1) {
 			struct block_list *e_bl = map_id2bl(tsc->data[SC_WATER_SCREEN_OPTION]->val1);
-			if(e_bl && !status_isdead(e_bl)) {
+			if(e_bl && !status->isdead(e_bl)) {
 				clif_damage(e_bl,e_bl,wd.amotion,wd.dmotion,damage,wd.div_,wd.type,wd.damage2);
-				status_damage(target,e_bl,damage,0,0,0);
+				status->damage(target, e_bl, damage, 0, 0, 0);
 				// Just show damage in target.
 				clif_damage(src, target, wd.amotion, wd.dmotion, damage, wd.div_, wd.type, wd.damage2);
 				map_freeblock_unlock();
@@ -5614,7 +5614,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 		if(skill_lv < 1) skill_lv = 1;
 		sp = skill_get_sp(skill_id,skill_lv) * 2 / 3;
 
-		if(status_charge(src, 0, sp)) {
+		if(status->charge(src, 0, sp)) {
 			switch(skill_get_casttype(skill_id)) {
 				case CAST_GROUND:
 					skill_castend_pos2(src, target->x, target->y, skill_id, skill_lv, tick, flag);
@@ -5699,7 +5699,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 		   (rnd()%100 < tsc->data[SC_POISONREACT]->val3
 		    || sstatus->def_ele == ELE_POISON) &&
 //			check_distance_bl(src, target, tstatus->rhw.range+1) && Doesn't checks range! o.O;
-		   status_check_skilluse(target, src, TF_POISON, 0)
+		   status->check_skilluse(target, src, TF_POISON, 0)
 		  ) { //Poison React
 			struct status_change_entry *sce = tsc->data[SC_POISONREACT];
 			if(sstatus->def_ele == ELE_POISON) {
@@ -5828,7 +5828,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 
 	switch(target->type) {   // Checks on actual target
 		case BL_PC: {
-				struct status_change *sc = status_get_sc(src);
+				struct status_change *sc = status->get_sc(src);
 				if(((TBL_PC *)target)->invincible_timer != INVALID_TIMER || pc_isinvisible((TBL_PC *)target))
 					return -1; //Cannot be targeted yet.
 				if(sc && sc->count) {
@@ -6047,20 +6047,20 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 			tbg_id = bg_team_get_id(t_bl);
 		}
 		if(flag&(BCT_PARTY|BCT_ENEMY)) {
-			int s_party = status_get_party_id(s_bl);
-			int s_guild = status_get_guild_id(s_bl);
+			int s_party = status->get_party_id(s_bl);
+			int s_guild = status->get_guild_id(s_bl);
 
-			if(s_party && s_party == status_get_party_id(t_bl)
+			if(s_party && s_party == status->get_party_id(t_bl)
 			 && !(map[m].flag.pvp && map[m].flag.pvp_noparty)
-			 && !(map_flag_gvg(m) && map[m].flag.gvg_noparty && !(s_guild && s_guild == status_get_guild_id(t_bl)))
+			 && !(map_flag_gvg(m) && map[m].flag.gvg_noparty && !(s_guild && s_guild == status->get_guild_id(t_bl)))
 			 && (!map[m].flag.battleground || sbg_id == tbg_id))
 				state |= BCT_PARTY;
 			else
 				state |= BCT_ENEMY;
 		}
 		if(flag&(BCT_GUILD|BCT_ENEMY)) {
-			int s_guild = status_get_guild_id(s_bl);
-			int t_guild = status_get_guild_id(t_bl);
+			int s_guild = status->get_guild_id(s_bl);
+			int t_guild = status->get_guild_id(t_bl);
 			if(!(map[m].flag.pvp && map[m].flag.pvp_noguild) && s_guild && t_guild && (s_guild == t_guild || (!(flag&BCT_SAMEGUILD) && guild->isallied(s_guild, t_guild))) && (!map[m].flag.battleground || sbg_id == tbg_id))
 				state |= BCT_GUILD;
 			else
@@ -6085,13 +6085,13 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 	else {
 		//Non pvp/gvg, check party/guild settings.
 		if(flag&BCT_PARTY || state&BCT_ENEMY) {
-			int s_party = status_get_party_id(s_bl);
-			if(s_party && s_party == status_get_party_id(t_bl))
+			int s_party = status->get_party_id(s_bl);
+			if (s_party && s_party == status->get_party_id(t_bl))
 				state |= BCT_PARTY;
 		}
 		if(flag&BCT_GUILD || state&BCT_ENEMY) {
-			int s_guild = status_get_guild_id(s_bl);
-			int t_guild = status_get_guild_id(t_bl);
+			int s_guild = status->get_guild_id(s_bl);
+			int t_guild = status->get_guild_id(t_bl);
 			if(s_guild && t_guild && (s_guild == t_guild || (!(flag&BCT_SAMEGUILD) && guild->isallied(s_guild, t_guild))))
 				state |= BCT_GUILD;
 		}

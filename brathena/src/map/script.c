@@ -227,9 +227,9 @@ void script_reportsrc(struct script_state *st)
 			break;
 		default:
 			if(bl->m >= 0)
-				ShowDebug("Source (Non-NPC type %d): nome %s em %s (%d,%d)\n", bl->type, status_get_name(bl), map[bl->m].name, bl->x, bl->y);
+				ShowDebug("Source (Non-NPC type %d): nome %s em %s (%d,%d)\n", bl->type, status->get_name(bl), map[bl->m].name, bl->x, bl->y);
 			else
-				ShowDebug("Source (Non-NPC type %d): nome %s (invisivel/nao em uma mapa)\n", bl->type, status_get_name(bl));
+				ShowDebug("Source (Non-NPC type %d): nome %s (invisivel/nao em uma mapa)\n", bl->type, status->get_name(bl));
 			break;
 	}
 }
@@ -4060,7 +4060,7 @@ void script_run_autobonus(const char *autobonus, int id, int pos)
 	struct script_code *scriptroot = (struct script_code *)strdb_get(script->autobonus_db, autobonus);
 
 	if(scriptroot) {
-		current_equip_item_index = pos;
+		status->current_equip_item_index = pos;
 		script->run(scriptroot,0,id,0);
 	}
 }
@@ -5573,7 +5573,7 @@ BUILDIN_FUNC(heal)
 
 	hp=script_getnum(st,2);
 	sp=script_getnum(st,3);
-	status_heal(&sd->bl, hp, sp, 1);
+	status->heal(&sd->bl, hp, sp, 1);
 	return 0;
 }
 /*==========================================
@@ -7777,7 +7777,7 @@ BUILDIN_FUNC(getequippercentrefinery)
 	if(num > 0 && num <= ARRAYLENGTH(script->equip))
 		i=pc_checkequip(sd,script->equip[num-1]);
 	if(i >= 0 && sd->status.inventory[i].nameid && sd->status.inventory[i].refine < MAX_REFINE)
-		script_pushint(st,status_get_refine_chance(itemdb_wlv(sd->status.inventory[i].nameid), (int)sd->status.inventory[i].refine));
+		script_pushint(st, status->get_refine_chance(itemdb_wlv(sd->status.inventory[i].nameid), (int)sd->status.inventory[i].refine));
 	else
 		script_pushint(st,0);
 
@@ -8056,7 +8056,7 @@ BUILDIN_FUNC(autobonus)
 	if(sd == NULL)
 		return 0; // no player attached
 
-	if(sd->state.autobonus&sd->status.inventory[current_equip_item_index].equip)
+	if(sd->state.autobonus&sd->status.inventory[status->current_equip_item_index].equip)
 		return 0;
 
 	rate = script_getnum(st,3);
@@ -8071,7 +8071,7 @@ BUILDIN_FUNC(autobonus)
 		other_script = script_getstr(st,6);
 
 	if(pc_addautobonus(sd->autobonus,ARRAYLENGTH(sd->autobonus),
-	                   bonus_script,rate,dur,atk_type,other_script,sd->status.inventory[current_equip_item_index].equip,false)) {
+		bonus_script, rate, dur, atk_type, other_script, sd->status.inventory[status->current_equip_item_index].equip, false)) {
 		script->add_autobonus(bonus_script);
 		if(other_script)
 			script->add_autobonus(other_script);
@@ -8092,7 +8092,7 @@ BUILDIN_FUNC(autobonus2)
 	if(sd == NULL)
 		return 0; // no player attached
 
-	if(sd->state.autobonus&sd->status.inventory[current_equip_item_index].equip)
+	if(sd->state.autobonus&sd->status.inventory[status->current_equip_item_index].equip)
 		return 0;
 
 	rate = script_getnum(st,3);
@@ -8107,7 +8107,7 @@ BUILDIN_FUNC(autobonus2)
 		other_script = script_getstr(st,6);
 
 	if(pc_addautobonus(sd->autobonus2,ARRAYLENGTH(sd->autobonus2),
-	                   bonus_script,rate,dur,atk_type,other_script,sd->status.inventory[current_equip_item_index].equip,false)) {
+		bonus_script, rate, dur, atk_type, other_script, sd->status.inventory[status->current_equip_item_index].equip, false)) {
 		script->add_autobonus(bonus_script);
 		if(other_script)
 			script->add_autobonus(other_script);
@@ -8127,7 +8127,7 @@ BUILDIN_FUNC(autobonus3)
 	if(sd == NULL)
 		return 0; // no player attached
 
-	if(sd->state.autobonus&sd->status.inventory[current_equip_item_index].equip)
+	if(sd->state.autobonus&sd->status.inventory[status->current_equip_item_index].equip)
 		return 0;
 
 	rate = script_getnum(st,3);
@@ -8141,7 +8141,7 @@ BUILDIN_FUNC(autobonus3)
 		other_script = script_getstr(st,6);
 
 	if(pc_addautobonus(sd->autobonus3,ARRAYLENGTH(sd->autobonus3),
-	                   bonus_script,rate,dur,atk_type,other_script,sd->status.inventory[current_equip_item_index].equip,true)) {
+		bonus_script, rate, dur, atk_type, other_script, sd->status.inventory[status->current_equip_item_index].equip, true)) {
 		script->add_autobonus(bonus_script);
 		if(other_script)
 			script->add_autobonus(other_script);
@@ -9957,9 +9957,9 @@ BUILDIN_FUNC(sc_start)
 	else
 		bl = map_id2bl(st->rid);
 
-	if(tick == 0 && val1 > 0 && type > SC_NONE && type < SC_MAX && status_sc2skill(type) != 0) {
+	if(tick == 0 && val1 > 0 && type > SC_NONE && type < SC_MAX && status->sc2skill(type) != 0) {
 		// When there isn't a duration specified, try to get it from the skill_db
-		tick = skill_get_time(status_sc2skill(type), val1);
+		tick = skill_get_time(status->sc2skill(type), val1);
 	}
 
 	if(script->potion_flag == 1 && script->potion_target) { //skill.c set the flags before running the script, this is a potion-pitched effect.
@@ -9974,19 +9974,19 @@ BUILDIN_FUNC(sc_start)
 	switch(start_type) {
 		case 1:
 			if(bl)
-				status_change_start(isitem?bl: bl, type, rate, val1, 0, 0, val4, tick, flag);
+				status->change_start(isitem ? bl : bl, type, rate, val1, 0, 0, val4, tick, flag);
 			break;
 		case 2:
 			val2 = script_getnum(st,5);
 			if(bl)
-				status_change_start(isitem?bl: bl, type, rate, val1, val2, 0, val4, tick, flag);
+				status->change_start(isitem ? bl : bl, type, rate, val1, val2, 0, val4, tick, flag);
 			break;
 		case 4:
 			val2 = script_getnum(st,5);
 			val3 = script_getnum(st,6);
 			val4 = script_getnum(st,7);
 			if(bl)
-				status_change_start(isitem?bl: bl, type, rate, val1, val2, val3, val4, tick, flag);
+				status->change_start(isitem ? bl : bl, type, rate, val1, val2, val3, val4, tick, flag);
 			break;
 	}
 
@@ -10014,7 +10014,7 @@ BUILDIN_FUNC(sc_end)
 		return 0;
 
 	if(type >= 0 && type < SC_MAX) {
-		struct status_change *sc = status_get_sc(bl);
+		struct status_change *sc = status->get_sc(bl);
 		struct status_change_entry *sce = sc ? sc->data[type] : NULL;
 
 		if(!sce)
@@ -10036,7 +10036,7 @@ BUILDIN_FUNC(sc_end)
 		sce->val1 = sce->val2 = sce->val3 = sce->val4 = 0;
 		status_change_end(bl, (sc_type)type, INVALID_TIMER);
 	} else
-		status_change_clear(bl, 3); // remove all effects
+		status->change_clear(bl, 3); // remove all effects
 
 	return 0;
 }
@@ -10057,7 +10057,7 @@ BUILDIN_FUNC(getscrate)
 		bl = map_id2bl(st->rid);
 
 	if(bl)
-		rate = status_get_sc_def(bl, (sc_type)type, 10000, 10000, 0);
+		rate = status->get_sc_def(bl, (sc_type)type, 10000, 10000, 0);
 
 	script_pushint(st,rate);
 	return 0;
@@ -10412,7 +10412,7 @@ BUILDIN_FUNC(changebase)
 	}
 
 	if(sd->disguise == -1 && vclass != sd->vd.class_) {
-		status_set_viewdata(&sd->bl, vclass);
+		status->set_viewdata(&sd->bl, vclass);
 		//Updated client view. Base, Weapon and Cloth Colors.
 		clif_changelook(&sd->bl,LOOK_BASE,sd->vd.class_);
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
@@ -12796,7 +12796,7 @@ BUILDIN_FUNC(dispbottom)
 int recovery_sub(struct map_session_data* sd, int revive)
 {
 	if(revive&(1|4) && pc_isdead(sd)) {
-		status_revive(&sd->bl, 100, 100);
+		status->revive(&sd->bl, 100, 100);
 		clif_displaymessage(sd->fd,msg_txt(16));
 		clif_specialeffect(&sd->bl, 77, AREA);
 	} else if(revive&(1|2) && !pc_isdead(sd)) {
@@ -13648,7 +13648,7 @@ BUILDIN_FUNC(cardscnt)
 		if(id <= 0)
 			continue;
 
-		index = current_equip_item_index; //we get CURRENT WEAPON inventory index from status.c [Lupus]
+		index = status->current_equip_item_index; //we get CURRENT WEAPON inventory index from status.c [Lupus]
 		if(index < 0) continue;
 
 		if(!sd->inventory_data[index])
@@ -13679,7 +13679,7 @@ BUILDIN_FUNC(getrefine)
 {
 	TBL_PC *sd;
 	if((sd = script->rid2sd(st))!= NULL)
-		script_pushint(st,sd->status.inventory[current_equip_item_index].refine);
+		script_pushint(st, sd->status.inventory[status->current_equip_item_index].refine);
 	else
 		script_pushint(st,0);
 	return 0;
@@ -15662,7 +15662,7 @@ BUILDIN_FUNC(unittalk)
 	if(bl != NULL) {
 		struct StringBuf sbuf;
 		StrBuf->Init(&sbuf);
-		StrBuf->Printf(&sbuf, "%s : %s", status_get_name(bl), message);
+		StrBuf->Printf(&sbuf, "%s : %s", status->get_name(bl), message);
 		clif_disp_overhead(bl, StrBuf->Value(&sbuf));
 		if(bl->type == BL_PC)
 			clif_displaymessage(((TBL_PC *)bl)->fd, StrBuf->Value(&sbuf));
@@ -16051,7 +16051,7 @@ BUILDIN_FUNC(mercenary_heal)
 	hp = script_getnum(st,2);
 	sp = script_getnum(st,3);
 
-	status_heal(&sd->md->bl, hp, sp, 0);
+	status->heal(&sd->md->bl, hp, sp, 0);
 	return 0;
 }
 
@@ -16068,7 +16068,7 @@ BUILDIN_FUNC(mercenary_sc_start)
 	tick = script_getnum(st,3);
 	val1 = script_getnum(st,4);
 
-	status_change_start(&sd->md->bl, type, 10000, val1, 0, 0, 0, tick, 2);
+	status->change_start(&sd->md->bl, type, 10000, val1, 0, 0, 0, tick, 2);
 	return 0;
 }
 

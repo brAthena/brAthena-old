@@ -177,7 +177,7 @@ bool bg_member_respawn(struct map_session_data *sd) {
 	if(bgd->mapindex == 0)
 		return false; // Respawn not handled by Core
 	pc_setpos(sd, bgd->mapindex, bgd->x, bgd->y, CLR_OUTSIGHT);
-	status_revive(&sd->bl, 1, 100);
+	status->revive(&sd->bl, 1, 100);
 
 	return true; // Warped
 }
