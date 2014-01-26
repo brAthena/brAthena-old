@@ -250,7 +250,7 @@ OnInit:
 //=======================================================
 // Lojas (Ninja)
 //=======================================================
-que_ng,72,31,2	trader	Boonji#nin	4_M_01,{
+que_ng,72,31,2	trader#pre	Boonji#nin	4_M_01,{
 OnInit:
 	sellitem Shuriken;
 	sellitem Nimbus_Shuriken;
@@ -259,7 +259,7 @@ OnInit:
 	sellitem Thorn_Needle_Shuriken;
 }
 
-que_ng,73,26,5	trader	Boonray#nin	4_M_01,{
+que_ng,73,26,5	trader#pre	Boonray#nin	4_M_01,{
 OnInit:
 	sellitem Arm_Guard;
 	sellitem Flame_Stone;
@@ -268,6 +268,54 @@ OnInit:
 	sellitem Shadow_Orb;
 }
 
+que_ng,72,31,2	trader#re	Boonji#nin	4_M_01,{
+OnInit:
+	sellitem Shuriken;
+	sellitem Nimbus_Shuriken;
+	sellitem Flash_Shuriken;
+	sellitem Sharp_Leaf_Shuriken;
+	sellitem Thorn_Needle_Shuriken;
+	sellitem Explosive_Kunai;
+	sellitem Makibishi;
+}
+
+que_ng,73,26,5	trader#re	Boonray#nin	4_M_01,{
+OnInit:
+	sellitem Arm_Guard;
+	sellitem Fox_Armguard;
+	sellitem Special_Ninja_Suit;
+	sellitem Flame_Stone;
+	sellitem Ice_Stone;
+	sellitem Wind_Stone;
+	sellitem Shadow_Orb;
+	sellitem Charm_Fire;
+	sellitem Charm_Ice;
+	sellitem Charm_Wind;
+	sellitem Charm_Earth;
+}
+
+prontera,178,244,3	trader#re	Negociador#nin	4_M_01,{
+OnInit:
+	sellitem Shuriken;
+	sellitem Nimbus_Shuriken;
+	sellitem Flash_Shuriken;
+	sellitem Sharp_Leaf_Shuriken;
+	sellitem Thorn_Needle_Shuriken;
+	sellitem Explosive_Kunai;
+	sellitem Makibishi;
+	sellitem Arm_Guard;
+	sellitem Fox_Armguard;
+	sellitem Special_Ninja_Suit;
+	sellitem Flame_Stone;
+	sellitem Ice_Stone;
+	sellitem Wind_Stone;
+	sellitem Fox_Armguard;
+	sellitem Shadow_Orb;
+	sellitem Charm_Fire;
+	sellitem Charm_Ice;
+	sellitem Charm_Wind;
+	sellitem Charm_Earth;
+}
 
 //=======================================================
 // Ayothaya
@@ -2216,12 +2264,11 @@ payon,123,109,4	shop	Especialista em Armadilhas#pay	1_F_01,7940:-1,12341:-1
 //=======================================================
 // Izlude
 //=======================================================
-
+izlude_in,72,98,3	shop#re	Loja de Bichinhos#iz	4_F_TELEPORTER,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
 izlude_in,57,110,0	shop#re	Loja de Utilidades#iz	1_M_01,611:-1,501:-1,502:-1,503:-1,504:-1,506:-1,645:-1,656:-1,601:-1,602:-1,1065:-1,1750:-1
-izlude_in,72,110,3	shop#re	Mercador de Trocas#iz	4_M_HUMERCHANT,13200:-1,13201:-1,13202:-1,13150:-1,13102:-1,13151:-1,13154:-1,13155:-1,13163:-1,13165:-1,13168:-1
+izlude_in,72,112,3	shop#re	Mercador de Trocas#iz	4_M_HUMERCHANT,13200:-1,13201:-1,13202:-1,13150:-1,13102:-1,13151:-1,13154:-1,13155:-1,13163:-1,13165:-1,13168:-1
 izlude,124,165,4	shop#re	Vendedora de Frutas#iz	1_M_INNKEEPER,512:-1,513:-1,515:-1,516:-1
 izlude,160,186,0	shop#re	Açougueiro#iz	1_M_JOBGUIDER,517:-1
-izlude,72,98,4	shop#re	Loja de Bichinhos#iz	4_F_TELEPORTER,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
 
 izlude_a,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_a	1_M_INNKEEPER
 izlude_b,124,165,4	duplicatr(Vendedora de Frutas#iz)	Vendedora de Frutas#iz_b	1_M_INNKEEPER

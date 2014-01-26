@@ -4058,7 +4058,13 @@ int npc_parsesrcfile(const char *filepath, bool runOnInit)
 				p = npc->parse_script(w1,w2,w3,w4, p, buffer, filepath,runOnInit?NPO_ONINIT:NPO_NONE);
 			}
 		}
-		else if(strcmp(w2,"trader") == 0 && count > 3) {
+#if VERSION == 1
+		else if((strcmp(w2,"trader") == 0 || strcmp(w2,"trader#re") == 0 || strcmp(w2,"trader#dv") == 0) && count > 3) {
+#elif VERSION == 0
+		else if((strcmp(w2,"trader") == 0 || strcmp(w2,"trader#pre") == 0 || strcmp(w2,"trader#dv") == 0 || strcmp(w2,"trader#vpo") == 0) && count > 3) {
+#else
+		else if((strcmp(w2,"trader") == 0 || strcmp(w2,"trader#ot") == 0 || strcmp(w2,"trader#vpo") == 0) && count > 3) {
+#endif
 			p = npc->parse_script(w1,w2,w3,w4, p, buffer, filepath,(runOnInit?NPO_ONINIT:NPO_NONE)|NPO_TRADER);
 		}
 #if VERSION == 1
@@ -4098,7 +4104,7 @@ int npc_parsesrcfile(const char *filepath, bool runOnInit)
 			else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2, "shop#re") == 0 || strcasecmp(w2, "shop#pre") == 0 || strcasecmp(w2, "shop#ot") == 0 || strcasecmp(w2, "shop#dv") == 0 || strcasecmp(w2, "shop#vpo")) == 0) { DeprecationWarning("npc_parsesrcfile", w2, "shop", filepath, strline(buffer, p-buffer)); } // TODO
 			else if((strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2, "cashshop#re") == 0 || strcasecmp(w2, "cashshop#pre") == 0 || strcasecmp(w2, "cashshop#ot") == 0 || strcasecmp(w2, "cashshop#dv") == 0 || strcasecmp(w2, "cashshop#vpo") == 0)) { DeprecationWarning("npc_parsesrcfile", w2, "cashshop", filepath, strline(buffer, p-buffer)); } // TODO
 			else if((strcasecmp(w2, "script") == 0 || strcasecmp(w2, "script#re") == 0 || strcasecmp(w2, "script#pre") == 0 || strcasecmp(w2, "script#ot") == 0 || strcasecmp(w2, "script#dv") == 0 || strcasecmp(w2, "script#vpo")) == 0) { DeprecationWarning("npc_parsesrcfile", w2, "script", filepath, strline(buffer, p-buffer)); } // TODO
-			else if(strcasecmp(w2,"trader") == 0 ) DeprecationWarning("npc_parsesrcfile", w2, "trader", filepath, strline(buffer, p-buffer)) // TODO
+			else if((strcasecmp(w2,"trader") == 0 || strcasecmp(w2, "trader#re") == 0 || strcasecmp(w2, "trader#pre") == 0 || strcasecmp(w2, "trader#ot") == 0 || strcasecmp(w2, "trader#dv") == 0 || strcasecmp(w2, "trader#vpo")) == 0) {DeprecationWarning("npc_parsesrcfile", w2, "trader", filepath, strline(buffer, p-buffer)); } // TODO
 			else if((strncasecmp(w2, "duplicate", 9) == 0 || strcasecmp(w2, "duplicatr") == 0 || strcasecmp(w2, "duplicatp") == 0 || strcasecmp(w2, "duplicato") == 0 || strcasecmp(w2, "duplicata") == 0 || strcasecmp(w2, "duplicatv")) == 0)  {
 				char temp[10];
 				safestrncpy(temp, w2, 10);

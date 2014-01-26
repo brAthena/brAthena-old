@@ -1095,15 +1095,15 @@ void initDummyData(void)
 {
 	memset(&status->dummy, 0, sizeof(status->dummy));
 	status->dummy.hp =
-		status->dummy.max_hp =
-		status->dummy.max_sp =
-		status->dummy.str =
-		status->dummy.agi =
-		status->dummy.vit =
-		status->dummy.int_ =
-		status->dummy.dex =
-		status->dummy.luk =
-		status->dummy.hit = 1;
+	status->dummy.max_hp =
+	status->dummy.max_sp =
+	status->dummy.str =
+	status->dummy.agi =
+	status->dummy.vit =
+	status->dummy.int_ =
+	status->dummy.dex =
+	status->dummy.luk =
+	status->dummy.hit = 1;
 	status->dummy.speed = 2000;
 	status->dummy.adelay = 4000;
 	status->dummy.amotion = 2000;

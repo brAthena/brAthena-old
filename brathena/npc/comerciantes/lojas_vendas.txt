@@ -27,6 +27,13 @@
 // Mercado Negro (Compra de Licenças - Classes que não sejam Mercador e Evoluções)
 //============================================================ 
 que_job01,68,84,1	script	Mercado Negro#Compras	4_M_SITDOWN,{
+
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2400) {
+		mes "[Sr. Jass]";
+		mes "Você é muito ganancioso, mesmo em comparação com alguém como eu!";
+		mes "Porque não vai esvaziar seu inventário primeiro?";
+		close;
+	}
 	if (getskilllv("ALL_BUYING_STORE") == 1) {
 		mes "[Sr. Jass]";
 		mes "Ei, você já fez um contrato com Hugh.";
@@ -105,6 +112,11 @@ que_job01,68,84,1	script	Mercado Negro#Compras	4_M_SITDOWN,{
 // Equipe de Compras (Aprender Habilidades - Classe Mercadpr)
 //============================================================ 
 alberta_in,58,52,4	script	Equipe de Compras#Compras	1_M_ORIENT01,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2400) {
+		mes "[Sr. Hugh]";
+		mes "- Você não pode conversar ou realizar a quest, porque você está carregando muitos itens. -";
+		close;
+	}
 	mes "[Sr. Hugh]";
 	if (BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
 		if (getskilllv("ALL_BUYING_STORE") == 1) {
