@@ -1925,7 +1925,7 @@ int status_base_amotion_pc(struct map_session_data *sd, struct status_data *st) 
 	// base weapon delay
 	amotion = (sd->status.weapon < MAX_WEAPON_TYPE)
 		? (status->aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
-		: (status->aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + status->aspd_base[pc->class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
+		: (status->aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + status->aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
 
 	// percentual delay reduction from stats
 	amotion -= amotion * (4*st->agi + st->dex)/1000;
