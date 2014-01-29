@@ -36,7 +36,7 @@ amatsu,202,91,3	script	Guia de Amatsu#amatsu	4_F_JPN,{
 	mes "Se você precisar de algo, é só me dizer.";
 	F_Navi("[Amachang]");
 	set .@str$,"Aproveite sua estadia em Amatsu.";
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		while (1) {
 			next;
 			switch(select("[ Funcionária Kafra ]:[ Bar ]:[ Vendedor de Armas ]:[ Vendedor de Utilidades ]:[ Palácio de Amatsu ]:[ Chefe de Cozinha ]:[ Prédio da Guilda dos Ninjas ]:[ Capitão do Mar ]:Remover indicações do Mini-Mapa:Cancelar")) {
@@ -98,7 +98,7 @@ amatsu,202,91,3	script	Guia de Amatsu#amatsu	4_F_JPN,{
 		mes "Há mais alguma coisa que eu possa fazer por você?";
 		return;
 	} else {
-		// pré-Renewal
+		// pré-Renewal & OT
 		switch(select("Palácio.:Loja de Utilidades.:Loja de Armas.:Bar")) {
 		next;
 		case 1:

@@ -4565,7 +4565,7 @@ alde_gld,186,199,3	script	Guia do Turbo Track#Entran	4_F_RACING,{
 	mes "Al de Baran!";
 	next;
 	mes "[Guia]";
-	if (checkversion(0))
+	if (checkversion(0) == 1)
 		mes "Peco Pecos, Grand Pecos, Dragões, Grifos, Wargs e Robôs são proibidos dentro da Arena Turbo Track.";
 	else
 		mes "Peco Pecos são proibidos dentro da Arena Turbo Track.";

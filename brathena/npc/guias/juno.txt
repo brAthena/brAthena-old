@@ -31,7 +31,7 @@ yuno,59,212,4	script	Guia de Juno#yuno01	8_F_GIRL,{
 	mes "Um lugar que tem a visão do futuro, e lhe dá forma, no presente.";
 	mes "Bem-vindo a cidade de ^8B4513Juno^000000!";
 	F_Navi("[Guia de Juno]");
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		next;
 		while (1) {
 			switch(select("[ Instalações Principais ]:[ Mercadores & Ajudantes ]:Remover indicações do Mini-Mapa:Cancelar")) {

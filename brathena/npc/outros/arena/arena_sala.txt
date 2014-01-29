@@ -272,7 +272,7 @@ arena_room,147,49,3	script	Ajudante Epin	4_F_JOB_HUNTER,{
 	next;
 	mes "[Epin]";
 	mes "Este é o ^3131FFEstágio de Arena Nível 80^000000";
-	mes "é acessível aos personagens de ^FF0000nível 80^000000 ao ^FF0000nível "+(checkversion(0)?"160":"99")+"^000000.";
+	mes "é acessível aos personagens de ^FF0000nível 80^000000 ao ^FF0000nível "+(checkversion(0) == 1?"160":"99")+"^000000.";
 	next;
 	mes "[Epin]";
 	mes "Essa limitação é para evitar jogadores com níveis elevados com jogadores de níveis baixos. Eu espero que você entenda.";
@@ -312,7 +312,7 @@ arena_room,158,93,5	script	Ajudante Lunic	4_M_ROGUE,{
 	next;
 	mes "[Lunic]";
 	mes "^3131FFEstágio de Arena modo de grupo^000000";
-	mes "é acessível a jogadores de ^FF0000nível 10^000000 ao ^FF0000nível "+(checkversion(0)?"160":"99")+"^000000.";
+	mes "é acessível a jogadores de ^FF0000nível 10^000000 ao ^FF0000nível "+(checkversion(0) == 1?"160":"99")+"^000000.";
 	next;
 	mes "[Lunic]";
 	mes "Além disso, a arena não será iniciada até que todos os cinco membros do grupo entrarem na sala. Aceitamos uma taxa de entrada 1000 zenys.";

@@ -28,7 +28,7 @@
 
 geffen,203,116,4	script	Guia#01geffen	4_M_GEF_SOLDIER,{
 	cutin "gef_soldier",2;
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		mes "[Guia de Geffen]";
 		mes "Bem-vindo a ^8B4513Geffen^000000, a Cidade da Magia.";
 		mes "Você precisa de ajuda para explorar a cidade?";

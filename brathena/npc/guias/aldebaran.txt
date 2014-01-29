@@ -28,7 +28,7 @@
 
 aldebaran,139,63,4	script	Guia#01aldebaran	8W_SOLDIER,{
 	cutin "prt_soldier",2;
-	if (checkversion(0)) { // Renewal
+	if (checkversion(0) == 1) { // Renewal
 		mes "[Guia de Al De Baran]";
 		mes "Bem-vindo à ^8B4513Al De Baran^000000, a cidade fronteira.";
 		mes "Precisa de alguma ajuda para se localizar?";

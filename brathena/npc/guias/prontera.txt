@@ -29,7 +29,7 @@
 prontera,154,187,4	script	Guia#01prontera	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Prontera]";
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		mes "Bem-vindo a ^8B4513Prontera^000000, a linda Capital do Reino de Rune-Midgard.";
 		mes "Você deseja conhecer a cidade?";
 		F_Navi("[Guia de Prontera]");

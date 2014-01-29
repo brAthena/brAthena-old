@@ -4609,7 +4609,7 @@ new_5-3,100,50,4	duplicatr(Comerciante#nvs)	Comerciante#nv5	4_F_04
 
 new_1-2,161,182,5	script	Assistente de Interface#nv	4_F_03,{
 	mes "[Edwin]";
-if ( checkversion(0)) {	
+if (checkversion(0) == 1) {	
 	mes "Hein? Por que você ainda está aqui?";
 	mes "Não há mais cursos que você precisa fazer.";
 	next;

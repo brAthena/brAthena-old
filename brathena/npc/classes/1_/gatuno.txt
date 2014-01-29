@@ -58,7 +58,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	1_F_04,{
 			close;
 		}
 	}
-  if ( checkversion(0) ) {
+  if ( checkversion(0) == 1) {
 	if(q_job_thief == 1) {
 		mes "[Gatuna Ajudante]";
 		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
@@ -334,7 +334,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	1_F_04,{
 
 moc_prydb1,42,133,2	script	Brad#gatuno	2_M_THIEFMASTER,{
 	mes "[Brad]";
-  if( checkversion(0) ) {
+  if( checkversion(0) == 1) {
 	if(q_job_thief == 1) {
 		mes "Certo. Você conseguiu passar na entrevista, correto?";
 		mes "Bom. Eu irei aceitá-lo. Vamos começar a cerimônia de mudança de classe da nossa Guilda!";

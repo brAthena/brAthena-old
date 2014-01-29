@@ -269,7 +269,7 @@ morocc_in,144,142,4	script	Porteiro#PvP	4_M_01,{
 
 L_Warp:
 	set .@map$,getarg(0);
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		switch(rand(1,10)) {
 			case 1: warp .@map$,34,38; break;
 			case 2: warp .@map$,46,38; break;

@@ -2660,7 +2660,7 @@ prt_church,185,106,3	script#dv	Father Bamph	1_M_PASTOR,{
 		if (prt_curse == 43) set prt_curse,44;
 		else set prt_curse,54;
 		changequest 18047,18049;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			getexp 160000,0;
 		else
 			getexp 1600000,0;
@@ -2871,7 +2871,7 @@ prt_church,185,106,3	script#dv	Father Bamph	1_M_PASTOR,{
 					mes "to cover your Airship fee.";
 					mes "Thank you, and good luck.";
 					set aru_monas,6;
-					set Zeny, Zeny + (checkversion(0)?5000:1500);
+					set Zeny, Zeny + (checkversion(0) == 1?5000:1500);
 					changequest 17002,17003;
 					close;
 				}
@@ -2989,7 +2989,7 @@ prt_church,184,110,3	script#dv	Father Biscuss	1_M_PASTOR,{
 		mes "you for all of your help.";
 		set prt_curse,36;
 		completequest 18048;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			getexp 160000,0;
 		else
 			getexp 1600000,0;

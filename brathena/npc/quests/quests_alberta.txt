@@ -1228,7 +1228,7 @@ tur_dun01,165,29,4	script	Barqueiro#tur2	4_M_SEAMAN,{
 		mes "Eu certamente espero que você encontrar o que você estava procurando. Tudo bem, eu acho que há sempre um tempo para um aventureiro de voltar para casa...";
 		next;
 		mes "^3355FF* Choo Choo *^000000";
-		if (checkversion(0)) 
+		if (checkversion(0) == 1) 
 				warp "alberta",238,112; 
 			else 
 				warp "alberta",241,115;

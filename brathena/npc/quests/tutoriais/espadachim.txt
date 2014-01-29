@@ -2260,7 +2260,7 @@ if (tu_swordman == 6){
 							mes "de si mesmo,";
 							mes "corajoso Espadachim.";
 							next;
-							if (checkversion(0))
+							if (checkversion(0) == 1)
 								warp "izlude",127,100;
 							else
 								warp "izlude",35,78;

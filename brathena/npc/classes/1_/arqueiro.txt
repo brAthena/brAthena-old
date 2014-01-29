@@ -195,7 +195,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	4_M_03,{
 			close;
 	case 2:
 	mes "[Guia dos Arqueiros]";
-	if ( !checkversion(0) ) {
+	if ( !checkversion(0) || checkversion(0) == -1) {
 		mes "Eu irei te dizer os requerimentos para se tornar um Arqueiro.";
 		next;
 		mes "[Guia dos Arqueiros]";
@@ -223,7 +223,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	4_M_03,{
 		mes "Para se tornar um Arqueiro, você deve receber uma nota de pelo menos ^0000FF25^000000 pontos dos 40.";
 		mes "Você pode conseguir Troncos derrotando 'Salgueiros'.";
 		mes "Tenha cuidado eles podem ser monstros difíceis de se derrotar.";
-		}
+	}
 		mes "Um arqueiro utiliza arco e possui várias habilidades e talentos.";
 		mes "A maior habilidade de um arqueiro é poder atacar inimigos a distância.";
 		next;

@@ -34,7 +34,7 @@ alberta,23,238,4	script	Guia#01alberta	8W_SOLDIER,{
 	next;
 	set .@loop1,1;
 	set .@str$,"Gostaria de verificar outras localizações?";
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		while (1) {
 			switch(select("[ Principais Lugares ]:[ Lojas & Ajudantes ]:[ Portos ]:Remover marcadores do mini-mapa:Cancelar")) {
 			case 1:

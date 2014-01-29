@@ -29,7 +29,7 @@
 morocc,153,286,6	script	Guia#01morocc	4_M_MOC_SOLDIER,{
 	cutin "moc_soldier",2;
 	mes "[Guia de Morroc]";
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		mes "Bem-vindo a ^8B4513Morroc^000000, a Cidade do Deserto.";
 		mes "Você deseja conhecer a cidade?";
 		F_Navi("[Guia de Morroc]");

@@ -1627,7 +1627,7 @@ arena_room,94,82,7	script	Arena Record Staff#aco	1_F_PRIEST,{
 	mes "Class Arena Challenges?";
 	mes "Please choose from the menu.";
 	next;
-	switch(select("Acolyte Mode:Priest - Level 70 or lower:Priest - Level 80 or lower:Priest - Level 90 or lower:Priest - Level 91 ~ "+(checkversion(0)?"160":"99"))) {
+	switch(select("Acolyte Mode:Priest - Level 70 or lower:Priest - Level 80 or lower:Priest - Level 90 or lower:Priest - Level 91 ~ "+(checkversion(0) == 1?"160":"99"))) {
 	case 1:
 		set .@acotop_t,$arn_acotop;
 		set .@acotop_n$,$arn_acotopn$;
@@ -1703,7 +1703,7 @@ OnLineRec_pri80:
 	end;
 
 OnLineRec_pri90:
-	mapannounce "arena_room","Vendigos: "+$arn_pritopn90$+" has made a new record in the Arena Time Force Battle - Priest: Level 91~"+(checkversion(0)?"160":"99")+". Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "arena_room","Vendigos: "+$arn_pritopn90$+" has made a new record in the Arena Time Force Battle - Priest: Level 91~"+(checkversion(0) == 1?"160":"99")+". Congratulations!",bc_map,"0xFFFF00";
 	end;
 }
 
@@ -1781,7 +1781,7 @@ arena_room,195,5,3	script	log-on-aco#arena	4_NFWISP,{
 		mes "particular mode in the";
 		mes "Arena Acolyte Class Mode.^000000";
 		next;
-		switch(select("Cancel:Acolyte:~level 70:~level 80:~level 90:~level "+(checkversion(0)?"160":"99"))) {
+		switch(select("Cancel:Acolyte:~level 70:~level 80:~level 90:~level "+(checkversion(0) == 1?"160":"99"))) {
 		case 1:
 			mes "^3355FFCommand has";
 			mes "been canceled.^000000";

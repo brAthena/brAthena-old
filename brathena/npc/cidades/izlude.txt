@@ -630,7 +630,7 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	4W_SAILOR,{
 	mes "Quer voltar?";
 	next;
 	if (select("Sim, estou muito cansado.: Não, eu adoro esse lugar!") == 2) close;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			warp "izlude",197,210;
 		else
 			warp "izlude",176,182;

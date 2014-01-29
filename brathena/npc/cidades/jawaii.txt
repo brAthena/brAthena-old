@@ -39,7 +39,7 @@ jawaii,239,112,7	script	Marinheiro#toizu	4W_SAILOR,{
 		mes "[Marinheiro]";
 		mes "Agora, deixe-m guiar você para Izlude.";
 		close2;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			warp "izlude",195,212;
 		else
 			warp "izlude",176,182;

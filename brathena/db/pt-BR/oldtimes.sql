@@ -12230,6 +12230,8 @@ REPLACE INTO `skill_cast_db` VALUES(47,'0','0','0','100','0','0');
 -- Gatuno
 REPLACE INTO `skill_cast_db` VALUES(51,'0','0','0','30000:60000:90000:120000:150000:180000:210000:240000:270000:300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(52,'0','0','0','0','15000:20000:25000:30000:35000:40000:45000:50000:55000:60000','0');
+-- Compartilhada
+REPLACE INTO `skill_cast_db` VALUES(54,'6000:4000:2000:0','0:1000:2000:3000','0','0','0','0');
 -- Cavaleiro
 REPLACE INTO `skill_cast_db` VALUES(57,'700','0','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(59,'0','1000','0','0','0','0');

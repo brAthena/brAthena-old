@@ -446,7 +446,7 @@
 		mes "[Caçador de Demônio]";
 		mes "Você vê, estamos tendo alguns problemas financeiros. Vejamos, estamos escasso destes itens...";
 		next;
-		if (checkversion(0)) set .@i,1;
+		if (checkversion(0) == 1) set .@i,1;
 		switch(rand(1,7)) {
     // Antenas de Inseto / Garra de Lobo do Deserto, Tronco, Erva Branca
 		case 1: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 3; changequest 4001,4002; break;
@@ -477,7 +477,7 @@
 		close;
 	}
 	else if (CACA_Q >= 3 && CACA_Q <= 9) {
-		if (checkversion(0)) set .@i,1;
+		if (checkversion(0) == 1) set .@i,1;
 		switch(CACA_Q) {
     // Antenas de Inseto / Garra de Lobo do Deserto, Tronco, Erva Branca
 		case 3: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 10; break;

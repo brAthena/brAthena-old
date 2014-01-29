@@ -457,7 +457,7 @@ prt_monk,230,106,3	script	Asthe#tu	1_F_PRIEST,{
 		mes "building nearby.";
 		close;
 	case 9:
-		mes "You went to "+(checkversion(0)?"Prontera":"Payon")+" on behalf of the convent for Priest Gardron? That must have been tough...";
+		mes "You went to "+(checkversion(0) == 1?"Prontera":"Payon")+" on behalf of the convent for Priest Gardron? That must have been tough...";
 		next;
 		mes "[Asthe]";
 		mes "Blessing!";
@@ -835,7 +835,7 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			close;
 		}
 	} else if (tu_acolyte01 == 8){
-		if (countitem((checkversion(0)?939:957)) > 4){
+		if (countitem((checkversion(0) == 1?939:957)) > 4){
 			mes "Oh...!";
 			mes "You've returned!";
 			mes "Let's see... One...";
@@ -847,7 +847,7 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			mes "on behalf of the convent,";
 			mes "not to mention the fact that";
 			mes "you've protected the citizens";
-			mes "of "+(checkversion(0)?"Prontera":"Payon")+" from danger.";
+			mes "of "+(checkversion(0) == 1?"Prontera":"Payon")+" from danger.";
 			next;
 			mes "[Priest Gardron]";
 			mes "May you always";
@@ -865,7 +865,7 @@ monk_in,18,38,6	script	Priest Gardron#tu	4_M_MINISTER,{
 			//getitem 505,1; //Blue_Potion
 			close;
 		} else {
-			if (checkversion(0)) {
+			if (checkversion(0) == 1) {
 				mes "A few days ago, a sister in Prontera";
 				mes "sent me a telegram that citizens had been harmed";
 				mes "by Hornets in the western field,";

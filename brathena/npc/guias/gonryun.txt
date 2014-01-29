@@ -35,7 +35,7 @@ gonryun,163,60,4	script	Guia de Kunlun#01gonryun	8_M_TWSOLDIER,{
 	mes "Eu sou o responsável por responder suas dúvidas sobre a cidade.";
 	mes "Por favor, sinta-se à vontade para perguntar.";
 	F_Navi("[He Yuen Zhe]");
-	if (checkversion(0)) {
+	if (checkversion(0) == 1) {
 		while (1) {
 			next;
 			switch(select("[ Funcionária Kafra ]:[ Residência do Chefe ]:[ Vendedor de Utilidades ]:[ Vendedor de Armas ]:[ Vendedor de Armaduras ]:[ Fabricante de Vinho ]:[ Embaixador de Kunlun ]:Remover indicações do Mini-Mapa:Cancelar")) {

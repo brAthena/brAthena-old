@@ -117,7 +117,7 @@ amatsu,194,79,5	script	Capitão do Mar#ama2	4_M_SEAMAN,{
 		mes "[Walter Moers]";
 		mes "Então vamos. Você deve ter muitas novidades para contar, não é? Todos a bordo!";
 		close2;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			warp "alberta",244,72;
 		else
 			warp "alberta",243,91;

@@ -107,7 +107,7 @@ gon_fild01,255,79,7	script	Anunciante de Kunlun#gon2	4_M_TWMIDMAN,{
 		mes "Por favor volte novamente.";
 		mes "Espero que conte para seus amigos sobre Kunlun quando encontrá-los. Agora, eu guiarei você até Alberta.";
 		close2;
-		if (checkversion(0))
+		if (checkversion(0) == 1)
 			warp "alberta",244,60;
 		else
 			warp "alberta",243,67;
