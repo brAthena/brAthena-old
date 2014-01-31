@@ -238,10 +238,10 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	4_F_ALCHE,{
 			mes "Okay, now you need to learn";
 			mes "the basics to being an Alchemist and learn the procedures for mixing chemicals and medicines.";
 			set ALCH_Q,4;
-			if (checkquest(2028) != -1) {
+			if(checkquest(2028) != -1) {
 				changequest 2028,2031;
 			}
-			else if (checkquest(2029) != -1) {
+			else if(checkquest(2029) != -1) {
 				changequest 2029,2031;
 			}
 			else {
@@ -271,10 +271,10 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	4_F_ALCHE,{
 			mes "Okay, now you need to learn";
 			mes "the basics to being an Alchemist and learn the procedures for mixing chemicals and medicines.";
 			set ALCH_Q,4;
-			if (checkquest(2028) != -1) {
+			if(checkquest(2028) != -1) {
 				changequest 2028,2031;
 			}
-			else if (checkquest(2029) != -1) {
+			else if(checkquest(2029) != -1) {
 				changequest 2029,2031;
 			}
 			else {
@@ -291,7 +291,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	4_F_ALCHE,{
 		mes "Aren't you ready?";
 		mes "Like I said before,";
 		mes "you must bring";
-		mes "^551A8B"+.@items[1]+" "+getitemname(.@items[0])+"s^000000.";
+		mes "^551A8B"+callfunc("F_InsertPlural",.@items[1],getitemname(.@items[0]))+"^000000.";
 		next;
 		mes "[Parmy Gianino]";
 		mes "Come back when you";
@@ -445,7 +445,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	4_M_ALCHE_B,{
 				mes "Wait...";
 				mes "Maybe I've";
 				mes "misjudged you.";
-				if (Sex == 1) {
+				if (Sex) {
 					mes "You might be a pretty boy,";
 					mes "but I can tell you're smart";
 					mes "from your eyes.";
@@ -1499,7 +1499,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	4_M_ALCHE_A,{
 		mes "check what you've";
 		mes "learned.";
 		next;
-		if (MISC_QUEST & 4) {
+		if(MISC_QUEST & 4) {
 			mes "[Van Helmont]";
 			mes "Which item is not";
 			mes "necessary to make";
@@ -1689,7 +1689,7 @@ alde_alche,101,184,4	script	Master Alchemist#am	2_M_DYEINGER,{
 			cutin "",255;
 			end;
 		}
-		if (checkquest(2039) != -1) {
+		if(checkquest(2039) != -1) {
 			changequest 2039,2040;
 		}
 		mes "Ah, well done.";
@@ -1893,8 +1893,7 @@ alde_alche,145,19,1	script	Chief Researcher#am	1_M_LIBRARYMASTER,{
 		}
 	}
 	else if (ALCH_Q == 22) {
-		set .@now_weight,MaxWeight-Weight;
-		if (.@now_weight < 1370) {
+		if (MaxWeight - Weight < 1370) {
 			mes "[Nicholas Flamel]";
 			mes "Whoa...";
 			mes "You're carrying too much stuff! First, put some of your things in Kafra Storage.";

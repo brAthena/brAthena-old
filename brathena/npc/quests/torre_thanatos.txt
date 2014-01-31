@@ -440,7 +440,7 @@ tha_t01,140,78,4	script	Guia#premio	4_F_ZONDAGIRL,{
 	mes "[Liei]";
 	if (!countitem(.@Items[.@i])) {
 		mes "Sinto muito, mas você não";
-		mes "está carregando nenhum "+getitemname(.@Items[.@i])+"s.";
+		mes "está carregando nenhum "+callfunc("F_GetPlural",getitemname(.@Items[.@i]))+".";
 		mes "Por favor, verifique seu inventário";
 		mes "mais uma vez, e então";
 		mes "volte para pegar seus itens";
@@ -456,7 +456,7 @@ tha_t01,140,78,4	script	Guia#premio	4_F_ZONDAGIRL,{
 	set .@zeny_tt,(countitem(.@Items[.@i]) * 1000);
 	//set .@exp_tt,(countitem(.@Items[.@i]) * 2000);
 	mes "[Liei]";
-	mes countitem(.@Items[.@i])+" "+getitemname(.@Items[.@i])+"s, then";
+	mes callfunc("F_InsertPlural",countitem(.@Items[.@i]),getitemname(.@Items[.@i]))+", then";
 	mes "receberá um total de...";
 	mes " ";
 	mes ""+.@zeny_tt+" zeny";
@@ -464,7 +464,7 @@ tha_t01,140,78,4	script	Guia#premio	4_F_ZONDAGIRL,{
 	next;
 	mes "[Liei]";
 	mes "Gostaria de trocar";
-	mes "todas as suas "+getitemname(.@Items[.@i])+"s";
+	mes "todas as suas "+callfunc("F_GetPlural",getitemname(.@Items[.@i]));
 	mes "pela sua recompensa agora?";
 	next;
 	switch(select("Sim:Não")) {

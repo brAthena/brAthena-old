@@ -4501,7 +4501,7 @@ OnTouch:
 								mes "vibrando fortemente";
 								mes "antes de fazer uma parada";
 								mes "súbita. Não era para apertar esse";
-								mes "botão. Melhor perguntar a Dorian... ^FFFFFF ^000000";
+								mes "botão. Melhor perguntar a Dorian... ";
 								setquest 3106;
 								set diamond_edq,11;
 								close;
@@ -4553,7 +4553,7 @@ OnTouch:
 								mes "vibrando fortemente";
 								mes "antes de fazer uma parada";
 								mes "súbita. Não era para apertar esse";
-								mes "botão. Melhor perguntar a Dorian... ^FFFFFF ^000000";
+								mes "botão. Melhor perguntar a Dorian... ";
 								setquest 3106;
 								set diamond_edq,11;
 								close;
@@ -8023,8 +8023,8 @@ moc_ruins,90,67,3	script	Homem Suspeito#1	4W_M_03,2,2,{
 		mes "de fugir daqui.";
 		mes "Vamos ver o que ele diz...";
 		next;
-		mes "^FFFFFF ^000000";
-		mes "^FFFFFF ^000000";
+		mes "";
+		mes "";
 		mes "^666666Kill " + strcharinfo(0) + ", miau.";
 		mes "Esse samaritano arrogante";
 		mes "sabe demais sobre nós.";
@@ -8220,8 +8220,8 @@ OnTouch:
 		mes "de fugir daqui.";
 		mes "Vamos ver o que ele diz...";
 		next;
-		mes "^FFFFFF ^000000";
-		mes "^FFFFFF ^000000";
+		mes "";
+		mes "";
 		mes "^666666Kill " + strcharinfo(0) + ", miau.";
 		mes "Esse samaritano arrogante";
 		mes "sabe demais sobre nós.";
@@ -8270,8 +8270,8 @@ moc_ruins,78,167,3	script	Homem Suspeito#2	4W_M_03,2,2,{
 		mes "de fugir daqui.";
 		mes "Vamos ver o que ele diz...";
 		next;
-		mes "^FFFFFF ^000000";
-		mes "^FFFFFF ^000000";
+		mes "";
+		mes "";
 		mes "^666666Kill " + strcharinfo(0) + ", miau.";
 		mes "Esse samaritano arrogante";
 		mes "sabe demais sobre nós.";
@@ -8469,8 +8469,8 @@ OnTouch:
 		mes "de fugir daqui.";
 		mes "Vamos ver o que ele diz...";
 		next;
-		mes "^FFFFFF ^000000";
-		mes "^FFFFFF ^000000";
+		mes "";
+		mes "";
 		mes "^666666Mate " + strcharinfo(0) + ";, miau.";
 		mes "Esse samaritano arrogante";
 		mes "sabe demais sobre nós.";

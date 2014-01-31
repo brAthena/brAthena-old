@@ -62,7 +62,7 @@
 	for(set .@i,0; .@i<getarraysize(.@map$); set .@i,.@i+1) {
 		set .@menu$, .@menu$+
 			.@map$[.@i]+" ("+.@cost[.@i]+" Canned Food):"+
-			.@map$[.@i]+" ("+.@cost[.@i]+",000 Zeny):";
+			.@map$[.@i]+" ("+callfunc("F_InsertComma",.@cost[.@i]*1000)+" Zeny):";
 	}
 	set .@i, select(.@menu$)-2;
 	if (.@i == -1) {
@@ -128,7 +128,7 @@ ecl_fild01,94,322,5	script	Security Guard#ep14_2	4_M_FAIRYSOLDIER,{
 		mes "[Security Guard]";
 		mes "Of course, the documents will be secured away after their use in access regulations, so you don't have to worry.";
 		next;
-		if (select("Fill out the forms.:Forget it.") == 2) {
+		if(select("Fill out the forms.:Forget it.") == 2) {
 			mes "[Security Guard]";
 			mes "Please note that you would not be able to enter the city without filling out the forms.";
 			close;
@@ -726,7 +726,7 @@ eclage,155,91,4	script	#pa0829Hiel's Door10	2_BOARD2,{
 	mes "Pan-galactic ultra genius engineer Hiel's strange and creepy workshop.";
 	mes "Normal Laphines, animals, and Saphas are prohibited.";
 	next;
-	if (select("Continue on my way.:Enter this place.") == 2)
+	if(select("Continue on my way.:Enter this place.") == 2)
 		warp "ecl_in04",107,213;
 	close;
 }
@@ -734,7 +734,7 @@ eclage,155,91,4	script	#pa0829Hiel's Door10	2_BOARD2,{
 ecl_in04,108,215,0	script	Supreme Electronic Rope	HIDDEN_NPC,{
 	mes "If you would like to go down, please press the bell~";
 	next;
-	if (select("Forget it.:Go down.") == 2)
+	if(select("Forget it.:Go down.") == 2)
 		warp "eclage",152,91;
 	close;
 }
@@ -919,7 +919,7 @@ OnTouch:
 		mes "A group of travelers of Alpheim are having a conversation.";
 		emotion e_loud;
 		next;
-		if (select("Avoid them.:Join the group.") == 1) {
+		if(select("Avoid them.:Join the group.") == 1) {
 			mes "They don't seem to care that much.";
 			close;
 		}
@@ -1399,7 +1399,7 @@ ecl_in03,245,93,2	script	Chief of Staff#tl01	4_F_FAIRY,{
 		mes "Promise me that you will not tell anyone";
 		mes "about the truth that you believe.";
 		next;
-		if (select("No!:Yes, I promise.") == 1) {
+		if(select("No!:Yes, I promise.") == 1) {
 			mes "[Shenime]";
 			mes "You put me on the spot.";
 			mes "I don't want you to be the cause of friction.";
@@ -1521,7 +1521,7 @@ ecl_in03,41,90,2	script	Mayor Jun Kardui#tl01	4_M_FARIYKING,{
 		mes "Don't you understand?";
 		mes "Here, in Eclage, You have to get more recognition from Laphines.";
 		next;
-		if (select("Do I have to make a contribution?:It's about Yggdrasil!") == 1) {
+		if(select("Do I have to make a contribution?:It's about Yggdrasil!") == 1) {
 			mes "[Kardui]";
 			mes "See, you understood it right.";
 			next;

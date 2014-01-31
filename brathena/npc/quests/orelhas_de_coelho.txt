@@ -47,7 +47,7 @@ alberta,26,229,0	script	Funcionária Kafra#coe	4_M_01,{
 				  mes "Ooh, eu sinto muito";
 				  mes "mas você precisa";
 				  mes "trazer pelo menos";
-					mes .@Items[.@i+1]+" "+getitemname(.@Items[.@i])+((!.@i)?"s.":".");
+					mes callfunc("F_InsertPlural",.@Items[.@i+1],getitemname(.@Items[.@i]))+".";
 					close;
 				}
 			mes "[Funcionária Kafra]";
@@ -64,7 +64,7 @@ alberta,26,229,0	script	Funcionária Kafra#coe	4_M_01,{
 				  mes "Hm? Sinto muito,";
 				  mes "mas eu realmente não posso";
 				  mes "fazer isso agora. Você";
-					mes "precisa "+.@Items[.@i+1]+" "+getitemname(.@Items[.@i])+((!.@i)?"s":"");
+					mes "precisa "+callfunc("F_InsertPlural",.@Items[.@i+1],getitemname(.@Items[.@i]));
 					mes "em ordem para eu colocar isso";
 					mes "junto na Orelha de Coelho...";
 					close;

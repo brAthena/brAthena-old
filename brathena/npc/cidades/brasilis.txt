@@ -41,7 +41,7 @@ alberta,246,82,3	script	Marinheiro#bra2	4W_SAILOR,{
 			warp "brasilis",314,60;
 			end;
 			}
-			mes "Eu disse 10,000 zeny.";
+			mes "Eu disse "+callfunc("F_InsertComma",10,000)+" zeny.";
 			close;
 			}
 		mes "[Marinheiro]";
@@ -53,16 +53,21 @@ brasilis,316,57,3	script	Marinheiro#bra1	4W_SAILOR,{
 	mes "[Marinheiro]";
 	mes "Meu barco está indo para Alberta, quer se juntar a nós?";
 	next;
-	if (select("Voltar para Alberta.:Ainda não~") == 1) {
+	switch(select("Voltar para Alberta.:Ainda não~") == 1) {
+	case 1:
 		mes "[Marinheiro]";
 		mes "Tenho certeza que sente falta de casa.";
 		close2;
-		warp "alberta",243,82;
+		if (checkversion(0))
+			warp "alberta",243,82;
+		else
+			warp "alberta",244,115;
 		end;
-		}
+	case 2:
 		mes "[Marinheiro]";
 		mes "Ok, fique à vontade. Quando quiser partir avise.";
 		close;
+	}
 }
 
 brasilis,155,165,3	script	Orientação#bra1	4_BULLETIN_BOARD2,{

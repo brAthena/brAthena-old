@@ -25,7 +25,7 @@
 //   \________________________________________________________/
 
 -	script	::phs	-1,{
-	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 20000) {
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
 		mes "- Espere um minuto !! -";
 		mes "- Atualmente você está carregando -";
 		mes "- muitos itens com você. -";
@@ -40,17 +40,15 @@
 	next;
 	set .@i, select("Nerium:Rantana:Makulata:Seratum:Scopolia:Amoena:Kit de Veneno:Cancelar")-1;
 	mes "[Vendedora de Ervas Tóxicas]";
-	if (.@i <= 6) {
+	if (.@i < 6) {
 		set .@item,7932+.@i;
 		set .@price,4000;
 		set .@max,2000;
-		set .@max$,"2,000";
-	} else if (.@i == 7) {
+	} else if (.@i == 6) {
 		set .@item,7931;
 		set .@price,5000;
 		set .@max,500;
-		set .@max$,"500";
-		mes "Cada Kit de Veneno custa 5,000 zeny."; 
+		mes "Cada Kit de Veneno custa 5,000 zeny.";
 	} else {
 		mes "Bem, entendo. Volte logo~!";
 		close;
@@ -67,7 +65,7 @@
 	}
 	if (.@amount > .@max) {
 		mes "[Vendedora de Ervas Tóxicas]";
-		mes "O número deve ser menor que "+.@max$+"!";
+		mes "O número deve ser menor que "+callfunc("F_InsertComma",.@max)+"!";
 		close;
 	}
 	set .@total, .@amount * .@price;

@@ -597,9 +597,9 @@ geffen,172,52,1	script	Goodman#qsk_bs	4_M_DWARF,{
 					mes "artesãos. Ser rico e famoso";
 					mes "é apenas uma consequência.";
 					if (Upper == 1)
-						mes "Mestres Ferreiros honrosos sabem do^FFFFFF ^000000 valor do artesanato...";
+						mes "Mestres Ferreiros honrosos sabem do valor do artesanato...";
 					else
-						mes "Ferreiros honrosos sabem do^FFFFFF ^000000 valor do artesanato...";
+						mes "Ferreiros honrosos sabem do valor do artesanato...";
 					next;
 					if (Upper == 1) {
 						mes "[Goodman]";

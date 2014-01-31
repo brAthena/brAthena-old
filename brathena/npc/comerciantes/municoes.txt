@@ -31,11 +31,11 @@ alberta,118,160,3	script	Negociador de Projéteis Tony#alb	4_M_04,{
 		mes "Apenas me traga os materiais, e eu irei lhe fazer os projéteis que precisar.";
 		next;
 		switch(select("Esfera Venenosa:Esfera de Chamas:Esfera de Relâmpagos:Esfera Cegante:Esfera Congelante:Cancelar")) {
-		case 1: callsub Bullet_Trade,937,10,13205; break;
-		case 2: callsub Bullet_Trade,7097,2,13203; break;
-		case 3: callsub Bullet_Trade,7053,3,13204; break;
-		case 4: callsub Bullet_Trade,1024,5,13206; break;
-		case 5: callsub Bullet_Trade,7054,2,13207; break;
+		case 1: callfunc "Bullet_Trade",937,10,13205; break;
+		case 2: callfunc "Bullet_Trade",7097,2,13203; break;
+		case 3: callfunc "Bullet_Trade",7053,3,13204; break;
+		case 4: callfunc "Bullet_Trade",1024,5,13206; break;
+		case 5: callfunc "Bullet_Trade",7054,2,13207; break;
 		case 6:
 			mes "[Tony]";
 			mes "Mudou de idéia?";
@@ -49,11 +49,12 @@ alberta,118,160,3	script	Negociador de Projéteis Tony#alb	4_M_04,{
 	mes "Lamento se você veio para comprar munição.";
 	mes "Eu só posso negociar com Justiceiros credenciados.";
 	close;
+}
 
-Bullet_Trade:
+function	script	Bullet_Trade	{
 	mes "[Tony]";
-	mes "Para cada 30 "+getitemname(getarg(2))+",";
-	mes "você deve me entregar 1 Emveretarcon, 1 Fracon e "+getarg(1)+" "+getitemname(getarg(0))+".";
+	mes "Para cada "+callfunc("F_InsertPlural",30,getitemname(getarg(2)))+",";
+	mes "você deve me entregar 1 Emveretarcon, 1 Fracon e "+callfunc("F_InsertPlural",getarg(1),getitemname(getarg(0)))+".";
 	next;
 	mes "[Tony]";
 	mes "Lembre que só posso entregar um máximo de 500 caixas de 30 projéteis por negociação.";
@@ -77,8 +78,8 @@ Bullet_Trade:
 			mes "Muito bom, tudo parece estar em ordem.";
 			mes "Deixe-me pegar esses materiais, e aqui estão seus projéteis.";
 			mes "Foi um prazer negociar com você~";
-			delitem 1010,.@amount;
-			delitem 1011,.@amount;
+			delitem 1010,.@amount; //Phracon
+			delitem 1011,.@amount; //Emveretarcon
 			delitem getarg(0),.@amount * getarg(1);
 			getitem getarg(2),.@amount * 30;
 			close;
@@ -92,49 +93,51 @@ Bullet_Trade:
 
 // Caixa de Munições
 alberta,118,157,3	script	Vendedor de Caixas de Munição#alb	4_M_01,{
-	set .n$,"[Kenny]";
-	mes .n$;
+
+	mes "[Kenny]";
 	if (BaseJob == Job_Gunslinger) {
 		mes "Bem-vindo à minha loja de carregadores.";
 		mes "Como você sabe, um número maior de projéteis podem ser carregados mais facilmente quando estão em carregadores.";
 		mes "Agora, posso ajudá-lo em algo em particular?";
 		next;
 		switch(select("Pacote de Esferas de Relâmpago:Pacote de Esferas Cegantes:Pacote de Esferas Venenosas:Pacote de Esferas Congelantes:Pacote de Esferas de Chamas:Carregador:Carregador Sanguinário:Carregador de Prata:Cancelar")) {
-		case 1: callsub Func_Casing,13204,12144; break;
-		case 2: callsub Func_Casing,13206,12145; break;
-		case 3: callsub Func_Casing,13205,12146; break;
-		case 4: callsub Func_Casing,13207,12147; break;
-		case 5: callsub Func_Casing,13203,12148; break;
-		case 6: callsub Func_Casing,13200,12149; break;
-		case 7: callsub Func_Casing,13202,12150; break;
-		case 8: callsub Func_Casing,13201,12151; break;
+		case 1: callfunc "Func_Casing",13204,12144; break;
+		case 2: callfunc "Func_Casing",13206,12145; break;
+		case 3: callfunc "Func_Casing",13205,12146; break;
+		case 4: callfunc "Func_Casing",13207,12147; break;
+		case 5: callfunc "Func_Casing",13203,12148; break;
+		case 6: callfunc "Func_Casing",13200,12149; break;
+		case 7: callfunc "Func_Casing",13202,12150; break;
+		case 8: callfunc "Func_Casing",13201,12151; break;
 		case 9:
-			mes .n$;
+			mes "[Kenny]";
 			mes "Bem, se você achar que tem muitos projéteis, venha me encontrar.";
 			mes "É uma boa idéia armazenar projéteis em Carregadores.";
 			close;
 		}
 	}
+	mes "[Kenny]";
 	mes "Bem-vindo à minha loja.";
 	mes "Aqui, eu forneço Pacotes e Carregadores para Justiceiros.";
 	mes "Desculpe, mas não parece que meus serviços serão úteis para você, aventureiro.";
 	next;
-	mes .n$;
+	mes "[Kenny]";
 	mes "Hehe, mas se você conhecer algum Justiceiro, mande-o para mim.";
 	mes "Ninguém pode carregar tantos projéteis.";
 	close;
+}
 
-Func_Casing:
-	mes .n$;
+function	script	Func_Casing	{
+	mes "[Kenny]";
 	mes "Agora, você pode trocar";
-	mes "500 "+getitemname(getarg(0));
+	mes callfunc("F_InsertPlural",500,getitemname(getarg(0)));
 	mes "e 500 zeny por 1 "+getitemname(getarg(1))+", tenha certeza";
 	mes "que você tem projéteis o suficiente e zeny para esta troca.";
 	next;
-	mes .n$;
-	mes "Você pode trocar 500 "+getitemname(getarg(0))+" e 500 zeny por 1 "+getitemname(getarg(1));
+	mes "[Kenny]";
+	mes "Você pode trocar 500 "+callfunc("F_InsertPlural",500,getitemname(getarg(0)))+" e 500 zeny por 1 "+getitemname(getarg(1));
 	next;
-	mes .n$;
+	mes "[Kenny]";
 	mes "Lembre-se que não posso lhe dar mais que 50 Carregadores por vez.";
 	mes "Agora digite o número de Carregadores que você quer receber.";
 	mes "Se você deseja cancelar, digite '0'.";
@@ -146,7 +149,7 @@ Func_Casing:
 		mes "Por favor tente novamente, e digite um número menor que 50.";
 		close;
 		}
-		mes .n$;
+		mes "[Kenny]";
 		if (Zeny >= (500*.@amount) && countitem(getarg(0)) >= (500*.@amount)) {
 			if (checkweight(getarg(1),.@amount) == 0) {
 			mes "Ei, você tem muito lixo no seu inventário.";

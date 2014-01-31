@@ -116,7 +116,7 @@
 	}
 	set .@ore$,"^ff9999Blessed "+.@type$+" Ore^000000";
 	mes "[Ferreiro Dister]";
-	mes "Este "+.@type$+" está refinado em "+.@equip_refine+". Para refiná-lo, eu preciso de "+.@ore$+" e "+(.@price/1000)+",000 zeny de taxa do refinamento.";
+	mes "Este "+.@type$+" está refinado em "+.@equip_refine+". Para refiná-lo, eu preciso de "+.@ore$+" e "+callfunc("F_InsertComma",.@price)+" zeny de taxa do refinamento.";
 	mes "Quer continuar?";
 	next;
 	if (select("Sim:Não") == 2) {
@@ -140,7 +140,7 @@
 	if (countitem(.@material) == 0 || Zeny < .@price) {
 		mes "[Ferreiro Dister]";
 		mes "Material insuficiente.";
-		mes "Para refinar a "+((.@equip_lv)?"arma":"armadura")+", eu preciso de "+.@ore$+" e "+(.@price/1000)+",000 zeny de taxa de refinamento.";
+		mes "Para refinar a "+((.@equip_lv)?"arma":"armadura")+", eu preciso de "+.@ore$+" e "+callfunc("F_InsertComma",.@price)+" zeny de taxa de refinamento.";
 		close;
 	}
 	delitem .@material,1;

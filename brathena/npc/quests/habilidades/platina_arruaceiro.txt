@@ -264,7 +264,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	1_ETC_01,{
 							mes "mas depois de transcender, ele";
 							mes "decidiu se tornar um Desordeiro.";
 							mes "Retendo seu conhecimento";
-							mes "Monge e suas habilidades de raíz, ele se adaptou^FFFFFF ^000000 para fins de Arruaceiro.";
+							mes "Monge e suas habilidades de raíz, ele se adaptou para fins de Arruaceiro.";
 							next;
 							mes "[Haijara Greg]";
 							mes "Chae Takbae registrou os";
@@ -442,7 +442,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	1_ETC_01,{
 				mes "deveria estar no";
 				mes "meio do treinamento para";
 				mes "obter a habilidade? Por favor fale com";
-				mes "Thor e complete seu treinamento. ^FFFFFF ^000000";
+				mes "Thor e complete seu treinamento. ";
 				close;
 			}
 			else if (ROG_SK == 8) {
@@ -547,7 +547,7 @@ in_rogue,355,179,0	script	Haijara Greg#rogueguild	1_ETC_01,{
 					mes "sobre o Confinamento.";
 					mes "Espero que você possa aprender";
 					mes "mais sobre ela através da prática dessa";
-					mes "habilidade, e que você se torne^FFFFFF ^000000 uma lenda tão grande como Chae Takbae é.";
+					mes "habilidade, e que você se torne uma lenda tão grande como Chae Takbae é.";
 					set ROG_SK,12;
 					skill 1005,1,0;
 					specialeffect2 EF_LIGHTSPHERE;
@@ -806,7 +806,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 			mes "com Antonio Jr. aqui";
 			mes "dentro da Guilda de Arruaceiros. ";
 			mes "Por favor, leve a carta";
-			mes "eu a escrevi o mais rápido possível! ^FFFFFF ^000000";
+			mes "eu a escrevi o mais rápido possível! ";
 			close;
 		}
 		else if (ROG_SK == 5) {
@@ -848,7 +848,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 				mes "companheiro encarrgado pelo treinamento. Aproxime-se dele";
 				mes "e certifique-se de que você";
 				mes "pode prever e bloquear os seus movimentos";
-				mes "para a esquerda, direita e por trás.^FFFFFF ^000000 Preparem-se, estou lhe enviando agora...";
+				mes "para a esquerda, direita e por trás. Preparem-se, estou lhe enviando agora...";
 				close2;
 				warp "in_rogue",89,114;
 				end;
@@ -879,7 +879,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 				mes "companheiro encarrgado pelo treinamento. Aproxime-se dele";
 				mes "e certifique-se de que você";
 				mes "pode prever e bloquear os seus movimentos";
-				mes "pela esquerda, direita ou por trás.^FFFFFF ^000000 Preparem-se, estou lhe enviando agora...";
+				mes "pela esquerda, direita ou por trás. Preparem-se, estou lhe enviando agora...";
 				set ROG_SK,6;
 				close2;
 				warp "in_rogue",89,114;
@@ -899,7 +899,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 			mes "que você completou seu";
 			mes "treinamento. Parabéns!";
 			mes "Agora, por favor fale com meu";
-			mes "pai, para que ele possa explicar^FFFFFF ^000000 o Confinamento em detalhes.";
+			mes "pai, para que ele possa explicar o Confinamento em detalhes.";
 			set ROG_SK,9;
 			close;
 		}
@@ -908,7 +908,7 @@ in_rogue,268,125,2	script	Thor Greg#rogueguild	4_M_04,{
 			mes "Por favor fale com meu pai";
 			mes "para que ele possa explicar";
 			mes "os detalhes da Habilidade Confinamento";
-			mes "para você. Ele ainda deve estar^FFFFFF ^000000 na sala do pânico da Guilda de Arruaceiros.";
+			mes "para você. Ele ainda deve estar na sala do pânico da Guilda de Arruaceiros.";
 			close;
 		}
 		else if (ROG_SK == 11) {

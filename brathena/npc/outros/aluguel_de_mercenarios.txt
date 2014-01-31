@@ -47,7 +47,7 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2,{
 			mes "você gostaria de contratar?";
 			next;
 			for (set .@i, 1; .@i <= 9; set .@i, .@i + 1)
-				set .@menu$, .@menu$ + "Mercenário " + .@npc$ + " Nível " + .@i + ":";
+				set .@menu$, .@menu$ + "Mercenário callfunc("F_GetNumSuffix",.@i) + " Nível " + .@i + ":";
 			set .@Grade, select(.@menu$);
 			set .@BaseLevel, 5 + (.@Grade * 10);
 			set .@BaseLevel, (.@val > 90)? 90 : .@BaseLevel;
@@ -56,7 +56,8 @@ izlude,47,170,4	script	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2,{
 			set .@FaithCost, .@FaithCost[.@Grade];
 			mes "[Locador de Mercenários]";
 			mes "Então você deseja contratar um";
-			mes "Mercenário " + .@npc$ + " Nível " + .@Grade + ".";
+			mes "Mercenário " + callfunc("F_GetNumSuffix",.@Grade);
+			mes "+ .@npc$ + " Nível " + .@Grade + ".";
 			mes "Você precisa ter alcançado";
 			mes "Nível de base " + .@BaseLevel + " ou maior, e";
 			mes "precisa pagar " + .@ZenyCost + ",000 Zenys.";
@@ -288,7 +289,7 @@ izlude,55,170,4	script	Artigos para Mercenários#Espadachim	4_F_HUGRANMA,{
 		mes "Aqui está " + getitemname(.@item[.@m]) + ".";
 	else {
 		mes "Aqui estão, exatamente";
-		mes .@input + " " + getitemname(.@item[.@m]) + "s.";
+		mes callfunc("F_InsertPlural",.@input,getitemname(.@item[.@m])) + ".";
 	}
 	mes "Obrigada, e por favor volte";
 	mes "novamente se precisar de mais";

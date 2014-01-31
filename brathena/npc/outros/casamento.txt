@@ -798,7 +798,7 @@ S_Busy:
 	mes "Estou fazendo o casamento";
 	mes "de outro casal agora, então";
 	mes "por favor aguarde por sua";
-	mes "vez. Obrigado por compreender... ^FFFFFF ^000000";
+	mes "vez. Obrigado por compreender...";
 	goto L_End;
 
 OnStop:

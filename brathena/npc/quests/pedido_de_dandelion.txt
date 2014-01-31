@@ -233,7 +233,7 @@ izlude,103,106,3	script	Guildsman#1	1_M_02,3,3,{
 			mes "you'll need to meet with your";
 			mes "contact from the Assassin";
 			mes "Guild near a hut at the west";
-			mes "side of the Oasis inside Morroc.^FFFFFF ^000000 So keep an eye out for him.";
+			mes "side of the Oasis inside Morroc. So keep an eye out for him.";
 			next;
 			mes "[Guildsman]";
 			mes "I doubt you'll have";
@@ -5198,7 +5198,7 @@ que_job01,91,83,3	script	Kidd#hall	4_M_ACROSS,{
 		mes "are supposed to protect some";
 		mes "seal beneath Morroc Castle";
 		mes "that keeps this monster, Satan";
-		mes "Morroc, from invading our world.^FFFFFF ^000000 It might be just a legend, but...";
+		mes "Morroc, from invading our world. It might be just a legend, but...";
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes "The assistant told me that";

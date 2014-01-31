@@ -70,7 +70,7 @@ $@vfund_*_extra
 
 // Investment Functions & Controller
 //============================================================
-// Note: The time in this section are almost entirely custom.
+// Note: The times in this section are almost entirely custom.
 
 -	script	#invest_timer	-1,{
 OnClock0000:	// Open investments on Wed (1 hour after WoE)
@@ -173,7 +173,7 @@ function	script	F_Invest_Abyss	{
 			close;
 		}
 		mes getarg(1);
-		mes "You've invested "+.@units+" unit"+((.@units == 1)?"":"s")+" "+((.@units < 100)?.@units:insertchar(""+.@units,",",1))+"0,000 Zeny"+getarg(2,"")+".";
+		mes "You've invested "+callfunc("F_InsertPlural",.@units,"unit")+" "+callfunc("F_InsertComma",.@zeny)+" Zeny"+getarg(2,"")+".";
 		mes "Not much but this is a small gift. You can exchange it with items in Malangdo.";
 		set Zeny, Zeny-.@zeny;
 		setd getarg(0), getd(getarg(0)) + .@units;
@@ -418,7 +418,6 @@ prt_gld,2,2,0	script	Investment_total#fund00	CLEAR_NPC,{
 		mes "I don't need to adjust anything now.";
 		close;
 	}
-	end;
 
 OnInit:
 	if (callfunc("F_Invest_Status") == 1) {
@@ -585,7 +584,7 @@ prt_gld,164,98,3	script	Revoting Manager#Invest2	4_M_BOSSCAT,{
 	mes "[Revoting Manager]";
 	mes "Would you like to participate in the vote for choosing where to connect the 'Abyss Gate'?";
 	next;
-	if (select("Participate in the vote.:Skip for now.") == 2) {
+	if(select("Participate in the vote.:Skip for now.") == 2) {
 		mes "[Revoting Manager]";
 		mes "You've canceled the vote.";
 		close;
@@ -1049,15 +1048,8 @@ OnAgitInvest:
 		if (.@notice < 1 || .@notice > 12) {
 			mes "There are currently no investment sums available.";
 			close;
-		} else if (.@notice == 1)
-			set .@str$,"1st";
-		else if (.@notice == 2)
-			set .@str$,"2nd";
-		else if (.@notice == 3)
-			set .@str$,"3rd";
-		else
-			set .@str$,.@notice+"th";
-		mes .@str$+" total (unit in 10,000z)";
+		}
+		mes callfunc("F_GetNumSuffix",.@notice)+" total (unit in 10,000z)";
 		for(set .@i,1; .@i<=5; set .@i,.@i+1) {
 			set .@map$, .@npc$+"g_cas0"+.@i;
 			set .@fund[.@i], getd("$@vfund_"+.@npc$+"0"+.@i);
@@ -1456,7 +1448,7 @@ L_Check:
 	mes getarg(3);
 	mes "Oh! Almost forgot. Will you invest?";
 	next;
-	if (select("Invest:Don't Invest") == 2) {
+	if(select("Invest:Don't Invest") == 2) {
 		mes "[Namis]";
 		mes "Don't you mess with a busy cat!";
 		close;

@@ -863,13 +863,13 @@ function	script	Func_Bingo	{
 }
 
 function	script	Func_BingoResult	{
-	mapannounce "que_bingo","Eukran: O "+getarg(0)+"º número do bingo é "+$bingo[getarg(0) -1]+". Por favor verifique sua tabela.",4,0xFFAB54;
-	enablenpc ""+getarg(0)+"a#bingo";
-	enablenpc ""+getarg(0)+"b#bingo";
-	enablenpc ""+getarg(0)+"c#bingo";
-	enablenpc ""+getarg(0)+"d#bingo";
-	enablenpc ""+getarg(0)+"e#bingo";
-	set getarg(0),getarg(0) +1;
+	mapannounce "que_bingo","Eukran: O "+callfunc("F_GetNumSuffix",getarg(0))+"º número do bingo é "+$bingo[getarg(0) -1]+". Por favor verifique sua tabela.",4,0xFFAB54;
+	enablenpc getarg(0)+"a#bingo";
+	enablenpc getarg(0)+"b#bingo";
+	enablenpc getarg(0)+"c#bingo";
+	enablenpc getarg(0)+"d#bingo";
+	enablenpc getarg(0)+"e#bingo";
+	set $@bingoresult, $@bingoresult + 1;
 	end;
 }
 
@@ -953,7 +953,7 @@ que_bingo,54,17,5	script	Chefe de Mesa	4_M_05,{
 		mes "de bingo, você vai ser recompensado";
 		mes "com ''Medalhas Maravilhosas'',";
 		mes "a qual só pode ser usada nesse";
-		mes "jogo. Você também não pode^FFFFFF ^000000 trocar essas medalhas com outros jogadores.";
+		mes "jogo. Você também não pode trocar essas medalhas com outros jogadores.";
 		next;
 		mes "[Chefe de Mesa]";
 		mes "Você geralmente recebe 1 Medalha Maravilhosa";
@@ -966,8 +966,8 @@ que_bingo,54,17,5	script	Chefe de Mesa	4_M_05,{
 		mes "[Chefe de Mesa]";
 		mes "Junte o máximo de Medalhas";
 		mes "Maravilhosas que puder, e troque-as";
-		mes "por prêmios na arena da ^FFFFFF ^000000 Corrida de Monstros. Eu ouvi dizer também";
-		mes "que há um lugar em Einbroch onde você também^FFFFFF ^000000 pode usá-las, mas eu não sei onde é.";
+		mes "por prêmios na arena da Corrida de Monstros. Eu ouvi dizer também";
+		mes "que há um lugar em Einbroch onde você também pode usá-las, mas eu não sei onde é.";
 		close;
 	}
 }

@@ -1267,23 +1267,15 @@ OnMyMobDead:
 		initnpctimer;
 		//SetItemPartyInMap in_102floor .@level
 	} else
-		mapannounce .@map$, "Monstros vivos no "+callsub(L_Display,.@level)+"  andar - "+.@mob_dead_num,bc_map,"0x00ff99";
+		mapannounce .@map$, "Monstros vivos no "+callfunc("F_GetNumSuffix",.@level)+"  andar - "+.@mob_dead_num,bc_map,"0x00ff99";
 	end;
 
 OnTimer5000:
 	set .@level, atoi(replacestr(strnpcinfo(0),"FGate102tower","")) + 1;
-	mapannounce strnpcinfo(4), "Todos os monstros no "+callsub(L_Display,.@level)+" andar foram derrotados..",bc_map,"0xffff00";
+	mapannounce strnpcinfo(4), "Todos os monstros no "+callfunc("F_GetNumSuffix",.@level)+" andar foram derrotados..",bc_map,"0xffff00";
 	donpcevent instance_npcname(.@level+"FGate102tower")+"::OnEnable";
 	stopnpctimer;
 	end;
-
-L_Display:
-	// Display level properly.
-	set .@mod, getarg(0) % 10;
-	if (.@mod == 1 && getarg(0) != 11) return getarg(0)+"°";
-	else if (.@mod == 2 && getarg(0) != 12) return getarg(0)+"°";
-	else if (.@mod == 3 && getarg(0) != 13) return getarg(0)+"°";
-	else return getarg(0)+"°";
 }
 1@tower,96,393,0	duplicate(1FGate102tower)	2FGate102tower	WARPNPC,2,2
 1@tower,184,393,0	duplicate(1FGate102tower)	3FGate102tower	WARPNPC,2,2

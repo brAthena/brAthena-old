@@ -124,7 +124,7 @@ prt_church,111,112,1	script	Irmã Lina	1_F_PRIEST,{
 			mes "Cercados por Andarilhos,";
 			mes "os aventureiros caíram";
 			mes "em derrota, um por um. Logo,";
-			mes "a jovem Sacerdotisa era a^FFFFFF ^000000 única do grupo ainda de pé.";
+			mes "a jovem Sacerdotisa era a única do grupo ainda de pé.";
 			next;
 			mes "[Irmã Lina]";
 			mes "Sozinha contra uma impossível";
