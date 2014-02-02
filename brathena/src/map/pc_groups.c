@@ -153,7 +153,7 @@ static void read_config(void) {
 			for(i = 0; i < count; ++i) {
 				config_setting_t *command = libconfig->setting_get_elem(commands, i);
 				const char *name = config_setting_name(command);
-				if(!atcommand_exists(name)) {
+				if (!atcommand->exists(name)) {
 					ShowConfigWarning(command, "pc_groups:read_config: non-existent command name '%s', removing...", name);
 					libconfig->setting_remove(commands, name);
 					--i;
@@ -284,7 +284,7 @@ static void read_config(void) {
 				commands[i] = group_settings->commands;
 				i++;
 			}
-			atcommand_db_load_groups(pc_groups, commands, group_count);
+			atcommand->load_groups(pc_groups, commands, group_count);
 			dbi_destroy(iter);
 			aFree(pc_groups);
 			aFree(commands);

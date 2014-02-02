@@ -4426,12 +4426,12 @@ void do_final_script(void) {
 	if(script->str_buf)
 		aFree(script->str_buf);
 
-	for(i = 0; i < atcmd_binding_count; i++) {
-		aFree(atcmd_binding[i]);
+	for(i = 0; i < atcommand->binding_count; i++) {
+		aFree(atcommand->binding[i]);
 	}
 
-	if(atcmd_binding_count != 0)
-		aFree(atcmd_binding);
+	if(atcommand->binding_count != 0)
+		aFree(atcommand->binding);
 
 	for(i = 0; i < script->buildin_count; i++) {
 		if(script->buildin[i]) {
@@ -4590,14 +4590,14 @@ int script_reload(void) {
 
 	// @commands (script based)
 	// Clear bindings
-	for(i = 0; i < atcmd_binding_count; i++) {
-		aFree(atcmd_binding[i]);
+	for(i = 0; i < atcommand->binding_count; i++) {
+		aFree(atcommand->binding[i]);
 	}
 
-	if(atcmd_binding_count != 0)
-		aFree(atcmd_binding);
+	if(atcommand->binding_count != 0)
+		aFree(atcommand->binding);
 
-	atcmd_binding_count = 0;
+	atcommand->binding_count = 0;
 
 	db_clear(script->st_db);
 
@@ -12768,7 +12768,7 @@ BUILDIN_FUNC(atcommand)
 		}
 	}
 
-	if(!atcommand_exec(fd, sd, cmd, false)) {
+	if (!atcommand->exec(fd, sd, cmd, false)) {
 		ShowWarning("script: buildin_atcommand: failed to execute command '%s'\n", cmd);
 		script->reportsrc(st);
 		ret = false;
@@ -17493,44 +17493,44 @@ BUILDIN_FUNC(bindatcmd)
 {
 	const char *atcmd;
 	const char *eventName;
-	int i, level = 0, level2 = 0;
+	int i, group_lv = 0, group_lv_char = 0;
 	bool create = false;
 
 	atcmd = script_getstr(st,2);
 	eventName = script_getstr(st,3);
 
-	if(*atcmd == atcommand_symbol || *atcmd == charcommand_symbol)
+	if(*atcmd == atcommand->at_symbol || *atcmd == atcommand->char_symbol)
 		atcmd++;
 
-	if(script_hasdata(st,4)) level = script_getnum(st,4);
-	if(script_hasdata(st,5)) level2 = script_getnum(st,5);
+	if (script_hasdata(st, 4)) group_lv = script_getnum(st, 4);
+	if (script_hasdata(st, 5)) group_lv_char = script_getnum(st, 5);
 
-	if(atcmd_binding_count == 0) {
-		CREATE(atcmd_binding,struct atcmd_binding_data *,1);
+	if(atcommand->binding_count == 0) {
+		CREATE(atcommand->binding, struct atcmd_binding_data*, 1);
 
 		create = true;
 	} else {
-		ARR_FIND(0, atcmd_binding_count, i, strcmp(atcmd_binding[i]->command,atcmd) == 0);
-		if(i < atcmd_binding_count) {  /* update existent entry */
-			safestrncpy(atcmd_binding[i]->npc_event, eventName, 50);
-			atcmd_binding[i]->level = level;
-			atcmd_binding[i]->level2 = level2;
+		ARR_FIND(0, atcommand->binding_count, i, strcmp(atcommand->binding[i]->command,atcmd) == 0);
+		if(i < atcommand->binding_count) {  /* update existent entry */
+			safestrncpy(atcommand->binding[i]->npc_event, eventName, 50);
+			atcommand->binding[i]->group_lv = group_lv;
+			atcommand->binding[i]->group_lv_char = group_lv_char;
 		} else
 			create = true;
 	}
 
 	if(create) {
-		i = atcmd_binding_count;
+		i = atcommand->binding_count;
 
-		if(atcmd_binding_count++ != 0)
-			RECREATE(atcmd_binding,struct atcmd_binding_data *,atcmd_binding_count);
+		if(atcommand->binding_count++ != 0)
+			RECREATE(atcommand->binding, struct atcmd_binding_data*, atcommand->binding_count);
 
-		CREATE(atcmd_binding[i],struct atcmd_binding_data,1);
+		CREATE(atcommand->binding[i], struct atcmd_binding_data, 1);
 
-		safestrncpy(atcmd_binding[i]->command, atcmd, 50);
-		safestrncpy(atcmd_binding[i]->npc_event, eventName, 50);
-		atcmd_binding[i]->level = level;
-		atcmd_binding[i]->level2 = level2;
+		safestrncpy(atcommand->binding[i]->command, atcmd, 50);
+		safestrncpy(atcommand->binding[i]->npc_event, eventName, 50);
+		atcommand->binding[i]->group_lv = group_lv;
+		atcommand->binding[i]->group_lv_char = group_lv_char;
 	}
 
 	return 0;
@@ -17543,33 +17543,33 @@ BUILDIN_FUNC(unbindatcmd)
 
 	atcmd = script_getstr(st, 2);
 
-	if(*atcmd == atcommand_symbol || *atcmd == charcommand_symbol)
+	if(*atcmd == atcommand->at_symbol || *atcmd == atcommand->char_symbol)
 		atcmd++;
 
-	if(atcmd_binding_count == 0) {
+	if(atcommand->binding_count == 0) {
 		script_pushint(st, 0);
 		return 0;
 	}
 
-	ARR_FIND(0, atcmd_binding_count, i, strcmp(atcmd_binding[i]->command, atcmd) == 0);
-	if(i < atcmd_binding_count) {
+	ARR_FIND(0, atcommand->binding_count, i, strcmp(atcommand->binding[i]->command, atcmd) == 0);
+	if(i < atcommand->binding_count) {
 		int cursor = 0;
-		aFree(atcmd_binding[i]);
-		atcmd_binding[i] = NULL;
+		aFree(atcommand->binding[i]);
+		atcommand->binding[i] = NULL;
 		/* compact the list now that we freed a slot somewhere */
-		for(i = 0, cursor = 0; i < atcmd_binding_count; i++) {
-			if(atcmd_binding[i] == NULL)
+		for(i = 0, cursor = 0; i < atcommand->binding_count; i++) {
+			if(atcommand->binding[i] == NULL)
 				continue;
 
 			if(cursor != i) {
-				memmove(&atcmd_binding[cursor], &atcmd_binding[i], sizeof(struct atcmd_binding_data *));
+				memmove(&atcommand->binding[cursor], &atcommand->binding[i], sizeof(struct atcmd_binding_data*));
 			}
 
 			cursor++;
 		}
 
-		if((atcmd_binding_count = cursor) == 0)
-			aFree(atcmd_binding);
+		if((atcommand->binding_count = cursor) == 0)
+			aFree(atcommand->binding);
 
 		script_pushint(st, 1);
 	} else
@@ -17603,13 +17603,13 @@ BUILDIN_FUNC(useatcmd)
 	}
 
 	// compatibility with previous implementation (deprecated!)
-	if(cmd[0] != atcommand_symbol) {
+	if(cmd[0] != atcommand->at_symbol) {
 		cmd += strlen(sd->status.name);
-		while(*cmd != atcommand_symbol && *cmd != 0)
+		while(*cmd != atcommand->at_symbol && *cmd != 0)
 			cmd++;
 	}
 
-	atcommand_exec(fd, sd, cmd, true);
+	atcommand->exec(fd, sd, cmd, true);
 	if (dummy_sd) aFree(dummy_sd);
 	return 0;
 }

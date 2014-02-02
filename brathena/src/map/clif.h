@@ -1009,7 +1009,8 @@ struct cdelayed_damage {
 //Sistema Indicação de EXP
 void clif_personal_information(struct map_session_data *sd);
 
-//Sistema de canal
+//Sistema de canal,
+DBMap* channel_db;
 struct DBMap* clif_get_channel_db(void);
 void clif_chsys_create(struct raChSysCh *channel, char *name, char *pass, unsigned char color);
 void clif_chsys_msg(struct raChSysCh *channel, struct map_session_data *sd, char *msg);

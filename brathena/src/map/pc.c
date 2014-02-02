@@ -9549,7 +9549,7 @@ bool pc_isautolooting(struct map_session_data *sd, int nameid)
  * @param command Command name with @/# and without params
  */
 bool pc_can_use_command(struct map_session_data *sd, const char *command) {
-	return atcommand_can_use(sd,command);
+	return atcommand->can_use(sd, command);
 }
 
 static int pc_charm_timer(int tid, int64 tick, int id, intptr_t data)

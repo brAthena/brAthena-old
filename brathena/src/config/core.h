@@ -52,6 +52,12 @@
 /// Ainda não é indicado usá-lo, tenha cuidado ao habilitar.
 //#define CIRCULAR_AREA
 
+//This is the distance at which @autoloot works,
+//if the item drops farther from the player than this,
+//it will not be autolooted. [Skotlex]
+//Note: The range is unlimited unless this define is set.
+//#define AUTOLOOT_DISTANCE AREA_SIZE
+
 /// Descomente para habilitar as funções da zona de mapas ' "skill_damage_cap".
 //#define HMAP_ZONE_DAMAGE_CAP_TYPE
 

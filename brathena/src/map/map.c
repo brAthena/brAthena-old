@@ -3300,7 +3300,7 @@ int parse_console(const char *buf)
 	ShowNotice("Type of command: '%s' || Command: '%s' || Map: '%s' Coords: %d %d\n", type, command, map_name, x, y);
 
 	if(n == 5 && strcmpi("admin",type) == 0) {
-		if (!atcommand_exec(sd.fd, &sd, command, false))
+		if (!atcommand->exec(sd.fd, &sd, command, false))
 			ShowInfo("Console: not atcommand\n");
 	} else if(n == 2 && strcmpi("server", type) == 0) {
 		if(strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0) {
@@ -4837,7 +4837,7 @@ void read_map_zone_db(void) {
 				for(h = 0; h < libconfig->setting_length(commands); h++) {
 					config_setting_t *command = libconfig->setting_get_elem(commands, h);
 					name = config_setting_name(command);
-					if(!atcommand_exists(name)) {
+					if (!atcommand->exists(name)) {
 						ShowError("map_zone_db: comando desconhecido '%s' em disabled_commands para a zona '%s', Ignorando entrada...\n",name,zone->name);
 						libconfig->setting_remove_elem(commands,h);
 						--disabled_commands_count;
@@ -4858,7 +4858,7 @@ void read_map_zone_db(void) {
 					if((group_lv = libconfig->setting_get_int(command))) { /* only add if enabled */
 						CREATE( entry, struct map_zone_disabled_command_entry, 1 );
 
-						entry->cmd  = get_atcommandinfo_byname(name)->func;
+						entry->cmd = atcommand->get_info_byname(name)->func;
 						entry->group_lv = group_lv;
 
 						zone->disabled_commands[v++] = entry;
@@ -5041,7 +5041,7 @@ void read_map_zone_db(void) {
 							int k;
 							for(k = 0; k < disabled_commands_count; k++) {
 								config_setting_t *command = libconfig->setting_get_elem(commands, k);
-								if(get_atcommandinfo_byname(config_setting_name(command))->func == izone->disabled_commands[j]->cmd) {
+								if (atcommand->get_info_byname(config_setting_name(command))->func == izone->disabled_commands[j]->cmd) {
 									break;
 								}
 							}
@@ -5223,7 +5223,7 @@ void do_final(void)
 	chrif_char_reset_offline();
 	chrif_flush_fifo();
 
-	do_final_atcommand();
+	atcommand->final();
 	do_final_battle();
 	do_final_chrif();
 	do_final_clif();
@@ -5238,7 +5238,7 @@ void do_final(void)
 	do_final_pc();
 	do_final_pet();
 	do_final_mob();
-	do_final_msg();
+	atcommand->final_msg();
 	do_final_skill();
 	status->final();
 	do_final_unit();
@@ -5459,6 +5459,7 @@ int do_init(int argc, char *argv[])
 	}
 	memset(&index2mapid, -1, sizeof(index2mapid));
 
+	atcommand_defaults();
 	battleground_defaults();
 	clif_defaults();
 	instance_defaults();
@@ -5511,7 +5512,7 @@ int do_init(int argc, char *argv[])
 	}
 
 	battle_config_read(BATTLE_CONF_FILENAME);
-	msg_config_read(MSG_CONF_NAME);
+	atcommand->msg_read(MSG_CONF_NAME);
 	//lang_config_read(LANG_FILENAME);
 	script->config_read(SCRIPT_CONF_NAME);
 	inter_config_read(INTER_CONF_NAME);
@@ -5556,7 +5557,7 @@ int do_init(int argc, char *argv[])
 	add_timer_func_list(map_removemobs_timer, "map_removemobs_timer");
 	add_timer_interval(gettick()+1000, map_freeblock_timer, 0, 0, 60*1000);
 
-	do_init_atcommand();
+	atcommand->init();
 	do_init_battle();
 	instance->init();
 	do_init_chrif();
