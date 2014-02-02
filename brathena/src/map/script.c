@@ -7803,7 +7803,7 @@ BUILDIN_FUNC(successrefitem)
 		ep=sd->status.inventory[i].equip;
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i], sd->inventory_data[i]);
 
 		if (sd->status.inventory[i].refine >= MAX_REFINE)
 			return 0;
@@ -7815,7 +7815,7 @@ BUILDIN_FUNC(successrefitem)
 		clif_delitem(sd,i,1,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i], sd->inventory_data[i]);
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
@@ -7890,7 +7890,7 @@ BUILDIN_FUNC(downrefitem)
 		ep = sd->status.inventory[i].equip;
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_SCRIPT, -1, &sd->status.inventory[i], sd->inventory_data[i]);
 
 		pc_unequipitem(sd,i,2); // status calc will happen in pc_equipitem() below
 		sd->status.inventory[i].refine -= down;
@@ -7900,7 +7900,7 @@ BUILDIN_FUNC(downrefitem)
 		clif_delitem(sd,i,1,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		log_pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_SCRIPT, 1, &sd->status.inventory[i], sd->inventory_data[i]);
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
@@ -13439,7 +13439,7 @@ BUILDIN_FUNC(logmes)
 		return 1;
 
 	str = script_getstr(st,2);
-	log_npc(sd,str);
+	logs->npc(sd, str);
 	return 0;
 }
 
@@ -14812,7 +14812,7 @@ BUILDIN_FUNC(query_sql)
 
 BUILDIN_FUNC(query_logsql)
 {
-	if(!log_config.sql_logs) {  // logmysql_handle == NULL
+	if(!logs->config.sql_logs) {  // logmysql_handle == NULL
 		ShowWarning("buildin_query_logsql: SQL logs are disabled, query '%s' will not be executed.\n", script_getstr(st,2));
 		script_pushint(st,-1);
 		return 1;

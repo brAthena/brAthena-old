@@ -923,13 +923,13 @@ void itemdb_read_packages(void) {
 		return;
 	}
 
-	must = aMalloc( config_setting_length(item_packages_conf.root) * sizeof(unsigned int) );
-	random = aMalloc( config_setting_length(item_packages_conf.root) * sizeof(unsigned int) );
-	rgroup = aMalloc( config_setting_length(item_packages_conf.root) * sizeof(unsigned int) );
-	rgroups = aMalloc( config_setting_length(item_packages_conf.root) * sizeof(unsigned int *) );
+	must = aMalloc(libconfig->setting_length(item_packages_conf.root) * sizeof(unsigned int));
+	random = aMalloc(libconfig->setting_length(item_packages_conf.root) * sizeof(unsigned int));
+	rgroup = aMalloc(libconfig->setting_length(item_packages_conf.root) * sizeof(unsigned int));
+	rgroups = aMalloc(libconfig->setting_length(item_packages_conf.root) * sizeof(unsigned int *));
 
 
-	for(i = 0; i < config_setting_length(item_packages_conf.root); i++) {
+	for (i = 0; i < libconfig->setting_length(item_packages_conf.root); i++) {
 		must[i] = 0;
 		random[i] = 0;
 		rgroup[i] = 0;
@@ -938,27 +938,27 @@ void itemdb_read_packages(void) {
 
 	/* validate tree, drop poisonous fruits! */
 	i = 0;
-	while((itg = config_setting_get_elem(item_packages_conf.root,i++))) {
+	while((itg = libconfig->setting_get_elem(item_packages_conf.root,i++))) {
 		const char *name = config_setting_name(itg);
 		
 		if(!itemdb->name2id(name)) {
 			ShowWarning("itemdb_read_packages: pacote '%s' desconhecido, saltando..\n",name);
-			config_setting_remove(item_packages_conf.root, name);
+			libconfig->setting_remove(item_packages_conf.root, name);
 			--i;
 			continue;
 		}
 
 		c = 0;
-		while((it = config_setting_get_elem(itg,c++))) {
+		while((it = libconfig->setting_get_elem(itg,c++))) {
 			int rval = 0;
 			const char *itname, *name2;
-			if(!(t = config_setting_get_member(it,"item")) || !(itname = config_setting_get_string(t))) {
+			if(!(t = libconfig->setting_get_member(it,"item")) || !(itname = config_setting_get_string(t))) {
 				ShowWarning("itemdb_read_packages: Valor do campo 'item' inválido no item '%d' do pacote '%s'. Ignorando entrada...\n",c,name);
-				config_setting_remove_elem(itg,c-1);
+				libconfig->setting_remove_elem(itg, c - 1);
 				--c;
 				continue;
 			}
-			if(!(t = config_setting_get_member(it,"name")) || !(name2 = config_setting_get_string(t))) {
+			if(!(t = libconfig->setting_get_member(it,"name")) || !(name2 = config_setting_get_string(t))) {
 				ShowWarning("itemdb_read_packages: valor de 'name' inválido para o item '%s' no pacote '%s', padronizando para 'must'!\n",itname,name);
 				config_setting_remove_elem(itg,c-1);
 				--c;
@@ -994,12 +994,12 @@ void itemdb_read_packages(void) {
 	
 	/* grab the known sizes */
 	i = 0;
-	while( (itg = config_setting_get_elem(item_packages_conf.root,i++)) ) {
+	while( (itg = libconfig->setting_get_elem(item_packages_conf.root,i++)) ) {
 	   c = 0;
-	   while((it = config_setting_get_elem(itg,c++))) {
+	   while((it = libconfig->setting_get_elem(itg, c++))) {
 			const char *name;
 			int rval = 0;
-			if((t = config_setting_get_member(it, "name"))
+			if((t = libconfig->setting_get_member(it, "name"))
 			&& (name = config_setting_get_string(t))
 			&& (strstr(name,"random") != NULL)) {
 				rval = atoi(name+6);
@@ -1013,7 +1013,7 @@ void itemdb_read_packages(void) {
 	
 	/* write */
 	i = 0;
-	while((itg = config_setting_get_elem(item_packages_conf.root,i++))) {
+	while((itg = libconfig->setting_get_elem(item_packages_conf.root,i++))) {
 		struct item_data *data = itemdb->name2id(config_setting_name(itg));
 		int r = 0, m = 0;
 		
@@ -1041,11 +1041,11 @@ void itemdb_read_packages(void) {
 			CREATE(itemdb->packages[cnt].must_items, struct item_package_must_entry, itemdb->packages[cnt].must_qty);
 		
 		c = 0;
-		while((it = config_setting_get_elem(itg,c++))) {
+		while((it = libconfig->setting_get_elem(itg,c++))) {
 			int icnt = 1, hour = 0, probability = 10000, gid = 0;
 			bool onair = false, guid = false;
 
-			t = config_setting_get_member(it,"item");
+			t = libconfig->setting_get_member(it, "item");
 			itname = config_setting_get_string(t);
 
 			if(itname[0] == 'I' && itname[1] == 'D' && strlen(itname) < 8) {
@@ -1054,47 +1054,47 @@ void itemdb_read_packages(void) {
 			} else if(!(data = itemdb->name2id(itname)))
 				ShowWarning("itemdb_read_packages: item '%s' desconhecido no pacote '%s'!\n",itname,config_setting_name(itg));
 
-			if(!(t = config_setting_get_member(it, "cnt"))) {
+			if(!(t = libconfig->setting_get_member(it, "cnt"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'cnt' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
 			}
 
-			if((t = config_setting_get_member(it, "cnt")))
+			if((t = libconfig->setting_get_member(it, "cnt")))
 				icnt = config_setting_get_int(t);
 
-			if(!(t = config_setting_get_member(it, "hour"))) {
+			if(!(t = libconfig->setting_get_member(it, "hour"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'hour' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
 			}
 
-			if((t = config_setting_get_member(it, "hour")))
+			if((t = libconfig->setting_get_member(it, "hour")))
 				hour = config_setting_get_int(t);
 
-			if(!(t = config_setting_get_member(it, "probability"))) {
+			if(!(t = libconfig->setting_get_member(it, "probability"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'probability' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
 				return;
 			}
 
-			if((t = config_setting_get_member(it, "probability"))) {
+			if((t = libconfig->setting_get_member(it, "probability"))) {
 				if((probability = (unsigned short)config_setting_get_int(t)) > 10000 ) {
 					ShowWarning("itemdb_read_packages: taxa ('%d') inválida  para o item '%s' no pacote '%s'!\n",probability,itname,config_setting_name(itg));
 					probability = 10000;
 				}
 			}
 
-			if(!(t = config_setting_get_member(it, "onair"))) {
+			if(!(t = libconfig->setting_get_member(it, "onair"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'onair' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
 			}
 
-			if((t = config_setting_get_member(it, "onair")) && config_setting_get_bool(t))
+			if((t = libconfig->setting_get_member(it, "onair")) && config_setting_get_bool(t))
 				onair = true;
 
-			if(!(t = config_setting_get_member(it, "guid"))) {
+			if(!(t = libconfig->setting_get_member(it, "guid"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'guid' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
 			}
 
-			if((t = config_setting_get_member(it, "guid")) && config_setting_get_bool(t))
+			if((t = libconfig->setting_get_member(it, "guid")) && config_setting_get_bool(t))
 				guid = true;
 
-			if((t = config_setting_get_member(it, "name"))) {
+			if((t = libconfig->setting_get_member(it, "name"))) {
 				const char *name = config_setting_get_string(t);
 				if(strstr(name,"random"))
 					gid = atoi(name+6);

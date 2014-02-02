@@ -279,7 +279,7 @@ void bg_config_read(void) {
 	data = config_lookup(&bg_conf, "battlegrounds");
 
 	if (data != NULL) {
-		config_setting_t *settings = config_setting_get_elem(data, 0);
+		config_setting_t *settings = libconfig->setting_get_elem(data, 0);
 		config_setting_t *arenas;
 		const char *delay_var;
 		int i, arena_count = 0, offline = 0;
@@ -289,18 +289,18 @@ void bg_config_read(void) {
 
 		safestrncpy(bg->gdelay_var, delay_var, BG_DELAY_VAR_LENGTH);
 
-		config_setting_lookup_int(settings, "maximum_afk_seconds", &bg->mafksec);
+		libconfig->setting_lookup_int(settings, "maximum_afk_seconds", &bg->mafksec);
 
-		config_setting_lookup_bool(settings, "feature_off", &offline);
+		libconfig->setting_lookup_bool(settings, "feature_off", &offline);
 
 		if(offline == 0)
 			bg->queue_on = true;
 
-		if((arenas = config_setting_get_member(settings, "arenas")) != NULL) {
-			arena_count = config_setting_length(arenas);
+		if ((arenas = libconfig->setting_get_member(settings, "arenas")) != NULL) {
+			arena_count = libconfig->setting_length(arenas);
 			CREATE( bg->arena, struct bg_arena *, arena_count );
 			for(i = 0; i < arena_count; i++) {
-				config_setting_t *arena = config_setting_get_elem(arenas, i);
+				config_setting_t *arena = libconfig->setting_get_elem(arenas, i);
 				config_setting_t *reward;
 				const char *aName, *aEvent, *aDelayVar;
 				int minLevel = 0, maxLevel = 0;
@@ -321,8 +321,8 @@ void bg_config_read(void) {
 					continue;
 				}
 
-				config_setting_lookup_int(arena, "minLevel", &minLevel);
-				config_setting_lookup_int(arena, "maxLevel", &maxLevel);
+				libconfig->setting_lookup_int(arena, "minLevel", &minLevel);
+				libconfig->setting_lookup_int(arena, "maxLevel", &maxLevel);
 
 				if( minLevel < 0 ) {
 					ShowWarning("bg_config_read: invalid %d value for arena '%s' minLevel\n",minLevel,aName);
@@ -333,14 +333,14 @@ void bg_config_read(void) {
 					maxLevel = MAX_LEVEL;
 				}
 
-				if(!(reward = config_setting_get_member(arena, "reward"))) {
+				if(!(reward = libconfig->setting_get_member(arena, "reward"))) {
 					ShowError("bg_config_read: failed to find 'reward' for arena '%s'/#%d\n",aName,i);
 					continue;
 				}
 
-				config_setting_lookup_int(reward, "win", &prizeWin);
-				config_setting_lookup_int(reward, "loss", &prizeLoss);
-				config_setting_lookup_int(reward, "draw", &prizeDraw);
+				libconfig->setting_lookup_int(reward, "win", &prizeWin);
+				libconfig->setting_lookup_int(reward, "loss", &prizeLoss);
+				libconfig->setting_lookup_int(reward, "draw", &prizeDraw);
 
 				if(prizeWin < 0) {
 					ShowWarning("bg_config_read: invalid %d value for arena '%s' reward:win\n",prizeWin,aName);

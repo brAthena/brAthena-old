@@ -1579,7 +1579,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, int64 tick)
 
 		fitem = (struct flooritem_data *)tbl;
 		//Logs items, taken by (L)ooter Mobs [Lupus]
-		log_pick_mob(md, LOG_TYPE_LOOT, fitem->item_data.amount, &fitem->item_data, NULL);
+		logs->pick_mob(md, LOG_TYPE_LOOT, fitem->item_data.amount, &fitem->item_data, NULL);
 
 		if(md->lootitem_count < LOOTITEM_SIZE) {
 			memcpy(&md->lootitem[md->lootitem_count++], &fitem->item_data, sizeof(md->lootitem[0]));
@@ -1812,7 +1812,7 @@ static void mob_item_drop(struct mob_data *md, struct item_drop_list *dlist, str
 	TBL_PC *sd;
 
 	//Logs items, dropped by mobs [Lupus]
-	log_pick_mob(md, loot?LOG_TYPE_LOOT:LOG_TYPE_PICKDROP_MONSTER, -ditem->item_data.amount, &ditem->item_data, NULL);
+	logs->pick_mob(md, loot ? LOG_TYPE_LOOT : LOG_TYPE_PICKDROP_MONSTER, -ditem->item_data.amount, &ditem->item_data, NULL);
 
 	sd = map_charid2sd(dlist->first_charid);
 	if(sd == NULL) sd = map_charid2sd(dlist->second_charid);
@@ -2512,12 +2512,12 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 
 				//Logs items, MVP prizes [Lupus]
-				log_pick_mob(md, LOG_TYPE_MVP, -1, &item, data);
+				logs->pick_mob(md, LOG_TYPE_MVP, -1, &item, data);
 				break;
 			}
 		}
 
-		log_mvpdrop(mvp_sd, md->class_, log_mvp);
+		logs->mvpdrop(mvp_sd, md->class_, log_mvp);
 	}
 
 	if(type&2 && !sd && md->class_ == MOBID_EMPERIUM && md->guardian_data)

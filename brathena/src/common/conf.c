@@ -99,7 +99,7 @@ void config_setting_copy_aggregate(config_setting_t *parent, const config_settin
 	if(newAgg == NULL)
 		return;
 
-	n = config_setting_length(src);
+	n = libconfig->setting_length(src);
 
 	for(i = 0; i < n; i++) {
 		if(config_setting_is_group(src)) {
@@ -134,7 +134,7 @@ void read_brathena_config(void)
 	
 	if(!libconfig->read_file_src(&configbrA, "conf/battle/brathena.conf")) {
 		ShowError("read_brathena_config erro: %s:%d - %s\n", config_error_file(&configbrA), config_error_line(&configbrA), config_error_text(&configbrA));
-		config_destroy(&configbrA);
+		libconfig->destroy(&configbrA);
 	}	
 
 	if(libconfig->lookup_int(&configbrA, "max_rename_char", &tmpint))	bra_config.max_rename_char = tmpint;

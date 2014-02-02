@@ -194,7 +194,7 @@ static const char *atcommand_help_string(const char *command)
 		return NULL;
 	}
 
-	if(!config_setting_lookup_string(info, command, &str)) {
+	if(!libconfig->setting_lookup_string(info, command, &str)) {
 		// failed to find the matching help string
 		return NULL;
 	}
@@ -1528,7 +1528,7 @@ ACMD_FUNC(help)
 		return -1;
 	}
 
-	if(!config_setting_lookup_string(help, command_name, &text)) {
+	if(!libconfig->setting_lookup_string(help, command_name, &text)) {
 		sprintf(atcmd_output, msg_txt(988), atcommand_symbol, command_name); // There is no help for %c%s.
 		clif_displaymessage(fd, atcmd_output);
 		atcommand_get_suggestions(sd, command_name, true);
@@ -3740,7 +3740,7 @@ ACMD_FUNC(reloadatcommand)
 		return -1;
 	}
 
-	config_destroy(&run_test);
+	libconfig->destroy(&run_test);
 
 	if (libconfig->read_file(&run_test, ATCOMMAND_CONF_FILENAME)) {
 		clif_displaymessage(fd, msg_txt(1037)); // Error reading atcommand_athena.conf, reload failed.
@@ -10226,7 +10226,7 @@ bool atcommand_exec(const int fd, struct map_session_data *sd, const char *messa
 		}
 
 		if(binding->log) /* log only if this command should be logged */
-				log_atcommand(sd, atcmd_msg);
+				logs->atcommand(sd, atcmd_msg);
 
 			npc->do_atcmd_event((invokeFlag ? sd : ssd), command, params, binding->npc_event);
 			return true;
@@ -10282,7 +10282,7 @@ bool atcommand_exec(const int fd, struct map_session_data *sd, const char *messa
 	}
 
 	if(info->log) /* log only if this command should be logged */
-		log_atcommand(sd, *atcmd_msg == atcommand_symbol ? atcmd_msg : message);
+		logs->atcommand(sd, *atcmd_msg == atcommand_symbol ? atcmd_msg : message);
 
 	return true;
 }
@@ -10322,7 +10322,7 @@ static void atcommand_config_read(const char *config_filename)
 	aliases = config_lookup(&atcommand_config, "aliases");
 	if(aliases != NULL) {
 		int i = 0;
-		int count = config_setting_length(aliases);
+		int count = libconfig->setting_length(aliases);
 
 		for(i = 0; i < count; ++i) {
 			config_setting_t *command;
@@ -10330,7 +10330,7 @@ static void atcommand_config_read(const char *config_filename)
 			int j = 0, alias_count = 0;
 			AtCommandInfo *commandinfo = NULL;
 
-			command = config_setting_get_elem(aliases, i);
+			command = libconfig->setting_get_elem(aliases, i);
 			if(config_setting_type(command) != CONFIG_TYPE_ARRAY)
 				continue;
 			commandname = config_setting_name(command);
@@ -10339,9 +10339,9 @@ static void atcommand_config_read(const char *config_filename)
 				continue;
 			}
 			commandinfo = get_atcommandinfo_byname(commandname);
-			alias_count = config_setting_length(command);
+			alias_count = libconfig->setting_length(command);
 			for(j = 0; j < alias_count; ++j) {
-				const char *alias = config_setting_get_string_elem(command, j);
+				const char *alias = libconfig->setting_get_string_elem(command, j);
 				if(alias != NULL) {
 					AliasInfo *alias_info;
 					if(strdb_exists(atcommand_alias_db, alias)) {
@@ -10362,14 +10362,14 @@ static void atcommand_config_read(const char *config_filename)
 	// We only check if all commands exist
 	help = config_lookup(&atcommand_config, "help");
 	if(help != NULL) {
-		int count = config_setting_length(help);
+		int count = libconfig->setting_length(help);
 		int i;
 
 		for(i = 0; i < count; ++i) {
 			config_setting_t *command;
 			const char *commandname;
 
-			command = config_setting_get_elem(help, i);
+			command = libconfig->setting_get_elem(help, i);
 			commandname = config_setting_name(command);
 			if(!atcommand_exists(commandname))
 				ShowConfigWarning(command, read_message("Source.map.map_atcommand_s5"), commandname);
@@ -10429,19 +10429,19 @@ void atcommand_db_load_groups(GroupSettings **groups, config_setting_t **command
 				config_setting_t *cmd = NULL;
 
 				// <commandname> : <bool> (only atcommand)
-				if (config_setting_lookup_bool(commands, atcmd->command, &result) && result) {
+				if (libconfig->setting_lookup_bool(commands, atcmd->command, &result) && result) {
 					atcmd->at_groups[idx] = 1;
 				}
 				else
 				// <commandname> : [ <bool>, <bool> ] ([ atcommand, charcommand ])
-				if ((cmd = config_setting_get_member(commands, atcmd->command)) != NULL &&
+				if ((cmd = libconfig->setting_get_member(commands, atcmd->command)) != NULL &&
 				    config_setting_is_aggregate(cmd) &&
 				    config_setting_length(cmd) == 2
 				) {
-					if (config_setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_ATCOMMAND))) {
+					if (libconfig->setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_ATCOMMAND))) {
 						atcmd->at_groups[idx] = 1;
 					}
-					if (config_setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_CHARCOMMAND))) {
+					if (libconfig->setting_get_bool_elem(cmd, AtCommandType2idx(COMMAND_CHARCOMMAND))) {
 						atcmd->char_groups[idx] = 1;
 					}
 				}

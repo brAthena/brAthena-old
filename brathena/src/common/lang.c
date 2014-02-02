@@ -141,18 +141,18 @@ void load_message_file_source(void)
 	memset(lang_s, 0, sizeof(LANG));
 	
 	if((main_group = config_lookup(&group_ext, "Source"))) {
-		int i, h, k=0, groups_count = config_setting_length(main_group), group_count=0;
+		int i, h, k = 0, groups_count = libconfig->setting_length(main_group), group_count = 0;
 		config_setting_t *group_ele;
 		config_setting_t *groups;
 		
 		for(i = 0; i < groups_count; ++i) {
-			group_ele = config_setting_get_elem(main_group, i);
+			group_ele = libconfig->setting_get_elem(main_group, i);
 
-			while(k < ARRAYLENGTH(Source) && (groups = config_setting_get_member(group_ele, Source[k]))) {
+			while(k < ARRAYLENGTH(Source) && (groups = libconfig->setting_get_member(group_ele, Source[k]))) {
 				group_count = config_setting_length(groups);
 
 				for(h = 0; h < config_setting_length(groups); h++) {
-					config_setting_t *group_e = config_setting_get_elem(groups, h);
+					config_setting_t *group_e = libconfig->setting_get_elem(groups, h);
 
 					copy_to_list((char *)config_setting_name(group_e), (char *)config_setting_get_string_elem(groups, h), index);
 					index++;

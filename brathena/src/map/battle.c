@@ -6653,7 +6653,7 @@ void brAthena_report(char *date, char *time_c)
 	config |= C_SECURE_NPCTIMEOUT;
 #endif
 
-	if(log_config.sql_logs)
+	if (logs->config.sql_logs)
 		config |= C_SQL_LOGS;
 
 #ifdef MEMWATCH

@@ -3660,9 +3660,9 @@ int pc_insert_card(struct map_session_data *sd, int idx_card, int idx_equip)
 		clif_insert_card(sd,idx_equip,idx_card,1);
 	} else {
 		// success
-		log_pick_pc(sd, LOG_TYPE_OTHER, -1, &sd->status.inventory[idx_equip],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_OTHER, -1, &sd->status.inventory[idx_equip], sd->inventory_data[i]);
 		sd->status.inventory[idx_equip].card[i] = nameid;
-		log_pick_pc(sd, LOG_TYPE_OTHER,  1, &sd->status.inventory[idx_equip],sd->inventory_data[i]);
+		logs->pick_pc(sd, LOG_TYPE_OTHER, 1, &sd->status.inventory[idx_equip], sd->inventory_data[i]);
 		clif_insert_card(sd,idx_equip,idx_card,0);
 	}
 
@@ -3780,7 +3780,7 @@ int pc_payzeny(struct map_session_data *sd,int zeny, enum e_log_pick_type type, 
 	clif_updatestatus(sd,SP_ZENY);
 
 	if(!tsd) tsd = sd;
-	log_zeny(sd, type, tsd, -zeny);
+	logs->zeny(sd, type, tsd, -zeny);
 	if(zeny > 0 && sd->state.showzeny) {
 		char output[255];
 		sprintf(output, "Removed %dz.", zeny);
@@ -3893,7 +3893,7 @@ int pc_getzeny(struct map_session_data *sd,int zeny, enum e_log_pick_type type, 
 	clif_updatestatus(sd,SP_ZENY);
 
 	if(!tsd) tsd = sd;
-	log_zeny(sd, type, tsd, zeny);
+	logs->zeny(sd, type, tsd, zeny);
 	if(zeny > 0 && sd->state.showzeny) {
 		char output[255];
 		sprintf(output, "Gained %dz.", zeny);
@@ -4009,7 +4009,7 @@ int pc_additem(struct map_session_data *sd,struct item *item_data,int amount,e_l
 	if(!itemdb_isstackable2(data) && !item_data->unique_id)
 		sd->status.inventory[i].unique_id = itemdb_unique_id(0,0);
 #endif
-	log_pick_pc(sd, log_type, amount, &sd->status.inventory[i],sd->inventory_data[i]);
+	logs->pick_pc(sd, log_type, amount, &sd->status.inventory[i], sd->inventory_data[i]);
 
 	sd->weight += w;
 	clif_updatestatus(sd,SP_WEIGHT);
@@ -4048,7 +4048,7 @@ int pc_delitem(struct map_session_data *sd,int n,int amount,int type, short reas
 	if(sd->status.inventory[n].nameid==0 || amount <= 0 || sd->status.inventory[n].amount<amount || sd->inventory_data[n] == NULL)
 		return 1;
 
-	log_pick_pc(sd, log_type, -amount, &sd->status.inventory[n],sd->inventory_data[n]);
+	logs->pick_pc(sd, log_type, -amount, &sd->status.inventory[n], sd->inventory_data[n]);
 
 	sd->status.inventory[n].amount -= amount;
 	sd->weight -= sd->inventory_data[n]->weight*amount ;
@@ -4466,7 +4466,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 
 	//Dead Branch & Bloody Branch & Porings Box
 	if(nameid == ITEMID_BRANCH_OF_DEAD_TREE || nameid == ITEMID_BLOODY_DEAD_BRANCH || nameid == ITEMID_PORING_BOX)
-		log_branch(sd);
+		logs->branch(sd);
 
 	sd->itemid = sd->status.inventory[n].nameid;
 	sd->itemindex = n;
@@ -4566,7 +4566,7 @@ int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amoun
 		clif_cart_additem(sd,i,amount,0);
 	}
 	sd->status.cart[i].favorite = 0;/* clear */
-	log_pick_pc(sd, log_type, amount, &sd->status.cart[i],data);
+	logs->pick_pc(sd, log_type, amount, &sd->status.cart[i], data);
 
 	sd->cart_weight += w;
 	clif_updatestatus(sd,SP_CARTINFO);
@@ -4588,7 +4588,7 @@ int pc_cart_delitem(struct map_session_data *sd,int n,int amount,int type,e_log_
 	if(sd->status.cart[n].nameid == 0 || sd->status.cart[n].amount < amount || !(data = itemdb_exists(sd->status.cart[n].nameid)))
 		return 1;
 
-	log_pick_pc(sd, log_type, -amount, &sd->status.cart[n],data);
+	logs->pick_pc(sd, log_type, -amount, &sd->status.cart[n], data);
 
 	sd->status.cart[n].amount -= amount;
 	sd->cart_weight -= data->weight*amount;
@@ -4802,7 +4802,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 		party_foreachsamemap(pc_show_steal,sd,AREA_SIZE,sd,tmp_item.nameid);
 
 	//Logs items, Stolen from mobs [Lupus]
-	log_pick_mob(md, LOG_TYPE_STEAL, -1, &tmp_item,data);
+	logs->pick_mob(md, LOG_TYPE_STEAL, -1, &tmp_item, data);
 
 	//A Rare Steal Global Announce by Lupus
 	if(md->db->dropitem[i].p<=battle_config.rare_drop_announce) {
@@ -7371,7 +7371,7 @@ int pc_setparam(struct map_session_data *sd,int type,int val)
 		case SP_ZENY:
 			if(val < 0)
 				return 0;// can't set negative zeny
-			log_zeny(sd, LOG_TYPE_SCRIPT, sd, -(sd->status.zeny - cap_value(val, 0, MAX_ZENY)));
+			logs->zeny(sd, LOG_TYPE_SCRIPT, sd, -(sd->status.zeny - cap_value(val, 0, MAX_ZENY)));
 			sd->status.zeny = cap_value(val, 0, MAX_ZENY);
 			break;
 		case SP_BASEEXP:
@@ -9878,7 +9878,7 @@ void pc_read_skill_tree(void) {
 
 	jnamelen = ARRAYLENGTH(jnames);
 
-	while((skt = config_setting_get_elem(skill_tree_conf.root,i++))) {
+	while((skt = libconfig->setting_get_elem(skill_tree_conf.root,i++))) {
 		int k, idx;
 		const char *name = config_setting_name(skt);
 
@@ -9890,12 +9890,12 @@ void pc_read_skill_tree(void) {
 		}
 
 
-		if((skills = config_setting_get_member(skt,"skills"))) {
+		if((skills = libconfig->setting_get_member(skt,"skills"))) {
 			int c = 0;
 
 			idx = pc_class2idx(jnames[k].id);
 
-			while((sk = config_setting_get_elem(skills,c++))) {
+			while((sk = libconfig->setting_get_elem(skills,c++))) {
 				const char *sk_name = config_setting_name(sk);
 				int skill_id;
 
@@ -9920,7 +9920,7 @@ void pc_read_skill_tree(void) {
 						config_setting_lookup_int(sk, "MinJobLevel", &jlevel);
 						skill_tree[idx][skidx].max = (unsigned char)max;
 						skill_tree[idx][skidx].joblv = (unsigned char)jlevel;
-						rlen = config_setting_length(sk);
+						rlen = libconfig->setting_length(sk);
 						offset += jlevel ? 2 : 1;
 					} else {
 						skill_tree[idx][skidx].max = (unsigned char)config_setting_get_int(sk);
@@ -9928,7 +9928,7 @@ void pc_read_skill_tree(void) {
 					}
 
 					for(h = offset; h < rlen && h < MAX_PC_SKILL_REQUIRE; h++) {
-						config_setting_t *rsk = config_setting_get_elem(sk,h);
+						config_setting_t *rsk = libconfig->setting_get_elem(sk, h);
 						if(rsk && (rskid = skill_name2id(config_setting_name(rsk)))) {
 							skill_tree[idx][skidx].need[h].id  = rskid;
 							skill_tree[idx][skidx].need[h].idx = skill_get_index(rskid);
@@ -9949,7 +9949,7 @@ void pc_read_skill_tree(void) {
 	}
 
 	i = 0;
-	while((skt = config_setting_get_elem(skill_tree_conf.root,i++))) {
+	while((skt = libconfig->setting_get_elem(skill_tree_conf.root,i++))) {
 		int k, idx, v = 0;
 		const char *name = config_setting_name(skt);
 		const char *iname;
@@ -9963,7 +9963,7 @@ void pc_read_skill_tree(void) {
 		}
 		idx = pc_class2idx(jnames[k].id);
 
-		if((inherit = config_setting_get_member(skt,"inherit"))) {
+		if((inherit = libconfig->setting_get_member(skt,"inherit"))) {
 			while((iname = config_setting_get_string_elem(inherit, v++))) {
 				int b = 0, a, d, f, fidx;
 

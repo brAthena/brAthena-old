@@ -1047,7 +1047,7 @@ int guild_send_message(struct map_session_data *sd,const char *mes,int len)
 	guild->recv_message(sd->status.guild_id,sd->status.account_id,mes,len);
 
 	// Chat logging type 'G' / Guild Chat
-	log_chat(LOG_CHAT_GUILD, sd->status.guild_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
+	logs->chat(LOG_CHAT_GUILD, sd->status.guild_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
 
 	return 0;
 }

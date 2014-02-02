@@ -2703,7 +2703,7 @@ void clif_read_channels_config(void) {
 	chsys = config_lookup(&channels_conf, "chsys");
 
 	if (chsys != NULL) {
-		config_setting_t *settings = config_setting_get_elem(chsys, 0);
+		config_setting_t *settings = libconfig->setting_get_elem(chsys, 0);
 		config_setting_t *channels;
 		config_setting_t *colors;
 		int i,k;
@@ -2713,53 +2713,53 @@ void clif_read_channels_config(void) {
 			local_autojoin = 0, ally_autojoin = 0,
 			allow_user_channel_creation = 0;
 
-		if(!config_setting_lookup_string(settings, "map_local_channel_name", &local_name))
+		if(!libconfig->setting_lookup_string(settings, "map_local_channel_name", &local_name))
 			local_name = "map";
 		safestrncpy(raChSys.local_name, local_name, RACHSYS_NAME_LENGTH);
 
-		if(!config_setting_lookup_string(settings, "ally_channel_name", &ally_name))
+		if(!libconfig->setting_lookup_string(settings, "ally_channel_name", &ally_name))
 			ally_name = "ally";
 		safestrncpy(raChSys.ally_name, ally_name, RACHSYS_NAME_LENGTH);
 
-		config_setting_lookup_bool(settings, "map_local_channel", &local_enabled);
-		config_setting_lookup_bool(settings, "ally_channel_enabled", &ally_enabled);
+		libconfig->setting_lookup_bool(settings, "map_local_channel", &local_enabled);
+		libconfig->setting_lookup_bool(settings, "ally_channel_enabled", &ally_enabled);
 
 		if( local_enabled )
 			raChSys.local = true;
 		if( ally_enabled )
 			raChSys.ally = true;
 
-		config_setting_lookup_bool(settings, "map_local_channel_autojoin", &local_autojoin);
-		config_setting_lookup_bool(settings, "ally_channel_autojoin", &ally_autojoin);
+		libconfig->setting_lookup_bool(settings, "map_local_channel_autojoin", &local_autojoin);
+		libconfig->setting_lookup_bool(settings, "ally_channel_autojoin", &ally_autojoin);
 
 		if(local_autojoin)
 			raChSys.local_autojoin = true;
 		if(ally_autojoin)
 			raChSys.ally_autojoin = true;
 
-		config_setting_lookup_bool(settings, "allow_user_channel_creation", &allow_user_channel_creation);
+		libconfig->setting_lookup_bool(settings, "allow_user_channel_creation", &allow_user_channel_creation);
 
 		if(allow_user_channel_creation)
 			raChSys.allow_user_channel_creation = true;
 
-		if((colors = config_setting_get_member(settings, "colors")) != NULL) {
-			int color_count = config_setting_length(colors);
+		if((colors = libconfig->setting_get_member(settings, "colors")) != NULL) {
+			int color_count = libconfig->setting_length(colors);
 			CREATE(raChSys.colors, unsigned int, color_count);
 			CREATE(raChSys.colors_name, char *, color_count);
 			for(i = 0; i < color_count; i++) {
-				config_setting_t *color = config_setting_get_elem(colors, i);
+				config_setting_t *color = libconfig->setting_get_elem(colors, i);
 
 				CREATE(raChSys.colors_name[i], char, RACHSYS_NAME_LENGTH);
 
 				safestrncpy(raChSys.colors_name[i], config_setting_name(color), RACHSYS_NAME_LENGTH);
 
-				raChSys.colors[i] = (unsigned int)strtoul(config_setting_get_string_elem(colors,i),NULL,0);
+				raChSys.colors[i] = (unsigned int)strtoul(libconfig->setting_get_string_elem(colors,i),NULL,0);
 				raChSys.colors[i] = (raChSys.colors[i] & 0x0000FF) << 16 | (raChSys.colors[i] & 0x00FF00) | (raChSys.colors[i] & 0xFF0000) >> 16;//RGB to BGR
 			}
 			raChSys.colors_count = color_count;
 		}
 
-		config_setting_lookup_string(settings, "map_local_channel_color", &local_color);
+		libconfig->setting_lookup_string(settings, "map_local_channel_color", &local_color);
 
 		for (k = 0; k < raChSys.colors_count; k++) {
 			if(strcmpi(raChSys.colors_name[k],local_color) == 0)
@@ -2773,7 +2773,7 @@ void clif_read_channels_config(void) {
 			raChSys.local = false;
 		}
 
-		config_setting_lookup_string(settings, "ally_channel_color", &ally_color);
+		libconfig->setting_lookup_string(settings, "ally_channel_color", &ally_color);
 
 		for (k = 0; k < raChSys.colors_count; k++) {
 			if(strcmpi(raChSys.colors_name[k],ally_color) == 0)
@@ -2787,13 +2787,13 @@ void clif_read_channels_config(void) {
 			raChSys.ally = false;
 		}
 
-		if((channels = config_setting_get_member(settings, "default_channels")) != NULL) {
-			int channel_count = config_setting_length(channels);
+		if ((channels = libconfig->setting_get_member(settings, "default_channels")) != NULL) {
+			int channel_count = libconfig->setting_length(channels);
 
 			for(i = 0; i < channel_count; i++) {
-				config_setting_t *channel = config_setting_get_elem(channels, i);
+				config_setting_t *channel = libconfig->setting_get_elem(channels, i);
 				const char *name = config_setting_name(channel);
-				const char *color = config_setting_get_string_elem(channels,i);
+				const char *color = libconfig->setting_get_string_elem(channels, i);
 				struct raChSysCh *chd;
 
 				for (k = 0; k < raChSys.colors_count; k++) {
@@ -2819,7 +2819,7 @@ void clif_read_channels_config(void) {
 		}
 
 		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' canais em '"CL_WHITE"%s"CL_RESET"'.\n", db_size(channel_db), config_filename);
-		config_destroy(&channels_conf);
+		libconfig->destroy(&channels_conf);
 	}
 }
 
@@ -9902,7 +9902,7 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 	sd->idletime = sockt->last_tick;
 
 	// Chat logging type 'O' / Global Chat
-	log_chat(LOG_CHAT_GLOBAL, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+	logs->chat(LOG_CHAT_GLOBAL, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 }
 
 
@@ -10310,7 +10310,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 		sd->idletime = sockt->last_tick;
 
 	// Chat logging type 'W' / Whisper
-	log_chat(LOG_CHAT_WHISPER, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, target, message);
+	logs->chat(LOG_CHAT_WHISPER, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, target, message);
 
 	//-------------------------------------------------------//
 	//   Lordalfa - Paperboy - To whisper NPC commands       //
@@ -13445,7 +13445,7 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 					return;
 				}
 				sprintf(command, "/kick %s (%d)", status->get_name(target), status->get_class(target));
-				log_atcommand(sd, command);
+				logs->atcommand(sd, command);
 				status_percent_damage(&sd->bl, target, 100, 0, true); // can invalidate 'target'
 			}
 			break;
@@ -17456,20 +17456,20 @@ void clif_cashshop_db(void) {
 	
 	cashshop = config_lookup(&cashshop_conf, "cash_shop");
 
-	if(cashshop != NULL && (cats = config_setting_get_elem(cashshop, 0)) != NULL) {
+	if(cashshop != NULL && (cats = libconfig->setting_get_elem(cashshop, 0)) != NULL) {
 		for(i = 0; i < CASHSHOP_TAB_MAX; i++) {
 		config_setting_t *cat;
 			char entry_name[10];
 
 			sprintf(entry_name,"cat_%d",i);
 
-			if((cat = config_setting_get_member(cats, entry_name)) != NULL) {
-				int k, item_count = config_setting_length(cat);
+			if((cat = libconfig->setting_get_member(cats, entry_name)) != NULL) {
+				int k, item_count = libconfig->setting_length(cat);
 
 					for(k = 0; k < item_count; k++) {
-						config_setting_t *entry = config_setting_get_elem(cat,k);
+						config_setting_t *entry = libconfig->setting_get_elem(cat, k);
 						const char *name = config_setting_name(entry);
-						int price = config_setting_get_int(entry);
+						int price = libconfig->setting_get_int(entry);
 						struct item_data * data = NULL;
 
 						if( price < 1 ) {
@@ -17500,7 +17500,7 @@ void clif_cashshop_db(void) {
 				}
 			}
 
-			config_destroy(&cashshop_conf);
+			libconfig->destroy(&cashshop_conf);
 		}
 	
 		ShowConf("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", item_count_t, config_filename);

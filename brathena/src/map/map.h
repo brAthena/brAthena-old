@@ -979,6 +979,8 @@ extern char db_id[32];
 extern char db_pw[32];
 extern char db_db2name[32];
 
+char default_codepage[32];
+
 #include "../common/sql.h"
 
 extern Sql* mmysql_handle;
