@@ -11150,7 +11150,7 @@ void clif_parse_ChangeCart(int fd,struct map_session_data *sd)
 ///     the like
 void clif_parse_StatusUp(int fd,struct map_session_data *sd)
 {
-	pc_statusup(sd,RFIFOW(fd,2));
+	pc_statusup(sd,RFIFOW(fd,2), RFIFOB(fd, 4));
 }
 
 

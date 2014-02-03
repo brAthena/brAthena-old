@@ -21,6 +21,7 @@
 #include <time.h>
 #include "map.h" //TBL_stuff
 
+struct status_change_entry;
 #define CHRIF_PACKET_LEN_TABLE_SIZE 0x3d
 
 enum sd_state { ST_LOGIN, ST_LOGOUT, ST_MAPCHANGE };
@@ -98,6 +99,9 @@ void do_init_chrif(void);
 
 bool chrif_flush_fifo(void);
 void chrif_skillid2idx(int fd);
+void chrif_save_scdata_single(int account_id, int char_id, short type, struct status_change_entry *sce);
+void chrif_del_scdata_single(int account_id, int char_id, short type);
+
 // There's no need for another function when a simple macro can do exactly the same effect
 #define chrif_char_offline(x) chrif_char_offline_nsd((x)->status.account_id,(x)->status.char_id)
 

@@ -1658,6 +1658,50 @@ void chrif_send_report(char* buf, int len) {
 }
 
 /**
+ * Sends a single scdata for saving into char server, meant to ensure integrity of durationless conditions
+ **/
+void chrif_save_scdata_single(int account_id, int char_id, short type, struct status_change_entry *sce) {
+
+	if(!char_fd)
+		return;
+
+	WFIFOHEAD(char_fd, 28);
+
+	WFIFOW(char_fd, 0) = 0x2740;
+	WFIFOL(char_fd, 2) = account_id;
+	WFIFOL(char_fd, 6) = char_id;
+	WFIFOW(char_fd, 10) = type;
+	WFIFOL(char_fd, 12) = sce->val1;
+	WFIFOL(char_fd, 16) = sce->val2;
+	WFIFOL(char_fd, 20) = sce->val3;
+	WFIFOL(char_fd, 24) = sce->val4;
+
+	WFIFOSET(char_fd,28);
+
+}
+/**
+ * Sends a single scdata deletion request into char server, meant to ensure integrity of durationless conditions
+ **/
+void chrif_del_scdata_single(int account_id, int char_id, short type) {
+
+	if(!char_fd) {
+		ShowError("MAYDAY! failed to delete status %d from CID:%d/AID:%d\n",type,char_id,account_id);
+		return;
+	}
+
+
+	WFIFOHEAD(char_fd, 12);
+
+	WFIFOW(char_fd, 0) = 0x2741;
+	WFIFOL(char_fd, 2) = account_id;
+	WFIFOL(char_fd, 6) = char_id;
+	WFIFOW(char_fd, 10) = type;
+
+	WFIFOSET(char_fd, 12);
+
+}
+
+/**
  * @see DBApply
  */
 int auth_db_final(DBKey key, DBData *data, va_list ap)

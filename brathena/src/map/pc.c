@@ -6204,50 +6204,88 @@ int pc_need_status_point(struct map_session_data *sd, int type, int val)
 	return sp;
 }
 
-/// Raises a stat by 1.
-/// Obeys max_parameter limits.
-/// Subtracts stat points.
-///
-/// @param type The stat to change (see enum _sp)
-int pc_statusup(struct map_session_data *sd, int type)
-{
-	int max, need, val;
+/**
+ * Returns the value the specified stat can be increased by with the current
+ * amount of available status points for the current character's class.
+ *
+ * @param sd   The target character.
+ * @param type Stat to verify.
+ * @return Maximum value the stat could grow by.
+ */
+int pc_maxparameterincrease(struct map_session_data* sd, int type) {
+	int base, final, status_points = sd->status.status_point;
+
+	base = final = pc_getstat(sd, type);
+
+	while (final <= pc_maxparameter(sd) && status_points >= 0) {
+#if VERSION == 1 // renewal status point cost formula
+		status_points -= (final < 100) ? (2 + (final - 1) / 10) : (16 + 4 * ((final - 100) / 5));
+#else
+		status_points -= (1 + (final + 9) / 10);
+#endif
+		final++;
+	}
+	final--;
+
+	return final > base ? final-base : 0;
+}
+
+/**
+ * Raises a stat by the specified amount.
+ * Obeys max_parameter limits.
+ * Subtracts stat points.
+ *
+ * @param sd       The target character.
+ * @param type     The stat to change (see enum _sp)
+ * @param increase The stat increase amount.
+ * @return true if the stat was increased by any amount, false if there were no
+ *         changes.
+ */
+bool pc_statusup(struct map_session_data* sd, int type, int increase) {
+	int max_increase = 0, current = 0, needed_points = 0, final_value = 0;
 
 	nullpo_ret(sd);
 
 	// check conditions
-	need = pc_need_status_point(sd,type,1);
-	if(type < SP_STR || type > SP_LUK || need < 0 || need > sd->status.status_point) {
-		clif_statusupack(sd,type,0,0);
-		return 1;
+	if(type < SP_STR || type > SP_LUK || increase <= 0) {
+		clif_statusupack(sd, type, 0, 0);
+		return false;
 	}
 
 	// check limits
-	max = pc_maxparameter(sd);
-	if(pc_getstat(sd,type) >= max) {
-		clif_statusupack(sd,type,0,0);
-		return 1;
+	current = pc_getstat(sd, type);
+	max_increase = pc_maxparameterincrease(sd, type);
+	increase = cap_value(increase, 0, max_increase); // cap to the maximum status points available
+	if (increase <= 0 || current + increase > pc_maxparameter(sd)) {
+		clif_statusupack(sd, type, 0, 0);
+		return false;
+	}
+
+	// check status points
+	needed_points = pc_need_status_point(sd, type, increase);
+	if (needed_points < 0 || needed_points > sd->status.status_point) { // Sanity check
+		clif_statusupack(sd, type, 0, 0);
+		return false;
 	}
 
 	// set new values
-	val = pc_setstat(sd, type, pc_getstat(sd,type) + 1);
-	sd->status.status_point -= need;
+	final_value = pc_setstat(sd, type, current + increase);
+	sd->status.status_point -= needed_points;
 
 	status_calc_pc(sd,SCO_NONE);
 
 	// update increase cost indicator
-	if(need != pc_need_status_point(sd,type,1))
-		clif_updatestatus(sd, SP_USTR + type-SP_STR);
+	clif_updatestatus(sd, SP_USTR + type-SP_STR);
 
 	// update statpoint count
 	clif_updatestatus(sd,SP_STATUSPOINT);
 
 	// update stat value
-	clif_statusupack(sd,type,1,val); // required
-	if(val > 255)
+	clif_statusupack(sd, type, 1, final_value); // required
+	if(final_value > 255)
 		clif_updatestatus(sd,type); // send after the 'ack' to override the truncated value
 
-	return 0;
+	return true;
 }
 
 /// Raises a stat by the specified amount.
@@ -8448,17 +8486,19 @@ int pc_cleareventtimer(struct map_session_data *sd)
 int pc_checkcombo(struct map_session_data *sd, struct item_data *data)
 {
 	int i, j, k, z;
-	int index, idx, success = 0;
+	int index, success = 0;
+	struct pc_combos *combo;
 
 	for(i = 0; i < data->combos_count; i++) {
 
 		/* ensure this isn't a duplicate combo */
-		if(sd->combos.bonus != NULL) {
+		if(sd->combos != NULL) {
 			int x;
-			ARR_FIND(0, sd->combos.count, x, sd->combos.id[x] == data->combos[i]->id);
+
+			ARR_FIND(0, sd->combo_count, x, sd->combos[x].id == data->combos[i]->id);
 
 			/* found a match, skip this combo */
-			if(x < sd->combos.count)
+			if(x < sd->combo_count)
 				continue;
 		}
 
@@ -8509,21 +8549,12 @@ int pc_checkcombo(struct map_session_data *sd, struct item_data *data)
 
 		/* we got here, means all items in the combo are matching */
 
-		idx = sd->combos.count;
+		RECREATE(sd->combos, struct pc_combos, ++sd->combo_count);
 
-		if(sd->combos.bonus == NULL) {
-			CREATE(sd->combos.bonus, struct script_code *, 1);
-			CREATE(sd->combos.id, unsigned short, 1);
-			sd->combos.count = 1;
-		} else {
-			RECREATE(sd->combos.bonus, struct script_code *, ++sd->combos.count);
-			RECREATE(sd->combos.id, unsigned short, sd->combos.count);
-		}
+		combo = &sd->combos[sd->combo_count - 1];
 
-		/* we simply copy the pointer */
-		sd->combos.bonus[idx] = data->combos[i]->script;
-		/* save this combo's id */
-		sd->combos.id[idx] = data->combos[i]->id;
+		combo->bonus = data->combos[i]->script;
+		combo->id = data->combos[i]->id;
 
 		success++;
 	}
@@ -8535,26 +8566,30 @@ int pc_removecombo(struct map_session_data *sd, struct item_data *data)
 {
 	int i, retval = 0;
 
-	if(sd->combos.bonus == NULL)
+	if(!sd->combos )
 		return 0;/* nothing to do here, player has no combos */
+
 	for(i = 0; i < data->combos_count; i++) {
 		/* check if this combo exists in this user */
 		int x = 0, cursor = 0, j;
-		ARR_FIND(0, sd->combos.count, x, sd->combos.id[x] == data->combos[i]->id);
+
+		ARR_FIND(0, sd->combo_count, x, sd->combos[x].id == data->combos[i]->id);
 		/* no match, skip this combo */
-		if(!(x < sd->combos.count))
+		if(!(x < sd->combo_count))
 			continue;
 
-		sd->combos.bonus[x] = NULL;
-		sd->combos.id[x] = 0;
+		sd->combos[x].bonus = NULL;
+		sd->combos[x].id = 0;
+
 		retval++;
-		for(j = 0, cursor = 0; j < sd->combos.count; j++) {
-			if(sd->combos.bonus[j] == NULL)
+
+		for(j = 0, cursor = 0; j < sd->combo_count; j++) {
+			if(sd->combos[j].bonus == NULL)
 				continue;
 
 			if(cursor != j) {
-				sd->combos.bonus[cursor] = sd->combos.bonus[j];
-				sd->combos.id[cursor]    = sd->combos.id[j];
+				sd->combos[cursor].bonus = sd->combos[j].bonus;
+				sd->combos[cursor].id    = sd->combos[j].id;
 			}
 
 			cursor++;
@@ -8565,11 +8600,10 @@ int pc_removecombo(struct map_session_data *sd, struct item_data *data)
 			continue;
 
 		/* it's empty, we can clear all the memory */
-		if((sd->combos.count = cursor) == 0) {
-			aFree(sd->combos.bonus);
-			aFree(sd->combos.id);
-			sd->combos.bonus = NULL;
-			sd->combos.id = NULL;
+		if((sd->combo_count = cursor) == 0) {
+			aFree(sd->combos);
+			sd->combos = NULL;
+
 			return retval; /* we also can return at this point for we have no more combos to check */
 		}
 
@@ -8995,7 +9029,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
  *------------------------------------------*/
 int pc_checkitem(struct map_session_data *sd)
 {
-	int i,id,calc_flag = 0;
+	int i, id, calc_flag = 0;
 
 	nullpo_ret(sd);
 

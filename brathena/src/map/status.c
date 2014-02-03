@@ -2679,12 +2679,29 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 	}
 
 	/* we've got combos to process */
-	if(sd->combos.count) {
-		for(i = 0; i < sd->combos.count; i++) {
-			script->run(sd->combos.bonus[i],0,sd->bl.id,0);
-			if(!calculating)  //Abort, run_script retriggered this.
-				return 1;
+	for(i = 0; i < sd->combo_count; i++) {
+		struct item_combo *combo = itemdb->id2combo(sd->combos[i].id);
+		unsigned char j;
+
+		/**
+		 * ensure combo usage is allowed at this location
+		 **/
+		for(j = 0; j < combo->count; j++) {
+			for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
+				if(map[sd->bl.m].zone->disabled_items[k] == combo->nameid[j] ) {
+					break;
+				}
+			}
+			if(k != map[sd->bl.m].zone->disabled_items_count)
+				break;
 		}
+
+		if(j != combo->count)
+			continue;
+
+		script->run(sd->combos[i].bonus,0,sd->bl.id,0);
+		if(!calculating) //Abort, script->run retriggered this.
+			return 1;
 	}
 
 	//Store equipment script bonuses
@@ -5643,12 +5660,14 @@ short status_calc_aspd_rate(struct block_list *bl, struct status_change *sc, int
 }
 
 unsigned short status_calc_dmotion(struct block_list *bl, struct status_change *sc, int dmotion) {
+	// It has been confirmed on official servers that MvP mobs have no dmotion even without endure
+	if(bl->type == BL_MOB && (((TBL_MOB*)bl)->status.mode&MD_BOSS))
+		return 0;
+
 	if(!sc || !sc->count || map_flag_gvg2(bl->m) || map[bl->m].flag.battleground)
 		return cap_value(dmotion,0,USHRT_MAX);
-	/**
-	 * It has been confirmed on official servers that MvP mobs have no dmotion even without endure
-	 **/
-	if(sc->data[SC_ENDURE] || (bl->type == BL_MOB && (((TBL_MOB *)bl)->status.mode&MD_BOSS)))
+
+	if(sc->data[SC_ENDURE])
 		return 0;
 	if(sc->data[SC_RUN] || sc->data[SC_WUGDASH])
 		return 0;
@@ -9242,8 +9261,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	sce->val4 = val4;
 	if(tick >= 0)
 		sce->timer = add_timer(gettick() + tick, status->change_timer, bl->id, type);
-	else
+	else {
 		sce->timer = INVALID_TIMER; //Infinite duration
+		if(sd)
+			chrif_save_scdata_single(sd->status.account_id,sd->status.char_id,type,sce);
+	}
 
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
@@ -9432,6 +9454,9 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 
 	if(sce->timer != tid && tid != INVALID_TIMER)
 		return 0;
+
+	if(sd && sce->timer == INVALID_TIMER)
+		chrif_del_scdata_single(sd->status.account_id,sd->status.char_id,type);
 
 	if(tid == INVALID_TIMER) {
 		if(type == SC_ENDURE && sce->val4)

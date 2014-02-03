@@ -137,6 +137,11 @@ enum npc_timeout_type {
 	NPCT_WAIT  = 2,
 };
 
+struct pc_combos {
+	struct script_code *bonus;/* the script of the combo */
+	unsigned short id;/* this combo id */
+};
+
 struct map_session_data {
 	struct block_list bl;
 	struct unit_data ud;
@@ -510,11 +515,8 @@ struct map_session_data {
 	enum npc_timeout_type npc_idle_type;
 #endif
 
-	struct {
-		struct script_code **bonus;/* the script */
-		unsigned short *id;/* array of combo ids */
-		unsigned char count;
-	} combos;
+	struct pc_combos *combos;
+	unsigned char combo_count;
 
 	/**
 	 * Guarantees your friend request is legit (for bugreport:4629)
@@ -850,7 +852,8 @@ unsigned int pc_nextjobexp(struct map_session_data *);
 unsigned int pc_thisjobexp(struct map_session_data *);
 int pc_gets_status_point(int);
 int pc_need_status_point(struct map_session_data *,int,int);
-int pc_statusup(struct map_session_data *,int);
+int pc_maxparameterincrease(struct map_session_data* sd, int type);
+bool pc_statusup(struct map_session_data *sd, int type, int increase);
 int pc_statusup2(struct map_session_data *,int,int);
 int pc_skillup(struct map_session_data *,uint16 skill_id);
 int pc_allskillup(struct map_session_data *);

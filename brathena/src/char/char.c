@@ -3604,17 +3604,59 @@ int parse_frommap(int fd)
 
 					session[sfd]->flag.server = 1;/* to ensure we won't drop our own packet */
 					realloc_fifo(sfd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
+
 					WFIFOHEAD(sfd, RFIFOW(fd,2));
+
 					memcpy((char *)WFIFOP(sfd,0), (char *)RFIFOP(fd, 0), RFIFOW(fd,2));
+
 					WFIFOSET(sfd, RFIFOW(fd,2));
+
 					flush_fifo(sfd);
+
 					do_close(sfd);
+
 					RFIFOSKIP(fd, RFIFOW(fd,2)); /* skip this packet */
+					RFIFOFLUSH(fd);
+				}
+				break;
+
+				/* individual sc data insertion/update  */
+			case 0x2740:
+				if(RFIFOREST(fd) < 28)
+					return 0;
+				else {
+					int account_id = RFIFOL(fd, 2), char_id = RFIFOL(fd, 6),
+						val1 = RFIFOL(fd, 12), val2 = RFIFOL(fd, 16),
+						val3 = RFIFOL(fd, 20), val4 = RFIFOL(fd, 24);
+					short type = RFIFOW(fd, 10);
+
+			if(SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`account_id`,`char_id`,`type`,`tick`,`val1`,`val2`,`val3`,`val4`) VALUES ('%d','%d','%d',-1,'%d','%d','%d','%d')",
+												scdata_db, account_id, char_id, type, val1, val2, val3, val4) )
+						Sql_ShowDebug(sql_handle);
+
+					RFIFOSKIP(fd, 28);
+				}
+				break;
+
+			/* individual sc data delete */
+			case 0x2741:
+				if(RFIFOREST(fd) < 12)
+					return 0;
+				else {
+					int account_id = RFIFOL(fd, 2), char_id = RFIFOL(fd, 6);
+					short type = RFIFOW(fd, 10);
+
+					if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = '%d' AND `char_id` = '%d' AND `type` = '%d' LIMIT 1",
+												scdata_db, account_id, char_id, type) )
+						Sql_ShowDebug(sql_handle);
+
+					RFIFOSKIP(fd, 12);
 				}
 				break;
 
 
-			default: {
+			default:
+			{
 					// inter server - packet
 					int r = inter_parse_frommap(fd);
 					if(r == 1) break;       // processed

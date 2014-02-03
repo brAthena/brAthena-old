@@ -422,10 +422,9 @@ struct item_group {
 
 struct item_combo {
 	struct script_code *script;
-	unsigned short *nameid;/* nameid array */
+	unsigned short nameid[MAX_ITEMS_PER_COMBO];/* nameid array */
 	unsigned char count;
 	unsigned short id;/* id of this combo */
-	bool isRef;/* whether this struct is a reference or the master */
 };
 
 struct item_group itemgroup_db[MAX_ITEMGROUP];
@@ -536,6 +535,9 @@ struct itemdb_interface {
 	/* */
 	struct item_package *packages;
 	unsigned short package_count;
+	/* list of item combos loaded */
+	struct item_combo **combos;
+	unsigned short combo_count;
 	/* */
 	DBMap *names;
 	/* */
@@ -546,6 +548,7 @@ struct itemdb_interface {
 	/* */
 	struct item_data* (*name2id) (const char *str);
 	void (*package_item) (struct map_session_data *sd, struct item_package *package);
+	struct item_combo * (*id2combo) (unsigned short id);
 };
 
 struct itemdb_interface *itemdb;
