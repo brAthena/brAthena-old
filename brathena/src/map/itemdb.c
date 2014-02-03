@@ -1352,7 +1352,7 @@ int itemdb_combo_split_atoi(char *str, int *val)
  * <combo{:combo{:combo:{..}}}>,<{ script }>
  **/
 void itemdb_read_combos() {
-	int items[MAX_ITEMS_PER_COMBO], v = 0, retcount = 0, idx = 0, rows = 0, i;
+	int items[MAX_ITEMS_PER_COMBO], v = 0, retcount = 0, rows = 0, i;
 	struct item_combo *combo = NULL;
 
 	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(38))) {
