@@ -521,7 +521,7 @@ int64 battle_calc_base_damage(struct block_list *src, struct block_list *bl, uin
 		damage = (batk << 1) + battle_calc_weapon_damage(src, bl, skill_id, skill_lv, &st->rhw, nk, n_ele, s_ele, s_ele_, status_get_size(bl), type, flag, flag2);
 	return damage;
 }
-int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
+int64 battle_calc_base_damage2(struct status_data *st, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
 {
 	unsigned int atkmin=0, atkmax=0;
 	short type = 0;
@@ -529,8 +529,8 @@ int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa
 
 	if (!sd) { //Mobs/Pets
 		if(flag&4) {
-			atkmin = status->matk_min;
-			atkmax = status->matk_max;
+			atkmin = st->matk_min;
+			atkmax = st->matk_max;
 		} else {
 			atkmin = wa->atk;
 			atkmax = wa->atk2;
@@ -539,10 +539,10 @@ int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa
 			atkmin = atkmax;
 	} else { //PCs
 		atkmax = wa->atk;
-		type = (wa == &status->lhw)?EQI_HAND_L:EQI_HAND_R;
+		type = (wa == &st->lhw)?EQI_HAND_L:EQI_HAND_R;
 
 		if (!(flag&1) || (flag&2)) { //Normal attacks
-			atkmin = status->dex;
+			atkmin = st->dex;
 
 			if (sd->equip_index[type] >= 0 && sd->inventory_data[sd->equip_index[type]])
 				atkmin = atkmin*(80 + sd->inventory_data[sd->equip_index[type]]->wlv*20)/100;
@@ -579,9 +579,9 @@ int64 battle_calc_base_damage2(struct status_data *status, struct weapon_atk *wa
 
 	//Finally, add baseatk
 	if(flag&4)
-		damage += status->matk_min;
+		damage += st->matk_min;
 	else
-		damage += status->batk;
+		damage += st->batk;
 
 	//rodatazone says that Overrefine bonuses are part of baseatk
 	//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.

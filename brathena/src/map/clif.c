@@ -18434,6 +18434,8 @@ void clif_pcbangplayingtime(struct map_session_data *sd, int time)
 
 	p.PacketType = pcbangplayingtimeType;
 	p.TimeMinute = time;
+
+	clif_send(&p,sizeof(p), &sd->bl, SELF);
 #else
 	return;
 #endif

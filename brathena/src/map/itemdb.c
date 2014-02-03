@@ -32,7 +32,7 @@
 #include <string.h>
 
 static struct item_data *itemdb_array[MAX_ITEMDB];
-static DBMap            *itemdb_other;// int nameid -> struct item_data*
+static DBMap *itemdb_other;// int nameid -> struct item_data*
 
 struct item_data dummy_item; //This is the default dummy item used for non-existant items. [Skotlex]
 
@@ -951,7 +951,7 @@ void itemdb_read_packages(void) {
 		c = 0;
 		while((it = libconfig->setting_get_elem(itg,c++))) {
 			int rval = 0;
-			const char *itname, *name2;
+			const char *name2;
 			if(!(t = libconfig->setting_get_member(it,"item")) || !(itname = config_setting_get_string(t))) {
 				ShowWarning("itemdb_read_packages: Valor do campo 'item' inválido no item '%d' do pacote '%s'. Ignorando entrada...\n",c,name);
 				libconfig->setting_remove_elem(itg, c - 1);
@@ -1169,7 +1169,7 @@ void itemdb_read_packages(void) {
 static bool ItemMoveInfo(char *str[], int columns, int current)
 {
 	// <nameid>,<mask>,<gm level>
-	int nameid, drop, trade, storage, cart, vending, mail, auction, bindonequip, gmlv;
+	int nameid, drop, trade, storage, cart, sell, mail, auction, bindonequip, gmlv;
 	struct item_data *id;
 
 	nameid = atoi(str[0]);
@@ -1185,7 +1185,7 @@ static bool ItemMoveInfo(char *str[], int columns, int current)
 	trade = atoi(str[2]);
 	storage = atoi(str[3]);
 	cart = atoi(str[4]);
-	vending = atoi(str[5]);
+	sell = atoi(str[5]);
 	mail = atoi(str[6]);
 	auction = atoi(str[7]);
 	bindonequip = atoi(str[8]);
@@ -1200,7 +1200,7 @@ static bool ItemMoveInfo(char *str[], int columns, int current)
 	id->item_bound.trade = trade;
 	id->item_bound.storage = storage;
 	id->item_bound.cart = cart;
-	id->item_bound.vending = vending;
+	id->item_bound.vending = sell;
 	id->item_bound.mail = mail;
 	id->item_bound.auction = auction;
 	id->flag.bindonequip = bindonequip;
