@@ -7994,7 +7994,7 @@ BUILDIN_FUNC(bonus)
   		case SP_ADD_MAGIC_DAMAGE_CLASS:
    			// estes bonus suportam nome de monstros
 			if (script_isstringtype(st, 3)) {
-				val1 = mobdb_searchname(script_getstr(st, 3));
+				val1 = mob->db_searchname(script_getstr(st, 3));
 				break;
 			}
 		default:
@@ -8856,7 +8856,7 @@ BUILDIN_FUNC(makepet)
 		sd->catch_target_class = pet_db[pet_id].class_;
 		intif_create_pet(
 		    sd->status.account_id, sd->status.char_id,
-		    (short)pet_db[pet_id].class_, (short)mob_db(pet_db[pet_id].class_)->lv,
+			(short)pet_db[pet_id].class_, (short)mob->db(pet_db[pet_id].class_)->lv,
 		    (short)pet_db[pet_id].EggID, 0, (short)pet_db[pet_id].intimate,
 		    100, 0, 1, pet_db[pet_id].jname);
 	}
@@ -8978,7 +8978,7 @@ BUILDIN_FUNC(monster)
 		}
 	}
 
-	if(class_ >= 0 && !mobdb_checkid(class_)) {
+	if (class_ >= 0 && !mob->db_checkid(class_)) {
 		ShowWarning("buildin_monster: Attempted to spawn non-existing monster class %d\n", class_);
 		return 1;
 	}
@@ -9002,7 +9002,7 @@ BUILDIN_FUNC(monster)
 		}
 	}
 
-	mob_id = mob_once_spawn(sd, m, x, y, str, class_, amount, event, size, ai);
+	mob_id = mob->once_spawn(sd, m, x, y, str, class_, amount, event, size, ai);
 	script_pushint(st, mob_id);
 	return 0;
 }
@@ -9013,23 +9013,23 @@ BUILDIN_FUNC(getmobdrops)
 {
 	int class_ = script_getnum(st,2);
 	int i, j = 0;
-	struct mob_db *mob;
+	struct mob_db *monster;
 
-	if(!mobdb_checkid(class_)) {
+	if (!mob->db_checkid(class_)) {
 		script_pushint(st, 0);
 		return 0;
 	}
 
-	mob = mob_db(class_);
+	monster = mob->db(class_);
 
 	for(i = 0; i < MAX_MOB_DROP; i++) {
-		if(mob->dropitem[i].nameid < 1)
+		if(monster->dropitem[i].nameid < 1)
 			continue;
-		if(itemdb_exists(mob->dropitem[i].nameid) == NULL)
+		if(itemdb_exists(monster->dropitem[i].nameid) == NULL)
 			continue;
 
-		mapreg->setreg(reference_uid(script->add_str("$@MobDrop_item"), j), mob->dropitem[i].nameid);
-		mapreg->setreg(reference_uid(script->add_str("$@MobDrop_rate"), j), mob->dropitem[i].p);
+		mapreg->setreg(reference_uid(script->add_str("$@MobDrop_item"), j), monster->dropitem[i].nameid);
+		mapreg->setreg(reference_uid(script->add_str("$@MobDrop_rate"), j), monster->dropitem[i].p);
 
 		j++;
 	}
@@ -9098,7 +9098,7 @@ BUILDIN_FUNC(areamonster)
 		}
 	}
 
-	mob_id = mob_once_spawn_area(sd, m, x0, y0, x1, y1, str, class_, amount, event, size, ai);
+	mob_id = mob->once_spawn_area(sd, m, x0, y0, x1, y1, str, class_, amount, event, size, ai);
 	script_pushint(st, mob_id);
 
 	return 0;
@@ -9254,7 +9254,7 @@ BUILDIN_FUNC(clone)
 			master_id = 0;
 	}
 	if(sd)  //Return ID of newly crafted clone.
-		script_pushint(st,mob_clone_spawn(sd, m, x, y, event, master_id, mode, flag, 1000*duration));
+		script_pushint(st, mob->clone_spawn(sd, m, x, y, event, master_id, mode, flag, 1000 * duration));
 	else //Failed to create clone.
 		script_pushint(st,0);
 
@@ -11816,7 +11816,7 @@ BUILDIN_FUNC(strmobinfo)
 	int num=script_getnum(st,2);
 	int class_=script_getnum(st,3);
 
-	if(!mobdb_checkid(class_)) {
+	if(!mob->db_checkid(class_)) {
 		if(num < 3)  //requested a string
 			script_pushconststr(st,"");
 		else
@@ -11825,13 +11825,13 @@ BUILDIN_FUNC(strmobinfo)
 	}
 
 	switch(num) {
-		case 1: script_pushstrcopy(st,mob_db(class_)->name); break;
-		case 2: script_pushstrcopy(st,mob_db(class_)->jname); break;
-		case 3: script_pushint(st,mob_db(class_)->lv); break;
-		case 4: script_pushint(st,mob_db(class_)->status.max_hp); break;
-		case 5: script_pushint(st,mob_db(class_)->status.max_sp); break;
-		case 6: script_pushint(st,mob_db(class_)->base_exp); break;
-		case 7: script_pushint(st,mob_db(class_)->job_exp); break;
+	case 1: script_pushstrcopy(st, mob->db(class_)->name); break;
+	case 2: script_pushstrcopy(st, mob->db(class_)->jname); break;
+	case 3: script_pushint(st, mob->db(class_)->lv); break;
+	case 4: script_pushint(st, mob->db(class_)->status.max_hp); break;
+	case 5: script_pushint(st, mob->db(class_)->status.max_sp); break;
+	case 6: script_pushint(st, mob->db(class_)->base_exp); break;
+	case 7: script_pushint(st, mob->db(class_)->job_exp); break;
 		default:
 			script_pushint(st,0);
 			break;
@@ -11878,7 +11878,7 @@ BUILDIN_FUNC(guardian)
 	}
 
 	script->check_event(st, evt);
-	script_pushint(st, mob_spawn_guardian(mapname, x, y, str, class_, evt, guardian, has_index));
+	script_pushint(st, mob->spawn_guardian(mapname, x, y, str, class_, evt, guardian, has_index));
 
 	return 0;
 }
@@ -12260,7 +12260,7 @@ BUILDIN_FUNC(disguise)
 
 	id = script_getnum(st,2);
 
-	if(mobdb_checkid(id) || npcdb_checkid(id)) {
+	if(mob->db_checkid(id) || npcdb_checkid(id)) {
 		pc_disguise(sd, id);
 		script_pushint(st,id);
 	} else
@@ -13465,14 +13465,14 @@ BUILDIN_FUNC(summon)
 
 	clif_skill_poseffect(&sd->bl,AM_CALLHOMUN,1,sd->bl.x,sd->bl.y,tick);
 
-	md = mob_once_spawn_sub(&sd->bl, sd->bl.m, sd->bl.x, sd->bl.y, str, _class, event, SZ_MEDIUM, AI_NONE);
+	md = mob->once_spawn_sub(&sd->bl, sd->bl.m, sd->bl.x, sd->bl.y, str, _class, event, SZ_MEDIUM, AI_NONE);
 	if(md) {
 		md->master_id=sd->bl.id;
 		md->special_state.ai = AI_ATTACK;
 		if(md->deletetimer != INVALID_TIMER)
-			delete_timer(md->deletetimer, mob_timer_delete);
-		md->deletetimer = add_timer(tick+(timeout>0?timeout*1000:60000),mob_timer_delete,md->bl.id,0);
-		mob_spawn(md);  //Now it is ready for spawning.
+			delete_timer(md->deletetimer, mob->timer_delete);
+		md->deletetimer = add_timer(tick + (timeout>0 ? timeout * 1000 : 60000), mob->timer_delete, md->bl.id, 0);
+		mob->spawn(md);  //Now it is ready for spawning.
 		clif_specialeffect(&md->bl,344,AREA);
 		sc_start4(&md->bl, SC_MODECHANGE, 100, 1, 0, MD_AGGRESSIVE, 0, 60000);
 	}
@@ -15108,11 +15108,11 @@ BUILDIN_FUNC(addmonsterdrop)
 	int item_id, rate, i, c = MAX_MOB_DROP;
 
 	if(script_isstring(st,2))
-		monster = mob_db(mobdb_searchname(script_getstr(st,2)));
+		monster = mob->db(mob->db_searchname(script_getstr(st, 2)));
 	else
-		monster = mob_db(script_getnum(st,2));
+		monster = mob->db(script_getnum(st, 2));
 
-	if( monster == mob_dummy) {
+	if(monster == mob->dummy) {
 		if(script_isstringtype(st,2)) {
 			ShowError("buildin_addmonsterdrop: invalid mob name: '%s'.\n", script_getstr(st,2));
 		} else {
@@ -15169,11 +15169,11 @@ BUILDIN_FUNC(delmonsterdrop)
 	int item_id, i;
 
 	if( script_isstringtype(st,2) )
-		monster = mob_db(mobdb_searchname(script_getstr(st,2)));
+		monster = mob->db(mob->db_searchname(script_getstr(st, 2)));
 	else
-		monster = mob_db(script_getnum(st,2));
+		monster = mob->db(script_getnum(st, 2));
 
-	if(monster == mob_dummy ) {
+	if(monster == mob->dummy) {
 		if( script_isstringtype(st,2) ) {
 			ShowError("buildin_delmonsterdrop: invalid mob name: '%s'.\n", script_getstr(st,2));
 		} else {
@@ -15212,7 +15212,7 @@ BUILDIN_FUNC(getmonsterinfo)
 	int mob_id;
 
 	mob_id  = script_getnum(st,2);
-	if(!mobdb_checkid(mob_id)) {
+	if (!mob->db_checkid(mob_id)) {
 		ShowError("buildin_getmonsterinfo: Wrong Monster ID: %i\n", mob_id);
 		if(!script_getnum(st,3))    //requested a string
 			script_pushconststr(st,"null");
@@ -15220,7 +15220,7 @@ BUILDIN_FUNC(getmonsterinfo)
 			script_pushint(st,-1);
 		return -1;
 	}
-	monster = mob_db(mob_id);
+	monster = mob->db(mob_id);
 	switch(script_getnum(st,3)) {
 		case 0:  script_pushstrcopy(st,monster->jname); break;
 		case 1:  script_pushint(st,monster->lv); break;
@@ -16497,7 +16497,7 @@ BUILDIN_FUNC(bg_monster)
 	class_  = script_getnum(st,7);
 	if(script_hasdata(st,8)) evt = script_getstr(st,8);
 	script->check_event(st, evt);
-	script_pushint(st, mob_spawn_bg(mapname,x,y,str,class_,evt,bg_id));
+	script_pushint(st, mob->spawn_bg(mapname, x, y, str, class_, evt, bg_id));
 	return 0;
 }
 
@@ -17893,9 +17893,9 @@ BUILDIN_FUNC(montransform) {
 		return 0;
 
 	if(script_isstringtype(st, 2))
-		mob_id = mobdb_searchname(script_getstr(st, 2));
+		mob_id = mob->db_searchname(script_getstr(st, 2));
 	else{
-		mob_id = mobdb_checkid(script_getnum(st, 2));
+		mob_id = mob->db_checkid(script_getnum(st, 2));
 	}
 
 	if(mob_id == 0) {
@@ -17929,7 +17929,7 @@ BUILDIN_FUNC(montransform) {
 
 	if(tick != 0) {
 		struct map_session_data *sd = map_id2sd(bl->id);
-		struct mob_db *monster =  mob_db(mob_id);
+		struct mob_db *monster = mob->db(mob_id);
 
 		if(!sd)	return 0;
 

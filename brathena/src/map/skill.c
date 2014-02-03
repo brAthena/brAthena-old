@@ -1825,15 +1825,15 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		do {
 			do {
 				class_ = rnd() % MAX_MOB_DB;
-			} while(!mobdb_checkid(class_));
+			} while (!mob->db_checkid(class_));
 
 			rate = rnd() % 1000000;
-			monster = mob_db(class_);
+			monster = mob->db(class_);
 		} while(
 		    (monster->status.mode&(MD_BOSS|MD_PLANT) || monster->summonper[0] <= rate) &&
 		    (skill++) < 2000);
 		if(skill < 2000)
-			mob_class_change(dstmd,class_);
+			mob->class_change(dstmd, class_);
 	}
 
 	return 0;
@@ -5582,7 +5582,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 		case SA_SUMMONMONSTER:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-			if(sd) mob_once_spawn(sd, src->m, src->x, src->y," --ja--", -1, 1, "", SZ_MEDIUM, AI_NONE);
+			if (sd) mob->once_spawn(sd, src->m, src->x, src->y, " --ja--", -1, 1, "", SZ_MEDIUM, AI_NONE);
 			break;
 		case SA_LEVELUP:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
@@ -5605,9 +5605,9 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
 				}
-				class_ = skill_id==SA_MONOCELL?1002:mob_get_random_id(4, 1, 0);
+				class_ = skill_id == SA_MONOCELL ? 1002 : mob->get_random_id(4, 1, 0);
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-				mob_class_change(dstmd,class_);
+				mob->class_change(dstmd, class_);
 				if(tsc && dstmd->status.mode&MD_BOSS) {
 
 					int i;
@@ -5986,7 +5986,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
 				}
-				id = mob_get_random_id(0,0xF, sd->status.base_level);
+				id = mob->get_random_id(0, 0xF, sd->status.base_level);
 				if(!id) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
@@ -6038,7 +6038,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 			if(dstmd) {
 				dstmd->state.provoke_flag = src->id;
-				mob_target(dstmd, src, skill_get_range2(src,skill_id,skill_lv));
+				mob->target(dstmd, src, skill_get_range2(src, skill_id, skill_lv));
 			}
 		}
 			break;
@@ -6136,7 +6136,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			} else if(dstmd && !(tstatus->mode&MD_BOSS) && rnd() % 100 < 20) {
 				// check if target is a monster and not a Boss, for the 20% chance to absorb 2 SP per monster's level [Reddozen]
 				sp = 2 * dstmd->level;
-				mob_target(dstmd,src,0);
+				mob->target(dstmd, src, 0);
 			}
 			if (sp) status->heal(src, 0, sp, 3);
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,sp?1:0);
@@ -6454,7 +6454,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				int amount = pc_steal_coin(sd, bl);
 				if(amount > 0) {
 					dstmd->state.provoke_flag = src->id;
-					mob_target(dstmd, src, skill_get_range2(src,skill_id,skill_lv));
+					mob->target(dstmd, src, skill_get_range2(src, skill_id, skill_lv));
 					clif_skill_nodamage(src, bl, skill_id, amount, 1);
 
 				} else
@@ -6540,7 +6540,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			}
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			if(dstmd)
-				mob_unlocktarget(dstmd,tick);
+				mob->unlocktarget(dstmd, tick);
 			break;
 
 			// Mercenary Supportive Skills
@@ -7171,7 +7171,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case NPC_PROVOCATION:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-			if(md) mob_unlocktarget(md, tick);
+			if (md) mob->unlocktarget(md, tick);
 			break;
 
 		case NPC_KEEPING:
@@ -7213,17 +7213,17 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case NPC_SUMMONSLAVE:
 		case NPC_SUMMONMONSTER:
 			if(md && md->skill_idx >= 0)
-				mob_summonslave(md,md->db->skill[md->skill_idx].val,skill_lv,skill_id);
+				mob->summonslave(md, md->db->skill[md->skill_idx].val, skill_lv, skill_id);
 			break;
 
 		case NPC_CALLSLAVE:
-			mob_warpslave(src,MOB_SLAVEDISTANCE);
+			mob->warpslave(src, MOB_SLAVEDISTANCE);
 			break;
 
 		case NPC_RANDOMMOVE:
 			if(md) {
 				md->next_walktime = tick - 1;
-				mob_randomwalk(md,tick);
+				mob->randomwalk(md, tick);
 			}
 			break;
 
@@ -7245,7 +7245,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				   (tbl = battle_gettargeted(mbl)) == NULL)
 					break;
 				md->state.provoke_flag = tbl->id;
-				mob_target(md, tbl, sstatus->rhw.range);
+				mob->target(md, tbl, sstatus->rhw.range);
 			}
 			break;
 
@@ -7262,10 +7262,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case NPC_TRANSFORMATION:
 		case NPC_METAMORPHOSIS:
 			if(md && md->skill_idx >= 0) {
-				int class_ = mob_random_class(md->db->skill[md->skill_idx].val,0);
+				int class_ = mob->random_class(md->db->skill[md->skill_idx].val, 0);
 				if(skill_lv > 1)  //Multiply the rest of mobs. [Skotlex]
-					mob_summonslave(md,md->db->skill[md->skill_idx].val,skill_lv-1,skill_id);
-				if(class_) mob_class_change(md, class_);
+					mob->summonslave(md, md->db->skill[md->skill_idx].val, skill_lv - 1, skill_id);
+				if (class_) mob->class_change(md, class_);
 			}
 			break;
 
@@ -7284,7 +7284,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 				//If mode gets set by NPC_EMOTION then the target should be reset [Playtester]
 				if(skill_id == NPC_EMOTION && md->db->skill[md->skill_idx].val[1])
-					mob_unlocktarget(md,tick);
+					mob->unlocktarget(md, tick);
 
 				if(md->db->skill[md->skill_idx].val[1] || md->db->skill[md->skill_idx].val[2])
 					sc_start4(src, type, 100, skill_lv,
@@ -7501,7 +7501,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				}
 
 				if(dstmd)
-					mob_target(dstmd,src,skill_get_range2(src,skill_id,skill_lv));
+					mob->target(dstmd,src,skill_get_range2(src,skill_id,skill_lv));
 			}
 			break;
 
@@ -8857,7 +8857,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(is_boss(bl)) break;
 				if(sc_start2(bl, type, 100, skill_lv, src->id, skill_get_time(skill_id, skill_lv))) {
 					if(bl->type == BL_MOB)
-						mob_unlocktarget((TBL_MOB *)bl,gettick());
+						mob->unlocktarget((TBL_MOB *)bl, gettick());
 					unit_stop_attack(bl);
 					clif_bladestop(src, bl->id, 1);
 					map_freeblock_unlock();
@@ -9488,14 +9488,14 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			if(sd) {
 				struct mob_data *summon_md;
 
-				summon_md = mob_once_spawn_sub(src, src->m, src->x, src->y, status->get_name(src), 2308, "", SZ_MEDIUM, AI_NONE);
+				summon_md = mob->once_spawn_sub(src, src->m, src->x, src->y, status->get_name(src), 2308, "", SZ_MEDIUM, AI_NONE);
 				if(summon_md) {
 					summon_md->master_id = src->id;
 					summon_md->special_state.ai = AI_ZANZOU;
 					if(summon_md->deletetimer != INVALID_TIMER)
-						delete_timer(summon_md->deletetimer, mob_timer_delete);
-					summon_md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, summon_md->bl.id, 0);
-					mob_spawn(summon_md);
+						delete_timer(summon_md->deletetimer, mob->timer_delete);
+					summon_md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob->timer_delete, summon_md->bl.id, 0);
+					mob->spawn(summon_md);
 					pc_setinvincibletimer(sd,500);// unlock target lock
 					clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 					skill_blown(src,bl,skill_get_blewcount(skill_id,skill_lv),unit_getdir(bl),0);
@@ -9683,14 +9683,14 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(dummy >= maxcount) return 0; //max qty already spawned
 
 				for(i=0; i<qty[skill_lv - 1]; i++) { //easy way
-					summon_md = mob_once_spawn_sub(src, src->m, src->x, src->y, status->get_name(src), summons[skill_lv - 1], "", SZ_MEDIUM, AI_ATTACK);
+					summon_md = mob->once_spawn_sub(src, src->m, src->x, src->y, status->get_name(src), summons[skill_lv - 1], "", SZ_MEDIUM, AI_ATTACK);
                     			if (summon_md) {
                         		    summon_md->master_id =  src->id;
                         		    summon_md->special_state.ai = 5;
 									if (summon_md->deletetimer != INVALID_TIMER)
-                            			delete_timer(summon_md->deletetimer, mob_timer_delete);
-					    summon_md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, summon_md->bl.id, 0);
-					    mob_spawn(summon_md); //Now it is ready for spawning.
+										delete_timer(summon_md->deletetimer, mob->timer_delete);
+									summon_md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob->timer_delete, summon_md->bl.id, 0);
+									mob->spawn(summon_md); //Now it is ready for spawning.
 					    sc_start4(&summon_md->bl, SC_MODECHANGE, 100, 1, 0, MD_CANATTACK|MD_AGGRESSIVE, 0, 60000);
                    	 		}
                 		}
@@ -9712,8 +9712,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 	}
 
 	if(dstmd) {  //Mob skill event for no damage skills (damage ones are handled in battle_calc_damage) [Skotlex]
-		mob_log_damage(dstmd, src, 0); //Log interaction (counts as 'attacker' for the exp bonus)
-		mobskill_event(dstmd, src, tick, MSC_SKILLUSED|(skill_id<<16));
+		mob->log_damage(dstmd, src, 0); //Log interaction (counts as 'attacker' for the exp bonus)
+		mob->skill_event(dstmd, src, tick, MSC_SKILLUSED | (skill_id << 16));
 	}
 
 	if(sd && !(flag&1)) {
@@ -10345,14 +10345,14 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 				struct mob_data *md;
 
 				// Correct info, don't change any of this! [celest]
-				md = mob_once_spawn_sub(src, src->m, x, y, status->get_name(src), class_, "", SZ_MEDIUM, AI_NONE);
+				md = mob->once_spawn_sub(src, src->m, x, y, status->get_name(src), class_, "", SZ_MEDIUM, AI_NONE);
 				if(md) {
 					md->master_id = src->id;
 					md->special_state.ai = (skill_id == AM_SPHEREMINE) ? AI_SPHERE : AI_FLORA;
 					if(md->deletetimer != INVALID_TIMER)
-						delete_timer(md->deletetimer, mob_timer_delete);
-					md->deletetimer = add_timer(gettick() + skill_get_time(skill_id,skill_lv), mob_timer_delete, md->bl.id, 0);
-					mob_spawn(md);  //Now it is ready for spawning.
+						delete_timer(md->deletetimer, mob->timer_delete);
+					md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob->timer_delete, md->bl.id, 0);
+					mob->spawn(md);  //Now it is ready for spawning.
 				}
 			}
 			break;
@@ -10441,15 +10441,15 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 				if(rnd()%100 < 50) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				} else {
-					TBL_MOB *md = mob_once_spawn_sub(src, src->m, x, y, "--ja--",(skill_lv < 2 ? 1084+rnd()%2 : 1078+rnd()%6),"", SZ_MEDIUM, AI_NONE);
+					TBL_MOB *md = mob->once_spawn_sub(src, src->m, x, y, "--ja--",(skill_lv < 2 ? 1084+rnd()%2 : 1078+rnd()%6),"", SZ_MEDIUM, AI_NONE);
 					int i;
 					if(!md) break;
 					if((i = skill_get_time(skill_id, skill_lv)) > 0) {
 						if(md->deletetimer != INVALID_TIMER)
-							delete_timer(md->deletetimer, mob_timer_delete);
-						md->deletetimer = add_timer(tick + i, mob_timer_delete, md->bl.id, 0);
+							delete_timer(md->deletetimer, mob->timer_delete);
+						md->deletetimer = add_timer(tick + i, mob->timer_delete, md->bl.id, 0);
 					}
-					mob_spawn(md);
+					mob->spawn(md);
 				}
 			}
 			break;
@@ -10569,14 +10569,14 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 				int class_ = 2042;
 				struct mob_data *md;
 
-				md = mob_once_spawn_sub(src, src->m, x, y, status->get_name(src), class_, "", SZ_MEDIUM, AI_NONE);
+				md = mob->once_spawn_sub(src, src->m, x, y, status->get_name(src), class_, "", SZ_MEDIUM, AI_NONE);
 				if(md) {
 					md->master_id = src->id;
 					md->special_state.ai = AI_FLORA;
 					if(md->deletetimer != INVALID_TIMER)
-						delete_timer(md->deletetimer, mob_timer_delete);
-					md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob_timer_delete, md->bl.id, 0);
-					mob_spawn(md);
+						delete_timer(md->deletetimer, mob->timer_delete);
+					md->deletetimer = add_timer(gettick() + skill_get_time(skill_id, skill_lv), mob->timer_delete, md->bl.id, 0);
+					mob->spawn(md);
 				}
 			}
 			break;
@@ -10847,7 +10847,7 @@ static int skill_icewall_block(struct block_list *bl,va_list ap)
 		return 0;
 
 	if(!check_distance_bl(bl, target, status_get_range(bl))) {
-		mob_unlocktarget(md,gettick());
+		mob->unlocktarget(md, gettick());
 		mob_stop_walking(md,1);
 	}
 
@@ -12285,7 +12285,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, int6
 	}
 
 	if(bl->type == BL_MOB && ss != bl)
-		mobskill_event((TBL_MOB *)bl, ss, tick, MSC_SKILLUSED|(skill_id<<16));
+		mob->skill_event((TBL_MOB *)bl, ss, tick, MSC_SKILLUSED | (skill_id << 16));
 
 	return skill_id;
 }
@@ -13378,7 +13378,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			break;
 		case SR_CURSEDCIRCLE:
 			if(map_flag_gvg2(sd->bl.m)) {
-				if(map_foreachinrange(mob_count_sub, &sd->bl, skill_get_splash(skill_id, skill_lv), BL_MOB,
+				if(map_foreachinrange(mob->count_sub, &sd->bl, skill_get_splash(skill_id, skill_lv), BL_MOB,
 				                      MOBID_EMPERIUM, MOBID_GUARIDAN_STONE1, MOBID_GUARIDAN_STONE2)) {
 					char output[128];
 					sprintf(output, "%s", msg_txt(455));
@@ -17233,14 +17233,14 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid)
 	class_ = (nameid == ITEMID_BOODY_RED || nameid == ITEMID_CRYSTAL_BLUE) ? 2043 + nameid - ITEMID_BOODY_RED : (nameid == ITEMID_WIND_OF_VERDURE) ? 2046 : 2045;
 
 
-	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, class_, "", SZ_MEDIUM, AI_NONE);
+	md = mob->once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, class_, "", SZ_MEDIUM, AI_NONE);
 	if(md) {
 		md->master_id = sd->bl.id;
 		md->special_state.ai = AI_FLORA;
 		if(md->deletetimer != INVALID_TIMER)
-			delete_timer(md->deletetimer, mob_timer_delete);
-		md->deletetimer = add_timer(gettick() + skill_get_time(NC_MAGICDECOY,skill), mob_timer_delete, md->bl.id, 0);
-		mob_spawn(md);
+			delete_timer(md->deletetimer, mob->timer_delete);
+		md->deletetimer = add_timer(gettick() + skill_get_time(NC_MAGICDECOY, skill), mob->timer_delete, md->bl.id, 0);
+		mob->spawn(md);
 		md->status.matk_min = md->status.matk_max = 250 + (50 * skill);
 	}
 

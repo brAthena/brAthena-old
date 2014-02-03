@@ -92,7 +92,7 @@ int pet_create_egg(struct map_session_data *sd, int item_id)
 	sd->catch_target_class = pet_db[pet_id].class_;
 	intif_create_pet(sd->status.account_id, sd->status.char_id,
 	                 (short)pet_db[pet_id].class_,
-	                 (short)mob_db(pet_db[pet_id].class_)->lv,
+					 (short)mob->db(pet_db[pet_id].class_)->lv,
 	                 (short)pet_db[pet_id].EggID, 0,
 	                 (short)pet_db[pet_id].intimate,
 	                 100, 0, 1, pet_db[pet_id].jname);
@@ -361,7 +361,7 @@ int pet_data_init(struct map_session_data *sd, struct s_pet *pet)
 
 	pd->msd = sd;
 	pd->petDB = &pet_db[i];
-	pd->db = mob_db(pet->class_);
+	pd->db = mob->db(pet->class_);
 	memcpy(&pd->pet, pet, sizeof(struct s_pet));
 	status->set_viewdata(&pd->bl, pet->class_);
 	unit_dataset(&pd->bl);
@@ -540,7 +540,7 @@ int pet_catch_process2(struct map_session_data *sd, int target_id)
 		unit_remove_map(&md->bl,CLR_OUTSIGHT, ALC_MARK);
 		status_kill(&md->bl);
 		clif_pet_roulette(sd,1);
-		intif_create_pet(sd->status.account_id,sd->status.char_id,pet_db[i].class_,mob_db(pet_db[i].class_)->lv,
+		intif_create_pet(sd->status.account_id, sd->status.char_id, pet_db[i].class_, mob->db(pet_db[i].class_)->lv,
 		                 pet_db[i].EggID,0,pet_db[i].intimate,100,0,1,pet_db[i].jname);
 	} else {
 		clif_pet_roulette(sd,0);
@@ -1242,7 +1242,7 @@ int read_petdb()
 		if((nameid = atoi(str[0])) <= 0)
 			continue;
 
-		if(!mobdb_checkid(nameid)) {
+		if(!mob->db_checkid(nameid)) {
 			ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
 			continue;
 		}

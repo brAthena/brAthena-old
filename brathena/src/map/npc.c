@@ -3335,10 +3335,10 @@ void npc_parse_mob2(struct spawn_data *mobspawn)
 	int i;
 
 	for(i = mobspawn->active; i < mobspawn->num; ++i) {
-		struct mob_data *md = mob_spawn_dataset(mobspawn);
+		struct mob_data *md = mob->spawn_dataset(mobspawn);
 		md->spawn = mobspawn;
 		md->spawn->active++;
-		mob_spawn(md);
+		mob->spawn(md);
 	}
 }
 
@@ -3390,7 +3390,7 @@ const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const char *st
 	}
 
 	// check monster ID if exists!
-	if((class_ = mobdb_searchname(mobname2)) == 0 && (class_ = mobdb_checkid(atoi(mobname2))) == 0) {
+	if((class_ = mob->db_searchname(mobname2)) == 0 && (class_ = mob->db_checkid(atoi(mobname2))) == 0) {
 		ShowError("npc_parse_mob: Unknown mob %s in file '%s', line '%d'.\n", mobname2, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
@@ -3454,13 +3454,13 @@ const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const char *st
 		safestrncpy(mobspawn.name, mobname, sizeof(mobspawn.name));
 
 	//Verify dataset.
-	if(!mob_parse_dataset(&mobspawn)) {
+	if (!mob->parse_dataset(&mobspawn)) {
 		ShowError("npc_parse_mob: Invalid dataset for monster ID %d in file '%s', line '%d'.\n", class_, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
 	//Update mob spawn lookup database
-	db = mob_db(class_);
+	db = mob->db(class_);
 	for(i = 0; i < ARRAYLENGTH(db->spawn); ++i) {
 		if(map_id2index(mobspawn.m) == db->spawn[i].mapindex) {
 			//Update total

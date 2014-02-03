@@ -1292,7 +1292,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 
 	switch(target->type) {
 		case BL_PC:  pc_damage((TBL_PC *)target,src,hp,sp); break;
-		case BL_MOB: mob_damage((TBL_MOB *)target, src, hp); break;
+		case BL_MOB: mob->damage((TBL_MOB *)target, src, hp); break;
 		case BL_HOM: homun->damaged((TBL_HOM *)target); break;
 		case BL_MER: mercenary_heal((TBL_MER *)target,hp,sp); break;
 		case BL_ELEM: elemental_heal((TBL_ELEM *)target,hp,sp); break;
@@ -1317,7 +1317,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 	//&4: Also delete object from memory.
 	switch(target->type) {
 		case BL_PC:  flag = pc_dead((TBL_PC *)target,src); break;
-		case BL_MOB: flag = mob_dead((TBL_MOB *)target, src, flag&4?3:0); break;
+		case BL_MOB: flag = mob->dead((TBL_MOB *)target, src, flag & 4 ? 3 : 0); break;
 		case BL_HOM: flag = homun->dead((TBL_HOM *)target); break;
 		case BL_MER: flag = mercenary_dead((TBL_MER *)target); break;
 		case BL_ELEM: flag = elemental_dead((TBL_ELEM *)target); break;
@@ -1467,7 +1467,7 @@ int status_heal(struct block_list *bl,int64 in_hp,int64 in_sp, int flag) {
 	// send hp update to client
 	switch(bl->type) {
 		case BL_PC:  pc_heal((TBL_PC *)bl,hp,sp,flag&2?1:0); break;
-		case BL_MOB: mob_heal((TBL_MOB *)bl,hp); break;
+		case BL_MOB: mob->heal((TBL_MOB *)bl, hp); break;
 		case BL_HOM: homun->healed((TBL_HOM *)bl); break;
 		case BL_MER: mercenary_heal((TBL_MER *)bl,hp,sp); break;
 		case BL_ELEM: elemental_heal((TBL_ELEM *)bl,hp,sp); break;
@@ -1564,7 +1564,7 @@ int status_revive(struct block_list *bl, unsigned char per_hp, unsigned char per
 
 	switch(bl->type) {
 		case BL_PC:  pc_revive((TBL_PC *)bl, hp, sp); break;
-		case BL_MOB: mob_revive((TBL_MOB *)bl, hp); break;
+		case BL_MOB: mob->revive((TBL_MOB *)bl, hp); break;
 		case BL_HOM: homun->revive((TBL_HOM *)bl, hp, sp); break;
 	}
 
@@ -5910,7 +5910,7 @@ struct status_data *status_get_status_data(struct block_list *bl) {
 		case BL_HOM: return &((TBL_HOM *)bl)->battle_status;
 		case BL_MER: return &((TBL_MER *)bl)->battle_status;
 		case BL_ELEM: return &((TBL_ELEM *)bl)->battle_status;
-		case BL_NPC:  return ((mobdb_checkid(((TBL_NPC *)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : &status->dummy);
+		case BL_NPC:  return ((mob->db_checkid(((TBL_NPC *)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : &status->dummy);
 		default:
 			return &status->dummy;
 	}
@@ -5925,7 +5925,7 @@ struct status_data *status_get_base_status(struct block_list *bl) {
 		case BL_HOM: return &((TBL_HOM *)bl)->base_status;
 		case BL_MER: return &((TBL_MER *)bl)->base_status;
 		case BL_ELEM: return &((TBL_ELEM *)bl)->base_status;
-		case BL_NPC:  return ((mobdb_checkid(((TBL_NPC *)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : NULL);
+		case BL_NPC:  return ((mob->db_checkid(((TBL_NPC *)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : NULL);
 		default:
 			return NULL;
 	}
@@ -6118,8 +6118,8 @@ void status_set_viewdata(struct block_list *bl, int class_)
 {
 	struct view_data *vd;
 	nullpo_retv(bl);
-	if(mobdb_checkid(class_) || mob_is_clone(class_))
-		vd = mob_get_viewdata(class_);
+	if(mob->db_checkid(class_) || mob->is_clone(class_))
+		vd = mob->get_viewdata(class_);
 	else if(npcdb_checkid(class_) || (bl->type == BL_NPC && class_ == WARP_CLASS))
 		vd = npc->get_viewdata(class_);
 	else if(homdb_checkid(class_))
@@ -7648,8 +7648,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				diff = st->hp - (st->max_hp>>2);
 				if( val2 && bl->type == BL_MOB ) {
 				struct block_list* src = map_id2bl(val2);
-				if( src )
-				mob_log_damage((TBL_MOB*)bl,src,diff);
+				if(src)
+					mob->log_damage((TBL_MOB*)bl, src, diff);
 				}
 				status_zap(bl, diff, 0);
 				}
@@ -7907,7 +7907,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(val3 && bl->type == BL_MOB) {
 					struct block_list *src = map_id2bl(val3);
 					if(src)
-						mob_log_damage((TBL_MOB *)bl,src,st->hp - 1);
+						mob->log_damage((TBL_MOB *)bl, src, st->hp - 1);
 				}
 				status_zap(bl, st->hp-1, val2 ? 0 : st->sp);
 				return 1;
@@ -8805,7 +8805,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val4 = tick / tick_time;
 				break;
 			case SC_MONSTER_TRANSFORM:
-				if(!mobdb_checkid(val1))
+				if(!mob->db_checkid(val1))
 					val1 = 1002; // default poring
 				break;
 		default:
@@ -10249,7 +10249,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 					if(sce->val2 && bl->type == BL_MOB) {
 						struct block_list *src = map_id2bl(sce->val2);
 						if(src)
-							mob_log_damage((TBL_MOB *)bl,src,sce->val4);
+							mob->log_damage((TBL_MOB *)bl, src, sce->val4);
 					}
 					map_freeblock_lock();
 						status_zap(bl, sce->val4, 0);
@@ -10285,7 +10285,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 				int hp =  rnd()%600 + 200;
 				struct block_list* src = map_id2bl(sce->val2);
 				if(src && bl && bl->type == BL_MOB) {
-					mob_log_damage((TBL_MOB*)bl,src,sd||hp<st->hp?hp:st->hp-1);
+					mob->log_damage((TBL_MOB*)bl, src, sd || hp<st->hp ? hp : st->hp - 1);
 				}
 				map_freeblock_lock();
 				status_fix_damage(src, bl, sd||hp<st->hp?hp:st->hp-1, 1);

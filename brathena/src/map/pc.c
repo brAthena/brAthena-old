@@ -6919,7 +6919,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			case BL_MOB: {
 					struct mob_data *md=(struct mob_data *)src;
 					if(md->target_id==sd->bl.id)
-						mob_unlocktarget(md,tick);
+						mob->unlocktarget(md, tick);
 					if(battle_config.mobs_level_up && md->status.hp &&
 					   (unsigned int)md->level < pc_maxbaselv(sd) &&
 					   !md->guardian_data && !md->special_state.ai// Guardians/summons should not level. [Skotlex]

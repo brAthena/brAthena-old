@@ -8772,8 +8772,9 @@ void clif_hate_info(struct map_session_data *sd, unsigned char hate_level,int cl
 {
 	if(pcdb_checkid(class_)) {
 		clif_starskill(sd, job_name(class_), class_, hate_level, type ? 10 : 11);
-	} else if(mobdb_checkid(class_)) {
-		clif_starskill(sd, mob_db(class_)->jname, class_, hate_level, type ? 10 : 11);
+	}
+	else if (mob->db_checkid(class_)) {
+		clif_starskill(sd, mob->db(class_)->jname, class_, hate_level, type ? 10 : 11);
 	} else {
 		ShowWarning("clif_hate_info: Received invalid class %d for this packet (char_id=%d, hate_level=%u, type=%u).\n", class_, sd->status.char_id, (unsigned int)hate_level, (unsigned int)type);
 	}
@@ -8784,7 +8785,7 @@ void clif_hate_info(struct map_session_data *sd, unsigned char hate_level,int cl
  *------------------------------------------*/
 void clif_mission_info(struct map_session_data *sd, int mob_id, unsigned char progress)
 {
-	clif_starskill(sd, mob_db(mob_id)->jname, mob_id, progress, 20);
+	clif_starskill(sd, mob->db(mob_id)->jname, mob_id, progress, 20);
 }
 
 /*==========================================
@@ -13606,7 +13607,7 @@ void clif_parse_GM_Monster_Item(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if((count=mobdb_searchname_array(mob_array, 10, item_monster_name, 1)) > 0) {
+	if((count = mob->db_searchname_array(mob_array, 10, item_monster_name, 1)) > 0) {
 		for(i = 0; i < count; i++) {
 			if(!mob_array[i])
 				continue;
@@ -15816,7 +15817,7 @@ void clif_quest_send_mission(struct map_session_data *sd)
 		for(j = 0 ; j < qi->num_objectives; j++) {
 			WFIFOL(fd, i*104+22+j*30) = qi->mob[j];
 			WFIFOW(fd, i*104+26+j*30) = sd->quest_log[i].count[j];
-			monster = mob_db(qi->mob[j]);
+			monster = mob->db(qi->mob[j]);
 			memcpy(WFIFOP(fd, i*104+28+j*30), monster->jname, NAME_LENGTH);
 		}
 	}
@@ -15844,7 +15845,7 @@ void clif_quest_add(struct map_session_data *sd, struct quest *qd) {
 	for(i = 0; i < qi->num_objectives; i++) {
 		WFIFOL(fd, i*30+17) = qi->mob[i];
 		WFIFOW(fd, i*30+21) = qd->count[i];
-		monster = mob_db(qi->mob[i]);
+		monster = mob->db(qi->mob[i]);
 		memcpy(WFIFOP(fd, i*30+23), monster->jname, NAME_LENGTH);
 	}
 

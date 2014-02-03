@@ -2571,7 +2571,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 	if(!damage)
 		return 0;
-	if(battle_config.ksprotection && mob_ksprotected(src, bl))
+	if(battle_config.ksprotection && mob->ksprotected(src, bl))
 		return 0;
 	if(map_getcell(bl->m, bl->x, bl->y, CELL_CHKMAELSTROM) && skill_get_type(skill_id) != BF_MISC 
 			&& skill_get_casttype(skill_id) == CAST_GROUND)
@@ -3004,9 +3004,9 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 
 	if(bl->type == BL_MOB && !status->isdead(bl) && src != bl) {
 		if(damage > 0)
-			mobskill_event((TBL_MOB *)bl,src,gettick(),flag);
+			mob->skill_event((TBL_MOB *)bl, src, gettick(), flag);
 		if(skill_id)
-			mobskill_event((TBL_MOB *)bl,src,gettick(),MSC_SKILLUSED|(skill_id<<16));
+			mob->skill_event((TBL_MOB *)bl, src, gettick(), MSC_SKILLUSED | (skill_id << 16));
 	}
 	if(sd) {
 		if(pc_ismadogear(sd) && rnd()%100 < 50) {

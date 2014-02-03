@@ -5237,7 +5237,7 @@ void do_final(void)
 	do_final_party();
 	do_final_pc();
 	do_final_pet();
-	do_final_mob();
+	mob->final();
 	atcommand->final_msg();
 	do_final_skill();
 	status->final();
@@ -5475,6 +5475,7 @@ int do_init(int argc, char *argv[])
 	storage_defaults();
 	mapindex_defaults();
 	mapreg_defaults();
+	mob_defaults();
 	npc_defaults();
 	vending_defaults();
 #ifdef PCRE_SUPPORT
@@ -5566,7 +5567,7 @@ int do_init(int argc, char *argv[])
 	do_init_itemdb();
 	do_init_skill();
 	read_map_zone_db();/* read after item and skill initalization */
-	do_init_mob();
+	mob->init();
 	do_init_pc();
 	status->init();
 	do_init_party();
