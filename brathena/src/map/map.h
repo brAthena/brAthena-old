@@ -953,26 +953,6 @@ typedef struct elemental_data	TBL_ELEM;
 	( ((bl) == (struct block_list*)NULL || (bl)->type != (type_)) ? (T ## type_ *)NULL : (T ## type_ *)(bl) )
 
 
-
-#ifdef BETA_THREAD_TEST
-
-extern char default_codepage[32];
-extern int map_server_port;
-extern char map_server_ip[32];
-extern char map_server_id[32];
-extern char map_server_pw[32];
-extern char map_server_db[32];
-
-extern char log_db_ip[32];
-extern int log_db_port;
-extern char log_db_id[32];
-extern char log_db_pw[32];
-extern char log_db_db[32];
-
-
-
-#endif
-
 char interreg_db[32];
 char autotrade_merchants_db[32];
 char autotrade_data_db[32];
@@ -985,10 +965,8 @@ extern char db_db2name[32];
 
 char default_codepage[32];
 
-#include "../common/sql.h"
 
 extern Sql* mmysql_handle;
-extern Sql* logmysql_handle;
 extern Sql* dbmysql_handle;
 
 void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char* string[], int columns, int current));

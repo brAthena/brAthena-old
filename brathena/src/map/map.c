@@ -3747,13 +3747,10 @@ int map_sql_close(void)
 	mmysql_handle = NULL;
 	Sql_Free(dbmysql_handle);
 	dbmysql_handle = NULL;
-#ifndef BETA_THREAD_TEST
+
 	if(logs->config.sql_logs) {
-		ShowStatus("Fechada conex%co com banco de dados de logs....\n", 198);
-		Sql_Free(logmysql_handle);
-		logmysql_handle = NULL;
+		logs->sql_final();
 	}
-#endif
 	return 0;
 }
 
