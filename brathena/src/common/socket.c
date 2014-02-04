@@ -1234,6 +1234,8 @@ void socket_final(void)
 	aFree(session[0]->rdata);
 	aFree(session[0]->wdata);
 	aFree(session[0]);
+
+	aFree(session);
 }
 
 /// Closes a socket.
