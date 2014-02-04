@@ -548,6 +548,8 @@ struct itemdb_interface {
 	/* */
 	struct item_data* (*name2id) (const char *str);
 	void (*package_item) (struct map_session_data *sd, struct item_package *package);
+	void (*read) (void);
+	void (*clear) (bool total);
 	struct item_combo * (*id2combo) (unsigned short id);
 };
 

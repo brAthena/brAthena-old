@@ -985,7 +985,7 @@ void itemdb_read_packages(void) {
 		prev[i] = NULL;
 	}
 
-	for(i = 0; i < config_setting_length(item_packages_conf.root); i++) {
+	for(i = 0; i < libconfig->setting_length(item_packages_conf.root); i++) {
 		rgroups[i] = aMalloc( rgroup[i] * sizeof(unsigned int));
 		for(c = 0; c < rgroup[i]; c++) {
 			rgroups[i][c] = 0;
@@ -1000,7 +1000,7 @@ void itemdb_read_packages(void) {
 			const char *name;
 			int rval = 0;
 			if((t = libconfig->setting_get_member(it, "name"))
-			&& (name = config_setting_get_string(t))
+			&& (name = libconfig->setting_get_string(t))
 			&& (strstr(name,"random") != NULL)) {
 				rval = atoi(name+6);
 				rgroups[i - 1][rval - 1] += 1;
@@ -1008,8 +1008,8 @@ void itemdb_read_packages(void) {
 	   }
 	}
 
-	CREATE(itemdb->packages, struct item_package, config_setting_length(item_packages_conf.root));
-	itemdb->package_count = (unsigned short)config_setting_length(item_packages_conf.root);
+	CREATE(itemdb->packages, struct item_package, libconfig->setting_length(item_packages_conf.root));
+	itemdb->package_count = (unsigned short)libconfig->setting_length(item_packages_conf.root);
 	
 	/* write */
 	i = 0;
@@ -1754,15 +1754,10 @@ static int itemdb_final_sub(DBKey key, DBData *data, va_list ap)
 
 	return 0;
 }
+void itemdb_clear(bool total) {
 
-void itemdb_reload(void)
-{
-	struct s_mapiterator *iter;
-	struct map_session_data *sd;
+	int i;
 
-	int i,d,k;
-
-	// clear the previous itemdb data
 	for(i = 0; i < ARRAYLENGTH(itemdb_array); ++i)
 		if(itemdb_array[i])
 			destroy_item_data(itemdb_array[i], 1);
@@ -1793,14 +1788,26 @@ void itemdb_reload(void)
 	itemdb->combos = NULL;
 	itemdb->combo_count = 0;
 
+	if(total)
+		return;
+
 	itemdb_other->clear(itemdb_other, itemdb_final_sub);
 
 	memset(itemdb_array, 0, sizeof(itemdb_array));
 
 	db_clear(itemdb->names);
 
+}
+void itemdb_reload(void) {
+	struct s_mapiterator* iter;
+	struct map_session_data* sd;
+
+	int i,d,k;
+
+	itemdb->clear(false);
+
 	// read new data
-	itemdb_read();
+	itemdb->read();
 
 	//Epoque's awesome @reloaditemdb fix - thanks! [Ind]
 	//- Fixes the need of a @reloadmobdb after a @reloaditemdb to re-link monster drop data
@@ -1859,24 +1866,7 @@ void itemdb_name_constants(void) {
 	dbi_destroy(iter);	
 }
 void do_final_itemdb(void) {
-	int i;
-
-	for(i = 0; i < ARRAYLENGTH(itemdb_array); ++i)
-		if(itemdb_array[i])
-			destroy_item_data(itemdb_array[i], 1);
-
-	for(i = 0; i < itemdb->package_count; i++) {
-		int c;
-		for(c = 0; c < itemdb->packages[i].random_qty; c++)
-			aFree(itemdb->packages[i].random_groups[c].random_list);
-		if(itemdb->packages[i].random_groups)
-			aFree(itemdb->packages[i].random_groups);
-		if(itemdb->packages[i].must_items)
-			aFree(itemdb->packages[i].must_items);
-	}
-
-	if(itemdb->packages)
-		aFree(itemdb->packages);
+	itemdb->clear(true);
 
 	itemdb_other->destroy(itemdb_other, itemdb_final_sub);
 	destroy_item_data(&dummy_item, 0);
@@ -1889,7 +1879,7 @@ void do_init_itemdb(void)
 	itemdb_other = idb_alloc(DB_OPT_BASE);
 	itemdb->names = strdb_alloc(DB_OPT_BASE,ITEM_NAME_LENGTH);
 	create_dummy_data(); //Dummy data item.
-	itemdb_read();
+	itemdb->read();
 	clif_cashshop_db();
 
 }
@@ -1914,5 +1904,7 @@ void itemdb_defaults(void) {
 	/* */
 	itemdb->name2id = itemdb_name2id;
 	itemdb->package_item = itemdb_package_item;
+	itemdb->read = itemdb_read;
+	itemdb->clear = itemdb_clear;
 	itemdb->id2combo = itemdb_id2combo;
 }
