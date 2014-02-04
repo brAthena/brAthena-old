@@ -371,17 +371,17 @@ void log_sql_init(void) {
 	// log db connection
 	logs->mysql_handle = Sql_Malloc();
 
-	ShowInfo(""CL_WHITE"[SQL]"CL_RESET": Connecting to the Log Database "CL_WHITE"%s"CL_RESET" At "CL_WHITE"%s"CL_RESET"...\n",logs->db_name,logs->db_ip);
+	ShowInfo("Conectando com o banco de dados de logs "CL_WHITE"%s"CL_RESET" em "CL_WHITE"%s"CL_RESET"...\n",logs->db_name,logs->db_ip);
 	if(SQL_ERROR == Sql_Connect(logs->mysql_handle, logs->db_id, logs->db_pw, logs->db_ip, logs->db_port, logs->db_name) )
 		exit(EXIT_FAILURE);
-	ShowStatus(""CL_WHITE"[SQL]"CL_RESET": Successfully '"CL_GREEN"connected"CL_RESET"' to Database '"CL_WHITE"%s"CL_RESET"'.\n", logs->db_name);
+	ShowStatus("Conex%co efetuada com sucesso no banco de dados '"CL_WHITE"%s"CL_RESET"'.\n", 198, logs->db_name);
 
 	if(strlen(default_codepage) > 0)
 		if (SQL_ERROR == Sql_SetEncoding(logs->mysql_handle, default_codepage))
 			Sql_ShowDebug(logs->mysql_handle);
 }
 void log_sql_final(void) {
-	ShowStatus("Close Log DB Connection....\n");
+	ShowStatus("Conex%co com database Log fechada....\n", 198);
 	Sql_Free(logs->mysql_handle);
 	logs->mysql_handle = NULL;
 }

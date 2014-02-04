@@ -245,7 +245,7 @@ int pc_addspiritball(struct map_session_data *sd,int interval,int max)
 	sd->spirit_timer[i] = tid;
 	sd->spiritball++;
 	if((sd->class_&MAPID_THIRDMASK) == MAPID_ROYAL_GUARD)
-		clif_millenniumshield(sd,sd->spiritball);
+		clif_millenniumshield(&sd->bl,sd->spiritball);
 	else
 		clif_spiritball(&sd->bl);
 
@@ -284,7 +284,7 @@ int pc_delspiritball(struct map_session_data *sd,int count,int type)
 
 	if(!type) {
 		if((sd->class_&MAPID_THIRDMASK) == MAPID_ROYAL_GUARD)
-			clif_millenniumshield(sd,sd->spiritball);
+			clif_millenniumshield(&sd->bl,sd->spiritball);
 		else
 			clif_spiritball(&sd->bl);
 	}

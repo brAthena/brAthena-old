@@ -942,8 +942,7 @@ bool sv_readdb(const char *directory, const char *filename, char delim, int minc
 	snprintf(path, sizeof(path), "%s/%s", directory, filename);
 
 	// open file
-	fp = fopen(path, "r");
-	if(fp == NULL) {
+	if((fp = fopen(path, "r")) == NULL) {
 		ShowError(read_message("Source.common.sv_readdb"), path);
 		return false;
 	}
@@ -956,8 +955,7 @@ bool sv_readdb(const char *directory, const char *filename, char delim, int minc
 	while(fgets(line, sizeof(line), fp)) {
 		lines++;
 
-		if((match = strstr(line, "//")) != NULL) {
-			// strip comments
+		if((match = strstr(line, "//")) != NULL) { // strip comments
 			match[0] = 0;
 		}
 
@@ -1016,7 +1014,7 @@ StringBuf *StringBuf_Malloc(void)
 void StringBuf_Init(StringBuf *self)
 {
 	self->max_ = 1024;
-	self->ptr_ = self->buf_ = (char *)aMalloc(self->max_ + 1);
+	self->ptr_ = self->buf_ = (char*)aMalloc(self->max_ + 1);
 }
 
 /// Appends the result of printf to the StringBuf

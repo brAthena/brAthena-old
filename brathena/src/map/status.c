@@ -9796,7 +9796,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 		 * 3rd Stuff
 		 **/
 		case SC_MILLENNIUMSHIELD:
-			clif_millenniumshield(sd,0);
+			clif_millenniumshield(bl,0);
 			break;
 		case SC_HALLUCINATIONWALK:
 			sc_start(bl,SC_HALLUCINATIONWALK_POSTDELAY,100,sce->val1,skill_get_time2(GC_HALLUCINATIONWALK,sce->val1));
