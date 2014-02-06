@@ -24,7 +24,7 @@
 //   \________________________________________________________/
 
 // -------------- Criador de Pecopecos (para Cavaleiros) --------------
-prontera,55,350,5	script	Criador de Pecopecos#cav 105,{
+prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
 	if (Upper >= 0 && Upper <= 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
 
 	mes "[Criador de Pecopecos]";
