@@ -12643,7 +12643,7 @@ REPLACE INTO `skill_db` VALUES(132,'0',0,0,'0','0','0',5,'0','no',0,'0','0','wea
 REPLACE INTO `skill_db` VALUES(133,'0',0,0,'0','0','0',5,'0','no',0,'0','0','weapon','0','AS_LEFT','Perícia com Mão Esquerda');
 REPLACE INTO `skill_db` VALUES(134,'0',0,0,'0','0','0',10,'0','no',0,'0','0','weapon','0','AS_KATAR','Perícia com Katar');
 REPLACE INTO `skill_db` VALUES(135,'0',6,4,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','AS_CLOAKING','Furtividade');
-REPLACE INTO `skill_db` VALUES(136,'1',8,1,'-1','0','0',10,'8','no',0,'0','0','weapon','0','AS_SONICBLOW','Lâminas Destruidoras');
+REPLACE INTO `skill_db` VALUES(136,'1',8,1,'-1','0','0',10,'-8','no',0,'0','0','weapon','0','AS_SONICBLOW','Lâminas Destruidoras');
 REPLACE INTO `skill_db` VALUES(137,'3:4:5:6:7',6,1,'-1','0x2','1',5,'1','no',0,'0','0','weapon','0','AS_GRIMTOOTH','Tocaia');
 REPLACE INTO `skill_db` VALUES(138,'1',6,16,'5','0x1','0',10,'1','no',0,'0x400','0','weapon','0','AS_ENCHANTPOISON','Envenenar Arma');
 REPLACE INTO `skill_db` VALUES(139,'0',6,4,'0','0','0',10,'1','no',0,'0','0','weapon','0','AS_POISONREACT','Refletir Veneno');
