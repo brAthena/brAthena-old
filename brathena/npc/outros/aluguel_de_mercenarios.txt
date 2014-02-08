@@ -34,15 +34,15 @@
 		if (.@npc$ == .@name$[.@i]) set .@type, .@i;
 	set .@faith_merc, mercenary_get_faith(getd(.@faith$[.@type]));
 	mes "[Locador de Mercenários]";
-	mes "Bem-vind"+(Sex?"o":"a")+" à";
-	mes "Guilda dos Mercenários "+.@npc$+"s.";
+	mes "Bem-vind"+(Sex?"o":"a")+" à Guilda";
+	mes "dos Mercenários "+.@npc$+"s.";
 	mes "Em que posso lhe ajudar?";
 	next;
 	switch(select("Contratar Mercenário:Fale sobre os Mercenários:Nada:Mercenários Nível 10")) {
 		case 1:
 			mes "[Locador de Mercenários]";
 			mes "Você deseja contratar um";
-			mes "Mercenário "+.@npc$+"?";
+			mes "Mercenário "+.@npc$;
 			mes "Qual nível de Mercenário";
 			mes "você gostaria de contratar?";
 			next;
@@ -217,13 +217,13 @@
 	}
 }
 prontera,41,337,5	duplicate(Locador de Mercenários#Espadachims)	Locador de Mercenários#Lanceiro	8W_SOLDIER
-pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachims)	Locador de Mercenários#Arqueiro	4_M_JOB_HUNTER,{}
-izlude,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2
-izlude_a,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2
-izlude_b,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2
-izlude_c,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2
-izlude_d,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2,{}
-izlude,47,139,5	duplicatp(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim	4_M_JOB_KNIGHT2,{}
+pay_arche,99,167,4	duplicate(Locador de Mercenários#Espadachims)	Locador de Mercenários#Arqueiro	4_M_JOB_HUNTER
+izlude,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários1	4_M_JOB_KNIGHT2
+izlude_a,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários2	4_M_JOB_KNIGHT2
+izlude_b,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários3	4_M_JOB_KNIGHT2
+izlude_c,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários4	4_M_JOB_KNIGHT2
+izlude_d,47,170,4	duplicatr(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários5	4_M_JOB_KNIGHT2,{}
+izlude,47,139,5	duplicatp(Locador de Mercenários#Espadachims)	Locador de Mercenários#Espadachim::Locador Mercenários6	4_M_JOB_KNIGHT2,{}
 
 // NPCs de Utilidades para Mercenários
 //============================================================
@@ -300,10 +300,10 @@ izlude,47,139,5	duplicatp(Locador de Mercenários#Espadachims)	Locador de Mercená
 	close;
 }
 prontera,30,337,4	duplicate(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Lanceiro	8_F_GIRL
-pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Arqueiro	4_F_CAPEGIRL,{}
-izlude,55,170,4	duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA
-izlude_a,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA
-izlude_b,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA
-izlude_c,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA
-izlude_d,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA,{}
-izlude,56,139,4	duplicatp(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim	4_F_HUGRANMA,{}
+pay_arche,102,167,5	duplicate(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Arqueiro	4_F_CAPEGIRL
+izlude,55,170,4	duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim1	4_F_HUGRANMA
+izlude_a,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim2	4_F_HUGRANMA
+izlude_b,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim3	4_F_HUGRANMA
+izlude_c,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim4	4_F_HUGRANMA
+izlude_d,55,170,4  duplicatr(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim5	4_F_HUGRANMA,{}
+izlude,56,139,4	duplicatp(Artigos para Mercenários#Espadachims)	Artigos para Mercenários#Espadachim6	4_F_HUGRANMA,{}

@@ -1278,10 +1278,17 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 	st->sp-= sp;
 
 	if(sc && hp && st->hp) {
+#if VERSION == -1
+		if(pc_checkskill(BL_CAST(BL_PC,target), SM_AUTOBERSERK) > 0 &&
+			(!sc->data[SC_PROVOKE] || !sc->data[SC_PROVOKE]->val2) &&
+			st->hp < st->max_hp>>2)
+			sc_start4(target,SC_PROVOKE,100,10,1,0,0,0);
+#else
 		if (sc->data[SC_AUTOBERSERK] &&
 			(!sc->data[SC_PROVOKE] || !sc->data[SC_PROVOKE]->val2) &&
 			st->hp < st->max_hp>>2)
 			sc_start4(target,SC_PROVOKE,100,10,1,0,0,0);
+#endif
 		if(sc->data[SC_BERSERK] && st->hp <= 100)
 			status_change_end(target, SC_BERSERK, INVALID_TIMER);
 		if(sc->data[SC_RAISINGDRAGON] && st->hp <= 1000)
@@ -1457,7 +1464,11 @@ int status_heal(struct block_list *bl,int64 in_hp,int64 in_sp, int flag) {
 	st->sp+= sp;
 
 	if( hp && sc
+#if VERSION == -1
+		&& pc_checkskill(BL_CAST(BL_PC,bl), SM_AUTOBERSERK) > 0
+#else
 	    && sc->data[SC_AUTOBERSERK]
+#endif
 	    && sc->data[SC_PROVOKE]
 	    && sc->data[SC_PROVOKE]->val2==1
 	    && st->hp>=st->max_hp>>2
@@ -11442,6 +11453,8 @@ int status_natural_heal(struct block_list* bl, va_list args) {
 
 	if(flag&RGN_SHP) {
 		//Skill HP regen
+		if( pc_checkskill(sd, SM_RECOVERY) && (vd = status_get_viewdata(bl)) && vd->dead_sit == 2)
+			sregen->rate.hp = 2;
 		sregen->tick.hp += status->natural_heal_diff_tick * sregen->rate.hp;
 
 		while(sregen->tick.hp >= (unsigned int)battle_config.natural_heal_skill_interval) {
