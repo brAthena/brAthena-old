@@ -145,8 +145,7 @@ payon,151,127,0	warp#dv	payonwarp028	2,2,payon_in01,56,53
 payon_in01,56,50,0	warp#dv	payonwarp029	2,2,payon,151,124
 
 // -- Meio do Castelo --
-payon,0,0,0	warp#dv	payonwarp030	4,1,payon_in03,98,117
-payon,155,248,0	duplicata(payonwarp030)	payonwarp030#1
+payon,155,248,0	warp#dv	payonwarp030	4,1,payon_in03,98,117
 payon_in03,98,114,0	warp#dv	payonwarp031	5,1,payon,155,245
 payon_in03,90,124,0	warp#dv	payonwarp032	2,2,payon_in03,80,124
 payon_in03,83,124,0	warp#dv	payonwarp033	2,2,payon_in03,93,124
