@@ -450,9 +450,6 @@ struct str_data_struct {
 	int next;
 };
 
-#ifdef BETA_THREAD_TEST
-void queryThread_log(char *entry, int length);
-#endif
 struct script_label_entry {
 	int key,pos;
 };
@@ -682,7 +679,6 @@ struct script_interface {
 	int (*playbgm_foreachpc_sub) (struct map_session_data *sd, va_list args);
 	int (*soundeffect_sub) (struct block_list *bl, va_list ap);
 	int (*buildin_query_sql_sub) (struct script_state *st, Sql *handle);
-	int (*axtoi) (const char *hexStg);
 	int (*buildin_instance_warpall_sub) (struct block_list *bl, va_list ap);
 	int (*buildin_mobuseskill_sub) (struct block_list *bl, va_list ap);
 	int (*cleanfloor_sub) (struct block_list *bl, va_list ap);
