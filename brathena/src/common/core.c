@@ -365,6 +365,11 @@ int main(int argc, char **argv)
 #endif
 
 	timer_init();
+
+	/* timer first */
+	rnd_init();
+	srand((unsigned int)gettick());
+
 	HCache->init();
 	sockt->init();
 

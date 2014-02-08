@@ -5482,6 +5482,32 @@ static bool map_arg_next_value(const char *option, int i, int argc)
 
 	return true;
 }
+
+void map_load_defaults(void) {
+	atcommand_defaults();
+	battleground_defaults();
+	clif_defaults();
+	guild_defaults();
+	gstorage_defaults();
+	homunculus_defaults();
+	instance_defaults();
+	itemdb_defaults();
+	log_defaults();
+	mapindex_defaults();
+	mapreg_defaults();
+	mob_defaults();
+#ifdef PCRE_SUPPORT
+	npc_chat_defaults();
+#endif
+	npc_defaults();
+	pc_groups_defaults();
+	quest_defaults();
+	script_defaults();
+	status_defaults();
+	storage_defaults();
+	vending_defaults();
+}
+
 int do_init(int argc, char *argv[])
 {
 	int i;
@@ -5489,6 +5515,8 @@ int do_init(int argc, char *argv[])
 #ifdef GCOLLECT
 	GC_enable_incremental();
 #endif
+
+	map_load_defaults();
 
 	INTER_CONF_NAME="conf/inter-server.conf";
 	LOG_CONF_NAME="conf/logs.conf";
@@ -5499,7 +5527,6 @@ int do_init(int argc, char *argv[])
 	MSG_CONF_NAME = "conf/messages.conf";
 	GRF_PATH_FILENAME = "conf/grf-files.conf";
 
-	rnd_init();
 
 	for(i = 1; i < argc ; i++) {
 		const char *arg = argv[i];
@@ -5564,29 +5591,6 @@ int do_init(int argc, char *argv[])
 			}
 	}
 	memset(&index2mapid, -1, sizeof(index2mapid));
-
-	atcommand_defaults();
-	battleground_defaults();
-	clif_defaults();
-	instance_defaults();
-	guild_defaults();
-	gstorage_defaults();
-	homunculus_defaults();
-	itemdb_defaults();
-	log_defaults();
-	pc_groups_defaults();
-	script_defaults();
-	quest_defaults();
-	status_defaults();
-	storage_defaults();
-	mapindex_defaults();
-	mapreg_defaults();
-	mob_defaults();
-	npc_defaults();
-	vending_defaults();
-#ifdef PCRE_SUPPORT
-	npc_chat_defaults();
-#endif
 
 
 	map_config_read(MAP_CONF_NAME);
