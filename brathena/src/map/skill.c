@@ -3511,11 +3511,11 @@ static int skill_timerskill(int tid, int64 tick, int id, intptr_t data)
 				case WZ_METEOR:
 					if(skl->type >= 0) {
 						int x = skl->type>>16, y = skl->type&0xFFFF;
-						if(path_search_long(NULL, src->m, src->x, src->y, x, y, CELL_CHKWALL))
+						if(path->search_long(NULL, src->m, src->x, src->y, x, y, CELL_CHKWALL))
 							skill_unitsetting(src,skl->skill_id,skl->skill_lv,x,y,skl->flag);
-						if(path_search_long(NULL, src->m, src->x, src->y, skl->x, skl->y, CELL_CHKWALL))
+						if(path->search_long(NULL, src->m, src->x, src->y, skl->x, skl->y, CELL_CHKWALL))
 							clif_skill_poseffect(src,skl->skill_id,skl->skill_lv,skl->x,skl->y,tick);
-					} else if(path_search_long(NULL, src->m, src->x, src->y, skl->x, skl->y, CELL_CHKWALL))
+					} else if(path->search_long(NULL, src->m, src->x, src->y, skl->x, skl->y, CELL_CHKWALL))
 						skill_unitsetting(src,skl->skill_id,skl->skill_lv,skl->x,skl->y,skl->flag);
 					break;
 				case GN_CRAZYWEED_ATK: {
@@ -3845,7 +3845,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			break;
 
 		case KN_CHARGEATK: {
-				bool path = path_search_long(NULL, src->m, src->x, src->y, bl->x, bl->y,CELL_CHKWALL);
+				bool path_exists = path->search_long(NULL, src->m, src->x, src->y, bl->x, bl->y, CELL_CHKWALL);
 				unsigned int dist = distance_bl(src, bl);
 				uint8 dir = map_calc_dir(bl, src->x, src->y);
 
@@ -3854,7 +3854,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					clif_slide(src, bl->x, bl->y);
 
 				// cause damage and knockback if the path to target was a straight one
-				if(path) {
+				if (path_exists) {
 					skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, dist);
 					skill_blown(src, bl, dist, dir, 0);
 					//HACK: since knockback officially defaults to the left, the client also turns to the left... therefore,
@@ -4560,7 +4560,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			break;
 		case WL_FROSTMISTY:
 			// Doesn't deal damage through non-shootable walls.
-			if(path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKWALL))
+			if(path->search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKWALL))
 				skill_attack(BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag|SD_ANIMATION);
 			break;
 		case WL_HELLINFERNO:
@@ -4581,7 +4581,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 				break;
 			}
 		case RA_WUGBITE:
-			if(path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKNOREACH)) {
+			if(path->search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKNOREACH)) {
 				skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			} else if(sd && skill_id == RA_WUGBITE)   // Only RA_WUGBITE has the skill fail message.
 				clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
@@ -4779,7 +4779,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 				clif_skill_nodamage(src,battle_get_master(src),skill_id,skill_lv,1);
 				clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, 6);
 				if((esc && esc->data[type2]) || (tsc && tsc->data[type])) {
-					elemental_clean_single_effect(ele, skill_id);
+					elemental->clean_single_effect(ele, skill_id);
 				}
 				if(rnd()%100 < 50)
 					skill_attack(skill_get_type(skill_id),src,src,bl,skill_id,skill_lv,tick,flag);
@@ -4992,7 +4992,7 @@ int skill_castend_id(int tid, int64 tick, int id, intptr_t data)
 		}
 
 		if(ud->skill_id == RA_WUGSTRIKE) {
-			if( !path_search(NULL,src->m,src->x,src->y,target->x,target->y,1,CELL_CHKNOREACH))
+			if(!path->search(NULL,src->m,src->x,src->y,target->x,target->y,1,CELL_CHKNOREACH))
 				break;
 		}
 
@@ -5080,7 +5080,7 @@ int skill_castend_id(int tid, int64 tick, int id, intptr_t data)
 				skill_consume_requirement(sd,ud->skill_id,ud->skill_lv,1);
 		}
 #ifdef OFFICIAL_WALKPATH
-		if( !path_search_long(NULL, src->m, src->x, src->y, target->x, target->y, CELL_CHKWALL) )
+		if(!path->search_long(NULL, src->m, src->x, src->y, target->x, target->y, CELL_CHKWALL))
 			break;
 #endif
 		if( (src->type == BL_MER || src->type == BL_HOM) && !skill_check_condition_mercenary(src, ud->skill_id, ud->skill_lv, 1) )
@@ -8035,7 +8035,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case ALL_BUYING_STORE:
 			if(sd) {
 				// players only, skill allows 5 buying slots
-				clif_skill_nodamage(src, bl, skill_id, skill_lv, buyingstore_setup(sd, MAX_BUYINGSTORE_SLOTS));
+				clif_skill_nodamage(src, bl, skill_id, skill_lv, buyingstore->setup(sd, MAX_BUYINGSTORE_SLOTS));
 			}
 			break;
 		case RK_ENCHANTBLADE:
@@ -9233,10 +9233,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 				// Remove previous elemental fisrt.
 				if(sd->ed)
-					elemental_delete(sd->ed,0);
+					elemental->delete(sd->ed, 0);
 
 				// Summoning the new one.
-				if(!elemental_create(sd,elemental_class,skill_get_time(skill_id,skill_lv))) {
+				if(!elemental->create(sd,elemental_class,skill_get_time(skill_id,skill_lv))) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
 				}
@@ -9251,14 +9251,14 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(!sd->ed)    break;
 
 				if(skill_lv == 4) {  // At level 4 delete elementals.
-					elemental_delete(sd->ed, 0);
+					elemental->delete(sd->ed, 0);
 					break;
 				}
 				switch(skill_lv) {  // Select mode bassed on skill level used.
 					case 2: mode = EL_MODE_ASSIST; break;
 					case 3: mode = EL_MODE_AGGRESSIVE; break;
 				}
-				if(!elemental_change_mode(sd->ed,mode)) {
+				if(!elemental->change_mode(sd->ed,mode)) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					break;
 				}
@@ -9271,7 +9271,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				int duration = 3000;
 				if(!sd->ed)    break;
 				sd->skill_id_old = skill_id;
-				elemental_action(sd->ed, bl, tick);
+				elemental->action(sd->ed, bl, tick);
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 				switch(sd->ed->db->class_) {
 					case 2115:case 2124:
@@ -9308,7 +9308,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case SO_ELEMENTAL_SHIELD:
 			if(sd == NULL || !sd->ed)
 				break;
-			elemental_delete(sd->ed, 0);
+			elemental->delete(sd->ed, 0);
 			if(sd->status.party_id == 0 || flag&1)
 				skill_unitsetting(src,MG_SAFETYWALL,skill_lv,bl->x,bl->y,0);
 			else
@@ -9426,7 +9426,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					struct status_change *sc = status->get_sc(&ele->bl);
 
 					if((sc && sc->data[type2]) || (tsc && tsc->data[type])) {
-						elemental_clean_single_effect(ele, skill_id);
+						elemental->clean_single_effect(ele, skill_id);
 					} else {
 						clif_skill_nodamage(src,src,skill_id,skill_lv,1);
 						clif_skill_damage(src, (skill_id == EL_GUST || skill_id == EL_BLAST || skill_id == EL_WILD_STORM)?src:bl, tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, 6);
@@ -9456,7 +9456,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 					clif_skill_nodamage(src,src,skill_id,skill_lv,1);
 					if((sc && sc->data[type2]) || (tsc && tsc->data[type])) {
-						elemental_clean_single_effect(ele, skill_id);
+						elemental->clean_single_effect(ele, skill_id);
 					} else {
 						// This not heals at the end.
 						clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, 6);
@@ -10286,7 +10286,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 					tmpx = x - area + rnd()%(area * 2 + 1);
 					tmpy = y - area + rnd()%(area * 2 + 1);
 
-					if(i == 0 && path_search_long(NULL, src->m, src->x, src->y, tmpx, tmpy, CELL_CHKWALL))
+					if(i == 0 && path->search_long(NULL, src->m, src->x, src->y, tmpx, tmpy, CELL_CHKWALL))
 						clif_skill_poseffect(src,skill_id,skill_lv,tmpx,tmpy,tick);
 
 					if(i > 0)
@@ -10841,7 +10841,7 @@ static int skill_icewall_block(struct block_list *bl,va_list ap)
 	if(!md->target_id || (target = map_id2bl(md->target_id)) == NULL)
 		return 0;
 
-	if(path_search_long(NULL,bl->m,bl->x,bl->y,target->x,target->y,CELL_CHKICEWALL))
+	if(path->search_long(NULL,bl->m,bl->x,bl->y,target->x,target->y,CELL_CHKICEWALL))
 		return 0;
 
 	if(!check_distance_bl(bl, target, status_get_range(bl))) {
@@ -11253,7 +11253,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 
 		if(!group->state.song_dance && !map_getcell(src->m,ux,uy,CELL_CHKREACH))
 			continue; // don't place skill units on walls (except for songs/dances/encores)
-		if(battle_config.skill_wall_check && skill_get_unit_flag(skill_id)&UF_PATHCHECK && !path_search_long(NULL,src->m,ux,uy,x,y,CELL_CHKWALL))
+		if(battle_config.skill_wall_check && skill_get_unit_flag(skill_id)&UF_PATHCHECK && !path->search_long(NULL,src->m,ux,uy,x,y,CELL_CHKWALL))
 			continue; // no path between cell and center of casting.
 
 		switch(skill_id) {

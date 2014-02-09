@@ -329,10 +329,10 @@ bool chrif_save(struct map_session_data *sd, int flag)
 		intif_save_petdata(sd->status.account_id,&sd->pd->pet);
 	if(sd->hd && homun_alive(sd->hd))
 		homun->save(sd->hd);
-	if(sd->md && mercenary_get_lifetime(sd->md) > 0)
-		mercenary_save(sd->md);
-	if(sd->ed && elemental_get_lifetime(sd->ed) > 0)
-		elemental_save(sd->ed);
+	if(sd->md && mercenary->get_lifetime(sd->md) > 0)
+		mercenary->save(sd->md);
+	if(sd->ed && elemental->get_lifetime(sd->ed) > 0)
+		elemental->save(sd->ed);
 	if(sd->save_quest)
 		intif_quest_save(sd);
 

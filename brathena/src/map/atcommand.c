@@ -3550,14 +3550,14 @@ ACMD_FUNC(reload)
 		case 0: itemdb_reload(); break;
 		case 1: mob->reload(); read_petdb(); homun->reload();
 		#if VERSION == 1
-		reload_elementaldb();
+			elemental->reload_db();
 		#endif
 		break;
 		case 2: skill_reload(); homun->reload_skill(); pc_read_skill_tree();
 		#if VERSION == 1
-		reload_elemental_skilldb();
+			elemental->reload_skilldb();
 		#endif
-		read_mercenary_skilldb(); break;
+			mercenary->read_skilldb(); break;
 		case 3: status->readdb(); break;
 		case 4: pc_readdb(); break;
 		case 5: pcg->reload(); break;
@@ -6385,7 +6385,7 @@ ACMD_FUNC(trade)
 		return false;
 	}
 
-	trade_traderequest(sd, pl_sd);
+	trade->request(sd, pl_sd);
 	return true;
 }
 
@@ -6613,7 +6613,7 @@ ACMD_FUNC(misceffect)
  *------------------------------------------*/
 ACMD_FUNC(mail)
 {
-	mail_openmail(sd);
+	mail->openmail(sd);
 	return true;
 }
 
@@ -9402,7 +9402,7 @@ ACMD_FUNC(searchstore){
 			break;
 	}
 
-	searchstore_open(sd, 99, val);
+	searchstore->open(sd, 99, val);
 
 	return true;
 }

@@ -27,6 +27,8 @@
 #include <time.h>
 #include <string.h>
 
+struct mail_interface mail_s;
+
 void mail_clear(struct map_session_data *sd)
 {
 	sd->mail.nameid = 0;
@@ -67,8 +69,7 @@ int mail_removezeny(struct map_session_data *sd, short flag)
 	return 1;
 }
 
-unsigned char mail_setitem(struct map_session_data *sd, int idx, int amount)
-{
+unsigned char mail_setitem(struct map_session_data *sd, int idx, int amount) {
 
 	if(pc_istrading(sd))
 		return 1;
@@ -85,7 +86,7 @@ unsigned char mail_setitem(struct map_session_data *sd, int idx, int amount)
 		return 0;
 	} else { // Item Transfer
 		idx -= 2;
-		mail_removeitem(sd, 0);
+		mail->removeitem(sd, 0);
 
 		if(idx < 0 || idx >= MAX_INVENTORY)
 			return 1;
@@ -133,8 +134,8 @@ bool mail_setattachment(struct map_session_data *sd, struct mail_message *msg)
 	msg->zeny = sd->mail.zeny;
 
 	// Removes the attachment from sender
-	mail_removeitem(sd,1);
-	mail_removezeny(sd,1);
+	mail->removeitem(sd,1);
+	mail->removezeny(sd,1);
 
 	return true;
 }
@@ -190,4 +191,19 @@ bool mail_invalid_operation(struct map_session_data *sd)
 	}
 
 	return false;
+}
+
+void mail_defaults(void)
+{
+	mail = &mail_s;
+
+	mail->clear = mail_clear;
+	mail->removeitem = mail_removeitem;
+	mail->removezeny = mail_removezeny;
+	mail->setitem = mail_setitem;
+	mail->setattachment = mail_setattachment;
+	mail->getattachment = mail_getattachment;
+	mail->openmail = mail_openmail;
+	mail->deliveryfail = mail_deliveryfail;
+	mail->invalid_operation = mail_invalid_operation;
 }

@@ -41,8 +41,6 @@ struct s_mercenary_db {
 	} skill[MAX_MERCSKILL];
 };
 
-extern struct s_mercenary_db mercenary_db[MAX_MERCENARY_CLASS];
-
 struct mercenary_data {
 	struct block_list bl;
 	struct unit_data ud;
@@ -50,7 +48,6 @@ struct mercenary_data {
 	struct status_data base_status, battle_status;
 	struct status_change sc;
 	struct regen_data regen;
-
 	struct s_mercenary_db *db;
 	struct s_mercenary mercenary;
 	char blockskill[MAX_SKILL];
@@ -62,37 +59,54 @@ struct mercenary_data {
 	int64 masterteleport_timer;
 };
 
-bool merc_class(int class_);
-struct view_data *merc_get_viewdata(int class_);
+/*=====================================
+* Interface
+*-------------------------------------*/
+struct mercenary_interface {
 
-int merc_create(struct map_session_data *sd, int class_, unsigned int lifetime);
-int merc_data_received(struct s_mercenary *merc, bool flag);
-int mercenary_save(struct mercenary_data *md);
+	/* vars */
 
-void mercenary_heal(struct mercenary_data *md, int hp, int sp);
-int mercenary_dead(struct mercenary_data *md);
+	struct s_mercenary_db db[MAX_MERCENARY_CLASS];
 
-int merc_delete(struct mercenary_data *md, int reply);
-void merc_contract_stop(struct mercenary_data *md);
+	/* funcs */
 
-int mercenary_get_lifetime(struct mercenary_data *md);
-int mercenary_get_guild(struct mercenary_data *md);
-int mercenary_get_faith(struct mercenary_data *md);
-int mercenary_set_faith(struct mercenary_data *md, int value);
-int mercenary_get_calls(struct mercenary_data *md);
-int mercenary_set_calls(struct mercenary_data *md, int value);
-int mercenary_kills(struct mercenary_data *md);
+	void (*init) (void);
 
-int merc_contract_end(int tid, int64 tick, int id, intptr_t data);
+	bool (*class) (int class_);
+	struct view_data * (*get_viewdata) (int class_);
 
-int mercenary_checkskill(struct mercenary_data *md, uint16 skill_id);
+	int (*create) (struct map_session_data *sd, int class_, unsigned int lifetime);
+	int (*data_received) (struct s_mercenary *merc, bool flag);
+	int (*save) (struct mercenary_data *md);
 
-/**
- * atcommand.c required
- **/
-int read_mercenarydb(void);
-int read_mercenary_skilldb(void);
+	void (*heal) (struct mercenary_data *md, int hp, int sp);
+	int (*dead) (struct mercenary_data *md);
 
-int do_init_mercenary(void);
+	int (*delete) (struct mercenary_data *md, int reply);
+	void (*contract_stop) (struct mercenary_data *md);
+
+	int (*get_lifetime) (struct mercenary_data *md);
+	int (*get_guild) (struct mercenary_data *md);
+	int (*get_faith) (struct mercenary_data *md);
+	int (*set_faith) (struct mercenary_data *md, int value);
+	int (*get_calls) (struct mercenary_data *md);
+	int (*set_calls) (struct mercenary_data *md, int value);
+	int (*kills) (struct mercenary_data *md);
+
+	int (*checkskill) (struct mercenary_data *md, uint16 skill_id);
+	int (*read_db) (void);
+	int (*read_skilldb) (void);
+
+	int (*killbonus) (struct mercenary_data *md);
+	int (*search_index) (int class_);
+
+	int (*contract_end_timer) (int tid, int64 tick, int id, intptr_t data);
+	bool (*read_db_sub) (char* str[], int columns, int current);
+	bool (*read_skill_db_sub) (char* str[], int columns, int current);
+};
+
+struct mercenary_interface *mercenary;
+
+void mercenary_defaults(void);
 
 #endif /* _MERCENARY_H_ */

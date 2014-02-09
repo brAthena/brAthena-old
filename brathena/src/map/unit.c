@@ -101,7 +101,7 @@ int unit_walktoxy_sub(struct block_list *bl)
 	ud = unit_bl2ud(bl);
 	if(ud == NULL) return 0;
 
-	if(!path_search(&wpd,bl->m,bl->x,bl->y,ud->to_x,ud->to_y,ud->state.walk_easy,CELL_CHKNOPASS))
+	if(!path->search(&wpd,bl->m,bl->x,bl->y,ud->to_x,ud->to_y,ud->state.walk_easy,CELL_CHKNOPASS))
 		return 0;
 
 	memcpy(&ud->walkpath,&wpd,sizeof(wpd));
@@ -363,11 +363,11 @@ int unit_walktoxy(struct block_list *bl, short x, short y, int flag)
 
 	if(ud == NULL) return 0;
 
-	if (!path_search(&wpd, bl->m, bl->x, bl->y, x, y, flag&1, CELL_CHKNOPASS)) // Count walk path cells
+	if(!path->search(&wpd, bl->m, bl->x, bl->y, x, y, flag&1, CELL_CHKNOPASS)) // Count walk path cells
 		return 0;
 
 #ifdef OFFICIAL_WALKPATH
-	if( !path_search_long(NULL, bl->m, bl->x, bl->y, x, y, CELL_CHKNOPASS) // Check if there is an obstacle between
+	if(!path->search_long(NULL, bl->m, bl->x, bl->y, x, y, CELL_CHKNOPASS) // Check if there is an obstacle between
 		&& (wpd.path_len > (battle_config.max_walk_path/17)*14) // Official number of walkable cells is 14 if and only if there is an obstacle between. [malufett]
 		&& (bl->type != BL_NPC)) // If type is a NPC, please disregard.
 		return 0;
@@ -655,7 +655,7 @@ int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool
 	unit_stop_walking(bl,1);
 	unit_stop_attack(bl);
 
-	if(checkpath && (map_getcell(bl->m,dst_x,dst_y,CELL_CHKNOPASS) || !path_search(NULL,bl->m,bl->x,bl->y,dst_x,dst_y,easy,CELL_CHKNOREACH)))
+	if(checkpath && (map_getcell(bl->m,dst_x,dst_y,CELL_CHKNOPASS) || !path->search(NULL,bl->m,bl->x,bl->y,dst_x,dst_y,easy,CELL_CHKNOREACH)))
 		return 0; // unreachable
 
 	ud->to_x = dst_x;
@@ -689,7 +689,7 @@ int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool
 			// Check if pet needs to be teleported. [Skotlex]
 			int flag = 0;
 			struct block_list *pbl = &sd->pd->bl;
-			if(!checkpath && !path_search(NULL,pbl->m,pbl->x,pbl->y,dst_x,dst_y,0,CELL_CHKNOPASS))
+			if(!checkpath && !path->search(NULL,pbl->m,pbl->x,pbl->y,dst_x,dst_y,0,CELL_CHKNOPASS))
 				flag = 1;
 			else if(!check_distance_bl(&sd->bl, pbl, AREA_SIZE))  //Too far, teleport.
 				flag = 2;
@@ -743,7 +743,7 @@ int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag)
 		sd = BL_CAST(BL_PC, bl);
 		su = BL_CAST(BL_SKILL, bl);
 
-		result = path_blownpos(bl->m, bl->x, bl->y, dx, dy, count);
+		result = path->blownpos(bl->m, bl->x, bl->y, dx, dy, count);
 
 		nx = result>>16;
 		ny = result&0xffff;
@@ -787,7 +787,7 @@ int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag)
 			}
 		}
 
-		count = distance(dx, dy);
+		count = path->distance(dx, dy);
 	}
 
 	return count;  // return amount of knocked back cells
@@ -1714,7 +1714,7 @@ bool unit_can_reach_pos(struct block_list *bl,int x,int y, int easy)
 	if(bl->x == x && bl->y == y)  //Same place
 		return true;
 
-	return path_search(NULL,bl->m,bl->x,bl->y,x,y,easy,CELL_CHKNOREACH);
+	return path->search(NULL,bl->m,bl->x,bl->y,x,y,easy,CELL_CHKNOREACH);
 }
 
 /*==========================================
@@ -1752,7 +1752,7 @@ bool unit_can_reach_bl(struct block_list *bl,struct block_list *tbl, int range, 
 
 	if(x) *x = tbl->x-dx;
 	if(y) *y = tbl->y-dy;
-	return path_search(NULL,bl->m,bl->x,bl->y,tbl->x-dx,tbl->y-dy,easy,CELL_CHKNOREACH);
+	return path->search(NULL,bl->m,bl->x,bl->y,tbl->x-dx,tbl->y-dy,easy,CELL_CHKNOREACH);
 }
 /*==========================================
  * Calculates position of Pet/Mercenary/Homunculus/Elemental
@@ -1837,7 +1837,7 @@ int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick)
 	if (status->isdead(src) || status->isdead(target) ||
 	   battle_check_target(src,target,BCT_ENEMY) <= 0 || !status->check_skilluse(src, target, 0, 0)
 #ifdef OFFICIAL_WALKPATH
-	   || !path_search_long(NULL, src->m, src->x, src->y, target->x, target->y, CELL_CHKWALL)
+	   || !path->search_long(NULL, src->m, src->x, src->y, target->x, target->y, CELL_CHKWALL)
 #endif
 	  )
 		return 0; // can't attack under these conditions
@@ -2149,9 +2149,9 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				if(sd->chatID)
 					chat_leavechat(sd,0);
 				if(sd->trade_partner)
-					trade_tradecancel(sd);
-				buyingstore_close(sd);
-				searchstore_close(sd);
+					trade->cancel(sd);
+				buyingstore->close(sd);
+				searchstore->close(sd);
 				if(sd->state.storage_flag == 1)
 					storage->pc_quit(sd, 0);
 				else if(sd->state.storage_flag == 2)
@@ -2270,7 +2270,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 		case BL_MER: {
 				struct mercenary_data *md = (struct mercenary_data *)bl;
 				ud->canact_tick = ud->canmove_tick;
-				if(mercenary_get_lifetime(md) <= 0 && !(md->master && !md->master->state.active)) {
+				if(mercenary->get_lifetime(md) <= 0 && !(md->master && !md->master->state.active)) {
 					clif_clearunit_area(bl,clrtype);
 					map_delblock(bl);
 					unit_free(bl,CLR_OUTSIGHT);
@@ -2282,7 +2282,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 		case BL_ELEM: {
 				struct elemental_data *ed = (struct elemental_data *)bl;
 				ud->canact_tick = ud->canmove_tick;
-				if(elemental_get_lifetime(ed) <= 0 && !(ed->master && !ed->master->state.active)) {
+				if(elemental->get_lifetime(ed) <= 0 && !(ed->master && !ed->master->state.active)) {
 					clif_clearunit_area(bl,clrtype);
 					map_delblock(bl);
 					unit_free(bl,0);
@@ -2526,8 +2526,8 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 		case BL_MER: {
 				struct mercenary_data *md = (TBL_MER *)bl;
 				struct map_session_data *sd = md->master;
-				if(mercenary_get_lifetime(md) > 0)
-					mercenary_save(md);
+				if(mercenary->get_lifetime(md) > 0)
+					mercenary->save(md);
 				else {
 					intif_mercenary_delete(md->mercenary.mercenary_id);
 					if(sd)
@@ -2536,14 +2536,14 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				if(sd)
 					sd->md = NULL;
 
-				merc_contract_stop(md);
+				mercenary->contract_stop(md);
 				break;
 			}
 		case BL_ELEM: {
 				struct elemental_data *ed = (TBL_ELEM *)bl;
 				struct map_session_data *sd = ed->master;
-				if(elemental_get_lifetime(ed) > 0)
-					elemental_save(ed);
+				if (elemental->get_lifetime(ed) > 0)
+					elemental->save(ed);
 				else {
 					intif_elemental_delete(ed->elemental.elemental_id);
 					if(sd)
@@ -2552,7 +2552,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				if(sd)
 					sd->ed = NULL;
 
-				elemental_summon_stop(ed);
+				elemental->summon_stop(ed);
 				break;
 			}
 	}

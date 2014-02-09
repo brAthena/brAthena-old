@@ -1708,7 +1708,7 @@ int intif_parse_Mail_getattach(int fd)
 
 	memcpy(&item, RFIFOP(fd,12), sizeof(struct item));
 
-	mail_getattachment(sd, zeny, &item);
+	mail->getattachment(sd, zeny, &item);
 	return 0;
 }
 /*------------------------------------------
@@ -1836,7 +1836,7 @@ static void intif_parse_Mail_send(int fd)
 	sd = map_charid2sd(msg.send_id);
 	if(sd != NULL) {
 		if(fail)
-			mail_deliveryfail(sd, &msg);
+			mail->deliveryfail(sd, &msg);
 		else {
 			clif_Mail_send(sd->fd, false);
 			if(save_settings&16)
@@ -2078,7 +2078,7 @@ int intif_parse_mercenary_received(int fd)
 		return 0;
 	}
 
-	merc_data_received((struct s_mercenary *)RFIFOP(fd,5), RFIFOB(fd,4));
+	mercenary->data_received((struct s_mercenary *)RFIFOP(fd, 5), RFIFOB(fd, 4));
 	return 0;
 }
 
@@ -2165,7 +2165,7 @@ int intif_parse_elemental_received(int fd)
 		return 0;
 	}
 
-	elemental_data_received((struct s_elemental *)RFIFOP(fd,5), RFIFOB(fd,4));
+	elemental->data_received((struct s_elemental *)RFIFOP(fd, 5), RFIFOB(fd, 4));
 	return 0;
 }
 

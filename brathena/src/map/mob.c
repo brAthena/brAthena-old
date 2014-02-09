@@ -1074,7 +1074,7 @@ int mob_ai_sub_hard_activesearch(struct block_list *bl,va_list ap)
 			) { //Pick closest target?
 
 				if(map[bl->m].icewall_num &&
-				   !path_search_long(NULL,bl->m,md->bl.x,md->bl.y,bl->x,bl->y,CELL_CHKICEWALL)) {
+				   !path->search_long(NULL,bl->m,md->bl.x,md->bl.y,bl->x,bl->y,CELL_CHKICEWALL)) {
 
 					if(!check_distance_bl(&md->bl, bl, status_get_range(&md->bl)))
 						return 0;
@@ -2541,7 +2541,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type) {
 				quest->update_objective(sd, md->class_);
 
 			if(sd->md && src && src->type != BL_HOM && mob->db(md->class_)->lv > sd->status.base_level/2)
-				mercenary_kills(sd->md);
+				mercenary->kills(sd->md);
 		}
 
 		if(md->npc_event[0] && !md->state.npc_killmonster) {

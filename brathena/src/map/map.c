@@ -846,7 +846,7 @@ static int bl_vgetall_inshootrange(struct block_list *bl, va_list args)
 	if (!check_distance_bl(center, bl, range))
 		return 0;
 #endif
-	if (!path_search_long(NULL, center->m, center->x, center->y, bl->x, bl->y, CELL_CHKWALL))
+	if (!path->search_long(NULL, center->m, center->x, center->y, bl->x, bl->y, CELL_CHKWALL))
 		return 0;
 	return 1;
 }
@@ -1075,7 +1075,7 @@ static int bl_vgetall_inpath(struct block_list *bl, va_list args)
 	if ( k < 0 || k > len_limit ) //Since more skills use this, check for ending point as well.
 		return 0;
 
-	if ( k > magnitude2 && !path_search_long(NULL, m, x0, y0, xi, yi, CELL_CHKWALL) )
+	if(k > magnitude2 && !path->search_long(NULL, m, x0, y0, xi, yi, CELL_CHKWALL))
 		return 0; //Targets beyond the initial ending point need the wall check.
 
 	//All these shifts are to increase the precision of the intersection point and distance considering how it's
@@ -1632,7 +1632,7 @@ int map_quit(struct map_session_data *sd)
 	if(sd->state.storage_flag == 1) sd->state.storage_flag = 0;   // No need to Double Save Storage on Quit.
 
 	if(sd->ed) {
-		elemental_clean_effect(sd->ed);
+		elemental->clean_effect(sd->ed);
 		unit_remove_map(&sd->ed->bl,CLR_TELEPORT, ALC_MARK);
 	}
 
@@ -2305,7 +2305,7 @@ int map_random_dir(struct block_list *bl, int16 *x, int16 *y)
 		segment = (short)sqrt((float)(dist2 - segment*segment)); //The complement of the previously picked segment
 		yi = bl->y + segment*diry[j];
 	} while(
-	    (map_getcell(bl->m,xi,yi,CELL_CHKNOPASS) || !path_search(NULL,bl->m,bl->x,bl->y,xi,yi,1,CELL_CHKNOREACH))
+		(map_getcell(bl->m, xi, yi, CELL_CHKNOPASS) || !path->search(NULL, bl->m, bl->x, bl->y, xi, yi, 1, CELL_CHKNOREACH))
 	    && (++i)<100);
 
 	if(i < 100) {
@@ -5350,7 +5350,7 @@ void do_final(void)
 	do_final_unit();
 	do_final_battleground();
 	do_final_duel();
-	do_final_elemental();
+	elemental->final();
 	do_final_maps();
 	vending->final();
 
@@ -5484,8 +5484,10 @@ static bool map_arg_next_value(const char *option, int i, int argc)
 }
 
 void map_load_defaults(void) {
+	mapindex_defaults();
 	atcommand_defaults();
 	battleground_defaults();
+	buyingstore_defaults();
 	clif_defaults();
 	guild_defaults();
 	gstorage_defaults();
@@ -5493,19 +5495,24 @@ void map_load_defaults(void) {
 	instance_defaults();
 	itemdb_defaults();
 	log_defaults();
-	mapindex_defaults();
-	mapreg_defaults();
+	mail_defaults();
+	npc_defaults();
+	script_defaults();
+	searchstore_defaults();
+	vending_defaults();
+	pc_groups_defaults();
+	storage_defaults();
+	trade_defaults();
+	status_defaults();
+	elemental_defaults();
+	mercenary_defaults();
 	mob_defaults();
+	mapreg_defaults();
+	path_defaults();
+	quest_defaults();
 #ifdef PCRE_SUPPORT
 	npc_chat_defaults();
 #endif
-	npc_defaults();
-	pc_groups_defaults();
-	quest_defaults();
-	script_defaults();
-	status_defaults();
-	storage_defaults();
-	vending_defaults();
 }
 
 int do_init(int argc, char *argv[])
@@ -5685,8 +5692,8 @@ int do_init(int argc, char *argv[])
 	gstorage->init();
 	do_init_pet();
 	homun->init();
-	do_init_mercenary();
-	do_init_elemental();
+	mercenary->init();
+	elemental->init();
 	quest->init();
 	npc->init();
 	do_init_unit();

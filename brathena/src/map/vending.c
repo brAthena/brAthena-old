@@ -95,10 +95,10 @@ void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid,
 		return;
 	}
 
-	if(!searchstore_queryremote(sd, aid) && (sd->bl.m != vsd->bl.m || !check_distance_bl(&sd->bl, &vsd->bl, AREA_SIZE)))
+	if(!searchstore->queryremote(sd, aid) && (sd->bl.m != vsd->bl.m || !check_distance_bl(&sd->bl, &vsd->bl, AREA_SIZE)))
 		return; // shop too far away
 
-	searchstore_clearremote(sd);
+	searchstore->clearremote(sd);
 
 	if(count < 1 || count > MAX_VENDING || count > vsd->vend_num)
 		return; // invalid amount of purchased items
@@ -381,7 +381,7 @@ bool vending_searchall(struct map_session_data *sd, const struct s_search_store_
 			}
 		}
 
-		if(!searchstore_result(s->search_sd, sd->vender_id, sd->status.account_id, sd->message, it->nameid, sd->vending[i].amount, sd->vending[i].value, it->card, it->refine)) {
+		if(!searchstore->result(s->search_sd, sd->vender_id, sd->status.account_id, sd->message, it->nameid, sd->vending[i].amount, sd->vending[i].value, it->card, it->refine)) {
 			// result set full
 			return false;
 		}

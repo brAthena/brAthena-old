@@ -7041,7 +7041,7 @@ void clif_devotion(struct block_list *src, struct map_session_data *tsd)
 		if(md && md->master && md->devotion_flag)
 			WBUFL(buf,6) = md->master->bl.id;
 
-		WBUFW(buf,26) = skill_get_range2(src, ML_DEVOTION, mercenary_checkskill(md, ML_DEVOTION));
+		WBUFW(buf, 26) = skill_get_range2(src, ML_DEVOTION, mercenary->checkskill(md, ML_DEVOTION));
 	} else {
 		int i;
 		struct map_session_data *sd = BL_CAST(BL_PC,src);
@@ -8424,9 +8424,9 @@ void clif_refresh(struct map_session_data *sd)
 		clif_changed_dir(&sd->bl, SELF);
 
 	// unlike vending, resuming buyingstore crashes the client.
-	buyingstore_close(sd);
+	buyingstore->close(sd);
 
-	mail_clear(sd);
+	mail->clear(sd);
 
 	if(disguised(&sd->bl)) {/* refresh */
 		short disguise = sd->disguise;
@@ -9306,7 +9306,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	if(sd->md) {
 		if(!battle_config.supports_castle_gvg && map_flag_gvg2(sd->bl.m)) {
-			merc_delete(sd->md, 0);
+			mercenary->delete(sd->md, 0);
 		} else {
 			map_addblock(&sd->md->bl);
 			clif_spawn(&sd->md->bl);
@@ -9318,7 +9318,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	if(sd->ed) {
 		if(!battle_config.supports_castle_gvg && map_flag_gvg2(sd->bl.m)) {
-			elemental_delete(sd->ed, 0);
+			elemental->delete(sd->ed, 0);
 		} else {
 			map_addblock(&sd->ed->bl);
 			clif_spawn(&sd->ed->bl);
@@ -9462,7 +9462,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			clif_chsys_mjoin(sd);
 	}
 
-	mail_clear(sd);
+	mail->clear(sd);
 
 	clif_maptypeproperty2(&sd->bl,SELF);
 
@@ -10997,7 +10997,7 @@ void clif_parse_TradeRequest(int fd,struct map_session_data *sd)
 		return;
 	}
 
-	trade_traderequest(sd,t_sd);
+	trade->request(sd, t_sd);
 }
 
 
@@ -11008,7 +11008,7 @@ void clif_parse_TradeRequest(int fd,struct map_session_data *sd)
 ///     4 = rejected
 void clif_parse_TradeAck(int fd,struct map_session_data *sd)
 {
-	trade_tradeack(sd,RFIFOB(fd,2));
+	trade->ack(sd, RFIFOB(fd, 2));
 }
 
 
@@ -11020,9 +11020,9 @@ void clif_parse_TradeAddItem(int fd,struct map_session_data *sd)
 	int amount = RFIFOL(fd,4);
 
 	if(index == 0)
-		trade_tradeaddzeny(sd, amount);
+		trade->addzeny(sd, amount);
 	else
-		trade_tradeadditem(sd, index, (short)amount);
+		trade->additem(sd, index, (short)amount);
 }
 
 
@@ -11030,7 +11030,7 @@ void clif_parse_TradeAddItem(int fd,struct map_session_data *sd)
 /// 00eb
 void clif_parse_TradeOk(int fd,struct map_session_data *sd)
 {
-	trade_tradeok(sd);
+	trade->ok(sd);
 }
 
 
@@ -11038,7 +11038,7 @@ void clif_parse_TradeOk(int fd,struct map_session_data *sd)
 /// 00ed
 void clif_parse_TradeCancel(int fd,struct map_session_data *sd)
 {
-	trade_tradecancel(sd);
+	trade->cancel(sd);
 }
 
 
@@ -11046,7 +11046,7 @@ void clif_parse_TradeCancel(int fd,struct map_session_data *sd)
 /// 00ef
 void clif_parse_TradeCommit(int fd,struct map_session_data *sd)
 {
-	trade_tradecommit(sd);
+	trade->commit(sd);
 }
 
 
@@ -11219,7 +11219,7 @@ static void clif_parse_UseSkillToId_mercenary(struct mercenary_data *md, struct 
 	} else if(DIFF_TICK(tick, md->ud.canact_tick) < 0)
 		return;
 
-	lv = mercenary_checkskill(md, skill_id);
+	lv = mercenary->checkskill(md, skill_id);
 	if(skill_lv > lv)
 		skill_lv = lv;
 	if(skill_lv)
@@ -11242,7 +11242,7 @@ static void clif_parse_UseSkillToPos_mercenary(struct mercenary_data *md, struct
 
 	if(md->sc.data[SC_BASILICA])
 		return;
-	lv = mercenary_checkskill(md, skill_id);
+	lv = mercenary->checkskill(md, skill_id);
 	if(skill_lv > lv)
 		skill_lv = lv;
 	if(skill_lv)
@@ -14820,8 +14820,8 @@ void clif_parse_Mail_refreshinbox(int fd, struct map_session_data *sd)
 	else
 		clif_Mail_refreshinbox(sd);
 
-	mail_removeitem(sd, 0);
-	mail_removezeny(sd, 0);
+	mail->removeitem(sd, 0);
+	mail->removezeny(sd, 0);
 }
 
 
@@ -14895,7 +14895,7 @@ void clif_parse_Mail_read(int fd, struct map_session_data *sd)
 
 	if(mail_id <= 0)
 		return;
-	if(mail_invalid_operation(sd))
+	if(mail->invalid_operation(sd))
 		return;
 
 	clif_Mail_read(sd, RFIFOL(fd,2));
@@ -14914,7 +14914,7 @@ void clif_parse_Mail_getattach(int fd, struct map_session_data *sd)
 		return;
 	if(mail_id <= 0)
 		return;
-	if(mail_invalid_operation(sd))
+	if(mail->invalid_operation(sd))
 		return;
 
 	ARR_FIND(0, MAIL_MAX_INBOX, i, sd->mail.inbox.msg[i].id == mail_id);
@@ -14980,7 +14980,7 @@ void clif_parse_Mail_delete(int fd, struct map_session_data *sd)
 		return;
 	if(mail_id <= 0)
 		return;
-	if(mail_invalid_operation(sd))
+	if(mail->invalid_operation(sd))
 		return;
 
 	ARR_FIND(0, MAIL_MAX_INBOX, i, sd->mail.inbox.msg[i].id == mail_id);
@@ -15007,7 +15007,7 @@ void clif_parse_Mail_return(int fd, struct map_session_data *sd)
 
 	if(mail_id <= 0)
 		return;
-	if(mail_invalid_operation(sd))
+	if(mail->invalid_operation(sd))
 		return;
 
 	ARR_FIND(0, MAIL_MAX_INBOX, i, sd->mail.inbox.msg[i].id == mail_id);
@@ -15031,7 +15031,7 @@ void clif_parse_Mail_setattach(int fd, struct map_session_data *sd)
 	if(idx < 0 || amount < 0)
 		return;
 
-	flag = mail_setitem(sd, idx, amount);
+	flag = mail->setitem(sd, idx, amount);
 	clif_Mail_setattachment(fd,idx,flag);
 }
 
@@ -15047,9 +15047,9 @@ void clif_parse_Mail_winopen(int fd, struct map_session_data *sd)
 	int flag = RFIFOW(fd,2);
 
 	if(flag == 0 || flag == 1)
-		mail_removeitem(sd, 0);
+		mail->removeitem(sd, 0);
 	if(flag == 0 || flag == 2)
-		mail_removezeny(sd, 0);
+		mail->removezeny(sd, 0);
 }
 
 
@@ -15081,11 +15081,11 @@ void clif_parse_Mail_send(int fd, struct map_session_data *sd)
 	if(body_len > MAIL_BODY_LENGTH)
 		body_len = MAIL_BODY_LENGTH;
 
-	if(!mail_setattachment(sd, &msg)) {
+	if(!mail->setattachment(sd, &msg)) {
 		// Invalid Append condition
 		clif_Mail_send(sd->fd, true); // fail
-		mail_removeitem(sd,0);
-		mail_removezeny(sd,0);
+		mail->removeitem(sd, 0);
+		mail->removezeny(sd, 0);
 		return;
 	}
 
@@ -15106,7 +15106,7 @@ void clif_parse_Mail_send(int fd, struct map_session_data *sd)
 
 	msg.timestamp = time(NULL);
 	if(!intif_Mail_send(sd->status.account_id, &msg))
-		mail_deliveryfail(sd, &msg);
+		mail->deliveryfail(sd, &msg);
 
 	sd->cansendmail_tick = gettick() + 1000; // 1 Second flood Protection
 }
@@ -16000,7 +16000,7 @@ void clif_mercenary_updatestatus(struct map_session_data *sd, int type)
 			WFIFOL(fd,4) = md->mercenary.kill_count;
 			break;
 		case SP_MERCFAITH:
-			WFIFOL(fd,4) = mercenary_get_faith(md);
+			WFIFOL(fd, 4) = mercenary->get_faith(md);
 			break;
 	}
 	WFIFOSET(fd,packet_len(0x2a2));
@@ -16044,9 +16044,9 @@ void clif_mercenary_info(struct map_session_data *sd)
 	WFIFOL(fd,52) = mstatus->max_hp;
 	WFIFOL(fd,56) = mstatus->sp;
 	WFIFOL(fd,60) = mstatus->max_sp;
-	WFIFOL(fd,64) = (int)time(NULL) + (mercenary_get_lifetime(md) / 1000);
-	WFIFOW(fd,68) = mercenary_get_faith(md);
-	WFIFOL(fd,70) = mercenary_get_calls(md);
+	WFIFOL(fd,64) = (int)time(NULL) + (mercenary->get_lifetime(md) / 1000);
+	WFIFOW(fd,68) = mercenary->get_faith(md);
+	WFIFOL(fd,70) = mercenary->get_calls(md);
 	WFIFOL(fd,74) = md->mercenary.kill_count;
 	WFIFOW(fd,78) = md->battle_status.rhw.range;
 	WFIFOSET(fd,packet_len(0x29b));
@@ -16095,7 +16095,7 @@ void clif_parse_mercenary_action(int fd, struct map_session_data *sd)
 	if(sd->md == NULL)
 		return;
 
-	if(option == 2) merc_delete(sd->md, 2);
+	if(option == 2) mercenary->delete(sd->md, 2);
 }
 
 
@@ -16676,7 +16676,7 @@ static void clif_parse_ReqOpenBuyingStore(int fd, struct map_session_data *sd)
 	}
 	count = packet_len/blocksize;
 
-	buyingstore_create(sd, zenylimit, result, storename, itemlist, count);
+	buyingstore->create(sd, zenylimit, result, storename, itemlist, count);
 }
 
 
@@ -16751,7 +16751,7 @@ void clif_buyingstore_entry_single(struct map_session_data *sd, struct map_sessi
 /// 0815
 static void clif_parse_ReqCloseBuyingStore(int fd, struct map_session_data *sd)
 {
-	buyingstore_close(sd);
+	searchstore->close(sd);
 }
 
 
@@ -16785,7 +16785,7 @@ static void clif_parse_ReqClickBuyingStore(int fd, struct map_session_data *sd)
 
 	account_id = RFIFOL(fd,packet_db[RFIFOW(fd,0)].pos[0]);
 
-	buyingstore_open(sd, account_id);
+	buyingstore->open(sd, account_id);
 }
 
 
@@ -16845,7 +16845,7 @@ static void clif_parse_ReqTradeBuyingStore(int fd, struct map_session_data *sd)
 	}
 	count = packet_len/blocksize;
 
-	buyingstore_trade(sd, account_id, buyer_id, itemlist, count);
+	buyingstore->trade(sd, account_id, buyer_id, itemlist, count);
 }
 
 
@@ -16970,7 +16970,7 @@ static void clif_parse_SearchStoreInfo(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	searchstore_query(sd, type, min_price, max_price, (const unsigned short *)itemlist, item_count, (const unsigned short *)cardlist, card_count);
+	searchstore->query(sd, type, min_price, max_price, (const unsigned short *)itemlist, item_count, (const unsigned short *)cardlist, card_count);
 }
 
 
@@ -16995,7 +16995,7 @@ void clif_search_store_info_ack(struct map_session_data *sd)
 	WFIFOW(fd,0) = 0x836;
 	WFIFOW(fd,2) = 7+(end-start)*blocksize;
 	WFIFOB(fd,4) = !sd->searchstore.pages;
-	WFIFOB(fd,5) = searchstore_querynext(sd);
+	WFIFOB(fd,5) = searchstore->querynext(sd);
 	WFIFOB(fd,6) = (unsigned char)min(sd->searchstore.uses, UINT8_MAX);
 
 	for(i = start; i < end; i++) {
@@ -17047,7 +17047,7 @@ void clif_search_store_info_failed(struct map_session_data *sd, unsigned char re
 /// 0838
 static void clif_parse_SearchStoreInfoNextPage(int fd, struct map_session_data *sd)
 {
-	searchstore_next(sd);
+	searchstore->next(sd);
 }
 
 
@@ -17074,7 +17074,7 @@ void clif_open_search_store_info(struct map_session_data *sd)
 /// 083b
 static void clif_parse_CloseSearchStoreInfo(int fd, struct map_session_data *sd)
 {
-	searchstore_close(sd);
+	searchstore->close(sd);
 }
 
 
@@ -17090,7 +17090,7 @@ static void clif_parse_SearchStoreInfoListItemClick(int fd, struct map_session_d
 	store_id   = RFIFOL(fd,info->pos[1]);
 	nameid     = RFIFOW(fd,info->pos[2]);
 
-	searchstore_click(sd, account_id, store_id, nameid);
+	searchstore->click(sd, account_id, store_id, nameid);
 }
 
 

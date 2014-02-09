@@ -34,9 +34,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
-//Max distance from traders to enable a trade to take place.
-#define TRADE_DISTANCE 2
+struct trade_interface trade_s;
 
 /*==========================================
  * Initiates a trade request.
@@ -330,8 +328,7 @@ int trade_check(struct map_session_data *sd, struct map_session_data *tsd)
 /*==========================================
  * Adds an item/qty to the trade window
  *------------------------------------------*/
-void trade_tradeadditem(struct map_session_data *sd, short index, short amount)
-{
+void trade_tradeadditem(struct map_session_data *sd, short index, short amount) {
 	struct map_session_data *target_sd;
 	struct item *item;
 	int trade_i, trade_weight;
@@ -342,7 +339,7 @@ void trade_tradeadditem(struct map_session_data *sd, short index, short amount)
 		return; //Can't add stuff.
 
 	if((target_sd = map_id2sd(sd->trade_partner)) == NULL) {
-		trade_tradecancel(sd);
+		trade->cancel(sd);
 		return;
 	}
 
@@ -431,13 +428,13 @@ void trade_tradeaddzeny(struct map_session_data *sd, int amount)
 		return; //Can't add stuff.
 
 	if((target_sd = map_id2sd(sd->trade_partner)) == NULL) {
-		trade_tradecancel(sd);
+		trade->cancel(sd);
 		return;
 	}
 
 	if(amount < 0 || amount > sd->status.zeny || amount > MAX_ZENY - target_sd->status.zeny) {
 		// invalid values, no appropriate packet for it => abort
-		trade_tradecancel(sd);
+		trade->cancel(sd);
 		return;
 	}
 
@@ -448,15 +445,14 @@ void trade_tradeaddzeny(struct map_session_data *sd, int amount)
 /*==========================================
  * 'Ok' button on the trade window is pressed.
  *------------------------------------------*/
-void trade_tradeok(struct map_session_data *sd)
-{
+void trade_tradeok(struct map_session_data *sd) {
 	struct map_session_data *target_sd;
 
 	if(sd->state.deal_locked || !sd->state.trading)
 		return;
 
 	if((target_sd = map_id2sd(sd->trade_partner)) == NULL) {
-		trade_tradecancel(sd);
+		trade->cancel(sd);
 		return;
 	}
 	sd->state.deal_locked = 1;
@@ -525,10 +521,9 @@ void trade_tradecancel(struct map_session_data *sd)
 }
 
 /*==========================================
- * ????????(trade????)
+ * lock sd and tsd trade data, execute the trade, clear, then save players
  *------------------------------------------*/
-void trade_tradecommit(struct map_session_data *sd)
-{
+void trade_tradecommit(struct map_session_data *sd) {
 	struct map_session_data *tsd;
 	int trade_i;
 	int flag;
@@ -537,7 +532,7 @@ void trade_tradecommit(struct map_session_data *sd)
 		return;
 
 	if((tsd = map_id2sd(sd->trade_partner)) == NULL) {
-		trade_tradecancel(sd);
+		trade->cancel(sd);
 		return;
 	}
 
@@ -548,18 +543,18 @@ void trade_tradecommit(struct map_session_data *sd)
 
 	//Now is a good time (to save on resources) to check that the trade can indeed be made and it's not exploitable.
 	// check exploit (trade more items that you have)
-	if(impossible_trade_check(sd)) {
-		trade_tradecancel(sd);
+	if(trade->check_impossible(sd)) {
+		trade->cancel(sd);
 		return;
 	}
 	// check exploit (trade more items that you have)
-	if(impossible_trade_check(tsd)) {
-		trade_tradecancel(tsd);
+	if(trade->check_impossible(tsd)) {
+		trade->cancel(tsd);
 		return;
 	}
 	// check for full inventory (can not add traded items)
-	if(!trade_check(sd,tsd)) {  // check the both players
-		trade_tradecancel(sd);
+	if(!trade->check(sd,tsd)) { // check the both players
+		trade->cancel(sd);
 		return;
 	}
 
@@ -618,4 +613,19 @@ void trade_tradecommit(struct map_session_data *sd)
 		chrif_save(sd,0);
 		chrif_save(tsd,0);
 	}
+}
+
+void trade_defaults(void)
+{
+	trade = &trade_s;
+
+	trade->request = trade_traderequest;
+	trade->ack = trade_tradeack;
+	trade->check_impossible = impossible_trade_check;
+	trade->check = trade_check;
+	trade->additem = trade_tradeadditem;
+	trade->addzeny = trade_tradeaddzeny;
+	trade->ok = trade_tradeok;
+	trade->cancel = trade_tradecancel;
+	trade->commit = trade_tradecommit;
 }
