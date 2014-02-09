@@ -40,10 +40,6 @@
 /// Descomente para não enviar mais reports automáticos.
 //#define STATS_OPT_OUT
 
-/// Descomente para habilitar o script de comando query_sql e mysql logs em modo thread.
-/// Ainda não é indicado usá-lo, tenha cuidado ao habilitar.
-//#define BETA_THREAD_TEST
-
 /// Descomente para habilitar o modo limite de células
 //#define CELL_NOSTACK
 
