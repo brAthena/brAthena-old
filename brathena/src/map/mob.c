@@ -3941,10 +3941,16 @@ int mob_read_sqldb(void) {
 
 void mob_name_constants(void) {
 	int i;
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = "Mob Database (Likely an invalid or conflicting SpriteName)";
+#endif
 	for (i = 0; i < MAX_MOB_DB; i++) {
 		if (mob->db_data[i] && !mob->is_clone(i))
 			script->set_constant2(mob->db_data[i]->sprite, i, 0);
 	}
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = NULL;
+#endif
 }
 
 /*==========================================

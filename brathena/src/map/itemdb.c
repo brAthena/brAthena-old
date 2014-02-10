@@ -1059,7 +1059,7 @@ void itemdb_read_packages(void) {
 			}
 
 			if((t = libconfig->setting_get_member(it, "cnt")))
-				icnt = config_setting_get_int(t);
+				icnt = libconfig->setting_get_int(t);
 
 			if(!(t = libconfig->setting_get_member(it, "hour"))) {
 				ShowWarning("itemdb_read_packages: falta o campo 'hour' para o item '%s' no pacote '%s'.\n",itname,config_setting_name(itg));
@@ -1074,7 +1074,7 @@ void itemdb_read_packages(void) {
 			}
 
 			if((t = libconfig->setting_get_member(it, "probability"))) {
-				if((probability = (unsigned short)config_setting_get_int(t)) > 10000 ) {
+				if((probability = (unsigned short)libconfig->setting_get_int(t)) > 10000 ) {
 					ShowWarning("itemdb_read_packages: taxa ('%d') inválida  para o item '%s' no pacote '%s'!\n",probability,itname,config_setting_name(itg));
 					probability = 10000;
 				}
@@ -1095,7 +1095,7 @@ void itemdb_read_packages(void) {
 				guid = true;
 
 			if((t = libconfig->setting_get_member(it, "name"))) {
-				const char *name = config_setting_get_string(t);
+				const char *name = libconfig->setting_get_string(t);
 				if(strstr(name,"random"))
 					gid = atoi(name+6);
 			}
@@ -1149,14 +1149,14 @@ void itemdb_read_packages(void) {
 
 	aFree(must);
 	aFree(random);
-	for(i = 0; i < config_setting_length(item_packages_conf.root); i++ ) {
+	for(i = 0; i < libconfig->setting_length(item_packages_conf.root); i++ ) {
 		aFree(rgroups[i]);
 	}
 	aFree(rgroups);
 	aFree(rgroup);
 	aFree(prev);
 
-	config_destroy(&item_packages_conf);
+	libconfig->destroy(&item_packages_conf);
 
 	if(HCache->enabled)
 		itemdb->write_cached_packages(config_filename);
@@ -1860,8 +1860,14 @@ void itemdb_name_constants(void) {
 	DBIterator *iter = db_iterator(itemdb->names);
 	struct item_data *data;
 
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = "Item Database (Likely an invalid or conflicting AegisName)";
+#endif
 	for(data = dbi_first(iter); dbi_exists(iter); data = dbi_next(iter))
 		script->set_constant2(data->name,data->nameid,0);
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = NULL;
+#endif
 
 	dbi_destroy(iter);	
 }

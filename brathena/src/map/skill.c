@@ -18593,8 +18593,14 @@ static void skill_readdb(void)
 
 	safestrncpy(skill_db[0].name, "UNKNOWN_SKILL", sizeof(skill_db[0].name));
 	safestrncpy(skill_db[0].desc, "Habilidade desconhecida", sizeof(skill_db[0].desc));
-
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = get_database_name(0);
+#endif
 	sv_readsqldb(get_database_name(0), NULL, 17, -1, skill_parse_row_skilldb);
+#ifdef ENABLE_CASE_CHECK
+	script->parser_current_file = NULL;
+#endif
+
 	sv_readsqldb(get_database_name(1), NULL, 32, -1, skill_parse_row_requiredb);
 #ifdef RENEWAL_CAST
 	sv_readsqldb(get_database_name(2), NULL, 8,  -1, skill_parse_row_castdb);

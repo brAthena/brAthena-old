@@ -2282,6 +2282,9 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 			linkdb_final(&script->syntax.curly[i].case_label);
 #ifdef ENABLE_CASE_CHECK
 	script->local_casecheck.clear();
+	script->parser_current_src = NULL;
+	script->parser_current_file = NULL;
+	script->parser_current_line = 0;
 #endif
 		return NULL;
 	}
@@ -2299,6 +2302,9 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 			script->buf  = NULL;
 #ifdef ENABLE_CASE_CHECK
 	script->local_casecheck.clear();
+	script->parser_current_src = NULL;
+	script->parser_current_file = NULL;
+	script->parser_current_line = 0;
 #endif
 			return NULL;
 		}
@@ -2316,6 +2322,9 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 			script->buf  = NULL;
 #ifdef ENABLE_CASE_CHECK
 	script->local_casecheck.clear();
+	script->parser_current_src = NULL;
+	script->parser_current_file = NULL;
+	script->parser_current_line = 0;
 #endif
 			return NULL;
 		}
@@ -2430,6 +2439,9 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 	code->script_vars = NULL;
 #ifdef ENABLE_CASE_CHECK
 	script->local_casecheck.clear();
+	script->parser_current_src = NULL;
+	script->parser_current_file = NULL;
+	script->parser_current_line = 0;
 #endif
 	return code;
 }
@@ -4272,7 +4284,6 @@ void do_final_script(void) {
 
 	if(script->generic_ui_array)
 		aFree(script->generic_ui_array);
-	return;
 }
 /*==========================================
  * Initialization
@@ -4316,8 +4327,6 @@ int script_reload(void) {
 	script->userfunc_db->clear(script->userfunc_db, script->db_free_code_sub);
 	script->label_count = 0;
 
-	// @commands (script based)
-	// Clear bindings
 	for(i = 0; i < atcommand->binding_count; i++) {
 		aFree(atcommand->binding[i]);
 	}
