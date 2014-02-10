@@ -15456,7 +15456,7 @@ int skill_maelstrom_suction(struct block_list *bl, va_list ap) {
 int skill_enchant_elemental_end(struct block_list *bl, int type)
 {
 	struct status_change *sc;
-	const enum sc_type scs[] = { SC_ENCHANTPOISON, SC_ASPERSIO, SC_PROPERTYFIRE, SC_PROPERTYWATER, SC_PROPERTYWIND, SC_PROPERTYGROUND, SC_PROPERTYDARK, SC_PROPERTYTELEKINESIS, SC_ENCHANTARMS, SC_EXEEDBREAK };
+	const enum sc_type scs[] = { SC_ENCHANTPOISON, SC_ASPERSIO, SC_PROPERTYFIRE, SC_PROPERTYWATER, SC_PROPERTYWIND, SC_PROPERTYGROUND, SC_PROPERTYDARK, SC_PROPERTYTELEKINESIS, SC_ENCHANTARMS };
 	int i;
 	nullpo_ret(bl);
 	nullpo_ret(sc = status->get_sc(bl));
@@ -15487,16 +15487,15 @@ bool skill_check_cloaking(struct block_list *bl, struct status_change_entry *sce
 
 	if(sce) {
 		if(!wall) {
-			#if VERSION != -1
+#if VERSION != -1
 			if(sce->val1 < 3)   //End cloaking.
-			#endif
+#endif
 				status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
-			#if VERSION != -1
-			else if(sce->val4&1) {
-			#else
+#if VERSION != -1
+			else if(sce->val4&1) { //Remove wall bonus
+#else
 			if(sce->val4&1) {
-			#endif
-				//Remove wall bonus
+#endif
 				sce->val4&=~1;
 				status_calc_bl(bl,SCB_SPEED);
 			}
