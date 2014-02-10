@@ -45,7 +45,7 @@ valkyrie,53,42,3	script	Mestre#Valquiria	1_M_HOF,{
 		mes "só pode dominar";
 		mes "tanto na vida...";
 		close;
-	} else if (ADVJOB == Job_Mestre && Class == Job_Acolyte_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Champion && Class == Job_Acolyte_High && JobLevel > 39) {
 		mes "[Mestre]";
 		mes "Este é o tempo.";
 		mes "Tempo de grandes heróis";
@@ -70,7 +70,7 @@ valkyrie,53,42,3	script	Mestre#Valquiria	1_M_HOF,{
 			mes "use todos os seus pontos de habilidade restantes, e depois volte aqui.";
 			close;
 		}
-		jobchange Job_Mestre;
+		jobchange Job_Champion;
 		set ADVJOB,0;
 		mes "[Mestre]";
 		mes "Parabéns!";

@@ -70,7 +70,7 @@ valkyrie,44,39,5	script	Lorde#Valquíria	1_M_KNIGHTMASTER,{
 		jobchange Job_Lord_Knight;
 		set ADVJOB,0;
 		mes "[Lorde]";
-    mes "Parabéns!";
+    	mes "Parabéns!";
 		mes "Sendo um Lorde,";
 		mes "Eu acredito que você irá";
 		mes "ser a frente da batalha,";

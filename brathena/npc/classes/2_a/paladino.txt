@@ -40,7 +40,7 @@ valkyrie,53,39,3	script	Paladino#Valquiria	4_M_CRU_OLD,{
 		mes "Que a luz da justiça";
 		mes "sempre ilumine nossos caminhos!";
 		close;
-	} else if (ADVJOB == Job_Paladino && Class == Job_Swordman_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Paladin && Class == Job_Swordman_High && JobLevel > 39) {
 		mes "[Paladino]";
 		mes "A Guerra Santa";
 		mes "será antes do que";
@@ -67,7 +67,7 @@ valkyrie,53,39,3	script	Paladino#Valquiria	4_M_CRU_OLD,{
 			mes "use todos os pontos de habilidade restantes.";
 			close;
 		}
-		jobchange Job_Paladino;
+		jobchange Job_Paladin;
 		set ADVJOB,0;
 		mes "[Paladino]";
 		mes "Parabéns.";

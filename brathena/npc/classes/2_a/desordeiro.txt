@@ -48,7 +48,7 @@ valkyrie,53,58,3	script	Desordeiro#Valquiria	4_F_ROGUE,{
 		mes "Eu preciso deles e";
 		mes "eles precisam de mim.";
 		close;
-	} else if (ADVJOB == Job_Desordeiro && Class == Job_Thief_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Stalker && Class == Job_Thief_High && JobLevel > 39) {
 		mes "[Desordeiro]";
 		mes "Esse mundo precisa";
 		mes "de mais heróis que estão";
@@ -75,7 +75,7 @@ valkyrie,53,58,3	script	Desordeiro#Valquiria	4_F_ROGUE,{
 			mes "use todos os seus pontos de habilidade restantes, e depois volte aqui.";
 			close;
 		}
-		jobchange Job_Desordeiro;
+		jobchange Job_Stalker;
 		set ADVJOB,0;
 		mes "[Desordeiro]";
 		mes "Parabéns!";

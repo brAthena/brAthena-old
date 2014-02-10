@@ -40,7 +40,7 @@ valkyrie,53,56,3	script	Cigana#Valquiria	4W_F_01,{
 		mes "mais que um passatempo.";
 		mes "Para mim, isso é um modo de vida~";
 		close;
-	} else if (ADVJOB == Job_Cigana && Class == Job_Archer_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Gypsy && Class == Job_Archer_High && JobLevel > 39) {
 		mes "[Cigana]";
 		mes "A terra de Rune-Midgard";
 		mes "está precisando de mulheres talentosas";
@@ -66,7 +66,7 @@ valkyrie,53,56,3	script	Cigana#Valquiria	4W_F_01,{
 			mes "use todos os seus pontos de habilidade restantes, e depois volte aqui.";
 			close;
 		}
-		jobchange Job_Cigana;
+		jobchange Job_Gypsy;
 		set ADVJOB,0;
 		mes "[Cigana]";
 		mes "Parabéns!";

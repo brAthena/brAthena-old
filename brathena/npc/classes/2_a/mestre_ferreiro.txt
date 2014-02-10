@@ -74,7 +74,7 @@ valkyrie,44,50,5	script	Mestre-Ferreiro#Valquíria	4_M_JOB_BLACKSMITH,{
 		jobchange Job_Whitesmith;
 		set ADVJOB,0;
 		mes "[Mestre-Ferreiro]";
-    mes "Parabéns!";
+		mes "Parabéns!";
 		mes "Sendo um Mestre-Ferreiro,";
 		mes "eu acredito que você irá construir";
 		mes "um brilhante futuro";
