@@ -2649,6 +2649,7 @@ packet(0x020d,-1);
 	/* NPC Market */
 	packet(0x09d8,2,clif->pNPCMarketClosed);
 	packet(0x09d6,-1,clif->pNPCMarketPurchase);
+	packet(0x09df,7);
 #endif
 
 // packet(PacketKeys: WPE (Shakto)

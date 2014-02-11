@@ -14393,6 +14393,12 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 	if(sd && !(skill_get_castnodex(skill_id, skill_lv)&4)) {
 		VARCAST_REDUCTION(max(sd->bonus.varcastrate, 0) + max(i, 0));
 		fixcast_r = max(fixcast_r, sd->bonus.fixcastrate) + min(sd->bonus.fixcastrate,0);
+		for(i = 0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++)
+			if(sd->skillcast[i].id == skill_id){ // bonus2 bVariableCastrate
+				if((i=sd->skillcast[i].val) > 0)
+					VARCAST_REDUCTION(i);
+				break;
+			}
 	}
 
 	if(varcast_r < 0)   // now compute overall factors
@@ -15203,31 +15209,34 @@ int skill_cell_overlap(struct block_list *bl, va_list ap)
 {
 	uint16 skill_id;
 	int *alive;
-	struct skill_unit *unit;
+	struct skill_unit *su;
 
 	skill_id = va_arg(ap,int);
 	alive = va_arg(ap,int *);
-	unit = (struct skill_unit *)bl;
+	su = (struct skill_unit *)bl;
 
-	if(unit == NULL || unit->group == NULL || (*alive) == 0)
+	if(su == NULL || su->group == NULL || (*alive) == 0)
+		return 0;
+
+	if( su->group->state.guildaura ) /* guild auras are not cancelled! */
 		return 0;
 
 	switch(skill_id) {
 		case SA_LANDPROTECTOR:
-			if(unit->group->skill_id == SA_LANDPROTECTOR) {  //Check for offensive Land Protector to delete both. [Skotlex]
+			if(su->group->skill_id == SA_LANDPROTECTOR) {  //Check for offensive Land Protector to delete both. [Skotlex]
 				(*alive) = 0;
-				skill_delunit(unit);
+				skill_delunit(su);
 				return 1;
 			}
-			if(!(skill_get_inf2(unit->group->skill_id)&(INF2_SONG_DANCE|INF2_TRAP)) || unit->group->skill_id == WZ_FIREPILLAR) { //It deletes everything except songs/dances and traps
-				skill_delunit(unit);
+			if (!(skill_get_inf2(su->group->skill_id)&(INF2_SONG_DANCE | INF2_TRAP)) || su->group->skill_id == WZ_FIREPILLAR) { //It deletes everything except songs/dances and traps
+				skill_delunit(su);
 				return 1;
 			}
 			break;
 		case HW_GANBANTEIN:
 		case LG_EARTHDRIVE:
-			if(!(unit->group->state.song_dance&0x1)) {  // Don't touch song/dance.
-				skill_delunit(unit);
+			if(!(su->group->state.song_dance&0x1)) {  // Don't touch song/dance.
+				skill_delunit(su);
 				return 1;
 			}
 			break;
@@ -15237,7 +15246,7 @@ int skill_cell_overlap(struct block_list *bl, va_list ap)
 // The official implementation makes them fail to appear when casted on top of ANYTHING
 // but I wonder if they didn't actually meant to fail when casted on top of each other?
 // hence, I leave the alternate implementation here, commented. [Skotlex]
-			if(unit->range <= 0) {
+			if(su->range <= 0) {
 				(*alive) = 0;
 				return 1;
 			}
@@ -15253,7 +15262,7 @@ int skill_cell_overlap(struct block_list *bl, va_list ap)
 			*/
 			break;
 		case PF_FOGWALL:
-			switch(unit->group->skill_id) {
+			switch(su->group->skill_id) {
 				case SA_VOLCANO: //Can't be placed on top of these
 				case SA_VIOLENTGALE:
 					(*alive) = 0;
@@ -15266,14 +15275,14 @@ int skill_cell_overlap(struct block_list *bl, va_list ap)
 			}
 			break;
 		case HP_BASILICA:
-			if(unit->group->skill_id == HP_BASILICA) {
+			if(su->group->skill_id == HP_BASILICA) {
 				//Basilica can't be placed on top of itself to avoid map-cell stacking problems. [Skotlex]
 				(*alive) = 0;
 				return 1;
 			}
 			break;
 		case GN_CRAZYWEED_ATK:
-			switch(unit->group->unit_id) { //TODO: look for other ground skills that are affected.
+			switch(su->group->unit_id) { //TODO: look for other ground skills that are affected.
 				case UNT_WALLOFTHORN:
 				case UNT_THORNS_TRAP:
 				case UNT_BLOODYLUST:
@@ -15286,13 +15295,13 @@ int skill_cell_overlap(struct block_list *bl, va_list ap)
 				case UNT_VIOLENTGALE:
 				case UNT_SAFETYWALL:
 				case UNT_PNEUMA:
-					skill_delunit(unit);
+					skill_delunit(su);
 					return 1;
 			}
 			break;
 	}
 
-	if(unit->group->skill_id == SA_LANDPROTECTOR && !(skill_get_inf2(skill_id)&(INF2_SONG_DANCE|INF2_TRAP))) {  //It deletes everything except songs/dances/traps
+	if(su->group->skill_id == SA_LANDPROTECTOR && !(skill_get_inf2(skill_id)&(INF2_SONG_DANCE|INF2_TRAP))) {  //It deletes everything except songs/dances/traps
 		(*alive) = 0;
 		return 1;
 	}
