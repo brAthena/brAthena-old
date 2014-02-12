@@ -1826,7 +1826,7 @@ OnInit:
 	sellitem Pumpkin;
 }
 
-prt_church,108,124,4	trader	Nun#prt	1_F_PRIEST,{
+prt_church,108,124,4	trader	Freira#prt	1_F_PRIEST,{
 OnInit:
 	sellitem Rosary;
 	sellitem Biretta;

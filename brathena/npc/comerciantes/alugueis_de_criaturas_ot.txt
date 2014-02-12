@@ -24,7 +24,7 @@
 //   \________________________________________________________/
 
 // -------------- Criador de Pecopecos (para Cavaleiros) --------------
-prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
+prontera,55,350,5	script	Criador de Pecopecos#cav	8W_SOLDIER,{
 	if (Upper >= 0 && Upper <= 2) set .@price,2500; // Pecopeco Normal - Avançado e Bebê
 
 	mes "[Criador de Pecopecos]";
@@ -48,8 +48,9 @@ prontera,55,350,5	script	Criador de Pecopecos#cav	105,{
 			mes "Bem então, tenha um bom dia.";
 			close;
 		}
-		mes "Me desculpe, mas esses Peco Pecos estão disponíveis";
-		mes "apenas para Cavaleiros e Lordes.";
+		mes "Me desculpe, mas esses";
+		mes "Peco Pecos estão disponíveis";
+		mes "apenas para Cavaleiros.";
 		close;
 }
 
@@ -79,7 +80,7 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	8W_SOLDIER,{
 			close;
 		}
 		mes "O que posso fazer por você?";
-		mes "Lembre-se que esse serviço é restrito a Templários e Paladinos.";
+		mes "Lembre-se que esse serviço é restrito a Templários.";
 		close;
 }
 
@@ -87,35 +88,34 @@ prontera,232,318,3	script	Criador de Pecopecos#tem	8W_SOLDIER,{
 in_hunter,146,100,4	script	Adestrador de Falcões#hnt	8W_SOLDIER,{
 	if (Upper >= 0 && Upper <= 2) set .@price, 2500; // Falcão Normal - Avançado e Bebê
 
-			mes "[Adestrador de Falcões]";
-			if (BaseJob == Job_Hunter) {
+		mes "[Adestrador de Falcões]";
+		if (BaseJob == Job_Hunter) {
 			if (checkoption(Option_Wug) || checkoption(Option_Wugrider)) {
-			mes "Hum...";
-			mes "Você não pode adquirir um Falcão enquanto não remover seu lobo!";
-			close;
-		}
-		mes "Você precisa de um Falcão?";
-		mes "Eles custam apenas "+.@price+" zenys!";
-		next;
-		if (select("Sim!:Esse preço é um assalto"))
-		 if (@menu == 1) {
-			if (Zeny < .@price || !getskilllv("HT_FALCON") || checkfalcon()) {
-				mes "[Adestrador de Falcões]";
-				mes ""+((Zeny < .@price) ? "O quê? Você não possui a quantidade de zenys suficiente?! Primeiro você deve juntar dinheiro em vez de caçar monstros~" : (!getskilllv("HT_FALCON")) ? "Puxa~ Primeiro vá e aprenda a domesticar um Falcão! Eu não posso te entregar um falcão sendo que você não saberá cuidar dele." : "Hum... Você já possui um Falcão. Você não consegue vê-lo?")+"";
-				} else {
-				set Zeny, Zeny-.@price;
-				setfalcon;
-				}
+				mes "Hum...";
+				mes "Você não pode adquirir um Falcão enquanto não remover seu lobo!";
 				close;
 			}
+			mes "Você precisa de um Falcão?";
+			mes "Eles custam apenas "+.@price+" zenys!";
+			next;
+			if (select("Sim!:Esse preço é um assalto!"))
+			 if (@menu == 1) {
+			 	if (Zeny < .@price || !getskilllv("HT_FALCON") || checkfalcon()) {
+					mes "[Adestrador de Falcões]";
+					mes ""+((Zeny < .@price) ? "O quê? Você não possui a quantidade de zenys suficiente?! Primeiro você deve juntar dinheiro em vez de caçar monstros~" : (!getskilllv("HT_FALCON")) ? "Puxa~ Primeiro vá e aprenda a domesticar um Falcão! Eu não posso te entregar um falcão sendo que você não saberá cuidar dele." : "Hum... Você já possui um Falcão. Você não consegue vê-lo?")+"";
+				} else {
+					set Zeny, Zeny-.@price;
+					setfalcon;
+				}
+				close;
+			 }
 			mes "[Adestrador de Falcões]";
 			mes "E-espere, onde você vai? Estes Falcões são de elite, eu garanto! Vamos lá~";
 			close;
 		}
 		mes "Jovem tolo!";
 		mes "Falcões podem apenas";
-		mes "serem usados por Caçadores";
-		mes "e Atiradores de Elite, aprendeu?";
+		mes "ser usados por Caçadores";
 		mes "...Heheh, ciúmes?";
 		close;
 }

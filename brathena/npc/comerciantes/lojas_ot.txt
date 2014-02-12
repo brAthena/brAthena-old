@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: brA Dev. Team                              |
 //   |--------------------------------------------------------|
-//   | Versão brA: 1.2		                                  |
+//   | Versão brA: 1.2                                        |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs de Lojas espalhadas pelo jogo.         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Inserção dos NPCs em modo Old-Times [Holy & Neko]  |
-//	 | 1.2 Mecânica Aegis [Neko]							  |
+//   | 1.2 Mecânica Aegis [Neko]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -989,7 +989,7 @@ OnInit:
 	sellitem Awakening_Potion;
 }
 
-prt_church,108,124,4	trader	Nun#prt	1_F_PRIEST,{
+prt_church,108,124,4	trader	Freira#prt	1_F_PRIEST,{
 OnInit:
 	sellitem Rosary;
 	sellitem Biretta;
