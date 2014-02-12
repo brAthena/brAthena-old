@@ -54,6 +54,8 @@
 
 struct status_interface status_s;
 
+struct script_code *sc_script[SC_MAX];
+
 /**
  * Returns the status change associated with a skill.
  * @param skill The skill to look up
@@ -2785,8 +2787,8 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 	}
 
 	for(index=0; index < SC_MAX; ++index)
-		if(sd && (sc->count && sc->data[index]) && sc_script[index].script)
-			script->run(sc_script[index].script,0,sd->bl.id,npc->fake_nd->bl.id);
+		if(sd && (sc->count && sc->data[index]) && sc_script[index])
+			script->run(sc_script[index],0,sd->bl.id,npc->fake_nd->bl.id);
 
 	if(sd->pd) { // Pet Bonus
 		struct pet_data *pd = sd->pd;
@@ -9281,7 +9283,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
 	
-	if(sd && sc_script[type].script)
+	if(sd && sc_script[type])
 		status_calc_pc(sd, 0);
 
 	if(sd && sd->pd)
@@ -10109,7 +10111,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	if(calc_flag)
 		status_calc_bl(bl,calc_flag);
 
-	if(sd && sc_script[type].script)
+	if(sd && sc_script[type])
 		status_calc_pc(sd,0);
 
 	if(opt_flag&4) //Out of hiding, invoke on place.
@@ -11687,11 +11689,11 @@ int status_readdb(void)
 
 void sc_script_free(void)
 {
-	size_t i;
+	int i;
 	
 	for(i = 0; i < SC_MAX; ++i)
-		if(sc_script[i].script)
-			script->free_code(sc_script[i].script);
+		if(sc_script[i])
+			script->free_code(sc_script[i]);
 }
 
 void read_buffspecial_db(void) { //brAthena
@@ -11715,9 +11717,11 @@ void read_buffspecial_db(void) { //brAthena
 			ShowWarning(read_message("Source.map.status_buffspecial"), CL_WHITE, res[0], CL_RESET);
 			continue;
 		}
-
-		if(!(sc_script[type].script = script->parse((const char *)res[1], get_database_name(61), type, 0)))
+		
+		if(res[1] == NULL)
 			continue;
+			
+		sc_script[type] = script->parse((const char *)res[1], get_database_name(61), type, 0);
 		sc++;
 	}
 	

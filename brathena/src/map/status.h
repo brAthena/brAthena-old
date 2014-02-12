@@ -1860,10 +1860,6 @@ struct status_change {
 	struct status_change_entry *data[SC_MAX];
 };
 
-struct {
-	struct script_code *script;
-} sc_script[SC_MAX];
-
 //Define for standard HP damage attacks.
 #define status_fix_damage(src, target, hp, walkdelay) (status->damage((src), (target), (hp), 0, (walkdelay), 0))
 //Define for standard HP/SP damage triggers.
