@@ -2618,7 +2618,7 @@ void *get_val2(struct script_state *st, int64 uid, struct DBMap **ref)
  **/
 void script_array_ensure_zero(struct script_state *st, struct map_session_data *sd, int64 uid, struct DBMap** ref) {
 	const char *name = script->get_str(script_getvarid(uid));
-	struct DBMap *src = script->array_src(st, sd ? sd : st->rid ? map_id2sd(st->rid) : NULL, name);\
+	struct DBMap *src = script->array_src(st, sd ? sd : st->rid ? map_id2sd(st->rid) : NULL, name, ref);\
 	struct script_array *sa = NULL;
 	bool insert = false;
 
@@ -2658,9 +2658,9 @@ void script_array_ensure_zero(struct script_state *st, struct map_session_data *
 /**
  * Returns array size by ID
  **/
-unsigned int script_array_size(struct script_state *st, struct map_session_data *sd, const char *name) {
+unsigned int script_array_size(struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap **ref) {
 	struct script_array *sa = NULL;
-	struct DBMap *src = script->array_src(st, sd, name);
+	struct DBMap *src = script->array_src(st, sd, name, ref);
 
 	if(src)
 		sa = idb_get(src, script->search_str(name));
@@ -2670,15 +2670,15 @@ unsigned int script_array_size(struct script_state *st, struct map_session_data 
 /**
  * Returns array's highest key (for that awful getarraysize implementation that doesn't really gets the array size)
  **/
-unsigned int script_array_highest_key(struct script_state *st, struct map_session_data *sd, const char *name) {
+unsigned int script_array_highest_key(struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap **ref) {
 	struct script_array *sa = NULL;
-	struct DBMap *src = script->array_src(st, sd, name);
+	struct DBMap *src = script->array_src(st, sd, name, ref);
 
 
 	if(src) {
 		int key = script->add_word(name);
 
-		script->array_ensure_zero(st,sd,reference_uid(key, 0),NULL);
+		script->array_ensure_zero(st,sd,reference_uid(key, 0),ref);
 
 		if((sa = idb_get(src, key))) {
 			unsigned int i, highest_key = 0;
@@ -2750,7 +2750,7 @@ void script_array_add_member(struct script_array *sa, unsigned int idx) {
  * Obtains the source of the array database for this type and scenario
  * Initializes such database when not yet initialised.
  **/
-struct DBMap *script_array_src(struct script_state *st, struct map_session_data *sd, const char *name) {
+struct DBMap *script_array_src(struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap **ref) {
 	struct DBMap **src = NULL;
 
 	switch(name[0]) {
@@ -2764,7 +2764,10 @@ struct DBMap *script_array_src(struct script_state *st, struct map_session_data 
 			src = &mapreg->array_db;
 			break;
 		case '.':/* npc/script */
-			src = (name[1] == '@') ? &st->stack->array_function_db : &st->script->script_arrays_db;
+			if(ref)
+				src = (struct DBMap **)((char *)ref + sizeof(struct DBMap *));
+			else
+				src = (name[1] == '@') ? &st->stack->array_function_db : &st->script->script_arrays_db;
 			break;
 		case '\'':/* instance */
 			if(st->instance_id >= 0) {
@@ -4064,7 +4067,7 @@ void script_cleararray_pc(struct map_session_data *sd, const char *varname, void
 
 	key = script->add_str(varname);
 
-	if(!(src = script->array_src(NULL,sd,varname)))
+	if(!(src = script->array_src(NULL,sd,varname,NULL)))
 		return;
 
 	if(value)
@@ -5736,7 +5739,7 @@ BUILDIN_FUNC(getarraysize)
 		return 1;// not a variable
 	}
 
-	script_pushint(st, script->array_highest_key(st,st->rid ? script->rid2sd(st) : NULL,reference_getname(data)));
+	script_pushint(st, script->array_highest_key(st,st->rid ? script->rid2sd(st) : NULL,reference_getname(data),reference_getref(data)));
 	return 0;
 }
 int script_array_index_cmp(const void *a, const void *b) {
@@ -5777,7 +5780,7 @@ BUILDIN_FUNC(deletearray)
 			return 0;// no player attached
 	}
 
-	if(!(src = script->array_src(st,sd,name))) {
+	if(!(src = script->array_src(st,sd,name, reference_getref(data)))) {
 		ShowError("script:deletearray: not a array\n");
 		script->reportdata(data);
 		st->state = END;
@@ -5787,10 +5790,10 @@ BUILDIN_FUNC(deletearray)
 	script->array_ensure_zero(st,NULL,data->u.num,reference_getref(data));
 
 	if(!(sa = idb_get(src, id))) { /* non-existent array, nothing to empty */
-		return 1;// not a variable
+		return 0;// not a variable
 	}
 
-	end = script->array_highest_key(st,sd,name);
+	end = script->array_highest_key(st,sd,name,reference_getref(data));
 
 	if(start >= end)
 		return 0;// nothing to free
@@ -6160,8 +6163,8 @@ BUILDIN_FUNC(checkweight2)
 		script_pushint(st,0);
 		return 1;// not supported
 	}
-	nb_it = script->array_highest_key(st,sd,reference_getname(data_it));
-	nb_nb = script->array_highest_key(st,sd,reference_getname(data_nb));
+	nb_it = script->array_highest_key(st,sd,reference_getname(data_it),reference_getref(data_it));
+	nb_nb = script->array_highest_key(st,sd,reference_getname(data_nb),reference_getref(data_nb));
 	if(nb_it != nb_nb) {
 		ShowError("Size mistmatch: nb_it=%d, nb_nb=%d\n",nb_it,nb_nb);
 		fail = 1;
@@ -13830,7 +13833,7 @@ BUILDIN_FUNC(implode)
 	}
 
 	//count chars
-	array_size = script->array_highest_key(st,sd,name) - 1;
+	array_size = script->array_highest_key(st,sd,name,reference_getref(data)) - 1;
 
 	if(array_size == -1) { //empty array check (AmsTaff)
 		ShowWarning("script:implode: array length = 0\n");
