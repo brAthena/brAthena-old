@@ -450,7 +450,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	4_M_JOB_WIZARD,{
 			next;
 			mes "[Raulel]";
 			mes "Don't live dishonestly, or impolitely, or else one day you'll be caught in a spell you can't control, and BOOM, your dead!";
-			if (Sex == 1) {
+			if (Sex) {
 				mes "If you don't want that to happen, then learn how to use spells properly!";
 				next;
 				mes "[Raulel]";
@@ -542,7 +542,7 @@ gef_tower,102,24,2	script	Gloomy Wizard	4_M_JOB_WIZARD,{
 			mes "[Raulel]";
 			mes "I'll give you 10 questions so give me the right answers.";
 			mes "If you get something wrong, I won't tell you what it is!";
-			if (checkquest(9016) == -1) {
+			if(checkquest(9016) == -1) {
 				changequest 9015,9016;
 			}
 			next;
@@ -1407,7 +1407,7 @@ OnTimer60000:
 	end;
 
 OnTimer61000:
-	donpcevent "Room of Earth#Failed::OnEnable";
+	enablenpc "Room of Earth#Failed";
 	end;
 
 OnTimer62000:
@@ -1513,7 +1513,7 @@ OnTimer183000:
 	end;
 
 OnTimer184000:
-	donpcevent "Room of Fire#Failed::OnEnable";
+	enablenpc "Room of Fire#Failed";
 	end;
 
 OnTimer185000:

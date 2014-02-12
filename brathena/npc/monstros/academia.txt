@@ -1,0 +1,114 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: academia.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: rA/brA Dev. Team                           |
+//   |--------------------------------------------------------|
+//   | Versões rA/brA: 1.0/1.0                                |
+//   |--------------------------------------------------------|
+//   | Descrição: Spawns de mostros da Academia.              |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+
+//==================================================
+// prt_fild08 - Prontera Field 
+//==================================================
+prt_fild08,0,0,0,0	monster	Poring	PORING,110,5000,0,0
+prt_fild08,0,0,0,0	monster	Lunatic	LUNATIC,100,5000,0,0
+prt_fild08,0,0,0,0	monster	Fabre	FABRE,100,5000,0,0
+prt_fild08,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0
+prt_fild08a,0,0,0,0	monster	Poring	PORING,110,5000,110,0,0
+prt_fild08a,0,0,0,0	monster	Lunatic	LUNATIC,100,5000,0,0
+prt_fild08a,0,0,0,0	monster	Fabre	FABRE,100,5000,0,0
+prt_fild08a,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0
+prt_fild08b,0,0,0,0	monster	Poring	PORING,110,5000,110,0,0
+prt_fild08b,0,0,0,0	monster	Lunatic	LUNATIC,100,5000,0,0
+prt_fild08b,0,0,0,0	monster	Fabre	FABRE,100,5000,0,0
+prt_fild08b,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0
+prt_fild08c,0,0,0,0	monster	Poring	PORING,110,5000,110,0,0
+prt_fild08c,0,0,0,0	monster	Lunatic	LUNATIC,100,5000,0,0
+prt_fild08c,0,0,0,0	monster	Fabre	FABRE,100,5000,0,0
+prt_fild08c,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0
+prt_fild08d,0,0,0,0	monster	Poring	PORING,110,5000,110,0,0
+prt_fild08d,0,0,0,0	monster	Lunatic	LUNATIC,100,5000,0,0
+prt_fild08d,0,0,0,0	monster	Fabre	FABRE,100,5000,0,0
+prt_fild08d,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0
+
+//==================================================
+// treasure_n1 - Izlude Sunken Ship 1F
+//==================================================
+treasure_n1,0,0,0,0	monster	Red Mushroom	RED_MUSHROOM,10,50000,0,0
+treasure_n1,0,0,0,0	monster	Black Mushroom	BLACK_MUSHROOM,10,50000,0,0
+treasure_n1,160,54,13,13	monster	Red Mushroom	RED_MUSHROOM,10,50000,0,0
+treasure_n1,160,54,13,13	monster	Black Mushroom	BLACK_MUSHROOM,10,50000,0,0
+treasure_n1,160,54,13,13	monster	Dead Plankton	DEAD_PLANKTON,10,50000,0,0
+treasure_n1,0,0,0,0	monster	Red Plant	RED_PLANT,5,50000,0,0
+treasure_n1,0,0,0,0	monster	Green Plant	GREEN_PLANT,5,50000,0,0
+treasure_n1,0,0,0,0	monster	Yellow Plant	YELLOW_PLANT,5,50000,0,0
+treasure_n1,0,0,0,0	monster	Blue Plant	BLUE_PLANT,5,50000,0,0
+treasure_n1,0,0,0,0	monster	White Plant	WHITE_PLANT,5,50000,0,0
+treasure_n1,0,0,0,0	monster	Zombie	ZOMBIE,1,100000,0,0
+treasure_n1,0,0,0,0	monster	Zombie	ZOMBIE,1,100000,0,0
+treasure_n1,68,47,9,9	monster	Weak Skeleton	WEAK_SKELETON,4,8000,0,0
+treasure_n1,106,42,9,9	monster	Roda Frog	RODA_FROG,3,60000,0,0
+treasure_n1,32,37,9,9	monster	Roda Frog	RODA_FROG,6,60000,0,0
+treasure_n1,69,112,9,9	monster	Spore	SPORE,3,20000,0,0
+treasure_n1,35,112,9,9	monster	Spore	SPORE,3,20000,0,0
+treasure_n1,35,112,9,9	monster	Roda Frog	RODA_FROG,3,20000,0,0
+treasure_n1,111,111,9,9	monster	Roda Frog	RODA_FROG,3,60000,0,0
+treasure_n1,111,111,9,9	monster	Dead Plankton	DEAD_PLANKTON,5,60000,0,0
+treasure_n1,69,174,9,9	monster	Dead Plankton	DEAD_PLANKTON,7,120000,0,0
+treasure_n1,82,155,9,9	monster	Spore	SPORE,4,60000,0,0
+treasure_n1,55,155,9,9	monster	Spore	SPORE,2,60000,0,0
+treasure_n1,22,160,0,0	monster	Weak Skeleton	WEAK_SKELETON,3,8000,0,0
+treasure_n1,163,155,13,13	monster	Weak Skeleton	WEAK_SKELETON,5,8000,0,0
+treasure_n1,163,155,13,13	monster	Zombie	ZOMBIE,1,8000,0,0
+
+//==================================================
+// treasure_n2 - Izlude Sunken Ship 2F
+//==================================================
+treasure_n2,0,0,0,0	monster	Red Mushroom	RED_MUSHROOM,10,50000,0,0
+treasure_n2,0,0,0,0	monster	Black Mushroom	BLACK_MUSHROOM,10,50000,0,0
+treasure_n2,150,40,13,13	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,3,50000,0,0
+treasure_n2,150,40,13,13	monster	Weak Skeleton	WEAK_SKELETON,5,50000,0,0
+treasure_n2,0,0,0,0	monster	Red Plant	RED_PLANT,5,50000,0,0
+treasure_n2,0,0,0,0	monster	Green Plant	GREEN_PLANT,5,50000,0,0
+treasure_n2,0,0,0,0	monster	Yellow Plant	YELLOW_PLANT,5,50000,0,0
+treasure_n2,0,0,0,0	monster	Blue Plant	BLUE_PLANT,5,50000,0,0
+treasure_n2,0,0,0,0	monster	White Plant	WHITE_PLANT,5,50000,0,0
+treasure_n2,100,50,13,13	monster	Weak Skeleton	WEAK_SKELETON,7,30000,0,0
+treasure_n2,100,50,13,13	monster	Dead Plankton	DEAD_PLANKTON,5,30000,0,0
+treasure_n2,50,40,13,13	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,3,50000,0,0
+treasure_n2,50,40,13,13	monster	Weak Skeleton	WEAK_SKELETON,5,50000,0,0
+treasure_n2,40,75,5,3	monster	Zombie	ZOMBIE,2,60000,0,0
+treasure_n2,40,75,5,5	monster	Dead Plankton	DEAD_PLANKTON,4,60000,0,0
+treasure_n2,50,140,5,5	monster	Weak Skeleton	WEAK_SKELETON,10,60000,0,0
+treasure_n2,50,140,5,5	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,5,60000,0,0
+treasure_n2,160,140,5,5	monster	Weak Skeleton	WEAK_SKELETON,5,60000,0,0
+treasure_n2,160,140,5,5	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,3,60000,0,0
+treasure_n2,160,140,5,2	monster	Zombie	ZOMBIE,3,60000,0,0
+treasure_n2,160,70,13,13	monster	Weak Skeleton	WEAK_SKELETON,5,30000,0,0
+treasure_n2,160,70,13,13	monster	Dead Plankton	DEAD_PLANKTON,7,30000,0,0
+treasure_n2,155,40,9,9	monster	Zombie	ZOMBIE,3,120000,0,0
+treasure_n2,100,85,13,13	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,2,50000,0,0
+treasure_n2,100,160,13,13	monster	Weak Soldier Skeleton	WEAK_SKEL_SOLDIER,5,120000,0,0
+treasure_n2,100,160,13,13	monster	Weak Skeleton	WEAK_SKELETON,7,200000,0,0
+treasure_n2,100,160,13,13	monster	Dead Plankton	DEAD_PLANKTON,4,60000,0,0
+
+//==================================================
+// new_1-3 - Novice Training Grounds
+//==================================================
+new_1-3,0,0,0,0	monster	Little Poring	LITTLE_PORING,30,50000,0,0

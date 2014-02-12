@@ -155,8 +155,7 @@ prontera,184,177,6	script	Mestre do Refino	4_M_REPAIR,{
 		mes "Por favor reporte isto.";
 		close;
 	}
-	for(set .@i,getequiprefinerycnt(.@part); .@i<.@ticket_lv; set .@i,.@i+1)
-		successrefitem .@part;
+	successrefitem .@part, .@ticket_lv;
 	next;
 	emotion e_ho;
 	mes "[Mestre do Refino]";
