@@ -101,7 +101,7 @@ moc_para01,14,32,5	script	Aperture#acolytewarp	4_F_01,{
 
 // Primo d'Buffer, VIP stat bonuses
 //============================================================
-moc_para01,26,15,3	script	Primo d'Buffer	790,{
+moc_para01,26,15,3	script	Primo d'Buffer	4_M_SALVATION,{
 	mes "[Primo d'Buffer]";
 	mes "Hello adventurer, you look like you are itching to get out there and save the world!";
 	mes "I can also tell that you have been blessed with '^007FFFVIP Status^000000'.";
@@ -121,7 +121,7 @@ moc_para01,26,15,3	script	Primo d'Buffer	790,{
 
 // Clearchus, VIP mercenary rentals
 //============================================================
-moc_para01,53,30,3	script	Clearchus	470,{
+moc_para01,53,30,3	script	Clearchus	4_M_KNIGHT_SILVER,{
 	if (checkquest(62238,PLAYTIME) > -1 && checkquest(62238,PLAYTIME) < 2) {
 		mes "You must wait for the timer to finish before you can hire a new mercenary.";
 		close;	
@@ -866,7 +866,7 @@ moc_para01,26,174,4	script	Grandma Boxter#boxx	4_F_THAISHAMAN,{ end; }
 //============================================================
 /* Map "auction_03" is a duplicate of "auction_02".
 
-moc_para01,30,187,4	script	Mail Annex Station	888,{
+moc_para01,30,187,4	script	Mail Annex Station	2_POSTBOX,{
 	mes "[Mail Annex Station]";
 	mes "Would you like to go to the Kafra Mail Annex Station?";
 	next;
@@ -885,7 +885,7 @@ moc_para01,30,187,4	script	Mail Annex Station	888,{
 }
 auction_03,152,16,0	warp	#mail_annex_warp	1,1,moc_para01,30,184
 
-auction_03,152,42,4	script	Kafra Employee#annex	117,{
+auction_03,152,42,4	script	Kafra Employee#annex	4_F_KAFRA1,{
 	mes "[Kafra Employee]";
 	mes "Welcome to the Kafra's Mail Annex Station. This is now the only place to send and retrieve mail.";
 	next;

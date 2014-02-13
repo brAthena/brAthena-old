@@ -25,7 +25,7 @@
 
 // Pumpkin Mojo quest (Event 1)
 //============================================================
-prontera,162,69,5	script	Gloomy Jack#06_hw	1130,2,2,{
+prontera,162,69,5	script	Gloomy Jack#06_hw	JAKK,2,2,{
 	end;
 
 OnTouch:
@@ -44,7 +44,7 @@ OnEffect2:
 	end;
 }
 
-prontera,164,69,3	script	Cool Devi#06_hw	738,{
+prontera,164,69,3	script	Cool Devi#06_hw	4_DEVIRUCHI,{
 	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -240,7 +240,7 @@ prontera,164,69,3	script	Cool Devi#06_hw	738,{
 }
 
 
-geffen,145,132,3	script	Hoirin#06_hw	729,{
+geffen,145,132,3	script	Hoirin#06_hw	4_F_NOVICE,{
 	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -385,7 +385,7 @@ geffen,145,132,3	script	Hoirin#06_hw	729,{
 	}
 }
 
-nif_in,18,34,5	script	Loli Ruri#06_hw	1505,2,2,{
+nif_in,18,34,5	script	Loli Ruri#06_hw	LOLI_RURI,2,2,{
 	end;
 
 OnTouch:
@@ -395,7 +395,7 @@ OnTouch:
 	close;
 }
 
-nif_in,19,32,3	script	Deviruchi#06_hw	738,{
+nif_in,19,32,3	script	Deviruchi#06_hw	4_DEVIRUCHI,{
 	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -487,7 +487,7 @@ nif_in,19,32,3	script	Deviruchi#06_hw	738,{
 
 // Creation of Pumpkin Pie (Event 2)
 //============================================================
-nif_fild01,165,115,3	script	Chicken Masta#06_hw	794,{
+nif_fild01,165,115,3	script	Chicken Masta#06_hw	4_M_NFDEADMAN2,{
 	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
 		mes "Right now, you're carrying";
@@ -646,7 +646,7 @@ nif_fild01,165,115,3	script	Chicken Masta#06_hw	794,{
 	}
 }
 
-nif_fild01,167,113,3	script	Masta's chicken#06_hw01	800,{
+nif_fild01,167,113,3	script	Masta's chicken#06_hw01	4_NFCOCK,{
 	mes "Drowsing chicken.";
 	close;
 }
@@ -720,14 +720,14 @@ OnInit:
 }
 
 
-nif_fild01,270,145,3	duplicate(HwChicken)	Masta's chicken#06_hw02	800
-nif_fild01,219,267,4	duplicate(HwChicken)	Masta's chicken#06_hw03	800
-nif_fild01,199,240,5	duplicate(HwChicken)	Masta's chicken#06_hw04	800
-nif_fild01,316,97,6	duplicate(HwChicken)	Masta's chicken#06_hw05	800
-nif_fild01,147,343,7	duplicate(HwChicken)	Masta's chicken#06_hw06	800
-nif_fild01,185,325,8	duplicate(HwChicken)	Masta's chicken#06_hw07	800
-nif_fild01,133,105,1	duplicate(HwChicken)	Masta's chicken#06_hw08	800
-nif_fild01,331,329,2	duplicate(HwChicken)	Masta's chicken#06_hw09	800
+nif_fild01,270,145,3	duplicate(HwChicken)	Masta's chicken#06_hw02	4_NFCOCK
+nif_fild01,219,267,4	duplicate(HwChicken)	Masta's chicken#06_hw03	4_NFCOCK
+nif_fild01,199,240,5	duplicate(HwChicken)	Masta's chicken#06_hw04	4_NFCOCK
+nif_fild01,316,97,6	duplicate(HwChicken)	Masta's chicken#06_hw05	4_NFCOCK
+nif_fild01,147,343,7	duplicate(HwChicken)	Masta's chicken#06_hw06	4_NFCOCK
+nif_fild01,185,325,8	duplicate(HwChicken)	Masta's chicken#06_hw07	4_NFCOCK
+nif_fild01,133,105,1	duplicate(HwChicken)	Masta's chicken#06_hw08	4_NFCOCK
+nif_fild01,331,329,2	duplicate(HwChicken)	Masta's chicken#06_hw09	4_NFCOCK
 
 pay_dun03,1,1,0	script	#06_hw_timer01	-1,{
 OnInit:
@@ -867,47 +867,47 @@ OnTimer4200000:
 }
 
 
-pay_dun03,151,138,3	duplicate(HwChicken3)	Chicken#06_hw_p01	800
-pay_dun03,151,138,3	duplicate(HwChicken2)	Chicken#06_hw_p02	800
-pay_dun03,152,138,3	duplicate(HwChicken2)	Chicken#06_hw_p03	800
-pay_dun03,154,138,3	duplicate(HwChicken2)	Chicken#06_hw_p04	800
-pay_dun03,155,138,3	duplicate(HwChicken2)	Chicken#06_hw_p05	800
-pay_dun03,157,138,3	duplicate(HwChicken2)	Chicken#06_hw_p06	800
-pay_dun03,158,138,3	duplicate(HwChicken3)	Chicken#06_hw_p07	800
-pay_dun03,150,137,3	duplicate(HwChicken2)	Chicken#06_hw_p08	800
-pay_dun03,153,137,3	duplicate(HwChicken2)	Chicken#06_hw_p09	800
-pay_dun03,156,137,3	duplicate(HwChicken3)	Chicken#06_hw_p10	800
-pay_dun03,159,137,3	duplicate(HwChicken2)	Chicken#06_hw_p11	800
-pay_dun03,149,136,3	duplicate(HwChicken2)	Chicken#06_hw_p12	800
-pay_dun03,152,136,3	duplicate(HwChicken3)	Chicken#06_hw_p13	800
-pay_dun03,157,136,3	duplicate(HwChicken2)	Chicken#06_hw_p14	800
-pay_dun03,160,136,3	duplicate(HwChicken2)	Chicken#06_hw_p15	800
-pay_dun03,149,135,3	duplicate(HwChicken3)	Chicken#06_hw_p16	800
-pay_dun03,151,135,3	duplicate(HwChicken2)	Chicken#06_hw_p17	800
-pay_dun03,152,135,3	duplicate(HwChicken2)	Chicken#06_hw_p18	800
-pay_dun03,153,135,3	duplicate(HwChicken3)	Chicken#06_hw_p19	800
-pay_dun03,156,135,3	duplicate(HwChicken2)	Chicken#06_hw_p20	800
-pay_dun03,157,135,3	duplicate(HwChicken2)	Chicken#06_hw_p21	800
-pay_dun03,158,135,3	duplicate(HwChicken3)	Chicken#06_hw_p22	800
-pay_dun03,160,135,3	duplicate(HwChicken2)	Chicken#06_hw_p23	800
-pay_dun03,149,134,3	duplicate(HwChicken2)	Chicken#06_hw_p24	800
-pay_dun03,152,134,3	duplicate(HwChicken3)	Chicken#06_hw_p25	800
-pay_dun03,157,134,3	duplicate(HwChicken2)	Chicken#06_hw_p26	800
-pay_dun03,160,134,3	duplicate(HwChicken2)	Chicken#06_hw_p27	800
-pay_dun03,149,133,3	duplicate(HwChicken3)	Chicken#06_hw_p28	800
-pay_dun03,160,133,3	duplicate(HwChicken2)	Chicken#06_hw_p29	800
-pay_dun03,150,132,3	duplicate(HwChicken2)	Chicken#06_hw_p30	800
-pay_dun03,153,132,3	duplicate(HwChicken3)	Chicken#06_hw_p31	800
-pay_dun03,156,132,3	duplicate(HwChicken2)	Chicken#06_hw_p32	800
-pay_dun03,159,132,3	duplicate(HwChicken2)	Chicken#06_hw_p33	800
-pay_dun03,151,131,3	duplicate(HwChicken2)	Chicken#06_hw_p34	800
-pay_dun03,152,131,3	duplicate(HwChicken2)	Chicken#06_hw_p35	800
-pay_dun03,153,131,3	duplicate(HwChicken3)	Chicken#06_hw_p36	800
-pay_dun03,154,131,3	duplicate(HwChicken2)	Chicken#06_hw_p37	800
-pay_dun03,155,131,3	duplicate(HwChicken2)	Chicken#06_hw_p38	800
-pay_dun03,156,131,3	duplicate(HwChicken3)	Chicken#06_hw_p39	800
-pay_dun03,157,131,3	duplicate(HwChicken2)	Chicken#06_hw_p40	800
-pay_dun03,158,131,3	duplicate(HwChicken3)	Chicken#06_hw_p41	800
+pay_dun03,151,138,3	duplicate(HwChicken3)	Chicken#06_hw_p01	4_NFCOCK
+pay_dun03,151,138,3	duplicate(HwChicken2)	Chicken#06_hw_p02	4_NFCOCK
+pay_dun03,152,138,3	duplicate(HwChicken2)	Chicken#06_hw_p03	4_NFCOCK
+pay_dun03,154,138,3	duplicate(HwChicken2)	Chicken#06_hw_p04	4_NFCOCK
+pay_dun03,155,138,3	duplicate(HwChicken2)	Chicken#06_hw_p05	4_NFCOCK
+pay_dun03,157,138,3	duplicate(HwChicken2)	Chicken#06_hw_p06	4_NFCOCK
+pay_dun03,158,138,3	duplicate(HwChicken3)	Chicken#06_hw_p07	4_NFCOCK
+pay_dun03,150,137,3	duplicate(HwChicken2)	Chicken#06_hw_p08	4_NFCOCK
+pay_dun03,153,137,3	duplicate(HwChicken2)	Chicken#06_hw_p09	4_NFCOCK
+pay_dun03,156,137,3	duplicate(HwChicken3)	Chicken#06_hw_p10	4_NFCOCK
+pay_dun03,159,137,3	duplicate(HwChicken2)	Chicken#06_hw_p11	4_NFCOCK
+pay_dun03,149,136,3	duplicate(HwChicken2)	Chicken#06_hw_p12	4_NFCOCK
+pay_dun03,152,136,3	duplicate(HwChicken3)	Chicken#06_hw_p13	4_NFCOCK
+pay_dun03,157,136,3	duplicate(HwChicken2)	Chicken#06_hw_p14	4_NFCOCK
+pay_dun03,160,136,3	duplicate(HwChicken2)	Chicken#06_hw_p15	4_NFCOCK
+pay_dun03,149,135,3	duplicate(HwChicken3)	Chicken#06_hw_p16	4_NFCOCK
+pay_dun03,151,135,3	duplicate(HwChicken2)	Chicken#06_hw_p17	4_NFCOCK
+pay_dun03,152,135,3	duplicate(HwChicken2)	Chicken#06_hw_p18	4_NFCOCK
+pay_dun03,153,135,3	duplicate(HwChicken3)	Chicken#06_hw_p19	4_NFCOCK
+pay_dun03,156,135,3	duplicate(HwChicken2)	Chicken#06_hw_p20	4_NFCOCK
+pay_dun03,157,135,3	duplicate(HwChicken2)	Chicken#06_hw_p21	4_NFCOCK
+pay_dun03,158,135,3	duplicate(HwChicken3)	Chicken#06_hw_p22	4_NFCOCK
+pay_dun03,160,135,3	duplicate(HwChicken2)	Chicken#06_hw_p23	4_NFCOCK
+pay_dun03,149,134,3	duplicate(HwChicken2)	Chicken#06_hw_p24	4_NFCOCK
+pay_dun03,152,134,3	duplicate(HwChicken3)	Chicken#06_hw_p25	4_NFCOCK
+pay_dun03,157,134,3	duplicate(HwChicken2)	Chicken#06_hw_p26	4_NFCOCK
+pay_dun03,160,134,3	duplicate(HwChicken2)	Chicken#06_hw_p27	4_NFCOCK
+pay_dun03,149,133,3	duplicate(HwChicken3)	Chicken#06_hw_p28	4_NFCOCK
+pay_dun03,160,133,3	duplicate(HwChicken2)	Chicken#06_hw_p29	4_NFCOCK
+pay_dun03,150,132,3	duplicate(HwChicken2)	Chicken#06_hw_p30	4_NFCOCK
+pay_dun03,153,132,3	duplicate(HwChicken3)	Chicken#06_hw_p31	4_NFCOCK
+pay_dun03,156,132,3	duplicate(HwChicken2)	Chicken#06_hw_p32	4_NFCOCK
+pay_dun03,159,132,3	duplicate(HwChicken2)	Chicken#06_hw_p33	4_NFCOCK
+pay_dun03,151,131,3	duplicate(HwChicken2)	Chicken#06_hw_p34	4_NFCOCK
+pay_dun03,152,131,3	duplicate(HwChicken2)	Chicken#06_hw_p35	4_NFCOCK
+pay_dun03,153,131,3	duplicate(HwChicken3)	Chicken#06_hw_p36	4_NFCOCK
+pay_dun03,154,131,3	duplicate(HwChicken2)	Chicken#06_hw_p37	4_NFCOCK
+pay_dun03,155,131,3	duplicate(HwChicken2)	Chicken#06_hw_p38	4_NFCOCK
+pay_dun03,156,131,3	duplicate(HwChicken3)	Chicken#06_hw_p39	4_NFCOCK
+pay_dun03,157,131,3	duplicate(HwChicken2)	Chicken#06_hw_p40	4_NFCOCK
+pay_dun03,158,131,3	duplicate(HwChicken3)	Chicken#06_hw_p41	4_NFCOCK
 
 // Payon Field chickens
 //============================================================
@@ -1006,35 +1006,35 @@ OnTimer6000000:
 	end;
 }
 
-pay_fild08,147,353,3	duplicate(HwChicken3)	Chicken#06_hw_pf01	800
-pay_fild08,147,354,3	duplicate(HwChicken2)	Chicken#06_hw_pf02	800
-pay_fild08,147,355,3	duplicate(HwChicken2)	Chicken#06_hw_pf03	800
-pay_fild08,148,352,3	duplicate(HwChicken3)	Chicken#06_hw_pf04	800
-pay_fild08,148,356,3	duplicate(HwChicken2)	Chicken#06_hw_pf05	800
-pay_fild08,149,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf06	800
-pay_fild08,149,354,3	duplicate(HwChicken3)	Chicken#06_hw_pf07	800
-pay_fild08,149,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf08	800
-pay_fild08,150,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf09	800
-pay_fild08,150,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf10	800
-pay_fild08,151,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf11	800
-pay_fild08,151,353,3	duplicate(HwChicken2)	Chicken#06_hw_pf12	800
-pay_fild08,151,355,3	duplicate(HwChicken3)	Chicken#06_hw_pf13	800
-pay_fild08,151,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf14	800
-pay_fild08,152,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf15	800
-pay_fild08,152,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf16	800
-pay_fild08,153,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf17	800
-pay_fild08,153,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf18	800
-pay_fild08,154,351,3	duplicate(HwChicken3)	Chicken#06_hw_pf19	800
-pay_fild08,154,353,3	duplicate(HwChicken2)	Chicken#06_hw_pf20	800
-pay_fild08,154,355,3	duplicate(HwChicken2)	Chicken#06_hw_pf21	800
-pay_fild08,154,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf22	800
-pay_fild08,155,350,3	duplicate(HwChicken2)	Chicken#06_hw_pf23	800
-pay_fild08,155,352,3	duplicate(HwChicken2)	Chicken#06_hw_pf24	800
-pay_fild08,155,354,3	duplicate(HwChicken3)	Chicken#06_hw_pf25	800
-pay_fild08,155,356,3	duplicate(HwChicken2)	Chicken#06_hw_pf26	800
-pay_fild08,155,358,3	duplicate(HwChicken3)	Chicken#06_hw_pf27	800
+pay_fild08,147,353,3	duplicate(HwChicken3)	Chicken#06_hw_pf01	4_NFCOCK
+pay_fild08,147,354,3	duplicate(HwChicken2)	Chicken#06_hw_pf02	4_NFCOCK
+pay_fild08,147,355,3	duplicate(HwChicken2)	Chicken#06_hw_pf03	4_NFCOCK
+pay_fild08,148,352,3	duplicate(HwChicken3)	Chicken#06_hw_pf04	4_NFCOCK
+pay_fild08,148,356,3	duplicate(HwChicken2)	Chicken#06_hw_pf05	4_NFCOCK
+pay_fild08,149,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf06	4_NFCOCK
+pay_fild08,149,354,3	duplicate(HwChicken3)	Chicken#06_hw_pf07	4_NFCOCK
+pay_fild08,149,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf08	4_NFCOCK
+pay_fild08,150,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf09	4_NFCOCK
+pay_fild08,150,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf10	4_NFCOCK
+pay_fild08,151,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf11	4_NFCOCK
+pay_fild08,151,353,3	duplicate(HwChicken2)	Chicken#06_hw_pf12	4_NFCOCK
+pay_fild08,151,355,3	duplicate(HwChicken3)	Chicken#06_hw_pf13	4_NFCOCK
+pay_fild08,151,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf14	4_NFCOCK
+pay_fild08,152,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf15	4_NFCOCK
+pay_fild08,152,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf16	4_NFCOCK
+pay_fild08,153,351,3	duplicate(HwChicken2)	Chicken#06_hw_pf17	4_NFCOCK
+pay_fild08,153,357,3	duplicate(HwChicken2)	Chicken#06_hw_pf18	4_NFCOCK
+pay_fild08,154,351,3	duplicate(HwChicken3)	Chicken#06_hw_pf19	4_NFCOCK
+pay_fild08,154,353,3	duplicate(HwChicken2)	Chicken#06_hw_pf20	4_NFCOCK
+pay_fild08,154,355,3	duplicate(HwChicken2)	Chicken#06_hw_pf21	4_NFCOCK
+pay_fild08,154,357,3	duplicate(HwChicken3)	Chicken#06_hw_pf22	4_NFCOCK
+pay_fild08,155,350,3	duplicate(HwChicken2)	Chicken#06_hw_pf23	4_NFCOCK
+pay_fild08,155,352,3	duplicate(HwChicken2)	Chicken#06_hw_pf24	4_NFCOCK
+pay_fild08,155,354,3	duplicate(HwChicken3)	Chicken#06_hw_pf25	4_NFCOCK
+pay_fild08,155,356,3	duplicate(HwChicken2)	Chicken#06_hw_pf26	4_NFCOCK
+pay_fild08,155,358,3	duplicate(HwChicken3)	Chicken#06_hw_pf27	4_NFCOCK
 
-prontera,155,285,3	script	Familiar#06_hw01::HWFamiDup	799,{
+prontera,155,285,3	script	Familiar#06_hw01::HWFamiDup	4_NFBAT,{
 	mes "[Familiar]";
 	mes "Hello.";
 	mes "I'm Loli Ruri's faithful and cute Familiar.";
@@ -1077,334 +1077,334 @@ prontera,155,285,3	script	Familiar#06_hw01::HWFamiDup	799,{
 	mes "He likes it.";
 	close;
 }
-payon,156,231,3	duplicate(HWFamiDup)	Familiar#06_hw02	799
-morocc,159,143,3	duplicate(HWFamiDup)	Familiar#06_hw03	799
-geffen,120,188,3	duplicate(HWFamiDup)	Familiar#06_hw04	799
-alberta,80,171,3	duplicate(HWFamiDup)	Familiar#06_hw05	799
+payon,156,231,3	duplicate(HWFamiDup)	Familiar#06_hw02	4_NFBAT
+morocc,159,143,3	duplicate(HWFamiDup)	Familiar#06_hw03	4_NFBAT
+geffen,120,188,3	duplicate(HWFamiDup)	Familiar#06_hw04	4_NFBAT
+alberta,80,171,3	duplicate(HWFamiDup)	Familiar#06_hw05	4_NFBAT
 
 // Event Lude Monster Spawns
 //============================================================
-ra_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_fild13,0,0,0,0	monster	Lude	1812,3,0,0,0
+ra_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_fild13,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ra_san01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_san02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_san03,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_san04,0,0,0,0	monster	Lude	1812,3,0,0,0
-ra_san05,0,0,0,0	monster	Lude	1812,3,0,0,0
+ra_san01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_san02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_san03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_san04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ra_san05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ice_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ice_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ice_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
+ice_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ice_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ice_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-odin_tem01,0,0,0,0	monster	Lude	1812,3,0,0,0
-odin_tem02,0,0,0,0	monster	Lude	1812,3,0,0,0
-odin_tem03,0,0,0,0	monster	Lude	1812,3,0,0,0
+odin_tem01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+odin_tem02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+odin_tem03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-kh_kiehl01,0,0,0,0	monster	Lude	1812,3,0,0,0
+kh_kiehl01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-kh_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-kh_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
+kh_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+kh_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-yuno_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
+yuno_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ein_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
+ein_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-hu_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-hu_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
+hu_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+hu_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-tha_t01,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t02,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t03,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t04,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t05,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t06,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t07,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t08,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t09,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t10,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t11,0,0,0,0	monster	Lude	1812,3,0,0,0
-tha_t12,0,0,0,0	monster	Lude	1812,3,0,0,0
+tha_t01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tha_t12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-abyss_01,0,0,0,0	monster	Lude	1812,3,0,0,0
-abyss_02,0,0,0,0	monster	Lude	1812,3,0,0,0
-abyss_03,0,0,0,0	monster	Lude	1812,3,0,0,0
+abyss_01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+abyss_02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+abyss_03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-juperos_01,0,0,0,0	monster	Lude	1812,3,0,0,0
-juperos_02,0,0,0,0	monster	Lude	1812,3,0,0,0
-jupe_core,0,0,0,0	monster	Lude	1812,3,0,0,0
+juperos_01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+juperos_02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+jupe_core,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-lhz_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-lhz_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-lhz_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-lhz_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
+lhz_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lhz_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lhz_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lhz_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-lhz_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-lhz_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
+lhz_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lhz_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ein_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ein_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
+ein_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ein_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gefenia01,0,0,0,0	monster	Lude	1812,3,0,0,0
-gefenia02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gefenia03,0,0,0,0	monster	Lude	1812,3,0,0,0
-gefenia04,0,0,0,0	monster	Lude	1812,3,0,0,0
+gefenia01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gefenia02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gefenia03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gefenia04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-yuno_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
+yuno_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ayo_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ayo_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ayo_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ayo_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
+ayo_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ayo_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ayo_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ayo_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gon_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-gon_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gon_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
+gon_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gon_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gon_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-ama_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ama_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-ama_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
+ama_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ama_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ama_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-lou_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-lou_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-lou_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-lou_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
+lou_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lou_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lou_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+lou_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-um_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-um_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-um_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-um_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-um_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-um_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-yggdrasil01,0,0,0,0	monster	Lude	1812,3,0,0,0
+um_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+um_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+um_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+um_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+um_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+um_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yggdrasil01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-mag_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-mag_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
+mag_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mag_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-beach_dun,0,0,0,0	monster	Lude	1812,3,0,0,0
-beach_dun2,0,0,0,0	monster	Lude	1812,3,0,0,0
-beach_dun3,0,0,0,0	monster	Lude	1812,3,0,0,0
+beach_dun,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+beach_dun2,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+beach_dun3,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gon_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-ama_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-yuno_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
+gon_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+ama_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+yuno_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-prt_fild00,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
+prt_fild00,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-moc_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild13,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild14,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild15,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild16,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild17,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_fild18,0,0,0,0	monster	Lude	1812,3,0,0,0
+moc_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild13,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild14,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild15,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild16,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild17,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_fild18,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-pay_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
+pay_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gef_fild00,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild13,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_fild14,0,0,0,0	monster	Lude	1812,3,0,0,0
+gef_fild00,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild13,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_fild14,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-cmd_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
-cmd_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
+cmd_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+cmd_fild09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-mjolnir_01,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_02,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_03,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_04,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_05,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_06,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_07,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_08,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_09,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_10,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_11,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjolnir_12,0,0,0,0	monster	Lude	1812,3,0,0,0
+mjolnir_01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_07,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_08,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_09,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_10,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_11,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjolnir_12,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-xmas_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
+xmas_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-sec_in02,0,0,0,0	monster	Lude	1812,3,0,0,0
+sec_in02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_knt02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_knt01,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_knt02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_knt01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_step,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_step,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_sew04,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_sew03,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_sew02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_sew01,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_sew04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_sew03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_sew02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_sew01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_chyard,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_church,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_chyard,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_church,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-glast_01,0,0,0,0	monster	Lude	1812,3,0,0,0
+glast_01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_prison1,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_prison,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_prison1,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_prison,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_in01,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_in01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gl_cas02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gl_cas01,0,0,0,0	monster	Lude	1812,3,0,0,0
+gl_cas02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gl_cas01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-tur_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
-tur_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-tur_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-tur_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+tur_dun04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tur_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tur_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+tur_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-alde_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
-alde_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-alde_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-alde_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+alde_dun04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+alde_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+alde_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+alde_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-c_tower1,0,0,0,0	monster	Lude	1812,3,0,0,0
-c_tower2,0,0,0,0	monster	Lude	1812,3,0,0,0
-c_tower3,0,0,0,0	monster	Lude	1812,3,0,0,0
-c_tower4,0,0,0,0	monster	Lude	1812,3,0,0,0
+c_tower1,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+c_tower2,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+c_tower3,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+c_tower4,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-in_sphinx5,0,0,0,0	monster	Lude	1812,3,0,0,0
-in_sphinx4,0,0,0,0	monster	Lude	1812,3,0,0,0
-in_sphinx3,0,0,0,0	monster	Lude	1812,3,0,0,0
-in_sphinx2,0,0,0,0	monster	Lude	1812,3,0,0,0
-in_sphinx1,0,0,0,0	monster	Lude	1812,3,0,0,0
+in_sphinx5,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+in_sphinx4,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+in_sphinx3,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+in_sphinx2,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+in_sphinx1,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-prt_maze03,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_maze02,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_maze01,0,0,0,0	monster	Lude	1812,3,0,0,0
+prt_maze03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_maze02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_maze01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-treasure02,0,0,0,0	monster	Lude	1812,3,0,0,0
-treasure01,0,0,0,0	monster	Lude	1812,3,0,0,0
+treasure02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+treasure01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-moc_pryd06,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_pryd05,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_pryd04,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_pryd03,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_pryd02,0,0,0,0	monster	Lude	1812,3,0,0,0
-moc_pryd01,0,0,0,0	monster	Lude	1812,3,0,0,0
+moc_pryd06,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_pryd05,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_pryd04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_pryd03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_pryd02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+moc_pryd01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-gef_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-gef_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
+gef_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+gef_dun00,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-iz_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
-iz_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-iz_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-iz_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-iz_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
+iz_dun00,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+iz_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+iz_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+iz_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+iz_dun04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-pay_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-pay_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
+pay_dun00,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+pay_dun04,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-xmas_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-xmas_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+xmas_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+xmas_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-anthell02,0,0,0,0	monster	Lude	1812,3,0,0,0
-anthell01,0,0,0,0	monster	Lude	1812,3,0,0,0
+anthell02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+anthell01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-orcsdun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-orcsdun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+orcsdun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+orcsdun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-mjo_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjo_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-mjo_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
+mjo_dun03,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjo_dun02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+mjo_dun01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-prt_sewb4,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_sewb3,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_sewb2,0,0,0,0	monster	Lude	1812,3,0,0,0
-prt_sewb1,0,0,0,0	monster	Lude	1812,3,0,0,0
+prt_sewb4,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_sewb3,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_sewb2,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
+prt_sewb1,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-nif_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
+nif_fild01,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0
 
-nif_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
+nif_fild02,0,0,0,0	monster	Lude	EVENT_LUDE,3,0,0,0

@@ -24,7 +24,7 @@
 
 // Starting the Quest
 //============================================================
-que_ng,28,156,0	script	Start#ko	139,1,1,{
+que_ng,28,156,0	script	Start#ko	HIDDEN_WARP_NPC,1,1,{
 	end;
 OnTouch:
 	if (BaseLevel >= 99 && JobLevel >= 70 && job_kagero == 0 && Class == Job_Ninja) {
@@ -70,7 +70,7 @@ OnTouch:
 	end;
 }
 
-que_ng,21,76,0	script	Wall with a Drawing#ko	844,{
+que_ng,21,76,0	script	Wall with a Drawing#ko	CLEAR_NPC,{
 	if (Class == Job_Oboro || Class == Job_Kagerou) {
 		mes "You should no longer use this secret passage.";
 		close;
@@ -105,7 +105,7 @@ que_ng,21,76,0	script	Wall with a Drawing#ko	844,{
 	end;
 }
 
-job_ko,25,115,4	script	Old Man#ko	588,{
+job_ko,25,115,4	script	Old Man#ko	4_M_KAGE_OLD,{
 	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
 		mes "[Cougar]";
 		mes "You don't need to carry so many things."; //custom translation
@@ -763,7 +763,7 @@ L_StartTest:
 
 // Test of Knowledge
 //============================================================
-job_ko,81,124,4	script	Cougar#ko	730,{
+job_ko,81,124,4	script	Cougar#ko	4_M_JOB_ASSASSIN,{
 	if (BaseJob != Job_Ninja) {
 		for (set .@i,5131; .@i<=5146; set .@i,.@i+1)
 			if (isbegin_quest(.@i)) erasequest .@i;
@@ -1278,7 +1278,7 @@ OnTouch:
 //  Blocks (00-40)
 // -----------------------------------------------------------
 
-job_ko,57,16,4	script	Sight#ko_00	858,1,1,{
+job_ko,57,16,4	script	Sight#ko_00	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",0;
 	end;
 OnTouch:
@@ -1325,7 +1325,7 @@ L_Description:
 	return;
 }
 
-job_ko,49,16,4	script	Sight#ko_01	858,1,1,{
+job_ko,49,16,4	script	Sight#ko_01	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",1;
 	end;
 OnTouch:
@@ -1354,9 +1354,9 @@ OnTouch:
 	end;
 }
 
-job_ko,41,16,4	duplicate(Sight#ko_trap)	Sight#ko_02	858,1,1
+job_ko,41,16,4	duplicate(Sight#ko_trap)	Sight#ko_02	4_BULLETIN_BOARD2,1,1
 
-job_ko,33,16,4	script	Sight#ko_03	858,1,1,{
+job_ko,33,16,4	script	Sight#ko_03	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",3;
 	end;
 OnTouch:
@@ -1377,7 +1377,7 @@ OnTouch:
 	end;
 }
 
-job_ko,25,16,4	script	Sight#ko_04	858,1,1,{
+job_ko,25,16,4	script	Sight#ko_04	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",4;
 	end;
 OnTouch:
@@ -1408,13 +1408,13 @@ OnTouch:
 	end;
 }
 
-job_ko,17,16,4	duplicate(Sight#ko_curse)	Sight#ko_05	858,1,1
+job_ko,17,16,4	duplicate(Sight#ko_curse)	Sight#ko_05	4_BULLETIN_BOARD2,1,1
 
-job_ko,17,24,4	duplicate(Sight#ko_heal)	Sight#ko_06	858,1,1
+job_ko,17,24,4	duplicate(Sight#ko_heal)	Sight#ko_06	4_BULLETIN_BOARD2,1,1
 
-job_ko,17,32,4	duplicate(Sight#ko_trap)	Sight#ko_07	858,1,1
+job_ko,17,32,4	duplicate(Sight#ko_trap)	Sight#ko_07	4_BULLETIN_BOARD2,1,1
 
-job_ko,17,40,4	script	Sight#ko_08	858,1,1,{
+job_ko,17,40,4	script	Sight#ko_08	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",8;
 	end;
 OnTouch:
@@ -1442,7 +1442,7 @@ OnTouch:
 	}
 }
 
-job_ko,17,48,4	script	Sight#ko_09	858,1,1,{
+job_ko,17,48,4	script	Sight#ko_09	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",9;
 	end;
 OnTouch:
@@ -1454,11 +1454,11 @@ OnTouch:
 	end;
 }
 
-job_ko,17,56,4	duplicate(Sight#ko_trap2)	Sight#ko_10	858,1,1
+job_ko,17,56,4	duplicate(Sight#ko_trap2)	Sight#ko_10	4_BULLETIN_BOARD2,1,1
 
-job_ko,22,60,4	duplicate(Sight#ko_trap)	Sight#ko_11	858,1,1
+job_ko,22,60,4	duplicate(Sight#ko_trap)	Sight#ko_11	4_BULLETIN_BOARD2,1,1
 
-job_ko,30,60,4	script	Sight#ko_12	858,1,1,{
+job_ko,30,60,4	script	Sight#ko_12	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",12;
 	end;
 OnTouch:
@@ -1486,11 +1486,11 @@ OnTouch:
 	}
 }
 
-job_ko,38,60,4	duplicate(Sight#ko_heal)	Sight#ko_13	858,1,1
+job_ko,38,60,4	duplicate(Sight#ko_heal)	Sight#ko_13	4_BULLETIN_BOARD2,1,1
 
-job_ko,46,60,4	duplicate(Sight#ko_curse)	Sight#ko_14	858,1,1
+job_ko,46,60,4	duplicate(Sight#ko_curse)	Sight#ko_14	4_BULLETIN_BOARD2,1,1
 
-job_ko,54,60,4	script	Sight#ko_15	858,1,1,{
+job_ko,54,60,4	script	Sight#ko_15	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",15;
 	end;
 OnTouch:
@@ -1518,7 +1518,7 @@ OnTouch:
 	}
 }
 
-job_ko,62,60,4	script	Sight#ko_16	858,1,1,{
+job_ko,62,60,4	script	Sight#ko_16	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",16;
 	end;
 OnTouch:
@@ -1543,9 +1543,9 @@ OnTouch:
 	end;
 }
 
-job_ko,62,51,4	duplicate(Sight#ko_gravity)	Sight#ko_17	858,1,1
+job_ko,62,51,4	duplicate(Sight#ko_gravity)	Sight#ko_17	4_BULLETIN_BOARD2,1,1
 
-job_ko,62,43,4	script	Sight#ko_18	858,1,1,{
+job_ko,62,43,4	script	Sight#ko_18	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",18;
 	end;
 OnTouch:
@@ -1573,7 +1573,7 @@ OnTouch:
 	}
 }
 
-job_ko,62,35,4	script	Sight#ko_19	858,1,1,{
+job_ko,62,35,4	script	Sight#ko_19	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",19;
 	end;
 OnTouch:
@@ -1585,11 +1585,11 @@ OnTouch:
 	end;
 }
 
-job_ko,62,27,4	duplicate(Sight#ko_heal)	Sight#ko_20	858,1,1
+job_ko,62,27,4	duplicate(Sight#ko_heal)	Sight#ko_20	4_BULLETIN_BOARD2,1,1
 
-job_ko,57,23,4	duplicate(Sight#ko_gravity)	Sight#ko_21	858,1,1
+job_ko,57,23,4	duplicate(Sight#ko_gravity)	Sight#ko_21	4_BULLETIN_BOARD2,1,1
 
-job_ko,49,23,4	script	Sight#ko_22	858,1,1,{
+job_ko,49,23,4	script	Sight#ko_22	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",22;
 	end;
 OnTouch:
@@ -1622,9 +1622,9 @@ OnTouch:
 	end;
 }
 
-job_ko,41,23,4	duplicate(Sight#ko_trap)	Sight#ko_23	858,1,1
+job_ko,41,23,4	duplicate(Sight#ko_trap)	Sight#ko_23	4_BULLETIN_BOARD2,1,1
 
-job_ko,33,23,4	script	Sight#ko_24	858,1,1,{
+job_ko,33,23,4	script	Sight#ko_24	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",24;
 	end;
 OnTouch:
@@ -1654,7 +1654,7 @@ OnTouch:
 	}
 }
 
-job_ko,25,23,4	script	Sight#ko_25	858,1,1,{
+job_ko,25,23,4	script	Sight#ko_25	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",25;
 	end;
 OnTouch:
@@ -1700,13 +1700,13 @@ OnTouch:
 	end;
 }
 
-job_ko,25,32,4	duplicate(Sight#ko_trap)	Sight#ko_26	858,1,1
+job_ko,25,32,4	duplicate(Sight#ko_trap)	Sight#ko_26	4_BULLETIN_BOARD2,1,1
 
-job_ko,25,40,4	duplicate(Sight#ko_heal)	Sight#ko_27	858,1,1
+job_ko,25,40,4	duplicate(Sight#ko_heal)	Sight#ko_27	4_BULLETIN_BOARD2,1,1
 
-job_ko,25,48,4	duplicate(Sight#ko_trap2)	Sight#ko_28	858,1,1
+job_ko,25,48,4	duplicate(Sight#ko_trap2)	Sight#ko_28	4_BULLETIN_BOARD2,1,1
 
-job_ko,30,52,4	script	Sight#ko_29	858,1,1,{
+job_ko,30,52,4	script	Sight#ko_29	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",29;
 	end;
 OnTouch:
@@ -1718,11 +1718,11 @@ OnTouch:
 	end;
 }
 
-job_ko,38,52,4	duplicate(Sight#ko_trap)	Sight#ko_30	858,1,1
+job_ko,38,52,4	duplicate(Sight#ko_trap)	Sight#ko_30	4_BULLETIN_BOARD2,1,1
 
-job_ko,46,52,4	duplicate(Sight#ko_curse)	Sight#ko_31	858,1,1
+job_ko,46,52,4	duplicate(Sight#ko_curse)	Sight#ko_31	4_BULLETIN_BOARD2,1,1
 
-job_ko,54,52,4	script	Sight#ko_32	858,1,1,{
+job_ko,54,52,4	script	Sight#ko_32	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",32;
 	end;
 OnTouch:
@@ -1745,7 +1745,7 @@ OnTouch:
 	}
 }
 
-job_ko,54,43,4	script	Sight#ko_33	858,1,1,{
+job_ko,54,43,4	script	Sight#ko_33	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",33;
 	end;
 OnTouch:
@@ -1771,11 +1771,11 @@ OnTouch:
 	end;
 }
 
-job_ko,54,35,4	duplicate(Sight#ko_heal)	Sight#ko_34	858,1,1
+job_ko,54,35,4	duplicate(Sight#ko_heal)	Sight#ko_34	4_BULLETIN_BOARD2,1,1
 
-job_ko,49,31,4	duplicate(Sight#ko_trap)	Sight#ko_35	858,1,1
+job_ko,49,31,4	duplicate(Sight#ko_trap)	Sight#ko_35	4_BULLETIN_BOARD2,1,1
 
-job_ko,41,31,4	script	Sight#ko_36	858,1,1,{
+job_ko,41,31,4	script	Sight#ko_36	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",36;
 	end;
 OnTouch:
@@ -1816,7 +1816,7 @@ OnTouch:
 	}
 }
 
-job_ko,33,31,4	script	Sight#ko_37	858,1,1,{
+job_ko,33,31,4	script	Sight#ko_37	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",37;
 	end;
 OnTouch:
@@ -1838,7 +1838,7 @@ OnTouch:
 	}
 }
 
-job_ko,33,40,4	script	Sight#ko_38	858,1,1,{
+job_ko,33,40,4	script	Sight#ko_38	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",38;
 	end;
 OnTouch:
@@ -1877,7 +1877,7 @@ OnTouch:
 	end;
 }
 
-job_ko,38,44,4	script	Sight#ko_39	858,1,1,{
+job_ko,38,44,4	script	Sight#ko_39	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",39;
 	end;
 OnTouch:
@@ -1899,7 +1899,7 @@ OnTouch:
 	}
 }
 
-job_ko,46,41,4	script	Sight#ko_40	858,1,1,{
+job_ko,46,41,4	script	Sight#ko_40	4_BULLETIN_BOARD2,1,1,{
 	callfunc "F_KO_Survival_mes",40;
 	end;
 OnTouch:
@@ -1933,7 +1933,7 @@ OnTouch:
 
 // Test of Weaponry
 //============================================================
-job_ko,127,125,4	script	Red Leopard Joe#ko	730,{
+job_ko,127,125,4	script	Red Leopard Joe#ko	4_M_JOB_ASSASSIN,{
 	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
 		mes "[Red Leopard Joe]";
 		mes "Go reduce your weight! This test will be too difficult otherwise...";  //custom translation
@@ -2237,7 +2237,7 @@ L_Weapon:
 	}
 }
 
-job_ko,117,128,0	script	Drawer#ko	844,{
+job_ko,117,128,0	script	Drawer#ko	CLEAR_NPC,{
 	mes "There is some kind of device on the drawer.";
 	next;
 	if(select("Stop.:Try to operate it.") == 2) {
@@ -2249,7 +2249,7 @@ job_ko,117,128,0	script	Drawer#ko	844,{
 	close;
 }
 
-job_ko,131,124,0	script	Crafting Tools#ko_01	844,{
+job_ko,131,124,0	script	Crafting Tools#ko_01	CLEAR_NPC,{
 	if (MaxWeight - Weight < 1000 || checkweight(1201,1) == 0) {
 		mes "Too heavy! Please reduce your weight.";  //custom translation
 		close;
@@ -2408,10 +2408,10 @@ L_ForgeWeapon:
 	set @job_ko_lastaction, .@i;
 	return 1;
 }
-job_ko,129,129,0	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_02	844
-job_ko,116,124,0	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_03	844
+job_ko,129,129,0	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_02	CLEAR_NPC
+job_ko,116,124,0	duplicate(Crafting Tools#ko_01)	Crafting Tools#ko_03	CLEAR_NPC
 
-job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
+job_ko,121,121,0	script	Refinement Tools#ko_01	CLEAR_NPC,{
 	if (isbegin_quest(5138) == 1 && isbegin_quest(5142) == 0 && (isbegin_quest(5143) == 1 || isbegin_quest(5144) == 1) && isbegin_quest(5145) == 1) {
 		disable_items;
 	} else {
@@ -2508,11 +2508,11 @@ job_ko,121,121,0	script	Refinement Tools#ko_01	844,{
 	}
 	end;
 }
-job_ko,127,121,0	duplicate(Refinement Tools#ko_01)	Refinement Tools#ko_02	844
+job_ko,127,121,0	duplicate(Refinement Tools#ko_01)	Refinement Tools#ko_02	CLEAR_NPC
 
 // Test of Battle
 //============================================================
-job_ko,148,46,4	script	Guide Gion#ko2	588,{
+job_ko,148,46,4	script	Guide Gion#ko2	4_M_KAGE_OLD,{
 	if (MaxWeight - Weight < 2000 || checkweight(1201,1) == 0) {
 		mes "[Guide Gion]";
 		mes "You don't need so many things now!"; //custom translation
@@ -2655,7 +2655,7 @@ job_ko,148,46,4	script	Guide Gion#ko2	588,{
 	}
 }
 
-job_ko,151,47,4	script	Cougar#ko2	730,{
+job_ko,151,47,4	script	Cougar#ko2	4_M_JOB_ASSASSIN,{
 	mes "[Cougar]";
 	mes "Congratulation for choosing the road of development!";
 	close;
@@ -2668,7 +2668,7 @@ OnEnable:
 	end;
 }
 
-job_ko,145,47,6	script	Red Leopard Joe#ko2	730,{
+job_ko,145,47,6	script	Red Leopard Joe#ko2	4_M_JOB_ASSASSIN,{
 	mes "[Red Leopard Joe]";
 	mes "You have not found the target? Continue searching it.";
 	close;
@@ -2681,7 +2681,7 @@ OnEnable:
 	end;
 }
 
-job_ko,1,1,4	script	Summon Target#ko	844,{
+job_ko,1,1,4	script	Summon Target#ko	CLEAR_NPC,{
 	end;
 OnInit:
 OnTimer180000:
@@ -2714,7 +2714,7 @@ OnMyMobDead:
 	end;
 }
 
-job_ko,1,2,4	script	Summon Fake#ko	844,{
+job_ko,1,2,4	script	Summon Fake#ko	CLEAR_NPC,{
 	end;
 OnInit:
 	donpcevent "Summon Fake#ko::OnEnable";
@@ -2756,7 +2756,7 @@ OnMyMobDead:
 
 // GM Control Panel (custom translations)
 //============================================================
-job_ko,3,1,4	script	Battle Test Control#ko	588,{
+job_ko,3,1,4	script	Battle Test Control#ko	4_M_KAGE_OLD,{
 	callfunc "F_GM_NPC";
 	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		mes "This is the Battle Test Control NPC.";
@@ -2788,7 +2788,7 @@ job_ko,3,1,4	script	Battle Test Control#ko	588,{
 	close;
 }
 
-job_ko,4,1,4	script	Guide#ko_helper	588,{
+job_ko,4,1,4	script	Guide#ko_helper	4_M_KAGE_OLD,{
 	callfunc "F_GM_NPC";
 	if (callfunc("F_GM_NPC",1854,0) == 1) {
 		mes "This is the Kagerou and Oboro Job Change assistant NPC.";

@@ -1363,7 +1363,7 @@ que_ng,22,62,3	script	Tetsu	4_M_SEAMAN,{
 	close;
 }
 
-que_ng,21,72,6	script#re	Master Armor Craftsman	934,{
+que_ng,21,72,6	script#re	Master Armor Craftsman	4_M_RASWORD,{
 	mes "[Gyo]";
 	mes "How would you define victory?";
 	mes "To fell the enemy...";
@@ -1575,7 +1575,7 @@ L_Combine:
 	end;
 }
 
-que_ng,23,70,3	script#re	Master Weapon Craftsman	939,{
+que_ng,23,70,3	script#re	Master Weapon Craftsman	4_DST_SOLDIER,{
 	mes "[Ki]";
 	mes "To attack is the best means of defense.";
 	mes "A powerful weapon ill make you truly complete.";

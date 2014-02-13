@@ -436,7 +436,7 @@ moc_prydb1,42,133,2	script	Brad#gatuno	2_M_THIEFMASTER,{
 	close;
 }
 
-moc_ruins,141,125,4	script#vpo	Bogus	83,{
+moc_ruins,141,125,4	script#vpo	Bogus	4_M_01,{
 	mes "[Bogus]";
 	if (BaseJob == Job_Thief) {
 		mes "Oh! Veja só que ótimo Gatuno você se tornou! Como você já é um Gatuno, não pode entrar aqui...";

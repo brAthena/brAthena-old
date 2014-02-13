@@ -25,7 +25,7 @@
 
 // Main Quest :: 2010_hat_0405
 //============================================================
-gonryun,149,189,0	script	Yotang#Flower_Of_Fairy	50,{
+gonryun,149,189,0	script	Yotang#Flower_Of_Fairy	1_M_04,{
 	mes "[Yotang]";
 	mes "There lives a fairy on the 3rd floor of Kunlun.";
 	mes "She is so famous for her beauty";
@@ -161,7 +161,7 @@ L_CheckWeight:
 	return;
 }
 
-lhz_in02,276,281,1	script	Drunken Man#Necktie	748,{
+lhz_in02,276,281,1	script	Drunken Man#Necktie	4_M_ALCHE_A,{
 	mes "[Drunken Man]";
 	mes "Hey... you wanna fight?!";
 	next;
@@ -268,7 +268,7 @@ L_CheckWeight:
 	return;
 }
 
-comodo,236,164,0	script	Hat Girl#Hair_Brush	69,{
+comodo,236,164,0	script	Hat Girl#Hair_Brush	1_F_04,{
 	mes "[Hat Girl]";
 	mes "Isn't the unique hat much better";
 	mes "than the common hairbands?";
@@ -362,7 +362,7 @@ L_CheckWeight:
 	return;
 }
 
-alberta,151,78,0	script	Bebete#Baby_Angel	96,{
+alberta,151,78,0	script	Bebete#Baby_Angel	4W_KID,{
 	if (isequipped(5074) > 0 || isequipped(2254) > 0 || isequipped(5210) > 0) {
 		if (BaseLevel < 65) {
 			mes "[Bebete]";
@@ -511,7 +511,7 @@ L_CheckWeight:
 	return;
 }
 
-gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	1012,1,1,{
+gef_fild07,108,161,4	script	Roda Frog#Frog_Cap	RODA_FROG,1,1,{
 	if (!.Active) end;
 	if (hat_2009 == 0) {
 		mes "[???]";
@@ -840,7 +840,7 @@ OnTouch:
 	end;
 }
 
-alberta,120,206,3	script	Alonie#Solo_Play_Box	787,{
+alberta,120,206,3	script	Alonie#Solo_Play_Box	4_M_UMKID,{
 	if (hat_1_2009 == 0) {
 		mes "[Alonie]";
 		mes "I am an expert at playing alone.";
