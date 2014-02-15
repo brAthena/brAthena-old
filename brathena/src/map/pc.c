@@ -4699,7 +4699,7 @@ void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type) {
 			ShowError("Helllo! You reached pc_bound_clear for IBT_ACCOUNT, unfortunately no scenario was expected for this!\n");
 			break;
 		case IBT_GUILD: {
-				struct guild_storage *gstor = gstorage->id2storage2(sd->status.guild_id);
+				struct guild_storage *gstor = gstorage->id2storage(sd->status.guild_id);
 
 				for(i = 0; i < MAX_INVENTORY; i++){
 					if(sd->status.inventory[i].bound == type) {
@@ -4709,7 +4709,7 @@ void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type) {
 					}
 				}
 				if(gstor)
-					storage->close(sd);
+					gstorage->close(sd);
 			}
 			break;
 	}
