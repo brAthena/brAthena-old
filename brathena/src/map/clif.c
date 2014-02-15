@@ -5655,14 +5655,6 @@ void clif_broadcast2(struct block_list *bl, const char *mes, size_t len, unsigne
 		aFree(buf);
 }
 
-/*==========================================
- * Channel System
- *------------------------------------------*/
-
-
-
-
-
 /// Displays heal effect (ZC_RECOVERY).
 /// 013d <var id>.W <amount>.W
 /// var id:

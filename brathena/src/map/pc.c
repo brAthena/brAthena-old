@@ -7040,6 +7040,9 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		item_tmp.card[3]=GetWord(sd->status.char_id,1);
 		map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 	}
+	
+	if((sd->class_&MAPID_BASEMASK) == MAPID_NOVICE && !(sd->class_&JOBL_2))
+		status_percent_heal(&sd->bl, 50, 0);
 
 	// activate Steel body if a super novice dies at 99+% exp [celest]
 	if((sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE && !sd->state.snovice_dead_flag) {
