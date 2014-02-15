@@ -485,7 +485,6 @@ struct item_data *itemdb_exists(int nameid);
 #define itemdb_value_buy(n)   (itemdb_search(n)->value_buy)
 #define itemdb_value_sell(n)  (itemdb_search(n)->value_sell)
 #define itemdb_canrefine(n)   (!itemdb_search(n)->flag.no_refine)
-#define itemdb_traderight(n)  (itemdb_search(n)->item_bound.drop)
 
 #define itemdb_is_rune(n) (((n) >= ITEMID_NAUTHIZ && (n) <= ITEMID_HAGALAZ) || (n) == ITEMID_LUX_ANIMA)
 #define itemdb_is_element(n) ((n) >= ITEMID_BOODY_RED && (n) <= ITEMID_YELLOW_LIVE)

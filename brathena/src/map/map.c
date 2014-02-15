@@ -1378,9 +1378,6 @@ int map_addflooritem(struct item *item_data,int amount,int16 m,int16 x,int16 y,i
 
 	nullpo_ret(item_data);
 
-	if(!(flags&4) && battle_config.item_onfloor && (itemdb_traderight(item_data->nameid)))
-		return 0; //can't be dropped
-
 	if(!map_searchrandfreecell(m,&x,&y,flags&2?1:0))
 		return 0;
 	r=rnd();
