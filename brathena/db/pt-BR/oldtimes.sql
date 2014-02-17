@@ -5488,6 +5488,7 @@ REPLACE INTO `item_db` VALUES(1160,'Broad_Sword','Espada Larga','4',65000,NULL,'
 REPLACE INTO `item_db` VALUES(1162,'Broad_Sword_','Espada Larga','4',65000,NULL,'2000',140,NULL,1,2,0x00004082,7,2,34,3,33,1,3,'bonus bDef,5; bonus bUnbreakableWeapon,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1163,'Claymore','Claymore','4',74000,NULL,'2500',180,NULL,1,0,0x00004080,7,2,34,3,33,1,3,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1164,'Muramasa','Muramasa','4',20,NULL,'1000',155,NULL,1,0,0x00004082,7,2,34,4,48,1,3,'bonus bCritical,30; bonus bAspdRate,8; bonus2 bAddEff2,Eff_Curse,10;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(1165,'Masamune','Masamune','4',20,NULL,'1000',200,NULL,1,0,0x00004082,7,2,34,4,48,1,3,'bonus bFlee,30; bonus bStr,-5; bonus bAspd,2; bonus bDefRate,-67; bonus bDef2Rate,-67;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1168,'Zweihander','Zweihander','4',20,NULL,'2200',200,NULL,1,0,0x00004082,7,2,34,4,48,1,3,'bonus bUnbreakableWeapon,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1170,'Katzbalger','Katzbalger','4',20,NULL,'2000',175,NULL,1,0,0x00004082,7,2,34,4,48,1,3,'bonus bVit,5; bonus bDef,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1171,'Zweihander_','Zweihander','4',20,NULL,'2200',200,NULL,1,2,0x00004082,7,2,34,4,48,1,3,'bonus bUnbreakableWeapon,0;',NULL,NULL);

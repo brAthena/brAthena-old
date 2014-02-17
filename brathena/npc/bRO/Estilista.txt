@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,105,66,4	script	 Estilista Especial	4W_M_01,{
+prontera,105,66,4	script	Estilista Especial	4W_M_01,{
 
 	setarray .@class$[0], "Aprendiz","Classes Espandidas","Taekwon","Espadachim","Arqueiro","Noviço","Mago","Gatuno","Mercador";
 	if(Sex)

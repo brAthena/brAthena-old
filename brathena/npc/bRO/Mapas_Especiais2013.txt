@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,162,326,4	script	 Kolthar	4_M_ALCHE_B,{
+prontera,162,326,4	script	Kolthar	4_M_ALCHE_B,{
 
 	if(registrado) {
 
