@@ -101,8 +101,8 @@ sec_in02,79,180,3	script	#controlearena	4_DOG01,{
 	}
 }
 
-izlude,128,226,0	warp#vpo	recepção_arena	1,1,arena_room,100,30
-arena_room,99,24,0	warp#vpo	s_arena	2,2,izlude,128,220,{}
+izlude,128,226,0	warp#pre	recepção_arena	1,1,arena_room,100,30
+arena_room,99,24,0	warp#pre	s_arena	2,2,izlude,128,220,{}
 izlude,213,161,0	warp#re	welcome_arena	1,1,arena_room,100,30
 izlude_a,213,161,0	warp#re	welcome_arena_a	1,1,arena_room,100,30
 izlude_b,213,161,0	warp#re	welcome_arena_b	1,1,arena_room,100,30

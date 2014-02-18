@@ -460,12 +460,12 @@ OnInit:
 	sellitem Arrow;
 }
 
-izlude,160,186,0	trader	Açougueiro#iz	1_M_JOBGUIDER,{
+izlude,105,99,6	trader	Açougueiro#iz	1_M_JOBGUIDER,{
 OnInit:
 	sellitem Meat;
 }
 
-izlude,124,165,4	trader	Vendedora de Frutas#iz	1_M_INNKEEPER,{
+izlude,94,98,4	trader	Feirante#iz	1_M_INNKEEPER,{
 OnInit:
 	sellitem Apple;
 	sellitem Banana;
@@ -1007,4 +1007,4 @@ OnInit:
 // Duplicatas
 //=======================================================
 prontera,113,42,0	duplicate(Florista#prt)	Florista#prt1	4_F_01
-izlude,95,145,6	duplicate(Vendedora de Leite#prt)	Vendedora de Leite#iz	4_F_01,519:-1
+izlude,105,92,7	duplicate(Vendedora de Leite#prt)	Vendedora de Leite#iz	4_F_01,519:-1
