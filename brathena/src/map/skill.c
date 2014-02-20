@@ -1055,11 +1055,10 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			break;
 			
-#if VERSION != -1
 		case AS_SONICBLOW:
 			sc_start(bl,SC_STUN,(2*skill_lv+10),skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
-#endif
+
 #if VERSION == 1
 		case NJ_KAENSIN:
 			unit_set_walkdelay(bl, tick, skill_get_unit_interval(skill_id) * 2, 1);
