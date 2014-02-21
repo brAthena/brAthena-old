@@ -134,11 +134,11 @@ prontera,146,93,5	script	Agente VIP	4_M_MANAGER,{
 	mes "[Agente VIP]";
 	mes "Olá, é bom vê-lo, meu amigo.";
 	mes "Parece que você tem passado muito";
-	mes "por aqui.";
-	mes "Acho que você sabe disso,mas";
+	mes "por aqui,";
+	mes "de qualquer forma.....";
+	mes "Acho que você já sabe disso, mas";
 	mes "direi novamente.";
 	next;
-
 	mes "[Agente VIP]";
 	mes "Eu atendo apenas jogadores VIPs,";
 	mes "então preciso checar o status da";

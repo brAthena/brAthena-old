@@ -33,13 +33,14 @@
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
-	mes "[Vendedora de Ervas Tóxicas]";
-	mes "Eu sou uma vendedora profissional de ervas tóxicas.";
-	mes "Cada Erva custa 4,000 zeny.";
-	mes "O que você gostaria?";
+	mes "[Vendedora de Ervas]";
+	mes "Eu sou a vendedora";
+	mes "de ervas envenenadas.";
+	mes "Qual delas você quer?";
+	mes "O preço é todas por 4.000 zenys.";
 	next;
-	set .@i, select("Nerium:Rantana:Makulata:Seratum:Scopolia:Amoena:Kit de Veneno:Cancelar")-1;
-	mes "[Vendedora de Ervas Tóxicas]";
+	set .@i, select("Nerium.:Rantana.:Makulata.:Seratum.:Scopolia:Amoena.:Kit de Venenos.:Cancelar.")-1;
+	mes "[Vendedora de Ervas]";
 	if (.@i < 6) {
 		set .@item,7932+.@i;
 		set .@price,4000;
@@ -59,31 +60,31 @@
 	next;
 	input .@amount;
 	if (.@amount == 0) {
-		mes "[Vendedora de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas]";
 		mes "Você cancelou a negociação";
 		close;
 	}
 	if (.@amount > .@max) {
-		mes "[Vendedora de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas]";
 		mes "O número deve ser menor que "+callfunc("F_InsertComma",.@max)+"!";
 		close;
 	}
 	set .@total, .@amount * .@price;
 	if (Zeny < .@total) {
-		mes "[Vendedora de Ervas Tóxicas]";
+		mes "[Vendedora de Ervas]";
 		mes "Você não tem dinheiro suficiente.";
 		mes "Primeiro verifique quanto dinheiro você tem.";
 		close;
 	}
 	set Zeny, Zeny - .@total;
 	getitem .@item, .@amount;
-	mes "[Vendedora de Ervas Tóxicas]";
+	mes "[Vendedora de Ervas]";
 	mes "Obrigada. Volte logo~!";
 	close;
 }
-job3_guil01,79,96,3	duplicate(phs)	Vendedora de Ervas Tóxicas	4_F_YUNYANG
-morocc,191,94,4	duplicate(phs)	Vendedora de Ervas Tóxicas#moc	4_F_YUNYANG
-lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas Tóxicas#lhz	4_F_YUNYANG
+job3_guil01,79,96,3	duplicate(phs)	Vendedora de Ervas	4_F_YUNYANG
+morocc,191,94,4	duplicate(phs)	Vendedora de Ervas#moc	4_F_YUNYANG
+lhz_in02,16,205,4	duplicate(phs)	Vendedora de Ervas#lhz	4_F_YUNYANG
 
 
 -	script	::runesale	4_M_YURI,{
@@ -214,65 +215,69 @@ job3_guil01,91,93,3	script	Coletor de Ervas Raras	1_M_03,{
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
-	mes "[Vendedora de Fragmentos]";
-	mes "Olá. Eu sou a Vendedora de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
+	mes "[Vendedora de Pontos]";
+	mes "Olá. Estou vendendo um catalisador";
+	mes "para feiticeiros que é chamado de";
+	mes "Ponto. Qual deles você quer ter?";
 	next;
-	set .@i, select("Fragmento Escarlate - 200z:Fragmento Verde - 200z:Fragmento Azul - 200z:Fragmento Amarelo - 200z:Cancelar")-1;
-	mes "[Vendedora de Fragmentos]";
+	set .@i, select("Pontos Vermelhos - 200 Z:Pontos Verdes-limão - 200 Z:Pontos Índigos - 200 Z:Pontos de Desejo Amarelos - 200 Z:Cancelar.")-1;
+	mes "[Vendedora de Pontos]";
 	if (.@i == 4) {
-		mes "Você não conseguiu encontrar as coisas que você precisa?";
+		mes "Não conseguiu encontrar o que";
+		mes "precisa?";
 		close;
 	}
 	setarray .@itemid[0],6360,6363,6361,6362;
-	setarray .@color$[0],"Escarlate","Verde","Azul","Amarelo";
-	mes "Você escolheu o Fragmento "+.@color$[.@i]+".";
-	mes "Quantos dele você deseja?";
-	mes "Se você quiser cancelar, digite 0.";
+	setarray .@color$[0],"Pontos Vermelhos","os Pontos Verdes-limão","Pontos Índigos","Pontos de Desejo Amarelos";
+	mes "Você escolheu "+.@color$[.@i]+".";
+	mes "Vai querer quantas unidades?";
+	mes "Se quiser cancelar, digite '0'.";
 	next;
 	input .@amount;
-	mes "[Vendedora de Fragmentos]";
+	mes "[Vendedora de Pontos]";
 	if (.@amount == 0) {
-		mes "Você cancelou a negociação.";
+		mes "Você cancelou o negócio.";
 		close;
 	}
 	if (Zeny < .@amount*200) {
-		mes "Você não parece possuir dinheiro suficiente.";
+		mes "Você não tem dinheiro suficiente.";
 		close;
 	}
 	if (!checkweight(.@itemid[.@i],.@amount)) {
-		mes "Você não possui dinheiro suficiente para comprar essa quantidade de itens.";
+		mes "Você não consegue carregar";
+		mes "essa quantidade de itens.";
 		close;
 	}
 	set Zeny, Zeny-(.@amount*200);
 	getitem .@itemid[.@i],.@amount;
-	mes "Muito obrigado. Até logo~!";
+	mes "Muito obrigada. Até mais!";
 	close;
 }
 
-gef_tower,105,172,5	duplicate(pss)	Vendedora de Fragmentos#Sorcerer	8_F_GIRL
-prt_in,131,66,0	duplicate(pss)	Vendedora de Fragmentos#Prontera	8_F_GIRL
-alberta,105,52,7	duplicate(pss)	Vendedora de Fragmentos#Alberta	8_F_GIRL
-aldebaran,133,114,5	duplicate(pss)	Vendedora de Fragmentos#Aldebaran	8_F_GIRL
-comodo,193,159,5	duplicate(pss)	Vendedora de Fragmentos#Comodo	8_F_GIRL
-geffen,129,49,5	duplicate(pss)	Vendedora de Fragmentos#Geffen	8_F_GIRL
-izlude,138,163,5	duplicate(pss)	Vendedora de Fragmentos#Izlude	8_F_GIRL
-malangdo,214,163,5	duplicate(pss)	Vendedora de Fragmentos#Malangdo	8_F_GIRL
-mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#Mora	8_F_GIRL
-ra_in01,256,273,3	duplicate(pss)	Vendedora de Fragmentos#Rachel	8_F_GIRL
-veins,202,128,5	duplicate(pss)	Vendedora de Fragmentos#Veins	8_F_GIRL
-dicastes01,207,200,5	duplicate(pss)	Vendedora de Fragmentos#Dicastes	8_F_GIRL
-manuk,261,206,3	duplicate(pss)	Vendedora de Fragmentos#Manuk	8_F_GIRL
-splendide,207,160,5	duplicate(pss)	Vendedora de Fragmentos#Splendide	8_F_GIRL
-mid_camp,224,237,3	duplicate(pss)	Vendedora de Fragmentos#Midgard	8_F_GIRL 
+gef_tower,105,172,5	duplicate(pss)	Vendedora de Pontos#Sorcerer	8_F_GIRL
+prt_in,131,66,0	duplicate(pss)	Vendedora de Pontos#Prontera	8_F_GIRL
+alberta,105,52,7	duplicate(pss)	Vendedora de Pontos#Alberta	8_F_GIRL
+aldebaran,133,114,5	duplicate(pss)	Vendedora de Pontos#Aldebaran	8_F_GIRL
+comodo,193,159,5	duplicate(pss)	Vendedora de Pontos#Comodo	8_F_GIRL
+geffen,129,49,5	duplicate(pss)	Vendedora de Pontos#Geffen	8_F_GIRL
+izlude,138,163,5	duplicate(pss)	Vendedora de Pontos#Izlude	8_F_GIRL
+malangdo,214,163,5	duplicate(pss)	Vendedora de Pontos#Malangdo	8_F_GIRL
+mora,115,118,3	duplicate(pss)	Vendedora de Pontos#Mora	8_F_GIRL
+ra_in01,256,273,3	duplicate(pss)	Vendedora de Pontos#Rachel	8_F_GIRL
+veins,202,128,5	duplicate(pss)	Vendedora de Pontos#Veins	8_F_GIRL
+dicastes01,207,200,5	duplicate(pss)	Vendedora de Pontos#Dicastes	8_F_GIRL
+manuk,261,206,3	duplicate(pss)	Vendedora de Pontos#Manuk	8_F_GIRL
+splendide,207,160,5	duplicate(pss)	Vendedora de Pontos#Splendide	8_F_GIRL
+mid_camp,224,237,3	duplicate(pss)	Vendedora de Pontos#Midgard	8_F_GIRL 
 
 einbroch,122,250,4	shop	Mercado Negro#ein	1_M_03,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
 lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	1_M_03
 mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	1_M_03
 prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	1_M_03
 ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	1_M_03
-malangdo,215,163,6	duplicate(pss)	Vendedora de Fragmentos#4	8_F_GIRL
-mora,115,118,3	duplicate(pss)	Vendedora de Fragmentos#5	8_F_GIRL,{}
-izlude_a,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_a  700
-izlude_b,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_b  700
-izlude_c,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_c  700
-izlude_d,138,163,5	duplicatr(pss)	Vendedora de Fragmentos#Izlude_d  700,{}
+malangdo,215,163,6	duplicate(pss)	Vendedora de Pontos#4	8_F_GIRL
+mora,115,118,3	duplicate(pss)	Vendedora de Pontos#5	8_F_GIRL,{}
+izlude_a,138,163,5	duplicatr(pss)	Vendedora de Pontos#Izlude_a  700
+izlude_b,138,163,5	duplicatr(pss)	Vendedora de Pontos#Izlude_b  700
+izlude_c,138,163,5	duplicatr(pss)	Vendedora de Pontos#Izlude_c  700
+izlude_d,138,163,5	duplicatr(pss)	Vendedora de Pontos#Izlude_d  700,{}

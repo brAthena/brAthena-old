@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões brA: 1.2                                       |
 //   |--------------------------------------------------------|
-//   | Descrição: NPCs Porto de Malaya.                       |
+//   | Descrição: NPCs de Porto Malaya.                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Primeira versão [Megasantos]                       |
@@ -25,53 +25,70 @@
 //   \________________________________________________________/
 
 // Antiga coordenada: alberta (237,71)
-alberta,196,202,3	script	Tripulante#alberta	4W_SAILOR,{
-	mes "[Tripulante]";
-	mes "Ei!";
-	mes "São 10,000 Zeny para ir até o Porto de Malaya. Está interessad"+((Sex) ? "o":"a")+" ?";
+alberta,196,202,3	script	Tripulante de Optamara#1	4W_SAILOR,{
+	mes "[Tripulante de Optamara]";
+	mes "Ei, você aí!";
+	mes "Custam 10.000 zenys para ir ao";
+	mes "Porto Malaya. Está interessad"+((Sex) ? "o":"a")+"?";
 	next;
-	switch(select("Sobre o Porto de Malaya:Ir para o Porto de Malaya:Cancelar")) {
+	switch(select("Sobre Porto Malaya.:Ir para Porto Malaya.:Cancelar.")) {
 	case 1:
-		mes "[Tripulante]";
-		mes "O Porto de Malaya é um pequeno vilarejo que pode ser acessado navegando a sudoeste de Alberta.";
+		mes "[Tripulante de Optamara]";
+		mes "O Porto Malaya é uma pequena vila";
+		mes "que você pode alcançar ao velejar a";
+		mes "sudoeste de Alberta.";
 		next;
-		mes "[Tripulante]";
-		mes "Eu não posso visitar o vilarejo, tive alguns problemas lá, mas agora parece que está tudo bem!";
+		mes "[Tripulante de Optamara]";
+		mes "Eu não podia visitar a vila porque";
+		mes "eles tinham alguns problemas por";
+		mes "lá, mas agora parece que está tudo";
+		mes "bem!";
 		next;
-		mes "[Tripulante]";
-		mes "Não sei ao certo, mas aqui era um vilarejo confortável e aconchegante.";
+		mes "[Tripulante de Optamara]";
+		mes "Eu não tenho certeza, mas parece";
+		mes "ser uma vila que lembra um parque";
+		mes "confortável e aconchegante.";
 		next;
-		mes "[Tripulante]";
-		mes "Eu achava que nunca mais teria que voltar para Alberta.";
+		mes "[Tripulante de Optamara]";
+		mes "Eu estava bem perto de não voltar";
+		mes "mais para a aconchegante Alberta de";
+		mes "novo.";
 		next;
-		mes "[Tripulante]";
-		mes "Tenho certeza de que você se sentirá do mesmo jeito quando chegar no Porto de Malaya.";
+		mes "[Tripulante de Optamara]";
+		mes "Tenho certeza de que vai sentir a";
+		mes "mesma coisa quando chegar ao Porto";
+		mes "Malaya.";
 		close;
 	case 2:
 		if (Zeny < 10000) {
-			mes "[Tripulante]";
+			mes "[Tripulante de Optamara]";
 			mes "Você não sabe o quão longe é a partir daqui. Claro que não é de graça.Por favor, volte com 10.000 Zeny. Desculpe!";
 			close;
 		}
-		mes "[Tripulante]";
+		mes "[Tripulante de Optamara]";
 		mes "Ótimo!";
-		mes "Rumo ao Porto de Malaya!!";
+		mes "Em direção ao Porto Malaya!!";
 		set Zeny, Zeny-10000;
 		close2;
 		warp "malaya",271,55;
 		end;
 
 	case 3:
-		mes "[Tripulante]";
-		mes "Hoje em dia os aventureiros estão sempre ocupados. Volte quando tiver tempo para que possamos ir visitar Malaya Juntos.";
+		mes "[Tripulante de Optamara]";
+		mes "Os aventureiros hoje em dia agem";
+		mes "como se estivessem ocupados. Volte";
+		mes "quando tiver tempo e poderemos";
+		mes "visitar Porto Malaya juntos.";
 		close;
 	}
 }
 
-malaya,276,55,4	script	Tripulante#malaya	4W_SAILOR,{
+malaya,276,55,4	script	Tripulante de Optamara#2	4W_SAILOR,{
 	if (malaya_hi < 10) {
 		mes "[Tripulante]";
-		mes "Eu acho que o vilarejo anda meio ocupado. Já acabou sua visita? Sempre existe um navio indo para Alberta.";
+		mes "Eu acho que a vila ainda está";
+		mes "ocupada. Acabou sua visita? Sempre";
+		mes "há um navio indo para Alberta.";
 		next;
 	} else if (malaya_hi < 20) {
 		mes "[Tripulante]";
@@ -82,17 +99,19 @@ malaya,276,55,4	script	Tripulante#malaya	4W_SAILOR,{
 		mes "Você gostaria de voltar para Alberta comigo?";
 		next;
 	}
-	switch(select("Retornar:Não retornar")) {
+	switch(select("Voltar.:Não voltar.")) {
 	case 1:
 		mes "[Tripulante]";
-		mes "Ótimo! Agora deixe me levá-lo para Alberta!!";
+		mes "Ótimo! Vamos partir para Alberta";
+		mes "agora!";
 		close2;
 		warp "alberta",239,68;
 		end;
 
 	case 2:
 		mes "[Tripulante]";
-		mes "Está bem. Volte a falar comigo quando quiser voltar para Alberta.";
+		mes "Tudo bem. Volte aqui, se algum dia";
+		mes "quiser voltar para Alberta.";
 		close;
 	}
 }
@@ -112,7 +131,7 @@ ma_in01,30,94,4	script	Dona da Pousada#ma	4_F_MALAYA,{
 	} else {
 		mes "[Dona da Pousada]";
 		mes "Bem-vindo.";
-		mes "Este é o melhor hotel do Porto de Malaya, 'Cabana na Cidade'.";
+		mes "Este é o melhor hotel do Porto Malaya, 'Cabana na Cidade'.";
 		next;
 	}
 	mes "[Dona da Pousada]";
@@ -281,10 +300,13 @@ ma_scene01,167,112,6	duplicate(Unidentified Creature#j)	Criatura Não Identificad
 malaya,227,311,4	script	Vovó#ma01	4_F_BARYO_OLD,{
 	if (malaya_hi < 10) {
 		mes "[Vovó]";
-		mes "Você não é daqui? Tome cuidado.";
+		mes "Você não é destas bandas?";
+		mes "Cuide-se.";
 		next;
 		mes "[Vovó]";
-		mes "Estou preocupada porque minha nora está grávida. Espero que nada dê errado.";
+		mes "Estou preocupada porque minha nora";
+		mes "está grávida. Espero que nada dê";
+		mes "errado.";
 		close;
 	} else if (malaya_hi < 20) {
 		mes "[Vovó]";
@@ -310,7 +332,7 @@ malaya,227,311,4	script	Vovó#ma01	4_F_BARYO_OLD,{
 	mes "Você não é daqui? Deixe-me te contar porque um"+((Sex) ? " ":"a ")+"forasteir"+((Sex) ? "o":"a")+" como você deve tomar cuidado.";
 	next;
 	mes "[Vovó]";
-	mes "Meoneonuncle foi uma mulher que viveu no Porto de Malaya há muito tempo. Ela se casou com um homem digno e juntos tiveram um bebê.";
+	mes "Meoneonuncle foi uma mulher que viveu em Porto Malaya há muito tempo. Ela se casou com um homem digno e juntos tiveram um bebê.";
 	next;
 	mes "[Vovó]";
 	mes "Mas a felicidade nunca dura pra sempre, não é? Eles perderam o bebê em um acidente...";
@@ -323,7 +345,7 @@ malaya,227,311,4	script	Vovó#ma01	4_F_BARYO_OLD,{
 	mes "Meoneonuncle então começou a aparecer como espírito e roubar os bebês de mulheres grávidas no vilarejo.";
 	next;
 	mes "[Vovó]";
-	mes "Se algum dia você andar pelo Porto de Malaya à noite...";
+	mes "Se algum dia você andar por Porto Malaya à noite...";
 	next;
 	mes "[Vovó]";
 	mes "E ouvir algo como tik-tik ou wak-wak, tome cuidado pois estes são os sons das asas da Meoneonuncle batendo.";
@@ -355,7 +377,7 @@ malaya,189,263,4	script	Jovem do Tambor#ma02	4_M_BARYO_MAN,{
 		close;
 	}
 	mes "[Jovem do Tambor]";
-	mes "Bakonawa também é conhecido como 'monstro que engole a lua' no Porto de Malaya.";
+	mes "Bakonawa também é conhecido como 'monstro que engole a lua' em Porto Malaya.";
 	next;
 	mes "[Jovem do Tambor]";
 	mes "Mas eu sei que Bakonawa poderia também 'engolir pessoas'.";
@@ -475,7 +497,7 @@ malaya,219,92,6	script	Garotinho#ma05	4_M_BARYO_BOY,{
 		close;
 	} else if (malaya_hi < 20) {
 		mes "[Garotinho]";
-		mes "Minha mãe me disse que eu posso brincar, mas somente no Porto de Malaya.";
+		mes "Minha mãe me disse que eu posso brincar, mas somente em Porto Malaya.";
 		next;
 		mes "[Garotinho]";
 		mes "He he. Mas eu nunca pensei em sair do Porto de Malaya.";
@@ -569,42 +591,44 @@ malaya,363,283,4	script	Morador#ma06	4_M_MALAYA,{
 	close;
 }
 
-malaya,41,127,6	script	Velho#ma07	4_M_BARYO_OLD,{
+malaya,41,127,6	script	Velhinho#ma07	4_M_BARYO_OLD,{
 	if (malaya_hi < 10) {
-		mes "[Velho]";
-		mes "Forasteiros não são muito bem-vindos quando nosso vilarejo está caótico como nesses ultimos dias.";
+		mes "[Velhinho]";
+		mes "Forasteiros não são tão";
+		mes "bem-vindos quando nossa vila está";
+		mes "caótica, como nesses últimos dias.";
 		close;
 	} else if (malaya_hi < 20) {
-		mes "[Velho]";
+		mes "[Velhinho]";
 		mes "Você está sem sorte visitando o vilarejo em um momento como esse e não sendo bem recebid"+((Sex) ? "o":"a")+".";
 		close;
 	}
 	if (rand(1,3) == 2) {
-		mes "[Velho]";
+		mes "[Velhinho]";
 		mes getd("$ma_name0"+rand(1,6)+"$")+" é quem larga Jellopys no vilarejo.";
 		next;
-		mes "[Velho]";
+		mes "[Velhinho]";
 		mes "Tsk, tsk... Deve ser uma pessoa que não é digna de um Jellopy.";
 		close;
 	}
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Você também deve ver se há um Bangungot vivendo em uma árvore antes de tentar cortar ela.";
 	next;
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Porque as coisas estranhas acontecem se toras de árvores em que algum Bangungot vivia são usados como pilares para construções.";
 	next;
 	select("Que coisas?");
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Bem, para um Bangungot, isto significa perder sua casa por essa razão eles ficam zangados.";
 	next;
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Quando você tentar dormir perto da coluna, ele irá te manter acordado pregando peças em você nas primeiras vezes...";
 	next;
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Mas quando o tempo for passando e ele estiver mais vingativo, ele sentará em cima de você até você sufocar.";
 	next;
 	select("Oh, nossa...");
-	mes "[Velho]";
+	mes "[Velhinho]";
 	mes "Ha ha ha. Não existem Bagungots em pilares normais, então não precisa perder o sono perto deles.";
 	close;
 }
@@ -612,7 +636,8 @@ malaya,41,127,6	script	Velho#ma07	4_M_BARYO_OLD,{
 malaya,63,185,4	script	Mulher#ma08	4_F_MALAYA,{
 	if (malaya_hi < 10) {
 		mes "[Mulher]";
-		mes "Eu não tenho nada pra compartilhar com você.";
+		mes "Não tenho nada pra compartilhar";
+		mes "com você.";
 		close;
 	} else if (malaya_hi < 20) {
 		mes "[Mulher]";
@@ -704,27 +729,27 @@ function	script	F_Malaya_Jeepney	{
 	}
 
 	if (malaya_hi < 10) {
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes getarg(2);
 		close;
 	} else if ((malaya_hi >= 10) && (malaya_hi < 20)) {
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes getarg(3);
 		close;
 	} else {
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes getarg(4);
 		next;
 	}
 	switch(select("Cartão [Passageiro " + getmapusers(.@mapName$) + "/" + .@passengers +"]:Jeepney?:Existem outros Jeepneys?:Ah... Sim...")) {
 	case 1:
 		if (getmapusers(.@mapName$) >= .@passengers) {
-			mes "[Motorista]";
+			mes "[Motorista de Jeepney]";
 			mes "Desculpe mas este Jeepney está cheio.";
 			mes "Que tal algum outro Jeepney?";
 			close;
 		} else {
-			mes "[Motorista]";
+			mes "[Motorista de Jeepney]";
 			mes "Tenha um bom dia.";
 			close2;
 			warp .@mapName$,29,24;
@@ -733,7 +758,7 @@ function	script	F_Malaya_Jeepney	{
 	case 2:
 		// iterate through all the jeepney information for this specific NPC
 		for (.@i = 0; .@i < getarraysize(.@msgJeepneyInfo$); .@i++) {
-			mes "[Motorista]";
+			mes "[Motorista de Jeepney]";
 			mes getd(".@msgJeepneyInfo$[" + .@i + "]");
 
 			if (.@i < (getarraysize(.@msgJeepneyInfo$) - 1)) {
@@ -742,13 +767,13 @@ function	script	F_Malaya_Jeepney	{
 		}
 		close;
 	case 3:
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes "Ah! Outros Jeepneys estão em operação, é claro.";
 		next;
-		mes "[Motorista]";
-		mes "No Porto de Malaya existem Jeepneys de 12, 30 e 60 passageiros cada um com 3 unidades de funcionamento.";
+		mes "[Motorista de Jeepney]";
+		mes "Em Porto Malaya existem Jeepneys de 12, 30 e 60 passageiros cada um com 3 unidades de funcionamento.";
 		next;
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes "Você gostaria de saber a localização dos carros?";
 		next;
 		switch (select("Sim, 12 passageiros por favor.:Sim, 30 passageiros por favor.:Sim, 60 passageiros por favor.")) {
@@ -771,17 +796,17 @@ function	script	F_Malaya_Jeepney	{
 			set .@zif_in, 60;
 			break;
 		}
-		mes "[Motorista]";
+		mes "[Motorista de Jeepney]";
 		mes .@zif_in+" A localização dos Jeepney's foi marcada no seu mini-mapa.";
 		next;
 		break;
 	}
-	mes "[Motorista]";
+	mes "[Motorista de Jeepney]";
 	mes "Tenha uma boa viagem.";
 	close;
 }
 
-malaya,237,240,4	script	Motorista#01	4_M_MALAYA,{
+malaya,237,240,4	script	Motorista de Jeepney#01	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif01",
@@ -793,7 +818,7 @@ malaya,237,240,4	script	Motorista#01	4_M_MALAYA,{
 		"Ha ha ha Bem-vindo. Eu sou o ^1561EAVol^000000, opero os Jeepneys para 12 pessoas.",
 
 		// Monologues of variable lengths.
-		"Esta é a sua primeira vez no Porto de Malaya?",
+		"Esta é a sua primeira vez em Porto Malaya?",
 		"Os motoristas de Jeepneys estão aqui para promover esse meio de transporte, deixe-me explicar melhor...",
 		"Jeepneys foram criados inicialmente para transportar mercadorias rapidamente mas agora são usados para transporte público.",
 		"Como todas as pessoas tem gostos diferentes, você consegue ver alguns Jeepneys com decorações elaboradas.",
@@ -801,7 +826,7 @@ malaya,237,240,4	script	Motorista#01	4_M_MALAYA,{
 	);
 }
 
-malaya,67,44,4	script	Motorista#02	4_M_MALAYA,{
+malaya,67,44,4	script	Motorista de Jeepney#02	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif02",
@@ -811,7 +836,7 @@ malaya,67,44,4	script	Motorista#02	4_M_MALAYA,{
 		"Eu acho que os gemidos que vinham do hospital diminuíram...",
 		"Eu sou o ^1561EAChui^000000, opero os Jeepneys para 12 pessoas. Tudo bem? ~",
 
-		"Esta é a sua primeira vez no Porto de Malaya?",
+		"Esta é a sua primeira vez em Porto Malaya?",
 		"Os motoristas de Jeepneys estão aqui para promover esse meio de transporte, deixe-me explicar melhor...",
 		"Jeepneys foram criados inicialmente para transportar mercadorias rapidamente mas agora são usados para transporte público.",
 		"Eu mesmo modifiquei o meu Jeepney...",
@@ -819,7 +844,7 @@ malaya,67,44,4	script	Motorista#02	4_M_MALAYA,{
 	);
 }
 
-malaya,282,129,4	script	Motorista#03	4_M_MALAYA,{
+malaya,282,129,4	script	Motorista de Jeepney#03	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif03",
@@ -837,7 +862,7 @@ malaya,282,129,4	script	Motorista#03	4_M_MALAYA,{
 	);
 }
 
-malaya,134,250,6	script	Motorista#04	4_M_MALAYA,{
+malaya,134,250,6	script	Motorista de Jeepney#04	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif04",
@@ -847,7 +872,7 @@ malaya,134,250,6	script	Motorista#04	4_M_MALAYA,{
 		"Arghh... mê assustou demais... Vai embora... Chô~",
 		"^1561EABrav^000000, motorista de um dos Jeepneys para 30 pessoas, dirigindo com a maior segurança, já que eu me assusto fácil.",
 
-		"Essa é a sua primeira vez no Porto de Malaya?",
+		"Essa é a sua primeira vez em Porto Malaya?",
 		"Jeepneys foram criados inicialmente para transportar mercadorias rapidamente mas agora são usados para transporte público.",
 		"Os carros modificados são decorados pelos seus motoristas.",
 		"Se você vier ao Porto de Malaya, você tem que andar de Jeepney.",
@@ -855,7 +880,7 @@ malaya,134,250,6	script	Motorista#04	4_M_MALAYA,{
 	);
 }
 
-malaya,341,153,4	script	Motorista#05	4_M_MALAYA,{
+malaya,341,153,4	script	Motorista de Jeepney#05	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif05",
@@ -869,11 +894,11 @@ malaya,341,153,4	script	Motorista#05	4_M_MALAYA,{
 		"Vou te dar um pequeno guia como serviço.",
 		"Jeepneys foram criados inicialmente para transportar mercadorias rapidamente mas agora são usados para transporte público.",
 		"Por razões de segurança, Jeepneys tem um limite no número de passageiros.",
-		"Alguns carregavam até 180 pessoas, mas não existe nenhum desses no Porto de Malaya hoje em dia."
+		"Alguns carregavam até 180 pessoas, mas não existe nenhum desses em Porto Malaya hoje em dia."
 	);
 }
 
-malaya,293,290,6	script	Motorista#06	4_M_MALAYA,{
+malaya,293,290,6	script	Motorista de Jeepney#06	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif06",
@@ -891,7 +916,7 @@ malaya,293,290,6	script	Motorista#06	4_M_MALAYA,{
 	);
 }
 
-malaya,242,221,4	script	Motorista#07	4_M_MALAYA,{
+malaya,242,221,4	script	Motorista de Jeepney#07	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif07",
@@ -906,7 +931,7 @@ malaya,242,221,4	script	Motorista#07	4_M_MALAYA,{
 	);
 }
 
-malaya,62,245,6	script	Motorista#08	4_M_MALAYA,{
+malaya,62,245,6	script	Motorista de Jeepney#08	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif08",
@@ -922,7 +947,7 @@ malaya,62,245,6	script	Motorista#08	4_M_MALAYA,{
 	);
 }
 
-malaya,257,58,6	script	Motorista#09	4_M_MALAYA,{
+malaya,257,58,6	script	Motorista de Jeepney#09	4_M_MALAYA,{
 	callfunc(
 		"F_Malaya_Jeepney",
 		"ma_zif09",
@@ -930,9 +955,9 @@ malaya,257,58,6	script	Motorista#09	4_M_MALAYA,{
 
 		"...Você veio de fora não é?... Não vá tocar em qualquer coisa e seja cuidadoso na cidade...",
 		"Esta cidade ainda é bem perigosa. Melhor não tocar em nada até tudo se acalmar.",
-		"Oi. Eu sou o ^1561EAGramma^000000, Operador de um Jeepney para 60 pessoas no Porto de Malaya.",
+		"Oi. Eu sou o ^1561EAGramma^000000, Operador de um Jeepney para 60 pessoas em Porto Malaya.",
 
-		"Essa é a sua primeira vez no Porto de Malaya?",
+		"Essa é a sua primeira vez em Porto Malaya?",
 		"Os motoristas de Jeepneys estão aqui para promover esse meio de transporte, deixe-me explicar melhor...",
 		"Jeepneys foram criados inicialmente para transportar mercadorias rapidamente mas agora são usados para transporte público.",
 		"Como todos tem gostos diferentes, você consegue ver alguns Jeepneys com decorações elaboradas.",
