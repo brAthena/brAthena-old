@@ -27,7 +27,6 @@
 // Cidade de Payon ( Old Times )
 //================================ 
 // -- Entrada/Saída --
-//Castelos
 payon,175,189,0	warp#ot	oldpay02	4,2,pay_arche,81,22
 pay_arche,81,18,0	warp#ot	oldpay03	5,2,payon,174,185
 payon,189,69,0	warp#ot	oldpay04	2,4,pay_fild08,20,74
@@ -35,6 +34,7 @@ pay_fild08,17,75,0	warp#ot	payf100	1,1,payon,184,69
 payon,90,23,0	warp#ot	oldpay06	2,1,pay_fild01,333,353
 pay_fild01,333,357,0	warp#ot	oldpay07	2,1,payon,90,27
 
+//Castelos
 payon,111,173,0	warp#ot	oldpay99	1,2,payon_in01,15,68	
 payon,133,81,0	warp#ot	oldpay98	2,2,payon_in01,134,171	
 payon,141,91,0	warp#ot	oldpay97	2,2,payon_in01,98,173	
@@ -113,11 +113,11 @@ pay_arche,145,165,0	warp#ot	payonwarp051	2,2,payon_in02,64,60,{}
 //=========================================
 // Cidade de Payon ( Pré-Renovação & Renovação )
 //=========================================
-
 // -- Entrada/Saída --
 payon,122,27,0	warp#dv	payonwarp003	5,3,pay_fild01,333,356
 pay_fild01,333,360,0	warp#dv	payonwarp004	5,3,payon,122,31
 payon,267,89,0	warp#dv	payonwarp005	1,1,pay_fild08,20,74
+pay_fild08,17,75,0	warp#dv	payf006	1,1,payon,265,92
 payon,228,330,0	warp#dv	payonwarp007	4,2,pay_arche,81,22
 pay_arche,81,18,0	warp#dv	payonwarp008	5,2,payon,228,326
 
