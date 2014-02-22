@@ -386,7 +386,7 @@ typedef enum sc_type {
 	/**
 	 * 3rd
 	 **/
-    SC_FEAR,
+    SC_FEAR, // 310
     SC_FROSTMISTY,
 	/**
 	 * Rune Knight
@@ -399,7 +399,7 @@ typedef enum sc_type {
     SC_REUSE_REFRESH,
     SC_GIANTGROWTH,
     SC_STONEHARDSKIN,
-    SC_VITALITYACTIVATION,
+    SC_VITALITYACTIVATION, // 320
     SC_STORMBLAST,
     SC_FIGHTINGSPIRIT,
     SC_ABUNDANCE,
@@ -412,7 +412,7 @@ typedef enum sc_type {
     SC_LAUDAAGNUS,
     SC_LAUDARAMUS,
     SC_RENOVATIO,
-    SC_EXPIATIO,
+    SC_EXPIATIO, // 330
     SC_DUPLELIGHT,
     SC_SECRAMENT,
 	/**
@@ -425,7 +425,7 @@ typedef enum sc_type {
     SC_SUMMON1,
     SC_SUMMON2,
     SC_SUMMON3,
-    SC_SUMMON4,
+    SC_SUMMON4, // 340
     SC_SUMMON5,
     SC_READING_SB,
     SC_FREEZINGSP,
@@ -441,7 +441,7 @@ typedef enum sc_type {
 	 * Mechanic
 	 **/
     SC_ACCELERATION,
-    SC_HOVERING,
+    SC_HOVERING, // 350
     SC_SHAPESHIFT,
     SC_INFRAREDSCAN,
     SC_ANALYZE,
@@ -451,7 +451,7 @@ typedef enum sc_type {
     SC_STEALTHFIELD,
     SC_STEALTHFIELD_MASTER,
     SC_OVERHEAT,
-    SC_OVERHEAT_LIMITPOINT,
+    SC_OVERHEAT_LIMITPOINT, // 360
 	/**
 	 * Guillotine Cross
 	 **/
@@ -464,7 +464,7 @@ typedef enum sc_type {
     SC_ROLLINGCUTTER,
     SC_TOXIN,
     SC_PARALYSE,
-    SC_VENOMBLEED,
+    SC_VENOMBLEED, // 370
     SC_MAGICMUSHROOM,
     SC_DEATHHURT,
     SC_PYREXIA,
@@ -477,7 +477,7 @@ typedef enum sc_type {
     SC_FORCEOFVANGUARD,
     SC_SHIELDSPELL_DEF,
     SC_SHIELDSPELL_MDEF,
-    SC_SHIELDSPELL_REF,
+    SC_SHIELDSPELL_REF, // 380
     SC_EXEEDBREAK,
     SC_PRESTIGE,
     SC_BANDING,
@@ -490,7 +490,7 @@ typedef enum sc_type {
     SC_SPELLFIST,
     SC_COLD,
     SC_STRIKING,
-    SC_WARMER,
+    SC_WARMER, // 390
     SC_VACUUM_EXTREME,
     SC_PROPERTYWALK,
 	/**
@@ -503,30 +503,30 @@ typedef enum sc_type {
     SC_ECHOSONG,
     SC_HARMONIZE,
     SC_SIREN,
-    SC_DEEP_SLEEP,
+    SC_DEEP_SLEEP, // 400
     SC_SIRCLEOFNATURE,
     SC_GLOOMYDAY,
-    SC_GLOOMYDAY_SK,
-    SC_SONG_OF_MANA,
+    //SC_GLOOMYDAY_SK,
+    SC_SONG_OF_MANA = 404,
     SC_DANCE_WITH_WUG,
     SC_SATURDAY_NIGHT_FEVER,
     SC_LERADS_DEW,
     SC_MELODYOFSINK,
     SC_BEYOND_OF_WARCRY,
-    SC_UNLIMITED_HUMMING_VOICE,
+    SC_UNLIMITED_HUMMING_VOICE, // 410
     SC_SITDOWN_FORCE,
-    SC_NETHERWORLD,
+    //SC_NETHERWORLD,
 	/**
 	 * Sura
 	 **/
-    SC_CRESCENTELBOW,
+    SC_CRESCENTELBOW = 413,
     SC_CURSEDCIRCLE_ATKER,
     SC_CURSEDCIRCLE_TARGET,
     SC_LIGHTNINGWALK,
     SC_RAISINGDRAGON,
     SC_GENTLETOUCH_ENERGYGAIN,
     SC_GENTLETOUCH_CHANGE,
-    SC_GENTLETOUCH_REVITALIZE,
+    SC_GENTLETOUCH_REVITALIZE, // 420
 	/**
 	 * Genetic
 	 **/
@@ -539,7 +539,7 @@ typedef enum sc_type {
     SC_STOMACHACHE,
     SC_MYSTERIOUS_POWDER,
     SC_MELON_BOMB,
-    SC_BANANA_BOMB,
+    SC_BANANA_BOMB, // 430
     SC_BANANA_BOMB_SITDOWN_POSTDELAY,
     SC_SAVAGE_STEAK,
     SC_COCKTAIL_WARG_BLOOD,
@@ -549,7 +549,7 @@ typedef enum sc_type {
     SC_PUTTI_TAILS_NOODLES,
     SC_BOOST500,
     SC_FULL_SWING_K,
-    SC_MANA_PLUS,
+    SC_MANA_PLUS, // 440
     SC_MUSTLE_M,
     SC_LIFE_FORCE_F,
     SC_EXTRACT_WHITE_POTION_Z,
@@ -562,7 +562,7 @@ typedef enum sc_type {
     SC__AUTOSHADOWSPELL,
     SC__SHADOWFORM,
     SC__BODYPAINT,
-    SC__INVISIBILITY,
+    SC__INVISIBILITY, // 450
     SC__DEADLYINFECT,
     SC__ENERVATION,
     SC__GROOMY,
@@ -572,7 +572,7 @@ typedef enum sc_type {
     SC__WEAKNESS,
     SC__STRIPACCESSARY,
     SC__MANHOLE,
-    SC__BLOODYLUST,
+    SC__BLOODYLUST, // 460
 	/**
 	 * Elemental Spirits
 	 **/
@@ -585,7 +585,7 @@ typedef enum sc_type {
     SC_WATER_DROP,
     SC_WATER_DROP_OPTION,
     SC_WATER_BARRIER,
-    SC_WIND_STEP,
+    SC_WIND_STEP, // 470
     SC_WIND_STEP_OPTION,
     SC_WIND_CURTAIN,
     SC_WIND_CURTAIN_OPTION,
@@ -595,7 +595,7 @@ typedef enum sc_type {
     SC_STONE_SHIELD,
     SC_STONE_SHIELD_OPTION,
     SC_POWER_OF_GAIA,
-    SC_PYROTECHNIC,
+    SC_PYROTECHNIC, // 480
     SC_PYROTECHNIC_OPTION,
     SC_HEATER,
     SC_HEATER_OPTION,
@@ -605,7 +605,7 @@ typedef enum sc_type {
     SC_AQUAPLAY_OPTION,
     SC_COOLER,
     SC_COOLER_OPTION,
-    SC_CHILLY_AIR,
+    SC_CHILLY_AIR, // 490
     SC_CHILLY_AIR_OPTION,
     SC_GUST,
     SC_GUST_OPTION,
@@ -615,7 +615,7 @@ typedef enum sc_type {
     SC_WILD_STORM_OPTION,
     SC_PETROLOGY,
     SC_PETROLOGY_OPTION,
-    SC_CURSED_SOIL,
+    SC_CURSED_SOIL, // 500
     SC_CURSED_SOIL_OPTION,
     SC_UPHEAVAL,
     SC_UPHEAVAL_OPTION,
@@ -626,7 +626,7 @@ typedef enum sc_type {
 	/* Guild Aura */
     SC_LEADERSHIP,
     SC_GLORYWOUNDS,
-    SC_SOULCOLD,
+    SC_SOULCOLD, // 510
     SC_HAWKEYES,
 	/* ... */
     SC_ODINS_POWER,
@@ -640,7 +640,7 @@ typedef enum sc_type {
 	/* Warlock Spell books */
     SC_SPELLBOOK1,
     SC_SPELLBOOK2,
-    SC_SPELLBOOK3,
+    SC_SPELLBOOK3, // 520
     SC_SPELLBOOK4,
     SC_SPELLBOOK5,
     SC_SPELLBOOK6,
@@ -658,7 +658,7 @@ typedef enum sc_type {
 	**/
     SC_MEIKYOUSISUI,
     SC_KO_JYUMONJIKIRI,
-    SC_KYOUGAKU,
+    SC_KYOUGAKU, // 530
     SC_IZAYOI,
     SC_ZENKAI,
     SC_KG_KAGEHUMI,
@@ -670,7 +670,7 @@ typedef enum sc_type {
 
 	//homon S
     SC_STYLE_CHANGE,
-    SC_GOLDENE_FERSE,
+    SC_GOLDENE_FERSE, // 540
     SC_ANGRIFFS_MODUS,
     SC_ERASER_CUTTER,
     SC_OVERED_BOOST,        
@@ -680,7 +680,7 @@ typedef enum sc_type {
     SC_MAGMA_FLOW,
     SC_PYROCLASTIC,
     SC_NEEDLE_OF_PARALYZE,
-    SC_PAIN_KILLER,
+    SC_PAIN_KILLER, // 550
 #if VERSION == 1
     SC_EXTREMITYFIST2,
     SC_RAID,
@@ -695,7 +695,7 @@ typedef enum sc_type {
     SC_KINGS_GRACE,
     SC_TELEKINESIS_INTENSE,
     SC_OFFERTORIUM,
-    SC_FRIGG_SONG,
+    SC_FRIGG_SONG, // 560
 
     /**
     * Hanbok [Megasantos]
@@ -711,7 +711,7 @@ typedef enum sc_type {
     SC_MTF_RANGEATK,
     SC_MTF_MATK,
     SC_MTF_MLEATKED,
-    SC_MTF_CRIDAMAGE,
+    SC_MTF_CRIDAMAGE, // 570
 
     SC_MOONSTAR,
     SC_SUPER_STAR,
@@ -719,6 +719,9 @@ typedef enum sc_type {
     SC_OKTOBERFEST,
     SC_STRANGELIGHTS,
     SC_DECORATION_OF_MUSIC,
+
+    SC__MAELSTROM,
+    SC__CHAOS,
 
     //homon S
     SC_TINDER_BREAKER,
@@ -1497,6 +1500,7 @@ enum si_type {
     //SI_ = 735,
     SI_CHILL = 736,
     SI_BURNT = 737,
+    SI_FLASHCOMBO = 740,
     SI_B_TRAP = 752,
     SI_E_CHAIN = 753,
     SI_E_QD_SHOT_READY = 754,
@@ -1572,7 +1576,7 @@ enum e_mode {
     MD_MVP                = 0x080000, //MVP - instant kill / coma-like skills don't work
     MD_IGNOREMISC         = 0x100000, //takes 1 HP damage from "none" attack type
     MD_KNOCKBACK_IMMUNE   = 0x200000, //can't be knocked back
-    MD_MASK		  = 0x00FFFF,
+    MD_MASK		          = 0x00FFFF,
 };
 
 //Status change option definitions (options are what makes status changes visible to chars
@@ -1908,9 +1912,9 @@ struct status_change {
 #define status_get_mode(bl)                  (status->get_status_data(bl)->mode)
 
 //Short version, receives rate in 1->100 range, and does not uses a flag setting.
-#define sc_start(bl, type, rate, val1, tick)                    (status->change_start((bl),(type),100*(rate),(val1),0,0,0,(tick),0))
-#define sc_start2(bl, type, rate, val1, val2, tick)             (status->change_start((bl),(type),100*(rate),(val1),(val2),0,0,(tick),0))
-#define sc_start4(bl, type, rate, val1, val2, val3, val4, tick) (status->change_start((bl),(type),100*(rate),(val1),(val2),(val3),(val4),(tick),0))
+#define sc_start(src, bl, type, rate, val1, tick)                    (status->change_start((src),(bl),(type),100*(rate),(val1),0,0,0,(tick),0))
+#define sc_start2(src, bl, type, rate, val1, val2, tick)             (status->change_start((src),(bl),(type),100*(rate),(val1),(val2),0,0,(tick),0))
+#define sc_start4(src, bl, type, rate, val1, val2, val3, val4, tick) (status->change_start((src),(bl),(type),100*(rate),(val1),(val2),(val3),(val4),(tick),0))
 
 #define status_change_end(bl,type,tid) (status->change_end_((bl),(type),(tid),__FILE__,__LINE__))
 
@@ -1982,6 +1986,7 @@ struct status_interface {
 	int (*set_sp) (struct block_list *bl, unsigned int sp, int flag);
 	int (*heal) (struct block_list *bl,int64 hp,int64 sp, int flag);
 	int (*revive) (struct block_list *bl, unsigned char per_hp, unsigned char per_sp);
+	int (*fixed_revive) (struct block_list *bl, unsigned int per_hp, unsigned int per_sp);
 	struct regen_data * (*get_regen_data) (struct block_list *bl);
 	struct status_data * (*get_status_data) (struct block_list *bl);
 	struct status_data * (*get_base_status) (struct block_list *bl);
@@ -2002,8 +2007,8 @@ struct status_interface {
 	struct status_change * (*get_sc) (struct block_list *bl);
 	int (*isdead) (struct block_list *bl);
 	int (*isimmune) (struct block_list *bl);
-	int (*get_sc_def) (struct block_list *bl, enum sc_type type, int rate, int tick, int flag);
-	int (*change_start) (struct block_list* bl,enum sc_type type,int rate,int val1,int val2,int val3,int val4,int tick,int flag);
+	int (*get_sc_def) (struct block_list *src, struct block_list *bl, enum sc_type type, int rate, int tick, int flag);
+	int (*change_start) (struct block_list *src, struct block_list *bl, enum sc_type type, int rate, int val1, int val2, int val3, int val4, int tick, int flag);
 	int (*change_end_) (struct block_list* bl, enum sc_type type, int tid, const char* file, int line);
 	int (*kaahi_heal_timer) (int tid, int64 tick, int id, intptr_t data);
 	int (*change_timer) (int tid, int64 tick, int id, intptr_t data);

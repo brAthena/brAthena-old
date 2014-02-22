@@ -167,8 +167,16 @@ bool chrif_auth_delete(int account_id, int char_id, enum sd_state state)
 		if(session[fd] && session[fd]->session_data == node->sd)
 			session[fd]->session_data = NULL;
 
-		if(node->sd)
+		if(node->sd) {
+
+			if(node->sd->var_db)
+				node->sd->var_db->destroy(node->sd->var_db,script->reg_destroy);
+
+			if(node->sd->array_db)
+				node->sd->array_db->destroy(node->sd->array_db,script->array_free_db);
+
 			aFree(node->sd);
+		}
 
 		ers_free(auth_db_ers, node);
 		idb_remove(auth_db,account_id);
@@ -1293,7 +1301,7 @@ bool chrif_load_scdata(int fd)
 
 	for(i = 0; i < count; i++) {
 		data = (struct status_change_data *)RFIFOP(fd,14 + i*sizeof(struct status_change_data));
-		status->change_start(&sd->bl, (sc_type)data->type, 10000, data->val1, data->val2, data->val3, data->val4, data->tick, 1 | 2 | 4 | 8);
+		status->change_start(NULL, &sd->bl, (sc_type)data->type, 10000, data->val1, data->val2, data->val3, data->val4, data->tick, 1 | 2 | 4 | 8);
 	}
 
 	pc_scdata_received(sd);
@@ -1662,7 +1670,7 @@ void chrif_send_report(char* buf, int len) {
  **/
 void chrif_save_scdata_single(int account_id, int char_id, short type, struct status_change_entry *sce) {
 
-	if(!char_fd)
+	if(!chrif_isconnected())
 		return;
 
 	WFIFOHEAD(char_fd, 28);
@@ -1684,7 +1692,7 @@ void chrif_save_scdata_single(int account_id, int char_id, short type, struct st
  **/
 void chrif_del_scdata_single(int account_id, int char_id, short type) {
 
-	if(!char_fd) {
+	if(!chrif_isconnected()) {
 		ShowError("MAYDAY! failed to delete status %d from CID:%d/AID:%d\n",type,char_id,account_id);
 		return;
 	}
@@ -1708,8 +1716,16 @@ int auth_db_final(DBKey key, DBData *data, va_list ap)
 {
 	struct auth_node *node = DB->data2ptr(data);
 
-	if(node->sd)
+	if(node->sd) {
+
+		if(node->sd->var_db)
+			node->sd->var_db->destroy(node->sd->var_db,script->reg_destroy);
+
+		if(node->sd->array_db)
+			node->sd->array_db->destroy(node->sd->array_db,script->array_free_db);
+
 		aFree(node->sd);
+	}
 
 	ers_free(auth_db_ers, node);
 

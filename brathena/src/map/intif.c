@@ -297,7 +297,7 @@ int intif_saveregistry(struct map_session_data *sd) {
 	int plen = 0;
 	size_t len;
 
-	if (CheckForCharServer())
+	if (CheckForCharServer() || !sd->var_db)
 		return -1;
 
 	WFIFOHEAD(inter_fd, 60000 + 300);

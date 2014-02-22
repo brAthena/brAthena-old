@@ -2419,8 +2419,6 @@ int map_getcellp(struct map_data *m,int16 x,int16 y,cell_chk cellchk)
 			return (cell.novending);
 		case CELL_CHKNOCHAT:
 			return (cell.nochat);
-		case CELL_CHKMAELSTROM:
-			return (cell.maelstrom);
 		case CELL_CHKICEWALL:
 			return (cell.icewall);
 
@@ -2482,7 +2480,6 @@ void map_setcell(int16 m, int16 x, int16 y, cell_t cell, bool flag)
 		case CELL_LANDPROTECTOR: map[m].cell[j].landprotector = flag; break;
 		case CELL_NOVENDING:     map[m].cell[j].novending = flag;     break;
 		case CELL_NOCHAT:        map[m].cell[j].nochat = flag;        break;
-		case CELL_MAELSTROM:     map[m].cell[j].maelstrom = flag;     break;
 		case CELL_ICEWALL:       map[m].cell[j].icewall = flag;       break;
 		default:
 			ShowWarning("map_setcell: invalid cell type '%d'\n", (int)cell);

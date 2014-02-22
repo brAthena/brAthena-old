@@ -480,7 +480,8 @@ CREATE TABLE IF NOT EXISTS `sc_data` (
   `val3` int(11) NOT NULL default '0',
   `val4` int(11) NOT NULL default '0',
   KEY (`account_id`),
-  KEY (`char_id`)
+  KEY (`char_id`),
+  PRIMARY KEY  (`account_id`,`char_id`,`type`)
 ) ENGINE=MyISAM;
 
 --

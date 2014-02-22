@@ -449,10 +449,9 @@ enum _look {
 	LOOK_CLOTHES_COLOR,
 	LOOK_SHIELD,
 	LOOK_SHOES,
-	LOOK_BODY,			//Purpose Unknown. Doesen't appear to do anything.
-	LOOK_RESET_COSTUMES,//Makes all headgear sprites on player vanish when activated.
+	LOOK_BODY,
+	LOOK_FLOOR,
 	LOOK_ROBE,
-	LOOK_FLOOR
 };
 
 // used by map_setcell()
@@ -466,7 +465,6 @@ typedef enum {
 	CELL_LANDPROTECTOR,
 	CELL_NOVENDING,
 	CELL_NOCHAT,
-	CELL_MAELSTROM,
 	CELL_ICEWALL,
 
 } cell_t;
@@ -490,7 +488,6 @@ typedef enum {
 	CELL_CHKLANDPROTECTOR,
 	CELL_CHKNOVENDING,
 	CELL_CHKNOCHAT,
-	CELL_CHKMAELSTROM,
 	CELL_CHKICEWALL,
 
 } cell_chk;
@@ -510,7 +507,6 @@ struct mapcell
 		landprotector : 1,
 		novending : 1,
 		nochat : 1,
-		maelstrom : 1,
 		icewall : 1;
 
 #ifdef CELL_NOSTACK
