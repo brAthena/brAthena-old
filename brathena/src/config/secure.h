@@ -18,13 +18,12 @@
 #define _CONFIG_SECURE_H_
 
 /**
- * Tempo de habilitação no diálogo para npcs.
- * Quando habilitado, todos os diálogos com npcs são desabilitados conforme número de segundos.
- * - ? : Tempo em segundos (ex: 10)
- * - 0 : Disabilitado
+ * Temporizador de diálogo para npcs.
+ * Todos os diálogos com npcs são desabilitados caso o jogador não faça nenhuma ação em um determinado tempo (oficial).
+ * O npc muda o botão da janela de diálogo para close.
+ * Comente a definição abaixo para desativar.
  **/
-
-//#define SECURE_NPCTIMEOUT
+#define SECURE_NPCTIMEOUT
 
 /**
  * number of seconds to 'timeout' if the user is on idle for longer than the value allowed after a 'input' field is displayed.

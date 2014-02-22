@@ -3786,9 +3786,9 @@ void script_detach_state(struct script_state *st, bool dequeue_event)
 		/**
 		 * We're done with this NPC session, so we cancel the timer (if existent) and move on
 		 **/
-		if(sd->npc->idle_timer != INVALID_TIMER) {
-			delete_timer(sd->npc->idle_timer,npc->secure_timeout_timer);
-			sd->npc->idle_timer = INVALID_TIMER;
+		if(sd->npc_idle_timer != INVALID_TIMER) {
+			delete_timer(sd->npc_idle_timer,npc->secure_timeout_timer);
+			sd->npc_idle_timer = INVALID_TIMER;
 		}
 #endif
 			npc->event_dequeue(sd);
@@ -3826,8 +3826,8 @@ void script_attach_state(struct script_state *st)
 		 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 		 **/
 #ifdef SECURE_NPCTIMEOUT
-		if(sd->npc->idle_timer == INVALID_TIMER)
-			sd->npc->idle_timer = add_timer(gettick() + (SECURE_NPCTIMEOUT_INTERVAL*1000),npc->secure_timeout_timer,sd->bl.id,0);
+		if(sd->npc_idle_timer == INVALID_TIMER)
+			sd->npc_idle_timer = add_timer(gettick() + (SECURE_NPCTIMEOUT_INTERVAL*1000),npc->secure_timeout_timer,sd->bl.id,0);
 		sd->npc_idle_tick = gettick();
 #endif
 	}
