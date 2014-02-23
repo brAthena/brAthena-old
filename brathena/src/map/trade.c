@@ -211,18 +211,18 @@ int impossible_trade_check(struct map_session_data *sd)
 		if(inventory[index].amount < sd->deal.item[i].amount) {
 			// if more than the player have -> hack
 			sprintf(message_to_gm, msg_txt(538), sd->status.name, sd->status.account_id); // Hack on trade: character '%s' (account: %d) try to trade more items that he has.
-			intif_wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
+			intif->wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
 			sprintf(message_to_gm, msg_txt(539), inventory[index].amount, inventory[index].nameid, sd->deal.item[i].amount); // This player has %d of a kind of item (id: %d), and try to trade %d of them.
-			intif_wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
+			intif->wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
 			// if we block people
 			if(battle_config.ban_hack_trade < 0) {
-				chrif_char_ask_name(-1, sd->status.name, 1, 0, 0, 0, 0, 0, 0); // type: 1 - block
+				chrif->char_ask_name(-1, sd->status.name, 1, 0, 0, 0, 0, 0, 0); // type: 1 - block
 				set_eof(sd->fd); // forced to disconnect because of the hack
 				// message about the ban
 				strcpy(message_to_gm, msg_txt(540)); //  This player has been definitively blocked.
 				// if we ban people
 			} else if(battle_config.ban_hack_trade > 0) {
-				chrif_char_ask_name(-1, sd->status.name, 2, 0, 0, 0, 0, battle_config.ban_hack_trade, 0); // type: 2 - ban (year, month, day, hour, minute, second)
+				chrif->char_ask_name(-1, sd->status.name, 2, 0, 0, 0, 0, battle_config.ban_hack_trade, 0); // type: 2 - ban (year, month, day, hour, minute, second)
 				set_eof(sd->fd); // forced to disconnect because of the hack
 				// message about the ban
 				sprintf(message_to_gm, msg_txt(507), battle_config.ban_hack_trade); //  This player has been banned for %d minute(s).
@@ -230,7 +230,7 @@ int impossible_trade_check(struct map_session_data *sd)
 				// message about the ban
 				strcpy(message_to_gm, msg_txt(508)); //  This player hasn't been banned (Ban option is disabled).
 
-			intif_wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
+			intif->wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
 			return 1;
 		}
 		inventory[index].amount -= sd->deal.item[i].amount; // remove item from inventory
@@ -610,8 +610,8 @@ void trade_tradecommit(struct map_session_data *sd) {
 
 	// save both player to avoid crash: they always have no advantage/disadvantage between the 2 players
 	if(save_settings&1) {
-		chrif_save(sd,0);
-		chrif_save(tsd,0);
+		chrif->save(sd, 0);
+		chrif->save(tsd, 0);
 	}
 }
 

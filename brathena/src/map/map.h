@@ -961,6 +961,8 @@ extern char db_db2name[32];
 
 char default_codepage[32];
 
+bool map_ip_set;
+bool char_ip_set;
 
 extern Sql* mmysql_handle;
 extern Sql* dbmysql_handle;

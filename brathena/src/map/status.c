@@ -7900,18 +7900,18 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 			case SC_DPOISON:
 				//Lose 10/15% of your life as long as it doesn't brings life below 25%
 				if (st->hp > st->max_hp>>2) {
-				int diff = st->max_hp*(bl->type==BL_PC?10:15)/100;
-				if (st->hp - diff < st->max_hp>>2)
-				diff = st->hp - (st->max_hp>>2);
-				if( val2 && bl->type == BL_MOB ) {
-				struct block_list* src = map_id2bl(val2);
-				if(src)
-					mob->log_damage((TBL_MOB*)bl, src, diff);
+					int diff = st->max_hp*(bl->type==BL_PC?10:15)/100;
+					if(st->hp - diff < st->max_hp>>2)
+						diff = st->hp - (st->max_hp>>2);
+					if(val2 && bl->type == BL_MOB) {
+						struct block_list* src2 = map_id2bl(val2);
+						if(src2)
+							mob->log_damage((TBL_MOB*)bl, src2, diff);
+					}
+					status_zap(bl, diff, 0);
 				}
-				status_zap(bl, diff, 0);
-				}
-			case SC_POISON:
 				// fall through
+			case SC_POISON:
 				val3 = tick/1000; //Damage iterations
 				if(val3 < 1) val3 = 1;
 				tick_time = 1000; // [GodLesZ] tick time
@@ -7919,7 +7919,8 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				if (bl->type == BL_PC)
 				val4 = (type == SC_DPOISON) ? 3 + st->max_hp/50 : 3 + st->max_hp*3/200;
 				else
-				val4 = (type == SC_DPOISON) ? 3 + st->max_hp/100 : 3 + st->max_hp/200;
+					val4 = (type == SC_DPOISON) ? 3 + st->max_hp/100 : 3 + st->max_hp/200;
+
 				break;
 			case SC_CONFUSION:
 				clif_emotion(bl,E_WHAT);
@@ -9511,7 +9512,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 	else {
 		sce->timer = INVALID_TIMER; //Infinite duration
 		if(sd)
-			chrif_save_scdata_single(sd->status.account_id,sd->status.char_id,type,sce);
+			chrif->save_scdata_single(sd->status.account_id, sd->status.char_id, type, sce);
 	}
 
 	if(calc_flag)
@@ -9703,7 +9704,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 		return 0;
 
 	if(sd && sce->timer == INVALID_TIMER)
-		chrif_del_scdata_single(sd->status.account_id,sd->status.char_id,type);
+		chrif->del_scdata_single(sd->status.account_id, sd->status.char_id, type);
 
 	if(tid == INVALID_TIMER) {
 		if(type == SC_ENDURE && sce->val4)

@@ -6719,9 +6719,9 @@ static const struct _battle_data {
  **/
 void brAthena_report(char *date, char *time_c)
 {
-	int i, rev = 0, bd_size = ARRAYLENGTH(battle_data);
+	int i, bd_size = ARRAYLENGTH(battle_data);
 	unsigned int config = 0;
-	const char *rev_str;
+	const char *svn = get_svn_revision();
 	char timestring[25];
 	time_t curtime;
 	char *buf;
@@ -6747,9 +6747,6 @@ void brAthena_report(char *date, char *time_c)
 	    C_GCOLLECT	            = 0x20000,
 	    C_SEND_SHORTLIST        = 0x40000,
 	};
-
-	if((rev_str = get_svn_revision()) != 0)
-		rev = atoi(rev_str);
 
 	/* we get the current time */
 	time(&curtime);
@@ -6826,30 +6823,30 @@ void brAthena_report(char *date, char *time_c)
 
 #define BFLAG_LENGTH 35
 
-	CREATE(buf, char, 6 + 12 + 9 + 24 + 4 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4)) + 1);
+	CREATE(buf, char, 6 + 12 + 9 + 24 + 41 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4)) + 1);
 
 	/* build packet */
 
 	WBUFW(buf,0) = 0x3000;
-	WBUFW(buf,2) = 6 + 12 + 9 + 24 + 4 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4));
-	WBUFW(buf,4) = 0x9c;
+	WBUFW(buf,2) = 6 + 12 + 9 + 24 + 41 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4));
+	WBUFW(buf,4) = 0x9e;
 
 	safestrncpy((char *)WBUFP(buf,6), date, 12);
 	safestrncpy((char *)WBUFP(buf,6 + 12), time_c, 9);
 	safestrncpy((char *)WBUFP(buf,6 + 12 + 9), timestring, 24);
 
-	WBUFL(buf,6 + 12 + 9 + 24)         = rev;
-	WBUFL(buf,6 + 12 + 9 + 24 + 4)     = map_getusers();
+	safestrncpy((char*)WBUFP(buf,6 + 12 + 9 + 24), svn[0] != BRATHENA_UNKNOWN_VER ? svn : "Unknown", 41);
+	WBUFL(buf,6 + 12 + 9 + 24 + 41)     = map_getusers();
 
-	WBUFL(buf,6 + 12 + 9 + 24 + 4 + 4) = config;
-	WBUFL(buf,6 + 12 + 9 + 24 + 4 + 4 + 4) = bd_size;
+	WBUFL(buf,6 + 12 + 9 + 24 + 41 + 4) = config;
+	WBUFL(buf,6 + 12 + 9 + 24 + 41 + 4 + 4) = bd_size;
 
 	for(i = 0; i < bd_size; i++) {
-		safestrncpy((char *)WBUFP(buf,6 + 12 + 9+ 24  + 4 + 4 + 4 + 4 + (i * (BFLAG_LENGTH + 4))), battle_data[i].str, 35);
-		WBUFL(buf,6 + 12 + 9 + 24 + 4 + 4 + 4 + 4 + BFLAG_LENGTH + (i * (BFLAG_LENGTH + 4))) = *battle_data[i].val;
+		safestrncpy((char *)WBUFP(buf,6 + 12 + 9+ 24  + 41 + 4 + 4 + 4 + (i * (BFLAG_LENGTH + 4))), battle_data[i].str, 35);
+		WBUFL(buf,6 + 12 + 9 + 24 + 41 + 4 + 4 + 4 + BFLAG_LENGTH + (i * (BFLAG_LENGTH + 4))) = *battle_data[i].val;
 	}
 
-	chrif_send_report(buf,  6 + 12 + 9 + 24 + 4 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4)));
+	chrif->send_report(buf,  6 + 12 + 9 + 24 + 41 + 4 + 4 + 4 + (bd_size * (BFLAG_LENGTH + 4)));
 
 	aFree(buf);
 
@@ -6857,7 +6854,7 @@ void brAthena_report(char *date, char *time_c)
 }
 static int brAthena_report_timer(int tid, int64 tick, int id, intptr_t data)
 {
-	if(chrif_isconnected()) {  /* char server relays it, so it must be online. */
+	if(chrif->isconnected()) {  /* char server relays it, so it must be online. */
 		brAthena_report(__DATE__,__TIME__);
 	}
 	return 0;

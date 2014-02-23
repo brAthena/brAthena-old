@@ -719,9 +719,9 @@ ACMD_FUNC(save)
 
 	pc_setsavepoint(sd, sd->mapindex, sd->bl.x, sd->bl.y);
 	if(sd->status.pet_id > 0 && sd->pd)
-		intif_save_petdata(sd->status.account_id, &sd->pd->pet);
+		intif->save_petdata(sd->status.account_id, &sd->pd->pet);
 
-	chrif_save(sd,0);
+	chrif->save(sd, 0);
 
 	clif_displaymessage(fd, msg_txt(6)); // Your save point has been changed.
 
@@ -1030,7 +1030,7 @@ ACMD_FUNC(kami)
 		if(strstr(command, "l") != NULL)
 			clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
 		else
-			intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, (*(info->command + 4) == 'b' || *(info->command + 4) == 'B') ? BC_BLUE : BC_YELLOW);
+			intif->broadcast(atcmd_output, strlen(atcmd_output) + 1, (*(info->command + 4) == 'b' || *(info->command + 4) == 'B') ? BC_BLUE : BC_YELLOW);
 	} else {
 		if(!message || !*message || (sscanf(message, "%u %199[^\n]", &color, atcmd_output) < 2)) {
 			clif_displaymessage(fd, msg_txt(981)); // Please enter color and message (usage: @kamic <color> <message>).
@@ -1041,7 +1041,7 @@ ACMD_FUNC(kami)
 			clif_displaymessage(fd, msg_txt(982)); // Invalid color.
 			return false;
 		}
-		intif_broadcast2(atcmd_output, strlen(atcmd_output) + 1, color, 0x190, 12, 0, 0);
+		intif->broadcast2(atcmd_output, strlen(atcmd_output) + 1, color, 0x190, 12, 0, 0);
 	}
 	return true;
 }
@@ -2526,7 +2526,7 @@ ACMD_FUNC(guildlevelup)
 	added_level = (int16)level;
 
 	if(added_level != 0) {
-		intif_guild_change_basicinfo(guild_info->guild_id, GBI_GUILDLV, &added_level, sizeof(added_level));
+		intif->guild_change_basicinfo(guild_info->guild_id, GBI_GUILDLV, &added_level, sizeof(added_level));
 		clif_displaymessage(fd, msg_txt(179)); // Guild level changed.
 	} else {
 		clif_displaymessage(fd, msg_txt(45)); // Guild level change failed.
@@ -2561,7 +2561,7 @@ ACMD_FUNC(makeegg)
 		pet_id = search_petDB_index(id, PET_EGG);
 	if(pet_id >= 0) {
 		sd->catch_target_class = pet_db[pet_id].class_;
-		intif_create_pet(
+		intif->create_pet(
 		    sd->status.account_id, sd->status.char_id,
 			(short)pet_db[pet_id].class_, (short)mob->db(pet_db[pet_id].class_)->lv,
 		    (short)pet_db[pet_id].EggID, 0, (short)pet_db[pet_id].intimate,
@@ -2675,7 +2675,7 @@ ACMD_FUNC(petrename)
 	}
 
 	pd->pet.rename_flag = 0;
-	intif_save_petdata(sd->status.account_id, &pd->pet);
+	intif->save_petdata(sd->status.account_id, &pd->pet);
 	clif_send_petstatus(sd);
 	clif_displaymessage(fd, msg_txt(187)); // You can now rename your pet.
 
@@ -2737,7 +2737,7 @@ ACMD_FUNC(char_block)
 		return false;
 	}
 
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, 1, 0, 0, 0, 0, 0, 0); // type: 1 - block
+	chrif->char_ask_name(sd->status.account_id, atcmd_player_name, 1, 0, 0, 0, 0, 0, 0); // type: 1 - block
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return true;
@@ -2833,7 +2833,7 @@ ACMD_FUNC(char_ban)
 		return false;
 	}
 
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(info->command,"charban") ? 6 : 2, year, month, day, hour, minute, second); // type: 2 - ban 6 - charban
+	chrif->char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(info->command, "charban") ? 6 : 2, year, month, day, hour, minute, second); // type: 2 - ban 6 - charban
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return true;
@@ -2853,7 +2853,7 @@ ACMD_FUNC(char_unblock)
 	}
 
 	// send answer to login server via char-server
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, 3, 0, 0, 0, 0, 0, 0); // type: 3 - unblock
+	chrif->char_ask_name(sd->status.account_id, atcmd_player_name, 3, 0, 0, 0, 0, 0, 0); // type: 3 - unblock
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return true;
@@ -2873,7 +2873,7 @@ ACMD_FUNC(char_unban)
 	}
 
 	// send answer to login server via char-server
-	chrif_char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(info->command,"charunban") ? 7 : 4, 0, 0, 0, 0, 0, 0); // type: 4 - unban account; type 7 - unban character
+	chrif->char_ask_name(sd->status.account_id, atcmd_player_name, !strcmpi(info->command, "charunban") ? 7 : 4, 0, 0, 0, 0, 0, 0); // type: 4 - unban account; type 7 - unban character
 	clif_displaymessage(fd, msg_txt(88)); // Character name sent to char-server to ask it.
 
 	return true;
@@ -3571,7 +3571,7 @@ ACMD_FUNC(reload)
 			for(sd = (TBL_PC*)mapit_first(sd_cash); mapit_exists(sd_cash); sd = (TBL_PC*)mapit_next(sd_cash)) {
 					sd->status.cash_shop = true;
 			}
-			intif_broadcast(msg_txt(1478), strlen(msg_txt(1478))+1, 0);
+			intif->broadcast(msg_txt(1478), strlen(msg_txt(1478)) + 1, 0);
 			clif_cashshop_db();
 			mapit_free(sd_cash);
 			break;
@@ -3655,7 +3655,7 @@ if(!battle_config.official_rates) {
 	  ) {
 		// Exp or Drop rates changed.
 		mob->reload();
-		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
+		chrif->ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 	}
 	}
 	clif_displaymessage(fd, msg_txt(255));
@@ -4885,7 +4885,7 @@ ACMD_FUNC(broadcast)
 	}
 
 	sprintf(atcmd_output, "%s: %s", sd->status.name, message);
-	intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT);
+	intif->broadcast(atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT);
 
 	return true;
 }
@@ -4940,7 +4940,7 @@ ACMD_FUNC(email)
 		return false;
 	}
 
-	chrif_changeemail(sd->status.account_id, actual_email, new_email);
+	chrif->changeemail(sd->status.account_id, actual_email, new_email);
 	clif_displaymessage(fd, msg_txt(148)); // Information sended to login-server via char-server.
 	return true;
 }
@@ -6474,7 +6474,7 @@ ACMD_FUNC(changesex)
 	// to avoid any problem with equipment and invalid sex, equipment is unequiped.
 	for(i=0; i<EQI_MAX; i++)
 		if(sd->equip_index[i] >= 0) pc_unequipitem(sd, sd->equip_index[i], 3);
-	chrif_changesex(sd);
+		chrif->changesex(sd);
 	return true;
 }
 
@@ -6588,7 +6588,7 @@ ACMD_FUNC(gmotd)
 			if(len) {
 				buf[len] = 0;
 
-				intif_broadcast(buf, len+1, 0);
+				intif->broadcast(buf, len + 1, 0);
 			}
 		}
 		fclose(fp);
@@ -8021,7 +8021,7 @@ ACMD_FUNC(request)
 	}
 
 	sprintf(atcmd_output, msg_txt(278), message);   // (@request): %s
-	intif_wis_message_to_gm(sd->status.name, PC_PERM_RECEIVE_REQUESTS, atcmd_output);
+	intif->wis_message_to_gm(sd->status.name, PC_PERM_RECEIVE_REQUESTS, atcmd_output);
 	clif_disp_onlyself(sd, atcmd_output, strlen(atcmd_output));
 	clif_displaymessage(sd->fd,msg_txt(279));   // @request sent.
 	return true;
@@ -8350,7 +8350,7 @@ ACMD_FUNC(delitem)
 
 		if(sd->inventory_data[idx]->type == IT_PETEGG && sd->status.inventory[idx].card[0] == CARD0_PET) {
 			// delete pet
-			intif_delete_petdata(MakeDWord(sd->status.inventory[idx].card[1], sd->status.inventory[idx].card[2]));
+			intif->delete_petdata(MakeDWord(sd->status.inventory[idx].card[1], sd->status.inventory[idx].card[2]));
 		}
 		pc_delitem(sd, idx, delamount, 0, 0, LOG_TYPE_COMMAND);
 
@@ -8510,7 +8510,7 @@ ACMD_FUNC(accinfo)
 	//remove const type
 	safestrncpy(query, message, NAME_LENGTH);
 
-	intif_request_accinfo(sd->fd, sd->bl.id, pc_get_group_level(sd), query);
+	intif->request_accinfo(sd->fd, sd->bl.id, pc_get_group_level(sd), query);
 
 	return true;
 }

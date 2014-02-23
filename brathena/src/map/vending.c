@@ -213,8 +213,8 @@ void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid,
 
 	//Always save BOTH: buyer and customer
 	if(save_settings&2) {
-		chrif_save(sd,0);
-		chrif_save(vsd,0);
+		chrif->save(sd, 0);
+		chrif->save(vsd, 0);
 	}
 
 	//check for @AUTOTRADE users [durf]

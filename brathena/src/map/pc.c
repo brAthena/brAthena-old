@@ -396,7 +396,7 @@ void pc_addfame(struct map_session_data *sd,int count)
 		case MAPID_TAEKWON: ranktype = RANKTYPE_TAEKWON; break;
 	}
 	clif->update_rankingpoint(sd, ranktype, count);
-	chrif_updatefamelist(sd);
+	chrif->updatefamelist(sd);
 }
 
 // Check whether a player ID is in the fame rankers' list of its job, returns his/her position if so, 0 else
@@ -1249,7 +1249,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 		sd->vip_timer = add_timer(gettick()+DELAY_IN(1), check_time_vip, sd->bl.id, 0);
 
 	// Request all registries (auth is considered completed whence they arrive)
-	intif_request_registry(sd,7);
+	intif->request_registry(sd, 7);
 	return true;
 }
 
@@ -1359,7 +1359,7 @@ int pc_reg_received(struct map_session_data *sd)
 
 	// pet
 	if(sd->status.pet_id > 0)
-		intif_request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
+		intif->request_petdata(sd->status.account_id, sd->status.char_id, sd->status.pet_id);
 
 	// Sistema VIP iRO
 	/*if(bra_config.enable_system_vip && pc_isvip(sd))
@@ -1367,24 +1367,24 @@ int pc_reg_received(struct map_session_data *sd)
 
 	// Homunculus [albator]
 	if(sd->status.hom_id > 0)
-		intif_homunculus_requestload(sd->status.account_id, sd->status.hom_id);
+		intif->homunculus_requestload(sd->status.account_id, sd->status.hom_id);
 	if(sd->status.mer_id > 0)
-		intif_mercenary_request(sd->status.mer_id, sd->status.char_id);
+		intif->mercenary_request(sd->status.mer_id, sd->status.char_id);
 	if(sd->status.ele_id > 0)
-		intif_elemental_request(sd->status.ele_id, sd->status.char_id);
+		intif->elemental_request(sd->status.ele_id, sd->status.char_id);
 
 	map_addiddb(&sd->bl);
 	map_delnickdb(sd->status.char_id, sd->status.name);
-	if(!chrif_auth_finished(sd))
+	if(!chrif->auth_finished(sd))
 		ShowError("pc_reg_received: Failed to properly remove player %d:%d from logging db!\n", sd->status.account_id, sd->status.char_id);
 
 	pc_load_combo(sd);
 
 	status_calc_pc(sd,SCO_FIRST|SCO_FORCE);
-	chrif_scdata_request(sd->status.account_id, sd->status.char_id);
+	chrif->scdata_request(sd->status.account_id, sd->status.char_id);
 
-	intif_Mail_requestinbox(sd->status.char_id, 0); // MAIL SYSTEM - Request Mail Inbox
-	intif_request_questlog(sd);
+	intif->Mail_requestinbox(sd->status.char_id, 0); // MAIL SYSTEM - Request Mail Inbox
+	intif->request_questlog(sd);
 
 	if(sd->state.connect_new == 0 && sd->fd) {
 		//Character already loaded map! Gotta trigger LoadEndAck manually.
@@ -4817,7 +4817,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skil
 		char message[128];
 		sprintf(message, msg_txt(542), (sd->status.name != NULL)?sd->status.name :"GM", md->db->jname, data->jname, (float)md->db->dropitem[i].p/100);
 		//MSG: "'%s' stole %s's %s (chance: %0.02f%%)"
-		intif_broadcast(message,strlen(message)+1, BC_DEFAULT);
+		intif->broadcast(message, strlen(message) + 1, BC_DEFAULT);
 	}
 	return 1;
 }
@@ -5014,8 +5014,8 @@ int pc_setpos(struct map_session_data *sd, unsigned short map_index, int x, int 
 		sd->bl.x=x;
 		sd->bl.y=y;
 		pc_clean_skilltree(sd);
-		chrif_save(sd,2);
-		chrif_changemapserver(sd, ip, (short)port);
+		chrif->save(sd, 2);
+		chrif->changemapserver(sd, ip, (short)port);
 
 		//Free session data from this map server [Kevin]
 		unit_free_pc(sd);
@@ -6372,7 +6372,7 @@ int pc_skillup(struct map_session_data *sd,uint16 skill_id)
 		else
 			pc_check_skilltree(sd, skill_id); // Check if a new skill can Lvlup
 	
-		clif_skillup(sd,skill_id);
+		clif_skillup(sd, skill_id, sd->status.skill[index].lv, 1);
 		clif_updatestatus(sd,SP_SKILLPOINT);
 		if(skill_id == GN_REMODELING_CART)   /* cart weight info was updated by status_calc_pc */
 			clif_updatestatus(sd,SP_CARTINFO);
@@ -7840,16 +7840,16 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 
 	//if you were previously famous, not anymore.
 	if(fame_flag) {
-		chrif_save(sd,0);
-		chrif_buildfamelist();
+		chrif->save(sd, 0);
+		chrif->buildfamelist();
 	} else if(sd->status.fame > 0) {
 		//It may be that now they are famous?
 		switch(sd->class_&MAPID_UPPERMASK) {
 			case MAPID_BLACKSMITH:
 			case MAPID_ALCHEMIST:
 			case MAPID_TAEKWON:
-				chrif_save(sd,0);
-				chrif_buildfamelist();
+				chrif->save(sd, 0);
+				chrif->buildfamelist();
 				break;
 		}
 	}
@@ -7897,7 +7897,7 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 			if(sd->status.hair != val) {
 				sd->status.hair=val;
 				if(sd->status.guild_id)  //Update Guild Window. [Skotlex]
-					intif_guild_change_memberinfo(sd->status.guild_id,sd->status.account_id,sd->status.char_id,
+					intif->guild_change_memberinfo(sd->status.guild_id, sd->status.account_id, sd->status.char_id,
 					                              GMI_HAIR,&sd->status.hair,sizeof(sd->status.hair));
 			}
 			break;
@@ -7919,7 +7919,7 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 			if(sd->status.hair_color != val) {
 				sd->status.hair_color=val;
 				if(sd->status.guild_id)  //Update Guild Window. [Skotlex]
-					intif_guild_change_memberinfo(sd->status.guild_id,sd->status.account_id,sd->status.char_id,
+					intif->guild_change_memberinfo(sd->status.guild_id, sd->status.account_id, sd->status.char_id,
 					                              GMI_HAIR_COLOR,&sd->status.hair_color,sizeof(sd->status.hair_color));
 			}
 			break;
@@ -9297,7 +9297,7 @@ int pc_divorce(struct map_session_data *sd)
 
 	if((p_sd = map_charid2sd(sd->status.partner_id)) == NULL) {
 		// Lets char server do the divorce
-		if(chrif_divorce(sd->status.char_id, sd->status.partner_id))
+		if (chrif->divorce(sd->status.char_id, sd->status.partner_id))
 			return -1; // No char server connected
 
 		return 0;
@@ -9469,7 +9469,7 @@ int pc_autosave(int tid, int64 tick, int id, intptr_t data)
 		last_save_id = sd->bl.id;
 		save_flag = 2;
 
-		chrif_save(sd,0);
+		chrif->save(sd,0);
 		break;
 	}
 	mapit_free(iter);
@@ -9509,7 +9509,7 @@ int map_day_timer(int tid, int64 tick, int id, intptr_t data)
 	night_flag = 0; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(502) : msg_txt(60)); // The day has arrived!
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
+	intif->broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -9530,7 +9530,7 @@ int map_night_timer(int tid, int64 tick, int id, intptr_t data)
 	night_flag = 1; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(503) : msg_txt(59)); // The night has fallen...
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
+	intif->broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -10401,7 +10401,7 @@ void pc_bank_deposit(struct map_session_data *sd, int money) {
 	else {
 		sd->status.bank_vault += money;
 		if(save_settings&256)
-			chrif_save(sd,0);
+			chrif->save(sd, 0);
 		clif->bank_deposit(sd,BDA_SUCCESS);
 	}
 }
@@ -10425,7 +10425,7 @@ void pc_bank_withdraw(struct map_session_data *sd, int money) {
 	else {
 		sd->status.bank_vault -= money;
 		if(save_settings&256)
-			chrif_save(sd,0);
+			chrif->save(sd,0);
 		clif->bank_withdraw(sd,BWA_SUCCESS);
 	}
 }
@@ -10526,7 +10526,7 @@ void pc_autotrade_load(void) {
 		sd->state.standalone = 1;
 		sd->group = pcg->get_dummy_group();
 
-		chrif_authreq(sd,true);
+		chrif->authreq(sd, true);
 	}
 
 	Sql_FreeResult(mmysql_handle);
@@ -10658,7 +10658,7 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
 	safestrncpy(title, sd->message, sizeof(title));
 
 	map_quit(sd);
-	chrif_auth_delete(account_id, char_id, ST_LOGOUT);
+	chrif->auth_delete(account_id, char_id, ST_LOGOUT);
 
 	CREATE(sd, TBL_PC, 1);
 
@@ -10669,7 +10669,7 @@ void pc_autotrade_prepare(struct map_session_data *sd) {
 	sd->state.standalone = 1;
 	sd->group = pcg->get_dummy_group();
 
-	chrif_authreq(sd,true);
+	chrif->authreq(sd,true);
 }
 /**
  * Prepares autotrade data from pc->at_db from a player that has already returned from char server

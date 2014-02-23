@@ -2448,10 +2448,10 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 					pd->loot = NULL;
 				}
 				if(pd->pet.intimate > 0)
-					intif_save_petdata(pd->pet.account_id,&pd->pet);
+					intif->save_petdata(pd->pet.account_id, &pd->pet);
 				else {
 					//Remove pet.
-					intif_delete_petdata(pd->pet.pet_id);
+					intif->delete_petdata(pd->pet.pet_id);
 					if(sd) sd->status.pet_id = 0;
 				}
 				if(sd)
@@ -2513,7 +2513,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				if(hd->homunculus.intimacy > 0)
 					homun->save(hd);
 				else {
-					intif_homunculus_requestdelete(hd->homunculus.hom_id);
+					intif->homunculus_requestdelete(hd->homunculus.hom_id);
 					if(sd)
 						sd->status.hom_id = 0;
 				}
@@ -2527,7 +2527,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				if(mercenary->get_lifetime(md) > 0)
 					mercenary->save(md);
 				else {
-					intif_mercenary_delete(md->mercenary.mercenary_id);
+					intif->mercenary_delete(md->mercenary.mercenary_id);
 					if(sd)
 						sd->status.mer_id = 0;
 				}
@@ -2543,7 +2543,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				if (elemental->get_lifetime(ed) > 0)
 					elemental->save(ed);
 				else {
-					intif_elemental_delete(ed->elemental.elemental_id);
+					intif->elemental_delete(ed->elemental.elemental_id);
 					if(sd)
 						sd->status.ele_id = 0;
 				}

@@ -18765,7 +18765,7 @@ void skill_reload(void)
 			}
 		}
 	}
-	chrif_skillid2idx(0);
+	chrif->skillid2idx(0);
 	/* lets update all players skill tree : so that if any skill modes were changed they're properly updated */
 	iter = mapit_getallusers();
 	for(sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC *)mapit_next(iter))

@@ -22,9 +22,25 @@
 #include "map.h" //TBL_stuff
 
 struct status_change_entry;
+
+/**
+ * Defines
+ **/
+//Interval at which map server updates online listing. [Valaris]
+#define CHECK_INTERVAL 3600000
+//Interval at which map server sends number of connected users. [Skotlex]
+#define UPDATE_INTERVAL 10000
+
 #define CHRIF_PACKET_LEN_TABLE_SIZE 0x3d
 
+/**
+ * Enumerations
+ **/
 enum sd_state { ST_LOGIN, ST_LOGOUT, ST_MAPCHANGE };
+
+/**
+ * Structures
+ **/
 struct auth_node {
 	int account_id, char_id;
 	int login_id1, login_id2, sex, fd;
@@ -34,76 +50,116 @@ struct auth_node {
 	enum sd_state state; //To track whether player was login in/out or changing maps.
 };
 
-void chrif_setuserid(char *id);
-void chrif_setpasswd(char *pwd);
-void chrif_checkdefaultlogin(void);
-bool chrif_setip(const char *ip);
-void chrif_setport(uint16 port);
-void chrif_sendmap(int fd);
-void chrif_recvmap(int fd);
-void chrif_removemap(int fd);
-void chrif_connectack(int fd);
-void chrif_sendmapack(int fd);
+/*=====================================
+* Interface
+*-------------------------------------*/
+struct chrif_interface {
 
-int chrif_isconnected(void);
-void chrif_check_shutdown(void);
+	/* vars */
 
-extern int chrif_connected;
-extern int other_mapserver_count;
+	int connected;
+	int other_mapserver_count; //Holds count of how many other map servers are online (apart of this instance) [Skotlex]
 
-struct auth_node *chrif_search(int account_id);
-struct auth_node *chrif_auth_check(int account_id, int char_id, enum sd_state state);
-bool chrif_auth_delete(int account_id, int char_id, enum sd_state state);
-bool chrif_auth_finished(struct map_session_data *sd);
+	/* */
+	struct eri *auth_db_ers; //For reutilizing player login structures.
+	DBMap* auth_db; // int id -> struct auth_node*
+	/* */
+	int packet_len_table[CHRIF_PACKET_LEN_TABLE_SIZE];
+	int fd;
+	int srvinfo;
+	char ip_str[128];
+	uint32 ip;
+	uint16 port;
+	char userid[NAME_LENGTH], passwd[NAME_LENGTH];
+	int state;
+	/* */
+	void (*init) (void);
+	void (*final) (void);
+	/* funcs */
+	void (*setuserid) (char* id);
+	void (*setpasswd) (char* pwd);
+	void (*checkdefaultlogin) (void);
+	bool (*setip) (const char* ip);
+	void (*setport) (uint16 port);
 
-void chrif_authreq(struct map_session_data *sd, bool hstandalone);
-void chrif_authok(int fd);
-bool chrif_scdata_request(int account_id, int char_id);
-bool chrif_save(struct map_session_data *sd, int flag);
-bool chrif_charselectreq(struct map_session_data *sd, uint32 s_ip);
-bool chrif_changemapserver(struct map_session_data *sd, uint32 ip, uint16 port);
-bool chrif_changemapserverack(int account_id, int login_id1, int login_id2, int char_id, short map_index, short x, short y, uint32 ip, uint16 port);
+	int (*isconnected) (void);
+	void (*check_shutdown) (void);
 
-int send_usercount_tochar(int tid, int64 tick, int id, intptr_t data);
-int auth_db_cleanup(int tid, int64 tick, int id, intptr_t data);
+	struct auth_node* (*search) (int account_id);
+	struct auth_node* (*auth_check) (int account_id, int char_id, enum sd_state state);
+	bool (*auth_delete) (int account_id, int char_id, enum sd_state state);
+	bool (*auth_finished) (struct map_session_data* sd);
 
-bool chrif_searchcharid(int char_id);
-bool chrif_changeemail(int id, const char *actual_email, const char *new_email);
-bool chrif_char_ask_name(int acc, const char *character_name, unsigned short operation_type, int year, int month, int day, int hour, int minute, int second);
-int chrif_updatefamelist(struct map_session_data *sd);
-bool chrif_buildfamelist(void);
-bool chrif_save_scdata(struct map_session_data *sd);
-bool chrif_ragsrvinfo(int base_rate,int job_rate, int drop_rate);
-bool chrif_char_offline_nsd(int account_id, int char_id);
-bool chrif_char_reset_offline(void);
-bool send_users_tochar(void);
-bool chrif_char_online(struct map_session_data *sd);
-bool chrif_changesex(struct map_session_data *sd);
-bool chrif_char_ask_name_answer(int acc, const char *player_name, uint16 type, uint16 answer);
-//int chrif_chardisconnect(struct map_session_data *sd);
-bool chrif_divorce(int partner_id1, int partner_id2);
+	void (*authreq) (struct map_session_data* sd, bool hstandalone);
+	void (*authok) (int fd);
+	bool (*scdata_request) (int account_id, int char_id);
+	bool (*save) (struct map_session_data* sd, int flag);
+	bool (*charselectreq) (struct map_session_data* sd, uint32 s_ip);
+	bool (*changemapserver) (struct map_session_data* sd, uint32 ip, uint16 port);
 
-bool chrif_removefriend(int char_id, int friend_id);
-void chrif_changedsex(int fd);
-void chrif_deadopt(int father_id, int mother_id, int child_id);
-bool chrif_load_scdata(int fd);
-void chrif_recvfamelist(int fd);
-bool chrif_divorceack(int char_id, int partner_id);
+	bool (*searchcharid) (int char_id);
+	bool (*changeemail) (int id, const char *actual_email, const char *new_email);
+	bool (*char_ask_name) (int acc, const char* character_name, unsigned short operation_type, int year, int month, int day, int hour, int minute, int second);
+	int (*updatefamelist) (struct map_session_data *sd);
+	bool (*buildfamelist) (void);
+	bool (*save_scdata) (struct map_session_data *sd);
+	bool (*ragsrvinfo) (int base_rate,int job_rate, int drop_rate);
+	//int (*char_offline) (struct map_session_data *sd);
+	bool (*char_offline_nsd) (int account_id, int char_id);
+	bool (*char_reset_offline) (void);
+	bool (*send_users_tochar) (void);
+	bool (*char_online) (struct map_session_data *sd);
+	bool (*changesex) (struct map_session_data *sd);
+	//int (*chardisconnect) (struct map_session_data *sd); // FIXME: Commented out in clif.c, function does not exist
+	bool (*divorce) (int partner_id1, int partner_id2);
 
-void chrif_idbanned(int fd);
+	bool (*removefriend) (int char_id, int friend_id);
+	void (*send_report) (char* buf, int len);
+			
+	bool (*flush) (void);
+	void (*skillid2idx) (int fd);
+	
+	bool (*sd_to_auth) (TBL_PC* sd, enum sd_state state);
+	int (*check_connect_char_server) (int tid, int64 tick, int id, intptr_t data);
+	bool (*auth_logout) (TBL_PC* sd, enum sd_state state);
+	void (*save_ack) (int fd);
+	int (*reconnect) (DBKey key, DBData *data, va_list ap);
+	int (*auth_db_cleanup_sub) (DBKey key, DBData *data, va_list ap);
+	bool (*char_ask_name_answer) (int acc, const char* player_name, uint16 type, uint16 answer);
+	int (*auth_db_final) (DBKey key, DBData *data, va_list ap);
+	int (*send_usercount_tochar) (int tid, int64 tick, int id, intptr_t data);
+	int (*auth_db_cleanup) (int tid, int64 tick, int id, intptr_t data);
 
-void chrif_send_report(char *buf, int len);
+	void (*connect) (int fd);
+	void (*connectack) (int fd);
+	void (*sendmap) (int fd);
+	void (*sendmapack) (int fd);
+	void (*recvmap) (int fd);
+	bool (*changemapserverack) (int account_id, int login_id1, int login_id2, int char_id, short map_index, short x, short y, uint32 ip, uint16 port);
+	void (*changedsex) (int fd);
+	bool (*divorceack) (int char_id, int partner_id);
+	void (*idbanned) (int fd);
+	void (*recvfamelist) (int fd);
+	bool (*load_scdata) (int fd);
+	void (*update_ip) (int fd);
+	int (*disconnectplayer) (int fd);
+	void (*removemap) (int fd);
+	int (*updatefamelist_ack) (int fd);
+	void (*keepalive)(int fd);
+	void (*keepalive_ack) (int fd);
+	void (*deadopt) (int father_id, int mother_id, int child_id);
+	void (*authfail) (int fd);
+	void (*on_ready) (void);
+	void (*on_disconnect) (void);
+	int (*parse) (int fd);
+	void (*save_scdata_single) (int account_id, int char_id, short type, struct status_change_entry *sce);
+	void (*del_scdata_single) (int account_id, int char_id, short type);
+};
 
-void do_final_chrif(void);
-void do_init_chrif(void);
+struct chrif_interface *chrif;
 
-bool chrif_flush_fifo(void);
-void chrif_skillid2idx(int fd);
-void chrif_save_scdata_single(int account_id, int char_id, short type, struct status_change_entry *sce);
-void chrif_del_scdata_single(int account_id, int char_id, short type);
-
+void chrif_defaults(void);
 // There's no need for another function when a simple macro can do exactly the same effect
-#define chrif_char_offline(x) chrif_char_offline_nsd((x)->status.account_id,(x)->status.char_id)
-
+#define chrif_char_offline(x) chrif->char_offline_nsd((x)->status.account_id,(x)->status.char_id)
 
 #endif /* _CHRIF_H_ */

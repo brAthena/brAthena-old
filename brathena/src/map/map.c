@@ -1224,7 +1224,7 @@ int map_clearflooritem_timer(int tid, int64 tick, int id, intptr_t data)
 
 
 	if(search_petDB_index(fitem->item_data.nameid, PET_EGG) >= 0)
-		intif_delete_petdata(MakeDWord(fitem->item_data.card[1], fitem->item_data.card[2]));
+		intif->delete_petdata(MakeDWord(fitem->item_data.card[1], fitem->item_data.card[2]));
 
 	clif_clearflooritem(fitem, 0);
 	map_deliddb(&fitem->bl);
@@ -1497,7 +1497,7 @@ void map_reqnickdb(struct map_session_data *sd, int charid)
 	CREATE(req, struct charid_request, 1);
 	req->next = p->requests;
 	p->requests = req;
-	chrif_searchcharid(charid);
+	chrif->searchcharid(charid);
 }
 
 /*==========================================
@@ -1555,11 +1555,11 @@ int map_quit(struct map_session_data *sd)
 	int i;
 
 	if(!sd->state.active) { //Removing a player that is not active.
-		struct auth_node *node = chrif_search(sd->status.account_id);
+		struct auth_node *node = chrif->search(sd->status.account_id);
 		if(node && node->char_id == sd->status.char_id &&
 		   node->state != ST_LOGOUT)
 			//Except when logging out, clear the auth-connect data immediately.
-			chrif_auth_delete(node->account_id, node->char_id, node->state);
+			chrif->auth_delete(node->account_id, node->char_id, node->state);
 		//Non-active players should not have loaded any data yet (or it was cleared already) so no additional cleanups are needed.
 		return 0;
 	}
@@ -1664,7 +1664,7 @@ int map_quit(struct map_session_data *sd)
 	party_booking_delete(sd); // Party Booking [Spiria]
 	pc_makesavestatus(sd);
 	pc_clean_skilltree(sd);
-	chrif_save(sd,1);
+	chrif->save(sd, 1);
 	unit_free_pc(sd);
 	return 0;
 }
@@ -1725,7 +1725,7 @@ const char *map_charid2nick(int charid)
 	if(*p->nick)
 		return p->nick;// name in nick_db
 
-	chrif_searchcharid(charid);// request the name
+	chrif->searchcharid(charid);// request the name
 	return NULL;
 }
 
@@ -3244,9 +3244,6 @@ int map_readallmaps(void)
 	return 0;
 }
 
-////////////////////////////////////////////////////////////////////////
-static int map_ip_set = 0;
-static int char_ip_set = 0;
 
 /*==========================================
  * Console Command Parser [Wizputer]
@@ -3355,13 +3352,13 @@ int map_config_read(char *cfgName)
 			if(msg_silent)   // only bother if its actually enabled
 				ShowInfo("Console Modo Silencioso: %d\n", atoi(w2));
 		} else if(strcmpi(w1, "userid")==0)
-			chrif_setuserid(w2);
+			chrif->setuserid(w2);
 		else if(strcmpi(w1, "passwd") == 0)
-			chrif_setpasswd(w2);
+			chrif->setpasswd(w2);
 		else if(strcmpi(w1, "char_ip") == 0)
-			char_ip_set = chrif_setip(w2);
+			char_ip_set = chrif->setip(w2);
 		else if(strcmpi(w1, "char_port") == 0)
-			chrif_setport(atoi(w2));
+			chrif->setport(atoi(w2));
 		else if(strcmpi(w1, "map_ip") == 0)
 			map_ip_set = clif_setip(w2);
 		else if(strcmpi(w1, "bind_ip") == 0)
@@ -5320,12 +5317,12 @@ void do_final(void)
 	ShowStatus("Cleaned up %d maps."CL_CLL"\n", map_num);
 
 	id_db->foreach(id_db,cleanup_db_sub);
-	chrif_char_reset_offline();
-	chrif_flush_fifo();
+	chrif->char_reset_offline();
+	chrif->flush();
 
 	atcommand->final();
 	do_final_battle();
-	do_final_chrif();
+	chrif->final();
 	do_final_clif();
 	npc->final();
 	quest->final();
@@ -5377,7 +5374,7 @@ void do_final(void)
 
 static int map_abort_sub(struct map_session_data *sd, va_list ap)
 {
-	chrif_save(sd,1);
+	chrif->save(sd, 1);
 	return 1;
 }
 
@@ -5395,14 +5392,14 @@ void do_abort(void)
 		return;
 	}
 	run = 1;
-	if(!chrif_isconnected()) {
+	if(!chrif->isconnected()) {
 		if(pc_db->size(pc_db))
 			ShowFatalError("Server has crashed without a connection to the char-server, %u characters can't be saved!\n", pc_db->size(pc_db));
 		return;
 	}
 	ShowError("Server received crash signal! Attempting to save all online characters!\n");
 	map_foreachpc(map_abort_sub);
-	chrif_flush_fifo();
+	chrif->flush();
 }
 
 /*======================================================
@@ -5463,7 +5460,7 @@ void do_shutdown(void)
 			mapit_free(iter);
 			flush_fifos();
 		}
-		chrif_check_shutdown();
+		chrif->check_shutdown();
 	}
 }
 
@@ -5483,6 +5480,7 @@ void map_load_defaults(void) {
 	battleground_defaults();
 	buyingstore_defaults();
 	clif_defaults();
+	chrif_defaults();
 	guild_defaults();
 	gstorage_defaults();
 	homunculus_defaults();
@@ -5499,6 +5497,7 @@ void map_load_defaults(void) {
 	trade_defaults();
 	status_defaults();
 	elemental_defaults();
+	intif_defaults();
 	mercenary_defaults();
 	mob_defaults();
 	mapreg_defaults();
@@ -5602,7 +5601,7 @@ int do_init(int argc, char *argv[])
 	// loads npcs
 	map_reloadnpc(false);
 
-	chrif_checkdefaultlogin();
+	chrif->checkdefaultlogin();
 
 	if(!map_ip_set || !char_ip_set) {
 		char ip_str[16];
@@ -5620,7 +5619,7 @@ int do_init(int argc, char *argv[])
 		if(!map_ip_set)
 			clif_setip(ip_str);
 		if(!char_ip_set)
-			chrif_setip(ip_str);
+			chrif->setip(ip_str);
 	}
 
 	battle_config_read(BATTLE_CONF_FILENAME);
@@ -5672,7 +5671,7 @@ int do_init(int argc, char *argv[])
 	atcommand->init();
 	do_init_battle();
 	instance->init();
-	do_init_chrif();
+	chrif->init();
 	do_init_clif();
 	script->init();
 	do_init_itemdb();

@@ -60,6 +60,7 @@ struct skill_cd;
 #define packet_len(cmd) packet_db[cmd].len
 #define P2PTR(fd) RFIFO2PTR(fd)
 #define clif_menuskill_clear(sd) ((sd)->menuskill_id = (sd)->menuskill_val = (sd)->menuskill_val2 = 0)
+#define clif_disp_onlyself(sd,mes,len) clif_disp_message( &(sd)->bl, (mes), (len), SELF )
 
 /**
  * Enumerations
@@ -366,8 +367,8 @@ enum clif_messages {
 	SUPER_NOVICE_MESSAGEM3 = 0x318,
 	SUPER_NOVICE_MESSAGEM4 = 0x31A,
 };
-int clif_setip(const char *ip);
-void clif_setbindip(const char *ip);
+bool clif_setip(const char *ip);
+bool clif_setbindip(const char *ip);
 void clif_setport(uint16 port);
 
 uint32 clif_getip(void);
@@ -387,7 +388,7 @@ void clif_parse_TickSend(int fd, struct map_session_data *sd);
 void clif_clearunit_single(int id, clr_type type, int fd);
 void clif_clearunit_area(struct block_list *bl, clr_type type);
 void clif_clearunit_delayed(struct block_list *bl, clr_type type, int64 tick);
-int clif_spawn(struct block_list *bl);  //area
+bool clif_spawn(struct block_list *bl);  //area
 void clif_walkok(struct map_session_data *sd);  // self
 void clif_move(struct unit_data *ud); //area
 void clif_changemap(struct map_session_data *sd, short m, int x, int y);  //self
@@ -476,7 +477,7 @@ void clif_class_change(struct block_list *bl,int class_,int type);
 #define clif_mob_class_change(md, class_) clif_class_change(&md->bl, class_, 1)
 
 void clif_skillinfoblock(struct map_session_data *sd);
-void clif_skillup(struct map_session_data *sd,uint16 skill_id);
+void clif_skillup(struct map_session_data *sd, uint16 skill_id, int skill_lv, int flag);
 void clif_skillinfo(struct map_session_data *sd,int skill, int inf);
 void clif_addskill(struct map_session_data *sd, int id);
 void clif_deleteskill(struct map_session_data *sd, int id);
@@ -624,7 +625,6 @@ void clif_font(struct map_session_data *sd);
 
 // atcommand
 void clif_displaymessage(const int fd, const char *mes);
-void clif_disp_onlyself(struct map_session_data *sd, const char *mes, size_t len);
 void clif_disp_message(struct block_list *src, const char *mes, size_t len, enum send_target target);
 void clif_broadcast(struct block_list *bl, const char *mes, size_t len, int type, enum send_target target);
 void clif_broadcast2(struct block_list *bl, const char *mes, size_t len, unsigned int fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target);
@@ -681,9 +681,9 @@ void clif_feel_hate_reset(struct map_session_data *sd);
 
 // [blackhole89]
 void clif_hominfo(struct map_session_data *sd, struct homun_data *hd, int flag);
-int clif_homskillinfoblock(struct map_session_data *sd);
+void clif_homskillinfoblock(struct map_session_data *sd);
 void clif_homskillup(struct map_session_data *sd, uint16 skill_id); //[orn]
-int clif_hom_food(struct map_session_data *sd,int foodid,int fail); //[orn]
+void clif_hom_food(struct map_session_data *sd,int foodid,int fail); //[orn]
 void clif_send_homdata(struct map_session_data *sd, int state, int param);  //[orn]
 
 void clif_equiptickack(struct map_session_data *sd, int flag);
@@ -704,7 +704,7 @@ void clif_quest_update_objective(struct map_session_data *sd, struct quest *qd);
 void clif_quest_show_event(struct map_session_data *sd, struct block_list *bl, short state, short color);
 void clif_displayexp(struct map_session_data *sd, unsigned int exp, char type, bool is_quest);
 
-int clif_send(const void *buf, int len, struct block_list *bl, enum send_target type);
+bool clif_send(const void *buf, int len, struct block_list *bl, enum send_target type);
 int do_init_clif(void);
 void do_final_clif(void);
 

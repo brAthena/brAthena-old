@@ -29,6 +29,8 @@
 extern int arg_c;
 extern char **arg_v;
 
+#define BRATHENA_UNKNOWN_VER '\x02'
+
 #if defined(BUILDBOT)
 extern int buildbotflag;
 #endif

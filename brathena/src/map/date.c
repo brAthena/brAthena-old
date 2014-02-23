@@ -14,6 +14,7 @@
 * \todo ?                                                                    *  
 *****************************************************************************/
 
+#include "../common/cbasetypes.h"
 #include "date.h"
 #include <time.h>
 
@@ -68,17 +69,17 @@ int date_get_sec(void)
 	return lt->tm_sec;
 }
 
-int is_day_of_sun(void)
+bool is_day_of_sun(void)
 {
 	return date_get_day()%2 == 0;
 }
 
-int is_day_of_moon(void)
+bool is_day_of_moon(void)
 {
 	return date_get_day()%2 == 1;
 }
 
-int is_day_of_star(void)
+bool is_day_of_star(void)
 {
 	return date_get_day()%5 == 0;
 }
