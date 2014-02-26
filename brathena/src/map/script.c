@@ -181,20 +181,20 @@ void script_reportsrc(struct script_state *st)
 	if(st->oid == 0)
 		return; //Can't report source.
 
-	bl = map_id2bl(st->oid);
+	bl = map->id2bl(st->oid);
 	if(bl == NULL)
 		return;
 
 	switch(bl->type) {
 		case BL_NPC:
 			if(bl->m >= 0)
-				ShowDebug("Source (NPC): %s em %s (%d,%d)\n", ((struct npc_data *)bl)->name, map[bl->m].name, bl->x, bl->y);
+				ShowDebug("Source (NPC): %s em %s (%d,%d)\n", ((struct npc_data *)bl)->name, map->list[bl->m].name, bl->x, bl->y);
 			else
 				ShowDebug("Source (NPC): %s (invisivel/nao em uma mapa)\n", ((struct npc_data *)bl)->name);
 			break;
 		default:
 			if(bl->m >= 0)
-				ShowDebug("Source (Non-NPC type %d): nome %s em %s (%d,%d)\n", bl->type, status->get_name(bl), map[bl->m].name, bl->x, bl->y);
+				ShowDebug("Source (Non-NPC type %d): nome %s em %s (%d,%d)\n", bl->type, status->get_name(bl), map->list[bl->m].name, bl->x, bl->y);
 			else
 				ShowDebug("Source (Non-NPC type %d): nome %s (invisivel/nao em uma mapa)\n", bl->type, status->get_name(bl));
 			break;
@@ -2102,10 +2102,10 @@ void script_set_constant2(const char *name, int value, bool isparameter) {
  * Leitura estruturada const_db.
  *------------------------------------------*/
 void read_constdb(void) {
-	Sql *tmp_ptr = mmysql_handle;
+	Sql *tmp_ptr = map->mysql_handle;
 	int i, count = 0, type;
 
-	if(SQL_ERROR == Sql_Query(tmp_ptr, "SELECT * FROM `%s`.`%s`", db_db2name, get_database_name(59))) {
+	if(SQL_ERROR == Sql_Query(tmp_ptr, "SELECT * FROM `%s`.`%s`", map->db_db2name, get_database_name(59))) {
 		Sql_ShowDebug(tmp_ptr);
 		return;
 	}
@@ -2451,7 +2451,7 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 TBL_PC *script_rid2sd(struct script_state *st)
 {
 	TBL_PC *sd;
-	if(!( sd = map_id2sd(st->rid))){
+	if(!( sd = map->id2sd(st->rid))){
 		ShowError("script_rid2sd: erro fatal! nenhum jogador anexado!\n");
 		script->reportfunc(st);
 		script->reportsrc(st);
@@ -2618,7 +2618,7 @@ void *get_val2(struct script_state *st, int64 uid, struct DBMap **ref)
  **/
 void script_array_ensure_zero(struct script_state *st, struct map_session_data *sd, int64 uid, struct DBMap** ref) {
 	const char *name = script->get_str(script_getvarid(uid));
-	struct DBMap *src = script->array_src(st, sd ? sd : st->rid ? map_id2sd(st->rid) : NULL, name, ref);
+	struct DBMap *src = script->array_src(st, sd ? sd : st->rid ? map->id2sd(st->rid) : NULL, name, ref);
 	struct script_array *sa = NULL;
 	bool insert = false;
 
@@ -3748,7 +3748,7 @@ int run_script_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct script_state *st = idb_get(script->st_db,(int)data);
 	if(st) {
-		TBL_PC *sd = map_id2sd(st->rid);
+		TBL_PC *sd = map->id2sd(st->rid);
 
 		if((sd && sd->status.char_id != id) || (st->rid && !sd)) { //Character mismatch. Cancel execution.
 			st->rid = 0;
@@ -3770,7 +3770,7 @@ void script_detach_state(struct script_state *st, bool dequeue_event)
 {
 	struct map_session_data *sd;
 
-	if(st->rid && (sd = map_id2sd(st->rid))!=NULL) {
+	if(st->rid && (sd = map->id2sd(st->rid))!=NULL) {
 		sd->st = st->bk_st;
 		sd->npc_id = st->bk_npcid;
 		sd->state.dialog = 0;
@@ -3810,7 +3810,7 @@ void script_attach_state(struct script_state *st)
 {
 	struct map_session_data *sd;
 
-	if(st->rid && (sd = map_id2sd(st->rid))!=NULL) {
+	if(st->rid && (sd = map->id2sd(st->rid))!=NULL) {
 		if(st!=sd->st) {
 			if(st->bk_st) {
 				// there is already a backup
@@ -3846,9 +3846,9 @@ void run_script_main(struct script_state *st)
 
 	script->attach_state(st);
 
-	nd = map_id2nd(st->oid);
+	nd = map->id2nd(st->oid);
 	if(nd && nd->bl.m >= 0)
-		st->instance_id = map[nd->bl.m].instance_id;
+		st->instance_id = map->list[nd->bl.m].instance_id;
 	else
 		st->instance_id = -1;
 
@@ -3950,7 +3950,7 @@ void run_script_main(struct script_state *st)
 		//Restore previous script
 		script->detach_state(st, false);
 		//Delay execution
-		sd = map_id2sd(st->rid); // Get sd since script might have attached someone while running. [Inkfish]
+		sd = map->id2sd(st->rid); // Get sd since script might have attached someone while running. [Inkfish]
 		st->sleep.charid = sd?sd->status.char_id:0;
 		st->sleep.timer  = add_timer(gettick()+st->sleep.tick,
 			script->run_timer, st->sleep.charid, (intptr_t)st->id);
@@ -3969,7 +3969,7 @@ void run_script_main(struct script_state *st)
 		}
 	} else {
 		//Dispose of script.
-		if((sd = map_id2sd(st->rid))!=NULL) {
+		if((sd = map->id2sd(st->rid))!=NULL) {
 			//Restore previous stack and save char.
 			if(sd->state.using_fake_npc) {
 				clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
@@ -4305,6 +4305,7 @@ void do_init_script(void) {
 
 	script->parse_builtin();
 	script->read_constdb();
+	script->hardcoded_constants();
 
 
 	mapreg->init();
@@ -4559,7 +4560,7 @@ BUILDIN_FUNC(menu)
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
 		if(StrBuf->Length(&buf) >= 2047) {
-			struct npc_data *nd = map_id2nd(st->oid);
+			struct npc_data *nd = map->id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
 			safestrncpy(menu, StrBuf->Value(&buf), 2047);
@@ -4660,7 +4661,7 @@ BUILDIN_FUNC(select)
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
 		if(StrBuf->Length(&buf) >= 2047) {
-			struct npc_data *nd = map_id2nd(st->oid);
+			struct npc_data *nd = map->id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
 			safestrncpy(menu, StrBuf->Value(&buf), 2047);
@@ -4737,7 +4738,7 @@ BUILDIN_FUNC(prompt)
 		 * menus beyond this length crash the client (see bugreport:6402)
 		 **/
 		if(StrBuf->Length(&buf) >= 2047) {
-			struct npc_data *nd = map_id2nd(st->oid);
+			struct npc_data *nd = map->id2nd(st->oid);
 			char *menu;
 			CREATE(menu, char, 2048);
 			safestrncpy(menu, StrBuf->Value(&buf), 2047);
@@ -5025,7 +5026,7 @@ BUILDIN_FUNC(warp)
 	else if(strcmp(str,"SavePoint")==0 || strcmp(str,"Save")==0)
 		ret = pc_setpos(sd,sd->status.save_point.map,sd->status.save_point.x,sd->status.save_point.y,CLR_TELEPORT);
 	else
-		ret = pc_setpos(sd, mapindex->name2id(str), x, y, CLR_OUTSIGHT);
+		ret = pc_setpos(sd,script->mapindexname2id(st,str),x,y,CLR_OUTSIGHT);
 
 	if(ret) {
 		ShowError("buildin_warp: moving player '%s' to \"%s\",%d,%d failed.\n", sd->status.name, str, x, y);
@@ -5062,7 +5063,7 @@ int buildin_areawarp_sub(struct block_list *bl,va_list ap)
 			tx = rnd()%(x3-x2+1)+x2;
 			ty = rnd()%(y3-y2+1)+y2;
 			j++;
-		} while(map_getcell(index,tx,ty,CELL_CHKNOPASS) && j < max);
+		} while(map->getcell(index,tx,ty,CELL_CHKNOPASS) && j < max);
 
 		pc_setpos((TBL_PC *)bl,index,tx,ty,CLR_OUTSIGHT);
 	} else
@@ -5096,15 +5097,15 @@ BUILDIN_FUNC(areawarp)
 		}
 	}
 
-	if((m = map_mapname2mapid(mapname)) < 0)
+	if((m = map->mapname2mapid(mapname)) < 0)
 		return 0;
 
 	if(strcmp(str,"Random") == 0)
 		index = 0;
-	else if(!(index = mapindex->name2id(str)))
+	else if(!(index = script->mapindexname2id(st,str)))
 		return 0;
 
-	map_foreachinarea(script->buildin_areawarp_sub, m,x0,y0,x1,y1, BL_PC, index,x2,y2,x3,y3);
+	map->foreachinarea(script->buildin_areawarp_sub, m,x0,y0,x1,y1, BL_PC, index,x2,y2,x3,y3);
 	return 0;
 }
 
@@ -5133,10 +5134,10 @@ BUILDIN_FUNC(areapercentheal)
 	hp=script_getnum(st,7);
 	sp=script_getnum(st,8);
 
-	if((m=map_mapname2mapid(mapname))< 0)
+	if((m=map->mapname2mapid(mapname))< 0)
 		return 0;
 
-	map_foreachinarea(script->buildin_areapercentheal_sub,m,x0,y0,x1,y1,BL_PC,hp,sp);
+	map->foreachinarea(script->buildin_areapercentheal_sub,m,x0,y0,x1,y1,BL_PC,hp,sp);
 	return 0;
 }
 
@@ -5157,7 +5158,7 @@ BUILDIN_FUNC(warpchar)
 	y=script_getnum(st,4);
 	a=script_getnum(st,5);
 
-	sd = map_charid2sd(a);
+	sd = map->charid2sd(a);
 	if(sd == NULL)
 		return 0;
 
@@ -5167,7 +5168,7 @@ BUILDIN_FUNC(warpchar)
 		if(strcmp(str, "SavePoint") == 0)
 			pc_setpos(sd, sd->status.save_point.map,sd->status.save_point.x, sd->status.save_point.y, CLR_TELEPORT);
 		else
-			pc_setpos(sd, mapindex->name2id(str), x, y, CLR_TELEPORT);
+			pc_setpos(sd, script->mapindexname2id(st,str), x, y, CLR_TELEPORT);
 
 	return 0;
 }
@@ -5214,7 +5215,7 @@ BUILDIN_FUNC(warpparty)
 			y = pl_sd->bl.y;
 			break;
 		case 4:
-			map_index = mapindex->name2id(str);
+			map_index = script->mapindexname2id(st,str);
 			break;
 		case 2:
 			//"SavePoint" uses save point of the currently attached player
@@ -5229,7 +5230,7 @@ BUILDIN_FUNC(warpparty)
 		if(!(pl_sd = p->data[i].sd) || pl_sd->status.party_id != p_id)
 			continue;
 
-		if(str2 && strcmp(str2, map[pl_sd->bl.m].name) != 0)
+		if(str2 && strcmp(str2, map->list[pl_sd->bl.m].name) != 0)
 			continue;
 
 		if(pc_isdead(pl_sd))
@@ -5237,20 +5238,20 @@ BUILDIN_FUNC(warpparty)
 
 		switch(type) {
 			case 0: // Random
-				if(!map[pl_sd->bl.m].flag.nowarp)
+				if(!map->list[pl_sd->bl.m].flag.nowarp)
 					pc_randomwarp(pl_sd,CLR_TELEPORT);
 				break;
 			case 1: // SavePointAll
-				if(!map[pl_sd->bl.m].flag.noreturn)
+				if(!map->list[pl_sd->bl.m].flag.noreturn)
 					pc_setpos(pl_sd,pl_sd->status.save_point.map,pl_sd->status.save_point.x,pl_sd->status.save_point.y,CLR_TELEPORT);
 				break;
 			case 2: // SavePoint
-				if(!map[pl_sd->bl.m].flag.noreturn)
+				if(!map->list[pl_sd->bl.m].flag.noreturn)
 					pc_setpos(pl_sd,sd->status.save_point.map,sd->status.save_point.x,sd->status.save_point.y,CLR_TELEPORT);
 				break;
 			case 3: // Leader
 			case 4: // m,x,y
-				if(!map[pl_sd->bl.m].flag.noreturn && !map[pl_sd->bl.m].flag.nowarp)
+				if(!map->list[pl_sd->bl.m].flag.noreturn && !map->list[pl_sd->bl.m].flag.nowarp)
 					pc_setpos(pl_sd, map_index, x, y, CLR_TELEPORT);
 				break;
 		}
@@ -5290,30 +5291,30 @@ BUILDIN_FUNC(warpguild)
 	}
 
 	iter = mapit_getallusers();
-	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter)) {
+	for(pl_sd = (TBL_PC *)mapit->first(iter); mapit->exists(iter); pl_sd = (TBL_PC *)mapit->next(iter)) {
 		if(pl_sd->status.guild_id != gid)
 			continue;
 
 		switch(type) {
 			case 0: // Random
-				if(!map[pl_sd->bl.m].flag.nowarp)
+				if(!map->list[pl_sd->bl.m].flag.nowarp)
 					pc_randomwarp(pl_sd,CLR_TELEPORT);
 				break;
 			case 1: // SavePointAll
-				if(!map[pl_sd->bl.m].flag.noreturn)
+				if(!map->list[pl_sd->bl.m].flag.noreturn)
 					pc_setpos(pl_sd,pl_sd->status.save_point.map,pl_sd->status.save_point.x,pl_sd->status.save_point.y,CLR_TELEPORT);
 				break;
 			case 2: // SavePoint
-				if(!map[pl_sd->bl.m].flag.noreturn)
+				if(!map->list[pl_sd->bl.m].flag.noreturn)
 					pc_setpos(pl_sd,sd->status.save_point.map,sd->status.save_point.x,sd->status.save_point.y,CLR_TELEPORT);
 				break;
 			case 3: // m,x,y
-				if(!map[pl_sd->bl.m].flag.noreturn && !map[pl_sd->bl.m].flag.nowarp)
-					pc_setpos(pl_sd, mapindex->name2id(str), x, y, CLR_TELEPORT);
+				if(!map->list[pl_sd->bl.m].flag.noreturn && !map->list[pl_sd->bl.m].flag.nowarp)
+					pc_setpos(pl_sd,script->mapindexname2id(st,str),x,y,CLR_TELEPORT);
 				break;
 		}
 	}
-	mapit_free(iter);
+	mapit->free(iter);
 
 	return 0;
 }
@@ -6299,7 +6300,7 @@ BUILDIN_FUNC(getitem)
 	}
 
 	if(script_hasdata(st,4+offset))
-		sd=map_id2sd(script_getnum(st,4+offset)); // <Account ID>
+		sd=map->id2sd(script_getnum(st,4+offset)); // <Account ID>
 	else
 		sd=script->rid2sd(st); // Attached player
 
@@ -6318,7 +6319,7 @@ BUILDIN_FUNC(getitem)
 			if((flag = pc_additem(sd, &it, get_count, LOG_TYPE_SCRIPT))) {
 				clif_additem(sd, 0, 0, flag);
 				if(pc_candrop(sd,&it))
-					map_addflooritem(&it,get_count,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+					map->addflooritem(&it, get_count, sd->bl.m, sd->bl.x, sd->bl.y, 0, 0, 0, 0);
 			}
 		}
 	}
@@ -6345,7 +6346,7 @@ BUILDIN_FUNC(getitem2)
 	}
 
 	if(script_hasdata(st,11+offset))
-		sd=map_id2sd(script_getnum(st,11+offset)); // <Account ID>
+		sd=map->id2sd(script_getnum(st,11+offset)); // <Account ID>
 	else
 		sd=script->rid2sd(st); // Attached player
 
@@ -6424,7 +6425,7 @@ BUILDIN_FUNC(getitem2)
 				if((flag = pc_additem(sd, &item_tmp, get_count, LOG_TYPE_SCRIPT))) {
 					clif_additem(sd, 0, 0, flag);
 					if(pc_candrop(sd,&item_tmp))
-						map_addflooritem(&item_tmp,get_count,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+						map->addflooritem(&item_tmp, get_count, sd->bl.m, sd->bl.x, sd->bl.y, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -6516,9 +6517,9 @@ BUILDIN_FUNC(getnameditem)
 	}
 
 	if( script_isstringtype(st, 3) ) //Char Name
-		tsd=map_nick2sd(script_getstr(st, 3));
+		tsd=map->nick2sd(script_getstr(st, 3));
 	else //Char Id was given
-		tsd=map_charid2sd(script_getnum(st, 3));
+		tsd=map->charid2sd(script_getnum(st, 3));
 
 	if(tsd == NULL) {
 		//Failed
@@ -6590,7 +6591,7 @@ BUILDIN_FUNC(makeitem)
 		if(!sd) return 0;  //Failed...
 		m=sd->bl.m;
 	} else
-		m=map_mapname2mapid(mapname);
+		m=map->mapname2mapid(mapname);
 
 	if(m == -1) {
 		ShowError("makeitem: creating map on unexistent map '%s'!\n", mapname);
@@ -6605,7 +6606,7 @@ BUILDIN_FUNC(makeitem)
 	else
 		item_tmp.identify=itemdb_isidentified2(item_data);
 
-	map_addflooritem(&item_tmp,amount,m,x,y,0,0,0,0);
+	map->addflooritem(&item_tmp,amount,m,x,y,0,0,0,0);
 	return 0;
 }
 
@@ -6749,7 +6750,7 @@ BUILDIN_FUNC(delitem)
 
 	if(script_hasdata(st,4)) {
 		int account_id = script_getnum(st,4);
-		sd = map_id2sd(account_id); // <account id>
+		sd = map->id2sd(account_id); // <account id>
 		if(sd == NULL) {
 			ShowError("script:delitem: player not found (AID=%d).\n", account_id);
 			st->state = END;
@@ -6807,7 +6808,7 @@ BUILDIN_FUNC(delitem2)
 
 	if(script_hasdata(st,11)) {
 		int account_id = script_getnum(st,11);
-		sd = map_id2sd(account_id); // <account id>
+		sd = map->id2sd(account_id); // <account id>
 		if(sd == NULL) {
 			ShowError("script:delitem2: player not found (AID=%d).\n", account_id);
 			st->state = END;
@@ -6893,7 +6894,7 @@ BUILDIN_FUNC(readparam)
 
 	type=script_getnum(st,2);
 	if(script_hasdata(st,3))
-		sd=map_nick2sd(script_getstr(st,3));
+		sd=map->nick2sd(script_getstr(st,3));
 	else
 		sd=script->rid2sd(st);
 
@@ -6923,7 +6924,7 @@ BUILDIN_FUNC(getcharid)
 
 	num = script_getnum(st,2);
 	if(script_hasdata(st,3))
-		sd=map_nick2sd(script_getstr(st,3));
+		sd=map->nick2sd(script_getstr(st,3));
 	else
 		sd=script->rid2sd(st);
 
@@ -7165,7 +7166,7 @@ BUILDIN_FUNC(strcharinfo)
 			}
 			break;
 		case 3:
-			script_pushconststr(st,map[sd->bl.m].name);
+			script_pushconststr(st,map->list[sd->bl.m].name);
 			break;
 		default:
 			ShowWarning("buildin_strcharinfo: unknown parameter.\n");
@@ -7191,7 +7192,7 @@ BUILDIN_FUNC(strnpcinfo)
 	int num;
 	char *buf,*name=NULL;
 
-	nd = map_id2nd(st->oid);
+	nd = map->id2nd(st->oid);
 	if(!nd) {
 		script_pushconststr(st, "");
 		return 0;
@@ -7218,7 +7219,7 @@ BUILDIN_FUNC(strnpcinfo)
 			break;
 		case 4: // map name
 			if(nd->bl.m >= 0) // Only valid map indexes allowed
-				name = aStrdup(map[nd->bl.m].name);
+				name = aStrdup(map->list[nd->bl.m].name);
 			break;
 	}
 
@@ -8397,7 +8398,7 @@ BUILDIN_FUNC(savepoint)
 	str = script_getstr(st, 2);
 	x   = script_getnum(st,3);
 	y   = script_getnum(st,4);
-	mapid = mapindex->name2id(str);
+	mapid = script->mapindexname2id(st,str);
 	if(mapid)
 		pc_setsavepoint(sd, mapid, x, y);
 
@@ -8684,7 +8685,7 @@ BUILDIN_FUNC(guildchangegm)
 
 	guild_id = script_getnum(st,2);
 	name = script_getstr(st,3);
-	sd=map_nick2sd(name);
+	sd=map->nick2sd(name);
 
 	if(!sd)
 		script_pushint(st,0);
@@ -8744,18 +8745,18 @@ BUILDIN_FUNC(monster)
 		return 1;
 	}
 
-	sd = map_id2sd(st->rid);
+	sd = map->id2sd(st->rid);
 
 	if(sd && strcmp(mapn, "this") == 0)
 		m = sd->bl.m;
 	else {
 
-		if(( m = map_mapname2mapid(mapn) ) == -1) {
+		if(( m = map->mapname2mapid(mapn) ) == -1) {
 			ShowWarning("buildin_monster: Attempted to spawn monster class %d on non-existing map '%s'\n",class_, mapn);
 			return 1;
 		}
 
-		if(map[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
+		if(map->list[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
 			if((m = instance->mapid2imapid(m, st->instance_id)) < 0) {
 				ShowError("buildin_monster: Trying to spawn monster (%d) on instance map (%s) without instance attached.\n", class_, mapn);
 				return 1;
@@ -8842,16 +8843,16 @@ BUILDIN_FUNC(areamonster)
 		}
 	}
 
-	sd = map_id2sd(st->rid);
+	sd = map->id2sd(st->rid);
 
 	if(sd && strcmp(mapn, "this") == 0)
 		m = sd->bl.m;
 	else {
-		if ((m = map_mapname2mapid(mapn)) == -1)  {
+		if ((m = map->mapname2mapid(mapn)) == -1)  {
 			ShowWarning("buildin_areamonster: Attempted to spawn monster class %d on non-existing map '%s'\n",class_, mapn);
 			return 1;
 		}
-		if(map[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
+		if(map->list[m].flag.src4instance && st->instance_id >= 0) { // Try to redirect to the instance map, not the src map
 			if((m = instance->mapid2imapid(m, st->instance_id)) < 0) {
 				ShowError("buildin_areamonster: Trying to spawn monster (%d) on instance map (%s) without instance attached.\n", class_, mapn);
 				return 1;
@@ -8912,22 +8913,22 @@ BUILDIN_FUNC(killmonster)
 	else
 		script->check_event(st, event);
 
-	if((m=map_mapname2mapid(mapname))<0)
+	if((m=map->mapname2mapid(mapname))<0)
 		return 0;
 
-	if(map[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
+	if(map->list[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
 		return 0;
 
 	if(script_hasdata(st,4)) {
 		if(script_getnum(st,4) == 1) {
-			map_foreachinmap(script->buildin_killmonster_sub, m, BL_MOB, event ,allflag);
+			map->foreachinmap(script->buildin_killmonster_sub, m, BL_MOB, event ,allflag);
 			return 0;
 		}
 	}
 
-	map_freeblock_lock();
-	map_foreachinmap(script->buildin_killmonster_sub_strip, m, BL_MOB, event ,allflag);
-	map_freeblock_unlock();
+	map->freeblock_lock();
+	map->foreachinmap(script->buildin_killmonster_sub_strip, m, BL_MOB, event ,allflag);
+	map->freeblock_unlock();
 	return 0;
 }
 
@@ -8954,20 +8955,20 @@ BUILDIN_FUNC(killmonsterall)
 	int16 m;
 	mapname=script_getstr(st,2);
 
-	if((m = map_mapname2mapid(mapname))<0)
+	if((m = map->mapname2mapid(mapname))<0)
 		return 0;
 
-	if(map[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
+	if(map->list[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
 		return 0;
 
 	if(script_hasdata(st,3)) {
 		if(script_getnum(st,3) == 1) {
-			map_foreachinmap(script->buildin_killmonsterall_sub,m,BL_MOB);
+			map->foreachinmap(script->buildin_killmonsterall_sub,m,BL_MOB);
 			return 0;
 		}
 	}
 
-	map_foreachinmap(script->buildin_killmonsterall_sub_strip,m,BL_MOB);
+	map->foreachinmap(script->buildin_killmonsterall_sub_strip,m,BL_MOB);
 	return 0;
 }
 
@@ -9002,13 +9003,13 @@ BUILDIN_FUNC(clone)
 
 	script->check_event(st, event);
 
-	m = map_mapname2mapid(mapname);
+	m = map->mapname2mapid(mapname);
 	if(m < 0) return 0;
 
-	sd = map_charid2sd(char_id);
+	sd = map->charid2sd(char_id);
 
 	if(master_id) {
-		msd = map_charid2sd(master_id);
+		msd = map->charid2sd(master_id);
 		if(msd)
 			master_id = msd->bl.id;
 		else
@@ -9043,7 +9044,7 @@ BUILDIN_FUNC(donpcevent)
 	const char *event = script_getstr(st,2);
 	script->check_event(st, event);
 	if(!npc->event_do(event)) {
-		struct npc_data *nd = map_id2nd(st->oid);
+		struct npc_data *nd = map->id2nd(st->oid);
 		ShowDebug("NPCEvent '%s' not found! (source: %s)\n",event,nd?nd->name:"Unknown");
 		script_pushint(st, 0);
 	} else
@@ -9134,14 +9135,14 @@ BUILDIN_FUNC(initnpctimer)
 		if(data_isstring(data))   //NPC name
 			nd = npc->name2id(script->conv_str(st, data));
 		else if(data_isint(data)) { //Flag
-			nd = (struct npc_data *)map_id2bl(st->oid);
+			nd = (struct npc_data *)map->id2bl(st->oid);
 			flag = script->conv_num(st,data);
 		} else {
 			ShowError("initnpctimer: invalid argument type #1 (needs be int or string)).\n");
 			return 1;
 		}
 	} else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd)
 		return 0;
@@ -9176,14 +9177,14 @@ BUILDIN_FUNC(startnpctimer)
 		if(data_isstring(data))   //NPC name
 			nd = npc->name2id(script->conv_str(st, data));
 		else if(data_isint(data)) { //Flag
-			nd = (struct npc_data *)map_id2bl(st->oid);
+			nd = (struct npc_data *)map->id2bl(st->oid);
 			flag = script->conv_num(st,data);
 		} else {
 			ShowError("initnpctimer: invalid argument type #1 (needs be int or string)).\n");
 			return 1;
 		}
 	} else
-		nd=(struct npc_data *)map_id2bl(st->oid);
+		nd=(struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd)
 		return 0;
@@ -9216,14 +9217,14 @@ BUILDIN_FUNC(stopnpctimer)
 		if(data_isstring(data))   //NPC name
 			nd = npc->name2id(script->conv_str(st, data));
 		else if(data_isint(data)) { //Flag
-			nd = (struct npc_data *)map_id2bl(st->oid);
+			nd = (struct npc_data *)map->id2bl(st->oid);
 			flag = script->conv_num(st,data);
 		} else {
 			ShowError("initnpctimer: invalid argument type #1 (needs be int or string)).\n");
 			return 1;
 		}
 	} else
-		nd=(struct npc_data *)map_id2bl(st->oid);
+		nd=(struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd)
 		return 0;
@@ -9245,7 +9246,7 @@ BUILDIN_FUNC(getnpctimer)
 	if(script_hasdata(st,3))
 		nd = npc->name2id(script_getstr(st,3));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd || nd->bl.type != BL_NPC) {
 		script_pushint(st,0);
@@ -9257,7 +9258,7 @@ BUILDIN_FUNC(getnpctimer)
 		case 0: val = (int)npc->gettimerevent_tick(nd); break;
 		case 1:
 			if(nd->u.scr.rid) {
-				sd = map_id2sd(nd->u.scr.rid);
+				sd = map->id2sd(nd->u.scr.rid);
 				if(!sd) {
 					ShowError("buildin_getnpctimer: Attached player not found!\n");
 					break;
@@ -9283,7 +9284,7 @@ BUILDIN_FUNC(setnpctimer)
 	if(script_hasdata(st,3))
 		nd = npc->name2id(script_getstr(st,3));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd || nd->bl.type != BL_NPC) {
 		script_pushint(st,1);
@@ -9302,7 +9303,7 @@ BUILDIN_FUNC(setnpctimer)
 BUILDIN_FUNC(attachnpctimer)
 {
 	TBL_PC *sd;
-	struct npc_data *nd = (struct npc_data *)map_id2bl(st->oid);
+	struct npc_data *nd = (struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd || nd->bl.type != BL_NPC) {
 		script_pushint(st,1);
@@ -9311,7 +9312,7 @@ BUILDIN_FUNC(attachnpctimer)
 	}
 
 	if(script_hasdata(st,2))
-		sd = map_nick2sd(script_getstr(st,2));
+		sd = map->nick2sd(script_getstr(st,2));
 	else
 		sd = script->rid2sd(st);
 
@@ -9336,7 +9337,7 @@ BUILDIN_FUNC(detachnpctimer)
 	if(script_hasdata(st,2))
 		nd = npc->name2id(script_getstr(st,2));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
 	if(!nd || nd->bl.type != BL_NPC) {
 		script_pushint(st,1);
@@ -9356,7 +9357,7 @@ BUILDIN_FUNC(detachnpctimer)
  *------------------------------------------*/
 BUILDIN_FUNC(playerattached)
 {
-	if(st->rid == 0 || map_id2sd(st->rid) == NULL)
+	if(st->rid == 0 || map->id2sd(st->rid) == NULL)
 		script_pushint(st,0);
 	else
 		script_pushint(st,st->rid);
@@ -9377,7 +9378,7 @@ BUILDIN_FUNC(announce)
 
 	if(flag&(BC_TARGET_MASK|BC_SOURCE_MASK)) { // Broadcast source or broadcast region defined
 		send_target target;
-		struct block_list *bl = (flag&BC_NPC) ? map_id2bl(st->oid) : (struct block_list *)script->rid2sd(st); // If bc_npc flag is set, use NPC as broadcast source
+		struct block_list *bl = (flag&BC_NPC) ? map->id2bl(st->oid) : (struct block_list *)script->rid2sd(st); // If bc_npc flag is set, use NPC as broadcast source
 		if(bl == NULL)
 			return 0;
 
@@ -9431,10 +9432,10 @@ BUILDIN_FUNC(mapannounce)
 	int         fontY     = script_hasdata(st,9) ? script_getnum(st,9) : 0;     // default fontY
 	int16 m;
 
-	if((m = map_mapname2mapid(mapname)) < 0)
+	if((m = map->mapname2mapid(mapname)) < 0)
 		return 0;
 
-	map_foreachinmap(script->buildin_announce_sub, m, BL_PC,
+	map->foreachinmap(script->buildin_announce_sub, m, BL_PC,
 	                 mes, strlen(mes)+1, flag&BC_COLOR_MASK, fontColor, fontType, fontSize, fontAlign, fontY);
 	return 0;
 }
@@ -9456,10 +9457,10 @@ BUILDIN_FUNC(areaannounce)
 	int         fontY     = script_hasdata(st,13) ? script_getnum(st,13) : 0;     // default fontY
 	int16 m;
 
-	if((m = map_mapname2mapid(mapname)) < 0)
+	if((m = map->mapname2mapid(mapname)) < 0)
 		return 0;
 
-	map_foreachinarea(script->buildin_announce_sub, m, x0, y0, x1, y1, BL_PC,
+	map->foreachinarea(script->buildin_announce_sub, m, x0, y0, x1, y1, BL_PC,
 	                  mes, strlen(mes)+1, flag&BC_COLOR_MASK, fontColor, fontType, fontSize, fontAlign, fontY);
 	return 0;
 }
@@ -9478,18 +9479,18 @@ BUILDIN_FUNC(getusers)
 		case 0:
 			if(flag&0x8) {
 				// npc
-				bl = map_id2bl(st->oid);
+				bl = map->id2bl(st->oid);
 			} else if((sd = script->rid2sd(st))!=NULL) {
 				// pc
 				bl = &sd->bl;
 			}
 
 			if(bl) {
-				val = map[bl->m].users;
+				val = map->list[bl->m].users;
 			}
 			break;
 		case 1:
-			val = map_getusers();
+			val = map->getusers();
 			break;
 		default:
 			ShowWarning("buildin_getusers: Unknown type %d.\n", flag);
@@ -9514,7 +9515,7 @@ BUILDIN_FUNC(getusersname)
 
 	group_level = pc_get_group_level(sd);
 	iter = mapit_getallusers();
-	for(pl_sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC *)mapit_next(iter)) {
+	for(pl_sd = (TBL_PC *)mapit->first(iter); mapit->exists(iter); pl_sd = (TBL_PC *)mapit->next(iter)) {
 		if(pc_has_permission(pl_sd, PC_PERM_HIDE_SESSION) && pc_get_group_level(pl_sd) > group_level)
 			continue; // skip hidden sessions
 
@@ -9524,7 +9525,7 @@ BUILDIN_FUNC(getusersname)
 		    clif_scriptnext(sd,st->oid);*/
 		clif_scriptmes(sd,st->oid,pl_sd->status.name);
 	}
-	mapit_free(iter);
+	mapit->free(iter);
 
 	return 0;
 }
@@ -9540,7 +9541,7 @@ BUILDIN_FUNC(getmapguildusers)
 	struct guild *g = NULL;
 	str=script_getstr(st,2);
 	gid=script_getnum(st,3);
-	if((m = map_mapname2mapid(str)) < 0) {  // map id on this server (m == -1 if not in actual map-server)
+	if((m = map->mapname2mapid(str)) < 0) {  // map id on this server (m == -1 if not in actual map-server)
 		script_pushint(st,-1);
 		return 0;
 	}
@@ -9563,11 +9564,11 @@ BUILDIN_FUNC(getmapusers)
 	const char *str;
 	int16 m;
 	str=script_getstr(st,2);
-	if((m=map_mapname2mapid(str))< 0) {
+	if((m=map->mapname2mapid(str))< 0) {
 		script_pushint(st,-1);
 		return 0;
 	}
-	script_pushint(st,map[m].users);
+	script_pushint(st,map->list[m].users);
 	return 0;
 }
 /*==========================================
@@ -9587,11 +9588,11 @@ BUILDIN_FUNC(getareausers)
 	y0=script_getnum(st,4);
 	x1=script_getnum(st,5);
 	y1=script_getnum(st,6);
-	if((m=map_mapname2mapid(str))< 0) {
+	if((m=map->mapname2mapid(str))< 0) {
 		script_pushint(st,-1);
 		return 0;
 	}
-	map_foreachinarea(script->buildin_getareausers_sub,
+	map->foreachinarea(script->buildin_getareausers_sub,
 	                  m,x0,y0,x1,y1,BL_PC,&users);
 	script_pushint(st,users);
 	return 0;
@@ -9632,11 +9633,11 @@ BUILDIN_FUNC(getareadropitem)
 		item=script_getnum(st, 7);
 	}
 
-	if((m=map_mapname2mapid(str))< 0) {
+	if((m=map->mapname2mapid(str))< 0) {
 		script_pushint(st,-1);
 		return 0;
 	}
-	map_foreachinarea(script->buildin_getareadropitem_sub,
+	map->foreachinarea(script->buildin_getareadropitem_sub,
 	                  m,x0,y0,x1,y1,BL_ITEM,item,&amount);
 	script_pushint(st,amount);
 	return 0;
@@ -9692,7 +9693,7 @@ BUILDIN_FUNC(hideonnpc)
  */
 BUILDIN_FUNC(sc_start)
 {
-	TBL_NPC * nd = map_id2nd(st->oid);
+	TBL_NPC * nd = map->id2nd(st->oid);
 	struct block_list *bl;
 	enum sc_type type;
 	int tick, val1, val2, val3, val4=0, rate, flag, isitem;
@@ -9714,9 +9715,9 @@ BUILDIN_FUNC(sc_start)
 	flag = script_hasdata(st,5+start_type)?script_getnum(st,5+start_type):2;
 
 	if(script_hasdata(st,(6+start_type)))
-		bl = map_id2bl(script_getnum(st,(6+start_type)));
+		bl = map->id2bl(script_getnum(st,(6+start_type)));
 	else
-		bl = map_id2bl(st->rid);
+		bl = map->id2bl(st->rid);
 
 	if(tick == 0 && val1 > 0 && type > SC_NONE && type < SC_MAX && status->sc2skill(type) != 0) {
 		// When there isn't a duration specified, try to get it from the skill_db
@@ -9724,7 +9725,7 @@ BUILDIN_FUNC(sc_start)
 	}
 
 	if(script->potion_flag == 1 && script->potion_target) { //skill.c set the flags before running the script, this is a potion-pitched effect.
-		bl = map_id2bl(script->potion_target);
+		bl = map->id2bl(script->potion_target);
 		tick /= 2;// Thrown potions only last half.
 		val4 = 1;// Mark that this was a thrown sc_effect
 	}
@@ -9764,12 +9765,12 @@ BUILDIN_FUNC(sc_end)
 
 	type = script_getnum(st, 2);
 	if(script_hasdata(st, 3))
-		bl = map_id2bl(script_getnum(st, 3));
+		bl = map->id2bl(script_getnum(st, 3));
 	else
-		bl = map_id2bl(st->rid);
+		bl = map->id2bl(st->rid);
 
 	if(script->potion_flag == 1 && script->potion_target)  //##TODO how does this work [FlavioJS]
-		bl = map_id2bl(script->potion_target);
+		bl = map->id2bl(script->potion_target);
 
 	if(!bl)
 		return 0;
@@ -9813,9 +9814,9 @@ BUILDIN_FUNC(getscrate)
 	type=script_getnum(st,2);
 	rate=script_getnum(st,3);
 	if(script_hasdata(st,4))   //get for the bl assigned
-		bl = map_id2bl(script_getnum(st,4));
+		bl = map->id2bl(script_getnum(st,4));
 	else
-		bl = map_id2bl(st->rid);
+		bl = map->id2bl(st->rid);
 
 	if(bl)
 		rate = status->get_sc_def(bl,bl, (sc_type)type, 10000, 10000, 0);
@@ -10157,7 +10158,7 @@ BUILDIN_FUNC(changebase)
 	int vclass;
 
 	if(script_hasdata(st,3))
-		sd=map_id2sd(script_getnum(st,3));
+		sd=map->id2sd(script_getnum(st,3));
 	else
 		sd=script->rid2sd(st);
 
@@ -10207,7 +10208,7 @@ BUILDIN_FUNC(changesex)
  *------------------------------------------*/
 BUILDIN_FUNC(globalmes)
 {
-	struct block_list *bl = map_id2bl(st->oid);
+	struct block_list *bl = map->id2bl(st->oid);
 	struct npc_data *nd = (struct npc_data *)bl;
 	const char *name=NULL,*mes;
 
@@ -10244,7 +10245,7 @@ BUILDIN_FUNC(waitingroom)
 	int minLvl =  script_hasdata(st,7) ? script_getnum(st,7) : 1;
 	int maxLvl =  script_hasdata(st,8) ? script_getnum(st,8) : MAX_LEVEL;
 
-	nd = (struct npc_data *)map_id2bl(st->oid);
+	nd = (struct npc_data *)map->id2bl(st->oid);
 	if(nd != NULL)
 		chat_createnpcchat(nd, title, limit, pub, trigger, ev, zeny, minLvl, maxLvl);
 
@@ -10261,7 +10262,7 @@ BUILDIN_FUNC(delwaitingroom)
 	if(script_hasdata(st,2))
 		nd = npc->name2id(script_getstr(st, 2));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 	if(nd != NULL)
 		chat_deletenpcchat(nd);
 	return 0;
@@ -10279,9 +10280,9 @@ BUILDIN_FUNC(waitingroomkickall)
 	if(script_hasdata(st,2))
 		nd = npc->name2id(script_getstr(st,2));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
-	if(nd != NULL && (cd=(struct chat_data *)map_id2bl(nd->chat_id)) != NULL)
+	if(nd != NULL && (cd=(struct chat_data *)map->id2bl(nd->chat_id)) != NULL)
 		chat_npckickall(cd);
 	return 0;
 }
@@ -10298,9 +10299,9 @@ BUILDIN_FUNC(enablewaitingroomevent)
 	if(script_hasdata(st,2))
 		nd = npc->name2id(script_getstr(st, 2));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
-	if(nd != NULL && (cd=(struct chat_data *)map_id2bl(nd->chat_id)) != NULL)
+	if(nd != NULL && (cd=(struct chat_data *)map->id2bl(nd->chat_id)) != NULL)
 		chat_enableevent(cd);
 	return 0;
 }
@@ -10317,9 +10318,9 @@ BUILDIN_FUNC(disablewaitingroomevent)
 	if(script_hasdata(st,2))
 		nd = npc->name2id(script_getstr(st, 2));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
-	if(nd != NULL && (cd=(struct chat_data *)map_id2bl(nd->chat_id)) != NULL)
+	if(nd != NULL && (cd=(struct chat_data *)map->id2bl(nd->chat_id)) != NULL)
 		chat_disableevent(cd);
 	return 0;
 }
@@ -10348,9 +10349,9 @@ BUILDIN_FUNC(getwaitingroomstate)
 	if(script_hasdata(st,3))
 		nd = npc->name2id(script_getstr(st, 3));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
-	if(nd == NULL || (cd=(struct chat_data *)map_id2bl(nd->chat_id)) == NULL) {
+	if(nd == NULL || (cd=(struct chat_data *)map->id2bl(nd->chat_id)) == NULL) {
 		script_pushint(st, -1);
 		return 0;
 	}
@@ -10393,8 +10394,8 @@ BUILDIN_FUNC(warpwaitingpc)
 	struct chat_data *cd;
 	TBL_PC *sd;
 
-	nd = (struct npc_data *)map_id2bl(st->oid);
-	if(nd == NULL || (cd=(struct chat_data *)map_id2bl(nd->chat_id)) == NULL)
+	nd = (struct npc_data *)map->id2bl(st->oid);
+	if(nd == NULL || (cd=(struct chat_data *)map->id2bl(nd->chat_id)) == NULL)
 		return 0;
 
 	map_name = script_getstr(st,2);
@@ -10408,7 +10409,7 @@ BUILDIN_FUNC(warpwaitingpc)
 	for(i = 0; i < n && cd->users > 0; i++) {
 		sd = cd->usersd[0];
 
-		if(strcmp(map_name,"SavePoint") == 0 && map[sd->bl.m].flag.noteleport) {
+		if(strcmp(map_name,"SavePoint") == 0 && map->list[sd->bl.m].flag.noteleport) {
 			// can't teleport on this map
 			break;
 		}
@@ -10429,7 +10430,7 @@ BUILDIN_FUNC(warpwaitingpc)
 		else if(strcmp(map_name,"SavePoint") == 0)
 			pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_TELEPORT);
 		else
-			pc_setpos(sd, mapindex->name2id(map_name), x, y, CLR_OUTSIGHT);
+			pc_setpos(sd, script->mapindexname2id(st,map_name), x, y, CLR_OUTSIGHT);
 	}
 	mapreg->setreg(script->add_str("$@warpwaitingpcnum"), i);
 	return 0;
@@ -10457,7 +10458,7 @@ BUILDIN_FUNC(attachrid)
 {
 	int rid = script_getnum(st,2);
 
-	if (map_id2sd(rid) != NULL) {
+	if (map->id2sd(rid) != NULL) {
 		script->detach_rid(st);
 
 		st->rid = rid;
@@ -10480,7 +10481,7 @@ BUILDIN_FUNC(detachrid)
  *------------------------------------------*/
 BUILDIN_FUNC(isloggedin)
 {
-	TBL_PC *sd = map_id2sd(script_getnum(st,2));
+	TBL_PC *sd = map->id2sd(script_getnum(st,2));
 	if(script_hasdata(st,3) && sd &&
 	   sd->status.char_id != script_getnum(st,3))
 		sd = NULL;
@@ -10502,14 +10503,14 @@ BUILDIN_FUNC(setmapflagnosave)
 	str2=script_getstr(st,3);
 	x=script_getnum(st,4);
 	y=script_getnum(st,5);
-	m = map_mapname2mapid(str);
-	map_index = mapindex->name2id(str2);
+	m = map->mapname2mapid(str);
+	map_index = script->mapindexname2id(st,str2);
 
 	if(m >= 0 && map_index) {
-		map[m].flag.nosave=1;
-		map[m].save.map=map_index;
-		map[m].save.x=x;
-		map[m].save.y=y;
+		map->list[m].flag.nosave=1;
+		map->list[m].save.map=map_index;
+		map->list[m].save.x=x;
+		map->list[m].save.y=y;
 	}
 
 	return 0;
@@ -10523,65 +10524,65 @@ BUILDIN_FUNC(getmapflag)
 	str=script_getstr(st,2);
 	i=script_getnum(st,3);
 
-	m = map_mapname2mapid(str);
+	m = map->mapname2mapid(str);
 	if(m >= 0) {
 		switch(i) {
-			case MF_NOMEMO:             script_pushint(st,map[m].flag.nomemo); break;
-			case MF_NOTELEPORT:         script_pushint(st,map[m].flag.noteleport); break;
-			case MF_NOSAVE:             script_pushint(st,map[m].flag.nosave); break;
-			case MF_NOBRANCH:           script_pushint(st,map[m].flag.nobranch); break;
-			case MF_NOPENALTY:          script_pushint(st,map[m].flag.noexppenalty); break;
-			case MF_NOZENYPENALTY:      script_pushint(st,map[m].flag.nozenypenalty); break;
-			case MF_PVP:                script_pushint(st,map[m].flag.pvp); break;
-			case MF_PVP_NOPARTY:        script_pushint(st,map[m].flag.pvp_noparty); break;
-			case MF_PVP_NOGUILD:        script_pushint(st,map[m].flag.pvp_noguild); break;
-			case MF_GVG:                script_pushint(st,map[m].flag.gvg); break;
-			case MF_GVG_NOPARTY:        script_pushint(st,map[m].flag.gvg_noparty); break;
-			case MF_NOTRADE:            script_pushint(st,map[m].flag.notrade); break;
-			case MF_NOSKILL:            script_pushint(st,map[m].flag.noskill); break;
-			case MF_NOWARP:             script_pushint(st,map[m].flag.nowarp); break;
-			case MF_PARTYLOCK:          script_pushint(st,map[m].flag.partylock); break;
-			case MF_NOICEWALL:          script_pushint(st,map[m].flag.noicewall); break;
-			case MF_SNOW:               script_pushint(st,map[m].flag.snow); break;
-			case MF_FOG:                script_pushint(st,map[m].flag.fog); break;
-			case MF_SAKURA:             script_pushint(st,map[m].flag.sakura); break;
-			case MF_LEAVES:             script_pushint(st,map[m].flag.leaves); break;
+			case MF_NOMEMO:             script_pushint(st,map->list[m].flag.nomemo); break;
+			case MF_NOTELEPORT:         script_pushint(st,map->list[m].flag.noteleport); break;
+			case MF_NOSAVE:             script_pushint(st,map->list[m].flag.nosave); break;
+			case MF_NOBRANCH:           script_pushint(st,map->list[m].flag.nobranch); break;
+			case MF_NOPENALTY:          script_pushint(st,map->list[m].flag.noexppenalty); break;
+			case MF_NOZENYPENALTY:      script_pushint(st,map->list[m].flag.nozenypenalty); break;
+			case MF_PVP:                script_pushint(st,map->list[m].flag.pvp); break;
+			case MF_PVP_NOPARTY:        script_pushint(st,map->list[m].flag.pvp_noparty); break;
+			case MF_PVP_NOGUILD:        script_pushint(st,map->list[m].flag.pvp_noguild); break;
+			case MF_GVG:                script_pushint(st,map->list[m].flag.gvg); break;
+			case MF_GVG_NOPARTY:        script_pushint(st,map->list[m].flag.gvg_noparty); break;
+			case MF_NOTRADE:            script_pushint(st,map->list[m].flag.notrade); break;
+			case MF_NOSKILL:            script_pushint(st,map->list[m].flag.noskill); break;
+			case MF_NOWARP:             script_pushint(st,map->list[m].flag.nowarp); break;
+			case MF_PARTYLOCK:          script_pushint(st,map->list[m].flag.partylock); break;
+			case MF_NOICEWALL:          script_pushint(st,map->list[m].flag.noicewall); break;
+			case MF_SNOW:               script_pushint(st,map->list[m].flag.snow); break;
+			case MF_FOG:                script_pushint(st,map->list[m].flag.fog); break;
+			case MF_SAKURA:             script_pushint(st,map->list[m].flag.sakura); break;
+			case MF_LEAVES:             script_pushint(st,map->list[m].flag.leaves); break;
 				/**
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
-			case MF_RAIN:               script_pushint(st,map[m].flag.rain); break;
-			case MF_CLOUDS:             script_pushint(st,map[m].flag.clouds); break;
-			case MF_CLOUDS2:            script_pushint(st,map[m].flag.clouds2); break;
-			case MF_FIREWORKS:          script_pushint(st,map[m].flag.fireworks); break;
-			case MF_GVG_CASTLE:         script_pushint(st,map[m].flag.gvg_castle); break;
-			case MF_GVG_DUNGEON:        script_pushint(st,map[m].flag.gvg_dungeon); break;
-			case MF_NIGHTENABLED:       script_pushint(st,map[m].flag.nightenabled); break;
-			case MF_NOBASEEXP:          script_pushint(st,map[m].flag.nobaseexp); break;
-			case MF_NOJOBEXP:           script_pushint(st,map[m].flag.nojobexp); break;
-			case MF_NOMOBLOOT:          script_pushint(st,map[m].flag.nomobloot); break;
-			case MF_NOMVPLOOT:          script_pushint(st,map[m].flag.nomvploot); break;
-			case MF_NORETURN:           script_pushint(st,map[m].flag.noreturn); break;
-			case MF_NOWARPTO:           script_pushint(st,map[m].flag.nowarpto); break;
-			case MF_NIGHTMAREDROP:      script_pushint(st,map[m].flag.pvp_nightmaredrop); break;
-			case MF_NOCOMMAND:          script_pushint(st,map[m].nocommand); break;
-			case MF_NODROP:             script_pushint(st,map[m].flag.nodrop); break;
-			case MF_JEXP:               script_pushint(st,map[m].jexp); break;
-			case MF_BEXP:               script_pushint(st,map[m].bexp); break;
-			case MF_NOVENDING:          script_pushint(st,map[m].flag.novending); break;
-			case MF_LOADEVENT:          script_pushint(st,map[m].flag.loadevent); break;
-			case MF_NOCHAT:             script_pushint(st,map[m].flag.nochat); break;
-			case MF_NOEXPPENALTY:       script_pushint(st,map[m].flag.noexppenalty); break;
-			case MF_GUILDLOCK:          script_pushint(st,map[m].flag.guildlock); break;
-			case MF_TOWN:               script_pushint(st,map[m].flag.town); break;
-			case MF_AUTOTRADE:          script_pushint(st,map[m].flag.autotrade); break;
-			case MF_ALLOWKS:            script_pushint(st,map[m].flag.allowks); break;
-			case MF_MONSTER_NOTELEPORT: script_pushint(st,map[m].flag.monster_noteleport); break;
-			case MF_PVP_NOCALCRANK:     script_pushint(st,map[m].flag.pvp_nocalcrank); break;
-			case MF_BATTLEGROUND:       script_pushint(st,map[m].flag.battleground); break;
-			case MF_RESET:              script_pushint(st,map[m].flag.reset); break;
-			case MF_SET_CASTLE:         script_pushint(st,map[m].set_castle); break;
-			case MF_NOTOMB:		    script_pushint(st,map[m].flag.notomb); break;
-			case MF_NOCASHSHOP:         script_pushint(st,map[m].flag.nocashshop); break;
+			case MF_RAIN:               script_pushint(st,map->list[m].flag.rain); break;
+			case MF_CLOUDS:             script_pushint(st,map->list[m].flag.clouds); break;
+			case MF_CLOUDS2:            script_pushint(st,map->list[m].flag.clouds2); break;
+			case MF_FIREWORKS:          script_pushint(st,map->list[m].flag.fireworks); break;
+			case MF_GVG_CASTLE:         script_pushint(st,map->list[m].flag.gvg_castle); break;
+			case MF_GVG_DUNGEON:        script_pushint(st,map->list[m].flag.gvg_dungeon); break;
+			case MF_NIGHTENABLED:       script_pushint(st,map->list[m].flag.nightenabled); break;
+			case MF_NOBASEEXP:          script_pushint(st,map->list[m].flag.nobaseexp); break;
+			case MF_NOJOBEXP:           script_pushint(st,map->list[m].flag.nojobexp); break;
+			case MF_NOMOBLOOT:          script_pushint(st,map->list[m].flag.nomobloot); break;
+			case MF_NOMVPLOOT:          script_pushint(st,map->list[m].flag.nomvploot); break;
+			case MF_NORETURN:           script_pushint(st,map->list[m].flag.noreturn); break;
+			case MF_NOWARPTO:           script_pushint(st,map->list[m].flag.nowarpto); break;
+			case MF_NIGHTMAREDROP:      script_pushint(st,map->list[m].flag.pvp_nightmaredrop); break;
+			case MF_NOCOMMAND:          script_pushint(st,map->list[m].nocommand); break;
+			case MF_NODROP:             script_pushint(st,map->list[m].flag.nodrop); break;
+			case MF_JEXP:               script_pushint(st,map->list[m].jexp); break;
+			case MF_BEXP:               script_pushint(st,map->list[m].bexp); break;
+			case MF_NOVENDING:          script_pushint(st,map->list[m].flag.novending); break;
+			case MF_LOADEVENT:          script_pushint(st,map->list[m].flag.loadevent); break;
+			case MF_NOCHAT:             script_pushint(st,map->list[m].flag.nochat); break;
+			case MF_NOEXPPENALTY:       script_pushint(st,map->list[m].flag.noexppenalty); break;
+			case MF_GUILDLOCK:          script_pushint(st,map->list[m].flag.guildlock); break;
+			case MF_TOWN:               script_pushint(st,map->list[m].flag.town); break;
+			case MF_AUTOTRADE:          script_pushint(st,map->list[m].flag.autotrade); break;
+			case MF_ALLOWKS:            script_pushint(st,map->list[m].flag.allowks); break;
+			case MF_MONSTER_NOTELEPORT: script_pushint(st,map->list[m].flag.monster_noteleport); break;
+			case MF_PVP_NOCALCRANK:     script_pushint(st,map->list[m].flag.pvp_nocalcrank); break;
+			case MF_BATTLEGROUND:       script_pushint(st,map->list[m].flag.battleground); break;
+			case MF_RESET:              script_pushint(st,map->list[m].flag.reset); break;
+			case MF_SET_CASTLE:         script_pushint(st,map->list[m].set_castle); break;
+			case MF_NOTOMB:		    script_pushint(st,map->list[m].flag.notomb); break;
+			case MF_NOCASHSHOP:         script_pushint(st,map->list[m].flag.nocashshop); break;
 		}
 	}
 
@@ -10623,87 +10624,87 @@ BUILDIN_FUNC(setmapflag)
 			return 1;
 		}
 	}
-	m = map_mapname2mapid(str);
+	m = map->mapname2mapid(str);
 
 	if(m >= 0) {
 		switch(i) {
-			case MF_NOMEMO:             map[m].flag.nomemo = 1; break;
-			case MF_NOTELEPORT:         map[m].flag.noteleport = 1; break;
-			case MF_NOSAVE:             map[m].flag.nosave = 1; break;
-			case MF_NOBRANCH:           map[m].flag.nobranch = 1; break;
-			case MF_NOPENALTY:          map[m].flag.noexppenalty = 1; map[m].flag.nozenypenalty = 1; break;
-			case MF_NOZENYPENALTY:      map[m].flag.nozenypenalty = 1; break;
+			case MF_NOMEMO:             map->list[m].flag.nomemo = 1; break;
+			case MF_NOTELEPORT:         map->list[m].flag.noteleport = 1; break;
+			case MF_NOSAVE:             map->list[m].flag.nosave = 1; break;
+			case MF_NOBRANCH:           map->list[m].flag.nobranch = 1; break;
+			case MF_NOPENALTY:          map->list[m].flag.noexppenalty = 1; map->list[m].flag.nozenypenalty = 1; break;
+			case MF_NOZENYPENALTY:      map->list[m].flag.nozenypenalty = 1; break;
 			case MF_PVP:
-				map[m].flag.pvp = 1;
+				map->list[m].flag.pvp = 1;
 				if(!battle_config.pk_mode) {
-					map_foreachinmap(script->mapflag_pvp_sub,m,BL_PC);
+					map->foreachinmap(script->mapflag_pvp_sub,m,BL_PC);
 				}
 				break;
-			case MF_PVP_NOPARTY:        map[m].flag.pvp_noparty = 1; break;
-			case MF_PVP_NOGUILD:        map[m].flag.pvp_noguild = 1; break;
+			case MF_PVP_NOPARTY:        map->list[m].flag.pvp_noparty = 1; break;
+			case MF_PVP_NOGUILD:        map->list[m].flag.pvp_noguild = 1; break;
 			case MF_GVG: {
 				struct block_list bl;
-				map[m].flag.gvg = 1;
+				map->list[m].flag.gvg = 1;
 				clif_map_property_mapall(m, MAPPROPERTY_AGITZONE);
 				bl.type = BL_NUL;
 				bl.m = m;
 				clif_maptypeproperty2(&bl,ALL_SAMEMAP);
 				}
 				break;
-			case MF_GVG_NOPARTY:        map[m].flag.gvg_noparty = 1; break;
-			case MF_NOTRADE:            map[m].flag.notrade = 1; break;
-			case MF_NOSKILL:            map[m].flag.noskill = 1; break;
-			case MF_NOWARP:             map[m].flag.nowarp = 1; break;
-			case MF_PARTYLOCK:          map[m].flag.partylock = 1; break;
-			case MF_NOICEWALL:          map[m].flag.noicewall = 1; break;
-			case MF_SNOW:               map[m].flag.snow = 1; break;
-			case MF_FOG:                map[m].flag.fog = 1; break;
-			case MF_SAKURA:             map[m].flag.sakura = 1; break;
-			case MF_LEAVES:             map[m].flag.leaves = 1; break;
+			case MF_GVG_NOPARTY:        map->list[m].flag.gvg_noparty = 1; break;
+			case MF_NOTRADE:            map->list[m].flag.notrade = 1; break;
+			case MF_NOSKILL:            map->list[m].flag.noskill = 1; break;
+			case MF_NOWARP:             map->list[m].flag.nowarp = 1; break;
+			case MF_PARTYLOCK:          map->list[m].flag.partylock = 1; break;
+			case MF_NOICEWALL:          map->list[m].flag.noicewall = 1; break;
+			case MF_SNOW:               map->list[m].flag.snow = 1; break;
+			case MF_FOG:                map->list[m].flag.fog = 1; break;
+			case MF_SAKURA:             map->list[m].flag.sakura = 1; break;
+			case MF_LEAVES:             map->list[m].flag.leaves = 1; break;
 				/**
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
-			case MF_RAIN:               map[m].flag.rain = 1; break;
-			case MF_CLOUDS:             map[m].flag.clouds = 1; break;
-			case MF_CLOUDS2:            map[m].flag.clouds2 = 1; break;
-			case MF_FIREWORKS:          map[m].flag.fireworks = 1; break;
-			case MF_GVG_CASTLE:         map[m].flag.gvg_castle = 1; break;
-			case MF_GVG_DUNGEON:        map[m].flag.gvg_dungeon = 1; break;
-			case MF_NIGHTENABLED:       map[m].flag.nightenabled = 1; break;
-			case MF_NOBASEEXP:          map[m].flag.nobaseexp = 1; break;
-			case MF_NOJOBEXP:           map[m].flag.nojobexp = 1; break;
-			case MF_NOMOBLOOT:          map[m].flag.nomobloot = 1; break;
-			case MF_NOMVPLOOT:          map[m].flag.nomvploot = 1; break;
-			case MF_NORETURN:           map[m].flag.noreturn = 1; break;
-			case MF_NOWARPTO:           map[m].flag.nowarpto = 1; break;
-			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 1; break;
+			case MF_RAIN:               map->list[m].flag.rain = 1; break;
+			case MF_CLOUDS:             map->list[m].flag.clouds = 1; break;
+			case MF_CLOUDS2:            map->list[m].flag.clouds2 = 1; break;
+			case MF_FIREWORKS:          map->list[m].flag.fireworks = 1; break;
+			case MF_GVG_CASTLE:         map->list[m].flag.gvg_castle = 1; break;
+			case MF_GVG_DUNGEON:        map->list[m].flag.gvg_dungeon = 1; break;
+			case MF_NIGHTENABLED:       map->list[m].flag.nightenabled = 1; break;
+			case MF_NOBASEEXP:          map->list[m].flag.nobaseexp = 1; break;
+			case MF_NOJOBEXP:           map->list[m].flag.nojobexp = 1; break;
+			case MF_NOMOBLOOT:          map->list[m].flag.nomobloot = 1; break;
+			case MF_NOMVPLOOT:          map->list[m].flag.nomvploot = 1; break;
+			case MF_NORETURN:           map->list[m].flag.noreturn = 1; break;
+			case MF_NOWARPTO:           map->list[m].flag.nowarpto = 1; break;
+			case MF_NIGHTMAREDROP:      map->list[m].flag.pvp_nightmaredrop = 1; break;
 			case MF_ZONE:
 				if(val2) {
 					char zone[6] = "zone\0";
 					char empty[1] = "\0";
 					char params[MAP_ZONE_MAPFLAG_LENGTH];
 					memcpy(params, val2, MAP_ZONE_MAPFLAG_LENGTH);
-					npc->parse_mapflag(map[m].name, empty, zone, params, empty, empty, empty);
+					npc->parse_mapflag(map->list[m].name, empty, zone, params, empty, empty, empty);
 				}
 				break;
-			case MF_NOCOMMAND:          map[m].nocommand = (val <= 0) ? 100 : val; break;
-			case MF_NODROP:             map[m].flag.nodrop = 1; break;
-			case MF_JEXP:               map[m].jexp = (val <= 0) ? 100 : val; break;
-			case MF_BEXP:               map[m].bexp = (val <= 0) ? 100 : val; break;
-			case MF_NOVENDING:          map[m].flag.novending = 1; break;
-			case MF_LOADEVENT:          map[m].flag.loadevent = 1; break;
-			case MF_NOCHAT:             map[m].flag.nochat = 1; break;
-			case MF_NOEXPPENALTY:       map[m].flag.noexppenalty  = 1; break;
-			case MF_GUILDLOCK:          map[m].flag.guildlock = 1; break;
-			case MF_TOWN:               map[m].flag.town = 1; break;
-			case MF_AUTOTRADE:          map[m].flag.autotrade = 1; break;
-			case MF_ALLOWKS:            map[m].flag.allowks = 1; break;
-			case MF_MONSTER_NOTELEPORT: map[m].flag.monster_noteleport = 1; break;
-			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 1; break;
-			case MF_BATTLEGROUND:       map[m].flag.battleground = (val <= 0 || val > 2) ? 1 : val; break;
-			case MF_RESET:              map[m].flag.reset = 1; break;
-			case MF_NOTOMB:		    map[m].flag.notomb = 1; break;
-			case MF_NOCASHSHOP:         map[m].flag.nocashshop = 1; break;
+			case MF_NOCOMMAND:          map->list[m].nocommand = (val <= 0) ? 100 : val; break;
+			case MF_NODROP:             map->list[m].flag.nodrop = 1; break;
+			case MF_JEXP:               map->list[m].jexp = (val <= 0) ? 100 : val; break;
+			case MF_BEXP:               map->list[m].bexp = (val <= 0) ? 100 : val; break;
+			case MF_NOVENDING:          map->list[m].flag.novending = 1; break;
+			case MF_LOADEVENT:          map->list[m].flag.loadevent = 1; break;
+			case MF_NOCHAT:             map->list[m].flag.nochat = 1; break;
+			case MF_NOEXPPENALTY:       map->list[m].flag.noexppenalty  = 1; break;
+			case MF_GUILDLOCK:          map->list[m].flag.guildlock = 1; break;
+			case MF_TOWN:               map->list[m].flag.town = 1; break;
+			case MF_AUTOTRADE:          map->list[m].flag.autotrade = 1; break;
+			case MF_ALLOWKS:            map->list[m].flag.allowks = 1; break;
+			case MF_MONSTER_NOTELEPORT: map->list[m].flag.monster_noteleport = 1; break;
+			case MF_PVP_NOCALCRANK:     map->list[m].flag.pvp_nocalcrank = 1; break;
+			case MF_BATTLEGROUND:       map->list[m].flag.battleground = (val <= 0 || val > 2) ? 1 : val; break;
+			case MF_RESET:              map->list[m].flag.reset = 1; break;
+			case MF_NOTOMB:		    map->list[m].flag.notomb = 1; break;
+			case MF_NOCASHSHOP:         map->list[m].flag.nocashshop = 1; break;
 		}
 	}
 
@@ -10718,83 +10719,83 @@ BUILDIN_FUNC(removemapflag)
 	str=script_getstr(st,2);
 	i=script_getnum(st,3);
 
-	m = map_mapname2mapid(str);
+	m = map->mapname2mapid(str);
 	if(m >= 0) {
 		switch(i) {
-			case MF_NOMEMO:             map[m].flag.nomemo = 0; break;
-			case MF_NOTELEPORT:         map[m].flag.noteleport = 0; break;
-			case MF_NOSAVE:             map[m].flag.nosave = 0; break;
-			case MF_NOBRANCH:           map[m].flag.nobranch = 0; break;
-			case MF_NOPENALTY:          map[m].flag.noexppenalty = 0; map[m].flag.nozenypenalty = 0; break;
-			case MF_NOZENYPENALTY:      map[m].flag.nozenypenalty = 0; break;
+			case MF_NOMEMO:             map->list[m].flag.nomemo = 0; break;
+			case MF_NOTELEPORT:         map->list[m].flag.noteleport = 0; break;
+			case MF_NOSAVE:             map->list[m].flag.nosave = 0; break;
+			case MF_NOBRANCH:           map->list[m].flag.nobranch = 0; break;
+			case MF_NOPENALTY:          map->list[m].flag.noexppenalty = 0; map->list[m].flag.nozenypenalty = 0; break;
+			case MF_NOZENYPENALTY:      map->list[m].flag.nozenypenalty = 0; break;
 			case MF_PVP: {
 				struct block_list bl;
 				bl.type = BL_NUL;
 				bl.m = m;
-				map[m].flag.pvp = 0;
+				map->list[m].flag.pvp = 0;
 				clif_map_property_mapall(m, MAPPROPERTY_NOTHING);
 				clif_maptypeproperty2(&bl,ALL_SAMEMAP);
 				}
 				break;
-			case MF_PVP_NOPARTY:        map[m].flag.pvp_noparty = 0; break;
-			case MF_PVP_NOGUILD:        map[m].flag.pvp_noguild = 0; break;
+			case MF_PVP_NOPARTY:        map->list[m].flag.pvp_noparty = 0; break;
+			case MF_PVP_NOGUILD:        map->list[m].flag.pvp_noguild = 0; break;
 			case MF_GVG: {
 				struct block_list bl;
 				bl.type = BL_NUL;
 				bl.m = m;
-				map[m].flag.gvg = 0;
+				map->list[m].flag.gvg = 0;
 				clif_map_property_mapall(m, MAPPROPERTY_NOTHING);
 				clif_maptypeproperty2(&bl,ALL_SAMEMAP);
 				}
 				break;
-			case MF_GVG_NOPARTY:        map[m].flag.gvg_noparty = 0; break;
-			case MF_NOTRADE:            map[m].flag.notrade = 0; break;
-			case MF_NOSKILL:            map[m].flag.noskill = 0; break;
-			case MF_NOWARP:             map[m].flag.nowarp = 0; break;
-			case MF_PARTYLOCK:          map[m].flag.partylock = 0; break;
-			case MF_NOICEWALL:          map[m].flag.noicewall = 0; break;
-			case MF_SNOW:               map[m].flag.snow = 0; break;
-			case MF_FOG:                map[m].flag.fog = 0; break;
-			case MF_SAKURA:             map[m].flag.sakura = 0; break;
-			case MF_LEAVES:             map[m].flag.leaves = 0; break;
+			case MF_GVG_NOPARTY:        map->list[m].flag.gvg_noparty = 0; break;
+			case MF_NOTRADE:            map->list[m].flag.notrade = 0; break;
+			case MF_NOSKILL:            map->list[m].flag.noskill = 0; break;
+			case MF_NOWARP:             map->list[m].flag.nowarp = 0; break;
+			case MF_PARTYLOCK:          map->list[m].flag.partylock = 0; break;
+			case MF_NOICEWALL:          map->list[m].flag.noicewall = 0; break;
+			case MF_SNOW:               map->list[m].flag.snow = 0; break;
+			case MF_FOG:                map->list[m].flag.fog = 0; break;
+			case MF_SAKURA:             map->list[m].flag.sakura = 0; break;
+			case MF_LEAVES:             map->list[m].flag.leaves = 0; break;
 				/**
 				 * No longer available, keeping here just in case it's back someday. [Ind]
 				 **/
-			case MF_RAIN:               map[m].flag.rain = 0; break;
-			case MF_CLOUDS:             map[m].flag.clouds = 0; break;
-			case MF_CLOUDS2:            map[m].flag.clouds2 = 0; break;
-			case MF_FIREWORKS:          map[m].flag.fireworks = 0; break;
-			case MF_GVG_CASTLE:         map[m].flag.gvg_castle = 0; break;
-			case MF_GVG_DUNGEON:        map[m].flag.gvg_dungeon = 0; break;
-			case MF_NIGHTENABLED:       map[m].flag.nightenabled = 0; break;
-			case MF_NOBASEEXP:          map[m].flag.nobaseexp = 0; break;
-			case MF_NOJOBEXP:           map[m].flag.nojobexp = 0; break;
-			case MF_NOMOBLOOT:          map[m].flag.nomobloot = 0; break;
-			case MF_NOMVPLOOT:          map[m].flag.nomvploot = 0; break;
-			case MF_NORETURN:           map[m].flag.noreturn = 0; break;
-			case MF_NOWARPTO:           map[m].flag.nowarpto = 0; break;
-			case MF_NIGHTMAREDROP:      map[m].flag.pvp_nightmaredrop = 0; break;
+			case MF_RAIN:               map->list[m].flag.rain = 0; break;
+			case MF_CLOUDS:             map->list[m].flag.clouds = 0; break;
+			case MF_CLOUDS2:            map->list[m].flag.clouds2 = 0; break;
+			case MF_FIREWORKS:          map->list[m].flag.fireworks = 0; break;
+			case MF_GVG_CASTLE:         map->list[m].flag.gvg_castle = 0; break;
+			case MF_GVG_DUNGEON:        map->list[m].flag.gvg_dungeon = 0; break;
+			case MF_NIGHTENABLED:       map->list[m].flag.nightenabled = 0; break;
+			case MF_NOBASEEXP:          map->list[m].flag.nobaseexp = 0; break;
+			case MF_NOJOBEXP:           map->list[m].flag.nojobexp = 0; break;
+			case MF_NOMOBLOOT:          map->list[m].flag.nomobloot = 0; break;
+			case MF_NOMVPLOOT:          map->list[m].flag.nomvploot = 0; break;
+			case MF_NORETURN:           map->list[m].flag.noreturn = 0; break;
+			case MF_NOWARPTO:           map->list[m].flag.nowarpto = 0; break;
+			case MF_NIGHTMAREDROP:      map->list[m].flag.pvp_nightmaredrop = 0; break;
 			case MF_ZONE:
-				map_zone_change2(m, map[m].prev_zone);
+				map->zone_change2(m, map->list[m].prev_zone);
 				break;
-			case MF_NOCOMMAND:          map[m].nocommand = 0; break;
-			case MF_NODROP:             map[m].flag.nodrop = 0; break;
-			case MF_JEXP:               map[m].jexp = 0; break;
-			case MF_BEXP:               map[m].bexp = 0; break;
-			case MF_NOVENDING:          map[m].flag.novending = 0; break;
-			case MF_LOADEVENT:          map[m].flag.loadevent = 0; break;
-			case MF_NOCHAT:             map[m].flag.nochat = 0; break;
-			case MF_NOEXPPENALTY:       map[m].flag.noexppenalty  = 0; break;
-			case MF_GUILDLOCK:          map[m].flag.guildlock = 0; break;
-			case MF_TOWN:               map[m].flag.town = 0; break;
-			case MF_AUTOTRADE:          map[m].flag.autotrade = 0; break;
-			case MF_ALLOWKS:            map[m].flag.allowks = 0; break;
-			case MF_MONSTER_NOTELEPORT: map[m].flag.monster_noteleport = 0; break;
-			case MF_PVP_NOCALCRANK:     map[m].flag.pvp_nocalcrank = 0; break;
-			case MF_BATTLEGROUND:       map[m].flag.battleground = 0; break;
-			case MF_RESET:              map[m].flag.reset = 0; break;
-			case MF_NOTOMB:		    map[m].flag.notomb = 0; break;
-			case MF_NOCASHSHOP:         map[m].flag.nocashshop = 0; break;
+			case MF_NOCOMMAND:          map->list[m].nocommand = 0; break;
+			case MF_NODROP:             map->list[m].flag.nodrop = 0; break;
+			case MF_JEXP:               map->list[m].jexp = 0; break;
+			case MF_BEXP:               map->list[m].bexp = 0; break;
+			case MF_NOVENDING:          map->list[m].flag.novending = 0; break;
+			case MF_LOADEVENT:          map->list[m].flag.loadevent = 0; break;
+			case MF_NOCHAT:             map->list[m].flag.nochat = 0; break;
+			case MF_NOEXPPENALTY:       map->list[m].flag.noexppenalty  = 0; break;
+			case MF_GUILDLOCK:          map->list[m].flag.guildlock = 0; break;
+			case MF_TOWN:               map->list[m].flag.town = 0; break;
+			case MF_AUTOTRADE:          map->list[m].flag.autotrade = 0; break;
+			case MF_ALLOWKS:            map->list[m].flag.allowks = 0; break;
+			case MF_MONSTER_NOTELEPORT: map->list[m].flag.monster_noteleport = 0; break;
+			case MF_PVP_NOCALCRANK:     map->list[m].flag.pvp_nocalcrank = 0; break;
+			case MF_BATTLEGROUND:       map->list[m].flag.battleground = 0; break;
+			case MF_RESET:              map->list[m].flag.reset = 0; break;
+			case MF_NOTOMB:		    map->list[m].flag.notomb = 0; break;
+			case MF_NOCASHSHOP:         map->list[m].flag.nocashshop = 0; break;
 		}
 	}
 
@@ -10810,16 +10811,16 @@ BUILDIN_FUNC(pvpon)
 	struct block_list bl;
 
 	str = script_getstr(st,2);
-	m = map_mapname2mapid(str);
-	if(m < 0 || map[m].flag.pvp)
+	m = map->mapname2mapid(str);
+	if(m < 0 || map->list[m].flag.pvp)
 		return 0; // nothing to do
 
-	if(!strdb_exists(zone_db,MAP_ZONE_PVP_NAME)) {
-		ShowError("buildin_pvpon: zone_db missing '%s'\n",MAP_ZONE_PVP_NAME);
+	if (!strdb_exists(map->zone_db, MAP_ZONE_PVP_NAME)) {
+		ShowError("buildin_pvpon: zone_db missing '%s'\n", MAP_ZONE_PVP_NAME);
 		return 0;
 	}
-	map_zone_change2(m, strdb_get(zone_db, MAP_ZONE_PVP_NAME));
-	map[m].flag.pvp = 1;
+	map->zone_change2(m, strdb_get(map->zone_db, MAP_ZONE_PVP_NAME));
+	map->list[m].flag.pvp = 1;
 	clif_map_property_mapall(m, MAPPROPERTY_FREEPVPZONE);
 	bl.type = BL_NUL;
 	bl.m = m;
@@ -10829,7 +10830,7 @@ BUILDIN_FUNC(pvpon)
 		return 0;
 
 	iter = mapit_getallusers();
-	for(sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC *)mapit_next(iter)) {
+	for(sd = (TBL_PC *)mapit->first(iter); mapit->exists(iter); sd = (TBL_PC *)mapit->next(iter)) {
 		if(sd->bl.m != m || sd->pvp_timer != INVALID_TIMER)
 			continue; // not applicable
 
@@ -10840,7 +10841,7 @@ BUILDIN_FUNC(pvpon)
 		sd->pvp_won = 0;
 		sd->pvp_lost = 0;
 	}
-	mapit_free(iter);
+	mapit->free(iter);
 
 	return 0;
 }
@@ -10863,12 +10864,12 @@ BUILDIN_FUNC(pvpoff)
 	struct block_list bl;
 
 	str=script_getstr(st,2);
-	m = map_mapname2mapid(str);
-	if(m < 0 || !map[m].flag.pvp)
+	m = map->mapname2mapid(str);
+	if(m < 0 || !map->list[m].flag.pvp)
 		return 0; //fixed Lupus
 
-	map_zone_change2(m, map[m].prev_zone);
-	map[m].flag.pvp = 0;
+	map->zone_change2(m, map->list[m].prev_zone);
+	map->list[m].flag.pvp = 0;
 	clif_map_property_mapall(m, MAPPROPERTY_NOTHING);
 	bl.type = BL_NUL;
 	bl.m = m;
@@ -10877,7 +10878,7 @@ BUILDIN_FUNC(pvpoff)
 	if(battle_config.pk_mode) // disable ranking options if pk_mode is on [Valaris]
 		return 0;
 
-	map_foreachinmap(script->buildin_pvpoff_sub, m, BL_PC);
+	map->foreachinmap(script->buildin_pvpoff_sub, m, BL_PC);
 	return 0;
 }
 
@@ -10888,16 +10889,16 @@ BUILDIN_FUNC(gvgon)
 	struct block_list bl;
 
 	str=script_getstr(st,2);
-	m = map_mapname2mapid(str);
-	if(m >= 0 && !map[m].flag.gvg) {
+	m = map->mapname2mapid(str);
+	if(m >= 0 && !map->list[m].flag.gvg) {
 
-	if(!strdb_exists(zone_db,MAP_ZONE_GVG_NAME)) {
-			ShowError("buildin_gvgon: zone_db missing '%s'\n",MAP_ZONE_GVG_NAME);
+		if(!strdb_exists(map->zone_db, MAP_ZONE_GVG_NAME)) {
+			ShowError("buildin_gvgon: zone_db missing '%s'\n", MAP_ZONE_GVG_NAME);
 			return 0;
 		}
 
-		map_zone_change2(m, strdb_get(zone_db, MAP_ZONE_GVG_NAME));
-		map[m].flag.gvg = 1;
+		map->zone_change2(m, strdb_get(map->zone_db, MAP_ZONE_GVG_NAME));
+		map->list[m].flag.gvg = 1;
 		clif_map_property_mapall(m, MAPPROPERTY_AGITZONE);
 		bl.type = BL_NUL;
 		bl.m = m;
@@ -10912,11 +10913,11 @@ BUILDIN_FUNC(gvgoff)
 	const char *str;
 
 	str=script_getstr(st,2);
-	m = map_mapname2mapid(str);
-	if(m >= 0 && map[m].flag.gvg) {
+	m = map->mapname2mapid(str);
+	if(m >= 0 && map->list[m].flag.gvg) {
 		struct block_list bl;
-		map_zone_change2(m, map[m].prev_zone);
-		map[m].flag.gvg = 0;
+		map->zone_change2(m, map->list[m].prev_zone);
+		map->list[m].flag.gvg = 0;
 		clif_map_property_mapall(m, MAPPROPERTY_NOTHING);
 		bl.type = BL_NUL;
 		bl.m = m;
@@ -10945,7 +10946,7 @@ BUILDIN_FUNC(emotion)
 	if(player) {
 		TBL_PC *sd = NULL;
 		if(script_hasdata(st,4))
-			sd = map_nick2sd(script_getstr(st,4));
+			sd = map->nick2sd(script_getstr(st,4));
 		else
 			sd = script->rid2sd(st);
 		if(sd)
@@ -10955,7 +10956,7 @@ BUILDIN_FUNC(emotion)
 		if(nd)
 			clif_emotion(&nd->bl,type);
 	} else
-		clif_emotion(map_id2bl(st->oid),type);
+		clif_emotion(map->id2bl(st->oid),type);
 	return 0;
 }
 
@@ -10992,46 +10993,46 @@ BUILDIN_FUNC(maprespawnguildid)
 	int g_id=script_getnum(st,3);
 	int flag=script_getnum(st,4);
 
-	int16 m=map_mapname2mapid(mapname);
+	int16 m=map->mapname2mapid(mapname);
 
 	if(m == -1)
 		return 0;
 
 	//Catch ALL players (in case some are 'between maps' on execution time)
-	map_foreachpc(script->buildin_maprespawnguildid_sub_pc,m,g_id,flag);
+	map->foreachpc(script->buildin_maprespawnguildid_sub_pc,m,g_id,flag);
 	if(flag&4)  //Remove script mobs.
-		map_foreachinmap(script->buildin_maprespawnguildid_sub_mob,m,BL_MOB);
+		map->foreachinmap(script->buildin_maprespawnguildid_sub_mob,m,BL_MOB);
 	return 0;
 }
 
 BUILDIN_FUNC(agitstart)
 {
-	if(agit_flag==1) return 0;      // Agit already Start.
-	agit_flag=1;
+	if(map->agit_flag == 1) return 0;      // Agit already Start.
+	map->agit_flag = 1;
 	guild->agit_start();
 	return 0;
 }
 
 BUILDIN_FUNC(agitend)
 {
-	if(agit_flag==0) return 0;      // Agit already End.
-	agit_flag=0;
+	if(map->agit_flag == 0) return 0;      // Agit already End.
+	map->agit_flag = 0;
 	guild->agit_end();
 	return 0;
 }
 
 BUILDIN_FUNC(agitstart2)
 {
-	if(agit2_flag==1) return 0;      // Agit2 already Start.
-	agit2_flag=1;
+	if(map->agit2_flag == 1) return 0;      // Agit2 already Start.
+	map->agit2_flag = 1;
 	guild->agit2_start();
 	return 0;
 }
 
 BUILDIN_FUNC(agitend2)
 {
-	if(agit2_flag==0) return 0;      // Agit2 already End.
-	agit2_flag=0;
+	if(map->agit2_flag == 0) return 0;      // Agit2 already End.
+	map->agit2_flag = 0;
 	guild->agit2_end();
 	return 0;
 }
@@ -11041,7 +11042,7 @@ BUILDIN_FUNC(agitend2)
  *------------------------------------------*/
 BUILDIN_FUNC(agitcheck)
 {
-	script_pushint(st,agit_flag);
+	script_pushint(st, map->agit_flag);
 	return 0;
 }
 
@@ -11050,7 +11051,7 @@ BUILDIN_FUNC(agitcheck)
  *------------------------------------------*/
 BUILDIN_FUNC(agitcheck2)
 {
-	script_pushint(st,agit2_flag);
+	script_pushint(st, map->agit2_flag);
 	return 0;
 }
 
@@ -11064,7 +11065,7 @@ BUILDIN_FUNC(flagemblem)
 
 	if(g_id < 0) return 0;
 
-	nd = (TBL_NPC *)map_id2nd(st->oid);
+	nd = (TBL_NPC *)map->id2nd(st->oid);
 	if(nd == NULL) {
 		ShowError("script:flagemblem: npc %d not found\n", st->oid);
 	} else if(nd->subtype != SCRIPT) {
@@ -11235,7 +11236,7 @@ BUILDIN_FUNC(successremovecards)
 
 			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) { // get back the cart in inventory
 				clif_additem(sd,0,0,flag);
-				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+				map->addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 			}
 		}
 	}
@@ -11257,7 +11258,7 @@ BUILDIN_FUNC(successremovecards)
 		pc_delitem(sd,i,1,0,3,LOG_TYPE_SCRIPT);
 		if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) { // ???A??????h???b?v
 			clif_additem(sd,0,0,flag);
-			map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+			map->addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 		}
 
 		clif_misceffect(&sd->bl,3);
@@ -11303,7 +11304,7 @@ BUILDIN_FUNC(failedremovecards)
 
 				if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) {
 					clif_additem(sd,0,0,flag);
-					map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+					map->addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 				}
 			}
 		}
@@ -11332,7 +11333,7 @@ BUILDIN_FUNC(failedremovecards)
 
 			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) {
 				clif_additem(sd,0,0,flag);
-				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+				map->addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 			}
 		}
 		clif_misceffect(&sd->bl,2);
@@ -11363,10 +11364,10 @@ BUILDIN_FUNC(mapwarp)   // Added by RoVeRT
 		check_ID=script_getnum(st,7);
 	}
 
-	if((m=map_mapname2mapid(mapname))< 0)
+	if((m=map->mapname2mapid(mapname))< 0)
 		return 0;
 
-	if(!(index=mapindex->name2id(str)))
+	if(!(index=script->mapindexname2id(st,str)))
 		return 0;
 
 	switch(check_val) {
@@ -11391,7 +11392,7 @@ BUILDIN_FUNC(mapwarp)   // Added by RoVeRT
 			}
 			break;
 		default:
-			map_foreachinmap(script->buildin_areawarp_sub,m,BL_PC,index,x,y,0,0);
+			map->foreachinmap(script->buildin_areawarp_sub,m,BL_PC,index,x,y,0,0);
 			break;
 	}
 
@@ -11428,17 +11429,17 @@ BUILDIN_FUNC(mobcount)
 			script_pushint(st,-1);
 			return 0;
 		}
-	} else if((m = map_mapname2mapid(mapname)) < 0) {
+	} else if((m = map->mapname2mapid(mapname)) < 0) {
 		script_pushint(st,-1);
 		return 0;
 	}
 
-	if(map[m].flag.src4instance && map[m].instance_id == -1 && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0) {
+	if(map->list[m].flag.src4instance && map->list[m].instance_id == -1 && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0) {
 		script_pushint(st,-1);
 		return 0;
 	}
 
-	script_pushint(st,map_foreachinmap(script->buildin_mobcount_sub, m, BL_MOB, event));
+	script_pushint(st,map->foreachinmap(script->buildin_mobcount_sub, m, BL_MOB, event));
 
 	return 0;
 }
@@ -11447,7 +11448,7 @@ BUILDIN_FUNC(marriage)
 {
 	const char *partner=script_getstr(st,2);
 	TBL_PC *sd=script->rid2sd(st);
-	TBL_PC *p_sd=map_nick2sd(partner);
+	TBL_PC *p_sd=map->nick2sd(partner);
 
 	if(sd==NULL || p_sd==NULL || pc_marriage(sd,p_sd) < 0) {
 		script_pushint(st,0);
@@ -11462,7 +11463,7 @@ BUILDIN_FUNC(wedding_effect)
 	struct block_list *bl;
 
 	if(sd==NULL) {
-		bl=map_id2bl(st->oid);
+		bl=map->id2bl(st->oid);
 	} else
 		bl=&sd->bl;
 	clif_wedding_effect(bl);
@@ -11484,7 +11485,7 @@ BUILDIN_FUNC(ispartneron)
 	TBL_PC *sd=script->rid2sd(st);
 
 	if(sd==NULL || !pc_ismarried(sd) ||
-	   map_charid2sd(sd->status.partner_id) == NULL) {
+	   map->charid2sd(sd->status.partner_id) == NULL) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -11550,7 +11551,7 @@ BUILDIN_FUNC(warppartner)
 	TBL_PC *p_sd=NULL;
 
 	if(sd==NULL || !pc_ismarried(sd) ||
-	   (p_sd=map_charid2sd(sd->status.partner_id)) == NULL) {
+	   (p_sd=map->charid2sd(sd->status.partner_id)) == NULL) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -11559,7 +11560,7 @@ BUILDIN_FUNC(warppartner)
 	x=script_getnum(st,3);
 	y=script_getnum(st,4);
 
-	map_index = mapindex->name2id(str);
+	map_index = script->mapindexname2id(st,str);
 	if (map_index) {
 		pc_setpos(p_sd, map_index, x, y, CLR_OUTSIGHT);
 		script_pushint(st,1);
@@ -11660,16 +11661,16 @@ BUILDIN_FUNC(setwall)
 	shootable = script_getnum(st,7);
 	name = script_getstr(st,8);
 
-	if((m = map_mapname2mapid(mapname)) < 0)
+	if((m = map->mapname2mapid(mapname)) < 0)
 		return 0; // Invalid Map
 
-	map_iwall_set(m, x, y, size, dir, shootable, name);
+	map->iwall_set(m, x, y, size, dir, shootable, name);
 	return 0;
 }
 BUILDIN_FUNC(delwall)
 {
 	const char *name = script_getstr(st,2);
-	map_iwall_remove(name);
+	map->iwall_remove(name);
 
 	return 0;
 }
@@ -11699,7 +11700,7 @@ BUILDIN_FUNC(guardianinfo)
 		script_pushint(st, gc->guardian[id].visible);
 	else if(!gc->guardian[id].visible)
 		script_pushint(st,-1);
-	else if((gd = map_id2md(gc->guardian[id].id)) == NULL)
+	else if((gd = map->id2md(gc->guardian[id].id)) == NULL)
 		script_pushint(st,-1);
 	else {
 		if(type == 1) script_pushint(st,gd->status.max_hp);
@@ -12054,7 +12055,7 @@ BUILDIN_FUNC(undisguise)
 BUILDIN_FUNC(classchange)
 {
 	int _class,type;
-	struct block_list *bl=map_id2bl(st->oid);
+	struct block_list *bl=map->id2bl(st->oid);
 
 	if(bl==NULL) return 0;
 
@@ -12073,7 +12074,7 @@ BUILDIN_FUNC(misceffect)
 
 	type=script_getnum(st,2);
 	if(st->oid && st->oid != npc->fake_nd->bl.id) {
-		struct block_list *bl = map_id2bl(st->oid);
+		struct block_list *bl = map->id2bl(st->oid);
 		if(bl)
 			clif_specialeffect(bl,type,AREA);
 	} else {
@@ -12135,25 +12136,25 @@ BUILDIN_FUNC(playBGMall)
 		int y1 = script_getnum(st,7);
 		int m;
 
-		if((m = map_mapname2mapid(mapname)) == -1) {
+		if((m = map->mapname2mapid(mapname)) == -1) {
 			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, mapname);
 			return 0;
 		}
 
-		map_foreachinarea(script->playbgm_sub, m, x0, y0, x1, y1, BL_PC, name);
+		map->foreachinarea(script->playbgm_sub, m, x0, y0, x1, y1, BL_PC, name);
 	}
 	else if( script_hasdata(st,3)) {// entire map
 		const char* mapname = script_getstr(st,3);
 		int m;
 
-		if ((m = map_mapname2mapid(mapname)) == -1) {
+		if ((m = map->mapname2mapid(mapname)) == -1) {
 			ShowWarning("playBGMall: Attempted to play song '%s' on non-existent map '%s'\n",name, mapname);
 			return 0;
 		}
 
-		map_foreachinmap(script->playbgm_sub, m, BL_PC, name);
+		map->foreachinmap(script->playbgm_sub, m, BL_PC, name);
 	} else {// entire server
-		map_foreachpc(script->playbgm_foreachpc_sub, name);
+		map->foreachpc(script->playbgm_foreachpc_sub, name);
 	}
 
 	return 0;
@@ -12194,14 +12195,14 @@ BUILDIN_FUNC(soundeffectall)
 	const char *name;
 	int type;
 
-	bl = (st->rid) ? &(script->rid2sd(st)->bl) : map_id2bl(st->oid);
+	bl = (st->rid) ? &(script->rid2sd(st)->bl) : map->id2bl(st->oid);
 	if(!bl)
 		return 0;
 
 	name = script_getstr(st,2);
 	type = script_getnum(st,3);
 
-	//FIXME: enumerating map squares (map_foreach) is slower than enumerating the list of online players (map_foreachpc?) [ultramage]
+	//FIXME: enumerating map squares (map->foreach) is slower than enumerating the list of online players (map->foreachpc?) [ultramage]
 
 	if(!script_hasdata(st,4)) { // area around
 		clif_soundeffectall(bl, name, type, AREA);
@@ -12210,12 +12211,12 @@ BUILDIN_FUNC(soundeffectall)
 			const char *mapname = script_getstr(st,4);
 			int m;
 
-			if((m = map_mapname2mapid(mapname)) == -1) {
+			if((m = map->mapname2mapid(mapname)) == -1) {
 				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, mapname);
 				return 0;
 			}
 
-		map_foreachinmap(script->soundeffect_sub, m, BL_PC, name, type);
+		map->foreachinmap(script->soundeffect_sub, m, BL_PC, name, type);
 	} else if(script_hasdata(st,8)) { // specified part of map
 		const char *mapname = script_getstr(st,4);
 		int x0 = script_getnum(st,5);
@@ -12224,12 +12225,12 @@ BUILDIN_FUNC(soundeffectall)
 		int y1 = script_getnum(st,8);
 		int m;
 
-			if ((m = map_mapname2mapid(mapname)) == -1) {
+			if ((m = map->mapname2mapid(mapname)) == -1) {
 				ShowWarning("soundeffectall: Attempted to play song '%s' (type %d) on non-existent map '%s'\n",name,type, mapname);
 				return 0;
 			}
 
-			map_foreachinarea(script->soundeffect_sub, m, x0, y0, x1, y1, BL_PC, name, type);
+			map->foreachinarea(script->soundeffect_sub, m, x0, y0, x1, y1, BL_PC, name, type);
 		} else {
 			ShowError("buildin_soundeffectall: insufficient arguments for specific area broadcast.\n");
 		}
@@ -12420,7 +12421,7 @@ BUILDIN_FUNC(skilleffect)
 /// npcskilleffect "<skill name>",<level>,<x>,<y>
 BUILDIN_FUNC(npcskilleffect)
 {
-	struct block_list *bl= map_id2bl(st->oid);
+	struct block_list *bl= map->id2bl(st->oid);
 
 	uint16 skill_id=(script_isstringtype(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2));
 	uint16 skill_lv=script_getnum(st,3);
@@ -12438,7 +12439,7 @@ BUILDIN_FUNC(npcskilleffect)
  *------------------------------------------*/
 BUILDIN_FUNC(specialeffect)
 {
-	struct block_list *bl=map_id2bl(st->oid);
+	struct block_list *bl=map->id2bl(st->oid);
 	int type = script_getnum(st,2);
 	enum send_target target = script_hasdata(st,3) ? (send_target)script_getnum(st,3) : AREA;
 
@@ -12469,7 +12470,7 @@ BUILDIN_FUNC(specialeffect2)
 	enum send_target target = script_hasdata(st,3) ? (send_target)script_getnum(st,3) : AREA;
 
 	if(script_hasdata(st,4))
-		sd = map_nick2sd(script_getstr(st,4));
+		sd = map->nick2sd(script_getstr(st,4));
 
 	if(sd)
 		clif_specialeffect(&sd->bl, type, target);
@@ -12522,7 +12523,7 @@ BUILDIN_FUNC(atcommand)
 		fd = 0;
 
 		if(st->oid) {
-			struct block_list *bl = map_id2bl(st->oid);
+			struct block_list *bl = map->id2bl(st->oid);
 			memcpy(&sd->bl, bl, sizeof(struct block_list));
 			if(bl->type == BL_NPC)
 				safestrncpy(sd->status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
@@ -12601,7 +12602,7 @@ BUILDIN_FUNC(recovery)
 	switch(type) {
 		case 0:
 			if(script_hasdata(st,3))
-				sd=map_id2sd(script_getnum(st,3));
+				sd=map->id2sd(script_getnum(st,3));
 			if(sd == NULL) //If we don't have sd by now, bail out
 				return 0;
 			recovery_sub(sd, revive);
@@ -12613,7 +12614,7 @@ BUILDIN_FUNC(recovery)
 			//When no party given, we use invoker party
 			int p_id, i;
 			if(script_hasdata(st,5)) {//Bad maps shouldn't cause issues
-				mapid = map_mapname2mapid(script_getstr(st,5));
+				mapid = map->mapname2mapid(script_getstr(st,5));
 				if(mapid < 1) { //But we'll check anyways
 					ShowDebug("recovery: bad map name given (%s)\n", script_getstr(st,5));
 					return 1;
@@ -12641,7 +12642,7 @@ BUILDIN_FUNC(recovery)
 			//When no guild given, we use invoker guild
 			int g_id, i;
 			if(script_hasdata(st,5)) {//Bad maps shouldn't cause issues
-				mapid = map_mapname2mapid(script_getstr(st,5));
+				mapid = map->mapname2mapid(script_getstr(st,5));
 				if(mapid < 1) { //But we'll check anyways
 					ShowDebug("recovery: bad map name given (%s)\n", script_getstr(st,5));
 					return 1;
@@ -12664,7 +12665,7 @@ BUILDIN_FUNC(recovery)
 		}
 		case 3:
 			if(script_hasdata(st,3))
-				mapid = map_mapname2mapid(script_getstr(st,3));
+				mapid = map->mapname2mapid(script_getstr(st,3));
 			else
 				mapid = (sd)?sd->bl.m:0; //No sd and no map given - return
 			if(mapid < 1)
@@ -12675,12 +12676,12 @@ BUILDIN_FUNC(recovery)
 			if(script_hasdata(st,3) && !script_isstring(st,3))
 				revive = script_getnum(st,3);
 			iter = mapit_getallusers();
-			for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter)) {
+			for (sd = (TBL_PC*)mapit->first(iter); mapit->exists(iter); sd = (TBL_PC*)mapit->next(iter)) {
 				if(type == 3 && sd->bl.m != mapid)
 					continue;
 				recovery_sub(sd, revive);
 			}
-			mapit_free(iter);
+			mapit->free(iter);
 			break;
 		}
 		default:
@@ -12771,7 +12772,7 @@ BUILDIN_FUNC(getmercinfo)
 	if(script_hasdata(st,3)) {
 		char_id = script_getnum(st,3);
 
-		if((sd = map_charid2sd(char_id)) == NULL) {
+		if((sd = map->charid2sd(char_id)) == NULL) {
 			ShowError("buildin_getmercinfo: No such character (char_id=%d).\n", char_id);
 			script_pushnil(st);
 			return 1;
@@ -12890,7 +12891,7 @@ BUILDIN_FUNC(message)
 	player = script_getstr(st,2);
 	msg = script_getstr(st,3);
 
-	if((pl_sd=map_nick2sd((char *) player)) == NULL)
+	if((pl_sd=map->nick2sd((char *) player)) == NULL)
 		return 0;
 	clif_displaymessage(pl_sd->fd, msg);
 
@@ -12905,7 +12906,7 @@ BUILDIN_FUNC(npctalk)
 	const char *str;
 	char name[NAME_LENGTH], message[256];
 
-	struct npc_data *nd = (struct npc_data *)map_id2bl(st->oid);
+	struct npc_data *nd = (struct npc_data *)map->id2bl(st->oid);
 	str = script_getstr(st,2);
 
 	if(nd) {
@@ -12925,7 +12926,7 @@ BUILDIN_FUNC(npcspeed)
 	int speed;
 
 	speed = script_getnum(st,2);
-	nd =(struct npc_data *)map_id2bl(st->oid);
+	nd =(struct npc_data *)map->id2bl(st->oid);
 
 	if(nd) {
 		unit_bl2ud2(&nd->bl); // ensure nd->ud is safe to edit
@@ -12938,7 +12939,7 @@ BUILDIN_FUNC(npcspeed)
 // make an npc walk to a position [Valaris]
 BUILDIN_FUNC(npcwalkto)
 {
-	struct npc_data *nd=(struct npc_data *)map_id2bl(st->oid);
+	struct npc_data *nd=(struct npc_data *)map->id2bl(st->oid);
 	int x=0,y=0;
 
 	x=script_getnum(st,2);
@@ -12959,7 +12960,7 @@ BUILDIN_FUNC(npcwalkto)
 // stop an npc's movement [Valaris]
 BUILDIN_FUNC(npcstop)
 {
-	struct npc_data *nd =(struct npc_data *)map_id2bl(st->oid);
+	struct npc_data *nd =(struct npc_data *)map->id2bl(st->oid);
 
 	if(nd) {
 		unit_bl2ud2(&nd->bl); // ensure nd->ud is safe to edit
@@ -13081,7 +13082,7 @@ BUILDIN_FUNC(getmapxy)
 	switch(type) {
 		case 0: //Get Character Position
 			if(script_hasdata(st,6))
-				sd=map_nick2sd(script_getstr(st,6));
+				sd=map->nick2sd(script_getstr(st,6));
 			else
 				sd=script->rid2sd(st);
 
@@ -13095,11 +13096,11 @@ BUILDIN_FUNC(getmapxy)
 				if(nd)
 					bl = &nd->bl;
 			} else //In case the origin is not an npc?
-				bl=map_id2bl(st->oid);
+				bl=map->id2bl(st->oid);
 			break;
 		case 2: //Get Pet Position
 			if(script_hasdata(st,6))
-				sd=map_nick2sd(script_getstr(st,6));
+				sd=map->nick2sd(script_getstr(st,6));
 			else
 				sd=script->rid2sd(st);
 
@@ -13110,7 +13111,7 @@ BUILDIN_FUNC(getmapxy)
 			break; //Not supported?
 		case 4: //Get Homun Position
 			if(script_hasdata(st,6))
-				sd=map_nick2sd(script_getstr(st,6));
+				sd=map->nick2sd(script_getstr(st,6));
 			else
 				sd=script->rid2sd(st);
 
@@ -13119,7 +13120,7 @@ BUILDIN_FUNC(getmapxy)
 			break;
 		case 5: //Get Mercenary Position
 			if(script_hasdata(st,6))
-				sd=map_nick2sd(script_getstr(st,6));
+				sd=map->nick2sd(script_getstr(st,6));
 			else
 				sd=script->rid2sd(st);
 
@@ -13128,7 +13129,7 @@ BUILDIN_FUNC(getmapxy)
 			break;
 		case 6: //Get Elemental Position
 			if(script_hasdata(st,6))
-				sd=map_nick2sd(script_getstr(st,6));
+				sd=map->nick2sd(script_getstr(st,6));
 			else
 				sd=script->rid2sd(st);
 
@@ -13147,7 +13148,7 @@ BUILDIN_FUNC(getmapxy)
 
 	x= bl->x;
 	y= bl->y;
-	safestrncpy(mapname, map[bl->m].name, MAP_NAME_LENGTH);
+	safestrncpy(mapname, map->list[bl->m].name, MAP_NAME_LENGTH);
 
 	//Set MapName$
 	num=st->stack->stack_data[st->start+2].u.num;
@@ -13245,13 +13246,13 @@ BUILDIN_FUNC(summon)
  *------------------------------------------*/
 BUILDIN_FUNC(isnight)
 {
-	script_pushint(st,(night_flag == 1));
+	script_pushint(st, (map->night_flag == 1));
 	return 0;
 }
 
 BUILDIN_FUNC(isday)
 {
-	script_pushint(st,(night_flag == 0));
+	script_pushint(st, (map->night_flag == 0));
 	return 0;
 }
 
@@ -13451,12 +13452,12 @@ BUILDIN_FUNC(getrefine)
  *-------------------------------------------------------*/
 BUILDIN_FUNC(night)
 {
-	if(night_flag != 1) map_night_timer(night_timer_tid, 0, 0, 1);
+	if(map->night_flag != 1) map_night_timer(night_timer_tid, 0, 0, 1);
 	return 0;
 }
 BUILDIN_FUNC(day)
 {
-	if(night_flag != 0) map_day_timer(day_timer_tid, 0, 0, 1);
+	if(map->night_flag != 0) map_day_timer(day_timer_tid, 0, 0, 1);
 	return 0;
 }
 
@@ -14587,7 +14588,7 @@ int buildin_query_sql_sub(struct script_state *st, Sql *handle)
 
 BUILDIN_FUNC(query_sql)
 {
-	return script->buildin_query_sql_sub(st, mmysql_handle);
+	return script->buildin_query_sql_sub(st, map->mysql_handle);
 }
 
 BUILDIN_FUNC(query_logsql)
@@ -14610,7 +14611,7 @@ BUILDIN_FUNC(escape_sql)
 	str = script_getstr(st,2);
 	len = strlen(str);
 	esc_str = (char *)aMalloc(len*2+1);
-	Sql_EscapeStringLen(mmysql_handle, esc_str, str, len);
+	Sql_EscapeStringLen(map->mysql_handle, esc_str, str, len);
 	script_pushstr(st, esc_str);
 	return 0;
 }
@@ -14808,7 +14809,7 @@ BUILDIN_FUNC(npcshopattach)
 	}
 
 	if(flag)
-		nd->master_nd = ((struct npc_data *)map_id2bl(st->oid));
+		nd->master_nd = ((struct npc_data *)map->id2bl(st->oid));
 	else
 		nd->master_nd = NULL;
 
@@ -15024,7 +15025,7 @@ BUILDIN_FUNC(checkvending) // check vending [Nab4]
 	TBL_PC *sd = NULL;
 
 	if(script_hasdata(st,2))
-		sd = map_nick2sd(script_getstr(st,2));
+		sd = map->nick2sd(script_getstr(st,2));
 	else
 		sd = script->rid2sd(st);
 
@@ -15042,7 +15043,7 @@ BUILDIN_FUNC(checkchatting) // check chatting [Marka]
 	TBL_PC *sd = NULL;
 
 	if(script_hasdata(st,2))
-		sd = map_nick2sd(script_getstr(st,2));
+		sd = map->nick2sd(script_getstr(st,2));
 	else
 		sd = script->rid2sd(st);
 
@@ -15059,7 +15060,7 @@ BUILDIN_FUNC(checkidle)
 	TBL_PC *sd = NULL;
 
 	if (script_hasdata(st, 2))
-		sd = map_nick2sd(script_getstr(st, 2));
+		sd = map->nick2sd(script_getstr(st, 2));
 	else
 		sd = script->rid2sd(st);
 
@@ -15136,7 +15137,7 @@ BUILDIN_FUNC(rid2name)
 {
 	struct block_list *bl = NULL;
 	int rid = script_getnum(st,2);
-	if((bl = map_id2bl(rid))) {
+	if((bl = map->id2bl(rid))) {
 		switch(bl->type) {
 			case BL_MOB: script_pushstrcopy(st,((TBL_MOB *)bl)->name); break;
 			case BL_PC:  script_pushstrcopy(st,((TBL_PC *)bl)->status.name); break;
@@ -15165,7 +15166,7 @@ BUILDIN_FUNC(pcblockmove)
 	flag = script_getnum(st,3);
 
 	if(id)
-		sd = map_id2sd(id);
+		sd = map->id2sd(id);
 	else
 		sd = script->rid2sd(st);
 
@@ -15185,7 +15186,7 @@ BUILDIN_FUNC(pcfollow)
 	targetid = script_getnum(st,3);
 
 	if(id)
-		sd = map_id2sd(id);
+		sd = map->id2sd(id);
 	else
 		sd = script->rid2sd(st);
 
@@ -15204,7 +15205,7 @@ BUILDIN_FUNC(pcstopfollow)
 	id = script_getnum(st,2);
 
 	if(id)
-		sd = map_id2sd(id);
+		sd = map->id2sd(id);
 	else
 		sd = script->rid2sd(st);
 
@@ -15225,7 +15226,7 @@ BUILDIN_FUNC(unitwalk)
 {
 	struct block_list *bl;
 
-	bl = map_id2bl(script_getnum(st,2));
+	bl = map->id2bl(script_getnum(st,2));
 	if(bl == NULL) {
 		script_pushint(st, 0);
 		return 0;
@@ -15240,7 +15241,7 @@ BUILDIN_FUNC(unitwalk)
 		script_pushint(st, unit_walktoxy(bl,x,y,0));// We'll use harder calculations.
 	} else {
 		int map_id = script_getnum(st,3);
-		script_pushint(st, unit_walktobl(bl,map_id2bl(map_id),65025,1));
+		script_pushint(st, unit_walktobl(bl,map->id2bl(map_id),65025,1));
 	}
 
 	return 0;
@@ -15251,7 +15252,7 @@ BUILDIN_FUNC(unitwalk)
 /// unitkill <unit_id>;
 BUILDIN_FUNC(unitkill)
 {
-	struct block_list *bl = map_id2bl(script_getnum(st,2));
+	struct block_list *bl = map->id2bl(script_getnum(st,2));
 	if(bl != NULL)
 		status_kill(bl);
 
@@ -15277,14 +15278,14 @@ BUILDIN_FUNC(unitwarp)
 	y = (short)script_getnum(st,5);
 
 	if(!unit_id)  //Warp the script's runner
-		bl = map_id2bl(st->rid);
+		bl = map->id2bl(st->rid);
 	else
-		bl = map_id2bl(unit_id);
+		bl = map->id2bl(unit_id);
 
 	if(strcmp(mapname,"this") == 0)
 		mapid = bl?bl->m:-1;
 	else
-		mapid = map_mapname2mapid(mapname);
+		mapid = map->mapname2mapid(mapname);
 
 	if(mapid >= 0 && bl != NULL) {
 		unit_bl2ud2(bl); // ensure ((TBL_NPC*)bl)->ud is safe to edit
@@ -15310,18 +15311,18 @@ BUILDIN_FUNC(unitattack)
 	int actiontype = 0;
 
 	// get unit
-	unit_bl = map_id2bl(script_getnum(st,2));
+	unit_bl = map->id2bl(script_getnum(st,2));
 	if(unit_bl == NULL) {
 		script_pushint(st, 0);
 		return 0;
 	}
 
 	if(script_isstringtype(st, 3)) {
-		TBL_PC* sd = map_nick2sd(script_getstr(st, 3));
+		TBL_PC* sd = map->nick2sd(script_getstr(st, 3));
 		if(sd != NULL)
 			target_bl = &sd->bl;
 	} else
-		target_bl = map_id2bl(script_getnum(st, 3));
+		target_bl = map->id2bl(script_getnum(st, 3));
 	// request the attack
 	if(target_bl == NULL) {
 		script_pushint(st, 0);
@@ -15362,7 +15363,7 @@ BUILDIN_FUNC(unitstop)
 
 	unit_id = script_getnum(st,2);
 
-	bl = map_id2bl(unit_id);
+	bl = map->id2bl(unit_id);
 	if(bl != NULL) {
 		unit_bl2ud2(bl); // ensure ((TBL_NPC*)bl)->ud is safe to edit
 		unit_stop_attack(bl);
@@ -15386,7 +15387,7 @@ BUILDIN_FUNC(unittalk)
 	unit_id = script_getnum(st,2);
 	message = script_getstr(st, 3);
 
-	bl = map_id2bl(unit_id);
+	bl = map->id2bl(unit_id);
 	if(bl != NULL) {
 		struct StringBuf sbuf;
 		StrBuf->Init(&sbuf);
@@ -15413,7 +15414,7 @@ BUILDIN_FUNC(unitemote)
 
 	unit_id = script_getnum(st,2);
 	emotion = script_getnum(st,3);
-	bl = map_id2bl(unit_id);
+	bl = map->id2bl(unit_id);
 	if(bl != NULL)
 		clif_emotion(bl, emotion);
 
@@ -15437,7 +15438,7 @@ BUILDIN_FUNC(unitskilluseid)
 	skill_lv = script_getnum(st,4);
 	target_id = (script_hasdata(st,5) ? script_getnum(st,5) : unit_id);
 
-	bl = map_id2bl(unit_id);
+	bl = map->id2bl(unit_id);
 
 	if(bl != NULL) {
 		if(bl->type == BL_NPC) {
@@ -15472,7 +15473,7 @@ BUILDIN_FUNC(unitskillusepos)
 	skill_x  = script_getnum(st,5);
 	skill_y  = script_getnum(st,6);
 
-	bl = map_id2bl(unit_id);
+	bl = map->id2bl(unit_id);
 
 	if(bl != NULL) {
 		if(bl->type == BL_NPC) {
@@ -15528,7 +15529,7 @@ BUILDIN_FUNC(sleep2)
 
 	if(ticks <= 0) {
 		// do nothing
-		script_pushint(st, (map_id2sd(st->rid)!=NULL));
+		script_pushint(st, (map->id2sd(st->rid)!=NULL));
 	} else if(!st->sleep.tick) {
 		// sleep for the target amount of time
 		st->state = RERUNLINE;
@@ -15537,7 +15538,7 @@ BUILDIN_FUNC(sleep2)
 		// sleep time is over
 		st->state = RUN;
 		st->sleep.tick = 0;
-		script_pushint(st, (map_id2sd(st->rid)!=NULL));
+		script_pushint(st, (map->id2sd(st->rid)!=NULL));
 	}
 	return 0;
 }
@@ -15560,7 +15561,7 @@ BUILDIN_FUNC(awake)
 
 	for(tst = dbi_first(iter); dbi_exists(iter); tst = dbi_next(iter)) {
 		if(tst->oid == nd->bl.id) {
-			TBL_PC* sd = map_id2sd(tst->rid);
+			TBL_PC* sd = map->id2sd(tst->rid);
 
 			if(tst->sleep.timer == INVALID_TIMER) {// already awake ???
 				continue;
@@ -15643,7 +15644,7 @@ BUILDIN_FUNC(warpportal)
 	struct skill_unit_group *group;
 	struct block_list *bl;
 
-	bl = map_id2bl(st->oid);
+	bl = map->id2bl(st->oid);
 	if(bl == NULL) {
 		ShowError("script:warpportal: npc is needed\n");
 		return 1;
@@ -15651,7 +15652,7 @@ BUILDIN_FUNC(warpportal)
 
 	spx = script_getnum(st,2);
 	spy = script_getnum(st,3);
-	map_index = mapindex->name2id(script_getstr(st, 4));
+	map_index = script->mapindexname2id(st,script_getstr(st, 4));
 	tpx = script_getnum(st,5);
 	tpy = script_getnum(st,6);
 
@@ -15701,7 +15702,7 @@ BUILDIN_FUNC(openauction)
 /// @see cell_chk* constants in const.txt for the types
 BUILDIN_FUNC(checkcell)
 {
-	int16 m = map_mapname2mapid(script_getstr(st,2));
+	int16 m = map->mapname2mapid(script_getstr(st,2));
 	int16 x = script_getnum(st,3);
 	int16 y = script_getnum(st,4);
 	cell_chk type = (cell_chk)script_getnum(st,5);
@@ -15711,7 +15712,7 @@ BUILDIN_FUNC(checkcell)
 		return 0;
 	}
 
-	script_pushint(st, map_getcell(m, x, y, type));
+	script_pushint(st, map->getcell(m, x, y, type));
 
 	return 0;
 }
@@ -15723,7 +15724,7 @@ BUILDIN_FUNC(checkcell)
 /// @see cell_* constants in const.txt for the types
 BUILDIN_FUNC(setcell)
 {
-	int16 m = map_mapname2mapid(script_getstr(st,2));
+	int16 m = map->mapname2mapid(script_getstr(st,2));
 	int16 x1 = script_getnum(st,3);
 	int16 y1 = script_getnum(st,4);
 	int16 x2 = script_getnum(st,5);
@@ -15743,7 +15744,7 @@ BUILDIN_FUNC(setcell)
 
 	for(y = y1; y <= y2; ++y)
 		for(x = x1; x <= x2; ++x)
-			map[m].setcell(m, x, y, type, flag);
+			map->list[m].setcell(m, x, y, type, flag);
 
 	return 0;
 }
@@ -15942,7 +15943,7 @@ Questlog script commands
 
 BUILDIN_FUNC(questinfo)
 {
-	struct npc_data *nd = map_id2nd(st->oid);
+	struct npc_data *nd = map->id2nd(st->oid);
 	int quest_id, icon, job, color = 0;
 	struct questinfo qi;
 
@@ -15989,7 +15990,7 @@ BUILDIN_FUNC(questinfo)
 		}
 	}
 	
-	map_add_questinfo(nd->bl.m,&qi);
+	map->add_questinfo(nd->bl.m,&qi);
 
 	return 0;
 }
@@ -16006,8 +16007,8 @@ BUILDIN_FUNC(setquest)
 	quest->add(sd, quest_id);
 
 	// If questinfo is set, remove quest bubble once quest is set.
-	for(i = 0; i < map[sd->bl.m].qi_count; i++) {
-		struct questinfo *qi = &map[sd->bl.m].qi_data[i];
+	for(i = 0; i < map->list[sd->bl.m].qi_count; i++) {
+		struct questinfo *qi = &map->list[sd->bl.m].qi_data[i];
 		if(qi->quest_id == quest_id) {
 #if PACKETVER >= 20120410
 			clif_quest_show_event(sd, &qi->nd->bl, 9999, 0);
@@ -16065,7 +16066,7 @@ BUILDIN_FUNC(checkquest)
 BUILDIN_FUNC(showevent)
 {
 	TBL_PC *sd = script->rid2sd(st);
-	struct npc_data *nd = map_id2nd(st->oid);
+	struct npc_data *nd = map->id2nd(st->oid);
 	int icon, color = 0;
 
 	if(sd == NULL || nd == NULL)
@@ -16110,16 +16111,16 @@ BUILDIN_FUNC(waitingroom2bg)
 	if(script_hasdata(st,7))
 		nd = npc->name2id(script_getstr(st,7));
 	else
-		nd = (struct npc_data *)map_id2bl(st->oid);
+		nd = (struct npc_data *)map->id2bl(st->oid);
 
-	if(nd == NULL || (cd = (struct chat_data *)map_id2bl(nd->chat_id)) == NULL) {
+	if(nd == NULL || (cd = (struct chat_data *)map->id2bl(nd->chat_id)) == NULL) {
 		script_pushint(st,0);
 		return 0;
 	}
 
 	map_name = script_getstr(st,2);
 	if(strcmp(map_name,"-") != 0) {
-		map_index = mapindex->name2id(map_name);
+		map_index = script->mapindexname2id(st,map_name);
 		if (map_index == 0) {
 			// Invalid Map
 			script_pushint(st,0);
@@ -16161,14 +16162,14 @@ BUILDIN_FUNC(waitingroom2bg_single)
 
 	bg_id = script_getnum(st,2);
 	map_name = script_getstr(st,3);
-	if ((map_index = mapindex->name2id(map_name)) == 0)
+	if((map_index = script->mapindexname2id(st,map_name)) == 0)
 		return 0; // Invalid Map
 
 	x = script_getnum(st,4);
 	y = script_getnum(st,5);
 	nd = npc->name2id(script_getstr(st,6));
 
-	if(nd == NULL || (cd = (struct chat_data *)map_id2bl(nd->chat_id)) == NULL || cd->users <= 0)
+	if(nd == NULL || (cd = (struct chat_data *)map->id2bl(nd->chat_id)) == NULL || cd->users <= 0)
 		return 0;
 
 	if((sd = cd->usersd[0]) == NULL)
@@ -16204,7 +16205,7 @@ BUILDIN_FUNC(bg_warp)
 
 	bg_id = script_getnum(st,2);
 	map_name = script_getstr(st,3);
-	if ((map_index = mapindex->name2id(map_name)) == 0)
+	if((map_index = script->mapindexname2id(st,map_name)) == 0)
 		return 0; // Invalid Map
 	x = script_getnum(st,4);
 	y = script_getnum(st,5);
@@ -16236,7 +16237,7 @@ BUILDIN_FUNC(bg_monster_set_team)
 	int id = script_getnum(st,2),
 	    bg_id = script_getnum(st,3);
 
-	if((mbl = map_id2bl(id)) == NULL || mbl->type != BL_MOB)
+	if((mbl = map->id2bl(id)) == NULL || mbl->type != BL_MOB)
 		return 0;
 	md = (TBL_MOB *)mbl;
 	md->bg_id = bg_id;
@@ -16278,7 +16279,7 @@ BUILDIN_FUNC(bg_getareausers)
 	bg_id = script_getnum(st,2);
 	str = script_getstr(st,3);
 
-	if((bgd = bg_team_search(bg_id)) == NULL || (m = map_mapname2mapid(str)) < 0) {
+	if((bgd = bg_team_search(bg_id)) == NULL || (m = map->mapname2mapid(str)) < 0) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -16306,11 +16307,11 @@ BUILDIN_FUNC(bg_updatescore)
 	int16 m;
 
 	str = script_getstr(st,2);
-	if((m = map_mapname2mapid(str)) < 0)
+	if((m = map->mapname2mapid(str)) < 0)
 		return 0;
 
-	map[m].bgscore_lion = script_getnum(st,3);
-	map[m].bgscore_eagle = script_getnum(st,4);
+	map->list[m].bgscore_lion = script_getnum(st,3);
+	map->list[m].bgscore_eagle = script_getnum(st,4);
 
 	clif_bg_updatescore(m);
 	return 0;
@@ -16417,7 +16418,7 @@ BUILDIN_FUNC(instance_attachmap)
 		script_pushconststr(st, "");
 		return 0;
 	}
-	script_pushconststr(st, map[m].name);
+	script_pushconststr(st, map->list[m].name);
 
 	return 0;
 }
@@ -16436,7 +16437,7 @@ BUILDIN_FUNC(instance_detachmap)
 		instance_id = st->instance_id;
 	else return 0;
 
-	if((m = map_mapname2mapid(str)) < 0 || (m = instance->map2imap(m,instance_id)) < 0) {
+	if((m = map->mapname2mapid(str)) < 0 || (m = instance->map2imap(m,instance_id)) < 0) {
 		ShowError("buildin_instance_detachmap: Trying to detach invalid map %s\n", str);
 		return 0;
 	}
@@ -16524,7 +16525,7 @@ BUILDIN_FUNC(instance_announce)
 		return 0;
 
 	for(i = 0; i < instance->list[instance_id].num_map; i++)
-		map_foreachinmap(script->buildin_announce_sub, instance->list[instance_id].map[i], BL_PC,
+		map->foreachinmap(script->buildin_announce_sub, instance->list[instance_id].map[i], BL_PC,
 						 mes, strlen(mes)+1, flag&BC_COLOR_MASK, fontColor, fontType, fontSize, fontAlign, fontY);
 
 	return 0;
@@ -16565,7 +16566,7 @@ BUILDIN_FUNC(has_instance)
 
  	str = script_getstr(st, 2);
 
-	if((m = map_mapname2mapid(str)) < 0) {
+	if((m = map->mapname2mapid(str)) < 0) {
 		if(type)
 			script_pushint(st, -1);
 		else
@@ -16583,7 +16584,7 @@ BUILDIN_FUNC(has_instance)
 		if( sd->instances ) {
 			for(i = 0; i < sd->instances; i++) {
 				if(sd->instance[i] >= 0) {
-					ARR_FIND(0, instance->list[sd->instance[i]].num_map, j, map[instance->list[sd->instance[i]].map[j]].instance_src_map == m);
+					ARR_FIND(0, instance->list[sd->instance[i]].num_map, j, map->list[instance->list[sd->instance[i]].map[j]].instance_src_map == m);
 					if(j != instance->list[sd->instance[i]].num_map)
 						break;
 				}
@@ -16594,7 +16595,7 @@ BUILDIN_FUNC(has_instance)
 		if(instance_id == -1 && sd->status.party_id && (p = party_search(sd->status.party_id)) && p->instances) {
 			for(i = 0; i < p->instances; i++) {
 				if(p->instance[i] >= 0) {
-					ARR_FIND(0, instance->list[p->instance[i]].num_map, j, map[instance->list[p->instance[i]].map[j]].instance_src_map == m);
+					ARR_FIND(0, instance->list[p->instance[i]].num_map, j, map->list[instance->list[p->instance[i]].map[j]].instance_src_map == m);
 					if(j != instance->list[p->instance[i]].num_map)
 						break;
 				}
@@ -16605,7 +16606,7 @@ BUILDIN_FUNC(has_instance)
 		if(instance_id == -1 && sd->guild && sd->guild->instances) {
 			for(i = 0; i < sd->guild->instances; i++) {
 				if(sd->guild->instance[i] >= 0) {
-					ARR_FIND(0, instance->list[sd->guild->instance[i]].num_map, j, map[instance->list[sd->guild->instance[i]].map[j]].instance_src_map == m);
+					ARR_FIND(0, instance->list[sd->guild->instance[i]].num_map, j, map->list[instance->list[sd->guild->instance[i]].map[j]].instance_src_map == m);
 					if(j != instance->list[sd->guild->instance[i]].num_map)
 						break;
 				}
@@ -16626,7 +16627,7 @@ BUILDIN_FUNC(has_instance)
 	if(type)
 		script_pushint(st, instance_id);
 	else
-		script_pushconststr(st, map[m].name);
+		script_pushconststr(st, map->list[m].name);
 	return 0;
 }
 int buildin_instance_warpall_sub(struct block_list *bl,va_list ap) {
@@ -16659,12 +16660,12 @@ BUILDIN_FUNC(instance_warpall)
 	else
 		return 0;
 
-	if((m = map_mapname2mapid(mapn)) < 0 || (map[m].flag.src4instance && (m = instance->mapid2imapid(m, instance_id)) < 0))
+	if((m = map->mapname2mapid(mapn)) < 0 || (map->list[m].flag.src4instance && (m = instance->mapid2imapid(m, instance_id)) < 0))
 		return 0;
 
 	map_index = map_id2index(m);
 
-	map_foreachininstance(script->buildin_instance_warpall_sub, instance_id, BL_PC,map_index,x,y);
+	map->foreachininstance(script->buildin_instance_warpall_sub, instance_id, BL_PC,map_index,x,y);
 
 	return 0;
 }
@@ -16708,7 +16709,7 @@ BUILDIN_FUNC(instance_check_party)
 
 	for(i = 0; i < MAX_PARTY; i++)
 		if((pl_sd = p->data[i].sd))
-			if(map_id2bl(pl_sd->bl.id)) {
+			if(map->id2bl(pl_sd->bl.id)) {
 				if(pl_sd->status.base_level < min) {
 					script_pushint(st, 0);
 					return 0;
@@ -16763,9 +16764,9 @@ int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
 
 	// 0:self, 1:target, 2:master, default:random
 	switch(target) {
-		case 0: tbl = map_id2bl(md->bl.id); break;
-		case 1: tbl = map_id2bl(md->target_id); break;
-		case 2: tbl = map_id2bl(md->master_id); break;
+		case 0: tbl = map->id2bl(md->bl.id); break;
+		case 1: tbl = map->id2bl(md->target_id); break;
+		case 2: tbl = map->id2bl(md->master_id); break;
 		default:tbl = battle_getenemy(&md->bl, DEFAULT_ENEMY_TYPE(md),skill_get_range2(&md->bl, skill_id, skill_lv)); break;
 	}
 
@@ -16793,12 +16794,12 @@ BUILDIN_FUNC(areamobuseskill)
 	int16 m;
 	int range,mobid,skill_id,skill_lv,casttime,emotion,target,cancel;
 
-	if((m = map_mapname2mapid(script_getstr(st,2))) < 0) {
+	if((m = map->mapname2mapid(script_getstr(st,2))) < 0) {
 		ShowError("areamobuseskill: invalid map name.\n");
 		return 0;
 	}
 
-	if(map[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
+	if(map->list[m].flag.src4instance && st->instance_id >= 0 && (m = instance->mapid2imapid(m, st->instance_id)) < 0)
 		return 0;
 
 	center.m = m;
@@ -16813,7 +16814,7 @@ BUILDIN_FUNC(areamobuseskill)
 	emotion = script_getnum(st,11);
 	target = script_getnum(st,12);
 
-	map_foreachinrange(script->buildin_mobuseskill_sub, &center, range, BL_MOB, mobid, skill_id, skill_lv, casttime, cancel, emotion, target);
+	map->foreachinrange(script->buildin_mobuseskill_sub, &center, range, BL_MOB, mobid, skill_id, skill_lv, casttime, cancel, emotion, target);
 	return 0;
 }
 
@@ -17080,10 +17081,10 @@ BUILDIN_FUNC(getcharip)
 	/* check if a character name is specified */
 	if(script_hasdata(st, 2)) {
 		if(script_isstringtype(st, 2)) {
-			sd = map_nick2sd(script_getstr(st, 2));
+			sd = map->nick2sd(script_getstr(st, 2));
 		} else {
 			int id = script_getnum(st, 2);
-			sd = (map_id2sd(id) ? map_id2sd(id) : map_charid2sd(id));
+			sd = (map->id2sd(id) ? map->id2sd(id) : map->charid2sd(id));
 		}
 	} else {
 		sd = script->rid2sd(st);
@@ -17163,7 +17164,7 @@ BUILDIN_FUNC(sit)
 	struct map_session_data *sd = NULL;
 
 	if (script_hasdata(st, 2))
-		sd = map_nick2sd(script_getstr(st, 2));
+		sd = map->nick2sd(script_getstr(st, 2));
 
 	if (sd == NULL)
 		sd = script->rid2sd(st);
@@ -17182,7 +17183,7 @@ BUILDIN_FUNC(stand)
 	struct map_session_data *sd = NULL;
 
 	if (script_hasdata(st, 2))
-		sd = map_nick2sd(script_getstr(st, 2));
+		sd = map->nick2sd(script_getstr(st, 2));
 
 	if (sd == NULL)
 		sd = script->rid2sd(st);
@@ -17201,7 +17202,7 @@ BUILDIN_FUNC(issit)
 	struct map_session_data *sd = NULL;
 
 	if (script_hasdata(st, 2))
-		sd = map_nick2sd(script_getstr(st, 2));
+		sd = map->nick2sd(script_getstr(st, 2));
 
 	if (sd == NULL)
 		sd = script->rid2sd(st);
@@ -17323,7 +17324,7 @@ BUILDIN_FUNC(useatcmd)
 		fd = 0;
 
 		if(st->oid) {
-			struct block_list *bl = map_id2bl(st->oid);
+			struct block_list *bl = map->id2bl(st->oid);
 			memcpy(&sd->bl, bl, sizeof(struct block_list));
 			if(bl->type == BL_NPC)
 				safestrncpy(sd->status.name, ((TBL_NPC *)bl)->name, NAME_LENGTH);
@@ -17455,7 +17456,7 @@ BUILDIN_FUNC(getrandgroupitem)
 			if((flag = pc_additem(sd, &item_tmp, get_count, LOG_TYPE_SCRIPT))) {
 				clif_additem(sd, 0, 0, flag);
 				if(pc_candrop(sd,&item_tmp))
-					map_addflooritem(&item_tmp,get_count,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+					map->addflooritem(&item_tmp,get_count,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 			}
 		}
 	}
@@ -17468,7 +17469,7 @@ BUILDIN_FUNC(getrandgroupitem)
 int script_cleanfloor_sub(struct block_list *bl, va_list ap)
 {
 	nullpo_ret(bl);
-	map_clearflooritem(bl);
+	map->clearflooritem(bl);
 
 	return 0;
 }
@@ -17480,19 +17481,19 @@ BUILDIN_FUNC(cleanmap)
 	int16 x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 
 	mapname = script_getstr(st, 2);
-	m = map_mapname2mapid(mapname);
+	m = map->mapname2mapid(mapname);
 	if (m == -1)
 		return 1;
 
 	if((script_lastdata(st) - 2) < 4) {
-		map_foreachinmap(script->cleanfloor_sub, m, BL_ITEM);
+		map->foreachinmap(script->cleanfloor_sub, m, BL_ITEM);
 	} else {
 		x0 = script_getnum(st, 3);
 		y0 = script_getnum(st, 4);
 		x1 = script_getnum(st, 5);
 		y1 = script_getnum(st, 6);
 		if(x0 > 0 && y0 > 0 && x1 > 0 && y1 > 0) {
-			map_foreachinarea(script->cleanfloor_sub, m, x0, y0, x1, y1, BL_ITEM);
+			map->foreachinarea(script->cleanfloor_sub, m, x0, y0, x1, y1, BL_ITEM);
 		} else {
 			ShowError("cleanarea: invalid coordinate defined!\n");
 			return 1;
@@ -17519,7 +17520,7 @@ BUILDIN_FUNC(npcskill)
 	stat_point  = script_getnum(st, 4);
 	npc_level   = script_getnum(st, 5);
 	sd          = script->rid2sd(st);
-	nd          = (struct npc_data *)map_id2bl(sd->npc_id);
+	nd          = (struct npc_data *)map->id2bl(sd->npc_id);
 
 	if(stat_point > battle_config.max_third_parameter) {
 		ShowError("npcskill: stat point exceeded maximum of %d.\n",battle_config.max_third_parameter);
@@ -17562,7 +17563,7 @@ BUILDIN_FUNC(consumeitem)
 	struct item_data *item_data;
 
 	nullpo_retr(1, (sd = script->rid2sd(st)));
-	nullpo_retr(1, (nd = (TBL_NPC *)map_id2bl(sd->npc_id)));
+	nullpo_retr(1, (nd = (TBL_NPC *)map->id2bl(sd->npc_id)));
 
 	if(script_isstringtype(st, 2)) {
 		const char *name = script_getstr(st, 2);
@@ -17617,7 +17618,7 @@ BUILDIN_FUNC(montransform) {
 	char msg[CHAT_SIZE_MAX];
 	int mob_id, val1, val2, val3, val4;
 
-	if((bl = map_id2bl(st->rid)) == NULL)
+	if((bl = map->id2bl(st->rid)) == NULL)
 		return 0;
 
 	if(script_isstringtype(st, 2))
@@ -17656,7 +17657,7 @@ BUILDIN_FUNC(montransform) {
 		val4 = script_getnum(st, 8);
 
 	if(tick != 0) {
-		struct map_session_data *sd = map_id2sd(bl->id);
+		struct map_session_data *sd = map->id2sd(bl->id);
 		struct mob_db *monster = mob->db(mob_id);
 
 		if(!sd)	return 0;
@@ -17715,7 +17716,7 @@ BUILDIN_FUNC(recall)
 	if(script_hasdata(st,3))
 	quant = script_getnum(st,3);
 
-	for( sd_ = (TBL_PC *)mapit_first(iter); script_hasdata(st,3) ? mapit_exists(iter) && c < (quant+1) : mapit_exists(iter); sd_ = (TBL_PC *)mapit_next(iter), script_hasdata(st,3) ? c++ : 0) { 
+	for( sd_ = (TBL_PC *)mapit->first(iter); script_hasdata(st,3) ? mapit->exists(iter) && c < (quant+1) : mapit->exists(iter); sd_ = (TBL_PC *)mapit->next(iter), script_hasdata(st,3) ? c++ : 0) { 
 		if((sd->status.account_id != sd_->status.account_id) && (((strcmp(type,"party") == 0) && sd_->status.party_id == sd->status.party_id) || ((strcmp(type,"guild") == 0) && sd_->status.guild_id == sd->status.guild_id))) {
        
 		if((sd_->bl.m == sd->bl.m) && (sd_->bl.x == sd->bl.x) && (sd_->bl.y == sd->bl.y))
@@ -17725,7 +17726,7 @@ BUILDIN_FUNC(recall)
 		}
 	}
 
-	mapit_free(iter);
+	mapit->free(iter);
 	return 0;
 }
 struct hQueue *script_hqueue_get(int idx) {
@@ -17804,7 +17805,7 @@ bool script_hqueue_add(int idx, int var) {
 
 			script->hq[idx].item[i] = var;
 			script->hq[idx].items++;
-			if(var >= START_ACCOUNT_NUM && (sd = map_id2sd(var))) {
+			if(var >= START_ACCOUNT_NUM && (sd = map->id2sd(var))) {
 				for(i = 0; i < sd->queues_count; i++) {
 					if(sd->queues[i] == -1) {
 						break;
@@ -17850,7 +17851,7 @@ bool script_hqueue_remove(int idx, int var) {
 			script->hq[idx].item[i] = -1;
 			script->hq[idx].items--;
 
-			if(var >= START_ACCOUNT_NUM && (sd = map_id2sd(var))) {
+			if(var >= START_ACCOUNT_NUM && (sd = map->id2sd(var))) {
 				for(i = 0; i < sd->queues_count; i++) {
 					if(sd->queues[i] == idx) {
 						break;
@@ -17928,7 +17929,7 @@ bool script_hqueue_del(int idx) {
 		int i;
 
 		for(i = 0; i < script->hq[idx].size; i++) {
-			if(script->hq[idx].item[i] >= START_ACCOUNT_NUM && (sd = map_id2sd(script->hq[idx].item[i]))) {
+			if(script->hq[idx].item[i] >= START_ACCOUNT_NUM && (sd = map->id2sd(script->hq[idx].item[i]))) {
 				int j;
 				for(j = 0; j < sd->queues_count; j++) {
 					if(sd->queues[j] == script->hq[idx].item[i]) {
@@ -17967,7 +17968,7 @@ void script_hqueue_clear(int idx) {
 			for(i = 0; i < script->hq[idx].size; i++) {
 				if(script->hq[idx].item[i] > 0) {
 
-					if(script->hq[idx].item[i] >= START_ACCOUNT_NUM && (sd = map_id2sd(script->hq[idx].item[i]))) {
+					if(script->hq[idx].item[i] >= START_ACCOUNT_NUM && (sd = map->id2sd(script->hq[idx].item[i]))) {
 						for(j = 0; j < sd->queues_count; j++) {
 							if(sd->queues[j] == idx) {
 								break;
@@ -18116,7 +18117,7 @@ BUILDIN_FUNC(bg_create_team) {
 
 	map_name = script_getstr(st,2);
 	if(strcmp(map_name,"-") != 0) {
-		map_index = mapindex->name2id(map_name);
+		map_index = script->mapindexname2id(st,map_name);
 		if (map_index == 0) { // Invalid Map
 			script_pushint(st,0);
 			return 0;
@@ -18142,7 +18143,7 @@ BUILDIN_FUNC(bg_join_team) {
 	int team_id = script_getnum(st, 2);
 
 	if(script_hasdata(st, 3))
-		sd = map_id2sd(script_getnum(st, 3));
+		sd = map->id2sd(script_getnum(st, 3));
 	else
 		sd = script->rid2sd(st);
 
@@ -18219,7 +18220,7 @@ BUILDIN_FUNC(instance_mapname) {
 	if(instance_id == -1 || (m = instance->mapname2imap(map_name,instance_id)) == -1)
 		script_pushconststr(st, "");
 	else
-		script_pushconststr(st, map[m].name);
+		script_pushconststr(st, map->list[m].name);
 
 	return 0;
 }
@@ -18243,14 +18244,14 @@ BUILDIN_FUNC(instance_set_respawn) {
 
 	if(instance_id == -1 || !instance->valid(instance_id))
 		script_pushint(st, 0);
-	else if((mid = map_mapname2mapid(map_name)) == -1) {
+	else if((mid = map->mapname2mapid(map_name)) == -1) {
 		ShowError("buildin_instance_set_respawn: unknown map '%s'\n",map_name);
 		script_pushint(st, 0);
 	} else {
 		int i;
 		
 		for(i = 0; i < instance->list[instance_id].num_map; i++) {
-			if(map[instance->list[instance_id].map[i]].m == mid ) {
+			if(map->list[instance->list[instance_id].map[i]].m == mid ) {
 				instance->list[instance_id].respawn.map = map_id2index(mid);
 				instance->list[instance_id].respawn.x = x;
 				instance->list[instance_id].respawn.y = y;
@@ -18318,7 +18319,7 @@ BUILDIN_FUNC(openshop) {
 			ShowWarning("buildin_openshop(\"%s\"): trying to run without a proper NPC!\n",name);
 			return 1;
 		}
-	} else if(!(nd = map_id2nd(st->oid))) {
+	} else if(!(nd = map->id2nd(st->oid))) {
 		ShowWarning("buildin_openshop: trying to run without a proper NPC!\n");
 		return 1;
 	}
@@ -18350,7 +18351,7 @@ BUILDIN_FUNC(sellitem) {
 	int value = 0;
 	int qty = 0;
 
-	if(!(nd = map_id2nd(st->oid))) {
+	if(!(nd = map->id2nd(st->oid))) {
 		ShowWarning("buildin_sellitem: trying to run without a proper NPC!\n");
 		return 1;
 	} else if (!(it = itemdb_exists(id))) {
@@ -18421,7 +18422,7 @@ BUILDIN_FUNC(stopselling) {
 	struct npc_data *nd;
 	int i, id = script_getnum(st,2);
 
-	if(!(nd = map_id2nd(st->oid)) || !nd->u.scr.shop) {
+	if(!(nd = map->id2nd(st->oid)) || !nd->u.scr.shop) {
 		ShowWarning("buildin_stopselling: trying to run without a proper NPC!\n");
 		return 1;
 	}
@@ -18471,7 +18472,7 @@ BUILDIN_FUNC(setcurrency) {
 	val2 = script_hasdata(st, 3) ? script_getnum(st,3) : 0;
 	struct npc_data *nd;
 
-	if(!(nd = map_id2nd(st->oid))) {
+	if(!(nd = map->id2nd(st->oid))) {
 		ShowWarning("buildin_setcurrency: trying to run without a proper NPC!\n");
 		return 1;
 	}
@@ -18492,7 +18493,7 @@ BUILDIN_FUNC(tradertype) {
 	int type = script_getnum(st, 2);
 	struct npc_data *nd;
 
-	if(!(nd = map_id2nd(st->oid))) {
+	if(!(nd = map->id2nd(st->oid))) {
 		ShowWarning("buildin_tradertype: trying to run without a proper NPC!\n");
 		return 1;
 	} else if (type < 0 || type > NST_MAX) {
@@ -18524,7 +18525,7 @@ BUILDIN_FUNC(tradertype) {
 BUILDIN_FUNC(purchaseok) {
 	struct npc_data *nd;
 
-	if(!(nd = map_id2nd(st->oid)) || !nd->u.scr.shop) {
+	if(!(nd = map->id2nd(st->oid)) || !nd->u.scr.shop) {
 		ShowWarning("buildin_purchaseok: trying to run without a proper NPC!\n");
 		return 1;
 	}
@@ -18543,7 +18544,7 @@ BUILDIN_FUNC(shopcount) {
 	int id = script_getnum(st, 2);
 	unsigned short i;
 
-	if(!(nd = map_id2nd(st->oid))) {
+	if(!(nd = map->id2nd(st->oid))) {
 		ShowWarning("buildin_shopcount(%d): trying to run without a proper NPC!\n",id);
 		return 1;
 	} else if (!nd->u.scr.shop || !nd->u.scr.shop->items) {
@@ -19201,6 +19202,67 @@ void script_label_add(int key, int pos) {
 	script->label_count++;
 }
 
+/**
+ * Sets source-end constants for scripts to play with
+ **/
+void script_hardcoded_constants(void) {
+
+	/* server defines */
+	script->set_constant("PACKETVER",PACKETVER,false);
+	script->set_constant("MAX_LEVEL",MAX_LEVEL,false);
+	script->set_constant("MAX_STORAGE",MAX_STORAGE,false);
+	script->set_constant("MAX_GUILD_STORAGE",MAX_GUILD_STORAGE,false);
+	script->set_constant("MAX_CART",MAX_INVENTORY,false);
+	script->set_constant("MAX_INVENTORY",MAX_INVENTORY,false);
+	script->set_constant("MAX_ZENY",MAX_ZENY,false);
+	script->set_constant("MAX_BG_MEMBERS",MAX_BG_MEMBERS,false);
+	script->set_constant("MAX_CHAT_USERS",MAX_CHAT_USERS,false);
+
+	/* status options */
+	script->set_constant("Option_Nothing",OPTION_NOTHING,false);
+	script->set_constant("Option_Sight",OPTION_SIGHT,false);
+	script->set_constant("Option_Hide",OPTION_HIDE,false);
+	script->set_constant("Option_Cloak",OPTION_CLOAK,false);
+	script->set_constant("Option_Falcon",OPTION_FALCON,false);
+	script->set_constant("Option_Riding",OPTION_RIDING,false);
+	script->set_constant("Option_Invisible",OPTION_INVISIBLE,false);
+	script->set_constant("Option_Orcish",OPTION_ORCISH,false);
+	script->set_constant("Option_Wedding",OPTION_WEDDING,false);
+	script->set_constant("Option_Chasewalk",OPTION_CHASEWALK,false);
+	script->set_constant("Option_Flying",OPTION_FLYING,false);
+	script->set_constant("Option_Xmas",OPTION_XMAS,false);
+	script->set_constant("Option_Transform",OPTION_TRANSFORM,false);
+	script->set_constant("Option_Summer",OPTION_SUMMER,false);
+	script->set_constant("Option_Dragon1",OPTION_DRAGON1,false);
+	script->set_constant("Option_Wug",OPTION_WUG,false);
+	script->set_constant("Option_Wugrider",OPTION_WUGRIDER,false);
+	script->set_constant("Option_Madogear",OPTION_MADOGEAR,false);
+	script->set_constant("Option_Dragon2",OPTION_DRAGON2,false);
+	script->set_constant("Option_Dragon3",OPTION_DRAGON3,false);
+	script->set_constant("Option_Dragon4",OPTION_DRAGON4,false);
+	script->set_constant("Option_Dragon5",OPTION_DRAGON5,false);
+	script->set_constant("Option_Hanbok",OPTION_HANBOK,false);
+	script->set_constant("Option_Oktoberfest",OPTION_OKTOBERFEST,false);
+
+	/* status option compounds */
+	script->set_constant("Option_Dragon",OPTION_DRAGON,false);
+	script->set_constant("Option_Costume",OPTION_COSTUME,false);
+}
+
+/**
+ * a mapindex_name2id wrapper meant to help with invalid name handling
+ **/
+unsigned short script_mapindexname2id (struct script_state *st, const char* name) {
+	unsigned short index;
+
+	if(!(index=mapindex->name2id(name))) {
+		script->reportsrc(st);
+		return 0;
+	}
+	return index;
+}
+
+
 void script_defaults(void) {
 	// aegis->athena slot position conversion table
 	unsigned int equip[SCRIPT_EQUIP_TABLE_SIZE] = {EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_GARMENT,EQP_SHOES,EQP_ACC_L,EQP_ACC_R,EQP_HEAD_MID,EQP_HEAD_LOW,EQP_COSTUME_HEAD_LOW,EQP_COSTUME_HEAD_MID,EQP_COSTUME_HEAD_TOP,EQP_COSTUME_GARMENT,EQP_SHADOW_ARMOR, EQP_SHADOW_WEAPON, EQP_SHADOW_SHIELD, EQP_SHADOW_SHOES, EQP_SHADOW_ACC_R, EQP_SHADOW_ACC_L};
@@ -19451,5 +19513,8 @@ void script_defaults(void) {
 	/* */
 	script->generic_ui_array_expand = script_generic_ui_array_expand;
 	script->array_cpy_list = script_array_cpy_list;
+	/* */
+	script->hardcoded_constants = script_hardcoded_constants;
+	script->mapindexname2id = script_mapindexname2id;
 
 }

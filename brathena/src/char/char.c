@@ -25,6 +25,7 @@
 #include "../common/strlib.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
+#include "../common/console.h"
 #include "int_guild.h"
 #include "int_homun.h"
 #include "int_mercenary.h"
@@ -172,8 +173,6 @@ unsigned int save_flag = 0;
 struct point start_point = { 0, 53, 111 };
 
 unsigned short skillid2idx[MAX_SKILL_ID]; 
-
-int console = 0;
 
 //-----------------------------------------------------
 // Auth database
@@ -4680,25 +4679,6 @@ int parse_char(int fd)
 	return 0;
 }
 
-// Console Command Parser [Wizputer]
-int parse_console(const char *command)
-{
-	ShowNotice(read_message("Source.reuse.reuse_pconsole_sw"), command);
-
-	if(strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0 || strcmpi("end", command) == 0)
-		runflag = 0;
-	else if(strcmpi("alive", command) == 0 || strcmpi("status", command) == 0)
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_si1"), CL_CYAN, CL_BOLD, CL_RESET);
-	else if(strcmpi("help", command) == 0) {
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help1"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help2"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help3"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help4"));
-	}
-
-	return 0;
-}
-
 int mapif_sendall(unsigned char *buf, unsigned int len)
 {
 	int i, c;
@@ -5172,8 +5152,6 @@ int char_config_read(const char *cfgName)
 			char_del_delay = atoi(w2);
 		} else if(strcmpi(w1,"db_path")==0) {
 			safestrncpy(db_path, w2, sizeof(db_path));
-		} else if(strcmpi(w1, "console") == 0) {
-			console = config_switch(w2);
 		} else if(strcmpi(w1, "fame_list_alchemist") == 0) {
 			fame_list_size_chemist = atoi(w2);
 			if(fame_list_size_chemist > MAX_FAME_LIST) {
@@ -5251,9 +5229,8 @@ void do_abort(void)
 {
 }
 
-void set_server_type(void)
-{
-	SERVER_TYPE = ATHENA_SERVER_CHAR;
+void set_server_type(void) {
+	SERVER_TYPE = SERVER_TYPE_CHAR;
 }
 
 
@@ -5360,7 +5337,9 @@ int do_init(int argc, char **argv)
 	ShowFatalError(read_message("Source.char.char_failed_bind"), CL_WHITE, char_port, CL_RESET);
 		exit(EXIT_FAILURE);
 	}
-
+#ifdef CONSOLE_INPUT
+	console->setSQL(sql_handle);
+#endif
 	ShowStatus(read_message("Source.char.char_doinit_s3"), CL_GREEN, CL_RESET, char_port);
 
 

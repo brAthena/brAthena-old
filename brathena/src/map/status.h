@@ -1576,7 +1576,7 @@ enum e_mode {
     MD_MVP                = 0x080000, //MVP - instant kill / coma-like skills don't work
     MD_IGNOREMISC         = 0x100000, //takes 1 HP damage from "none" attack type
     MD_KNOCKBACK_IMMUNE   = 0x200000, //can't be knocked back
-    MD_MASK		          = 0x00FFFF,
+    MD_MASK		  = 0x00FFFF,
 };
 
 //Status change option definitions (options are what makes status changes visible to chars
@@ -1671,6 +1671,7 @@ enum {
 
     // compound constants
     OPTION_DRAGON    = OPTION_DRAGON1|OPTION_DRAGON2|OPTION_DRAGON3|OPTION_DRAGON4|OPTION_DRAGON5,
+    OPTION_COSTUME   = OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER|OPTION_HANBOK|OPTION_OKTOBERFEST,
 };
 
 //Defines for the manner system [Skotlex]

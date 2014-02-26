@@ -655,17 +655,17 @@ int itemdb_read_itemgroup_sub()
 
 	for(i = 0; i < ARRAYLENGTH(db); ++i) {
 		dbRows = 0;
-		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", db[i])) {
-			Sql_ShowDebug(dbmysql_handle);
+		if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", db[i])) {
+			Sql_ShowDebug(map->dbmysql_handle);
 			continue;
 		}
 
-		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle)) {
+		while (SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle)) {
 			char *row[3];
 			dbRows++;
 
 			for(dbQuery = 0; dbQuery < 3; ++dbQuery)
-				Sql_GetData(dbmysql_handle, dbQuery, &row[dbQuery], NULL);
+				Sql_GetData(map->dbmysql_handle, dbQuery, &row[dbQuery], NULL);
 
 			groupid = atoi(row[0]);
 			if(groupid < 0 || groupid >= MAX_ITEMGROUP) {
@@ -692,7 +692,7 @@ int itemdb_read_itemgroup_sub()
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", dbRows, db[i]);
 	}
 
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 	return 0;
 }
 
@@ -1355,16 +1355,16 @@ void itemdb_read_combos() {
 	int items[MAX_ITEMS_PER_COMBO], v = 0, retcount = 0, rows = 0, i;
 	struct item_combo *combo = NULL;
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(38))) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(38))) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return;
 	}
 
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle)) {
+	while(SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle)) {
 		char *row[2];
 
 		for(i = 0; i < 2; ++i)
-		Sql_GetData(dbmysql_handle, i, &row[i], NULL);
+			Sql_GetData(map->dbmysql_handle, i, &row[i], NULL);
 
 		if((retcount = itemdb_combo_split_atoi(row[0], items)) < 2) {
 			ShowError("itemdb_read_combos: Não tem elementos suficientes (min:2).\n");
@@ -1411,7 +1411,7 @@ void itemdb_read_combos() {
 	}
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(38));
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 	return;
 }
 
@@ -1600,19 +1600,19 @@ static int itemdb_read_sqldb(void)
 	uint32 lines = 0, count = 0;
 
 	// retrieve all rows from the item database
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(55))) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(55))) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return -1;
 	}
 
 	// process rows one by one
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle)) {  // wrap the result into a TXT-compatible format
+	while(SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle)) {  // wrap the result into a TXT-compatible format
 		char *str[22];
 		char *dummy = "";
 		int i;
 		++lines;
 		for(i = 0; i < 22; ++i) {
-			Sql_GetData(dbmysql_handle, i, &str[i], NULL);
+			Sql_GetData(map->dbmysql_handle, i, &str[i], NULL);
 			if(str[i] == NULL)
 				str[i] = dummy; // get rid of NULL columns
 		}
@@ -1623,7 +1623,7 @@ static int itemdb_read_sqldb(void)
 	}
 
 	// free the query result
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(55));
 
@@ -1658,18 +1658,18 @@ int itemdb_uid_load()
 {
 
 	char *uid;
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT `value` FROM `%s` WHERE `varname`='unique_id'", interreg_db))
-		Sql_ShowDebug(mmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->mysql_handle, "SELECT `value` FROM `%s` WHERE `varname`='unique_id'", map->interreg_db))
+		Sql_ShowDebug(map->mysql_handle);
 
-	if(SQL_SUCCESS != Sql_NextRow(mmysql_handle)) {
+	if(SQL_SUCCESS != Sql_NextRow(map->mysql_handle)) {
 		ShowError("itemdb_uid_load: Unable to fetch unique_id data\n");
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(map->mysql_handle);
 		return -1;
 	}
 
-	Sql_GetData(mmysql_handle, 0, &uid, NULL);
+	Sql_GetData(map->mysql_handle, 0, &uid, NULL);
 	itemdb_unique_id(1, (uint64)strtoull(uid, NULL, 10));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(map->mysql_handle);
 
 	return 0;
 }
@@ -1839,7 +1839,7 @@ void itemdb_reload(void) {
 
 	// readjust itemdb pointer cache for each player
 	iter = mapit_geteachpc();
-	for(sd = (struct map_session_data *)mapit_first(iter); mapit_exists(iter); sd = (struct map_session_data *)mapit_next(iter)) {
+	for(sd = (struct map_session_data *)mapit->first(iter); mapit->exists(iter); sd = (struct map_session_data *)mapit->next(iter)) {
 		memset(sd->item_delay, 0, sizeof(sd->item_delay));  // reset item delays
 		pc_setinventorydata(sd);
 		if(battle_config.item_check)
@@ -1854,7 +1854,7 @@ void itemdb_reload(void) {
 		}
 		pc_checkitem(sd);
 	}
-	mapit_free(iter);
+	mapit->free(iter);
 }
 void itemdb_name_constants(void) {
 	DBIterator *iter = db_iterator(itemdb->names);

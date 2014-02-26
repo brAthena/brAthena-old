@@ -20,6 +20,7 @@
 #include "../common/sql.h"
 #include "../common/strlib.h"
 #include "../common/timer.h"
+#include "../common/console.h"
 #include "../common/socket.h"
 #include "account.h"
 #include <stdlib.h>

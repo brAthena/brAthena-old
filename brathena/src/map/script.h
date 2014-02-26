@@ -708,6 +708,9 @@ struct script_interface {
 	/* */
 	void (*generic_ui_array_expand) (unsigned int plus);
 	unsigned int *(*array_cpy_list) (struct script_array *sa);
+	/* */
+	void (*hardcoded_constants) (void);
+	unsigned short (*mapindexname2id) (struct script_state *st, const char* name);
 };
 
 struct script_interface *script;

@@ -498,14 +498,14 @@ void pc_groups_reload(void) {
 
 	/* refresh online users permissions */
 	iter = mapit_getallusers();
-	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter)) {
+	for (sd = (TBL_PC*)mapit->first(iter); mapit->exists(iter); sd = (TBL_PC*)mapit->next(iter)) {
 		if (pc_set_group(sd, sd->group_id) != 0) {
 			ShowWarning("pc_groups_reload: %s (AID:%d) has unknown group id (%d)! kicking...\n",
 				sd->status.name, sd->status.account_id, pc_get_group_id(sd));
 			clif_GM_kick(NULL, sd);
 		}
 	}
-	mapit_free(iter);
+	mapit->free(iter);
 }
 
 /**

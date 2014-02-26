@@ -329,52 +329,6 @@ int login_lan_config_read(const char *lancfgName)
 	return 0;
 }
 
-//-----------------------
-// Console Command Parser [Wizputer]
-//-----------------------
-int parse_console(const char *command)
-{
-	ShowNotice(read_message("Source.reuse.reuse_pconsole_sw"), command);
-
-	if(strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0 || strcmpi("end", command) == 0)
-		runflag = 0;
-	else if(strcmpi("alive", command) == 0 || strcmpi("status", command) == 0)
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_si1"), CL_CYAN, CL_BOLD, CL_RESET);
-	else if(strcmpi("help", command) == 0) {
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help1"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help2"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help3"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help4"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help5"));
-		ShowInfo(read_message("Source.reuse.reuse_pconsole_help6"));
-	} else {
-		// commands with parameters
-		char cmd[128], params[256];
-
-		if(sscanf(command, "%127s %255[^\r\n]", cmd, params) < 2) {
-			return 0;
-		}
-
-		if(strcmpi(cmd, "create") == 0) {
-			char username[NAME_LENGTH], password[NAME_LENGTH], sex;
-
-			if(sscanf(params, "%23s %23s %c", username, password, &sex) < 3 || strnlen(username, sizeof(username)) < 4 || strnlen(password, sizeof(password)) < 1) {
-				ShowWarning(read_message("Source.reuse.reuse_pconsole_si2"), cmd, cmd);
-				return 0;
-			}
-
-			if(mmo_auth_new(username, password, TOUPPER(sex), "0.0.0.0") != -1) {
-				ShowError(read_message("Source.reuse.reuse_pconsole_accerror"));
-				return 0;
-			}
-			ShowStatus(read_message("Source.reuse.reuse_pconsole_accok"), username);
-		}
-	}
-
-	return 0;
-}
-
-
 //--------------------------------
 // Packet parsing for char-servers
 //--------------------------------
@@ -1726,9 +1680,8 @@ void do_abort(void)
 {
 }
 
-void set_server_type(void)
-{
-	SERVER_TYPE = ATHENA_SERVER_LOGIN;
+void set_server_type(void) {
+	SERVER_TYPE = SERVER_TYPE_LOGIN;
 }
 
 

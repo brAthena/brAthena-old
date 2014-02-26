@@ -1034,6 +1034,9 @@ struct s_packet_db packet_db[MAX_PACKET_DB + 1];
 
 struct clif_interface {
 	/*  */
+	uint32 map_ip;
+	uint16 map_port;
+	/*  */
 	unsigned int cryptKey[3];
 	/* */
 	bool ally_only;

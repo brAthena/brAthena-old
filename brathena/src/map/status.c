@@ -1230,7 +1230,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 			struct status_change_entry *sce;
 
 			if((sce = sc->data[SC_DEVOTION]) && src && battle_config.devotion_rdamage) {
-				struct block_list *d_bl = map_id2bl(sce->val1);
+				struct block_list *d_bl = map->id2bl(sce->val1);
 
 				if(d_bl &&((d_bl->type == BL_MER && ((TBL_MER *)d_bl)->master && ((TBL_MER *)d_bl)->master->bl.id == target->id)
 				           || (d_bl->type == BL_PC && ((TBL_PC *)d_bl)->devotion[sce->val2] == target->id)) && check_distance_bl(target, d_bl, sce->val3)) {
@@ -1257,7 +1257,7 @@ int status_damage(struct block_list *src,struct block_list *target,int64 in_hp, 
 			if((sce=sc->data[SC_ENDURE]) && !sce->val4 && !sc->data[SC_LKCONCENTRATION]) {
 				//Endure count is only reduced by non-players on non-gvg maps.
 				//val4 signals infinite endure. [Skotlex]
-				if(src && src->type != BL_PC && !map_flag_gvg2(target->m) && !map[target->m].flag.battleground && --(sce->val2) < 0)
+				if(src && src->type != BL_PC && !map_flag_gvg2(target->m) && !map->list[target->m].flag.battleground && --(sce->val2) < 0)
 					status_change_end(target, SC_ENDURE, INVALID_TIMER);
 			}
 #endif
@@ -1659,12 +1659,12 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 		if(src && !(src->type == BL_PC && ((TBL_PC*)src)->skillitem)) { // Items that cast skills using 'itemskill' will not be handled by map_zone_db.
 			int i;
 
-			for(i = 0; i < map[src->m].zone->disabled_skills_count; i++) {
-				if( skill_id == map[src->m].zone->disabled_skills[i]->nameid && (map[src->m].zone->disabled_skills[i]->type&src->type)) {
+			for(i = 0; i < map->list[src->m].zone->disabled_skills_count; i++) {
+				if( skill_id == map->list[src->m].zone->disabled_skills[i]->nameid && (map->list[src->m].zone->disabled_skills[i]->type&src->type)) {
 					if(src->type == BL_PC)
 						clif_msg((TBL_PC*)src, SKILL_CANT_USE_AREA); // This skill cannot be used within this area
-					else if(src->type == BL_MOB && map[src->m].zone->disabled_skills[i]->subtype != MZS_NONE) {
-						if((st->mode&MD_BOSS) && !(map[src->m].zone->disabled_skills[i]->subtype&MZS_BOSS))
+					else if(src->type == BL_MOB && map->list[src->m].zone->disabled_skills[i]->subtype != MZS_NONE) {
+						if((st->mode&MD_BOSS) && !(map->list[src->m].zone->disabled_skills[i]->subtype&MZS_BOSS))
 							break;
 					}
 					return 0;
@@ -1687,7 +1687,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 				break;
 			case AL_TELEPORT:
 				//Should fail when used on top of Land Protector [Skotlex]
-				if(src && map_getcell(src->m, src->x, src->y, CELL_CHKLANDPROTECTOR)
+				if(src && map->getcell(src->m, src->x, src->y, CELL_CHKLANDPROTECTOR)
 					&& !(st->mode&MD_BOSS)
 					&& (src->type != BL_PC || ((TBL_PC*)src)->skillitem != skill_id))
 					return 0;
@@ -1718,7 +1718,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, uin
 
 		if(sc->data[SC_DC_WINKCHARM] && target && !flag) {  //Prevents skill usage
 			if(unit_bl2ud(src) && (unit_bl2ud(src))->walktimer == INVALID_TIMER)
-				unit_walktobl(src, map_id2bl(sc->data[SC_DC_WINKCHARM]->val2), 3, 1);
+				unit_walktobl(src, map->id2bl(sc->data[SC_DC_WINKCHARM]->val2), 3, 1);
 			clif_emotion(src, E_LV);
 			return 0;
 		}
@@ -2187,7 +2187,7 @@ int status_calc_mob_(struct mob_data* md, enum e_status_calc_opt opt) {
 	memcpy(mstatus, &md->db->status, sizeof(struct status_data));
 
 	if(flag&(8|16))
-		mbl = map_id2bl(md->master_id);
+		mbl = map->id2bl(md->master_id);
 
 	if(flag&8 && mbl) {
 		struct status_data *masterstatus = status->get_base_status(mbl);
@@ -2291,9 +2291,9 @@ int status_calc_mob_(struct mob_data* md, enum e_status_calc_opt opt) {
 	if(flag&4) {
 		// Strengthen Guardians - custom value +10% / lv
 		struct guild_castle *gc;
-		gc = guild->mapname2gc(map[md->bl.m].name);
+		gc = guild->mapname2gc(map->list[md->bl.m].name);
 		if(!gc)
-			ShowError("status_calc_mob: No castle set at map %s\n", map[md->bl.m].name);
+			ShowError("status_calc_mob: No castle set at map %s\n", map->list[md->bl.m].name);
 		else if(gc->castle_id < 24 || md->class_ == MOBID_EMPERIUM) {
 #if VERSION == 1
 			mstatus->max_hp += 50 * gc->defense;
@@ -2628,13 +2628,13 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 		if(!sd->inventory_data[index])
 			continue;
 
-		for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
-			if(map[sd->bl.m].zone->disabled_items[k] == sd->inventory_data[index]->nameid) {
+		for(k = 0; k < map->list[sd->bl.m].zone->disabled_items_count; k++) {
+			if(map->list[sd->bl.m].zone->disabled_items[k] == sd->inventory_data[index]->nameid) {
 				break;
 			}
 		}
 
-		if( k < map[sd->bl.m].zone->disabled_items_count )
+		if( k < map->list[sd->bl.m].zone->disabled_items_count )
 			continue;
 
 		bstatus->def += sd->inventory_data[index]->def;
@@ -2743,12 +2743,12 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 		 * ensure combo usage is allowed at this location
 		 **/
 		for(j = 0; j < combo->count; j++) {
-			for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
-				if(map[sd->bl.m].zone->disabled_items[k] == combo->nameid[j] ) {
+			for(k = 0; k < map->list[sd->bl.m].zone->disabled_items_count; k++) {
+				if(map->list[sd->bl.m].zone->disabled_items[k] == combo->nameid[j] ) {
 					break;
 				}
 			}
-			if(k != map[sd->bl.m].zone->disabled_items_count)
+			if(k != map->list[sd->bl.m].zone->disabled_items_count)
 				break;
 		}
 
@@ -2794,13 +2794,13 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 				if(!data)
 					continue;
 
-				for(k = 0; k < map[sd->bl.m].zone->disabled_items_count; k++) {
-					if(map[sd->bl.m].zone->disabled_items[k] == data->nameid) {
+				for(k = 0; k < map->list[sd->bl.m].zone->disabled_items_count; k++) {
+					if(map->list[sd->bl.m].zone->disabled_items[k] == data->nameid) {
 						break;
 					}
 				}
 				
-				if(k < map[sd->bl.m].zone->disabled_items_count)
+				if(k < map->list[sd->bl.m].zone->disabled_items_count)
 					continue;
 
 				if(opt&SCO_FIRST && data->equip_script) {//Execute equip-script on login
@@ -4931,7 +4931,7 @@ signed short status_calc_flee(struct block_list *bl, struct status_change *sc, i
 	if(bl->type == BL_PC) {
 		if(map_flag_gvg2(bl->m))
 			flee -= flee * battle_config.gvg_flee_penalty/100;
-		else if(map[bl->m].flag.battleground)
+		else if(map->list[bl->m].flag.battleground)
 			flee -= flee * battle_config.bg_flee_penalty/100;
 	}
 
@@ -5744,7 +5744,7 @@ unsigned short status_calc_dmotion(struct block_list *bl, struct status_change *
 	if(bl->type == BL_MOB && (((TBL_MOB*)bl)->status.mode&MD_BOSS))
 		return 0;
 
-	if(!sc || !sc->count || map_flag_gvg2(bl->m) || map[bl->m].flag.battleground)
+	if(!sc || !sc->count || map_flag_gvg2(bl->m) || map->list[bl->m].flag.battleground)
 		return cap_value(dmotion,0,USHRT_MAX);
 
 	if(sc->data[SC_ENDURE])
@@ -6063,7 +6063,7 @@ int status_get_party_id(struct block_list *bl) {
 				struct mob_data *md=(TBL_MOB *)bl;
 				if(md->master_id > 0) {
 					struct map_session_data *msd;
-					if(md->special_state.ai && (msd = map_id2sd(md->master_id)) != NULL)
+					if(md->special_state.ai && (msd = map->id2sd(md->master_id)) != NULL)
 						return msd->status.party_id;
 					return -md->master_id;
 				}
@@ -6101,7 +6101,7 @@ int status_get_guild_id(struct block_list *bl) {
 				struct mob_data *md = (struct mob_data *)bl;
 				if(md->guardian_data)   //Guardian's guild [Skotlex]
 					return md->guardian_data->guild_id;
-				if(md->special_state.ai && (msd = map_id2sd(md->master_id)) != NULL)
+				if(md->special_state.ai && (msd = map->id2sd(md->master_id)) != NULL)
 					return msd->status.guild_id; //Alchemist's mobs [Skotlex]
 			}
 			break;
@@ -6141,7 +6141,7 @@ int status_get_emblem_id(struct block_list *bl) {
 				struct mob_data *md = (struct mob_data *)bl;
 				if(md->guardian_data)   //Guardian's guild [Skotlex]
 					return md->guardian_data->emblem_id;
-				if(md->special_state.ai && (msd = map_id2sd(md->master_id)) != NULL)
+				if(md->special_state.ai && (msd = map->id2sd(md->master_id)) != NULL)
 					return msd->guild_emblem_id; //Alchemist's mobs [Skotlex]
 			}
 			break;
@@ -7662,12 +7662,12 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 #if VERSION != -1
 				val2 = 7; // Hit-count [Celest]
 #endif
-				if(!(flag&1) && (bl->type&(BL_PC|BL_MER)) && !map_flag_gvg(bl->m) && !map[bl->m].flag.battleground && !val4) {
+				if(!(flag&1) && (bl->type&(BL_PC|BL_MER)) && !map_flag_gvg(bl->m) && !map->list[bl->m].flag.battleground && !val4) {
 					struct map_session_data *tsd;
 					if(sd) {
 						int i;
 						for(i = 0; i < 5; i++) {
-							if(sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])))
+							if(sd->devotion[i] && (tsd = map->id2sd(sd->devotion[i])))
 								status->change_start(bl, &tsd->bl, type, 10000, val1, val2, val3, val4, tick, 1);
 						}
 					} else if(bl->type == BL_MER && ((TBL_MER *)bl)->devotion_flag && (tsd = ((TBL_MER *)bl)->master))
@@ -7764,7 +7764,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					if(sd) {
 						int i;
 						for(i = 0; i < 5; i++) {
-							if(sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])))
+							if(sd->devotion[i] && (tsd = map->id2sd(sd->devotion[i])))
 								status->change_start(bl, &tsd->bl, type, 10000, val1, val2, 0, 0, tick, 1);
 						}
 					} else if(bl->type == BL_MER && ((TBL_MER *)bl)->devotion_flag && (tsd = ((TBL_MER *)bl)->master))
@@ -7904,7 +7904,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					if(st->hp - diff < st->max_hp>>2)
 						diff = st->hp - (st->max_hp>>2);
 					if(val2 && bl->type == BL_MOB) {
-						struct block_list* src2 = map_id2bl(val2);
+						struct block_list* src2 = map->id2bl(val2);
 						if(src2)
 							mob->log_damage((TBL_MOB*)bl, src2, diff);
 					}
@@ -7932,7 +7932,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				break;
 			case SC_CASH_BOSS_ALARM:
 				if(sd != NULL) {
-					struct mob_data *boss_md = map_getmob_boss(bl->m); // Search for Boss on this Map
+					struct mob_data *boss_md = map->getmob_boss(bl->m); // Search for Boss on this Map
 					if(boss_md == NULL || boss_md->bl.prev == NULL) {
 						// No MVP on this map - MVP is dead
 						clif_bossmapinfo(sd->fd, boss_md, 1);
@@ -7956,7 +7956,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				if(sc->data[SC_SOULLINK] && sc->data[SC_SOULLINK]->val2 == SL_ROGUE)
 					val3 -= 40;
 				val4 = 10+val1*2; //SP cost.
-				if(map_flag_gvg(bl->m) || map[bl->m].flag.battleground) val4 *= 5;
+				if(map_flag_gvg(bl->m) || map->list[bl->m].flag.battleground) val4 *= 5;
 				break;
 			case SC_CLOAKING:
 				if(!sd)  //Monsters should be able to walk with no penalties. [Skotlex]
@@ -8009,7 +8009,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					if(bl->type&(BL_PC|BL_MER)) {
 						if(sd) {
 							for(i = 0; i < 5; i++) {
-								if(sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])))
+								if(sd->devotion[i] && (tsd = map->id2sd(sd->devotion[i])))
 									status->change_start(bl, &tsd->bl, type, 10000, val1, val2, 0, 0, tick, 1);
 							}
 						} 
@@ -8030,7 +8030,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 						int i;
 						for(i = 0; i < 5; i++) {
 							//See if there are devoted characters, and pass the status to them. [Skotlex]
-							if(sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])))
+							if(sd->devotion[i] && (tsd = map->id2sd(sd->devotion[i])))
 								status->change_start(bl, &tsd->bl,type,10000,val1,5+val1*5,val3,val4,tick,1);
 						}
 					}
@@ -8098,7 +8098,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 			case SC_MARIONETTE: {
 					int stat,max_stat;
 					// fetch caster information
-					struct block_list *pbl = map_id2bl(val1);
+					struct block_list *pbl = map->id2bl(val1);
 					struct status_change *psc = pbl ? status->get_sc(pbl) : NULL;
 					struct status_change_entry *psce = psc ? psc->data[SC_MARIONETTE_MASTER] : NULL;
 					// fetch target's stats
@@ -8146,11 +8146,11 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					struct block_list *d_bl;
 					struct status_change *d_sc;
 
-					if((d_bl = map_id2bl(val1)) && (d_sc = status_get_sc(d_bl)) && d_sc->count) {
+					if((d_bl = map->id2bl(val1)) && (d_sc = status_get_sc(d_bl)) && d_sc->count) {
 						// Inherits Status From Source
 						const enum sc_type types[] = { SC_AUTOGUARD, SC_DEFENDER, SC_REFLECTSHIELD, SC_ENDURE };
 						enum sc_type type2;
-						int i = (map_flag_gvg(bl->m) || map[bl->m].flag.battleground)?2:3;
+						int i = (map_flag_gvg(bl->m) || map->list[bl->m].flag.battleground)?2:3;
 						while(i >= 0) {
 							type2 = types[i];
 							if(d_sc->data[type2])
@@ -8163,7 +8163,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 
 			case SC_COMA: //Coma. Sends a char to 1HP. If val2, do not zap sp
 				if(val3 && bl->type == BL_MOB) {
-					struct block_list *src2 = map_id2bl(val3);
+					struct block_list *src2 = map->id2bl(val3);
 					if(src2)
 						mob->log_damage((TBL_MOB *)bl, src2, st->hp - 1);
 				}
@@ -8172,7 +8172,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				break;
 			case SC_RG_CCONFINE_S:
 			 {
-					struct block_list *src2 = val2 ? map_id2bl(val2) : NULL;
+					struct block_list *src2 = val2 ? map->id2bl(val2) : NULL;
 				struct status_change *sc2 = src ? status->get_sc(src2) : NULL;
 				struct status_change_entry *sce2 = sc2 ? sc2->data[SC_RG_CCONFINE_M] : NULL;
 				if (src2 && sc2) {
@@ -8619,7 +8619,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				tick_time = 1000;
 				break;
 			case SC__SHADOWFORM: {
-					struct map_session_data *s_sd = map_id2sd(val2);
+					struct map_session_data *s_sd = map->id2sd(val2);
 					if(s_sd)
 						s_sd->shadowform_id = bl->id;
 					val4 = tick / 1000;
@@ -8691,7 +8691,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				break;
 			case SC_BLOOD_SUCKER:
 				{
-					struct block_list *src2 = map_id2bl(val2);
+					struct block_list *src2 = map->id2bl(val2);
 					val3 = 1;
 					if(src2)
 						val3 = 200 + 100 * val1 + status_get_int(src2);
@@ -8840,7 +8840,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					// take note there is no def increase as skill desc says. [malufett]
 					struct block_list *src2;
 					val3 = st->agi * val1 / 60; // ASPD increase: [(Target's AGI x Skill Level) / 60] %
-					if((src2 = map_id2bl(val2))) {
+					if((src2 = map->id2bl(val2))) {
 						val4 = (200/status_get_int(src2)) * val1;  // MDEF decrease: MDEF [(200 / Caster's INT) x Skill Level]
 						val2 = ( status_get_dex(src2)/4 + status_get_str(src2)/2 ) * val1 / 5; // ATK increase: ATK [{(Caster DEX / 4) + (Caster STR / 2)} x Skill Level / 5]
 					}
@@ -8850,7 +8850,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 					// take note there is no vit,aspd,speed increase as skill desc says. [malufett]
 					struct block_list *src2;
 					val3 = val1 * 30 + 150; // Natural HP recovery increase: [(Skill Level x 30) + 50] %
-					if((src2 = map_id2bl(val2)))   // the stat def is not shown in the status window and it is process differently
+					if((src2 = map->id2bl(val2)))   // the stat def is not shown in the status window and it is process differently
 						val4 = (status_get_vit(src2)/4) * val1;   // STAT DEF increase: [(Caster's VIT / 4) x Skill Level]
 				}
 				break;
@@ -9542,7 +9542,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 			}
 			break;
 		case SC_CASH_BOSS_ALARM:
-			clif_bossmapinfo(sd->fd, map_id2boss(sce->val1), 0); // First Message
+			clif_bossmapinfo(sd->fd, map->id2boss(sce->val1), 0); // First Message
 			break;
 		case SC_MER_HP:
 			status_percent_heal(bl, 100, 0); // Recover Full HP
@@ -9794,7 +9794,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 					// Clear Status from others
 					int i;
 					for(i = 0; i < 5; i++) {
-						if(sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])) && tsd->sc.data[type])
+						if(sd->devotion[i] && (tsd = map->id2sd(sd->devotion[i])) && tsd->sc.data[type])
 							status_change_end(&tsd->bl, type, INVALID_TIMER);
 					}
 				} else if(bl->type == BL_MER && ((TBL_MER *)bl)->devotion_flag) {
@@ -9806,7 +9806,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 			break;
 		case SC_DEVOTION: {
-				struct block_list *d_bl = map_id2bl(sce->val1);
+				struct block_list *d_bl = map->id2bl(sce->val1);
 				if(d_bl) {
 					if(d_bl->type == BL_PC)
 						((TBL_PC *)d_bl)->devotion[sce->val2] = 0;
@@ -9825,7 +9825,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 		case SC_BLADESTOP:
 			if(sce->val4) {
 				int target_id = sce->val4;
-				struct block_list *tbl = map_id2bl(target_id);
+				struct block_list *tbl = map->id2bl(target_id);
 				struct status_change *tsc = status->get_sc(tbl);
 				sce->val4 = 0;
 				if(tbl && tsc && tsc->data[SC_BLADESTOP]) {
@@ -9854,7 +9854,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 					sd->delunit_prevline = line;
 				}
 
-				if(sce->val4 && sce->val4 != BCT_SELF && (dsd=map_id2sd(sce->val4))) {
+				if(sce->val4 && sce->val4 != BCT_SELF && (dsd=map->id2sd(sce->val4))) {
 					// end status on partner as well
 					dsc = dsd->sc.data[SC_DANCING];
 					if(dsc) {
@@ -9898,13 +9898,13 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 			break;
 		case SC_SPLASHER: {
-				struct block_list *src=map_id2bl(sce->val3);
+				struct block_list *src=map->id2bl(sce->val3);
 				if(src && tid != INVALID_TIMER)
 					skill_castend_damage_id(src, bl, sce->val2, sce->val1, gettick(), SD_LEVEL);
 			}
 			break;
 		case SC_RG_CCONFINE_S: {
-				struct block_list *src = sce->val2 ? map_id2bl(sce->val2) : NULL;
+				struct block_list *src = sce->val2 ? map->id2bl(sce->val2) : NULL;
 				struct status_change *sc2 = src ? status_get_sc(src) : NULL;
 				if (src && sc2 && sc2->data[SC_RG_CCONFINE_M]) {
 					//If status was already ended, do nothing.
@@ -9919,7 +9919,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				int range = 1
 				            +skill_get_range2(bl, status->sc2skill(type), sce->val1)
 				            +skill_get_range2(bl, TF_BACKSLIDING, 1); //Since most people use this to escape the hold....
-				map_foreachinarea(status->change_timer_sub,
+				map->foreachinarea(status->change_timer_sub,
 				                  bl->m, bl->x-range, bl->y-range, bl->x+range,bl->y+range,BL_CHAR,bl,sce,type,gettick());
 			}
 			break;
@@ -9949,7 +9949,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			if(sce->val1) {
 				// check for partner and end their marionette status as well
 				enum sc_type type2 = (type == SC_MARIONETTE_MASTER) ? SC_MARIONETTE : SC_MARIONETTE_MASTER;
-				struct block_list *pbl = map_id2bl(sce->val1);
+				struct block_list *pbl = map->id2bl(sce->val1);
 				struct status_change *sc2 = pbl ? status->get_sc(pbl) : NULL;
 
 				if(sc2 && sc2->data[type2]) {
@@ -10023,14 +10023,14 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 				break;
 			// Note: vending/buying is closed by unit_remove_map, no
 			// need to do it here.
-			map_quit(sd);
-			// Because map_quit calls status_change_end with tid -1
+			map->quit(sd);
+			// Because map->quit calls status_change_end with tid -1
 			// from here it's not neccesary to continue
 			return 1;
 			break;
 		case SC_STOP:
 			if(sce->val2) {
-				struct block_list *tbl = map_id2bl(sce->val2);
+				struct block_list *tbl = map->id2bl(sce->val2);
 				struct status_change *tsc = NULL;
 				sce->val2 = 0;
 				if(tbl && (tsc = status->get_sc(tbl)) && tsc->data[SC_STOP] && tsc->data[SC_STOP]->val2 == bl->id)
@@ -10050,7 +10050,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			sc_start(bl,bl,SC_HALLUCINATIONWALK_POSTDELAY,100,sce->val1,skill_get_time2(GC_HALLUCINATIONWALK,sce->val1));
 			break;
 		case SC_WHITEIMPRISON: {
-				struct block_list *src = map_id2bl(sce->val2);
+				struct block_list *src = map->id2bl(sce->val2);
 				if(tid == -1 || !src)
 					break; // Terminated by Damage
 				status_fix_damage(src,bl,400*sce->val1,clif_damage(bl,bl,0,0,400*sce->val1,0,0,0));
@@ -10069,7 +10069,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			status_change_end(bl, SC_BLIND, INVALID_TIMER);
 			break;
 		case SC__SHADOWFORM: {
-				struct map_session_data *s_sd = map_id2sd(sce->val2);
+				struct map_session_data *s_sd = map->id2sd(sce->val2);
 				if(!s_sd) 
 					break;
 				s_sd->shadowform_id = 0;
@@ -10100,7 +10100,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC_CURSEDCIRCLE_ATKER:
 			if(sce->val2)   // used the default area size cause there is a chance the caster could knock back and can't clear the target.
-				map_foreachinrange(status->change_timer_sub, bl, battle_config.area_size,BL_CHAR, bl, sce, SC_CURSEDCIRCLE_TARGET, gettick());
+				map->foreachinrange(status->change_timer_sub, bl, battle_config.area_size,BL_CHAR, bl, sce, SC_CURSEDCIRCLE_TARGET, gettick());
 			break;
 		case SC_RAISINGDRAGON:
 			if(sd && sce->val2 && !pc_isdead(sd)) {
@@ -10115,7 +10115,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			}
 			break;
 		case SC_CURSEDCIRCLE_TARGET: {
-				struct block_list *src = map_id2bl(sce->val2);
+				struct block_list *src = map->id2bl(sce->val2);
 				struct status_change *ssc = status->get_sc(src);
 				if(ssc && ssc->data[SC_CURSEDCIRCLE_ATKER] && --(ssc->data[SC_CURSEDCIRCLE_ATKER]->val2) == 0) {
 					status_change_end(src, SC_CURSEDCIRCLE_ATKER, INVALID_TIMER);
@@ -10125,7 +10125,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC_BLOOD_SUCKER:
 			if(sce->val2) {
-				struct block_list *src = map_id2bl(sce->val2);
+				struct block_list *src = map->id2bl(sce->val2);
 				if(src) {
 					struct status_change *ssc = status->get_sc(src);
 					ssc->bs_counter--;
@@ -10352,7 +10352,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	if(opt_flag&4) //Out of hiding, invoke on place.
 		skill_unit_move(bl,gettick(),1);
 
-	if(opt_flag&2 && sd && map_getcell(bl->m,bl->x,bl->y,CELL_CHKNPC))
+	if(opt_flag&2 && sd && map->getcell(bl->m,bl->x,bl->y,CELL_CHKNPC))
 		npc->touch_areanpc(sd,bl->m,bl->x,bl->y); //Trigger on-touch event.
 
 	ers_free(status->data_ers, sce);
@@ -10367,7 +10367,7 @@ int kaahi_heal_timer(int tid, int64 tick, int id, intptr_t data)
 	struct status_data *st;
 	int hp;
 
-	if(!((bl=map_id2bl(id))&&
+	if(!((bl=map->id2bl(id))&&
 	     (sc=status->get_sc(bl)) &&
 	     (sce = sc->data[SC_KAAHI])))
 		return 0;
@@ -10405,7 +10405,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct status_change *sc;
 	struct status_change_entry *sce;
 
-	bl = map_id2bl(id);
+	bl = map->id2bl(id);
 	if(!bl) {
 		ShowDebug("status_change_timer: Null pointer id: %d data: %d\n", id, data);
 		return 0;
@@ -10476,9 +10476,9 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 		case SC_RUWACH:
 		case SC_WZ_SIGHTBLASTER:
 			if(type == SC_WZ_SIGHTBLASTER)
-				map_foreachinrange(status->change_timer_sub, bl, sce->val3, BL_CHAR|BL_SKILL, bl, sce, type, tick);
+				map->foreachinrange(status->change_timer_sub, bl, sce->val3, BL_CHAR|BL_SKILL, bl, sce, type, tick);
 			else
-				map_foreachinrange(status->change_timer_sub, bl, sce->val3, BL_CHAR, bl, sce, type, tick);
+				map->foreachinrange(status->change_timer_sub, bl, sce->val3, BL_CHAR, bl, sce, type, tick);
 
 			if(--(sce->val2)>0) {
 				sce->val4 += 250; // use for Shadow Form 2 seconds checking.
@@ -10520,16 +10520,16 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 			if(--(sce->val3) > 0) {
 				if(!sc->data[SC_SLOWPOISON]) {
 					if(sce->val2 && bl->type == BL_MOB) {
-						struct block_list *src = map_id2bl(sce->val2);
+						struct block_list *src = map->id2bl(sce->val2);
 						if(src)
 							mob->log_damage((TBL_MOB *)bl, src, sce->val4);
 					}
-					map_freeblock_lock();
+					map->freeblock_lock();
 						status_zap(bl, sce->val4, 0);
 					if(sc->data[type]) {  // Check if the status still last ( can be dead since then ).
 						sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 					}
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 				}
 				return 0;
 			}
@@ -10556,27 +10556,27 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 		case SC_BLOODING:
 			if(--(sce->val4) >= 0) {
 				int hp =  rnd()%600 + 200;
-				struct block_list* src = map_id2bl(sce->val2);
+				struct block_list* src = map->id2bl(sce->val2);
 				if(src && bl && bl->type == BL_MOB) {
 					mob->log_damage((TBL_MOB*)bl, src, sd || hp<st->hp ? hp : st->hp - 1);
 				}
-				map_freeblock_lock();
+				map->freeblock_lock();
 				status_fix_damage(src, bl, sd||hp<st->hp?hp:st->hp-1, 1);
 				if(sc->data[type]) {
 					if(st->hp == 1) {
-						map_freeblock_unlock();
+						map->freeblock_unlock();
 						break;
 					}
 					sc_timer_next(10000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				return 0;
 			}
 			break;
 
 		case SC_CASH_BOSS_ALARM:
 			if(sd && --(sce->val4) >= 0) {
-				struct mob_data *boss_md = map_id2boss(sce->val1);
+				struct mob_data *boss_md = map->id2boss(sce->val1);
 				if(boss_md && sd->bl.m == boss_md->bl.m) {
 					clif_bossmapinfo(sd->fd, boss_md, 1); // Update X - Y on minimap
 					if(boss_md->bl.prev != NULL) {
@@ -10678,7 +10678,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 
 		case SC_MARIONETTE_MASTER:
 		case SC_MARIONETTE: {
-				struct block_list *pbl = map_id2bl(sce->val1);
+				struct block_list *pbl = map->id2bl(sce->val1);
 				if(pbl && check_distance_bl(bl, pbl, 7)) {
 					sc_timer_next(1000 + tick, status->change_timer, bl->id, data);
 					return 0;
@@ -10721,13 +10721,13 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 
 		case SC_PYREXIA:
 			if(--(sce->val4) > 0) {
-				map_freeblock_lock();
+				map->freeblock_lock();
 				clif_damage(bl,bl,status_get_amotion(bl),status_get_dmotion(bl)+500,100,0,0,0);
 				status_fix_damage(NULL,bl,100,0);
 				if(sc->data[type]) {
 					sc_timer_next(3000+tick,status->change_timer,bl->id,data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				return 0;
 			}
 			break;
@@ -10737,12 +10737,12 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 				int damage = st->max_hp/100; // {Target VIT x (New Poison Research Skill Level - 3)} + (Target HP/100)
 				damage += st->vit * (sce->val1 - 3);
 				unit_skillcastcancel(bl,2);
-				map_freeblock_lock();
+				map->freeblock_lock();
 				status->damage(bl, bl, damage, 0, clif_damage(bl,bl,status_get_amotion(bl),status_get_dmotion(bl)+500,damage,1,0,0), 1);
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				return 0;
 			}
 			break;
@@ -10755,10 +10755,10 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 					damage = st->hp - 1; // Cannot Kill
 
 				if(damage > 0) {   // 3% Damage each 4 seconds
-					map_freeblock_lock();
+					map->freeblock_lock();
 					status_zap(bl,damage,0);
 					flag = !sc->data[type]; // Killed? Should not
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 				}
 
 				if(!flag) {   // Random Skill Cast
@@ -10794,13 +10794,13 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 		case SC_TOXIN:
 			if(--(sce->val4) > 0) {
 				//Damage is every 10 seconds including 3%sp drain.
-				map_freeblock_lock();
+				map->freeblock_lock();
 				clif_damage(bl,bl,status_get_amotion(bl),1,1,0,0,0);
 				status->damage(NULL, bl, 1, st->max_sp * 3 / 100, 0, 0); //cancel dmg only if cancelable
 				if(sc->data[type]) {
 					sc_timer_next(10000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				return 0;
 			}
 			break;
@@ -10841,17 +10841,17 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 
 		case SC_BURNING:
 			if(--(sce->val4) > 0) {
-				struct block_list *src = map_id2bl(sce->val3);
+				struct block_list *src = map->id2bl(sce->val3);
 				int damage = 1000 + 3 * status_get_max_hp(bl) / 100; // Deals fixed (1000 + 3%*MaxHP)
 
-				map_freeblock_lock();
+				map->freeblock_lock();
 				clif_damage(bl,bl,0,0,damage,1,9,0); //damage is like endure effect with no walk delay
 				status->damage(src, bl, damage, 0, 0, 1);
 
 				if(sc->data[type]) { // Target still lives. [LimitLine]
 					sc_timer_next(3000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				return 0;
 			}
 			break;
@@ -10941,18 +10941,18 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 			break;
 		case SC_BLOOD_SUCKER:
 			if(--(sce->val4) > 0) {
-				struct block_list *src = map_id2bl(sce->val2);
+				struct block_list *src = map->id2bl(sce->val2);
 				int damage;
 				if(!src || (src && (status->isdead(src) || src->m != bl->m || distance_bl(src, bl) >= 12)))
 					break;
-				map_freeblock_lock();
+				map->freeblock_lock();
 				damage =  sce->val3;
 				status_damage(src, bl, damage, 0, clif_damage(bl,bl,st->amotion,st->dmotion+200,damage,1,0,0), 1);
 				unit_skillcastcancel(bl,1);
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 				status->heal(src, damage*(5 + 5 * sce->val1)/100, 0, 0); // 5 + 5% per level
 				return 0;
 			}
@@ -11053,12 +11053,12 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 		case SC_OVERHEAT: {
 				int damage = st->max_hp / 100; // Suggestion 1% each second
 				if(damage >= st->hp) damage = st->hp - 1;   // Do not kill, just keep you with 1 hp minimum
-				map_freeblock_lock();
+				map->freeblock_lock();
 				status_fix_damage(NULL,bl,damage,clif_damage(bl,bl,0,0,damage,0,0,0));
 				if(sc->data[type]) {
 					sc_timer_next(1000 + tick, status->change_timer, bl->id, data);
 				}
-				map_freeblock_unlock();
+				map->freeblock_unlock();
 			}
 			break;
 
@@ -11069,7 +11069,7 @@ int status_change_timer(int tid, int64 tick, int id, intptr_t data) {
 					if(!status->charge(bl,0,50))
 						break; // No more SP status should end, and in the next second will end for the other affected players
 				} else {
-					struct block_list *src = map_id2bl(sce->val2);
+					struct block_list *src = map->id2bl(sce->val2);
 					struct status_change *ssc;
 					if(!src || (ssc = status->get_sc(src)) == NULL || !ssc->data[SC_MAGNETICFIELD])
 						break; // Source no more under Magnetic Field
@@ -11749,7 +11749,7 @@ int status_natural_heal(struct block_list* bl, va_list args) {
 int status_natural_heal_timer(int tid, int64 tick, int id, intptr_t data) {
 	// This difference is always positive and lower than UINT_MAX (~24 days)
 	status->natural_heal_diff_tick = (unsigned int)cap_value(DIFF_TICK(tick,status->natural_heal_prev_tick), 0, UINT_MAX);
-	map_foreachregen(status->natural_heal);
+	map->foreachregen(status->natural_heal);
 	status->natural_heal_prev_tick = tick;
 	return 0;
 }
@@ -11951,19 +11951,19 @@ void sc_script_free(void)
 void read_buffspecial_db(void) { //brAthena
 	int sc = 0;
 
-	if(Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(61)) == SQL_ERROR) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(61)) == SQL_ERROR) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return;
 	}
 	
 	sc_script_free();
 
-	while(Sql_NextRow(dbmysql_handle) == SQL_SUCCESS) {
+	while(Sql_NextRow(map->dbmysql_handle) == SQL_SUCCESS) {
 		char *res[2];
 		int type=0;
 
-		Sql_GetData(dbmysql_handle, 0, &res[0], NULL);
-		Sql_GetData(dbmysql_handle, 1, &res[1], NULL);
+		Sql_GetData(map->dbmysql_handle, 0, &res[0], NULL);
+		Sql_GetData(map->dbmysql_handle, 1, &res[1], NULL);
 
 		if(!script->get_constant(res[0], &type)) {
 			ShowWarning(read_message("Source.map.status_buffspecial"), CL_WHITE, res[0], CL_RESET);
@@ -11978,7 +11978,7 @@ void read_buffspecial_db(void) { //brAthena
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", sc, get_database_name(61));
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 }
 
 /*==========================================

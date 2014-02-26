@@ -186,7 +186,7 @@ int elemental_summon_end_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct map_session_data *sd;
 	struct elemental_data *ed;
 
-	if((sd = map_id2sd(id)) == NULL)
+	if((sd = map->id2sd(id)) == NULL)
 		return 1;
 	if((ed = sd->ed) == NULL)
 		return 1;
@@ -243,7 +243,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag) {
 	struct s_elemental_db *db;
 	int i = elemental->search_index(ele->class_);
 
-	if((sd = map_charid2sd(ele->char_id)) == NULL)
+	if((sd = map->charid2sd(ele->char_id)) == NULL)
 		return 0;
 
 	if(!flag || i < 0) {   // Not created - loaded - DB info
@@ -272,7 +272,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag) {
 		ed->bl.x = ed->ud.to_x;
 		ed->bl.y = ed->ud.to_y;
 
-		map_addiddb(&ed->bl);
+		map->addiddb(&ed->bl);
 		status_calc_elemental(ed,SCO_FIRST);
 		ed->last_spdrain_time = ed->last_thinktime = gettick();
 		ed->summon_timer = INVALID_TIMER;
@@ -285,7 +285,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag) {
 	sd->status.ele_id = ele->elemental_id;
 
 	if(ed->bl.prev == NULL && sd->bl.prev != NULL) {
-		map_addblock(&ed->bl);
+		map->addblock(&ed->bl);
 		clif_spawn(&ed->bl);
 		clif_elemental_info(sd);
 		clif_elemental_updatestatus(sd,SP_HP);
@@ -721,16 +721,16 @@ int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_data *s
 			return 0; //Already walking to him
 		if(DIFF_TICK(tick, ed->ud.canmove_tick) < 0)
 			return 0; //Can't move yet.
-		if(map_search_freecell(&ed->bl, sd->bl.m, &x, &y, MIN_ELEDISTANCE, MIN_ELEDISTANCE, 1)
+		if(map->search_freecell(&ed->bl, sd->bl.m, &x, &y, MIN_ELEDISTANCE, MIN_ELEDISTANCE, 1)
 		   && unit_walktoxy(&ed->bl, x, y, 0))
 			return 0;
 	}
 
 	if(mode == EL_MODE_AGGRESSIVE) {
-		target = map_id2bl(ed->ud.target);
+		target = map->id2bl(ed->ud.target);
 
 		if(!target)
-			map_foreachinrange(elemental->ai_sub_timer_activesearch, &ed->bl, view_range, BL_CHAR, ed, &target, status_get_mode(&ed->bl));
+			map->foreachinrange(elemental->ai_sub_timer_activesearch, &ed->bl, view_range, BL_CHAR, ed, &target, status_get_mode(&ed->bl));
 
 		if(!target) {   //No targets available.
 			elemental->unlocktarget(ed);
@@ -769,7 +769,7 @@ int elemental_ai_sub_foreachclient(struct map_session_data *sd, va_list ap) {
 }
 
 int elemental_ai_timer(int tid, int64 tick, int id, intptr_t data) {
-	map_foreachpc(elemental->ai_sub_foreachclient,tick);
+	map->foreachpc(elemental->ai_sub_foreachclient,tick);
 	return 0;
 }
 
@@ -780,17 +780,17 @@ int read_elementaldb(void) {
 
 	memset(elemental->db,0,sizeof(elemental->db));
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(36))) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(36))) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return -1;
 	}
 
-	while (SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && count < MAX_ELEMENTAL_CLASS) {
+	while (SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle) && count < MAX_ELEMENTAL_CLASS) {
 		char *row[26];
 		int i;
 
 		for(i = 0; i != 26; ++i)
-			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
+			Sql_GetData(map->dbmysql_handle, i, &row[i], NULL);
 
 		db = &elemental->db[count];
 		db->class_ = atoi(row[0]);
@@ -843,7 +843,7 @@ int read_elementaldb(void) {
 	}
 
 	ShowSQL(read_message("Source.map.map_elemental_s5"), CL_WHITE, count, CL_RESET, CL_WHITE, get_database_name(36), CL_RESET);
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 	return 0;
 }
 
@@ -852,17 +852,17 @@ int read_elemental_skilldb(void) {
 	struct s_elemental_db *db;
 	int i, j = 0, k = 0, class_, skill_id, skill_lv, skillmode;
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(37))) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(37))) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return -1;
 	}
 
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle)) {
+	while(SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle)) {
 		char *row[4];
 		k++;
 
 		for(i = 0; i != 4; ++i)
-			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
+			Sql_GetData(map->dbmysql_handle, i, &row[i], NULL);
 
 		class_ = atoi(row[0]);
 		ARR_FIND(0, MAX_ELEMENTAL_CLASS, i, class_ == elemental->db[i].class_);
@@ -900,7 +900,7 @@ int read_elemental_skilldb(void) {
 	}
 
 	ShowSQL(read_message("Source.map.map_elemental_s10"), CL_WHITE, j, CL_RESET, CL_WHITE, get_database_name(37), CL_RESET);
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 	return 0;
 }
 

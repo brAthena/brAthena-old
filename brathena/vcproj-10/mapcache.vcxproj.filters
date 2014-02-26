@@ -4,6 +4,9 @@
     <ClCompile Include="..\src\common\conf.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\console.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\common\lang.c">
       <Filter>common</Filter>
     </ClCompile>
@@ -57,13 +60,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-      <ClInclude Include="..\src\map\packets.h">
-      <Filter>map_sql</Filter>
-      </ClInclude>
     <ClInclude Include="..\src\common\cbasetypes.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\conf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\console.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\src\common\lang.h">

@@ -56,12 +56,12 @@ void netbuffer_init()
 	l_nEmergencyAllocations = 0;
 
 	// Set localsection name according to running serverype.
-	switch(SERVER_TYPE) {
-		case ATHENA_SERVER_LOGIN:   strcpy(localsection, "login-netbuffer");        break;
-		case ATHENA_SERVER_CHAR:    strcpy(localsection, "char-netbuffer");         break;
-		case ATHENA_SERVER_INTER:   strcpy(localsection, "inter-netbuffer");        break;
-		case ATHENA_SERVER_MAP:     strcpy(localsection, "map-netbuffer");          break;
-		default:                    strcpy(localsection, "unsupported_type");       break;
+	switch(SERVER_TYPE){
+		case SERVER_TYPE_LOGIN:	        strcpy(localsection, "login-netbuffer");		break;
+		case SERVER_TYPE_CHAR:	        strcpy(localsection, "char-netbuffer");			break;
+		//case ATHENA_SERVER_INTER:	strcpy(localsection, "inter-netbuffer");		break;
+		case SERVER_TYPE_MAP:		strcpy(localsection, "map-netbuffer");			break;
+		default:			strcpy(localsection, "unsupported_type");		break;
 	}
 
 
@@ -124,8 +124,7 @@ void netbuffer_init()
 }//end: netbuffer_init()
 
 
-void netbuffer_final()
-{
+void netbuffer_final() {
 	sysint i;
 
 	if(l_nPools > 0) {
@@ -152,8 +151,7 @@ void netbuffer_final()
 }//end: netbuffer_final()
 
 
-netbuf netbuffer_get(sysint sz)
-{
+netbuf netbuffer_get(sysint sz) {
 	sysint i;
 	netbuf nb = NULL;
 
@@ -200,8 +198,7 @@ netbuf netbuffer_get(sysint sz)
 }//end: netbuffer_get()
 
 
-void netbuffer_put(netbuf nb)
-{
+void netbuffer_put(netbuf nb) {
 
 	// Decrement reference counter, if > 0 do nothing :)
 	if(InterlockedDecrement(&nb->refcnt) > 0)
@@ -222,8 +219,7 @@ void netbuffer_put(netbuf nb)
 }//end: netbuffer_put()
 
 
-void netbuffer_incref(netbuf nb)
-{
+void netbuffer_incref(netbuf nb) {
 
 	InterlockedIncrement(&nb->refcnt);
 

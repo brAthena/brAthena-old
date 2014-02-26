@@ -142,7 +142,7 @@ void log_pick_sub_sql(int id, int16 m, e_log_pick_type type, int amount, struct 
 	    LOG_QUERY " INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `refine`, `card0`, `card1`, `card2`, `card3`, `map`, `unique_id`) "
 	    "VALUES (NOW(), '%d', '%c', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%"PRIu64"')",
 	    logs->config.log_pick, id, logs->picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3],
-	    map[m].name?map[m].name:"", itm->unique_id)
+		map->list[m].name ? map->list[m].name : "", itm->unique_id)
 	) {
 		Sql_ShowDebug(logs->mysql_handle);
 		return;
@@ -159,7 +159,7 @@ void log_pick_sub_txt(int id, int16 m, e_log_pick_type type, int amount, struct 
 	strftime(timestring, sizeof(timestring), "%m/%d/%Y %H:%M:%S", localtime(&curtime));
 	fprintf(logfp,"%s - %d\t%c\t%d,%d,%d,%d,%d,%d,%d,%s,'%"PRIu64"'\n",
 	        timestring, id, logs->picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3],
-		map[m].name?map[m].name:"", itm->unique_id);
+			map->list[m].name ? map->list[m].name : "", itm->unique_id);
 	fclose(logfp);
 }
 /// logs item transactions (generic)
@@ -359,7 +359,7 @@ void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, 
 		return;
 	}
 
-	if(logs->config.log_chat_woe_disable && (agit_flag || agit2_flag)) {
+	if(logs->config.log_chat_woe_disable && (map->agit_flag || map->agit2_flag)) {
 		// no chat logging during woe
 		return;
 	}
@@ -376,8 +376,8 @@ void log_sql_init(void) {
 		exit(EXIT_FAILURE);
 	ShowStatus("Conex%co efetuada com sucesso no banco de dados '"CL_WHITE"%s"CL_RESET"'.\n", 198, logs->db_name);
 
-	if(strlen(default_codepage) > 0)
-		if (SQL_ERROR == Sql_SetEncoding(logs->mysql_handle, default_codepage))
+	if(strlen(map->default_codepage) > 0)
+	if(SQL_ERROR == Sql_SetEncoding(logs->mysql_handle, map->default_codepage))
 			Sql_ShowDebug(logs->mysql_handle);
 }
 void log_sql_final(void) {

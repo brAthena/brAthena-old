@@ -19,6 +19,7 @@
 #include "../common/malloc.h"
 #include "../common/strlib.h"
 #include "core.h"
+#include "../common/console.h"
 #include "../common/random.h"
 #ifndef MINICORE
 #include "../common/db.h"
@@ -45,16 +46,11 @@
 /// Called when a terminate signal is received.
 void (*shutdown_callback)(void) = NULL;
 
-#if defined(BUILDBOT)
-int buildbotflag = 0;
-#endif
-
 int runflag = CORE_ST_RUN;
 int arg_c = 0;
 char **arg_v = NULL;
 
 char *SERVER_NAME = NULL;
-char SERVER_TYPE = ATHENA_SERVER_NONE;
 
 #ifndef MINICORE    // minimalist Core
 // Added by Gabuzomeu
@@ -70,8 +66,7 @@ char SERVER_TYPE = ATHENA_SERVER_NONE;
 #ifndef POSIX
 #define compat_signal(signo, func) signal((signo), (func))
 #else
-sigfunc *compat_signal(int signo, sigfunc *func)
-{
+sigfunc *compat_signal(int signo, sigfunc *func) {
 	struct sigaction sact, oact;
 
 	sact.sa_handler = func;
@@ -92,9 +87,8 @@ sigfunc *compat_signal(int signo, sigfunc *func)
  *  CORE : Console events for Windows
  *--------------------------------------*/
 #ifdef _WIN32
-static BOOL WINAPI console_handler(DWORD c_event)
-{
-	switch(c_event) {
+static BOOL WINAPI console_handler(DWORD c_event) {
+    switch(c_event) {
 		case CTRL_CLOSE_EVENT:
 		case CTRL_LOGOFF_EVENT:
 		case CTRL_SHUTDOWN_EVENT:
@@ -109,8 +103,7 @@ static BOOL WINAPI console_handler(DWORD c_event)
 	return TRUE;
 }
 
-static void cevents_init()
-{
+static void cevents_init() {
 	if(SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
 		ShowWarning(read_message("Source.common.console_event"));
 }
@@ -119,8 +112,7 @@ static void cevents_init()
 /*======================================
  *  CORE : Signal Sub Function
  *--------------------------------------*/
-static void sig_proc(int sn)
-{
+static void sig_proc(int sn) {
 	static int is_called = 0;
 
 	switch(sn) {
@@ -153,8 +145,7 @@ static void sig_proc(int sn)
 	}
 }
 
-void signals_init(void)
-{
+void signals_init (void) {
 	compat_signal(SIGTERM, sig_proc);
 	compat_signal(SIGINT, sig_proc);
 #ifndef _DEBUG // need unhandled exceptions to debug on Windows
@@ -172,13 +163,11 @@ void signals_init(void)
 #endif
 
 #ifdef SVNVERSION
-const char *get_svn_revision(void)
-{
+const char *get_svn_revision(void) {
 	return EXPAND_AND_QUOTE(SVNVERSION);
 }
 #else// not SVNVERSION
-const char *get_svn_revision(void)
-{
+const char *get_svn_revision(void) {
 	static char svn_version_buffer[16] = "";
 	FILE *fp;
 
@@ -271,38 +260,6 @@ const char *get_svn_revision(void)
 }
 #endif
 
-/*======================================
- *  CORE : Display title
- *  ASCII By CalciumKid 1/12/2011
- *--------------------------------------*/
-static void display_title(void)
-{
-	//ClearScreen(); // clear screen and go up/left (0, 0 position in text)
-	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE"  _           ___  _   _			   "CL_PASS""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |         / _ \\| | | |	  		   "CL_PASS""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |__  _ __/ /_\\ \\ |_| |__   ___ _ __   __ _  "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | '_ \\| '__|  _  | __| '_ \\ / _ \\ '_ \\ / _` | "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |_) | |  | | | | |_| | | |  __/ | | | (_| | "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_WHITE"                                               "CL_PASS""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2014        "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"               www.brathena.org                "CL_PASS")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
-
-	if(VERSION == -1)
-		ShowInfo(read_message("Source.common.emulator_mode_ot"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	else if(VERSION == 0)
-		ShowInfo(read_message("Source.common.emulator_mode_pre"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	else if (VERSION == 1)
-		ShowInfo(read_message("Source.common.emulator_mode_re"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	
-	ShowInfo(read_message("Source.common.core_revision"), CL_WHITE, get_svn_revision(), CL_RESET);
-	ShowInfo(read_message("Source.common.client_version1"), CL_RED, CL_RESET, CL_GREEN, PACKETVER, CL_RESET);
-	ShowInfo(read_message("Source.common.client_version2"), CL_RED, CL_RESET);
-	
-}
-
 // Warning if executed as superuser (root)
 void usercheck(void)
 {
@@ -316,6 +273,7 @@ void core_defaults(void) {
 #ifndef MINICORE
 	HCache_defaults();
 #endif
+	console_defaults();
 	strlib_defaults();
 	malloc_defaults();
 #ifndef MINICORE
@@ -343,16 +301,18 @@ int main(int argc, char **argv)
 	core_defaults();
 
 	iMalloc->init();// needed for Show* in display_title() [FlavioJS]
+
+	if (!(msg_silent&0x1))
+		console->display_title();
+
 	read_brathena_config();
 
 #ifdef MINICORE // minimalist Core
-	display_title();
 	usercheck();
 	do_init(argc,argv);
 	do_final();
 #else// not MINICORE
 	set_server_type();
-	display_title();
 	usercheck();
 
 	Sql_Init();
@@ -370,6 +330,8 @@ int main(int argc, char **argv)
 	rnd_init();
 	srand((unsigned int)gettick());
 
+	console->init();
+
 	HCache->init();
 	sockt->init();
 
@@ -383,6 +345,8 @@ int main(int argc, char **argv)
 			sockt->perform(next);
 		}
 	}
+
+	console->final();
 
 	do_final();
 

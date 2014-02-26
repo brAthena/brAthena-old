@@ -127,7 +127,7 @@ int quest_add(TBL_PC *sd, int quest_id) {
 	clif_quest_add(sd, &sd->quest_log[n]);
 	clif_quest_update_objective(sd, &sd->quest_log[n]);
 
-	if(save_settings&64)
+	if(map->save_settings&64)
 		chrif->save(sd, 0);
 
 	return 0;
@@ -178,7 +178,7 @@ int quest_change(TBL_PC *sd, int qid1, int qid2) {
 	clif_quest_add(sd, &sd->quest_log[i]);
 	clif_quest_update_objective(sd, &sd->quest_log[i]);
 
-	if(save_settings&64)
+	if(map->save_settings&64)
 		chrif->save(sd, 0);
 
 	return 0;
@@ -218,7 +218,7 @@ int quest_delete(TBL_PC *sd, int quest_id) {
 
 	clif_quest_delete(sd, quest_id);
 
-	if(save_settings&64)
+	if (map->save_settings & 64)
 		chrif->save(sd, 0);
 
 	return 0;
@@ -227,7 +227,7 @@ int quest_delete(TBL_PC *sd, int quest_id) {
 /**
  * Map iterator subroutine to update quest objectives for a party after killing a monster.
  *
- * @see map_foreachinrange
+ * @see map->foreachinrange
  * @param ap Argument list, expecting:
  *           int Party ID
  *           int Mob ID
@@ -318,7 +318,7 @@ int quest_update_status(TBL_PC *sd, int quest_id, enum quest_state qs) {
 
 	clif_quest_delete(sd, quest_id);
 
-	if(save_settings&64)
+	if (map->save_settings & 64)
 		chrif->save(sd, 0);
 
 	return 0;
@@ -379,16 +379,16 @@ int quest_read_db(void) {
 	int QuestLoop, QueryLoop, MaxQuestLoop = 0;
 	struct quest_db entry;
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(50))) {
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(50))) {
+		Sql_ShowDebug(map->dbmysql_handle);
 		return -1;
 	}
 
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && MaxQuestLoop < MAX_QUEST_DB) {
+	while(SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle) && MaxQuestLoop < MAX_QUEST_DB) {
 		char *row[9];
 
 		for(QueryLoop = 0; QueryLoop < 9; ++QueryLoop)
-			Sql_GetData(dbmysql_handle, QueryLoop, &row[QueryLoop], NULL);
+			Sql_GetData(map->dbmysql_handle, QueryLoop, &row[QueryLoop], NULL);
 
 		if (row[0] == NULL)
 			continue;
@@ -422,7 +422,7 @@ int quest_read_db(void) {
 	}
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", MaxQuestLoop, get_database_name(50));
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 	return 0;
 }
 
@@ -431,7 +431,7 @@ int quest_read_db(void) {
  *
  * Any entries that are no longer in the db are removed.
  *
- * @see map_foreachpc
+ * @see map->foreachpc
  * @param ap Ignored
  */
 int quest_reload_check_sub(struct map_session_data *sd, va_list ap) {
@@ -499,7 +499,7 @@ void do_reload_quest(void) {
 	quest->read_db();
 
 	// Update quest data for players, to ensure no entries about removed quests are left over.
-	map_foreachpc(&quest_reload_check_sub);
+	map->foreachpc(&quest_reload_check_sub);
 }
 
 /**

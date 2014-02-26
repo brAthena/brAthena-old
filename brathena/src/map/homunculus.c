@@ -414,7 +414,7 @@ bool homunculus_evolve(struct homun_data *hd) {
 	hom->intimacy = 500;
 
 	unit_remove_map(&hd->bl, CLR_OUTSIGHT, ALC_MARK);
-	map_addblock(&hd->bl);
+	map->addblock(&hd->bl);
 
 	clif_spawn(&hd->bl);
 	clif_emotion(&sd->bl, E_NO1);
@@ -458,7 +458,7 @@ bool homunculus_mutate(struct homun_data *hd, int homun_id) {
 	}
 
 	unit_remove_map(&hd->bl, CLR_OUTSIGHT, ALC_MARK);
-	map_addblock(&hd->bl);
+	map->addblock(&hd->bl);
 
 	clif_spawn(&hd->bl);
 	clif_emotion(&sd->bl, E_NO1);
@@ -629,7 +629,7 @@ int homunculus_hunger_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct map_session_data *sd;
 	struct homun_data *hd;
 
-	if(!(sd=map_id2sd(id)) || !sd->status.hom_id || !(hd=sd->hd))
+	if(!(sd=map->id2sd(id)) || !sd->status.hom_id || !(hd=sd->hd))
 		return 1;
 
 	if(hd->hungry_timer != tid) {
@@ -767,7 +767,7 @@ bool homunculus_create(struct map_session_data *sd, struct s_homunculus *hom) {
 	hd->bl.y = hd->ud.to_y;
 	hd->masterteleport_timer = 0;
 
-	map_addiddb(&hd->bl);
+	map->addiddb(&hd->bl);
 	status_calc_homunculus(hd,SCO_FIRST);
 	status_percent_heal(&hd->bl, 100, 100);
 
@@ -802,7 +802,7 @@ bool homunculus_call(struct map_session_data *sd) {
 		hd->bl.x = sd->bl.x;
 		hd->bl.y = sd->bl.y;
 		hd->bl.m = sd->bl.m;
-		map_addblock(&hd->bl);
+		map->addblock(&hd->bl);
 		clif_spawn(&hd->bl);
 		clif_send_homdata(sd,SP_ACK,0);
 		clif_hominfo(sd,hd,1);
@@ -822,7 +822,7 @@ bool homunculus_recv_data(int account_id, struct s_homunculus *sh, int flag) {
 	struct map_session_data *sd;
 	struct homun_data *hd;
 
-	sd = map_id2sd(account_id);
+	sd = map->id2sd(account_id);
 	if(!sd)
 		return false;
 	if(sd->status.char_id != sh->char_id) {
@@ -847,7 +847,7 @@ bool homunculus_recv_data(int account_id, struct s_homunculus *sh, int flag) {
 	if(hd && hd->homunculus.hp && hd->homunculus.vaporize == HOM_ST_ACTIVE && hd->bl.prev == NULL && sd->bl.prev != NULL) {
 		enum homun_type htype = homun->class2type(hd->homunculus.class_);
 
-		map_addblock(&hd->bl);
+		map->addblock(&hd->bl);
 		clif_spawn(&hd->bl);
 		clif_send_homdata(sd,SP_ACK,0);
 		clif_hominfo(sd,hd,1);
@@ -932,7 +932,7 @@ bool homunculus_ressurect(struct map_session_data* sd, unsigned char per, short 
 		hd->bl.m = sd->bl.m;
 		hd->bl.x = x;
 		hd->bl.y = y;
-		map_addblock(&hd->bl);
+		map->addblock(&hd->bl);
 		clif_spawn(&hd->bl);
 	}
 	status->revive(&hd->bl, per, 0);
@@ -1188,11 +1188,11 @@ void homunculus_exp_db_read(void) {
 
 	memset(homun->exptable, 0, sizeof(homun->exptable));
 
-	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(52)))
-		Sql_ShowDebug(dbmysql_handle);
+	if(SQL_ERROR == Sql_Query(map->dbmysql_handle, "SELECT * FROM `%s`", get_database_name(52)))
+		Sql_ShowDebug(map->dbmysql_handle);
 
-	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && HomunLoop < MAX_LEVEL) {
-		Sql_GetData(dbmysql_handle, 0, &row, NULL);
+	while(SQL_SUCCESS == Sql_NextRow(map->dbmysql_handle) && HomunLoop < MAX_LEVEL) {
+		Sql_GetData(map->dbmysql_handle, 0, &row, NULL);
 		homun->exptable[HomunLoop] = atoi(row);
 
 		if(homun->exptable[HomunLoop++] == 9999999)
@@ -1205,7 +1205,7 @@ void homunculus_exp_db_read(void) {
 	}
 
 	ShowSQL(read_message("Source.map.map_homunculus_s13"), CL_WHITE, HomunLoop, CL_RESET, CL_WHITE, get_database_name(52), CL_RESET);
-	Sql_FreeResult(dbmysql_handle);
+	Sql_FreeResult(map->dbmysql_handle);
 }
 
 void homunculus_reload(void) {

@@ -53,7 +53,7 @@ static struct chat_data *chat_createchat(struct block_list *bl, const char *titl
 	cd->owner = bl;
 	safestrncpy(cd->npc_event, ev, sizeof(cd->npc_event));
 
-	cd->bl.id   = map_get_new_object_id();
+	cd->bl.id   = map->get_new_object_id();
 	cd->bl.m    = bl->m;
 	cd->bl.x    = bl->x;
 	cd->bl.y    = bl->y;
@@ -65,7 +65,7 @@ static struct chat_data *chat_createchat(struct block_list *bl, const char *titl
 		return NULL;
 	}
 
-	map_addiddb(&cd->bl);
+	map->addiddb(&cd->bl);
 
 	if(bl->type != BL_NPC)
 		cd->kick_list = idb_alloc(DB_OPT_BASE);
@@ -89,12 +89,12 @@ bool chat_createpcchat(struct map_session_data *sd, const char *title, const cha
 		return false;
 	}
 
-	if(map[sd->bl.m].flag.nochat) {
+	if(map->list[sd->bl.m].flag.nochat) {
 		clif_displaymessage(sd->fd, msg_txt(281));
 		return false; //Can't create chatrooms on this map.
 	}
 
-	if(map_getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOCHAT)) {
+	if(map->getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOCHAT)) {
 		clif_displaymessage(sd->fd, msg_txt(665));
 		return false;
 	}
@@ -124,7 +124,7 @@ bool chat_joinchat(struct map_session_data *sd, int chatid, const char *pass)
 	struct chat_data *cd;
 
 	nullpo_ret(sd);
-	cd = (struct chat_data *)map_id2bl(chatid);
+	cd = (struct chat_data *)map->id2bl(chatid);
 
 	if(cd == NULL || cd->bl.type != BL_CHAT || cd->bl.m != sd->bl.m || sd->state.vending || sd->state.buyingstore || sd->chatID || ((cd->owner->type == BL_NPC) ? cd->users+1 : cd->users) >= cd->limit) {
 		clif_joinchatfail(sd,0);
@@ -187,7 +187,7 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 
 	nullpo_retr(0, sd);
 
-	cd = (struct chat_data *)map_id2bl(sd->chatID);
+	cd = (struct chat_data *)map->id2bl(sd->chatID);
 	if(cd == NULL) {
 		pc_setchatid(sd, 0);
 		return 0;
@@ -216,11 +216,11 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 
 		clif_clearchat(cd, 0);
 		db_destroy(cd->kick_list);
-		map_deliddb(&cd->bl);
-		map_delblock(&cd->bl);
-		map_freeblock(&cd->bl);
+		map->deliddb(&cd->bl);
+		map->delblock(&cd->bl);
+		map->freeblock(&cd->bl);
 
-		unit = map_find_skill_unit_oncell(&sd->bl, sd->bl.x, sd->bl.y, AL_WARP, NULL, 0);
+		unit = map->find_skill_unit_oncell(&sd->bl, sd->bl.x, sd->bl.y, AL_WARP, NULL, 0);
 		group = (unit != NULL) ? unit->group : NULL;
 		if(group != NULL)
 			skill_unit_onplace(unit, &sd->bl, group->tick);
@@ -233,7 +233,7 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 		//New owner cant are in a no_chat cell
 		//must have suficient level
 		//cant be nearly of a npc
-		if( map_getcell(nosd->bl.m, nosd->bl.x, nosd->bl.y, CELL_CHKNOCHAT) ||
+		if( map->getcell(nosd->bl.m, nosd->bl.x, nosd->bl.y, CELL_CHKNOCHAT) ||
 			(battle_config.basic_skill_check && pc_checkskill(nosd,NV_BASIC) < 4) ||
 			npc->isnear(&nosd->bl) ) {
 			clif_skill_fail(sd,1,USESKILL_FAIL_THERE_ARE_NPC_AROUND,0);
@@ -246,10 +246,10 @@ int chat_leavechat(struct map_session_data *sd, bool kicked)
 		clif_clearchat(cd, 0);
 
 		//Adjust Chat location after owner has been changed.
-		map_delblock(&cd->bl);
+		map->delblock(&cd->bl);
 		cd->bl.x = nosd->bl.x;
 		cd->bl.y = nosd->bl.y;
-		map_addblock(&cd->bl);
+		map->addblock(&cd->bl);
 
 		clif_dispchat(cd,0);
 		return 3; // Owner changed
@@ -273,7 +273,7 @@ bool chat_changechatowner(struct map_session_data *sd, const char *nextownername
 
 	nullpo_ret(sd);
 
-	cd = (struct chat_data *)map_id2bl(sd->chatID);
+	cd = (struct chat_data *)map->id2bl(sd->chatID);
 	if(cd == NULL || (struct block_list *) sd != cd->owner)
 		return false;
 
@@ -294,10 +294,10 @@ bool chat_changechatowner(struct map_session_data *sd, const char *nextownername
 	cd->usersd[0] = tmpsd;
 
 	// set the new chatroom position
-	map_delblock(&cd->bl);
+	map->delblock(&cd->bl);
 	cd->bl.x = cd->owner->x;
 	cd->bl.y = cd->owner->y;
-	map_addblock(&cd->bl);
+	map->addblock(&cd->bl);
 
 	// and display again
 	clif_dispchat(cd,0);
@@ -317,7 +317,7 @@ bool chat_changechatstatus(struct map_session_data *sd, const char *title, const
 
 	nullpo_ret(sd);
 
-	cd = (struct chat_data *)map_id2bl(sd->chatID);
+	cd = (struct chat_data *)map->id2bl(sd->chatID);
 	if(cd==NULL || (struct block_list *)sd != cd->owner)
 		return false;
 
@@ -345,7 +345,7 @@ bool  chat_kickchat(struct map_session_data *sd, const char *kickusername)
 
 	nullpo_ret(sd);
 
-	cd = (struct chat_data *)map_id2bl(sd->chatID);
+	cd = (struct chat_data *)map->id2bl(sd->chatID);
 
 	if(cd==NULL || (struct block_list *)sd != cd->owner)
 		return false;
@@ -402,15 +402,15 @@ bool chat_deletenpcchat(struct npc_data *nd)
 	struct chat_data *cd;
 	nullpo_ret(nd);
 
-	cd = (struct chat_data *)map_id2bl(nd->chat_id);
+	cd = (struct chat_data *)map->id2bl(nd->chat_id);
 	if(cd == NULL)
 		return false;
 
 	chat_npckickall(cd);
 	clif_clearchat(cd, 0);
-	map_deliddb(&cd->bl);
-	map_delblock(&cd->bl);
-	map_freeblock(&cd->bl);
+	map->deliddb(&cd->bl);
+	map->delblock(&cd->bl);
+	map->freeblock(&cd->bl);
 	nd->chat_id = 0;
 
 	return true;

@@ -233,7 +233,7 @@ int merc_contract_end_timer(int tid, int64 tick, int id, intptr_t data) {
 	struct map_session_data *sd;
 	struct mercenary_data *md;
 
-	if((sd = map_id2sd(id)) == NULL)
+	if((sd = map->id2sd(id)) == NULL)
 		return 1;
 	if((md = sd->md) == NULL)
 		return 1;
@@ -295,7 +295,7 @@ int merc_data_received(struct s_mercenary *merc, bool flag) {
 	struct s_mercenary_db *db;
 	int i = mercenary->search_index(merc->class_);
 
-	if((sd = map_charid2sd(merc->char_id)) == NULL)
+	if((sd = map->charid2sd(merc->char_id)) == NULL)
 		return 0;
 	if(!flag || i < 0) {
 		// Not created - loaded - DB info
@@ -325,7 +325,7 @@ int merc_data_received(struct s_mercenary *merc, bool flag) {
 		md->bl.x = md->ud.to_x;
 		md->bl.y = md->ud.to_y;
 
-		map_addiddb(&md->bl);
+		map->addiddb(&md->bl);
 		status_calc_mercenary(md,SCO_FIRST);
 		md->contract_timer = INVALID_TIMER;
 		merc_contract_init(md);
@@ -339,7 +339,7 @@ int merc_data_received(struct s_mercenary *merc, bool flag) {
 	sd->status.mer_id = merc->mercenary_id;
 
 	if(md && md->bl.prev == NULL && sd->bl.prev != NULL) {
-		map_addblock(&md->bl);
+		map->addblock(&md->bl);
 		clif_spawn(&md->bl);
 		clif_mercenary_info(sd);
 		clif_mercenary_skillblock(sd);

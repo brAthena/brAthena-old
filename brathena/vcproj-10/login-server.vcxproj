@@ -149,6 +149,7 @@
     <ClInclude Include="..\src\login\loginlog.h" />
     <ClInclude Include="..\src\common\cbasetypes.h" />
     <ClInclude Include="..\src\common\core.h" />
+    <ClInclude Include="..\src\common\console.h" />
     <ClInclude Include="..\src\common\db.h" />
     <ClInclude Include="..\src\common\ers.h" />
     <ClInclude Include="..\src\common\malloc.h" />
@@ -181,6 +182,7 @@
 	<ClCompile Include="..\src\common\conf.c" />
 	<ClCompile Include="..\src\common\lang.c" />
     <ClCompile Include="..\src\common\core.c" />
+    <ClCompile Include="..\src\common\console.c" />
     <ClCompile Include="..\src\common\db.c" />
     <ClCompile Include="..\src\common\ers.c" />
     <ClCompile Include="..\src\common\malloc.c" />

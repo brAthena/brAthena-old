@@ -36,6 +36,12 @@
 /// your map-server using more resources while this is active, comment the line
 #define SCRIPT_CALLFUNC_CHECK
 
+/// Comente para desativar console_parse
+/// CONSOLE_INPUT permite que você digite comandos no console do servidor.
+#define CONSOLE_INPUT
+/// Número máximo de caracteres que 'CONSOLE_INPUT' vai apoiar por linha.
+#define MAX_CONSOLE_INPUT 150
+
 /// Reporte anônimamente
 /// Descomente para não enviar mais reports automáticos.
 //#define STATS_OPT_OUT
@@ -65,7 +71,7 @@
 #define GP_BOUND_ITEMS
 
 /// Comente para não ver o uso de memória consumida em tempo real. [Ai4rei]
-#define SHOW_MEMORY
+//#define SHOW_MEMORY
 
 /// Comente para desativar persistência do autotrade  (onde comerciantes com autotrade sobrevivem a reinicialização do servidor)
 #define AUTOTRADE_PERSISTENCY

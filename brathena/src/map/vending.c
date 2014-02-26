@@ -60,7 +60,7 @@ void vending_vendinglistreq(struct map_session_data *sd, unsigned int id) {
 	struct map_session_data *vsd;
 	nullpo_retv(sd);
 
-	if((vsd = map_id2sd(id)) == NULL)
+	if((vsd = map->id2sd(id)) == NULL)
 		return;
 	if(!vsd->state.vending)
 		return; // not vending
@@ -83,7 +83,7 @@ void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid,
 	int i, j, cursor, w, new_ = 0, blank, vend_list[MAX_VENDING];
 	double z;
 	struct s_vending vend[MAX_VENDING]; // against duplicate packets
-	struct map_session_data *vsd = map_id2sd(aid);
+	struct map_session_data *vsd = map->id2sd(aid);
 
 	nullpo_retv(sd);
 	if(vsd == NULL || !vsd->state.vending || vsd->bl.id == sd->bl.id)
@@ -212,7 +212,7 @@ void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid,
 	vsd->vend_num = cursor;
 
 	//Always save BOTH: buyer and customer
-	if(save_settings&2) {
+	if(map->save_settings&2) {
 		chrif->save(sd, 0);
 		chrif->save(vsd, 0);
 	}
@@ -224,7 +224,7 @@ void vending_purchasereq(struct map_session_data *sd, int aid, unsigned int uid,
 		if(i == vsd->vend_num) {
 			//Close Vending (this was automatically done by the client, we have to do it manually for autovenders) [Skotlex]
 			vending->close(vsd);
-			map_quit(vsd);  //They have no reason to stay around anymore, do they?
+			map->quit(vsd);  //They have no reason to stay around anymore, do they?
 		} else
 			pc_autotrade_update(vsd,PAUC_REFRESH);
 	}

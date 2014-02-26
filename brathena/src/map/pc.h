@@ -35,6 +35,7 @@
 #include "unit.h" // unit_stop_attack(), unit_stop_walking()
 #include "vending.h" // struct s_vending
 
+DBMap *at_db;
 
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
@@ -1045,8 +1046,8 @@ void pc_bound_clear(struct map_session_data *sd, enum e_item_bound_type type);
 // Salva e atualiza as informações de um vip.
 #define save_vip(sd,x) \
 	sd->group_id = x; pc_set_group(sd, sd->group_id); \
-		if(SQL_ERROR == Sql_Query(mmysql_handle,"UPDATE `login` SET `group_id`=%d WHERE `account_id`='%d'", x, sd->status.account_id)) \
-			Sql_ShowDebug(mmysql_handle);
+		if(SQL_ERROR == Sql_Query(map->mysql_handle,"UPDATE `login` SET `group_id`=%d WHERE `account_id`='%d'", x, sd->status.account_id)) \
+		Sql_ShowDebug(map->mysql_handle);
 
 int check_time_vip(int tid, int64 tick, int id, intptr_t data);
 int add_time_vip(struct map_session_data *sd, int type[4]);

@@ -154,7 +154,7 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 	struct unit_data        *ud;
 	struct mercenary_data   *mrd;
 
-	bl = map_id2bl(id);
+	bl = map->id2bl(id);
 	if(bl == NULL)
 		return 0;
 	sd = BL_CAST(BL_PC, bl);
@@ -185,15 +185,15 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 	dx = dirx[(int)dir];
 	dy = diry[(int)dir];
 
-	if(map_getcell(bl->m,x+dx,y+dy,CELL_CHKNOPASS))
+	if(map->getcell(bl->m,x+dx,y+dy,CELL_CHKNOPASS))
 		return unit_walktoxy_sub(bl);
 
 	//Refresh view for all those we lose sight
-	map_foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
+	map->foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
 
 	x += dx;
 	y += dy;
-	map_moveblock(bl, x, y, tick);
+	map->moveblock(bl, x, y, tick);
 	ud->walk_count++; //walked cell counter, to be used for walk-triggered skills. [Skotlex]
 	status_change_end(bl, SC_ROLLINGCUTTER, INVALID_TIMER); //If you move, you lose your counters. [malufett]
 
@@ -201,13 +201,13 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 		return 0; //map_moveblock has altered the object beyond what we expected (moved/warped it)
 
 	ud->walktimer = CLIF_WALK_TIMER; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
-	map_foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
+	map->foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
 	ud->walktimer = INVALID_TIMER;
 
 	if(sd) {
 		if(sd->touching_id)
 			npc->touchnext_areanpc(sd,false);
-		if(map_getcell(bl->m,x,y,CELL_CHKNPC)) {
+		if(map->getcell(bl->m,x,y,CELL_CHKNPC)) {
 			npc->touch_areanpc(sd,bl->m,x,y);
 			if(bl->prev == NULL)  //Script could have warped char, abort remaining of the function.
 				return 0;
@@ -238,7 +238,7 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 				sd->hd->masterteleport_timer = 0;
 		}
 	} else if(md) {
-		if(map_getcell(bl->m,x,y,CELL_CHKNPC)) {
+		if(map->getcell(bl->m,x,y,CELL_CHKNPC)) {
 			if(npc->touch_areanpc2(md)) return 0;   // Warped
 		} else
 			md->areanpc_id = 0;
@@ -294,7 +294,7 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 			ud->state.running = 0;
 	} else if(ud->target_to) {
 		//Update target trajectory.
-		struct block_list *tbl = map_id2bl(ud->target_to);
+		struct block_list *tbl = map->id2bl(ud->target_to);
 		if(!tbl || !status->check_visibility(bl, tbl)) {     //Cancel chase.
 			ud->to_x = bl->x;
 			ud->to_y = bl->y;
@@ -325,7 +325,7 @@ int unit_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 
 int unit_delay_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 {
-	struct block_list *bl = map_id2bl(id);
+	struct block_list *bl = map->id2bl(id);
 
 	if(!bl || bl->prev == NULL)
 		return 0;
@@ -335,7 +335,7 @@ int unit_delay_walktoxy_timer(int tid, int64 tick, int id, intptr_t data)
 
 int unit_delay_walktobl_timer(int tid, int64 tick, int id, intptr_t data)
 {
-	struct block_list *bl = map_id2bl(id), *tbl = map_id2bl(data);
+	struct block_list *bl = map->id2bl(id), *tbl = map->id2bl(data);
 
 	if(!bl || bl->prev == NULL || tbl == NULL)
 		return 0;
@@ -392,7 +392,7 @@ int unit_walktoxy(struct block_list *bl, short x, short y, int flag)
 
 	sc = status->get_sc(bl);
 	if(sc && (sc->data[SC_CONFUSION] || sc->data[SC__CHAOS]))  //Randomize the target position
-		map_random_dir(bl, &ud->to_x, &ud->to_y);
+		map->random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
 		// When you come to the center of the grid because the change of destination while you're walking right now
@@ -420,7 +420,7 @@ static inline void set_mobstate(struct block_list *bl, int flag)
 
 static int unit_walktobl_sub(int tid, int64 tick, int id, intptr_t data)
 {
-	struct block_list *bl = map_id2bl(id);
+	struct block_list *bl = map->id2bl(id);
 	struct unit_data *ud = bl?unit_bl2ud(bl):NULL;
 
 	if(ud && ud->walktimer == INVALID_TIMER && ud->target == data) {
@@ -464,7 +464,7 @@ int unit_walktobl(struct block_list *bl, struct block_list *tbl, int range, int 
 
 	sc = status->get_sc(bl);
 	if(sc && (sc->data[SC_CONFUSION] || sc->data[SC__CHAOS]))  //Randomize the target position
-		map_random_dir(bl, &ud->to_x, &ud->to_y);
+		map->random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
 		ud->state.change_walk_target = 1;
@@ -516,11 +516,11 @@ int unit_run(struct block_list *bl)
 	to_x = bl->x;
 	to_y = bl->y;
 	for(i=0; i<AREA_SIZE; i++) {
-		if(!map_getcell(bl->m,to_x+dir_x,to_y+dir_y,CELL_CHKPASS))
+		if(!map->getcell(bl->m,to_x+dir_x,to_y+dir_y,CELL_CHKPASS))
 			break;
 
 		//if sprinting and there's a PC/Mob/NPC, block the path [Kevin]
-		if(sc->data[SC_RUN] && map_count_oncell(bl->m, to_x+dir_x, to_y+dir_y, BL_PC|BL_MOB|BL_NPC))
+		if(sc->data[SC_RUN] && map->count_oncell(bl->m, to_x+dir_x, to_y+dir_y, BL_PC|BL_MOB|BL_NPC))
 			break;
 
 		to_x += dir_x;
@@ -588,10 +588,10 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 	to_x = bl->x;
 	to_y = bl->y;
 	for(i=0; i<AREA_SIZE; i++) {
-		if(!map_getcell(bl->m,to_x+dir_x,to_y+dir_y,CELL_CHKPASS))
+		if(!map->getcell(bl->m,to_x+dir_x,to_y+dir_y,CELL_CHKPASS))
 			break;
 
-		if(sc->data[SC_WUGDASH] && map_count_oncell(bl->m, to_x+dir_x, to_y+dir_y, BL_PC|BL_MOB|BL_NPC))
+		if(sc->data[SC_WUGDASH] && map->count_oncell(bl->m, to_x+dir_x, to_y+dir_y, BL_PC|BL_MOB|BL_NPC))
 			break;
 
 		to_x += dir_x;
@@ -632,8 +632,8 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 //Makes bl attempt to run dist cells away from target. Uses hard-paths.
 int unit_escape(struct block_list *bl, struct block_list *target, short dist)
 {
-	uint8 dir = map_calc_dir(target, bl->x, bl->y);
-	while(dist > 0 && map_getcell(bl->m, bl->x + dist*dirx[dir], bl->y + dist*diry[dir], CELL_CHKNOREACH))
+	uint8 dir = map->calc_dir(target, bl->x, bl->y);
+	while(dist > 0 && map->getcell(bl->m, bl->x + dist*dirx[dir], bl->y + dist*diry[dir], CELL_CHKNOREACH))
 		dist--;
 	return (dist > 0 && unit_walktoxy(bl, bl->x + dist*dirx[dir], bl->y + dist*diry[dir], 0));
 }
@@ -655,30 +655,30 @@ int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool
 	unit_stop_walking(bl,1);
 	unit_stop_attack(bl);
 
-	if(checkpath && (map_getcell(bl->m,dst_x,dst_y,CELL_CHKNOPASS) || !path->search(NULL,bl->m,bl->x,bl->y,dst_x,dst_y,easy,CELL_CHKNOREACH)))
+	if(checkpath && (map->getcell(bl->m,dst_x,dst_y,CELL_CHKNOPASS) || !path->search(NULL,bl->m,bl->x,bl->y,dst_x,dst_y,easy,CELL_CHKNOREACH)))
 		return 0; // unreachable
 
 	ud->to_x = dst_x;
 	ud->to_y = dst_y;
 
-	dir = map_calc_dir(bl, dst_x, dst_y);
+	dir = map->calc_dir(bl, dst_x, dst_y);
 	ud->dir = dir;
 
 	dx = dst_x - bl->x;
 	dy = dst_y - bl->y;
 
-	map_foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
+	map->foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
 
-	map_moveblock(bl, dst_x, dst_y, gettick());
+	map->moveblock(bl, dst_x, dst_y, gettick());
 
 	ud->walktimer = CLIF_WALK_TIMER; // arbitrary non-INVALID_TIMER value to make the clif code send walking packets
-	map_foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
+	map->foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, sd?BL_ALL:BL_PC, bl);
 	ud->walktimer = INVALID_TIMER;
 
 	if(sd) {
 		if(sd->touching_id)
 			npc->touchnext_areanpc(sd,false);
-		if(map_getcell(bl->m,bl->x,bl->y,CELL_CHKNPC)) {
+		if(map->getcell(bl->m,bl->x,bl->y,CELL_CHKNPC)) {
 			npc->touch_areanpc(sd,bl->m,bl->x,bl->y);
 			if(bl->prev == NULL)  //Script could have warped char, abort remaining of the function.
 				return 0;
@@ -761,15 +761,15 @@ int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag)
 		dy = ny-bl->y;
 
 		if(dx || dy) {
-			map_foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, bl->type == BL_PC ? BL_ALL : BL_PC, bl);
+			map->foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, bl->type == BL_PC ? BL_ALL : BL_PC, bl);
 
 			if(su) {
 				skill_unit_move_unit_group(su->group, bl->m, dx, dy);
 			} else {
-				map_moveblock(bl, nx, ny, gettick());
+				map->moveblock(bl, nx, ny, gettick());
 			}
 
-			map_foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, bl->type == BL_PC ? BL_ALL : BL_PC, bl);
+			map->foreachinmovearea(clif_insight, bl, AREA_SIZE, -dx, -dy, bl->type == BL_PC ? BL_ALL : BL_PC, bl);
 
 			if(!(flag&1)) {
 				clif_blown(bl);
@@ -779,7 +779,7 @@ int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag)
 				if(sd->touching_id) {
 					npc->touchnext_areanpc(sd, false);
 				}
-				if(map_getcell(bl->m, bl->x, bl->y, CELL_CHKNPC)) {
+				if(map->getcell(bl->m, bl->x, bl->y, CELL_CHKNPC)) {
 					npc->touch_areanpc(sd, bl->m, bl->x, bl->y);
 				} else {
 					sd->areanpc_id = 0;
@@ -814,31 +814,31 @@ int unit_warp(struct block_list *bl,short m,short x,short y,clr_type type)
 
 	switch(bl->type) {
 		case BL_MOB:
-			if(map[bl->m].flag.monster_noteleport && ((TBL_MOB *)bl)->master_id == 0)
+			if(map->list[bl->m].flag.monster_noteleport && ((TBL_MOB *)bl)->master_id == 0)
 				return 1;
-			if(m != bl->m && map[m].flag.nobranch && battle_config.mob_warp&4 && !(((TBL_MOB *)bl)->master_id))
+			if(m != bl->m && map->list[m].flag.nobranch && battle_config.mob_warp & 4 && !(((TBL_MOB *)bl)->master_id))
 				return 1;
 			break;
 		case BL_PC:
-			if(map[bl->m].flag.noteleport)
+			if(map->list[bl->m].flag.noteleport)
 				return 1;
 			break;
 	}
 
 	if(x<0 || y<0) {
 		//Random map position.
-		if(!map_search_freecell(NULL, m, &x, &y, -1, -1, 1)) {
-			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+		if(!map->search_freecell(NULL, m, &x, &y, -1, -1, 1)) {
+			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map->list[m].name, x, y);
 			return 2;
 
 		}
-	} else if(map_getcell(m,x,y,CELL_CHKNOREACH)) {
+	} else if(map->getcell(m,x,y,CELL_CHKNOREACH)) {
 		//Invalid target cell
-		ShowWarning("unit_warp: Specified non-walkable target cell: %d (%s) at [%d,%d]\n", m, map[m].name, x,y);
+		ShowWarning("unit_warp: Specified non-walkable target cell: %d (%s) at [%d,%d]\n", m, map->list[m].name, x, y);
 
-		if(!map_search_freecell(NULL, m, &x, &y, 4, 4, 1)) {
+		if(!map->search_freecell(NULL, m, &x, &y, 4, 4, 1)) {
 			//Can't find a nearby cell
-			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map->list[m].name, x, y);
 			return 2;
 		}
 	}
@@ -857,7 +857,7 @@ int unit_warp(struct block_list *bl,short m,short x,short y,clr_type type)
 	bl->y=ud->to_y=y;
 	bl->m=m;
 
-	map_addblock(bl);
+	map->addblock(bl);
 	clif_spawn(bl);
 	skill_unit_move(bl,gettick(),1);
 
@@ -1026,7 +1026,7 @@ int unit_resume_running(int tid, int64 tick, int id, intptr_t data)
 {
 
 	struct unit_data *ud = (struct unit_data *)data;
-	TBL_PC *sd = map_id2sd(id);
+	TBL_PC *sd = map->id2sd(id);
 
 	if(sd && pc_isridingwug(sd))
 		clif_skill_nodamage(ud->bl,ud->bl,RA_WUGDASH,ud->skill_lv,
@@ -1135,7 +1135,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 				//Check for skills that auto-select target
 			case MO_CHAINCOMBO:
 				if(sc && sc->data[SC_BLADESTOP]) {
-					if((target=map_id2bl(sc->data[SC_BLADESTOP]->val4)) == NULL)
+					if((target=map->id2bl(sc->data[SC_BLADESTOP]->val4)) == NULL)
 						return 0;
 				}
 				break;
@@ -1143,7 +1143,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 			case WE_FEMALE:
 				if(!sd->status.partner_id)
 					return 0;
-				target = (struct block_list *)map_charid2sd(sd->status.partner_id);
+				target = (struct block_list *)map->charid2sd(sd->status.partner_id);
 				if(!target) {
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 					return 0;
@@ -1177,7 +1177,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 		}
 
 	if(!target)   // choose default target
-		target = map_id2bl(target_id);
+		target = map->id2bl(target_id);
 
 	if(!target || src->m != target->m || !src->prev || !target->prev)
 		return 0;
@@ -1354,7 +1354,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 		case NC_DISJOINT:
 			if(target->type == BL_PC) {
 				struct mob_data *md;
-				if((md = map_id2md(target->id)) && md->master_id != src->id)
+				if((md = map->id2md(target->id)) && md->master_id != src->id)
 					casttime <<= 1;
 			}
 			break;
@@ -1486,7 +1486,7 @@ int unit_skilluse_pos2(struct block_list *src, short skill_x, short skill_y, uin
 		 * "WHY IS IT HEREE": pneuma cannot be cancelled past this point, the client displays the animation even,
 		 * if we cancel it from nodamage_id, so it has to be here for it to not display the animation.
 		 **/
-		if(skill_id == AL_PNEUMA && map_getcell(src->m, skill_x, skill_y, CELL_CHKLANDPROTECTOR)) {
+		if(skill_id == AL_PNEUMA && map->getcell(src->m, skill_x, skill_y, CELL_CHKLANDPROTECTOR)) {
 			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			return 0;
 		}
@@ -1495,7 +1495,7 @@ int unit_skilluse_pos2(struct block_list *src, short skill_x, short skill_y, uin
 	if(!status->check_skilluse(src, NULL, skill_id, 0))
 		return 0;
 
-	if(map_getcell(src->m, skill_x, skill_y, CELL_CHKWALL)) {
+	if(map->getcell(src->m, skill_x, skill_y, CELL_CHKWALL)) {
 		// can't cast ground targeted spells on wall cells
 		if(sd) clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 		return 0;
@@ -1587,9 +1587,9 @@ int unit_set_target(struct unit_data *ud, int target_id)
 	nullpo_ret(ud);
 
 	if(ud->target != target_id) {
-		if(ud->target && (target = map_id2bl(ud->target)) && (ux = unit_bl2ud(target)) && ux->target_count > 0)
+		if(ud->target && (target = map->id2bl(ud->target)) && (ux = unit_bl2ud(target)) && ux->target_count > 0)
 			ux->target_count --;
-		if(target_id && (target = map_id2bl(target_id)) && (ux = unit_bl2ud(target)))
+		if(target_id && (target = map->id2bl(target_id)) && (ux = unit_bl2ud(target)))
 			ux->target_count ++;
 	}
 
@@ -1638,7 +1638,7 @@ int unit_attack(struct block_list *src,int target_id,int continuous)
 
 	nullpo_ret(ud = unit_bl2ud(src));
 
-	target = map_id2bl(target_id);
+	target = map->id2bl(target_id);
 	if(target==NULL || status->isdead(target)) {
 		unit_unattackable(src);
 		return 1;
@@ -1741,9 +1741,9 @@ bool unit_can_reach_bl(struct block_list *bl,struct block_list *tbl, int range, 
 	dx=(dx>0)?1:((dx<0)?-1:0);
 	dy=(dy>0)?1:((dy<0)?-1:0);
 
-	if(map_getcell(tbl->m,tbl->x-dx,tbl->y-dy,CELL_CHKNOPASS)) {
+	if(map->getcell(tbl->m,tbl->x-dx,tbl->y-dy,CELL_CHKNOPASS)) {
 		//Look for a suitable cell to place in.
-		for(i=0; i<9 && map_getcell(tbl->m,tbl->x-dirx[i],tbl->y-diry[i],CELL_CHKNOPASS); i++);
+		for(i=0; i<9 && map->getcell(tbl->m,tbl->x-dirx[i],tbl->y-diry[i],CELL_CHKNOPASS); i++);
 		if(i==9) return false;  //No valid cells.
 		dx = dirx[i];
 		dy = diry[i];
@@ -1828,7 +1828,7 @@ int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick)
 	sd = BL_CAST(BL_PC, src);
 	md = BL_CAST(BL_MOB, src);
 	ud->attacktimer = INVALID_TIMER;
-	target=map_id2bl(ud->target);
+	target=map->id2bl(ud->target);
 
 	if(src == NULL || src->prev == NULL || target==NULL || target->prev == NULL)
 		return 0;
@@ -1892,7 +1892,7 @@ int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick)
 
 	if(DIFF_TICK(ud->attackabletime,tick) <= 0) {
 		if(battle_config.attack_direction_change && (src->type&battle_config.attack_direction_change)) {
-			ud->dir = map_calc_dir(src, target->x,target->y);
+			ud->dir = map->calc_dir(src, target->x,target->y);
 		}
 		if(ud->walktimer != INVALID_TIMER)
 			unit_stop_walking(src,1);
@@ -1902,18 +1902,18 @@ int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick)
 			if(sstatus->mode&MD_ASSIST && DIFF_TICK(md->last_linktime, tick) < MIN_MOBLINKTIME) {
 				// Link monsters nearby [Skotlex]
 				md->last_linktime = tick;
-				map_foreachinrange(mob->linksearch, src, md->db->range2, BL_MOB, md->class_, target, tick);
+				map->foreachinrange(mob->linksearch, src, md->db->range2, BL_MOB, md->class_, target, tick);
 			}
 		}
 		if(src->type == BL_PET && pet_attackskill((TBL_PET *)src, target->id))
 			return 1;
 
-		map_freeblock_lock();
+		map->freeblock_lock();
 		ud->attacktarget_lv = battle_weapon_attack(src,target,tick,0);
 
 		if(sd && sd->status.pet_id > 0 && sd->pd && battle_config.pet_attack_support)
 			pet_target_check(sd,target,0);
-		map_freeblock_unlock();
+		map->freeblock_unlock();
 		/**
 		 * Applied when you're unable to attack (e.g. out of ammo)
 		 * We should stop here otherwise timer keeps on and this happens endlessly
@@ -1939,7 +1939,7 @@ int unit_attack_timer_sub(struct block_list *src, int tid, int64 tick)
 int unit_attack_timer(int tid, int64 tick, int id, intptr_t data)
 {
 	struct block_list *bl;
-	bl = map_id2bl(id);
+	bl = map->id2bl(id);
 	if(bl && unit_attack_timer_sub(bl, tid, tick) == 0)
 		unit_unattackable(bl);
 	return 0;
@@ -1969,7 +1969,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 			return 0;
 
 		if(sd && (sd->special_state.no_castcancel2 ||
-		(sd->special_state.no_castcancel && !map_flag_gvg(bl->m) && !map[bl->m].flag.battleground))) //fixed flags being read the wrong way around [blackhole89]
+			(sd->special_state.no_castcancel && !map_flag_gvg(bl->m) && !map->list[bl->m].flag.battleground))) //fixed flags being read the wrong way around [blackhole89]
 			return 0;
 	}
 
@@ -2082,7 +2082,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 	if(bl->prev == NULL)
 		return 0; //Already removed?
 
-	map_freeblock_lock();
+	map->freeblock_lock();
 
 	unit_set_target(ud, 0);
 
@@ -2145,7 +2145,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				struct map_session_data *sd = (struct map_session_data *)bl;
 
 				if(sd->shadowform_id){ //if shadow target has leave the map
-					struct block_list *d_bl = map_id2bl(sd->shadowform_id);
+					struct block_list *d_bl = map->id2bl(sd->shadowform_id);
 			    	if(d_bl)
 				    	status_change_end(d_bl,SC__SHADOWFORM,INVALID_TIMER);
 				}
@@ -2197,7 +2197,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				guild->send_dot_remove(sd);
 				bg_send_dot_remove(sd);
 
-				if(map[bl->m].users <= 0 || sd->state.debug_remove_map) {
+				if(map->list[bl->m].users <= 0 || sd->state.debug_remove_map) {
 					// this is only place where map users is decreased, if the mobs were removed too soon then this function was executed too many times [FlavioJS]
 					if(sd->debug_file == NULL || !(sd->state.debug_remove_map)) {
 						sd->debug_file = "";
@@ -2211,20 +2211,20 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 					          " Please report this!!!\n",
 					          sd->status.account_id, sd->status.char_id,
 					          sd->state.active, sd->state.connect_new, sd->state.rewarp, sd->state.changemap, sd->state.debug_remove_map,
-					          map[bl->m].name, map[bl->m].users,
+							  map->list[bl->m].name, map->list[bl->m].users,
 					          sd->debug_file, sd->debug_line, sd->debug_func, file, line, func);
-				} else if(--map[bl->m].users == 0 && battle_config.dynamic_mobs) //[Skotlex]
-					map_removemobs(bl->m);
+				} else if(--map->list[bl->m].users == 0 && battle_config.dynamic_mobs) //[Skotlex]
+					map->removemobs(bl->m);
 				if(!(sd->sc.option&OPTION_INVISIBLE)) {
 					// decrement the number of active pvp players on the map
-					--map[bl->m].users_pvp;
+					--map->list[bl->m].users_pvp;
 				}
-				if(map[bl->m].instance_id >= 0) {
-					instance->list[map[bl->m].instance_id].users--;
-					instance->check_idle(map[bl->m].instance_id);
+				if (map->list[bl->m].instance_id >= 0) {
+					instance->list[map->list[bl->m].instance_id].users--;
+					instance->check_idle(map->list[bl->m].instance_id);
 				}
 				if(sd->state.hpmeter_visible) {
-					map[bl->m].hpmeter_visible--;
+					map->list[bl->m].hpmeter_visible--;
 					sd->state.hpmeter_visible = 0;
 				}
 				sd->state.debug_remove_map = 1; // temporary state to track double remove_map's [FlavioJS]
@@ -2250,9 +2250,9 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				if(pd->pet.intimate <= 0 && !(pd->msd && !pd->msd->state.active)) {
 					//If logging out, this is deleted on unit_free
 					clif_clearunit_area(bl,clrtype);
-					map_delblock(bl);
+					map->delblock(bl);
 					unit_free(bl,CLR_OUTSIGHT);
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 					return 0;
 				}
 
@@ -2264,9 +2264,9 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 					//If logging out, this is deleted on unit_free
 					clif_emotion(bl, E_SOB);
 					clif_clearunit_area(bl,clrtype);
-					map_delblock(bl);
+					map->delblock(bl);
 					unit_free(bl,CLR_OUTSIGHT);
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 					return 0;
 				}
 				break;
@@ -2276,9 +2276,9 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				ud->canact_tick = ud->canmove_tick;
 				if(mercenary->get_lifetime(md) <= 0 && !(md->master && !md->master->state.active)) {
 					clif_clearunit_area(bl,clrtype);
-					map_delblock(bl);
+					map->delblock(bl);
 					unit_free(bl,CLR_OUTSIGHT);
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 					return 0;
 				}
 				break;
@@ -2288,9 +2288,9 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 				ud->canact_tick = ud->canmove_tick;
 				if(elemental->get_lifetime(ed) <= 0 && !(ed->master && !ed->master->state.active)) {
 					clif_clearunit_area(bl,clrtype);
-					map_delblock(bl);
+					map->delblock(bl);
 					unit_free(bl,0);
-					map_freeblock_unlock();
+					map->freeblock_unlock();
 					return 0;
 				}
 				break;
@@ -2302,8 +2302,8 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype, const char *file, i
 	 **/
 	if(bl->type != BL_MOB || !status->isdead(bl))
 		clif_clearunit_area(bl,clrtype);
-	map_delblock(bl);
-	map_freeblock_unlock();
+	map->delblock(bl);
+	map->freeblock_unlock();
 	return 1;
 }
 
@@ -2311,7 +2311,8 @@ void unit_remove_map_pc(struct map_session_data *sd, clr_type clrtype)
 {
 	unit_remove_map(&sd->bl,clrtype,ALC_MARK);
 
-	if(clrtype == CLR_TELEPORT) clrtype = CLR_OUTSIGHT;  //CLR_TELEPORT is the warp from logging out, but pets/homunc need to just 'vanish' instead of showing the warping out animation.
+	//CLR_RESPAWN is the warp from logging out, CLR_TELEPORT is the warp from teleporting, but pets/homunc need to just 'vanish' instead of showing the warping animation.
+	if(clrtype == CLR_RESPAWN || clrtype == CLR_TELEPORT) clrtype = CLR_OUTSIGHT;
 
 	if(sd->pd)
 		unit_remove_map(&sd->pd->bl, clrtype, ALC_MARK);
@@ -2341,7 +2342,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 	struct unit_data *ud = unit_bl2ud(bl);
 	nullpo_ret(ud);
 
-	map_freeblock_lock();
+	map->freeblock_lock();
 	if(bl->prev)     //Players are supposed to logout with a "warp" effect.
 		unit_remove_map(bl, clrtype, ALC_MARK);
 
@@ -2365,7 +2366,7 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 					duel_reject(sd->duel_invite, sd);
 
 				// Notify friends that this char logged out. [Skotlex]
-				map_foreachpc(clif_friendslist_toggle_sub, sd->status.account_id, sd->status.char_id, 0);
+				map->foreachpc(clif_friendslist_toggle_sub, sd->status.account_id, sd->status.char_id, 0);
 				party_send_logout(sd);
 				guild->send_memberinfoshort(sd, 0);
 				pc_cleareventtimer(sd);
@@ -2557,10 +2558,10 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 
 	skill_clear_unitgroup(bl);
 	status->change_clear(bl, 1);
-	map_deliddb(bl);
-	if(bl->type != BL_PC)   //Players are handled by map_quit
-		map_freeblock(bl);
-	map_freeblock_unlock();
+	map->deliddb(bl);
+	if(bl->type != BL_PC)   //Players are handled by map->quit
+		map->freeblock(bl);
+	map->freeblock_unlock();
 	return 0;
 }
 

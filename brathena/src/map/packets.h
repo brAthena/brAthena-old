@@ -2389,6 +2389,21 @@ packet(0x020d,-1);
 	packet(0x0930,36,clif->pStoragePassword,0);
 #endif
 
+
+#if PACKETVER >= 20130724
+	packet(0x09A6,12); // ZC_BANKING_CHECK
+	packet(0x09A7,10,clif->pBankDeposit,2,4,6);
+	packet(0x09A8,16); // ZC_ACK_BANKING_DEPOSIT
+	packet(0x09A9,10,clif->pBankWithdraw,2,4,6);
+	packet(0x09AA,16); // ZC_ACK_BANKING_WITHDRAW
+	packet(0x09AB,6,clif->pBankCheck,2,4);
+	////
+	packet(0x09B6,6,clif->pBankOpen,2,4);
+	packet(0x09B7,4); // ZC_ACK_OPEN_BANKING
+	packet(0x09B8,6,clif->pBankClose,2,4);
+	packet(0x09B9,4); // ZC_ACK_CLOSE_BANKING
+#endif
+
 //2013-07-03aRagexe (Shakto)
 #if PACKETVER >= 20130703
 	packet(0x0930,5,clif->pChangeDir,2,4);
@@ -2415,8 +2430,8 @@ packet(0x020d,-1);
 	packet(0x097C,4,clif->pRanklist);
 #endif
 
-//2013-07-10bRagexe
-#if PACKETVER >= 20130710
+//2013-08-07aRagexe
+#if PACKETVER >= 20130807
 	packet(0x0369,7,clif->pActionRequest,2,6);
 	packet(0x083C,10,clif->pUseSkillToId,2,4,6);
 	packet(0x0437,5,clif->pWalkToXY,2);
@@ -2453,166 +2468,46 @@ packet(0x020d,-1);
 
 #endif
 
-//2013-07-17cRagexe
-#if PACKETVER >= 20130717
-	packet(0x0918,7,clif->pActionRequest,2,6);
-	packet(0x091E,10,clif->pUseSkillToId,2,4,6);
-	packet(0x083C,5,clif->pWalkToXY,2);
-	packet(0x02C4,6,clif->pTickSend,2);
-	packet(0x088C,5,clif->pChangeDir,2,4);
-	packet(0x08A9,6,clif->pTakeItem,2);
-	packet(0x0917,6,clif->pDropItem,2,4);
-	packet(0x089B,8,clif->pMoveToKafra,2,4);
-	packet(0x0956,8,clif->pMoveFromKafra,2,4);
-	packet(0x0882,10,clif->pUseSkillToPos,2,4,6,8);
-	packet(0x0952,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
-	packet(0x0958,6,clif->pGetCharNameRequest,2);
-	packet(0x0967,6,clif->pSolveCharName,2);
-	packet(0x0960,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x0819,2,clif->pSearchStoreInfoNextPage,0);
-	packet(0x086B,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
-	packet(0x093B,-1,clif->pReqTradeBuyingStore,2,4,8,12);
-	packet(0x0898,6,clif->pReqClickBuyingStore,2);
-	packet(0x096A,2,clif->pReqCloseBuyingStore,0);
-	packet(0x08AA,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
-#ifdef PACKETVER_RE
-	packet(0x0365,41,clif->pPartyRecruitRegisterReq,2,4);
-#else
-	packet(0x0365,18,clif->pPartyBookingRegisterReq,2,4);
-#endif
-// 	packet(0x08A6,8); // CZ_JOIN_BATTLE_FIELD
-	packet(0x0897,-1,clif->pItemListWindowSelected,2,4,8,12);
-	packet(0x091D,19,clif->pWantToConnection,2,6,10,14,18);
-	packet(0x092F,26,clif->pPartyInvite2,2);
-//	packet(0x086C,4); // CZ_GANGSI_RANK
-	packet(0x0863,26,clif->pFriendsListAdd,2);
-	packet(0x088A,5,clif->pHomMenu,2,4);
-	packet(0x095B,36,clif->pStoragePassword,2,4,20);
-#endif
-
-//2013-07-24eRagexe
-#if PACKETVER >= 20130724
-	packet(0x0876,7,clif->pActionRequest,2,6);
-	packet(0x0958,10,clif->pUseSkillToId,2,4,6);
-	packet(0x0953,5,clif->pWalkToXY,2);
-	packet(0x035F,6,clif->pTickSend,2);
-	packet(0x0966,5,clif->pChangeDir,2,4);
-	packet(0x094A,6,clif->pTakeItem,2);
-	packet(0x0891,6,clif->pDropItem,2,4);
-	packet(0x095D,8,clif->pMoveToKafra,2,4);
-	packet(0x085E,8,clif->pMoveFromKafra,2,4);
-	packet(0x089C,10,clif->pUseSkillToPos,2,4,6,8);
-	packet(0x0921,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
-	packet(0x0867,6,clif->pGetCharNameRequest,2);
-	packet(0x0954,6,clif->pSolveCharName,2);
-	packet(0x0956,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x0890,2,clif->pSearchStoreInfoNextPage,0);
-	packet(0x0965,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
-	packet(0x095C,-1,clif->pReqTradeBuyingStore,2,4,8,12);
-	packet(0x0924,6,clif->pReqClickBuyingStore,2);
-	packet(0x023B,2,clif->pReqCloseBuyingStore,0);
-	packet(0x086A,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
-#ifdef PACKETVER_RE
-	packet(0x0365,41,clif->pPartyRecruitRegisterReq,2,4);
-#else
-	packet(0x0365,18,clif->pPartyBookingRegisterReq,2,4);
-#endif
-// 	packet(0x0437,8); // CZ_JOIN_BATTLE_FIELD
-	packet(0x092E,-1,clif->pItemListWindowSelected,2,4,8,12);
-	packet(0x0893,19,clif->pWantToConnection,2,6,10,14,18);
-	packet(0x0927,26,clif->pPartyInvite2,2);
-// 	packet(0x08AB,4); // CZ_GANGSI_RANK
-	packet(0x092B,26,clif->pFriendsListAdd,2);
-	packet(0x0874,5,clif->pHomMenu,2,4);
-	packet(0x0860,36,clif->pStoragePassword,2,4,20);
-	packet(0x09A6,12); // ZC_BANKING_CHECK
-	packet(0x09A7,10,clif->pBankDeposit,2,4,6);
-	packet(0x09A8,16); // ZC_ACK_BANKING_DEPOSIT
-	packet(0x09A9,10,clif->pBankWithdraw,2,4,6);
-	packet(0x09AA,16); // ZC_ACK_BANKING_WITHDRAW
-	packet(0x09AB,6,clif->pBankCheck,2,4);
-	////
-	packet(0x09B6,6,clif->pBankOpen,2,4);
-	packet(0x09B7,4); // ZC_ACK_OPEN_BANKING
-	packet(0x09B8,6,clif->pBankClose,2,4);
-	packet(0x09B9,4); // ZC_ACK_CLOSE_BANKING
-#endif
-
-//2013-07-31cRagexe
-#if PACKETVER >= 20130731
-	packet(0x0878,7,clif->pActionRequest,2,6);
-	packet(0x0865,10,clif->pUseSkillToId,2,4,6);
-	packet(0x0437,5,clif->pWalkToXY,2);
-	packet(0x095F,6,clif->pTickSend,2);
-	packet(0x0438,5,clif->pChangeDir,2,4);
-	packet(0x0935,6,clif->pTakeItem,2);
-	packet(0x0962,6,clif->pDropItem,2,4);
-	packet(0x0941,8,clif->pMoveToKafra,2,4);
-	packet(0x094C,8,clif->pMoveFromKafra,2,4);
-	packet(0x0925,10,clif->pUseSkillToPos,2,4,6,8);
-	packet(0x095B,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
-	packet(0x088B,6,clif->pGetCharNameRequest,2);
-	packet(0x0957,6,clif->pSolveCharName,2);
-	packet(0x095D,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x0366,2,clif->pSearchStoreInfoNextPage,0);
-	packet(0x0894,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
-	packet(0x0819,-1,clif->pReqTradeBuyingStore,2,4,8,12);
-	packet(0x0863,6,clif->pReqClickBuyingStore,2);
-	packet(0x087E,2,clif->pReqCloseBuyingStore,0);
-	packet(0x0897,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
-#ifdef PACKETVER_RE
-	packet(0x0365,41,clif->pPartyRecruitRegisterReq,2,4);
-#else
-	packet(0x0365,18,clif->pPartyBookingRegisterReq,2,4);
-#endif
-// 	packet(0x0895,8); // CZ_JOIN_BATTLE_FIELD
-	packet(0x0958,-1,clif->pItemListWindowSelected,2,4,8,12);
-	packet(0x092B,19,clif->pWantToConnection,2,6,10,14,18);
-	packet(0x0956,26,clif->pPartyInvite2,2);
-// 	packet(0x0889,4); // CZ_GANGSI_RANK
-	packet(0x022D,26,clif->pFriendsListAdd,2);
-	packet(0x092D,5,clif->pHomMenu,2,4);
-	packet(0x0884,36,clif->pStoragePassword,2,4,20);
-#endif
-
-//2013-08-07aRagexe
-#if PACKETVER >= 20130807
-	packet(0x369,7,clif->pActionRequest,2,6);
+// 2013-12-18bRagexe
+#if PACKETVER >= 20131218
+	packet(0x0369,7,clif->pActionRequest,2,6);
 	packet(0x083C,10,clif->pUseSkillToId,2,4,6);
-	packet(0x437,5,clif->pWalkToXY,2);
+	packet(0x0437,5,clif->pWalkToXY,2);
 	packet(0x035F,6,clif->pTickSend,2);
-	packet(0x202,5,clif->pChangeDir,2,4);
-	packet(0x7e4,6,clif->pTakeItem,2); // megasantos
-	packet(0x362,6,clif->pDropItem,2,4);
+	packet(0x0947,5,clif->pChangeDir,2,4);
+	packet(0x07E4,6,clif->pTakeItem,2);
+	packet(0x0362,6,clif->pDropItem,2,4);
 	packet(0x07EC,8,clif->pMoveToKafra,2,4);
-	packet(0x364,8,clif->pMoveFromKafra,2,4);
-	packet(0x438,10,clif->pUseSkillToPos,2,4,6,8);
-	packet(0x366,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
+	packet(0x0364,8,clif->pMoveFromKafra,2,4);
+	packet(0x0438,10,clif->pUseSkillToPos,2,4,6,8);
+	packet(0x0366,90,clif->pUseSkillToPosMoreInfo,2,4,6,8,10);
 	packet(0x096A,6,clif->pGetCharNameRequest,2);
-	packet(0x368,6,clif->pSolveCharName,2);
-	packet(0x838,12,clif->pSearchStoreInfoListItemClick,2,6,10);
-	packet(0x835,2,clif->pSearchStoreInfoNextPage,0);
-	packet(0x819,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
-	packet(0x811,-1,clif->pReqTradeBuyingStore,2,4,8,12);
-	packet(0x360,6,clif->pReqClickBuyingStore,2);
-	packet(0x817,2,clif->pReqCloseBuyingStore,0);
-	packet(0x815,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
-#ifdef PACKETVER_RE
-	packet(0x0365,41,clif->pPartyRecruitRegisterReq,2,4);
-#else
+	packet(0x0368,6,clif->pSolveCharName,2);
+	packet(0x0838,12,clif->pSearchStoreInfoListItemClick,2,6,10);
+	packet(0x0835,2,clif->pSearchStoreInfoNextPage,0);
+	packet(0x0819,-1,clif->pSearchStoreInfo,2,4,5,9,13,14,15);
+	packet(0x022D,-1,clif->pReqTradeBuyingStore,2,4,8,12);
+	packet(0x0360,6,clif->pReqClickBuyingStore,2);
+	packet(0x0817,2,clif->pReqCloseBuyingStore,0);
+	packet(0x0815,-1,clif->pReqOpenBuyingStore,2,4,8,9,89);
 	packet(0x0365,18,clif->pPartyBookingRegisterReq,2,4);
-#endif
-// 	packet(0x363,8); // CZ_JOIN_BATTLE_FIELD
-	packet(0x281,-1,clif->pItemListWindowSelected,2,4,8,12);
-	packet(0x022D,19,clif->pWantToConnection,2,6,10,14,18);
-	packet(0x802,26,clif->pPartyInvite2,2);
-// 	packet(0x436,4); // CZ_GANGSI_RANK
-	packet(0x023B,26,clif->pFriendsListAdd,2);
-	packet(0x361,5,clif->pHomMenu,2,4);
-	packet(0x887,36,clif->pStoragePassword,2,4,20);
+//	packet(0x0363,8); // CZ_JOIN_BATTLE_FIELD
+	packet(0x0281,-1,clif->pItemListWindowSelected,2,4,8);
+	packet(0x092F,19,clif->pWantToConnection,2,6,10,14,18);
+	packet(0x0802,26,clif->pPartyInvite2,2);
+//	packet(0x087B,4); // CZ_GANGSI_RANK
+	packet(0x08AB,26,clif->pFriendsListAdd,2);
+	packet(0x0811,5,clif->pHomMenu,2,4);
+	packet(0x085C,36,clif->pStoragePassword,0);
+	/* New */
+	packet(0x09d4,2,clif->pNPCShopClosed);
+	packet(0x09ce,102,clif->pGM_Monster_Item,2);
+	/* NPC Market */
+	packet(0x09d8,2,clif->pNPCMarketClosed);
+	packet(0x09d6,-1,clif->pNPCMarketPurchase);
 #endif
 
-// 2013-12-23cRagexe - Yommy
+// 2013-12-23cRagexe
 #if PACKETVER >= 20131223
 	packet(0x0369,7,clif->pActionRequest,2,6);
 	packet(0x083C,10,clif->pUseSkillToId,2,4,6);
@@ -2643,15 +2538,10 @@ packet(0x020d,-1);
 	packet(0x023B,26,clif->pFriendsListAdd,2);
 	packet(0x0361,5,clif->pHomMenu,2,4);
 	packet(0x08A4,36,clif->pStoragePassword,0);
-	/* New */
-	packet(0x09d4,2,clif->pNPCShopClosed);
-	packet(0x09ce,102,clif->pGM_Monster_Item,2);
-	/* NPC Market */
-	packet(0x09d8,2,clif->pNPCMarketClosed);
-	packet(0x09d6,-1,clif->pNPCMarketPurchase);
 	packet(0x09df,7);
 #endif
 
+// 2013-12-30aRagexe
 #if PACKETVER >= 20131230
 	packet(0x0871,7,clif->pActionRequest,2,6);
 	packet(0x02C4,10,clif->pUseSkillToId,2,4,6);
@@ -2873,24 +2763,14 @@ packet(0x020d,-1);
 	packetKeys(0x4FF90E23,0x0F1432F2,0x4CFA1EDA);
 #endif
 
-#if PACKETVER >= 20130710
-	packetKeys(0x458f758f,0x4ccf3f8f,0x4a9c4237);
-#endif
 
-#if PACKETVER >= 20130717
-	packetKeys(0x2bed4f91,0x5f9e00cf,0x5ee5520c);
-#endif
-
-#if PACKETVER >= 20130724
-	packetKeys(0x2106ec6,0x42cc4e2f,0x3c243bf5);
-#endif
-
-#if PACKETVER >= 20130731
-	packetKeys(0x6a9e02b7,0x21a232b8,0x1e9d11a6);
-#endif
 
 #if PACKETVER >= 20130807
 	packetKeys(0x7E241DE0,0x5E805580,0x3D807D80);
+#endif
+
+#if PACKETVER >= 20131218
+	packetKeys(0x6A596301,0x76866D0E,0x32294A45);
 #endif
 
 #if PACKETVER >= 20131223

@@ -57,7 +57,7 @@ struct chrif_interface chrif_s;
 //2afd: Incoming, chrif_authok -> 'client authentication ok'
 //2afe: Outgoing, send_usercount_tochar -> 'sends player count of this map server to charserver'
 //2aff: Outgoing, send_users_tochar -> 'sends all actual connected character ids to charserver'
-//2b00: Incoming, map_setusers -> 'set the actual usercount? PACKET.2B COUNT.L.. ?' (not sure)
+//2b00: Incoming, map->setusers -> 'set the actual usercount? PACKET.2B COUNT.L.. ?' (not sure)
 //2b01: Outgoing, chrif_save -> 'charsave of char XY account XY (complete struct)'
 //2b02: Outgoing, chrif_charselectreq -> 'player returns from ingame to charserver to select another char.., this packets includes sessid etc' ? (not 100% sure)
 //2b03: Incoming, clif_charselectok -> '' (i think its the packet after enterworld?) (not sure)
@@ -344,7 +344,7 @@ void chrif_recvmap(int fd) {
 	uint16 port = ntohs(RFIFOW(fd,8));
 
 	for(i = 10, j = 0; i < RFIFOW(fd,2); i += 4, j++) {
-		map_setipport(RFIFOW(fd,i), ip, port);
+		map->setipport(RFIFOW(fd, i), ip, port);
 	}
 
 	if(battle_config.etc_log)
@@ -361,7 +361,7 @@ void chrif_removemap(int fd)
 	uint16 port = RFIFOW(fd,8);
 
 	for(i = 10, j = 0; i < RFIFOW(fd, 2); i += 4, j++)
-		map_eraseipport(RFIFOW(fd, i), ip, port);
+		map->eraseipport(RFIFOW(fd, i), ip, port);
 
 	chrif->other_mapserver_count--;
 
@@ -477,7 +477,7 @@ int chrif_reconnect(DBKey key, DBData *data, va_list ap) {
 				uint32 ip;
 				uint16 port;
 
-				if(map_mapname2ipport(sd->mapindex,&ip,&port) == 0)
+				if(map->mapname2ipport(sd->mapindex, &ip, &port) == 0)
 					chrif->changemapserver(sd, ip, port);
 				else //too much lag/timeout is the closest explanation for this error.
 					clif_authfail_fd(sd->fd, 3);
@@ -530,7 +530,7 @@ void chrif_sendmapack(int fd) {
 		exit(EXIT_FAILURE);
 	}
 
-	memcpy(wisp_server_name, RFIFOP(fd,3), NAME_LENGTH);
+	memcpy(map->wisp_server_name, RFIFOP(fd,3), NAME_LENGTH);
 
 	chrif->on_ready();
 }
@@ -606,7 +606,7 @@ void chrif_authok(int fd) {
 
 	//Check if we don't already have player data in our server
 	//Causes problems if the currently connected player tries to quit or this data belongs to an already connected player which is trying to re-auth.
-	if((sd = map_id2sd(account_id)) != NULL)
+	if((sd = map->id2sd(account_id)) != NULL)
 		return;
 
 	if((node = chrif->search(account_id)) == NULL)
@@ -805,7 +805,7 @@ bool chrif_changesex(struct map_session_data *sd) {
 	if(sd->fd)
 		clif_authfail_fd(sd->fd, 15);
 	else
-		map_quit(sd);
+		map->quit(sd);
 	return true;
 }
 
@@ -826,7 +826,7 @@ bool chrif_char_ask_name_answer(int acc, const char *player_name, uint16 type, u
 	char output[256];
 	bool charsrv = ( type == 6 || type == 7 ) ? true : false;
 
-	sd = map_id2sd(acc);
+	sd = map->id2sd(acc);
 
 	if(acc < 0 || sd == NULL) {
 		ShowError(read_message("Source.map.map_chrif_s21"));
@@ -867,7 +867,7 @@ void chrif_changedsex(int fd) {
 	if(battle_config.etc_log)
 		ShowNotice(read_message("Source.map.map_chrif_s22"), acc);
 
-	sd = map_id2sd(acc);
+	sd = map->id2sd(acc);
 	if(sd) {    //Normally there should not be a char logged on right now!
 		if(sd->status.sex == sex)
 			return; //Do nothing? Likely safe.
@@ -907,7 +907,7 @@ void chrif_changedsex(int fd) {
 		// do same modify in login-server for the account, but no in char-server (it ask again login_id1 to login, and don't remember it)
 		clif_displaymessage(sd->fd, msg_txt(409)); //"Your sex has been changed (need disconnection by the server)..."
 		set_eof(sd->fd); // forced to disconnect for the change
-		map_quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
+		map->quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
 	}
 }
 /*==========================================
@@ -936,14 +936,14 @@ bool chrif_divorceack(int char_id, int partner_id) {
 	if(!char_id || !partner_id)
 		return false;
 
-	if((sd = map_charid2sd(char_id)) != NULL && sd->status.partner_id == partner_id) {
+	if ((sd = map->charid2sd(char_id)) != NULL && sd->status.partner_id == partner_id) {
 		sd->status.partner_id = 0;
 		for(i = 0; i < MAX_INVENTORY; i++)
 			if(sd->status.inventory[i].nameid == WEDDING_RING_M || sd->status.inventory[i].nameid == WEDDING_RING_F)
 				pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 	}
 
-	if((sd = map_charid2sd(partner_id)) != NULL && sd->status.partner_id == char_id) {
+	if((sd = map->charid2sd(partner_id)) != NULL && sd->status.partner_id == char_id) {
 		sd->status.partner_id = 0;
 		for(i = 0; i < MAX_INVENTORY; i++)
 			if(sd->status.inventory[i].nameid == WEDDING_RING_M || sd->status.inventory[i].nameid == WEDDING_RING_F)
@@ -959,7 +959,7 @@ void chrif_deadopt(int father_id, int mother_id, int child_id) {
 	struct map_session_data *sd;
 	int idx = skill_get_index(WE_CALLBABY);
 
-	if(father_id && (sd = map_charid2sd(father_id)) != NULL && sd->status.child == child_id) {
+	if(father_id && (sd = map->charid2sd(father_id)) != NULL && sd->status.child == child_id) {
 		sd->status.child = 0;
 		sd->status.skill[idx].id = 0;
 		sd->status.skill[idx].lv = 0;
@@ -967,7 +967,7 @@ void chrif_deadopt(int father_id, int mother_id, int child_id) {
 		clif_deleteskill(sd,WE_CALLBABY);
 	}
 
-	if(mother_id && (sd = map_charid2sd(mother_id)) != NULL && sd->status.child == child_id) {
+	if(mother_id && (sd = map->charid2sd(mother_id)) != NULL && sd->status.child == child_id) {
 		sd->status.child = 0;
 		sd->status.skill[idx].id = 0;
 		sd->status.skill[idx].lv = 0;
@@ -989,7 +989,7 @@ void chrif_idbanned(int fd) {
 	if(battle_config.etc_log)
 		ShowNotice(read_message("Source.map.map_chrif_s23"), id);
 
-	sd = ( RFIFOB(fd,6) == 2 ) ? map_charid2sd(id) : map_id2sd(id);
+	sd = ( RFIFOB(fd,6) == 2 ) ? map->charid2sd(id) : map->id2sd(id);
 
 	if (id < 0 || sd == NULL) {
 		/* player not online or unknown id, either way no error is necessary (since if you try to ban a offline char it still works) */
@@ -1022,7 +1022,7 @@ void chrif_idbanned(int fd) {
 	}
 
 	set_eof(sd->fd); // forced to disconnect for the change
-	map_quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
+	map->quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
 }
 
 //Disconnect the player out of the game, simple packet
@@ -1031,7 +1031,7 @@ int chrif_disconnectplayer(int fd) {
 	struct map_session_data *sd;
 	int account_id = RFIFOL(fd, 2);
 
-	sd = map_id2sd(account_id);
+	sd = map->id2sd(account_id);
 	if(sd == NULL) {
 		struct auth_node *auth = chrif->search(account_id);
 
@@ -1043,7 +1043,7 @@ int chrif_disconnectplayer(int fd) {
 
 	if(!sd->fd) {  //No connection
 		if(sd->state.autotrade)
-			map_quit(sd); //Remove it.
+			map->quit(sd); //Remove it.
 		//Else we don't remove it because the char should have a timer to remove the player because it force-quit before,
 		//and we don't want them kicking their previous instance before the 10 secs penalty time passes. [Skotlex]
 		return 0;
@@ -1215,7 +1215,7 @@ bool chrif_load_scdata(int fd) {
 	aid = RFIFOL(fd,4); //Player Account ID
 	cid = RFIFOL(fd,8); //Player Char ID
 
-	sd = map_id2sd(aid);
+	sd = map->id2sd(aid);
 
 	if(!sd) {
 		ShowError(read_message("Source.map.map_chrif_s26"), aid);
@@ -1321,7 +1321,7 @@ void chrif_on_disconnect(void) {
 	chrif->connected = 0;
 
 	chrif->other_mapserver_count = 0; //Reset counter. We receive ALL maps from all map-servers on reconnect.
-	map_eraseallipport();
+	map->eraseallipport();
 
 	//Attempt to reconnect in a second. [Skotlex]
 	add_timer(gettick() + 1000, chrif->check_connect_char_server, 0, 0);
@@ -1434,11 +1434,11 @@ int chrif_parse(int fd) {
 			case 0x2af9: chrif->connectack(fd); break;
 			case 0x2afb: chrif->sendmapack(fd); break;
 			case 0x2afd: chrif->authok(fd); break;
-			case 0x2b00: map_setusers(RFIFOL(fd,2)); chrif->keepalive(fd); break;
+			case 0x2b00: map->setusers(RFIFOL(fd,2)); chrif->keepalive(fd); break;
 			case 0x2b03: clif_charselectok(RFIFOL(fd,2), RFIFOB(fd,6)); break;
 			case 0x2b04: chrif->recvmap(fd); break;
 			case 0x2b06: chrif->changemapserverack(RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10), RFIFOL(fd,14), RFIFOW(fd,18), RFIFOW(fd,20), RFIFOW(fd,22), RFIFOL(fd,24), RFIFOW(fd,28)); break;
-			case 0x2b09: map_addnickdb(RFIFOL(fd,2), (char*)RFIFOP(fd,6)); break;
+			case 0x2b09: map->addnickdb(RFIFOL(fd,2), (char*)RFIFOP(fd,6)); break;
 			case 0x2b0a: sockt->datasync(fd, false); break;
 			case 0x2b0d: chrif->changedsex(fd); break;
 			case 0x2b0f: chrif->char_ask_name_answer(RFIFOL(fd,2), (char*)RFIFOP(fd,6), RFIFOW(fd,30), RFIFOW(fd,32)); break;
@@ -1471,7 +1471,7 @@ int send_usercount_tochar(int tid, int64 tick, int id, intptr_t data) {
 
 	WFIFOHEAD(chrif->fd,4);
 	WFIFOW(chrif->fd,0) = 0x2afe;
-	WFIFOW(chrif->fd,2) = map_usercount();
+	WFIFOW(chrif->fd,2) = map->usercount();
 	WFIFOSET(chrif->fd,4);
 	return 0;
 }
@@ -1487,20 +1487,20 @@ bool send_users_tochar(void) {
 
 	chrif_check(false);
 
-	users = map_usercount();
+	users = map->usercount();
 
 	WFIFOHEAD(chrif->fd, 6+8*users);
 	WFIFOW(chrif->fd,0) = 0x2aff;
 
 	iter = mapit_getallusers();
 
-	for(sd = (TBL_PC *)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC *)mapit_next(iter)) {
+	for(sd = (TBL_PC *)mapit->first(iter); mapit->exists(iter); sd = (TBL_PC *)mapit->next(iter)) {
 		WFIFOL(chrif->fd,6+8*i) = sd->status.account_id;
 		WFIFOL(chrif->fd,6+8*i+4) = sd->status.char_id;
 		i++;
 	}
 
-	mapit_free(iter);
+	mapit->free(iter);
 
 	WFIFOW(chrif->fd,2) = 6 + 8*users;
 	WFIFOW(chrif->fd,4) = users;
