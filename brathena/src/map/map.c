@@ -5829,9 +5829,10 @@ void map_defaults(void) {
 	map->count = 0;
 	
 	sprintf(map->db_path ,"db");
-	sprintf(map->help_txt ,"conf/help.txt");
-	sprintf(map->help2_txt ,"conf/help2.txt");
-	sprintf(map->charhelp_txt ,"conf/charhelp.txt");
+	sprintf(map->help_txt ,"conf/help.conf");
+	sprintf(map->help2_txt ,"conf/help2.conf");
+	sprintf(map->charhelp_txt ,"conf/charhelp.conf");
+	sprintf(map->motd_txt ,"conf/motd.conf");
 
 	sprintf(map->wisp_server_name ,"Server"); // can be modified in char-server configuration file
 
@@ -5855,7 +5856,7 @@ void map_defaults(void) {
 	map->ATCOMMAND_CONF_FILENAME = "conf/atcommand.conf";
 	map->SCRIPT_CONF_NAME = "conf/script.conf";
 	map->MSG_CONF_NAME = "conf/messages.conf";
-	map->GRF_PATH_FILENAME = "conf/grf-files.txt";
+	map->GRF_PATH_FILENAME = "conf/grf-files.conf";
 
 	map->default_codepage[0] = '\0';
 	map->server_port = 3306;

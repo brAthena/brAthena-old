@@ -853,7 +853,7 @@ ACMD_FUNC(option)
 
 		if(text) {
 			// send the help text associated with this command
-			clif_displaymessage(fd, text);
+			clif_displaymessage2(fd, text);
 		}
 
 		return false;
@@ -945,7 +945,7 @@ ACMD_FUNC(jobchange)
 		if(!found) {
 			text = atcommand_help_string(info);
 			if(text)
-				clif_displaymessage(fd, text);
+				clif_displaymessage2(fd, text);
 			return false;
 		}
 	}
@@ -972,7 +972,7 @@ ACMD_FUNC(jobchange)
 	} else {
 		text = atcommand_help_string(info);
 		if(text)
-			clif_displaymessage(fd, text);
+			clif_displaymessage2(fd, text);
 		return false;
 	}
 
@@ -1801,7 +1801,7 @@ ACMD_FUNC(go)
 
 		if(text) {
 			// send the text to the client
-			clif_displaymessage(fd, text);
+			clif_displaymessage2(fd, text);
 		}
 
 		return false;
@@ -3093,7 +3093,7 @@ ACMD_FUNC(questskill)
 
 		if(text) {
 			// send the skill ID list associated with this command
-			clif_displaymessage(fd, text);
+			clif_displaymessage2(fd, text);
 		}
 
 		return false;
@@ -3136,7 +3136,7 @@ ACMD_FUNC(lostskill)
 
 		if(text) {
 			// send the skill ID list associated with this command
-			clif_displaymessage(fd, text);
+			clif_displaymessage2(fd, text);
 		}
 
 		return false;
@@ -5845,7 +5845,7 @@ ACMD_FUNC(autoloottype) {
 			{
 				// attempt to find the text help string
 				const char *text = atcommand_help_string(info);
-				if (text) clif_displaymessage(fd, text); // send the text to the client
+				if (text) clif_displaymessage2(fd, text); // send the text to the client
 			}
 
 			if (sd->state.autoloottype == ITEM_NONE) {
