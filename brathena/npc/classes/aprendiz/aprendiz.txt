@@ -6774,7 +6774,7 @@ new_1-2,118,108,3	script#vpo	Funcionária Kafra#nv1	4_F_KAFRA1,{
 		mes "Escolha aquele sobre qual deseja saber mais.";
 		next;
 		while(1) {
-			switch(select("Salvar Ponto de Retorno:Serviço de Teleporte:Alugar Carrinho:Cancelar")) {
+			switch(select("Salvar Ponto de Retorno:Armazém:Serviço de Teleporte:Alugar Carrinho:Cancelar")) {
 			case 1:
 				mes "[Funcionária Kafra]";
 				mes "Este serviço é o mais popular e comumente utilizado pelos jogadores.";
