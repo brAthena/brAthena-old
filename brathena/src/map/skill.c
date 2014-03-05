@@ -11353,7 +11353,11 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 				target = BCT_ALL;
 			val1 = skill_lv + 1;
 			val2 = 1;
-		case WM_POEMOFNETHERWORLD:  // Can't be placed on top of Land Protector.
+		case WM_POEMOFNETHERWORLD: // Can't be placed on top of Land Protector.
+		case SO_WATER_INSIGNIA:
+		case SO_FIRE_INSIGNIA:
+		case SO_WIND_INSIGNIA:
+		case SO_EARTH_INSIGNIA:
 			if(map->getcell(src->m, x, y, CELL_CHKLANDPROTECTOR))
 				return NULL;
 			break;

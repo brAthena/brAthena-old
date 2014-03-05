@@ -460,7 +460,7 @@ void initChangeTables(void) {
 	set_sc(CASH_ASSUMPTIO       , SC_ASSUMPTIO       , SI_ASSUMPTIO       , SCB_NONE);
 
 	set_sc(ALL_PARTYFLEE        , SC_PARTYFLEE       , SI_PARTYFLEE       , SCB_NONE);
-	set_sc(ALL_ODINS_POWER      , SC_ODINS_POWER     , SI_ODINS_POWER     , SCB_MATK|SCB_BATK|SCB_MDEF|SCB_DEF);
+	set_sc( ALL_ODINS_POWER     , SC_ODINS_POWER     , SI_ODINS_POWER     , SCB_WATK|SCB_MATK|SCB_MDEF|SCB_DEF);
 
 	set_sc(CR_SHRINK            , SC_CR_SHRINK       , SI_CR_SHRINK      , SCB_NONE);
 	set_sc(RG_CLOSECONFINE      , SC_RG_CCONFINE_S   , SI_RG_CCONFINE_S   , SCB_NONE);
@@ -541,7 +541,7 @@ void initChangeTables(void) {
 	set_sc(RK_DRAGONHOWLING     , SC_FEAR              , SI_BLANK             , SCB_FLEE|SCB_HIT);
 	set_sc(RK_DEATHBOUND        , SC_DEATHBOUND        , SI_DEATHBOUND        , SCB_NONE);
 	set_sc(RK_WINDCUTTER        , SC_FEAR              , SI_BLANK             , SCB_FLEE|SCB_HIT);
-	set_sc(RK_DRAGONBREATH      , SC_BURNING           , SI_BLANK             , SCB_MDEF );
+	add_sc(RK_DRAGONBREATH      , SC_BURNING);
 	set_sc(RK_MILLENNIUMSHIELD  , SC_MILLENNIUMSHIELD  , SI_BLANK             , SCB_NONE);
 	set_sc(RK_REFRESH           , SC_REFRESH           , SI_REFRESH           , SCB_NONE);
 	set_sc(RK_GIANTGROWTH       , SC_GIANTGROWTH       , SI_GIANTGROWTH       , SCB_STR);
@@ -4635,8 +4635,6 @@ unsigned short status_calc_batk(struct block_list *bl, struct status_change *sc,
 		batk += batk / 5;
 	if(sc->data[SC_FULL_SWING_K])
 		batk += sc->data[SC_FULL_SWING_K]->val1;
-	if(sc->data[SC_ODINS_POWER])
-		batk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1;
 	if(sc->data[SC_VOLCANIC_ASH] && (bl->type==BL_MOB)){
 		if(status_get_element(bl) == ELE_WATER) //water type
 			batk /= 2;
@@ -4755,6 +4753,8 @@ unsigned short status_calc_watk(struct block_list *bl, struct status_change *sc,
 		watk -= watk * sc->data[SC__ENERVATION]->val2 / 100;
 	if(sc->data[SC_RUSH_WINDMILL])
 		watk += sc->data[SC_RUSH_WINDMILL]->val2;
+	if(sc->data[SC_ODINS_POWER])
+		watk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1;
 	if((sc->data[SC_FIRE_INSIGNIA] && sc->data[SC_FIRE_INSIGNIA]->val1 == 2)
 	   || (sc->data[SC_WATER_INSIGNIA] && sc->data[SC_WATER_INSIGNIA]->val1 == 2)
 	   || (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 2)

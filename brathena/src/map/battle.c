@@ -3199,7 +3199,7 @@ void battle_consume_ammo(TBL_PC *sd, int skill_id, int lv) {
 	sd->state.arrow_atk = 0;
 }
 
-	//Skill Range Criteria
+//Skill Range Criteria
 int battle_range_type(struct block_list *src, struct block_list *target, uint16 skill_id, uint16 skill_lv) {
 	if(battle_config.skillrange_by_distance &&
 	   (src->type&battle_config.skillrange_by_distance)
@@ -3208,6 +3208,14 @@ int battle_range_type(struct block_list *src, struct block_list *target, uint16 
 			return BF_SHORT;
 		return BF_LONG;
 	}
+
+	if(skill_id == SR_GATEOFHELL) {
+		if (skill_lv < 5)
+			return BF_SHORT;
+		else
+			return BF_LONG;
+	}
+
 	//based on used skill's range
 	if(skill_get_range2(src, skill_id, skill_lv) < 5)
 		return BF_SHORT;
@@ -4426,8 +4434,11 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 		if(!sd)
 			hitrate = cap_value(hitrate, 5, 95);
 #endif
-		if(rnd()%100 >= hitrate)
+		if(rnd()%100 >= hitrate) {
 			wd.dmg_lv = ATK_FLEE;
+			if (skill_id == SR_GATEOFHELL)
+				flag.hit = 1;/* will hit with the special */
+		}
 		else
 			flag.hit = 1;
 	}   //End hit/miss calculation
@@ -4629,6 +4640,12 @@ struct Damage battle_calc_weapon_attack(struct block_list *src,struct block_list
 			}
 	#endif
 			switch(skill_id){
+				case SR_GATEOFHELL:
+				if(wd.dmg_lv != ATK_FLEE)
+					ATK_RATE(battle_calc_skillratio(BF_WEAPON, src, target, skill_id, skill_lv, skillratio, wflag));
+				else
+					wd.dmg_lv = ATK_DEF;
+				break;
 	#if VERSION == 1
 				case NJ_TATAMIGAESHI:
 						ATK_RATE(200);
