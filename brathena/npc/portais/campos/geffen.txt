@@ -22,6 +22,9 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+//===================================
+// [OldTimes & Pré-Renovação & Renovação]
+//===================================
 gef_fild00,267,382,0	warp	gef007	4,2,mjolnir_06,265,32
 gef_fild00,381,137,0	warp	gef008	3,9,prt_fild00,24,125
 gef_fild00,40,199,0	warp	gef009	2,7,geffen,213,119
@@ -67,15 +70,19 @@ gef_fild10,223,205,0	warp	gef021	1,1,in_orcs01,108,89
 gef_fild10,63,337,0	warp	gef022	1,1,in_orcs01,30,157
 gef_fild11,377,293,0	warp	gef023	2,4,prt_fild11,20,281
 gef_fild11,111,364,0	warp	geff12-1	6,3,gef_fild10,104,24
-gef_fild08,215,18,0	warp#pre	geff14	1,1,gef_fild12,221,369
-gef_fild12,221,374,0	warp#pre	geff14-1	1,1,gef_fild08,215,25
-gef_fild12,368,180,0	warp#pre	geff15	1,1,gef_fild13,29,202
-gef_fild12,372,50,0	warp#pre	geff16	1,1,gef_fild13,29,59
-gef_fild13,200,25,0	warp#pre	geff17	1,1,gef_fild14,180,357
-gef_fild13,25,202,0	warp#pre	geff15-1	1,1,gef_fild12,364,180
-gef_fild13,26,59,0	warp#pre	geff16-1	1,1,gef_fild12,370,50
-gef_fild14,180,360,0	warp#pre	geff17-1	1,1,gef_fild13,200,29
-gef_fild14,371,219,0	warp#pre	geff19	1,1,gef_fild10,31,219
-gef_fild10,27,219,0	warp#pre	geff19-1	1,1,gef_fild14,367,219,{}
 gef_fild13,380,56,0	warp	geff18	1,1,gef_fild09,27,56
 gef_fild13,41,373,0	warp	geff13-1	1,1,gef_fild07,40,23
+
+//===================================
+// [ OldTimes & Pré-Renovação ]
+//===================================
+gef_fild08,215,18,0	warp#vpo	geff14	1,1,gef_fild12,221,369
+gef_fild12,221,374,0	warp#vpo	geff14-1	1,1,gef_fild08,215,25
+gef_fild12,368,180,0	warp#vpo	geff15	1,1,gef_fild13,29,202
+gef_fild12,372,50,0	warp#vpo	geff16	1,1,gef_fild13,29,59
+gef_fild13,200,25,0	warp#vpo	geff17	1,1,gef_fild14,180,357
+gef_fild13,25,202,0	warp#vpo	geff15-1	1,1,gef_fild12,364,180
+gef_fild13,26,59,0	warp#vpo	geff16-1	1,1,gef_fild12,370,50
+gef_fild14,180,360,0	warp#vpo	geff17-1	1,1,gef_fild13,200,29
+gef_fild14,371,219,0	warp#vpo	geff19	1,1,gef_fild10,31,219
+gef_fild10,27,219,0	warp#vpo	geff19-1	1,1,gef_fild14,367,219,{}
