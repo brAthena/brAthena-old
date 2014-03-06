@@ -388,6 +388,7 @@ prt_castle,175,146,4	script	Nursing Instructor	1_M_04,{
 			mes "I am the Nursing director.";
 			mes "There are many things I must do.";
 			mes "If your business is complete, please leave.";
+			set skill_nov,1;
 			close;
 		case 1:
 			mes "[Dread Lord]";

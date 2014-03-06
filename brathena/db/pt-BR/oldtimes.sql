@@ -10056,8 +10056,8 @@ REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_INVISIBLE','chase',353,1,
 REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@MG_SOULSTRIKE','chase',13,9,2000,500,5000,'yes','target','always','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_DARKBREATH','attack',202,4,500,800,5000,'no','target','always','0',NULL,NULL,NULL,NULL,NULL,'28',NULL);
 REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_EMOTION','walk',197,1,2000,0,5000,'yes','self','always','0',28,NULL,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_SUMMONSLAVE','attack',196,5,10000,2000,10000,'no','self','slavele','3',1599,NULL,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_SUMMONSLAVE','idle',196,5,10000,2000,10000,'no','self','slavele','3',1599,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_SUMMONSLAVE','attack',196,5,10000,2000,10000,'no','self','slavele','3',1186,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_SUMMONSLAVE','idle',196,5,10000,2000,10000,'no','self','slavele','3',1186,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_SUMMONSLAVE','idle',196,5,10000,0,0,'no','self','onspawn','0',1186,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(1120,'Ghostring@NPC_TELEKINESISATTACK','attack',191,5,500,0,5000,'yes','target','always','0',NULL,NULL,NULL,NULL,NULL,'28',NULL);
 REPLACE INTO `mob_skill_db` VALUES(1121,'Giearth@HT_SANDMAN','idle',119,5,500,0,300000,'yes','around2','always','0',NULL,NULL,NULL,NULL,NULL,'29',NULL);
