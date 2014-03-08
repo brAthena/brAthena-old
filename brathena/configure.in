@@ -471,16 +471,37 @@ fi
 #
 AC_MSG_CHECKING([whether $CC produces 32bit code])
 AC_RUN_IFELSE(
-	[
+	[AC_LANG_SOURCE([
 		int main(int argc, char **argv){
 			if(sizeof(void*) == 4) return 0;
 			else return 1;
 		}
-	],
+	])],
 	[
 		AC_MSG_RESULT([yes])
+		AC_MSG_CHECKING([whether $CC supports -march=i686 (and we can run it)])
+		OLD_CFLAGS="$CFLAGS"
+		OLD_LDFLAGS="$LDFLAGS"
 		CFLAGS="$CFLAGS -march=i686"
 		LDFLAGS="$LDFLAGS -march=i686"
+		AC_RUN_IFELSE(
+			[AC_LANG_SOURCE([
+				int main(int argc, char **argv) { return 0; }
+			])],
+			[
+				AC_MSG_RESULT([yes])
+			],
+			[
+				AC_MSG_RESULT([no])
+				CFLAGS="$OLD_CFLAGS"
+				LDFLAGS="$OLD_LDFLAGS"
+			],
+			[
+				AC_MSG_RESULT([guessing no])
+				CFLAGS="$OLD_CFLAGS"
+				LDFLAGS="$OLD_LDFLAGS"
+			]
+		)
 	],
 	[
 		AC_MSG_RESULT([no])
@@ -497,14 +518,14 @@ AC_RUN_IFELSE(
 # 
 AC_MSG_CHECKING([whether $CC supports __thread specifier (TLS)])
 AC_RUN_IFELSE(
-	[
+	[AC_LANG_SOURCE([
 		__thread int g_Test = -1;
 
 		int main(int argc, char **argv){
 			g_Test = 0;
 			return g_Test;		
 		}
-	],
+	])],
 	[
 		AC_MSG_RESULT([yes])
 		CFLAGS="$CFLAGS -DHAS_TLS"
@@ -528,11 +549,11 @@ if test "$enable_lto" != "no" ; then
 
 	AC_MSG_CHECKING([whether $CC supports -flto])
 	AC_RUN_IFELSE(
-		[
+		[AC_LANG_SOURCE([
 			int main(int argc, char **argv){
-               return 0;
-           }
-		],
+				return 0;
+			}
+		])],
 		[
 			AC_MSG_RESULT([yes])
 		],
@@ -688,7 +709,7 @@ AC_MSG_CHECKING([whether $CC supports -fPIC])
 OLD_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -fPIC"
 AC_COMPILE_IFELSE(
-	[int foo;],
+	[AC_LANG_SOURCE([int foo;])],
 	[
 		AC_MSG_RESULT([yes])
 		compiler_supports_pic="yes"
@@ -708,7 +729,7 @@ AC_MSG_CHECKING([whether $CC supports -fno-strict-aliasing])
 OLD_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -fno-strict-aliasing"
 AC_COMPILE_IFELSE(
-	[int foo;],
+	[AC_LANG_SOURCE([int foo;])],
 	[AC_MSG_RESULT([yes])],
 	[
 		AC_MSG_RESULT([no])
@@ -895,7 +916,7 @@ AC_SEARCH_LIBS([clock_gettime], [rt])
 if test "$ac_cv_search_clock_gettime" != "no" ; then
 	AC_MSG_CHECKING([whether CLOCK_MONOTONIC is supported and works])
 	AC_RUN_IFELSE(
-		[
+		[AC_LANG_SOURCE([
 			#include <sys/time.h>
 			#include <time.h>
 			#include <unistd.h>
@@ -905,7 +926,7 @@ if test "$ac_cv_search_clock_gettime" != "no" ; then
 				struct timespec tval;
 				return clock_gettime(CLOCK_MONOTONIC, &tval);
 			}
-		],
+		])],
 		[
 			AC_MSG_RESULT([yes])
 			CFLAGS="$CFLAGS -DHAVE_MONOTONIC_CLOCK"
@@ -1046,6 +1067,9 @@ CYGWIN*)
 	CPPFLAGS="$CPPFLAGS -DFD_SETSIZE=4096 -DCYGWIN"
 	fd_setsize="done"
 	DLLEXT=".dll"
+	;;
+Darwin*)
+	DLLEXT=".dylib"
 	;;
 esac
 AC_SUBST([DLLEXT])

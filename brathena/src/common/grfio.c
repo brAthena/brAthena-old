@@ -33,15 +33,15 @@
 //	file entry table struct
 //----------------------------
 typedef struct _FILELIST {
-	int     srclen;             // compressed size
-	int     srclen_aligned;
-	int     declen;             // original size
-	int     srcpos;             // position of entry in grf
-	int     next;               // index of next filelist entry with same hash (-1: end of entry chain)
-	char    type;
-	char    fn[128-4*5];        // file name
-	char   *fnd;                // if the file was cloned, contains name of original file
-	char    gentry;             // read grf file select
+	int srclen;         ///< compressed size
+	int srclen_aligned;
+	int declen;         ///< original size
+	int srcpos;         ///< position of entry in grf
+	int next;           ///< index of next filelist entry with same hash (-1: end of entry chain)
+	char type;
+	char fn[128-4*5];   ///< file name
+	char *fnd;          ///< if the file was cloned, contains name of original file
+	int8 gentry;        ///< read grf file select
 } FILELIST;
 
 #define FILELIST_TYPE_FILE           0x01 // entry is a file
@@ -258,8 +258,11 @@ int decode_zip(void *dest, unsigned long *destLen, const void *source, unsigned 
 
 
 /// zlib compress
-int encode_zip(void *dest, unsigned long *destLen, const void *source, unsigned long sourceLen)
-{
+int encode_zip(void *dest, unsigned long *destLen, const void *source, unsigned long sourceLen) {
+	if(*destLen == 0)
+		*destLen = compressBound(sourceLen);
+	if(dest == NULL)
+		CREATE(dest, unsigned char, *destLen);
 	return compress((Bytef *)dest, destLen, (const Bytef *)source, sourceLen);
 }
 

@@ -356,14 +356,13 @@ struct s_homunculus {   //[orn]
 	unsigned int exp;
 	short rename_flag;
 	short vaporize; //albator
-	int str ;
-	int agi ;
-	int vit ;
-	int int_ ;
-	int dex ;
-	int luk ;
-
-	char spiritball; //for homun S [lighta]
+	int str;
+	int agi;
+	int vit;
+	int int_;
+	int dex;
+	int luk;
+	int8 spiritball; //for homun S [lighta]
 };
 
 struct s_mercenary {
@@ -577,8 +576,8 @@ struct guild {
 	struct guild_expulsion expulsion[MAX_GUILDEXPULSION];
 	struct guild_skill skill[MAX_GUILDSKILL];
 	
-	/* TODO: still used for something?|: */
-	unsigned short save_flag; // for TXT saving
+	/* used on char.c to state what kind of data is being saved/processed */
+	unsigned short save_flag;
 
 	short *instance;
 	unsigned short instances;

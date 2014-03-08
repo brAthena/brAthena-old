@@ -14,8 +14,8 @@
 * \todo ?                                                                    *  
 *****************************************************************************/ 
 
-#ifndef _rA_ATOMIC_H_
-#define _rA_ATOMIC_H_
+#ifndef _COMMON_ATOMIC_H_
+#define _COMMON_ATOMIC_H_
 
 // Atomic Operations
 // (Interlocked CompareExchange, Add .. and so on ..)
@@ -52,8 +52,7 @@ forceinline int64 InterlockedCompareExchange64(volatile int64 *dest, int64 exch,
 }
 
 
-forceinline volatile int64 InterlockedIncrement64(volatile int64 *addend)
-{
+forceinline volatile int64 InterlockedIncrement64(volatile int64 *addend){
 	__int64 old;
 	do {
 		old = *addend;
@@ -64,8 +63,7 @@ forceinline volatile int64 InterlockedIncrement64(volatile int64 *addend)
 
 
 
-forceinline volatile int64 InterlockedDecrement64(volatile int64 *addend)
-{
+forceinline volatile int64 InterlockedDecrement64(volatile int64 *addend){
 	__int64 old;
 
 	do {
@@ -75,8 +73,7 @@ forceinline volatile int64 InterlockedDecrement64(volatile int64 *addend)
 	return (old - 1);
 }
 
-forceinline volatile int64 InterlockedExchangeAdd64(volatile int64 *addend, int64 increment)
-{
+forceinline volatile int64 InterlockedExchangeAdd64(volatile int64 *addend, int64 increment){
 	__int64 old;
 
 	do {
@@ -86,8 +83,7 @@ forceinline volatile int64 InterlockedExchangeAdd64(volatile int64 *addend, int6
 	return old;
 }
 
-forceinline volatile int64 InterlockedExchange64(volatile int64 *target, int64 val)
-{
+forceinline volatile int64 InterlockedExchange64(volatile int64 *target, int64 val){
 	__int64 old;
 	do {
 		old = *target;
@@ -100,71 +96,63 @@ forceinline volatile int64 InterlockedExchange64(volatile int64 *target, int64 v
 
 #elif defined(__GNUC__)
 
-#if !defined(__x86_64__) && !defined(__i386__)
+// The __sync functions are available on x86 or ARMv6+
+#if !defined(__x86_64__) && !defined(__i386__) \
+	&& ( !defined(__ARM_ARCH_VERSION__) || __ARM_ARCH_VERSION__ < 6 )
 #error Your Target Platfrom is not supported
 #endif
 
-static forceinline int64 InterlockedExchangeAdd64(volatile int64 *addend, int64 increment)
-{
+static forceinline int64 InterlockedExchangeAdd64(volatile int64 *addend, int64 increment){
 	return __sync_fetch_and_add(addend, increment);
 }//end: InterlockedExchangeAdd64()
 
 
-static forceinline int32 InterlockedExchangeAdd(volatile int32 *addend, int32 increment)
-{
+static forceinline int32 InterlockedExchangeAdd(volatile int32 *addend, int32 increment){
 	return __sync_fetch_and_add(addend, increment);
 }//end: InterlockedExchangeAdd()
 
 
-static forceinline int64 InterlockedIncrement64(volatile int64 *addend)
-{
+static forceinline int64 InterlockedIncrement64(volatile int64 *addend){
 	return __sync_add_and_fetch(addend, 1);
 }//end: InterlockedIncrement64()
 
 
-static forceinline int32 InterlockedIncrement(volatile int32 *addend)
-{
-	return __sync_add_and_fetch(addend, 1);
+static forceinline int32 InterlockedIncrement(volatile int32 *addend){
+        return __sync_add_and_fetch(addend, 1);
 }//end: InterlockedIncrement()
 
 
-static forceinline int64 InterlockedDecrement64(volatile int64 *addend)
-{
+static forceinline int64 InterlockedDecrement64(volatile int64 *addend){
 	return __sync_sub_and_fetch(addend, 1);
 }//end: InterlockedDecrement64()
 
 
-static forceinline int32 InterlockedDecrement(volatile int32 *addend)
-{
+static forceinline int32 InterlockedDecrement(volatile int32 *addend){
 	return __sync_sub_and_fetch(addend, 1);
 }//end: InterlockedDecrement()
 
 
-static forceinline int64 InterlockedCompareExchange64(volatile int64 *dest, int64 exch, int64 cmp)
-{
+static forceinline int64 InterlockedCompareExchange64(volatile int64 *dest, int64 exch, int64 cmp){
 	return __sync_val_compare_and_swap(dest, cmp, exch);
 }//end: InterlockedCompareExchange64()
 
 
-static forceinline int32 InterlockedCompareExchange(volatile int32 *dest, int32 exch, int32 cmp)
-{
+static forceinline int32 InterlockedCompareExchange(volatile int32 *dest, int32 exch, int32 cmp){
 	return __sync_val_compare_and_swap(dest, cmp, exch);
 }//end: InterlockedCompareExchnage()
 
 
-static forceinline int64 InterlockedExchange64(volatile int64 *target, int64 val)
-{
+static forceinline int64 InterlockedExchange64(volatile int64 *target, int64 val){
 	return __sync_lock_test_and_set(target, val);
 }//end: InterlockedExchange64()
 
 
-static forceinline int32 InterlockedExchange(volatile int32 *target, int32 val)
-{
-	return __sync_lock_test_and_set(target, val);
+static forceinline int32 InterlockedExchange(volatile int32 *target, int32 val){
+    return __sync_lock_test_and_set(target, val);
 }//end: InterlockedExchange()
 
 
 #endif //endif compiler decission
 
 
-#endif
+#endif /* _COMMON_ATOMIC_H_ */

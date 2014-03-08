@@ -6746,7 +6746,7 @@ void brAthena_report(char *date, char *time_c)
 	enum config_table {
 	    C_CIRCULAR_AREA         = 0x0001,
 	    C_CELLNOSTACK           = 0x0002,
-	    C_BETA_THREAD_TEST      = 0x0004,
+	    C_CONSOLE_INPUT	    = 0x0004,
 	    C_SCRIPT_CALLFUNC_CHECK = 0x0008,
 	    C_OFFICIAL_WALKPATH     = 0x0010,
 	    C_VERSION               = 0x0020,
@@ -6777,8 +6777,8 @@ void brAthena_report(char *date, char *time_c)
 	config |= C_CELLNOSTACK;
 #endif
 
-#ifdef BETA_THREAD_TEST
-	config |= C_BETA_THREAD_TEST;
+#ifdef CONSOLE_INPUT
+	config |= C_CONSOLE_INPUT;
 #endif
 
 #ifdef SCRIPT_CALLFUNC_CHECK

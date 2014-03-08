@@ -156,6 +156,13 @@ struct eri;
 /// Composes the uid of a reference from the id and the index
 #define reference_uid(id,idx) ( (int64) ((uint64)(id) & 0xFFFFFFFF) | ((uint64)(idx) << 32) )
 
+/// Checks whether two references point to the same variable (or array)
+#define is_same_reference(data1, data2) \
+	(  reference_getid(data1) == reference_getid(data2) \
+	&& ( (data1->ref == data2->ref && data1->ref == NULL) \
+	  || (data1->ref != NULL && data2->ref != NULL && data1->ref->vars == data2->ref->vars \
+	     ) ) )
+
 #define script_getvarid(var)  ( (int32)(int64)(var & 0xFFFFFFFF) )
 #define script_getvaridx(var) ( (uint32)(int64)((var >> 32) & 0xFFFFFFFF) )
 
@@ -318,7 +325,7 @@ enum {
     MF_RESET,
     MF_SET_CASTLE,
     MF_NOTOMB,
-    MF_NOCASHSHOP,
+    MF_NOCASHSHOP
 };
 
 /**
@@ -346,12 +353,20 @@ struct Script_Config {
 	const char *ontouch2_name;
 };
 
+/**
+ * Generic reg database abstraction to be used with various types of regs/script variables.
+ */
+struct reg_db {
+	struct DBMap *vars;
+	struct DBMap *arrays;
+};
+
 struct script_retinfo {
-	struct DBMap *var_function;// scope variables
-	struct script_code *script;// script code
-	int pos;// script location
-	int nargs;// argument count
-	int defsp;// default stack pointer
+	struct reg_db scope;        ///< scope variables
+	struct script_code* script; ///< script code
+	int pos;                    ///< script location
+	int nargs;                  ///< argument count
+	int defsp;                  ///< default stack pointer
 };
 
 struct script_data {
@@ -359,9 +374,9 @@ struct script_data {
 	union script_data_val {
 		int64 num;
 		char *str;
-		struct script_retinfo *ri;
+		struct script_retinfo* ri;
 	} u;
-	struct DBMap **ref;
+	struct reg_db *ref;
 };
 
 // Moved defsp from script_state to script_stack since
@@ -369,17 +384,15 @@ struct script_data {
 struct script_code {
 	int script_size;
 	unsigned char *script_buf;
-	struct DBMap *script_vars;
-	struct DBMap *script_arrays_db;
+	struct reg_db local; ///< Local (npc) vars
 };
 
 struct script_stack {
-	int sp;// number of entries in the stack
-	int sp_max;// capacity of the stack
+	int sp;                         ///< number of entries in the stack
+	int sp_max;                     ///< capacity of the stack
 	int defsp;
-	struct script_data *stack_data;// stack
-	struct DBMap *var_function;// scope variables
-	struct DBMap *array_function_db;
+	struct script_data *stack_data; ///< stack
+	struct reg_db scope;            ///< scope variables
 };
 
 /* [Ind/Hercules] */
@@ -401,7 +414,7 @@ struct hQueueIterator {
 };
 
 struct script_state {
-	struct script_stack *stack;
+	struct script_stack* stack;
 	int start,end;
 	int pos;
 	enum e_script_state state;
@@ -420,17 +433,6 @@ struct script_state {
 	unsigned npc_item_flag : 1;
 	unsigned mes_active : 1;  // Store if invoking character has a NPC dialog box open.
 	unsigned int id;
-};
-
-
-struct script_reg {
-	int64 index;
-	int data;
-};
-
-struct script_regstr {
-	int64 index;
-	char *data;
 };
 
 struct script_function {
@@ -582,9 +584,9 @@ struct script_interface {
 	const char* (*conv_str) (struct script_state *st,struct script_data *data);
 	TBL_PC *(*rid2sd) (struct script_state *st);
 	void (*detach_rid) (struct script_state* st);
-	struct script_data* (*push_val)(struct script_stack* stack, enum c_op type, int64 val, struct DBMap** ref);
+	struct script_data* (*push_val)(struct script_stack* stack, enum c_op type, int64 val, struct reg_db *ref);
 	struct script_data *(*get_val) (struct script_state* st, struct script_data* data);
-	void* (*get_val2) (struct script_state* st, int64 uid, struct DBMap** ref);
+	void* (*get_val2) (struct script_state* st, int64 uid, struct reg_db *ref);
 	struct script_data* (*push_str) (struct script_stack* stack, enum c_op type, char* str);
 	struct script_data* (*push_copy) (struct script_stack* stack, int pos);
 	void (*pop_stack) (struct script_state* st, int start, int end);
@@ -608,7 +610,7 @@ struct script_interface {
 	int (*add_str) (const char* p);
 	const char* (*get_str) (int id);
 	int (*search_str) (const char* p);
-	void (*setd_sub) (struct script_state *st, struct map_session_data *sd, const char *varname, int elem, void *value, struct DBMap **ref);
+	void (*setd_sub) (struct script_state *st, struct map_session_data *sd, const char *varname, int elem, void *value, struct reg_db *ref);
 	void (*attach_state) (struct script_state* st);
 	/* */
 	struct hQueue *(*queue) (int idx);
@@ -647,9 +649,9 @@ struct script_interface {
 	void (*read_constdb) (void);
 	const char* (*print_line) (StringBuf *buf, const char *p, const char *mark, int line);
 	void (*errorwarning_sub) (StringBuf *buf, const char *src, const char *file, int start_line, const char *error_msg, const char *error_pos);
-	int (*set_reg) (struct script_state *st, TBL_PC *sd, int64 num, const char *name, const void *value, struct DBMap **ref);
+	int (*set_reg) (struct script_state *st, TBL_PC *sd, int64 num, const char *name, const void *value, struct reg_db *ref);
 	void (*stack_expand) (struct script_stack *stack);
-	struct script_data* (*push_retinfo) (struct script_stack *stack, struct script_retinfo *ri, DBMap **ref);
+	struct script_data* (*push_retinfo) (struct script_stack *stack, struct script_retinfo *ri, struct reg_db *ref);
 	void (*op_3) (struct script_state *st, int op);
 	void (*op_2str) (struct script_state *st, int op, const char *s1, const char *s2);
 	void (*op_2num) (struct script_state *st, int op, int i1, int i2);
@@ -693,15 +695,15 @@ struct script_interface {
 	/**
 	 * Array Handling
 	 **/
-	struct DBMap *(*array_src) (struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap **ref);
-	void (*array_update) (struct DBMap **src, int64 num, bool empty);
-	void (*array_delete) (struct DBMap *src, struct script_array *sa);
-	void (*array_remove_member) (struct DBMap *src, struct script_array *sa, unsigned int idx);
+	struct reg_db *(*array_src) (struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
+	void (*array_update) (struct reg_db *src, int64 num, bool empty);
+	void (*array_delete) (struct reg_db *src, struct script_array *sa);
+	void (*array_remove_member) (struct reg_db *src, struct script_array *sa, unsigned int idx);
 	void (*array_add_member) (struct script_array *sa, unsigned int idx);
-	unsigned int (*array_size) (struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap** ref);
-	unsigned int (*array_highest_key) (struct script_state *st, struct map_session_data *sd, const char *name, struct DBMap** ref);
+	unsigned int (*array_size) (struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
+	unsigned int (*array_highest_key) (struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
 	int (*array_free_db) (DBKey key, DBData *data, va_list ap);
-	void (*array_ensure_zero) (struct script_state *st, struct map_session_data *sd, int64 uid, struct DBMap** ref);
+	void (*array_ensure_zero) (struct script_state *st, struct map_session_data *sd, int64 uid, struct reg_db *ref);
 	/* */
 	void (*reg_destroy_single) (struct map_session_data *sd, int64 reg, struct script_reg_state *data);
 	int (*reg_destroy) (DBKey key, DBData *data, va_list ap);

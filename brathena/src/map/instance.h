@@ -17,6 +17,10 @@
 #ifndef _INSTANCE_H_
 #define _INSTANCE_H_
 
+#include "script.h" // struct reg_db
+#include "../common/mmo.h" // struct point
+struct block_list;
+
 #define INSTANCE_NAME_LENGTH (60+1)
 
 typedef enum instance_state {
@@ -45,9 +49,8 @@ struct instance_data {
 	unsigned short num_map;
 	unsigned short users;
 
-	struct DBMap *vars; // Instance Variable for scripts
-	struct DBMap *array_db ;
-
+	struct reg_db regs; ///< Instance variables for scripts
+	
 	int progress_timer;
 	unsigned int progress_timeout;
 
@@ -56,7 +59,7 @@ struct instance_data {
 
 	unsigned int original_progress_timeout;
 
-	struct point respawn;/* reload spawn */
+	struct point respawn; ///< reload spawn
 };
 
 struct instance_interface {
@@ -90,4 +93,4 @@ struct instance_interface *instance;
 
 void instance_defaults(void);
 
-#endif
+#endif /* _INSTANCE_H_ */

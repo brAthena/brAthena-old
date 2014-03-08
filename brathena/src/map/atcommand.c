@@ -91,18 +91,21 @@ const char* atcommand_msg(int msg_number) {
 	return "??";
 }
 
-/*==========================================
- * Read Message Data
- *------------------------------------------*/
-bool msg_config_read(const char *cfgName)
-{
+/**
+ * Reads Message Data
+ *
+ * @param[in] cfg_name       configuration filename to read.
+ * @param[in] allow_override whether to allow duplicate message IDs to override the original value.
+ * @return success state.
+ */
+bool msg_config_read(const char *cfg_name, bool allow_override) {
 	int msg_number;
 	char line[1024], w1[1024], w2[1024];
 	FILE *fp;
 	static int called = 1;
 
-	if((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
+	if((fp = fopen(cfg_name, "r")) == NULL) {
+		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfg_name);
 		return false;
 	}
 
@@ -115,14 +118,21 @@ bool msg_config_read(const char *cfgName)
 		if(sscanf(line, "%[^:]: %[^\r\n]", w1, w2) != 2)
 			continue;
 
-		if(strcmpi(w1, "import") == 0)
-			msg_config_read(w2);
-		else {
+		if(strcmpi(w1, "import") == 0) {
+			msg_config_read(w2, true);
+		} else {
 			msg_number = atoi(w1);
 			if(msg_number >= 0 && msg_number < MAX_MSG) {
-				if (atcommand->msg_table[msg_number] != NULL)
+				if(atcommand->msg_table[msg_number] != NULL) {
+					if(!allow_override) {
+						ShowError("Duplicate message: ID '%d' was already used for '%s'. Message '%s' will be ignored.\n",
+						          msg_number, w2, atcommand->msg_table[msg_number]);
+						continue;
+					}
 					aFree(atcommand->msg_table[msg_number]);
-				atcommand->msg_table[msg_number] = (char *)aMalloc((strlen(w2) + 1)*sizeof(char));
+				}
+				/* this could easily become consecutive memory like get_str() and save the malloc overhead for over 1k calls */
+				atcommand->msg_table[msg_number] = (char *)aMalloc((strlen(w2) + 1)*sizeof (char));
 				strcpy(atcommand->msg_table[msg_number],w2);
 			}
 		}
@@ -163,10 +173,11 @@ ACMD_FUNC(send)
 	// read message type as hex number (without the 0x)
 	if(!message || !*message ||
 	   !((sscanf(message, "len %x", &type)==1 && (len=1))
-	     || sscanf(message, "%x", &type)==1)) {
-		int i;
-		for(i = 900; i <= 903; ++i)
-			clif_displaymessage(fd, msg_txt(i));
+		 || sscanf(message, "%x", &type)==1) ) {
+		clif_displaymessage(fd, msg_txt(900)); // Usage:
+		clif_displaymessage(fd, msg_txt(901)); // 	@send len <packet hex number>
+		clif_displaymessage(fd, msg_txt(902)); // 	@send <packet hex number> {<value>}*
+		clif_displaymessage(fd, msg_txt(903)); // 	Value: <type=B(default),W,L><number> or S<length>"<string>"
 		return false;
 	}
 
@@ -483,7 +494,7 @@ ACMD_FUNC(jumpto)
 	}
 
 	if(pc_isdead(sd)) {
-		clif_displaymessage(fd, msg_txt(664));
+		clif_displaymessage(fd, msg_txt(864)); // "You cannot use this command when dead."
 		return false;
 	}
 
@@ -511,7 +522,7 @@ ACMD_FUNC(jump)
 	}
 
 	if(pc_isdead(sd)) {
-		clif_displaymessage(fd, msg_txt(664));
+		clif_displaymessage(fd, msg_txt(864)); // "You cannot use this command when dead."
 		return false;
 	}
 
@@ -1003,7 +1014,7 @@ ACMD_FUNC(kill)
 ACMD_FUNC(alive)
 {
 	if(!status->revive(&sd->bl, 100, 100)) {
-		clif_displaymessage(fd, msg_txt(667));
+		clif_displaymessage(fd, msg_txt(867));
 		return false;
 	}
 	clif_skill_nodamage(&sd->bl,&sd->bl,ALL_RESURRECTION,4,1);
@@ -1940,7 +1951,7 @@ ACMD_FUNC(monster)
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, msg_txt(80)); // Give the display name or monster name/id please.
+		clif_displaymessage(fd, msg_txt(80)); // Please specify a display name or monster name/id.
 		return false;
 	}
 	if(sscanf(message, "\"%23[^\"]\" %23s %d", name, monster, &number) > 1 ||
@@ -2204,7 +2215,7 @@ ACMD_FUNC(memo)
 
 	if(!message || !*message || sscanf(message, "%d", &position) < 1) {
 		int i;
-		clif_displaymessage(sd->fd,  msg_txt(668));
+		clif_displaymessage(sd->fd,  msg_txt(868)); // "Your current memo positions are:"
 		for(i = 0; i < MAX_MEMOPOINTS; i++) {
 			if(sd->status.memo_point[i].map)
 				sprintf(atcmd_output, "%d - %s (%d,%d)", i, mapindex_id2name(sd->status.memo_point[i].map), sd->status.memo_point[i].x, sd->status.memo_point[i].y);
@@ -3354,7 +3365,7 @@ ACMD_FUNC(idsearch)
 		return false;
 	}
 
-	sprintf(atcmd_output, msg_txt(77), item_name); // The reference result of '%s' (name: id):
+	sprintf(atcmd_output, msg_txt(77), item_name); // Search results for '%s' (name: id):
 	clif_displaymessage(fd, atcmd_output);
 	match = itemdb_searchname_array(item_array, MAX_SEARCH, item_name, 0);
 	if(match > MAX_SEARCH) {
@@ -3366,7 +3377,7 @@ ACMD_FUNC(idsearch)
 		sprintf(atcmd_output, msg_txt(78), item_array[i]->jname, item_array[i]->nameid); // %s: %d
 		clif_displaymessage(fd, atcmd_output);
 	}
-	sprintf(atcmd_output, msg_txt(79), match); // It is %d affair above.
+	sprintf(atcmd_output, msg_txt(79), match); // %d results found.
 	clif_displaymessage(fd, atcmd_output);
 
 	return true;
@@ -4473,7 +4484,7 @@ ACMD_FUNC(jail)
 
 	//Duration of INT_MAX to specify infinity.
 	sc_start4(NULL, &pl_sd->bl, SC_JAILED, 100, INT_MAX, m_index, x, y, 1000);
-	clif_displaymessage(pl_sd->fd, msg_txt(117)); // GM has send you in jails.
+	clif_displaymessage(pl_sd->fd, msg_txt(117)); // You have been jailed by a GM.
 	clif_displaymessage(fd, msg_txt(118)); // Player warped in jails.
 	return true;
 }
@@ -4788,7 +4799,7 @@ ACMD_FUNC(undisguise)
 {
 	if(sd->disguise != -1 ) {
 		pc_disguise(sd, -1);
-		clif_displaymessage(fd, msg_txt(124)); // Undisguise applied.
+		clif_displaymessage(fd, msg_txt(124)); // Disguise removed.
 	} else {
 		clif_displaymessage(fd, msg_txt(125)); // You're not disguised.
 		return false;
@@ -4811,7 +4822,7 @@ ACMD_FUNC(undisguiseall)
 			pc_disguise(pl_sd, -1);
 	mapit->free(iter);
 
-	clif_displaymessage(fd, msg_txt(124)); // Undisguise applied.
+	clif_displaymessage(fd, msg_txt(124)); // Disguise removed.
 
 	return true;
 }
@@ -4922,21 +4933,21 @@ ACMD_FUNC(email)
 	memset(new_email, '\0', sizeof(new_email));
 
 	if(!message || !*message || sscanf(message, "%99s %99s", actual_email, new_email) < 2) {
-		clif_displaymessage(fd, msg_txt(1151)); // Please enter 2 emails (usage: @email <actual@email> <new@email>).
+		clif_displaymessage(fd, msg_txt(1151)); // Please enter two e-mail addresses (usage: @email <current@email> <new@email>).
 		return false;
 	}
 
 	if(e_mail_check(actual_email) == 0) {
-		clif_displaymessage(fd, msg_txt(144)); // Invalid actual email. If you have default e-mail, give a@a.com.
+		clif_displaymessage(fd, msg_txt(144)); // Invalid e-mail. If your email hasn't been set, use a@a.com.
 		return false;
 	} else if(e_mail_check(new_email) == 0) {
-		clif_displaymessage(fd, msg_txt(145)); // Invalid new email. Please enter a real e-mail.
+		clif_displaymessage(fd, msg_txt(145)); // Invalid new email. Please enter a real e-mail address.
 		return false;
 	} else if(strcmpi(new_email, "a@a.com") == 0) {
-		clif_displaymessage(fd, msg_txt(146)); // New email must be a real e-mail.
+		clif_displaymessage(fd, msg_txt(146)); // New email must be a real e-mail address.
 		return false;
 	} else if(strcmpi(actual_email, new_email) == 0) {
-		clif_displaymessage(fd, msg_txt(147)); // New email must be different of the actual e-mail.
+		clif_displaymessage(fd, msg_txt(147)); // New e-mail must be different from the current e-mail address.
 		return false;
 	}
 
@@ -6024,7 +6035,7 @@ ACMD_FUNC(clearweather)
 	map->list[sd->bl.m].flag.fireworks=0;
 	map->list[sd->bl.m].flag.leaves=0;
 	clif_weather(sd->bl.m);
-	clif_displaymessage(fd, msg_txt(291));
+	clif_displaymessage(fd, msg_txt(291)); // "Weather effects will disappear after teleporting or refreshing."
 
 	return true;
 }
@@ -7319,10 +7330,10 @@ ACMD_FUNC(whereis)
 
 ACMD_FUNC(version)
 {
-	const char *revision;
+	const char *svn = get_svn_revision();
 
-	if((revision = get_svn_revision()) != 0) {
-		sprintf(atcmd_output,msg_txt(1295),revision); // brAthena Version SVN r%s
+	if((svn[0] != BRATHENA_UNKNOWN_VER)) {
+		sprintf(atcmd_output,msg_txt(1295),svn); // brAthena Version SVN r%s
 		clif_displaymessage(fd,atcmd_output);
 	} else
 		clif_displaymessage(fd,msg_txt(1296)); // Cannot determine SVN revision.
@@ -8418,7 +8429,7 @@ void atcommand_commands_sub(struct map_session_data *sd, const int fd, AtCommand
 	memset(line_buff,' ',CHATBOX_SIZE);
 	line_buff[CHATBOX_SIZE-1] = 0;
 
-	clif_displaymessage(fd, msg_txt(273)); // "Commands available:"
+	clif_displaymessage(fd, msg_txt(273)); // "Available commands:"
 
 	for(cmd = dbi_first(iter); dbi_exists(iter); cmd = dbi_next(iter)) {
 		size_t slen;

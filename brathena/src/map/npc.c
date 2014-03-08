@@ -1113,25 +1113,24 @@ int npc_globalmessage(const char *name, const char *mes)
 }
 
 // MvP tomb [GreenBox]
-void run_tomb(struct map_session_data *sd, struct npc_data *nd)
-{
+void run_tomb(struct map_session_data *sd, struct npc_data *nd) {
 	char buffer[200];
 	char time[10];
 
 	strftime(time, sizeof(time), "%H:%M", localtime(&nd->u.tomb.kill_time));
 
 	// TODO: Find exact color?
-	snprintf(buffer, sizeof(buffer), msg_txt(657), nd->u.tomb.md->db->name);
+	snprintf(buffer, sizeof(buffer), msg_txt(857), nd->u.tomb.md->db->name); // "[ ^EE0000%s^000000 ]"
 	clif_scriptmes(sd, nd->bl.id, buffer);
 
-	clif_scriptmes(sd, nd->bl.id, msg_txt(658));
+	clif_scriptmes(sd, nd->bl.id, msg_txt(858)); // "Has met its demise"
 
-	snprintf(buffer, sizeof(buffer), msg_txt(659), time);
+	snprintf(buffer, sizeof(buffer), msg_txt(859), time); // "Time of death : ^EE0000%s^000000"
 	clif_scriptmes(sd, nd->bl.id, buffer);
 
-	clif_scriptmes(sd, nd->bl.id, msg_txt(660));
+	clif_scriptmes(sd, nd->bl.id, msg_txt(860)); // "Defeated by"
 
-	snprintf(buffer, sizeof(buffer), msg_txt(661), nd->u.tomb.killer_name[0] ? nd->u.tomb.killer_name : "Unknown");
+	snprintf(buffer, sizeof(buffer), msg_txt(861), nd->u.tomb.killer_name[0] ? nd->u.tomb.killer_name : msg_txt(15)); // "[^EE0000%s^000000]" / "Unknown"
 	clif_scriptmes(sd, nd->bl.id, buffer);
 
 	clif_scriptclose(sd, nd->bl.id);
@@ -3321,7 +3320,7 @@ const char *npc_parse_function(char *w1, char *w2, char *w3, char *w4, const cha
 	if (func_db->put(func_db, DB->str2key(w3), DB->ptr2data(scriptroot), &old_data)) {
 		struct script_code *oldscript = (struct script_code *)DB->data2ptr(&old_data);
 		ShowNpc("npc_parse_function: Overwriting user function [%s] in file '%s', line '%d'.\n", w3, filepath, strline(buffer,start-buffer));
-		script->free_vars(oldscript->script_vars);
+		script->free_vars(oldscript->local.vars);
 		aFree(oldscript->script_buf);
 		aFree(oldscript);
 	}

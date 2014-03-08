@@ -286,7 +286,7 @@ int intif_saveregistry(struct map_session_data *sd) {
 	int plen = 0;
 	size_t len;
 
-	if(intif->CheckForCharServer() || !sd->var_db)
+	if(intif->CheckForCharServer() || !sd->regs.vars)
 		return -1;
 
 	WFIFOHEAD(inter_fd, 60000 + 300);
@@ -298,7 +298,7 @@ int intif_saveregistry(struct map_session_data *sd) {
 
 	plen = 14;
 
-	iter = db_iterator(sd->var_db);
+	iter = db_iterator(sd->regs.vars);
 	for(data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key)) {
 		const char *varname = NULL;
 		struct script_reg_state *src = NULL;
@@ -1144,6 +1144,7 @@ void intif_parse_PartyInfo(int fd)
 	if(RFIFOW(fd,2) == 12) {
 		ShowWarning("intif: party noinfo (char_id=%d party_id=%d)\n", RFIFOL(fd,4), RFIFOL(fd,8));
 		party_recv_noinfo(RFIFOL(fd,8), RFIFOL(fd,4));
+		return;
 	}
 
 	if(RFIFOW(fd,2) != 8+sizeof(struct party))

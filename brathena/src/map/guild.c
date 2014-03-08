@@ -1438,7 +1438,7 @@ int guild_reqalliance(struct map_session_data *sd,struct map_session_data *tsd)
 	int i;
 
 	if(map->agit_flag || map->agit2_flag) {   // Disable alliance creation during woe [Valaris]
-		clif_displaymessage(sd->fd,msg_txt(676)); //"Alliances cannot be made during Guild Wars!"
+		clif_displaymessage(sd->fd,msg_txt(876)); //"Alliances cannot be made during Guild Wars!"
 		return 0;
 	}
 
@@ -1556,7 +1556,7 @@ int guild_delalliance(struct map_session_data *sd,int guild_id,int flag)
 	nullpo_ret(sd);
 
 	if((!battle_config.alliance_in_woe) && (map->agit_flag || map->agit2_flag))  {     // Disable alliance breaking during woe [Valaris]
-		clif_displaymessage(sd->fd,msg_txt(677)); //"Alliances cannot be broken during Guild Wars!"
+		clif_displaymessage(sd->fd,msg_txt(877)); //"Alliances cannot be broken during Guild Wars!"
 		return 0;
 	}
 
@@ -1829,12 +1829,12 @@ int guild_gm_changed(int guild_id, int account_id, int char_id)
 	strcpy(g->master, g->member[0].name);
 
 	if(g->member[pos].sd && g->member[pos].sd->fd) {
-		clif_displaymessage(g->member[pos].sd->fd, msg_txt(678)); //"You no longer are the Guild Master."
+		clif_displaymessage(g->member[pos].sd->fd, msg_txt(878)); //"You no longer are the Guild Master."
 		g->member[pos].sd->state.gmaster_flag = 0;
 	}
 
 	if(g->member[0].sd && g->member[0].sd->fd) {
-		clif_displaymessage(g->member[0].sd->fd, msg_txt(679)); //"You have become the Guild Master!"
+		clif_displaymessage(g->member[0].sd->fd, msg_txt(879)); //"You have become the Guild Master!"
 		g->member[0].sd->state.gmaster_flag = 1;
 		//Block his skills for 5 minutes to prevent abuse.
 		guild->block_skill(g->member[0].sd, 300000);
