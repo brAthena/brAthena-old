@@ -117,21 +117,17 @@ static inline void WBUFPOS2(uint8 *p, unsigned short pos, short x0, short y0, sh
 	p[5] = (uint8)((sx0<<4) | (sy0&0x0f));
 }
 
-
-static inline void WFIFOPOS(int fd, unsigned short pos, short x, short y, unsigned char dir)
-{
+#if 0 // Currently unused
+static inline void WFIFOPOS(int fd, unsigned short pos, short x, short y, unsigned char dir) {
 	WBUFPOS(WFIFOP(fd,pos), 0, x, y, dir);
 }
+#endif // 0
 
-
-static inline void WFIFOPOS2(int fd, unsigned short pos, short x0, short y0, short x1, short y1, unsigned char sx0, unsigned char sy0)
-{
+static inline void WFIFOPOS2(int fd, unsigned short pos, short x0, short y0, short x1, short y1, unsigned char sx0, unsigned char sy0) {
 	WBUFPOS2(WFIFOP(fd,pos), 0, x0, y0, x1, y1, sx0, sy0);
 }
 
-
-static inline void RBUFPOS(const uint8 *p, unsigned short pos, short *x, short *y, unsigned char *dir)
-{
+static inline void RBUFPOS(const uint8* p, unsigned short pos, short* x, short* y, unsigned char* dir) {
 	p += pos;
 
 	if(x) {
@@ -147,9 +143,12 @@ static inline void RBUFPOS(const uint8 *p, unsigned short pos, short *x, short *
 	}
 }
 
+static inline void RFIFOPOS(int fd, unsigned short pos, short* x, short* y, unsigned char* dir) {
+	RBUFPOS(RFIFOP(fd,pos), 0, x, y, dir);
+}
 
-static inline void RBUFPOS2(const uint8 *p, unsigned short pos, short *x0, short *y0, short *x1, short *y1, unsigned char *sx0, unsigned char *sy0)
-{
+#if 0 // currently unused
+static inline void RBUFPOS2(const uint8* p, unsigned short pos, short* x0, short* y0, short* x1, short* y1, unsigned char* sx0, unsigned char* sy0) {
 	p += pos;
 
 	if(x0) {
@@ -176,18 +175,10 @@ static inline void RBUFPOS2(const uint8 *p, unsigned short pos, short *x0, short
 		sy0[0] = (p[5] & 0x0f) >> 0;
 	}
 }
-
-
-static inline void RFIFOPOS(int fd, unsigned short pos, short *x, short *y, unsigned char *dir)
-{
-	RBUFPOS(RFIFOP(fd,pos), 0, x, y, dir);
-}
-
-
-static inline void RFIFOPOS2(int fd, unsigned short pos, short *x0, short *y0, short *x1, short *y1, unsigned char *sx0, unsigned char *sy0)
-{
+static inline void RFIFOPOS2(int fd, unsigned short pos, short* x0, short* y0, short* x1, short* y1, unsigned char* sx0, unsigned char* sy0) {
 	RBUFPOS2(WFIFOP(fd,pos), 0, x0, y0, x1, y1, sx0, sy0);
 }
+#endif // 0
 
 
 //To idenfity disguised characters.
@@ -290,7 +281,7 @@ static inline unsigned char clif_bl_type(struct block_list *bl)
 		case BL_SKILL: return 0x3; //SKILL_TYPE
 		case BL_CHAT:  return 0x4; //UNKNOWN_TYPE
 		case BL_MOB:   return pcdb_checkid(status->get_viewdata(bl)->class_) ? 0x0 : 0x5; //NPC_MOB_TYPE
-		case BL_NPC:   return 0x6; //NPC_EVT_TYPE
+		case BL_NPC:   return pcdb_checkid(status->get_viewdata(bl)->class_) ? 0x0 : 0x6; //NPC_EVT_TYPE
 		case BL_PET:   return pcdb_checkid(status->get_viewdata(bl)->class_) ? 0x0 : 0x7; //NPC_PET_TYPE
 		case BL_HOM:   return 0x8; //NPC_HOM_TYPE
 		case BL_MER:   return 0x9; //NPC_MERSOL_TYPE
@@ -9908,16 +9899,14 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data *sd)
 		WFIFOW(fd,0) = 0x8e;
 	}
 	WFIFOSET(fd, WFIFOW(fd,2));
+
+	// Chat logging type 'O' / Global Chat
+	logs->chat(LOG_CHAT_GLOBAL, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+
 #ifdef PCRE_SUPPORT
 	// trigger listening npcs
 	map->foreachinrange(npc_chat->sub, &sd->bl, AREA_SIZE, BL_NPC, text, textlen, &sd->bl);
 #endif
-
-	// Reset idle time when using normal chat.
-	sd->idletime = sockt->last_tick;
-
-	// Chat logging type 'O' / Global Chat
-	logs->chat(LOG_CHAT_GLOBAL, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 }
 
 
@@ -10043,8 +10032,9 @@ void clif_parse_HowManyConnections(int fd, struct map_session_data *sd)
 }
 
 
-void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, int target_id, int64 tick)
-{
+void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, int target_id, int64 tick) {
+	struct block_list *target = NULL;
+
 	if(pc_isdead(sd)) {
 		clif_clearunit_area(&sd->bl, CLR_DEAD);
 		return;
@@ -10069,6 +10059,11 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 	switch(action_type) {
 		case 0x00: // once attack
 		case 0x07: // continuous attack
+
+			if((target = map->id2bl(target_id)) && target->type == BL_NPC) {
+				npc->click(sd,(TBL_NPC*)target);
+				return;
+			}
 
 			if(pc_cant_act(sd) || sd->sc.option&OPTION_HIDE)
 				return;
@@ -10322,7 +10317,6 @@ void clif_parse_WisMessage(int fd, struct map_session_data *sd)
 		sd->cantalk_tick = gettick() + battle_config.min_chat_delay;
 	}
 
-	// Reset idle time when using whisper/main chat.
 	if(battle_config.idletime_criteria & BCIDLE_CHAT)
 		sd->idletime = sockt->last_tick;
 
@@ -11104,16 +11098,16 @@ void clif_parse_GetItemFromCart(int fd,struct map_session_data *sd)
 /// 012a
 void clif_parse_RemoveOption(int fd,struct map_session_data *sd)
 {
-	/**
-	 * Attempts to remove these options when this function is called (will remove all available)
-	 **/
+	if(!(sd->sc.option&(OPTION_RIDING|OPTION_FALCON|OPTION_DRAGON|OPTION_MADOGEAR)) 
 #ifdef NEW_CARTS
-	pc_setoption(sd,sd->sc.option&~(OPTION_RIDING|OPTION_FALCON|OPTION_DRAGON|OPTION_MADOGEAR));
-	if(sd->sc.data[SC_PUSH_CART])
+		&& sd->sc.data[SC_PUSH_CART] ){
 		pc_setcart(sd,0);
 #else
-	pc_setoption(sd,sd->sc.option&~(OPTION_CART|OPTION_RIDING|OPTION_FALCON|OPTION_DRAGON|OPTION_MADOGEAR));
+		){
+		pc_setoption(sd,sd->sc.option&~OPTION_CART);
 #endif
+	}else // priority to remove this option before we can clear cart
+		pc_setoption(sd,sd->sc.option&~(OPTION_RIDING|OPTION_FALCON|OPTION_DRAGON|OPTION_MADOGEAR));
 }
 
 
@@ -12170,7 +12164,6 @@ void clif_parse_PartyMessage(int fd, struct map_session_data *sd)
 		sd->cantalk_tick = gettick() + battle_config.min_chat_delay;
 	}
 
-	// Reset idle time when using party chat.
 	if(battle_config.idletime_criteria & BCIDLE_CHAT)
 		sd->idletime = sockt->last_tick;
 
@@ -13239,7 +13232,6 @@ void clif_parse_GuildMessage(int fd, struct map_session_data *sd)
 		sd->cantalk_tick = gettick() + battle_config.min_chat_delay;
 	}
 
-	// Reset idle time when using guild chat.
 	if(battle_config.idletime_criteria & BCIDLE_CHAT)
 		sd->idletime = sockt->last_tick;
 
@@ -16272,7 +16264,6 @@ void clif_parse_BattleChat(int fd, struct map_session_data *sd)
 		sd->cantalk_tick = gettick() + battle_config.min_chat_delay;
 	}
 
-	// Reset idle time when using battleground chat.
 	if(battle_config.idletime_criteria & BCIDLE_CHAT)
 		sd->idletime = sockt->last_tick;
 
@@ -17850,15 +17841,15 @@ void clif_personal_information(struct map_session_data *sd)
 	WFIFOW(sd->fd,6)  = battle_config.death_penalty_base;
 	WFIFOW(sd->fd,8)  = 100;
 	WFIFOB(sd->fd,10) = 0;
-	WFIFOW(sd->fd,11) = bra_config.extra_exp_vip;
-	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip;
+	WFIFOW(sd->fd,11) = bra_config.extra_exp_vip_base;
+	WFIFOW(sd->fd,13) = bra_config.penalty_exp_vip_base;
 	WFIFOW(sd->fd,15) = 100;
 #else
 	WFIFOW(sd->fd,8)  = battle_config.death_penalty_base;
 	WFIFOW(sd->fd,12) = 100;
 	WFIFOB(sd->fd,13) = 0;
-	WFIFOW(sd->fd,17) = bra_config.extra_exp_vip;
-	WFIFOW(sd->fd,21) = bra_config.penalty_exp_vip;
+	WFIFOW(sd->fd,17) = bra_config.extra_exp_vip_base;
+	WFIFOW(sd->fd,21) = bra_config.penalty_exp_vip_base;
 	WFIFOW(sd->fd,25) = 100;
 
 #endif

@@ -2351,6 +2351,8 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				struct map_session_data *sd = (struct map_session_data *)bl;
 				int i;
 
+				sd->state.loggingout = 1;
+
 				if (status->isdead(bl))
 					pc_setrestartvalue(sd,2);
 

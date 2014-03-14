@@ -4465,7 +4465,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 	for(i = 0; i < map->list[sd->bl.m].zone->disabled_items_count; i++) {
 		if(map->list[sd->bl.m].zone->disabled_items[i] == nameid) {
 			clif_msg(sd, ITEM_CANT_USE_AREA); // This item cannot be used within this area
-			if(battle_config.item_restricted_consumption_type && nameid != ITEMID_REINS_OF_MOUNT && nameid != ITEMID_C_WING_OF_FLY) {
+			if(battle_config.item_restricted_consumption_type && nameid != ITEMID_REINS_OF_MOUNT && sd->status.inventory[n].expire_time == 0) {
 				clif_useitemack(sd, n, sd->status.inventory[n].amount - 1, true);
 				pc_delitem(sd, n, 1, 1, 0, LOG_TYPE_CONSUME);
 			}
@@ -5973,7 +5973,7 @@ int pc_checkjoblevelup(struct map_session_data *sd)
  *------------------------------------------*/
 static void pc_calcexp(struct map_session_data *sd, unsigned int *base_exp, unsigned int *job_exp, struct block_list *src)
 {
-	int bonus = 0;
+	int bonus = 0, vip_exp_base = 0, vip_exp_job = 0;
 	struct status_data *st = status->get_status_data(src);
 
 	if (sd->expaddrace[st->race])
@@ -5991,13 +5991,17 @@ static void pc_calcexp(struct map_session_data *sd, unsigned int *base_exp, unsi
 		else*/
 			bonus += sd->sc.data[SC_CASH_PLUSEXP]->val1;
 	}
+	if(bra_config.enable_system_vip && src && src->type == BL_MOB && pc_isvip(sd)) {
+			vip_exp_base = bra_config.extra_exp_vip_base;
+			vip_exp_job = bra_config.extra_exp_vip_job;
+	}
 
-	*base_exp = (unsigned int) cap_value(*base_exp + (double)*base_exp * bonus/100., 1, UINT_MAX);
+	*base_exp = (unsigned int) cap_value(*base_exp + (double)*base_exp * (bonus + vip_exp_base)/100., 1, UINT_MAX);
 
 	if(sd->sc.data[SC_CASH_PLUSONLYJOBEXP])
 		bonus += sd->sc.data[SC_CASH_PLUSONLYJOBEXP]->val1;
 
-	*job_exp = (unsigned int) cap_value(*job_exp + (double)*job_exp * bonus/100., 1, UINT_MAX);
+	*job_exp = (unsigned int) cap_value(*job_exp + (double)*job_exp * (bonus + vip_exp_job)/100., 1, UINT_MAX);
 
 	return;
 }
@@ -7083,14 +7087,14 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	   && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE // only novices will receive no penalty
 	   && !map->list[sd->bl.m].flag.noexppenalty && !map_flag_gvg2(sd->bl.m)
 	   && !sd->sc.data[SC_BABY] && !sd->sc.data[SC_CASH_DEATHPENALTY]) {
-		unsigned int base_penalty =0;
+		unsigned int base_penalty = 0;
 		if(battle_config.ip_exp_bonus) {
 			battle_config.death_penalty_base -= battle_config.ip_exp_penalty;
 			battle_config.death_penalty_job  -= battle_config.ip_exp_penalty;
 		}
 		if(bra_config.enable_system_vip && pc_isvip(sd)) {
-			battle_config.death_penalty_base -= bra_config.penalty_exp_vip;
-			battle_config.death_penalty_job  -= bra_config.penalty_exp_vip;
+			battle_config.death_penalty_base -= bra_config.penalty_exp_vip_base;
+			battle_config.death_penalty_base  -= bra_config.penalty_exp_vip_job;
 		}
 		if(battle_config.death_penalty_base > 0) {
 			switch(battle_config.death_penalty_type) {
@@ -7554,7 +7558,7 @@ void pc_heal(struct map_session_data *sd,unsigned int hp,unsigned int sp, int ty
  *------------------------------------------*/
 int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 {
-	int bonus;
+	int bonus, tmp;
 
 	if(hp) {
 		int i;
@@ -7575,8 +7579,10 @@ int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 				break;
 			}
 		}
-		if(bonus!=100)
-			hp = hp * bonus / 100;
+
+		tmp = hp*bonus/100;
+		if(bonus != 100 && tmp > hp)
+			hp = tmp;
 
 		// Recovery Potion
 		if(sd->sc.data[SC_HEALPLUS])
@@ -7588,8 +7594,10 @@ int pc_itemheal(struct map_session_data *sd,int itemid, int hp,int sp)
 		        + pc_checkskill(sd,AM_LEARNINGPOTION)*5;
 		if(script->potion_flag > 1)
 			bonus += bonus*(script->potion_flag-1)*50/100;
-		if(bonus != 100)
-			sp = sp * bonus / 100;
+
+		tmp = sp*bonus/100;
+		if(bonus != 100 && tmp > sp)
+			sp = tmp;
 	}
 	if(sd->sc.count) {
 		if(sd->sc.data[SC_CRITICALWOUND]) {

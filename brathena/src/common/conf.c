@@ -141,8 +141,10 @@ void read_brathena_config(void)
 	if(libconfig->lookup_string(&configbrA, "lang_file", &tmpchar))		strncpy(bra_config.lang_file, tmpchar, sizeof(bra_config.lang_file));
 	if(libconfig->lookup_int(&configbrA, "enable_system_vip", &tmpint))	bra_config.enable_system_vip = tmpint;
 	if(libconfig->lookup_int(&configbrA, "level_vip", &tmpint))			bra_config.level_vip = tmpint;
-	if(libconfig->lookup_int(&configbrA, "extra_exp_vip", &tmpint))		bra_config.extra_exp_vip = tmpint;
-	if(libconfig->lookup_int(&configbrA, "penalty_exp_vip", &tmpint))	bra_config.penalty_exp_vip = tmpint;
+	if(libconfig->lookup_int(&configbrA, "extra_exp_vip_base", &tmpint))bra_config.extra_exp_vip_base = tmpint;
+	if(libconfig->lookup_int(&configbrA, "extra_exp_vip_job", &tmpint))bra_config.extra_exp_vip_job = tmpint;
+	if(libconfig->lookup_int(&configbrA, "penalty_exp_vip_base", &tmpint))bra_config.penalty_exp_vip_base = tmpint;
+	if(libconfig->lookup_int(&configbrA, "penalty_exp_vip_job", &tmpint))bra_config.penalty_exp_vip_job = tmpint;
 	if(libconfig->lookup_int(&configbrA, "msg_maps_removed", &tmpint))	bra_config.msg_maps_removed = tmpint;
 	if(libconfig->lookup_int(&configbrA, "show_message_exp", &tmpint))	bra_config.show_message_exp = tmpint;	
 

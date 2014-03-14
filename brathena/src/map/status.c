@@ -1929,6 +1929,9 @@ int status_check_visibility(struct block_list *src, struct block_list *target) {
 	if(src->m != target->m || !check_distance_bl(src, target, view_range))
 		return 0;
 
+	if(src->type == BL_NPC) /* NPCs don't care for the rest */
+		return 1;
+
 	if((tsc = status->get_sc(target))) {
 		struct status_data *st = status->get_status_data(src);
 
@@ -2049,10 +2052,12 @@ unsigned short status_base_atk(const struct block_list *bl, const struct status_
 	return cap_value(str, 0, battle_config.max_atk);
 }
 
+#if VERSION != 1
 static inline unsigned short status_base_matk_min(const struct status_data *st)
 {
 	return st->int_+(st->int_/7)*(st->int_/7);
 }
+#endif
 static inline unsigned short status_base_matk_max(const struct status_data *st)
 {
 	return st->int_+(st->int_/5)*(st->int_/5);
@@ -9703,7 +9708,7 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 	if(sce->timer != tid && tid != INVALID_TIMER)
 		return 0;
 
-	if(sd && sce->timer == INVALID_TIMER)
+	if(sd && sce->timer == INVALID_TIMER && !sd->state.loggingout)
 		chrif->del_scdata_single(sd->status.account_id, sd->status.char_id, type);
 
 	if(tid == INVALID_TIMER) {

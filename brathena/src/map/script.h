@@ -385,6 +385,7 @@ struct script_code {
 	int script_size;
 	unsigned char *script_buf;
 	struct reg_db local; ///< Local (npc) vars
+	unsigned short instances;
 };
 
 struct script_stack {
@@ -415,11 +416,13 @@ struct hQueueIterator {
 
 struct script_state {
 	struct script_stack* stack;
+	struct reg_db **pending_refs; ///< References to .vars returned by sub-functions, pending deletion.
+	int pending_ref_count;        ///< Amount of pending_refs currently stored.
 	int start,end;
 	int pos;
 	enum e_script_state state;
 	int rid,oid;
-	struct script_code *script, *scriptroot;
+	struct script_code *script;
 	struct sleep_data {
 		int tick,timer,charid;
 	} sleep;
@@ -603,6 +606,7 @@ struct script_interface {
 	void (*free_vars) (struct DBMap *var_storage);
 	struct script_state* (*alloc_state) (struct script_code* rootscript, int pos, int rid, int oid);
 	void (*free_state) (struct script_state* st);
+	void (*add_pending_ref) (struct script_state *st, struct reg_db *ref);
 	void (*run_autobonus) (const char *autobonus,int id, int pos);
 	void (*cleararray_pc) (struct map_session_data* sd, const char* varname, void* value);
 	void (*setarray_pc) (struct map_session_data* sd, const char* varname, uint32 idx, void* value, int* refcache);

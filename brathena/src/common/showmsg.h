@@ -106,8 +106,10 @@ extern struct brathena_config {
 	int max_rename_char,
 	enable_system_vip,
 	level_vip,
-	extra_exp_vip,
-	penalty_exp_vip,
+	extra_exp_vip_base,
+	extra_exp_vip_job,
+	penalty_exp_vip_base,
+	penalty_exp_vip_job,
 	msg_maps_removed,
 	show_message_exp;
 	

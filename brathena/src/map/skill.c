@@ -744,7 +744,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 		return 1;
 	switch(skill_id) {
 	case MH_LIGHT_OF_REGENE: 
-		if(hd->homunculus.intimacy <= 750) //if not cordial 
+		if(hd->homunculus.intimacy <= 75000) //if not cordial 
 		return 1; 
 		break; 
 	case MH_OVERED_BOOST: 
@@ -8452,7 +8452,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 
 		case AB_LAUDAAGNUS:
-			if(flag&1 || sd == NULL) {
+			if((flag&1 || sd == NULL) || !sd->status.party_id) {
 				if(tsc && (tsc->data[SC_FREEZE] || tsc->data[SC_STONE] || tsc->data[SC_BLIND] ||
 				           tsc->data[SC_BURNING] || tsc->data[SC_FROSTMISTY] || tsc->data[SC_COLD])) {
 					// Success Chance: (40 + 10 * Skill Level) %
@@ -8472,7 +8472,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 
 		case AB_LAUDARAMUS:
-			if(flag&1 || sd == NULL) {
+			if((flag&1 || sd == NULL) || !sd->status.party_id ) {
 				if(tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] || tsc->data[SC_MANDRAGORA] || tsc->data[SC_SILENCE] || tsc->data[SC_DEEP_SLEEP])){
 					// Success Chance: (40 + 10 * Skill Level) %
 					if(rnd()%100 > 40+10*skill_lv)  break;
@@ -9777,7 +9777,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case MH_LIGHT_OF_REGENE: //self
 			sc_start2(src, src, type, 100, skill_lv, hd->homunculus.level, skill_get_time(skill_id, skill_lv));
 			if(hd){
-		    		hd->homunculus.intimacy = 251; //change to neutral (can't be cast if < 750)
+		    		hd->homunculus.intimacy = 25100; //change to neutral (can't be cast if < 750)
 				if(sd) clif_send_homdata(sd, SP_INTIMATE, hd->homunculus.intimacy); //refresh intimacy info
 		    		skill_blockhomun_start(hd, skill_id, skill_get_cooldown(skill_id, skill_lv));
 			}
@@ -10740,11 +10740,12 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 			break;
 
 		case SC_FEINTBOMB:
-			skill_unitsetting(src,skill_id,skill_lv,x,y,0); // Set bomb on current Position
-			clif_skill_nodamage(src,src,skill_id,skill_lv,1);
-			skill_blown(src,src,3*skill_lv,unit_getdir(src),0);
-			//After back sliding, the player goes into hiding. Hiding level used is throught to be the learned level.
-			sc_start(src,src,SC_HIDING,100,(sd?pc_checkskill(sd,TF_HIDING):10),skill_get_time(TF_HIDING,(sd?pc_checkskill(sd,TF_HIDING):10)));
+			skill_unitsetting(src, skill_id, skill_lv, x, y, 0); // Set bomb on current Position
+			clif_skill_nodamage(src, src, skill_id, skill_lv, 1);
+			if(skill_blown(src, src, 3 * skill_lv, unit_getdir(src), 0) && sc){
+				sc->option |= OPTION_INVISIBLE;
+				clif_changeoption(src);
+			}
 			break;
 
 		case SC_ESCAPE:
@@ -16244,9 +16245,15 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 
 			case UNT_FEINTBOMB: {
 					struct block_list *src =  map->id2bl(group->src_id);
-					if(src)
-						map->foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY|1, skill_castend_damage_id);
-					skill_delunit(unit);
+					if(src){
+					struct status_change *sc = status->get_sc(src);
+					map->foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY | SD_ANIMATION | 1, skill_castend_damage_id);
+					if(sc){
+						sc->option &= ~OPTION_INVISIBLE;
+						clif_changeoption(src);
+					}
+				}
+				skill_delunit(unit);
 					break;
 				}
 

@@ -3123,8 +3123,7 @@ struct script_data *push_copy(struct script_stack *stack, int pos) {
 
 /// Removes the values in indexes [start,end[ from the stack.
 /// Adjusts all stack pointers.
-void pop_stack(struct script_state *st, int start, int end)
-{
+void pop_stack(struct script_state *st, int start, int end) {
 	struct script_stack *stack = st->stack;
 	struct script_data *data;
 	int i;
@@ -3145,6 +3144,10 @@ void pop_stack(struct script_state *st, int start, int end)
 		{
 			struct script_retinfo* ri = data->u.ri;
 			if(ri->scope.vars) {
+				// Note: This is necessary evern if we're also doing it in run_func
+				// (in the RETFUNC block) because not all functions return.  If a
+				// function (or a sub) has an 'end' or a 'close', it'll reach this
+				// block with its scope vars still to be freed.
 				script->free_vars(ri->scope.vars);
 				ri->scope.vars = NULL;
 			}
@@ -3191,9 +3194,8 @@ void script_free_vars(struct DBMap *var_storage)
 
 void script_free_code(struct script_code *code)
 {
-	script->free_vars(code->local.vars);
-	if(code->local.arrays)
-		code->local.arrays->destroy(code->local.arrays,script->array_free_db);
+	if(code->instances)
+		script->stop_instances(code);
 	aFree(code->script_buf);
 	aFree(code);
 }
@@ -3210,6 +3212,8 @@ struct script_state *script_alloc_state(struct script_code *rootscript, int pos,
 
 	st = ers_alloc(script->st_ers, struct script_state);
 	st->stack = ers_alloc(script->stack_ers, struct script_stack);
+	st->pending_refs = NULL;
+	st->pending_ref_count = 0;
 	st->stack->sp = 0;
 	st->stack->sp_max = 64;
 	CREATE(st->stack->stack_data, struct script_data, st->stack->sp_max);
@@ -3223,6 +3227,13 @@ struct script_state *script_alloc_state(struct script_code *rootscript, int pos,
 	st->oid = oid;
 	st->sleep.timer = INVALID_TIMER;
 	st->npc_item_flag = battle_config.item_enabled_npc;
+
+	if(st->script->instances != USHRT_MAX )
+		st->script->instances++;
+	else {
+		struct npc_data *nd = map->id2nd(oid);
+		ShowError("over 65k instances of '%s' script are being run\n",nd ? nd->name : "unknown");
+	}
 
 	if(!st->script->local.vars)
 		st->script->local.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
@@ -3238,12 +3249,22 @@ struct script_state *script_alloc_state(struct script_code *rootscript, int pos,
 /// Frees a script state.
 ///
 /// @param st Script state
-void script_free_state(struct script_state *st)
-{
+void script_free_state(struct script_state* st) {
 	if(idb_exists(script->st_db,st->id)) {
+		struct map_session_data *sd = st->rid ? map->id2sd(st->rid) : NULL;
+
 		if(st->bk_st) {// backup was not restored
 			ShowDebug("script_free_state: Previous script state lost (rid=%d, oid=%d, state=%d, bk_npcid=%d).\n", st->bk_st->rid, st->bk_st->oid, st->bk_st->state, st->bk_npcid);
 	}
+
+	if(sd && sd->st == st) { //Current script is aborted.
+			if(sd->state.using_fake_npc){
+				clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
+				sd->state.using_fake_npc = 0;
+			}
+			sd->st = NULL;
+			sd->npc_id = 0;
+		}
 
 		if(st->sleep.timer != INVALID_TIMER)
 			delete_timer(st->sleep.timer, script->run_timer);
@@ -3256,7 +3277,7 @@ void script_free_state(struct script_state *st)
 			ers_free(script->stack_ers, st->stack);
 			st->stack = NULL;
 		}
-		if(st->script) {
+		if(st->script && st->script->instances != USHRT_MAX && --st->script->instances == 0) {
 			if(st->script->local.vars && !db_size(st->script->local.vars)) {
 				script->free_vars(st->script->local.vars);
 				st->script->local.vars = NULL;
@@ -3267,12 +3288,31 @@ void script_free_state(struct script_state *st)
 			}
 		}
 		st->pos = -1;
+		if(st->pending_ref_count > 0) {
+			while (st->pending_ref_count > 0)
+				aFree(st->pending_refs[--st->pending_ref_count]);
+			aFree(st->pending_refs);
+			st->pending_refs = NULL;
+		}
 		idb_remove(script->st_db, st->id);
 		ers_free(script->st_ers, st);
 		if(--script->active_scripts == 0) {
 			script->next_id = 0;
 		}
 	}
+}
+
+/**
+ * Adds a pending reference entry to the current script.
+ *
+ * @see struct script_state::pending_refs
+ *
+ * @param st[in]  Script state.
+ * @param ref[in] Reference to be added.
+ */
+void script_add_pending_ref(struct script_state *st, struct reg_db *ref) {
+	RECREATE(st->pending_refs, struct reg_db*, ++st->pending_ref_count);
+	st->pending_refs[st->pending_ref_count-1] = ref;
 }
 
 //
@@ -4849,7 +4889,10 @@ BUILDIN_FUNC(callfunc)
 	st->stack->defsp = st->stack->sp;
 	st->state = GOTO;
 	st->stack->scope.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
-	st->stack->scope.arrays = i64db_alloc(DB_OPT_BASE);
+	st->stack->scope.arrays = idb_alloc(DB_OPT_BASE);
+
+	if(!st->script->local.vars )
+		st->script->local.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
 
 	return 0;
 }
@@ -4899,7 +4942,7 @@ BUILDIN_FUNC(callsub)
 	st->stack->defsp = st->stack->sp;
 	st->state = GOTO;
 	st->stack->scope.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
-	st->stack->scope.arrays = i64db_alloc(DB_OPT_BASE);
+	st->stack->scope.arrays = idb_alloc(DB_OPT_BASE);
 
 	return 0;
 }
@@ -4958,12 +5001,15 @@ BUILDIN_FUNC(return)
 					data->ref = NULL; // Reference to the parent scope, remove reference pointer
 			}
 			else if(name[0] == '.' && !data->ref)
-			{// script variable, link to current script
+			{// script variable without a reference set, link to current script
 				data->ref = (struct reg_db *)aCalloc(sizeof(struct reg_db), 1);
+				script->add_pending_ref(st, data->ref);
 				data->ref->vars = st->script->local.vars;
 				if(!st->script->local.arrays)
 					st->script->local.arrays = idb_alloc(DB_OPT_BASE);
 				data->ref->arrays = st->script->local.arrays;
+			} else if (name[0] == '.' /* && data->ref != NULL */) {
+				data->ref = NULL; // Reference to the parent scope's script, remove reference pointer.
 			}
 		}
 	} else { // no return value
@@ -15219,11 +15265,11 @@ BUILDIN_FUNC(pcstopfollow)
 // <--- [zBuffer] List of player cont commands
 // [zBuffer] List of mob control commands --->
 
-/// Makes the unit walk to target position or map
+/// Makes the unit walk to target position or target id
 /// Returns if it was successfull
 ///
 /// unitwalk(<unit_id>,<x>,<y>) -> <bool>
-/// unitwalk(<unit_id>,<map_id>) -> <bool>
+/// unitwalk(<unit_id>,<target_id>) -> <bool>
 BUILDIN_FUNC(unitwalk)
 {
 	struct block_list *bl;
@@ -15242,8 +15288,8 @@ BUILDIN_FUNC(unitwalk)
 		int y = script_getnum(st,4);
 		script_pushint(st, unit_walktoxy(bl,x,y,0));// We'll use harder calculations.
 	} else {
-		int map_id = script_getnum(st,3);
-		script_pushint(st, unit_walktobl(bl,map->id2bl(map_id),65025,1));
+		int target_id = script_getnum(st,3);
+		script_pushint(st, unit_walktobl(bl,map->id2bl(target_id),1,1));
 	}
 
 	return 0;
@@ -15625,6 +15671,9 @@ BUILDIN_FUNC(getvariableofnpc)
 		st->state = END;
 		return 1;
 	}
+
+	if(!nd->u.scr.script->local.vars)
+		nd->u.scr.script->local.vars = i64db_alloc(DB_OPT_RELEASE_DATA);
 
 	script->push_val(st->stack, C_NAME, reference_getuid(data), &nd->u.scr.script->local);
 	return 0;
@@ -19249,6 +19298,40 @@ void script_hardcoded_constants(void) {
 	/* status option compounds */
 	script->set_constant("Option_Dragon",OPTION_DRAGON,false);
 	script->set_constant("Option_Costume",OPTION_COSTUME,false);
+
+	/* send_target */
+	script->set_constant("ALL_CLIENT",ALL_CLIENT,false);
+	script->set_constant("ALL_SAMEMAP",ALL_SAMEMAP,false);
+	script->set_constant("AREA",AREA,false);
+	script->set_constant("AREA_WOS",AREA_WOS,false);
+	script->set_constant("AREA_WOC",AREA_WOC,false);
+	script->set_constant("AREA_WOSC",AREA_WOSC,false);
+	script->set_constant("AREA_CHAT_WOC",AREA_CHAT_WOC,false);
+	script->set_constant("CHAT",CHAT,false);
+	script->set_constant("CHAT_WOS",CHAT_WOS,false);
+	script->set_constant("PARTY",PARTY,false);
+	script->set_constant("PARTY_WOS",PARTY_WOS,false);
+	script->set_constant("PARTY_SAMEMAP",PARTY_SAMEMAP,false);
+	script->set_constant("PARTY_SAMEMAP_WOS",PARTY_SAMEMAP_WOS,false);
+	script->set_constant("PARTY_AREA",PARTY_AREA,false);
+	script->set_constant("PARTY_AREA_WOS",PARTY_AREA_WOS,false);
+	script->set_constant("GUILD",GUILD,false);
+	script->set_constant("GUILD_WOS",GUILD_WOS,false);
+	script->set_constant("GUILD_SAMEMAP",GUILD_SAMEMAP,false);
+	script->set_constant("GUILD_SAMEMAP_WOS",GUILD_SAMEMAP_WOS,false);
+	script->set_constant("GUILD_AREA",GUILD_AREA,false);
+	script->set_constant("GUILD_AREA_WOS",GUILD_AREA_WOS,false);
+	script->set_constant("GUILD_NOBG",GUILD_NOBG,false);
+	script->set_constant("DUEL",DUEL,false);
+	script->set_constant("DUEL_WOS",DUEL_WOS,false);
+	script->set_constant("SELF",SELF,false);
+	script->set_constant("BG",BG,false);
+	script->set_constant("BG_WOS",BG_WOS,false);
+	script->set_constant("BG_SAMEMAP",BG_SAMEMAP,false);
+	script->set_constant("BG_SAMEMAP_WOS",BG_SAMEMAP_WOS,false);
+	script->set_constant("BG_AREA",BG_AREA,false);
+	script->set_constant("BG_AREA_WOS",BG_AREA_WOS,false);
+	script->set_constant("BG_QUEUE",BG_QUEUE,false);
 }
 
 /**
@@ -19372,6 +19455,7 @@ void script_defaults(void) {
 	script->free_vars = script_free_vars;
 	script->alloc_state = script_alloc_state;
 	script->free_state = script_free_state;
+	script->add_pending_ref = script_add_pending_ref;
 	script->run_autobonus = script_run_autobonus;
 	script->cleararray_pc = script_cleararray_pc;
 	script->setarray_pc = script_setarray_pc;

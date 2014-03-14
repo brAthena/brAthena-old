@@ -2187,12 +2187,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type) {
 				if(md->db->mexp > 0)
 					zeny*=rnd()%250;
 			}
-			
-			// Adição de rates VIP.
-			if(battle_config.ip_exp_bonus)
-				bonus += battle_config.ip_exp_extra;
-			if(bra_config.enable_system_vip && (sd && pc_isvip(sd)))
-				bonus += bra_config.extra_exp_vip;
 
 			if(map->list[m].flag.nobaseexp || !md->db->base_exp)
 				base_exp = 0;

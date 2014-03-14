@@ -7387,13 +7387,14 @@ ACMD_FUNC(mutearea)
 ACMD_FUNC(rates)
 {
 	char buf[CHAT_SIZE_MAX];
+	int base_exp_rate_vip = 0, job_exp_rate_vip = 0;
 
 	memset(buf, '\0', sizeof(buf));
 	
 	// Adição de rates VIP.
 	if(bra_config.enable_system_vip && pc_isvip(sd)) {
-		battle_config.base_exp_rate += bra_config.extra_exp_vip;
-		battle_config.job_exp_rate  += bra_config.extra_exp_vip;
+		base_exp_rate_vip += bra_config.extra_exp_vip_base;
+		job_exp_rate_vip += bra_config.extra_exp_vip_job;
 	}
 
   if(battle_config.official_rates) {
@@ -7411,7 +7412,7 @@ ACMD_FUNC(rates)
 	clif_displaymessage(fd, buf);
 	} else {
 	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1298), // Experience rates: Base %.2fx / Job %.2fx
-	         battle_config.base_exp_rate/100., battle_config.job_exp_rate/100.);
+		(battle_config.base_exp_rate + base_exp_rate_vip) / 100., (battle_config.job_exp_rate + job_exp_rate_vip) / 100.);
 	clif_displaymessage(fd, buf);
 	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1299), // Normal Drop Rates: Common %.2fx / Healing %.2fx / Usable %.2fx / Equipment %.2fx / Card %.2fx
 	         battle_config.item_rate_common/100., battle_config.item_rate_heal/100., battle_config.item_rate_use/100., battle_config.item_rate_equip/100., battle_config.item_rate_card/100.);

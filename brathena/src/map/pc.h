@@ -208,6 +208,7 @@ struct map_session_data {
 		unsigned int hpmeter_visible : 1;
 		unsigned int itemcheck : 1;
 		unsigned int standalone : 1;/* [Ind] */
+		unsigned int loggingout : 1;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
