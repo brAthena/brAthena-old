@@ -937,10 +937,10 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 				skill = skill_get_time2(status->sc2skill(type), 7);
 
 				if(sd->addeff[i].flag&ATF_TARGET)
-					status->change_start(NULL, bl, type, rate, 7, 0, (type == SC_BURNING) ? src->id : 0, 0, skill, 0);
+					status->change_start(src, bl, type, rate, 7, 0, (type == SC_BURNING) ? src->id : 0, 0, skill, 0);
 
 				if(sd->addeff[i].flag&ATF_SELF)
-					status->change_start(NULL, src, type, rate, 7, 0, (type == SC_BURNING) ? src->id : 0, 0, skill, 0);
+					status->change_start(src, src, type, rate, 7, 0, (type == SC_BURNING) ? src->id : 0, 0, skill, 0);
 			}
 		}
 

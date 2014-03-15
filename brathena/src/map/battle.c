@@ -820,9 +820,9 @@ int64 battle_calc_masteryfix(struct block_list *src, struct block_list *target, 
 	if(skill_id != MC_CARTREVOLUTION && (skill2_lv=pc_checkskill(sd,BS_HILTBINDING)) > 0)
 		damage += 4;
 
-	if(sd->status.party_id && (skill_lv=pc_checkskill(sd,TK_POWER)) > 0) {
+	if(sd->status.party_id && (skill2_lv=pc_checkskill(sd,TK_POWER)) > 0) {
 		if((i = party_foreachsamemap(party_sub_count, sd, 0)) > 1)
-			damage += 2 * skill_lv * i * (damage /*+ unknown value*/)  / 100 /*+ unknown value*/;
+			damage += 2 * skill2_lv * i * (damage /*+ unknown value*/)  / 100 /*+ unknown value*/;
 	}
 #else
 	if(skill_id != ASC_BREAKER && weapon) // Adv Katar Mastery is does not applies to ASC_BREAKER, but other masteries DO apply >_>
@@ -5363,10 +5363,10 @@ void battle_reflect_damage(struct block_list *target, struct block_list *src, st
 				if( sc->data[SC_REFLECTSHIELD] && skill_id != WS_CARTTERMINATION ) {
 					NORMALIZE_RDAMAGE(damage * sc->data[SC_REFLECTSHIELD]->val2 / 100);
 
-#ifndef RENEWAL
+#if VERSION != 1
 					rdelay = clif->delay_damage(tick+delay,src, src, status_get_amotion(src), status_get_dmotion(src), rdamage, 1, 4);
 #else
-					rdelay = clif->skill_damage(src, src, tick, delay, status_get_dmotion(src), rdamage, 1, CR_REFLECTSHIELD, 1, 4);
+					rdelay = clif_skill_damage(src, src, tick, delay, status_get_dmotion(src), rdamage, 1, CR_REFLECTSHIELD, 1, 4);
 #endif
 					/* is this right? rdamage as both left and right? */
 					if(tsd)

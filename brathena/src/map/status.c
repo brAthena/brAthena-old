@@ -3118,9 +3118,6 @@ int status_calc_pc_(struct map_session_data* sd, enum e_status_calc_opt opt) {
 	}
 #endif
 
-	if (sc->option&OPTION_MADOGEAR && (skill_lv = pc_checkskill(sd, NC_MAINFRAME)) > 0)
-		bstatus->def2 += skill_lv * 4 - ((skill_lv >= 2) ? 1 : 0);
-
 // ----- EQUIPMENT-MDEF CALCULATION -----
 
 	// Apply relative modifiers from equipment
@@ -6530,7 +6527,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 	case SC_ADORAMUS:
 		if (sd) tick >>= 1; //Half duration for players.
 		sc_def = st->mdef*100;
-#if VERSION == 1
+#if VERSION != 1
 		sc_def2 = st->luk*10;
 		tick_def2 = 0; //No duration reduction
 #endif
@@ -6540,7 +6537,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		sc_def = st->mdef*100;
 		sc_def2 = st->luk*10 + SCDEF_LVL_DIFF(bl, src, 99, 10);
 		tick_def = 0; //No duration reduction
-#if VERSION == 1
+#if VERSION != 1
 		tick_def2 = 0; //No duration reduction
 #endif
 		break;
@@ -6558,7 +6555,7 @@ int status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_typ
 		// Special property: immunity when luk is zero
 		if (st->luk == 0)
 			return 0;
-#if VERSION == 1
+#if VERSION != 1
 		// Special property: immunity when luk is greater than level
 		if (st->luk > status->get_lv(bl))
 			return 0;
@@ -9059,6 +9056,7 @@ int status_change_start(struct block_list *src, struct block_list *bl, enum sc_t
 				break;
 			case SC_TELEKINESIS_INTENSE:
 				val2 = 10 * val1;
+				val3 = 40 * val1;
 				break;
 			case SC_OFFERTORIUM:
 				val2 = 30 * val1;

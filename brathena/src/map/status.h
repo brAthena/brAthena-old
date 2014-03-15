@@ -57,7 +57,6 @@ enum refine_type {
     REFINE_TYPE_WEAPON2 = 2,
     REFINE_TYPE_WEAPON3 = 3,
     REFINE_TYPE_WEAPON4 = 4,
-
     REFINE_TYPE_MAX     = 5
 };
 
