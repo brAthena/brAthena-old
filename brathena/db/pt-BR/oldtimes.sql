@@ -7809,6 +7809,7 @@ REPLACE INTO `item_violetbox_db` VALUES(2,5014,7);	-- Barbatanas
 REPLACE INTO `item_violetbox_db` VALUES(2,5015,7);	-- Casca de Ovo
 REPLACE INTO `item_violetbox_db` VALUES(2,5017,1);	-- Elmo de Osso
 REPLACE INTO `item_violetbox_db` VALUES(2,5019,1);	-- Chapéu de Corsário
+REPLACE INTO `item_violetbox_db` VALUES(2,5020,1);	-- Tiara de Kafra
 REPLACE INTO `item_violetbox_db` VALUES(2,5030,7);	-- Chapéu de Panda
 REPLACE INTO `item_violetbox_db` VALUES(2,5035,7);	-- Chapéu de Poring
 REPLACE INTO `item_violetbox_db` VALUES(2,5037,7);	-- Casca de Maçã

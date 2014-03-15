@@ -32,6 +32,7 @@ moc_ruins,71,16,0	warp	moc007	8,2,moc_fild19,71,167
 morocc,160,17,0	warp	moc001	2,2,moc_fild12,159,378
 morocc,197,66,0	warp	moc01	1,1,morocc_in,83,92
 morocc,27,294,0	warp	moc02	2,5,moc_ruins,156,42
+morocc,160,297,0	warp	moc003	2,2,moc_fild07,198,25
 morocc,24,164,0	warp	moc004	1,2,moc_fild19,164,107
 morocc,253,56,0	warp	moc03	2,1,morocc_in,134,74
 morocc,274,269,0	warp	moc04	2,2,morocc_in,138,136
@@ -119,6 +120,4 @@ moc_castle,94,156,0	warp#ot	mocc15-1	3,2,moc_castle,94,140,{}
 //====================================
 // [Pré-Renovação & Renovação]
 //====================================
-morocc,0,0	warp#dv	moc003	2,2,moc_fild07,198,25
-morocc,160,297,0	duplicata(moc003)	moc003#1	2,2,moc_fild07,198,25
 morocc,299,207,0	warp#dv	moc005	2,2,moc_fild20,36,177,{}
