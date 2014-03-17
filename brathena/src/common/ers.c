@@ -86,17 +86,14 @@ struct ers_instance_t {
 #ifdef DEBUG
 	/* for data analysis [Ind] */
 	unsigned int Peak;
-	struct ers_instance_t *Next, *Prev;
 #endif
-
+	struct ers_instance_t *Next, *Prev;
 };
 
 
 // Array containing a pointer for all ers_cache structures
 static ers_cache_t *CacheList = NULL;
-#ifdef DEBUG
-	static struct ers_instance_t *InstanceList = NULL;
-#endif
+static struct ers_instance_t *InstanceList = NULL;
 
 /**
  * @param Options the options from the instance seeking a cache, we use it to give it a cache with matching configuration
@@ -291,7 +288,7 @@ ERS ers_new(uint32 size, char *name, enum ERSOptions options)
 	instance->Cache = ers_find_cache(size,instance->Options);
 
 	instance->Cache->ReferenceCount++;
-#ifdef DEBUG
+
 	if (InstanceList == NULL) {
 		InstanceList = instance;
 	} else {
@@ -300,15 +297,13 @@ ERS ers_new(uint32 size, char *name, enum ERSOptions options)
 		InstanceList = instance;
 		InstanceList->Prev = NULL;
 	}
-#endif
 
 	instance->Count = 0;
 
 	return &instance->VTable;
 }
 
-void ers_report(void)
-{
+void ers_report(void) {
 	ers_cache_t *cache;
 	unsigned int cache_c = 0, blocks_u = 0, blocks_a = 0, memory_b = 0, memory_t = 0;
 #ifdef DEBUG
@@ -349,12 +344,17 @@ void ers_report(void)
 	ShowInfo("ers_report: '"CL_WHITE"%u"CL_NORMAL"' blocks total, consuming '"CL_WHITE"%.2f MB"CL_NORMAL"' \n",blocks_a,(double)((memory_t)/1024)/1024);
 }
 
-void ers_force_destroy_all(void)
-{
-	ers_cache_t *cache;
+/**
+ * Call on shutdown to clear remaining entries
+ **/
+void ers_final(void) {
+	struct ers_instance_t *instance = InstanceList, *next;
 
-	for(cache = CacheList; cache; cache = cache->Next)
-		ers_free_cache(cache, false);
+	while(instance) {
+		next = instance->Next;
+		ers_obj_destroy((ERS)instance);
+		instance = next;
+	}
 }
 
 #endif

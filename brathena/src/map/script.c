@@ -3196,6 +3196,11 @@ void script_free_code(struct script_code *code)
 {
 	if(code->instances)
 		script->stop_instances(code);
+	else {
+		script->free_vars(code->local.vars);
+		if(code->local.arrays)
+			code->local.arrays->destroy(code->local.arrays,script->array_free_db);
+	}
 	aFree(code->script_buf);
 	aFree(code);
 }
@@ -8130,6 +8135,18 @@ BUILDIN_FUNC(getgroupid)
 BUILDIN_FUNC(end)
 {
 	st->state = END;
+
+	/* are we stopping inside a function? */
+	if(st->stack->defsp >= 1 && st->stack->stack_data[st->stack->defsp-1].type == C_RETINFO) {
+		int i;
+		for(i = 0; i < st->stack->sp; i++) {
+			if(st->stack->stack_data[i].type == C_RETINFO ) {/* grab the first, aka the original */
+				struct script_retinfo *ri = st->stack->stack_data[i].u.ri;
+				st->script = ri->script;
+				break;
+			}
+		}
+	}
 	return 0;
 }
 
@@ -9126,7 +9143,10 @@ BUILDIN_FUNC(addtimer)
 	if(sd == NULL)
 		return 0;
 
-	pc_addeventtimer(sd,tick,event);
+	if(!pc_addeventtimer(sd,tick,event)) {
+		ShowWarning("buildin_addtimer: Event timer is full, can't add new event timer. (cid:%d timer:%s)\n",sd->status.char_id,event);
+		return false;
+	}
 	return 0;
 }
 /*==========================================
