@@ -501,10 +501,10 @@ function	script	F_InsertComma	{
 function	script	F_GetNumSuffix	{
 	set .@n, getarg(0);
 	set .@mod, .@n % 10;
-	if (.@mod == 1 && .@n != 11) return .@n+"st";
-	else if (.@mod == 2 && .@n != 12) return .@n+"nd";
-	else if (.@mod == 3 && .@n != 13) return .@n+"rd";
-	else return .@n+"th";
+	if (.@mod == 1 && .@n != 11) return .@n+"º";
+	else if (.@mod == 2 && .@n != 12) return .@n+"º";
+	else if (.@mod == 3 && .@n != 13) return .@n+"º";
+	else return .@n+"º";
 }
 
 //////////////////////////////////////////////////////////////////////////////////

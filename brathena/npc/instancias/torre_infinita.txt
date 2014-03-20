@@ -106,7 +106,7 @@ alberta,214,77,6	script	Capitão Jassen	4_M_SEAMAN,{
 		next;
 		mes "[Capitão Janssen]";
 		mes "...então ok...";
-		mes "Bem vindo à bo° andaro, primeiro marujo.";
+		mes "Bem-vindo à bordo, primeiro marujo.";
 		set in_102tower,3;
 		close;
 	} else if (in_102tower == 3) {
@@ -1189,7 +1189,7 @@ function	script	F_Tower_Warp	{
 	next;
 	setarray .@level$[1],"26° andar","51° andar","76° andar";
 	setarray .@map$[1],"2@tower","3@tower","4@tower";
-	set .@i, select("26th Level:51st Level:76th Level");
+	set .@i, select("26° andar:51° andar:76° andar");
 
 	if (countitem(6000) < .@i) {
 		mes "-Aviso-";
@@ -1458,7 +1458,7 @@ OnTimer120000:
 	end;
 }
 
-2@tower,355,51,0	script	1_M_04FGate102tower-2	WARPNPC,2,2,{
+2@tower,355,51,0	script	50FGate102tower-2	WARPNPC,2,2,{
 	end;
 
 OnInstanceInit:
