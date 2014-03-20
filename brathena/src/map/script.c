@@ -126,6 +126,10 @@ const char* script_op2name(int op) {
 	RETURN_OP_NAME(C_SUB_POST);
 	RETURN_OP_NAME(C_ADD_PRE);
 	RETURN_OP_NAME(C_SUB_PRE);
+#ifdef PCRE_SUPPORT
+	RETURN_OP_NAME(C_RE_EQ);
+	RETURN_OP_NAME(C_RE_NE);
+#endif
 
 		default:
 			ShowDebug("script_op2name: inesperado op=%d\n", op);
@@ -1228,6 +1232,10 @@ const char *script_parse_subexpr(const char *p,int limit)
 	|| (op=C_XOR,    opl=4, len=1,*p=='^')              // ^
 	|| (op=C_EQ,     opl=6, len=2,*p=='=' && p[1]=='=') // ==
 	|| (op=C_NE,     opl=6, len=2,*p=='!' && p[1]=='=') // !=
+#ifdef PCRE_SUPPORT
+	|| (op=C_RE_EQ,  opl=6, len=2,*p=='~' && p[1]=='=') // ~=
+	|| (op=C_RE_NE,  opl=6, len=2,*p=='~' && p[1]=='!') // ~!
+#endif
 	|| (op=C_R_SHIFT,opl=8, len=2,*p=='>' && p[1]=='>') // >>
 	|| (op=C_GE,     opl=7, len=2,*p=='>' && p[1]=='=') // >=
 	|| (op=C_GT,     opl=7, len=1,*p=='>')              // >
@@ -3390,31 +3398,100 @@ void op_3(struct script_state *st, int op)
 /// s1 GE s2 -> i
 /// s1 LT s2 -> i
 /// s1 LE s2 -> i
+/// s1 RE_EQ s2 -> i
+/// s1 RE_NE s2 -> i
 /// s1 ADD s2 -> s
 void op_2str(struct script_state *st, int op, const char *s1, const char *s2)
 {
 	int a = 0;
 
 	switch(op) {
-		case C_EQ: a = (strcmp(s1,s2) == 0); break;
-		case C_NE: a = (strcmp(s1,s2) != 0); break;
-		case C_GT: a = (strcmp(s1,s2) >  0); break;
-		case C_GE: a = (strcmp(s1,s2) >= 0); break;
-		case C_LT: a = (strcmp(s1,s2) <  0); break;
-		case C_LE: a = (strcmp(s1,s2) <= 0); break;
-		case C_ADD: {
-				char *buf = (char *)aMalloc((strlen(s1)+strlen(s2)+1)*sizeof(char));
-				strcpy(buf, s1);
-				strcat(buf, s2);
-				script_pushstr(st, buf);
+	case C_EQ: a = (strcmp(s1,s2) == 0); break;
+	case C_NE: a = (strcmp(s1,s2) != 0); break;
+	case C_GT: a = (strcmp(s1,s2) >  0); break;
+	case C_GE: a = (strcmp(s1,s2) >= 0); break;
+	case C_LT: a = (strcmp(s1,s2) <  0); break;
+	case C_LE: a = (strcmp(s1,s2) <= 0); break;
+#ifdef PCRE_SUPPORT
+	case C_RE_EQ:
+	case C_RE_NE:
+		{
+			int inputlen = (int)strlen(s1);
+			pcre *compiled_regex;
+			pcre_extra *extra_regex;
+			const char *pcre_error, *pcre_match;
+			int pcre_erroroffset, offsetcount, i;
+			int offsets[256*3]; // (max_capturing_groups+1)*3
+
+			compiled_regex = libpcre->compile(s2, 0, &pcre_error, &pcre_erroroffset, NULL);
+
+			if(compiled_regex == NULL) {
+				ShowError("script:op2_str: Invalid regex '%s'.\n", s2);
+				script->reportsrc(st);
+				script_pushnil(st);
+				st->state = END;
 				return;
 			}
-		default:
-			ShowError("script:op2_str: unexpected string operator %s\n",  script->op2name(op));
-			script->reportsrc(st);
-			script_pushnil(st);
-			st->state = END;
+
+			extra_regex = libpcre->study(compiled_regex, 0, &pcre_error);
+
+			if(pcre_error != NULL) {
+				libpcre->free(compiled_regex);
+				ShowError("script:op2_str: Unable to optimize the regex '%s': %s\n", s2, pcre_error);
+				script->reportsrc(st);
+				script_pushnil(st);
+				st->state = END;
+				return;
+			}
+
+			offsetcount = libpcre->exec(compiled_regex, extra_regex, s1, inputlen, 0, 0, offsets, 256*3);
+
+			if(offsetcount == 0) {
+				offsetcount = 256;
+			} else if(offsetcount == PCRE_ERROR_NOMATCH) {
+				offsetcount = 0;
+			} else if(offsetcount < 0) {
+				libpcre->free(compiled_regex);
+				if(extra_regex != NULL)
+					libpcre->free(extra_regex);
+				ShowWarning("script:op2_str: Unable to process the regex '%s'.\n", s2);
+				script->reportsrc(st);
+				script_pushnil(st);
+				st->state = END;
+				return;
+			}
+
+			if(op == C_RE_EQ) {
+				for(i = 0; i < offsetcount; i++) {
+					libpcre->get_substring(s1, offsets, offsetcount, i, &pcre_match);
+					mapreg->setregstr(reference_uid(script->add_str("$@regexmatch$"), i), pcre_match);
+					libpcre->free_substring(pcre_match);
+				}
+				mapreg->setreg(script->add_str("$@regexmatchcount"), i);
+				a = offsetcount;
+			} else { // C_RE_NE
+				a = (offsetcount == 0);
+			}
+			libpcre->free(compiled_regex);
+			if(extra_regex != NULL)
+				libpcre->free(extra_regex);
+		}
+		break;
+#endif // PCRE_SUPPORT
+	case C_ADD:
+		{
+			char* buf = (char *)aMalloc((strlen(s1)+strlen(s2)+1)*sizeof(char));
+			strcpy(buf, s1);
+			strcat(buf, s2);
+			script_pushstr(st, buf);
 			return;
+		}
+	default:
+		ShowError("script:op2_str: unexpected string operator %s\n", script->op2name(op));
+		script->reportsrc(st);
+		script_pushnil(st);
+		st->state = END;
+		return;
 	}
 
 	script_pushint(st,a);
@@ -3967,6 +4044,10 @@ void run_script_main(struct script_state *st)
 			case C_LOR:
 			case C_R_SHIFT:
 			case C_L_SHIFT:
+#ifdef PCRE_SUPPORT
+			case C_RE_EQ:
+			case C_RE_NE:
+#endif
 				script->op_2(st, c);
 				break;
 
@@ -16327,7 +16408,7 @@ BUILDIN_FUNC(bg_leave)
 	if(sd == NULL || !sd->bg_id)
 		return 0;
 
-	bg_team_leave(sd,0);
+	bg_team_leave(sd,BGTL_LEFT);
 	return 0;
 }
 
@@ -18649,6 +18730,14 @@ BUILDIN_FUNC(defpattern);
 BUILDIN_FUNC(activatepset);
 BUILDIN_FUNC(deactivatepset);
 BUILDIN_FUNC(deletepset);
+
+BUILDIN_FUNC(pcre_match) {
+	const char *input = script_getstr(st, 2);
+	const char *regex = script_getstr(st, 3);
+
+	script->op_2str(st, C_RE_EQ, input, regex);
+	return true;
+}
 #endif
 
 /**
@@ -19006,6 +19095,7 @@ void script_parse_builtin(void) {
 	BUILDIN_DEF(activatepset,"i"), // Activate a pattern set [MouseJstr]
 	BUILDIN_DEF(deactivatepset,"i"), // Deactive a pattern set [MouseJstr]
 	BUILDIN_DEF(deletepset,"i"), // Delete a pattern set [MouseJstr]
+	BUILDIN_DEF(pcre_match,"ss"),
 #endif
 	BUILDIN_DEF(dispbottom,"s"), //added from jA [Lupus]
 	BUILDIN_DEF(getusersname,""),

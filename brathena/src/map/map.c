@@ -1689,7 +1689,7 @@ int map_quit(struct map_session_data *sd) {
 		npc->event_dequeue(sd);
 
 	if(sd->bg_id && !sd->bg_queue.arena) /* TODO: dump this chunk after bg_queue is fully enabled */
-		bg_team_leave(sd,1);
+		bg_team_leave(sd,BGTL_QUIT);
 
 	if(sd->state.autotrade && runflag != MAPSERVER_ST_SHUTDOWN && !raChSys.closing)
 		pc_autotrade_update(sd,PAUC_REMOVE);
