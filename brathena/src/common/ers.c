@@ -238,7 +238,6 @@ static void ers_obj_destroy(ERS self)
 	if(--instance->Cache->ReferenceCount <= 0)
 		ers_free_cache(instance->Cache, true);
 
-#ifdef DEBUG
 	if (instance->Next)
 		instance->Next->Prev = instance->Prev;
 	
@@ -246,7 +245,6 @@ static void ers_obj_destroy(ERS self)
 		instance->Prev->Next = instance->Next;
 	else
 		InstanceList = instance->Next;
-#endif
 	
 	if( instance->Options & ERS_OPT_FREE_NAME )
 		aFree(instance->Name);
