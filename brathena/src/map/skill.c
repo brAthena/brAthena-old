@@ -2326,8 +2326,11 @@ int skill_blown(struct block_list *src, struct block_list *target, int count, in
 }
 
 
-//Checks if 'bl' should reflect back a spell cast by 'src'.
-//type is the type of magic attack: 0: indirect (aoe), 1: direct (targetted)
+// Checks if 'bl' should reflect back a spell cast by 'src'.
+// type is the type of magic attack: 0: indirect (aoe), 1: direct (targetted)
+// In case of success returns type of reflection, otherwise 0
+//		1 - Regular reflection (Maya)
+//		2 - SL_KAITE reflection
 static int skill_magic_reflect(struct block_list *src, struct block_list *bl, int type)
 {
 	struct status_change *sc = status->get_sc(bl);
@@ -2471,7 +2474,15 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 		 * Official Magic Reflection Behavior : damage reflected depends on gears caster wears, not target
 		 **/
 		#if MAGIC_REFLECTION_TYPE
-			if(dmg.dmg_lv != ATK_MISS ){ //Wiz SL cancelled and consumed fragment
+
+		#if VERSION != 1
+			// in pre-renewal Kaite reflected the entire damage received
+			// regardless of caster's equipament (Aegis 11.1)
+			if(dmg.dmg_lv != ATK_MISS && type == 1) //Wiz SL cancelled and consumed fragment
+		#else
+			if(dmg.dmg_lv != ATK_MISS) //Wiz SL cancelled and consumed fragment
+		#endif
+			{
 				short s_ele = skill_get_ele(skill_id, skill_lv);
 
 				if (s_ele == -1) // the skill takes the weapon's element
@@ -2493,7 +2504,6 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 					//Reduction: 6% + 6% every 20%
 					dmg.damage -= dmg.damage * (6 * (1+per)) / 100;
 				}
-
 			}
 #endif
 		}
@@ -2894,6 +2904,9 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 				break;
 			case WL_CRIMSONROCK:
 				dir = map->calc_dir(bl,skill_area_temp[4],skill_area_temp[5]);
+				break;
+			case MC_CARTREVOLUTION:
+				dir = 6; // Official servers push target to the West
 				break;
 
 		}
@@ -9398,11 +9411,10 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case SO_EL_ACTION:
 			if(sd) {
 				int duration = 3000;
-				if(!sd->ed)    break;
-				sd->skill_id_old = skill_id;
-				elemental->action(sd->ed, bl, tick);
-				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
-				switch(sd->ed->db->class_) {
+				if(!sd->ed)
+					break;
+
+				switch(sd->ed->db->class_){
 					case 2115:case 2124:
 					case 2118:case 2121:
 						duration = 6000;
@@ -9412,6 +9424,11 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 						duration = 9000;
 						break;
 				}
+
+				sd->skill_id_old = skill_id;
+				elemental->action(sd->ed, bl, tick);
+				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
+												
 				skill_blockpc_start(sd, skill_id, duration);
 			}
 			break;
@@ -9814,6 +9831,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				if(hd)
 					skill_blockhomun_start(hd, skill_id, skill_get_cooldown(skill_id, skill_lv));
 			}
+			break;
+		case SO_ELEMENTAL_SHIELD:/* somehow its handled outside this switch, so we need a empty case otherwise default would be triggered. */
 			break;
 		default:
 			ShowWarning("skill_castend_nodamage_id: Unknown skill used:%d\n",skill_id);
@@ -10736,8 +10755,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 			skill_unitsetting(src, skill_id, skill_lv, x, y, 0); // Set bomb on current Position
 			clif_skill_nodamage(src, src, skill_id, skill_lv, 1);
 			if(skill_blown(src, src, 3 * skill_lv, unit_getdir(src), 0) && sc){
-				sc->option |= OPTION_INVISIBLE;
-				clif_changeoption(src);
+				sc_start(src, src, SC__FEINTBOMB_MASTER, 100, 0, skill_get_unit_interval(SC_FEINTBOMB));
 			}
 			break;
 
@@ -12885,6 +12903,35 @@ int skill_isammotype(struct map_session_data *sd, int skill_id)
 	       );
 }
 
+/**
+ * Checks whether a skill can be used in combos or not
+ **/
+bool skill_is_combo(int skill_id)
+{
+	switch(skill_id)
+	{
+		case MO_CHAINCOMBO:
+		case MO_COMBOFINISH:
+		case CH_TIGERFIST:
+		case CH_CHAINCRUSH:
+		case MO_EXTREMITYFIST:
+		case TK_TURNKICK:
+		case TK_STORMKICK:
+		case TK_DOWNKICK:
+		case TK_COUNTER:
+		case TK_JUMPKICK:
+		case HT_POWER:
+		case GC_COUNTERSLASH:
+		case GC_WEAPONCRUSH:
+		case SR_FALLENEMPIRE:
+		case SR_DRAGONCOMBO:
+		case SR_TIGERCANNON:
+		case SR_GATEOFHELL:
+			return true;
+	}
+	return false;
+}
+
 int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv)
 {
 	struct status_data *st;
@@ -13753,29 +13800,11 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 		return 0;
 	}
 
-	if(sd->sc.data[SC_COMBOATTACK]) {
-		switch(skill_id) {
-			case MO_CHAINCOMBO:
-			case MO_COMBOFINISH:
-			case CH_TIGERFIST:
-			case CH_CHAINCRUSH:
-			case MO_EXTREMITYFIST:
-			case TK_TURNKICK:
-			case TK_STORMKICK:
-			case TK_DOWNKICK:
-			case TK_COUNTER:
-			case TK_JUMPKICK:
-			case HT_POWER:
-			case GC_COUNTERSLASH:
-			case GC_WEAPONCRUSH:
-			case SR_FALLENEMPIRE:
-			case SR_DRAGONCOMBO:
-			case SR_TIGERCANNON:
-			case SR_GATEOFHELL:
-				break;
-			default: return 0;
-		}
-	}
+	// There's no need to check if the skill is part of a combo if it's
+	// already been checked before, see unit_skilluse_id2 [Panikon]
+	// Note that if this check is readded part of issue:8047 will reapear!
+	//if(sd->sc.data[SC_COMBOATTACK] && !skill->is_combo(skill_id ))
+	//	return 0;
 			
 	return 1;
 }
@@ -16230,18 +16259,14 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 				break;
 
 			case UNT_FEINTBOMB: {
-					struct block_list *src =  map->id2bl(group->src_id);
-					if(src){
-					struct status_change *sc = status->get_sc(src);
-					map->foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY | SD_ANIMATION | 1, skill_castend_damage_id);
-					if(sc){
-						sc->option &= ~OPTION_INVISIBLE;
-						clif_changeoption(src);
-					}
+				struct block_list *src = map->id2bl(group->src_id);
+				if(src) {
+					map->foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY|SD_ANIMATION|1, skill_castend_damage_id);
+					status_change_end(src, SC__FEINTBOMB_MASTER, INVALID_TIMER);
 				}
 				skill_delunit(unit);
-					break;
-				}
+				break;
+			}
 
 			case UNT_BANDING: {
 					struct block_list *src = map->id2bl(group->src_id);

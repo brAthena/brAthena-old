@@ -2041,5 +2041,6 @@ int skill_check_unit_range_sub(struct block_list *bl, va_list ap);
 int skill_check_unit_range2_sub(struct block_list *bl, va_list ap);
 int skill_destroy_trap(struct block_list *bl, va_list ap);
 int skill_check_condition_mob_master_sub (struct block_list *bl, va_list ap);
+bool skill_is_combo (int skill_id);
 
 #endif /* _SKILL_H_ */

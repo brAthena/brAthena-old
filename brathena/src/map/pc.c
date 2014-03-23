@@ -2752,7 +2752,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			break;
 		case SP_ADD_VARIABLECAST:
 			if(sd->state.lr_flag != 2)
-			sd->bonus.add_varcast += val;
+				sd->bonus.add_varcast += val;
 			break;
 #endif
 		default:

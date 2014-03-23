@@ -722,6 +722,8 @@ typedef enum sc_type {
     SC__MAELSTROM,
     SC__CHAOS,
 
+    SC__FEINTBOMB_MASTER,
+
     //homon S
     SC_TINDER_BREAKER,
     SC_TINDER_BREAKER2,
