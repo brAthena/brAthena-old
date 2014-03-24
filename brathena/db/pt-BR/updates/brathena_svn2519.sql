@@ -1,1 +1,0 @@
-ALTER TABLE `login` DROP `date_vip`;

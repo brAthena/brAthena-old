@@ -613,6 +613,12 @@ static bool mmo_auth_tosql(AccountDB_SQL *db, const struct mmo_account *acc, boo
 
 	return result;
 }
+
+void account_db_sql_up(AccountDB* self) {
+	AccountDB_SQL* db = (AccountDB_SQL*)self;
+	Sql_Update_Check(db->accounts);
+}
+
 void mmo_save_accreg2(AccountDB* self, int fd, int account_id, int char_id) {
 	Sql* sql_handle = ((AccountDB_SQL*)self)->accounts;
 	AccountDB_SQL* db = (AccountDB_SQL*)self;

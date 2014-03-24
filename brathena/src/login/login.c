@@ -1759,6 +1759,8 @@ int do_init(int argc, char **argv)
 		}
 	}
 
+	account_db_sql_up(accounts); // Verifica atualizações faltantes
+
 	if(login_config.console) {
 		//##TODO invoke a CONSOLE_START plugin event
 	}

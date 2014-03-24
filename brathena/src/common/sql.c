@@ -950,10 +950,10 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
 		if( first ) {
-			ShowFatalError("File not found: %s\n", cfgName);
+			ShowFatalError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 			exit(EXIT_FAILURE);
 		} else
-			ShowError("File not found: %s\n", cfgName);
+			ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 		return;
 	}
 	
@@ -983,6 +983,68 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 	fclose(fp);
 		
 	return;
+}
+
+void Sql_Update_Check(Sql* upgrade) {
+	char line[25];// "brathena_svn0000_xxx" (20) + ".sql" (4) + 1
+	FILE* update;
+	unsigned int sql_update = 0;
+	StringBuf buf;
+
+	if(upgrade == NULL)
+		return;
+
+	if(!(update = fopen("db/pt-BR/updates/update.txt", "r"))) {
+		ShowError(read_message("Source.common.sql_update_mg1"));
+		return;
+	}
+
+	StrBuf->Init(&buf);
+
+	while(fgets(line, sizeof(line), update)) {
+		char path[42];// "db/pt-BR/update/" (16) + "brathena_svn0000_xxx" (20) + ".sql" (4) + 1
+		char name[15];// "brathena_r0000" (14) + 1
+		FILE* update_bra;
+
+		if(line[0] == '\n' || line[0] == '\r' || ( line[0] == '/' && line[1] == '/' ) )
+			continue;
+
+		sprintf(path,"db/pt-BR/updates/%s",line);
+
+		if(!(update_bra = fopen(path, "r"))) {
+			ShowError(read_message("Source.common.sql_update_mg2"),CL_WHITE, path, CL_RESET);
+			continue;
+		}
+
+		if(fgetc(update_bra) != '#')
+			continue;
+
+		fseek(update_bra, 1, SEEK_SET);
+
+		if(fgets(name, sizeof(name), update_bra)) {
+			unsigned int name2 = (unsigned int)atol(name);
+			if (SQL_ERROR == Sql_Query(upgrade, "SELECT 1 FROM `brathena_updates` WHERE `sql_name` = 'brathena_r%u' LIMIT 1", name2))
+				Sql_ShowDebug(upgrade);
+			if (Sql_NumRows(upgrade) != 1) {
+				StrBuf->Printf(&buf, read_message("Source.common.sql_update_mg3"), CL_MAGENTA, CL_RESET, CL_WHITE, path, CL_RESET);
+				sql_update++;
+			}
+		}
+
+		fclose(update_bra);
+	}
+
+	fclose(update);
+
+	if (sql_update) {
+			ShowSQL(read_message("Source.common.sql_update_mg4"), CL_GREEN, sql_update, CL_RESET, CL_WHITE, CL_RESET);
+			ShowMessage("%s",StrBuf->Value(&buf));
+			ShowInfo(read_message("Source.common.sql_update_mg5"), CL_RED, CL_RESET);
+			exit(EXIT_FAILURE);
+		return;
+	}
+
+	StrBuf->Destroy(&buf);
 }
 
 void Sql_Init(void) {

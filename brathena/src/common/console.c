@@ -70,13 +70,13 @@ void display_title(void) {
 	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                          www.brathena.org                            "CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_BG_GREEN""CL_BT_WHITE"                                                                      "CL_CLL""CL_NORMAL"\n");
 
-	if(VERSION == -1)
+	#if VERSION == -1
 		ShowInfo(read_message("Source.common.emulator_mode_ot"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	else if(VERSION == 0)
+	#elif VERSION == 0
 		ShowInfo(read_message("Source.common.emulator_mode_pre"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	else if (VERSION == 1)
+	#else
 		ShowInfo(read_message("Source.common.emulator_mode_re"), CL_RED, CL_RESET, CL_GREEN, CL_RESET);
-	
+	#endif
 	ShowInfo(read_message("Source.common.core_revision"), CL_WHITE, svn, CL_RESET);
 	ShowInfo(read_message("Source.common.client_version1"), CL_RED, CL_RESET, CL_GREEN, PACKETVER, CL_RESET);
 	ShowInfo(read_message("Source.common.client_version2"), CL_RED, CL_RESET);

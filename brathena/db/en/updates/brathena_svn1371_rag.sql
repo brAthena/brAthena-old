@@ -1,0 +1,2 @@
+#1371
+ALTER TABLE `item_db` MODIFY `defence` SMALLINT(5) DEFAULT NULL;

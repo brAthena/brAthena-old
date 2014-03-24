@@ -1146,7 +1146,7 @@ int socket_config_read(const char *cfgName)
 
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
-		ShowError(read_message("Source.reuse.reuse_file_not_found"), 198, cfgName);
+		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 		return 1;
 	}
 
@@ -1176,13 +1176,13 @@ int socket_config_read(const char *cfgName)
 			if(access_ipmask(w2, &access_allow[access_allownum]))
 				++access_allownum;
 			else
-				ShowError(read_message("Source.common.sockect_config_read"), line);
+				ShowError(read_message("Source.common.socket_config_read"), line);
 		} else if(!strcmpi(w1, "deny")) {
 			RECREATE(access_deny, AccessControl, access_denynum+1);
 			if(access_ipmask(w2, &access_deny[access_denynum]))
 				++access_denynum;
 			else
-				ShowError(read_message("Source.common.sockect_config_read"), line);
+				ShowError(read_message("Source.common.socket_config_read"), line);
 		} else if(!strcmpi(w1,"ddos_interval"))
 			ddos_interval = atoi(w2);
 		else if(!strcmpi(w1,"ddos_count"))

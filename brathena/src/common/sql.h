@@ -347,7 +347,7 @@ void SqlStmt_FreeResult(SqlStmt* self);
 /// Shows debug information (with statement).
 void SqlStmt_ShowDebug_(SqlStmt* self, const char* debug_file, const unsigned long debug_line);
 
-
+void Sql_Update_Check(Sql* upgrade);
 
 /// Frees a SqlStmt returned by SqlStmt_Malloc.
 void SqlStmt_Free(SqlStmt* self);

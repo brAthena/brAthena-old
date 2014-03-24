@@ -5299,6 +5299,7 @@ int do_init(int argc, char **argv)
 	auth_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	online_char_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	mmo_char_sql_init();
+	Sql_Update_Check(sql_handle); // Verifica atualizações faltantes
 	char_read_fame_list(); //Read fame lists.
 
 	if ((sockt->naddr_ != 0) && (!login_ip || !char_ip)) {

@@ -55,7 +55,7 @@ int console_msg_log = 0;//[Ind] msg error logging
 ///////////////////////////////////////////////////////////////////////////////
 /// static/dynamic buffer for the messages
 
-#define SBUF_SIZE 2054 // never put less that what's required for the debug message
+#define SBUF_SIZE 5000 // never put less that what's required for the debug message
 
 #define NEWBUF(buf)             \
 	struct {                    \

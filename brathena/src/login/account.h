@@ -144,6 +144,8 @@ struct AccountDB {
 	AccountDBIterator *(*iterator)(AccountDB *self);
 };
 
+void account_db_sql_up(AccountDB* self);
+
 void mmo_send_accreg2(AccountDB* self, int fd, int account_id, int char_id);
 void mmo_save_accreg2(AccountDB* self, int fd, int account_id, int char_id);
 
