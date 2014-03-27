@@ -278,7 +278,7 @@ void initChangeTables(void) {
 	set_sc(CR_REFLECTSHIELD     , SC_REFLECTSHIELD    , SI_REFLECTSHIELD     , SCB_NONE);
 	add_sc(CR_HOLYCROSS         , SC_BLIND);
 	add_sc(CR_GRANDCROSS        , SC_BLIND);
-	add_sc(CR_DEVOTION          , SC_DEVOTION        , SI_DEVOTION,       , SCB_NONE););
+	set_sc(CR_DEVOTION          , SC_DEVOTION        , SI_DEVOTION        , SCB_NONE);
 	set_sc(CR_PROVIDENCE        , SC_PROVIDENCE      , SI_PROVIDENCE      , SCB_ALL);
 	set_sc(CR_DEFENDER          , SC_DEFENDER        , SI_DEFENDER        , SCB_SPEED|SCB_ASPD);
 	set_sc(CR_SPEARQUICKEN      , SC_SPEARQUICKEN    , SI_SPEARQUICKEN    , SCB_ASPD|SCB_CRI|SCB_FLEE);
