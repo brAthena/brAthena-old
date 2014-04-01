@@ -1472,9 +1472,9 @@ int rename_char_sql(struct char_session_data *sd, int char_id)
 
 	// log change
 	if(log_char) {
-		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
-		                          "VALUES (NOW(), '%s', '%d', '%d', '%s', '0', '0', '0', '0', '0', '0', '0', '0')",
-		                          charlog_db, "change char name", sd->account_id, char_dat.slot, esc_name))
+		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
+			"VALUES (NOW(), '%s', '%d', '%d', '%d', '%s', '0', '0', '0', '0', '0', '0', '0', '0')",
+			charlog_db, "change char name", sd->account_id, char_dat.char_id, char_dat.slot, esc_name) )
 			Sql_ShowDebug(sql_handle);
 	}
 
@@ -1512,7 +1512,7 @@ int check_char_name(char *name, char *esc_name)
 		// letters/symbols in char_name_letters are forbidden
 		for(i = 0; i < NAME_LENGTH && name[i]; i++)
 			if(strchr(char_name_letters, name[i]) != NULL)
-				return -2;
+				return -5;
 	}
 	if(name_ignoring_case) {
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE BINARY `name` = '%s' LIMIT 1", char_db, esc_name)) {
@@ -1531,9 +1531,16 @@ int check_char_name(char *name, char *esc_name)
 	return 0;
 }
 
-//-----------------------------------
-// Function to create a new character
-//-----------------------------------
+/**
+ * Creates a new character
+ * Return values:
+ *  -1: 'Charname already exists'
+ *  -2: 'Char creation denied'/ Unknown error
+ *  -3: 'You are underaged'
+ *  -4: 'You are not elegible to open the Character Slot.'
+ *  -5: 'Symbols in Character Names are forbidden'
+ *  char_id: Success
+ **/
 #if PACKETVER >= 20120307
 int make_new_char_sql(struct char_session_data *sd, char *name_, int slot, int hair_color, int hair_style)
 {
@@ -1578,13 +1585,6 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 	if(sd->found_char[slot] != -1)
 		return -2; /* character account limit exceeded */
 
-	// validation success, log result
-	if(log_char) {
-		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
-		                          "VALUES (NOW(), '%s', '%d', '%d', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d')",
-		                          charlog_db, "make new char", sd->account_id, slot, esc_name, str, agi, vit, int_, dex, luk, hair_style, hair_color))
-			Sql_ShowDebug(sql_handle);
-	}
 #if PACKETVER >= 20120307
 	//Insert the new char entry to the database
 	if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `zeny`, `status_point`,`str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
@@ -1610,6 +1610,18 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 #endif
 	//Retrieve the newly auto-generated char id
 	char_id = (int)Sql_LastInsertId(sql_handle);
+
+	if(!char_id)
+		return -2;
+
+	// Validation success, log result
+	if(log_char) {
+		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
+			"VALUES (NOW(), '%s', '%d', '%d', '%d', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d')",
+			charlog_db, "make new char", sd->account_id, char_id, slot, esc_name, str, agi, vit, int_, dex, luk, hair_style, hair_color))
+			Sql_ShowDebug(sql_handle);
+	}
+
 	  //Give the char the default items
 	{ //Adicionado suporte para múltiplos itens [brAthena]
 		int i = 0;
@@ -1789,15 +1801,16 @@ int delete_char_sql(int char_id)
 		Sql_ShowDebug(sql_handle);
 #endif
 
-	if(log_char) {
-		if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`char_msg`,`name`) VALUES (NOW(), '%d', '%d', 'Deleted char (CID %d)', '%s')",
-		                          charlog_db, account_id, 0, char_id, esc_name))
+	/* delete character */
+	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", char_db, char_id) )
+		Sql_ShowDebug(sql_handle);
+	else if(log_char) {
+		if(SQL_ERROR == Sql_Query(sql_handle,
+			"INSERT INTO `%s`(`time`, `account_id`, `char_id`, `char_num`, `char_msg`, `name`)"
+			" VALUES (NOW(), '%d', '%d', '%d', 'Deleted character', '%s')",
+			charlog_db, account_id, char_id, 0, esc_name) )
 			Sql_ShowDebug(sql_handle);
 	}
-
-	/* delete character */
-	if(SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", char_db, char_id))
-		Sql_ShowDebug(sql_handle);
 
 	/* No need as we used inter_guild_leave [Skotlex]
 	// Also delete info from guildtables.
@@ -4212,8 +4225,9 @@ int parse_char(int fd)
 						char esc_name[NAME_LENGTH*2+1];
 
 						Sql_EscapeStringLen(sql_handle, esc_name, char_dat.name, strnlen(char_dat.name, NAME_LENGTH));
-						if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`name`) VALUES (NOW(), '%d', '%d', '%s')",
-						                          charlog_db, sd->account_id, slot, esc_name))
+						if(SQL_ERROR == Sql_Query(sql_handle,
+							"INSERT INTO `%s`(`time`, `account_id`, `char_id`, `char_num`, `name`) VALUES (NOW(), '%d', '%d', '%d', '%s')",
+							charlog_db, sd->account_id, cd->char_id, slot, esc_name))
 							Sql_ShowDebug(sql_handle);
 					}
 					ShowInfo(read_message("Source.char.char_parse_char_s2"), sd->account_id, slot, char_dat.name);
@@ -4332,7 +4346,6 @@ int parse_char(int fd)
 					result = make_new_char_sql(sd, (char *)RFIFOP(fd,2),RFIFOB(fd,26),RFIFOB(fd,27),RFIFOB(fd,28),RFIFOB(fd,29),RFIFOB(fd,30),RFIFOB(fd,31),RFIFOB(fd,32),RFIFOW(fd,33),RFIFOW(fd,35));
 #endif
 
-				//'Charname already exists' (-1), 'Char creation denied' (-2) and 'You are underaged' (-3)
 				if(result < 0) {
 					WFIFOHEAD(fd,3);
 					WFIFOW(fd,0) = 0x6e;
@@ -4341,10 +4354,16 @@ int parse_char(int fd)
 					/* 0x03 = You are not elegible to open the Character Slot. */
 					/* 0x0B = This service is only available for premium users.  */
 					switch (result) {
-						case -1: WFIFOB(fd,2) = 0x00; break;
-						case -2: WFIFOB(fd,2) = 0xFF; break;
-						case -3: WFIFOB(fd,2) = 0x01; break;
-						case -4: WFIFOB(fd,2) = 0x03; break;
+						case -1: WFIFOB(fd,2) = 0x00; break; // 'Charname already exists'
+						case -2: WFIFOB(fd,2) = 0xFF; break; // 'Char creation denied'
+						case -3: WFIFOB(fd,2) = 0x01; break; // 'You are underaged'
+						case -4: WFIFOB(fd,2) = 0x03; break; // 'You are not elegible to open the Character Slot.'
+						case -5: WFIFOB(fd,2) = 0x02; break; // 'Symbols in Character Names are forbidden'
+
+						default:
+							ShowWarning("parse_char: Unknown result received from make_new_char_sql!\n");
+							WFIFOB(fd,2) = 0xFF;
+							break;
 					}
 					WFIFOSET(fd,3);
 				} else {

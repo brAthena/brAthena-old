@@ -140,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `charlog` (
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `char_msg` varchar(255) NOT NULL default 'personagem selecionado',
   `account_id` int(11) NOT NULL default '0',
+  `char_id` int(11) unsigned NOT NULL default '0',
   `char_num` tinyint(4) NOT NULL default '0',
   `name` varchar(23) NOT NULL default '',
   `str` int(11) unsigned NOT NULL default '0',
@@ -676,6 +677,7 @@ REPLACE INTO `brathena_updates` VALUES('brathena_r2657');
 REPLACE INTO `brathena_updates` VALUES('brathena_r2679');
 REPLACE INTO `brathena_updates` VALUES('brathena_r2770');
 REPLACE INTO `brathena_updates` VALUES('brathena_r2802');
+REPLACE INTO `brathena_updates` VALUES('brathena_r2806');
 
 --
 -- Estrutura da tabela `sstatus`

@@ -27,3 +27,4 @@ brathena_svn2657_rag.sql
 brathena_svn2679_rag.sql
 brathena_svn2770_rag.sql
 brathena_svn2802_rag.sql
+brathena_svn2806_rag.sql

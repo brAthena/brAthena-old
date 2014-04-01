@@ -6259,7 +6259,7 @@ int pc_maxparameterincrease(struct map_session_data* sd, int type) {
 /**
  * Raises a stat by the specified amount.
  * Obeys max_parameter limits.
- * Subtracts stat points.
+ * Does not subtract stat points.
  *
  * @param sd       The target character.
  * @param type     The stat to change (see enum _sp)
@@ -6314,12 +6314,16 @@ bool pc_statusup(struct map_session_data* sd, int type, int increase) {
 	return true;
 }
 
-/// Raises a stat by the specified amount.
-/// Obeys max_parameter limits.
-/// Does not subtract stat points.
-///
-/// @param type The stat to change (see enum _sp)
-/// @param val The stat increase amount.
+/**
+ * Raises a stat by the specified amount.
+ * Obeys max_parameter limits.
+ * Subtracts stat points.
+ *
+ * @param sd       The target character.
+ * @param type     The stat to change (see enum _sp)
+ * @param increase The stat increase amount.
+ * @return zero if no changes were made, otherwise returns stat increase amount
+ */
 int pc_statusup2(struct map_session_data *sd, int type, int val)
 {
 	int max, need;
@@ -6327,7 +6331,7 @@ int pc_statusup2(struct map_session_data *sd, int type, int val)
 
 	if(type < SP_STR || type > SP_LUK) {
 		clif_statusupack(sd,type,0,0);
-		return 1;
+		return 0;
 	}
 
 	need = pc_need_status_point(sd,type,1);
@@ -6347,7 +6351,7 @@ int pc_statusup2(struct map_session_data *sd, int type, int val)
 	if(val > 255)
 		clif_updatestatus(sd,type); // send after the 'ack' to override the truncated value
 
-	return 0;
+	return val;
 }
 
 /*==========================================
@@ -6942,7 +6946,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	npc->script_event(sd,NPCE_DIE);
 
 	// Clear anything NPC-related when you die and was interacting with one.
-	if(sd->npc_id || sd->npc_shopid) {
+	if((sd->npc_id || sd->npc_shopid) && sd->state.dialog) {
 		if (sd->state.using_fake_npc) {
 			clif_clearunit_single(sd->npc_id, CLR_OUTSIGHT, sd->fd);
 			sd->state.using_fake_npc = 0;

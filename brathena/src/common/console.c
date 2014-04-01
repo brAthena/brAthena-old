@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/console.c                                                 *
-* Descri√ß√£o Prim√°ria.                                                        *
-* Descri√ß√£o mais elaborada sobre o arquivo.                                  *
+* DescriÁ„o Prim·ria.                                                        *
+* DescriÁ„o mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *
@@ -102,15 +102,35 @@ int console_parse_key_pressed(void) {
 	return FD_ISSET(STDIN_FILENO, &fds);
 }
 #endif /* _WIN32 */
-CPCMD(exit) {
+
+/*======================================
+ *	CORE: Console commands
+ *--------------------------------------*/
+
+/**
+ * Stops server
+ **/
+CPCMD_C(exit,server) {
 	runflag = 0;
 }
-CPCMD(ers_report) {
+
+/**
+ * Displays ERS-related statistics (Entry Reusage System)
+ **/
+CPCMD_C(ers_report,server) {
 	ers_report();
 }
-CPCMD(mem_report) {
+
+/**
+ * Displays memory usage
+ **/
+CPCMD_C(mem_report,server) {
 	memmgr_report(line?atoi(line):0);
 }
+
+/**
+ * Displays command list
+ **/
 CPCMD(help) {
 	unsigned int i = 0;
 	for ( i = 0; i < console->cmd_list_count; i++ ) {
@@ -122,16 +142,42 @@ CPCMD(help) {
 		}
 	}
 }
-/* [Ind] */
-CPCMD(malloc_usage) {
+
+/**
+ * [Ind]
+ * Displays current malloc usage
+ */
+CPCMD_C(malloc_usage,server) {
 	unsigned int val = (unsigned int)iMalloc->usage();
 	ShowInfo("malloc_usage: %.2f MB\n",(double)(val)/1024);
 }
-
+/**
+ * Defines a main category
+ * Categories can't be used as commands!
+ * CP_DEF_C(category)
+ **/
 #define CP_DEF_C(x) { #x , NULL , NULL, NULL }
+/**
+ * Defines a sub-category
+ * Sub-categories can't be used as commands!
+ * CP_DEF_C2(command, category)
+ **/
 #define CP_DEF_C2(x,y) { #x , NULL , #y, NULL }
-#define CP_DEF_S(x,y) { #x , console_parse_ ## x , #y, NULL }
-#define CP_DEF(x) { #x , console_parse_ ## x , NULL, NULL }
+/**
+ * Defines a command that is inside a category or sub-category
+ * CP_DEF_S(command, category/sub-category)
+ **/
+#define CP_DEF_S(x,y) { #x, CPCMD_C_A(x,y), #y, NULL }
+/**
+ * Defines a command that is _not_ inside any category
+ * CP_DEF_S(command)
+ **/
+#define CP_DEF(x) { #x , CPCMD_A(x), NULL, NULL }
+
+/**
+ * Loads console commands list
+ * See CP_DEF_C, CP_DEF_C2, CP_DEF_S, CP_DEF
+ **/
 void console_load_defaults(void) {
 	struct {
 		char *name;
@@ -140,11 +186,17 @@ void console_load_defaults(void) {
 		struct CParseEntry *self;
 	} default_list[] = {
 		CP_DEF(help),
+		/**
+		 * Server related commands
+		 **/
 		CP_DEF_C(server),
 		CP_DEF_S(ers_report,server),
 		CP_DEF_S(mem_report,server),
 		CP_DEF_S(malloc_usage,server),
 		CP_DEF_S(exit,server),
+		/**
+		 * Sql related commands
+		 **/
 		CP_DEF_C(sql),
 		CP_DEF_C2(update,sql),
 	};
@@ -318,7 +370,7 @@ void console_parse_sub(char *line) {
 				cmd = cmd->u.next[i];
 			len += snprintf(sublist + len,CP_CMD_LENGTH * 5,":%s", cmd->cmd);
 		}
-		ShowError("it is only a category, type '"CL_WHITE"%s help"CL_RESET"' to list its subcommands\n",sublist);
+		ShowError("Is only a category, type '"CL_WHITE"%s help"CL_RESET"' to list its subcommands\n",sublist);
 	}
 }
 void console_parse(char* line) {
