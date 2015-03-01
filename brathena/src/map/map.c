@@ -3764,6 +3764,19 @@ char *get_database_name(int database_id)
 		case 59: db_name = "const_db"; break;
 		case 60: db_name = "sc_config"; break;
 		case 61: db_name = "buffspecial_db"; break; // brAthena
+			// Inicio - Leitura das tabelas de experiencia.
+		case 62: db_name = "expparameter"; break;            // Base: Classes Normais e Babys     
+		case 63: db_name = "expparameter2"; break;           // Base: base Transclasse
+		case 64: db_name = "expparameter3"; break;           // Base: base 3rd, Bebê 3rd, Classes expandidas Super Aprendiz, (até base 175)  Super Aprendiz expandido , Kagerou/Oboro , Rebelde (até base 160 somente)
+		case 65: db_name = "firstjobexpparameter"; break;    // Classe: Primeiras Classes, Bebê primeiras Classes e Taekwon
+		case 66: db_name = "firstjobexpparameter2"; break;   // Classe: TransClasses 1-1
+		case 67: db_name = "firstjobexpparameter3"; break;   // Classe: Ninja/Gunslinger
+		case 68: db_name = "novicejobexpparameter"; break;   // Classe: Aprendiz e Baby Aprendiz
+		case 69: db_name = "novicejobexpparameter2"; break;  // Classe: Aprendiz renascido
+		case 70: db_name = "secondjobexpparameter"; break;   // Classe: Segunda Classes e Bebê 2nd Classes e Soul Linker
+		case 71: db_name = "secondjobexpparameter2"; break;  // Classe: Transclasse 2-1
+		case 72: db_name = "thirdjobexpparameter"; break;    // Classe: 3rd classes, Bebê 3rds, Super Aprendiz (até job 60) Super Aprendiz expandido, Kagerou/Oboro , Rebeldes (somente até job 50)
+			// Fim - Leitura das tabelas de experiência.
 	}
 
 	return db_name;
